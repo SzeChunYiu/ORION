@@ -78,3 +78,15 @@ class SolveTrace:
     @property
     def operator_sequence(self) -> tuple[CycleOperator, ...]:
         return tuple(event.operator for event in self.events)
+
+    def validate_endpoints(
+        self, *, pre_state_hash: str, post_state_hash: str
+    ) -> None:
+        """Bind a nonempty internal chain to the actual runtime states."""
+
+        if not self.events:
+            return
+        if self.events[0].pre_state_hash != pre_state_hash:
+            raise ValueError("solve trace pre-state endpoint mismatch")
+        if self.events[-1].post_state_hash != post_state_hash:
+            raise ValueError("solve trace post-state endpoint mismatch")

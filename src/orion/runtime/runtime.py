@@ -274,10 +274,17 @@ class OrionRuntime:
         run_id = uuid4().hex
         producer_process_lineage_hash = self._producer_process_lineage_hash
         evaluator_artifact_hash = self._evaluator_artifact_hash
+        trace_id = f"trace:{problem.problem_id}:{run_id}"
         solution, final_state, trace = self._solver.solve(
             problem,
             initial_state=start_state,
-            trace_id=f"trace:{problem.problem_id}:{run_id}",
+            trace_id=trace_id,
+        )
+        if trace.trace_id != trace_id or solution.trace_id != trace_id:
+            raise ValueError("solver result is not bound to the requested trace identity")
+        trace.validate_endpoints(
+            pre_state_hash=_state_hash(start_state),
+            post_state_hash=_state_hash(final_state),
         )
         mechanic_episode_ids = self._record_mechanic_episodes(
             problem=problem,

@@ -409,6 +409,51 @@ class OrionSolver:
         state = initial_state or self.initial_state(problem)
         events: list[TraceEvent] = []
         trace_id = trace_id or f"trace:{problem.problem_id}:{uuid4().hex}"
+
+        # ORION_SOLVE is one guarded root invocation, not merely the later
+        # iteration-record/final-composition steps that share its RECURSE receipt
+        # identity.  Evaluate its guard before FRAME or any provider can run.
+        _, latency_seconds, error, invoked_guard_ids, guard_residuals = (
+            self._attempt_mechanic(
+                CycleOperator.RECURSE,
+                problem,
+                state,
+                lambda: True,
+            )
+        )
+        failure = self._failure_from_attempt(
+            problem=problem,
+            state=state,
+            events=events,
+            trace_id=trace_id,
+            operator=CycleOperator.RECURSE,
+            error=error,
+            guard_residuals=guard_residuals,
+            invoked_guard_ids=invoked_guard_ids,
+            latency_seconds=latency_seconds,
+            iterations=0,
+        )
+        if failure is not None:
+            return failure
+        root_transition = Transition(
+            operator=CycleOperator.RECURSE,
+            input_epoch=state.epoch,
+            output_epoch=state.epoch,
+        )
+        events.append(
+            self._trace_event(
+                trace_id=trace_id,
+                index=len(events),
+                operator=CycleOperator.RECURSE,
+                before_state=state,
+                after_state=state,
+                summary="solve_started",
+                transition=root_transition,
+                latency_seconds=latency_seconds,
+                action_ids=invoked_guard_ids,
+            )
+        )
+
         before_operator = state
         frame, latency_seconds, error, invoked_guard_ids, guard_residuals = (
             self._attempt_mechanic(

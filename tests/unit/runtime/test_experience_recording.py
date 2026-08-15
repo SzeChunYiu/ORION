@@ -1,3 +1,9 @@
+import hashlib
+
+import pytest
+
+from orion.core.claims import ClaimAuthority, ClaimRecord
+from orion.core.evidence import EvidenceRecord
 from orion.core.method import MethodState
 from orion.core.problem import Problem
 from orion.core.search_universe import SearchUniverseState
@@ -50,8 +56,8 @@ class _FakeSolver:
                         residual_ids=("search:coverage-open",),
                         failure_signature=("missed-parent-domain",),
                     ),
-                    "1" * 64,
-                    "2" * 64,
+                    hashlib.sha256(repr(initial_state).encode()).hexdigest(),
+                    hashlib.sha256(repr(final_state).encode()).hexdigest(),
                 ),
             )
         return (
@@ -232,6 +238,49 @@ def test_real_runtime_records_executed_failure_pattern_guard_action():
     assert result.mechanic_experience_episode_ids
 
 
+def test_root_solve_guard_rejects_before_any_provider_or_operator_side_effect():
+    store = InMemoryExperienceStore()
+    provider_calls = []
+    guard_calls = []
+    guard = CallableMechanicGuard(
+        "guard:pattern:root-solve-policy",
+        "ORION_SOLVE.v1",
+        lambda problem, state: (
+            guard_calls.append((problem.problem_id, state.epoch))
+            or MechanicGuardResult(
+                passed=False,
+                residual_ids=("guard:root-solve:policy-rejected",),
+            )
+        ),
+    )
+    runtime = OrionRuntime.from_providers(
+        llm=CallableLLMProvider(
+            lambda request: (
+                provider_calls.append(request) or '{"queries":[]}'
+            ),
+            model_id="must-not-run",
+        ),
+        retrieval=InMemoryRetrievalProvider({}),
+        verification=InMemoryVerificationProvider(frozenset()),
+        experience_store=store,
+        guards=(guard,),
+    )
+
+    result = runtime.solve(
+        Problem("task:root-guard", "Reject before starting the root solve.")
+    )
+
+    assert guard_calls == [("task:root-guard", 0)]
+    assert provider_calls == []
+    assert result.solution.status is SolutionStatus.BLOCKED
+    assert len(result.trace.events) == 1
+    event = result.trace.events[0]
+    assert event.operator is CycleOperator.RECURSE
+    assert event.receipt.status is MechanicRunStatus.BLOCKED
+    assert event.receipt.action_ids == (guard.guard_id,)
+    assert event.receipt.failure_signature == ("mechanic_guard_rejected",)
+
+
 def test_search_guard_is_rechecked_at_current_epoch_and_rejection_is_not_execution():
     store = InMemoryExperienceStore()
     calls = []
@@ -338,8 +387,63 @@ def test_provider_exception_becomes_atomic_and_root_failure_experience():
     root = next(
         episode
         for episode in store.episodes()
-        if episode.mechanic_id == "ORION_SOLVE.v1"
+        if episode.episode_id == result.experience_episode_id
     )
     assert failed.parent_run_id == root.run_id
-from orion.core.claims import ClaimAuthority, ClaimRecord
-from orion.core.evidence import EvidenceRecord
+
+
+def test_runtime_rejects_unrelated_trace_endpoints_before_recording_experience():
+    store = InMemoryExperienceStore()
+    runtime = OrionRuntime(
+        _FakeSolver(SolutionStatus.BLOCKED, atomic_failure=True),
+        experience_store=store,
+    )
+    original_solve = runtime._solver.solve
+
+    def substitute_trace(problem, *, initial_state=None, trace_id=None):
+        solution, final_state, trace = original_solve(
+            problem,
+            initial_state=initial_state,
+            trace_id=trace_id,
+        )
+        event = trace.events[0]
+        substituted = TraceEvent(
+            event.operator,
+            event.epoch,
+            event.summary,
+            event.transition,
+            event.receipt,
+            "a" * 64,
+            "b" * 64,
+        )
+        return solution, final_state, SolveTrace(trace.trace_id, (substituted,))
+
+    runtime._solver.solve = substitute_trace
+
+    with pytest.raises(ValueError, match="pre-state endpoint mismatch"):
+        runtime.solve(Problem("task:unrelated-trace", "Reject unrelated history."))
+
+    assert store.episodes() == ()
+
+
+def test_runtime_rejects_solver_result_with_substituted_trace_identity():
+    store = InMemoryExperienceStore()
+    runtime = OrionRuntime(
+        _FakeSolver(SolutionStatus.CANNOT_CHECK), experience_store=store
+    )
+    original_solve = runtime._solver.solve
+
+    def substitute_trace_id(problem, *, initial_state=None, trace_id=None):
+        solution, final_state, trace = original_solve(
+            problem,
+            initial_state=initial_state,
+            trace_id=trace_id,
+        )
+        return solution, final_state, SolveTrace("trace:substituted", trace.events)
+
+    runtime._solver.solve = substitute_trace_id
+
+    with pytest.raises(ValueError, match="requested trace identity"):
+        runtime.solve(Problem("task:trace-id", "Reject substituted identity."))
+
+    assert store.episodes() == ()
