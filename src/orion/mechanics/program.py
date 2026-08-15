@@ -4,9 +4,11 @@ from dataclasses import dataclass
 from typing import Mapping
 
 from .audit import MechanicAuditVerdict, audit_recursive
+from .decomposition import expanded_workflow_cells
 from .model import MechanicCell
 from .questioning import MechanicQuestion
 from .research import MechanicResearchTask, research_task_for_question
+from .verification import apply_default_verification_plans
 from .workflow import ORION_WORKFLOW_ROOT_ID
 
 
@@ -25,13 +27,17 @@ class MechanicsProgramMetrics:
         return self.mechanic_count - self.ready_mechanic_count
 
 
+def current_program_cells() -> tuple[MechanicCell, ...]:
+    """Current Shadow-ORION research state after accepted specification-level transfers."""
+
+    return apply_default_verification_plans(expanded_workflow_cells())
+
+
 def observe_mechanics_program(
     cells: tuple[MechanicCell, ...],
     *,
     root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID,
 ) -> MechanicsProgramMetrics:
-    """Expose machine-readable development observables for the recursive mechanic graph."""
-
     by_id = {cell.mechanic_id: cell for cell in cells}
     report = audit_recursive(by_id, root_mechanic_id)
     counts: dict[str, int] = {}
@@ -51,19 +57,16 @@ def observe_mechanics_program(
     )
 
 
+def observe_current_mechanics_program() -> MechanicsProgramMetrics:
+    return observe_mechanics_program(current_program_cells())
+
+
 def plan_program_questions(
     cells: tuple[MechanicCell, ...],
     *,
     limit: int = 64,
     root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID,
 ) -> tuple[MechanicQuestion, ...]:
-    """V0 breadth-first/gate-first global scheduler over open mechanic questions.
-
-    Each cell's local question order already encodes the fixed gate priority. This
-    scheduler takes rank 0 across cells before rank 1, preventing one coarse mechanic
-    from consuming the entire research budget before peer mechanics are inspected.
-    """
-
     if limit < 1:
         raise ValueError("program question limit must be positive")
     by_id = {cell.mechanic_id: cell for cell in cells}
@@ -89,3 +92,11 @@ def plan_program_research(
     by_id: Mapping[str, MechanicCell] = {cell.mechanic_id: cell for cell in cells}
     questions = plan_program_questions(cells, limit=limit, root_mechanic_id=root_mechanic_id)
     return tuple(research_task_for_question(by_id[question.mechanic_id], question) for question in questions)
+
+
+def plan_current_program_questions(*, limit: int = 64) -> tuple[MechanicQuestion, ...]:
+    return plan_program_questions(current_program_cells(), limit=limit)
+
+
+def plan_current_program_research(*, limit: int = 64) -> tuple[MechanicResearchTask, ...]:
+    return plan_program_research(current_program_cells(), limit=limit)
