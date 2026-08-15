@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 from enum import Enum
 
-from .model import MechanicCell
+from .model import MechanicCell, MechanicDimension
 
 
 class StateRole(str, Enum):
@@ -39,8 +39,19 @@ class StateVariableSpec:
     replay_semantics: str
 
     def __post_init__(self) -> None:
-        if any(not item.strip() for item in (self.state_id, self.mechanic_id, self.description, self.schema_ref, self.replay_semantics)):
-            raise ValueError("state variable identity/description/schema/replay semantics are required")
+        if any(
+            not item.strip()
+            for item in (
+                self.state_id,
+                self.mechanic_id,
+                self.description,
+                self.schema_ref,
+                self.replay_semantics,
+            )
+        ):
+            raise ValueError(
+                "state variable identity/description/schema/replay semantics are required"
+            )
 
 
 @dataclass(frozen=True)
@@ -51,8 +62,14 @@ class MechanicStatePlan:
     step_specific_state_open: bool = True
 
     def __post_init__(self) -> None:
-        if not self.mechanic_id.strip() or not self.variables or not self.mutation_rule.strip():
-            raise ValueError("mechanic state plan requires identity, variables and mutation rule")
+        if (
+            not self.mechanic_id.strip()
+            or not self.variables
+            or not self.mutation_rule.strip()
+        ):
+            raise ValueError(
+                "mechanic state plan requires identity, variables and mutation rule"
+            )
         if any(item.mechanic_id != self.mechanic_id for item in self.variables):
             raise ValueError("state variable mechanic mismatch")
         ids = [item.state_id for item in self.variables]
@@ -171,15 +188,22 @@ def apply_default_state_plan(cell: MechanicCell) -> MechanicCell:
         empirical_open = tuple(
             dict.fromkeys(
                 empirical_open
-                + ("step-specific scientific/algorithmic state variables, transition graph, latent-state identifiability and replay fidelity",)
+                + (
+                    "step-specific scientific/algorithmic state variables, transition graph, latent-state identifiability and replay fidelity",
+                )
             )
         )
     return replace(
         cell,
         state_ids=tuple(item.state_id for item in plan.variables),
+        provisional_dimensions=tuple(
+            dict.fromkeys((*cell.provisional_dimensions, MechanicDimension.STATE))
+        ),
         empirical_open_coordinates=empirical_open,
     )
 
 
-def apply_default_state_plans(cells: tuple[MechanicCell, ...]) -> tuple[MechanicCell, ...]:
+def apply_default_state_plans(
+    cells: tuple[MechanicCell, ...],
+) -> tuple[MechanicCell, ...]:
     return tuple(apply_default_state_plan(cell) for cell in cells)

@@ -14,15 +14,29 @@ def test_raw_decomposition_exposes_development_numbers():
     assert metrics.cycle_count == 0
 
 
-def test_current_program_advances_to_actions_after_saturation_spec():
+def test_current_program_keeps_universal_envelopes_provisional():
     metrics = observe_current_mechanics_program()
     counts = dict(metrics.open_by_dimension)
-    assert MechanicDimension.SATURATION.value not in counts
-    assert counts[MechanicDimension.ACTIONS.value] == metrics.mechanic_count
+    for provisional in (
+        MechanicDimension.VERIFICATION,
+        MechanicDimension.FAILURE,
+        MechanicDimension.OBSERVABILITY,
+        MechanicDimension.HANDOFF,
+        MechanicDimension.STATE,
+        MechanicDimension.TRANSITION_MODEL,
+        MechanicDimension.MATHEMATICS,
+    ):
+        assert counts[provisional.value] == metrics.mechanic_count
 
 
-def test_action_wave_is_mechanically_scheduled():
+def test_global_scheduler_is_breadth_first_not_one_cell_deep():
+    questions = plan_current_program_questions(limit=20)
+    assert len({item.mechanic_id for item in questions}) == 20
+    assert all(item.dimension is MechanicDimension.VERIFICATION for item in questions)
+
+
+def test_current_global_questions_become_search_tasks_without_llm_planning():
     tasks = plan_current_program_research(limit=8)
     assert len(tasks) == 8
-    assert all(item.query.route_kind is SearchRouteKind.FUNCTION_ONLY for item in tasks)
+    assert all(item.query.route_kind is SearchRouteKind.CROSS_DOMAIN for item in tasks)
     assert all(item.query.text for item in tasks)

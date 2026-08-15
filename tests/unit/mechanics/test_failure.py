@@ -23,12 +23,16 @@ def test_failure_plan_separates_observation_effect_cause_detection_and_recovery(
         assert mode.falsifier
 
 
-def test_failure_plan_closes_failure_specification_but_retains_step_specific_open_coordinate():
+def test_failure_plan_keeps_step_specific_failure_question_provisionally_open():
     cell = MechanicCell("SEARCH.test", "Find evidence.", "fixture")
     before = {item.dimension.value for item in generate_mechanic_questions(cell)}
     updated = apply_default_failure_plan(cell)
     after = {item.dimension.value for item in generate_mechanic_questions(updated)}
     assert "FAILURE" in before
-    assert "FAILURE" not in after
+    assert "FAILURE" in after
+    assert "FAILURE" in {item.value for item in updated.provisional_dimensions}
     assert "DIAGNOSIS" in after
-    assert any("step-specific failure-mode" in item for item in updated.empirical_open_coordinates)
+    assert any(
+        "step-specific failure-mode" in item
+        for item in updated.empirical_open_coordinates
+    )

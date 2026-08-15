@@ -2,7 +2,23 @@ from __future__ import annotations
 
 from .model import EpisodeOutcome, TaskEpisode
 
-_FAILURE_OUTCOMES = {EpisodeOutcome.FAILURE, EpisodeOutcome.PARTIAL_SUCCESS, EpisodeOutcome.BLOCKED}
+_FAILURE_OUTCOMES = {
+    EpisodeOutcome.FAILURE,
+    EpisodeOutcome.PARTIAL_SUCCESS,
+    EpisodeOutcome.BLOCKED,
+    EpisodeOutcome.CANNOT_CHECK,
+}
+
+
+def _structural_failure_signature(episode: TaskEpisode) -> tuple[str, ...]:
+    return tuple(
+        sorted(
+            {
+                *episode.failure_signature,
+                *(f"residual:{item}" for item in episode.residual_ids),
+            }
+        )
+    )
 
 
 def signature_similarity(left: tuple[str, ...], right: tuple[str, ...]) -> float:
@@ -28,9 +44,16 @@ def related_failure_episodes(
         return ()
     rows: list[tuple[float, str, TaskEpisode]] = []
     for episode in episodes:
-        if episode.episode_id == target.episode_id or episode.mechanic_id != target.mechanic_id or episode.outcome not in _FAILURE_OUTCOMES:
+        if (
+            episode.episode_id == target.episode_id
+            or episode.mechanic_id != target.mechanic_id
+            or episode.outcome not in _FAILURE_OUTCOMES
+        ):
             continue
-        score = signature_similarity(target.failure_signature, episode.failure_signature)
+        score = signature_similarity(
+            _structural_failure_signature(target),
+            _structural_failure_signature(episode),
+        )
         if score >= min_similarity:
             rows.append((-score, episode.episode_id, episode))
     rows.sort(key=lambda row: (row[0], row[1]))

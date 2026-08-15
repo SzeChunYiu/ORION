@@ -9,9 +9,10 @@ The mechanics-of-mechanics substrate turns ORION development into an observable 
 - total unresolved mechanic questions;
 - unresolved-question counts by dimension;
 - unknown child references;
-- dependency/child cycles detected by recursive audit.
+- unknown execution-dependency references;
+- containment cycles and execution-dependency cycles detected separately.
 
-The current provisional decomposition contains at least 59 cells and more than 1,200 open typed questions. This number is a workload observation, not a target to maximize. A question disappears only when the cell gains a corresponding contract/evidence field or an explicit justified waiver.
+The current provisional decomposition contains 59 reachable cells and 1,181 open typed questions after the protected-verification specification wave. This number is a workload observation, not a target to maximize. Universal envelopes remain marked provisional and do not remove step-specific questions. A question disappears only when the cell gains a scoped non-provisional contract/evidence field or an explicit justified waiver.
 
 ## V0 research scheduling
 
@@ -23,4 +24,4 @@ The current provisional decomposition contains at least 59 cells and more than 1
 4. let evidence update the mechanic cell;
 5. re-audit and repeat.
 
-The first global wave therefore emphasizes verification, failure semantics and observability before optimization. This is a fixed auditable bootstrap policy, not a claim that breadth-first scheduling is optimal. A learned/metareasoning scheduler must demonstrate better root-relevant progress under frozen evaluation before promotion.
+The current global wave returns to step-specific failure semantics across the breadth of the workflow. Universal failure/observability/handoff/state/transition/mathematics envelopes provide reusable scaffolding but remain explicitly provisional. This is a fixed auditable bootstrap policy, not a claim that breadth-first scheduling is optimal. A learned/metareasoning scheduler must demonstrate better root-relevant progress under frozen evaluation before promotion.

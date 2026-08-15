@@ -68,9 +68,17 @@ class MetricSpec:
     uncertainty_semantics: str = ""
 
     def __post_init__(self) -> None:
-        if not self.metric_id.strip() or not self.description.strip() or not self.unit.strip():
+        if (
+            not self.metric_id.strip()
+            or not self.description.strip()
+            or not self.unit.strip()
+        ):
             raise ValueError("metric identity, description and unit are required")
-        if self.direction in {MetricDirection.TARGET, MetricDirection.NON_COMPENSATORY_GATE} and not self.threshold_semantics.strip():
+        if (
+            self.direction
+            in {MetricDirection.TARGET, MetricDirection.NON_COMPENSATORY_GATE}
+            and not self.threshold_semantics.strip()
+        ):
             raise ValueError("target/gate metrics require threshold semantics")
 
 
@@ -97,8 +105,14 @@ class HandoffField:
     required: bool = True
 
     def __post_init__(self) -> None:
-        if not self.field_id.strip() or not self.description.strip() or not self.schema_ref.strip():
-            raise ValueError("handoff field identity, description and schema are required")
+        if (
+            not self.field_id.strip()
+            or not self.description.strip()
+            or not self.schema_ref.strip()
+        ):
+            raise ValueError(
+                "handoff field identity, description and schema are required"
+            )
 
 
 @dataclass(frozen=True)
@@ -152,10 +166,15 @@ class MechanicCell:
     parent_domain_hypotheses: tuple[str, ...] = ()
     saturation_criteria: tuple[str, ...] = ()
     empirical_open_coordinates: tuple[str, ...] = ()
+    provisional_dimensions: tuple[MechanicDimension, ...] = ()
     waivers: tuple[DimensionWaiver, ...] = ()
 
     def __post_init__(self) -> None:
-        if not self.mechanic_id.strip() or not self.purpose.strip() or not self.scope.strip():
+        if (
+            not self.mechanic_id.strip()
+            or not self.purpose.strip()
+            or not self.scope.strip()
+        ):
             raise ValueError("mechanic identity, purpose and scope are required")
         metric_ids = [item.metric_id for item in self.metrics]
         if len(set(metric_ids)) != len(metric_ids):
@@ -166,6 +185,12 @@ class MechanicCell:
         waived = [item.dimension for item in self.waivers]
         if len(set(waived)) != len(waived):
             raise ValueError("a mechanic dimension can be waived at most once")
+        if len(set(self.provisional_dimensions)) != len(self.provisional_dimensions):
+            raise ValueError("a mechanic dimension can be provisional at most once")
+        if set(waived) & set(self.provisional_dimensions):
+            raise ValueError(
+                "a mechanic dimension cannot be both waived and provisional"
+            )
         if self.mechanic_id in self.child_mechanic_ids:
             raise ValueError("a mechanic cannot be its own child")
 

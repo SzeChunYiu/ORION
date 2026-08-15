@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 from enum import Enum
 
-from .model import MechanicCell
+from .model import MechanicCell, MechanicDimension
 from .receipt import MechanicRunStatus
 
 
@@ -47,7 +47,9 @@ class FailureModeDefinition:
             self.acceptance_rationale,
         )
         if any(not item.strip() for item in text):
-            raise ValueError("failure-mode identity, semantics, detection, falsifier and rationale are required")
+            raise ValueError(
+                "failure-mode identity, semantics, detection, falsifier and rationale are required"
+            )
         required_groups = (
             self.propagated_effects,
             self.cause_hypotheses,
@@ -55,7 +57,9 @@ class FailureModeDefinition:
             self.recovery_actions,
         )
         if any(not group for group in required_groups):
-            raise ValueError("failure modes require effects, cause hypotheses, detection signals and recovery actions")
+            raise ValueError(
+                "failure modes require effects, cause hypotheses, detection signals and recovery actions"
+            )
 
 
 @dataclass(frozen=True)
@@ -120,11 +124,19 @@ def default_failure_plan(cell: MechanicCell) -> MechanicFailurePlan:
                 MechanicRunStatus.FAILED,
                 "The mechanic violates a declared invariant, postcondition or interface contract.",
                 ("downstream output is unsafe to treat as contract-conformant",),
-                ("implementation defect", "invalid assumption", "incorrect input/state binding"),
+                (
+                    "implementation defect",
+                    "invalid assumption",
+                    "incorrect input/state binding",
+                ),
                 FailureDetectionKind.INVARIANT_VIOLATION,
                 ("invariant checks", "postcondition checks", "interface checks"),
                 "A declared invariant, postcondition or interface predicate evaluates false.",
-                ("quarantine the output", "localize the violated contract", "route to diagnosis before retry"),
+                (
+                    "quarantine the output",
+                    "localize the violated contract",
+                    "route to diagnosis before retry",
+                ),
                 "A hostile/known-answer case exercises the registered contract without the predicted violation.",
                 "A declared contract violation must fail closed rather than be averaged into a quality score.",
             ),
@@ -134,11 +146,23 @@ def default_failure_plan(cell: MechanicCell) -> MechanicFailurePlan:
                 MechanicRunStatus.BLOCKED,
                 "A mandatory prerequisite, dependency, evidence item or authority certificate is unavailable.",
                 ("the mechanic cannot safely execute its intended transition",),
-                ("upstream dependency failure", "missing evidence", "unmet precondition"),
+                (
+                    "upstream dependency failure",
+                    "missing evidence",
+                    "unmet precondition",
+                ),
                 FailureDetectionKind.INTERFACE_VIOLATION,
-                ("prerequisite availability", "dependency status", "required evidence/certificate presence"),
+                (
+                    "prerequisite availability",
+                    "dependency status",
+                    "required evidence/certificate presence",
+                ),
                 "At least one declared mandatory prerequisite is absent or invalid.",
-                ("open/acquire the missing prerequisite", "repair the upstream dependency", "return BLOCKED"),
+                (
+                    "open/acquire the missing prerequisite",
+                    "repair the upstream dependency",
+                    "return BLOCKED",
+                ),
                 "The mechanic executes successfully after every declared mandatory prerequisite is supplied under the same scope.",
                 "Blocked is distinct from scientific refutation and from an implementation failure.",
             ),
@@ -148,11 +172,24 @@ def default_failure_plan(cell: MechanicCell) -> MechanicFailurePlan:
                 MechanicRunStatus.CANNOT_CHECK,
                 "The mechanic cannot establish a required observation or verification condition.",
                 ("the target conclusion remains unresolved at this mechanic",),
-                ("missing instrument", "missing verifier", "unavailable measurement", "unresolved identification"),
+                (
+                    "missing instrument",
+                    "missing verifier",
+                    "unavailable measurement",
+                    "unresolved identification",
+                ),
                 FailureDetectionKind.VERIFICATION_UNAVAILABLE,
-                ("verification artifact availability", "measurement availability", "identifiability status"),
+                (
+                    "verification artifact availability",
+                    "measurement availability",
+                    "identifiability status",
+                ),
                 "A required verification/measurement obligation is unrun, unavailable or not identifiable.",
-                ("acquire the missing verification capability", "narrow the claim", "return CANNOT_CHECK"),
+                (
+                    "acquire the missing verification capability",
+                    "narrow the claim",
+                    "return CANNOT_CHECK",
+                ),
                 "The required observation/verifier becomes available and resolves the obligation without changing the claimed scope.",
                 "Unchecked is not evidence of success or failure; it remains epistemically open.",
             ),
@@ -162,11 +199,19 @@ def default_failure_plan(cell: MechanicCell) -> MechanicFailurePlan:
                 MechanicRunStatus.CANNOT_CHECK,
                 "The declared resource budget is exhausted while material obligations remain open.",
                 ("local work stops without licensing task or mechanic closure",),
-                ("insufficient compute/time/token/tool budget", "poor allocation policy", "unexpected task complexity"),
+                (
+                    "insufficient compute/time/token/tool budget",
+                    "poor allocation policy",
+                    "unexpected task complexity",
+                ),
                 FailureDetectionKind.RESOURCE_BOUND,
                 ("remaining budget", "open obligation count", "marginal progress"),
                 "Budget reaches its declared floor while at least one material obligation remains open.",
-                ("return CANNOT_CHECK", "record unfinished obligations", "request/justify additional resources or reallocate"),
+                (
+                    "return CANNOT_CHECK",
+                    "record unfinished obligations",
+                    "request/justify additional resources or reallocate",
+                ),
                 "A matched-resource rerun closes the obligations without changing the task or acceptance criteria.",
                 "Resource exhaustion must never be rounded up to bounded saturation or scientific closure.",
             ),
@@ -175,12 +220,28 @@ def default_failure_plan(cell: MechanicCell) -> MechanicFailurePlan:
                 "false-progress",
                 MechanicRunStatus.PARTIAL,
                 "A local metric improves while root-relevant, authority, interface or falsifier obligations remain unchanged or worsen.",
-                ("the system may report progress that does not advance the root problem",),
-                ("surrogate misalignment", "metric gaming", "interface mismatch", "hidden residual"),
+                (
+                    "the system may report progress that does not advance the root problem",
+                ),
+                (
+                    "surrogate misalignment",
+                    "metric gaming",
+                    "interface mismatch",
+                    "hidden residual",
+                ),
                 FailureDetectionKind.ROOT_PROGRESS_VIOLATION,
-                ("local metric delta", "root-obligation delta", "interface invariants", "blocking residual count"),
+                (
+                    "local metric delta",
+                    "root-obligation delta",
+                    "interface invariants",
+                    "blocking residual count",
+                ),
                 "Local improvement is observed without a licensed improvement in the registered root-relevant coordinate, or a blocking invariant regresses.",
-                ("do not promote the local result", "diagnose surrogate/root mismatch", "reframe metric or interface if supported"),
+                (
+                    "do not promote the local result",
+                    "diagnose surrogate/root mismatch",
+                    "reframe metric or interface if supported",
+                ),
                 "The same local change reliably improves the registered root-relevant coordinate under preserved blocking invariants on fresh cases.",
                 "Local improvement is evidence only for the local coordinate unless root transport is independently witnessed.",
             ),
@@ -190,11 +251,25 @@ def default_failure_plan(cell: MechanicCell) -> MechanicFailurePlan:
                 MechanicRunStatus.FAILED,
                 "The mechanic returns an apparently admissible result while a protected expectation is violated but not surfaced by ordinary success reporting.",
                 ("invalid output can propagate as if successful",),
-                ("missing monitor", "coverage gap", "latent data corruption", "unmodeled regime change"),
+                (
+                    "missing monitor",
+                    "coverage gap",
+                    "latent data corruption",
+                    "unmodeled regime change",
+                ),
                 FailureDetectionKind.EXPECTATION_VIOLATION,
-                ("independent expectation checks", "cross-route consistency", "hostile canaries", "fresh assurance"),
+                (
+                    "independent expectation checks",
+                    "cross-route consistency",
+                    "hostile canaries",
+                    "fresh assurance",
+                ),
                 "An independent expectation, canary or protected evaluator rejects an otherwise nominally successful result.",
-                ("quarantine the result", "open diagnosis and monitoring gap", "add a regression canary only after cause localization"),
+                (
+                    "quarantine the result",
+                    "open diagnosis and monitoring gap",
+                    "add a regression canary only after cause localization",
+                ),
                 "Hostile/fresh tests fail to reproduce the degradation under the hypothesized cause boundary.",
                 "Silent failure requires independent detection because self-reported success is not sufficient evidence.",
             ),
@@ -210,16 +285,23 @@ def apply_default_failure_plan(cell: MechanicCell) -> MechanicCell:
         empirical_open = tuple(
             dict.fromkeys(
                 empirical_open
-                + ("step-specific failure-mode/effect/cause/detectability analysis and hostile validation",)
+                + (
+                    "step-specific failure-mode/effect/cause/detectability analysis and hostile validation",
+                )
             )
         )
     return replace(
         cell,
         failure_signatures=tuple(item.mode_id for item in plan.modes),
         falsifiers=tuple(item.falsifier for item in plan.modes),
+        provisional_dimensions=tuple(
+            dict.fromkeys((*cell.provisional_dimensions, MechanicDimension.FAILURE))
+        ),
         empirical_open_coordinates=empirical_open,
     )
 
 
-def apply_default_failure_plans(cells: tuple[MechanicCell, ...]) -> tuple[MechanicCell, ...]:
+def apply_default_failure_plans(
+    cells: tuple[MechanicCell, ...],
+) -> tuple[MechanicCell, ...]:
     return tuple(apply_default_failure_plan(cell) for cell in cells)

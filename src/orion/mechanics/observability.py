@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 from enum import Enum
 
-from .model import MechanicCell
+from .model import MechanicCell, MechanicDimension
 
 
 class ObservationClass(str, Enum):
@@ -42,9 +42,16 @@ class ObservationSpec:
             self.decision_use,
         )
         if any(not item.strip() for item in required):
-            raise ValueError("observation identity, measurand/source/unit/trigger/uncertainty/use are required")
-        if self.observation_class is not ObservationClass.SCIENTIFIC_MEASUREMENT and self.may_create_scientific_authority:
-            raise ValueError("runtime/interface/performance telemetry cannot directly create scientific authority")
+            raise ValueError(
+                "observation identity, measurand/source/unit/trigger/uncertainty/use are required"
+            )
+        if (
+            self.observation_class is not ObservationClass.SCIENTIFIC_MEASUREMENT
+            and self.may_create_scientific_authority
+        ):
+            raise ValueError(
+                "runtime/interface/performance telemetry cannot directly create scientific authority"
+            )
 
 
 @dataclass(frozen=True)
@@ -55,7 +62,9 @@ class MechanicObservationPlan:
 
     def __post_init__(self) -> None:
         if not self.mechanic_id.strip() or not self.observations:
-            raise ValueError("mechanic observation plan requires identity and observations")
+            raise ValueError(
+                "mechanic observation plan requires identity and observations"
+            )
         if any(item.mechanic_id != self.mechanic_id for item in self.observations):
             raise ValueError("observation mechanic mismatch")
         ids = [item.observation_id for item in self.observations]
@@ -184,9 +193,16 @@ def apply_default_observation_plan(cell: MechanicCell) -> MechanicCell:
     return replace(
         cell,
         observable_ids=tuple(item.observation_id for item in plan.observations),
+        provisional_dimensions=tuple(
+            dict.fromkeys(
+                (*cell.provisional_dimensions, MechanicDimension.OBSERVABILITY)
+            )
+        ),
         empirical_open_coordinates=empirical_open,
     )
 
 
-def apply_default_observation_plans(cells: tuple[MechanicCell, ...]) -> tuple[MechanicCell, ...]:
+def apply_default_observation_plans(
+    cells: tuple[MechanicCell, ...],
+) -> tuple[MechanicCell, ...]:
     return tuple(apply_default_observation_plan(cell) for cell in cells)

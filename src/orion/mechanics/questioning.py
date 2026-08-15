@@ -78,6 +78,8 @@ _PRIORITY: tuple[MechanicDimension, ...] = (
 def _satisfied(cell: MechanicCell, dimension: MechanicDimension) -> bool:
     if dimension in cell.waived_dimensions:
         return True
+    if dimension in cell.provisional_dimensions:
+        return False
     mapping = {
         MechanicDimension.INPUTS: bool(cell.input_ids),
         MechanicDimension.OUTPUTS: bool(cell.output_ids),
@@ -147,4 +149,8 @@ def plan_next_questions(
     if limit < 1:
         raise ValueError("question plan limit must be positive")
     rank = {dimension: index for index, dimension in enumerate(_PRIORITY)}
-    return tuple(sorted(questions, key=lambda item: (rank[item.dimension], item.question_id))[:limit])
+    return tuple(
+        sorted(questions, key=lambda item: (rank[item.dimension], item.question_id))[
+            :limit
+        ]
+    )

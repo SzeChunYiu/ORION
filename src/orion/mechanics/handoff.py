@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 from enum import Enum
 
-from .model import HandoffField, MechanicCell
+from .model import HandoffField, MechanicCell, MechanicDimension
 
 
 class FieldPresence(str, Enum):
@@ -36,7 +36,9 @@ class HandoffRequirement:
             self.uncertainty_semantics,
         )
         if any(not item.strip() for item in required):
-            raise ValueError("handoff field identity/schema/unit/uncertainty semantics are required")
+            raise ValueError(
+                "handoff field identity/schema/unit/uncertainty semantics are required"
+            )
 
 
 @dataclass(frozen=True)
@@ -50,8 +52,19 @@ class MechanicHandoffPlan:
     step_specific_payload_open: bool = True
 
     def __post_init__(self) -> None:
-        if any(not item.strip() for item in (self.mechanic_id, self.schema_id, self.schema_version, self.missing_required_semantics, self.compatibility_policy)):
-            raise ValueError("handoff plan identity/version/missing/compatibility semantics are required")
+        if any(
+            not item.strip()
+            for item in (
+                self.mechanic_id,
+                self.schema_id,
+                self.schema_version,
+                self.missing_required_semantics,
+                self.compatibility_policy,
+            )
+        ):
+            raise ValueError(
+                "handoff plan identity/version/missing/compatibility semantics are required"
+            )
         if not self.fields:
             raise ValueError("handoff plan requires fields")
         ids = [item.field_id for item in self.fields]
@@ -74,7 +87,9 @@ def _field(
         field_id=field_id,
         description=description,
         schema_ref=schema_ref,
-        presence=FieldPresence.REQUIRED if required else FieldPresence.OPTIONAL_EXPLICIT,
+        presence=FieldPresence.REQUIRED
+        if required
+        else FieldPresence.OPTIONAL_EXPLICIT,
         unit_semantics=unit_semantics,
         uncertainty_semantics=uncertainty_semantics,
         provenance_required=provenance_required,
@@ -94,15 +109,73 @@ def default_handoff_plan(cell: MechanicCell) -> MechanicHandoffPlan:
         schema_id="orion.MechanicReceiptEnvelope",
         schema_version="v0",
         fields=(
-            _field("status", "Fail-closed execution status.", "MechanicRunStatus", required=True),
-            _field("output_artifact_ids", "Stable identifiers of produced artifacts.", "tuple[str]", required=True, provenance_required=True),
-            _field("handoff_values", "Mechanic-specific typed payload keyed by declared field id.", "tuple[(field_id,value)]", required=True, provenance_required=True),
-            _field("metric_observations", "Typed metric observations including unit/evidence/uncertainty.", "tuple[MetricObservation]", required=True, unit_semantics="declared per metric", uncertainty_semantics="declared per observation", provenance_required=True),
-            _field("residual_ids", "Material/unresolved residuals for downstream diagnosis/reopen.", "tuple[str]", required=True, provenance_required=True),
-            _field("evidence_ids", "Evidence identifiers touched by the mechanic; identity alone grants no authority.", "tuple[str]", required=True, provenance_required=True, authority_transport=AuthorityTransport.EXPLICIT_CERTIFICATE_ONLY),
-            _field("provenance_ids", "Execution/source/proposal lineage identifiers.", "tuple[str]", required=True, provenance_required=True),
-            _field("cost_units", "Normalized resource cost under the active cost model.", "float", required=True, unit_semantics="cost_unit", uncertainty_semantics="valid only under active provider accounting coverage"),
-            _field("latency_seconds", "Wall-clock completion latency.", "float", required=True, unit_semantics="s", uncertainty_semantics="clock resolution/scheduling limitations"),
+            _field(
+                "status",
+                "Fail-closed execution status.",
+                "MechanicRunStatus",
+                required=True,
+            ),
+            _field(
+                "output_artifact_ids",
+                "Stable identifiers of produced artifacts.",
+                "tuple[str]",
+                required=True,
+                provenance_required=True,
+            ),
+            _field(
+                "handoff_values",
+                "Mechanic-specific typed payload keyed by declared field id.",
+                "tuple[(field_id,value)]",
+                required=True,
+                provenance_required=True,
+            ),
+            _field(
+                "metric_observations",
+                "Typed metric observations including unit/evidence/uncertainty.",
+                "tuple[MetricObservation]",
+                required=True,
+                unit_semantics="declared per metric",
+                uncertainty_semantics="declared per observation",
+                provenance_required=True,
+            ),
+            _field(
+                "residual_ids",
+                "Material/unresolved residuals for downstream diagnosis/reopen.",
+                "tuple[str]",
+                required=True,
+                provenance_required=True,
+            ),
+            _field(
+                "evidence_ids",
+                "Evidence identifiers touched by the mechanic; identity alone grants no authority.",
+                "tuple[str]",
+                required=True,
+                provenance_required=True,
+                authority_transport=AuthorityTransport.EXPLICIT_CERTIFICATE_ONLY,
+            ),
+            _field(
+                "provenance_ids",
+                "Execution/source/proposal lineage identifiers.",
+                "tuple[str]",
+                required=True,
+                provenance_required=True,
+            ),
+            _field(
+                "cost_units",
+                "Normalized resource cost under the active cost model.",
+                "float",
+                required=True,
+                unit_semantics="cost_unit",
+                uncertainty_semantics="valid only under active provider accounting coverage",
+            ),
+            _field(
+                "latency_seconds",
+                "Wall-clock completion latency.",
+                "float",
+                required=True,
+                unit_semantics="s",
+                uncertainty_semantics="clock resolution/scheduling limitations",
+            ),
         ),
         missing_required_semantics="A missing required field makes the handoff invalid/blocked; downstream mechanics may not infer the value from prose or defaults.",
         compatibility_policy="Schemas are versioned. Presence semantics are explicit; backward/forward compatibility must be assessed before a producer or consumer version is changed.",
@@ -126,11 +199,22 @@ def apply_default_handoff_plan(cell: MechanicCell) -> MechanicCell:
         empirical_open = tuple(
             dict.fromkeys(
                 empirical_open
-                + ("step-specific handoff payload fields, schemas, units, uncertainty, compatibility and authority transport",)
+                + (
+                    "step-specific handoff payload fields, schemas, units, uncertainty, compatibility and authority transport",
+                )
             )
         )
-    return replace(cell, handoff_fields=fields, empirical_open_coordinates=empirical_open)
+    return replace(
+        cell,
+        handoff_fields=fields,
+        provisional_dimensions=tuple(
+            dict.fromkeys((*cell.provisional_dimensions, MechanicDimension.HANDOFF))
+        ),
+        empirical_open_coordinates=empirical_open,
+    )
 
 
-def apply_default_handoff_plans(cells: tuple[MechanicCell, ...]) -> tuple[MechanicCell, ...]:
+def apply_default_handoff_plans(
+    cells: tuple[MechanicCell, ...],
+) -> tuple[MechanicCell, ...]:
     return tuple(apply_default_handoff_plan(cell) for cell in cells)

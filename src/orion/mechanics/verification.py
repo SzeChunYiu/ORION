@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 from enum import Enum
 
-from .model import MechanicCell
+from .model import MechanicCell, MechanicDimension
 
 
 class VerificationMethod(str, Enum):
@@ -51,7 +51,9 @@ class MechanicVerificationPlan:
 
     def __post_init__(self) -> None:
         if not self.mechanic_id.strip() or not self.obligations:
-            raise ValueError("mechanic verification plan requires identity and obligations")
+            raise ValueError(
+                "mechanic verification plan requires identity and obligations"
+            )
         if any(item.mechanic_id != self.mechanic_id for item in self.obligations):
             raise ValueError("verification obligation mechanic mismatch")
         ids = [item.obligation_id for item in self.obligations]
@@ -108,8 +110,17 @@ def default_verification_plan(cell: MechanicCell) -> MechanicVerificationPlan:
 
 def apply_default_verification_plan(cell: MechanicCell) -> MechanicCell:
     plan = default_verification_plan(cell)
-    return replace(cell, verification_contracts=tuple(item.obligation_id for item in plan.obligations))
+    provisional = tuple(
+        dict.fromkeys((*cell.provisional_dimensions, MechanicDimension.VERIFICATION))
+    )
+    return replace(
+        cell,
+        verification_contracts=tuple(item.obligation_id for item in plan.obligations),
+        provisional_dimensions=provisional,
+    )
 
 
-def apply_default_verification_plans(cells: tuple[MechanicCell, ...]) -> tuple[MechanicCell, ...]:
+def apply_default_verification_plans(
+    cells: tuple[MechanicCell, ...],
+) -> tuple[MechanicCell, ...]:
     return tuple(apply_default_verification_plan(cell) for cell in cells)

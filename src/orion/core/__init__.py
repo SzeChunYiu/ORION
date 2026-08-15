@@ -1,7 +1,7 @@
 from orion.core.claims import ClaimAuthority, ClaimRecord
 from orion.core.closure import ClosureCertificate
 from orion.core.contributions import AssimilationOutcome, KnowledgeContribution
-from orion.core.evidence import EvidenceRecord
+from orion.core.evidence import EvidenceRecord, evidence_record_fingerprint
 from orion.core.history import IterationRecord, NegativeHistoryEntry
 from orion.core.method import MethodState
 from orion.core.portrait import GlobalPortrait
@@ -34,4 +34,5 @@ __all__ = [
     "SearchUniverseState",
     "Solution",
     "SolutionStatus",
+    "evidence_record_fingerprint",
 ]

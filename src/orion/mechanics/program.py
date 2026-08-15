@@ -34,6 +34,8 @@ class MechanicsProgramMetrics:
     open_by_dimension: tuple[tuple[str, int], ...]
     unknown_child_count: int
     cycle_count: int
+    unknown_dependency_count: int
+    dependency_cycle_count: int
 
     @property
     def open_mechanic_count(self) -> int:
@@ -62,23 +64,49 @@ def current_program_cells() -> tuple[MechanicCell, ...]:
     return cells
 
 
-def observe_mechanics_program(cells: tuple[MechanicCell, ...], *, root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID) -> MechanicsProgramMetrics:
-    report = audit_recursive({cell.mechanic_id: cell for cell in cells}, root_mechanic_id)
+def observe_mechanics_program(
+    cells: tuple[MechanicCell, ...], *, root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID
+) -> MechanicsProgramMetrics:
+    report = audit_recursive(
+        {cell.mechanic_id: cell for cell in cells}, root_mechanic_id
+    )
     counts: dict[str, int] = {}
     for item in report.reports:
         for question in item.open_questions:
-            counts[question.dimension.value] = counts.get(question.dimension.value, 0) + 1
-    return MechanicsProgramMetrics(root_mechanic_id, len(report.reports), sum(item.verdict is MechanicAuditVerdict.READY_FOR_BENCHMARK for item in report.reports), sum(len(item.open_questions) for item in report.reports), tuple(sorted(counts.items())), len(report.unknown_child_ids), len(report.cycle_paths))
+            counts[question.dimension.value] = (
+                counts.get(question.dimension.value, 0) + 1
+            )
+    return MechanicsProgramMetrics(
+        root_mechanic_id,
+        len(report.reports),
+        sum(
+            item.verdict is MechanicAuditVerdict.READY_FOR_BENCHMARK
+            for item in report.reports
+        ),
+        sum(len(item.open_questions) for item in report.reports),
+        tuple(sorted(counts.items())),
+        len(report.unknown_child_ids),
+        len(report.cycle_paths),
+        len(report.unknown_dependency_ids),
+        len(report.dependency_cycle_paths),
+    )
 
 
 def observe_current_mechanics_program() -> MechanicsProgramMetrics:
     return observe_mechanics_program(current_program_cells())
 
 
-def plan_program_questions(cells: tuple[MechanicCell, ...], *, limit: int = 64, root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID) -> tuple[MechanicQuestion, ...]:
+def plan_program_questions(
+    cells: tuple[MechanicCell, ...],
+    *,
+    limit: int = 64,
+    root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID,
+) -> tuple[MechanicQuestion, ...]:
     if limit < 1:
         raise ValueError("program question limit must be positive")
-    report = audit_recursive({cell.mechanic_id: cell for cell in cells}, root_mechanic_id)
+    report = audit_recursive(
+        {cell.mechanic_id: cell for cell in cells}, root_mechanic_id
+    )
     rows = tuple(item.open_questions for item in report.reports)
     selected: list[MechanicQuestion] = []
     for rank in range(max((len(row) for row in rows), default=0)):
@@ -90,14 +118,26 @@ def plan_program_questions(cells: tuple[MechanicCell, ...], *, limit: int = 64, 
     return tuple(selected)
 
 
-def plan_program_research(cells: tuple[MechanicCell, ...], *, limit: int = 64, root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID) -> tuple[MechanicResearchTask, ...]:
+def plan_program_research(
+    cells: tuple[MechanicCell, ...],
+    *,
+    limit: int = 64,
+    root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID,
+) -> tuple[MechanicResearchTask, ...]:
     by_id: Mapping[str, MechanicCell] = {cell.mechanic_id: cell for cell in cells}
-    return tuple(research_task_for_question(by_id[q.mechanic_id], q) for q in plan_program_questions(cells, limit=limit, root_mechanic_id=root_mechanic_id))
+    return tuple(
+        research_task_for_question(by_id[q.mechanic_id], q)
+        for q in plan_program_questions(
+            cells, limit=limit, root_mechanic_id=root_mechanic_id
+        )
+    )
 
 
 def plan_current_program_questions(*, limit: int = 64) -> tuple[MechanicQuestion, ...]:
     return plan_program_questions(current_program_cells(), limit=limit)
 
 
-def plan_current_program_research(*, limit: int = 64) -> tuple[MechanicResearchTask, ...]:
+def plan_current_program_research(
+    *, limit: int = 64
+) -> tuple[MechanicResearchTask, ...]:
     return plan_program_research(current_program_cells(), limit=limit)

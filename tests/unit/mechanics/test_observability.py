@@ -27,17 +27,28 @@ def test_runtime_telemetry_cannot_mint_scientific_authority():
 
 
 def test_default_observation_plan_is_runtime_baseline_not_scientific_measurement():
-    plan = default_observation_plan(MechanicCell("SEARCH.test", "Find evidence.", "fixture"))
+    plan = default_observation_plan(
+        MechanicCell("SEARCH.test", "Find evidence.", "fixture")
+    )
     assert len(plan.observations) >= 6
-    assert all(item.observation_class is not ObservationClass.SCIENTIFIC_MEASUREMENT for item in plan.observations)
+    assert all(
+        item.observation_class is not ObservationClass.SCIENTIFIC_MEASUREMENT
+        for item in plan.observations
+    )
     assert all(not item.may_create_scientific_authority for item in plan.observations)
-    assert any(item.quantity_or_measurand == "wall-clock execution latency" for item in plan.observations)
+    assert any(
+        item.quantity_or_measurand == "wall-clock execution latency"
+        for item in plan.observations
+    )
 
 
-def test_observation_plan_closes_runtime_observability_but_keeps_measurement_validity_open():
+def test_observation_plan_keeps_step_specific_observability_provisionally_open():
     cell = MechanicCell("SEARCH.test", "Find evidence.", "fixture")
     updated = apply_default_observation_plan(cell)
     dimensions = {item.dimension.value for item in generate_mechanic_questions(updated)}
-    assert "OBSERVABILITY" not in dimensions
+    assert "OBSERVABILITY" in dimensions
+    assert "OBSERVABILITY" in {item.value for item in updated.provisional_dimensions}
     assert "METRICS" in dimensions
-    assert any("measurement validity" in item for item in updated.empirical_open_coordinates)
+    assert any(
+        "measurement validity" in item for item in updated.empirical_open_coordinates
+    )
