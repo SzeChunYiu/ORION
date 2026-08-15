@@ -17,14 +17,23 @@
 | Host-installed executable failure-pattern guards can be invoked and recorded end-to-end by the real runtime | IMPLEMENTED SHADOW CONTRACT / BENEFIT NOT YET LIVE-VALIDATED | `src/orion/engine/guards.py`, `solver.py`, runtime guard test |
 | Universal mechanic envelopes remain provisional and cannot silently close step-specific audit questions | IMPLEMENTED SHADOW CONTRACT | `src/orion/mechanics/model.py`, `questioning.py`, provisional-dimension tests |
 | Recursive audit blocks unknown dependencies and dependency cycles separately from containment defects | IMPLEMENTED SHADOW CONTRACT | `src/orion/mechanics/audit.py`, hostile dependency tests |
+| Persistent `AnswerRecord` objects provide evidence-required, typed, conflict/supersession-aware mechanic-cell updates, including structured handoff and metric payloads | IMPLEMENTED SHADOW CONTRACT | `src/orion/mechanics/answers.py`, answer-loop and metric-answer tests |
+| All 24 registered RAKL method surfaces are reconstructed as scoped ORION transfer profiles; 49 leaf/cross-cutting mechanics receive direct/adjacent profiles and 10 top-level mechanics receive composition profiles | IMPLEMENTED SHADOW CONTRACT / PROVENANCE-BOUND | `src/orion/self_orion/rakl_transfer.py`, `provenance/rakl/TRANSFER_INVENTORY_V1.md` |
+| The strengthened 14-dimensional structural frontier contains 826 questions across 59 mechanics; V1 closes all 826 through 826 evidence-bound answer applications with zero answer/audit residuals | IMPLEMENTED SHADOW CONTRACT / CI ONLY | `src/orion/self_orion/rakl_answers.py`, `development_driver.py`, transfer-driver tests, CI run `31911583880` |
+| A Shadow Self-ORION controller can mechanically select an empirical development question, run it through ORION research, gate implementation on evidence, request a content-addressed coding proposal, run an isolated sandbox candidate, evaluate it under protected fresh assurance and only recommend host promotion | IMPLEMENTED SHADOW ARCHITECTURE / NOT LIVE-VALIDATED | `src/orion/self_orion/self_driving.py`, `change_control.py`, `factory.py`, known-world tests |
+| LLM/Codex-style coding is a proposal-provider boundary, not the development controller or evaluator; exact diff bytes are content-addressed before sandbox execution and protected evaluator/governance paths are hard rejects | IMPLEMENTED SHADOW ARCHITECTURE | `src/orion/providers/development/`, hostile artifact/protected-path tests |
+| Multi-axis development saturation, structural novelty, experience-conditioned scheduling, append-only evolution history and an invention-readiness gate are reconstructed from RAKL as mechanical control semantics | IMPLEMENTED SHADOW CONTRACT | `src/orion/self_orion/{saturation_vector,novelty,experience_policy,evolution_archive,invention_gate}.py` |
+| Self-ORION readiness is staged: architectural composition can establish `SHADOW_SELF_DRIVING`, while `GOVERNED_SELF_ORION` still requires fresh empirical development and assurance evidence | IMPLEMENTED GOVERNANCE DEFINITION | `src/orion/self_orion/readiness.py`, readiness-stage tests |
 
 ## Empirical claims deliberately not made
 
 - ORION is superior to generic LLM research.
 - ORION reliably achieves high literature recall on the open web.
 - The required route family or mechanic-question registry is sufficient for unknown-unknown discovery.
-- Self-ORION improves ORION on fresh development tasks.
+- Governed Self-ORION improves ORION on fresh development tasks.
+- The Shadow self-driving controller beats a simpler LLM/coding-agent development baseline.
 - Failure-pattern matching or candidate guards improve fresh tasks in live research.
 - The current global portrait implementation captures scientific semantics adequately.
+- Transferred RAKL contracts are empirically valid in ORION merely because their structural specification checks pass.
 
 Those remain evaluation fibers.
