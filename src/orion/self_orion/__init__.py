@@ -38,12 +38,18 @@ from orion.self_orion.rakl_transfer import (
     transfer_coverage,
 )
 from orion.self_orion.readiness import ReadinessEvidence, assess_readiness
+from orion.self_orion.research_loop import (
+    DevelopmentInvestigationResult,
+    ShadowSelfOrionResearchLoop,
+    empirical_work_to_problem,
+)
 
 __all__ = [
     "BaselineResearchRunner",
     "BaselineTaskResult",
     "DevelopmentDriveReport",
     "DevelopmentFibre",
+    "DevelopmentInvestigationResult",
     "DevelopmentKnowledgeClass",
     "EmpiricalWorkItem",
     "FrozenLiveTrialPacket",
@@ -59,12 +65,14 @@ __all__ = [
     "ShadowCompletionState",
     "ShadowLiveTrialReport",
     "ShadowLiveTrialRunner",
+    "ShadowSelfOrionResearchLoop",
     "TrialTaskComparison",
     "apply_rakl_transfer_profiles",
     "assess_readiness",
     "compile_development_fibre",
     "completion_program_cells",
     "empirical_frontier",
+    "empirical_work_to_problem",
     "next_completion_questions",
     "next_completion_research",
     "observe_completion_program",
