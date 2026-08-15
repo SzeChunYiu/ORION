@@ -11,8 +11,14 @@ from .base import (
     DevelopmentChangeRequest,
 )
 from .llm import LLMDevelopmentChangeProvider
+from .sandbox import (
+    ArtifactBackedSandboxCandidateRunner,
+    SandboxExecutionResult,
+    SandboxPatchExecutor,
+)
 
 __all__ = [
+    "ArtifactBackedSandboxCandidateRunner",
     "CandidateExecutionReceipt",
     "DEFAULT_PROTECTED_DEVELOPMENT_PATH_PREFIXES",
     "DevelopmentArtifactRef",
@@ -22,4 +28,6 @@ __all__ = [
     "DevelopmentChangeRequest",
     "InMemoryDevelopmentArtifactStore",
     "LLMDevelopmentChangeProvider",
+    "SandboxExecutionResult",
+    "SandboxPatchExecutor",
 ]
