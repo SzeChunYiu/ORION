@@ -19,6 +19,12 @@ FRAME
 
 ORION deliberately absorbs knowledge from any relevant discipline. External disciplines remain contextual projections rather than authorities over the whole system; ORION maps their concepts, assumptions, evidence and failure modes into a provenance-preserving global portrait and may derive its own representation when the synthesis warrants it.
 
+## Current bootstrap status
+
+**MINIMUM_KERNEL_LLM_INTEGRATION_READY.** The current branch contains a modular solver, provider-neutral LLM/retrieval/verification ports, bounded-saturation gating, a known-world recursive solve benchmark, development-governance checks, and a synchronized framework-paper tree.
+
+This is not a claim that general autonomous research is solved. Live-provider reliability, open-web literature recall, scientific-language interpretation, route-level stopping, robust global-portrait reconstruction, hostile external benchmarks, and Self-ORION readiness remain open.
+
 ## Repository map
 
 ```text
@@ -28,15 +34,20 @@ docs/
   02-knowledge/        knowledge absorption and global-portrait mechanics
   03-evaluation/       benchmarks, evidence, authority and falsification
   04-self-development/ governed Self-ORION mechanics
+  05-runtime/          LLM/retrieval/verifier integration boundary
+development/           ORION-on-ORION development protocol and readiness records
+papers/                synchronized framework papers and claim/evidence ledgers
 research/
   domains/             recursively organized external-domain research programs
+  development/         research used to develop ORION itself
   failures/            failure cases and learned guards
   programs/            cross-domain research programs
 src/orion/
-  core/                typed state and invariant objects
-  engine/              reconstruction-cycle execution
-  knowledge/           absorption/mapping/global-portrait implementation
-  evaluation/          verification and benchmark machinery
+  core/                typed K/W/M state and invariant objects
+  engine/              recursive operators and solver orchestration
+  providers/           replaceable LLM/retrieval/verification ports + adapters
+  runtime/             composition root for live integrations
+  development/         development-governance contracts
   self_orion/          proposal-only self-development machinery
 tests/
   unit/
