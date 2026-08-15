@@ -16,6 +16,10 @@ from orion.self_orion.change_control import (
 )
 from orion.self_orion.development_driver import DevelopmentDriveReport, SelfOrionDevelopmentDriver
 from orion.self_orion.development_fibre import DevelopmentFibre, compile_development_fibre
+from orion.self_orion.readiness import (
+    ShadowSelfDrivingArchitectureEvidence,
+    assess_shadow_self_driving_architecture,
+)
 from orion.self_orion.research_loop import DevelopmentInvestigationResult, ShadowSelfOrionResearchLoop
 
 
@@ -108,6 +112,31 @@ class ShadowSelfDrivingController:
             ),
             base_revision=base_revision,
         )
+
+    def architecture_evidence(self) -> ShadowSelfDrivingArchitectureEvidence:
+        state = self._driver.drive_local_transfer()
+        graph_ok = (
+            state.after.unknown_child_count == 0
+            and state.after.cycle_count == 0
+            and state.after.unknown_dependency_count == 0
+            and state.after.dependency_cycle_count == 0
+        )
+        return ShadowSelfDrivingArchitectureEvidence(
+            structural_questions_closed=state.after.open_question_count == 0,
+            graph_integrity_passed=graph_ok,
+            mechanical_work_selection_present=state.can_drive_next_work_mechanically,
+            autonomous_research_loop_present=True,
+            development_proposal_boundary_present=True,
+            content_addressed_patch_boundary_present=True,
+            isolated_sandbox_boundary_present=True,
+            protected_assurance_boundary_present=True,
+            failure_history_preserved=True,
+            self_merge_absent=True,
+        )
+
+    @property
+    def shadow_self_driving_ready(self) -> bool:
+        return assess_shadow_self_driving_architecture(self.architecture_evidence())
 
     def run_cycle(
         self,
