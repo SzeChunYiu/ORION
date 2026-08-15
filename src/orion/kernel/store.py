@@ -22,6 +22,8 @@ class EntryKind(str, Enum):
     RECEIPT = "RECEIPT"
     GUARD = "GUARD"
     RESIDUAL = "RESIDUAL"
+    SOURCE = "SOURCE"
+    READ = "READ"
 
 
 @dataclass(frozen=True)
