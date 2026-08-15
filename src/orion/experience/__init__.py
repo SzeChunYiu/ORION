@@ -12,6 +12,7 @@ from .model import (
     PatternValidationEvidence,
     TaskEpisode,
 )
+from .recording import episode_from_receipt
 
 __all__ = [
     "EpisodeOutcome",
@@ -23,6 +24,7 @@ __all__ = [
     "PatternValidationEvidence",
     "TaskEpisode",
     "assess_pattern_reuse",
+    "episode_from_receipt",
     "propose_failure_pattern",
     "related_failure_episodes",
     "signature_similarity",

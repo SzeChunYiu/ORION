@@ -13,6 +13,7 @@ from .model import (
 )
 from .questioning import MechanicQuestion, generate_mechanic_questions, plan_next_questions
 from .receipt import MechanicReceipt, MechanicRunStatus
+from .research import MechanicResearchTask, plan_mechanic_research
 from .workflow import ORION_WORKFLOW_CELLS, ORION_WORKFLOW_ROOT_ID, mechanical_workflow_backlog
 
 __all__ = [
@@ -23,6 +24,7 @@ __all__ = [
     "MechanicDimension",
     "MechanicQuestion",
     "MechanicReceipt",
+    "MechanicResearchTask",
     "MechanicRunStatus",
     "MetricDirection",
     "MetricKind",
@@ -35,5 +37,6 @@ __all__ = [
     "audit_recursive",
     "generate_mechanic_questions",
     "mechanical_workflow_backlog",
+    "plan_mechanic_research",
     "plan_next_questions",
 ]
