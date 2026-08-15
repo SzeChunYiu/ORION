@@ -331,11 +331,14 @@ class SelfDrivingDriver:
                 fingerprint,
                 verified_record_ids=outcome.application.verified_record_ids,
                 evidence_bound_record_ids=outcome.application.evidence_bound_record_ids,
+                # Content digests, never reference strings: two mirrors of one
+                # paper are one piece of evidence, and counting refs lets a
+                # source that re-mints identifiers manufacture growth forever.
                 evidence_refs=[
-                    item.ref
+                    item.actual_digest
                     for grading in outcome.application.gradings
                     for item in grading.evidence
-                    if item.resolved
+                    if item.resolved and item.actual_digest
                 ],
                 route_families=[
                     item.dimension.value for item in outcome.application.gradings
