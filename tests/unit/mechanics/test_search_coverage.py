@@ -1,5 +1,10 @@
 from orion.core.search import SearchRouteKind
-from orion.mechanics import MechanicCell, apply_default_search_coverage_plan, default_search_coverage_plan, generate_mechanic_questions
+from orion.mechanics import (
+    MechanicCell,
+    apply_default_search_coverage_plan,
+    default_search_coverage_plan,
+    generate_mechanic_questions,
+)
 
 
 def test_search_coverage_plan_includes_ontology_escape_and_omission_routes():

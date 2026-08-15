@@ -1,4 +1,10 @@
-from orion.mechanics import MechanicCell, SaturationCoordinate, apply_default_saturation_plan, default_saturation_plan, generate_mechanic_questions
+from orion.mechanics import (
+    MechanicCell,
+    SaturationCoordinate,
+    apply_default_saturation_plan,
+    default_saturation_plan,
+    generate_mechanic_questions,
+)
 
 
 def test_saturation_plan_requires_formulation_parent_domain_and_failure_flatness():

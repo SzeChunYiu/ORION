@@ -102,7 +102,9 @@ def _satisfied(cell: MechanicCell, dimension: MechanicDimension) -> bool:
         MechanicDimension.VERIFICATION: bool(cell.verification_contracts),
         MechanicDimension.AUTHORITY_SECURITY: bool(cell.authority_boundaries),
         MechanicDimension.ENGINEERING: bool(cell.engineering_contracts),
-        MechanicDimension.DEPENDENCIES: bool(cell.dependency_ids),
+        MechanicDimension.DEPENDENCIES: bool(
+            cell.dependency_ids or cell.external_dependency_contract_ids
+        ),
         MechanicDimension.REOPEN: bool(cell.reopen_triggers),
         MechanicDimension.SEARCH_COVERAGE: bool(cell.search_coverage_obligations),
         MechanicDimension.PARENT_DISCIPLINE: bool(cell.parent_domain_hypotheses),

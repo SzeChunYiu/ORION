@@ -160,6 +160,7 @@ class MechanicCell:
     authority_boundaries: tuple[str, ...] = ()
     engineering_contracts: tuple[str, ...] = ()
     dependency_ids: tuple[str, ...] = ()
+    external_dependency_contract_ids: tuple[str, ...] = ()
     child_mechanic_ids: tuple[str, ...] = ()
     reopen_triggers: tuple[str, ...] = ()
     search_coverage_obligations: tuple[str, ...] = ()
@@ -193,6 +194,8 @@ class MechanicCell:
             )
         if self.mechanic_id in self.child_mechanic_ids:
             raise ValueError("a mechanic cannot be its own child")
+        if self.mechanic_id in self.dependency_ids:
+            raise ValueError("a mechanic cannot depend on itself")
 
     @property
     def waived_dimensions(self) -> frozenset[MechanicDimension]:

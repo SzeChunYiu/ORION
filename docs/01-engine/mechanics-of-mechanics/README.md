@@ -70,7 +70,7 @@ A handoff must name fields, schema, units, uncertainty, evidence/provenance and 
 
 The question registry is deliberately independent of an LLM. An LLM or external tool can help answer the questions, but cannot silently omit them.
 
-A universal envelope is not a step-specific answer. Generic runtime observation, handoff, state, lifecycle, failure and mathematical plans are marked as provisional dimensions, so the corresponding mechanic question remains open until a step-specific contract or justified waiver replaces the baseline. This prevents scaffolding from silently manufacturing completeness.
+A universal envelope is not a step-specific answer. Generic verification, runtime observation, handoff, state, lifecycle, failure, mathematical and dependency plans are marked as provisional dimensions, so the corresponding mechanic question remains open until a step-specific contract or justified waiver replaces the baseline. Containment is not encoded as a dependency back-edge; external runtime contracts are stored separately from mechanic-to-mechanic prerequisites. This prevents scaffolding from silently manufacturing completeness or graph cycles.
 
 `orion.mechanics.research` mechanically turns prioritized open questions into provider-neutral `SearchQuery` objects. V0 uses a fixed auditable policy; later value-of-computation policies must beat it under frozen evaluation rather than replacing it by intuition.
 

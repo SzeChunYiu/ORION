@@ -1,4 +1,10 @@
-from orion.mechanics import InvariantKind, MechanicCell, apply_default_invariant_plan, default_invariant_plan, generate_mechanic_questions
+from orion.mechanics import (
+    InvariantKind,
+    MechanicCell,
+    apply_default_invariant_plan,
+    default_invariant_plan,
+    generate_mechanic_questions,
+)
 
 
 def test_invariant_plan_preserves_authority_history_reopen_and_root_progress_guards():

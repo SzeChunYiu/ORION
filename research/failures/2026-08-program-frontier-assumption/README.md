@@ -23,3 +23,9 @@ The implementation's observed state was correct; the test encoded the developer'
 ## General lesson candidate
 
 Tests of adaptive/self-research controllers should distinguish invariant behavior from an expected next research topic. A predicted topic is an observation hypothesis, not a correctness condition. This remains a candidate lesson until it recurs or transfers beyond this case.
+
+## Later falsification under the stronger dependency audit
+
+The subsequent hostile audit followed both containment and dependency closures. It exposed that treating each child as dependent on its containment parent, while treating the root as dependent on its children, created 12 dependency cycles. The earlier claim that the dependency state was correct was therefore too broad: the observed question frontier was real under the old representation, but that representation conflated containment context with execution prerequisites.
+
+The repair removes parent-containment back-edges, keeps true sequential mechanic prerequisites, stores external runtime contracts separately from mechanic references, and leaves the step-specific dependency dimension provisional. This narrows rather than erases the earlier lesson: forecasts must not be frozen as invariants, and apparently stable controller output must still be challenged when the underlying graph semantics change.

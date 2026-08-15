@@ -1,5 +1,12 @@
 from orion.core.search import SearchRouteKind
-from orion.mechanics import MechanicDimension, expanded_workflow_cells, observe_current_mechanics_program, observe_mechanics_program, plan_current_program_questions, plan_current_program_research
+from orion.mechanics import (
+    MechanicDimension,
+    expanded_workflow_cells,
+    observe_current_mechanics_program,
+    observe_mechanics_program,
+    plan_current_program_questions,
+    plan_current_program_research,
+)
 
 
 def test_raw_decomposition_exposes_development_numbers():
@@ -25,6 +32,7 @@ def test_current_program_keeps_universal_envelopes_provisional():
         MechanicDimension.STATE,
         MechanicDimension.TRANSITION_MODEL,
         MechanicDimension.MATHEMATICS,
+        MechanicDimension.DEPENDENCIES,
     ):
         assert counts[provisional.value] == metrics.mechanic_count
 
@@ -40,3 +48,9 @@ def test_current_global_questions_become_search_tasks_without_llm_planning():
     assert len(tasks) == 8
     assert all(item.query.route_kind is SearchRouteKind.CROSS_DOMAIN for item in tasks)
     assert all(item.query.text for item in tasks)
+
+
+def test_current_dependency_graph_is_closed_and_acyclic():
+    metrics = observe_current_mechanics_program()
+    assert metrics.unknown_dependency_count == 0
+    assert metrics.dependency_cycle_count == 0

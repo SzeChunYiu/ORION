@@ -1,4 +1,11 @@
-from orion.mechanics import MechanicCell, MetricDirection, MetricRole, apply_default_metric_plan, default_metric_plan, generate_mechanic_questions
+from orion.mechanics import (
+    MechanicCell,
+    MetricDirection,
+    MetricRole,
+    apply_default_metric_plan,
+    default_metric_plan,
+    generate_mechanic_questions,
+)
 
 
 def test_metric_plan_preserves_noncompensatory_gates_and_root_transport():

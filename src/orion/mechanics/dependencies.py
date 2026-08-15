@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 from enum import Enum
 
-from .model import MechanicCell
+from .model import MechanicCell, MechanicDimension
 
 
 class DependencyKind(str, Enum):
@@ -74,20 +74,39 @@ def _structural_dependency(cell: MechanicCell, dependency_id: str) -> Dependency
     )
 
 
+def _runtime_dependency(cell: MechanicCell) -> DependencyRequirement:
+    return DependencyRequirement(
+        dependency_id="external:ORION_RUNTIME",
+        mechanic_id=cell.mechanic_id,
+        kind=DependencyKind.EXTERNAL_SYSTEM,
+        required=True,
+        identity_binding="Bind the runtime/build/provider deployment manifest by content hash at run entry.",
+        precondition="The declared runtime and protected host services are available under the required versions and scope.",
+        failure_propagation="Runtime unavailability propagates as a typed blocked or cannot-check residual.",
+        fallback_semantics="No implicit fallback; a substitute runtime is a new recorded variation.",
+        integrity_provenance_requirement="Retain deployment manifest, build hashes, provider identities and supersession lineage.",
+    )
+
+
 def default_dependency_plan(cell: MechanicCell) -> MechanicDependencyPlan:
     """Bind the structural mechanic dependencies already present in the recursive graph.
 
-    Root workflow dependency is its declared child-mechanic set. This baseline does
-    not guess provider/data/tool dependencies that are step-specific and still open.
+    Containment is not a dependency edge. Cells without a known mechanic prerequisite
+    receive an external runtime contract rather than a synthetic graph reference.
+    Step-specific provider/data/tool dependencies remain open.
     """
 
-    dependency_ids = cell.dependency_ids or cell.child_mechanic_ids
-    if not dependency_ids:
-        # A leaf with no declared dependency still depends on the ORION execution/governance substrate.
-        dependency_ids = ("CROSS.EXECUTION.v0",)
+    dependencies = (
+        tuple(
+            _structural_dependency(cell, dependency_id)
+            for dependency_id in cell.dependency_ids
+        )
+        if cell.dependency_ids
+        else (_runtime_dependency(cell),)
+    )
     return MechanicDependencyPlan(
         mechanic_id=cell.mechanic_id,
-        dependencies=tuple(_structural_dependency(cell, dependency_id) for dependency_id in dependency_ids),
+        dependencies=dependencies,
         step_specific_dependencies_open=True,
     )
 
@@ -102,10 +121,19 @@ def apply_default_dependency_plan(cell: MechanicCell) -> MechanicCell:
             )
         )
     )
+    external_contract_ids = tuple(
+        item.dependency_id
+        for item in plan.dependencies
+        if item.kind is not DependencyKind.MECHANIC
+    )
+    provisional = tuple(
+        dict.fromkeys((*cell.provisional_dimensions, MechanicDimension.DEPENDENCIES))
+    )
     return replace(
         cell,
-        dependency_ids=tuple(item.dependency_id for item in plan.dependencies),
+        external_dependency_contract_ids=external_contract_ids,
         empirical_open_coordinates=empirical_open,
+        provisional_dimensions=provisional,
     )
 
 

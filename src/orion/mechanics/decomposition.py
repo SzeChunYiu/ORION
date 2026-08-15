@@ -121,7 +121,6 @@ def _child(parent_id: str, mechanic_id: str, purpose: str) -> MechanicCell:
         scope=f"child mechanic of {parent_id}",
         input_ids=("ParentMechanicContext",),
         output_ids=("ChildMechanicReceipt",),
-        dependency_ids=(parent_id,),
         authority_boundaries=("proposal-only unless an explicit protected verification/promotion path grants authority",),
         reopen_triggers=("fresh hostile failure", "parent contract changes", "new decision-relevant residual"),
         empirical_open_coordinates=("real-task utility", "fresh transfer", "cost/performance envelope"),

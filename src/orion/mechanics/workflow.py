@@ -47,7 +47,7 @@ ORION_WORKFLOW_CELLS: tuple[MechanicCell, ...] = (
         reopen_triggers=("any child mechanic reopens", "new root-relevant residual", "evaluation epoch changes"),
         empirical_open_coordinates=("general autonomous-research capability",),
     ),
-    _operator("FRAME.v1", "Construct the active object, question, context, resources and blocking invariants.", dependencies=(ORION_WORKFLOW_ROOT_ID,)),
+    _operator("FRAME.v1", "Construct the active object, question, context, resources and blocking invariants.", dependencies=()),
     _operator("SEARCH.v1", "Expand computational access through heterogeneous knowledge/source/search routes.", dependencies=("FRAME.v1",)),
     _operator("ABSORB.v1", "Interpret retrieved material as contextual projections and typed knowledge contributions.", dependencies=("SEARCH.v1",)),
     _operator("RECONSTRUCT.v1", "Update the global portrait and search-universe model from absorbed contributions.", dependencies=("ABSORB.v1",)),

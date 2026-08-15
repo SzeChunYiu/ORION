@@ -1,4 +1,11 @@
-from orion.mechanics import MechanicCell, UncertaintyKind, UncertaintyRepresentation, apply_default_uncertainty_plan, default_uncertainty_plan, generate_mechanic_questions
+from orion.mechanics import (
+    MechanicCell,
+    UncertaintyKind,
+    UncertaintyRepresentation,
+    apply_default_uncertainty_plan,
+    default_uncertainty_plan,
+    generate_mechanic_questions,
+)
 
 
 def test_uncertainty_plan_refuses_unlicensed_probability_collapse():

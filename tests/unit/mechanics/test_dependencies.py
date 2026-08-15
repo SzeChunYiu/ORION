@@ -1,4 +1,10 @@
-from orion.mechanics import DependencyKind, MechanicCell, apply_default_dependency_plan, default_dependency_plan, generate_mechanic_questions
+from orion.mechanics import (
+    DependencyKind,
+    MechanicCell,
+    apply_default_dependency_plan,
+    default_dependency_plan,
+    generate_mechanic_questions,
+)
 
 
 def test_dependency_plan_binds_identity_failure_propagation_and_no_implicit_fallback():
@@ -10,10 +16,11 @@ def test_dependency_plan_binds_identity_failure_propagation_and_no_implicit_fall
     assert "No implicit fallback" in plan.dependencies[0].fallback_semantics
 
 
-def test_root_dependency_is_derived_from_declared_children():
+def test_containment_is_not_fabricated_as_a_dependency_edge():
     cell = MechanicCell("ROOT.test", "Compose children.", "fixture", child_mechanic_ids=("A", "B"))
     updated = apply_default_dependency_plan(cell)
-    assert updated.dependency_ids == ("A", "B")
+    assert updated.dependency_ids == ()
+    assert updated.external_dependency_contract_ids == ("external:ORION_RUNTIME",)
     dimensions = {item.dimension.value for item in generate_mechanic_questions(updated)}
-    assert "DEPENDENCIES" not in dimensions
+    assert "DEPENDENCIES" in dimensions
     assert "PARENT_DISCIPLINE" in dimensions

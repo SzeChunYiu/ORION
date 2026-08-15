@@ -1,4 +1,10 @@
-from orion.mechanics import DOMAIN_CATALOG, MechanicCell, apply_parent_domain_hypotheses, candidate_parent_domain_ids, generate_mechanic_questions
+from orion.mechanics import (
+    DOMAIN_CATALOG,
+    MechanicCell,
+    apply_parent_domain_hypotheses,
+    candidate_parent_domain_ids,
+    generate_mechanic_questions,
+)
 
 
 def test_scientific_language_parent_domains_include_computational_linguistics_and_data_integration():
