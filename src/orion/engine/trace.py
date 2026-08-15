@@ -85,9 +85,7 @@ class SolveTrace:
         """Bind a nonempty internal chain to the actual runtime states."""
 
         if not self.events:
-            if pre_state_hash != post_state_hash:
-                raise ValueError("empty solve trace cannot bind a state transition")
-            return
+            raise ValueError("solve trace requires an endpoint-bound event")
         if self.events[0].pre_state_hash != pre_state_hash:
             raise ValueError("solve trace pre-state endpoint mismatch")
         if self.events[-1].post_state_hash != post_state_hash:

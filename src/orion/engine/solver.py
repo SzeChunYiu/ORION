@@ -260,6 +260,7 @@ class OrionSolver:
         action_ids: tuple[str, ...] = (),
         evidence_bindings: tuple[tuple[str, str], ...] = (),
         operator_invoked: bool = True,
+        experience_eligible: bool = True,
     ) -> TraceEvent:
         if transition.input_epoch != before_state.epoch:
             raise ValueError("trace transition input epoch does not match pre-state")
@@ -304,6 +305,7 @@ class OrionSolver:
             ),
             provenance_ids=transition.scientific_authority_certificate_ids,
             latency_seconds=latency_seconds,
+            experience_eligible=experience_eligible,
         )
         return TraceEvent(
             operator,
@@ -463,6 +465,7 @@ class OrionSolver:
                 transition=root_transition,
                 latency_seconds=latency_seconds,
                 action_ids=invoked_guard_ids,
+                experience_eligible=False,
             )
         )
 

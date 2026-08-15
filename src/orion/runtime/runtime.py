@@ -141,7 +141,13 @@ class OrionRuntime:
             solution,
             trace,
         )
-        action_ids = tuple(event.operator.value for event in trace.events) or (
+        action_ids = tuple(
+            dict.fromkeys(
+                action_id
+                for event in trace.events
+                for action_id in event.receipt.action_ids
+            )
+        ) or (
             "ORION_SOLVE",
         )
         observations = tuple(
@@ -234,6 +240,8 @@ class OrionRuntime:
             if item
         )
         for index, event in enumerate(trace.events):
+            if not event.receipt.experience_eligible:
+                continue
             mechanic_run_id = f"{root_run_id}:mechanic:{index}"
             episode_id = (
                 "episode:"
@@ -282,6 +290,18 @@ class OrionRuntime:
         )
         if trace.trace_id != trace_id or solution.trace_id != trace_id:
             raise ValueError("solver result is not bound to the requested trace identity")
+        if solution.problem_id != problem.problem_id:
+            raise ValueError("solver result is not bound to the requested problem")
+        missing_solution_evidence = tuple(
+            evidence_id
+            for evidence_id in solution.evidence_ids
+            if evidence_id not in final_state.knowledge.evidence_ids
+        )
+        if missing_solution_evidence:
+            raise ValueError(
+                "solution evidence is absent from the returned final state: "
+                + ",".join(missing_solution_evidence)
+            )
         trace.validate_endpoints(
             pre_state_hash=_state_hash(start_state),
             post_state_hash=_state_hash(final_state),

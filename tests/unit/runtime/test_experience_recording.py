@@ -28,7 +28,18 @@ class _FakeSolver:
         self.atomic_failure = atomic_failure
 
     def initial_state(self, problem: Problem) -> OrionState:
-        return OrionState(KnowledgeState(), SearchUniverseState(), MethodState("test"))
+        knowledge = KnowledgeState()
+        if self.status is SolutionStatus.SOLVED_VERIFIED:
+            knowledge = KnowledgeState(
+                evidence=(
+                    EvidenceRecord(
+                        "evidence:verified-fixture",
+                        "Verified fixture evidence.",
+                        "fixture://verified-solution",
+                    ),
+                )
+            )
+        return OrionState(knowledge, SearchUniverseState(), MethodState("test"))
 
     def solve(self, problem: Problem, *, initial_state=None, trace_id=None):
         assert initial_state is not None
@@ -60,6 +71,52 @@ class _FakeSolver:
                     hashlib.sha256(repr(final_state).encode()).hexdigest(),
                 ),
             )
+        else:
+            residual_ids = (
+                ("coverage-open",)
+                if self.status is SolutionStatus.BLOCKED
+                else (
+                    (f"solution-status:{self.status.value}",)
+                    if self.status is not SolutionStatus.SOLVED_VERIFIED
+                    else ()
+                )
+            )
+            receipt_status = {
+                SolutionStatus.SOLVED_VERIFIED: MechanicRunStatus.SUCCEEDED,
+                SolutionStatus.PROVISIONAL: MechanicRunStatus.PARTIAL,
+                SolutionStatus.BLOCKED: MechanicRunStatus.BLOCKED,
+                SolutionStatus.CANNOT_CHECK: MechanicRunStatus.CANNOT_CHECK,
+            }[self.status]
+            transition = Transition(
+                CycleOperator.RECURSE,
+                input_epoch=initial_state.epoch,
+                output_epoch=final_state.epoch,
+                residual_ids=residual_ids,
+            )
+            state_hash = hashlib.sha256(repr(initial_state).encode()).hexdigest()
+            events = (
+                TraceEvent(
+                    CycleOperator.RECURSE,
+                    final_state.epoch,
+                    "fixture root outcome",
+                    transition,
+                    MechanicReceipt(
+                        "receipt:fixture-root",
+                        "ORION_SOLVE.v1",
+                        receipt_status,
+                        action_ids=(CycleOperator.RECURSE.value,),
+                        handoff_values=(("changed_coordinates", ""),),
+                        residual_ids=residual_ids,
+                        failure_signature=(
+                            (f"solution_status:{self.status.value}",)
+                            if residual_ids
+                            else ()
+                        ),
+                    ),
+                    state_hash,
+                    state_hash,
+                ),
+            )
         return (
             Solution(
                 problem.problem_id,
@@ -67,6 +124,9 @@ class _FakeSolver:
                 "fixture",
                 residual_ids=("coverage-open",)
                 if self.status is SolutionStatus.BLOCKED
+                else (),
+                evidence_ids=("evidence:verified-fixture",)
+                if self.status is SolutionStatus.SOLVED_VERIFIED
                 else (),
                 trace_id=trace_id,
             ),
@@ -83,8 +143,12 @@ def test_runtime_records_blocked_task_as_reusable_failure_episode():
         variation_signature=("vocabulary-mask-a",),
     )
     assert result.experience_episode_id is not None
-    assert len(store.episodes()) == 1
-    episode = store.episodes()[0]
+    assert len(store.episodes()) == 2
+    episode = next(
+        item
+        for item in store.episodes()
+        if item.episode_id == result.experience_episode_id
+    )
     assert episode.mechanic_id == "ORION_SOLVE.v1"
     assert episode.variation_signature == ("vocabulary-mask-a",)
     assert "solution_status:BLOCKED" in episode.failure_signature
@@ -96,12 +160,17 @@ def test_runtime_records_success_without_inventing_failure_signature():
     runtime = OrionRuntime(
         _FakeSolver(SolutionStatus.SOLVED_VERIFIED), experience_store=store
     )
-    runtime.solve(
+    result = runtime.solve(
         Problem("task:success", "Solve fixture."), variation_signature=("baseline",)
     )
-    episode = store.episodes()[0]
+    episode = next(
+        item
+        for item in store.episodes()
+        if item.episode_id == result.experience_episode_id
+    )
     assert episode.outcome.value == "SUCCESS"
     assert episode.failure_signature == ()
+    assert episode.evidence_ids == ("evidence:verified-fixture",)
 
 
 def test_runtime_records_atomic_failure_episode_with_root_parent_identity():
@@ -137,7 +206,7 @@ def test_repeated_identical_runtime_attempts_are_distinct_immutable_episodes():
 
     assert first.experience_episode_id != second.experience_episode_id
     assert first.trace.trace_id != second.trace.trace_id
-    assert len(store.episodes()) == 2
+    assert len(store.episodes()) == 4
 
 
 def test_real_solver_trace_projects_every_mechanic_receipt_into_experience():
@@ -159,11 +228,14 @@ def test_real_solver_trace_projects_every_mechanic_receipt_into_experience():
     )
 
     assert result.trace.events
-    assert len(result.mechanic_experience_episode_ids) == len(result.trace.events)
+    eligible_events = tuple(
+        event for event in result.trace.events if event.receipt.experience_eligible
+    )
+    assert len(result.mechanic_experience_episode_ids) == len(eligible_events)
     by_id = {episode.episode_id: episode for episode in store.episodes()}
     root = by_id[result.experience_episode_id]
     for event, episode_id in zip(
-        result.trace.events,
+        eligible_events,
         result.mechanic_experience_episode_ids,
         strict=True,
     ):
@@ -448,6 +520,42 @@ def test_provider_exception_becomes_atomic_and_root_failure_experience():
     assert failed.parent_run_id == root.run_id
 
 
+def test_failed_root_run_cannot_turn_solve_started_into_successful_guard_replay():
+    store = InMemoryExperienceStore()
+    guard = CallableMechanicGuard(
+        "guard:pattern:root-replay-boundary",
+        "ORION_SOLVE.v1",
+        lambda problem, state: MechanicGuardResult(passed=True),
+    )
+
+    def crash(request):
+        raise ConnectionError("provider fails after root guard")
+
+    runtime = OrionRuntime.from_providers(
+        llm=CallableLLMProvider(crash, model_id="root-replay-crash"),
+        retrieval=InMemoryRetrievalProvider({}),
+        verification=InMemoryVerificationProvider(frozenset()),
+        experience_store=store,
+        guards=(guard,),
+    )
+
+    result = runtime.solve(
+        Problem("task:root-replay-boundary", "Do not promote a started run.")
+    )
+
+    root_episodes = tuple(
+        episode
+        for episode in store.episodes()
+        if episode.mechanic_id == "ORION_SOLVE.v1"
+    )
+    assert result.solution.status is SolutionStatus.BLOCKED
+    assert len(root_episodes) == 1
+    assert root_episodes[0].episode_id == result.experience_episode_id
+    assert root_episodes[0].outcome is EpisodeOutcome.BLOCKED
+    assert guard.guard_id in root_episodes[0].action_ids
+    assert not any(item.outcome is EpisodeOutcome.SUCCESS for item in root_episodes)
+
+
 def test_runtime_rejects_unrelated_trace_endpoints_before_recording_experience():
     store = InMemoryExperienceStore()
     runtime = OrionRuntime(
@@ -513,16 +621,39 @@ def test_runtime_rejects_empty_trace_that_mutates_state_before_recording():
     original_solve = runtime._solver.solve
 
     def mutate_without_trace(problem, *, initial_state=None, trace_id=None):
-        solution, _, trace = original_solve(
+        solution, _, _ = original_solve(
             problem,
             initial_state=initial_state,
             trace_id=trace_id,
         )
-        return solution, initial_state.advance(), trace
+        return solution, initial_state.advance(), SolveTrace(trace_id, ())
 
     runtime._solver.solve = mutate_without_trace
 
-    with pytest.raises(ValueError, match="empty solve trace cannot bind"):
+    with pytest.raises(ValueError, match="endpoint-bound event"):
         runtime.solve(Problem("task:empty-trace", "Reject untraced mutation."))
+
+    assert store.episodes() == ()
+
+
+def test_runtime_rejects_empty_trace_even_for_unchanged_verified_state():
+    store = InMemoryExperienceStore()
+    runtime = OrionRuntime(
+        _FakeSolver(SolutionStatus.SOLVED_VERIFIED), experience_store=store
+    )
+    original_solve = runtime._solver.solve
+
+    def erase_trace(problem, *, initial_state=None, trace_id=None):
+        solution, final_state, _ = original_solve(
+            problem,
+            initial_state=initial_state,
+            trace_id=trace_id,
+        )
+        return solution, final_state, SolveTrace(trace_id, ())
+
+    runtime._solver.solve = erase_trace
+
+    with pytest.raises(ValueError, match="endpoint-bound event"):
+        runtime.solve(Problem("task:empty-verified", "Reject untraced success."))
 
     assert store.episodes() == ()

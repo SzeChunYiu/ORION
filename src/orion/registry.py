@@ -1,7 +1,7 @@
 """Canonical Shadow-ORION registry shared by runtime, tests and paper synchronization."""
 
-FRAMEWORK_VERSION = "0.2.3-shadow"
-PAPER_SYNC_EPOCH = "2026-08-15-post-merge-hostile-review-v3"
+FRAMEWORK_VERSION = "0.2.4-shadow"
+PAPER_SYNC_EPOCH = "2026-08-15-post-merge-hostile-review-v4"
 
 CORE_OPERATOR_IDS = (
     "FRAME.v1",
