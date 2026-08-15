@@ -13,13 +13,17 @@ from orion.self_orion.research_loop import DevelopmentInvestigationResult
 
 
 class _Provider:
+    def __init__(self, *, touched_paths=("src/orion/mechanics/example.py",)):
+        self.touched_paths = touched_paths
+
     def propose(self, request):
         return DevelopmentChangeProposal(
             proposal_id="proposal:1",
             request_id=request.request_id,
             base_revision=request.base_revision,
+            patch_artifact_id="development-artifact:" + "a" * 64,
             patch_artifact_hash="a" * 64,
-            touched_paths=("src/orion/mechanics/example.py",),
+            touched_paths=self.touched_paths,
             rationale="small scoped repair",
             expected_effects=("improve diagnosed coordinate",),
             test_plan=request.required_tests,
@@ -87,6 +91,7 @@ def test_change_request_binds_evidence_failures_protected_constraints_and_fresh_
     assert "episode:mechanic" in request.failure_episode_ids
     assert any("no self-merge" in item for item in request.protected_constraints)
     assert any("fresh-assurance" in item for item in request.required_tests)
+    assert ".github/workflows/" in request.protected_path_prefixes
 
 
 def test_good_candidate_can_only_recommend_host_promotion_not_self_merge():
@@ -94,6 +99,7 @@ def test_good_candidate_can_only_recommend_host_promotion_not_self_merge():
     assert result.verdict is ChangeControlVerdict.RECOMMEND_HOST_PROMOTION
     assert not result.self_merge_authorized
     assert result.reasons == ()
+    assert result.proposal.patch_artifact_id.startswith("development-artifact:")
 
 
 def test_nonfresh_assurance_stays_candidate_only_and_blocker_failure_rejects():
@@ -104,3 +110,14 @@ def test_nonfresh_assurance_stays_candidate_only_and_blocker_failure_rejects():
     blocked = SelfOrionChangeController(provider=_Provider(), runner=_Runner(), evaluator=_Evaluator(blockers=False)).evaluate_change(_request())
     assert blocked.verdict is ChangeControlVerdict.REJECT
     assert "blocking_invariant_failed" in blocked.reasons
+
+
+def test_protected_evaluator_or_workflow_paths_are_hard_rejected_even_if_sandbox_tests_pass():
+    controller = SelfOrionChangeController(
+        provider=_Provider(touched_paths=("src/orion/self_orion/readiness.py",)),
+        runner=_Runner(),
+        evaluator=_Evaluator(),
+    )
+    result = controller.evaluate_change(_request())
+    assert result.verdict is ChangeControlVerdict.REJECT
+    assert "protected_path_touched:src/orion/self_orion/readiness.py" in result.reasons
