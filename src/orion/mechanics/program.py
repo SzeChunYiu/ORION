@@ -12,6 +12,7 @@ from .observability import apply_default_observation_plans
 from .questioning import MechanicQuestion
 from .research import MechanicResearchTask, research_task_for_question
 from .state_plan import apply_default_state_plans
+from .transition import apply_default_transition_plans
 from .verification import apply_default_verification_plans
 from .workflow import ORION_WORKFLOW_ROOT_ID
 
@@ -38,6 +39,7 @@ def current_program_cells() -> tuple[MechanicCell, ...]:
     cells = apply_default_observation_plans(cells)
     cells = apply_default_handoff_plans(cells)
     cells = apply_default_state_plans(cells)
+    cells = apply_default_transition_plans(cells)
     return cells
 
 
@@ -48,15 +50,7 @@ def observe_mechanics_program(cells: tuple[MechanicCell, ...], *, root_mechanic_
     for item in report.reports:
         for question in item.open_questions:
             counts[question.dimension.value] = counts.get(question.dimension.value, 0) + 1
-    return MechanicsProgramMetrics(
-        root_mechanic_id=root_mechanic_id,
-        mechanic_count=len(report.reports),
-        ready_mechanic_count=sum(item.verdict is MechanicAuditVerdict.READY_FOR_BENCHMARK for item in report.reports),
-        open_question_count=sum(len(item.open_questions) for item in report.reports),
-        open_by_dimension=tuple(sorted(counts.items())),
-        unknown_child_count=len(report.unknown_child_ids),
-        cycle_count=len(report.cycle_paths),
-    )
+    return MechanicsProgramMetrics(root_mechanic_id, len(report.reports), sum(item.verdict is MechanicAuditVerdict.READY_FOR_BENCHMARK for item in report.reports), sum(len(item.open_questions) for item in report.reports), tuple(sorted(counts.items())), len(report.unknown_child_ids), len(report.cycle_paths))
 
 
 def observe_current_mechanics_program() -> MechanicsProgramMetrics:
@@ -66,12 +60,10 @@ def observe_current_mechanics_program() -> MechanicsProgramMetrics:
 def plan_program_questions(cells: tuple[MechanicCell, ...], *, limit: int = 64, root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID) -> tuple[MechanicQuestion, ...]:
     if limit < 1:
         raise ValueError("program question limit must be positive")
-    by_id = {cell.mechanic_id: cell for cell in cells}
-    report = audit_recursive(by_id, root_mechanic_id)
+    report = audit_recursive({cell.mechanic_id: cell for cell in cells}, root_mechanic_id)
     rows = tuple(item.open_questions for item in report.reports)
-    max_depth = max((len(row) for row in rows), default=0)
     selected: list[MechanicQuestion] = []
-    for rank in range(max_depth):
+    for rank in range(max((len(row) for row in rows), default=0)):
         for row in rows:
             if rank < len(row):
                 selected.append(row[rank])
@@ -82,8 +74,7 @@ def plan_program_questions(cells: tuple[MechanicCell, ...], *, limit: int = 64, 
 
 def plan_program_research(cells: tuple[MechanicCell, ...], *, limit: int = 64, root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID) -> tuple[MechanicResearchTask, ...]:
     by_id: Mapping[str, MechanicCell] = {cell.mechanic_id: cell for cell in cells}
-    questions = plan_program_questions(cells, limit=limit, root_mechanic_id=root_mechanic_id)
-    return tuple(research_task_for_question(by_id[question.mechanic_id], question) for question in questions)
+    return tuple(research_task_for_question(by_id[q.mechanic_id], q) for q in plan_program_questions(cells, limit=limit, root_mechanic_id=root_mechanic_id))
 
 
 def plan_current_program_questions(*, limit: int = 64) -> tuple[MechanicQuestion, ...]:
