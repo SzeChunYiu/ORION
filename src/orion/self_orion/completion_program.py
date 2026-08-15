@@ -9,10 +9,12 @@ from orion.mechanics.objectives import apply_candidate_objectives
 from orion.mechanics.optimization import apply_default_optimization_policies
 from orion.mechanics.program import (
     MechanicsProgramMetrics,
-    current_program_cells as saturated_base_cells,
     observe_mechanics_program,
     plan_program_questions,
     plan_program_research,
+)
+from orion.mechanics.program import (
+    current_program_cells as saturated_base_cells,
 )
 from orion.mechanics.provenance import apply_default_provenance_contracts
 from orion.mechanics.resources import apply_default_resource_plans

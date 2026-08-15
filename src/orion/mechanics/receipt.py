@@ -32,6 +32,7 @@ class MechanicReceipt:
     provenance_ids: tuple[str, ...] = ()
     cost_units: float | None = None
     latency_seconds: float | None = None
+    experience_eligible: bool = True
 
     def __post_init__(self) -> None:
         if not self.receipt_id.strip() or not self.mechanic_id.strip():

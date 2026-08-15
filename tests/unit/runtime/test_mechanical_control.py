@@ -1,5 +1,8 @@
 from orion.core.problem import Problem
-from orion.engine.mechanical_questions import MechanicalProblemContext, ProblemQuestionKind
+from orion.engine.mechanical_questions import (
+    MechanicalProblemContext,
+    ProblemQuestionKind,
+)
 from orion.runtime.mechanical_control import MechanicalControlRuntime
 
 

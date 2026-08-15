@@ -18,10 +18,10 @@ def test_metric_plan_preserves_noncompensatory_gates_and_root_transport():
     assert all(item.root_transport_requirement for item in plan.requirements)
 
 
-def test_metric_plan_closes_baseline_metrics_but_keeps_construct_validity_open():
+def test_metric_plan_keeps_step_specific_construct_question_open():
     cell = MechanicCell("SEARCH.test", "Find evidence.", "fixture")
     updated = apply_default_metric_plan(cell)
     dimensions = {item.dimension.value for item in generate_mechanic_questions(updated)}
-    assert "METRICS" not in dimensions
+    assert "METRICS" in dimensions
     assert "UNCERTAINTY" in dimensions
     assert any("metric validity" in item for item in updated.empirical_open_coordinates)

@@ -3,7 +3,13 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 from enum import Enum
 
-from .model import MechanicCell, MetricDirection, MetricKind, MetricSpec
+from .model import (
+    MechanicCell,
+    MechanicDimension,
+    MetricDirection,
+    MetricKind,
+    MetricSpec,
+)
 
 
 class MetricRole(str, Enum):
@@ -90,7 +96,15 @@ def default_metric_plan(cell: MechanicCell) -> MechanicMetricPlan:
 def apply_default_metric_plan(cell: MechanicCell) -> MechanicCell:
     plan = default_metric_plan(cell)
     empirical_open = tuple(dict.fromkeys(cell.empirical_open_coordinates + ("step-specific effectiveness/performance constructs, metric validity/reliability/calibration, comparability and decision thresholds",)))
-    return replace(cell, metrics=tuple(item.spec for item in plan.requirements), empirical_open_coordinates=empirical_open)
+    provisional = tuple(
+        dict.fromkeys((*cell.provisional_dimensions, MechanicDimension.METRICS))
+    )
+    return replace(
+        cell,
+        metrics=tuple(item.spec for item in plan.requirements),
+        empirical_open_coordinates=empirical_open,
+        provisional_dimensions=provisional,
+    )
 
 
 def apply_default_metric_plans(cells: tuple[MechanicCell, ...]) -> tuple[MechanicCell, ...]:

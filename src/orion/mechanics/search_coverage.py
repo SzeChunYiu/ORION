@@ -4,7 +4,7 @@ from dataclasses import dataclass, replace
 
 from orion.core.search import SearchRouteKind
 
-from .model import MechanicCell
+from .model import MechanicCell, MechanicDimension
 
 
 @dataclass(frozen=True)
@@ -102,6 +102,9 @@ def apply_default_search_coverage_plan(cell: MechanicCell) -> MechanicCell:
         cell,
         search_coverage_obligations=tuple(item.obligation_id for item in plan.obligations),
         empirical_open_coordinates=empirical_open,
+        provisional_dimensions=tuple(
+            dict.fromkeys((*cell.provisional_dimensions, MechanicDimension.SEARCH_COVERAGE))
+        ),
     )
 
 

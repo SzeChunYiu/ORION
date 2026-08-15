@@ -72,11 +72,13 @@ The question registry is deliberately independent of an LLM. An LLM or external 
 
 A universal envelope is not a step-specific answer. Generic verification, runtime observation, handoff, state, lifecycle, failure, mathematical and dependency plans are marked as provisional dimensions, so the corresponding mechanic question remains open until a step-specific contract or justified waiver replaces the baseline. Containment is not encoded as a dependency back-edge; external runtime contracts are stored separately from mechanic-to-mechanic prerequisites. This prevents scaffolding from silently manufacturing completeness or graph cycles.
 
+The current measured frontier contains 59 reachable mechanics and 1,298 open typed questions: all 22 registered dimensions remain open for all 59 mechanics. Unknown child/dependency references and containment, dependency and mixed-edge cycle counts are all zero. This is an observed workload frontier, not evidence of scientific completeness or a target to inflate.
+
 `orion.mechanics.research` mechanically turns prioritized open questions into provider-neutral `SearchQuery` objects. V0 uses a fixed auditable policy; later value-of-computation policies must beat it under frozen evaluation rather than replacing it by intuition.
 
 ## Recursion
 
-Child mechanics receive the same audit grammar. Containment and execution-dependency graphs are audited separately. A parent cannot be called bounded-ready while an unknown child, unknown dependency, containment cycle or dependency cycle remains hidden. This makes the workflow itself recursively inspectable.
+Child mechanics receive the same audit grammar. Containment and execution-dependency graphs are audited separately and as a combined graph. A parent cannot be called bounded-ready while an unknown child, unknown dependency, containment cycle, dependency cycle or mixed-edge cycle remains hidden. This makes the workflow itself recursively inspectable.
 
 ## Boundary
 

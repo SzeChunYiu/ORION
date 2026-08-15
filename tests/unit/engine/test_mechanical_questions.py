@@ -1,7 +1,11 @@
 from orion.core.problem import Problem
 from orion.core.search import SearchQuery, SearchRouteKind
 from orion.engine.mechanical_planner import MechanicalFirstPlanner
-from orion.engine.mechanical_questions import MechanicalProblemContext, ProblemQuestionKind, generate_problem_questions
+from orion.engine.mechanical_questions import (
+    MechanicalProblemContext,
+    ProblemQuestionKind,
+    generate_problem_questions,
+)
 from orion.experience.model import EpisodeOutcome, TaskEpisode
 
 

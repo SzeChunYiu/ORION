@@ -31,4 +31,4 @@ The baseline answers the structural question "what failure language and fail-clo
 
 ## Failure as experience
 
-Actual runtime outcomes are recorded separately as immutable episodes. Cross-variation recurrence may propose a `FailurePatternCandidate`; replay, fresh transfer and protected verification are still required before a guard becomes conditionally reusable. Failure plans therefore define the language of possible/observed failure, while experience supplies evidence about which modes actually occur and whether a repair generalizes.
+Actual runtime outcomes are recorded separately as immutable episodes. Cross-variation recurrence may propose a `FailurePatternCandidate`; replay, fresh transfer and protected verification can establish only `VERIFIED_LOCAL` in V0. Conditional reuse remains disabled until an externally rooted lineage-separation attestor exists. Failure plans therefore define the language of possible/observed failure, while experience supplies evidence about which modes actually occur and whether a repair generalizes.

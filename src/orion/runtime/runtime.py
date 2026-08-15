@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from datetime import UTC, datetime
 from uuid import uuid4
 
+from orion.core.claims import ClaimAuthority
 from orion.core.evidence import evidence_record_fingerprint
 from orion.core.problem import Problem
 from orion.core.solution import Solution, SolutionStatus
@@ -141,7 +142,13 @@ class OrionRuntime:
             solution,
             trace,
         )
-        action_ids = tuple(event.operator.value for event in trace.events) or (
+        action_ids = tuple(
+            dict.fromkeys(
+                action_id
+                for event in trace.events
+                for action_id in event.receipt.action_ids
+            )
+        ) or (
             "ORION_SOLVE",
         )
         observations = tuple(
@@ -234,6 +241,8 @@ class OrionRuntime:
             if item
         )
         for index, event in enumerate(trace.events):
+            if not event.receipt.experience_eligible:
+                continue
             mechanic_run_id = f"{root_run_id}:mechanic:{index}"
             episode_id = (
                 "episode:"
@@ -274,10 +283,46 @@ class OrionRuntime:
         run_id = uuid4().hex
         producer_process_lineage_hash = self._producer_process_lineage_hash
         evaluator_artifact_hash = self._evaluator_artifact_hash
+        trace_id = f"trace:{problem.problem_id}:{run_id}"
         solution, final_state, trace = self._solver.solve(
             problem,
             initial_state=start_state,
-            trace_id=f"trace:{problem.problem_id}:{run_id}",
+            trace_id=trace_id,
+        )
+        if trace.trace_id != trace_id or solution.trace_id != trace_id:
+            raise ValueError("solver result is not bound to the requested trace identity")
+        if solution.problem_id != problem.problem_id:
+            raise ValueError("solver result is not bound to the requested problem")
+        missing_solution_evidence = tuple(
+            evidence_id
+            for evidence_id in solution.evidence_ids
+            if evidence_id not in final_state.knowledge.evidence_ids
+        )
+        if missing_solution_evidence:
+            raise ValueError(
+                "solution evidence is absent from the returned final state: "
+                + ",".join(missing_solution_evidence)
+            )
+        if solution.status is SolutionStatus.SOLVED_VERIFIED:
+            verified_support = {
+                evidence_id
+                for claim in final_state.knowledge.claims
+                if claim.authority is ClaimAuthority.VERIFIED
+                for evidence_id in claim.evidence_ids
+            }
+            unsupported = tuple(
+                evidence_id
+                for evidence_id in solution.evidence_ids
+                if evidence_id not in verified_support
+            )
+            if unsupported:
+                raise ValueError(
+                    "verified solution evidence lacks a verified supporting claim: "
+                    + ",".join(unsupported)
+                )
+        trace.validate_endpoints(
+            pre_state_hash=_state_hash(start_state),
+            post_state_hash=_state_hash(final_state),
         )
         mechanic_episode_ids = self._record_mechanic_episodes(
             problem=problem,

@@ -1,13 +1,32 @@
-from orion.mechanics.model import MechanicCell
-from orion.mechanics.questioning import generate_mechanic_questions
 from orion.mechanics.actions import apply_candidate_action_plan
+from orion.mechanics.diagnosis import (
+    apply_default_diagnosis_plan,
+    default_diagnosis_plan,
+)
+from orion.mechanics.engineering import (
+    EngineeringConcern,
+    apply_default_engineering_contract,
+    default_engineering_requirements,
+)
+from orion.mechanics.model import MechanicCell
 from orion.mechanics.objectives import apply_candidate_objective
 from orion.mechanics.optimization import apply_default_optimization_policy
-from orion.mechanics.resources import ResourceKind, apply_default_resource_plan, default_resource_plan
-from orion.mechanics.diagnosis import apply_default_diagnosis_plan, default_diagnosis_plan
-from orion.mechanics.storage import StorageLayer, apply_default_storage_contract, default_storage_requirements
-from orion.mechanics.provenance import ProvenanceKind, apply_default_provenance_contract, default_provenance_requirements
-from orion.mechanics.engineering import EngineeringConcern, apply_default_engineering_contract, default_engineering_requirements
+from orion.mechanics.provenance import (
+    ProvenanceKind,
+    apply_default_provenance_contract,
+    default_provenance_requirements,
+)
+from orion.mechanics.questioning import generate_mechanic_questions
+from orion.mechanics.resources import (
+    ResourceKind,
+    apply_default_resource_plan,
+    default_resource_plan,
+)
+from orion.mechanics.storage import (
+    StorageLayer,
+    apply_default_storage_contract,
+    default_storage_requirements,
+)
 
 
 def _dims(cell):

@@ -1,6 +1,9 @@
 from orion.mechanics import MechanicDimension
-from orion.self_orion import completion_program_cells, next_completion_questions, observe_completion_program
-
+from orion.self_orion import (
+    completion_program_cells,
+    next_completion_questions,
+    observe_completion_program,
+)
 
 _PROVISIONAL_STEP_SPECIFIC = {
     MechanicDimension.VERIFICATION.value,
@@ -11,6 +14,12 @@ _PROVISIONAL_STEP_SPECIFIC = {
     MechanicDimension.TRANSITION_MODEL.value,
     MechanicDimension.MATHEMATICS.value,
     MechanicDimension.DEPENDENCIES.value,
+    MechanicDimension.METRICS.value,
+    MechanicDimension.UNCERTAINTY.value,
+    MechanicDimension.INVARIANTS.value,
+    MechanicDimension.PARENT_DISCIPLINE.value,
+    MechanicDimension.SEARCH_COVERAGE.value,
+    MechanicDimension.SATURATION.value,
 }
 
 
@@ -24,11 +33,13 @@ def test_completion_controller_closes_new_layers_without_fabricating_step_specif
     assert metrics.cycle_count == 0
     assert getattr(metrics, "unknown_dependency_count", 0) == 0
     assert getattr(metrics, "dependency_cycle_count", 0) == 0
+    assert getattr(metrics, "mixed_cycle_count", 0) == 0
 
     # The continuation closes actions/objective/optimization/resources/diagnosis/
     # storage/provenance/engineering at the generic specification layer. Codex's
     # MechanicCell.v1 deliberately leaves universal envelopes provisional for these
-    # eight step-specific dimensions, so generic scaffolding cannot manufacture closure.
+    # fourteen step-specific dimensions, so generic scaffolding cannot manufacture
+    # closure.
     assert set(counts) == _PROVISIONAL_STEP_SPECIFIC
     assert all(counts[dimension] == metrics.mechanic_count for dimension in _PROVISIONAL_STEP_SPECIFIC)
     assert metrics.open_question_count == metrics.mechanic_count * len(_PROVISIONAL_STEP_SPECIFIC)

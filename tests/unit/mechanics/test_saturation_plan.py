@@ -21,6 +21,6 @@ def test_saturation_plan_closes_stopping_spec_but_not_empirical_saturation():
     cell = MechanicCell("SEARCH.test", "Find evidence.", "fixture")
     updated = apply_default_saturation_plan(cell)
     dimensions = {item.dimension.value for item in generate_mechanic_questions(updated)}
-    assert "SATURATION" not in dimensions
+    assert "SATURATION" in dimensions
     assert "ACTIONS" in dimensions
     assert any("prospective false-saturation recall" in item for item in updated.empirical_open_coordinates)
