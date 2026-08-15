@@ -578,11 +578,11 @@ def test_driver_stops_on_bounded_flatness_rather_than_spinning(tmp_path: Path) -
         selection_limit=64,
     ).run(max_rounds=8)
 
-    assert report.stop_reason == "bounded_saturation"
+    assert report.stop_reason == "a_priori_frame_flat"
     assert len(report.rounds) == 2
     assert report.verified_closures == 0
     assert report.saturation is not None
-    assert report.saturation.verdict is SaturationVerdict.BOUNDED_SATURATED
+    assert report.saturation.verdict is SaturationVerdict.A_PRIORI_FRAME_FLAT
     assert all(vector.flat for vector in report.growth)
     # Bounded, never absolute: stopping is a statement about a declared basis.
     assert report.saturation.absolute_complete is False
@@ -602,7 +602,7 @@ def test_growth_in_any_coordinate_prevents_stopping(tmp_path: Path) -> None:
     assert first.evidence_bound_additions == 1
     assert first.new_evidence_roots == 1
     assert report.saturation is not None
-    assert report.saturation.verdict is not SaturationVerdict.BOUNDED_SATURATED
+    assert report.saturation.verdict is not SaturationVerdict.A_PRIORI_FRAME_FLAT
 
 
 def test_a_resumed_run_does_not_recount_its_own_history_as_growth(
@@ -631,7 +631,7 @@ def test_a_resumed_run_does_not_recount_its_own_history_as_growth(
     ).run(max_rounds=2)
 
     assert all(vector.flat for vector in resumed.growth)
-    assert resumed.stop_reason == "bounded_saturation"
+    assert resumed.stop_reason == "a_priori_frame_flat"
 
 
 def test_changing_the_basis_voids_earlier_flat_rounds() -> None:
@@ -647,7 +647,7 @@ def test_changing_the_basis_voids_earlier_flat_rounds() -> None:
         GrowthVector(round_index=index, basis_fingerprint=basis.fingerprint)
         for index in range(2)
     )
-    assert assess_saturation(flat, basis).verdict is SaturationVerdict.BOUNDED_SATURATED
+    assert assess_saturation(flat, basis).verdict is SaturationVerdict.A_PRIORI_FRAME_FLAT
 
     wider = SaturationBasis(
         root_mechanic_id=basis.root_mechanic_id,
@@ -710,3 +710,29 @@ def test_directory_source_serves_each_record_once(tmp_path: Path) -> None:
 
     assert report.verified_closures == 1
     assert report.rounds[1].fetched_record_ids == ()
+
+
+def test_the_stopping_verdict_never_certifies_recall(tmp_path: Path) -> None:
+    """The rule implemented here is a heuristic with three prior names.
+
+    Francis et al.'s "10+3", Guest/Namey/Chen's 0% new-information threshold,
+    and TAR's IH50 are the same rule. Guest et al. bootstrap the 0% threshold at
+    87-89% of themes captured; Callaghan et al. (2024) measured 5th-percentile
+    recall of 53% for this family. A run may stop on it — it may not claim
+    coverage from it.
+    """
+
+    report = SelfDrivingDriver(
+        store=LedgerStore(tmp_path / "state"),
+        source=StaticAnswerSource(records=()),
+        evidence_roots={"orion": tmp_path},
+        seed_cells=_program(),
+        selection_limit=64,
+    ).run(max_rounds=8)
+
+    assert report.stop_reason == "a_priori_frame_flat"
+    assert report.saturation is not None
+    assert report.saturation.may_stop
+    assert not report.saturation.certifies_recall
+    assert not report.saturation.absolute_complete
+    assert any("outside the frame" in item for item in report.saturation.reasons)
