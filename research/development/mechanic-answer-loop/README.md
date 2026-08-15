@@ -54,4 +54,19 @@ is open at ANSWER→apply→persist. Until it closes, ORION's self-development i
 
 Append-only JSONL answer ledger under `research/development/mechanic-answer-loop/answers/<lane>/`, one file per lane per cell; a pure `apply_answer_records(cells, records)` reducer in a new `orion.mechanics.answers` module (no edits to existing modules; registry wiring queued for the owning wave per `AGENTS.md`); deterministic load order (cell id, dimension, record id); conflicting (cell, dimension) pairs emit a typed contradiction residual; audit-delta check asserts monotone-or-residual with waiver-driven decreases reported separately; known-answer + hostile tests (order permutation, conflict injection, waiver-laundering attempt, envelope-laundering attempt). LLM sessions participate only by appending records through ordinary lane PRs.
 
+### Authority hardening after hostile review
+
+The first merged reducer failed its own waiver-laundering and evidence-binding
+challenges; see `research/failures/2026-08-answer-authority-laundering/`.
+Hardened V0 therefore has **no active waiver application path**. A waiver record
+is retained as a proposal but emits `UNAUTHORIZED_WAIVER` and cannot reduce the
+frontier until a protected subject-bound waiver attestor exists.
+
+Content answers now require an exact binding to a resolved canonical
+`EvidenceRecord`; a non-empty citation string is not evidence. Supersession is
+accepted only when every record in the coordinate forms one complete linear
+chain. These repairs establish answer-application conformance only. They do not
+make an answered mechanic executable, empirically supported or scientifically
+authoritative; those transitions belong to the step-verification lifecycle.
+
 Implementation begins only after the shadow stack merges and this hypothesis is re-audited against the merged surface.

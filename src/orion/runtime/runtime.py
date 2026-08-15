@@ -146,6 +146,7 @@ class OrionRuntime:
             dict.fromkeys(
                 action_id
                 for event in trace.events
+                if event.receipt.mechanic_id == "ORION_SOLVE.v1"
                 for action_id in event.receipt.action_ids
             )
         ) or (

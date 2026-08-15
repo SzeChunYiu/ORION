@@ -317,6 +317,12 @@ def test_real_runtime_records_executed_failure_pattern_guard_action():
     assert all(guard.guard_id in item.action_ids for item in search_episodes)
     assert all(item.source_receipt_id for item in search_episodes)
     assert result.mechanic_experience_episode_ids
+    root_episode = next(
+        episode
+        for episode in store.episodes()
+        if episode.episode_id == result.experience_episode_id
+    )
+    assert guard.guard_id not in root_episode.action_ids
 
 
 def test_root_solve_guard_rejects_before_any_provider_or_operator_side_effect():
