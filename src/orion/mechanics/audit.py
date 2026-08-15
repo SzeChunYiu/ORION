@@ -31,6 +31,7 @@ class RecursiveMechanicAudit:
     cycle_paths: tuple[str, ...] = ()
     unknown_dependency_ids: tuple[str, ...] = ()
     dependency_cycle_paths: tuple[str, ...] = ()
+    mixed_cycle_paths: tuple[str, ...] = ()
 
     @property
     def bounded_ready(self) -> bool:
@@ -39,6 +40,7 @@ class RecursiveMechanicAudit:
             and not self.cycle_paths
             and not self.unknown_dependency_ids
             and not self.dependency_cycle_paths
+            and not self.mixed_cycle_paths
             and all(
                 item.verdict is MechanicAuditVerdict.READY_FOR_BENCHMARK
                 for item in self.reports
@@ -120,6 +122,50 @@ def audit_recursive(
 
     containment_cycles = cycle_paths("child_mechanic_ids")
     dependency_cycles = cycle_paths("dependency_ids")
+
+    mixed_cycles: set[str] = set()
+    mixed_visited: set[str] = set()
+    mixed_active_nodes: list[str] = []
+    mixed_active_edges: list[str] = []
+
+    def visit_mixed(mechanic_id: str) -> None:
+        mixed_active_nodes.append(mechanic_id)
+        edges = (
+            *(("containment", item) for item in cells[mechanic_id].child_mechanic_ids),
+            *(("dependency", item) for item in cells[mechanic_id].dependency_ids),
+        )
+        for edge_kind, target_id in edges:
+            if target_id not in discovered:
+                continue
+            if target_id in mixed_active_nodes:
+                start = mixed_active_nodes.index(target_id)
+                cycle_edge_kinds = (*mixed_active_edges[start:], edge_kind)
+                if set(cycle_edge_kinds) == {"containment", "dependency"}:
+                    cycle_nodes = mixed_active_nodes[start:]
+                    first_node = (
+                        root_mechanic_id
+                        if root_mechanic_id in cycle_nodes
+                        else min(cycle_nodes)
+                    )
+                    first_index = cycle_nodes.index(first_node)
+                    canonical_nodes = (
+                        cycle_nodes[first_index:] + cycle_nodes[:first_index]
+                    )
+                    mixed_cycles.add(
+                        " -> ".join(canonical_nodes + [canonical_nodes[0]])
+                    )
+                continue
+            if target_id in mixed_visited:
+                continue
+            mixed_active_edges.append(edge_kind)
+            visit_mixed(target_id)
+            mixed_active_edges.pop()
+        mixed_active_nodes.pop()
+        mixed_visited.add(mechanic_id)
+
+    for mechanic_id in sorted(discovered):
+        if mechanic_id not in mixed_visited:
+            visit_mixed(mechanic_id)
     return RecursiveMechanicAudit(
         root_mechanic_id=root_mechanic_id,
         reports=tuple(reports),
@@ -127,4 +173,5 @@ def audit_recursive(
         cycle_paths=tuple(sorted(containment_cycles)),
         unknown_dependency_ids=tuple(sorted(unknown_dependencies)),
         dependency_cycle_paths=tuple(sorted(dependency_cycles)),
+        mixed_cycle_paths=tuple(sorted(mixed_cycles)),
     )

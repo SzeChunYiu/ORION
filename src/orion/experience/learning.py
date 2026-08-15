@@ -371,8 +371,14 @@ def _assess_pattern_reuse(
             LessonAuthority.VERIFIED_LOCAL,
             resolution.reasons,
         )
+    # V0 can authenticate who signed this exact assessment, but every lineage
+    # label above is still supplied when the in-process identity/episodes are
+    # constructed.  Unequal hashes therefore prove inequality, not independent
+    # organizational or process custody.  Keep the future authority level in the
+    # schema, but fail closed until an externally rooted separation attestor can
+    # bind those lineages to independently controlled executions.
     return PatternAssessment(
-        PatternAssessmentVerdict.CONDITIONALLY_REUSABLE,
-        LessonAuthority.CONDITIONALLY_REUSABLE,
-        ("candidate guard survived replay and fresh independently verified transfer",),
+        PatternAssessmentVerdict.VERIFIED_LOCAL,
+        LessonAuthority.VERIFIED_LOCAL,
+        ("external_lineage_separation_attestation_required",),
     )

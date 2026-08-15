@@ -17,10 +17,10 @@ def test_uncertainty_plan_refuses_unlicensed_probability_collapse():
     assert by_kind[UncertaintyKind.RESOURCE_CENSORING].default_representation is UncertaintyRepresentation.CANNOT_CHECK
 
 
-def test_uncertainty_plan_closes_baseline_semantics_but_keeps_quantification_open():
+def test_uncertainty_plan_keeps_step_specific_quantification_open():
     cell = MechanicCell("SEARCH.test", "Find evidence.", "fixture")
     updated = apply_default_uncertainty_plan(cell)
     dimensions = {item.dimension.value for item in generate_mechanic_questions(updated)}
-    assert "UNCERTAINTY" not in dimensions
+    assert "UNCERTAINTY" in dimensions
     assert "INVARIANTS" in dimensions
     assert any("step-specific uncertainty" in item for item in updated.empirical_open_coordinates)

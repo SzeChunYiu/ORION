@@ -10,9 +10,9 @@ The mechanics-of-mechanics substrate turns ORION development into an observable 
 - unresolved-question counts by dimension;
 - unknown child references;
 - unknown execution-dependency references;
-- containment cycles and execution-dependency cycles detected separately.
+- containment cycles, execution-dependency cycles and cycles mixing both edge kinds detected separately.
 
-The current provisional decomposition contains 59 reachable cells and 944 open typed questions after the generic metric/uncertainty/invariant/dependency/parent-domain/search/saturation waves and the protected failure-learning repair. It has zero unknown child references, containment cycles, unknown mechanic dependencies or dependency cycles. These numbers are workload observations, not targets to maximize. Universal envelopes remain marked provisional and do not remove step-specific questions. A question disappears only when the cell gains a scoped non-provisional contract/evidence field or an explicit justified waiver.
+The current provisional decomposition contains 59 reachable cells and 1,298 open typed questions after the generic metric/uncertainty/invariant/dependency/parent-domain/search/saturation waves and the protected failure-learning repair. It has zero unknown child references, containment cycles, unknown mechanic dependencies, dependency cycles or mixed containment/dependency cycles. These numbers are workload observations, not targets to maximize. Universal envelopes remain marked provisional and do not remove step-specific questions. A question disappears only when the cell gains a scoped non-provisional contract/evidence field or an explicit justified waiver.
 
 ## V0 research scheduling
 

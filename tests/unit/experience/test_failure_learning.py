@@ -190,8 +190,59 @@ def test_replay_and_fresh_transfer_are_separate_promotion_gates():
             verification_receipt=receipt,
         ),
     )
-    assert transferred.verdict is PatternAssessmentVerdict.CONDITIONALLY_REUSABLE
-    assert transferred.reusable
+    assert transferred.verdict is PatternAssessmentVerdict.VERIFIED_LOCAL
+    assert transferred.reasons == ("external_lineage_separation_attestation_required",)
+    assert not transferred.reusable
+
+
+def test_unequal_caller_selected_lineages_cannot_spoof_independent_promotion():
+    first = _episode("e1", "vocabulary-a", EpisodeOutcome.FAILURE)
+    second = _episode("e2", "vocabulary-b", EpisodeOutcome.FAILURE)
+    candidate = propose_failure_pattern(
+        (first, second),
+        pattern_id="pattern:caller-lineage-spoof",
+        candidate_guard="challenge the parent-domain basis",
+        falsifier="guard has no transfer benefit",
+    )
+    assert candidate is not None
+    guard_action = f"guard:{candidate.pattern_id}"
+    replay = _episode(
+        "replay",
+        "vocabulary-a",
+        EpisodeOutcome.SUCCESS,
+        action_ids=(guard_action,),
+    )
+    fresh = _episode(
+        "fresh",
+        "unseen-domain",
+        EpisodeOutcome.SUCCESS,
+        action_ids=(guard_action,),
+        task_id="task:fresh-domain",
+        evaluation_epoch_id="evaluation:fresh",
+        split_id="split:fresh",
+    )
+    episodes = (first, second, replay, fresh)
+    receipt, authority = _protected_receipt(
+        candidate,
+        episodes,
+        process_lineage_hash="4" * 64,
+        evaluator_artifact_hash="5" * 64,
+        evidence_lineage_hash="6" * 64,
+    )
+
+    assessment = authority.assess(
+        ExperienceLedger(episodes=episodes, failure_patterns=(candidate,)),
+        candidate,
+        PatternValidationEvidence(
+            replay_episode_ids=("replay",),
+            fresh_transfer_episode_ids=("fresh",),
+            verification_receipt=receipt,
+        ),
+    )
+
+    assert assessment.verdict is PatternAssessmentVerdict.VERIFIED_LOCAL
+    assert assessment.reasons == ("external_lineage_separation_attestation_required",)
+    assert not assessment.reusable
 
 
 def test_failed_fresh_transfer_contradicts_reuse_candidate():
@@ -705,7 +756,9 @@ def test_protected_verifier_sharing_candidate_evidence_lineage_cannot_promote():
     )
     assert candidate is not None
     guard_action = f"guard:{candidate.pattern_id}"
-    replay = _episode("replay", "vocabulary-a", EpisodeOutcome.SUCCESS, action_ids=(guard_action,))
+    replay = _episode(
+        "replay", "vocabulary-a", EpisodeOutcome.SUCCESS, action_ids=(guard_action,)
+    )
     fresh = _episode(
         "fresh",
         "fresh-domain",

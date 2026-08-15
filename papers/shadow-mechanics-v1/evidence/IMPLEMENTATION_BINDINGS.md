@@ -44,4 +44,4 @@ The paper's implementation/formal claims are frozen against the combined Shadow 
 
 ## Bounded interpretation
 
-This binding demonstrates exact source identity and successful software tests for the implementation/formal claims in the Shadow paper. It does not provide live scientific-performance evidence. In particular, the 59-cell programme still exposes 472 step-specific questions across the eight deliberately provisional dimensions documented in the research/CI receipt.
+This frozen binding demonstrates exact source identity and successful software tests for the implementation/formal claims in the Shadow paper. It does not provide live scientific-performance evidence. The bound completion-layer receipt observed 472 questions across eight provisional dimensions. Subsequent hostile-review hardening correctly reopened six additional step-specific dimensions, so the current composed 59-cell controller exposes 826 questions across fourteen dimensions; that post-merge state requires its own exact-SHA CI receipt before becoming a new frozen binding.

@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 from enum import Enum
 
-from .model import MechanicCell
+from .model import MechanicCell, MechanicDimension
 
 
 class InvariantKind(str, Enum):
@@ -77,7 +77,8 @@ def default_invariant_plan(cell: MechanicCell) -> MechanicInvariantPlan:
 def apply_default_invariant_plan(cell: MechanicCell) -> MechanicCell:
     plan = default_invariant_plan(cell)
     empirical_open = tuple(dict.fromkeys(cell.empirical_open_coordinates + ("step-specific safety/correctness/domain invariants, formal proof obligations and hostile validation",)))
-    return replace(cell, invariant_ids=tuple(item.invariant_id for item in plan.invariants), empirical_open_coordinates=empirical_open)
+    provisional = tuple(dict.fromkeys((*cell.provisional_dimensions, MechanicDimension.INVARIANTS)))
+    return replace(cell, invariant_ids=tuple(item.invariant_id for item in plan.invariants), empirical_open_coordinates=empirical_open, provisional_dimensions=provisional)
 
 
 def apply_default_invariant_plans(cells: tuple[MechanicCell, ...]) -> tuple[MechanicCell, ...]:

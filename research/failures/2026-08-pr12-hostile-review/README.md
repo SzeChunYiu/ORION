@@ -23,10 +23,10 @@ The same review found additional structural gaps:
 5. Universal verification/failure/observability/handoff/state/transition/math envelopes mark their dimensions provisional, preserving step-specific questions.
 6. Normalized structural failure signatures include typed residuals and `CANNOT_CHECK` episodes.
 7. Every solver trace event carries a transition-consistent `MechanicReceipt`; the runtime records lossless receipt-derived atomic episodes under the root-run parent. Trace/receipt identities are unique per run.
-8. Host-installed executable mechanic guards are invoked before their target mechanic and their exact `guard:<pattern_id>` action flows through the real trace and episode path.
+8. Host-installed executable mechanic guards are invoked immediately before every target-mechanic invocation against that invocation's current state; only actually invoked guard actions flow through the matching trace and episode receipt.
 9. Operator/provider exceptions become failed atomic receipts and blocked root episodes instead of disappearing before runtime recording.
 10. Failure-pattern candidates are structurally fixed at `CANDIDATE`; promotion is a protected assessment result rather than a caller-written field.
 
 ## Remaining boundary
 
-Ed25519 removes signing secrets and caller-declared independence from assessment, but host trust-store custody is still a deployment boundary rather than a Python sandbox. Live trials must test protected-assessor isolation, key rotation, evaluator separation, exact build hashes, evidence-lineage construction, persistence failure and process-death recovery. No live Self-ORION promotion authority is granted by this repair.
+Ed25519 removes signing secrets and content substitution from assessment, but unequal caller-selected lineage hashes cannot establish organizational/process independence. V0 therefore returns at most `VERIFIED_LOCAL` with `external_lineage_separation_attestation_required`; the conditional-reuse enum is reserved but has no active promotion path. Live trials must add an externally rooted separation attestor and test protected-assessor isolation, key rotation, evaluator separation, exact build hashes, evidence-lineage construction, persistence failure and process-death recovery. No live Self-ORION promotion authority is granted by this repair.

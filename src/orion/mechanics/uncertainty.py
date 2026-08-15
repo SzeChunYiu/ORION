@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 from enum import Enum
 
-from .model import MechanicCell
+from .model import MechanicCell, MechanicDimension
 
 
 class UncertaintyKind(str, Enum):
@@ -93,7 +93,8 @@ def apply_default_uncertainty_plan(cell: MechanicCell) -> MechanicCell:
     plan = default_uncertainty_plan(cell)
     semantics = (plan.probability_policy, *tuple(f"{item.rule_id}:{item.default_representation.value}:{item.propagation_semantics}" for item in plan.rules))
     empirical_open = tuple(dict.fromkeys(cell.empirical_open_coordinates + ("step-specific uncertainty sources, dependence structure, calibration/coverage, propagation law and decision consequences",)))
-    return replace(cell, uncertainty_semantics=semantics, empirical_open_coordinates=empirical_open)
+    provisional = tuple(dict.fromkeys((*cell.provisional_dimensions, MechanicDimension.UNCERTAINTY)))
+    return replace(cell, uncertainty_semantics=semantics, empirical_open_coordinates=empirical_open, provisional_dimensions=provisional)
 
 
 def apply_default_uncertainty_plans(cells: tuple[MechanicCell, ...]) -> tuple[MechanicCell, ...]:

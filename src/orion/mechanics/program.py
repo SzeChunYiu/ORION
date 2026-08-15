@@ -36,6 +36,7 @@ class MechanicsProgramMetrics:
     cycle_count: int
     unknown_dependency_count: int
     dependency_cycle_count: int
+    mixed_cycle_count: int
 
     @property
     def open_mechanic_count(self) -> int:
@@ -89,6 +90,7 @@ def observe_mechanics_program(
         len(report.cycle_paths),
         len(report.unknown_dependency_ids),
         len(report.dependency_cycle_paths),
+        len(report.mixed_cycle_paths),
     )
 
 

@@ -99,3 +99,25 @@ def test_recursive_audit_includes_dependencies_outside_child_containment():
     assert {item.mechanic_id for item in report.reports} == {"root", "external"}
     assert report.dependency_cycle_paths == ("external -> root -> external",)
     assert not report.bounded_ready
+
+
+def test_recursive_audit_refuses_cycle_mixed_across_containment_and_dependency_edges():
+    parent = _waive_all("parent", children=("child",))
+    child = MechanicCell(
+        "child",
+        "fixture mechanic",
+        "known-answer fixture",
+        dependency_ids=("parent",),
+        waivers=tuple(
+            DimensionWaiver(dimension, "fixture")
+            for dimension in MechanicDimension
+            if dimension is not MechanicDimension.DEPENDENCIES
+        ),
+    )
+
+    report = audit_recursive({"parent": parent, "child": child}, "parent")
+
+    assert report.cycle_paths == ()
+    assert report.dependency_cycle_paths == ()
+    assert report.mixed_cycle_paths == ("parent -> child -> parent",)
+    assert not report.bounded_ready

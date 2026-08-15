@@ -4,7 +4,10 @@ from dataclasses import dataclass
 
 from orion.core.problem import Problem
 from orion.core.search import SearchQuery
-from orion.engine.mechanical_planner import MechanicalFirstPlanner, MechanicalResearchPlan
+from orion.engine.mechanical_planner import (
+    MechanicalFirstPlanner,
+    MechanicalResearchPlan,
+)
 from orion.engine.mechanical_questions import MechanicalProblemContext
 from orion.experience.model import TaskEpisode
 from orion.providers.experience.base import ExperienceStore

@@ -28,7 +28,7 @@ papers/shadow-mechanics-v1/
 
 The control/resource/persistence/engineering completion layer is implemented, but the current combined Shadow graph deliberately remains **open** at the step-specific level. `MechanicCell.v1` treats generic envelopes as provisional rather than allowing scaffolding to manufacture completeness.
 
-The finalization round observes 59 reachable mechanic cells and 472 remaining step-specific questions (eight provisional dimensions per cell: verification, failure, observability, handoff, state, transition model, mathematics and dependencies). This is an explicit research frontier, not a failed attempt to hide incompleteness.
+The frozen completion-layer round observed 59 reachable mechanic cells and 472 remaining step-specific questions across eight provisional dimensions. Post-merge hostile-review hardening reopened six generic waves that had falsely closed step-specific coordinates: metrics, uncertainty, invariants, parent discipline, search coverage and saturation. The current composed Shadow controller therefore observes **826 = 59 × 14** open questions. This larger count is a correction of false closure, not a regression in scientific knowledge or a target to inflate.
 
 The paper must not claim that all ORION mechanics are empirically valid merely because generic specification layers exist. `READY_FOR_BENCHMARK` remains a definition for a cell whose required step-specific coordinates are actually closed or explicitly waived; the current 59-cell programme has not reached that state.
 

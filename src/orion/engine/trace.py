@@ -30,6 +30,7 @@ class TraceEvent:
     post_state_hash: str
 
     def __post_init__(self) -> None:
+        self.transition.validate()
         if self.transition.operator is not self.operator:
             raise ValueError("trace event transition/operator mismatch")
         if self.receipt.mechanic_id != MECHANIC_ID_BY_OPERATOR[self.operator]:
@@ -61,6 +62,18 @@ class TraceEvent:
 class SolveTrace:
     trace_id: str
     events: tuple[TraceEvent, ...]
+
+    def __post_init__(self) -> None:
+        if not self.trace_id.strip():
+            raise ValueError("solve trace identity is required")
+        receipt_ids = [event.receipt.receipt_id for event in self.events]
+        if len(set(receipt_ids)) != len(receipt_ids):
+            raise ValueError("solve trace receipt ids must be unique")
+        for previous, current in zip(self.events, self.events[1:], strict=False):
+            if previous.post_state_hash != current.pre_state_hash:
+                raise ValueError("solve trace state-hash chain is discontinuous")
+            if previous.transition.output_epoch != current.transition.input_epoch:
+                raise ValueError("solve trace epoch chain is discontinuous")
 
     @property
     def operator_sequence(self) -> tuple[CycleOperator, ...]:

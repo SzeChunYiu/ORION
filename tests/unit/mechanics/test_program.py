@@ -33,6 +33,12 @@ def test_current_program_keeps_universal_envelopes_provisional():
         MechanicDimension.TRANSITION_MODEL,
         MechanicDimension.MATHEMATICS,
         MechanicDimension.DEPENDENCIES,
+        MechanicDimension.METRICS,
+        MechanicDimension.UNCERTAINTY,
+        MechanicDimension.INVARIANTS,
+        MechanicDimension.PARENT_DISCIPLINE,
+        MechanicDimension.SEARCH_COVERAGE,
+        MechanicDimension.SATURATION,
     ):
         assert counts[provisional.value] == metrics.mechanic_count
 
@@ -54,3 +60,4 @@ def test_current_dependency_graph_is_closed_and_acyclic():
     metrics = observe_current_mechanics_program()
     assert metrics.unknown_dependency_count == 0
     assert metrics.dependency_cycle_count == 0
+    assert metrics.mixed_cycle_count == 0

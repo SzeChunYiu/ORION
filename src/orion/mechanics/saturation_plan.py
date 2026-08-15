@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 from enum import Enum
 
-from .model import MechanicCell
+from .model import MechanicCell, MechanicDimension
 
 
 class SaturationCoordinate(str, Enum):
@@ -104,7 +104,8 @@ def apply_default_saturation_plan(cell: MechanicCell) -> MechanicCell:
             )
         )
     )
-    return replace(cell, saturation_criteria=criteria, empirical_open_coordinates=empirical_open)
+    provisional = tuple(dict.fromkeys((*cell.provisional_dimensions, MechanicDimension.SATURATION)))
+    return replace(cell, saturation_criteria=criteria, empirical_open_coordinates=empirical_open, provisional_dimensions=provisional)
 
 
 def apply_default_saturation_plans(cells: tuple[MechanicCell, ...]) -> tuple[MechanicCell, ...]:

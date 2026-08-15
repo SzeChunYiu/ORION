@@ -15,10 +15,10 @@ def test_invariant_plan_preserves_authority_history_reopen_and_root_progress_gua
     assert any("hidden mutation" in item.statement for item in plan.invariants)
 
 
-def test_invariant_plan_closes_universal_invariants_but_keeps_step_specific_obligations_open():
+def test_invariant_plan_keeps_step_specific_obligations_open():
     cell = MechanicCell("SEARCH.test", "Find evidence.", "fixture")
     updated = apply_default_invariant_plan(cell)
     dimensions = {item.dimension.value for item in generate_mechanic_questions(updated)}
-    assert "INVARIANTS" not in dimensions
+    assert "INVARIANTS" in dimensions
     assert "DEPENDENCIES" in dimensions
     assert any("step-specific safety/correctness" in item for item in updated.empirical_open_coordinates)

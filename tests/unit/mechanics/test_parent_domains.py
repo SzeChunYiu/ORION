@@ -24,6 +24,6 @@ def test_parent_domain_hypotheses_close_only_seed_question_not_search_coverage()
     cell = MechanicCell("SEARCH.ROUTE.v0", "Select search routes.", "fixture")
     updated = apply_parent_domain_hypotheses(cell)
     dimensions = {item.dimension.value for item in generate_mechanic_questions(updated)}
-    assert "PARENT_DISCIPLINE" not in dimensions
+    assert "PARENT_DISCIPLINE" in dimensions
     assert "SEARCH_COVERAGE" in dimensions
     assert any("search seeds only" in item for item in updated.empirical_open_coordinates)

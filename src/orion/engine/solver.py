@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 from collections.abc import Callable
 from dataclasses import dataclass, field, replace
+from functools import partial
 from time import perf_counter
 from typing import TypeVar
 from uuid import uuid4
@@ -34,6 +35,15 @@ from orion.providers.verification.base import VerificationProvider
 from orion.registry import CORE_OPERATOR_IDS, FRAMEWORK_VERSION
 
 _T = TypeVar("_T")
+
+
+class _MechanicGuardEvaluationError(RuntimeError):
+    """Distinguish a guard crash from a target-operator crash."""
+
+    def __init__(self, guard_id: str, cause: Exception) -> None:
+        super().__init__(f"mechanic guard {guard_id} failed: {cause}")
+        self.guard_id = guard_id
+        self.cause = cause
 
 
 @dataclass(frozen=True)
@@ -98,13 +108,128 @@ class OrionSolver:
     def _state_hash(state: OrionState) -> str:
         return hashlib.sha256(repr(state).encode("utf-8")).hexdigest()
 
-    @staticmethod
-    def _attempt(action: Callable[[], _T]) -> tuple[_T | None, float, Exception | None]:
+    def _attempt_mechanic(
+        self,
+        operator: CycleOperator,
+        problem: Problem,
+        state: OrionState,
+        action: Callable[[], _T],
+    ) -> tuple[
+        _T | None,
+        float,
+        Exception | None,
+        tuple[str, ...],
+        tuple[str, ...],
+    ]:
+        """Evaluate current-state guards immediately before one invocation."""
+
         started_at = perf_counter()
+        invoked_guard_ids: list[str] = []
+        mechanic_id = MECHANIC_ID_BY_OPERATOR[operator]
+        for guard in self._guards:
+            if guard.mechanic_id != mechanic_id:
+                continue
+            invoked_guard_ids.append(guard.guard_id)
+            try:
+                guard_result = guard.evaluate(problem, state)
+            except Exception as exc:  # noqa: BLE001 - guard failure is evidence
+                return (
+                    None,
+                    perf_counter() - started_at,
+                    _MechanicGuardEvaluationError(guard.guard_id, exc),
+                    tuple(invoked_guard_ids),
+                    (),
+                )
+            if not guard_result.passed:
+                return (
+                    None,
+                    perf_counter() - started_at,
+                    None,
+                    tuple(invoked_guard_ids),
+                    guard_result.residual_ids,
+                )
         try:
-            return action(), perf_counter() - started_at, None
-        except Exception as exc:  # noqa: BLE001 - operator failures must become evidence
-            return None, perf_counter() - started_at, exc
+            result = action()
+        except Exception as exc:  # noqa: BLE001 - operator failure is evidence
+            return (
+                None,
+                perf_counter() - started_at,
+                exc,
+                tuple(invoked_guard_ids),
+                (),
+            )
+        return (
+            result,
+            perf_counter() - started_at,
+            None,
+            tuple(invoked_guard_ids),
+            (),
+        )
+
+    @classmethod
+    def _failure_from_attempt(
+        cls,
+        *,
+        problem: Problem,
+        state: OrionState,
+        events: list[TraceEvent],
+        trace_id: str,
+        operator: CycleOperator,
+        error: Exception | None,
+        guard_residuals: tuple[str, ...],
+        invoked_guard_ids: tuple[str, ...],
+        latency_seconds: float,
+        iterations: int,
+    ) -> tuple[Solution, OrionState, SolveTrace] | None:
+        if guard_residuals:
+            return cls._operator_failure(
+                problem=problem,
+                state=state,
+                events=events,
+                trace_id=trace_id,
+                operator=operator,
+                error=RuntimeError("mechanic guard rejected execution"),
+                latency_seconds=latency_seconds,
+                iterations=iterations,
+                action_ids=invoked_guard_ids,
+                status=MechanicRunStatus.BLOCKED,
+                residual_ids=guard_residuals,
+                failure_signature=("mechanic_guard_rejected",),
+                operator_invoked=False,
+            )
+        if isinstance(error, _MechanicGuardEvaluationError):
+            return cls._operator_failure(
+                problem=problem,
+                state=state,
+                events=events,
+                trace_id=trace_id,
+                operator=operator,
+                error=error.cause,
+                latency_seconds=latency_seconds,
+                iterations=iterations,
+                action_ids=invoked_guard_ids,
+                residual_ids=(
+                    f"mechanic-guard-exception:{operator.value}:{type(error.cause).__name__}",
+                ),
+                failure_signature=(
+                    "mechanic_guard_exception",
+                    f"exception_type:{type(error.cause).__name__}",
+                ),
+                operator_invoked=False,
+            )
+        if error is not None:
+            return cls._operator_failure(
+                problem=problem,
+                state=state,
+                events=events,
+                trace_id=trace_id,
+                operator=operator,
+                error=error,
+                latency_seconds=latency_seconds,
+                iterations=iterations,
+                action_ids=invoked_guard_ids,
+            )
+        return None
 
     @classmethod
     def _trace_event(
@@ -148,7 +273,9 @@ class OrionSolver:
             receipt_id=f"{trace_id}:receipt:{index}:{operator.value}",
             mechanic_id=MECHANIC_ID_BY_OPERATOR[operator],
             status=status,
-            action_ids=((*((operator.value,) if operator_invoked else ()), *action_ids)),
+            action_ids=(
+                (*((operator.value,) if operator_invoked else ()), *action_ids)
+            ),
             handoff_values=(
                 ("changed_coordinates", ",".join(transition.changed_coordinates)),
             ),
@@ -282,71 +409,29 @@ class OrionSolver:
         state = initial_state or self.initial_state(problem)
         events: list[TraceEvent] = []
         trace_id = trace_id or f"trace:{problem.problem_id}:{uuid4().hex}"
-        guard_actions: dict[str, list[str]] = {}
-        for guard in self._guards:
-            result, latency_seconds, error = self._attempt(
-                lambda guard=guard: guard.evaluate(problem, state)
-            )
-            operator = next(
-                item
-                for item, mechanic_id in MECHANIC_ID_BY_OPERATOR.items()
-                if mechanic_id == guard.mechanic_id
-            )
-            if error is not None:
-                return self._operator_failure(
-                    problem=problem,
-                    state=state,
-                    events=events,
-                    trace_id=trace_id,
-                    operator=operator,
-                    error=error,
-                    latency_seconds=latency_seconds,
-                    iterations=0,
-                    action_ids=(guard.guard_id,),
-                    operator_invoked=False,
-                )
-            assert result is not None
-            if not result.passed:
-                error = RuntimeError(
-                    "mechanic guard rejected execution: "
-                    + ",".join(result.residual_ids)
-                )
-                return self._operator_failure(
-                    problem=problem,
-                    state=state,
-                    events=events,
-                    trace_id=trace_id,
-                    operator=operator,
-                    error=error,
-                    latency_seconds=latency_seconds,
-                    iterations=0,
-                    action_ids=(guard.guard_id,),
-                    status=MechanicRunStatus.BLOCKED,
-                    residual_ids=result.residual_ids,
-                    failure_signature=("mechanic_guard_rejected",),
-                    operator_invoked=False,
-                )
-            guard_actions.setdefault(guard.mechanic_id, []).append(guard.guard_id)
-
-        def actions_for(operator: CycleOperator) -> tuple[str, ...]:
-            return tuple(guard_actions.get(MECHANIC_ID_BY_OPERATOR[operator], ()))
-
         before_operator = state
-        frame, latency_seconds, error = self._attempt(
-            lambda: self._frame.run(problem, state)
-        )
-        if error is not None:
-            return self._operator_failure(
-                problem=problem,
-                state=state,
-                events=events,
-                trace_id=trace_id,
-                operator=CycleOperator.FRAME,
-                error=error,
-                latency_seconds=latency_seconds,
-                action_ids=actions_for(CycleOperator.FRAME),
-                iterations=0,
+        frame, latency_seconds, error, invoked_guard_ids, guard_residuals = (
+            self._attempt_mechanic(
+                CycleOperator.FRAME,
+                problem,
+                state,
+                lambda: self._frame.run(problem, state),
             )
+        )
+        failure = self._failure_from_attempt(
+            problem=problem,
+            state=state,
+            events=events,
+            trace_id=trace_id,
+            operator=CycleOperator.FRAME,
+            error=error,
+            guard_residuals=guard_residuals,
+            invoked_guard_ids=invoked_guard_ids,
+            latency_seconds=latency_seconds,
+            iterations=0,
+        )
+        if failure is not None:
+            return failure
         assert frame is not None
         state = frame.state
         events.append(
@@ -359,7 +444,7 @@ class OrionSolver:
                 summary=f"frame={frame.output.frame_id}",
                 transition=frame.transition,
                 latency_seconds=latency_seconds,
-                action_ids=actions_for(CycleOperator.FRAME),
+                action_ids=invoked_guard_ids,
             )
         )
 
@@ -370,21 +455,28 @@ class OrionSolver:
             before_domains = set(state.search_universe.active_domain_ids)
 
             before_operator = state
-            search, latency_seconds, error = self._attempt(
-                lambda state=state: self._search.run(problem, state)
-            )
-            if error is not None:
-                return self._operator_failure(
-                    problem=problem,
-                    state=state,
-                    events=events,
-                    trace_id=trace_id,
-                    operator=CycleOperator.SEARCH,
-                    error=error,
-                    latency_seconds=latency_seconds,
-                    action_ids=actions_for(CycleOperator.SEARCH),
-                    iterations=iteration,
+            search, latency_seconds, error, invoked_guard_ids, guard_residuals = (
+                self._attempt_mechanic(
+                    CycleOperator.SEARCH,
+                    problem,
+                    state,
+                    lambda state=state: self._search.run(problem, state),
                 )
+            )
+            failure = self._failure_from_attempt(
+                problem=problem,
+                state=state,
+                events=events,
+                trace_id=trace_id,
+                operator=CycleOperator.SEARCH,
+                error=error,
+                guard_residuals=guard_residuals,
+                invoked_guard_ids=invoked_guard_ids,
+                latency_seconds=latency_seconds,
+                iterations=iteration,
+            )
+            if failure is not None:
+                return failure
             assert search is not None
             state = search.state
             current_route_kinds = tuple(
@@ -414,28 +506,35 @@ class OrionSolver:
                         )
                         for item in search.output.items
                     ),
-                    action_ids=actions_for(CycleOperator.SEARCH),
+                    action_ids=invoked_guard_ids,
                 )
             )
 
             before_operator = state
-            absorb, latency_seconds, error = self._attempt(
-                lambda state=state, search=search: self._absorb.run(
-                    problem, state, search.output
+            absorb, latency_seconds, error, invoked_guard_ids, guard_residuals = (
+                self._attempt_mechanic(
+                    CycleOperator.ABSORB,
+                    problem,
+                    state,
+                    lambda state=state, search=search: self._absorb.run(
+                        problem, state, search.output
+                    ),
                 )
             )
-            if error is not None:
-                return self._operator_failure(
-                    problem=problem,
-                    state=state,
-                    events=events,
-                    trace_id=trace_id,
-                    operator=CycleOperator.ABSORB,
-                    error=error,
-                    latency_seconds=latency_seconds,
-                    action_ids=actions_for(CycleOperator.ABSORB),
-                    iterations=iteration,
-                )
+            failure = self._failure_from_attempt(
+                problem=problem,
+                state=state,
+                events=events,
+                trace_id=trace_id,
+                operator=CycleOperator.ABSORB,
+                error=error,
+                guard_residuals=guard_residuals,
+                invoked_guard_ids=invoked_guard_ids,
+                latency_seconds=latency_seconds,
+                iterations=iteration,
+            )
+            if failure is not None:
+                return failure
             assert absorb is not None
             state = absorb.state
             events.append(
@@ -448,26 +547,33 @@ class OrionSolver:
                     summary=f"contributions={len(absorb.output)}",
                     transition=absorb.transition,
                     latency_seconds=latency_seconds,
-                    action_ids=actions_for(CycleOperator.ABSORB),
+                    action_ids=invoked_guard_ids,
                 )
             )
 
             before_operator = state
-            reconstruct, latency_seconds, error = self._attempt(
-                lambda state=state: self._reconstruct.run(problem, state)
-            )
-            if error is not None:
-                return self._operator_failure(
-                    problem=problem,
-                    state=state,
-                    events=events,
-                    trace_id=trace_id,
-                    operator=CycleOperator.RECONSTRUCT,
-                    error=error,
-                    latency_seconds=latency_seconds,
-                    action_ids=actions_for(CycleOperator.RECONSTRUCT),
-                    iterations=iteration,
+            reconstruct, latency_seconds, error, invoked_guard_ids, guard_residuals = (
+                self._attempt_mechanic(
+                    CycleOperator.RECONSTRUCT,
+                    problem,
+                    state,
+                    lambda state=state: self._reconstruct.run(problem, state),
                 )
+            )
+            failure = self._failure_from_attempt(
+                problem=problem,
+                state=state,
+                events=events,
+                trace_id=trace_id,
+                operator=CycleOperator.RECONSTRUCT,
+                error=error,
+                guard_residuals=guard_residuals,
+                invoked_guard_ids=invoked_guard_ids,
+                latency_seconds=latency_seconds,
+                iterations=iteration,
+            )
+            if failure is not None:
+                return failure
             assert reconstruct is not None
             state = reconstruct.state
             events.append(
@@ -480,26 +586,33 @@ class OrionSolver:
                     summary=reconstruct.output.portrait_id,
                     transition=reconstruct.transition,
                     latency_seconds=latency_seconds,
-                    action_ids=actions_for(CycleOperator.RECONSTRUCT),
+                    action_ids=invoked_guard_ids,
                 )
             )
 
             before_operator = state
-            detect, latency_seconds, error = self._attempt(
-                lambda state=state: self._detect.run(problem, state)
-            )
-            if error is not None:
-                return self._operator_failure(
-                    problem=problem,
-                    state=state,
-                    events=events,
-                    trace_id=trace_id,
-                    operator=CycleOperator.DETECT,
-                    error=error,
-                    latency_seconds=latency_seconds,
-                    action_ids=actions_for(CycleOperator.DETECT),
-                    iterations=iteration,
+            detect, latency_seconds, error, invoked_guard_ids, guard_residuals = (
+                self._attempt_mechanic(
+                    CycleOperator.DETECT,
+                    problem,
+                    state,
+                    lambda state=state: self._detect.run(problem, state),
                 )
+            )
+            failure = self._failure_from_attempt(
+                problem=problem,
+                state=state,
+                events=events,
+                trace_id=trace_id,
+                operator=CycleOperator.DETECT,
+                error=error,
+                guard_residuals=guard_residuals,
+                invoked_guard_ids=invoked_guard_ids,
+                latency_seconds=latency_seconds,
+                iterations=iteration,
+            )
+            if failure is not None:
+                return failure
             assert detect is not None
             state = detect.state
             events.append(
@@ -512,7 +625,7 @@ class OrionSolver:
                     summary=f"residuals={len(detect.output)}",
                     transition=detect.transition,
                     latency_seconds=latency_seconds,
-                    action_ids=actions_for(CycleOperator.DETECT),
+                    action_ids=invoked_guard_ids,
                 )
             )
 
@@ -524,23 +637,34 @@ class OrionSolver:
 
             for residual in material:
                 before_operator = state
-                diagnosis_result, latency_seconds, error = self._attempt(
+                (
+                    diagnosis_result,
+                    latency_seconds,
+                    error,
+                    invoked_guard_ids,
+                    guard_residuals,
+                ) = self._attempt_mechanic(
+                    CycleOperator.DIAGNOSE,
+                    problem,
+                    state,
                     lambda residual=residual, state=state: self._diagnose.run(
                         residual, problem, state
-                    )
+                    ),
                 )
-                if error is not None:
-                    return self._operator_failure(
-                        problem=problem,
-                        state=state,
-                        events=events,
-                        trace_id=trace_id,
-                        operator=CycleOperator.DIAGNOSE,
-                        error=error,
-                        latency_seconds=latency_seconds,
-                        action_ids=actions_for(CycleOperator.DIAGNOSE),
-                        iterations=iteration,
-                    )
+                failure = self._failure_from_attempt(
+                    problem=problem,
+                    state=state,
+                    events=events,
+                    trace_id=trace_id,
+                    operator=CycleOperator.DIAGNOSE,
+                    error=error,
+                    guard_residuals=guard_residuals,
+                    invoked_guard_ids=invoked_guard_ids,
+                    latency_seconds=latency_seconds,
+                    iterations=iteration,
+                )
+                if failure is not None:
+                    return failure
                 assert diagnosis_result is not None
                 state = diagnosis_result.state
                 events.append(
@@ -553,17 +677,43 @@ class OrionSolver:
                         summary=diagnosis_result.output.rationale,
                         transition=diagnosis_result.transition,
                         latency_seconds=latency_seconds,
-                        action_ids=actions_for(CycleOperator.DIAGNOSE),
+                        action_ids=invoked_guard_ids,
                     )
                 )
                 before_operator = state
-                started_at = perf_counter()
-                try:
-                    reframe_result = self._reframe.run(
-                        residual, diagnosis_result.output, problem, state
+                (
+                    reframe_result,
+                    latency_seconds,
+                    error,
+                    invoked_guard_ids,
+                    guard_residuals,
+                ) = self._attempt_mechanic(
+                    CycleOperator.REFRAME,
+                    problem,
+                    state,
+                    lambda residual=residual, diagnosis_result=diagnosis_result, state=state: (
+                        self._reframe.run(
+                            residual, diagnosis_result.output, problem, state
+                        )
+                    ),
+                )
+                if guard_residuals or isinstance(error, _MechanicGuardEvaluationError):
+                    failure = self._failure_from_attempt(
+                        problem=problem,
+                        state=state,
+                        events=events,
+                        trace_id=trace_id,
+                        operator=CycleOperator.REFRAME,
+                        error=error,
+                        guard_residuals=guard_residuals,
+                        invoked_guard_ids=invoked_guard_ids,
+                        latency_seconds=latency_seconds,
+                        iterations=iteration,
                     )
-                except (ValueError, PermissionError) as exc:
-                    latency_seconds = perf_counter() - started_at
+                    assert failure is not None
+                    return failure
+                if isinstance(error, (ValueError, PermissionError)):
+                    exc = error
                     blocked_residual_ids.append(residual.residual_id)
                     blocked_transition = Transition(
                         operator=CycleOperator.REFRAME,
@@ -583,23 +733,26 @@ class OrionSolver:
                             status=MechanicRunStatus.BLOCKED,
                             failure_signature=("unsafe_or_ambiguous_reframe",),
                             latency_seconds=latency_seconds,
-                            action_ids=actions_for(CycleOperator.REFRAME),
+                            action_ids=invoked_guard_ids,
                         )
                     )
                     continue
-                except Exception as exc:  # noqa: BLE001 - persist operator failure
-                    return self._operator_failure(
+                if error is not None:
+                    failure = self._failure_from_attempt(
                         problem=problem,
                         state=state,
                         events=events,
                         trace_id=trace_id,
                         operator=CycleOperator.REFRAME,
-                        error=exc,
-                        latency_seconds=perf_counter() - started_at,
-                        action_ids=actions_for(CycleOperator.REFRAME),
+                        error=error,
+                        guard_residuals=(),
+                        invoked_guard_ids=invoked_guard_ids,
+                        latency_seconds=latency_seconds,
                         iterations=iteration,
                     )
-                latency_seconds = perf_counter() - started_at
+                    assert failure is not None
+                    return failure
+                assert reframe_result is not None
                 state = reframe_result.state
                 changed_coordinates.extend(
                     reframe_result.transition.changed_coordinates
@@ -614,7 +767,7 @@ class OrionSolver:
                         summary=reframe_result.output.note,
                         transition=reframe_result.transition,
                         latency_seconds=latency_seconds,
-                        action_ids=actions_for(CycleOperator.REFRAME),
+                        action_ids=invoked_guard_ids,
                     )
                 )
 
@@ -635,27 +788,38 @@ class OrionSolver:
                 reopen_state = state
                 reopen_coordinates = tuple(dict.fromkeys(changed_coordinates))
                 reopen_reason = f"material reframe at iteration {iteration}"
-                reopen, latency_seconds, error = self._attempt(
+                (
+                    reopen,
+                    latency_seconds,
+                    error,
+                    invoked_guard_ids,
+                    guard_residuals,
+                ) = self._attempt_mechanic(
+                    CycleOperator.REOPEN,
+                    problem,
+                    state,
                     lambda reopen_state=reopen_state, reopen_coordinates=reopen_coordinates, reopen_reason=reopen_reason: (
                         self._reopen.run(
                             reopen_state,
                             changed_coordinates=reopen_coordinates,
                             reason=reopen_reason,
                         )
-                    )
+                    ),
                 )
-                if error is not None:
-                    return self._operator_failure(
-                        problem=problem,
-                        state=state,
-                        events=events,
-                        trace_id=trace_id,
-                        operator=CycleOperator.REOPEN,
-                        error=error,
-                        latency_seconds=latency_seconds,
-                        action_ids=actions_for(CycleOperator.REOPEN),
-                        iterations=iteration,
-                    )
+                failure = self._failure_from_attempt(
+                    problem=problem,
+                    state=state,
+                    events=events,
+                    trace_id=trace_id,
+                    operator=CycleOperator.REOPEN,
+                    error=error,
+                    guard_residuals=guard_residuals,
+                    invoked_guard_ids=invoked_guard_ids,
+                    latency_seconds=latency_seconds,
+                    iterations=iteration,
+                )
+                if failure is not None:
+                    return failure
                 assert reopen is not None
                 state = reopen.state
                 events.append(
@@ -668,36 +832,99 @@ class OrionSolver:
                         summary=f"staled={len(reopen.output)}",
                         transition=reopen.transition,
                         latency_seconds=latency_seconds,
-                        action_ids=actions_for(CycleOperator.REOPEN),
+                        action_ids=invoked_guard_ids,
                     )
                 )
 
-            state = self._record_iteration(
+            before_iteration_record = state
+            iteration_residual_ids = tuple(
+                residual.residual_id for residual in material
+            )
+            iteration_changed_coordinates = tuple(dict.fromkeys(changed_coordinates))
+            (
+                recorded_state,
+                latency_seconds,
+                error,
+                invoked_guard_ids,
+                guard_residuals,
+            ) = self._attempt_mechanic(
+                CycleOperator.RECURSE,
+                problem,
                 state,
-                iteration=iteration,
-                before_claims=before_claims,
-                before_evidence=before_evidence,
-                before_domains=before_domains,
-                residual_ids=tuple(residual.residual_id for residual in material),
-                changed_coordinates=tuple(dict.fromkeys(changed_coordinates)),
-                route_kind_ids=current_route_kinds,
+                partial(
+                    self._record_iteration,
+                    state,
+                    iteration=iteration,
+                    before_claims=before_claims,
+                    before_evidence=before_evidence,
+                    before_domains=before_domains,
+                    residual_ids=iteration_residual_ids,
+                    changed_coordinates=iteration_changed_coordinates,
+                    route_kind_ids=current_route_kinds,
+                ),
+            )
+            failure = self._failure_from_attempt(
+                problem=problem,
+                state=state,
+                events=events,
+                trace_id=trace_id,
+                operator=CycleOperator.RECURSE,
+                error=error,
+                guard_residuals=guard_residuals,
+                invoked_guard_ids=invoked_guard_ids,
+                latency_seconds=latency_seconds,
+                iterations=iteration,
+            )
+            if failure is not None:
+                return failure
+            assert recorded_state is not None
+            state = recorded_state
+            recurse_transition = Transition(
+                operator=CycleOperator.RECURSE,
+                input_epoch=before_iteration_record.epoch,
+                output_epoch=state.epoch,
+                residual_ids=iteration_residual_ids,
+            )
+            events.append(
+                self._trace_event(
+                    trace_id=trace_id,
+                    index=len(events),
+                    operator=CycleOperator.RECURSE,
+                    before_state=before_iteration_record,
+                    after_state=state,
+                    summary=f"iteration_recorded={iteration + 1}",
+                    transition=recurse_transition,
+                    latency_seconds=latency_seconds,
+                    action_ids=invoked_guard_ids,
+                )
             )
 
-            saturation, latency_seconds, error = self._attempt(
-                lambda state=state: self._saturate.assess(state)
+            (
+                saturation,
+                latency_seconds,
+                error,
+                invoked_guard_ids,
+                guard_residuals,
+            ) = self._attempt_mechanic(
+                CycleOperator.SATURATE_BOUNDED,
+                problem,
+                state,
+                lambda state=state: self._saturate.assess(state),
             )
-            if error is not None:
-                return self._operator_failure(
-                    problem=problem,
-                    state=state,
-                    events=events,
-                    trace_id=trace_id,
-                    operator=CycleOperator.SATURATE_BOUNDED,
-                    error=error,
-                    latency_seconds=latency_seconds,
-                    action_ids=actions_for(CycleOperator.SATURATE_BOUNDED),
-                    iterations=iteration + 1,
-                )
+            failure = self._failure_from_attempt(
+                problem=problem,
+                state=state,
+                events=events,
+                trace_id=trace_id,
+                operator=CycleOperator.SATURATE_BOUNDED,
+                error=error,
+                guard_residuals=guard_residuals,
+                invoked_guard_ids=invoked_guard_ids,
+                latency_seconds=latency_seconds,
+                iterations=iteration + 1,
+            )
+            if failure is not None:
+                return failure
             assert saturation is not None
             last_saturation_reasons = saturation.reasons
             sat_transition = Transition(
@@ -728,7 +955,7 @@ class OrionSolver:
                         else ("bounded_saturation_open", *saturation.reasons)
                     ),
                     latency_seconds=latency_seconds,
-                    action_ids=actions_for(CycleOperator.SATURATE_BOUNDED),
+                    action_ids=invoked_guard_ids,
                 )
             )
 
@@ -749,24 +976,53 @@ class OrionSolver:
                         trace_id=trace_id,
                     )
                 else:
-                    answer, latency_seconds, error = self._attempt(
+                    (
+                        answer,
+                        latency_seconds,
+                        error,
+                        invoked_guard_ids,
+                        guard_residuals,
+                    ) = self._attempt_mechanic(
+                        CycleOperator.RECURSE,
+                        problem,
+                        state,
                         lambda state=state: self._reasoner.compose_answer(
                             problem, state
+                        ),
+                    )
+                    failure = self._failure_from_attempt(
+                        problem=problem,
+                        state=state,
+                        events=events,
+                        trace_id=trace_id,
+                        operator=CycleOperator.RECURSE,
+                        error=error,
+                        guard_residuals=guard_residuals,
+                        invoked_guard_ids=invoked_guard_ids,
+                        latency_seconds=latency_seconds,
+                        iterations=iteration + 1,
+                    )
+                    if failure is not None:
+                        return failure
+                    assert answer is not None
+                    compose_transition = Transition(
+                        operator=CycleOperator.RECURSE,
+                        input_epoch=state.epoch,
+                        output_epoch=state.epoch,
+                    )
+                    events.append(
+                        self._trace_event(
+                            trace_id=trace_id,
+                            index=len(events),
+                            operator=CycleOperator.RECURSE,
+                            before_state=state,
+                            after_state=state,
+                            summary="answer_composed",
+                            transition=compose_transition,
+                            latency_seconds=latency_seconds,
+                            action_ids=invoked_guard_ids,
                         )
                     )
-                    if error is not None:
-                        return self._operator_failure(
-                            problem=problem,
-                            state=state,
-                            events=events,
-                            trace_id=trace_id,
-                            operator=CycleOperator.RECURSE,
-                            error=error,
-                            latency_seconds=latency_seconds,
-                            action_ids=actions_for(CycleOperator.RECURSE),
-                            iterations=iteration + 1,
-                        )
-                    assert answer is not None
                     solution = Solution(
                         problem_id=problem.problem_id,
                         status=SolutionStatus.SOLVED_VERIFIED
@@ -784,25 +1040,6 @@ class OrionSolver:
                         trace_id=trace_id,
                     )
                 return solution, state, SolveTrace(trace_id, tuple(events))
-
-            recurse_transition = Transition(
-                operator=CycleOperator.RECURSE,
-                input_epoch=state.epoch,
-                output_epoch=state.epoch,
-                residual_ids=tuple(residual.residual_id for residual in material),
-            )
-            events.append(
-                self._trace_event(
-                    trace_id=trace_id,
-                    index=len(events),
-                    operator=CycleOperator.RECURSE,
-                    before_state=state,
-                    after_state=state,
-                    summary=f"iteration={iteration + 1}",
-                    transition=recurse_transition,
-                    action_ids=actions_for(CycleOperator.RECURSE),
-                )
-            )
 
         solution = Solution(
             problem_id=problem.problem_id,

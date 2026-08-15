@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, replace
 
-from .model import MechanicCell
+from .model import MechanicCell, MechanicDimension
 
 
 @dataclass(frozen=True)
@@ -226,6 +226,9 @@ def apply_parent_domain_hypotheses(cell: MechanicCell) -> MechanicCell:
         cell,
         parent_domain_hypotheses=tuple(item.domain_id for item in hypotheses),
         empirical_open_coordinates=empirical_open,
+        provisional_dimensions=tuple(
+            dict.fromkeys((*cell.provisional_dimensions, MechanicDimension.PARENT_DISCIPLINE))
+        ),
     )
 
 

@@ -5,6 +5,7 @@ from orion.core.solution import Solution, SolutionStatus
 from orion.core.state import KnowledgeState, OrionState
 from orion.engine import CallableMechanicGuard, MechanicGuardResult
 from orion.engine.cycle import CycleOperator, Transition
+from orion.engine.solver import SolverConfig
 from orion.engine.trace import SolveTrace, TraceEvent
 from orion.experience import EpisodeOutcome
 from orion.mechanics import MechanicReceipt, MechanicRunStatus
@@ -187,20 +188,126 @@ def test_real_runtime_records_executed_failure_pattern_guard_action():
         retrieval=InMemoryRetrievalProvider({}),
         verification=InMemoryVerificationProvider(frozenset()),
         experience_store=store,
+        config=SolverConfig(max_iterations=2),
         guards=(guard,),
     )
 
+    initial_state = OrionState(
+        KnowledgeState(
+            claims=(
+                ClaimRecord(
+                    "claim:guard-fixture",
+                    "Known fixture claim.",
+                    ("evidence:guard-fixture",),
+                    authority=ClaimAuthority.VERIFIED,
+                    certificate_ids=("certificate:guard-fixture",),
+                ),
+            ),
+            evidence=(
+                EvidenceRecord(
+                    "evidence:guard-fixture",
+                    "Known fixture evidence.",
+                    "fixture://guard",
+                    certificate_ids=("certificate:guard-fixture",),
+                ),
+            ),
+        ),
+        SearchUniverseState(),
+        MethodState("test"),
+    )
     result = runtime.solve(
-        Problem("task:guard-runtime", "Run the protected search guard.")
+        Problem("task:guard-runtime", "Run the protected search guard."),
+        initial_state=initial_state,
     )
 
-    search_episode = next(
-        episode for episode in store.episodes() if episode.mechanic_id == "SEARCH.v1"
+    search_episodes = tuple(
+        episode
+        for episode in store.episodes()
+        if episode.mechanic_id == "SEARCH.v1"
     )
-    assert calls == [("task:guard-runtime", 0)]
-    assert guard.guard_id in search_episode.action_ids
-    assert search_episode.source_receipt_id
+    assert calls == [("task:guard-runtime", 0), ("task:guard-runtime", 1)]
+    assert len(search_episodes) == 2
+    assert all(guard.guard_id in item.action_ids for item in search_episodes)
+    assert all(item.source_receipt_id for item in search_episodes)
     assert result.mechanic_experience_episode_ids
+
+
+def test_search_guard_is_rechecked_at_current_epoch_and_rejection_is_not_execution():
+    store = InMemoryExperienceStore()
+    calls = []
+
+    def guard_search(problem, state):
+        calls.append((problem.problem_id, state.epoch))
+        if state.epoch == 0:
+            return MechanicGuardResult(passed=True)
+        return MechanicGuardResult(
+            passed=False,
+            residual_ids=("guard:search:epoch-policy-rejected",),
+        )
+
+    guard = CallableMechanicGuard(
+        "guard:pattern:search-current-state",
+        "SEARCH.v1",
+        guard_search,
+    )
+    runtime = OrionRuntime.from_providers(
+        llm=CallableLLMProvider(
+            lambda request: '{"queries":[]}', model_id="guard-current-state-fixture"
+        ),
+        retrieval=InMemoryRetrievalProvider({}),
+        verification=InMemoryVerificationProvider(frozenset()),
+        experience_store=store,
+        config=SolverConfig(max_iterations=2),
+        guards=(guard,),
+    )
+
+    initial_state = OrionState(
+        KnowledgeState(
+            claims=(
+                ClaimRecord(
+                    "claim:guard-current-state",
+                    "Known fixture claim.",
+                    ("evidence:guard-current-state",),
+                    authority=ClaimAuthority.VERIFIED,
+                    certificate_ids=("certificate:guard-current-state",),
+                ),
+            ),
+            evidence=(
+                EvidenceRecord(
+                    "evidence:guard-current-state",
+                    "Known fixture evidence.",
+                    "fixture://guard-current-state",
+                    certificate_ids=("certificate:guard-current-state",),
+                ),
+            ),
+        ),
+        SearchUniverseState(),
+        MethodState("test"),
+    )
+    result = runtime.solve(
+        Problem("task:guard-current-state", "Recheck the search guard each round."),
+        initial_state=initial_state,
+    )
+
+    search_events = tuple(
+        event
+        for event in result.trace.events
+        if event.operator is CycleOperator.SEARCH
+    )
+    assert calls == [
+        ("task:guard-current-state", 0),
+        ("task:guard-current-state", 1),
+    ]
+    assert len(search_events) == 2
+    assert search_events[0].receipt.status is MechanicRunStatus.SUCCEEDED
+    assert CycleOperator.SEARCH.value in search_events[0].receipt.action_ids
+    assert guard.guard_id in search_events[0].receipt.action_ids
+    assert search_events[1].receipt.status is MechanicRunStatus.BLOCKED
+    assert search_events[1].receipt.action_ids == (guard.guard_id,)
+    assert search_events[1].receipt.failure_signature == (
+        "mechanic_guard_rejected",
+    )
+    assert result.solution.status is SolutionStatus.BLOCKED
 
 
 def test_provider_exception_becomes_atomic_and_root_failure_experience():
@@ -234,3 +341,5 @@ def test_provider_exception_becomes_atomic_and_root_failure_experience():
         if episode.mechanic_id == "ORION_SOLVE.v1"
     )
     assert failed.parent_run_id == root.run_id
+from orion.core.claims import ClaimAuthority, ClaimRecord
+from orion.core.evidence import EvidenceRecord
