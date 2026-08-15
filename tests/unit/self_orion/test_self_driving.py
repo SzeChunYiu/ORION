@@ -43,6 +43,15 @@ class _ChangeController:
         return SimpleNamespace(verdict=self.verdict, reasons=(), request=request)
 
 
+def _controller(research=None, change=None):
+    return ShadowSelfDrivingController(
+        driver=SelfOrionDevelopmentDriver(),
+        research_loop=research or _ResearchLoop(),
+        change_controller=change or _ChangeController(),
+        base_revision="main:a5e1ed8",
+    )
+
+
 def test_investigation_requires_evidence_residual_and_decision_sufficient_status_before_code_change():
     blocked = _ResearchLoop(status=SolutionStatus.CANNOT_CHECK).run_next(limit=1, evaluation_epoch_id="e", split_id="s")[0]
     ready, reasons = investigation_supports_change(blocked)
@@ -58,15 +67,18 @@ def test_investigation_requires_evidence_residual_and_decision_sufficient_status
     assert investigation_supports_change(supported) == (True, ())
 
 
+def test_assembled_controller_derives_shadow_self_driving_architecture_readiness():
+    controller = _controller()
+    evidence = controller.architecture_evidence()
+    assert evidence.structural_questions_closed
+    assert evidence.graph_integrity_passed
+    assert evidence.self_merge_absent
+    assert controller.shadow_self_driving_ready
+
+
 def test_self_driving_cycle_researches_proposes_evaluates_and_only_recommends_host_promotion():
-    driver = SelfOrionDevelopmentDriver()
     change = _ChangeController()
-    controller = ShadowSelfDrivingController(
-        driver=driver,
-        research_loop=_ResearchLoop(),
-        change_controller=change,
-        base_revision="main:a5e1ed8",
-    )
+    controller = _controller(change=change)
     result = controller.run_cycle(limit=1, evaluation_epoch_id="epoch:frozen", split_id="split:development")[0]
     assert result.development_state.after.open_question_count == 0
     assert result.development_state.structurally_closed_questions == 472
@@ -77,13 +89,10 @@ def test_self_driving_cycle_researches_proposes_evaluates_and_only_recommends_ho
 
 
 def test_cannot_check_research_stops_before_implementation_search():
-    driver = SelfOrionDevelopmentDriver()
     change = _ChangeController()
-    controller = ShadowSelfDrivingController(
-        driver=driver,
-        research_loop=_ResearchLoop(status=SolutionStatus.CANNOT_CHECK, evidence=(), residuals=("provider-unavailable",)),
-        change_controller=change,
-        base_revision="main:a5e1ed8",
+    controller = _controller(
+        research=_ResearchLoop(status=SolutionStatus.CANNOT_CHECK, evidence=(), residuals=("provider-unavailable",)),
+        change=change,
     )
     result = controller.run_cycle(limit=1)[0]
     assert result.status is SelfDrivingCycleStatus.RESEARCH_OPEN
