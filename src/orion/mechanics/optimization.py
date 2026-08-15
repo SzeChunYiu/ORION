@@ -81,7 +81,7 @@ def apply_default_optimization_policy(cell: MechanicCell) -> MechanicCell:
     )
     return replace(
         cell,
-        optimization_semantics=(
+        optimization_rules=(
             policy.candidate_semantics,
             *policy.hard_filter,
             f"vector={','.join(policy.vector_coordinates)}",
