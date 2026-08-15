@@ -69,7 +69,7 @@ def apply_default_diagnosis_plan(cell: MechanicCell) -> MechanicCell:
     empirical_open = tuple(dict.fromkeys(cell.empirical_open_coordinates + ("step-specific diagnosis hypothesis space, detectability/identifiability, discriminator quality, causal calibration and diagnosis cost",)))
     return replace(
         cell,
-        diagnosis_semantics=(
+        diagnosis_rules=(
             *tuple(f"hypothesis_source:{item}" for item in plan.hypothesis_sources),
             *tuple(f"evidence_input:{item}" for item in plan.evidence_inputs),
             plan.discriminator_rule,
