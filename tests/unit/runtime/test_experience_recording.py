@@ -54,3 +54,15 @@ def test_runtime_records_success_without_inventing_failure_signature():
     episode = store.episodes()[0]
     assert episode.outcome.value == "SUCCESS"
     assert episode.failure_signature == ()
+
+
+def test_repeated_identical_runtime_attempts_are_distinct_immutable_episodes():
+    store = InMemoryExperienceStore()
+    runtime = OrionRuntime(_FakeSolver(SolutionStatus.BLOCKED), experience_store=store)
+    problem = Problem("task:retry", "Retry the same failed task.")
+
+    first = runtime.solve(problem, variation_signature=("same-variation",))
+    second = runtime.solve(problem, variation_signature=("same-variation",))
+
+    assert first.experience_episode_id != second.experience_episode_id
+    assert len(store.episodes()) == 2

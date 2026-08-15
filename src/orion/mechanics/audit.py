@@ -1,8 +1,8 @@
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
 from enum import Enum
-from typing import Mapping
 
 from .model import MechanicCell
 from .questioning import MechanicQuestion, generate_mechanic_questions

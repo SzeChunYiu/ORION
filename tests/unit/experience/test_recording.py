@@ -1,5 +1,9 @@
 from orion.experience import EpisodeOutcome, episode_from_receipt
-from orion.mechanics import MechanicReceipt, MechanicRunStatus, MetricDirection, MetricKind, MetricObservation
+from orion.mechanics import (
+    MechanicReceipt,
+    MechanicRunStatus,
+    MetricObservation,
+)
 
 
 def test_mechanic_receipt_becomes_an_immutable_learning_episode():

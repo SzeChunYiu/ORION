@@ -1,4 +1,9 @@
-from orion.mechanics import DimensionWaiver, MechanicCell, MechanicDimension, audit_recursive
+from orion.mechanics import (
+    DimensionWaiver,
+    MechanicCell,
+    MechanicDimension,
+    audit_recursive,
+)
 
 
 def _waive_all(cell_id: str, *, children=()):

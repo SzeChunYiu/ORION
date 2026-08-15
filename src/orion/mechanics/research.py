@@ -5,7 +5,11 @@ from dataclasses import dataclass
 from orion.core.search import SearchQuery, SearchRouteKind
 
 from .model import MechanicCell, MechanicDimension
-from .questioning import MechanicQuestion, generate_mechanic_questions, plan_next_questions
+from .questioning import (
+    MechanicQuestion,
+    generate_mechanic_questions,
+    plan_next_questions,
+)
 
 
 @dataclass(frozen=True)

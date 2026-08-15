@@ -1,4 +1,11 @@
-from orion.mechanics import MechanicCell, RetrySafety, TransitionDeterminism, apply_default_transition_plan, default_transition_plan, generate_mechanic_questions
+from orion.mechanics import (
+    MechanicCell,
+    RetrySafety,
+    TransitionDeterminism,
+    apply_default_transition_plan,
+    default_transition_plan,
+    generate_mechanic_questions,
+)
 
 
 def test_transition_plan_declares_guarded_nondeterministic_and_retry_semantics():

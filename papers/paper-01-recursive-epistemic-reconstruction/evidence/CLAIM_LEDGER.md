@@ -12,7 +12,7 @@
 | High-impact ORION development requires a knowledge/formulation saturation packet | IMPLEMENTED GOVERNANCE CONTRACT | `src/orion/development/protocol.py` |
 | Atomic ORION mechanics can be represented as partial typed mechanic cells whose unfilled dimensions generate deterministic research questions | IMPLEMENTED SHADOW CONTRACT | `src/orion/mechanics/model.py`, `questioning.py`, recursive tests |
 | Prior failure variations can be retained as immutable episodes and abstracted into candidate failure patterns without immediate promotion | IMPLEMENTED SHADOW CONTRACT | `src/orion/experience/`, unit tests |
-| Replay and fresh-transfer evidence are distinct gates for reusing a failure-derived guard | IMPLEMENTED SHADOW CONTRACT / NOT YET LIVE-VALIDATED | `src/orion/experience/learning.py`, known-answer tests |
+| Replay and fresh-transfer evidence are distinct, guard-execution-bound gates for reusing a failure-derived guard; conditional reuse requires a protected receipt bound to exact candidate content and episode identities | IMPLEMENTED SHADOW CONTRACT / NOT YET LIVE-VALIDATED | `src/orion/experience/learning.py`, known-answer and hostile authority-binding tests |
 
 ## Empirical claims deliberately not made
 

@@ -39,5 +39,10 @@ class MechanicReceipt:
         keys = [key for key, _ in self.handoff_values]
         if len(set(keys)) != len(keys):
             raise ValueError("mechanic handoff values must have unique field ids")
-        if self.status in {MechanicRunStatus.FAILED, MechanicRunStatus.PARTIAL, MechanicRunStatus.BLOCKED} and not (self.failure_signature or self.residual_ids):
+        if self.status in {
+            MechanicRunStatus.FAILED,
+            MechanicRunStatus.PARTIAL,
+            MechanicRunStatus.BLOCKED,
+            MechanicRunStatus.CANNOT_CHECK,
+        } and not (self.failure_signature or self.residual_ids):
             raise ValueError("non-success mechanic receipts require a failure signature or residual")

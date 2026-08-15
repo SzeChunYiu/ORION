@@ -4,7 +4,6 @@ from orion.mechanics.receipt import MechanicReceipt, MechanicRunStatus
 
 from .model import EpisodeOutcome, TaskEpisode
 
-
 _OUTCOME_MAP = {
     MechanicRunStatus.SUCCEEDED: EpisodeOutcome.SUCCESS,
     MechanicRunStatus.PARTIAL: EpisodeOutcome.PARTIAL_SUCCESS,

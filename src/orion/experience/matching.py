@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from .model import EpisodeOutcome, TaskEpisode
 
-
 _FAILURE_OUTCOMES = {EpisodeOutcome.FAILURE, EpisodeOutcome.PARTIAL_SUCCESS, EpisodeOutcome.BLOCKED}
 
 

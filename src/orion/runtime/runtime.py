@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-from datetime import datetime, timezone
 import hashlib
+from dataclasses import dataclass
+from datetime import UTC, datetime
+from uuid import uuid4
 
 from orion.core.problem import Problem
 from orion.core.solution import Solution, SolutionStatus
@@ -38,6 +39,7 @@ def _state_hash(state: OrionState) -> str:
 
 
 def _episode_id(
+    run_id: str,
     problem: Problem,
     variation_signature: tuple[str, ...],
     pre_state_hash: str,
@@ -47,6 +49,7 @@ def _episode_id(
 ) -> str:
     payload = "|".join(
         (
+            run_id,
             problem.problem_id,
             repr(variation_signature),
             pre_state_hash,
@@ -78,7 +81,7 @@ class OrionRuntime:
         verification: VerificationProvider,
         experience_store: ExperienceStore | None = None,
         config: SolverConfig | None = None,
-    ) -> "OrionRuntime":
+    ) -> OrionRuntime:
         reasoner = LLMResearchReasoner(llm)
         solver = OrionSolver(
             reasoner=reasoner,
@@ -97,12 +100,21 @@ class OrionRuntime:
         solution: Solution,
         final_state: OrionState,
         trace: SolveTrace,
+        run_id: str,
     ) -> str | None:
         if self._experience_store is None:
             return None
         pre_hash = _state_hash(initial_state)
         post_hash = _state_hash(final_state)
-        episode_id = _episode_id(problem, variation_signature, pre_hash, post_hash, solution, trace)
+        episode_id = _episode_id(
+            run_id,
+            problem,
+            variation_signature,
+            pre_hash,
+            post_hash,
+            solution,
+            trace,
+        )
         action_ids = tuple(event.operator.value for event in trace.events) or ("ORION_SOLVE",)
         observations = tuple(
             dict.fromkeys(
@@ -139,7 +151,7 @@ class OrionRuntime:
             residual_ids=solution.residual_ids,
             evidence_ids=solution.evidence_ids,
             post_state_hash=post_hash,
-            timestamp=datetime.now(timezone.utc).isoformat(),
+            timestamp=datetime.now(UTC).isoformat(),
         )
         self._experience_store.append(episode)
         return episode_id
@@ -152,6 +164,7 @@ class OrionRuntime:
         variation_signature: tuple[str, ...] = (),
     ) -> RuntimeResult:
         start_state = initial_state or self._solver.initial_state(problem)
+        run_id = uuid4().hex
         solution, final_state, trace = self._solver.solve(problem, initial_state=start_state)
         episode_id = self._record_root_episode(
             problem=problem,
@@ -160,6 +173,7 @@ class OrionRuntime:
             solution=solution,
             final_state=final_state,
             trace=trace,
+            run_id=run_id,
         )
         return RuntimeResult(
             solution=solution,

@@ -1,6 +1,11 @@
 import pytest
 
-from orion.engine.cycle import CycleOperator, Responsibility, Transition, revision_allowed
+from orion.engine.cycle import (
+    CycleOperator,
+    Responsibility,
+    Transition,
+    revision_allowed,
+)
 
 
 def test_search_cannot_mint_authority():

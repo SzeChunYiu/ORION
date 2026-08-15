@@ -1,5 +1,12 @@
 from orion.core.search import SearchRouteKind
-from orion.mechanics import MechanicDimension, expanded_workflow_cells, observe_current_mechanics_program, observe_mechanics_program, plan_current_program_questions, plan_current_program_research
+from orion.mechanics import (
+    MechanicDimension,
+    expanded_workflow_cells,
+    observe_current_mechanics_program,
+    observe_mechanics_program,
+    plan_current_program_questions,
+    plan_current_program_research,
+)
 
 
 def test_raw_decomposition_exposes_development_numbers():

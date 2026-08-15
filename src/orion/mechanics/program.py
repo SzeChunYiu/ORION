@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import Mapping
 
 from .audit import MechanicAuditVerdict, audit_recursive
 from .decomposition import expanded_workflow_cells

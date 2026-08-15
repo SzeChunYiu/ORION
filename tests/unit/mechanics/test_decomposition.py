@@ -1,5 +1,8 @@
-from orion.mechanics import RAKL_SURFACE_TO_CHILDREN, expanded_mechanical_backlog, expanded_workflow_cells
-
+from orion.mechanics import (
+    RAKL_SURFACE_TO_CHILDREN,
+    expanded_mechanical_backlog,
+    expanded_workflow_cells,
+)
 
 _EXPECTED_RAKL_SURFACES = {
     "decomposition",

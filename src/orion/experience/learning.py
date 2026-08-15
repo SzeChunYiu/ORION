@@ -9,8 +9,8 @@ from .model import (
     PatternAssessmentVerdict,
     PatternValidationEvidence,
     TaskEpisode,
+    failure_pattern_fingerprint,
 )
-
 
 _FAILURE_OUTCOMES = {EpisodeOutcome.FAILURE, EpisodeOutcome.PARTIAL_SUCCESS, EpisodeOutcome.BLOCKED}
 
@@ -26,6 +26,8 @@ def propose_failure_pattern(
 
     failures = tuple(item for item in episodes if item.outcome in _FAILURE_OUTCOMES)
     if len(failures) < 2:
+        return None
+    if len({item.episode_id for item in failures}) != len(failures):
         return None
     mechanic_ids = {item.mechanic_id for item in failures}
     if len(mechanic_ids) != 1:
@@ -57,7 +59,45 @@ def assess_pattern_reuse(
 ) -> PatternAssessment:
     """Keep recurrence as candidate knowledge until replay and fresh transfer succeed."""
 
+    registered = next(
+        (item for item in ledger.failure_patterns if item.pattern_id == candidate.pattern_id),
+        None,
+    )
+    if registered is None:
+        return PatternAssessment(
+            PatternAssessmentVerdict.CANNOT_CHECK,
+            LessonAuthority.CANDIDATE,
+            ("candidate_not_registered",),
+        )
+    if registered != candidate:
+        return PatternAssessment(
+            PatternAssessmentVerdict.CANNOT_CHECK,
+            LessonAuthority.CANDIDATE,
+            ("candidate_content_mismatch",),
+        )
+
     by_id = {item.episode_id: item for item in ledger.episodes}
+    missing_support = sorted(set(candidate.supporting_episode_ids) - set(by_id))
+    if missing_support:
+        return PatternAssessment(
+            PatternAssessmentVerdict.CANNOT_CHECK,
+            LessonAuthority.CANDIDATE,
+            tuple(f"unknown_support_episode:{item}" for item in missing_support),
+        )
+    invalid_support = tuple(
+        episode_id
+        for episode_id in candidate.supporting_episode_ids
+        if by_id[episode_id].mechanic_id != candidate.mechanic_id
+        or by_id[episode_id].outcome not in _FAILURE_OUTCOMES
+        or not set(candidate.core_failure_signature).issubset(by_id[episode_id].failure_signature)
+    )
+    if invalid_support:
+        return PatternAssessment(
+            PatternAssessmentVerdict.CANNOT_CHECK,
+            LessonAuthority.CANDIDATE,
+            tuple(f"invalid_support_episode:{item}" for item in invalid_support),
+        )
+
     referenced = set(evidence.replay_episode_ids) | set(evidence.fresh_transfer_episode_ids)
     missing = sorted(referenced - set(by_id))
     if missing:
@@ -65,6 +105,49 @@ def assess_pattern_reuse(
             PatternAssessmentVerdict.CANNOT_CHECK,
             LessonAuthority.CANDIDATE,
             tuple(f"unknown_episode:{item}" for item in missing),
+        )
+    mechanic_mismatches = tuple(
+        episode_id
+        for episode_id in (*evidence.replay_episode_ids, *evidence.fresh_transfer_episode_ids)
+        if by_id[episode_id].mechanic_id != candidate.mechanic_id
+    )
+    if mechanic_mismatches:
+        return PatternAssessment(
+            PatternAssessmentVerdict.CANNOT_CHECK,
+            LessonAuthority.CANDIDATE,
+            tuple(f"mechanic_mismatch:{item}" for item in dict.fromkeys(mechanic_mismatches)),
+        )
+    if set(evidence.replay_episode_ids) & set(evidence.fresh_transfer_episode_ids):
+        return PatternAssessment(
+            PatternAssessmentVerdict.CANNOT_CHECK,
+            LessonAuthority.CANDIDATE,
+            ("replay_and_fresh_transfer_must_be_disjoint",),
+        )
+    guard_action_id = f"guard:{candidate.pattern_id}"
+    guard_missing = tuple(
+        episode_id
+        for episode_id in (*evidence.replay_episode_ids, *evidence.fresh_transfer_episode_ids)
+        if guard_action_id not in by_id[episode_id].action_ids
+    )
+    if guard_missing:
+        return PatternAssessment(
+            PatternAssessmentVerdict.CANNOT_CHECK,
+            LessonAuthority.CANDIDATE,
+            tuple(f"guard_not_executed:{item}" for item in dict.fromkeys(guard_missing)),
+        )
+    support_variations = {
+        by_id[episode_id].variation_signature for episode_id in candidate.supporting_episode_ids
+    }
+    reused_fresh_variations = tuple(
+        episode_id
+        for episode_id in evidence.fresh_transfer_episode_ids
+        if by_id[episode_id].variation_signature in support_variations
+    )
+    if reused_fresh_variations:
+        return PatternAssessment(
+            PatternAssessmentVerdict.CANNOT_CHECK,
+            LessonAuthority.CANDIDATE,
+            tuple(f"fresh_transfer_not_fresh:{item}" for item in reused_fresh_variations),
         )
     if not evidence.replay_episode_ids:
         return PatternAssessment(
@@ -92,11 +175,42 @@ def assess_pattern_reuse(
             LessonAuthority.VERIFIED_LOCAL,
             tuple(f"fresh_transfer_not_successful:{item}" for item in transfer_failures),
         )
-    if not evidence.independent_verification:
+    receipt = evidence.verification_receipt
+    if receipt is None:
         return PatternAssessment(
             PatternAssessmentVerdict.VERIFIED_LOCAL,
             LessonAuthority.VERIFIED_LOCAL,
             ("fresh transfer succeeded but independent/protected verification is absent",),
+        )
+    if receipt.pattern_id != candidate.pattern_id:
+        return PatternAssessment(
+            PatternAssessmentVerdict.CANNOT_CHECK,
+            LessonAuthority.VERIFIED_LOCAL,
+            ("verification_subject_mismatch",),
+        )
+    if receipt.pattern_hash != failure_pattern_fingerprint(candidate):
+        return PatternAssessment(
+            PatternAssessmentVerdict.CANNOT_CHECK,
+            LessonAuthority.VERIFIED_LOCAL,
+            ("verification_subject_hash_mismatch",),
+        )
+    if set(receipt.verified_episode_ids) != referenced:
+        return PatternAssessment(
+            PatternAssessmentVerdict.CANNOT_CHECK,
+            LessonAuthority.VERIFIED_LOCAL,
+            ("verification_episode_binding_mismatch",),
+        )
+    if not receipt.passed:
+        return PatternAssessment(
+            PatternAssessmentVerdict.CONTRADICTED,
+            LessonAuthority.VERIFIED_LOCAL,
+            ("protected_verification_failed",),
+        )
+    if not receipt.independent:
+        return PatternAssessment(
+            PatternAssessmentVerdict.VERIFIED_LOCAL,
+            LessonAuthority.VERIFIED_LOCAL,
+            ("verification receipt lacks evaluator/evidence-lineage independence",),
         )
     return PatternAssessment(
         PatternAssessmentVerdict.CONDITIONALLY_REUSABLE,

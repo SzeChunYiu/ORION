@@ -1,4 +1,10 @@
-from orion.mechanics import MathematicalFamily, MechanicCell, apply_candidate_mathematical_formulation, candidate_mathematical_formulation, generate_mechanic_questions
+from orion.mechanics import (
+    MathematicalFamily,
+    MechanicCell,
+    apply_candidate_mathematical_formulation,
+    candidate_mathematical_formulation,
+    generate_mechanic_questions,
+)
 
 
 def test_candidate_math_refuses_convenience_assumptions():

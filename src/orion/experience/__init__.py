@@ -10,7 +10,9 @@ from .model import (
     PatternAssessment,
     PatternAssessmentVerdict,
     PatternValidationEvidence,
+    PatternVerificationReceipt,
     TaskEpisode,
+    failure_pattern_fingerprint,
 )
 from .recording import episode_from_receipt
 
@@ -22,9 +24,11 @@ __all__ = [
     "PatternAssessment",
     "PatternAssessmentVerdict",
     "PatternValidationEvidence",
+    "PatternVerificationReceipt",
     "TaskEpisode",
     "assess_pattern_reuse",
     "episode_from_receipt",
+    "failure_pattern_fingerprint",
     "propose_failure_pattern",
     "related_failure_episodes",
     "signature_similarity",

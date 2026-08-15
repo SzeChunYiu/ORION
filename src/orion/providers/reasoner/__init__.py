@@ -4,8 +4,8 @@ from orion.providers.reasoner.scripted import ScriptedReasoner
 
 __all__ = [
     "Diagnosis",
+    "LLMResearchReasoner",
     "ReframeProposal",
     "ResearchReasoner",
-    "LLMResearchReasoner",
     "ScriptedReasoner",
 ]

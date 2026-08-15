@@ -1,4 +1,11 @@
-from orion.mechanics import MechanicCell, StateMutability, StateRole, apply_default_state_plan, default_state_plan, generate_mechanic_questions
+from orion.mechanics import (
+    MechanicCell,
+    StateMutability,
+    StateRole,
+    apply_default_state_plan,
+    default_state_plan,
+    generate_mechanic_questions,
+)
 
 
 def test_state_plan_binds_replay_identity_and_transition_controlled_working_state():

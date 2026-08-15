@@ -4,7 +4,6 @@ from .audit import audit_recursive
 from .model import MechanicCell
 from .questioning import MechanicQuestion
 
-
 ORION_WORKFLOW_ROOT_ID = "ORION_SOLVE.v1"
 
 _OPERATOR_IDS = (

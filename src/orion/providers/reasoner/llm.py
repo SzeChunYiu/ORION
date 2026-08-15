@@ -11,7 +11,6 @@ from orion.core.state import OrionState
 from orion.providers.llm.base import LLMProvider, LLMRequest
 from orion.providers.reasoner.base import Diagnosis, ReframeProposal
 
-
 _SYSTEM = """You are a semantic reasoning component inside ORION.
 You may propose interpretations, queries, diagnoses and prose, but you do not create scientific authority.
 Return only JSON matching the requested schema. Preserve uncertainty and do not invent source evidence.
@@ -38,7 +37,7 @@ class LLMResearchReasoner:
         except json.JSONDecodeError as exc:
             raise ValueError(f"LLM returned invalid JSON for {task}") from exc
         if not isinstance(data, dict):
-            raise ValueError(f"LLM response for {task} must be a JSON object")
+            raise TypeError(f"LLM response for {task} must be a JSON object")
         return data
 
     def plan_search(self, problem: Problem, state: OrionState) -> tuple[SearchQuery, ...]:
@@ -56,7 +55,7 @@ class LLMResearchReasoner:
         )
         queries = data.get("queries", [])
         if not isinstance(queries, list):
-            raise ValueError("plan_search.queries must be a list")
+            raise TypeError("plan_search.queries must be a list")
         return tuple(
             SearchQuery(
                 query_id=str(item["query_id"]),

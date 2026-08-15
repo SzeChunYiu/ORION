@@ -7,7 +7,6 @@ from .model import MechanicCell
 from .questioning import MechanicQuestion
 from .workflow import ORION_WORKFLOW_CELLS, ORION_WORKFLOW_ROOT_ID
 
-
 # Provisional child mechanics recovered from ORION's own bootstrap residuals and
 # selectively reconstructed from RAKL method surfaces. These are research objects,
 # not a declaration that the decomposition is final.

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 
 from orion.core.claims import ClaimAuthority
 from orion.core.history import IterationRecord
@@ -31,7 +31,7 @@ class SolverConfig:
     max_iterations: int = 8
     search_limit_per_query: int = 8
     require_verified_answer: bool = True
-    saturation_basis: SaturationBasis = SaturationBasis()
+    saturation_basis: SaturationBasis = field(default_factory=SaturationBasis)
 
 
 class OrionSolver:
