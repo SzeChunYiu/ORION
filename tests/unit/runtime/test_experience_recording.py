@@ -31,6 +31,15 @@ class _FakeSolver:
         knowledge = KnowledgeState()
         if self.status is SolutionStatus.SOLVED_VERIFIED:
             knowledge = KnowledgeState(
+                claims=(
+                    ClaimRecord(
+                        "claim:verified-fixture",
+                        "Verified fixture claim.",
+                        ("evidence:verified-fixture",),
+                        authority=ClaimAuthority.VERIFIED,
+                        certificate_ids=("certificate:verified-fixture",),
+                    ),
+                ),
                 evidence=(
                     EvidenceRecord(
                         "evidence:verified-fixture",

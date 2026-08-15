@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from datetime import UTC, datetime
 from uuid import uuid4
 
+from orion.core.claims import ClaimAuthority
 from orion.core.evidence import evidence_record_fingerprint
 from orion.core.problem import Problem
 from orion.core.solution import Solution, SolutionStatus
@@ -302,6 +303,23 @@ class OrionRuntime:
                 "solution evidence is absent from the returned final state: "
                 + ",".join(missing_solution_evidence)
             )
+        if solution.status is SolutionStatus.SOLVED_VERIFIED:
+            verified_support = {
+                evidence_id
+                for claim in final_state.knowledge.claims
+                if claim.authority is ClaimAuthority.VERIFIED
+                for evidence_id in claim.evidence_ids
+            }
+            unsupported = tuple(
+                evidence_id
+                for evidence_id in solution.evidence_ids
+                if evidence_id not in verified_support
+            )
+            if unsupported:
+                raise ValueError(
+                    "verified solution evidence lacks a verified supporting claim: "
+                    + ",".join(unsupported)
+                )
         trace.validate_endpoints(
             pre_state_hash=_state_hash(start_state),
             post_state_hash=_state_hash(final_state),
