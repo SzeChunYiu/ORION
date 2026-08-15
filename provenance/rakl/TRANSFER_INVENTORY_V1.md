@@ -10,10 +10,12 @@ This inventory distinguishes **knowledge/mechanic transfer** from literal file c
 - Current ORION mechanic graph: **59 reachable cells**.
 - Leaf/cross-cutting mechanics receiving direct or adjacent RAKL surface profiles: **49 / 59**.
 - Root/top-level mechanics receiving explicit ORION composition contracts: **10 / 59**.
-- Shadow step-specific structural questions targeted by this transfer: **472 = 59 × 8**.
+- Shadow step-specific structural questions targeted and closed at the specification layer by the V1 transfer: **472 = 59 × 8**.
 - RAKL V3 implementation-overlay modules registered in `method_specs.py`: **21**.
-  - **12** are already substantially subsumed/reconstructed by ORION and should not be copied wholesale.
-  - **9** remain high-value selective transfer candidates for later empirical rounds.
+  - **12** were already substantially subsumed/reconstructed by ORION and should not be copied wholesale.
+  - **4** additional high-value overlays are reconstructed in this round: `experience_policy`, `saturation_vector`, `problem_novelty`, and `evolution_archive`.
+  - **5** remain deliberately selective/open: `gluing_learning`, `experience_benchmark`, `driver_learning`, `summation_compatibility`, and `quantifier_compatibility`.
+- Functional V3 overlay absorption/reconstruction after this round: **16 / 21**.
 
 These counts describe coverage of registered structures, not proof that RAKL or ORION has discovered every necessary mechanic.
 
@@ -63,19 +65,30 @@ Thirteen ORION leaf/cross-cutting mechanics that do not have a one-to-one histor
 11. `shadow_artifact_hash.py` → existing content/evidence/receipt hashes.
 12. `pre_scratch_fibre_freeze.py` → frozen trial/packet identity is reconstructed in the Self-ORION live-trial harness.
 
-## V3 overlay modules: high-value selective transfer candidates (9)
+## V3 overlays reconstructed in this round (4)
 
-1. `gluing_learning.py` — learn which gluing/obstruction patterns transfer.
-2. `experience_policy.py` — experience-conditioned routing policy.
-3. `experience_benchmark.py` — matched evaluation of learned experience reuse.
-4. `saturation_vector.py` — richer multi-coordinate saturation telemetry.
-5. `problem_novelty.py` — distinguish new structure from renamed old structure.
-6. `evolution_archive.py` — challenger/incumbent evolution chronology and negative history.
-7. `driver_learning.py` — learn development-control policies after frozen-baseline evidence exists.
-8. `summation_compatibility.py` — specialized compatibility falsifier for aggregations.
-9. `quantifier_compatibility.py` — specialized compatibility falsifier for quantified claims.
+1. `experience_policy.py` → `orion.self_orion.experience_policy`: failure/success history changes scheduling priority only; it never creates method/scientific authority.
+2. `saturation_vector.py` → `orion.self_orion.saturation_vector`: independent multi-axis development flatness; resource exhaustion cannot be called saturation.
+3. `problem_novelty.py` → `orion.self_orion.novelty`: distinguishes stored/compositional/transfer reuse from representation/operator/ontology novelty.
+4. `evolution_archive.py` → `orion.self_orion.evolution_archive`: append-only challenger/trial history; assured variants can only yield a host-promotion recommendation.
 
-These are **not** automatically imported in V1. Self-ORION should select them when a current empirical/failure fibre shows root-relevant need.
+The RAKL `experience_policy` invention-readiness rule is additionally reconstructed as `orion.self_orion.invention_gate`, so repeated failure cannot directly trigger operator invention.
+
+## V3 overlay modules deliberately still open/selective (5)
+
+1. `gluing_learning.py` — defer until contextual gluing produces enough real success/obstruction episodes to learn a useful policy without premature specialization.
+2. `experience_benchmark.py` — the generic matched-resource live-trial harness exists, but an experience-reuse-specific benchmark still requires frozen live episodes and a no-experience baseline.
+3. `driver_learning.py` — deliberately **not activated** until the fixed auditable Self-ORION controller has enough frozen development episodes to beat under protected evaluation.
+4. `summation_compatibility.py` — specialized aggregation falsifier; import when a live residual requires it.
+5. `quantifier_compatibility.py` — specialized quantified-claim falsifier; import when a live residual requires it.
+
+## Self-driving boundary added in this round
+
+ORION now has a Shadow self-driving composition:
+
+`RAKL/local absorption → empirical work ranking → DevelopmentFibre → ORION research → evidence gate → coding proposal provider → content-addressed patch artifact → isolated sandbox → protected fresh assurance → append-only evolution history → host-promotion recommendation`.
+
+The coding worker may be an LLM/Codex/other provider. ORION owns the control loop. No component in this chain has a merge primitive or self-promotion authority.
 
 ## Transfer authority rule
 
