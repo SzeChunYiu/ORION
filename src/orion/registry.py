@@ -1,7 +1,7 @@
-"""Canonical bootstrap registry shared by runtime, tests and paper synchronization."""
+"""Canonical Shadow-ORION registry shared by runtime, tests and paper synchronization."""
 
-FRAMEWORK_VERSION = "0.1.0-bootstrap"
-PAPER_SYNC_EPOCH = "2026-08-15-recursive-kernel-v1"
+FRAMEWORK_VERSION = "0.2.0-shadow"
+PAPER_SYNC_EPOCH = "2026-08-15-mechanics-of-mechanics-v0"
 
 CORE_OPERATOR_IDS = (
     "FRAME.v1",
@@ -16,3 +16,11 @@ CORE_OPERATOR_IDS = (
 )
 
 CORE_STATE_COORDINATES = ("K", "W", "M")
+
+MECHANICS_SUBSTRATE_IDS = (
+    "MechanicCell.v0",
+    "MechanicQuestion.v0",
+    "MechanicReceipt.v0",
+    "TaskEpisode.v0",
+    "FailurePatternCandidate.v0",
+)

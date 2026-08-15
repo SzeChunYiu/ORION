@@ -1,7 +1,13 @@
 import json
 from pathlib import Path
 
-from orion.registry import CORE_OPERATOR_IDS, CORE_STATE_COORDINATES, FRAMEWORK_VERSION, PAPER_SYNC_EPOCH
+from orion.registry import (
+    CORE_OPERATOR_IDS,
+    CORE_STATE_COORDINATES,
+    FRAMEWORK_VERSION,
+    MECHANICS_SUBSTRATE_IDS,
+    PAPER_SYNC_EPOCH,
+)
 
 
 def test_paper_framework_snapshot_matches_runtime_registry():
@@ -11,3 +17,4 @@ def test_paper_framework_snapshot_matches_runtime_registry():
     assert snapshot["paper_sync_epoch"] == PAPER_SYNC_EPOCH
     assert tuple(snapshot["state_coordinates"]) == CORE_STATE_COORDINATES
     assert tuple(snapshot["core_operator_ids"]) == CORE_OPERATOR_IDS
+    assert tuple(snapshot["mechanics_substrate_ids"]) == MECHANICS_SUBSTRATE_IDS

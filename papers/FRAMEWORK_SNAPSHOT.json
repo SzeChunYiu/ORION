@@ -1,6 +1,6 @@
 {
-  "framework_version": "0.1.0-bootstrap",
-  "paper_sync_epoch": "2026-08-15-recursive-kernel-v1",
+  "framework_version": "0.2.0-shadow",
+  "paper_sync_epoch": "2026-08-15-mechanics-of-mechanics-v0",
   "state_coordinates": ["K", "W", "M"],
   "core_operator_ids": [
     "FRAME.v1",
@@ -12,5 +12,12 @@
     "REFRAME.v1",
     "REOPEN.v1",
     "SATURATE_BOUNDED.v3"
+  ],
+  "mechanics_substrate_ids": [
+    "MechanicCell.v0",
+    "MechanicQuestion.v0",
+    "MechanicReceipt.v0",
+    "TaskEpisode.v0",
+    "FailurePatternCandidate.v0"
   ]
 }

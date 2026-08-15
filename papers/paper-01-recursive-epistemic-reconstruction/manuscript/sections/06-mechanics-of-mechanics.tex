@@ -1,0 +1,37 @@
+\section{Mechanics of Mechanics and Failure Experience}
+
+ORION treats each atomic problem-solving operation as a research object.  This is distinct from merely implementing an operator and later measuring end-to-end performance: the operator itself must expose enough state, observability, interfaces, mathematics, failure semantics, and verification structure to support recursive diagnosis.
+
+For mechanic $i$ we use the provisional cell
+\[
+\mathcal C_i=(I_i,O_i,H_i,X_i,Y_i,A_i,F_i,\Lambda_i,J_i,U_i,R_i,\Phi_i,P_i,V_i,E_i,S_i),
+\]
+where $I_i$ and $O_i$ are typed inputs and outputs; $H_i$ is the downstream handoff contract; $X_i$ is internal state; $Y_i$ contains directly observable variables; $A_i$ contains admissible actions; $F_i$ is a transition relation; $\Lambda_i$ contains invariants and hard constraints; $J_i$ is a non-compensatory objective/metric vector; $U_i$ represents uncertainty; $R_i$ represents resource coordinates; $\Phi_i$ represents failure signatures, falsifiers, and diagnosis rules; $P_i$ represents persistence and provenance; $V_i$ binds verification and authority; $E_i$ records engineering contracts; and $S_i$ records search-coverage, saturation, and reopen semantics.
+
+A mechanic need not admit a deterministic dynamics model.  The generic form
+\[
+F_i:X_i\times I_i\times A_i\rightarrow \mathcal P(X_i\times O_i)
+\]
+allows set-valued transitions, while observations may be represented by
+\[
+Y_i=h_i(X_i,\eta_i)+\epsilon_i.
+\]
+The distinction between latent state and observed signals prevents a convenient runtime metric from silently becoming the scientific state itself.
+
+\subsection{Mechanical questions}
+
+The current Shadow implementation contains a fixed question-family registry.  If a mechanic cell omits a dimension, the audit produces an explicit question rather than assuming the dimension is irrelevant.  Examples include which numerical signals are observable, what formal relation maps inputs/actions/state to outputs, what metric vector and uncertainty must be handed downstream, which failure signatures separate competing diagnoses, what must be stored, which parent discipline treats the operation as canonical, and how apparently flat search could still be falsely saturated.  Explicit waivers are permitted but must carry a reason.
+
+The registry is intentionally independent of a language model.  A language model may help answer an open question, but the architecture need not rely on model memory to remember that the question should have been asked.  The V0 research planner deterministically maps prioritized open questions to typed search-route families.  This fixed policy is an auditable baseline rather than a claim of optimal metareasoning.
+
+\subsection{Experience and failure learning}
+
+Every mechanic execution can emit a typed receipt containing outputs, handoff values, metric observations, residuals, failure signatures, evidence/provenance, cost, and latency.  A receipt can be projected into an immutable task episode
+\[
+e_t=(p_t,v_t,m_t,x_t^{-},a_t,y_t,o_t,\phi_t,r_t,E_t,x_t^{+},c_t),
+\]
+where $v_t$ records the task variation and $\phi_t$ the observed failure signature.
+
+Failures are therefore eligible for the same retrieval and abstraction process as other knowledge.  If distinct variations fail under the same mechanic with shared structural coordinates, ORION may construct a candidate failure pattern and a candidate guard.  This recurrence does not establish causality or reusable method authority.  The current governance requires successful replay before local verification and successful fresh transfer plus independent/protected verification before conditional reuse.  A failed transfer contradicts or narrows the pattern rather than being averaged away.
+
+This layer is currently a substrate and known-answer contract.  The completeness of the mechanic-dimension registry, the utility of the fixed question priority, the quality of structural failure matching, and the benefits of the resulting guards on fresh live research tasks remain empirical-open coordinates.
