@@ -1,6 +1,7 @@
 """Mechanics-of-mechanics primitives for recursively auditing ORION steps."""
 
 from .audit import MechanicAuditReport, RecursiveMechanicAudit, audit_mechanic, audit_recursive
+from .decomposition import RAKL_SURFACE_TO_CHILDREN, expanded_mechanical_backlog, expanded_workflow_cells
 from .model import (
     DimensionWaiver,
     HandoffField,
@@ -32,9 +33,12 @@ __all__ = [
     "MetricSpec",
     "ORION_WORKFLOW_CELLS",
     "ORION_WORKFLOW_ROOT_ID",
+    "RAKL_SURFACE_TO_CHILDREN",
     "RecursiveMechanicAudit",
     "audit_mechanic",
     "audit_recursive",
+    "expanded_mechanical_backlog",
+    "expanded_workflow_cells",
     "generate_mechanic_questions",
     "mechanical_workflow_backlog",
     "plan_mechanic_research",
