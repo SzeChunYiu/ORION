@@ -134,6 +134,11 @@ def change_request_from_investigation(
     )
 
 
+def _touches_protected_path(path: str, protected_prefix: str) -> bool:
+    normalized = protected_prefix.rstrip("/")
+    return path == normalized or path.startswith(protected_prefix)
+
+
 class SelfOrionChangeController:
     """Run propose -> sandbox -> protected assurance; never merge automatically."""
 
@@ -155,6 +160,16 @@ class SelfOrionChangeController:
             reasons.append("proposal_request_binding_mismatch")
         if proposal.base_revision != request.base_revision:
             reasons.append("proposal_base_revision_mismatch")
+        protected_paths = tuple(
+            path
+            for path in proposal.touched_paths
+            if any(_touches_protected_path(path, prefix) for prefix in request.protected_path_prefixes)
+        )
+        reasons.extend(f"protected_path_touched:{path}" for path in protected_paths)
+
+        # Execution is confined to the host-provided sandbox even for candidates that
+        # are already known to be unpromotable. This preserves failure evidence while
+        # ensuring the proposal cannot touch the live repository or evaluator.
         execution = self._runner.execute(proposal)
         if execution.proposal_id != proposal.proposal_id:
             reasons.append("execution_proposal_binding_mismatch")
@@ -185,7 +200,8 @@ class SelfOrionChangeController:
             "assurance_proposal_binding_mismatch",
             "assurance_candidate_binding_mismatch",
         }
-        if binding_failures.intersection(reasons) or "blocking_invariant_failed" in reasons:
+        hard_reject = bool(binding_failures.intersection(reasons)) or "blocking_invariant_failed" in reasons or bool(protected_paths)
+        if hard_reject:
             verdict = ChangeControlVerdict.REJECT
         elif reasons:
             verdict = ChangeControlVerdict.CANDIDATE_ONLY
