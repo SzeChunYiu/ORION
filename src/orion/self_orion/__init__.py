@@ -45,6 +45,7 @@ from orion.self_orion.experience_policy import (
     mechanic_experience_statistic,
     rank_empirical_work_with_experience,
 )
+from orion.self_orion.factory import build_llm_shadow_self_driving_controller
 from orion.self_orion.invention_gate import (
     InventionReadinessEvidence,
     InventionReadinessReport,
