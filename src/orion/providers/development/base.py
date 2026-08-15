@@ -71,6 +71,26 @@ class DevelopmentChangeProposal:
             raise ValueError("development provider cannot self-assert promotion authority")
 
 
+@dataclass(frozen=True)
+class CandidateExecutionReceipt:
+    receipt_id: str
+    proposal_id: str
+    candidate_revision_hash: str
+    passed_required_tests: bool
+    test_result_ids: tuple[str, ...]
+    failure_signatures: tuple[str, ...]
+    resource_units: float
+    artifact_ids: tuple[str, ...]
+
+    def __post_init__(self) -> None:
+        if any(not value.strip() for value in (self.receipt_id, self.proposal_id, self.candidate_revision_hash)):
+            raise ValueError("candidate execution receipt identity fields are required")
+        if len(self.candidate_revision_hash) != 64 or any(ch not in "0123456789abcdef" for ch in self.candidate_revision_hash):
+            raise ValueError("candidate revision hash must be SHA-256")
+        if self.resource_units < 0:
+            raise ValueError("candidate execution resources cannot be negative")
+
+
 class DevelopmentChangeProvider(Protocol):
     """Coding/implementation worker used by Self-ORION.
 
@@ -82,6 +102,7 @@ class DevelopmentChangeProvider(Protocol):
 
 
 __all__ = [
+    "CandidateExecutionReceipt",
     "DEFAULT_PROTECTED_DEVELOPMENT_PATH_PREFIXES",
     "DevelopmentChangeProvider",
     "DevelopmentChangeProposal",
