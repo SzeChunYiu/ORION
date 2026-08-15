@@ -184,7 +184,7 @@ def test_presence_only_evidence_reference_is_rejected():
 def test_content_bound_but_unresolved_evidence_is_rejected():
     cells = current_program_cells()
     before = _open_questions(cells)
-    updated, report = apply_answer_records(cells, (_record(),))
+    updated, report = apply_answer_records(cells, (_record(),), evidence_records={})
     assert not report.applied_record_ids
     assert [item.kind for item in report.residuals] == ["EVIDENCE_UNRESOLVED"]
     assert _open_questions(updated) == before

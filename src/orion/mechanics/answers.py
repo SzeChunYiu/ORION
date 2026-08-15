@@ -199,7 +199,7 @@ def apply_answer_records(
     cells: tuple[MechanicCell, ...],
     records: tuple[AnswerRecord, ...],
     *,
-    evidence_records: Mapping[str, EvidenceRecord] | None = None,
+    evidence_records: Mapping[str, EvidenceRecord],
 ) -> tuple[tuple[MechanicCell, ...], AnswerApplicationReport]:
     """Deterministically fold answer records into mechanic cells.
 
@@ -210,7 +210,6 @@ def apply_answer_records(
     """
 
     by_id = {cell.mechanic_id: cell for cell in cells}
-    evidence_records = evidence_records or {}
     residuals: list[AnswerResidual] = []
     applied: list[str] = []
     waivers: list[str] = []
