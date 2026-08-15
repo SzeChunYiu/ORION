@@ -237,6 +237,7 @@ def _persist(
                 "dimension": record.dimension.value,
                 "lane": record.lane,
                 "evidence_refs": list(record.evidence_refs),
+                "evidence_bindings": [list(item) for item in record.evidence_bindings],
                 "payload": [[name, list(values)] for name, values in record.payload],
                 "waiver_reason": record.waiver_reason,
                 "supersedes": record.supersedes,

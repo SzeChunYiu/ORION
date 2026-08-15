@@ -43,9 +43,6 @@ def _build_parser() -> argparse.ArgumentParser:
         metavar="SCHEME=PATH",
         help="register an additional evidence scheme, e.g. rakl=/path/to/RAKL",
     )
-    parser.add_argument(
-        "--figure", type=Path, default=None, help="write an SVG trajectory figure here"
-    )
     parser.add_argument("--rounds", type=int, default=4, help="maximum rounds this run")
     parser.add_argument(
         "--selection-limit",
@@ -61,13 +58,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     store = LedgerStore(args.state)
 
     if args.command == "report":
-        from .report import build_report, render_svg
+        from .report import build_report
 
         report = build_report(store)
-        if args.figure is not None:
-            args.figure.parent.mkdir(parents=True, exist_ok=True)
-            args.figure.write_text(render_svg(report), encoding="utf-8")
-            report["figure"] = str(args.figure)
         print(json.dumps(report, indent=2))
         return 0 if report["ledger_intact"] else 1
 

@@ -11,6 +11,7 @@ from orion.mechanics.answers import (
 )
 from orion.mechanics.model import MechanicCell, MechanicDimension
 
+from .evidence import build_evidence_index, resolve_evidence_refs
 from .gate import AnswerAuthority, AnswerGrading, DiscriminatingCheck, grade_answer
 
 
@@ -43,12 +44,33 @@ class GradedApplication:
         return tuple(item.record_id for item in self.gradings if not item.applicable)
 
 
+def _index_for(
+    records: tuple[AnswerRecord, ...],
+    evidence_roots: Mapping[str, Path],
+    require_digest: bool,
+) -> dict[str, object]:
+    """Build the host-owned evidence index from what actually resolves on disk.
+
+    `apply_answer_records` checks that each record's declared binding matches
+    this index. Because the host builds the index from real artifacts rather
+    than trusting the record, the two checks compose: a lane can neither cite
+    evidence that does not exist nor declare a digest it did not read.
+    """
+
+    refs = tuple(dict.fromkeys(ref for record in records for ref in record.evidence_refs))
+    return build_evidence_index(
+        resolve_evidence_refs(refs, evidence_roots, require_digest=require_digest)
+    )
+
+
 def _candidate_cell(
-    cells: tuple[MechanicCell, ...], record: AnswerRecord
+    cells: tuple[MechanicCell, ...],
+    record: AnswerRecord,
+    index: Mapping[str, object],
 ) -> MechanicCell | None:
     """Return the target cell as it would look with only this answer applied."""
 
-    applied, _ = apply_answer_records(cells, (record,))
+    applied, _ = apply_answer_records(cells, (record,), evidence_records=index)
     for cell in applied:
         if cell.mechanic_id == record.mechanic_id:
             return cell
@@ -106,10 +128,11 @@ def grade_and_apply(
     reason, which is what a later round turns into failure episodes.
     """
 
+    index = _index_for(records, evidence_roots, require_digest)
     gradings: list[AnswerGrading] = []
     applicable: list[AnswerRecord] = []
     for record in records:
-        candidate = _candidate_cell(cells, record)
+        candidate = _candidate_cell(cells, record, index)
         if candidate is None:
             continue
         grading = grade_answer(
@@ -124,7 +147,9 @@ def grade_and_apply(
         if grading.applicable:
             applicable.append(record)
 
-    applied_cells, report = apply_answer_records(cells, tuple(applicable))
+    applied_cells, report = apply_answer_records(
+        cells, tuple(applicable), evidence_records=index
+    )
     graded = tuple(gradings)
     final_cells = enforce_authority_provisionality(applied_cells, graded)
     return GradedApplication(cells=final_cells, gradings=graded, report=report)

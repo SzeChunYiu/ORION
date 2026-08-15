@@ -7,6 +7,8 @@ from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
 
+from orion.core.evidence import EvidenceRecord, evidence_record_fingerprint
+
 _REF_SEPARATOR = ":"
 _HASH_SEPARATOR = "@"
 _MIN_DIGEST_PREFIX = 8
@@ -41,6 +43,7 @@ class EvidenceResolution:
     declared_digest: str = ""
     actual_digest: str = ""
     note: str = ""
+    content: str = ""
 
     @property
     def resolved(self) -> bool:
@@ -137,6 +140,7 @@ def _resolve_at_commit(
         relative_path=location,
         declared_digest=revision,
         actual_digest=hashlib.sha256(blob).hexdigest(),
+        content=blob.decode("utf-8", errors="replace"),
     )
 
 
@@ -241,6 +245,7 @@ def resolve_evidence_ref(
             scheme=scheme,
             relative_path=location,
             actual_digest=actual,
+            content=candidate.read_text(encoding="utf-8", errors="replace"),
         )
     if len(digest) < _MIN_DIGEST_PREFIX:
         return EvidenceResolution(
@@ -269,6 +274,7 @@ def resolve_evidence_ref(
         relative_path=location,
         declared_digest=digest,
         actual_digest=actual,
+        content=candidate.read_text(encoding="utf-8", errors="replace"),
     )
 
 
@@ -283,3 +289,37 @@ def resolve_evidence_refs(
     return tuple(
         resolve_evidence_ref(ref, roots, require_digest=require_digest) for ref in refs
     )
+
+
+def evidence_record_for(resolution: EvidenceResolution) -> EvidenceRecord:
+    """Build the canonical evidence record a resolved reference stands for.
+
+    Both sides of the binding must construct this identically: the answering
+    lane computes the fingerprint it declares, and the host recomputes it from
+    the artifact actually on disk. Keeping one constructor is what makes the
+    two computations comparable.
+    """
+
+    if not resolution.resolved:
+        raise ValueError("only a resolved reference can become an evidence record")
+    return EvidenceRecord(
+        evidence_id=resolution.ref,
+        content=resolution.content or resolution.actual_digest,
+        source_uri=resolution.ref,
+    )
+
+
+def expected_binding(resolution: EvidenceResolution) -> str:
+    """The fingerprint an answer must declare to content-bind this reference."""
+
+    return evidence_record_fingerprint(evidence_record_for(resolution))
+
+
+def build_evidence_index(
+    resolutions: tuple[EvidenceResolution, ...],
+) -> dict[str, EvidenceRecord]:
+    """The host-owned evidence index, built only from references that resolved."""
+
+    return {
+        item.ref: evidence_record_for(item) for item in resolutions if item.resolved
+    }

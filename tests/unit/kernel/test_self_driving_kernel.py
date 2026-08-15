@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from pathlib import Path
 
 import pytest
@@ -33,7 +34,20 @@ from orion.mechanics.answers import AnswerRecord
 from orion.mechanics.model import MechanicCell, MechanicDimension
 from orion.mechanics.program import observe_mechanics_program
 from orion.mechanics.questioning import generate_mechanic_questions
+from orion.kernel.evidence import expected_binding, resolve_evidence_ref
 from orion.mechanics.workflow import ORION_WORKFLOW_ROOT_ID
+
+_UNRESOLVABLE_BINDING = "0" * 64
+
+
+def _binding(ref: str, root: Path) -> tuple[tuple[str, str], ...]:
+    """The content binding an honest lane would declare for this reference."""
+
+    resolution = resolve_evidence_ref(ref, {"orion": root})
+    digest = (
+        expected_binding(resolution) if resolution.resolved else _UNRESOLVABLE_BINDING
+    )
+    return ((ref, digest),)
 
 TARGET = "T.STORAGE.v1"
 
@@ -75,13 +89,14 @@ def _storage_check(*, lane: str = "verifier", frozen_at_round: int | None = 0) -
     )
 
 
-def _answer(ref: str, *, record_id: str = "a1", lane: str = "machine", value: str = "append-only ledger entry per answer") -> AnswerRecord:
+def _answer(ref: str, *, root: Path, record_id: str = "a1", lane: str = "machine", value: str = "append-only ledger entry per answer") -> AnswerRecord:
     return AnswerRecord(
         record_id=record_id,
         mechanic_id=TARGET,
         dimension=MechanicDimension.STORAGE,
         lane=lane,
         evidence_refs=(ref,),
+        evidence_bindings=_binding(ref, root),
         payload=(("storage_contracts", (value,)),),
     )
 
@@ -123,6 +138,7 @@ def test_string_filling_without_evidence_cannot_close_a_question(tmp_path: Path)
         dimension=MechanicDimension.STORAGE,
         lane="machine",
         evidence_refs=("orion:invented.md@deadbeefcafe",),
+        evidence_bindings=(("orion:invented.md@deadbeefcafe", _UNRESOLVABLE_BINDING),),
         payload=(("storage_contracts", ("xxxxx",)),),
     )
     result = grade_and_apply(cells, (junk,), evidence_roots={"orion": tmp_path})
@@ -139,7 +155,7 @@ def test_evidence_bound_answer_applies_content_but_keeps_the_question_open(
     cells = _program()
     before = observe_mechanics_program(cells)
     result = grade_and_apply(
-        cells, (_answer(_evidence(tmp_path)),), evidence_roots={"orion": tmp_path}
+        cells, (_answer(_evidence(tmp_path), root=tmp_path),), evidence_roots={"orion": tmp_path}
     )
     after = observe_mechanics_program(result.cells)
     target = next(item for item in result.cells if item.mechanic_id == TARGET)
@@ -157,7 +173,7 @@ def test_independent_frozen_discriminating_check_closes_exactly_one_question(
     before = observe_mechanics_program(cells)
     result = grade_and_apply(
         cells,
-        (_answer(_evidence(tmp_path)),),
+        (_answer(_evidence(tmp_path), root=tmp_path),),
         evidence_roots={"orion": tmp_path},
         checks={"c": _storage_check()},
         round_index=1,
@@ -182,7 +198,7 @@ def test_check_that_accepts_its_negative_fixture_cannot_verify(tmp_path: Path) -
     )
     result = grade_and_apply(
         _program(),
-        (_answer(_evidence(tmp_path)),),
+        (_answer(_evidence(tmp_path), root=tmp_path),),
         evidence_roots={"orion": tmp_path},
         checks={"c": permissive},
         round_index=1,
@@ -195,7 +211,7 @@ def test_check_that_accepts_its_negative_fixture_cannot_verify(tmp_path: Path) -
 def test_check_written_after_the_answer_cannot_verify(tmp_path: Path) -> None:
     result = grade_and_apply(
         _program(),
-        (_answer(_evidence(tmp_path)),),
+        (_answer(_evidence(tmp_path), root=tmp_path),),
         evidence_roots={"orion": tmp_path},
         checks={"c": _storage_check(frozen_at_round=None)},
         round_index=1,
@@ -208,7 +224,7 @@ def test_check_written_after_the_answer_cannot_verify(tmp_path: Path) -> None:
 def test_a_lane_cannot_verify_its_own_answer(tmp_path: Path) -> None:
     result = grade_and_apply(
         _program(),
-        (_answer(_evidence(tmp_path), lane="machine"),),
+        (_answer(_evidence(tmp_path), root=tmp_path, lane="machine"),),
         evidence_roots={"orion": tmp_path},
         checks={"c": _storage_check(lane="machine")},
         round_index=1,
@@ -226,7 +242,8 @@ def test_unverified_waiver_is_refused(tmp_path: Path) -> None:
         mechanic_id=TARGET,
         dimension=MechanicDimension.STORAGE,
         lane="machine",
-        evidence_refs=(_evidence(tmp_path),),
+        evidence_refs=(waiver_ref := _evidence(tmp_path),),
+        evidence_bindings=_binding(waiver_ref, tmp_path),
         waiver_reason="this step stores nothing",
     )
     cells = _program()
@@ -261,7 +278,7 @@ def test_run_resumes_from_disk_in_a_fresh_process_state(tmp_path: Path) -> None:
 
     first = SelfDrivingDriver(
         store=LedgerStore(state),
-        source=StaticAnswerSource(records=(_answer(ref),)),
+        source=StaticAnswerSource(records=(_answer(ref, root=tmp_path),)),
         evidence_roots={"orion": tmp_path},
         checks=checks,
         seed_cells=_program(),
@@ -295,7 +312,7 @@ def test_resume_revalidates_evidence_that_changed_since_it_was_cited(
     checks = {"c": _storage_check()}
     SelfDrivingDriver(
         store=LedgerStore(state),
-        source=StaticAnswerSource(records=(_answer(ref),)),
+        source=StaticAnswerSource(records=(_answer(ref, root=tmp_path),)),
         evidence_roots={"orion": tmp_path},
         checks=checks,
         seed_cells=_program(),
@@ -331,6 +348,9 @@ def test_repeated_unresolvable_evidence_produces_an_executable_guard(
                 dimension=MechanicDimension.STORAGE,
                 lane="machine",
                 evidence_refs=(f"orion:ghost-{round_index}-{index}.md@abcdef123456",),
+                evidence_bindings=(
+                    (f"orion:ghost-{round_index}-{index}.md@abcdef123456", _UNRESOLVABLE_BINDING),
+                ),
                 payload=(("storage_contracts", (f"claim {index}",)),),
             )
             for index in range(2)
@@ -408,6 +428,7 @@ def test_guard_withholds_a_matching_answer_in_the_next_round(tmp_path: Path) -> 
                     dimension=MechanicDimension.STORAGE,
                     lane="machine",
                     evidence_refs=("orion:ghost.md@abcdef123456",),
+                    evidence_bindings=(("orion:ghost.md@abcdef123456", _UNRESOLVABLE_BINDING),),
                     payload=(("storage_contracts", ("claim",)),),
                 ),
             )
@@ -445,7 +466,7 @@ def test_driver_stops_on_bounded_flatness_rather_than_spinning(tmp_path: Path) -
 def test_growth_in_any_coordinate_prevents_stopping(tmp_path: Path) -> None:
     report = SelfDrivingDriver(
         store=LedgerStore(tmp_path / "state"),
-        source=StaticAnswerSource(records=(_answer(_evidence(tmp_path)),)),
+        source=StaticAnswerSource(records=(_answer(_evidence(tmp_path), root=tmp_path),)),
         evidence_roots={"orion": tmp_path},
         seed_cells=_program(),
         selection_limit=64,
@@ -469,7 +490,7 @@ def test_a_resumed_run_does_not_recount_its_own_history_as_growth(
     ref = _evidence(tmp_path)
     first = SelfDrivingDriver(
         store=LedgerStore(state),
-        source=StaticAnswerSource(records=(_answer(ref),)),
+        source=StaticAnswerSource(records=(_answer(ref, root=tmp_path),)),
         evidence_roots={"orion": tmp_path},
         seed_cells=_program(),
         selection_limit=64,
@@ -540,13 +561,16 @@ def test_directory_source_serves_each_record_once(tmp_path: Path) -> None:
     inbox = tmp_path / "answers" / "machine"
     inbox.mkdir(parents=True)
     ref = _evidence(tmp_path)
+    record = {
+        "record_id": "a1",
+        "mechanic_id": TARGET,
+        "dimension": "STORAGE",
+        "evidence_refs": [ref],
+        "evidence_bindings": dict(_binding(ref, tmp_path)),
+        "payload": {"storage_contracts": ["append-only ledger entry per answer"]},
+    }
     inbox.joinpath(f"{TARGET}.jsonl").write_text(
-        '{"record_id":"a1","mechanic_id":"'
-        + TARGET
-        + '","dimension":"STORAGE","evidence_refs":["'
-        + ref
-        + '"],"payload":{"storage_contracts":["append-only ledger entry per answer"]}}\n',
-        encoding="utf-8",
+        json.dumps(record) + "\n", encoding="utf-8"
     )
     source = DirectoryAnswerSource(root=tmp_path / "answers")
     driver = SelfDrivingDriver(
