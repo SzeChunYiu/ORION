@@ -4,10 +4,8 @@ import hashlib
 from dataclasses import dataclass
 from typing import Protocol
 
-from orion.self_orion.change_control import CandidateExecutionReceipt
-
 from .artifacts import DevelopmentArtifactStore
-from .base import DevelopmentChangeProposal
+from .base import CandidateExecutionReceipt, DevelopmentChangeProposal
 
 
 @dataclass(frozen=True)
