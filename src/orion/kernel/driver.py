@@ -58,6 +58,10 @@ def _record_from_payload(payload: Mapping[str, object]) -> AnswerRecord | None:
             dimension=MechanicDimension(str(payload["dimension"])),
             lane=str(payload["lane"]),
             evidence_refs=tuple(payload.get("evidence_refs", ()) or ()),  # type: ignore[arg-type]
+            evidence_bindings=tuple(
+                (str(item[0]), str(item[1]))
+                for item in payload.get("evidence_bindings", ()) or ()  # type: ignore[union-attr]
+            ),
             payload=tuple(
                 (str(name), tuple(values))
                 for name, values in (payload.get("payload", ()) or ())  # type: ignore[union-attr]
