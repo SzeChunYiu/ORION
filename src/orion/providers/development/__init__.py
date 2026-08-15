@@ -4,6 +4,7 @@ from .artifacts import (
     InMemoryDevelopmentArtifactStore,
 )
 from .base import (
+    CandidateExecutionReceipt,
     DEFAULT_PROTECTED_DEVELOPMENT_PATH_PREFIXES,
     DevelopmentChangeProvider,
     DevelopmentChangeProposal,
@@ -12,6 +13,7 @@ from .base import (
 from .llm import LLMDevelopmentChangeProvider
 
 __all__ = [
+    "CandidateExecutionReceipt",
     "DEFAULT_PROTECTED_DEVELOPMENT_PATH_PREFIXES",
     "DevelopmentArtifactRef",
     "DevelopmentArtifactStore",
