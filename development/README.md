@@ -1,28 +1,44 @@
-# ORION development program
+# ORION development protocol
 
-The development objective is **not** to manually finish a giant research framework. It is to build the smallest trustworthy ORION that can increasingly research how to build its successor.
+ORION development must use ORION's own epistemic principles as early as the bootstrap permits.
 
-## Bootstrap order
+For a high-impact architecture/mechanic change, the default sequence is:
 
-### P0 — Freeze the invariant core
-Formalize the recursive engine and authority/non-escalation boundaries.
+```text
+DEVELOPMENT QUESTION
+-> atomize into independently checkable fibers
+-> recover incumbent RAKL/ORION mechanics and negative history
+-> search relevant same-domain and parent-domain knowledge
+-> deliberately challenge the current search vocabulary and discipline list
+-> absorb and reconstruct a global picture
+-> ask what saturation means for this exact development atom
+-> ask how the search could be falsely flat
+-> ask why an important domain or representation might still be missing
+-> diagnose residuals / competing explanations
+-> freeze the implementation hypothesis and tests
+-> implement the smallest justified module
+-> run known-answer + hostile tests
+-> preserve failures
+-> reopen research if the implementation exposes a new residual
+```
 
-### P1 — Minimum working cycle
-Make FRAME → SEARCH → ABSORB → RECONSTRUCT → DETECT → DIAGNOSE → REFRAME → REOPEN executable on a tiny known-answer world.
+## High-impact implementation gate
 
-### P2 — Knowledge absorption
-Implement provenance-preserving projections, identity/mapping outcomes and global-portrait reconstruction.
+`src/orion/development/protocol.py` makes the gate executable. A high-impact task is not ready for coding unless it has:
 
-### P3 — Failure learning
-Replay the NLP/parent-domain omission and other historical RAKL failures; learn reusable guards rather than memorized labels.
+1. explicit atomic development questions;
+2. a bounded saturation assessment over knowledge, search-universe, and formulation;
+3. an explicit challenge to the saturation basis;
+4. hypotheses for why prior searches could have missed relevant knowledge;
+5. reopen triggers;
+6. a frozen implementation hypothesis.
 
-### P4 — Search-universe evolution
-Demonstrate that absorbed knowledge can change `W_t` and generate materially new search obligations.
+This is deliberately stronger than `I have read several papers`.
 
-### P5 — Shadow Self-ORION
-Run self-development proposals without promotion authority.
+## Bootstrap exception
 
-### P6 — Governed Self-ORION readiness
-Require fresh hidden failures, matched incumbent/challenger evaluation, protected assurance and preserved negative history before ORION becomes the primary development process.
+The initial commits that create the saturation/development gate necessarily precede the gate itself. They are recorded as bootstrap scaffolding, not evidence that the gate was already satisfied. Once the gate is executable and merged, new high-impact mechanics should fail closed when the development packet is missing.
 
-Each phase should use atomic known-answer benchmarks before composition benchmarks and fresh trials.
+## Modular code rule
+
+Code is decomposed by information-hiding responsibility. Domain/core types, engine operators, provider ports, adapters, development governance, evaluation, and Self-ORION are separate packages. LLM/retrieval/vendor-specific code must not be embedded in the recursive solver.

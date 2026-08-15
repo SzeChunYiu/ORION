@@ -16,6 +16,7 @@ DEFAULT_REQUIRED_ROUTE_KINDS = (
     SearchRouteKind.CURRENT_VOCABULARY,
     SearchRouteKind.FUNCTION_ONLY,
     SearchRouteKind.PARENT_DISCIPLINE,
+    SearchRouteKind.LITERATURE_BRIDGE,
     SearchRouteKind.ADVERSARIAL_OMISSION,
     SearchRouteKind.FRESHNESS,
 )
@@ -25,7 +26,7 @@ DEFAULT_REQUIRED_ROUTE_KINDS = (
 class SaturationBasis:
     """Frozen stopping semantics for one scoped solve."""
 
-    basis_id: str = "orion-bootstrap-saturation-v1"
+    basis_id: str = "orion-bootstrap-saturation-v2"
     required_consecutive_flat_rounds: int = 2
     required_route_kinds: tuple[SearchRouteKind, ...] = DEFAULT_REQUIRED_ROUTE_KINDS
 
@@ -58,7 +59,7 @@ class SaturationAssessment:
 class SaturateOperator:
     """Bounded saturation requires both knowledge flatness and basis challenge."""
 
-    operator_id = "SATURATE_BOUNDED.v2"
+    operator_id = "SATURATE_BOUNDED.v3"
 
     def __init__(self, basis: SaturationBasis | None = None) -> None:
         self._basis = basis or SaturationBasis()
@@ -96,6 +97,8 @@ class SaturateOperator:
             reasons.append("independent_route_coverage_incomplete")
         if SearchRouteKind.PARENT_DISCIPLINE.value not in covered_set:
             reasons.append("parent_discipline_challenge_missing")
+        if SearchRouteKind.LITERATURE_BRIDGE.value not in covered_set:
+            reasons.append("literature_bridge_challenge_missing")
         if SearchRouteKind.ADVERSARIAL_OMISSION.value not in covered_set:
             reasons.append("omission_challenge_missing")
 
