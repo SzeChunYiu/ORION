@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum
 
+from orion.core.residuals import Residual, ResidualKind, Responsibility
+
 
 class CycleOperator(str, Enum):
     FRAME = "FRAME"
@@ -17,40 +19,19 @@ class CycleOperator(str, Enum):
     SATURATE_BOUNDED = "SATURATE_BOUNDED"
 
 
-class ResidualKind(str, Enum):
-    MISSING_EVIDENCE = "MISSING_EVIDENCE"
-    CONTRADICTION = "CONTRADICTION"
-    CONTEXT_GAP = "CONTEXT_GAP"
-    REPRESENTATION_FAILURE = "REPRESENTATION_FAILURE"
-    SEARCH_COVERAGE_FAILURE = "SEARCH_COVERAGE_FAILURE"
-    DECOMPOSITION_FAILURE = "DECOMPOSITION_FAILURE"
-    INTERFACE_FAILURE = "INTERFACE_FAILURE"
-    MEASUREMENT_FAILURE = "MEASUREMENT_FAILURE"
-    EVALUATOR_FAILURE = "EVALUATOR_FAILURE"
-    METHOD_GAP = "METHOD_GAP"
-    UNCLASSIFIED = "UNCLASSIFIED"
-
-
-class Responsibility(str, Enum):
-    QUESTION = "QUESTION"
-    REPRESENTATION = "REPRESENTATION"
-    SEARCH = "SEARCH"
-    ROUTING = "ROUTING"
-    DECOMPOSITION = "DECOMPOSITION"
-    INTERFACE = "INTERFACE"
-    MEASUREMENT = "MEASUREMENT"
-    EVALUATOR = "EVALUATOR"
-    METHOD = "METHOD"
-    EVIDENCE = "EVIDENCE"
-    EXECUTION = "EXECUTION"
-
-
-@dataclass(frozen=True)
-class Residual:
-    residual_id: str
-    kind: ResidualKind
-    description: str
-    material: bool = True
+_NON_AUTHORITY_OPERATORS = frozenset(
+    {
+        CycleOperator.FRAME,
+        CycleOperator.SEARCH,
+        CycleOperator.RECONSTRUCT,
+        CycleOperator.DETECT,
+        CycleOperator.DIAGNOSE,
+        CycleOperator.REFRAME,
+        CycleOperator.REOPEN,
+        CycleOperator.RECURSE,
+        CycleOperator.SATURATE_BOUNDED,
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -62,12 +43,13 @@ class Transition:
     residual_ids: tuple[str, ...] = ()
     authority_increase: bool = False
     scientific_authority_certificate_ids: tuple[str, ...] = ()
+    changed_coordinates: tuple[str, ...] = ()
 
     def validate(self) -> None:
         if self.output_epoch < self.input_epoch:
             raise ValueError("ORION transitions cannot move backward in epoch")
-        if self.operator in {CycleOperator.SEARCH, CycleOperator.FRAME} and self.authority_increase:
-            raise ValueError("FRAME/SEARCH cannot directly increase scientific authority")
+        if self.operator in _NON_AUTHORITY_OPERATORS and self.authority_increase:
+            raise ValueError(f"{self.operator.value} cannot directly increase scientific authority")
         if self.authority_increase and not self.scientific_authority_certificate_ids:
             raise ValueError("authority increase requires certificate-producing evidence")
 
@@ -75,4 +57,14 @@ class Transition:
 def revision_allowed(responsibilities: tuple[Responsibility, ...]) -> bool:
     """High-impact reframing is blocked while responsibility remains ambiguous."""
 
-    return len(set(responsibilities)) == 1
+    return len(set(responsibilities)) == 1 and bool(responsibilities)
+
+
+__all__ = [
+    "CycleOperator",
+    "Residual",
+    "ResidualKind",
+    "Responsibility",
+    "Transition",
+    "revision_allowed",
+]
