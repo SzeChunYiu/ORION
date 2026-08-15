@@ -146,11 +146,13 @@ def _episodes_from_ledger(store: LedgerStore) -> tuple[TaskEpisode, ...]:
 
 
 def learn_guards(store: LedgerStore) -> tuple[GuardRule, ...]:
-    """Derive executable guards from repeated, structurally identical failures.
+    """Derive candidate guards from repeated, structurally identical failures.
 
-    A pattern seen inside a single round is a candidate only. It becomes active
-    when the same core failure signature recurs in a later, distinct round —
-    the cheapest honest replay criterion available without a second run.
+    Recurrence licenses abstraction, not behavior change. Caller-controlled
+    round/split labels cannot establish protected replay, fresh transfer, causal
+    diagnosis, or relying-party authorization, so this kernel path never emits
+    an active rule. A future protected transition may promote an exact candidate
+    after those obligations are independently satisfied.
     """
 
     episodes = _episodes_from_ledger(store)
@@ -167,12 +169,6 @@ def learn_guards(store: LedgerStore) -> tuple[GuardRule, ...]:
         seen_runs.add(key)
         by_mechanic.setdefault(episode.mechanic_id, []).append(episode)
 
-    rounds_by_signature: dict[tuple[str, ...], set[str]] = {}
-    for episode in failures:
-        rounds_by_signature.setdefault(episode.failure_signature, set()).add(
-            episode.split_id
-        )
-
     guards: dict[str, GuardRule] = {}
     for mechanic_id, group in sorted(by_mechanic.items()):
         pattern_id = f"pattern:{mechanic_id}"
@@ -187,13 +183,7 @@ def learn_guards(store: LedgerStore) -> tuple[GuardRule, ...]:
         )
         if candidate is None:
             continue
-        observed_rounds = rounds_by_signature.get(candidate.core_failure_signature, set())
-        authority = (
-            LessonAuthority.VERIFIED_LOCAL
-            if len(observed_rounds) >= 2
-            else LessonAuthority.CANDIDATE
-        )
-        rule = derive_guard_rule(candidate, authority=authority)
+        rule = derive_guard_rule(candidate, authority=LessonAuthority.CANDIDATE)
         if rule is not None:
             guards[rule.guard_id] = rule
     return tuple(guards[key] for key in sorted(guards))

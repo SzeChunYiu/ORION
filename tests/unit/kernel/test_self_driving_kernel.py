@@ -514,7 +514,7 @@ def test_resume_revalidates_evidence_that_changed_since_it_was_cited(
 # --- failure learning that changes behavior ------------------------------
 
 
-def test_repeated_unresolvable_evidence_produces_an_executable_guard(
+def test_recurrence_creates_candidate_guard_but_cannot_activate_it(
     tmp_path: Path,
 ) -> None:
     store = LedgerStore(tmp_path / "state")
@@ -550,7 +550,8 @@ def test_repeated_unresolvable_evidence_produces_an_executable_guard(
     guard = guards[0]
     assert guard.effect is GuardEffect.REJECT_EVIDENCE_STATUS
     assert guard.argument == EvidenceStatus.MISSING_ARTIFACT.value
-    assert guard.active, "a guard reproduced across distinct rounds must be active"
+    assert guard.authority is LessonAuthority.CANDIDATE
+    assert not guard.active, "caller-labelled recurrence cannot activate behavior"
 
 
 def test_an_active_guard_changes_what_the_next_round_selects() -> None:
