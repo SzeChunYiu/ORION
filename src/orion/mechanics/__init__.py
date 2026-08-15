@@ -14,6 +14,7 @@ from .receipt import *
 from .research import *
 from .state_plan import *
 from .transition import *
+from .uncertainty import *
 from .verification import *
 from .workflow import *
 
