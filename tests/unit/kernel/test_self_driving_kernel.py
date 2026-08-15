@@ -736,3 +736,47 @@ def test_the_stopping_verdict_never_certifies_recall(tmp_path: Path) -> None:
     assert not report.saturation.certifies_recall
     assert not report.saturation.absolute_complete
     assert any("outside the frame" in item for item in report.saturation.reasons)
+
+
+def test_one_paper_reached_by_two_references_counts_as_one_discovery(
+    tmp_path: Path,
+) -> None:
+    """The noisy-TV defect, in ORION's own growth vector.
+
+    Counting reference strings lets any source that re-mints identifiers — a
+    mirror, a re-crawl, a live search API — manufacture growth forever, so the
+    novelty signal can never fall to zero and saturation is unreachable for the
+    wrong reason. Growth is counted over content digests instead.
+    """
+
+    body = "the same underlying paper"
+    digest = hashlib.sha256(body.encode("utf-8")).hexdigest()
+    (tmp_path / "primary.md").write_text(body, encoding="utf-8")
+    (tmp_path / "mirror.md").write_text(body, encoding="utf-8")
+
+    records = tuple(
+        AnswerRecord(
+            record_id=f"a{index}",
+            mechanic_id=TARGET,
+            dimension=MechanicDimension.STORAGE,
+            lane="machine",
+            evidence_refs=(ref,),
+            evidence_bindings=_binding(ref, tmp_path),
+            payload=(("storage_contracts", (f"claim {index}",)),),
+        )
+        for index, ref in enumerate(
+            (f"orion:primary.md@{digest[:12]}", f"orion:mirror.md@{digest[:12]}")
+        )
+    )
+    # Two distinct references, identical bytes behind them.
+    assert records[0].evidence_refs != records[1].evidence_refs
+
+    report = SelfDrivingDriver(
+        store=LedgerStore(tmp_path / "state"),
+        source=StaticAnswerSource(records=records),
+        evidence_roots={"orion": tmp_path},
+        seed_cells=_program(),
+        selection_limit=64,
+    ).run(max_rounds=1)
+
+    assert report.growth[0].new_evidence_roots == 1
