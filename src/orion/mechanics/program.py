@@ -5,6 +5,7 @@ from dataclasses import dataclass
 
 from .audit import MechanicAuditVerdict, audit_recursive
 from .decomposition import expanded_workflow_cells
+from .dependencies import apply_default_dependency_plans
 from .failure import apply_default_failure_plans
 from .handoff import apply_default_handoff_plans
 from .invariants import apply_default_invariant_plans
@@ -38,7 +39,19 @@ class MechanicsProgramMetrics:
 
 def current_program_cells() -> tuple[MechanicCell, ...]:
     cells = expanded_workflow_cells()
-    for apply in (apply_default_verification_plans, apply_default_failure_plans, apply_default_observation_plans, apply_default_handoff_plans, apply_default_state_plans, apply_default_transition_plans, apply_candidate_mathematical_formulations, apply_default_metric_plans, apply_default_uncertainty_plans, apply_default_invariant_plans):
+    for apply in (
+        apply_default_verification_plans,
+        apply_default_failure_plans,
+        apply_default_observation_plans,
+        apply_default_handoff_plans,
+        apply_default_state_plans,
+        apply_default_transition_plans,
+        apply_candidate_mathematical_formulations,
+        apply_default_metric_plans,
+        apply_default_uncertainty_plans,
+        apply_default_invariant_plans,
+        apply_default_dependency_plans,
+    ):
         cells = apply(cells)
     return cells
 

@@ -2,6 +2,7 @@
 
 from .audit import *
 from .decomposition import *
+from .dependencies import *
 from .failure import *
 from .handoff import *
 from .invariants import *
