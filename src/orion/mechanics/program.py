@@ -8,6 +8,7 @@ from .decomposition import expanded_workflow_cells
 from .failure import apply_default_failure_plans
 from .handoff import apply_default_handoff_plans
 from .mathematics import apply_candidate_mathematical_formulations
+from .metrics import apply_default_metric_plans
 from .model import MechanicCell
 from .observability import apply_default_observation_plans
 from .questioning import MechanicQuestion
@@ -43,6 +44,7 @@ def current_program_cells() -> tuple[MechanicCell, ...]:
         apply_default_state_plans,
         apply_default_transition_plans,
         apply_candidate_mathematical_formulations,
+        apply_default_metric_plans,
     ):
         cells = apply(cells)
     return cells

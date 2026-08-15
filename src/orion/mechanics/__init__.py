@@ -5,6 +5,7 @@ from .decomposition import *
 from .failure import *
 from .handoff import *
 from .mathematics import *
+from .metrics import *
 from .model import *
 from .observability import *
 from .program import *
