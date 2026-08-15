@@ -25,6 +25,7 @@ from .guards import (
     structural_grading_signature,
     variation_grading_signature,
 )
+from .scheduler import observe_dimension_yields, order_by_observed_yield
 from .store import EntryKind, LedgerStore
 
 
@@ -127,8 +128,16 @@ def run_round(
     """
 
     before = observe_mechanics_program(cells)
+    # Fixed audit priority first, then the run's own measured yield, then what
+    # it has learned to refuse. Each stage only reorders, never drops: a
+    # scheduler that could delete a question would close the audit by looking
+    # away from it.
     selected = apply_selection_guards(
-        plan_program_questions(cells, limit=selection_limit), guards
+        order_by_observed_yield(
+            plan_program_questions(cells, limit=selection_limit),
+            observe_dimension_yields(store),
+        ),
+        guards,
     )
     by_id = {cell.mechanic_id: cell for cell in cells}
     tasks = tuple(

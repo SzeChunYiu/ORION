@@ -22,6 +22,12 @@ from orion.kernel import (
     run_round,
 )
 from orion.kernel.guards import GuardEffect, GuardRule
+from orion.kernel.saturation import (
+    GrowthVector,
+    SaturationBasis,
+    SaturationVerdict,
+    assess_saturation,
+)
 from orion.experience.model import LessonAuthority
 from orion.mechanics.answers import AnswerRecord
 from orion.mechanics.model import MechanicCell, MechanicDimension
@@ -426,9 +432,108 @@ def test_driver_stops_on_bounded_flatness_rather_than_spinning(tmp_path: Path) -
         selection_limit=64,
     ).run(max_rounds=8)
 
-    assert report.stop_reason == "bounded_flatness"
+    assert report.stop_reason == "bounded_saturation"
     assert len(report.rounds) == 2
     assert report.verified_closures == 0
+    assert report.saturation is not None
+    assert report.saturation.verdict is SaturationVerdict.BOUNDED_SATURATED
+    assert all(vector.flat for vector in report.growth)
+    # Bounded, never absolute: stopping is a statement about a declared basis.
+    assert report.saturation.absolute_complete is False
+
+
+def test_growth_in_any_coordinate_prevents_stopping(tmp_path: Path) -> None:
+    report = SelfDrivingDriver(
+        store=LedgerStore(tmp_path / "state"),
+        source=StaticAnswerSource(records=(_answer(_evidence(tmp_path)),)),
+        evidence_roots={"orion": tmp_path},
+        seed_cells=_program(),
+        selection_limit=64,
+    ).run(max_rounds=1)
+
+    first = report.growth[0]
+    assert not first.flat
+    assert first.evidence_bound_additions == 1
+    assert first.new_evidence_roots == 1
+    assert report.saturation is not None
+    assert report.saturation.verdict is not SaturationVerdict.BOUNDED_SATURATED
+
+
+def test_a_resumed_run_does_not_recount_its_own_history_as_growth(
+    tmp_path: Path,
+) -> None:
+    """Growth is change. A resumed run re-reads the ledger, and must not treat
+    the decomposition and evidence it already recorded as fresh discovery."""
+
+    state = tmp_path / "state"
+    ref = _evidence(tmp_path)
+    first = SelfDrivingDriver(
+        store=LedgerStore(state),
+        source=StaticAnswerSource(records=(_answer(ref),)),
+        evidence_roots={"orion": tmp_path},
+        seed_cells=_program(),
+        selection_limit=64,
+    ).run(max_rounds=1)
+    assert not first.growth[0].flat  # the original round really did discover things
+
+    resumed = SelfDrivingDriver(
+        store=LedgerStore(state),
+        source=StaticAnswerSource(records=()),
+        evidence_roots={"orion": tmp_path},
+        seed_cells=_program(),
+        selection_limit=64,
+    ).run(max_rounds=2)
+
+    assert all(vector.flat for vector in resumed.growth)
+    assert resumed.stop_reason == "bounded_saturation"
+
+
+def test_changing_the_basis_voids_earlier_flat_rounds() -> None:
+    basis = SaturationBasis(
+        root_mechanic_id=ORION_WORKFLOW_ROOT_ID,
+        dimension_vocabulary=("STORAGE",),
+        priority_order=("STORAGE",),
+        evidence_schemes=("orion",),
+        registered_check_ids=(),
+        selection_limit=8,
+    )
+    flat = tuple(
+        GrowthVector(round_index=index, basis_fingerprint=basis.fingerprint)
+        for index in range(2)
+    )
+    assert assess_saturation(flat, basis).verdict is SaturationVerdict.BOUNDED_SATURATED
+
+    wider = SaturationBasis(
+        root_mechanic_id=basis.root_mechanic_id,
+        dimension_vocabulary=basis.dimension_vocabulary,
+        priority_order=basis.priority_order,
+        evidence_schemes=basis.evidence_schemes,
+        registered_check_ids=("check:new",),
+        selection_limit=basis.selection_limit,
+    )
+    assert assess_saturation(flat, wider).verdict is SaturationVerdict.INVALID_BASIS
+
+
+def test_flat_rounds_resting_on_the_same_evidence_are_not_independent() -> None:
+    basis = SaturationBasis(
+        root_mechanic_id=ORION_WORKFLOW_ROOT_ID,
+        dimension_vocabulary=("STORAGE",),
+        priority_order=("STORAGE",),
+        evidence_schemes=("orion",),
+        registered_check_ids=(),
+        selection_limit=8,
+    )
+    shared = tuple(
+        GrowthVector(
+            round_index=index,
+            basis_fingerprint=basis.fingerprint,
+            evidence_lineage=("orion:same.md@aaaaaaaaaaaa",),
+        )
+        for index in range(3)
+    )
+    report = assess_saturation(shared, basis)
+    assert report.verdict is SaturationVerdict.DEPENDENT_FLAT_ROUNDS
+    assert report.independent_flat_rounds == 1
 
 
 def test_directory_source_serves_each_record_once(tmp_path: Path) -> None:

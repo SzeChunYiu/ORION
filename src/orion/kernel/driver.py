@@ -9,11 +9,20 @@ from orion.experience.learning import propose_failure_pattern
 from orion.mechanics.answers import AnswerRecord
 from orion.mechanics.model import MechanicCell, MechanicDimension
 from orion.mechanics.program import current_program_cells
+from orion.mechanics.workflow import ORION_WORKFLOW_ROOT_ID
 
 from .apply import grade_and_apply
 from .gate import DiscriminatingCheck
 from .guards import GuardRule, derive_guard_rule
 from .round import AnswerSource, RoundOutcome, run_round
+from .saturation import (
+    GrowthVector,
+    SaturationBasis,
+    SaturationReport,
+    SaturationVerdict,
+    assess_saturation,
+    growth_from_round,
+)
 from .store import EntryKind, LedgerStore
 
 _FAILURE_OUTCOMES = {
@@ -33,6 +42,8 @@ class RunReport:
     stop_reason: str
     open_at_start: int
     open_at_end: int
+    growth: tuple[GrowthVector, ...] = ()
+    saturation: SaturationReport | None = None
 
     @property
     def verified_closures(self) -> int:
@@ -198,6 +209,55 @@ class SelfDrivingDriver:
     require_digest: bool = True
     flat_rounds_to_stop: int = 2
 
+    def basis(self) -> SaturationBasis:
+        """Declare the apparatus flatness is measured against.
+
+        PROVISIONAL (V0). The coordinate set in `saturation.GROWTH_COORDINATES`
+        is a first-principles construction, not yet reconciled with the
+        established stopping-rule literature (technology-assisted-review
+        stopping rules, capture-recapture unseen-mass estimation, type-token
+        growth curves). Treat a BOUNDED_SATURATED verdict from this basis as a
+        resource-bounded stop, not as evidence the knowledge space is flat.
+        """
+
+        return SaturationBasis(
+            root_mechanic_id=ORION_WORKFLOW_ROOT_ID,
+            dimension_vocabulary=tuple(item.value for item in MechanicDimension),
+            priority_order=tuple(item.value for item in MechanicDimension),
+            evidence_schemes=tuple(sorted(self.evidence_roots)),
+            registered_check_ids=tuple(sorted(self.checks)),
+            selection_limit=self.selection_limit,
+        )
+
+    def _seen_baseline(self, cells: tuple[MechanicCell, ...]) -> dict[str, set[str]]:
+        """Everything this run already knows about, before it takes a step.
+
+        Growth is change, not presence. Without this baseline the first round
+        of every run — including a resumed one — would count the whole existing
+        decomposition and all previously cited evidence as fresh discovery, and
+        a resumed run could never register as flat.
+        """
+
+        baseline: dict[str, set[str]] = {
+            "mechanics": {cell.mechanic_id for cell in cells},
+            "evidence": set(),
+            "routes": set(),
+            "residuals": set(),
+            "failures": set(),
+        }
+        for entry in self.store.entries(EntryKind.EPISODE):
+            baseline["evidence"].update(
+                str(item) for item in entry.payload.get("evidence_ids", ()) or ()
+            )
+            signature = entry.payload.get("failure_signature") or ()
+            if signature:
+                baseline["failures"].add("|".join(str(item) for item in signature))
+        for entry in self.store.entries(EntryKind.GRADING):
+            dimension = entry.payload.get("dimension")
+            if dimension:
+                baseline["routes"].add(str(dimension))
+        return baseline
+
     def cells(self) -> tuple[MechanicCell, ...]:
         seed = self.seed_cells if self.seed_cells is not None else current_program_cells()
         return replay_cells(
@@ -217,9 +277,13 @@ class SelfDrivingDriver:
         guards = learn_guards(self.store)
         open_at_start = None
         outcomes: list[RoundOutcome] = []
-        flat_streak = 0
         stop_reason = "max_rounds_reached"
         start_index = self.store.completed_round_count()
+        basis = self.basis()
+        fingerprint = basis.fingerprint
+        seen = self._seen_baseline(cells)
+        growth: list[GrowthVector] = []
+        saturation: SaturationReport | None = None
 
         for offset in range(max_rounds):
             round_index = start_index + offset
@@ -258,15 +322,53 @@ class SelfDrivingDriver:
                     )
             guards = fresh
 
+            vector = growth_from_round(
+                round_index,
+                fingerprint,
+                verified_record_ids=outcome.application.verified_record_ids,
+                evidence_bound_record_ids=outcome.application.evidence_bound_record_ids,
+                evidence_refs=[
+                    item.ref
+                    for grading in outcome.application.gradings
+                    for item in grading.evidence
+                    if item.resolved
+                ],
+                route_families=[
+                    item.dimension.value for item in outcome.application.gradings
+                ],
+                residual_kinds=[
+                    item.kind for item in outcome.application.report.residuals
+                ],
+                mechanic_ids=[item.mechanic_id for item in cells],
+                failure_signatures=[
+                    item.failure_signature
+                    for item in outcome.episodes
+                    if item.failure_signature
+                ],
+                seen=seen,
+            )
+            growth.append(vector)
+            self.store.append(
+                EntryKind.RECEIPT,
+                {
+                    "kind": "GROWTH_VECTOR",
+                    "round_index": round_index,
+                    "basis_fingerprint": fingerprint,
+                    "magnitude": vector.magnitude,
+                    "flat": vector.flat,
+                    **{name: value for name, value in vector.coordinates},
+                },
+            )
+
             if outcome.false_progress_reasons:
                 stop_reason = "false_progress_detected"
                 break
-            if outcome.productive:
-                flat_streak = 0
-                continue
-            flat_streak += 1
-            if flat_streak >= self.flat_rounds_to_stop:
-                stop_reason = "bounded_flatness"
+
+            saturation = assess_saturation(
+                growth, basis, required_flat_rounds=self.flat_rounds_to_stop
+            )
+            if saturation.verdict is SaturationVerdict.BOUNDED_SATURATED:
+                stop_reason = "bounded_saturation"
                 break
 
         final_open = (
@@ -280,4 +382,6 @@ class SelfDrivingDriver:
             stop_reason=stop_reason,
             open_at_start=open_at_start or 0,
             open_at_end=final_open,
+            growth=tuple(growth),
+            saturation=saturation,
         )
