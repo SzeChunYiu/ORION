@@ -25,7 +25,11 @@ class SaturationVerdict(str, Enum):
     INVALID_BASIS = "INVALID_BASIS"
     INSUFFICIENT_FLAT_ROUNDS = "INSUFFICIENT_FLAT_ROUNDS"
     DEPENDENT_FLAT_ROUNDS = "DEPENDENT_FLAT_ROUNDS"
-    BOUNDED_SATURATED = "BOUNDED_SATURATED"
+    A_PRIORI_FRAME_FLAT = "A_PRIORI_FRAME_FLAT"
+    # Named after Saunders et al. (2018): with the basis frozen, only kinds
+    # already inside the frame can be discovered, so this is *a priori*
+    # thematic saturation. Calling it inductive or theoretical saturation is
+    # the exact conflation that paper was written to name.
 
 
 @dataclass(frozen=True)
@@ -107,7 +111,29 @@ class SaturationReport:
 
     @property
     def may_stop(self) -> bool:
-        return self.verdict is SaturationVerdict.BOUNDED_SATURATED
+        """Whether the run may stop — a budget decision, not a recall claim."""
+
+        return self.verdict is SaturationVerdict.A_PRIORI_FRAME_FLAT
+
+    @property
+    def certifies_recall(self) -> bool:
+        """Always False. No recall statement is licensed by this verdict.
+
+        The rule implemented here — N consecutive rounds with zero growth under
+        a fixed frame — is Francis et al.'s "10+3", Guest/Namey/Chen's
+        new-information threshold at 0%, and TAR's IH50. All three literatures
+        classify it as a heuristic. Guest et al.'s own bootstrap puts the 0%
+        threshold at 87-89% of themes captured; Callaghan et al. (2024) measured
+        a 5th-percentile recall of 53% for the consecutive-zero family and
+        concluded that arbitrary stopping criteria "have no place in
+        high-quality systematic reviews".
+
+        It also fails all three of that paper's stated requirements: it is not
+        target-bound, not statistically justified, and not parameter-independent
+        (`required_flat_rounds` is exactly the arbitrary X they name).
+        """
+
+        return False
 
 
 def _max_disjoint_lineage_subset(lineages: Sequence[frozenset[str]]) -> int:
@@ -201,11 +227,16 @@ def assess_saturation(
             ),
         )
     return SaturationReport(
-        SaturationVerdict.BOUNDED_SATURATED,
+        SaturationVerdict.A_PRIORI_FRAME_FLAT,
         len(streak),
         independent,
         required_flat_rounds,
-        (f"flat and independent under basis {fingerprint[:12]}",),
+        (
+            f"flat over {len(streak)} rounds under frozen basis "
+            f"{fingerprint[:12]}; says nothing about kinds outside the frame",
+            f"residual novelty rate <= {3 / max(independent, 1):.3f} at 95% by the "
+            "rule of three, and only if those rounds were independent draws",
+        ),
     )
 
 

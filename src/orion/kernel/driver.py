@@ -371,8 +371,8 @@ class SelfDrivingDriver:
             saturation = assess_saturation(
                 growth, basis, required_flat_rounds=self.flat_rounds_to_stop
             )
-            if saturation.verdict is SaturationVerdict.BOUNDED_SATURATED:
-                stop_reason = "bounded_saturation"
+            if saturation.verdict is SaturationVerdict.A_PRIORI_FRAME_FLAT:
+                stop_reason = "a_priori_frame_flat"
                 break
 
         final_open = (
