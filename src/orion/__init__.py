@@ -1,3 +1,7 @@
-"""ORION research operating system."""
+"""ORION: evidence-governed recursive research operating system."""
 
-__version__ = "0.0.1"
+from orion.core.problem import Problem
+from orion.core.solution import Solution, SolutionStatus
+from orion.engine.solver import OrionSolver, SolverConfig
+
+__all__ = ["Problem", "Solution", "SolutionStatus", "OrionSolver", "SolverConfig"]
