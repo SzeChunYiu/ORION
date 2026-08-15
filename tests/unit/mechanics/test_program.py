@@ -14,22 +14,16 @@ def test_raw_decomposition_exposes_development_numbers():
     assert metrics.cycle_count == 0
 
 
-def test_current_program_advances_to_parent_discipline_after_dependency_contracts():
+def test_current_program_advances_to_search_coverage_after_parent_domain_seeds():
     metrics = observe_current_mechanics_program()
     counts = dict(metrics.open_by_dimension)
-    for closed in (MechanicDimension.VERIFICATION, MechanicDimension.FAILURE, MechanicDimension.OBSERVABILITY, MechanicDimension.HANDOFF, MechanicDimension.STATE, MechanicDimension.TRANSITION_MODEL, MechanicDimension.MATHEMATICS, MechanicDimension.METRICS, MechanicDimension.UNCERTAINTY, MechanicDimension.INVARIANTS, MechanicDimension.DEPENDENCIES):
+    for closed in (MechanicDimension.VERIFICATION, MechanicDimension.FAILURE, MechanicDimension.OBSERVABILITY, MechanicDimension.HANDOFF, MechanicDimension.STATE, MechanicDimension.TRANSITION_MODEL, MechanicDimension.MATHEMATICS, MechanicDimension.METRICS, MechanicDimension.UNCERTAINTY, MechanicDimension.INVARIANTS, MechanicDimension.DEPENDENCIES, MechanicDimension.PARENT_DISCIPLINE):
         assert closed.value not in counts
-    assert counts[MechanicDimension.PARENT_DISCIPLINE.value] == metrics.mechanic_count
+    assert counts[MechanicDimension.SEARCH_COVERAGE.value] == metrics.mechanic_count
 
 
-def test_global_scheduler_is_breadth_first_on_parent_discipline_wave():
-    questions = plan_current_program_questions(limit=20)
-    assert len({item.mechanic_id for item in questions}) == 20
-    assert all(item.dimension is MechanicDimension.PARENT_DISCIPLINE for item in questions)
-
-
-def test_parent_discipline_wave_uses_parent_discipline_route_without_llm_planning():
+def test_search_coverage_wave_is_adversarial_omission_route_without_llm_planning():
     tasks = plan_current_program_research(limit=8)
     assert len(tasks) == 8
-    assert all(item.query.route_kind is SearchRouteKind.PARENT_DISCIPLINE for item in tasks)
+    assert all(item.query.route_kind is SearchRouteKind.ADVERSARIAL_OMISSION for item in tasks)
     assert all(item.query.text for item in tasks)
