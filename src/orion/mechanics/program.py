@@ -16,6 +16,7 @@ from .observability import apply_default_observation_plans
 from .parent_domains import apply_parent_domain_hypotheses_to_all
 from .questioning import MechanicQuestion
 from .research import MechanicResearchTask, research_task_for_question
+from .search_coverage import apply_default_search_coverage_plans
 from .state_plan import apply_default_state_plans
 from .transition import apply_default_transition_plans
 from .uncertainty import apply_default_uncertainty_plans
@@ -53,6 +54,7 @@ def current_program_cells() -> tuple[MechanicCell, ...]:
         apply_default_invariant_plans,
         apply_default_dependency_plans,
         apply_parent_domain_hypotheses_to_all,
+        apply_default_search_coverage_plans,
     ):
         cells = apply(cells)
     return cells

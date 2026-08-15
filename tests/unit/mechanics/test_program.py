@@ -14,16 +14,16 @@ def test_raw_decomposition_exposes_development_numbers():
     assert metrics.cycle_count == 0
 
 
-def test_current_program_advances_to_search_coverage_after_parent_domain_seeds():
+def test_current_program_advances_to_saturation_after_route_obligations():
     metrics = observe_current_mechanics_program()
     counts = dict(metrics.open_by_dimension)
-    for closed in (MechanicDimension.VERIFICATION, MechanicDimension.FAILURE, MechanicDimension.OBSERVABILITY, MechanicDimension.HANDOFF, MechanicDimension.STATE, MechanicDimension.TRANSITION_MODEL, MechanicDimension.MATHEMATICS, MechanicDimension.METRICS, MechanicDimension.UNCERTAINTY, MechanicDimension.INVARIANTS, MechanicDimension.DEPENDENCIES, MechanicDimension.PARENT_DISCIPLINE):
+    for closed in (MechanicDimension.PARENT_DISCIPLINE, MechanicDimension.SEARCH_COVERAGE):
         assert closed.value not in counts
-    assert counts[MechanicDimension.SEARCH_COVERAGE.value] == metrics.mechanic_count
+    assert counts[MechanicDimension.SATURATION.value] == metrics.mechanic_count
 
 
-def test_search_coverage_wave_is_adversarial_omission_route_without_llm_planning():
+def test_saturation_wave_uses_literature_bridge_route_without_llm_planning():
     tasks = plan_current_program_research(limit=8)
     assert len(tasks) == 8
-    assert all(item.query.route_kind is SearchRouteKind.ADVERSARIAL_OMISSION for item in tasks)
+    assert all(item.query.route_kind is SearchRouteKind.LITERATURE_BRIDGE for item in tasks)
     assert all(item.query.text for item in tasks)
