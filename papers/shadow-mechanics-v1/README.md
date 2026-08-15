@@ -21,6 +21,15 @@ papers/shadow-mechanics-v1/
     CLAIM_LEDGER.md
   evidence/
     IMPLEMENTATION_BINDINGS.md
+    ROUND_2026-08-15_RESEARCH_AND_CI.md
 ```
 
-The paper must not claim that all ORION mechanics are empirically valid merely because their specification dimensions are filled. `READY_FOR_BENCHMARK` means specification-level benchmarkability only. Live scientific-research performance, parent-domain recall, false-saturation recall, step-specific construct validity, and Self-ORION promotion authority remain open.
+## Current Shadow boundary
+
+The control/resource/persistence/engineering completion layer is implemented, but the current combined Shadow graph deliberately remains **open** at the step-specific level. `MechanicCell.v1` treats generic envelopes as provisional rather than allowing scaffolding to manufacture completeness.
+
+The finalization round observes 59 reachable mechanic cells and 472 remaining step-specific questions (eight provisional dimensions per cell: verification, failure, observability, handoff, state, transition model, mathematics and dependencies). This is an explicit research frontier, not a failed attempt to hide incompleteness.
+
+The paper must not claim that all ORION mechanics are empirically valid merely because generic specification layers exist. `READY_FOR_BENCHMARK` remains a definition for a cell whose required step-specific coordinates are actually closed or explicitly waived; the current 59-cell programme has not reached that state.
+
+Live scientific-research performance, parent-domain recall, false-saturation recall, step-specific construct validity, fresh-transfer benefit and Self-ORION promotion authority remain open.
