@@ -23,6 +23,7 @@ from orion.engine.trace import SolveTrace, TraceEvent
 from orion.providers.reasoner.base import ResearchReasoner
 from orion.providers.retrieval.base import RetrievalProvider
 from orion.providers.verification.base import VerificationProvider
+from orion.registry import CORE_OPERATOR_IDS, FRAMEWORK_VERSION
 
 
 @dataclass(frozen=True)
@@ -65,18 +66,8 @@ class OrionSolver:
             knowledge=KnowledgeState(),
             search_universe=SearchUniverseState(active_domain_ids=problem.initial_domain_ids),
             method=MethodState(
-                method_version="orion-minimum-autonomous-v0.1",
-                operator_ids=(
-                    "FRAME.v1",
-                    "SEARCH.v1",
-                    "ABSORB.v1",
-                    "RECONSTRUCT.v1",
-                    "DETECT.v1",
-                    "DIAGNOSE.v1",
-                    "REFRAME.v1",
-                    "REOPEN.v1",
-                    "SATURATE_BOUNDED.v2",
-                ),
+                method_version=FRAMEWORK_VERSION,
+                operator_ids=CORE_OPERATOR_IDS,
                 evaluator_id="external-verification-provider",
             ),
         )
