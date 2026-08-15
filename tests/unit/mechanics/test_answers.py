@@ -17,14 +17,16 @@ from orion.mechanics.program import current_program_cells, observe_mechanics_pro
 
 
 def _record(**overrides):
-    base = dict(
-        record_id="rec-1",
-        mechanic_id="FRAME.QUESTION.v0",
-        dimension=MechanicDimension.MATHEMATICS,
-        lane="claude",
-        evidence_refs=("rakl:publication/papers/paper-01-epistemic-mechanics/sections/02_compatibility_authority.tex@bd4ce50f",),
-        payload=(("mathematical_semantics", ("question relevance is a declared decision-coordinate map",)),),
-    )
+    base = {
+        "record_id": "rec-1",
+        "mechanic_id": "FRAME.QUESTION.v0",
+        "dimension": MechanicDimension.MATHEMATICS,
+        "lane": "claude",
+        "evidence_refs": (
+            "rakl:publication/papers/paper-01-epistemic-mechanics/sections/02_compatibility_authority.tex@bd4ce50f",
+        ),
+        "payload": (("mathematical_semantics", ("question relevance is a declared decision-coordinate map",)),),
+    }
     base.update(overrides)
     return AnswerRecord(**base)
 
