@@ -6,6 +6,7 @@ from typing import Mapping
 from .audit import MechanicAuditVerdict, audit_recursive
 from .decomposition import expanded_workflow_cells
 from .failure import apply_default_failure_plans
+from .handoff import apply_default_handoff_plans
 from .model import MechanicCell
 from .observability import apply_default_observation_plans
 from .questioning import MechanicQuestion
@@ -34,6 +35,7 @@ def current_program_cells() -> tuple[MechanicCell, ...]:
     cells = apply_default_verification_plans(cells)
     cells = apply_default_failure_plans(cells)
     cells = apply_default_observation_plans(cells)
+    cells = apply_default_handoff_plans(cells)
     return cells
 
 
@@ -51,9 +53,7 @@ def observe_mechanics_program(
     return MechanicsProgramMetrics(
         root_mechanic_id=root_mechanic_id,
         mechanic_count=len(report.reports),
-        ready_mechanic_count=sum(
-            item.verdict is MechanicAuditVerdict.READY_FOR_BENCHMARK for item in report.reports
-        ),
+        ready_mechanic_count=sum(item.verdict is MechanicAuditVerdict.READY_FOR_BENCHMARK for item in report.reports),
         open_question_count=sum(len(item.open_questions) for item in report.reports),
         open_by_dimension=tuple(sorted(counts.items())),
         unknown_child_count=len(report.unknown_child_ids),

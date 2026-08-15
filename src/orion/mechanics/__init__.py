@@ -10,6 +10,15 @@ from .failure import (
     apply_default_failure_plans,
     default_failure_plan,
 )
+from .handoff import (
+    AuthorityTransport,
+    FieldPresence,
+    HandoffRequirement,
+    MechanicHandoffPlan,
+    apply_default_handoff_plan,
+    apply_default_handoff_plans,
+    default_handoff_plan,
+)
 from .model import (
     DimensionWaiver,
     HandoffField,
@@ -53,14 +62,18 @@ from .verification import (
 from .workflow import ORION_WORKFLOW_CELLS, ORION_WORKFLOW_ROOT_ID, mechanical_workflow_backlog
 
 __all__ = [
+    "AuthorityTransport",
     "DimensionWaiver",
     "FailureDetectionKind",
     "FailureModeDefinition",
+    "FieldPresence",
     "HandoffField",
+    "HandoffRequirement",
     "MechanicAuditReport",
     "MechanicCell",
     "MechanicDimension",
     "MechanicFailurePlan",
+    "MechanicHandoffPlan",
     "MechanicObservationPlan",
     "MechanicQuestion",
     "MechanicReceipt",
@@ -83,6 +96,8 @@ __all__ = [
     "VerificationStage",
     "apply_default_failure_plan",
     "apply_default_failure_plans",
+    "apply_default_handoff_plan",
+    "apply_default_handoff_plans",
     "apply_default_observation_plan",
     "apply_default_observation_plans",
     "apply_default_verification_plan",
@@ -91,6 +106,7 @@ __all__ = [
     "audit_recursive",
     "current_program_cells",
     "default_failure_plan",
+    "default_handoff_plan",
     "default_observation_plan",
     "default_verification_plan",
     "expanded_mechanical_backlog",

@@ -21,19 +21,23 @@ def test_raw_decomposition_exposes_development_numbers():
     assert metrics.cycle_count == 0
 
 
-def test_current_program_absorbs_crosscutting_plans_then_advances_to_handoff():
+def test_current_program_absorbs_crosscutting_plans_then_advances_to_state():
     metrics = observe_current_mechanics_program()
     counts = dict(metrics.open_by_dimension)
-    assert MechanicDimension.VERIFICATION.value not in counts
-    assert MechanicDimension.FAILURE.value not in counts
-    assert MechanicDimension.OBSERVABILITY.value not in counts
-    assert counts[MechanicDimension.HANDOFF.value] == metrics.mechanic_count
+    for closed in (
+        MechanicDimension.VERIFICATION,
+        MechanicDimension.FAILURE,
+        MechanicDimension.OBSERVABILITY,
+        MechanicDimension.HANDOFF,
+    ):
+        assert closed.value not in counts
+    assert counts[MechanicDimension.STATE.value] == metrics.mechanic_count
 
 
 def test_global_scheduler_is_breadth_first_not_one_cell_deep():
     questions = plan_current_program_questions(limit=20)
     assert len({item.mechanic_id for item in questions}) == 20
-    assert all(item.dimension is MechanicDimension.HANDOFF for item in questions)
+    assert all(item.dimension is MechanicDimension.STATE for item in questions)
 
 
 def test_current_global_questions_become_search_tasks_without_llm_planning():
