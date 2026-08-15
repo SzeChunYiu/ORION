@@ -11,6 +11,7 @@ from .model import MechanicCell
 from .observability import apply_default_observation_plans
 from .questioning import MechanicQuestion
 from .research import MechanicResearchTask, research_task_for_question
+from .state_plan import apply_default_state_plans
 from .verification import apply_default_verification_plans
 from .workflow import ORION_WORKFLOW_ROOT_ID
 
@@ -36,14 +37,11 @@ def current_program_cells() -> tuple[MechanicCell, ...]:
     cells = apply_default_failure_plans(cells)
     cells = apply_default_observation_plans(cells)
     cells = apply_default_handoff_plans(cells)
+    cells = apply_default_state_plans(cells)
     return cells
 
 
-def observe_mechanics_program(
-    cells: tuple[MechanicCell, ...],
-    *,
-    root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID,
-) -> MechanicsProgramMetrics:
+def observe_mechanics_program(cells: tuple[MechanicCell, ...], *, root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID) -> MechanicsProgramMetrics:
     by_id = {cell.mechanic_id: cell for cell in cells}
     report = audit_recursive(by_id, root_mechanic_id)
     counts: dict[str, int] = {}
@@ -65,12 +63,7 @@ def observe_current_mechanics_program() -> MechanicsProgramMetrics:
     return observe_mechanics_program(current_program_cells())
 
 
-def plan_program_questions(
-    cells: tuple[MechanicCell, ...],
-    *,
-    limit: int = 64,
-    root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID,
-) -> tuple[MechanicQuestion, ...]:
+def plan_program_questions(cells: tuple[MechanicCell, ...], *, limit: int = 64, root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID) -> tuple[MechanicQuestion, ...]:
     if limit < 1:
         raise ValueError("program question limit must be positive")
     by_id = {cell.mechanic_id: cell for cell in cells}
@@ -87,12 +80,7 @@ def plan_program_questions(
     return tuple(selected)
 
 
-def plan_program_research(
-    cells: tuple[MechanicCell, ...],
-    *,
-    limit: int = 64,
-    root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID,
-) -> tuple[MechanicResearchTask, ...]:
+def plan_program_research(cells: tuple[MechanicCell, ...], *, limit: int = 64, root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID) -> tuple[MechanicResearchTask, ...]:
     by_id: Mapping[str, MechanicCell] = {cell.mechanic_id: cell for cell in cells}
     questions = plan_program_questions(cells, limit=limit, root_mechanic_id=root_mechanic_id)
     return tuple(research_task_for_question(by_id[question.mechanic_id], question) for question in questions)
