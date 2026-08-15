@@ -4,9 +4,13 @@ from dataclasses import dataclass
 from enum import Enum
 
 from orion.core.solution import SolutionStatus
+from orion.providers.development.base import DevelopmentChangeProvider
+from orion.runtime.runtime import OrionRuntime
 from orion.self_orion.change_control import (
     ChangeControlResult,
     ChangeControlVerdict,
+    ProtectedDevelopmentEvaluator,
+    SandboxCandidateRunner,
     SelfOrionChangeController,
     change_request_from_investigation,
 )
@@ -80,6 +84,30 @@ class ShadowSelfDrivingController:
         self._research_loop = research_loop
         self._change_controller = change_controller
         self._base_revision = base_revision
+
+    @classmethod
+    def from_components(
+        cls,
+        *,
+        runtime: OrionRuntime,
+        development_provider: DevelopmentChangeProvider,
+        sandbox_runner: SandboxCandidateRunner,
+        protected_evaluator: ProtectedDevelopmentEvaluator,
+        base_revision: str,
+    ) -> ShadowSelfDrivingController:
+        """Compose the full Shadow driver from host-supplied workers/boundaries."""
+
+        driver = SelfOrionDevelopmentDriver()
+        return cls(
+            driver=driver,
+            research_loop=ShadowSelfOrionResearchLoop(runtime, driver=driver),
+            change_controller=SelfOrionChangeController(
+                provider=development_provider,
+                runner=sandbox_runner,
+                evaluator=protected_evaluator,
+            ),
+            base_revision=base_revision,
+        )
 
     def run_cycle(
         self,
