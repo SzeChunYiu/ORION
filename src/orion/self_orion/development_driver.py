@@ -6,9 +6,9 @@ from enum import Enum
 from orion.mechanics.model import MechanicCell
 from orion.mechanics.program import MechanicsProgramMetrics, observe_mechanics_program
 from orion.self_orion.completion_program import completion_program_cells
+from orion.self_orion.rakl_answers import RaklAnswerTransferReport, apply_rakl_answer_transfer
 from orion.self_orion.rakl_transfer import (
     RaklTransferReceipt,
-    apply_rakl_transfer_profiles,
     rakl_transfer_receipts,
     transfer_coverage,
 )
@@ -44,6 +44,7 @@ class DevelopmentDriveReport:
     before: MechanicsProgramMetrics
     after: MechanicsProgramMetrics
     transfer_receipts: tuple[RaklTransferReceipt, ...]
+    answer_transfer: RaklAnswerTransferReport
     transferred_mechanics: int
     direct_rakl_mechanics: int
     composed_orion_mechanics: int
@@ -53,6 +54,14 @@ class DevelopmentDriveReport:
     can_drive_next_work_mechanically: bool
     can_self_promote: bool
     boundary: str
+
+    @property
+    def answer_record_count(self) -> int:
+        return len(self.answer_transfer.answer_records)
+
+    @property
+    def answer_residual_count(self) -> int:
+        return len(self.answer_transfer.application.residuals) + len(self.answer_transfer.audit_residuals)
 
 
 def _knowledge_class(coordinate: str) -> DevelopmentKnowledgeClass:
@@ -91,9 +100,7 @@ def empirical_frontier(cells: tuple[MechanicCell, ...]) -> tuple[EmpiricalWorkIt
                     coordinate=coordinate,
                     knowledge_class=knowledge_class,
                     priority=_priority(coordinate, knowledge_class),
-                    reason=(
-                        "Structural specification is available, but this coordinate requires evidence/research rather than declaration."
-                    ),
+                    reason="Structural specification is available, but this coordinate requires evidence/research rather than declaration.",
                 )
             )
     rows.sort(key=lambda item: (-item.priority, item.knowledge_class.value, item.mechanic_id, item.work_id))
@@ -103,19 +110,19 @@ def empirical_frontier(cells: tuple[MechanicCell, ...]) -> tuple[EmpiricalWorkIt
 class SelfOrionDevelopmentDriver:
     """Mechanical controller for the LLM-led -> Shadow Self-ORION transition.
 
-    V1 automatically consumes the trusted local/RAKL transfer basis. It does not
-    execute arbitrary external research, edit source code, or self-promote. Those
-    actions remain provider/host governed and are represented as explicit frontier
-    items after the local transfer pass.
+    V1 consumes local/RAKL knowledge through ORION's evidence-bound answer engine.
+    A provisional marker is cleared only by an attributable AnswerRecord; empirical
+    validity, fresh assurance and promotion authority remain separate.
     """
 
     def local_transfer_cells(self) -> tuple[MechanicCell, ...]:
-        return apply_rakl_transfer_profiles(completion_program_cells())
+        cells, _ = apply_rakl_answer_transfer(completion_program_cells())
+        return cells
 
     def drive_local_transfer(self) -> DevelopmentDriveReport:
         before_cells = completion_program_cells()
         before = observe_mechanics_program(before_cells)
-        after_cells = apply_rakl_transfer_profiles(before_cells)
+        after_cells, answer_transfer = apply_rakl_answer_transfer(before_cells)
         after = observe_mechanics_program(after_cells)
         receipts = rakl_transfer_receipts(before_cells)
         transferred, direct, composed = transfer_coverage(before_cells)
@@ -126,6 +133,8 @@ class SelfOrionDevelopmentDriver:
             and after.cycle_count == 0
             and after.unknown_dependency_count == 0
             and after.dependency_cycle_count == 0
+            and after.mixed_cycle_count == 0
+            and answer_transfer.attributable
         )
         stage = (
             SelfDrivingStage.LIVE_EVIDENCE_REQUIRED
@@ -138,6 +147,7 @@ class SelfOrionDevelopmentDriver:
             before=before,
             after=after,
             transfer_receipts=receipts,
+            answer_transfer=answer_transfer,
             transferred_mechanics=transferred,
             direct_rakl_mechanics=direct,
             composed_orion_mechanics=composed,
@@ -147,7 +157,7 @@ class SelfOrionDevelopmentDriver:
             can_drive_next_work_mechanically=structural_ready,
             can_self_promote=False,
             boundary=(
-                "Local/RAKL transfer may close specification questions and schedule the empirical frontier. "
+                "Local/RAKL answer transfer may close evidence-bound specification questions and schedule the empirical frontier. "
                 "It cannot create scientific authority, validate real-task performance, or satisfy Governed Self-ORION readiness."
             ),
         )
