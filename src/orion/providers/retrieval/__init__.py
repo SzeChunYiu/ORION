@@ -1,4 +1,5 @@
 from orion.providers.retrieval.base import RetrievalProvider
+from orion.providers.retrieval.callable import CallableRetrievalProvider
 from orion.providers.retrieval.memory import InMemoryRetrievalProvider
 
-__all__ = ["RetrievalProvider", "InMemoryRetrievalProvider"]
+__all__ = ["RetrievalProvider", "CallableRetrievalProvider", "InMemoryRetrievalProvider"]
