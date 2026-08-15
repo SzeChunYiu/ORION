@@ -9,6 +9,10 @@ def _episode(episode_id: str, variation: str) -> TaskEpisode:
     return TaskEpisode(
         episode_id=episode_id,
         task_id="task:parent-domain",
+        run_id=f"run:{variation}",
+        parent_run_id=None,
+        evaluation_epoch_id="eval:mechanical-question-fixture",
+        split_id="development",
         mechanic_id="ORION_SOLVE.v1",
         problem_signature=("find missing discipline",),
         variation_signature=(variation,),
@@ -19,6 +23,7 @@ def _episode(episode_id: str, variation: str) -> TaskEpisode:
         failure_signature=("parent-domain-miss",),
         residual_ids=("coverage-open",),
         evidence_ids=(),
+        evidence_bindings=(),
         post_state_hash=f"post:{variation}",
         timestamp="2026-08-15T00:00:00+00:00",
     )
