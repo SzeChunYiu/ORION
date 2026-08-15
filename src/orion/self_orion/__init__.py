@@ -13,6 +13,11 @@ from orion.self_orion.development_driver import (
     SelfOrionDevelopmentDriver,
     empirical_frontier,
 )
+from orion.self_orion.development_fibre import (
+    DevelopmentFibre,
+    compile_development_fibre,
+    rank_development_fibres,
+)
 from orion.self_orion.live_trial import (
     BaselineResearchRunner,
     BaselineTaskResult,
@@ -24,8 +29,8 @@ from orion.self_orion.live_trial import (
     TrialTaskComparison,
 )
 from orion.self_orion.rakl_transfer import (
-    RAKL_SOURCE_COMMIT,
     MECHANIC_TO_RAKL_SURFACES,
+    RAKL_SOURCE_COMMIT,
     RaklSurfaceProfile,
     RaklTransferReceipt,
     apply_rakl_transfer_profiles,
@@ -38,6 +43,7 @@ __all__ = [
     "BaselineResearchRunner",
     "BaselineTaskResult",
     "DevelopmentDriveReport",
+    "DevelopmentFibre",
     "DevelopmentKnowledgeClass",
     "EmpiricalWorkItem",
     "FrozenLiveTrialPacket",
@@ -56,11 +62,13 @@ __all__ = [
     "TrialTaskComparison",
     "apply_rakl_transfer_profiles",
     "assess_readiness",
+    "compile_development_fibre",
     "completion_program_cells",
     "empirical_frontier",
     "next_completion_questions",
     "next_completion_research",
     "observe_completion_program",
     "rakl_transfer_receipts",
+    "rank_development_fibres",
     "transfer_coverage",
 ]
