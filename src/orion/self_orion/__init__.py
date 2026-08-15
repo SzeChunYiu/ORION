@@ -5,14 +5,62 @@ from orion.self_orion.completion_program import (
     next_completion_research,
     observe_completion_program,
 )
+from orion.self_orion.development_driver import (
+    DevelopmentDriveReport,
+    DevelopmentKnowledgeClass,
+    EmpiricalWorkItem,
+    SelfDrivingStage,
+    SelfOrionDevelopmentDriver,
+    empirical_frontier,
+)
+from orion.self_orion.live_trial import (
+    BaselineResearchRunner,
+    BaselineTaskResult,
+    FrozenLiveTrialPacket,
+    FrozenTrialTask,
+    ResearchTrialKind,
+    ShadowLiveTrialReport,
+    ShadowLiveTrialRunner,
+    TrialTaskComparison,
+)
+from orion.self_orion.rakl_transfer import (
+    RAKL_SOURCE_COMMIT,
+    MECHANIC_TO_RAKL_SURFACES,
+    RaklSurfaceProfile,
+    RaklTransferReceipt,
+    apply_rakl_transfer_profiles,
+    rakl_transfer_receipts,
+    transfer_coverage,
+)
 from orion.self_orion.readiness import ReadinessEvidence, assess_readiness
 
 __all__ = [
+    "BaselineResearchRunner",
+    "BaselineTaskResult",
+    "DevelopmentDriveReport",
+    "DevelopmentKnowledgeClass",
+    "EmpiricalWorkItem",
+    "FrozenLiveTrialPacket",
+    "FrozenTrialTask",
+    "MECHANIC_TO_RAKL_SURFACES",
+    "RAKL_SOURCE_COMMIT",
+    "RaklSurfaceProfile",
+    "RaklTransferReceipt",
     "ReadinessEvidence",
+    "ResearchTrialKind",
+    "SelfDrivingStage",
+    "SelfOrionDevelopmentDriver",
     "ShadowCompletionState",
+    "ShadowLiveTrialReport",
+    "ShadowLiveTrialRunner",
+    "TrialTaskComparison",
+    "apply_rakl_transfer_profiles",
     "assess_readiness",
     "completion_program_cells",
+    "empirical_frontier",
     "next_completion_questions",
     "next_completion_research",
     "observe_completion_program",
+    "rakl_transfer_receipts",
+    "transfer_coverage",
 ]
