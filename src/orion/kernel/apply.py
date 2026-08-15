@@ -67,14 +67,25 @@ def _candidate_cell(
     cells: tuple[MechanicCell, ...],
     record: AnswerRecord,
     index: Mapping[str, object],
-) -> MechanicCell | None:
-    """Return the target cell as it would look with only this answer applied."""
+) -> tuple[MechanicCell | None, tuple[str, ...]]:
+    """Return the target cell as it would look with only this answer applied.
 
-    applied, _ = apply_answer_records(cells, (record,), evidence_records=index)
+    A record the application layer refuses has no candidate state: grading the
+    *unchanged* cell instead would let a check that the cell already satisfies
+    report VERIFIED for an answer that never landed — a grade/apply
+    disagreement that fakes verified progress. Refusal reasons are returned so
+    the grading can carry them.
+    """
+
+    applied, report = apply_answer_records(cells, (record,), evidence_records=index)
+    if report.residuals:
+        return None, tuple(
+            f"apply_{item.kind.lower()}:{item.note}" for item in report.residuals
+        )
     for cell in applied:
         if cell.mechanic_id == record.mechanic_id:
-            return cell
-    return None
+            return cell, ()
+    return None, ("record targets a mechanic absent from the current decomposition",)
 
 
 def enforce_authority_provisionality(
@@ -132,8 +143,44 @@ def grade_and_apply(
     gradings: list[AnswerGrading] = []
     applicable: list[AnswerRecord] = []
     for record in records:
-        candidate = _candidate_cell(cells, record, index)
+        candidate, refusal_reasons = _candidate_cell(cells, record, index)
         if candidate is None:
+            target = next(
+                (cell for cell in cells if cell.mechanic_id == record.mechanic_id),
+                None,
+            )
+            if target is None:
+                gradings.append(
+                    AnswerGrading(
+                        record_id=record.record_id,
+                        mechanic_id=record.mechanic_id,
+                        dimension=record.dimension,
+                        authority=AnswerAuthority.REJECTED,
+                        reasons=refusal_reasons,
+                    )
+                )
+                continue
+            # The record produced no candidate state, so no check may judge it:
+            # grading the unchanged cell against a check the cell already
+            # satisfies would report VERIFIED for an answer that never landed.
+            # Evidence grading still runs so its reasons stay first for guards.
+            grading = grade_answer(
+                record,
+                target,
+                evidence_roots=evidence_roots,
+                checks={},
+                require_digest=require_digest,
+                round_index=round_index,
+            )
+            grading = replace(
+                grading,
+                reasons=grading.reasons
+                + refusal_reasons
+                + ("check skipped: record produced no candidate state",),
+            )
+            gradings.append(grading)
+            if grading.applicable:
+                applicable.append(record)
             continue
         grading = grade_answer(
             record,
