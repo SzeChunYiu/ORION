@@ -2,14 +2,29 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import tempfile
 from collections.abc import Iterator, Mapping
+from contextlib import contextmanager
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
 from typing import Any
 
+import fcntl
+
 _GENESIS_HASH = "0" * 64
 _LEDGER_FILENAME = "ledger.jsonl"
+_LOCK_FILENAME = ".ledger.jsonl.lock"
+_TEMP_PREFIX = ".ledger.jsonl."
+_TEMP_SUFFIX = ".tmp"
+
+
+class _ExpectedHeadUnset:
+    pass
+
+
+_EXPECTED_HEAD_UNSET = _ExpectedHeadUnset()
 
 
 class EntryKind(str, Enum):
@@ -39,6 +54,17 @@ class LedgerEntry:
 
 class LedgerIntegrityError(RuntimeError):
     """Raised when a ledger on disk cannot be replayed as a valid chain."""
+
+
+class StaleLedgerHead(RuntimeError):
+    """Raised when an append's compare-and-swap precondition is stale."""
+
+    def __init__(self, expected_head: str | None, actual_head: str | None) -> None:
+        self.expected_head = expected_head
+        self.actual_head = actual_head
+        super().__init__(
+            f"expected ledger head {expected_head!r}, found {actual_head!r}"
+        )
 
 
 def canonical_bytes(payload: Any) -> bytes:
@@ -100,6 +126,7 @@ class LedgerStore:
         self._root = Path(root)
         self._root.mkdir(parents=True, exist_ok=True)
         self._path = self._root / _LEDGER_FILENAME
+        self._lock_path = self._root / _LOCK_FILENAME
         self._path.touch(exist_ok=True)
 
     @property
@@ -149,36 +176,100 @@ class LedgerStore:
         entries = self.entries()
         return entries[-1] if entries else None
 
-    def append(self, kind: EntryKind, payload: Mapping[str, Any]) -> LedgerEntry:
-        """Append one entry, chained to the verified current head."""
+    @contextmanager
+    def _exclusive_lock(self) -> Iterator[None]:
+        """Serialize writers on an inode that is never replaced."""
 
-        entries = self.entries()
-        sequence = len(entries)
-        prev_hash = entries[-1].entry_hash if entries else _GENESIS_HASH
-        normalized = json.loads(canonical_bytes(payload))
-        entry = LedgerEntry(
-            sequence=sequence,
-            kind=kind,
-            payload=normalized,
-            prev_hash=prev_hash,
-            entry_hash=compute_entry_hash(sequence, kind, normalized, prev_hash),
-        )
-        with self._path.open("a", encoding="utf-8") as handle:
-            handle.write(
-                json.dumps(
-                    {
-                        "sequence": entry.sequence,
-                        "kind": entry.kind.value,
-                        "payload": entry.payload,
-                        "prev_hash": entry.prev_hash,
-                        "entry_hash": entry.entry_hash,
-                    },
-                    sort_keys=True,
-                    separators=(",", ":"),
-                )
-                + "\n"
+        descriptor = os.open(self._lock_path, os.O_CREAT | os.O_RDWR, 0o600)
+        try:
+            fcntl.flock(descriptor, fcntl.LOCK_EX)
+            yield
+        finally:
+            fcntl.flock(descriptor, fcntl.LOCK_UN)
+            os.close(descriptor)
+
+    def _cleanup_stale_temporaries(self) -> None:
+        for candidate in self._root.glob(f"{_TEMP_PREFIX}*{_TEMP_SUFFIX}"):
+            try:
+                candidate.unlink()
+            except FileNotFoundError:
+                pass
+
+    def _fsync_directory(self) -> None:
+        flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0)
+        descriptor = os.open(self._root, flags)
+        try:
+            os.fsync(descriptor)
+        finally:
+            os.close(descriptor)
+
+    def append(
+        self,
+        kind: EntryKind,
+        payload: Mapping[str, Any],
+        *,
+        expected_head: str | None | _ExpectedHeadUnset = _EXPECTED_HEAD_UNSET,
+    ) -> LedgerEntry:
+        """Atomically append an entry, optionally requiring an exact head hash.
+
+        Passing ``expected_head=None`` explicitly requires an empty ledger.
+        Omitting it performs an unconditional append against the locked,
+        verified current head.
+        """
+
+        with self._exclusive_lock():
+            self._cleanup_stale_temporaries()
+            entries = self.entries()
+            actual_head = entries[-1].entry_hash if entries else None
+            if not isinstance(expected_head, _ExpectedHeadUnset) and expected_head != actual_head:
+                raise StaleLedgerHead(expected_head, actual_head)
+
+            sequence = len(entries)
+            prev_hash = actual_head if actual_head is not None else _GENESIS_HASH
+            normalized = json.loads(canonical_bytes(payload))
+            entry = LedgerEntry(
+                sequence=sequence,
+                kind=kind,
+                payload=normalized,
+                prev_hash=prev_hash,
+                entry_hash=compute_entry_hash(sequence, kind, normalized, prev_hash),
             )
-        return entry
+            encoded_entry = canonical_bytes(
+                {
+                    "sequence": entry.sequence,
+                    "kind": entry.kind.value,
+                    "payload": entry.payload,
+                    "prev_hash": entry.prev_hash,
+                    "entry_hash": entry.entry_hash,
+                }
+            ) + b"\n"
+            old_content = self._path.read_bytes()
+            temporary_path: Path | None = None
+            try:
+                with tempfile.NamedTemporaryFile(
+                    mode="wb",
+                    dir=self._root,
+                    prefix=_TEMP_PREFIX,
+                    suffix=_TEMP_SUFFIX,
+                    delete=False,
+                ) as handle:
+                    temporary_path = Path(handle.name)
+                    handle.write(old_content)
+                    if old_content and not old_content.endswith(b"\n"):
+                        handle.write(b"\n")
+                    handle.write(encoded_entry)
+                    handle.flush()
+                    os.fsync(handle.fileno())
+                os.replace(temporary_path, self._path)
+                temporary_path = None
+                self._fsync_directory()
+            finally:
+                if temporary_path is not None:
+                    try:
+                        temporary_path.unlink()
+                    except FileNotFoundError:
+                        pass
+            return entry
 
     def verify(self) -> tuple[str, ...]:
         """Return integrity violations; an empty tuple means the chain is intact."""
