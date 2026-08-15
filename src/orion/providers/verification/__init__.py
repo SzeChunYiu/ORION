@@ -3,8 +3,8 @@ from orion.providers.verification.callable import CallableVerificationProvider
 from orion.providers.verification.memory import InMemoryVerificationProvider
 
 __all__ = [
-    "VerificationProvider",
-    "VerificationResult",
     "CallableVerificationProvider",
     "InMemoryVerificationProvider",
+    "VerificationProvider",
+    "VerificationResult",
 ]

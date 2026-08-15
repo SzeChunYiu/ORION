@@ -7,6 +7,9 @@ name = "orion-research-os"
 version = "0.1.0"
 description = "Evidence-governed recursive research operating system"
 requires-python = ">=3.11"
+dependencies = [
+    "cryptography>=45",
+]
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]

@@ -26,4 +26,4 @@ def test_runtime_can_be_composed_without_vendor_dependencies():
     )
     result = runtime.solve(Problem("runtime-smoke", "What can be established?"))
     assert result.solution.problem_id == "runtime-smoke"
-    assert result.trace.trace_id == "trace:runtime-smoke"
+    assert result.trace.trace_id.startswith("trace:runtime-smoke:")

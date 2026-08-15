@@ -47,5 +47,5 @@ class OrionState:
     epoch: int = 0
     metadata: tuple[tuple[str, str], ...] = field(default_factory=tuple)
 
-    def advance(self) -> "OrionState":
+    def advance(self) -> OrionState:
         return replace(self, epoch=self.epoch + 1)

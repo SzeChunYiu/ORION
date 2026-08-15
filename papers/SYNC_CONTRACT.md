@@ -6,9 +6,10 @@ A framework change requires a paper audit when it changes any of:
 
 - `K/W/M` state semantics;
 - core operator identity or order;
+- mechanics-of-mechanics substrate identity or audit grammar;
 - authority/non-escalation rules;
 - saturation/stopping semantics;
-- failure/reframe/reopen behavior;
+- failure/experience learning, reframe or reopen behavior;
 - evaluation chronology;
 - Self-ORION promotion rules.
 
