@@ -7,6 +7,7 @@ from .audit import MechanicAuditVerdict, audit_recursive
 from .decomposition import expanded_workflow_cells
 from .failure import apply_default_failure_plans
 from .handoff import apply_default_handoff_plans
+from .mathematics import apply_candidate_mathematical_formulations
 from .model import MechanicCell
 from .observability import apply_default_observation_plans
 from .questioning import MechanicQuestion
@@ -34,18 +35,21 @@ class MechanicsProgramMetrics:
 
 def current_program_cells() -> tuple[MechanicCell, ...]:
     cells = expanded_workflow_cells()
-    cells = apply_default_verification_plans(cells)
-    cells = apply_default_failure_plans(cells)
-    cells = apply_default_observation_plans(cells)
-    cells = apply_default_handoff_plans(cells)
-    cells = apply_default_state_plans(cells)
-    cells = apply_default_transition_plans(cells)
+    for apply in (
+        apply_default_verification_plans,
+        apply_default_failure_plans,
+        apply_default_observation_plans,
+        apply_default_handoff_plans,
+        apply_default_state_plans,
+        apply_default_transition_plans,
+        apply_candidate_mathematical_formulations,
+    ):
+        cells = apply(cells)
     return cells
 
 
 def observe_mechanics_program(cells: tuple[MechanicCell, ...], *, root_mechanic_id: str = ORION_WORKFLOW_ROOT_ID) -> MechanicsProgramMetrics:
-    by_id = {cell.mechanic_id: cell for cell in cells}
-    report = audit_recursive(by_id, root_mechanic_id)
+    report = audit_recursive({cell.mechanic_id: cell for cell in cells}, root_mechanic_id)
     counts: dict[str, int] = {}
     for item in report.reports:
         for question in item.open_questions:
