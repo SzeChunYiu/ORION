@@ -50,7 +50,7 @@ def default_diagnosis_plan(cell: MechanicCell) -> MechanicDiagnosisPlan:
             "counterfactual/intervention/discriminator outcomes where available",
         ),
         discriminator_rule=(
-            "When multiple material cause/responsibility hypotheses imply different repairs, select or design an observation/computation/experiment whose possible outcomes separate them before high-impact revision."
+            "When multiple material cause/responsibility hypotheses imply different repairs, select or design a discriminator: an observation/computation/experiment whose possible outcomes separate them before high-impact revision."
         ),
         attribution_rule=(
             "Attribute responsibility only to the narrowest layer/cause supported by discriminating evidence; retain competing hypotheses or bounds when evidence cannot identify one cause."
