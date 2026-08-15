@@ -5,6 +5,7 @@ from typing import Mapping
 
 from .audit import MechanicAuditVerdict, audit_recursive
 from .decomposition import expanded_workflow_cells
+from .failure import apply_default_failure_plans
 from .model import MechanicCell
 from .questioning import MechanicQuestion
 from .research import MechanicResearchTask, research_task_for_question
@@ -30,7 +31,10 @@ class MechanicsProgramMetrics:
 def current_program_cells() -> tuple[MechanicCell, ...]:
     """Current Shadow-ORION research state after accepted specification-level transfers."""
 
-    return apply_default_verification_plans(expanded_workflow_cells())
+    cells = expanded_workflow_cells()
+    cells = apply_default_verification_plans(cells)
+    cells = apply_default_failure_plans(cells)
+    return cells
 
 
 def observe_mechanics_program(

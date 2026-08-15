@@ -2,6 +2,14 @@
 
 from .audit import MechanicAuditReport, RecursiveMechanicAudit, audit_mechanic, audit_recursive
 from .decomposition import RAKL_SURFACE_TO_CHILDREN, expanded_mechanical_backlog, expanded_workflow_cells
+from .failure import (
+    FailureDetectionKind,
+    FailureModeDefinition,
+    MechanicFailurePlan,
+    apply_default_failure_plan,
+    apply_default_failure_plans,
+    default_failure_plan,
+)
 from .model import (
     DimensionWaiver,
     HandoffField,
@@ -38,10 +46,13 @@ from .workflow import ORION_WORKFLOW_CELLS, ORION_WORKFLOW_ROOT_ID, mechanical_w
 
 __all__ = [
     "DimensionWaiver",
+    "FailureDetectionKind",
+    "FailureModeDefinition",
     "HandoffField",
     "MechanicAuditReport",
     "MechanicCell",
     "MechanicDimension",
+    "MechanicFailurePlan",
     "MechanicQuestion",
     "MechanicReceipt",
     "MechanicResearchTask",
@@ -59,11 +70,14 @@ __all__ = [
     "VerificationMethod",
     "VerificationObligation",
     "VerificationStage",
+    "apply_default_failure_plan",
+    "apply_default_failure_plans",
     "apply_default_verification_plan",
     "apply_default_verification_plans",
     "audit_mechanic",
     "audit_recursive",
     "current_program_cells",
+    "default_failure_plan",
     "default_verification_plan",
     "expanded_mechanical_backlog",
     "expanded_workflow_cells",
