@@ -11,6 +11,7 @@ class SearchUniverseState:
     candidate_domain_ids: tuple[str, ...] = ()
     searched_domain_ids: tuple[str, ...] = ()
     route_ids: tuple[str, ...] = ()
+    route_kind_ids: tuple[str, ...] = ()
     representation_ids: tuple[str, ...] = ()
     open_coverage_residual_ids: tuple[str, ...] = ()
 
@@ -20,11 +21,17 @@ class SearchUniverseState:
     def activate_domains(self, domain_ids: tuple[str, ...]) -> "SearchUniverseState":
         return replace(self, active_domain_ids=_union(self.active_domain_ids, domain_ids))
 
-    def mark_searched(self, domain_ids: tuple[str, ...], route_ids: tuple[str, ...]) -> "SearchUniverseState":
+    def mark_searched(
+        self,
+        domain_ids: tuple[str, ...],
+        route_ids: tuple[str, ...],
+        route_kind_ids: tuple[str, ...],
+    ) -> "SearchUniverseState":
         return replace(
             self,
             searched_domain_ids=_union(self.searched_domain_ids, domain_ids),
             route_ids=_union(self.route_ids, route_ids),
+            route_kind_ids=_union(self.route_kind_ids, route_kind_ids),
         )
 
     def add_representations(self, representation_ids: tuple[str, ...]) -> "SearchUniverseState":

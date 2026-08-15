@@ -36,14 +36,20 @@ class SearchOperator:
         items: list[RetrievedItem] = []
         searched_domains: list[str] = []
         route_ids: list[str] = []
+        route_kind_ids: list[str] = []
 
         for query in queries:
             items.extend(self._retrieval.search(query, limit=self._limit))
             route_ids.append(query.route_id)
+            route_kind_ids.append(query.route_kind.value)
             if query.domain_hint:
                 searched_domains.append(query.domain_hint)
 
-        universe = state.search_universe.mark_searched(tuple(searched_domains), tuple(route_ids))
+        universe = state.search_universe.mark_searched(
+            tuple(searched_domains),
+            tuple(route_ids),
+            tuple(route_kind_ids),
+        )
         next_state = replace(state, search_universe=universe)
         transition = Transition(
             operator=CycleOperator.SEARCH,

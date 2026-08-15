@@ -6,7 +6,7 @@ from dataclasses import asdict
 from orion.core.contributions import AssimilationOutcome, KnowledgeContribution
 from orion.core.problem import Problem
 from orion.core.residuals import Residual, Responsibility
-from orion.core.search import RetrievedItem, SearchQuery
+from orion.core.search import RetrievedItem, SearchQuery, SearchRouteKind
 from orion.core.state import OrionState
 from orion.providers.llm.base import LLMProvider, LLMRequest
 from orion.providers.reasoner.base import Diagnosis, ReframeProposal
@@ -14,7 +14,8 @@ from orion.providers.reasoner.base import Diagnosis, ReframeProposal
 
 _SYSTEM = """You are a semantic reasoning component inside ORION.
 You may propose interpretations, queries, diagnoses and prose, but you do not create scientific authority.
-Return only JSON matching the requested schema. Preserve uncertainty and do not invent source evidence."""
+Return only JSON matching the requested schema. Preserve uncertainty and do not invent source evidence.
+For search planning, do not remain inside the current vocabulary: deliberately use independent route families such as function-only, parent-discipline, adversarial-omission and freshness searches when they remain uncovered."""
 
 
 class LLMResearchReasoner:
@@ -46,10 +47,12 @@ class LLMResearchReasoner:
             {
                 "problem": asdict(problem),
                 "active_domains": state.search_universe.active_domain_ids,
+                "candidate_domains": state.search_universe.candidate_domain_ids,
                 "searched_domains": state.search_universe.searched_domain_ids,
+                "covered_route_kinds": state.search_universe.route_kind_ids,
                 "representations": state.search_universe.representation_ids,
             },
-            '{"queries":[{"query_id":"...","text":"...","route_id":"...","domain_hint":null}]}',
+            '{"queries":[{"query_id":"...","text":"...","route_id":"...","route_kind":"PARENT_DISCIPLINE","domain_hint":null}]}',
         )
         queries = data.get("queries", [])
         if not isinstance(queries, list):
@@ -59,6 +62,7 @@ class LLMResearchReasoner:
                 query_id=str(item["query_id"]),
                 text=str(item["text"]),
                 route_id=str(item["route_id"]),
+                route_kind=SearchRouteKind(str(item["route_kind"])),
                 domain_hint=(str(item["domain_hint"]) if item.get("domain_hint") else None),
             )
             for item in queries

@@ -1,6 +1,20 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from enum import Enum
+
+
+class SearchRouteKind(str, Enum):
+    """Independent route families used to challenge the current search basis."""
+
+    CURRENT_VOCABULARY = "CURRENT_VOCABULARY"
+    LEXICAL_VARIANT = "LEXICAL_VARIANT"
+    FUNCTION_ONLY = "FUNCTION_ONLY"
+    PARENT_DISCIPLINE = "PARENT_DISCIPLINE"
+    CROSS_DOMAIN = "CROSS_DOMAIN"
+    CITATION_NEIGHBORHOOD = "CITATION_NEIGHBORHOOD"
+    ADVERSARIAL_OMISSION = "ADVERSARIAL_OMISSION"
+    FRESHNESS = "FRESHNESS"
 
 
 @dataclass(frozen=True)
@@ -8,6 +22,7 @@ class SearchQuery:
     query_id: str
     text: str
     route_id: str
+    route_kind: SearchRouteKind
     domain_hint: str | None = None
 
     def __post_init__(self) -> None:
