@@ -81,7 +81,9 @@ def test_self_driving_cycle_researches_proposes_evaluates_and_only_recommends_ho
     controller = _controller(change=change)
     result = controller.run_cycle(limit=1, evaluation_epoch_id="epoch:frozen", split_id="split:development")[0]
     assert result.development_state.after.open_question_count == 0
-    assert result.development_state.structurally_closed_questions == 472
+    assert result.development_state.before.open_question_count > 0
+    assert result.development_state.structurally_closed_questions == result.development_state.before.open_question_count
+    assert result.development_state.answer_record_count == result.development_state.before.open_question_count
     assert result.status is SelfDrivingCycleStatus.HOST_PROMOTION_RECOMMENDED
     assert change.calls == 1
     assert not result.self_merge_authorized
