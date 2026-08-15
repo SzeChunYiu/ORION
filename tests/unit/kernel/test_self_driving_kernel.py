@@ -18,10 +18,15 @@ from orion.kernel import (
     SelfDrivingDriver,
     StaticAnswerSource,
     apply_selection_guards,
+    battery_order,
+    discrimination_order,
     grade_and_apply,
+    host_battery,
     resolve_evidence_ref,
+    run_discriminating_check,
     run_round,
 )
+from orion.kernel.battery import JUNK_TOKEN, writable_fields
 from orion.kernel.guards import GuardEffect, GuardRule
 from orion.kernel.saturation import (
     GrowthVector,
@@ -34,7 +39,7 @@ from orion.mechanics.answers import AnswerRecord
 from orion.mechanics.model import MechanicCell, MechanicDimension
 from orion.mechanics.program import observe_mechanics_program
 from orion.mechanics.questioning import generate_mechanic_questions
-from orion.kernel.evidence import expected_binding, resolve_evidence_ref
+from orion.kernel.evidence import expected_binding
 from orion.mechanics.workflow import ORION_WORKFLOW_ROOT_ID
 
 _UNRESOLVABLE_BINDING = "0" * 64
@@ -84,7 +89,7 @@ def _storage_check(*, lane: str = "verifier", frozen_at_round: int | None = 0) -
             scope="s",
             storage_contracts=("append-only ledger entry per answer",),
         ),
-        negative_fixture=MechanicCell(mechanic_id="fixture.neg", purpose="p", scope="s"),
+        negative_fixtures=(MechanicCell(mechanic_id="fixture.neg", purpose="p", scope="s"),),
         frozen_at_round=frozen_at_round,
     )
 
@@ -193,7 +198,7 @@ def test_check_that_accepts_its_negative_fixture_cannot_verify(tmp_path: Path) -
         lane="verifier",
         predicate=lambda cell: True,
         positive_fixture=MechanicCell(mechanic_id="p", purpose="p", scope="s"),
-        negative_fixture=MechanicCell(mechanic_id="n", purpose="p", scope="s"),
+        negative_fixtures=(MechanicCell(mechanic_id="n", purpose="p", scope="s"),),
         frozen_at_round=0,
     )
     result = grade_and_apply(
@@ -206,6 +211,126 @@ def test_check_that_accepts_its_negative_fixture_cannot_verify(tmp_path: Path) -
     grading = result.gradings[0]
     assert grading.check_outcome is CheckOutcome.NOT_DISCRIMINATING
     assert grading.authority is AnswerAuthority.EVIDENCE_BOUND
+
+
+def _check_with(predicate, *, negatives: tuple[MechanicCell, ...] = ()) -> DiscriminatingCheck:
+    return DiscriminatingCheck(
+        check_id="c",
+        dimension=MechanicDimension.STORAGE,
+        lane="verifier",
+        predicate=predicate,
+        positive_fixture=MechanicCell(
+            mechanic_id="fixture.pos",
+            purpose="p",
+            scope="s",
+            storage_contracts=("append-only ledger entry per answer",),
+        ),
+        negative_fixtures=negatives,
+        frozen_at_round=0,
+    )
+
+
+def test_the_satisfaction_predicate_itself_cannot_be_admitted() -> None:
+    """The theorem the host battery buys.
+
+    `questioning._satisfied` is `bool(cell.some_tuple)`. If that predicate could
+    be registered as a check, the loop would verify any string and the entire
+    authority ladder would be decorative. The battery's junk member has every
+    writable field non-empty, so admissibility entails the predicate is not
+    mere non-emptiness — for any dimension, without enumerating attacks.
+    """
+
+    defect = _check_with(lambda cell: bool(cell.storage_contracts))
+    outcome, reasons = run_discriminating_check(
+        defect,
+        MechanicCell(
+            mechanic_id="t", purpose="p", scope="s", storage_contracts=("anything",)
+        ),
+    )
+    assert outcome is CheckOutcome.NOT_DISCRIMINATING
+    assert any("battery.junk" in item for item in reasons)
+
+
+def test_a_check_satisfied_by_restating_the_question_cannot_be_admitted() -> None:
+    """Envelope laundering: closure by echoing the audit question back."""
+
+    # "It is substantive because it is long" — accepts the real answer and the
+    # dimension's own question text alike.
+    echo = _check_with(
+        lambda cell: any(len(item) > 20 for item in cell.storage_contracts)
+    )
+    outcome, reasons = run_discriminating_check(
+        echo,
+        MechanicCell(
+            mechanic_id="t",
+            purpose="p",
+            scope="s",
+            storage_contracts=("a reasonably long sounding phrase",),
+        ),
+    )
+    assert outcome is CheckOutcome.NOT_DISCRIMINATING
+    assert any("battery.envelope" in item for item in reasons)
+
+
+def test_a_weak_author_declared_negative_does_not_lower_the_bar() -> None:
+    """The author picks negatives; the host picks more. Only the host's bind."""
+
+    weak = _check_with(
+        lambda cell: bool(cell.storage_contracts),
+        negatives=(MechanicCell(mechanic_id="trivial", purpose="p", scope="s"),),
+    )
+    outcome, _ = run_discriminating_check(
+        weak,
+        MechanicCell(mechanic_id="t", purpose="p", scope="s", storage_contracts=("x",)),
+    )
+    assert outcome is CheckOutcome.NOT_DISCRIMINATING
+    assert discrimination_order(weak) == 1 + battery_order(MechanicDimension.STORAGE)
+
+
+def test_no_dimension_falls_below_the_host_floor() -> None:
+    """Every dimension, including the two that carry structured payloads.
+
+    Found by running against the real decomposition rather than fixtures:
+    HANDOFF and METRICS write typed objects, not strings, so a string-only
+    battery left exactly those two at order 1 — readmitting the defect
+    predicate for them alone.
+    """
+
+    assert {battery_order(dimension) for dimension in MechanicDimension} == {3}
+
+
+def test_non_emptiness_is_inadmissible_for_every_dimension() -> None:
+    """The theorem, universally quantified over the audit grammar."""
+
+    for dimension in MechanicDimension:
+        junk = host_battery(dimension)[1]
+        fields = writable_fields(dimension) or (
+            "handoff_fields" if dimension is MechanicDimension.HANDOFF else "metrics",
+        )
+        for field in fields:
+            check = DiscriminatingCheck(
+                check_id=f"c:{dimension.value}:{field}",
+                dimension=dimension,
+                lane="verifier",
+                predicate=lambda cell, name=field: bool(getattr(cell, name)),
+                positive_fixture=junk,
+                frozen_at_round=0,
+            )
+            outcome, _ = run_discriminating_check(check, junk)
+            assert outcome is CheckOutcome.NOT_DISCRIMINATING, (
+                f"{dimension.value}.{field} still admits mere non-emptiness"
+            )
+
+
+def test_the_battery_exercises_every_field_the_dimension_may_write() -> None:
+    """A battery that left a writable field empty would leave an unguarded path."""
+
+    for dimension in MechanicDimension:
+        fields = writable_fields(dimension)
+        if not fields:
+            continue
+        junk = host_battery(dimension)[1]
+        assert all(getattr(junk, name) == (JUNK_TOKEN,) for name in fields)
 
 
 def test_check_written_after_the_answer_cannot_verify(tmp_path: Path) -> None:

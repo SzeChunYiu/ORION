@@ -8,6 +8,7 @@ from pathlib import Path
 from orion.mechanics.answers import AnswerRecord
 from orion.mechanics.model import MechanicCell, MechanicDimension
 
+from .battery import host_battery
 from .evidence import EvidenceResolution, resolve_evidence_refs
 
 
@@ -46,10 +47,13 @@ class CheckOutcome(str, Enum):
 class DiscriminatingCheck:
     """An executable claim that a mechanic dimension is genuinely answered.
 
-    `predicate` must accept `positive_fixture` and reject `negative_fixture`.
-    A check that accepts both is not evidence of anything — it is the exact
-    signature of closure-by-string-filling — and is refused as
-    `NOT_DISCRIMINATING` rather than treated as a pass.
+    Formally a triple (predicate, positive fixture, declared negatives). The
+    predicate must accept its positive fixture and reject every declared
+    negative *and* every member of the host battery for its dimension. The
+    battery is what makes the requirement bite: negatives chosen only by the
+    check's author can be trivially weak, so admissibility would not exclude
+    `lambda cell: bool(cell.some_field)` — the very predicate the authority
+    ladder exists to refuse.
     """
 
     check_id: str
@@ -57,7 +61,7 @@ class DiscriminatingCheck:
     lane: str
     predicate: Callable[[MechanicCell], bool]
     positive_fixture: MechanicCell
-    negative_fixture: MechanicCell
+    negative_fixtures: tuple[MechanicCell, ...] = ()
     frozen_at_round: int | None = None
 
     def __post_init__(self) -> None:
@@ -103,18 +107,25 @@ class AnswerGrading:
 def run_discriminating_check(
     check: DiscriminatingCheck, cell: MechanicCell
 ) -> tuple[CheckOutcome, tuple[str, ...]]:
-    """Execute a check against its own fixtures before trusting it on a cell."""
+    """Admit the check against its fixtures and the host battery, then apply it.
 
+    Order matters: the check is judged before it is trusted. An inadmissible
+    check never reaches the answered cell, so a predicate that separates
+    nothing cannot report a pass.
+    """
+
+    negatives = tuple(check.negative_fixtures) + host_battery(check.dimension)
     try:
-        accepts_positive = bool(check.predicate(check.positive_fixture))
-        rejects_negative = not bool(check.predicate(check.negative_fixture))
+        if not bool(check.predicate(check.positive_fixture)):
+            return CheckOutcome.NOT_SOUND, ("check rejects its own positive fixture",)
+        accepted = tuple(
+            item.mechanic_id for item in negatives if bool(check.predicate(item))
+        )
     except Exception as error:  # noqa: BLE001 - a check that crashes cannot verify
         return CheckOutcome.ERRORED, (f"check raised {type(error).__name__}: {error}",)
-    if not accepts_positive:
-        return CheckOutcome.NOT_SOUND, ("check rejects its own positive fixture",)
-    if not rejects_negative:
-        return CheckOutcome.NOT_DISCRIMINATING, (
-            "check accepts its own negative fixture, so it separates nothing",
+    if accepted:
+        return CheckOutcome.NOT_DISCRIMINATING, tuple(
+            f"check accepts negative '{item}', so it separates nothing" for item in accepted
         )
     try:
         passed = bool(check.predicate(cell))
@@ -123,6 +134,12 @@ def run_discriminating_check(
     if not passed:
         return CheckOutcome.FAILED, ("check rejects the answered cell",)
     return CheckOutcome.PASSED, ()
+
+
+def discrimination_order(check: DiscriminatingCheck) -> int:
+    """How many distinct negatives the check must reject to be admitted."""
+
+    return len(check.negative_fixtures) + len(host_battery(check.dimension))
 
 
 def grade_answer(

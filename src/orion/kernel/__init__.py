@@ -18,11 +18,13 @@ frozen before the round it judges, reaches `VERIFIED` and closes anything.
 from .apply import GradedApplication, grade_and_apply
 from .driver import RunReport, SelfDrivingDriver, learn_guards, replay_cells
 from .evidence import EvidenceResolution, EvidenceStatus, resolve_evidence_ref
+from .battery import battery_order, host_battery
 from .gate import (
     AnswerAuthority,
     AnswerGrading,
     CheckOutcome,
     DiscriminatingCheck,
+    discrimination_order,
     grade_answer,
     run_discriminating_check,
 )
@@ -51,6 +53,9 @@ __all__ = [
     "SelfDrivingDriver",
     "StaticAnswerSource",
     "apply_selection_guards",
+    "battery_order",
+    "discrimination_order",
+    "host_battery",
     "derive_guard_rule",
     "grade_and_apply",
     "grade_answer",
