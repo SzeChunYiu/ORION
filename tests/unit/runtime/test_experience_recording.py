@@ -32,7 +32,7 @@ class _FakeSolver:
 
     def solve(self, problem: Problem, *, initial_state=None, trace_id=None):
         assert initial_state is not None
-        final_state = initial_state.advance()
+        final_state = initial_state.advance() if self.atomic_failure else initial_state
         events = ()
         if self.atomic_failure:
             transition = Transition(
@@ -281,6 +281,62 @@ def test_root_solve_guard_rejects_before_any_provider_or_operator_side_effect():
     assert event.receipt.failure_signature == ("mechanic_guard_rejected",)
 
 
+def test_root_solve_guard_executes_once_for_one_root_invocation():
+    calls = []
+    guard = CallableMechanicGuard(
+        "guard:pattern:root-solve-once",
+        "ORION_SOLVE.v1",
+        lambda problem, state: (
+            calls.append((problem.problem_id, state.epoch))
+            or MechanicGuardResult(passed=True)
+        ),
+    )
+    runtime = OrionRuntime.from_providers(
+        llm=CallableLLMProvider(
+            lambda request: '{"queries":[]}', model_id="root-guard-once"
+        ),
+        retrieval=InMemoryRetrievalProvider({}),
+        verification=InMemoryVerificationProvider(frozenset()),
+        config=SolverConfig(max_iterations=2),
+        guards=(guard,),
+    )
+    initial_state = OrionState(
+        KnowledgeState(
+            claims=(
+                ClaimRecord(
+                    "claim:root-guard-once",
+                    "Known fixture claim.",
+                    ("evidence:root-guard-once",),
+                    authority=ClaimAuthority.VERIFIED,
+                    certificate_ids=("certificate:root-guard-once",),
+                ),
+            ),
+            evidence=(
+                EvidenceRecord(
+                    "evidence:root-guard-once",
+                    "Known fixture evidence.",
+                    "fixture://root-guard-once",
+                    certificate_ids=("certificate:root-guard-once",),
+                ),
+            ),
+        ),
+        SearchUniverseState(),
+        MethodState("test"),
+    )
+
+    result = runtime.solve(
+        Problem("task:root-guard-once", "Invoke one root solve."),
+        initial_state=initial_state,
+    )
+
+    guarded_events = tuple(
+        event for event in result.trace.events if guard.guard_id in event.receipt.action_ids
+    )
+    assert calls == [("task:root-guard-once", 0)]
+    assert len(guarded_events) == 1
+    assert guarded_events[0].summary == "solve_started"
+
+
 def test_search_guard_is_rechecked_at_current_epoch_and_rejection_is_not_execution():
     store = InMemoryExperienceStore()
     calls = []
@@ -445,5 +501,28 @@ def test_runtime_rejects_solver_result_with_substituted_trace_identity():
 
     with pytest.raises(ValueError, match="requested trace identity"):
         runtime.solve(Problem("task:trace-id", "Reject substituted identity."))
+
+    assert store.episodes() == ()
+
+
+def test_runtime_rejects_empty_trace_that_mutates_state_before_recording():
+    store = InMemoryExperienceStore()
+    runtime = OrionRuntime(
+        _FakeSolver(SolutionStatus.CANNOT_CHECK), experience_store=store
+    )
+    original_solve = runtime._solver.solve
+
+    def mutate_without_trace(problem, *, initial_state=None, trace_id=None):
+        solution, _, trace = original_solve(
+            problem,
+            initial_state=initial_state,
+            trace_id=trace_id,
+        )
+        return solution, initial_state.advance(), trace
+
+    runtime._solver.solve = mutate_without_trace
+
+    with pytest.raises(ValueError, match="empty solve trace cannot bind"):
+        runtime.solve(Problem("task:empty-trace", "Reject untraced mutation."))
 
     assert store.episodes() == ()

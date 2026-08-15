@@ -166,6 +166,18 @@ class OrionSolver:
             (),
         )
 
+    @staticmethod
+    def _attempt_action(
+        action: Callable[[], _T],
+    ) -> tuple[_T | None, float, Exception | None]:
+        """Attempt an internal action without re-entering the root guard."""
+
+        started_at = perf_counter()
+        try:
+            return action(), perf_counter() - started_at, None
+        except Exception as exc:  # noqa: BLE001 - internal failure is evidence
+            return None, perf_counter() - started_at, exc
+
     @classmethod
     def _failure_from_attempt(
         cls,
@@ -886,16 +898,7 @@ class OrionSolver:
                 residual.residual_id for residual in material
             )
             iteration_changed_coordinates = tuple(dict.fromkeys(changed_coordinates))
-            (
-                recorded_state,
-                latency_seconds,
-                error,
-                invoked_guard_ids,
-                guard_residuals,
-            ) = self._attempt_mechanic(
-                CycleOperator.RECURSE,
-                problem,
-                state,
+            recorded_state, latency_seconds, error = self._attempt_action(
                 partial(
                     self._record_iteration,
                     state,
@@ -906,8 +909,10 @@ class OrionSolver:
                     residual_ids=iteration_residual_ids,
                     changed_coordinates=iteration_changed_coordinates,
                     route_kind_ids=current_route_kinds,
-                ),
+                )
             )
+            invoked_guard_ids: tuple[str, ...] = ()
+            guard_residuals: tuple[str, ...] = ()
             failure = self._failure_from_attempt(
                 problem=problem,
                 state=state,
@@ -1021,20 +1026,13 @@ class OrionSolver:
                         trace_id=trace_id,
                     )
                 else:
-                    (
-                        answer,
-                        latency_seconds,
-                        error,
-                        invoked_guard_ids,
-                        guard_residuals,
-                    ) = self._attempt_mechanic(
-                        CycleOperator.RECURSE,
-                        problem,
-                        state,
+                    answer, latency_seconds, error = self._attempt_action(
                         lambda state=state: self._reasoner.compose_answer(
                             problem, state
-                        ),
+                        )
                     )
+                    invoked_guard_ids = ()
+                    guard_residuals = ()
                     failure = self._failure_from_attempt(
                         problem=problem,
                         state=state,

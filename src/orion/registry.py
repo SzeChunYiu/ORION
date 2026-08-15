@@ -1,7 +1,7 @@
 """Canonical Shadow-ORION registry shared by runtime, tests and paper synchronization."""
 
-FRAMEWORK_VERSION = "0.2.2-shadow"
-PAPER_SYNC_EPOCH = "2026-08-15-hostile-experience-repair-v2"
+FRAMEWORK_VERSION = "0.2.3-shadow"
+PAPER_SYNC_EPOCH = "2026-08-15-post-merge-hostile-review-v3"
 
 CORE_OPERATOR_IDS = (
     "FRAME.v1",
@@ -24,6 +24,6 @@ MECHANICS_SUBSTRATE_IDS = (
     "TaskEpisode.v1",
     "FailurePatternCandidate.v1",
     "PatternVerificationReceipt.v2",
-    "MechanicTraceReceipt.v1",
-    "MechanicGuard.v0",
+    "MechanicTraceReceipt.v2",
+    "MechanicGuard.v1",
 )
