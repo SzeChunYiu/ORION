@@ -41,10 +41,18 @@ def test_prepare_uses_type_for_600_deep_tasks_without_gold_in_candidate(
             }
         )
     for index in range(600):
+        if index == 0:
+            question = ""
+        elif index == 1:
+            # Public question prose may legitimately contain hidden-field words;
+            # custody is a schema boundary, not a substring filter.
+            question = "what is the answer to this public research question?"
+        else:
+            question = f"deep public question {index}"
         rows.append(
             {
                 "type": "deep",
-                "question": "" if index == 0 else f"deep public question {index}",
+                "question": question,
                 "answer": ["None" if index < 60 else f"deep hidden title {index}"],
                 "arxiv_id": ["" if index < 60 else f"2501.{index:05d}"],
             }
@@ -57,15 +65,16 @@ def test_prepare_uses_type_for_600_deep_tasks_without_gold_in_candidate(
     assert manifest["empty_question_task_count"] == 1
     assert manifest["empty_target_task_count"] == 60
     assert manifest["exact_id_scorable_task_count"] == 540
+    assert manifest["candidate_public_fields"] == ["question", "task_id"]
+
     public_text = public.read_text(encoding="utf-8")
-    assert "answer" not in public_text
-    assert "arxiv_id" not in public_text
     assert "deep hidden" not in public_text
     assert "wide 0" not in public_text
     public_rows = [json.loads(line) for line in public_text.splitlines()]
     gt_rows = [json.loads(line) for line in gt.read_text(encoding="utf-8").splitlines()]
     assert len(public_rows) == len(gt_rows) == 600
-    assert set(public_rows[0]) == {"task_id", "question"}
+    assert all(set(row) == {"task_id", "question"} for row in public_rows)
+    assert public_rows[1]["question"] == "what is the answer to this public research question?"
     assert set(gt_rows[0]) == {
         "task_id",
         "question",
