@@ -75,6 +75,17 @@ from orion.self_orion.novelty import (
     DevelopmentNoveltyReport,
     classify_development_novelty,
 )
+from orion.self_orion.rakl_donor_gate import (
+    RAKL_DONOR_COMMIT,
+    RaklDonorAudit,
+    RaklDonorAuditReport,
+    RaklDonorCandidate,
+    RaklDonorDisposition,
+    RaklDonorRouteReceipt,
+    RaklDonorRouteVerdict,
+    RaklDonorSearchRoute,
+    assess_rakl_donor_audit,
+)
 from orion.self_orion.rakl_transfer import (
     MECHANIC_TO_RAKL_SURFACES,
     RAKL_SOURCE_COMMIT,
