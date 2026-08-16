@@ -1,11 +1,11 @@
 # P2 claim ledger V1
 
-This ledger is intentionally narrower than the original paper ambition. A row is `SUPPORTED` only when the cited artifact exists in the repository and the stated authority matches that artifact. External discovery benefit remains `CANNOT_CHECK`.
+This ledger is intentionally narrower than the original paper ambition. A row is `SUPPORTED` only when the cited artifact exists in the repository and the stated authority matches that artifact. External discovery superiority remains `CANNOT_CHECK`; the completed MetaSyn row is an external retrieval/screening probe, not a full multi-provider ORION superiority result.
 
 | Claim surface | Claim allowed in this revision | Authority | Supporting artifact | Status |
 | --- | --- | --- | --- | --- |
 | Abstract | ORION's route/read/stopping governance is implemented and survives the controlled complete-gold mechanism tests. | 20-task offline companion, descriptive only | `evidence/offline_results/RESULTS_SUMMARY_V1.json`; frozen record digest `611808dc…` | `SUPPORTED` |
-| Abstract | ORION improves real scientific-literature discovery over BM25/dense/agentic baselines. | Requires external Wide/Deep or other denominator-valid benchmark result | No system result archived | `CANNOT_CHECK` |
+| Abstract | ORION improves real scientific-literature discovery over BM25/dense/agentic baselines. | Requires external Wide/Deep or other denominator-valid benchmark result | No matched external superiority result archived | `CANNOT_CHECK` |
 | Results | Full ORION mean complete-gold recall is 0.994444 on the frozen controlled index; strongest frozen confirmatory baseline is 0.666667; descriptive difference +0.327777. | `DESCRIPTIVE_ONLY`, n=20 < frozen inferential n=97 | `RESULTS_SUMMARY_V1.json` | `SUPPORTED` |
 | Results | Full ORION has zero premature task closures in the controlled companion; the strongest confirmatory baseline has rate 1.0. | `DESCRIPTIVE_ONLY` | `RESULTS_SUMMARY_V1.json`; `TABLE_P2-3_failure_taxonomy.md` | `SUPPORTED` |
 | Mechanism H2 | Removing route-independence governance lowers controlled-index recall to 0.444444 and closes prematurely on all tasks. | Negative ablation, descriptive only | `RESULTS_SUMMARY_V1.json` → `mechanism_checks.route_independence` | `SUPPORTED` |
@@ -17,9 +17,9 @@ This ledger is intentionally narrower than the original paper ambition. A row is
 | External Wide | AutoResearchBench Wide's official scorer is credential-free and exact for IoU/recall/precision; this is a runnability statement, not a system result. | Source/audit evidence | `protocol/EXTERNAL_ACCESS_AUDIT_V1.json`; `evidence/access/autoresearchbench_evaluator_layer_check.md` | `SUPPORTED` |
 | External Deep | Official Deep scoring has been completed for ORION. | Needs OpenAI-compatible judge execution | No judge run archived | `CANNOT_CHECK` |
 | SAGE | SAGE supports a result in this revision. | Needs published corpus/evaluator or a predeclared substitute | Corpus/evaluator absent in access audit | `CANNOT_CHECK` |
-| MetaSyn | MetaSyn retrieval/screening result has been completed. | End-to-end execution required | Runnability audited, no system result archived | `CANNOT_CHECK` |
-| Conclusion | The frozen controlled experiment supports the governance mechanisms; externally supported discovery/stopping superiority remains open. | Combination of offline result + access audit | Results summary + external access audit | `SUPPORTED` |
+| MetaSyn | The credential-free 86-review external retrieval/screening probe completed under the pinned official MetaSyn ID-only evaluator: retrieval recall 0.7485, inclusion recall 0.5651, post-retrieval loss 0.1834, screening accuracy 0.7228. | `OFFICIAL_METASYN_ID_ONLY_EVALUATOR`; external probe, not full ORION | `evidence/external_results/METASYN_ID_ONLY_PROBE_V1.json`; corrected Actions run 31973786111 | `SUPPORTED` |
+| Conclusion | The frozen controlled experiment supports the governance mechanisms and MetaSyn now supplies a completed external retrieval/screening probe; matched external discovery/stopping superiority remains open. | Offline result + bounded external probe | Results summary + `METASYN_ID_ONLY_PROBE_V1.json` | `SUPPORTED` |
 
 ## Promotion rule
 
-No row marked `CANNOT_CHECK` may be rewritten as positive, negative, or null evidence. The offline +0.327777 recall difference is not promoted to H1 because the frozen statistical plan classifies n=20 as `DESCRIPTIVE_ONLY`, and H1 itself requires externally relevant benchmark support under matched resources.
+No row marked `CANNOT_CHECK` may be rewritten as positive, negative, or null evidence. The offline +0.327777 recall difference is not promoted to H1 because the frozen statistical plan classifies n=20 as `DESCRIPTIVE_ONLY`, and H1 itself requires externally relevant benchmark support under matched resources. The MetaSyn probe is likewise not promoted into a full ORION superiority claim because it is the declared keyless BM25 + deterministic screening probe rather than the matched multi-provider ORION system.

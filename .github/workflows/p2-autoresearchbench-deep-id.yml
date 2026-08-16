@@ -1,0 +1,90 @@
+name: p2-autoresearchbench-deep-id
+
+on:
+  push:
+    branches:
+      - chatgpt/issue-99-recursive-local
+
+permissions:
+  contents: read
+
+jobs:
+  deep-id:
+    if: contains(github.event.head_commit.message, '[run-deep-id]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install ORION
+        run: python -m pip install -e '.[dev]'
+
+      - name: Fetch pinned AutoResearchBench code and public bundle
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none https://github.com/CherYou/AutoResearchBench.git /tmp/arb-upstream
+          git -C /tmp/arb-upstream checkout a46c9bfb8968786f73f0a6a5b365b5384cd0f96d
+          mkdir -p /tmp/arb-deep
+          curl --fail --location --retry 4 --retry-delay 3 \
+            --output /tmp/arb-deep/AutoResearchBench.jsonl.obf.json \
+            https://huggingface.co/datasets/Lk123/AutoResearchBench/resolve/main/AutoResearchBench.jsonl.obf.json
+          python /tmp/arb-upstream/decrypt_benchmark.py \
+            --input-file /tmp/arb-deep/AutoResearchBench.jsonl.obf.json \
+            --output-file /tmp/arb-deep/AutoResearchBench.jsonl
+          git -C /tmp/arb-upstream rev-parse HEAD
+          sha256sum /tmp/arb-deep/AutoResearchBench.jsonl.obf.json /tmp/arb-deep/AutoResearchBench.jsonl
+
+      - name: Split Deep gold before candidate custody
+        run: |
+          set -euo pipefail
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py prepare \
+            --full /tmp/arb-deep/AutoResearchBench.jsonl \
+            --public /tmp/arb-deep/deep_public.jsonl \
+            --gt /tmp/arb-deep/deep_gt.jsonl \
+            --manifest /tmp/arb-deep/split_manifest.json
+
+      - name: Run gold-blind keyless arXiv candidate
+        run: |
+          set -euo pipefail
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py run \
+            --public /tmp/arb-deep/deep_public.jsonl \
+            --output /tmp/arb-deep/candidate.jsonl \
+            --trace /tmp/arb-deep/trace.jsonl \
+            --manifest /tmp/arb-deep/run_manifest.json \
+            --max-results 20
+
+      - name: Run deterministic exact-ID evaluator
+        run: |
+          set -euo pipefail
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py evaluate \
+            --public /tmp/arb-deep/deep_public.jsonl \
+            --gt /tmp/arb-deep/deep_gt.jsonl \
+            --candidate /tmp/arb-deep/candidate.jsonl \
+            --output /tmp/arb-deep/evaluation.json
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py summarize \
+            --split-manifest /tmp/arb-deep/split_manifest.json \
+            --run-manifest /tmp/arb-deep/run_manifest.json \
+            --evaluation /tmp/arb-deep/evaluation.json \
+            --trace /tmp/arb-deep/trace.jsonl \
+            --output /tmp/arb-deep/summary.json
+          cat /tmp/arb-deep/summary.json
+
+      - name: Archive Deep-ID result-bearing artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-autoresearchbench-deep-id-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: warn
+          path: |
+            /tmp/arb-deep/split_manifest.json
+            /tmp/arb-deep/run_manifest.json
+            /tmp/arb-deep/deep_public.jsonl
+            /tmp/arb-deep/candidate.jsonl
+            /tmp/arb-deep/trace.jsonl
+            /tmp/arb-deep/evaluation.json
+            /tmp/arb-deep/summary.json
