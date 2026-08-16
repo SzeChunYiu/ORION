@@ -1,0 +1,92 @@
+% Introduction: problem statement, motivation, and contribution for ORION Paper III.
+The global scientific literature is increasingly fragmented across
+disciplines, each with its own terminology, measurement practices, and
+epistemic norms. Integrating claims from diverse sources into a coherent
+body of knowledge is a central challenge for scientific knowledge
+representation, literature-based discovery, and cross-domain synthesis.
+
+Consider a simple example: two papers both mention ``zebrafish.'' One uses
+it as a model organism in developmental biology; the other studies it as an
+invasive species in ecology. The surface term is the same, but the referent
+is different --- a scientific knowledge integrator that treats them as the
+same entity silently produces a false merge. Conversely, two papers in
+different subfields may use different terms (``evaluative conditioning''
+and ``affective priming'') to refer to the same underlying construct. A
+system that fails to recognize this equivalence produces a false split,
+missing the connection.
+
+These are not edge cases. They are the normal state of cross-domain
+scientific knowledge. The problem is that current integration approaches
+--- whether based on long-context synthesis, retrieval-augmented generation
+(RAG), or schema fusion --- lack a principled representation of what exactly
+is being compared. They conflate referent identity, construct identity,
+measurement/operationalization equivalence, temporal context, modality, and
+attribution into a single similarity or alignment score.
+
+\subsection{The proposal in brief}
+
+ORION Paper III proposes a \emph{recoverable global knowledge portrait}
+built from \emph{source-local scientific projections}. Rather than
+extracting facts into a canonical knowledge graph, ORION retains each
+source's claim as a projection bound to its exact provenance, with
+separately represented coordinates for referent, construct, measurement,
+context, polarity, modality, and attribution. A proposed mapping between
+two projections is not a generic similarity score but a typed assertion
+that may target specific coordinates. When all relevant coordinates are
+compatible, projections may be \textsc{glue}d into a unified chart. When
+they are not, the correct output is a \emph{typed obstruction} or
+\emph{plural portrait} --- an informative representation of
+incompatibility.
+
+The key claim is that this architecture measurably reduces false
+integration --- the erroneous merging of claims that should not be
+merged --- while preserving useful synthesis. We test this claim through a
+frozen, independently annotated gold dataset spanning four disciplines
+(biomedicine, physics, social science, climate science) and eight case
+families designed to stress specific failure modes.
+
+\subsection{Claims and non-claims}
+
+To bound the novelty space, we explicitly absorb the following as
+established prior work rather than claimed contributions:
+
+\begin{itemize}
+    \item Source-grounded cross-domain structured knowledge extraction
+          (MUSE~\cite{muse2026}, Discovery Engine~\cite{discoveryEngine2025})
+    \item Multidisciplinary expert scientific-process schemas
+          (SciSchema.org~\cite{scischema2026})
+    \item Evidence-linked schema induction and fusion
+          (SCOPE/SCION~\cite{scopes2026})
+    \item Provenance-aware multi-source knowledge integration
+          (Executable Schema Contracts~\cite{schemaContracts2026})
+    \item Scientific entity/relation extraction and discourse parsing
+          (SciER~\cite{scier2024})
+    \item Ontology and schema alignment~\cite{euzenat2007ontology}
+    \item Entity resolution, data integration, and record linkage
+          \cite{oh2017unified,liu2022scholar}
+    \item Contradiction and stance detection
+          \cite{raghunathan2022stance}
+    \item Literature-based discovery~\cite{swanson1986}
+    \item Scientific pluralism in philosophy of science
+          \cite{kellert2006,cartwright1999,chang2012}
+    \item LLM-based structured knowledge representation
+          \cite{openScholar2024,biosage2025,llmatch2025,adias2026}
+\end{itemize}
+
+The surviving residual is the claim that \emph{typed coordinate
+distinctions, conditional \textsc{glue} with obstruction, recoverability,
+and the W effect jointly produce a measurable reduction in false
+integration} compared with the strongest flat integration baseline. This
+is a narrow, falsifiable claim that the gold study is designed to test.
+
+\subsection{Structure of the paper}
+
+Section~\ref{sec:related} situates the proposal within the absorbed
+literature. Section~\ref{sec:method} provides formal definitions of the
+key concepts. Section~\ref{sec:dataset} describes the gold dataset and
+annotation protocol. Section~\ref{sec:eval} specifies the evaluation
+design, baselines, ablations, and hypotheses. Section~\ref{sec:results}
+reports results (currently \conststatus{}). Section~\ref{sec:limitations}
+discusses limitations and reproducibility. Section~\ref{sec:conclusion}
+concludes.
+\endinput

@@ -1,0 +1,63 @@
+\section{Results status}
+\label{sec:results}
+
+The ORION Paper III implementation is currently at \conststatus{} status for the primary empirical claims. This section describes what has been verified, what remains unverified, and the implementation gaps that must be addressed before the gold study can be executed.
+
+\subsection{Verified: local exact-world semantics}
+
+The ORION Projection Ontology v1 has been implemented and tested against synthetic local exact-world scenarios. These tests verify:
+
+\begin{enumerate}
+  \item Correct projection semantics for referent identity (same vs. different referent), construct identity, measurement equivalence, and context differences.
+  \item Correct \glue{} gate logic: GLUE is permitted only when all compatibility conditions are satisfied.
+  \item Correct obstruction classification: genuine incompatibility produces \obstruction{}; valid alternative perspectives produce \pluralview{}.
+  \item Correct mapping hypothesis generation: typed mapping hypotheses are produced for each of the 11 coordinates.
+  \item Correct preservation condition tracking: transformed and non-preserved coordinates are enumerated.
+\end{enumerate}
+
+These tests use synthetic source projections that are pre-structured in the ORION format. They demonstrate that the projection ontology and mapping calculus are implementable and produce correct semantics for the targeted cases. They do not establish that the framework works with real scientific text.
+
+\subsection{Identified gap: text-to-scientific-meaning layer}
+
+The local exact-world tests exposed a critical missing component: a \emph{text-to-scientific-meaning extraction layer} that converts natural language scientific text into the structured 11-coordinate projection format. This layer is not part of the current ORION codebase.
+
+The extraction task is nontrivial because it requires:
+\begin{enumerate}
+  \item Identifying the referent entity or phenomenon from the source text.
+  \item Distinguishing the theoretical construct from its operationalisation.
+  \item Extracting the measurement procedure, threshold, and units.
+  \item Determining the temporal, spatial, and experimental context.
+  \item Classifying the polarity, modality, attribution, and discourse role of each claim.
+  \item Resolving these distinctions across sentences and paragraphs, not just within a single sentence.
+\end{enumerate}
+
+Without this layer, the ORION framework cannot process real scientific papers, and the end-to-end evaluation against baselines cannot be performed. The extraction layer is listed as a reproducibility prerequisite.
+
+\subsection{Remaining unverified claims}
+
+The following claims remain \texttt{CANNOT\_CHECK} until the gold study is executed under the bound V1 protocol:
+
+\begin{itemize}
+  \item \textbf{False-merge reduction (H1):} Whether ORION's typed coordinates reduce false integration relative to flat baselines.
+  \item \textbf{Recoverability (H2):} Whether the recoverability target measurably improves the reader's ability to trace source provenance.
+  \item \textbf{Obstruction value (H3):} Whether explicitly retaining incompatible charts improves downstream scientific answering.
+  \item \textbf{Coordinate necessity (H4):} Whether removing individual coordinates causes measurable errors.
+\end{itemize}
+
+\subsection{Downstream benefit}
+
+The intended downstream benefit of the ORION framework is improved scientific decision-making: fewer false merges mean fewer incorrect conclusions drawn from integrating incompatible sources; explicit obstruction means unresolved disagreements are recorded rather than hidden; recoverability means the reasoning behind a global statement can be audited. These benefits have not been measured yet and remain the target of the gold study.
+
+\subsection{Needs-improvement analysis}
+
+The current implementation has three specific needs-improvement items:
+
+\begin{enumerate}
+  \item \textbf{Missing extraction layer:} As noted above, text-to-scientific-meaning extraction is unimplemented. This is the highest-priority gap.
+  \item \textbf{Missing recoverability implementation:} The provenance store, mapping log, and coordinate tracing function are not yet implemented. The recoverability target is defined but not operationalised.
+  \item \textbf{Missing W-effect implementation:} The W-expansion/reopen mechanism is specified but not implemented. The ablation test for D5 cannot be run.
+\end{enumerate}
+
+These gaps are not fundamental limitations of the framework; they are engineering tasks that must be completed before the gold study. The framework's formal semantics are verified; the pipeline from text to projection to integration is incomplete.
+
+\endinput

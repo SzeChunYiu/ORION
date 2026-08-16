@@ -1,0 +1,134 @@
+% Data: the P3.cross-domain-atlas.v1 gold dataset. Written before final
+% labeling per the frozen protocol; numbers reflect the seed manifest.
+The decisive evaluation of ORION Paper III requires ground truth that
+challenges an integrator where failure is most damaging. This section
+documents the \emph{P3.cross-domain-atlas.v1} gold dataset: the corpus
+design, the eight case families, the annotation schema and handbook, the
+adjudication policy, and the status of the released seed manifest. The
+annotation contract is frozen before final gold labeling and before any
+evaluated system output is inspected (\texttt{outcome-blind}; see
+\texttt{protocol/ADJUDICATION\_POLICY\_V1.md}).
+
+\subsection{Corpus design}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lr}
+\toprule
+\textbf{Discipline} & \textbf{Samples} \\
+\midrule
+Biomedicine & 8 \\
+Physics & 8 \\
+Social Science & 8 \\
+Climate Science & 8 \\
+\midrule
+\textbf{Total} & \textbf{32} \\
+\bottomrule
+\end{tabular}
+\caption{Discipline distribution of the seed manifest. Balanced 8 per
+discipline per \texttt{case\_family\_coverage} of
+\texttt{SAMPLE\_MANIFEST\_SEED\_V1.json}.}
+\label{tab:discipline-dist}
+\end{table}
+
+Sources are selected from open-access publications (PMC, arXiv, or
+open-access journals) per the licensing rules in
+\texttt{protocol/CORPUS\_DESIGN\_V1.md}: peer-reviewed, open-access or
+CC-BY licensed, with stable metadata (DOI, arXiv ID, or PMID) and at
+least one comparable claim pair per case. The four disciplines were
+chosen (Table~\ref{tab:discipline-dist}) to produce materially different
+terminology, measurement cultures, and integration failure modes:
+biomedicine for high-stakes integration and a mature ontology landscape;
+physics for mathematical precision and multiple interpretation
+frameworks; social science for construct-measurement diversity and
+pluralism challenges; climate science for multi-scale integration and
+attribution complexity. No full-text is redistributed; the release carries
+document identifiers, exact span addresses, and retrieval instructions,
+with legally shareable spans where licensing permits.
+
+\subsection{Case families}
+
+Thirty-two samples are organized into eight case families of four samples
+each (one per discipline), each designed to stress a distinct failure mode
+of an integrator:
+
+\begin{enumerate}
+    \item \textbf{same\_name\_different\_referent}: two sources use the
+        same surface term for distinct entities (e.g.\ ``zebrafish'' as
+        model organism versus invasive species). A naive integrator that
+        merges on surface form false-merges.
+    \item \textbf{different\_name\_same\_referent}: two sources use
+        different surface terms for the same entity or construct. A naive
+        integrator false-splits.
+    \item \textbf{same\_construct\_different\_measurement}: the same
+        underlying construct is measured with different instruments or
+        operationalizations; integration is valid only under explicit
+        transformation conditions.
+    \item \textbf{same\_entity\_different\_temporal\_state}: the same
+        entity appears at different time points or states; the apparent
+        discrepancy is \emph{not} a contradiction.
+    \item \textbf{polarity\_modality\_attribution\_context}: claims that
+        share polarity but differ in modality, attribution, or context;
+        resolving them requires the coordinate-wise representation.
+    \item \textbf{valid\_invalid\_representation\_mapping}: a
+        non-isomorphic but valid mapping between two classification or
+        representation systems, where the mapping is legitimate if and
+        only if preservation conditions hold.
+    \item \textbf{valid\_invalid\_literature\_bridge}: an A-B-C bridge
+        between literatures where the transfer is valid only under
+        conditions (Swanson-style), and invalid without them.
+    \item \textbf{genuine\_plural\_obstruction}: genuinely incompatible
+        scientific representations where no merge should be authorized;
+        the correct verdict is \textsc{plural\_view}.
+\end{enumerate}
+
+The full seed manifest (\texttt{gold/SAMPLE\_MANIFEST\_SEED\_V1.json})
+carries 32 structurally valid entries with placeholder document
+identifiers and hashes. Final gold replaces these with verified
+open-access spans and full text hashes.
+
+\subsection{Annotation schema and handbook}
+
+Each sample is annotated on the 11 coordinates of
+\texttt{protocol/ANNOTATION\_SCHEMA\_V1.json}:
+\texttt{referent\_relation}, \texttt{construct\_relation},
+\texttt{measurement\_relation}, \texttt{context\_relation},
+\texttt{polarity\_relation}, \texttt{modality\_relation},
+\texttt{attribution\_relation}, \texttt{discourse\_relation},
+\texttt{mapping\_relation}, \texttt{contradiction\_verdict},
+and \texttt{integration\_verdict}.
+Every coordinate is a typed judgment in a frozen taxonomy, and every
+annotation binds its verdicts to exact source spans via
+\texttt{source\_span} (\texttt{document\_id},
+\texttt{document\_version}, \texttt{span\_start}, \texttt{span\_end},
+\texttt{text\_hash}). The integration verdict is one of
+\texttt{GLUE\_ALLOWED}, \texttt{OBSTRUCTION}, \texttt{PLURAL\_VIEW}, or
+\texttt{UNRESOLVED}. \texttt{UNRESOLVED} is a first-class, legitimate
+label: adjudication is not permitted to manufacture certainty.
+
+The written handbook (\texttt{protocol/ANNOTATION\_HANDBOOK\_V1.md})
+gives instructions for each coordinate, boundary cases, and the rule that
+annotators must not inspect evaluated-system outputs. The adjudication
+sequence (\texttt{protocol/ADJUDICATION\_POLICY\_V1.md}) is: independent
+double annotation on a shared subset; per-coordinate agreement reporting
+(not only a single global score); adjudication of disagreements;
+domain-expert escalation where specialist operationalization knowledge is
+required; and default to \texttt{UNRESOLVED} where agreement cannot be
+reached. The policy prohibits deleting hard cases, revising the handbook
+after outcomes are known, and collapsing measurement disagreement into
+construct disagreement.
+
+\subsection{Status and release}
+
+The released manifest is \texttt{SEED}: structurally valid placeholders
+awaiting expert annotation. The target states are \texttt{GOLD\_COMPLETE}
+(all 32 samples annotated and adjudicated) and \texttt{QUALITY\_GATE}
+(inter-annotator agreement at or above threshold on every coordinate).
+The gold, adjudicated records, and reproducibility checklist will be
+released under CC-BY 4.0 with the data statement in
+\texttt{gold/README.md}. Reuse of overlapping existing resources (MUSE,
+SciSchema, SciER) is preferred wherever licenses and task shapes match,
+per \texttt{JOURNAL\_READINESS.md}.
+
+\endinput
