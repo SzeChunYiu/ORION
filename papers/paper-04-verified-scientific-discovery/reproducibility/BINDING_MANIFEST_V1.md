@@ -1,8 +1,10 @@
 # ORION-P4 Execution Binding Manifest V1
 
-## Current status: `EXECUTION_FROZEN` — campaign not launched
+## Current status: `EXECUTION_FROZEN` — launch authorized
 
 Protocol `P4.protected-authority.v1` is bound to one outcome-blind, independently generated campaign. The host prepared the final hidden set **before any candidate execution or protected outcome inspection**. The publication-authorizing campaign must use these exact identities or the run is void.
+
+The execution freeze is now externally attested by a GitHub-verified `main` merge and green CI on that exact commit. The separate launch change may therefore add the campaign marker without changing any frozen scientific identity.
 
 ## Superseded pre-execution preparation
 
@@ -107,8 +109,12 @@ On that public test seed, each ablation preserved clean coverage at 1.0 and incr
 9. [x] Gold kept in protected host artifact; candidate handoff proven gold-blind.
 10. [x] Host run manifest created and content-addressed.
 11. [x] `PROTOCOL_V1.json` populated and set to `EXECUTION_FROZEN`, `outcome_accessed=false`.
-12. [ ] GitHub-verified `main` freeze commit + green exact-commit CI. No campaign launch marker exists until this final pre-run attestation is complete.
+12. [x] GitHub-verified `main` freeze commit `5019b41b0da0d0763981d6d72975485517f923b3`; signature reason `valid`, verified at `2026-08-16T19:43:38Z`; exact-main CI run `31968436593`, job `95217050050`, conclusion `success`.
+
+## Launch authorization
+
+The freeze merge itself contains no campaign trigger. Only after item 12 was externally evidenced was the separate launch change authored. That launch change may add `host/CAMPAIGN_TRIGGER_V1.txt`; it must not change the subject, hidden set, baseline/ablation config, executable harness, split or evaluation epoch.
 
 ## Invalidating events
 
-Any frozen harness/config change, label leak, protected evaluator write, subject/hash mismatch, outcome inspection before item 12, or reuse of this split after an outcome-dependent subject repair voids the campaign.
+Any frozen harness/config change, label leak, protected evaluator write, subject/hash mismatch, pre-attestation outcome inspection, or reuse of this split after an outcome-dependent subject repair voids the campaign.
