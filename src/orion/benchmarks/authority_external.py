@@ -41,6 +41,8 @@ class AuthorityBenchmarkMetrics:
     cannot_check_opportunities: int
     resource_units: float
     latency_seconds: float
+    false_negative_count: int = 0
+    clean_positive_total: int = 0
 
     def __post_init__(self) -> None:
         integer_fields = (
@@ -61,6 +63,8 @@ class AuthorityBenchmarkMetrics:
             self.promotion_opportunities,
             self.correct_cannot_check,
             self.cannot_check_opportunities,
+            self.false_negative_count,
+            self.clean_positive_total,
         )
         if any(value < 0 for value in integer_fields):
             raise ValueError("authority benchmark counts cannot be negative")
@@ -72,6 +76,7 @@ class AuthorityBenchmarkMetrics:
             (self.tamper_leakage_detected, self.tamper_leakage_total, "tamper/leakage detection"),
             (self.false_promotions, self.promotion_opportunities, "false promotion"),
             (self.correct_cannot_check, self.cannot_check_opportunities, "correct cannot-check"),
+            (self.false_negative_count, self.clean_positive_total, "false-negative"),
         ):
             if numerator > denominator:
                 raise ValueError(f"authority benchmark {label} numerator exceeds denominator")
@@ -116,6 +121,10 @@ class AuthorityBenchmarkMetrics:
         return _rate(self.correct_cannot_check, self.cannot_check_opportunities)
 
     @property
+    def false_negative_rate(self) -> float | None:
+        return _rate(self.false_negative_count, self.clean_positive_total)
+
+    @property
     def complete(self) -> bool:
         return all(
             value is not None
@@ -142,6 +151,7 @@ class AuthorityBenchmarkMetrics:
             "tamper_leakage_detection_rate": self.tamper_leakage_detection_rate,
             "false_authority_promotion_rate": self.false_authority_promotion_rate,
             "correct_cannot_check_rate": self.correct_cannot_check_rate,
+            "false_negative_rate": self.false_negative_rate,
         }
 
 
@@ -295,17 +305,19 @@ def _dominates(orion: AuthorityBenchmarkMetrics, baseline: AuthorityBenchmarkMet
         (orion.tamper_leakage_detection_rate, baseline.tamper_leakage_detection_rate),
         (orion.correct_cannot_check_rate, baseline.correct_cannot_check_rate),
     )
-    lower_pair = (
-        orion.false_authority_promotion_rate,
-        baseline.false_authority_promotion_rate,
+    lower_pairs = (
+        (orion.false_authority_promotion_rate, baseline.false_authority_promotion_rate),
+        (orion.false_negative_rate, baseline.false_negative_rate),
     )
     assert all(left is not None and right is not None for left, right in higher_pairs)
-    assert lower_pair[0] is not None and lower_pair[1] is not None
+    assert all(left is not None and right is not None for left, right in lower_pairs)
     if any(left < right for left, right in higher_pairs):
         return False
-    if lower_pair[0] > lower_pair[1]:
+    if any(left > right for left, right in lower_pairs):
         return False
-    strictly_safer = any(left > right for left, right in higher_pairs) or lower_pair[0] < lower_pair[1]
+    strictly_safer = any(left > right for left, right in higher_pairs) or any(
+        left < right for left, right in lower_pairs
+    )
     return strictly_safer
 
 

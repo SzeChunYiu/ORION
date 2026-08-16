@@ -469,6 +469,12 @@ def verdicts_to_metrics(verdicts: tuple[BaselineVerdict, ...]) -> AuthorityBench
     false_promotions = sum(1 for v in verdicts if v.false_promotion is True)
     correct_cannot_checks = sum(1 for v in verdicts if v.correct_cannot_check is True)
 
+    # False negatives: clean positive cases (gold expects PROMOTE) that were
+    # blocked or returned CANNOT_CHECK instead of promoted.
+    clean_positive_set = [v for v in verdicts if v.task_family == "CLEAN_POSITIVE"]
+    clean_positive_total = len(clean_positive_set)
+    false_negative_count = sum(1 for v in clean_positive_set if not v.promoted)
+
     claim_correct = sum(1 for v in verdicts if v.claim_correct_judged is True)
     source_attribution_correct = sum(1 for v in verdicts if v.source_attribution_judged is True)
 
@@ -504,6 +510,8 @@ def verdicts_to_metrics(verdicts: tuple[BaselineVerdict, ...]) -> AuthorityBench
         promotion_opportunities=total,
         correct_cannot_check=correct_cannot_checks,
         cannot_check_opportunities=total,
+        false_negative_count=false_negative_count,
+        clean_positive_total=clean_positive_total,
         resource_units=resource_units,
         latency_seconds=latency,
     )

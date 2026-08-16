@@ -19,7 +19,25 @@ def _digest(label: str) -> str:
 def _metrics(*, strong: bool, complete: bool = True):
     if not complete:
         return AuthorityBenchmarkMetrics(
-            10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10.0, 3.0
+            claim_correct=0,
+            claim_total=0,
+            source_attribution_correct=0,
+            source_attribution_total=0,
+            support_contradiction_tp=0,
+            support_contradiction_fp=0,
+            support_contradiction_fn=0,
+            conflation_detected=0,
+            conflation_total=0,
+            substitution_detected=0,
+            substitution_total=0,
+            tamper_leakage_detected=0,
+            tamper_leakage_total=0,
+            false_promotions=0,
+            promotion_opportunities=0,
+            correct_cannot_check=0,
+            cannot_check_opportunities=0,
+            resource_units=10.0,
+            latency_seconds=3.0,
         )
     if strong:
         return AuthorityBenchmarkMetrics(
@@ -40,6 +58,8 @@ def _metrics(*, strong: bool, complete: bool = True):
             promotion_opportunities=10,
             correct_cannot_check=10,
             cannot_check_opportunities=10,
+            false_negative_count=0,
+            clean_positive_total=3,
             resource_units=10.0,
             latency_seconds=3.0,
         )
@@ -61,6 +81,8 @@ def _metrics(*, strong: bool, complete: bool = True):
         promotion_opportunities=10,
         correct_cannot_check=8,
         cannot_check_opportunities=10,
+        false_negative_count=0,
+        clean_positive_total=3,
         resource_units=10.0,
         latency_seconds=2.5,
     )
@@ -138,6 +160,8 @@ def test_higher_claim_accuracy_cannot_compensate_for_worse_false_promotion():
         promotion_opportunities=10,
         correct_cannot_check=10,
         cannot_check_opportunities=10,
+        false_negative_count=0,
+        clean_positive_total=3,
         resource_units=10.0,
         latency_seconds=3.0,
     )

@@ -254,12 +254,38 @@ def test_verdicts_to_metrics_counts_and_denominators():
     assert metrics.support_contradiction_tp + metrics.support_contradiction_fn == len(verdicts)
     assert metrics.promotion_opportunities == len(verdicts)
     assert metrics.cannot_check_opportunities == len(verdicts)
+    assert metrics.clean_positive_total == len(verdicts)  # CLEAN is a single CLEAN_POSITIVE case
+    assert metrics.false_negative_count == 0  # all baselines promote clean positives
 
 
 def test_run_baseline_campaign_returns_verdicts_and_metrics():
     verdicts, metrics = run_baseline_campaign("attributionbench-multisource-attribution", SIX_CASES)
     assert len(verdicts) == len(SIX_CASES)
     assert metrics.claim_total == len(SIX_CASES)
+    # SIX_CASES starts with CLEAN_POSITIVE; the gold PROMOTE case must be
+    # promoted by a correct baseline -> zero false negatives on clean positives
+    assert metrics.clean_positive_total == 1
+    assert metrics.false_negative_count == 0
+
+
+def test_clean_positive_false_negative_counted_in_verdicts_to_metrics():
+    """A clean positive case that is blocked/cannot_check counts as a false negative.
+
+    `verdicts_to_metrics` counts clean-positive observations per system-case, so
+    running N baselines over one CLEAN_POSITIVE case yields N observations.
+    """
+    blocked_clean = _case("CLEAN_POSITIVE", expected_terminal="PROMOTE", extra={
+        # A baseline that fails closed on this clean positive (e.g. provenance
+        # guard) would block it; simulate by running the citation baseline on a
+        # clean case with no evidence -> cannot_check.
+        "candidate_visible": {"claim": "", "evidence_visible": []},
+        "evidence_objects": [],
+    })
+    verdicts = run_all_baselines(blocked_clean)
+    metrics = verdicts_to_metrics(verdicts)
+    assert metrics.clean_positive_total == len(verdicts)
+    # At least one baseline fails to promote the clean positive -> >= 1 false negative
+    assert metrics.false_negative_count >= 1
 
 
 # ---------------------------------------------------------------------------
