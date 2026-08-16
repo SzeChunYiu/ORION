@@ -50,13 +50,24 @@ class AccountingLLMProvider:
             )
             return response
 
+    def mark(self) -> int:
+        return len(self._observations)
+
     def observations(self) -> tuple[LLMCallObservation, ...]:
         return tuple(self._observations)
 
+    def observations_since(self, mark: int) -> tuple[LLMCallObservation, ...]:
+        if mark < 0 or mark > len(self._observations):
+            raise ValueError("LLM accounting mark is outside the observation stream")
+        return tuple(self._observations[mark:])
+
     def attempted_calls_for_problem(self, problem_id: str) -> int:
+        return self.attempted_calls_for_problem_since(problem_id, 0)
+
+    def attempted_calls_for_problem_since(self, problem_id: str, mark: int) -> int:
         return sum(
             observation.problem_id == problem_id
-            for observation in self._observations
+            for observation in self.observations_since(mark)
         )
 
 
