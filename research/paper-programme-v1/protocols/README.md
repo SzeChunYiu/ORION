@@ -22,12 +22,17 @@ A paper protocol may be:
 5. Hidden labels/answers stay outside candidate custody.
 6. A post-outcome protocol change creates `v2` (or later); never rewrite `v1` to fit the result.
 7. Result-bearing plots/tables are generated from raw archived result records, never from manually transcribed numbers.
+8. The execution freeze itself is content-addressed and committed before the first final outcome is inspected.
 
 ## Files
 
 - `PUBLICATION_PROTOCOL_SCHEMA_V1.json` — machine-checkable common protocol fields.
+- `RUN_MANIFEST_SCHEMA_V1.json` — exact subject/data/model/baseline/evaluator/split/resource/environment identity for one prospective final run.
 - `RESULT_RECORD_SCHEMA_V1.json` — normalized raw result record shape.
 - `ANALYSIS_STANDARD_V1.md` — common statistical and reporting rules.
+- `EXECUTION_FREEZE_CHECKLIST_V1.md` — exact transition from design freeze to publication-authorizing execution freeze.
+- `publication_manifest.py` — canonical JSON hashing plus protocol/run-manifest state validation; rejects execution freezes with unresolved `UNBOUND` identities.
 - `publication_stats.py` — dependency-free precision/CI/bootstrap utilities for preregistration and headline tables.
+- `publication_svg.py` — dependency-free SVG bar/scatter/heatmap rendering from frozen summaries.
 
 Each paper owns a `protocol/` directory containing its exact design-freeze protocol and paper-specific schemas/policies.
