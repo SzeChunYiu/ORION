@@ -1,6 +1,6 @@
-# Nearest-work supplement — 2026-08-16 flagship falsifier round
+# Nearest-work supplement — 2026-08-16 flagship falsifier + journal-readiness round
 
-This supplement records nearest work that materially changed the five-paper implementation after the V1 atlas was frozen. It follows the same rule: absorb the mechanism first, then shrink the ORION novelty boundary.
+This supplement records nearest work that materially changed the five-paper implementation or publication boundary after the V1 atlas was frozen. It follows the same rule: absorb the mechanism first, then shrink the ORION novelty boundary.
 
 ## Paper V — ADIAS: issue-centric self-improvement
 
@@ -14,36 +14,85 @@ This supplement records nearest work that materially changed the five-paper impl
 
 **Removed from ORION novelty:** persistent issue identity/state for self-improvement is not claimed as novel.
 
-**Surviving difference:** issue-centric persistence is composed with ORION's recurrence-not-cause rule, invention-readiness gate, replay/fresh-transfer distinction, protected evaluator chronology, negative-history preservation and no self-certification.
+## Paper V — structured/causal failure recovery is now nearest work
 
-## Paper IV — search-time contamination / evaluator integrity
+**Works:**
+- *One Reflection Is Not Enough: Self-Correcting Autonomous Research via Multi-Hypothesis Failure Attribution*, arXiv:2606.31478.
+- *CausalFlow: Causal Attribution and Counterfactual Repair for LLM Agent Failures*, arXiv:2605.25338.
+- *Learning from Failure: Inference-Time Self-Improvement for Computer-Use Agents*, arXiv:2606.31270.
+- *PAST-Bench: Benchmarking the Foundations of Recursive Self-Improvement in Personal Agents*, arXiv:2608.04003.
+- *SEVA: Self-Evolving Verification Agent with Process Reward for Fact Attribution*, arXiv:2606.29713.
 
-**Work families absorbed:** search-time contamination benchmarks for web-searching agents; reward-hacking/evaluator-tampering and held-out leakage benchmarks for coding agents.
+**Disposition:** `ADOPT/COMPOSE` as appropriate; exact executable-baseline mapping remains part of the external campaign.
+
+**Removed/shrunk from ORION novelty:** failure-driven improvement, multi-hypothesis failure attribution, counterfactual causal attribution and retained-experience improvement cannot be standalone novelty claims.
+
+**Surviving candidate:** persistent issue state + evidence-bound causal discrimination + invention readiness + replay and independent fresh transfer + protected assurance/evaluator custody + negative history + no self-certification/promotion. SEVA's cross-benchmark specialist regression strengthens the need to measure harmful/fresh transfer rather than replay performance alone.
+
+## Paper IV — provenance/auditability/evaluator integrity
+
+**Works/families absorbed:**
+- ProvenanceGuard, arXiv:2606.18037;
+- *From Fluent to Verifiable: Claim-Level Auditability for Deep Research Agents*, arXiv:2602.13855;
+- ProvenAI, arXiv:2606.26449;
+- search-time contamination, arXiv:2606.05241 and earlier STC work;
+- RewardHackingAgents, arXiv:2603.11337;
+- AttributionBench and CLAIM-BENCH.
 
 **Disposition:** `COMPOSE`.
 
-**ORION consequence:** Paper IV's external promotion gate now requires explicit search-time contamination auditing, evaluator locking before candidate outcomes, held-out access telemetry and matched source-aware verifier baselines. These conditions are represented in `external_authority_gate`; absence yields `CANNOT_CHECK` rather than a soft caveat.
+**Removed from ORION novelty:** source-aware factuality, semantic provenance/auditability, cited-vs-influential evidence decomposition, benchmark leakage detection and evaluator tampering detection are not ORION novelty claims.
 
-**Removed from ORION novelty:** detecting benchmark leakage or evaluator tampering is not an ORION novelty claim.
+**Surviving candidate:** a protected non-escalating scientific-authority transition requiring exact content/provenance + admissible checker lineage + evaluator/holdout integrity, with `CANNOT_CHECK/BLOCK` under unresolved prerequisites.
 
-## Paper III — scientific semantic projection
+## Paper III — scientific semantic projection and structured integration
 
-**Parent work absorbed:** scientific information extraction/discourse and semantic-structure work (including SciERC/SciIE/UCCA-style structured meaning).
+**Works/families absorbed:**
+- MUSE, arXiv:2608.10974;
+- SciSchema.org, arXiv:2607.27955;
+- SCOPE/SCION schema induction and fusion, arXiv:2607.21610;
+- Executable Schema Contracts, arXiv:2606.05415;
+- SciER and scientific IE/discourse work.
 
-**Disposition:** `ADAPT`.
+**Disposition:** `ADAPT/COMPOSE`.
 
-**ORION consequence:** the first exact atlas falsifier showed that `SourceProjection` + `RepresentationMapping` alone left the text-to-scientific-meaning boundary implicit. `ScientificMeaningProjection.v1` now exposes predicate roles, referents, constructs, measurements, temporal context, polarity, modality, discourse, attribution, assumptions and unresolved ambiguity before a mapping/GLUE decision.
+**Removed from ORION novelty:** source-grounded cross-domain structures, multidisciplinary scientific schemas, schema induction/fusion, provenance-aware shared-schema KGs and scientific IE are not sufficient novelty.
 
-**Removed from ORION novelty:** semantic parsing/scientific IE itself is not claimed as novel.
+**Surviving candidate:** typed distinctions among referent, construct, context, measurement/operationalization and representation mappings; explicit GLUE-vs-obstruction/pluralism; source-projection recoverability; and reopening the relevance/search universe when an absorbed representation changes what should be searched.
 
-**Surviving difference:** the typed meaning projection participates in projection-preserving identity/context/measurement mapping, obstruction and recoverable global portrait reconstruction.
+The first exact atlas falsifier already showed that `SourceProjection` + `RepresentationMapping` alone left the text-to-scientific-meaning boundary implicit. `ScientificMeaningProjection.v1` remains the ORION representation for exposing that boundary, not a claim of inventing semantic parsing.
 
-## Paper I — action-family distinction after diagnosis
+## Paper I — recursive research and evolving information state are now nearest work
 
-The hidden-shift negative control found a local defect rather than new nearest work: singular responsibility was incorrectly treated as sufficient license for `REFRAME`. The repair separates *diagnosis* from *repair family*: `EVIDENCE` and `EXECUTION` responsibility now block formulation rewrite and require acquisition/execution repair. METHOD/EVALUATOR remain protected Self-ORION coordinates.
+**Works:**
+- AREX, arXiv:2607.21461;
+- SCION / *Rethinking Scientific Discovery in an Agentic Era*, arXiv:2607.03863;
+- Iris / *Beyond Solution-Centric Search: Adaptive Inquiry and Knowledge Revision for Autonomous ML Engineering*, arXiv:2608.02143;
+- SciAgentArena, arXiv:2606.12736, as an external evaluation family.
 
-This episode is retained as development evidence because it validates the project's failure-learning principle: a falsifier should be allowed to change the machine.
+**Disposition:** `ADOPT/COMPOSE`.
 
-## Paper II — no new novelty claim from coverage estimation
+**Removed/shrunk from ORION novelty:** recursive audit plus targeted follow-up, staged dependency-aware scientific plans, and explicit evolving information state/revisable claims are not standalone novelty claims.
 
-The V1 route-ensemble result remains unchanged: capture-recapture is historical nearest work; route independence must be earned and population estimates remain diagnostic-only. The flagship local suite therefore tests refusal behavior as strongly as positive retrieval performance.
+**Surviving candidate:** explicit separation/co-evolution of `K/W/M` + typed responsibility-targeted formulation/search-universe revision + dependency-directed reopening of stale closure + mechanic-cell self-audit, tested specifically on hidden formulation/search-universe shifts and negative controls.
+
+The earlier local failure remains important: singular responsibility was incorrectly treated as sufficient license for `REFRAME`; evidence/execution responsibility now routes to acquisition/execution repair rather than formulation rewrite.
+
+## Paper II — external retrieval/SLR baselines have strengthened
+
+**Works:**
+- AutoResearchBench, arXiv:2604.25256;
+- SAGE retrieval benchmark, arXiv:2602.05975;
+- MetaSyn, arXiv:2606.17041;
+- AgentSLR, arXiv:2603.22327;
+- controlled AI-vs-human literature review in physics/astrophysics/cosmology, arXiv:2607.25672.
+
+**Disposition:** `ADOPT` as benchmark/baseline evidence; `COMPOSE` for relevant retrieval/screening mechanisms.
+
+**Removed from ORION novelty:** agentic literature search, end-to-end SLR automation and sophisticated retrieval are not novelty claims. Capture-recapture remains historical nearest work.
+
+**Surviving candidate:** earned route independence, cumulative question-conditioned read state, typed route/task stopping, fail-closed coverage and recall-first promotion against strong simple baselines. SAGE makes the lexical baseline especially important; MetaSyn requires retrieval and screening error to be attributed separately.
+
+## Publication consequence
+
+The fresh 2026 literature does not collapse the five-paper programme, but it makes Papers I and V more compositional and raises the empirical bar for all five papers. No paper may promote a novelty or superiority statement solely because the local falsifier passes. The new per-paper `JOURNAL_READINESS.md` files and `JOURNAL_READINESS_STANDARD.md` define the remaining external programme.

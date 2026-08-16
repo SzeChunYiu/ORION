@@ -1,0 +1,52 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\title{ORION Paper II: Open-World Scientific Knowledge Discovery with Fail-Closed Coverage and Stopping}
+\author{Working framework draft}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Scientific-literature discovery remains a distinct bottleneck even when downstream synthesis is fluent. ORION Paper II studies a narrow governance hypothesis: heterogeneous search routes should count as independent evidence channels only when independence is earned through backend, query-derivation and capture identity; read history should be conditioned on the scientific question and content version; stopping one route must not certify task-level completeness; unavailable or censored routes remain explicit open obligations; and promotion should be recall-first against strong simple baselines. A deterministic complete-gold falsifier verifies these semantics locally, including refusal of pseudo-independence, pseudo-recall and bounded unseen-population claims under zero overlap. These results establish implementation behavior only. External Wide/Deep literature-discovery and screening performance against BM25, dense, hybrid and agentic baselines remains \texttt{CANNOT\_CHECK}.
+\end{abstract}
+
+\section{Problem and claim boundary}
+Paper II does not claim scientific RAG, agentic literature search, automated systematic review or capture--recapture estimation as novel. The object is the control problem that sits around retrieval: when is a route genuinely different, what has already been read for the current question, when may a route stop, and when must task-level coverage remain open?
+
+Let route $r$ be characterized by a backend identity $b_r$, query-derivation process $q_r$, and capture/content identity policy $c_r$. A distinct route label is insufficient for independence. Evidence for route independence must be derived from the actual generation and capture process rather than asserted as a boolean.
+
+\section{Question-conditioned cumulative read state}
+A paper being previously encountered is weaker than the statement that it has been processed for the current research question, extraction schema and content version. ORION therefore retains content identity separately from question-conditioned read state. A changed question or materially changed content can legitimately reopen a source for processing without pretending that it is newly discovered evidence.
+
+\section{Route stopping versus task stopping}
+Paper II separates route outcomes such as continue, reformulate, switch, budget-stop, unavailable and locally flat from task-level scientific closure. A route may stop because its marginal yield is low while another route remains untried, unavailable or censored. Coverage diagnostics therefore remain advisory; they cannot promote global completeness.
+
+This fail-closed rule is especially important for capture--recapture-style diagnostics. Adaptive search routes are not automatically independent capture occasions, and zero overlap cannot justify a confident bounded estimate of unseen literature.
+
+\section{Evaluation protocol}
+The external study should combine complementary benchmark families: AutoResearchBench Wide and Deep discovery \cite{autoresearchbench2026}, SAGE scientific retrieval \cite{sage2026}, and MetaSyn retrieval/screening \cite{metasyn2026}, supplemented by a frozen complete-gold corpus where the denominator is legally distributable. AgentSLR \cite{agentslr2026} is a relevant protocol-driven systematic-review baseline, while controlled human--AI literature-review studies \cite{physicsreview2026} motivate direct coverage comparison rather than synthesis-only evaluation.
+
+Primary outcomes must be chosen prospectively. Where a complete denominator exists, paper-level recall and false negatives are primary. Wide set discovery may use official IoU/set metrics; Deep target discovery should use the benchmark's official success metric. Route-stop and task-stop errors must be measured separately. Live-provider experiments require frozen timestamps/provider versions, raw retrieval traces and search-time contamination auditing; an offline controlled-index companion is required for reproducibility.
+
+\section{Baselines and ablations}
+Required baselines include BM25/keyword retrieval, dense retrieval, hybrid retrieval, one-pass RAG retrieval and an agentic single-route search system. Full ORION must also be compared with ablations that remove route-independence checks, question-conditioned read memory, fail-closed task stopping and unavailable-route obligations. Compute, query and tool budgets must be matched or reported explicitly.
+
+\section{Results status}
+The local falsifier establishes that the current implementation can enforce the intended contracts on exact worlds. It does not establish higher scientific-literature recall in real benchmarks. External superiority, route-diversity benefit and stopping benefit remain \texttt{CANNOT\_CHECK}; no numerical result should be inserted here until the prospective frozen campaign is complete.
+
+\section{Nearest work}
+AutoResearchBench shows that both specific-target and open-ended scientific literature discovery remain difficult \cite{autoresearchbench2026}. SAGE demonstrates that strong lexical retrieval can outperform LLM retrievers inside deep-research workflows \cite{sage2026}, so Paper II treats the lexical baseline as a promotion gate rather than a straw man. MetaSyn separates retrieval from eligibility/screening and shows why retrieval ceilings do not imply inclusion recall \cite{metasyn2026}. AgentSLR demonstrates that end-to-end systematic-review automation is itself an active baseline area \cite{agentslr2026}. The candidate ORION contribution is therefore the composition of earned route diversity, cumulative question-framed memory, typed stopping and fail-closed coverage, not generic automation.
+
+\section{Limitations, integrity and reproducibility}
+Open-world completeness is generally unprovable from finite search. Database/provider coverage changes over time, licensing may prevent complete denominators, and live search results are mutable. Public benchmark questions may contaminate web-search evaluation. The paper must therefore report unavailable routes, resource censoring, transport failures and search-time contamination rather than converting them into evidence of absence. Final publication requires archived corpora or retrieval traces, exact baseline/configuration manifests and scripts that regenerate every result table and plot.
+
+\section{Conclusion}
+Paper II asks whether disciplined route governance and recall-first promotion improve scientific literature discovery without manufacturing completeness. The mechanism is implemented and locally falsified; the external scientific claim remains open.
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}
