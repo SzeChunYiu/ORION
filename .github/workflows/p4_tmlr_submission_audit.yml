@@ -79,12 +79,13 @@ jobs:
             rsvg-convert -w 1440 -o "$F/$stem.png" "$F/$stem.svg"
           done
 
-      - name: Fetch unmodified pinned official TMLR style
+      - name: Fetch unmodified pinned official TMLR styles
         shell: bash
         run: |
           set -euo pipefail
-          curl -fsSL https://raw.githubusercontent.com/JmlrOrg/tmlr-style-file/7bf90efe3a0debbba703c05c43f3ff7e4d4a2992/tmlr.sty \
-            -o papers/paper-04-verified-scientific-discovery/manuscript/tmlr.sty
+          BASE=https://raw.githubusercontent.com/JmlrOrg/tmlr-style-file/7bf90efe3a0debbba703c05c43f3ff7e4d4a2992
+          curl -fsSL "$BASE/tmlr.sty" -o papers/paper-04-verified-scientific-discovery/manuscript/tmlr.sty
+          curl -fsSL "$BASE/tmlr.bst" -o papers/paper-04-verified-scientific-discovery/manuscript/tmlr.bst
 
       - name: Compile anonymous TMLR PDF
         shell: bash
