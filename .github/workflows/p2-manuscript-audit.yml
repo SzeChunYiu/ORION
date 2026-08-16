@@ -21,14 +21,16 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y latexmk texlive-latex-extra texlive-pictures texlive-fonts-recommended
 
-      - name: Audit manuscript inputs and bibliography keys
+      - name: Audit manuscript inputs, references, and retained source metadata
         run: |
           set -euo pipefail
           python - <<'PY'
           import json, re
           from pathlib import Path
 
-          root = Path('papers/paper-02-open-world-scientific-discovery/manuscript')
+          paper = Path('papers/paper-02-open-world-scientific-discovery')
+          root = paper / 'manuscript'
+          evidence = paper / 'evidence' / 'literature'
           tex_files = [root / 'main.tex', *sorted((root / 'sections').glob('*.tex'))]
           text = '\n'.join(path.read_text(encoding='utf-8') for path in tex_files)
           bib = (root / 'bibliography.bib').read_text(encoding='utf-8')
@@ -37,6 +39,9 @@ jobs:
           for group in re.findall(r'\\cite\w*\{([^}]+)\}', text):
               cite_keys.update(key.strip() for key in group.split(',') if key.strip())
           missing_cites = sorted(cite_keys - bib_keys)
+          missing_metadata = sorted(
+              key for key in bib_keys if not (evidence / f'{key}.json').is_file()
+          )
 
           missing_inputs = []
           for target in re.findall(r'\\input\{([^}]+)\}', text):
@@ -49,11 +54,13 @@ jobs:
           figure_files = sorted((root / 'figures').iterdir())
           empty_figures = [str(p.relative_to(root)) for p in figure_files if p.is_file() and p.stat().st_size == 0]
           report = {
-              'schema_version': 'orion.p2.manuscript-static-audit.v1',
+              'schema_version': 'orion.p2.manuscript-static-audit.v2',
               'tex_files_scanned': len(tex_files),
               'bibliography_entries': len(bib_keys),
               'citation_keys_used': len(cite_keys),
+              'retained_reference_metadata_records': len(bib_keys) - len(missing_metadata),
               'missing_citation_keys': missing_cites,
+              'missing_reference_metadata_records': missing_metadata,
               'missing_input_files': missing_inputs,
               'empty_figure_files': empty_figures,
           }
@@ -61,7 +68,7 @@ jobs:
               json.dumps(report, indent=2, sort_keys=True) + '\n', encoding='utf-8'
           )
           print('P2_MANUSCRIPT_STATIC_AUDIT=' + json.dumps(report, sort_keys=True))
-          if missing_cites or missing_inputs or empty_figures:
+          if missing_cites or missing_metadata or missing_inputs or empty_figures:
               raise SystemExit(1)
           PY
 
