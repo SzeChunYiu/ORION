@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 """Compatibility front-end for the keyless AutoResearchBench Wide probe.
 
-AutoResearchBench's official Wide scorer accepts both modern numeric arXiv IDs,
-legacy archive/category identifiers, and released tasks whose normalized target
-set is empty. Earlier ORION probe attempts were narrower than that contract.
-This front-end mirrors the scorer's identifier domain while preserving the same
-host/candidate custody boundary and all 400 released Wide tasks.
+AutoResearchBench's pinned Wide scorer has several release-domain semantics that
+a candidate adapter must not silently 'clean': modern and legacy arXiv IDs are
+accepted, target lists may normalize to empty, duplicate question strings are
+allowed and use the scorer's last-write GT mapping, and empty questions are not
+inserted into the scorer's GT mapping. Earlier ORION probe attempts intentionally
+failed closed when they encountered these cases. This front-end mirrors the
+scorer while preserving all 400 released records and the host/candidate gold
+custody boundary.
 """
 
 from __future__ import annotations
@@ -33,13 +36,7 @@ def _load_base():
 
 
 def normalize_arxiv_id(value: str) -> str:
-    """Return the scorer-compatible unversioned arXiv identifier.
-
-    The pinned scorer extracts modern ``YYMM.NNNNN`` identifiers and otherwise
-    retains the cleaned string. For legacy candidate records, arXiv Atom IDs may
-    include an ``/abs/`` URL prefix and ``vN`` suffix, so those transport-only
-    decorations are removed before the string is handed to the scorer.
-    """
+    """Return the scorer-compatible unversioned arXiv identifier."""
 
     cleaned = re.sub(r"(?i)^\s*arxiv:\s*", "", str(value or "")).strip()
     if not cleaned:
@@ -68,15 +65,17 @@ def _jsonl(path: Path) -> list[dict[str, Any]]:
 
 
 def prepare(full_path: Path, public_path: Path, gt_path: Path) -> dict[str, Any]:
-    """Host-only Wide split that preserves the scorer's complete task domain."""
+    """Host-only split preserving the exact released Wide record domain."""
 
     base = _load_base()
     full = _jsonl(full_path)
     public: list[dict[str, Any]] = []
     gt: list[dict[str, Any]] = []
-    seen_questions: set[str] = set()
+    seen_nonempty_questions: set[str] = set()
     legacy_target_count = 0
     empty_target_task_count = 0
+    empty_question_task_count = 0
+    duplicate_question_task_count = 0
 
     for record in full:
         # Wide records have list-valued targets; Deep records have a scalar ID.
@@ -84,8 +83,12 @@ def prepare(full_path: Path, public_path: Path, gt_path: Path) -> dict[str, Any]
         if not isinstance(raw_ids, list):
             continue
         question = str(record.get("question") or "").strip()
-        if not question or question in seen_questions:
-            raise ValueError("Wide benchmark contains an empty or duplicate question")
+        if not question:
+            empty_question_task_count += 1
+        elif question in seen_nonempty_questions:
+            duplicate_question_task_count += 1
+        else:
+            seen_nonempty_questions.add(question)
 
         normalized_ids: list[str] = []
         for raw in raw_ids:
@@ -96,15 +99,11 @@ def prepare(full_path: Path, public_path: Path, gt_path: Path) -> dict[str, Any]
                     legacy_target_count += 1
         normalized_ids = list(dict.fromkeys(normalized_ids))
         if not normalized_ids:
-            # The pinned official scorer normalizes an empty released target list
-            # to an empty set and scores it rather than removing the task. Keep
-            # the task and record this benchmark property explicitly.
             empty_target_task_count += 1
 
         task_id = f"arb-wide-{len(public) + 1:04d}"
         public.append({"task_id": task_id, "question": question})
         gt.append({"question": question, "arxiv_id": normalized_ids})
-        seen_questions.add(question)
 
     if len(public) != 400:
         raise ValueError(f"expected 400 Wide records at pinned release, got {len(public)}")
@@ -116,15 +115,47 @@ def prepare(full_path: Path, public_path: Path, gt_path: Path) -> dict[str, Any]
     base._write_jsonl(public_path, public)
     base._write_jsonl(gt_path, gt)
     return {
-        "schema_version": "orion.p2.autoresearchbench-wide-split.v3",
+        "schema_version": "orion.p2.autoresearchbench-wide-split.v4",
         "pinned_upstream_commit": base.PINNED_AUTORESEARCHBENCH_COMMIT,
         "wide_tasks": len(public),
         "legacy_target_id_count": legacy_target_count,
         "empty_target_task_count": empty_target_task_count,
+        "empty_question_task_count": empty_question_task_count,
+        "duplicate_question_task_count": duplicate_question_task_count,
+        "official_gt_mapping_question_count": len(seen_nonempty_questions),
+        "official_question_semantics": (
+            "empty questions omitted from GT mapping; duplicate nonempty questions "
+            "use last-write GT mapping exactly as pinned scorer"
+        ),
         "candidate_hidden_label_paths": leaked,
         "public_sha256": base._sha256(public_path),
         "gt_sha256": base._sha256(gt_path),
     }
+
+
+def _empty_question_output(task_id: str) -> tuple[dict[str, Any], dict[str, Any]]:
+    output = {
+        "input_data": {"question": ""},
+        "inference_results": [
+            {
+                "pass_id": 0,
+                "status": "benchmark_empty_question",
+                "final_candidates": [],
+                "turn_details": [],
+            }
+        ],
+    }
+    trace = {
+        "task_id": task_id,
+        "query": None,
+        "provider": None,
+        "fetch_status": "BENCHMARK_EMPTY_QUESTION",
+        "candidate_count": 0,
+        "candidate_arxiv_ids": [],
+        "duration_seconds": 0.0,
+        "note": "pinned official GT loader omits empty question keys; no provider request issued",
+    }
+    return output, trace
 
 
 def run_candidate(
@@ -135,18 +166,82 @@ def run_candidate(
     max_results: int,
     limit: int | None,
 ) -> dict[str, Any]:
+    """Run public-question candidates while avoiding meaningless empty queries."""
+
     base = _load_base()
     base._normalize_id = normalize_arxiv_id
-    manifest = base.run_candidate(
-        public_path,
-        output_path,
-        trace_path,
-        max_results=max_results,
-        limit=limit,
-    )
-    manifest["schema_version"] = "orion.p2.autoresearchbench-wide-keyless-run.v3"
-    manifest["identifier_normalizer"] = "modern_legacy_and_empty_target_compatible"
-    return manifest
+    records = _jsonl(public_path)
+    if limit is not None:
+        records = records[:limit]
+    for record in records:
+        if set(record) != {"task_id", "question"}:
+            raise AssertionError(f"candidate input schema drift: {sorted(record)}")
+        leaked = base._hidden_paths(record)
+        if leaked:
+            raise AssertionError("candidate input contains hidden labels: " + ",".join(leaked))
+
+    nonempty = [record for record in records if str(record["question"]).strip()]
+    empty_count = len(records) - len(nonempty)
+    tmp_public = output_path.with_name(output_path.name + ".nonempty-public.tmp")
+    tmp_output = output_path.with_name(output_path.name + ".nonempty-output.tmp")
+    tmp_trace = trace_path.with_name(trace_path.name + ".nonempty-trace.tmp")
+
+    if nonempty:
+        base._write_jsonl(tmp_public, nonempty)
+        base_manifest = base.run_candidate(
+            tmp_public,
+            tmp_output,
+            tmp_trace,
+            max_results=max_results,
+            limit=None,
+        )
+        nonempty_outputs = _jsonl(tmp_output)
+        nonempty_traces = _jsonl(tmp_trace)
+        if len(nonempty_outputs) != len(nonempty) or len(nonempty_traces) != len(nonempty):
+            raise AssertionError("base Wide candidate output cardinality drifted")
+    else:
+        base_manifest = {"status_counts": {}}
+        nonempty_outputs = []
+        nonempty_traces = []
+
+    output_iter = iter(nonempty_outputs)
+    trace_iter = iter(nonempty_traces)
+    outputs: list[dict[str, Any]] = []
+    traces: list[dict[str, Any]] = []
+    for record in records:
+        if str(record["question"]).strip():
+            outputs.append(next(output_iter))
+            traces.append(next(trace_iter))
+        else:
+            output, trace = _empty_question_output(str(record["task_id"]))
+            outputs.append(output)
+            traces.append(trace)
+
+    base._write_jsonl(output_path, outputs)
+    base._write_jsonl(trace_path, traces)
+    for path in (tmp_public, tmp_output, tmp_trace):
+        if path.exists():
+            path.unlink()
+
+    status_counts = dict(base_manifest.get("status_counts") or {})
+    if empty_count:
+        status_counts["BENCHMARK_EMPTY_QUESTION"] = empty_count
+    return {
+        "schema_version": "orion.p2.autoresearchbench-wide-keyless-run.v4",
+        "candidate_input_sha256": base._sha256(public_path),
+        "candidate_output_sha256": base._sha256(output_path),
+        "trace_sha256": base._sha256(trace_path),
+        "tasks_attempted": len(records),
+        "provider_requests": len(nonempty),
+        "empty_question_records_without_provider_request": empty_count,
+        "provider": "arxiv-export-api",
+        "provider_min_interval_seconds": 3.0,
+        "requests_per_nonempty_task": 1,
+        "max_results_per_task": max_results,
+        "status_counts": status_counts,
+        "hidden_labels_visible_to_candidate": False,
+        "identifier_normalizer": "modern_legacy_empty_target_and_question_compatible",
+    }
 
 
 def summarize(
@@ -167,10 +262,21 @@ def summarize(
         output_path,
     )
     split = json.loads(split_manifest_path.read_text(encoding="utf-8"))
-    summary["schema_version"] = "orion.p2.autoresearchbench-wide-official.v3"
+    run = json.loads(run_manifest_path.read_text(encoding="utf-8"))
+    aggregate = summary.get("official_aggregate_stats") or {}
+    summary["schema_version"] = "orion.p2.autoresearchbench-wide-official.v4"
     summary["legacy_target_id_count"] = split["legacy_target_id_count"]
     summary["empty_target_task_count"] = split["empty_target_task_count"]
-    summary["identifier_normalizer"] = "modern_legacy_and_empty_target_compatible"
+    summary["empty_question_task_count"] = split["empty_question_task_count"]
+    summary["duplicate_question_task_count"] = split["duplicate_question_task_count"]
+    summary["official_gt_mapping_question_count"] = split[
+        "official_gt_mapping_question_count"
+    ]
+    summary["provider_requests"] = run["provider_requests"]
+    summary["official_records_evaluated"] = aggregate.get("total_records")
+    summary["identifier_normalizer"] = (
+        "modern_legacy_empty_target_and_question_compatible"
+    )
     output_path.write_text(
         json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
