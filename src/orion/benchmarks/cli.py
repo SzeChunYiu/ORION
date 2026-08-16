@@ -7,16 +7,17 @@ from pathlib import Path
 from orion.benchmarks.external_evidence import empty_external_manifest
 from orion.benchmarks.external_io import load_external_manifest
 from orion.benchmarks.flagship import current_flagship_evidence_state
-from orion.self_orion.phase2_campaign_files import (
-    Phase2CampaignFileSet,
-    assess_phase2_campaign_files,
-)
+from orion.self_orion.phase2_campaign_files import Phase2CampaignFileSet
 from orion.self_orion.phase2_freeze import freeze_phase2_binding
 from orion.self_orion.phase2_io import load_phase2_binding, repository_phase2_preflight
 from orion.self_orion.phase2_preflight import (
     Phase2PreflightStatus,
     assess_phase2_preflight,
     build_frozen_live_trial_packet,
+)
+from orion.self_orion.phase2_terminal_files import (
+    Phase2TerminalFileSet,
+    assess_phase2_terminal_files,
 )
 
 
@@ -52,7 +53,7 @@ def _parser() -> argparse.ArgumentParser:
     campaign = subcommands.add_parser(
         "phase2-campaign-status",
         help=(
-            "Replay ordered Phase-2 closure status from protected JSON artifacts "
+            "Replay all Phase-2 closure gates from retained protected artifacts "
             "without calling providers/evaluators."
         ),
     )
@@ -62,6 +63,12 @@ def _parser() -> argparse.ArgumentParser:
     campaign.add_argument("--development-trial", type=Path)
     campaign.add_argument("--authority-trial", type=Path)
     campaign.add_argument("--authority-benchmark", type=Path)
+    campaign.add_argument("--failure-replay", type=Path)
+    campaign.add_argument("--failure-index", type=Path)
+    campaign.add_argument("--final-integration", type=Path)
+    campaign.add_argument("--final-subject-attestation", type=Path)
+    campaign.add_argument("--ci-evidence", type=Path)
+    campaign.add_argument("--papers-claim-ledger", type=Path)
     campaign.add_argument("--external-observations", type=Path)
     campaign.add_argument("--external-manifest", type=Path)
     return parser
@@ -148,20 +155,30 @@ def _phase2_freeze_payload(args: argparse.Namespace) -> dict[str, object]:
 
 
 def _phase2_campaign_payload(args: argparse.Namespace) -> dict[str, object]:
-    report = assess_phase2_campaign_files(
-        Phase2CampaignFileSet(
-            binding=args.binding,
-            live_trial=args.live_trial,
-            baseline_bundle=args.baseline_bundle,
-            development_trial=args.development_trial,
-            authority_trial=args.authority_trial,
-            authority_benchmark=args.authority_benchmark,
-            external_observations=args.external_observations,
-            external_manifest=args.external_manifest,
+    campaign_files = Phase2CampaignFileSet(
+        binding=args.binding,
+        live_trial=args.live_trial,
+        baseline_bundle=args.baseline_bundle,
+        development_trial=args.development_trial,
+        authority_trial=args.authority_trial,
+        authority_benchmark=args.authority_benchmark,
+        external_observations=args.external_observations,
+        external_manifest=args.external_manifest,
+    )
+    report = assess_phase2_terminal_files(
+        Phase2TerminalFileSet(
+            campaign=campaign_files,
+            failure_replay_receipt=args.failure_replay,
+            frozen_failure_index=args.failure_index,
+            final_integration_receipt=args.final_integration,
+            final_subject_attestation=args.final_subject_attestation,
+            ci_evidence=args.ci_evidence,
+            papers_claim_ledger=args.papers_claim_ledger,
         )
     )
     return {
         "stage": report.stage.value,
+        "base_campaign_stage": report.base_campaign_stage.value,
         "blockers": list(report.blockers),
         "packet_fingerprint": report.packet_fingerprint,
         "live_trial_artifact_hash": report.live_trial_artifact_hash,
@@ -169,6 +186,8 @@ def _phase2_campaign_payload(args: argparse.Namespace) -> dict[str, object]:
         "authority_trial_artifact_hash": report.authority_trial_artifact_hash,
         "authority_benchmark_panel_hash": report.authority_benchmark_panel_hash,
         "authority_campaign_artifact_hash": report.authority_campaign_artifact_hash,
+        "failure_replay_artifact_hash": report.failure_replay_artifact_hash,
+        "final_integration_artifact_hash": report.final_integration_artifact_hash,
         "external_observation_bundle_hash": report.external_observation_bundle_hash,
         "ready_for_terminal_audit": report.ready_for_terminal_audit,
         "grants_phase2_closure": report.grants_phase2_closure,
