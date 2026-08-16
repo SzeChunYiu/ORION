@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from orion.kernel.gate import AnswerAuthority, AnswerGrading
+from orion.kernel.gate import AnswerAuthority, AnswerGrading, EvidenceUseAssessment
 from orion.mechanics.model import MechanicDimension
 
 
@@ -92,3 +92,25 @@ def test_nothing_is_required_by_default() -> None:
 
     assert _grading().unmet_prerequisites == ()
     assert _grading().applicable
+
+
+def test_protected_assessment_requires_independent_lineage_and_exact_evidence() -> None:
+    assessment = EvidenceUseAssessment(
+        assessment_id="a1",
+        record_id="r1",
+        evaluator_id="protected-evaluator",
+        evaluator_revision="c" * 64,
+        lane="protected-lane",
+        evidence_refs=("e1",),
+        support_established=True,
+        influence_established=True,
+        frozen_at_round=0,
+    )
+    assert assessment.evaluator_revision == "c" * 64
+    assert assessment.support_established is True
+    assert assessment.influence_established is True
+
+
+def test_unknown_prerequisite_is_never_silently_ignored() -> None:
+    grading = _grading(required_prerequisites=frozenset({"support", "unknown"}))
+    assert "support_not_established" in grading.unmet_prerequisites

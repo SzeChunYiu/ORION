@@ -111,9 +111,13 @@ def test_the_kernel_column_is_reported_separately_from_the_battery_column() -> N
 
     by_id = {item.attack_id: item for item in _REPORT.attacks}
     kernel_caught = {
+        ATTACK_IDS[0],
         ATTACK_IDS[1],
         ATTACK_IDS[3],
         ATTACK_IDS[4],
+        ATTACK_IDS[5],
+        ATTACK_IDS[7],
+        ATTACK_IDS[8],
         ATTACK_IDS[9],
     }
     for attack_id, attack in by_id.items():
@@ -131,10 +135,10 @@ def test_false_authority_promotion_rate_counts_only_the_kernel_column() -> None:
     promoted = {
         item.attack_id for item in _REPORT.attacks if item.kernel_promoted is True
     }
-    assert promoted == {ATTACK_IDS[0], ATTACK_IDS[2], ATTACK_IDS[5]}
+    assert promoted == {ATTACK_IDS[2]}
     assert metrics.promotion_opportunities == 7
-    assert metrics.false_promotions == 3
-    assert metrics.false_authority_promotion_rate == 3 / 7
+    assert metrics.false_promotions == 1
+    assert metrics.false_authority_promotion_rate == 1 / 7
 
 
 def test_attacks_outside_the_promotion_path_are_not_scored_as_refusals() -> None:
@@ -168,7 +172,7 @@ def test_the_panel_carries_its_own_construct_validity_verdict() -> None:
 
 def test_the_report_formats_to_a_machine_readable_block() -> None:
     text = format_report(_REPORT)
-    assert "metric.false_authority_promotion_rate=0.4286" in text
+    assert "metric.false_authority_promotion_rate=0.1429" in text
     for attack_id in ATTACK_IDS:
         assert attack_id in text
 
@@ -196,11 +200,9 @@ def test_the_battery_reports_the_kernel_defects_it_demonstrated() -> None:
         "the multi-check selection defect is repaired; if the battery sees it "
         "again, gate.py has regressed to consulting one check per dimension"
     )
-    # Both of these are open and belong to the promotion path, not to this
-    # benchmark. They are named so a repair shows up as a failure here.
-    assert "EVIDENCE_BOUND" in joined
-    assert "external_authority_gate" in joined
-    assert len(_REPORT.kernel_defects) == 2
+    assert "EVIDENCE_BOUND" not in joined
+    assert "external_authority_gate" not in joined
+    assert _REPORT.kernel_defects == ()
 
 
 def test_the_tamper_detector_judges_paths_it_never_opens() -> None:
@@ -515,8 +517,10 @@ def test_the_external_gate_refuses_an_attestation_its_observation_contradicts() 
         "heldout_access_logged": True,
         "matched_nearest_work_baseline_run": True,
         "false_promotion_better_than_baseline": True,
+        "claim_evidence_support_established": True,
+        "behavioral_influence_established": True,
     }
-    assert external_authority_gate(**attested).status is BenchmarkStatus.PASS
+    assert external_authority_gate(**attested).status is BenchmarkStatus.CANNOT_CHECK
 
     caught = external_authority_gate(
         **attested,
@@ -555,13 +559,12 @@ def test_required_telemetry_that_is_absent_is_cannot_check_not_pass() -> None:
         "heldout_access_logged": True,
         "matched_nearest_work_baseline_run": True,
         "false_promotion_better_than_baseline": True,
+        "claim_evidence_support_established": True,
+        "behavioral_influence_established": True,
     }
-    assert external_authority_gate(**attested).status is BenchmarkStatus.PASS
-    required = external_authority_gate(**attested, require_observed_activity=True)
-    assert required.status is BenchmarkStatus.CANNOT_CHECK
+    assert external_authority_gate(**attested).status is BenchmarkStatus.CANNOT_CHECK
     clean = external_authority_gate(
         **attested,
-        require_observed_activity=True,
         observed_activity=CandidateActivity("c"),
     )
     assert clean.status is BenchmarkStatus.PASS
