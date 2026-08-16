@@ -45,6 +45,7 @@ ablation that lost while spending less would be a confound, not a result.
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from enum import Enum
 from functools import lru_cache
@@ -79,6 +80,7 @@ from .baselines import (
     axis_answer,
     budget_for,
     cue_to_residual,
+    descendants_of,
     deterministic_rng,
     extract_cues,
     material_cues,
@@ -260,6 +262,11 @@ class OrionSystem:
 
     system_id: str
     policy: OrionPolicy = field(default_factory=OrionPolicy)
+    # Optional hook: given the public view, name the closures a reframe
+    # invalidates. Mechanical mode leaves it None and identifies nothing —
+    # naming them is a reasoning act, not something the public view discloses.
+    # The live arm supplies it; without it `D*(c)` cannot start on this suite.
+    identify_closures: Callable[[PublicView], tuple[str, ...]] | None = None
 
     # -- decision ---------------------------------------------------------
 
@@ -475,7 +482,9 @@ class OrionSystem:
                 changed.extend(applied)
                 depth += 1
                 reopened.extend(
-                    self._reopen(reopen_operator, state, tuple(applied), closures)
+                    self._reopen(
+                        reopen_operator, state, tuple(applied), closures, view
+                    )
                 )
 
         changed_coordinates = tuple(dict.fromkeys(changed))
@@ -527,6 +536,7 @@ class OrionSystem:
         state: OrionState,
         changed: tuple[str, ...],
         closures: tuple[PublicClosure, ...],
+        view: PublicView,
     ) -> tuple[str, ...]:
         if self.policy.reopen_mode is ReopenMode.NONE:
             return ()
@@ -535,7 +545,20 @@ class OrionSystem:
             # precisely what makes it a full reset.
             return tuple(item.closure_id for item in closures)
         result = operator.run(state, changed_coordinates=changed, reason="reframe")
-        return result.output
+        staled = tuple(result.output)
+        # Coordinate-keyed staling is exact when a closure declares a basis, and
+        # silent when it does not — which on the frozen suite is 37 of 44 cases.
+        # A system that has *identified* the invalidated closure supplies it
+        # here, and `D*(c)` is then completed over the closure graph. Mechanical
+        # mode identifies nothing and this adds nothing; the live arm is where
+        # it matters, and without it a correct live diagnosis would still reopen
+        # nothing.
+        identified = self.identify_closures(view) if self.identify_closures else ()
+        if identified:
+            staled = tuple(
+                dict.fromkeys((*staled, *descendants_of(closures, tuple(identified))))
+            )
+        return staled
 
     # -- invariants -------------------------------------------------------
 
