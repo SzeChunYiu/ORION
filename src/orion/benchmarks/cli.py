@@ -7,6 +7,7 @@ from pathlib import Path
 from orion.benchmarks.external_evidence import empty_external_manifest
 from orion.benchmarks.external_io import load_external_manifest
 from orion.benchmarks.flagship import current_flagship_evidence_state
+from orion.self_orion.phase2_freeze import freeze_phase2_binding
 from orion.self_orion.phase2_io import load_phase2_binding, repository_phase2_preflight
 from orion.self_orion.phase2_preflight import (
     Phase2PreflightStatus,
@@ -23,23 +24,26 @@ def _parser() -> argparse.ArgumentParser:
         "external-status",
         help="Assess P1-P5 external evidence from a frozen manifest JSON file.",
     )
-    external.add_argument(
-        "--manifest",
-        type=Path,
-        default=None,
-        help="Host-produced ExternalEvidenceManifest.v1 JSON. Omit to show the repository-only CANNOT_CHECK boundary.",
-    )
+    external.add_argument("--manifest", type=Path, default=None)
 
     phase2 = subcommands.add_parser(
         "phase2-preflight",
         help="Assess externally supplied bindings for the frozen Shadow live trial.",
     )
-    phase2.add_argument(
-        "--binding",
-        type=Path,
-        default=None,
-        help="Host-produced Phase2ClosureBinding.v1 JSON. Omit to show which binding is required next.",
+    phase2.add_argument("--binding", type=Path, default=None)
+
+    freeze = subcommands.add_parser(
+        "phase2-freeze",
+        help="Attest a clean Git subject and freeze it with a verified live provider manifest.",
     )
+    freeze.add_argument("--repo", type=Path, default=Path("."))
+    freeze.add_argument("--provider-manifest", type=Path, required=True)
+    freeze.add_argument("--subject-output", type=Path, required=True)
+    freeze.add_argument("--binding-output", type=Path, required=True)
+    freeze.add_argument("--resource-budget-units", type=float, required=True)
+    freeze.add_argument("--baseline-id", default="simple-llm-retrieval-baseline-v1")
+    freeze.add_argument("--protocol-id", default="phase2-shadow-closure-v1")
+    freeze.add_argument("--repository-identity", default=None)
     return parser
 
 
@@ -92,13 +96,46 @@ def _phase2_preflight_payload(binding_path: Path | None) -> dict[str, object]:
     return payload
 
 
+def _phase2_freeze_payload(args: argparse.Namespace) -> dict[str, object]:
+    frozen = freeze_phase2_binding(
+        repository_root=args.repo,
+        provider_manifest_path=args.provider_manifest,
+        subject_output_path=args.subject_output,
+        binding_output_path=args.binding_output,
+        resource_budget_units=args.resource_budget_units,
+        baseline_id=args.baseline_id,
+        protocol_id=args.protocol_id,
+        repository_identity=args.repository_identity,
+    )
+    return {
+        "status": "READY_TO_EXECUTE_SHADOW_TRIAL",
+        "repository_identity": frozen.subject.repository_identity,
+        "commit_oid": frozen.subject.commit_oid,
+        "tree_oid": frozen.subject.tree_oid,
+        "source_tree_sha256": frozen.subject.source_tree_sha256,
+        "subject_revision_hash": frozen.subject_revision_hash,
+        "provider_manifest_hash": frozen.provider_manifest_hash,
+        "evaluator_artifact_hash": frozen.preflight.evaluator_artifact_hash,
+        "evaluation_epoch_id": frozen.preflight.evaluation_epoch_id,
+        "baseline_id": frozen.preflight.baseline_id,
+        "resource_budget_units": frozen.preflight.resource_budget_units,
+        "live_trial_packet_fingerprint": frozen.live_trial_packet_fingerprint,
+        "subject_output": str(args.subject_output),
+        "binding_output": str(args.binding_output),
+        "grants_phase2_closure": False,
+        "grants_governed_self_orion": False,
+    }
+
+
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     if args.command == "external-status":
         payload = _external_status_payload(args.manifest)
     elif args.command == "phase2-preflight":
         payload = _phase2_preflight_payload(args.binding)
-    else:  # pragma: no cover - argparse enforces the command set
+    elif args.command == "phase2-freeze":
+        payload = _phase2_freeze_payload(args)
+    else:  # pragma: no cover
         raise AssertionError("unreachable command")
     print(json.dumps(payload, indent=2, sort_keys=True))
     return 0
