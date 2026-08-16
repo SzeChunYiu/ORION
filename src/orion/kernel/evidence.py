@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import subprocess
+from functools import lru_cache
 from collections.abc import Mapping
 from dataclasses import dataclass
 from enum import Enum
@@ -56,7 +57,24 @@ def artifact_digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+@lru_cache(maxsize=4096)
+def _blob_at_commit_cached(root: str, revision: str, relative_path: str) -> bytes | None:
+    """Cache-backed read of a pinned blob.
+
+    Caching is sound here and only here: the content of a path at a named
+    revision cannot change, so a repeat lookup must return the same bytes. The
+    working-tree path deliberately has no cache, because a file on disk can and
+    does change under a running process.
+    """
+
+    return _read_blob(Path(root), revision, relative_path)
+
+
 def _blob_at_commit(root: Path, revision: str, relative_path: str) -> bytes | None:
+    return _blob_at_commit_cached(str(root), revision, relative_path)
+
+
+def _read_blob(root: Path, revision: str, relative_path: str) -> bytes | None:
     """Return the bytes a path had at a revision, or None if it cannot be read."""
 
     try:

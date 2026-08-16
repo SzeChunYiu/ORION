@@ -66,3 +66,34 @@ class StaticAnswerSource:
         )
         self.consumed.update(record.record_id for record in selected)
         return selected
+
+
+@dataclass
+class CallableAnswerSource:
+    """Serve records produced by a supplier, once each.
+
+    Lets a lane deliver answers from code rather than a JSONL inbox without the
+    kernel knowing or caring which, since the gate judges a record by its
+    evidence, its lane and its check — never by how it arrived.
+    """
+
+    supplier: object
+    consumed: set[str] = field(default_factory=set)
+
+    def fetch(
+        self,
+        tasks: tuple[MechanicResearchTask, ...],
+        cells: tuple[MechanicCell, ...],
+        round_index: int,
+    ) -> tuple[AnswerRecord, ...]:
+        del round_index
+        wanted = {(item.mechanic_id, item.dimension) for item in tasks}
+        available = self.supplier(cells)  # type: ignore[operator]
+        selected = tuple(
+            record
+            for record in available
+            if record.record_id not in self.consumed
+            and (record.mechanic_id, record.dimension) in wanted
+        )
+        self.consumed.update(record.record_id for record in selected)
+        return selected
