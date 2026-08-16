@@ -1,7 +1,11 @@
-# Paper 04 — Self-ORION
+# Historical planning redirect — Self-ORION
 
-**Status:** PLANNED / BLOCKED ON READINESS EVIDENCE
+The original four-paper bootstrap assigned **Self-ORION** to Paper 04.
 
-Scope: failure learning, experience consolidation, method challengers, fresh assurance, negative history, development-readiness, and governed self-improvement.
+Nearest-work research split **Open-World Scientific Knowledge Discovery** into an independent flagship contribution, so Self-ORION is now canonical **Paper 05**.
 
-No self-improvement claim is authorized until the readiness gate passes prospectively.
+Use:
+
+`papers/paper-05-self-orion/`
+
+This directory remains as provenance for earlier references. No self-improvement claim is authorized until the prospective readiness/assurance gates pass.
