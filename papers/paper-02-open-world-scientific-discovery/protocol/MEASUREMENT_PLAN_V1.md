@@ -100,6 +100,8 @@ A trial with `transport_status` in `RATE_LIMITED`, `UNAVAILABLE`, `TIMEOUT`, `ER
 - **Missing / failed / malformed / abstained**: retained and scored as the outcome they are. Only a documented host-infrastructure outage is excludable, symmetrically, by pairwise-complete deletion across all systems, capped at 5% of a family.
 - **Truncation at a cap**: outcome retained and scored as-is; partial finds count; the task is recorded as not closed.
 - **`CANNOT_CHECK`** is an outcome, never missing data and never 0.
+- **Precision**: `assumed_p` is frozen at 0.5 for every family — conservative for a binomial and also a bound on the mean of any [0,1] variable, so it covers per-task IoU and recall as well as binary success. Assuming a smaller rate would shrink N by anticipating an outcome. `offline_complete_gold` is host-owned and commits to a half-width of 0.05, which is **N ≥ 385** tasks; the other families' N is fixed by the benchmark and unbound at freeze, so the plan instead requires the achieved half-width to be computed from the realised N and any family exceeding 0.03 to be labelled `UNDERPOWERED`. The tier ladder and every N are in the JSON and are recomputed from `publication_stats.required_n_for_proportion_half_width` by the test, never typed by hand.
+- **Figures and tables**: `PROTOCOL_V1.json` freezes *which* exist; the JSON's `figure_bindings` freezes *what each may render*, so a panel cannot change the metric it shows after outcomes are seen. Every caption states N, aggregation unit, uncertainty definition and role. Cosmetic layout changes are permitted and logged; a change to what a figure renders needs a new protocol version.
 
 ## 6. Required bindings
 

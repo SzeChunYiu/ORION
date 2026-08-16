@@ -52,6 +52,7 @@
     "direction": "lower_better",
     "rule": "non_inferiority",
     "margin": 0.02,
+    "margin_ref": "margins.safety_guard_margin_delta_safety",
     "comparator": "strongest_matched_baseline_on_the_same_family",
     "binding": "A family primary cannot be promoted unless the safety guard passes on that family. The guard is tested once per primary-bearing family in its frozen direction and is not part of any Holm family.",
     "cannot_check_rule": "If the family's gold denominator is incomplete for a task, that task's guard value is CANNOT_CHECK. CANNOT_CHECK is never scored as 0 and never contributes to a pass."
@@ -70,7 +71,9 @@
   "non_inferiority_rule": {
     "applies_when": "ORION's claimed value on a primary-bearing family is safety and coverage at bounded extra cost rather than a raw improvement in the family primary.",
     "direction": "ORION minus strongest matched baseline on the family primary, in the family primary's declared direction.",
-    "pass_condition": "Paired percentile bootstrap 95% CI lower bound of the difference > -0.01 (delta_ni), in the declared direction.",
+    "margin": 0.01,
+    "margin_ref": "margins.non_inferiority_margin_delta_ni",
+    "pass_condition": "Paired percentile bootstrap 95% CI lower bound of the difference > -delta_ni, in the declared direction. The numeric value of delta_ni is held once, in margins.non_inferiority_margin_delta_ni, and is never restated as a literal in prose.",
     "additional_required_conditions": [
       "strict improvement on premature_task_closure_rate: 95% CI upper bound of (ORION minus comparator) < 0",
       "SAGE lexical gate passed on the same family in the same call",
@@ -398,6 +401,26 @@
     {"id": "B15", "field": "read_encounter.executed", "type": "boolean", "meaning": "Whether an extraction was actually performed for this encounter. Encounter minus execution is what makes suppression visible.", "metrics_enabled": ["legitimate_reread_rate", "duplicate_processing_rate"]},
     {"id": "B16", "field": "result_record.repeat_index_and_seed", "type": "object{repeat_index: integer, seed: integer}", "meaning": "Which of the 3 stochastic repeats this record is, and its seed, so repeats collapse by mean within (task, system) and can never be reshuffled into independent tasks.", "metrics_enabled": ["deep_official_success", "wide_official_iou", "complete_gold_recall", "premature_task_closure_rate"]}
   ],
+
+  "figure_bindings": {
+    "purpose": "PROTOCOL_V1.json freezes which figures and tables exist. This block freezes what each one is allowed to render, so a plot cannot quietly change the metric it shows after outcomes are seen. ANALYSIS_STANDARD_V1 requires every caption to state N, aggregation unit, uncertainty definition and whether the result is primary, secondary or exploratory; the role recorded here is the one the caption must state.",
+    "caption_must_state": ["n", "aggregation_unit", "uncertainty_definition", "role"],
+    "cosmetic_changes_allowed": "Layout changes that do not alter metric selection are permitted and logged. Any change to renders_metrics requires a new protocol version.",
+    "figures": {
+      "P2-1_pipeline": {"kind": "schematic", "role": "schematic", "renders_metrics": [], "note": "Discovery pipeline separating retrieval, screening, route stop and task closure. Carries no result."},
+      "P2-2_recall_cost": {"kind": "result", "role": "family_primary", "renders_metrics": ["deep_official_success", "wide_official_iou", "complete_gold_recall", "wallclock_seconds", "model_tokens", "query_count", "tool_calls"]},
+      "P2-3_cumulative_unique_relevant": {"kind": "result", "role": "secondary", "renders_metrics": ["unique_relevant_per_route", "query_count", "wallclock_seconds"]},
+      "P2-4_route_marginal_gain": {"kind": "result", "role": "secondary", "renders_metrics": ["marginal_relevant_gain", "unique_relevant_per_route"]},
+      "P2-5_route_overlap": {"kind": "result", "role": "secondary", "renders_metrics": ["route_overlap_content_digest"]},
+      "P2-6_stopping_errors": {"kind": "result", "role": "primary_safety_guard", "renders_metrics": ["premature_task_closure_rate", "route_stop_false_positive_rate", "route_stop_false_negative_rate"]},
+      "P2-7_wide_deep": {"kind": "result", "role": "family_primary", "renders_metrics": ["deep_official_success", "wide_official_iou"]}
+    },
+    "tables": {
+      "P2-T1_benchmark_license_freeze_manifest": {"kind": "manifest", "role": "manifest", "renders_metrics": [], "note": "Benchmark, data, license and freeze manifest. Carries no result."},
+      "P2-T2_baseline_ablation_results": {"kind": "result", "role": "family_primary", "renders_metrics": ["deep_official_success", "wide_official_iou", "complete_gold_recall", "premature_task_closure_rate", "precision", "screening_recall", "false_negative_count", "unique_relevant_per_route", "route_overlap_content_digest", "marginal_relevant_gain", "route_stop_false_positive_rate", "route_stop_false_negative_rate", "legitimate_reread_rate", "duplicate_processing_rate", "wallclock_seconds", "query_count", "model_tokens", "tool_calls"], "note": "Full baseline and ablation results with intervals and cost. Every registered metric appears here; per-row role is taken from metric_registry."},
+      "P2-T3_failure_taxonomy": {"kind": "result", "role": "exploratory", "renders_metrics": [], "renders_exploratory": ["truncation_rate", "unjustified_closure_rate", "open_obligation_rate"], "note": "Failure taxonomy: present-but-missed, retrieved-but-unused, screening miss, route starvation, transport failure, premature closure. Exploratory by construction."}
+    }
+  },
 
   "stricter_than_analysis_standard": [
     {"id": "S1", "topic": "pairwise_complete_deletion", "standard_says": "infrastructure failures may be excluded under a symmetric predeclared rule", "this_plan_adds": "an exclusion for one system deletes that task for every system in the comparison, plus a 5% per-family exclusion budget above which the family is COMPROMISED"},

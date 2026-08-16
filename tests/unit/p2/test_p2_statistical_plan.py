@@ -316,6 +316,107 @@ def test_exploratory_diagnostics_are_separate_and_unpromotable() -> None:
     assert plan["multiplicity"]["exploratory_never_promoted"] is True
 
 
+def test_every_frozen_figure_and_table_is_bound_to_what_it_may_render() -> None:
+    protocol = _load_json(PROTOCOL_PATH)
+    plan = _load_json(PLAN_PATH)
+    bindings = plan["figure_bindings"]
+    registry = set(plan["metric_registry"])
+    exploratory = {name for name in plan["exploratory_diagnostics"] if name != "note"}
+
+    assert list(bindings["figures"]) == protocol["plots"], "figure bindings must cover the frozen plot list exactly once, in order"
+    assert list(bindings["tables"]) == protocol["tables"], "table bindings must cover the frozen table list exactly once, in order"
+
+    allowed_roles = {"schematic", "manifest", "exploratory", "secondary", "primary_safety_guard", "family_primary"}
+    for group in ("figures", "tables"):
+        for name, entry in bindings[group].items():
+            assert entry["role"] in allowed_roles, name
+            assert entry["kind"] in {"schematic", "manifest", "result"}, name
+            assert set(entry["renders_metrics"]) <= registry, f"{name} renders an unregistered metric"
+            assert set(entry.get("renders_exploratory", [])) <= exploratory, name
+            if entry["kind"] == "result":
+                assert entry["renders_metrics"] or entry.get("renders_exploratory"), f"{name} claims to be a result but renders nothing"
+            else:
+                assert not entry["renders_metrics"], f"{name} carries no result and must render no metric"
+
+    # A caption's declared role must be reachable from what the figure renders,
+    # otherwise a secondary panel can be captioned as a primary result.
+    rank = {"secondary_non_inferential": 0, "secondary": 1, "primary_safety_guard": 2, "family_primary": 3}
+    for group in ("figures", "tables"):
+        for name, entry in bindings[group].items():
+            metrics = entry["renders_metrics"]
+            if not metrics or entry["role"] in {"schematic", "manifest", "exploratory"}:
+                continue
+            best = max(rank[plan["metric_registry"][m]["role"]] for m in metrics)
+            assert rank[entry["role"]] <= best, f"{name} is captioned above the strongest role it renders"
+
+    assert set(bindings["caption_must_state"]) >= {"n", "aggregation_unit", "uncertainty_definition", "role"}
+
+    # Every confirmatory metric must be renderable somewhere, or it is frozen
+    # into the plan and then never shown.
+    rendered = {m for group in ("figures", "tables") for entry in bindings[group].values() for m in entry["renders_metrics"]}
+    declared = set(protocol["metrics"]["primary"]) | set(protocol["metrics"]["secondary"])
+    assert declared <= rendered, f"never rendered: {sorted(declared - rendered)}"
+
+
+def test_margins_are_held_once_and_agree_across_the_plan() -> None:
+    plan = _load_json(PLAN_PATH)
+    margins = plan["margins"]
+
+    guard = plan["primary_safety_guard"]
+    assert guard["margin_ref"] == "margins.safety_guard_margin_delta_safety"
+    assert guard["margin"] == margins["safety_guard_margin_delta_safety"]
+
+    ni_rule = plan["non_inferiority_rule"]
+    assert ni_rule["margin_ref"] == "margins.non_inferiority_margin_delta_ni"
+    assert ni_rule["margin"] == margins["non_inferiority_margin_delta_ni"]
+
+    # The prose must not restate a margin literal, or an edit to the machine
+    # value leaves a stale number that still reads as authoritative.
+    literal = repr(float(margins["non_inferiority_margin_delta_ni"]))
+    assert literal not in ni_rule["pass_condition"]
+
+
+def test_holm_membership_agrees_in_both_directions() -> None:
+    plan = _load_json(PLAN_PATH)
+    registry = plan["metric_registry"]
+    declared: dict[str, str] = {}
+    for family in plan["multiplicity"]["holm_families"]:
+        for name in family["metrics"]:
+            declared[name] = family["family_id"]
+
+    for name, family_id in declared.items():
+        assert registry[name].get("holm_family") == family_id, (
+            f"{name} is listed under {family_id} but its registry entry says {registry[name].get('holm_family')}"
+        )
+    for name, entry in registry.items():
+        if "holm_family" in entry:
+            assert declared.get(name) == entry["holm_family"], f"{name} claims a Holm family that does not list it"
+
+
+def test_measurement_plan_numbers_match_the_machine_values() -> None:
+    text = MEASUREMENT_PATH.read_text(encoding="utf-8")
+    plan = _load_json(PLAN_PATH)
+    margins = plan["margins"]
+
+    # Any number the prose states must be the number the plan enforces.
+    for label, value in (
+        ("delta_sup", margins["superiority_margin_delta_sup"]),
+        ("delta_safety", margins["safety_guard_margin_delta_safety"]),
+        ("delta_ni", margins["non_inferiority_margin_delta_ni"]),
+        ("cost_ratio_ceiling", plan["non_inferiority_rule"]["cost_admissibility"]["cost_ratio_ceiling"]),
+    ):
+        assert str(value) in text, f"{label}={value} is enforced by the plan but absent from the measurement plan prose"
+
+    assert str(plan["precision_plan"]["family_n_policy"]["offline_complete_gold"]["committed_required_n"]) in text
+    assert str(plan["pairing_and_repeats"]["stochastic_repeats"]) in text
+    pct = plan["exclusion_policy"]["exclusion_budget"]["max_excluded_fraction_per_family"]
+    assert f"{pct:.0%}".replace("%", "%") in text or f"{int(pct * 100)}%" in text
+
+    o1 = plan["oracles"]["O1"]
+    assert str(o1["marginal_yield_threshold"]) in text
+    assert str(o1["exhaustion_grace_attempts"]) in text
+
+
 def test_measurement_plan_documents_every_metric_and_lists_bindings() -> None:
     text = MEASUREMENT_PATH.read_text(encoding="utf-8")
     protocol = _load_json(PROTOCOL_PATH)
