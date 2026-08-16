@@ -1,68 +1,70 @@
-# The development-readiness gate is self-certifiable
+# The development-readiness gate was self-certifiable
 
-**Observed:** 2026-08-16, main. **Status:** OPEN — reproduction below, repair specified, not applied.
+**Observed:** 2026-08-16. **Status:** REPAIR IMPLEMENTED ON `fix/readiness-derivation-v1`; external custody/evaluator remains unavailable.
 
-## Reproduction
+## Original reproduction
 
-```python
-assess_readiness_stage(
-    ShadowSelfDrivingArchitectureEvidence(*[True] * 10),
-    ReadinessEvidence(*[True] * 9),
-)  # -> SelfOrionReadinessStage.GOVERNED_SELF_ORION
-```
+The old API accepted nineteen caller-supplied booleans. A caller could construct all of them as `True` and obtain `GOVERNED_SELF_ORION`. Several architecture booleans were hardcoded true at the only construction site.
 
-`assess_readiness` (`src/orion/self_orion/readiness.py:48-51`) is
-`all(evidence.__dict__.values())` over nine caller-supplied booleans;
-`ShadowSelfDrivingArchitectureEvidence` adds ten more. Nothing is derived from
-an artifact. Any caller — including a challenger ORION proposing its own
-promotion — reaches the top governance stage by constructing the dataclasses.
+Failure class: `DECLARATION_BOUND_PROMOTION` — a promotion decision resting on assertions the subject of the decision can author.
 
-Worse, seven of the ten architecture coordinates are hardcoded at their only
-construction site (`src/orion/self_orion/self_driving.py:128-134`):
-`autonomous_research_loop_present`, `development_proposal_boundary_present`,
-`content_addressed_patch_boundary_present`, `isolated_sandbox_boundary_present`,
-`protected_assurance_boundary_present`, `failure_history_preserved`,
-`self_merge_absent` are literal `True`. **A coordinate that cannot be False is
-not evidence.**
+## Why this mattered
 
-## Failure class
+ORION already refused to promote a single failure guard past local verification without external lineage separation, but the larger system could promote itself to primary development status by setting booleans. That inverted the authority hierarchy.
 
-`DECLARATION_BOUND_PROMOTION` — a promotion decision resting on assertions the
-subject of the decision can author. The repository already names this defect in
-its own research (`research/development/mechanic-answer-loop/candidate-answers/
-REFRAME.METHOD.v0.md`): "a promotion API accepting a caller-provided
-`governance_approved` boolean is declaration-bound, not content-bound."
+## Applied repair
 
-## Why this one matters more than an ordinary bug
+### 1. In-process governed-readiness state removed
 
-The inversion is the point. `experience/learning.py:364-384` refuses to promote
-a *single failure guard* past `VERIFIED_LOCAL`, failing closed with
-`external_lineage_separation_attestation_required`, because in-process lineage
-labels "prove inequality, not independent organizational or process custody".
-So today a self-improver cannot promote one guard — but can promote *itself to
-primary development process* by filling in nineteen booleans.
+`SelfOrionReadinessStage` now contains only:
 
-The kernel's answer path fixed exactly this shape: `AnswerRecord` evidence must
-resolve to a real artifact at a pinned digest, and a check must be independently
-laned and frozen before the round it judges. The readiness gate never received
-that treatment.
+- `BOOTSTRAP`;
+- `SHADOW_SELF_DRIVING`;
+- `READY_PENDING_EXTERNAL_ATTESTATION`.
 
-## Repair, specified
+There is **no** `GOVERNED_SELF_ORION` enum value. ORION cannot express unconditional self-promotion internally.
 
-Every coordinate becomes a derivation over a cited, content-addressed artifact;
-`CANNOT_CHECK` stays distinct from `FAIL`; `META_OVERFIT` (development gain with
-fresh-assurance loss) becomes its own verdict rather than collapsing into
-`CANDIDATE_ONLY` as it does at `change_control.py:169-172`; and the ceiling is
-`READY_PENDING_EXTERNAL_ATTESTATION` — the enum must not contain `READY`, so
-unconditional readiness is inexpressible rather than merely unreached.
+### 2. Empirical booleans removed
 
-Blocking dependency, verified: no concrete `ProtectedDevelopmentEvaluator`
-exists in `src/` — only the Protocol (`change_control.py:45-51`) and test
-doubles. Until an evaluator exists outside challenger write authority, the
-honest verdict is `CANNOT_CHECK` by nonexistence, and the gate cannot pass.
+The old `ReadinessEvidence` boolean dataclass is gone. Empirical readiness now consumes `ReadinessEvidenceRecord.v1` objects. Every record binds:
+
+- one typed criterion;
+- content-addressed evidence artifact;
+- exact subject revision;
+- evaluator artifact;
+- producer and verifier process lineage hashes;
+- evaluation epoch and split;
+- PASS / FAIL / CANNOT_CHECK;
+- whether evaluator chronology was frozen before the candidate;
+- whether the split is fresh.
+
+Self-verification, post-hoc evaluator evidence, non-fresh evidence, duplicate/missing criteria, mixed subject revisions, mixed evaluator artifacts and mixed evaluation epochs are blockers.
+
+Even a complete independently separated PASS set reaches only `READY_PENDING_EXTERNAL_ATTESTATION`.
+
+### 3. Shadow architecture evidence is derived, not hardcoded pass flags
+
+`ShadowSelfDrivingController.architecture_evidence()` now derives open-question count, graph-defect count and empirical-work availability from the live development state, names the component/protected-boundary/failure-history artifacts in the assembled controller, and detects whether a merge/promote-self capability is actually exposed. Architecture evidence establishes only the Shadow stage.
+
+### 4. META_OVERFIT is explicit
+
+`ChangeControlVerdict.META_OVERFIT` now distinguishes development-set improvement accompanied by fresh-assurance regression from generic `CANDIDATE_ONLY`. The Self-ORION cycle surfaces the same typed status.
 
 ## Falsifier
 
-If a derivation-bound gate is implemented and the reproduction above still
-reaches `GOVERNED_SELF_ORION`, the attribution is wrong and the defect is
-elsewhere.
+The repaired tests require:
+
+- a complete architecture with no empirical receipts -> `SHADOW_SELF_DRIVING`;
+- complete independently verified empirical receipts -> **only** `READY_PENDING_EXTERNAL_ATTESTATION`;
+- `GOVERNED_SELF_ORION` absent from the enum;
+- self-verified or post-hoc records blocked;
+- `CANNOT_CHECK` distinct from FAIL and readiness-blocking;
+- all records bound to one subject revision, one evaluator artifact and one evaluation epoch;
+- development gain + fresh regression -> `META_OVERFIT`;
+- no result authorizes self-merge.
+
+If the old all-boolean reproduction becomes possible again, this failure class has recurred.
+
+## Remaining external blocker
+
+There is still no concrete protected development evaluator in external custody in this repository—only the protocol/test doubles. Therefore issue #8/live Self-ORION evidence and actual host promotion remain `CANNOT_CHECK`. That is now an explicit external dependency rather than a boolean callers can bypass.
