@@ -9,6 +9,7 @@
     "obs/agent-docs.md — the agent exports per-host per-minute percentiles and never the individual observations",
     "closure:latency-slo-attestation — closed; certifies the 200 ms target as met at 180 ms",
     "closure:customer-facing-slo-page — closed; derived from closure:latency-slo-attestation, publishes 200 ms to customers",
+    "obs/retention.md — the raw request log is retained 14 days at full resolution, so any hour in that window can be recomputed from observations",
     "closure:observability-agent-rollout — closed; schedules the agent upgrade across the fleet; rests on the change calendar, not on how the published figure is computed"
   ],
   "protected_gold": {

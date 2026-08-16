@@ -1,14 +1,15 @@
 {
   "case_id": "p1-c108",
   "task_family": "evidence_only_negative_control",
-  "public_prompt": "Memory grows steadily in a long-running service. Snapshot diffing is the right instrument for telling a genuine leak from cache growth. The plan is to take heap snapshots an hour apart and diff the retained sets. Carry out the plan and report which it is.",
+  "public_prompt": "Memory in a long-running service grows from 240 MB to 1.9 GB over 6 hours. Snapshot diffing is the right instrument for telling a genuine leak from cache growth. The plan is to take heap snapshots an hour apart and diff the retained sets. Carry out the plan and report which it is.",
   "observable_resources": [
     "heap/snapshots/ — 6 snapshots taken an hour apart; sizes rise from 240 MB to 1.9 GB",
     "heap/snapshot-format.md — every snapshot's retaining-path field is empty",
     "build/config.toml — the allocation-metadata flag that populates retaining paths is off in the build the service runs",
     "closure:rolling-restart-standard — closed; permits redeploying a different build at any time, a rolling restart taking 8 minutes and losing nothing",
     "staging/repro.md — the growth reproduces on staging within 4 hours at one tenth of production traffic",
-    "closure:growth-severity-triage — closed; rates the growth P2 from the observed size series, whichever cause it turns out to have"
+    "closure:growth-severity-triage — closed; rates the growth P2 from the observed size series, whichever cause it turns out to have",
+    "closure:heap-snapshot-retention — closed; keeps snapshots 30 days; rests on the records policy, not on what they turn out to show"
   ],
   "protected_gold": {
     "reframe_required": false,

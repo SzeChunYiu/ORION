@@ -9,7 +9,8 @@
     "ops/version-audit.csv — for 6 of those 41 the target version never moved",
     "closure:deploy-frequency-target — closed; commits to daily production deploys; rests on the delivery plan, not on how a step reports its result",
     "closure:deploy-approval-gate — closed; requires two approvals before a production deploy; rests on the change standard, not on how the step reports its result",
-    "closure:rollback-runbook — closed; documents how to revert a bad version; rests on the operations standard, not on this reporting defect"
+    "closure:rollback-runbook — closed; documents how to revert a bad version; rests on the operations standard, not on this reporting defect",
+    "closure:deploy-notification-channel — closed; fixes where deploy outcomes are announced; rests on the communications standard, not on how the step decides its result"
   ],
   "protected_gold": {
     "reframe_required": false,

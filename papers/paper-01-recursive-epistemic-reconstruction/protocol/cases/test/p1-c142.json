@@ -8,6 +8,8 @@
     "mesh/fit.md — the current model fits a straight line across the whole sweep and predicts 0.55 reachability at failure probability 0.50",
     "closure:redundancy-budget-v2 — closed; buys spare links to hold the failure probability at 0.45 on the straight-line prediction",
     "closure:regional-rollout-plan — closed; derived from closure:redundancy-budget-v2, schedules the same 0.45 target in every region",
+    "mesh/degree-histogram.csv — node degree counts: 61 nodes at degree 1, 402 at 2, 1,180 at 3, 1,504 at 4, 1,168 at 5, 685 at 6 or more",
+    "mesh/sweep-method.md — each sweep point is the mean of 200 independent link-failure draws at that probability, with the spread across draws recorded",
     "closure:link-vendor-selection — closed; picks the link supplier on price and lead time; rests on the procurement comparison, not on any reachability prediction",
     "closure:mesh-numbering-plan — closed; assigns addresses across the 5,000 nodes; rests on the addressing standard, not on how the mesh degrades"
   ],

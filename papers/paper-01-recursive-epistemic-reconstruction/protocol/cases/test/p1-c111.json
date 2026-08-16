@@ -9,6 +9,7 @@
     "stream/memory-trial.md — a two-week run at 16 GiB moved the first crash from 3.5 hours in to 13 hours in",
     "closure:capacity-runbook-stream — closed; tells operators to restart the pipeline when memory passes 80%",
     "closure:nightly-batch-window — closed; derived from closure:capacity-runbook-stream, keeps the batch inside a 6-hour window",
+    "stream/consumer-profile.md — the consumer's 6,200 items/s is bounded by a downstream write, not by processor time, and has not moved in 9 months",
     "closure:stream-item-shape — closed; registers the item shape the pipeline carries; rests on the shape agreement, not on what happens when the consumer falls behind"
   ],
   "protected_gold": {

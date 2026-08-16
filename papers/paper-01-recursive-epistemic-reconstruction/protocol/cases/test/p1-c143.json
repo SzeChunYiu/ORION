@@ -8,6 +8,7 @@
     "jobs/length-summary.csv — computed from the job table itself: mean 18.6, median 9, standard deviation 44.1",
     "closure:sla-commitment-v2 — closed; promises customers that 'a typical job finishes in about 47 minutes', citing the probe figure",
     "closure:worker-pool-sizing-note — closed; derived from closure:sla-commitment-v2, sizes the worker pool on a 47-minute mean",
+    "monitor/probe-schedule.md — probe instants are drawn uniformly over the 24-hour day, independently of what the scheduler is doing",
     "closure:monitor-retention-window — closed; keeps probe records for 400 days; rests on the records policy, not on any job-length figure"
   ],
   "protected_gold": {

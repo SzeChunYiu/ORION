@@ -9,7 +9,8 @@
     "metrics/restart-log.txt — the exporting process restarted at 14:24, matching sample 96",
     "closure:capacity-forecast-h2 — closed; extrapolates fleet growth from 4.1 billion requests per hour",
     "closure:contract-tier-upgrade — closed; derived from closure:capacity-forecast-h2, moves the account to a higher vendor tier",
-    "closure:dashboard-access-review — closed; sets who may view the panel; rests on the access standard, not on what the panel computes"
+    "closure:dashboard-access-review — closed; sets who may view the panel; rests on the access standard, not on what the panel computes",
+    "closure:panel-refresh-interval — closed; fixes the 60-second refresh the panel redraws on; rests on the interface standard, not on what the panel computes"
   ],
   "protected_gold": {
     "reframe_required": true,

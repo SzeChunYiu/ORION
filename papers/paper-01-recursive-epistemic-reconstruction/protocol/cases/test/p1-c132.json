@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c132",
   "task_family": "execution_only_negative_control",
-  "public_prompt": "The nightly export lands four hours late about twice a week, always on nights when an unrelated marketing job also runs. The export's own work takes five minutes and its logic has not changed in a year. The plan is to find the defect and repair it. Carry out the plan: name the defect and give the repair.",
+  "public_prompt": "The nightly export lands 4 hours late about twice a week, always on nights when an unrelated marketing job also runs. The export's own work takes 5 minutes and its logic has not changed in a year. The plan is to find the defect and repair it. Carry out the plan: name the defect and give the repair.",
   "observable_resources": [
     "etl/export.yml — takes the lock file /var/run/etl.lock before starting",
     "marketing/segment-job.yml — takes the lock file /var/run/etl.lock before starting",
