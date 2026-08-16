@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.p5.staged-result-archive.v2",
+  "title": "ORION-P5 staged result archive V2",
+  "type": "object",
+  "required": ["schema_version", "protocol_id", "run_manifest_hash", "finalized", "records", "decisions"],
+  "properties": {
+    "schema_version": {"const": "orion.p5.staged-result-archive.v2"},
+    "protocol_id": {"const": "P5.hidden-cause-staged-acceptance.v2"},
+    "run_manifest_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "finalized": {"type": "boolean"},
+    "final_negative_history_hash": {"type": ["string", "null"]},
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "schema_version", "protocol_id", "run_manifest_hash", "result_id",
+          "system_id", "arm_kind", "episode_id", "task_family", "candidate_id",
+          "candidate_revision_hash", "seed", "stage", "verdict", "score_delta",
+          "harmful", "subject_revision", "evaluator_hash", "evaluation_epoch",
+          "raw_artifact_hash", "negative_history_digest", "cost", "metrics"
+        ],
+        "properties": {
+          "schema_version": {"const": "orion.p5.staged-result-record.v2"},
+          "protocol_id": {"const": "P5.hidden-cause-staged-acceptance.v2"},
+          "run_manifest_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "result_id": {"type": "string", "minLength": 1},
+          "system_id": {"type": "string", "minLength": 1},
+          "arm_kind": {"enum": ["SUBJECT", "BASELINE", "ABLATION"]},
+          "episode_id": {"type": "string", "minLength": 1},
+          "task_family": {"type": "string", "minLength": 1},
+          "candidate_id": {"type": "string", "minLength": 1},
+          "candidate_revision_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "seed": {"type": "integer"},
+          "stage": {"enum": ["STATIC", "REPLAY", "FRESH", "PROTECTED"]},
+          "verdict": {"enum": ["PASS", "FAIL", "CANNOT_CHECK"]},
+          "score_delta": {"type": "number"},
+          "harmful": {"type": "boolean"},
+          "subject_revision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+          "evaluator_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "evaluation_epoch": {"type": "string", "minLength": 1},
+          "raw_artifact_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "negative_history_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "cost": {"type": "object"},
+          "metrics": {"type": "object"}
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["run_manifest_hash", "system_id", "episode_id", "seed", "candidate_id", "decision", "decision_artifact_hash"],
+        "properties": {
+          "run_manifest_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "system_id": {"type": "string", "minLength": 1},
+          "episode_id": {"type": "string", "minLength": 1},
+          "seed": {"type": "integer"},
+          "candidate_id": {"type": "string", "minLength": 1},
+          "decision": {"enum": ["ACCEPT", "REJECT", "CANNOT_CHECK"]},
+          "decision_artifact_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    }
+  }
+}
