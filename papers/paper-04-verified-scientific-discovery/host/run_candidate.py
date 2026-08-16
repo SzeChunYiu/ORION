@@ -2,19 +2,21 @@
 """Candidate-visible adapter for the frozen P4 protected campaign.
 
 This program receives only opaque case ids and ``candidate_visible`` material.
-It never accepts attack-family labels or protected gold.  Its authority terminal
+It never accepts attack-family labels or protected gold. Exact content binding
+is resolved through the production evidence resolver, and its authority terminal
 is obtained from the production ORION non-compensatory hard-gate evaluator in
 the frozen subject revision.
 """
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
+import tempfile
 import time
 from pathlib import Path
 from typing import Any
 
+from orion.kernel.evidence import EvidenceStatus, resolve_evidence_ref
 from orion.kernel.hard_gates import (
     HardGateContract,
     HardGateObservation,
@@ -78,12 +80,32 @@ def _content_binding_state(item: dict[str, Any] | None) -> HardGateState:
     frozen_declared = item.get("declared_content_hash")
     provenance = item.get("provenance_hash")
     frozen_provenance = item.get("declared_provenance_hash")
-    if not all(isinstance(value, str) and value for value in (content, actual_declared, frozen_declared, provenance, frozen_provenance)):
+    if not all(
+        isinstance(value, str) and value
+        for value in (
+            content,
+            actual_declared,
+            frozen_declared,
+            provenance,
+            frozen_provenance,
+        )
+    ):
         return HardGateState.CANNOT_CHECK
-    actual = hashlib.sha256(content.encode("utf-8")).hexdigest()
+    with tempfile.TemporaryDirectory(prefix="orion-p4-evidence-") as root:
+        evidence_root = Path(root)
+        artifact = evidence_root / "assigned-evidence.txt"
+        artifact.write_text(content, encoding="utf-8")
+        resolution = resolve_evidence_ref(
+            f"evidence:assigned-evidence.txt@{frozen_declared}",
+            {"evidence": evidence_root},
+            require_digest=True,
+        )
+    if resolution.status is not EvidenceStatus.RESOLVED:
+        return HardGateState.FAIL
     return (
         HardGateState.PASS
-        if actual == actual_declared == frozen_declared and provenance == frozen_provenance
+        if resolution.actual_digest == actual_declared
+        and provenance == frozen_provenance
         else HardGateState.FAIL
     )
 
@@ -143,7 +165,10 @@ def _evaluator_integrity(view: dict[str, Any]) -> HardGateState:
     checker_round = view.get("checker", {}).get("created_round")
     frozen_round = view.get("evaluator", {}).get("frozen_round")
     integrity = view.get("evaluator", {}).get("integrity")
-    if not all(isinstance(value, int) and not isinstance(value, bool) for value in (answer_round, checker_round, frozen_round)):
+    if not all(
+        isinstance(value, int) and not isinstance(value, bool)
+        for value in (answer_round, checker_round, frozen_round)
+    ):
         return HardGateState.CANNOT_CHECK
     if integrity != "INTACT":
         return HardGateState.FAIL
@@ -205,7 +230,9 @@ def evaluate_case(case_id: str, view: dict[str, Any]) -> dict[str, Any]:
         )
         for gate_id, state in states.items()
     )
-    report = evaluate_hard_gates(contract, observations, subject_id=case_id, round_index=1)
+    report = evaluate_hard_gates(
+        contract, observations, subject_id=case_id, round_index=1
+    )
     terminal = {
         HardGateState.PASS: "PROMOTE",
         HardGateState.FAIL: "BLOCK",
@@ -221,14 +248,21 @@ def evaluate_case(case_id: str, view: dict[str, Any]) -> dict[str, Any]:
         "claim_correct_prediction": support_state is HardGateState.PASS,
         "source_attribution_prediction": source_state is HardGateState.PASS,
         "support_prediction": (
-            "SUPPORTED" if support_state is HardGateState.PASS else
-            "CONTRADICTED" if support_state is HardGateState.FAIL else
-            "INSUFFICIENT"
+            "SUPPORTED"
+            if support_state is HardGateState.PASS
+            else "CONTRADICTED"
+            if support_state is HardGateState.FAIL
+            else "INSUFFICIENT"
         ),
         "conflation_detected": source_state is HardGateState.FAIL,
         "substitution_detected": content_state is HardGateState.FAIL,
-        "tamper_leakage_detected": states["PROTECTED_ACCESS_CLEAR"] is HardGateState.FAIL or states["EVALUATOR_CHRONOLOGY_INTEGRITY"] is HardGateState.FAIL,
-        "search_contamination_detected": states["SEARCH_CONTAMINATION_CLEAR"] is HardGateState.FAIL,
+        "tamper_leakage_detected": (
+            states["PROTECTED_ACCESS_CLEAR"] is HardGateState.FAIL
+            or states["EVALUATOR_CHRONOLOGY_INTEGRITY"] is HardGateState.FAIL
+        ),
+        "search_contamination_detected": (
+            states["SEARCH_CONTAMINATION_CLEAR"] is HardGateState.FAIL
+        ),
         "reason_codes": list(report.reasons),
         "resource_units": 9.0,
         "latency_seconds": (time.perf_counter_ns() - started) / 1_000_000_000,
