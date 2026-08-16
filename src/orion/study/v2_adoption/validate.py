@@ -10,7 +10,7 @@ EXPECTED = {
     "P1": ("P1.hidden-formulation.v1", "responsibility-diagnosability-scoped-licensing"),
     "P2": ("P2.open-world-discovery.v1", "conservative-censored-route-allocation"),
     "P3": ("P3.cross-domain-atlas.v1", "typed-scientific-lens-consistency"),
-    "P4": ("P4.protected-authority.v1", "protected-defeater-evidence-planner"),
+    "P4": ("P4.protected-authority.v1", "protected-defeater-evidence-planning"),
     "P5": ("P5.hidden-cause-fresh-transfer.v1", "noncompensatory-staged-evolution-gate"),
 }
 
