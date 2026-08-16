@@ -16,9 +16,16 @@ is written as a question under test, never as an expected direction.
 ## 1. Citation integrity sweep — result
 
 23 bibliography keys, 23 live fetches (arXiv API or Crossref), 0 `CANNOT_CHECK`.
-Fields compared: title (primary), first author, year, venue, identifier.
-`and others` is a legitimate BibTeX abbreviation and was not counted as a
-mismatch; only a wrong title or a wrong *named* author counts.
+
+**Scope of the recorded verdict — read this before quoting the counts.** The
+`verdict` field in every evidence record is a **title comparison only**. Author,
+year and venue were fetched and stored, and were compared *by inspection*
+against the bibliography while it was rewritten, but that comparison is not
+mechanised and is not what the verdict attests. An entry with a correct title
+and a wrong named author would therefore be recorded `VERIFIED`. The missing
+Min Zhang in `metasyn2026` was found by inspection of the stored record, not by
+the automated check. `and others` is a legitimate BibTeX abbreviation and is not
+a mismatch in either mode.
 
 | class | n | VERIFIED | MISMATCH |
 |---|---|---|---|
