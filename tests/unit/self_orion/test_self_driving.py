@@ -67,12 +67,16 @@ def test_investigation_requires_evidence_residual_and_decision_sufficient_status
     assert investigation_supports_change(supported) == (True, ())
 
 
-def test_assembled_controller_derives_shadow_self_driving_architecture_readiness():
+def test_assembled_controller_derives_shadow_architecture_from_observed_surfaces():
     controller = _controller()
     evidence = controller.architecture_evidence()
-    assert evidence.structural_questions_closed
-    assert evidence.graph_integrity_passed
-    assert evidence.self_merge_absent
+    assert evidence.structural_open_questions == 0
+    assert evidence.graph_defect_count == 0
+    assert evidence.mechanical_work_item_count > 0
+    assert evidence.component_artifact_ids
+    assert evidence.protected_boundary_artifact_ids
+    assert evidence.failure_history_artifact_ids
+    assert not evidence.self_merge_capability_present
     assert controller.shadow_self_driving_ready
 
 
@@ -88,6 +92,13 @@ def test_self_driving_cycle_researches_proposes_evaluates_and_only_recommends_ho
     assert change.calls == 1
     assert not result.self_merge_authorized
     assert result.change_control is not None
+
+
+def test_meta_overfit_is_not_collapsed_into_generic_candidate_status():
+    change = _ChangeController(verdict=ChangeControlVerdict.META_OVERFIT)
+    result = _controller(change=change).run_cycle(limit=1)[0]
+    assert result.status is SelfDrivingCycleStatus.META_OVERFIT
+    assert not result.self_merge_authorized
 
 
 def test_cannot_check_research_stops_before_implementation_search():
