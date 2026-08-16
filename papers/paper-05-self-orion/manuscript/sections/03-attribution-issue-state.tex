@@ -1,0 +1,21 @@
+\section{Causal discrimination and persistent issue state}
+
+A development issue persists across multiple investigations and interventions. \texttt{DevelopmentIssue.v1} keeps a stable issue identity together with candidate causes, supported causes, discriminator evidence, failure episodes, intervention outcomes and lifecycle transitions. This prevents each repair attempt from becoming a new context that forgets why earlier alternatives failed.
+
+For issue $u$, let
+\[
+H(u)=\{h_1,h_2,\ldots,h_k\}
+\]
+be competing cause hypotheses. A repair is not licensed merely because one hypothesis is narratively plausible. Self-ORION requires discriminator evidence capable of separating relevant alternatives. Where the discriminator cannot distinguish the hypotheses, the correct state is unresolved rather than an invented causal label.
+
+This ordering is important:
+\[
+\text{observed failure}
+\rightarrow \text{competing causes}
+\rightarrow \text{discriminator}
+\rightarrow \text{attribution}
+\rightarrow \text{candidate intervention}.
+\]
+Moving the intervention before the discriminator encourages post-hoc explanations of whatever the candidate happened to change.
+
+Persistent issue state also makes negative interventions scientifically useful. A harmful or null repair can narrow the supported cause set, expose a missing interaction, or invalidate an earlier lesson. Such episodes remain attached to the issue rather than being deleted once a later challenger succeeds.

@@ -1,6 +1,7 @@
 # Paper 05 — Self-ORION
 
-**Status:** ACTIVE SHADOW RESEARCH / LOCAL FAILURE-GOVERNANCE FALSIFIER V1 PASSED / EXTERNAL GOVERNED SELF-IMPROVEMENT `CANNOT_CHECK`
+**Stable ID:** ORION-P5  
+**Status:** SCOPED WORKING MANUSCRIPT COMPLETE / LOCAL FAILURE-GOVERNANCE FALSIFIER V1 PASSED / EXTERNAL GOVERNED SELF-IMPROVEMENT `CANNOT_CHECK`
 
 ## Scoped claim
 
@@ -11,6 +12,16 @@ The candidate contribution is not a self-editing or evolutionary coding agent. S
 The programme absorbs mechanisms from ADAS, Darwin Gödel Machine, A Self-Improving Coding Agent, AlphaEvolve, AI Co-Scientist evolution, evaluation-integrity work, and **ADIAS issue-centric self-improvement**. Persistent issue identity is therefore explicitly *removed* from ORION's novelty boundary rather than claimed as ours.
 
 See `research/paper-programme-v1/PAPER_05_SELF_ORION.md`, `NEAREST_WORK_ATLAS.md`, and the V1 falsifier evidence.
+
+## Absorbed Shadow mechanics ownership
+
+The former `papers/shadow-mechanics-v1/` manuscript mixed recursive mechanic representation with failure-driven method development. That paper-like path has been dissolved:
+
+- mechanic-cell representation and recursive audit are now explicit Paper-I theory;
+- immutable failure episodes, recurrence-versus-cause, issue state, invention readiness, challenger execution, replay/fresh transfer, protected assurance and no self-promotion are now explicit Paper-V manuscript sections;
+- original Shadow claims/evidence/manuscript bytes are preserved at `research/technical-companions/mechanics-of-mechanics-v1/archive/`.
+
+The historical `826 -> 0` AnswerRecord result remains structural specification evidence only; it is not evidence that Self-ORION improves real development.
 
 ## Falsifier V1 and issue-centric state
 
@@ -41,3 +52,7 @@ Failure record: `research/failures/2026-08-readiness-gate-self-certifiable/READM
 - explicit external attestation and host-only promotion.
 
 No governed self-improvement claim is authorized until these prospective external gates pass.
+
+## Manuscript
+
+`manuscript/main.tex` is the canonical Paper-V working manuscript. It now contains the failure-learning and protected self-development theory that previously lived in the Shadow Mechanics pseudo-paper.

@@ -24,6 +24,18 @@ These paths were transitional redirects created during the five-paper reindexing
 
 The deleted redirect READMEs remain recoverable from Git history. No scientific content is lost by removing them.
 
+## Dissolved paper-like technical path
+
+The former `shadow-mechanics-v1/` directory was never assigned ORION-P1..P5 but its title and manuscript layout made it look like a sixth paper. It is now dissolved rather than numbered:
+
+- mechanic-cell representation and recursive self-audit -> **ORION-P1**;
+- failure-to-method learning, challenger governance, protected self-development -> **ORION-P5**;
+- discovery/stopping interfaces -> **ORION-P2**;
+- verification/authority interfaces -> **ORION-P4**;
+- the original Shadow README, manuscript, claim ledger, and evidence packets -> `research/technical-companions/mechanics-of-mechanics-v1/archive/`.
+
+The archive preserves the original bytes and chronology but is not a publication identity.
+
 ## Older RAKL numbering
 
 RAKL used multiple publication-numbering generations before ORION. A bare historical label such as “Paper III” is therefore not a stable identity across repositories or dates.
@@ -34,7 +46,3 @@ When resolving migrated material:
 2. then use its immutable RAKL source path/commit;
 3. map it through `legacy-rakl-map.md` and `provenance/rakl/PAPER_SALVAGE_LEDGER.md`;
 4. never infer current ORION identity from the historical number alone.
-
-## Non-flagship technical material
-
-`shadow-mechanics-v1/` is a technical companion/research substrate for mechanic-cell and failure-learning details. It is not assigned an ORION-P1..P5 number and must not be counted as a sixth flagship paper.
