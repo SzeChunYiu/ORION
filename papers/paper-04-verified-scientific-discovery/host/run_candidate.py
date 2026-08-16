@@ -120,9 +120,7 @@ def _source_state(item: dict[str, Any] | None) -> HardGateState:
     return HardGateState.PASS if source == assigned else HardGateState.FAIL
 
 
-def _support_state(view: dict[str, Any], item: dict[str, Any] | None) -> HardGateState:
-    if item is None:
-        return HardGateState.CANNOT_CHECK
+def _support_marker(view: dict[str, Any], item: dict[str, Any]) -> HardGateState:
     token = view.get("claim", {}).get("support_token")
     content = item.get("content")
     if not isinstance(token, str) or not token or not isinstance(content, str):
@@ -130,6 +128,28 @@ def _support_state(view: dict[str, Any], item: dict[str, Any] | None) -> HardGat
     if f"SUPPORT::{token}" in content:
         return HardGateState.PASS
     if f"CONTRADICT::{token}" in content:
+        return HardGateState.FAIL
+    return HardGateState.CANNOT_CHECK
+
+
+def _support_state(view: dict[str, Any], item: dict[str, Any] | None) -> HardGateState:
+    if item is None:
+        return HardGateState.CANNOT_CHECK
+    return _support_marker(view, item)
+
+
+def _pooled_support_state(view: dict[str, Any]) -> HardGateState:
+    items: list[dict[str, Any]] = []
+    for key in ("evidence", "retrieval_pool"):
+        values = view.get(key, [])
+        if isinstance(values, list):
+            for item in values:
+                if isinstance(item, dict) and item not in items:
+                    items.append(item)
+    states = tuple(_support_marker(view, item) for item in items)
+    if any(state is HardGateState.PASS for state in states):
+        return HardGateState.PASS
+    if any(state is HardGateState.FAIL for state in states):
         return HardGateState.FAIL
     return HardGateState.CANNOT_CHECK
 
@@ -238,20 +258,20 @@ def evaluate_case(case_id: str, view: dict[str, Any]) -> dict[str, Any]:
         HardGateState.FAIL: "BLOCK",
         HardGateState.CANNOT_CHECK: "CANNOT_CHECK",
     }[report.state]
-    support_state = states["SEMANTIC_SUPPORT"]
+    pooled = _pooled_support_state(view)
     source_state = states["SOURCE_OWNERSHIP"]
     content_state = states["EXACT_CONTENT_BINDING"]
     return {
         "case_id": case_id,
         "system_id": "ORION",
         "authority_terminal": terminal,
-        "claim_correct_prediction": support_state is HardGateState.PASS,
+        "claim_correct_prediction": pooled is HardGateState.PASS,
         "source_attribution_prediction": source_state is HardGateState.PASS,
         "support_prediction": (
             "SUPPORTED"
-            if support_state is HardGateState.PASS
+            if pooled is HardGateState.PASS
             else "CONTRADICTED"
-            if support_state is HardGateState.FAIL
+            if pooled is HardGateState.FAIL
             else "INSUFFICIENT"
         ),
         "conflation_detected": source_state is HardGateState.FAIL,
