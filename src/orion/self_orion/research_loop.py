@@ -87,6 +87,7 @@ class DevelopmentInvestigationResult:
     supported_cause_id: str = ""
     discriminator_artifact_hash: str = ""
     discriminator_evidence_ids: tuple[str, ...] = ()
+    source_failure_episode_ids: tuple[str, ...] = ()
     negative_alternative_ids: tuple[str, ...] = ()
 
     @property
@@ -130,12 +131,13 @@ def observed_failure_to_problem(context: FrozenFailureInvestigationContext) -> P
     causes = ", ".join(context.candidate_cause_ids)
     discriminator_evidence = ", ".join(context.discriminator_evidence_ids)
     negatives = ", ".join(context.negative_alternative_ids)
+    episodes = ", ".join(context.failure_episode_ids)
     return Problem(
         problem_id=f"self-orion:observed-failure:{context.work_id}",
         question=(
             f"Diagnose and materially narrow the frozen observed failure for ORION mechanic {context.mechanic_id}. "
             f"Persistent issue={context.development_issue_id}; title={context.issue_title}; symptom={context.symptom_signature}. "
-            f"Observed-failure artifact SHA-256={context.observed_failure_artifact_hash}. "
+            f"Observed-failure artifact SHA-256={context.observed_failure_artifact_hash}; preserved failure episodes=[{episodes}]. "
             f"Competing causes=[{causes}]; frozen supported cause={context.supported_cause_id}. "
             f"Frozen discriminator artifact SHA-256={context.discriminator_artifact_hash}; discriminator evidence=[{discriminator_evidence}]. "
             f"Retained negative/harmful alternatives=[{negatives}]. "
@@ -293,6 +295,7 @@ class ShadowSelfOrionResearchLoop:
             supported_cause_id=context.supported_cause_id,
             discriminator_artifact_hash=context.discriminator_artifact_hash,
             discriminator_evidence_ids=context.discriminator_evidence_ids,
+            source_failure_episode_ids=context.failure_episode_ids,
             negative_alternative_ids=context.negative_alternative_ids,
         )
 
