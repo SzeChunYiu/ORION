@@ -1,7 +1,11 @@
-# Paper 02 — Global Knowledge Portrait
+# Historical planning redirect — Global Knowledge Portrait
 
-**Status:** PLANNED / RESEARCH ACTIVE
+The original four-paper bootstrap assigned **Global Knowledge Portrait** to Paper 02.
 
-Scope: knowledge absorption, source projections, GLUE/JUMP, identity and representation mapping, literature bridges, cross-domain synthesis, contradiction/context alignment, and construction of an ORION-native global portrait.
+Nearest-work research split **Open-World Scientific Knowledge Discovery** into an independent flagship contribution, so Global Knowledge Portrait is now canonical **Paper 03**.
 
-The manuscript will be opened only after the P2 absorption/global-portrait mechanics have known-world evidence; creating prose before those mechanics stabilize would repeat the RAKL ordering problem.
+Use:
+
+`papers/paper-03-global-knowledge-portrait/`
+
+This directory is retained as provenance so earlier issues/commits do not silently change meaning.
