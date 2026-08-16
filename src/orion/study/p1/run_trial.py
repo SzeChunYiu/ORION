@@ -14,7 +14,7 @@ from .cases import Split, load_cases, suite_fingerprint
 from .harness import run_study
 from .orion_system import orion_systems
 from .provider import CREDENTIAL_ENV_VAR, ProviderBackedSystem, credential_present
-from .score_archive import score_archive
+from .score_archive import read_runs, score_archive
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
 CASES_ROOT = REPO_ROOT / "papers/paper-01-recursive-epistemic-reconstruction/protocol/cases"
@@ -75,7 +75,13 @@ def run(
     archive = run_study(cases, systems, seeds=seeds, archive_path=archive_path)
     print(f"\nran            : {len(archive.records)} records -> {archive_path}")
 
-    records = score_archive(_reload(archive_path), cases)
+    # The validated reader, not a second local one. run_trial grew its own
+    # `_reload` while score_archive already had a reader that checks the full
+    # harness key set — so the one-command path, the one anyone actually uses,
+    # skipped the validation entirely and would half-read a truncated archive
+    # into confident numbers. Two readers, one validated, and the unvalidated
+    # one on the hot path.
+    records = score_archive(read_runs(archive_path), cases)
     scored_path.write_text(
         "".join(json.dumps(item, sort_keys=True) + "\n" for item in records)
     )
@@ -113,10 +119,6 @@ def run(
         return EXIT_ERROR
     print(f"\ndone. tables in {out_root}")
     return EXIT_OK
-
-
-def _reload(path: Path) -> list[dict]:
-    return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
 
 
 def main(argv: Sequence[str] | None = None) -> int:
