@@ -459,6 +459,38 @@ def test_arxiv_and_openalex_earn_independence(tmp_path: Path) -> None:
     assert assess_pair(result.runs[0].capture, result.runs[1].capture).independent
 
 
+def test_every_pair_in_the_three_route_ensemble_gets_the_expected_verdict(
+    tmp_path: Path,
+) -> None:
+    """Both arXiv pairs earn independence; the two OpenAlex routes do not.
+
+    This is the whole independence structure the campaign rests on, asserted in
+    one place: the campaign's only independent pairs both involve arXiv, so its
+    capacity to produce any coverage diagnostic depends on that one backend.
+    """
+
+    arxiv = _scripted(_ok(_atom(("http://arxiv.org/abs/1606.01772v2", "T", "S", DOI))))
+    keyword = _scripted(_ok(_works(("https://openalex.org/W1", "A", "a", ""))))
+    citation = _scripted(_ok(_works(("https://openalex.org/W2", "B", "b", ""))))
+    result = run_campaign(
+        "c1",
+        QUESTION,
+        [_arxiv_route(arxiv), _openalex_route(keyword), _citation_route(citation)],
+        store=_store(tmp_path),
+        gate=RateGate(clock=Clock()),
+        policy=POLICY,
+        clock=Clock(),
+    )
+    from orion.knowledge.routes import assess_pair
+
+    by_id = {run.route.route_id: run.capture for run in result.runs}
+    assert assess_pair(by_id["arxiv-topic"], by_id["openalex-keyword"]).independent
+    assert assess_pair(by_id["arxiv-topic"], by_id["openalex-citation"]).independent
+    shared = assess_pair(by_id["openalex-keyword"], by_id["openalex-citation"])
+    assert shared.verdict is IndependenceVerdict.SHARED_BACKEND
+    assert not shared.independent
+
+
 def test_the_estimator_refuses_when_no_pair_is_independent(tmp_path: Path) -> None:
     keyword = _scripted(_ok(_works(("https://openalex.org/W1", "A", "a", ""))))
     citation = _scripted(_ok(_works(("https://openalex.org/W1", "A", "a", ""))))
