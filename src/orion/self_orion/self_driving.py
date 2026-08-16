@@ -101,6 +101,8 @@ class ShadowSelfDrivingController:
         )
 
     def architecture_evidence(self) -> ShadowSelfDrivingArchitectureEvidence:
+        """Derive the non-authoritative Shadow architecture observation."""
+
         state = self._driver.drive_local_transfer()
         graph_defects = (
             state.after.unknown_child_count
@@ -109,7 +111,7 @@ class ShadowSelfDrivingController:
             + state.after.dependency_cycle_count
             + state.after.mixed_cycle_count
         )
-        empirical_work_count = len(state.empirical_work)
+        empirical_work_count = len(state.empirical_work_items)
         self_merge_capability_present = any(
             hasattr(target, name)
             for target in (self, self._change_controller)
