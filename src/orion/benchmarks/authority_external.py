@@ -13,6 +13,7 @@ FROZEN_AUTHORITY_BASELINE_IDS = (
     "claimbench-sciclaimhunt-scientific-evidence",
     "provenai-citation-fidelity-influence",
     "rewardhackingagents-search-contamination",
+    "deepsciverify-abstract-to-full-escalation",
 )
 
 

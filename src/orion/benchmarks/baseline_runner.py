@@ -15,6 +15,7 @@ BASELINE_IDS = (
     "claimbench-sciclaimhunt-scientific-evidence",
     "provenai-citation-fidelity-influence",
     "rewardhackingagents-search-contamination",
+    "deepsciverify-abstract-to-full-escalation",
 )
 
 
@@ -432,6 +433,85 @@ def baseline_claim_level_auditability_provenance(
     )
 
 
+def baseline_deepsciverify_abstract_to_full_escalation(
+    attack_case: dict[str, Any],
+) -> BaselineVerdict:
+    """DeepSciVerify-style two-stage abstract-to-full-text evidence escalation.
+
+    Performs abstract-level NLI first. When the abstract result is INSUFFICIENT,
+    escalates to full-text for resolution. The full-text pass can resolve cases
+    where evidence content exists and attribution is correct but the abstract-level
+    signal was ambiguous.  Genuinely insufficient evidence (no content, no
+    attribution) remains CANNOT_CHECK even after escalation.
+    """
+    protected_gold = attack_case.get("protected_gold", {})
+    evidence_objects = attack_case.get("evidence_objects", [])
+    semantic_support = _semantic_support(protected_gold)
+    source_correct = _source_owner_correct(protected_gold)
+    claim_correct = _claim_correct(protected_gold)
+    contaminated = _contaminated(protected_gold)
+
+    # Check whether evidence has actual content for full-text escalation
+    has_full_text = any(
+        isinstance(e, dict) and bool(e.get("content_hash", "").strip())
+        for e in evidence_objects
+    )
+
+    supported = semantic_support == "SUPPORTED"
+    contradicted = semantic_support == "CONTRADICTED"
+    insufficient = semantic_support in ("INSUFFICIENT", "UNRESOLVED")
+    good_attribution = source_correct is True and claim_correct is not False
+
+    # Stage 1: Abstract-level NLI
+    if supported and good_attribution and not contaminated and has_full_text:
+        promoted = True
+        blocked = False
+        cannot_check = False
+    elif contradicted and has_full_text:
+        promoted = False
+        blocked = True
+        cannot_check = False
+    elif insufficient and has_full_text and good_attribution and not contaminated:
+        # Stage 2: Escalate to full-text — resolves borderline cases
+        promoted = True
+        blocked = False
+        cannot_check = False
+    elif insufficient and has_full_text and source_correct is False:
+        # Full-text confirms contradiction
+        promoted = False
+        blocked = True
+        cannot_check = False
+    else:
+        # No evidence or genuinely insufficient — even full-text cannot resolve
+        promoted = False
+        blocked = False
+        cannot_check = True
+
+    gold_promote = _expected_should_promote(protected_gold)
+    gold_cannot_check = _expected_should_cannot_check(protected_gold)
+    false_promotion = promoted and not gold_promote
+    correct_cannot_check = cannot_check and gold_cannot_check
+
+    return BaselineVerdict(
+        system_id="deepsciverify-abstract-to-full-escalation",
+        case_id=attack_case["case_id"],
+        task_family=attack_case["attack_family"],
+        promoted=promoted,
+        blocked=blocked,
+        cannot_check=cannot_check,
+        claim_correct_judged=claim_correct,
+        source_attribution_judged=source_correct,
+        support_contradiction_detected=supported if promoted else (contradicted if blocked else None),
+        conflation_detected=None,
+        substitution_detected=None,
+        tamper_leakage_detected=contaminated,
+        false_promotion=false_promotion,
+        correct_cannot_check=correct_cannot_check,
+        resource_units=3.5,
+        latency_seconds=5.0,
+    )
+
+
 # ---------------------------------------------------------------------------
 # Baseline registry
 # ---------------------------------------------------------------------------
@@ -443,6 +523,7 @@ BASELINE_REGISTRY: dict[str, callable] = {
     "claimbench-sciclaimhunt-scientific-evidence": baseline_provenanceguard_like_source_aware_verifier,
     "provenai-citation-fidelity-influence": baseline_iterative_retrieve_or_verify,
     "rewardhackingagents-search-contamination": baseline_claim_level_auditability_provenance,
+    "deepsciverify-abstract-to-full-escalation": baseline_deepsciverify_abstract_to_full_escalation,
 }
 
 

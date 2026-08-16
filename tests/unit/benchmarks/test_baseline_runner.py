@@ -230,6 +230,33 @@ def test_iterative_retrieve_cannot_check_insufficient_and_blocks_contradiction()
     assert verdict.blocked
 
 
+def test_deepsciverify_escalates_abstract_uncertain():
+    # Abstract-level INSUFFICIENT but evidence exists for full-text escalation
+    borderline = _case(
+        "INSUFFICIENT_EVIDENCE",
+        semantic_support="INSUFFICIENT",
+        evidence=[_evidence()],
+    )
+    verdict = run_baseline("deepsciverify-abstract-to-full-escalation", borderline)
+    assert verdict.promoted
+    assert not verdict.blocked
+    assert not verdict.cannot_check
+
+
+def test_deepsciverify_blocks_full_text_when_source_wrong():
+    # Full-text confirms contradiction -> block
+    wrong = _case(
+        "WRONG_SOURCE",
+        semantic_support="INSUFFICIENT",
+        source_owner_correct=False,
+        expected_terminal="BLOCK",
+        evidence=[_evidence()],
+    )
+    verdict = run_baseline("deepsciverify-abstract-to-full-escalation", wrong)
+    assert verdict.blocked
+    assert not verdict.promoted
+
+
 def test_claim_level_auditability_cannot_check_on_conflation():
     conflation = _case(
         "SOURCE_CONFLATION",
