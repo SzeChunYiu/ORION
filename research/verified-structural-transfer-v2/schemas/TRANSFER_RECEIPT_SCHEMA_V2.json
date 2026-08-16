@@ -1,0 +1,22 @@
+{
+  "$id": "ORION.transfer-receipt.v2",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "cell_digest": {"pattern": "^sha256:[0-9a-f]{64}$", "type": "string"},
+    "cell_id": {"type": "string"},
+    "evidence_digest": {"pattern": "^sha256:[0-9a-f]{64}$", "type": "string"},
+    "mechanism": {"type": "string"},
+    "provenance": {"items": {"type": "string"}, "type": "array"},
+    "reason_codes": {"items": {"type": "string"}, "type": "array"},
+    "receipt_digest": {"pattern": "^sha256:[0-9a-f]{64}$", "type": "string"},
+    "receipt_version": {"const": "ORION_TRANSFER_RECEIPT_V2"},
+    "source_domain": {"type": "string"},
+    "status": {"enum": ["ADMISSIBLE", "BLOCKED_ASSUMPTION", "OBSTRUCTED", "CANNOT_CHECK"]},
+    "structural_score": {"type": "number"},
+    "target_digest": {"pattern": "^sha256:[0-9a-f]{64}$", "type": "string"},
+    "target_id": {"type": "string"}
+  },
+  "required": ["receipt_version", "target_id", "target_digest", "cell_id", "cell_digest", "evidence_digest", "source_domain", "mechanism", "status", "structural_score", "reason_codes", "provenance", "receipt_digest"],
+  "type": "object"
+}
