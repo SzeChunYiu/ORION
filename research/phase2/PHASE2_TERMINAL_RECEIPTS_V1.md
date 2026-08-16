@@ -41,7 +41,7 @@ A terminal-ready campaign requires independent lineage and `SUCCESS`. The CI hea
 
 ### Complete paper-programme snapshot
 
-`Phase2PaperProgrammeSnapshot.v1` has a code-frozen required path set covering all 12 files in `research/paper-programme-v1`, including the five flagship paper claims, falsifier results, readiness audit/standard, nearest-work records, README and saturation ledger. Every path's SHA-256 must equal the same path in the final subject attestation. A caller cannot satisfy Gate F with a cherry-picked paper or ledger file.
+`Phase2PaperProgrammeSnapshot.v1` freezes six repository prefixes: the complete `research/paper-programme-v1/` tree and each of the five canonical `papers/paper-*` trees. The snapshot is generated from `RepositorySubjectAttestation.v1` and must contain **every tracked file** under those prefixes at the exact integration commit. The terminal audit independently derives the expected entry set from the final subject and requires exact equality, so newly added protocol/manuscript assets are automatically included and a caller cannot satisfy Gate F with a cherry-picked paper or ledger subset.
 
 ### External evidence manifest
 
