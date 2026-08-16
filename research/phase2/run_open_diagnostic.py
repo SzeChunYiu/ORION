@@ -6,12 +6,11 @@ import hashlib
 import json
 import os
 import urllib.request
-from dataclasses import dataclass, replace
+from dataclasses import dataclass
 from pathlib import Path
 
 from orion.engine.solver import SolverConfig
 from orion.providers.experience.memory import InMemoryExperienceStore
-from orion.providers.llm.accounting import AccountingLLMProvider
 from orion.providers.llm.ollama import OllamaConfig, OllamaLLMProvider
 from orion.providers.retrieval.literature import (
     CrossrefRetrievalProvider,
@@ -20,11 +19,8 @@ from orion.providers.retrieval.literature import (
 )
 from orion.providers.verification.base import VerificationResult
 from orion.self_orion.baseline import SimpleLLMRetrievalBaseline, write_baseline_bundle
-from orion.self_orion.live_trial import (
-    FrozenLiveTrialPacket,
-    ShadowLiveTrialReport,
-    ShadowLiveTrialRunner,
-)
+from orion.self_orion.live_accounted import AccountedShadowLiveTrialRunner
+from orion.self_orion.live_trial import FrozenLiveTrialPacket
 from orion.self_orion.phase2_preflight import DEEP_TARGET_TASK, WIDE_LITERATURE_TASK
 from orion.self_orion.trial_io import write_shadow_live_trial_report
 
@@ -146,48 +142,13 @@ class DiagnosticIdentity:
         )
 
 
-def _account_resources(
-    report: ShadowLiveTrialReport,
-    *,
-    packet: FrozenLiveTrialPacket,
-    accounting_llm: AccountingLLMProvider,
-) -> ShadowLiveTrialReport:
-    comparisons = []
-    for item in report.comparisons:
-        retrieval_calls = item.raw_query_count
-        llm_calls = accounting_llm.attempted_calls_for_problem(item.task_id)
-        orion_units = (
-            retrieval_calls * RETRIEVAL_CALL_COST_UNITS
-            + llm_calls * LLM_CALL_COST_UNITS
-        )
-        matched = (
-            orion_units <= packet.resource_budget_units
-            and item.baseline_resource_units <= packet.resource_budget_units
-            and orion_units
-            <= item.baseline_resource_units
-            * packet.max_orion_to_baseline_resource_ratio
-        )
-        comparisons.append(
-            replace(
-                item,
-                orion_resource_units=orion_units,
-                resource_matched=matched,
-            )
-        )
-    return replace(
-        report,
-        comparisons=tuple(comparisons),
-        all_resource_matched=all(item.resource_matched for item in comparisons),
-    )
-
-
 def _summary(
     report,
     baseline,
     *,
     identity: DiagnosticIdentity,
     experience_store: InMemoryExperienceStore,
-    accounting_llm: AccountingLLMProvider,
+    runner: AccountedShadowLiveTrialRunner,
 ) -> dict[str, object]:
     return {
         "schema": DIAGNOSTIC_SCHEMA,
@@ -221,9 +182,7 @@ def _summary(
                 "orion_evidence_count": item.orion_evidence_count,
                 "orion_residual_count": item.orion_residual_count,
                 "orion_resource_units": item.orion_resource_units,
-                "orion_llm_call_count": accounting_llm.attempted_calls_for_problem(
-                    item.task_id
-                ),
+                "orion_llm_call_count": runner.llm_calls_for_task(item.task_id),
                 "orion_retrieval_call_count": item.raw_query_count,
                 "baseline_solved": item.baseline_solved,
                 "baseline_evidence_count": item.baseline_evidence_count,
@@ -269,7 +228,7 @@ def _summary(
                 "problem_id": observation.problem_id,
                 "completed": observation.completed,
             }
-            for observation in accounting_llm.observations()
+            for observation in runner.llm_call_observations
         ],
         "baseline_artifact_hashes": {
             artifact.task_id: artifact.artifact_hash for artifact in baseline.artifacts
@@ -283,8 +242,7 @@ def _summary(
 
 def run(*, model: str, output_dir: Path) -> dict[str, object]:
     output_dir.mkdir(parents=True, exist_ok=True)
-    raw_llm = OllamaLLMProvider(OllamaConfig(model=model))
-    accounting_llm = AccountingLLMProvider(raw_llm)
+    llm = OllamaLLMProvider(OllamaConfig(model=model))
     model_digest = _ollama_model_digest(model)
     europe_pmc = EuropePMCRetrievalProvider()
     crossref = CrossrefRetrievalProvider(mailto=os.environ.get("CROSSREF_MAILTO", ""))
@@ -294,19 +252,19 @@ def run(*, model: str, output_dir: Path) -> dict[str, object]:
     identity = DiagnosticIdentity(
         model=model,
         model_digest=model_digest,
-        ollama_endpoint=raw_llm.config.endpoint,
+        ollama_endpoint=llm.config.endpoint,
         europe_pmc_endpoint=europe_pmc.endpoint,
         crossref_endpoint=crossref.endpoint,
     )
     baseline = SimpleLLMRetrievalBaseline(
-        llm=raw_llm,
+        llm=llm,
         retrieval=retrieval,
         max_results=8,
         retrieval_call_cost_units=RETRIEVAL_CALL_COST_UNITS,
         llm_call_cost_units=LLM_CALL_COST_UNITS,
     )
-    runner = ShadowLiveTrialRunner.from_providers(
-        llm=accounting_llm,
+    runner = AccountedShadowLiveTrialRunner.from_providers(
+        llm=llm,
         retrieval=retrieval,
         verification=verifier,
         baseline=baseline,
@@ -317,6 +275,8 @@ def run(*, model: str, output_dir: Path) -> dict[str, object]:
             require_verified_answer=True,
         ),
         evaluator_artifact_hash=identity.evaluator_artifact_hash,
+        retrieval_call_cost_units=RETRIEVAL_CALL_COST_UNITS,
+        llm_call_cost_units=LLM_CALL_COST_UNITS,
     )
     packet = FrozenLiveTrialPacket(
         packet_id="phase2:open-live-diagnostic:v1",
@@ -328,12 +288,7 @@ def run(*, model: str, output_dir: Path) -> dict[str, object]:
         resource_budget_units=120.0,
         max_orion_to_baseline_resource_ratio=1.0,
     )
-    raw_report = runner.run(packet)
-    report = _account_resources(
-        raw_report,
-        packet=packet,
-        accounting_llm=accounting_llm,
-    )
+    report = runner.run(packet)
 
     provider_payload = {
         **identity.provider_manifest,
@@ -350,7 +305,7 @@ def run(*, model: str, output_dir: Path) -> dict[str, object]:
         baseline,
         identity=identity,
         experience_store=experience_store,
-        accounting_llm=accounting_llm,
+        runner=runner,
     )
     (output_dir / "summary.json").write_text(
         json.dumps(summary, indent=2, sort_keys=True) + "\n",
