@@ -33,23 +33,85 @@ def test_common_protocol_schemas_are_json():
         assert payload["$schema"].endswith("2020-12/schema")
 
 
-def test_all_five_protocols_are_outcome_blind_design_freezes():
+def test_all_five_protocols_are_outcome_blind_prospective_freezes():
+    """Every paper protocol must be a valid prospective freeze at its own stage.
+
+    This asserts the invariant rather than a snapshot of it. Pinning every paper
+    to ``DESIGN_FROZEN`` would make the documented promotion in
+    ``EXECUTION_FREEZE_CHECKLIST_V1.md`` step 6 unreachable: the first paper to
+    legitimately bind its execution identities would fail the suite, and the
+    cheapest way to make the suite pass again would be to un-freeze the paper.
+    A test that punishes correct scientific progress is a test that will be
+    satisfied by the wrong repair.
+
+    What actually has to hold is stage-dependent, and is enforced here by the
+    canonical validator so the rule cannot drift from the tooling:
+    ``DESIGN_FROZEN`` keeps every execution identity ``UNBOUND``;
+    ``EXECUTION_FROZEN`` resolves all of them against a real subject revision;
+    and neither may have inspected an outcome.
+    """
+
+    manifest = _load_module("publication_manifest", PROTOCOL_ROOT / "publication_manifest.py")
     seen = set()
     for paper_id, path in PAPER_PROTOCOLS.items():
         payload = json.loads(path.read_text(encoding="utf-8"))
         assert payload["schema_version"] == "orion.publication-protocol.v1"
         assert payload["paper_id"] == paper_id
-        assert payload["protocol_status"] == "DESIGN_FROZEN"
-        assert payload["outcome_accessed"] is False
         assert payload["primary_hypothesis"]["id"].startswith(f"{paper_id}.")
         assert payload["task_families"]
         assert payload["baselines"]
         assert payload["ablations"]
         assert payload["plots"]
         assert payload["tables"]
-        assert payload["execution_bindings"]["subject_revision"] == "UNBOUND"
+
+        status = payload["protocol_status"]
+        assert status in {"DESIGN_FROZEN", "EXECUTION_FROZEN"}, (
+            f"{paper_id} protocol must remain prospective; "
+            f"an outcome-accessed or invalidated protocol needs its own record: {status}"
+        )
+        assert payload["outcome_accessed"] is False
+        assert not manifest.validate_protocol(payload), (
+            f"{paper_id} protocol fails canonical validation: "
+            f"{manifest.validate_protocol(payload)}"
+        )
+        if status == "DESIGN_FROZEN":
+            assert payload["execution_bindings"]["subject_revision"] == "UNBOUND"
         seen.add(payload["protocol_id"])
     assert len(seen) == 5
+
+
+def test_execution_frozen_protocol_must_bind_every_identity():
+    """The promotion path is only open to a fully bound protocol.
+
+    Guards the loosening above: an ``EXECUTION_FROZEN`` protocol that still
+    carries an ``UNBOUND`` identity, or a placeholder subject revision, must be
+    rejected. Without this, relaxing the status check would let a half-frozen
+    protocol pass as a prospective freeze.
+    """
+
+    manifest = _load_module("publication_manifest", PROTOCOL_ROOT / "publication_manifest.py")
+    template = json.loads(PAPER_PROTOCOLS["P2"].read_text(encoding="utf-8"))
+
+    half_frozen = json.loads(json.dumps(template))
+    half_frozen["protocol_status"] = "EXECUTION_FROZEN"
+    errors = manifest.validate_protocol(half_frozen)
+    assert errors, "an execution freeze with UNBOUND identities must be rejected"
+    assert any("UNBOUND" in item for item in errors)
+
+    fully_frozen = json.loads(json.dumps(template))
+    fully_frozen["protocol_status"] = "EXECUTION_FROZEN"
+    fully_frozen["execution_bindings"] = {
+        "subject_revision": "0" * 40,
+        "dataset_revisions": {"offline_complete_gold": "a" * 64},
+        "model_provider_revisions": "none/deterministic",
+        "baseline_config_hashes": {"bm25_keyword": "b" * 64},
+        "evaluator_hash": "c" * 64,
+        "split_hashes": {"test": "d" * 64},
+        "evaluation_epoch": "2026-08-16T00:00:00Z",
+    }
+    assert not manifest.validate_protocol(fully_frozen), (
+        "a fully bound execution freeze must validate"
+    )
 
 
 def test_p3_annotation_and_p4_p5_protected_schemas_parse():
