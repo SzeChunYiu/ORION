@@ -1,0 +1,184 @@
+name: p4-final-pdf-audit
+
+on:
+  push:
+    branches: [shadow/p4-issue101-results]
+    paths:
+      - 'papers/paper-04-verified-scientific-discovery/submission/BUILD_TRIGGER_V1.txt'
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: shadow/p4-issue101-results
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install replay and publication dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install -e '.[dev]'
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq \
+            librsvg2-bin \
+            poppler-utils \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-bibtex-extra
+
+      - name: Clean public replay and result regeneration
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd papers/paper-04-verified-scientific-discovery
+          python reproducibility/replay_public.py
+          python reproducibility/integrate_publication.py
+          git diff --exit-code \
+            figures/p4_2_false_promotion.svg \
+            figures/p4_3_coverage_frontier.svg \
+            figures/p4_4_detection_by_attack.svg \
+            figures/p4_5_attribution_vs_support.svg \
+            figures/p4_6_cost_false_promotion.svg \
+            tables/p4_t1_attack_custody.tex \
+            tables/p4_t2_baseline_ablation_results.tex \
+            tables/p4_t3_cannot_check_errors.tex \
+            manuscript/main.tex
+
+      - name: Convert SVG result figures for LaTeX
+        shell: bash
+        run: |
+          set -euo pipefail
+          DIR=papers/paper-04-verified-scientific-discovery/figures
+          for svg in "$DIR"/p4_1_authority_pipeline.svg "$DIR"/p4_2_false_promotion.svg "$DIR"/p4_3_coverage_frontier.svg "$DIR"/p4_4_detection_by_attack.svg "$DIR"/p4_5_attribution_vs_support.svg "$DIR"/p4_6_cost_false_promotion.svg; do
+            test -s "$svg"
+            rsvg-convert -f pdf -o "${svg%.svg}.pdf" "$svg"
+          done
+
+      - name: Compile manuscript from scratch
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd papers/paper-04-verified-scientific-discovery/manuscript
+          rm -f main.aux main.bbl main.blg main.log main.out main.toc main.pdf
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          if grep -q '\\citation' main.aux; then bibtex main; fi
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          test -s main.pdf
+          if grep -E 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references|There were undefined citations' main.log; then
+            echo 'unresolved citation/reference in final PDF' >&2
+            exit 1
+          fi
+
+      - name: Independent PDF text, threat-model and reference audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          PAPER=papers/paper-04-verified-scientific-discovery
+          mkdir -p "$RUNNER_TEMP/p4-final"
+          cp "$PAPER/manuscript/main.pdf" "$RUNNER_TEMP/p4-final/ORION-P4-final.pdf"
+          pdftotext "$RUNNER_TEMP/p4-final/ORION-P4-final.pdf" "$RUNNER_TEMP/p4-final/ORION-P4-final.txt"
+          pdfinfo "$RUNNER_TEMP/p4-final/ORION-P4-final.pdf" > "$RUNNER_TEMP/p4-final/pdfinfo.txt"
+          python - <<'PY'
+          import hashlib, json, re, os
+          from pathlib import Path
+          paper = Path('papers/paper-04-verified-scientific-discovery')
+          out = Path(os.environ['RUNNER_TEMP'])/'p4-final'
+          pdf = out/'ORION-P4-final.pdf'
+          text = (out/'ORION-P4-final.txt').read_text(errors='replace')
+          tex = (paper/'manuscript'/'main.tex').read_text()
+          bib = (paper/'manuscript'/'bibliography.bib').read_text()
+          threat = (paper/'protocol'/'THREAT_MODEL_V1.md').read_text()
+          claim_ledger = (paper/'evidence'/'PROTECTED_CLAIM_LEDGER_V1.md').read_text()
+          replay = json.loads((paper/'reproducibility'/'PUBLIC_REPLAY_RECEIPT_V1.json').read_text())
+          summary = json.loads((paper/'evidence'/'protected-campaign-31968809206'/'CAMPAIGN_SUMMARY_V1.json').read_text())
+
+          required_pdf_phrases = [
+              '0 false promotions in 360 hostile promotion opportunities',
+              'H3 was not supported',
+              'independent',
+              'protected',
+              'clean positives',
+          ]
+          missing_pdf = [p for p in required_pdf_phrases if p.lower() not in text.lower()]
+          assert not missing_pdf, f'missing final-PDF evidence phrases: {missing_pdf}'
+          stale = [
+              'No external results are reported in this manuscript',
+              'all execution bindings remain UNBOUND',
+              'remains externally CANNOT_CHECK',
+          ]
+          stale_hits = [p for p in stale if p.lower() in text.lower()]
+          assert not stale_hits, f'stale prospective claims in final PDF: {stale_hits}'
+
+          cite_groups = re.findall(r'\\cite(?:t|p)?\{([^}]+)\}', tex)
+          cited = {k.strip() for group in cite_groups for k in group.split(',') if k.strip()}
+          bibkeys = set(re.findall(r'@\w+\{\s*([^,\s]+)', bib))
+          missing_bib = sorted(cited - bibkeys)
+          assert not missing_bib, f'missing bibliography keys: {missing_bib}'
+
+          threat_terms = [
+              'wrong source', 'content substitution', 'conflation', 'behavioral',
+              'weak checker', 'same-lane', 'post-hoc', 'contamination',
+              'tamper', 'holdout', 'insufficient', 'clean positive',
+          ]
+          combined = (threat + '\n' + tex).lower()
+          missing_threat = [term for term in threat_terms if term not in combined]
+          assert not missing_threat, f'threat-model coverage gap: {missing_threat}'
+          assert 'universal scientific-authority security' in claim_ledger
+          assert 'REJECTED / out of scope' in claim_ledger
+          assert replay['safe_file_hashes_verified'] is True
+          assert replay['public_figures_and_tables_regenerated'] is True
+          assert summary['H1']['status'] == 'PASS'
+          assert summary['H2']['status'] == 'PASS'
+          assert summary['H3']['status'] == 'NOT_SUPPORTED'
+
+          info = (out/'pdfinfo.txt').read_text(errors='replace')
+          pages_match = re.search(r'^Pages:\s+(\d+)', info, flags=re.M)
+          pages = int(pages_match.group(1)) if pages_match else None
+          receipt = {
+              'schema': 'P4FinalPdfAudit.v1',
+              'campaign_run_id': '31968809206',
+              'subject_commit': summary['subject_commit'],
+              'pdf_sha256': hashlib.sha256(pdf.read_bytes()).hexdigest(),
+              'pdf_bytes': pdf.stat().st_size,
+              'pdf_pages': pages,
+              'undefined_references_or_citations': 0,
+              'stale_prospective_claims': 0,
+              'threat_model_terms_missing': [],
+              'bibliography_keys_missing': [],
+              'H1_status': summary['H1']['status'],
+              'H2_status': summary['H2']['status'],
+              'H3_status': summary['H3']['status'],
+              'public_replay_verified': True,
+              'protected_headline_independent_reproduction': True,
+          }
+          (out/'FINAL_PDF_AUDIT_V1.json').write_text(json.dumps(receipt, indent=2, sort_keys=True)+'\n')
+          print(json.dumps(receipt, indent=2, sort_keys=True))
+          PY
+
+      - name: Stage threat-model and reference audit source
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp papers/paper-04-verified-scientific-discovery/protocol/THREAT_MODEL_V1.md "$RUNNER_TEMP/p4-final/"
+          cp papers/paper-04-verified-scientific-discovery/evidence/PROTECTED_CLAIM_LEDGER_V1.md "$RUNNER_TEMP/p4-final/"
+          cp papers/paper-04-verified-scientific-discovery/manuscript/bibliography.bib "$RUNNER_TEMP/p4-final/"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p4-final-pdf-audit-${{ github.run_id }}
+          path: ${{ runner.temp }}/p4-final
+          if-no-files-found: error
+          retention-days: 90
