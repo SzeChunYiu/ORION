@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.p5.staged-acceptance-run-manifest.v2",
+  "title": "ORION-P5 staged acceptance run manifest V2",
+  "type": "object",
+  "required": [
+    "schema_version", "paper_id", "protocol_id", "protocol_digest",
+    "created_before_outcome_access", "subject_revision", "hidden_cause_suite_hash",
+    "split_hashes", "episode_ids", "seeds", "model_provider_revisions", "evaluator",
+    "custody", "pace", "resource_limits", "environment", "study_arms",
+    "access_policy_hash", "negative_history_root_hash", "artifact_root"
+  ],
+  "properties": {
+    "schema_version": {"const": "orion.p5.staged-acceptance-run-manifest.v2"},
+    "paper_id": {"const": "P5"},
+    "protocol_id": {"const": "P5.hidden-cause-staged-acceptance.v2"},
+    "protocol_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "created_before_outcome_access": {"const": true},
+    "subject_revision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "hidden_cause_suite_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "split_hashes": {
+      "type": "object",
+      "required": ["motivating", "replay", "fresh", "protected"],
+      "properties": {
+        "motivating": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "replay": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "fresh": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "protected": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "episode_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "seeds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "integer"}},
+    "model_provider_revisions": {"type": "object", "minProperties": 1},
+    "evaluator": {
+      "type": "object",
+      "required": ["artifact_hash", "evaluation_epoch", "lineage_id"],
+      "properties": {
+        "artifact_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "evaluation_epoch": {"type": "string", "minLength": 1},
+        "lineage_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "custody": {
+      "type": "object",
+      "required": [
+        "candidate_lineage_id", "evaluator_lineage_id", "host_lineage_id",
+        "evaluator_frozen_before_candidate", "fresh_frozen_before_candidate",
+        "candidate_can_read_fresh_labels", "candidate_can_write_protected_evaluator",
+        "candidate_can_delete_negative_history"
+      ]
+    },
+    "pace": {
+      "type": "object",
+      "required": ["rule_id", "config_hash", "error_budget", "optional_stopping_allowed", "anytime_valid"],
+      "properties": {
+        "rule_id": {"type": "string", "minLength": 1},
+        "config_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "error_budget": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "optional_stopping_allowed": {"const": true},
+        "anytime_valid": {"const": true}
+      }
+    },
+    "resource_limits": {"type": "object"},
+    "environment": {"type": "object"},
+    "study_arms": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+    "access_policy_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "negative_history_root_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "artifact_root": {"type": "string", "minLength": 1}
+  }
+}

@@ -24,3 +24,11 @@ V2 prospectively tests whether the additive `STATIC -> REPLAY -> FRESH -> PROTEC
 PACE-style anytime-valid commit acceptance, SEA-style certificates and Verifier-as-Gatekeeper are nearest-work/baseline pressure, not standalone P5 novelty. See `PROTOCOL_V2.json` and `STAGED_ACCEPTANCE_POLICY_V2.md`.
 
 V2 execution identities are intentionally `UNBOUND`. Local gate tests and a design freeze do not create an external empirical result.
+
+## V2 execution/evidence binding
+
+Before any V2 outcome access, the protected host must create a fully bound `orion.p5.staged-acceptance-run-manifest.v2`. `P5_RUN_MANIFEST_V2_SCHEMA.json` documents the machine-readable shape and `orion.study.p5.v2_evidence.validate_run_manifest` enforces the protocol digest, exact subject/splits, five seeds, all required study arms, PACE config/error budget, matched resource caps and independent candidate/evaluator/host custody.
+
+Stage observations and candidate decisions are archived under `P5_RESULT_ARCHIVE_V2_SCHEMA.json`. Finalization fails closed on binding mismatches, missing arm×episode×seed coverage, V2 decisions inconsistent with the non-compensatory gate, or an accepted candidate without independent FRESH and PROTECTED audit. Comparator false acceptance remains measurable evidence rather than being discarded as invalid.
+
+See `V2_EVIDENCE_HANDOFF.md`. Passing the validator establishes artifact integrity only; it still reports empirical authority as `CANNOT_CHECK` until the external study exists.
