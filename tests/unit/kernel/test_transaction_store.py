@@ -179,6 +179,8 @@ def _transaction(
     )
     transaction = TransitionTransaction(
         snapshot,
+        authority,
+        support,
         appraisal,
         decision,
         authorization,
