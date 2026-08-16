@@ -1,7 +1,7 @@
 """Canonical Shadow-ORION registry shared by runtime, tests and paper synchronization."""
 
-FRAMEWORK_VERSION = "0.3.0-shadow"
-PAPER_SYNC_EPOCH = "2026-08-15-rakl-transfer-self-driving-v1"
+FRAMEWORK_VERSION = "0.3.1-shadow"
+PAPER_SYNC_EPOCH = "2026-08-16-nearest-work-assimilation-v1"
 
 CORE_OPERATOR_IDS = (
     "FRAME.v1",
@@ -27,6 +27,7 @@ MECHANICS_SUBSTRATE_IDS = (
     "MechanicTraceReceipt.v2",
     "MechanicGuard.v1",
     "AnswerRecord.v1",
+    "NearestWorkCase.v1",
     "RaklTransferProfile.v1",
     "RaklAnswerTransfer.v1",
     "SelfOrionDevelopmentDriver.v1",
