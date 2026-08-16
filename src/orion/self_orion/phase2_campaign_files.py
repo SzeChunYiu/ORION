@@ -8,6 +8,7 @@ from pathlib import Path
 from orion.benchmarks.authority_external import assess_authority_benchmark
 from orion.benchmarks.authority_external_io import load_authority_benchmark_panel
 from orion.benchmarks.external_io import load_external_manifest
+from orion.self_orion.development_trial_io import load_development_trial_report_v2
 from orion.self_orion.phase2_campaign import (
     Phase2CampaignEvidence,
     Phase2CampaignReport,
@@ -15,7 +16,6 @@ from orion.self_orion.phase2_campaign import (
 )
 from orion.self_orion.phase2_campaign_io import (
     load_authority_trial_report,
-    load_development_trial_report,
     load_external_observation_bundle,
 )
 from orion.self_orion.phase2_io import load_phase2_binding
@@ -70,8 +70,11 @@ def load_phase2_campaign_evidence(files: Phase2CampaignFileSet) -> Phase2Campaig
         if files.baseline_bundle is not None
         else ""
     )
+    # Phase-2 closure accepts only the causally bound V2 development receipt.
+    # Historical V1 receipts remain readable through phase2_campaign_io but do
+    # not establish that the candidate repaired the exact observed failure.
     development = (
-        load_development_trial_report(files.development_trial)
+        load_development_trial_report_v2(files.development_trial)
         if files.development_trial is not None
         else None
     )

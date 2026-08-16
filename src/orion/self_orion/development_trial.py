@@ -10,6 +10,7 @@ from orion.self_orion.issue_state import (
     InterventionOutcome,
     InterventionOutcomeKind,
 )
+from orion.self_orion.research_loop import FrozenFailureInvestigationContext
 from orion.self_orion.self_driving import (
     SelfDrivingCycleResult,
     SelfDrivingCycleStatus,
@@ -19,6 +20,12 @@ from orion.self_orion.self_driving import (
 
 def _sha256(value: str) -> bool:
     return len(value) == 64 and all(character in "0123456789abcdef" for character in value)
+
+
+def _canonical_hash(payload: object) -> str:
+    return hashlib.sha256(
+        json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
 
 
 @dataclass(frozen=True)
@@ -64,6 +71,24 @@ class FrozenObservedFailureCase:
         if not self.negative_alternative_ids:
             raise ValueError("Shadow development case must preserve negative/harmful alternatives")
 
+    @property
+    def investigation_context(self) -> FrozenFailureInvestigationContext:
+        return FrozenFailureInvestigationContext(
+            work_id=f"phase2-observed-failure:{self.case_id}",
+            mechanic_id=self.mechanic_id,
+            development_issue_id=self.issue.issue_id,
+            issue_title=self.issue.title,
+            symptom_signature=self.issue.symptom_signature,
+            observed_failure_artifact_hash=self.observed_failure_artifact_hash,
+            candidate_cause_ids=self.issue.candidate_cause_ids,
+            supported_cause_id=self.issue.supported_cause_id,
+            discriminator_artifact_hash=self.discriminator_artifact_hash,
+            discriminator_evidence_ids=self.issue.discriminator_evidence_ids,
+            issue_evidence_ids=self.issue.evidence_ids,
+            failure_episode_ids=self.issue.failure_episode_ids,
+            negative_alternative_ids=self.negative_alternative_ids,
+        )
+
 
 @dataclass(frozen=True)
 class ShadowDevelopmentTrialReport:
@@ -95,56 +120,111 @@ class ShadowDevelopmentTrialReport:
 
     @property
     def artifact_hash(self) -> str:
-        control = self.cycle.change_control
-        payload = {
-            "case_id": self.case.case_id,
-            "mechanic_id": self.case.mechanic_id,
-            "subject_revision_hash": self.case.subject_revision_hash,
-            "evaluation_epoch_id": self.case.evaluation_epoch_id,
-            "split_id": self.case.split_id,
-            "issue_id": self.case.issue.issue_id,
-            "failure_episode_ids": list(self.case.issue.failure_episode_ids),
-            "candidate_cause_ids": list(self.case.issue.candidate_cause_ids),
-            "supported_cause_id": self.case.issue.supported_cause_id,
-            "discriminator_evidence_ids": list(self.case.issue.discriminator_evidence_ids),
-            "observed_failure_artifact_hash": self.case.observed_failure_artifact_hash,
-            "discriminator_artifact_hash": self.case.discriminator_artifact_hash,
-            "observed_failure_before_discriminator": self.case.observed_failure_before_discriminator,
-            "discriminator_frozen_before_candidate": self.case.discriminator_frozen_before_candidate,
-            "negative_alternative_ids": list(self.case.negative_alternative_ids),
-            "cycle_status": self.cycle.status.value,
-            "investigation_problem_id": self.cycle.investigation.problem_id,
-            "investigation_evidence_ids": list(self.cycle.investigation.evidence_ids),
-            "investigation_residual_ids": list(self.cycle.investigation.residual_ids),
-            "change_control": (
-                {
-                    "proposal_id": control.proposal.proposal_id,
-                    "candidate_revision_hash": control.execution.candidate_revision_hash,
-                    "execution_receipt_id": control.execution.receipt_id,
-                    "execution_artifact_ids": list(control.execution.artifact_ids),
-                    "verdict": control.verdict.value,
-                    "assurance_receipt_id": control.assurance.receipt_id,
-                    "evaluator_artifact_hash": control.assurance.evaluator_artifact_hash,
-                    "assurance_epoch_id": control.assurance.evaluation_epoch_id,
-                    "development_delta": control.assurance.development_delta,
-                    "fresh_assurance_delta": control.assurance.fresh_assurance_delta,
-                    "blocking_invariants_passed": control.assurance.blocking_invariants_passed,
-                    "evaluator_frozen_before_candidate": control.assurance.evaluator_frozen_before_candidate,
-                    "fresh_split": control.assurance.fresh_split,
-                    "resource_matched": control.assurance.resource_matched,
-                    "reasons": list(control.reasons),
-                }
-                if control is not None
-                else None
-            ),
-            "updated_intervention_ids": [
-                item.intervention_id for item in self.updated_issue.interventions
-            ],
-            "blockers": list(self.blockers),
-        }
-        return hashlib.sha256(
-            json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
-        ).hexdigest()
+        return _canonical_hash(development_trial_artifact_payload(self))
+
+
+def development_trial_artifact_payload(
+    report: ShadowDevelopmentTrialReport,
+) -> dict[str, object]:
+    """Canonical causal evidence payload for one consequential Shadow repair trial."""
+
+    control = report.cycle.change_control
+    investigation = report.cycle.investigation
+    request = control.request if control is not None else None
+    return {
+        "case": {
+            "case_id": report.case.case_id,
+            "mechanic_id": report.case.mechanic_id,
+            "subject_revision_hash": report.case.subject_revision_hash,
+            "evaluation_epoch_id": report.case.evaluation_epoch_id,
+            "split_id": report.case.split_id,
+            "issue_id": report.case.issue.issue_id,
+            "failure_episode_ids": list(report.case.issue.failure_episode_ids),
+            "candidate_cause_ids": list(report.case.issue.candidate_cause_ids),
+            "supported_cause_id": report.case.issue.supported_cause_id,
+            "discriminator_evidence_ids": list(report.case.issue.discriminator_evidence_ids),
+            "observed_failure_artifact_hash": report.case.observed_failure_artifact_hash,
+            "discriminator_artifact_hash": report.case.discriminator_artifact_hash,
+            "observed_failure_before_discriminator": report.case.observed_failure_before_discriminator,
+            "discriminator_frozen_before_candidate": report.case.discriminator_frozen_before_candidate,
+            "negative_alternative_ids": list(report.case.negative_alternative_ids),
+        },
+        "investigation": {
+            "work_id": investigation.work_id,
+            "mechanic_id": investigation.mechanic_id,
+            "problem_id": investigation.problem_id,
+            "solution_status": investigation.solution_status.value,
+            "evidence_ids": list(investigation.evidence_ids),
+            "residual_ids": list(investigation.residual_ids),
+            "root_episode_id": investigation.root_episode_id,
+            "mechanic_episode_ids": list(investigation.mechanic_episode_ids),
+            "proposal_only": investigation.proposal_only,
+            "development_issue_id": investigation.development_issue_id,
+            "observed_failure_artifact_hash": investigation.observed_failure_artifact_hash,
+            "candidate_cause_ids": list(investigation.candidate_cause_ids),
+            "supported_cause_id": investigation.supported_cause_id,
+            "discriminator_artifact_hash": investigation.discriminator_artifact_hash,
+            "discriminator_evidence_ids": list(investigation.discriminator_evidence_ids),
+            "source_failure_episode_ids": list(investigation.source_failure_episode_ids),
+            "negative_alternative_ids": list(investigation.negative_alternative_ids),
+        },
+        "change_request": (
+            {
+                "request_id": request.request_id,
+                "mechanic_id": request.mechanic_id,
+                "base_revision": request.base_revision,
+                "evidence_ids": list(request.evidence_ids),
+                "failure_episode_ids": list(request.failure_episode_ids),
+                "development_issue_id": request.development_issue_id,
+                "observed_failure_artifact_hash": request.observed_failure_artifact_hash,
+                "candidate_cause_ids": list(request.candidate_cause_ids),
+                "supported_cause_id": request.supported_cause_id,
+                "discriminator_artifact_hash": request.discriminator_artifact_hash,
+                "discriminator_evidence_ids": list(request.discriminator_evidence_ids),
+                "negative_alternative_ids": list(request.negative_alternative_ids),
+            }
+            if request is not None
+            else None
+        ),
+        "change_control": (
+            {
+                "proposal_id": control.proposal.proposal_id,
+                "proposal_request_id": control.proposal.request_id,
+                "proposal_base_revision": control.proposal.base_revision,
+                "patch_artifact_hash": control.proposal.patch_artifact_hash,
+                "candidate_revision_hash": control.execution.candidate_revision_hash,
+                "execution_receipt_id": control.execution.receipt_id,
+                "execution_artifact_ids": list(control.execution.artifact_ids),
+                "verdict": control.verdict.value,
+                "assurance_receipt_id": control.assurance.receipt_id,
+                "evaluator_artifact_hash": control.assurance.evaluator_artifact_hash,
+                "assurance_epoch_id": control.assurance.evaluation_epoch_id,
+                "development_delta": control.assurance.development_delta,
+                "fresh_assurance_delta": control.assurance.fresh_assurance_delta,
+                "blocking_invariants_passed": control.assurance.blocking_invariants_passed,
+                "evaluator_frozen_before_candidate": control.assurance.evaluator_frozen_before_candidate,
+                "fresh_split": control.assurance.fresh_split,
+                "resource_matched": control.assurance.resource_matched,
+                "reasons": list(control.reasons),
+            }
+            if control is not None
+            else None
+        ),
+        "cycle_status": report.cycle.status.value,
+        "updated_interventions": [
+            {
+                "intervention_id": item.intervention_id,
+                "candidate_id": item.candidate_id,
+                "kind": item.kind.value,
+                "evidence_ids": list(item.evidence_ids),
+                "episode_ids": list(item.episode_ids),
+                "fresh_transfer": item.fresh_transfer,
+                "note": item.note,
+            }
+            for item in report.updated_issue.interventions
+        ],
+        "blockers": list(report.blockers),
+    }
 
 
 def _intervention_kind(cycle: SelfDrivingCycleResult) -> InterventionOutcomeKind:
@@ -181,13 +261,30 @@ class ShadowDevelopmentTrialRunner:
         if not case.discriminator_frozen_before_candidate:
             blockers.append("discriminator_not_frozen_before_candidate")
 
-        cycle = self._controller.run_cycle(
-            limit=1,
+        cycle = self._controller.run_observed_failure(
+            case.investigation_context,
             evaluation_epoch_id=case.evaluation_epoch_id,
             split_id=case.split_id,
-        )[0]
-        if cycle.investigation.mechanic_id != case.mechanic_id:
+        )
+        investigation = cycle.investigation
+        if investigation.mechanic_id != case.mechanic_id:
             blockers.append("development_cycle_mechanic_mismatch")
+        if investigation.development_issue_id != case.issue.issue_id:
+            blockers.append("development_cycle_issue_binding_mismatch")
+        if investigation.observed_failure_artifact_hash != case.observed_failure_artifact_hash:
+            blockers.append("development_cycle_failure_artifact_mismatch")
+        if investigation.candidate_cause_ids != case.issue.candidate_cause_ids:
+            blockers.append("development_cycle_candidate_causes_mismatch")
+        if investigation.supported_cause_id != case.issue.supported_cause_id:
+            blockers.append("development_cycle_supported_cause_mismatch")
+        if investigation.discriminator_artifact_hash != case.discriminator_artifact_hash:
+            blockers.append("development_cycle_discriminator_artifact_mismatch")
+        if investigation.discriminator_evidence_ids != case.issue.discriminator_evidence_ids:
+            blockers.append("development_cycle_discriminator_evidence_mismatch")
+        if investigation.source_failure_episode_ids != case.issue.failure_episode_ids:
+            blockers.append("development_cycle_failure_episode_mismatch")
+        if investigation.negative_alternative_ids != case.negative_alternative_ids:
+            blockers.append("development_cycle_negative_history_mismatch")
         if cycle.status is SelfDrivingCycleStatus.RESEARCH_OPEN:
             blockers.append("development_cycle_stopped_before_candidate_execution")
         if cycle.change_control is None:
@@ -195,6 +292,26 @@ class ShadowDevelopmentTrialRunner:
             return ShadowDevelopmentTrialReport(case, cycle, case.issue, tuple(blockers))
 
         control = cycle.change_control
+        request = control.request
+        if not request.observed_failure_bound:
+            blockers.append("development_change_request_not_failure_bound")
+        if request.development_issue_id != case.issue.issue_id:
+            blockers.append("development_request_issue_binding_mismatch")
+        if request.observed_failure_artifact_hash != case.observed_failure_artifact_hash:
+            blockers.append("development_request_failure_artifact_mismatch")
+        if request.discriminator_artifact_hash != case.discriminator_artifact_hash:
+            blockers.append("development_request_discriminator_artifact_mismatch")
+        if request.supported_cause_id != case.issue.supported_cause_id:
+            blockers.append("development_request_supported_cause_mismatch")
+        if request.candidate_cause_ids != case.issue.candidate_cause_ids:
+            blockers.append("development_request_candidate_causes_mismatch")
+        if request.discriminator_evidence_ids != case.issue.discriminator_evidence_ids:
+            blockers.append("development_request_discriminator_evidence_mismatch")
+        if request.negative_alternative_ids != case.negative_alternative_ids:
+            blockers.append("development_request_negative_history_mismatch")
+        if not set(case.issue.failure_episode_ids).issubset(request.failure_episode_ids):
+            blockers.append("development_request_missing_source_failure_episode")
+
         assurance = control.assurance
         if assurance.evaluation_epoch_id != case.evaluation_epoch_id:
             blockers.append("development_assurance_epoch_mismatch")
@@ -232,7 +349,7 @@ class ShadowDevelopmentTrialRunner:
             ),
             fresh_transfer=assurance.fresh_split,
             note=(
-                "Phase-2 Shadow development trial; negative/harmful alternatives retained: "
+                "Phase-2 failure-driven Shadow development trial; negative/harmful alternatives retained: "
                 + ",".join(case.negative_alternative_ids)
             ),
         )
@@ -249,4 +366,5 @@ __all__ = [
     "FrozenObservedFailureCase",
     "ShadowDevelopmentTrialReport",
     "ShadowDevelopmentTrialRunner",
+    "development_trial_artifact_payload",
 ]

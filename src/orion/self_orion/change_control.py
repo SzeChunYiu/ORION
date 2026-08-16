@@ -97,13 +97,29 @@ def change_request_from_investigation(
             )
         )
     )
-    failure_episode_ids = tuple(dict.fromkeys(fibre.failure_episode_ids + investigation.mechanic_episode_ids))
+    failure_episode_ids = tuple(
+        dict.fromkeys(
+            fibre.failure_episode_ids
+            + investigation.source_failure_episode_ids
+            + investigation.mechanic_episode_ids
+        )
+    )
+    causal_context = ""
+    if investigation.observed_failure_bound:
+        causal_context = (
+            f" This request is licensed only for persistent issue {investigation.development_issue_id}, "
+            f"observed-failure artifact {investigation.observed_failure_artifact_hash}, "
+            f"candidate causes {investigation.candidate_cause_ids}, frozen supported cause {investigation.supported_cause_id}, "
+            f"discriminator artifact {investigation.discriminator_artifact_hash} with evidence {investigation.discriminator_evidence_ids}, "
+            f"and retained negative/harmful alternatives {investigation.negative_alternative_ids}."
+        )
     return DevelopmentChangeRequest(
         request_id=f"change:{investigation.work_id}",
         mechanic_id=investigation.mechanic_id,
         problem_statement=(
             f"Use the evidence/residuals from {investigation.problem_id} to propose the smallest scoped implementation change for {investigation.mechanic_id}. "
             f"Evidence={investigation.evidence_ids}; residuals={investigation.residual_ids}."
+            + causal_context
         ),
         base_revision=base_revision,
         evidence_ids=investigation.evidence_ids,
@@ -113,6 +129,13 @@ def change_request_from_investigation(
         falsifier=(
             f"Reject the change if it fails any protected invariant, does not improve the diagnosed coordinate, regresses fresh assurance, or only overfits the visible development tests for {investigation.mechanic_id}."
         ),
+        development_issue_id=investigation.development_issue_id,
+        observed_failure_artifact_hash=investigation.observed_failure_artifact_hash,
+        candidate_cause_ids=investigation.candidate_cause_ids,
+        supported_cause_id=investigation.supported_cause_id,
+        discriminator_artifact_hash=investigation.discriminator_artifact_hash,
+        discriminator_evidence_ids=investigation.discriminator_evidence_ids,
+        negative_alternative_ids=investigation.negative_alternative_ids,
     )
 
 

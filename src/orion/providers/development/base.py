@@ -12,6 +12,10 @@ DEFAULT_PROTECTED_DEVELOPMENT_PATH_PREFIXES = (
 )
 
 
+def _sha256(value: str) -> bool:
+    return len(value) == 64 and all(ch in "0123456789abcdef" for ch in value)
+
+
 @dataclass(frozen=True)
 class DevelopmentChangeRequest:
     request_id: str
@@ -24,6 +28,13 @@ class DevelopmentChangeRequest:
     required_tests: tuple[str, ...]
     falsifier: str
     protected_path_prefixes: tuple[str, ...] = DEFAULT_PROTECTED_DEVELOPMENT_PATH_PREFIXES
+    development_issue_id: str = ""
+    observed_failure_artifact_hash: str = ""
+    candidate_cause_ids: tuple[str, ...] = ()
+    supported_cause_id: str = ""
+    discriminator_artifact_hash: str = ""
+    discriminator_evidence_ids: tuple[str, ...] = ()
+    negative_alternative_ids: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
         if any(not item.strip() for item in (self.request_id, self.mechanic_id, self.problem_statement, self.base_revision, self.falsifier)):
@@ -32,6 +43,43 @@ class DevelopmentChangeRequest:
             raise ValueError("development request requires protected constraints and tests")
         if any(not item.strip() for item in self.protected_path_prefixes):
             raise ValueError("protected path prefixes cannot be empty")
+
+        failure_bound = bool(
+            self.development_issue_id
+            or self.observed_failure_artifact_hash
+            or self.candidate_cause_ids
+            or self.supported_cause_id
+            or self.discriminator_artifact_hash
+            or self.discriminator_evidence_ids
+            or self.negative_alternative_ids
+        )
+        if failure_bound:
+            if any(
+                not value.strip()
+                for value in (
+                    self.development_issue_id,
+                    self.supported_cause_id,
+                )
+            ):
+                raise ValueError("observed-failure development request requires issue and supported-cause identities")
+            if not _sha256(self.observed_failure_artifact_hash) or not _sha256(
+                self.discriminator_artifact_hash
+            ):
+                raise ValueError("observed-failure development bindings must use SHA-256 artifact identities")
+            if len(self.candidate_cause_ids) < 2:
+                raise ValueError("observed-failure development request requires competing cause hypotheses")
+            if self.supported_cause_id not in self.candidate_cause_ids:
+                raise ValueError("observed-failure supported cause must be one of the candidate causes")
+            if not self.discriminator_evidence_ids:
+                raise ValueError("observed-failure development request requires discriminator evidence")
+            if not self.failure_episode_ids:
+                raise ValueError("observed-failure development request requires preserved failure episodes")
+            if not self.negative_alternative_ids:
+                raise ValueError("observed-failure development request must retain negative/harmful alternatives")
+
+    @property
+    def observed_failure_bound(self) -> bool:
+        return bool(self.observed_failure_artifact_hash)
 
 
 @dataclass(frozen=True)

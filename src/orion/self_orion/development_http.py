@@ -103,6 +103,13 @@ class ProtectedDevelopmentHTTPEvaluator:
                 "required_tests": list(request.required_tests),
                 "falsifier": request.falsifier,
                 "protected_path_prefixes": list(request.protected_path_prefixes),
+                "development_issue_id": request.development_issue_id,
+                "observed_failure_artifact_hash": request.observed_failure_artifact_hash,
+                "candidate_cause_ids": list(request.candidate_cause_ids),
+                "supported_cause_id": request.supported_cause_id,
+                "discriminator_artifact_hash": request.discriminator_artifact_hash,
+                "discriminator_evidence_ids": list(request.discriminator_evidence_ids),
+                "negative_alternative_ids": list(request.negative_alternative_ids),
             },
             "proposal": {
                 "proposal_id": proposal.proposal_id,
