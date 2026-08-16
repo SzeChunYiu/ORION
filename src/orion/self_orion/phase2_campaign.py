@@ -49,6 +49,28 @@ def _sha256(value: str) -> bool:
     return len(value) == 64 and all(character in "0123456789abcdef" for character in value)
 
 
+def authority_campaign_artifact_hash(
+    authority_trial_artifact_hash: str,
+    authority_benchmark_panel_hash: str,
+) -> str:
+    """Bind hostile execution and external safety panel as one Gate-C artifact."""
+
+    if not _sha256(authority_trial_artifact_hash) or not _sha256(
+        authority_benchmark_panel_hash
+    ):
+        raise ValueError("authority campaign component hashes must be SHA-256")
+    return hashlib.sha256(
+        json.dumps(
+            {
+                "authority_trial_artifact_hash": authority_trial_artifact_hash,
+                "authority_benchmark_panel_hash": authority_benchmark_panel_hash,
+            },
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode()
+    ).hexdigest()
+
+
 @dataclass(frozen=True)
 class Phase2ExternalObservation:
     criterion: Phase2CampaignCriterion
@@ -75,7 +97,9 @@ class Phase2ExternalObservation:
                 self.note,
             )
         ):
-            raise ValueError("Phase-2 external observation identity/epoch/split/note are required")
+            raise ValueError(
+                "Phase-2 external observation identity/epoch/split/note are required"
+            )
         for digest in (
             self.evidence_artifact_hash,
             self.subject_revision_hash,
@@ -102,8 +126,12 @@ class Phase2ExternalObservationBundle:
     def __post_init__(self) -> None:
         if not self.bundle_id.strip() or not self.evaluation_epoch_id.strip():
             raise ValueError("Phase-2 observation bundle identity/epoch are required")
-        if not _sha256(self.subject_revision_hash) or not _sha256(self.evaluator_artifact_hash):
-            raise ValueError("Phase-2 observation bundle subject/evaluator must be SHA-256")
+        if not _sha256(self.subject_revision_hash) or not _sha256(
+            self.evaluator_artifact_hash
+        ):
+            raise ValueError(
+                "Phase-2 observation bundle subject/evaluator must be SHA-256"
+            )
 
     @property
     def artifact_hash(self) -> str:
@@ -157,11 +185,15 @@ class Phase2CampaignReport:
     development_trial_artifact_hash: str | None
     authority_trial_artifact_hash: str | None
     authority_benchmark_panel_hash: str | None
+    authority_campaign_artifact_hash: str | None
     external_observation_bundle_hash: str | None
 
     @property
     def ready_for_terminal_audit(self) -> bool:
-        return self.stage is Phase2CampaignStage.READY_FOR_TERMINAL_AUDIT and not self.blockers
+        return (
+            self.stage is Phase2CampaignStage.READY_FOR_TERMINAL_AUDIT
+            and not self.blockers
+        )
 
     @property
     def grants_phase2_closure(self) -> bool:
@@ -183,18 +215,31 @@ def _report(
     authority_benchmark: AuthorityBenchmarkAssessment | None = None,
     observations: Phase2ExternalObservationBundle | None = None,
 ) -> Phase2CampaignReport:
+    authority_combined: str | None = None
+    if authority is not None and authority_benchmark is not None:
+        authority_combined = authority_campaign_artifact_hash(
+            authority.artifact_hash,
+            authority_benchmark.panel_artifact_hash,
+        )
     return Phase2CampaignReport(
         stage=stage,
         blockers=tuple(dict.fromkeys(blockers)),
         packet_fingerprint=packet_fingerprint,
-        live_trial_artifact_hash=live.evidence_artifact_hash if live is not None else None,
-        development_trial_artifact_hash=development.artifact_hash if development is not None else None,
-        authority_trial_artifact_hash=authority.artifact_hash if authority is not None else None,
+        live_trial_artifact_hash=(
+            live.evidence_artifact_hash if live is not None else None
+        ),
+        development_trial_artifact_hash=(
+            development.artifact_hash if development is not None else None
+        ),
+        authority_trial_artifact_hash=(
+            authority.artifact_hash if authority is not None else None
+        ),
         authority_benchmark_panel_hash=(
             authority_benchmark.panel_artifact_hash
             if authority_benchmark is not None
             else None
         ),
+        authority_campaign_artifact_hash=authority_combined,
         external_observation_bundle_hash=(
             observations.artifact_hash if observations is not None else None
         ),
@@ -205,8 +250,13 @@ def assess_phase2_campaign(evidence: Phase2CampaignEvidence) -> Phase2CampaignRe
     preflight_report = assess_phase2_preflight(evidence.preflight)
     if preflight_report.status is Phase2PreflightStatus.INVALID:
         return _report(Phase2CampaignStage.INVALID, list(preflight_report.blockers))
-    if preflight_report.status is not Phase2PreflightStatus.READY_TO_EXECUTE_SHADOW_TRIAL:
-        return _report(Phase2CampaignStage.BIND_EXTERNALS, list(preflight_report.blockers))
+    if (
+        preflight_report.status
+        is not Phase2PreflightStatus.READY_TO_EXECUTE_SHADOW_TRIAL
+    ):
+        return _report(
+            Phase2CampaignStage.BIND_EXTERNALS, list(preflight_report.blockers)
+        )
 
     packet = build_frozen_live_trial_packet(evidence.preflight)
     live = evidence.live_trial
@@ -250,18 +300,34 @@ def assess_phase2_campaign(evidence: Phase2CampaignEvidence) -> Phase2CampaignRe
             live=live,
         )
     development_blockers: list[str] = list(development.blockers)
-    if development.case.subject_revision_hash != evidence.preflight.subject_revision_hash:
+    if (
+        development.case.subject_revision_hash
+        != evidence.preflight.subject_revision_hash
+    ):
         development_blockers.append("development_trial_subject_mismatch")
-    if development.case.evaluation_epoch_id != evidence.preflight.evaluation_epoch_id:
+    if (
+        development.case.evaluation_epoch_id
+        != evidence.preflight.evaluation_epoch_id
+    ):
         development_blockers.append("development_trial_epoch_mismatch")
     control = development.cycle.change_control
     if control is None:
-        development_blockers.append("development_trial_missing_protected_change_control")
+        development_blockers.append(
+            "development_trial_missing_protected_change_control"
+        )
     else:
-        if control.assurance.evaluator_artifact_hash != evidence.preflight.evaluator_artifact_hash:
+        if (
+            control.assurance.evaluator_artifact_hash
+            != evidence.preflight.evaluator_artifact_hash
+        ):
             development_blockers.append("development_trial_evaluator_mismatch")
-        if control.assurance.evaluation_epoch_id != evidence.preflight.evaluation_epoch_id:
-            development_blockers.append("development_trial_assurance_epoch_mismatch")
+        if (
+            control.assurance.evaluation_epoch_id
+            != evidence.preflight.evaluation_epoch_id
+        ):
+            development_blockers.append(
+                "development_trial_assurance_epoch_mismatch"
+            )
     if not development.process_demonstrated:
         development_blockers.append("shadow_development_process_not_demonstrated")
     if development.self_merge_authorized:
@@ -285,9 +351,15 @@ def assess_phase2_campaign(evidence: Phase2CampaignEvidence) -> Phase2CampaignRe
             development=development,
         )
     authority_blockers: list[str] = list(authority.blockers)
-    if authority.binding.subject_revision_hash != evidence.preflight.subject_revision_hash:
+    if (
+        authority.binding.subject_revision_hash
+        != evidence.preflight.subject_revision_hash
+    ):
         authority_blockers.append("authority_trial_subject_mismatch")
-    if authority.binding.evaluator_artifact_hash != evidence.preflight.evaluator_artifact_hash:
+    if (
+        authority.binding.evaluator_artifact_hash
+        != evidence.preflight.evaluator_artifact_hash
+    ):
         authority_blockers.append("authority_trial_evaluator_mismatch")
     if authority.binding.evaluation_epoch_id != evidence.preflight.evaluation_epoch_id:
         authority_blockers.append("authority_trial_epoch_mismatch")
@@ -373,6 +445,17 @@ def assess_phase2_campaign(evidence: Phase2CampaignEvidence) -> Phase2CampaignRe
     by_criterion: dict[Phase2CampaignCriterion, list[Phase2ExternalObservation]] = {}
     for observation in observations.observations:
         by_criterion.setdefault(observation.criterion, []).append(observation)
+
+    authority_combined = authority_campaign_artifact_hash(
+        authority.artifact_hash,
+        authority_benchmark.panel_artifact_hash,
+    )
+    expected_artifacts = {
+        Phase2CampaignCriterion.LIVE_TRIAL: live.evidence_artifact_hash,
+        Phase2CampaignCriterion.MATCHED_BASELINE: evidence.baseline_bundle_hash,
+        Phase2CampaignCriterion.SHADOW_DEVELOPMENT: development.artifact_hash,
+        Phase2CampaignCriterion.AUTHORITY_BATTERY: authority_combined,
+    }
     for criterion in Phase2CampaignCriterion:
         matches = by_criterion.get(criterion, [])
         if len(matches) != 1:
@@ -408,6 +491,11 @@ def assess_phase2_campaign(evidence: Phase2CampaignEvidence) -> Phase2CampaignRe
         if observation.status is Phase2ExternalObservationStatus.BLOCKING_FAILURE:
             external_blockers.append(
                 f"external_observation_blocking_failure:{criterion.value}"
+            )
+        expected = expected_artifacts.get(criterion)
+        if expected is not None and observation.evidence_artifact_hash != expected:
+            external_blockers.append(
+                f"external_observation_artifact_mismatch:{criterion.value}"
             )
 
     manifest = evidence.flagship_external_manifest
@@ -481,4 +569,5 @@ __all__ = [
     "Phase2ExternalObservationBundle",
     "Phase2ExternalObservationStatus",
     "assess_phase2_campaign",
+    "authority_campaign_artifact_hash",
 ]
