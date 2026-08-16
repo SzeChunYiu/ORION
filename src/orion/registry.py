@@ -1,7 +1,7 @@
 """Canonical Shadow-ORION registry shared by runtime, tests and paper synchronization."""
 
-FRAMEWORK_VERSION = "0.3.2-shadow"
-PAPER_SYNC_EPOCH = "2026-08-16-flagship-falsifiers-v1"
+FRAMEWORK_VERSION = "0.3.3-shadow"
+PAPER_SYNC_EPOCH = "2026-08-16-typed-ignorance-v1"
 
 CORE_OPERATOR_IDS = (
     "FRAME.v1",
@@ -29,6 +29,7 @@ MECHANICS_SUBSTRATE_IDS = (
     "AnswerRecord.v1",
     "NearestWorkCase.v1",
     "ScientificMeaningProjection.v1",
+    "IgnoranceProjection.v1",
     "BenchmarkReport.v1",
     "FlagshipBenchmarkSuite.v1",
     "DevelopmentIssue.v1",
