@@ -1,0 +1,44 @@
+{
+  "artifact": "Lk123/AutoResearchBench :: AutoResearchBench.jsonl.obf.json",
+  "attempt_timestamp_utc": "2026-08-16T17:38:10Z",
+  "bundle_header": {
+    "compression": "gzip",
+    "format": "scienceagent-benchmark-encrypted",
+    "scheme": "public_canary_xor_sha256",
+    "version": 1
+  },
+  "bundle_metadata": {
+    "original_filename": "AutoResearchBench.jsonl",
+    "original_sha256": "db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6",
+    "original_size": 1103980
+  },
+  "canary_string_present": true,
+  "command": "python3 decrypt_benchmark.py --input-file AutoResearchBench.jsonl.obf.json --output-file AutoResearchBench.jsonl",
+  "declared_original_sha256": "db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6",
+  "decrypt_script_source": "CherYou/AutoResearchBench@a46c9bfb8968786f73f0a6a5b365b5384cd0f96d :: decrypt_benchmark.py",
+  "decrypted_structure": {
+    "fields": [
+      "question",
+      "answer",
+      "arxiv_id",
+      "type"
+    ],
+    "gold_labels_present_in_candidate_distribution": true,
+    "note": "Gold answers ('answer', 'arxiv_id') ship inside the same records as the questions. Plaintext question/answer text is deliberately NOT reproduced in this repository; only counts, field names and hashes are recorded.",
+    "records": 1000,
+    "type_counts": {
+      "deep": 600,
+      "wide": 400
+    }
+  },
+  "exit_code": 0,
+  "hash_match": true,
+  "observed_decrypted_sha256": "db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6",
+  "plaintext_retention": "Decrypted plaintext retained only under the session scratchpad; not committed to this repository. Upstream README asks that decrypted questions/answers not be reposted online.",
+  "secret_required": false,
+  "secret_required_note": "The published bundle uses scheme 'public_canary_xor_sha256'. decrypt_benchmark.py derives the XOR mask as sha256(canary_string) where canary_string is stored in the bundle metadata itself; no password, key or credential was supplied or needed. The repository also implements an AES-GCM/scrypt path (via cryptography) for a passphrase-protected variant, which the published bundle does not use.",
+  "stdout": [
+    "Decrypted file written to: <scratchpad>/bundles/AutoResearchBench.jsonl",
+    "Detected bundle scheme: public_canary_xor_sha256"
+  ]
+}

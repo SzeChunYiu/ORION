@@ -1,0 +1,111 @@
+{
+  "BFTree/MA-Retriever": {
+    "card_license": "mit",
+    "endpoint": "GET https://huggingface.co/api/models/BFTree/MA-Retriever",
+    "gated": false,
+    "http_status": 200,
+    "private": false,
+    "repo_type": "model",
+    "sha": "05f427fc08ed70e686159a2cb655319ad44c844c"
+  },
+  "Lk123/AutoResearchBench": {
+    "card_license": "apache-2.0",
+    "disabled": false,
+    "downloads": 255,
+    "endpoint": "GET https://huggingface.co/api/datasets/Lk123/AutoResearchBench",
+    "files": [
+      ".gitattributes",
+      "AutoResearchBench.jsonl.obf.json",
+      "README.md"
+    ],
+    "gated": false,
+    "http_status": 200,
+    "lastModified": "2026-05-21T06:29:30.000Z",
+    "private": false,
+    "repo_type": "dataset",
+    "sha": "4df92b46c2905c8593abd857aa3a2cdede142da6",
+    "tree_expand": [
+      {
+        "oid": "bed0738c7eeb449bca98b5d2f33c89a1ee56349a",
+        "path": ".gitattributes",
+        "size": 2504
+      },
+      {
+        "oid": "aa140f47cb08043673c054992e7ba2d00ea7c2c1",
+        "path": "AutoResearchBench.jsonl.obf.json",
+        "size": 462529
+      },
+      {
+        "oid": "a53cc3b0c416dacfd9f9d5a28707682e1ea22300",
+        "path": "README.md",
+        "size": 2708
+      }
+    ],
+    "usedStorage": 0
+  },
+  "OxRML/AgentSLR": {
+    "card_license": "cc-by-4.0",
+    "disabled": false,
+    "downloads": 107,
+    "endpoint": "GET https://huggingface.co/api/datasets/OxRML/AgentSLR",
+    "files": [
+      ".gitattributes",
+      "README.md",
+      "assets/arxiv.svg",
+      "assets/github.svg",
+      "assets/hero.jpg",
+      "assets/website.svg",
+      "data/harvest_metadata_and_screening/ebola.parquet",
+      "data/harvest_metadata_and_screening/lassa.parquet",
+      "data/harvest_metadata_and_screening/marburg.parquet",
+      "data/harvest_metadata_and_screening/mers.parquet",
+      "data/harvest_metadata_and_screening/nipah.parquet",
+      "data/harvest_metadata_and_screening/sars.parquet",
+      "data/harvest_metadata_and_screening/zika.parquet",
+      "data/outbreak_extractions_lassa/lassa.parquet",
+      "data/outbreak_extractions_zika/zika.parquet",
+      "data/parameter_extractions_ebola/ebola.parquet",
+      "data/parameter_extractions_lassa/lassa.parquet",
+      "data/parameter_extractions_sars/sars.parquet",
+      "data/parameter_extractions_zika/zika.parquet",
+      "data/transmission_model_extractions_ebola/ebola.parquet",
+      "data/transmission_model_extractions_lassa/lassa.parquet",
+      "data/transmission_model_extractions_sars/sars.parquet",
+      "data/transmission_model_extractions_zika/zika.parquet"
+    ],
+    "gated": false,
+    "http_status": 200,
+    "lastModified": "2026-05-07T04:45:23.000Z",
+    "private": false,
+    "repo_type": "dataset",
+    "sha": "01843a781bbd839c434c50271a7b1456a59cd656",
+    "usedStorage": 253228452
+  },
+  "THUIR/MetaSyn": {
+    "card_license": "other",
+    "disabled": false,
+    "downloads": 360,
+    "endpoint": "GET https://huggingface.co/api/datasets/THUIR/MetaSyn",
+    "files": [
+      ".gitattributes",
+      "LICENSE",
+      "README.md",
+      "data/corpus/train-00000-of-00006.parquet",
+      "data/corpus/train-00001-of-00006.parquet",
+      "data/corpus/train-00002-of-00006.parquet",
+      "data/corpus/train-00003-of-00006.parquet",
+      "data/corpus/train-00004-of-00006.parquet",
+      "data/corpus/train-00005-of-00006.parquet",
+      "data/reviews/test-00000-of-00001.parquet",
+      "data/reviews/train-00000-of-00001.parquet",
+      "test_ids.json"
+    ],
+    "gated": false,
+    "http_status": 200,
+    "lastModified": "2026-07-23T04:48:53.000Z",
+    "private": false,
+    "repo_type": "dataset",
+    "sha": "c8fa07d89c44093d623f9a213c6bf070f40ab960",
+    "usedStorage": 6449044459
+  }
+}
