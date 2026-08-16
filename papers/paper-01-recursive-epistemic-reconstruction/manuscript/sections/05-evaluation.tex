@@ -2,24 +2,23 @@
 
 \subsection{Hypotheses}
 
-The research object defines a prospective comparison rather than a success-by-definition architecture claim. The main hypothesis is:
+The research object defines a prospective comparison rather than a success-by-definition architecture claim. The outcome-blind external design is frozen as \texttt{P1.hidden-formulation.v1}. Its primary hypothesis is:
 
 \begin{quote}
-Typed recursive epistemic reconstruction with responsibility-targeted reframing and scoped reopening should outperform matched static-workflow reasoning when success requires discovering that the initial representation or search universe is inadequate, without increasing unnecessary reframing when the problem is only missing evidence or execution failure.
+On tasks where the initial formulation, representation, decomposition, measurement model, or relevant search universe is insufficient, full ORION improves root task success versus the strongest matched static or recursive baseline.
 \end{quote}
 
-This decomposes into measurable questions:
+The safety/mechanistic secondary hypotheses test whether ORION avoids unnecessary reframes on evidence-only/execution-only controls, reopens dependent closure more precisely than no reset or full reset, and preserves mechanic obligations and authority/invariant structure with recursion depth. The design target for the primary superiority comparison is an absolute root-success improvement of at least five percentage points; unnecessary-reframe rate is prospectively guarded by a two-percentage-point non-inferiority margin. These are design thresholds, not claimed outcomes.
 
-\begin{enumerate}
-  \item Can the system identify the missing representation, domain, or formulation coordinate?
-  \item Does it attribute responsibility to the correct level?
-  \item Does it avoid unnecessary reframes on negative-control tasks?
-  \item After a material reframe, does it invalidate the right dependent closure?
-  \item Do reconstruction invariants degrade with recursion depth?
-  \item Does the mechanism improve root-task success under matched compute and authority constraints?
-\end{enumerate}
+The registered task families are hidden parent-domain, hidden representation/coordinate system, hidden decomposition/interface, hidden measurement/operationalization, evidence-only negative controls, and execution-only negative controls. Required matched baselines include a static tool workflow, iterative/tree research, an AREX-like recursive audit/follow-up controller, a SCION-like dependency-aware execution plan, and an Iris-like revisable information-state controller. Full ORION is separately ablated by removing explicit $W$, explicit $M$, typed reframing, dependency-directed reopening, and mechanic self-audit.
 
-The evaluation packet therefore tracks correct hidden-coordinate discovery, responsibility accuracy, unnecessary-reframe rate, closure-invalidation precision/recall, root success, authority violations, and cost to resolution.
+The evaluation packet tracks root success, hidden-shift success, unnecessary-reframe rate, responsibility macro-F1, reframe-target accuracy, reopen precision/recall/F1, stale-closure survival, invariant/authority violations, trace fidelity and resource cost. Candidate-caused failures, timeouts, malformed actions and abstentions remain in the denominator. Standalone rates receive Wilson intervals; matched system differences use a paired percentile bootstrap over frozen tasks, with stochastic repetitions nested within task/system.
+
+\subsection{Prospective design freeze}
+
+The complete machine-readable design is stored at \texttt{protocol/PROTOCOL\_V1.json}, with case requirements in \texttt{protocol/HIDDEN\_SHIFT\_CASE\_SCHEMA\_V1.json}. Its state is \texttt{DESIGN\_FROZEN} and \texttt{outcome\_accessed=false}. This freezes hypotheses, task families, baselines, ablations, metrics, resource/exclusion rules, statistics, access policy and result-figure/table definitions before final outcomes exist.
+
+This is deliberately weaker than an execution freeze. The final subject revision, hidden-shift case-set hash, model/provider versions, baseline configuration hashes, protected evaluator/adjudication hash, split hashes and evaluation epoch remain unbound. Those identities must be frozen before the first final test outcome is inspected; otherwise the run cannot support the publication claim. Any post-outcome scientific-design change creates a new protocol version rather than rewriting V1.
 
 \subsection{Frozen local falsifier V1}
 
@@ -39,4 +38,4 @@ The current discriminator instead asks whether name-independent functional signa
 
 \subsection{External promotion gate}
 
-The publication-level test remains unexecuted. It requires fresh hidden-formulation tasks, matched static and tree-search/agentic baselines, hidden responsibility/domain labels, matched resource budgets, and protected evaluation. Until those conditions are satisfied, the external state is \texttt{CANNOT\_CHECK}. Repository tests cannot convert that state into a novelty or superiority claim.
+The publication-level test remains unexecuted. Final evidence requires the execution bindings above, fresh hidden-formulation tasks, matched current baselines, protected labels/evaluation, and the frozen statistical analysis. Until those conditions are satisfied and the external evidence manifest is independently bound, the external state is \texttt{CANNOT\_CHECK}. Repository tests and the prospective protocol cannot convert that state into a novelty or superiority claim.
