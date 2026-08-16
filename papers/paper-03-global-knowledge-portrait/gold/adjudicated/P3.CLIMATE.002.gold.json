@@ -1,0 +1,51 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.CLIMATE.002.GOLD",
+  "case_id": "P3.CLIMATE.002",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "essd:SEED-CLIM002A",
+    "document_version": "v1",
+    "span_start": 1980,
+    "span_end": 2290,
+    "text_hash": "seed:sha256:8182838a9bd",
+    "discipline": "climate",
+    "text": "Atmospheric science: 'surface temperature anomaly'"
+  },
+  "source_b": {
+    "document_id": "essd:SEED-CLIM002B",
+    "document_version": "v1",
+    "span_start": 5580,
+    "span_end": 5900,
+    "text_hash": "seed:sha256:8182838a9be",
+    "discipline": "climate",
+    "text": "Reanalysis: '2m air temperature deviation from climatology'"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "SAME",
+  "measurement_relation": "EQUIVALENT",
+  "context_relation": "ALIGNED",
+  "polarity_relation": "SAME",
+  "modality_relation": "SAME",
+  "attribution_relation": "SAME_SPEAKER_OR_SOURCE",
+  "discourse_relation": "ALIGNED",
+  "mapping_relation": "IDENTITY",
+  "preservation_conditions": [
+    "Canonical identifier mapping (e.g. gene ontology / synonym dictionary) is applied"
+  ],
+  "non_preserved_coordinates": [],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "GLUE_ALLOWED",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "referent_relation:SAME",
+    "mapping_relation:IDENTITY",
+    "preservation_conditions:canonical_mapping"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for different_name_same_referent case P3.CLIMATE.002. referent=SAME, construct=SAME, measurement=EQUIVALENT, context=ALIGNED, mapping=IDENTITY, integration=GLUE_ALLOWED. Seed manifest notes: Different surface SAME referent (near-surface air temperature anomaly). Gold: SAME referent, different expression.",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

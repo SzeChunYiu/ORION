@@ -1,0 +1,55 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.BIOMED.004.GOLD",
+  "case_id": "P3.BIOMED.004",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "pmc:SEED-BIOMED004A",
+    "document_version": "v1",
+    "span_start": 5602,
+    "span_end": 6001,
+    "text_hash": "seed:sha256:2122232a424",
+    "discipline": "biomed",
+    "text": "Baseline cohort: pre-treatment SARS-CoV-2 viral load measurements"
+  },
+  "source_b": {
+    "document_id": "pmc:SEED-BIOMED004B",
+    "document_version": "v1",
+    "span_start": 1340,
+    "span_end": 1711,
+    "text_hash": "seed:sha256:2526272a829",
+    "discipline": "biomed",
+    "text": "Follow-up study: post-treatment viral load in same cohort"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "SAME",
+  "measurement_relation": "NON_EQUIVALENT",
+  "context_relation": "DIFFERENT_STATE_OR_TIME",
+  "polarity_relation": "SAME",
+  "modality_relation": "SAME",
+  "attribution_relation": "SAME_SPEAKER_OR_SOURCE",
+  "discourse_relation": "CONTEXTUAL_DIFFERENCE",
+  "mapping_relation": "CONDITIONAL_TRANSFORM",
+  "preservation_conditions": [
+    "Temporal state change is expected; values are not directly comparable without trend normalization",
+    "Difference reflects temporal evolution, not contradiction"
+  ],
+  "non_preserved_coordinates": [
+    "context",
+    "measurement"
+  ],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "GLUE_ALLOWED",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "context_relation:DIFFERENT_STATE_OR_TIME",
+    "contradiction_verdict:NO_CONTRADICTION",
+    "preservation_conditions:temporal_context"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for same_entity_different_temporal_state case P3.BIOMED.004. referent=SAME, construct=SAME, measurement=NON_EQUIVALENT, context=DIFFERENT_STATE_OR_TIME, mapping=CONDITIONAL_TRANSFORM, integration=GLUE_ALLOWED. Seed manifest notes: Same entity measured at two time points (temporal state change). Gold: referent=SAME-with-temporal-state, verdict DEPENDS on context; not a contradiction without temporal annotation.",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

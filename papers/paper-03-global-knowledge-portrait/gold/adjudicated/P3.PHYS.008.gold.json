@@ -1,0 +1,52 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.PHYS.008.GOLD",
+  "case_id": "P3.PHYS.008",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "arxiv:SEED-PHYS008A",
+    "document_version": "v1",
+    "span_start": 5550,
+    "span_end": 5880,
+    "text_hash": "seed:sha256:8182838a999",
+    "discipline": "physics",
+    "text": "Copenhagen interpretation: wavefunction collapses on measurement"
+  },
+  "source_b": {
+    "document_id": "arxiv:SEED-PHYS008B",
+    "document_version": "v1",
+    "span_start": 4250,
+    "span_end": 4580,
+    "text_hash": "seed:sha256:8182838a9aa",
+    "discipline": "physics",
+    "text": "Many-worlds interpretation: no collapse, all outcomes realized"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "DIFFERENT",
+  "measurement_relation": "NOT_APPLICABLE",
+  "context_relation": "ALIGNED",
+  "polarity_relation": "NOT_COMPARABLE",
+  "modality_relation": "SAME",
+  "attribution_relation": "DIFFERENT_ATTRIBUTION",
+  "discourse_relation": "ALIGNED",
+  "mapping_relation": "NO_LICENSED_MAPPING",
+  "preservation_conditions": [],
+  "non_preserved_coordinates": [
+    "construct",
+    "mapping"
+  ],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "PLURAL_VIEW",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "integration_verdict:PLURAL_VIEW",
+    "construct_relation:DIFFERENT",
+    "mapping_relation:NO_LICENSED_MAPPING"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for genuine_plural_obstruction case P3.PHYS.008. referent=SAME, construct=DIFFERENT, measurement=NOT_APPLICABLE, context=ALIGNED, mapping=NO_LICENSED_MAPPING, integration=PLURAL_VIEW. Seed manifest notes: Interpretational pluralism in quantum foundations. Gold: PLURAL_VIEW obstruction (empirically underdetermined).",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

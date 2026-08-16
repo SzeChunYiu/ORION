@@ -1,0 +1,51 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.BIOMED.002.GOLD",
+  "case_id": "P3.BIOMED.002",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "pmc:SEED-BIOMED002A",
+    "document_version": "v1",
+    "span_start": 2103,
+    "span_end": 2470,
+    "text_hash": "seed:sha256:def456abc123",
+    "discipline": "biomed",
+    "text": "Oncology paper: 'programmed cell death ligand 1 (PD-L1)' expression in tumors"
+  },
+  "source_b": {
+    "document_id": "pmc:SEED-BIOMED002B",
+    "document_version": "v1",
+    "span_start": 1522,
+    "span_end": 1809,
+    "text_hash": "seed:sha256:abc456def789",
+    "discipline": "biomed",
+    "text": "Immunotherapy review: 'cluster of differentiation 274 (CD274)' as checkpoint ligand"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "SAME",
+  "measurement_relation": "EQUIVALENT",
+  "context_relation": "ALIGNED",
+  "polarity_relation": "SAME",
+  "modality_relation": "SAME",
+  "attribution_relation": "SAME_SPEAKER_OR_SOURCE",
+  "discourse_relation": "ALIGNED",
+  "mapping_relation": "IDENTITY",
+  "preservation_conditions": [
+    "Canonical identifier mapping (e.g. gene ontology / synonym dictionary) is applied"
+  ],
+  "non_preserved_coordinates": [],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "GLUE_ALLOWED",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "referent_relation:SAME",
+    "mapping_relation:IDENTITY",
+    "preservation_conditions:canonical_mapping"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for different_name_same_referent case P3.BIOMED.002. referent=SAME, construct=SAME, measurement=EQUIVALENT, context=ALIGNED, mapping=IDENTITY, integration=GLUE_ALLOWED. Seed manifest notes: Different surface names (PD-L1 vs CD274) but SAME referent protein. Gold: referent=SAME, mapping=IDENTITY via gene ontology CD274.",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

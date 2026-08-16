@@ -143,10 +143,10 @@ Seventeen metrics are computed per run (defined in
         cases, proportion correctly identified.
     \item \textbf{unresolved\_abstention\_calibration}: proportion of
         \textsc{unresolved} outputs that match gold \textsc{unresolved}.
-    \item \textbf{annotation\_agreement\_by\_coordinate}: agreement between
-        the system's per-coordinate judgments and the gold.
-    \item \textbf{cost\_metrics}: wall-clock time, token count, storage
-        overhead, and estimated currency cost.
+    \item \textbf{annotation\_\-agreement\_\-by\_\-coordinate}: agreement
+        between the system's per-coordinate judgments and the gold.
+    \item \textbf{cost\_metrics}: wall-clock time, token count,
+        storage overhead, and estimated currency cost.
 \end{enumerate}
 
 All metrics are reported with Wilson 95\% confidence intervals and
@@ -182,17 +182,18 @@ The analysis follows the frozen plan in \texttt{protocol/PROTOCOL\_V1.json}:
 
 \subsection{Reproducibility}
 
+\begin{quote}\raggedright
 All evaluation outputs are emitted as normalized result records
-(schema: \texttt{orion.publication-result-record.v1}) with a run
-manifest (schema: \texttt{orion.run-manifest.v1}) that records the gold
+(schema: \texttt{orion.publication\-result\-record.v1}) with a run
+manifest (schema: \texttt{orion.run\-manifest.v1}) that records the gold
 hash, system versions, seeds, and resource policy. The MUSE reference
-implementation is pinned to commit
-\texttt{f7a40317db46145d0c90b221311d8324db5da1b9}
-\cite{muse2026}. The evaluation runner,
-\texttt{src/orion/study/evaluate.py}, produces deterministic output
-given the same gold, system versions, and seeds. The reproducibility
-package includes the annotation handbook, gold with provenance, baseline
-configurations, raw projections, and scripts for every metric, figure,
-and table.
+implementation~\cite{muse2026} is pinned to commit
+\texttt{f7a40317db46145d0c90b221311d8324db5da1b9}. The evaluation
+runner, \texttt{src/orion/study/evaluate.py}, produces deterministic
+output given the same gold, system versions, and seeds. The
+reproducibility package includes the annotation handbook, gold with
+provenance, baseline configurations, raw projections, and scripts for
+every metric, figure, and table.
+\end{quote}
 
 \endinput
