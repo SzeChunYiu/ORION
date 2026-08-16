@@ -46,13 +46,13 @@ from .authorization import (
 from .store import EntryKind, LedgerEntry, LedgerStore, LegacyLedgerRequiresMigration
 from .support import DependencyStatus, DependencyStatusEvent, SupportSet
 from .transaction import TRANSITION_TRANSACTION_SCHEMA_VERSION
+from .protected_identity import protected_projection_hash
 from .transition import (
     REDUCER_VERSION,
     WORKFLOW_VERSION,
     LedgerExpectation,
     ProgramProjection,
     canonical_digest,
-    projection_hash,
 )
 from .transition_reducer import (
     TransitionOperation,
@@ -385,7 +385,7 @@ def replay_protected_ledger(
     for entry in entries:
         transaction_id, raw = _raw_transaction(entry)
         plan = _plan(raw["plan"])
-        if plan.pre_state_hash != projection_hash(projection):
+        if plan.pre_state_hash != protected_projection_hash(projection):
             raise ReplayFailure("historical transition pre-state mismatch")
         snapshot = raw.get("evidence_snapshot")
         if not isinstance(snapshot, Mapping):

@@ -19,6 +19,7 @@ from typing import Any
 from orion.mechanics.answers import AnswerRecord
 from orion.mechanics.model import MechanicDimension, MetricSpec
 
+from .protected_identity import protected_projection_hash
 from .transition import (
     REDUCER_VERSION,
     WORKFLOW_VERSION,
@@ -26,7 +27,6 @@ from .transition import (
     ProgramProjection,
     answer_record_hash,
     canonical_digest,
-    projection_hash,
 )
 
 
@@ -105,7 +105,7 @@ class TransitionReductionResult:
 
     @property
     def hash(self) -> str:
-        return projection_hash(self.projection)
+        return protected_projection_hash(self.projection)
 
     @property
     def grants_transition_authority(self) -> bool:
@@ -495,7 +495,7 @@ def plan_answer_transition(
     evidence_snapshot_hash: str,
     execution_receipt_hash: str | None = None,
 ) -> TransitionPlan:
-    pre_hash = projection_hash(projection)
+    pre_hash = protected_projection_hash(projection)
     if expectation.research_state_hash != pre_hash:
         residual = TransitionResidual(
             TransitionResidualKind.PRE_STATE_MISMATCH,
@@ -514,7 +514,7 @@ def plan_answer_transition(
             projection, record
         )
         operation = TransitionOperation(0, operation_kind, record=record)
-        post_hash = projection_hash(candidate)
+        post_hash = protected_projection_hash(candidate)
         residuals = (residual,) if residual is not None else ()
 
     payload = canonical_transition_plan_payload(
@@ -549,7 +549,7 @@ def plan_reopen_transition(
     expectation: LedgerExpectation,
     evidence_snapshot_hash: str,
 ) -> TransitionPlan:
-    pre_hash = projection_hash(projection)
+    pre_hash = protected_projection_hash(projection)
     operation = TransitionOperation(
         0,
         TransitionOperationKind.REOPEN_COORDINATE,
@@ -561,7 +561,7 @@ def plan_reopen_transition(
         projection, mechanic_id=mechanic_id, dimension=dimension.value, reason=reason
     )
     residuals = (residual,) if residual else ()
-    post_hash = projection_hash(candidate)
+    post_hash = protected_projection_hash(candidate)
     payload = canonical_transition_plan_payload(
         expectation=expectation,
         pre_state_hash=pre_hash,
@@ -588,7 +588,7 @@ def plan_reopen_transition(
 def reduce_transition(
     projection: ProgramProjection, plan: TransitionPlan
 ) -> TransitionReductionResult:
-    if projection_hash(projection) != plan.pre_state_hash:
+    if protected_projection_hash(projection) != plan.pre_state_hash:
         return TransitionReductionResult(
             projection,
             (),
@@ -631,7 +631,7 @@ def plan_batch_transition(
     evidence_snapshot_hash: str,
     execution_receipt_hash: str | None = None,
 ) -> TransitionPlan:
-    if expectation.research_state_hash != projection_hash(projection):
+    if expectation.research_state_hash != protected_projection_hash(projection):
         raise ValueError(
             "batch planning requires expectation bound to the exact pre-state"
         )
@@ -643,8 +643,8 @@ def plan_batch_transition(
         operations.append(TransitionOperation(index, kind, record=record))
         if residual is not None:
             residuals.append(residual)
-    pre_hash = projection_hash(projection)
-    post_hash = projection_hash(current)
+    pre_hash = protected_projection_hash(projection)
+    post_hash = protected_projection_hash(current)
     payload = canonical_transition_plan_payload(
         expectation=expectation,
         pre_state_hash=pre_hash,

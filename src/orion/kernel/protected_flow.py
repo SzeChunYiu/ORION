@@ -19,7 +19,8 @@ from .evidence import HostEvidenceSnapshot
 from .host import ProtectedHostAuthorizationService
 from .store import LedgerEntry, LedgerStore, StaleTransitionExpectation
 from .transaction import TransitionTransaction
-from .transition import LedgerExpectation, ProgramProjection, projection_hash
+from .protected_identity import protected_projection_hash
+from .transition import LedgerExpectation, ProgramProjection
 from .transition_reducer import TransitionReductionResult, plan_answer_transition, reduce_transition
 
 
@@ -69,15 +70,15 @@ class ProtectedTransitionCoordinator:
         if current is None:
             return LedgerExpectation(
                 None,
-                projection_hash(projection),
+                protected_projection_hash(projection),
                 self._host.authority_revision,
                 self._host.support_revision,
             )
-        if current.research_state_hash != projection_hash(projection):
+        if current.research_state_hash != protected_projection_hash(projection):
             raise StaleTransitionExpectation(
                 "research_state_hash",
                 current.research_state_hash,
-                projection_hash(projection),
+                protected_projection_hash(projection),
             )
         if current.authority_revision != self._host.authority_revision:
             raise StaleTransitionExpectation(
