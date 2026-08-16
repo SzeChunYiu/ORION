@@ -533,3 +533,35 @@ def test_the_external_gate_refuses_an_attestation_its_observation_contradicts() 
     # An empty record must not upgrade anything.
     empty = external_authority_gate(**attested, observed_activity=CandidateActivity("c"))
     assert empty.status is BenchmarkStatus.PASS
+
+
+def test_required_telemetry_that_is_absent_is_cannot_check_not_pass() -> None:
+    """Missing telemetry must never PASS by default. It is CANNOT_CHECK rather
+    than FAIL, because nothing here says the candidate misbehaved — only that
+    nothing observed whether it did.
+
+    The requirement is a flag rather than unconditional: refusing every run
+    without telemetry would solve the attacks by universal refusal and destroy
+    clean-positive coverage, which is its own way of measuring nothing.
+    """
+
+    from orion.benchmarks.result import BenchmarkStatus
+    from orion.benchmarks.verified_discovery import external_authority_gate
+
+    attested = {
+        "source_attribution_benchmark_run": True,
+        "search_time_contamination_audited": True,
+        "evaluator_locked": True,
+        "heldout_access_logged": True,
+        "matched_nearest_work_baseline_run": True,
+        "false_promotion_better_than_baseline": True,
+    }
+    assert external_authority_gate(**attested).status is BenchmarkStatus.PASS
+    required = external_authority_gate(**attested, require_observed_activity=True)
+    assert required.status is BenchmarkStatus.CANNOT_CHECK
+    clean = external_authority_gate(
+        **attested,
+        require_observed_activity=True,
+        observed_activity=CandidateActivity("c"),
+    )
+    assert clean.status is BenchmarkStatus.PASS

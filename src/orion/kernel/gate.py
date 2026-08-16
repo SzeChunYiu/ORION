@@ -118,10 +118,35 @@ class AnswerGrading:
     #: grading. None means not established, for the same reason.
     influence_established: bool | None = None
 
+    #: Prerequisites this grading was required to establish. Recording the
+    #: support and influence axes was not enough on its own: an axis that
+    #: nothing consults is a note, not a gate. When a prerequisite is required
+    #: and not established, the answer is inapplicable regardless of how well
+    #: it did on every other axis — non-compensatory, like the hard gates.
+    required_prerequisites: frozenset[str] = frozenset()
+
+    @property
+    def unmet_prerequisites(self) -> tuple[str, ...]:
+        """Required prerequisites this grading did not establish.
+
+        `None` (not checked) fails a requirement exactly as `False` does. A
+        prerequisite that was demanded and not evaluated has not been met; only
+        `True` discharges it.
+        """
+
+        unmet: list[str] = []
+        if "support" in self.required_prerequisites and self.support_established is not True:
+            unmet.append("support_not_established")
+        if "influence" in self.required_prerequisites and self.influence_established is not True:
+            unmet.append("influence_not_established")
+        return tuple(unmet)
+
     @property
     def applicable(self) -> bool:
         """Whether the answer may be folded into the cell at all."""
 
+        if self.unmet_prerequisites:
+            return False
         return (
             self.authority is AnswerAuthority.EVIDENCE_BOUND
             or self.authority is AnswerAuthority.VERIFIED
