@@ -3,7 +3,11 @@
   "paper_id": "P2",
   "protocol_id": "P2.open-world-discovery.v1",
   "audit_timestamp_utc": "2026-08-16T17:33:33Z",
-  "audit_completed_utc": "2026-08-16T17:46:22Z",
+  "audit_completed_utc": "2026-08-16T18:07:00Z",
+  "revision_history": [
+    {"revision": 1, "completed_utc": "2026-08-16T17:46:22Z", "summary": "Initial audit: obtainability, licences, content hashes, contamination exposure."},
+    {"revision": 2, "completed_utc": "2026-08-16T18:07:00Z", "summary": "CORRECTION. Revision 1 reported the unpublished deepxiv paper-search backend as the hard blocker for AutoResearchBench official evaluation, and described MetaSyn retrieval/screening as only 'in principle' credential-free. Both conflated a benchmark's reference agent with its scorer, sourced from example.env and README rather than from the code. Verified at the pinned revisions: AutoResearchBench Wide scores with no credentials (400/400 wide records carry usable gold arXiv ids), Deep needs only a judge endpoint (deterministic id-match deviation available for 540/600), and MetaSyn's retrieval/screening scoring path imports no LLM client. Added official_evaluation_runnable_by_family so the distinction is machine-readable. The SAGE verdict is unchanged. No content hash, licence or state value changed."}
+  ],
   "auditor_context": {
     "host": "darwin",
     "github_identity": "SzeChunYiu",
@@ -53,15 +57,42 @@
       },
       "local_path": "<session-scratchpad>/p2-access/code/AutoResearchBench-a46c9bfb.tar.gz",
       "fetch_timestamp_utc": "2026-08-16T17:37:12Z",
+      "official_evaluation_runnable": {"autoresearchbench_wide": "YES_NO_CREDENTIALS", "autoresearchbench_deep": "YES_WITH_JUDGE_KEY"},
       "run_requirements": {
-        "provider": ["OpenAI-compatible chat endpoint (agent)", "OpenAI-compatible chat endpoint (LLM judge)", "unspecified paper-search backend", "Serper (web search)", "Jina (web reader)"],
-        "model": "operator-chosen; MODEL and EVAL_MODEL are empty in example.env and the deep evaluator hard-errors without one",
-        "judge_calls_per_task": "Deep only: one judge call per (ground_truth_title x candidate_title) pair; max_candidates_per_pass defaults to 1, so ~1 judge call per deep task per pass, x K_PASSES x stochastic_repeats (protocol sets 3). Wide uses no LLM judge (deterministic set IoU).",
-        "estimated_scale": "1000 tasks (600 deep + 400 wide). Inference dominates: MAX_TURNS defaults to 10 agent turns per task, each turn issuing an agent LLM call plus tool calls whose summarisers are themselves LLM calls. One full pass over one system is order 1e4 agent LLM calls plus a comparable number of search-summariser calls, before multiplying by 6 baselines + 6 ablations + ORION x 3 repeats.",
-        "hard_blocker": "PAPER_SEARCH_API_URL is empty in example.env and the default SEARCH_TOOL=deepxiv resolves to tool_deepxivsearch.py, which targets a paper-search service the repository does not publish. The official inference route cannot be reproduced without a paper-search backend that is not distributed with the benchmark. Paid LLM keys (agent + judge) and Serper/Jina keys are additionally required and are not available to this audit.",
-        "evidence_path": "evidence/access/run_requirements_sources.md"
+        "layer_separation_note": "CORRECTED 2026-08-16 (supersedes the v1 record). The first pass reported the unpublished deepxiv paper-search backend as the hard blocker for official evaluation. That conflated two independent layers. Verified at the pinned revision: PAPER_SEARCH_API_URL, deepxiv and SERPER appear only in run_inference.sh, inference.py, tool_deepxivsearch.py and tool_websearch.py, and in no file under evaluate/. They are inputs to the repository's own reference agent, not to the scorer. They block reproducing the authors' baseline agent; they do not block running our system on their tasks and scoring it officially.",
+        "evaluator_requirements": {
+          "wide": {
+            "credentials": "none",
+            "detail": "evaluate/evaluate_wide_search.py scores with compute_iou_recall(gt_ids, pred_ids), pure set arithmetic over normalize_arxiv_id strings. get_gt_arxiv_ids returns input_data['arxiv_id'] directly whenever it normalises to a non-empty set, and reaches the Jina title lookup only 'if use_jina and JINA_API_KEY' -- with no key set it returns an empty set rather than erroring. A --no-jina flag disables the fallback explicitly. get_predicted_arxiv_ids reads candidate['arxiv_id'] locally with no lookup. main() raises SystemExit only for a missing --input or --gt file, never for a missing credential.",
+            "gold_coverage_verified": "400 of 400 wide records in the decrypted bundle carry an arxiv_id list that normalises to a non-empty set, so the Jina path is never reached for any wide task.",
+            "candidate_output_contract": "get_predicted_arxiv_ids reads candidate.get('arxiv_id') from each entry of final_candidates. A candidate system that emits titles only, without an arxiv_id per final candidate, scores IoU 0.0 against every task. Any adapter must attach a resolved arXiv id to each returned candidate.",
+            "determinism_caveat": "avg_iou, avg_recall and avg_precision are exact and were bit-identical across five identical runs. The avg_max_iou_at_k family is unseeded Monte-Carlo -- see cross_cutting_findings.",
+            "executed": {
+              "performed": true,
+              "command": "env -u JINA_API_KEY -u OPENAI_API_KEY -u SERPER_API_KEY -u EVAL_OPENAI_API_KEY -u PAPER_SEARCH_API_URL -u OPENAI_API_BASE python3 evaluate_wide_search.py --input <synthetic>.jsonl --output <out>.json",
+              "exit_code": 0,
+              "input": "Synthetic inference file built from three real wide records (gold sizes 20, 21, 6) with one perfect, one partial-plus-false-positive and one empty prediction.",
+              "observed": {"avg_iou": 0.484848, "avg_recall": 0.492063, "avg_precision": 0.636364},
+              "hand_check": "Metrics reproduce by hand from the set arithmetic, so the scorer is behaving as read.",
+              "outcome_blind_note": "This is a self-test of the scorer on synthetic input. No ORION or baseline output was scored and these are not results for any system."
+            }
+          },
+          "deep": {
+            "credentials": "an OpenAI-compatible chat endpoint for the LLM judge",
+            "detail": "evaluate/evaluate_deep_search.py compares gold titles (input_data['answer']) to candidate titles via LLMJudge.are_titles_matching. It calls parser.error and refuses to run when --model/EVAL_MODEL or --api-base/EVAL_OPENAI_API_BASE is unset. One judge call per (gold title x candidate title) pair; max_candidates_per_pass defaults to 1, so about one judge call per deep task per pass, times K_PASSES times stochastic_repeats.",
+            "declared_deviation_available": "A deterministic id-match variant is possible because deep records also carry arxiv_id, scoring gold ids against candidate ids exactly as Wide does. Coverage is partial and must be declared: 540 of 600 deep records normalise to a usable id set; the remaining 60 carry arxiv_id [''] and would need the LLM judge or a predeclared symmetric exclusion. A deviation run must report the 540/600 denominator explicitly and must not silently drop the 60."
+          }
+        },
+        "reference_agent_requirements": {
+          "credentials": ["OpenAI-compatible chat endpoint (agent)", "paper-search backend (unpublished)", "Serper (web search)", "Jina (web reader)"],
+          "blocks": "Reproducing the authors' own baseline agent only.",
+          "detail": "example.env leaves PAPER_SEARCH_API_URL blank and defaults SEARCH_TOOL=deepxiv, which resolves to tool_deepxivsearch.py against a service the repository does not publish. MAX_TURNS defaults to 10 agent turns per task, each turn issuing an agent LLM call plus tool calls whose summarisers are themselves LLM calls, so one full pass over 1000 tasks is order 1e4 agent calls plus a comparable number of summariser calls.",
+          "consequence": "The AutoResearchBench-native agent cannot serve as one of our matched baselines. Our own baselines (BM25, dense, hybrid, one-pass RAG, agentic single-route) are unaffected and are scored by the same official scorer."
+        },
+        "hard_blocker": "None for official Wide scoring, which needs no credentials at all. Deep as-shipped needs a judge endpoint, with a partial deterministic deviation available for 540 of 600 records. The unpublished deepxiv backend blocks only the authors' reference agent, not the evaluator.",
+        "evidence_path": "evidence/access/autoresearchbench_evaluator_layer_check.md"
       },
-      "contamination_note": "Evaluator and metrics are in-repo and deterministic for Wide; Deep depends on an LLM judge whose model identity must be frozen in the run manifest. See the dataset record for question/answer exposure.",
+      "contamination_note": "Wide gold is a set of real arXiv ids and our discovery routes are the arXiv and OpenAlex APIs, so the specific exposure is that a route can return the benchmark's own artifacts as ordinary search results: the AutoResearchBench paper (arXiv:2604.25256), its GitHub repository or its HuggingFace dataset page can surface for a topical query and hand a candidate the answer key rather than the paper the task is about. Route logs must therefore be scanned for these three identifiers per query and any hit reported, not merely for generic 'answer leakage'. Separately, the bundle's obfuscation is key-less and locally reversible, and gold labels ship inside the question records, so access_policy.hidden_labels must be enforced by the ORION harness. Deep additionally depends on an LLM judge whose model identity must be frozen in the run manifest.",
       "attempt_log": [
         {"timestamp_utc": "2026-08-16T17:33:47Z", "action": "GET /repos/CherYou/AutoResearchBench", "http_status": 200, "outcome": "public repository"},
         {"timestamp_utc": "2026-08-16T17:34:31Z", "action": "GET /repos/CherYou/AutoResearchBench/commits/a46c9bfb8968786f73f0a6a5b365b5384cd0f96d", "http_status": 200, "outcome": "pinned revision resolves"},
@@ -70,6 +101,7 @@
     },
     {
       "artifact_id": "AutoResearchBench_dataset",
+      "official_evaluation_runnable": {"autoresearchbench_wide": "YES_NO_CREDENTIALS", "autoresearchbench_deep": "YES_WITH_JUDGE_KEY"},
       "protocol_reference_key": "AutoResearchBench_dataset",
       "kind": "dataset",
       "locator": "https://huggingface.co/datasets/Lk123/AutoResearchBench",
@@ -104,6 +136,12 @@
         "estimated_scale": "1000 records: 600 type=deep, 400 type=wide; fields question, answer, arxiv_id, type.",
         "hard_blocker": "none for obtaining the data",
         "decryption": "Required before use, and it succeeded with no secret. Scheme public_canary_xor_sha256: the XOR mask is sha256(canary_string) where canary_string is stored inside the bundle metadata. The repository also ships an AES-GCM/scrypt path (via the cryptography package) for a passphrase variant, which the published bundle does not use.",
+        "gold_id_coverage_verified": {
+          "wide": {"records": 400, "with_usable_arxiv_ids": 400, "share": 1.0},
+          "deep": {"records": 600, "with_usable_arxiv_ids": 540, "unusable_value": "arxiv_id == ['']", "share": 0.9},
+          "note": "Counted over the decrypted bundle by normalising each arxiv_id entry the way evaluate_wide_search.normalize_arxiv_id does and discarding empties. This is what makes credential-free Wide scoring possible and bounds the deterministic Deep deviation at 540/600.",
+          "gold_consistency_note": "Two wide records have len(arxiv_id) != len(answer) (11 vs 10 and 21 vs 20). Wide scores on id sets, so the extra id enlarges the gold denominator for those two tasks. Minor and not a blocker, but it should be visible in the archive rather than discovered later."
+        },
         "evidence_path": "evidence/access/autoresearchbench_decrypt_record.json"
       },
       "contamination_note": "LOW-MODERATE. No public plaintext mirror surfaced in a web-search probe, but the upstream README states the obfuscation 'is not strong access control', and this audit confirmed it is key-less and locally reversible. Separately: gold labels (answer, arxiv_id) ship in the same records as the questions, so the protocol's access_policy.hidden_labels guarantee must be enforced by the harness rather than inherited from the benchmark. See evidence/access/contamination_probes.md.",
@@ -115,6 +153,7 @@
     },
     {
       "artifact_id": "SAGE_benchmark",
+      "official_evaluation_runnable": {"sage_scientific_retrieval": "NO_ARTIFACT_MISSING"},
       "protocol_reference_key": "SAGE_benchmark",
       "kind": "dataset",
       "locator": "https://github.com/HughieHu/Sage",
@@ -158,6 +197,7 @@
     },
     {
       "artifact_id": "SAGE_retrieval_corpus",
+      "official_evaluation_runnable": {"sage_scientific_retrieval": "NO_ARTIFACT_MISSING"},
       "protocol_reference_key": null,
       "kind": "dataset",
       "locator": "unpublished; claimed in arXiv:2602.05975 as a 200,000 paper retrieval corpus",
@@ -189,6 +229,7 @@
     },
     {
       "artifact_id": "SAGE_official_evaluator",
+      "official_evaluation_runnable": {"sage_scientific_retrieval": "NO_ARTIFACT_MISSING"},
       "protocol_reference_key": null,
       "kind": "evaluator",
       "locator": "not published",
@@ -242,13 +283,22 @@
       },
       "local_path": "<session-scratchpad>/p2-access/code/MetaSyn-51b95b70.tar.gz",
       "fetch_timestamp_utc": "2026-08-16T17:44:06Z",
+      "official_evaluation_runnable": {"metasyn_retrieval_screening": "YES_NO_CREDENTIALS"},
       "run_requirements": {
-        "provider": ["OpenAI-compatible chat endpoint"],
-        "model": "operator-chosen; .env.example leaves OPENAI_MODEL empty, README documents --judge-model gpt-5.5 in its evaluation invocations",
-        "judge_calls_per_task": "LLM-judge calls for report-quality metrics (coverage, insight, structure) per generated review; the README records API token usage per run and marks status: failed on exhausted retries or invalid judge responses. The retrieval and screening stages themselves are deterministic.",
-        "estimated_scale": "Shared PubMed corpus of 140,585 articles; retrieval requires locally encoding that corpus with the BFTree/MA-Retriever model (torch 2.3.1 + sentence-transformers 3.2.1 + faiss-cpu), which needs substantial local compute and disk.",
-        "hard_blocker": "Requires a paid OpenAI-compatible key for the judged report metrics, and Python >=3.10,<3.12 with pinned torch/faiss/transformers versions. The retrieval and screening stages could in principle be run without an LLM key. No key is available to this audit.",
-        "evidence_path": "evidence/access/run_requirements_sources.md"
+        "layer_separation_note": "CORRECTED 2026-08-16 alongside the AutoResearchBench record, and the correction is larger here than expected. The v1 record said retrieval and screening 'could in principle' run without a key, sourced from the README. Verified at the pinned revision by reading the import graph instead: src/metasyn/evaluation.py, evaluator.py, retrieval.py and sparse.py import no LLM client, and judge.py imports only numpy and sentence_transformers -- MetaSyn's 'judge' is an embedding scorer, not an LLM judge. Only rag.py imports openai. scripts/run_retrieval.py contains no LLM reference and scripts/evaluate.py declares --judge-model without required=True.",
+        "evaluator_requirements": {
+          "retrieval_and_screening": {
+            "credentials": "none",
+            "detail": "The scoring path (retrieval.py / sparse.py for candidate generation, evaluation.py and evaluator.py for metrics) reaches no network LLM. Only local compute is needed."
+          },
+          "generated_report_metrics": {
+            "credentials": "an OpenAI-compatible chat endpoint",
+            "detail": "Producing a review report at all goes through rag.py, which imports openai; the README documents --judge-model gpt-5.5 for the coverage/insight/structure metrics and records per-run API token usage, marking status: failed on exhausted retries. These metrics are outside the retrieval/screening family the protocol names."
+          }
+        },
+        "estimated_scale": "Shared PubMed corpus of 140,585 articles; retrieval requires locally encoding that corpus with the BFTree/MA-Retriever model (torch 2.3.1 + sentence-transformers 3.2.1 + faiss-cpu), which needs substantial local compute and disk but no credentials.",
+        "hard_blocker": "None for the metasyn_retrieval_screening family the protocol actually names: it scores without credentials. Python >=3.10,<3.12 with pinned torch/faiss/transformers, plus compute and disk for the corpus encode, are the real costs. Only the generated-report metrics need a paid key.",
+        "evidence_path": "evidence/access/autoresearchbench_evaluator_layer_check.md"
       },
       "contamination_note": "CANNOT_CHECK. The dataset is public and ungated and included-study lists are directly downloadable, so exposure is plausible, but no contamination probe was run against MetaSyn items in this audit and no contamination rate is claimed.",
       "attempt_log": [
@@ -259,6 +309,7 @@
     },
     {
       "artifact_id": "MetaSyn_dataset",
+      "official_evaluation_runnable": {"metasyn_retrieval_screening": "YES_NO_CREDENTIALS"},
       "protocol_reference_key": null,
       "kind": "dataset",
       "locator": "https://huggingface.co/datasets/THUIR/MetaSyn",
@@ -310,6 +361,7 @@
     },
     {
       "artifact_id": "AgentSLR",
+      "official_evaluation_runnable": {"protocol_driven_systematic_review_baseline": "NOT_ASSESSED"},
       "protocol_reference_key": "AgentSLR",
       "kind": "code",
       "locator": "https://github.com/OxRML/AgentSLR",
@@ -353,6 +405,7 @@
     },
     {
       "artifact_id": "AgentSLR_dataset",
+      "official_evaluation_runnable": {"protocol_driven_systematic_review_baseline": "NOT_ASSESSED"},
       "protocol_reference_key": null,
       "kind": "dataset",
       "locator": "https://huggingface.co/datasets/OxRML/AgentSLR",
@@ -393,6 +446,7 @@
     },
     {
       "artifact_id": "ResearchArena",
+      "official_evaluation_runnable": {"not_a_protocol_task_family": "NOT_ASSESSED"},
       "protocol_reference_key": null,
       "kind": "code",
       "locator": "arXiv:2406.10291; no canonical repository pinned by P2 material",
@@ -423,6 +477,7 @@
     },
     {
       "artifact_id": "OpenScholar",
+      "official_evaluation_runnable": {"not_a_protocol_task_family": "NOT_ASSESSED"},
       "protocol_reference_key": null,
       "kind": "code",
       "locator": "https://github.com/AkariAsai/OpenScholar (arXiv:2411.14199)",
@@ -467,18 +522,37 @@
     "pinned_shas_missing": 0,
     "verdict": "No P0. Every 40-character SHA in PROTOCOL_V1.json reference_revisions resolves at its named repository, and all four repositories are public and unarchived. The fifth key, AutoResearchBench_dataset, pins no revision at all: it records a HuggingFace dataset id with the bundle content hash left UNBOUND, so there is no SHA to resolve. That key was audited on availability, licence and content hash instead."
   },
+  "official_evaluation_runnable_by_family": {
+    "enum": {
+      "YES_NO_CREDENTIALS": "The official scorer runs here with no third-party credentials.",
+      "YES_WITH_JUDGE_KEY": "The official scorer runs given an OpenAI-compatible judge endpoint.",
+      "NO_ARTIFACT_MISSING": "A required artifact (corpus or evaluator) is not published; no credential or budget fixes it.",
+      "NOT_ASSESSED": "Runnability of an official scorer was not established for this family in this audit."
+    },
+    "families": {
+      "autoresearchbench_wide": "YES_NO_CREDENTIALS",
+      "autoresearchbench_deep": "YES_WITH_JUDGE_KEY",
+      "sage_scientific_retrieval": "NO_ARTIFACT_MISSING",
+      "metasyn_retrieval_screening": "YES_NO_CREDENTIALS",
+      "offline_complete_gold": "NOT_ASSESSED"
+    },
+    "note": "Keys are the task_families of PROTOCOL_V1.json. This field exists because the v1 audit buried the evaluator-versus-reference-agent distinction in prose and a downstream reader took a blanket blocker from it. offline_complete_gold is host-owned and out of this lane's scope."
+  },
   "cross_cutting_findings": [
-    "Part of the official AutoResearchBench Wide metric is not deterministic across runs. evaluate/evaluate_wide_search.py defines max_iou_at_k_sampling(iou_list, k, sample_times=1000), which loops random.sample(list(iou_list), k) 1000 times; neither that file, evaluate_deep_search.py nor utils.py calls random.seed or constructs a seeded Random, so the avg_max_iou_at_k family is a Monte-Carlo estimate that varies run to run on identical inputs. avg_iou, recall and precision are computed exactly and are unaffected. Two consequences for the freeze: (a) an execution_bindings.evaluator_hash pins the evaluator code but not the metric value, so a Wide freeze must additionally pin a seed or declare avg_max_iou_at_k as sampling-noisy; (b) under PROTOCOL_V1.json statistics.stochastic_repeats=3 each record contributes only 3 pass IoUs, and the guard 'if len(record_ious) >= k' means avg_max_iou_at_4, _at_8 and _at_16 receive no samples at all and report 0.0 rather than a measured value. Only avg_max_iou_at_1 and _at_2 are live at 3 repeats, and both are the noisy ones.",
+    "The official scorers are separable from the reference agents that ship beside them, and conflating the two understates what is runnable. AutoResearchBench Wide scores with no credentials at all (pure set IoU over gold arXiv ids that are present for 400 of 400 wide records); MetaSyn's retrieval and screening scoring path imports no LLM client. The unpublished deepxiv backend and the Serper/Jina keys block only reproducing the benchmark authors' own baseline agent. The correct unit of analysis is which module reads which variable, not which variables a project's example.env declares.",
+    "Running our system against the official AutoResearchBench Wide scorer imposes an output contract, not just a credential: get_predicted_arxiv_ids reads candidate['arxiv_id'] from each final candidate, so any adapter must attach a resolved arXiv id to every returned candidate or score 0.0 on every task.",
+    "Part of the official AutoResearchBench Wide metric is not deterministic across runs, and the noise is large relative to the protocol's own effect size. evaluate/evaluate_wide_search.py defines max_iou_at_k_sampling(iou_list, k, sample_times=1000), which loops random.sample(list(iou_list), k) 1000 times; neither that file, evaluate_deep_search.py nor utils.py calls random.seed or constructs a seeded Random. Measured, not inferred: five identical invocations at three passes per record (matching statistics.stochastic_repeats=3) returned avg_iou 0.52672 every time, while avg_max_iou_at_1 ranged 0.512767-0.521167 and avg_max_iou_at_2 ranged 0.822500-0.835167 -- run-to-run spreads of about 0.008 and 0.013 on a [0,1] scale, from re-running the scorer alone with no change to any system. statistics.practical_margin targets +0.03 absolute, so this noise is roughly a third of the effect the study intends to detect. Three consequences: (a) an execution_bindings.evaluator_hash pins the evaluator code but not the metric value, so a Wide freeze must pin a seed or declare avg_max_iou_at_k as sampling-noisy; (b) the guard 'if len(record_ious) >= k' means avg_max_iou_at_4, _at_8 and _at_16 receive no samples at 3 repeats and report 0.0 -- these are absent measurements, not scores, and must not be tabulated; (c) avg_iou and avg_recall are exact and are the safe primary Wide metrics.",
     "Two of the four pinned code repositories (HughieHu/Sage, OxRML/AgentSLR) carry no licence at any depth of their pinned trees, so JOURNAL_READINESS section 8 'frozen corpora/index snapshots where redistribution permits' cannot be satisfied for them.",
     "The SAGE task family (sage_scientific_retrieval) has neither a published retrieval corpus nor an official evaluator, so it cannot be executed as specified regardless of licensing or budget.",
-    "Every remaining external family requires paid third-party LLM credentials that this audit does not hold; AutoResearchBench additionally requires an unpublished paper-search backend.",
+    "Of the four external families, two score without credentials (autoresearchbench_wide, metasyn_retrieval_screening), one needs only a judge endpoint (autoresearchbench_deep, with a deterministic id-match deviation available for 540 of 600 records), and one cannot be run at all (sage_scientific_retrieval). The AgentSLR pipeline remains credential- and PDF-bound, but it is a baseline rather than a protocol task family.",
     "AutoResearchBench's obfuscation is key-less and locally reversible, and its gold labels ship inside the same records as the questions, so PROTOCOL_V1.json access_policy.hidden_labels must be enforced by the ORION harness rather than assumed from the benchmark.",
     "SAGE's gold set is public plaintext and web-indexed, making any live-provider SAGE result contaminated by construction."
   ],
   "explicitly_not_established": [
     "Contamination rates for any benchmark. Only structural exposure plus two spot-check queries were performed.",
     "Whether a private or unlisted SAGE corpus exists. HuggingFace returns 401 for both absent and private repositories to unauthenticated callers and no credentials were supplied.",
-    "Whether any of these evaluators actually run to completion, since no LLM credentials were used.",
+    "Whether the MetaSyn retrieval/screening scorer executes end to end. Its credential-independence was established by reading the import graph, not by running it; the corpus encode was out of scope for this session. The AutoResearchBench Wide scorer WAS executed and is not subject to this caveat.",
+    "Whether the Deep LLM judge behaves as documented, since no judge endpoint was exercised.",
     "Total monetary cost of a full evaluation. Call-count scale is estimated from configuration defaults; no provider pricing was applied."
   ]
 }
