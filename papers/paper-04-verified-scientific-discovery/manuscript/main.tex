@@ -25,6 +25,8 @@
 Scientific verification can establish that a claim is plausible, supported somewhere, or accompanied by a citation without establishing that a particular source, checker, and evaluator jointly justify a scientific-authority transition. We evaluate a non-escalating authority pipeline that requires exact evidence-content binding, source ownership, semantic support, checker independence and hostile discrimination, evidence influence, evaluator/holdout integrity, and search-contamination clearance. Missing or failed prerequisites produce \cannot or \blockstate rather than a score that can compensate for a failed gate. In a prospectively frozen, independently hosted 420-case protected campaign covering 13 clean/hostile families, the repaired ORION subject produced 0 false authority promotions among 360 hostile opportunities, versus 180/360 for the strongest frozen comparator mechanism (absolute difference $-0.50$, paired 95\% CI $[-0.553,-0.447]$). Both systems promoted 60/60 clean positives, so the safety gain did not arise from total refusal. The predeclared \cannot-superiority hypothesis was not supported: both systems were correct on all eligible abstention cases. Every registered ORION ablation increased false promotion while preserving clean coverage; replacing the non-compensatory terminal with a six-of-nine soft-confidence rule increased false promotion to 91.7\%. Scored-process telemetry recorded zero protected-label identifiers and zero external-IP connections, and an independent implementation reproduced the headline counts. The evidence supports the bounded claim that non-compensatory authority gates prevent authority laundering in this protected mechanical-gold benchmark; it does not establish universal evaluator security or superiority to the original external systems whose ideas motivated the comparator mechanisms.
 \end{abstract}
 
+\noindent\textbf{Keywords:} scientific verification; provenance; evaluator integrity; protected evaluation; abstention; AI assurance.
+
 \section{Introduction}
 Language-model research systems increasingly retrieve sources, synthesize claims, attach citations, and run automated verification. This creates a governance problem: a claim may be correct but attributed to the wrong source; a source may support a nearby claim but not the assigned one; a checker may be non-empty yet non-discriminating or share lineage with the answer; and an evaluator may be contaminated or tampered with after the fact. In each case, a scalar confidence score can remain high even though a prerequisite for scientific authority is absent.
 
@@ -68,7 +70,7 @@ The terminal is \promote only when every required gate passes and the evidence s
 
 \section{Protected evaluation protocol}
 \subsection{Prospective freeze and fresh post-repair split}
-The publication-authorizing subject is commit \texttt{f6e51b5c8f905382b8e2f5568d9035fc14241aa1}. Before any outcome-bearing run, a public-seed preflight exercised 42 hostile authority tests and the complete 420-case pipeline with ten comparator mechanisms, eight ablations, five deterministic repeats, protected scoring, typed-panel validation, and an independent reproducer. After the preflight and harness merge were signed and green on the default branch, an independent GitHub-hosted job minted a fresh secret-seeded split. The secret seed was never logged; only a commitment was retained.
+The prospective base protocol is \texttt{P4.protected-authority.v1}; V2 is an additive post-repair execution binding with a fresh hidden split and repaired-subject panel. The publication-authorizing subject is commit \texttt{f6e51b5c8f905382b8e2f5568d9035fc14241aa1}. Before any outcome-bearing run, a public-seed preflight exercised 42 hostile authority tests and the complete 420-case pipeline with ten comparator mechanisms, eight ablations, five deterministic repeats, protected scoring, typed-panel validation, and an independent reproducer. After the preflight and harness merge were signed and green on the default branch, an independent GitHub-hosted job minted a fresh secret-seeded split. The secret seed was never logged; only a commitment was retained.
 
 The final split contains 420 mechanical-gold cases across 13 families: 60 clean positives and 30 cases in each of 12 hostile/insufficient-evidence families. A 150-case post-run public slice contains 30 clean and 120 hostile cases; distinct protected-hostile and protected-holdout slices remain host-only during scoring. Table~\ref{tab:p4_t1} summarizes custody.
 
@@ -167,17 +169,8 @@ The campaign is run \texttt{31976589735}. The repaired subject is \texttt{f6e51b
 \section{Conclusion}
 A scientific-authority decision is stricter than factuality, citation presence, attribution, or semantic support in isolation. In the frozen post-repair campaign, ORION's non-escalating transition eliminated false promotion across 360 hostile opportunities without sacrificing any of 60 clean positives, whereas the strongest frozen mechanism proxy false-promoted half of the hostile cases. The result survived a fresh hidden split, gold-blind execution, syscall/network custody checks, ablations, and independent reproduction. The secondary abstention-superiority hypothesis was null, and the study remains limited to a deterministic mechanical-gold benchmark. Within those bounds, the evidence supports non-compensatory authority prerequisites as a practical defense against scientific-authority laundering.
 
-\begin{thebibliography}{20}
-\bibitem[Alvarez et~al.(2026)]{provenanceguard2026} A.~Alvarez, S.~Rajan, S.~Mugel, and R.~Orus. ProvenanceGuard: Source-Aware Factuality Verification for MCP-Based LLM Agents. arXiv:2606.18037, 2026.
-\bibitem[Li et~al.(2024)]{attributionbench2024} Y.~Li, X.~Yue, Z.~Liao, and H.~Sun. AttributionBench: How Hard is Automatic Attribution Evaluation? Findings of ACL, 2024.
-\bibitem[Rasheed et~al.(2026)]{aar2026} R.~A.~Rasheed, S.~Banerjee, A.~Mukherjee, and R.~Hazra. From Fluent to Verifiable: Claim-Level Auditability for Deep Research Agents. arXiv:2602.13855, 2026.
-\bibitem[Faizan and Alharthi(2026)]{provenai2026} M.~Faizan and D.~Alharthi. ProvenAI: Provenance-Native Traces of Evidence in Generated Answers. arXiv:2606.26449, 2026.
-\bibitem[Xie et~al.(2024)]{fire2024} Z.~Xie et~al. FIRE: Fact-checking with Iterative Retrieval and Verification. arXiv:2411.00784, 2024.
-\bibitem[Javaji et~al.(2025)]{claimbench2025} S.~R.~Javaji et~al. Can AI Validate Science? Benchmarking LLMs for Accurate Scientific Claim to Evidence Reasoning. arXiv:2506.08235, 2025.
-\bibitem[Atinafu and Cohen(2026)]{rewardhacking2026} Y.~Atinafu and R.~Cohen. RewardHackingAgents: Benchmarking Evaluation Integrity for LLM ML-Engineering Agents. arXiv:2603.11337, 2026.
-\bibitem[Wang et~al.(2026)]{stc2026} Y.~Wang et~al. Search-Time Contamination in Deep Research Agents: Measuring Performance Inflation in Public Benchmark Evaluation. arXiv:2606.05241, 2026.
-\bibitem[Sadeghi et~al.(2026)]{deepsciverify2026} S.~Sadeghi, K.~Khajavi, R.~Adhikari, and A.~Tessier. DeepSciVerify: Verifying Scientific Claim--Citation Alignment via LLM-Driven Evidence Escalation. arXiv:2605.27710, 2026.
-\end{thebibliography}
+\bibliographystyle{tmlr}
+\bibliography{bibliography}
 
 \appendix
 \section{Freeze and custody identifiers}
