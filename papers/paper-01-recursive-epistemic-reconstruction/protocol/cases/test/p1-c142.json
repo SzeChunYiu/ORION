@@ -1,0 +1,35 @@
+{
+  "case_id": "p1-c142",
+  "task_family": "hidden_parent_domain",
+  "public_prompt": "A mesh of 5,000 nodes degrades as links fail. The team's framing is: reachability falls in proportion to the link failure probability, so fit a straight line to the sweep and read off the answer. Report the reachable-pair fraction at a link failure probability of 0.47 and the failure probability the mesh should be held below to keep reachability above 0.90.",
+  "observable_resources": [
+    "mesh/topology.json — 5,000 nodes, mean degree 4.0, links placed at random",
+    "mesh/sim-sweep.csv — reachable-pair fraction against per-link failure probability: 0.10 to 0.97, 0.20 to 0.93, 0.30 to 0.86, 0.40 to 0.71, 0.50 to 0.38, 0.55 to 0.12, 0.60 to 0.03",
+    "mesh/fit.md — the current model fits a straight line across the whole sweep and predicts 0.55 reachability at failure probability 0.50",
+    "closure:redundancy-budget-v2 — closed; buys spare links to hold the failure probability at 0.45 on the straight-line prediction",
+    "closure:regional-rollout-plan — closed; derived from closure:redundancy-budget-v2, schedules the same 0.45 target in every region",
+    "closure:link-vendor-selection — closed; picks the link supplier on price and lead time; rests on the procurement comparison, not on any reachability prediction",
+    "closure:mesh-numbering-plan — closed; assigns addresses across the 5,000 nodes; rests on the addressing standard, not on how the mesh degrades"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "SEARCH",
+    "target_coordinates": [
+      "W.ACTIVE_DOMAINS",
+      "parent_domain:percolation_theory"
+    ],
+    "dependencies_to_reopen": [
+      "closure:redundancy-budget-v2",
+      "closure:regional-rollout-plan"
+    ],
+    "root_success_rubric": "PASS iff the answer rejects proportional degradation, states that the sweep shows a narrow transition band between 0.40 and 0.55 where the slope is an order of magnitude steeper than elsewhere, reports the 0.47 figure from that steep segment rather than from the straight-line fit, and recommends holding the failure probability at or below 0.30 — outside the band — rather than at 0.45. FAIL if the answer interpolates linearly, treats the 0.50 point as an outlier, or endorses operating at 0.45.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the linear framing reports about 0.58 at 0.47 and endorses the 0.45 operating point, which sits inside the transition band where reachability is already collapsing."
+}
