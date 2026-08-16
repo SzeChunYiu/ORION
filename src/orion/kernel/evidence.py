@@ -1029,9 +1029,11 @@ def _capture_local_file(
 
     directory_fd = os.dup(opened_root.file_descriptor)
     final_fd: int | None = None
+    failure_component = parts[-1]
     try:
         directory_flags = _directory_open_flags()
         for component in parts[:-1]:
+            failure_component = component
             next_fd = os.open(
                 component,
                 directory_flags,
@@ -1048,6 +1050,7 @@ def _capture_local_file(
                     declared_digest=declared_digest,
                     note="snapshot elapsed-time work budget is exhausted",
                 )
+        failure_component = parts[-1]
         pre_open = os.stat(
             parts[-1], dir_fd=directory_fd, follow_symlinks=False
         )
@@ -1194,14 +1197,7 @@ def _capture_local_file(
                 declared_digest=declared_digest,
                 note="snapshot elapsed-time work budget is exhausted",
             )
-        if error.errno == errno.ENOENT:
-            status = EvidenceStatus.MISSING_ARTIFACT
-        elif error.errno == errno.ELOOP:
-            status = EvidenceStatus.SYMLINK_DISALLOWED
-        elif error.errno in {errno.ENOTDIR, errno.EISDIR}:
-            status = EvidenceStatus.NON_REGULAR_FILE
-        else:
-            status = EvidenceStatus.UNREADABLE_ARTIFACT
+        status = _classify_open_error(error, directory_fd, failure_component)
         return _CaptureResult(
             status,
             "file",

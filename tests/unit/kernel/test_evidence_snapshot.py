@@ -1086,6 +1086,43 @@ def test_parent_and_final_symlinks_are_rejected(
     assert not snapshot.records[0].content_available
 
 
+def test_parent_symlink_enotdir_is_classified_from_the_no_follow_entry(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Linux reports ENOTDIR for O_DIRECTORY|O_NOFOLLOW on a symlink."""
+
+    real_dir = tmp_path / "real"
+    real_dir.mkdir()
+    payload = b"symlink target"
+    (real_dir / "source.bin").write_bytes(payload)
+    (tmp_path / "linked").symlink_to(real_dir, target_is_directory=True)
+    ref = f"orion:linked/source.bin@{hashlib.sha256(payload).hexdigest()}"
+    real_open = evidence_module.os.open
+
+    def linux_parent_open(
+        path: object,
+        flags: int,
+        *args: object,
+        **kwargs: object,
+    ) -> int:
+        if path == "linked" and kwargs.get("dir_fd") is not None:
+            raise OSError(errno.ENOTDIR, "simulated Linux no-follow symlink")
+        return real_open(path, flags, *args, **kwargs)
+
+    monkeypatch.setattr(evidence_module.os, "open", linux_parent_open)
+    snapshot = capture_host_evidence_snapshot(
+        (ref,),
+        roots={"orion": tmp_path},
+        manifest=_manifest_for_ref(ref),
+        captured_at_authority_revision="a" * 64,
+        captured_at_support_revision="b" * 64,
+    )
+
+    assert snapshot.records[0].status is EvidenceStatus.SYMLINK_DISALLOWED
+    assert not snapshot.records[0].content_available
+
+
 def test_final_component_symlink_swap_between_stat_and_open_fails_closed(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
