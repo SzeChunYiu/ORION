@@ -90,7 +90,7 @@ _RUN_KEYS = frozenset(
 )
 
 
-def _read_runs(path: Path) -> list[dict]:
+def read_runs(path: Path) -> list[dict]:
     payloads: list[dict] = []
     for number, line in enumerate(path.read_text().splitlines(), start=1):
         if not line.strip():
@@ -136,13 +136,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     cases = load_cases(args.cases, split=Split(args.split))
-    records = score_archive(_read_runs(args.runs), cases)
+    records = score_archive(read_runs(args.runs), cases)
     args.out.write_text("".join(json.dumps(item, sort_keys=True) + "\n" for item in records))
     print(f"scored {len(records)} records from {len(cases)} cases -> {args.out}")
     return 0
 
 
-__all__ = ["CASE_SCHEMA", "RUN_SCHEMA", "score_archive"]
+__all__ = ["CASE_SCHEMA", "RUN_SCHEMA", "read_runs", "score_archive"]
 
 
 if __name__ == "__main__":
