@@ -43,7 +43,7 @@ jobs:
       - name: Split gold before candidate custody
         run: |
           set -euo pipefail
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_keyless.py prepare \
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
             --full /tmp/arb-run/AutoResearchBench.jsonl \
             --public /tmp/arb-run/wide_public.jsonl \
             --gt /tmp/arb-run/wide_gt.jsonl \
@@ -52,7 +52,7 @@ jobs:
       - name: Run gold-blind keyless arXiv candidate
         run: |
           set -euo pipefail
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_keyless.py run \
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py run \
             --public /tmp/arb-run/wide_public.jsonl \
             --output /tmp/arb-run/candidate.jsonl \
             --trace /tmp/arb-run/trace.jsonl \
@@ -67,7 +67,7 @@ jobs:
             --gt-file /tmp/arb-run/wide_gt.jsonl \
             --no-jina \
             --output-file /tmp/arb-run/official_evaluation.json
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_keyless.py summarize \
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py summarize \
             --split-manifest /tmp/arb-run/split_manifest.json \
             --run-manifest /tmp/arb-run/run_manifest.json \
             --evaluation /tmp/arb-run/official_evaluation.json \
@@ -77,11 +77,12 @@ jobs:
           cat /tmp/arb-run/summary.json
 
       - name: Archive result-bearing artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: p2-autoresearchbench-wide-keyless-${{ github.sha }}
           retention-days: 30
-          if-no-files-found: error
+          if-no-files-found: warn
           path: |
             /tmp/arb-run/split_manifest.json
             /tmp/arb-run/run_manifest.json
