@@ -1,0 +1,21 @@
+{
+  "adoption_class": "V2_CANDIDATE",
+  "execution_authority": "NONE",
+  "local_evidence_authority": "LOCAL_ENGINEERING_ONLY",
+  "manifest_version": "ORION_PAPER_V2_MANIFEST_V1",
+  "mechanism_id": "non-compensatory-staged-candidate-gate",
+  "module": "orion.transfer.v2.p5",
+  "outcome_accessed": false,
+  "paper_id": "ORION-P5",
+  "preconditions_for_execution_freeze": [
+    "freeze a new protocol version prospectively",
+    "bind exact subject/data/model/evaluator/resource identities",
+    "rerun nearest-work disposition before execution freeze",
+    "keep V1 artifacts immutable",
+    "disposition PACE as absorbed nearest work / baseline pressure"
+  ],
+  "requires_new_protocol_version": true,
+  "source_issue": 141,
+  "status": "V2_FUTURE_STUDY",
+  "v1_protocol_mutated": false
+}
