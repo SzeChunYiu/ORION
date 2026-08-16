@@ -63,6 +63,8 @@ def _metrics_to_dict(metrics: AuthorityBenchmarkMetrics) -> dict[str, object]:
         "promotion_opportunities": metrics.promotion_opportunities,
         "correct_cannot_check": metrics.correct_cannot_check,
         "cannot_check_opportunities": metrics.cannot_check_opportunities,
+        "false_negative_count": metrics.false_negative_count,
+        "clean_positive_total": metrics.clean_positive_total,
         "resource_units": metrics.resource_units,
         "latency_seconds": metrics.latency_seconds,
     }
