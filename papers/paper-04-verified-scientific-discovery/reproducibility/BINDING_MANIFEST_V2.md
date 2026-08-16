@@ -1,12 +1,12 @@
 # ORION-P4 Protected Campaign V2 Binding Manifest
 
-## Status: `EXECUTION_FROZEN` — launch blocked
+## Status: `EXECUTED → REPRODUCED → ARCHIVED`
 
 This additive V2 campaign is the publication-authorizing post-repair run for subject `f6e51b5c8f905382b8e2f5568d9035fc14241aa1`. It uses the base `P4.protected-authority.v1` attack schema/generator but a fresh hidden split, repaired-subject comparator panel, corrected eligible-opportunity counting, and an independent reproducer bound to the repaired subject's seven frozen panel IDs.
 
 The earlier V1 protected campaign is retained as valid evidence for its own older subject. The merged 39-case live GLM arm is retained only as exploratory diagnostic evidence and is not used for the V2 headline.
 
-## Immutable bindings
+## Immutable pre-outcome bindings
 
 | Binding | V2 frozen value |
 |---|---|
@@ -39,8 +39,40 @@ The earlier V1 protected campaign is retained as valid evidence for its own olde
 
 ## Comparator disclosure
 
-The seven primary IDs mirror the repaired subject's exact `AuthorityBenchmarkPanel.v1` frozen tuple, including `deepsciverify-abstract-to-full-escalation`; three auxiliary mechanisms cover citation-format, pooled-support, and auditability controls. They are **protocol-matched mechanism reimplementations**, not executions of the external authors' original software. This distinction must be retained in all manuscript tables/captions.
+The seven primary IDs mirror the repaired subject's exact `AuthorityBenchmarkPanel.v1` frozen tuple, including `deepsciverify-abstract-to-full-escalation`; three auxiliary mechanisms cover citation-format, pooled-support, and auditability controls. They are **protocol-matched mechanism reimplementations**, not executions of the external authors' original software. This distinction is retained in manuscript tables/captions and the release notes.
 
-## Launch condition
+## Signed freeze and launch
 
-Candidate execution is not authorized by this manifest. A later trigger-only commit must record the exact GitHub-verified freeze merge SHA and its successful exact-main CI run. The V2 campaign workflow will query the GitHub API to verify those facts and will `git diff` its binding/workflow against the signed freeze commit before it downloads the candidate-visible handoff.
+- execution-freeze merge `99bcacc82224089c34019ad82287754388dadbc5`: GitHub verified; exact-main CI `31976305223` success;
+- launch merge `6a5d454d8926d046f294f95c2be1c2386980e3e5`: the first authorized outcome-bearing V2 event;
+- runtime handoff re-verified the freeze signature/CI and byte identity of frozen harness/config/bindings before candidate-visible handoff.
+
+## Final result
+
+Protected campaign run `31976589735` completed the full handoff → candidate/comparator → protected evaluator → independent reproduction → safe-bundle chain.
+
+- ORION false promotions: `0/360`;
+- strongest frozen comparator mechanism (`provenai-citation-fidelity-influence`): `180/360`;
+- both clean promotion counts: `60/60` with `0` clean false negatives;
+- H1: **PASS**, effect `-0.50`, paired 95% CI `[-0.553,-0.447]`;
+- H2: **PASS**, effect `0`, CI `[0,0]`;
+- H3: **NOT_SUPPORTED**, effect `0`, CI `[0,0]`;
+- typed panel: **PASS**, no blockers;
+- candidate/comparator protected identifier hits: `0` / `0`;
+- candidate/comparator external-IP connections: `0` / `0`;
+- independent reproduction: exact headline counts reproduced.
+
+Safe campaign artifact: ID `9271234622`, original Actions ZIP SHA-256 `51ac14bc3a6b4b570aaca6d4a41c91f53d9bf2887e66f0620c412f78566a3b44`. Protected evaluation artifact `9271228157` remains restricted custody.
+
+## Publication and permanent archive
+
+- exact publication source merge `846a0573fb881c5f9b6caa8e98aede2e51090fca`: GitHub verified;
+- exact-main ordinary CI `31978918884`: success;
+- exact-main clean-room TMLR audit `31978918885`: success;
+- audited 11-page PDF SHA-256 `562af78b7e634159317a002f8ac651ddc0180ea012712a5def555548b267d3db`;
+- permanent release tag `orion-p4-v2-peer-review-ready` targets the exact publication source commit;
+- release archive contains audited PDF, safe publication bundle, source supplement, and SHA-256 manifest;
+- archive workflow `31979303097`: success;
+- archive merge `00c19ecd71071e1ad70a8820df4c198153e4da84`: GitHub verified; exact-main ordinary CI `31979303114` and TMLR audit `31979303109` both succeeded.
+
+The scientific/reproducibility lifecycle is complete. Any future subject or protocol change is a new experiment and cannot reuse this hidden split.
