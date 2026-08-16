@@ -1,9 +1,15 @@
+import os
+import subprocess
+import sys
+
 from orion.core.problem import Problem
 from orion.core.search import SearchQuery, SearchRouteKind
 from orion.engine.mechanical_planner import MechanicalFirstPlanner
 from orion.engine.mechanical_questions import (
+    FAILURE_PATTERN_QUESTION_ID_SCHEME,
     MechanicalProblemContext,
     ProblemQuestionKind,
+    failure_pattern_question_id,
     generate_problem_questions,
 )
 from orion.experience.model import EpisodeOutcome, TaskEpisode
@@ -66,9 +72,63 @@ def test_repeated_failure_variations_create_diagnosis_transfer_question_not_auto
     )
     transfer = [item for item in questions if item.kind is ProblemQuestionKind.FAILURE_TRANSFER]
     assert len(transfer) == 1
+    assert f":{FAILURE_PATTERN_QUESTION_ID_SCHEME}:" in transfer[0].question_id
     assert "cause" in transfer[0].question.lower()
     assert "fresh variation" in transfer[0].question.lower()
     assert not transfer[0].route_kind
+
+
+def test_failure_pattern_question_id_is_stable_across_process_hash_seeds():
+    code = (
+        "from orion.engine.mechanical_questions import failure_pattern_question_id;"
+        "print(failure_pattern_question_id("
+        "'task:parent-domain',"
+        "('coverage-open','parent-domain-miss'),"
+        "(('mask-b',),('mask-a',))))"
+    )
+    observed = []
+    for seed in ("1", "2"):
+        env = dict(os.environ)
+        env["PYTHONHASHSEED"] = seed
+        observed.append(
+            subprocess.check_output([sys.executable, "-c", code], env=env, text=True).strip()
+        )
+    local = failure_pattern_question_id(
+        "task:parent-domain",
+        ("parent-domain-miss", "coverage-open"),
+        (("mask-a",), ("mask-b",)),
+    )
+    assert observed == [local, local]
+
+
+def test_failure_pattern_question_id_is_canonical_and_sensitive_to_content():
+    base = failure_pattern_question_id(
+        "task:parent-domain",
+        ("parent-domain-miss", "coverage-open"),
+        (("mask-a",), ("mask-b",)),
+    )
+    reordered = failure_pattern_question_id(
+        "task:parent-domain",
+        ("coverage-open", "parent-domain-miss"),
+        (("mask-b",), ("mask-a",)),
+    )
+    changed_signature = failure_pattern_question_id(
+        "task:parent-domain",
+        ("retrieval-miss", "coverage-open"),
+        (("mask-a",), ("mask-b",)),
+    )
+    changed_variation = failure_pattern_question_id(
+        "task:parent-domain",
+        ("parent-domain-miss", "coverage-open"),
+        (("mask-a",), ("mask-c",)),
+    )
+
+    assert base == reordered
+    assert len({base, changed_signature, changed_variation}) == 3
+    scheme, digest = base.rsplit(":", 2)[-2:]
+    assert scheme == FAILURE_PATTERN_QUESTION_ID_SCHEME
+    assert len(digest) == 64
+    assert all(character in "0123456789abcdef" for character in digest)
 
 
 def test_mechanical_first_planner_preserves_required_queries_before_semantic_supplements():
