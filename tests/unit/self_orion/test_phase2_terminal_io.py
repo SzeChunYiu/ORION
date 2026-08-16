@@ -4,7 +4,7 @@ import json
 import pytest
 
 from orion.self_orion.phase2_paper_snapshot import (
-    REQUIRED_PHASE2_PAPER_PROGRAMME_PATHS,
+    REQUIRED_PHASE2_PAPER_PROGRAMME_PREFIXES,
     PaperProgrammeEntry,
     Phase2PaperProgrammeSnapshot,
     load_paper_programme_snapshot,
@@ -26,6 +26,13 @@ from orion.self_orion.phase2_terminal_receipts import (
 
 def _digest(label: str) -> str:
     return hashlib.sha256(label.encode()).hexdigest()
+
+
+def _paper_entries():
+    return tuple(
+        PaperProgrammeEntry(prefix + "fixture.txt", _digest(prefix))
+        for prefix in REQUIRED_PHASE2_PAPER_PROGRAMME_PREFIXES
+    )
 
 
 def test_frozen_failure_index_roundtrips_and_rejects_tamper(tmp_path):
@@ -70,11 +77,8 @@ def test_final_ci_evidence_roundtrips_with_independent_lineage(tmp_path):
     assert loaded.independently_verified
 
 
-def test_paper_programme_snapshot_requires_complete_frozen_path_set(tmp_path):
-    entries = tuple(
-        PaperProgrammeEntry(path, _digest(path))
-        for path in REQUIRED_PHASE2_PAPER_PROGRAMME_PATHS
-    )
+def test_paper_programme_snapshot_requires_every_frozen_prefix(tmp_path):
+    entries = _paper_entries()
     snapshot = Phase2PaperProgrammeSnapshot(
         snapshot_id="phase2:paper-programme",
         integration_commit_oid="abc123",
@@ -84,7 +88,7 @@ def test_paper_programme_snapshot_requires_complete_frozen_path_set(tmp_path):
     write_paper_programme_snapshot(snapshot, path)
     assert load_paper_programme_snapshot(path) == snapshot
 
-    with pytest.raises(ValueError, match="frozen required path set"):
+    with pytest.raises(ValueError, match="missing required prefix"):
         Phase2PaperProgrammeSnapshot(
             snapshot_id="phase2:incomplete",
             integration_commit_oid="abc123",
@@ -96,10 +100,7 @@ def test_paper_programme_snapshot_rejects_posthoc_content_rewrite(tmp_path):
     snapshot = Phase2PaperProgrammeSnapshot(
         snapshot_id="phase2:paper-programme",
         integration_commit_oid="abc123",
-        entries=tuple(
-            PaperProgrammeEntry(path, _digest(path))
-            for path in REQUIRED_PHASE2_PAPER_PROGRAMME_PATHS
-        ),
+        entries=_paper_entries(),
     )
     path = tmp_path / "papers.json"
     write_paper_programme_snapshot(snapshot, path)
