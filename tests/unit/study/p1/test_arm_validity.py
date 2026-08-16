@@ -69,3 +69,69 @@ def test_discrimination_is_about_the_vector_not_the_aggregate() -> None:
     report = assess_arm_discrimination({"a": [1, 0, 1, 0], "b": [0, 1, 0, 1]})
     assert report.verdict is ArmVerdict.DISCRIMINATED
     assert sum([1, 0, 1, 0]) == sum([0, 1, 0, 1])
+
+
+def test_the_blind_reopen_floor_is_computed_from_the_suite_not_quoted() -> None:
+    """A result at or below this number is graph shape, not reasoning.
+
+    The floor is derived from the live cases rather than pasted as a literal,
+    so it moves when the cases move. A quoted floor goes stale on the next
+    re-freeze — which is exactly the moment it matters most.
+    """
+
+    import json
+    from glob import glob
+
+    from orion.study.p1.arm_validity import blind_largest_component_floor
+    from orion.study.p1.baselines import descendants_of, public_closures
+    from orion.study.p1.cases import Split, case_from_dict
+
+    expected = {"pilot": 0.792, "test": 0.823}
+    for split, target in expected.items():
+        components: dict[str, list[list[str]]] = {}
+        required: dict[str, tuple[str, ...]] = {}
+        pattern = (
+            "papers/paper-01-recursive-epistemic-reconstruction/protocol/cases/"
+            f"{split}/*.json"
+        )
+        for path in sorted(glob(pattern)):
+            case = case_from_dict(json.loads(open(path).read()), split=Split.TEST)
+            if not case.protected_gold.reframe_required:
+                continue
+            closures = public_closures(case.public_view)
+            seen: set[str] = set()
+            groups: list[list[str]] = []
+            for closure in closures:
+                if closure.closure_id in seen:
+                    continue
+                component = set(descendants_of(closures, (closure.closure_id,)))
+                component.add(closure.closure_id)
+                if component & seen:
+                    continue
+                seen |= component
+                groups.append(sorted(component))
+            components[case.case_id] = groups
+            required[case.case_id] = case.protected_gold.dependencies_to_reopen
+        floor = blind_largest_component_floor(components, required)
+        assert abs(floor.expected_f1 - target) < 0.02, (split, floor)
+
+
+def test_tied_components_are_averaged_not_resolved_favourably() -> None:
+    """A policy with no diagnosis cannot claim the best tied option. Averaging
+    is what guessing actually scores; taking the max would flatter the floor and
+    make a real result look worse than it is."""
+
+    from orion.study.p1.arm_validity import blind_largest_component_floor
+
+    floor = blind_largest_component_floor(
+        {"c1": [["a", "b"], ["c", "d"]]}, {"c1": ("a", "b")}
+    )
+    assert abs(floor.expected_f1 - 0.5) < 1e-9
+
+
+def test_a_case_with_no_closures_is_skipped_not_scored_zero() -> None:
+    from orion.study.p1.arm_validity import blind_largest_component_floor
+
+    floor = blind_largest_component_floor({"c1": [], "c2": [["a"]]}, {"c2": ("a",)})
+    assert floor.n_cases == 1
+    assert floor.expected_f1 == 1.0

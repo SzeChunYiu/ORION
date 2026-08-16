@@ -25,6 +25,8 @@ Metric-by-metric definitions are on the individual fields and on `score_case`.
 
 from __future__ import annotations
 
+import dataclasses
+
 import hashlib
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, field, replace
@@ -442,6 +444,7 @@ def score_case(
     suite_fingerprint: str = "",
     subject_revision: str = "",
     cannot_check_reason: str = "",
+    elapsed_seconds: float | None = None,
 ) -> CaseScore:
     """Score one trace against one case's protected gold.
 
@@ -576,7 +579,17 @@ def score_case(
         trace_fidelity_faults=faults,
         depth_adequate=trace.max_recursion_depth >= gold.dependency_depth,
         max_recursion_depth=trace.max_recursion_depth,
-        resources=trace.resources,
+        # A system reports its own wallclock only if it did timed external work.
+        # Mechanical systems do none, so trace.resources.wallclock_seconds is
+        # 0.0 by construction, and a cost-to-success frontier built on it plots
+        # every mechanical system at the origin. The harness measures the real
+        # figure per run; prefer it when supplied, and fall back to the system's
+        # own report only when no run record was available.
+        resources=(
+            trace.resources
+            if elapsed_seconds is None
+            else dataclasses.replace(trace.resources, wallclock_seconds=elapsed_seconds)
+        ),
         **common,
     )
     mode, contributing = classify_failure(score)

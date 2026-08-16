@@ -122,9 +122,70 @@ def assess_pair_discrimination(
     )
 
 
+@dataclass(frozen=True)
+class ReopenFloor:
+    """The reopen F1 a policy reaches with no diagnosis at all.
+
+    Survivor closures are isolated while reopened chains run several long, so
+    "reopen the largest closure component" scores well without reading the
+    prompt, naming a responsibility, or doing anything the hypothesis is about.
+    A reopen result at or below this number is graph shape, not
+    dependency-directed reasoning.
+
+    It is computed from the suite rather than quoted, so it moves when the
+    cases move. A floor pasted in as a literal would silently go stale on the
+    next re-freeze, which is exactly when it matters most.
+    """
+
+    expected_f1: float
+    policy: str
+    n_cases: int
+
+
+def _f1(predicted: frozenset[str], required: frozenset[str]) -> float:
+    if not predicted and not required:
+        return 1.0
+    true_positives = len(predicted & required)
+    if not true_positives:
+        return 0.0
+    return 2 * true_positives / (
+        2 * true_positives + len(predicted - required) + len(required - predicted)
+    )
+
+
+def blind_largest_component_floor(
+    components_by_case: Mapping[str, Sequence[Sequence[str]]],
+    required_by_case: Mapping[str, Sequence[str]],
+) -> ReopenFloor:
+    """Expected reopen F1 of picking the largest closure component, ties broken
+    at random.
+
+    Ties are averaged rather than resolved, because a policy that guesses cannot
+    claim the best tied option — averaging is what "no diagnosis" actually
+    scores.
+    """
+
+    scores: list[float] = []
+    for case_id, components in components_by_case.items():
+        required = frozenset(required_by_case.get(case_id, ()))
+        if not components:
+            continue
+        largest = max(len(item) for item in components)
+        tied = [frozenset(item) for item in components if len(item) == largest]
+        scores.append(sum(_f1(item, required) for item in tied) / len(tied))
+    expected = sum(scores) / len(scores) if scores else 0.0
+    return ReopenFloor(
+        expected_f1=expected,
+        policy="largest_closure_component_random_tiebreak",
+        n_cases=len(scores),
+    )
+
+
 __all__ = [
     "ArmReport",
     "ArmVerdict",
+    "ReopenFloor",
     "assess_arm_discrimination",
     "assess_pair_discrimination",
+    "blind_largest_component_floor",
 ]
