@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from orion.engine.guards import MechanicGuard
 from orion.engine.solver import SolverConfig
 from orion.providers.experience.base import ExperienceStore
+from orion.providers.experience.memory import InMemoryExperienceStore
 from orion.providers.live_phase2 import LivePhase2ProviderStack
 from orion.self_orion.baseline import SimpleLLMRetrievalBaseline
 from orion.self_orion.live_trial import ShadowLiveTrialRunner
@@ -41,11 +42,20 @@ def build_live_phase2_trial_harness(
     baseline_retrieval_call_cost_units: float = 1.0,
     baseline_llm_call_cost_units: float = 1.0,
 ) -> LivePhase2TrialHarness:
-    """Compose the real-provider ORION + matched simple baseline campaign pair."""
+    """Compose the real-provider ORION + matched simple baseline campaign pair.
+
+    A live Phase-2 harness always records root/mechanic episodes. Callers may
+    supply a durable protected store; otherwise a deterministic in-memory store
+    is created so a failed/partial live run can never become unrecordable merely
+    because the host omitted an optional argument.
+    """
 
     bound_evaluator = evaluator_artifact_hash or stack.evaluator_artifact_hash
     if bound_evaluator != stack.evaluator_artifact_hash:
         raise ValueError("runtime evaluator artifact must match the protected verification stack")
+    retained_experience = (
+        experience_store if experience_store is not None else InMemoryExperienceStore()
+    )
     baseline = SimpleLLMRetrievalBaseline(
         llm=stack.llm,
         retrieval=stack.retrieval,
@@ -58,7 +68,7 @@ def build_live_phase2_trial_harness(
         retrieval=stack.retrieval,
         verification=stack.verification,
         baseline=baseline,
-        experience_store=experience_store,
+        experience_store=retained_experience,
         config=config,
         guards=guards,
         producer_process_lineage_hash=producer_process_lineage_hash,
