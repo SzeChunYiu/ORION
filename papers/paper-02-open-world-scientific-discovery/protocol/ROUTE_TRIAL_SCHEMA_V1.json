@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.p2.route-trial.v1",
+  "title": "ORION-P2 route trial V1",
+  "type": "object",
+  "required": ["trial_id", "task_id", "route_id", "backend_identity", "query_derivation_identity", "query_text", "timestamp", "transport_status", "captures", "route_decision", "task_decision"],
+  "properties": {
+    "trial_id": {"type": "string"},
+    "task_id": {"type": "string"},
+    "route_id": {"type": "string"},
+    "backend_identity": {"type": "string"},
+    "query_derivation_identity": {"type": "string"},
+    "query_text": {"type": "string"},
+    "timestamp": {"type": "string"},
+    "transport_status": {"enum": ["OK", "RATE_LIMITED", "UNAVAILABLE", "TIMEOUT", "ERROR"]},
+    "captures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["record_id", "content_identity", "source_identity", "relevance_status"],
+        "properties": {
+          "record_id": {"type": "string"},
+          "content_identity": {"type": "string"},
+          "source_identity": {"type": "string"},
+          "relevance_status": {"enum": ["RELEVANT", "NOT_RELEVANT", "UNJUDGED", "CANNOT_CHECK"]},
+          "question_read_state": {"type": "string"}
+        }
+      }
+    },
+    "earned_independence_status": {"enum": ["EARNED", "NOT_EARNED", "CANNOT_CHECK"]},
+    "route_decision": {"enum": ["CONTINUE", "REFORMULATE", "SWITCH", "BUDGET_STOP", "UNAVAILABLE", "LOCALLY_FLAT"]},
+    "task_decision": {"enum": ["OPEN", "CONTINUE", "STOP_FROZEN_CRITERION", "CANNOT_CHECK"]},
+    "contamination_flags": {"type": "array", "items": {"type": "string"}},
+    "raw_artifact_hash": {"type": "string"}
+  }
+}

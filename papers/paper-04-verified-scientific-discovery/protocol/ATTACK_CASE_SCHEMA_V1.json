@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.p4.attack-case.v1",
+  "title": "ORION-P4 protected authority attack case V1",
+  "type": "object",
+  "required": ["case_id", "attack_family", "candidate_visible", "protected_gold", "evidence_objects", "expected_authority_terminal", "custody_class"],
+  "properties": {
+    "case_id": {"type": "string"},
+    "attack_family": {"enum": ["CLEAN_POSITIVE", "WRONG_SOURCE", "CONTENT_SUBSTITUTION", "SOURCE_CONFLATION", "POOLED_SUPPORT_WRONG_OWNER", "CITED_NON_INFLUENTIAL", "WEAK_CHECKER", "SAME_LANE_CHECKER", "POSTHOC_CHECKER_EVALUATOR", "SEARCH_TIME_CONTAMINATION", "EVALUATOR_TAMPER", "HOLDOUT_ACCESS", "INSUFFICIENT_EVIDENCE"]},
+    "candidate_visible": {"type": "object"},
+    "protected_gold": {
+      "type": "object",
+      "required": ["claim_correct", "source_owner_correct", "semantic_support", "contaminated", "expected_authority_terminal"],
+      "properties": {
+        "claim_correct": {"type": ["boolean", "null"]},
+        "source_owner_correct": {"type": ["boolean", "null"]},
+        "semantic_support": {"enum": ["SUPPORTED", "CONTRADICTED", "INSUFFICIENT", "UNRESOLVED"]},
+        "contaminated": {"type": "boolean"},
+        "expected_authority_terminal": {"enum": ["PROMOTE", "BLOCK", "CANNOT_CHECK"]}
+      }
+    },
+    "evidence_objects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["evidence_id", "content_hash", "provenance_hash"],
+        "properties": {
+          "evidence_id": {"type": "string"},
+          "content_hash": {"type": "string"},
+          "provenance_hash": {"type": "string"},
+          "behaviorally_available": {"type": "boolean"}
+        }
+      }
+    },
+    "expected_authority_terminal": {"enum": ["PROMOTE", "BLOCK", "CANNOT_CHECK"]},
+    "custody_class": {"enum": ["PUBLIC_CLEAN", "PUBLIC_HOSTILE", "PROTECTED_HOSTILE", "PROTECTED_HOLDOUT"]},
+    "attack_label_visible_to_candidate": {"const": false},
+    "artifact_hash": {"type": "string"}
+  }
+}

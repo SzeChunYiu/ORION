@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.publication-result-record.v1",
+  "title": "ORION Publication Result Record V1",
+  "type": "object",
+  "required": [
+    "schema_version", "paper_id", "protocol_id", "run_manifest_hash", "result_id",
+    "system_id", "task_id", "task_family", "seed", "status", "metrics", "cost",
+    "failure_class", "raw_artifact_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "orion.publication-result-record.v1"},
+    "paper_id": {"enum": ["P1", "P2", "P3", "P4", "P5"]},
+    "protocol_id": {"type": "string"},
+    "run_manifest_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "result_id": {"type": "string"},
+    "system_id": {"type": "string"},
+    "task_id": {"type": "string"},
+    "task_family": {"type": "string"},
+    "seed": {"type": "integer"},
+    "status": {"enum": ["PASS", "FAIL", "CANNOT_CHECK", "INVALID"]},
+    "metrics": {"type": "object", "additionalProperties": {"type": "number"}},
+    "cost": {
+      "type": "object",
+      "properties": {
+        "wallclock_seconds": {"type": "number"},
+        "model_tokens": {"type": "number"},
+        "tool_calls": {"type": "number"},
+        "reported_currency_cost": {"type": "number"}
+      }
+    },
+    "failure_class": {"type": ["string", "null"]},
+    "raw_artifact_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "contamination": {"type": "object"},
+    "authority_flags": {"type": "object"},
+    "notes": {"type": "string"}
+  }
+}
