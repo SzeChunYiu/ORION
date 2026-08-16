@@ -175,27 +175,53 @@ def grade_answer(
     else:
         authority = AnswerAuthority.EVIDENCE_BOUND
 
+    # EVERY admissible check for the dimension must pass, not merely the first
+    # one by identifier. The earlier form sorted the registry and broke out of
+    # the loop unconditionally, so with two admissible checks for one dimension
+    # the lexicographically first decided the verdict — whoever named a check
+    # chose which check judged, and a strict check could be silently outranked
+    # by a narrow one registered under an earlier name. No test covered two
+    # checks on one dimension, so it went unseen until the hostile battery
+    # registered `check:a-narrow` and `check:a-strict` for the same cell and got
+    # PASSED or FAILED depending only on the names.
+    #
+    # A check that is same-lane or not frozen in time is INADMISSIBLE: it does
+    # not judge, and it does not block a check that is admissible. Only when no
+    # admissible check exists does its inadmissibility become the outcome.
     check_id = ""
     outcome: CheckOutcome | None = None
+    admissible: list[tuple[str, DiscriminatingCheck]] = []
+    inadmissible: list[tuple[str, CheckOutcome]] = []
     for candidate_id, check in sorted(checks.items()):
         if check.dimension is not record.dimension:
             continue
-        check_id = candidate_id
         if check.lane == record.lane:
-            outcome = CheckOutcome.LANE_NOT_INDEPENDENT
+            inadmissible.append((candidate_id, CheckOutcome.LANE_NOT_INDEPENDENT))
             reasons.append(
                 f"check '{candidate_id}' shares lane '{record.lane}' with the answer it would verify"
             )
-            break
+            continue
         if not check.predates(round_index):
-            outcome = CheckOutcome.CHRONOLOGY_UNVERIFIED
+            inadmissible.append((candidate_id, CheckOutcome.CHRONOLOGY_UNVERIFIED))
             reasons.append(
                 f"check '{candidate_id}' is not frozen before round {round_index}"
             )
-            break
-        outcome, check_reasons = run_discriminating_check(check, candidate_cell)
-        reasons.extend(f"check_{item}" for item in check_reasons)
-        break
+            continue
+        admissible.append((candidate_id, check))
+
+    if admissible:
+        # Non-compensatory across checks: one failure blocks regardless of how
+        # many others pass, and the failing check is the one named in the
+        # grading so the reason is attributable.
+        for candidate_id, check in admissible:
+            candidate_outcome, check_reasons = run_discriminating_check(check, candidate_cell)
+            reasons.extend(f"check_{item}" for item in check_reasons)
+            if outcome is None or candidate_outcome is not CheckOutcome.PASSED:
+                check_id, outcome = candidate_id, candidate_outcome
+            if candidate_outcome is not CheckOutcome.PASSED:
+                break
+    elif inadmissible:
+        check_id, outcome = inadmissible[0]
 
     if outcome is None:
         check_outcome = CheckOutcome.NOT_REGISTERED
