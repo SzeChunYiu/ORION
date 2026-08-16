@@ -274,8 +274,101 @@ def assess_joint_surface_separability(
     )
 
 
+@dataclass(frozen=True)
+class LexicalSeparator:
+    """A single token whose presence predicts the label."""
+
+    token: str
+    accuracy: float
+    present_in_positive: int
+    present_in_negative: int
+    n_positive: int
+    n_negative: int
+
+
+@dataclass(frozen=True)
+class LexicalLeakReport:
+    separators: tuple[LexicalSeparator, ...]
+    majority_baseline: float
+    tokens_examined: int
+
+    @property
+    def leaks(self) -> bool:
+        return bool(self.separators)
+
+
+def find_lexical_separators(
+    texts_by_case: Mapping[str, str],
+    labels_by_case: Mapping[str, bool],
+    *,
+    minimum_accuracy: float = 0.90,
+    minimum_occurrences: int = 3,
+) -> LexicalLeakReport:
+    """Every single token that predicts the label from the text alone.
+
+    This checks a surface that every other audit in this study missed. The
+    gold-vocabulary checker asks whether a prompt contains the *answer's* words;
+    the statistical batteries ask whether derived numeric surfaces separate the
+    families. Neither asks the simplest question there is: does any one word
+    predict the label?
+
+    On the suite as first frozen the answer was yes and total — the token
+    `framing` appeared in all 44 hidden-shift prompts and none of the 22
+    controls, so the control-versus-hidden split that H2 exists to measure was
+    answerable by grep, with no comprehension of any kind.
+
+    Presence is tested rather than frequency, because presence is what a trivial
+    responder keys on and is the strongest form of the leak.
+    """
+
+    import re
+
+    case_ids = sorted(texts_by_case)
+    tokens_by_case = {
+        case_id: frozenset(re.findall(r"[a-z']+", texts_by_case[case_id].lower()))
+        for case_id in case_ids
+    }
+    positives = [case_id for case_id in case_ids if labels_by_case[case_id]]
+    negatives = [case_id for case_id in case_ids if not labels_by_case[case_id]]
+    if not positives or not negatives:
+        return LexicalLeakReport((), 0.0, 0)
+
+    total = len(case_ids)
+    baseline = max(len(positives), len(negatives)) / total
+    vocabulary = {token for tokens in tokens_by_case.values() for token in tokens}
+
+    found: list[LexicalSeparator] = []
+    for token in sorted(vocabulary):
+        in_positive = sum(1 for case_id in positives if token in tokens_by_case[case_id])
+        in_negative = sum(1 for case_id in negatives if token in tokens_by_case[case_id])
+        if in_positive + in_negative < minimum_occurrences:
+            continue
+        # Both directions: presence predicting positive, and presence predicting
+        # negative. "The plan is" appearing only in controls is the same leak
+        # wearing the opposite sign.
+        forward = (in_positive + (len(negatives) - in_negative)) / total
+        reverse = (in_negative + (len(positives) - in_positive)) / total
+        accuracy = max(forward, reverse)
+        if accuracy >= minimum_accuracy and accuracy > baseline:
+            found.append(
+                LexicalSeparator(
+                    token=token,
+                    accuracy=accuracy,
+                    present_in_positive=in_positive,
+                    present_in_negative=in_negative,
+                    n_positive=len(positives),
+                    n_negative=len(negatives),
+                )
+            )
+    found.sort(key=lambda item: (-item.accuracy, item.token))
+    return LexicalLeakReport(tuple(found), baseline, len(vocabulary))
+
+
 __all__ = [
     "ArmReport",
+    "LexicalLeakReport",
+    "LexicalSeparator",
+    "find_lexical_separators",
     "ArmVerdict",
     "ReopenFloor",
     "SeparabilityReport",

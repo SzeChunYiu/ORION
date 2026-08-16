@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import pytest
+
 from orion.study.p1.arm_validity import (
     ArmVerdict,
     assess_arm_discrimination,
@@ -207,3 +209,85 @@ def test_the_joint_separability_check_detects_a_planted_interaction() -> None:
     report = assess_joint_surface_separability(features, labels, resamples=200)
     assert report.leaks, report
     assert report.accuracy > report.majority_baseline
+
+
+def _suite_texts():
+    import json
+    from glob import glob
+
+    texts, labels = {}, {}
+    pattern = "papers/paper-01-recursive-epistemic-reconstruction/protocol/cases/*/*.json"
+    for path in sorted(glob(pattern)):
+        payload = json.loads(open(path).read())
+        texts[payload["case_id"]] = payload["public_prompt"]
+        labels[payload["case_id"]] = not payload["task_family"].endswith("negative_control")
+    return texts, labels
+
+
+@pytest.mark.xfail(
+    strict=True,
+    reason=(
+        "KNOWN DEFECT, suite side: 'framing' and \"team's\" each appear in all 44 "
+        "hidden-shift prompts and none of the 22 controls, so H2's control-versus-"
+        "hidden split is answerable by grep. 'plan' leaks in the opposite direction "
+        "(17/22 controls, 0/44 hidden). Routed to the suite lane for a template "
+        "rewrite. strict=True on purpose: when the prompts are fixed this test "
+        "XPASSes and fails the build, forcing the marker off rather than letting a "
+        "closed defect sit here marked expected-to-fail forever."
+    ),
+)
+def test_no_single_word_predicts_whether_a_reframe_is_required() -> None:
+    """The surface every other audit in this study missed.
+
+    The gold-vocabulary checker asks whether a prompt contains the *answer's*
+    words. The statistical batteries ask whether derived numeric surfaces
+    separate the families. Neither asked the simplest question available: does
+    any one word predict the label?
+
+    On the suite as first frozen the answer was yes and total — `framing`
+    appeared in all 44 hidden-shift prompts and none of the 22 controls, so the
+    control-versus-hidden split that H2 exists to measure was answerable by
+    grep, with no comprehension of any kind.
+    """
+
+    from orion.study.p1.arm_validity import find_lexical_separators
+
+    texts, labels = _suite_texts()
+    report = find_lexical_separators(texts, labels)
+    assert not report.leaks, [
+        (item.token, item.accuracy, item.present_in_positive, item.present_in_negative)
+        for item in report.separators
+    ]
+
+
+def test_the_lexical_check_detects_a_planted_word_in_both_directions() -> None:
+    """Prove the alarm fires, and that it catches the leak wearing either sign.
+
+    A token present only in controls is the same defect as one present only in
+    hidden cases; a one-directional check would have cleared "The plan is",
+    which appears in 17 controls and 0 hidden-shift prompts.
+    """
+
+    from orion.study.p1.arm_validity import find_lexical_separators
+
+    texts = {f"c{i}": ("alpha beta marker" if i < 10 else "alpha beta") for i in range(20)}
+    labels = {f"c{i}": i < 10 for i in range(20)}
+    forward = find_lexical_separators(texts, labels)
+    assert forward.leaks
+    assert forward.separators[0].token == "marker"
+
+    flipped = {case_id: not value for case_id, value in labels.items()}
+    reverse = find_lexical_separators(texts, flipped)
+    assert reverse.leaks, "a token that predicts the negative class is the same leak"
+    assert reverse.separators[0].token == "marker"
+
+
+def test_a_rare_token_is_not_reported_as_a_separator() -> None:
+    """A word appearing twice can hit 100% by chance in a 66-case suite. The
+    occurrence floor is what keeps this from crying wolf on its first real run."""
+
+    from orion.study.p1.arm_validity import find_lexical_separators
+
+    texts = {f"c{i}": ("alpha rare" if i == 0 else "alpha") for i in range(20)}
+    labels = {f"c{i}": i == 0 for i in range(20)}
+    assert not find_lexical_separators(texts, labels).leaks
