@@ -64,6 +64,7 @@ from orion.study.p1.orion_system import (
     orion_systems,
 )
 from orion.study.p1.provider import (
+    DEFAULT_MODEL,
     CREDENTIAL_ENV_VAR,
     AnthropicProvider,
     ProviderBackedSystem,
@@ -1296,7 +1297,9 @@ def test_provider_refuses_cleanly_without_a_credential(monkeypatch):
     response = AnthropicProvider().complete("anything")
     assert response.status is ProviderStatus.NO_CREDENTIAL
     assert response.text == ""
-    assert response.model == "claude-opus-5"
+    # Assert the configured default, not a literal: the subject model is an
+    # operator choice and changing it must not break a test about refusal.
+    assert response.model == DEFAULT_MODEL
     assert CREDENTIAL_ENV_VAR in response.detail
 
 

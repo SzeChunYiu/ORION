@@ -31,7 +31,14 @@ from .cases import PublicView
 from .systems import ResourceUse, SystemTrace
 
 CREDENTIAL_ENV_VAR = "ANTHROPIC_API_KEY"
-DEFAULT_MODEL = "claude-opus-5"
+#: The endpoint is taken from the environment so an Anthropic-compatible
+#: gateway can be used without a code change. Never hardcode a host here: the
+#: run manifest records which endpoint answered, and a value baked into source
+#: would make that record a restatement of the source rather than an
+#: observation of the run.
+BASE_URL_ENV_VAR = "ANTHROPIC_BASE_URL"
+#: Operator-directed subject model for the live arm (2026-08-16).
+DEFAULT_MODEL = "glm-5.2"
 DEFAULT_MAX_TOKENS = 1024
 
 
@@ -115,7 +122,11 @@ class AnthropicProvider:
                 detail="the anthropic client package is not installed",
             )
         try:
-            client = Anthropic(api_key=os.environ.get(CREDENTIAL_ENV_VAR))
+            base_url = os.environ.get(BASE_URL_ENV_VAR) or None
+            client = Anthropic(
+                api_key=os.environ.get(CREDENTIAL_ENV_VAR),
+                **({"base_url": base_url} if base_url else {}),
+            )
             message = client.messages.create(
                 model=self.model,
                 max_tokens=self.max_tokens,
@@ -187,6 +198,7 @@ class ProviderBackedSystem:
 
 
 __all__ = [
+    "BASE_URL_ENV_VAR",
     "CREDENTIAL_ENV_VAR",
     "DEFAULT_MAX_TOKENS",
     "DEFAULT_MODEL",
