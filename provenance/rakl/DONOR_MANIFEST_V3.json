@@ -1,0 +1,51 @@
+{
+  "schema": "rakl-donor-manifest-v3",
+  "frozen_rakl_commit": "70f5f7c4a6771ffd1158765b42ac9f8aee8a270f",
+  "public_api_blob_sha": "c2c06a3df1c2a6856eb65886e5c431fc9eb96291",
+  "status_vocabulary": [
+    "EXACT_REUSE",
+    "RECONSTRUCTED",
+    "TESTS_RESULTS_REUSED",
+    "DEFER_WITH_TRIGGER",
+    "REJECT_WITH_REASON"
+  ],
+  "public_families": [
+    {"family":"assimilation","status":"RECONSTRUCTED","orion":"src/orion/knowledge/assimilation.py"},
+    {"family":"atlas_gluing","status":"RECONSTRUCTED","orion":"src/orion/knowledge/atlas_gluing.py"},
+    {"family":"backward_multiseed","status":"EXACT_REUSE","orion":"src/orion/knowledge/backward_multiseed.py"},
+    {"family":"backward_multiseed_benchmark","status":"EXACT_REUSE","orion":"src/orion/knowledge/backward_multiseed_benchmark.py"},
+    {"family":"bridge_composition","status":"RECONSTRUCTED","orion":"src/orion/knowledge/bridge_composition.py"},
+    {"family":"capability","status":"RECONSTRUCTED","orion":"src/orion/engine/capability_router.py"},
+    {"family":"challenge_learning","status":"RECONSTRUCTED","orion":"src/orion/experience;src/orion/self_orion/issue_state.py"},
+    {"family":"claim_evidence","status":"RECONSTRUCTED","orion":"src/orion/mechanics/answers.py;src/orion/kernel/evidence.py"},
+    {"family":"context_compiler","status":"EXACT_REUSE","orion":"src/orion/knowledge/context_compiler.py"},
+    {"family":"core","status":"RECONSTRUCTED","orion":"src/orion/core;src/orion/knowledge"},
+    {"family":"formalism","status":"RECONSTRUCTED","orion":"src/orion/mechanics/mathematics.py;src/orion/mechanics/verification.py;src/orion/benchmarks/formal_engine.py"},
+    {"family":"generator_transport","status":"EXACT_REUSE","orion":"src/orion/knowledge/generator_transport.py"},
+    {"family":"identity","status":"RECONSTRUCTED","orion":"src/orion/knowledge/identity.py"},
+    {"family":"identity_saturation","status":"TESTS_RESULTS_REUSED","orion":"src/orion/kernel/saturation.py;research/failures/2026-08-empty-lineage-false-saturation"},
+    {"family":"source_identity","status":"RECONSTRUCTED","orion":"src/orion/knowledge/source.py;src/orion/knowledge/ledger.py"},
+    {"family":"invention","status":"RECONSTRUCTED","orion":"src/orion/self_orion/invention_gate.py;src/orion/self_orion/novelty.py"},
+    {"family":"measurement","status":"EXACT_REUSE","orion":"src/orion/knowledge/measurement.py"},
+    {"family":"multires_memory","status":"EXACT_REUSE","orion":"src/orion/knowledge/multires_memory.py"},
+    {"family":"promotion","status":"RECONSTRUCTED","orion":"src/orion/self_orion/change_control.py;src/orion/self_orion/readiness.py"},
+    {"family":"promotion_attestation","status":"EXACT_REUSE","orion":"src/orion/knowledge/promotion_attestation.py"},
+    {"family":"retrieval_benchmark","status":"EXACT_REUSE","orion":"src/orion/knowledge/retrieval_benchmark.py"},
+    {"family":"route_family_health","status":"EXACT_REUSE","orion":"src/orion/knowledge/route_family_health.py"},
+    {"family":"similarity","status":"EXACT_REUSE","orion":"src/orion/knowledge/similarity.py"},
+    {"family":"subject_identity","status":"EXACT_REUSE","orion":"src/orion/knowledge/subject_identity.py"}
+  ],
+  "engineering_waves": [
+    {"family":"E0_freeze_parity","status":"TESTS_RESULTS_REUSED","trigger":null},
+    {"family":"E1_state_contracts","status":"RECONSTRUCTED","trigger":null},
+    {"family":"E2_repository_protocols","status":"DEFER_WITH_TRIGGER","trigger":"production durable persistence beyond reference/local stores"},
+    {"family":"E3_production_persistence","status":"DEFER_WITH_TRIGGER","trigger":"production persistence/backend rollout"},
+    {"family":"E4_epistemic_control_integration","status":"RECONSTRUCTED","trigger":null},
+    {"family":"E5_durable_workflow_engine","status":"DEFER_WITH_TRIGGER","trigger":"multi-process durable workflow/lease execution"},
+    {"family":"E6_service_observatory","status":"DEFER_WITH_TRIGGER","trigger":"network service or operational UI"},
+    {"family":"E7_operations_security_provenance","status":"DEFER_WITH_TRIGGER","trigger":"production deployment/security ceremony"},
+    {"family":"E8_hostile_production_assurance","status":"TESTS_RESULTS_REUSED","trigger":null},
+    {"family":"E1_E20_hostile_defect_catalog","status":"TESTS_RESULTS_REUSED","trigger":null}
+  ],
+  "closure_boundary": "All public API families and named engineering waves are terminally dispositioned. Repository-wide donor saturation remains open until a fresh frozen-tree audit classifies relevant non-public source/research families and verifies every claimed ORION equivalence against the final Phase-1 subject."
+}
