@@ -61,6 +61,21 @@ class VerificationVerdict(str, Enum):
     CANNOT_CHECK = "CANNOT_CHECK"
 
 
+class AssuranceBasis(str, Enum):
+    """Where a receipt's assurance claim comes from.
+
+    DECLARED means whoever compiled the problem asserted the mode; the
+    certificate chain makes that auditable after the fact, since every checker
+    binary, policy and authority root is content-bound, but nothing cross-checks
+    it during the solve. DERIVED means the mode was computed from the per-checker
+    attestations of the checkers that actually ran. Only DECLARED exists today;
+    the enum names the repair rather than describing it in a comment.
+    """
+
+    DECLARED = "DECLARED"
+    DERIVED = "DERIVED"
+
+
 class AssuranceMode(str, Enum):
     EXACT = "EXACT"
     APPROXIMATE = "APPROXIMATE"
@@ -447,6 +462,7 @@ class MechanicalSolveReceipt:
     shortcut_misses: int
     seed_diversity_count: int
     seed_diversity_reasons: tuple[str, ...]
+    assurance_basis: AssuranceBasis = AssuranceBasis.DECLARED
     previous_receipt_hash: str | None = None
     reopened_from_step: int | None = None
     matched_prefix_rule_ids: tuple[str, ...] = ()
@@ -469,6 +485,7 @@ class MechanicalSolveReceipt:
             "shortcut_misses": self.shortcut_misses,
             "seed_diversity_count": self.seed_diversity_count,
             "seed_diversity_reasons": self.seed_diversity_reasons,
+            "assurance_basis": self.assurance_basis.value,
             "previous_receipt_hash": self.previous_receipt_hash,
             "reopened_from_step": self.reopened_from_step,
             "matched_prefix_rule_ids": self.matched_prefix_rule_ids,
@@ -899,19 +916,6 @@ class DeterministicProblemSolver:
                     break
                 values.append(steps[index].rule_id)
             matched_prefix = tuple(values)
-        # Exactness is asserted by whoever compiled the problem, not derived
-        # from the checkers that did the work — a caller with an approximate
-        # checker who leaves the EXACT default gets a verified terminal. The
-        # certificate chain makes that auditable after the fact (every checker
-        # binary, policy and authority root is content-bound), but nothing
-        # cross-checks it during the solve. Rather than trust the declaration
-        # silently, every exact receipt carries the fact that it is one, so a
-        # reader can see what the terminal rests on. Deriving the mode from
-        # per-checker attestation is the real repair and belongs to the lane
-        # that owns this contract.
-        if problem.assurance_mode is AssuranceMode.EXACT:
-            _append_unique(residuals, "assurance_mode_declared_not_derived")
-
         receipt = MechanicalSolveReceipt(
             problem_id=problem.problem_id,
             problem_snapshot_digest=problem.digest,

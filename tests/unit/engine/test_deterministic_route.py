@@ -152,32 +152,92 @@ def test_an_uncompiled_problem_still_reaches_the_reasoner_path() -> None:
     ), solution.residual_ids
 
 
-def test_an_exact_receipt_declares_that_its_exactness_is_a_declaration() -> None:
+def test_a_verified_exact_receipt_records_that_its_exactness_was_declared() -> None:
     """Exactness is asserted by whoever compiled the problem, not derived from
-    the checkers that ran. That is auditable after the fact but unchecked during
-    the solve, so every exact receipt must carry the caveat where a reader of the
-    receipt will see it — not only in a design document."""
+    the checkers that ran. It is auditable after the fact — every checker binary,
+    policy and authority root is content-bound — but unchecked during the solve.
+    The caveat therefore has to ride on the SOLVED_VERIFIED receipt, which is the
+    only case where it changes what a reader should conclude. A first version of
+    this test used a rule-less problem, which can only exit via graph exhaustion:
+    it proved the caveat appears on a failed solve, where nobody is misled.
+    """
 
+    from hashlib import sha256
+
+    from orion.core.solution import SolutionStatus as _Status
+    from orion.kernel.support import DependencyStatus, DependencyStatusEvent
     from orion.engine.deterministic_solver import (
+        AssuranceBasis,
         AssuranceMode,
+        CheckerPolicy,
         CompiledProblem,
         DeterministicProblemSolver,
         GoalClause,
+        SearchRouteKind,
+        SupportSet,
+        TransitionCertificate,
+        TransitionRule,
+        VerificationVerdict,
     )
 
+    policy = CheckerPolicy(
+        checker_id="checker:1",
+        checker_lineage_id="lineage:independent",
+        checker_binary_digest="c" * 64,
+        policy_digest="d" * 64,
+        authority_root_digest="e" * 64,
+        version=1,
+        valid_from=0,
+        valid_until=10,
+        revocation_epoch=0,
+    )
+    rule = TransitionRule(
+        rule_id="rule:1",
+        route_id="route:1",
+        route_kind=SearchRouteKind.CURRENT_VOCABULARY,
+        preconditions=frozenset({"a"}),
+        add_effects=frozenset({"z"}),
+        delete_effects=frozenset(),
+        support_sets=(SupportSet("support:1", ("dep:live",)),),
+        cost_units=1,
+        checker_policy=policy,
+        checker_registered_before_run=True,
+        representation="facts:v1",
+        structural_signature=(),
+        semantic_tags=(),
+    )
     problem = CompiledProblem(
         problem_id="exactness",
         snapshot_id="snap:1",
         initial_facts=frozenset({"a"}),
         goals=(GoalClause(clause_id="g1", required_facts=frozenset({"z"})),),
-        rules=(),
-        dependency_history=(),
-        status_time=0,
-        admissible_checker_lineage_ids=("lineage:a",),
+        rules=(rule,),
+        dependency_history=(
+            DependencyStatusEvent(
+                "event:live", "dep:live", DependencyStatus.LIVE, 1, DependencyStatus.LIVE.value
+            ),
+        ),
+        status_time=1,
+        admissible_checker_lineage_ids=("lineage:independent",),
         assurance_mode=AssuranceMode.EXACT,
     )
-    def unreachable_provider(request: object) -> object:
-        raise AssertionError("no rule exists, so no certificate should be requested")
 
-    result = DeterministicProblemSolver(unreachable_provider).solve(problem)
-    assert "assurance_mode_declared_not_derived" in result.receipt.residuals
+    def provider(request):
+        return TransitionCertificate(
+            problem_snapshot_digest=request.problem_snapshot_digest,
+            rule_id=request.rule_id,
+            rule_digest=request.rule_digest,
+            source_state_digest=request.source_state_digest,
+            target_state_digest=request.target_state_digest,
+            checker_id=request.checker_id,
+            checker_lineage_id=request.checker_lineage_id,
+            checker_policy_digest=request.checker_policy_digest,
+            artifact_id="artifact:1",
+            artifact_digest=sha256(b"artifact:1").hexdigest(),
+            verdict=VerificationVerdict.PASS,
+        )
+
+    result = DeterministicProblemSolver(provider).solve(problem)
+    assert result.status is _Status.SOLVED_VERIFIED, result.receipt.residuals
+    assert result.receipt.assurance_mode is AssuranceMode.EXACT
+    assert result.receipt.assurance_basis is AssuranceBasis.DECLARED
