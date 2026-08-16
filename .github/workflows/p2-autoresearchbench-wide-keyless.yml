@@ -1,0 +1,92 @@
+name: p2-autoresearchbench-wide-keyless
+
+on:
+  push:
+    branches:
+      - chatgpt/issue-99-recursive-local
+
+permissions:
+  contents: read
+
+jobs:
+  wide:
+    if: contains(github.event.head_commit.message, '[run-wide]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install ORION and pinned scorer dependency
+        run: |
+          python -m pip install -e '.[dev]'
+          python -m pip install requests
+
+      - name: Fetch pinned AutoResearchBench code and public bundle
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none https://github.com/CherYou/AutoResearchBench.git /tmp/arb-upstream
+          git -C /tmp/arb-upstream checkout a46c9bfb8968786f73f0a6a5b365b5384cd0f96d
+          mkdir -p /tmp/arb-run
+          curl --fail --location --retry 4 --retry-delay 3 \
+            --output /tmp/arb-run/AutoResearchBench.jsonl.obf.json \
+            https://huggingface.co/datasets/Lk123/AutoResearchBench/resolve/main/AutoResearchBench.jsonl.obf.json
+          python /tmp/arb-upstream/decrypt_benchmark.py \
+            --input-file /tmp/arb-run/AutoResearchBench.jsonl.obf.json \
+            --output-file /tmp/arb-run/AutoResearchBench.jsonl
+          git -C /tmp/arb-upstream rev-parse HEAD
+          sha256sum /tmp/arb-run/AutoResearchBench.jsonl.obf.json /tmp/arb-run/AutoResearchBench.jsonl
+
+      - name: Split gold before candidate custody
+        run: |
+          set -euo pipefail
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_keyless.py prepare \
+            --full /tmp/arb-run/AutoResearchBench.jsonl \
+            --public /tmp/arb-run/wide_public.jsonl \
+            --gt /tmp/arb-run/wide_gt.jsonl \
+            --manifest /tmp/arb-run/split_manifest.json
+
+      - name: Run gold-blind keyless arXiv candidate
+        run: |
+          set -euo pipefail
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_keyless.py run \
+            --public /tmp/arb-run/wide_public.jsonl \
+            --output /tmp/arb-run/candidate.jsonl \
+            --trace /tmp/arb-run/trace.jsonl \
+            --manifest /tmp/arb-run/run_manifest.json \
+            --max-results 20
+
+      - name: Run pinned official Wide scorer
+        run: |
+          set -euo pipefail
+          python /tmp/arb-upstream/evaluate/evaluate_wide_search.py \
+            --input-file /tmp/arb-run/candidate.jsonl \
+            --gt-file /tmp/arb-run/wide_gt.jsonl \
+            --no-jina \
+            --output-file /tmp/arb-run/official_evaluation.json
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_keyless.py summarize \
+            --split-manifest /tmp/arb-run/split_manifest.json \
+            --run-manifest /tmp/arb-run/run_manifest.json \
+            --evaluation /tmp/arb-run/official_evaluation.json \
+            --candidate /tmp/arb-run/candidate.jsonl \
+            --trace /tmp/arb-run/trace.jsonl \
+            --output /tmp/arb-run/summary.json
+          cat /tmp/arb-run/summary.json
+
+      - name: Archive result-bearing artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-autoresearchbench-wide-keyless-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: error
+          path: |
+            /tmp/arb-run/split_manifest.json
+            /tmp/arb-run/run_manifest.json
+            /tmp/arb-run/wide_public.jsonl
+            /tmp/arb-run/candidate.jsonl
+            /tmp/arb-run/trace.jsonl
+            /tmp/arb-run/official_evaluation.json
+            /tmp/arb-run/summary.json
