@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c110",
   "task_family": "hidden_representation_or_coordinate_system",
-  "public_prompt": "A report gives the correlation between deploy frequency and incident count across 60 teams as 0.61 and concludes that deploying more produces more incidents. The team's framing is: this is the association, so act on it. Report the association between the two quantities.",
+  "public_prompt": "A report gives the correlation between deploy frequency and incident count across 60 teams as 0.61 and concludes that deploying more produces more incidents. The step already agreed: this is the association, so act on it. Report the association between the two quantities.",
   "observable_resources": [
     "delivery/teams.csv — 60 rows of deploys_per_week (median 6, maximum 940) and incidents_per_quarter (median 3, maximum 610)",
     "delivery/leverage.md — removing the two largest teams moves the reported correlation from 0.61 to 0.04",

@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c014",
   "task_family": "hidden_representation_or_coordinate_system",
-  "public_prompt": "Five independently fitted members each emit a failure probability per incident. The team's framing is: take the plain average of the five numbers and page when it passes 0.05. Report the pooled probability for incident 4471 and say whether the paging rule fires.",
+  "public_prompt": "Five independently fitted members each emit a failure probability per incident. The route being taken: take the plain average of the five numbers and page when it passes 0.05. Report the pooled probability for incident 4471 and say whether the paging rule fires.",
   "observable_resources": [
     "ensemble/members.csv — five member probabilities per incident; for incident 4471 they are 0.0004, 0.0009, 0.0011, 0.0007 and 0.62",
     "ensemble/reliability.md — each member is well matched to observed outcome rates on the holdout; the plain average over-predicts by a factor of 14 in the lowest decile",

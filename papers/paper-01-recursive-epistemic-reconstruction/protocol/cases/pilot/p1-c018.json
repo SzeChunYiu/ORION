@@ -1,12 +1,12 @@
 {
   "case_id": "p1-c018",
   "task_family": "hidden_decomposition_or_interface",
-  "public_prompt": "Reporting queries time out during the nightly ingest. The team's framing is: the database is short of capacity, so buy three more replicas. Diagnose the defect and specify the fix.",
+  "public_prompt": "Reporting queries time out during the nightly ingest. The course settled on: the database is short of capacity, so buy three more replicas. Diagnose the defect and specify the fix.",
   "observable_resources": [
     "store/pool.md — one connection pool of 60, shared by the ingest job and the reporting service",
     "store/query-log.csv — during ingest, reporting p99 rises from 0.4 s to 34 s; waiting for a pooled connection accounts for 31 s of that",
     "store/routing.md — every reporting query carries a strong-consistency flag, which sends it to the primary no matter how many replicas exist",
-    "store/replica-trial.md — a trial with two extra replicas left reporting p99 at 33 s",
+    "store/replica-review.md — a trial with two extra replicas left reporting p99 at 33 s",
     "store/requirements.md — reporting tolerates figures up to 15 minutes old; ingest requires immediate visibility of its own commits",
     "closure:replica-purchase-q2 — closed; orders three more replicas",
     "closure:infra-budget-h2 — closed; derived from closure:replica-purchase-q2, books the spend",

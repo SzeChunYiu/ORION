@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c131",
   "task_family": "hidden_measurement_or_operationalization",
-  "public_prompt": "Mean time to fix is published as 42 minutes and improving 30% year on year, while customers report that nothing is fixed any faster. The team's framing is: the figure is right and the perception is wrong. Report the figure customers experience.",
+  "public_prompt": "Mean time to fix is published as 42 minutes and improving 30% year on year, while customers report that nothing is fixed any faster. The course settled on: the figure is right and the perception is wrong. Report the figure customers experience.",
   "observable_resources": [
     "support/tickets.csv — 61,000 tickets with created_at, first_status_change_at, closed_at and reopened_count",
     "support/method.md — the published figure is the mean of (first_status_change_at - created_at)",

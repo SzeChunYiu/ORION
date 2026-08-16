@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c107",
   "task_family": "execution_only_negative_control",
-  "public_prompt": "Paging volume doubled after the monitoring migration and 60% of pages are for services that turn out to be healthy. The rule set was approved before the migration and the incident count has not moved. The plan is to find the defect in the migrated setup and repair it: name the defect and give the repair.",
+  "public_prompt": "Paging volume doubled after the monitoring migration and 60% of pages are for services that turn out to be healthy. The rule set was approved before the migration and the incident count has not moved. The working position: find the defect in the migrated setup and repair it: name the defect and give the repair.",
   "observable_resources": [
     "monitoring/rule-inventory.csv — the identical rule set is deployed in all 5 regions, as it was before the migration",
     "monitoring/routing.yml — one destination for every region; the region key that used to select a destination is absent from the migrated file",

@@ -20,6 +20,7 @@ from statistics import mean, pstdev
 import pytest
 
 from orion.benchmarks.degeneracy import DegeneracyStatus, LabeledRecord, probe_records
+from orion.study.p1.arm_validity import find_lexical_separators
 from orion.study.p1.cases import (
     AdjudicationStatus,
     HiddenShiftCase,
@@ -489,6 +490,43 @@ def test_the_surface_leak_check_detects_a_planted_imbalance(suites) -> None:
         for value, case in zip(honest, cases)
     ]
     assert shuffle_null_p(planted, labels) < 0.05
+
+
+
+@pytest.mark.parametrize("surface", ["prompt", "prompt_and_resources", "resource_stems"])
+def test_no_single_token_separates_control_from_hidden_shift(suites, surface) -> None:
+    """The leak every statistical battery here was blind to.
+
+    The gold-vocabulary checker asks whether a prompt names the *answer*; the
+    distributional batteries ask whether derived numeric surfaces separate the
+    families. Neither asks the simplest question there is: does one word predict
+    the label? On the suite as first frozen the answer was total — `framing` and
+    `team's` appeared in all 44 hidden-shift prompts and no control, so H2's
+    control-versus-hidden split was answerable by grep. `plan` leaked the
+    opposite way in 17 of 22 controls, which is the same defect with the sign
+    reversed, so both directions are tested.
+
+    Resource path stems are covered too: a `/(proposal|trial)/` regex once
+    recovered 10 of 11 DECOMPOSITION cases with no false positives, because only
+    those cases carried a proposed fix as an artefact.
+    """
+
+    cases = [case for split in Split for case in suites[split]]
+    texts = {
+        "prompt": {c.case_id: c.public_prompt for c in cases},
+        "prompt_and_resources": {
+            c.case_id: c.public_prompt + " " + " ".join(c.observable_resources) for c in cases
+        },
+        "resource_stems": {
+            c.case_id: " ".join(r.split(" — ")[0] for r in c.observable_resources) for c in cases
+        },
+    }[surface]
+    labels = {c.case_id: c.task_family not in CONTROLS for c in cases}
+    report = find_lexical_separators(texts, labels)
+    assert report.separators == (), [
+        (s.token, round(s.accuracy, 3)) for s in report.separators
+    ]
+    assert report.tokens_examined > 500
 
 
 def closure_components(case: HiddenShiftCase) -> list[set[str]]:

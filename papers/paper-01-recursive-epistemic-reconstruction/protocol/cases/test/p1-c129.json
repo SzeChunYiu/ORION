@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c129",
   "task_family": "execution_only_negative_control",
-  "public_prompt": "The experiment analysis script reports the treatment arm 3.1% ahead, then 2.2%, then 3.4% on re-runs over the same window. The comparison is pre-registered. The plan is to find the defect in the run and repair it: name the defect and give the repair.",
+  "public_prompt": "The experiment analysis script reports the treatment arm 3.1% ahead, then 2.2%, then 3.4% on re-runs over the same window. The comparison is pre-registered. The course settled on: find the defect in the run and repair it: name the defect and give the repair.",
   "observable_resources": [
     "analysis/load.py — reads every file matching data/events-*.parquet",
     "pipeline/writer.md — the upstream writer appends to data/events-live.parquet continuously and renames a completed file from its .tmp name",

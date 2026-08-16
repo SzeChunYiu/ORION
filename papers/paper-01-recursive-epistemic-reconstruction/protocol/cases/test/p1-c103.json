@@ -1,11 +1,11 @@
 {
   "case_id": "p1-c103",
   "task_family": "hidden_decomposition_or_interface",
-  "public_prompt": "One customer's bulk import makes the service slow for every other customer on the platform. The team's framing is: the service is being asked for too much at once, so cap the whole service at 200 requests per second per route. Diagnose the defect and specify the fix.",
+  "public_prompt": "One customer's bulk import makes the service slow for every other customer on the platform. The approach on the table: the service is being asked for too much at once, so cap the whole service at 200 requests per second per route. Diagnose the defect and specify the fix.",
   "observable_resources": [
     "app/pool.md — one worker pool and one first-in-first-out queue serve all 2,300 customers",
     "app/incident-log.csv — in 9 of 11 slowdowns a single customer accounted for over 80% of queued work",
-    "app/global-cap-trial.md — a 200/s service-wide cap during the trial cut the largest customer's impact and refused 6% of every other customer's requests",
+    "app/global-cap-note.md — a 200/s service-wide cap during the trial cut the largest customer's impact and refused 6% of every other customer's requests",
     "app/usage.csv — customer request rates span four orders of magnitude; the largest customer runs 6,000x the median",
     "closure:fair-use-policy-v1 — closed; publishes the service-wide cap as the fairness guarantee",
     "closure:enterprise-contract-addendum — closed; derived from closure:fair-use-policy-v1",

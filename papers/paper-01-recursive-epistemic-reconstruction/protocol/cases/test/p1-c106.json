@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c106",
   "task_family": "hidden_parent_domain",
-  "public_prompt": "Two review groups worked the same specification revision independently on the same day. The team's framing is: merge the two defect lists, report the count found, and close the review. Report how many defects the specification still holds that neither group logged, with your reasoning.",
+  "public_prompt": "Two review groups worked the same specification revision independently on the same day. The route being taken: merge the two defect lists, report the count found, and close the review. Report how many defects the specification still holds that neither group logged, with your reasoning.",
   "observable_resources": [
     "review/pass-a.json — group A logged 74 distinct defect ids",
     "review/pass-b.json — group B logged 61 distinct defect ids from the same revision, with no sight of group A's list",

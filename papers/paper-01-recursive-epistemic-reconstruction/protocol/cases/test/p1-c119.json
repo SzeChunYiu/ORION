@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c119",
   "task_family": "hidden_representation_or_coordinate_system",
-  "public_prompt": "Stops are assigned to the nearest of 40 depots. The team's framing is: latitude and longitude are two numbers, so take the straight-line distance between the pairs. Six per cent of assignments disagree with the driver-measured nearest depot. Report the corrected assignment rule.",
+  "public_prompt": "Stops are assigned to the nearest of 40 depots. The route being taken: latitude and longitude are two numbers, so take the straight-line distance between the pairs. Six per cent of assignments disagree with the driver-measured nearest depot. Report the corrected assignment rule.",
   "observable_resources": [
     "logistics/depots.csv — 40 depots between 25 and 68 degrees north",
     "logistics/assign.py — computes sqrt((lat1-lat2)^2 + (lon1-lon2)^2) directly on degrees",

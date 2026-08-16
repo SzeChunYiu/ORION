@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c001",
   "task_family": "hidden_measurement_or_operationalization",
-  "public_prompt": "The release gate requires 99.5% crash-free sessions. A build at 99.74% shipped and produced the worst week of complaints on record. The team's framing is: the gate is sound and this build was unlucky. Report whether the gate is doing its job.",
+  "public_prompt": "The release gate requires 99.5% crash-free sessions. A build at 99.74% shipped and produced the worst week of complaints on record. What the group intends: the gate is sound and this build was unlucky. Report whether the gate is doing its job.",
   "observable_resources": [
     "mobile/crash-report.csv — 41,000 crashes across 13.6M sessions that week: 99.70% of sessions crash-free",
     "mobile/session-length.csv — median session 42 seconds; the top tenth of people start 60x more sessions than the median person",

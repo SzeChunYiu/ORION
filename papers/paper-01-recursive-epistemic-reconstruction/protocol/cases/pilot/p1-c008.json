@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c008",
   "task_family": "hidden_parent_domain",
-  "public_prompt": "A request-handling service is slow under load. The team's framing is: profile the handler, find the hot function, and optimise it. Working from the artefacts below, report the maximum sustained arrival rate the service can hold with p99 wait under 250 ms, and justify the number.",
+  "public_prompt": "A request-handling service is slow under load. The approach on the table: profile the handler, find the hot function, and optimise it. Working from the artefacts below, report the maximum sustained arrival rate the service can hold with p99 wait under 250 ms, and justify the number.",
   "observable_resources": [
     "trace/handler-profile.json — 30-minute CPU profile; no single call exceeds 6% of total; median service work is 5.0 ms and does not change with load",
     "trace/arrival-log.csv — 1.2M arrivals; inter-arrival gaps are memoryless with fitted rate 150/s at peak and coefficient of variation 0.98",

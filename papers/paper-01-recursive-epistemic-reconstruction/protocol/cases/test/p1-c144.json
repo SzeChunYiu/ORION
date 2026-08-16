@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c144",
   "task_family": "hidden_parent_domain",
-  "public_prompt": "Decide whether an automated agent is hitting the login endpoint. The team's framing is: compare each day's failed-login total against the 30-day mean and flag any day beyond two standard deviations. Report whether automated activity is present and how you established it.",
+  "public_prompt": "Decide whether an automated agent is hitting the login endpoint. The current line is: compare each day's failed-login total against the 30-day mean and flag any day beyond two standard deviations. Report whether automated activity is present and how you established it.",
   "observable_resources": [
     "auth/per-minute.csv — 43,200 rows of failed-login counts at one-minute resolution over 30 days; mean 12.1, standard deviation 6.0",
     "auth/daily-totals.csv — 30 rows; no day sits beyond two standard deviations of the 30-day mean",

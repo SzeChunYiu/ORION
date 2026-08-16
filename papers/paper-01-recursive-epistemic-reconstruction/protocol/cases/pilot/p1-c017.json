@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c017",
   "task_family": "hidden_parent_domain",
-  "public_prompt": "Set the replacement interval for pump seals. The team's framing is: take the mean time to failure from the maintenance record and use it as the interval. Produce the number and the reasoning behind it.",
+  "public_prompt": "Set the replacement interval for pump seals. The current line is: take the mean time to failure from the maintenance record and use it as the interval. Produce the number and the reasoning behind it.",
   "observable_resources": [
     "maintenance/seal-log.csv — 120 units; 82 rows carry a failure date; 38 rows carry 'still in service at window close 2026-02-28' and no failure date",
     "maintenance/aggregate.py — filters the log to rows that have a failure date, then averages",

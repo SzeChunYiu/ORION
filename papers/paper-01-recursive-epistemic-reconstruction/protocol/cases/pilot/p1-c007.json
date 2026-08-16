@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c007",
   "task_family": "hidden_measurement_or_operationalization",
-  "public_prompt": "Requests served per second stand at an all-time high of 14,200, up 22% year on year, while support tickets saying the app is broken have tripled. The team's framing is: the two facts are unrelated, so staff up support. Report whether service delivery improved year on year.",
+  "public_prompt": "Requests served per second stand at an all-time high of 14,200, up 22% year on year, while support tickets saying the app is broken have tripled. The current line is: the two facts are unrelated, so staff up support. Report whether service delivery improved year on year.",
   "observable_resources": [
     "serving/requests.csv — 14,200 requests per second counted at the load balancer, every response included whatever its status",
     "serving/status-mix.csv — the 5xx share rose from 0.4% to 6.1% year on year; the 4xx share is flat",
