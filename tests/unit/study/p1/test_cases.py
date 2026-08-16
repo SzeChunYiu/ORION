@@ -178,6 +178,86 @@ def test_reopen_targets_are_visible_in_the_public_view(suites, split) -> None:
             assert dependency in blob, (case.case_id, dependency)
 
 
+def named_closures(case: HiddenShiftCase) -> set[str]:
+    return set(re.findall(r"(closure:[a-z0-9-]+)", " ".join(case.observable_resources)))
+
+
+def reopen_f1(reopened: set[str], gold: tuple[str, ...]) -> float:
+    if not gold or not reopened:
+        return 0.0
+    hits = len(reopened & set(gold))
+    if not hits:
+        return 0.0
+    precision, recall = hits / len(reopened), hits / len(gold)
+    return 2 * precision * recall / (precision + recall)
+
+
+@pytest.mark.parametrize("split", list(Split))
+def test_every_hidden_shift_case_carries_a_closure_that_must_survive(suites, split) -> None:
+    """Reopen precision has to have something to lose, or H3 is unfalsifiable.
+
+    If every closure a case names is also a gold dependency, then reopening
+    everything is exactly right, and `full_reset_instead_of_dependency_reopen`
+    cannot be distinguished from dependency-directed reopening. Each hidden-shift
+    case therefore names at least one closed conclusion that does NOT rest on the
+    formulation under revision and must be left alone.
+    """
+
+    for case in suites[split]:
+        if case.task_family in CONTROLS:
+            continue
+        survivors = named_closures(case) - set(case.protected_gold.dependencies_to_reopen)
+        assert survivors, case.case_id
+
+
+@pytest.mark.parametrize("split", list(Split))
+def test_reopening_everything_is_punished_on_every_hidden_shift_case(suites, split) -> None:
+    """The discriminating cell H3 needs, asserted as the ablation would score it.
+
+    A full-reset policy reopens every closure the case names. Scored against
+    gold, it must lose precision on every single case — otherwise the ablation
+    ties full ORION for free and the comparison measures nothing.
+    """
+
+    for case in suites[split]:
+        if case.task_family in CONTROLS:
+            continue
+        gold = case.protected_gold.dependencies_to_reopen
+        full_reset = reopen_f1(named_closures(case), gold)
+        directed = reopen_f1(set(gold), gold)
+        assert directed == 1.0, case.case_id
+        assert full_reset < 1.0, case.case_id
+
+
+@pytest.mark.parametrize("split", list(Split))
+def test_a_control_punishes_reopening_anything_at_all(suites, split) -> None:
+    """Controls carry closures too, and the correct reopen set is still empty.
+
+    They are listed so that the presence of a `closure:` line, the resource count
+    and the resource bulk carry no information about the family. A system that
+    reopens on merely seeing one is wrong here, which is what H2 should punish.
+    """
+
+    carriers = 0
+    for case in suites[split]:
+        if case.task_family not in CONTROLS:
+            continue
+        assert case.protected_gold.dependencies_to_reopen == ()
+        carriers += bool(named_closures(case))
+    assert carriers == PER_FAMILY[split] * 2
+
+
+@pytest.mark.parametrize("split", list(Split))
+def test_closure_lines_are_unique_within_a_case(suites, split) -> None:
+    for case in suites[split]:
+        listed = [
+            resource.split(" ", 1)[0]
+            for resource in case.observable_resources
+            if resource.startswith("closure:")
+        ]
+        assert len(listed) == len(set(listed)), case.case_id
+
+
 @pytest.mark.parametrize("split", list(Split))
 def test_every_case_carries_resources_and_a_rubric(suites, split) -> None:
     """`case_from_dict` reads `observable_resources` with `.get`.
