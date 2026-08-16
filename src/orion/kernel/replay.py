@@ -41,6 +41,7 @@ from .authorization import (
     AuthorizationSignatureStatus,
     AuthorizationVerdict,
     TransitionAuthorization,
+    restore_transition_authorization,
     verify_authorization_signature,
 )
 from .store import EntryKind, LedgerEntry, LedgerStore, LegacyLedgerRequiresMigration
@@ -293,17 +294,17 @@ def _decision(raw: Mapping[str, Any]) -> AuthorizationDecision:
 def _authorization(raw: Mapping[str, Any] | None) -> TransitionAuthorization | None:
     if raw is None:
         return None
-    return TransitionAuthorization(
-        str(raw["authorization_id"]),
-        str(raw["transition_id"]),
-        str(raw["subject_hash"]),
-        AuthorizationVerdict(str(raw["verdict"])),
-        tuple(str(item) for item in raw["reason_codes"]),
-        _expectation(raw["expectation"]),
-        str(raw["authority_revision"]),
-        str(raw["support_revision"]),
-        str(raw["authorization_key_registration_id"]),
-        str(raw["signature"]),
+    return restore_transition_authorization(
+        authorization_id=str(raw["authorization_id"]),
+        transition_id=str(raw["transition_id"]),
+        subject_hash=str(raw["subject_hash"]),
+        verdict=AuthorizationVerdict(str(raw["verdict"])),
+        reason_codes=tuple(str(item) for item in raw["reason_codes"]),
+        expectation=_expectation(raw["expectation"]),
+        authority_revision=str(raw["authority_revision"]),
+        support_revision=str(raw["support_revision"]),
+        authorization_key_registration_id=str(raw["authorization_key_registration_id"]),
+        signature=str(raw["signature"]),
     )
 
 
