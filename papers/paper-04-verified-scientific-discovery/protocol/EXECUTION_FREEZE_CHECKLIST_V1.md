@@ -1,78 +1,87 @@
 # Execution Freeze Checklist — ORION-P4 (V1)
 
 **Protocol:** P4.protected-authority.v1  
-**Status:** DESIGN_FROZEN → EXECUTION_FROZEN  
-**Promotion criteria:** All 12 items below must be verified and signed off by the independent host.
+**Status:** `EXECUTION_FROZEN` / launch blocked pending exact-main attestation  
+**Promotion criteria:** all 12 items below must be evidenced before the publication-authorizing candidate run starts.
 
 ## Pre-freeze verification
 
-- [ ] **1. Subject revision recorded**
-  - Record the exact 40-char SHA commit hash of the subject (candidate system) under test.
-  - The revision must be the same across all evaluation runs.
-  - No code changes after the freeze timestamp.
+- [x] **1. Subject revision recorded**
+  - Git commit: `46977ea104162c4cf64da8138a4c4759065fe6d4`.
+  - deterministic subject archive SHA-256: `4605bfd7d658018a2759ab43d7dd444ab74200adb8f98a8de485677bd09d98c5`.
+  - this is the only subject accepted by the frozen campaign.
 
-- [ ] **2. Dataset content hashes captured**
-  - `dataset_revisions.public_claim_evidence`: Release tag or content hash (SHA-256) of the public claim–evidence corpus.
-  - `dataset_revisions.protected_attack_set`: Content hash of the full attack manifest JSONL.
-  - `dataset_revisions.clean_positive_set`: Content hash of the clean positive evaluation set.
+- [x] **2. Dataset content hashes captured**
+  - public claim/evidence: `3ac0bdff2c79a56e82148ffee8478ea3320f8ed0013852ea964a8b1218a87d37`.
+  - protected attack set: `66d19d6e4b2756393e6a39539a388a8f312448538b180fd789c7dbd6a882c1eb`.
+  - clean-positive set: `6e3f56806e69e1ea0878d133601b0cb83b61ed8cd92954f3d1476c5523ea828d`.
+  - protected holdout set: `98ca603f002e4f8e7a34f1c514e1ecfc6722f51363a40ba86c6e81a40dc36c0a`.
+  - exact source snapshot: `1ba3008bb055565ea5818833c8fe1d65dca0ebb4e454c5a06f98d35025eb8cd8`.
 
-- [ ] **3. Baseline configuration hashes captured**
-  - SHA-256 per baseline configuration (config file or serialised parameters).
-  - Each baseline must be pinned to a specific revision.
+- [x] **3. Baseline configuration hashes captured**
+  - complete nine-system baseline config SHA-256: `85871602539250e2a749f451439e978c34de9300c4c17370a29a5010d3d422fb`.
+  - the exact six `AuthorityBenchmarkPanel.v1` baseline IDs plus citation-format, pooled-support and auditability comparators are frozen in that config.
 
-- [ ] **4. Evaluator/guard artifact hashed**
-  - SHA-256 of the evaluator or guard artifact (binary, container image, or script).
-  - The evaluator identity must match the registered identity in the custody policy.
+- [x] **4. Evaluator/guard artifact hashed**
+  - canonical executable-harness bundle SHA-256: `2182da8c4bdccac6d344d51359db05914b6c12c1743d8b2daf8bb7777e514253`.
+  - the bundle binds generator, production candidate adapter, baseline runner, protected evaluator, independent reproducer and baseline config.
 
-- [ ] **5. Model provider revisions frozen**
-  - Record the exact provider/model/version mapping for every LLM call in the evaluation.
-  - If provider APIs are versioned, record the API version.
+- [x] **5. Model provider revisions frozen**
+  - mapping: `deterministic/no-LLM`.
+  - no provider API/model drift is possible inside this campaign.
 
-- [ ] **6. Split hashes computed**
-  - Per-split content hash (SHA-256) for every data partition: train, validation, test, holdout, hostile.
+- [x] **6. Split hashes computed**
+  - complete public/protected/holdout split SHA-256: `77bfdd211093a99f419d4e5f027d516f8cf399b97e8507b473605917f2b370d5`.
+  - allocation: 30 public clean; 120 post-run public hostile; 120 protected hostile; 150 protected holdout.
 
-- [ ] **7. Evaluation epoch frozen**
-  - ISO 8601 timestamp marking the start of the evaluation epoch.
-  - No evaluation runs outside this epoch are accepted.
+- [x] **7. Evaluation epoch frozen**
+  - `2026-08-16T19:15:50Z`.
 
 ## Run manifest preparation
 
-- [ ] **8. Attack manifest generated**
-  - ≥385 cases across ≥13 attack families (see `ATTACK_CASE_SCHEMA_V1.json`).
-  - All required fields populated: `case_id`, `attack_family`, `candidate_visible`, `protected_gold`, `evidence_objects`, `expected_authority_terminal`, `custody_class`.
-  - `attack_label_visible_to_candidate`: `false` for all cases.
+- [x] **8. Attack manifest generated**
+  - independent host generated **420** cases across all **13** frozen families after method/harness preflight.
+  - 60 clean positives and 30 cases for each of the 12 hostile families.
+  - each protected case is individually content-addressed.
+  - `attack_label_visible_to_candidate=false` for every case.
+  - mechanical-gold cases: 420; ambiguous cases: 0.
 
-- [ ] **9. Gold labels stored in protected host custody**
-  - Attack gold labels are stored by the independent host.
-  - The candidate system never has access to gold labels during evaluation.
-  - Custody transfer is logged and auditable.
+- [x] **9. Gold labels stored in protected host custody**
+  - independent host run `31967050382`, job `95213700118`.
+  - candidate-visible artifact ID: `9268766640`.
+  - protected artifact ID: `9268766928`.
+  - candidate handoff contains exactly `case_id` + `candidate_visible`; host validation proves protected gold/family/custody/expected-terminal fields are absent.
+  - the written human-adjudication rubric was not triggered because the host generated zero ambiguous cases; no human adjudication is claimed for mechanical gold.
 
-- [ ] **10. Run manifest created**
-  - `RUN_MANIFEST_SCHEMA_V1.json` describes the evaluation run structure.
-  - All runs are parameterised by the frozen bindings.
+- [x] **10. Run manifest created**
+  - run-manifest SHA-256: `dea867f8de7f5e10699ce69a0bf91b2361cf2d9b056d2ff3a511d9018eb9fdb8`.
+  - candidate manifest SHA-256: `8727b959493de2f7c1a9e7bde32af7b629ce2136214e6b41b497562926633b83`.
+  - secret-seed commitment: `01ba803a3a22a0c17494b044cd0310efb944a5033ed4756c8f4891f0b1a01388`; seed itself is not public.
 
 ## Freeze commitment
 
-- [ ] **11. Execution bindings recorded in PROTOCOL_V1.json**
-  - Update `execution_bindings` block in `PROTOCOL_V1.json` with all captured hashes, revisions, and timestamps.
-  - Every field must transition from `UNBOUND` to a concrete value.
+- [x] **11. Execution bindings recorded in `PROTOCOL_V1.json`**
+  - all former `UNBOUND` execution fields now carry the exact values above.
+  - protocol status is `EXECUTION_FROZEN`.
+  - `outcome_accessed` remains `false`.
 
-- [ ] **12. Protocol status promoted to EXECUTION_FROZEN**
-  - Set `protocol_status = "EXECUTION_FROZEN"` in `PROTOCOL_V1.json`.
-  - Commit the frozen protocol artifact to a signed, timestamped commit.
-  - CI passes on the frozen protocol commit.
-  - **No outcome inspection before this commit.**
+- [ ] **12. Signed/timestamped `main` freeze commit + green exact-commit CI**
+  - the freeze PR must merge to `main` as a GitHub-verified commit.
+  - CI must pass on that exact `main` commit.
+  - the campaign launch marker is intentionally absent from this freeze change, so no candidate run can start before this final attestation.
+  - after merge + green CI, a separate launch change records the merge SHA/CI run, checks this box, and only then adds the launch marker.
 
-## Sign-off
+## Sign-off / custody identities
 
-| Role | Name | Date | Signature |
+| Role | Identity | Date | Signature / attestation |
 |---|---|---|---|
-| Protocol author | | | |
-| Independent host | | | |
-| Reviewer | | | |
+| Protocol author | repository protocol V1 | 2026-08-16 | prospective design already frozen; execution-binding commit pending merge |
+| Independent host | GitHub Actions run `31967050382`, job `95213700118`, worker `ee35bbd4-db17-4dc9-af28-15403a9ebb8b` | 2026-08-16T19:15:50Z | content-addressed host artifacts and SHA-256 commitments recorded above |
+| Reviewer | exact-main CI / merge attestation | pending | item 12 intentionally open until verified main commit exists |
 
 ## Post-freeze conditions
 
-- Outcomes must not be inspected before the `EXECUTION_FROZEN` commit is created.
-- Any change to the frozen bindings requires a new protocol version (V2).
+- No result/outcome inspection is permitted before item 12 is complete.
+- Any change to subject, hidden set, baseline config, executable harness bundle, split or epoch voids this freeze and requires a fresh hidden split.
+- If a protected run reveals a subject defect, preserve the failed run; any repaired subject must be evaluated under a new subject binding and newly generated hidden split.
 - If any invalidating condition from `FREEZE_MANIFEST_V1.md` §6 is triggered, the run is void.
