@@ -1,0 +1,185 @@
+\section{Methods}
+\label{sec:methods}
+
+This section is written before the final runs and is fixed at execution freeze.
+Every quantity named here is bound in a machine-readable artifact rather than in
+prose: the design freeze in \texttt{protocol/PROTOCOL\_V1.json}, the measurement
+and statistical rules in \texttt{protocol/MEASUREMENT\_PLAN\_V1.md} and
+\texttt{protocol/STATISTICAL\_PLAN\_V1.json}, the external-artifact states in
+\texttt{protocol/EXTERNAL\_ACCESS\_AUDIT\_V1.json}, and the frozen offline world
+in \texttt{protocol/OFFLINE\_GOLD\_WORLD\_V1.md}. Where this prose and those
+artifacts could ever disagree, the artifacts govern.
+
+\subsection{Prospective discipline}
+The protocol is registered as \texttt{P2.open-world-discovery.v1}. It moves from
+\texttt{DESIGN\_FROZEN} to \texttt{EXECUTION\_FROZEN} only when every execution
+identity is bound --- subject revision, dataset and split hashes, provider and
+model revisions, baseline configuration hashes, evaluator hash and evaluation
+epoch --- and that transition is committed before any final outcome is
+inspected. Implementation of the systems under test, of the analysis pipeline
+and of every figure generator was completed while the protocol was still
+outcome-blind, so no constant in this paper was chosen by looking at a result.
+A change to any hypothesis, task family, baseline, ablation, metric, exclusion
+rule, statistical rule, margin or evaluator after outcome access creates a new
+protocol version and leaves this one immutable.
+
+\subsection{Evaluation environments}
+Three environments are used because no single one supplies both a complete
+denominator and open-world realism.
+
+\paragraph{Offline complete-gold controlled index.}
+Recall is only a measurable quantity where the relevant set can be enumerated.
+On the open web it cannot: ``we found forty'' is indistinguishable from ``forty
+of forty-one'' and from ``forty of four hundred''. The controlled index is
+therefore synthetic and self-generated. Each topic declares required concepts
+and a document is relevant if and only if it carries all of them, so the gold
+set is a materialised cache of a rule applied to the corpus rather than a
+hand-authored list; the test suite recomputes it over every document in both
+directions instead of spot-checking. Discoverability is deliberately
+heterogeneous: some relevant works are reachable only lexically, some only
+through a paraphrase whose keys share no token with the lexical keys, some only
+by citation chaining from a document the system already holds, some only after
+reformulation, and some sit behind a provider that dies mid-run. No single route
+reaches the whole gold set at any budget. Two routes share one backend with
+different query derivations --- the nominally-distinct-but-dependent pair that
+H2 needs --- while others hit distinct backends and can earn independence.
+Identity is separated three ways: a work, a republication that shares content
+identity at a different locator, and a revision that shares identity with a
+changed digest, so that counting locators inflates coverage while rereading a
+revision is legitimate. Case families exercise multi-route coverage, route
+exhaustion, an unavailable route, an extraction-question shift and duplicate
+identity under a tightened read budget. Budgets are set below the cost of
+exhaustive probing, so allocation and stopping are what vary. The suite is
+frozen by content hash and regenerable from its seed; its task count, hashes and
+the achieved precision tier are reported in Table~P2-1.
+
+\paragraph{External benchmark tasks.}
+AutoResearchBench supplies specific-target (Deep) and open-set (Wide) discovery
+tasks \cite{autoresearchbench2026}. Its Wide evaluator scores set
+intersection-over-union over normalised arXiv identifiers and is fully
+deterministic, requiring no credentials; our systems are scored by that official
+function, vendored verbatim under its Apache-2.0 licence so the comparison is to
+the published metric rather than to a reimplementation. One upstream component,
+the sampled \texttt{max\_iou\_at\_k} family, draws without a seed and is
+therefore not reproducible from a pinned code hash; it is reported only as a
+declared-noisy secondary, and the exact quantities (mean IoU, recall, precision)
+carry the primary. Deep scoring in its official form uses a language-model judge
+for title matching; where no judge is available we report the deterministic
+identifier-match variant and label it as a declared deviation rather than as the
+official metric. SAGE supplies twelve hundred expert-curated retrieval queries with ground truth:
+six hundred short-form tasks that name one target paper, and six hundred
+open-ended tasks with a two-tier graded gold set \cite{sage2026}. We run its
+queries but cannot reproduce its setting, and the distinction matters in three
+ways that are carried explicitly rather than smoothed over. Its two-hundred
+thousand paper retrieval corpus is not published, so the tasks are run
+open-world rather than against the authors' index. No evaluator ships with the
+benchmark and the open-ended tier weights are not stated, so short-form exact
+match is computed on a declared title normalisation and the open-ended weighted
+recall uses weights we declare; neither is presented as the official metric. Its
+gold set is public plaintext, so search-time contamination is measured rather
+than assumed away. MetaSyn's separation of retrieval recall from eligibility
+recall is adopted as a measurement requirement whether or not its judged report
+metrics can be executed \cite{metasyn2026}.
+
+\paragraph{Frozen retrieval snapshots.}
+Running every system live over hundreds of benchmark queries is impossible at
+polite request rates, and it would make the comparison irreproducible even if it
+were affordable. External benchmark tasks are therefore executed in two passes.
+In the first, a candidate pool is fetched once per query from the live
+backends, frozen by content hash, and every system is then run offline against
+that same pool under matched budgets. The pool is built **gold-blind**, from
+query-derived probes only: a pool assembled with knowledge of the answer would
+inflate every recall figure and invalidate the comparison. Because it is
+gold-blind, some gold items are absent from the pool; that fraction is measured
+and reported as pool coverage, and it is the shared ceiling for every system
+rather than a per-system disadvantage. In the second pass a smaller
+pre-declared subsample is run live, end to end, as evidence about open-world
+behaviour.
+
+\paragraph{Live-provider campaign.}
+Open-world behaviour is measured against real scholarly backends. Every request
+and raw response is retained with its timestamp, and provider identities and
+query derivations are frozen in a campaign manifest. Transport failure, empty
+result, rate-limit deferral and backend exhaustion are distinct recorded
+outcomes; none is converted into evidence that nothing further exists. Metrics
+that require a complete denominator are structurally refused in this
+environment: the analysis code raises rather than reporting a recall figure
+whose denominator does not exist.
+
+\subsection{Systems under test}
+Full ORION is compared against six baselines --- lexical BM25 retrieval, a
+distributional retriever, their hybrid, one-pass retrieval-augmented retrieval,
+an agentic single-route searcher, and a protocol-driven systematic-review
+imitation --- and against six ablations of itself, each removing exactly one
+mechanism: the route-independence check, the question-conditioned read ledger,
+the separation of route stop from task closure, the unavailable-route open
+state, content-identity deduplication, and a negative safety ablation that lets
+the coverage diagnostic influence stopping. Ablations share all other code with
+full ORION through one parameterised implementation, so an ablation cannot
+differ in two ways at once. The distributional retriever is lexical, not neural;
+we name it as such because the object under test is route governance, not
+embedding quality. Every system consumes budget only through a host-owned
+session that meters and records each call, so a system cannot win by spending
+more, and budget exhaustion closes the session permanently rather than
+degrading it.
+
+\subsection{Custody}
+A system receives only a public view of the task and a session over a label-free
+index. Nothing it holds carries the relevance rule or the gold set; a hostile
+fixture in the test suite searches for both and finds neither, and every
+mutation it attempts is refused. Route calls, reads and stop decisions are
+recorded host-side as they occur, so a system cannot under-report a route or
+edit its own trace, and a claim about material that was never retrieved is
+recorded as invalid rather than credited.
+
+\subsection{Measurements}
+Metric definitions, their statistical units and --- critically --- their
+denominator-validity conditions are fixed per metric in the measurement plan.
+Paper-level recall and false-negative counts are reported only where the gold
+denominator is complete, signalled per task by an explicit completeness flag;
+where it is not, those metrics are emitted as invalid rather than as numbers.
+Route-stop false positives and negatives, and premature task closure, are
+defined against an oracle the world computes and the candidate cannot see: the
+still-reachable relevant count on a route at the moment it stopped, and the
+count still discoverable within remaining budget at the moment closure was
+declared. Duplicate processing is separated from legitimate reread by the four
+read coordinates of Section~\ref{sec:formalism}. Route overlap, per-route unique
+contribution and marginal gain are computed over content digests after alias
+closure, never over retrieval identifiers.
+
+\subsection{Statistics}
+The statistical unit is the task; repeated stochastic runs nest within
+task and system and never count as additional tasks. Standalone binary rates
+carry Wilson intervals; paired differences use a paired percentile bootstrap
+with ten thousand resamples and a recorded seed, and every comparison reports a
+point estimate, an interval and an absolute effect size. The primary hypothesis
+is tested once in its frozen direction against a superiority margin of $0.03$
+absolute on the family primary, with a safety guard requiring premature task
+closure not to worsen by more than $0.02$, so that a recall gain cannot be
+purchased with a larger closure regression than the gain itself.
+Non-inferiority, where the value proposition is coverage safety at bounded cost,
+uses a tighter margin of $0.01$ and is inadmissible outside matched budgets or
+above a consumed-cost ratio of $1.25$. Secondary families use Holm correction;
+exploratory metrics remain exploratory and cannot be promoted after the fact.
+Sample size is planned with a conservative proportion half-width at
+$p = 0.5$, which also bounds the variance of the $[0,1]$-valued IoU and recall
+measures; a family whose achieved half-width exceeds the superiority margin is
+reported as underpowered with that label attached to its primary result.
+
+\subsection{Failures, exclusions and contamination}
+Candidate-caused failures, malformed outputs, timeouts and abstentions are
+retained as outcomes. Only infrastructure outages may be excluded, under a rule
+declared in advance that applies identically to every system, and every
+exclusion remains visible in the archive. Because the external benchmark's
+questions and gold identifiers are public, live routes are audited for
+search-time exposure to the benchmark's own artifacts, and any contaminated case
+is reported separately rather than allowed to support the headline claim.
+
+\subsection{Decision rule}
+The rule is fixed before outcomes exist. Promotion requires the frozen
+superiority margin to be cleared on a family primary under matched budgets with
+the safety guard intact. Where superiority is absent but coverage safety at
+bounded cost is demonstrated, the non-inferiority rule applies. Where neither
+holds, the declared outcome is to shrink or reframe the paper's claim, not to
+present a null as a success; an underpowered family is reported as such rather
+than resolved by a favourable reading.
