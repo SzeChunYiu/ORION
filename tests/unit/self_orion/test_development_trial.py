@@ -46,7 +46,13 @@ def _case():
     )
 
 
-def _cycle(*, status=SelfDrivingCycleStatus.HOST_PROMOTION_RECOMMENDED):
+def _cycle(
+    context,
+    *,
+    status=SelfDrivingCycleStatus.HOST_PROMOTION_RECOMMENDED,
+    failure_artifact_hash=None,
+):
+    bound_failure = failure_artifact_hash or context.observed_failure_artifact_hash
     assurance = SimpleNamespace(
         receipt_id="assurance:one",
         evaluator_artifact_hash=_digest("evaluator"),
@@ -64,7 +70,16 @@ def _cycle(*, status=SelfDrivingCycleStatus.HOST_PROMOTION_RECOMMENDED):
         artifact_ids=("artifact:candidate",),
     )
     proposal = SimpleNamespace(proposal_id="proposal:one")
+    request = SimpleNamespace(
+        observed_failure_bound=True,
+        development_issue_id=context.development_issue_id,
+        observed_failure_artifact_hash=bound_failure,
+        discriminator_artifact_hash=context.discriminator_artifact_hash,
+        supported_cause_id=context.supported_cause_id,
+        failure_episode_ids=context.failure_episode_ids,
+    )
     control = SimpleNamespace(
+        request=request,
         proposal=proposal,
         execution=execution,
         assurance=assurance,
@@ -73,11 +88,19 @@ def _cycle(*, status=SelfDrivingCycleStatus.HOST_PROMOTION_RECOMMENDED):
         self_merge_authorized=False,
     )
     investigation = SimpleNamespace(
-        mechanic_id="SEARCH.QUERY.v0",
+        mechanic_id=context.mechanic_id,
         problem_id="self-orion:observed-failure",
         evidence_ids=("evidence:diagnosis",),
         residual_ids=("residual:routing",),
         mechanic_episode_ids=("episode:mechanic:one",),
+        development_issue_id=context.development_issue_id,
+        observed_failure_artifact_hash=bound_failure,
+        candidate_cause_ids=context.candidate_cause_ids,
+        supported_cause_id=context.supported_cause_id,
+        discriminator_artifact_hash=context.discriminator_artifact_hash,
+        discriminator_evidence_ids=context.discriminator_evidence_ids,
+        source_failure_episode_ids=context.failure_episode_ids,
+        negative_alternative_ids=context.negative_alternative_ids,
     )
     return SimpleNamespace(
         status=status,
@@ -88,13 +111,18 @@ def _cycle(*, status=SelfDrivingCycleStatus.HOST_PROMOTION_RECOMMENDED):
 
 
 class _Controller:
-    def __init__(self, cycle):
-        self.cycle = cycle
+    def __init__(self, *, failure_artifact_hash=None, status=SelfDrivingCycleStatus.HOST_PROMOTION_RECOMMENDED):
+        self.failure_artifact_hash = failure_artifact_hash
+        self.status = status
         self.calls = []
 
-    def run_cycle(self, *, limit, evaluation_epoch_id, split_id):
-        self.calls.append((limit, evaluation_epoch_id, split_id))
-        return (self.cycle,)
+    def run_observed_failure(self, context, *, evaluation_epoch_id, split_id):
+        self.calls.append((context, evaluation_epoch_id, split_id))
+        return _cycle(
+            context,
+            status=self.status,
+            failure_artifact_hash=self.failure_artifact_hash,
+        )
 
 
 def test_observed_failure_case_requires_competing_hypotheses_and_discriminator():
@@ -120,11 +148,21 @@ def test_observed_failure_case_requires_competing_hypotheses_and_discriminator()
         )
 
 
-def test_shadow_development_trial_records_intervention_and_preserves_nonpromotion():
-    controller = _Controller(_cycle())
-    report = ShadowDevelopmentTrialRunner(controller).run(_case())
+def test_shadow_development_trial_drives_exact_failure_and_preserves_nonpromotion():
+    case = _case()
+    controller = _Controller()
+    report = ShadowDevelopmentTrialRunner(controller).run(case)
 
-    assert controller.calls == [(1, "epoch:frozen", "split:fresh-transfer")]
+    assert len(controller.calls) == 1
+    context, epoch, split = controller.calls[0]
+    assert context.development_issue_id == case.issue.issue_id
+    assert context.observed_failure_artifact_hash == case.observed_failure_artifact_hash
+    assert context.supported_cause_id == case.issue.supported_cause_id
+    assert context.discriminator_artifact_hash == case.discriminator_artifact_hash
+    assert context.failure_episode_ids == case.issue.failure_episode_ids
+    assert context.negative_alternative_ids == case.negative_alternative_ids
+    assert epoch == "epoch:frozen"
+    assert split == "split:fresh-transfer"
     assert report.process_demonstrated
     assert report.host_promotion_recommended
     assert report.candidate_improved
@@ -134,7 +172,18 @@ def test_shadow_development_trial_records_intervention_and_preserves_nonpromotio
     assert outcome.fresh_transfer
     assert "candidate:failed-a" in outcome.note
     assert "candidate:harmful-b" in outcome.note
+    assert "episode:failure:one" in outcome.episode_ids
     assert len(report.artifact_hash) == 64
+
+
+def test_shadow_development_trial_rejects_same_mechanic_bound_to_wrong_failure():
+    case = _case()
+    report = ShadowDevelopmentTrialRunner(
+        _Controller(failure_artifact_hash=_digest("different-failure"))
+    ).run(case)
+    assert not report.process_demonstrated
+    assert "development_cycle_failure_artifact_mismatch" in report.blockers
+    assert "development_request_failure_artifact_mismatch" in report.blockers
 
 
 def test_shadow_development_trial_rejects_prebaked_or_unfrozen_discriminator_chronology():
@@ -152,7 +201,7 @@ def test_shadow_development_trial_rejects_prebaked_or_unfrozen_discriminator_chr
         False,
         case.negative_alternative_ids,
     )
-    report = ShadowDevelopmentTrialRunner(_Controller(_cycle())).run(bad)
+    report = ShadowDevelopmentTrialRunner(_Controller()).run(bad)
     assert not report.process_demonstrated
     assert "discriminator_preceded_observed_failure" in report.blockers
     assert "discriminator_not_frozen_before_candidate" in report.blockers
@@ -160,7 +209,7 @@ def test_shadow_development_trial_rejects_prebaked_or_unfrozen_discriminator_chr
 
 def test_research_open_does_not_count_as_consequential_development_cycle():
     report = ShadowDevelopmentTrialRunner(
-        _Controller(_cycle(status=SelfDrivingCycleStatus.RESEARCH_OPEN))
+        _Controller(status=SelfDrivingCycleStatus.RESEARCH_OPEN)
     ).run(_case())
     assert not report.process_demonstrated
     assert "development_cycle_stopped_before_candidate_execution" in report.blockers
