@@ -2,7 +2,7 @@
 
 Purpose: the v1 audit recorded the unpublished `deepxiv` paper-search backend as the hard blocker
 for AutoResearchBench *official evaluation*. That was wrong. This file records the source checks
-that establish the correction, performed `2026-08-16T18:0xZ` against the pinned tarball of
+that establish the correction, performed `2026-08-16T18:07:00Z` against the pinned tarball of
 `CherYou/AutoResearchBench@a46c9bfb8968786f73f0a6a5b365b5384cd0f96d` (tree
 `8181218bf3da4b8be9a88a61ccd4c03d20760820`) and the locally decrypted bundle
 (sha256 `db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6`).
