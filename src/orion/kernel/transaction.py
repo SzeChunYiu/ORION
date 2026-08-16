@@ -122,6 +122,7 @@ def _authority_state_payload(state: AuthorityState) -> dict[str, Any]:
 
 
 def _support_state_payload(state: SupportState) -> dict[str, Any]:
+    evaluation = state.evaluation
     return {
         "revision": state.revision,
         "status_time": state.status_time,
@@ -143,10 +144,19 @@ def _support_state_payload(state: SupportState) -> dict[str, Any]:
             for item in state.dependency_history
         ],
         "evaluation": {
-            "verdict": state.evaluation.verdict.value,
-            "live_support_set_ids": list(state.evaluation.live_support_set_ids),
-            "failed_support_set_ids": list(state.evaluation.failed_support_set_ids),
-            "unknown_support_set_ids": list(state.evaluation.unknown_support_set_ids),
+            "verdict": evaluation.verdict.value,
+            "live_support_set_ids": list(evaluation.live_support_set_ids),
+            "invalid_support_set_ids": list(evaluation.invalid_support_set_ids),
+            "reasons": [
+                {
+                    "code": item.code.value,
+                    "support_set_id": item.support_set_id,
+                    "dependency_id": item.dependency_id,
+                    "status": item.status.value if item.status is not None else None,
+                    "message": item.message,
+                }
+                for item in evaluation.reasons
+            ],
         },
     }
 
