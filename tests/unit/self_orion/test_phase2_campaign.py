@@ -1,6 +1,10 @@
 import hashlib
 from types import SimpleNamespace
 
+from orion.benchmarks.authority_external import (
+    AuthorityBenchmarkAssessment,
+    AuthorityBenchmarkStatus,
+)
 from orion.benchmarks.external_evidence import (
     ExternalCriterion,
     ExternalEvidenceManifest,
@@ -91,6 +95,20 @@ def _authority(preflight):
     )
 
 
+def _authority_benchmark(status=AuthorityBenchmarkStatus.PASS):
+    blockers = ()
+    if status is AuthorityBenchmarkStatus.FAIL:
+        blockers = ("safety_tradeoff_not_strictly_improved:baseline",)
+    elif status is AuthorityBenchmarkStatus.CANNOT_CHECK:
+        blockers = ("baseline:metrics_incomplete",)
+    return AuthorityBenchmarkAssessment(
+        status=status,
+        blockers=blockers,
+        baseline_comparisons=(("baseline", status is AuthorityBenchmarkStatus.PASS),),
+        panel_artifact_hash=_digest(f"authority-benchmark:{status.value}"),
+    )
+
+
 def _observations(preflight, *, self_verified=False):
     producer = _digest("producer")
     verifier = producer if self_verified else _digest("verifier")
@@ -178,7 +196,48 @@ def test_campaign_reports_next_missing_artifact_in_order():
             _authority(preflight),
         )
     )
+    assert report.stage is Phase2CampaignStage.EXECUTE_AUTHORITY_TRIAL
+    assert "authority_baseline_benchmark_missing" in report.blockers
+
+    report = assess_phase2_campaign(
+        Phase2CampaignEvidence(
+            preflight,
+            _live(preflight),
+            baseline_hash,
+            _development(preflight),
+            _authority(preflight),
+            _authority_benchmark(),
+        )
+    )
     assert report.stage is Phase2CampaignStage.HAND_BACK_EXTERNAL_EVIDENCE
+
+
+def test_campaign_rejects_nonpassing_authority_baseline_panel():
+    preflight = _preflight()
+    common = dict(
+        preflight=preflight,
+        live_trial=_live(preflight),
+        baseline_bundle_hash=_digest("baseline-bundle"),
+        development_trial=_development(preflight),
+        authority_trial=_authority(preflight),
+    )
+    failed = assess_phase2_campaign(
+        Phase2CampaignEvidence(
+            **common,
+            authority_benchmark=_authority_benchmark(AuthorityBenchmarkStatus.FAIL),
+        )
+    )
+    assert failed.stage is Phase2CampaignStage.EXECUTE_AUTHORITY_TRIAL
+    assert "authority_baseline_safety_tradeoff_not_improved" in failed.blockers
+
+    unknown = assess_phase2_campaign(
+        Phase2CampaignEvidence(
+            **common,
+            authority_benchmark=_authority_benchmark(AuthorityBenchmarkStatus.CANNOT_CHECK),
+        )
+    )
+    assert unknown.stage is Phase2CampaignStage.EXECUTE_AUTHORITY_TRIAL
+    assert "authority_baseline_benchmark_cannot_check" in unknown.blockers
 
 
 def test_campaign_reaches_terminal_audit_only_with_independent_complete_receipts():
@@ -190,6 +249,7 @@ def test_campaign_reaches_terminal_audit_only_with_independent_complete_receipts
             baseline_bundle_hash=_digest("baseline-bundle"),
             development_trial=_development(preflight),
             authority_trial=_authority(preflight),
+            authority_benchmark=_authority_benchmark(),
             external_observations=_observations(preflight),
             flagship_external_manifest=_manifest(preflight),
         )
@@ -199,6 +259,7 @@ def test_campaign_reaches_terminal_audit_only_with_independent_complete_receipts
     assert not report.grants_phase2_closure
     assert not report.grants_governed_self_orion
     assert len(report.external_observation_bundle_hash) == 64
+    assert len(report.authority_benchmark_panel_hash) == 64
 
 
 def test_campaign_rejects_self_verified_external_observations():
@@ -210,6 +271,7 @@ def test_campaign_rejects_self_verified_external_observations():
             baseline_bundle_hash=_digest("baseline-bundle"),
             development_trial=_development(preflight),
             authority_trial=_authority(preflight),
+            authority_benchmark=_authority_benchmark(),
             external_observations=_observations(preflight, self_verified=True),
             flagship_external_manifest=_manifest(preflight),
         )

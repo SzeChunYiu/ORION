@@ -5,6 +5,10 @@ import json
 from dataclasses import dataclass
 from enum import Enum
 
+from orion.benchmarks.authority_external import (
+    AuthorityBenchmarkAssessment,
+    AuthorityBenchmarkStatus,
+)
 from orion.benchmarks.external_evidence import ExternalEvidenceManifest
 from orion.self_orion.authority_trial import AuthorityTrialReport
 from orion.self_orion.development_trial import ShadowDevelopmentTrialReport
@@ -139,6 +143,7 @@ class Phase2CampaignEvidence:
     baseline_bundle_hash: str = ""
     development_trial: ShadowDevelopmentTrialReport | None = None
     authority_trial: AuthorityTrialReport | None = None
+    authority_benchmark: AuthorityBenchmarkAssessment | None = None
     external_observations: Phase2ExternalObservationBundle | None = None
     flagship_external_manifest: ExternalEvidenceManifest | None = None
 
@@ -151,6 +156,7 @@ class Phase2CampaignReport:
     live_trial_artifact_hash: str | None
     development_trial_artifact_hash: str | None
     authority_trial_artifact_hash: str | None
+    authority_benchmark_panel_hash: str | None
     external_observation_bundle_hash: str | None
 
     @property
@@ -174,6 +180,7 @@ def _report(
     live: ShadowLiveTrialReport | None = None,
     development: ShadowDevelopmentTrialReport | None = None,
     authority: AuthorityTrialReport | None = None,
+    authority_benchmark: AuthorityBenchmarkAssessment | None = None,
     observations: Phase2ExternalObservationBundle | None = None,
 ) -> Phase2CampaignReport:
     return Phase2CampaignReport(
@@ -183,7 +190,14 @@ def _report(
         live_trial_artifact_hash=live.evidence_artifact_hash if live is not None else None,
         development_trial_artifact_hash=development.artifact_hash if development is not None else None,
         authority_trial_artifact_hash=authority.artifact_hash if authority is not None else None,
-        external_observation_bundle_hash=observations.artifact_hash if observations is not None else None,
+        authority_benchmark_panel_hash=(
+            authority_benchmark.panel_artifact_hash
+            if authority_benchmark is not None
+            else None
+        ),
+        external_observation_bundle_hash=(
+            observations.artifact_hash if observations is not None else None
+        ),
     )
 
 
@@ -295,6 +309,49 @@ def assess_phase2_campaign(evidence: Phase2CampaignEvidence) -> Phase2CampaignRe
             authority=authority,
         )
 
+    authority_benchmark = evidence.authority_benchmark
+    if authority_benchmark is None:
+        return _report(
+            Phase2CampaignStage.EXECUTE_AUTHORITY_TRIAL,
+            ["authority_baseline_benchmark_missing"],
+            packet_fingerprint=packet.fingerprint,
+            live=live,
+            development=development,
+            authority=authority,
+        )
+    if authority_benchmark.status is AuthorityBenchmarkStatus.CANNOT_CHECK:
+        return _report(
+            Phase2CampaignStage.EXECUTE_AUTHORITY_TRIAL,
+            [
+                "authority_baseline_benchmark_cannot_check",
+                *(
+                    f"authority_baseline:{blocker}"
+                    for blocker in authority_benchmark.blockers
+                ),
+            ],
+            packet_fingerprint=packet.fingerprint,
+            live=live,
+            development=development,
+            authority=authority,
+            authority_benchmark=authority_benchmark,
+        )
+    if authority_benchmark.status is AuthorityBenchmarkStatus.FAIL:
+        return _report(
+            Phase2CampaignStage.EXECUTE_AUTHORITY_TRIAL,
+            [
+                "authority_baseline_safety_tradeoff_not_improved",
+                *(
+                    f"authority_baseline:{blocker}"
+                    for blocker in authority_benchmark.blockers
+                ),
+            ],
+            packet_fingerprint=packet.fingerprint,
+            live=live,
+            development=development,
+            authority=authority,
+            authority_benchmark=authority_benchmark,
+        )
+
     observations = evidence.external_observations
     if observations is None:
         return _report(
@@ -304,6 +361,7 @@ def assess_phase2_campaign(evidence: Phase2CampaignEvidence) -> Phase2CampaignRe
             live=live,
             development=development,
             authority=authority,
+            authority_benchmark=authority_benchmark,
         )
     external_blockers: list[str] = []
     if observations.subject_revision_hash != evidence.preflight.subject_revision_hash:
@@ -318,23 +376,39 @@ def assess_phase2_campaign(evidence: Phase2CampaignEvidence) -> Phase2CampaignRe
     for criterion in Phase2CampaignCriterion:
         matches = by_criterion.get(criterion, [])
         if len(matches) != 1:
-            external_blockers.append(f"external_observation_not_uniquely_bound:{criterion.value}")
+            external_blockers.append(
+                f"external_observation_not_uniquely_bound:{criterion.value}"
+            )
             continue
         observation = matches[0]
         if observation.subject_revision_hash != observations.subject_revision_hash:
-            external_blockers.append(f"external_observation_subject_mismatch:{criterion.value}")
+            external_blockers.append(
+                f"external_observation_subject_mismatch:{criterion.value}"
+            )
         if observation.evaluator_artifact_hash != observations.evaluator_artifact_hash:
-            external_blockers.append(f"external_observation_evaluator_mismatch:{criterion.value}")
+            external_blockers.append(
+                f"external_observation_evaluator_mismatch:{criterion.value}"
+            )
         if observation.evaluation_epoch_id != observations.evaluation_epoch_id:
-            external_blockers.append(f"external_observation_epoch_mismatch:{criterion.value}")
+            external_blockers.append(
+                f"external_observation_epoch_mismatch:{criterion.value}"
+            )
         if not observation.independently_verified:
-            external_blockers.append(f"external_observation_self_verified:{criterion.value}")
+            external_blockers.append(
+                f"external_observation_self_verified:{criterion.value}"
+            )
         if not observation.frozen_before_candidate:
-            external_blockers.append(f"external_observation_posthoc:{criterion.value}")
+            external_blockers.append(
+                f"external_observation_posthoc:{criterion.value}"
+            )
         if not observation.fresh_split:
-            external_blockers.append(f"external_observation_nonfresh:{criterion.value}")
+            external_blockers.append(
+                f"external_observation_nonfresh:{criterion.value}"
+            )
         if observation.status is Phase2ExternalObservationStatus.BLOCKING_FAILURE:
-            external_blockers.append(f"external_observation_blocking_failure:{criterion.value}")
+            external_blockers.append(
+                f"external_observation_blocking_failure:{criterion.value}"
+            )
 
     manifest = evidence.flagship_external_manifest
     if manifest is None:
@@ -350,17 +424,29 @@ def assess_phase2_campaign(evidence: Phase2CampaignEvidence) -> Phase2CampaignRe
             external_blockers.append("flagship_manifest_has_no_external_records")
         for record in manifest.records:
             if not record.independently_verified:
-                external_blockers.append(f"flagship_record_self_verified:{record.criterion.value}")
+                external_blockers.append(
+                    f"flagship_record_self_verified:{record.criterion.value}"
+                )
             if not record.frozen_before_candidate:
-                external_blockers.append(f"flagship_record_posthoc:{record.criterion.value}")
+                external_blockers.append(
+                    f"flagship_record_posthoc:{record.criterion.value}"
+                )
             if not record.fresh_split:
-                external_blockers.append(f"flagship_record_nonfresh:{record.criterion.value}")
+                external_blockers.append(
+                    f"flagship_record_nonfresh:{record.criterion.value}"
+                )
             if record.subject_revision_hash != manifest.subject_revision_hash:
-                external_blockers.append(f"flagship_record_subject_mismatch:{record.criterion.value}")
+                external_blockers.append(
+                    f"flagship_record_subject_mismatch:{record.criterion.value}"
+                )
             if record.evaluator_artifact_hash != manifest.evaluator_artifact_hash:
-                external_blockers.append(f"flagship_record_evaluator_mismatch:{record.criterion.value}")
+                external_blockers.append(
+                    f"flagship_record_evaluator_mismatch:{record.criterion.value}"
+                )
             if record.evaluation_epoch_id != manifest.evaluation_epoch_id:
-                external_blockers.append(f"flagship_record_epoch_mismatch:{record.criterion.value}")
+                external_blockers.append(
+                    f"flagship_record_epoch_mismatch:{record.criterion.value}"
+                )
 
     if external_blockers:
         return _report(
@@ -370,6 +456,7 @@ def assess_phase2_campaign(evidence: Phase2CampaignEvidence) -> Phase2CampaignRe
             live=live,
             development=development,
             authority=authority,
+            authority_benchmark=authority_benchmark,
             observations=observations,
         )
 
@@ -380,6 +467,7 @@ def assess_phase2_campaign(evidence: Phase2CampaignEvidence) -> Phase2CampaignRe
         live=live,
         development=development,
         authority=authority,
+        authority_benchmark=authority_benchmark,
         observations=observations,
     )
 
