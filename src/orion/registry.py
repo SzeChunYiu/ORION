@@ -1,7 +1,7 @@
 """Canonical Shadow-ORION registry shared by runtime, tests and paper synchronization."""
 
-FRAMEWORK_VERSION = "0.3.7-shadow"
-PAPER_SYNC_EPOCH = "2026-08-16-external-evidence-derivation-v1"
+FRAMEWORK_VERSION = "0.3.8-shadow"
+PAPER_SYNC_EPOCH = "2026-08-16-rakl-donor-saturation-v2"
 
 CORE_OPERATOR_IDS = (
     "FRAME.v1",
@@ -42,11 +42,13 @@ MECHANICS_SUBSTRATE_IDS = (
     "MetaOverfitVerdict.v1",
     "RaklTransferProfile.v1",
     "RaklAnswerTransfer.v1",
+    "RaklDonorAudit.v1",
+    "DonorBeforeInventionGate.v1",
     "SelfOrionDevelopmentDriver.v1",
     "DevelopmentFibre.v1",
     "DevelopmentSaturationVector.v1",
     "DevelopmentNoveltyClassifier.v1",
-    "InventionReadinessGate.v1",
+    "InventionReadinessGate.v2",
     "DevelopmentChangeProposal.v1",
     "FrozenLiveTrialPacket.v1",
     "EvolutionArchive.v1",
