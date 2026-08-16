@@ -1,0 +1,58 @@
+name: diagnose-protected-transition
+
+on:
+  pull_request:
+    paths:
+      - 'src/orion/kernel/**'
+      - 'tests/unit/kernel/**'
+      - '.github/workflows/diagnose-protected-transition.yml'
+
+jobs:
+  reducer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install -e '.[dev]'
+      - run: pytest -q tests/unit/kernel/test_transition_reducer.py
+  appraisal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install -e '.[dev]'
+      - run: pytest -q tests/unit/kernel/test_verifier_appraisal.py
+  authority-state:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install -e '.[dev]'
+      - run: pytest -q tests/unit/kernel/test_authority_state.py
+  authorization:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install -e '.[dev]'
+      - run: pytest -q tests/unit/kernel/test_transition_authorization.py tests/unit/kernel/test_authority_choke_point.py
+  existing-kernel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install -e '.[dev]'
+      - run: pytest -q tests/unit/kernel --ignore=tests/unit/kernel/test_transition_reducer.py --ignore=tests/unit/kernel/test_verifier_appraisal.py --ignore=tests/unit/kernel/test_authority_state.py --ignore=tests/unit/kernel/test_transition_authorization.py --ignore=tests/unit/kernel/test_authority_choke_point.py
+  rest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install -e '.[dev]'
+      - run: pytest -q --ignore=tests/unit/kernel

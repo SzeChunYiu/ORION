@@ -1,0 +1,102 @@
+name: phase1-surgical-patch-integration
+
+on:
+  push:
+    branches:
+      - agent/phase1-lifecycle-integration
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: ${{ !contains(github.event.head_commit.message, '[phase1-auto-patch]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/phase1-lifecycle-integration
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply exact protected-identity and evidence-classification patches
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          # 1) Protected state identity extends the frozen legacy projection with
+          # typed metric semantics without rewriting the historical V1 profile.
+          for name in (
+              'src/orion/kernel/transition_reducer.py',
+              'src/orion/kernel/protected_flow.py',
+              'src/orion/kernel/replay.py',
+          ):
+              path = Path(name)
+              text = path.read_text()
+              if 'from .protected_identity import protected_projection_hash' not in text:
+                  marker = 'from .transition import ('
+                  text = text.replace(marker, 'from .protected_identity import protected_projection_hash\n' + marker)
+              text = text.replace('projection_hash(', 'protected_projection_hash(')
+              text = text.replace('    projection_hash,\n', '')
+              path.write_text(text)
+
+          # 2) Parent-path no-follow failures distinguish an unreadable directory
+          # from a symlink/non-directory. This resolves the outstanding PR #74
+          # review finding without weakening fail-closed capture.
+          path = Path('src/orion/kernel/evidence.py')
+          text = path.read_text()
+          helper = '''\n\ndef _classify_open_error_for_role(\n    error: OSError,\n    directory_fd: int,\n    component: str,\n    *,\n    require_directory: bool,\n) -> EvidenceStatus:\n    \"\"\"Classify an open failure against the role expected of the component.\"\"\"\n\n    if not require_directory:\n        return _classify_open_error(error, directory_fd, component)\n    if error.errno in {errno.ENOENT, errno.ELOOP}:\n        return _classify_open_error(error, directory_fd, component)\n    import stat as _stat\n\n    try:\n        current = os.stat(\n            component, dir_fd=directory_fd, follow_symlinks=False\n        )\n    except OSError:\n        return _classify_open_error(error, directory_fd, component)\n    if _stat.S_ISLNK(current.st_mode):\n        return EvidenceStatus.SYMLINK_DISALLOWED\n    if not _stat.S_ISDIR(current.st_mode):\n        return EvidenceStatus.NON_REGULAR_FILE\n    return EvidenceStatus.UNREADABLE_ARTIFACT\n'''
+          if 'def _classify_open_error_for_role(' not in text:
+              marker = '\ndef _capture_local_file('
+              if marker not in text:
+                  raise SystemExit('capture marker not found')
+              text = text.replace(marker, helper + marker, 1)
+
+          text = text.replace(
+              '    failure_component = parts[-1]\n    try:',
+              '    failure_component = parts[-1]\n    failure_component_must_be_directory = False\n    try:',
+              1,
+          )
+          text = text.replace(
+              '        for component in parts[:-1]:\n            failure_component = component\n',
+              '        for component in parts[:-1]:\n            failure_component = component\n            failure_component_must_be_directory = True\n',
+              1,
+          )
+          text = text.replace(
+              '        failure_component = parts[-1]\n        pre_open = os.stat(',
+              '        failure_component = parts[-1]\n        failure_component_must_be_directory = False\n        pre_open = os.stat(',
+              1,
+          )
+          old = 'status = _classify_open_error(error, directory_fd, failure_component)'
+          new = '''status = _classify_open_error_for_role(\n            error,\n            directory_fd,\n            failure_component,\n            require_directory=failure_component_must_be_directory,\n        )'''
+          if old not in text and '_classify_open_error_for_role(' not in text[text.find('except OSError'):]:
+              raise SystemExit('classification call not found')
+          text = text.replace(old, new, 1)
+          path.write_text(text)
+          PY
+      - name: Verify surgical regressions
+        run: |
+          python -m pip install -e '.[dev]'
+          python -m pip install ruff
+          pytest -q \
+            tests/unit/kernel/test_transition_reducer.py \
+            tests/unit/kernel/test_evidence_open_error_classification.py \
+            tests/unit/kernel/test_evidence_snapshot.py
+          ruff check \
+            src/orion/kernel/protected_identity.py \
+            src/orion/kernel/transition_reducer.py \
+            src/orion/kernel/protected_flow.py \
+            src/orion/kernel/replay.py \
+            src/orion/kernel/evidence.py \
+            tests/unit/kernel/test_evidence_open_error_classification.py
+      - name: Commit branch-only patch
+        run: |
+          if git diff --quiet; then
+            exit 0
+          fi
+          git config user.name 'ORION Phase1 Patch Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add src/orion/kernel tests/unit/kernel
+          git commit -m 'fix(kernel): bind protected metrics and classify parent open failures [phase1-auto-patch]'
+          git push origin HEAD:agent/phase1-lifecycle-integration
