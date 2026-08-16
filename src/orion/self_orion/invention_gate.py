@@ -3,6 +3,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum
 
+from orion.self_orion.rakl_donor_gate import (
+    RaklDonorAudit,
+    assess_rakl_donor_audit,
+)
 from orion.self_orion.saturation_vector import (
     DevelopmentSaturationAxis,
     DevelopmentSaturationReport,
@@ -25,6 +29,7 @@ class InventionReadinessEvidence:
     method_basis_gap_supported: bool
     ontology_gap_supported: bool
     discriminator_evidence_ids: tuple[str, ...]
+    rakl_donor_audit: RaklDonorAudit | None = None
 
 
 @dataclass(frozen=True)
@@ -48,7 +53,14 @@ def assess_invention_readiness(
     *,
     min_distinct_residual_variations: int = 2,
 ) -> InventionReadinessReport:
-    """Require evidence before escalating a failure into representation/method invention."""
+    """Require evidence before escalating a failure into representation/method invention.
+
+    Clean-generation invention is a last resort. In addition to the existing
+    failure-attribution and saturation requirements, the target must carry a
+    target-specific, pinned RAKL donor audit. If RAKL already contains an exact
+    or reconstructable surviving donor, invention is blocked and the donor is
+    the required next action.
+    """
 
     if min_distinct_residual_variations < 1:
         raise ValueError("minimum residual variations must be positive")
@@ -71,6 +83,23 @@ def assess_invention_readiness(
         reasons.append("cross_domain_transfer_search_not_bounded_flat")
     if not evidence.discriminator_evidence_ids:
         reasons.append("discriminator_evidence_missing")
+
+    if evidence.rakl_donor_audit is None:
+        reasons.append("rakl_donor_audit_missing")
+    else:
+        donor_report = assess_rakl_donor_audit(evidence.rakl_donor_audit)
+        if not donor_report.admissible:
+            reasons.extend(
+                "rakl_donor_audit_inadmissible:" + reason
+                for reason in donor_report.reasons
+                if not reason.startswith("rakl_surviving_donor_available:")
+            )
+        if donor_report.invention_preempted_by_reuse:
+            reasons.append(
+                "rakl_surviving_donor_available:"
+                + ",".join(donor_report.reusable_donor_ids)
+            )
+
     supported_targets = sum(
         (
             evidence.representation_gap_supported,
@@ -95,7 +124,7 @@ def assess_invention_readiness(
         True,
         target,
         (
-            "relevant axes are bounded-flat, repeated residuals survive distinct variations, ordinary causes are excluded, and discriminator evidence supports one missing-structure class",
+            "relevant axes are bounded-flat, repeated residuals survive distinct variations, ordinary causes are excluded, discriminator evidence supports one missing-structure class, and a pinned RAKL donor audit found no surviving donor that should be reused instead",
         ),
     )
 
