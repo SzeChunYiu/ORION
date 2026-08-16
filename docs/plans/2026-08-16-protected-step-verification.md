@@ -28,12 +28,13 @@ reopen transitions.
 **Starting subject:** `5894ac7814d194b3c60d9655af87ef2d9828d56c`
 
 **Coordination refresh (2026-08-16):** the implementation lane is
-`codex/step-verification-lifecycle` at `670afb6bacd1899ee8e4d62ceb5672a10f8f319d`.
+`codex/step-verification-lifecycle` at `57c37aabc04fd263173d7b5e41e198acb254202f`.
 A fresh fetch observed `origin/main` at
-`8a4612f4ecf96317b86d832fdb847209078f43f6`, with merge base
-`ebb93fddb2931a39fe57c222edce628813a0fd97` and divergence `6 / 270`.
-These Task-3 results are therefore lane-local until hostile review and explicit
-reconciliation; they must not be described as integrated current-main behavior.
+`5bb3585d4595924a86b4841d4e5ddde683498c59`, which is also the merge base;
+divergence is `8 / 0`. Task 3 passed hostile review and the lane is reconciled
+with that current-main snapshot. The results remain lane-local until PR review,
+CI, and an explicit merge to `main`; they must not be described as integrated
+main behavior before then.
 
 **Pinned research:**
 `research/development/autonomous-kernel/knowledge/STEP_VERIFICATION_LITERATURE.md`
