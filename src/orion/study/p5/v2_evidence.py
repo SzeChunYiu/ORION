@@ -446,9 +446,14 @@ def validate_result_archive(
         return {
             "valid": False,
             "errors": ["run manifest invalid: " + error for error in errors],
+            "run_manifest_hash": None,
+            "record_count": 0,
+            "candidate_count": 0,
+            "decision_counts": {},
             "candidate_verdicts": {},
             "false_acceptance_count": 0,
             "fresh_harm_count": 0,
+            "empirical_authority": "CANNOT_CHECK",
         }
 
     manifest_hash = content_digest(manifest)
@@ -610,6 +615,14 @@ def validate_result_archive(
                 or value < 0
             ):
                 errors.append(f"{prefix}.cost.{cost_key} must be non-negative")
+        wallclock = cost.get("wallclock_seconds")
+        safe_wallclock = (
+            float(wallclock)
+            if isinstance(wallclock, (int, float))
+            and not isinstance(wallclock, bool)
+            and wallclock >= 0
+            else 0.0
+        )
 
         metrics = record.get("metrics")
         if not isinstance(metrics, dict):
@@ -645,9 +658,7 @@ def validate_result_archive(
             stage=stage,
             verdict=verdict,
             score_delta=float(score_delta),
-            cost=float(cost.get("wallclock_seconds", 0.0))
-            if isinstance(cost.get("wallclock_seconds"), (int, float))
-            else 0.0,
+            cost=safe_wallclock,
             harmful=harmful,
         )
         task_family = record.get("task_family")
