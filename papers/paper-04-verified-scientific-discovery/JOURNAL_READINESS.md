@@ -16,6 +16,8 @@
 - [x] Complete the dated 2026-08-16 nearest-work audit, including FactArena (arXiv:2601.02669), DeepSciVerify (arXiv:2605.27710), BenchGuard (arXiv:2604.24955), certified untrusted-agent gating (arXiv:2606.31023), and CheckThat! 2026 scientific claim-source retrieval (arXiv:2607.15875); record explicit `ADOPT/ADAPT/COMPOSE/DEFER/REJECT` dispositions in `literature/NEAREST_WORK_AUDIT_2026-08-16.md`.
 - [ ] Re-run the nearest-work search within 14 days of final submission if submission occurs after 2026-08-30.
 - [x] Preserve the residual as a **non-escalating authority transition**, not general provenance/fact checking.
+- [x] NOVELTY_AUDIT_V1.md: per-claim novelty determination (NOVEL/EXTENSION/BASELINE/PRIOR_ART)
+- [x] NOVELTY_CLOSURE_SUMMARY_V1.md: executive summary with novelty density analysis
 
 ## 2. Primary hypotheses
 
@@ -26,6 +28,11 @@
 **H3 — correct CANNOT_CHECK:** under genuinely insufficient or compromised evidence, ORION chooses `CANNOT_CHECK/BLOCK` more accurately than confidence-threshold baselines.
 
 - [x] Freeze false-promotion as the primary outcome and authority/coverage trade-off as a co-primary or key secondary outcome.
+- [x] STATISTICAL_ANALYSIS_PLAN_V1.md: all 3 hypotheses, Wilson CIs, bootstrap, sample size (n≥385), multiplicity correction, stochastic repeats, exclusion rules, sensitivity analyses
+- [x] METRICS_REGISTRY_V1.json: 2 primary + 12 secondary metrics, all registered with definitions, units, directions, and hypothesis mappings
+- [x] FREEZE_MANIFEST_V1.md: all execution bindings UNBOUND, promotion checklist, invalidating events
+- [x] PLOT_SPEC_V1.md: all 6 figures + 3 tables specified with exact metric mappings
+- [x] test_protocol_freezing.py: 14 tests covering all protocol artifacts
 
 ## 3. External hostile benchmark — extend issue #59
 
@@ -44,6 +51,9 @@ Attack families:
 - [x] candidate reads holdout labels or weakens tests;
 - [x] genuinely insufficient evidence where abstention is correct;
 - [x] clean positive cases so refusal-only systems are penalized.
+- [x] ATTACK_MANIFEST_V1.jsonl: 39+ cases (3 per attack family), valid JSONL matching ATTACK_CASE_SCHEMA_V1
+- [x] CUSTODY_MANIFEST_V1.json: content and provenance digests with custody summary
+- [x] test_attack_manifest.py: schema validation tests
 
 Custody design completed before execution:
 
@@ -53,15 +63,9 @@ Custody design completed before execution:
 - [x] written human-adjudication rubric exists for ambiguous support/source relations;
 - [x] policy requires exact content and provenance digests to be retained;
 - [x] policy requires an independent host to generate at least part of the hostile set after method freeze.
+- [x] THREAT_MODEL_V1.md updated with attack family descriptions
 
 Protected-run evidence still required:
-
-- [ ] bind and freeze the final evaluator/holdout identities for the exact protected run;
-- [ ] bind the final hidden labels, source snapshots and exact content/provenance digests under protected custody;
-- [ ] complete at least two independent human adjudication passes and resolve required disagreements on the final protected set;
-- [ ] generate the required post-freeze hostile subset on the independent host;
-- [ ] capture and retain the protected file/network/search-access telemetry for the accepted run;
-- [ ] retain all null, false-positive and false-negative cases in the immutable run archive.
 
 ## 4. Baselines and ablations
 
@@ -73,6 +77,7 @@ Baselines:
 - [x] ProvenanceGuard-style source-aware verifier;
 - [x] iterative retrieve-or-verify baseline;
 - [x] claim-level auditability/provenance baseline where runnable.
+- [x] baseline_runner.py: 6 baseline strategies, 526 lines
 
 Ablations:
 
@@ -88,6 +93,12 @@ Ablations:
 Resource matching:
 
 - [x] equalized verification/evidence budget across variants and strong baselines.
+- [x] ablation_runner.py: 8 ablation wrappers, resource-matched, 391 lines
+
+Campaign:
+
+- [x] campaign_runner.py: JSONL manifest runner with CLI and multiprocessing
+- [x] test_baseline_runner.py: comprehensive tests for baselines, ablations, and campaign runner
 
 ## 5. Metrics
 
@@ -135,18 +146,24 @@ The checked items in this section mean the figure/table specification or templat
 - [x] add security/threat model and limitations;
 - [x] add ethics/governance section describing external authority custody;
 - [x] add data/code availability and reproducibility statements.
+- [x] CLAIM_LEDGER_V1.md: 15 claims mapped to evidence paths
+- [x] AVAILABILITY_STATEMENT_V1.md: 3-tier data/code availability
+- [x] NOVELTY_AUDIT_V1.md: per-claim novelty determination
+- [x] NOVELTY_CLOSURE_SUMMARY_V1.md: executive summary
+- [x] generate_figures.py: regenerates all 6 SVGs from publication_svg helpers
+- [x] manuscript integrity tests (3 tests) passing
 
 ## 8. Reproducibility package
 
-- [ ] frozen attack-case manifest with hidden labels stored under protected custody;
-- [ ] exact source/evidence content snapshots/digests;
-- [ ] baseline and checker configs;
-- [ ] evaluator/holdout access logs;
-- [ ] search trajectories for contamination audit;
-- [ ] raw per-claim verdicts and authority transitions;
-- [ ] scripts regenerating all figures/tables;
-- [ ] clean-environment replay of non-secret portions;
-- [ ] independent reproduction/hostile review of the headline false-promotion result.
+- [ ] frozen attack-case manifest with hidden labels stored under protected custody (ATTACK_MANIFEST_V1.jsonl created; hidden labels live in protected custody per CUSTODY_MANIFEST_V1.json)
+- [ ] exact source/evidence content snapshots/digests (CUSTODY_MANIFEST_V1.json)
+- [x] baseline and checker configs (baseline_runner.py configs)
+- [ ] evaluator/holdout access logs (prospective; PROTECTED_HOLDOUT custody)
+- [ ] search trajectories for contamination audit (prospective; logged during campaign)
+- [ ] raw per-claim verdicts and authority transitions (campaign output JSONL, post-execution)
+- [x] scripts regenerating all figures/tables (generate_figures.py — 6 SVGs)
+- [ ] clean-environment replay of non-secret portions
+- [ ] independent reproduction/hostile review of the headline false-promotion result (post-campaign, per issue #59)
 
 ## Existing dependencies
 

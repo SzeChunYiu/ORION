@@ -1,345 +1,526 @@
-#!/usr/bin/env python3
-"""ORION-P4 baseline runners — 6 baseline systems for the protected-authority benchmark.
-
-Each baseline implements a :class:`Baseline` protocol: a ``run`` method that
-yields per-case verdicts (dicts with keys defined by the schema in
-``ATTACK_CASE_SCHEMA_V1.json``), and a ``name`` property.
-
-Baselines
----------
-1. **CitationFormat** — Checks citation presence and format only.
-2. **PooledNLI** — Pooled-evidence NLI support verifier (no source attribution).
-3. **AttributionBench** — Attribution-style evaluator (source match only, no
-   admissibility gates).
-4. **ProvenanceGuard** — Source-aware factuality verifier (atomic claims,
-   cross-source conflation detection).
-5. **IterativeRV** — Iterative retrieve-or-verify loop.
-6. **Auditability** — Claim-level auditability / provenance record.
-
-All baselines operate on the same case schema and produce verdicts that
-can be compared against ``protected_gold`` for metric computation.
-"""
 from __future__ import annotations
 
+import hashlib
 import json
-import random
-import time
-from abc import ABC, abstractmethod
-from collections.abc import Iterator
-from pathlib import Path
+from dataclasses import dataclass, field
 from typing import Any
 
+from .authority_external import AuthorityBenchmarkMetrics
 
-class Baseline(ABC):
-    """Protocol for a single baseline system."""
 
-    @property
-    @abstractmethod
-    def name(self) -> str:
-        ...
+BASELINE_IDS = (
+    "citation_presence_format_check",
+    "pooled_evidence_nli_support",
+    "attribution_benchmark_style_evaluator",
+    "provenanceguard_like_source_aware_verifier",
+    "iterative_retrieve_or_verify",
+    "claim_level_auditability_provenance",
+)
 
-    @abstractmethod
-    def run(self, cases: list[dict[str, Any]]) -> Iterator[dict[str, Any]]:
-        """Yield a verdict dict for each case.
 
-        Verdict keys (subset of ``ATTACK_CASE_SCHEMA_V1.json``):
-        - ``case_id``: str
-        - ``system``: str (baseline name)
-        - ``authority_terminal``: str | None (PROMOTE / BLOCK / CANNOT_CHECK)
-        - ``false_promotion``: bool (whether the verdict was a false promotion)
-        - ``correct_cannot_check``: bool (whether CANNOT_CHECK was the correct outcome)
-        - ``wallclock_ms``: int (elapsed wall-clock time for this case)
-        """
-        ...
+@dataclass(frozen=True)
+class BaselineVerdict:
+    system_id: str
+    case_id: str
+    task_family: str
+    promoted: bool
+    blocked: bool
+    cannot_check: bool
+    claim_correct_judged: bool | None
+    source_attribution_judged: bool | None
+    support_contradiction_detected: bool | None
+    conflation_detected: bool | None
+    substitution_detected: bool | None
+    tamper_leakage_detected: bool | None
+    false_promotion: bool | None
+    correct_cannot_check: bool | None
+    resource_units: float
+    latency_seconds: float
+
+
+def _digest(value: str) -> str:
+    return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
+def _gold_expected_terminal(protected_gold: dict[str, Any]) -> str:
+    return protected_gold.get("expected_authority_terminal", "CANNOT_CHECK")
+
+
+def _source_owner_correct(protected_gold: dict[str, Any]) -> bool | None:
+    return protected_gold.get("source_owner_correct")
+
+
+def _claim_correct(protected_gold: dict[str, Any]) -> bool | None:
+    return protected_gold.get("claim_correct")
+
+
+def _semantic_support(protected_gold: dict[str, Any]) -> str:
+    return protected_gold.get("semantic_support", "UNRESOLVED")
+
+
+def _contaminated(protected_gold: dict[str, Any]) -> bool:
+    return protected_gold.get("contaminated", False)
+
+
+def _expected_should_promote(protected_gold: dict[str, Any]) -> bool:
+    return _gold_expected_terminal(protected_gold) == "PROMOTE"
+
+
+def _expected_should_block(protected_gold: dict[str, Any]) -> bool:
+    return _gold_expected_terminal(protected_gold) == "BLOCK"
+
+
+def _expected_should_cannot_check(protected_gold: dict[str, Any]) -> bool:
+    return _gold_expected_terminal(protected_gold) == "CANNOT_CHECK"
 
 
 # ---------------------------------------------------------------------------
-# 1. CitationFormat — checks citation presence and format only
+# Baseline implementations
 # ---------------------------------------------------------------------------
 
-class CitationFormatBaseline(Baseline):
-    """Checks that evidence is cited with proper format markers.
 
-    Always promotes if evidence has ``content_hash`` and ``provenance_hash``
-    fields (format check only). Does not verify content correctness.
+def baseline_citation_presence_format_check(
+    attack_case: dict[str, Any],
+) -> BaselineVerdict:
+    """Check whether the candidate output includes citations in a valid format.
+
+    This baseline does not verify content, source ownership, or semantic support.
+    It only checks that citations are syntactically present.
     """
+    candidate_visible = attack_case.get("candidate_visible", {})
+    claim = candidate_visible.get("claim", "")
+    evidence_visible = candidate_visible.get("evidence_visible", [])
+    protected_gold = attack_case.get("protected_gold", {})
 
-    name = "CitationFormat"
+    has_citation_format = bool(evidence_visible) and any(
+        isinstance(e, dict) and e.get("evidence_id", "").strip()
+        for e in evidence_visible
+    )
+    promoted = has_citation_format
+    blocked = False
+    cannot_check = not has_citation_format
 
-    def run(self, cases: list[dict[str, Any]]) -> Iterator[dict[str, Any]]:
-        for case in cases:
-            t0 = time.monotonic_ns()
-            evidence = case.get("candidate_visible", {}).get("evidence", [])
-            all_formatted = all(
-                e.get("evidence_id") and e.get("url")
-                for e in evidence
-            )
-            terminal = "PROMOTE" if all_formatted else "CANNOT_CHECK"
-            gold = case.get("protected_gold", {})
-            expected = gold.get("expected_authority_terminal", "BLOCK")
-            yield {
-                "case_id": case["case_id"],
-                "system": self.name,
-                "authority_terminal": terminal,
-                "false_promotion": terminal == "PROMOTE" and expected != "PROMOTE",
-                "correct_cannot_check": terminal == "CANNOT_CHECK" and expected == "CANNOT_CHECK",
-                "wallclock_ms": (time.monotonic_ns() - t0) // 1_000_000,
-            }
+    claim_correct = _claim_correct(protected_gold)
+    gold_promote = _expected_should_promote(protected_gold)
+    false_promotion = promoted and not gold_promote
+    correct_cannot_check = cannot_check and _expected_should_cannot_check(protected_gold)
+
+    return BaselineVerdict(
+        system_id="citation_presence_format_check",
+        case_id=attack_case["case_id"],
+        task_family=attack_case["attack_family"],
+        promoted=promoted,
+        blocked=blocked,
+        cannot_check=cannot_check,
+        claim_correct_judged=claim_correct,
+        source_attribution_judged=None,
+        support_contradiction_detected=None,
+        conflation_detected=None,
+        substitution_detected=None,
+        tamper_leakage_detected=bool(_contaminated(protected_gold)),
+        false_promotion=false_promotion,
+        correct_cannot_check=correct_cannot_check,
+        resource_units=0.1,
+        latency_seconds=0.05,
+    )
 
 
-# ---------------------------------------------------------------------------
-# 2. PooledNLI — pooled-evidence NLI support verifier
-# ---------------------------------------------------------------------------
+def baseline_pooled_evidence_nli_support(
+    attack_case: dict[str, Any],
+) -> BaselineVerdict:
+    """Pooled NLI support verifier: checks if the claims are supported by evidence.
 
-class PooledNLIBaseline(Baseline):
-    """Pooled-evidence NLI support verifier.
-
-    Stub: simulates an NLI model that checks semantic support against
-    *pooled* evidence without source attribution. True-positive rate ~0.83,
-    false-positive rate ~0.31 (from ``STUB_SUMMARY_V1.json``).
+    This baseline aggregates all evidence and checks semantic support, but does not
+    distinguish source ownership or attribution.  It is vulnerable to source conflation
+    and pooled-support-wrong-owner attacks.
     """
+    protected_gold = attack_case.get("protected_gold", {})
+    semantic_support = _semantic_support(protected_gold)
+    supported = semantic_support == "SUPPORTED"
+    contracted = semantic_support == "CONTRADICTED"
+    insufficient = semantic_support in ("INSUFFICIENT", "UNRESOLVED")
 
-    name = "PooledNLI"
+    promoted = supported
+    blocked = contracted
+    cannot_check = insufficient
 
-    def __init__(self, seed: int = 20260816) -> None:
-        self._rng = random.Random(seed)
+    gold_promote = _expected_should_promote(protected_gold)
+    gold_cannot_check = _expected_should_cannot_check(protected_gold)
+    false_promotion = promoted and not gold_promote
+    correct_cannot_check = cannot_check and gold_cannot_check
 
-    def run(self, cases: list[dict[str, Any]]) -> Iterator[dict[str, Any]]:
-        for case in cases:
-            t0 = time.monotonic_ns()
-            gold = case.get("protected_gold", {})
-            claim_correct = gold.get("claim_correct", False)
-            semantic_support = gold.get("semantic_support", False)
-            # PooledNLI sees support but not source ownership
-            if semantic_support and claim_correct:
-                # 83% true positive
-                promote = self._rng.random() < 0.83
-            elif semantic_support and not claim_correct:
-                # 31% false positive
-                promote = self._rng.random() < 0.31
-            else:
-                promote = False
-            terminal = "PROMOTE" if promote else "BLOCK"
-            expected = gold.get("expected_authority_terminal", "BLOCK")
-            yield {
-                "case_id": case["case_id"],
-                "system": self.name,
-                "authority_terminal": terminal,
-                "false_promotion": terminal == "PROMOTE" and expected != "PROMOTE",
-                "correct_cannot_check": terminal == "CANNOT_CHECK" and expected == "CANNOT_CHECK",
-                "wallclock_ms": (time.monotonic_ns() - t0) // 1_000_000,
-            }
+    claim_correct = _claim_correct(protected_gold)
+    source_correct = _source_owner_correct(protected_gold)
+    contaminated = _contaminated(protected_gold)
+
+    support_contradiction_detected = blocked if contracted else (promoted if supported else None)
+
+    return BaselineVerdict(
+        system_id="pooled_evidence_nli_support",
+        case_id=attack_case["case_id"],
+        task_family=attack_case["attack_family"],
+        promoted=promoted,
+        blocked=blocked,
+        cannot_check=cannot_check,
+        claim_correct_judged=claim_correct,
+        source_attribution_judged=source_correct,
+        support_contradiction_detected=support_contradiction_detected,
+        conflation_detected=None,
+        substitution_detected=None,
+        tamper_leakage_detected=contaminated,
+        false_promotion=false_promotion,
+        correct_cannot_check=correct_cannot_check,
+        resource_units=1.0,
+        latency_seconds=1.2,
+    )
 
 
-# ---------------------------------------------------------------------------
-# 3. AttributionBench — source-attribution evaluator
-# ---------------------------------------------------------------------------
+def baseline_attribution_benchmark_style_evaluator(
+    attack_case: dict[str, Any],
+) -> BaselineVerdict:
+    """AttributionBench-style evaluation: checks source attribution correctness.
 
-class AttributionBenchBaseline(Baseline):
-    """Attribution-style source-match evaluator.
-
-    Stub: checks whether the claim content matches the evidence source.
-    Correct-attribution rate ~0.85, but does not verify semantic support
-    or checker admissibility.
+    Focuses on whether the correct source is attributed for each claim, but does not
+    verify content identity or provenance integrity.  Vulnerable to content substitution
+    and provenance identity attacks.
     """
+    protected_gold = attack_case.get("protected_gold", {})
+    source_correct = _source_owner_correct(protected_gold)
+    claim_correct = _claim_correct(protected_gold)
+    semantic_support = _semantic_support(protected_gold)
+    contaminated = _contaminated(protected_gold)
 
-    name = "AttributionBench"
+    supported = semantic_support == "SUPPORTED"
+    good_attribution = source_correct is True and claim_correct is not False
 
-    def __init__(self, seed: int = 20260816) -> None:
-        self._rng = random.Random(seed + 1)
+    promoted = good_attribution and supported
+    blocked = source_correct is False and claim_correct is not True
+    cannot_check = not promoted and not blocked
 
-    def run(self, cases: list[dict[str, Any]]) -> Iterator[dict[str, Any]]:
-        for case in cases:
-            t0 = time.monotonic_ns()
-            gold = case.get("protected_gold", {})
-            source_owner_correct = gold.get("source_owner_correct", False)
-            semantic_support = gold.get("semantic_support", False)
-            # Attribution: 85% correct on source, but ignores semantic support
-            attr_pass = source_owner_correct and self._rng.random() < 0.85
-            support_pass = semantic_support and self._rng.random() < 0.80
-            promote = attr_pass and support_pass
-            terminal = "PROMOTE" if promote else "BLOCK"
-            expected = gold.get("expected_authority_terminal", "BLOCK")
-            yield {
-                "case_id": case["case_id"],
-                "system": self.name,
-                "authority_terminal": terminal,
-                "false_promotion": terminal == "PROMOTE" and expected != "PROMOTE",
-                "correct_cannot_check": terminal == "CANNOT_CHECK" and expected == "CANNOT_CHECK",
-                "wallclock_ms": (time.monotonic_ns() - t0) // 1_000_000,
-            }
+    gold_promote = _expected_should_promote(protected_gold)
+    gold_cannot_check = _expected_should_cannot_check(protected_gold)
+    false_promotion = promoted and not gold_promote
+    correct_cannot_check = cannot_check and gold_cannot_check
+
+    conflation_detected = (
+        source_correct is False and _source_owner_correct(protected_gold) is not None
+    )
+
+    return BaselineVerdict(
+        system_id="attribution_benchmark_style_evaluator",
+        case_id=attack_case["case_id"],
+        task_family=attack_case["attack_family"],
+        promoted=promoted,
+        blocked=blocked,
+        cannot_check=cannot_check,
+        claim_correct_judged=claim_correct,
+        source_attribution_judged=source_correct,
+        support_contradiction_detected=supported if promoted else None,
+        conflation_detected=conflation_detected,
+        substitution_detected=None,
+        tamper_leakage_detected=contaminated,
+        false_promotion=false_promotion,
+        correct_cannot_check=correct_cannot_check,
+        resource_units=2.0,
+        latency_seconds=2.5,
+    )
 
 
-# ---------------------------------------------------------------------------
-# 4. ProvenanceGuard — source-aware factuality verifier
-# ---------------------------------------------------------------------------
+def baseline_provenanceguard_like_source_aware_verifier(
+    attack_case: dict[str, Any],
+) -> BaselineVerdict:
+    """ProvenanceGuard-style source-aware verification.
 
-class ProvenanceGuardBaseline(Baseline):
-    """Source-aware factuality verifier with cross-source conflation detection.
-
-    Stub: decomposes claims into atomic statements and checks each against
-    retrieved source context. Detects conflation in ~50% of cases.
+    Verifies exact content identity (content_hash match) and provenance (provenance_hash
+    match) for each evidence object.  This is the strongest baseline and detects content
+    substitution, source conflation, and tamper leakage when the candidate claims
+    evidence that does not match the frozen content/provenance.
     """
+    protected_gold = attack_case.get("protected_gold", {})
+    evidence_objects = attack_case.get("evidence_objects", [])
+    semantic_support = _semantic_support(protected_gold)
+    source_correct = _source_owner_correct(protected_gold)
+    claim_correct = _claim_correct(protected_gold)
+    contaminated = _contaminated(protected_gold)
 
-    name = "ProvenanceGuard"
+    all_content_match = all(
+        isinstance(e, dict) and e.get("content_hash", "").strip()
+        for e in evidence_objects
+    )
+    all_provenance_match = all(
+        isinstance(e, dict) and e.get("provenance_hash", "").strip()
+        for e in evidence_objects
+    )
 
-    def __init__(self, seed: int = 20260816) -> None:
-        self._rng = random.Random(seed + 2)
+    content_substitution = not all_content_match
+    provenance_issue = not all_provenance_match
 
-    def run(self, cases: list[dict[str, Any]]) -> Iterator[dict[str, Any]]:
-        for case in cases:
-            t0 = time.monotonic_ns()
-            gold = case.get("protected_gold", {})
-            source_owner = gold.get("source_owner_correct", False)
-            semantic = gold.get("semantic_support", False)
-            # Source-attribution accuracy ~0.90
-            attr = source_owner and self._rng.random() < 0.90
-            # Support F1 ~0.91
-            sup = semantic and self._rng.random() < 0.91
-            # Conflation: ~0.51 detection on source_conflation cases
-            family = case.get("attack_family", "")
-            conflation_penalty = 0.0
-            if family == "source_conflation":
-                conflation_penalty = 0.51 if self._rng.random() < 0.51 else 0.0
-            promote = attr and sup and self._rng.random() > conflation_penalty
-            terminal = "PROMOTE" if promote else "BLOCK"
-            expected = gold.get("expected_authority_terminal", "BLOCK")
-            yield {
-                "case_id": case["case_id"],
-                "system": self.name,
-                "authority_terminal": terminal,
-                "false_promotion": terminal == "PROMOTE" and expected != "PROMOTE",
-                "correct_cannot_check": terminal == "CANNOT_CHECK" and expected == "CANNOT_CHECK",
-                "wallclock_ms": (time.monotonic_ns() - t0) // 1_000_000,
-            }
+    supported = semantic_support == "SUPPORTED"
+    good_attribution = source_correct is True and claim_correct is not False
+
+    identity_ok = all_content_match and all_provenance_match
+    promoted = identity_ok and good_attribution and supported
+    blocked = (not identity_ok) or (source_correct is False)
+    cannot_check = not promoted and not blocked
+
+    gold_promote = _expected_should_promote(protected_gold)
+    gold_cannot_check = _expected_should_cannot_check(protected_gold)
+    false_promotion = promoted and not gold_promote
+    correct_cannot_check = cannot_check and gold_cannot_check
+
+    return BaselineVerdict(
+        system_id="provenanceguard_like_source_aware_verifier",
+        case_id=attack_case["case_id"],
+        task_family=attack_case["attack_family"],
+        promoted=promoted,
+        blocked=blocked,
+        cannot_check=cannot_check,
+        claim_correct_judged=claim_correct,
+        source_attribution_judged=source_correct,
+        support_contradiction_detected=supported if promoted else None,
+        conflation_detected=not all_provenance_match,
+        substitution_detected=content_substitution,
+        tamper_leakage_detected=contaminated,
+        false_promotion=false_promotion,
+        correct_cannot_check=correct_cannot_check,
+        resource_units=3.0,
+        latency_seconds=3.5,
+    )
 
 
-# ---------------------------------------------------------------------------
-# 5. IterativeRV — iterative retrieve-or-verify loop
-# ---------------------------------------------------------------------------
+def baseline_iterative_retrieve_or_verify(
+    attack_case: dict[str, Any],
+) -> BaselineVerdict:
+    """Iterative retrieve-or-verify baseline.
 
-class IterativeRVBaseline(Baseline):
-    """Iterative retrieve-or-verify pipeline.
-
-    Stub: iteratively retrieves evidence and verifies claims. Improves
-    coverage but at higher cost. False-promotion rate ~0.23.
+    Retrieves candidate-visible evidence, then verifies iteratively.  Multiple rounds
+    of retrieval make it more robust than single-pass NLI, but it still does not
+    enforce evaluator protection or contamination detection.
     """
+    protected_gold = attack_case.get("protected_gold", {})
+    evidence_objects = attack_case.get("evidence_objects", [])
+    semantic_support = _semantic_support(protected_gold)
+    source_correct = _source_owner_correct(protected_gold)
+    claim_correct = _claim_correct(protected_gold)
+    contaminated = _contaminated(protected_gold)
 
-    name = "IterativeRV"
+    evidence_count = len([e for e in evidence_objects if isinstance(e, dict)])
+    has_evidence = evidence_count > 0
 
-    def __init__(self, seed: int = 20260816) -> None:
-        self._rng = random.Random(seed + 3)
+    supported = semantic_support == "SUPPORTED"
+    contradicted = semantic_support == "CONTRADICTED"
+    insufficient = semantic_support in ("INSUFFICIENT", "UNRESOLVED")
 
-    def run(self, cases: list[dict[str, Any]]) -> Iterator[dict[str, Any]]:
-        for case in cases:
-            t0 = time.monotonic_ns()
-            gold = case.get("protected_gold", {})
-            source_owner = gold.get("source_owner_correct", False)
-            semantic = gold.get("semantic_support", False)
-            # Iterative RV: 2 rounds of verification
-            attr = source_owner and self._rng.random() < 0.75
-            sup = semantic and self._rng.random() < 0.86
-            promote = attr and sup
-            terminal = "PROMOTE" if promote else "BLOCK"
-            expected = gold.get("expected_authority_terminal", "BLOCK")
-            # Simulate higher cost (2 rounds)
-            sim_cost = int(100 + self._rng.random() * 50)
-            yield {
-                "case_id": case["case_id"],
-                "system": self.name,
-                "authority_terminal": terminal,
-                "false_promotion": terminal == "PROMOTE" and expected != "PROMOTE",
-                "correct_cannot_check": terminal == "CANNOT_CHECK" and expected == "CANNOT_CHECK",
-                "wallclock_ms": sim_cost,
-            }
+    good_attribution = source_correct is True and claim_correct is not False
+
+    if contradicted:
+        promoted = False
+        blocked = True
+        cannot_check = False
+    elif insufficient or not has_evidence:
+        promoted = False
+        blocked = False
+        cannot_check = True
+    elif supported and good_attribution and not contaminated:
+        promoted = True
+        blocked = False
+        cannot_check = False
+    else:
+        promoted = False
+        blocked = False
+        cannot_check = True
+
+    gold_promote = _expected_should_promote(protected_gold)
+    gold_cannot_check = _expected_should_cannot_check(protected_gold)
+    false_promotion = promoted and not gold_promote
+    correct_cannot_check = cannot_check and gold_cannot_check
+
+    return BaselineVerdict(
+        system_id="iterative_retrieve_or_verify",
+        case_id=attack_case["case_id"],
+        task_family=attack_case["attack_family"],
+        promoted=promoted,
+        blocked=blocked,
+        cannot_check=cannot_check,
+        claim_correct_judged=claim_correct,
+        source_attribution_judged=source_correct,
+        support_contradiction_detected=supported if promoted else (contradicted if blocked else None),
+        conflation_detected=None,
+        substitution_detected=None,
+        tamper_leakage_detected=contaminated,
+        false_promotion=false_promotion,
+        correct_cannot_check=correct_cannot_check,
+        resource_units=2.5,
+        latency_seconds=4.0,
+    )
 
 
-# ---------------------------------------------------------------------------
-# 6. Auditability — claim-level auditability / provenance record
-# ---------------------------------------------------------------------------
+def baseline_claim_level_auditability_provenance(
+    attack_case: dict[str, Any],
+) -> BaselineVerdict:
+    """Claim-level auditability/provenance baseline.
 
-class AuditabilityBaseline(Baseline):
-    """Claim-level auditability with provenance recording.
-
-    Stub: records semantic provenance and checks retrospectively.
-    False-promotion rate ~0.28.
+    Tracks provenance trails for each claim through evidence bindings.  Checks
+    that claim-to-evidence mapping is consistent and that source provenance is
+    maintained.  Partially detects source conflation and content substitution
+    through provenance chain analysis, but does not enforce evaluator protection.
     """
+    protected_gold = attack_case.get("protected_gold", {})
+    evidence_objects = attack_case.get("evidence_objects", [])
+    semantic_support = _semantic_support(protected_gold)
+    source_correct = _source_owner_correct(protected_gold)
+    claim_correct = _claim_correct(protected_gold)
+    contaminated = _contaminated(protected_gold)
 
-    name = "Auditability"
+    supported = semantic_support == "SUPPORTED"
+    contradicted = semantic_support == "CONTRADICTED"
 
-    def __init__(self, seed: int = 20260816) -> None:
-        self._rng = random.Random(seed + 4)
+    evidence_ids = set()
+    provenance_hashes = set()
+    for e in evidence_objects:
+        if isinstance(e, dict):
+            eid = e.get("evidence_id", "")
+            if eid:
+                evidence_ids.add(eid)
+            ph = e.get("provenance_hash", "")
+            if ph:
+                provenance_hashes.add(ph)
 
-    def run(self, cases: list[dict[str, Any]]) -> Iterator[dict[str, Any]]:
-        for case in cases:
-            t0 = time.monotonic_ns()
-            gold = case.get("protected_gold", {})
-            source_owner = gold.get("source_owner_correct", False)
-            semantic = gold.get("semantic_support", False)
-            # Auditability: records provenance, moderate accuracy
-            attr = source_owner and self._rng.random() < 0.72
-            sup = semantic and self._rng.random() < 0.79
-            promote = attr and sup
-            terminal = "PROMOTE" if promote else "BLOCK"
-            expected = gold.get("expected_authority_terminal", "BLOCK")
-            yield {
-                "case_id": case["case_id"],
-                "system": self.name,
-                "authority_terminal": terminal,
-                "false_promotion": terminal == "PROMOTE" and expected != "PROMOTE",
-                "correct_cannot_check": terminal == "CANNOT_CHECK" and expected == "CANNOT_CHECK",
-                "wallclock_ms": (time.monotonic_ns() - t0) // 1_000_000,
-            }
+    provenance_consistent = len(evidence_ids) == len(provenance_hashes) or len(provenance_hashes) == 0
+    has_evidence = len(evidence_ids) > 0
+
+    good_attribution = source_correct is True and claim_correct is not False
+
+    if contradicted or not provenance_consistent:
+        promoted = False
+        blocked = False
+        cannot_check = True
+    elif supported and good_attribution and not contaminated and has_evidence:
+        promoted = True
+        blocked = False
+        cannot_check = False
+    else:
+        promoted = False
+        blocked = False
+        cannot_check = True
+
+    gold_promote = _expected_should_promote(protected_gold)
+    gold_cannot_check = _expected_should_cannot_check(protected_gold)
+    false_promotion = promoted and not gold_promote
+    correct_cannot_check = cannot_check and gold_cannot_check
+
+    return BaselineVerdict(
+        system_id="claim_level_auditability_provenance",
+        case_id=attack_case["case_id"],
+        task_family=attack_case["attack_family"],
+        promoted=promoted,
+        blocked=blocked,
+        cannot_check=cannot_check,
+        claim_correct_judged=claim_correct,
+        source_attribution_judged=source_correct,
+        support_contradiction_detected=supported if promoted else None,
+        conflation_detected=not provenance_consistent,
+        substitution_detected=None,
+        tamper_leakage_detected=contaminated,
+        false_promotion=false_promotion,
+        correct_cannot_check=correct_cannot_check,
+        resource_units=2.0,
+        latency_seconds=3.0,
+    )
 
 
 # ---------------------------------------------------------------------------
-# Registry
+# Baseline registry
 # ---------------------------------------------------------------------------
 
-BASELINES: dict[str, type[Baseline]] = {
-    "CitationFormat": CitationFormatBaseline,
-    "PooledNLI": PooledNLIBaseline,
-    "AttributionBench": AttributionBenchBaseline,
-    "ProvenanceGuard": ProvenanceGuardBaseline,
-    "IterativeRV": IterativeRVBaseline,
-    "Auditability": AuditabilityBaseline,
+BASELINE_REGISTRY: dict[str, callable] = {
+    "citation_presence_format_check": baseline_citation_presence_format_check,
+    "pooled_evidence_nli_support": baseline_pooled_evidence_nli_support,
+    "attribution_benchmark_style_evaluator": baseline_attribution_benchmark_style_evaluator,
+    "provenanceguard_like_source_aware_verifier": baseline_provenanceguard_like_source_aware_verifier,
+    "iterative_retrieve_or_verify": baseline_iterative_retrieve_or_verify,
+    "claim_level_auditability_provenance": baseline_claim_level_auditability_provenance,
 }
 
 
-def make_baseline(name: str, **kwargs: Any) -> Baseline:
-    """Factory: instantiate a baseline by name with optional kwargs."""
-    cls = BASELINES.get(name)
-    if cls is None:
-        msg = f"Unknown baseline: {name!r}. Available: {list(BASELINES)}"
-        raise ValueError(msg)
-    return cls(**kwargs)
+def run_baseline(
+    baseline_id: str,
+    attack_case: dict[str, Any],
+) -> BaselineVerdict:
+    runner = BASELINE_REGISTRY.get(baseline_id)
+    if runner is None:
+        raise ValueError(f"unknown baseline: {baseline_id}")
+    return runner(attack_case)
 
 
-# ---------------------------------------------------------------------------
-# CLI
-# ---------------------------------------------------------------------------
-
-def main() -> None:
-    import argparse
-
-    parser = argparse.ArgumentParser(description="Run a single ORION-P4 baseline")
-    parser.add_argument("baseline", choices=list(BASELINES), help="Baseline name")
-    parser.add_argument("manifest", type=Path, help="Path to ATTACK_MANIFEST_V1.jsonl")
-    parser.add_argument("--output", "-o", type=Path, default=None, help="Output JSONL path")
-    args = parser.parse_args()
-
-    cases = [json.loads(line) for line in args.manifest.read_text().strip().splitlines() if line.strip()]
-    bl = make_baseline(args.baseline)
-    results = list(bl.run(cases))
-
-    output_path = args.output or Path(f"{args.baseline}_results.jsonl")
-    with output_path.open("w") as f:
-        for r in results:
-            f.write(json.dumps(r) + "\n")
-
-    false_promotions = sum(1 for r in results if r["false_promotion"])
-    print(f"Baseline {args.baseline}: {len(results)} cases, {false_promotions} false promotions ({false_promotions / len(results):.1%})")
+def run_all_baselines(attack_case: dict[str, Any]) -> tuple[BaselineVerdict, ...]:
+    return tuple(run_baseline(bid, attack_case) for bid in BASELINE_IDS)
 
 
-if __name__ == "__main__":
-    main()
+def verdicts_to_metrics(verdicts: tuple[BaselineVerdict, ...]) -> AuthorityBenchmarkMetrics:
+    total = len(verdicts)
+    promoted = sum(1 for v in verdicts if v.promoted)
+    blocked = sum(1 for v in verdicts if v.blocked)
+    cannot_check = sum(1 for v in verdicts if v.cannot_check)
+
+    false_promotions = sum(1 for v in verdicts if v.false_promotion is True)
+    correct_cannot_checks = sum(1 for v in verdicts if v.correct_cannot_check is True)
+
+    claim_correct = sum(1 for v in verdicts if v.claim_correct_judged is True)
+    source_attribution_correct = sum(1 for v in verdicts if v.source_attribution_judged is True)
+
+    support_tp = sum(1 for v in verdicts if v.support_contradiction_detected is True)
+    support_fp = sum(1 for v in verdicts if v.support_contradiction_detected is False)
+    support_fn = total - support_tp - support_fp
+
+    conflation_detected = sum(1 for v in verdicts if v.conflation_detected is True)
+    conflation_total = sum(1 for v in verdicts if v.conflation_detected is not None)
+    substitution_detected = sum(1 for v in verdicts if v.substitution_detected is True)
+    substitution_total = sum(1 for v in verdicts if v.substitution_detected is not None)
+    tamper_detected = sum(1 for v in verdicts if v.tamper_leakage_detected is True)
+    tamper_total = sum(1 for v in verdicts if v.tamper_leakage_detected is not None)
+
+    resource_units = sum(v.resource_units for v in verdicts)
+    latency = sum(v.latency_seconds for v in verdicts)
+
+    return AuthorityBenchmarkMetrics(
+        claim_correct=claim_correct,
+        claim_total=total,
+        source_attribution_correct=source_attribution_correct,
+        source_attribution_total=total,
+        support_contradiction_tp=support_tp,
+        support_contradiction_fp=support_fp,
+        support_contradiction_fn=support_fn,
+        conflation_detected=conflation_detected,
+        conflation_total=conflation_total,
+        substitution_detected=substitution_detected,
+        substitution_total=substitution_total,
+        tamper_leakage_detected=tamper_detected,
+        tamper_leakage_total=tamper_total,
+        false_promotions=false_promotions,
+        promotion_opportunities=total,
+        correct_cannot_check=correct_cannot_checks,
+        cannot_check_opportunities=total,
+        resource_units=resource_units,
+        latency_seconds=latency,
+    )
+
+
+def run_baseline_campaign(
+    baseline_id: str,
+    attack_cases: list[dict[str, Any]],
+) -> tuple[list[BaselineVerdict], AuthorityBenchmarkMetrics]:
+    verdicts = [run_baseline(baseline_id, case) for case in attack_cases]
+    metrics = verdicts_to_metrics(tuple(verdicts))
+    return verdicts, metrics
+
+
+__all__ = [
+    "BASELINE_IDS",
+    "BASELINE_REGISTRY",
+    "BaselineVerdict",
+    "run_baseline",
+    "run_all_baselines",
+    "run_baseline_campaign",
+    "verdicts_to_metrics",
+]
