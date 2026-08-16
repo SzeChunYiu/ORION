@@ -2,7 +2,7 @@ name: p4-host-prepare-v2
 
 on:
   push:
-    branches: [shadow/p4-final-protected-v2]
+    branches: [main]
     paths:
       - 'papers/paper-04-verified-scientific-discovery/host/PREP_TRIGGER_V2.txt'
 
