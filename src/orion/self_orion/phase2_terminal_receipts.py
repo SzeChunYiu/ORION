@@ -16,6 +16,59 @@ def _artifact_hash(payload: dict[str, object]) -> str:
     ).hexdigest()
 
 
+@dataclass(frozen=True)
+class FrozenFailureRecord:
+    failure_id: str
+    failure_class: str
+    source_failure_artifact_hash: str
+
+    def __post_init__(self) -> None:
+        if not self.failure_id.strip() or not self.failure_class.strip():
+            raise ValueError("frozen failure identity/class are required")
+        if not _sha256(self.source_failure_artifact_hash):
+            raise ValueError("frozen failure source artifact must be SHA-256")
+
+    @property
+    def payload(self) -> dict[str, object]:
+        return {
+            "failure_id": self.failure_id,
+            "failure_class": self.failure_class,
+            "source_failure_artifact_hash": self.source_failure_artifact_hash,
+        }
+
+
+@dataclass(frozen=True)
+class FrozenFailureIndex:
+    index_id: str
+    subject_revision_hash: str
+    evaluation_epoch_id: str
+    failures: tuple[FrozenFailureRecord, ...]
+    frozen_before_replay: bool = True
+
+    def __post_init__(self) -> None:
+        if not self.index_id.strip() or not self.evaluation_epoch_id.strip():
+            raise ValueError("frozen failure index identity/epoch are required")
+        if not _sha256(self.subject_revision_hash):
+            raise ValueError("frozen failure index subject must be SHA-256")
+        if not self.frozen_before_replay:
+            raise ValueError("important failure index must be frozen before replay outcomes")
+        ids = tuple(item.failure_id for item in self.failures)
+        if not ids or len(ids) != len(set(ids)):
+            raise ValueError("frozen failure index must contain unique failures")
+
+    @property
+    def artifact_hash(self) -> str:
+        return _artifact_hash(
+            {
+                "index_id": self.index_id,
+                "subject_revision_hash": self.subject_revision_hash,
+                "evaluation_epoch_id": self.evaluation_epoch_id,
+                "frozen_before_replay": self.frozen_before_replay,
+                "failures": [item.payload for item in self.failures],
+            }
+        )
+
+
 class FailureReplayDisposition(str, Enum):
     REPAIRED_REPLAYED_FRESH_TRANSFER = "REPAIRED_REPLAYED_FRESH_TRANSFER"
     RETAINED_BLOCKING_FIBRE = "RETAINED_BLOCKING_FIBRE"
@@ -141,6 +194,63 @@ class FailureReplayReceipt:
         )
 
 
+class CIEvidenceConclusion(str, Enum):
+    SUCCESS = "SUCCESS"
+    FAILURE = "FAILURE"
+    CANCELLED = "CANCELLED"
+
+
+@dataclass(frozen=True)
+class FinalCIEvidence:
+    ci_run_id: str
+    head_commit_oid: str
+    workflow_identity: str
+    test_command: str
+    job_count: int
+    conclusion: CIEvidenceConclusion
+    producer_process_lineage_hash: str
+    verifier_process_lineage_hash: str
+
+    def __post_init__(self) -> None:
+        if any(
+            not value.strip()
+            for value in (
+                self.ci_run_id,
+                self.head_commit_oid,
+                self.workflow_identity,
+                self.test_command,
+            )
+        ):
+            raise ValueError("final CI evidence run/head/workflow/test identity are required")
+        if self.job_count < 1:
+            raise ValueError("final CI evidence requires at least one executed job")
+        for digest in (
+            self.producer_process_lineage_hash,
+            self.verifier_process_lineage_hash,
+        ):
+            if not _sha256(digest):
+                raise ValueError("final CI process lineages must be SHA-256")
+
+    @property
+    def independently_verified(self) -> bool:
+        return self.producer_process_lineage_hash != self.verifier_process_lineage_hash
+
+    @property
+    def artifact_hash(self) -> str:
+        return _artifact_hash(
+            {
+                "ci_run_id": self.ci_run_id,
+                "head_commit_oid": self.head_commit_oid,
+                "workflow_identity": self.workflow_identity,
+                "test_command": self.test_command,
+                "job_count": self.job_count,
+                "conclusion": self.conclusion.value,
+                "producer_process_lineage_hash": self.producer_process_lineage_hash,
+                "verifier_process_lineage_hash": self.verifier_process_lineage_hash,
+            }
+        )
+
+
 class FinalIntegrationStatus(str, Enum):
     PASS = "PASS"
     FAIL = "FAIL"
@@ -222,10 +332,14 @@ class FinalIntegrationReceipt:
 
 
 __all__ = [
+    "CIEvidenceConclusion",
     "FailureReplayDisposition",
     "FailureReplayEntry",
     "FailureReplayReceipt",
+    "FinalCIEvidence",
     "FinalIntegrationReceipt",
     "FinalIntegrationStatus",
+    "FrozenFailureIndex",
+    "FrozenFailureRecord",
     "RecurrenceOutcome",
 ]
