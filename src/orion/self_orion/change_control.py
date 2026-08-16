@@ -53,6 +53,7 @@ class ProtectedDevelopmentEvaluator(Protocol):
 
 class ChangeControlVerdict(str, Enum):
     REJECT = "REJECT"
+    META_OVERFIT = "META_OVERFIT"
     CANDIDATE_ONLY = "CANDIDATE_ONLY"
     RECOMMEND_HOST_PROMOTION = "RECOMMEND_HOST_PROMOTION"
 
@@ -179,8 +180,18 @@ class SelfOrionChangeController:
             "assurance_candidate_binding_mismatch",
         }
         hard_reject = bool(binding_failures.intersection(reasons)) or "blocking_invariant_failed" in reasons or bool(protected_paths)
+        meta_overfit = (
+            not hard_reject
+            and assurance.development_delta > 0
+            and assurance.fresh_assurance_delta <= 0
+            and assurance.evaluator_frozen_before_candidate
+            and assurance.fresh_split
+            and assurance.resource_matched
+        )
         if hard_reject:
             verdict = ChangeControlVerdict.REJECT
+        elif meta_overfit:
+            verdict = ChangeControlVerdict.META_OVERFIT
         elif reasons:
             verdict = ChangeControlVerdict.CANDIDATE_ONLY
         else:
