@@ -7,7 +7,10 @@ from orion.self_orion.phase2_campaign_files import (
     Phase2CampaignFileSet,
     load_phase2_campaign_evidence,
 )
-from orion.self_orion.phase2_paper_snapshot import load_paper_programme_snapshot
+from orion.self_orion.phase2_paper_snapshot import (
+    expected_paper_programme_entries,
+    load_paper_programme_snapshot,
+)
 from orion.self_orion.phase2_terminal import (
     Phase2TerminalEvidence,
     Phase2TerminalReport,
@@ -124,15 +127,8 @@ def assess_phase2_terminal_files(
                 integration_blockers.append("papers_claim_ledger_commit_mismatch")
             if subject is None:
                 integration_blockers.append("papers_claim_ledger_subject_unavailable")
-            else:
-                tracked = {
-                    item.path: item.content_sha256 for item in subject.tracked_objects
-                }
-                for entry in paper_snapshot.entries:
-                    if tracked.get(entry.path) != entry.content_sha256:
-                        integration_blockers.append(
-                            f"papers_claim_ledger_subject_content_mismatch:{entry.path}"
-                        )
+            elif paper_snapshot.entries != expected_paper_programme_entries(subject):
+                integration_blockers.append("papers_claim_ledger_subject_snapshot_incomplete")
 
     return assess_phase2_terminal(
         Phase2TerminalEvidence(
