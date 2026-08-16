@@ -227,19 +227,9 @@ def external_authority_gate(
     missing: list[str] = []
     contradicted: list[str] = []
     if require_observed_activity and observed_activity is None:
-        return BenchmarkReport(
-            paper_id="P4",
-            case_id="external-authority-gate",
-            status=BenchmarkStatus.CANNOT_CHECK,
-            metrics=(),
-            blockers=(
-                "observed activity was required and none was supplied; the "
-                "attestations alone cannot establish evaluator integrity",
-            ),
-            observations=(
-                "CANNOT_CHECK rather than FAIL: nothing here says the candidate "
-                "misbehaved, only that nothing observed whether it did.",
-            ),
+        missing.append(
+            "observed activity was required and none was supplied; the "
+            "attestations alone cannot establish evaluator integrity"
         )
     if observed_activity is not None:
         written = tuple(getattr(observed_activity, "written_paths", ()) or ())

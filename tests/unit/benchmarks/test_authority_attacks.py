@@ -517,8 +517,10 @@ def test_the_external_gate_refuses_an_attestation_its_observation_contradicts() 
         "heldout_access_logged": True,
         "matched_nearest_work_baseline_run": True,
         "false_promotion_better_than_baseline": True,
+        "claim_evidence_support_established": True,
+        "behavioral_influence_established": True,
     }
-    assert external_authority_gate(**attested).status is BenchmarkStatus.PASS
+    assert external_authority_gate(**attested).status is BenchmarkStatus.CANNOT_CHECK
 
     caught = external_authority_gate(
         **attested,
@@ -557,13 +559,12 @@ def test_required_telemetry_that_is_absent_is_cannot_check_not_pass() -> None:
         "heldout_access_logged": True,
         "matched_nearest_work_baseline_run": True,
         "false_promotion_better_than_baseline": True,
+        "claim_evidence_support_established": True,
+        "behavioral_influence_established": True,
     }
-    assert external_authority_gate(**attested).status is BenchmarkStatus.PASS
-    required = external_authority_gate(**attested, require_observed_activity=True)
-    assert required.status is BenchmarkStatus.CANNOT_CHECK
+    assert external_authority_gate(**attested).status is BenchmarkStatus.CANNOT_CHECK
     clean = external_authority_gate(
         **attested,
-        require_observed_activity=True,
         observed_activity=CandidateActivity("c"),
     )
     assert clean.status is BenchmarkStatus.PASS

@@ -741,7 +741,11 @@ def _attack_wrong_source(fixture: _Fixture) -> AttackResult:
             AttackOutcome.UNDETECTED if promoted else AttackOutcome.DETECTED
         ),
         detected_by=(
-            DefenceLayer.BENCHMARK_DETECTOR if detector_flags else DefenceLayer.NEITHER
+            DefenceLayer.KERNEL_PROMOTION_PATH
+            if not promoted
+            else DefenceLayer.BENCHMARK_DETECTOR
+            if detector_flags
+            else DefenceLayer.NEITHER
         ),
         control=ControlOutcome.FALSE_ALARM if control_flags else ControlOutcome.CLEAN,
         evidence=(
@@ -1130,7 +1134,11 @@ def _attack_non_influential_citation(fixture: _Fixture) -> AttackResult:
         outcome=AttackOutcome.DETECTED if hostile_flag else AttackOutcome.UNDETECTED,
         kernel_outcome=AttackOutcome.UNDETECTED if promoted else AttackOutcome.DETECTED,
         detected_by=(
-            DefenceLayer.BENCHMARK_DETECTOR if hostile_flag else DefenceLayer.NEITHER
+            DefenceLayer.KERNEL_PROMOTION_PATH
+            if not promoted
+            else DefenceLayer.BENCHMARK_DETECTOR
+            if hostile_flag
+            else DefenceLayer.NEITHER
         ),
         control=ControlOutcome.FALSE_ALARM if benign_flag else ControlOutcome.CLEAN,
         evidence=(
@@ -1297,7 +1305,9 @@ def _attack_evaluator_tamper(fixture: _Fixture) -> AttackResult:
             else AttackOutcome.DETECTED
         ),
         detected_by=(
-            DefenceLayer.BENCHMARK_DETECTOR
+            DefenceLayer.KERNEL_PROMOTION_PATH
+            if gate_status is not BenchmarkStatus.PASS
+            else DefenceLayer.BENCHMARK_DETECTOR
             if outcome is AttackOutcome.DETECTED
             else DefenceLayer.NEITHER
         ),
@@ -1378,7 +1388,9 @@ def _attack_heldout_and_tests(fixture: _Fixture) -> AttackResult:
             else AttackOutcome.DETECTED
         ),
         detected_by=(
-            DefenceLayer.BENCHMARK_DETECTOR
+            DefenceLayer.KERNEL_PROMOTION_PATH
+            if gate_status is not BenchmarkStatus.PASS
+            else DefenceLayer.BENCHMARK_DETECTOR
             if outcome is AttackOutcome.DETECTED
             else DefenceLayer.NEITHER
         ),
