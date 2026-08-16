@@ -777,8 +777,14 @@ def test_directory_source_serves_each_record_once(tmp_path: Path) -> None:
     )
     report = driver.run(max_rounds=3)
 
+    assert tuple(
+        record_id
+        for round_ in report.rounds
+        for record_id in round_.fetched_record_ids
+    ) == ("a1",)
+    assert report.rounds[0].application.evidence_bound_record_ids == ("a1",)
+    assert report.rounds[0].application.verified_record_ids == ()
     assert report.verified_closures == 0
-    assert report.rounds[1].fetched_record_ids == ()
 
 
 def test_the_stopping_verdict_never_certifies_recall(tmp_path: Path) -> None:
