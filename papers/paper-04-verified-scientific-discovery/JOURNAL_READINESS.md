@@ -12,7 +12,9 @@
 - [x] Absorb Search-Time Contamination (arXiv:2606.05241 and prior STC work): browsing benchmark leakage is not an ORION novelty.
 - [x] Absorb RewardHackingAgents (arXiv:2603.11337): evaluator locking, patch/access logging and held-out leakage detection are direct baselines/mechanisms.
 - [x] Retain AttributionBench and CLAIM-BENCH as attribution/scientific claim-evidence baselines.
-- [x] Re-search assurance cases, provenance systems, secure evaluation, independent verification and scientific fact-checking immediately before submission.
+- [x] Absorb FIRE (arXiv:2411.00784) as the concrete iterative retrieve-or-verify comparison within the already-frozen baseline family.
+- [x] Complete the dated 2026-08-16 nearest-work audit, including FactArena (arXiv:2601.02669), DeepSciVerify (arXiv:2605.27710), BenchGuard (arXiv:2604.24955), certified untrusted-agent gating (arXiv:2606.31023), and CheckThat! 2026 scientific claim-source retrieval (arXiv:2607.15875); record explicit `ADOPT/ADAPT/COMPOSE/DEFER/REJECT` dispositions in `literature/NEAREST_WORK_AUDIT_2026-08-16.md`.
+- [ ] Re-run the nearest-work search within 14 days of final submission if submission occurs after 2026-08-30.
 - [x] Preserve the residual as a **non-escalating authority transition**, not general provenance/fact checking.
 
 ## 2. Primary hypotheses
@@ -81,7 +83,11 @@ Ablations:
 - [x] no behavioral-influence coordinate;
 - [x] no evaluator protection/telemetry;
 - [x] confidence score instead of fail-closed authority lattice;
-- [x] equalized verification budget.
+- [x] no search-time contamination block.
+
+Resource matching:
+
+- [x] equalized verification/evidence budget across variants and strong baselines.
 
 ## 5. Metrics
 
