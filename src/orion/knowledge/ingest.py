@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 from orion.core.evidence import EvidenceRecord, content_fingerprint
 from orion.kernel.store import LedgerStore
 
-from .identity import ReadDecision, ReadReceipt, SourceIdentity
+from .identity import ReadDecision, ReadReceipt, SourceIdentity, canonical_source_id
 from .ledger import decide_read_from_ledger, record_read, record_source
 from .providers.arxiv import ArxivRecord
 
@@ -45,6 +45,70 @@ class IngestReport:
         return tally
 
 
+def content_digest(
+    *,
+    source_id: str,
+    content: str,
+) -> str:
+    """Content-address one retrieval rendition independently of fetch metadata."""
+
+    return content_fingerprint(
+        EvidenceRecord(
+            evidence_id=source_id,
+            content=content or source_id,
+            source_uri=source_id,
+        )
+    )
+
+
+def ingest_document(
+    store: LedgerStore,
+    *,
+    source_id: str,
+    content: str,
+    title: str = "",
+    aliases: tuple[str, ...] = (),
+    schema_version: str,
+    frame_id: str,
+) -> IngestOutcome:
+    """Put one generic retrieved document through the durable read/source edge.
+
+    The knowledge research loop uses this function rather than maintaining a
+    second copy of the read-ledger rules. A document is never promoted to a
+    scientific claim here: this records only that a specific content rendition
+    was retrieved/read for a specific frame under a specific extraction schema.
+    """
+
+    digest = content_digest(source_id=source_id, content=content)
+    decision = decide_read_from_ledger(
+        store,
+        source_id,
+        digest,
+        schema_version,
+        frame_id,
+    )
+    if decision is not ReadDecision.ALREADY_READ:
+        canonical = canonical_source_id(source_id)
+        record_source(
+            store,
+            SourceIdentity(
+                source_id=str(canonical) if canonical.is_resolvable else source_id,
+                aliases=aliases,
+                title=title,
+            ),
+        )
+        record_read(
+            store,
+            ReadReceipt(
+                source_id=source_id,
+                content_digest=digest,
+                schema_version=schema_version,
+                frame_id=frame_id,
+            ),
+        )
+    return IngestOutcome(source_id, decision, digest)
+
+
 def record_content(record: ArxivRecord) -> str:
     """The text whose digest decides whether this rendition was already read.
 
@@ -58,13 +122,7 @@ def record_content(record: ArxivRecord) -> str:
 
 
 def content_digest_for(record: ArxivRecord) -> str:
-    return content_fingerprint(
-        EvidenceRecord(
-            evidence_id=record.source_id,
-            content=record_content(record) or record.source_id,
-            source_uri=record.source_id,
-        )
-    )
+    return content_digest(source_id=record.source_id, content=record_content(record))
 
 
 def ingest_records(
@@ -74,38 +132,18 @@ def ingest_records(
     schema_version: str,
     frame_id: str,
 ) -> IngestReport:
-    """Offer retrieved records to the durable ledger, reading each at most once.
+    """Offer arXiv records to the same generic durable ingestion edge."""
 
-    This is the edge that makes retrieval cumulative rather than repetitive. A
-    paper already read at this content, under this extraction schema, for this
-    question is skipped; anything else is recorded with the reason it still
-    needed reading, so a re-read is always attributable to a revision, a schema
-    change or a new question rather than to forgetting.
-    """
-
-    outcomes: list[IngestOutcome] = []
-    for record in records:
-        digest = content_digest_for(record)
-        decision = decide_read_from_ledger(
-            store, record.source_id, digest, schema_version, frame_id
+    outcomes = tuple(
+        ingest_document(
+            store,
+            source_id=record.source_id,
+            content=record_content(record),
+            title=record.title,
+            aliases=record.aliases,
+            schema_version=schema_version,
+            frame_id=frame_id,
         )
-        if decision is not ReadDecision.ALREADY_READ:
-            record_source(
-                store,
-                SourceIdentity(
-                    source_id=record.source_id,
-                    aliases=record.aliases,
-                    title=record.title,
-                ),
-            )
-            record_read(
-                store,
-                ReadReceipt(
-                    source_id=record.source_id,
-                    content_digest=digest,
-                    schema_version=schema_version,
-                    frame_id=frame_id,
-                ),
-            )
-        outcomes.append(IngestOutcome(record.source_id, decision, digest))
-    return IngestReport(tuple(outcomes))
+        for record in records
+    )
+    return IngestReport(outcomes)

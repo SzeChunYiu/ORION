@@ -4,14 +4,13 @@ from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
 from typing import Protocol
 
-from orion.core.evidence import EvidenceRecord, content_fingerprint
 from orion.core.search import SearchRouteKind
 from orion.kernel.store import LedgerStore
 from orion.mechanics.model import MechanicCell, MechanicDimension
 from orion.mechanics.questioning import MechanicQuestion
 
-from .identity import ReadDecision, ReadReceipt, SourceIdentity, canonical_source_id
-from .ledger import decide_read_from_ledger, record_read, record_source
+from .identity import ReadDecision
+from .ingest import content_digest, ingest_document
 from .routes import CoverageEstimate, EnsembleReport, RouteCapture, build_ensemble
 
 
@@ -22,16 +21,11 @@ class RetrievedDoc:
     source_id: str
     content: str
     title: str = ""
+    aliases: tuple[str, ...] = ()
 
     @property
     def digest(self) -> str:
-        return content_fingerprint(
-            EvidenceRecord(
-                evidence_id=self.source_id,
-                content=self.content or self.source_id,
-                source_uri=self.source_id,
-            )
-        )
+        return content_digest(source_id=self.source_id, content=self.content)
 
 
 class RouteSearcher(Protocol):
@@ -138,7 +132,8 @@ class ResearchPacket:
     @property
     def fresh(self) -> tuple[EvidenceCandidate, ...]:
         return tuple(
-            item for item in self.candidates
+            item
+            for item in self.candidates
             if item.read_decision is not ReadDecision.ALREADY_READ
         )
 
@@ -168,9 +163,7 @@ def run_research_round(
 
     frame_id = f"question:{question.question_id}"
     bound = {item.route_kind for item in bindings}
-    unavailable = tuple(
-        route for route in declared_routes if route not in bound
-    )
+    unavailable = tuple(route for route in declared_routes if route not in bound)
 
     captures: list[RouteCapture] = []
     found_by: dict[str, list[SearchRouteKind]] = {}
@@ -202,33 +195,24 @@ def run_research_round(
 
     candidates: list[EvidenceCandidate] = []
     for digest, doc in sorted(documents.items(), key=lambda item: item[1].source_id):
-        decision = decide_read_from_ledger(
-            store, doc.source_id, digest, schema_version, frame_id
+        ingestion = ingest_document(
+            store,
+            source_id=doc.source_id,
+            content=doc.content,
+            title=doc.title,
+            aliases=doc.aliases,
+            schema_version=schema_version,
+            frame_id=frame_id,
         )
-        if decision is not ReadDecision.ALREADY_READ:
-            record_source(
-                store,
-                SourceIdentity(
-                    source_id=str(canonical_source_id(doc.source_id)),
-                    title=doc.title,
-                ),
-            )
-            record_read(
-                store,
-                ReadReceipt(
-                    source_id=doc.source_id,
-                    content_digest=digest,
-                    schema_version=schema_version,
-                    frame_id=frame_id,
-                ),
-            )
+        if ingestion.content_digest != digest:
+            raise RuntimeError("retrieval digest changed between capture and ingestion")
         candidates.append(
             EvidenceCandidate(
                 source_id=doc.source_id,
                 digest=digest,
                 title=doc.title,
                 found_by=tuple(dict.fromkeys(found_by.get(digest, ()))),
-                read_decision=decision,
+                read_decision=ingestion.decision,
             )
         )
 
