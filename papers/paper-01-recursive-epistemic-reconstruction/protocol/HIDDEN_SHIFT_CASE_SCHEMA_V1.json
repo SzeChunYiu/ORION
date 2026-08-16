@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.p1.hidden-shift-case.v1",
+  "title": "ORION-P1 hidden-shift case V1",
+  "type": "object",
+  "required": ["case_id", "task_family", "public_prompt", "observable_resources", "protected_gold", "budget_class", "adjudication_status"],
+  "properties": {
+    "case_id": {"type": "string"},
+    "task_family": {"enum": ["hidden_parent_domain", "hidden_representation_or_coordinate_system", "hidden_decomposition_or_interface", "hidden_measurement_or_operationalization", "evidence_only_negative_control", "execution_only_negative_control"]},
+    "public_prompt": {"type": "string"},
+    "observable_resources": {"type": "array", "items": {"type": "string"}},
+    "protected_gold": {
+      "type": "object",
+      "required": ["reframe_required", "responsibility_family", "target_coordinates", "dependencies_to_reopen", "root_success_rubric"],
+      "properties": {
+        "reframe_required": {"type": "boolean"},
+        "responsibility_family": {"type": "string"},
+        "target_coordinates": {"type": "array", "items": {"type": "string"}},
+        "dependencies_to_reopen": {"type": "array", "items": {"type": "string"}},
+        "root_success_rubric": {"type": "string"}
+      }
+    },
+    "budget_class": {"type": "string"},
+    "adjudication_status": {"enum": ["MECHANICAL_GOLD", "DOUBLE_ANNOTATED", "ADJUDICATED", "PILOT_ONLY"]},
+    "source_provenance": {"type": "array", "items": {"type": "string"}},
+    "notes": {"type": "string"}
+  }
+}

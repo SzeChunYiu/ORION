@@ -1,0 +1,55 @@
+{
+  "schema_version": "orion.publication-protocol.v1",
+  "paper_id": "P2",
+  "protocol_id": "P2.open-world-discovery.v1",
+  "protocol_status": "DESIGN_FROZEN",
+  "outcome_accessed": false,
+  "primary_hypothesis": {
+    "id": "P2.H1",
+    "text": "Under matched resources, full ORION improves the official discovery metric or complete-gold paper recall over strong lexical, dense/hybrid and agentic single-route baselines without increasing premature task closure.",
+    "primary_metric": "benchmark_official_or_complete_gold_recall",
+    "direction": "superiority_and_safety"
+  },
+  "secondary_hypotheses": [
+    {"id": "P2.H2", "text": "Routes that earn independence contribute more unique relevant evidence than nominally distinct shared-backend routes."},
+    {"id": "P2.H3", "text": "Typed route-stop/task-stop separation reduces premature task closure at bounded cost."},
+    {"id": "P2.H4", "text": "Question/content-version-aware read state reduces redundant processing without suppressing legitimate rereads."}
+  ],
+  "task_families": ["autoresearchbench_deep", "autoresearchbench_wide", "sage_scientific_retrieval", "metasyn_retrieval_screening", "offline_complete_gold"],
+  "baselines": ["bm25_keyword", "dense_retrieval", "sparse_dense_hybrid", "one_pass_rag", "agentic_single_route", "protocol_driven_systematic_review"],
+  "ablations": ["no_route_independence_check", "no_question_conditioned_read_ledger", "route_stop_can_close_task", "no_unavailable_route_open_state", "coverage_diagnostic_controls_stopping", "no_content_identity_dedup"],
+  "metrics": {
+    "primary": ["deep_official_success", "wide_official_iou", "complete_gold_recall", "premature_task_closure_rate"],
+    "secondary": ["precision", "screening_recall", "false_negative_count", "unique_relevant_per_route", "route_overlap_content_digest", "marginal_relevant_gain", "route_stop_false_positive_rate", "route_stop_false_negative_rate", "legitimate_reread_rate", "duplicate_processing_rate", "wallclock_seconds", "query_count", "model_tokens", "tool_calls"]
+  },
+  "resource_policy": "Freeze and match query count, model/tool-call budget and wall-clock ceiling per benchmark family. Deterministic lexical baselines run on the same frozen corpus/snapshot. Live-provider mutability is reported separately from algorithmic performance.",
+  "exclusion_policy": "Provider unavailability, transport failure, empty results, agent timeout and malformed output are retained. Infrastructure exclusions are allowed only under a symmetric predeclared outage rule and remain visible in the archive.",
+  "statistics": {
+    "unit": "benchmark query/topic; repeated agent runs nested within query/system",
+    "interval": "Official benchmark aggregation plus paired percentile bootstrap (10000 resamples) over matched queries; Wilson intervals for stopping/error rates",
+    "stochastic_repeats": 3,
+    "multiplicity": "Primary metric is benchmark-family specific (Deep, Wide, complete-gold). Holm correction for inferential secondary route/stopping families.",
+    "practical_margin": "Design target: +0.03 absolute recall/official score versus the strongest matched baseline where scale is [0,1], with premature task closure not worse. If raw recall is equivalent, a safety/cost advantage must satisfy a separately frozen non-inferiority rule before execution."
+  },
+  "access_policy": {
+    "hidden_labels": "Gold target/qualifying sets and screening labels are not provided to the candidate except where the official benchmark protocol explicitly exposes information.",
+    "evaluator_custody": "Official evaluators or frozen host-owned complete-gold evaluator; candidate outputs cannot modify evaluator state.",
+    "search_contamination_policy": "Live web/search routes record benchmark-answer/metadata exposure; contaminated public-benchmark cases are reported separately and do not silently support the headline claim.",
+    "access_logging": "All route requests, raw results, query derivations, transport failures, provider timestamps and content identities are retained."
+  },
+  "plots": ["P2-1_pipeline", "P2-2_recall_cost", "P2-3_cumulative_unique_relevant", "P2-4_route_marginal_gain", "P2-5_route_overlap", "P2-6_stopping_errors", "P2-7_wide_deep"],
+  "tables": ["P2-T1_benchmark_license_freeze_manifest", "P2-T2_baseline_ablation_results", "P2-T3_failure_taxonomy"],
+  "reference_revisions": {
+    "AutoResearchBench_code": "CherYou/AutoResearchBench@a46c9bfb8968786f73f0a6a5b365b5384cd0f96d",
+    "AutoResearchBench_dataset": "Lk123/AutoResearchBench; Apache-2.0; final bundle content hash UNBOUND"
+  },
+  "execution_bindings": {
+    "subject_revision": "UNBOUND",
+    "dataset_revisions": {"AutoResearchBench_bundle": "UNBOUND_CONTENT_HASH", "SAGE": "UNBOUND", "MetaSyn": "UNBOUND", "offline_complete_gold": "UNBOUND"},
+    "model_provider_revisions": "UNBOUND",
+    "baseline_config_hashes": "UNBOUND",
+    "evaluator_hash": "UNBOUND",
+    "split_hashes": "UNBOUND",
+    "evaluation_epoch": "UNBOUND"
+  }
+}

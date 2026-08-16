@@ -1,0 +1,98 @@
+{
+  "schema_version": "orion.publication-protocol.v1",
+  "paper_id": "P3",
+  "protocol_id": "P3.cross-domain-atlas.v1",
+  "protocol_status": "DESIGN_FROZEN",
+  "outcome_accessed": false,
+  "primary_hypothesis": {
+    "id": "P3.H1",
+    "text": "On expert-annotated cross-domain cases, full ORION reduces scientifically invalid false merges and false contradictions relative to the strongest matched direct-synthesis or schema-integration baseline while preserving valid integrations within a predeclared non-inferiority margin.",
+    "primary_metric": "false_integration_rate_with_valid_integration_guard",
+    "direction": "superiority_and_safety"
+  },
+  "secondary_hypotheses": [
+    {"id": "P3.H2", "text": "Global statements retain recoverable source projection, mapping and preservation-condition lineage."},
+    {"id": "P3.H3", "text": "Explicit obstruction/plural views improve downstream scientific answering versus forced canonicalization on genuinely incompatible cases."},
+    {"id": "P3.H4", "text": "Referent, construct, measurement, context, modality and attribution coordinates each prevent targeted integration errors."}
+  ],
+  "task_families": [
+    "same_name_different_referent",
+    "different_name_same_referent",
+    "same_construct_different_measurement",
+    "same_entity_different_temporal_state",
+    "polarity_modality_attribution_context",
+    "valid_invalid_representation_mapping",
+    "valid_invalid_literature_bridge",
+    "genuine_plural_obstruction"
+  ],
+  "baselines": [
+    "vanilla_long_context_synthesis",
+    "scientific_rag_with_citations",
+    "cross_domain_translation_rag",
+    "flat_universal_schema_or_kg",
+    "scope_scion_like_schema_fusion",
+    "provenance_aware_schema_contract_integration"
+  ],
+  "ablations": [
+    "remove_referent_identity",
+    "remove_construct_identity",
+    "remove_measurement_operationalization",
+    "remove_temporal_context",
+    "remove_modality_polarity_attribution_discourse",
+    "force_mapping_without_obstruction",
+    "remove_source_recoverability",
+    "remove_W_expansion_reopen"
+  ],
+  "metrics": {
+    "primary": ["false_merge_rate", "false_contradiction_rate", "valid_integration_rate"],
+    "secondary": [
+      "false_split_rate",
+      "missed_contradiction_rate",
+      "mapping_precision",
+      "mapping_recall",
+      "mapping_f1",
+      "measurement_equivalence_accuracy",
+      "obstruction_precision",
+      "obstruction_recall",
+      "source_recoverability_rate",
+      "preservation_condition_accuracy",
+      "literature_bridge_precision",
+      "literature_bridge_recall",
+      "downstream_answer_accuracy",
+      "unresolved_abstention_calibration",
+      "annotation_agreement_by_coordinate",
+      "wallclock_seconds",
+      "model_tokens",
+      "storage_overhead"
+    ]
+  },
+  "resource_policy": "All model-based systems use the same frozen model family, source packet/context budget and retrieval allowance per case. Schema/KG baselines receive the same source documents and no hidden gold mappings.",
+  "exclusion_policy": "No model error, forced bad mapping, abstention, unresolved output or disagreement is excluded. Source records may be removed only under a prospectively declared licensing/corruption rule applied before system outputs are examined; all removals are logged.",
+  "statistics": {
+    "unit": "adjudicated source-pair or integration case; discipline is retained as a stratification variable",
+    "interval": "Wilson 95% intervals for rates; paired percentile bootstrap (10000 resamples) for matched system differences; discipline-wise effects reported alongside pooled effects",
+    "stochastic_repeats": 5,
+    "multiplicity": "Single primary safe-integration hypothesis; Holm correction for inferential secondary coordinate/ablation families",
+    "practical_margin": "Design target: at least -0.05 absolute false-integration rate versus the strongest matched baseline while valid-integration rate is non-inferior within -0.03 absolute."
+  },
+  "access_policy": {
+    "hidden_labels": "Final mapping/contradiction/GLUE/obstruction/recoverability gold is hidden from evaluated systems.",
+    "evaluator_custody": "Annotation/adjudication artifact is frozen in host/expert custody before final system outputs are evaluated.",
+    "search_contamination_policy": "Headline mapping evaluation uses a frozen source packet; external web search is disabled unless a separate declared research-route subexperiment is run.",
+    "access_logging": "Source packet identity, model inputs/outputs, mapping proposals and evaluator accesses are retained."
+  },
+  "plots": ["P3-1_projection_mapping_pipeline", "P3-2_false_merge_valid_integration_frontier", "P3-3_mapping_confusion", "P3-4_recoverability_by_discipline", "P3-5_obstruction_by_type", "P3-6_coordinate_ablation_effects", "P3-7_downstream_answer_accuracy"],
+  "tables": ["P3-T1_dataset_agreement", "P3-T2_baseline_ablation_results", "P3-T3_representative_failures"],
+  "reference_revisions": {
+    "MUSE": "cohentsofia/MUSE@f7a40317db46145d0c90b221311d8324db5da1b9"
+  },
+  "execution_bindings": {
+    "subject_revision": "UNBOUND",
+    "dataset_revisions": {"cross_domain_source_corpus": "UNBOUND", "sample_manifest": "UNBOUND", "adjudicated_gold": "UNBOUND"},
+    "model_provider_revisions": "UNBOUND",
+    "baseline_config_hashes": "UNBOUND",
+    "evaluator_hash": "UNBOUND",
+    "split_hashes": "UNBOUND",
+    "evaluation_epoch": "UNBOUND"
+  }
+}

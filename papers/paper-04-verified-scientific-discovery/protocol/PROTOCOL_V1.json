@@ -1,0 +1,95 @@
+{
+  "schema_version": "orion.publication-protocol.v1",
+  "paper_id": "P4",
+  "protocol_id": "P4.protected-authority.v1",
+  "protocol_status": "DESIGN_FROZEN",
+  "outcome_accessed": false,
+  "primary_hypothesis": {
+    "id": "P4.H1",
+    "text": "Full ORION reduces false scientific-authority promotion under provenance, checker, evaluator and contamination attacks relative to strong source-aware verification baselines while maintaining clean-case authority coverage within the frozen safety guard.",
+    "primary_metric": "false_authority_promotion_with_clean_coverage_guard",
+    "direction": "superiority_and_safety"
+  },
+  "secondary_hypotheses": [
+    {"id": "P4.H2", "text": "The safety gain persists when clean supported claims are included, so blocking everything is not competitive."},
+    {"id": "P4.H3", "text": "ORION selects CANNOT_CHECK/BLOCK more accurately when evidence, checker independence or evaluation integrity is genuinely insufficient."}
+  ],
+  "task_families": [
+    "clean_supported_positive",
+    "correct_fact_wrong_source",
+    "content_substitution",
+    "source_conflation",
+    "pooled_support_wrong_owner",
+    "cited_but_non_influential",
+    "weak_non_discriminating_checker",
+    "same_lane_checker",
+    "posthoc_checker_or_evaluator",
+    "search_time_contamination",
+    "evaluator_or_guard_tampering",
+    "heldout_label_access",
+    "genuinely_insufficient_evidence"
+  ],
+  "baselines": [
+    "citation_presence_format_check",
+    "pooled_evidence_nli_support",
+    "attribution_benchmark_style_evaluator",
+    "provenanceguard_like_source_aware_verifier",
+    "iterative_retrieve_or_verify",
+    "claim_level_auditability_provenance"
+  ],
+  "ablations": [
+    "no_exact_content_binding",
+    "no_content_vs_provenance_distinction",
+    "no_checker_lineage_independence",
+    "no_hostile_checker_battery",
+    "no_behavioral_influence_coordinate",
+    "no_evaluator_protection_access_telemetry",
+    "soft_confidence_instead_of_fail_closed_authority",
+    "no_search_time_contamination_block"
+  ],
+  "metrics": {
+    "primary": ["false_authority_promotion_rate", "clean_authority_coverage"],
+    "secondary": [
+      "claim_correctness",
+      "source_attribution_accuracy",
+      "support_contradiction_f1",
+      "cross_source_conflation_detection",
+      "content_substitution_detection",
+      "cited_non_influential_detection",
+      "evaluator_tamper_detection",
+      "holdout_leak_detection",
+      "search_contamination_detection",
+      "correct_cannot_check_rate",
+      "false_negative_rate",
+      "wallclock_seconds",
+      "model_tokens",
+      "tool_calls"
+    ]
+  },
+  "resource_policy": "Compared verifiers receive the same evidence packet/retrieval allowance and bounded checker budget. Strong source-aware baselines are not starved of source identity. Security features with unavoidable overhead report the safety/coverage/cost frontier explicitly.",
+  "exclusion_policy": "No false promotion, false block, abstention, checker failure, evaluator-detected attack or candidate-caused timeout is excluded. Host infrastructure failures may be excluded only under a frozen symmetric rule and remain archived.",
+  "statistics": {
+    "unit": "frozen claim/attack case; stochastic checker repeats nested within case/system",
+    "interval": "Wilson 95% intervals for false-promotion/coverage/detection rates; paired percentile bootstrap (10000 resamples) for matched differences",
+    "stochastic_repeats": 5,
+    "multiplicity": "Single primary false-promotion hypothesis with clean-coverage guard; Holm correction for inferential secondary attack-family comparisons",
+    "practical_margin": "Design target: at least -0.05 absolute false-authority-promotion rate versus the strongest matched source-aware baseline, with clean authority coverage non-inferior within -0.05 absolute."
+  },
+  "access_policy": {
+    "hidden_labels": "Attack family, protected answer/support labels and holdout labels are inaccessible to the candidate and candidate-authored checker.",
+    "evaluator_custody": "Evaluator/holdout and protected attack labels are frozen in independent host custody before candidate runs; candidate cannot write evaluator/guard state.",
+    "search_contamination_policy": "Search-time benchmark answer/metadata exposure is logged prospectively and is itself an evaluated attack coordinate.",
+    "access_logging": "File, patch, evaluator, holdout, network/search and evidence-content accesses are retained for protected review."
+  },
+  "plots": ["P4-1_authority_pipeline", "P4-2_false_promotion", "P4-3_coverage_false_promotion_frontier", "P4-4_detection_by_attack", "P4-5_attribution_vs_support", "P4-6_cost_false_promotion"],
+  "tables": ["P4-T1_attack_custody_manifest", "P4-T2_baseline_ablation_results", "P4-T3_cannot_check_and_errors"],
+  "execution_bindings": {
+    "subject_revision": "UNBOUND",
+    "dataset_revisions": {"public_claim_evidence": "UNBOUND", "protected_attack_set": "UNBOUND", "clean_positive_set": "UNBOUND"},
+    "model_provider_revisions": "UNBOUND",
+    "baseline_config_hashes": "UNBOUND",
+    "evaluator_hash": "UNBOUND",
+    "split_hashes": "UNBOUND",
+    "evaluation_epoch": "UNBOUND"
+  }
+}

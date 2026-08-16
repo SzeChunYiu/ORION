@@ -1,0 +1,86 @@
+{
+  "schema_version": "orion.publication-protocol.v1",
+  "paper_id": "P1",
+  "protocol_id": "P1.hidden-formulation.v1",
+  "protocol_status": "DESIGN_FROZEN",
+  "outcome_accessed": false,
+  "primary_hypothesis": {
+    "id": "P1.H1",
+    "text": "On tasks where the initial formulation, representation, decomposition, measurement model or relevant search universe is insufficient, full ORION improves root task success versus the strongest matched static or recursive baseline.",
+    "primary_metric": "root_success",
+    "direction": "superiority_and_safety"
+  },
+  "secondary_hypotheses": [
+    {"id": "P1.H2", "text": "Full ORION is non-inferior on unnecessary-reframe rate for evidence-only and execution-only negative controls."},
+    {"id": "P1.H3", "text": "Dependency-directed reopening improves reopen F1 versus no reset and full reset."},
+    {"id": "P1.H4", "text": "Mechanic obligations, trace identity and authority/invariant structure remain stable as recursion depth increases."}
+  ],
+  "task_families": [
+    "hidden_parent_domain",
+    "hidden_representation_or_coordinate_system",
+    "hidden_decomposition_or_interface",
+    "hidden_measurement_or_operationalization",
+    "evidence_only_negative_control",
+    "execution_only_negative_control"
+  ],
+  "baselines": [
+    "static_react_tool_workflow",
+    "tree_search_iterative_research",
+    "arex_like_recursive_audit_followup",
+    "scion_like_dependency_execution_plan",
+    "iris_like_information_state_revision"
+  ],
+  "ablations": [
+    "orion_without_explicit_W",
+    "orion_without_explicit_M",
+    "generic_retry_instead_of_typed_reframe",
+    "full_reset_instead_of_dependency_reopen",
+    "orion_without_mechanic_self_audit"
+  ],
+  "metrics": {
+    "primary": ["root_success", "hidden_shift_success", "unnecessary_reframe_rate"],
+    "secondary": [
+      "responsibility_macro_f1",
+      "reframe_target_accuracy",
+      "reopen_precision",
+      "reopen_recall",
+      "reopen_f1",
+      "stale_closure_survival_rate",
+      "invariant_violation_rate",
+      "authority_violation_rate",
+      "trace_fidelity",
+      "wallclock_seconds",
+      "model_tokens",
+      "tool_calls"
+    ]
+  },
+  "resource_policy": "All compared systems receive the same frozen model/tool/search budget per task family. Any unavoidable capability mismatch is reported as a resource trade-off and cannot be hidden in the headline comparison.",
+  "exclusion_policy": "No candidate-caused failure, timeout, malformed action, abstention or wrong reframe is excluded. A symmetric infrastructure outage may be excluded only if the same predeclared provider/tool outage rule applies to every system; the excluded record remains archived.",
+  "statistics": {
+    "unit": "frozen task/case; stochastic repeats nested within task/system",
+    "interval": "Wilson 95% intervals for standalone binary rates; paired percentile bootstrap (10000 resamples) for matched differences",
+    "stochastic_repeats": 5,
+    "multiplicity": "Single primary hypothesis; Holm correction for inferential secondary families when p-values are reported",
+    "practical_margin": "H1 superiority target: at least +0.05 absolute root-success difference against the strongest matched baseline; H2 non-inferiority: unnecessary-reframe rate may not worsen by more than +0.02 absolute. These are design targets, not guaranteed outcomes."
+  },
+  "access_policy": {
+    "hidden_labels": "Gold hidden cause, responsibility, required reframe and dependent-reopen labels are inaccessible to evaluated systems.",
+    "evaluator_custody": "Gold/adjudication artifact is host-owned and versioned before final candidate runs.",
+    "search_contamination_policy": "Public benchmark use is declared; web-search access to benchmark solutions is audited and may invalidate contaminated cases.",
+    "access_logging": "Tool/search requests and accesses to benchmark/evaluator paths are retained."
+  },
+  "plots": ["P1-1_protocol", "P1-2_root_success_by_family", "P1-3_reframe_selectivity_frontier", "P1-4_reopen_by_dependency_depth", "P1-5_success_cost_frontier", "P1-6_recursion_stability"],
+  "tables": ["P1-T1_nearest_work_matrix", "P1-T2_baseline_ablation_results", "P1-T3_failure_taxonomy"],
+  "reference_revisions": {
+    "SciAgentArena": "HelloWorldLTY/SciAgentArena@9865bb0c261bd9a59ef23576805b268b458b59d2"
+  },
+  "execution_bindings": {
+    "subject_revision": "UNBOUND",
+    "dataset_revisions": {"hidden_shift_suite": "UNBOUND_FINAL_HASH"},
+    "model_provider_revisions": "UNBOUND",
+    "baseline_config_hashes": "UNBOUND",
+    "evaluator_hash": "UNBOUND",
+    "split_hashes": "UNBOUND",
+    "evaluation_epoch": "UNBOUND"
+  }
+}

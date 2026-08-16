@@ -1,0 +1,97 @@
+{
+  "schema_version": "orion.publication-protocol.v1",
+  "paper_id": "P5",
+  "protocol_id": "P5.hidden-cause-fresh-transfer.v1",
+  "protocol_status": "DESIGN_FROZEN",
+  "outcome_accessed": false,
+  "primary_hypothesis": {
+    "id": "P5.H1",
+    "text": "On hidden-cause development tasks, full Self-ORION produces greater protected improvement on independent fresh tasks than the strongest matched self-edit/self-evolution baseline while harmful-transfer rate remains within the frozen safety margin.",
+    "primary_metric": "protected_fresh_improvement_with_harm_guard",
+    "direction": "superiority_and_safety"
+  },
+  "secondary_hypotheses": [
+    {"id": "P5.H2", "text": "Competing causes plus a frozen discriminator reduce false method changes versus recurrence/reflection or candidate-centric optimization."},
+    {"id": "P5.H3", "text": "Protected assurance prevents evaluator, holdout and negative-history manipulation from being counted as improvement."},
+    {"id": "P5.H4", "text": "Fresh-transfer and integrity gains remain decision-useful after accounting for added compute/time and conservative abstention."}
+  ],
+  "task_families": [
+    "retrieval_miss",
+    "routing_or_planning_miss",
+    "implementation_bug",
+    "environment_dependency_tool_failure",
+    "evaluator_metric_bug",
+    "representation_gap",
+    "measurement_specification_gap",
+    "genuine_method_basis_gap"
+  ],
+  "baselines": [
+    "fixed_agent_no_self_improvement",
+    "direct_self_edit",
+    "adas_meta_agent_search",
+    "dgm_like_archive_self_edit",
+    "adias_like_issue_centric_optimization",
+    "sage_mhfa_like_failure_attribution",
+    "causalflow_like_counterfactual_repair",
+    "failure_driven_patch_baseline",
+    "evaluator_only_evolutionary_search"
+  ],
+  "ablations": [
+    "no_persistent_issue_state",
+    "recurrence_without_causal_discriminator",
+    "no_invention_readiness",
+    "replay_only_no_fresh_transfer",
+    "fresh_transfer_without_protected_evaluator",
+    "drop_negative_variants",
+    "no_contamination_access_telemetry",
+    "isolated_self_certification_promotion"
+  ],
+  "metrics": {
+    "primary": ["protected_fresh_task_improvement", "fresh_transfer_success_rate", "harmful_transfer_rate"],
+    "secondary": [
+      "root_cause_macro_f1",
+      "false_method_change_rate",
+      "intervention_success_given_correct_attribution",
+      "intervention_success_given_incorrect_attribution",
+      "evaluator_holdout_history_compromise_rate",
+      "correct_block_or_cannot_check_rate",
+      "recognized_failure_recurrence_rate",
+      "negative_history_completeness",
+      "motivating_task_improvement",
+      "fresh_task_regression_tail",
+      "issue_resolution_interventions",
+      "wallclock_seconds",
+      "model_tokens",
+      "tool_calls"
+    ]
+  },
+  "resource_policy": "Compared systems receive matched LLM/tool/time/candidate budgets for the same motivating case. Fresh assurance uses the same frozen fresh set/evaluator for all systems; a method may not consume the protected fresh set as training feedback before its final fresh verdict.",
+  "exclusion_policy": "Failed, null, harmful, uncompilable, timed-out and blocked candidate variants remain in the archive. Only symmetric predeclared infrastructure outages may be excluded from the primary denominator, and their records remain retained.",
+  "statistics": {
+    "unit": "hidden-cause development episode with motivating/replay/fresh bundle; repeated stochastic improvement runs nested within episode/system",
+    "interval": "Wilson 95% intervals for transfer/harm/compromise rates; paired percentile bootstrap (10000 resamples) for matched improvement differences; worst-family/tail regressions reported separately",
+    "stochastic_repeats": 5,
+    "multiplicity": "Single primary fresh-improvement hypothesis with harmful-transfer guard; Holm correction for inferential secondary attribution/governance families",
+    "practical_margin": "Design target: at least +0.05 absolute protected fresh-task improvement versus the strongest matched baseline; harmful-transfer rate may not worsen by more than +0.02 absolute. Catastrophic fresh regressions are reported separately and are not averaged away."
+  },
+  "access_policy": {
+    "hidden_labels": "Root-cause labels, fresh-task answers and protected evaluator internals are hidden from candidate systems.",
+    "evaluator_custody": "Fresh evaluator/holdout is frozen outside challenger write authority before candidate generation. Self-verification cannot satisfy the publication gate.",
+    "search_contamination_policy": "Search/retrieval access to benchmark answers or fresh labels is logged and may invalidate the affected evidence record.",
+    "access_logging": "Candidate patch, sandbox, evaluator/holdout, file and search accesses are retained; negative-history deletions/modifications are detectable."
+  },
+  "plots": ["P5-1_governed_loop", "P5-2_replay_vs_fresh_scatter", "P5-3_cause_confusion", "P5-4_longitudinal_specialist_regression", "P5-5_improvement_integrity_frontier", "P5-6_failure_recurrence", "P5-7_cost_to_validated_improvement"],
+  "tables": ["P5-T1_nearest_work_matrix", "P5-T2_baseline_ablation_results", "P5-T3_harmful_null_interventions"],
+  "reference_revisions": {
+    "PAST-Bench": "Gen-Verse/PAST-Bench@f8223517ae7491e776b69793d9f11e9d074ab42e"
+  },
+  "execution_bindings": {
+    "subject_revision": "UNBOUND",
+    "dataset_revisions": {"hidden_cause_suite": "UNBOUND", "motivating_replay_split": "UNBOUND", "fresh_transfer_split": "UNBOUND"},
+    "model_provider_revisions": "UNBOUND",
+    "baseline_config_hashes": "UNBOUND",
+    "evaluator_hash": "UNBOUND",
+    "split_hashes": "UNBOUND",
+    "evaluation_epoch": "UNBOUND"
+  }
+}
