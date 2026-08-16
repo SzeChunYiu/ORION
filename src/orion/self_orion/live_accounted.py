@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import replace
 
+from orion.core.search import RetrievedItem, SearchQuery
 from orion.engine.guards import MechanicGuard
 from orion.engine.solver import SolverConfig
 from orion.providers.experience.base import ExperienceStore
@@ -12,20 +13,79 @@ from orion.providers.verification.base import VerificationProvider
 from orion.self_orion.live_trial import (
     BaselineResearchRunner,
     FrozenLiveTrialPacket,
+    RetrievedItemSnapshot,
+    SearchObservation,
     ShadowLiveTrialReport,
     ShadowLiveTrialRunner,
 )
 
 
+class AttemptRecordingRetrievalProvider:
+    """Record every live retrieval attempt, including provider exceptions."""
+
+    def __init__(self, delegate: RetrievalProvider) -> None:
+        self._delegate = delegate
+        self._observations: list[SearchObservation] = []
+
+    def mark(self) -> int:
+        return len(self._observations)
+
+    def observations_since(self, mark: int) -> tuple[SearchObservation, ...]:
+        if mark < 0 or mark > len(self._observations):
+            raise ValueError("invalid retrieval observation mark")
+        return tuple(self._observations[mark:])
+
+    @staticmethod
+    def _observation(
+        query: SearchQuery,
+        *,
+        limit: int,
+        items: tuple[RetrievedItem, ...],
+    ) -> SearchObservation:
+        return SearchObservation(
+            query_id=query.query_id,
+            query_text=query.text,
+            route_id=query.route_id,
+            route_kind=query.route_kind.value,
+            domain_hint=query.domain_hint,
+            limit=limit,
+            items=tuple(
+                RetrievedItemSnapshot(
+                    item_id=item.item_id,
+                    content=item.content,
+                    source_uri=item.source_uri,
+                    domain_ids=item.domain_ids,
+                )
+                for item in items
+            ),
+        )
+
+    def search(self, query: SearchQuery, *, limit: int) -> tuple[RetrievedItem, ...]:
+        try:
+            items = tuple(self._delegate.search(query, limit=limit))
+        except Exception:
+            # The paired mechanic receipt preserves the exception class. This
+            # observation preserves the exact attempted query/route/limit even
+            # when no provider result exists.
+            self._observations.append(
+                self._observation(query, limit=limit, items=())
+            )
+            raise
+        self._observations.append(
+            self._observation(query, limit=limit, items=items)
+        )
+        return items
+
+
 class AccountedShadowLiveTrialRunner(ShadowLiveTrialRunner):
-    """Live trial runner with task-bound LLM/retrieval provider-call accounting."""
+    """Live trial runner with task-bound provider-call accounting and raw attempts."""
 
     def __init__(
         self,
         *,
         orion,
         baseline: BaselineResearchRunner,
-        retrieval_recorder,
+        retrieval_recorder: AttemptRecordingRetrievalProvider,
         accounting_llm: AccountingLLMProvider,
         retrieval_call_cost_units: float = 1.0,
         llm_call_cost_units: float = 1.0,
@@ -59,9 +119,13 @@ class AccountedShadowLiveTrialRunner(ShadowLiveTrialRunner):
         llm_call_cost_units: float = 1.0,
     ) -> AccountedShadowLiveTrialRunner:
         accounting_llm = AccountingLLMProvider(llm)
+        attempt_recorder = AttemptRecordingRetrievalProvider(retrieval)
+        # The base factory adds its own success recorder around our provider.
+        # ORION therefore calls the attempt recorder, while this runner reads
+        # the inner stream that also contains failed attempts.
         base = ShadowLiveTrialRunner.from_providers(
             llm=accounting_llm,
-            retrieval=retrieval,
+            retrieval=attempt_recorder,
             verification=verification,
             baseline=baseline,
             experience_store=experience_store,
@@ -73,7 +137,7 @@ class AccountedShadowLiveTrialRunner(ShadowLiveTrialRunner):
         return cls(
             orion=base._orion,
             baseline=baseline,
-            retrieval_recorder=base._retrieval_recorder,
+            retrieval_recorder=attempt_recorder,
             accounting_llm=accounting_llm,
             retrieval_call_cost_units=retrieval_call_cost_units,
             llm_call_cost_units=llm_call_cost_units,
@@ -120,4 +184,4 @@ class AccountedShadowLiveTrialRunner(ShadowLiveTrialRunner):
         )
 
 
-__all__ = ["AccountedShadowLiveTrialRunner"]
+__all__ = ["AccountedShadowLiveTrialRunner", "AttemptRecordingRetrievalProvider"]
