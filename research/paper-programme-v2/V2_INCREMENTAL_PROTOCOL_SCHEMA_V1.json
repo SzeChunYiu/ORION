@@ -1,0 +1,42 @@
+{
+  "$defs": {
+    "rule": {
+      "additionalProperties": false,
+      "properties": {
+        "comparison": {"enum": ["delta_lte", "delta_gte", "relative_delta_lte", "relative_delta_gte"]},
+        "metric": {"minLength": 1, "type": "string"},
+        "threshold": {"type": "number"}
+      },
+      "required": ["metric", "comparison", "threshold"],
+      "type": "object"
+    }
+  },
+  "$id": "orion.paper-v2-incremental-protocol.v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "adoption_decision": {"enum": ["ADOPT", "ADAPT"]},
+    "incremental_decision": {
+      "additionalProperties": false,
+      "properties": {
+        "guards": {"items": {"$ref": "#/$defs/rule"}, "minItems": 1, "type": "array"},
+        "primary": {"$ref": "#/$defs/rule"}
+      },
+      "required": ["primary", "guards"],
+      "type": "object"
+    },
+    "incremental_over_protocol": {"minLength": 1, "type": "string"},
+    "local_evidence_authority": {"const": "LOCAL_ENGINEERING_ONLY"},
+    "mechanism_id": {"minLength": 1, "type": "string"},
+    "negative_controls": {"items": {"type": "string"}, "minItems": 1, "type": "array"},
+    "outcome_accessed": {"const": false},
+    "paper_id": {"enum": ["P1", "P2", "P3", "P4", "P5"]},
+    "protocol_id": {"minLength": 1, "type": "string"},
+    "protocol_status": {"const": "DESIGN_FROZEN"},
+    "requires_new_execution_freeze": {"const": true},
+    "schema_version": {"const": "orion.publication-protocol.v1"},
+    "v1_protocol_mutated": {"const": false}
+  },
+  "required": ["schema_version", "paper_id", "protocol_id", "protocol_status", "outcome_accessed", "incremental_over_protocol", "adoption_decision", "mechanism_id", "primary_hypothesis", "task_families", "negative_controls", "baselines", "ablations", "metrics", "resource_policy", "exclusion_policy", "statistics", "access_policy", "plots", "tables", "execution_bindings", "incremental_decision", "v1_protocol_mutated", "local_evidence_authority", "requires_new_execution_freeze"],
+  "title": "ORION Paper V2 Incremental Protocol",
+  "type": "object"
+}
