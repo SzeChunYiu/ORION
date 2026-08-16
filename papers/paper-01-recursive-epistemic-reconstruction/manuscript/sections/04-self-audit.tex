@@ -1,0 +1,32 @@
+\section{Recursive self-audit of the research process}
+
+A reconstruction system must also be able to inspect the mechanics that produce its state. Otherwise $K_t$ and $W_t$ may be explicit while the process that mutates them remains opaque.
+
+ORION represents an atomic problem-solving operation as a partial mechanic cell. The full Shadow mechanics substrate records typed inputs and outputs, handoff contracts, internal and observable state, admissible actions, transition semantics, invariants, metrics, uncertainty, resource coordinates, failure signatures, persistence/provenance, verification bindings, engineering contracts, and search/saturation semantics. Missing dimensions generate explicit research questions instead of being silently treated as irrelevant.
+
+Paper I uses only the recursive consequence of this representation:
+\[
+\text{research mechanic}
+\rightarrow \text{inspectable cell}
+\rightarrow \text{missing/failed coordinate}
+\rightarrow \text{work order}
+\rightarrow \text{reconstruction}.
+\]
+The complete mechanic-cell formalism and failure-learning machinery remain a non-flagship technical companion under \texttt{papers/shadow-mechanics-v1/}; they are not an additional flagship claim here.
+
+\subsection{Mechanism-state reconstruction}
+
+For Paper I, a useful reconstruction snapshot must make at least four objects recoverable:
+
+\begin{enumerate}
+  \item the mechanism/dependency graph active for the current solve;
+  \item the invariants and authority boundaries those mechanisms are expected to preserve;
+  \item the decision and reframe history needed to explain the present state;
+  \item the failure/residual record that remains unresolved or that caused closure to reopen.
+\end{enumerate}
+
+This is stronger than keeping a transcript. A transcript records events; an epistemic reconstruction must expose the typed relation between events, state coordinates, dependencies, and the authority of resulting claims.
+
+\subsection{Deep-recursion stability}
+
+The core risk is late-depth drift: a system may preserve its contracts for the first few iterations but lose them as reconstructions accumulate. Paper I therefore treats recursion depth as an evaluation coordinate. The intended stability test measures invariant violations, semantic/state mismatch, trace fidelity, and closure-reopening errors as depth increases. A system that succeeds at shallow depth but loses the dependency or authority structure at later depth does not satisfy the paper's hypothesis.
