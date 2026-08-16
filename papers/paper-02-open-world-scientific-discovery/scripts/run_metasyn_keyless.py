@@ -129,7 +129,9 @@ def _end_year(review: dict[str, Any]) -> int | None:
 
 
 def _field_sets(review: dict[str, Any]) -> list[set[str]]:
-    intervention = review.get("Intervention") or review.get("Exposure")
+    intervention = review.get("Intervention")
+    if not _tokens(intervention):
+        intervention = review.get("Exposure")
     fields = (
         review.get("Research_Question"),
         review.get("Population"),
