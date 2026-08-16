@@ -24,9 +24,13 @@ class ReconstructOperator:
             summary=summary,
             claim_ids=tuple(claim.claim_id for claim in state.knowledge.claims),
             verified_claim_ids=tuple(
-                claim.claim_id for claim in state.knowledge.claims if claim.authority is ClaimAuthority.VERIFIED
+                claim.claim_id
+                for claim in state.knowledge.claims
+                if claim.authority is ClaimAuthority.VERIFIED
             ),
             unresolved_residual_ids=state.knowledge.residual_ids,
+            source_projection_ids=state.knowledge.source_projection_ids,
+            representation_mapping_ids=state.knowledge.representation_mapping_ids,
         )
         knowledge = replace(state.knowledge, portraits=(*state.knowledge.portraits, portrait))
         next_state = replace(state, knowledge=knowledge)
