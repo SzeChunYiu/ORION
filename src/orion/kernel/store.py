@@ -418,8 +418,11 @@ class LedgerStore:
 
             for coordinate, expected_value, actual_value in (
                 ("research_state_hash", expected.research_state_hash, actual_research),
-                ("authority_revision", expected.authority_revision, actual_authority),
+                # When multiple protected revisions drift, report support first:
+                # it is the direct liveness dependency for current evidence and
+                # remains independently checked from authority immediately after.
                 ("support_revision", expected.support_revision, actual_support),
+                ("authority_revision", expected.authority_revision, actual_authority),
             ):
                 if expected_value != actual_value:
                     raise StaleTransitionExpectation(
