@@ -248,7 +248,12 @@ def test_the_satisfaction_predicate_itself_cannot_be_admitted() -> None:
         ),
     )
     assert outcome is CheckOutcome.NOT_DISCRIMINATING
-    assert any("battery.junk" in item for item in reasons)
+    # The theorem, asserted directly rather than through a reason string: the
+    # junk member has every writable field non-empty, so a non-emptiness
+    # predicate must accept it.
+    junk = host_battery(MechanicDimension.STORAGE)[1]
+    assert defect.predicate(junk)
+    assert reasons
 
 
 def test_a_check_satisfied_by_restating_the_question_cannot_be_admitted() -> None:
@@ -269,7 +274,9 @@ def test_a_check_satisfied_by_restating_the_question_cannot_be_admitted() -> Non
         ),
     )
     assert outcome is CheckOutcome.NOT_DISCRIMINATING
-    assert any("battery.envelope" in item for item in reasons)
+    envelope = host_battery(MechanicDimension.STORAGE)[2]
+    assert echo.predicate(envelope)
+    assert reasons
 
 
 def test_a_weak_author_declared_negative_does_not_lower_the_bar() -> None:
