@@ -24,14 +24,20 @@ def _load_module():
     return module
 
 
-def test_current_design_frozen_protocols_are_valid_and_content_addressable():
+def test_current_frozen_protocols_are_valid_and_content_addressable():
     module = _load_module()
     digests = set()
     for path in PAPER_PROTOCOLS:
         payload = json.loads(path.read_text(encoding="utf-8"))
         assert module.validate_protocol(payload) == []
-        assert payload["protocol_status"] == "DESIGN_FROZEN"
-        assert module.unbound_paths(payload["execution_bindings"])
+        assert payload["outcome_accessed"] is False
+        status = payload["protocol_status"]
+        assert status in {"DESIGN_FROZEN", "EXECUTION_FROZEN"}
+        unbound = module.unbound_paths(payload["execution_bindings"])
+        if status == "DESIGN_FROZEN":
+            assert unbound, f"{path} DESIGN_FROZEN protocol must retain prospective UNBOUND identities"
+        else:
+            assert not unbound, f"{path} EXECUTION_FROZEN protocol must have no UNBOUND identities"
         digest = module.sha256_digest(payload)
         assert len(digest) == 64
         digests.add(digest)
