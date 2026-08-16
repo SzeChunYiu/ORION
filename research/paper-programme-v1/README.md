@@ -16,7 +16,7 @@ For each proposed paper:
 6. **LEARN FROM FAILURE**: a falsifier that exposes a framework defect or missing representation changes ORION and the failure remains evidence.
 7. **REOPEN** the paper if new nearest work, representation, failure class or benchmark changes the comparison.
 
-`src/orion/knowledge/nearest_work.py` makes the nearest-work/novelty boundary executable. `CANDIDATE_DELTA` is not publication authority. `src/orion/benchmarks/` now makes the five local/external evidence gates executable as well.
+`src/orion/knowledge/nearest_work.py` makes the nearest-work/novelty boundary executable. `CANDIDATE_DELTA` is not publication authority. `src/orion/benchmarks/` makes the five local/external evidence gates executable as well.
 
 ## Programme decision
 
@@ -44,7 +44,7 @@ The mature structure is **five flagship papers**. The open-world discovery/searc
 
 ## Falsifier round V1
 
-Local exact/hostile falsifiers have now been implemented for all five papers. The frozen suite passed at branch commit `8a8a7feed588363f8e2cd820d3399a33b7af3074`, GitHub Actions run `31933432314`.
+The local exact/hostile falsifier suite now covers all five papers. The first complete suite passed at branch commit `8a8a7feed588363f8e2cd820d3399a33b7af3074`, GitHub Actions run `31933432314`; subsequent framework/paper synchronization remains subject to the exact-final-head CI gate before merge.
 
 The round changed the machine:
 - Paper I exposed and repaired false reframing of pure evidence/execution failures;
