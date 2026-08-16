@@ -382,9 +382,14 @@ class SelfDrivingDriver:
                     for item in grading.evidence
                     if item.resolved and item.actual_digest
                 ],
-                route_families=[
-                    item.dimension.value for item in outcome.application.gradings
-                ],
+                # Deliberately empty. This coordinate measures search-route
+                # coverage, and grading answers exercises no search route. It
+                # previously received MechanicDimension values, so a coordinate
+                # named route coverage was reporting dimension churn — six
+                # "new route families" in round 0 that were six answer
+                # dimensions. Real route kinds reach growth through
+                # knowledge/routes.py, which the answer path does not use.
+                route_families=[],
                 residual_kinds=[
                     item.kind for item in outcome.application.report.residuals
                 ],
