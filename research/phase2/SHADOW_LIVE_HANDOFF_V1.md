@@ -41,7 +41,25 @@ Host binding may supply identities and resource limits only. Wide/deep task prom
 
 The consequential Shadow self-development trial is deliberately **not** pre-filled with a synthetic failure. Gate B begins when an actual consequential failure is observed; its discriminator must then be frozen before repair outcome access and the existing `ShadowSelfDrivingController` must carry the case through research, candidate execution, protected assurance and at most host-promotion recommendation.
 
-## Raw live-trial trace requirement
+## Matched simple LLM+retrieval baseline
+
+Use `SimpleLLMRetrievalBaseline` from `orion.self_orion.baseline` with the same real LLM and retrieval provider family bound for the campaign. The baseline deliberately performs only one current-vocabulary search and one LLM completion. It has no ORION mechanics, iterative routing, structured absorption, failure learning or self-development.
+
+Configure `retrieval_call_cost_units` and `llm_call_cost_units` to the same accounting convention used by the ORION run. The baseline returns `BaselineTaskResult` for the existing matched-resource comparison and separately retains a raw `SimpleBaselineArtifact` containing its exact query, returned documents, verbatim LLM response, used evidence IDs, null/failure residuals and provider response identities.
+
+Malformed output, hallucinated evidence IDs, empty retrieval, retrieval exceptions and LLM exceptions all fail closed as unsolved baseline results rather than being dropped from the campaign.
+
+Persist the baseline artifact bundle with:
+
+```python
+from orion.self_orion.baseline import write_baseline_bundle
+
+write_baseline_bundle(baseline, "/protected-output/simple-baseline.json")
+```
+
+The bundle is content-addressed and must be retained with the ORION trial artifact so the protected evaluator can inspect both sides of the matched comparison.
+
+## Raw ORION live-trial trace requirement
 
 Construct the real trial runtime with `ShadowLiveTrialRunner.from_providers(...)`. That constructor wraps the host retrieval provider transparently and retains, per frozen task:
 
@@ -55,7 +73,15 @@ The resulting `ShadowLiveTrialReport` exposes `raw_search_trace_retained` and a 
 
 This instrumentation does not change provider outputs and does not convert retrieval into scientific authority. It exists so the protected evaluator can distinguish present-but-missed, retrieved-but-unused, absorption/interpretation and later routing/saturation failures where the hidden gold permits that classification.
 
-Persist the raw report artifact outside candidate-controlled state together with the frozen packet fingerprint, provider manifest, evaluator artifact, resource accounting and matched-baseline outputs. Do not replace raw documents with counts-only summaries.
+Persist the complete report canonically with:
+
+```python
+from orion.self_orion.trial_io import write_shadow_live_trial_report
+
+write_shadow_live_trial_report(report, "/protected-output/orion-shadow-live-trial.json")
+```
+
+The JSON includes the raw search/document/use trace and `evidence_artifact_hash`; do not replace it with counts-only summaries. Store it outside candidate-controlled state together with the frozen packet fingerprint, provider manifest, evaluator artifact, resource accounting and the baseline artifact bundle.
 
 ## Evidence handback
 
