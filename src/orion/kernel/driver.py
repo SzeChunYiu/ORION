@@ -8,7 +8,8 @@ from orion.experience.model import EpisodeOutcome, LessonAuthority, TaskEpisode
 from orion.experience.learning import propose_failure_pattern
 from orion.mechanics.answers import AnswerRecord
 from orion.mechanics.model import MechanicCell, MechanicDimension
-from orion.mechanics.program import current_program_cells
+from orion.mechanics.program import current_program_cells, plan_program_questions
+from orion.mechanics.research import research_task_for_question
 from orion.mechanics.workflow import ORION_WORKFLOW_ROOT_ID
 
 from .apply import grade_and_apply
@@ -262,6 +263,47 @@ class SelfDrivingDriver:
                 baseline["routes"].add(str(dimension))
         return baseline
 
+    def _flat_stop_reason(
+        self, cells: tuple[MechanicCell, ...], outcome: RoundOutcome
+    ) -> str:
+        """Name the stop honestly: route-level exhaustion is not frame flatness.
+
+        Repair for FALSE_FLATNESS_BY_STARVATION, measured by the claude lane and
+        confirmed here: at the default 16-slot window the run closes 3 questions
+        and reports flat, while the same source and gate close 152 at a window
+        wide enough to reach every open dimension. The fixed breadth-first
+        priority feeds the window from the top dimensions, so the lower ones are
+        never selected and their answers are never requested. Nothing about the
+        knowledge is flat — the selection window is.
+
+        This does not change the selection policy, which is a governed V0 whose
+        replacement needs matched parent/challenger evaluation. It changes only
+        what the stop is allowed to be called, which the bounded-saturation
+        contract already required: route coverage is audited before flatness.
+        """
+
+        probe = getattr(self.source, "offers", None)
+        if probe is None:
+            return "flat_source_coverage_unverified"
+
+        selected = set(outcome.selected_question_ids)
+        open_questions = plan_program_questions(cells, limit=10**6)
+        unselected = tuple(
+            item for item in open_questions if item.question_id not in selected
+        )
+        if not unselected:
+            return "a_priori_frame_flat"
+
+        by_id = {cell.mechanic_id: cell for cell in cells}
+        tasks = tuple(
+            research_task_for_question(by_id[item.mechanic_id], item)
+            for item in unselected
+            if item.mechanic_id in by_id
+        )
+        if probe(tasks, cells):
+            return "selection_window_exhausted"
+        return "a_priori_frame_flat"
+
     def cells(self) -> tuple[MechanicCell, ...]:
         seed = self.seed_cells if self.seed_cells is not None else current_program_cells()
         return replay_cells(
@@ -375,7 +417,7 @@ class SelfDrivingDriver:
                 growth, basis, required_flat_rounds=self.flat_rounds_to_stop
             )
             if saturation.verdict is SaturationVerdict.A_PRIORI_FRAME_FLAT:
-                stop_reason = "a_priori_frame_flat"
+                stop_reason = self._flat_stop_reason(cells, outcome)
                 break
 
         final_open = (
