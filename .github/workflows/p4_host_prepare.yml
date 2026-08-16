@@ -30,7 +30,26 @@ jobs:
           git cat-file -e "${SUBJECT}^{commit}"
           git archive --format=tar "$SUBJECT" > "$RUNNER_TEMP/p4-subject.tar"
           SUBJECT_HASH=$(sha256sum "$RUNNER_TEMP/p4-subject.tar" | awk '{print $1}')
-          EVALUATOR_HASH=$(sha256sum papers/paper-04-verified-scientific-discovery/host/evaluate_campaign.py | awk '{print $1}')
+          HARNESS_HASH=$(python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          files = [
+              'papers/paper-04-verified-scientific-discovery/host/generate_protected_cases.py',
+              'papers/paper-04-verified-scientific-discovery/host/run_candidate.py',
+              'papers/paper-04-verified-scientific-discovery/host/run_baselines.py',
+              'papers/paper-04-verified-scientific-discovery/host/evaluate_campaign.py',
+              'papers/paper-04-verified-scientific-discovery/host/independent_reproduce.py',
+              'papers/paper-04-verified-scientific-discovery/host/BASELINE_CONFIGS_V1.json',
+          ]
+          digest = hashlib.sha256()
+          for name in files:
+              data = Path(name).read_bytes()
+              digest.update(name.encode('utf-8'))
+              digest.update(b'\0')
+              digest.update(hashlib.sha256(data).digest())
+          print(digest.hexdigest())
+          PY
+          )
           BASELINE_HASH=$(sha256sum papers/paper-04-verified-scientific-discovery/host/BASELINE_CONFIGS_V1.json | awk '{print $1}')
           EPOCH=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           SECRET_SEED=$(openssl rand -hex 32)
@@ -39,7 +58,7 @@ jobs:
             --output-dir "$RUNNER_TEMP/p4-host-prep" \
             --subject-commit "$SUBJECT" \
             --subject-archive-sha256 "$SUBJECT_HASH" \
-            --evaluator-artifact-sha256 "$EVALUATOR_HASH" \
+            --evaluator-artifact-sha256 "$HARNESS_HASH" \
             --baseline-config-sha256 "$BASELINE_HASH" \
             --host-run-id "$GITHUB_RUN_ID" \
             --evaluation-epoch "$EPOCH"
