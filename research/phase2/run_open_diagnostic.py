@@ -10,6 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from orion.engine.solver import SolverConfig
+from orion.providers.experience.memory import InMemoryExperienceStore
 from orion.providers.llm.ollama import OllamaConfig, OllamaLLMProvider
 from orion.providers.retrieval.literature import (
     CrossrefRetrievalProvider,
@@ -132,7 +133,7 @@ class DiagnosticIdentity:
         )
 
 
-def _summary(report, baseline, *, identity: DiagnosticIdentity) -> dict[str, object]:
+def _summary(report, baseline, *, identity: DiagnosticIdentity, experience_store: InMemoryExperienceStore) -> dict[str, object]:
     return {
         "schema": DIAGNOSTIC_SCHEMA,
         "subject_commit": os.environ.get("GITHUB_SHA", "local-unbound"),
@@ -151,6 +152,7 @@ def _summary(report, baseline, *, identity: DiagnosticIdentity) -> dict[str, obj
         "raw_search_trace_retained": report.raw_search_trace_retained,
         "all_failures_recordable": report.all_failures_recordable,
         "all_resource_matched": report.all_resource_matched,
+        "recorded_episode_count": len(experience_store.episodes()),
         "tasks": [
             {
                 "task_id": item.task_id,
@@ -168,8 +170,32 @@ def _summary(report, baseline, *, identity: DiagnosticIdentity) -> dict[str, obj
                 "raw_retrieved_item_count": item.raw_retrieved_item_count,
                 "retrieved_but_unused_count": len(item.retrieved_but_unused_ids),
                 "retrieved_but_unabsorbed_count": len(item.retrieved_but_unabsorbed_ids),
-                "root_episode_recorded": item.root_episode_id is not None,
-                "mechanic_episode_count": len(item.mechanic_episode_ids),
+                "root_episode_id": item.root_episode_id,
+                "mechanic_episode_ids": list(item.mechanic_episode_ids),
+                "solution_evidence_ids": list(item.solution_evidence_ids),
+                "absorbed_evidence_ids": list(item.absorbed_evidence_ids),
+                "search_queries": [
+                    {
+                        "query_id": observation.query_id,
+                        "query_text": observation.query_text,
+                        "route_id": observation.route_id,
+                        "route_kind": observation.route_kind,
+                        "retrieved_count": len(observation.items),
+                    }
+                    for observation in item.search_observations
+                ],
+                "mechanic_trace": [
+                    {
+                        "operator": event.operator,
+                        "mechanic_id": event.mechanic_id,
+                        "status": event.status,
+                        "summary": event.summary,
+                        "residual_ids": list(event.residual_ids),
+                        "failure_signature": list(event.failure_signature),
+                        "evidence_ids": list(event.evidence_ids),
+                    }
+                    for event in item.mechanic_trace
+                ],
             }
             for item in report.comparisons
         ],
@@ -191,6 +217,7 @@ def run(*, model: str, output_dir: Path) -> dict[str, object]:
     crossref = CrossrefRetrievalProvider(mailto=os.environ.get("CROSSREF_MAILTO", ""))
     retrieval = MultiSourceLiteratureRetrievalProvider((europe_pmc, crossref))
     verifier = UnavailableProtectedVerifier()
+    experience_store = InMemoryExperienceStore()
     identity = DiagnosticIdentity(
         model=model,
         model_digest=model_digest,
@@ -204,6 +231,7 @@ def run(*, model: str, output_dir: Path) -> dict[str, object]:
         retrieval=retrieval,
         verification=verifier,
         baseline=baseline,
+        experience_store=experience_store,
         config=SolverConfig(
             max_iterations=6,
             search_limit_per_query=8,
@@ -233,7 +261,7 @@ def run(*, model: str, output_dir: Path) -> dict[str, object]:
     )
     write_shadow_live_trial_report(report, output_dir / "live-trial.json")
     write_baseline_bundle(baseline, output_dir / "baseline.json")
-    summary = _summary(report, baseline, identity=identity)
+    summary = _summary(report, baseline, identity=identity, experience_store=experience_store)
     (output_dir / "summary.json").write_text(
         json.dumps(summary, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
