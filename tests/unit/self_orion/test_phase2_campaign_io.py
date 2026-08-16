@@ -67,7 +67,7 @@ def test_external_observation_bundle_rejects_tampered_content(tmp_path):
     raw["observations"][0]["note"] = "post-hoc rewritten note"
     path.write_text(json.dumps(raw))
 
-    with pytest.raises(ValueError, match="artifact hash mismatch"):
+    with pytest.raises(ValueError, match="document hash mismatch"):
         load_external_observation_bundle(path)
 
 

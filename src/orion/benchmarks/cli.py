@@ -7,6 +7,10 @@ from pathlib import Path
 from orion.benchmarks.external_evidence import empty_external_manifest
 from orion.benchmarks.external_io import load_external_manifest
 from orion.benchmarks.flagship import current_flagship_evidence_state
+from orion.self_orion.phase2_campaign_files import (
+    Phase2CampaignFileSet,
+    assess_phase2_campaign_files,
+)
 from orion.self_orion.phase2_freeze import freeze_phase2_binding
 from orion.self_orion.phase2_io import load_phase2_binding, repository_phase2_preflight
 from orion.self_orion.phase2_preflight import (
@@ -44,6 +48,22 @@ def _parser() -> argparse.ArgumentParser:
     freeze.add_argument("--baseline-id", default="simple-llm-retrieval-baseline-v1")
     freeze.add_argument("--protocol-id", default="phase2-shadow-closure-v1")
     freeze.add_argument("--repository-identity", default=None)
+
+    campaign = subcommands.add_parser(
+        "phase2-campaign-status",
+        help=(
+            "Replay ordered Phase-2 closure status from protected JSON artifacts "
+            "without calling providers/evaluators."
+        ),
+    )
+    campaign.add_argument("--binding", type=Path, required=True)
+    campaign.add_argument("--live-trial", type=Path)
+    campaign.add_argument("--baseline-bundle", type=Path)
+    campaign.add_argument("--development-trial", type=Path)
+    campaign.add_argument("--authority-trial", type=Path)
+    campaign.add_argument("--authority-benchmark", type=Path)
+    campaign.add_argument("--external-observations", type=Path)
+    campaign.add_argument("--external-manifest", type=Path)
     return parser
 
 
@@ -127,6 +147,36 @@ def _phase2_freeze_payload(args: argparse.Namespace) -> dict[str, object]:
     }
 
 
+def _phase2_campaign_payload(args: argparse.Namespace) -> dict[str, object]:
+    report = assess_phase2_campaign_files(
+        Phase2CampaignFileSet(
+            binding=args.binding,
+            live_trial=args.live_trial,
+            baseline_bundle=args.baseline_bundle,
+            development_trial=args.development_trial,
+            authority_trial=args.authority_trial,
+            authority_benchmark=args.authority_benchmark,
+            external_observations=args.external_observations,
+            external_manifest=args.external_manifest,
+        )
+    )
+    return {
+        "stage": report.stage.value,
+        "blockers": list(report.blockers),
+        "packet_fingerprint": report.packet_fingerprint,
+        "live_trial_artifact_hash": report.live_trial_artifact_hash,
+        "development_trial_artifact_hash": report.development_trial_artifact_hash,
+        "authority_trial_artifact_hash": report.authority_trial_artifact_hash,
+        "authority_benchmark_panel_hash": report.authority_benchmark_panel_hash,
+        "authority_campaign_artifact_hash": report.authority_campaign_artifact_hash,
+        "external_observation_bundle_hash": report.external_observation_bundle_hash,
+        "ready_for_terminal_audit": report.ready_for_terminal_audit,
+        "grants_phase2_closure": report.grants_phase2_closure,
+        "grants_governed_self_orion": report.grants_governed_self_orion,
+        "audit_mode": "persisted-artifact-replay-no-provider-calls",
+    }
+
+
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     if args.command == "external-status":
@@ -135,6 +185,8 @@ def main(argv: list[str] | None = None) -> int:
         payload = _phase2_preflight_payload(args.binding)
     elif args.command == "phase2-freeze":
         payload = _phase2_freeze_payload(args)
+    elif args.command == "phase2-campaign-status":
+        payload = _phase2_campaign_payload(args)
     else:  # pragma: no cover
         raise AssertionError("unreachable command")
     print(json.dumps(payload, indent=2, sort_keys=True))

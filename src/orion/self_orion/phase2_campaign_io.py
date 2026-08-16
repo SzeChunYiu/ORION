@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import hashlib
 import json
+from dataclasses import dataclass
 from pathlib import Path
+from types import SimpleNamespace
 
 from orion.self_orion.authority_trial import AuthorityTrialReport
 from orion.self_orion.development_trial import ShadowDevelopmentTrialReport
@@ -18,6 +21,12 @@ EXTERNAL_OBSERVATION_BUNDLE_SCHEMA = "Phase2ExternalObservationBundle.v1"
 AUTHORITY_TRIAL_REPORT_SCHEMA = "AuthorityTrialReport.v1"
 DEVELOPMENT_TRIAL_REPORT_SCHEMA = "ShadowDevelopmentTrialReport.v1"
 CAMPAIGN_REPORT_SCHEMA = "Phase2CampaignReport.v1"
+
+
+def _document_hash(payload: dict[str, object]) -> str:
+    return hashlib.sha256(
+        json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
 
 
 def external_observation_bundle_to_dict(
@@ -54,9 +63,10 @@ def external_observation_bundle_to_dict(
 def write_external_observation_bundle(
     bundle: Phase2ExternalObservationBundle, path: Path | str
 ) -> None:
+    payload = external_observation_bundle_to_dict(bundle)
+    payload["document_hash"] = _document_hash(payload)
     Path(path).write_text(
-        json.dumps(external_observation_bundle_to_dict(bundle), indent=2, sort_keys=True)
-        + "\n",
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
 
@@ -67,6 +77,12 @@ def load_external_observation_bundle(path: Path | str) -> Phase2ExternalObservat
         raise ValueError(
             f"Phase-2 observation schema must be {EXTERNAL_OBSERVATION_BUNDLE_SCHEMA}"
         )
+    recorded_document_hash = raw.pop("document_hash", None)
+    if (
+        not isinstance(recorded_document_hash, str)
+        or recorded_document_hash != _document_hash(raw)
+    ):
+        raise ValueError("Phase-2 observation bundle document hash mismatch")
     raw_observations = raw.get("observations")
     if not isinstance(raw_observations, list):
         raise ValueError("Phase-2 observations must be a JSON array")
@@ -154,9 +170,77 @@ def authority_trial_report_to_dict(report: AuthorityTrialReport) -> dict[str, ob
 
 
 def write_authority_trial_report(report: AuthorityTrialReport, path: Path | str) -> None:
+    payload = authority_trial_report_to_dict(report)
+    payload["document_hash"] = _document_hash(payload)
     Path(path).write_text(
-        json.dumps(authority_trial_report_to_dict(report), indent=2, sort_keys=True) + "\n",
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
+    )
+
+
+@dataclass(frozen=True)
+class LoadedAuthorityTrialReport:
+    binding: object
+    blockers: tuple[str, ...]
+    all_attacks_executed: bool
+    correct_cannot_check_passed: bool
+    false_promotion_count: int
+    all_pass: bool
+    artifact_hash: str
+    grants_phase2_closure: bool
+    grants_governed_self_orion: bool
+    document_hash: str
+
+
+def load_authority_trial_report(path: Path | str) -> LoadedAuthorityTrialReport:
+    raw = json.loads(Path(path).read_text(encoding="utf-8"))
+    if not isinstance(raw, dict) or raw.get("schema") != AUTHORITY_TRIAL_REPORT_SCHEMA:
+        raise ValueError(f"authority trial schema must be {AUTHORITY_TRIAL_REPORT_SCHEMA}")
+    recorded_document_hash = raw.pop("document_hash", None)
+    if (
+        not isinstance(recorded_document_hash, str)
+        or recorded_document_hash != _document_hash(raw)
+    ):
+        raise ValueError("authority trial report document hash mismatch")
+    binding = raw.get("binding")
+    if not isinstance(binding, dict):
+        raise ValueError("authority trial binding must be an object")
+    for name in (
+        "all_attacks_executed",
+        "correct_cannot_check_passed",
+        "all_pass",
+        "grants_phase2_closure",
+        "grants_governed_self_orion",
+    ):
+        if type(raw.get(name)) is not bool:
+            raise ValueError(f"authority trial {name} must be boolean")
+    if raw["grants_phase2_closure"] or raw["grants_governed_self_orion"]:
+        raise ValueError("authority trial report cannot grant promotion/closure authority")
+    blockers = raw.get("blockers")
+    if not isinstance(blockers, list) or any(not isinstance(item, str) for item in blockers):
+        raise ValueError("authority trial blockers must be strings")
+    false_promotion_count = raw.get("false_promotion_count")
+    if (
+        isinstance(false_promotion_count, bool)
+        or not isinstance(false_promotion_count, int)
+        or false_promotion_count < 0
+    ):
+        raise ValueError("authority trial false promotion count is invalid")
+    return LoadedAuthorityTrialReport(
+        binding=SimpleNamespace(
+            subject_revision_hash=binding["subject_revision_hash"],
+            evaluator_artifact_hash=binding["evaluator_artifact_hash"],
+            evaluation_epoch_id=binding["evaluation_epoch_id"],
+        ),
+        blockers=tuple(blockers),
+        all_attacks_executed=raw["all_attacks_executed"],
+        correct_cannot_check_passed=raw["correct_cannot_check_passed"],
+        false_promotion_count=false_promotion_count,
+        all_pass=raw["all_pass"],
+        artifact_hash=raw["artifact_hash"],
+        grants_phase2_closure=False,
+        grants_governed_self_orion=False,
+        document_hash=recorded_document_hash,
     )
 
 
@@ -227,10 +311,67 @@ def development_trial_report_to_dict(
 def write_development_trial_report(
     report: ShadowDevelopmentTrialReport, path: Path | str
 ) -> None:
+    payload = development_trial_report_to_dict(report)
+    payload["document_hash"] = _document_hash(payload)
     Path(path).write_text(
-        json.dumps(development_trial_report_to_dict(report), indent=2, sort_keys=True)
-        + "\n",
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
+    )
+
+
+@dataclass(frozen=True)
+class LoadedDevelopmentTrialReport:
+    case: object
+    cycle: object
+    blockers: tuple[str, ...]
+    process_demonstrated: bool
+    self_merge_authorized: bool
+    artifact_hash: str
+    document_hash: str
+
+
+def load_development_trial_report(path: Path | str) -> LoadedDevelopmentTrialReport:
+    raw = json.loads(Path(path).read_text(encoding="utf-8"))
+    if not isinstance(raw, dict) or raw.get("schema") != DEVELOPMENT_TRIAL_REPORT_SCHEMA:
+        raise ValueError(
+            f"development trial schema must be {DEVELOPMENT_TRIAL_REPORT_SCHEMA}"
+        )
+    recorded_document_hash = raw.pop("document_hash", None)
+    if (
+        not isinstance(recorded_document_hash, str)
+        or recorded_document_hash != _document_hash(raw)
+    ):
+        raise ValueError("development trial report document hash mismatch")
+    for name in ("process_demonstrated", "self_merge_authorized"):
+        if type(raw.get(name)) is not bool:
+            raise ValueError(f"development trial {name} must be boolean")
+    if raw["self_merge_authorized"]:
+        raise ValueError("development trial report cannot authorize self-merge")
+    blockers = raw.get("blockers")
+    if not isinstance(blockers, list) or any(not isinstance(item, str) for item in blockers):
+        raise ValueError("development trial blockers must be strings")
+    control = raw.get("change_control")
+    loaded_control = None
+    if control is not None:
+        if not isinstance(control, dict):
+            raise ValueError("development trial change_control must be an object")
+        loaded_control = SimpleNamespace(
+            assurance=SimpleNamespace(
+                evaluator_artifact_hash=control["evaluator_artifact_hash"],
+                evaluation_epoch_id=control["evaluation_epoch_id"],
+            )
+        )
+    return LoadedDevelopmentTrialReport(
+        case=SimpleNamespace(
+            subject_revision_hash=raw["subject_revision_hash"],
+            evaluation_epoch_id=raw["evaluation_epoch_id"],
+        ),
+        cycle=SimpleNamespace(change_control=loaded_control),
+        blockers=tuple(blockers),
+        process_demonstrated=raw["process_demonstrated"],
+        self_merge_authorized=False,
+        artifact_hash=raw["artifact_hash"],
+        document_hash=recorded_document_hash,
     )
 
 
@@ -244,6 +385,7 @@ def campaign_report_to_dict(report: Phase2CampaignReport) -> dict[str, object]:
         "development_trial_artifact_hash": report.development_trial_artifact_hash,
         "authority_trial_artifact_hash": report.authority_trial_artifact_hash,
         "authority_benchmark_panel_hash": report.authority_benchmark_panel_hash,
+        "authority_campaign_artifact_hash": report.authority_campaign_artifact_hash,
         "external_observation_bundle_hash": report.external_observation_bundle_hash,
         "ready_for_terminal_audit": report.ready_for_terminal_audit,
         "grants_phase2_closure": report.grants_phase2_closure,
@@ -252,8 +394,10 @@ def campaign_report_to_dict(report: Phase2CampaignReport) -> dict[str, object]:
 
 
 def write_campaign_report(report: Phase2CampaignReport, path: Path | str) -> None:
+    payload = campaign_report_to_dict(report)
+    payload["document_hash"] = _document_hash(payload)
     Path(path).write_text(
-        json.dumps(campaign_report_to_dict(report), indent=2, sort_keys=True) + "\n",
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
 
@@ -263,10 +407,14 @@ __all__ = [
     "CAMPAIGN_REPORT_SCHEMA",
     "DEVELOPMENT_TRIAL_REPORT_SCHEMA",
     "EXTERNAL_OBSERVATION_BUNDLE_SCHEMA",
+    "LoadedAuthorityTrialReport",
+    "LoadedDevelopmentTrialReport",
     "authority_trial_report_to_dict",
     "campaign_report_to_dict",
     "development_trial_report_to_dict",
     "external_observation_bundle_to_dict",
+    "load_authority_trial_report",
+    "load_development_trial_report",
     "load_external_observation_bundle",
     "write_authority_trial_report",
     "write_campaign_report",
