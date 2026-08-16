@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import json
 import os
+import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -16,10 +17,7 @@ from orion.providers.retrieval.literature import (
     MultiSourceLiteratureRetrievalProvider,
 )
 from orion.providers.verification.base import VerificationResult
-from orion.self_orion.baseline import (
-    SimpleLLMRetrievalBaseline,
-    write_baseline_bundle,
-)
+from orion.self_orion.baseline import SimpleLLMRetrievalBaseline, write_baseline_bundle
 from orion.self_orion.live_trial import FrozenLiveTrialPacket, ShadowLiveTrialRunner
 from orion.self_orion.phase2_preflight import DEEP_TARGET_TASK, WIDE_LITERATURE_TASK
 from orion.self_orion.trial_io import write_shadow_live_trial_report
@@ -36,6 +34,32 @@ def _canonical_hash(payload: object) -> str:
     ).hexdigest()
 
 
+def _ollama_model_digest(model: str) -> str:
+    request = urllib.request.Request(
+        "http://127.0.0.1:11434/api/tags",
+        headers={"Accept": "application/json", "User-Agent": "orion-research-os/0.1"},
+        method="GET",
+    )
+    with urllib.request.urlopen(request, timeout=30.0) as response:  # noqa: S310 - loopback-only
+        raw = json.loads(response.read())
+    models = raw.get("models", []) if isinstance(raw, dict) else []
+    if not isinstance(models, list):
+        raise RuntimeError("Ollama /api/tags response models must be an array")
+    for record in models:
+        if not isinstance(record, dict):
+            continue
+        if record.get("name") != model and record.get("model") != model:
+            continue
+        digest = record.get("digest")
+        if not isinstance(digest, str):
+            break
+        normalized = digest.removeprefix("sha256:")
+        if len(normalized) != 64 or any(ch not in "0123456789abcdef" for ch in normalized):
+            break
+        return normalized
+    raise RuntimeError(f"Ollama model digest unavailable for pulled model: {model}")
+
+
 @dataclass(frozen=True)
 class UnavailableProtectedVerifier:
     """Fail-closed authority boundary used only for open live diagnostics."""
@@ -49,9 +73,16 @@ class UnavailableProtectedVerifier:
 @dataclass(frozen=True)
 class DiagnosticIdentity:
     model: str
+    model_digest: str
     ollama_endpoint: str
     europe_pmc_endpoint: str
     crossref_endpoint: str
+
+    def __post_init__(self) -> None:
+        if len(self.model_digest) != 64 or any(
+            ch not in "0123456789abcdef" for ch in self.model_digest
+        ):
+            raise ValueError("diagnostic model digest must be SHA-256")
 
     @property
     def provider_manifest(self) -> dict[str, object]:
@@ -61,6 +92,7 @@ class DiagnosticIdentity:
                 "provider": "ollama-loopback-chat",
                 "endpoint": self.ollama_endpoint,
                 "model": self.model,
+                "model_digest_sha256": self.model_digest,
                 "authority_role": "semantic-reasoner-only",
             },
             "retrieval": [
@@ -105,6 +137,8 @@ def _summary(report, baseline, *, identity: DiagnosticIdentity) -> dict[str, obj
         "schema": DIAGNOSTIC_SCHEMA,
         "subject_commit": os.environ.get("GITHUB_SHA", "local-unbound"),
         "evaluation_epoch_id": DIAGNOSTIC_EPOCH,
+        "reasoner_model": identity.model,
+        "reasoner_model_digest_sha256": identity.model_digest,
         "provider_manifest_hash": identity.provider_manifest_hash,
         "evaluator_artifact_hash": identity.evaluator_artifact_hash,
         "protected_verification_available": False,
@@ -133,9 +167,7 @@ def _summary(report, baseline, *, identity: DiagnosticIdentity) -> dict[str, obj
                 "raw_query_count": item.raw_query_count,
                 "raw_retrieved_item_count": item.raw_retrieved_item_count,
                 "retrieved_but_unused_count": len(item.retrieved_but_unused_ids),
-                "retrieved_but_unabsorbed_count": len(
-                    item.retrieved_but_unabsorbed_ids
-                ),
+                "retrieved_but_unabsorbed_count": len(item.retrieved_but_unabsorbed_ids),
                 "root_episode_recorded": item.root_episode_id is not None,
                 "mechanic_episode_count": len(item.mechanic_episode_ids),
             }
@@ -154,21 +186,19 @@ def _summary(report, baseline, *, identity: DiagnosticIdentity) -> dict[str, obj
 def run(*, model: str, output_dir: Path) -> dict[str, object]:
     output_dir.mkdir(parents=True, exist_ok=True)
     llm = OllamaLLMProvider(OllamaConfig(model=model))
+    model_digest = _ollama_model_digest(model)
     europe_pmc = EuropePMCRetrievalProvider()
     crossref = CrossrefRetrievalProvider(mailto=os.environ.get("CROSSREF_MAILTO", ""))
     retrieval = MultiSourceLiteratureRetrievalProvider((europe_pmc, crossref))
     verifier = UnavailableProtectedVerifier()
     identity = DiagnosticIdentity(
         model=model,
+        model_digest=model_digest,
         ollama_endpoint=llm.config.endpoint,
         europe_pmc_endpoint=europe_pmc.endpoint,
         crossref_endpoint=crossref.endpoint,
     )
-    baseline = SimpleLLMRetrievalBaseline(
-        llm=llm,
-        retrieval=retrieval,
-        max_results=8,
-    )
+    baseline = SimpleLLMRetrievalBaseline(llm=llm, retrieval=retrieval, max_results=8)
     runner = ShadowLiveTrialRunner.from_providers(
         llm=llm,
         retrieval=retrieval,
