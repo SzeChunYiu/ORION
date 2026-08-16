@@ -42,14 +42,22 @@ jobs:
         with: {python-version: '3.12'}
       - run: python -m pip install -e '.[dev]'
       - run: pytest -q tests/unit/knowledge/test_backward_multiseed_benchmark_rakl.py
-  inventory:
+  inventory-json:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - run: python -m pip install -e '.[dev]'
-      - run: pytest -q tests/unit/self_orion/test_rakl_donor_inventory_v3.py tests/unit/knowledge/test_phase1_donor_tranche.py
+      - run: pytest -q tests/unit/self_orion/test_rakl_donor_inventory_v3.py
+  authority-boundary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install -e '.[dev]'
+      - run: pytest -q tests/unit/knowledge/test_phase1_donor_tranche.py
   rest:
     runs-on: ubuntu-latest
     steps:
