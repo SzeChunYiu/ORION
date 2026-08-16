@@ -47,7 +47,10 @@ _FIELD_BY_DIMENSION: dict[MechanicDimension, str] = {
     MechanicDimension.STATE: "state_ids",
     MechanicDimension.OBSERVABILITY: "observable_ids",
     MechanicDimension.VERIFICATION: "verification_contracts",
+    MechanicDimension.FAILURE: "failure_signatures",
 }
+
+_FAILURE_SIGNATURE = re.compile(r"^failure:[A-Za-z0-9_.]+:[a-z0-9-]+\s+-\s+\S")
 
 
 def _seed_entries() -> dict[MechanicDimension, frozenset[tuple[str, str]]]:
@@ -70,6 +73,12 @@ def _seed_entries() -> dict[MechanicDimension, frozenset[tuple[str, str]]]:
 
 
 _SEED = _seed_entries()
+
+_SEED_FALSIFIERS: frozenset[tuple[str, str]] = frozenset(
+    (cell.mechanic_id, str(item))
+    for cell in current_program_cells()
+    for item in cell.falsifiers
+)
 
 
 def _is_preexisting(
@@ -131,6 +140,30 @@ def _verification_contract(cell: MechanicCell) -> bool:
     return any(
         len(item) >= 40 and any(marker in item for marker in _VERIF_MARKERS)
         for item in fresh
+    )
+
+
+def _failure_contract(cell: MechanicCell) -> bool:
+    """Step-specific failure content: typed signatures plus a fresh falsifier.
+
+    A failure answer must name concrete modes in the `failure:<mechanic>:<mode>`
+    grammar (not restate that failures exist) and supply at least one falsifier
+    beyond the seed state, since a mode without a falsifier is unfalsifiable
+    self-description.
+    """
+
+    fresh_signatures = _step_specific(
+        MechanicDimension.FAILURE, cell, cell.failure_signatures
+    )
+    fresh_falsifiers = tuple(
+        item
+        for item in cell.falsifiers
+        if _declarative(item)
+        and len(item) >= 40
+        and (cell.mechanic_id, item) not in _SEED_FALSIFIERS
+    )
+    return bool(fresh_falsifiers) and any(
+        _FAILURE_SIGNATURE.match(item) for item in fresh_signatures
     )
 
 
@@ -234,6 +267,36 @@ CHECKS: tuple[DiscriminatingCheck, ...] = (
         negative_fixtures=(
             _fixture("nearmiss.observability", observable_ids=("progress", "status", "quality")),
             _seed_layer_negative(MechanicDimension.OBSERVABILITY, "observable_ids"),
+        ),
+        frozen_at_round=0,
+    ),
+    DiscriminatingCheck(
+        check_id="claude.form.failure.v0",
+        dimension=MechanicDimension.FAILURE,
+        lane=LANE,
+        predicate=_failure_contract,
+        positive_fixture=_fixture(
+            "fixture.failure",
+            failure_signatures=(
+                "failure:fixture.failure:false-impossibility-certificate - a repairable local defect is relabelled as proof that no solution can work",
+            ),
+            falsifiers=(
+                "a single false certificate on a case where a licensing witness demonstrably exists refutes the mechanism",
+            ),
+        ),
+        negative_fixtures=(
+            _fixture(
+                "nearmiss.failure",
+                failure_signatures=("this step can fail if something goes wrong",),
+                falsifiers=("more testing would reveal problems",),
+            ),
+            _fixture(
+                "nearmiss.failure.unfalsifiable",
+                failure_signatures=(
+                    "failure:nearmiss.failure.unfalsifiable:mode-without-falsifier - a typed mode with no way to be wrong",
+                ),
+            ),
+            _seed_layer_negative(MechanicDimension.FAILURE, "failure_signatures"),
         ),
         frozen_at_round=0,
     ),
