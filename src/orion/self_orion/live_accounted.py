@@ -40,6 +40,7 @@ class AccountedShadowLiveTrialRunner(ShadowLiveTrialRunner):
         self._accounting_llm = accounting_llm
         self._retrieval_call_cost_units = retrieval_call_cost_units
         self._llm_call_cost_units = llm_call_cost_units
+        self._last_run_mark = 0
 
     @classmethod
     def from_providers(
@@ -80,12 +81,15 @@ class AccountedShadowLiveTrialRunner(ShadowLiveTrialRunner):
 
     @property
     def llm_call_observations(self):
-        return self._accounting_llm.observations()
+        return self._accounting_llm.observations_since(self._last_run_mark)
 
     def llm_calls_for_task(self, task_id: str) -> int:
-        return self._accounting_llm.attempted_calls_for_problem(task_id)
+        return self._accounting_llm.attempted_calls_for_problem_since(
+            task_id, self._last_run_mark
+        )
 
     def run(self, packet: FrozenLiveTrialPacket) -> ShadowLiveTrialReport:
+        self._last_run_mark = self._accounting_llm.mark()
         raw = super().run(packet)
         comparisons = []
         for item in raw.comparisons:
