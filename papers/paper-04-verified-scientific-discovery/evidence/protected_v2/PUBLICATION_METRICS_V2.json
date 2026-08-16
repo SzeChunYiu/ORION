@@ -1,0 +1,48 @@
+{
+  "ablations": {
+    "ablation-no-behavioral-influence": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "false_promotion_rate": 0.08333333333333333, "false_promotions": 30, "mean_latency_seconds": 0.0027045152514285713},
+    "ablation-no-checker-lineage-independence": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "false_promotion_rate": 0.08333333333333333, "false_promotions": 30, "mean_latency_seconds": 0.002707762622857143},
+    "ablation-no-content-provenance-distinction": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "false_promotion_rate": 0.16666666666666666, "false_promotions": 60, "mean_latency_seconds": 0.0027076567652380952},
+    "ablation-no-evaluator-protection-telemetry": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "false_promotion_rate": 0.25, "false_promotions": 90, "mean_latency_seconds": 0.002711648557142857},
+    "ablation-no-exact-content-binding": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "false_promotion_rate": 0.08333333333333333, "false_promotions": 30, "mean_latency_seconds": 0.002713108875714286},
+    "ablation-no-hostile-checker-battery": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "false_promotion_rate": 0.08333333333333333, "false_promotions": 30, "mean_latency_seconds": 0.002704272670952381},
+    "ablation-no-search-contamination-block": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "false_promotion_rate": 0.08333333333333333, "false_promotions": 30, "mean_latency_seconds": 0.0027087063376190477},
+    "ablation-soft-confidence": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "false_promotion_rate": 0.9166666666666666, "false_promotions": 330, "mean_latency_seconds": 0.002457023133809524}
+  },
+  "ambiguous_cases": 0,
+  "artifact": {"safe_bundle_id": 9271234622, "safe_bundle_zip_sha256": "51ac14bc3a6b4b570aaca6d4a41c91f53d9bf2887e66f0620c412f78566a3b44"},
+  "campaign_run_id": "31976589735",
+  "case_count": 420,
+  "clean_positive_total": 60,
+  "comparator_disclosure": "Protocol-matched mechanism reimplementations, not executions of the external authors' original software.",
+  "evaluation_epoch": "2026-08-16T22:17:32Z",
+  "hostile_promotion_opportunities": 360,
+  "hypotheses": {
+    "H1": {"ci95_high": -0.44722222222222224, "ci95_low": -0.5527777777777778, "orion_minus_baseline_false_promotion": -0.5, "practical_margin": -0.05, "status": "PASS"},
+    "H2": {"ci95_high": 0.0, "ci95_low": 0.0, "noninferiority_margin": -0.05, "orion_minus_baseline_clean_coverage": 0.0, "status": "PASS"},
+    "H3": {"ci95_high": 0.0, "ci95_low": 0.0, "note": "Secondary hypothesis; equality does not invalidate H1/H2 or the typed safety panel.", "orion_minus_baseline_correct_cannot_check": 0.0, "status": "NOT_SUPPORTED"}
+  },
+  "mechanical_gold_cases": 420,
+  "repeats": 5,
+  "reproduction": {"clean_total": 60, "comparator_clean_promotions": 60, "comparator_false_promotions": 180, "headline_clean_coverage_effect": 0.0, "headline_false_promotion_effect": -0.5, "headline_reproduced": true, "orion_clean_promotions": 60, "orion_false_promotions": 0, "promotion_opportunities": 360, "reproducer_lineage_hash": "26f4cf9e4aa398a3e653323e4867c7de4420a31096af09abb8f845688597ab33"},
+  "schema": "P4PublicationMetrics.v2",
+  "split_hash": "3fe91b669643fa158f2f64c1e6ab70837afbb9b0582e297f1da6e1c3c696fcd9",
+  "strongest_frozen_comparator": "provenai-citation-fidelity-influence",
+  "subject_commit": "f6e51b5c8f905382b8e2f5568d9035fc14241aa1",
+  "subject_revision_hash": "a617a30ba8ebce5f7f89ceca77dbde793a7c43f85b8b01300e8ec1ef40a1e0e4",
+  "systems": {
+    "ORION": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "correct_cannot_check_rate": 1.0, "display_name": "ORION", "false_promotion_ci95": [0.0, 0.010558056888693507], "false_promotion_rate": 0.0, "mean_latency_seconds": 0.0029735870161904762, "resource_units": 9.0, "source_attribution_accuracy": 1.0, "support_contradiction_f1": 1.0},
+    "attributionbench-multisource-attribution": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "correct_cannot_check_rate": 1.0, "display_name": "AttributionBench-style", "false_promotion_ci95": [0.6164370892983055, 0.7133768917387966], "false_promotion_rate": 0.6666666666666666, "mean_latency_seconds": 5.811598095238095e-06, "resource_units": 3.0, "source_attribution_accuracy": 1.0, "support_contradiction_f1": 1.0},
+    "citation-presence-format": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "correct_cannot_check_rate": 1.0, "display_name": "Citation presence", "false_promotion_ci95": [0.8835295029776653, 0.9410054496150899], "false_promotion_rate": 0.9166666666666666, "mean_latency_seconds": 9.086880952380952e-07, "resource_units": 1.0, "source_attribution_accuracy": 0.7692307692307693, "support_contradiction_f1": 1.0},
+    "claim-level-auditability-provenance": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "correct_cannot_check_rate": 1.0, "display_name": "Auditability/provenance", "false_promotion_ci95": [0.6164370892983055, 0.7133768917387966], "false_promotion_rate": 0.6666666666666666, "mean_latency_seconds": 3.279472857142857e-06, "resource_units": 5.0, "source_attribution_accuracy": 0.7692307692307693, "support_contradiction_f1": 0.96},
+    "claimbench-sciclaimhunt-scientific-evidence": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "correct_cannot_check_rate": 1.0, "display_name": "CLAIM-BENCH-style", "false_promotion_ci95": [0.8835295029776653, 0.9410054496150899], "false_promotion_rate": 0.9166666666666666, "mean_latency_seconds": 4.890782380952381e-06, "resource_units": 4.0, "source_attribution_accuracy": 0.7692307692307693, "support_contradiction_f1": 1.0},
+    "deepsciverify-abstract-to-full-escalation": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "correct_cannot_check_rate": 1.0, "display_name": "DeepSciVerify-style", "false_promotion_ci95": [0.5317882359812938, 0.6331187545372574], "false_promotion_rate": 0.5833333333333334, "mean_latency_seconds": 7.395215238095238e-06, "resource_units": 6.5, "source_attribution_accuracy": 1.0, "support_contradiction_f1": 0.96},
+    "fire-iterative-retrieve-or-verify": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "correct_cannot_check_rate": 1.0, "display_name": "FIRE-style", "false_promotion_ci95": [0.7913590381730007, 0.8682689239012036], "false_promotion_rate": 0.8333333333333334, "mean_latency_seconds": 6.858790476190477e-06, "resource_units": 6.0, "source_attribution_accuracy": 1.0, "support_contradiction_f1": 0.96},
+    "pooled-evidence-nli-support": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "correct_cannot_check_rate": 1.0, "display_name": "Pooled support", "false_promotion_ci95": [0.8835295029776653, 0.9410054496150899], "false_promotion_rate": 0.9166666666666666, "mean_latency_seconds": 4.917400952380952e-06, "resource_units": 2.0, "source_attribution_accuracy": 0.7692307692307693, "support_contradiction_f1": 1.0},
+    "provenai-citation-fidelity-influence": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "correct_cannot_check_rate": 1.0, "display_name": "ProvenAI-style", "false_promotion_ci95": [0.4486237971218836, 0.5513762028781164], "false_promotion_rate": 0.5, "mean_latency_seconds": 3.3526642857142856e-06, "resource_units": 5.0, "source_attribution_accuracy": 1.0, "support_contradiction_f1": 0.96},
+    "provenanceguard-style-source-routing": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "correct_cannot_check_rate": 1.0, "display_name": "ProvenanceGuard-style", "false_promotion_ci95": [0.5317882359812938, 0.6331187545372574], "false_promotion_rate": 0.5833333333333334, "mean_latency_seconds": 3.7402061904761905e-06, "resource_units": 5.0, "source_attribution_accuracy": 1.0, "support_contradiction_f1": 0.96},
+    "rewardhackingagents-search-contamination": {"clean_coverage": 1.0, "clean_false_negative_count": 0, "correct_cannot_check_rate": 1.0, "display_name": "RewardHackingAgents-style", "false_promotion_ci95": [0.5317882359812938, 0.6331187545372574], "false_promotion_rate": 0.5833333333333334, "mean_latency_seconds": 7.246050476190476e-06, "resource_units": 5.0, "source_attribution_accuracy": 0.7692307692307693, "support_contradiction_f1": 1.0}
+  },
+  "telemetry": {"candidate_external_ip_connects": 0, "candidate_protected_identifier_hits": 0, "comparator_external_ip_connects": 0, "comparator_protected_identifier_hits": 0, "raw_candidate_strace_retained": true, "raw_comparator_strace_retained": true, "schema": "P4ActualAccessTelemetry.v2"},
+  "typed_panel": {"blockers": [], "hash": "ecee5de8bba6d28ed21855b4c8a741c370ff80e9f5d07ca0b31b9224a6a8a2b2", "status": "PASS"}
+}

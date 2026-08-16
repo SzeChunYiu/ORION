@@ -1,68 +1,26 @@
-# ORION-P4 Reproducibility Package
+# ORION-P4 V2 Reproducibility
 
-This directory contains the reproducibility artifact for ORION Paper IV: Non-Escalating Scientific Authority under Content-Bound Evidence and Protected Evaluation.
+## Exact identities
 
-## Structure
+- Subject: `f6e51b5c8f905382b8e2f5568d9035fc14241aa1`
+- Protected campaign: `31976589735`
+- Split SHA-256: `3fe91b669643fa158f2f64c1e6ab70837afbb9b0582e297f1da6e1c3c696fcd9`
+- Harness SHA-256: `094f43cb320f8e8e3196049269b20ac22e7e94fa9890b80f27f38ef49f7c82ea`
+- Safe bundle SHA-256: `51ac14bc3a6b4b570aaca6d4a41c91f53d9bf2887e66f0620c412f78566a3b44`
 
-```
-reproducibility/
-  README.md                    — this file
-  BINDING_MANIFEST_V1.md       — execution bindings required for EXECUTION_FROZEN
-  SCRIPT_INDEX.md              — scripts that regenerate figures/tables
-evidence/
-  ATTACK_MANIFEST_V1.jsonl     — attack case definitions (under protected custody)
-  CUSTODY_MANIFEST_V1.json     — custody and freeze metadata
-  AVAILABILITY_STATEMENT_V1.md — data/code availability statement
-  CLAIM_LEDGER_V1.md           — mapping headline claims to evidence
-  NOVELTY_AUDIT_V1.md          — novelty closure audit
-figures/
-  generate_figures.py          — script to regenerate all figures
-  p4_1_authority_pipeline.svg
-  p4_2_false_promotion.svg
-  p4_3_coverage_frontier.svg
-  p4_4_detection_by_attack.svg
-  p4_5_attribution_vs_support.svg
-  p4_6_cost_false_promotion.svg
-protocol/
-  PROTOCOL_V1.json             — frozen protocol artifact
-  ATTACK_CASE_SCHEMA_V1.json   — attack case schema
-  CUSTODY_POLICY_V1.md         — custody policy
-  THREAT_MODEL_V1.md           — threat model
-  STATISTICAL_ANALYSIS_PLAN_V1.md — statistical analysis plan
-  METRICS_REGISTRY_V1.json     — metric definitions
-  PLOT_SPEC_V1.md              — figure and table specifications
-  FREEZE_MANIFEST_V1.md        — freeze status documentation
-```
+## Safe replay
 
-## Replay Instructions
-
-### Prerequisites
-- Python 3.11+
-- `pip install -e '.[dev]'` from the ORION repository root
-
-### Regenerate figures
 ```bash
-cd papers/paper-04-verified-scientific-discovery
-python figures/generate_figures.py
+python papers/paper-04-verified-scientific-discovery/figures/generate_figures.py
+pytest -q tests/unit/p4/test_p4_publication_v2.py tests/unit/p4/test_p4_v2_execution_freeze.py
 ```
 
-### Run protocol validation tests
-```bash
-pytest tests/ -k "P4" -v
-```
+The figure generator reads only immutable public V2 aggregates. It does not read the exploratory live arm or protected gold.
 
-### Run the protected campaign
-```bash
-python -m orion.benchmarks.campaign_runner \
-  --manifest papers/paper-04-verified-scientific-discovery/evidence/ATTACK_MANIFEST_V1.jsonl \
-  --output papers/paper-04-verified-scientific-discovery/results/ \
-  --seed 20260816
-```
+## Protected reproduction
 
-## Protected Status
+After protected scoring, a separate job independently rejoined the protected manifest with one deterministic ORION/comparator output and reproduced `0/360` versus `180/360` false promotions and `60/60` versus `60/60` clean promotions. The receipt is releasable; protected labels are not.
 
-The attack manifest and gold labels are under protected custody. Public cases are marked `PUBLIC_CLEAN` or `PUBLIC_HOSTILE` in the custody class. Protected cases are marked `PROTECTED_HOSTILE` or `PROTECTED_HOLDOUT` and their labels are hidden from the candidate. See `CUSTODY_MANIFEST_V1.json` for the full split.
+## Comparator scope
 
-## Hash Verification
-
-All evidence objects carry content hashes (SHA-256 of the content string) and provenance hashes (SHA-256 of the provenance metadata). The attack manifest has a top-level artifact hash computed as SHA-256 of the canonical JSON representation of each case (excluding the artifact_hash field). These hashes are frozen before candidate execution.
+Comparator arms are common-protocol mechanism reimplementations. Reproducing this paper does not require or imply executing the external authors' original systems.
