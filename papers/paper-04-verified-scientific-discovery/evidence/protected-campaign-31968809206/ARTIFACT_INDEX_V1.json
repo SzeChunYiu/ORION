@@ -1,0 +1,67 @@
+{
+  "campaign_head_commit": "1380ca2e404254c6ba3cd55a44c1a07ae37c0f78",
+  "campaign_jobs": {
+    "candidate": 95218034688,
+    "comparators_and_ablations": 95218034720,
+    "handoff": 95218032382,
+    "independent_reproduction": 95218146748,
+    "protected_evaluator": 95218082384,
+    "publication_safe_bundle": 95218161183
+  },
+  "campaign_run_id": "31968809206",
+  "host_custody": {
+    "candidate_visible_artifact_id": 9268846910,
+    "host_run_id": "31967352555",
+    "protected_artifact_id": 9268847119,
+    "protected_manifest_sha256": "23c7732118bf750b4f5b927aab271cf1e7ee1068d8dc1838ca5119d7e436b102"
+  },
+  "integrity": {
+    "candidate_external_ip_connects": 0,
+    "candidate_protected_identifier_hits": 0,
+    "comparator_external_ip_connects": 0,
+    "comparator_protected_identifier_hits": 0,
+    "headline_reproduced": true,
+    "typed_panel_hash": "0876a616d75112fadc5604b29474f34cf0c6e1f7cd642332924f749ce39e0f5f"
+  },
+  "protected_raw_artifacts": {
+    "campaign_run_id": "31968809206",
+    "description": "Raw scored/ablation verdicts, error analysis, and candidate/comparator strace remain in protected Actions custody; they are intentionally not copied into the public repository."
+  },
+  "protocol_id": "P4.protected-authority.v1",
+  "safe_bundle_artifact": {
+    "artifact_id": 9269235009,
+    "campaign_run_id": "31968809206"
+  },
+  "safe_files": {
+    "ABLATION_SUMMARY_V1.json": {
+      "bytes": 22113,
+      "sha256": "96f35f837c8e72deb8215483d636c36e5aca24606a6f0e68d0075c07471ea94e"
+    },
+    "ACCESS_TELEMETRY_SUMMARY_V1.json": {
+      "bytes": 296,
+      "sha256": "544a6f1fd1a72924c6faab87108e5ec1990abbc184cde6a484c31efe93c8c2dd"
+    },
+    "AUTHORITY_BENCHMARK_PANEL_V1.json": {
+      "bytes": 12098,
+      "sha256": "5fc2b92640e0e8d70190cb7367c7cf50a112b54de889abf137c5680872b18903"
+    },
+    "CAMPAIGN_SUMMARY_V1.json": {
+      "bytes": 36437,
+      "sha256": "0edc127c5ef653f5c78b6dbe5165baebdbbd46e0b6131bfefd85a388150aaf66"
+    },
+    "INDEPENDENT_REPRODUCTION_V1.json": {
+      "bytes": 1152,
+      "sha256": "cbfe9e416c3e58525c5ea53d5ce161b9bea9caf8bd38fa7de05d2f14d7bc5967"
+    },
+    "PUBLIC_ATTACK_MANIFEST_V1.jsonl": {
+      "bytes": 404330,
+      "sha256": "c02693d12b972c0472f1ee307db75478d2c775f22f1b0cced03775c7c5626a15"
+    },
+    "PUBLIC_CANDIDATE_VERDICTS_V1.jsonl": {
+      "bytes": 723660,
+      "sha256": "e473cf06948d67a2e79588a45be4bf3e5d2eecf7a92c51d0d05e117ec1ab29a9"
+    }
+  },
+  "schema": "P4ProtectedArtifactIndex.v1",
+  "subject_commit": "46977ea104162c4cf64da8138a4c4759065fe6d4"
+}

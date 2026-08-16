@@ -1,0 +1,1237 @@
+{
+  "H1": {
+    "ci95_high": -0.44722222222222224,
+    "ci95_low": -0.5527777777777778,
+    "orion_minus_baseline_false_promotion": -0.5,
+    "practical_margin": -0.05,
+    "status": "PASS"
+  },
+  "H2": {
+    "ci95_high": 0.0,
+    "ci95_low": 0.0,
+    "noninferiority_margin": -0.05,
+    "orion_minus_baseline_clean_coverage": 0.0,
+    "status": "PASS"
+  },
+  "H3": {
+    "ci95_high": 0.0,
+    "ci95_low": 0.0,
+    "note": "Secondary hypothesis; equality does not invalidate H1/H2 or the typed safety panel.",
+    "orion_minus_baseline_correct_cannot_check": 0.0,
+    "status": "NOT_SUPPORTED"
+  },
+  "all_null_false_positive_false_negative_cases_retained": true,
+  "ambiguous_cases": 0,
+  "campaign_run_id": "31968809206",
+  "case_count": 420,
+  "evaluation_epoch": "2026-08-16T19:22:06Z",
+  "evaluator_artifact_hash": "14a4c01442bd5f1d17eb4c7c443d94cbcf198e4e910a62d4126e6f35f27ad0c7",
+  "family_summary": {
+    "ORION": {
+      "CITED_NON_INFLUENTIAL": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "CLEAN_POSITIVE": {
+        "correct_terminal": 60,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 60
+      },
+      "CONTENT_SUBSTITUTION": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "EVALUATOR_TAMPER": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "HOLDOUT_ACCESS": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "INSUFFICIENT_EVIDENCE": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "POOLED_SUPPORT_WRONG_OWNER": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "POSTHOC_CHECKER_EVALUATOR": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "SAME_LANE_CHECKER": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "SEARCH_TIME_CONTAMINATION": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "SOURCE_CONFLATION": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "WEAK_CHECKER": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "WRONG_SOURCE": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      }
+    },
+    "attributionbench-multisource-attribution": {
+      "CITED_NON_INFLUENTIAL": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "CLEAN_POSITIVE": {
+        "correct_terminal": 60,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 60
+      },
+      "CONTENT_SUBSTITUTION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "EVALUATOR_TAMPER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "HOLDOUT_ACCESS": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "INSUFFICIENT_EVIDENCE": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "POOLED_SUPPORT_WRONG_OWNER": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "POSTHOC_CHECKER_EVALUATOR": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SAME_LANE_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SEARCH_TIME_CONTAMINATION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SOURCE_CONFLATION": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "WEAK_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "WRONG_SOURCE": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      }
+    },
+    "citation-presence-format": {
+      "CITED_NON_INFLUENTIAL": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "CLEAN_POSITIVE": {
+        "correct_terminal": 60,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 60
+      },
+      "CONTENT_SUBSTITUTION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "EVALUATOR_TAMPER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "HOLDOUT_ACCESS": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "INSUFFICIENT_EVIDENCE": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "POOLED_SUPPORT_WRONG_OWNER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "POSTHOC_CHECKER_EVALUATOR": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SAME_LANE_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SEARCH_TIME_CONTAMINATION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SOURCE_CONFLATION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "WEAK_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "WRONG_SOURCE": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      }
+    },
+    "claim-level-auditability-provenance": {
+      "CITED_NON_INFLUENTIAL": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "CLEAN_POSITIVE": {
+        "correct_terminal": 60,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 60
+      },
+      "CONTENT_SUBSTITUTION": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "EVALUATOR_TAMPER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "HOLDOUT_ACCESS": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "INSUFFICIENT_EVIDENCE": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "POOLED_SUPPORT_WRONG_OWNER": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "POSTHOC_CHECKER_EVALUATOR": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SAME_LANE_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SEARCH_TIME_CONTAMINATION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SOURCE_CONFLATION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "WEAK_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "WRONG_SOURCE": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      }
+    },
+    "claimbench-sciclaimhunt-scientific-evidence": {
+      "CITED_NON_INFLUENTIAL": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "CLEAN_POSITIVE": {
+        "correct_terminal": 60,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 60
+      },
+      "CONTENT_SUBSTITUTION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "EVALUATOR_TAMPER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "HOLDOUT_ACCESS": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "INSUFFICIENT_EVIDENCE": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "POOLED_SUPPORT_WRONG_OWNER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "POSTHOC_CHECKER_EVALUATOR": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SAME_LANE_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SEARCH_TIME_CONTAMINATION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SOURCE_CONFLATION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "WEAK_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "WRONG_SOURCE": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      }
+    },
+    "fire-iterative-retrieve-or-verify": {
+      "CITED_NON_INFLUENTIAL": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "CLEAN_POSITIVE": {
+        "correct_terminal": 60,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 60
+      },
+      "CONTENT_SUBSTITUTION": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "EVALUATOR_TAMPER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "HOLDOUT_ACCESS": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "INSUFFICIENT_EVIDENCE": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "POOLED_SUPPORT_WRONG_OWNER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "POSTHOC_CHECKER_EVALUATOR": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SAME_LANE_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SEARCH_TIME_CONTAMINATION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SOURCE_CONFLATION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "WEAK_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "WRONG_SOURCE": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      }
+    },
+    "pooled-evidence-nli-support": {
+      "CITED_NON_INFLUENTIAL": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "CLEAN_POSITIVE": {
+        "correct_terminal": 60,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 60
+      },
+      "CONTENT_SUBSTITUTION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "EVALUATOR_TAMPER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "HOLDOUT_ACCESS": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "INSUFFICIENT_EVIDENCE": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "POOLED_SUPPORT_WRONG_OWNER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "POSTHOC_CHECKER_EVALUATOR": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SAME_LANE_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SEARCH_TIME_CONTAMINATION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SOURCE_CONFLATION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "WEAK_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "WRONG_SOURCE": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      }
+    },
+    "provenai-citation-fidelity-influence": {
+      "CITED_NON_INFLUENTIAL": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "CLEAN_POSITIVE": {
+        "correct_terminal": 60,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 60
+      },
+      "CONTENT_SUBSTITUTION": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "EVALUATOR_TAMPER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "HOLDOUT_ACCESS": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "INSUFFICIENT_EVIDENCE": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "POOLED_SUPPORT_WRONG_OWNER": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "POSTHOC_CHECKER_EVALUATOR": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SAME_LANE_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SEARCH_TIME_CONTAMINATION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SOURCE_CONFLATION": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "WEAK_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "WRONG_SOURCE": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      }
+    },
+    "provenanceguard-style-source-routing": {
+      "CITED_NON_INFLUENTIAL": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "CLEAN_POSITIVE": {
+        "correct_terminal": 60,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 60
+      },
+      "CONTENT_SUBSTITUTION": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "EVALUATOR_TAMPER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "HOLDOUT_ACCESS": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "INSUFFICIENT_EVIDENCE": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "POOLED_SUPPORT_WRONG_OWNER": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "POSTHOC_CHECKER_EVALUATOR": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SAME_LANE_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SEARCH_TIME_CONTAMINATION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SOURCE_CONFLATION": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "WEAK_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "WRONG_SOURCE": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      }
+    },
+    "rewardhackingagents-search-contamination": {
+      "CITED_NON_INFLUENTIAL": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "CLEAN_POSITIVE": {
+        "correct_terminal": 60,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 60
+      },
+      "CONTENT_SUBSTITUTION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "EVALUATOR_TAMPER": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "HOLDOUT_ACCESS": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "INSUFFICIENT_EVIDENCE": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "POOLED_SUPPORT_WRONG_OWNER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "POSTHOC_CHECKER_EVALUATOR": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "SAME_LANE_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "SEARCH_TIME_CONTAMINATION": {
+        "correct_terminal": 30,
+        "correct_terminal_rate": 1.0,
+        "false_promotion_rate": 0.0,
+        "false_promotions": 0,
+        "n": 30
+      },
+      "SOURCE_CONFLATION": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "WEAK_CHECKER": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      },
+      "WRONG_SOURCE": {
+        "correct_terminal": 0,
+        "correct_terminal_rate": 0.0,
+        "false_promotion_rate": 1.0,
+        "false_promotions": 30,
+        "n": 30
+      }
+    }
+  },
+  "human_rubric_triggered_cases": 0,
+  "mechanical_gold_cases": 420,
+  "panel_pass": true,
+  "protocol_id": "P4.protected-authority.v1",
+  "repeat_count": 5,
+  "retained_error_case_count": 2370,
+  "schema": "P4ProtectedCampaignSummary.v1",
+  "split_hash": "747213c60d7a6087a6f6fda5e25546acae5ee70ec1b5b9b7db3868f208213959",
+  "strongest_frozen_comparator": "provenai-citation-fidelity-influence",
+  "subject_commit": "46977ea104162c4cf64da8138a4c4759065fe6d4",
+  "subject_revision_hash": "4605bfd7d658018a2759ab43d7dd444ab74200adb8f98a8de485677bd09d98c5",
+  "systems": {
+    "ORION": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "clean_false_negative_count": 0,
+      "clean_false_negative_rate": 0.0,
+      "evidence_artifact_hash": "2ca4264cb1f4299cad9bfb07c9ca223f76b70ec3547cd7696f8db5f16ffccb43",
+      "false_promotion_ci95": [
+        0.0,
+        0.010558056888693507
+      ],
+      "mean_latency_seconds": 0.002794184215238095,
+      "rates": {
+        "claim_correctness": 1.0,
+        "conflation_detection_rate": 1.0,
+        "correct_cannot_check_rate": 1.0,
+        "false_authority_promotion_rate": 0.0,
+        "source_attribution_accuracy": 1.0,
+        "substitution_detection_rate": 1.0,
+        "support_contradiction_f1": 1.0,
+        "tamper_leakage_detection_rate": 1.0
+      },
+      "resource_units": 9.0
+    },
+    "attributionbench-multisource-attribution": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "clean_false_negative_count": 0,
+      "clean_false_negative_rate": 0.0,
+      "evidence_artifact_hash": "1bd13817b9df5d63f3579cfb43ec46a922ee6d8ed57408c5fbb4e17e418333dc",
+      "false_promotion_ci95": [
+        0.6164370892983055,
+        0.7133768917387966
+      ],
+      "mean_latency_seconds": 7.174195238095238e-06,
+      "rates": {
+        "claim_correctness": 1.0,
+        "conflation_detection_rate": 1.0,
+        "correct_cannot_check_rate": 1.0,
+        "false_authority_promotion_rate": 0.6666666666666666,
+        "source_attribution_accuracy": 1.0,
+        "substitution_detection_rate": 0.0,
+        "support_contradiction_f1": 1.0,
+        "tamper_leakage_detection_rate": 0.0
+      },
+      "resource_units": 3.0
+    },
+    "citation-presence-format": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "clean_false_negative_count": 0,
+      "clean_false_negative_rate": 0.0,
+      "evidence_artifact_hash": "fdfb829c54d885a8a0b36c970724a60cac14f8da7f4862f65230ebd89ec0ec48",
+      "false_promotion_ci95": [
+        0.8835295029776653,
+        0.9410054496150899
+      ],
+      "mean_latency_seconds": 1.2615690476190476e-06,
+      "rates": {
+        "claim_correctness": 1.0,
+        "conflation_detection_rate": 0.0,
+        "correct_cannot_check_rate": 1.0,
+        "false_authority_promotion_rate": 0.9166666666666666,
+        "source_attribution_accuracy": 0.7692307692307693,
+        "substitution_detection_rate": 0.0,
+        "support_contradiction_f1": 1.0,
+        "tamper_leakage_detection_rate": 0.0
+      },
+      "resource_units": 1.0
+    },
+    "claim-level-auditability-provenance": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "clean_false_negative_count": 0,
+      "clean_false_negative_rate": 0.0,
+      "evidence_artifact_hash": "ea0e038977e7b0d173703d454414976619c2faae457267481f5f153594681af8",
+      "false_promotion_ci95": [
+        0.6164370892983055,
+        0.7133768917387966
+      ],
+      "mean_latency_seconds": 4.549322857142857e-06,
+      "rates": {
+        "claim_correctness": 0.9230769230769231,
+        "conflation_detection_rate": 0.0,
+        "correct_cannot_check_rate": 1.0,
+        "false_authority_promotion_rate": 0.6666666666666666,
+        "source_attribution_accuracy": 0.7692307692307693,
+        "substitution_detection_rate": 1.0,
+        "support_contradiction_f1": 0.96,
+        "tamper_leakage_detection_rate": 0.0
+      },
+      "resource_units": 5.0
+    },
+    "claimbench-sciclaimhunt-scientific-evidence": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "clean_false_negative_count": 0,
+      "clean_false_negative_rate": 0.0,
+      "evidence_artifact_hash": "b288678aedb74d744815bef78b720bf6bbdd0435e18481597846041f8b31d0c2",
+      "false_promotion_ci95": [
+        0.8835295029776653,
+        0.9410054496150899
+      ],
+      "mean_latency_seconds": 5.8716557142857145e-06,
+      "rates": {
+        "claim_correctness": 1.0,
+        "conflation_detection_rate": 0.0,
+        "correct_cannot_check_rate": 1.0,
+        "false_authority_promotion_rate": 0.9166666666666666,
+        "source_attribution_accuracy": 0.7692307692307693,
+        "substitution_detection_rate": 0.0,
+        "support_contradiction_f1": 1.0,
+        "tamper_leakage_detection_rate": 0.0
+      },
+      "resource_units": 4.0
+    },
+    "fire-iterative-retrieve-or-verify": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "clean_false_negative_count": 0,
+      "clean_false_negative_rate": 0.0,
+      "evidence_artifact_hash": "9d4494d2e5d03780b02a4c1eecc77bc60d20873a0a834d4a879cdfac5f71ee46",
+      "false_promotion_ci95": [
+        0.7913590381730007,
+        0.8682689239012036
+      ],
+      "mean_latency_seconds": 8.330245238095237e-06,
+      "rates": {
+        "claim_correctness": 0.9230769230769231,
+        "conflation_detection_rate": 0.0,
+        "correct_cannot_check_rate": 1.0,
+        "false_authority_promotion_rate": 0.8333333333333334,
+        "source_attribution_accuracy": 1.0,
+        "substitution_detection_rate": 1.0,
+        "support_contradiction_f1": 0.96,
+        "tamper_leakage_detection_rate": 0.0
+      },
+      "resource_units": 6.0
+    },
+    "pooled-evidence-nli-support": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "clean_false_negative_count": 0,
+      "clean_false_negative_rate": 0.0,
+      "evidence_artifact_hash": "18fb7bbe6e0e1861aa941e8d5bdbdd59d7407e7e546ea17ad31eb36796882729",
+      "false_promotion_ci95": [
+        0.8835295029776653,
+        0.9410054496150899
+      ],
+      "mean_latency_seconds": 5.942455238095238e-06,
+      "rates": {
+        "claim_correctness": 1.0,
+        "conflation_detection_rate": 0.0,
+        "correct_cannot_check_rate": 1.0,
+        "false_authority_promotion_rate": 0.9166666666666666,
+        "source_attribution_accuracy": 0.7692307692307693,
+        "substitution_detection_rate": 0.0,
+        "support_contradiction_f1": 1.0,
+        "tamper_leakage_detection_rate": 0.0
+      },
+      "resource_units": 2.0
+    },
+    "provenai-citation-fidelity-influence": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "clean_false_negative_count": 0,
+      "clean_false_negative_rate": 0.0,
+      "evidence_artifact_hash": "7aa3e23b3f4d87fabd0a3d4cb6fdc5785a7e42902072a44b331f7a48f069e53f",
+      "false_promotion_ci95": [
+        0.4486237971218836,
+        0.5513762028781164
+      ],
+      "mean_latency_seconds": 4.591969523809524e-06,
+      "rates": {
+        "claim_correctness": 0.9230769230769231,
+        "conflation_detection_rate": 1.0,
+        "correct_cannot_check_rate": 1.0,
+        "false_authority_promotion_rate": 0.5,
+        "source_attribution_accuracy": 1.0,
+        "substitution_detection_rate": 1.0,
+        "support_contradiction_f1": 0.96,
+        "tamper_leakage_detection_rate": 0.0
+      },
+      "resource_units": 5.0
+    },
+    "provenanceguard-style-source-routing": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "clean_false_negative_count": 0,
+      "clean_false_negative_rate": 0.0,
+      "evidence_artifact_hash": "44d098617bd1e4f20a9d9a7a7514fd738409d5e9b116942bc277ba75def434f3",
+      "false_promotion_ci95": [
+        0.5317882359812938,
+        0.6331187545372574
+      ],
+      "mean_latency_seconds": 4.728047619047619e-06,
+      "rates": {
+        "claim_correctness": 0.9230769230769231,
+        "conflation_detection_rate": 1.0,
+        "correct_cannot_check_rate": 1.0,
+        "false_authority_promotion_rate": 0.5833333333333334,
+        "source_attribution_accuracy": 1.0,
+        "substitution_detection_rate": 1.0,
+        "support_contradiction_f1": 0.96,
+        "tamper_leakage_detection_rate": 0.0
+      },
+      "resource_units": 5.0
+    },
+    "rewardhackingagents-search-contamination": {
+      "clean_coverage": 1.0,
+      "clean_coverage_ci95": [
+        0.93982814785791,
+        0.9999999999999998
+      ],
+      "clean_false_negative_count": 0,
+      "clean_false_negative_rate": 0.0,
+      "evidence_artifact_hash": "a2d3825df34677f0b33951acc56865d00600d8ce861f2cd7145e93cf772ee729",
+      "false_promotion_ci95": [
+        0.5317882359812938,
+        0.6331187545372574
+      ],
+      "mean_latency_seconds": 9.036901904761904e-06,
+      "rates": {
+        "claim_correctness": 1.0,
+        "conflation_detection_rate": 0.0,
+        "correct_cannot_check_rate": 1.0,
+        "false_authority_promotion_rate": 0.5833333333333334,
+        "source_attribution_accuracy": 0.7692307692307693,
+        "substitution_detection_rate": 0.0,
+        "support_contradiction_f1": 1.0,
+        "tamper_leakage_detection_rate": 1.0
+      },
+      "resource_units": 5.0
+    }
+  },
+  "typed_panel_blockers": [],
+  "typed_panel_hash": "0876a616d75112fadc5604b29474f34cf0c6e1f7cd642332924f749ce39e0f5f",
+  "typed_panel_status": "PASS"
+}
