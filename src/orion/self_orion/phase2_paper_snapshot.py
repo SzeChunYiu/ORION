@@ -5,6 +5,8 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
+from orion.self_orion.subject_binding import RepositorySubjectAttestation
+
 
 PAPER_PROGRAMME_SNAPSHOT_SCHEMA = "Phase2PaperProgrammeSnapshot.v1"
 PAPER_PROGRAMME_PREFIX = "research/paper-programme-v1/"
@@ -67,6 +69,29 @@ class Phase2PaperProgrammeSnapshot:
         ).hexdigest()
 
 
+def paper_programme_snapshot_from_subject(
+    subject: RepositorySubjectAttestation,
+    *,
+    snapshot_id: str = "phase2:paper-programme",
+) -> Phase2PaperProgrammeSnapshot:
+    tracked = {item.path: item.content_sha256 for item in subject.tracked_objects}
+    missing = tuple(
+        path for path in REQUIRED_PHASE2_PAPER_PROGRAMME_PATHS if path not in tracked
+    )
+    if missing:
+        raise ValueError(
+            "final subject is missing required paper programme paths: " + ",".join(missing)
+        )
+    return Phase2PaperProgrammeSnapshot(
+        snapshot_id=snapshot_id,
+        integration_commit_oid=subject.commit_oid,
+        entries=tuple(
+            PaperProgrammeEntry(path, tracked[path])
+            for path in REQUIRED_PHASE2_PAPER_PROGRAMME_PATHS
+        ),
+    )
+
+
 def paper_programme_snapshot_to_dict(
     snapshot: Phase2PaperProgrammeSnapshot,
 ) -> dict[str, object]:
@@ -126,6 +151,7 @@ __all__ = [
     "PaperProgrammeEntry",
     "Phase2PaperProgrammeSnapshot",
     "load_paper_programme_snapshot",
+    "paper_programme_snapshot_from_subject",
     "paper_programme_snapshot_to_dict",
     "write_paper_programme_snapshot",
 ]
