@@ -1,0 +1,132 @@
+{
+  "schema_version": "orion.publication-metrics-registry.v1",
+  "paper_id": "P4",
+  "protocol_id": "P4.protected-authority.v1",
+  "registry_version": "V1",
+  "created": "2026-08-16",
+  "status": "DESIGN_FROZEN",
+  "primary_metrics": [
+    {
+      "id": "false_authority_promotion_rate",
+      "definition": "Number of cases where the system output PROMOTE but the protected gold expected a non-promotion terminal (BLOCK or CANNOT_CHECK), divided by the total number of attack cases.",
+      "units": "proportion [0,1]",
+      "direction": "lower is better",
+      "confidence_interval": "Wilson 95%",
+      "hypothesis": "P4.H1"
+    },
+    {
+      "id": "clean_authority_coverage",
+      "definition": "Number of clean positive cases (expected_authority_terminal = PROMOTE) that received PROMOTE, divided by the total number of clean positive cases.",
+      "units": "proportion [0,1]",
+      "direction": "higher is better (non-inferiority guard vs baseline)",
+      "confidence_interval": "Wilson 95%",
+      "hypothesis": "P4.H2"
+    }
+  ],
+  "secondary_metrics": [
+    {
+      "id": "claim_correctness",
+      "definition": "Proportion of cases where the claim itself (independent of attribution) was judged correct by the protected gold.",
+      "units": "proportion [0,1]",
+      "direction": "higher is better",
+      "hypothesis": "none (descriptive)"
+    },
+    {
+      "id": "source_attribution_accuracy",
+      "definition": "Proportion of promoted cases where the assigned source owner matched the protected gold source owner.",
+      "units": "proportion [0,1]",
+      "direction": "higher is better",
+      "hypothesis": "none (descriptive)"
+    },
+    {
+      "id": "support_contradiction_f1",
+      "definition": "F1 over the support/contradiction classification of promoted cases against the protected gold semantic_support labels (SUPPORTED/CONTRADICTED).",
+      "units": "F1 [0,1]",
+      "direction": "higher is better",
+      "hypothesis": "none (descriptive)"
+    },
+    {
+      "id": "cross_source_conflation_detection",
+      "definition": "Proportion of source_conflation attack cases where the system blocked the promotion (or returned CANNOT_CHECK with the conflation coordinate unresolved).",
+      "units": "proportion [0,1]",
+      "direction": "higher is better",
+      "hypothesis": "P4.H3"
+    },
+    {
+      "id": "content_substitution_detection",
+      "definition": "Proportion of content_substitution attack cases where the system detected the exact-content binding mismatch.",
+      "units": "proportion [0,1]",
+      "direction": "higher is better",
+      "hypothesis": "P4.H3"
+    },
+    {
+      "id": "cited_non_influential_detection",
+      "definition": "Proportion of cited_but_non_influential attack cases where the system blocked because the cited evidence did not behaviorally influence the answer.",
+      "units": "proportion [0,1]",
+      "direction": "higher is better",
+      "hypothesis": "P4.H3"
+    },
+    {
+      "id": "evaluator_tamper_detection",
+      "definition": "Proportion of evaluator_or_guard_tampering cases where the system raised a tamper alert or refused to promote due to evaluator/guard integrity failure.",
+      "units": "proportion [0,1]",
+      "direction": "higher is better",
+      "hypothesis": "P4.H3"
+    },
+    {
+      "id": "holdout_leak_detection",
+      "definition": "Proportion of heldout_label_access cases where the system detected access to protected labels and refused to promote.",
+      "units": "proportion [0,1]",
+      "direction": "higher is better",
+      "hypothesis": "P4.H3"
+    },
+    {
+      "id": "search_contamination_detection",
+      "definition": "Proportion of search_time_contamination cases where the system flagged the search-observed content as potentially contaminated.",
+      "units": "proportion [0,1]",
+      "direction": "higher is better",
+      "hypothesis": "P4.H3"
+    },
+    {
+      "id": "correct_cannot_check_rate",
+      "definition": "Proportion of cases with genuinely insufficient or compromised evidence where the system returned CANNOT_CHECK or BLOCK (i.e. an accurate abstention).",
+      "units": "proportion [0,1]",
+      "direction": "higher is better",
+      "hypothesis": "P4.H3"
+    },
+    {
+      "id": "false_negative_rate",
+      "definition": "Proportion of clean positive cases that were incorrectly blocked or returned CANNOT_CHECK.",
+      "units": "proportion [0,1]",
+      "direction": "lower is better",
+      "hypothesis": "none (descriptive)"
+    },
+    {
+      "id": "wallclock_seconds",
+      "definition": "Median wall-clock time per case across the 5 stochastic repeats.",
+      "units": "seconds",
+      "direction": "lower is better",
+      "hypothesis": "none (descriptive)"
+    },
+    {
+      "id": "model_tokens",
+      "definition": "Median model token consumption per case (input+output) across repeats.",
+      "units": "tokens",
+      "direction": "lower is better",
+      "hypothesis": "none (descriptive)"
+    },
+    {
+      "id": "tool_calls",
+      "definition": "Median number of tool calls (retrieval, checker, evaluator) per case across repeats.",
+      "units": "count",
+      "direction": "lower is better",
+      "hypothesis": "none (descriptive)"
+    }
+  ],
+  "grouping": {
+    "unit": "frozen claim/attack case; stochastic checker repeats nested within case/system",
+    "attack_family_grouping": "all metrics computed per attack family (13 families) and overall",
+    "custody_grouping": "PUBLIC_CLEAN, PUBLIC_HOSTILE, PROTECTED_HOSTILE, PROTECTED_HOLDOUT",
+    "system_grouping": "orion (full), 6 baselines, 8 ablations"
+  }
+}
