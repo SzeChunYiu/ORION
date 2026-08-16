@@ -342,8 +342,25 @@ def _normalise(label: str) -> str:
 def _axes(coordinates: Sequence[str]) -> frozenset[str]:
     """The coordinate classes named, dropping the specific value on each.
 
-    `W.REPRESENTATIONS` is an axis; `representation:vector_resultant` is a value
-    on it. A value carries its axis as its prefix, so both reduce to one class.
+    Do NOT "fix" this to collapse an axis and its value into one class: they do
+    not collapse on this data, and the subset test below is what makes the
+    metric work. `('W.REPRESENTATIONS', 'representation:vector_resultant')`
+    reduces to TWO classes, `{'W.REPRESENTATIONS', 'REPRESENTATION'}`, because
+    the value's prefix is the family word rather than the engine's axis token.
+
+    The metric is therefore `predicted <= gold`, not equality: a system naming
+    the axis alone is a subset of gold's two classes and scores True, which is
+    the partial credit this exists to give. Tightening it to equality, or
+    editing this function to merge the pair, silently changes the metric for
+    every system.
+
+    One consequence worth knowing where the metric is defined: a system can
+    satisfy the axis test by emitting a token from gold's *value* vocabulary
+    (`parent_domain:anything`) rather than from the engine's coordinate
+    namespace. That is not a leak — the comparison is host-side and no system
+    sees gold — but it means axis credit is weaker than "named the right
+    coordinate", and the strict `reframe_target_correct` remains the metric that
+    requires naming both.
     """
 
     out: set[str] = set()
