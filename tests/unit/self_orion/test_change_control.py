@@ -47,9 +47,18 @@ class _Runner:
 
 
 class _Evaluator:
-    def __init__(self, *, fresh=True, blockers=True):
+    def __init__(
+        self,
+        *,
+        fresh=True,
+        blockers=True,
+        development_delta=1.0,
+        fresh_assurance_delta=0.5,
+    ):
         self._fresh = fresh
         self._blockers = blockers
+        self._development_delta = development_delta
+        self._fresh_assurance_delta = fresh_assurance_delta
 
     def evaluate(self, request, proposal, execution):
         return ProtectedDevelopmentAssuranceReceipt(
@@ -58,8 +67,8 @@ class _Evaluator:
             execution.candidate_revision_hash,
             "c" * 64,
             "epoch:protected",
-            1.0,
-            0.5,
+            self._development_delta,
+            self._fresh_assurance_delta,
             self._blockers,
             True,
             self._fresh,
@@ -110,6 +119,17 @@ def test_nonfresh_assurance_stays_candidate_only_and_blocker_failure_rejects():
     blocked = SelfOrionChangeController(provider=_Provider(), runner=_Runner(), evaluator=_Evaluator(blockers=False)).evaluate_change(_request())
     assert blocked.verdict is ChangeControlVerdict.REJECT
     assert "blocking_invariant_failed" in blocked.reasons
+
+
+def test_development_gain_with_fresh_regression_is_explicit_meta_overfit():
+    result = SelfOrionChangeController(
+        provider=_Provider(),
+        runner=_Runner(),
+        evaluator=_Evaluator(development_delta=2.0, fresh_assurance_delta=-0.25),
+    ).evaluate_change(_request())
+    assert result.verdict is ChangeControlVerdict.META_OVERFIT
+    assert "no_fresh_assurance_improvement" in result.reasons
+    assert not result.self_merge_authorized
 
 
 def test_protected_evaluator_or_workflow_paths_are_hard_rejected_even_if_sandbox_tests_pass():

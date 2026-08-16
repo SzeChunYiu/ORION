@@ -105,11 +105,17 @@ def record_change_control_result(
         raise ValueError("candidate execution revision does not match registered challenger")
     next_status = {
         ChangeControlVerdict.REJECT: VariantStatus.REJECTED,
+        ChangeControlVerdict.META_OVERFIT: VariantStatus.REJECTED,
         ChangeControlVerdict.CANDIDATE_ONLY: VariantStatus.CHALLENGER,
         ChangeControlVerdict.RECOMMEND_HOST_PROMOTION: VariantStatus.ASSURED,
     }[result.verdict]
+    notes = ()
+    if result.verdict is ChangeControlVerdict.META_OVERFIT:
+        notes = ("META_OVERFIT: development gain accompanied by fresh-assurance regression",)
     variants = tuple(
-        replace(item, status=next_status) if item.variant_id == child_variant_id else item
+        replace(item, status=next_status, notes=(*item.notes, *notes))
+        if item.variant_id == child_variant_id
+        else item
         for item in archive.variants
     )
     trial = EvolutionTrialRecord(

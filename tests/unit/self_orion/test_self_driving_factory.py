@@ -73,8 +73,8 @@ class _ProtectedEvaluator:
         )
 
 
-def test_factory_composes_known_world_self_driving_cycle_without_self_merge():
-    controller = build_llm_shadow_self_driving_controller(
+def _controller():
+    return build_llm_shadow_self_driving_controller(
         research_runtime=_ResearchRuntime(),
         development_llm=_DevelopmentLLM(),
         artifact_store=InMemoryDevelopmentArtifactStore(),
@@ -82,8 +82,20 @@ def test_factory_composes_known_world_self_driving_cycle_without_self_merge():
         protected_evaluator=_ProtectedEvaluator(),
         base_revision="main:a5e1ed8",
     )
+
+
+def test_factory_composes_shadow_ready_controller():
+    controller = _controller()
     assert controller.shadow_self_driving_ready
-    result = controller.run_cycle(limit=1, evaluation_epoch_id="epoch:development", split_id="split:development")[0]
+
+
+def test_factory_known_world_cycle_recommends_host_promotion_only():
+    controller = _controller()
+    result = controller.run_cycle(
+        limit=1,
+        evaluation_epoch_id="epoch:development",
+        split_id="split:development",
+    )[0]
     assert result.status is SelfDrivingCycleStatus.HOST_PROMOTION_RECOMMENDED
     assert result.change_control is not None
     assert result.change_control.proposal.patch_artifact_id.startswith("development-artifact:")

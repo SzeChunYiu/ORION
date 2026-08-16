@@ -1,7 +1,7 @@
 """Canonical Shadow-ORION registry shared by runtime, tests and paper synchronization."""
 
-FRAMEWORK_VERSION = "0.3.5-shadow"
-PAPER_SYNC_EPOCH = "2026-08-16-formal-engine-readiness-v1"
+FRAMEWORK_VERSION = "0.3.6-shadow"
+PAPER_SYNC_EPOCH = "2026-08-16-readiness-derivation-v1"
 
 CORE_OPERATOR_IDS = (
     "FRAME.v1",
@@ -36,6 +36,9 @@ MECHANICS_SUBSTRATE_IDS = (
     "FlagshipBenchmarkSuite.v1",
     "FormalEngineReadiness.v1",
     "DevelopmentIssue.v1",
+    "ReadinessEvidenceRecord.v1",
+    "SelfOrionReadinessGate.v2",
+    "MetaOverfitVerdict.v1",
     "RaklTransferProfile.v1",
     "RaklAnswerTransfer.v1",
     "SelfOrionDevelopmentDriver.v1",
