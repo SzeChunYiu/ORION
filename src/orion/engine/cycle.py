@@ -33,6 +33,22 @@ _NON_AUTHORITY_OPERATORS = frozenset(
     }
 )
 
+# Responsibilities whose local repair is genuinely a formulation/search-space
+# revision. METHOD/EVALUATOR changes are separately protected by Self-ORION;
+# EVIDENCE and EXECUTION call for acquisition/retry/implementation repair rather
+# than rewriting the research formulation.
+_LOCAL_REFRAME_RESPONSIBILITIES = frozenset(
+    {
+        Responsibility.QUESTION,
+        Responsibility.REPRESENTATION,
+        Responsibility.SEARCH,
+        Responsibility.ROUTING,
+        Responsibility.DECOMPOSITION,
+        Responsibility.INTERFACE,
+        Responsibility.MEASUREMENT,
+    }
+)
+
 
 @dataclass(frozen=True)
 class Transition:
@@ -55,9 +71,20 @@ class Transition:
 
 
 def revision_allowed(responsibilities: tuple[Responsibility, ...]) -> bool:
-    """High-impact reframing is blocked while responsibility remains ambiguous."""
+    """High-impact revision is blocked while responsibility remains ambiguous."""
 
     return len(set(responsibilities)) == 1 and bool(responsibilities)
+
+
+def local_reframe_allowed(responsibility: Responsibility) -> bool:
+    """Whether the diagnosed responsibility is licensed for local REFRAME.
+
+    This is deliberately narrower than `revision_allowed`: a singular diagnosis
+    can still point to an acquisition/execution problem whose correct next action
+    is not a formulation rewrite.
+    """
+
+    return responsibility in _LOCAL_REFRAME_RESPONSIBILITIES
 
 
 __all__ = [
@@ -66,5 +93,6 @@ __all__ = [
     "ResidualKind",
     "Responsibility",
     "Transition",
+    "local_reframe_allowed",
     "revision_allowed",
 ]
