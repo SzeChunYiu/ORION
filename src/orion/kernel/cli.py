@@ -6,6 +6,7 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from .driver import SelfDrivingDriver
+from .registry import load_registered_checks
 from .sources import DirectoryAnswerSource
 from .store import LedgerStore
 
@@ -50,6 +51,11 @@ def _build_parser() -> argparse.ArgumentParser:
         default=16,
         help="how many open questions one round may select",
     )
+    parser.add_argument(
+        "--no-checks",
+        action="store_true",
+        help="run without the registered discriminating checks (no verified closures possible)",
+    )
     return parser
 
 
@@ -85,10 +91,12 @@ def main(argv: Sequence[str] | None = None) -> int:
             raise SystemExit(f"--evidence-root expects SCHEME=PATH, got {entry!r}")
         evidence_roots[scheme.strip()] = Path(path.strip())
 
+    checks = {} if args.no_checks else dict(load_registered_checks())
     driver = SelfDrivingDriver(
         store=store,
         source=DirectoryAnswerSource(root=args.answers),
         evidence_roots=evidence_roots,
+        checks=checks,
         selection_limit=args.selection_limit,
     )
 
