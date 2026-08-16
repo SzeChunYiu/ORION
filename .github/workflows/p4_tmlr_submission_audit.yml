@@ -46,6 +46,7 @@ jobs:
           for f in p4_t1_attack_custody p4_t2_baseline_ablation_results p4_t3_cannot_check_errors; do
             test -s "papers/paper-04-verified-scientific-discovery/tables/$f.tex"
           done
+          git diff --exit-code -- papers/paper-04-verified-scientific-discovery/tables
 
       - name: Retain regenerated safe publication sources
         uses: actions/upload-artifact@v4
