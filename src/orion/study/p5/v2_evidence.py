@@ -100,6 +100,10 @@ def _require_nonempty_string(
         errors.append(f"{field} must be a non-empty string")
 
 
+def _is_strict_int(value: object) -> bool:
+    return isinstance(value, int) and not isinstance(value, bool)
+
+
 def required_arm_kinds(protocol: dict[str, Any]) -> dict[str, str]:
     required: dict[str, str] = {V2_SYSTEM_ID: "SUBJECT"}
     for baseline in protocol.get("baselines", ()):
@@ -183,10 +187,10 @@ def validate_run_manifest(
     seeds = manifest.get("seeds")
     if (
         not isinstance(seeds, list)
-        or any(not isinstance(seed, int) for seed in seeds)
+        or any(not _is_strict_int(seed) for seed in seeds)
         or len(seeds) != len(set(seeds))
     ):
-        errors.append("seeds must be a list of unique integers")
+        errors.append("seeds must be a list of unique non-boolean integers")
     elif isinstance(expected_repeats, int) and len(seeds) != expected_repeats:
         errors.append(
             f"seeds must contain exactly {expected_repeats} stochastic repeats"
@@ -404,10 +408,13 @@ def _arm_map(manifest: dict[str, Any]) -> dict[str, dict[str, Any]]:
 
 def _decision_key(payload: dict[str, Any]) -> tuple[str, str, int, str] | None:
     try:
+        seed = payload["seed"]
+        if not _is_strict_int(seed):
+            return None
         return (
             str(payload["system_id"]),
             str(payload["episode_id"]),
-            int(payload["seed"]),
+            seed,
             str(payload["candidate_id"]),
         )
     except (KeyError, TypeError, ValueError):
@@ -546,7 +553,9 @@ def validate_result_archive(
         if episode_id not in episodes:
             errors.append(f"{prefix} episode_id not frozen in run manifest")
         seed = record.get("seed")
-        if seed not in seeds:
+        if not _is_strict_int(seed):
+            errors.append(f"{prefix}.seed must be a non-boolean integer")
+        elif seed not in seeds:
             errors.append(f"{prefix} seed not frozen in run manifest")
 
         _require_sha256(
@@ -591,8 +600,7 @@ def validate_result_archive(
             harmful = False
         sequence_index = record.get("sequence_index")
         if (
-            not isinstance(sequence_index, int)
-            or isinstance(sequence_index, bool)
+            not _is_strict_int(sequence_index)
             or sequence_index < 0
         ):
             errors.append(f"{prefix}.sequence_index must be a non-negative integer")
@@ -640,7 +648,7 @@ def validate_result_archive(
         record_key = _record_key(record)
         decision_key = _decision_key(record)
         if record_key is None or decision_key is None:
-            errors.append(f"{prefix} missing candidate identity fields")
+            errors.append(f"{prefix} missing or invalid candidate identity fields")
             continue
         if record_key in seen_record_keys:
             errors.append(
@@ -674,7 +682,7 @@ def validate_result_archive(
         if (
             isinstance(system_id, str)
             and isinstance(episode_id, str)
-            and isinstance(seed, int)
+            and _is_strict_int(seed)
         ):
             coverage.add((system_id, episode_id, seed))
 
@@ -684,9 +692,12 @@ def validate_result_archive(
             errors.append(f"decisions[{index}] must be an object")
             continue
         prefix = f"decisions[{index}]"
+        raw_seed = decision.get("seed")
+        if not _is_strict_int(raw_seed):
+            errors.append(f"{prefix}.seed must be a non-boolean integer")
         key = _decision_key(decision)
         if key is None:
-            errors.append(f"{prefix} missing decision identity fields")
+            errors.append(f"{prefix} missing or invalid decision identity fields")
             continue
         if key in decision_map:
             errors.append(f"duplicate candidate decision: {key}")
@@ -696,8 +707,7 @@ def validate_result_archive(
             errors.append(f"{prefix} invalid decision")
         decision_sequence_index = decision.get("decision_sequence_index")
         if (
-            not isinstance(decision_sequence_index, int)
-            or isinstance(decision_sequence_index, bool)
+            not _is_strict_int(decision_sequence_index)
             or decision_sequence_index < 0
         ):
             errors.append(
@@ -753,18 +763,17 @@ def validate_result_archive(
                     f"V2 candidate decision mismatch for {label}: "
                     f"expected {expected}"
                 )
-            decision_sequence = decision.get("decision_sequence_index")
-            observed_sequences = candidate_sequences.get(key, {})
-            if (
-                isinstance(decision_sequence, int)
-                and not isinstance(decision_sequence, bool)
-                and observed_sequences
-                and decision_sequence <= max(observed_sequences.values())
-            ):
-                errors.append(
-                    f"V2 candidate decision for {label} predates retained stage evidence"
-                )
             if decision.get("decision") == "ACCEPT":
+                decision_sequence = decision.get("decision_sequence_index")
+                observed_sequences = candidate_sequences.get(key, {})
+                if (
+                    _is_strict_int(decision_sequence)
+                    and observed_sequences
+                    and decision_sequence <= max(observed_sequences.values())
+                ):
+                    errors.append(
+                        f"V2 accepted candidate decision for {label} predates retained stage evidence"
+                    )
                 ordered_sequences = [
                     observed_sequences.get(stage)
                     for stage in gate.required_stages
