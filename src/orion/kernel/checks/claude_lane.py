@@ -29,7 +29,7 @@ from __future__ import annotations
 import re
 from collections.abc import Iterable
 
-from orion.mechanics.model import MechanicCell, MechanicDimension
+from orion.mechanics.model import HandoffField, MechanicCell, MechanicDimension
 from orion.mechanics.program import current_program_cells
 
 from ..gate import DiscriminatingCheck
@@ -51,6 +51,16 @@ _FIELD_BY_DIMENSION: dict[MechanicDimension, str] = {
 }
 
 _FAILURE_SIGNATURE = re.compile(r"^failure:[A-Za-z0-9_.]+:[a-z0-9-]+\s+-\s+\S")
+
+
+def _seed_handoff() -> frozenset[tuple[str, str]]:
+    """Handoff fields the pre-answer program already carries."""
+
+    return frozenset(
+        (cell.mechanic_id, item.field_id)
+        for cell in current_program_cells()
+        for item in cell.handoff_fields
+    )
 
 
 def _seed_entries() -> dict[MechanicDimension, frozenset[tuple[str, str]]]:
@@ -167,6 +177,38 @@ def _failure_contract(cell: MechanicCell) -> bool:
     )
 
 
+_SEED_HANDOFF = _seed_handoff()
+
+_SCHEMA_REF = re.compile(r"^[a-z][a-z0-9+.-]*://\S+$|^\S+/\S+$")
+
+
+def _handoff_contract(cell: MechanicCell) -> bool:
+    """Step-specific handoff content: a field is not its own schema.
+
+    A real handoff declaration names a field and points at a schema that exists
+    apart from it. The battery's junk and envelope members set field_id,
+    description and schema_ref to one identical string, which is exactly what a
+    restated question looks like when forced into a typed shape — so requiring
+    the schema reference to be *distinct from* the field it describes, and to
+    carry a reference form rather than prose, separates a declaration from a
+    relabelling without asserting anything about whether the schema is correct.
+    """
+
+    fresh = tuple(
+        item
+        for item in cell.handoff_fields
+        if (cell.mechanic_id, item.field_id) not in _SEED_HANDOFF
+    )
+    if not fresh:
+        return False
+    return all(
+        item.schema_ref not in {item.field_id, item.description}
+        and _SCHEMA_REF.match(item.schema_ref) is not None
+        and ":" in item.field_id
+        for item in fresh
+    )
+
+
 def _fixture(mechanic_id: str, **fields) -> MechanicCell:
     return MechanicCell(
         mechanic_id=mechanic_id,
@@ -197,6 +239,35 @@ def _seed_layer_negative(dimension: MechanicDimension, field: str) -> MechanicCe
 
 
 CHECKS: tuple[DiscriminatingCheck, ...] = (
+    DiscriminatingCheck(
+        check_id="claude.form.handoff.v0",
+        dimension=MechanicDimension.HANDOFF,
+        lane=LANE,
+        predicate=_handoff_contract,
+        positive_fixture=_fixture(
+            "fixture.handoff",
+            handoff_fields=(
+                HandoffField(
+                    field_id="fixture.handoff:route_stop:remaining_budget",
+                    description="Budget left on the route when it stopped.",
+                    schema_ref="orion://mechanic/fixture.handoff/handoff/remaining_budget",
+                ),
+            ),
+        ),
+        negative_fixtures=(
+            _fixture(
+                "nearmiss.handoff",
+                handoff_fields=(
+                    HandoffField(
+                        field_id="something",
+                        description="the next step receives what it needs",
+                        schema_ref="the next step receives what it needs",
+                    ),
+                ),
+            ),
+        ),
+        frozen_at_round=0,
+    ),
     DiscriminatingCheck(
         check_id="claude.form.transition_model.v0",
         dimension=MechanicDimension.TRANSITION_MODEL,

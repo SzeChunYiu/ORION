@@ -6,6 +6,7 @@ import pytest
 
 from orion.kernel import AnswerAuthority, grade_and_apply
 from orion.kernel.registry import load_registered_checks
+from orion.mechanics.model import MechanicDimension
 from orion.mechanics.program import current_program_cells, observe_mechanics_program
 from orion.self_orion.transfer_answers import TRANSFER_LANE, transfer_answer_records
 
@@ -50,7 +51,25 @@ def test_unresolvable_provenance_is_counted_not_dropped() -> None:
     report = transfer_answer_records(current_program_cells(), evidence_roots=_roots())
     reasons = dict(report.skipped)
     assert any(key.startswith("evidence:") for key in reasons)
-    assert any(key.startswith("structured_payload_required:") for key in reasons)
+    assert reasons.get("no_resolvable_evidence")
+
+
+@_needs_rakl
+def test_typed_dimensions_are_carried_rather_than_skipped() -> None:
+    """HANDOFF answers with structured objects; flattening them into strings
+    would lose the schema, and skipping them loses the answer."""
+
+    report = transfer_answer_records(current_program_cells(), evidence_roots=_roots())
+    handoff = [
+        item
+        for item in report.records
+        if item.dimension is MechanicDimension.HANDOFF
+    ]
+    assert handoff
+    assert all(item.handoff_payload and not item.payload for item in handoff)
+    assert not any(
+        key.startswith("structured_payload_required:") for key in dict(report.skipped)
+    )
 
 
 @_needs_rakl
