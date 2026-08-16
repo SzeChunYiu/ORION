@@ -1,6 +1,14 @@
 {
   "schema": "P4BaselineConfigs.v1",
   "resource_budget_units": 12.0,
+  "panel_baseline_ids": [
+    "provenanceguard-style-source-routing",
+    "attributionbench-multisource-attribution",
+    "fire-iterative-retrieve-or-verify",
+    "claimbench-sciclaimhunt-scientific-evidence",
+    "provenai-citation-fidelity-influence",
+    "rewardhackingagents-search-contamination"
+  ],
   "baselines": [
     {
       "system_id": "provenanceguard-style-source-routing",
@@ -14,7 +22,7 @@
     },
     {
       "system_id": "fire-iterative-retrieve-or-verify",
-      "mechanism": "iterative candidate-visible retrieval pool search + content integrity + semantic support",
+      "mechanism": "iterative candidate-visible retrieval pool search + content integrity + semantic support; DeepSciVerify maps into this already-frozen current scientific-verification family",
       "resource_units": 6.0
     },
     {
@@ -31,7 +39,22 @@
       "system_id": "rewardhackingagents-search-contamination",
       "mechanism": "candidate-visible contamination/tamper/access checks + pooled support without exact source-authority transition",
       "resource_units": 5.0
+    },
+    {
+      "system_id": "citation-presence-format",
+      "mechanism": "citation/evidence presence and format only",
+      "resource_units": 1.0
+    },
+    {
+      "system_id": "pooled-evidence-nli-support",
+      "mechanism": "pooled semantic support/contradiction without source ownership or authority governance",
+      "resource_units": 2.0
+    },
+    {
+      "system_id": "claim-level-auditability-provenance",
+      "mechanism": "content/provenance record plus behavioral-use trace without protected evaluator governance",
+      "resource_units": 5.0
     }
   ],
-  "notes": "These are deterministic mechanism-matched baselines over the frozen synthetic P4 corpus. They do not read protected gold and are not claimed to reproduce external model weights. DeepSciVerify maps inside the frozen iterative/scientific-verification family per the 2026-08-16 nearest-work audit."
+  "notes": "All comparators are deterministic mechanism-matched baselines over the frozen synthetic P4 corpus. They receive the identical candidate-visible packet, never protected gold, and are not claimed to reproduce external model weights. The first six are the exact AuthorityBenchmarkPanel.v1 frozen baseline IDs. The remaining three satisfy the issue-101 citation-format, pooled-support and auditability comparison requirements."
 }
