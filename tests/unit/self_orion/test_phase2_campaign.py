@@ -19,6 +19,7 @@ from orion.self_orion.phase2_campaign import (
     Phase2ExternalObservationBundle,
     Phase2ExternalObservationStatus,
     assess_phase2_campaign,
+    authority_campaign_artifact_hash,
 )
 from orion.self_orion.phase2_preflight import (
     Phase2ClosurePreflight,
@@ -109,9 +110,26 @@ def _authority_benchmark(status=AuthorityBenchmarkStatus.PASS):
     )
 
 
-def _observations(preflight, *, self_verified=False):
+def _expected_observation_hashes():
+    return {
+        Phase2CampaignCriterion.LIVE_TRIAL: _digest("live-artifact"),
+        Phase2CampaignCriterion.MATCHED_BASELINE: _digest("baseline-bundle"),
+        Phase2CampaignCriterion.SHADOW_DEVELOPMENT: _digest("development-artifact"),
+        Phase2CampaignCriterion.AUTHORITY_BATTERY: authority_campaign_artifact_hash(
+            _digest("authority-artifact"),
+            _digest("authority-benchmark:PASS"),
+        ),
+        Phase2CampaignCriterion.FAILURE_REPLAY: _digest("artifact:FAILURE_REPLAY"),
+        Phase2CampaignCriterion.FINAL_INTEGRATION: _digest("artifact:FINAL_INTEGRATION"),
+    }
+
+
+def _observations(preflight, *, self_verified=False, artifact_overrides=None):
     producer = _digest("producer")
     verifier = producer if self_verified else _digest("verifier")
+    evidence_hashes = _expected_observation_hashes()
+    if artifact_overrides:
+        evidence_hashes.update(artifact_overrides)
     return Phase2ExternalObservationBundle(
         bundle_id="phase2:external-observations",
         subject_revision_hash=preflight.subject_revision_hash,
@@ -121,7 +139,7 @@ def _observations(preflight, *, self_verified=False):
             Phase2ExternalObservation(
                 criterion=criterion,
                 evidence_artifact_id=f"artifact:{criterion.value}",
-                evidence_artifact_hash=_digest(f"artifact:{criterion.value}"),
+                evidence_artifact_hash=evidence_hashes[criterion],
                 subject_revision_hash=preflight.subject_revision_hash,
                 evaluator_artifact_hash=preflight.evaluator_artifact_hash,
                 producer_process_lineage_hash=producer,
@@ -260,6 +278,30 @@ def test_campaign_reaches_terminal_audit_only_with_independent_complete_receipts
     assert not report.grants_governed_self_orion
     assert len(report.external_observation_bundle_hash) == 64
     assert len(report.authority_benchmark_panel_hash) == 64
+    assert len(report.authority_campaign_artifact_hash) == 64
+
+
+def test_campaign_rejects_external_observation_bound_to_wrong_artifact():
+    preflight = _preflight()
+    report = assess_phase2_campaign(
+        Phase2CampaignEvidence(
+            preflight=preflight,
+            live_trial=_live(preflight),
+            baseline_bundle_hash=_digest("baseline-bundle"),
+            development_trial=_development(preflight),
+            authority_trial=_authority(preflight),
+            authority_benchmark=_authority_benchmark(),
+            external_observations=_observations(
+                preflight,
+                artifact_overrides={
+                    Phase2CampaignCriterion.LIVE_TRIAL: _digest("wrong-live-artifact")
+                },
+            ),
+            flagship_external_manifest=_manifest(preflight),
+        )
+    )
+    assert report.stage is Phase2CampaignStage.HAND_BACK_EXTERNAL_EVIDENCE
+    assert "external_observation_artifact_mismatch:LIVE_TRIAL" in report.blockers
 
 
 def test_campaign_rejects_self_verified_external_observations():
