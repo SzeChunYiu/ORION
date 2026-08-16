@@ -1,0 +1,111 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{Authority of the result}
+The only completed result-bearing campaign in this revision is the frozen
+offline complete-gold companion.  It contains 20 tasks, 14 systems (full ORION,
+six confirmatory baselines, one explicitly exploratory comparator, and six
+ablations), and three predeclared repeat seeds, for 840 normalized run records.
+The systems are deterministic; the repeats therefore test harness stability and
+do not increase the statistical unit beyond 20 tasks.  The frozen statistical
+plan requires at least 97 tasks for its lowest inferential tier.  Consequently
+this campaign is \texttt{DESCRIPTIVE\_ONLY}: no confidence interval, $p$-value,
+or superiority decision from the offline companion is promoted to a paper-level
+claim.
+
+The publication summary is
+\texttt{evidence/offline\_results/RESULTS\_SUMMARY\_V1.json}.  It binds the full
+840-record set by SHA-256
+\texttt{611808dc80846d5057c84c12af7ff8ec3fa88ef15a6ede91807e590f4edb6f1f}
+and the corresponding rich-artifact hash list by
+\texttt{2da59dc21e6473e4a81eb93910501a67bed008dbc3e29c26116041b68dfbb325}.
+The exact run manifest was committed before the first outcome snapshot.
+
+\subsection{Controlled-index comparison}
+Full ORION attains mean complete-gold recall 0.994444 and precision 1.0.  It
+passes 19 of 20 tasks and returns \texttt{CANNOT\_CHECK} on the remaining task
+because a route holding unretrieved relevant material becomes unavailable; it
+never certifies that censored task complete.  Its premature-task-closure rate is
+0.  The strongest of the six protocol-frozen confirmatory baselines is the
+protocol-driven systematic-review comparator, with mean recall 0.666667.  That
+comparator claims task completion on all 20 tasks while reachable gold remains,
+so its premature-closure rate is 1.0.  The descriptive recall difference is
+therefore +0.327777, with a descriptive premature-closure difference of -1.0.
+These numbers are evidence about the authored controlled world, not an estimate
+of real-web superiority.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrr}
+\hline
+System & Recall & Premature closure & Pass & Cannot check \\
+\hline
+ORION full & 0.994444 & 0.00 & 0.95 & 0.05 \\
+Protocol-driven SLR & 0.666667 & 1.00 & 0.00 & 0.00 \\
+Sparse+dense hybrid & 0.555556 & 1.00 & 0.00 & 0.00 \\
+One-pass RAG & 0.555556 & 1.00 & 0.00 & 0.00 \\
+BM25/keyword & 0.333333 & 1.00 & 0.00 & 0.00 \\
+Dense-route comparator & 0.333333 & 1.00 & 0.00 & 0.00 \\
+Agentic single route & 0.333333 & 1.00 & 0.00 & 0.00 \\
+\hline
+\end{tabular}
+\caption{Controlled-index descriptive comparison.  Rates are over 20 tasks;
+there are no inferential intervals because the frozen plan classifies this
+campaign below the minimum inferential tier.  The external benchmark comparison
+remains unexecuted.}
+\label{tab:p2-offline-main}
+\end{table}
+
+\subsection{Mechanism ablations}
+The safety ablations fail in the directions the frozen design intended them to
+probe.  Removing the route-independence check reduces mean recall to 0.444444
+and produces premature closure on every task.  Allowing a route stop to certify
+task closure yields recall 0.333333 with the same 100\% premature-closure rate.
+Letting a coverage diagnostic acquire stopping authority yields recall 0.555556
+and again closes every task prematurely.  These are negative controls: their
+purpose is to demonstrate that the forbidden transitions are observable, not to
+serve as competitive systems.
+
+Removing content-identity deduplication is less catastrophic but measurably
+wasteful in the controlled world: mean duplicate-processing rate rises from 0
+to 0.101429, five of 20 tasks exhaust the read budget, pass rate falls from 0.95
+to 0.70, and mean recall falls to 0.966667.  Removing the question coordinate
+from the read ledger leaves aggregate recall unchanged at 0.994444 but changes
+the extraction-question-shift mechanism exactly where expected: the mean count
+of legitimate rereads on that family falls from 4.0 to 1.0.  This is a mechanism
+result, not evidence of a recall gain from the ledger.  Finally, removing the
+unavailable-route open state leaves mean recall numerically unchanged but turns
+the one censored \texttt{CANNOT\_CHECK} case into an asserted completion and a
+premature-closure failure.  The distinction is therefore one of epistemic
+safety rather than headline recall.
+
+\begin{figure}[t]
+\centering
+\input{figures/P2-6_stopping_failures}
+\caption{\textbf{Figure P2-6.} Terminal premature-closure classifications for
+selected stopping-safety controls in the frozen 20-task offline companion.  The
+plot is generated from the immutable publication summary.  It shows task counts,
+not an inferential estimate; lower-precedence failure mechanisms can be masked by
+the evaluator's terminal-failure precedence.}
+\label{fig:p2-6}
+\end{figure}
+
+\subsection{Failure analysis and external status}
+Under the evaluator's fixed terminal-failure precedence, premature closure is
+the dominant failure class in the controlled companion; the exploratory
+adaptive comparator also exposes three transport-failure classifications, while
+the no-dedup ablation exposes five budget-exhaustion failures.  Full ORION has no
+terminal failure classification: 19 tasks pass and one is censored.  The full
+per-system taxonomy is archived beside the publication summary as Table P2-3.
+
+No external Wide, Deep, MetaSyn or SAGE performance result is reported in this
+revision.  The access audit establishes that AutoResearchBench Wide scoring is
+credential-free and that MetaSyn retrieval/screening scoring does not itself
+need an LLM credential; it does not turn those audits into system outcomes.
+AutoResearchBench Deep still needs an OpenAI-compatible judge for its official
+metric, and SAGE lacks both the published retrieval corpus and an official
+evaluator.  Therefore the externally supported discovery-benefit claim remains
+\texttt{CANNOT\_CHECK}.  The controlled-index result supports only the narrower
+statement that the frozen governance mechanisms behave as designed under a
+complete denominator and matched host-owned budgets.

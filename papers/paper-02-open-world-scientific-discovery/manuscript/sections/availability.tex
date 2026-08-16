@@ -1,0 +1,66 @@
+\section{Data and code availability}
+\label{sec:availability}
+
+The ORION repository contains the controlled index, host-owned evaluation
+harness, the frozen offline systems and ablations, the descriptive analysis
+code, and the publication-layer regeneration command.  The exact subject
+revision and Git blob identities used for the result-bearing offline campaign
+are recorded in \texttt{protocol/OFFLINE\_RUN\_MANIFEST\_V1.json}.  The frozen
+complete-gold world is distributed under \texttt{evidence/offline\_gold/}; it
+is fully synthetic, regenerable from the recorded seed, and verified on every
+clean CI run against its committed content hashes and suite fingerprint.
+
+The compact publication result is
+\texttt{evidence/offline\_results/RESULTS\_SUMMARY\_V1.json}.  The command
+\texttt{python3 papers/paper-02-open-world-scientific-discovery/scripts/
+run\_offline\_companion.py --check} reconstructs all 840 runs and refuses drift.
+With \texttt{--write-raw DIR} it also emits the complete normalized JSONL result
+set and all rich run artifacts.  The committed summary records SHA-256 digests
+of both complete sets, so a reproduction can be checked without requiring
+hundreds of generated files in the repository.
+
+External benchmark artifacts are not redistributed.  Their licences, access
+states and pinned revisions are recorded per artifact in
+\texttt{protocol/EXTERNAL\_ACCESS\_AUDIT\_V1.json}, with source checks retained
+under \texttt{evidence/access/} and summarized in Table P2-1.  The
+AutoResearchBench Wide scorer is \emph{not} vendored in this repository in this
+revision; its pinned upstream source has been audited and exercised on a
+synthetic scorer self-test, establishing runnability but not an ORION result.
+Deep official scoring still requires an OpenAI-compatible judge endpoint.  SAGE
+cannot be reproduced as published because its retrieval corpus and official
+evaluator are not available.  MetaSyn retrieval/screening scoring has been
+audited as credential-free, but no end-to-end ORION-vs-MetaSyn result is archived
+here.
+
+The live-provider capture implementation and campaign manifest retain request
+URL/parameters, query derivation, timestamp, raw body, hash and typed transport
+status.  Those capabilities have been exercised as capture machinery, but the
+final result-bearing live campaign has \emph{not} been executed in this
+revision.  Consequently there is no claim here that a complete raw live-provider
+result archive, cost ledger or immutable live comparison already exists.
+
+\section{Reproducibility}
+\label{sec:reproducibility}
+
+Three levels are distinguished, and we claim only what the current artifacts
+support.
+
+\textbf{Fully reproducible now.}  The 20-task offline controlled-index companion
+regenerates from committed data and subject code with no network access and no
+third-party credentials.  A clean GitHub Actions job independently rebuilds the
+840-run publication projection and compares it to the committed summary.  The
+frozen plan classifies the result \texttt{DESCRIPTIVE\_ONLY}; reproduction does
+not elevate its statistical authority.
+
+\textbf{Runnable given the external benchmark, but not yet a published system
+result here.}  AutoResearchBench Wide exact IoU/recall/precision scoring can run
+without credentials once candidate arXiv identifiers exist.  Deep requires its
+judge endpoint.  These are evaluator-access statements from the audit, not
+substitutes for an archived external candidate run.
+
+\textbf{Capture-capable but not yet archived as a final campaign.}  Live scholarly
+providers are mutable, metered and sometimes unavailable.  The committed
+capture layer is designed to archive such evidence rather than re-derive it,
+but final live-provider outcomes and their empirical cost/wall-clock remain
+outstanding.  Until that campaign is run, the paper keeps the external discovery
+claim at \texttt{CANNOT\_CHECK}.
