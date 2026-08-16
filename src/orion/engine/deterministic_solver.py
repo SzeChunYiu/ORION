@@ -899,6 +899,19 @@ class DeterministicProblemSolver:
                     break
                 values.append(steps[index].rule_id)
             matched_prefix = tuple(values)
+        # Exactness is asserted by whoever compiled the problem, not derived
+        # from the checkers that did the work — a caller with an approximate
+        # checker who leaves the EXACT default gets a verified terminal. The
+        # certificate chain makes that auditable after the fact (every checker
+        # binary, policy and authority root is content-bound), but nothing
+        # cross-checks it during the solve. Rather than trust the declaration
+        # silently, every exact receipt carries the fact that it is one, so a
+        # reader can see what the terminal rests on. Deriving the mode from
+        # per-checker attestation is the real repair and belongs to the lane
+        # that owns this contract.
+        if problem.assurance_mode is AssuranceMode.EXACT:
+            _append_unique(residuals, "assurance_mode_declared_not_derived")
+
         receipt = MechanicalSolveReceipt(
             problem_id=problem.problem_id,
             problem_snapshot_digest=problem.digest,

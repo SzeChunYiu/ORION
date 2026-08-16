@@ -82,7 +82,7 @@ def test_llm_development_provider_stores_exact_patch_and_keeps_required_tests():
 def test_artifact_backed_sandbox_verifies_patch_hash_and_returns_bound_receipt():
     patch = b"diff --git a/x b/x\n"
     store = InMemoryDevelopmentArtifactStore()
-    artifact = store.put(patch, media_type="text/x-diff")
+    store.put(patch, media_type="text/x-diff")
     llm = _LLM(
         {
             "touched_paths": ["src/orion/example.py"],

@@ -150,3 +150,34 @@ def test_an_uncompiled_problem_still_reaches_the_reasoner_path() -> None:
         residual.startswith("operator-exception:SEARCH")
         for residual in solution.residual_ids
     ), solution.residual_ids
+
+
+def test_an_exact_receipt_declares_that_its_exactness_is_a_declaration() -> None:
+    """Exactness is asserted by whoever compiled the problem, not derived from
+    the checkers that ran. That is auditable after the fact but unchecked during
+    the solve, so every exact receipt must carry the caveat where a reader of the
+    receipt will see it — not only in a design document."""
+
+    from orion.engine.deterministic_solver import (
+        AssuranceMode,
+        CompiledProblem,
+        DeterministicProblemSolver,
+        GoalClause,
+    )
+
+    problem = CompiledProblem(
+        problem_id="exactness",
+        snapshot_id="snap:1",
+        initial_facts=frozenset({"a"}),
+        goals=(GoalClause(clause_id="g1", required_facts=frozenset({"z"})),),
+        rules=(),
+        dependency_history=(),
+        status_time=0,
+        admissible_checker_lineage_ids=("lineage:a",),
+        assurance_mode=AssuranceMode.EXACT,
+    )
+    def unreachable_provider(request: object) -> object:
+        raise AssertionError("no rule exists, so no certificate should be requested")
+
+    result = DeterministicProblemSolver(unreachable_provider).solve(problem)
+    assert "assurance_mode_declared_not_derived" in result.receipt.residuals
