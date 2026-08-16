@@ -47,6 +47,20 @@ def _citation_keys(tex: str) -> set[str]:
     return keys
 
 
+def _unbound_values(value: object) -> list[str]:
+    if isinstance(value, dict):
+        result: list[str] = []
+        for item in value.values():
+            result.extend(_unbound_values(item))
+        return result
+    if isinstance(value, list):
+        result = []
+        for item in value:
+            result.extend(_unbound_values(item))
+        return result
+    return [str(value)] if value == "UNBOUND" else []
+
+
 def test_all_five_canonical_manuscripts_are_structurally_complete():
     for paper_id, paper in PAPERS.items():
         manuscript = paper / "manuscript"
@@ -59,8 +73,12 @@ def test_all_five_canonical_manuscripts_are_structurally_complete():
 
         protocol = json.loads((paper / "protocol" / "PROTOCOL_V1.json").read_text(encoding="utf-8"))
         assert protocol["protocol_id"] in tex, f"{paper_id} manuscript must name its prospective protocol"
-        assert protocol["protocol_status"] == "DESIGN_FROZEN"
+        assert protocol["protocol_status"] in {"DESIGN_FROZEN", "EXECUTION_FROZEN"}
         assert protocol["outcome_accessed"] is False
+        if protocol["protocol_status"] == "EXECUTION_FROZEN":
+            assert not _unbound_values(protocol["execution_bindings"]), (
+                f"{paper_id} may be EXECUTION_FROZEN only with concrete bindings"
+            )
 
 
 def test_all_manuscript_citations_resolve_to_local_bibliography_keys():
