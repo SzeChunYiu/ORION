@@ -7,6 +7,7 @@ from orion.self_orion.phase2_campaign_files import (
     Phase2CampaignFileSet,
     load_phase2_campaign_evidence,
 )
+from orion.self_orion.phase2_paper_snapshot import load_paper_programme_snapshot
 from orion.self_orion.phase2_terminal import (
     Phase2TerminalEvidence,
     Phase2TerminalReport,
@@ -76,6 +77,7 @@ def assess_phase2_terminal_files(
         else None
     )
     integration_blockers: list[str] = []
+    subject = None
     if integration is not None:
         if replay is None:
             integration_blockers.append("final_integration_missing_failure_replay")
@@ -114,8 +116,23 @@ def assess_phase2_terminal_files(
 
         if files.papers_claim_ledger is None:
             integration_blockers.append("papers_claim_ledger_artifact_missing")
-        elif sha256_file(files.papers_claim_ledger) != integration.papers_claim_ledger_artifact_hash:
-            integration_blockers.append("papers_claim_ledger_artifact_hash_mismatch")
+        else:
+            paper_snapshot = load_paper_programme_snapshot(files.papers_claim_ledger)
+            if paper_snapshot.artifact_hash != integration.papers_claim_ledger_artifact_hash:
+                integration_blockers.append("papers_claim_ledger_artifact_hash_mismatch")
+            if paper_snapshot.integration_commit_oid != integration.integration_commit_oid:
+                integration_blockers.append("papers_claim_ledger_commit_mismatch")
+            if subject is None:
+                integration_blockers.append("papers_claim_ledger_subject_unavailable")
+            else:
+                tracked = {
+                    item.path: item.content_sha256 for item in subject.tracked_objects
+                }
+                for entry in paper_snapshot.entries:
+                    if tracked.get(entry.path) != entry.content_sha256:
+                        integration_blockers.append(
+                            f"papers_claim_ledger_subject_content_mismatch:{entry.path}"
+                        )
 
     return assess_phase2_terminal(
         Phase2TerminalEvidence(
