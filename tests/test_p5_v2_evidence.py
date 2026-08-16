@@ -10,6 +10,7 @@ from orion.study.p5.v2_evidence import (
     RUN_SCHEMA_VERSION,
     V2_SYSTEM_ID,
     content_digest,
+    result_archive_digest,
     run_manifest_digest,
     validate_result_archive,
     validate_run_manifest,
@@ -129,6 +130,7 @@ def _record(
     stage: str,
     verdict: str = "PASS",
     harmful: bool = False,
+    sequence_index: int | None = None,
 ) -> dict[str, object]:
     return {
         "schema_version": RECORD_SCHEMA_VERSION,
@@ -145,6 +147,11 @@ def _record(
         ),
         "seed": seed,
         "stage": stage,
+        "sequence_index": (
+            sequence_index
+            if sequence_index is not None
+            else {"STATIC": 10, "REPLAY": 20, "FRESH": 30, "PROTECTED": 40}[stage]
+        ),
         "verdict": verdict,
         "score_delta": 0.1,
         "harmful": harmful,
@@ -174,22 +181,20 @@ def _decision(
     candidate_id: str,
     seed: int,
     decision: str,
+    decision_sequence_index: int = 50,
 ) -> dict[str, object]:
-    return {
+    payload = {
         "run_manifest_hash": content_digest(manifest),
         "system_id": system_id,
         "episode_id": "P5.CASE.001",
         "seed": seed,
         "candidate_id": candidate_id,
         "decision": decision,
-        "decision_artifact_hash": content_digest(
-            {
-                "system_id": system_id,
-                "candidate_id": candidate_id,
-                "seed": seed,
-                "decision": decision,
-            }
-        ),
+        "decision_sequence_index": decision_sequence_index,
+    }
+    return {
+        **payload,
+        "decision_artifact_hash": content_digest(payload),
     }
 
 
@@ -450,3 +455,53 @@ def test_machine_readable_v2_evidence_schemas_are_bound() -> None:
         == archive_schema["properties"]["protocol_id"]["const"]
         == PROTOCOL_ID
     )
+
+
+def test_v2_acceptance_requires_frozen_stage_chronology() -> None:
+    protocol = _protocol()
+    manifest = _manifest(protocol)
+    archive = _final_archive(manifest, protocol)
+
+    decision = next(
+        item for item in archive["decisions"] if item["system_id"] == V2_SYSTEM_ID
+    )
+    seed = int(decision["seed"])
+    candidate_id = str(decision["candidate_id"])
+    for record in archive["records"]:
+        if (
+            record["system_id"] == V2_SYSTEM_ID
+            and record["seed"] == seed
+            and record["candidate_id"] == candidate_id
+            and record["stage"] == "REPLAY"
+        ):
+            record["sequence_index"] = 35
+        elif (
+            record["system_id"] == V2_SYSTEM_ID
+            and record["seed"] == seed
+            and record["candidate_id"] == candidate_id
+            and record["stage"] == "FRESH"
+        ):
+            record["sequence_index"] = 25
+
+    report = validate_result_archive(archive, manifest, protocol)
+    assert report["valid"] is False
+    assert any("violates frozen stage chronology" in error for error in report["errors"])
+
+
+def test_decision_artifact_hash_is_content_bound() -> None:
+    protocol = _protocol()
+    manifest = _manifest(protocol)
+    archive = _final_archive(manifest, protocol)
+    archive["decisions"][0]["decision"] = "REJECT"
+
+    report = validate_result_archive(archive, manifest, protocol)
+    assert report["valid"] is False
+    assert any("decision_artifact_hash mismatch" in error for error in report["errors"])
+
+
+def test_valid_archive_has_stable_content_digest() -> None:
+    protocol = _protocol()
+    manifest = _manifest(protocol)
+    archive = _final_archive(manifest, protocol)
+
+    assert result_archive_digest(archive, manifest, protocol) == content_digest(archive)

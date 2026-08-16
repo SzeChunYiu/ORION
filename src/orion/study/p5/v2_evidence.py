@@ -424,6 +424,18 @@ def _record_key(
     return (*decision_key, stage)
 
 
+def decision_unsigned_payload(decision: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "run_manifest_hash": decision.get("run_manifest_hash"),
+        "system_id": decision.get("system_id"),
+        "episode_id": decision.get("episode_id"),
+        "seed": decision.get("seed"),
+        "candidate_id": decision.get("candidate_id"),
+        "decision": decision.get("decision"),
+        "decision_sequence_index": decision.get("decision_sequence_index"),
+    }
+
+
 def validate_result_archive(
     archive: dict[str, Any],
     manifest: dict[str, Any],
@@ -485,6 +497,10 @@ def validate_result_archive(
         dict[Stage, StageResult],
     ] = defaultdict(dict)
     candidate_task_family: dict[tuple[str, str, int, str], str] = {}
+    candidate_sequences: dict[
+        tuple[str, str, int, str],
+        dict[Stage, int],
+    ] = defaultdict(dict)
     coverage: set[tuple[str, str, int]] = set()
 
     for index, record in enumerate(records):
@@ -568,6 +584,14 @@ def validate_result_archive(
         if not isinstance(harmful, bool):
             errors.append(f"{prefix}.harmful must be boolean")
             harmful = False
+        sequence_index = record.get("sequence_index")
+        if (
+            not isinstance(sequence_index, int)
+            or isinstance(sequence_index, bool)
+            or sequence_index < 0
+        ):
+            errors.append(f"{prefix}.sequence_index must be a non-negative integer")
+            sequence_index = 0
 
         cost = record.get("cost")
         if not isinstance(cost, dict):
@@ -612,6 +636,11 @@ def validate_result_archive(
             )
             continue
         seen_record_keys.add(record_key)
+        if sequence_index in candidate_sequences[decision_key].values():
+            errors.append(
+                f"candidate {decision_key} reuses sequence_index {sequence_index}"
+            )
+        candidate_sequences[decision_key][stage] = sequence_index
         candidate_records[decision_key][stage] = StageResult(
             stage=stage,
             verdict=verdict,
@@ -654,11 +683,26 @@ def validate_result_archive(
         decision_map[key] = decision
         if decision.get("decision") not in ALLOWED_DECISIONS:
             errors.append(f"{prefix} invalid decision")
+        decision_sequence_index = decision.get("decision_sequence_index")
+        if (
+            not isinstance(decision_sequence_index, int)
+            or isinstance(decision_sequence_index, bool)
+            or decision_sequence_index < 0
+        ):
+            errors.append(
+                f"{prefix}.decision_sequence_index must be a non-negative integer"
+            )
         _require_sha256(
             decision.get("decision_artifact_hash"),
             f"{prefix}.decision_artifact_hash",
             errors,
         )
+        if (
+            _is_lower_hex(decision.get("decision_artifact_hash"), 64)
+            and decision.get("decision_artifact_hash")
+            != content_digest(decision_unsigned_payload(decision))
+        ):
+            errors.append(f"{prefix} decision_artifact_hash mismatch")
         if decision.get("run_manifest_hash") != manifest_hash:
             errors.append(f"{prefix} run_manifest_hash mismatch")
 
@@ -698,6 +742,30 @@ def validate_result_archive(
                     f"V2 candidate decision mismatch for {label}: "
                     f"expected {expected}"
                 )
+            decision_sequence = decision.get("decision_sequence_index")
+            observed_sequences = candidate_sequences.get(key, {})
+            if (
+                isinstance(decision_sequence, int)
+                and not isinstance(decision_sequence, bool)
+                and observed_sequences
+                and decision_sequence <= max(observed_sequences.values())
+            ):
+                errors.append(
+                    f"V2 candidate decision for {label} predates retained stage evidence"
+                )
+            if decision.get("decision") == "ACCEPT":
+                ordered_sequences = [
+                    observed_sequences.get(stage)
+                    for stage in gate.required_stages
+                ]
+                if (
+                    any(value is None for value in ordered_sequences)
+                    or ordered_sequences != sorted(ordered_sequences)
+                    or len(set(ordered_sequences)) != len(ordered_sequences)
+                ):
+                    errors.append(
+                        f"V2 accepted candidate {label} violates frozen stage chronology"
+                    )
 
         if decision is not None and decision.get("decision") == "ACCEPT":
             fresh = stages.get(Stage.FRESH)
@@ -759,3 +827,14 @@ def validate_result_archive(
         "fresh_harm_count": fresh_harm_count,
         "empirical_authority": "CANNOT_CHECK",
     }
+
+
+def result_archive_digest(
+    archive: dict[str, Any],
+    manifest: dict[str, Any],
+    protocol: dict[str, Any],
+) -> str:
+    report = validate_result_archive(archive, manifest, protocol)
+    if not report["valid"]:
+        raise ValueError("; ".join(report["errors"]))
+    return content_digest(archive)

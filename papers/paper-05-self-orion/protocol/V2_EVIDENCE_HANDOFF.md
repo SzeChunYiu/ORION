@@ -25,9 +25,9 @@ The manifest digest becomes the identity every result/decision record cites.
 
 ## 2. Archive raw stage evidence and decisions separately
 
-Each `orion.p5.staged-result-record.v2` binds one candidate/stage observation to the exact run manifest, subject, evaluator and epoch. Preserve the raw artifact hash and the negative-history digest visible at that point.
+Each `orion.p5.staged-result-record.v2` binds one candidate/stage observation to the exact run manifest, subject, evaluator and epoch. Preserve the raw artifact hash, negative-history digest and a non-negative per-candidate `sequence_index`.
 
-Candidate decisions are separate records. This separation is intentional: a comparator may accept a candidate that the protected evaluator later fails. That is a measurable false acceptance, not malformed data.
+Candidate decisions are separate records with `decision_sequence_index` and a `decision_artifact_hash` recomputed from the exact decision fields. This separation is intentional: a comparator may accept a candidate that the protected evaluator later fails. That is a measurable false acceptance, not malformed data.
 
 For full Self-ORION V2, the archived decision must agree with the merged non-compensatory gate:
 
@@ -35,6 +35,8 @@ For full Self-ORION V2, the archived decision must agree with the merged non-com
 - else known `CANNOT_CHECK` -> `CANNOT_CHECK`;
 - else missing stage -> no final decision / `IN_PROGRESS`;
 - all four PASS -> `ACCEPT` as a host-promotion recommendation only.
+
+A V2 `ACCEPT` additionally requires the frozen chronology `STATIC < REPLAY < FRESH < PROTECTED < decision`. Rejected/blocked hostile evidence may arrive out of normal stage order; known late harm still vetoes rather than being hidden behind a missing earlier stage.
 
 ## 3. Finalization is fail-closed
 
@@ -46,7 +48,7 @@ A finalized `orion.p5.staged-result-archive.v2` must:
 - bind the final negative-history root;
 - retain harmful, null, rejected and `CANNOT_CHECK` candidates rather than filtering them from the archive.
 
-`validate_result_archive(...)` re-derives V2 candidate verdicts and reports integrity blockers plus raw counts for harmful fresh transfer and false acceptance. It deliberately returns `empirical_authority: CANNOT_CHECK`; statistical/scientific interpretation belongs to the separately frozen analysis layer and protected evidence, not to the validator.
+`validate_result_archive(...)` re-derives V2 candidate verdicts and reports integrity blockers plus raw counts for harmful fresh transfer and false acceptance. `result_archive_digest(...)` returns a stable content address only for a structurally valid archive. The validator deliberately returns `empirical_authority: CANNOT_CHECK`; statistical/scientific interpretation belongs to the separately frozen analysis layer and protected evidence, not to the validator.
 
 ## 4. Publication boundary
 

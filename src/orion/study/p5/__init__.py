@@ -3,6 +3,7 @@
 from .freeze import freeze_protected_suite, sha256_json, validate_protected_suite
 from .v2_evidence import (
     content_digest,
+    result_archive_digest,
     run_manifest_digest,
     validate_result_archive,
     validate_run_manifest,
@@ -11,6 +12,7 @@ from .v2_evidence import (
 __all__ = [
     "content_digest",
     "freeze_protected_suite",
+    "result_archive_digest",
     "run_manifest_digest",
     "sha256_json",
     "validate_protected_suite",

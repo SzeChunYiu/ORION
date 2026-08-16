@@ -17,9 +17,9 @@
         "required": [
           "schema_version", "protocol_id", "run_manifest_hash", "result_id",
           "system_id", "arm_kind", "episode_id", "task_family", "candidate_id",
-          "candidate_revision_hash", "seed", "stage", "verdict", "score_delta",
-          "harmful", "subject_revision", "evaluator_hash", "evaluation_epoch",
-          "raw_artifact_hash", "negative_history_digest", "cost", "metrics"
+          "candidate_revision_hash", "seed", "stage", "sequence_index", "verdict",
+          "score_delta", "harmful", "subject_revision", "evaluator_hash",
+          "evaluation_epoch", "raw_artifact_hash", "negative_history_digest", "cost", "metrics"
         ],
         "properties": {
           "schema_version": {"const": "orion.p5.staged-result-record.v2"},
@@ -34,6 +34,7 @@
           "candidate_revision_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
           "seed": {"type": "integer"},
           "stage": {"enum": ["STATIC", "REPLAY", "FRESH", "PROTECTED"]},
+          "sequence_index": {"type": "integer", "minimum": 0},
           "verdict": {"enum": ["PASS", "FAIL", "CANNOT_CHECK"]},
           "score_delta": {"type": "number"},
           "harmful": {"type": "boolean"},
@@ -51,7 +52,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["run_manifest_hash", "system_id", "episode_id", "seed", "candidate_id", "decision", "decision_artifact_hash"],
+        "required": ["run_manifest_hash", "system_id", "episode_id", "seed", "candidate_id", "decision", "decision_sequence_index", "decision_artifact_hash"],
         "properties": {
           "run_manifest_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
           "system_id": {"type": "string", "minLength": 1},
@@ -59,6 +60,7 @@
           "seed": {"type": "integer"},
           "candidate_id": {"type": "string", "minLength": 1},
           "decision": {"enum": ["ACCEPT", "REJECT", "CANNOT_CHECK"]},
+          "decision_sequence_index": {"type": "integer", "minimum": 0},
           "decision_artifact_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
         }
       }
