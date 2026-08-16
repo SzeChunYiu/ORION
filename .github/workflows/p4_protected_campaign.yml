@@ -304,10 +304,10 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/telemetry-summary"
-          CANDIDATE_PROTECTED_HITS=$(grep -R -E -c 'protected_manifest|protected_gold|p4-host-prep-protected' "$RUNNER_TEMP/candidate/telemetry" || true)
-          COMPARATOR_PROTECTED_HITS=$(grep -R -E -c 'protected_manifest|protected_gold|p4-host-prep-protected' "$RUNNER_TEMP/comparators/telemetry" || true)
-          CANDIDATE_INET_CONNECTS=$(grep -R -E -c 'connect\(.*AF_INET|connect\(.*AF_INET6' "$RUNNER_TEMP/candidate/telemetry" || true)
-          COMPARATOR_INET_CONNECTS=$(grep -R -E -c 'connect\(.*AF_INET|connect\(.*AF_INET6' "$RUNNER_TEMP/comparators/telemetry" || true)
+          CANDIDATE_PROTECTED_HITS=$(cat "$RUNNER_TEMP"/candidate/telemetry/* | grep -E -c 'protected_manifest|protected_gold|p4-host-prep-protected' || true)
+          COMPARATOR_PROTECTED_HITS=$(cat "$RUNNER_TEMP"/comparators/telemetry/* | grep -E -c 'protected_manifest|protected_gold|p4-host-prep-protected' || true)
+          CANDIDATE_INET_CONNECTS=$(cat "$RUNNER_TEMP"/candidate/telemetry/* | grep -E -c 'connect\(.*AF_INET|connect\(.*AF_INET6' || true)
+          COMPARATOR_INET_CONNECTS=$(cat "$RUNNER_TEMP"/comparators/telemetry/* | grep -E -c 'connect\(.*AF_INET|connect\(.*AF_INET6' || true)
           cat > "$RUNNER_TEMP/telemetry-summary/access_telemetry_summary.json" <<JSON
           {
             "schema": "P4ActualAccessTelemetry.v1",
