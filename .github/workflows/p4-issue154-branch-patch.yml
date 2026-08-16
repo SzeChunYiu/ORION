@@ -1,0 +1,31 @@
+name: p4-issue154-branch-patch
+
+on:
+  push:
+    branches:
+      - shadow/p4-authority-prereqs-20260816
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: ${{ !contains(github.event.head_commit.message, '[issue154-patched]') }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: shadow/p4-authority-prereqs-20260816
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply asserted patch
+        run: python tools/_patch_p4_issue154.py
+      - name: Commit branch patch
+        run: |
+          git config user.name 'ORION publication closure'
+          git config user.email 'actions@users.noreply.github.com'
+          git add src/orion/kernel/gate.py src/orion/kernel/apply.py src/orion/kernel/__init__.py src/orion/benchmarks/verified_discovery.py src/orion/benchmarks/authority_attacks.py tests/unit/kernel/test_authority_semantics.py tests/unit/benchmarks/test_authority_attacks.py
+          git diff --cached --check
+          git commit -m '[issue154-patched] Repair protected authority prerequisites'
+          git push origin HEAD:shadow/p4-authority-prereqs-20260816
