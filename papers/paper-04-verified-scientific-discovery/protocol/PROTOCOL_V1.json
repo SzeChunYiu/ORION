@@ -30,12 +30,12 @@
     "genuinely_insufficient_evidence"
   ],
   "baselines": [
-    "citation_presence_format_check",
-    "pooled_evidence_nli_support",
-    "attribution_benchmark_style_evaluator",
-    "provenanceguard_like_source_aware_verifier",
-    "iterative_retrieve_or_verify",
-    "claim_level_auditability_provenance"
+    "provenanceguard-style-source-routing",
+    "attributionbench-multisource-attribution",
+    "fire-iterative-retrieve-or-verify",
+    "claimbench-sciclaimhunt-scientific-evidence",
+    "provenai-citation-fidelity-influence",
+    "rewardhackingagents-search-contamination"
   ],
   "ablations": [
     "no_exact_content_binding",
