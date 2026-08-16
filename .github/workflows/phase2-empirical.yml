@@ -1,0 +1,100 @@
+name: phase2-empirical
+
+on:
+  push:
+    branches:
+      - agent/phase2-empirical-execution
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  ORION_PROTECTED_VERIFIER_URL: ${{ secrets.ORION_PROTECTED_VERIFIER_URL }}
+  ORION_PROTECTED_VERIFIER_TOKEN: ${{ secrets.ORION_PROTECTED_VERIFIER_TOKEN }}
+  ORION_PROTECTED_VERIFIER_ARTIFACT_HASH: ${{ secrets.ORION_PROTECTED_VERIFIER_ARTIFACT_HASH }}
+  ORION_EVALUATION_EPOCH_ID: ${{ secrets.ORION_EVALUATION_EPOCH_ID }}
+  ORION_PROTECTED_SANDBOX_URL: ${{ secrets.ORION_PROTECTED_SANDBOX_URL }}
+  ORION_PROTECTED_SANDBOX_TOKEN: ${{ secrets.ORION_PROTECTED_SANDBOX_TOKEN }}
+  ORION_PROTECTED_SANDBOX_ARTIFACT_HASH: ${{ secrets.ORION_PROTECTED_SANDBOX_ARTIFACT_HASH }}
+  ORION_PROTECTED_DEVELOPMENT_EVALUATOR_URL: ${{ secrets.ORION_PROTECTED_DEVELOPMENT_EVALUATOR_URL }}
+  ORION_PROTECTED_DEVELOPMENT_EVALUATOR_TOKEN: ${{ secrets.ORION_PROTECTED_DEVELOPMENT_EVALUATOR_TOKEN }}
+  ORION_AUTHORITY_ATTACK_EXECUTOR_URL: ${{ secrets.ORION_AUTHORITY_ATTACK_EXECUTOR_URL }}
+  ORION_AUTHORITY_ATTACK_EXECUTOR_TOKEN: ${{ secrets.ORION_AUTHORITY_ATTACK_EXECUTOR_TOKEN }}
+  ORION_AUTHORITY_ATTACK_EXECUTOR_ARTIFACT_HASH: ${{ secrets.ORION_AUTHORITY_ATTACK_EXECUTOR_ARTIFACT_HASH }}
+  ORION_AUTHORITY_EVALUATOR_URL: ${{ secrets.ORION_AUTHORITY_EVALUATOR_URL }}
+  ORION_AUTHORITY_EVALUATOR_TOKEN: ${{ secrets.ORION_AUTHORITY_EVALUATOR_TOKEN }}
+  ORION_AUTHORITY_EVALUATOR_PROCESS_LINEAGE_HASH: ${{ secrets.ORION_AUTHORITY_EVALUATOR_PROCESS_LINEAGE_HASH }}
+
+jobs:
+  custody-preflight:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check protected Phase-2 custody bindings
+        shell: python
+        run: |
+          import json
+          import os
+          from pathlib import Path
+
+          groups = {
+              "live_research": (
+                  "OPENAI_API_KEY",
+                  "ORION_PROTECTED_VERIFIER_URL",
+                  "ORION_PROTECTED_VERIFIER_TOKEN",
+                  "ORION_PROTECTED_VERIFIER_ARTIFACT_HASH",
+                  "ORION_EVALUATION_EPOCH_ID",
+              ),
+              "shadow_development": (
+                  "ORION_PROTECTED_SANDBOX_URL",
+                  "ORION_PROTECTED_SANDBOX_TOKEN",
+                  "ORION_PROTECTED_SANDBOX_ARTIFACT_HASH",
+                  "ORION_PROTECTED_DEVELOPMENT_EVALUATOR_URL",
+                  "ORION_PROTECTED_DEVELOPMENT_EVALUATOR_TOKEN",
+              ),
+              "hostile_authority": (
+                  "ORION_AUTHORITY_ATTACK_EXECUTOR_URL",
+                  "ORION_AUTHORITY_ATTACK_EXECUTOR_TOKEN",
+                  "ORION_AUTHORITY_ATTACK_EXECUTOR_ARTIFACT_HASH",
+                  "ORION_AUTHORITY_EVALUATOR_URL",
+                  "ORION_AUTHORITY_EVALUATOR_TOKEN",
+                  "ORION_AUTHORITY_EVALUATOR_PROCESS_LINEAGE_HASH",
+              ),
+          }
+          report = {
+              "schema": "Phase2CustodyPreflight.v1",
+              "subject_commit": os.environ["GITHUB_SHA"],
+              "groups": {},
+          }
+          all_ready = True
+          for group, names in groups.items():
+              missing = [name for name in names if not os.environ.get(name)]
+              ready = not missing
+              all_ready &= ready
+              report["groups"][group] = {"ready": ready, "missing": missing}
+              print(f"{group}: {'READY' if ready else 'BLOCKED'}")
+              if missing:
+                  print("  missing: " + ", ".join(missing))
+          report["all_ready"] = all_ready
+          Path("phase2-custody-preflight.json").write_text(
+              json.dumps(report, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          if not all_ready:
+              raise SystemExit("Phase-2 empirical execution is blocked by missing protected custody bindings")
+      - name: Install ORION
+        if: success()
+        run: python -m pip install -e '.[dev]'
+      - name: Verify local suite before empirical execution
+        if: success()
+        run: pytest -q
+      - name: Upload custody preflight
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase2-custody-preflight-${{ github.sha }}
+          path: phase2-custody-preflight.json
+          if-no-files-found: error
+          retention-days: 30
