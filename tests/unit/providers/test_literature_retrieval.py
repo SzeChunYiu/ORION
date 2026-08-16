@@ -21,7 +21,7 @@ def _query():
     )
 
 
-def test_europe_pmc_adapter_returns_source_bound_core_metadata():
+def test_europe_pmc_adapter_returns_source_bound_core_metadata_without_provider_as_domain():
     captured = {}
 
     def transport(url, headers, timeout):
@@ -53,15 +53,15 @@ def test_europe_pmc_adapter_returns_source_bound_core_metadata():
     assert item.item_id == "europepmc:MED:12345"
     assert item.source_uri == "https://europepmc.org/article/MED/12345"
     assert "Abstract: A source-local abstract." in item.content
-    assert "neuroimmunology" in item.domain_ids
-    assert "literature:europe-pmc" in item.domain_ids
+    assert item.domain_ids == ("neuroimmunology",)
+    assert "europepmc" in item.item_id
     parsed = urllib.parse.urlparse(captured["url"])
     params = urllib.parse.parse_qs(parsed.query)
     assert params["resultType"] == ["core"]
     assert params["format"] == ["json"]
 
 
-def test_crossref_adapter_returns_doi_bound_metadata():
+def test_crossref_adapter_returns_doi_bound_metadata_without_provider_as_domain():
     captured = {}
 
     def transport(url, headers, timeout):
@@ -92,9 +92,35 @@ def test_crossref_adapter_returns_doi_bound_metadata():
     assert item.item_id == "crossref:doi:10.1000/mos2"
     assert item.source_uri == "https://doi.org/10.1000/MOS2"
     assert "Ada Example" in item.content
+    assert item.domain_ids == ("neuroimmunology",)
     params = urllib.parse.parse_qs(urllib.parse.urlparse(captured["url"]).query)
     assert params["query.bibliographic"] == [_query().text]
     assert params["mailto"] == ["research@example.test"]
+
+
+def test_literature_provider_without_domain_hint_does_not_invent_provider_domain():
+    query = SearchQuery(
+        "query:no-domain",
+        "screening monolayer MoS2 exciton",
+        "route:no-domain",
+        SearchRouteKind.FUNCTION_ONLY,
+    )
+    provider = CrossrefRetrievalProvider(
+        transport=lambda url, headers, timeout: json.dumps(
+            {
+                "message": {
+                    "items": [
+                        {
+                            "DOI": "10.1000/ONE",
+                            "title": ["One paper"],
+                            "URL": "https://doi.org/10.1000/ONE",
+                        }
+                    ]
+                }
+            }
+        ).encode()
+    )
+    assert provider.search(query, limit=1)[0].domain_ids == ()
 
 
 def test_multi_source_retrieval_is_strict_about_source_failure():
