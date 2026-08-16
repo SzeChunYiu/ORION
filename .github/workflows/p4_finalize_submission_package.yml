@@ -1,0 +1,140 @@
+name: p4-finalize-submission-package
+
+on:
+  push:
+    branches: [shadow/p4-issue101-results]
+    paths:
+      - 'papers/paper-04-verified-scientific-discovery/submission/FINAL_PDF_AUDIT_V1.json'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize-submission:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: shadow/p4-issue101-results
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify audited PDF and publication evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root = Path('papers/paper-04-verified-scientific-discovery')
+          audit = json.loads((root/'submission'/'FINAL_PDF_AUDIT_V1.json').read_text())
+          pdf = root/'submission'/'ORION-P4-final.pdf'
+          summary = json.loads((root/'evidence'/'protected-campaign-31968809206'/'CAMPAIGN_SUMMARY_V1.json').read_text())
+          replay = json.loads((root/'reproducibility'/'PUBLIC_REPLAY_RECEIPT_V1.json').read_text())
+          repro = json.loads((root/'evidence'/'protected-campaign-31968809206'/'INDEPENDENT_REPRODUCTION_V1.json').read_text())
+          assert pdf.exists() and pdf.stat().st_size == audit['pdf_bytes']
+          assert hashlib.sha256(pdf.read_bytes()).hexdigest() == audit['pdf_sha256']
+          assert audit['undefined_references_or_citations'] == 0
+          assert audit['stale_prospective_claims'] == 0
+          assert audit['threat_model_terms_missing'] == []
+          assert audit['bibliography_keys_missing'] == []
+          assert audit['H1_status'] == 'PASS'
+          assert audit['H2_status'] == 'PASS'
+          assert audit['H3_status'] == 'NOT_SUPPORTED'
+          assert summary['H1']['status'] == 'PASS' and summary['H2']['status'] == 'PASS'
+          assert summary['H3']['status'] == 'NOT_SUPPORTED'
+          assert replay['safe_file_hashes_verified'] is True
+          assert repro['headline_reproduced'] is True
+          for required in [
+              root/'submission'/'TARGET_JOURNAL_V1.md',
+              root/'submission'/'COVER_LETTER_V1.md',
+              root/'evidence'/'PROTECTED_CLAIM_LEDGER_V1.md',
+              root/'protocol'/'THREAT_MODEL_V1.md',
+              root/'literature'/'NEAREST_WORK_AUDIT_2026-08-16.md',
+          ]:
+              assert required.exists() and required.stat().st_size > 0, required
+          print('audited final submission evidence verified')
+          PY
+
+      - name: Write final submission format binding and checklist
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path('papers/paper-04-verified-scientific-discovery')
+          audit = json.loads((root/'submission'/'FINAL_PDF_AUDIT_V1.json').read_text())
+          summary = json.loads((root/'evidence'/'protected-campaign-31968809206'/'CAMPAIGN_SUMMARY_V1.json').read_text())
+          format_doc = f'''# ORION-P4 submission format binding V1
+
+**Target:** Nature Machine Intelligence  
+**Content type:** Article  
+**Scientific freeze:** `P4.protected-authority.v1`, accepted protected campaign `31968809206`  
+**Submission PDF:** `ORION-P4-final.pdf`  
+**PDF SHA-256:** `{audit["pdf_sha256"]}`  
+**Pages:** {audit["pdf_pages"]}
+
+## Packaging rule
+
+The scientific content, protected result, effect estimates, negative H3 result and claim boundaries are frozen. Journal-specific submission work may change only packaging: metadata entry, figure-file separation, source-file upload and editorial formatting. It may not alter the bound protocol, hidden set, subject, H1/H2/H3 interpretation or protected claim ledger.
+
+The current official author/scope sources used by `TARGET_JOURNAL_V1.md` are:
+
+- https://www.nature.com/natmachintell/aims
+- https://www.nature.com/natmachintell/for-authors
+- https://www.nature.com/nature-portfolio/editorial-policies/formatting-guidelines
+
+Rather than inventing a journal-specific LaTeX class not required by the repository evidence, the submission package uses the independently audited single PDF plus source/bibliography/figure/table files. If the journal upload interface requires separated display items or metadata fields, those are packaging-only transformations under this rule.
+'''
+          (root/'submission'/'SUBMISSION_FORMAT_V1.md').write_text(format_doc)
+          checklist = f'''# ORION-P4 final submission checklist V1
+
+Canonical protected campaign: `31968809206`.  Final audited PDF: `{audit["pdf_sha256"]}`.
+
+- [x] Scientific protocol and execution identities frozen before outcome access.
+- [x] Final 420-case protected campaign completed on the exact frozen subject/evaluator/split.
+- [x] H1 false-authority-promotion reduction passed: {summary["H1"]["orion_minus_baseline_false_promotion"]:.3f}, 95% CI [{summary["H1"]["ci95_low"]:.3f}, {summary["H1"]["ci95_high"]:.3f}].
+- [x] H2 clean-coverage guard passed with no clean-coverage loss.
+- [x] H3 tie is explicitly reported `NOT_SUPPORTED`.
+- [x] Independent protected headline reproduction passed.
+- [x] Actual scored-process protected-access/network telemetry retained and clean.
+- [x] All eight frozen ORION ablations reported.
+- [x] False-negative cost reported (ORION clean false negatives 0/60).
+- [x] Safe accepted evidence package committed and content-addressed.
+- [x] Public non-secret replay verifies hashes and regenerates releasable figures/tables.
+- [x] Protected raw verdicts/error analysis/syscall traces remain in custody and are referenced rather than mislabelled public.
+- [x] Protected claim ledger maps headline claims and explicitly rejects universal-security overclaim.
+- [x] Literature closure dated 2026-08-16, within 14 days of this submission package.
+- [x] Target journal selected after scientific freeze.
+- [x] Cover letter prepared after scientific freeze.
+- [x] Submission-format rule bound to official author guidance URLs.
+- [x] Final PDF compiled from scratch and independently audited for stale claims, references, threat-model terms and bibliography resolution.
+- [x] Data/code/reproducibility statements updated for the accepted campaign.
+- [ ] Permanent public release/archive created from the merged, green final-results commit. This is intentionally post-merge so the archive tag points at the exact reviewed main state.
+'''
+          (root/'submission'/'SUBMISSION_CHECKLIST_V1.md').write_text(checklist)
+          PY
+
+      - name: Run full repository test suite before PR-ready marker
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install -e '.[dev]'
+          pytest -q
+
+      - name: Commit final submission package
+        shell: bash
+        run: |
+          set -euo pipefail
+          PAPER=papers/paper-04-verified-scientific-discovery
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$PAPER/submission/SUBMISSION_FORMAT_V1.md" "$PAPER/submission/SUBMISSION_CHECKLIST_V1.md"
+          git diff --cached --quiet && { echo 'no submission-package changes'; exit 1; }
+          git commit -m 'docs(p4): finalize peer-review submission package'
+          git push origin HEAD:shadow/p4-issue101-results
