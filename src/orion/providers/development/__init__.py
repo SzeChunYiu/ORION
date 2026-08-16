@@ -1,6 +1,7 @@
 from .artifacts import (
     DevelopmentArtifactRef,
     DevelopmentArtifactStore,
+    FileSystemDevelopmentArtifactStore,
     InMemoryDevelopmentArtifactStore,
 )
 from .base import (
@@ -16,6 +17,10 @@ from .sandbox import (
     SandboxExecutionResult,
     SandboxPatchExecutor,
 )
+from .sandbox_http import (
+    ProtectedHTTPSandboxConfig,
+    ProtectedHTTPSandboxPatchExecutor,
+)
 
 __all__ = [
     "ArtifactBackedSandboxCandidateRunner",
@@ -26,8 +31,11 @@ __all__ = [
     "DevelopmentChangeProvider",
     "DevelopmentChangeProposal",
     "DevelopmentChangeRequest",
+    "FileSystemDevelopmentArtifactStore",
     "InMemoryDevelopmentArtifactStore",
     "LLMDevelopmentChangeProvider",
+    "ProtectedHTTPSandboxConfig",
+    "ProtectedHTTPSandboxPatchExecutor",
     "SandboxExecutionResult",
     "SandboxPatchExecutor",
 ]
