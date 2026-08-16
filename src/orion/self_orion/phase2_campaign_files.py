@@ -56,8 +56,8 @@ class Phase2CampaignFileSet:
     external_manifest: Path | None = None
 
 
-def assess_phase2_campaign_files(files: Phase2CampaignFileSet) -> Phase2CampaignReport:
-    """Replay Phase-2 status from protected artifacts without external calls."""
+def load_phase2_campaign_evidence(files: Phase2CampaignFileSet) -> Phase2CampaignEvidence:
+    """Load and verify protected campaign artifacts without making external calls."""
 
     preflight = load_phase2_binding(files.binding)
     live = (
@@ -94,18 +94,22 @@ def assess_phase2_campaign_files(files: Phase2CampaignFileSet) -> Phase2Campaign
         if files.external_manifest is not None
         else None
     )
-    return assess_phase2_campaign(
-        Phase2CampaignEvidence(
-            preflight=preflight,
-            live_trial=live,
-            baseline_bundle_hash=baseline_hash,
-            development_trial=development,
-            authority_trial=authority,
-            authority_benchmark=authority_assessment,
-            external_observations=observations,
-            flagship_external_manifest=external_manifest,
-        )
+    return Phase2CampaignEvidence(
+        preflight=preflight,
+        live_trial=live,
+        baseline_bundle_hash=baseline_hash,
+        development_trial=development,
+        authority_trial=authority,
+        authority_benchmark=authority_assessment,
+        external_observations=observations,
+        flagship_external_manifest=external_manifest,
     )
+
+
+def assess_phase2_campaign_files(files: Phase2CampaignFileSet) -> Phase2CampaignReport:
+    """Replay Phase-2 status from protected artifacts without external calls."""
+
+    return assess_phase2_campaign(load_phase2_campaign_evidence(files))
 
 
 __all__ = [
@@ -113,4 +117,5 @@ __all__ = [
     "Phase2CampaignFileSet",
     "assess_phase2_campaign_files",
     "load_baseline_bundle_hash",
+    "load_phase2_campaign_evidence",
 ]
