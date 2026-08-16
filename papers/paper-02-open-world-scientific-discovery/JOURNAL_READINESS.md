@@ -1,8 +1,8 @@
 # ORION-P2 journal-readiness plan — Open-World Scientific Knowledge Discovery
 
-**Current terminal:** `CANNOT_CHECK` for externally supported recall/discovery benefit; **not** `PEER_REVIEW_READY`.
+**Current terminal:** `CANNOT_CHECK` for externally supported ORION-vs-baseline discovery superiority; **not** `PEER_REVIEW_READY`.
 
-**Completed result-bearing evidence:** frozen 20-task offline complete-gold companion, 14 systems × 3 repeat seeds = 840 normalized run records, authority `DESCRIPTIVE_ONLY`. Full ORION mean recall 0.994444; strongest frozen confirmatory comparator 0.666667; descriptive difference +0.327777. The immutable mechanism projection now regenerates P2-3/P2-4/P2-5 from the same bound records, and the complete-gold O1 replay reports both route-stop FP and FN. The external Wide/Deep/MetaSyn/SAGE campaign is not complete, so this evidence cannot be promoted to real-web superiority.
+**Completed result-bearing evidence:** frozen 20-task offline complete-gold companion, 14 systems × 3 repeat seeds = 840 normalized run records, authority `DESCRIPTIVE_ONLY`. Full ORION mean recall 0.994444; strongest frozen confirmatory comparator 0.666667; descriptive difference +0.327777. The immutable mechanism projection regenerates P2-3/P2-4/P2-5 from the same bound records, and the complete-gold O1 replay reports both route-stop FP and FN. In addition, the corrected credential-free MetaSyn probe completed all 86 released test reviews under the pinned official ID-only evaluator: retrieval recall 0.7485, inclusion recall 0.5651, post-retrieval loss 0.1834 and screening accuracy 0.7228. Wide/Deep matched external ORION evidence, SAGE, and the final live-provider cost-bearing campaign remain incomplete, so none of this is promoted to real-web ORION superiority.
 
 ## 1. Novelty closure
 
@@ -23,10 +23,10 @@
 
 ## 3. External evaluation suite
 
-- [ ] AutoResearchBench **Deep Research** official result — tasks/gold obtained, but official title judge still needs an OpenAI-compatible endpoint.
-- [ ] AutoResearchBench **Wide Research** official ORION-vs-baseline result — evaluator is credential-free/runnable; a gold-blind keyless external probe is executing, but the final ORION-vs-baseline result is not yet archived.
+- [ ] AutoResearchBench **Deep Research** official result — tasks/gold obtained, but official title judge still needs an OpenAI-compatible endpoint. A deterministic target-ID probe exists only as a declared non-official deviation.
+- [ ] AutoResearchBench **Wide Research** official ORION-vs-baseline result — evaluator is credential-free/runnable and the gold-blind adapter is implemented, but no final admissible ORION-vs-baseline result is archived yet.
 - [ ] SAGE scientific retrieval — **STRUCK:** published 200k corpus and official evaluator are unavailable; do not fabricate a substitute as “official”.
-- [ ] MetaSyn retrieval + screening result — code/data and ID-only scorer are credential-free; a gold-blind retrieval/screening probe is executing, but no result is checked complete before the official evaluator artifact is archived.
+- [x] MetaSyn retrieval + screening result — corrected gold-blind 86-review BM25 + deterministic public-protocol screening probe completed under the pinned official MetaSyn ID-only evaluator. Archive: `evidence/external_results/METASYN_ID_ONLY_PROBE_V1.json`; corrected Actions run `31973786111`, artifact `9270589591`.
 - [x] Frozen local complete-gold corpus with legally distributable denominator (`evidence/offline_gold/`).
 - [ ] Optional expert review cases — deferred until domain experts are available.
 
@@ -72,7 +72,7 @@ Retrieval/discovery:
 - [ ] Wide official IoU/set metric on an ORION candidate run.
 - [ ] Deep official target-success metric on an ORION candidate run.
 - [x] precision as a secondary complete-gold metric.
-- [ ] external retrieval → screening recall / false-negative analysis.
+- [x] external retrieval → screening loss analysis on MetaSyn: official ID-only metrics include retrieval recall 0.7485, conditional retention 0.7224, inclusion recall 0.5651 and post-retrieval loss 0.1834 across all 86 test reviews.
 - [x] rank metrics are not emitted for the set-complete offline tasks; the conditional “rank-only” rule is enforced.
 
 Route/stopping:
@@ -113,7 +113,7 @@ Statistics:
 - [x] Formalize earned route independence and route/task stop states.
 - [x] Methods define content identity/dedup, question-conditioned read ledger, fail-closed coverage and prospective execution binding.
 - [x] Evaluation text states denominator-validity requirements and the offline `DESCRIPTIVE_ONLY` authority.
-- [x] Results are written only from archived immutable offline artifacts; external result slots remain `CANNOT_CHECK` rather than being filled from access audits.
+- [x] Results are written only from archived immutable offline artifacts; external claim authority is additionally bounded by the MetaSyn archive and claim ledger rather than inferred from access audits.
 - [x] Include SAGE lexical-baseline finding and AgentSLR/MetaSyn/AutoResearchBench nearest work.
 - [x] Report synthetic-world, provider mutability, incomplete-gold, contamination, language/domain and database-coverage limitations.
 - [x] Add data/code availability and reproducibility statements that distinguish completed offline evidence from unexecuted external/live evidence.
@@ -128,7 +128,7 @@ Statistics:
 - [ ] raw **final live-provider** results and request timestamps (capture machinery exists; final campaign archive does not).
 - [x] exact result-bearing subject/content-dedup code version bound in the run manifest by commit/blob identity.
 - [x] command regenerates the complete 840-run offline record/artifact set and checks the committed publication summary: `python3 papers/paper-02-open-world-scientific-discovery/scripts/run_offline_companion.py --check` (use `--write-raw DIR` for all generated records/artifacts).
-- [x] scripts regenerate every currently completed offline metric/plot/table, including P2-3/P2-4/P2-5, P2-6, P2-3 failure taxonomy and P2-S1 route-stop FP/FN; final external-only plots remain intentionally absent until their result artifacts exist.
+- [x] scripts regenerate every currently completed offline metric/plot/table, including P2-3/P2-4/P2-5, P2-6, P2-3 failure taxonomy and P2-S1 route-stop FP/FN; the pinned MetaSyn workflow reproduces the completed external ID-only probe.
 - [ ] clean-environment expected **external** runtime/cost ledger.
 - [x] independent clean-CI reproduction of the offline headline publication summary from the frozen suite/manifest.
 - [ ] permanent archive/DOI.
@@ -143,4 +143,4 @@ Statistics:
 
 ## Done definition
 
-`ORION-P2 = PEER_REVIEW_READY` only after admissible external complete-gold/Wide/Deep or equivalent evaluations support the final discovery/stopping claim against strong baselines, all `OPEN/CANNOT_CHECK` conditions remain visible, and the final journal gate passes. The completed offline companion validates mechanism behavior but **does not** by itself satisfy this terminal.
+`ORION-P2 = PEER_REVIEW_READY` only after admissible external complete-gold/Wide/Deep or equivalent evaluations support the final discovery/stopping claim against strong baselines, all `OPEN/CANNOT_CHECK` conditions remain visible, and the final journal gate passes. The completed offline companion validates mechanism behavior and the MetaSyn probe supplies real external retrieval/screening evidence, but neither alone satisfies this terminal.
