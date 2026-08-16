@@ -5,14 +5,14 @@
 
 ## Scoped paper
 
-Paper I now has one job: test whether a research system benefits from **explicit recursive epistemic reconstruction when the problem formulation or relevant search universe itself must change**.
+Paper I has one job: test whether a research system benefits from **explicit recursive epistemic reconstruction when the problem formulation or relevant search universe itself must change**.
 
 The paper centers four candidate deltas:
 
 1. explicit co-evolving object knowledge `K`, relevance/search-universe model `W`, and governed method state `M`;
 2. typed responsibility-targeted revision of formulation/search coordinates rather than generic “try again” iteration;
 3. dependency-directed reopening of closure after a material reframe;
-4. recursive self-audit of the research workflow through inspectable mechanic cells.
+4. recursive self-audit of the research workflow through the canonical partial `MechanicCell.v1` representation and deterministic missing-coordinate questions.
 
 These are candidate differences, not established novelty.
 
@@ -20,15 +20,15 @@ The canonical research object is `research/paper-programme-v1/PAPER_01_RECURSIVE
 
 ## Scope split across the five-paper programme
 
-Material previously embedded in the Paper-I draft has been separated so the flagship papers no longer compete for the same claim:
+Material previously embedded in umbrella/Shadow drafts is now assigned by scientific ownership:
 
+- **Paper I** owns mechanic-cell representation, non-compensatory specification completeness, deterministic open-question generation, and recursive audit as part of epistemic reconstruction;
 - open-world route coverage and stopping mechanics belong to **Paper II**;
 - knowledge absorption, scientific semantic projection, GLUE/obstructions, and the global portrait belong to **Paper III**;
 - authority promotion, verification, and protected evaluation belong to **Paper IV**;
-- failure-to-method learning, development recursion, and governed self-improvement belong to **Paper V**;
-- full mechanic-cell/failure-learning technical detail remains in the non-flagship `papers/shadow-mechanics-v1/` companion.
+- failure-to-method learning, development recursion, challenger governance, and governed self-improvement belong to **Paper V**.
 
-Paper I may reference those interfaces only where they are required to define recursive reconstruction.
+The former `papers/shadow-mechanics-v1/` manuscript is no longer a paper. Its original claim/evidence/manuscript bytes are retained under `research/technical-companions/mechanics-of-mechanics-v1/archive/` for provenance.
 
 ## Falsifier V1
 
@@ -44,4 +44,4 @@ Until that prospective evaluation exists, external superiority, broad novelty, a
 
 ## Manuscript
 
-`manuscript/main.tex` is the canonical Paper-I working manuscript. Its section structure is intentionally narrower than the earlier umbrella ORION draft.
+`manuscript/main.tex` is the canonical Paper-I working manuscript. The mechanic-cell/self-audit theory is now directly part of that manuscript rather than delegated to a pseudo-sixth paper.

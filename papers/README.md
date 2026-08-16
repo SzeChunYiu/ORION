@@ -14,9 +14,9 @@ ORION has **exactly five numbered flagship papers**. A paper identity is determi
 | ORION-P4 | Verified Scientific Discovery | `paper-04-verified-scientific-discovery/` |
 | ORION-P5 | Self-ORION | `paper-05-self-orion/` |
 
-Historical redirect directories have been removed from the active tree. Their old names and destinations are recorded in `PAPER_ALIASES.md` and remain recoverable from Git history. `legacy-rakl-map.md` records the older RAKL-to-ORION salvage map.
+The active `papers/` tree now contains only those five paper directories plus publication synchronization/alias files. Historical redirect directories and the former `shadow-mechanics-v1/` paper-like path have been removed. Their mappings are recorded in `PAPER_ALIASES.md` and remain recoverable from Git history.
 
-`shadow-mechanics-v1/` is a technical companion/research substrate. It is **not** a sixth flagship paper and must not receive a flagship paper number.
+The former Shadow mechanics material is preserved as a **non-paper technical companion** at `research/technical-companions/mechanics-of-mechanics-v1/`. Its mechanic-cell/recursive-audit theory is owned by Paper I; its failure-learning and protected self-development theory is owned by Paper V. Discovery/stopping and authority interfaces remain owned by Papers II and IV respectively.
 
 ## Scientific synchronization rule
 
@@ -28,11 +28,11 @@ Passing repository tests or obtaining a `CANDIDATE_DELTA` cannot authorize an ex
 
 ## Current flagship status
 
-1. **Paper I — Recursive Epistemic Reconstruction.** A scoped working manuscript is now organized around explicit `K/W/M` state, typed responsibility-targeted reframing, dependency-directed reopening, recursive mechanic self-audit, and falsification under hidden formulation/search-universe shifts.
+1. **Paper I — Recursive Epistemic Reconstruction.** Scoped manuscript: explicit `K/W/M` state, typed responsibility-targeted reframing, dependency-directed reopening, the canonical mechanic-cell representation, recursive mechanic self-audit, and hidden formulation/search-universe falsification.
 2. **Paper II — Open-World Scientific Knowledge Discovery.** Discovery/search paper: earned route independence, question-framed memory, route/task stopping, and recall-first evaluation.
 3. **Paper III — Global Knowledge Portrait.** Absorption/synthesis paper: source projections, scientific meaning, identity/context/measurement mapping, GLUE/obstructions, typed ignorance, and recoverable portraits.
 4. **Paper IV — Verified Scientific Discovery.** Scientific-authority paper: content-bound evidence, independent checks, protected evaluation, typed non-escalation, and `CANNOT_CHECK`.
-5. **Paper V — Self-ORION.** Method-evolution paper: issue/failure knowledge, causal attribution, invention readiness, replay/fresh transfer, protected assurance, and no self-promotion.
+5. **Paper V — Self-ORION.** Scoped manuscript: persistent failure/issue knowledge, causal discrimination, challenger/invention governance, isolated change control, replay/fresh transfer, protected assurance, negative-history retention, and no self-promotion.
 
 ## Flagship falsifier V1
 
