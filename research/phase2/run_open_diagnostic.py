@@ -6,11 +6,12 @@ import hashlib
 import json
 import os
 import urllib.request
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 from orion.engine.solver import SolverConfig
 from orion.providers.experience.memory import InMemoryExperienceStore
+from orion.providers.llm.accounting import AccountingLLMProvider
 from orion.providers.llm.ollama import OllamaConfig, OllamaLLMProvider
 from orion.providers.retrieval.literature import (
     CrossrefRetrievalProvider,
@@ -19,7 +20,11 @@ from orion.providers.retrieval.literature import (
 )
 from orion.providers.verification.base import VerificationResult
 from orion.self_orion.baseline import SimpleLLMRetrievalBaseline, write_baseline_bundle
-from orion.self_orion.live_trial import FrozenLiveTrialPacket, ShadowLiveTrialRunner
+from orion.self_orion.live_trial import (
+    FrozenLiveTrialPacket,
+    ShadowLiveTrialReport,
+    ShadowLiveTrialRunner,
+)
 from orion.self_orion.phase2_preflight import DEEP_TARGET_TASK, WIDE_LITERATURE_TASK
 from orion.self_orion.trial_io import write_shadow_live_trial_report
 
@@ -27,6 +32,8 @@ from orion.self_orion.trial_io import write_shadow_live_trial_report
 DIAGNOSTIC_SCHEMA = "Phase2OpenLiveDiagnostic.v1"
 DIAGNOSTIC_EPOCH = "phase2:open-live-diagnostic:2026-08-16"
 DIAGNOSTIC_BASELINE_ID = "simple-llm-retrieval-baseline-v1"
+RETRIEVAL_CALL_COST_UNITS = 1.0
+LLM_CALL_COST_UNITS = 1.0
 
 
 def _canonical_hash(payload: object) -> str:
@@ -109,6 +116,12 @@ class DiagnosticIdentity:
                 },
             ],
             "retrieval_policy": "strict-all-sources",
+            "resource_accounting": {
+                "unit": "provider-call",
+                "retrieval_call_cost_units": RETRIEVAL_CALL_COST_UNITS,
+                "llm_call_cost_units": LLM_CALL_COST_UNITS,
+                "attempted_calls_count_even_when_provider_fails": True,
+            },
             "verification": {
                 "provider": "unavailable-protected-verifier",
                 "passed_verification_possible": False,
@@ -133,7 +146,49 @@ class DiagnosticIdentity:
         )
 
 
-def _summary(report, baseline, *, identity: DiagnosticIdentity, experience_store: InMemoryExperienceStore) -> dict[str, object]:
+def _account_resources(
+    report: ShadowLiveTrialReport,
+    *,
+    packet: FrozenLiveTrialPacket,
+    accounting_llm: AccountingLLMProvider,
+) -> ShadowLiveTrialReport:
+    comparisons = []
+    for item in report.comparisons:
+        retrieval_calls = item.raw_query_count
+        llm_calls = accounting_llm.attempted_calls_for_problem(item.task_id)
+        orion_units = (
+            retrieval_calls * RETRIEVAL_CALL_COST_UNITS
+            + llm_calls * LLM_CALL_COST_UNITS
+        )
+        matched = (
+            orion_units <= packet.resource_budget_units
+            and item.baseline_resource_units <= packet.resource_budget_units
+            and orion_units
+            <= item.baseline_resource_units
+            * packet.max_orion_to_baseline_resource_ratio
+        )
+        comparisons.append(
+            replace(
+                item,
+                orion_resource_units=orion_units,
+                resource_matched=matched,
+            )
+        )
+    return replace(
+        report,
+        comparisons=tuple(comparisons),
+        all_resource_matched=all(item.resource_matched for item in comparisons),
+    )
+
+
+def _summary(
+    report,
+    baseline,
+    *,
+    identity: DiagnosticIdentity,
+    experience_store: InMemoryExperienceStore,
+    accounting_llm: AccountingLLMProvider,
+) -> dict[str, object]:
     return {
         "schema": DIAGNOSTIC_SCHEMA,
         "subject_commit": os.environ.get("GITHUB_SHA", "local-unbound"),
@@ -153,6 +208,11 @@ def _summary(report, baseline, *, identity: DiagnosticIdentity, experience_store
         "all_failures_recordable": report.all_failures_recordable,
         "all_resource_matched": report.all_resource_matched,
         "recorded_episode_count": len(experience_store.episodes()),
+        "resource_accounting": {
+            "unit": "provider-call",
+            "retrieval_call_cost_units": RETRIEVAL_CALL_COST_UNITS,
+            "llm_call_cost_units": LLM_CALL_COST_UNITS,
+        },
         "tasks": [
             {
                 "task_id": item.task_id,
@@ -161,6 +221,10 @@ def _summary(report, baseline, *, identity: DiagnosticIdentity, experience_store
                 "orion_evidence_count": item.orion_evidence_count,
                 "orion_residual_count": item.orion_residual_count,
                 "orion_resource_units": item.orion_resource_units,
+                "orion_llm_call_count": accounting_llm.attempted_calls_for_problem(
+                    item.task_id
+                ),
+                "orion_retrieval_call_count": item.raw_query_count,
                 "baseline_solved": item.baseline_solved,
                 "baseline_evidence_count": item.baseline_evidence_count,
                 "baseline_residual_count": item.baseline_residual_count,
@@ -199,6 +263,14 @@ def _summary(report, baseline, *, identity: DiagnosticIdentity, experience_store
             }
             for item in report.comparisons
         ],
+        "llm_call_observations": [
+            {
+                "task": observation.task,
+                "problem_id": observation.problem_id,
+                "completed": observation.completed,
+            }
+            for observation in accounting_llm.observations()
+        ],
         "baseline_artifact_hashes": {
             artifact.task_id: artifact.artifact_hash for artifact in baseline.artifacts
         },
@@ -211,7 +283,8 @@ def _summary(report, baseline, *, identity: DiagnosticIdentity, experience_store
 
 def run(*, model: str, output_dir: Path) -> dict[str, object]:
     output_dir.mkdir(parents=True, exist_ok=True)
-    llm = OllamaLLMProvider(OllamaConfig(model=model))
+    raw_llm = OllamaLLMProvider(OllamaConfig(model=model))
+    accounting_llm = AccountingLLMProvider(raw_llm)
     model_digest = _ollama_model_digest(model)
     europe_pmc = EuropePMCRetrievalProvider()
     crossref = CrossrefRetrievalProvider(mailto=os.environ.get("CROSSREF_MAILTO", ""))
@@ -221,13 +294,19 @@ def run(*, model: str, output_dir: Path) -> dict[str, object]:
     identity = DiagnosticIdentity(
         model=model,
         model_digest=model_digest,
-        ollama_endpoint=llm.config.endpoint,
+        ollama_endpoint=raw_llm.config.endpoint,
         europe_pmc_endpoint=europe_pmc.endpoint,
         crossref_endpoint=crossref.endpoint,
     )
-    baseline = SimpleLLMRetrievalBaseline(llm=llm, retrieval=retrieval, max_results=8)
+    baseline = SimpleLLMRetrievalBaseline(
+        llm=raw_llm,
+        retrieval=retrieval,
+        max_results=8,
+        retrieval_call_cost_units=RETRIEVAL_CALL_COST_UNITS,
+        llm_call_cost_units=LLM_CALL_COST_UNITS,
+    )
     runner = ShadowLiveTrialRunner.from_providers(
-        llm=llm,
+        llm=accounting_llm,
         retrieval=retrieval,
         verification=verifier,
         baseline=baseline,
@@ -249,7 +328,12 @@ def run(*, model: str, output_dir: Path) -> dict[str, object]:
         resource_budget_units=120.0,
         max_orion_to_baseline_resource_ratio=1.0,
     )
-    report = runner.run(packet)
+    raw_report = runner.run(packet)
+    report = _account_resources(
+        raw_report,
+        packet=packet,
+        accounting_llm=accounting_llm,
+    )
 
     provider_payload = {
         **identity.provider_manifest,
@@ -261,7 +345,13 @@ def run(*, model: str, output_dir: Path) -> dict[str, object]:
     )
     write_shadow_live_trial_report(report, output_dir / "live-trial.json")
     write_baseline_bundle(baseline, output_dir / "baseline.json")
-    summary = _summary(report, baseline, identity=identity, experience_store=experience_store)
+    summary = _summary(
+        report,
+        baseline,
+        identity=identity,
+        experience_store=experience_store,
+        accounting_llm=accounting_llm,
+    )
     (output_dir / "summary.json").write_text(
         json.dumps(summary, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
