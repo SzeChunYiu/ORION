@@ -26,6 +26,7 @@ from orion.self_orion.research_loop import DevelopmentInvestigationResult, Shado
 class SelfDrivingCycleStatus(str, Enum):
     RESEARCH_OPEN = "RESEARCH_OPEN"
     CHANGE_REJECTED = "CHANGE_REJECTED"
+    META_OVERFIT = "META_OVERFIT"
     CHANGE_CANDIDATE = "CHANGE_CANDIDATE"
     HOST_PROMOTION_RECOMMENDED = "HOST_PROMOTION_RECOMMENDED"
 
@@ -100,14 +101,6 @@ class ShadowSelfDrivingController:
         )
 
     def architecture_evidence(self) -> ShadowSelfDrivingArchitectureEvidence:
-        """Derive the non-authoritative Shadow architecture observation.
-
-        This is intentionally not an empirical readiness receipt. Component and
-        boundary identities name the implementation surfaces actually composed by
-        this controller; the empirical readiness gate requires separate
-        content/lineage-bound records and external custody.
-        """
-
         state = self._driver.drive_local_transfer()
         graph_defects = (
             state.after.unknown_child_count
@@ -191,6 +184,7 @@ class ShadowSelfDrivingController:
             control = self._change_controller.evaluate_change(request)
             status = {
                 ChangeControlVerdict.REJECT: SelfDrivingCycleStatus.CHANGE_REJECTED,
+                ChangeControlVerdict.META_OVERFIT: SelfDrivingCycleStatus.META_OVERFIT,
                 ChangeControlVerdict.CANDIDATE_ONLY: SelfDrivingCycleStatus.CHANGE_CANDIDATE,
                 ChangeControlVerdict.RECOMMEND_HOST_PROMOTION: SelfDrivingCycleStatus.HOST_PROMOTION_RECOMMENDED,
             }[control.verdict]
