@@ -141,8 +141,15 @@ def render(audit: dict) -> str:
     add("## D. Pinned-revision integrity")
     add("")
     integrity = audit["pinned_revision_integrity"]
-    for key in ("keys_checked", "keys_with_pinned_sha", "pinned_shas_resolving", "pinned_shas_missing"):
-        add(f"- `{key}`: {integrity[key]}")
+    for key in (
+        "reference_revision_keys_total",
+        "keys_with_pinned_sha",
+        "keys_without_pinned_sha",
+        "keys_without_pinned_sha_list",
+        "pinned_shas_resolving",
+        "pinned_shas_missing",
+    ):
+        add(f"- `{key}`: {cell(integrity[key])}")
     add(f"- verdict: {integrity['verdict']}")
     add("")
 

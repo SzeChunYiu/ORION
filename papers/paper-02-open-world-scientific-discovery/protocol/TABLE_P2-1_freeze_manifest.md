@@ -60,14 +60,17 @@ This table is outcome-blind: it records what can be obtained, under what licence
 
 ## D. Pinned-revision integrity
 
-- `keys_checked`: 4
+- `reference_revision_keys_total`: 5
 - `keys_with_pinned_sha`: 4
+- `keys_without_pinned_sha`: 1
+- `keys_without_pinned_sha_list`: AutoResearchBench_dataset
 - `pinned_shas_resolving`: 4
 - `pinned_shas_missing`: 0
-- verdict: No P0. Every 40-character SHA in PROTOCOL_V1.json reference_revisions resolves at its named repository, and all four repositories are public and unarchived.
+- verdict: No P0. Every 40-character SHA in PROTOCOL_V1.json reference_revisions resolves at its named repository, and all four repositories are public and unarchived. The fifth key, AutoResearchBench_dataset, pins no revision at all: it records a HuggingFace dataset id with the bundle content hash left UNBOUND, so there is no SHA to resolve. That key was audited on availability, licence and content hash instead.
 
 ## E. Cross-cutting findings
 
+- Part of the official AutoResearchBench Wide metric is not deterministic across runs. evaluate/evaluate_wide_search.py defines max_iou_at_k_sampling(iou_list, k, sample_times=1000), which loops random.sample(list(iou_list), k) 1000 times; neither that file, evaluate_deep_search.py nor utils.py calls random.seed or constructs a seeded Random, so the avg_max_iou_at_k family is a Monte-Carlo estimate that varies run to run on identical inputs. avg_iou, recall and precision are computed exactly and are unaffected. Two consequences for the freeze: (a) an execution_bindings.evaluator_hash pins the evaluator code but not the metric value, so a Wide freeze must additionally pin a seed or declare avg_max_iou_at_k as sampling-noisy; (b) under PROTOCOL_V1.json statistics.stochastic_repeats=3 each record contributes only 3 pass IoUs, and the guard 'if len(record_ious) >= k' means avg_max_iou_at_4, _at_8 and _at_16 receive no samples at all and report 0.0 rather than a measured value. Only avg_max_iou_at_1 and _at_2 are live at 3 repeats, and both are the noisy ones.
 - Two of the four pinned code repositories (HughieHu/Sage, OxRML/AgentSLR) carry no licence at any depth of their pinned trees, so JOURNAL_READINESS section 8 'frozen corpora/index snapshots where redistribution permits' cannot be satisfied for them.
 - The SAGE task family (sage_scientific_retrieval) has neither a published retrieval corpus nor an official evaluator, so it cannot be executed as specified regardless of licensing or budget.
 - Every remaining external family requires paid third-party LLM credentials that this audit does not hold; AutoResearchBench additionally requires an unpublished paper-search backend.
