@@ -1,9 +1,10 @@
 """Canonical all-or-nothing protected transition envelope.
 
-The envelope contains every object needed to explain one protected transition
-attempt.  It does not persist itself; ``LedgerStore.append_transaction`` owns the
-atomic write/CAS boundary.  Non-authorized attempts are still complete
-transactions, but their committed post-state remains the pre-state.
+The envelope contains every object needed to explain and historically replay one
+protected transition attempt. It does not persist itself;
+``LedgerStore.append_transaction`` owns the atomic write/CAS boundary.
+Non-authorized attempts are still complete transactions, but their committed
+post-state remains the pre-state.
 """
 
 from __future__ import annotations
@@ -14,6 +15,7 @@ from typing import Any
 from orion.experience.model import TaskEpisode
 
 from .assurance import VerifierAppraisal
+from .authority_state import AuthorityState, SupportState
 from .authorization import (
     AuthorizationDecision,
     AuthorizationVerdict,
@@ -90,6 +92,65 @@ def _snapshot_payload(snapshot: HostEvidenceSnapshot) -> dict[str, Any]:
     }
 
 
+def _authority_state_payload(state: AuthorityState) -> dict[str, Any]:
+    return {
+        "revision": state.revision,
+        "status_time": state.status_time,
+        "registrations": [
+            {
+                "registration_id": item.registration_id,
+                "kind": item.kind.value,
+                "artifact_hash": item.artifact_hash,
+                "epoch_id": item.epoch_id,
+                "metadata_hash": item.metadata_hash,
+                "public_key_hex": item.public_key_hex,
+                "commitment": item.commitment,
+            }
+            for item in sorted(state.registrations, key=lambda item: item.registration_id)
+        ],
+        "status_history": [
+            {
+                "event_id": item.event_id,
+                "registration_id": item.registration_id,
+                "status": item.status.value,
+                "observed_at": item.observed_at,
+                "reason": item.reason,
+            }
+            for item in state.status_history
+        ],
+    }
+
+
+def _support_state_payload(state: SupportState) -> dict[str, Any]:
+    return {
+        "revision": state.revision,
+        "status_time": state.status_time,
+        "support_sets": [
+            {
+                "support_set_id": item.support_set_id,
+                "dependency_ids": list(item.dependency_ids),
+            }
+            for item in sorted(state.support_sets, key=lambda item: item.support_set_id)
+        ],
+        "dependency_history": [
+            {
+                "event_id": item.event_id,
+                "dependency_id": item.dependency_id,
+                "status": item.status.value,
+                "observed_at": item.observed_at,
+                "reason": item.reason,
+            }
+            for item in state.dependency_history
+        ],
+        "evaluation": {
+            "verdict": state.evaluation.verdict.value,
+            "live_support_set_ids": list(state.evaluation.live_support_set_ids),
+            "failed_support_set_ids": list(state.evaluation.failed_support_set_ids),
+            "unknown_support_set_ids": list(state.evaluation.unknown_support_set_ids),
+        },
+    }
+
+
 def _appraisal_payload(appraisal: VerifierAppraisal) -> dict[str, Any]:
     return {
         "appraisal_id": appraisal.appraisal_id,
@@ -128,7 +189,9 @@ def _decision_payload(decision: AuthorizationDecision) -> dict[str, Any]:
     }
 
 
-def _authorization_payload(authorization: TransitionAuthorization | None) -> dict[str, Any] | None:
+def _authorization_payload(
+    authorization: TransitionAuthorization | None,
+) -> dict[str, Any] | None:
     if authorization is None:
         return None
     return {
@@ -211,6 +274,8 @@ def transaction_payload(transaction: "TransitionTransaction") -> dict[str, Any]:
     return {
         "schema_version": transaction.schema_version,
         "evidence_snapshot": _snapshot_payload(transaction.evidence_snapshot),
+        "authority_state": _authority_state_payload(transaction.authority_state),
+        "support_state": _support_state_payload(transaction.support_state),
         "appraisal": _appraisal_payload(transaction.appraisal),
         "decision": _decision_payload(transaction.decision),
         "authorization": _authorization_payload(transaction.authorization),
@@ -224,6 +289,8 @@ def transaction_payload(transaction: "TransitionTransaction") -> dict[str, Any]:
 @dataclass(frozen=True)
 class TransitionTransaction:
     evidence_snapshot: HostEvidenceSnapshot
+    authority_state: AuthorityState
+    support_state: SupportState
     appraisal: VerifierAppraisal
     decision: AuthorizationDecision
     authorization: TransitionAuthorization | None
@@ -238,16 +305,30 @@ class TransitionTransaction:
             raise ValueError("unsupported transition transaction schema")
         if self.evidence_snapshot.snapshot_id != self.plan.evidence_snapshot_hash:
             raise ValueError("transaction evidence snapshot does not match plan")
+        if self.authority_state.revision != self.decision.authority_revision:
+            raise ValueError("embedded authority projection does not match decision revision")
+        if self.support_state.revision != self.decision.support_revision:
+            raise ValueError("embedded support projection does not match decision revision")
         if self.appraisal.transition_id != self.plan.transition_id:
             raise ValueError("transaction appraisal does not match plan transition")
         if self.decision.transition_id != self.plan.transition_id:
             raise ValueError("transaction authorization decision does not match plan")
         if self.decision.expectation != self.plan.expectation:
             raise ValueError("transaction decision and plan expectations differ")
-        if self.decision.authority_revision != self.evidence_snapshot.captured_at_authority_revision:
-            raise ValueError("transaction authority revision differs from captured evidence occasion")
-        if self.decision.support_revision != self.evidence_snapshot.captured_at_support_revision:
-            raise ValueError("transaction support revision differs from captured evidence occasion")
+        if (
+            self.decision.authority_revision
+            != self.evidence_snapshot.captured_at_authority_revision
+        ):
+            raise ValueError(
+                "transaction authority revision differs from captured evidence occasion"
+            )
+        if (
+            self.decision.support_revision
+            != self.evidence_snapshot.captured_at_support_revision
+        ):
+            raise ValueError(
+                "transaction support revision differs from captured evidence occasion"
+            )
         if self.authorization is not None:
             if self.authorization.authorization_id != self.decision.authorization_id:
                 raise ValueError("sealed authorization does not match decision")
@@ -256,10 +337,18 @@ class TransitionTransaction:
             if self.authorization.expectation != self.decision.expectation:
                 raise ValueError("sealed authorization expectation differs from decision")
         if self.decision.verdict is AuthorizationVerdict.AUTHORIZED:
-            if self.authorization is None or not self.authorization.authorizes_state_change:
+            if (
+                self.authorization is None
+                or not self.authorization.authorizes_state_change
+            ):
                 raise ValueError("authorized decision requires a sealed authorization")
-        elif self.authorization is not None and self.authorization.authorizes_state_change:
-            raise ValueError("non-authorized decision cannot carry state-changing authorization")
+        elif (
+            self.authorization is not None
+            and self.authorization.authorizes_state_change
+        ):
+            raise ValueError(
+                "non-authorized decision cannot carry state-changing authorization"
+            )
         object.__setattr__(
             self,
             "transaction_id",
