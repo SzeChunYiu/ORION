@@ -44,6 +44,18 @@ class LLMDevelopmentChangeProvider:
         protected_paths = "\n".join(f"- {item}" for item in request.protected_path_prefixes)
         constraints = "\n".join(f"- {item}" for item in request.protected_constraints)
         tests = "\n".join(f"- {item}" for item in request.required_tests)
+        causal_context = ""
+        if request.observed_failure_bound:
+            causal_context = (
+                "Frozen observed-failure binding (do not reinterpret after candidate outcome):\n"
+                f"- development issue: {request.development_issue_id}\n"
+                f"- observed failure artifact: {request.observed_failure_artifact_hash}\n"
+                f"- competing causes: {request.candidate_cause_ids}\n"
+                f"- supported cause: {request.supported_cause_id}\n"
+                f"- discriminator artifact: {request.discriminator_artifact_hash}\n"
+                f"- discriminator evidence: {request.discriminator_evidence_ids}\n"
+                f"- retained negative/harmful alternatives: {request.negative_alternative_ids}\n"
+            )
         response = self._llm.complete(
             LLMRequest(
                 task="orion-development-change-proposal",
@@ -59,6 +71,7 @@ class LLMDevelopmentChangeProvider:
                     f"Problem: {request.problem_statement}\n"
                     f"Evidence ids: {request.evidence_ids}\n"
                     f"Failure episode ids: {request.failure_episode_ids}\n"
+                    f"{causal_context}"
                     f"Protected constraints:\n{constraints}\n"
                     f"Protected paths (proposal will be rejected if touched):\n{protected_paths}\n"
                     f"Required tests/assurance obligations:\n{tests}\n"
@@ -97,6 +110,16 @@ class LLMDevelopmentChangeProvider:
                 f"llm:model:{response.model_id}" if response.model_id else None,
                 f"llm:response:{response.response_id}" if response.response_id else None,
                 f"development-request:{request.request_id}",
+                (
+                    f"observed-failure:{request.observed_failure_artifact_hash}"
+                    if request.observed_failure_bound
+                    else None
+                ),
+                (
+                    f"discriminator:{request.discriminator_artifact_hash}"
+                    if request.observed_failure_bound
+                    else None
+                ),
                 artifact.artifact_id,
             )
             if item is not None
