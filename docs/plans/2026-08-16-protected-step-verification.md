@@ -28,10 +28,10 @@ reopen transitions.
 **Starting subject:** `5894ac7814d194b3c60d9655af87ef2d9828d56c`
 
 **Coordination refresh (2026-08-16):** the implementation lane is
-`codex/step-verification-lifecycle` at `57c37aabc04fd263173d7b5e41e198acb254202f`.
+`codex/step-verification-lifecycle` at `ed2b653eff8e4168de5a632c87ccb51800e6be42`.
 A fresh fetch observed `origin/main` at
-`5bb3585d4595924a86b4841d4e5ddde683498c59`, which is also the merge base;
-divergence is `8 / 0`. Task 3 passed hostile review and the lane is reconciled
+`2815f34328e9ec2f81f36d64ac76dd26bf7d2c06`, which is also the merge base;
+divergence is `10 / 0`. Task 3 passed hostile review and the lane is reconciled
 with that current-main snapshot. The results remain lane-local until PR review,
 CI, and an explicit merge to `main`; they must not be described as integrated
 main behavior before then.
