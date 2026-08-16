@@ -198,8 +198,10 @@ def external_authority_gate(
     heldout_access_logged: bool,
     matched_nearest_work_baseline_run: bool,
     false_promotion_better_than_baseline: bool | None,
+    claim_evidence_support_established: bool | None = None,
+    behavioral_influence_established: bool | None = None,
     observed_activity: object | None = None,
-    require_observed_activity: bool = False,
+    require_observed_activity: bool = True,
 ) -> BenchmarkReport:
     """External Paper IV promotion gate.
 
@@ -288,6 +290,10 @@ def external_authority_gate(
         missing.append("matched source-aware verifier baseline not executed")
     if false_promotion_better_than_baseline is None:
         missing.append("false-promotion comparison unavailable")
+    if claim_evidence_support_established is not True:
+        missing.append("claim/evidence semantic support was not protectedly established")
+    if behavioral_influence_established is not True:
+        missing.append("behavioral influence of cited evidence was not protectedly established")
     if missing:
         return BenchmarkReport(
             paper_id="P4",

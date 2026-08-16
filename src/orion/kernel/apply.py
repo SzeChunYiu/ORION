@@ -12,7 +12,13 @@ from orion.mechanics.answers import (
 from orion.mechanics.model import MechanicCell, MechanicDimension
 
 from .evidence import build_evidence_index, resolve_evidence_refs
-from .gate import AnswerAuthority, AnswerGrading, DiscriminatingCheck, grade_answer
+from .gate import (
+    AnswerAuthority,
+    AnswerGrading,
+    DiscriminatingCheck,
+    EvidenceUseAssessment,
+    grade_answer,
+)
 
 
 @dataclass(frozen=True)
@@ -132,6 +138,8 @@ def grade_and_apply(
     checks: Mapping[str, DiscriminatingCheck] = {},
     require_digest: bool = True,
     round_index: int = 0,
+    evidence_use_assessments: Mapping[str, EvidenceUseAssessment] = {},
+    required_prerequisites: Mapping[str, frozenset[str]] = {},
 ) -> GradedApplication:
     """Grade every answer, then apply only those that earned application.
 
@@ -171,6 +179,8 @@ def grade_and_apply(
                 checks={},
                 require_digest=require_digest,
                 round_index=round_index,
+                evidence_use_assessment=evidence_use_assessments.get(record.record_id),
+                required_prerequisites=required_prerequisites.get(record.record_id, frozenset()),
             )
             grading = replace(
                 grading,
@@ -189,6 +199,8 @@ def grade_and_apply(
             checks=checks,
             require_digest=require_digest,
             round_index=round_index,
+            evidence_use_assessment=evidence_use_assessments.get(record.record_id),
+            required_prerequisites=required_prerequisites.get(record.record_id, frozenset()),
         )
         gradings.append(grading)
         if grading.applicable:

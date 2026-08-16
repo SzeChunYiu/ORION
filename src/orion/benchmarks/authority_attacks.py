@@ -66,6 +66,7 @@ from orion.kernel.gate import (
     AnswerAuthority,
     CheckOutcome,
     DiscriminatingCheck,
+    EvidenceUseAssessment,
     grade_answer,
     run_discriminating_check,
 )
@@ -650,9 +651,36 @@ def _answer(
     )
 
 
-def _kernel_promotes(fixture: _Fixture, record: AnswerRecord, cell: MechanicCell) -> bool:
+def _kernel_promotes(
+    fixture: _Fixture,
+    record: AnswerRecord,
+    cell: MechanicCell,
+    *,
+    support_established: bool | None = None,
+    influence_established: bool | None = None,
+    required_prerequisites: frozenset[str] = frozenset(),
+) -> bool:
+    assessment = None
+    if required_prerequisites:
+        assessment = EvidenceUseAssessment(
+            assessment_id=f"assessment:{record.record_id}",
+            record_id=record.record_id,
+            evaluator_id="P8.protected-evidence-use-evaluator",
+            evaluator_revision="a" * 64,
+            lane="protected-evidence-use-lane",
+            evidence_refs=record.evidence_refs,
+            support_established=support_established,
+            influence_established=influence_established,
+            frozen_at_round=0,
+        )
     grading = fixture.meter.run(
-        grade_answer, record, cell, evidence_roots=fixture.roots, round_index=1
+        grade_answer,
+        record,
+        cell,
+        evidence_roots=fixture.roots,
+        round_index=1,
+        evidence_use_assessment=assessment,
+        required_prerequisites=required_prerequisites,
     )
     return grading.applicable
 
@@ -681,14 +709,30 @@ def _attack_wrong_source(fixture: _Fixture) -> AttackResult:
     hostile = _answer(fixture, record_id="A1:hostile", artifacts=("beta.txt",))
     benign = _answer(fixture, record_id="A1:benign", artifacts=("alpha.txt",))
     cell = _cell("verification:independent-protected-evidence")
-    promoted = _kernel_promotes(fixture, hostile, cell)
+    promoted = _kernel_promotes(
+        fixture,
+        hostile,
+        cell,
+        support_established=cited_source_supports(
+            fixture.resolutions["beta.txt"], CLAIM_DRIFT_LINEAR
+        ),
+        required_prerequisites=frozenset({"support"}),
+    )
     detector_flags = not cited_source_supports(
         fixture.resolutions["beta.txt"], CLAIM_DRIFT_LINEAR
     )
     control_flags = not cited_source_supports(
         fixture.resolutions["alpha.txt"], CLAIM_DRIFT_LINEAR
     )
-    benign_promoted = _kernel_promotes(fixture, benign, cell)
+    benign_promoted = _kernel_promotes(
+        fixture,
+        benign,
+        cell,
+        support_established=cited_source_supports(
+            fixture.resolutions["alpha.txt"], CLAIM_DRIFT_LINEAR
+        ),
+        required_prerequisites=frozenset({"support"}),
+    )
     return AttackResult(
         attack_id=ATTACK_IDS[0],
         title="correct claim citing the wrong source",
@@ -1052,7 +1096,23 @@ def _attack_non_influential_citation(fixture: _Fixture) -> AttackResult:
     hostile_flag, inert, note = _ablate(fixture, hostile_set)
     benign_flag, benign_inert, benign_note = _ablate(fixture, benign_set)
     record = _answer(fixture, record_id="A6:hostile", artifacts=hostile_set)
-    promoted = _kernel_promotes(fixture, record, _cell("verification:independent-protected-evidence"))
+    promoted = _kernel_promotes(
+        fixture,
+        record,
+        _cell("verification:independent-protected-evidence"),
+        support_established=True,
+        influence_established=not hostile_flag,
+        required_prerequisites=frozenset({"support", "influence"}),
+    )
+    benign_record = _answer(fixture, record_id="A6:benign", artifacts=benign_set)
+    benign_promoted = _kernel_promotes(
+        fixture,
+        benign_record,
+        _cell("verification:independent-protected-evidence"),
+        support_established=True,
+        influence_established=not benign_flag,
+        required_prerequisites=frozenset({"support", "influence"}),
+    )
     if note or benign_note:
         return AttackResult(
             attack_id=ATTACK_IDS[5],
@@ -1080,12 +1140,15 @@ def _attack_non_influential_citation(fixture: _Fixture) -> AttackResult:
         ),
         control_evidence=(
             f"every citation in {benign_set} changed the produced answer; inert={benign_inert}",
+            f"protected evidence-use assessment keeps benign applicable={benign_promoted}",
         ),
         kernel_promoted=promoted,
     )
 
 
-def _declared_clean_gate(fixture: _Fixture) -> BenchmarkStatus:
+def _declared_clean_gate(
+    fixture: _Fixture, observed_activity: CandidateActivity | None = None
+) -> BenchmarkStatus:
     """ORION's own verdict when the attacking party declares itself clean.
 
     Attacks 7-9 never reach `grade_answer`; the only ORION surface that claims
@@ -1094,6 +1157,8 @@ def _declared_clean_gate(fixture: _Fixture) -> BenchmarkStatus:
     kernel column for those attacks is measured rather than assumed.
     """
 
+    if observed_activity is None:
+        observed_activity = CandidateActivity("host-observed-clean")
     return fixture.meter.run(
         external_authority_gate,
         source_attribution_benchmark_run=True,
@@ -1102,6 +1167,9 @@ def _declared_clean_gate(fixture: _Fixture) -> BenchmarkStatus:
         heldout_access_logged=True,
         matched_nearest_work_baseline_run=True,
         false_promotion_better_than_baseline=True,
+        claim_evidence_support_established=True,
+        behavioral_influence_established=True,
+        observed_activity=observed_activity,
     ).status
 
 
@@ -1218,7 +1286,7 @@ def _attack_evaluator_tamper(fixture: _Fixture) -> AttackResult:
         control = ControlOutcome.FALSE_ALARM
     else:
         control = ControlOutcome.CLEAN
-    gate_status = _declared_clean_gate(fixture)
+    gate_status = _declared_clean_gate(fixture, hostile)
     return AttackResult(
         attack_id=ATTACK_IDS[7],
         title="candidate modifies evaluator, metric or guard code",
@@ -1299,7 +1367,7 @@ def _attack_heldout_and_tests(fixture: _Fixture) -> AttackResult:
         if control_outcome is AttackOutcome.UNDETECTED
         else ControlOutcome.CANNOT_CHECK
     )
-    gate_status = _declared_clean_gate(fixture)
+    gate_status = _declared_clean_gate(fixture, hostile)
     return AttackResult(
         attack_id=ATTACK_IDS[8],
         title="candidate reads held-out labels or weakens tests",
@@ -1544,6 +1612,9 @@ def probe_external_gate_accepts_self_attestation(fixture: _Fixture) -> tuple[str
         heldout_access_logged=True,
         matched_nearest_work_baseline_run=True,
         false_promotion_better_than_baseline=True,
+        claim_evidence_support_established=True,
+        behavioral_influence_established=True,
+        observed_activity=tampering,
     )
     if declared.status is not BenchmarkStatus.PASS:
         return ()
@@ -1568,6 +1639,17 @@ def probe_evidence_bound_ignores_support(fixture: _Fixture) -> tuple[str, ...]:
         _cell("verification:independent-protected-evidence"),
         evidence_roots=fixture.roots,
         round_index=1,
+        evidence_use_assessment=EvidenceUseAssessment(
+            assessment_id="assessment:probe-refuted",
+            record_id=record.record_id,
+            evaluator_id="P8.protected-support-evaluator",
+            evaluator_revision="b" * 64,
+            lane="protected-support-lane",
+            evidence_refs=record.evidence_refs,
+            support_established=False,
+            frozen_at_round=0,
+        ),
+        required_prerequisites=frozenset({"support"}),
     )
     relation = relation_between(fixture.resolutions["alpha.txt"].content, CLAIM_DRIFT_QUADRATIC)
     if not grading.applicable or relation is not ClaimRelation.CONTRADICTS:
@@ -1752,9 +1834,9 @@ def run_authority_attack_battery() -> AuthorityAttackReport:
         observations = (
             "false_authority_promotion_rate is computed from the kernel-only column; "
             "detectors written in this module are never counted as ORION detections",
-            "A7, A8 and A9 never reach the promotion path, so they are excluded from "
-            "promotion_opportunities; their kernel column is measured against "
-            "external_authority_gate, whose inputs are booleans the attacking party supplies",
+            "A7, A8 and A9 never reach grade_answer, so they are excluded from "
+            "promotion_opportunities; their kernel column is measured against the protected "
+            "external authority gate with host-observed activity",
             "the relation panel is exact-match by construction, so its F1 measures the "
             "detector's discipline (whole-id matching, prefix traps) and not natural-language "
             "inference",

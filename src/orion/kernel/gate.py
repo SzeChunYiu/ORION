@@ -83,6 +83,58 @@ class DiscriminatingCheck:
 
 
 @dataclass(frozen=True)
+class EvidenceUseAssessment:
+    """Protected assessment of semantic support and behavioral influence.
+
+    Content binding only establishes artifact identity.  This separate object
+    carries the result of a support/influence evaluator, bound to the exact
+    answer record, exact evidence references, evaluator identity/revision,
+    independent lane and chronology.  A same-lane, post-hoc or mismatched
+    assessment is inadmissible and therefore cannot discharge a prerequisite.
+    """
+
+    assessment_id: str
+    record_id: str
+    evaluator_id: str
+    evaluator_revision: str
+    lane: str
+    evidence_refs: tuple[str, ...]
+    support_established: bool | None = None
+    influence_established: bool | None = None
+    frozen_at_round: int | None = None
+
+    def __post_init__(self) -> None:
+        for value, field in (
+            (self.assessment_id, "assessment_id"),
+            (self.record_id, "record_id"),
+            (self.evaluator_id, "evaluator_id"),
+            (self.lane, "lane"),
+        ):
+            if not value.strip():
+                raise ValueError(f"{field} is required")
+        if len(self.evaluator_revision) != 64 or any(
+            character not in "0123456789abcdef" for character in self.evaluator_revision
+        ):
+            raise ValueError("evaluator_revision must be a lowercase SHA-256 digest")
+        if self.frozen_at_round is not None and self.frozen_at_round < 0:
+            raise ValueError("frozen_at_round must be nonnegative")
+
+    def inadmissibility_reasons(
+        self, record: AnswerRecord, *, round_index: int
+    ) -> tuple[str, ...]:
+        reasons: list[str] = []
+        if self.record_id != record.record_id:
+            reasons.append("assessment_record_mismatch")
+        if self.evidence_refs != record.evidence_refs:
+            reasons.append("assessment_evidence_mismatch")
+        if self.lane == record.lane:
+            reasons.append("assessment_lane_not_independent")
+        if self.frozen_at_round is None or self.frozen_at_round > round_index:
+            reasons.append("assessment_chronology_unverified")
+        return tuple(reasons)
+
+
+@dataclass(frozen=True)
 class AnswerGrading:
     """The gate verdict for one answer record."""
 
@@ -94,6 +146,9 @@ class AnswerGrading:
     check_id: str = ""
     check_outcome: CheckOutcome | None = None
     reasons: tuple[str, ...] = ()
+    assessment_id: str = ""
+    assessment_evaluator_id: str = ""
+    assessment_evaluator_revision: str = ""
     #: Whether the cited evidence was shown to SUPPORT the claim, as distinct
     #: from being authentic. Content binding establishes that a citation is
     #: really the artifact it names and really says what it is quoted as
@@ -199,6 +254,8 @@ def grade_answer(
     checks: Mapping[str, DiscriminatingCheck] = {},
     require_digest: bool = True,
     round_index: int = 0,
+    evidence_use_assessment: EvidenceUseAssessment | None = None,
+    required_prerequisites: frozenset[str] = frozenset(),
 ) -> AnswerGrading:
     """Grade one proposal against evidence resolution and a diagnostic check.
 
@@ -207,6 +264,10 @@ def grade_answer(
     diagnostic `PASSED` outcome is preserved for later appraisal, but it is not
     transition authority and therefore never promotes the proposal here.
     """
+
+    unsupported = required_prerequisites - {"support", "influence"}
+    if unsupported:
+        raise ValueError(f"unsupported answer prerequisites: {sorted(unsupported)}")
 
     reasons: list[str] = []
     resolutions = resolve_evidence_refs(
@@ -277,6 +338,24 @@ def grade_answer(
     else:
         check_outcome = outcome
 
+    support_established: bool | None = None
+    influence_established: bool | None = None
+    assessment_id = assessment_evaluator_id = assessment_evaluator_revision = ""
+    if evidence_use_assessment is None:
+        if required_prerequisites:
+            reasons.append("evidence_use_assessment_missing")
+    else:
+        assessment_reasons = evidence_use_assessment.inadmissibility_reasons(
+            record, round_index=round_index
+        )
+        reasons.extend(assessment_reasons)
+        if not assessment_reasons:
+            support_established = evidence_use_assessment.support_established
+            influence_established = evidence_use_assessment.influence_established
+            assessment_id = evidence_use_assessment.assessment_id
+            assessment_evaluator_id = evidence_use_assessment.evaluator_id
+            assessment_evaluator_revision = evidence_use_assessment.evaluator_revision
+
     if record.waiver_reason and authority is not AnswerAuthority.VERIFIED:
         # A waiver removes the question outright; there is no provisional waiver,
         # so an unverified waiver is refused rather than downgraded.
@@ -292,4 +371,10 @@ def grade_answer(
         check_id=check_id,
         check_outcome=check_outcome,
         reasons=tuple(reasons),
+        assessment_id=assessment_id,
+        assessment_evaluator_id=assessment_evaluator_id,
+        assessment_evaluator_revision=assessment_evaluator_revision,
+        support_established=support_established,
+        influence_established=influence_established,
+        required_prerequisites=required_prerequisites,
     )
