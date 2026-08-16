@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """Compatibility front-end for the keyless AutoResearchBench Wide probe.
 
-AutoResearchBench's official Wide scorer accepts both modern numeric arXiv IDs
-and legacy archive/category identifiers. The first external probe discovered that
-the original ORION splitter was narrower than the scorer: it rejected Wide tasks
-whose released labels contained only legacy IDs. This front-end mirrors the
-scorer's identifier domain while preserving the same host/candidate custody
-boundary.
+AutoResearchBench's official Wide scorer accepts both modern numeric arXiv IDs,
+legacy archive/category identifiers, and released tasks whose normalized target
+set is empty. Earlier ORION probe attempts were narrower than that contract.
+This front-end mirrors the scorer's identifier domain while preserving the same
+host/candidate custody boundary and all 400 released Wide tasks.
 """
 
 from __future__ import annotations
@@ -69,14 +68,18 @@ def _jsonl(path: Path) -> list[dict[str, Any]]:
 
 
 def prepare(full_path: Path, public_path: Path, gt_path: Path) -> dict[str, Any]:
+    """Host-only Wide split that preserves the scorer's complete task domain."""
+
     base = _load_base()
     full = _jsonl(full_path)
     public: list[dict[str, Any]] = []
     gt: list[dict[str, Any]] = []
     seen_questions: set[str] = set()
     legacy_target_count = 0
+    empty_target_task_count = 0
 
     for record in full:
+        # Wide records have list-valued targets; Deep records have a scalar ID.
         raw_ids = record.get("arxiv_id")
         if not isinstance(raw_ids, list):
             continue
@@ -86,14 +89,17 @@ def prepare(full_path: Path, public_path: Path, gt_path: Path) -> dict[str, Any]
 
         normalized_ids: list[str] = []
         for raw in raw_ids:
-            normalized = normalize_arxiv_id(str(raw))
+            normalized = normalize_arxiv_id(str(raw or ""))
             if normalized:
                 normalized_ids.append(normalized)
                 if not MODERN_ID.fullmatch(normalized):
                     legacy_target_count += 1
         normalized_ids = list(dict.fromkeys(normalized_ids))
         if not normalized_ids:
-            raise ValueError("Wide benchmark record has no scorer-compatible arXiv id")
+            # The pinned official scorer normalizes an empty released target list
+            # to an empty set and scores it rather than removing the task. Keep
+            # the task and record this benchmark property explicitly.
+            empty_target_task_count += 1
 
         task_id = f"arb-wide-{len(public) + 1:04d}"
         public.append({"task_id": task_id, "question": question})
@@ -110,10 +116,11 @@ def prepare(full_path: Path, public_path: Path, gt_path: Path) -> dict[str, Any]
     base._write_jsonl(public_path, public)
     base._write_jsonl(gt_path, gt)
     return {
-        "schema_version": "orion.p2.autoresearchbench-wide-split.v2",
+        "schema_version": "orion.p2.autoresearchbench-wide-split.v3",
         "pinned_upstream_commit": base.PINNED_AUTORESEARCHBENCH_COMMIT,
         "wide_tasks": len(public),
         "legacy_target_id_count": legacy_target_count,
+        "empty_target_task_count": empty_target_task_count,
         "candidate_hidden_label_paths": leaked,
         "public_sha256": base._sha256(public_path),
         "gt_sha256": base._sha256(gt_path),
@@ -137,8 +144,8 @@ def run_candidate(
         max_results=max_results,
         limit=limit,
     )
-    manifest["schema_version"] = "orion.p2.autoresearchbench-wide-keyless-run.v2"
-    manifest["identifier_normalizer"] = "modern_and_legacy_unversioned"
+    manifest["schema_version"] = "orion.p2.autoresearchbench-wide-keyless-run.v3"
+    manifest["identifier_normalizer"] = "modern_legacy_and_empty_target_compatible"
     return manifest
 
 
@@ -160,9 +167,10 @@ def summarize(
         output_path,
     )
     split = json.loads(split_manifest_path.read_text(encoding="utf-8"))
-    summary["schema_version"] = "orion.p2.autoresearchbench-wide-official.v2"
+    summary["schema_version"] = "orion.p2.autoresearchbench-wide-official.v3"
     summary["legacy_target_id_count"] = split["legacy_target_id_count"]
-    summary["identifier_normalizer"] = "modern_and_legacy_unversioned"
+    summary["empty_target_task_count"] = split["empty_target_task_count"]
+    summary["identifier_normalizer"] = "modern_legacy_and_empty_target_compatible"
     output_path.write_text(
         json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
