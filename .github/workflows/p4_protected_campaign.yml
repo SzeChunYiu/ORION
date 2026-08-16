@@ -1,0 +1,508 @@
+name: p4-protected-campaign
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'papers/paper-04-verified-scientific-discovery/host/CAMPAIGN_TRIGGER_V1.txt'
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  SUBJECT_COMMIT: 46977ea104162c4cf64da8138a4c4759065fe6d4
+  SUBJECT_ARCHIVE_SHA256: 4605bfd7d658018a2759ab43d7dd444ab74200adb8f98a8de485677bd09d98c5
+  HOST_RUN_ID: '31967352555'
+  HOST_PUBLIC_ARTIFACT: p4-host-prep-public-31967352555
+  HOST_PROTECTED_ARTIFACT: p4-host-prep-protected-31967352555
+  CANDIDATE_MANIFEST_SHA256: 5a7d05be9fcc4febb4902a127e47d232a27de603343fbf492dc4b6f6020b2ce1
+  PROTECTED_MANIFEST_SHA256: 23c7732118bf750b4f5b927aab271cf1e7ee1068d8dc1838ca5119d7e436b102
+  BASELINE_CONFIG_SHA256: efa50d3f4e1d76589f80a813e52805b01940409cf353c4826713935a87d8ca84
+  HARNESS_SHA256: 14a4c01442bd5f1d17eb4c7c443d94cbcf198e4e910a62d4126e6f35f27ad0c7
+  SPLIT_SHA256: 747213c60d7a6087a6f6fda5e25546acae5ee70ec1b5b9b7db3868f208213959
+  EVALUATION_EPOCH: '2026-08-16T19:22:06Z'
+
+jobs:
+  handoff:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify signed execution freeze and frozen harness
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          protocol = json.loads(Path('papers/paper-04-verified-scientific-discovery/protocol/PROTOCOL_V1.json').read_text())
+          assert protocol['protocol_status'] == 'EXECUTION_FROZEN'
+          assert protocol['outcome_accessed'] is False
+          b = protocol['execution_bindings']
+          assert b['subject_revision'] == '46977ea104162c4cf64da8138a4c4759065fe6d4'
+          assert b['dataset_revisions']['protected_attack_set'] == '23c7732118bf750b4f5b927aab271cf1e7ee1068d8dc1838ca5119d7e436b102'
+          assert b['baseline_config_hashes'] == 'efa50d3f4e1d76589f80a813e52805b01940409cf353c4826713935a87d8ca84'
+          assert b['evaluator_hash'] == '14a4c01442bd5f1d17eb4c7c443d94cbcf198e4e910a62d4126e6f35f27ad0c7'
+          assert b['split_hashes'] == '747213c60d7a6087a6f6fda5e25546acae5ee70ec1b5b9b7db3868f208213959'
+          assert b['evaluation_epoch'] == '2026-08-16T19:22:06Z'
+          PY
+          ACTUAL_HARNESS=$(python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          files = [
+              'papers/paper-04-verified-scientific-discovery/host/generate_protected_cases.py',
+              'papers/paper-04-verified-scientific-discovery/host/run_candidate.py',
+              'papers/paper-04-verified-scientific-discovery/host/run_baselines.py',
+              'papers/paper-04-verified-scientific-discovery/host/run_ablations.py',
+              'papers/paper-04-verified-scientific-discovery/host/evaluate_campaign.py',
+              'papers/paper-04-verified-scientific-discovery/host/evaluate_ablations.py',
+              'papers/paper-04-verified-scientific-discovery/host/independent_reproduce.py',
+              'papers/paper-04-verified-scientific-discovery/host/BASELINE_CONFIGS_V1.json',
+          ]
+          digest = hashlib.sha256()
+          for name in files:
+              data = Path(name).read_bytes()
+              digest.update(name.encode('utf-8'))
+              digest.update(b'\0')
+              digest.update(hashlib.sha256(data).digest())
+          print(digest.hexdigest())
+          PY
+          )
+          test "$ACTUAL_HARNESS" = "$HARNESS_SHA256"
+          test "$(sha256sum papers/paper-04-verified-scientific-discovery/host/BASELINE_CONFIGS_V1.json | awk '{print $1}')" = "$BASELINE_CONFIG_SHA256"
+
+      - name: Download only candidate-visible host artifact
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/handoff"
+          gh run download "$HOST_RUN_ID" --repo "$GITHUB_REPOSITORY" --name "$HOST_PUBLIC_ARTIFACT" --dir "$RUNNER_TEMP/handoff"
+          test "$(sha256sum "$RUNNER_TEMP/handoff/candidate_manifest.jsonl" | awk '{print $1}')" = "$CANDIDATE_MANIFEST_SHA256"
+          test "$(sha256sum "$RUNNER_TEMP/handoff/BASELINE_CONFIGS_V1.json" | awk '{print $1}')" = "$BASELINE_CONFIG_SHA256"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          root = Path(os.environ['RUNNER_TEMP']) / 'handoff'
+          rows = [json.loads(line) for line in (root/'candidate_manifest.jsonl').read_text().splitlines() if line.strip()]
+          assert len(rows) == 420
+          assert all(set(row) == {'case_id', 'candidate_visible'} for row in rows)
+          blob = (root/'candidate_manifest.jsonl').read_text()
+          assert not any(token in blob for token in ('protected_gold','attack_family','custody_class','expected_authority_terminal'))
+          run = json.loads((root/'RUN_MANIFEST_V1.json').read_text())
+          assert run['subject_commit'] == os.environ['SUBJECT_COMMIT']
+          assert run['subject_revision_hash'] == os.environ['SUBJECT_ARCHIVE_SHA256']
+          assert run['protected_attack_set_hash'] == os.environ['PROTECTED_MANIFEST_SHA256']
+          assert run['candidate_manifest_hash'] == os.environ['CANDIDATE_MANIFEST_SHA256']
+          assert run['baseline_config_hash'] == os.environ['BASELINE_CONFIG_SHA256']
+          assert run['evaluator_artifact_hash'] == os.environ['HARNESS_SHA256']
+          assert run['split_hash'] == os.environ['SPLIT_SHA256']
+          assert run['evaluation_epoch'] == os.environ['EVALUATION_EPOCH']
+          assert run['outcome_accessed'] is False
+          PY
+
+      - name: Upload current-run candidate handoff
+        uses: actions/upload-artifact@v4
+        with:
+          name: p4-candidate-handoff-${{ github.run_id }}
+          path: ${{ runner.temp }}/handoff
+          if-no-files-found: error
+          retention-days: 90
+
+  candidate:
+    needs: handoff
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: p4-candidate-handoff-${{ github.run_id }}
+          path: ${{ runner.temp }}/handoff
+
+      - name: Build exact frozen subject in isolated tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          git archive --format=tar "$SUBJECT_COMMIT" > "$RUNNER_TEMP/subject.tar"
+          test "$(sha256sum "$RUNNER_TEMP/subject.tar" | awk '{print $1}')" = "$SUBJECT_ARCHIVE_SHA256"
+          mkdir -p "$RUNNER_TEMP/subject"
+          tar -xf "$RUNNER_TEMP/subject.tar" -C "$RUNNER_TEMP/subject"
+          python -m pip install -e "$RUNNER_TEMP/subject"
+          command -v strace >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq strace; }
+          rm -rf .git
+
+      - name: Execute ORION five times with syscall telemetry
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/candidate/telemetry"
+          for i in 1 2 3 4 5; do
+            strace -ff -o "$RUNNER_TEMP/candidate/telemetry/orion-${i}" -e trace=%file,%network \
+              env -u GH_TOKEN -u GITHUB_TOKEN \
+              python papers/paper-04-verified-scientific-discovery/host/run_candidate.py \
+                "$RUNNER_TEMP/handoff/candidate_manifest.jsonl" \
+                "$RUNNER_TEMP/candidate/orion-${i}.jsonl"
+          done
+          if grep -R -E 'protected_manifest|protected_gold|p4-host-prep-protected' "$RUNNER_TEMP/candidate/telemetry"; then
+            echo 'candidate syscall trace touched protected identifiers' >&2
+            exit 1
+          fi
+          if grep -R -E 'connect\(.*AF_INET|connect\(.*AF_INET6' "$RUNNER_TEMP/candidate/telemetry"; then
+            echo 'candidate made an external IP network connection during scored execution' >&2
+            exit 1
+          fi
+
+      - name: Upload ORION outputs and telemetry
+        uses: actions/upload-artifact@v4
+        with:
+          name: p4-orion-outputs-${{ github.run_id }}
+          path: ${{ runner.temp }}/candidate
+          if-no-files-found: error
+          retention-days: 90
+
+  comparators-and-ablations:
+    needs: handoff
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: p4-candidate-handoff-${{ github.run_id }}
+          path: ${{ runner.temp }}/handoff
+
+      - name: Build exact frozen subject in isolated tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          git archive --format=tar "$SUBJECT_COMMIT" > "$RUNNER_TEMP/subject.tar"
+          test "$(sha256sum "$RUNNER_TEMP/subject.tar" | awk '{print $1}')" = "$SUBJECT_ARCHIVE_SHA256"
+          mkdir -p "$RUNNER_TEMP/subject"
+          tar -xf "$RUNNER_TEMP/subject.tar" -C "$RUNNER_TEMP/subject"
+          python -m pip install -e "$RUNNER_TEMP/subject"
+          command -v strace >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq strace; }
+          rm -rf .git
+
+      - name: Execute comparators and ablations five times with syscall telemetry
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/comparators/telemetry"
+          for i in 1 2 3 4 5; do
+            strace -ff -o "$RUNNER_TEMP/comparators/telemetry/baselines-${i}" -e trace=%file,%network \
+              env -u GH_TOKEN -u GITHUB_TOKEN \
+              python papers/paper-04-verified-scientific-discovery/host/run_baselines.py \
+                "$RUNNER_TEMP/handoff/candidate_manifest.jsonl" \
+                "$RUNNER_TEMP/comparators/baselines-${i}.jsonl"
+            strace -ff -o "$RUNNER_TEMP/comparators/telemetry/ablations-${i}" -e trace=%file,%network \
+              env -u GH_TOKEN -u GITHUB_TOKEN \
+              python papers/paper-04-verified-scientific-discovery/host/run_ablations.py \
+                "$RUNNER_TEMP/handoff/candidate_manifest.jsonl" \
+                "$RUNNER_TEMP/comparators/ablations-${i}.jsonl"
+          done
+          if grep -R -E 'protected_manifest|protected_gold|p4-host-prep-protected' "$RUNNER_TEMP/comparators/telemetry"; then
+            echo 'comparator/ablation trace touched protected identifiers' >&2
+            exit 1
+          fi
+          if grep -R -E 'connect\(.*AF_INET|connect\(.*AF_INET6' "$RUNNER_TEMP/comparators/telemetry"; then
+            echo 'comparator/ablation made an external IP network connection during scored execution' >&2
+            exit 1
+          fi
+
+      - name: Upload comparator, ablation and telemetry outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: p4-comparator-outputs-${{ github.run_id }}
+          path: ${{ runner.temp }}/comparators
+          if-no-files-found: error
+          retention-days: 90
+
+  protected-evaluator:
+    needs: [candidate, comparators-and-ablations]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: p4-orion-outputs-${{ github.run_id }}
+          path: ${{ runner.temp }}/candidate
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: p4-comparator-outputs-${{ github.run_id }}
+          path: ${{ runner.temp }}/comparators
+
+      - name: Download protected gold only after candidate completion
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/protected"
+          gh run download "$HOST_RUN_ID" --repo "$GITHUB_REPOSITORY" --name "$HOST_PROTECTED_ARTIFACT" --dir "$RUNNER_TEMP/protected"
+          test "$(sha256sum "$RUNNER_TEMP/protected/protected_manifest.jsonl" | awk '{print $1}')" = "$PROTECTED_MANIFEST_SHA256"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          run = json.loads((Path(os.environ['RUNNER_TEMP'])/'protected'/'RUN_MANIFEST_V1.json').read_text())
+          assert run['protected_attack_set_hash'] == os.environ['PROTECTED_MANIFEST_SHA256']
+          assert run['subject_commit'] == os.environ['SUBJECT_COMMIT']
+          assert run['evaluator_artifact_hash'] == os.environ['HARNESS_SHA256']
+          assert run['baseline_config_hash'] == os.environ['BASELINE_CONFIG_SHA256']
+          assert run['split_hash'] == os.environ['SPLIT_SHA256']
+          assert run['outcome_accessed'] is False
+          PY
+
+      - name: Install exact frozen subject for typed panel
+        shell: bash
+        run: |
+          set -euo pipefail
+          git archive --format=tar "$SUBJECT_COMMIT" > "$RUNNER_TEMP/subject.tar"
+          test "$(sha256sum "$RUNNER_TEMP/subject.tar" | awk '{print $1}')" = "$SUBJECT_ARCHIVE_SHA256"
+          mkdir -p "$RUNNER_TEMP/subject"
+          tar -xf "$RUNNER_TEMP/subject.tar" -C "$RUNNER_TEMP/subject"
+          python -m pip install -e "$RUNNER_TEMP/subject"
+
+      - name: Verify actual execution access telemetry
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/telemetry-summary"
+          CANDIDATE_PROTECTED_HITS=$(grep -R -E -c 'protected_manifest|protected_gold|p4-host-prep-protected' "$RUNNER_TEMP/candidate/telemetry" || true)
+          COMPARATOR_PROTECTED_HITS=$(grep -R -E -c 'protected_manifest|protected_gold|p4-host-prep-protected' "$RUNNER_TEMP/comparators/telemetry" || true)
+          CANDIDATE_INET_CONNECTS=$(grep -R -E -c 'connect\(.*AF_INET|connect\(.*AF_INET6' "$RUNNER_TEMP/candidate/telemetry" || true)
+          COMPARATOR_INET_CONNECTS=$(grep -R -E -c 'connect\(.*AF_INET|connect\(.*AF_INET6' "$RUNNER_TEMP/comparators/telemetry" || true)
+          cat > "$RUNNER_TEMP/telemetry-summary/access_telemetry_summary.json" <<JSON
+          {
+            "schema": "P4ActualAccessTelemetry.v1",
+            "candidate_protected_identifier_hits": ${CANDIDATE_PROTECTED_HITS:-0},
+            "comparator_protected_identifier_hits": ${COMPARATOR_PROTECTED_HITS:-0},
+            "candidate_external_ip_connects": ${CANDIDATE_INET_CONNECTS:-0},
+            "comparator_external_ip_connects": ${COMPARATOR_INET_CONNECTS:-0},
+            "raw_candidate_strace_retained": true,
+            "raw_comparator_strace_retained": true
+          }
+          JSON
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          data = json.loads((Path(os.environ['RUNNER_TEMP'])/'telemetry-summary'/'access_telemetry_summary.json').read_text())
+          assert data['candidate_protected_identifier_hits'] == 0
+          assert data['comparator_protected_identifier_hits'] == 0
+          assert data['candidate_external_ip_connects'] == 0
+          assert data['comparator_external_ip_connects'] == 0
+          PY
+
+      - name: Score frozen campaign and all ablations
+        shell: bash
+        run: |
+          set -euo pipefail
+          ARGS=()
+          ABLATION_ARGS=()
+          for i in 1 2 3 4 5; do
+            ARGS+=(--orion-output "$RUNNER_TEMP/candidate/orion-${i}.jsonl")
+            ARGS+=(--baseline-output "$RUNNER_TEMP/comparators/baselines-${i}.jsonl")
+            ABLATION_ARGS+=(--ablation-output "$RUNNER_TEMP/comparators/ablations-${i}.jsonl")
+          done
+          python papers/paper-04-verified-scientific-discovery/host/evaluate_campaign.py \
+            --protected-manifest "$RUNNER_TEMP/protected/protected_manifest.jsonl" \
+            --run-manifest "$RUNNER_TEMP/protected/RUN_MANIFEST_V1.json" \
+            --output-dir "$RUNNER_TEMP/evaluation" \
+            --campaign-run-id "$GITHUB_RUN_ID" \
+            "${ARGS[@]}"
+          python papers/paper-04-verified-scientific-discovery/host/evaluate_ablations.py \
+            --protected-manifest "$RUNNER_TEMP/protected/protected_manifest.jsonl" \
+            --run-manifest "$RUNNER_TEMP/protected/RUN_MANIFEST_V1.json" \
+            --output-dir "$RUNNER_TEMP/ablation-evaluation" \
+            "${ABLATION_ARGS[@]}"
+          echo 'P4_PROTECTED_SAFE_SUMMARY_BEGIN'
+          cat "$RUNNER_TEMP/evaluation/campaign_summary.json"
+          cat "$RUNNER_TEMP/ablation-evaluation/ablation_summary.json"
+          cat "$RUNNER_TEMP/telemetry-summary/access_telemetry_summary.json"
+          echo 'P4_PROTECTED_SAFE_SUMMARY_END'
+
+      - name: Stage safe and protected evaluation artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/evaluation-safe" "$RUNNER_TEMP/evaluation-protected"
+          cp "$RUNNER_TEMP/evaluation/campaign_summary.json" "$RUNNER_TEMP/evaluation-safe/"
+          cp "$RUNNER_TEMP/evaluation/authority_benchmark_panel.json" "$RUNNER_TEMP/evaluation-safe/"
+          cp "$RUNNER_TEMP/evaluation/public_attack_manifest.jsonl" "$RUNNER_TEMP/evaluation-safe/"
+          cp "$RUNNER_TEMP/evaluation/public_candidate_verdicts.jsonl" "$RUNNER_TEMP/evaluation-safe/"
+          cp "$RUNNER_TEMP/ablation-evaluation/ablation_summary.json" "$RUNNER_TEMP/evaluation-safe/"
+          cp "$RUNNER_TEMP/telemetry-summary/access_telemetry_summary.json" "$RUNNER_TEMP/evaluation-safe/"
+          cp "$RUNNER_TEMP/evaluation/error_analysis.json" "$RUNNER_TEMP/evaluation-protected/"
+          cp "$RUNNER_TEMP/evaluation/raw_scored_verdicts.jsonl" "$RUNNER_TEMP/evaluation-protected/"
+          cp "$RUNNER_TEMP/ablation-evaluation/raw_ablation_verdicts.jsonl" "$RUNNER_TEMP/evaluation-protected/"
+          cp -R "$RUNNER_TEMP/candidate/telemetry" "$RUNNER_TEMP/evaluation-protected/candidate-strace"
+          cp -R "$RUNNER_TEMP/comparators/telemetry" "$RUNNER_TEMP/evaluation-protected/comparator-strace"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p4-evaluation-safe-${{ github.run_id }}
+          path: ${{ runner.temp }}/evaluation-safe
+          if-no-files-found: error
+          retention-days: 90
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p4-evaluation-protected-${{ github.run_id }}
+          path: ${{ runner.temp }}/evaluation-protected
+          if-no-files-found: error
+          retention-days: 90
+
+  independent-reproduction:
+    needs: protected-evaluator
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: p4-orion-outputs-${{ github.run_id }}
+          path: ${{ runner.temp }}/candidate
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: p4-comparator-outputs-${{ github.run_id }}
+          path: ${{ runner.temp }}/comparators
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: p4-evaluation-safe-${{ github.run_id }}
+          path: ${{ runner.temp }}/evaluation-safe
+
+      - name: Independently reacquire protected source artifact
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/protected"
+          gh run download "$HOST_RUN_ID" --repo "$GITHUB_REPOSITORY" --name "$HOST_PROTECTED_ARTIFACT" --dir "$RUNNER_TEMP/protected"
+          test "$(sha256sum "$RUNNER_TEMP/protected/protected_manifest.jsonl" | awk '{print $1}')" = "$PROTECTED_MANIFEST_SHA256"
+
+      - name: Install exact frozen subject
+        shell: bash
+        run: |
+          set -euo pipefail
+          git archive --format=tar "$SUBJECT_COMMIT" > "$RUNNER_TEMP/subject.tar"
+          test "$(sha256sum "$RUNNER_TEMP/subject.tar" | awk '{print $1}')" = "$SUBJECT_ARCHIVE_SHA256"
+          mkdir -p "$RUNNER_TEMP/subject"
+          tar -xf "$RUNNER_TEMP/subject.tar" -C "$RUNNER_TEMP/subject"
+          python -m pip install -e "$RUNNER_TEMP/subject"
+
+      - name: Recompute headline result without evaluator implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python papers/paper-04-verified-scientific-discovery/host/independent_reproduce.py \
+            --protected-manifest "$RUNNER_TEMP/protected/protected_manifest.jsonl" \
+            --orion-output "$RUNNER_TEMP/candidate/orion-1.jsonl" \
+            --baseline-output "$RUNNER_TEMP/comparators/baselines-1.jsonl" \
+            --panel "$RUNNER_TEMP/evaluation-safe/authority_benchmark_panel.json" \
+            --summary "$RUNNER_TEMP/evaluation-safe/campaign_summary.json" \
+            --output "$RUNNER_TEMP/reproduction_receipt.json" \
+            --campaign-run-id "$GITHUB_RUN_ID"
+          echo 'P4_INDEPENDENT_REPRODUCTION_BEGIN'
+          cat "$RUNNER_TEMP/reproduction_receipt.json"
+          echo 'P4_INDEPENDENT_REPRODUCTION_END'
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p4-independent-reproduction-${{ github.run_id }}
+          path: ${{ runner.temp }}/reproduction_receipt.json
+          if-no-files-found: error
+          retention-days: 90
+
+  publication-safe-bundle:
+    needs: independent-reproduction
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: p4-evaluation-safe-${{ github.run_id }}
+          path: ${{ runner.temp }}/bundle/evaluation
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: p4-independent-reproduction-${{ github.run_id }}
+          path: ${{ runner.temp }}/bundle/reproduction
+
+      - name: Final safe acceptance check
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          root = Path(os.environ['RUNNER_TEMP'])/'bundle'
+          summary = json.loads((root/'evaluation'/'campaign_summary.json').read_text())
+          ablations = json.loads((root/'evaluation'/'ablation_summary.json').read_text())
+          telemetry = json.loads((root/'evaluation'/'access_telemetry_summary.json').read_text())
+          reproduction = json.loads((root/'reproduction'/'reproduction_receipt.json').read_text())
+          assert summary['panel_pass'] is True
+          assert summary['typed_panel_status'] == 'PASS'
+          assert summary['H1']['status'] == 'PASS'
+          assert summary['H2']['status'] == 'PASS'
+          assert len(ablations['ablations']) == 8
+          assert reproduction['headline_reproduced'] is True
+          assert telemetry['candidate_protected_identifier_hits'] == 0
+          assert telemetry['comparator_protected_identifier_hits'] == 0
+          assert telemetry['candidate_external_ip_connects'] == 0
+          assert telemetry['comparator_external_ip_connects'] == 0
+          print('P4 frozen campaign safe bundle accepted')
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p4-publication-safe-bundle-${{ github.run_id }}
+          path: ${{ runner.temp }}/bundle
+          if-no-files-found: error
+          retention-days: 90
