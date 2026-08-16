@@ -285,3 +285,46 @@ def test_a_rare_token_is_not_reported_as_a_separator() -> None:
     texts = {f"c{i}": ("alpha rare" if i == 0 else "alpha") for i in range(20)}
     labels = {f"c{i}": i == 0 for i in range(20)}
     assert not find_lexical_separators(texts, labels).leaks
+
+
+def test_an_unresolvable_margin_reports_underpowered_not_unsupported() -> None:
+    """UNDERPOWERED and NOT_SUPPORTED say different things.
+
+    The first reports that the design could not answer; the second that it
+    answered no. The prospective analysis found the frozen 48-case suite needs
+    roughly 7,800-12,600 cases to resolve its +0.05 margin at 80% power, so
+    reporting NOT_SUPPORTED from it would dress an underpowered non-finding as
+    evidence — which is the same class of error as reporting a difference of
+    exactly zero across identical systems as a null result.
+    """
+
+    from orion.study.p1.statistics import (
+        HypothesisDirection,
+        HypothesisVerdict,
+        assess_hypothesis,
+        paired_bootstrap_difference,
+    )
+
+    subject = [1, 0, 1, 0, 1, 0, 1, 0]
+    comparator = [1, 0, 1, 0, 1, 0, 0, 0]
+    difference = paired_bootstrap_difference(subject, comparator, resamples=200, seed=1)
+
+    unresolvable = assess_hypothesis(
+        hypothesis_id="P1.H1",
+        direction=HypothesisDirection.SUPERIORITY,
+        margin=0.05,
+        difference=difference,
+        margin_resolvable=False,
+    )
+    assert unresolvable.verdict is HypothesisVerdict.UNDERPOWERED
+    assert "cannot resolve its own margin" in unresolvable.rationale
+
+    # Unset means the caller made no claim about resolvability; behaviour is
+    # unchanged, so this cannot silently reclassify existing results.
+    unchanged = assess_hypothesis(
+        hypothesis_id="P1.H1",
+        direction=HypothesisDirection.SUPERIORITY,
+        margin=0.05,
+        difference=difference,
+    )
+    assert unchanged.verdict is not HypothesisVerdict.UNDERPOWERED
