@@ -6,10 +6,7 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
-from orion.providers.llm.openai_responses import (
-    OpenAIResponsesConfig,
-    OpenAIResponsesLLMProvider,
-)
+from orion.providers.llm.openai_responses import OpenAIResponsesConfig, OpenAIResponsesLLMProvider
 from orion.providers.retrieval.literature import (
     CrossrefRetrievalProvider,
     EuropePMCRetrievalProvider,
@@ -73,16 +70,40 @@ def _identity_tuple(mapping: dict[str, object]) -> tuple[tuple[str, str], ...]:
     return tuple(sorted((str(key), str(value)) for key, value in mapping.items()))
 
 
-def write_live_phase2_provider_manifest(
-    stack: LivePhase2ProviderStack,
-    path: Path | str,
-) -> None:
+def write_live_phase2_provider_manifest(stack: LivePhase2ProviderStack, path: Path | str) -> None:
     payload = {**stack.manifest.payload, "provider_manifest_hash": stack.provider_manifest_hash}
     serialized = json.dumps(payload, indent=2, sort_keys=True) + "\n"
     secrets = (stack.llm.config.api_key, stack.verification.config.bearer_token)
     if any(secret and secret in serialized for secret in secrets):
         raise RuntimeError("provider manifest serialization attempted to include secret material")
     Path(path).write_text(serialized, encoding="utf-8")
+
+
+def load_live_phase2_provider_manifest(path: Path | str) -> LivePhase2ProviderManifest:
+    raw = json.loads(Path(path).read_text(encoding="utf-8"))
+    if not isinstance(raw, dict) or raw.get("schema") != PROVIDER_MANIFEST_SCHEMA:
+        raise ValueError(f"provider manifest schema must be {PROVIDER_MANIFEST_SCHEMA}")
+    if raw.get("secret_material_included") is not False:
+        raise ValueError("provider manifest must explicitly exclude secret material")
+    reasoner = raw.get("reasoner_provider")
+    verification = raw.get("verification_provider")
+    retrieval = raw.get("retrieval_sources")
+    policy = raw.get("retrieval_policy")
+    if not isinstance(reasoner, dict) or not isinstance(verification, dict):
+        raise ValueError("provider manifest reasoner/verification identities must be objects")
+    if not isinstance(retrieval, list) or not retrieval or any(not isinstance(item, dict) for item in retrieval):
+        raise ValueError("provider manifest retrieval_sources must be a non-empty array of objects")
+    if not isinstance(policy, str) or not policy.strip():
+        raise ValueError("provider manifest retrieval_policy is required")
+    manifest = LivePhase2ProviderManifest(
+        reasoner_provider=_identity_tuple(reasoner),
+        verification_provider=_identity_tuple(verification),
+        retrieval_sources=tuple(_identity_tuple(item) for item in retrieval),
+        retrieval_policy=policy,
+    )
+    if raw.get("provider_manifest_hash") != manifest.hash:
+        raise ValueError("provider manifest hash mismatch")
+    return manifest
 
 
 def build_phase2_live_provider_stack(
@@ -95,20 +116,9 @@ def build_phase2_live_provider_stack(
     evaluation_epoch_id: str,
     crossref_mailto: str = "",
 ) -> LivePhase2ProviderStack:
-    """Build a concrete real-network stack with authority outside the LLM lane.
+    """Build a concrete real-network stack with authority outside the LLM lane."""
 
-    The OpenAI model supplies semantic reasoning only. Scientific-authority
-    verification is delegated to a separately controlled HTTPS service that
-    must bind decisions to the frozen evaluator artifact, epoch and exact
-    request hash. The protected Phase-2 campaign evaluator remains an even
-    higher-level external boundary and is not constructed here.
-    """
-
-    reasoner_config = OpenAIResponsesConfig(
-        model=reasoner_model,
-        api_key=reasoner_api_key,
-        store=False,
-    )
+    reasoner_config = OpenAIResponsesConfig(model=reasoner_model, api_key=reasoner_api_key, store=False)
     verification_config = ProtectedHTTPVerificationConfig(
         endpoint=protected_verifier_endpoint,
         bearer_token=protected_verifier_token,
@@ -124,20 +134,8 @@ def build_phase2_live_provider_stack(
         reasoner_provider=_identity_tuple(reasoner_config.public_identity),
         verification_provider=_identity_tuple(verification_config.public_identity),
         retrieval_sources=(
-            _identity_tuple(
-                {
-                    "provider": "europe-pmc-rest",
-                    "endpoint": europe_pmc.endpoint,
-                    "result_type": "core",
-                }
-            ),
-            _identity_tuple(
-                {
-                    "provider": "crossref-rest",
-                    "endpoint": crossref.endpoint,
-                    "query": "query.bibliographic",
-                }
-            ),
+            _identity_tuple({"provider": "europe-pmc-rest", "endpoint": europe_pmc.endpoint, "result_type": "core"}),
+            _identity_tuple({"provider": "crossref-rest", "endpoint": crossref.endpoint, "query": "query.bibliographic"}),
         ),
     )
     return LivePhase2ProviderStack(reasoner, retrieval, verification, manifest)
@@ -180,5 +178,6 @@ __all__ = [
     "LivePhase2ProviderStack",
     "build_phase2_live_provider_stack",
     "build_phase2_live_provider_stack_from_env",
+    "load_live_phase2_provider_manifest",
     "write_live_phase2_provider_manifest",
 ]
