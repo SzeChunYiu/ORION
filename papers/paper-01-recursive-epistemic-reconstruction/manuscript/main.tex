@@ -3,7 +3,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 
-\title{ORION: Recursive Epistemic Reconstruction for Evidence-Governed Research}
+\title{ORION Paper I: Recursive Epistemic Reconstruction under Changing Problem Formulations}
 \author{Working framework draft}
 \date{August 2026}
 
@@ -11,16 +11,17 @@
 \maketitle
 
 \begin{abstract}
-ORION is an evidence-governed research architecture in which search, knowledge integration, problem representation, and the research method itself may be revised by the results of research. The central state is separated into object knowledge $K_t$, a model of the potentially relevant knowledge/search universe $W_t$, and method state $M_t$. The core process repeatedly frames a scoped problem, searches heterogeneous routes, absorbs source-grounded contributions, reconstructs a global portrait, detects residuals, diagnoses responsibility, performs scoped reframing, reopens dependent closure, and recurses. In the Shadow architecture, each atomic problem-solving step is additionally represented as a recursively auditable mechanic cell whose missing observability, mathematical, metric, handoff, failure, storage, verification, engineering, parent-domain and saturation coordinates generate explicit machine-readable research questions. Failed executions are preserved as immutable episodes and may support candidate cross-variation failure patterns, but recurrence alone cannot promote a reusable method lesson. Finalization is governed by bounded saturation rather than a claim of open-world completeness. This manuscript specifies the architecture; it does not establish empirical superiority of ORION over alternative research workflows.
+Many research-agent architectures iterate over search, reasoning, experimentation, and revision while keeping the task formulation itself largely implicit. ORION Paper I studies a narrower failure mode: a research process can become locally competent yet remain trapped when new evidence or failure shows that its representation, decomposition, or model of the relevant search universe is wrong. ORION therefore represents object knowledge $K_t$, the current relevance/search-universe model $W_t$, and governed method state $M_t$ as explicit mutable state. Typed residuals are diagnosed before any high-impact revision; supported formulation or search-universe changes trigger dependency-directed reopening of prior closure and force renewed research under the changed state. The same reconstruction discipline is recursively applied to the research workflow through inspectable mechanic cells. A frozen deterministic falsifier suite exercises hidden-domain, hidden-representation, missing-evidence, and execution-only worlds. The local suite passed after exposing and repairing an over-broad reframe gate that had allowed evidence/execution failures to rewrite the formulation. This establishes an implemented and locally falsified mechanism, not external novelty or superiority. Matched prospective comparisons on fresh hidden-shift tasks remain \texttt{CANNOT\_CHECK}.
 \end{abstract}
 
 \input{sections/01-foundations}
 \input{sections/02-recursive-engine}
-\input{sections/03-saturation}
-\input{sections/04-knowledge-absorption}
-\input{sections/05-self-development}
-\input{sections/06-mechanics-of-mechanics}
-\input{sections/06-limitations}
+\input{sections/03-reframe-reopen}
+\input{sections/04-self-audit}
+\input{sections/05-evaluation}
+\input{sections/06-related-work-boundary}
+\input{sections/07-limitations}
+\input{sections/08-conclusion}
 
 \bibliographystyle{plain}
 \bibliography{bibliography}
