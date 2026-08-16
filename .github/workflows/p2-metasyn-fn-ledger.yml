@@ -1,0 +1,70 @@
+name: p2-metasyn-fn-ledger
+
+on:
+  push:
+    branches:
+      - chatgpt/p2-metasyn-fn-ledger
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  ledger:
+    if: contains(github.event.head_commit.message, '[run-metasyn-fn]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install evaluator-side dataset dependency
+        run: |
+          python -m pip install datasets==3.0.0 pyarrow
+
+      - name: Download corrected official MetaSyn artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/metasyn-source
+          gh run download 31973786111 \
+            --repo SzeChunYiu/ORION \
+            --name p2-metasyn-keyless-93fcb5b7b9951fd385f999a53cd34d85c9c2ed81 \
+            --dir /tmp/metasyn-source
+          sha256sum /tmp/metasyn-source/official_evaluation.json
+
+      - name: Derive exact retrieval and screening false negatives
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/metasyn-fn
+          python papers/paper-02-open-world-scientific-discovery/scripts/derive_metasyn_fn_ledger.py \
+            --evaluation /tmp/metasyn-source/official_evaluation.json \
+            --dataset THUIR/MetaSyn \
+            --dataset-revision c8fa07d89c44093d623f9a213c6bf070f40ab960 \
+            --output /tmp/metasyn-fn/METASYN_SCREENING_FN_LEDGER_V1.json
+          cat /tmp/metasyn-fn/METASYN_SCREENING_FN_LEDGER_V1.json
+
+      - name: Check committed ledger matches fresh derivation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          generated = json.loads(Path('/tmp/metasyn-fn/METASYN_SCREENING_FN_LEDGER_V1.json').read_text())
+          committed = json.loads(Path('papers/paper-02-open-world-scientific-discovery/evidence/external_results/METASYN_SCREENING_FN_LEDGER_V1.json').read_text())
+          if committed != generated:
+              raise SystemExit('committed MetaSyn FN ledger differs from fresh evaluator-side derivation')
+          print('METASYN_FN_LEDGER_SNAPSHOT=GREEN')
+          PY
+
+      - name: Archive exact FN ledger
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-metasyn-fn-ledger-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: error
+          path: /tmp/metasyn-fn/METASYN_SCREENING_FN_LEDGER_V1.json
