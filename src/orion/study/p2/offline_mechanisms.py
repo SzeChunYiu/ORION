@@ -23,7 +23,7 @@ from orion.core.search import SearchRouteKind
 from orion.knowledge.routes import RouteCapture, assess_pair
 
 from .cases import DiscoveryTask
-from .corpus import DiscoveryRoute, ROUTE_SPEC_BY_ROUTE
+from .corpus import DiscoveryRoute, ROUTE_SPEC_BY_ROUTE, sha256_digest
 from .offline_systems import ORION_FULL
 from .runner import RunOutcome
 
@@ -239,6 +239,10 @@ def build_offline_mechanism_projection(
         "analysis_authority": "DESCRIPTIVE_ONLY",
         "n_tasks": len(tasks_by_id),
         "repeat_handling": "collapsed_within_task_after_deterministic_trace_check",
+        "source_record_digest_sha256": sha256_digest([item.record for item in outcomes]),
+        "source_raw_artifact_hash_list_digest_sha256": sha256_digest(
+            [item.record["raw_artifact_hash"] for item in outcomes]
+        ),
         "trajectory_systems": {
             ORION_FULL.system_id: _mean_trajectory(orion, tasks_by_id, max_queries),
             STRONGEST_CONFIRMATORY_BASELINE_ID: _mean_trajectory(
