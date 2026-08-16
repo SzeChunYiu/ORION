@@ -1,12 +1,12 @@
 """Protected relying-party transition authorization.
 
-This is the sole module allowed to construct ``TransitionAuthorization``.  It
+This is the sole module allowed to construct ``TransitionAuthorization``. It
 combines an exact candidate plan, a signed verifier appraisal, revisioned host
 authority state and DNF support state under non-compensatory hard gates.
 
-A verifier PASS is necessary but never sufficient.  The decision fails closed
+A verifier PASS is necessary but never sufficient. The decision fails closed
 when any protected obligation is stale, unknown, mismatched, revoked or
-post-hoc.  Candidate-facing runtime modules must not import this module.
+post-hoc. Candidate-facing runtime modules must not import this module.
 """
 
 from __future__ import annotations
@@ -88,7 +88,7 @@ class AuthorizationDecision:
 class TransitionAuthorization:
     """Sealed relying-party authorization receipt.
 
-    Construction is intentionally confined to this module.  Possessing this
+    Construction is intentionally confined to this module. Possessing this
     receipt is still not the same as committing a transaction; the store must
     independently compare all expected revisions under one writer lock.
     """
@@ -127,7 +127,9 @@ def _registration_gate(
         reasons.append(f"registration_missing:{kind.value}:{registration_id}")
         return None
     if registration.kind is not kind:
-        reasons.append(f"registration_kind_mismatch:{registration_id}:{registration.kind.value}:{kind.value}")
+        reasons.append(
+            f"registration_kind_mismatch:{registration_id}:{registration.kind.value}:{kind.value}"
+        )
         return None
     status = state.current_status(registration_id)
     if status is AuthorityObjectStatus.REVOKED:
@@ -142,14 +144,24 @@ def _registration_gate(
     return registration
 
 
-def _verdict_from_reasons(reasons: tuple[str, ...], appraisal: VerifierAppraisal) -> AuthorizationVerdict:
+def _verdict_from_reasons(
+    reasons: tuple[str, ...], appraisal: VerifierAppraisal
+) -> AuthorizationVerdict:
     if appraisal.verdict is AppraisalVerdict.FAIL:
         return AuthorizationVerdict.FAIL
     if appraisal.verdict is AppraisalVerdict.BLOCKED:
         return AuthorizationVerdict.BLOCKED
     if appraisal.verdict is AppraisalVerdict.CANNOT_CHECK:
         return AuthorizationVerdict.CANNOT_CHECK
-    if any("revoked" in reason or "invalid" in reason or "mismatch" in reason for reason in reasons):
+    demonstrated_failures = {
+        "all_registered_support_sets_failed",
+    }
+    if any(reason in demonstrated_failures for reason in reasons):
+        return AuthorizationVerdict.FAIL
+    if any(
+        "revoked" in reason or "invalid" in reason or "mismatch" in reason
+        for reason in reasons
+    ):
         return AuthorizationVerdict.FAIL
     if any("blocked" in reason for reason in reasons):
         return AuthorizationVerdict.BLOCKED
@@ -208,9 +220,9 @@ def authorize_transition(context: AuthorizationContext) -> AuthorizationDecision
     del policy, key, root
 
     if evaluator is not None:
-        # ``object`` is narrowed dynamically because the helper deliberately
-        # returns no authority-bearing subtype.
-        registration = context.authority_state.registration(context.evaluator_registration_id)
+        registration = context.authority_state.registration(
+            context.evaluator_registration_id
+        )
         assert registration is not None
         if appraisal.registration_commitment != registration.commitment:
             reasons.append("appraisal_registration_commitment_mismatch")
@@ -253,7 +265,9 @@ def authorize_transition(context: AuthorizationContext) -> AuthorizationDecision
         "support_revision": context.support_state.revision,
         "authorization_key_registration_id": context.authorization_key_registration_id,
     }
-    authorization_id = canonical_digest(payload, domain="orion.transition-authorization-decision.v1")
+    authorization_id = canonical_digest(
+        payload, domain="orion.transition-authorization-decision.v1"
+    )
     return AuthorizationDecision(
         authorization_id,
         plan.transition_id,
@@ -296,9 +310,12 @@ def seal_authorization(
     if signer.registration_id != decision.authorization_key_registration_id:
         raise ValueError("protected signer does not match the authorized key registration")
     signature = signer.sign(authorization_signing_payload(decision))
-    if len(signature) != 128 or any(character not in "0123456789abcdef" for character in signature):
-        raise ValueError("protected authorization signer must return a 64-byte lowercase-hex signature")
-    # Sole construction site for TransitionAuthorization.
+    if len(signature) != 128 or any(
+        character not in "0123456789abcdef" for character in signature
+    ):
+        raise ValueError(
+            "protected authorization signer must return a 64-byte lowercase-hex signature"
+        )
     return TransitionAuthorization(
         decision.authorization_id,
         decision.transition_id,
@@ -336,8 +353,13 @@ def verify_authorization_signature(
         authorization.authorization_key_registration_id,
     )
     try:
-        key = Ed25519PublicKey.from_public_bytes(bytes.fromhex(registration.public_key_hex))
-        key.verify(bytes.fromhex(authorization.signature), authorization_signing_payload(decision))
+        key = Ed25519PublicKey.from_public_bytes(
+            bytes.fromhex(registration.public_key_hex)
+        )
+        key.verify(
+            bytes.fromhex(authorization.signature),
+            authorization_signing_payload(decision),
+        )
     except (ValueError, InvalidSignature):
         return AuthorizationSignatureStatus.INVALID
     return AuthorizationSignatureStatus.VALID
