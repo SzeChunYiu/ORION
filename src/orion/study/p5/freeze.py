@@ -1,8 +1,8 @@
 """Fail-closed freeze utilities for the ORION-P5 hidden-cause study.
 
 The protected suite contains root-cause truth, fresh-task payloads, evaluator
-bindings, rubrics, negative variants, and opening nonces. It must remain under
-external/protected custody. This module derives two safe-to-share artifacts:
+bindings, rubrics, negative variants, and opening nonces.  It must remain under
+external/protected custody.  This module derives two safe-to-share artifacts:
 
 * a candidate packet containing only development-visible information; and
 * a commitment manifest binding the protected material without disclosing it.
@@ -15,7 +15,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any, Mapping
 
 SCHEMA_VERSION = "orion.p5.protected-hidden-cause-suite.v1"
@@ -93,6 +93,32 @@ def _require_nonce(value: Any, field: str) -> str:
     return nonce
 
 
+def _surface_parts(value: str, field: str) -> tuple[str, ...]:
+    path = PurePosixPath(value)
+    if path.is_absolute() or ".." in path.parts:
+        raise ValueError(f"{field} must be a relative non-traversing surface")
+    parts = tuple(part for part in path.parts if part not in ("", "."))
+    if not parts:
+        raise ValueError(f"{field} must identify a concrete surface")
+    return parts
+
+
+def _surface_sets_conflict(allowed: list[str], protected: list[str], *, prefix: str) -> bool:
+    allowed_parts = [
+        _surface_parts(value, f"{prefix}.allowed_change_surface[{index}]")
+        for index, value in enumerate(allowed)
+    ]
+    protected_parts = [
+        _surface_parts(value, f"{prefix}.protected_surface[{index}]")
+        for index, value in enumerate(protected)
+    ]
+    for left in allowed_parts:
+        for right in protected_parts:
+            if left == right[: len(left)] or right == left[: len(right)]:
+                return True
+    return False
+
+
 def _protected_case_index(suite: Mapping[str, Any]) -> dict[str, Mapping[str, Any]]:
     raw_cases = suite.get("cases")
     if not isinstance(raw_cases, list) or not raw_cases:
@@ -156,7 +182,7 @@ def validate_protected_suite(raw_suite: Mapping[str, Any]) -> None:
             case.get("allowed_change_surface"), f"{prefix}.allowed_change_surface"
         )
         protected = _require_string_list(case.get("protected_surface"), f"{prefix}.protected_surface")
-        if set(allowed) & set(protected):
+        if _surface_sets_conflict(allowed, protected, prefix=prefix):
             raise ValueError(f"{prefix} allowed_change_surface overlaps protected_surface")
         _require_nonempty_string(case.get("success_rubric"), f"{prefix}.success_rubric")
         _require_nonempty_string(case.get("harm_rubric"), f"{prefix}.harm_rubric")

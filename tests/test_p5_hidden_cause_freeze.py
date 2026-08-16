@@ -165,6 +165,23 @@ def test_allowed_and_protected_write_surfaces_cannot_overlap() -> None:
         freeze_protected_suite(suite)
 
 
+def test_parent_child_write_surface_overlap_fails_closed() -> None:
+    suite = _suite()
+    suite["cases"][0]["allowed_change_surface"] = ["protected"]
+    suite["cases"][0]["protected_surface"] = ["protected/evaluator/model.json"]
+
+    with pytest.raises(ValueError, match="overlaps protected_surface"):
+        freeze_protected_suite(suite)
+
+
+def test_write_surface_path_traversal_fails_closed() -> None:
+    suite = _suite()
+    suite["cases"][0]["allowed_change_surface"] = ["src/../protected/evaluator"]
+
+    with pytest.raises(ValueError, match="relative non-traversing surface"):
+        freeze_protected_suite(suite)
+
+
 def test_freeze_is_deterministic_for_semantically_identical_json_key_order() -> None:
     first = _suite()
     second = copy.deepcopy(first)
