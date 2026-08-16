@@ -135,3 +135,75 @@ def test_a_case_with_no_closures_is_skipped_not_scored_zero() -> None:
     floor = blind_largest_component_floor({"c1": [], "c2": [["a"]]}, {"c2": ("a",)})
     assert floor.n_cases == 1
     assert floor.expected_f1 == 1.0
+
+
+def _surface_features(case_payload: dict) -> list[float]:
+    import statistics
+
+    prompt = case_payload["public_prompt"]
+    resources = case_payload["observable_resources"]
+    lengths = [len(item) for item in resources]
+    return [
+        float(len(prompt)),
+        float(len(resources)),
+        float(sum(lengths)),
+        float(sum(1 for item in resources if item.startswith("closure:"))),
+        statistics.mean(lengths) if lengths else 0.0,
+        float(len(prompt.split())),
+        float(max(lengths) if lengths else 0),
+    ]
+
+
+def test_no_interaction_between_surfaces_separates_the_families() -> None:
+    """The gap every univariate leak check leaves open.
+
+    Both lanes' checks look at one surface at a time. A cue that separates
+    families only through the interaction of two surfaces — neither carrying the
+    signal alone — passes all of them. The prompt-length leak that survived two
+    audits was the same failure one dimension down: invisible to a single
+    threshold because the ordering was non-monotonic.
+    """
+
+    import json
+    from glob import glob
+
+    from orion.study.p1.arm_validity import assess_joint_surface_separability
+
+    for split in ("pilot", "test"):
+        features: dict[str, list[float]] = {}
+        labels: dict[str, str] = {}
+        pattern = (
+            "papers/paper-01-recursive-epistemic-reconstruction/protocol/cases/"
+            f"{split}/*.json"
+        )
+        for path in sorted(glob(pattern)):
+            payload = json.loads(open(path).read())
+            features[payload["case_id"]] = _surface_features(payload)
+            labels[payload["case_id"]] = payload["task_family"]
+        report = assess_joint_surface_separability(features, labels, resamples=200)
+        assert not report.leaks, (split, report)
+
+
+def test_the_joint_separability_check_detects_a_planted_interaction() -> None:
+    """Prove the alarm fires. A checker that has never alarmed on real data is
+    an untested checker, and this suite has now had two leaks pass a check that
+    was simply too weak to see them.
+
+    The planted signal is deliberately invisible to either surface alone: both
+    features are uniform across families in isolation, and only their product
+    carries the label.
+    """
+
+    from orion.study.p1.arm_validity import assess_joint_surface_separability
+
+    features: dict[str, list[float]] = {}
+    labels: dict[str, str] = {}
+    for index in range(40):
+        family = "A" if index % 2 == 0 else "B"
+        sign = 1.0 if index % 4 < 2 else -1.0
+        second = sign if family == "A" else -sign
+        features[f"c{index}"] = [sign, second]
+        labels[f"c{index}"] = family
+    report = assess_joint_surface_separability(features, labels, resamples=200)
+    assert report.leaks, report
+    assert report.accuracy > report.majority_baseline

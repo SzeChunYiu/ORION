@@ -181,10 +181,105 @@ def blind_largest_component_floor(
     )
 
 
+@dataclass(frozen=True)
+class SeparabilityReport:
+    """Whether the label is recoverable from surface features taken together.
+
+    Every leak check in this study so far has been univariate: one surface at a
+    time, against a shuffle null. A cue that separates families only through the
+    *interaction* of two surfaces — neither one carrying the signal alone —
+    passes every such check. This closes that gap by classifying in the joint
+    space.
+
+    The prompt-length leak that survived two audits is the cautionary case: it
+    was invisible to a best-single-threshold detector because the ordering was
+    non-monotonic. An interaction leak is the same failure one dimension up.
+    """
+
+    accuracy: float
+    majority_baseline: float
+    p_value: float
+    n_cases: int
+
+    @property
+    def leaks(self) -> bool:
+        return self.p_value < 0.05 and self.accuracy > self.majority_baseline
+
+
+def _loo_nearest_neighbour_accuracy(points: Sequence[Sequence[float]], labels: Sequence[str]) -> float:
+    total = len(points)
+    if total < 2:
+        return 0.0
+    dimensions = len(points[0])
+    correct = 0
+    for index in range(total):
+        best: float | None = None
+        nearest = 0
+        for other in range(total):
+            if other == index:
+                continue
+            distance = sum(
+                (points[index][axis] - points[other][axis]) ** 2 for axis in range(dimensions)
+            )
+            if best is None or distance < best:
+                best, nearest = distance, other
+        if labels[nearest] == labels[index]:
+            correct += 1
+    return correct / total
+
+
+def assess_joint_surface_separability(
+    features_by_case: Mapping[str, Sequence[float]],
+    labels_by_case: Mapping[str, str],
+    *,
+    resamples: int = 400,
+    seed: int = 20260816,
+) -> SeparabilityReport:
+    """Can a nearest-neighbour rule recover the family from surfaces jointly?
+
+    Features are z-scored so no surface dominates the metric by its units, and
+    the null is a label shuffle over the same points, so the comparison holds
+    the geometry fixed and varies only the labelling.
+    """
+
+    import random
+    import statistics
+
+    case_ids = sorted(features_by_case)
+    if len(case_ids) < 2:
+        return SeparabilityReport(0.0, 0.0, 1.0, len(case_ids))
+    raw = [list(map(float, features_by_case[case_id])) for case_id in case_ids]
+    labels = [labels_by_case[case_id] for case_id in case_ids]
+    columns = list(zip(*raw))
+    means = [statistics.mean(column) for column in columns]
+    deviations = [statistics.pstdev(column) or 1.0 for column in columns]
+    points = [
+        [(value - means[axis]) / deviations[axis] for axis, value in enumerate(row)] for row in raw
+    ]
+
+    observed = _loo_nearest_neighbour_accuracy(points, labels)
+    baseline = max(labels.count(item) for item in set(labels)) / len(labels)
+    rng = random.Random(seed)
+    hits = 0
+    for _ in range(resamples):
+        shuffled = labels[:]
+        rng.shuffle(shuffled)
+        if _loo_nearest_neighbour_accuracy(points, shuffled) >= observed:
+            hits += 1
+    return SeparabilityReport(
+        accuracy=observed,
+        majority_baseline=baseline,
+        p_value=(hits + 1) / (resamples + 1),
+        n_cases=len(case_ids),
+    )
+
+
 __all__ = [
     "ArmReport",
     "ArmVerdict",
     "ReopenFloor",
+    "SeparabilityReport",
+    "assess_joint_surface_separability",
     "assess_arm_discrimination",
     "assess_pair_discrimination",
     "blind_largest_component_floor",
