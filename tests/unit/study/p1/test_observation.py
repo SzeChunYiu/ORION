@@ -56,10 +56,6 @@ def view(prompt: str, *resources: str, case_id: str = "synthetic-1") -> PublicVi
     )
 
 
-def rules_named(*names: str) -> tuple[str, ...]:
-    return names
-
-
 def fired(result, rule: str) -> bool:
     return any(finding.rule == rule for finding in result)
 
@@ -682,10 +678,9 @@ def test_no_negative_control_is_topped_by_a_formulation_responsibility() -> None
 def test_the_detector_reaches_most_of_the_suite_without_wrong_answers() -> None:
     """Coverage and error rate together: silence is honest, a wrong fire is not.
 
-    Measured on the suite as authored: 63 top-ranked correct, 2 returned in a
-    multi-responsibility finding, 1 detected but deliberately unattributed, 0
-    wrong. The bounds allow for case churn without allowing a regression into
-    guessing.
+    Measured on the suite as authored: 62 top-ranked correct, 3 returned inside
+    a multi-responsibility finding, 1 detected but deliberately unattributed, 0
+    wrong. The coverage bound absorbs case churn; the error bound does not.
     """
 
     pilot, test = suite()
@@ -705,5 +700,9 @@ def test_the_detector_reaches_most_of_the_suite_without_wrong_answers() -> None:
         else:
             wrong += 1
     assert correct >= 0.75 * len(cases), f"{correct}/{len(cases)} top-ranked correct"
-    assert wrong <= 0.05 * len(cases), f"{wrong}/{len(cases)} wrong attributions"
+    # The headline is zero wrong. Allowing three would let the detector drift
+    # into guessing while the test still passed, and the stated principle is
+    # that a wrong fire costs more than silence — so the bound guards the claim
+    # rather than the score.
+    assert wrong <= 1, f"{wrong}/{len(cases)} wrong attributions"
     assert in_set >= 0
