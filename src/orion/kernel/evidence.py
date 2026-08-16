@@ -961,6 +961,34 @@ def _descriptor_metadata(info: os.stat_result) -> tuple[int, int, int, int, int]
     )
 
 
+
+def _classify_open_error_for_role(
+    error: OSError,
+    directory_fd: int,
+    component: str,
+    *,
+    require_directory: bool,
+) -> EvidenceStatus:
+    """Classify an open failure against the role expected of the component."""
+
+    if not require_directory:
+        return _classify_open_error(error, directory_fd, component)
+    if error.errno in {errno.ENOENT, errno.ELOOP}:
+        return _classify_open_error(error, directory_fd, component)
+    import stat as _stat
+
+    try:
+        current = os.stat(
+            component, dir_fd=directory_fd, follow_symlinks=False
+        )
+    except OSError:
+        return _classify_open_error(error, directory_fd, component)
+    if _stat.S_ISLNK(current.st_mode):
+        return EvidenceStatus.SYMLINK_DISALLOWED
+    if not _stat.S_ISDIR(current.st_mode):
+        return EvidenceStatus.NON_REGULAR_FILE
+    return EvidenceStatus.UNREADABLE_ARTIFACT
+
 def _capture_local_file(
     opened_root: _OpenedRoot,
     *,
@@ -1030,10 +1058,12 @@ def _capture_local_file(
     directory_fd = os.dup(opened_root.file_descriptor)
     final_fd: int | None = None
     failure_component = parts[-1]
+    failure_component_must_be_directory = False
     try:
         directory_flags = _directory_open_flags()
         for component in parts[:-1]:
             failure_component = component
+            failure_component_must_be_directory = True
             next_fd = os.open(
                 component,
                 directory_flags,
@@ -1051,6 +1081,7 @@ def _capture_local_file(
                     note="snapshot elapsed-time work budget is exhausted",
                 )
         failure_component = parts[-1]
+        failure_component_must_be_directory = False
         pre_open = os.stat(
             parts[-1], dir_fd=directory_fd, follow_symlinks=False
         )
@@ -1197,7 +1228,12 @@ def _capture_local_file(
                 declared_digest=declared_digest,
                 note="snapshot elapsed-time work budget is exhausted",
             )
-        status = _classify_open_error(error, directory_fd, failure_component)
+        status = _classify_open_error_for_role(
+            error,
+            directory_fd,
+            failure_component,
+            require_directory=failure_component_must_be_directory,
+        )
         return _CaptureResult(
             status,
             "file",

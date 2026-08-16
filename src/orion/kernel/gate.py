@@ -99,10 +99,10 @@ class AnswerGrading:
     def applicable(self) -> bool:
         """Whether the answer may be folded into the cell at all."""
 
-        return self.authority in {
-            AnswerAuthority.EVIDENCE_BOUND,
-            AnswerAuthority.VERIFIED,
-        }
+        return (
+            self.authority is AnswerAuthority.EVIDENCE_BOUND
+            or self.authority is AnswerAuthority.VERIFIED
+        )
 
 
 def run_discriminating_check(
