@@ -26,11 +26,27 @@ Absorbing a nearest mechanism may shrink or eliminate the ORION claim; that is a
 
 ## Two-level evidence rule
 
-Every flagship paper now distinguishes:
+Every flagship paper distinguishes:
 
 1. **local falsifier evidence** — exact known-world/hostile tests of implemented semantics;
 2. **external promotion evidence** — fresh domain-appropriate tasks, matched strong baselines, protected evaluators/gold and the paper-specific primary outcome.
 
 A green repository/CI run may support the first level only. A paper cannot be marked externally validated or publication-ready while its external gate is `CANNOT_CHECK` or `FAIL`. `FlagshipEvidenceState.publication_ready` requires both levels to pass for all registered flagship papers.
 
-Paper-specific empirical claims maintain their own evidence ledgers and cannot inherit truth from passing software tests, nearest-work prose or framework synchronization.
+## External evidence may not be declared by booleans
+
+The canonical flagship external gate consumes `ExternalEvidenceManifest.v1`, whose criterion records bind:
+
+- exact subject revision;
+- content-addressed evidence artifact;
+- external evaluator artifact;
+- producer and verifier process lineages;
+- evaluation epoch and split;
+- PASS / FAIL / CANNOT_CHECK;
+- frozen-before-candidate chronology and freshness.
+
+Missing, duplicate, self-verified, post-hoc, non-fresh or binding-mismatched external records yield `CANNOT_CHECK`. A verified FAIL remains FAIL rather than being softened into missing evidence. In a repository-only environment, the default manifest is empty and all five external paper gates remain `CANNOT_CHECK`.
+
+The older paper-specific boolean gate helpers are non-authoritative fixture utilities only; the canonical `FlagshipEvidenceState` does not use them.
+
+Paper-specific empirical claims maintain their own evidence ledgers and cannot inherit truth from passing software tests, nearest-work prose, caller declarations or framework synchronization.
