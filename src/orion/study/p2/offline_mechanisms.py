@@ -34,6 +34,12 @@ def _round(value: float) -> float:
     return round(float(value), 6)
 
 
+def _pair_key(left: DiscoveryRoute, right: DiscoveryRoute) -> tuple[str, str]:
+    """Canonical unordered route-pair key used for both write and read paths."""
+
+    return tuple(sorted((left.value, right.value)))
+
+
 def _route_signature(outcome: RunOutcome) -> tuple[tuple[Any, ...], ...]:
     return tuple(
         (
@@ -189,7 +195,7 @@ def _overlap_projection(
             b = captures[right].captured
             union = a | b
             jaccard = (len(a & b) / len(union)) if union else 0.0
-            values[(left.value, right.value)].append(jaccard)
+            values[_pair_key(left, right)].append(jaccard)
 
     matrix: dict[str, dict[str, dict[str, Any]]] = {}
     for left in routes:
@@ -201,8 +207,9 @@ def _overlap_projection(
                     "independence_verdict": "SAME_ROUTE",
                 }
                 continue
-            key = tuple(sorted((left.value, right.value)))
-            pair_values = values[key]
+            pair_values = values[_pair_key(left, right)]
+            if not pair_values:
+                raise ValueError(f"missing overlap observations for {left.value}/{right.value}")
             verdict = assess_pair(_capture_template(left), _capture_template(right)).verdict.value
             row[right.value] = {
                 "mean_content_jaccard": _round(fmean(pair_values)),
