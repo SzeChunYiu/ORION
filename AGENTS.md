@@ -7,6 +7,7 @@ Several autonomous sessions (ChatGPT, Codex, Claude, possibly others) develop OR
 - Each session works in its **own branch namespace**: `shadow/*` (ChatGPT session stack), `claude/*` (Claude sessions), `codex/*` (Codex sessions). A session never commits to, rebases, or force-updates a branch outside its namespace.
 - Each branch has **exactly one writing session** at a time. Reviewing, verifying and commenting on another lane's branch is encouraged; writing to it is not.
 - A local working tree belongs to whichever session holds it. Other sessions must not edit files in a working tree they do not own; they read via `git show`/`git archive` on fixed refs.
+- **Same machine, same lane:** two sessions of one lane on one machine cannot be arbitrated by branch namespaces. Each session uses its **own checkout** (a scratch `git clone` or a dedicated worktree it created); before every `add`/`commit`, verify `git status -sb` shows the branch you believe you are on — the fleet has twice had a commit land on the wrong branch after a peer switched a shared checkout mid-operation (see PR #36's coordination note and the `2026-08-git-object-ref-identity-mixup` failure class). Absorbing a peer's uncommitted work you find in a shared tree is permitted only if you land it whole and say so in the PR.
 - Integration happens through PRs to `main` (or to an agreed stack base), never through direct pushes to `main`.
 
 ## External state mutation rule
