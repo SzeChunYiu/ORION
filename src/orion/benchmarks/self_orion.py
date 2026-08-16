@@ -26,7 +26,6 @@ from orion.self_orion.issue_state import (
 )
 from orion.self_orion.saturation_vector import (
     DevelopmentNoveltyRound,
-    DevelopmentSaturationAxis,
     assess_development_saturation,
 )
 
