@@ -73,6 +73,33 @@ class RepresentationMapping:
 
 
 @dataclass(frozen=True)
+class SourceProjection:
+    projection_id: str
+    contribution_id: str
+    frame_id: str
+    source_uri: str
+    evidence_ids: tuple[str, ...]
+    assimilation: AssimilationOutcome
+    context_ids: tuple[str, ...] = ()
+    related_claim_ids: tuple[str, ...] = ()
+    referent_bindings: tuple[ReferentBinding, ...] = ()
+    representation_mapping_ids: tuple[str, ...] = ()
+    assumption_ids: tuple[str, ...] = ()
+
+    def __post_init__(self) -> None:
+        required = (
+            self.projection_id,
+            self.contribution_id,
+            self.frame_id,
+            self.source_uri,
+        )
+        if any(not item.strip() for item in required):
+            raise ValueError("source projection identity, frame and source are required")
+        if not self.evidence_ids:
+            raise ValueError("source projection requires evidence provenance")
+
+
+@dataclass(frozen=True)
 class KnowledgeContribution:
     contribution_id: str
     text: str
