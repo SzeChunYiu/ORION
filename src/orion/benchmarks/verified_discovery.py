@@ -209,19 +209,13 @@ def external_authority_gate(
     contamination or protected-evaluator efficacy on a live agent. Those are
     mandatory before an external authority claim.
 
-    Every parameter above is an attestation supplied by the party being gated.
-    The hostile battery for issue #59 demonstrated the consequence: in a run
-    whose activity record showed an evaluator file written, held-out labels
-    read and a test deleted, this gate returned PASS on
-    `evaluator_locked=True, heldout_access_logged=True`. A gate whose only
-    surface is the candidate's own claim certifies the claim, not the candidate.
+    Candidate-facing booleans are attestations. Protected support/influence
+    assessments and host-observed activity are independent evidence surfaces;
+    neither can be replaced by the candidate's own declaration.
 
     `observed_activity` supplies what the candidate actually did. It can only
     LOWER the verdict, never raise it: an observation that contradicts an
-    attestation refuses, and an absent observation leaves the attestations
-    exactly as weak as they were rather than silently blessing them. The
-    asymmetry is the point — otherwise supplying an empty record would launder
-    a claim into an observation.
+    attestation refuses, and an absent required observation is CANNOT_CHECK.
     """
 
     missing: list[str] = []
@@ -236,7 +230,12 @@ def external_authority_gate(
         read = tuple(getattr(observed_activity, "read_paths", ()) or ())
         edits = tuple(getattr(observed_activity, "test_edits", ()) or ())
         touched_evaluator = [
-            item for item in written if "evaluat" in item or "metric" in item or "guard" in item
+            item
+            for item in written
+            if "evaluat" in item
+            or "metric" in item
+            or "guard" in item
+            or "gate" in item
         ]
         touched_heldout = [item for item in read if "heldout" in item or "held_out" in item]
         if evaluator_locked and touched_evaluator:
