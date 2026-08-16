@@ -6,6 +6,7 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from .driver import SelfDrivingDriver
+from .registry import load_registered_checks
 from .sources import DirectoryAnswerSource
 from .store import LedgerStore
 
@@ -72,7 +73,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.command == "request":
         from orion.mechanics.program import current_program_cells
 
-        from .registry import load_registered_checks
+        # `load_registered_checks` is imported at module scope on purpose. It
+        # was previously imported inside this branch, which made it a local of
+        # `main`, so every other branch — including `run` — raised
+        # UnboundLocalError before reaching its own use of it.
         from .workorder import build_work_order
 
         order = build_work_order(
