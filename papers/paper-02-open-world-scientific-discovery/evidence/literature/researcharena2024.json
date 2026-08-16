@@ -1,0 +1,21 @@
+{
+  "bib_key": "researcharena2024",
+  "claimed_title": "ResearchArena: Benchmarking Large Language Models' Ability to Collect and Organize Information as Research Agents",
+  "claim_provenance": "derived_from_this_fetch",
+  "fetch_url": "https://export.arxiv.org/api/query?id_list=2406.10291",
+  "fetched_utc": "2026-08-16T17:40:15Z",
+  "verdict": "VERIFIED",
+  "verdict_reason": "claimed title matches fetched title exactly (normalised)",
+  "fetched_title": "ResearchArena: Benchmarking Large Language Models' Ability to Collect and Organize Information as Research Agents",
+  "fetched_authors": [
+    "Hao Kang",
+    "Chenyan Xiong"
+  ],
+  "fetched_year": 2024,
+  "fetched_venue": "arXiv preprint",
+  "arxiv_id": "2406.10291v3",
+  "doi": null,
+  "published": "2024-06-13T03:26:30Z",
+  "updated": "2025-09-07T23:37:18Z",
+  "abstract": "Large language models (LLMs) excel across many natural language processing tasks but face challenges in domain-specific, analytical tasks such as conducting research surveys. This study introduces ResearchArena, a benchmark designed to evaluate LLMs' capabilities in conducting academic surveys -- a foundational step in academic research. ResearchArena models the process in three stages: (1) information discovery, identifying relevant literature; (2) information selection, evaluating papers' relevance and impact; and (3) information organization, structuring knowledge into hierarchical frameworks such as mind-maps. Notably, mind-map construction is treated as a bonus task, reflecting its supplementary role in survey-writing. To support these evaluations, we construct an offline environment of 12M full-text academic papers and 7.9K survey papers. To ensure ethical compliance, we do not redistribute copyrighted materials; instead, we provide code to construct the environment from the Semantic Scholar Open Research Corpus (S2ORC). Preliminary evaluations reveal that LLM-based approaches underperform compared to simpler keyword-based retrieval methods, though recent reasoning models such as DeepSeek-R1 show slightly better zero-shot performance. These results underscore significant opportunities for advancing LLMs in autonomous research. We open-source the code to construct the ResearchArena benchmark at https://github.com/cxcscmu/ResearchArena."
+}

@@ -1,0 +1,25 @@
+{
+  "bib_key": "metasyn2026",
+  "claimed_title": "Benchmarking LLM Agents on Meta-Analysis Articles from Nature Portfolio",
+  "claim_provenance": "pre_existing_independent_claim",
+  "fetch_url": "https://export.arxiv.org/api/query?id_list=2606.17041",
+  "fetched_utc": "2026-08-16T17:40:05Z",
+  "verdict": "MISMATCH",
+  "verdict_reason": "claimed title differs from fetched title",
+  "fetched_title": "MetaSyn: A Benchmark for LLM Agents on Meta-Analysis Articles from Nature Portfolio",
+  "fetched_authors": [
+    "Anzhe Xie",
+    "Weihang Su",
+    "Yujia Zhou",
+    "Yiqun Liu",
+    "Min Zhang",
+    "Qingyao Ai"
+  ],
+  "fetched_year": 2026,
+  "fetched_venue": "arXiv preprint",
+  "arxiv_id": "2606.17041v6",
+  "doi": null,
+  "published": "2026-06-15T17:56:41Z",
+  "updated": "2026-07-26T05:58:56Z",
+  "abstract": "Systematic review and meta-analysis is an important method for scientific research. It comprehensively studies target research questions by combining evidence from multiple independent studies following a standard and rigid protocol (i.e., PI/ECO). This is valuable for facilitating reliable and sustainable research across multiple domains, including but not limited to physics, chemistry, psychology, and medical science. Traditional meta-analysis is both mind-intensive and labor-intensive, as it requires professionals to search, screen, and synthesize tens of thousands of studies, which usually takes months or even years. Recent advances in AI, particularly LLM agents, have the potential to significantly automate this process, but whether they can conduct reliable meta-analysis is still unknown. To this end, we introduce MetaSyn, a dataset and evaluation protocol built from 422 expert-curated meta-analyses manually selected from more than 34,000 published articles in Nature Portfolio journals. We collected the research questions with structured eligibility criteria, the studies included by the original reviewers, and a shared PubMed-anchored corpus containing both eligible studies and plausible but ineligible distractors to build a comprehensive benchmark for meta-analysis. Our experiments on multiple LLMs and baseline methods show that existing AI systems are far from perfect. We also conducted stage-wise evaluation and analysis to shed light on why existing AI systems fall short on meta-analysis."
+}
