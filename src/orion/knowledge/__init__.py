@@ -9,6 +9,14 @@ from orion.knowledge.ignorance import (
     deduplicate_ignorance,
     plan_for_ignorance,
 )
+from orion.knowledge.parent_domains import (
+    FunctionalOperationSignature,
+    ParentDisciplineCandidate,
+    ParentDisciplineProfile,
+    discover_parent_disciplines,
+    named_basis_mentions,
+    top_parent_discipline,
+)
 from orion.knowledge.semantics import (
     MeaningComparison,
     MeaningRelation,
@@ -21,6 +29,7 @@ from orion.knowledge.semantics import (
 )
 
 __all__ = [
+    "FunctionalOperationSignature",
     "IgnoranceAction",
     "IgnoranceActionPlan",
     "IgnoranceKind",
@@ -28,6 +37,8 @@ __all__ = [
     "MeaningComparison",
     "MeaningRelation",
     "Modality",
+    "ParentDisciplineCandidate",
+    "ParentDisciplineProfile",
     "Polarity",
     "ScientificIgnoranceInterpreter",
     "ScientificLanguageInterpreter",
@@ -35,5 +46,8 @@ __all__ = [
     "bridge_compatible",
     "compare_meaning",
     "deduplicate_ignorance",
+    "discover_parent_disciplines",
+    "named_basis_mentions",
     "plan_for_ignorance",
+    "top_parent_discipline",
 ]
