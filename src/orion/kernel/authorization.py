@@ -330,6 +330,35 @@ def seal_authorization(
     )
 
 
+def restore_transition_authorization(
+    *,
+    authorization_id: str,
+    transition_id: str,
+    subject_hash: str,
+    verdict: AuthorizationVerdict,
+    reason_codes: tuple[str, ...],
+    expectation: LedgerExpectation,
+    authority_revision: str,
+    support_revision: str,
+    authorization_key_registration_id: str,
+    signature: str,
+) -> TransitionAuthorization:
+    """Reconstruct a historical receipt while preserving the constructor choke point."""
+
+    return TransitionAuthorization(
+        authorization_id,
+        transition_id,
+        subject_hash,
+        verdict,
+        reason_codes,
+        expectation,
+        authority_revision,
+        support_revision,
+        authorization_key_registration_id,
+        signature,
+    )
+
+
 def verify_authorization_signature(
     authorization: TransitionAuthorization,
     *,
@@ -374,6 +403,7 @@ __all__ = [
     "TransitionAuthorization",
     "authorization_signing_payload",
     "authorize_transition",
+    "restore_transition_authorization",
     "seal_authorization",
     "verify_authorization_signature",
 ]
