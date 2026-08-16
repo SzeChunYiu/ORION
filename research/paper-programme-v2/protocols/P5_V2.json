@@ -8,7 +8,7 @@
   "incremental_decision": {"guards": [{"comparison": "delta_gte", "metric": "protected_fresh_improvement", "threshold": -0.02}], "primary": {"comparison": "delta_lte", "metric": "harmful_fresh_transfer_acceptance_rate", "threshold": -0.03}},
   "incremental_over_protocol": "P5.hidden-cause-fresh-transfer.v1",
   "local_evidence_authority": "LOCAL_ENGINEERING_ONLY",
-  "mechanism_id": "noncompensatory-staged-evolution-gate",
+  "mechanism_id": "non-compensatory-staged-candidate-gate",
   "metrics": {"primary": ["harmful_fresh_transfer_acceptance_rate"], "secondary": ["protected_fresh_improvement", "fresh_transfer_success_rate", "false_acceptance_rate", "protected_block_rate", "negative_history_recurrence", "time_to_validated_improvement", "cost_to_validated_improvement", "cannot_check_rate", "worst_family_regression"]},
   "negative_controls": ["replay_overfit", "fresh_harm_after_replay_success", "protected_uncertainty", "out_of_order_harm", "missing_stage_laundering", "negative_history_deletion"],
   "outcome_accessed": false,
