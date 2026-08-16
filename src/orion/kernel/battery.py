@@ -33,7 +33,9 @@ def _cell(mechanic_id: str, **fields: tuple[str, ...]) -> MechanicCell:
     return replace(base, **fields) if fields else base
 
 
-def host_battery(dimension: MechanicDimension) -> tuple[MechanicCell, ...]:
+def host_battery(
+    dimension: MechanicDimension, target: MechanicCell | None = None
+) -> tuple[MechanicCell, ...]:
     """Negatives the host supplies, which the check's author does not choose.
 
     A check that only has to reject a negative of its own choosing proves
@@ -54,10 +56,19 @@ def host_battery(dimension: MechanicDimension) -> tuple[MechanicCell, ...]:
     A check must reject all three. Admissibility therefore *entails* that the
     predicate is not any `bool(field)` for a field this dimension writes,
     because the junk member has every one of those fields non-empty.
+
+    When a `target` is given, every member is that cell with only the judged
+    dimension's fields replaced — identical identity, purpose, scope and every
+    unrelated field. A predicate can then be separated from the members only
+    by the judged content: keying on the mechanic id, the fixture prose, or an
+    unrelated field's content leaves at least one member accepted and the
+    check inadmissible. Without a target (order computation, standalone
+    audits), the bare probe members are returned as before.
     """
 
     fields = writable_fields(dimension)
     if fields:
+        empty = {name: () for name in fields}
         junk = {name: (JUNK_TOKEN,) for name in fields}
         envelope = {name: (_PROMPTS[dimension],) for name in fields}
     else:
@@ -66,13 +77,22 @@ def host_battery(dimension: MechanicDimension) -> tuple[MechanicCell, ...]:
         # `bool(cell.handoff_fields)` for exactly those two dimensions.
         junk = _structured_payload(dimension, JUNK_TOKEN)
         envelope = _structured_payload(dimension, _PROMPTS[dimension])
+        empty = {name: () for name in junk}
         if not junk:
-            return (_cell(_BATTERY_IDS[0]),)
+            return (_member(target, 0, {}),)
     return (
-        _cell(_BATTERY_IDS[0]),
-        _cell(_BATTERY_IDS[1], **junk),
-        _cell(_BATTERY_IDS[2], **envelope),
+        _member(target, 0, empty),
+        _member(target, 1, junk),
+        _member(target, 2, envelope),
     )
+
+
+def _member(
+    target: MechanicCell | None, index: int, overrides: dict[str, tuple]
+) -> MechanicCell:
+    if target is None:
+        return _cell(_BATTERY_IDS[index], **overrides)
+    return replace(target, **overrides) if overrides else target
 
 
 def _structured_payload(dimension: MechanicDimension, text: str) -> dict[str, tuple]:

@@ -59,6 +59,12 @@ def load_registered_checks(
                 raise CheckRegistryError(
                     f"check '{check.check_id}' is not chronology-pinned (frozen_at_round)"
                 )
+            if not check.negative_fixtures:
+                raise CheckRegistryError(
+                    f"check '{check.check_id}' declares no negative fixtures; a check"
+                    " that has never exhibited a failing case of its own is not"
+                    " demonstrably failable (seed-failability analogue)"
+                )
             if check.check_id in checks:
                 raise CheckRegistryError(f"duplicate check id '{check.check_id}'")
             checks[check.check_id] = check

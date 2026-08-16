@@ -114,7 +114,7 @@ def run_discriminating_check(
     nothing cannot report a pass.
     """
 
-    negatives = tuple(check.negative_fixtures) + host_battery(check.dimension)
+    negatives = tuple(check.negative_fixtures) + host_battery(check.dimension, cell)
     try:
         if not bool(check.predicate(check.positive_fixture)):
             return CheckOutcome.NOT_SOUND, ("check rejects its own positive fixture",)
