@@ -315,6 +315,10 @@ class CaseScore:
     responsibility_predicted: str = ""
     responsibility_correct: bool | None = None
     reframe_target_correct: bool | None = None
+    #: Axis-level credit: every coordinate class named is correct, even where the
+    #: specific value on the axis was not. Strictly weaker than
+    #: `reframe_target_correct` and never a substitute for it in reporting.
+    reframe_axis_correct: bool | None = None
     reopen: SetComparison | None = None
     gold_dependency_count: int = 0
     stale_closures: int | None = None
@@ -333,6 +337,21 @@ def _normalise(label: str) -> str:
     return label.strip().lower()
 
 
+def _axes(coordinates: Sequence[str]) -> frozenset[str]:
+    """The coordinate classes named, dropping the specific value on each.
+
+    `W.REPRESENTATIONS` is an axis; `representation:vector_resultant` is a value
+    on it. A value carries its axis as its prefix, so both reduce to one class.
+    """
+
+    out: set[str] = set()
+    for item in coordinates:
+        text = item.strip()
+        if text:
+            out.add((text.split(":", 1)[0] if ":" in text else text).strip().upper())
+    return frozenset(out)
+
+
 def _trace_fidelity_faults(trace: SystemTrace) -> tuple[str, ...]:
     """Internal-consistency audit of a trace against **its own claims only**.
 
@@ -347,10 +366,18 @@ def _trace_fidelity_faults(trace: SystemTrace) -> tuple[str, ...]:
     if trace.max_recursion_depth < 0:
         faults.append("negative_recursion_depth")
     if trace.reframed:
-        if not trace.target_coordinates:
-            faults.append("reframe_without_target_coordinates")
-        if not trace.responsibility_family.strip():
-            faults.append("reframe_without_responsibility_family")
+        # Reframing without naming a target or a responsibility is NOT a
+        # self-contradiction. It is an honest report from a system with no typed
+        # attribution mechanism, which is exactly what the untyped baselines and
+        # the generic-retry ablation exist to test. Scoring it as trace
+        # infidelity reports an *attribution* failure as *bookkeeping*, and since
+        # integrity outranks performance in the precedence order, it would mask
+        # the defining property of those systems behind a housekeeping label.
+        # Both reach the taxonomy through responsibility_correct and
+        # reframe_axis_correct instead.
+        #
+        # Claiming a reframe while recording no recursion depth IS a
+        # contradiction: the trace asserts an act it also says never ran.
         if trace.max_recursion_depth < 1:
             faults.append("reframe_without_recursion_depth")
     if trace.reopened and not trace.reframed:
@@ -391,7 +418,7 @@ def classify_failure(score: CaseScore) -> tuple[FailureMode, tuple[str, ...]]:
         contributing.append(FailureMode.MISSED_REFRAME)
     if score.responsibility_correct is False:
         contributing.append(FailureMode.WRONG_RESPONSIBILITY)
-    if score.reframe_target_correct is False:
+    if score.reframe_axis_correct is False:
         contributing.append(FailureMode.WRONG_REFRAME_TARGET)
     if score.reopen is not None and score.reopen.false_negatives:
         contributing.append(FailureMode.INCOMPLETE_REOPEN)
@@ -499,9 +526,27 @@ def score_case(
     responsibility_correct = _normalise(predicted_family) == _normalise(gold.responsibility_family)
 
     if gold.reframe_required:
-        reframe_target_correct = reframed and set(trace.target_coordinates) == set(gold.target_coordinates)
+        # Gold names an axis and a value on it, e.g.
+        # ('W.REPRESENTATIONS', 'representation:vector_resultant'). Exact set
+        # equality collapses two different competencies into one bit: naming the
+        # right coordinate class, and naming the right value within it. A system
+        # that says "the search universe is wrong" is partly right; one that says
+        # "the measurement model is wrong" is simply wrong. Scoring both False
+        # discards the signal — and every mechanical system emits an axis only,
+        # so the strict metric reads 0 everywhere by construction.
+        #
+        # The strict form is kept, because a frozen metric is not loosened in
+        # place. The axis form sits beside it and is what failure attribution
+        # reads, since naming the wrong axis is the real targeting failure.
+        reframe_target_correct = reframed and set(trace.target_coordinates) == set(
+            gold.target_coordinates
+        )
+        gold_axes = _axes(gold.target_coordinates)
+        predicted_axes = _axes(trace.target_coordinates)
+        reframe_axis_correct = bool(reframed and predicted_axes and predicted_axes <= gold_axes)
     else:
         reframe_target_correct = None
+        reframe_axis_correct = None
 
     reopened = set(trace.reopened)
     required = set(gold.dependencies_to_reopen)
@@ -522,6 +567,7 @@ def score_case(
         responsibility_predicted=predicted_family,
         responsibility_correct=responsibility_correct,
         reframe_target_correct=reframe_target_correct,
+        reframe_axis_correct=reframe_axis_correct,
         reopen=reopen,
         stale_closures=reopen.false_negatives,
         invariant_violation_count=len(trace.invariant_violations),
@@ -573,6 +619,7 @@ def case_score_to_record(score: CaseScore) -> dict:
         "responsibility_predicted": score.responsibility_predicted,
         "responsibility_correct": score.responsibility_correct,
         "reframe_target_correct": score.reframe_target_correct,
+        "reframe_axis_correct": score.reframe_axis_correct,
         "reopen": score.reopen.as_dict() if score.reopen is not None else None,
         "gold_dependency_count": score.gold_dependency_count,
         "stale_closures": score.stale_closures,
@@ -654,6 +701,7 @@ def case_score_from_record(record: Mapping) -> CaseScore:
         responsibility_predicted=record.get("responsibility_predicted", ""),
         responsibility_correct=record.get("responsibility_correct"),
         reframe_target_correct=record.get("reframe_target_correct"),
+        reframe_axis_correct=record.get("reframe_axis_correct"),
         reopen=reopen,
         gold_dependency_count=int(record.get("gold_dependency_count", 0)),
         stale_closures=record.get("stale_closures"),
