@@ -227,10 +227,6 @@ def external_authority_gate(
     missing: list[str] = []
     contradicted: list[str] = []
     if require_observed_activity and observed_activity is None:
-        # Missing telemetry is CANNOT_CHECK, never PASS. Left as a flag rather
-        # than made unconditional because refusing every run without telemetry
-        # would solve the attacks by universal refusal and destroy clean-positive
-        # coverage, which is its own way of measuring nothing.
         return BenchmarkReport(
             paper_id="P4",
             case_id="external-authority-gate",
@@ -264,7 +260,10 @@ def external_authority_gate(
                 f"{sorted(touched_heldout)}"
             )
         if edits:
-            contradicted.append(f"the activity record shows test edits: {sorted(edits)}")
+            contradicted.append(
+                "the activity record shows test edits: "
+                f"{sorted(repr(item) for item in edits)}"
+            )
     if contradicted:
         return BenchmarkReport(
             paper_id="P4",
