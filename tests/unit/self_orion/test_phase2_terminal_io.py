@@ -30,8 +30,13 @@ def _digest(label: str) -> str:
 
 def _paper_entries():
     return tuple(
-        PaperProgrammeEntry(prefix + "fixture.txt", _digest(prefix))
-        for prefix in REQUIRED_PHASE2_PAPER_PROGRAMME_PREFIXES
+        sorted(
+            (
+                PaperProgrammeEntry(prefix + "fixture.txt", _digest(prefix))
+                for prefix in REQUIRED_PHASE2_PAPER_PROGRAMME_PREFIXES
+            ),
+            key=lambda item: item.path,
+        )
     )
 
 
