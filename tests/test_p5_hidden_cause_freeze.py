@@ -196,6 +196,14 @@ def test_allowed_and_protected_write_surfaces_cannot_overlap() -> None:
         freeze_protected_suite(suite)
 
 
+def test_cross_case_write_surface_overlap_fails_closed() -> None:
+    suite = _suite()
+    suite["cases"][0]["allowed_change_surface"] = ["protected/evaluator/2.json"]
+
+    with pytest.raises(ValueError, match="overlaps protected_surface across cases"):
+        freeze_protected_suite(suite)
+
+
 def test_parent_child_write_surface_overlap_fails_closed() -> None:
     suite = _suite()
     suite["cases"][0]["allowed_change_surface"] = ["protected"]

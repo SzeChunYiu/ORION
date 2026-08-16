@@ -161,6 +161,8 @@ def validate_protected_suite(raw_suite: Mapping[str, Any]) -> None:
     referenced_fresh: set[str] = set()
     referenced_nonfresh: set[str] = set()
     referenced_negative: set[str] = set()
+    allowed_surfaces: list[str] = []
+    protected_surfaces: list[str] = []
 
     for case_id, case in cases.items():
         prefix = f"case {case_id}"
@@ -193,6 +195,8 @@ def validate_protected_suite(raw_suite: Mapping[str, Any]) -> None:
         protected = _require_string_list(case.get("protected_surface"), f"{prefix}.protected_surface")
         if _surface_sets_conflict(allowed, protected, prefix=prefix):
             raise ValueError(f"{prefix} allowed_change_surface overlaps protected_surface")
+        allowed_surfaces.extend(allowed)
+        protected_surfaces.extend(protected)
         _require_nonempty_string(case.get("success_rubric"), f"{prefix}.success_rubric")
         _require_nonempty_string(case.get("harm_rubric"), f"{prefix}.harm_rubric")
 
@@ -249,6 +253,8 @@ def validate_protected_suite(raw_suite: Mapping[str, Any]) -> None:
             "motivating/replay task ids must be globally disjoint from fresh task ids: "
             f"{sorted(global_split_overlap)}"
         )
+    if _surface_sets_conflict(allowed_surfaces, protected_surfaces, prefix="suite"):
+        raise ValueError("allowed_change_surface overlaps protected_surface across cases")
 
     if observed_causes != ROOT_CAUSES:
         missing = sorted(ROOT_CAUSES - observed_causes)
