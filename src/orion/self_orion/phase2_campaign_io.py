@@ -64,7 +64,9 @@ def write_external_observation_bundle(
 def load_external_observation_bundle(path: Path | str) -> Phase2ExternalObservationBundle:
     raw = json.loads(Path(path).read_text(encoding="utf-8"))
     if not isinstance(raw, dict) or raw.get("schema") != EXTERNAL_OBSERVATION_BUNDLE_SCHEMA:
-        raise ValueError(f"Phase-2 observation schema must be {EXTERNAL_OBSERVATION_BUNDLE_SCHEMA}")
+        raise ValueError(
+            f"Phase-2 observation schema must be {EXTERNAL_OBSERVATION_BUNDLE_SCHEMA}"
+        )
     raw_observations = raw.get("observations")
     if not isinstance(raw_observations, list):
         raise ValueError("Phase-2 observations must be a JSON array")
@@ -241,6 +243,7 @@ def campaign_report_to_dict(report: Phase2CampaignReport) -> dict[str, object]:
         "live_trial_artifact_hash": report.live_trial_artifact_hash,
         "development_trial_artifact_hash": report.development_trial_artifact_hash,
         "authority_trial_artifact_hash": report.authority_trial_artifact_hash,
+        "authority_benchmark_panel_hash": report.authority_benchmark_panel_hash,
         "external_observation_bundle_hash": report.external_observation_bundle_hash,
         "ready_for_terminal_audit": report.ready_for_terminal_audit,
         "grants_phase2_closure": report.grants_phase2_closure,
