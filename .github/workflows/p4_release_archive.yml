@@ -1,0 +1,119 @@
+name: p4-release-archive
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'papers/paper-04-verified-scientific-discovery/submission/RELEASE_TRIGGER_V1.txt'
+
+permissions:
+  contents: write
+
+env:
+  RELEASE_TAG: p4-peer-review-ready-v1
+  PAPER: papers/paper-04-verified-scientific-discovery
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify final merged publication state
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install -e '.[dev]'
+          cd "$PAPER"
+          python reproducibility/replay_public.py
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root = Path('.')
+          audit = json.loads((root/'submission'/'FINAL_PDF_AUDIT_V1.json').read_text())
+          pdf = root/'submission'/'ORION-P4-final.pdf'
+          checklist = (root/'submission'/'SUBMISSION_CHECKLIST_V1.md').read_text()
+          summary = json.loads((root/'evidence'/'protected-campaign-31968809206'/'CAMPAIGN_SUMMARY_V1.json').read_text())
+          assert hashlib.sha256(pdf.read_bytes()).hexdigest() == audit['pdf_sha256']
+          assert audit['H1_status'] == 'PASS' and audit['H2_status'] == 'PASS'
+          assert audit['H3_status'] == 'NOT_SUPPORTED'
+          assert summary['H1']['status'] == 'PASS' and summary['H2']['status'] == 'PASS'
+          assert summary['H3']['status'] == 'NOT_SUPPORTED'
+          assert '- [ ] Permanent public release/archive created' in checklist
+          PY
+          cd - >/dev/null
+          pytest -q
+
+      - name: Refuse release overwrite and build releasable archive
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "release tag $RELEASE_TAG already exists; refusing overwrite" >&2
+            exit 1
+          fi
+          mkdir -p "$RUNNER_TEMP/release"
+          COMMIT=$(git rev-parse HEAD)
+          printf '%s\n' "$COMMIT" > "$RUNNER_TEMP/release/RELEASE_COMMIT.txt"
+          cp "$PAPER/submission/ORION-P4-final.pdf" "$RUNNER_TEMP/release/ORION-P4-final.pdf"
+          cp "$PAPER/submission/FINAL_PDF_AUDIT_V1.json" "$RUNNER_TEMP/release/FINAL_PDF_AUDIT_V1.json"
+          tar -czf "$RUNNER_TEMP/release/p4-public-reproducibility-v1.tar.gz" \
+            "$PAPER/protocol" \
+            "$PAPER/host" \
+            "$PAPER/evidence/protected-campaign-31968809206" \
+            "$PAPER/evidence/PROTECTED_CLAIM_LEDGER_V1.md" \
+            "$PAPER/evidence/CLAIM_LEDGER_V1.md" \
+            "$PAPER/evidence/AVAILABILITY_STATEMENT_V1.md" \
+            "$PAPER/figures/data/RESULTS_SUMMARY_V1.json" \
+            "$PAPER/figures/generate_protected_results.py" \
+            "$PAPER/figures/p4_1_authority_pipeline.svg" \
+            "$PAPER/figures/p4_2_false_promotion.svg" \
+            "$PAPER/figures/p4_3_coverage_frontier.svg" \
+            "$PAPER/figures/p4_4_detection_by_attack.svg" \
+            "$PAPER/figures/p4_5_attribution_vs_support.svg" \
+            "$PAPER/figures/p4_6_cost_false_promotion.svg" \
+            "$PAPER/tables" \
+            "$PAPER/reproducibility" \
+            "$PAPER/manuscript/main.tex" \
+            "$PAPER/manuscript/bibliography.bib" \
+            "$PAPER/submission/TARGET_JOURNAL_V1.md" \
+            "$PAPER/submission/COVER_LETTER_V1.md" \
+            "$PAPER/submission/SUBMISSION_FORMAT_V1.md" \
+            "$PAPER/submission/SUBMISSION_CHECKLIST_V1.md"
+          (cd "$RUNNER_TEMP/release" && sha256sum ORION-P4-final.pdf FINAL_PDF_AUDIT_V1.json p4-public-reproducibility-v1.tar.gz RELEASE_COMMIT.txt > SHA256SUMS.txt)
+
+      - name: Create permanent GitHub release archive
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          COMMIT=$(cat "$RUNNER_TEMP/release/RELEASE_COMMIT.txt")
+          gh release create "$RELEASE_TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$COMMIT" \
+            --title 'ORION-P4 peer-review-ready artifact v1' \
+            --notes $'Permanent public archive for ORION Paper IV accepted protected campaign 31968809206.\n\nIncludes the independently audited final PDF, audit receipt, safe content-addressed evidence, public replay/reproduction package, protocol, claim ledgers, comparator/ablation definitions, public release slices, figures/tables and SHA-256 checksums. Protected raw hidden-label verdicts and syscall traces remain in protected custody and are referenced by the artifact index rather than republished.\n\nThis GitHub Release satisfies the permanent-archive branch of the journal gate. No DOI is assigned or claimed by this release.' \
+            "$RUNNER_TEMP/release/ORION-P4-final.pdf" \
+            "$RUNNER_TEMP/release/FINAL_PDF_AUDIT_V1.json" \
+            "$RUNNER_TEMP/release/p4-public-reproducibility-v1.tar.gz" \
+            "$RUNNER_TEMP/release/RELEASE_COMMIT.txt" \
+            "$RUNNER_TEMP/release/SHA256SUMS.txt"
+          gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json tagName,targetCommitish,url,assets > "$RUNNER_TEMP/release/RELEASE_RECEIPT.json"
+          cat "$RUNNER_TEMP/release/RELEASE_RECEIPT.json"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p4-release-receipt-${{ github.run_id }}
+          path: ${{ runner.temp }}/release
+          if-no-files-found: error
+          retention-days: 90
