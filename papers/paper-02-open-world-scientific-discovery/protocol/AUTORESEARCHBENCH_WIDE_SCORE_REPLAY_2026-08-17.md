@@ -1,0 +1,3 @@
+# AutoResearchBench Wide scorer-only replay — 2026-08-17
+
+The 400-task candidate execution from Actions run `31975808402` completed and was archived, but the official scorer process failed before reading candidate output because the workflow omitted the upstream `tiktoken` runtime dependency. This replay downloads the immutable candidate/trace artifact, verifies its hashes against the frozen run manifest, reconstructs the evaluator-only Wide gold from the pinned benchmark bundle and verifies the reconstructed public/gold hashes against the original split manifest, then runs the pinned official deterministic scorer. No provider search is repeated.
