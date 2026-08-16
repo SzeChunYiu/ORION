@@ -421,8 +421,23 @@ class SelfDrivingDriver:
             saturation = assess_saturation(
                 growth, basis, required_flat_rounds=self.flat_rounds_to_stop
             )
-            if saturation.verdict is SaturationVerdict.A_PRIORI_FRAME_FLAT:
+            if saturation.verdict in {
+                SaturationVerdict.A_PRIORI_FRAME_FLAT,
+                SaturationVerdict.PARTIALLY_IDENTIFIED_LINEAGE,
+            }:
+                # Starvation is checked first because it is the more specific
+                # diagnosis: a window that never asked explains the flatness,
+                # whereas unidentified lineage only says the flat rounds cannot
+                # testify to each other.
                 stop_reason = self._flat_stop_reason(cells, outcome)
+                if (
+                    stop_reason == "a_priori_frame_flat"
+                    and saturation.verdict
+                    is SaturationVerdict.PARTIALLY_IDENTIFIED_LINEAGE
+                ):
+                    # Nothing moved, but nothing was bound either. Stopping is
+                    # still right; calling it saturation is not.
+                    stop_reason = "flat_lineage_unidentified"
                 break
 
         final_open = (
