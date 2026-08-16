@@ -80,13 +80,24 @@ the one censored \texttt{CANNOT\_CHECK} case into an asserted completion and a
 premature-closure failure.  The distinction is therefore one of epistemic
 safety rather than headline recall.
 
+\begin{figure}[t]
+\centering
+\input{figures/P2-6_stopping_failures}
+\caption{\textbf{Figure P2-6.} Terminal premature-closure classifications for
+selected stopping-safety controls in the frozen 20-task offline companion.  The
+plot is generated from the immutable publication summary.  It shows task counts,
+not an inferential estimate; lower-precedence failure mechanisms can be masked by
+the evaluator's terminal-failure precedence.}
+\label{fig:p2-6}
+\end{figure}
+
 \subsection{Failure analysis and external status}
 Under the evaluator's fixed terminal-failure precedence, premature closure is
 the dominant failure class in the controlled companion; the exploratory
 adaptive comparator also exposes three transport-failure classifications, while
 the no-dedup ablation exposes five budget-exhaustion failures.  Full ORION has no
 terminal failure classification: 19 tasks pass and one is censored.  The full
-per-system taxonomy is archived beside the publication summary.
+per-system taxonomy is archived beside the publication summary as Table P2-3.
 
 No external Wide, Deep, MetaSyn or SAGE performance result is reported in this
 revision.  The access audit establishes that AutoResearchBench Wide scoring is
