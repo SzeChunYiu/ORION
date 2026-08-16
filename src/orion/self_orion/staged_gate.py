@@ -107,6 +107,11 @@ from orion.providers.development.base import (
 )
 from orion.self_orion.change_control import ChangeControlVerdict
 
+#: Additive V2 surface (issue #136): unconsumed by design until separately
+#: execution-frozen. Being imported by a V1-frozen module is the defect here,
+#: not being unconsumed — `orion.adoption` checks that direction.
+ADOPTION_BOUNDARY = "V2_ADDITIVE"
+
 GATE_ID = "orion.p5.v2.staged-gate"
 META_OVERFIT_REASON = "meta_overfit:development_gain_with_assurance_regression"
 

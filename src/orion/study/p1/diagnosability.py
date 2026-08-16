@@ -66,6 +66,11 @@ from enum import Enum
 from orion.core.residuals import Responsibility
 from orion.kernel.store import canonical_bytes
 
+#: Additive V2 surface (issue #136): unconsumed by design until separately
+#: execution-frozen. Being imported by a V1-frozen module is the defect here,
+#: not being unconsumed — `orion.adoption` checks that direction.
+ADOPTION_BOUNDARY = "V2_ADDITIVE"
+
 SCHEMA_VERSION = "orion.p1.v2.diagnosability.v1"
 
 # Decimal places every float in a payload is rounded to before serialisation.

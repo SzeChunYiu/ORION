@@ -109,6 +109,11 @@ from .diagnosability import (
 )
 from .harness import PROTOCOL_PATH, UNBOUND, protocol_id
 
+#: Additive V2 surface (issue #136): unconsumed by design until separately
+#: execution-frozen. Being imported by a V1-frozen module is the defect here,
+#: not being unconsumed — `orion.adoption` checks that direction.
+ADOPTION_BOUNDARY = "V2_ADDITIVE"
+
 SCHEMA_VERSION = "orion.p1.v2.license-receipt.v1"
 
 # --------------------------------------------------------------------------
