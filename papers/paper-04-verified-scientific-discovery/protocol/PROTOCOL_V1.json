@@ -2,7 +2,7 @@
   "schema_version": "orion.publication-protocol.v1",
   "paper_id": "P4",
   "protocol_id": "P4.protected-authority.v1",
-  "protocol_status": "DESIGN_FROZEN",
+  "protocol_status": "EXECUTION_FROZEN",
   "outcome_accessed": false,
   "primary_hypothesis": {
     "id": "P4.H1",
@@ -84,12 +84,16 @@
   "plots": ["P4-1_authority_pipeline", "P4-2_false_promotion", "P4-3_coverage_false_promotion_frontier", "P4-4_detection_by_attack", "P4-5_attribution_vs_support", "P4-6_cost_false_promotion"],
   "tables": ["P4-T1_attack_custody_manifest", "P4-T2_baseline_ablation_results", "P4-T3_cannot_check_and_errors"],
   "execution_bindings": {
-    "subject_revision": "UNBOUND",
-    "dataset_revisions": {"public_claim_evidence": "UNBOUND", "protected_attack_set": "UNBOUND", "clean_positive_set": "UNBOUND"},
-    "model_provider_revisions": "UNBOUND",
-    "baseline_config_hashes": "UNBOUND",
-    "evaluator_hash": "UNBOUND",
-    "split_hashes": "UNBOUND",
-    "evaluation_epoch": "UNBOUND"
+    "subject_revision": "46977ea104162c4cf64da8138a4c4759065fe6d4",
+    "dataset_revisions": {
+      "public_claim_evidence": "3ac0bdff2c79a56e82148ffee8478ea3320f8ed0013852ea964a8b1218a87d37",
+      "protected_attack_set": "66d19d6e4b2756393e6a39539a388a8f312448538b180fd789c7dbd6a882c1eb",
+      "clean_positive_set": "6e3f56806e69e1ea0878d133601b0cb83b61ed8cd92954f3d1476c5523ea828d"
+    },
+    "model_provider_revisions": "deterministic/no-LLM; subject-archive-sha256=4605bfd7d658018a2759ab43d7dd444ab74200adb8f98a8de485677bd09d98c5",
+    "baseline_config_hashes": "85871602539250e2a749f451439e978c34de9300c4c17370a29a5010d3d422fb",
+    "evaluator_hash": "2182da8c4bdccac6d344d51359db05914b6c12c1743d8b2daf8bb7777e514253",
+    "split_hashes": "77bfdd211093a99f419d4e5f027d516f8cf399b97e8507b473605917f2b370d5",
+    "evaluation_epoch": "2026-08-16T19:15:50Z"
   }
 }
