@@ -118,6 +118,24 @@ def _text(node: ElementTree.Element | None) -> str:
     return " ".join(node.text.split()) if node is not None and node.text else ""
 
 
+def _versioned_arxiv_id(raw_id: str) -> str:
+    """Preserve the complete versioned arXiv identifier from an Atom entry.
+
+    Modern identifiers have no slash after ``/abs/`` and were safe to obtain via
+    ``rsplit('/', 1)``. Legacy identifiers include their archive/category prefix,
+    for example ``hep-th/9901001v2``. Taking only the final path component loses
+    ``hep-th/`` and makes a retrieved legacy paper impossible to match against a
+    correct scorer-side identifier. Keep the full ``/abs/`` tail whenever the
+    canonical Atom form supplies it; retain the historical fallback for unusual
+    but otherwise resolvable feeds.
+    """
+
+    marker = "/abs/"
+    if marker in raw_id:
+        return raw_id.split(marker, 1)[1].strip().strip("/")
+    return raw_id.rsplit("/", 1)[-1]
+
+
 def parse_atom(body: str) -> tuple[FetchStatus, tuple[ArxivRecord, ...], str]:
     """Parse an arXiv Atom feed, distinguishing empty from broken.
 
@@ -149,7 +167,7 @@ def parse_atom(body: str) -> tuple[FetchStatus, tuple[ArxivRecord, ...], str]:
         records.append(
             ArxivRecord(
                 identity=identity,
-                versioned_id=raw_id.rsplit("/", 1)[-1],
+                versioned_id=_versioned_arxiv_id(raw_id),
                 title=title,
                 summary=summary,
                 published=_text(entry.find(f"{_ATOM}published")),
