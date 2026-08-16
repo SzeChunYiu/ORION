@@ -2,6 +2,7 @@ import json
 
 import pytest
 
+from orion.providers.experience.memory import InMemoryExperienceStore
 from orion.providers.live_phase2 import (
     PROVIDER_MANIFEST_SCHEMA,
     build_phase2_live_provider_stack,
@@ -62,7 +63,7 @@ def test_env_builder_requires_reasoner_and_protected_verifier_configuration(monk
         build_phase2_live_provider_stack_from_env(reasoner_model="reasoner")
 
 
-def test_live_harness_reuses_provider_family_and_binds_protected_verifier_artifact():
+def test_live_harness_reuses_provider_family_binds_verifier_and_records_by_default():
     stack = build_phase2_live_provider_stack(
         reasoner_api_key="reasoner-secret",
         reasoner_model="gpt-reasoner-test",
@@ -86,6 +87,21 @@ def test_live_harness_reuses_provider_family_and_binds_protected_verifier_artifa
     assert harness.runner._baseline is harness.baseline
     assert harness.runner._retrieval_recorder is not None
     assert harness.runner._retrieval_recorder._delegate is stack.retrieval
+    assert isinstance(harness.runner._orion._experience_store, InMemoryExperienceStore)
 
     with pytest.raises(ValueError, match="must match"):
         build_live_phase2_trial_harness(stack, evaluator_artifact_hash="c" * 64)
+
+
+def test_live_harness_preserves_explicit_host_experience_store():
+    stack = build_phase2_live_provider_stack(
+        reasoner_api_key="reasoner-secret",
+        reasoner_model="gpt-reasoner-test",
+        protected_verifier_endpoint="https://verifier.example.test/v1/verify",
+        protected_verifier_token="verifier-secret",
+        evaluator_artifact_hash="b" * 64,
+        evaluation_epoch_id="epoch:frozen",
+    )
+    store = InMemoryExperienceStore()
+    harness = build_live_phase2_trial_harness(stack, experience_store=store)
+    assert harness.runner._orion._experience_store is store
