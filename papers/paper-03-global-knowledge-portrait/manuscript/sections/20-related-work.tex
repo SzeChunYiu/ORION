@@ -1,0 +1,178 @@
+% Related work: absorb all 13 mechanism families, retain narrow residual.
+ORION Paper III's contribution is deliberately narrow. Rather than claiming
+novelty in any single mechanism --- extraction, schema matching, data
+integration, contradiction detection, or literature-based discovery --- we
+situate each as absorbed prior work and identify the precise residual.
+
+\subsection{Structured scientific knowledge bases and extraction}
+
+MUSE~\cite{muse2026} constructs a full-text cross-domain knowledge base of
+scientific problems, solutions, and rationales, grounding each structure in
+its originating sentences. Through this mechanism, source-grounded
+cross-domain structured knowledge extraction is absorbed as prior art.
+However, MUSE produces a single problem/solution/rationale structure per
+source; it does not distinguish referent, construct, measurement, context,
+modality, and attribution as separate typed hypotheses, nor does it
+represent the failure to align as an obstruction. The Discovery
+Engine~\cite{discoveryEngine2025} similarly builds structured scientific
+knowledge artifacts from literature. Both are valuable inputs and baselines
+for ORION, not competitors to be contested.
+
+SciER~\cite{scier2024} provides full-text scientific entity and relation
+annotations and establishes the extraction quality bar for datasets,
+methods, and tasks in scientific documents. Scientific information
+extraction, discourse parsing, coreference resolution, and modality
+detection are absorbed mechanisms. Its flat entity/relation extraction does
+not, by itself, represent the participation of typed coordinates in a
+\textsc{glue}-or-obstruction decision; the extraction is a baseline, and the
+\emph{vertical} separation of semantic coordinates is residual.
+
+\subsection{Schema-centric approaches}
+
+SciSchema.org~\cite{scischema2026} provides expert-designed
+multidisciplinary scientific-process schemas with explicit parameters,
+measurements, and provenance --- absorbing multidisciplinary expert schema
+design. Its schemas are static per discipline, whereas ORION treats schemas
+as \emph{source-local, composable, and obstruable} projections assembled per
+research question (residual D1). Expert-designed schemas do not by
+themselves guarantee traceability of the path from source to schema
+(residual D4).
+
+SCOPE and SCION~\cite{scopes2026} introduce a benchmark and an auditable
+reference pipeline for evidence-linked schema induction and fusion. Schema
+induction and conservative fusion are absorbed. SCOPE/SCION fuses schemas to
+produce a single integrated schema, whereas ORION's \textsc{glue}-or-obstruction
+semantics (residual D3) permit fusion only when all relevant coordinates are
+compatible; otherwise an obstruction or plural portrait is the correct
+output. SCOPE/SCION does not represent measurement/operationalization
+equivalence as a separate coordinate or track non-preserved information.
+
+Executable Schema Contracts~\cite{schemaContracts2026} demonstrate
+provenance-aware shared-schema integration and retrieval. Provenance-aware
+multi-source knowledge integration and retrieval under schema constraints
+are absorbed. However, Executable Schema Contracts assume a shared schema
+exists or can be derived; ORION allows the case where no shared schema is
+justified, producing an obstruction (residual D3), and it extends
+recoverability beyond provenance to include \emph{non-preserved
+coordinates} (residual D4).
+
+\subsection{Alignment, integration, and resolution}
+
+Ontology and schema matching~\cite{euzenat2007ontology} pairs---including
+LLM-based matching such as LLMatch~\cite{llmatch2025}---find correspondences
+between schemas or ontologies. The mechanism of finding correspondences is
+absorbed. Alignment methods typically produce a single equivalence or
+subsumption relation, whereas ORION's D2 distinguishes referent, construct,
+measurement, and context as \emph{separate alignment axes}: two schemas may
+align at the construct level yet differ at the measurement level. Alignment
+methods do not produce preservation conditions (D4) or obstruction verdicts
+(D3).
+
+Data integration, entity resolution, and record linkage
+\cite{oh2017unified,liu2022scholar} assume a shared referent and produce a
+fused record. ORION's D3 admits cases where the correct output is not a
+fused record, and D2 distinguishes same-referent/different-construct cases
+that data integration collapses into a single alignment score. Federated and
+multimodel knowledge graphs \cite{liu2022scholar} treat each graph as
+canonical for its domain, whereas ORION treats each source as a local,
+non-canonical projection (D1) and tracks what is lost in any mapping (D4).
+
+\subsection{Claim comparison and contradiction}
+
+Contradiction and stance detection \cite{raghunathan2022stance} typically
+produce a binary contradiction/non-contradiction or stance label. ORION
+distinguishes contradiction from \emph{context difference}, \emph{modality
+difference}, \emph{measurement difference}, and \emph{attribution
+difference} --- each of which a standard system might label as
+``contradiction.'' Only true contradiction (after all coordinates are
+aligned) should trigger a revision; the other differences are informative
+obstructions or condition-aligned mappings.
+
+\subsection{Measurement equivalance and construct validity}
+
+The psychometric and metrological literatures on measurement equivalence,
+construct validity, and invariance testing \cite{sebastian2017measurement}
+have long established that constructs and their operationalizations are
+distinct. ORION does not claim to discover this fact; it claims to
+represent it as a first-class typed coordinate in an automated integration
+pipeline and to make the \textsc{glue}-or-obstruction decision depend on it. The
+measurement-equivalence literature does not provide a generic computational
+representation that plugs into a knowledge integration system.
+
+\subsection{Literature-based discovery}
+
+Swanson's A-B-C bridging \cite{swanson1986} and later systems find implicit
+connections between literatures that do not cite each other. The mechanism
+of discovering bridges is absorbed. ORION adds the requirement that the
+meaning of the bridging concept B be checked for compatibility across both
+halves of the bridge before the composition is accepted: if B changes
+meaning (referent, construct, measurement, or context) between A-B and B-C,
+the bridge is an obstruction, not a discovery. This is the residual D2/D3
+applied to literature-based discovery.
+
+\subsection{Scientific pluralism}
+
+The philosophy of science literature on scientific pluralism
+\cite{kellert2006,cartwright1999,chang2012} has argued for decades that
+multiple incompatible scientific representations can each be valid and
+that forced unification is harmful. ORION does not claim to discover
+pluralism; it claims that an automated integration system can
+\emph{represent} pluralism as a first-class output --- \textsc{obstruction} or
+\textsc{plural\_view} --- rather than being forced to produce a single
+unified answer. The computational implementation of a pluralism principle
+is the residual.
+
+\subsection{Scientific RAG and cross-domain synthesis}
+
+OpenScholar~\cite{openScholar2024} synthesizes scientific literature with
+retrieval-augmented generation; BioSage~\cite{biosage2025} performs
+cross-domain scientific reasoning. Scientific RAG and cross-domain
+translation are absorbed mechanisms, and serve as strong baselines in our
+evaluation. LLM-based structured extraction, in-context integration, and
+prompt-based schema alignment \cite{adias2026} are likewise absorbed.
+These systems typically invoke a single prompt or schema to extract and
+integrate, implicitly flattening source projections into a canonical
+representation. ORION's architectural invariants --- typed coordinates,
+\textsc{glue}-or-obstruction, recoverability --- are orthogonal to the prompt
+engineering question and are testable as additive components on top of any
+backbone. Whether these invariants measurably reduce false integration
+relative to flat integration is the empirical question our gold study
+answers.
+
+\subsection{Summary of the absorbed boundary and residual}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{p{0.32\textwidth}p{0.28\textwidth}p{0.28\textwidth}}
+\toprule
+\textbf{Mechanism family} & \textbf{Absorbed (related work)} & \textbf{ORION residual} \\
+\midrule
+Source-grounded structured KB & MUSE, Discovery Engine & Source-local addressable projections (D1) \\
+Expert scientific schemas & SciSchema.org & Composable, obstruable projections (D1) \\
+Schema induction/fusion & SCOPE/SCION & Conditional GLUE; obstruction (D3) \\
+Provenance integration & Executable Schema Contracts & Non-preserved coordinates (D4) \\
+Scientific IE & SciER & Typed coordinates gate integration (D2) \\
+Ontology/schema alignment & Ontology matching, LLMatch & Separate alignment axes (D2) \\
+Measurement equivalence & Psychometrics, metrology & First-class computational coordinate (D2) \\
+Data integration & Record linkage, data fusion & Non-merge outputs; recoverability (D3,D4) \\
+Contradiction detection & Stance/contradiction systems & Coordinate-resolved contradiction \\
+Literature-based discovery & Swanson lineage & Meaning-stability check on bridges (D2,D3) \\
+Scientific pluralism & Philosophy of science & Computational representation (D3) \\
+Scientific RAG / cross-domain & OpenScholar, BioSage & Testable additive invariants \\
+FM-based KG representation & Discovery Engine, ADIAS & Architectural invariants vs prompt engineering \\
+\bottomrule
+\end{tabular}
+\caption{The absorbed boundary. Each mechanism family is prior art; the
+residual is the last column.}
+\label{tab:absorbed}
+\end{table}
+
+We do not claim novelty in any row of the middle column. The claimed
+contribution is that the combination of typed coordinate distinctions,
+conditional \textsc{glue} with typed obstruction and plural portraits,
+recoverability, and the W effect is not addressed by any single prior
+mechanism, and that this combination can be evaluated as a measurable
+reduction in false integration. Table~\ref{tab:absorbed} summarizes the
+boundary.
+\endinput

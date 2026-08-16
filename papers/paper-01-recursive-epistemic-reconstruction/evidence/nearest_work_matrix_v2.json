@@ -1,0 +1,392 @@
+{
+  "generated_from": "ORION-P1 journal-readiness Step 1 (GitHub issue SzeChunYiu/ORION#98) nearest-work/novelty pass, 2026-08-16. Method: direct retrieval of arxiv.org/abs and arxiv.org/html pages plus function-only web search (no searches on 'ORION' or paper titles). Every arXiv identifier was resolved to a live abstract page and cross-checked for title/author/date before entry; entries with body_checked=true were additionally verified against full text rather than the abstract. Machine-readable twin of NEAREST_WORK_MATRIX_V2.md (publication Table P1-T1, called Table P1-1 in JOURNAL_READINESS.md section 6).",
+  "disposition_counts": {
+    "ADOPT": 19,
+    "ADAPT": 4,
+    "COMPOSE": 7,
+    "DEFER": 3,
+    "REJECT": 1,
+    "total": 34
+  },
+  "mechanisms": [
+    {
+      "mechanism": "Recursive constraint-wise audit of a candidate answer with targeted follow-up research",
+      "source": "AREX: Towards a Recursively Self-Improving Agent for Deep Research (Lu et al., 23 Jul 2026)",
+      "arxiv_id": "2607.21461",
+      "body_checked": false,
+      "does": "Exploits the asymmetry that verifying a candidate decomposes into tractable constraint-wise checks while discovery is costly; recursively refines answers through constraint-based audits and targeted research iterations.",
+      "disposition": "ADOPT",
+      "claim_effect": "Strikes 'recursive audit + targeted follow-up' from ORION novelty outright; ORION may not claim recursive follow-up research as a delta."
+    },
+    {
+      "mechanism": "Autonomous context-update compressing interaction history into a compact state",
+      "source": "AREX (Lu et al., 23 Jul 2026)",
+      "arxiv_id": "2607.21461",
+      "body_checked": false,
+      "does": "Compresses long-horizon interaction history into a compact retained state across research iterations.",
+      "disposition": "ADOPT",
+      "claim_effect": "Strikes 'compact persistent research state' from novelty."
+    },
+    {
+      "mechanism": "Staged dependency-aware Research Execution Plan (REP)",
+      "source": "SCION / Rethinking Scientific Discovery in the Agentic Era (Zheng et al., 4 Jul 2026; v2 7 Jul 2026)",
+      "arxiv_id": "2607.03863",
+      "body_checked": false,
+      "does": "Compiles high-level scientific intent into staged objectives, dependencies, verification checkpoints, tool requirements, expected artifacts and fallback conditions; adds hierarchical multi-agent execution, governed delegation and layered epistemic memory.",
+      "disposition": "ADOPT",
+      "claim_effect": "Strikes structured/dependency-aware scientific planning from novelty. UNRESOLVED: whether a failed checkpoint reopens completed upstream stages or only falls forward to a precompiled fallback (see verification_gaps)."
+    },
+    {
+      "mechanism": "Target-conditioned inverse search extended to hidden-target settings via batch active search",
+      "source": "SCION (Zheng et al., 4 Jul 2026)",
+      "arxiv_id": "2607.03863",
+      "body_checked": false,
+      "does": "Formulates discovery as inverse search conditioned on a target and handles unknown targets through batch active search under finite experimental budgets.",
+      "disposition": "DEFER",
+      "claim_effect": "Adjacent to ORION's hidden-shift framing, but a hidden target inside a fixed candidate space is not a wrong search space. Mechanism body unverified; cannot yet be used as a baseline or a strike."
+    },
+    {
+      "mechanism": "Evolving information state of revisable claims with explicit scope and status",
+      "source": "Iris / Beyond Solution-Centric Search: Adaptive Inquiry and Knowledge Revision for Autonomous ML Engineering (Fu et al., 3 Aug 2026)",
+      "arxiv_id": "2608.02143",
+      "body_checked": true,
+      "does": "Each record holds a claim, its scope of applicability, supporting- and refuting-evidence pointer sets and a current status; revision operators are Add, Update and Invalidate, with status moving from active to qualified as scope narrows.",
+      "disposition": "ADOPT",
+      "claim_effect": "Strikes the K half of P1.D1. An explicit, typed, revisable knowledge state with scoped claims is built and evaluated; ORION may not claim it."
+    },
+    {
+      "mechanism": "Epistemic actions decoupled from solution modification",
+      "source": "Iris (Fu et al., 3 Aug 2026)",
+      "arxiv_id": "2608.02143",
+      "body_checked": true,
+      "does": "Separates interventional actions that construct or modify candidate solutions from epistemic actions that produce discriminative evidence without modifying the retained solution, targeting decision-critical unknowns.",
+      "disposition": "ADOPT",
+      "claim_effect": "Strikes 'separating evidence acquisition from solution/formulation change' as a delta; independently confirms the repair ORION's own falsifier forced (evidence responsibility routes to acquisition, not rewrite)."
+    },
+    {
+      "mechanism": "Attribution of a failure to which specific claim in the knowledge state is wrong",
+      "source": "Iris (Fu et al., 3 Aug 2026)",
+      "arxiv_id": "2608.02143",
+      "body_checked": true,
+      "does": "Epistemic diagnosis localizes the wrong belief and rewrites it; e.g. new evidence invalidates claim K1 and adds a replacement explanation K3.",
+      "disposition": "ADOPT",
+      "claim_effect": "Narrows P1.D2 hard: attributing failure to which belief is wrong is done. Only the typing of the target by formulation coordinate remains."
+    },
+    {
+      "mechanism": "Diagnosis of whether a prior failure was a faulty implementation or a bad hypothesis",
+      "source": "Learning the ARTS of Search for Automated Discovery (Juneja, Jain, Nathani, Wang, Wang; 20 Jun 2026)",
+      "arxiv_id": "2606.21891",
+      "body_checked": false,
+      "does": "Inspects prior execution logs, diagnoses whether earlier failures arose from faulty implementations or bad hypotheses, and selects which hypothesis to build on next; navigates the hypothesis space without restructuring it.",
+      "disposition": "ADOPT",
+      "claim_effect": "Strikes the binary execution-vs-hypothesis responsibility split from P1.D2; ORION's residual is strictly the finer typed split and the licensing rule it implies."
+    },
+    {
+      "mechanism": "Downstream dependency tracing and regeneration of the affected subgraph",
+      "source": "EviGraph: Evidence-Guided Autonomous Research Agents (Ren et al., 5 Aug 2026)",
+      "arxiv_id": "2608.04738",
+      "body_checked": true,
+      "does": "A node is weak if its attributes and a connected node's fail the relation type's semantic constraints. Each repair group holds the weak node plus its subordinate downstream nodes; the planner removes the subordinates, repairs the weak node, regenerates the affected nodes in dependency order, and version-checks the graph after each group. Problem and Gap nodes are immutable anchors during the ordinary repair loop.",
+      "disposition": "ADOPT",
+      "claim_effect": "Strikes P1.D3 as an independent delta. Dependency-directed reopening of stale closure already exists inside a 2026 autonomous research agent; what EviGraph explicitly excludes is reopening caused by a change to the problem statement itself."
+    },
+    {
+      "mechanism": "Content-anchored staleness detection with claim withdrawal under upstream drift",
+      "source": "EA-Graph: Artifact-Anchored Verification Memory for Coding Agents under Upstream Drift (Hsu, Chi, Everett; Aug 2026)",
+      "arxiv_id": "2608.04278",
+      "body_checked": true,
+      "does": "Anchors each verification claim to the content used to establish it via sub-path-granular content hashing; tracks freshness independently of evidence strength; returns unaffected, affected or unprovable, recording a claim as unprovable rather than guessing when replacement content is unavailable.",
+      "disposition": "ADOPT",
+      "claim_effect": "Reinforces the P1.D3 strike in the coding-agent setting; its unprovable outcome is the same shape as ORION's CANNOT_CHECK, so ORION's fail-closed semantics is also not a standalone delta."
+    },
+    {
+      "mechanism": "Dependency-directed backtracking; justification-based truth maintenance",
+      "source": "Doyle, A Truth Maintenance System, Artificial Intelligence 12:231-272, 1979",
+      "arxiv_id": null,
+      "body_checked": false,
+      "does": "Maintains a network of nodes and justifications; on contradiction, identifies the responsible assumption and automatically invalidates every dependent conclusion resting on the retracted justification.",
+      "disposition": "ADOPT",
+      "claim_effect": "Confirms scoped invalidation on upstream change is a ~47-year-old named mechanism; P1.D3 cannot be novel as a mechanism at any level."
+    },
+    {
+      "mechanism": "Assumption-based truth maintenance over environments and labels",
+      "source": "de Kleer, An Assumption-based TMS, Artificial Intelligence 28:127-162, 1986",
+      "arxiv_id": null,
+      "body_checked": false,
+      "does": "Manipulates assumption sets rather than only justifications, labelling each datum with the environments under which it holds so multiple contexts coexist without full retraction.",
+      "disposition": "COMPOSE",
+      "claim_effect": "Supplies the multi-context form ORION needs when a reframe is provisional; removes 'hold competing formulations simultaneously' from novelty."
+    },
+    {
+      "mechanism": "Minimal-change belief revision, contraction and epistemic entrenchment",
+      "source": "Alchourron, Gardenfors & Makinson, On the Logic of Theory Change: Partial Meet Contraction and Revision Functions, The Journal of Symbolic Logic 50(2):510-530, 1985",
+      "arxiv_id": null,
+      "body_checked": false,
+      "does": "Models expansion, contraction and revision of a belief set under a minimal-change principle, ordering beliefs by epistemic entrenchment so least-entrenched beliefs are surrendered first.",
+      "disposition": "ADAPT",
+      "claim_effect": "The formal parent of ORION's revision semantics; ORION's K update rules must be presented as an instance of belief revision, not as an invention."
+    },
+    {
+      "mechanism": "Change impact analysis over requirements traceability links",
+      "source": "Systems-engineering change impact analysis and requirements traceability literature/practice",
+      "arxiv_id": null,
+      "body_checked": false,
+      "does": "Records trace links between requirements, design and test artifacts, then traces potential impacts of a proposed change through structural and semantic dependencies to identify affected components.",
+      "disposition": "ADOPT",
+      "claim_effect": "The engineering form of scoped invalidation is standard practice; reinforces the P1.D3 strike from the parent discipline."
+    },
+    {
+      "mechanism": "Regression test selection and incremental build invalidation by transitive closure",
+      "source": "Legunsen, Shi & Marinov, STARTS: STAtic Regression Test Selection, ASE 2017, pp. 949-954; incremental build systems",
+      "arxiv_id": null,
+      "body_checked": false,
+      "does": "Builds a dependency graph over program types/modules and selects as impacted every test reachable from a changed type in the transitive closure; incremental builds skip steps whose dependencies are unchanged.",
+      "disposition": "ADOPT",
+      "claim_effect": "Second independent parent-discipline strike on P1.D3: invalidating exactly the dependents of what changed is routine engineering."
+    },
+    {
+      "mechanism": "Requirements verification matrix in which an empty cell is a defect",
+      "source": "NASA Systems Engineering Handbook SP-2016-6105 Rev 2, Appendix D; NASA SWEHB SWE-072 bidirectional traceability",
+      "arxiv_id": null,
+      "body_checked": false,
+      "does": "Requires bidirectional traceability between requirements and verification procedures; the matrix must contain no empty cells, since a missing relationship is itself a defect obliging a new verification procedure.",
+      "disposition": "ADAPT",
+      "claim_effect": "Strikes the generic form of P1.D4: 'unfilled cell mechanically generates an obligation' is the traceability-matrix discipline. ORION's variant differs only in the audited object and in emitting typed research questions rather than test procedures."
+    },
+    {
+      "mechanism": "Recursive and iterative decomposition with interfaces and V&V planning",
+      "source": "NASA Systems Engineering Handbook SP-2016-6105 Rev 2",
+      "arxiv_id": null,
+      "body_checked": false,
+      "does": "Decomposes a system recursively, fixes interfaces, and carries verification and validation obligations between parent and child levels.",
+      "disposition": "ADOPT",
+      "claim_effect": "Recursive engineering decomposition is not an ORION delta, as already recorded in the V1 atlas."
+    },
+    {
+      "mechanism": "Named auditability dimensions for agents, including responsibility attribution",
+      "source": "Auditable Agents (Nian et al., 7 Apr 2026; v2 13 Aug 2026)",
+      "arxiv_id": "2604.05485",
+      "body_checked": false,
+      "does": "Defines five dimensions of agent auditability: action recoverability, lifecycle coverage, policy checkability, responsibility attribution and evidence integrity.",
+      "disposition": "COMPOSE",
+      "claim_effect": "Agent self-audit and responsibility attribution are named, surveyed properties; ORION's contribution cannot be 'the agent audits itself'."
+    },
+    {
+      "mechanism": "Automated failure attribution to the responsible agent and decisive step",
+      "source": "Which Agent Causes Task Failures and When? (Zhang et al., 30 Apr 2025); Who&When Pro (Liu et al., 10 Jul 2026)",
+      "arxiv_id": "2505.00212, 2607.09996",
+      "body_checked": false,
+      "does": "Annotates trajectories with the failure-responsible agent and the decisive error step and benchmarks LLM attribution against those golden labels; the attribution target is agent identity and step location, not a typed cause category.",
+      "disposition": "COMPOSE",
+      "claim_effect": "Establishes failure attribution as a mature sub-field so ORION cannot claim attribution per se; confirms the literature's attribution target is agent/step, leaving formulation-coordinate typing open."
+    },
+    {
+      "mechanism": "Empirical failure-mode taxonomy for multi-agent LLM systems (MAST)",
+      "source": "Why Do Multi-Agent LLM Systems Fail? (Cemri et al., 17 Mar 2025)",
+      "arxiv_id": "2503.13657",
+      "body_checked": false,
+      "does": "Derives 14 failure modes clustered into three categories - system design issues, inter-agent misalignment, and task verification - from expert-annotated traces across seven multi-agent frameworks.",
+      "disposition": "COMPOSE",
+      "claim_effect": "The closest taxonomic neighbour to typed responsibility and the sharpest constraint on P1.D2. MAST classifies an observed failure into a descriptive mode but attaches no rewrite permission to the class. Correction to an earlier reading: the third category is 'task verification', not 'task interpretation'; whether any of the 14 modes targets a formulation coordinate is not established from the abstract and must be checked before P1.D2 is defended in print."
+    },
+    {
+      "mechanism": "Progressive agentic tree search with a dedicated experiment-manager agent",
+      "source": "The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search (Yamada et al., 10 Apr 2025)",
+      "arxiv_id": "2504.08066",
+      "body_checked": false,
+      "does": "Runs an end-to-end hypothesis, experiment, analysis and manuscript cycle without human code templates, managed by an experiment-manager agent over a progressive agentic tree search, with a VLM reviewer feedback loop.",
+      "disposition": "ADOPT",
+      "claim_effect": "Already absorbed in V1; tree search and end-to-end automated science remain excluded from ORION novelty."
+    },
+    {
+      "mechanism": "Role-specialized generate/debate/evolve hypothesis production with tournament ranking",
+      "source": "Towards an AI co-scientist (Gottweis et al., 2025)",
+      "arxiv_id": "2502.18864",
+      "body_checked": false,
+      "does": "Multi-agent system on Gemini 2.0 with generation, reflection, ranking, evolution, proximity and meta-review roles, an asynchronous task framework for compute scaling, and a tournament evolution process for self-improving hypothesis generation.",
+      "disposition": "ADAPT",
+      "claim_effect": "Multi-role scientific reasoning is not an ORION delta; tournament/Elo standing is proposal-ranking evidence and never scientific authority. Repairs a repository defect: the atlas carried this work with no identifier."
+    },
+    {
+      "mechanism": "Structured world model shared across literature-search and data-analysis agents",
+      "source": "Kosmos: An AI Scientist for Autonomous Discovery (Mitchener et al., 4 Nov 2025)",
+      "arxiv_id": "2511.02824",
+      "body_checked": false,
+      "does": "Uses a structured world model to share information between a data-analysis agent and a literature-search agent, sustaining one objective across roughly 200 rollouts and 20 cycles with statement-level citation traceability.",
+      "disposition": "ADOPT",
+      "claim_effect": "Structured world models and long-horizon coordination are excluded from ORION novelty. Whether the world model can revise the objective is not established from the abstract and is not asserted."
+    },
+    {
+      "mechanism": "Persistent hypothesis tree with falsified-subtree pruning",
+      "source": "Toward Generalist Autonomous Research via Hypothesis-Tree Refinement (Arbor, 10 Jun 2026)",
+      "arxiv_id": "2606.11926",
+      "body_checked": true,
+      "does": "Stores research state in a persistent hypothesis tree expanded by a long-running coordinator with short-lived isolated executors; prunes subtrees directly falsified by evidence but implements no cascading invalidation of downstream dependents when an ancestor shifts.",
+      "disposition": "COMPOSE",
+      "claim_effect": "Strongest external confirmation the formulation gap is real: the authors state Arbor is less reliable when progress requires a new high-level formulation, and that high-level formulation stayed weakly connected to the tree and dependent on prior human judgment. A strong Paper-I baseline and evidence ORION did not invent the gap."
+    },
+    {
+      "mechanism": "Position argument that agentic AI scientists are not built for autonomous discovery",
+      "source": "Agentic AI Scientists Are Not Built For Autonomous Scientific Discovery (Bisht, Kumar, Jablonka, Mausam, Krishnan; 9 May 2026)",
+      "arxiv_id": "2605.08956",
+      "body_checked": false,
+      "does": "Argues current AI scientists function only as co-scientists, citing McNamara-fallacy problem selection, missing tacit failure knowledge, diversity compression from preference optimization and benchmarks lacking experimental feedback; recommends persistent world models representing the shifting objectives that govern real investigations.",
+      "disposition": "COMPOSE",
+      "claim_effect": "Independently names ORION's target gap and recommends a world model of shifting objectives; ORION must cite it as motivation and must not claim first identification of the gap."
+    },
+    {
+      "mechanism": "Reformulation as change of problem representation",
+      "source": "Reformulation Techniques for Automated Planning: A Systematic Review (Alarnaouti, Baryannis, Vallati; 24 Jan 2023); SARA symposium tradition",
+      "arxiv_id": "2301.10079",
+      "body_checked": false,
+      "does": "Re-formulates, re-represents or tunes a domain model or problem description in the same language to yield a search space easier for a planner to explore, preserving the solution set.",
+      "disposition": "ADAPT",
+      "claim_effect": "'Reformulation' is a named operation with decades of history, so the word carries no novelty. Absorbed distinction: planning reformulation is solution-preserving and efficiency-motivated, whereas ORION's is triggered by evidence the formulation is wrong and therefore changes what counts as a correct answer."
+    },
+    {
+      "mechanism": "Rational metareasoning / value of computation for reasoning budget",
+      "source": "Rational Metareasoning for Large Language Models (De Sabbata, Sumers, AlKhamissi, Bosselut, Griffiths; 7 Oct 2024)",
+      "arxiv_id": "2410.05563",
+      "body_checked": false,
+      "does": "Builds a reward function incorporating the Value of Computation that penalizes unnecessary reasoning, then trains via Expert Iteration so intermediate reasoning is used only when warranted.",
+      "disposition": "ADOPT",
+      "claim_effect": "Cost-aware stopping and value-of-computation control are excluded from ORION novelty."
+    },
+    {
+      "mechanism": "Bounded deliberation with a value-of-information halting condition for tool-using agents",
+      "source": "Cognitive Friction: A Decision-Theoretic Framework for Bounded Deliberation in Tool-Using Agents (Di Gioia, 31 Mar 2026)",
+      "arxiv_id": "2603.30031",
+      "body_checked": false,
+      "does": "Rollout-based approximation of belief-dependent value-of-information with a net-utility halting condition governing when a tool-using agent stops querying and acts.",
+      "disposition": "ADOPT",
+      "claim_effect": "Closes the agent-setting version of the metareasoning atom; ORION's stop/switch/escalate control is absorbed, not novel."
+    },
+    {
+      "mechanism": "Realistic stepwise-verified scientific-agent evaluation",
+      "source": "SciAgentArena / Benchmarking AI Agents for Addressing Scientific Challenges Across Scales (Liu et al., 10 Jun 2026)",
+      "arxiv_id": "2606.12736",
+      "body_checked": false,
+      "does": "Roughly 200 real research tasks with stepwise verification; finds agents contribute effectively to well-specified data-analysis workflows but struggle with novel insight and open-ended questions.",
+      "disposition": "ADOPT",
+      "claim_effect": "No novelty effect. Adopted as an external task source; its finding is the empirical premise for Paper I's hidden-shift hypothesis."
+    },
+    {
+      "mechanism": "Staged research pipeline with human checkpoints and cost accounting",
+      "source": "Agent Laboratory: Using LLM Agents as Research Assistants (Schmidgall et al., 8 Jan 2025)",
+      "arxiv_id": "2501.04227",
+      "body_checked": false,
+      "does": "Runs literature review, experimentation and report writing with human feedback at each stage and explicit cost measurement.",
+      "disposition": "ADOPT",
+      "claim_effect": "Stage receipts, intervention points and matched cost accounting are absorbed as protocol requirements, not claims."
+    },
+    {
+      "mechanism": "Auditable research-question certificate recording primitives, assumptions, tension, hypothesis, decisive test and failure-update rule",
+      "source": "FirstResearch: Auditable Question Formation for LLM Scientific Discovery Agents (Wang, 6 Jul 2026; WITHDRAWN 28 Jul 2026)",
+      "arxiv_id": "2607.05682",
+      "body_checked": false,
+      "does": "Emits a certificate making a proposed research question inspectable before downstream execution, including a failure update rule.",
+      "disposition": "REJECT",
+      "claim_effect": "Withdrawn by the author on 28 Jul 2026. A withdrawn preprint cannot support a nearest-work strike or a baseline; recorded so the route is closed rather than silently reopened later."
+    },
+    {
+      "mechanism": "Post-hoc dependency and execution graph over an agent run",
+      "source": "GRADE: Graph Representation of LLM Agent Dependency and Execution (Zhao, 22 Jun 2026)",
+      "arxiv_id": "2606.22741",
+      "body_checked": false,
+      "does": "Represents a run as one graph with execution edges (order) and dependency edges (what each step relied on), graded by how the dependency is known, for failure diagnosis and efficiency analysis.",
+      "disposition": "DEFER",
+      "claim_effect": "Checked and found not close: representation and post-hoc diagnosis only, with no runtime invalidation or step reopening. Does not affect any delta."
+    },
+    {
+      "mechanism": "Critic agent interrogating hypotheses by causal questioning and falsification",
+      "source": "AHOIS / Socratic agents for autonomous scientific discovery in high-dimensional physical systems (Zeng et al., 25 Jun 2026)",
+      "arxiv_id": "2606.26722",
+      "body_checked": false,
+      "does": "A physics-critic agent interrogates hypotheses through causal questioning, constraint checking, counterexample generation and falsification-criteria formulation, demonstrated on a multimode-fibre optical platform.",
+      "disposition": "COMPOSE",
+      "claim_effect": "Hypothesis interrogation and falsification-criteria generation are absorbed; distinct from typed revision of the formulation's coordinates."
+    },
+    {
+      "mechanism": "Project-agent-resource collaboration infrastructure with auditable multi-phase processes",
+      "source": "Clarus: Coordinating Autonomous Research Agents toward Web-Scale Scientific Collaboration (Guo et al., 29 Jun 2026)",
+      "arxiv_id": "2606.30246",
+      "body_checked": false,
+      "does": "Minimal project-agent-resource object model organizing research across Research Application, Digital Collaboration, Physical Substrate and Physical World layers with pluggable trust mechanisms.",
+      "disposition": "DEFER",
+      "claim_effect": "Checked specifically for dependency-impact propagation and found to be an organizational/collaboration layer. Does not affect any delta."
+    }
+  ],
+  "residual_claim": "In a research process whose object knowledge K, relevance/search-universe model W, and method state M are separately represented, ORION types the responsibility for an observed residual so that responsibility determines authority: only a formulation or search-universe responsibility licenses a coordinate-specific rewrite of W or M, while evidence and execution responsibilities are routed to acquisition and repair and are denied the rewrite licence; and it is that licensed rewrite - not an inconsistency internal to the evidence graph - that scopes the dependency-directed reopening of prior closure. The contribution is the licensing relation binding typed responsibility to the reframe target and to the reopen scope, evaluated on hidden formulation-shift tasks against matched baselines with evidence-only and execution-only negative controls.",
+  "delta_verdicts": {
+    "P1.D1": {
+      "name": "P1.D1.KWM_RECONSTRUCTION",
+      "survives_independently": false,
+      "reason": "Iris (2608.02143, body-checked) implements the K half completely as revisable claims carrying scope, status and supporting/refuting evidence pointers with Add/Update/Invalidate operators; SCION's REP plus layered epistemic memory covers explicit method state; Kosmos covers a persistent structured world model. The only component without a verified parent is W, a separate revisable model of the relevant search universe distinct from task knowledge - Iris does not formalize one, and Bisht et al. (2605.08956) recommend building one as future work, which confirms the gap is real but denies ORION first identification. A single unparented organ inside a three-part state is not an independent delta; report W as the delta-bearing organ of the composition."
+    },
+    "P1.D2": {
+      "name": "P1.D2.TYPED_FORMULATION_REVISION",
+      "survives_independently": true,
+      "reason": "Survives narrowly and is the one delta to defend. ARTS (2606.21891) already diagnoses implementation-fault versus bad-hypothesis, striking the binary split; Iris already attributes failure to which specific claim is wrong; Who&When / Who&When Pro attribute to responsible agent and decisive step; MAST (2503.13657) classifies failures into 14 modes across system design issues, inter-agent misalignment and task verification; Auditable Agents lists responsibility attribution as a named auditability dimension. Unparented across all of these is that the TYPE of the responsibility acts as an authority gate: a formulation/search-universe diagnosis selects which coordinate may be rewritten, while an evidence-only or execution-only diagnosis withholds the rewrite licence entirely. Every neighbour produces a descriptive label; none attaches a permission to it. ORION has local mechanical evidence the distinction bites - the hidden-shift falsifier exposed an over-broad reframe gate treating singular responsibility as sufficient licence. Must be claimed as responsibility-typed licensing of formulation rewrite, never as failure attribution.",
+      "open_check_before_print": "MAST's 14 individual mode names were not retrieved (abstract only). If any mode already names a formulation coordinate, the narrowing tightens further. This is the single remaining literature check that could still move the P1.D2 verdict, and it must be completed before submission. The verdict is also provisional against the surfaced-but-unfetched error-diagnosis cluster listed in verification_gaps."
+    },
+    "P1.D3": {
+      "name": "P1.D3.SCOPED_REOPENING",
+      "survives_independently": false,
+      "reason": "STRUCK - the clearest removal in this pass. EviGraph (2608.04738, body-checked) performs exactly this inside a 2026 autonomous research agent: identify a weak node, form a repair group of that node plus downstream subordinates, remove the subordinates, repair the node, regenerate affected nodes in dependency order, version-check the result. EA-Graph (2608.04278, body-checked) adds content-hash anchoring, staleness detection independent of evidence strength and claim withdrawal under upstream drift, including an unprovable outcome equivalent to ORION's CANNOT_CHECK. Beneath both, Doyle's 1979 JTMS invalidates every dependent conclusion on justification retraction, and change impact analysis, regression test selection and incremental build systems have done transitive-closure invalidation for decades. Residual is only the trigger and scope: EviGraph reopens from an evidence-graph inconsistency while holding Problem and Gap nodes immutable, whereas ORION reopens because a formulation/search-universe coordinate changed - and that residual is inseparable from P1.D2, so it belongs to the composition."
+    },
+    "P1.D4": {
+      "name": "P1.D4.MECHANIC_SELF_AUDIT",
+      "survives_independently": false,
+      "reason": "Composition-only; every component has a parent and the composition is thin. AREX (2607.21461) already alternates research with recursive constraint-wise audit and emits targeted follow-up research from what the audit finds, which is the audit-generates-research loop in full. The NASA requirements verification matrix already treats an empty cell as a defect obliging new work, which is the missing-dimension-generates-obligation rule in full, and the NASA handbook already supplies recursive decomposition with parent/child obligation transport. Auditable Agents (2604.05485) establishes agent self-audit as a named surveyed property. What remains - that the audited object is ORION's own research mechanics and the obligations emitted are typed research questions rather than test procedures - is a domain transfer of two established disciplines, not a mechanism. Present as engineering substrate enabling P1.D2 to be inspected and reproduced."
+    }
+  },
+  "verification_gaps": [
+    {
+      "item": "SCION checkpoint-failure semantics",
+      "status": "UNRESOLVED",
+      "detail": "Whether a failed REP verification checkpoint invalidates and reopens already-completed dependent stages, or only falls forward to a precompiled fallback, could not be established. Searched: arxiv.org/abs/2607.03863 (abstract retrieved and quoted); arxiv.org/pdf/2607.03863v2 and /pdf/2607.03863 (compressed binary PDF streams, no reliable text extraction, deliberately not paraphrased); arxiv.org/html/2607.03863, /html/2607.03863v1, /html/2607.03863v2 (all HTTP 404); plus two targeted web searches on REP checkpoint/fallback/re-execution semantics. Does not change any verdict, since EviGraph independently and body-verifiably establishes dependency-directed reopening. Must still be closed before submission because SCION is a required protocol-matched baseline."
+    },
+    {
+      "item": "bibliography.bib SCION title defect",
+      "status": "FLAGGED_NOT_MODIFIED",
+      "detail": "manuscript/bibliography.bib records 'Rethinking Scientific Discovery in an Agentic Era'; the arXiv record reads 'Rethinking Scientific Discovery in the Agentic Era'. Flagged for the orchestrator; bibliography.bib was not modified by this pass."
+    },
+    {
+      "item": "AI Co-Scientist identifier",
+      "status": "REPAIRED",
+      "detail": "research/paper-programme-v1/PAPER_01_RECURSIVE_RECONSTRUCTION.md cites this work only as 'Google Research 2025/2026 report' with no identifier, the highest fabrication-risk entry in the Paper-I set. Verified identifier: arXiv:2502.18864, Towards an AI co-scientist, Gottweis et al., 2025. A Nature journal version appears to exist but was NOT independently verified here and must not be cited until it is."
+    },
+    {
+      "item": "Iris cascading invalidation",
+      "status": "PARTIALLY_RESOLVED",
+      "detail": "Body inspection confirms Add/Update/Invalidate operators and evidence pointer sets but no explicit transitive-invalidation logic over dependent decisions; the planner appears to re-consult revised knowledge rather than maintain a dependency graph. Recorded as a body-checked reading of the HTML text, not as an authoritative absence claim."
+    },
+    {
+      "item": "Kosmos world-model revisability",
+      "status": "NOT_ESTABLISHED",
+      "detail": "The abstract does not state whether the structured world model can revise the objective. No claim is made in either direction."
+    },
+    {
+      "item": "MAST mode names",
+      "status": "NOT_RETRIEVED",
+      "detail": "MAST's three categories and mode count are verified from the abstract; the 14 individual mode names are not. Because MAST is the closest taxonomic neighbour to P1.D2, this is the one outstanding check that could still move the surviving delta."
+    },
+    {
+      "item": "Surfaced-but-unfetched error-diagnosis cluster",
+      "status": "SCOPE_OF_ABSENCE_CLAIM",
+      "detail": "The following were surfaced in search snippets and NOT retrieved, so nothing in this matrix rests on them and no claim is made about their content: TRAIL, AEGIS, AgenTracer, AgentErrorBench, ErrorProbe, AgentRx, REFLECT (2606.09071), Towards Self-Improving Error Diagnosis in Multi-Agent Systems (2604.17658), and span-level error localization (2606.02060). All sit in the failure-attribution/error-diagnosis family that constrains P1.D2; the P1.D2 verdict is provisional against this family until at least the span-level and self-improving-diagnosis entries are read."
+    },
+    {
+      "item": "Scope of absence claims in this document",
+      "status": "SCOPED_NOT_ABSOLUTE",
+      "detail": "Where a mechanism is reported as unparented, the justified search scope is: function-only search over problem reformulation, representation revision, adaptive inquiry, belief/model revision, dependency invalidation, dynamic task specification and search-space revision; plus the named 2026 systems and the parent disciplines (truth maintenance, belief revision, change impact analysis, regression test selection, NASA systems engineering, automated-planning reformulation). This is not a claim of exhaustive coverage of 2026 agent literature."
+    }
+  ],
+  "baselines_by_hypothesis": {
+    "H1_hidden_formulation_shift": ["Arbor (2606.11926) - authors state it degrades precisely when a new high-level formulation is needed, which is the condition H1 tests"],
+    "H2_repair_selectivity": ["Iris (2608.02143) - epistemic actions probe decision-critical unknowns without modifying the retained solution", "ARTS (2606.21891) - separates implementation faults from bad hypotheses"],
+    "H3_scoped_invalidation": ["EviGraph (2608.04738) - already performs dependency-directed reopening, so H3 must compare reopen TRIGGER and SCOPE, not reopening versus no reopening", "EA-Graph (2608.04278) - staleness and unprovable comparator"],
+    "note": "H2 is the hypothesis attached to P1.D2, the only surviving delta. Iris and ARTS compete directly on H2's metric; testing H2 against a static ReAct baseline alone would be a straw man against ORION's own surviving claim."
+  },
+  "table_label_conflict": "JOURNAL_READINESS.md section 6 calls this artifact 'Table P1-1'; the Step-1 task calls it 'Table P1-T1'. One label must be chosen before submission; no third label was introduced."
+}

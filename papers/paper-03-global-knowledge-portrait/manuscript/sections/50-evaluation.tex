@@ -1,0 +1,198 @@
+% Evaluation: experimental design, baselines, ablations, hypotheses, metrics,
+% and statistical analysis plan. Registered in protocol/PROTOCOL_V1.json.
+The evaluation is governed by the frozen protocol
+\texttt{P3.cross-domain-atlas.v1} in \texttt{protocol/}. The design,
+hypotheses, baselines, ablations, metrics, and analysis plan are described
+below. All systems are evaluated on the same gold dataset
+(Section~\ref{sec:dataset}) across five stochastic seeds. The primary
+hypothesis was registered before the gold dataset reached
+\texttt{GOLD\_COMPLETE} status.
+
+\subsection{Primary hypothesis (H1)}
+
+The primary hypothesis is a two-part safety and utility claim:
+
+\begin{description}
+    \item[H1a (superiority):] ORION\textsubscript{Full} achieves a false
+        merge rate at least $\delta_s = 0.05$ (five percentage points)
+        lower than the strongest matched baseline, tested at $\alpha = 0.05$
+        with Holm correction over the family of baseline comparisons.
+    \item[H1b (non-inferiority):] ORION\textsubscript{Full} achieves a
+        valid integration rate no worse than $\delta_{ni} = 0.03$ (three
+        percentage points) below the strongest matched baseline, with the
+        same Holm-corrected $\alpha = 0.05$.
+\end{description}
+
+Both must pass for the hypothesis to be considered confirmed. The margins
+$\delta_s = 0.05$ and $\delta_{ni} = 0.03$ are prospective design margins,
+not claimed results. They are derived from a power analysis targeting 80\%
+power at $\alpha = 0.05$ for a Cohen's $h \geq 0.4$ effect size, inflated
+by 25\% to account for the Holm correction. The margins are not adjusted
+after seeing the data.
+
+\subsection{Secondary hypotheses}
+
+\begin{description}
+    \item[H2 (recoverability):] ORION achieves a source recoverability
+        rate $\geq 0.80$, measured as the proportion of cases where the
+        gold-annotated recoverability target is fully satisfied by the
+        system's output.
+    \item[H3 (obstruction value):] ORION's obstruction precision
+        $\geq 0.70$ and obstruction recall $\geq 0.50$ on genuine
+        obstruction cases, reflecting the value of typed obstruction as
+        an informative output rather than a failure.
+    \item[H4 (ablation necessity):] For each of the 8 ablations, the
+        direction of the ablation effect (degradation on the relevant
+        metric) is consistent with the coordinate's hypothesized role.
+        Formal hypothesis tests use paired bootstrap difference with
+        Holm correction on the family of ablation comparisons.
+\end{description}
+
+\subsection{Baselines}
+
+Six baselines are implemented in \texttt{src/orion/study/baselines.py}:
+
+\begin{enumerate}
+    \item \textbf{VanillaLongContext}: a single long-context prompt that
+        presents both source documents and asks for an integration
+        verdict directly, without any intermediate projection or mapping
+        representation. This measures the performance of flat
+        multi-paper synthesis.
+    \item \textbf{ScientificRAG}: a retrieval-augmented generation
+        pipeline that retrieves relevant passages from a corpus of
+        scientific text and synthesizes an answer. Represents the
+        standard RAG baseline.
+    \item \textbf{CrossDomainRAG}: a cross-domain translation/RAG
+        pipeline that maps source claims into a common representation
+        space before integration. Represents cross-domain translation
+        approaches.
+    \item \textbf{FlatUniversalSchema}: a single universal schema is
+        induced from the sources and all claims are projected into it.
+        Represents KG canonicalization and flat universal-schema
+        baselines.
+    \item \textbf{SCOPE\_SCION\_Like}: an evidence-linked schema
+        induction and fusion baseline, modelled after
+        SCOPE/SCION~\cite{scopes2026}. Sources are processed through
+        schema induction, and the resulting schemas are fused.
+    \item \textbf{ProvenanceSchema}: a provenance-aware schema-contract
+        integration baseline, modelled after Executable Schema
+        Contracts~\cite{schemaContracts2026}. Sources are integrated
+        under a shared schema contract with provenance tracking.
+\end{enumerate}
+
+All baselines are resource-matched to the extent possible: they use the
+same underlying model family (deepseek-v4-pro) and the same context and
+retrieval budgets. The baselines are not straw men; they are competitive
+approaches from the absorbed prior work.
+
+\subsection{Ablations}
+
+Eight ablations are implemented in \texttt{src/orion/study/ablations.py},
+each removing one architectural component from the full ORION system:
+
+\begin{enumerate}
+    \item \textbf{ORION\_no\_referent}: removes the referent identity
+        coordinate from the projection and mapping. Integration decisions
+        proceed without distinguishing referent identity.
+    \item \textbf{ORION\_no\_construct}: removes the construct identity
+        coordinate. Measures the contribution of the construct dimension.
+    \item \textbf{ORION\_no\_measurement}: removes the measurement/
+        operationalization coordinate. Tests whether measurement
+        equivalence is necessary for safe integration.
+    \item \textbf{ORION\_no\_context}: removes the temporal/state context
+        coordinate. Measures the effect of context awareness.
+    \item \textbf{ORION\_no\_modality\_polarity\_attribution\_discourse}:
+        removes the modality, polarity, attribution, and discourse
+        coordinates together. Tests the contribution of the discourse-modality
+        complex.
+    \item \textbf{ORION\_no\_obstruction}: removes the explicit
+        obstruction state; the system must produce a best mapping for
+        every case, even when coordinates do not align. Tests the value
+        of typed obstruction.
+    \item \textbf{ORION\_no\_recoverability}: removes the recoverability
+        target; the system does not track non-preserved coordinates.
+        Tests the marginal effect of recoverability.
+    \item \textbf{ORION\_no\_W\_expansion}: removes the W expansion
+        feedback loop; the search universe is static. Tests the effect
+        of the W effect.
+\end{enumerate}
+
+\subsection{Metrics}
+
+Seventeen metrics are computed per run (defined in
+\texttt{src/orion/study/metrics.py}):
+
+\begin{enumerate}
+    \item \textbf{false\_merge\_rate}: proportion of \textsc{obstruction}
+        cases where the system incorrectly produced \textsc{glue\_allowed}.
+    \item \textbf{valid\_integration\_rate}: proportion of
+        \textsc{glue\_allowed} cases correctly identified.
+    \item \textbf{false\_integration\_rate\_with\_valid\_integration\_guard}:
+        composite of the two primary metrics.
+    \item \textbf{mapping\_precision\_recall\_f1}: per-mapping-type
+        precision, recall, and macro-F1.
+    \item \textbf{source\_recoverability\_rate}: proportion of cases where
+        the gold recoverability target is satisfied.
+    \item \textbf{preservation\_condition\_accuracy}: proportion of
+        preservation conditions correctly identified.
+    \item \textbf{measurement\_equivalence\_accuracy}: accuracy on the
+        measurement/operationalization coordinate.
+    \item \textbf{obstruction\_precision}: among cases the system labelled
+        \textsc{obstruction}, proportion that are gold \textsc{obstruction}.
+    \item \textbf{obstruction\_recall}: among gold \textsc{obstruction}
+        cases, proportion correctly identified.
+    \item \textbf{unresolved\_abstention\_calibration}: proportion of
+        \textsc{unresolved} outputs that match gold \textsc{unresolved}.
+    \item \textbf{annotation\_agreement\_by\_coordinate}: agreement between
+        the system's per-coordinate judgments and the gold.
+    \item \textbf{cost\_metrics}: wall-clock time, token count, storage
+        overhead, and estimated currency cost.
+\end{enumerate}
+
+All metrics are reported with Wilson 95\% confidence intervals and
+aggregated across five seeds via bootstrap mean with 95\% CI.
+
+\subsection{Statistical analysis}
+
+The analysis follows the frozen plan in \texttt{protocol/PROTOCOL\_V1.json}:
+
+\begin{enumerate}
+    \item \textbf{Primary test}: paired bootstrap difference (10,000
+        resamples) between ORION\textsubscript{Full} and the strongest
+        baseline on false merge rate, testing superiority margin
+        $\delta_s = 0.05$. Holm correction across the six baseline
+        comparisons. Non-inferiority test on valid integration rate with
+        margin $\delta_{ni} = 0.03$.
+    \item \textbf{Ablation tests}: for each ablation, paired bootstrap
+        difference against ORION\textsubscript{Full} on the relevant
+        metric, with Holm correction over the 9 comparisons. Effect
+        sizes reported as Cohen's $h$ with categories
+        (negligible/$\leq 0.2$, small/$\leq 0.5$, medium/$\leq 0.8$,
+        large/$>0.8$).
+    \item \textbf{Discipline-stratified}: the primary metrics are
+        computed separately per discipline. A discipline-by-discipline
+        breakdown is reported with the pooled result.
+    \item \textbf{Safety margin}: ORION\textsubscript{Full} must pass
+        \emph{both} the superiority and non-inferiority tests at the
+        same $\alpha = 0.05$ for H1 to be confirmed.
+    \item \textbf{Secondary analyses}: secondary hypotheses (H2--H4)
+        are tested at $\alpha = 0.05$ without correction, with effect
+        sizes reported for interpretation.
+\end{enumerate}
+
+\subsection{Reproducibility}
+
+All evaluation outputs are emitted as normalized result records
+(schema: \texttt{orion.publication-result-record.v1}) with a run
+manifest (schema: \texttt{orion.run-manifest.v1}) that records the gold
+hash, system versions, seeds, and resource policy. The MUSE reference
+implementation is pinned to commit
+\texttt{f7a40317db46145d0c90b221311d8324db5da1b9}
+\cite{muse2026}. The evaluation runner,
+\texttt{src/orion/study/evaluate.py}, produces deterministic output
+given the same gold, system versions, and seeds. The reproducibility
+package includes the annotation handbook, gold with provenance, baseline
+configurations, raw projections, and scripts for every metric, figure,
+and table.
+
+\endinput

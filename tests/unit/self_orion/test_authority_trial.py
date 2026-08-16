@@ -1,5 +1,4 @@
 import hashlib
-from types import SimpleNamespace
 
 from orion.self_orion.authority_trial import (
     AuthorityAttackEvaluationStatus,

@@ -23,3 +23,22 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+
+[tool.ruff]
+# Without this section ruff runs on bare defaults, which flag the re-export
+# pattern every package __init__ uses: 295 of 301 findings were `from .x import y`
+# in an __init__ with no consumer *in that file*. A linter that cries wolf on its
+# first real run gets switched off, so the config exists to make a clean result
+# mean something.
+target-version = "py313"
+line-length = 100
+
+[tool.ruff.lint]
+# Ruff's default set. Deliberately not widening it here: adding style rules to a
+# shared repo mid-flight would red-line every parallel lane's files for reasons
+# unrelated to correctness. Widen it in its own change, with the sweep included.
+select = ["E4", "E7", "E9", "F"]
+
+[tool.ruff.lint.per-file-ignores]
+# Re-exports are the entire purpose of a package __init__.
+"__init__.py" = ["F401", "F403"]
