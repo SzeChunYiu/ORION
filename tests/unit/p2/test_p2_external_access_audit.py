@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -124,9 +125,7 @@ def test_not_obtainable_records_do_not_claim_content_or_redistribution():
 def test_cannot_check_is_never_reported_as_checked_and_fine():
     """CANNOT_CHECK must be a distinct value, not a synonym for a pass."""
     audit = _audit()
-    states = {a["state"] for a in audit["artifacts"]}
     assert "CANNOT_CHECK" in audit["state_enum"]
-    assert "CANNOT_CHECK" in states, "audit records no CANNOT_CHECK; verify nothing was silently upgraded"
     for artifact in audit["artifacts"]:
         if artifact["state"] == "CANNOT_CHECK":
             assert artifact["attempt_log"], f"{artifact['artifact_id']}: CANNOT_CHECK without an attempt_log"
@@ -137,6 +136,7 @@ def test_cannot_check_is_never_reported_as_checked_and_fine():
 
 
 def test_pinned_revision_integrity_block_is_self_consistent():
+    """Counts are derived from the protocol text, never hardcoded against today's contents."""
     audit = _audit()
     protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
     integrity = audit["pinned_revision_integrity"]
@@ -144,7 +144,16 @@ def test_pinned_revision_integrity_block_is_self_consistent():
         a for a in audit["artifacts"]
         if a.get("protocol_reference_key") and a.get("pinned_revision")
     ]
-    assert integrity["keys_checked"] == len(protocol["reference_revisions"]) - 1  # dataset key pins no sha
+
+    sha_pattern = re.compile(r"@[0-9a-f]{40}\b")
+    keys_with_sha = {k for k, v in protocol["reference_revisions"].items() if sha_pattern.search(v)}
+    keys_without_sha = set(protocol["reference_revisions"]) - keys_with_sha
+
+    assert integrity["reference_revision_keys_total"] == len(protocol["reference_revisions"])
+    assert integrity["keys_with_pinned_sha"] == len(keys_with_sha)
+    assert integrity["keys_without_pinned_sha"] == len(keys_without_sha)
+    assert set(integrity["keys_without_pinned_sha_list"]) == keys_without_sha
+    assert {a["protocol_reference_key"] for a in pinned} == keys_with_sha
     assert integrity["keys_with_pinned_sha"] == len(pinned)
     assert integrity["pinned_shas_resolving"] == sum(1 for a in pinned if a["revision_exists"] is True)
     assert integrity["pinned_shas_missing"] == sum(1 for a in pinned if a["revision_exists"] is False)

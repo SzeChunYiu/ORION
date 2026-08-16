@@ -23,8 +23,6 @@ repositories, and all four repositories are public and unarchived.
 published nowhere - the only artifact URL in the paper is the GitHub repository, whose pinned tree
 is 777 KB of queries. Nor is there an evaluator: the metrics are two prose sentences and the
 open-ended "decreasing weights" are never given numerically. No budget fixes this.
-`sage_scientific_retrieval` should be struck, or re-scoped to a host metric explicitly labelled as
-not the official one.
 
 **AutoResearchBench and AgentSLR are execution-blocked.** AutoResearchBench needs an agent key, a
 judge key, Serper and Jina keys, and a paper-search backend whose URL the repo leaves blank
@@ -33,8 +31,7 @@ a local GPU vLLM, plus publisher PDFs its own dataset states it does not redistr
 operator-unblockable in principle; neither by this lane.
 
 **MetaSyn is closest to runnable.** MIT, dataset public and ungated, retriever public, and only the
-report-quality metrics need a key - retrieval and screening are deterministic. If exactly one
-external family is attempted, it is this one.
+report-quality metrics need a key. If exactly one external family is attempted, it is this one.
 
 ## Redistribution is a Section-8 problem, not a runnability one
 
@@ -44,7 +41,7 @@ either README), so default copyright applies. That blocks "frozen corpora/index 
 redistribution permits" for those two; it does not stop reading them in place. Do not read the
 AgentSLR *code* finding across to the AgentSLR *dataset*, which is CC-BY-4.0.
 
-## Two findings the protocol should absorb
+## Three findings the protocol should absorb
 
 **Hidden labels are not inherited.** Decrypted AutoResearchBench records carry `answer` and
 `arxiv_id` in the same object as `question`, so `access_policy.hidden_labels` must be enforced by
@@ -54,6 +51,11 @@ the ORION harness splitting the file before the candidate sees it.
 one public GitHub record. A verbatim search on one `ground_truth.title` returned the exact target
 paper as the top hit. Any live-provider SAGE number is contaminated, and the closed index that
 would fix it is the corpus that does not exist.
+
+**Part of the Wide metric is unseeded.** `max_iou_at_k_sampling` draws `random.sample` 1000 times
+with no seeding anywhere in the evaluator, so `avg_max_iou_at_k` is a Monte-Carlo estimate: an
+`evaluator_hash` pins the code but not the value. At `stochastic_repeats=3` only `at_1` and `at_2`
+receive samples at all; `at_4`, `at_8` and `at_16` report 0.0 rather than a measurement.
 
 ## Consequence for issue #99 Step 3
 
