@@ -1,14 +1,15 @@
 name: p4-protected-harness-preflight-v2
 
 on:
-  push:
-    branches: [shadow/p4-final-protected-v2]
+  pull_request:
+    branches: [main]
     paths:
       - 'papers/paper-04-verified-scientific-discovery/host/run_baselines_v2.py'
       - 'papers/paper-04-verified-scientific-discovery/host/evaluate_campaign_v2.py'
       - 'papers/paper-04-verified-scientific-discovery/host/independent_reproduce_v2.py'
       - 'papers/paper-04-verified-scientific-discovery/host/BASELINE_CONFIGS_V2.json'
       - '.github/workflows/p4_protected_harness_preflight_v2.yml'
+      - '.github/workflows/p4_host_prepare_v2.yml'
 
 permissions:
   contents: read
