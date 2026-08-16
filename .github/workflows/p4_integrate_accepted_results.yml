@@ -1,0 +1,82 @@
+name: p4-integrate-accepted-results
+
+on:
+  push:
+    branches: [shadow/p4-issue101-results]
+    paths:
+      - 'papers/paper-04-verified-scientific-discovery/reproducibility/INTEGRATE_RESULTS_V1.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: shadow/p4-issue101-results
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install repository
+        run: python -m pip install -e '.[dev]'
+
+      - name: Integrate immutable protected results
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd papers/paper-04-verified-scientific-discovery
+          python reproducibility/integrate_publication.py
+          python reproducibility/replay_public.py
+
+      - name: Fail on stale prospective-result prose
+        shell: bash
+        run: |
+          set -euo pipefail
+          FILE=papers/paper-04-verified-scientific-discovery/manuscript/main.tex
+          ! grep -F 'No external results are reported in this manuscript' "$FILE"
+          ! grep -F 'all execution bindings remain \texttt{UNBOUND}' "$FILE"
+          ! grep -F 'remains externally \texttt{CANNOT\_CHECK}' "$FILE"
+          grep -F '0 false promotions in 360 hostile promotion opportunities' "$FILE"
+          grep -F 'H3 was not supported' "$FILE"
+
+      - name: Verify replay-generated outputs and targeted tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s papers/paper-04-verified-scientific-discovery/reproducibility/PUBLIC_REPLAY_RECEIPT_V1.json
+          test -s papers/paper-04-verified-scientific-discovery/figures/p4_2_false_promotion.svg
+          test -s papers/paper-04-verified-scientific-discovery/tables/p4_t2_baseline_ablation_results.tex
+          pytest -q tests/test_paper_manuscript_integrity.py tests/test_publication_manifest_integrity.py tests/unit/benchmarks/test_protocol_freezing.py tests/unit/benchmarks/test_attack_manifest.py
+
+      - name: Commit generated publication integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            papers/paper-04-verified-scientific-discovery/manuscript/main.tex \
+            papers/paper-04-verified-scientific-discovery/evidence/CLAIM_LEDGER_V1.md \
+            papers/paper-04-verified-scientific-discovery/evidence/PROTECTED_CLAIM_LEDGER_V1.md \
+            papers/paper-04-verified-scientific-discovery/evidence/AVAILABILITY_STATEMENT_V1.md \
+            papers/paper-04-verified-scientific-discovery/reproducibility/README.md \
+            papers/paper-04-verified-scientific-discovery/reproducibility/SCRIPT_INDEX.md \
+            papers/paper-04-verified-scientific-discovery/reproducibility/PUBLIC_REPLAY_RECEIPT_V1.json \
+            papers/paper-04-verified-scientific-discovery/figures/p4_2_false_promotion.svg \
+            papers/paper-04-verified-scientific-discovery/figures/p4_3_coverage_frontier.svg \
+            papers/paper-04-verified-scientific-discovery/figures/p4_4_detection_by_attack.svg \
+            papers/paper-04-verified-scientific-discovery/figures/p4_5_attribution_vs_support.svg \
+            papers/paper-04-verified-scientific-discovery/figures/p4_6_cost_false_promotion.svg \
+            papers/paper-04-verified-scientific-discovery/tables/p4_t1_attack_custody.tex \
+            papers/paper-04-verified-scientific-discovery/tables/p4_t2_baseline_ablation_results.tex \
+            papers/paper-04-verified-scientific-discovery/tables/p4_t3_cannot_check_errors.tex \
+            papers/paper-04-verified-scientific-discovery/JOURNAL_READINESS.md
+          git diff --cached --quiet && { echo 'integration created no changes'; exit 1; }
+          git commit -m 'docs(p4): integrate accepted protected results'
+          git push origin HEAD:shadow/p4-issue101-results
