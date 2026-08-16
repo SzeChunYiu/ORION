@@ -1,0 +1,103 @@
+{
+  "orion": {
+    "false_promotion_rate": 0.0,
+    "clean_authority_coverage": 0.07692307692307693,
+    "correct_cannot_check_rate": 0.07692307692307693,
+    "false_negative_rate": 0.3333333333333333,
+    "source_attribution_accuracy": 0.15384615384615385
+  },
+  "baselines": {
+    "provenanceguard-style-source-routing": {
+      "false_promotion_rate": 0.0,
+      "clean_authority_coverage": 0.07692307692307693,
+      "false_negative_rate": 1.0,
+      "source_attribution_accuracy": 0.0
+    },
+    "attributionbench-multisource-attribution": {
+      "false_promotion_rate": 0.10256410256410256,
+      "clean_authority_coverage": 0.07692307692307693,
+      "false_negative_rate": 0.3333333333333333,
+      "source_attribution_accuracy": 0.15384615384615385
+    },
+    "fire-iterative-retrieve-or-verify": {
+      "false_promotion_rate": 0.0,
+      "clean_authority_coverage": 0.07692307692307693,
+      "false_negative_rate": 0.3333333333333333,
+      "source_attribution_accuracy": 0.15384615384615385
+    },
+    "claimbench-sciclaimhunt-scientific-evidence": {
+      "false_promotion_rate": 0.0,
+      "clean_authority_coverage": 0.07692307692307693,
+      "false_negative_rate": 0.3333333333333333,
+      "source_attribution_accuracy": 0.15384615384615385
+    },
+    "provenai-citation-fidelity-influence": {
+      "false_promotion_rate": 0.0,
+      "clean_authority_coverage": 0.07692307692307693,
+      "false_negative_rate": 0.3333333333333333,
+      "source_attribution_accuracy": 0.15384615384615385
+    },
+    "rewardhackingagents-search-contamination": {
+      "false_promotion_rate": 0.0,
+      "clean_authority_coverage": 0.07692307692307693,
+      "false_negative_rate": 0.3333333333333333,
+      "source_attribution_accuracy": 0.15384615384615385
+    },
+    "deepsciverify-abstract-to-full-escalation": {
+      "false_promotion_rate": 0.0,
+      "clean_authority_coverage": 0.07692307692307693,
+      "false_negative_rate": 0.3333333333333333,
+      "source_attribution_accuracy": 0.15384615384615385
+    }
+  },
+  "ablations": {
+    "no_exact_content_binding": {
+      "false_promotion_rate": 0.0,
+      "clean_authority_coverage": 0.07692307692307693,
+      "false_negative_rate": 0.3333333333333333,
+      "source_attribution_accuracy": 0.15384615384615385
+    },
+    "no_content_vs_provenance_distinction": {
+      "false_promotion_rate": 0.0,
+      "clean_authority_coverage": 0.07692307692307693,
+      "false_negative_rate": 0.3333333333333333,
+      "source_attribution_accuracy": 0.15384615384615385
+    },
+    "no_checker_lineage_independence": {
+      "false_promotion_rate": 0.0,
+      "clean_authority_coverage": 0.07692307692307693,
+      "false_negative_rate": 0.3333333333333333,
+      "source_attribution_accuracy": 0.15384615384615385
+    },
+    "no_hostile_checker_battery": {
+      "false_promotion_rate": 0.0,
+      "clean_authority_coverage": 0.07692307692307693,
+      "false_negative_rate": 0.3333333333333333,
+      "source_attribution_accuracy": 0.15384615384615385
+    },
+    "no_behavioral_influence_coordinate": {
+      "false_promotion_rate": 0.0,
+      "clean_authority_coverage": 0.07692307692307693,
+      "false_negative_rate": 0.3333333333333333,
+      "source_attribution_accuracy": 0.15384615384615385
+    },
+    "no_evaluator_protection_access_telemetry": {
+      "false_promotion_rate": 0.0,
+      "clean_authority_coverage": 0.07692307692307693,
+      "false_negative_rate": 0.3333333333333333,
+      "source_attribution_accuracy": 0.15384615384615385
+    },
+    "soft_confidence_instead_of_fail_closed_authority": {
+      "false_promotion_rate": 0.10256410256410256,
+      "clean_authority_coverage": 0.0,
+      "false_negative_rate": 0.3333333333333333,
+      "source_attribution_accuracy": 0.15384615384615385
+    },
+    "no_search_time_contamination_block": {
+      "false_promotion_rate": 0.0,
+      "clean_authority_coverage": 0.07692307692307693,
+      "false_negative_rate": 0.3333333333333333,
+      "source_attribution_accuracy": 0.15384615384615385
+    }
+  }
+}
