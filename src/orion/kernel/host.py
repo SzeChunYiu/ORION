@@ -1,8 +1,8 @@
 """Protected host composition for transition appraisal/authorization.
 
 The ordinary ORION candidate path never receives this service, its signer, or
-its protected states.  Host deployment constructs it from independently
-installed material.  Its public operation accepts a frozen plan and an already
+its protected states. Host deployment constructs it from independently
+installed material. Its public operation accepts a frozen plan and an already
 signed verifier appraisal; it never accepts raw key bytes, registries, trust
 stores, evaluator callables, or caller-provided pass flags.
 """
@@ -71,7 +71,10 @@ class ProtectedHostDecision:
 
     @property
     def authorized(self) -> bool:
-        return self.authorization is not None and self.authorization.authorizes_state_change
+        return (
+            self.authorization is not None
+            and self.authorization.authorizes_state_change
+        )
 
 
 class ProtectedHostAuthorizationService:
@@ -91,6 +94,18 @@ class ProtectedHostAuthorizationService:
         self._authority_state = authority_state
         self._support_state = support_state
         self._signer = signer
+
+    @property
+    def manifest(self) -> ProtectedHostManifest:
+        return self._manifest
+
+    @property
+    def authority_state(self) -> AuthorityState:
+        return self._authority_state
+
+    @property
+    def support_state(self) -> SupportState:
+        return self._support_state
 
     @property
     def authority_revision(self) -> str:
