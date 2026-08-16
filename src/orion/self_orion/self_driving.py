@@ -45,12 +45,7 @@ class SelfDrivingCycleResult:
 
 
 def investigation_supports_change(investigation: DevelopmentInvestigationResult) -> tuple[bool, tuple[str, ...]]:
-    """Decide whether research evidence licenses entering implementation search.
-
-    A failure/uncertainty is not automatically a software defect. CANNOT_CHECK and
-    BLOCKED stop at research/diagnosis unless a later evidence-producing run narrows
-    responsibility. A change proposal also requires evidence and a material residual.
-    """
+    """Decide whether research evidence licenses entering implementation search."""
 
     reasons: list[str] = []
     if investigation.solution_status in {SolutionStatus.CANNOT_CHECK, SolutionStatus.BLOCKED}:
@@ -63,16 +58,7 @@ def investigation_supports_change(investigation: DevelopmentInvestigationResult)
 
 
 class ShadowSelfDrivingController:
-    """End-to-end Shadow development loop.
-
-    Flow:
-      local/RAKL structural absorption -> empirical work selection -> ORION research
-      -> development fibre compilation -> evidence-gated change request -> coding
-      proposal -> isolated candidate execution -> protected fresh assurance -> host
-      promotion recommendation.
-
-    The controller has no merge primitive and no authority to rewrite its evaluator.
-    """
+    """End-to-end Shadow development loop with no self-promotion primitive."""
 
     def __init__(
         self,
@@ -114,29 +100,54 @@ class ShadowSelfDrivingController:
         )
 
     def architecture_evidence(self) -> ShadowSelfDrivingArchitectureEvidence:
+        """Derive the non-authoritative Shadow architecture observation.
+
+        This is intentionally not an empirical readiness receipt. Component and
+        boundary identities name the implementation surfaces actually composed by
+        this controller; the empirical readiness gate requires separate
+        content/lineage-bound records and external custody.
+        """
+
         state = self._driver.drive_local_transfer()
-        graph_ok = (
-            state.after.unknown_child_count == 0
-            and state.after.cycle_count == 0
-            and state.after.unknown_dependency_count == 0
-            and state.after.dependency_cycle_count == 0
+        graph_defects = (
+            state.after.unknown_child_count
+            + state.after.cycle_count
+            + state.after.unknown_dependency_count
+            + state.after.dependency_cycle_count
+            + state.after.mixed_cycle_count
+        )
+        empirical_work_count = len(state.empirical_work)
+        self_merge_capability_present = any(
+            hasattr(target, name)
+            for target in (self, self._change_controller)
+            for name in ("merge", "merge_pull_request", "promote_self")
         )
         return ShadowSelfDrivingArchitectureEvidence(
-            structural_questions_closed=state.after.open_question_count == 0,
-            graph_integrity_passed=graph_ok,
-            mechanical_work_selection_present=state.can_drive_next_work_mechanically,
-            autonomous_research_loop_present=True,
-            development_proposal_boundary_present=True,
-            content_addressed_patch_boundary_present=True,
-            isolated_sandbox_boundary_present=True,
-            protected_assurance_boundary_present=True,
-            failure_history_preserved=True,
-            self_merge_absent=True,
+            structural_open_questions=state.after.open_question_count,
+            graph_defect_count=graph_defects,
+            mechanical_work_item_count=empirical_work_count,
+            component_artifact_ids=(
+                "orion:self_orion:SelfOrionDevelopmentDriver.v1",
+                "orion:self_orion:ShadowSelfOrionResearchLoop.v1",
+                "orion:self_orion:SelfOrionChangeController.v1",
+            ),
+            protected_boundary_artifact_ids=(
+                "orion:providers:DevelopmentChangeProvider.v1",
+                "orion:providers:SandboxCandidateRunner.v1",
+                "orion:providers:ProtectedDevelopmentEvaluator.protocol.v1",
+                "orion:providers:ContentAddressedPatchArtifact.v1",
+            ),
+            failure_history_artifact_ids=(
+                "orion:experience:TaskEpisode.v1",
+                "orion:self_orion:EvolutionArchive.v1",
+                "orion:self_orion:DevelopmentIssue.v1",
+            ),
+            self_merge_capability_present=self_merge_capability_present,
         )
 
     @property
     def shadow_self_driving_ready(self) -> bool:
-        return assess_shadow_self_driving_architecture(self.architecture_evidence())
+        return assess_shadow_self_driving_architecture(self.architecture_evidence()).ready
 
     def run_cycle(
         self,
