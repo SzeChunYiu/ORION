@@ -56,5 +56,55 @@
       "resource_units": 5.0
     }
   ],
-  "notes": "All comparators are deterministic mechanism-matched baselines over the frozen synthetic P4 corpus. They receive the identical candidate-visible packet, never protected gold, and are not claimed to reproduce external model weights. The first six are the exact AuthorityBenchmarkPanel.v1 frozen baseline IDs. The remaining three satisfy the issue-101 citation-format, pooled-support and auditability comparison requirements."
+  "ablations": [
+    {
+      "system_id": "ablation-no-exact-content-binding",
+      "removed_coordinate": "EXACT_CONTENT_BINDING",
+      "semantics": "force only the exact-content-binding gate to PASS; keep every other hard gate unchanged",
+      "resource_units": 9.0
+    },
+    {
+      "system_id": "ablation-no-content-provenance-distinction",
+      "removed_coordinate": "SOURCE_OWNERSHIP",
+      "semantics": "force only source-ownership identity to PASS, collapsing semantic support and source attribution",
+      "resource_units": 9.0
+    },
+    {
+      "system_id": "ablation-no-checker-lineage-independence",
+      "removed_coordinate": "CHECKER_INDEPENDENCE",
+      "semantics": "force checker-lineage independence to PASS",
+      "resource_units": 9.0
+    },
+    {
+      "system_id": "ablation-no-hostile-checker-battery",
+      "removed_coordinate": "CHECKER_DISCRIMINATION",
+      "semantics": "force hostile-checker discrimination to PASS",
+      "resource_units": 9.0
+    },
+    {
+      "system_id": "ablation-no-behavioral-influence",
+      "removed_coordinate": "BEHAVIORAL_INFLUENCE",
+      "semantics": "force behavioral-use evidence to PASS",
+      "resource_units": 9.0
+    },
+    {
+      "system_id": "ablation-no-evaluator-protection-telemetry",
+      "removed_coordinate": "EVALUATOR_CHRONOLOGY_INTEGRITY+PROTECTED_ACCESS_CLEAR",
+      "semantics": "force evaluator chronology/integrity and protected-access telemetry gates to PASS",
+      "resource_units": 9.0
+    },
+    {
+      "system_id": "ablation-soft-confidence",
+      "removed_coordinate": "NON_COMPENSATORY_TERMINAL",
+      "semantics": "replace fail-closed hard conjunction with PROMOTE when at least 6 of 9 gates PASS; otherwise BLOCK",
+      "resource_units": 9.0
+    },
+    {
+      "system_id": "ablation-no-search-contamination-block",
+      "removed_coordinate": "SEARCH_CONTAMINATION_CLEAR",
+      "semantics": "force the search-time-contamination gate to PASS",
+      "resource_units": 9.0
+    }
+  ],
+  "notes": "All comparators and ablations are deterministic mechanism-matched variants over the frozen synthetic P4 corpus. They receive the identical candidate-visible packet and never protected gold. The first six comparators are the exact AuthorityBenchmarkPanel.v1 frozen baseline IDs. The remaining three satisfy issue-101 citation-format, pooled-support and auditability comparison requirements. Ablations are resource-matched to full ORION at 9.0 units and remove only the predeclared coordinate(s) above."
 }
