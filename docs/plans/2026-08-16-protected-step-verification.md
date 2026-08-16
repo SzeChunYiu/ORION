@@ -27,6 +27,14 @@ reopen transitions.
 
 **Starting subject:** `5894ac7814d194b3c60d9655af87ef2d9828d56c`
 
+**Coordination refresh (2026-08-16):** the implementation lane is
+`codex/step-verification-lifecycle` at `670afb6bacd1899ee8e4d62ceb5672a10f8f319d`.
+A fresh fetch observed `origin/main` at
+`8a4612f4ecf96317b86d832fdb847209078f43f6`, with merge base
+`ebb93fddb2931a39fe57c222edce628813a0fd97` and divergence `6 / 270`.
+These Task-3 results are therefore lane-local until hostile review and explicit
+reconciliation; they must not be described as integrated current-main behavior.
+
 **Pinned research:**
 `research/development/autonomous-kernel/knowledge/STEP_VERIFICATION_LITERATURE.md`
 
@@ -143,8 +151,10 @@ class ProgramProjection:
 
 @dataclass(frozen=True)
 class HostEvidenceSnapshot:
-    snapshot_id: str
+    # Derived, never independently caller-authored:
+    # snapshot_id
     root_configuration_hash: str
+    manifest_hash: str
     captured_at_authority_revision: str
     captured_at_support_revision: str
     records: tuple[HostEvidenceRecord, ...]
@@ -400,6 +410,80 @@ rtk git commit -m "feat(kernel): define versioned mechanics projection"
 
 ### Task 3: Capture one immutable host evidence snapshot
 
+**Research delta at `HEAD` `670afb6`:** the legacy resolver is diagnostic
+only. It performs pathname validation, a digest read, and a later text read, so
+one returned row can bind digest A to content B. Replacement decoding also
+collapses distinct invalid UTF-8 byte strings, eight-hex digest prefixes are
+too weak for a protected content identity, mutable Git names are resolved more
+than once, and unresolved rows are dropped by the legacy evidence index.
+
+The protected path therefore uses a separate capture protocol:
+
+- host policy, not `AnswerRecord`, supplies exact role and obligation bindings;
+- protected V1 does not parse delimiter-packed candidate locators. A host-owned
+  typed source registration separates opaque source ID, backend, root ID, path,
+  expected file SHA-256, and Git ref/OID, so `@`, path bytes, algorithms and
+  source coordinates cannot alias through string splitting;
+- a registered local root is opened once, every path component is traversed
+  descriptor-relative with no-follow semantics, the final object must be a
+  regular file, and bytes come from that one open descriptor;
+- descriptor metadata is compared before/after reading; a change produces a
+  retained typed `CHANGED_DURING_CAPTURE`, never `RESOLVED`;
+- each canonical Git ref is resolved once per root/ref/snapshot to a typed full
+  storage object ID and every requested path reuses that frozen resolution;
+  shorthand revisions are rejected. Annotated-tag object identity and peeled
+  commit identity remain separate;
+- Git is invoked with replacement objects and promisor lazy fetch disabled and
+  ambient object-directory/alternate settings scrubbed. The frozen commit's raw
+  commit/tree chain is traversed component by component, only regular-file modes
+  `100644`/`100755` are admitted, and every returned commit/tree/blob is checked
+  against its independently recomputed typed Git object ID;
+- a SHA-1 Git OID is only a typed frozen source coordinate, not ORION's protected
+  content identity. Raw blob bytes receive an independent full SHA-256 content
+  digest and byte length; provenance stronger than a verified local object chain
+  still requires a SHA-256 repository or separately appraised signed provenance;
+- protected file references require a full lowercase SHA-256 digest. Legacy
+  prefixes remain diagnostic locators only;
+- raw `bytes`, including empty and invalid UTF-8 content, are retained. Text is
+  an optional strict derived view and never evidence identity;
+- protected Git subprocesses are launched through one isolated descriptor
+  helper whose launcher path, launcher bytes, helper source, Git executable and
+  local file occasion are committed in the root configuration. This is not a
+  claim that the dynamic loader/runtime closure or the exec-time pathname race
+  is solved;
+- stdout, stderr, command starts, elapsed time, local bytes, path components,
+  tree entries, distinct Git objects and Git-object bytes have shared snapshot
+  budgets. Exhaustion is retained as a typed censored/unexamined outcome and in
+  the snapshot work receipt; it is not evidence that the source or mechanic
+  failed. The elapsed budget is checked at operation boundaries and can report
+  an overrun after a blocking filesystem call returns; it is not OS-level
+  preemption;
+- protected Git V1 admits only a real `.git` directory whose descriptor
+  identity is fixed. Gitfiles, symlinks, special entries, bare roots,
+  `commondir`, repository object alternates and `include`/`includeIf` config
+  expansion are explicitly refused until every external administrative root is
+  independently opened and committed;
+- verified Git objects are cached only after independent type/size/OID
+  validation under the key `(git dev, git inode, object format, type, OID)`;
+  reuse neither starts another object read nor spends the object-byte budget
+  twice;
+- content hash, record hash, manifest hash, root-configuration hash, and
+  snapshot hash have separate domains. Record/snapshot hashes are derived and
+  their own preimages contain no backward/self edge;
+- every requested or host-required reference gets one terminal record.
+  `ROLE_UNMAPPED`, missing, mismatched, unsafe, unstable, and unreadable rows
+  remain in the snapshot and force the later `CANNOT_CHECK` path;
+- a live multi-file snapshot is a deterministic sequence of exact per-file
+  occasions, not a claim of one atomic filesystem instant. Only a shared Git
+  commit/tree or later CAS manifest can support that stronger claim;
+- per-record and per-snapshot byte caps remain explicit; Task 3 freezes bytes
+  in memory, while later storage work may move large content to an atomic CAS.
+
+The mechanical layers are kept non-substitutable:
+`SourceCoordinate -> FrozenLocator -> ContentDescriptor -> CaptureRecord ->
+AttestationResult -> AuthorizationDecision`. Equality or success at one layer
+never promotes itself to the next.
+
 **Files:**
 
 - Modify: `src/orion/kernel/evidence.py`
@@ -409,8 +493,10 @@ rtk git commit -m "feat(kernel): define versioned mechanics projection"
 **Step 1: Write the mutable-file RED test**
 
 Use a resolver seam that changes the underlying file after the first read. Require
-one snapshot to retain one content digest and byte/string payload throughout the
-attempt.
+one snapshot to retain one content digest and exact byte payload throughout the
+attempt. Add a parent/final-symlink swap discriminator: capture either uses the
+one safely opened object or returns a typed unresolved row, never a path-checked
+object followed by a different pathname read.
 
 ```python
 def test_one_attempt_uses_one_evidence_occasion(tmp_path):
@@ -426,6 +512,11 @@ Require roles and obligation IDs to come from a host registration/policy manifes
 not `AnswerRecord`. Unknown role mapping produces a typed unresolved snapshot and
 later `CANNOT_CHECK`.
 
+Also require full digests, exact invalid-UTF-8/empty bytes, preservation of
+missing rows, duplicate/conflicting manifest rejection, one-time Git ref
+freezing, root/manifest/authority/support revision binding, acyclic derived
+identity, and absence of any appraisal/authorization/apply seam.
+
 **Step 3: Run RED**
 
 ```bash
@@ -437,6 +528,7 @@ rtk pytest tests/unit/kernel/test_evidence_snapshot.py \
 
 Add:
 
+- `HostEvidenceSource` for typed host-owned source coordinates;
 - `EvidenceRoleBinding`;
 - `HostEvidenceRecord` containing exact resolved content and both record/content
   hashes;
@@ -459,6 +551,21 @@ rtk git add src/orion/kernel/evidence.py \
   tests/unit/kernel/test_evidence_snapshot.py
 rtk git commit -m "feat(kernel): freeze host evidence occasions"
 ```
+
+**Implementation checkpoint before commit (2026-08-16):** fresh verification
+reports 89 focused evidence tests, 185 kernel tests and 380 full-suite tests
+passing; Ruff reports no issues and `git diff --check` is clean. A read-only
+frozen-tree hostile review rejected two P1 gaps (declared annotated-tag edge
+type was ignored; elapsed deadlines missed local/error/empty paths), both were
+reproduced RED, repaired, reverified, and the re-review returned `ACCEPT`. The hostile
+discriminators include a real final-component stat/open symlink substitution;
+`.git` gitfile/symlink/FIFO refusal; descriptor-bound Git root swap; strict
+ASCII control decoding; ordered commit/tag/tree validation; per-command and
+global output caps; operation-boundary elapsed-deadline receipt; shared work budgets; verified
+object-cache reuse; helper source/launcher artifact binding; and explicit
+refusal of alternates, `commondir`, config includes and bare repositories. This
+is the pre-commit Task-3 verification checkpoint, not an integration verdict
+against the 270 newer commits on `origin/main`.
 
 ---
 

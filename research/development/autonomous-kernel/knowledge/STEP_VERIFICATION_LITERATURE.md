@@ -60,6 +60,81 @@ The corpus and discovery metadata are search instruments, not authority.
 Negative findings are retained explicitly rather than disappearing when a new
 design is proposed.
 
+### 1.1 Protected Git/file-capture primary-source delta
+
+A later Task-3 hostile reading pass narrowed several implementation assumptions.
+The compact `<scheme>:<path>@<declaration>` form is not an unambiguous protected
+grammar because paths and Git refs can contain delimiter characters. Protected
+V1 therefore uses host-owned typed source registrations and keeps the layers
+`SourceCoordinate -> FrozenLocator -> ContentDescriptor -> CaptureRecord ->
+AttestationResult -> AuthorizationDecision` distinct.
+
+Git's revision grammar gives shorthand names precedence rules, so the protected
+grammar admits only full storage OIDs or canonical `refs/heads/...` and
+`refs/tags/...` names. One mutable name is resolved once per snapshot and all
+paths reuse the frozen result. Replacement objects and promisor lazy fetching
+are disabled; ambient object-directory and alternate-object environment settings
+are scrubbed. Git tree entries are not all regular files: modes `120000` and
+`160000` denote symlinks and gitlinks, so only `100644` and `100755` are admitted.
+
+Git's hash-transition specification also makes the security boundary precise.
+A SHA-1 object name is a repository storage coordinate, not a protected ORION
+content digest. Capture independently recomputes each typed Git object ID over
+`type || SP || decimal-length || NUL || raw-object-bytes`, verifies the frozen
+commit/tree/blob chain, and separately binds the final uninterpreted bytes by
+full SHA-256 and byte length. This catches object-store hash/path mismatch, while
+retaining the residual that SHA-1 collision resistance and repository provenance
+are not upgraded merely by hashing the extracted blob bytes.
+
+Primary sources for these corrections are Git's `gitrevisions`, `rev-parse`,
+`cat-file`, `git`, `git-replace`, `git-fsck`, fast-import/tree-mode and
+hash-function-transition documentation. A second hostile pass added Git's
+repository-layout and configuration documentation: bare repositories are valid
+Git repositories; `objects/info/alternates` borrows another object store;
+`commondir` redirects common objects, refs and configuration; and
+`include`/`includeIf` imports additional configuration. These are not malformed
+Git states. Protected V1 refuses them as **unsupported unbound roots** until it
+can no-follow-open and commit every external administrative dependency:
+
+- <https://git-scm.com/docs/gitrevisions>
+- <https://git-scm.com/docs/git-rev-parse>
+- <https://git-scm.com/docs/git-cat-file>
+- <https://git-scm.com/docs/git>
+- <https://git-scm.com/docs/git-replace>
+- <https://git-scm.com/docs/git-fsck>
+- <https://git-scm.com/docs/git-fast-import#_filemodify>
+- <https://git-scm.com/docs/hash-function-transition>
+- <https://git-scm.com/docs/gitrepository-layout>
+- <https://git-scm.com/docs/git-config#_includes>
+
+The protected subprocess path also has two different bounds. Per-command pipe
+limits stop one process from retaining or emitting unbounded diagnostics;
+shared snapshot stdout/stderr/command/deadline budgets bound a sequence of
+individually legal commands. The snapshot commits
+actual bytes consumed and exhausted coordinates; one committed overflow-probe
+byte per stream distinguishes exact-cap EOF from excess. Elapsed time is checked
+before and after root, local-file and Git operations. A blocking filesystem call
+is not preempted; if it returns after the deadline, the record is censored and
+the overrun is receipted. `WORK_BUDGET_EXHAUSTED` is therefore a
+censoring/unexamined result which forces later non-promotion; it is not negative
+evidence about the source, claim or mechanic.
+
+The descriptor helper is itself part of the measurement instrument. Root
+configuration identity now commits the selected Git executable artifact, the
+Python launcher artifact, the inline helper source, their paths and local
+file-occasion metadata. This binds the inspected launcher bytes but does not
+bind the complete dynamic-loader/library/OS closure, and Python on the Darwin
+host offers no portable `fexecve`/`execveat` path that would remove the final
+pathname-to-exec race. The scoped claim is launcher-artifact binding, not full
+process attestation.
+
+On Darwin, XNU additionally defines `O_NOFOLLOW_ANY`, `O_RESOLVE_BENEATH` and
+`O_UNIQUE`. They are defense-in-depth, not a portable substitute for the
+descriptor-relative protocol, and opening an attacker-substituted device can
+still have side effects before `fstat` rejects it. The registered root therefore
+remains a host trust/mount-policy boundary and its opened `(st_dev, st_ino)` is
+bound explicitly. Source: <https://github.com/apple-oss-distributions/xnu/blob/main/bsd/man/man2/open.2>.
+
 ## 2. Atomic question generator
 
 A research machine cannot rely on an LLM remembering which questions to ask.
@@ -512,6 +587,10 @@ tree was not modified.
 | Content/trust assurance separation | `src/rakl/authority_assurance.py` | Exact subject/evaluator/evidence/trust-backend bindings and fresh revalidation | Caller-named receipt or unequal hashes do not establish independence |
 | Directional benchmark/decoys | `src/rakl/structural_benchmark.py` | Known-answer positives, high-semantic structural decoys, boundary sign/regime attacks | Deterministic conformance is not population performance |
 | Versioned typed canonical commitment | `src/rakl/canonical_commitment.py` | Explicit type tags, digest domains, finite IEEE-754 bits, NFC rejection, cycles/unsupported-value rejection and golden vectors | RAKL's Python-specific Decimal, Fraction, dataclass, set, path, and authority-bearing object identities |
+| Immutable scoped budgets + pre-action binding | `src/rakl/approximation_budget.py`; `src/rakl/token_budget.py`; `src/rakl/pre_action_receipt.py` | Freeze consequential-work limits before capture and retain typed usage/exhaustion receipts | Resource exhaustion is not a failed scientific route or mechanic |
+| Prepared/running/terminal execution with partial-output preservation | `src/rakl/execution.py` | Keep execution chronology and partial observations separate from appraisal/authorization | Process success/failure does not mint or withdraw scientific authority |
+| Append-only negative episode history | `src/rakl/episode_store.py`; `src/rakl/failure_learning.py`; `src/rakl/failure_lattice.py` | Preserve observations; let diagnoses supersede diagnoses; activate lessons only after protected replay and transfer | Recurrence, `BLOCKED`, `CANNOT_CHECK`, and resource censoring are not causal support |
+| Observation/examination contract | `src/rakl/observation_contract.py`; `src/rakl/applicability.py`; `src/rakl/current_work_coverage.py` | Distinguish demonstrated violation, unknown, blocked precondition, and unexamined/resource-limited outcomes | Reject `src/rakl/construct_independence.py`'s collapse of `CANNOT_CHECK` into a resource flag |
 
 The transfer rule is:
 
@@ -524,6 +603,31 @@ RAKL mechanic
 ```
 
 RAKL provides prior mechanics and negative history, not ORION authority.
+
+### 5.1 Program-wide RAKL transfer backlog discovered by this slice
+
+The same pinned-source pass found several models that should be adapted before
+ORION invents replacements. They are outside Task 3 and receive no activation
+authority from this packet:
+
+| Priority | RAKL model/algorithm | ORION target | Transfer boundary |
+|---|---|---|---|
+| P0 | Set-valued diagnosis state machine (`src/rakl/diagnosis_state_machine.py:28-205`) | `DIAGNOSE -> REFRAME` | Discriminators eliminate causes; recurrence or an unexamined check cannot |
+| P0 | Multi-axis authority poset and active projection (`docs/AUTHORITY_POSET.md:21-209`; `src/rakl/authority_ledger.py:74-188`) | protected promotion, reconstruction and reopen | Rebuild as append-only events; historical RAKL certificates do not transfer |
+| P0 | Non-amplifying authority transport/revocation (`src/rakl/authority_transport.py:53-319`) | reconstruction, derived views, reopen | Exact claim/axis/scope/support only; missing transport witness is `CANNOT_CHECK` |
+| P0 | Executable epistemic noninterference (`src/rakl/epistemic_noninterference.py:82-355`) | experience, routing and Self-ORION | Learned behavior may change selection/guards but cannot promote claims or infer impossibility |
+| P0 | Recursive interface, indexed atomicity and ancestor challenge (`src/rakl/recursive_framework_audit.py:160-381`) | frame, recurse, reframe, reopen | Multiple failed repair families do not implicate a parent without a parent-discriminating packet |
+| P1 | Bound open-obligation universe (`src/rakl/current_work_coverage.py:252-456`) | frame/search/saturation | Missing inventory is unknown; observed omission is a coverage failure; staleness reopens |
+| P1 | Route-family continuity and vector health (`src/rakl/route_family_health.py:130-575`) | search control and bounded stopping | Blocked is not stagnant; surrogate progress needs a root-preservation witness |
+| P1 | Artifact lifecycle and identity reservation (`src/rakl/artifact_contract_coverage.py:43-380`; `src/rakl/identity_reservation.py:59-415`) | kernel persistence and global IDs | Schema conformance/reservation is neither runtime validity nor scientific authority |
+| P2 | Proof dependency manifest and frozen assumption sensitivity (`src/rakl/proof_dag_v2.py:7-43`; `src/rakl/assumption_sensitivity.py:91-307`) | verification and empirical promotion | Dependency identity is not theorem truth; scenario disagreement is sensitivity, not cause identification |
+| P2 | Content-addressed cold retention (`src/rakl/content_addressed_archive.py:90-283`) | evidence/episode storage adapter | Preserve semantics, reject the mutable in-memory backend |
+
+The implementation order is verdict algebra first, then diagnosis FSM,
+authority projection/transport/noninterference, recursive interfaces, obligation
+and route-universe control, persistence/identity, and only then dependency and
+sensitivity extensions. This ordering prevents later learning and saturation
+machinery from inheriting a Boolean failure collapse.
 
 ## 6. Current-main failure evidence
 
@@ -556,6 +660,10 @@ are preserved under `research/failures/`.
 8. **Valid projection excluded by its resource policy.** The one-mebibyte
    canonical cap rejected the real 59-cell mechanics seed at 1,196,301 bytes
    even though all synthetic one-cell fixtures passed.
+9. **Mixed evidence occasion.** The working-file resolver hashed one read and
+   later returned text from a second read. A hostile rewrite produced
+   `RESOLVED` with digest A and content B; lossy replacement decoding also made
+   distinct invalid UTF-8 byte strings share one text projection.
 
 Instrument failures were kept distinct: a missing import path, a nonexistent
 probe attribute and macOS multiprocessing from `<stdin>` did not count as ORION
@@ -705,6 +813,33 @@ Section 7.5.
   ([USENIX Security 2009](https://www.usenix.org/legacy/event/sec09/tech/full_papers/crosby.pdf);
   [CoSi DOI 10.1109/SP.2016.38](https://doi.org/10.1109/SP.2016.38)).
 
+**Evidence capture and byte identity**
+
+- POSIX descriptor-relative `openat`, no-follow lookup, `fstat` and `read`
+  reduce pathname check/use gaps by binding later operations to one opened
+  object; they do not create an atomic multi-file snapshot or prevent every
+  concurrent in-place write
+  ([POSIX `open`/`openat`](https://pubs.opengroup.org/onlinepubs/9799919799/functions/open.html);
+  [POSIX `fstat`](https://pubs.opengroup.org/onlinepubs/9799919799/functions/fstat.html);
+  [POSIX `read`](https://pubs.opengroup.org/onlinepubs/9799919799/functions/read.html);
+  [CWE-367](https://cwe.mitre.org/data/definitions/367.html)).
+- BagIt treats payloads as uninterpreted octet streams and requires complete
+  checksum manifests; OCI descriptors bind content by media type,
+  algorithm-qualified digest and byte size. These are content-integrity
+  mechanics, not truth or authorization
+  ([RFC 8493](https://www.rfc-editor.org/rfc/rfc8493.html);
+  [OCI descriptor specification](https://github.com/opencontainers/image-spec/blob/main/descriptor.md)).
+- RFC 6920 binds named information to an algorithm, digest length and digest
+  value, warns that a 32-bit truncated SHA-256 value is essentially useless for
+  security, and does not infer an authority relationship from a matching hash
+  ([RFC 6920](https://www.rfc-editor.org/rfc/rfc6920.html)).
+- DSSE length-delimits payload type and body to prevent type/context ambiguity;
+  in-toto keeps the project-owner layout separate from functionary-produced
+  link metadata. ORION transfers the domain/owner separation, not signing as
+  evidence truth
+  ([DSSE protocol](https://github.com/secure-systems-lab/dsse/blob/master/protocol.md);
+  [in-toto specification](https://github.com/in-toto/docs/blob/master/in-toto-spec.md)).
+
 **Atomic history, causality and replay**
 
 - Linearizability requires each accepted concurrent operation to appear to
@@ -823,6 +958,8 @@ The research falsified or failed to support these stronger claims:
     must distinguish application types and IEEE-754 signed zero.
 16. A resource policy is invalid for its intended transition surface when it
     rejects the system's representative live canonical state.
+17. A digest computed from one read cannot safely describe content returned
+    from another read; decoding with replacement is not exact byte identity.
 
 ### 7.5 ORION design implications
 
@@ -846,6 +983,10 @@ These are synthesis, not claims quoted from the sources:
    reopen/compensation events.
 8. Keep LLM output inert. Run generated code in a stronger isolation boundary
    before treating the Python bootstrap as adversarially protected.
+9. Capture evidence as exact bytes from one descriptor/object occasion. Bind a
+   full digest, byte length, host role/obligation manifest, root identity and
+   authority/support revisions; retain unresolved rows instead of dropping
+   them from an index.
 9. Allow self-modification only below a pinned root and only after exact-
    artifact validation by the currently trusted version, protected regression
    tests, authorization and a quiescent activation boundary.
@@ -1066,8 +1207,10 @@ The following independent routes were inspected:
 8. linearizability, authorization-snapshot causality and crash consistency;
 9. proof-carrying code, translation validation and trusting-trust limits; and
 10. canonical JSON/CBOR data models, Unicode normalization stability and
-    typed numeric identity; and
-11. agent failure, LLM-judge, memory poisoning, continual-learning and safe
+    typed numeric identity;
+11. descriptor-anchored evidence capture, byte manifests and content-addressed
+    identity; and
+12. agent failure, LLM-judge, memory poisoning, continual-learning and safe
     self-modification literature.
 
 The later routes did add a load-bearing primitive missing from the first

@@ -17,7 +17,18 @@ closure requires the separate protected transition lifecycle.
 
 from .apply import GradedApplication, grade_and_apply
 from .driver import RunReport, SelfDrivingDriver, learn_guards, replay_cells
-from .evidence import EvidenceResolution, EvidenceStatus, resolve_evidence_ref
+from .evidence import (
+    EvidenceResolution,
+    EvidenceRoleBinding,
+    EvidenceStatus,
+    HostEvidenceManifest,
+    HostEvidenceRecord,
+    HostEvidenceSnapshot,
+    HostEvidenceSource,
+    capture_host_evidence_snapshot,
+    resolve_evidence_ref,
+    snapshot_hash,
+)
 from .battery import battery_order, host_battery
 from .gate import (
     AnswerAuthority,
@@ -63,7 +74,12 @@ __all__ = [
     "DiscriminatingCheck",
     "EntryKind",
     "EvidenceResolution",
+    "EvidenceRoleBinding",
     "EvidenceStatus",
+    "HostEvidenceManifest",
+    "HostEvidenceRecord",
+    "HostEvidenceSnapshot",
+    "HostEvidenceSource",
     "GradedApplication",
     "GuardEffect",
     "GuardRule",
@@ -95,6 +111,7 @@ __all__ = [
     "canonical_json_bytes",
     "canonical_json_loads",
     "canonical_mechanic_cell",
+    "capture_host_evidence_snapshot",
     "discrimination_order",
     "host_battery",
     "derive_guard_rule",
@@ -106,4 +123,5 @@ __all__ = [
     "projection_hash",
     "run_discriminating_check",
     "run_round",
+    "snapshot_hash",
 ]
