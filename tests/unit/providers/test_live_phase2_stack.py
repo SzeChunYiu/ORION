@@ -9,6 +9,7 @@ from orion.providers.live_phase2 import (
     build_phase2_live_provider_stack_from_env,
     write_live_phase2_provider_manifest,
 )
+from orion.self_orion.live_accounted import AccountedShadowLiveTrialRunner
 from orion.self_orion.live_campaign_factory import build_live_phase2_trial_harness
 
 
@@ -63,7 +64,7 @@ def test_env_builder_requires_reasoner_and_protected_verifier_configuration(monk
         build_phase2_live_provider_stack_from_env(reasoner_model="reasoner")
 
 
-def test_live_harness_reuses_provider_family_binds_verifier_and_records_by_default():
+def test_live_harness_reuses_provider_family_binds_verifier_records_and_accounts_by_default():
     stack = build_phase2_live_provider_stack(
         reasoner_api_key="reasoner-secret",
         reasoner_model="gpt-reasoner-test",
@@ -84,9 +85,12 @@ def test_live_harness_reuses_provider_family_binds_verifier_and_records_by_defau
     assert harness.evaluator_artifact_hash == "b" * 64
     assert harness.baseline._llm is stack.llm
     assert harness.baseline._retrieval is stack.retrieval
+    assert isinstance(harness.runner, AccountedShadowLiveTrialRunner)
     assert harness.runner._baseline is harness.baseline
     assert harness.runner._retrieval_recorder is not None
     assert harness.runner._retrieval_recorder._delegate is stack.retrieval
+    assert harness.runner._retrieval_call_cost_units == 2.0
+    assert harness.runner._llm_call_cost_units == 3.0
     assert isinstance(harness.runner._orion._experience_store, InMemoryExperienceStore)
 
     with pytest.raises(ValueError, match="must match"):
