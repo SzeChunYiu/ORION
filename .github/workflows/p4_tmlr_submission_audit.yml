@@ -47,6 +47,22 @@ jobs:
             test -s "papers/paper-04-verified-scientific-discovery/tables/$f.tex"
           done
 
+      - name: Retain regenerated safe publication sources
+        uses: actions/upload-artifact@v4
+        with:
+          name: p4-v2-generated-sources-${{ github.run_id }}
+          path: |
+            papers/paper-04-verified-scientific-discovery/figures/p4_2_false_promotion.svg
+            papers/paper-04-verified-scientific-discovery/figures/p4_3_coverage_frontier.svg
+            papers/paper-04-verified-scientific-discovery/figures/p4_4_detection_by_attack.svg
+            papers/paper-04-verified-scientific-discovery/figures/p4_5_attribution_vs_support.svg
+            papers/paper-04-verified-scientific-discovery/figures/p4_6_cost_false_promotion.svg
+            papers/paper-04-verified-scientific-discovery/tables/p4_t1_attack_custody.tex
+            papers/paper-04-verified-scientific-discovery/tables/p4_t2_baseline_ablation_results.tex
+            papers/paper-04-verified-scientific-discovery/tables/p4_t3_cannot_check_errors.tex
+          if-no-files-found: error
+          retention-days: 7
+
       - name: Install TeX/PDF/rendering tools
         shell: bash
         run: |
