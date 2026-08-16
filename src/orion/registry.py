@@ -1,7 +1,7 @@
 """Canonical Shadow-ORION registry shared by runtime, tests and paper synchronization."""
 
-FRAMEWORK_VERSION = "0.3.8-shadow"
-PAPER_SYNC_EPOCH = "2026-08-16-rakl-donor-saturation-v2"
+FRAMEWORK_VERSION = "0.3.9-shadow"
+PAPER_SYNC_EPOCH = "2026-08-16-phase1-rakl-donor-closure-v3"
 
 CORE_OPERATOR_IDS = (
     "FRAME.v1",
@@ -36,6 +36,16 @@ MECHANICS_SUBSTRATE_IDS = (
     "SimilarityWitness.rakl-v1",
     "MeasurementRelation.rakl-v1",
     "GeneratorTransport.rakl-v1",
+    "RouteFamilyHealth.rakl-v1",
+    "BackwardMultiSeed.rakl-v1",
+    "BackwardMultiSeedBenchmark.rakl-v1",
+    "RetrievalBenchmark.rakl-v1",
+    "BridgeComposition.rakl-v1",
+    "AtlasGluing.rakl-v1",
+    "MultiresMemory.rakl-v1",
+    "PromotionAttestation.rakl-v1",
+    "SubjectIdentityAttestation.rakl-v1",
+    "RaklDonorManifest.v3",
     "BenchmarkReport.v1",
     "FlagshipBenchmarkSuite.v1",
     "ExternalEvidenceManifest.v1",
