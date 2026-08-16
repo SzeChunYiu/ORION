@@ -9,6 +9,9 @@ description = "Evidence-governed recursive research operating system"
 requires-python = ">=3.11"
 dependencies = [
     "cryptography>=45",
+    # Remote XML is untrusted input: stdlib ElementTree is vulnerable to
+    # entity-expansion (billion-laughs) and quadratic-blowup denial of service.
+    "defusedxml>=0.7",
 ]
 
 [project.optional-dependencies]
