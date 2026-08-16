@@ -51,13 +51,18 @@ judgement.
 
 ## Honest reading of the current state
 
-The kernel can close a question. It has never closed one. Those are different
-statements from "the kernel cannot close questions", and the difference is one
-participant, not one commit.
+At the observed revision, the raw grade/apply seam could close a question but
+had never closed one. The protected-transition work subsequently removed that
+authority from raw checks: a `PASSED` outcome is retained as diagnostic
+appraisal input, while closure requires the separately revisioned relying-party
+authorization and atomic commit lifecycle. Therefore adding another lane alone
+no longer unblocks `VERIFIED`, and restoring the old promotion would recreate
+caller-owned authority. This amendment narrows the historical diagnosis rather
+than erasing it.
 
 ## Residuals
 
-1. `FAILURE` has four answers and no registered check in any lane.
+1. `FAILURE` has four answers and no registered diagnostic check in any lane.
 2. Lane separation is currently a string comparison over a self-declared field.
    It is structural, not organizational: nothing prevents a single operator from
    running both lanes. `experience/learning.py` already reaches the same

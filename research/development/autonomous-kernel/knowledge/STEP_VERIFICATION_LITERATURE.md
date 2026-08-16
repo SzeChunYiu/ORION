@@ -511,6 +511,7 @@ tree was not modified.
 | Set-valued diagnosis and discriminators | `src/rakl/diagnosis_state_machine.py` | Preserve multiple causes; only evidence-bound transitions eliminate causes | `CANNOT_CHECK` cannot hide a unique asserted cause |
 | Content/trust assurance separation | `src/rakl/authority_assurance.py` | Exact subject/evaluator/evidence/trust-backend bindings and fresh revalidation | Caller-named receipt or unequal hashes do not establish independence |
 | Directional benchmark/decoys | `src/rakl/structural_benchmark.py` | Known-answer positives, high-semantic structural decoys, boundary sign/regime attacks | Deterministic conformance is not population performance |
+| Versioned typed canonical commitment | `src/rakl/canonical_commitment.py` | Explicit type tags, digest domains, finite IEEE-754 bits, NFC rejection, cycles/unsupported-value rejection and golden vectors | RAKL's Python-specific Decimal, Fraction, dataclass, set, path, and authority-bearing object identities |
 
 The transfer rule is:
 
@@ -543,6 +544,18 @@ are preserved under `research/failures/`.
 4. **Recurrence self-promotion.** Two caller-labelled split IDs promote a
    recurring failure signature to an active `VERIFIED_LOCAL` guard without
    protected replay or fresh transfer.
+5. **Flattened supersession leak.** Applying `r1`, then the `(r1, r2)` chain to
+   already-mutated cells retains both contributions even though `r2`
+   supersedes `r1`; the flattened state lost contribution ownership.
+6. **Untrusted alias read suppression.** Two different DOIs sharing one
+   caller-supplied alias merge, and a read receipt for the first makes the
+   second return `ALREADY_READ`.
+7. **Verification instrument collision.** The first new Task-2 test basename
+   collided with an existing non-package pytest module; the focused suite
+   passed but the whole suite could not collect until the file was renamed.
+8. **Valid projection excluded by its resource policy.** The one-mebibyte
+   canonical cap rejected the real 59-cell mechanics seed at 1,196,301 bytes
+   even though all synthetic one-cell fixtures passed.
 
 Instrument failures were kept distinct: a missing import path, a nonexistent
 probe attribute and macOS multiprocessing from `<stdin>` did not count as ORION
@@ -586,6 +599,47 @@ Section 7.5.
   ([DOI 10.1109/TSE.2014.2372785](https://doi.org/10.1109/TSE.2014.2372785);
   [DOI 10.1145/3143561](https://doi.org/10.1145/3143561);
   [DOI 10.1145/351240.351266](https://doi.org/10.1145/351240.351266)).
+
+**Canonical identity and wire semantics**
+
+- RFC 8785 makes JSON hashable by constraining it to I-JSON, deterministic
+  property sorting and ECMAScript's IEEE-754 number serialization; it rejects
+  lone surrogates, NaN and infinity. Its JSON data model does not preserve an
+  application distinction between tuple/list or integer/float identity, and
+  its number examples serialize negative zero as `0`, so it is not ORION's
+  protected typed identity profile
+  ([RFC 8785](https://www.rfc-editor.org/rfc/rfc8785)).
+- ORION's typed profile is deliberately not JCS: typed mapping keys are ordered
+  by NFC UTF-8 bytes, while RFC 8785 orders JSON property names by UTF-16 code
+  units. A non-ASCII golden discriminator freezes that difference.
+- RFC 8949's CBOR generic data model explicitly distinguishes integer from
+  floating-point values and defines deterministic encodings, while noting that
+  applications must decide additional requirements such as whether positive
+  and negative zero are distinct. ORION adopts those obligations, not the CBOR
+  wire format, to avoid adding a second storage dependency in the bootstrap
+  ([RFC 8949](https://www.rfc-editor.org/rfc/rfc8949)).
+- Unicode Normalization Form C gives canonically equivalent strings one binary
+  form, but UAX #15 distinguishes normalized-form stability from normalization-
+  process stability and records pre-4.1 corrections. ORION therefore does not
+  approximate Unicode 3.2 using a current database plus an age filter: it
+  rejects rather than silently rewrites non-NFC text or scalars unassigned in
+  Python's frozen UCD 3.2 database, and binds both that policy and the exact
+  `3.2.0` database version in every canonical envelope. Python explicitly
+  exposes `ucd_3_2_0` for applications requiring that exact database version
+  ([Unicode Standard Annex 15](https://www.unicode.org/reports/tr15/);
+  [Unicode 3.2 normalization corpus](https://www.unicode.org/Public/3.2-Update/NormalizationTest-3.2.0.txt);
+  [Python `unicodedata` documentation](https://docs.python.org/3/library/unicodedata.html#unicodedata.ucd_3_2_0)).
+- Python's standard `struct` format `>d` uses IEEE-754 binary64 regardless of
+  the platform floating representation. Encoding those eight bytes preserves
+  signed zero and avoids ambient decimal formatting
+  ([Python struct documentation](https://docs.python.org/3/library/struct.html)).
+- Python's JSON decoder provides hooks for integer, floating-point and special
+  constants but does not impose inherent input size or nesting limits. ORION
+  therefore rejects oversize bytes before parsing, rejects numeric tokens via
+  hooks before ambient integer conversion, and applies explicit depth/node
+  bounds after parsing
+  ([Python `json.loads`](https://docs.python.org/3/library/json.html#json.loads);
+  [implementation limitations](https://docs.python.org/3/library/json.html#implementation-limitations)).
 
 **Attestation, authorization and access control**
 
@@ -698,12 +752,15 @@ Section 7.5.
 
 ### 7.2 Local primary observations
 
-The four hostile reproductions in Section 6 are primary evidence about ORION
-subject `5894ac7`: caller predicate authority laundering, empty-lineage
-independence inflation, concurrent duplicate ledger heads and recurrence
-self-promotion. Their scripts and raw outcomes justify regression tests. They
-do not establish the prevalence of those failures in other systems, and a
-later fix requires fresh reproduction against the new subject.
+The first four hostile reproductions in Section 6 are primary evidence about
+ORION subject `5894ac7`. The flattened-supersession and untrusted-alias probes
+were reproduced after rebasing the protected branch onto `origin/main`
+`4d384ab`; exact receipts are preserved in their failure records. The pytest
+basename collision is an instrument failure, not an ORION behavior result. The
+resource-cap failure was reproduced after rebasing onto `origin/main`
+`ebb93fd` and is scoped to the pre-fix Task-2 codec.
+These observations justify regression tests but do not establish prevalence in
+other systems, and every later fix requires fresh reproduction.
 
 ### 7.3 Candidate and unreviewed evidence
 
@@ -758,6 +815,14 @@ The research falsified or failed to support these stronger claims:
     not scientific truth or general operational validity.
 12. The searched frame does not certify literature recall or semantic
     saturation.
+13. A flattened state without retained contribution causes cannot implement
+    selective supersession or retraction correctly.
+14. Alias overlap is not evidence of work equivalence and cannot safely suppress
+    research without a separately admitted identity edge.
+15. Ordinary JSON canonicalization is not sufficient when protected identity
+    must distinguish application types and IEEE-754 signed zero.
+16. A resource policy is invalid for its intended transition surface when it
+    rejects the system's representative live canonical state.
 
 ### 7.5 ORION design implications
 
@@ -1000,7 +1065,9 @@ The following independent routes were inspected:
 7. trust management, ABAC/zero-trust authorization and complete mediation;
 8. linearizability, authorization-snapshot causality and crash consistency;
 9. proof-carrying code, translation validation and trusting-trust limits; and
-10. agent failure, LLM-judge, memory poisoning, continual-learning and safe
+10. canonical JSON/CBOR data models, Unicode normalization stability and
+    typed numeric identity; and
+11. agent failure, LLM-judge, memory poisoning, continual-learning and safe
     self-modification literature.
 
 The later routes did add a load-bearing primitive missing from the first

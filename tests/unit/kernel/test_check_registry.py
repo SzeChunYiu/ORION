@@ -87,11 +87,11 @@ def test_same_lane_record_is_never_verified_by_these_checks():
     assert after == before
 
 
-def test_cross_lane_record_with_contract_shape_reaches_verified():
+def test_cross_lane_record_with_contract_shape_is_diagnostic_only():
     grading, before, after = _grade(_cross_lane_record("chatgpt"))
     assert grading.check_outcome is CheckOutcome.PASSED
-    assert grading.authority is AnswerAuthority.VERIFIED
-    assert before - after == 1
+    assert grading.authority is AnswerAuthority.EVIDENCE_BOUND
+    assert after == before
 
 
 def test_no_raw_default_cell_passes_any_check():

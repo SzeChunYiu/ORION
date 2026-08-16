@@ -59,8 +59,10 @@ In particular, do not add an `assurance_service`, `registry`, `signing_key`,
 2. **Immutable evidence occasion.** Resolution happens once per attempt. The
    captured bytes, identities, content hashes, host-assigned roles, obligations,
    root configuration, and logical capture revision form one immutable snapshot.
-3. **Exact state.** Subject identity covers the complete research projection,
-   including active record tips and reopen state, not open-question count alone.
+3. **Exact state.** Subject identity covers the complete mechanics-reducer
+   projection, including the exact seed, record graph, active tips and
+   reopen state, plus every external protected read-set revision. It never
+   substitutes open-question count or claims this slice is global ORION state.
 4. **Pure versioned reduction.** The same supported workflow/reducer version,
    seed projection, and ordered operations produce exactly the same post-state.
 5. **Appraisal is not authorization.** A signed verifier `PASS` is input to the
@@ -90,6 +92,29 @@ In particular, do not add an `assurance_service`, `registry`, `signing_key`,
 15. **No false completeness.** Local hash chaining establishes prefix integrity,
     not witnessed tail completeness, scientific truth, or recall.
 
+## Concurrent-state amendment at `origin/main` `4d384ab`
+
+The merged `SOURCE`/`READ` knowledge ledger is a new behavior-affecting state
+lane. A caller-authored alias can currently merge two works and make a required
+read return `ALREADY_READ`; malformed read rows are skipped. Therefore:
+
+- raw source/alias/read rows remain shadow observations until content-bound
+  admission establishes alias equivalence and read identity;
+- Task 7 inventories behavior-changing scheduling, guard, lesson, claim,
+  solution, evaluator, trust-store, support, and admission effects across the
+  whole repository, including `engine` and `experience`, not only
+  `AnswerAuthority` assignments;
+- Task 8 either commits an explicit knowledge/read-set revision with the
+  transition or establishes that the common ledger head is the conservative
+  serialization token and binds the exact semantic read set separately;
+- Tasks 10 and 13 treat malformed or legacy `SOURCE`/`READ` rows as typed replay
+  failures or quarantined shadow data, never silent protected omission.
+
+`ProgramProjection` is deliberately narrowed to the mechanics reducer. Full
+self-driving ORION later composes mechanics, knowledge, experience, engine,
+authority, support, and external-effect projections; this bounded slice must not
+claim global completeness.
+
 ## Intended module interfaces
 
 These are interfaces to test toward, not permission to implement before their
@@ -108,11 +133,13 @@ class ProgramProjection:
     schema_version: str
     workflow_version: str
     reducer_version: str
-    seed_hash: str
-    cells: tuple[MechanicCell, ...]
-    record_bindings: tuple[tuple[str, str], ...]
-    active_record_tips: tuple[tuple[str, str, str], ...]
+    seed_cells: tuple[MechanicCell, ...]
+    records: tuple[AnswerRecord, ...]
+    active_record_ids: tuple[str, ...]
     reopened_coordinates: tuple[tuple[str, str, str], ...]
+
+    # Derived, never independently caller-authored:
+    # seed_hash, record_bindings, active_records, active_record_tips
 
 @dataclass(frozen=True)
 class HostEvidenceSnapshot:
@@ -279,12 +306,12 @@ rtk git commit -m "fix(kernel): remove caller-owned verification authority"
 
 ---
 
-### Task 2: Freeze canonical projection and transition identity
+### Task 2: Freeze canonical mechanics projection and transition identity
 
 **Files:**
 
 - Create: `src/orion/kernel/transition.py`
-- Create: `tests/unit/kernel/test_transition.py`
+- Create: `tests/unit/kernel/test_transition_identity.py`
 - Modify: `src/orion/kernel/__init__.py`
 - Reference: `src/orion/mechanics/model.py`
 - Reference: `src/orion/mechanics/answers.py`
@@ -302,17 +329,34 @@ def test_projection_hash_binds_complete_typed_state():
     assert projection_hash(first) != projection_hash(changed)
 ```
 
-Also change active record tips while leaving cell content identical and require a
-different projection hash.
+Freeze an exact golden byte/digest vector and strict round-trip decoder. Require
+explicit distinction of bool/int, list/tuple, positive/negative zero, finite
+IEEE-754 binary64 bits, arbitrary integers without ambient decimal conversion,
+NFC assigned text, unknown-tag/profile rejection, and object digest domains.
+Freeze explicit byte/depth/node resource bounds and convert parser recursion or
+ambient integer-limit failures into `CanonicalizationError`. Pin separate
+golden digests for a complete `AnswerRecord`, seed, and projection so an
+object-encoder or domain drift cannot silently rewrite historical identities.
+The byte cap is eight mebibytes: finite and pre-parse enforced, but large enough
+for the measured 1,196,301-byte live mechanics seed. A real-program regression
+must accompany the synthetic boundary attacks.
+
+The projection must retain the exact seed plus the complete structurally admissible
+`AnswerRecord` supersession graph. Active tips and record bindings are derived
+and checked against record bodies. Missing parents, cross-coordinate edges,
+branches, cycles, wrong tips, duplicate IDs, and unknown version triples fail
+closed. `provisional_dimensions` is encoded as a set-like sorted field.
 
 **Step 2: Run RED**
 
 ```bash
-rtk pytest tests/unit/kernel/test_transition.py \
+rtk pytest tests/unit/kernel/test_transition_identity.py \
   -q -x
 ```
 
-Expected: FAIL because `orion.kernel.transition` does not exist.
+Expected: first FAIL because `orion.kernel.transition` does not exist; later
+hostile deltas fail on missing canonical profile/decoder or invalid projection
+normal form before their corresponding production changes.
 
 **Step 3: Implement only versioned frozen data and codecs**
 
@@ -320,12 +364,16 @@ Define:
 
 - `WORKFLOW_VERSION`;
 - `REDUCER_VERSION`;
+- `CANONICALIZATION_VERSION`, the frozen UCD 3.2 assigned-NFC Unicode policy,
+  and its database version in every envelope;
 - `TransitionKind` with `ANSWER`, `REVALIDATE`, `REOPEN`, and
   `AUTHORITY_SUPPORT_UPDATE`;
-- `ProgramProjection`;
+- `ProgramProjection` with exact seed and complete structurally admissible
+  record graph;
 - `LedgerExpectation`;
 - explicit canonical encoders for every `MechanicCell`, `HandoffField`,
-  `MetricSpec`, `DimensionWaiver`, and active-record field;
+  `MetricSpec`, `DimensionWaiver`, and complete `AnswerRecord` field;
+- strict canonical decoding plus frozen golden bytes/digest;
 - `projection_hash`.
 
 Do not add evaluator, signing, store, or mutation behavior.
@@ -333,10 +381,10 @@ Do not add evaluator, signing, store, or mutation behavior.
 **Step 4: Run GREEN**
 
 ```bash
-rtk pytest tests/unit/kernel/test_transition.py \
+rtk pytest tests/unit/kernel/test_transition_identity.py \
   -q
 rtk ruff check src/orion/kernel/transition.py \
-  tests/unit/kernel/test_transition.py
+  tests/unit/kernel/test_transition_identity.py
 ```
 
 **Step 5: Commit**
@@ -344,8 +392,8 @@ rtk ruff check src/orion/kernel/transition.py \
 ```bash
 rtk git add src/orion/kernel/transition.py \
   src/orion/kernel/__init__.py \
-  tests/unit/kernel/test_transition.py
-rtk git commit -m "feat(kernel): define versioned research projection"
+  tests/unit/kernel/test_transition_identity.py
+rtk git commit -m "feat(kernel): define versioned mechanics projection"
 ```
 
 ---
@@ -477,14 +525,14 @@ or global mutable registry is permitted in this module.
 **Step 7: Run GREEN and commit**
 
 ```bash
-rtk pytest tests/unit/kernel/test_transition.py \
+rtk pytest tests/unit/kernel/test_transition_identity.py \
   tests/unit/kernel/test_transition_reducer.py \
   -q
 rtk ruff check src/orion/kernel/transition.py \
-  tests/unit/kernel/test_transition.py \
+  tests/unit/kernel/test_transition_identity.py \
   tests/unit/kernel/test_transition_reducer.py
 rtk git add src/orion/kernel/transition.py \
-  tests/unit/kernel/test_transition.py \
+  tests/unit/kernel/test_transition_identity.py \
   tests/unit/kernel/test_transition_reducer.py
 rtk git commit -m "feat(kernel): add pure versioned transition reducer"
 ```
@@ -1179,7 +1227,7 @@ Never touch the Claude worktree and never force-push.
 
 ```bash
 rtk pytest tests/unit/kernel/test_protected_assurance.py \
-  tests/unit/kernel/test_transition.py \
+  tests/unit/kernel/test_transition_identity.py \
   tests/unit/kernel/test_transition_reducer.py \
   tests/unit/kernel/test_evidence_snapshot.py \
   tests/unit/kernel/test_verifier_appraisal.py \
