@@ -110,7 +110,7 @@ _ACTIONS: dict[IgnoranceKind, tuple[IgnoranceAction, SearchRouteKind | None, str
     ),
     IgnoranceKind.RESEARCH_BARRIER: (
         IgnoranceAction.REPAIR_RESEARCH_BARRIER,
-        SearchRouteKind.IMPLEMENTATION_ANALOGUE,
+        SearchRouteKind.IMPLEMENTATION_ANALOG,
         "A stated methodological/instrumental barrier should trigger tool, measurement or method repair research.",
     ),
     IgnoranceKind.FUTURE_RESEARCH: (
