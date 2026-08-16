@@ -73,20 +73,42 @@ def test_plot_spec_uses_publication_svg_builder():
     assert "publication_svg" in text
 
 
-def test_protocol_execution_bindings_remain_unbound():
-    """P4 protocol must keep all execution bindings UNBOUND while in DESIGN_FROZEN."""
+def test_protocol_execution_bindings_are_fully_bound_when_execution_frozen():
     protocol = json.loads(
         (PROTOCOL_DIR / "PROTOCOL_V1.json").read_text(encoding="utf-8")
     )
-    assert protocol["protocol_status"] == "DESIGN_FROZEN"
+    assert protocol["protocol_status"] == "EXECUTION_FROZEN"
     assert protocol["outcome_accessed"] is False
     bindings = protocol["execution_bindings"]
-    for key, value in bindings.items():
+    assert bindings["subject_revision"] == "46977ea104162c4cf64da8138a4c4759065fe6d4"
+    assert (
+        bindings["dataset_revisions"]["protected_attack_set"]
+        == "23c7732118bf750b4f5b927aab271cf1e7ee1068d8dc1838ca5119d7e436b102"
+    )
+    assert (
+        bindings["baseline_config_hashes"]
+        == "efa50d3f4e1d76589f80a813e52805b01940409cf353c4826713935a87d8ca84"
+    )
+    assert (
+        bindings["evaluator_hash"]
+        == "14a4c01442bd5f1d17eb4c7c443d94cbcf198e4e910a62d4126e6f35f27ad0c7"
+    )
+    assert (
+        bindings["split_hashes"]
+        == "747213c60d7a6087a6f6fda5e25546acae5ee70ec1b5b9b7db3868f208213959"
+    )
+    assert bindings["evaluation_epoch"] == "2026-08-16T19:22:06Z"
+
+    def assert_bound(value: object, path: str = "execution_bindings") -> None:
         if isinstance(value, dict):
-            for sub_key, sub_val in value.items():
-                assert sub_val == "UNBOUND", f"{key}.{sub_key} must be UNBOUND"
-        else:
-            assert value == "UNBOUND", f"{key} must be UNBOUND"
+            assert value, f"{path} must not be empty"
+            for key, item in value.items():
+                assert_bound(item, f"{path}.{key}")
+            return
+        assert value != "UNBOUND", f"{path} must be bound"
+        assert value not in (None, "", [], {}), f"{path} must be concrete"
+
+    assert_bound(bindings)
 
 
 def test_publication_stats_wilson_interval():
