@@ -492,3 +492,44 @@ def test_the_frozen_answer_key_names_a_graded_claim() -> None:
     be flagging a document that leaks nothing."""
 
     assert "claim:drift-linear" in ANSWER_KEY_TEXT
+
+
+def test_the_external_gate_refuses_an_attestation_its_observation_contradicts() -> None:
+    """The gate's only surface used to be the candidate's own claim, so it
+    certified the claim rather than the candidate. An observation of what the
+    candidate actually did can now lower the verdict.
+
+    The asymmetry is deliberate: an observation can only refuse, never bless. An
+    absent record leaves the attestations exactly as weak as they were, because
+    otherwise supplying an empty record would launder a claim into an
+    observation.
+    """
+
+    from orion.benchmarks.result import BenchmarkStatus
+    from orion.benchmarks.verified_discovery import external_authority_gate
+
+    attested = {
+        "source_attribution_benchmark_run": True,
+        "search_time_contamination_audited": True,
+        "evaluator_locked": True,
+        "heldout_access_logged": True,
+        "matched_nearest_work_baseline_run": True,
+        "false_promotion_better_than_baseline": True,
+    }
+    assert external_authority_gate(**attested).status is BenchmarkStatus.PASS
+
+    caught = external_authority_gate(
+        **attested,
+        observed_activity=CandidateActivity(
+            "c",
+            written_paths=("src/orion/benchmarks/evaluator.py",),
+            read_paths=("data/heldout/labels.json",),
+            test_edits=("tests/test_x.py",),
+        ),
+    )
+    assert caught.status is BenchmarkStatus.FAIL
+    assert len(caught.blockers) == 3
+
+    # An empty record must not upgrade anything.
+    empty = external_authority_gate(**attested, observed_activity=CandidateActivity("c"))
+    assert empty.status is BenchmarkStatus.PASS

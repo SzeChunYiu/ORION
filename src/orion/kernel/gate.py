@@ -94,6 +94,29 @@ class AnswerGrading:
     check_id: str = ""
     check_outcome: CheckOutcome | None = None
     reasons: tuple[str, ...] = ()
+    #: Whether the cited evidence was shown to SUPPORT the claim, as distinct
+    #: from being authentic. Content binding establishes that a citation is
+    #: really the artifact it names and really says what it is quoted as
+    #: saying. It establishes nothing about whether that content supports the
+    #: claim it is offered for.
+    #:
+    #: The hostile battery for issue #59 made the difference concrete: an
+    #: answer asserting a claim while citing an artifact that explicitly
+    #: CONTRADICTS it still graded EVIDENCE_BOUND and folded into the cell.
+    #: EVIDENCE_BOUND is a name that overclaims, and the honest repair is to
+    #: stop letting the name carry a guarantee nothing computes.
+    #:
+    #: None means not established. It is never set True by this module, because
+    #: nothing here can establish it; a caller that can must set it explicitly
+    #: and say how. Distinguishing "could not check" from "checked and fine" is
+    #: the whole point.
+    support_established: bool | None = None
+    #: Whether the cited evidence was shown to have INFLUENCED the answer.
+    #: A citation can be authentic, supporting, and entirely inert. Deciding
+    #: this needs an ablation — remove the citation, see whether the answer
+    #: changes — which the gate cannot perform on a record it is merely
+    #: grading. None means not established, for the same reason.
+    influence_established: bool | None = None
 
     @property
     def applicable(self) -> bool:
