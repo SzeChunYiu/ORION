@@ -7,26 +7,30 @@ A framework change requires a paper audit when it changes any of:
 - `K/W/M` state semantics;
 - core operator identity or order;
 - mechanics-of-mechanics substrate identity or audit grammar;
-- nearest-work absorption / novelty-comparison semantics;
+- scientific meaning/source-projection/representation-mapping semantics;
 - authority/non-escalation rules;
 - saturation/stopping semantics;
-- failure/experience learning, reframe or reopen behavior;
+- failure/experience/issue learning, reframe or reopen behavior;
 - evaluation chronology;
-- Self-ORION promotion rules.
+- Self-ORION promotion rules;
+- nearest-work absorption/novelty boundaries;
+- flagship falsifier or external-promotion gate semantics.
 
 `papers/FRAMEWORK_SNAPSHOT.json` is machine-checked against `src/orion/registry.py`. Matching the snapshot proves only terminology/mechanic synchronization, not scientific validity or empirical support.
 
-## Nearest-work obligation
+## Nearest-work rule
 
-A flagship paper may state a **candidate novelty delta** only when:
+Every flagship paper must maintain a nearest-work case. A novelty case is blocked while nearest-work routes remain open, while no hostile falsifier exists, or when the nearest work already subsumes the purported claim. `CANDIDATE_DELTA` is a research state, not publication authority.
 
-1. the scoped claim has at least one registered nearest-work comparison;
-2. exact/function-only/parent-discipline/historical/implementation/adversarial-nearest-work routes have been challenged to the declared bounded scope;
-3. useful external mechanisms have explicit ADOPT/ADAPT/COMPOSE/DEFER/REJECT dispositions rather than being treated only as competitors;
-4. any mechanism that subsumes part of the claim removes that part from the ORION novelty statement;
-5. the surviving delta has a registered falsifier/benchmark and strong baseline;
-6. open nearest-work routes or a subsuming work fail closed rather than being hidden by manuscript wording.
+Absorbing a nearest mechanism may shrink or eliminate the ORION claim; that is a successful research outcome rather than a reason to ignore the work.
 
-`CANDIDATE_DELTA` is research state only and cannot by itself authorize a publication novelty claim.
+## Two-level evidence rule
 
-Paper-specific empirical claims must maintain their own evidence ledgers and cannot inherit truth from passing software tests.
+Every flagship paper now distinguishes:
+
+1. **local falsifier evidence** — exact known-world/hostile tests of implemented semantics;
+2. **external promotion evidence** — fresh domain-appropriate tasks, matched strong baselines, protected evaluators/gold and the paper-specific primary outcome.
+
+A green repository/CI run may support the first level only. A paper cannot be marked externally validated or publication-ready while its external gate is `CANNOT_CHECK` or `FAIL`. `FlagshipEvidenceState.publication_ready` requires both levels to pass for all registered flagship papers.
+
+Paper-specific empirical claims maintain their own evidence ledgers and cannot inherit truth from passing software tests, nearest-work prose or framework synchronization.

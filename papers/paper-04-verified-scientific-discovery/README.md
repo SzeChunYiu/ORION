@@ -1,10 +1,10 @@
 # Paper 04 — Verified Scientific Discovery
 
-**Status:** ACTIVE RESEARCH / AUTHORITY SUBSTRATE IMPLEMENTED / LIVE SCIENTIFIC VALIDATION OPEN
+**Status:** ACTIVE RESEARCH / LOCAL AUTHORITY-LAUNDERING FALSIFIER V1 PASSED / LIVE SCIENTIFIC VALIDATION `CANNOT_CHECK`
 
 ## Scoped claim
 
-The candidate contribution is not citation-aware generation or scientific fact checking.  ORION proposes a non-escalating authority pipeline: evidence references bind exact content/provenance; claims are checked for source ownership and support; candidate checks must themselves survive independent hostile batteries; evaluator/benchmark identity is protected; unresolved evidence/independence/contamination yields BLOCK/CANNOT_CHECK rather than scientific authority.
+The candidate contribution is not citation-aware generation or scientific fact checking. ORION proposes a non-escalating authority pipeline: evidence references bind exact content/provenance; claims are checked for source ownership and support; candidate checks must themselves survive independent hostile batteries; evaluator/benchmark identity is protected; unresolved evidence/independence/contamination yields `BLOCK/CANNOT_CHECK` rather than scientific authority.
 
 ## Nearest-work boundary
 
@@ -12,15 +12,19 @@ The programme absorbs mechanisms from ProvenanceGuard, AttributionBench, multi-s
 
 See `research/paper-programme-v1/PAPER_04_VERIFIED_DISCOVERY.md` and `NEAREST_WORK_ATLAS.md`.
 
-## Required evidence before manuscript claims
+## Falsifier V1
 
-- cross-source conflation and wrong-source/correct-fact tests;
-- evidence-ID content substitution attacks;
+The local authority-laundering suite now exercises exact evidence-content binding, evidence-ID substitution, content-vs-provenance identity, weak/non-discriminating checkers, independent specific checkers, same-lane verification and post-hoc checker chronology through the actual answer/check kernel.
+
+Evidence: `evidence/FALSIFIER_V1.md`, issue #59, and `research/paper-programme-v1/FLAGSHIP_FALSIFIER_RESULTS_V1.md`.
+
+## External evidence still required
+
+- source-aware claim/attribution benchmarks and nearest-work baselines;
 - cited-but-non-influential evidence cases;
-- inadmissible checker / same-lane checker cases;
 - evaluator tampering and held-out leakage;
 - search-time benchmark contamination;
-- comparison against source-aware attribution/factuality baselines;
-- false scientific-authority promotion and correct CANNOT_CHECK as primary outcome coordinates.
+- false scientific-authority promotion and correct `CANNOT_CHECK` as primary outcome coordinates;
+- evaluator/holdout access telemetry frozen prospectively.
 
-Current evidence binding, answer/check gates and protected-evaluator mechanics are implementation evidence only.
+Current evidence binding, answer/check gates, protected-evaluator mechanics and local hostile suite are implementation evidence only.

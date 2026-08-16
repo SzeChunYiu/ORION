@@ -1,69 +1,98 @@
-# Five-paper nearest-work saturation ledger V1
+# Five-paper nearest-work / falsifier saturation ledger
 
-This ledger records the **declared search universe**, not a claim of universal literature completeness.
+Saturation here means **bounded stability of the current candidate claims under declared heterogeneous challenges**, never proof that all relevant work has been found or that the papers are externally novel.
 
-## Route families executed
+## Frozen nearest-work round
 
-For each paper we executed or re-used evidence from the following independent search formulations:
+Starting framework for the nearest-work programme: `SzeChunYiu/ORION@c7376b952b2a33505e6fbc6644f6c9772c156190`.
 
-1. **exact-nearest-work** — systems using the same headline claim;
-2. **function-only** — work solving the same operation under different vocabulary;
-3. **parent discipline** — mature disciplines that predate LLM agents;
-4. **historical precursor** — earlier mechanisms whose rediscovery would create false novelty;
-5. **implementation analogue** — systems with similar control/evaluation machinery but different research targets;
-6. **adversarial already-solved** — searches aimed at finding a work that subsumes the proposed ORION contribution;
-7. **freshness** — 2025–2026 work that postdates the original RAKL framing.
+### Challenge families executed
 
-## Material growth by round
+1. exact nearest-work / named autonomous-research systems;
+2. function-only and parent-discipline search;
+3. historical precursor search (systems engineering, literature-based discovery, capture-recapture, data integration);
+4. implementation analogues (RAG, schema matching, program search, self-improving coding systems);
+5. adversarial "already solved elsewhere" comparison;
+6. benchmark/evaluation literature to identify what would falsify the ORION delta;
+7. local known-world/hostile falsifier execution for all five papers.
 
-### Round A — autonomous research systems
-New semantic objects: AI Scientist-v2, AI Co-Scientist, Kosmos, Agent Laboratory, ERA/AlphaEvolve-style empirical program search.
+### Material changes during the nearest-work round
 
-Effect: removed "iterative/autonomous scientific workflow" and "structured world model" from Paper I novelty.
+- Paper I dropped autonomous/iterative science, multi-agent evolution, tree search and structured-world-model claims from the novelty boundary.
+- Paper II became a separate paper because open-world discovery has its own nearest work, metrics and falsifiers.
+- Paper III narrowed from cross-domain synthesis to projection-preserving semantic/identity/context/measurement alignment, obstruction and recoverability.
+- Paper IV narrowed from provenance/fact checking to non-escalating scientific authority with checker/evaluator governance.
+- Paper V dropped self-editing/evolutionary-agent novelty claims and narrowed to failure-governed, cause-attributed, independently assured method evolution.
 
-### Round B — literature discovery and systematic review
-New semantic objects: ResearchArena, AutoResearchBench, MetaSyn, OpenScholar, screening/recall evaluation, capture-recapture constraints.
+## Flagship falsifier V1
 
-Effect: split open-world discovery into its own Paper II; made lexical baseline and recall-stage evaluation mandatory; withdrew any implication that repeated flat rounds certify recall.
+Local suite commit: `8a8a7feed588363f8e2cd820d3399a33b7af3074`  
+CI run: `31933432314` — success.
 
-### Round C — cross-domain knowledge integration
-New semantic objects: BioSage, Discovery Engine, schema matching/LLMatch, scientific information extraction/discourse, literature-based discovery, provenance graphs.
+The falsifier round was **not flat** in formulation/mechanic space because it changed ORION:
 
-Effect: removed "cross-domain RAG", "knowledge graph", "schema alignment" and "literature bridge" as novelty; narrowed Paper III to projection-preserving alignment/gluing/obstruction/recoverability.
+- Paper I negative control exposed false local reframing of pure `EVIDENCE`/`EXECUTION` failures; the local reframe license was narrowed.
+- Paper III exact atlas worlds exposed an implicit source-text → scientific-meaning boundary; `ScientificMeaningProjection.v1` was added.
+- Paper V nearest-work/falsifier work absorbed ADIAS-style persistent issue state as `DevelopmentIssue.v1`; persistent issue identity is removed from the ORION novelty boundary.
 
-### Round D — attribution, verification and evaluation integrity
-New semantic objects: ProvenanceGuard, AttributionBench, FIRE, multi-source attribution, CLAIM-BENCH/SciClaimHunt, ProvenAI, RewardHackingAgents, search-time contamination.
+These are retained as evidence that a falsifier can reconstruct the framework rather than merely produce a score.
 
-Effect: removed "claim verification" and "source attribution" from novelty; Paper IV now centers on the authority/checker/evaluator governance layer above those mechanisms.
+## Current local flatness statement
 
-### Round E — self-improving systems
-New semantic objects: ADAS, Darwin Gödel Machine, Self-Improving Coding Agent, AlphaEvolve, evaluation-integrity benchmarks.
+After the above repairs, the registered deterministic local suite reports PASS for:
 
-Effect: removed "self-editing/self-improving/evolutionary agent" from novelty; narrowed Paper V to failure-as-knowledge, causal attribution/invention readiness, fresh transfer and protected non-self-certification.
+- Paper I hidden-domain / hidden-representation / missing-evidence / execution negative controls;
+- Paper II complete-gold retrieval + route/coverage refusal attacks;
+- Paper III semantic identity/measurement/modality/attribution/bridge/recoverability attacks;
+- Paper IV evidence substitution / weak checker / same-lane / chronology attacks;
+- Paper V recurrence-not-cause / discriminator / negative intervention / fresh-transfer / reward-hacking attacks.
 
-## Flatness assessment
+This is a **local falsifier result only**. It licenses neither open-world completeness nor publication novelty.
 
-The five paper claims are **formulation-flat enough for a V1 programme**, because the latest heterogeneous routes changed wording/boundaries but no longer changed the number of paper objects after Paper II was split out.
+## External routes deliberately still open
 
-This does **not** establish external novelty.  Every paper remains `CANDIDATE_DELTA` until its registered falsifiers are executed against the strongest nearest baselines.
+### Paper I
+- fresh hidden-representation/search-universe tasks;
+- matched static-workflow and agent/tree-search baselines;
+- responsibility/domain labels hidden from the candidate;
+- resource-matched root success and unnecessary-reframe rates.
 
-## Explicit unresolved routes
+### Paper II
+- ResearchArena/AutoResearchBench/MetaSyn-compatible complete-gold runs;
+- matched lexical and one-pass baselines;
+- frozen provider/search trajectories;
+- stage-attributed recall/screening errors.
 
-- Paper I: fresh systems that explicitly revise their own problem representation/search ontology at runtime may narrow the delta further.
-- Paper II: benchmark licensing/access and live provider differences remain empirical; capture-based diagnostics require further statistical validation under adaptive routes.
-- Paper III: scientific NLP/measurement/identity implementation is incomplete; nearest work in formal data integration/category/sheaf approaches should be revisited before publication.
-- Paper IV: provenance/influence/evaluator-integrity work is moving rapidly; protected-checker novelty needs benchmark evidence.
-- Paper V: the self-improving-agent literature is rapidly evolving; comparisons to DGM/AlphaEvolve/ADAS require matched tasks and resources.
+### Paper III
+- real cases spanning at least three domains;
+- source-projection and representation/identity mapping gold;
+- long-context, RAG/translation and flat-schema baselines;
+- semantic-coordinate ablations.
 
-These routes remain **empirical/publication-open coordinates**, not reasons to postpone the five-paper structural programme.
+### Paper IV
+- source-aware claim/attribution benchmark;
+- search-time contamination audit;
+- evaluator locking and held-out access telemetry;
+- matched nearest-work verifier baselines;
+- false-authority-promotion tradeoff. Issue #59 owns this programme.
 
-## Reopen triggers
+### Paper V
+- matched direct-self-edit and ADAS/DGM-style baselines;
+- prospectively hidden failure causes;
+- fresh task/domain/model transfer;
+- evaluator chronology/access telemetry;
+- negative-history/harmful-transfer accounting.
 
-Reopen a paper's nearest-work case if any of the following occurs:
+## Current bounded terminal
 
-- a new work subsumes one of its candidate deltas;
-- an absorbed mechanism invalidates an ORION assumption;
-- a benchmark shows the candidate delta adds no value over a simpler baseline;
-- a different parent discipline supplies a more mature formalization;
-- a failure exposes a missing coordinate in the comparison;
-- the ORION implementation changes the claim's actual mechanics.
+```
+LOCAL_FLAGSHIP_FALSIFIERS = PASS
+PAPER_I_EXTERNAL = CANNOT_CHECK
+PAPER_II_EXTERNAL = CANNOT_CHECK
+PAPER_III_EXTERNAL = CANNOT_CHECK
+PAPER_IV_EXTERNAL = CANNOT_CHECK
+PAPER_V_EXTERNAL = CANNOT_CHECK
+PUBLICATION_READY = false
+```
+
+Any new nearest work, external benchmark result, representation change or failure class reopens the affected paper claim.
