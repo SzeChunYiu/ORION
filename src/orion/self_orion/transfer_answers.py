@@ -90,10 +90,42 @@ def transfer_answer_records(
 
         for name in receipt.dimensions_closed:
             dimension = MechanicDimension(name)
+            common = {
+                "record_id": f"{lane}:rakl:{receipt.mechanic_id}:{name}",
+                "mechanic_id": receipt.mechanic_id,
+                "dimension": dimension,
+                "lane": lane,
+                "evidence_refs": tuple(refs),
+                "evidence_bindings": tuple(sorted(bindings.items())),
+            }
+
+            # HANDOFF and METRICS answer with typed objects rather than strings.
+            # Routing them through the string path would either drop them or
+            # flatten a schema into prose, so each gets its own delta.
+            if dimension is MechanicDimension.HANDOFF:
+                known = {item.field_id for item in before.handoff_fields}
+                fresh = tuple(
+                    item for item in after.handoff_fields if item.field_id not in known
+                )
+                if not fresh:
+                    _skip(f"no_delta:{name}")
+                    continue
+                records.append(AnswerRecord(**common, handoff_payload=fresh))
+                continue
+
+            if dimension is MechanicDimension.METRICS:
+                known = {item.metric_id for item in before.metrics}
+                fresh = tuple(
+                    item for item in after.metrics if item.metric_id not in known
+                )
+                if not fresh:
+                    _skip(f"no_delta:{name}")
+                    continue
+                records.append(AnswerRecord(**common, metric_payload=fresh))
+                continue
+
             fields = _STRING_FIELDS_BY_DIMENSION.get(dimension)
             if not fields:
-                # HANDOFF and METRICS answer with typed objects, which this
-                # string-delta path cannot express. Counted, not silently lost.
                 _skip(f"structured_payload_required:{name}")
                 continue
             payload = tuple(
@@ -104,17 +136,7 @@ def transfer_answer_records(
             if not payload:
                 _skip(f"no_delta:{name}")
                 continue
-            records.append(
-                AnswerRecord(
-                    record_id=f"{lane}:rakl:{receipt.mechanic_id}:{name}",
-                    mechanic_id=receipt.mechanic_id,
-                    dimension=dimension,
-                    lane=lane,
-                    evidence_refs=tuple(refs),
-                    evidence_bindings=tuple(sorted(bindings.items())),
-                    payload=payload,
-                )
-            )
+            records.append(AnswerRecord(**common, payload=payload))
 
     return TransferAnswerReport(
         records=tuple(records),
