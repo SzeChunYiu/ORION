@@ -44,6 +44,11 @@ def _build_parser() -> argparse.ArgumentParser:
         metavar="SCHEME=PATH",
         help="register an additional evidence scheme, e.g. rakl=/path/to/RAKL",
     )
+    parser.add_argument(
+        "--rakl-transfer",
+        action="store_true",
+        help="also offer the self-orion RAKL transfer as evidence-bound answers",
+    )
     parser.add_argument("--rounds", type=int, default=4, help="maximum rounds this run")
     parser.add_argument(
         "--selection-limit",
@@ -92,9 +97,21 @@ def main(argv: Sequence[str] | None = None) -> int:
         evidence_roots[scheme.strip()] = Path(path.strip())
 
     checks = {} if args.no_checks else dict(load_registered_checks())
+    source: object = DirectoryAnswerSource(root=args.answers)
+    if args.rakl_transfer:
+        from orion.self_orion.transfer_answers import transfer_answer_records
+
+        from .sources import CallableAnswerSource
+
+        source = CallableAnswerSource(
+            supplier=lambda cells: transfer_answer_records(
+                cells, evidence_roots=evidence_roots
+            ).records
+        )
+
     driver = SelfDrivingDriver(
         store=store,
-        source=DirectoryAnswerSource(root=args.answers),
+        source=source,
         evidence_roots=evidence_roots,
         checks=checks,
         selection_limit=args.selection_limit,
