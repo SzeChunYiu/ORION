@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Tests for the P4 ATTACK_MANIFEST_V1.jsonl and CUSTODY_MANIFEST_V1.json.
 
-Validates schema conformance, custody distribution, hash integrity, and the
-frozen custody invariants required by PROTOCOL_V1.json (DESIGN_FROZEN).
+Validates schema conformance, calibration-corpus custody distribution, hash
+integrity, and the fail-closed custody lifecycle for DESIGN_FROZEN or
+EXECUTION_FROZEN protocol states.
 """
 from __future__ import annotations
 
@@ -178,19 +179,36 @@ def test_custody_manifest_frozen(custody):
     assert custody["created_before_outcome_access"] is True
     assert custody["control"]["evaluator_hash_frozen"] is True
     assert custody["control"]["access_telemetry_retained"] is True
-    # Execution bindings remain UNBOUND until independent host binds them
-    for v in custody["control"]["split_hashes"].values():
-        assert v == "UNBOUND"
+
+    split_hashes = custody["control"]["split_hashes"]
+    final = custody.get("final_protected_campaign")
+    if final is None:
+        # DESIGN_FROZEN lifecycle: execution identities remain prospective.
+        assert all(v == "UNBOUND" for v in split_hashes.values())
+        return
+
+    # EXECUTION_FROZEN lifecycle: no stale UNBOUND values are admissible and the
+    # public custody ledger must agree exactly with the independently prepared
+    # hidden campaign commitments.
+    assert split_hashes == {
+        "public_claim_evidence": final["public_claim_evidence_sha256"],
+        "protected_attack_set": final["protected_attack_set_sha256"],
+        "clean_positive_set": final["clean_positive_set_sha256"],
+    }
+    assert all(v != "UNBOUND" for v in split_hashes.values())
+    assert final["attack_label_visible_to_candidate"] is False
+    assert final["case_count"] == 420
+    assert final["ambiguous_cases"] == 0
 
 
 def test_generator_regenerates_identical_manifest():
-    """The committed manifest is byte-identical to a fresh generator run."""
+    """The committed calibration manifest is byte-identical to a fresh generator run."""
     import subprocess
     original = Path(MANIFEST).read_text(encoding="utf-8")
     out = subprocess.run(
         ["python3", str(GENERATOR)], capture_output=True, text=True, cwd=str(PROTOCOL))
     assert out.returncode == 0, out.stderr
-    # The generator writes to MANIFEST; verify it did not change
+    # The generator writes to MANIFEST; verify it did not change.
     regenerated = Path(MANIFEST).read_text(encoding="utf-8")
     assert regenerated == original, "generator run changed the manifest — not deterministic"
 
