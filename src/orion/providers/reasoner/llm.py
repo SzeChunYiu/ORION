@@ -3,7 +3,14 @@ from __future__ import annotations
 import json
 from dataclasses import asdict
 
-from orion.core.contributions import AssimilationOutcome, KnowledgeContribution
+from orion.core.contributions import (
+    AssimilationOutcome,
+    KnowledgeContribution,
+    MappingRelation,
+    ReferentBinding,
+    ReferentResolution,
+    RepresentationMapping,
+)
 from orion.core.problem import Problem
 from orion.core.residuals import Residual, Responsibility
 from orion.core.search import RetrievedItem, SearchQuery, SearchRouteKind
@@ -75,8 +82,40 @@ class LLMResearchReasoner:
                 "retrieved_item": asdict(item),
                 "known_claims": [claim.text for claim in state.knowledge.claims],
                 "active_domains": state.search_universe.active_domain_ids,
+                "known_source_projections": state.knowledge.source_projection_ids,
+                "known_representation_mappings": state.knowledge.representation_mapping_ids,
             },
-            '{"contribution_id":"...","text":"...","assimilation":"COMPLEMENTARY_FACET","discovered_domain_ids":[],"representation_ids":[],"contradicts_claim_ids":[]}',
+            (
+                '{"contribution_id":"...","text":"...",'
+                '"assimilation":"COMPLEMENTARY_FACET","discovered_domain_ids":[],'
+                '"representation_ids":[],"contradicts_claim_ids":[],"related_claim_ids":[],'
+                '"context_ids":[],"referent_bindings":[{"mention":"...",'
+                '"resolution":"RESOLVED","referent_id":"...","context_id":"..."}],'
+                '"representation_mappings":[{"mapping_id":"...",'
+                '"source_representation_id":"...","target_representation_id":"orion:...",'
+                '"relation":"EQUIVALENT","evidence_ids":["..."],"recoverable":true}],'
+                '"assumption_ids":[]}'
+            ),
+        )
+        referent_bindings = tuple(
+            ReferentBinding(
+                mention=str(binding["mention"]),
+                resolution=ReferentResolution(str(binding["resolution"])),
+                referent_id=str(binding.get("referent_id", "")),
+                context_id=str(binding.get("context_id", "")),
+            )
+            for binding in data.get("referent_bindings", [])
+        )
+        representation_mappings = tuple(
+            RepresentationMapping(
+                mapping_id=str(mapping["mapping_id"]),
+                source_representation_id=str(mapping["source_representation_id"]),
+                target_representation_id=str(mapping["target_representation_id"]),
+                relation=MappingRelation(str(mapping["relation"])),
+                evidence_ids=tuple(str(value) for value in mapping.get("evidence_ids", [])),
+                recoverable=bool(mapping.get("recoverable", True)),
+            )
+            for mapping in data.get("representation_mappings", [])
         )
         return KnowledgeContribution(
             contribution_id=str(data["contribution_id"]),
@@ -86,6 +125,11 @@ class LLMResearchReasoner:
             discovered_domain_ids=tuple(str(x) for x in data.get("discovered_domain_ids", [])),
             representation_ids=tuple(str(x) for x in data.get("representation_ids", [])),
             contradicts_claim_ids=tuple(str(x) for x in data.get("contradicts_claim_ids", [])),
+            related_claim_ids=tuple(str(x) for x in data.get("related_claim_ids", [])),
+            context_ids=tuple(str(x) for x in data.get("context_ids", [])),
+            referent_bindings=referent_bindings,
+            representation_mappings=representation_mappings,
+            assumption_ids=tuple(str(x) for x in data.get("assumption_ids", [])),
         )
 
     def reconstruct(self, problem: Problem, state: OrionState) -> str:
@@ -97,6 +141,9 @@ class LLMResearchReasoner:
                     {"claim_id": claim.claim_id, "text": claim.text, "authority": claim.authority.value}
                     for claim in state.knowledge.claims
                 ],
+                "source_projection_ids": state.knowledge.source_projection_ids,
+                "representation_mapping_ids": state.knowledge.representation_mapping_ids,
+                "unresolved_residual_ids": state.knowledge.residual_ids,
             },
             '{"summary":"..."}',
         )
