@@ -36,7 +36,7 @@ EXPECTED_FAMILIES = [
     "INSUFFICIENT_EVIDENCE",
 ]
 
-MIN_PER_FAMILY = 2
+MIN_PER_FAMILY = 3
 
 
 def _load_cases() -> list[dict]:
