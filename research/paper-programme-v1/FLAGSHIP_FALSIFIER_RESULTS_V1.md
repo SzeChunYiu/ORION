@@ -1,8 +1,8 @@
 # Five flagship falsifier round V1
 
-**Frozen starting main:** `348e11b3e4451609af7740bcee7df695bb3abbf8`  
-**Local-suite commit:** `8a8a7feed588363f8e2cd820d3399a33b7af3074`  
-**GitHub Actions:** run `31933432314`, success  
+**Frozen starting main:** `348e11b3e4451609af7740bcee7df695bb3abbf8`
+**Local-suite commit:** `8a8a7feed588363f8e2cd820d3399a33b7af3074`
+**GitHub Actions:** run `31933432314`, success
 **Authority:** deterministic known-world / hostile implementation evidence only. No external novelty or empirical-superiority claim is licensed.
 
 ## Round invariant

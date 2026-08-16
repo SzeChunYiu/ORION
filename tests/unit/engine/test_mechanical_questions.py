@@ -1,6 +1,7 @@
 import os
 import subprocess
 import sys
+from pathlib import Path
 
 from orion.core.problem import Problem
 from orion.core.search import SearchQuery, SearchRouteKind
@@ -87,9 +88,13 @@ def test_failure_pattern_question_id_is_stable_across_process_hash_seeds():
         "(('mask-b',),('mask-a',))))"
     )
     observed = []
+    repository_src = str(Path(__file__).resolve().parents[3] / "src")
     for seed in ("1", "2"):
         env = dict(os.environ)
         env["PYTHONHASHSEED"] = seed
+        env["PYTHONPATH"] = os.pathsep.join(
+            item for item in (repository_src, env.get("PYTHONPATH", "")) if item
+        )
         observed.append(
             subprocess.check_output([sys.executable, "-c", code], env=env, text=True).strip()
         )

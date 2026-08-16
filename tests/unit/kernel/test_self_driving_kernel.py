@@ -171,7 +171,7 @@ def test_evidence_bound_answer_applies_content_but_keeps_the_question_open(
     assert after.open_question_count == before.open_question_count
 
 
-def test_independent_frozen_discriminating_check_closes_exactly_one_question(
+def test_raw_discriminating_check_cannot_mint_verified_authority(
     tmp_path: Path,
 ) -> None:
     cells = _program()
@@ -185,8 +185,62 @@ def test_independent_frozen_discriminating_check_closes_exactly_one_question(
     )
     after = observe_mechanics_program(result.cells)
 
-    assert result.gradings[0].authority is AnswerAuthority.VERIFIED
-    assert before.open_question_count - after.open_question_count == 1
+    grading = result.gradings[0]
+    target = next(item for item in result.cells if item.mechanic_id == TARGET)
+
+    assert grading.check_outcome is CheckOutcome.PASSED
+    assert grading.authority is AnswerAuthority.EVIDENCE_BOUND
+    assert MechanicDimension.STORAGE in target.provisional_dimensions
+    assert after.open_question_count == before.open_question_count
+
+
+def test_authentic_but_unrelated_evidence_and_answer_specific_check_cannot_verify(
+    tmp_path: Path,
+) -> None:
+    """A raw check can discriminate its author's examples without authority."""
+
+    ref = _evidence(tmp_path, body="weather station reports rain")
+    payload = "P equals NP because the weather is rainy"
+    cell = MechanicCell(
+        mechanic_id="MATH.TEST",
+        purpose="test mathematical closure",
+        scope="one mathematical claim",
+    )
+    answer = AnswerRecord(
+        record_id="attacker-answer",
+        mechanic_id=cell.mechanic_id,
+        dimension=MechanicDimension.MATHEMATICS,
+        lane="producer",
+        evidence_refs=(ref,),
+        evidence_bindings=_binding(ref, tmp_path),
+        payload=(("mathematical_semantics", (payload,)),),
+    )
+    check = DiscriminatingCheck(
+        check_id="attacker-check",
+        dimension=MechanicDimension.MATHEMATICS,
+        lane="verifier-label",
+        predicate=lambda candidate: candidate.mathematical_semantics == (payload,),
+        positive_fixture=MechanicCell(
+            mechanic_id="fixture",
+            purpose="positive",
+            scope="fixture",
+            mathematical_semantics=(payload,),
+        ),
+        frozen_at_round=0,
+    )
+
+    result = grade_and_apply(
+        (cell,),
+        (answer,),
+        evidence_roots={"orion": tmp_path},
+        checks={check.check_id: check},
+        round_index=0,
+    )
+    grading = result.gradings[0]
+
+    assert grading.check_outcome is CheckOutcome.PASSED
+    assert grading.authority is AnswerAuthority.EVIDENCE_BOUND
+    assert MechanicDimension.MATHEMATICS in result.cells[0].provisional_dimensions
 
 
 def test_check_that_accepts_its_negative_fixture_cannot_verify(tmp_path: Path) -> None:
@@ -417,7 +471,7 @@ def test_run_resumes_from_disk_in_a_fresh_process_state(tmp_path: Path) -> None:
         selection_limit=64,
     )
     first_report = first.run(max_rounds=1)
-    assert first_report.rounds[0].application.verified_record_ids == ("a1",)
+    assert first_report.rounds[0].application.verified_record_ids == ()
 
     # A completely new driver object, holding nothing but the ledger directory.
     resumed = SelfDrivingDriver(
@@ -432,7 +486,7 @@ def test_run_resumes_from_disk_in_a_fresh_process_state(tmp_path: Path) -> None:
     target = next(item for item in cells if item.mechanic_id == TARGET)
 
     assert target.storage_contracts == ("append-only ledger entry per answer",)
-    assert MechanicDimension.STORAGE not in target.provisional_dimensions
+    assert MechanicDimension.STORAGE in target.provisional_dimensions
     assert resumed.store.completed_round_count() == 1
 
 
@@ -467,7 +521,7 @@ def test_resume_revalidates_evidence_that_changed_since_it_was_cited(
 # --- failure learning that changes behavior ------------------------------
 
 
-def test_repeated_unresolvable_evidence_produces_an_executable_guard(
+def test_recurrence_creates_candidate_guard_but_cannot_activate_it(
     tmp_path: Path,
 ) -> None:
     store = LedgerStore(tmp_path / "state")
@@ -503,7 +557,8 @@ def test_repeated_unresolvable_evidence_produces_an_executable_guard(
     guard = guards[0]
     assert guard.effect is GuardEffect.REJECT_EVIDENCE_STATUS
     assert guard.argument == EvidenceStatus.MISSING_ARTIFACT.value
-    assert guard.active, "a guard reproduced across distinct rounds must be active"
+    assert guard.authority is LessonAuthority.CANDIDATE
+    assert not guard.active, "caller-labelled recurrence cannot activate behavior"
 
 
 def test_an_active_guard_changes_what_the_next_round_selects() -> None:
@@ -722,8 +777,14 @@ def test_directory_source_serves_each_record_once(tmp_path: Path) -> None:
     )
     report = driver.run(max_rounds=3)
 
-    assert report.verified_closures == 1
-    assert report.rounds[1].fetched_record_ids == ()
+    assert tuple(
+        record_id
+        for round_ in report.rounds
+        for record_id in round_.fetched_record_ids
+    ) == ("a1",)
+    assert report.rounds[0].application.evidence_bound_record_ids == ("a1",)
+    assert report.rounds[0].application.verified_record_ids == ()
+    assert report.verified_closures == 0
 
 
 def test_the_stopping_verdict_never_certifies_recall(tmp_path: Path) -> None:

@@ -26,7 +26,7 @@ Starting framework for the nearest-work programme: `SzeChunYiu/ORION@c7376b952b2
 
 ## Flagship falsifier V1
 
-Local suite commit: `8a8a7feed588363f8e2cd820d3399a33b7af3074`  
+Local suite commit: `8a8a7feed588363f8e2cd820d3399a33b7af3074`
 CI run: `31933432314` — success.
 
 The falsifier round was **not flat** in formulation/mechanic space because it changed ORION:

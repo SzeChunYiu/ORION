@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from orion.kernel import AnswerAuthority, grade_and_apply
+from orion.kernel import AnswerAuthority, CheckOutcome, grade_and_apply
 from orion.kernel.registry import load_registered_checks
 from orion.mechanics.model import MechanicDimension
 from orion.mechanics.program import current_program_cells, observe_mechanics_program
@@ -82,14 +82,15 @@ def test_an_absent_provenance_root_yields_no_records_rather_than_unbound_ones() 
 
 
 @_needs_rakl
-def test_independently_laned_checks_close_questions_and_reject_most() -> None:
-    """The first closures ORION has made, and the rejection rate that makes
-    them meaningful.
+def test_independently_laned_checks_are_diagnostic_and_reject_most() -> None:
+    """Independent raw checks discriminate without minting authority.
 
     Answers authored by the self-orion lane, bound to RAKL sources at a pinned
     commit, judged by claude-lane checks frozen before the round and required to
     reject the host adversarial battery. A gate that passed everything would
-    prove nothing; most of what is judged is refused.
+    prove nothing; most of what is judged is refused. Even a diagnostic pass
+    remains provisional until protected appraisal, relying-party authorization,
+    and the atomic transition lifecycle grant closure authority.
     """
 
     cells = current_program_cells()
@@ -104,12 +105,14 @@ def test_independently_laned_checks_close_questions_and_reject_most() -> None:
     )
     after = observe_mechanics_program(result.cells).open_question_count
 
-    verified = [
-        item for item in result.gradings if item.authority is AnswerAuthority.VERIFIED
-    ]
     judged = [item for item in result.gradings if item.check_outcome is not None]
-    failed = [item for item in judged if item.check_outcome.value == "FAILED"]
+    passed = [item for item in judged if item.check_outcome is CheckOutcome.PASSED]
+    failed = [item for item in judged if item.check_outcome is CheckOutcome.FAILED]
 
-    assert verified, "no answer reached verified authority"
-    assert before - after == len(verified)
-    assert len(failed) > len(verified), "a gate that mostly passes is not discriminating"
+    assert passed, "no answer passed the diagnostic check"
+    assert len(failed) > len(passed), "a gate that mostly passes is not discriminating"
+    assert not any(
+        item.authority is AnswerAuthority.VERIFIED for item in result.gradings
+    )
+    assert all(item.authority is AnswerAuthority.EVIDENCE_BOUND for item in passed)
+    assert after == before

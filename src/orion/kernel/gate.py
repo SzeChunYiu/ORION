@@ -19,8 +19,9 @@ class AnswerAuthority(str, Enum):
     tuple as a satisfied dimension. Left ungated, a self-answering loop closes
     its own audit questions by writing arbitrary strings. Machine answers
     therefore stop at `EVIDENCE_BOUND`, which applies content but leaves the
-    dimension provisional and the question open; only an independently
-    registered discriminating check reaches `VERIFIED`.
+    dimension provisional and the question open. Raw discriminating checks are
+    diagnostic only: they do not establish evaluator authority, evidence
+    relevance, or relying-party authorization and can never mint `VERIFIED`.
     """
 
     REJECTED = "REJECTED"
@@ -151,10 +152,12 @@ def grade_answer(
     require_digest: bool = True,
     round_index: int = 0,
 ) -> AnswerGrading:
-    """Grade one answer against evidence resolution and executable verification.
+    """Grade one proposal against evidence resolution and a diagnostic check.
 
     `candidate_cell` is the cell as it would look with this answer applied, so
-    a check inspects the claimed end state rather than the pre-answer cell.
+    a check inspects the claimed end state rather than the pre-answer cell. A
+    diagnostic `PASSED` outcome is preserved for later appraisal, but it is not
+    transition authority and therefore never promotes the proposal here.
     """
 
     reasons: list[str] = []
@@ -199,12 +202,6 @@ def grade_answer(
         reasons.append(f"no discriminating check registered for {record.dimension.value}")
     else:
         check_outcome = outcome
-
-    if (
-        authority is AnswerAuthority.EVIDENCE_BOUND
-        and check_outcome is CheckOutcome.PASSED
-    ):
-        authority = AnswerAuthority.VERIFIED
 
     if record.waiver_reason and authority is not AnswerAuthority.VERIFIED:
         # A waiver removes the question outright; there is no provisional waiver,
