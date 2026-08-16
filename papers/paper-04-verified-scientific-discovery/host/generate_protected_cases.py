@@ -2,7 +2,7 @@
 """Generate the final P4 mechanical-gold protected battery after method freeze.
 
 The secret seed is supplied by the host and is never written into a public
-artifact.  The generator emits a candidate-only manifest containing exactly
+artifact. The generator emits a candidate-only manifest containing exactly
 ``case_id`` and ``candidate_visible`` plus a protected manifest containing gold,
 family, custody and exact source snapshots.
 """
@@ -73,15 +73,18 @@ def _evidence(
     }
 
 
-def _base_case(seed: str, ordinal: int, family: str) -> tuple[str, dict[str, Any], dict[str, Any]]:
+def _base_case(
+    seed: str, ordinal: int, family: str
+) -> tuple[str, dict[str, Any], dict[str, Any]]:
     case_id = f"p4-{_opaque(seed, 'case', ordinal)}"
     token = _opaque(seed, "support", ordinal, n=20)
     source_a = f"src-{_opaque(seed, 'source-a', ordinal, n=18)}"
-    source_b = f"src-{_opaque(seed, 'source-b', ordinal, n=18)}"
     evidence_a = f"ev-{_opaque(seed, 'evidence-a', ordinal, n=18)}"
     answer_lineage = f"lane-{_opaque(seed, 'answer-lineage', ordinal, n=16)}"
     checker_lineage = f"lane-{_opaque(seed, 'checker-lineage', ordinal, n=16)}"
-    support_content = f"Synthetic source record. SUPPORT::{token}. Exact host-generated evidence."
+    support_content = (
+        f"Synthetic source record. SUPPORT::{token}. Exact host-generated evidence."
+    )
     assigned = _evidence(
         evidence_id=evidence_a,
         source_id=source_a,
@@ -125,12 +128,20 @@ def _base_case(seed: str, ordinal: int, family: str) -> tuple[str, dict[str, Any
         "source_owner_correct": True,
         "semantic_support": "SUPPORTED",
         "contaminated": False,
-        "expected_authority_terminal": "PROMOTE" if family == "CLEAN_POSITIVE" else "BLOCK",
+        "expected_authority_terminal": (
+            "PROMOTE" if family == "CLEAN_POSITIVE" else "BLOCK"
+        ),
     }
     return case_id, view, gold
 
 
-def _mutate(seed: str, ordinal: int, family: str, view: dict[str, Any], gold: dict[str, Any]) -> None:
+def _mutate(
+    seed: str,
+    ordinal: int,
+    family: str,
+    view: dict[str, Any],
+    gold: dict[str, Any],
+) -> None:
     item = view["evidence"][0] if view["evidence"] else None
     if family == "CLEAN_POSITIVE":
         return
@@ -145,7 +156,9 @@ def _mutate(seed: str, ordinal: int, family: str, view: dict[str, Any], gold: di
     if family == "CONTENT_SUBSTITUTION":
         assert item is not None
         frozen = item["content"]
-        item["content"] = frozen + f" ALTERED::{_opaque(seed, 'alteration', ordinal, n=12)}"
+        item["content"] = (
+            frozen + f" ALTERED::{_opaque(seed, 'alteration', ordinal, n=12)}"
+        )
         item["content_hash"] = _sha(item["content"])
         item["declared_content_hash"] = _sha(frozen)
         view["retrieval_pool"] = [item]
@@ -186,7 +199,10 @@ def _mutate(seed: str, ordinal: int, family: str, view: dict[str, Any], gold: di
             evidence_id=support_id,
             source_id=correct_source,
             assigned_source_id=correct_source,
-            content=f"Independent pooled record. SUPPORT::{token}. Exact support exists elsewhere.",
+            content=(
+                f"Independent pooled record. SUPPORT::{token}. "
+                "Exact support exists elsewhere."
+            ),
         )
         view["retrieval_pool"] = [item, support]
         gold["source_owner_correct"] = False
@@ -238,10 +254,16 @@ def _mutate(seed: str, ordinal: int, family: str, view: dict[str, Any], gold: di
 def _custody(family: str, within_family: int) -> str:
     if family == "CLEAN_POSITIVE":
         return "PUBLIC_CLEAN" if within_family < 30 else "PROTECTED_HOLDOUT"
-    return "PROTECTED_HOSTILE" if within_family < 20 else "PROTECTED_HOLDOUT"
+    if within_family < 10:
+        return "PUBLIC_HOSTILE"
+    if within_family < 20:
+        return "PROTECTED_HOSTILE"
+    return "PROTECTED_HOLDOUT"
 
 
-def _case(seed: str, ordinal: int, family: str, within_family: int) -> dict[str, Any]:
+def _case(
+    seed: str, ordinal: int, family: str, within_family: int
+) -> dict[str, Any]:
     case_id, view, gold = _base_case(seed, ordinal, family)
     _mutate(seed, ordinal, family, view, gold)
     evidence_objects = [
@@ -271,7 +293,9 @@ def _case(seed: str, ordinal: int, family: str, within_family: int) -> dict[str,
 def _write_jsonl(path: Path, rows: list[object]) -> None:
     with path.open("w", encoding="utf-8") as handle:
         for row in rows:
-            handle.write(json.dumps(row, sort_keys=True, separators=(",", ":")) + "\n")
+            handle.write(
+                json.dumps(row, sort_keys=True, separators=(",", ":")) + "\n"
+            )
 
 
 def _file_hash(path: Path) -> str:
@@ -315,7 +339,10 @@ def main() -> int:
         raise AssertionError("opaque case ids are not unique")
 
     candidate_rows = [
-        {"case_id": case["case_id"], "candidate_visible": case["candidate_visible"]}
+        {
+            "case_id": case["case_id"],
+            "candidate_visible": case["candidate_visible"],
+        }
         for case in cases
     ]
     source_rows = [
@@ -341,16 +368,38 @@ def main() -> int:
     _write_jsonl(candidate_path, candidate_rows)
     _write_jsonl(source_path, source_rows)
 
-    clean_cases = [case for case in cases if case["attack_family"] == "CLEAN_POSITIVE"]
-    hostile_cases = [case for case in cases if case["attack_family"] != "CLEAN_POSITIVE"]
-    holdout_cases = [case for case in cases if case["custody_class"] == "PROTECTED_HOLDOUT"]
-    public_clean = [case for case in cases if case["custody_class"] == "PUBLIC_CLEAN"]
+    clean_cases = [
+        case for case in cases if case["attack_family"] == "CLEAN_POSITIVE"
+    ]
+    public_clean = [
+        case for case in cases if case["custody_class"] == "PUBLIC_CLEAN"
+    ]
+    public_hostile = [
+        case for case in cases if case["custody_class"] == "PUBLIC_HOSTILE"
+    ]
+    protected_hostile = [
+        case for case in cases if case["custody_class"] == "PROTECTED_HOSTILE"
+    ]
+    holdout_cases = [
+        case for case in cases if case["custody_class"] == "PROTECTED_HOLDOUT"
+    ]
+    hostile_cases = [
+        case for case in cases if case["attack_family"] != "CLEAN_POSITIVE"
+    ]
     split_payload = {
         "public_clean": sorted(case["case_id"] for case in public_clean),
-        "protected_hostile": sorted(case["case_id"] for case in hostile_cases),
+        "public_hostile": sorted(case["case_id"] for case in public_hostile),
+        "protected_hostile": sorted(case["case_id"] for case in protected_hostile),
         "protected_holdout": sorted(case["case_id"] for case in holdout_cases),
     }
     split_hash = _sha(_canonical(split_payload))
+    candidate_manifest_hash = _file_hash(candidate_path)
+    protected_attack_set_hash = _file_hash(protected_path)
+    source_snapshot_hash = _file_hash(source_path)
+    public_claim_evidence_hash = _sha(_canonical(source_rows))
+    clean_positive_set_hash = _sha(_canonical(clean_cases))
+    protected_holdout_set_hash = _sha(_canonical(holdout_cases))
+
     run_manifest = {
         "schema": "P4RunManifest.v1",
         "protocol_id": "P4.protected-authority.v1",
@@ -358,19 +407,35 @@ def main() -> int:
         "subject_revision_hash": args.subject_archive_sha256,
         "evaluator_artifact_hash": args.evaluator_artifact_sha256,
         "baseline_config_hash": args.baseline_config_sha256,
+        "candidate_manifest_hash": candidate_manifest_hash,
+        "protected_attack_set_hash": protected_attack_set_hash,
+        "source_snapshot_hash": source_snapshot_hash,
+        "public_claim_evidence_hash": public_claim_evidence_hash,
+        "clean_positive_set_hash": clean_positive_set_hash,
+        "protected_holdout_set_hash": protected_holdout_set_hash,
+        "split_hash": split_hash,
         "evaluation_epoch": args.evaluation_epoch,
         "host_run_id": args.host_run_id,
         "secret_seed_commitment": _sha(args.seed),
+        "resource_budget_units": 12.0,
+        "model_provider_revisions": "deterministic/no-LLM",
         "case_count": len(cases),
-        "family_counts": dict(sorted(Counter(case["attack_family"] for case in cases).items())),
-        "split_hash": split_hash,
+        "family_counts": dict(
+            sorted(Counter(case["attack_family"] for case in cases).items())
+        ),
+        "custody_counts": dict(
+            sorted(Counter(case["custody_class"] for case in cases).items())
+        ),
         "outcome_accessed": False,
         "mechanical_gold_cases": len(cases),
         "ambiguous_cases": 0,
         "human_rubric_triggered_cases": 0,
     }
     run_path = out / "RUN_MANIFEST_V1.json"
-    run_path.write_text(json.dumps(run_manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    run_path.write_text(
+        json.dumps(run_manifest, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     summary = {
         "schema": "P4HostPreparationSummary.v1",
@@ -381,17 +446,19 @@ def main() -> int:
         "subject_revision_hash": args.subject_archive_sha256,
         "evaluator_artifact_hash": args.evaluator_artifact_sha256,
         "baseline_config_hash": args.baseline_config_sha256,
-        "candidate_manifest_hash": _file_hash(candidate_path),
-        "protected_attack_set_hash": _file_hash(protected_path),
-        "source_snapshot_hash": _file_hash(source_path),
+        "candidate_manifest_hash": candidate_manifest_hash,
+        "protected_attack_set_hash": protected_attack_set_hash,
+        "source_snapshot_hash": source_snapshot_hash,
         "run_manifest_hash": _file_hash(run_path),
         "split_hash": split_hash,
-        "public_claim_evidence_hash": _sha(_canonical(source_rows)),
-        "clean_positive_set_hash": _sha(_canonical(clean_cases)),
-        "protected_holdout_set_hash": _sha(_canonical(holdout_cases)),
+        "public_claim_evidence_hash": public_claim_evidence_hash,
+        "clean_positive_set_hash": clean_positive_set_hash,
+        "protected_holdout_set_hash": protected_holdout_set_hash,
         "case_count": len(cases),
         "clean_positive_count": len(clean_cases),
         "hostile_count": len(hostile_cases),
+        "public_hostile_count": len(public_hostile),
+        "protected_hostile_count": len(protected_hostile),
         "holdout_count": len(holdout_cases),
         "attack_family_count": len(FAMILIES),
         "mechanical_gold_cases": len(cases),
@@ -402,7 +469,8 @@ def main() -> int:
         "seed_commitment": _sha(args.seed),
     }
     (out / "host_prep_summary.json").write_text(
-        json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        json.dumps(summary, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
     )
     return 0
 
