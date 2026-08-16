@@ -1,0 +1,34 @@
+{
+  "schema_version": "orion.p2.autoresearchbench-search-contamination.v1",
+  "authority": "DESCRIPTIVE_SEARCH_TIME_DIAGNOSTIC",
+  "benchmark": "AutoResearchBench",
+  "benchmark_paper": {
+    "title": "AutoResearchBench: Benchmarking AI Agents on Complex Scientific Literature Discovery",
+    "arxiv_id": "2604.25256",
+    "source": "https://arxiv.org/abs/2604.25256"
+  },
+  "wide_candidate_binding": {
+    "workflow_run_id": 31975808402,
+    "head_sha": "22ef44c6624b7bbdd04244f9534fdef95f781520",
+    "candidate_output_sha256": "c2dc1d26e1ee0337c2930c3120beb90bb35402fe81244b5b9f1ea33eaf5379aa",
+    "trace_sha256": "40dd51e8681f3760c46ea95798dce010befd5801c88f1927f8863fd4a19fb107",
+    "tasks": 400
+  },
+  "wide_self_exposure": {
+    "public_questions_containing_autoresearchbench_name": 0,
+    "returned_candidates_with_benchmark_arxiv_id": 0,
+    "returned_candidate_titles_containing_autoresearchbench_name": 0,
+    "tasks_with_detected_benchmark_self_exposure": 0,
+    "task_rate": 0.0
+  },
+  "method": "Scan the immutable 400-task Wide public questions and frozen candidate outputs for the benchmark paper arXiv identity and case-insensitive benchmark name. No mutable provider calls are repeated for this audit.",
+  "interpretation": {
+    "completed": "measured direct benchmark-self-exposure diagnostic for the frozen AutoResearchBench Wide search-time candidate run",
+    "not_claimed": [
+      "absence of indirect benchmark contamination",
+      "absence of training-time contamination",
+      "benchmark-wide contamination closure across SAGE, MetaSyn, or the blocked live-provider campaign",
+      "causal effect of contamination on the Wide score"
+    ]
+  }
+}
