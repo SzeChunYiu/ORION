@@ -3,6 +3,7 @@ from types import SimpleNamespace
 
 import pytest
 
+from orion.core.solution import SolutionStatus
 from orion.self_orion.development_trial import (
     FrozenObservedFailureCase,
     ShadowDevelopmentTrialRunner,
@@ -69,14 +70,26 @@ def _cycle(
         candidate_revision_hash=_digest("candidate"),
         artifact_ids=("artifact:candidate",),
     )
-    proposal = SimpleNamespace(proposal_id="proposal:one")
     request = SimpleNamespace(
+        request_id="change:phase2-observed-failure",
+        mechanic_id=context.mechanic_id,
+        base_revision="main:subject",
+        evidence_ids=("evidence:diagnosis",),
         observed_failure_bound=True,
         development_issue_id=context.development_issue_id,
         observed_failure_artifact_hash=bound_failure,
-        discriminator_artifact_hash=context.discriminator_artifact_hash,
+        candidate_cause_ids=context.candidate_cause_ids,
         supported_cause_id=context.supported_cause_id,
+        discriminator_artifact_hash=context.discriminator_artifact_hash,
+        discriminator_evidence_ids=context.discriminator_evidence_ids,
+        negative_alternative_ids=context.negative_alternative_ids,
         failure_episode_ids=context.failure_episode_ids,
+    )
+    proposal = SimpleNamespace(
+        proposal_id="proposal:one",
+        request_id=request.request_id,
+        base_revision=request.base_revision,
+        patch_artifact_hash=_digest("patch"),
     )
     control = SimpleNamespace(
         request=request,
@@ -88,11 +101,15 @@ def _cycle(
         self_merge_authorized=False,
     )
     investigation = SimpleNamespace(
+        work_id="phase2-observed-failure:one",
         mechanic_id=context.mechanic_id,
         problem_id="self-orion:observed-failure",
+        solution_status=SolutionStatus.PROVISIONAL,
         evidence_ids=("evidence:diagnosis",),
         residual_ids=("residual:routing",),
+        root_episode_id="episode:root:one",
         mechanic_episode_ids=("episode:mechanic:one",),
+        proposal_only=True,
         development_issue_id=context.development_issue_id,
         observed_failure_artifact_hash=bound_failure,
         candidate_cause_ids=context.candidate_cause_ids,
