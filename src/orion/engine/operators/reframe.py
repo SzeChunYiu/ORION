@@ -7,7 +7,12 @@ from orion.core.problem import Problem
 from orion.core.residuals import Residual, Responsibility
 from orion.core.state import OrionState
 from orion.engine.contracts import OperatorResult
-from orion.engine.cycle import CycleOperator, Transition, revision_allowed
+from orion.engine.cycle import (
+    CycleOperator,
+    Transition,
+    local_reframe_allowed,
+    revision_allowed,
+)
 from orion.providers.reasoner.base import Diagnosis, ReframeProposal, ResearchReasoner
 
 
@@ -29,6 +34,11 @@ class ReframeOperator:
         responsibility = diagnosis.responsibilities[0]
         if responsibility in {Responsibility.METHOD, Responsibility.EVALUATOR}:
             raise PermissionError("method/evaluator reframing requires the protected Self-ORION development gate")
+        if not local_reframe_allowed(responsibility):
+            raise ValueError(
+                "reframe blocked: diagnosed responsibility requires acquisition/execution repair, "
+                "not a formulation rewrite"
+            )
 
         proposal = self._reasoner.propose_reframe(residual, diagnosis, problem, state)
         universe = state.search_universe

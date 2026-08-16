@@ -10,3 +10,5 @@ class GlobalPortrait:
     claim_ids: tuple[str, ...]
     verified_claim_ids: tuple[str, ...] = ()
     unresolved_residual_ids: tuple[str, ...] = ()
+    source_projection_ids: tuple[str, ...] = ()
+    representation_mapping_ids: tuple[str, ...] = ()

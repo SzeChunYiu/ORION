@@ -131,3 +131,73 @@ def test_cross_lane_record_with_assurance_prose_stays_evidence_bound():
     assert grading.check_outcome is CheckOutcome.FAILED
     assert grading.authority is AnswerAuthority.EVIDENCE_BOUND
     assert after == before
+
+
+def test_the_handoff_check_separates_a_declaration_from_a_relabelling():
+    """A field is not its own schema.
+
+    The battery's junk and envelope members set field_id, description and
+    schema_ref to one identical string — what a restated question looks like
+    forced into a typed shape. Requiring the schema reference to exist apart
+    from the field it describes separates a declaration from a relabelling,
+    without asserting the schema is correct.
+    """
+
+    from orion.kernel.battery import host_battery
+    from orion.kernel.checks.claude_lane import _handoff_contract
+    from orion.mechanics.model import HandoffField, MechanicCell, MechanicDimension
+
+    def _cell(**fields):
+        return MechanicCell(mechanic_id="probe", purpose="p", scope="s", **fields)
+
+    assert not any(
+        _handoff_contract(item) for item in host_battery(MechanicDimension.HANDOFF)
+    )
+    assert not _handoff_contract(
+        _cell(handoff_fields=(HandoffField("payload", "stuff", "stuff"),))
+    )
+    assert not _handoff_contract(
+        _cell(handoff_fields=(HandoffField("payload", "d", "prose about handoff"),))
+    )
+    assert not _handoff_contract(
+        _cell(handoff_fields=(HandoffField("nogroup", "d", "orion://a/b"),))
+    )
+    assert _handoff_contract(
+        _cell(
+            handoff_fields=(
+                HandoffField("probe:group:field", "d", "orion://mechanic/probe/f"),
+            )
+        )
+    )
+
+
+def test_the_dependency_check_rejects_a_contract_borrowed_from_another_cell():
+    """Non-transferability is the discriminator.
+
+    The seed declares dependencies generically ("external:ORION_RUNTIME") —
+    a mechanic depends on the runtime, without saying on what. A step-specific
+    answer names a contract belonging to *this* mechanic. Requiring the
+    mechanic's own id inside the contract id means an answer copied from a
+    neighbouring cell fails, which a length or vocabulary test would pass.
+    """
+
+    from orion.kernel.battery import host_battery
+    from orion.kernel.checks.claude_lane import _dependency_contract
+    from orion.mechanics.model import MechanicCell, MechanicDimension
+
+    def _cell(mechanic_id, **fields):
+        return MechanicCell(mechanic_id=mechanic_id, purpose="p", scope="s", **fields)
+
+    assert not any(
+        _dependency_contract(item)
+        for item in host_battery(MechanicDimension.DEPENDENCIES)
+    )
+    assert not _dependency_contract(
+        _cell("probe", external_dependency_contract_ids=("external:ORION_RUNTIME",))
+    )
+    assert not _dependency_contract(
+        _cell("probe", external_dependency_contract_ids=("contract:other.cell:thing",))
+    )
+    assert _dependency_contract(
+        _cell("probe", external_dependency_contract_ids=("contract:probe:evidence-selector",))
+    )

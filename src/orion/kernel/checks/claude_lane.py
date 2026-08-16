@@ -29,7 +29,7 @@ from __future__ import annotations
 import re
 from collections.abc import Iterable
 
-from orion.mechanics.model import MechanicCell, MechanicDimension
+from orion.mechanics.model import HandoffField, MechanicCell, MechanicDimension
 from orion.mechanics.program import current_program_cells
 
 from ..gate import DiscriminatingCheck
@@ -47,7 +47,20 @@ _FIELD_BY_DIMENSION: dict[MechanicDimension, str] = {
     MechanicDimension.STATE: "state_ids",
     MechanicDimension.OBSERVABILITY: "observable_ids",
     MechanicDimension.VERIFICATION: "verification_contracts",
+    MechanicDimension.FAILURE: "failure_signatures",
 }
+
+_FAILURE_SIGNATURE = re.compile(r"^failure:[A-Za-z0-9_.]+:[a-z0-9-]+\s+-\s+\S")
+
+
+def _seed_handoff() -> frozenset[tuple[str, str]]:
+    """Handoff fields the pre-answer program already carries."""
+
+    return frozenset(
+        (cell.mechanic_id, item.field_id)
+        for cell in current_program_cells()
+        for item in cell.handoff_fields
+    )
 
 
 def _seed_entries() -> dict[MechanicDimension, frozenset[tuple[str, str]]]:
@@ -70,6 +83,12 @@ def _seed_entries() -> dict[MechanicDimension, frozenset[tuple[str, str]]]:
 
 
 _SEED = _seed_entries()
+
+_SEED_FALSIFIERS: frozenset[tuple[str, str]] = frozenset(
+    (cell.mechanic_id, str(item))
+    for cell in current_program_cells()
+    for item in cell.falsifiers
+)
 
 
 def _is_preexisting(
@@ -134,6 +153,104 @@ def _verification_contract(cell: MechanicCell) -> bool:
     )
 
 
+def _failure_contract(cell: MechanicCell) -> bool:
+    """Step-specific failure content: typed signatures plus a fresh falsifier.
+
+    A failure answer must name concrete modes in the `failure:<mechanic>:<mode>`
+    grammar (not restate that failures exist) and supply at least one falsifier
+    beyond the seed state, since a mode without a falsifier is unfalsifiable
+    self-description.
+    """
+
+    fresh_signatures = _step_specific(
+        MechanicDimension.FAILURE, cell, cell.failure_signatures
+    )
+    fresh_falsifiers = tuple(
+        item
+        for item in cell.falsifiers
+        if _declarative(item)
+        and len(item) >= 40
+        and (cell.mechanic_id, item) not in _SEED_FALSIFIERS
+    )
+    return bool(fresh_falsifiers) and any(
+        _FAILURE_SIGNATURE.match(item) for item in fresh_signatures
+    )
+
+
+_SEED_HANDOFF = _seed_handoff()
+
+_SCHEMA_REF = re.compile(r"^[a-z][a-z0-9+.-]*://\S+$|^\S+/\S+$")
+
+
+def _seed_dependencies() -> frozenset[tuple[str, str]]:
+    """Dependency entries the pre-answer program already carries."""
+
+    return frozenset(
+        (cell.mechanic_id, item)
+        for cell in current_program_cells()
+        for item in (*cell.dependency_ids, *cell.external_dependency_contract_ids)
+    )
+
+
+_SEED_DEPENDENCIES = _seed_dependencies()
+
+
+def _dependency_contract(cell: MechanicCell) -> bool:
+    """Step-specific dependency content: a contract scoped to this mechanic.
+
+    The seed state declares dependencies generically (`external:ORION_RUNTIME`),
+    which says a mechanic depends on the runtime without saying on what. A
+    step-specific answer names a contract belonging to this mechanic, in the
+    grammar `contract:<mechanic>:<name>`. Requiring the mechanic's own id inside
+    the contract id is what makes the check non-transferable: an answer copied
+    from another cell fails here, which a length or vocabulary test would not
+    catch.
+    """
+
+    fresh = tuple(
+        item
+        for item in (
+            *cell.dependency_ids,
+            *cell.external_dependency_contract_ids,
+        )
+        if (cell.mechanic_id, item) not in _SEED_DEPENDENCIES
+    )
+    if not fresh:
+        return False
+    expected = f"contract:{cell.mechanic_id}:"
+    return all(
+        item.startswith(expected) and len(item) > len(expected) + 3
+        for item in fresh
+    )
+
+
+def _handoff_contract(cell: MechanicCell) -> bool:
+    """Step-specific handoff content: a field is not its own schema.
+
+    A real handoff declaration names a field and points at a schema that exists
+    apart from it. The battery's junk and envelope members set field_id,
+    description and schema_ref to one identical string, which is exactly what a
+    restated question looks like when forced into a typed shape — so requiring
+    the schema reference to be *distinct from* the field it describes, and to
+    carry a reference form rather than prose, separates a declaration from a
+    relabelling without asserting anything about whether the schema is correct.
+    """
+
+    fresh = tuple(
+        item
+        for item in cell.handoff_fields
+        if (cell.mechanic_id, item.field_id) not in _SEED_HANDOFF
+    )
+    if not fresh:
+        return False
+    return all(
+        item.schema_ref not in {item.field_id, item.description}
+        and _SCHEMA_REF.match(item.schema_ref) is not None
+        and ":" in item.field_id
+        for item in fresh
+    )
+
+
 def _fixture(mechanic_id: str, **fields) -> MechanicCell:
     return MechanicCell(
         mechanic_id=mechanic_id,
@@ -164,6 +281,63 @@ def _seed_layer_negative(dimension: MechanicDimension, field: str) -> MechanicCe
 
 
 CHECKS: tuple[DiscriminatingCheck, ...] = (
+    DiscriminatingCheck(
+        check_id="claude.form.dependencies.v0",
+        dimension=MechanicDimension.DEPENDENCIES,
+        lane=LANE,
+        predicate=_dependency_contract,
+        positive_fixture=_fixture(
+            "fixture.dependencies",
+            external_dependency_contract_ids=(
+                "contract:fixture.dependencies:evidence-selector",
+            ),
+        ),
+        negative_fixtures=(
+            # The generic seed form: a dependency declared without naming one.
+            _fixture(
+                "nearmiss.dependencies",
+                external_dependency_contract_ids=("external:ORION_RUNTIME",),
+            ),
+            # A real contract, but belonging to a different mechanic — the case
+            # a vocabulary or length test would wave through.
+            _fixture(
+                "nearmiss.dependencies.borrowed",
+                external_dependency_contract_ids=(
+                    "contract:some.other.mechanic:evidence-selector",
+                ),
+            ),
+        ),
+        frozen_at_round=0,
+    ),
+    DiscriminatingCheck(
+        check_id="claude.form.handoff.v0",
+        dimension=MechanicDimension.HANDOFF,
+        lane=LANE,
+        predicate=_handoff_contract,
+        positive_fixture=_fixture(
+            "fixture.handoff",
+            handoff_fields=(
+                HandoffField(
+                    field_id="fixture.handoff:route_stop:remaining_budget",
+                    description="Budget left on the route when it stopped.",
+                    schema_ref="orion://mechanic/fixture.handoff/handoff/remaining_budget",
+                ),
+            ),
+        ),
+        negative_fixtures=(
+            _fixture(
+                "nearmiss.handoff",
+                handoff_fields=(
+                    HandoffField(
+                        field_id="something",
+                        description="the next step receives what it needs",
+                        schema_ref="the next step receives what it needs",
+                    ),
+                ),
+            ),
+        ),
+        frozen_at_round=0,
+    ),
     DiscriminatingCheck(
         check_id="claude.form.transition_model.v0",
         dimension=MechanicDimension.TRANSITION_MODEL,
@@ -234,6 +408,36 @@ CHECKS: tuple[DiscriminatingCheck, ...] = (
         negative_fixtures=(
             _fixture("nearmiss.observability", observable_ids=("progress", "status", "quality")),
             _seed_layer_negative(MechanicDimension.OBSERVABILITY, "observable_ids"),
+        ),
+        frozen_at_round=0,
+    ),
+    DiscriminatingCheck(
+        check_id="claude.form.failure.v0",
+        dimension=MechanicDimension.FAILURE,
+        lane=LANE,
+        predicate=_failure_contract,
+        positive_fixture=_fixture(
+            "fixture.failure",
+            failure_signatures=(
+                "failure:fixture.failure:false-impossibility-certificate - a repairable local defect is relabelled as proof that no solution can work",
+            ),
+            falsifiers=(
+                "a single false certificate on a case where a licensing witness demonstrably exists refutes the mechanism",
+            ),
+        ),
+        negative_fixtures=(
+            _fixture(
+                "nearmiss.failure",
+                failure_signatures=("this step can fail if something goes wrong",),
+                falsifiers=("more testing would reveal problems",),
+            ),
+            _fixture(
+                "nearmiss.failure.unfalsifiable",
+                failure_signatures=(
+                    "failure:nearmiss.failure.unfalsifiable:mode-without-falsifier - a typed mode with no way to be wrong",
+                ),
+            ),
+            _seed_layer_negative(MechanicDimension.FAILURE, "failure_signatures"),
         ),
         frozen_at_round=0,
     ),

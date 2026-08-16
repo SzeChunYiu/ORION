@@ -302,7 +302,12 @@ def test_the_satisfaction_predicate_itself_cannot_be_admitted() -> None:
         ),
     )
     assert outcome is CheckOutcome.NOT_DISCRIMINATING
-    assert any("battery.junk" in item for item in reasons)
+    # The theorem, asserted directly rather than through a reason string: the
+    # junk member has every writable field non-empty, so a non-emptiness
+    # predicate must accept it.
+    junk = host_battery(MechanicDimension.STORAGE)[1]
+    assert defect.predicate(junk)
+    assert reasons
 
 
 def test_a_check_satisfied_by_restating_the_question_cannot_be_admitted() -> None:
@@ -323,7 +328,9 @@ def test_a_check_satisfied_by_restating_the_question_cannot_be_admitted() -> Non
         ),
     )
     assert outcome is CheckOutcome.NOT_DISCRIMINATING
-    assert any("battery.envelope" in item for item in reasons)
+    envelope = host_battery(MechanicDimension.STORAGE)[2]
+    assert echo.predicate(envelope)
+    assert reasons
 
 
 def test_a_weak_author_declared_negative_does_not_lower_the_bar() -> None:
@@ -633,12 +640,13 @@ def test_driver_stops_on_bounded_flatness_rather_than_spinning(tmp_path: Path) -
         selection_limit=64,
     ).run(max_rounds=8)
 
-    assert report.stop_reason == "a_priori_frame_flat"
+    assert report.stop_reason == "flat_lineage_unidentified"
     assert len(report.rounds) == 2
     assert report.verified_closures == 0
     assert report.saturation is not None
-    assert report.saturation.verdict is SaturationVerdict.A_PRIORI_FRAME_FLAT
+    assert report.saturation.verdict is SaturationVerdict.PARTIALLY_IDENTIFIED_LINEAGE
     assert all(vector.flat for vector in report.growth)
+    assert not report.saturation.may_stop
     # Bounded, never absolute: stopping is a statement about a declared basis.
     assert report.saturation.absolute_complete is False
 
@@ -686,7 +694,9 @@ def test_a_resumed_run_does_not_recount_its_own_history_as_growth(
     ).run(max_rounds=2)
 
     assert all(vector.flat for vector in resumed.growth)
-    assert resumed.stop_reason == "a_priori_frame_flat"
+    # Flat, but nothing bound this run, so the rounds cannot testify to
+    # each other. Stopping is right; calling it saturation would not be.
+    assert resumed.stop_reason == "flat_lineage_unidentified"
 
 
 def test_changing_the_basis_voids_earlier_flat_rounds() -> None:
@@ -699,7 +709,11 @@ def test_changing_the_basis_voids_earlier_flat_rounds() -> None:
         selection_limit=8,
     )
     flat = tuple(
-        GrowthVector(round_index=index, basis_fingerprint=basis.fingerprint)
+        GrowthVector(
+            round_index=index,
+            basis_fingerprint=basis.fingerprint,
+            evidence_lineage=(f"orion:round{index}.md@{index:012d}",),
+        )
         for index in range(2)
     )
     assert assess_saturation(flat, basis).verdict is SaturationVerdict.A_PRIORI_FRAME_FLAT
@@ -785,12 +799,14 @@ def test_the_stopping_verdict_never_certifies_recall(tmp_path: Path) -> None:
         selection_limit=64,
     ).run(max_rounds=8)
 
-    assert report.stop_reason == "a_priori_frame_flat"
+    assert report.stop_reason == "flat_lineage_unidentified"
     assert report.saturation is not None
-    assert report.saturation.may_stop
     assert not report.saturation.certifies_recall
     assert not report.saturation.absolute_complete
-    assert any("outside the frame" in item for item in report.saturation.reasons)
+    # The reason now names the deeper problem: the flat rounds bound nothing,
+    # so they cannot corroborate each other at all — a weaker claim than
+    # "flat within a declared frame", and the honest one here.
+    assert any("no evidence lineage" in item for item in report.saturation.reasons)
 
 
 def test_one_paper_reached_by_two_references_counts_as_one_discovery(
@@ -835,3 +851,47 @@ def test_one_paper_reached_by_two_references_counts_as_one_discovery(
     ).run(max_rounds=1)
 
     assert report.growth[0].new_evidence_roots == 1
+
+
+def test_a_starved_selection_window_is_not_reported_as_flatness(tmp_path: Path) -> None:
+    """FALSE_FLATNESS_BY_STARVATION, measured by another lane and confirmed here.
+
+    The fixed breadth-first priority feeds the selection window from the top
+    dimensions, so a narrow window never reaches the lower ones and never asks
+    the source for them. Nothing about the knowledge is flat — the window is.
+    A run that called that saturation would be reporting its own scheduling as
+    a property of the world.
+    """
+
+    ref = _evidence(tmp_path)
+    # An answer the window will not reach: STORAGE sits far down the priority order.
+    withheld = _answer(ref, root=tmp_path, record_id="unreached")
+    report = SelfDrivingDriver(
+        store=LedgerStore(tmp_path / "state"),
+        source=StaticAnswerSource(records=(withheld,)),
+        evidence_roots={"orion": tmp_path},
+        seed_cells=_program(),
+        selection_limit=1,
+    ).run(max_rounds=4)
+
+    assert report.stop_reason == "selection_window_exhausted"
+
+
+def test_a_source_that_cannot_be_probed_does_not_license_a_flat_claim(
+    tmp_path: Path,
+) -> None:
+    """Unknown source coverage is not verified source coverage."""
+
+    class _Opaque:
+        def fetch(self, tasks, cells, round_index):
+            return ()
+
+    report = SelfDrivingDriver(
+        store=LedgerStore(tmp_path / "state"),
+        source=_Opaque(),
+        evidence_roots={"orion": tmp_path},
+        seed_cells=_program(),
+        selection_limit=64,
+    ).run(max_rounds=4)
+
+    assert report.stop_reason == "flat_source_coverage_unverified"

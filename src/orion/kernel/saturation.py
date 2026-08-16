@@ -25,6 +25,7 @@ class SaturationVerdict(str, Enum):
     INVALID_BASIS = "INVALID_BASIS"
     INSUFFICIENT_FLAT_ROUNDS = "INSUFFICIENT_FLAT_ROUNDS"
     DEPENDENT_FLAT_ROUNDS = "DEPENDENT_FLAT_ROUNDS"
+    PARTIALLY_IDENTIFIED_LINEAGE = "PARTIALLY_IDENTIFIED_LINEAGE"
     A_PRIORI_FRAME_FLAT = "A_PRIORI_FRAME_FLAT"
     # Named after Saunders et al. (2018): with the basis frozen, only kinds
     # already inside the frame can be discovered, so this is *a priori*
@@ -145,7 +146,13 @@ def _max_disjoint_lineage_subset(lineages: Sequence[frozenset[str]]) -> int:
     """
 
     chosen: list[frozenset[str]] = []
-    for lineage in sorted(lineages, key=len):
+    # A round that declared no lineage is excluded, not credited. The empty set
+    # is disjoint from everything, so admitting it made every evidence-free
+    # round count as independent confirmation — and a flat round is by
+    # construction one where nothing bound, so the guard that was supposed to
+    # prevent false confidence never bit. RAKL refuses this as
+    # PARTIALLY_IDENTIFIED_LINEAGE; ORION had inverted it into a free pass.
+    for lineage in sorted((item for item in lineages if item), key=len):
         if all(not (lineage & taken) for taken in chosen):
             chosen.append(lineage)
     return len(chosen)
@@ -210,6 +217,20 @@ def assess_saturation(
             0,
             required_flat_rounds,
             (f"{len(streak)} flat round(s), {required_flat_rounds} required",),
+        )
+
+    unidentified = tuple(item for item in streak if not item.evidence_lineage)
+    if unidentified:
+        return SaturationReport(
+            SaturationVerdict.PARTIALLY_IDENTIFIED_LINEAGE,
+            len(streak),
+            0,
+            required_flat_rounds,
+            (
+                f"{len(unidentified)} flat round(s) declared no evidence lineage, so "
+                "their independence cannot be established; flatness without "
+                "identified lineage is a budget stop, not a saturation claim",
+            ),
         )
 
     independent = _max_disjoint_lineage_subset(

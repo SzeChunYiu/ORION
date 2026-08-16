@@ -17,7 +17,9 @@ def _build_parser() -> argparse.ArgumentParser:
         description="Run bounded self-driving ORION rounds against a durable ledger.",
     )
     parser.add_argument(
-        "command", choices=("run", "status", "verify", "report"), help="what to do"
+        "command",
+        choices=("run", "status", "verify", "report", "request"),
+        help="what to do",
     )
     parser.add_argument(
         "--state",
@@ -44,6 +46,11 @@ def _build_parser() -> argparse.ArgumentParser:
         metavar="SCHEME=PATH",
         help="register an additional evidence scheme, e.g. rakl=/path/to/RAKL",
     )
+    parser.add_argument(
+        "--rakl-transfer",
+        action="store_true",
+        help="also offer the self-orion RAKL transfer as evidence-bound answers",
+    )
     parser.add_argument("--rounds", type=int, default=4, help="maximum rounds this run")
     parser.add_argument(
         "--selection-limit",
@@ -62,6 +69,24 @@ def _build_parser() -> argparse.ArgumentParser:
 def main(argv: Sequence[str] | None = None) -> int:
     args = _build_parser().parse_args(argv)
     store = LedgerStore(args.state)
+
+    if args.command == "request":
+        from orion.mechanics.program import current_program_cells
+
+        # `load_registered_checks` is imported at module scope on purpose. It
+        # was previously imported inside this branch, which made it a local of
+        # `main`, so every other branch — including `run` — raised
+        # UnboundLocalError before reaching its own use of it.
+        from .workorder import build_work_order
+
+        order = build_work_order(
+            current_program_cells(),
+            checks=dict(load_registered_checks()),
+            store=store,
+            limit=args.selection_limit,
+        )
+        print(json.dumps(order.as_dict(), indent=2))
+        return 0
 
     if args.command == "report":
         from .report import build_report
@@ -92,9 +117,21 @@ def main(argv: Sequence[str] | None = None) -> int:
         evidence_roots[scheme.strip()] = Path(path.strip())
 
     checks = {} if args.no_checks else dict(load_registered_checks())
+    source: object = DirectoryAnswerSource(root=args.answers)
+    if args.rakl_transfer:
+        from orion.self_orion.transfer_answers import transfer_answer_records
+
+        from .sources import CallableAnswerSource
+
+        source = CallableAnswerSource(
+            supplier=lambda cells: transfer_answer_records(
+                cells, evidence_roots=evidence_roots
+            ).records
+        )
+
     driver = SelfDrivingDriver(
         store=store,
-        source=DirectoryAnswerSource(root=args.answers),
+        source=source,
         evidence_roots=evidence_roots,
         checks=checks,
         selection_limit=args.selection_limit,

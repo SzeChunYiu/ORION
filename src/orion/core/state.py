@@ -4,6 +4,7 @@ from dataclasses import dataclass, field, replace
 
 from orion.core.claims import ClaimRecord
 from orion.core.closure import ClosureCertificate
+from orion.core.contributions import RepresentationMapping, SourceProjection
 from orion.core.evidence import EvidenceRecord
 from orion.core.history import IterationRecord, NegativeHistoryEntry
 from orion.core.method import MethodState
@@ -21,6 +22,8 @@ class KnowledgeState:
     portraits: tuple[GlobalPortrait, ...] = ()
     residuals: tuple[Residual, ...] = ()
     negative_history: tuple[NegativeHistoryEntry, ...] = ()
+    source_projections: tuple[SourceProjection, ...] = ()
+    representation_mappings: tuple[RepresentationMapping, ...] = ()
 
     @property
     def evidence_ids(self) -> tuple[str, ...]:
@@ -33,6 +36,14 @@ class KnowledgeState:
     @property
     def negative_history_ids(self) -> tuple[str, ...]:
         return tuple(item.entry_id for item in self.negative_history)
+
+    @property
+    def source_projection_ids(self) -> tuple[str, ...]:
+        return tuple(item.projection_id for item in self.source_projections)
+
+    @property
+    def representation_mapping_ids(self) -> tuple[str, ...]:
+        return tuple(item.mapping_id for item in self.representation_mappings)
 
 
 @dataclass(frozen=True)

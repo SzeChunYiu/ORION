@@ -7,7 +7,14 @@ from pathlib import Path
 
 from orion.core.evidence import EvidenceRecord, evidence_record_fingerprint
 
-from .model import HandoffField, MechanicCell, MechanicDimension
+from .model import (
+    HandoffField,
+    MechanicCell,
+    MechanicDimension,
+    MetricDirection,
+    MetricKind,
+    MetricSpec,
+)
 
 _STRING_FIELDS_BY_DIMENSION: dict[MechanicDimension, tuple[str, ...]] = {
     MechanicDimension.INPUTS: ("input_ids",),
@@ -29,7 +36,10 @@ _STRING_FIELDS_BY_DIMENSION: dict[MechanicDimension, tuple[str, ...]] = {
     MechanicDimension.VERIFICATION: ("verification_contracts",),
     MechanicDimension.AUTHORITY_SECURITY: ("authority_boundaries",),
     MechanicDimension.ENGINEERING: ("engineering_contracts",),
-    MechanicDimension.DEPENDENCIES: ("dependency_ids",),
+    MechanicDimension.DEPENDENCIES: (
+        "dependency_ids",
+        "external_dependency_contract_ids",
+    ),
     MechanicDimension.REOPEN: ("reopen_triggers",),
     MechanicDimension.SEARCH_COVERAGE: ("search_coverage_obligations",),
     MechanicDimension.PARENT_DISCIPLINE: ("parent_domain_hypotheses",),
@@ -67,17 +77,30 @@ class AnswerRecord:
     evidence_bindings: tuple[tuple[str, str], ...] = ()
     payload: tuple[tuple[str, tuple[str, ...]], ...] = ()
     handoff_payload: tuple[HandoffField, ...] = ()
+    metric_payload: tuple[MetricSpec, ...] = ()
     waiver_reason: str = ""
     supersedes: str = ""
 
     def __post_init__(self) -> None:
         if not self.record_id.strip() or not self.mechanic_id.strip() or not self.lane.strip():
             raise ValueError("answer record identity, mechanic and lane are required")
-        has_content = bool(self.payload) or bool(self.handoff_payload)
-        if has_content == bool(self.waiver_reason.strip()):
-            raise ValueError("an answer record carries either content payload or a waiver reason")
+        content_paths = sum(
+            bool(item)
+            for item in (self.payload, self.handoff_payload, self.metric_payload)
+        )
+        if (content_paths > 0) == bool(self.waiver_reason.strip()):
+            raise ValueError(
+                "an answer record carries content payload or a waiver reason, never both or neither"
+            )
+        if content_paths > 1:
+            raise ValueError("an answer record carries exactly one kind of content payload")
         if self.handoff_payload and self.dimension is not MechanicDimension.HANDOFF:
             raise ValueError("handoff payload is only valid for the HANDOFF dimension")
+        if self.metric_payload and self.dimension is not MechanicDimension.METRICS:
+            raise ValueError("metric payload is only valid for the METRICS dimension")
+        metric_ids = [item.metric_id for item in self.metric_payload]
+        if len(set(metric_ids)) != len(metric_ids):
+            raise ValueError("metric answer payload ids must be unique")
         if len(set(self.evidence_refs)) != len(self.evidence_refs):
             raise ValueError("answer evidence references must be unique")
         binding_ids = [reference for reference, _ in self.evidence_bindings]
@@ -290,6 +313,14 @@ def apply_answer_records(
             existing_ids = {item.field_id for item in cell.handoff_fields}
             fresh = tuple(item for item in tip.handoff_payload if item.field_id not in existing_ids)
             cell = replace(cell, handoff_fields=(*cell.handoff_fields, *fresh))
+        elif tip.metric_payload:
+            existing_metric_ids = {item.metric_id for item in cell.metrics}
+            fresh_metrics = tuple(
+                item
+                for item in tip.metric_payload
+                if item.metric_id not in existing_metric_ids
+            )
+            cell = replace(cell, metrics=(*cell.metrics, *fresh_metrics))
         for field_name, values in tip.payload:
             current: tuple[str, ...] = getattr(cell, field_name)
             updates[field_name] = tuple(dict.fromkeys((*current, *values)))
@@ -365,6 +396,21 @@ def audit_answer_application(
     return tuple(residuals)
 
 
+def _load_metric(raw: dict) -> MetricSpec:
+    """Rebuild a typed metric answer from its JSONL form."""
+
+    return MetricSpec(
+        metric_id=str(raw["metric_id"]),
+        description=str(raw["description"]),
+        kind=MetricKind(str(raw["kind"])),
+        direction=MetricDirection(str(raw["direction"])),
+        unit=str(raw["unit"]),
+        required_for_handoff=bool(raw.get("required_for_handoff", False)),
+        threshold_semantics=str(raw.get("threshold_semantics", "")),
+        uncertainty_semantics=str(raw.get("uncertainty_semantics", "")),
+    )
+
+
 def load_answer_records(root: Path) -> tuple[AnswerRecord, ...]:
     """Load answer records from per-lane JSONL files under ``root``.
 
@@ -402,6 +448,9 @@ def load_answer_records(root: Path) -> tuple[AnswerRecord, ...]:
                             required=bool(item.get("required", True)),
                         )
                         for item in raw.get("handoff_payload", ())
+                    ),
+                    metric_payload=tuple(
+                        _load_metric(item) for item in raw.get("metric_payload", ())
                     ),
                     waiver_reason=raw.get("waiver_reason", ""),
                     supersedes=raw.get("supersedes", ""),

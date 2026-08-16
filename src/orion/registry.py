@@ -1,7 +1,7 @@
 """Canonical Shadow-ORION registry shared by runtime, tests and paper synchronization."""
 
-FRAMEWORK_VERSION = "0.2.4-shadow"
-PAPER_SYNC_EPOCH = "2026-08-15-post-merge-hostile-review-v4"
+FRAMEWORK_VERSION = "0.3.7-shadow"
+PAPER_SYNC_EPOCH = "2026-08-16-external-evidence-derivation-v1"
 
 CORE_OPERATOR_IDS = (
     "FRAME.v1",
@@ -26,4 +26,29 @@ MECHANICS_SUBSTRATE_IDS = (
     "PatternVerificationReceipt.v2",
     "MechanicTraceReceipt.v2",
     "MechanicGuard.v1",
+    "AnswerRecord.v1",
+    "NearestWorkCase.v1",
+    "ScientificMeaningProjection.v1",
+    "IgnoranceProjection.v1",
+    "FunctionalOperationSignature.v1",
+    "ParentDisciplineProfile.v1",
+    "BenchmarkReport.v1",
+    "FlagshipBenchmarkSuite.v1",
+    "ExternalEvidenceManifest.v1",
+    "FormalEngineReadiness.v1",
+    "DevelopmentIssue.v1",
+    "ReadinessEvidenceRecord.v1",
+    "SelfOrionReadinessGate.v2",
+    "MetaOverfitVerdict.v1",
+    "RaklTransferProfile.v1",
+    "RaklAnswerTransfer.v1",
+    "SelfOrionDevelopmentDriver.v1",
+    "DevelopmentFibre.v1",
+    "DevelopmentSaturationVector.v1",
+    "DevelopmentNoveltyClassifier.v1",
+    "InventionReadinessGate.v1",
+    "DevelopmentChangeProposal.v1",
+    "FrozenLiveTrialPacket.v1",
+    "EvolutionArchive.v1",
+    "ShadowSelfDrivingController.v1",
 )
