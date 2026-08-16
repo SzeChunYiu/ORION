@@ -173,9 +173,19 @@ class BudgetedSession:
         self._retrieved_doc_ids: set[str] = set()
         self._read_keys: set[tuple[str, str, str]] = set()
         self._read_identity_digests: set[tuple[str, str]] = set()
-        self._model_tokens = 0
-        self._tool_calls = 0
-        self._exhausted = ""
+        # Spend is charged against monotone counters that only ever increment,
+        # never against `len(self._route_events)`. The event log is an ordinary
+        # list, so charging against its length let a system clear the log and
+        # keep querying forever — the budget was enforced against a number the
+        # candidate could edit. These are name-mangled, which is obfuscation and
+        # not a boundary; the guarantee is the post-run overrun check in
+        # `gold._status_and_failure`, which compares the recorded event count
+        # against the frozen budget and voids any run that exceeded it.
+        self.__route_calls_made = 0
+        self.__reads_made = 0
+        self.__model_tokens = 0
+        self.__tool_calls = 0
+        self.__exhausted = ""
 
     # -- state a system may observe -------------------------------------
 
@@ -206,16 +216,16 @@ class BudgetedSession:
 
     @property
     def exhausted_dimension(self) -> str:
-        return self._exhausted
+        return self.__exhausted
 
     @property
     def resources(self) -> ResourceUse:
         return ResourceUse(
             wallclock_seconds=max(0.0, self._clock() - self._started),
-            model_tokens=self._model_tokens,
-            tool_calls=self._tool_calls,
-            search_queries=len(self._route_events),
-            reads=len(self._read_events),
+            model_tokens=self.__model_tokens,
+            tool_calls=self.__tool_calls,
+            search_queries=self.__route_calls_made,
+            reads=self.__reads_made,
         )
 
     # -- enforcement ----------------------------------------------------
@@ -223,14 +233,14 @@ class BudgetedSession:
     def _charge(self, dimension: str, current: int | float, ceiling: int | float) -> None:
         """Refuse the action, and stay refusing. Exhaustion is terminal by design."""
 
-        if self._exhausted:
-            raise BudgetExhausted(self._exhausted)
+        if self.__exhausted:
+            raise BudgetExhausted(self.__exhausted)
         elapsed = self._clock() - self._started
         if elapsed > self._task.budget.max_wallclock_seconds:
-            self._exhausted = "wallclock_seconds"
-            raise BudgetExhausted(self._exhausted)
+            self.__exhausted = "wallclock_seconds"
+            raise BudgetExhausted(self.__exhausted)
         if current >= ceiling:
-            self._exhausted = dimension
+            self.__exhausted = dimension
             raise BudgetExhausted(dimension)
 
     def _next_index(self) -> int:
@@ -242,7 +252,8 @@ class BudgetedSession:
     # -- the system-facing surface --------------------------------------
 
     def query(self, route: str, probe: str) -> RouteOutcome:
-        self._charge("route_calls", len(self._route_events), self._task.budget.max_route_calls)
+        self._charge("route_calls", self.__route_calls_made, self._task.budget.max_route_calls)
+        self.__route_calls_made += 1
         try:
             kind = DiscoveryRoute(route)
         except ValueError:
@@ -309,9 +320,10 @@ class BudgetedSession:
         )
 
     def read(self, doc_id: str) -> ReadOutcome:
-        self._charge("reads", len(self._read_events), self._task.budget.max_reads)
+        self._charge("reads", self.__reads_made, self._task.budget.max_reads)
         if doc_id not in self._retrieved_doc_ids:
             raise ValueError(f"{doc_id} has not been retrieved by any route")
+        self.__reads_made += 1
         document = self._index.by_id[doc_id]
         question = self.current_extraction_question
         classification = self._classify_read(document, question)
@@ -370,10 +382,14 @@ class BudgetedSession:
         )
 
     def spend(self, *, model_tokens: int = 0, tool_calls: int = 0) -> None:
-        self._charge("model_tokens", self._model_tokens + model_tokens, self._task.budget.max_model_tokens)
-        self._charge("tool_calls", self._tool_calls + tool_calls, self._task.budget.max_tool_calls)
-        self._model_tokens += max(0, model_tokens)
-        self._tool_calls += max(0, tool_calls)
+        self._charge(
+            "model_tokens", self.__model_tokens + model_tokens, self._task.budget.max_model_tokens
+        )
+        self._charge(
+            "tool_calls", self.__tool_calls + tool_calls, self._task.budget.max_tool_calls
+        )
+        self.__model_tokens += max(0, model_tokens)
+        self.__tool_calls += max(0, tool_calls)
 
     def record_task_stop(self, *, reason: str, claimed_complete: bool) -> None:
         """Host-invoked at the end of a run so task closure carries a timeline position."""

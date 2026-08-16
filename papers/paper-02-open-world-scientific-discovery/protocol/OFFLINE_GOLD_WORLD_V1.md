@@ -69,7 +69,16 @@ so nothing it holds carries `concept_tags` (the rule) or `protected_gold` (the
 answer); a hostile fixture in the tests goes looking and finds neither. Route
 calls, reads and stop decisions are recorded host-side as they happen, so a system
 cannot under-report a route or edit its own trace. Budget exhaustion closes the
-session permanently — swallowing `BudgetExhausted` buys nothing.
+session permanently, and spend is charged against counters that only increment,
+never against the length of the event log — charging against the log let a
+candidate clear it and query forever.
+
+Python has no hard private attribute, so in-process enforcement can always be
+reached around by a determined candidate. The guarantee that does hold is the
+host's post-run audit: `gold` compares the recorded run against the frozen budget
+and voids any overrun as `INVALID / harness_tamper`. Both evasions are covered —
+suppressing the counters leaves an event log longer than the budget, and clearing
+the log still trips the counters.
 
 ## Emissions
 

@@ -123,7 +123,7 @@ class Evaluation:
     legitimate_reread_count: int
     first_read_count: int
 
-    resources: dict[str, float]
+    resources: tuple[tuple[str, float], ...]
 
     def numeric_metrics(self) -> dict[str, float]:
         """The record's `metrics` object: numbers only, per the result-record schema.
@@ -135,12 +135,18 @@ class Evaluation:
 
         denominator = float(self.gold_denominator)
         claimed = len(self.claimed_identities)
-        true_positive = claimed - len(self.false_positive_identities)
         metrics: dict[str, float] = {
             "complete_gold_recall": (
                 len(self.discovered_gold_identities) / denominator if denominator else 0.0
             ),
-            "precision": (true_positive / claimed) if claimed else 0.0,
+            # Numerator is what was actually discovered, not "claims minus known
+            # false positives" — the latter counted every fabricated identifier as
+            # a true positive, because a claim about material never retrieved is
+            # not in `false_positive_identities` at all. A pure fabricator scored
+            # 1.0. Unsupported claims now land in the denominator only.
+            "precision": (len(self.discovered_gold_identities) / claimed) if claimed else 0.0,
+            "claimed_count": float(claimed),
+            "supported_claim_count": float(claimed - len(self.unsupported_claimed_identities)),
             "gold_denominator": denominator,
             "discovered_gold_count": float(len(self.discovered_gold_identities)),
             "missed_gold_count": float(len(self.missed_gold_identities)),
@@ -234,7 +240,7 @@ class Evaluation:
             "duplicate_processing_count": self.duplicate_processing_count,
             "legitimate_reread_count": self.legitimate_reread_count,
             "first_read_count": self.first_read_count,
-            "resources": dict(self.resources),
+            "resources": {name: value for name, value in self.resources},
             "metrics": self.numeric_metrics(),
             "authority_flags": self.authority_flags(),
         }
@@ -405,9 +411,26 @@ def _status_and_failure(
     """
 
     trace = inputs.trace
+    budget = inputs.task.budget
     claimed_complete = any(
         item.scope == StopScope.TASK.value and item.claimed_complete for item in audits
     )
+
+    # Overrun check, before anything else. Python has no hard private attribute,
+    # so in-process enforcement can always be reached around by a determined
+    # candidate; what cannot be reached around is the host comparing the recorded
+    # run against the frozen budget afterwards. Both directions are covered: a
+    # candidate that suppresses the counters leaves an event log longer than the
+    # budget, and one that clears the event log still trips the counters.
+    if (
+        len(trace.route_events) > budget.max_route_calls
+        or len(trace.read_events) > budget.max_reads
+        or trace.resources.search_queries > budget.max_route_calls
+        or trace.resources.reads > budget.max_reads
+        or trace.resources.model_tokens > budget.max_model_tokens
+        or trace.resources.tool_calls > budget.max_tool_calls
+    ):
+        return "INVALID", "harness_tamper"
 
     if unsupported:
         return "INVALID", "unsupported_claim"
@@ -528,7 +551,7 @@ def evaluate(inputs: EvaluationInputs) -> Evaluation:
         duplicate_processing_count=duplicates,
         legitimate_reread_count=rereads,
         first_read_count=first_reads,
-        resources=dict(trace.resources.as_json()),
+        resources=tuple(sorted(trace.resources.as_json().items())),
     )
 
 

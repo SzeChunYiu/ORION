@@ -166,6 +166,110 @@ def test_claims_beyond_retrieval_are_invalid_not_credited(suite) -> None:
     assert outcome.record["failure_class"] == "unsupported_claim"
     assert outcome.record["metrics"]["complete_gold_recall"] == 0.0
     assert outcome.record["authority_flags"]["claims_exceed_retrieval"] is True
+    # Precision must not reward fabrication either. Scoring "claims minus known
+    # false positives" counted every unretrieved identifier as a true positive,
+    # so this fixture scored 1.0 while discovering nothing.
+    assert outcome.record["metrics"]["precision"] == 0.0
+    assert outcome.record["metrics"]["claimed_count"] == 2.0
+    assert outcome.record["metrics"]["supported_claim_count"] == 0.0
+
+
+def test_precision_denominator_is_recoverable_from_metrics_alone(suite) -> None:
+    """"Claimed nothing" and "claimed all wrong" both give precision 0.0.
+
+    Pooling those into a mean is exactly what a stats lane will do, so the
+    denominator has to be visible in the record without opening the artifact.
+    """
+
+    task = _task(suite, "p2-measurement-invariance-complete-gold-multiroute")
+    silent = execute(
+        Hostile(), suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
+    ).record["metrics"]
+    fabricated = execute(
+        Fabricator(), suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
+    ).record["metrics"]
+    assert silent["claimed_count"] != fabricated["claimed_count"]
+
+
+# --------------------------------------------------------------------------
+# Budget tampering
+# --------------------------------------------------------------------------
+
+
+class LogClearer:
+    """Clears the session's event log to reset a budget charged against its length."""
+
+    system_id = "fixture-log-clearer"
+
+    def __init__(self) -> None:
+        self.calls_completed = 0
+
+    def run(self, view, session, *, seed):
+        probe = view.probes_for(DiscoveryRoute.LEXICAL)[0]
+        for _ in range(60):
+            try:
+                session._route_events.clear()  # noqa: SLF001 - that is the point
+                session._exhausted = ""  # noqa: SLF001
+                session.query(DiscoveryRoute.LEXICAL.value, probe)
+                self.calls_completed += 1
+            except Exception:  # noqa: BLE001
+                break
+        return SystemReport(notes="tried to reset the budget")
+
+
+def test_clearing_the_event_log_does_not_buy_extra_budget(suite) -> None:
+    """The counters spend is charged against must not be ones a candidate can edit."""
+
+    system = LogClearer()
+    task = _task(suite, "p2-measurement-invariance-complete-gold-multiroute")
+    outcome = execute(
+        system, suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
+    )
+    assert system.calls_completed <= task.budget.max_route_calls
+    assert outcome.trace.resources.search_queries <= task.budget.max_route_calls
+
+
+class CounterSuppressor:
+    """Reaches past the name mangling and zeroes the counters directly."""
+
+    system_id = "fixture-counter-suppressor"
+
+    def run(self, view, session, *, seed):
+        probe = view.probes_for(DiscoveryRoute.LEXICAL)[0]
+        for _ in range(20):
+            object.__setattr__(session, "_BudgetedSession__route_calls_made", 0)
+            object.__setattr__(session, "_BudgetedSession__exhausted", "")
+            session.query(DiscoveryRoute.LEXICAL.value, probe)
+        return SystemReport(notes="suppressed the counters")
+
+
+def test_a_run_that_exceeded_its_budget_is_voided_by_the_host(suite) -> None:
+    """In-process enforcement can be reached around; the post-run audit cannot.
+
+    Python offers no hard private attribute, so the honest guarantee is not that
+    a candidate is unable to cheat but that the host compares the recorded run
+    against the frozen budget afterwards and refuses to score an overrun.
+    """
+
+    task = _task(suite, "p2-measurement-invariance-complete-gold-multiroute")
+    outcome = execute(
+        CounterSuppressor(), suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
+    )
+    assert len(outcome.trace.route_events) > task.budget.max_route_calls
+    assert outcome.record["status"] == "INVALID"
+    assert outcome.record["failure_class"] == "harness_tamper"
+
+
+def test_the_overrun_check_stays_silent_on_a_lawful_run(suite) -> None:
+    """No-alarm: a run inside its budget must never be voided as tampering."""
+
+    task = _task(suite, "p2-measurement-invariance-complete-gold-multiroute")
+    outcome = execute(
+        SingleRoute(close=False), suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
+    )
+    assert len(outcome.trace.route_events) <= task.budget.max_route_calls
+    assert outcome.record["failure_class"] != "harness_tamper"
+    assert outcome.record["status"] != "INVALID"
 
 
 # --------------------------------------------------------------------------
