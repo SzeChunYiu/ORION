@@ -26,7 +26,7 @@ def test_normalizer_matches_modern_and_legacy_scorer_domain() -> None:
     assert module.normalize_arxiv_id("   ") == ""
 
 
-def test_prepare_preserves_legacy_and_empty_wide_targets_without_candidate_leak(
+def test_prepare_preserves_full_scorer_domain_without_candidate_leak(
     tmp_path: Path,
 ) -> None:
     module = _module()
@@ -41,9 +41,15 @@ def test_prepare_preserves_legacy_and_empty_wide_targets_without_candidate_leak(
             target = ["", None, "   "]
         else:
             target = [f"24{index % 100:02d}.{index:05d}"]
+        if index == 2:
+            question = ""
+        elif index == 3:
+            question = "Unique public research question 4 about representation learning"
+        else:
+            question = f"Unique public research question {index} about representation learning"
         rows.append(
             {
-                "question": f"Unique public research question {index} about representation learning",
+                "question": question,
                 "answer": [f"hidden title {index}"],
                 "arxiv_id": target,
             }
@@ -54,10 +60,44 @@ def test_prepare_preserves_legacy_and_empty_wide_targets_without_candidate_leak(
     assert manifest["wide_tasks"] == 400
     assert manifest["legacy_target_id_count"] == 1
     assert manifest["empty_target_task_count"] == 1
+    assert manifest["empty_question_task_count"] == 1
+    assert manifest["duplicate_question_task_count"] == 1
+    assert manifest["official_gt_mapping_question_count"] == 398
     public_text = public.read_text(encoding="utf-8")
     assert "arxiv_id" not in public_text
     assert "hidden title" not in public_text
+    public_rows = [
+        json.loads(line) for line in public.read_text(encoding="utf-8").splitlines()
+    ]
     gt_rows = [json.loads(line) for line in gt.read_text(encoding="utf-8").splitlines()]
-    assert len(gt_rows) == 400
+    assert len(public_rows) == len(gt_rows) == 400
+    assert public_rows[2]["question"] == ""
+    assert public_rows[3]["question"] == public_rows[4]["question"]
     assert gt_rows[0]["arxiv_id"] == ["hep-th/9901001"]
     assert gt_rows[1]["arxiv_id"] == []
+
+
+def test_empty_question_candidate_record_issues_no_provider_request(tmp_path: Path) -> None:
+    module = _module()
+    public = tmp_path / "public.jsonl"
+    output = tmp_path / "candidate.jsonl"
+    trace = tmp_path / "trace.jsonl"
+    public.write_text(
+        json.dumps({"task_id": "arb-wide-0001", "question": ""}) + "\n",
+        encoding="utf-8",
+    )
+
+    manifest = module.run_candidate(
+        public,
+        output,
+        trace,
+        max_results=20,
+        limit=None,
+    )
+    assert manifest["tasks_attempted"] == 1
+    assert manifest["provider_requests"] == 0
+    assert manifest["empty_question_records_without_provider_request"] == 1
+    candidate = json.loads(output.read_text(encoding="utf-8"))
+    assert candidate["input_data"] == {"question": ""}
+    assert candidate["inference_results"][0]["final_candidates"] == []
+    assert candidate["inference_results"][0]["status"] == "benchmark_empty_question"
