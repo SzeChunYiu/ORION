@@ -1,4 +1,4 @@
-"""Prospectively bind the O1 route-stop FP/FN publication projection."""
+"""Bind the O1 route-stop FP/FN publication projection."""
 
 from __future__ import annotations
 
@@ -14,6 +14,7 @@ from orion.study.p2.offline_route_stop import build_route_stop_projection
 PAPER = Path("papers/paper-02-open-world-scientific-discovery")
 MANIFEST = PAPER / "protocol" / "OFFLINE_RUN_MANIFEST_V1.json"
 MANIFEST_SHA = PAPER / "protocol" / "OFFLINE_RUN_MANIFEST_V1.sha256"
+EXPECTED = PAPER / "evidence" / "offline_results" / "ROUTE_STOP_ORACLE_V1.json"
 
 
 def _manifest_hash() -> str:
@@ -24,7 +25,7 @@ def _manifest_hash() -> str:
     return computed
 
 
-def test_emit_route_stop_projection_before_snapshot_commit() -> None:
+def test_route_stop_projection_matches_frozen_snapshot() -> None:
     report = verify()
     assert report.ok, report.problems
     suite = load_suite()
@@ -34,7 +35,13 @@ def test_emit_route_stop_projection_before_snapshot_commit() -> None:
         run_manifest_hash=_manifest_hash(),
     )
     projection = build_route_stop_projection(suite.tasks, archive.outcomes)
-    raise AssertionError(
-        "P2_ROUTE_STOP_ORACLE_SNAPSHOT="
-        + json.dumps(projection, sort_keys=True, separators=(",", ":"))
-    )
+    expected = json.loads(EXPECTED.read_text(encoding="utf-8"))
+    assert projection == expected
+    orion = projection["systems"]["orion_full"]
+    assert orion["route_stop_false_positive_count"] == 1
+    assert orion["route_stop_false_positive_rate"] == 0.01
+    assert orion["route_stop_false_negative_count"] == 0
+    assert orion["route_stop_false_negative_rate"] == 0.0
+    assert projection["orion_full_by_route"]["RESTRICTED"][
+        "attempts_after_exhaustion_total"
+    ] == 19
