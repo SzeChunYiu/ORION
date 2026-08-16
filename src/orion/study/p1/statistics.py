@@ -382,6 +382,7 @@ def assess_hypothesis(
     difference: BootstrapDifference | None,
     cannot_check_units: int = 0,
     min_units: int = 0,
+    margin_resolvable: bool | None = None,
     subject_abstention_rate: float | None = None,
     comparator_abstention_rate: float | None = None,
 ) -> HypothesisAssessment:
@@ -436,6 +437,27 @@ def assess_hypothesis(
             margin=margin,
             rationale="no matched units",
             difference=difference,
+        )
+
+    # A comparison whose N cannot resolve its own margin is UNDERPOWERED, not
+    # NOT_SUPPORTED. Those say different things: the first reports that the
+    # design could not answer, the second that it answered no. The prospective
+    # analysis found the frozen 48-case suite needs roughly 7,800-12,600 cases
+    # to resolve its +0.05 margin at 80% power, so reporting NOT_SUPPORTED from
+    # it would dress an underpowered non-finding as evidence. Checked before the
+    # direction dispatch because it is a property of the design, not of which
+    # hypothesis is being asked. See protocol/PROSPECTIVE_POWER_V1.md.
+    if margin_resolvable is False:
+        return HypothesisAssessment(
+            hypothesis_id=hypothesis_id,
+            verdict=HypothesisVerdict.UNDERPOWERED,
+            difference=difference,
+            margin=margin,
+            direction=direction,
+            rationale=(
+                "the design cannot resolve its own margin at this N; the interval "
+                "is reported as an estimate and no rejection is claimed"
+            ),
         )
 
     if direction is HypothesisDirection.NON_INFERIORITY:
