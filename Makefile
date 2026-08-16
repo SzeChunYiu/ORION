@@ -51,3 +51,14 @@ paper01-results:
 .PHONY: paper01-tests
 paper01-tests:
 	PYTHONPATH=$(SRC) $(PYTHON) -m pytest -q tests/unit/study/p1
+
+.PHONY: paper01-trial paper01-trial-live
+## Run the whole P1 trial: systems -> archive -> scores -> tables. Mechanical arm only.
+paper01-trial:
+	@PYTHONPATH=$(SRC) $(PYTHON) -m orion.study.p1.run_trial --split $(or $(SPLIT),PILOT)
+
+## Same, plus the live glm-5.2 arm. Requires ANTHROPIC_API_KEY in the environment;
+## refuses before running a single case if it is absent, rather than recording
+## CANNOT_CHECK on every live cell and wasting the mechanical arm's run too.
+paper01-trial-live:
+	@PYTHONPATH=$(SRC) $(PYTHON) -m orion.study.p1.run_trial --split $(or $(SPLIT),PILOT) --live
