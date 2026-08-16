@@ -106,25 +106,46 @@ def render(audit: dict) -> str:
         )
     add("")
 
-    add("## B. Provider, run requirements and contamination exposure")
+    add("## B. Official-evaluation runnability by task family")
     add("")
-    add("| Artifact | State | Provider / credentials | Judge calls | Hard blocker | Contamination |")
+    add(
+        "Obtaining an artifact and being able to run its official scorer are different questions. "
+        "This section answers the second one, which is what decides whether a task family can carry "
+        "evidence."
+    )
+    add("")
+    runnable = audit["official_evaluation_runnable_by_family"]
+    add("| Task family | Official scorer runnable | Meaning |")
+    add("| --- | --- | --- |")
+    for family, verdict in runnable["families"].items():
+        add(f"| `{cell(family)}` | `{cell(verdict)}` | {clip(runnable['enum'][verdict], 120)} |")
+    add("")
+
+    add("## C. Provider, run requirements and contamination exposure")
+    add("")
+    add("| Artifact | State | Evaluator needs | Reference agent needs | Hard blocker | Contamination |")
     add("| --- | --- | --- | --- | --- | --- |")
     for a in artifacts:
         rr = a.get("run_requirements") or {}
+        er = rr.get("evaluator_requirements")
+        if isinstance(er, dict):
+            needs = "; ".join(f"{k}: {v.get('credentials')}" for k, v in er.items())
+        else:
+            needs = rr.get("provider")
+        agent = (rr.get("reference_agent_requirements") or {}).get("credentials")
         add(
-            "| `{id}` | `{state}` | {prov} | {judge} | {blk} | {cont} |".format(
+            "| `{id}` | `{state}` | {needs} | {agent} | {blk} | {cont} |".format(
                 id=cell(a["artifact_id"]),
                 state=cell(a["state"]),
-                prov=clip(rr.get("provider"), 90),
-                judge=clip(rr.get("judge_calls_per_task"), 90),
+                needs=clip(needs, 110),
+                agent=clip(agent, 70),
                 blk=clip(rr.get("hard_blocker"), 150),
                 cont=clip(a.get("contamination_note"), 120),
             )
         )
     add("")
 
-    add("## C. Locators and licence evidence")
+    add("## D. Locators and licence evidence")
     add("")
     add("| Artifact | Locator | Licence source (verbatim check) |")
     add("| --- | --- | --- |")
@@ -138,7 +159,7 @@ def render(audit: dict) -> str:
         )
     add("")
 
-    add("## D. Pinned-revision integrity")
+    add("## E. Pinned-revision integrity")
     add("")
     integrity = audit["pinned_revision_integrity"]
     for key in (
@@ -153,19 +174,19 @@ def render(audit: dict) -> str:
     add(f"- verdict: {integrity['verdict']}")
     add("")
 
-    add("## E. Cross-cutting findings")
+    add("## F. Cross-cutting findings")
     add("")
     for item in audit["cross_cutting_findings"]:
         add(f"- {item}")
     add("")
 
-    add("## F. Explicitly not established by this audit")
+    add("## G. Explicitly not established by this audit")
     add("")
     for item in audit["explicitly_not_established"]:
         add(f"- {item}")
     add("")
 
-    add("## G. State counts")
+    add("## H. State counts")
     add("")
     counts: dict[str, int] = {}
     for a in artifacts:
