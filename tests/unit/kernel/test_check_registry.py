@@ -169,3 +169,35 @@ def test_the_handoff_check_separates_a_declaration_from_a_relabelling():
             )
         )
     )
+
+
+def test_the_dependency_check_rejects_a_contract_borrowed_from_another_cell():
+    """Non-transferability is the discriminator.
+
+    The seed declares dependencies generically ("external:ORION_RUNTIME") —
+    a mechanic depends on the runtime, without saying on what. A step-specific
+    answer names a contract belonging to *this* mechanic. Requiring the
+    mechanic's own id inside the contract id means an answer copied from a
+    neighbouring cell fails, which a length or vocabulary test would pass.
+    """
+
+    from orion.kernel.battery import host_battery
+    from orion.kernel.checks.claude_lane import _dependency_contract
+    from orion.mechanics.model import MechanicCell, MechanicDimension
+
+    def _cell(mechanic_id, **fields):
+        return MechanicCell(mechanic_id=mechanic_id, purpose="p", scope="s", **fields)
+
+    assert not any(
+        _dependency_contract(item)
+        for item in host_battery(MechanicDimension.DEPENDENCIES)
+    )
+    assert not _dependency_contract(
+        _cell("probe", external_dependency_contract_ids=("external:ORION_RUNTIME",))
+    )
+    assert not _dependency_contract(
+        _cell("probe", external_dependency_contract_ids=("contract:other.cell:thing",))
+    )
+    assert _dependency_contract(
+        _cell("probe", external_dependency_contract_ids=("contract:probe:evidence-selector",))
+    )

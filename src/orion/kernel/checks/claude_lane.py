@@ -182,6 +182,48 @@ _SEED_HANDOFF = _seed_handoff()
 _SCHEMA_REF = re.compile(r"^[a-z][a-z0-9+.-]*://\S+$|^\S+/\S+$")
 
 
+def _seed_dependencies() -> frozenset[tuple[str, str]]:
+    """Dependency entries the pre-answer program already carries."""
+
+    return frozenset(
+        (cell.mechanic_id, item)
+        for cell in current_program_cells()
+        for item in (*cell.dependency_ids, *cell.external_dependency_contract_ids)
+    )
+
+
+_SEED_DEPENDENCIES = _seed_dependencies()
+
+
+def _dependency_contract(cell: MechanicCell) -> bool:
+    """Step-specific dependency content: a contract scoped to this mechanic.
+
+    The seed state declares dependencies generically (`external:ORION_RUNTIME`),
+    which says a mechanic depends on the runtime without saying on what. A
+    step-specific answer names a contract belonging to this mechanic, in the
+    grammar `contract:<mechanic>:<name>`. Requiring the mechanic's own id inside
+    the contract id is what makes the check non-transferable: an answer copied
+    from another cell fails here, which a length or vocabulary test would not
+    catch.
+    """
+
+    fresh = tuple(
+        item
+        for item in (
+            *cell.dependency_ids,
+            *cell.external_dependency_contract_ids,
+        )
+        if (cell.mechanic_id, item) not in _SEED_DEPENDENCIES
+    )
+    if not fresh:
+        return False
+    expected = f"contract:{cell.mechanic_id}:"
+    return all(
+        item.startswith(expected) and len(item) > len(expected) + 3
+        for item in fresh
+    )
+
+
 def _handoff_contract(cell: MechanicCell) -> bool:
     """Step-specific handoff content: a field is not its own schema.
 
@@ -239,6 +281,34 @@ def _seed_layer_negative(dimension: MechanicDimension, field: str) -> MechanicCe
 
 
 CHECKS: tuple[DiscriminatingCheck, ...] = (
+    DiscriminatingCheck(
+        check_id="claude.form.dependencies.v0",
+        dimension=MechanicDimension.DEPENDENCIES,
+        lane=LANE,
+        predicate=_dependency_contract,
+        positive_fixture=_fixture(
+            "fixture.dependencies",
+            external_dependency_contract_ids=(
+                "contract:fixture.dependencies:evidence-selector",
+            ),
+        ),
+        negative_fixtures=(
+            # The generic seed form: a dependency declared without naming one.
+            _fixture(
+                "nearmiss.dependencies",
+                external_dependency_contract_ids=("external:ORION_RUNTIME",),
+            ),
+            # A real contract, but belonging to a different mechanic — the case
+            # a vocabulary or length test would wave through.
+            _fixture(
+                "nearmiss.dependencies.borrowed",
+                external_dependency_contract_ids=(
+                    "contract:some.other.mechanic:evidence-selector",
+                ),
+            ),
+        ),
+        frozen_at_round=0,
+    ),
     DiscriminatingCheck(
         check_id="claude.form.handoff.v0",
         dimension=MechanicDimension.HANDOFF,
