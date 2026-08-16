@@ -1,6 +1,7 @@
 # ORION-P4 journal-readiness plan — Verified Scientific Discovery
 
 **Current terminal:** `CANNOT_CHECK` for live scientific authority benefit / not peer-review ready.  
+**Execution status:** `BLOCKED_EXTERNAL_BINDINGS`; final evaluator/holdout/source/split identities remain unbound, and no independent-host protected run has been accepted.  
 **Already present:** exact evidence binding, answer/check authority gates, local authority-laundering falsifier, protected evaluator concepts and existing hostile benchmark issue #59.
 
 ## 1. Novelty closure
@@ -42,14 +43,23 @@ Attack families:
 - [x] genuinely insufficient evidence where abstention is correct;
 - [x] clean positive cases so refusal-only systems are penalized.
 
-Custody:
+Custody design completed before execution:
 
-- [x] evaluator/holdout identities frozen before candidate runs;
-- [x] attack labels hidden from candidate;
-- [x] protected access telemetry retained;
-- [x] human adjudication of ambiguous support/source relations with written rubric;
-- [x] exact content and provenance digests retained;
-- [x] independent host generates at least part of the hostile set after method freeze.
+- [x] policy requires evaluator/holdout identities to be frozen before candidate runs;
+- [x] policy requires attack labels to remain hidden from the candidate;
+- [x] policy requires protected access telemetry to be retained;
+- [x] written human-adjudication rubric exists for ambiguous support/source relations;
+- [x] policy requires exact content and provenance digests to be retained;
+- [x] policy requires an independent host to generate at least part of the hostile set after method freeze.
+
+Protected-run evidence still required:
+
+- [ ] bind and freeze the final evaluator/holdout identities for the exact protected run;
+- [ ] bind the final hidden labels, source snapshots and exact content/provenance digests under protected custody;
+- [ ] complete at least two independent human adjudication passes and resolve required disagreements on the final protected set;
+- [ ] generate the required post-freeze hostile subset on the independent host;
+- [ ] capture and retain the protected file/network/search-access telemetry for the accepted run;
+- [ ] retain all null, false-positive and false-negative cases in the immutable run archive.
 
 ## 4. Baselines and ablations
 
@@ -94,7 +104,9 @@ Secondary:
 - [x] correct `CANNOT_CHECK` rate;
 - [x] cost/latency/tool calls.
 
-## 6. Required plots
+## 6. Required plot/table specifications
+
+The checked items in this section mean the figure/table specification or template exists. They do **not** mean protected-result values have been produced; result-populated outputs remain blocked by the protected run above.
 
 - [x] **Figure P4-1:** authority pipeline showing proposal-only content, evidence binding, checker admissibility, protected evaluation and non-escalating terminal states.
 - [x] **Figure P4-2:** false authority-promotion rate by baseline with confidence intervals.
