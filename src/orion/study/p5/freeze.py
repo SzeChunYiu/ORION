@@ -56,6 +56,12 @@ def sha256_json(value: Any) -> str:
     return hashlib.sha256(_canonical_json(value)).hexdigest()
 
 
+def _protected_commitment(value: Any, nonce: str, *, kind: str) -> str:
+    """Bind protected content without publishing a dictionary-attackable raw hash."""
+
+    return sha256_json({"kind": kind, "payload_hash": sha256_json(value), "nonce": nonce})
+
+
 def _require_mapping(value: Any, field: str) -> Mapping[str, Any]:
     if not isinstance(value, Mapping):
         raise ValueError(f"{field} must be an object")
@@ -80,8 +86,8 @@ def _require_string_list(value: Any, field: str, *, min_items: int = 1) -> list[
 
 
 def _require_sha256(value: Any, field: str) -> str:
-    digest = _require_nonempty_string(value, field).lower()
-    if len(digest) != 64 or any(char not in _HEX for char in digest):
+    digest = _require_nonempty_string(value, field)
+    if digest != digest.lower() or len(digest) != 64 or any(char not in _HEX for char in digest):
         raise ValueError(f"{field} must be a 64-character lowercase SHA-256 hex digest")
     return digest
 
@@ -153,6 +159,7 @@ def validate_protected_suite(raw_suite: Mapping[str, Any]) -> None:
     observed_causes: set[str] = set()
     used_nonces: set[str] = set()
     referenced_fresh: set[str] = set()
+    referenced_nonfresh: set[str] = set()
     referenced_negative: set[str] = set()
 
     for case_id, case in cases.items():
@@ -178,6 +185,8 @@ def validate_protected_suite(raw_suite: Mapping[str, Any]) -> None:
 
         motivating = _require_string_list(case.get("motivating_tasks"), f"{prefix}.motivating_tasks")
         replay = _require_string_list(case.get("replay_tasks"), f"{prefix}.replay_tasks")
+        referenced_nonfresh.update(motivating)
+        referenced_nonfresh.update(replay)
         allowed = _require_string_list(
             case.get("allowed_change_surface"), f"{prefix}.allowed_change_surface"
         )
@@ -234,6 +243,13 @@ def validate_protected_suite(raw_suite: Mapping[str, Any]) -> None:
             if variant_id not in negative_payloads:
                 raise ValueError(f"missing retained negative variant payload: {variant_id}")
 
+    global_split_overlap = referenced_nonfresh & referenced_fresh
+    if global_split_overlap:
+        raise ValueError(
+            "motivating/replay task ids must be globally disjoint from fresh task ids: "
+            f"{sorted(global_split_overlap)}"
+        )
+
     if observed_causes != ROOT_CAUSES:
         missing = sorted(ROOT_CAUSES - observed_causes)
         extra = sorted(observed_causes - ROOT_CAUSES)
@@ -287,30 +303,48 @@ def freeze_protected_suite(raw_suite: Mapping[str, Any]) -> tuple[dict[str, Any]
             }
         )
 
+        nonce = case["root_cause_nonce"]
         fresh_commitments = [
             {
                 "task_id": fresh["task_id"],
                 "changed_axes": sorted(fresh["changed_axes"]),
-                "content_hash": fresh["content_hash"],
+                "content_commitment": _protected_commitment(
+                    fresh_payloads[fresh["task_id"]],
+                    nonce,
+                    kind=f"fresh-task:{fresh['task_id']}",
+                ),
             }
             for fresh in fresh_tasks
         ]
         negative_commitments = [
-            {"variant_id": variant_id, "content_hash": sha256_json(negative_payloads[variant_id])}
+            {
+                "variant_id": variant_id,
+                "content_commitment": _protected_commitment(
+                    negative_payloads[variant_id], nonce, kind=f"negative-variant:{variant_id}"
+                ),
+            }
             for variant_id in negative_ids
         ]
         committed_cases.append(
             {
                 "case_id": case_id,
-                "case_artifact_hash": sha256_json(case),
+                "case_artifact_commitment": _protected_commitment(
+                    case, nonce, kind=f"case:{case_id}"
+                ),
                 "root_cause_commitment": _root_commitment(
-                    case["protected_root_cause"], case["root_cause_nonce"]
+                    case["protected_root_cause"], nonce
                 ),
                 "fresh_tasks": fresh_commitments,
                 "negative_variants": negative_commitments,
-                "protected_surface_hash": sha256_json(sorted(case["protected_surface"])),
-                "success_rubric_hash": sha256_json(case["success_rubric"]),
-                "harm_rubric_hash": sha256_json(case["harm_rubric"]),
+                "protected_surface_commitment": _protected_commitment(
+                    sorted(case["protected_surface"]), nonce, kind="protected-surface"
+                ),
+                "success_rubric_commitment": _protected_commitment(
+                    case["success_rubric"], nonce, kind="success-rubric"
+                ),
+                "harm_rubric_commitment": _protected_commitment(
+                    case["harm_rubric"], nonce, kind="harm-rubric"
+                ),
             }
         )
         motivating_replay_split.append(
@@ -334,14 +368,12 @@ def freeze_protected_suite(raw_suite: Mapping[str, Any]) -> tuple[dict[str, Any]
         "evaluator_hash": suite["evaluator_hash"],
         "motivating_replay_split_hash": sha256_json(motivating_replay_split),
         "fresh_transfer_split_hash": sha256_json(fresh_split),
-        "fresh_payload_set_hash": sha256_json(
-            {task_id: sha256_json(fresh_payloads[task_id]) for task_id in sorted(fresh_payloads)}
-        ),
-        "negative_variant_set_hash": sha256_json(
-            {
-                variant_id: sha256_json(negative_payloads[variant_id])
-                for variant_id in sorted(negative_payloads)
-            }
+        "fresh_payload_commitment_set_hash": sha256_json(fresh_split),
+        "negative_variant_commitment_set_hash": sha256_json(
+            [
+                {"case_id": case["case_id"], "negative_variants": case["negative_variants"]}
+                for case in committed_cases
+            ]
         ),
         "root_cause_family_count": len(ROOT_CAUSES),
         "case_count": len(cases),

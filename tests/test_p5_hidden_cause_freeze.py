@@ -64,6 +64,14 @@ def _suite() -> dict:
     }
 
 
+def test_uppercase_digest_is_rejected_as_noncanonical() -> None:
+    suite = _suite()
+    suite["evaluator_hash"] = "A" * 64
+
+    with pytest.raises(ValueError, match="lowercase SHA-256"):
+        freeze_protected_suite(suite)
+
+
 def test_freeze_covers_all_families_and_emits_content_bound_artifacts() -> None:
     suite = _suite()
     candidate, commitment = freeze_protected_suite(suite)
@@ -103,6 +111,21 @@ def test_root_commitment_is_not_dictionary_hash_of_eight_public_labels() -> None
         assert case["root_cause_commitment"] not in unsalted
 
 
+def test_commitment_manifest_does_not_publish_unsalted_private_content_hashes() -> None:
+    suite = _suite()
+    _, commitment = freeze_protected_suite(suite)
+    rendered = json.dumps(commitment, sort_keys=True)
+
+    for payload in suite["fresh_task_payloads"].values():
+        assert sha256_json(payload) not in rendered
+    for payload in suite["negative_variant_payloads"].values():
+        assert sha256_json(payload) not in rendered
+    for case in suite["cases"]:
+        assert sha256_json(case["success_rubric"]) not in rendered
+        assert sha256_json(case["harm_rubric"]) not in rendered
+        assert sha256_json(sorted(case["protected_surface"])) not in rendered
+
+
 def test_fresh_payload_mutation_fails_closed() -> None:
     suite = _suite()
     suite["fresh_task_payloads"]["fresh-1"]["prompt"] = "mutated after freeze declaration"
@@ -128,6 +151,14 @@ def test_fresh_ids_cannot_overlap_motivating_or_replay_ids() -> None:
     )
 
     with pytest.raises(ValueError, match="overlap the fresh set"):
+        freeze_protected_suite(suite)
+
+
+def test_fresh_ids_cannot_overlap_nonfresh_ids_in_other_cases() -> None:
+    suite = _suite()
+    suite["cases"][0]["motivating_tasks"] = ["fresh-2"]
+
+    with pytest.raises(ValueError, match="globally disjoint from fresh task ids"):
         freeze_protected_suite(suite)
 
 
