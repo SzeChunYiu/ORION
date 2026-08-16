@@ -90,6 +90,20 @@ def test_screening_uses_public_protocol_terms_and_year_ceiling() -> None:
     assert selected == [101]
 
 
+def test_nr_intervention_falls_back_to_exposure_terms() -> None:
+    module = _module()
+    review = {
+        "Research_Question": "Smoking exposure and pulmonary outcomes",
+        "Population": "Adults",
+        "Intervention": "NR",
+        "Exposure": "Cigarette smoking",
+        "Comparison": None,
+        "Outcome": "Pulmonary function",
+    }
+    fields = module._field_sets(review)
+    assert {"cigarette", "smoking"} in fields
+
+
 def test_screening_never_selects_outside_retrieved_pool() -> None:
     module = _module()
     review = {
