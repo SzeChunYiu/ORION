@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+from orion.benchmarks.degeneracy import DegeneracyStatus, LabeledRecord, probe_records
+
 from dataclasses import dataclass
 from enum import Enum
 
-from orion.benchmarks.result import BenchmarkReport, BenchmarkStatus, report_from_checks
+from orion.benchmarks.result import BenchmarkReport, report_from_checks
 from orion.knowledge.parent_domains import (
     FunctionalOperationSignature,
     ParentDisciplineProfile,
@@ -146,7 +148,7 @@ def _profiles() -> tuple[ParentDisciplineProfile, ...]:
 def _cases() -> tuple[tuple[str, FunctionalOperationSignature, str], ...]:
     return (
         (
-            "historical-nlp",
+            "historical-01",
             FunctionalOperationSignature(
                 "signature:scientific-language",
                 operation_terms=(
@@ -164,7 +166,7 @@ def _cases() -> tuple[tuple[str, FunctionalOperationSignature, str], ...]:
             "computational linguistics",
         ),
         (
-            "historical-psychometrics",
+            "historical-02",
             FunctionalOperationSignature(
                 "signature:benchmark-validity",
                 operation_terms=(
@@ -181,7 +183,7 @@ def _cases() -> tuple[tuple[str, FunctionalOperationSignature, str], ...]:
             "psychometrics",
         ),
         (
-            "fresh-search-stopping",
+            "fresh-01",
             FunctionalOperationSignature(
                 "signature:route-control",
                 operation_terms=("patch switching", "scent", "query reformulation", "marginal gain", "search stopping"),
@@ -192,7 +194,7 @@ def _cases() -> tuple[tuple[str, FunctionalOperationSignature, str], ...]:
             "information foraging",
         ),
         (
-            "fresh-identity",
+            "fresh-02",
             FunctionalOperationSignature(
                 "signature:cross-source-identity",
                 operation_terms=("entity resolution", "schema matching", "record linkage", "mapping composition"),
@@ -203,7 +205,7 @@ def _cases() -> tuple[tuple[str, FunctionalOperationSignature, str], ...]:
             "data integration",
         ),
         (
-            "fresh-measurement",
+            "fresh-03",
             FunctionalOperationSignature(
                 "signature:measurement",
                 operation_terms=("measurand", "calibration", "measurement uncertainty", "traceability", "unit consistency"),
@@ -240,7 +242,25 @@ def run_parent_domain_replay(*, original_query_trace_available: bool = False) ->
     fresh = [item for item in outcomes if item[0].startswith("fresh-")]
     fresh_accuracy = sum(int(item[3]) for item in fresh) / len(fresh)
 
+    # Construct-validity probe over the panel itself: if a case id carries the
+    # discipline it is labelled with, or a responder reading only case ids can
+    # beat the majority baseline, the replay measures a shortcut and its own
+    # accuracy numbers above are not evidence. Ported from RAKL, where this
+    # class of leak scored ALR 0.143 on a panel while doing no reasoning.
+    probe = probe_records(
+        [
+            LabeledRecord(record_id=case_id, features={"case_id": case_id}, label=found)
+            for case_id, found, _, _ in outcomes
+        ],
+        surface="parent-domain-replay",
+        blind_responders={"case_id_only": lambda r: r.features["case_id"]},
+    )
+
     checks = (
+        (
+            "panel is not degenerate (no label in ids, no blind-responder ceiling)",
+            probe.status is DegeneracyStatus.CLEAN,
+        ),
         ("historical named basis omits both target disciplines", set(omissions) == set(historical_targets)),
         ("functional matcher recovers historical NLP target", outcomes[0][3]),
         ("functional matcher recovers historical psychometrics target", outcomes[1][3]),
