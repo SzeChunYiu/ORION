@@ -1,19 +1,27 @@
 from __future__ import annotations
 
+import hashlib
 import json
+from dataclasses import dataclass
 from pathlib import Path
 
-from .live_trial import ShadowLiveTrialReport
+from orion.core.solution import SolutionStatus
+
+from .live_trial import ResearchTrialKind, ShadowLiveTrialReport
 
 
 LIVE_TRIAL_REPORT_SCHEMA = "ShadowLiveTrialReport.v1"
 
 
+def _document_hash(payload: dict[str, object]) -> str:
+    return hashlib.sha256(
+        json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+
+
 def shadow_live_trial_report_to_dict(
     report: ShadowLiveTrialReport,
 ) -> dict[str, object]:
-    """Canonical host-facing serialization of the complete Shadow trial report."""
-
     return {
         "schema": LIVE_TRIAL_REPORT_SCHEMA,
         "packet_id": report.packet_id,
@@ -93,17 +101,108 @@ def shadow_live_trial_report_to_dict(
 def write_shadow_live_trial_report(
     report: ShadowLiveTrialReport, path: Path | str
 ) -> None:
-    """Persist the raw host trial artifact without reducing it to summary counts."""
-
+    payload = shadow_live_trial_report_to_dict(report)
+    payload["document_hash"] = _document_hash(payload)
     Path(path).write_text(
-        json.dumps(shadow_live_trial_report_to_dict(report), indent=2, sort_keys=True)
-        + "\n",
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
+    )
+
+
+@dataclass(frozen=True)
+class LoadedShadowLiveTrialReport:
+    packet_id: str
+    packet_fingerprint: str
+    evidence_artifact_hash: str
+    raw_search_trace_retained: bool
+    all_resource_matched: bool
+    all_failures_recordable: bool
+    wide_task_count: int
+    deep_task_count: int
+    grants_self_promotion: bool
+    comparison_statuses: tuple[SolutionStatus, ...]
+    document_hash: str
+
+
+def load_shadow_live_trial_report(path: Path | str) -> LoadedShadowLiveTrialReport:
+    raw = json.loads(Path(path).read_text(encoding="utf-8"))
+    if not isinstance(raw, dict) or raw.get("schema") != LIVE_TRIAL_REPORT_SCHEMA:
+        raise ValueError(f"live trial report schema must be {LIVE_TRIAL_REPORT_SCHEMA}")
+    recorded_hash = raw.pop("document_hash", None)
+    if not isinstance(recorded_hash, str) or recorded_hash != _document_hash(raw):
+        raise ValueError("live trial report document hash mismatch")
+    for name in (
+        "raw_search_trace_retained",
+        "all_resource_matched",
+        "all_failures_recordable",
+        "grants_self_promotion",
+    ):
+        if type(raw.get(name)) is not bool:
+            raise ValueError(f"live trial report {name} must be boolean")
+    if raw["grants_self_promotion"]:
+        raise ValueError("live trial report cannot grant self-promotion")
+    comparisons = raw.get("comparisons")
+    if not isinstance(comparisons, list) or not comparisons:
+        raise ValueError("live trial report comparisons must be a non-empty array")
+
+    statuses: list[SolutionStatus] = []
+    kinds: list[ResearchTrialKind] = []
+    derived_resource_matched = True
+    derived_failures_recordable = True
+    derived_raw_trace = True
+    for item in comparisons:
+        if not isinstance(item, dict):
+            raise ValueError("live trial comparison must be a JSON object")
+        status = SolutionStatus(item["orion_status"])
+        kind = ResearchTrialKind(item["kind"])
+        statuses.append(status)
+        kinds.append(kind)
+        if type(item.get("resource_matched")) is not bool:
+            raise ValueError("live trial comparison resource_matched must be boolean")
+        derived_resource_matched = derived_resource_matched and item["resource_matched"]
+        root_episode_id = item.get("root_episode_id")
+        derived_failures_recordable = derived_failures_recordable and (
+            status is SolutionStatus.SOLVED_VERIFIED
+            or isinstance(root_episode_id, str)
+            and bool(root_episode_id.strip())
+        )
+        search_observations = item.get("search_observations")
+        if not isinstance(search_observations, list):
+            raise ValueError("live trial comparison search_observations must be an array")
+        derived_raw_trace = derived_raw_trace and bool(search_observations)
+
+    derived_wide = sum(kind is ResearchTrialKind.WIDE_LITERATURE for kind in kinds)
+    derived_deep = sum(kind is ResearchTrialKind.DEEP_TARGET for kind in kinds)
+    if raw["raw_search_trace_retained"] != derived_raw_trace:
+        raise ValueError("live trial raw-search summary contradicts task records")
+    if raw["all_resource_matched"] != derived_resource_matched:
+        raise ValueError("live trial resource summary contradicts task records")
+    if raw["all_failures_recordable"] != derived_failures_recordable:
+        raise ValueError("live trial failure-history summary contradicts task records")
+    if int(raw["wide_task_count"]) != derived_wide:
+        raise ValueError("live trial wide-task count contradicts task records")
+    if int(raw["deep_task_count"]) != derived_deep:
+        raise ValueError("live trial deep-task count contradicts task records")
+
+    return LoadedShadowLiveTrialReport(
+        packet_id=raw["packet_id"],
+        packet_fingerprint=raw["packet_fingerprint"],
+        evidence_artifact_hash=raw["evidence_artifact_hash"],
+        raw_search_trace_retained=derived_raw_trace,
+        all_resource_matched=derived_resource_matched,
+        all_failures_recordable=derived_failures_recordable,
+        wide_task_count=derived_wide,
+        deep_task_count=derived_deep,
+        grants_self_promotion=False,
+        comparison_statuses=tuple(statuses),
+        document_hash=recorded_hash,
     )
 
 
 __all__ = [
     "LIVE_TRIAL_REPORT_SCHEMA",
+    "LoadedShadowLiveTrialReport",
+    "load_shadow_live_trial_report",
     "shadow_live_trial_report_to_dict",
     "write_shadow_live_trial_report",
 ]
