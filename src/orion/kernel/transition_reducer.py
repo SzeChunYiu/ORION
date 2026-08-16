@@ -1,11 +1,11 @@
 """Pure, versioned mechanics transition planning and reduction.
 
-This module is deliberately below appraisal/authorization.  It accepts typed
-proposal state and produces a deterministic candidate post-state.  It performs
+This module is deliberately below appraisal/authorization. It accepts typed
+proposal state and produces a deterministic candidate post-state. It performs
 no evidence resolution, filesystem access, evaluator execution, signature
 verification, clock read, registry lookup, or mutation.
 
-A plan is therefore *not authority*.  Later protected-host code may appraise and
+A plan is therefore *not authority*. Later protected-host code may appraise and
 authorize exactly this plan; without that external authorization it remains a
 candidate transition only.
 """
@@ -26,7 +26,6 @@ from .transition import (
     ProgramProjection,
     answer_record_hash,
     canonical_digest,
-    canonical_mechanic_cell,
     projection_hash,
 )
 
@@ -127,13 +126,7 @@ def _metric_payload(metric: MetricSpec) -> dict[str, Any]:
 
 
 def _complete_answer_payload(record: AnswerRecord) -> dict[str, Any]:
-    """Canonical transition payload, including fields older record hashes omit.
-
-    The transition plan must bind the whole proposal even if a legacy projection
-    digest did not yet use a future structured field.  This prevents a typed
-    metric payload (or handoff/waiver/supersession) from being altered without
-    changing the transition identity.
-    """
+    """Bind the complete answer, including future structured fields."""
 
     return {
         "record_id": record.record_id,
@@ -211,8 +204,20 @@ def _coordinate(record: AnswerRecord) -> tuple[str, MechanicDimension]:
     return record.mechanic_id, record.dimension
 
 
-def _active_by_coordinate(projection: ProgramProjection) -> dict[tuple[str, MechanicDimension], AnswerRecord]:
+def _active_by_coordinate(
+    projection: ProgramProjection,
+) -> dict[tuple[str, MechanicDimension], AnswerRecord]:
     return {_coordinate(record): record for record in projection.active_records}
+
+
+def _reopened_coordinates(
+    projection: ProgramProjection,
+) -> set[tuple[str, str]]:
+    return {(mechanic_id, dimension) for mechanic_id, dimension, _ in projection.reopened_coordinates}
+
+
+def _record_has_child(projection: ProgramProjection, record_id: str) -> bool:
+    return any(record.supersedes == record_id for record in projection.records)
 
 
 def _apply_answer_candidate(
@@ -262,8 +267,13 @@ def _apply_answer_candidate(
             ),
         )
 
+    coordinate = _coordinate(record)
     active = _active_by_coordinate(projection)
-    current = active.get(_coordinate(record))
+    current = active.get(coordinate)
+    reopened = (record.mechanic_id, record.dimension.value) in _reopened_coordinates(
+        projection
+    )
+
     if record.supersedes:
         parent = existing_by_id.get(record.supersedes)
         if parent is None:
@@ -278,7 +288,7 @@ def _apply_answer_candidate(
                     "supersession parent is absent from the frozen record graph",
                 ),
             )
-        if _coordinate(parent) != _coordinate(record):
+        if _coordinate(parent) != coordinate:
             return (
                 projection,
                 TransitionOperationKind.RECORDED_NOOP,
@@ -290,7 +300,14 @@ def _apply_answer_candidate(
                     "supersession cannot cross mechanic/dimension coordinates",
                 ),
             )
-        if current is None or current.record_id != record.supersedes:
+
+        extends_active_tip = current is not None and current.record_id == record.supersedes
+        extends_reopened_leaf = (
+            current is None
+            and reopened
+            and not _record_has_child(projection, record.supersedes)
+        )
+        if not (extends_active_tip or extends_reopened_leaf):
             return (
                 projection,
                 TransitionOperationKind.RECORDED_NOOP,
@@ -299,10 +316,10 @@ def _apply_answer_candidate(
                     record.mechanic_id,
                     record.dimension.value,
                     record.record_id,
-                    "supersession must extend the currently active coordinate tip",
+                    "supersession must extend the active tip or the historical leaf of an explicitly reopened coordinate",
                 ),
             )
-    elif current is not None:
+    elif current is not None or reopened:
         return (
             projection,
             TransitionOperationKind.RECORDED_NOOP,
@@ -311,7 +328,7 @@ def _apply_answer_candidate(
                 record.mechanic_id,
                 record.dimension.value,
                 record.record_id,
-                "a live coordinate already exists; replacement must explicitly supersede its tip",
+                "a historical coordinate exists; replacement must explicitly supersede its current or reopened leaf",
             ),
         )
 
@@ -319,7 +336,7 @@ def _apply_answer_candidate(
     if current is not None:
         active_ids.remove(current.record_id)
     active_ids.add(record.record_id)
-    reopened = tuple(
+    remaining_reopens = tuple(
         item
         for item in projection.reopened_coordinates
         if (item[0], item[1]) != (record.mechanic_id, record.dimension.value)
@@ -331,7 +348,7 @@ def _apply_answer_candidate(
         seed_cells=projection.seed_cells,
         records=(*projection.records, record),
         active_record_ids=tuple(sorted(active_ids)),
-        reopened_coordinates=reopened,
+        reopened_coordinates=remaining_reopens,
     )
     return post, TransitionOperationKind.APPLY_ANSWER, None
 
@@ -364,13 +381,18 @@ def _reopen_candidate(
     existing = {
         (item[0], item[1]): item for item in projection.reopened_coordinates
     }
-    existing[(mechanic_id, dimension_enum.value)] = (mechanic_id, dimension_enum.value, reason)
+    existing[(mechanic_id, dimension_enum.value)] = (
+        mechanic_id,
+        dimension_enum.value,
+        reason,
+    )
+    records_by_id = {record.record_id: record for record in projection.records}
     active = tuple(
         record_id
         for record_id in projection.active_record_ids
         if not (
-            next(item for item in projection.records if item.record_id == record_id).mechanic_id == mechanic_id
-            and next(item for item in projection.records if item.record_id == record_id).dimension is dimension_enum
+            records_by_id[record_id].mechanic_id == mechanic_id
+            and records_by_id[record_id].dimension is dimension_enum
         )
     )
     return ProgramProjection(
@@ -394,13 +416,15 @@ def _reduce_operations(
     residuals: list[TransitionResidual] = []
     for expected_index, operation in enumerate(operations):
         if operation.operation_index != expected_index:
-            residuals.append(TransitionResidual(
-                TransitionResidualKind.INVALID_OPERATION,
-                operation.mechanic_id,
-                operation.dimension,
-                operation.record.record_id if operation.record else "",
-                "operations must be ordered and consecutively indexed",
-            ))
+            residuals.append(
+                TransitionResidual(
+                    TransitionResidualKind.INVALID_OPERATION,
+                    operation.mechanic_id,
+                    operation.dimension,
+                    operation.record.record_id if operation.record else "",
+                    "operations must be ordered and consecutively indexed",
+                )
+            )
             continue
         if operation.kind in {
             TransitionOperationKind.APPLY_ANSWER,
@@ -408,19 +432,29 @@ def _reduce_operations(
             TransitionOperationKind.RECORDED_NOOP,
         }:
             if operation.record is None:
-                residuals.append(TransitionResidual(
-                    TransitionResidualKind.INVALID_OPERATION, "", "", "", "answer operation is missing its complete record"
-                ))
+                residuals.append(
+                    TransitionResidual(
+                        TransitionResidualKind.INVALID_OPERATION,
+                        "",
+                        "",
+                        "",
+                        "answer operation is missing its complete record",
+                    )
+                )
                 continue
-            next_projection, actual_kind, residual = _apply_answer_candidate(current, operation.record)
+            next_projection, actual_kind, residual = _apply_answer_candidate(
+                current, operation.record
+            )
             if actual_kind is not operation.kind:
-                residuals.append(TransitionResidual(
-                    TransitionResidualKind.INVALID_OPERATION,
-                    operation.record.mechanic_id,
-                    operation.record.dimension.value,
-                    operation.record.record_id,
-                    f"record reduces as {actual_kind.value}, not declared {operation.kind.value}",
-                ))
+                residuals.append(
+                    TransitionResidual(
+                        TransitionResidualKind.INVALID_OPERATION,
+                        operation.record.mechanic_id,
+                        operation.record.dimension.value,
+                        operation.record.record_id,
+                        f"record reduces as {actual_kind.value}, not declared {operation.kind.value}",
+                    )
+                )
                 continue
             current = next_projection
             if actual_kind is TransitionOperationKind.APPLY_ANSWER:
@@ -438,11 +472,19 @@ def _reduce_operations(
             )
             if residual is not None:
                 residuals.append(residual)
-        else:  # pragma: no cover - closed enum guard
-            residuals.append(TransitionResidual(
-                TransitionResidualKind.INVALID_OPERATION, "", "", "", "unknown operation kind"
-            ))
-    return TransitionReductionResult(current, tuple(applied), tuple(idempotent), tuple(residuals))
+        else:  # pragma: no cover
+            residuals.append(
+                TransitionResidual(
+                    TransitionResidualKind.INVALID_OPERATION,
+                    "",
+                    "",
+                    "",
+                    "unknown operation kind",
+                )
+            )
+    return TransitionReductionResult(
+        current, tuple(applied), tuple(idempotent), tuple(residuals)
+    )
 
 
 def plan_answer_transition(
@@ -462,11 +504,15 @@ def plan_answer_transition(
             record.record_id,
             "ledger expectation research-state hash does not match the supplied projection",
         )
-        operation = TransitionOperation(0, TransitionOperationKind.RECORDED_NOOP, record=record)
+        operation = TransitionOperation(
+            0, TransitionOperationKind.RECORDED_NOOP, record=record
+        )
         post_hash = pre_hash
         residuals = (residual,)
     else:
-        candidate, operation_kind, residual = _apply_answer_candidate(projection, record)
+        candidate, operation_kind, residual = _apply_answer_candidate(
+            projection, record
+        )
         operation = TransitionOperation(0, operation_kind, record=record)
         post_hash = projection_hash(candidate)
         residuals = (residual,) if residual is not None else ()
@@ -480,9 +526,8 @@ def plan_answer_transition(
         evidence_snapshot_hash=evidence_snapshot_hash,
         execution_receipt_hash=execution_receipt_hash,
     )
-    transition_id = canonical_digest(payload, domain="orion.transition-plan.v1")
     return TransitionPlan(
-        transition_id=transition_id,
+        transition_id=canonical_digest(payload, domain="orion.transition-plan.v1"),
         expectation=expectation,
         pre_state_hash=pre_hash,
         proposed_post_state_hash=post_hash,
@@ -540,25 +585,40 @@ def plan_reopen_transition(
     )
 
 
-def reduce_transition(projection: ProgramProjection, plan: TransitionPlan) -> TransitionReductionResult:
+def reduce_transition(
+    projection: ProgramProjection, plan: TransitionPlan
+) -> TransitionReductionResult:
     if projection_hash(projection) != plan.pre_state_hash:
-        residual = TransitionResidual(
-            TransitionResidualKind.PRE_STATE_MISMATCH, "*", "*", "", "plan pre-state does not match supplied projection"
+        return TransitionReductionResult(
+            projection,
+            (),
+            (),
+            (
+                TransitionResidual(
+                    TransitionResidualKind.PRE_STATE_MISMATCH,
+                    "*",
+                    "*",
+                    "",
+                    "plan pre-state does not match supplied projection",
+                ),
+            ),
         )
-        return TransitionReductionResult(projection, (), (), (residual,))
     result = _reduce_operations(projection, plan.operations)
     if result.hash != plan.proposed_post_state_hash:
         return TransitionReductionResult(
             projection,
             (),
             (),
-            (*result.residuals, TransitionResidual(
-                TransitionResidualKind.POST_STATE_MISMATCH,
-                "*",
-                "*",
-                "",
-                "pure reducer output does not match the committed proposed post-state hash",
-            )),
+            (
+                *result.residuals,
+                TransitionResidual(
+                    TransitionResidualKind.POST_STATE_MISMATCH,
+                    "*",
+                    "*",
+                    "",
+                    "pure reducer output does not match the committed proposed post-state hash",
+                ),
+            ),
         )
     return result
 
@@ -572,7 +632,9 @@ def plan_batch_transition(
     execution_receipt_hash: str | None = None,
 ) -> TransitionPlan:
     if expectation.research_state_hash != projection_hash(projection):
-        raise ValueError("batch planning requires expectation bound to the exact pre-state")
+        raise ValueError(
+            "batch planning requires expectation bound to the exact pre-state"
+        )
     current = projection
     operations: list[TransitionOperation] = []
     residuals: list[TransitionResidual] = []
