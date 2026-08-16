@@ -14,10 +14,13 @@ from orion.self_orion.phase2_terminal import (
 )
 from orion.self_orion.phase2_terminal_io import (
     load_failure_replay_receipt,
+    load_final_ci_evidence,
     load_final_integration_receipt,
+    load_frozen_failure_index,
     load_repository_subject_attestation,
     sha256_file,
 )
+from orion.self_orion.phase2_terminal_receipts import CIEvidenceConclusion
 
 
 @dataclass(frozen=True)
@@ -46,11 +49,26 @@ def assess_phase2_terminal_files(
     if replay is not None:
         if files.frozen_failure_index is None:
             replay_blockers.append("frozen_failure_index_artifact_missing")
-        elif (
-            sha256_file(files.frozen_failure_index)
-            != replay.frozen_failure_index_artifact_hash
-        ):
-            replay_blockers.append("frozen_failure_index_artifact_hash_mismatch")
+        else:
+            failure_index = load_frozen_failure_index(files.frozen_failure_index)
+            if failure_index.artifact_hash != replay.frozen_failure_index_artifact_hash:
+                replay_blockers.append("frozen_failure_index_artifact_hash_mismatch")
+            if failure_index.subject_revision_hash != campaign.preflight.subject_revision_hash:
+                replay_blockers.append("frozen_failure_index_subject_mismatch")
+            if failure_index.evaluation_epoch_id != campaign.preflight.evaluation_epoch_id:
+                replay_blockers.append("frozen_failure_index_epoch_mismatch")
+            indexed = {
+                item.failure_id: (item.failure_class, item.source_failure_artifact_hash)
+                for item in failure_index.failures
+            }
+            replayed = {
+                item.failure_id: (item.failure_class, item.source_failure_artifact_hash)
+                for item in replay.entries
+            }
+            if tuple(indexed) != replay.important_failure_ids:
+                replay_blockers.append("failure_replay_index_identity_order_mismatch")
+            if indexed != replayed:
+                replay_blockers.append("failure_replay_index_content_mismatch")
 
     integration = (
         load_final_integration_receipt(files.final_integration_receipt)
@@ -75,26 +93,28 @@ def assess_phase2_terminal_files(
 
         if files.ci_evidence is None:
             integration_blockers.append("final_integration_ci_evidence_missing")
-        elif sha256_file(files.ci_evidence) != integration.ci_evidence_artifact_hash:
-            integration_blockers.append("final_integration_ci_evidence_hash_mismatch")
+        else:
+            ci = load_final_ci_evidence(files.ci_evidence)
+            if ci.artifact_hash != integration.ci_evidence_artifact_hash:
+                integration_blockers.append("final_integration_ci_evidence_hash_mismatch")
+            if ci.ci_run_id != integration.ci_run_id:
+                integration_blockers.append("final_integration_ci_run_mismatch")
+            if ci.head_commit_oid != integration.integration_commit_oid:
+                integration_blockers.append("final_integration_ci_head_mismatch")
+            if not ci.independently_verified:
+                integration_blockers.append("final_integration_ci_self_verified")
+            if ci.conclusion is not CIEvidenceConclusion.SUCCESS:
+                integration_blockers.append("final_integration_ci_not_green")
 
         external_manifest_path = files.campaign.external_manifest
         if external_manifest_path is None:
             integration_blockers.append("final_integration_external_manifest_missing")
-        elif (
-            sha256_file(external_manifest_path)
-            != integration.external_manifest_artifact_hash
-        ):
-            integration_blockers.append(
-                "final_integration_external_manifest_hash_mismatch"
-            )
+        elif sha256_file(external_manifest_path) != integration.external_manifest_artifact_hash:
+            integration_blockers.append("final_integration_external_manifest_hash_mismatch")
 
         if files.papers_claim_ledger is None:
             integration_blockers.append("papers_claim_ledger_artifact_missing")
-        elif (
-            sha256_file(files.papers_claim_ledger)
-            != integration.papers_claim_ledger_artifact_hash
-        ):
+        elif sha256_file(files.papers_claim_ledger) != integration.papers_claim_ledger_artifact_hash:
             integration_blockers.append("papers_claim_ledger_artifact_hash_mismatch")
 
     return assess_phase2_terminal(
