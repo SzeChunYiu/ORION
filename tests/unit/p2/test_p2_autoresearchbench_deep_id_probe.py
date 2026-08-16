@@ -21,7 +21,7 @@ def _write_jsonl(path: Path, rows: list[dict]) -> None:
     path.write_text("".join(json.dumps(row) + "\n" for row in rows), encoding="utf-8")
 
 
-def test_prepare_splits_600_deep_tasks_without_answer_or_target_in_candidate(
+def test_prepare_uses_type_for_600_deep_tasks_without_gold_in_candidate(
     tmp_path: Path,
 ) -> None:
     module = _module()
@@ -29,9 +29,12 @@ def test_prepare_splits_600_deep_tasks_without_answer_or_target_in_candidate(
     public = tmp_path / "public.jsonl"
     gt = tmp_path / "gt.jsonl"
     rows: list[dict] = []
+
+    # Wide and Deep are both list-valued in the released bundle.
     for index in range(400):
         rows.append(
             {
+                "type": "wide",
                 "question": f"wide {index}",
                 "answer": [f"wide hidden {index}"],
                 "arxiv_id": [f"2401.{index:05d}"],
@@ -40,26 +43,37 @@ def test_prepare_splits_600_deep_tasks_without_answer_or_target_in_candidate(
     for index in range(600):
         rows.append(
             {
+                "type": "deep",
                 "question": "" if index == 0 else f"deep public question {index}",
-                "answer": [f"deep hidden title {index}"],
-                "arxiv_id": "" if index == 1 else f"2501.{index:05d}",
+                "answer": ["None" if index < 60 else f"deep hidden title {index}"],
+                "arxiv_id": ["" if index < 60 else f"2501.{index:05d}"],
             }
         )
     _write_jsonl(full, rows)
 
     manifest = module.prepare(full, public, gt)
     assert manifest["deep_tasks"] == 600
+    assert manifest["release_task_type_counts"] == {"wide": 400, "deep": 600}
     assert manifest["empty_question_task_count"] == 1
-    assert manifest["empty_target_task_count"] == 1
+    assert manifest["empty_target_task_count"] == 60
+    assert manifest["exact_id_scorable_task_count"] == 540
     public_text = public.read_text(encoding="utf-8")
     assert "answer" not in public_text
     assert "arxiv_id" not in public_text
     assert "deep hidden" not in public_text
+    assert "wide 0" not in public_text
     public_rows = [json.loads(line) for line in public_text.splitlines()]
     gt_rows = [json.loads(line) for line in gt.read_text(encoding="utf-8").splitlines()]
     assert len(public_rows) == len(gt_rows) == 600
     assert set(public_rows[0]) == {"task_id", "question"}
-    assert set(gt_rows[0]) == {"task_id", "question", "target_arxiv_id"}
+    assert set(gt_rows[0]) == {
+        "task_id",
+        "question",
+        "target_arxiv_id",
+        "ground_truth_titles",
+    }
+    assert gt_rows[0]["target_arxiv_id"] == ""
+    assert gt_rows[0]["ground_truth_titles"] == ["None"]
 
 
 def test_exact_id_evaluator_is_deterministic_and_explicitly_nonofficial(tmp_path: Path) -> None:
@@ -83,11 +97,13 @@ def test_exact_id_evaluator_is_deterministic_and_explicitly_nonofficial(tmp_path
                 "task_id": "arb-deep-0001",
                 "question": "question one",
                 "target_arxiv_id": "2401.01234",
+                "ground_truth_titles": ["Paper One"],
             },
             {
                 "task_id": "arb-deep-0002",
                 "question": "question two",
                 "target_arxiv_id": "hep-th/9901001",
+                "ground_truth_titles": ["Paper Two"],
             },
         ],
     )
@@ -100,7 +116,7 @@ def test_exact_id_evaluator_is_deterministic_and_explicitly_nonofficial(tmp_path
                     {
                         "status": "ok",
                         "final_candidates": [
-                            {"arxiv_id": "arXiv:2401.01234v2", "title": "hit"}
+                            {"arxiv_id": "arXiv:2401.01234v2", "title": "Paper One"}
                         ],
                     }
                 ],
@@ -111,7 +127,7 @@ def test_exact_id_evaluator_is_deterministic_and_explicitly_nonofficial(tmp_path
                     {
                         "status": "ok",
                         "final_candidates": [
-                            {"arxiv_id": "cs/0501001", "title": "miss"}
+                            {"arxiv_id": "cs/0501001", "title": "Other Paper"}
                         ],
                     }
                 ],
@@ -127,3 +143,50 @@ def test_exact_id_evaluator_is_deterministic_and_explicitly_nonofficial(tmp_path
     assert result["target_hit_rate"] == 0.5
     assert result["per_task"][0]["target_hit"] is True
     assert result["per_task"][1]["target_hit"] is False
+
+
+def test_build_official_input_joins_titles_only_after_candidate_freeze(tmp_path: Path) -> None:
+    module = _module()
+    public = tmp_path / "public.jsonl"
+    gt = tmp_path / "gt.jsonl"
+    candidate = tmp_path / "candidate.jsonl"
+    official = tmp_path / "official-input.jsonl"
+
+    _write_jsonl(public, [{"task_id": "arb-deep-0001", "question": "public question"}])
+    _write_jsonl(
+        gt,
+        [
+            {
+                "task_id": "arb-deep-0001",
+                "question": "public question",
+                "target_arxiv_id": "2401.01234",
+                "ground_truth_titles": ["Ground Truth Paper"],
+            }
+        ],
+    )
+    _write_jsonl(
+        candidate,
+        [
+            {
+                "input_data": {"question": "public question"},
+                "inference_results": [
+                    {
+                        "status": "ok",
+                        "pass_id": 0,
+                        "final_candidates": [
+                            {"arxiv_id": "2401.01234", "title": "Ground Truth Paper"}
+                        ],
+                    }
+                ],
+            }
+        ],
+    )
+
+    manifest = module.build_official_input(public, gt, candidate, official)
+    assert manifest["candidate_labels_visible"] is False
+    joined = json.loads(official.read_text(encoding="utf-8"))
+    assert joined["input_data"]["answer"] == ["Ground Truth Paper"]
+    assert joined["inference_results"][0]["final_candidate_state"] == "candidate"
+    assert joined["inference_results"][0]["final_candidates"] == [
+        {"metadata": {"title": "Ground Truth Paper"}}
+    ]
