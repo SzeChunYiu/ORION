@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c120",
   "task_family": "hidden_representation_or_coordinate_system",
-  "public_prompt": "A supplier list is deduplicated by lowercasing and trimming, leaving 12,404 distinct names drawn from six source ledgers. The team's framing is: those 12,404 are genuinely distinct suppliers. Report the distinct supplier count and the procedure that produces it.",
+  "public_prompt": "A supplier list is deduplicated by lowercasing and trimming, leaving 12,404 distinct names drawn from six source ledgers. What the group intends: those 12,404 are genuinely distinct suppliers. Report the distinct supplier count and the procedure that produces it.",
   "observable_resources": [
     "suppliers/raw.csv — 18,102 rows; the name column is UTF-8 text from six source ledgers",
     "suppliers/dedup-run.log — after lowercasing and trimming: 12,404 distinct names",
@@ -10,6 +10,7 @@
     "closure:vendor-consolidation-plan — closed; negotiates on a base of 12,404 suppliers",
     "closure:spend-concentration-report — closed; derived from closure:vendor-consolidation-plan",
     "closure:procurement-headcount-model — closed; derived from closure:spend-concentration-report",
+    "suppliers/source-ledgers.md — the six ledgers were keyed by 4 different entry tools between 2019 and 2026, with no shared entry standard",
     "closure:supplier-payment-terms — closed; sets 30-day terms for every supplier; rests on the treasury standard, not on how many suppliers there turn out to be",
     "closure:ledger-ingest-schedule — closed; fixes when each of the six source ledgers is pulled; rests on the operations calendar, not on how names are compared"
   ],

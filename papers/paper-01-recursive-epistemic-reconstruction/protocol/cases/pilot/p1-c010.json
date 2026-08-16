@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c010",
   "task_family": "hidden_representation_or_coordinate_system",
-  "public_prompt": "Eighteen teams answered a five-point agreement item coded 1 to 5. The team's framing is: average the codes per team and call a difference of 0.3 material. Report whether teams A and B differ on this item.",
+  "public_prompt": "Eighteen teams answered a five-point agreement item coded 1 to 5. The step already agreed: average the codes per team and call a difference of 0.3 material. Report whether teams A and B differ on this item.",
   "observable_resources": [
     "survey/responses.csv — 2,900 rows across 18 teams, values in {1,2,3,4,5}",
     "survey/distributions.csv — team A: 40% answered 1 and 44% answered 5, average 3.1; team B: 78% answered 3, average 3.1",

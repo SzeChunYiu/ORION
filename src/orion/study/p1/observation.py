@@ -218,9 +218,15 @@ _MARKERS: tuple[tuple[str, str], ...] = (
     ("is off", "DISABLED"),
     ("flag that", "DISABLED"),
     # --- a change proposed inside the current framing ---------------------
+    #
+    # `the team's framing is` and `the plan is` are REFUSED, not merely unused.
+    # The suite's own solvability audit measured each of them as a perfect
+    # separator of hidden-shift cases from negative controls (66/66 on the
+    # single tokens `framing` and `team's`), which is the H2 question answered
+    # with no comprehension at all. A detector that reads them scores by
+    # template rather than by content, so they are kept out of the lexicon
+    # entirely. A proposal is recognised from what it proposes.
     ("proposal", "PROPOSAL"),
-    ("the plan is", "PROPOSAL"),
-    ("framing is", "PROPOSAL"),
     ("adds a guard", "PROPOSAL"),
     ("adds 14 more", "PROPOSAL"),
     ("replaces the branches", "PROPOSAL"),
@@ -606,6 +612,12 @@ class Reduction:
     def structure_features(self) -> dict[str, object]:
         """Label-free structural summary, for the degeneracy probe.
 
+        Deliberately *shape only*: how many observations of each kind, and how
+        many lines they came from. Nothing marker-derived appears here — a
+        count of distinct statement types is a summary of what the prose says,
+        which is content and not shape, and putting it in this vector would
+        answer the leak question with the wrong quantity.
+
         Feature names avoid ``id``/``name``/``key``/``label``/``case``/``title``
         so ``degeneracy._looks_like_identifier`` does not classify any of them
         as an identifier; the case id belongs in ``LabeledRecord.record_id``.
@@ -618,7 +630,6 @@ class Reduction:
             "resources_read": len(self.sources()),
             **{f"kind_{k.lower()}": v for k, v in histogram.items()},
             "numeric_observations": len(numeric),
-            "distinct_marker_types": len({m for o in self.observations for m in o.markers}),
             "prompt_observations": len(self.from_prompt()),
         }
 

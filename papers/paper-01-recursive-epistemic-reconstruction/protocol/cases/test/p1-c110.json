@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c110",
   "task_family": "hidden_representation_or_coordinate_system",
-  "public_prompt": "A report gives the correlation between deploy frequency and incident count across 60 teams as 0.61 and concludes that deploying more produces more incidents. The team's framing is: this is the association, so act on it. Report the association between the two quantities.",
+  "public_prompt": "A report gives the correlation between deploy frequency and incident count across 60 teams as 0.61 and concludes that deploying more produces more incidents. The step already agreed: this is the association, so act on it. Report the association between the two quantities.",
   "observable_resources": [
     "delivery/teams.csv — 60 rows of deploys_per_week (median 6, maximum 940) and incidents_per_quarter (median 3, maximum 610)",
     "delivery/leverage.md — removing the two largest teams moves the reported correlation from 0.61 to 0.04",
@@ -9,6 +9,7 @@
     "delivery/pairs-check.csv — of the 1,770 team pairs, 51% place the same team ahead on both quantities",
     "closure:deploy-throttle-policy — closed; caps deploys per team per week on the 0.61 finding",
     "closure:delivery-okr-q3 — closed; derived from closure:deploy-throttle-policy",
+    "delivery/team-sizes.csv — engineer counts per team, 3 to 210; the two high-leverage teams are the two largest",
     "closure:incident-severity-bands — closed; defines the bands an incident is filed under; rests on the operations standard, not on any finding about deploys",
     "closure:deploy-approval-path — closed; sets who signs off a deploy to production; rests on the change standard, not on how often teams deploy"
   ],

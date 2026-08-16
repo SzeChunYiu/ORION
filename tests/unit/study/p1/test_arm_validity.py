@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import pytest
 
 from orion.study.p1.arm_validity import (
     ArmVerdict,
@@ -224,18 +223,6 @@ def _suite_texts():
     return texts, labels
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "KNOWN DEFECT, suite side: 'framing' and \"team's\" each appear in all 44 "
-        "hidden-shift prompts and none of the 22 controls, so H2's control-versus-"
-        "hidden split is answerable by grep. 'plan' leaks in the opposite direction "
-        "(17/22 controls, 0/44 hidden). Routed to the suite lane for a template "
-        "rewrite. strict=True on purpose: when the prompts are fixed this test "
-        "XPASSes and fails the build, forcing the marker off rather than letting a "
-        "closed defect sit here marked expected-to-fail forever."
-    ),
-)
 def test_no_single_word_predicts_whether_a_reframe_is_required() -> None:
     """The surface every other audit in this study missed.
 
@@ -244,10 +231,17 @@ def test_no_single_word_predicts_whether_a_reframe_is_required() -> None:
     separate the families. Neither asked the simplest question available: does
     any one word predict the label?
 
-    On the suite as first frozen the answer was yes and total — `framing`
-    appeared in all 44 hidden-shift prompts and none of the 22 controls, so the
-    control-versus-hidden split that H2 exists to measure was answerable by
-    grep, with no comprehension of any kind.
+    On the suite as first frozen the answer was yes and total — `framing` and
+    `team's` each appeared in all 44 hidden-shift prompts and none of the 22
+    controls, so the control-versus-hidden split that H2 exists to measure was
+    answerable by grep, with no comprehension of any kind. `plan` leaked the
+    opposite way, in 17 of 22 controls and no hidden case.
+
+    This was carried as xfail(strict=True) while the suite lane rewrote the
+    templates. The marker earned its keep: it XPASSed the moment the rewrite
+    landed and broke the build, which is what removed it. A non-strict xfail
+    would have gone green silently and left a closed defect marked
+    expected-to-fail indefinitely.
     """
 
     from orion.study.p1.arm_validity import find_lexical_separators

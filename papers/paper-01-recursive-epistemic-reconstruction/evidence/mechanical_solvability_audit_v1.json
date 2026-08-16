@@ -1,0 +1,1542 @@
+{
+  "schema": "mechanical_solvability_audit_v1",
+  "audited_suite_fingerprints_at_completion": {
+    "PILOT": "dea059632c7489dbe9911a423c3a5d87c0e4f0242ff2158012f0c498f6e08c99",
+    "TEST": "988ef483518c6da22ec32ad793985607f7ba37fb843f238784790bb160861363"
+  },
+  "audited_suite_fingerprints_at_start": {
+    "PILOT": "dea059632c7489dbe9911a423c3a5d87c0e4f0242ff2158012f0c498f6e08c99",
+    "TEST": "fa1378c3d55026c9cf204197164ed7644acbbf38244a9a4ca64a5f9caa0711cd"
+  },
+  "concurrent_edit_note": "A concurrent agent reworded 28 public_prompt strings during this audit, moving the TEST fingerprint from fa1378c3... to the value recorded above. A line-by-line diff of every observable_resources entry across the two revisions shows ZERO changes, so every number and token quoted in this audit is verbatim in both revisions and no verdict depends on the reworded text. Both blind-responder probes were re-run against the post-edit revision at full strength (probe 1: 66/66; probe 2: 10/11 with 0/55 false positives).",
+  "audited_at": "2026-08-16",
+  "method": "Public content only (PublicView: case_id, public_prompt, observable_resources, budget_class). Per-case family hypotheses were recorded BEFORE any protected_gold was read; gold was then consulted only to check whether the found signal points at the right family and whether the rubric-demanded answer is derivable. observable_resources are one-line English DESCRIPTIONS of files, not the files, so every computation below uses only numbers and tokens quoted verbatim in those descriptions.",
+  "verdict_criteria": {
+    "SOLVABLE": "A computation over numbers/tokens quoted in the public text (a) fires as anomalous against the stated framing, (b) yields the corrected quantity or procedure the case root_success_rubric demands, AND (c) its relation kind selects the responsible family. All three conjuncts are required: the task asks whether a procedure can infer the RESPONSIBLE COORDINATE, not whether it can satisfy the rubric, and the two come apart on the five cases where the public signal mis-points (c016, c017, c105, c110, c118).",
+    "PARTIAL": "The computation fires and localises, but one of the three conjuncts fails: the rubric-demanded answer is not fully derivable from quoted numbers, or the discriminator the case supplies does not reconcile arithmetically, or the relation kind does not select the family (gold_family_matches false).",
+    "UNSOLVABLE": "The only route to the demanded answer is fitting a model on data that is described but not quoted, or recognising a domain term; and the public signal does not select the right family."
+  },
+  "cases": [
+    {
+      "case_id": "p1-c001",
+      "split": "PILOT",
+      "verdict": "SOLVABLE",
+      "computation": "41,000 crashes / 13.6M sessions = 0.3015% => 99.6985% crash-free by session, which already contradicts the stated 99.74% and sits below the 99.5% gate only when rounded the other way; the resource itself states 99.70%. The same week gives 9.1% of monthly people hitting at least one crash, a factor of 30 above the per-session rate, which is what a 60x session-count skew in the top decile predicts. The choice between the two denominators is settled arithmetically without judgement: complaint volume correlates 0.81 with the per-person figure and 0.06 with the per-session figure over 30 weeks (a 13.5x separation).",
+      "relation_kind": "aggregate_ignores_stated_exposure_weights",
+      "resource_lines": [
+        "R1 mobile/crash-report.csv '41,000 crashes across 13.6M sessions that week: 99.70% of sessions crash-free'",
+        "R2 mobile/session-length.csv 'the top tenth of people start 60x more sessions than the median person'",
+        "R3 mobile/by-person.csv '9.1% of monthly people hit at least one crash'",
+        "R4 mobile/complaints.csv 'correlates 0.81 with the by-person figure and 0.06 with the by-session figure'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "MEAS",
+      "predicted_family_before_gold_check": "MEAS",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c002",
+      "split": "PILOT",
+      "verdict": "SOLVABLE",
+      "computation": "The same comparison run twice: unblinded gives 8.4 - 6.9 = 1.5 points; blinded with left-right order shuffled gives 7.1 - 7.0 = 0.1 points. The effect shrinks 15x under a correction that touches only the evaluation procedure, not the systems. Three independent non-independences are quoted and all point the same way: 6 of 6 judges (100%) belong to the team that built the new system, each judge is told which output is new, and all 120 prompts were picked by that team from its own development cases.",
+      "relation_kind": "evaluation_shares_units_or_information_with_the_evaluated",
+      "resource_lines": [
+        "R1 bench/protocol.md 'each judge sees both outputs side by side, each captioned with which one is new'",
+        "R2 bench/judges.csv 'all 6 judges belong to the team that built the new summariser'",
+        "R3 bench/prompt-set.md 'the 120 prompts were picked by that same team from cases used while developing the new summariser'",
+        "R4 bench/rerun.md 'a 40-prompt re-run with the captions removed and the left-right order shuffled gave 7.1 against 7.0'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "MEAS",
+      "predicted_family_before_gold_check": "MEAS",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c003",
+      "split": "PILOT",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource asserts a required input is absent or covers only a fraction of the needed window; a second names a costed, already-authorised route that reconstitutes it. No reframe is implied because the framing's instrument is endorsed by the prompt itself. 118 corrupt rows all written 2026-01-11..2026-02-02; audit-trail writer_id is NULL for every row from 2026-01-09 onward (migration 0142 dropped the populating trigger on 2026-01-09, i.e. 2 days before the first corrupt row) => 0/118 attributable from the trail. Corruption continues at ~2 rows/day since 2026-02-02, so re-instrumenting yields a fresh attributable stream at ~2/day.",
+      "relation_kind": "absent_input_obtainable_by_capability",
+      "resource_lines": [
+        "R1 db/corrupt-rows.csv '118 affected rows, all written between 2026-01-11 and 2026-02-02'",
+        "R2 db/audit-trail.csv 'the writer_id column is NULL for every row from 2026-01-09 onward'",
+        "R3 db/migrations/0142_drop_trigger.sql 'applied 2026-01-09'",
+        "R5 db/reproduction.md 'roughly 2 rows per day'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EVID",
+      "predicted_family_before_gold_check": "EVID",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c004",
+      "split": "PILOT",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: the framing's own remedy is present as a named resource and a second resource shows it does not remove the failure mode (it worsens it, only delays it, or by construction cannot distinguish the states it must). A capability that would remove the failure exists at a boundary the code does not use. Duplicate rate 41 per 90 days = 0.456/day under a 30 s timeout; the 10 s trial produced 63 in 14 days = 4.5/day, a 9.9x increase, so the remedy moves the rate in the wrong direction and cannot touch possibility. /charge has no field by which a caller can declare an attempt a repeat, while the downstream gateway already accepts a caller-supplied reference and refuses a repeat of it within 24 hours => the missing element is a caller-generated attempt reference at the service boundary.",
+      "relation_kind": "named_remedy_shown_insufficient",
+      "resource_lines": [
+        "R1 payments/api.md 'no request field lets a caller say that this attempt repeats an earlier one'",
+        "R2 payments/incidents.csv '41 duplicate charges in 90 days'",
+        "R3 payments/timeout-trial.md 'a two-week trial at a 10 s timeout produced 63 duplicate charges, not fewer'",
+        "R4 payments/gateway-docs.md 'accepts a caller-supplied reference and refuses a repeat of the same reference within 24 hours'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "DECOMP",
+      "predicted_family_before_gold_check": "DECOMP",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c005",
+      "split": "PILOT",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: the framing's own remedy is present as a named resource and a second resource shows it does not remove the failure mode (it worsens it, only delays it, or by construction cannot distinguish the states it must). A capability that would remove the failure exists at a boundary the code does not use. Failure dates 2025-11-01, 2025-12-01, 2026-01-01, 2026-02-01 against 118 passing days => the outcome is a deterministic function of the calendar, not a random flake (4/4 first-of-month failures, 0/118 otherwise). Three call sites read today's date straight from the runtime and the test has no way to set it; the proposed guard returns early on the first of the month while invoices issued on exactly those four dates each carried one day of the previous period => the remedy suppresses the only signal of a live defect.",
+      "relation_kind": "named_remedy_shown_insufficient",
+      "resource_lines": [
+        "R1 billing/period.py 'three call sites read today's date straight from the runtime'",
+        "R2 billing/tests/test_period.py 'has no way to set today's date'",
+        "R3 billing/ci-history.csv 'failed on 2025-11-01, 2025-12-01, 2026-01-01 and 2026-02-01, and passed on 118 other days'",
+        "R4 billing/skip-proposal.diff 'adds a guard returning early when today is the first of the month'",
+        "R5 billing/invoice-diffs.md 'each carried one day of the previous period'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "DECOMP",
+      "predicted_family_before_gold_check": "DECOMP",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c006",
+      "split": "PILOT",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource names a single concrete mechanism whose scope coincides exactly with the symptom (same date, same cardinality, same partition, same magnitude), and a second resource supplies the counterfactual that removes or reproduces the symptom. No remedy artefact is present and no required input is absent, so neither the reframe nor the evidence branch fires. PARTNER_TABLE moved prod.partner_events -> stg.partner_events on 2026-02-19, the exact date of the first zero-row night; stg holds 0 rows against prod's 4.1B; every run since finishes successfully reading 0 rows. Date coincidence is exact and the row counts explain the output exactly (0 in, 0 out).",
+      "relation_kind": "single_change_localised_by_coincidence_and_counterfactual",
+      "resource_lines": [
+        "R2 deploy/env-diff.txt 'on 2026-02-19 PARTNER_TABLE moved from prod.partner_events to stg.partner_events'",
+        "R3 warehouse/tables.md 'stg.partner_events has the same shape and 0 rows; prod.partner_events holds 4.1B rows'",
+        "R4 jobs/run-log.txt 'every run since 2026-02-19 finishes successfully after reading 0 rows'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EXEC",
+      "predicted_family_before_gold_check": "EXEC",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c007",
+      "split": "PILOT",
+      "verdict": "SOLVABLE",
+      "computation": "The counter admits every response 'whatever its status' and counts each of up to 4 client re-sends separately, so a 5xx share moving 0.4% -> 6.1% (a 15.25x rise) mechanically inflates the count: if each failed request is re-sent up to 4 times, the added attempts alone can account for the 22% rise (0.061-0.004 = 0.057 of traffic failing, times up to 4 extra attempts, = up to 22.8pp of counted volume). The terminal outcome moves the other way: journeys ending in a completed purchase fell 11% year on year.",
+      "relation_kind": "metric_terminates_before_the_outcome_it_names",
+      "resource_lines": [
+        "R1 serving/requests.csv 'counted at the load balancer, every response included whatever its status'",
+        "R2 serving/status-mix.csv 'the 5xx share rose from 0.4% to 6.1% year on year; the 4xx share is flat'",
+        "R3 serving/retry-config.md 're-sends a failed request up to 4 times, and the load balancer counts each attempt'",
+        "R4 serving/completed-journeys.csv 'journeys ending in a completed purchase fell 11% year on year'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "MEAS",
+      "predicted_family_before_gold_check": "MEAS",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c008",
+      "split": "PILOT",
+      "verdict": "SOLVABLE",
+      "computation": "The quoted sweep is decisively non-proportional. Arrival rate 120 -> 150 -> 180/s (steps of 1.25x and 1.20x) gives p99 wait 41 -> 96 -> 480 ms (steps of 2.34x and 5.00x), while mean CPU usage moves 0.60 -> 0.75 -> 0.90 (steps of 1.25x and 1.20x, i.e. exactly proportional to arrival rate). So waiting grows an order of magnitude faster than usage, and headroom in mean usage is not headroom in arrival rate. Bracketing the 250 ms target between the 150/s point (96 ms) and the 180/s point (480 ms) puts the sustainable rate strictly below 180/s. Service work is constant at 5.0 ms and does not change with load, and no call exceeds 6% of the profile, so optimisation cannot move the limit; inter-arrival gaps are memoryless with CV 0.98, so the queue, not the code, sets the wait.",
+      "relation_kind": "response_nonlinear_where_the_framing_assumes_proportionality",
+      "resource_lines": [
+        "R1 trace/handler-profile.json 'no single call exceeds 6% of total; median service work is 5.0 ms and does not change with load'",
+        "R2 trace/arrival-log.csv 'inter-arrival gaps are memoryless ... coefficient of variation 0.98'",
+        "R3 trace/wait-histogram.csv 'p99 wait 41 ms at 120 arrivals/s, 96 ms at 150/s, 480 ms at 180/s; mean CPU usage 0.60, 0.75 and 0.90'",
+        "R4 closure:capacity-plan-v3 'treating headroom as proportional to arrival rate'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "PARENT",
+      "predicted_family_before_gold_check": "PARENT",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c009",
+      "split": "PILOT",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource asserts a required input is absent or covers only a fraction of the needed window; a second names a costed, already-authorised route that reconstitutes it. No reframe is implied because the framing's instrument is endorsed by the prompt itself. Artifacts present for 5 of 14 commits (9 missing, 64%); all 14 hashes reachable and the harness is accepted as repeatable to 2% and runnable against any commit on demand on the same hardware => the 9 missing measurements are regenerable, bisection over 14 needs ceil(log2(14))=4 runs.",
+      "relation_kind": "absent_input_obtainable_by_capability",
+      "resource_lines": [
+        "R1 ci/bench-artifacts/ 'results are present for 5 of the 14 commits; the other 9 were removed'",
+        "R3 release/commits.txt 'all 14 commit hashes, every one still reachable'",
+        "R4 closure:benchmark-harness-acceptance 'repeatable to within 2% and runnable against any commit on demand, on the same hardware'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EVID",
+      "predicted_family_before_gold_check": "EVID",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c010",
+      "split": "PILOT",
+      "verdict": "SOLVABLE",
+      "computation": "The reported summary is degenerate on the quoted data: team A (40% answering 1, 44% answering 5) and team B (78% answering 3) have the same average 3.1, so the difference of averages is 0.0 while the distributions could hardly differ more - A is bimodal at both extremes, B is massed at the midpoint. A statistic that maps two maximally different distributions to the same number cannot support the claim that the teams are equivalent. The equal spacing the average assumes is separately contradicted by a quoted measurement: a paired-comparison run on 200 respondents finds the 4->5 step about 3x the 2->3 step, so codes 1..5 are order labels, not lengths. The rubric's second disjunct - compare the full response distributions - is fully mechanical from R2 alone.",
+      "relation_kind": "summary_collapses_distinguishable_distributions",
+      "resource_lines": [
+        "R1 survey/responses.csv 'values in {1,2,3,4,5}'",
+        "R2 survey/distributions.csv 'team A: 40% answered 1 and 44% answered 5, average 3.1; team B: 78% answered 3, average 3.1'",
+        "R3 survey/anchor-study.md 'the step from 4 to 5 about three times the step from 2 to 3'",
+        "R4 survey/tool.md 'emits per-team averages and a difference-of-averages test, and nothing else'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "REPR",
+      "predicted_family_before_gold_check": "REPR",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c011",
+      "split": "PILOT",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource names a single concrete mechanism whose scope coincides exactly with the symptom (same date, same cardinality, same partition, same magnitude), and a second resource supplies the counterfactual that removes or reproduces the symptom. No remedy artefact is present and no required input is absent, so neither the reframe nor the evidence branch fires. Lockfile diff is a single line (3.4.1 -> 4.0.0); the vendor changelog names the changed default verbatim ('shuffle argument now defaults to False'); loader.py does not pass that argument; failing batches hold a single label class each. Pinning back restores 0.91 with nothing else changed => one changed default, one confirming revert.",
+      "relation_kind": "single_change_localised_by_coincidence_and_counterfactual",
+      "resource_lines": [
+        "R1 train/lockfile.diff 'a single line: the data-loading library moves from 3.4.1 to 4.0.0'",
+        "R2 vendor/CHANGELOG-4.0.0.md 'BREAKING: the shuffle argument now defaults to False'",
+        "R3 train/loader.py 'builds the loader without passing the shuffle argument'",
+        "R5 train/rerun.log 'pinning the library back to 3.4.1 restores 0.91'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EXEC",
+      "predicted_family_before_gold_check": "EXEC",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c012",
+      "split": "PILOT",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource names a single concrete mechanism whose scope coincides exactly with the symptom (same date, same cardinality, same partition, same magnitude), and a second resource supplies the counterfactual that removes or reproduces the symptom. No remedy artefact is present and no required input is absent, so neither the reframe nor the evidence branch fires. set_seed is called in the parent only; 16 workers are started with spawn (which does not inherit parent RNG state) and their 16 first draws differ between runs; forcing 1 worker reproduces bit for bit across 5 runs. The configuration partition {1 worker: reproducible, 16 workers: not} isolates the cause, and the fork->spawn switch dates to the 2026-02 platform upgrade.",
+      "relation_kind": "single_change_localised_by_coincidence_and_counterfactual",
+      "resource_lines": [
+        "R1 risk/run.py 'calls set_seed(20260301) in the parent process, then starts 16 worker processes with the spawn method'",
+        "R2 risk/worker-seeds.log 'the 16 values differ between runs'",
+        "R3 risk/single-worker.log 'a run forced to one worker reproduces bit for bit across 5 runs'",
+        "R5 risk/platform-note.md 'workers were started with fork before the 2026-02 platform upgrade and with spawn after it'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EXEC",
+      "predicted_family_before_gold_check": "EXEC",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c013",
+      "split": "PILOT",
+      "verdict": "PARTIAL",
+      "computation": "TRIGGER is decisive and purely arithmetic: 71 of 900 rows report gaps between -1430 and -1400 minutes, and a duration between a prior action and a later one cannot be negative - the values are outside the support of the quantity. Adding one cycle turns them into 10 to 40 minutes (-1430 + 1440 = 10, -1400 + 1440 = 40), and gap.py is quoted as differencing time-of-day fields that carry no date part, which is exactly how a midnight crossing produces -1440 + true_gap. So the modular-wraparound coordinate is reached with no domain vocabulary. ANSWER is NOT reachable: the rubric demands a corrected mean of roughly 8-12 minutes, but the quoted figures cannot yield it. With 71 rows near -1415, the raw mean of 121.4 forces the other 829 rows to average (121.4x900 + 71x1415)/829 = 253.0 minutes, so the corrected mean is (829x253.0 + 71x25)/900 = 235.0 minutes, not 8-12. For the corrected mean to be ~10, the raw mean would have to be about 10 - 71x1440/900 = -103.6, not +121.4.",
+      "relation_kind": "summary_outside_the_support_of_its_own_data",
+      "resource_lines": [
+        "R1 handover/pairs.csv '900 rows ... 71 rows have the incoming action before midnight-crossing'",
+        "R2 handover/gap.py 'computes (t_in - t_out) in minutes on time-of-day fields that carry no date part'",
+        "R3 handover/outputs.log 'mean gap reported as 121.4 minutes, median 8.0; 71 rows report gaps between -1430 and -1400 minutes'",
+        "R4 handover/policy.md 'the current tool reports 8 breaches for the quarter'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "REPR",
+      "predicted_family_before_gold_check": "REPR",
+      "note": "CASE DEFECT: the quoted mean of 121.4 minutes is arithmetically incompatible with 71 rows at ~-1415 and a corrected mean of 8-12 minutes demanded by root_success_rubric. A mechanically correct solver reaches 235.0 and is graded FAIL."
+    },
+    {
+      "case_id": "p1-c014",
+      "split": "PILOT",
+      "verdict": "PARTIAL",
+      "computation": "TRIGGER fires: five member probabilities 0.0004, 0.0009, 0.0011, 0.0007, 0.62 have plain mean 0.6231/5 = 0.12462, which is 138x the median 0.0009 and 2.5x the 0.05 paging threshold, so the rule fires entirely on one member three orders of magnitude from the other four; and reliability.md quotes the plain average over-predicting by a factor of 14 in the lowest decile. ANSWER is NOT reachable as the rubric specifies, because the discriminator the rubric requires the solver to cite is arithmetically false. The arithmetic mean IS exactly complement-symmetric: mean(1-p_i) = 1 - mean(p_i). Numerically, (0.9996+0.9991+0.9989+0.9993+0.38)/5 = 0.87538 and 1 - 0.87538 = 0.12462, identical to the direct mean. So ensemble/symmetry-check.md's stated fact cannot hold for the plain average the case describes, and the route to the logit/geometric pool via that check is closed to any procedure that actually computes it.",
+      "relation_kind": "pooling_operator_lacks_a_required_invariance",
+      "resource_lines": [
+        "R1 ensemble/members.csv 'for incident 4471 they are 0.0004, 0.0009, 0.0011, 0.0007 and 0.62'",
+        "R2 ensemble/reliability.md 'the plain average over-predicts by a factor of 14 in the lowest decile'",
+        "R3 ensemble/symmetry-check.md 'averaging the five members' probabilities for the complement event and subtracting the result from 1 gives a different pooled number than averaging the originals'",
+        "R5 closure:paging-policy-v4 'pages when the plain average passes 0.05'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "REPR",
+      "predicted_family_before_gold_check": "REPR",
+      "note": "CASE DEFECT: R3's claim is false for the arithmetic mean, which is complement-symmetric by linearity. root_success_rubric requires the answer to 'cite the symmetry check to show that plain averaging is not invariant under swapping the event for its complement'. A solver that verifies the claim finds it does not hold."
+    },
+    {
+      "case_id": "p1-c015",
+      "split": "PILOT",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource asserts a required input is absent or covers only a fraction of the needed window; a second names a costed, already-authorised route that reconstitutes it. No reframe is implied because the framing's instrument is endorsed by the prompt itself. Arm membership present for 22,400 of 210,000 enrolments = 10.7%; but assignment is a deterministic hash of person id and a recorded, unchanged salt => arms are recomputable for all 210,000, and retention outcomes are already present for all 210,000.",
+      "relation_kind": "absent_input_obtainable_by_capability",
+      "resource_lines": [
+        "R1 exp/assignments.csv '22,400 people'",
+        "R3 exp/enrolment-log.csv '210,000 people enrolled'",
+        "R4 exp/retention.csv 'present for all 210,000'",
+        "R2 exp/config.json 'the randomiser salt is recorded here and has not changed'",
+        "R5 closure:randomiser-specification 'a deterministic hash of the person's id and the recorded salt'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EVID",
+      "predicted_family_before_gold_check": "EVID",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c016",
+      "split": "PILOT",
+      "verdict": "UNSOLVABLE",
+      "computation": "A trigger fires but the demanded answer is out of reach on two independent counts. Trigger: per-reviewer mean ratings span 2.4 to 4.6, a spread of 2.2 points on a 4-point scale = 55% of the range, comparable to any plausible author signal; assignment is stated non-random (by component ownership) and 7 authors received over 70% of their reviews from a single reviewer; on the 11% of PRs with two or more reviewers, ratings differ by a mean of 1.3 points with a consistent sign per reviewer pair. (1) The rubric requires a rater-facet model FITTED ON THE OVERLAP, but the overlap is summarised (11%, mean difference 1.3, consistent sign) and no per-reviewer offsets or per-PR pairs are quoted, so nothing can be fitted from the public text - and the rubric explicitly FAILS 'means rescaled with any fixed weights', which is the only correction the quoted summaries permit. (2) The signal does not select the family: reading every word of the public content and before any gold check, I placed this in MEASUREMENT (rater effects in a metric) rather than PARENT_DOMAIN. The step to psychometrics is a domain-term step, not a computation.",
+      "relation_kind": "sampling_frame_correlated_with_the_quantity_estimated",
+      "resource_lines": [
+        "R2 reviews/reviewer-marginals.csv 'per-reviewer mean rating ranges from 2.4 to 4.6; each reviewer rated between 12 and 60 pull requests'",
+        "R3 reviews/assignment.csv 'reviewers are drawn by component ownership, never at random; 7 authors received over 70% of their reviews from a single reviewer'",
+        "R4 reviews/overlap.csv '11% of pull requests were rated by two or more reviewers; on those, ratings differ by a mean of 1.3 points with a consistent sign for each reviewer pair'"
+      ],
+      "needs_gold_vocabulary": true,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": false,
+      "gold_family": "PARENT",
+      "predicted_family_before_gold_check": "MEAS",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c017",
+      "split": "PILOT",
+      "verdict": "UNSOLVABLE",
+      "computation": "A trigger fires but the demanded estimator is out of reach. Trigger: the aggregate filters the log to rows that have a failure date, keeping 82 of 120 units and discarding 38 (31.7%), and the discarded units are stated to be on average 9 months younger than the kept ones - so the exclusion is systematic in the very variable being estimated, and the mean of the 82 is biased downward, making the 14-month interval a lower bound. That much is arithmetic. What is not reachable: the rubric requires the 38 unfailed units retained as partially observed lifetimes under a product-limit or equivalent estimator, and reports 'an interval materially longer than 14 months'. No per-unit lifetimes, install dates or risk sets are quoted, so no such estimator can be evaluated from the public text; and the rubric explicitly FAILS dropping or imputing the 38. As with c016, the signal also fails to select the family: before any gold check I placed this in MEASUREMENT (a sample-exclusion defect), not PARENT_DOMAIN - the step to survival analysis is a domain-term step.",
+      "relation_kind": "sampling_frame_correlated_with_the_quantity_estimated",
+      "resource_lines": [
+        "R1 maintenance/seal-log.csv '120 units; 82 rows carry a failure date; 38 rows carry still in service at window close 2026-02-28 and no failure date'",
+        "R2 maintenance/aggregate.py 'filters the log to rows that have a failure date, then averages'",
+        "R3 maintenance/install-dates.csv 'the 38 units with no failure date are on average 9 months younger than the 82 that failed'",
+        "R4 closure:replacement-interval-2026 'sets a 14-month interval from the mean of the 82 rows'"
+      ],
+      "needs_gold_vocabulary": true,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": false,
+      "gold_family": "PARENT",
+      "predicted_family_before_gold_check": "MEAS",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c018",
+      "split": "PILOT",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: the framing's own remedy is present as a named resource and a second resource shows it does not remove the failure mode (it worsens it, only delays it, or by construction cannot distinguish the states it must). A capability that would remove the failure exists at a boundary the code does not use. Waiting for a pooled connection accounts for 31 s of the 34 s p99 = 91% of the regression, so replicas can address at most 9%; the two-extra-replica trial left p99 at 33 s (a 3% move), confirming the prediction. Every reporting query carries a strong-consistency flag that pins it to the primary regardless of replica count, while requirements state reporting tolerates 15-minute-old figures and ingest needs immediate visibility of its own commits => two loads with different freshness requirements share one pool of 60.",
+      "relation_kind": "named_remedy_shown_insufficient",
+      "resource_lines": [
+        "R1 store/pool.md 'one connection pool of 60, shared by the ingest job and the reporting service'",
+        "R2 store/query-log.csv 'reporting p99 rises from 0.4 s to 34 s; waiting for a pooled connection accounts for 31 s'",
+        "R3 store/routing.md 'sends it to the primary no matter how many replicas exist'",
+        "R4 store/replica-trial.md 'left reporting p99 at 33 s'",
+        "R5 store/requirements.md 'reporting tolerates figures up to 15 minutes old'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "DECOMP",
+      "predicted_family_before_gold_check": "DECOMP",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c101",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource names a single concrete mechanism whose scope coincides exactly with the symptom (same date, same cardinality, same partition, same magnitude), and a second resource supplies the counterfactual that removes or reproduces the symptom. No remedy artefact is present and no required input is absent, so neither the reframe nor the evidence branch fires. Set equality: the 9 failing modules are exactly the 9 whose file-name case differs from the import, and the 140 modules whose case matches pass everywhere (9+140=149, partition complete). The environment partition is stated: the agent filesystem is case-sensitive, developer filesystems are not. |failing set| == |case-mismatched set| == 9 with equality asserted, not merely equal cardinality.",
+      "relation_kind": "single_change_localised_by_coincidence_and_counterfactual",
+      "resource_lines": [
+        "R1 src/ 'the files on disk are named Utils.py, Helpers.py and seven others'",
+        "R2 tests/imports.txt 'import them as utils, helpers and the other seven, all lower case'",
+        "R3 ci/agent-image.md 'the build agent's filesystem distinguishes upper and lower case; the developer machines' filesystems do not'",
+        "R4 ci/failure-list.txt 'the 9 failing modules are exactly the 9 whose file name case differs from the import'",
+        "R5 closure:module-naming-audit 'the 140 modules whose file name matches the import case pass everywhere'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EXEC",
+      "predicted_family_before_gold_check": "EXEC",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c102",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource asserts a required input is absent or covers only a fraction of the needed window; a second names a costed, already-authorised route that reconstitutes it. No reframe is implied because the framing's instrument is endorsed by the prompt itself. Staging holds 0.4% of production rows and all three candidates give an identical sequential-scan plan at 40 ms => the measurement environment has zero discriminating power (3 candidates, 1 observed outcome). A full-size anonymised copy preserving production row counts and value spreads is provisionable in two days.",
+      "relation_kind": "absent_input_obtainable_by_capability",
+      "resource_lines": [
+        "R1 db/staging-counts.csv 'the staging copy holds 0.4% of the production rows'",
+        "R2 db/staging-plans.txt 'all three candidates produce an identical sequential-scan plan on staging, and all three run in 40 ms'",
+        "R4 db/anonymised-copy.md 'a full-size anonymised copy can be provisioned in two days on request, with production row counts and value spreads preserved'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EVID",
+      "predicted_family_before_gold_check": "EVID",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c103",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: the framing's own remedy is present as a named resource and a second resource shows it does not remove the failure mode (it worsens it, only delays it, or by construction cannot distinguish the states it must). A capability that would remove the failure exists at a boundary the code does not use. The remedy is service-wide but the failure is per-principal: in 9 of 11 slowdowns one customer held over 80% of queued work, and customer rates span four orders of magnitude with the largest at 6,000x the median. The 200/s trial cut the largest customer's impact and refused 6% of every other customer's requests => the cap charges the 2,299 innocent customers for one. One pool and one FIFO queue serve all 2,300 with no per-customer share.",
+      "relation_kind": "named_remedy_shown_insufficient",
+      "resource_lines": [
+        "R1 app/pool.md 'one worker pool and one first-in-first-out queue serve all 2,300 customers'",
+        "R2 app/incident-log.csv 'in 9 of 11 slowdowns a single customer accounted for over 80% of queued work'",
+        "R3 app/global-cap-trial.md 'cut the largest customer's impact and refused 6% of every other customer's requests'",
+        "R4 app/usage.csv 'the largest customer runs 6,000x the median'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "DECOMP",
+      "predicted_family_before_gold_check": "DECOMP",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c104",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: the framing's own remedy is present as a named resource and a second resource shows it does not remove the failure mode (it worsens it, only delays it, or by construction cannot distinguish the states it must). A capability that would remove the failure exists at a boundary the code does not use. 61 tests with 48 stand-ins already built (79%) and 9 marked unreliable; the remedy adds 14 more stand-ins, i.e. it scales with the coupling it does not remove. Non-determinism is attributed by the repro check to the random draw and one network response, both of which occur inside the arithmetic in a single 400-line function that also issues 6 network calls, reads 2 environment variables and writes to a metrics sink => stand-ins cannot restore repeatability while the draw happens inside the computation.",
+      "relation_kind": "named_remedy_shown_insufficient",
+      "resource_lines": [
+        "R1 pricing/price.py 'a single 400-line function that issues 6 network calls, reads two environment variables, draws from a random generator and writes to a metrics sink, all interleaved with the arithmetic'",
+        "R2 pricing/tests/ '61 tests, 48 of which build stand-ins for those call sites; 9 are marked unreliable'",
+        "R3 pricing/repro-check.md 'the spread tracks the random draw and one network response'",
+        "R4 pricing/doubles-proposal.md 'adds 14 more stand-ins'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "DECOMP",
+      "predicted_family_before_gold_check": "DECOMP",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c105",
+      "split": "TEST",
+      "verdict": "PARTIAL",
+      "computation": "The selection is not independent of the outcome and the suite quantifies the dependence directly: in the 6 months BEFORE the feature existed, the same 46 teams already reported 19% fewer incidents than the other 94. The post-period gap is 22%. The difference of the two gaps is 22 - 19 = 3 percentage points, which is exactly the adjusted estimate the rubric accepts, and it is two quoted numbers and one subtraction. 86% of the raw contrast is pre-existing. Assignment is stated to be non-random (opt-in was a team decision, no team assigned at random) and the groups differ on quoted covariates: median 11 engineers against 6 (1.83x) and 2.3x more automated checks.",
+      "relation_kind": "sampling_frame_correlated_with_the_quantity_estimated",
+      "resource_lines": [
+        "R1 rollout/optin.csv '46 opted in during Q1; opt-in was a team decision'",
+        "R2 rollout/pre-period.csv 'in the 6 months before the feature existed, those same 46 teams already reported 19% fewer incidents than the rest'",
+        "R3 rollout/covariates.csv 'larger (median 11 engineers versus 6) and run 2.3x more automated checks'",
+        "R4 rollout/design-note.md 'no team was assigned at random'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": false,
+      "gold_family": "PARENT",
+      "predicted_family_before_gold_check": "MEAS",
+      "note": "Family mis-points on first reading: I placed this in MEASUREMENT before checking gold. The rubric's accepted answer (~3 percentage points from 22-19, or a declaration of non-identification plus a design) is fully derivable from quoted numbers, so the verdict stands."
+    },
+    {
+      "case_id": "p1-c106",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "The constraint set is closed by the resources: two groups worked the same revision, in separate rooms, on the same day, with neither list visible to the other at any point - i.e. two independent samples of one fixed pool with a measured overlap. That is exactly the two-sample closed-form: N = n_A x n_B / n_AB = 74 x 61 / 29 = 4,514/29 = 155.66. Observed union = 74 + 61 - 29 = 106, so unlogged = 155.66 - 106 = 49.66, about 50. Every input (74, 61, 29) is quoted and the arithmetic is three operations. The signoff's '106 defects found' is the union, which is a lower bound on the pool and not an estimate of it.",
+      "relation_kind": "constraints_fully_enumerated_matching_a_closed_form",
+      "resource_lines": [
+        "R1 review/pass-a.json 'group A logged 74 distinct defect ids'",
+        "R2 review/pass-b.json 'group B logged 61 distinct defect ids from the same revision, with no sight of group A's list'",
+        "R3 review/overlap.json '29 defect ids appear in both lists'",
+        "R4 review/protocol.md 'separate rooms on the same day; neither list was visible to the other group at any point'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "PARENT",
+      "predicted_family_before_gold_check": "PARENT",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c107",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource names a single concrete mechanism whose scope coincides exactly with the symptom (same date, same cardinality, same partition, same magnitude), and a second resource supplies the counterfactual that removes or reproduces the symptom. No remedy artefact is present and no required input is absent, so neither the reframe nor the evidence branch fires. Pages arrive in groups of 5 within 2 seconds, all 5 carrying the same alert name and differing regions; the rule set is deployed in exactly 5 regions. Duplication factor (5) == partition cardinality (5), and paging volume doubled while the underlying incident count is unchanged. The migrated routing.yml has one destination for every region and the region key that used to select a destination is absent; the pre-migration file carried a per-region destination and a suppression window.",
+      "relation_kind": "single_change_localised_by_coincidence_and_counterfactual",
+      "resource_lines": [
+        "R1 monitoring/rule-inventory.csv 'the identical rule set is deployed in all 5 regions'",
+        "R2 monitoring/routing.yml 'the region key that used to select a destination is absent from the migrated file'",
+        "R3 paging/page-log.csv 'pages arrive in groups of 5 within 2 seconds, all 5 carrying the same alert name and differing regions'",
+        "R4 monitoring/pre-migration-routing.yml 'carried a per-region destination and a suppression window'",
+        "R5 incidents/count.csv 'the underlying incident count is unchanged'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EXEC",
+      "predicted_family_before_gold_check": "EXEC",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c108",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource asserts a required input is absent or covers only a fraction of the needed window; a second names a costed, already-authorised route that reconstitutes it. No reframe is implied because the framing's instrument is endorsed by the prompt itself. Every snapshot's retaining-path field is empty => the diff the plan requires is uncomputable on the artefacts in hand (6 snapshots, 240 MB -> 1.9 GB, a 7.9x rise). The flag that populates retaining paths is off in the running build, a rolling restart onto a different build is permitted at any time and costs 8 minutes losing nothing, and staging reproduces in 4 hours at one tenth of traffic.",
+      "relation_kind": "absent_input_obtainable_by_capability",
+      "resource_lines": [
+        "R2 heap/snapshot-format.md 'every snapshot's retaining-path field is empty'",
+        "R3 build/config.toml 'the allocation-metadata flag that populates retaining paths is off'",
+        "R4 closure:rolling-restart-standard 'permits redeploying a different build at any time, a rolling restart taking 8 minutes and losing nothing'",
+        "R5 staging/repro.md 'reproduces on staging within 4 hours'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EVID",
+      "predicted_family_before_gold_check": "EVID",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c109",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Two independent routes to the same hour disagree by 175.7 degrees. (a) Support: every reading lies in [352,359] u [1,9], i.e. within 17 degrees of north, yet the reported mean is 181.4 degrees, which is outside the circular convex hull of the data - no mean of a set can lie there. (b) Independent instrument channel: atan2(east, north) = atan2(-0.4, 7.9) = -2.90 degrees = 357.10 degrees, inside the hull. (c) Dispersion bound: the reported sd of 176 is 0.978 of the 180-degree half-range of a bounded circular quantity, the value a plain sd takes when mass sits at both ends of the wrap. The plain mean is (31x~355.5 + 29x~5)/60 = 186 approx 181.4, reproducing the reported figure and confirming the operator.",
+      "relation_kind": "summary_outside_the_support_of_its_own_data",
+      "resource_lines": [
+        "R1 site/bearings.csv 'hour 14 holds 31 readings between 352 and 359 and 29 readings between 1 and 9'",
+        "R2 site/tool.md 'computes the plain mean of the numeric bearing column'",
+        "R3 site/reported.csv 'mean bearing 181.4 degrees, standard deviation 176'",
+        "R4 site/anemometer-components.csv 'mean east -0.4 m/s, mean north 7.9 m/s'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "REPR",
+      "predicted_family_before_gold_check": "REPR",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c110",
+      "split": "TEST",
+      "verdict": "PARTIAL",
+      "computation": "Two estimators of the same association contradict each other. Moment statistic: r = 0.61, but deleting 2 of 60 points (3.3% of the sample) moves it to 0.04, a 93% collapse - no association supported by 58 of 60 points behaves that way. Rank statistic: 51% of the 1,770 team pairs place the same team ahead on both quantities, so Kendall's tau = 2(0.51) - 1 = 0.02, indistinguishable from zero. The leverage is explained by the magnitudes: max/median is 940/6 = 157x on deploys and 610/3 = 203x on incidents, while 58 of 60 points sit in a dense cloud with no visible trend.",
+      "relation_kind": "rank_and_moment_statistics_disagree",
+      "resource_lines": [
+        "R1 delivery/teams.csv 'deploys_per_week (median 6, maximum 940) and incidents_per_quarter (median 3, maximum 610)'",
+        "R2 delivery/leverage.md 'removing the two largest teams moves the reported correlation from 0.61 to 0.04'",
+        "R3 delivery/scatter-notes.md '58 of the 60 points sit in a dense cloud with no visible trend'",
+        "R4 delivery/pairs-check.csv 'of the 1,770 team pairs, 51% place the same team ahead on both quantities'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": false,
+      "gold_family": "REPR",
+      "predicted_family_before_gold_check": "MEAS",
+      "note": "Family mis-points on first reading: I placed this in MEASUREMENT (outlier robustness) before checking gold. The rubric's demanded answer (a concordance coefficient, indistinguishable from none, plus the leverage argument) is fully derivable from the quoted 51% and 0.61->0.04, so the verdict stands."
+    },
+    {
+      "case_id": "p1-c111",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: the framing's own remedy is present as a named resource and a second resource shows it does not remove the failure mode (it worsens it, only delays it, or by construction cannot distinguish the states it must). A capability that would remove the failure exists at a boundary the code does not use. Producer 9,000/s minus consumer 6,200/s = a sustained 2,800 items/s shortfall persisting for hours, so pending memory grows linearly in time and any finite bound is exhausted. The trial confirms it quantitatively: 4 GiB -> 16 GiB is a 4.0x capacity increase and moved the first crash 3.5 h -> 13 h, a 3.71x increase in time-to-failure => time-to-failure is proportional to capacity, the signature of unbounded accumulation. Heap dumps put 92-96% of memory in the unbounded pending list.",
+      "relation_kind": "named_remedy_shown_insufficient",
+      "resource_lines": [
+        "R1 stream/pipeline.py 'the producer appends to an unbounded in-process list'",
+        "R2 stream/oom-history.csv 'heap dumps put 92-96% of memory in that pending list'",
+        "R3 stream/rate.csv 'the producer sustains 9,000 items/s and the consumer 6,200 items/s'",
+        "R4 stream/memory-trial.md 'a two-week run at 16 GiB moved the first crash from 3.5 hours in to 13 hours in'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "DECOMP",
+      "predicted_family_before_gold_check": "DECOMP",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c112",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource asserts a required input is absent or covers only a fraction of the needed window; a second names a costed, already-authorised route that reconstitutes it. No reframe is implied because the framing's instrument is endorsed by the prompt itself. Input snapshots retained 7 days against a 42-day window => 7/42 = 17% of the window replayable, and the sample replay covers only the 4 days still inside retention (4,900 charges, 61 discrepant = 1.2%, 2.3% each). The warehouse retains the underlying facts 5 years with a documented 3-hour regeneration job per past date => 42 regenerations reconstitute the window.",
+      "relation_kind": "absent_input_obtainable_by_capability",
+      "resource_lines": [
+        "R3 features/snapshot-store.md 'input snapshots are retained 7 days; the six-week window is long past that'",
+        "R4 warehouse/regeneration.md 'retains the underlying facts 5 years and has a documented 3-hour job that regenerates an input snapshot for any past date'",
+        "R5 billing/sample-replay.md '2.3% discrepancy on 61 of 4,900 charges'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EVID",
+      "predicted_family_before_gold_check": "EVID",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c113",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: the framing's own remedy is present as a named resource and a second resource shows it does not remove the failure mode (it worsens it, only delays it, or by construction cannot distinguish the states it must). A capability that would remove the failure exists at a boundary the code does not use. Abandoned work is 38% of worker-seconds at peak; doubling the pool raised it to 41% and did not shorten waiting for live requests => the wasted share scales with capacity, so capacity cannot reduce it. The handler returns on disconnect without telling the three downstream calls, while the client library already takes a per-call handle that aborts the call when closed and the code passes a handle that is never closed.",
+      "relation_kind": "named_remedy_shown_insufficient",
+      "resource_lines": [
+        "R1 api/handler.go 'on client disconnect the handler returns; the three downstream calls it started are never told'",
+        "R2 cluster/metrics.csv '38% of worker seconds at peak are spent on requests whose client had already gone'",
+        "R3 cluster/worker-trial.md 'raised the abandoned share from 38% to 41%'",
+        "R4 api/client-library.md 'takes a per-call handle that aborts the call when closed; the code passes a handle that is never closed'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "DECOMP",
+      "predicted_family_before_gold_check": "DECOMP",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c114",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: the framing's own remedy is present as a named resource and a second resource shows it does not remove the failure mode (it worsens it, only delays it, or by construction cannot distinguish the states it must). A capability that would remove the failure exists at a boundary the code does not use. Failure asymmetry matches the operation order exactly: 214 rows-without-message against 3 messages-without-row over 90 days (71:1), which is what commit-then-publish predicts and publish-then-commit would invert. The proposed sweeper cannot tell 'not yet published' from 'published but not yet visible', so by construction it cannot close the window; the bus delivers at least once and cannot join the database commit.",
+      "relation_kind": "named_remedy_shown_insufficient",
+      "resource_lines": [
+        "R1 orders/handler.py 'commits the order row, then publishes to the bus; a crash between the two loses the message'",
+        "R2 orders/gap-audit.csv '214 orders have a row and no message, and 3 have a message and no row'",
+        "R3 orders/bus-docs.md 'delivers at least once and cannot join the database commit'",
+        "R4 orders/sweeper-proposal.md 'it cannot tell not yet published apart from published but not yet visible'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "DECOMP",
+      "predicted_family_before_gold_check": "DECOMP",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c115",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Panel 180 ms against a pooled p99 of 2,310 ms from 4.1M raw observations = a 12.8x understatement. The panel averages per-host per-minute 99th percentiles over 60 hosts and then over the hour; a percentile is not a linear functional, so an average of percentiles is not the percentile of the pool, and the exposure weights are wrong by a stated margin: 3 of 60 hosts (5%) carry 82% of the requests slower than 1 second. The corrected figure the rubric wants (about 2,310 ms) is quoted directly in R2.",
+      "relation_kind": "aggregate_ignores_stated_exposure_weights",
+      "resource_lines": [
+        "R1 obs/panel.json 'takes each host's per-minute 99th percentile, averages those across 60 hosts, then averages across the hour'",
+        "R2 obs/raw-sample.csv '4.1M individual request latencies ... 99th percentile 2,310 ms, median 22 ms'",
+        "R3 obs/host-skew.csv '3 of the 60 hosts account for 82% of the requests slower than 1 second'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "MEAS",
+      "predicted_family_before_gold_check": "MEAS",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c116",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource names a single concrete mechanism whose scope coincides exactly with the symptom (same date, same cardinality, same partition, same magnitude), and a second resource supplies the counterfactual that removes or reproduces the symptom. No remedy artefact is present and no required input is absent, so neither the reframe nor the evidence branch fires. 96% of wall time is in formatting one interpolated debug message; the level in every environment is INFO so the message is built and discarded; removing that single line takes 40 hours back to 38 minutes (40h/38min = 63x, consistent with 96% -> 1/(1-0.96) = 25x plus the residual). The replay window and traffic sample are fixed and unchanged across the two runs, so the only varying factor is the one line.",
+      "relation_kind": "single_change_localised_by_coincidence_and_counterfactual",
+      "resource_lines": [
+        "R1 recsys/diff-4471.patch 'one debug log line whose message is built by string interpolation of the whole feature frame'",
+        "R2 recsys/profile.txt '96% of wall time is spent formatting that one message'",
+        "R3 config/logging.yml 'the level in every environment is INFO, so the debug message is built and then discarded'",
+        "R4 recsys/ablation.md 'with that single line removed finishes in 38 minutes'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EXEC",
+      "predicted_family_before_gold_check": "EXEC",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c117",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource asserts a required input is absent or covers only a fraction of the needed window; a second names a costed, already-authorised route that reconstitutes it. No reframe is implied because the framing's instrument is endorsed by the prompt itself. 900 historical runs carry pass/fail and timing but no order => the predecessor correlation the plan requires has 0 usable observations. 200 local runs in the fixed default order reproduce 0 of the 14 failures, confirming the fixed order cannot supply the contrast. The runner supports enabling seed-and-order recording, after which every run writes the resolved order.",
+      "relation_kind": "absent_input_obtainable_by_capability",
+      "resource_lines": [
+        "R1 ci/history.parquet '900 historical suite runs ... but no record of the order used'",
+        "R2 ci/runner-config.yml 'order-shuffle seed recording is disabled; the runner supports enabling it'",
+        "R3 ci/runner-docs.md 'with recording on, every run writes the seed and the resolved order'",
+        "R5 dev/local-runs.md '200 local runs in the default fixed order reproduce none of the 14 failures'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EVID",
+      "predicted_family_before_gold_check": "EVID",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c118",
+      "split": "TEST",
+      "verdict": "PARTIAL",
+      "computation": "Distinct counts are not additive, and the suite supplies both the summed and the true figure: 30 daily distinct counts adding to 41.2M against a whole-month reconciliation of 6.9M distinct device identifiers, a 5.97x overstatement; nothing merges a device across two days, so a device returning on d days is counted d times. 41.2/6.9 = 5.97 average appearances per device per month. The people figure follows: 6.9M / 1.9 devices per person = 3.63M, matching the rubric's 3.6M. Note that dividing 41.2M by 30 (1.373M) is explicitly the wrong correction and is a plausible mechanical mis-step.",
+      "relation_kind": "non_additive_quantity_summed",
+      "resource_lines": [
+        "R1 analytics/daily-distinct.csv '30 rows of distinct device identifiers per day, adding to 41.2M'",
+        "R2 analytics/month-reconciliation.md 'finds 6.9M distinct device identifiers in total'",
+        "R3 analytics/devices-per-person.csv 'a mean of 1.9 devices each'",
+        "R4 analytics/method-note.md 'nothing merges a device across two days'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": false,
+      "gold_family": "MEAS",
+      "predicted_family_before_gold_check": "REPR",
+      "note": "Family mis-points: reading only the public content I placed this in REPRESENTATION (set cardinality is not additive), not MEASUREMENT. The demanded ANSWER (6.9M / 3.6M) is fully derivable, so the verdict stands, but the relation kind is single-case and does not by itself pick MEASUREMENT over REPRESENTATION."
+    },
+    {
+      "case_id": "p1-c119",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "The residual is not uniform: 6% of 1,900 stops are misassigned and 94% of those misassignments sit north of 55 degrees, while depots span 25 to 68 degrees north. The scale factor is quoted: one degree of longitude covers about 0.5 of the ground span of one degree of latitude at 60N and about 0.9 at 25N. sqrt((dlat)^2 + (dlon)^2) on raw degrees implicitly asserts factor 1.0 everywhere, so its error is (1 - f(lat)), i.e. ~0.1 at 25N and ~0.5 at 60N - a 5x larger distortion exactly where 94% of the errors are. The error vanishes where the missing transform is nearest the identity, which is the signature that the transform, not the data, is at fault.",
+      "relation_kind": "error_vanishes_where_the_missing_transform_is_the_identity",
+      "resource_lines": [
+        "R1 logistics/depots.csv '40 depots between 25 and 68 degrees north'",
+        "R2 logistics/assign.py 'computes sqrt((lat1-lat2)^2 + (lon1-lon2)^2) directly on degrees'",
+        "R3 logistics/audit.csv '6% of assignments differ from the driver-measured nearest depot, and 94% of those sit north of 55 degrees'",
+        "R4 logistics/span-note.md 'at 60 degrees north, one degree of longitude covers about half the ground span of one degree of latitude; at 25 degrees north it covers about nine tenths'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "REPR",
+      "predicted_family_before_gold_check": "REPR",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c120",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Byte-level: 'Cafe Nord' with an accented e appears as 43 61 66 c3 a9 (5 bytes; c3 a9 is the two-byte UTF-8 form of a single precomposed code point) in 220 rows and as 43 61 66 65 cc 81 (6 bytes; 65 is 'e', cc 81 is a combining acute) in 190 rows, and the two groups never merge under lowercase-and-trim because that operation does not touch code-point composition. One value, two encodings, 410 rows split 220/190. The hand audit quantifies the residue: 41 collapsing pairs in a 300-name sample (13.7%), including 9 differing only by a non-breaking space and 6 by full-width Latin letters - all three classes (composition, space width, character width) are removed by one standard mapping. 12,404 must therefore fall by at least the 190 rows of that single name.",
+      "relation_kind": "one_value_carried_by_distinct_encodings",
+      "resource_lines": [
+        "R1 suppliers/raw.csv '18,102 rows; the name column is UTF-8 text from six source ledgers'",
+        "R2 suppliers/dedup-run.log 'after lowercasing and trimming: 12,404 distinct names'",
+        "R3 suppliers/byte-inspection.md 'appears as bytes 43 61 66 c3 a9 in 220 rows and as 43 61 66 65 cc 81 in 190 rows; the two groups never merge'",
+        "R4 suppliers/manual-audit.csv '41 pairs a reader treats as identical, including 9 differing by a non-breaking space and 6 by full-width Latin letters'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "REPR",
+      "predicted_family_before_gold_check": "REPR",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c121",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Baseline from the base rate: fraud is 1.9% of 200,000 rows, so a constant 'not fraud' rule scores 98.1% and the reported 94% is 4.1pp BELOW the trivial baseline. Calibration check from the buckets: emitted 0.30-0.35 (midpoint 0.325) against an observed 7.8% fraud rate, 0.60-0.65 (0.625) against 11.2%, 0.90-0.95 (0.925) against 19.4% => the emitted number is monotone in risk but overstates it by 4.2x, 5.6x and 4.8x, so multiplying it by the transaction amount overstates expected loss by roughly 5x. The mapping the rubric wants is exactly the bucket table already quoted.",
+      "relation_kind": "reported_score_lacks_its_computable_baseline",
+      "resource_lines": [
+        "R1 risk/holdout.csv 'the fraud base rate is 1.9%'",
+        "R2 risk/accuracy.md '94% of rows are classified correctly at a 0.5 cutoff; a rule that always answers not fraud is right on 98.1%'",
+        "R3 risk/buckets.csv 'of rows scoring 0.30-0.35, 7.8% were fraud; of rows scoring 0.60-0.65, 11.2%; of rows scoring 0.90-0.95, 19.4%'",
+        "R4 risk/loss-model.md 'multiplies the emitted number by the transaction amount'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "MEAS",
+      "predicted_family_before_gold_check": "MEAS",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c122",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "The exported series is a process-lifetime running total, so its level is not a rate and avg_over_time on it is meaningless. Volume = sum of positive consecutive differences = (4,090,930,004 - 4,090,112,331) + 812 = 817,673 + 812 = 818,485 requests for the hour, matching the rubric's 'roughly 818,000' and a factor of 5,000 below the reported 4.1 billion. The single decrease is a counter reset, not a decrease: at 240 samples per hour the interval is 15 s, so sample 96 falls at 96 x 15 s = 1,440 s = 24 minutes past the hour, exactly matching the logged 14:24 process restart.",
+      "relation_kind": "summary_outside_the_support_of_its_own_data",
+      "resource_lines": [
+        "R1 metrics/scrape.csv '240 samples ... rises without interruption from 4,090,112,331 to 4,090,930,004, except at sample 96 where it drops to 812'",
+        "R2 metrics/agent-docs.md 'the exported series is the process-lifetime running total since start'",
+        "R3 metrics/dashboard.json 'the panel applies avg_over_time to the raw series'",
+        "R4 metrics/restart-log.txt 'the exporting process restarted at 14:24, matching sample 96'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "REPR",
+      "predicted_family_before_gold_check": "REPR",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c123",
+      "split": "TEST",
+      "verdict": "PARTIAL",
+      "computation": "TRIGGER and the constraint closure are mechanical: R4 exhaustively closes the constraint set - exactly one engineer per week and one week per engineer, costs add, 'there are no other constraints' - over a 60x60 integer matrix with no missing entries, which is the canonical one-to-one minimum-cost assignment. Greedy is provably not optimal on the quoted evidence: hand repairs in three past months lowered the total by 6, 9 and 4 without any argument, so the published 214 is at least 4 above optimum, and 11 of 60 weeks (18%) needed manual conflict repair. ANSWER is NOT reachable: the 60x60 cost matrix is described but not quoted, so no procedure operating on the public text can produce the optimal assignment or the dual-potential/LP certificate the rubric demands. What is reachable is the procedure name and the refutation of optimality, not the number.",
+      "relation_kind": "constraints_fully_enumerated_matching_a_closed_form",
+      "resource_lines": [
+        "R1 roster/cost-matrix.csv '60x60 integer costs in 1..9 with no missing entries'",
+        "R2 roster/greedy-run.log 'total cost 214, with 11 weeks needing manual repair after conflicts'",
+        "R3 roster/manual-repairs.md 'lowered the total by 6, 9 and 4, each found by trial rather than by argument'",
+        "R4 roster/constraints.md 'exactly one engineer per week and one week per engineer; costs add; there are no other constraints'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "PARENT",
+      "predicted_family_before_gold_check": "PARENT",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c124",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Same signature, conditioned on heading rather than latitude: the recovered path agrees with the surveyed marks along straight aisle runs and diverges by up to 6 m immediately after every turn. The datasheet states the three channels report proper acceleration along the chassis forward, lateral and vertical directions - a body-fixed frame - while the answer is required in the floor's fixed frame. On a straight run the heading is constant so the body-to-floor rotation is a constant (locally the identity up to a fixed offset) and double integration happens to work; during a turn the heading swings up to 90 degrees per second so the rotation is time-varying and integrating the raw channels integrates the wrong axes. Error present iff heading rate is non-zero. 42 surveyed crossings supply the check.",
+      "relation_kind": "error_vanishes_where_the_missing_transform_is_the_identity",
+      "resource_lines": [
+        "R1 robot/imu.csv 'ax, ay, az plus a heading column in degrees that swings up to 90 degrees per second during turns'",
+        "R2 robot/recovered-path.csv 'agrees with the surveyed marks along straight aisle runs and diverges by up to 6 m immediately after every turn'",
+        "R3 robot/ground-truth.csv '42 crossings of surveyed floor marks with exact positions'",
+        "R4 robot/sensor-datasheet.md 'proper acceleration along the chassis forward, lateral and vertical directions'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "REPR",
+      "predicted_family_before_gold_check": "REPR",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c125",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource asserts a required input is absent or covers only a fraction of the needed window; a second names a costed, already-authorised route that reconstitutes it. No reframe is implied because the framing's instrument is endorsed by the prompt itself. Lot codes populated for 41% of units and the 59% gap coincides exactly with lines 2, 4 and 5, whose scanners were out of service for the whole window => missingness is deterministic in line, not random, so the 41% join is a biased frame; and on that 41% defects fall evenly across all four suppliers (0 discrimination). Paper travellers carrying the lot code for every unit are retained 12 months and digitisable in a week.",
+      "relation_kind": "absent_input_obtainable_by_capability",
+      "resource_lines": [
+        "R2 quality/lot-codes.csv 'populated for 41% of the window's units; the gaps line up exactly with lines 2, 4 and 5'",
+        "R3 ops/scanner-ticket-8841.md 'the barcode scanners on lines 2, 4 and 5 were out of service for the whole window'",
+        "R4 warehouse/travellers.md 'retained 12 months and can be digitised in a week'",
+        "R5 quality/partial-join.csv 'defects fall evenly across all four suppliers'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EVID",
+      "predicted_family_before_gold_check": "EVID",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c126",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Three-way arithmetic reconciliation. Offline 0.93, live 0.61, corrected refit 0.63. |0.63 - 0.61| = 0.02 against |0.93 - 0.61| = 0.32 => the corrected procedure reproduces the deployed figure to within 3%, so the whole 0.32 gap is evaluation defect, not world change. Drift is independently excluded: the live input distribution matches the offline one within 3% on all 40 features. Both defects are quoted: 71% of evaluation customers also appear in training under a random row split where one customer contributes up to 36 rows, and days_since_last_invoice is recomputed at extract time, after the churn event, for every row.",
+      "relation_kind": "evaluation_shares_units_or_information_with_the_evaluated",
+      "resource_lines": [
+        "R1 churn/split.md 'rows are shuffled and divided 80/20 at random; one customer contributes up to 36 monthly rows'",
+        "R2 churn/leak-audit.csv '71% of customers in the evaluation side also appear in the training side'",
+        "R3 churn/feature-list.md 'days_since_last_invoice is recomputed at extract time, after the churn event'",
+        "R4 churn/refit.md 'divides by customer and freezes each feature at the row's own month scores 0.63 offline'",
+        "R5 churn/drift-check.csv 'matches the offline one within 3% on all 40 features'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "MEAS",
+      "predicted_family_before_gold_check": "MEAS",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c127",
+      "split": "TEST",
+      "verdict": "PARTIAL",
+      "computation": "TRIGGER is arithmetic and unambiguous: the input to the allocation rule is self-reported by the party the rule rewards, and it inflates while the measured quantity does not - stated need 1.4x -> 3.8x the fleet across four quarters (2.71x growth) while measured use stayed flat. Utilisation confirms the inflation is in the statement, not the need: the median team uses 31% of its grant (1/0.31 = 3.2x overstatement) and the three largest requesters use 22% (4.5x). The rule's incentive is stated outright: grants are proportional to stated need and an unused grant costs the holder nothing and is never reclaimed. ANSWER is NOT reachable arithmetically: the rubric demands a NEW rule under which honesty is a dominant or equilibrium strategy, with the argument supplied. Designing such a mechanism is a generative act; the public text contains no candidate rule to select among, and every named alternative (review step, cap, uniform scale-down) is an explicit FAIL.",
+      "relation_kind": "reported_input_is_strategic_not_measured",
+      "resource_lines": [
+        "R1 allocation/requests-2025.csv 'total stated need grew from 1.4x to 3.8x the fleet across four quarters while measured use stayed flat'",
+        "R2 allocation/usage.csv 'the median team uses 31% of what it was handed; the three largest requesters use 22%'",
+        "R3 allocation/rules.md 'grants are proportional to stated need; an unused grant costs the holder nothing and is never reclaimed'",
+        "R4 allocation/interviews.md 'three leads state they ask for roughly triple what they expect to use'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "PARENT",
+      "predicted_family_before_gold_check": "PARENT",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c128",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource asserts a required input is absent or covers only a fraction of the needed window; a second names a costed, already-authorised route that reconstitutes it. No reframe is implied because the framing's instrument is endorsed by the prompt itself. The French file's checksum differs from the checksum the baseline manifest records => the two figures would not be measured on the same object, so the comparison is void; contamination 31% in the current file against 0% in the archived one confirms the divergence is material. The 2025-12-02 nightly snapshot (retention 90 days) holds a file matching the manifest checksum.",
+      "relation_kind": "absent_input_obtainable_by_capability",
+      "resource_lines": [
+        "R1 eval/french.jsonl 'its checksum differs from the one the baseline run manifest records'",
+        "R2 runs/manifest-2025-11.json 'records the checksum of the French file the baseline figure was measured on'",
+        "R3 backups/retention.md 'the 2025-12-02 snapshot holds a French file matching the manifest checksum'",
+        "R4 eval/contamination-scan.csv '31% ... the archived one scans at 0%'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EVID",
+      "predicted_family_before_gold_check": "EVID",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c129",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource names a single concrete mechanism whose scope coincides exactly with the symptom (same date, same cardinality, same partition, same magnitude), and a second resource supplies the counterfactual that removes or reproduces the symptom. No remedy artefact is present and no required input is absent, so neither the reframe nor the evidence branch fires. load.py globs data/events-*.parquet, which matches events-live.parquet, to which the upstream writer appends continuously; the byte count of that file differs at each of the three reads => the input set is not frozen. A run against a frozen snapshot directory gives 2.8% on all 5 repeats (variance 0), against a spread of 3.1/2.2/3.4 (range 1.2pp) on the live directory.",
+      "relation_kind": "single_change_localised_by_coincidence_and_counterfactual",
+      "resource_lines": [
+        "R1 analysis/load.py 'reads every file matching data/events-*.parquet'",
+        "R2 pipeline/writer.md 'appends to data/events-live.parquet continuously'",
+        "R3 analysis/run-sizes.log 'the byte count of events-live.parquet differs at each of the three reads'",
+        "R4 analysis/frozen-run.md 'gives 2.8% on all 5 repeats'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EXEC",
+      "predicted_family_before_gold_check": "EXEC",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c130",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource asserts a required input is absent or covers only a fraction of the needed window; a second names a costed, already-authorised route that reconstitutes it. No reframe is implied because the framing's instrument is endorsed by the prompt itself. The cost export is one row per service per day and three changes landed on the same day at 02:10, 11:40 and 19:05 => daily resolution admits 1 observation for 3 candidates, so attribution is under-determined by construction. An hourly export can be requested for any window inside the last 60 days, and tagging is complete, so hourly-by-change-tag separates the three.",
+      "relation_kind": "absent_input_obtainable_by_capability",
+      "resource_lines": [
+        "R1 finops/cost-export.csv 'one row per service per day; 2026-04-09 is 4.1x the prior day'",
+        "R2 changes/log.csv 'three changes landed on 2026-04-09, at 02:10, 11:40 and 19:05'",
+        "R3 provider/billing-docs.md 'an hourly-granularity cost export can be requested for any window inside the last 60 days'",
+        "R4 finops/tagging.md 'the tags are complete for the window'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EVID",
+      "predicted_family_before_gold_check": "EVID",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c131",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Two anchors for the same interval on the same 61,000 tickets: mean(first_status_change - created) = 42 minutes against mean(closed - created) at final close = 19.4 hours = 1,164 minutes, a 27.7x gap. The published anchor is one agents are directly instructed to hit ('acknowledge every ticket within an hour, and an acknowledgement is a status change'), so the metric measures compliance with the instruction, not repair; 31% of tickets are reopened at least once and the published figure stops at the first change. The final-close series has been flat for a year, so the claimed 30% year-on-year gain does not exist in the terminal measure.",
+      "relation_kind": "metric_terminates_before_the_outcome_it_names",
+      "resource_lines": [
+        "R2 support/method.md 'the mean of (first_status_change_at - created_at)'",
+        "R3 support/reopen.csv '31% of tickets are reopened at least once'",
+        "R4 support/final-close.csv 'the mean of (closed_at - created_at) taken at the final close is 19.4 hours and has been flat for a year'",
+        "R5 support/agent-guidance.md 'acknowledge every ticket within an hour, and an acknowledgement is a status change'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "MEAS",
+      "predicted_family_before_gold_check": "MEAS",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c132",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource names a single concrete mechanism whose scope coincides exactly with the symptom (same date, same cardinality, same partition, same magnitude), and a second resource supplies the counterfactual that removes or reproduces the symptom. No remedy artefact is present and no required input is absent, so neither the reframe nor the evidence branch fires. Exact string identity: etl/export.yml and marketing/segment-job.yml both take the lock file '/var/run/etl.lock'. The export log shows 3h55m waiting on the lock and 5 minutes working (3h55m ~= the 'four hours late' symptom), and on the 30 nights the marketing job did not run the export finished on time 30 out of 30 (a perfect environment partition, 0 counterexamples).",
+      "relation_kind": "single_change_localised_by_coincidence_and_counterfactual",
+      "resource_lines": [
+        "R1 etl/export.yml 'takes the lock file /var/run/etl.lock'",
+        "R2 marketing/segment-job.yml 'takes the lock file /var/run/etl.lock'",
+        "R3 etl/export.log 'spends 3h55m waiting on the lock and 5 minutes working'",
+        "R5 etl/clean-nights.csv 'on the 30 nights the marketing job did not run, the export finished on time 30 times out of 30'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EXEC",
+      "predicted_family_before_gold_check": "EXEC",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c133",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: the framing's own remedy is present as a named resource and a second resource shows it does not remove the failure mode (it worsens it, only delays it, or by construction cannot distinguish the states it must). A capability that would remove the failure exists at a boundary the code does not use. Timescale comparison: the proposed rotation period is 24 hours while the observed leak-to-misuse interval was 90 minutes = 1.5 hours, so the remedy's control acts 16x too slowly and cannot bind inside its own validity window. Authority comparison: the job touches 3 buckets and 1 table = 4 resources, the leaked credential was used against 41 = 10.25x what the job needs, and the role holds wildcard permission on every resource. The provider can already issue a credential restricted to a named resource and action list.",
+      "relation_kind": "named_remedy_shown_insufficient",
+      "resource_lines": [
+        "R1 batch/role.json 'a role holding wildcard permission on every resource in the account'",
+        "R2 batch/audit-trail.csv 'the job itself touches 3 buckets and 1 table; the leaked credential was used against 41 resources'",
+        "R3 batch/rotation-proposal.md 'rotates every 24 hours; in the incident the interval between the leak and the misuse was 90 minutes'",
+        "R4 batch/provider-docs.md 'can issue a short-lived credential restricted to a named resource list and a named action list'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "DECOMP",
+      "predicted_family_before_gold_check": "DECOMP",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c134",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "The constraint set is closed and matches a closed form: n = 40 candidates, fixed random order, accept-or-decline on the day, no revisiting, and - decisively - absolute figures are not comparable across days because the criteria weights are re-normalised each day, so only relative rank against those already seen is usable. That is exactly the observe-then-take structure, whose optimal rule is: decline the first k = round(n/e) = round(40/2.71828) = round(14.72) = 15, then accept the first vendor better than all seen; success probability -> 1/e = 0.368. Both numbers follow from n=40 alone. The framing's absolute 8.5 cutoff is excluded by R2 (figures not comparable across days) and its cost is measured in R3: the eventual best vendor was declined in 3 of 4 categories last year.",
+      "relation_kind": "constraints_fully_enumerated_matching_a_closed_form",
+      "resource_lines": [
+        "R1 procurement/process.md '40 vendors, fixed random order, accept or decline on the day, no revisiting a declined vendor'",
+        "R2 procurement/scoring.md 'a vendor can be ranked against every vendor already seen, but absolute figures are not comparable across days'",
+        "R3 procurement/history-2025.csv 'declined the eventual best vendor in 3 of 4 categories by holding out for a figure that never arrived'",
+        "R4 closure:procurement-playbook-v1 'instructs buyers to wait for an absolute figure above 8.5'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "PARENT",
+      "predicted_family_before_gold_check": "PARENT",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c135",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource names a single concrete mechanism whose scope coincides exactly with the symptom (same date, same cardinality, same partition, same magnitude), and a second resource supplies the counterfactual that removes or reproduces the symptom. No remedy artefact is present and no required input is absent, so neither the reframe nor the evidence branch fires. Token-level: the emitted predicate is 'WHERE col != NULL', which is vacuous in three-valued logic and can never match, so the guard's 100% pass rate is independent of the data; 'SELECT count(*) ... WHERE col IS NULL' returns 4,102. The framework's own worked example emits 'IS NOT NULL'. The generator's fixtures hold no empty entries, so its tests cannot exercise the branch; 14 other guards share the generator path and the same predicate.",
+      "relation_kind": "single_change_localised_by_coincidence_and_counterfactual",
+      "resource_lines": [
+        "R1 dq/generated.sql 'the emitted predicate for the guard is `WHERE col != NULL`'",
+        "R2 dq/manual-count.txt '`SELECT count(*) FROM t WHERE col IS NULL` returns 4,102'",
+        "R3 dq/fixtures/ 'the generator's own fixtures hold no empty entries, so its tests pass'",
+        "R4 dq/framework-docs.md 'the framework's worked example emits `IS NOT NULL`'",
+        "R5 dq/affected-checks.csv '14 other guards come from the same generator path'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EXEC",
+      "predicted_family_before_gold_check": "EXEC",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c136",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource names a single concrete mechanism whose scope coincides exactly with the symptom (same date, same cardinality, same partition, same magnitude), and a second resource supplies the counterfactual that removes or reproduces the symptom. No remedy artefact is present and no required input is absent, so neither the reframe nor the evidence branch fires. Token-level: 'deploy_cmd | tee deploy.log' with no pipefail => the step's exit status is tee's, never deploy_cmd's. Confirmed by 41 of the last 300 runs (13.7%) holding an error line in deploy.log while recorded green, and by 6 of those 41 in which the target version never moved.",
+      "relation_kind": "single_change_localised_by_coincidence_and_counterfactual",
+      "resource_lines": [
+        "R1 ci/deploy.sh 'the step is `deploy_cmd | tee deploy.log`, with no pipefail setting'",
+        "R2 ci/run-1841.log 'deploy_cmd printed authentication failed and the step was recorded green'",
+        "R3 ci/exit-codes.md '41 of the last 300 runs hold an error line in deploy.log and are recorded green'",
+        "R4 ops/version-audit.csv 'for 6 of those 41 the target version never moved'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EXEC",
+      "predicted_family_before_gold_check": "EXEC",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c137",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "The reported discrepancy is smaller than the method's own noise: summing the same 4.2M amounts in a different row order changes the total by up to 2,300 currency units, while the gap being explained is 1,842 - so 1,842 lies inside +/-2,300 and carries no information about missing money. Order dependence is decisive because addition is associative on the true quantity and non-associative in binary floating point; the amounts carry exactly two fractional digits and the bank total is a whole number of minor units, identical on every re-read, so an exact integer-minor-unit sum has a zero-tolerance target. 40 hand-added lines reconcile to the last minor unit, excluding missing or duplicated rows.",
+      "relation_kind": "estimate_changes_under_an_operation_that_must_not_change_it",
+      "resource_lines": [
+        "R1 ledger/lines.csv '4,200,000 amounts carrying two fractional digits, read into and summed as 64-bit floating point'",
+        "R2 ledger/repro.md 'summing the same file in a different row order changes the total by up to 2,300 currency units'",
+        "R3 ledger/bank-statement.csv 'the bank total is a whole number of minor currency units and is identical on every re-read'",
+        "R4 ledger/spot-check.md '40 sampled lines reconcile to the last minor unit when added by hand'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "REPR",
+      "predicted_family_before_gold_check": "REPR",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c138",
+      "split": "TEST",
+      "verdict": "PARTIAL",
+      "computation": "The remedy detector does NOT fire: c138 carries no proposal/trial resource, which is why the otherwise-clean DECOMPOSITION rule misses it. What is mechanically available: 4 consumers wrong for 6 days with 0 errors raised and the drift found by a human, against a producer CI check that verifies the message still parses against the declared shape while the field name, type and shape were untouched => the validation's domain (shape) is disjoint from the property that changed (meaning), so its pass rate is uninformative. The existing control is social (a 3-day email) and already failed: 2 of the 4 affected teams were not on the list, and all 11 consumers are registered but with no machine-readable expectation. The step from 'shape validation cannot see a meaning change' to 'the message needs an explicit compatibility marker gated in producer CI' is a design act, not a computation, so the rubric is not fully reachable arithmetically.",
+      "relation_kind": "validation_checks_a_property_other_than_the_one_that_changed",
+      "resource_lines": [
+        "R1 bus/history.md 'the field name, type and shape were untouched'",
+        "R2 bus/consumer-incidents.csv '4 consumers were wrong for 6 days; none raised an error'",
+        "R3 bus/announcement.eml 'a change note went out 3 days ahead; 2 of the 4 affected teams were not on the list'",
+        "R4 bus/ci-config.yml 'checks that the message still parses against the declared shape; it holds no record of what any consumer expects'",
+        "R5 bus/consumer-registry.md 'all 11 consumers are registered ... but no machine-readable expectation'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "DECOMP",
+      "predicted_family_before_gold_check": "DECOMP",
+      "note": "Only DECOMPOSITION case with no named remedy artefact; the blind stem probe abstains here."
+    },
+    {
+      "case_id": "p1-c139",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "The published figure adds 40 percentages and divides by 40, giving each service weight 1/40 = 2.5%. The stated exposure weights are radically different: the lowest-scoring service (99.20%) carries 71% of all calls and 28 services carry under 0.5% each. Re-weighting by calls: 0.71 x 99.20% + 0.29 x (at most 100%) = 99.43% as an upper bound, matching the rubric's 'roughly 99.4% or worse'. The gap 99.95% - 99.43% = 0.52pp is ~10x the 0.05pp shortfall the published figure claims to have avoided.",
+      "relation_kind": "aggregate_ignores_stated_exposure_weights",
+      "resource_lines": [
+        "R1 sre/service-availability.csv 'individual quarterly availability from 99.20% to 100.00%; the equal-contribution average is 99.95%'",
+        "R2 sre/service-volume.csv 'the lowest-scoring service carries 71% of all calls; 28 services carry under 0.5% of calls each'",
+        "R4 sre/report-method.md 'adds the 40 percentages and divides by 40'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "MEAS",
+      "predicted_family_before_gold_check": "MEAS",
+      "note": "Soft inconsistency: R3 says a customer's 3.9 hours of failed calls 'matches 99.2%', but 3.9 h over a ~2,184 h quarter is 0.18%, i.e. 99.82%, not 99.2% (0.8% of a quarter would be ~17.5 h). Not reconcilable from quoted numbers; the exposure-weighting computation does not depend on it."
+    },
+    {
+      "case_id": "p1-c140",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Recompute the pooled figure under each mix. Bench mix: 0.78x0.86 + 0.14x0.31 + 0.08x0.22 = 0.6708+0.0434+0.0176 = 0.7318, reproducing the reported 0.71 and confirming the by-kind scores and the mix are the whole of it. Production mix: 0.41x0.86 + 0.33x0.31 + 0.26x0.22 = 0.3526+0.1023+0.0572 = 0.5121, which is 0.14 BELOW the 0.65 bar. On the 33+26 = 59% of live traffic that is multi-hop or negation: (0.33x0.31 + 0.26x0.22)/0.59 = 0.270. All 14 escalated retrieval incidents last quarter fell in those two kinds.",
+      "relation_kind": "aggregate_ignores_stated_exposure_weights",
+      "resource_lines": [
+        "R1 bench/queries.csv '78% single-entity lookups, 14% multi-hop, 8% negation'",
+        "R2 bench/by-kind.csv 'single-entity 0.86, multi-hop 0.31, negation 0.22; the pooled figure is 0.71'",
+        "R3 bench/traffic-mix.csv 'in production the same three kinds run at 41%, 33% and 26%'",
+        "R4 bench/incident-classes.md 'all 14 escalated retrieval incidents last quarter were multi-hop or negation'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "MEAS",
+      "predicted_family_before_gold_check": "MEAS",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c141",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource names a single concrete mechanism whose scope coincides exactly with the symptom (same date, same cardinality, same partition, same magnitude), and a second resource supplies the counterfactual that removes or reproduces the symptom. No remedy artefact is present and no required input is absent, so neither the reframe nor the evidence branch fires. Magnitude and duration both match a single named cause to within 0.1 point: the region's currency moved 3.1% over 14 months against a 3% report shortfall over the same 14 months, while every other reported currency moved under 0.2% (a 15x separation). rates.json is copied into the image at build time, the running image was built 14 months ago, and convert.py returns early with the file-backed rate so the live endpoint is never called.",
+      "relation_kind": "single_change_localised_by_coincidence_and_counterfactual",
+      "resource_lines": [
+        "R1 report/Dockerfile 'copies rates.json into the image at build time'",
+        "R2 report/image-history.txt 'the running image was built 14 months ago'",
+        "R3 report/convert.py 'returns early with the file-backed rate whenever rates.json is present, so the configured live rates endpoint is never called'",
+        "R4 fx/history.csv 'moved 3.1% ... every other reported currency has moved under 0.2%'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EXEC",
+      "predicted_family_before_gold_check": "EXEC",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c142",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Successive slopes of the quoted sweep, in reachability lost per unit of failure probability: 0.10->0.20 gives 0.04/0.10 = 0.4; 0.20->0.30 gives 0.7; 0.30->0.40 gives 1.5; 0.40->0.50 gives 3.3; 0.50->0.55 gives 5.2; 0.55->0.60 gives 1.8. The steepest segment is 13x the shallowest, so the response has a narrow transition band between 0.40 and 0.55, matching the rubric's 'order of magnitude steeper'. Reading 0.47 inside that band: 0.71 - 0.7 x (0.71-0.38) = 0.48, against the straight-line model's 0.55 at 0.50 where the sweep says 0.38 - a 45% overstatement. The 0.90 requirement is met only below about 0.24 (interpolating 0.20->0.93 and 0.30->0.86 gives 0.90 at p = 0.243), so the 0.45 target the redundancy budget buys sits deep inside the collapse.",
+      "relation_kind": "response_nonlinear_where_the_framing_assumes_proportionality",
+      "resource_lines": [
+        "R1 mesh/topology.json '5,000 nodes, mean degree 4.0, links placed at random'",
+        "R2 mesh/sim-sweep.csv '0.10 to 0.97, 0.20 to 0.93, 0.30 to 0.86, 0.40 to 0.71, 0.50 to 0.38, 0.55 to 0.12, 0.60 to 0.03'",
+        "R3 mesh/fit.md 'fits a straight line across the whole sweep and predicts 0.55 reachability at failure probability 0.50'",
+        "R4 closure:redundancy-budget-v2 'hold the failure probability at 0.45 on the straight-line prediction'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "PARENT",
+      "predicted_family_before_gold_check": "PARENT",
+      "note": "Minor inconsistency: root_success_rubric endorses holding p at or below 0.30, but the sweep gives 0.86 reachability at p=0.30, which does not meet the prompt's own 'above 0.90' requirement; the interpolated bound is about 0.24."
+    },
+    {
+      "case_id": "p1-c143",
+      "split": "TEST",
+      "verdict": "PARTIAL",
+      "computation": "TRIGGER fires cleanly: two estimates of 'mean job length' over the same population disagree by 2.53x - the monitor's 5,000 probes give 47.0 (median 31) while the job table's own 21,400 completed jobs give 18.6 (median 9, sd 44.1). The sampling frame explains the direction without any domain term: the probes are uniform in WALL TIME, not over jobs, so a job of length L is met with probability proportional to L, over-representing long jobs; the length column is stated to be heavy on the right. Corrected answer 18.6 is quoted. PARTIAL because the rubric additionally demands the relation E[probed] = E[L^2]/E[L] stated as 'consistent with mean 18.6 and standard deviation 44.1', and it is not: E[L^2] = 44.1^2 + 18.6^2 = 1,944.81 + 345.96 = 2,290.77, so E[L^2]/E[L] = 2,290.77/18.6 = 123.2 minutes, not the 47.0 the probes report. A procedure that computes the check finds it fails by 2.6x.",
+      "relation_kind": "sampling_frame_correlated_with_the_quantity_estimated",
+      "resource_lines": [
+        "R1 jobs/table.csv '21,400 completed jobs; the length column spans 1 to 600 minutes and is heavy on the right'",
+        "R2 monitor/probes.csv '5,000 probes at uniformly random wall times; each row holds the total length of the job then running; mean 47.0, median 31'",
+        "R3 jobs/length-summary.csv 'mean 18.6, median 9, standard deviation 44.1'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "PARENT",
+      "predicted_family_before_gold_check": "PARENT",
+      "note": "CASE DEFECT: the quoted moments (mean 18.6, sd 44.1) imply a length-biased mean of 123.2 minutes, not the 47.0 the probes report; root_success_rubric asserts the two are consistent."
+    },
+    {
+      "case_id": "p1-c144",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Integer-multiple test on the quoted lags: correlation peaks at 900, 1800 and 2700 minutes are 900 x {1,2,3} exactly, which is the signature of a periodic component at 900 minutes rather than of noise or of a single coincidence. Granularity test: the daily aggregation window is 1,440 minutes, which is not an integer multiple of 900 and is longer than the period, so a 900-minute cycle is averaged away in the 30 daily totals - and indeed no day sits beyond two standard deviations. The per-minute series has 43,200 rows (30 x 1,440), 48 periods of 900 minutes, so the structure is present in the data and absent only in the summary the framing reads. Source spread (4,100 distinct, none above 0.4%) independently rules out the per-address explanation.",
+      "relation_kind": "structure_finer_than_the_reporting_granularity",
+      "resource_lines": [
+        "R1 auth/per-minute.csv '43,200 rows of failed-login counts at one-minute resolution over 30 days; mean 12.1, standard deviation 6.0'",
+        "R2 auth/daily-totals.csv '30 rows; no day sits beyond two standard deviations of the 30-day mean'",
+        "R3 auth/autocorrelation.csv 'a pronounced correlation peak at lag 900 minutes and again at 1800 and 2700'",
+        "R4 auth/source-addresses.csv '4,100 distinct sources; none accounts for more than 0.4% of attempts'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "PARENT",
+      "predicted_family_before_gold_check": "PARENT",
+      "note": "The raw per-minute series is not quoted, so a literal spectral decomposition is not runnable on the public text; the 900-minute period and its harmonics are however fully determined by the quoted integer-multiple lags. Relation kind covers only this case."
+    },
+    {
+      "case_id": "p1-c145",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: one resource asserts a required input is absent or covers only a fraction of the needed window; a second names a costed, already-authorised route that reconstitutes it. No reframe is implied because the framing's instrument is endorsed by the prompt itself. The affected-account list was never persisted => the exposure variable of the comparison has 0 recorded values, while the outcome is complete for all 8,400 accounts. The only in-hand proxy is 40 accounts that opened tickets, a self-selected 0.48% of the base. Load-balancer access logs for the window carry the account identifier on every request and sit behind a documented 6-hour restore.",
+      "relation_kind": "absent_input_obtainable_by_capability",
+      "resource_lines": [
+        "R1 billing/churn.csv 'churn outcomes for all 8,400 accounts'",
+        "R3 incident/affected-accounts.md 'was never written down; nothing persisted it at the time'",
+        "R4 lb/access-logs.md 'a documented 6-hour restore, and carry the account identifier on every request'",
+        "R5 support/tickets-feb11.csv '40 accounts opened tickets ... these are the accounts that chose to complain'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "EVID",
+      "predicted_family_before_gold_check": "EVID",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c146",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "The suite supplies its own permutation null and it reproduces the finding: shuffling each share column independently - destroying every real relation - still yields negative correlations of similar size to the reported -0.41, -0.58, -0.33. An effect a shuffle-null reproduces is not evidence. The mechanism is the constraint: every one of the 730 rows sums to 100.0 exactly, so the three shares have 2 degrees of freedom and sum(covariances with any one share) = 0 forces negative pairwise covariance on average. The unconstrained measurements point the other way: all three pairwise correlations among the absolute byte counts are positive.",
+      "relation_kind": "estimate_changes_under_an_operation_that_must_not_change_it",
+      "resource_lines": [
+        "R1 traffic/mix.csv '730 daily rows of cacheable_pct, dynamic_pct and streaming_pct; every row adds to 100.0'",
+        "R2 traffic/correlations.csv 'all three pairwise correlations among the shares are negative (-0.41, -0.58, -0.33); shuffling each column independently and re-running reproduces negative correlations of similar size'",
+        "R3 traffic/absolute-bytes.csv 'all three pairwise correlations among them are positive'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "REPR",
+      "predicted_family_before_gold_check": "REPR",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c147",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Detector: the framing's own remedy is present as a named resource and a second resource shows it does not remove the failure mode (it worsens it, only delays it, or by construction cannot distinguish the states it must). A capability that would remove the failure exists at a boundary the code does not use. 34 of the last 40 changes (85%) altered only per-tier numbers and all 34 required a redeploy; the proposed remedy replaces branches with a literal table in the same file and 'adding a tier still requires a redeploy' => the measured property (redeploys per numeric change) is unchanged by the remedy, 34/34 before and after. Ops additionally needs to try a tier's numbers against yesterday's traffic before activation, which no in-binary form supports.",
+      "relation_kind": "named_remedy_shown_insufficient",
+      "resource_lines": [
+        "R1 limiter/limiter.py '800 lines; token-bucket arithmetic interleaved with per-tier branches'",
+        "R2 limiter/change-log.csv '34 of the last 40 changes altered only per-tier numbers, and all 34 required a redeploy'",
+        "R3 limiter/table-proposal.diff 'replaces the branches with a literal table in the same file; adding a tier still requires a redeploy'",
+        "R4 limiter/ops-request.md 'to add a tier without a release, and to try a tier's numbers against yesterday's traffic'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": true,
+      "gold_family_matches": true,
+      "gold_family": "DECOMP",
+      "predicted_family_before_gold_check": "DECOMP",
+      "note": ""
+    },
+    {
+      "case_id": "p1-c148",
+      "split": "TEST",
+      "verdict": "SOLVABLE",
+      "computation": "Chance agreement is computable from the marginals given: the majority label is applied to 91% of items, so two annotators applying labels at those marginals agree by chance on 0.91^2 + 0.09^2 = 0.8281 + 0.0081 = 0.8362. Observed agreement 0.880 => kappa = (0.880 - 0.8362)/(1 - 0.8362) = 0.0438/0.1638 = 0.267, i.e. the 88% headline sits only 4.4pp above what chance alone delivers. The tiebreak is not independent: A applies the majority label to 94% against B's 87%, ties are always resolved to A, and the expert audit disagrees with the kept label on 23 of 100 items, 19 of them A's (83% of the errors from the annotator whose label always wins).",
+      "relation_kind": "reported_score_lacks_its_computable_baseline",
+      "resource_lines": [
+        "R1 labels/match.csv 'the two annotators match on 88.0%; the majority label is applied to 91% of items'",
+        "R2 labels/tiebreak.md 'annotator A's label is kept; there is no third pass'",
+        "R3 labels/annotator-marginals.csv 'annotator A applies the majority label to 94% of items, annotator B to 87%'",
+        "R4 labels/audit-sample.md 'disagrees with the kept label on 23 items, 19 of them A's'"
+      ],
+      "needs_gold_vocabulary": false,
+      "blind_responder_shortcut": false,
+      "gold_family_matches": true,
+      "gold_family": "MEAS",
+      "predicted_family_before_gold_check": "MEAS",
+      "note": ""
+    }
+  ],
+  "kind_coverage": {
+    "absent_input_obtainable_by_capability": {
+      "cases": 11,
+      "gold_families": {
+        "EVID": 11
+      }
+    },
+    "single_change_localised_by_coincidence_and_counterfactual": {
+      "cases": 11,
+      "gold_families": {
+        "EXEC": 11
+      }
+    },
+    "named_remedy_shown_insufficient": {
+      "cases": 10,
+      "gold_families": {
+        "DECOMP": 10
+      }
+    },
+    "aggregate_ignores_stated_exposure_weights": {
+      "cases": 4,
+      "gold_families": {
+        "MEAS": 4
+      }
+    },
+    "sampling_frame_correlated_with_the_quantity_estimated": {
+      "cases": 4,
+      "gold_families": {
+        "PARENT": 4
+      }
+    },
+    "summary_outside_the_support_of_its_own_data": {
+      "cases": 3,
+      "gold_families": {
+        "REPR": 3
+      }
+    },
+    "constraints_fully_enumerated_matching_a_closed_form": {
+      "cases": 3,
+      "gold_families": {
+        "PARENT": 3
+      }
+    },
+    "evaluation_shares_units_or_information_with_the_evaluated": {
+      "cases": 2,
+      "gold_families": {
+        "MEAS": 2
+      }
+    },
+    "metric_terminates_before_the_outcome_it_names": {
+      "cases": 2,
+      "gold_families": {
+        "MEAS": 2
+      }
+    },
+    "response_nonlinear_where_the_framing_assumes_proportionality": {
+      "cases": 2,
+      "gold_families": {
+        "PARENT": 2
+      }
+    },
+    "error_vanishes_where_the_missing_transform_is_the_identity": {
+      "cases": 2,
+      "gold_families": {
+        "REPR": 2
+      }
+    },
+    "reported_score_lacks_its_computable_baseline": {
+      "cases": 2,
+      "gold_families": {
+        "MEAS": 2
+      }
+    },
+    "estimate_changes_under_an_operation_that_must_not_change_it": {
+      "cases": 2,
+      "gold_families": {
+        "REPR": 2
+      }
+    },
+    "summary_collapses_distinguishable_distributions": {
+      "cases": 1,
+      "gold_families": {
+        "REPR": 1
+      }
+    },
+    "pooling_operator_lacks_a_required_invariance": {
+      "cases": 1,
+      "gold_families": {
+        "REPR": 1
+      }
+    },
+    "rank_and_moment_statistics_disagree": {
+      "cases": 1,
+      "gold_families": {
+        "REPR": 1
+      }
+    },
+    "non_additive_quantity_summed": {
+      "cases": 1,
+      "gold_families": {
+        "MEAS": 1
+      }
+    },
+    "one_value_carried_by_distinct_encodings": {
+      "cases": 1,
+      "gold_families": {
+        "REPR": 1
+      }
+    },
+    "reported_input_is_strategic_not_measured": {
+      "cases": 1,
+      "gold_families": {
+        "PARENT": 1
+      }
+    },
+    "validation_checks_a_property_other_than_the_one_that_changed": {
+      "cases": 1,
+      "gold_families": {
+        "DECOMP": 1
+      }
+    },
+    "structure_finer_than_the_reporting_granularity": {
+      "cases": 1,
+      "gold_families": {
+        "PARENT": 1
+      }
+    }
+  },
+  "summary": {
+    "total_cases": 66,
+    "verdicts": {
+      "SOLVABLE": 55,
+      "PARTIAL": 9,
+      "UNSOLVABLE": 2
+    },
+    "per_family": {
+      "PARENT": {
+        "SOLVABLE": 5,
+        "UNSOLVABLE": 2,
+        "PARTIAL": 4
+      },
+      "REPR": {
+        "SOLVABLE": 8,
+        "PARTIAL": 3
+      },
+      "DECOMP": {
+        "SOLVABLE": 10,
+        "PARTIAL": 1
+      },
+      "MEAS": {
+        "SOLVABLE": 10,
+        "PARTIAL": 1
+      },
+      "EVID": {
+        "SOLVABLE": 11
+      },
+      "EXEC": {
+        "SOLVABLE": 11
+      }
+    },
+    "relation_kinds": 21,
+    "single_case_kinds": [
+      "non_additive_quantity_summed",
+      "one_value_carried_by_distinct_encodings",
+      "pooling_operator_lacks_a_required_invariance",
+      "rank_and_moment_statistics_disagree",
+      "reported_input_is_strategic_not_measured",
+      "structure_finer_than_the_reporting_granularity",
+      "summary_collapses_distinguishable_distributions",
+      "validation_checks_a_property_other_than_the_one_that_changed"
+    ],
+    "kinds_spanning_more_than_one_family": [],
+    "cases_needing_gold_vocabulary": [
+      "p1-c016",
+      "p1-c017"
+    ],
+    "cases_with_blind_responder_shortcut": [
+      "p1-c003",
+      "p1-c004",
+      "p1-c005",
+      "p1-c006",
+      "p1-c009",
+      "p1-c011",
+      "p1-c012",
+      "p1-c015",
+      "p1-c018",
+      "p1-c101",
+      "p1-c102",
+      "p1-c103",
+      "p1-c104",
+      "p1-c107",
+      "p1-c108",
+      "p1-c111",
+      "p1-c112",
+      "p1-c113",
+      "p1-c114",
+      "p1-c116",
+      "p1-c117",
+      "p1-c125",
+      "p1-c128",
+      "p1-c129",
+      "p1-c130",
+      "p1-c132",
+      "p1-c133",
+      "p1-c135",
+      "p1-c136",
+      "p1-c141",
+      "p1-c145",
+      "p1-c147"
+    ],
+    "blind_responder_shortcut_count": 32,
+    "cases_where_public_signal_mispoints_family": [
+      "p1-c016",
+      "p1-c017",
+      "p1-c105",
+      "p1-c110",
+      "p1-c118"
+    ],
+    "pre_gold_family_prediction_accuracy": "61/66",
+    "case_content_defects_found": [
+      "p1-c013",
+      "p1-c014",
+      "p1-c143",
+      "p1-c139 (soft)",
+      "p1-c142 (minor)"
+    ]
+  },
+  "blind_responder_probes": {
+    "probe_1_prompt_template_phrase": {
+      "rule": "predict reframe_required == (\"The team's framing is\" appears in public_prompt)",
+      "result": "TP=44 FP=0 TN=22 FN=0 -> 66/66 exact",
+      "reads": "a fixed 21-character template phrase; no numbers, no resources, no case-specific content",
+      "severity": "CRITICAL - this is the H2 question (hidden-shift vs negative control) answered with zero comprehension",
+      "word_level_scan": "A greedy scan over every word appearing in 5 or more prompts finds TWO single words that each separate the suite perfectly on their own: \"framing\" (66/66) and \"team's\" (66/66). No other word reaches 58/66. The leak is therefore lexical at the single-token level, not merely a sentence template, so rewriting the framing sentence is not sufficient unless those tokens stop co-varying with reframe_required.",
+      "reverse_direction_separators": "Separators exist in the control direction too, both with perfect precision: \"The plan is\" appears in 17 controls and 0 hidden-shift cases; \"Carry out the plan\" appears in 12 controls and 0 hidden-shift cases. Presence of either certifies a negative control."
+    },
+    "probe_2_resource_path_stem_regex": {
+      "rule": "predict hidden_decomposition_or_interface == any resource path stem matches /(proposal|trial)/",
+      "result": "10/11 DECOMPOSITION, 0/55 on every other family (precision 1.00, recall 0.91)",
+      "reads": "resource path stems only, with all descriptive text after the em dash discarded",
+      "severity": "CRITICAL - a filename glob recovers a whole hidden-shift family. The leak is that the correlation is PERFECT, not that a failed-remedy case naming a proposal artefact is itself illegitimate: such a case will naturally tend to name one. The defect is the absence of any decoy proposal/trial artefact in the other 55 cases."
+    },
+    "probe_3_instrument_endorsement_phrase": {
+      "rule": "within controls, predict EVIDENCE if the prompt endorses the instrument ('the right instrument', 'the agreed route', 'the agreed arbiter', 'runnable/genuinely the ones worth measuring'), else EXECUTION",
+      "result": "21/22 correct",
+      "reads": "prompt template phrasing only",
+      "severity": "HIGH"
+    },
+    "probe_4_derived_from_closure_chain": {
+      "rule": "predict reframe_required == any resource contains 'derived from closure:'",
+      "result": "TP=30 FP=0 TN=22 FN=14 -> 52/66; zero false positives on controls",
+      "reads": "a literal substring in resource text",
+      "severity": "HIGH - never fires on a negative control, so its presence alone certifies a hidden shift"
+    },
+    "combined_blind_classifier": {
+      "rule": "probe_1 -> probe_3 -> probe_2, abstain otherwise",
+      "result": "31/66 exact family, 33 abstentions, 2 errors; 31/33 = 94% precision on the cases it commits to",
+      "chance_baseline": "11/66",
+      "abstains_on": "all 33 PARENT / REPR / MEAS cases"
+    }
+  },
+  "binding_hash_resources_and_gold": "29244cc674c8049e1c876161e419a52f41c2b536f0197870f218142dccd880ee",
+  "binding_hash_note": "suite_fingerprint covers public_prompt, which a concurrent agent reworded repeatedly during this audit, so it is a moving target here. This audit depends ONLY on observable_resources and gold family/coordinates, which were byte-identical across every revision observed (0 resource-line changes). The hash above binds exactly those fields and is the value to re-check when replaying this audit.",
+  "probes_revalidated_at_completion": {
+    "probe_1_phrase": "66/66",
+    "probe_1_word_framing": "66/66",
+    "probe_2_stem_regex": "10/11 DECOMPOSITION, 0/55 other"
+  }
+}

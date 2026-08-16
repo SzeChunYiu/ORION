@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c137",
   "task_family": "hidden_representation_or_coordinate_system",
-  "public_prompt": "The reconciler compares the sum of 4.2M ledger line amounts against the bank total and reports a gap of 1,842 currency units. The team's framing is: the gap is small, so accept a 0.01% tolerance and close the month. Report the true total and account for the gap.",
+  "public_prompt": "The reconciler compares the sum of 4.2M ledger line amounts against the bank total and reports a gap of 1,842 currency units. The working position: the gap is small, so accept a 0.01% tolerance and close the month. Report the true total and account for the gap.",
   "observable_resources": [
     "ledger/lines.csv — 4,200,000 amounts carrying two fractional digits, read into and summed as 64-bit floating point",
     "ledger/repro.md — summing the same file in a different row order changes the total by up to 2,300 currency units",

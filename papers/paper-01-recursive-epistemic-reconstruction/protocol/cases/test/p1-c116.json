@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c116",
   "task_family": "execution_only_negative_control",
-  "public_prompt": "An offline replay that used to take 40 minutes now takes 40 hours after a routine code review landed. The replay covers the same window and the same model as before the review. The plan is to find the defect and repair it. Carry out the plan: name the defect and give the repair.",
+  "public_prompt": "An offline replay that used to take 40 minutes now takes 40 hours after a routine code review landed. The replay covers the same window and the same model as before the review. The route being taken: find the defect and repair it. Name the defect and give the repair.",
   "observable_resources": [
     "recsys/diff-4471.patch — the review added one debug log line whose message is built by string interpolation of the whole feature frame",
     "recsys/profile.txt — 96% of wall time is spent formatting that one message",

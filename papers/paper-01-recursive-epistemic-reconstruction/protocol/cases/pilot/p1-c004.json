@@ -1,11 +1,11 @@
 {
   "case_id": "p1-c004",
   "task_family": "hidden_decomposition_or_interface",
-  "public_prompt": "Customers are occasionally charged twice. The team's framing is: the client waits too long before giving up, so shorten the timeout from 30 s to 10 s and fewer requests will be re-sent. Diagnose the defect and specify the fix.",
+  "public_prompt": "Customers are occasionally charged twice. The reading so far: the client waits too long before giving up, so shorten the timeout from 30 s to 10 s and fewer requests will be re-sent. Diagnose the defect and specify the fix.",
   "observable_resources": [
     "payments/api.md — POST /charge accepts {amount, account} and returns a freshly generated charge reference; no request field lets a caller say that this attempt repeats an earlier one",
     "payments/incidents.csv — 41 duplicate charges in 90 days; in all 41 the client saw a socket timeout and re-sent",
-    "payments/timeout-trial.md — a two-week trial at a 10 s timeout produced 63 duplicate charges, not fewer",
+    "payments/timeout-note.md — a two-week trial at a 10 s timeout produced 63 duplicate charges, not fewer",
     "payments/gateway-docs.md — the downstream gateway accepts a caller-supplied reference and refuses a repeat of the same reference within 24 hours",
     "closure:refund-automation-v2 — closed; refunds detected duplicates automatically after the fact",
     "closure:card-scheme-compliance — closed; certifies the integration against the scheme rules on data handling; rests on the scheme audit, not on how duplicates arise",

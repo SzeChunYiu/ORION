@@ -63,6 +63,7 @@ from orion.core.residuals import Responsibility
 
 from .cases import PublicView
 from .observation import (
+    PROMPT_SOURCE,
     Observation,
     ObservationKind,
     Reduction,
@@ -224,6 +225,49 @@ def _source_text(reduction: Reduction, source: str) -> str:
     return " ".join(o.text for o in reduction.in_source(source)).lower()
 
 
+# Words too common to say two clauses describe the same change. Kept small and
+# generic: this is a stopword list, not a place to put case vocabulary.
+_COMMON = frozenset(
+    {
+        "about", "after", "again", "against", "already", "another", "because", "before",
+        "being", "between", "could", "every", "first", "found", "into", "least", "other",
+        "report", "should", "since", "state", "still", "their", "there", "these", "thing",
+        "those", "under", "until", "where", "which", "while", "whose", "would",
+        "diagnose", "specify", "defect", "settled", "course", "framing",
+    }
+)
+
+
+def _restates_the_prompt(reduction: Reduction, source: str) -> bool:
+    """Does this line re-state the change the prompt proposes?
+
+    Stem-free by construction. The prompt names an intervention — `double the
+    worker pool`, `shorten the timeout from 30 s to 10 s`, `cap the service at
+    200 requests per second` — and the line reporting the outcome re-uses its
+    numbers or its nouns. Sharing a number, or two distinctive word stems, is
+    what says the two describe the same change; the resource's file name plays
+    no part, which matters because the suite's own audit found a stem regex
+    over `proposal|trial` recovers a family at precision 1.00.
+    """
+
+    def stems(text: str) -> set[str]:
+        return {
+            word[:5]
+            for word in re.findall(r"[a-z]{5,}", text.lower())
+            if word not in _COMMON
+        }
+
+    prompt = _source_text(reduction, PROMPT_SOURCE)
+    line = _source_text(reduction, source)
+    prompt_numbers = {
+        o.value for o in reduction.in_source(PROMPT_SOURCE) if o.value is not None
+    }
+    line_numbers = {o.value for o in reduction.in_source(source) if o.value is not None}
+    if prompt_numbers & line_numbers:
+        return True
+    return len(stems(prompt) & stems(line)) >= 2
+
+
 def _is_null_control(reduction: Reduction, source: str) -> bool:
     """A stated shuffle or independence control, not a remedy for the problem."""
 
@@ -240,6 +284,21 @@ def _unit_interval(reduction: Reduction, source: str) -> list[float]:
         if o.value is not None and 0.0 < o.value < 1.0
     )
     return [value for _, _, value in rows if value is not None]
+
+
+def _shares(reduction: Reduction) -> list[Observation]:
+    """Share-valued observations, ranges included.
+
+    `the 5xx share rose from 0.4% to 6.1%` reduces to a RANGE and carries no
+    single value; a rule that read only point values would miss the very
+    statement saying the share moved.
+    """
+
+    return [
+        o
+        for o in reduction.observations
+        if o.unit_class == "share" and (o.value is not None or o.low is not None)
+    ]
 
 
 def _source_values(reduction: Reduction, source: str, unit_class: str) -> list[float]:
@@ -472,10 +531,13 @@ def rule_record_resolution_too_coarse(reduction: Reduction) -> Iterator[Finding]
     ]
     # Two or more stated clock times inside one dated line are candidates the
     # record's daily rows cannot tell apart.
+    # Read at line level: the clock times are written as a comma-separated
+    # list, so each lands in its own clause and no clause holds two.
     candidates = [
-        o
-        for o in reduction.observations
-        if len(_CLOCK_TIME.findall(o.text)) >= 2 and _ISO_DATE.search(o.text)
+        source
+        for source in reduction.sources()
+        if len(_CLOCK_TIME.findall(_source_text(reduction, source))) >= 2
+        and _ISO_DATE.search(_source_text(reduction, source))
     ]
     if coarse and finer and candidates:
         yield Finding(
@@ -483,10 +545,11 @@ def rule_record_resolution_too_coarse(reduction: Reduction) -> Iterator[Finding]
             responsibilities=(Responsibility.EVIDENCE,),
             strength=_SPECIFIC,
             detail=(
-                f"{len(_CLOCK_TIME.findall(candidates[0].text))} candidates fall inside one unit "
-                "of the record's stated resolution, and a finer record is obtainable"
+                f"{len(_CLOCK_TIME.findall(_source_text(reduction, candidates[0])))} candidates "
+                "fall inside one unit of the record's stated resolution, and a finer record is "
+                "obtainable"
             ),
-            observations=(coarse[0], finer[0], candidates[0]),
+            observations=(coarse[0], finer[0]) + reduction.in_source(candidates[0])[:1],
         )
 
 
@@ -510,7 +573,10 @@ def rule_emitted_artefact_differs_from_reference(reduction: Reduction) -> Iterat
         if any(word in _source_text(reduction, o.source) for word in ("worked example", "docs",
                                                                       "previous", "used to"))
     ]
-    emitted = [o for o in quoted if o not in reference and o.line_has("TRANSFORM")]
+    # Anything quoted that is not itself the reference. Requiring a TRANSFORM
+    # marker here would key on the difference between `emits` and `emitted`,
+    # which is grammar rather than relation.
+    emitted = [o for o in quoted if o not in reference]
     for shown in reference:
         for produced in emitted:
             if shown.source == produced.source:
@@ -581,12 +647,14 @@ def rule_framing_remedy_tried_and_failed(reduction: Reduction) -> Iterator[Findi
     """
 
     for observation in reduction.observations:
-        if not observation.line_has("TRIAL"):
+        if observation.source == PROMPT_SOURCE or observation.source.startswith("closure:"):
             continue
         if observation.line_has("RESTORED") or not observation.line_has("UNCHANGED", "WORSE"):
             continue
         if _is_null_control(reduction, observation.source):
             continue  # a null control, not a remedy: see the representation rule
+        if not _restates_the_prompt(reduction, observation.source):
+            continue
         yield Finding(
             rule="framing_remedy_tried_and_failed",
             responsibilities=_BOUNDARY_PAIR,
@@ -838,35 +906,50 @@ def rule_data_change_requires_code_change(reduction: Reduction) -> Iterator[Find
 def rule_summary_outside_complete_support(reduction: Reduction) -> Iterator[Finding]:
     """A reported central value lies outside the data it summarises.
 
-    The stated clusters carry counts; when those counts add to the stated
-    population size the clusters *are* the support, and a mean outside them
-    cannot be a mean of those numbers under any weighting. On the wind case the
-    support is 352-359 and 1-9 over 31 + 29 = 60 readings, and 181.4 is in
-    neither.
+    The stated clusters each carry a count written immediately before them.
+    When those counts add to the stated population size the clusters *are* the
+    support, and a mean outside all of them cannot be a mean of those numbers
+    under any weighting. On the wind case the support is 352-359 and 1-9 over
+    31 + 29 = 60 readings, and 181.4 is in neither.
+
+    Each range is paired with the count nearest before it in the same clause,
+    because `31 readings between 352 and 359 and 29 readings between 1 and 9`
+    writes both clusters into one clause and taking the clause's largest count
+    twice would double one cluster and miss the other.
     """
 
-    ranges = [o for o in reduction.of_kind(ObservationKind.RANGE) if o.low is not None]
-    counted = [o for o in ranges if any(
-        s.value is not None and s.text == o.text for s in _numeric(reduction)
-    )]
-    if len(counted) < 2:
-        return
     population = {o.value for o in _numeric(reduction) if o.value is not None}
-    cluster_counts = [
-        max(
-            (s.value for s in _numeric(reduction) if s.text == o.text and s.value is not None),
-            default=0.0,
-        )
-        for o in counted
-    ]
-    if sum(cluster_counts) not in population:
+    counted: list[tuple[Observation, float]] = []
+    total = 0.0
+    for source in reduction.sources():
+        # The clusters that make up one support are written on one line. Summing
+        # ranges across lines would add a declared domain (`degrees from 0 to
+        # 359`) to the clusters inside it and never balance.
+        rows: list[tuple[Observation, float]] = []
+        for bound in reduction.in_source(source):
+            if bound.kind is not ObservationKind.RANGE or bound.low is None:
+                continue
+            preceding = [
+                o.value
+                for o in _numeric(reduction)
+                if o.source == source
+                and o.clause_index == bound.clause_index
+                and o.position < bound.position
+                and o.value is not None
+            ]
+            if preceding:
+                rows.append((bound, preceding[-1]))
+        if len(rows) >= 2 and sum(count for _, count in rows) in population:
+            counted, total = rows, sum(count for _, count in rows)
+            break
+    if not counted:
         return
     for observation in _numeric(reduction):
         if not _is_central(observation) or observation.value is None:
             continue
         if any(
-            o.low is not None and o.high is not None and o.low <= observation.value <= o.high
-            for o in counted
+            (bound.low or 0.0) <= observation.value <= (bound.high or 0.0)
+            for bound, _ in counted
         ):
             continue
         yield Finding(
@@ -875,9 +958,9 @@ def rule_summary_outside_complete_support(reduction: Reduction) -> Iterator[Find
             strength=_SPECIFIC + 0.1,
             detail=(
                 f"the reported summary {observation.value:g} lies outside every stated cluster, "
-                f"whose counts add to the stated population of {sum(cluster_counts):.0f}"
+                f"whose counts add to the stated population of {total:.0f}"
             ),
-            observations=(observation,) + tuple(counted),
+            observations=(observation,) + tuple(bound for bound, _ in counted),
         )
         return
 
@@ -995,9 +1078,13 @@ def rule_null_control_reproduces_effect(reduction: Reduction) -> Iterator[Findin
 
     for observation in reduction.observations:
         lowered = observation.text.lower()
-        if "shuffl" not in lowered and "independently" not in lowered:
+        # The control must both destroy the structure and be stated to give the
+        # effect back. `two groups worked independently` describes two people,
+        # not a null, and reading it as one fires a coordinate fault on a case
+        # whose relation is a capture-recapture estimate.
+        if not any(word in lowered for word in ("shuffl", "permut", "at random")):
             continue
-        if not any(word in lowered for word in ("reproduc", "similar", "same")):
+        if "reproduc" not in lowered and "of similar size" not in lowered:
             continue
         yield Finding(
             rule="null_control_reproduces_effect",
@@ -1104,33 +1191,40 @@ def rule_operation_not_invariant(reduction: Reduction) -> Iterator[Finding]:
         return
 
 
+_COORDINATE_WORDS = ("heading", "turn", "chassis", "latitude", "longitude", "span", "degree")
+
+
 def rule_error_confined_to_stated_regime(reduction: Reduction) -> Iterator[Finding]:
-    """The discrepancy sits entirely where a stated coordinate property bites.
+    """The discrepancy sits exactly where a stated coordinate property bites.
 
     Ninety-four per cent of the mismatched assignments are north of 55 degrees,
-    where one degree of longitude covers half the ground span it covers at 25;
-    the recovered path agrees on straight runs and diverges after every turn,
-    where the heading swings ninety degrees a second. The error is a function
-    of the coordinate, which is the definition of a coordinate fault.
+    where one degree of longitude covers half the ground span it covers at 25.
+    The recovered path agrees with the surveyed marks along straight runs and
+    diverges after every turn, where the heading swings ninety degrees a
+    second. In both, the error is a function of the coordinate rather than of
+    the thing being measured, which is what a coordinate fault means.
+
+    Two entries, because a case may state the confinement either as a share of
+    the error falling inside a region, or as agreement in one regime beside
+    divergence in another.
     """
 
+    regime = [
+        o
+        for o in reduction.observations
+        if any(word in o.text.lower() for word in _COORDINATE_WORDS)
+    ]
+    if len({o.source for o in regime}) < 2:
+        return
     concentrated = [
         o
         for o in _numeric(reduction)
-        if o.unit_class == "share" and o.value is not None and o.value >= 80
+        if o.unit_class == "share"
+        and o.value is not None
+        and o.value >= 80
         and _subject_has(o, "of those", "of them", "sit", "are")
     ]
-    regime = [
-        o
-        for o in reduction.with_marker("ENCODING")
-        if any(word in o.text.lower() for word in ("degree", "turn", "heading", "span"))
-    ]
-    divergence = [
-        o
-        for o in reduction.observations
-        if any(word in o.text.lower() for word in ("diverges", "differ from", "disagree"))
-    ]
-    if concentrated and len({o.source for o in regime}) >= 2:
+    if concentrated:
         yield Finding(
             rule="error_confined_to_stated_regime",
             responsibilities=(Responsibility.REPRESENTATION,),
@@ -1142,17 +1236,23 @@ def rule_error_confined_to_stated_regime(reduction: Reduction) -> Iterator[Findi
             observations=(concentrated[0], regime[0]),
         )
         return
-    if divergence and len(regime) >= 2 and _case_has(reduction, "EXTERNAL"):
+    for observation in reduction.observations:
+        lowered = observation.text.lower()
+        if "agrees with" not in lowered and "agree with" not in lowered:
+            continue
+        if "diverge" not in lowered and "disagree" not in lowered:
+            continue
         yield Finding(
             rule="error_confined_to_stated_regime",
             responsibilities=(Responsibility.REPRESENTATION,),
-            strength=_STRUCTURAL,
+            strength=_SPECIFIC,
             detail=(
-                "the discrepancy appears only in the regime where a stated coordinate quantity "
-                "changes fastest"
+                "the derived quantity is stated to agree in one regime and diverge in another, "
+                "and the regimes are named by a coordinate quantity rather than by the subject"
             ),
-            observations=(divergence[0], regime[0]),
+            observations=(observation, regime[0]),
         )
+        return
 
 
 def rule_distinct_encodings_never_merge(reduction: Reduction) -> Iterator[Finding]:
@@ -1182,37 +1282,46 @@ def rule_distinct_encodings_never_merge(reduction: Reduction) -> Iterator[Findin
 def rule_running_total_summarised_as_level(reduction: Reduction) -> Iterator[Finding]:
     """A cumulative series is averaged, so the answer is the level not the flow.
 
-    The series is stated to be a running total since process start; consecutive
-    samples differ by a few hundred thousand while the reported hourly figure
-    is the four-billion level itself. Averaging a cumulative series measures
-    where the counter stood, never what happened in the window.
+    The series is stated to be a running total since process start. Its own
+    samples move by a few hundred thousand across the window while sitting at
+    the four-billion mark, and the published figure is that mark. Averaging a
+    cumulative series measures where the counter stood, never what happened in
+    the window, and the ratio of the samples' span to their level is what says
+    so — the same ratio an increment would have to be read from.
     """
 
-    if not any("running total" in o.text.lower() or "since start" in o.text.lower()
-               for o in reduction.observations):
+    if not any(
+        "running total" in o.text.lower() or "since start" in o.text.lower()
+        for o in reduction.observations
+    ):
         return
-    levels = sorted(
-        (o for o in _numeric(reduction) if o.value is not None and o.value > 1e6),
-        key=lambda o: o.value or 0.0,
-    )
-    if len(levels) < 3:
+    for source in reduction.sources():
+        levels = [value for value in reduction.numbers_in(source) if value > 1e6]
+        if len(levels) < 2:
+            continue
+        low, high = min(levels), max(levels)
+        span = high - low
+        if span <= 0 or span > 0.01 * high:
+            continue
+        published = [
+            o
+            for o in _numeric(reduction)
+            if o.source != source and o.value is not None and relative_gap(o.value, high) < 0.01
+        ]
+        if not published:
+            continue
+        yield Finding(
+            rule="running_total_summarised_as_level",
+            responsibilities=(Responsibility.REPRESENTATION,),
+            strength=_SPECIFIC + 0.1,
+            detail=(
+                f"the stated samples move by {span:g} across the window while sitting at the "
+                f"{high:g} level of a cumulative series, and {published[0].value:g} is published "
+                "as the window's volume"
+            ),
+            observations=(published[0],) + reduction.in_source(source)[:2],
+        )
         return
-    low, high = levels[0], levels[-1]
-    if low.value is None or high.value is None or high.value == 0:
-        return
-    increment = high.value - low.value
-    if increment <= 0 or increment > 0.5 * high.value:
-        return
-    yield Finding(
-        rule="running_total_summarised_as_level",
-        responsibilities=(Responsibility.REPRESENTATION,),
-        strength=_SPECIFIC + 0.1,
-        detail=(
-            f"the stated samples rise by {increment:g} across the window while the published "
-            f"figure is the {high.value:g} level of a cumulative series"
-        ),
-        observations=(low, high),
-    )
 
 
 def rule_components_contradict_reported_direction(reduction: Reduction) -> Iterator[Finding]:
@@ -1367,45 +1476,54 @@ def rule_headline_below_trivial_baseline(reduction: Reduction) -> Iterator[Findi
 
 
 def rule_stated_calibration_contradicts_use(reduction: Reduction) -> Iterator[Finding]:
-    """The emitted number is used as a rate that its own table says it is not.
+    """The emitted number is used as a rate its own table says it is not.
 
     Rows scoring 0.30-0.35 are fraudulent 7.8% of the time and rows scoring
-    0.90-0.95 are 19.4%: the stated table gives observed frequencies far from
-    the scores, so multiplying the score by an amount does not give an expected
-    amount.
+    0.90-0.95 are 19.4%: each stated band is paired with the observed rate
+    written after it, and both sit far from the band itself. Multiplying such a
+    score by an amount does not give an expected amount, and the table says so
+    without anyone having to know what calibration is.
     """
 
-    buckets = [
-        o
-        for o in reduction.of_kind(ObservationKind.RANGE)
-        if o.low is not None and o.high is not None and 0 <= o.low <= 1 and o.high <= 1
-    ]
-    if len(buckets) < 2:
+    for source in reduction.sources():
+        rows = sorted(
+            reduction.in_source(source), key=lambda o: (o.clause_index, o.position)
+        )
+        pairs: list[tuple[Observation, Observation]] = []
+        pending: Observation | None = None
+        for item in rows:
+            if (
+                item.kind is ObservationKind.RANGE
+                and item.low is not None
+                and item.high is not None
+                and 0.0 <= item.low
+                and item.high <= 1.0
+            ):
+                pending = item
+            elif pending is not None and item.unit_class == "share" and item.value is not None:
+                pairs.append((pending, item))
+                pending = None
+        if len(pairs) < 2:
+            continue
+        mismatched = [
+            (band, rate)
+            for band, rate in pairs
+            if relative_gap(100.0 * ((band.low or 0.0) + (band.high or 0.0)) / 2.0, rate.value or 0.0)
+            > 0.4
+        ]
+        if len(mismatched) < 2:
+            continue
+        yield Finding(
+            rule="stated_calibration_contradicts_use",
+            responsibilities=(Responsibility.MEASUREMENT,),
+            strength=_SPECIFIC,
+            detail=(
+                f"{len(mismatched)} stated score bands have observed rates far from the score "
+                "itself, so the emitted number is not the rate it is multiplied as"
+            ),
+            observations=tuple(item for pair in mismatched[:2] for item in pair),
+        )
         return
-    observed = [
-        o
-        for o in _numeric(reduction)
-        if o.unit_class == "share" and o.value is not None and o.text == buckets[0].text
-    ]
-    if not observed:
-        return
-    mismatches = 0
-    for bucket, rate in zip(buckets, observed):
-        midpoint = 100.0 * ((bucket.low or 0.0) + (bucket.high or 0.0)) / 2.0
-        if rate.value is not None and relative_gap(midpoint, rate.value) > 0.4:
-            mismatches += 1
-    if mismatches < 2:
-        return
-    yield Finding(
-        rule="stated_calibration_contradicts_use",
-        responsibilities=(Responsibility.MEASUREMENT,),
-        strength=_SPECIFIC,
-        detail=(
-            f"{mismatches} stated score bands have observed rates far from the score itself, so "
-            "the emitted number is not the rate it is multiplied as"
-        ),
-        observations=tuple(buckets[:2]) + tuple(observed[:2]),
-    )
 
 
 def rule_two_stopping_points_for_one_duration(reduction: Reduction) -> Iterator[Finding]:
@@ -1459,11 +1577,7 @@ def rule_counted_population_admits_excluded_outcomes(reduction: Reduction) -> It
         and any(word in o.text.lower() for word in ("whatever its status", "counts each attempt",
                                                     "counts each", "re-sends"))
     ]
-    moved = [
-        o
-        for o in _numeric(reduction)
-        if o.unit_class == "share" and o.value is not None and _subject_has(o, "rose", "fell")
-    ]
+    moved = [o for o in _shares(reduction) if _subject_has(o, "rose", "fell")]
     if len(admits) >= 1 and len({o.source for o in moved}) >= 2:
         yield Finding(
             rule="counted_population_admits_excluded_outcomes",

@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c148",
   "task_family": "hidden_measurement_or_operationalization",
-  "public_prompt": "Two annotators labelled 3,000 conversations for whether the issue was settled. They match on 88%, so the label set was declared reliable, and a classifier at 87% was declared close to the ceiling those labels allow. The team's framing is: 88% match means reliable labels. Report whether the label set supports the ceiling claim.",
+  "public_prompt": "Two annotators labelled 3,000 conversations for whether the issue was settled. They match on 88%, so the label set was declared reliable, and a classifier at 87% was declared close to the ceiling those labels allow. The route being taken: 88% match means reliable labels. Report whether the label set supports the ceiling claim.",
   "observable_resources": [
     "labels/match.csv — 3,000 double-labelled items; the two annotators match on 88.0%; the majority label is applied to 91% of items",
     "labels/tiebreak.md — where the two differ, annotator A's label is kept; there is no third pass",

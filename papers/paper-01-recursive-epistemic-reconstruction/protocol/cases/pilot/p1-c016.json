@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c016",
   "task_family": "hidden_parent_domain",
-  "public_prompt": "Rank 40 engineers by code-review quality. The team's framing is: average the 1-5 ratings each engineer received and sort. Produce the ranking and state how much of it you would trust.",
+  "public_prompt": "Rank 40 engineers by code-review quality. What the group intends: average the 1-5 ratings each engineer received and sort. Produce the ranking and state how much of it you would trust.",
   "observable_resources": [
     "reviews/ratings.csv — 900 rows of pr_id, author_id, reviewer_id, rating in 1..5",
     "reviews/reviewer-marginals.csv — per-reviewer mean rating ranges from 2.4 to 4.6; each reviewer rated between 12 and 60 pull requests",

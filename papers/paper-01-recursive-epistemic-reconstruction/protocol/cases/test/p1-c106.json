@@ -1,13 +1,14 @@
 {
   "case_id": "p1-c106",
   "task_family": "hidden_parent_domain",
-  "public_prompt": "Two review groups worked the same specification revision independently on the same day. The team's framing is: merge the two defect lists, report the count found, and close the review. Report how many defects the specification still holds that neither group logged, with your reasoning.",
+  "public_prompt": "Two review groups worked the same specification revision independently on the same day. The route being taken: merge the two defect lists, report the count found, and close the review. Report how many defects the specification still holds that neither group logged, with your reasoning.",
   "observable_resources": [
     "review/pass-a.json — group A logged 74 distinct defect ids",
     "review/pass-b.json — group B logged 61 distinct defect ids from the same revision, with no sight of group A's list",
     "review/overlap.json — 29 defect ids appear in both lists",
     "review/protocol.md — the two groups worked in separate rooms on the same day; neither list was visible to the other group at any point",
     "closure:spec-signoff-r4 — closed; states 'review complete, 106 defects found and triaged'",
+    "review/defect-ids.md — both groups logged against the same 412 numbered specification clauses, so the two lists are directly comparable",
     "closure:review-staffing-budget — closed; funds two review groups per release; rests on the headcount plan, not on how many defects either group logs",
     "closure:spec-template-v2 — closed; fixes the document structure every specification follows; rests on the authoring standard, not on any defect estimate"
   ],

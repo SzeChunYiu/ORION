@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c127",
   "task_family": "hidden_parent_domain",
-  "public_prompt": "Internal compute is handed out in proportion to what each team states it needs. Stated need now runs at 3.8x the fleet while measured use is flat. The team's framing is: the figures are inaccurate, so review them and scale every request down. Propose the allocation rule to adopt and say why it works.",
+  "public_prompt": "Internal compute is handed out in proportion to what each team states it needs. Stated need now runs at 3.8x the fleet while measured use is flat. The approach on the table: the figures are inaccurate, so review them and scale every request down. Propose the allocation rule to adopt and say why it works.",
   "observable_resources": [
     "allocation/requests-2025.csv — total stated need grew from 1.4x to 3.8x the fleet across four quarters while measured use stayed flat",
     "allocation/usage.csv — the median team uses 31% of what it was handed; the three largest requesters use 22%",
@@ -9,7 +9,8 @@
     "allocation/interviews.md — three leads state they ask for roughly triple what they expect to use because they assume everyone else does",
     "closure:fleet-purchase-2026 — closed; sizes next year's hardware purchase from total stated need",
     "closure:capital-request-fy26 — closed; derived from closure:fleet-purchase-2026, submits the capital ask",
-    "closure:datacentre-power-contract — closed; fixes the power agreement for the hall; rests on the site agreement, not on how compute is handed out"
+    "closure:datacentre-power-contract — closed; fixes the power agreement for the hall; rests on the site agreement, not on how compute is handed out",
+    "closure:compute-chargeback-account — closed; names the cost centre each team's usage is booked against; rests on the finance structure, not on how compute is handed out"
   ],
   "protected_gold": {
     "reframe_required": true,
