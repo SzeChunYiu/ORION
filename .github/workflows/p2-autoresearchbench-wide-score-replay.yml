@@ -24,7 +24,7 @@ jobs:
       - name: Install scorer runtime only
         run: |
           python -m pip install -e '.[dev]'
-          python -m pip install requests tiktoken python-dotenv tqdm
+          python -m pip install requests tiktoken python-dotenv tqdm openai
 
       - name: Recover frozen candidate artifact
         env:
@@ -65,7 +65,7 @@ jobs:
             --gt /tmp/arb-wide-replay/wide_gt.jsonl \
             --manifest /tmp/arb-wide-replay/reconstructed_split_manifest.json
           python - <<'PY'
-          import hashlib, json
+          import json
           from pathlib import Path
           root=Path('/tmp/arb-wide-replay')
           frozen=json.loads((root/'split_manifest.json').read_text())
