@@ -2,6 +2,7 @@ import json
 
 import pytest
 
+from orion.core.search import SearchQuery, SearchRouteKind
 from orion.providers.experience.memory import InMemoryExperienceStore
 from orion.providers.live_phase2 import (
     PROVIDER_MANIFEST_SCHEMA,
@@ -9,7 +10,10 @@ from orion.providers.live_phase2 import (
     build_phase2_live_provider_stack_from_env,
     write_live_phase2_provider_manifest,
 )
-from orion.self_orion.live_accounted import AccountedShadowLiveTrialRunner
+from orion.self_orion.live_accounted import (
+    AccountedShadowLiveTrialRunner,
+    AttemptRecordingRetrievalProvider,
+)
 from orion.self_orion.live_campaign_factory import build_live_phase2_trial_harness
 
 
@@ -87,7 +91,9 @@ def test_live_harness_reuses_provider_family_binds_verifier_records_and_accounts
     assert harness.baseline._retrieval is stack.retrieval
     assert isinstance(harness.runner, AccountedShadowLiveTrialRunner)
     assert harness.runner._baseline is harness.baseline
-    assert harness.runner._retrieval_recorder is not None
+    assert isinstance(
+        harness.runner._retrieval_recorder, AttemptRecordingRetrievalProvider
+    )
     assert harness.runner._retrieval_recorder._delegate is stack.retrieval
     assert harness.runner._retrieval_call_cost_units == 2.0
     assert harness.runner._llm_call_cost_units == 3.0
@@ -109,3 +115,29 @@ def test_live_harness_preserves_explicit_host_experience_store():
     store = InMemoryExperienceStore()
     harness = build_live_phase2_trial_harness(stack, experience_store=store)
     assert harness.runner._orion._experience_store is store
+
+
+def test_attempt_recorder_keeps_query_when_provider_raises():
+    class Broken:
+        def search(self, query, *, limit):
+            raise TimeoutError("source timeout")
+
+    recorder = AttemptRecordingRetrievalProvider(Broken())
+    query = SearchQuery(
+        "query:failed",
+        "microglia complement",
+        "route:failed",
+        SearchRouteKind.PARENT_DISCIPLINE,
+        "neuroimmunology",
+    )
+    mark = recorder.mark()
+    with pytest.raises(TimeoutError, match="source timeout"):
+        recorder.search(query, limit=7)
+    observations = recorder.observations_since(mark)
+    assert len(observations) == 1
+    observation = observations[0]
+    assert observation.query_id == "query:failed"
+    assert observation.query_text == "microglia complement"
+    assert observation.route_id == "route:failed"
+    assert observation.limit == 7
+    assert observation.items == ()
