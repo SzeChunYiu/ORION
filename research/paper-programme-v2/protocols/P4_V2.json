@@ -9,7 +9,7 @@
   "incremental_decision": {"guards": [{"comparison": "delta_lte", "metric": "false_authority_promotion_rate", "threshold": 0.0}, {"comparison": "delta_lte", "metric": "false_negative_rate", "threshold": 0.02}], "primary": {"comparison": "relative_delta_lte", "metric": "protected_verification_cost", "threshold": -0.1}},
   "incremental_over_protocol": "P4.protected-authority.v1",
   "local_evidence_authority": "LOCAL_ENGINEERING_ONLY",
-  "mechanism_id": "protected-defeater-evidence-planner",
+  "mechanism_id": "protected-defeater-evidence-planning",
   "metrics": {"primary": ["protected_verification_cost"], "secondary": ["false_authority_promotion_rate", "false_negative_rate", "legitimate_coverage", "unresolved_critical_defeaters", "risk_reduction_per_check", "protected_check_count", "latency", "cannot_check_rate"]},
   "negative_controls": ["cheap_noncritical_distraction", "self_authored_check", "unprotected_evidence", "missing_custody", "planner_output_cannot_authorize"],
   "outcome_accessed": false,
