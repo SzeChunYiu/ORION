@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c126",
   "task_family": "hidden_measurement_or_operationalization",
-  "public_prompt": "A churn model scores 0.93 offline and 0.61 in its first month live. The team's framing is: the world moved, so this is drift; retrain on recent data. Report the cause and the corrected offline figure.",
+  "public_prompt": "A churn model scores 0.93 on the offline evaluation and 0.61 in its first month live. The team's framing is: the world moved between the two, so this is drift; retrain on recent data and the gap closes. Report the cause of the gap and the corrected offline figure.",
   "observable_resources": [
     "churn/split.md — rows are shuffled and divided 80/20 at random; one customer contributes up to 36 monthly rows",
     "churn/leak-audit.csv — 71% of customers in the evaluation side also appear in the training side",

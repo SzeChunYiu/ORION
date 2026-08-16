@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c121",
   "task_family": "hidden_measurement_or_operationalization",
-  "public_prompt": "A risk scorer reports 94% accuracy on the fraud holdout. The team's framing is: 94% is high, so the emitted number can be multiplied by the transaction amount to give expected loss. Report whether the emitted number can be used that way.",
+  "public_prompt": "A risk scorer reports 94% accuracy on the fraud holdout. The team's framing is: 94% is high, so the number it emits can be multiplied by the transaction amount to give expected loss. Report whether the emitted number can be used that way, and what would be required first.",
   "observable_resources": [
     "risk/holdout.csv — 200,000 rows carrying the emitted number and the outcome; the fraud base rate is 1.9%",
     "risk/accuracy.md — 94% of rows are classified correctly at a 0.5 cutoff; a rule that always answers 'not fraud' is right on 98.1%",

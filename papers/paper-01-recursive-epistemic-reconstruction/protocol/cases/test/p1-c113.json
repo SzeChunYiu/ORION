@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c113",
   "task_family": "hidden_decomposition_or_interface",
-  "public_prompt": "When a user closes the browser mid-request, the work it started keeps running for up to 20 minutes and the cluster stays saturated. The team's framing is: the cluster is undersized, so double the worker pool. Diagnose the defect and specify the fix.",
+  "public_prompt": "When a user closes the browser mid-request, the work it started keeps running for up to 20 minutes and the cluster stays saturated for everyone else. The team's framing is: the cluster is undersized, so double the worker pool. Diagnose the defect and specify the fix.",
   "observable_resources": [
     "api/handler.go — on client disconnect the handler returns; the three downstream calls it started are never told",
     "cluster/metrics.csv — 38% of worker seconds at peak are spent on requests whose client had already gone",

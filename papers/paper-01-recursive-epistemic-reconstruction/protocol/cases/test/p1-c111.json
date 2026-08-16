@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c111",
   "task_family": "hidden_decomposition_or_interface",
-  "public_prompt": "A processing pipeline dies out of memory when the consumer falls behind. The team's framing is: the pipeline needs more room, so raise the container limit from 4 GiB to 16 GiB. Diagnose the defect and specify the fix.",
+  "public_prompt": "A processing pipeline dies out of memory whenever the consumer falls behind the producer for any length of time. The team's framing is: the pipeline needs more room, so raise the container limit from 4 GiB to 16 GiB. Diagnose the defect and specify the fix.",
   "observable_resources": [
     "stream/pipeline.py — the producer appends to an unbounded in-process list; a separate thread drains it",
     "stream/oom-history.csv — 7 crashes in 30 days; heap dumps put 92-96% of memory in that pending list",

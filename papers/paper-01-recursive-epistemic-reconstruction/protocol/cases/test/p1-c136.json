@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c136",
   "task_family": "execution_only_negative_control",
-  "public_prompt": "Every deployment is recorded as successful, including one that never reached the target. The plan is to find the defect in the pipeline step and repair it. Carry out the plan: name the defect and give the repair.",
+  "public_prompt": "Every deployment is recorded as successful, including one that never reached the target and left the previous version live. The plan is to find the defect in the pipeline step and repair it. Carry out the plan: name the defect and give the repair.",
   "observable_resources": [
     "ci/deploy.sh — the step is `deploy_cmd | tee deploy.log`, with no pipefail setting",
     "ci/run-1841.log — deploy_cmd printed 'authentication failed' and the step was recorded green",

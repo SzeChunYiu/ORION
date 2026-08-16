@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c120",
   "task_family": "hidden_representation_or_coordinate_system",
-  "public_prompt": "A supplier list is deduplicated by lowercasing and trimming, leaving 12,404 distinct names. The team's framing is: the remaining 12,404 are genuinely distinct suppliers. Report the distinct supplier count and the procedure that produces it.",
+  "public_prompt": "A supplier list is deduplicated by lowercasing and trimming, leaving 12,404 distinct names drawn from six source ledgers. The team's framing is: those 12,404 are genuinely distinct suppliers. Report the distinct supplier count and the procedure that produces it.",
   "observable_resources": [
     "suppliers/raw.csv — 18,102 rows; the name column is UTF-8 text from six source ledgers",
     "suppliers/dedup-run.log — after lowercasing and trimming: 12,404 distinct names",

@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c118",
   "task_family": "hidden_measurement_or_operationalization",
-  "public_prompt": "A dashboard adds up the daily distinct-device counts for a month and publishes 41.2M as 'people reached this month'. The team's framing is: adding the days gives the month. Report the month's reach.",
+  "public_prompt": "A dashboard adds up the daily distinct-device counts across a month and publishes 41.2M as 'people reached this month'. The team's framing is: each day's count is correct, so adding the days gives the month. Report the month's reach and the procedure that produces it.",
   "observable_resources": [
     "analytics/daily-distinct.csv — 30 rows of distinct device identifiers per day, adding to 41.2M",
     "analytics/month-reconciliation.md — a sampled reconciliation across the whole month finds 6.9M distinct device identifiers in total",

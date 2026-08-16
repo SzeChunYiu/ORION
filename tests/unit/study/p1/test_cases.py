@@ -9,10 +9,13 @@ the suite is at fault and the suite is what gets fixed.
 
 from __future__ import annotations
 
+import random
 import re
 from collections import Counter
+from collections.abc import Callable, Sequence
 from dataclasses import replace
 from pathlib import Path
+from statistics import mean
 
 import pytest
 
@@ -227,6 +230,92 @@ def test_reopening_everything_is_punished_on_every_hidden_shift_case(suites, spl
         directed = reopen_f1(set(gold), gold)
         assert directed == 1.0, case.case_id
         assert full_reset < 1.0, case.case_id
+
+
+PUBLIC_SURFACES: dict[str, Callable[[HiddenShiftCase], float]] = {
+    "prompt_len": lambda c: float(len(c.public_prompt)),
+    "n_resources": lambda c: float(len(c.observable_resources)),
+    "resource_chars": lambda c: float(sum(len(r) for r in c.observable_resources)),
+    "total_chars": lambda c: float(len(c.public_prompt) + sum(len(r) for r in c.observable_resources)),
+    "n_closures": lambda c: float(sum(r.startswith("closure:") for r in c.observable_resources)),
+}
+
+
+def max_between_group_mean_gap(values: Sequence[float], labels: Sequence[str]) -> float:
+    grouped: dict[str, list[float]] = {}
+    for value, label in zip(values, labels):
+        grouped.setdefault(label, []).append(value)
+    means = [mean(group) for group in grouped.values()]
+    return max(means) - min(means)
+
+
+def shuffle_null_p(values: Sequence[float], labels: Sequence[str], *, reps: int = 2000) -> float:
+    """Probability of a gap this large when the labels carry no information.
+
+    Deliberately not a best-single-threshold detector. A threshold is
+    under-powered against a non-monotonic ordering, and it passed a real
+    prompt-length leak whose family means ran high-middle-low-middle with no
+    separating cut. Comparing group means catches that; a shuffle-equal-n null is
+    what makes the number mean anything.
+    """
+
+    observed = max_between_group_mean_gap(values, labels)
+    rng = random.Random(20260815)
+    shuffled = list(labels)
+    hits = 0
+    for _ in range(reps):
+        rng.shuffle(shuffled)
+        hits += max_between_group_mean_gap(values, shuffled) >= observed
+    return hits / reps
+
+
+def surface_labels(cases: Sequence[HiddenShiftCase]) -> dict[str, list[str]]:
+    return {
+        "family": [case.task_family.value for case in cases],
+        "control_vs_hidden_shift": [str(case.task_family in CONTROLS) for case in cases],
+    }
+
+
+@pytest.mark.parametrize("split", list(Split))
+def test_no_public_surface_separates_the_families(suites, split) -> None:
+    """Size and shape of the public view must not carry the label.
+
+    Everything a system sees before reasoning — how long the prompt is, how many
+    resources there are, how much text they hold, how many are closures — has to
+    be uninformative about the family, or part of the answer is available without
+    reading anything. Two real leaks were found and fixed this way: negative
+    controls were separable by resource bulk, and TEST prompt length separated
+    the six families at p=0.006.
+    """
+
+    cases = suites[split]
+    offenders = []
+    for name, feature in PUBLIC_SURFACES.items():
+        values = [feature(case) for case in cases]
+        for label_name, labels in surface_labels(cases).items():
+            p = shuffle_null_p(values, labels)
+            if p < 0.05:
+                offenders.append((name, label_name, p))
+    assert offenders == []
+
+
+def test_the_surface_leak_check_detects_a_planted_imbalance(suites) -> None:
+    """The clean result above is only worth having if the alarm can fire.
+
+    Plants exactly the defect that was missed: one family's prompts made
+    systematically longer, with no separating threshold created.
+    """
+
+    cases = suites[Split.TEST]
+    labels = [case.task_family.value for case in cases]
+    honest = [float(len(case.public_prompt)) for case in cases]
+    assert shuffle_null_p(honest, labels) >= 0.05
+
+    planted = [
+        value + (120.0 if case.task_family is TaskFamily.HIDDEN_PARENT_DOMAIN else 0.0)
+        for value, case in zip(honest, cases)
+    ]
+    assert shuffle_null_p(planted, labels) < 0.05
 
 
 def closure_components(case: HiddenShiftCase) -> list[set[str]]:

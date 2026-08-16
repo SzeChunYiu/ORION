@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c104",
   "task_family": "hidden_decomposition_or_interface",
-  "public_prompt": "The pricing routine cannot run without live network access and gives a different answer on the same inputs from one run to the next. The team's framing is: the tests need better doubles, so add fourteen more. Diagnose the defect and specify the fix.",
+  "public_prompt": "The pricing routine cannot run without live network access and gives a different answer on the same inputs from one run to the next. The team's framing is: the tests need better doubles, so add fourteen more of them. Diagnose the defect and specify the fix.",
   "observable_resources": [
     "pricing/price.py — a single 400-line function that issues 6 network calls, reads two environment variables, draws from a random generator and writes to a metrics sink, all interleaved with the arithmetic",
     "pricing/tests/ — 61 tests, 48 of which build stand-ins for those call sites; 9 are marked unreliable",
