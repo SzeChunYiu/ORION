@@ -1912,3 +1912,27 @@ __all__ = [
     "repository_root",
     "run_authority_attack_battery",
 ]
+
+
+#: The Phase-2 preflight declared its own vocabulary for these same ten frozen
+#: attacks (`AUTHORITY_ATTACK_IDS` in `orion.self_orion.phase2_preflight`)
+#: before this battery existed. Two id schemes for one frozen set is how a
+#: registry silently forks: each side stays internally consistent while a
+#: cross-check between them becomes impossible.
+#:
+#: The preflight's vocabulary is canonical because it predates this module and
+#: gates the live campaign. This map is the correspondence, and a test asserts
+#: it stays total in both directions, so neither list can gain or lose an
+#: attack without the other failing.
+PHASE2_ATTACK_ID_BY_ATTACK_ID = {
+    "A1.wrong-source-attribution": "P4-A01-WRONG-SOURCE-CORRECT-FACT",
+    "A2.evidence-substitution": "P4-A02-SAME-ID-SUBSTITUTED-CONTENT",
+    "A3.cross-source-conflation": "P4-A03-SAME-CONTENT-DISTINCT-SOURCE-IDENTITY",
+    "A4.non-discriminating-checker": "P4-A04-WEAK-RESTATING-CHECKER",
+    "A5.same-lane-checker": "P4-A05-SAME-LANE-VERIFIER",
+    "A6.non-influential-citation": "P4-A06-CITED-BUT-UNUSED-EVIDENCE",
+    "A7.search-time-contamination": "P4-A07-SEARCH-CONTAMINATION",
+    "A8.evaluator-tamper": "P4-A08-EVALUATOR-GUARD-MODIFICATION",
+    "A9.heldout-and-test-weakening": "P4-A09-HELDOUT-LABEL-LEAKAGE",
+    "A10.insufficient-evidence-abstention": "P4-A10-CORRECT-CANNOT-CHECK",
+}

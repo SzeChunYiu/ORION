@@ -568,3 +568,24 @@ def test_required_telemetry_that_is_absent_is_cannot_check_not_pass() -> None:
         observed_activity=CandidateActivity("c"),
     )
     assert clean.status is BenchmarkStatus.PASS
+
+
+def test_the_two_attack_vocabularies_stay_in_correspondence() -> None:
+    """Two id schemes exist for one frozen set of ten attacks.
+
+    The Phase-2 preflight declared `AUTHORITY_ATTACK_IDS` before this battery
+    existed; this battery then declared its own descriptive ids. Two vocabularies
+    for one frozen set is how a registry silently forks — each side stays
+    internally consistent while a cross-check between them becomes impossible,
+    and the preflight ends up gating on a list nothing else recognises.
+
+    The map is asserted total in both directions, so neither list can gain or
+    lose an attack without this failing.
+    """
+
+    from orion.benchmarks.authority_attacks import PHASE2_ATTACK_ID_BY_ATTACK_ID
+    from orion.self_orion.phase2_preflight import AUTHORITY_ATTACK_IDS
+
+    assert set(PHASE2_ATTACK_ID_BY_ATTACK_ID) == set(ATTACK_IDS)
+    assert set(PHASE2_ATTACK_ID_BY_ATTACK_ID.values()) == set(AUTHORITY_ATTACK_IDS)
+    assert len(PHASE2_ATTACK_ID_BY_ATTACK_ID) == 10

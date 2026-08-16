@@ -83,3 +83,67 @@ def test_invalid_protocol_never_advances_to_binding_or_execution():
     report = assess_phase2_preflight(_preflight(resource_budget_units=0))
     assert report.status is Phase2PreflightStatus.INVALID
     assert "positive_resource_budget_required" in report.blockers
+
+
+def test_fabricated_attack_ids_cannot_open_the_shadow_trial() -> None:
+    """The gate guarding the entire live campaign used to count strings.
+
+    Ten unique caller-supplied ids satisfied it, so
+    READY_TO_EXECUTE_SHADOW_TRIAL was reachable with attack ids literally named
+    "totally-made-up-0" through "-9". Counting a caller's strings certifies the
+    caller, not the attacks. Identity against the frozen registry is the only
+    thing that certifies the attacks.
+    """
+
+    from orion.core.problem import Problem
+    from orion.self_orion.phase2_preflight import (
+        AUTHORITY_ATTACK_IDS,
+        FrozenTrialTask,
+        Phase2ClosurePreflight,
+        Phase2PreflightStatus,
+        ResearchTrialKind,
+        assess_phase2_preflight,
+    )
+
+    digest = "a" * 64
+
+    def task(task_id, kind):
+        return FrozenTrialTask(
+            task_id=task_id,
+            kind=kind,
+            problem=Problem(problem_id=task_id, question="q"),
+            variation_signature="v",
+            split_id="s",
+            required_evidence_ids=("e1",),
+        )
+
+    def preflight(attack_ids):
+        return Phase2ClosurePreflight(
+            protocol_id="P",
+            subject_revision_hash=digest,
+            provider_manifest_hash=digest,
+            evaluator_artifact_hash=digest,
+            evaluation_epoch_id="E",
+            baseline_id="B",
+            resource_budget_units=10,
+            tasks=(
+                task("t1", ResearchTrialKind.WIDE_LITERATURE),
+                task("t2", ResearchTrialKind.DEEP_TARGET),
+            ),
+            authority_attack_ids=attack_ids,
+        )
+
+    fabricated = assess_phase2_preflight(
+        preflight(tuple(f"totally-made-up-{index}" for index in range(10)))
+    )
+    assert fabricated.status is Phase2PreflightStatus.INVALID
+    assert any("unknown_authority_attack_ids" in item for item in fabricated.blockers)
+
+    # A missing frozen attack is named, not merely counted.
+    incomplete = assess_phase2_preflight(preflight(tuple(AUTHORITY_ATTACK_IDS)[:9]))
+    assert incomplete.status is Phase2PreflightStatus.INVALID
+    assert any("frozen_authority_attacks_not_declared" in item for item in incomplete.blockers)
+
+    # And the real ten still open the trial, so this is not refusal-by-default.
+    genuine = assess_phase2_preflight(preflight(tuple(AUTHORITY_ATTACK_IDS)))
+    assert genuine.status is Phase2PreflightStatus.READY_TO_EXECUTE_SHADOW_TRIAL
