@@ -552,7 +552,9 @@ def verdicts_to_metrics(verdicts: tuple[BaselineVerdict, ...]) -> AuthorityBench
 
     # False negatives: clean positive cases (gold expects PROMOTE) that were
     # blocked or returned CANNOT_CHECK instead of promoted.
-    clean_positive_set = [v for v in verdicts if v.task_family == "CLEAN_POSITIVE"]
+    # ORION/ablation runners map family names via map_attack_family (CLEAN_POSITIVE → clean_supported_positive),
+    # so we check both the raw and mapped forms.
+    clean_positive_set = [v for v in verdicts if v.task_family in ("CLEAN_POSITIVE", "clean_supported_positive")]
     clean_positive_total = len(clean_positive_set)
     false_negative_count = sum(1 for v in clean_positive_set if not v.promoted)
 
