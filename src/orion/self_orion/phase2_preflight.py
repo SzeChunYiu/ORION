@@ -149,8 +149,24 @@ def assess_phase2_preflight(preflight: Phase2ClosurePreflight) -> Phase2Prefligh
         blockers.append("duplicate_trial_task_id")
     if ResearchTrialKind.WIDE_LITERATURE not in kinds or ResearchTrialKind.DEEP_TARGET not in kinds:
         blockers.append("wide_and_deep_tasks_required")
-    if len(preflight.authority_attack_ids) != 10 or len(set(preflight.authority_attack_ids)) != 10:
-        blockers.append("ten_unique_authority_attacks_required")
+    # Identity, not count. This previously asked only for ten unique strings,
+    # so ten fabricated ids satisfied the gate that guards the entire live
+    # campaign — READY_TO_EXECUTE_SHADOW_TRIAL was reachable with attack ids
+    # literally named "totally-made-up-0" through "-9". Counting a caller's
+    # strings certifies the caller, not the attacks.
+    #
+    # AUTHORITY_ATTACK_IDS was already declared in this module, ten lines above
+    # the check that ignored it. The registry existing and the gate consulting
+    # it are different things, which is the whole lesson.
+    declared = tuple(preflight.authority_attack_ids)
+    unknown = sorted(set(declared) - set(AUTHORITY_ATTACK_IDS))
+    absent = sorted(set(AUTHORITY_ATTACK_IDS) - set(declared))
+    if len(declared) != len(set(declared)):
+        blockers.append("duplicate_authority_attack_id")
+    if unknown:
+        blockers.append(f"unknown_authority_attack_ids:{','.join(unknown)}")
+    if absent:
+        blockers.append(f"frozen_authority_attacks_not_declared:{','.join(absent)}")
     if preflight.resource_budget_units <= 0:
         blockers.append("positive_resource_budget_required")
     if blockers:
