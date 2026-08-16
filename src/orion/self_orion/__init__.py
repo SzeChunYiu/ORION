@@ -1,3 +1,23 @@
+from orion.self_orion.authority_trial import (
+    AuthorityAttackEvaluationStatus,
+    AuthorityAttackExecution,
+    AuthorityAttackExecutor,
+    AuthorityAttackResult,
+    AuthoritySafetyOutcome,
+    AuthorityTrialBinding,
+    AuthorityTrialReport,
+    AuthorityTrialRunner,
+    FROZEN_AUTHORITY_ATTACKS,
+    FrozenAuthorityAttackSpec,
+    ProtectedAuthorityEvaluation,
+    ProtectedAuthorityEvaluator,
+)
+from orion.self_orion.baseline import (
+    SimpleBaselineArtifact,
+    SimpleLLMRetrievalBaseline,
+    baseline_bundle_to_dict,
+    write_baseline_bundle,
+)
 from orion.self_orion.change_control import (
     CandidateExecutionReceipt,
     ChangeControlResult,
@@ -27,6 +47,11 @@ from orion.self_orion.development_fibre import (
     DevelopmentFibre,
     compile_development_fibre,
     rank_development_fibres,
+)
+from orion.self_orion.development_trial import (
+    FrozenObservedFailureCase,
+    ShadowDevelopmentTrialReport,
+    ShadowDevelopmentTrialRunner,
 )
 from orion.self_orion.evolution_archive import (
     EvolutionArchive,
@@ -74,6 +99,23 @@ from orion.self_orion.novelty import (
     DevelopmentNoveltyEvidence,
     DevelopmentNoveltyReport,
     classify_development_novelty,
+)
+from orion.self_orion.phase2_campaign import (
+    Phase2CampaignCriterion,
+    Phase2CampaignEvidence,
+    Phase2CampaignReport,
+    Phase2CampaignStage,
+    Phase2ExternalObservation,
+    Phase2ExternalObservationBundle,
+    Phase2ExternalObservationStatus,
+    assess_phase2_campaign,
+)
+from orion.self_orion.phase2_campaign_io import (
+    load_external_observation_bundle,
+    write_authority_trial_report,
+    write_campaign_report,
+    write_development_trial_report,
+    write_external_observation_bundle,
 )
 from orion.self_orion.rakl_donor_gate import (
     RAKL_DONOR_COMMIT,
@@ -124,6 +166,10 @@ from orion.self_orion.self_driving import (
     SelfDrivingCycleStatus,
     ShadowSelfDrivingController,
     investigation_supports_change,
+)
+from orion.self_orion.trial_io import (
+    shadow_live_trial_report_to_dict,
+    write_shadow_live_trial_report,
 )
 
 __all__ = [name for name in globals() if not name.startswith("_")]
