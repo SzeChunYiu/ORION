@@ -24,6 +24,13 @@ from orion.self_orion.issue_state import (
     InterventionOutcome,
     InterventionOutcomeKind,
 )
+from orion.self_orion.rakl_donor_gate import (
+    RAKL_DONOR_COMMIT,
+    RaklDonorAudit,
+    RaklDonorRouteReceipt,
+    RaklDonorRouteVerdict,
+    RaklDonorSearchRoute,
+)
 from orion.self_orion.saturation_vector import (
     DevelopmentNoveltyRound,
     assess_development_saturation,
@@ -46,6 +53,32 @@ def _flat_saturation():
         ),
     )
     return assess_development_saturation(rounds)
+
+
+def _no_surviving_rakl_donor_audit() -> RaklDonorAudit:
+    """Known-world positive control: donor search was complete and found no candidate.
+
+    The benchmark is allowed to test the downstream method-basis gate only after
+    the donor-before-invention prerequisite is satisfied. An empty candidate set
+    here means the frozen search found no target-relevant RAKL donor; it is not a
+    claim about the real repository outside this benchmark fixture.
+    """
+
+    return RaklDonorAudit(
+        audit_id="rakl-donor-audit:self-orion-known-world",
+        target_signature="known-world missing operator after ordinary causes excluded",
+        rakl_commit=RAKL_DONOR_COMMIT,
+        route_receipts=tuple(
+            RaklDonorRouteReceipt(
+                route=route,
+                verdict=RaklDonorRouteVerdict.COMPLETE,
+                scope=f"known-world searched {route.value.lower()}",
+                evidence_ids=(f"evidence:rakl-donor:{route.value.lower()}",),
+            )
+            for route in RaklDonorSearchRoute
+        ),
+        candidates=(),
+    )
 
 
 @dataclass
@@ -218,6 +251,7 @@ def run_self_orion_known_world() -> BenchmarkReport:
     )
 
     saturation = _flat_saturation()
+    donor_audit = _no_surviving_rakl_donor_audit()
     not_ready = assess_invention_readiness(
         saturation,
         InventionReadinessEvidence(
@@ -228,6 +262,7 @@ def run_self_orion_known_world() -> BenchmarkReport:
             method_basis_gap_supported=True,
             ontology_gap_supported=False,
             discriminator_evidence_ids=("evidence:disc",),
+            rakl_donor_audit=donor_audit,
         ),
     )
     ready = assess_invention_readiness(
@@ -240,6 +275,7 @@ def run_self_orion_known_world() -> BenchmarkReport:
             method_basis_gap_supported=True,
             ontology_gap_supported=False,
             discriminator_evidence_ids=("evidence:disc",),
+            rakl_donor_audit=donor_audit,
         ),
     )
 
@@ -252,18 +288,16 @@ def run_self_orion_known_world() -> BenchmarkReport:
             tuple(item.kind for item in issue.interventions)
             == (InterventionOutcomeKind.REGRESSED, InterventionOutcomeKind.IMPROVED),
         ),
-        (
-            "fresh-transfer outcome is distinguished",
-            issue.interventions[-1].fresh_transfer,
-        ),
+        ("fresh-transfer outcome is distinguished", issue.interventions[-1].fresh_transfer),
         ("resolved issue cannot silently reopen", reopen_without_evidence_blocked),
         (
             "new evidence can reopen the persistent issue identity",
-            reopened.issue_id == issue.issue_id and reopened.status is DevelopmentIssueStatus.OPEN,
+            reopened.issue_id == issue.issue_id
+            and reopened.status is DevelopmentIssueStatus.OPEN,
         ),
         ("ordinary causes block method invention", not not_ready.ready),
         (
-            "invention readiness may identify an operator gap only after gates",
+            "invention readiness may identify an operator gap only after ordinary-cause and RAKL-donor gates",
             ready.ready and ready.target is InventionTarget.OPERATOR,
         ),
         ("readiness grants no invention authority", not ready.grants_invention_authority),
@@ -285,6 +319,7 @@ def run_self_orion_known_world() -> BenchmarkReport:
         ),
         observations=(
             "Persistent issue state is adapted from issue-centric self-improvement nearest work; it is not claimed as ORION novelty.",
+            "Clean-generation invention is tested only after a pinned RAKL donor search fixture finds no surviving donor.",
         ),
     )
 
