@@ -100,7 +100,7 @@ Statistics:
 - [ ] **Figure P2-3:** cumulative unique relevant discoveries vs queries/time.
 - [ ] **Figure P2-4:** per-route marginal unique-relevant contribution with earned-independence annotation.
 - [ ] **Figure P2-5:** route overlap matrix/heatmap using content identity.
-- [ ] **Figure P2-6:** stopping confusion matrix / premature closure by failure family.
+- [x] **Figure P2-6:** stopping-safety failure figure generated from the immutable offline summary and CI-checked (`manuscript/figures/P2-6_stopping_failures.{svg,tex}`).
 - [ ] **Figure P2-7:** Wide vs Deep external performance by system.
 - [x] **Table P2-1:** benchmark/data/license/provider/freeze manifest.
 - [ ] **Table P2-2:** final baseline + ablation + cost results **with intervals** — offline result is descriptive and therefore cannot satisfy the interval requirement.
