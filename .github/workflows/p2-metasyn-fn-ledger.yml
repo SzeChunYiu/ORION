@@ -48,6 +48,19 @@ jobs:
             --output /tmp/metasyn-fn/METASYN_SCREENING_FN_LEDGER_V1.json
           cat /tmp/metasyn-fn/METASYN_SCREENING_FN_LEDGER_V1.json
 
+      - name: Check committed ledger matches fresh derivation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          generated = json.loads(Path('/tmp/metasyn-fn/METASYN_SCREENING_FN_LEDGER_V1.json').read_text())
+          committed = json.loads(Path('papers/paper-02-open-world-scientific-discovery/evidence/external_results/METASYN_SCREENING_FN_LEDGER_V1.json').read_text())
+          if committed != generated:
+              raise SystemExit('committed MetaSyn FN ledger differs from fresh evaluator-side derivation')
+          print('METASYN_FN_LEDGER_SNAPSHOT=GREEN')
+          PY
+
       - name: Archive exact FN ledger
         uses: actions/upload-artifact@v4
         with:
