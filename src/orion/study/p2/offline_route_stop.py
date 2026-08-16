@@ -1,21 +1,8 @@
-"""Complete-gold route-stop false-positive / false-negative replay for P2.
+"""Complete-gold route-stop FP/FN oracle replay for the frozen P2 companion.
 
-This implements O1 from ``protocol/MEASUREMENT_PLAN_V1.md`` on the frozen
-offline world.  It is evaluator-side only: route reachability and protected gold
-never cross the candidate boundary.
-
-Definitions are frozen by O1:
-
-* FP: a declared route stop while at least one previously-unfound gold identity
-  remains reachable on that route and at least one route-call budget unit remains.
-* Oracle exhaustion: earliest host event index after which the route has no
-  not-yet-found reachable gold identity.
-* FN: more than one further attempt on that route after oracle exhaustion.  One
-  confirming attempt after true exhaustion is explicitly allowed.
-
-The three frozen repeat seeds are deterministic stability checks, not independent
-observations.  Repeats are checked for identical route/stop traces and collapsed
-to one representative per task before denominators are counted.
+Implements O1 from ``protocol/MEASUREMENT_PLAN_V1.md`` evaluator-side.  Candidate
+systems never receive protected gold or route reachability.  Deterministic
+repeats are checked for identical route/stop traces and collapsed within task.
 """
 
 from __future__ import annotations
@@ -33,22 +20,11 @@ from .systems import StopScope
 def _trace_signature(outcome: RunOutcome) -> tuple[Any, ...]:
     return (
         tuple(
-            (
-                event.index,
-                event.route,
-                event.status,
-                event.retrieved_content_identities,
-            )
+            (event.index, event.route, event.status, event.retrieved_content_identities)
             for event in outcome.trace.route_events
         ),
         tuple(
-            (
-                item.index,
-                item.scope,
-                item.route,
-                item.reason,
-                item.claimed_complete,
-            )
+            (item.index, item.scope, item.route, item.reason, item.claimed_complete)
             for item in outcome.trace.stop_decisions
         ),
     )
@@ -63,8 +39,7 @@ def _representatives(
             grouped[outcome.record["task_id"]].append(outcome)
     representatives: dict[str, RunOutcome] = {}
     for task_id, repeats in sorted(grouped.items()):
-        signatures = {_trace_signature(item) for item in repeats}
-        if len(signatures) != 1:
+        if len({_trace_signature(item) for item in repeats}) != 1:
             raise ValueError(
                 f"{system_id}/{task_id}: route/stop trace changed across deterministic repeats"
             )
@@ -81,17 +56,6 @@ class RouteOracleReplay:
     exhaustion_index: int | None
     attempts_after_exhaustion: int
     false_negative: bool
-
-    def as_json(self) -> dict[str, Any]:
-        return {
-            "route": self.route,
-            "stop_events": self.stop_events,
-            "false_positive_stops": self.false_positive_stops,
-            "exhaustion_reached": self.exhaustion_reached,
-            "exhaustion_index": self.exhaustion_index,
-            "attempts_after_exhaustion": self.attempts_after_exhaustion,
-            "false_negative": self.false_negative,
-        }
 
 
 def _found_before(outcome: RunOutcome, index: int) -> set[str]:
@@ -110,20 +74,19 @@ def _calls_before(outcome: RunOutcome, index: int) -> int:
 def replay_task_route(
     task: DiscoveryTask, outcome: RunOutcome, route: DiscoveryRoute
 ) -> RouteOracleReplay:
-    """Replay O1 for one route in one task."""
+    """Replay frozen O1 for one route on one complete-gold task."""
 
     route_gold = set(task.protected_gold.reachable_via(route)) & set(
         task.protected_gold.gold_content_identities
     )
-    route_stop_events = [
+    route_stops = [
         item
         for item in outcome.trace.stop_decisions
         if item.scope == StopScope.ROUTE.value and item.route == route.value
     ]
     false_positive_stops = 0
-    for decision in route_stop_events:
-        found = _found_before(outcome, decision.index)
-        residual = route_gold - found
+    for decision in route_stops:
+        residual = route_gold - _found_before(outcome, decision.index)
         remaining_budget = max(
             0, task.budget.max_route_calls - _calls_before(outcome, decision.index)
         )
@@ -147,7 +110,7 @@ def replay_task_route(
 
     return RouteOracleReplay(
         route=route.value,
-        stop_events=len(route_stop_events),
+        stop_events=len(route_stops),
         false_positive_stops=false_positive_stops,
         exhaustion_reached=exhaustion_index is not None,
         exhaustion_index=exhaustion_index,
@@ -166,23 +129,22 @@ def _system_projection(
     replays: list[RouteOracleReplay] = []
     by_route: dict[str, list[RouteOracleReplay]] = defaultdict(list)
     for task_id, outcome in sorted(representatives.items()):
-        task = tasks_by_id[task_id]
         for route in DiscoveryRoute:
-            replay = replay_task_route(task, outcome, route)
+            replay = replay_task_route(tasks_by_id[task_id], outcome, route)
             replays.append(replay)
             by_route[route.value].append(replay)
 
     stop_events = sum(item.stop_events for item in replays)
-    fp = sum(item.false_positive_stops for item in replays)
+    false_positives = sum(item.false_positive_stops for item in replays)
     exhausted = sum(item.exhaustion_reached for item in replays)
-    fn = sum(item.false_negative for item in replays)
+    false_negatives = sum(item.false_negative for item in replays)
     return {
         "route_stop_events": stop_events,
-        "route_stop_false_positive_count": fp,
-        "route_stop_false_positive_rate": _rate(fp, stop_events),
+        "route_stop_false_positive_count": false_positives,
+        "route_stop_false_positive_rate": _rate(false_positives, stop_events),
         "routes_reaching_oracle_exhaustion": exhausted,
-        "route_stop_false_negative_count": fn,
-        "route_stop_false_negative_rate": _rate(fn, exhausted),
+        "route_stop_false_negative_count": false_negatives,
+        "route_stop_false_negative_rate": _rate(false_negatives, exhausted),
         "attempts_after_exhaustion_total": sum(
             item.attempts_after_exhaustion for item in replays
         ),
@@ -207,19 +169,24 @@ def _system_projection(
     }
 
 
+def _aggregate_only(system: dict[str, Any]) -> dict[str, Any]:
+    return {key: value for key, value in system.items() if key != "by_route"}
+
+
 def build_route_stop_projection(
     tasks: tuple[DiscoveryTask, ...], outcomes: tuple[RunOutcome, ...]
 ) -> dict[str, Any]:
-    """Build the publication-complete O1 FP/FN projection for all frozen systems."""
+    """Build the compact publication projection for O1 across all frozen systems."""
 
     tasks_by_id = {task.task_id: task for task in tasks}
     systems = sorted({outcome.record["system_id"] for outcome in outcomes})
-    projected: dict[str, Any] = {}
+    full: dict[str, dict[str, Any]] = {}
     for system_id in systems:
         representatives = _representatives(outcomes, system_id)
         if set(representatives) != set(tasks_by_id):
             raise ValueError(f"{system_id}: missing frozen task outcomes")
-        projected[system_id] = _system_projection(tasks_by_id, representatives)
+        full[system_id] = _system_projection(tasks_by_id, representatives)
+
     return {
         "schema_version": "orion.p2.offline-route-stop-oracle.v1",
         "analysis_authority": "DESCRIPTIVE_ONLY",
@@ -238,7 +205,13 @@ def build_route_stop_projection(
         "source_raw_artifact_hash_list_digest_sha256": sha256_digest(
             [item.record["raw_artifact_hash"] for item in outcomes]
         ),
-        "systems": projected,
+        "systems": {name: _aggregate_only(values) for name, values in full.items()},
+        "orion_full_by_route": full["orion_full"]["by_route"],
+        "interpretation": (
+            "route-stop and task-stop are distinct: the censored restricted-route case "
+            "is an O1 route-stop false positive, while its unresolved O4 obligation "
+            "prevents ORION from asserting task completeness"
+        ),
     }
 
 
