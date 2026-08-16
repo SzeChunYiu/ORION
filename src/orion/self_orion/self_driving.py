@@ -20,7 +20,11 @@ from orion.self_orion.readiness import (
     ShadowSelfDrivingArchitectureEvidence,
     assess_shadow_self_driving_architecture,
 )
-from orion.self_orion.research_loop import DevelopmentInvestigationResult, ShadowSelfOrionResearchLoop
+from orion.self_orion.research_loop import (
+    DevelopmentInvestigationResult,
+    FrozenFailureInvestigationContext,
+    ShadowSelfOrionResearchLoop,
+)
 
 
 class SelfDrivingCycleStatus(str, Enum):
@@ -144,6 +148,71 @@ class ShadowSelfDrivingController:
     def shadow_self_driving_ready(self) -> bool:
         return assess_shadow_self_driving_architecture(self.architecture_evidence()).ready
 
+    def _evaluate_investigation(
+        self,
+        *,
+        development_state: DevelopmentDriveReport,
+        investigation: DevelopmentInvestigationResult,
+        cells: tuple,
+    ) -> SelfDrivingCycleResult:
+        fibre = compile_development_fibre(investigation.mechanic_id, cells)
+        ready, research_reasons = investigation_supports_change(investigation)
+        if not ready:
+            return SelfDrivingCycleResult(
+                development_state=development_state,
+                investigation=investigation,
+                fibre=fibre,
+                change_control=None,
+                status=SelfDrivingCycleStatus.RESEARCH_OPEN,
+                reasons=research_reasons,
+            )
+        request = change_request_from_investigation(
+            investigation,
+            fibre,
+            base_revision=self._base_revision,
+        )
+        control = self._change_controller.evaluate_change(request)
+        status = {
+            ChangeControlVerdict.REJECT: SelfDrivingCycleStatus.CHANGE_REJECTED,
+            ChangeControlVerdict.META_OVERFIT: SelfDrivingCycleStatus.META_OVERFIT,
+            ChangeControlVerdict.CANDIDATE_ONLY: SelfDrivingCycleStatus.CHANGE_CANDIDATE,
+            ChangeControlVerdict.RECOMMEND_HOST_PROMOTION: SelfDrivingCycleStatus.HOST_PROMOTION_RECOMMENDED,
+        }[control.verdict]
+        return SelfDrivingCycleResult(
+            development_state=development_state,
+            investigation=investigation,
+            fibre=fibre,
+            change_control=control,
+            status=status,
+            reasons=control.reasons,
+        )
+
+    def run_observed_failure(
+        self,
+        context: FrozenFailureInvestigationContext,
+        *,
+        evaluation_epoch_id: str,
+        split_id: str,
+    ) -> SelfDrivingCycleResult:
+        """Run one repair cycle whose research and proposal are causally bound to a frozen failure."""
+
+        development_state = self._driver.drive_local_transfer()
+        if not development_state.can_drive_next_work_mechanically:
+            raise RuntimeError("structural development frontier is still open")
+        cells = self._driver.local_transfer_cells()
+        investigation = self._research_loop.run_observed_failure(
+            context,
+            evaluation_epoch_id=evaluation_epoch_id,
+            split_id=split_id,
+        )
+        if investigation.mechanic_id != context.mechanic_id:
+            raise RuntimeError("observed-failure research returned a different mechanic")
+        return self._evaluate_investigation(
+            development_state=development_state,
+            investigation=investigation,
+            cells=cells,
+        )
+
     def run_cycle(
         self,
         *,
@@ -162,45 +231,14 @@ class ShadowSelfDrivingController:
             evaluation_epoch_id=evaluation_epoch_id,
             split_id=split_id,
         )
-        results: list[SelfDrivingCycleResult] = []
-        for investigation in investigations:
-            fibre = compile_development_fibre(investigation.mechanic_id, cells)
-            ready, research_reasons = investigation_supports_change(investigation)
-            if not ready:
-                results.append(
-                    SelfDrivingCycleResult(
-                        development_state=development_state,
-                        investigation=investigation,
-                        fibre=fibre,
-                        change_control=None,
-                        status=SelfDrivingCycleStatus.RESEARCH_OPEN,
-                        reasons=research_reasons,
-                    )
-                )
-                continue
-            request = change_request_from_investigation(
-                investigation,
-                fibre,
-                base_revision=self._base_revision,
+        return tuple(
+            self._evaluate_investigation(
+                development_state=development_state,
+                investigation=investigation,
+                cells=cells,
             )
-            control = self._change_controller.evaluate_change(request)
-            status = {
-                ChangeControlVerdict.REJECT: SelfDrivingCycleStatus.CHANGE_REJECTED,
-                ChangeControlVerdict.META_OVERFIT: SelfDrivingCycleStatus.META_OVERFIT,
-                ChangeControlVerdict.CANDIDATE_ONLY: SelfDrivingCycleStatus.CHANGE_CANDIDATE,
-                ChangeControlVerdict.RECOMMEND_HOST_PROMOTION: SelfDrivingCycleStatus.HOST_PROMOTION_RECOMMENDED,
-            }[control.verdict]
-            results.append(
-                SelfDrivingCycleResult(
-                    development_state=development_state,
-                    investigation=investigation,
-                    fibre=fibre,
-                    change_control=control,
-                    status=status,
-                    reasons=control.reasons,
-                )
-            )
-        return tuple(results)
+            for investigation in investigations
+        )
 
 
 __all__ = [
