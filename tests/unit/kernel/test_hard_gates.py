@@ -178,3 +178,53 @@ def test_the_report_carries_no_aggregate_to_trade_against() -> None:
 def test_a_contract_with_no_requirements_is_refused() -> None:
     with pytest.raises(ValueError):
         HardGateContract(contract_id="c", requirements=())
+
+
+def test_a_flat_run_does_not_close_while_a_declared_gate_is_failed(tmp_path) -> None:
+    """The wiring, not just the evaluator: flatness is not closure while a
+    blocking gate is failed. Nothing about how flat the run is can buy off a
+    failed requirement — the gate is non-compensatory in the stop path too."""
+
+    from orion.kernel import LedgerStore, SelfDrivingDriver, StaticAnswerSource
+    from orion.mechanics.model import MechanicCell
+    from orion.mechanics.workflow import ORION_WORKFLOW_ROOT_ID
+
+    cells = (
+        MechanicCell(ORION_WORKFLOW_ROOT_ID, "root", "one root", child_mechanic_ids=("T.v1",)),
+        MechanicCell("T.v1", "step", "one step"),
+    )
+    contract = _contract(frozen_at_round=0, n=1)
+    driver = SelfDrivingDriver(
+        store=LedgerStore(tmp_path / "state"),
+        source=StaticAnswerSource(records=()),
+        evidence_roots={"orion": tmp_path},
+        seed_cells=cells,
+        selection_limit=64,
+        run_id=SUBJECT,
+        gate_contract=contract,
+        gate_observations=(_obs(contract, "gate:0", state=HardGateState.FAIL),),
+    )
+    report = driver.run(max_rounds=6)
+    assert report.stop_reason == "blocking_gate_failed"
+
+
+def test_a_flat_run_with_an_unobserved_gate_is_unresolved_not_closed(tmp_path) -> None:
+    from orion.kernel import LedgerStore, SelfDrivingDriver, StaticAnswerSource
+    from orion.mechanics.model import MechanicCell
+    from orion.mechanics.workflow import ORION_WORKFLOW_ROOT_ID
+
+    cells = (
+        MechanicCell(ORION_WORKFLOW_ROOT_ID, "root", "one root", child_mechanic_ids=("T.v1",)),
+        MechanicCell("T.v1", "step", "one step"),
+    )
+    driver = SelfDrivingDriver(
+        store=LedgerStore(tmp_path / "state"),
+        source=StaticAnswerSource(records=()),
+        evidence_roots={"orion": tmp_path},
+        seed_cells=cells,
+        selection_limit=64,
+        run_id=SUBJECT,
+        gate_contract=_contract(frozen_at_round=0, n=1),
+        gate_observations=(),
+    )
+    assert driver.run(max_rounds=6).stop_reason == "blocking_gate_unresolved"
