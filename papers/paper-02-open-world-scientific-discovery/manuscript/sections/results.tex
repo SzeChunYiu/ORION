@@ -163,6 +163,20 @@ the no-dedup ablation exposes five budget-exhaustion failures.  Full ORION has n
 terminal failure classification: 19 tasks pass and one is censored.  The full
 per-system taxonomy is archived beside the publication summary as Table P2-3.
 
+The gold-defined O1 route-stop replay is archived as supplementary Table P2-S1.
+Full ORION makes one route-stop false positive in 100 route-stop events (0.01):
+the unavailable restricted-route case still has a theoretically reachable gold
+identity and route-call budget when the route stops.  This does not become a
+task-level false closure.  The O4 unavailable-route obligation remains open, so
+ORION returns \texttt{CANNOT\_CHECK} rather than asserting task completeness.
+Among the 99 ORION task-routes that reach the O1 oracle exhaustion point, there
+are zero route-stop false negatives.  The restricted route records 19
+post-exhaustion attempts, exactly one allowed confirming attempt on each of the
+19 non-censored tasks; no route takes the two or more further attempts required
+for an O1 false negative.  This null-on-FN result is reported rather than being
+silently omitted, and it demonstrates why route-stop error and task-stop safety
+must be measured separately.
+
 No external Wide, Deep, MetaSyn or SAGE performance result is reported in this
 revision.  The access audit establishes that AutoResearchBench Wide scoring is
 credential-free and that MetaSyn retrieval/screening scoring does not itself
