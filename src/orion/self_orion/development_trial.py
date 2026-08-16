@@ -10,6 +10,7 @@ from orion.self_orion.issue_state import (
     InterventionOutcome,
     InterventionOutcomeKind,
 )
+from orion.self_orion.research_loop import FrozenFailureInvestigationContext
 from orion.self_orion.self_driving import (
     SelfDrivingCycleResult,
     SelfDrivingCycleStatus,
@@ -64,6 +65,24 @@ class FrozenObservedFailureCase:
         if not self.negative_alternative_ids:
             raise ValueError("Shadow development case must preserve negative/harmful alternatives")
 
+    @property
+    def investigation_context(self) -> FrozenFailureInvestigationContext:
+        return FrozenFailureInvestigationContext(
+            work_id=f"phase2-observed-failure:{self.case_id}",
+            mechanic_id=self.mechanic_id,
+            development_issue_id=self.issue.issue_id,
+            issue_title=self.issue.title,
+            symptom_signature=self.issue.symptom_signature,
+            observed_failure_artifact_hash=self.observed_failure_artifact_hash,
+            candidate_cause_ids=self.issue.candidate_cause_ids,
+            supported_cause_id=self.issue.supported_cause_id,
+            discriminator_artifact_hash=self.discriminator_artifact_hash,
+            discriminator_evidence_ids=self.issue.discriminator_evidence_ids,
+            issue_evidence_ids=self.issue.evidence_ids,
+            failure_episode_ids=self.issue.failure_episode_ids,
+            negative_alternative_ids=self.negative_alternative_ids,
+        )
+
 
 @dataclass(frozen=True)
 class ShadowDevelopmentTrialReport:
@@ -96,6 +115,7 @@ class ShadowDevelopmentTrialReport:
     @property
     def artifact_hash(self) -> str:
         control = self.cycle.change_control
+        investigation = self.cycle.investigation
         payload = {
             "case_id": self.case.case_id,
             "mechanic_id": self.case.mechanic_id,
@@ -113,9 +133,17 @@ class ShadowDevelopmentTrialReport:
             "discriminator_frozen_before_candidate": self.case.discriminator_frozen_before_candidate,
             "negative_alternative_ids": list(self.case.negative_alternative_ids),
             "cycle_status": self.cycle.status.value,
-            "investigation_problem_id": self.cycle.investigation.problem_id,
-            "investigation_evidence_ids": list(self.cycle.investigation.evidence_ids),
-            "investigation_residual_ids": list(self.cycle.investigation.residual_ids),
+            "investigation_problem_id": investigation.problem_id,
+            "investigation_evidence_ids": list(investigation.evidence_ids),
+            "investigation_residual_ids": list(investigation.residual_ids),
+            "investigation_issue_id": investigation.development_issue_id,
+            "investigation_observed_failure_artifact_hash": investigation.observed_failure_artifact_hash,
+            "investigation_candidate_cause_ids": list(investigation.candidate_cause_ids),
+            "investigation_supported_cause_id": investigation.supported_cause_id,
+            "investigation_discriminator_artifact_hash": investigation.discriminator_artifact_hash,
+            "investigation_discriminator_evidence_ids": list(investigation.discriminator_evidence_ids),
+            "investigation_source_failure_episode_ids": list(investigation.source_failure_episode_ids),
+            "investigation_negative_alternative_ids": list(investigation.negative_alternative_ids),
             "change_control": (
                 {
                     "proposal_id": control.proposal.proposal_id,
@@ -181,13 +209,30 @@ class ShadowDevelopmentTrialRunner:
         if not case.discriminator_frozen_before_candidate:
             blockers.append("discriminator_not_frozen_before_candidate")
 
-        cycle = self._controller.run_cycle(
-            limit=1,
+        cycle = self._controller.run_observed_failure(
+            case.investigation_context,
             evaluation_epoch_id=case.evaluation_epoch_id,
             split_id=case.split_id,
-        )[0]
-        if cycle.investigation.mechanic_id != case.mechanic_id:
+        )
+        investigation = cycle.investigation
+        if investigation.mechanic_id != case.mechanic_id:
             blockers.append("development_cycle_mechanic_mismatch")
+        if investigation.development_issue_id != case.issue.issue_id:
+            blockers.append("development_cycle_issue_binding_mismatch")
+        if investigation.observed_failure_artifact_hash != case.observed_failure_artifact_hash:
+            blockers.append("development_cycle_failure_artifact_mismatch")
+        if investigation.candidate_cause_ids != case.issue.candidate_cause_ids:
+            blockers.append("development_cycle_candidate_causes_mismatch")
+        if investigation.supported_cause_id != case.issue.supported_cause_id:
+            blockers.append("development_cycle_supported_cause_mismatch")
+        if investigation.discriminator_artifact_hash != case.discriminator_artifact_hash:
+            blockers.append("development_cycle_discriminator_artifact_mismatch")
+        if investigation.discriminator_evidence_ids != case.issue.discriminator_evidence_ids:
+            blockers.append("development_cycle_discriminator_evidence_mismatch")
+        if investigation.source_failure_episode_ids != case.issue.failure_episode_ids:
+            blockers.append("development_cycle_failure_episode_mismatch")
+        if investigation.negative_alternative_ids != case.negative_alternative_ids:
+            blockers.append("development_cycle_negative_history_mismatch")
         if cycle.status is SelfDrivingCycleStatus.RESEARCH_OPEN:
             blockers.append("development_cycle_stopped_before_candidate_execution")
         if cycle.change_control is None:
@@ -195,6 +240,20 @@ class ShadowDevelopmentTrialRunner:
             return ShadowDevelopmentTrialReport(case, cycle, case.issue, tuple(blockers))
 
         control = cycle.change_control
+        request = control.request
+        if not request.observed_failure_bound:
+            blockers.append("development_change_request_not_failure_bound")
+        if request.development_issue_id != case.issue.issue_id:
+            blockers.append("development_request_issue_binding_mismatch")
+        if request.observed_failure_artifact_hash != case.observed_failure_artifact_hash:
+            blockers.append("development_request_failure_artifact_mismatch")
+        if request.discriminator_artifact_hash != case.discriminator_artifact_hash:
+            blockers.append("development_request_discriminator_artifact_mismatch")
+        if request.supported_cause_id != case.issue.supported_cause_id:
+            blockers.append("development_request_supported_cause_mismatch")
+        if not set(case.issue.failure_episode_ids).issubset(request.failure_episode_ids):
+            blockers.append("development_request_missing_source_failure_episode")
+
         assurance = control.assurance
         if assurance.evaluation_epoch_id != case.evaluation_epoch_id:
             blockers.append("development_assurance_epoch_mismatch")
@@ -232,7 +291,7 @@ class ShadowDevelopmentTrialRunner:
             ),
             fresh_transfer=assurance.fresh_split,
             note=(
-                "Phase-2 Shadow development trial; negative/harmful alternatives retained: "
+                "Phase-2 failure-driven Shadow development trial; negative/harmful alternatives retained: "
                 + ",".join(case.negative_alternative_ids)
             ),
         )
