@@ -1,11 +1,16 @@
 from __future__ import annotations
 
+import hashlib
+import json
 from dataclasses import dataclass
 from enum import Enum
 
 from orion.core.problem import Problem
 from orion.core.search import SearchQuery, SearchRouteKind
 from orion.experience.model import TaskEpisode
+
+
+FAILURE_PATTERN_QUESTION_ID_SCHEME = "failure-pattern-sha256-v1"
 
 
 class ProblemQuestionKind(str, Enum):
@@ -37,6 +42,36 @@ class MechanicalProblemQuestion:
     route_kind: SearchRouteKind | None
     action_hint: str
     blocking: bool = True
+
+
+def failure_pattern_question_id(
+    problem_id: str,
+    signature: tuple[str, ...],
+    variations: tuple[tuple[str, ...], ...],
+) -> str:
+    """Return a replay-stable identity for a repeated-failure question.
+
+    The scheme tag is part of the identifier so persisted questions remain
+    interpretable if the canonicalization or digest algorithm ever changes.
+    Failure-signature members and the set of observed variation signatures are
+    order-insensitive, while order inside one variation signature remains
+    meaningful.
+    """
+
+    if not problem_id.strip():
+        raise ValueError("problem id is required for failure-pattern question identity")
+    canonical = {
+        "signature": sorted(signature),
+        "variations": [list(item) for item in sorted(variations)],
+    }
+    payload = json.dumps(
+        canonical,
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=False,
+    ).encode("utf-8")
+    digest = hashlib.sha256(payload).hexdigest()
+    return f"{problem_id}:failure-pattern:{FAILURE_PATTERN_QUESTION_ID_SCHEME}:{digest}"
 
 
 def _repeated_failure_groups(episodes: tuple[TaskEpisode, ...]) -> tuple[tuple[tuple[str, ...], tuple[TaskEpisode, ...]], ...]:
@@ -109,7 +144,7 @@ def generate_problem_questions(
     for signature, group in _repeated_failure_groups(episodes):
         variations = tuple(sorted({item.variation_signature for item in group}))
         questions.append(MechanicalProblemQuestion(
-            f"{prefix}:failure-pattern:{abs(hash((signature, variations)))}",
+            failure_pattern_question_id(prefix, signature, variations),
             ProblemQuestionKind.FAILURE_TRANSFER,
             f"The failure signature {signature} recurred across distinct variations {variations}. What cause hypothesis explains the recurrence, what observation could falsify it, and can a candidate guard survive replay plus a fresh variation?",
             None,
