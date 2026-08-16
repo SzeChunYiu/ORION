@@ -15,6 +15,12 @@ from orion.mechanics.workflow import ORION_WORKFLOW_ROOT_ID
 from .apply import grade_and_apply
 from .gate import DiscriminatingCheck
 from .guards import GuardRule, derive_guard_rule
+from .hard_gates import (
+    HardGateContract,
+    HardGateObservation,
+    HardGateState,
+    evaluate_hard_gates,
+)
 from .round import AnswerSource, RoundOutcome, run_round
 from .saturation import (
     GrowthVector,
@@ -213,6 +219,8 @@ class SelfDrivingDriver:
     selection_limit: int = 16
     require_digest: bool = True
     flat_rounds_to_stop: int = 2
+    gate_contract: HardGateContract | None = None
+    gate_observations: tuple[HardGateObservation, ...] = ()
 
     def basis(self) -> SaturationBasis:
         """Declare the apparatus flatness is measured against.
@@ -425,6 +433,35 @@ class SelfDrivingDriver:
                 SaturationVerdict.A_PRIORI_FRAME_FLAT,
                 SaturationVerdict.PARTIALLY_IDENTIFIED_LINEAGE,
             }:
+                if self.gate_contract is not None:
+                    # Flatness is not closure while a declared blocking gate is
+                    # failed, unobserved or evidence-less. The gate is
+                    # non-compensatory: nothing about how flat the run is can
+                    # buy off a failed requirement.
+                    gate = evaluate_hard_gates(
+                        self.gate_contract,
+                        self.gate_observations,
+                        subject_id=self.run_id,
+                        round_index=round_index,
+                    )
+                    self.store.append(
+                        EntryKind.RECEIPT,
+                        {
+                            "kind": "HARD_GATES",
+                            "round_index": round_index,
+                            "state": gate.state.value,
+                            "reasons": list(gate.reasons),
+                            "failed": list(gate.failed_gate_ids),
+                            "unresolved": list(gate.unresolved_gate_ids),
+                        },
+                    )
+                    if not gate.permits_closure:
+                        stop_reason = (
+                            "blocking_gate_failed"
+                            if gate.state is HardGateState.FAIL
+                            else "blocking_gate_unresolved"
+                        )
+                        break
                 # Starvation is checked first because it is the more specific
                 # diagnosis: a window that never asked explains the flatness,
                 # whereas unidentified lineage only says the flat rounds cannot

@@ -8,7 +8,7 @@ Production consumers, excluding the module itself, its tests, and `__init__`
 re-exports:
 
 ```
-knowledge/space.py           0        kernel/hard_gates.py     0
+knowledge/space.py           0        kernel/hard_gates.py     0 -> 1 (driver stop path, same day)
 knowledge/research_loop.py   0        kernel/workorder.py      1
 knowledge/ingest.py          0        kernel/report.py         1
 knowledge/local.py           0        knowledge/evaluation.py  1
