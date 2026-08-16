@@ -52,6 +52,13 @@ from orion.self_orion.invention_gate import (
     InventionTarget,
     assess_invention_readiness,
 )
+from orion.self_orion.issue_state import (
+    DevelopmentIssue,
+    DevelopmentIssueStatus,
+    InterventionOutcome,
+    InterventionOutcomeKind,
+    IssueTransition,
+)
 from orion.self_orion.live_trial import (
     BaselineResearchRunner,
     BaselineTaskResult,
