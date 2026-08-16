@@ -199,6 +199,7 @@ def external_authority_gate(
     matched_nearest_work_baseline_run: bool,
     false_promotion_better_than_baseline: bool | None,
     observed_activity: object | None = None,
+    require_observed_activity: bool = False,
 ) -> BenchmarkReport:
     """External Paper IV promotion gate.
 
@@ -223,6 +224,25 @@ def external_authority_gate(
 
     missing: list[str] = []
     contradicted: list[str] = []
+    if require_observed_activity and observed_activity is None:
+        # Missing telemetry is CANNOT_CHECK, never PASS. Left as a flag rather
+        # than made unconditional because refusing every run without telemetry
+        # would solve the attacks by universal refusal and destroy clean-positive
+        # coverage, which is its own way of measuring nothing.
+        return BenchmarkReport(
+            paper_id="P4",
+            case_id="external-authority-gate",
+            status=BenchmarkStatus.CANNOT_CHECK,
+            metrics=(),
+            blockers=(
+                "observed activity was required and none was supplied; the "
+                "attestations alone cannot establish evaluator integrity",
+            ),
+            observations=(
+                "CANNOT_CHECK rather than FAIL: nothing here says the candidate "
+                "misbehaved, only that nothing observed whether it did.",
+            ),
+        )
     if observed_activity is not None:
         written = tuple(getattr(observed_activity, "written_paths", ()) or ())
         read = tuple(getattr(observed_activity, "read_paths", ()) or ())
