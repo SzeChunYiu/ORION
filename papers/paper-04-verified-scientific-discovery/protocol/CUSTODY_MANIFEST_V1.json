@@ -1,0 +1,33 @@
+{
+  "schema_version": "orion.p4.custody-manifest.v1",
+  "paper_id": "P4",
+  "protocol_id": "P4.protected-authority.v1",
+  "manifest_version": "V1",
+  "created": "2026-08-16",
+  "created_before_outcome_access": true,
+  "custody_distribution": {
+    "PUBLIC_CLEAN": 2,
+    "PUBLIC_HOSTILE": 11,
+    "PROTECTED_HOSTILE": 8,
+    "PROTECTED_HOLDOUT": 6
+  },
+  "total_cases": 27,
+  "label_hiding": {
+    "hidden_from_candidate": ["attack_family", "protected_gold.claim_correct", "protected_gold.source_owner_correct", "protected_gold.semantic_support", "protected_gold.contaminated", "expected_authority_terminal", "custody_class"],
+    "attack_label_visible_to_candidate": false
+  },
+  "custody_roles": {
+    "candidate_lane": "ORION candidate and candidate-authored checker may read candidate_visible fields only; may NOT write evaluator/guard state.",
+    "protected_evaluator_lane": "Independent host holds protected_gold labels and expected_authority_terminal for all PROTECTED_* cases until outcome access.",
+    "host_verifier_lane": "Host verifies artifact_hash integrity, evaluator immutability, and access telemetry before outcomes are released."
+  },
+  "control": {
+    "evaluator_hash_frozen": true,
+    "access_telemetry_retained": true,
+    "split_hashes": {
+      "public_claim_evidence": "UNBOUND",
+      "protected_attack_set": "UNBOUND",
+      "clean_positive_set": "UNBOUND"
+    }
+  }
+}
