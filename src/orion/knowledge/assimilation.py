@@ -7,9 +7,9 @@ from orion.core.contributions import (
     AssimilationOutcome,
     KnowledgeContribution,
     MappingRelation,
-    ReferentBinding,
     ReferentResolution,
     RepresentationMapping,
+    SourceProjection,
 )
 from orion.core.problem import Problem
 from orion.core.residuals import Residual, ResidualKind, Responsibility
@@ -21,33 +21,6 @@ class CompatibilityVerdict(str, Enum):
     COMPATIBLE = "COMPATIBLE"
     PARTIAL = "PARTIAL"
     INCOMPATIBLE = "INCOMPATIBLE"
-
-
-@dataclass(frozen=True)
-class SourceProjection:
-    projection_id: str
-    contribution_id: str
-    frame_id: str
-    source_uri: str
-    evidence_ids: tuple[str, ...]
-    assimilation: AssimilationOutcome
-    context_ids: tuple[str, ...] = ()
-    related_claim_ids: tuple[str, ...] = ()
-    referent_bindings: tuple[ReferentBinding, ...] = ()
-    representation_mapping_ids: tuple[str, ...] = ()
-    assumption_ids: tuple[str, ...] = ()
-
-    def __post_init__(self) -> None:
-        required = (
-            self.projection_id,
-            self.contribution_id,
-            self.frame_id,
-            self.source_uri,
-        )
-        if any(not item.strip() for item in required):
-            raise ValueError("source projection identity, frame and source are required")
-        if not self.evidence_ids:
-            raise ValueError("source projection requires evidence provenance")
 
 
 @dataclass(frozen=True)
@@ -111,7 +84,7 @@ def build_source_projection(
             (
                 f"problem:{problem.problem_id}",
                 *contribution.context_ids,
-                *(f"domain:{item_id}" for item_id in item.domain_ids),
+                *(f"domain:{domain_id}" for domain_id in item.domain_ids),
             )
         )
     )
@@ -126,7 +99,7 @@ def build_source_projection(
         related_claim_ids=contribution.related_claim_ids,
         referent_bindings=contribution.referent_bindings,
         representation_mapping_ids=tuple(
-            item.mapping_id for item in contribution.representation_mappings
+            mapping.mapping_id for mapping in contribution.representation_mappings
         ),
         assumption_ids=contribution.assumption_ids,
     )
@@ -137,7 +110,7 @@ def compatibility_of(
 ) -> CompatibilityVerdict:
     if not mappings:
         return CompatibilityVerdict.UNMAPPED
-    relations = {item.relation for item in mappings}
+    relations = {mapping.relation for mapping in mappings}
     if MappingRelation.INCOMPATIBLE in relations:
         return CompatibilityVerdict.INCOMPATIBLE
     if relations <= {MappingRelation.EQUIVALENT, MappingRelation.REFINES}:
@@ -153,12 +126,12 @@ def representation_ids_for(
             (
                 *contribution.representation_ids,
                 *(
-                    item.source_representation_id
-                    for item in contribution.representation_mappings
+                    mapping.source_representation_id
+                    for mapping in contribution.representation_mappings
                 ),
                 *(
-                    item.target_representation_id
-                    for item in contribution.representation_mappings
+                    mapping.target_representation_id
+                    for mapping in contribution.representation_mappings
                 ),
             )
         )
@@ -197,7 +170,10 @@ def residuals_for_contribution(
     if effect.required_residual_kind is not None:
         responsibility = {
             ResidualKind.CONTRADICTION: (Responsibility.REPRESENTATION,),
-            ResidualKind.CONTEXT_GAP: (Responsibility.QUESTION, Responsibility.EVIDENCE),
+            ResidualKind.CONTEXT_GAP: (
+                Responsibility.QUESTION,
+                Responsibility.EVIDENCE,
+            ),
             ResidualKind.SEARCH_COVERAGE_FAILURE: (Responsibility.SEARCH,),
             ResidualKind.METHOD_GAP: (Responsibility.METHOD,),
         }[effect.required_residual_kind]
@@ -212,12 +188,12 @@ def residuals_for_contribution(
         )
 
     unresolved_referents = tuple(
-        item
-        for item in contribution.referent_bindings
-        if item.resolution is not ReferentResolution.RESOLVED
+        binding
+        for binding in contribution.referent_bindings
+        if binding.resolution is not ReferentResolution.RESOLVED
     )
     if unresolved_referents:
-        labels = ", ".join(item.mention for item in unresolved_referents)
+        labels = ", ".join(binding.mention for binding in unresolved_referents)
         residuals.append(
             _residual(
                 contribution,
@@ -254,14 +230,13 @@ def residuals_for_contribution(
             )
         )
 
-    unique: dict[str, Residual] = {item.residual_id: item for item in residuals}
+    unique: dict[str, Residual] = {residual.residual_id: residual for residual in residuals}
     return tuple(unique.values())
 
 
 __all__ = [
     "AssimilationEffect",
     "CompatibilityVerdict",
-    "SourceProjection",
     "assimilation_effect",
     "build_source_projection",
     "compatibility_of",
