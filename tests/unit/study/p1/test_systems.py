@@ -35,6 +35,7 @@ from orion.study.p1.baselines import (
     baseline_systems,
     budget_for,
     extract_cues,
+    descendants_of,
     public_closures,
     readable_resources,
 )
@@ -57,6 +58,7 @@ from orion.study.p1.harness import (
 )
 from orion.study.p1.orion_system import (
     ABLATION_IDS,
+    OrionSystem,
     ablation_systems,
     full_orion,
     orion_systems,
@@ -760,6 +762,91 @@ def test_reopening_follows_the_transitive_dependency_basis():
 
     trace = full_orion().run(case.public_view, seed=0)
     assert set(trace.reopened) == set(case.protected_gold.dependencies_to_reopen)
+
+
+def test_descendants_complete_the_chain_from_an_identified_closure():
+    """`D*(c)` in graph space, for the case coordinate space cannot reach.
+
+    Coordinate-keyed staling is exact when a closure declares a basis and
+    silent when it does not. On the frozen suite 37 of 44 hidden-shift cases
+    have no closure with any publicly inferable coordinate, so a purely
+    coordinate-keyed reopen stales nothing at all. Expanding from an identified
+    closure is the same rule keyed on the graph instead.
+    """
+
+    closures = public_closures(case_by_id("p1-c009").public_view)
+    assert descendants_of(closures, ("closure:unit-audit",)) == (
+        "closure:unit-audit",
+        "closure:capacity-plan",
+        "closure:board-brief",
+    )
+    # Expansion is downward only: a child does not drag its parent in.
+    assert descendants_of(closures, ("closure:board-brief",)) == (
+        "closure:board-brief",
+    )
+    # An unrelated conclusion is never swept in.
+    assert "closure:sampling-window" not in descendants_of(
+        public_closures(case_by_id("p1-c004").public_view), ("closure:baseline-fit",)
+    )
+    assert descendants_of(closures, ()) == ()
+    assert descendants_of(closures, ("closure:never-declared",)) == ()
+
+
+def test_mechanical_orion_identifies_no_closure_and_says_so():
+    """The hook is off by default, and that is the honest default.
+
+    Naming the closure a reframe invalidates is a reasoning act. The public
+    view does not disclose it, so a mechanical system must not pretend to have
+    it — which is exactly why the shipping dependency-directed path scores
+    reopen F1 0.000 on the frozen suite rather than the 1.000 an oracle root
+    would give. The two numbers measure different things and must never be
+    reported as one.
+    """
+
+    assert full_orion().identify_closures is None
+
+
+def test_an_identified_closure_completes_a_reopen_the_basis_would_miss():
+    """The live arm's path, exercised end to end without any leak.
+
+    The chain head declares no coordinate, so coordinate-keyed staling reopens
+    nothing. Supplying the identified closure — as a reasoning system would —
+    recovers the whole chain.
+    """
+
+    case = _case(
+        "p1-c012",
+        TaskFamily.HIDDEN_REPRESENTATION,
+        "The forecast and the ledger disagree by three orders of magnitude and "
+        "are expressed in different units.",
+        (
+            "closure:ledger-tieout — closed; rests on the month-end freeze",
+            "closure:board-brief — closed; derived from closure:ledger-tieout",
+        ),
+        ProtectedGold(
+            reframe_required=True,
+            responsibility_family="REPRESENTATION",
+            target_coordinates=("W.REPRESENTATIONS", "representation:unit_scaling"),
+            dependencies_to_reopen=("closure:ledger-tieout", "closure:board-brief"),
+            root_success_rubric="the two feeds are compared in one form",
+            dependency_depth=2,
+        ),
+    )
+    closures = public_closures(case.public_view)
+    assert all(item.dependency_coordinates == () for item in closures), (
+        "this fixture exists because the basis is not publicly inferable"
+    )
+
+    blind = full_orion().run(case.public_view, seed=0)
+    assert blind.reframed and blind.reopened == ()
+
+    informed = OrionSystem(
+        system_id="orion_full",
+        identify_closures=lambda view: ("closure:ledger-tieout",),
+    )
+    trace = informed.run(case.public_view, seed=0)
+    assert set(trace.reopened) == set(case.protected_gold.dependencies_to_reopen)
+    assert trace.invariant_violations == ()
 
 
 def test_a_closure_chain_does_not_reopen_unrelated_conclusions():

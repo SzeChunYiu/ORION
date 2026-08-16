@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c135",
   "task_family": "execution_only_negative_control",
-  "public_prompt": "The data-quality checker reports 100% pass on a table a human can see holds thousands of empty entries in a column the checker is supposed to guard. The guard is the right one for this column and the catalogue that chose it is not in question. The plan is to find the defect in the checker and repair it. Carry out the plan: name the defect and give the repair.",
+  "public_prompt": "The data-quality checker reports 100% pass on a table that visibly holds thousands of empty entries in a guarded column. The guard is the right one for this column. The plan is to find the defect in the checker and repair it: name the defect and give the repair.",
   "observable_resources": [
     "dq/generated.sql — the emitted predicate for the guard is `WHERE col != NULL`",
     "dq/manual-count.txt — `SELECT count(*) FROM t WHERE col IS NULL` returns 4,102",

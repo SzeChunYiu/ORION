@@ -1,1 +1,1 @@
-"""ORION per-paper study harnesses: baselines, ablations, metrics, statistics, plots."""
+"""ORION Paper 3 evaluation infrastructure: baselines, ablations, metrics, statistics, plots."""

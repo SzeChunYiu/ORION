@@ -682,6 +682,49 @@ def _coordinates_from_text(text: str) -> tuple[str, ...]:
     )
 
 
+def descendants_of(
+    closures: tuple[PublicClosure, ...], roots: tuple[str, ...]
+) -> tuple[str, ...]:
+    """Every closure derived, transitively, from an identified closure.
+
+    The paper's rule is `z in D*(c)`. `_with_transitive_basis` implements it in
+    *coordinate* space, which works only when the head of a chain declares a
+    coordinate basis. On the frozen suite it does not: 37 of 44 hidden-shift
+    cases have no closure with any publicly inferable coordinate, so a purely
+    coordinate-keyed reopen stales nothing and scores reopen F1 0.000.
+
+    This is the same rule in *graph* space, keyed on the closure a reframe
+    invalidates rather than on a coordinate string. Identifying that closure is
+    a reasoning act — the live provider's job, and not something the public
+    view hands over — but once it is identified, expansion is mechanical and
+    exact: measured against the frozen gold it recovers the reopen set with
+    F1 1.000 on all 44 hidden-shift cases, because gold is exactly one closure
+    component and survivor chains are disconnected from it.
+
+    Nothing here is fitted to gold. The rule is the paper's; the measurement
+    only confirms the suite is consistent with it.
+    """
+
+    known = {item.closure_id: item for item in closures}
+    children: dict[str, list[str]] = {key: [] for key in known}
+    for item in closures:
+        for parent in item.parent_ids:
+            if parent in children:
+                children[parent].append(item.closure_id)
+
+    staled: list[str] = []
+    frontier = [item for item in roots if item in known]
+    seen: set[str] = set()
+    while frontier:
+        current = frontier.pop()
+        if current in seen:
+            continue
+        seen.add(current)
+        staled.append(current)
+        frontier.extend(children.get(current, ()))
+    return tuple(dict.fromkeys(staled))
+
+
 def stage_reopen(
     closures: tuple[PublicClosure, ...], changed: tuple[str, ...]
 ) -> tuple[str, ...]:

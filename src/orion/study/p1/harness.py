@@ -27,6 +27,26 @@ The harness measures wall-clock time itself and records it on the archive
 record, not inside ``SystemTrace``: elapsed time is a property of this run on
 this machine, while the trace is the system's answer and must reproduce for a
 given seed.
+
+**Two notes carried here for whoever scores these records**, because both are
+properties of the archive rather than of any one system, and a number that
+lives only in a conversation is a number nobody scoring P1-4 will ever see.
+
+1. *Reopen F1 must not be scored against full reset alone.* On the frozen suite
+   a blind policy — reopen the largest closure component, no diagnosis, never
+   read the prompt, random tie-break — earns expected reopen F1 **0.792**
+   (PILOT) / **0.823** (TEST), against full reset's 0.722 / 0.719 and
+   dependency-directed's 1.000. Survivor chains are single closures while
+   reopened chains run 1-3 long, so component size carries signal. The
+   mechanism-free floor is therefore ~0.82, not ~0.72: a reopen result between
+   those two numbers is graph shape, not dependency-directed reasoning. The
+   suite author measured this independently and pinned it as
+   ``test_the_mechanism_free_reopen_floor_is_the_blind_largest_component``.
+
+2. *Cost lives here, not on the trace.* ``trace.resources.wallclock_seconds`` is
+   0.0 for every mechanical system by construction; the measured figure is
+   ``RunRecord.elapsed_seconds``. A success-cost frontier built on the trace
+   field will be flat at zero.
 """
 
 from __future__ import annotations

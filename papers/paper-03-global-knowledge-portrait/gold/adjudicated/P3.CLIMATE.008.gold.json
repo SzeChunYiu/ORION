@@ -1,0 +1,52 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.CLIMATE.008.GOLD",
+  "case_id": "P3.CLIMATE.008",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "essd:SEED-CLIM008A",
+    "document_version": "v1",
+    "span_start": 9210,
+    "span_end": 9540,
+    "text_hash": "seed:sha256:8182838a9c9",
+    "discipline": "climate",
+    "text": "Attribution study: anthropogenic forcing dominates 20th-century warming"
+  },
+  "source_b": {
+    "document_id": "essd:SEED-CLIM008B",
+    "document_version": "v1",
+    "span_start": 1250,
+    "span_end": 1570,
+    "text_hash": "seed:sha256:8182838a9ca",
+    "discipline": "climate",
+    "text": "Attribution study: natural variability explains observed warming"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "DIFFERENT",
+  "measurement_relation": "NOT_APPLICABLE",
+  "context_relation": "ALIGNED",
+  "polarity_relation": "NOT_COMPARABLE",
+  "modality_relation": "SAME",
+  "attribution_relation": "DIFFERENT_ATTRIBUTION",
+  "discourse_relation": "ALIGNED",
+  "mapping_relation": "NO_LICENSED_MAPPING",
+  "preservation_conditions": [],
+  "non_preserved_coordinates": [
+    "construct",
+    "mapping"
+  ],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "PLURAL_VIEW",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "integration_verdict:PLURAL_VIEW",
+    "construct_relation:DIFFERENT",
+    "mapping_relation:NO_LICENSED_MAPPING"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for genuine_plural_obstruction case P3.CLIMATE.008. referent=SAME, construct=DIFFERENT, measurement=NOT_APPLICABLE, context=ALIGNED, mapping=NO_LICENSED_MAPPING, integration=PLURAL_VIEW. Seed manifest notes: Attribution disagreement. Gold: PLURAL_VIEW obstruction OR UNRESOLVED depending on weight of evidence; adjudicator decides.",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

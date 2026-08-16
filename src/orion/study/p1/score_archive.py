@@ -62,6 +62,10 @@ def score_archive(
             suite_fingerprint=record["suite_fingerprint"],
             subject_revision=record["subject_revision"],
             cannot_check_reason="" if usable else (record.get("error") or record["status"]),
+            # The harness measured this; the system's self-reported wallclock is
+            # 0.0 for every mechanical system, which would put the whole cost
+            # frontier at the origin.
+            elapsed_seconds=record.get("elapsed_seconds"),
         )
         out.append(case_score_to_record(score))
     return out

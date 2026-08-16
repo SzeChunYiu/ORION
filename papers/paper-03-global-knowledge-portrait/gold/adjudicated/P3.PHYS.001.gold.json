@@ -1,0 +1,52 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.PHYS.001.GOLD",
+  "case_id": "P3.PHYS.001",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "arxiv:SEED-PHYS001A",
+    "document_version": "v1",
+    "span_start": 3010,
+    "span_end": 3360,
+    "text_hash": "seed:sha256:7172737a878",
+    "discipline": "physics",
+    "text": "Particle physics: 'spin' as intrinsic angular momentum quantum number"
+  },
+  "source_b": {
+    "document_id": "arxiv:SEED-PHYS001B",
+    "document_version": "v1",
+    "span_start": 8540,
+    "span_end": 8890,
+    "text_hash": "seed:sha256:7677787a980",
+    "discipline": "physics",
+    "text": "Ising model: 'spin' as classical binary lattice variable"
+  },
+  "referent_relation": "DIFFERENT",
+  "construct_relation": "DIFFERENT",
+  "measurement_relation": "NOT_APPLICABLE",
+  "context_relation": "DIFFERENT_STATE_OR_TIME",
+  "polarity_relation": "NOT_COMPARABLE",
+  "modality_relation": "NOT_COMPARABLE",
+  "attribution_relation": "NOT_APPLICABLE",
+  "discourse_relation": "NOT_COMPARABLE",
+  "mapping_relation": "NO_LICENSED_MAPPING",
+  "preservation_conditions": [],
+  "non_preserved_coordinates": [
+    "referent",
+    "construct",
+    "context"
+  ],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "OBSTRUCTION",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "referent_relation:DIFFERENT",
+    "mapping_relation:NO_LICENSED_MAPPING"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for same_name_different_referent case P3.PHYS.001. referent=DIFFERENT, construct=DIFFERENT, measurement=NOT_APPLICABLE, context=DIFFERENT_STATE_OR_TIME, mapping=NO_LICENSED_MAPPING, integration=OBSTRUCTION. Seed manifest notes: Same surface name 'spin' but DIFFERENT referents (quantum intrinsic vs classical model variable). Gold: DIFFERENT referent.",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

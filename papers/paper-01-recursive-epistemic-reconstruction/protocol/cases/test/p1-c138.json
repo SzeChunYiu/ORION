@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c138",
   "task_family": "hidden_decomposition_or_interface",
-  "public_prompt": "A producer changed what the `amount` field means, from minor units to major units, with no change to the message shape. Four consumers computed totals a hundred times too small for six days and no parse error was raised anywhere. The team's framing is: the change was announced too quietly, so widen the mailing list and give a week's notice. Diagnose the defect and specify the fix.",
+  "public_prompt": "A producer changed what the `amount` field means, from minor units to major units, with no change to the message shape. Four consumers computed totals a hundred times too small for six days and nothing raised an error. The team's framing is: the change was announced too quietly, so widen the list. Diagnose the defect and specify the fix.",
   "observable_resources": [
     "bus/history.md — `amount` changed meaning on 2026-01-14; the field name, type and shape were untouched",
     "bus/consumer-incidents.csv — 4 consumers were wrong for 6 days; none raised an error, and the drift was found by a human reading a report",

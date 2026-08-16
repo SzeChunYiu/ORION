@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c103",
   "task_family": "hidden_decomposition_or_interface",
-  "public_prompt": "One customer's bulk import makes the service slow for every other customer. The team's framing is: cap the whole service at 200 requests per second per route. Diagnose the defect and specify the fix.",
+  "public_prompt": "One customer's bulk import makes the service slow for every other customer on the platform. The team's framing is: the service is being asked for too much at once, so cap the whole service at 200 requests per second per route. Diagnose the defect and specify the fix.",
   "observable_resources": [
     "app/pool.md — one worker pool and one first-in-first-out queue serve all 2,300 customers",
     "app/incident-log.csv — in 9 of 11 slowdowns a single customer accounted for over 80% of queued work",

@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c127",
   "task_family": "hidden_parent_domain",
-  "public_prompt": "Internal compute is handed out in proportion to the amount each team states it needs. Stated need now runs at 3.8x the fleet while measured use is flat. The team's framing is: the stated figures are inaccurate, so add a review step and scale every request down to fit. Propose the allocation rule the organisation should adopt and say why it works.",
+  "public_prompt": "Internal compute is handed out in proportion to what each team states it needs. Stated need now runs at 3.8x the fleet while measured use is flat. The team's framing is: the figures are inaccurate, so review them and scale every request down. Propose the allocation rule to adopt and say why it works.",
   "observable_resources": [
     "allocation/requests-2025.csv — total stated need grew from 1.4x to 3.8x the fleet across four quarters while measured use stayed flat",
     "allocation/usage.csv — the median team uses 31% of what it was handed; the three largest requesters use 22%",

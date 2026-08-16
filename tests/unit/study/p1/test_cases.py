@@ -9,10 +9,13 @@ the suite is at fault and the suite is what gets fixed.
 
 from __future__ import annotations
 
+import random
 import re
 from collections import Counter
+from collections.abc import Callable, Sequence
 from dataclasses import replace
 from pathlib import Path
+from statistics import mean
 
 import pytest
 
@@ -227,6 +230,181 @@ def test_reopening_everything_is_punished_on_every_hidden_shift_case(suites, spl
         directed = reopen_f1(set(gold), gold)
         assert directed == 1.0, case.case_id
         assert full_reset < 1.0, case.case_id
+
+
+PUBLIC_SURFACES: dict[str, Callable[[HiddenShiftCase], float]] = {
+    "prompt_len": lambda c: float(len(c.public_prompt)),
+    "n_resources": lambda c: float(len(c.observable_resources)),
+    "resource_chars": lambda c: float(sum(len(r) for r in c.observable_resources)),
+    "total_chars": lambda c: float(len(c.public_prompt) + sum(len(r) for r in c.observable_resources)),
+    "n_closures": lambda c: float(sum(r.startswith("closure:") for r in c.observable_resources)),
+}
+
+
+def max_between_group_mean_gap(values: Sequence[float], labels: Sequence[str]) -> float:
+    grouped: dict[str, list[float]] = {}
+    for value, label in zip(values, labels):
+        grouped.setdefault(label, []).append(value)
+    means = [mean(group) for group in grouped.values()]
+    return max(means) - min(means)
+
+
+def shuffle_null_p(values: Sequence[float], labels: Sequence[str], *, reps: int = 2000) -> float:
+    """Probability of a gap this large when the labels carry no information.
+
+    Deliberately not a best-single-threshold detector. A threshold is
+    under-powered against a non-monotonic ordering, and it passed a real
+    prompt-length leak whose family means ran high-middle-low-middle with no
+    separating cut. Comparing group means catches that; a shuffle-equal-n null is
+    what makes the number mean anything.
+    """
+
+    observed = max_between_group_mean_gap(values, labels)
+    rng = random.Random(20260815)
+    shuffled = list(labels)
+    hits = 0
+    for _ in range(reps):
+        rng.shuffle(shuffled)
+        hits += max_between_group_mean_gap(values, shuffled) >= observed
+    return hits / reps
+
+
+def surface_labels(cases: Sequence[HiddenShiftCase]) -> dict[str, list[str]]:
+    return {
+        "family": [case.task_family.value for case in cases],
+        "control_vs_hidden_shift": [str(case.task_family in CONTROLS) for case in cases],
+    }
+
+
+@pytest.mark.parametrize("split", list(Split))
+def test_no_public_surface_separates_the_families(suites, split) -> None:
+    """Size and shape of the public view must not carry the label.
+
+    Everything a system sees before reasoning — how long the prompt is, how many
+    resources there are, how much text they hold, how many are closures — has to
+    be uninformative about the family, or part of the answer is available without
+    reading anything. Two real leaks were found and fixed this way: negative
+    controls were separable by resource bulk, and TEST prompt length separated
+    the six families at p=0.006.
+    """
+
+    cases = suites[split]
+    offenders = []
+    for name, feature in PUBLIC_SURFACES.items():
+        values = [feature(case) for case in cases]
+        for label_name, labels in surface_labels(cases).items():
+            p = shuffle_null_p(values, labels)
+            if p < 0.05:
+                offenders.append((name, label_name, p))
+    assert offenders == []
+
+
+def test_the_surface_leak_check_detects_a_planted_imbalance(suites) -> None:
+    """The clean result above is only worth having if the alarm can fire.
+
+    Plants exactly the defect that was missed: one family's prompts made
+    systematically longer, with no separating threshold created.
+    """
+
+    cases = suites[Split.TEST]
+    labels = [case.task_family.value for case in cases]
+    honest = [float(len(case.public_prompt)) for case in cases]
+    assert shuffle_null_p(honest, labels) >= 0.05
+
+    planted = [
+        value + (120.0 if case.task_family is TaskFamily.HIDDEN_PARENT_DOMAIN else 0.0)
+        for value, case in zip(honest, cases)
+    ]
+    assert shuffle_null_p(planted, labels) < 0.05
+
+
+def closure_components(case: HiddenShiftCase) -> list[set[str]]:
+    """Group the closures a case names into chains, by the parent edges in the prose.
+
+    A closure line names its parent as `derived from closure:<slug>`; a line with
+    no such reference is a chain head.
+    """
+
+    parent: dict[str, str | None] = {}
+    for line in case.observable_resources:
+        head = re.match(r"(closure:[a-z0-9-]+) —", line)
+        if not head:
+            continue
+        refs = re.findall(r"derived from (closure:[a-z0-9-]+)", line[head.end() :])
+        parent[head.group(1)] = refs[0] if refs else None
+
+    def root(node: str) -> str:
+        while parent.get(node):
+            node = parent[node]  # type: ignore[assignment]
+        return node
+
+    grouped: dict[str, set[str]] = {}
+    for node in parent:
+        grouped.setdefault(root(node), set()).add(node)
+    return list(grouped.values())
+
+
+@pytest.mark.parametrize("split", list(Split))
+def test_the_gold_reopen_set_is_exactly_one_closure_chain(suites, split) -> None:
+    """Dependency-directed reopening must be able to recover gold exactly.
+
+    The survivors are disconnected from the reopened chain, so a system that
+    finds the closure resting on the reframed formulation and expands parent
+    edges transitively reaches the gold set and nothing else. If a survivor ever
+    joined the gold chain, the paper's own rule would stop being the winning rule.
+    """
+
+    for case in suites[split]:
+        if case.task_family in CONTROLS:
+            continue
+        gold = set(case.protected_gold.dependencies_to_reopen)
+        touching = [comp for comp in closure_components(case) if comp & gold]
+        assert len(touching) == 1, case.case_id
+        assert touching[0] == gold, (case.case_id, touching[0] - gold)
+
+
+# The floor a reopen result has to clear. Reported as measured, with tolerance:
+# these are properties of the frozen suite, so they move only if the suite moves.
+BLIND_LARGEST_COMPONENT_F1 = {Split.PILOT: 0.792, Split.TEST: 0.823}
+
+
+@pytest.mark.parametrize("split", list(Split))
+def test_the_mechanism_free_reopen_floor_is_the_blind_largest_component(
+    suites, split
+) -> None:
+    """Beating full reset is NOT by itself evidence of dependency-directed reasoning.
+
+    A responder that never reads the prompt, performs no attribution, and simply
+    reopens the largest closure chain — breaking ties at random — already scores
+    far above full reset, because the gold chain runs 1-3 links while a survivor
+    chain is a single closure. That is the null a reopen result must clear, and
+    it is pinned here rather than left in prose because a number that lives only
+    in a message is a number nobody scoring P1-4 will ever see.
+
+    The suite is not re-frozen to erase this. Dependency-directed still separates
+    at 1.000 with a wide margin, and no finite constructed suite has zero
+    structural regularity; publishing the floor is the defence, not chasing it.
+    If a future edit re-inflates the signal, this fails loudly.
+    """
+
+    cases = [c for c in suites[split] if c.task_family not in CONTROLS]
+    scores = []
+    for case in cases:
+        gold = case.protected_gold.dependencies_to_reopen
+        components = closure_components(case)
+        widest = max(len(comp) for comp in components)
+        tied = [comp for comp in components if len(comp) == widest]
+        # expected F1 under uniform random tie-breaking
+        scores.append(sum(reopen_f1(comp, gold) for comp in tied) / len(tied))
+    blind = sum(scores) / len(scores)
+
+    full_reset = sum(
+        reopen_f1(named_closures(c), c.protected_gold.dependencies_to_reopen) for c in cases
+    ) / len(cases)
+
+    assert blind == pytest.approx(BLIND_LARGEST_COMPONENT_F1[split], abs=0.02)
+    assert full_reset < blind, (full_reset, blind)
+    assert blind < 1.0
 
 
 @pytest.mark.parametrize("split", list(Split))

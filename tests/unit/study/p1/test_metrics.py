@@ -411,27 +411,42 @@ def test_responsibility_macro_f1_averages_over_the_observed_label_universe():
     assert result.responsibility_macro_f1 == pytest.approx(1 / 3)
 
 
-def test_trace_fidelity_flags_a_reframe_that_names_no_target():
-    case = make_case("P1-CASE-050", TaskFamily.HIDDEN_MEASUREMENT)
-    trace = SystemTrace(
-        case_id=case.case_id,
-        system_id="loose",
-        seed=0,
-        reframed=True,
-        responsibility_family="",
-        target_coordinates=(),
-        max_recursion_depth=0,
-    )
-    score = score_case(case, trace, system_id="loose", seed=0)
+def test_a_reframe_naming_no_target_is_an_attribution_failure_not_a_bookkeeping_one():
+    """An untyped system reframing without naming a cause is reporting honestly.
 
-    assert score.trace_fidelity is False
-    assert set(score.trace_fidelity_faults) == {
-        "reframe_without_target_coordinates",
-        "reframe_without_responsibility_family",
-        "reframe_without_recursion_depth",
-    }
-    assert score.failure_mode is FailureMode.TRACE_INFIDELITY
+    Trace fidelity is an internal-consistency audit: it asks whether a trace
+    contradicts itself. A system that reframes and names no responsibility is
+    not contradicting itself — it has no typed attribution mechanism, which is
+    exactly the property the untyped baselines and the generic-retry ablation
+    exist to test. Scoring it as TRACE_INFIDELITY reported an attribution
+    failure as bookkeeping, and because integrity outranks performance in the
+    precedence order, it masked those systems' defining property behind a
+    housekeeping label.
 
+    Claiming a reframe while recording no recursion depth remains a genuine
+    contradiction: the trace asserts an act it also says never ran.
+    """
+
+    from orion.study.p1.metrics import _trace_fidelity_faults
+
+    def trace(*, coords, family, depth):
+        return SystemTrace(
+            case_id="p1-c101",
+            system_id="tree_search_iterative_research",
+            seed=0,
+            reframed=True,
+            responsibility_family=family,
+            target_coordinates=coords,
+            max_recursion_depth=depth,
+        )
+
+    untyped = trace(coords=(), family="", depth=2)
+    faults = _trace_fidelity_faults(untyped)
+    assert "reframe_without_target_coordinates" not in faults
+    assert "reframe_without_responsibility_family" not in faults
+
+    contradictory = trace(coords=("W.REPRESENTATIONS",), family="SEARCH", depth=0)
+    assert "reframe_without_recursion_depth" in _trace_fidelity_faults(contradictory)
 
 def test_violations_use_any_reduction_so_one_bad_repeat_marks_the_case():
     case = make_case("P1-CASE-051", TaskFamily.HIDDEN_PARENT_DOMAIN)

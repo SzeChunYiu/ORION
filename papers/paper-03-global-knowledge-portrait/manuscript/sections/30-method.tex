@@ -57,29 +57,37 @@ to silently acquire scientific authority over the source view.
 A comparison between two projections $P_a, P_b$ is a vector of
 \emph{coordinate-wise hypotheses}:
 \begin{equation}
-    m(P_a, P_b) = \langle \mathrm{ref}(R_a,R_b), \mathrm{const}(C_a,C_b),\nonumber\\
-    \qquad \mathrm{meas}(M_a,M_b), \mathrm{ctx}(X_a,X_b),\nonumber\\
-    \qquad \mathrm{pol}(\rho_a,\rho_b), \mathrm{mod}(\mu_a,\mu_b),\nonumber\\
-    \qquad \mathrm{attr}(a_a,a_b), \mathrm{disc}(\delta_a,\delta_b) \rangle
+\begin{split}
+    m(P_a, P_b) = \langle&\ \mathrm{ref}(R_a,R_b),\ \mathrm{const}(C_a,C_b),\\
+    &\ \mathrm{meas}(M_a,M_b),\ \mathrm{ctx}(X_a,X_b),\\
+    &\ \mathrm{pol}(\rho_a,\rho_b),\ \mathrm{mod}(\mu_a,\mu_b),\\
+    &\ \mathrm{attr}(a_a,a_b),\ \mathrm{disc}(\delta_a,\delta_b) \rangle
+\end{split}
 \end{equation}
 Each coordinate relation takes values in the frozen taxonomy of
-\texttt{ANNOTATION\_SCHEMA\_V1.json}, e.g.\ $\mathrm{ref} \in
-\{\mathrm{SAME}, \mathrm{DIFFERENT}, \mathrm{PARTIAL\_OVERLAP},
-\mathrm{UNRESOLVED}\}$, $\mathrm{const} \in \{\mathrm{SAME},
-\mathrm{RELATED\_NOT\_SAME}, \mathrm{DIFFERENT}, \mathrm{UNRESOLVED}\}$,
-$\mathrm{meas} \in \{\mathrm{EQUIVALENT},
-\mathrm{TRANSFORMABLE\_WITH\_CONDITIONS}, \mathrm{NON\_EQUIVALENT},
-\mathrm{NOT\_APPLICABLE}, \mathrm{UNRESOLVED}\}$. A mapping is
-\emph{proposal-level} until supported.
+\texttt{ANNOTATION\_SCHEMA\_V1.json}, e.g.:
+\begin{align*}
+    \mathrm{ref} &\in \{\mathrm{SAME}, \mathrm{DIFFERENT},
+        \mathrm{PARTIAL\_OVERLAP}, \mathrm{UNRESOLVED}\},\\
+    \mathrm{const} &\in \{\mathrm{SAME}, \mathrm{RELATED\_NOT\_SAME},\\
+        &\qquad \mathrm{DIFFERENT}, \mathrm{UNRESOLVED}\},\\
+    \mathrm{meas} &\in \{\mathrm{EQUIVALENT},
+        \mathrm{TRANSFORMABLE\_WITH\_CONDITIONS},\\
+        &\qquad \mathrm{NON\_EQUIVALENT}, \mathrm{NOT\_APPLICABLE},
+        \mathrm{UNRESOLVED}\}.
+\end{align*}
+A mapping is \emph{proposal-level} until supported.
 
 \subsection{Typed mapping}
 
 A \emph{typed mapping} is a pair
 \begin{equation}
-    m \in \{\mathrm{IDENTITY}, \mathrm{EQUIVALENCE},\nonumber\\
-    \qquad \mathrm{CONDITIONAL\_TRANSFORM}, \mathrm{SUBSUMPTION},\nonumber\\
-    \qquad \mathrm{ASSOCIATION\_ONLY}, \mathrm{NO\_LICENSED\_MAPPING},\nonumber\\
-    \qquad \mathrm{UNRESOLVED}\}
+\begin{aligned}
+    m \in \{\ &\mathrm{IDENTITY},\ \mathrm{EQUIVALENCE},\\
+    &\mathrm{CONDITIONAL\_TRANSFORM},\ \mathrm{SUBSUMPTION},\\
+    &\mathrm{ASSOCIATION\_ONLY},\ \mathrm{NO\_LICENSED\_MAPPING},\\
+    &\mathrm{UNRESOLVED}\ \}
+\end{aligned}
 \end{equation}
 together with
 \begin{itemize}

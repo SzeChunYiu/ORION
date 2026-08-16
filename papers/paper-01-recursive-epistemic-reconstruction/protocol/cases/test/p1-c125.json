@@ -1,7 +1,7 @@
 {
   "case_id": "p1-c125",
   "task_family": "evidence_only_negative_control",
-  "public_prompt": "Defects on the assembly line spiked over a four-week window. Process parameters have been cleared, leaving supplier material as the remaining common cause, so the lot-code join is the right instrument. The plan is to join the defect records to the supplier lot codes and name the supplier. Carry out the plan and name it.",
+  "public_prompt": "Defects on the assembly line spiked over a four-week window. Process parameters have been cleared, leaving supplier material as the remaining common cause. The plan is to join the defect records to the supplier lot codes and name the supplier. Carry out the plan and name it.",
   "observable_resources": [
     "quality/defects.csv — complete defect records for the window, 1,940 units, each with line and timestamp",
     "quality/lot-codes.csv — the lot code column is populated for 41% of the window's units; the gaps line up exactly with lines 2, 4 and 5",

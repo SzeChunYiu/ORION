@@ -1,0 +1,55 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.BIOMED.007.GOLD",
+  "case_id": "P3.BIOMED.007",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "pmc:SEED-BIOMED007A",
+    "document_version": "v1",
+    "span_start": 3444,
+    "span_end": 3801,
+    "text_hash": "seed:sha256:5152535a656",
+    "discipline": "biomed",
+    "text": "Basic-science paper: melatonin modulates circadian clock genes"
+  },
+  "source_b": {
+    "document_id": "pmc:SEED-BIOMED007B",
+    "document_version": "v1",
+    "span_start": 12090,
+    "span_end": 12470,
+    "text_hash": "seed:sha256:5657585a960",
+    "discipline": "biomed",
+    "text": "Clinical trial: melatonin supplementation for jet lag"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "RELATED_NOT_SAME",
+  "measurement_relation": "TRANSFORMABLE_WITH_CONDITIONS",
+  "context_relation": "CONDITIONED_COMPATIBLE",
+  "polarity_relation": "SAME",
+  "modality_relation": "SAME",
+  "attribution_relation": "SAME_SPEAKER_OR_SOURCE",
+  "discourse_relation": "ALIGNED",
+  "mapping_relation": "CONDITIONAL_TRANSFORM",
+  "preservation_conditions": [
+    "Bridge validity depends on transfer conditions (dose, exposure, outcome, timescale)",
+    "Mechanism-to-application transfer requires explicit boundary conditions"
+  ],
+  "non_preserved_coordinates": [
+    "context",
+    "construct"
+  ],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "GLUE_ALLOWED",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "context_relation:CONDITIONED_COMPATIBLE",
+    "mapping_relation:CONDITIONAL_TRANSFORM",
+    "preservation_conditions:transfer_boundaries"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for valid_invalid_literature_bridge case P3.BIOMED.007. referent=SAME, construct=RELATED_NOT_SAME, measurement=TRANSFORMABLE_WITH_CONDITIONS, context=CONDITIONED_COMPATIBLE, mapping=CONDITIONAL_TRANSFORM, integration=GLUE_ALLOWED. Seed manifest notes: Bridge from mechanistic finding to clinical trial. Gold: VALID bridge WITH explicit transfer conditions (dose, exposure, outcome).",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}
