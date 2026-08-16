@@ -85,7 +85,11 @@ from orion.self_orion.rakl_transfer import (
     transfer_coverage,
 )
 from orion.self_orion.readiness import (
-    ReadinessEvidence,
+    ArchitectureReadinessReport,
+    EmpiricalReadinessReport,
+    EvidenceStatus,
+    ReadinessCriterion,
+    ReadinessEvidenceRecord,
     SelfOrionReadinessStage,
     ShadowSelfDrivingArchitectureEvidence,
     assess_readiness,
