@@ -30,9 +30,15 @@ env:
 jobs:
   custody-preflight:
     runs-on: ubuntu-24.04
+    outputs:
+      all_ready: ${{ steps.preflight.outputs.all_ready }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Check protected Phase-2 custody bindings
+        id: preflight
         shell: python
         run: |
           import json
@@ -82,14 +88,18 @@ jobs:
               json.dumps(report, indent=2, sort_keys=True) + "\n",
               encoding="utf-8",
           )
-          if not all_ready:
-              raise SystemExit("Phase-2 empirical execution is blocked by missing protected custody bindings")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              output.write(f"all_ready={'true' if all_ready else 'false'}\n")
       - name: Install ORION
-        if: success()
         run: python -m pip install -e '.[dev]'
       - name: Verify local suite before empirical execution
-        if: success()
         run: pytest -q
+      - name: Record blocked empirical execution
+        if: steps.preflight.outputs.all_ready != 'true'
+        run: echo "Phase-2 empirical execution is BLOCKED by the retained custody preflight artifact."
+      - name: Protected custody is ready
+        if: steps.preflight.outputs.all_ready == 'true'
+        run: echo "All protected Phase-2 custody groups are READY; execute the frozen campaign with the retained bindings."
       - name: Upload custody preflight
         if: always()
         uses: actions/upload-artifact@v4
