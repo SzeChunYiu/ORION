@@ -787,3 +787,47 @@ def test_one_paper_reached_by_two_references_counts_as_one_discovery(
     ).run(max_rounds=1)
 
     assert report.growth[0].new_evidence_roots == 1
+
+
+def test_a_starved_selection_window_is_not_reported_as_flatness(tmp_path: Path) -> None:
+    """FALSE_FLATNESS_BY_STARVATION, measured by another lane and confirmed here.
+
+    The fixed breadth-first priority feeds the selection window from the top
+    dimensions, so a narrow window never reaches the lower ones and never asks
+    the source for them. Nothing about the knowledge is flat — the window is.
+    A run that called that saturation would be reporting its own scheduling as
+    a property of the world.
+    """
+
+    ref = _evidence(tmp_path)
+    # An answer the window will not reach: STORAGE sits far down the priority order.
+    withheld = _answer(ref, root=tmp_path, record_id="unreached")
+    report = SelfDrivingDriver(
+        store=LedgerStore(tmp_path / "state"),
+        source=StaticAnswerSource(records=(withheld,)),
+        evidence_roots={"orion": tmp_path},
+        seed_cells=_program(),
+        selection_limit=1,
+    ).run(max_rounds=4)
+
+    assert report.stop_reason == "selection_window_exhausted"
+
+
+def test_a_source_that_cannot_be_probed_does_not_license_a_flat_claim(
+    tmp_path: Path,
+) -> None:
+    """Unknown source coverage is not verified source coverage."""
+
+    class _Opaque:
+        def fetch(self, tasks, cells, round_index):
+            return ()
+
+    report = SelfDrivingDriver(
+        store=LedgerStore(tmp_path / "state"),
+        source=_Opaque(),
+        evidence_roots={"orion": tmp_path},
+        seed_cells=_program(),
+        selection_limit=64,
+    ).run(max_rounds=4)
+
+    assert report.stop_reason == "flat_source_coverage_unverified"
