@@ -139,22 +139,18 @@ def prepare(full_path: Path, public_path: Path, gt_path: Path) -> dict[str, Any]
     if len(public) != 600:
         raise ValueError(f"expected 600 Deep records at pinned release, got {len(public)}")
 
-    serialized_public = json.dumps(public, sort_keys=True)
-    for forbidden in (
-        "answer",
-        "arxiv_id",
-        "target_arxiv_id",
-        "ground_truth_titles",
-        "gold",
-        "ground_truth",
-    ):
-        if forbidden in serialized_public:
-            raise AssertionError(f"hidden field crossed Deep candidate boundary: {forbidden}")
+    expected_public_keys = {"task_id", "question"}
+    for index, record in enumerate(public, 1):
+        if set(record) != expected_public_keys:
+            raise AssertionError(
+                f"hidden field crossed Deep candidate boundary at record {index}: "
+                f"{sorted(set(record) - expected_public_keys)}"
+            )
 
     _write_jsonl(public_path, public)
     _write_jsonl(gt_path, gt)
     return {
-        "schema_version": "orion.p2.autoresearchbench-deep-id-split.v2",
+        "schema_version": "orion.p2.autoresearchbench-deep-id-split.v3",
         "pinned_upstream_commit": PINNED_AUTORESEARCHBENCH_COMMIT,
         "release_task_type_field": "type",
         "release_task_type_counts": type_counts,
@@ -164,6 +160,7 @@ def prepare(full_path: Path, public_path: Path, gt_path: Path) -> dict[str, Any]
         "empty_target_task_count": empty_target_count,
         "exact_id_scorable_task_count": len(public) - empty_target_count,
         "title_gold_task_count": title_gold_count,
+        "candidate_public_fields": sorted(expected_public_keys),
         "hidden_labels_visible_to_candidate": False,
         "public_sha256": _sha256(public_path),
         "gt_sha256": _sha256(gt_path),
@@ -188,7 +185,7 @@ def run_candidate(
         max_results=max_results,
         limit=limit,
     )
-    manifest["schema_version"] = "orion.p2.autoresearchbench-deep-keyless-run.v2"
+    manifest["schema_version"] = "orion.p2.autoresearchbench-deep-keyless-run.v3"
     manifest["benchmark_lane"] = "Deep candidate shared by exact-ID and official-title evaluation"
     manifest["hidden_labels_visible_to_candidate"] = False
     return manifest
@@ -249,7 +246,7 @@ def evaluate(
         )
 
     payload = {
-        "schema_version": "orion.p2.autoresearchbench-deep-id-eval.v2",
+        "schema_version": "orion.p2.autoresearchbench-deep-id-eval.v3",
         "benchmark": "AutoResearchBench Deep",
         "pinned_upstream_commit": PINNED_AUTORESEARCHBENCH_COMMIT,
         "metric": "exact_target_arxiv_id_retrieval_success",
@@ -352,7 +349,7 @@ def summarize(
     run = json.loads(run_manifest_path.read_text(encoding="utf-8"))
     evaluation = json.loads(evaluation_path.read_text(encoding="utf-8"))
     payload = {
-        "schema_version": "orion.p2.autoresearchbench-deep-id-summary.v2",
+        "schema_version": "orion.p2.autoresearchbench-deep-id-summary.v3",
         "benchmark": "AutoResearchBench Deep",
         "candidate": "ORION keyless public-arXiv probe",
         "claim_scope": "deterministic_external_probe_not_official_deep_title_judge",
