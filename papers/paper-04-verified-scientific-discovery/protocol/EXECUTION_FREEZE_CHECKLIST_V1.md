@@ -1,8 +1,8 @@
 # Execution Freeze Checklist — ORION-P4 (V1)
 
 **Protocol:** P4.protected-authority.v1  
-**Status:** `EXECUTION_FROZEN` / launch blocked pending exact-main attestation  
-**Promotion criteria:** all 12 items below must be evidenced before the publication-authorizing candidate run starts.
+**Status:** `EXECUTION_FROZEN` / launch authorized by signed green freeze attestation  
+**Promotion criteria:** all 12 items below are evidenced before the publication-authorizing candidate run starts.
 
 A first hidden preparation (`31967050382`) is explicitly superseded and void because a pre-execution audit found that the harness omitted the protocol-frozen ablation arm. It was never executed. All values below refer only to the replacement final host preparation `31967352555`, generated after the complete harness preflight passed.
 
@@ -65,23 +65,25 @@ A first hidden preparation (`31967050382`) is explicitly superseded and void bec
   - `protocol_status = EXECUTION_FROZEN`.
   - `outcome_accessed = false`.
 
-- [ ] **12. GitHub-verified `main` freeze commit + green exact-commit CI**
-  - freeze PR must merge to `main` as a verified/timestamped GitHub commit.
-  - CI must pass on that exact main commit.
-  - the campaign launch marker is deliberately absent from this freeze change.
-  - after merge + green CI, a separate launch change records the merge SHA/CI run, checks this box, and only then adds the launch marker.
+- [x] **12. GitHub-verified `main` freeze commit + green exact-commit CI**
+  - freeze PR: `#144`.
+  - verified `main` merge commit: `5019b41b0da0d0763981d6d72975485517f923b3`.
+  - GitHub signature verification: `verified=true`, reason `valid`, verified at `2026-08-16T19:43:38Z`.
+  - exact-main CI run: `31968436593`; test job `95217050050`; conclusion `success`.
+  - the freeze merge contains no `CAMPAIGN_TRIGGER_V1.txt`; therefore the protected candidate did not run before this attestation existed.
+  - the separate launch change may now add the campaign trigger without modifying subject, hidden set, comparator/ablation config, evaluator harness, split or epoch.
 
 ## Sign-off / custody identities
 
 | Role | Identity | Date | Signature / attestation |
 |---|---|---|---|
-| Protocol author | repository protocol V1 | 2026-08-16 | complete prospective design + execution bindings; merge attestation pending |
+| Protocol author | repository protocol V1 | 2026-08-16 | complete prospective design + execution bindings |
 | Independent host | GitHub Actions run `31967352555`, job `95214444166` | 2026-08-16T19:22:06Z | content-addressed gold-blind host artifacts and SHA-256 commitments |
-| Reviewer | exact-main CI / merge attestation | pending | item 12 intentionally open until verified main commit exists |
+| Reviewer / freeze attestation | GitHub merge `5019b41b0da0d0763981d6d72975485517f923b3` + CI `31968436593` | 2026-08-16T19:43:38Z | GitHub signature valid; exact-main `pytest -q` green |
 
 ## Post-freeze conditions
 
-- No protected outcome inspection before item 12.
+- All 12 pre-run conditions were satisfied before the launch marker was authored.
 - Any change to subject, hidden set, config, executable harness, split or epoch voids this freeze and requires a fresh hidden set.
 - If the protected result exposes a subject defect, preserve that run; a repaired subject requires a new subject binding and newly generated hidden split.
 - Any invalidating condition from `FREEZE_MANIFEST_V1.md` voids the run.
