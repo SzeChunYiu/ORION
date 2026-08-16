@@ -29,6 +29,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install repository dev dependencies
+        run: python -m pip install -e '.[dev]'
+
       - name: Verify immutable V2 claims and lifecycle
         run: pytest -q tests/unit/p4/test_p4_publication_v2.py tests/unit/p4/test_p4_v2_execution_freeze.py
 
