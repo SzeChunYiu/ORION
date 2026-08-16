@@ -62,3 +62,10 @@ paper01-trial:
 ## CANNOT_CHECK on every live cell and wasting the mechanical arm's run too.
 paper01-trial-live:
 	@PYTHONPATH=$(SRC) $(PYTHON) -m orion.study.p1.run_trial --split $(or $(SPLIT),PILOT) --live
+
+.PHONY: conformance
+## Check every declared protocol quantity against the artifacts on disk.
+## Exits 1 on a violation; CANNOT_CHECK does not fail — an unstarted paper is
+## unknown, not wrong, and failing on it would get this switched off.
+conformance:
+	@PYTHONPATH=$(SRC) $(PYTHON) -m orion.conformance --papers papers
