@@ -148,7 +148,7 @@ def _case(
     return case
 
 
-CLEAN = _case("CLEAN_POSITIVE")
+CLEAN = _case("CLEAN_POSITIVE", evidence=[_evidence()])
 ALL_CASES = [_case(f) for f in FAMILY_CASES]
 SIX_CASES = ALL_CASES[:6]
 
@@ -174,13 +174,13 @@ def test_all_baselines_run_and_metrics_validate():
 
 
 def test_citation_baseline_promotes_on_format_only():
-    verdict = run_baseline("citation_presence_format_check", CLEAN)
+    verdict = run_baseline("provenanceguard-style-source-routing", CLEAN)
     assert verdict.promoted
     assert not verdict.blocked
     assert not verdict.cannot_check
     # Wrong-source attack still "passes" because format is all it checks
     wrong = _case("WRONG_SOURCE")
-    verdict = run_baseline("citation_presence_format_check", wrong)
+    verdict = run_baseline("provenanceguard-style-source-routing", wrong)
     assert verdict.promoted
 
 
@@ -188,14 +188,14 @@ def test_pooled_nli_blocks_contradiction_and_cannot_check_insufficient():
     blocked = _case(
         "WRONG_SOURCE", semantic_support="CONTRADICTED", expected_terminal="BLOCK"
     )
-    verdict = run_baseline("pooled_evidence_nli_support", blocked)
+    verdict = run_baseline("attributionbench-multisource-attribution", blocked)
     assert verdict.blocked
     assert not verdict.promoted
 
     insufficient = _case(
         "INSUFFICIENT_EVIDENCE", semantic_support="INSUFFICIENT"
     )
-    verdict = run_baseline("pooled_evidence_nli_support", insufficient)
+    verdict = run_baseline("attributionbench-multisource-attribution", insufficient)
     assert verdict.cannot_check
 
 
@@ -204,7 +204,7 @@ def test_provenanceguard_detects_substitution_and_conflation():
         "CONTENT_SUBSTITUTION",
         evidence=[_evidence(content_hash="")],
     )
-    verdict = run_baseline("provenanceguard_like_source_aware_verifier", substitution)
+    verdict = run_baseline("claimbench-sciclaimhunt-scientific-evidence", substitution)
     assert verdict.blocked
     assert verdict.substitution_detected is True
 
@@ -212,7 +212,7 @@ def test_provenanceguard_detects_substitution_and_conflation():
         "SOURCE_CONFLATION",
         evidence=[_evidence(provenance_hash=""), _evidence(provenance_hash="")],
     )
-    verdict = run_baseline("provenanceguard_like_source_aware_verifier", conflation)
+    verdict = run_baseline("claimbench-sciclaimhunt-scientific-evidence", conflation)
     assert verdict.blocked
 
 
@@ -220,13 +220,13 @@ def test_iterative_retrieve_cannot_check_insufficient_and_blocks_contradiction()
     insufficient = _case(
         "INSUFFICIENT_EVIDENCE", semantic_support="INSUFFICIENT"
     )
-    verdict = run_baseline("iterative_retrieve_or_verify", insufficient)
+    verdict = run_baseline("provenai-citation-fidelity-influence", insufficient)
     assert verdict.cannot_check
 
     contradicted = _case(
         "WRONG_SOURCE", semantic_support="CONTRADICTED", expected_terminal="BLOCK"
     )
-    verdict = run_baseline("iterative_retrieve_or_verify", contradicted)
+    verdict = run_baseline("provenai-citation-fidelity-influence", contradicted)
     assert verdict.blocked
 
 
@@ -235,7 +235,7 @@ def test_claim_level_auditability_cannot_check_on_conflation():
         "SOURCE_CONFLATION",
         evidence=[_evidence(provenance_hash="p1"), _evidence(provenance_hash="p2")],
     )
-    verdict = run_baseline("claim_level_auditability_provenance", conflation)
+    verdict = run_baseline("rewardhackingagents-search-contamination", conflation)
     # Different provenance per piece is consistent; suffisent evidence + good
     # attribution but owner mismatch -> cannot check
     assert verdict.cannot_check or verdict.blocked
@@ -257,7 +257,7 @@ def test_verdicts_to_metrics_counts_and_denominators():
 
 
 def test_run_baseline_campaign_returns_verdicts_and_metrics():
-    verdicts, metrics = run_baseline_campaign("pooled_evidence_nli_support", SIX_CASES)
+    verdicts, metrics = run_baseline_campaign("attributionbench-multisource-attribution", SIX_CASES)
     assert len(verdicts) == len(SIX_CASES)
     assert metrics.claim_total == len(SIX_CASES)
 
@@ -338,7 +338,9 @@ def test_soft_confidence_promotes_instead_of_fail_closed_on_insufficient():
 
 
 def test_no_search_time_contamination_block_reopens_contaminated():
-    contaminated = _case("SEARCH_TIME_CONTAMINATION", contaminated=True)
+    contaminated = _case(
+        "SEARCH_TIME_CONTAMINATION", contaminated=True, evidence=[_evidence()]
+    )
     full = run_orion(contaminated)
     ablated = run_ablation("no_search_time_contamination_block", contaminated)
     assert full.blocked and not ablated.blocked
@@ -428,6 +430,7 @@ def test_manifest_campaign_hash_changes_when_case_changes(tmp_path):
 
 
 def test_make_result_record_deterministic_hash():
+    cost = {"wallclock_seconds": 0.0, "model_tokens": 0.0, "tool_calls": 0.0, "reported_currency_cost": 0.0}
     record = make_result_record(
         paper_id="P4",
         protocol_id="P4.protected-authority.v1",
@@ -437,6 +440,7 @@ def test_make_result_record_deterministic_hash():
         task_family="clean_supported_positive",
         seed=0,
         metrics=verdicts_to_metrics((run_orion(CLEAN),)),
+        cost=cost,
     )
     again = make_result_record(
         paper_id="P4",
@@ -447,12 +451,14 @@ def test_make_result_record_deterministic_hash():
         task_family="clean_supported_positive",
         seed=0,
         metrics=verdicts_to_metrics((run_orion(CLEAN),)),
+        cost=cost,
     )
     assert record == again
     assert record["status"] in {"PASS", "FAIL", "CANNOT_CHECK", "INVALID"}
 
 
 def test_all_required_fields_present():
+    cost = {"wallclock_seconds": 0.0, "model_tokens": 0.0, "tool_calls": 0.0, "reported_currency_cost": 0.0}
     record = make_result_record(
         paper_id="P4",
         protocol_id="P4.protected-authority.v1",
@@ -462,6 +468,7 @@ def test_all_required_fields_present():
         task_family="clean_supported_positive",
         seed=0,
         metrics=verdicts_to_metrics((run_orion(CLEAN),)),
+        cost=cost,
     )
     required = {
         "schema_version",

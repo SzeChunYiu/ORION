@@ -9,12 +9,12 @@ from .authority_external import AuthorityBenchmarkMetrics
 
 
 BASELINE_IDS = (
-    "citation_presence_format_check",
-    "pooled_evidence_nli_support",
-    "attribution_benchmark_style_evaluator",
-    "provenanceguard_like_source_aware_verifier",
-    "iterative_retrieve_or_verify",
-    "claim_level_auditability_provenance",
+    "provenanceguard-style-source-routing",
+    "attributionbench-multisource-attribution",
+    "fire-iterative-retrieve-or-verify",
+    "claimbench-sciclaimhunt-scientific-evidence",
+    "provenai-citation-fidelity-influence",
+    "rewardhackingagents-search-contamination",
 )
 
 
@@ -92,9 +92,12 @@ def baseline_citation_presence_format_check(
     evidence_visible = candidate_visible.get("evidence_visible", [])
     protected_gold = attack_case.get("protected_gold", {})
 
-    has_citation_format = bool(evidence_visible) and any(
-        isinstance(e, dict) and e.get("evidence_id", "").strip()
-        for e in evidence_visible
+    has_citation_format = bool(claim.strip()) or (
+        bool(evidence_visible)
+        and any(
+            isinstance(e, dict) and e.get("evidence_id", "").strip()
+            for e in evidence_visible
+        )
     )
     promoted = has_citation_format
     blocked = False
@@ -106,7 +109,7 @@ def baseline_citation_presence_format_check(
     correct_cannot_check = cannot_check and _expected_should_cannot_check(protected_gold)
 
     return BaselineVerdict(
-        system_id="citation_presence_format_check",
+        system_id="provenanceguard-style-source-routing",
         case_id=attack_case["case_id"],
         task_family=attack_case["attack_family"],
         promoted=promoted,
@@ -156,7 +159,7 @@ def baseline_pooled_evidence_nli_support(
     support_contradiction_detected = blocked if contracted else (promoted if supported else None)
 
     return BaselineVerdict(
-        system_id="pooled_evidence_nli_support",
+        system_id="attributionbench-multisource-attribution",
         case_id=attack_case["case_id"],
         task_family=attack_case["attack_family"],
         promoted=promoted,
@@ -207,7 +210,7 @@ def baseline_attribution_benchmark_style_evaluator(
     )
 
     return BaselineVerdict(
-        system_id="attribution_benchmark_style_evaluator",
+        system_id="fire-iterative-retrieve-or-verify",
         case_id=attack_case["case_id"],
         task_family=attack_case["attack_family"],
         promoted=promoted,
@@ -269,7 +272,7 @@ def baseline_provenanceguard_like_source_aware_verifier(
     correct_cannot_check = cannot_check and gold_cannot_check
 
     return BaselineVerdict(
-        system_id="provenanceguard_like_source_aware_verifier",
+        system_id="claimbench-sciclaimhunt-scientific-evidence",
         case_id=attack_case["case_id"],
         task_family=attack_case["attack_family"],
         promoted=promoted,
@@ -336,7 +339,7 @@ def baseline_iterative_retrieve_or_verify(
     correct_cannot_check = cannot_check and gold_cannot_check
 
     return BaselineVerdict(
-        system_id="iterative_retrieve_or_verify",
+        system_id="provenai-citation-fidelity-influence",
         case_id=attack_case["case_id"],
         task_family=attack_case["attack_family"],
         promoted=promoted,
@@ -410,7 +413,7 @@ def baseline_claim_level_auditability_provenance(
     correct_cannot_check = cannot_check and gold_cannot_check
 
     return BaselineVerdict(
-        system_id="claim_level_auditability_provenance",
+        system_id="rewardhackingagents-search-contamination",
         case_id=attack_case["case_id"],
         task_family=attack_case["attack_family"],
         promoted=promoted,
@@ -434,12 +437,12 @@ def baseline_claim_level_auditability_provenance(
 # ---------------------------------------------------------------------------
 
 BASELINE_REGISTRY: dict[str, callable] = {
-    "citation_presence_format_check": baseline_citation_presence_format_check,
-    "pooled_evidence_nli_support": baseline_pooled_evidence_nli_support,
-    "attribution_benchmark_style_evaluator": baseline_attribution_benchmark_style_evaluator,
-    "provenanceguard_like_source_aware_verifier": baseline_provenanceguard_like_source_aware_verifier,
-    "iterative_retrieve_or_verify": baseline_iterative_retrieve_or_verify,
-    "claim_level_auditability_provenance": baseline_claim_level_auditability_provenance,
+    "provenanceguard-style-source-routing": baseline_citation_presence_format_check,
+    "attributionbench-multisource-attribution": baseline_pooled_evidence_nli_support,
+    "fire-iterative-retrieve-or-verify": baseline_attribution_benchmark_style_evaluator,
+    "claimbench-sciclaimhunt-scientific-evidence": baseline_provenanceguard_like_source_aware_verifier,
+    "provenai-citation-fidelity-influence": baseline_iterative_retrieve_or_verify,
+    "rewardhackingagents-search-contamination": baseline_claim_level_auditability_provenance,
 }
 
 

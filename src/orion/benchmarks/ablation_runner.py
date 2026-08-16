@@ -252,7 +252,7 @@ def _evaluate_orion_guarded(
     evaluator_ok = _guard_evaluator_protection(attack_case, family) if guards.evaluator_protection_access_telemetry else True
     contamination_blocked = _guard_search_time_contamination(attack_case, family) if guards.search_time_contamination_block else True
 
-    guard_violations = not any(
+    guard_violations = not all(
         (
             content_ok,
             provenance_ok,
@@ -270,7 +270,7 @@ def _evaluate_orion_guarded(
         # Soft-confidence variant: fail-open authority. Any unresolved
         # prerequisite or violated guard still promotes on the direct
         # evidence signal -- authority is a soft score, not a gate.
-        promoted = supported and (good_attribution or not supported)
+        promoted = not contradicted and (supported or good_attribution)
         blocked = contradicted
         cannot_check = False
     elif insufficient:
