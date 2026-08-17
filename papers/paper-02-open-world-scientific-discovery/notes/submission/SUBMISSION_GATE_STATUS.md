@@ -1,83 +1,70 @@
-# P2 submission gate status
+# P2 submission gate status — narrowed IP&M track
 
-State of every submission-gate checkbox, as of **2026-08-17**.
+State as of **2026-08-17**.
+Scientific terminal: `P2_NARROWED`.
+Publication terminal remains open until the mechanical PDF/package checks pass.
 
-**Numbering note.** `JOURNAL_READINESS.md` has nine numbered sections; the
-submission gate is **section 9**, and there is no section 10. This file covers
-section 9 in full, plus the three section 8 (reproducibility package) items that
-belong to the submission gate rather than to the experiment.
+Canonical scope receipt: `protocol/P2_NARROWED_PUBLICATION_TERMINAL_2026-08-17.md`.
+Venue scope: `protocol/TARGET_JOURNAL_SCOPE_CHECK_2026-08-17.md`.
 
-States are `DONE`, `BLOCKED_ON <what>`, `DEFERRED <condition>`. Where a checkbox's
-own precondition is unmet, that is stated rather than absorbed into a `DONE`.
+States are `DONE`, `DEFERRED`, `CANNOT_CHECK`, or `BLOCKED_ON`.
 
-## Section 9 — submission gate
+## Submission gate
 
-| # | Checkbox | State | Justifying artifact / reason |
-| --- | --- | --- | --- |
-| 9.1 | literature closure within 14 days of submission | `DEFERRED until a submission date exists` | The requirement is time-boxed to a date not yet set, so it cannot be satisfied early — closing it now would only expire again. Standing basis: `notes/NEAREST_WORK_AUDIT_2026-08.md`, `notes/nearest-work/*.md`, `evidence/literature/*.json`, and `tests/unit/p2/test_p2_literature_closure.py`. Owner: literature lane. Action: re-run the closure sweep inside the 14-day window. |
-| 9.2 | target-journal scope check after external results stabilize | `DONE` | `notes/submission/JOURNAL_SCOPE_CHECK.md`. Four venues assessed against pages fetched 2026-08-17; recommendation **TMLR**, with reasoning tied to what the claim ledger supports. Four further venues marked `CANNOT_CHECK` because their pages would not load. |
-| 9.2b | scope check re-verification once external results stabilize | `BLOCKED_ON external result stabilization` | The checkbox's stated precondition is **not** met: no Wide/Deep system result is archived, so the check above was necessarily made under `CANNOT_CHECK` external status. The recommendation is contingent by construction — TMLR fits *because* external superiority is unproven; if an external campaign lands, Research Synthesis Methods becomes viable and the venue decision must be retaken. |
-| 9.3a | cover letter | `DONE` (draft) | `notes/submission/COVER_LETTER_DRAFT.md`. Claims exactly what the ledger supports; names the four limits (synthetic index, external families under declared deviations, one inherited unseeded upstream metric, live-provider mutability); no superlatives, no invented endorsements, no reviewer suggestions. Venue is not finalized (TMLR vs IP&M). |
-| 9.3b | supplement | `DONE` (plan) / `BLOCKED_ON assembly` | `notes/submission/SUPPLEMENT_PLAN.md` enumerates included, deferred and licence-excluded contents plus a pre-submission checklist. The ZIP itself has not been built, and building it requires the anonymisation in 9.3c. |
-| 9.3c | journal formatting | `BLOCKED_ON TMLR style adoption and anonymisation` | `manuscript/main.tex` is `\documentclass[11pt]{article}`. TMLR requires its official LaTeX style file and double-blind anonymisation (<https://jmlr.org/tmlr/author-guide.html>, fetched 2026-08-17), and neither is applied. The author line is the placeholder `\author{Working framework draft}` and no acknowledgements or funding text exists, so anonymisation is unstarted rather than violated — but real author metadata must never be added except on the TMLR anonymised template. Owner: manuscript lane. |
-| 9.4 | final reference-metadata and figure-legibility audit | `BLOCKED_ON the manuscript compile and reference-audit workflow` | Depends on the ChatGPT lane's compile + reference audit (`chatgpt/p2-remaining-closure`, PR #170). Not startable from this lane: a legibility audit needs a rendered PDF, and there is no compile artifact to inspect. |
-| 9.5 | independent final PDF/claim proofread | `BLOCKED_ON 9.3c and 9.4` | Two prerequisites are mechanical (a compiled, correctly formatted PDF). The claim half of this gate is mechanised — `scripts/check_claim_ledger.py --check` is green; `known_defects` is empty — but a human still owns the prose/PDF read. |
+| Item | State | Evidence / next condition |
+| --- | --- | --- |
+| Final scientific claim boundary | `DONE` | Narrowed to controlled mechanism evidence + bounded external stress tests. Matched external superiority is not claimed. |
+| Target journal | `DONE` | IP&M selected for the narrowed methods / critical system-design claim surface. JASIST remains fallback after a larger use-oriented reframe. |
+| Literature closure | `DEFERRED until actual submission date` | Dated primary-source freeze exists at `protocol/P2_LITERATURE_ASSIMILATION_FREEZE_2026-08-17.md`, but material stopping work appeared on 2026-08-13; no saturation is claimed. Re-run inside 14 days of submission. |
+| Cover letter | `DONE` as draft / `BLOCKED_ON final metadata` | Narrowed IP&M draft exists. Author names, affiliations and corresponding-author details are intentionally not invented. |
+| Supplement plan | `DONE` as plan / `BLOCKED_ON assembly` | Existing plan enumerates evidence and licence exclusions. Build the final package only after the exact current venue instructions are applied. |
+| Exact IP&M template / anonymisation / declaration requirements | `CANNOT_CHECK` in this lane | The official scope page is current, but the exact author-guide/template requirements were not authoritatively recovered. Do not infer them. Re-check the official author/submission instructions at upload time. |
+| Neutral manuscript compile | `BLOCKED_ON repository CI` | Compile the narrowed `manuscript/main.tex` and retain PDF/log. A clean neutral compile is useful even before venue-template conversion. |
+| Reference metadata + figure legibility | `BLOCKED_ON compiled PDF` | Static identifier checks are not a substitute for visual inspection of the rendered paper. |
+| Independent final PDF/claim proofread | `BLOCKED_ON compiled PDF + venue formatting` | Claim-ledger checks guard evidence drift but do not replace a final human/independent PDF read. |
+| Author metadata | `BLOCKED_ON authors` | Repository placeholder remains `Working framework draft`; automation must not infer authorship/affiliations. |
+| Permanent archive / DOI | `BLOCKED_ON deposit` | Recommended before public release. Mirror expiring raw external artifacts before retention windows lapse. |
 
-## Section 8 — reproducibility package items owned by the gate
+## Scientific external routes — future work, not blockers for the narrowed paper
 
-| # | Checkbox | State | Justifying artifact / reason |
-| --- | --- | --- | --- |
-| 8.4 | raw final live-provider results and request timestamps | `BLOCKED_ON the final live-provider campaign` | Capture machinery exists and has been exercised (`protocol/LIVE_CAMPAIGN_PROTOCOL_V1.md`, `tests/unit/p2/test_p2_live_campaign.py`); no final campaign archive exists. Tier 3 in `ARCHIVE_AND_COST_LEDGER.md`. |
-| 8.8 | clean-environment expected external runtime/cost ledger | `DONE` (structure and the one completed item) / `BLOCKED_ON campaign execution` (remaining rows) | `notes/submission/ARCHIVE_AND_COST_LEDGER.md` §2. The completed MetaSyn probe carries verified figures: **7 min 34 s** wall clock and **$0** metered cost, 0 LLM API calls, read from Actions run `31973786111`. Every unexecuted row is `UNKNOWN_PENDING_RUN`, never an estimate. Tier 1 runtimes are also `UNKNOWN_PENDING_RUN` because they have not been timed in a clean environment — only the ledger checker has an observed time. |
-| 8.10 | permanent archive/DOI | `BLOCKED_ON archive creation` | Contents and licence exclusions are now specified (`ARCHIVE_AND_COST_LEDGER.md` §1); nothing has been deposited. **Time-critical:** the MetaSyn probe's raw Actions artifact expires `2026-09-15T21:39:53Z` per `METASYN_ID_ONLY_PROBE_V1.json`. Mirror it into the archive before that date or the raw evidence is lost, leaving only its digests. |
+The following remain explicit `CANNOT_CHECK` / reopen triggers and must stay visible in the manuscript and archive:
 
-## New gate row added by this lane
+1. matched AutoResearchBench Wide ORION-vs-baseline without the frozen arXiv scorer-native path;
+2. matched multi-provider official Deep comparison;
+3. official SAGE 200k corpus/evaluator;
+4. final live-provider campaign and monetary/runtime/token ledger.
+
+The exact Wide blockers remain `FROZEN_ADAPTER_REQUIRES_ARXIV`, `OFFICIAL_SCORER_ARXIV_ID_IOU`, and `NO_ARXIV_MATCHED_RUNNER_ON_MAIN`. They are not converted into scientific zeros.
+
+## Reproducibility / integrity gate
 
 | Item | State | Artifact |
 | --- | --- | --- |
-| Claim ledger mechanised and machine-checked | `DONE` | `protocol/CLAIM_LEDGER_V1.json`, `scripts/check_claim_ledger.py`, `tests/unit/p2/test_p2_claim_ledger.py`. Green on the committed tree including `--strict`; `known_defects` is empty. Record-set SHA-256 values are bound (`DIGEST_MISMATCH`). |
+| Offline complete-gold regeneration | `DONE` | `scripts/run_offline_companion.py --check`; independent clean-CI reproduction already exists on main. |
+| Result claim binding | `DONE` | `protocol/CLAIM_LEDGER_V1.json`, `scripts/check_claim_ledger.py`; result-bearing abstract/results/limitations/conclusion prose is evidence-bound. |
+| P2 donor assimilation | `DONE` | `protocol/P2_DONOR_ASSIMILATION_LEDGER_V1.json`, `scripts/check_p2_assimilation.py`, hostile tests. |
+| Bounded external result archives | `DONE` | MetaSyn plus bounded AutoResearchBench Wide/Deep evidence are retained with their authority limits. |
+| Raw final live-provider archive | `DEFERRED / future work` | Not required for the narrowed paper because no live-provider superiority claim is made. Capture machinery remains available for a reopened prospective campaign. |
+| Permanent repository-independent archive | `BLOCKED_ON deposit` | Do not let expiring workflow artifacts become the only copy of raw external evidence. The prior gate audit recorded MetaSyn raw Actions-artifact expiry at `2026-09-15T21:39:53Z`; mirror before that date or re-establish the raw evidence through a reproducible rerun where possible. |
 
-All four ledgered regions — abstract, conclusion, Limitations and Results prose —
-hard-fail on an unledgered outcome sentence. Every outcome sentence in those
-regions is currently either a ledger claim, an explicitly reasoned non-claim, or a
-recorded defect, so the check is green with no suppressions. **Consequence for
-other lanes:** the checker runs against the committed manuscript, so any lane that
-adds or rewords a result-bearing sentence in `main.tex` or `sections/results.tex`
-will turn CI red until the ledger is re-verified. That is intended — the failure
-message prints both the ledger sentence and the current manuscript text so the
-re-verification is guided rather than a manual sweep — but it was not scoped as a
-cross-lane gate and the lead should know it now behaves as one.
+## What now blocks `PEER_REVIEW_READY_NARROWED`
 
-## Open defects blocking submission
+Only ordinary publication mechanics and dated freshness checks remain:
 
-`protocol/CLAIM_LEDGER_V1.json` → `known_defects` is **empty**. The former
-MetaSyn under-claims `P2-D01`/`P2-D02` were fixed and retired on `main`.
+1. repository-CI compile of the narrowed manuscript with retained PDF/log;
+2. reference metadata + figure-legibility audit on that PDF;
+3. independent final PDF/claim proofread;
+4. current official IP&M submission instructions/template/declarations applied without guessing;
+5. actual author/submission metadata supplied by the authors;
+6. literature refresh within 14 days of the chosen submission date;
+7. preferably, permanent archive/deposit of durable reproducibility material, especially raw external artifacts with finite retention.
 
-What still blocks a send is not a ledger defect:
+External superiority is deliberately **not** on this blocker list. The paper has been shrunk instead of treating unavailable authority or null stress tests as positive evidence.
 
-1. Matched Wide/Deep ORION-vs-baseline evidence (`CANNOT_CHECK`; #157 / #279).
-2. TMLR vs IP&M venue conflict, and the checkbox's "after external results stabilize" precondition.
-3. Venue template / anonymisation / compiled PDF.
-4. Permanent archive/DOI, with the MetaSyn Actions artifact still expiring `2026-09-15T21:39:53Z`.
+## Issue consequences
 
-## Honest summary
-
-Of the eight section 9 rows, **three are `DONE`** (scope check, cover letter,
-supplement plan), one is `DONE` as a plan awaiting assembly, **one is `DEFERRED`**
-by its own time-box, and **three are `BLOCKED_ON`** work owned by other lanes
-(formatting/anonymisation, compile + reference audit, final proofread). Of the
-three section 8 rows, one is `DONE`, two are `BLOCKED_ON` unexecuted campaigns.
-
-Nothing in this lane's output moves the paper's terminal status. It remains
-`CANNOT_CHECK` on externally supported discovery superiority, and no gate row
-above changes that — the gate work makes the narrow claim auditable and the paper
-submittable, not stronger.
-
-## `BLOCKED_ON` list
-
-1. External result stabilization — venue decision re-verification (9.2b).
-2. TMLR style adoption and double-blind anonymisation (9.3c) — blocks supplement assembly (9.3b).
-3. Manuscript compile and reference-audit workflow, ChatGPT lane PR #170 (9.4).
-4. Manuscript compile and reference-audit workflow (`p2-manuscript-audit` is gated to another branch).
-5. Final live-provider campaign — raw archive (8.4) and remaining live-cost rows (8.8). Operator re-scope: query-count metrics are the completed cost axis.
-6. Archive deposit (8.10), with a hard deadline of 2026-09-15 to mirror the expiring MetaSyn artifact.
+- #157 can terminate after branch CI verifies the runnable P2 closure artifacts.
+- #279 can terminate at its allowed `CANNOT_CHECK / REFUTED_OR_SHRINK` path.
+- #317 can terminate `P2_NARROWED`; saturation is not claimed.
+- #318's P2 consumer tranche is complete, but the shared issue remains open for non-P2 obligations.
+- #99 remains the final publication wrapper until the PDF/package gates above pass; its scientific external-result blocker has been removed by the explicit final reframe.
