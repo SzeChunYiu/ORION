@@ -1,0 +1,62 @@
+{
+  "schema": "P2.v2.acquisition-dev2-freeze.v1",
+  "status": "FROZEN_BEFORE_DEV2_OUTCOME_ACCESS",
+  "frozen_on": "2026-08-18",
+  "authority": "DEVELOPMENT_ONLY_NOT_CONFIRMATION",
+  "parent_result": "evidence/external_results/P2_V2_WIDE_BOUNDED_MATCHED_RESULT_2026-08-18.json",
+  "parent_diagnosis": "evidence/external_results/P2_V2_WIDE_BOUNDED_STAGE_DIAGNOSTIC_2026-08-18.json",
+  "causal_basis": [
+    "governed multiroute improved directionally but missed the frozen +0.03 IoU gate",
+    "20 of 24 tasks had zero governed gold hits",
+    "all raw gold arXiv IDs observed by governed search came from the arXiv route",
+    "OpenAIRE and DBLP contributed zero scorer-gold arXiv IDs on the development slice"
+  ],
+  "benchmark": {
+    "repository": "CherYou/AutoResearchBench",
+    "revision": "a46c9bfb8968786f73f0a6a5b365b5384cd0f96d",
+    "official_wide_scorer": "evaluate/evaluate_wide_search.py --no-jina --gt-file wide_gt.jsonl"
+  },
+  "development_slice": {
+    "same_as_parent": true,
+    "n": 24,
+    "seed": 20260818,
+    "selected_task_ids_sha256": "7c7c774bf5a01bed939192fd761e0263e1209fd6350253f6fd19398e04e7a788",
+    "explicit_role": "development labels/outcomes may inform acquisition design; this slice is permanently barred from final V2 confirmation"
+  },
+  "system": {
+    "id": "wide_diversified_arxiv_dev2",
+    "backend": "arxiv",
+    "provider_requests_per_task": 3,
+    "max_results_per_call": 20,
+    "max_candidates_returned": 20,
+    "query_families": [
+      "FIELD_AWARE_PHRASES: title/abstract phrase clauses from contiguous public-question concepts",
+      "DIVERSIFIED_OR: OR over high-information public-question anchors",
+      "CORE_CONJUNCTION: compact conjunction of early topical terms"
+    ],
+    "ranking": "query-agreement-first then deterministic round-robin; agreement is a ranking signal only and is not route independence",
+    "year_filter": "apply parsed public-question year range where syntactically valid; never use gold dates"
+  },
+  "comparison_reference": {
+    "system": "wide_lexical_arxiv",
+    "archived_candidate_sha256": "71817a28771cb3904b87890aed25f9c2cba7e4cd5787f4b3e66ae0e191a41f83",
+    "archived_official_avg_iou": 0.006271,
+    "archived_official_avg_recall": 0.024636,
+    "archived_official_avg_precision": 0.008333,
+    "matched_budget": true,
+    "note": "This comparison is development-only because it reuses the labelled 24-task slice and is not a contemporaneous confirmatory rerun."
+  },
+  "development_success_criteria": {
+    "primary": "official_avg_recall",
+    "require_recall_above": 0.041005,
+    "require_iou_above": 0.009958,
+    "interpretation": "must beat the strongest result already observed on this development slice before being eligible for a fresh-slice freeze"
+  },
+  "forbidden": [
+    "changing the 24-task development slice after Dev-2 scoring",
+    "using Dev-2 outcomes as final V2 confirmation",
+    "calling multiple arXiv query formulations independent routes",
+    "changing scorer-native arXiv identity after outcomes",
+    "deleting the bounded non-positive parent result"
+  ]
+}
