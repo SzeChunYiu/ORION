@@ -32,7 +32,9 @@ EXPECTED_RESIDUALS = {
     "unavailable_or_censored_routes_remain_open_obligations",
     "content_identity_separate_from_question_conditioned_read_state",
 }
-REQUIRED_DONORS = {"SAGE", "AgentIR", "SIEVE", "HALT", "DeepControl", "Search-R1"}
+REQUIRED_DONORS = {
+    "SAGE", "AgentIR", "SIEVE", "HALT", "MiCP", "DeepControl", "Search-R1"
+}
 
 
 def _load(name: str) -> dict:
@@ -62,7 +64,12 @@ def validate() -> list[str]:
     max_system = systems.get("ORION_MAX_COMPOSED", [])
     if not max_system:
         errors.append("ORION_MAX_COMPOSED missing")
-    for required in ("typed_closure_authority", "censoring_obligations", "earned_route_independence"):
+    for required in (
+        "typed_closure_authority",
+        "censoring_obligations",
+        "earned_route_independence",
+        "conformal_coverage_signal_where_task_valid",
+    ):
         if required not in max_system:
             errors.append(f"max composed system lost {required}")
 
@@ -104,6 +111,7 @@ def validate() -> list[str]:
         "typed obligation state",
         "cannot by itself delete an unresolved",
         "donor-composable",
+        "MiCP",
     ):
         if phrase not in authority:
             errors.append(f"authority section missing concept: {phrase}")
