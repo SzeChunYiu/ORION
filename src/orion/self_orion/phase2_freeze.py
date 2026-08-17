@@ -51,7 +51,6 @@ def freeze_phase2_binding(
     repository_identity: str | None = None,
     phase1_anchor_commit: str = "",
     frozen_packet: FrozenPacketBinding | None = None,
-    phase1_anchor_commit: str = "",
 ) -> FrozenPhase2BindingReport:
     """Freeze exact subject/provider/evaluator identities into the Phase-2 binding."""
 

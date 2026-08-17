@@ -9,10 +9,13 @@ on:
       - 'tests/unit/study/test_p3_public_reference*.py'
       - 'papers/paper-03-global-knowledge-portrait/gold/PUBLIC_REFERENCE_*'
       - 'papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_*'
-      - 'Makefile'
 
 permissions:
   contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-evaluate:

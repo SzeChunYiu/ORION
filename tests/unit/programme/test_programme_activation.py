@@ -56,6 +56,21 @@ def test_activation_blockers_name_the_open_dependencies() -> None:
     assert not any(item.startswith("live Phase-4 programme workflow present:") for item in blockers)
 
 
+def test_github_does_not_load_template_yml_suffixes() -> None:
+    """`.template.yml` is still a live `.yml` as far as GitHub is concerned."""
+    live_templates = sorted(WORKFLOWS_DIR.glob("*.template.yml")) + sorted(
+        WORKFLOWS_DIR.glob("*.template.yaml")
+    )
+    assert live_templates == []
+
+
+def test_no_placeholder_cron_in_live_workflows() -> None:
+    for path in sorted(WORKFLOWS_DIR.glob("*.yml")):
+        text = path.read_text(encoding="utf-8")
+        assert "cron: 'DISABLED'" not in text, path
+        assert 'cron: "DISABLED"' not in text, path
+
+
 def test_scanner_flags_a_live_yaml(tmp_path: Path) -> None:
     workflows = tmp_path / "workflows"
     workflows.mkdir()
