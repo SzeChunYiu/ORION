@@ -43,7 +43,8 @@ def test_live_phase2_workflow_installs_and_freezes_copilot_runtime_before_trial(
     packet_pos = text.index("packet = build_frozen_live_trial_packet(preflight)")
     run_pos = text.index("report = harness.runner.run(packet)")
     assert version_pos < provider_pos < packet_pos < run_pos
-    assert "gpt-5.2" in text
+    assert "gpt-5.4" in text
+    assert "gpt-5.2" not in text
     assert "claude-sonnet-4.6" in text
 
 
