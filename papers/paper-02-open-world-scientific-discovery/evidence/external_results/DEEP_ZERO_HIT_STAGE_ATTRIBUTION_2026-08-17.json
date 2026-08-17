@@ -1,0 +1,25 @@
+{
+  "record": "DEEP_ZERO_HIT_STAGE_ATTRIBUTION",
+  "date": "2026-08-17",
+  "question": "Is the 0/600 official Deep judge zero-hit a judge failure or a candidate-generation failure?",
+  "method": "Deterministic string-overlap analysis of the frozen probe input (official_input.jsonl, sha256 below): exact, substring, and token-overlap recovery of each reference title from that item's candidate titles, judge-independent.",
+  "input_sha256": "46fd5500859dd1c8f2853316e186b6921b80d90cde7ba12ba1b8a5bbf86b9ef6",
+  "counts": {
+    "total_items": 600,
+    "items_with_reference_and_candidates": 564,
+    "items_missing_reference_or_candidates": 36,
+    "items_empty_answer": 0,
+    "items_empty_candidates": 36,
+    "total_candidate_titles": 10850,
+    "exact_title_recoveries": 0,
+    "substring_recoveries": 0,
+    "token_overlap_ge_0.5_recoveries": 8,
+    "token_overlap_0.3_to_0.5": 54,
+    "items_recoverable_by_any_exact_substring_or_0.5_rule": 8
+  },
+  "conclusion": "Candidate generation is the failing stage. Even a judge-free perfect string matcher recovers only 8 of 564 references (0.0142) from the frozen candidate sets, with zero exact and zero substring matches; the judged 0/600 is consistent with candidates that almost never contain the reference. Re-scoring the frozen candidates cannot revive the probe; revival requires regenerating candidates with a corrected retrieval mechanism (needle questions whose surface lexicon echoes in wrong papers, e.g. 'supplementary' in the question retrieving a title containing 'Supplementary Orbit').",
+  "feeds": [
+    "issue #157 (matched Deep run revival)",
+    "negative-results revival programme"
+  ]
+}
