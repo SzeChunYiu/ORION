@@ -1,0 +1,38 @@
+{
+  "case_id": "p1-c148",
+  "task_family": "hidden_measurement_or_operationalization",
+  "public_prompt": "Two annotators labelled 3,000 conversations for whether the issue was settled. They match on 88%, so the label set was declared reliable, and a classifier at 87% was declared close to the ceiling those labels allow. The route being taken: 88% match means reliable labels. Report whether the label set supports the ceiling claim.",
+  "observable_resources": [
+    "labels/match.csv — 3,000 double-labelled items; the two annotators match on 88.0%; the majority label is applied to 91% of items",
+    "labels/tiebreak.md — where the two differ, annotator A's label is kept; there is no third pass",
+    "labels/annotator-marginals.csv — annotator A applies the majority label to 94% of items, annotator B to 87%",
+    "labels/audit-sample.md — a 100-item audit by a subject expert disagrees with the kept label on 23 items, 19 of them A's",
+    "closure:classifier-acceptance — closed; accepts the classifier at 87% as close to the label ceiling",
+    "closure:automation-rollout-plan — closed; derived from closure:classifier-acceptance",
+    "closure:support-headcount-reduction — closed; derived from closure:automation-rollout-plan",
+    "closure:annotator-contract-terms — closed; sets the annotators' pay and hours; rests on the supplier contract, not on how their labels compare",
+    "closure:conversation-data-handling — closed; fixes how conversations may be stored and who may read them; rests on the privacy assessment, not on the quality of the labels"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "EVALUATOR",
+    "target_coordinates": [
+      "M.EVALUATOR",
+      "evaluator:chance_corrected_agreement"
+    ],
+    "dependencies_to_reopen": [
+      "closure:classifier-acceptance",
+      "closure:automation-rollout-plan",
+      "closure:support-headcount-reduction"
+    ],
+    "root_success_rubric": "PASS iff annotator match is corrected for the agreement two annotators would reach by chance given the 91% majority label — showing it is barely above chance — the answer identifies that differences are settled by keeping one annotator's label rather than by a further pass, and it refuses the ceiling claim. FAIL if the answer accepts 88% as support for reliability, compares the classifier against the same labels without questioning them, or only recommends more annotators.",
+    "dependency_depth": 3
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the raw-match framing accepts the ceiling claim; two annotators who both apply the majority label about 90% of the time match on 88% with no shared competence at all."
+}

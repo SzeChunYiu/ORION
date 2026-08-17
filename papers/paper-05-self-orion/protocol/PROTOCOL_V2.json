@@ -1,0 +1,188 @@
+{
+  "schema_version": "orion.p5.staged-acceptance-protocol.v2",
+  "paper_id": "P5",
+  "protocol_id": "P5.hidden-cause-staged-acceptance.v2",
+  "parent_protocol_id": "P5.hidden-cause-fresh-transfer.v1",
+  "protocol_status": "DESIGN_FROZEN",
+  "outcome_accessed": false,
+  "v1_protocol_mutated": false,
+  "empirical_authority": "CANNOT_CHECK",
+  "adoption_decision": {
+    "mechanism": "anytime-valid candidate acceptance",
+    "disposition": "ADAPT",
+    "nearest_work": [
+      {
+        "id": "PACE",
+        "reference": "arXiv:2606.08106",
+        "role": "matched acceptance baseline and optional within-stage statistical acceptor"
+      },
+      {
+        "id": "SEA",
+        "reference": "arXiv:2607.00871",
+        "role": "anytime-valid certificate architecture pressure"
+      },
+      {
+        "id": "Verifier-as-Gatekeeper",
+        "reference": "arXiv:2608.05810",
+        "role": "heterogeneous pre-commit contamination-gate baseline"
+      }
+    ],
+    "non_novel": [
+      "anytime-valid sequential commit acceptance",
+      "pre-commit gating",
+      "held-out validation",
+      "auditable acceptance certificates"
+    ],
+    "residual": "ordered non-compensatory STATIC→REPLAY→FRESH→PROTECTED evidence with independent fresh-transfer and protected custody, immutable negative history, harmful/uncertain evidence veto, and host-only promotion recommendation"
+  },
+  "primary_hypothesis": {
+    "id": "P5.V2.H1",
+    "text": "Relative to P5 V1 and matched acceptance baselines, non-compensatory staged acceptance reduces harmful fresh transfer and false protected acceptance while preserving protected fresh-task improvement within a predeclared non-inferiority margin.",
+    "decision_rule": "V2 must improve at least one safety endpoint by >=0.02 absolute, worsen neither safety endpoint, and keep protected fresh-task improvement within -0.02 absolute of V1/strongest matched comparator."
+  },
+  "secondary_hypotheses": [
+    {
+      "id": "P5.V2.H2",
+      "text": "Replay success cannot compensate fresh-transfer harm; staged non-compensation lowers replay-overfit acceptance."
+    },
+    {
+      "id": "P5.V2.H3",
+      "text": "Protected CANNOT_CHECK blocks promotion rather than being averaged with earlier positive scores."
+    },
+    {
+      "id": "P5.V2.H4",
+      "text": "Append-only negative history reduces repeated harmful/null candidate admission without unacceptable cost inflation."
+    }
+  ],
+  "practical_margins": {
+    "safety_improvement_absolute": 0.02,
+    "protected_fresh_improvement_noninferiority_absolute": 0.02,
+    "harmful_transfer_worsening_allowed": 0.0,
+    "false_acceptance_worsening_allowed": 0.0
+  },
+  "stage_order": [
+    "STATIC",
+    "REPLAY",
+    "FRESH",
+    "PROTECTED"
+  ],
+  "stage_semantics": {
+    "STATIC": {
+      "purpose": "structural/compile/invariant screening before behavioral evidence",
+      "pass": "all frozen static and invariant checks pass",
+      "fail": "any frozen static or invariant check fails",
+      "cannot_check": "required static checker or bound artifact is unavailable"
+    },
+    "REPLAY": {
+      "purpose": "motivation/replay verification on previously exposed development evidence",
+      "pass": "replay evidence meets frozen non-harm and acceptance rule",
+      "fail": "replay regression, harmful behavior, or acceptance-test failure",
+      "cannot_check": "required replay evidence is unavailable or invalid"
+    },
+    "FRESH": {
+      "purpose": "independent fresh-transfer evaluation unavailable as development feedback",
+      "pass": "fresh evidence meets frozen improvement/non-harm rule",
+      "fail": "fresh harmful transfer, regression beyond frozen margin, or acceptance-test failure",
+      "cannot_check": "fresh split/evidence is unavailable, contaminated, or invalid"
+    },
+    "PROTECTED": {
+      "purpose": "independently custodied evaluator/holdout and authority-integrity assessment",
+      "pass": "protected evaluator returns admissible PASS on exact bound candidate/epoch",
+      "fail": "protected evaluator returns FAIL or detects compromise",
+      "cannot_check": "protected evaluator cannot establish admissible evidence"
+    }
+  },
+  "global_decision_rules": {
+    "harmful_precedence": "any known harmful stage forces REJECT even if an earlier stage is missing",
+    "fail_precedence": "any known FAIL forces REJECT",
+    "cannot_check_precedence": "absent known harm/FAIL, any known CANNOT_CHECK forces CANNOT_CHECK",
+    "missing_stage": "otherwise any missing required stage leaves IN_PROGRESS",
+    "complete_pass": "only PASS at all four stages may yield RECOMMEND_HOST_PROMOTION",
+    "terminal": "RECOMMEND_HOST_PROMOTION",
+    "self_merge_authority": false,
+    "candidate_self_promotion_authority": false,
+    "negative_history": "append-only; failed, harmful, null and CANNOT_CHECK revisions remain retained"
+  },
+  "acceptance_statistics": {
+    "pace_role": "When a stage repeatedly compares noisy paired scores under adaptive candidate proposals, use a prospectively frozen anytime-valid/e-process acceptor or a justified stronger equivalent; this statistical mechanism is prior art and not P5 novelty.",
+    "pace_configuration_hash": "UNBOUND",
+    "fixed_error_budget": "UNBOUND",
+    "optional_stopping_allowed_only_under_bound_anytime_valid_rule": true,
+    "candidate_level_false_commit_control_required": true
+  },
+  "baselines": [
+    "p5_v1_acceptance",
+    "pace_anytime_valid_acceptance",
+    "sea_anytime_valid_certificate",
+    "verifier_as_gatekeeper",
+    "greedy_accept_if_score_up",
+    "direct_self_edit_with_heldout_acceptance",
+    "evaluator_only_acceptance"
+  ],
+  "ablations": [
+    "replay_only",
+    "compensatory_average_across_stages",
+    "no_negative_history",
+    "candidate_self_promotion",
+    "no_fresh_stage",
+    "no_protected_stage",
+    "out_of_order_acceptance"
+  ],
+  "negative_controls": [
+    "replay_gain_with_fresh_harm",
+    "fresh_harm_after_replay_success",
+    "protected_cannot_check_after_earlier_success",
+    "out_of_order_late_harm_with_missing_earlier_stage",
+    "missing_stage_laundering",
+    "negative_history_deletion",
+    "high_noisy_dev_gain_without_anytime_valid_evidence",
+    "candidate_attempt_to_self_promote"
+  ],
+  "metrics": {
+    "primary": [
+      "protected_fresh_task_improvement",
+      "harmful_fresh_transfer_rate",
+      "false_protected_acceptance_rate"
+    ],
+    "secondary": [
+      "protected_block_or_cannot_check_rate",
+      "replay_overfit_acceptance_rate",
+      "retained_harmful_null_history_completeness",
+      "time_to_validated_improvement",
+      "tool_calls_to_validated_improvement",
+      "model_tokens_to_validated_improvement",
+      "acceptance_evaluations_per_candidate"
+    ]
+  },
+  "statistics": {
+    "unit": "hidden-cause candidate-development episode with matched V1/V2/acceptance-baseline comparison",
+    "paired_comparison": true,
+    "intervals": "Wilson 95% intervals for rates; paired percentile bootstrap (10000 resamples) for matched protected-improvement differences; catastrophic family/tail harms reported separately",
+    "stochastic_repeats": 5,
+    "multiplicity": "single primary V2 safety+noninferiority decision; Holm correction for inferential secondary families",
+    "tails": "never average away catastrophic fresh/protected regressions"
+  },
+  "resource_policy": "All V1/V2/baseline arms receive matched maximum candidate, LLM, tool, time and evaluator budgets. Early-stopping acceptance may consume less actual evaluation; actual cost is reported and may not be reallocated post hoc to a single arm.",
+  "execution_bindings": {
+    "subject_revision": "UNBOUND",
+    "hidden_cause_suite_hash": "UNBOUND",
+    "motivating_split_hash": "UNBOUND",
+    "replay_split_hash": "UNBOUND",
+    "fresh_split_hash": "UNBOUND",
+    "protected_split_hash": "UNBOUND",
+    "model_provider_revisions": "UNBOUND",
+    "baseline_config_hashes": "UNBOUND",
+    "evaluator_hash": "UNBOUND",
+    "evaluation_epoch": "UNBOUND",
+    "pace_config_hash": "UNBOUND"
+  },
+  "required_artifacts": [
+    "content-addressed stage receipts",
+    "append-only candidate history digest",
+    "matched V1/V2/baseline results",
+    "fresh/protected access logs",
+    "all harmful/null/CANNOT_CHECK candidates",
+    "exact acceptance-test configuration and error budget",
+    "scripts regenerating V2 result tables/plots"
+  ]
+}

@@ -1,185 +1,174 @@
 \section{Methods}
 \label{sec:methods}
 
-This section is written before the final runs and is fixed at execution freeze.
-Every quantity named here is bound in a machine-readable artifact rather than in
-prose: the design freeze in \texttt{protocol/PROTOCOL\_V1.json}, the measurement
-and statistical rules in \texttt{protocol/MEASUREMENT\_PLAN\_V1.md} and
-\texttt{protocol/STATISTICAL\_PLAN\_V1.json}, the external-artifact states in
-\texttt{protocol/EXTERNAL\_ACCESS\_AUDIT\_V1.json}, and the frozen offline world
-in \texttt{protocol/OFFLINE\_GOLD\_WORLD\_V1.md}. Where this prose and those
-artifacts could ever disagree, the artifacts govern.
+The design choices in this section were fixed before the result-bearing offline
+campaign.  Post-outcome edits to this prose are limited to correcting execution
+status (for example, saying that an external benchmark has not yet been run) and
+do not change a hypothesis, task family, system, metric, budget, exclusion rule,
+margin or decision rule.  Machine-readable artifacts govern: the design freeze
+in \texttt{protocol/PROTOCOL\_V1.json}, measurement and statistical rules in
+\texttt{protocol/MEASUREMENT\_PLAN\_V1.md} and
+\texttt{protocol/STATISTICAL\_PLAN\_V1.json}, external-artifact states in
+\texttt{protocol/EXTERNAL\_ACCESS\_AUDIT\_V1.json}, the controlled-world freeze
+under \texttt{evidence/offline\_gold/}, and the prospective execution binding in
+\texttt{protocol/OFFLINE\_RUN\_MANIFEST\_V1.json}.
 
 \subsection{Prospective discipline}
-The protocol is registered as \texttt{P2.open-world-discovery.v1}. It moves from
-\texttt{DESIGN\_FROZEN} to \texttt{EXECUTION\_FROZEN} only when every execution
-identity is bound --- subject revision, dataset and split hashes, provider and
-model revisions, baseline configuration hashes, evaluator hash and evaluation
-epoch --- and that transition is committed before any final outcome is
-inspected. Implementation of the systems under test, of the analysis pipeline
-and of every figure generator was completed while the protocol was still
-outcome-blind, so no constant in this paper was chosen by looking at a result.
-A change to any hypothesis, task family, baseline, ablation, metric, exclusion
-rule, statistical rule, margin or evaluator after outcome access creates a new
-protocol version and leaves this one immutable.
+The protocol is \texttt{P2.open-world-discovery.v1}.  A result-bearing execution
+is admissible only after subject code, data, evaluator, system identities,
+budgets and repeat seeds are bound.  For the completed offline companion, the
+run manifest records \texttt{outcome\_accessed\_before\_freeze=false}, the exact
+subject revision, content hashes, \OfflineSystemCount{} system identifiers, three repeat seeds and
+host-owned resource limits.  The bound subject revision passed the full test
+suite before the first aggregate outcome snapshot was recorded.  Publication
+summaries and manuscript prose may be generated after outcomes, but they may only
+project the frozen records; they cannot change the scientific decision rules.
 
 \subsection{Evaluation environments}
-Three environments are used because no single one supplies both a complete
-denominator and open-world realism.
+Three environments are distinguished because no single one supplies both a
+complete denominator and open-world realism.  Only the first has a completed
+result-bearing campaign in this revision.
 
 \paragraph{Offline complete-gold controlled index.}
-Recall is only a measurable quantity where the relevant set can be enumerated.
-On the open web it cannot: ``we found forty'' is indistinguishable from ``forty
-of forty-one'' and from ``forty of four hundred''. The controlled index is
-therefore synthetic and self-generated. Each topic declares required concepts
-and a document is relevant if and only if it carries all of them, so the gold
-set is a materialised cache of a rule applied to the corpus rather than a
-hand-authored list; the test suite recomputes it over every document in both
-directions instead of spot-checking. Discoverability is deliberately
-heterogeneous: some relevant works are reachable only lexically, some only
-through a paraphrase whose keys share no token with the lexical keys, some only
-by citation chaining from a document the system already holds, some only after
-reformulation, and some sit behind a provider that dies mid-run. No single route
-reaches the whole gold set at any budget. Two routes share one backend with
-different query derivations --- the nominally-distinct-but-dependent pair that
-H2 needs --- while others hit distinct backends and can earn independence.
-Identity is separated three ways: a work, a republication that shares content
-identity at a different locator, and a revision that shares identity with a
-changed digest, so that counting locators inflates coverage while rereading a
-revision is legitimate. Case families exercise multi-route coverage, route
-exhaustion, an unavailable route, an extraction-question shift and duplicate
-identity under a tightened read budget. Budgets are set below the cost of
-exhaustive probing, so allocation and stopping are what vary. The suite is
-frozen by content hash and regenerable from its seed; its task count, hashes and
-the achieved precision tier are reported in Table~P2-1.
+Recall is only measurable where the relevant set can be enumerated.  The
+controlled index is therefore fully synthetic and self-generated.  Each topic
+has a materialized gold set under the frozen generator, and tests recompute the
+world and tasks from the recorded seed and compare all committed hashes rather
+than trusting a hand-authored denominator.  Discoverability is heterogeneous:
+relevant items are partitioned across lexical, semantic, citation,
+reformulation and restricted/provider routes; two route labels deliberately
+share a backend; duplicate locators share content identity; revisions share
+identity but change digest; extraction-question-shift cases require legitimate
+rereads; and unavailable-route cases distinguish transport censoring from
+absence.  Budgets are below exhaustive probing, so route allocation and stopping
+remain observable variables.
+
+The completed suite has \OfflineTaskCount{} tasks over five case families, drawn from \OfflineTopicCount{} topics over \OfflineDocumentCount{} documents, frozen at suite fingerprint \texttt{\OfflineSuiteFingerprintShort}.  Every candidate uses
+the same host-owned session.  The session alone can access the world, meters
+queries and reads, records route stops and transport states, and evaluates claims
+after the candidate returns.  The candidate receives only a public task view and
+label-free retrieved records; protected gold and the relevance rule are never
+passed through the system interface.
 
 \paragraph{External benchmark tasks.}
-AutoResearchBench supplies specific-target (Deep) and open-set (Wide) discovery
-tasks \cite{autoresearchbench2026}. Its Wide evaluator scores set
-intersection-over-union over normalised arXiv identifiers and is fully
-deterministic, requiring no credentials; our systems are scored by that official
-function, vendored verbatim under its Apache-2.0 licence so the comparison is to
-the published metric rather than to a reimplementation. One upstream component,
-the sampled \texttt{max\_iou\_at\_k} family, draws without a seed and is
-therefore not reproducible from a pinned code hash; it is reported only as a
-declared-noisy secondary, and the exact quantities (mean IoU, recall, precision)
-carry the primary. Deep scoring in its official form uses a language-model judge
-for title matching; where no judge is available we report the deterministic
-identifier-match variant and label it as a declared deviation rather than as the
-official metric. SAGE supplies twelve hundred expert-curated retrieval queries with ground truth:
-six hundred short-form tasks that name one target paper, and six hundred
-open-ended tasks with a two-tier graded gold set \cite{sage2026}. We run its
-queries but cannot reproduce its setting, and the distinction matters in three
-ways that are carried explicitly rather than smoothed over. Its two-hundred
-thousand paper retrieval corpus is not published, so the tasks are run
-open-world rather than against the authors' index. No evaluator ships with the
-benchmark and the open-ended tier weights are not stated, so short-form exact
-match is computed on a declared title normalisation and the open-ended weighted
-recall uses weights we declare; neither is presented as the official metric. Its
-gold set is public plaintext, so search-time contamination is measured rather
-than assumed away. MetaSyn's separation of retrieval recall from eligibility
-recall is adopted as a measurement requirement whether or not its judged report
-metrics can be executed \cite{metasyn2026}.
+AutoResearchBench provides Wide and Deep scientific-discovery tasks
+\cite{autoresearchbench2026}.  The access audit establishes a narrower fact than
+an external result: Wide's official exact IoU/recall/precision path scores
+normalized arXiv identifiers without a credential, while its sampled
+\idt{max_iou_at_k} family is noisy because upstream sampling is unseeded.
+Deep's official title-matching evaluator needs an OpenAI-compatible judge.  The
+Wide scorer was exercised on synthetic scorer input to verify that credential
+independence; no ORION-vs-baseline Wide result is archived in this revision, and
+the scorer is not claimed to be vendored here.
 
-\paragraph{Frozen retrieval snapshots.}
-Running every system live over hundreds of benchmark queries is impossible at
-polite request rates, and it would make the comparison irreproducible even if it
-were affordable. External benchmark tasks are therefore executed in two passes.
-In the first, a candidate pool is fetched once per query from the live
-backends, frozen by content hash, and every system is then run offline against
-that same pool under matched budgets. The pool is built **gold-blind**, from
-query-derived probes only: a pool assembled with knowledge of the answer would
-inflate every recall figure and invalidate the comparison. Because it is
-gold-blind, some gold items are absent from the pool; that fraction is measured
-and reported as pool coverage, and it is the shared ceiling for every system
-rather than a per-system disadvantage. In the second pass a smaller
-pre-declared subsample is run live, end to end, as evidence about open-world
-behaviour.
+SAGE is retained as nearest-work and as a lexical-baseline warning
+\cite{sage2026}, but is not executed as if its published setting were available:
+the audited repository lacks the 200,000-paper retrieval corpus described by the
+paper and lacks an official evaluator.  Any substitute corpus or weighting rule
+would be a declared deviation rather than the SAGE benchmark.  MetaSyn's
+separation of retrieval from screening is adopted as a measurement constraint
+\cite{metasyn2026}; its retrieval/screening scoring path is credential-free by
+source audit, but no end-to-end result is archived here.  AgentSLR remains a
+protocol-driven systematic-review neighbor/baseline family rather than an
+official evaluator dependency \cite{agentslr2026}.
 
-\paragraph{Live-provider campaign.}
-Open-world behaviour is measured against real scholarly backends. Every request
-and raw response is retained with its timestamp, and provider identities and
-query derivations are frozen in a campaign manifest. Transport failure, empty
-result, rate-limit deferral and backend exhaustion are distinct recorded
-outcomes; none is converted into evidence that nothing further exists. Metrics
-that require a complete denominator are structurally refused in this
-environment: the analysis code raises rather than reporting a recall figure
-whose denominator does not exist.
+\paragraph{Frozen external retrieval snapshots and live-provider campaign.}
+The prospective external design freezes a gold-blind candidate pool per query
+before comparing systems, then runs a smaller predeclared live subsample.  Pool
+coverage must be reported as a shared ceiling because a gold-blind pool can omit
+gold.  Live requests are designed to retain URL/parameters, query derivation,
+timestamp, raw response and typed transport outcome.  The capture machinery and
+manifest exist and have been exercised, but the final result-bearing external
+pool and live campaign have not been executed in this revision.  Therefore no
+external cost, latency or recall result is inferred from the capture audit.
 
 \subsection{Systems under test}
-Full ORION is compared against six baselines --- lexical BM25 retrieval, a
-distributional retriever, their hybrid, one-pass retrieval-augmented retrieval,
-an agentic single-route searcher, and a protocol-driven systematic-review
-imitation --- and against six ablations of itself, each removing exactly one
-mechanism: the route-independence check, the question-conditioned read ledger,
-the separation of route stop from task closure, the unavailable-route open
-state, content-identity deduplication, and a negative safety ablation that lets
-the coverage diagnostic influence stopping. Ablations share all other code with
-full ORION through one parameterised implementation, so an ablation cannot
-differ in two ways at once. The distributional retriever is lexical, not neural;
-we name it as such because the object under test is route governance, not
-embedding quality. Every system consumes budget only through a host-owned
-session that meters and records each call, so a system cannot win by spending
-more, and budget exhaustion closes the session permanently rather than
-degrading it.
+The frozen offline companion compares full ORION with six confirmatory system
+identifiers: \idt{bm25_keyword}, \idt{dense_retrieval},
+\idt{sparse_dense_hybrid}, \idt{one_pass_rag},
+\idt{agentic_single_route}, and
+\idt{protocol_driven_systematic_review}.  A seventh comparator,
+\idt{adaptive_multiroute_exploratory}, was kept explicitly exploratory and
+was not retrofitted into the frozen confirmatory baseline set.
 
-\subsection{Custody}
-A system receives only a public view of the task and a session over a label-free
-index. Nothing it holds carries the relevance rule or the gold set; a hostile
-fixture in the test suite searches for both and finds neither, and every
-mutation it attempts is refused. Route calls, reads and stop decisions are
-recorded host-side as they occur, so a system cannot under-report a route or
-edit its own trace, and a claim about material that was never retrieved is
-recorded as invalid rather than credited.
+These controlled-index systems are mechanism comparators, not claims to
+replicate a production BM25 engine, a particular embedding model or an external
+agent implementation.  They consume the public synthetic route interface under
+identical budgets so that the variable under test is route/read/stopping
+governance.  Their relevance screen sees only the public question and retrieved
+bibliographic text.  The authored synthetic text makes screening deliberately
+easy; the experiment is not presented as evidence about classifier quality.
+
+Six frozen ablations remove exactly one governance mechanism or authorize one
+forbidden transition: route-independence checking, the question coordinate in
+the read ledger, route/task stop separation, unavailable-route open state,
+coverage-diagnostic non-authority, and content-identity deduplication.  All use
+the same session and budgets as full ORION.
+
+\subsection{Identity, reads and stopping}
+A read is keyed by content identity, content digest and extraction question in
+the full system.  A new question can therefore reopen unchanged content for a
+legitimate reread, while mirrors with the same content identity/digest do not
+become new evidence.  The corresponding ablations remove the question coordinate
+or replace content identity with document locator to expose suppression or
+duplicate work.
+
+Route stop and task closure are separate actions.  A route may stop after its
+public probe space is exhausted or after a typed transport outcome, but task
+closure is invalid if relevant material remains reachable within budget.  An
+unavailable route remains censored/open rather than being converted to an empty
+result.  Coverage diagnostics may inform a route policy but have no authority to
+certify global completeness.
 
 \subsection{Measurements}
-Metric definitions, their statistical units and --- critically --- their
-denominator-validity conditions are fixed per metric in the measurement plan.
-Paper-level recall and false-negative counts are reported only where the gold
-denominator is complete, signalled per task by an explicit completeness flag;
-where it is not, those metrics are emitted as invalid rather than as numbers.
-Route-stop false positives and negatives, and premature task closure, are
-defined against an oracle the world computes and the candidate cannot see: the
-still-reachable relevant count on a route at the moment it stopped, and the
-count still discoverable within remaining budget at the moment closure was
-declared. Duplicate processing is separated from legitimate reread by the four
-read coordinates of Section~\ref{sec:formalism}. Route overlap, per-route unique
-contribution and marginal gain are computed over content digests after alias
-closure, never over retrieval identifiers.
+The offline evaluator reports denominator-valid complete-gold recall, precision,
+missed-gold count, route use, route/content overlap diagnostics, marginal
+relevant gain after the first route, premature task closure, censoring,
+duplicate processing and legitimate rereads, plus host-owned resource counters.
+Claims are normalized by content identity rather than locator so mirrors cannot
+inflate recall.  Rich per-run artifacts retain route calls, reads, stop events,
+authority flags and raw-artifact hashes; the publication summary binds the full
+\OfflineRunRecordCount{}-record and rich-artifact sets by SHA-256.
 
-\subsection{Statistics}
-The statistical unit is the task; repeated stochastic runs nest within
-task and system and never count as additional tasks. Standalone binary rates
-carry Wilson intervals; paired differences use a paired percentile bootstrap
-with ten thousand resamples and a recorded seed, and every comparison reports a
-point estimate, an interval and an absolute effect size. The primary hypothesis
-is tested once in its frozen direction against a superiority margin of $0.03$
-absolute on the family primary, with a safety guard requiring premature task
-closure not to worsen by more than $0.02$, so that a recall gain cannot be
-purchased with a larger closure regression than the gain itself.
-Non-inferiority, where the value proposition is coverage safety at bounded cost,
-uses a tighter margin of $0.01$ and is inadmissible outside matched budgets or
-above a consumed-cost ratio of $1.25$. Secondary families use Holm correction;
-exploratory metrics remain exploratory and cannot be promoted after the fact.
-Sample size is planned with a conservative proportion half-width at
-$p = 0.5$, which also bounds the variance of the $[0,1]$-valued IoU and recall
-measures; a family whose achieved half-width exceeds the superiority margin is
-reported as underpowered with that label attached to its primary result.
+The external measurement plan additionally defines official Wide/Deep scores,
+screening metrics and ranking-only metrics where their denominators and task
+semantics support them.  Those definitions do not imply that an external result
+exists.
+
+\subsection{Statistics and authority}
+The statistical unit is the task.  Repeated stochastic runs nest within task and
+system and never count as additional tasks.  The frozen plan defines paired
+bootstrap comparisons, Wilson intervals for standalone binary rates,
+superiority/non-inferiority margins, a cost ceiling and Holm correction for the
+external confirmatory analysis.  It also defines an authority ladder.  The
+completed offline suite has $n=\OfflineTaskCount$, below
+\idt{TIER_D_minimum_inferential} $n=97$, so its authority is
+\idt{DESCRIPTIVE_ONLY}.  The three deterministic repeat seeds verify stable
+execution; they do not manufacture $n=60$.  We therefore report descriptive
+absolute differences and mechanism diagnostics, with no promoted confidence
+interval, $p$-value or H1 decision from the offline companion.
+
+For a future external confirmatory result, the frozen primary rule requires the
+family superiority margin of 0.03 under matched resources with the premature
+closure safety guard no worse than 0.02.  Non-inferiority uses the predeclared
+0.01 margin and is inadmissible above the 1.25 consumed-cost ratio.  Secondary
+families use Holm correction.  These rules remain prospective because no
+external system result is reported here.
 
 \subsection{Failures, exclusions and contamination}
-Candidate-caused failures, malformed outputs, timeouts and abstentions are
-retained as outcomes. Only infrastructure outages may be excluded, under a rule
-declared in advance that applies identically to every system, and every
-exclusion remains visible in the archive. Because the external benchmark's
-questions and gold identifiers are public, live routes are audited for
-search-time exposure to the benchmark's own artifacts, and any contaminated case
-is reported separately rather than allowed to support the headline claim.
+Candidate failures, malformed outputs, budget exhaustion, abstention and typed
+transport failures remain outcomes.  Provider unavailability cannot become
+evidence of absence.  The frozen evaluator uses an explicit failure taxonomy and
+terminal precedence; the publication table therefore warns that a lower-priority
+mechanism can be masked by a higher-priority terminal classification such as
+premature closure.  Public benchmark questions and gold identifiers also create
+a contamination risk for future live search.  The access audit records
+structural exposure and spot checks, but a benchmark-wide contamination-rate
+audit has not yet been completed.
 
 \subsection{Decision rule}
-The rule is fixed before outcomes exist. Promotion requires the frozen
-superiority margin to be cleared on a family primary under matched budgets with
-the safety guard intact. Where superiority is absent but coverage safety at
-bounded cost is demonstrated, the non-inferiority rule applies. Where neither
-holds, the declared outcome is to shrink or reframe the paper's claim, not to
-present a null as a success; an underpowered family is reported as such rather
-than resolved by a favourable reading.
+The paper-level rule remains fail-closed.  The offline companion can support a
+mechanism claim only at descriptive authority.  External discovery superiority
+requires an archived denominator-valid external result under the frozen matched
+resources and safety rule.  If that evidence is absent, blocked or null, the
+claim is narrowed rather than promoted by analogy from the synthetic world.

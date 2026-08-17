@@ -30,7 +30,7 @@ Mechanisms: progressive agentic tree search, experiment-manager agent, autonomou
 
 **Residual:** AI Scientist-v2 searches within an agent/task formulation; ORION's candidate delta is an explicit typed operation that can revise the formulation/search universe/method and stale dependent closure.
 
-### Google AI Co-Scientist — Google Research 2025/2026 report
+### Google AI Co-Scientist — Gottweis et al., *Towards an AI co-scientist*, arXiv:2502.18864 (2025)
 Mechanisms: specialized Generation/Reflection/Ranking/Evolution/Proximity/Meta-review agents, supervisor resource allocation, test-time compute scaling, tournaments and evolution of hypotheses.
 
 **Absorb:** role-specialized hypothesis generation/challenge; parallel candidates; resource allocation; explicit proximity/nearest-work operation; test-time scaling when value justifies cost.

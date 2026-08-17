@@ -4,21 +4,25 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
+\PassOptionsToPackage{hyphens}{url}
 \usepackage{hyperref}
-% Long frozen identifiers (protocol ids, typed states) are unbreakable tokens;
-% a little extra stretch keeps them from producing overfull lines that a
-% reviewer sees as text running into the margin.
-\setlength{\emergencystretch}{3em}
+\setlength{\emergencystretch}{4em}
+% Long snake_case identifiers are unbreakable inside \texttt, and every overfull
+% line in this paper traced back to one. \idt lets them break at underscores.
+\urlstyle{tt}
+\newcommand{\idt}[1]{\path{#1}}
 
 \title{ORION Paper II: Open-World Scientific Knowledge Discovery with Fail-Closed Coverage and Stopping}
 \author{Working framework draft}
 \date{August 2026}
 
+\input{generated/suite_facts}
+
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Scientific-literature discovery remains a distinct bottleneck even when downstream synthesis is fluent. ORION Paper II studies a narrow governance hypothesis: heterogeneous search routes should count as independent evidence channels only when independence is earned through backend, query-derivation and capture identity; read history should be conditioned on the scientific question and content version; stopping one route must not certify task-level completeness; unavailable or censored routes remain explicit open obligations; and promotion should be recall-first against strong simple baselines. A deterministic complete-gold falsifier verifies these semantics locally, including refusal of pseudo-independence, pseudo-recall and bounded unseen-population claims under zero overlap. These results establish implementation behavior only. External Wide/Deep literature-discovery and screening performance against BM25, dense, hybrid and agentic baselines remains \texttt{CANNOT\_CHECK}.
+Scientific-literature discovery remains a distinct bottleneck even when downstream synthesis is fluent. ORION Paper II studies a narrow governance hypothesis: heterogeneous search routes should count as independent evidence channels only when independence is earned through backend, query-derivation and capture identity; read history should be conditioned on the scientific question and content version; stopping one route must not certify task-level completeness; unavailable or censored routes remain explicit open obligations; and promotion should be recall-first against strong simple baselines. In a frozen \OfflineTaskCount{}-task complete-gold controlled index, full ORION reaches mean recall 0.994444 versus 0.666667 for the strongest protocol-frozen confirmatory comparator and makes no premature task closures; targeted negative ablations expose the intended failure modes. The frozen statistical plan classifies this campaign \texttt{DESCRIPTIVE\_ONLY}, so these numbers support mechanism behavior rather than an inferential superiority claim. A separate credential-free MetaSyn probe, evaluated with the pinned official ID-only evaluator on all 86 released test reviews, reaches retrieval recall 0.7485 and inclusion recall 0.5651; it is a bounded external retrieval/screening probe rather than evidence of full multi-provider ORION superiority. A matched external ORION-vs-baseline Wide/Deep result is not archived in this revision, so the paper-level real-world superiority claim remains \texttt{CANNOT\_CHECK}.
 \end{abstract}
 
 \noindent\textbf{Keywords:} scientific literature discovery; information retrieval; deep research agents; systematic review; recall; stopping rules.
@@ -55,30 +59,28 @@ illustrates.}
 \end{figure}
 
 \input{sections/methods}
-
-\section{Results status}
-The local falsifier establishes that the current implementation can enforce the intended contracts on exact worlds. It does not establish higher scientific-literature recall in real benchmarks. External superiority, route-diversity benefit and stopping benefit remain \texttt{CANNOT\_CHECK}; no numerical result should be inserted here until the prospective execution bindings and frozen campaign are complete.
+\input{sections/results}
 
 \section{Nearest work}
 AutoResearchBench shows that both specific-target and open-ended scientific literature discovery remain difficult \cite{autoresearchbench2026}. SAGE demonstrates that strong lexical retrieval can outperform LLM retrievers inside deep-research workflows \cite{sage2026}, so Paper II treats the lexical baseline as a promotion gate rather than a straw man. MetaSyn separates retrieval from eligibility/screening and shows why retrieval ceilings do not imply inclusion recall \cite{metasyn2026}. AgentSLR demonstrates that end-to-end systematic-review automation is itself an active baseline area \cite{agentslr2026}. The candidate ORION contribution is therefore the composition of earned route diversity, cumulative question-framed memory, typed stopping and fail-closed coverage, not generic automation.
 
-\section{Limitations, integrity and reproducibility}
-Open-world completeness is generally unprovable from finite search, so every claim here is bounded by the denominator that supports it.
+\section{Limitations and integrity}
+The completed controlled experiment is deliberately synthetic. Its complete denominator is what makes missed relevant material and premature closure observable, but the authored routes, public probe vocabulary and easy screening text make it a mechanism test rather than a realistic estimate of retrieval difficulty. The observed +0.327777 recall difference therefore cannot be transferred to the open web or to AutoResearchBench by analogy.
 
-\paragraph{Provider mutability is not a background risk; it happened during this study.} One scholarly backend used in the design became a metered paid service mid-programme and now refuses the first unauthenticated request outright, and a second returns rate-limit refusals to unauthenticated callers. Backends also disagree about what they index: one is a preprint server, one a computer-science bibliography, one a cross-publisher metadata registry whose population barely overlaps the preprint gold we score against. A live number in this paper is therefore evidence about a moment and a route set, not a property of the method, and the archive rather than a rerun is what a reader should audit.
+The suite carries \OfflineTaskCount{} tasks, which reaches precision tier \OfflineAchievedTier{} at an achieved half-width of \OfflineAchievedHalfWidth{} for a standalone rate. The frozen statistics plan fixed those tiers before outcomes were inspected and assigns this campaign authority \OfflineAnalysisAuthority{}; because the achieved half-width still exceeds the frozen superiority margin of $0.03$, the primary offline result carries the plan's underpowered label whatever the task count becomes. All \OfflineRunRecordCount{} system/task/repeat executions reproduce exactly, and the \OfflineRepeatCount{} deterministic repeat seeds demonstrate stable execution; repeats nest within task and never increase the statistical unit.
 
-\paragraph{Reproducibility is not uniform, and one part of it is not ours to fix.} The offline controlled-index results regenerate from a seed with no network and no credentials. The external benchmark results regenerate for anyone holding the benchmark data, with one exception we inherit: part of one official metric samples without a seed anywhere upstream, so its value is not reproducible even from a pinned evaluator hash. We report it as declared-noisy and keep it out of primary claims.
+Open-world completeness remains generally unprovable from finite search. External providers are mutable, rate limited and differently scoped, and public benchmark questions/gold identifiers create search-time contamination risk. The corrected MetaSyn run is external but narrow: it uses pinned BM25 retrieval plus a deterministic public-protocol screening rule and the official ID-only evaluator, not the complete ORION route system. Its exact evaluator-side ledger contains 1,677 reference links, of which 598 are missed at retrieval and another 343 are lost after retrieval, leaving 941 final false negatives. These numbers characterize that probe and are not promoted to a general ORION claim.
 
-\paragraph{Corpus, language and domain bias.} The controlled index is synthetic, so it measures mechanism under a complete denominator and says nothing directly about real literature; that is its purpose and also its ceiling. The external tasks are English-language and skew toward the domains their authors curated. Our live route set indexes preprints and computer science more densely than clinical or humanities literature, which biases recall toward the parts of science those backends cover well.
+Several external authorities remain unavailable rather than negative. AutoResearchBench Deep official scoring requires an OpenAI-compatible title-judge endpoint; a non-leaking same-repository preflight found no configured generic judge credential set and no \texttt{CMKEY\_API\_KEY}. SAGE still lacks its published retrieval corpus and official evaluator. The frozen three-route live-provider protocol requires a funded OpenAlex key for two of its three route families; a same-repository preflight found no \texttt{OPENALEX\_API\_KEY}, so the protocol cannot honestly enter \texttt{EXECUTION\_FROZEN} here. Provider or credential unavailability is therefore retained as \texttt{CANNOT\_CHECK}, never converted into evidence of absence or a flattering zero-cost result.
 
-\paragraph{Incomplete gold, and what we refuse to compute on it.} Recall and false-negative counts require an enumerable relevant set. Where the denominator is not complete, those quantities are not merely uncertain but undefined, and the analysis code raises rather than emitting them. Where a gold-blind candidate pool is used, some gold is unreachable by construction; that fraction is measured and reported as a shared ceiling rather than absorbed into per-system scores.
+The mechanism ablations themselves impose an interpretive limit. Removing the question coordinate from the read ledger changes legitimate reread behavior but does not change aggregate recall in this suite; removing the unavailable-route open state changes censoring/closure semantics while leaving aggregate recall numerically unchanged. These null-on-recall mechanism findings are retained rather than converted into a stronger claim.
 
-\paragraph{Contamination and integrity.} Benchmark questions and gold identifiers are public, so live routes are audited for exposure to the benchmarks' own artifacts and contaminated cases are reported separately. Unavailable routes, resource censoring and transport failures are reported as open obligations rather than converted into evidence of absence. Result-bearing tables and figures are generated from archived records by committed scripts; the normalised raw-result schema and common analysis standard live under \texttt{research/paper-programme-v1/protocols/}.
+All result-bearing statements in the abstract, Results and conclusion are mapped to immutable artifacts in \texttt{evidence/CLAIM\_LEDGER\_V1.md}. Rows without an archived supporting result remain \texttt{CANNOT\_CHECK}; an access audit, implementation test, or credential preflight cannot substitute for a system outcome.
 
 \input{sections/availability}
 
 \section{Conclusion}
-Paper II asks whether disciplined route governance and recall-first promotion improve scientific literature discovery without manufacturing completeness. The mechanism is implemented and locally falsified; the external scientific claim remains open.
+The frozen controlled-index companion supports a narrow engineering result: under a complete denominator and matched host-owned budgets, the route/read/stopping governance mechanisms behave in the intended fail-closed directions, and the strongest confirmatory controlled comparator still leaves substantial reachable gold. The separate MetaSyn probe supplies real external retrieval/screening evidence but does not exercise or validate the complete multi-route ORION system. The controlled evidence remains descriptive and synthetic, and the paper's matched external discovery/stopping claim remains open until denominator-valid Wide/Deep or other admissible external results are archived. If those authorities remain unavailable or do not support the frozen promotion rule, the claim must remain narrowed rather than promoted.
 
 \bibliographystyle{plain}
 \bibliography{bibliography}

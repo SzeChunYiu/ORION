@@ -1,80 +1,79 @@
 # P2 external access verdict
 
-Record: `../protocol/EXTERNAL_ACCESS_AUDIT_V1.json`. Table: `../protocol/TABLE_P2-1_freeze_manifest.md`
-(generated). Logs: `../evidence/access/`. Window `2026-08-16T17:33Z`-`17:46Z`.
+Record: `../protocol/EXTERNAL_ACCESS_AUDIT_V1.json` (revision 2). Table:
+`../protocol/TABLE_P2-1_freeze_manifest.md` (generated). Logs: `../evidence/access/`.
 
-## No P0 on the pins
+> **Revision 2 supersedes the first verdict on AutoResearchBench and MetaSyn.** Revision 1 said the
+> unpublished `deepxiv` backend blocked AutoResearchBench official evaluation. It does not — it
+> blocks only the authors' *reference agent*. Both benchmarks are more runnable than first reported.
+> The error and the corrected evidence are in
+> `../evidence/access/autoresearchbench_evaluator_layer_check.md`. SAGE is unchanged.
 
-All four 40-character SHAs in `PROTOCOL_V1.json` `reference_revisions` resolve at their named
+## Can the official scorers actually be run?
+
+No P0 on the pins: all four 40-character SHAs in `reference_revisions` resolve at their named
 repositories, and all four repositories are public and unarchived.
 
-| Artifact | State | Consequence |
+| Task family | Official scorer | Cost to us |
 | --- | --- | --- |
-| AutoResearchBench code | `OBTAINED`, Apache-2.0 | Blocked on credentials + an unpublished search backend |
-| AutoResearchBench dataset | `OBTAINED`, Apache-2.0 | In hand, decrypted, hash-verified |
-| SAGE | `AVAILABLE_LICENSE_BLOCKED` | Cannot be run at all; cannot be redistributed |
-| MetaSyn code + dataset | `OBTAINED`, MIT / partial-MIT | Best candidate; blocked only on an LLM key |
-| AgentSLR code | `AVAILABLE_LICENSE_BLOCKED` | Code unlicensed; its dataset is separately CC-BY-4.0 |
-| ResearchArena, OpenScholar | `CANNOT_CHECK` | Cited as nearest work, pinned nowhere |
+| `autoresearchbench_wide` | `YES_NO_CREDENTIALS` | none — **executed during this audit** |
+| `autoresearchbench_deep` | `YES_WITH_JUDGE_KEY` | one judge endpoint; id-match deviation covers 540/600 |
+| `metasyn_retrieval_screening` | `YES_NO_CREDENTIALS` | local compute for the corpus encode |
+| `sage_scientific_retrieval` | `NO_ARTIFACT_MISSING` | unfixable at any price |
 
-## Nothing is runnable here, for three different reasons
+**Wide is the headline.** `compute_iou_recall` is pure set arithmetic over gold arXiv ids;
+`get_gt_arxiv_ids` reads them from the record and touches Jina only `if use_jina and JINA_API_KEY`;
+predictions resolve locally. All 400 of 400 wide records carry usable gold ids, so the fallback is
+never reached. Verified by running it: with every credential variable unset the scorer exits 0 and
+returns metrics that reproduce by hand.
 
-**SAGE is structurally unrunnable.** Its 200,000-paper corpus is claimed in arXiv:2602.05975 and
-published nowhere - the only artifact URL in the paper is the GitHub repository, whose pinned tree
-is 777 KB of queries. Nor is there an evaluator: the metrics are two prose sentences and the
-open-ended "decreasing weights" are never given numerically. No budget fixes this.
+**Deep** matches gold *titles*, so it needs a judge as shipped; the deterministic id-match deviation
+is partial (540 of 600 records carry a usable id, 60 carry `arxiv_id ['']`) and must report the
+540/600 denominator rather than quietly drop 60. **MetaSyn** is more runnable than revision 1 said:
+`evaluation.py`, `evaluator.py`, `retrieval.py` and `sparse.py` import no LLM client and `judge.py`
+is an *embedding* scorer; only `rag.py` touches OpenAI and `--judge-model` is optional. **SAGE is
+unchanged and unrunnable** — corpus published nowhere, no evaluator, open-ended weights never stated
+numerically; strike `sage_scientific_retrieval`. **AgentSLR** stays key- and PDF-bound, but it is a
+baseline, not a protocol task family.
 
-**AutoResearchBench and AgentSLR are execution-blocked.** AutoResearchBench needs an agent key, a
-judge key, Serper and Jina keys, and a paper-search backend whose URL the repo leaves blank
-(`PAPER_SEARCH_API_URL=`, `SEARCH_TOOL=deepxiv`). AgentSLR needs OpenAI/OpenRouter/Mistral keys or
-a local GPU vLLM, plus publisher PDFs its own dataset states it does not redistribute. Both are
-operator-unblockable in principle; neither by this lane.
+## What the adapter lane must honour
 
-**MetaSyn is closest to runnable.** MIT, dataset public and ungated, retriever public, and only the
-report-quality metrics need a key. If exactly one external family is attempted, it is this one.
+**An output contract, not just a credential.** `get_predicted_arxiv_ids` reads
+`candidate['arxiv_id']` from each `final_candidates` entry. A system emitting titles only scores
+IoU 0.0 on every task. Attach a resolved arXiv id to every returned candidate.
 
-## Redistribution is a Section-8 problem, not a runnability one
-
-SAGE and AgentSLR carry no licence at any depth of their pinned trees (`GET /repos/.../license`
--> 404; full recursive tree, `truncated=false`, no `LICENSE`/`COPYING`/`NOTICE`; no inline terms in
-either README), so default copyright applies. That blocks "frozen corpora/index snapshots where
-redistribution permits" for those two; it does not stop reading them in place. Do not read the
-AgentSLR *code* finding across to the AgentSLR *dataset*, which is CC-BY-4.0.
+**Use the exact metrics.** Five identical runs at three passes per record: `avg_iou` was 0.52672
+every time, while `avg_max_iou_at_1` ranged 0.512767–0.521167 and `at_2` ranged 0.822500–0.835167 —
+~0.008–0.013 run-to-run noise on a [0,1] scale from re-running the scorer alone, roughly a third of
+the +0.03 `practical_margin`. Use `avg_iou`/`avg_recall`, or seed the sampler and bind the seed.
+`at_4/_8/_16` report 0.0 at 3 repeats because they receive no samples: absent measurements, never
+scores. **Their baseline agent is not reproducible**, so it cannot be one of our matched baselines; ours are
+unaffected and score against the same official scorer.
 
 ## Three findings the protocol should absorb
 
 **Hidden labels are not inherited.** Decrypted AutoResearchBench records carry `answer` and
 `arxiv_id` in the same object as `question`, so `access_policy.hidden_labels` must be enforced by
-the ORION harness splitting the file before the candidate sees it.
+our harness splitting the file before the candidate sees it.
 
-**SAGE contamination is by construction.** Its gold set is public plaintext, question and answer in
-one public GitHub record. A verbatim search on one `ground_truth.title` returned the exact target
-paper as the top hit. Any live-provider SAGE number is contaminated, and the closed index that
-would fix it is the corpus that does not exist.
+**SAGE contamination is by construction** — gold is public plaintext in the same record as the
+query; a verbatim `ground_truth.title` search returned the exact target as top hit.
+**Wide contamination is specific, not generic.** Gold is a list of real arXiv ids and our routes are
+the arXiv and OpenAlex APIs, so a route can return the benchmark's own artifacts —
+arXiv:2604.25256, its GitHub repo, its HuggingFace dataset page — as an ordinary result and hand a
+candidate the answer key. Scan route logs for those three identifiers per query.
 
-**Part of the Wide metric is unseeded.** `max_iou_at_k_sampling` draws `random.sample` 1000 times
-with no seeding anywhere in the evaluator, so `avg_max_iou_at_k` is a Monte-Carlo estimate: an
-`evaluator_hash` pins the code but not the value. At `stochastic_repeats=3` only `at_1` and `at_2`
-receive samples at all; `at_4`, `at_8` and `at_16` report 0.0 rather than a measurement.
+Redistribution stays a Section-8 problem (SAGE and AgentSLR are unlicensed at any tree depth, so no
+frozen snapshot of them can ship — their datasets differ; see Table P2-1).
 
 ## Consequence for issue #99 Step 3
 
-Closed here: benchmark licences and access notes (Section 8, first line), with sources; Table P2-1,
-generated from records; `reference_revisions` integrity, four for four.
+Closed: licences and access notes; Table P2-1 generated from records; pinned-revision integrity; and
+— newly — **AutoResearchBench Wide official evaluation is executable here**, which revision 1
+wrongly reported as blocked. Still `CANNOT_CHECK` pending execution: Deep (judge key), MetaSyn
+(compute), AgentSLR (keys + PDFs), and contamination *rates* everywhere. Struck for the *official* metric only: SAGE — its 1200 queries with gold remain usable under declared scoring (largest external N, TIER_B); see [`access/SAGE_USABILITY_REVISION_3.md`](access/SAGE_USABILITY_REVISION_3.md) and the audit's `usable_task_family_under_declared_deviation`.
 
-Becomes `CANNOT_CHECK`, with reasons on the record rather than silence: AutoResearchBench Deep and
-Wide with official evaluation (credentials + unpublished backend); MetaSyn retrieval and screening
-(LLM key); an AgentSLR-like protocol-driven SLR baseline (keys + non-redistributable PDFs); and
-contamination *rates* for every benchmark, since only structural exposure and two spot checks were
-performed.
-
-Struck rather than deferred: SAGE scientific retrieval - no corpus, no evaluator, at any price.
-
-## The honest consequence
-
-The external open-world discovery claim stays `CANNOT_CHECK`. Nothing in this lane can promote it,
-and for SAGE nothing can promote it at all in its official form. Mechanism evidence for H1-H4 must
-therefore be carried by the offline controlled-index companion - the frozen local complete-gold
-corpus with a legally distributable denominator. That companion is not a fallback: given SAGE's
-public gold and AutoResearchBench's key-less obfuscation, it is the only denominator in this suite
-whose contamination status the host actually controls.
+The external discovery claim is no longer blocked at the access layer for Wide — it is now a
+question of running the study, not of obtaining the means. The offline controlled-index companion
+remains necessary (the one denominator whose contamination status we control, and SAGE's only
+option) but it is no longer the sole route to external evidence.

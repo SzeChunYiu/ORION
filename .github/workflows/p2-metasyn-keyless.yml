@@ -1,0 +1,94 @@
+name: p2-metasyn-keyless
+
+on:
+  push:
+    branches:
+      - chatgpt/issue-99-recursive-local
+
+permissions:
+  contents: read
+
+jobs:
+  metasyn:
+    if: contains(github.event.head_commit.message, '[run-metasyn]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install ORION and pinned MetaSyn dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install -e '.[dev]'
+          git clone --filter=blob:none https://github.com/THUIR/MetaSyn.git /tmp/metasyn-upstream
+          git -C /tmp/metasyn-upstream checkout 51b95b7061e1faf241c205eb7f8e5c2bccff4848
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.3.1
+          python -m pip install -e /tmp/metasyn-upstream
+          git -C /tmp/metasyn-upstream rev-parse HEAD
+
+      - name: Freeze the public dataset revision
+        run: |
+          set -euo pipefail
+          DATASET_REV="$(git ls-remote https://huggingface.co/datasets/THUIR/MetaSyn HEAD | awk '{print $1}')"
+          test -n "$DATASET_REV"
+          echo "METASYN_DATASET_REV=$DATASET_REV" >> "$GITHUB_ENV"
+          mkdir -p /tmp/metasyn-run
+          printf '%s\n' "$DATASET_REV" > /tmp/metasyn-run/dataset_revision.txt
+
+      - name: Split labels before candidate custody
+        run: |
+          set -euo pipefail
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_metasyn_keyless.py prepare \
+            --output /tmp/metasyn-run/public_reviews.jsonl \
+            --manifest /tmp/metasyn-run/split_manifest.json \
+            --dataset THUIR/MetaSyn \
+            --dataset-revision "$METASYN_DATASET_REV"
+
+      - name: Run keyless BM25 retrieval and protocol screening
+        run: |
+          set -euo pipefail
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_metasyn_keyless.py run \
+            --public-reviews /tmp/metasyn-run/public_reviews.jsonl \
+            --results-dir /tmp/metasyn-run/results \
+            --manifest /tmp/metasyn-run/run_manifest.json \
+            --dataset THUIR/MetaSyn \
+            --dataset-revision "$METASYN_DATASET_REV" \
+            --top-k 200 \
+            --screen-cap 60
+
+      - name: Run pinned official MetaSyn ID-only evaluator
+        run: |
+          set -euo pipefail
+          python /tmp/metasyn-upstream/scripts/evaluate_all.py \
+            --results-dir /tmp/metasyn-run/results \
+            --output /tmp/metasyn-run/official_evaluation.json \
+            --dataset THUIR/MetaSyn \
+            --dataset-revision "$METASYN_DATASET_REV" \
+            --id-only \
+            --selection-source json
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_metasyn_keyless.py summarize \
+            --split-manifest /tmp/metasyn-run/split_manifest.json \
+            --run-manifest /tmp/metasyn-run/run_manifest.json \
+            --evaluation /tmp/metasyn-run/official_evaluation.json \
+            --output /tmp/metasyn-run/summary.json
+          cat /tmp/metasyn-run/summary.json
+
+      - name: Archive MetaSyn result-bearing artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-metasyn-keyless-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: warn
+          path: |
+            /tmp/metasyn-run/dataset_revision.txt
+            /tmp/metasyn-run/split_manifest.json
+            /tmp/metasyn-run/public_reviews.jsonl
+            /tmp/metasyn-run/run_manifest.json
+            /tmp/metasyn-run/results
+            /tmp/metasyn-run/official_evaluation.json
+            /tmp/metasyn-run/summary.json

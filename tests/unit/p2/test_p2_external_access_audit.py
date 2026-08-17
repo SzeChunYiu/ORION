@@ -177,6 +177,53 @@ def test_audit_does_not_mutate_the_frozen_protocol():
             assert proposal["audited_candidate_value"] != proposal["current_protocol_value"]
 
 
+def test_official_evaluation_runnability_covers_every_protocol_task_family():
+    """Obtainability and runnability are different questions; both must be answered."""
+    audit = _audit()
+    protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
+    block = audit["official_evaluation_runnable_by_family"]
+    assert set(block["families"]) == set(protocol["task_families"]), (
+        "official_evaluation_runnable_by_family must answer for exactly the protocol's task_families"
+    )
+    for family, verdict in block["families"].items():
+        assert verdict in block["enum"], f"{family}: undeclared runnability verdict {verdict!r}"
+
+
+def test_artifact_runnability_claims_agree_with_the_family_block():
+    audit = _audit()
+    families = audit["official_evaluation_runnable_by_family"]["families"]
+    for artifact in audit["artifacts"]:
+        for family, verdict in (artifact.get("official_evaluation_runnable") or {}).items():
+            if family in families:
+                assert families[family] == verdict, (
+                    f"{artifact['artifact_id']} claims {family}={verdict} but the family block says {families[family]}"
+                )
+
+
+def test_credential_free_families_are_not_also_reported_as_credential_blocked():
+    """Guards the exact error revision 2 corrected: a runnable family with a blanket blocker."""
+    audit = _audit()
+    families = audit["official_evaluation_runnable_by_family"]["families"]
+    free = {f for f, v in families.items() if v == "YES_NO_CREDENTIALS"}
+    for artifact in audit["artifacts"]:
+        claimed = set(artifact.get("official_evaluation_runnable") or {})
+        if not claimed & free:
+            continue
+        blocker = (artifact["run_requirements"] or {}).get("hard_blocker") or ""
+        assert blocker.lower().lstrip().startswith("none"), (
+            f"{artifact['artifact_id']} serves a credential-free family but states hard_blocker: {blocker[:80]!r}"
+        )
+
+
+def test_revision_history_is_present_and_ordered():
+    history = _audit()["revision_history"]
+    assert history, "an audit that has been corrected must say so"
+    assert [r["revision"] for r in history] == list(range(1, len(history) + 1))
+    for record in history:
+        assert record["completed_utc"].endswith("Z")
+        assert record["summary"]
+
+
 def test_every_evidence_path_referenced_by_the_audit_exists():
     for artifact in _audit()["artifacts"]:
         rel = (artifact["run_requirements"] or {}).get("evidence_path")

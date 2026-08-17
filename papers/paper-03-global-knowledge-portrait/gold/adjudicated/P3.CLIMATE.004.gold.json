@@ -1,0 +1,55 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.CLIMATE.004.GOLD",
+  "case_id": "P3.CLIMATE.004",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "essd:SEED-CLIM004A",
+    "document_version": "v1",
+    "span_start": 4470,
+    "span_end": 4800,
+    "text_hash": "seed:sha256:8182838a9c1",
+    "discipline": "climate",
+    "text": "Greenland ice sheet mass balance, 2003-2009 (GRACE)"
+  },
+  "source_b": {
+    "document_id": "essd:SEED-CLIM004B",
+    "document_version": "v1",
+    "span_start": 6300,
+    "span_end": 6620,
+    "text_hash": "seed:sha256:8182838a9c2",
+    "discipline": "climate",
+    "text": "Greenland ice sheet mass balance, 2010-2016 (GRACE-FO)"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "SAME",
+  "measurement_relation": "NON_EQUIVALENT",
+  "context_relation": "DIFFERENT_STATE_OR_TIME",
+  "polarity_relation": "SAME",
+  "modality_relation": "SAME",
+  "attribution_relation": "SAME_SPEAKER_OR_SOURCE",
+  "discourse_relation": "CONTEXTUAL_DIFFERENCE",
+  "mapping_relation": "CONDITIONAL_TRANSFORM",
+  "preservation_conditions": [
+    "Temporal state change is expected; values are not directly comparable without trend normalization",
+    "Difference reflects temporal evolution, not contradiction"
+  ],
+  "non_preserved_coordinates": [
+    "context",
+    "measurement"
+  ],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "GLUE_ALLOWED",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "context_relation:DIFFERENT_STATE_OR_TIME",
+    "contradiction_verdict:NO_CONTRADICTION",
+    "preservation_conditions:temporal_context"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for same_entity_different_temporal_state case P3.CLIMATE.004. referent=SAME, construct=SAME, measurement=NON_EQUIVALENT, context=DIFFERENT_STATE_OR_TIME, mapping=CONDITIONAL_TRANSFORM, integration=GLUE_ALLOWED. Seed manifest notes: Same object (Greenland ice sheet) different epochs + different instruments. Gold: temporal AND instrumental context carried; not direct contradiction.",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

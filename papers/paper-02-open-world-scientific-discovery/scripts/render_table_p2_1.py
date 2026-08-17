@@ -65,6 +65,34 @@ def sort_key(artifact: dict) -> tuple:
     return (pinned, STATE_ORDER.get(artifact["state"], 9), artifact["artifact_id"])
 
 
+def evaluator_needs(run_requirements: dict) -> str:
+    """Render only requirements consumed by the official evaluator/scorer."""
+    requirements = run_requirements.get("evaluator_requirements")
+    if not isinstance(requirements, dict):
+        return "n/a"
+    return "; ".join(
+        f"{name}: {cell(details.get('credentials'))}"
+        for name, details in requirements.items()
+        if isinstance(details, dict)
+    ) or "n/a"
+
+
+def pipeline_needs(run_requirements: dict) -> str:
+    """Render candidate/reference-agent or data-pipeline requirements, never evaluator needs."""
+    reference_agent = run_requirements.get("reference_agent_requirements")
+    if isinstance(reference_agent, dict) and reference_agent.get("credentials"):
+        return cell(reference_agent["credentials"])
+
+    parts: list[str] = []
+    provider = run_requirements.get("provider")
+    model = run_requirements.get("model")
+    if provider:
+        parts.append(f"provider: {cell(provider)}")
+    if model:
+        parts.append(f"model: {cell(model)}")
+    return "; ".join(parts) or "n/a"
+
+
 def render(audit: dict) -> str:
     artifacts = sorted(audit["artifacts"], key=sort_key)
     lines: list[str] = []
@@ -106,25 +134,40 @@ def render(audit: dict) -> str:
         )
     add("")
 
-    add("## B. Provider, run requirements and contamination exposure")
+    add("## B. Official-evaluation runnability by task family")
     add("")
-    add("| Artifact | State | Provider / credentials | Judge calls | Hard blocker | Contamination |")
+    add(
+        "Obtaining an artifact and being able to run its official scorer are different questions. "
+        "This section answers the second one, which is what decides whether a task family can carry "
+        "evidence."
+    )
+    add("")
+    runnable = audit["official_evaluation_runnable_by_family"]
+    add("| Task family | Official scorer runnable | Meaning |")
+    add("| --- | --- | --- |")
+    for family, verdict in runnable["families"].items():
+        add(f"| `{cell(family)}` | `{cell(verdict)}` | {clip(runnable['enum'][verdict], 120)} |")
+    add("")
+
+    add("## C. Provider, run requirements and contamination exposure")
+    add("")
+    add("| Artifact | State | Official evaluator needs | Pipeline / reference-agent needs | Hard blocker | Contamination |")
     add("| --- | --- | --- | --- | --- | --- |")
     for a in artifacts:
         rr = a.get("run_requirements") or {}
         add(
-            "| `{id}` | `{state}` | {prov} | {judge} | {blk} | {cont} |".format(
+            "| `{id}` | `{state}` | {needs} | {pipeline} | {blk} | {cont} |".format(
                 id=cell(a["artifact_id"]),
                 state=cell(a["state"]),
-                prov=clip(rr.get("provider"), 90),
-                judge=clip(rr.get("judge_calls_per_task"), 90),
+                needs=clip(evaluator_needs(rr), 110),
+                pipeline=clip(pipeline_needs(rr), 110),
                 blk=clip(rr.get("hard_blocker"), 150),
                 cont=clip(a.get("contamination_note"), 120),
             )
         )
     add("")
 
-    add("## C. Locators and licence evidence")
+    add("## D. Locators and licence evidence")
     add("")
     add("| Artifact | Locator | Licence source (verbatim check) |")
     add("| --- | --- | --- |")
@@ -138,7 +181,7 @@ def render(audit: dict) -> str:
         )
     add("")
 
-    add("## D. Pinned-revision integrity")
+    add("## E. Pinned-revision integrity")
     add("")
     integrity = audit["pinned_revision_integrity"]
     for key in (
@@ -153,19 +196,19 @@ def render(audit: dict) -> str:
     add(f"- verdict: {integrity['verdict']}")
     add("")
 
-    add("## E. Cross-cutting findings")
+    add("## F. Cross-cutting findings")
     add("")
     for item in audit["cross_cutting_findings"]:
         add(f"- {item}")
     add("")
 
-    add("## F. Explicitly not established by this audit")
+    add("## G. Explicitly not established by this audit")
     add("")
     for item in audit["explicitly_not_established"]:
         add(f"- {item}")
     add("")
 
-    add("## G. State counts")
+    add("## H. State counts")
     add("")
     counts: dict[str, int] = {}
     for a in artifacts:

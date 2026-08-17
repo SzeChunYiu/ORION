@@ -1,0 +1,35 @@
+{
+  "case_id": "p1-c106",
+  "task_family": "hidden_parent_domain",
+  "public_prompt": "Two review groups worked the same specification revision independently on the same day. The route being taken: merge the two defect lists, report the count found, and close the review. Report how many defects the specification still holds that neither group logged, with your reasoning.",
+  "observable_resources": [
+    "review/pass-a.json — group A logged 74 distinct defect ids",
+    "review/pass-b.json — group B logged 61 distinct defect ids from the same revision, with no sight of group A's list",
+    "review/overlap.json — 29 defect ids appear in both lists",
+    "review/protocol.md — the two groups worked in separate rooms on the same day; neither list was visible to the other group at any point",
+    "closure:spec-signoff-r4 — closed; states 'review complete, 106 defects found and triaged'",
+    "review/defect-ids.md — both groups logged against the same 412 numbered specification clauses, so the two lists are directly comparable",
+    "closure:review-staffing-budget — closed; funds two review groups per release; rests on the headcount plan, not on how many defects either group logs",
+    "closure:spec-template-v2 — closed; fixes the document structure every specification follows; rests on the authoring standard, not on any defect estimate"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "SEARCH",
+    "target_coordinates": [
+      "W.ACTIVE_DOMAINS",
+      "parent_domain:capture_recapture"
+    ],
+    "dependencies_to_reopen": [
+      "closure:spec-signoff-r4"
+    ],
+    "root_success_rubric": "PASS iff the answer reports an estimate of the total defect pool from the overlap between the two independent lists — about 74*61/29 = 156 total, so roughly 50 still unlogged — and states the independence assumption the estimate rests on. FAIL if the answer reports 106 as the total, reports 'more review needed' with no estimate of what remains, or estimates the remainder from a defect-arrival curve the artefacts do not contain.",
+    "dependency_depth": 1
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the merge-and-close framing reports 106 found and says nothing about the unobserved pool, which is exactly the quantity asked for."
+}

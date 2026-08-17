@@ -1,0 +1,51 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.PHYS.002.GOLD",
+  "case_id": "P3.PHYS.002",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "arxiv:SEED-PHYS002A",
+    "document_version": "v1",
+    "span_start": 1020,
+    "span_end": 1340,
+    "text_hash": "seed:sha256:8182838a989",
+    "discipline": "physics",
+    "text": "General relativity paper: 'gravitational field' in weak-field limit"
+  },
+  "source_b": {
+    "document_id": "arxiv:SEED-PHYS002B",
+    "document_version": "v1",
+    "span_start": 6930,
+    "span_end": 7260,
+    "text_hash": "seed:sha256:8687888a990",
+    "discipline": "physics",
+    "text": "Gravitation review: 'metric tensor perturbation h_mu_nu'"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "SAME",
+  "measurement_relation": "EQUIVALENT",
+  "context_relation": "ALIGNED",
+  "polarity_relation": "SAME",
+  "modality_relation": "SAME",
+  "attribution_relation": "SAME_SPEAKER_OR_SOURCE",
+  "discourse_relation": "ALIGNED",
+  "mapping_relation": "IDENTITY",
+  "preservation_conditions": [
+    "Canonical identifier mapping (e.g. gene ontology / synonym dictionary) is applied"
+  ],
+  "non_preserved_coordinates": [],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "GLUE_ALLOWED",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "referent_relation:SAME",
+    "mapping_relation:IDENTITY",
+    "preservation_conditions:canonical_mapping"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for different_name_same_referent case P3.PHYS.002. referent=SAME, construct=SAME, measurement=EQUIVALENT, context=ALIGNED, mapping=IDENTITY, integration=GLUE_ALLOWED. Seed manifest notes: Different surface (field vs perturbation) SAME underlying object. Gold: referent=SAME via metric-connection dictionary.",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.CLIMATE.005.GOLD",
+  "case_id": "P3.CLIMATE.005",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "essd:SEED-CLIM005A",
+    "document_version": "v1",
+    "span_start": 5220,
+    "span_end": 5550,
+    "text_hash": "seed:sha256:8182838a9c3",
+    "discipline": "climate",
+    "text": "IPCC synthesis: 'warming of the climate system is unequivocal'"
+  },
+  "source_b": {
+    "document_id": "essd:SEED-CLIM005B",
+    "document_version": "v1",
+    "span_start": 2910,
+    "span_end": 3230,
+    "text_hash": "seed:sha256:8182838a9c4",
+    "discipline": "climate",
+    "text": "Skeptical blog: 'regional cooling episodes contradict global warming'"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "SAME",
+  "measurement_relation": "EQUIVALENT",
+  "context_relation": "ALIGNED",
+  "polarity_relation": "SAME",
+  "modality_relation": "DIFFERENT_STRENGTH",
+  "attribution_relation": "DIFFERENT_ATTRIBUTION",
+  "discourse_relation": "ALIGNED",
+  "mapping_relation": "SUBSUMPTION",
+  "preservation_conditions": [
+    "Modality and attribution differences are carried forward as metadata",
+    "Asserted claim subsumes the hedged version"
+  ],
+  "non_preserved_coordinates": [
+    "modality",
+    "attribution"
+  ],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "GLUE_ALLOWED",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "modality_relation:DIFFERENT_STRENGTH",
+    "attribution_relation:DIFFERENT_ATTRIBUTION",
+    "contradiction_verdict:NO_CONTRADICTION"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for polarity_modality_attribution_context case P3.CLIMATE.005. referent=SAME, construct=SAME, measurement=EQUIVALENT, context=ALIGNED, mapping=SUBSUMPTION, integration=GLUE_ALLOWED. Seed manifest notes: Global vs regional spatiotemporal context differential. Gold: NOT contradiction once context coordinate is separated (regional temp vs global trend).",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

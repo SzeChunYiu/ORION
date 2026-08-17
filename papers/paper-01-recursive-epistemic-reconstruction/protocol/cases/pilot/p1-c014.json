@@ -1,0 +1,34 @@
+{
+  "case_id": "p1-c014",
+  "task_family": "hidden_representation_or_coordinate_system",
+  "public_prompt": "Five independently fitted members each emit a failure probability per incident. The route being taken: take the plain average of the five numbers and page when it passes 0.05. Report the pooled probability for incident 4471 and say whether the paging rule fires.",
+  "observable_resources": [
+    "ensemble/members.csv — five member probabilities per incident; for incident 4471 they are 0.0004, 0.0009, 0.0011, 0.0007 and 0.62",
+    "ensemble/reliability.md — each member is well matched to observed outcome rates on the holdout; the plain average over-predicts by a factor of 14 in the lowest decile",
+    "ensemble/symmetry-check.md — averaging the five members' probabilities for the complement event and subtracting the result from 1 gives a different pooled number than averaging the originals",
+    "ensemble/member-independence.md — the five members were fitted on disjoint feature groups and their residuals are uncorrelated",
+    "closure:paging-policy-v4 — closed; pages when the plain average passes 0.05",
+    "closure:incident-taxonomy-v2 — closed; fixes the categories every incident is filed under; rests on the taxonomy review, not on any combined number",
+    "closure:member-retraining-cadence — closed; retrains each member quarterly; rests on the maintenance plan, not on how the five are combined"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "REPRESENTATION",
+    "target_coordinates": [
+      "W.REPRESENTATIONS",
+      "representation:logit_axis"
+    ],
+    "dependencies_to_reopen": [
+      "closure:paging-policy-v4"
+    ],
+    "root_success_rubric": "PASS iff the members are pooled on an axis where the two ends of the probability range are treated symmetrically (a logarithmic or geometric opinion pool), the pooled figure for incident 4471 is below 0.01, the paging rule is reported as not firing, and the answer cites the symmetry check to show that plain averaging is not invariant under swapping the event for its complement. FAIL if the answer returns the plain average 0.1246, discards the 0.62 member as an outlier, or only moves the 0.05 cutoff.",
+    "dependency_depth": 1
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the plain-average framing reports 0.1246 and pages, driven entirely by the single least confident member."
+}

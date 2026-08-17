@@ -1,0 +1,75 @@
+{
+  "schema_version": "orion.p2.metasyn-id-only-official-archive.v1",
+  "authority": "OFFICIAL_METASYN_ID_ONLY_EVALUATOR",
+  "benchmark": "MetaSyn",
+  "candidate": "ORION keyless BM25 + deterministic public-protocol screening probe",
+  "claim_scope": "external_probe_not_full_multi_provider_orion",
+  "pinned_upstream_commit": "51b95b7061e1faf241c205eb7f8e5c2bccff4848",
+  "dataset": "THUIR/MetaSyn",
+  "dataset_revision": "c8fa07d89c44093d623f9a213c6bf070f40ab960",
+  "selection_source": "json",
+  "id_only": true,
+  "judge_model": null,
+  "evaluator": {
+    "evaluator_version": "1.2.0",
+    "prompt_version": "metasyn-evaluator-2026-07-20",
+    "result_schema_version": "1.1"
+  },
+  "coverage": {
+    "expected_reviews": 86,
+    "submitted_reviews": 86,
+    "succeeded_reviews": 86,
+    "failed_reviews": 0
+  },
+  "macro_metrics": {
+    "retrieval_recall": 0.7485,
+    "retrieval_precision": 0.0627,
+    "conditional_retention": 0.7224,
+    "post_retrieval_loss": 0.1834,
+    "inclusion_recall": 0.5651,
+    "inclusion_precision": 0.1426,
+    "inclusion_f1": 0.2033,
+    "screening_accuracy": 0.7228
+  },
+  "metric_counts": {
+    "retrieval_recall": 86,
+    "retrieval_precision": 86,
+    "conditional_retention": 85,
+    "post_retrieval_loss": 86,
+    "inclusion_recall": 86,
+    "inclusion_precision": 86,
+    "inclusion_f1": 86,
+    "screening_accuracy": 86
+  },
+  "candidate_execution": {
+    "retriever": "pinned MetaSyn BM25 title+abstract",
+    "retrieval_top_k": 200,
+    "screening": "predeclared PI/ECO/question field-hit rule with Intervention=NR falling back to Exposure before tokenization",
+    "screen_cap": 60,
+    "mean_retrieved": 200.0,
+    "mean_included": 60.0,
+    "hidden_label_fields_visible_to_candidate": false
+  },
+  "content_bindings": {
+    "public_reviews_sha256": "4936368cbc2e388e5fcdf770dfea56b49835f58f17b0c1a0687069e64606a1b8",
+    "results_tree_sha256": "923e96c56361ffdda8ef55bf4ebc32ee882f8dc74781fa909d2e54a6992765cc",
+    "official_evaluation_sha256": "b13b36b54ac72488749d72eedd5af35981cd46208f9bee9dcc7077e2cbccfa25"
+  },
+  "github_actions": {
+    "workflow_run_id": 31973786111,
+    "head_sha": "93fcb5b7b9951fd385f999a53cd34d85c9c2ed81",
+    "artifact_id": 9270589591,
+    "artifact_name": "p2-metasyn-keyless-93fcb5b7b9951fd385f999a53cd34d85c9c2ed81",
+    "artifact_sha256": "edd8073b7fe5e5d7826968cd48dd52ed3befcaa649652e009216c89ead1b4786",
+    "artifact_created_at": "2026-08-16T21:39:54Z",
+    "artifact_expires_at": "2026-09-15T21:39:53Z"
+  },
+  "interpretation": {
+    "completed": "credential-free external retrieval and screening/inclusion evaluation on all 86 released MetaSyn test reviews after the NR-to-Exposure screening fallback fix",
+    "not_claimed": [
+      "LLM-judged synthesis/report quality",
+      "full multi-provider ORION superiority",
+      "inferential superiority over a matched external baseline"
+    ]
+  }
+}

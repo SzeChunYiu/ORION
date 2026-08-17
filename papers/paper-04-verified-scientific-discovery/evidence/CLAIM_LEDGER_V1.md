@@ -1,34 +1,31 @@
-# ORION-P4 Claim Ledger V1
+# ORION-P4 Claim Ledger — protected V2
 
-Each headline claim in Paper IV is mapped to its exact evidence path. Claims marked `CANNOT_CHECK` are not supported by external evidence in this manuscript; they are prospective hypotheses awaiting the protected campaign.
+| # | Manuscript claim | Evidence | Status |
+|---|---|---|---|
+| 1 | Citation correctness, support, attribution, influence, and scientific authority are distinct coordinates. | Related-work audit; authority gate implementation. | Bounded conceptual/implementation claim |
+| 2 | The repaired subject uses a non-compensatory authority transition whose failed prerequisites cannot be averaged away. | Subject `f6e51b5c...`; `protocol/PROTECTED_RUN_BINDINGS_V2.json`. | Tested mechanism claim |
+| 3 | On the frozen V2 battery, ORION reduces false scientific-authority promotion versus the strongest frozen mechanism proxy. | `evidence/protected_v2/PUBLICATION_METRICS_V2.json`; `RESULT_ATTESTATION_V2.md`. | **SUPPORTED — H1 PASS** |
+| 4 | H1 effect is `-0.50`, paired 95% CI `[-0.553,-0.447]`. | Campaign `31976589735`; independent reproduction receipt. | **SUPPORTED** |
+| 5 | Safety gain does not arise from blanket refusal: both systems promote 60/60 clean positives. | Publication metrics + independent receipt. | **SUPPORTED — H2 PASS** |
+| 6 | ORION is superior on correct `CANNOT_CHECK` selection. | Publication metrics. | **NOT SUPPORTED — H3 null** |
+| 7 | All eight registered ablations worsen false-promotion rate without clean-coverage loss. | V2 ablation summary in publication metrics. | **SUPPORTED on this battery** |
+| 8 | The soft-confidence terminal is especially unsafe on this battery (330/360 false promotions). | V2 ablation summary. | **SUPPORTED on this battery** |
+| 9 | Scored candidate/comparator processes did not access protected identifiers or external IPs. | `P4ActualAccessTelemetry.v2`; protected raw `strace` retained. | **SUPPORTED for retained telemetry surface** |
+| 10 | Independent code reproduced the headline counts. | Artifact `9271232325`; reproduction lineage hash `26f4cf9e...`. | **SUPPORTED** |
+| 11 | Comparator results concern protocol-matched mechanism proxies, not original external implementations. | `host/BASELINE_CONFIGS_V2.json`; manuscript disclosure. | Scope boundary |
+| 12 | The result generalizes to arbitrary scientific claims/evaluators. | No admissible evidence. | **NOT CLAIMED** |
 
-| # | Claim | Evidence Type | Location | Status |
-|---|-------|--------------|----------|--------|
-| 1 | Citation correctness and factual support do not establish scientific authority | Reasoning | main.tex §1, §2 | Established by argument |
-| 2 | Evidence records must resolve through host-owned content/provenance identity | Implementation | Kernel evidence binding | Tested locally (local falsifier in `evidence/FALSIFIER_V1.md`) |
-| 3 | Claim correctness, evidence identity, source attribution, semantic support, and content provenance are distinct coordinates | Implementation + related work | main.tex §3 | Established by mechanism (ProvenanceGuard baseline) |
-| 4 | A checker is not authoritative solely by returning a score | Implementation | Kernel checker registry | Tested locally (weak checker + same-lane tests) |
-| 5 | Evaluation is an attack surface requiring prospective freeze | Threat model + related work | main.tex §4, THREAT_MODEL_V1.md | Established by RewardHackingAgents literature |
-| 6 | Search-time contamination inflates benchmark performance | Related work | main.tex §4, §6 | Established by STC literature |
-| 7 | Non-escalating authority: promotion requires registered prerequisites; default is CANNOT_CHECK/BLOCK | Implementation + protocol | main.tex §5, PROTOCOL_V1.json | Tested locally (fail-closed kernel) |
-| 8 | The full ORION pipeline reduces false scientific-authority promotion under attack | Prospective hypothesis | PROTOCOL_V1.json H1 | **CANNOT_CHECK** — awaiting external campaign |
-| 9 | Safety gain does not come from blocking everything | Prospective hypothesis | PROTOCOL_V1.json H2 | **CANNOT_CHECK** — awaiting external campaign |
-| 10 | CANNOT_CHECK/BLOCK is selected correctly when evidence is insufficient | Prospective hypothesis | PROTOCOL_V1.json H3 | **CANNOT_CHECK** — awaiting external campaign |
-| 11 | 5-percentage-point absolute reduction vs strongest baseline is a feasible design target | Design choice | PROTOCOL_V1.json §statistics.practical_margin | Prospective margin, not a result |
-| 12 | Clean authority coverage is non-inferior within 5 percentage points | Design choice | PROTOCOL_V1.json §statistics.practical_margin | Prospective margin, not a result |
-| 13 | No finite hostile battery proves universal evaluator security | Limitation | THREAT_MODEL_V1.md, main.tex §9 | Established by argument |
-| 14 | The protocol, attack taxonomy, baselines, ablations, and statistical plan are frozen | Protocol artifact | PROTOCOL_V1.json (status: DESIGN_FROZEN) | Verified by test suite (`test_journal_protocol_assets.py`) |
-| 15 | External results are not reported in this manuscript | Boundary statement | main.tex §8 | Verified by manuscript text |
+## Evidence paths
 
-## Evidence Paths
+- Final safe aggregates: `evidence/protected_v2/PUBLICATION_METRICS_V2.json`
+- Attack-family contrast: `evidence/protected_v2/FAMILY_CONTRAST_V2.json`
+- Result/custody attestation: `evidence/protected_v2/RESULT_ATTESTATION_V2.md`
+- Execution bindings: `protocol/PROTECTED_RUN_BINDINGS_V2.json`
+- Comparator/ablation disclosure: `host/BASELINE_CONFIGS_V2.json`
+- Protected campaign: GitHub Actions run `31976589735`
+- Safe bundle: artifact `9271234622`, SHA-256 `51ac14bc3a6b4b570aaca6d4a41c91f53d9bf2887e66f0620c412f78566a3b44`
+- Independent reproduction: artifact `9271232325`
 
-- **Local implementation evidence:** Kernel tests in `tests/unit/kernel/` cover identity/content substitution, provenance identity, weak checkers, same-lane checking, and chronology.
-- **Local falsifier evidence:** `evidence/FALSIFIER_V1.md` documents the authority-laundering falsifier cases.
-- **Protocol evidence:** `protocol/PROTOCOL_V1.json` is the frozen protocol artifact, validated by `research/paper-programme-v1/protocols/publication_manifest.py`.
-- **Related work evidence:** Citations in `bibliography.bib` point to external systems that establish baseline capabilities.
-- **External campaign evidence:** Issue #59 owns the protected hostile benchmark programme. Evidence is **CANNOT_CHECK** until the campaign completes.
+## Negative claims retained
 
-## Negative Claims
-
-- Provenance tracking, claim-level auditability, contamination detection, and evaluator locking are not ORION novelty claims.
-- The manuscript does not claim external results. All quantitative claims about false-promotion reduction are prospective hypotheses.
+Paper IV does not claim provenance tracking, attribution evaluation, iterative verification, evidence escalation, contamination detection, evaluator tamper detection, or auditability as standalone novelties. It does not claim H3 superiority, universal evaluator security, performance of the external authors' original systems, or naturalistic scientific fact-checking accuracy.

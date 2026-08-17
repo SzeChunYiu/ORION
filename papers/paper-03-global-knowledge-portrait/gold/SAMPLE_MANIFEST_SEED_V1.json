@@ -1,0 +1,1015 @@
+{
+  "manifest_version": "orion.p3.sample-manifest.v1",
+  "manifest_status": "SEED (placeholders; not yet adjudicated)",
+  "seed_note": "Seed entries are structurally valid but contain placeholder document identifiers and text hashes. Final gold replaces these with verified open-access source spans under the licensing rules in CORPUS_DESIGN_V1.md.",
+  "case_family_coverage": {
+    "same_name_different_referent": 4,
+    "different_name_same_referent": 4,
+    "same_construct_different_measurement": 4,
+    "same_entity_different_temporal_state": 4,
+    "polarity_modality_attribution_context": 4,
+    "valid_invalid_representation_mapping": 4,
+    "valid_invalid_literature_bridge": 4,
+    "genuine_plural_obstruction": 4
+  },
+  "discipline_coverage": {
+    "biomed": 8,
+    "physics": 8,
+    "social": 8,
+    "climate": 8
+  },
+  "samples": [
+    {
+      "sample_id": "P3.BIOMED.001",
+      "discipline": "biomed",
+      "case_family": "same_name_different_referent",
+      "source_a": {
+        "document_id": "pmc:SEED-BIOMED001A",
+        "document_version": "v1",
+        "span_start": 4120,
+        "span_end": 4488,
+        "text_hash": "seed:sha256:abc123def456",
+        "discipline": "biomed",
+        "retrieval_hint": "developmental biology paper: 'zebrafish (Danio rerio)' as model organism"
+      },
+      "source_b": {
+        "document_id": "pmc:SEED-BIOMED001B",
+        "document_version": "v1",
+        "span_start": 9012,
+        "span_end": 9355,
+        "text_hash": "seed:sha256:789abc012def",
+        "discipline": "biomed",
+        "retrieval_hint": "ecology/invasive-species paper: 'zebrafish' as invasive fish population"
+      },
+      "annotation_required": [
+        "referent_relation",
+        "construct_relation",
+        "mapping_relation",
+        "contradiction_verdict",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Same surface name 'zebrafish' but DIFFERENT referent: model organism vs invasive species. Gold: referent=DIFFERENT, mapping=NO_LICENSED_MAPPING."
+    },
+    {
+      "sample_id": "P3.BIOMED.002",
+      "discipline": "biomed",
+      "case_family": "different_name_same_referent",
+      "source_a": {
+        "document_id": "pmc:SEED-BIOMED002A",
+        "document_version": "v1",
+        "span_start": 2103,
+        "span_end": 2470,
+        "text_hash": "seed:sha256:def456abc123",
+        "discipline": "biomed",
+        "retrieval_hint": "Oncology paper: 'programmed cell death ligand 1 (PD-L1)' expression in tumors"
+      },
+      "source_b": {
+        "document_id": "pmc:SEED-BIOMED002B",
+        "document_version": "v1",
+        "span_start": 1522,
+        "span_end": 1809,
+        "text_hash": "seed:sha256:abc456def789",
+        "discipline": "biomed",
+        "retrieval_hint": "Immunotherapy review: 'cluster of differentiation 274 (CD274)' as checkpoint ligand"
+      },
+      "annotation_required": [
+        "referent_relation",
+        "construct_relation",
+        "mapping_relation",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Different surface names (PD-L1 vs CD274) but SAME referent protein. Gold: referent=SAME, mapping=IDENTITY via gene ontology CD274."
+    },
+    {
+      "sample_id": "P3.BIOMED.003",
+      "discipline": "biomed",
+      "case_family": "same_construct_different_measurement",
+      "source_a": {
+        "document_id": "pmc:SEED-BIOMED003A",
+        "document_version": "v1",
+        "span_start": 3345,
+        "span_end": 3690,
+        "text_hash": "seed:sha256:111213a1415",
+        "discipline": "biomed",
+        "retrieval_hint": "Study A: fasting plasma glucose (mmol/L) as diabetes marker"
+      },
+      "source_b": {
+        "document_id": "pmc:SEED-BIOMED003B",
+        "document_version": "v1",
+        "span_start": 7810,
+        "span_end": 8201,
+        "text_hash": "seed:sha256:1617181a202",
+        "discipline": "biomed",
+        "retrieval_hint": "Study B: HbA1c percentage as diabetes marker"
+      },
+      "annotation_required": [
+        "construct_relation",
+        "measurement_relation",
+        "mapping_relation",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Same construct (glycemic control) but DIFFERENT measurement instruments. Gold: construct=SAME, measurement=DIFFERENT, no direct numeric comparison allowed."
+    },
+    {
+      "sample_id": "P3.BIOMED.004",
+      "discipline": "biomed",
+      "case_family": "same_entity_different_temporal_state",
+      "source_a": {
+        "document_id": "pmc:SEED-BIOMED004A",
+        "document_version": "v1",
+        "span_start": 5602,
+        "span_end": 6001,
+        "text_hash": "seed:sha256:2122232a424",
+        "discipline": "biomed",
+        "retrieval_hint": "Baseline cohort: pre-treatment SARS-CoV-2 viral load measurements"
+      },
+      "source_b": {
+        "document_id": "pmc:SEED-BIOMED004B",
+        "document_version": "v1",
+        "span_start": 1340,
+        "span_end": 1711,
+        "text_hash": "seed:sha256:2526272a829",
+        "discipline": "biomed",
+        "retrieval_hint": "Follow-up study: post-treatment viral load in same cohort"
+      },
+      "annotation_required": [
+        "referent_relation",
+        "measurement_relation",
+        "context_relation",
+        "contradiction_verdict",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Same entity measured at two time points (temporal state change). Gold: referent=SAME-with-temporal-state, verdict DEPENDS on context; not a contradiction without temporal annotation."
+    },
+    {
+      "sample_id": "P3.BIOMED.005",
+      "discipline": "biomed",
+      "case_family": "polarity_modality_attribution_context",
+      "source_a": {
+        "document_id": "pmc:SEED-BIOMED005A",
+        "document_version": "v1",
+        "span_start": 9203,
+        "span_end": 9550,
+        "text_hash": "seed:sha256:3132333a435",
+        "discipline": "biomed",
+        "retrieval_hint": "RCT report: 'drug X significantly reduced mortality' (direct evidence)"
+      },
+      "source_b": {
+        "document_id": "pmc:SEED-BIOMED005B",
+        "document_version": "v1",
+        "span_start": 6011,
+        "span_end": 6390,
+        "text_hash": "seed:sha256:3637383a940",
+        "discipline": "biomed",
+        "retrieval_hint": "Review article: 'drug X may reduce mortality' (secondary citation)"
+      },
+      "annotation_required": [
+        "polarity_relation",
+        "modality_relation",
+        "attribution_relation",
+        "context_relation",
+        "contradiction_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Polarity SAME (positive effect) but modality DIFFERENT (asserted vs hedged) and attribution DIFFERENT (primary RCT vs secondary review). Gold: NOT a contradiction; modality/attribution carried separately."
+    },
+    {
+      "sample_id": "P3.BIOMED.006",
+      "discipline": "biomed",
+      "case_family": "valid_invalid_representation_mapping",
+      "source_a": {
+        "document_id": "pmc:SEED-BIOMED006A",
+        "document_version": "v1",
+        "span_start": 4230,
+        "span_end": 4598,
+        "text_hash": "seed:sha256:4142434a545",
+        "discipline": "biomed",
+        "retrieval_hint": "NYHA heart failure classification (I-IV classes)"
+      },
+      "source_b": {
+        "document_id": "pmc:SEED-BIOMED006B",
+        "document_version": "v1",
+        "span_start": 8330,
+        "span_end": 8688,
+        "text_hash": "seed:sha256:4647484a950",
+        "discipline": "biomed",
+        "retrieval_hint": "ACC/AHA heart failure staging (A-D stages)"
+      },
+      "annotation_required": [
+        "mapping_relation",
+        "construct_relation",
+        "preservation_condition",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Two valid but non-isomorphic classification systems. Gold: VALID representation mapping WITH preservation conditions (projection not bijective)."
+    },
+    {
+      "sample_id": "P3.BIOMED.007",
+      "discipline": "biomed",
+      "case_family": "valid_invalid_literature_bridge",
+      "source_a": {
+        "document_id": "pmc:SEED-BIOMED007A",
+        "document_version": "v1",
+        "span_start": 3444,
+        "span_end": 3801,
+        "text_hash": "seed:sha256:5152535a656",
+        "discipline": "biomed",
+        "retrieval_hint": "Basic-science paper: melatonin modulates circadian clock genes"
+      },
+      "source_b": {
+        "document_id": "pmc:SEED-BIOMED007B",
+        "document_version": "v1",
+        "span_start": 12090,
+        "span_end": 12470,
+        "text_hash": "seed:sha256:5657585a960",
+        "discipline": "biomed",
+        "retrieval_hint": "Clinical trial: melatonin supplementation for jet lag"
+      },
+      "annotation_required": [
+        "context_relation",
+        "mapping_relation",
+        "literature_bridge_validity",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Bridge from mechanistic finding to clinical trial. Gold: VALID bridge WITH explicit transfer conditions (dose, exposure, outcome)."
+    },
+    {
+      "sample_id": "P3.BIOMED.008",
+      "discipline": "biomed",
+      "case_family": "genuine_plural_obstruction",
+      "source_a": {
+        "document_id": "pmc:SEED-BIOMED008A",
+        "document_version": "v1",
+        "span_start": 7788,
+        "span_end": 8150,
+        "text_hash": "seed:sha256:6162636a767",
+        "discipline": "biomed",
+        "retrieval_hint": "Single-cause model: H. pylori as sole cause of peptic ulcer"
+      },
+      "source_b": {
+        "document_id": "pmc:SEED-BIOMED008B",
+        "document_version": "v1",
+        "span_start": 4501,
+        "span_end": 4870,
+        "text_hash": "seed:sha256:6667686a970",
+        "discipline": "biomed",
+        "retrieval_hint": "Multifactorial model: NSAID use + stress as independent causal contributors"
+      },
+      "annotation_required": [
+        "contradiction_verdict",
+        "integration_verdict",
+        "obstruction_type"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Not a resolvable contradiction — causal pluralism. Gold: PLURAL_VIEW obstruction (multiple valid causal models coexist)."
+    },
+    {
+      "sample_id": "P3.PHYS.001",
+      "discipline": "physics",
+      "case_family": "same_name_different_referent",
+      "source_a": {
+        "document_id": "arxiv:SEED-PHYS001A",
+        "document_version": "v1",
+        "span_start": 3010,
+        "span_end": 3360,
+        "text_hash": "seed:sha256:7172737a878",
+        "discipline": "physics",
+        "retrieval_hint": "Particle physics: 'spin' as intrinsic angular momentum quantum number"
+      },
+      "source_b": {
+        "document_id": "arxiv:SEED-PHYS001B",
+        "document_version": "v1",
+        "span_start": 8540,
+        "span_end": 8890,
+        "text_hash": "seed:sha256:7677787a980",
+        "discipline": "physics",
+        "retrieval_hint": "Ising model: 'spin' as classical binary lattice variable"
+      },
+      "annotation_required": [
+        "referent_relation",
+        "construct_relation",
+        "mapping_relation",
+        "contradiction_verdict",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Same surface name 'spin' but DIFFERENT referents (quantum intrinsic vs classical model variable). Gold: DIFFERENT referent."
+    },
+    {
+      "sample_id": "P3.PHYS.002",
+      "discipline": "physics",
+      "case_family": "different_name_same_referent",
+      "source_a": {
+        "document_id": "arxiv:SEED-PHYS002A",
+        "document_version": "v1",
+        "span_start": 1020,
+        "span_end": 1340,
+        "text_hash": "seed:sha256:8182838a989",
+        "discipline": "physics",
+        "retrieval_hint": "General relativity paper: 'gravitational field' in weak-field limit"
+      },
+      "source_b": {
+        "document_id": "arxiv:SEED-PHYS002B",
+        "document_version": "v1",
+        "span_start": 6930,
+        "span_end": 7260,
+        "text_hash": "seed:sha256:8687888a990",
+        "discipline": "physics",
+        "retrieval_hint": "Gravitation review: 'metric tensor perturbation h_mu_nu'"
+      },
+      "annotation_required": [
+        "referent_relation",
+        "mapping_relation",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Different surface (field vs perturbation) SAME underlying object. Gold: referent=SAME via metric-connection dictionary."
+    },
+    {
+      "sample_id": "P3.PHYS.003",
+      "discipline": "physics",
+      "case_family": "same_construct_different_measurement",
+      "source_a": {
+        "document_id": "arxiv:SEED-PHYS003A",
+        "document_version": "v1",
+        "span_start": 4455,
+        "span_end": 4800,
+        "text_hash": "seed:sha256:8182838a989",
+        "discipline": "physics",
+        "retrieval_hint": "Astro: distance via Cepheid period-luminosity (visual band)"
+      },
+      "source_b": {
+        "document_id": "arxiv:SEED-PHYS003B",
+        "document_version": "v1",
+        "span_start": 5120,
+        "span_end": 5480,
+        "text_hash": "seed:sha256:8182838a990",
+        "discipline": "physics",
+        "retrieval_hint": "Astro: distance via type Ia supernova (near-IR band)"
+      },
+      "annotation_required": [
+        "construct_relation",
+        "measurement_relation",
+        "mapping_relation",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Same construct (galaxy distance) but DIFFERENT measurement (Cepheid vs SN Ia). Gold: measurement non-equivalence without calibration."
+    },
+    {
+      "sample_id": "P3.PHYS.004",
+      "discipline": "physics",
+      "case_family": "same_entity_different_temporal_state",
+      "source_a": {
+        "document_id": "arxiv:SEED-PHYS004A",
+        "document_version": "v1",
+        "span_start": 2500,
+        "span_end": 2820,
+        "text_hash": "seed:sha256:8182838a991",
+        "discipline": "physics",
+        "retrieval_hint": "Solar cycle 24: sunspot number peak epoch A"
+      },
+      "source_b": {
+        "document_id": "arxiv:SEED-PHYS004B",
+        "document_version": "v1",
+        "span_start": 3900,
+        "span_end": 4200,
+        "text_hash": "seed:sha256:8182838a992",
+        "discipline": "physics",
+        "retrieval_hint": "Solar cycle 25: sunspot number evolution epoch B"
+      },
+      "annotation_required": [
+        "referent_relation",
+        "context_relation",
+        "contradiction_verdict",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Same measured object (solar activity) at different epochs. Gold: temporal state differentiates; activity measures are not directly comparable without cycle normalization."
+    },
+    {
+      "sample_id": "P3.PHYS.005",
+      "discipline": "physics",
+      "case_family": "polarity_modality_attribution_context",
+      "source_a": {
+        "document_id": "arxiv:SEED-PHYS005A",
+        "document_version": "v1",
+        "span_start": 6010,
+        "span_end": 6340,
+        "text_hash": "seed:sha256:8182838a993",
+        "discipline": "physics",
+        "retrieval_hint": "Primary measurement: 'expansion rate H0 = 73 km/s/Mpc' (direct Cepheid measurement)"
+      },
+      "source_b": {
+        "document_id": "arxiv:SEED-PHYS005B",
+        "document_version": "v1",
+        "span_start": 2210,
+        "span_end": 2520,
+        "text_hash": "seed:sha256:8182838a994",
+        "discipline": "physics",
+        "retrieval_hint": "Cosmic microwave background: 'H0 = 67.4 km/s/Mpc' (model-dependent inference)"
+      },
+      "annotation_required": [
+        "polarity_relation",
+        "context_relation",
+        "attribution_relation",
+        "contradiction_verdict",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "The Hubble tension. Gold: NOT a contradiction of measurement but a MODEL-DEPENDENT disagreement; contexts (local vs early-universe) carried separately."
+    },
+    {
+      "sample_id": "P3.PHYS.006",
+      "discipline": "physics",
+      "case_family": "valid_invalid_representation_mapping",
+      "source_a": {
+        "document_id": "arxiv:SEED-PHYS006A",
+        "document_version": "v1",
+        "span_start": 3311,
+        "span_end": 3660,
+        "text_hash": "seed:sha256:8182838a995",
+        "discipline": "physics",
+        "retrieval_hint": "SI unit system: energy in joules"
+      },
+      "source_b": {
+        "document_id": "arxiv:SEED-PHYS006B",
+        "document_version": "v1",
+        "span_start": 7722,
+        "span_end": 8080,
+        "text_hash": "seed:sha256:8182838a996",
+        "discipline": "physics",
+        "retrieval_hint": "Natural units (c=1): energy in eV"
+      },
+      "annotation_required": [
+        "mapping_relation",
+        "preservation_condition",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Valid mapping via unit dictionary WITH conversion conditions (dimensionless factors). Gold: VALID mapping carrier (energy), scale conversion condition noted."
+    },
+    {
+      "sample_id": "P3.PHYS.007",
+      "discipline": "physics",
+      "case_family": "valid_invalid_literature_bridge",
+      "source_a": {
+        "document_id": "arxiv:SEED-PHYS007A",
+        "document_version": "v1",
+        "span_start": 4830,
+        "span_end": 5160,
+        "text_hash": "seed:sha256:8182838a997",
+        "discipline": "physics",
+        "retrieval_hint": "Condensed matter: topological band structure → quantized Hall conductance"
+      },
+      "source_b": {
+        "document_id": "arxiv:SEED-PHYS007B",
+        "document_version": "v1",
+        "span_start": 6600,
+        "span_end": 6940,
+        "text_hash": "seed:sha256:8182838a998",
+        "discipline": "physics",
+        "retrieval_hint": "Applied metrology: quantized Hall resistance as resistance standard"
+      },
+      "annotation_required": [
+        "context_relation",
+        "mapping_relation",
+        "literature_bridge_validity",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Bridge from basic topological physics to metrology standard. Gold: VALID bridge WITH idealization conditions (T=0, disorder-free)."
+    },
+    {
+      "sample_id": "P3.PHYS.008",
+      "discipline": "physics",
+      "case_family": "genuine_plural_obstruction",
+      "source_a": {
+        "document_id": "arxiv:SEED-PHYS008A",
+        "document_version": "v1",
+        "span_start": 5550,
+        "span_end": 5880,
+        "text_hash": "seed:sha256:8182838a999",
+        "discipline": "physics",
+        "retrieval_hint": "Copenhagen interpretation: wavefunction collapses on measurement"
+      },
+      "source_b": {
+        "document_id": "arxiv:SEED-PHYS008B",
+        "document_version": "v1",
+        "span_start": 4250,
+        "span_end": 4580,
+        "text_hash": "seed:sha256:8182838a9aa",
+        "discipline": "physics",
+        "retrieval_hint": "Many-worlds interpretation: no collapse, all outcomes realized"
+      },
+      "annotation_required": [
+        "contradiction_verdict",
+        "integration_verdict",
+        "obstruction_type"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Interpretational pluralism in quantum foundations. Gold: PLURAL_VIEW obstruction (empirically underdetermined)."
+    },
+    {
+      "sample_id": "P3.SOCIAL.001",
+      "discipline": "social",
+      "case_family": "same_name_different_referent",
+      "source_a": {
+        "document_id": "socarxiv:SEED-SOC001A",
+        "document_version": "v1",
+        "span_start": 2200,
+        "span_end": 2510,
+        "text_hash": "seed:sha256:8182838a9ab",
+        "discipline": "social",
+        "retrieval_hint": "Political science: 'institution' as formal constitutional structure"
+      },
+      "source_b": {
+        "document_id": "socarxiv:SEED-SOC001B",
+        "document_version": "v1",
+        "span_start": 7140,
+        "span_end": 7450,
+        "text_hash": "seed:sha256:8182838a9ac",
+        "discipline": "social",
+        "retrieval_hint": "Sociology: 'institution' as informal norms and practices"
+      },
+      "annotation_required": [
+        "referent_relation",
+        "construct_relation",
+        "mapping_relation",
+        "contradiction_verdict",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Same surface 'institution' DIFFERENT referents (formal vs informal). Gold: DIFFERENT referent, no unlicensed mapping."
+    },
+    {
+      "sample_id": "P3.SOCIAL.002",
+      "discipline": "social",
+      "case_family": "different_name_same_referent",
+      "source_a": {
+        "document_id": "socarxiv:SEED-SOC002A",
+        "document_version": "v1",
+        "span_start": 3640,
+        "span_end": 3990,
+        "text_hash": "seed:sha256:8182838a9ad",
+        "discipline": "social",
+        "retrieval_hint": "Development econ: 'remittances' as financial transfers"
+      },
+      "source_b": {
+        "document_id": "socarxiv:SEED-SOC002B",
+        "document_version": "v1",
+        "span_start": 1830,
+        "span_end": 2150,
+        "text_hash": "seed:sha256:8182838a9ae",
+        "discipline": "social",
+        "retrieval_hint": "Migration studies: 'transnational money flows' (same empirical object)"
+      },
+      "annotation_required": [
+        "referent_relation",
+        "mapping_relation",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Different surface 'remittances' vs 'transnational money flows' SAME referent. Gold: SAME referent with framing difference."
+    },
+    {
+      "sample_id": "P3.SOCIAL.003",
+      "discipline": "social",
+      "case_family": "same_construct_different_measurement",
+      "source_a": {
+        "document_id": "socarxiv:SEED-SOC003A",
+        "document_version": "v1",
+        "span_start": 5030,
+        "span_end": 5380,
+        "text_hash": "seed:sha256:8182838a9af",
+        "discipline": "social",
+        "retrieval_hint": "Welfare measurement: self-reported life satisfaction (SWB index)"
+      },
+      "source_b": {
+        "document_id": "socarxiv:SEED-SOC003B",
+        "document_version": "v1",
+        "span_start": 9610,
+        "span_end": 9930,
+        "text_hash": "seed:sha256:8182838a9b0",
+        "discipline": "social",
+        "retrieval_hint": "Welfare measurement: objective income + consumption bundle"
+      },
+      "annotation_required": [
+        "construct_relation",
+        "measurement_relation",
+        "mapping_relation",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Same construct (welfare) DIFFERENT measurement grounds (subjective vs objective). Gold: measurement non-equivalence; no direct ranking transfer."
+    },
+    {
+      "sample_id": "P3.SOCIAL.004",
+      "discipline": "social",
+      "case_family": "same_entity_different_temporal_state",
+      "source_a": {
+        "document_id": "socarxiv:SEED-SOC004A",
+        "document_version": "v1",
+        "span_start": 1120,
+        "span_end": 1430,
+        "text_hash": "seed:sha256:8182838a9b1",
+        "discipline": "social",
+        "retrieval_hint": "Census 2000: median household income country X"
+      },
+      "source_b": {
+        "document_id": "socarxiv:SEED-SOC004B",
+        "document_version": "v1",
+        "span_start": 6770,
+        "span_end": 7090,
+        "text_hash": "seed:sha256:8182838a9b2",
+        "discipline": "social",
+        "retrieval_hint": "Census 2020: median household income country X"
+      },
+      "annotation_required": [
+        "referent_relation",
+        "context_relation",
+        "contradiction_verdict",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Same measured object (country X income) at different census waves. Gold: temporal context differentiates; change is not contradiction."
+    },
+    {
+      "sample_id": "P3.SOCIAL.005",
+      "discipline": "social",
+      "case_family": "polarity_modality_attribution_context",
+      "source_a": {
+        "document_id": "socarxiv:SEED-SOC005A",
+        "document_version": "v1",
+        "span_start": 4420,
+        "span_end": 4750,
+        "text_hash": "seed:sha256:8182838a9b3",
+        "discipline": "social",
+        "retrieval_hint": "Experimental study: 'framing affects donation behavior' (causal claim)"
+      },
+      "source_b": {
+        "document_id": "socarxiv:SEED-SOC005B",
+        "document_version": "v1",
+        "span_start": 2840,
+        "span_end": 3160,
+        "text_hash": "seed:sha256:8182838a9b4",
+        "discipline": "social",
+        "retrieval_hint": "Correlational study: 'framing is associated with donation behavior' (descriptive claim)"
+      },
+      "annotation_required": [
+        "polarity_relation",
+        "modality_relation",
+        "attribution_relation",
+        "contradiction_verdict",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Causal vs correlational modality differential. Gold: NOT contradiction; modality carried on coordinate."
+    },
+    {
+      "sample_id": "P3.SOCIAL.006",
+      "discipline": "social",
+      "case_family": "valid_invalid_representation_mapping",
+      "source_a": {
+        "document_id": "socarxiv:SEED-SOC006A",
+        "document_version": "v1",
+        "span_start": 5900,
+        "span_end": 6240,
+        "text_hash": "seed:sha256:8182838a9b5",
+        "discipline": "social",
+        "retrieval_hint": "UN Human Development Index (HDI) composite"
+      },
+      "source_b": {
+        "document_id": "socarxiv:SEED-SOC006B",
+        "document_version": "v1",
+        "span_start": 330,
+        "span_end": 660,
+        "text_hash": "seed:sha256:8182838a9b6",
+        "discipline": "social",
+        "retrieval_hint": "World Bank Multidimensional Poverty Index (MPI)"
+      },
+      "annotation_required": [
+        "mapping_relation",
+        "construct_relation",
+        "preservation_condition",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Two composite indices with overlapping but non-identical dimensions. Gold: VALID partial mapping WITH dimension weighting conditions."
+    },
+    {
+      "sample_id": "P3.SOCIAL.007",
+      "discipline": "social",
+      "case_family": "valid_invalid_literature_bridge",
+      "source_a": {
+        "document_id": "socarxiv:SEED-SOC007A",
+        "document_version": "v1",
+        "span_start": 7500,
+        "span_end": 7820,
+        "text_hash": "seed:sha256:8182838a9b7",
+        "discipline": "social",
+        "retrieval_hint": "Social psychology: construal-level theory mechanism"
+      },
+      "source_b": {
+        "document_id": "socarxiv:SEED-SOC007B",
+        "document_version": "v1",
+        "span_start": 4220,
+        "span_end": 4550,
+        "text_hash": "seed:sha256:8182838a9b8",
+        "discipline": "social",
+        "retrieval_hint": "Applied: temporal discounting intervention design"
+      },
+      "annotation_required": [
+        "context_relation",
+        "mapping_relation",
+        "literature_bridge_validity",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Mechanism→application bridge. Gold: VALID bridge WITH context transfer conditions flagged."
+    },
+    {
+      "sample_id": "P3.SOCIAL.008",
+      "discipline": "social",
+      "case_family": "genuine_plural_obstruction",
+      "source_a": {
+        "document_id": "socarxiv:SEED-SOC008A",
+        "document_version": "v1",
+        "span_start": 2640,
+        "span_end": 2960,
+        "text_hash": "seed:sha256:8182838a9b9",
+        "discipline": "social",
+        "retrieval_hint": "Rational choice model of protest participation"
+      },
+      "source_b": {
+        "document_id": "socarxiv:SEED-SOC008B",
+        "document_version": "v1",
+        "span_start": 5980,
+        "span_end": 6310,
+        "text_hash": "seed:sha256:8182838a9ba",
+        "discipline": "social",
+        "retrieval_hint": "Identity-based model of protest participation"
+      },
+      "annotation_required": [
+        "contradiction_verdict",
+        "integration_verdict",
+        "obstruction_type"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Competing explanatory models for same phenomenon. Gold: PLURAL_VIEW obstruction (models not mutually exclusive)."
+    },
+    {
+      "sample_id": "P3.CLIMATE.001",
+      "discipline": "climate",
+      "case_family": "same_name_different_referent",
+      "source_a": {
+        "document_id": "essd:SEED-CLIM001A",
+        "document_version": "v1",
+        "span_start": 3820,
+        "span_end": 4150,
+        "text_hash": "seed:sha256:8182838a9bb",
+        "discipline": "climate",
+        "retrieval_hint": "Climate science: 'forcing' as radiative forcing (W/m^2)"
+      },
+      "source_b": {
+        "document_id": "essd:SEED-CLIM001B",
+        "document_version": "v1",
+        "span_start": 7140,
+        "span_end": 7470,
+        "text_hash": "seed:sha256:8182838a9bc",
+        "discipline": "climate",
+        "retrieval_hint": "Ocean dynamics: 'forcing' as wind stress forcing (momentum)"
+      },
+      "annotation_required": [
+        "referent_relation",
+        "construct_relation",
+        "mapping_relation",
+        "contradiction_verdict",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Same surface 'forcing' DIFFERENT referents (energy vs momentum). Gold: DIFFERENT referent."
+    },
+    {
+      "sample_id": "P3.CLIMATE.002",
+      "discipline": "climate",
+      "case_family": "different_name_same_referent",
+      "source_a": {
+        "document_id": "essd:SEED-CLIM002A",
+        "document_version": "v1",
+        "span_start": 1980,
+        "span_end": 2290,
+        "text_hash": "seed:sha256:8182838a9bd",
+        "discipline": "climate",
+        "retrieval_hint": "Atmospheric science: 'surface temperature anomaly'"
+      },
+      "source_b": {
+        "document_id": "essd:SEED-CLIM002B",
+        "document_version": "v1",
+        "span_start": 5580,
+        "span_end": 5900,
+        "text_hash": "seed:sha256:8182838a9be",
+        "discipline": "climate",
+        "retrieval_hint": "Reanalysis: '2m air temperature deviation from climatology'"
+      },
+      "annotation_required": [
+        "referent_relation",
+        "mapping_relation",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Different surface SAME referent (near-surface air temperature anomaly). Gold: SAME referent, different expression."
+    },
+    {
+      "sample_id": "P3.CLIMATE.003",
+      "discipline": "climate",
+      "case_family": "same_construct_different_measurement",
+      "source_a": {
+        "document_id": "essd:SEED-CLIM003A",
+        "document_version": "v1",
+        "span_start": 8730,
+        "span_end": 9060,
+        "text_hash": "seed:sha256:8182838a9bf",
+        "discipline": "climate",
+        "retrieval_hint": "Precipitation: gauge-based gridded dataset"
+      },
+      "source_b": {
+        "document_id": "essd:SEED-CLIM003B",
+        "document_version": "v1",
+        "span_start": 1010,
+        "span_end": 1330,
+        "text_hash": "seed:sha256:8182838a9c0",
+        "discipline": "climate",
+        "retrieval_hint": "Precipitation: satellite-retrieval dataset (IMERG)"
+      },
+      "annotation_required": [
+        "construct_relation",
+        "measurement_relation",
+        "mapping_relation",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Same construct (precipitation) DIFFERENT measurement platform. Gold: measurement non-equivalence without calibration."
+    },
+    {
+      "sample_id": "P3.CLIMATE.004",
+      "discipline": "climate",
+      "case_family": "same_entity_different_temporal_state",
+      "source_a": {
+        "document_id": "essd:SEED-CLIM004A",
+        "document_version": "v1",
+        "span_start": 4470,
+        "span_end": 4800,
+        "text_hash": "seed:sha256:8182838a9c1",
+        "discipline": "climate",
+        "retrieval_hint": "Greenland ice sheet mass balance, 2003-2009 (GRACE)"
+      },
+      "source_b": {
+        "document_id": "essd:SEED-CLIM004B",
+        "document_version": "v1",
+        "span_start": 6300,
+        "span_end": 6620,
+        "text_hash": "seed:sha256:8182838a9c2",
+        "discipline": "climate",
+        "retrieval_hint": "Greenland ice sheet mass balance, 2010-2016 (GRACE-FO)"
+      },
+      "annotation_required": [
+        "referent_relation",
+        "context_relation",
+        "contradiction_verdict",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Same object (Greenland ice sheet) different epochs + different instruments. Gold: temporal AND instrumental context carried; not direct contradiction."
+    },
+    {
+      "sample_id": "P3.CLIMATE.005",
+      "discipline": "climate",
+      "case_family": "polarity_modality_attribution_context",
+      "source_a": {
+        "document_id": "essd:SEED-CLIM005A",
+        "document_version": "v1",
+        "span_start": 5220,
+        "span_end": 5550,
+        "text_hash": "seed:sha256:8182838a9c3",
+        "discipline": "climate",
+        "retrieval_hint": "IPCC synthesis: 'warming of the climate system is unequivocal'"
+      },
+      "source_b": {
+        "document_id": "essd:SEED-CLIM005B",
+        "document_version": "v1",
+        "span_start": 2910,
+        "span_end": 3230,
+        "text_hash": "seed:sha256:8182838a9c4",
+        "discipline": "climate",
+        "retrieval_hint": "Skeptical blog: 'regional cooling episodes contradict global warming'"
+      },
+      "annotation_required": [
+        "polarity_relation",
+        "modality_relation",
+        "attribution_relation",
+        "context_relation",
+        "contradiction_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Global vs regional spatiotemporal context differential. Gold: NOT contradiction once context coordinate is separated (regional temp vs global trend)."
+    },
+    {
+      "sample_id": "P3.CLIMATE.006",
+      "discipline": "climate",
+      "case_family": "valid_invalid_representation_mapping",
+      "source_a": {
+        "document_id": "essd:SEED-CLIM006A",
+        "document_version": "v1",
+        "span_start": 6860,
+        "span_end": 7180,
+        "text_hash": "seed:sha256:8182838a9c5",
+        "discipline": "climate",
+        "retrieval_hint": "RCP 8.5 scenario representation"
+      },
+      "source_b": {
+        "document_id": "essd:SEED-CLIM006B",
+        "document_version": "v1",
+        "span_start": 1940,
+        "span_end": 2260,
+        "text_hash": "seed:sha256:8182838a9c6",
+        "discipline": "climate",
+        "retrieval_hint": "SSP5-8.5 scenario representation"
+      },
+      "annotation_required": [
+        "mapping_relation",
+        "preservation_condition",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Two scenario generations. Gold: VALID mapping WITH concentration-path family correspondence, not identity."
+    },
+    {
+      "sample_id": "P3.CLIMATE.007",
+      "discipline": "climate",
+      "case_family": "valid_invalid_literature_bridge",
+      "source_a": {
+        "document_id": "essd:SEED-CLIM007A",
+        "document_version": "v1",
+        "span_start": 3390,
+        "span_end": 3700,
+        "text_hash": "seed:sha256:8182838a9c7",
+        "discipline": "climate",
+        "retrieval_hint": "Paleoclimate: orbital forcing mechanism of ice ages"
+      },
+      "source_b": {
+        "document_id": "essd:SEED-CLIM007B",
+        "document_version": "v1",
+        "span_start": 7780,
+        "span_end": 8100,
+        "text_hash": "seed:sha256:8182838a9c8",
+        "discipline": "climate",
+        "retrieval_hint": "Projection: astronomical forcing in future insolation"
+      },
+      "annotation_required": [
+        "context_relation",
+        "mapping_relation",
+        "literature_bridge_validity",
+        "integration_verdict"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Mechanism→projection bridge. Gold: VALID bridge WITH timescale conditions."
+    },
+    {
+      "sample_id": "P3.CLIMATE.008",
+      "discipline": "climate",
+      "case_family": "genuine_plural_obstruction",
+      "source_a": {
+        "document_id": "essd:SEED-CLIM008A",
+        "document_version": "v1",
+        "span_start": 9210,
+        "span_end": 9540,
+        "text_hash": "seed:sha256:8182838a9c9",
+        "discipline": "climate",
+        "retrieval_hint": "Attribution study: anthropogenic forcing dominates 20th-century warming"
+      },
+      "source_b": {
+        "document_id": "essd:SEED-CLIM008B",
+        "document_version": "v1",
+        "span_start": 1250,
+        "span_end": 1570,
+        "text_hash": "seed:sha256:8182838a9ca",
+        "discipline": "climate",
+        "retrieval_hint": "Attribution study: natural variability explains observed warming"
+      },
+      "annotation_required": [
+        "contradiction_verdict",
+        "integration_verdict",
+        "obstruction_type"
+      ],
+      "specialist_domain_required": true,
+      "notes": "Attribution disagreement. Gold: PLURAL_VIEW obstruction OR UNRESOLVED depending on weight of evidence; adjudicator decides."
+    }
+  ]
+}

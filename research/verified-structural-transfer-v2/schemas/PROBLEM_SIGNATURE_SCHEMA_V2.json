@@ -1,0 +1,19 @@
+{
+  "$id": "ORION.problem-signature.v2",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "actions": {"items": {"type": "string"}, "type": "array", "uniqueItems": true},
+    "authority_risk": {"maximum": 1, "minimum": 0, "type": "number"},
+    "dependence": {"maximum": 1, "minimum": 0, "type": "number"},
+    "ground_truth": {"type": "string"},
+    "hidden_state": {"type": "string"},
+    "nonstationarity": {"maximum": 1, "minimum": 0, "type": "number"},
+    "observability": {"type": "string"},
+    "problem_id": {"minLength": 1, "type": "string"},
+    "reversibility": {"maximum": 1, "minimum": 0, "type": "number"},
+    "source_domain": {"minLength": 1, "type": "string"}
+  },
+  "required": ["problem_id", "source_domain", "hidden_state", "observability", "actions", "ground_truth", "dependence", "authority_risk", "nonstationarity", "reversibility"],
+  "type": "object"
+}
