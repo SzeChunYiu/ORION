@@ -1,0 +1,7 @@
+{
+  "p1-diagnosis-control": {"assumptions":{"responsibility_classes_observable":true},"falsifiers":{"probe_discriminates":true},"provenance":["LOCAL_ENGINEERING_ONLY:known-answer"]},
+  "p2-safe-ir": {"assumptions":{"baseline_floor_declared":true},"falsifiers":{"censoring_preserved":true},"provenance":["LOCAL_ENGINEERING_ONLY:known-answer"]},
+  "p3-lens-db": {"assumptions":{"mapping_type_known":true},"falsifiers":{"round_trip_holds":true},"provenance":["LOCAL_ENGINEERING_ONLY:known-answer"]},
+  "p4-assurance": {"assumptions":{"protected_custody_available":true},"falsifiers":{"planner_cannot_authorize":true},"provenance":["LOCAL_ENGINEERING_ONLY:known-answer"]},
+  "p5-trials": {"assumptions":{"fresh_protected_stages_available":true},"falsifiers":{"harm_dominates_gain":true},"provenance":["LOCAL_ENGINEERING_ONLY:known-answer"]}
+}

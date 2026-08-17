@@ -1,0 +1,177 @@
+{
+  "analysis_authority": "DESCRIPTIVE_ONLY",
+  "false_negative_definition": "more than one further attempt on a route after oracle exhaustion; one confirming attempt is allowed",
+  "false_positive_definition": "declared route stop with >=1 previously-unfound reachable gold identity and >=1 remaining route-call budget unit",
+  "interpretation": "route-stop and task-stop are distinct: the censored restricted-route case is an O1 route-stop false positive, while its unresolved O4 obligation prevents ORION from asserting task completeness",
+  "n_tasks": 20,
+  "oracle": "O1",
+  "orion_full_by_route": {
+    "CITATION": {
+      "attempts_after_exhaustion_total": 0,
+      "route_stop_events": 20,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_positive_count": 0,
+      "routes_reaching_oracle_exhaustion": 20
+    },
+    "LEXICAL": {
+      "attempts_after_exhaustion_total": 0,
+      "route_stop_events": 20,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_positive_count": 0,
+      "routes_reaching_oracle_exhaustion": 20
+    },
+    "REFORMULATION": {
+      "attempts_after_exhaustion_total": 0,
+      "route_stop_events": 20,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_positive_count": 0,
+      "routes_reaching_oracle_exhaustion": 20
+    },
+    "RESTRICTED": {
+      "attempts_after_exhaustion_total": 19,
+      "route_stop_events": 20,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_positive_count": 1,
+      "routes_reaching_oracle_exhaustion": 19
+    },
+    "SEMANTIC": {
+      "attempts_after_exhaustion_total": 0,
+      "route_stop_events": 20,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_positive_count": 0,
+      "routes_reaching_oracle_exhaustion": 20
+    }
+  },
+  "repeat_handling": "collapsed_within_task_after_deterministic_trace_check",
+  "schema_version": "orion.p2.offline-route-stop-oracle.v1",
+  "source_raw_artifact_hash_list_digest_sha256": "2da59dc21e6473e4a81eb93910501a67bed008dbc3e29c26116041b68dfbb325",
+  "source_record_digest_sha256": "611808dc80846d5057c84c12af7ff8ec3fa88ef15a6ede91807e590f4edb6f1f",
+  "systems": {
+    "adaptive_multiroute_exploratory": {
+      "attempts_after_exhaustion_total": 19,
+      "route_stop_events": 80,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_negative_rate": 0.0,
+      "route_stop_false_positive_count": 1,
+      "route_stop_false_positive_rate": 0.0125,
+      "routes_reaching_oracle_exhaustion": 79
+    },
+    "agentic_single_route": {
+      "attempts_after_exhaustion_total": 0,
+      "route_stop_events": 20,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_negative_rate": 0.0,
+      "route_stop_false_positive_count": 0,
+      "route_stop_false_positive_rate": 0.0,
+      "routes_reaching_oracle_exhaustion": 20
+    },
+    "bm25_keyword": {
+      "attempts_after_exhaustion_total": 0,
+      "route_stop_events": 20,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_negative_rate": 0.0,
+      "route_stop_false_positive_count": 0,
+      "route_stop_false_positive_rate": 0.0,
+      "routes_reaching_oracle_exhaustion": 20
+    },
+    "coverage_diagnostic_controls_stopping": {
+      "attempts_after_exhaustion_total": 0,
+      "route_stop_events": 40,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_negative_rate": 0.0,
+      "route_stop_false_positive_count": 0,
+      "route_stop_false_positive_rate": 0.0,
+      "routes_reaching_oracle_exhaustion": 40
+    },
+    "dense_retrieval": {
+      "attempts_after_exhaustion_total": 0,
+      "route_stop_events": 20,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_negative_rate": 0.0,
+      "route_stop_false_positive_count": 0,
+      "route_stop_false_positive_rate": 0.0,
+      "routes_reaching_oracle_exhaustion": 20
+    },
+    "no_content_identity_dedup": {
+      "attempts_after_exhaustion_total": 19,
+      "route_stop_events": 100,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_negative_rate": 0.0,
+      "route_stop_false_positive_count": 1,
+      "route_stop_false_positive_rate": 0.01,
+      "routes_reaching_oracle_exhaustion": 94
+    },
+    "no_question_conditioned_read_ledger": {
+      "attempts_after_exhaustion_total": 19,
+      "route_stop_events": 100,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_negative_rate": 0.0,
+      "route_stop_false_positive_count": 1,
+      "route_stop_false_positive_rate": 0.01,
+      "routes_reaching_oracle_exhaustion": 99
+    },
+    "no_route_independence_check": {
+      "attempts_after_exhaustion_total": 0,
+      "route_stop_events": 40,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_negative_rate": 0.0,
+      "route_stop_false_positive_count": 0,
+      "route_stop_false_positive_rate": 0.0,
+      "routes_reaching_oracle_exhaustion": 40
+    },
+    "no_unavailable_route_open_state": {
+      "attempts_after_exhaustion_total": 19,
+      "route_stop_events": 100,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_negative_rate": 0.0,
+      "route_stop_false_positive_count": 1,
+      "route_stop_false_positive_rate": 0.01,
+      "routes_reaching_oracle_exhaustion": 99
+    },
+    "one_pass_rag": {
+      "attempts_after_exhaustion_total": 0,
+      "route_stop_events": 40,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_negative_rate": 0.0,
+      "route_stop_false_positive_count": 0,
+      "route_stop_false_positive_rate": 0.0,
+      "routes_reaching_oracle_exhaustion": 40
+    },
+    "orion_full": {
+      "attempts_after_exhaustion_total": 19,
+      "route_stop_events": 100,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_negative_rate": 0.0,
+      "route_stop_false_positive_count": 1,
+      "route_stop_false_positive_rate": 0.01,
+      "routes_reaching_oracle_exhaustion": 99
+    },
+    "protocol_driven_systematic_review": {
+      "attempts_after_exhaustion_total": 0,
+      "route_stop_events": 60,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_negative_rate": 0.0,
+      "route_stop_false_positive_count": 0,
+      "route_stop_false_positive_rate": 0.0,
+      "routes_reaching_oracle_exhaustion": 60
+    },
+    "route_stop_can_close_task": {
+      "attempts_after_exhaustion_total": 0,
+      "route_stop_events": 20,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_negative_rate": 0.0,
+      "route_stop_false_positive_count": 0,
+      "route_stop_false_positive_rate": 0.0,
+      "routes_reaching_oracle_exhaustion": 20
+    },
+    "sparse_dense_hybrid": {
+      "attempts_after_exhaustion_total": 0,
+      "route_stop_events": 40,
+      "route_stop_false_negative_count": 0,
+      "route_stop_false_negative_rate": 0.0,
+      "route_stop_false_positive_count": 0,
+      "route_stop_false_positive_rate": 0.0,
+      "routes_reaching_oracle_exhaustion": 40
+    }
+  }
+}

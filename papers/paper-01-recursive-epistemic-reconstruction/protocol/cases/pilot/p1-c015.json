@@ -1,0 +1,30 @@
+{
+  "case_id": "p1-c015",
+  "task_family": "evidence_only_negative_control",
+  "public_prompt": "Did the new onboarding flow raise 30-day retention? Randomisation was genuine and the outcome was fixed in advance, so the two-arm comparison is the right instrument. Compare the arms on 30-day retention and report the result.",
+  "observable_resources": [
+    "exp/assignments.csv — arm membership is present for enrolments in the last 14 days: 22,400 people",
+    "exp/config.json — the assignment table carries a 14-day time to live; the randomiser salt is recorded here and has not changed",
+    "exp/enrolment-log.csv — 210,000 people enrolled across the 8-week run, with enrolment timestamps for all of them",
+    "exp/retention.csv — 30-day retention outcomes are present for all 210,000",
+    "closure:randomiser-specification — closed; fixes arm assignment as a deterministic hash of the person's id and the recorded salt",
+    "closure:experiment-design-review — closed; approves the two-arm design, the 30-day outcome and the 8-week enrolment window",
+    "closure:onboarding-flow-freeze — closed; freezes both flows for the duration, so neither variant drifted mid-run",
+    "closure:retention-metric-definition — closed; fixes 30-day retention as the outcome; rests on the product agreement, not on the arms"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EVIDENCE",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer recognises that arm membership for the people with mature 30-day outcomes is the absent record, recovers it by recomputing the deterministic hash from the recorded salt (or by retrieving the archived assignment table), and then reports the randomised comparison as originally planned. FAIL if the answer reports a result from the 22,400 recent enrolments whose 30-day outcomes are not yet mature, or proposes replacing the randomised comparison with an observational one.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Absent record: arm membership expired at 14 days for exactly the people with mature outcomes, recoverable from the recorded salt. The randomised plan stands and both closures remain valid. Reframing is the wrong move."
+}

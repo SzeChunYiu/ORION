@@ -1,0 +1,75 @@
+{
+  "analysis_authority": {
+    "frozen_minimum_inferential_n": 97,
+    "n_tasks": 20,
+    "rule": "No offline primary, p-value, CI superiority verdict, or promotion is permitted.",
+    "status": "DESCRIPTIVE_ONLY"
+  },
+  "code_bindings": {
+    "gold_evaluator_git_blob": "ebe1b4380195e20356cfe10fc28cd656e9eb64be",
+    "offline_analysis_git_blob": "dff98f771923eef8e099585491bd0033a162582e",
+    "offline_systems_git_blob": "0a4300435fa497e35e56c1fd5d47aced7580be6d",
+    "protocol_git_blob": "8090535ad2e3db04f5b4eb2175cc431145572414",
+    "runner_git_blob": "9fe58f8c896eac7c0846f0a0068a448f13f8481d",
+    "statistical_plan_git_blob": "d07a377af8a254ead4aa39ffe1ba375a89a28502"
+  },
+  "dataset_binding": {
+    "seed": 20260816,
+    "suite_fingerprint_sha256": "8d0b826821fc8dc6468e9641fc6bef6dd375f3ea1128a0e28089f28641e4ea65",
+    "tasks": 20,
+    "world_content_hash_sha256": "d3405f686204e50cee28a0e768d6b69a40ab2fb9d823de44a62283eef1428469"
+  },
+  "execution": {
+    "clock": "synthetic_zero_seconds_for_hash_stable_offline_artifacts",
+    "failure_policy": "retain_all_candidate_failures_cannot_check_and_budget_truncations",
+    "repeat_collapse": "mean_within_task_before_any_between_system_comparison",
+    "repeat_seeds": [
+      20260816,
+      20260817,
+      20260818
+    ]
+  },
+  "outcome_accessed_before_freeze": false,
+  "paper_id": "P2",
+  "protocol_id": "P2.open-world-discovery.v1",
+  "resource_limits": {
+    "max_model_tokens_per_task": 120000,
+    "max_reads_by_case_family": {
+      "complete_gold_multiroute": 24,
+      "duplicate_identity": 12,
+      "extraction_question_shift": 30,
+      "route_exhaustion": 24,
+      "unavailable_route": 24
+    },
+    "max_route_calls_per_task": 12,
+    "max_tool_calls_per_task": 48,
+    "max_wallclock_seconds_per_task": 120.0
+  },
+  "schema_version": "orion.p2.offline-run-manifest.v1",
+  "scope": "offline_complete_gold",
+  "subject_revision": "3618cb91e2428f7bee7e9e02fe0b32938064df3d",
+  "systems": {
+    "ablations": [
+      "no_route_independence_check",
+      "no_question_conditioned_read_ledger",
+      "route_stop_can_close_task",
+      "no_unavailable_route_open_state",
+      "coverage_diagnostic_controls_stopping",
+      "no_content_identity_dedup"
+    ],
+    "confirmatory_baselines": [
+      "bm25_keyword",
+      "dense_retrieval",
+      "sparse_dense_hybrid",
+      "one_pass_rag",
+      "agentic_single_route",
+      "protocol_driven_systematic_review"
+    ],
+    "exploratory_only": [
+      "adaptive_multiroute_exploratory"
+    ],
+    "orion": [
+      "orion_full"
+    ]
+  }
+}

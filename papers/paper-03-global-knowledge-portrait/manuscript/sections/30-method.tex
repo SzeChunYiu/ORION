@@ -1,0 +1,168 @@
+% Method: formal definitions of source projection, scientific meaning
+% projection, typed mappings, GLUE, obstruction, recoverability, W effect.
+This section defines the ORION Paper III formal objects
+(ScientificMeaningProjection.v1) precisely enough for reimplementation.
+The design is registered as protocol \texttt{P3.cross-domain-atlas.v1} in
+\texttt{protocol/}. All definitions below are data-level; they constrain
+what any engine---local exact world, LLM orchestrator, or hybrid---must
+compute to be evaluated against the protocol.
+
+\subsection{Source and corpus}
+
+Let $\mathcal{C} = \{d\}$ be a corpus of source documents. Each source
+document $d$ is identified by a tuple
+\begin{equation}
+    d = \langle \mathrm{id}, v, \mathrm{span}, T, \mathrm{discipline},
+    h \rangle
+\end{equation}
+where $\mathrm{id}$ is a document identifier (DOI, PMC ID, or arXiv ID),
+$v$ is the document version, $\mathrm{span} = [\mathrm{start}:
+\mathrm{end}]$ locates the relevant passage in the released/authorized
+text $T$, $\mathrm{discipline}$ is the scientific field, and $h$ is the
+SHA-256 hash of the span text, fixing the exact bytes a judgment refers
+to. No judgment is permitted to float free of its $\langle \mathrm{id},
+v, \mathrm{span}, h \rangle$ address.
+
+\subsection{Source-local scientific projection}
+
+For each source $s = \langle d, \mathrm{span}, h \rangle$, ORION computes a
+\emph{scientific meaning projection}
+\begin{equation}
+    P_s = \langle R_s, C_s, M_s, X_s, \rho_s, \mu_s, a_s, \delta_s, \Pi_s
+    \rangle
+\end{equation}
+whose coordinates are:
+\begin{description}
+    \item[$R_s$ (referent):] the entity or class the claim is about;
+    \item[$C_s$ (construct):] the theoretical construct invoked;
+    \item[$M_s$ (measurement/operationalization):] the instrument,
+        protocol, or operational definition;
+    \item[$X_s$ (context):] temporal/state and other context;
+    \item[$\rho_s$ (polarity):] positive/negative claim orientation;
+    \item[$\mu_s$ (modality):] assertion strength or modal force;
+    \item[$a_s$ (attribution):] speaker/source attribution;
+    \item[$\delta_s$ (discourse):] discourse relation relative to the
+        surrounding passage;
+    \item[$\Pi_s$ (assumptions):] explicit assumptions and unresolved
+        ambiguity.
+\end{description}
+Each coordinate is a \emph{typed hypothesis}, not a hallucinated ground
+truth. The projection is source-local: it addresses the source's claim in
+the source's own terms and is not contaminated by other sources or by an a
+priori global schema. An extraction or normalization step is not permitted
+to silently acquire scientific authority over the source view.
+
+\subsection{Scientific meaning comparison}
+
+A comparison between two projections $P_a, P_b$ is a vector of
+\emph{coordinate-wise hypotheses}:
+\begin{equation}
+\begin{split}
+    m(P_a, P_b) = \langle&\ \mathrm{ref}(R_a,R_b),\ \mathrm{const}(C_a,C_b),\\
+    &\ \mathrm{meas}(M_a,M_b),\ \mathrm{ctx}(X_a,X_b),\\
+    &\ \mathrm{pol}(\rho_a,\rho_b),\ \mathrm{mod}(\mu_a,\mu_b),\\
+    &\ \mathrm{attr}(a_a,a_b),\ \mathrm{disc}(\delta_a,\delta_b) \rangle
+\end{split}
+\end{equation}
+Each coordinate relation takes values in the frozen taxonomy of
+\texttt{ANNOTATION\_SCHEMA\_V1.json}, e.g.:
+\begin{align*}
+    \mathrm{ref} &\in \{\mathrm{SAME}, \mathrm{DIFFERENT},
+        \mathrm{PARTIAL\_OVERLAP}, \mathrm{UNRESOLVED}\},\\
+    \mathrm{const} &\in \{\mathrm{SAME}, \mathrm{RELATED\_NOT\_SAME},\\
+        &\qquad \mathrm{DIFFERENT}, \mathrm{UNRESOLVED}\},\\
+    \mathrm{meas} &\in \{\mathrm{EQUIVALENT},
+        \mathrm{TRANSFORMABLE\_WITH\_CONDITIONS},\\
+        &\qquad \mathrm{NON\_EQUIVALENT}, \mathrm{NOT\_APPLICABLE},
+        \mathrm{UNRESOLVED}\}.
+\end{align*}
+A mapping is \emph{proposal-level} until supported.
+
+\subsection{Typed mapping}
+
+A \emph{typed mapping} is a pair
+\begin{equation}
+\begin{aligned}
+    m \in \{\ &\mathrm{IDENTITY},\ \mathrm{EQUIVALENCE},\\
+    &\mathrm{CONDITIONAL\_TRANSFORM},\ \mathrm{SUBSUMPTION},\\
+    &\mathrm{ASSOCIATION\_ONLY},\ \mathrm{NO\_LICENSED\_MAPPING},\\
+    &\mathrm{UNRESOLVED}\ \}
+\end{aligned}
+\end{equation}
+together with
+\begin{itemize}
+    \item a set of coordinate relations $\mathrm{comp}(m)$ it licenses
+        (which coordinates it asserts to align);
+    \item a set of \emph{preservation conditions} $\mathrm{pre}(m)$ that
+        must hold for the mapping to be relied upon, e.g.\ ``$P_b$
+        restricted to temperature range $[T_1,T_2]$''; and
+    \item a set of \emph{non-preserved coordinates}
+        $\overline{\mathrm{pre}}(m)$: information in $P_a$ or $P_b$ that
+        the mapping does not carry, which must not be silently assumed to
+        transfer.
+\end{itemize}
+
+\subsection{GLUE and obstruction}
+
+A set of projections $\{P_{i}\}_{i}$ is \emph{composable} on a mapping set
+$m$ if every licensed coordinate relation is satisfied and every
+preservation condition $\mathrm{pre}(m)$ is verified. When composable, the
+projections may be \textsc{glue}d into a joint chart
+$\bigsqcup_i P_i$ with the mapping record attached. When any licensed
+relation fails or any preservation condition is violated (and cannot be
+repaired), the correct output is a \emph{typed obstruction}: the system
+records \textsc{obstruction} with the failing coordinate(s) rather than
+forcing a merge. When multiple internally valid but mutually incompatible
+representations persist, the correct output is \textsc{plural\_view}.
+Unresolvable cases take \textsc{unresolved}; the system is permitted (and
+encouraged) to abstain rather than guess.
+
+\subsection{Recoverable global portrait}
+
+A \emph{global portrait} is the structure
+\begin{equation}
+    \mathcal{G} = \langle \{P_i\}, \mathcal{M}, \sigma \rangle
+\end{equation}
+where $\{P_i\}$ retains every contributing source projection, $\mathcal{M}$
+records every proposed and accepted mapping with its conditions, and
+$\sigma$ is an \emph{assignment map} from each global statement back to its
+source projections, mappings, and surviving deductions. Recoverability is
+the requirement that for every global statement $g \in \mathcal{G}$ and
+every source projection $P_i$, the reader (or automated evaluator) can
+recover: (a) which source span(s) licensed $g$; (b) which mappings were
+applied and under what conditions; and (c) which coordinates were
+\emph{not} preserved --- i.e.\ what $g$ does \emph{not} assert. Recovery of
+non-preserved coordinates is an evaluation target, not a display concern.
+
+\subsection{The W effect}
+
+Let $\Omega_0$ be the relevance/search-universe model of the integration
+system before absorbing some reader-set $S$ of new sources, and let
+$\Omega_1$ be the universe model after a projection $P_s$ for $s \in S$ is
+absorbed. The \emph{W effect} is the claim that
+$\Omega_1 \supsetneq \Omega_0$: the new representation does not merely add
+facts to a static graph; it \emph{changes the search universe} --- new
+relevance axes, new addressable referents, new mappings --- and thereby
+reopens hypotheses. Formally, the effect is a feedback loop
+\begin{equation}
+    \Omega_{t+1} = \mathrm{Universe}(\mathcal{G}_t \cup
+    \{P_s : s \in S_t\})
+\end{equation}
+so that integrating new literature can change which future sources are
+retrieved and how they are posed. Ablation \textsc{ORION\_no\_W\_expansion}
+removes this feedback to measure its marginal effect.
+
+\subsection{What is not claimed}
+
+ORION does not claim the first scientific knowledge graph, cross-domain
+RAG system, schema matcher, literature-based discovery system, or
+provenance graph. Its target is narrower: whether preserving source-local
+projections and explicitly representing failed mappings reduces
+scientifically damaging false integration while still enabling useful
+synthesis. Local exact worlds \cite{orion2025paper1,orion2025paper2}
+falsify the semantics of projection, mapping, and
+\textsc{glue} in controlled settings; they do not by themselves establish
+adequacy over the real literature, which is why the external gold study is
+the decisive evaluation (Section~\ref{sec:eval}).
+
+\endinput

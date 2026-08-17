@@ -27,6 +27,19 @@ _FEED = """<?xml version="1.0" encoding="UTF-8"?>
   </entry>
 </feed>"""
 
+_LEGACY_FEED = """<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:arxiv="http://arxiv.org/schemas/atom">
+  <entry>
+    <id>http://arxiv.org/abs/hep-th/9901001v2</id>
+    <title>A Legacy Identifier Example</title>
+    <summary>A legacy arXiv archive identifier must retain its category prefix.</summary>
+    <published>1999-01-01T00:00:00Z</published>
+    <updated>2000-01-01T00:00:00Z</updated>
+    <author><name>Legacy Author</name></author>
+    <arxiv:primary_category term="hep-th"/>
+  </entry>
+</feed>"""
+
 _IN_BAND_ERROR = """<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <entry>
@@ -54,6 +67,20 @@ def test_a_versioned_id_becomes_one_work_with_the_version_kept() -> None:
     assert record.versioned_id == "1706.03762v7"
     assert record.authors == ("Ashish Vaswani", "Noam Shazeer")
     assert record.primary_category == "cs.CL"
+
+
+def test_a_legacy_versioned_id_keeps_its_archive_prefix() -> None:
+    """A legacy ID is ``archive/NNNNNNNvN``; dropping the archive makes a
+    retrieved paper impossible to match against a correct external evaluator."""
+
+    status, records, _ = parse_atom(_LEGACY_FEED)
+    assert status is FetchStatus.OK
+    assert len(records) == 1
+    record = records[0]
+    assert record.source_id == "arxiv:hep-th/9901001"
+    assert record.identity.version == "2"
+    assert record.versioned_id == "hep-th/9901001v2"
+    assert record.primary_category == "hep-th"
 
 
 def test_a_doi_arxiv_reports_for_an_entry_is_a_genuine_alias() -> None:

@@ -1,0 +1,55 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.SOCIAL.006.GOLD",
+  "case_id": "P3.SOCIAL.006",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "socarxiv:SEED-SOC006A",
+    "document_version": "v1",
+    "span_start": 5900,
+    "span_end": 6240,
+    "text_hash": "seed:sha256:8182838a9b5",
+    "discipline": "social",
+    "text": "UN Human Development Index (HDI) composite"
+  },
+  "source_b": {
+    "document_id": "socarxiv:SEED-SOC006B",
+    "document_version": "v1",
+    "span_start": 330,
+    "span_end": 660,
+    "text_hash": "seed:sha256:8182838a9b6",
+    "discipline": "social",
+    "text": "World Bank Multidimensional Poverty Index (MPI)"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "RELATED_NOT_SAME",
+  "measurement_relation": "TRANSFORMABLE_WITH_CONDITIONS",
+  "context_relation": "CONDITIONED_COMPATIBLE",
+  "polarity_relation": "SAME",
+  "modality_relation": "SAME",
+  "attribution_relation": "SAME_SPEAKER_OR_SOURCE",
+  "discourse_relation": "ALIGNED",
+  "mapping_relation": "CONDITIONAL_TRANSFORM",
+  "preservation_conditions": [
+    "Mapping is not bijective; some information is lost in each direction",
+    "Dimension weighting / conversion factors must be specified"
+  ],
+  "non_preserved_coordinates": [
+    "construct",
+    "measurement"
+  ],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "GLUE_ALLOWED",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "mapping_relation:CONDITIONAL_TRANSFORM",
+    "preservation_conditions:non_bijective",
+    "non_preserved_coordinates:construct,measurement"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for valid_invalid_representation_mapping case P3.SOCIAL.006. referent=SAME, construct=RELATED_NOT_SAME, measurement=TRANSFORMABLE_WITH_CONDITIONS, context=CONDITIONED_COMPATIBLE, mapping=CONDITIONAL_TRANSFORM, integration=GLUE_ALLOWED. Seed manifest notes: Two composite indices with overlapping but non-identical dimensions. Gold: VALID partial mapping WITH dimension weighting conditions.",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

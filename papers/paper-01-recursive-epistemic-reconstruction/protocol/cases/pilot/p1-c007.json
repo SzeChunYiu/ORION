@@ -1,0 +1,34 @@
+{
+  "case_id": "p1-c007",
+  "task_family": "hidden_measurement_or_operationalization",
+  "public_prompt": "Requests served per second stand at an all-time high of 14,200, up 22% year on year, while support tickets saying the app is broken have tripled. The current line is: the two facts are unrelated, so staff up support. Report whether service delivery improved year on year.",
+  "observable_resources": [
+    "serving/requests.csv — 14,200 requests per second counted at the load balancer, every response included whatever its status",
+    "serving/status-mix.csv — the 5xx share rose from 0.4% to 6.1% year on year; the 4xx share is flat",
+    "serving/retry-config.md — the mobile client re-sends a failed request up to 4 times, and the load balancer counts each attempt",
+    "serving/completed-journeys.csv — journeys ending in a completed purchase fell 11% year on year",
+    "closure:capacity-win-announcement — closed; reports a 22% delivery improvement to the board",
+    "closure:load-balancer-tls-policy — closed; sets the accepted protocol versions; rests on the security standard, not on how served work is counted",
+    "closure:mobile-client-support-window — closed; fixes which client builds remain supported; rests on the product decision, not on what the counter admits"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "MEASUREMENT",
+    "target_coordinates": [
+      "M.MEASUREMENT",
+      "measurement:goodput_counting"
+    ],
+    "dependencies_to_reopen": [
+      "closure:capacity-win-announcement"
+    ],
+    "root_success_rubric": "PASS iff the counted quantity is redefined to admit only work that succeeded and is not a re-send of work already counted, the answer reports that delivery fell rather than rose, and it shows the 22% rise is accounted for by the 5xx growth together with the up-to-four re-sends. FAIL if the answer reports a 22% improvement, treats the two facts as unrelated, or recommends staffing support.",
+    "dependency_depth": 1
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the framing reports 22% growth and recommends support headcount; the counted quantity includes the failures and their re-sends."
+}

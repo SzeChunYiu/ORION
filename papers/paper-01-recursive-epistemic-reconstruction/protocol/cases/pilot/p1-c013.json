@@ -1,0 +1,35 @@
+{
+  "case_id": "p1-c013",
+  "task_family": "hidden_representation_or_coordinate_system",
+  "public_prompt": "Shift handovers are graded on the gap between the outgoing engineer's last action and the incoming engineer's first action; a gap above 20 minutes is a breach. The working position: subtract the two times of day and average. Report the mean gap and the breach count for the quarter.",
+  "observable_resources": [
+    "handover/pairs.csv — 900 rows of last_action_time_of_day and first_action_time_of_day; 71 rows have the incoming action before midnight-crossing",
+    "handover/gap.py — computes (t_in - t_out) in minutes on time-of-day fields that carry no date part",
+    "handover/outputs.log — mean gap reported as -104.3 minutes, median 8.0; 71 rows report gaps between -1430 and -1400 minutes, and the other 829 average 8.0",
+    "handover/policy.md — a gap above 20 minutes is a breach; the current tool reports 8 breaches for the quarter",
+    "closure:handover-compliance-q4 — closed; certifies 8 breaches for the quarter",
+    "closure:staffing-adjustment-jan — closed; derived from closure:handover-compliance-q4, leaves night staffing unchanged because breaches are rare",
+    "closure:handover-checklist-v3 — closed; lists what an outgoing engineer must record; rests on the operations standard, not on any gap figure"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "REPRESENTATION",
+    "target_coordinates": [
+      "W.REPRESENTATIONS",
+      "representation:modular_wraparound"
+    ],
+    "dependencies_to_reopen": [
+      "closure:handover-compliance-q4",
+      "closure:staffing-adjustment-jan"
+    ],
+    "root_success_rubric": "PASS iff gaps are taken on the 24-hour cycle so that a 23:52 to 00:07 handover is 15 minutes rather than -1425, the reported mean falls to roughly 9 minutes, and the breach count is recomputed with all 71 midnight-crossing rows included and their true gaps. FAIL if the answer discards the 71 rows, takes absolute values of the raw differences, or reports 121.4 minutes and 8 breaches as correct.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the subtraction framing reports 121.4 minutes and 8 breaches; the 71 midnight rows both inflate the mean and hide their own breaches."
+}

@@ -79,12 +79,15 @@ def test_protected_answer_commit_replay_and_reopen_are_one_append_only_lifecycle
         PROJECTION_SCHEMA_VERSION, WORKFLOW_VERSION, REDUCER_VERSION,
         (MechanicCell("SEARCH.QUERY.v0", "query", "scope", provisional_dimensions=(MechanicDimension.INPUTS,)),),
     )
-    snapshot = lambda: HostEvidenceSnapshot(
-        root_configuration_hash="a" * 64, manifest_hash="b" * 64,
-        captured_at_authority_revision=host.authority_revision,
-        captured_at_support_revision=host.support_revision,
-        required_obligation_ids=(), records=(),
-    )
+    def snapshot():
+        return HostEvidenceSnapshot(
+            root_configuration_hash="a" * 64,
+            manifest_hash="b" * 64,
+            captured_at_authority_revision=host.authority_revision,
+            captured_at_support_revision=host.support_revision,
+            required_obligation_ids=(),
+            records=(),
+        )
 
     committed = coordinator.commit_answer(
         projection=seed,

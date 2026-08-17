@@ -1,0 +1,82 @@
+{
+  "schema": "P4ProtectedRunBindings.v2",
+  "campaign_id": "P4.protected-authority.v2",
+  "base_protocol_id": "P4.protected-authority.v1",
+  "status": "EXECUTION_FROZEN",
+  "outcome_accessed": false,
+  "campaign_execution_authorized": false,
+  "subject_commit": "f6e51b5c8f905382b8e2f5568d9035fc14241aa1",
+  "subject_archive_sha256": "a617a30ba8ebce5f7f89ceca77dbde793a7c43f85b8b01300e8ec1ef40a1e0e4",
+  "host_preparation": {
+    "run_id": "31975937488",
+    "job_id": "95235321837",
+    "trigger_merge": "7a50766e4b7da51e04bc27b9d7c4cc95d064ca47",
+    "trigger_merge_verified": true,
+    "trigger_merge_verified_at": "2026-08-16T22:17:24Z",
+    "trigger_exact_main_ci_run": "31975937550",
+    "trigger_exact_main_ci_conclusion": "success",
+    "runner_region": "northcentralus",
+    "worker_id": "17fff54a-5f14-44e4-90a5-031c0d704696"
+  },
+  "dataset_revisions": {
+    "candidate_manifest_sha256": "c5df341a6bf63f83d2af17492c498d4d36a944ad6616097a630d8390b7bda331",
+    "protected_attack_set_sha256": "6b8b6243040163dfa582dbeb8896e2c68d6b263e3227b64e7bab199d8599897c",
+    "clean_positive_set_sha256": "5fb704ef1702f1f4c6da6178530e26725f6c33a005799b128c13188f369a6cb0",
+    "protected_holdout_sha256": "6d213ded7f3176ff470a87433bcb0b05a0fd9853595aa3bd0d07c0416bed0779",
+    "public_claim_evidence_sha256": "0cb36a9ac9112fa7bf2ee43067598b0c3568636c1a0bbf8e2baac018bad7f35a",
+    "source_snapshot_sha256": "d3b0ffe5f64d07747e2568c248feeef68231b35d4e66f637e6d00c8e3188b930",
+    "split_sha256": "3fe91b669643fa158f2f64c1e6ab70837afbb9b0582e297f1da6e1c3c696fcd9"
+  },
+  "baseline_config_sha256": "df389938f0bf1d6ef9312c82c5cadeba9af60c9a8ce7c602c10996f73f85fd9e",
+  "harness_sha256": "094f43cb320f8e8e3196049269b20ac22e7e94fa9890b80f27f38ef49f7c82ea",
+  "run_manifest_sha256": "913ef0e78ba891434f44bd7ba4a250edbff656d4178577425bc581ca8cd59237",
+  "seed_commitment": "5f39fae05fbe9ac00f7d9312b31df6c67e340e1cc70f0ff25f6435aad8419f60",
+  "evaluation_epoch": "2026-08-16T22:17:32Z",
+  "model_provider_revision": "deterministic/no-LLM",
+  "statistical_repeats": 5,
+  "resource_budget_units": 12.0,
+  "counts": {
+    "cases": 420,
+    "attack_families": 13,
+    "clean_positive": 60,
+    "hostile": 360,
+    "public_hostile": 120,
+    "protected_hostile": 120,
+    "protected_holdout": 150,
+    "mechanical_gold": 420,
+    "ambiguous": 0,
+    "human_rubric_triggers": 0
+  },
+  "artifacts": {
+    "public": {
+      "name": "p4-v2-host-prep-public-31975937488",
+      "id": "9271039558",
+      "zip_sha256": "59d1fee4a29f508c44de8d91f02a742158e0b179a0d3a47fc373b014ea0e3267"
+    },
+    "protected": {
+      "name": "p4-v2-host-prep-protected-31975937488",
+      "id": "9271039728",
+      "zip_sha256": "3bdd9cf5a0b4dabf03bfff0b3583f5e1096f3dc770f99fbc1f8940ed99718f7e"
+    }
+  },
+  "preflight": {
+    "run_id": "31975709051",
+    "conclusion": "success",
+    "repaired_subject_hostile_tests_passed": 42,
+    "panel_status": "PASS",
+    "h1_status": "PASS",
+    "h2_status": "PASS",
+    "h3_status": "NOT_SUPPORTED",
+    "orion_false_promotions": 0,
+    "orion_clean_promotions": 60,
+    "promotion_opportunities": 360,
+    "comparator_count": 10,
+    "ablation_count": 8
+  },
+  "notes": [
+    "This is an additive post-repair campaign binding over the frozen P4.protected-authority.v1 base protocol; the host generator retains its V1 schema identifier.",
+    "The candidate handoff was mechanically proven to contain only case_id and candidate_visible and no attack_family, protected_gold, custody_class, or expected_authority_terminal fields.",
+    "Comparator arms are protocol-matched mechanism reimplementations and are not represented as executions of external authors' original software.",
+    "No publication-authorizing candidate execution may start until this binding and the V2 campaign workflow are merged to main as a GitHub-verified commit, exact-main CI passes, and a separate launch trigger records those external facts."
+  ]
+}

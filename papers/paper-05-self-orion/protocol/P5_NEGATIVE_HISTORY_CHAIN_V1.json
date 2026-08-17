@@ -1,0 +1,48 @@
+{
+  "schema_version": "orion.p5.negative-history-chain-protocol.v1",
+  "protocol_id": "P5.hidden-cause-staged-acceptance.v2",
+  "amendment_id": "P5-V2-NH-CHAIN-001",
+  "status": "PROSPECTIVE_FROZEN",
+  "created_before_next_result_bearing_execution": true,
+  "empirical_authority": "NONE",
+  "purpose": "Bind the existing V2 final_negative_history_hash to an independently auditable append-only host-custody chain instead of accepting an arbitrary syntactically valid digest.",
+  "genesis": {
+    "schema": "orion.p5.negative-history-genesis.v1",
+    "fields": ["run_manifest_hash", "negative_history_root_hash"],
+    "rule": "chain_tip_0 = SHA256(canonical_json({schema, run_manifest_hash, negative_history_root_hash}))"
+  },
+  "append_link": {
+    "schema": "orion.p5.negative-history-link.v1",
+    "ordered_by": "result archive record order at host observation time",
+    "fields": [
+      "sequence",
+      "previous_chain_hash",
+      "result_id",
+      "system_id",
+      "episode_id",
+      "seed",
+      "candidate_id",
+      "stage",
+      "sequence_index",
+      "negative_history_digest"
+    ],
+    "rule": "link_hash = SHA256(canonical_json(link payload)); chain_tip_i = link_hash",
+    "custody": "The host appends a link when the corresponding staged record is admitted. Candidate processes do not select, rewrite, delete, reorder, or truncate prior links."
+  },
+  "finalization": {
+    "chain_document_schema": "orion.p5.negative-history-chain.v1",
+    "document_hash": "SHA256 of the canonical chain document excluding document_hash",
+    "required_checks": [
+      "host-selected expected chain document hash matches the loaded document",
+      "run_manifest_hash matches the exact run manifest",
+      "genesis matches manifest.negative_history_root_hash",
+      "link count equals result archive record count",
+      "each link binds the record at the same archive position",
+      "every previous_chain_hash equals the preceding verified tip",
+      "every link_hash recomputes exactly",
+      "archive.final_negative_history_hash equals the verified final chain tip"
+    ]
+  },
+  "failure_policy": "Any missing, reordered, truncated, substituted, forked, stale-root, or hash-mismatched chain is CANNOT_CHECK and blocks finalized V2 evidence admission.",
+  "authority_boundary": "A valid chain proves content/ordering integrity only. It cannot establish scientific correctness, causal attribution, beneficial transfer, or promotion authority."
+}

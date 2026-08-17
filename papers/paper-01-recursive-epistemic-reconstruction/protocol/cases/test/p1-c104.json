@@ -1,0 +1,39 @@
+{
+  "case_id": "p1-c104",
+  "task_family": "hidden_decomposition_or_interface",
+  "public_prompt": "The pricing routine cannot run without live network access and gives a different answer on the same inputs from one run to the next. The working position: the tests need better doubles, so add fourteen more of them. Diagnose the defect and specify the fix.",
+  "observable_resources": [
+    "pricing/price.py — a single 400-line function that issues 6 network calls, reads two environment variables, draws from a random generator and writes to a metrics sink, all interleaved with the arithmetic",
+    "pricing/tests/ — 61 tests, 48 of which build stand-ins for those call sites; 9 are marked unreliable",
+    "pricing/repro-check.md — the same inputs give different prices across runs; the spread tracks the random draw and one network response",
+    "pricing/doubles-writeup.md — adds 14 more stand-ins to cover the remaining call sites",
+    "closure:pricing-accuracy-attestation — closed; certifies pricing correctness from the passing suite",
+    "closure:regulatory-filing-q1 — closed; derived from closure:pricing-accuracy-attestation",
+    "closure:auditor-response-pack — closed; derived from closure:regulatory-filing-q1",
+    "pricing/input-capture.md — the 6 fetched documents for a given run can be captured and replayed byte-for-byte from the request log",
+    "closure:pricing-rounding-rule — closed; fixes rounding to the nearest minor unit at the final step; rests on the finance standard, not on where the arithmetic sits",
+    "closure:price-publication-window — closed; fixes when prices become visible to customers; rests on the commercial calendar, not on how the routine is built"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "DECOMPOSITION",
+    "target_coordinates": [
+      "W.DECOMPOSITION",
+      "decomposition:effectless_core"
+    ],
+    "dependencies_to_reopen": [
+      "closure:pricing-accuracy-attestation",
+      "closure:regulatory-filing-q1",
+      "closure:auditor-response-pack"
+    ],
+    "root_success_rubric": "PASS iff the specified design leaves the pricing arithmetic a deterministic function of values supplied to it — fetched data, configuration and the random draw all passed in — with network, configuration and metrics moved to a thin outer layer, and the answer states that more stand-ins cannot restore repeatability while the draws happen inside the arithmetic. FAIL if the fix is more stand-ins, a fixed random seed alone, a recorded-response layer, or running the tests against a staging service.",
+    "dependency_depth": 3
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the doubles framing adds 14 more stand-ins and still cannot say what price a given input produces, because the draw is taken inside the function."
+}

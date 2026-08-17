@@ -1,0 +1,55 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.CLIMATE.007.GOLD",
+  "case_id": "P3.CLIMATE.007",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "essd:SEED-CLIM007A",
+    "document_version": "v1",
+    "span_start": 3390,
+    "span_end": 3700,
+    "text_hash": "seed:sha256:8182838a9c7",
+    "discipline": "climate",
+    "text": "Paleoclimate: orbital forcing mechanism of ice ages"
+  },
+  "source_b": {
+    "document_id": "essd:SEED-CLIM007B",
+    "document_version": "v1",
+    "span_start": 7780,
+    "span_end": 8100,
+    "text_hash": "seed:sha256:8182838a9c8",
+    "discipline": "climate",
+    "text": "Projection: astronomical forcing in future insolation"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "RELATED_NOT_SAME",
+  "measurement_relation": "TRANSFORMABLE_WITH_CONDITIONS",
+  "context_relation": "CONDITIONED_COMPATIBLE",
+  "polarity_relation": "SAME",
+  "modality_relation": "SAME",
+  "attribution_relation": "SAME_SPEAKER_OR_SOURCE",
+  "discourse_relation": "ALIGNED",
+  "mapping_relation": "CONDITIONAL_TRANSFORM",
+  "preservation_conditions": [
+    "Bridge validity depends on transfer conditions (dose, exposure, outcome, timescale)",
+    "Mechanism-to-application transfer requires explicit boundary conditions"
+  ],
+  "non_preserved_coordinates": [
+    "context",
+    "construct"
+  ],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "GLUE_ALLOWED",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "context_relation:CONDITIONED_COMPATIBLE",
+    "mapping_relation:CONDITIONAL_TRANSFORM",
+    "preservation_conditions:transfer_boundaries"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for valid_invalid_literature_bridge case P3.CLIMATE.007. referent=SAME, construct=RELATED_NOT_SAME, measurement=TRANSFORMABLE_WITH_CONDITIONS, context=CONDITIONED_COMPATIBLE, mapping=CONDITIONAL_TRANSFORM, integration=GLUE_ALLOWED. Seed manifest notes: Mechanism\u2192projection bridge. Gold: VALID bridge WITH timescale conditions.",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

@@ -1,0 +1,35 @@
+{
+  "case_id": "p1-c008",
+  "task_family": "hidden_parent_domain",
+  "public_prompt": "A request-handling service is slow under load. The approach on the table: profile the handler, find the hot function, and optimise it. Working from the artefacts below, report the maximum sustained arrival rate the service can hold with p99 wait under 250 ms, and justify the number.",
+  "observable_resources": [
+    "trace/handler-profile.json — 30-minute CPU profile; no single call exceeds 6% of total; median service work is 5.0 ms and does not change with load",
+    "trace/arrival-log.csv — 1.2M arrivals; inter-arrival gaps are memoryless with fitted rate 150/s at peak and coefficient of variation 0.98",
+    "trace/wait-histogram.csv — p99 wait 41 ms at 120 arrivals/s, 96 ms at 150/s, 480 ms at 180/s; mean CPU usage 0.60, 0.75 and 0.90 respectively",
+    "closure:capacity-plan-v3 — signed off; sizes the fleet from the rule 'mean CPU usage stays under 0.85', treating headroom as proportional to arrival rate",
+    "closure:alert-thresholds-v2 — closed; derived from closure:capacity-plan-v3, pages when mean CPU usage exceeds 0.85",
+    "closure:vendor-support-tier — closed; sets the support contract tier from headcount and cover hours; rests on the staffing plan, not on any figure in the fleet sizing",
+    "closure:handler-language-choice — closed; settles the implementation language on hiring and library grounds; rests on the engineering standard, not on any throughput figure"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "SEARCH",
+    "target_coordinates": [
+      "W.ACTIVE_DOMAINS",
+      "parent_domain:queueing_theory"
+    ],
+    "dependencies_to_reopen": [
+      "closure:capacity-plan-v3",
+      "closure:alert-thresholds-v2"
+    ],
+    "root_success_rubric": "PASS iff the sustained arrival rate is derived from the relation between usage and waiting time — wait growing without bound as usage approaches 1 — yielding a limit strictly below 180/s, AND the answer states that headroom in mean usage is not proportional to headroom in arrival rate. FAIL if the limit is derived from service work alone (200/s), if the answer proposes code optimisation as the remedy, or if it reports the 0.85 usage rule as a sufficient guard.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the profiling framing reports 'no hot function found' or a capacity of 200/s from the 5.0 ms service work; both miss the congestion relation and fail the rubric."
+}

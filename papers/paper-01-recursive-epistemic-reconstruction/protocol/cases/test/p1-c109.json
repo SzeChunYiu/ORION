@@ -1,0 +1,34 @@
+{
+  "case_id": "p1-c109",
+  "task_family": "hidden_representation_or_coordinate_system",
+  "public_prompt": "A site tool averages 60 one-minute wind bearings, reported in degrees from 0 to 359, to produce an hourly mean bearing used to allow or refuse crane work. The approach on the table: average the numbers in the bearing column. For hour 14 it reports 181.4 degrees with a standard deviation of 176. Report the hourly mean bearing.",
+  "observable_resources": [
+    "site/bearings.csv — hour 14 holds 31 readings between 352 and 359 and 29 readings between 1 and 9",
+    "site/tool.md — computes the plain mean of the numeric bearing column and its standard deviation",
+    "site/reported.csv — hour 14: mean bearing 181.4 degrees, standard deviation 176",
+    "site/anemometer-components.csv — the same instrument's east and north wind components for hour 14: mean east -0.4 m/s, mean north 7.9 m/s",
+    "closure:crane-window-14 — closed; refuses crane work on a reported 181-degree cross-wind",
+    "site/instrument-check.md — the vane was calibrated on 2026-03-02 and agrees with the reference mast to within 2 degrees",
+    "closure:crane-operator-certification — closed; certifies the operators against the lifting standard; rests on training records, not on any hourly figure"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "REPRESENTATION",
+    "target_coordinates": [
+      "W.REPRESENTATIONS",
+      "representation:vector_resultant"
+    ],
+    "dependencies_to_reopen": [
+      "closure:crane-window-14"
+    ],
+    "root_success_rubric": "PASS iff the mean bearing is computed on the circle — through the east and north components, or by shifting readings across the 0/359 discontinuity before averaging — giving a bearing within a few degrees of north (about 357 to 3), and the answer explains the standard deviation of 176 as an artefact of the same discontinuity. FAIL if the answer reports 181.4 degrees, removes either cluster of readings as outliers, or reports the hour as too variable to summarise.",
+    "dependency_depth": 1
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the plain-average framing reports a southerly bearing for an hour in which the wind never left the northern sector."
+}

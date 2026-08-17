@@ -1,0 +1,19 @@
+{
+  "$id": "ORION.transfer-portfolio.v2",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "catalog_digest": {"type": "string"},
+    "confirmed_mechanisms": {"items": {"type": "string"}, "type": "array"},
+    "decisions": {"items": {"$ref": "ORION.transfer-receipt.v2"}, "type": "array"},
+    "evidence_bundle_digest": {"type": "string"},
+    "min_independent_domains": {"minimum": 1, "type": "integer"},
+    "portfolio_version": {"const": "ORION_TRANSFER_PORTFOLIO_V2"},
+    "receipt_digest": {"type": "string"},
+    "selected_cell_ids": {"items": {"type": "string"}, "type": "array"},
+    "target_digest": {"type": "string"},
+    "target_id": {"type": "string"}
+  },
+  "required": ["portfolio_version", "target_id", "target_digest", "catalog_digest", "evidence_bundle_digest", "min_independent_domains", "decisions", "selected_cell_ids", "confirmed_mechanisms", "receipt_digest"],
+  "type": "object"
+}

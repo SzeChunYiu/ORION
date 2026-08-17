@@ -1,0 +1,36 @@
+{
+  "case_id": "p1-c115",
+  "task_family": "hidden_measurement_or_operationalization",
+  "public_prompt": "The latency panel reads 180 ms against a 200 ms target, while customers report waits of several seconds on the same service. What the group intends: the panel is correct and the reports are anecdotal. Report the latency figure customers experience and how you obtained it.",
+  "observable_resources": [
+    "obs/panel.json — the panel takes each host's per-minute 99th percentile, averages those across 60 hosts, then averages across the hour",
+    "obs/raw-sample.csv — one hour of 4.1M individual request latencies from all hosts: 99th percentile 2,310 ms, median 22 ms",
+    "obs/host-skew.csv — 3 of the 60 hosts account for 82% of the requests slower than 1 second",
+    "obs/agent-docs.md — the agent exports per-host per-minute percentiles and never the individual observations",
+    "closure:latency-slo-attestation — closed; certifies the 200 ms target as met at 180 ms",
+    "closure:customer-facing-slo-page — closed; derived from closure:latency-slo-attestation, publishes 200 ms to customers",
+    "obs/retention.md — the raw request log is retained 14 days at full resolution, so any hour in that window can be recomputed from observations",
+    "closure:observability-agent-rollout — closed; schedules the agent upgrade across the fleet; rests on the change calendar, not on how the published figure is computed"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "MEASUREMENT",
+    "target_coordinates": [
+      "M.MEASUREMENT",
+      "measurement:pooled_tail_estimand"
+    ],
+    "dependencies_to_reopen": [
+      "closure:latency-slo-attestation",
+      "closure:customer-facing-slo-page"
+    ],
+    "root_success_rubric": "PASS iff the figure is recomputed as the 99th percentile of the pooled request population — about 2,310 ms from the raw sample — and the answer states that averaging per-host per-minute percentiles does not produce the percentile of the pool, especially with 3 hosts carrying 82% of the slow requests. FAIL if the answer reports 180 ms, substitutes the maximum host percentile, or attributes the gap to client-side network time without testing it.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the panel framing certifies 180 ms; the raw sample puts the real figure an order of magnitude past the target."
+}

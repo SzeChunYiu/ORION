@@ -1,0 +1,55 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.CLIMATE.006.GOLD",
+  "case_id": "P3.CLIMATE.006",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "essd:SEED-CLIM006A",
+    "document_version": "v1",
+    "span_start": 6860,
+    "span_end": 7180,
+    "text_hash": "seed:sha256:8182838a9c5",
+    "discipline": "climate",
+    "text": "RCP 8.5 scenario representation"
+  },
+  "source_b": {
+    "document_id": "essd:SEED-CLIM006B",
+    "document_version": "v1",
+    "span_start": 1940,
+    "span_end": 2260,
+    "text_hash": "seed:sha256:8182838a9c6",
+    "discipline": "climate",
+    "text": "SSP5-8.5 scenario representation"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "RELATED_NOT_SAME",
+  "measurement_relation": "TRANSFORMABLE_WITH_CONDITIONS",
+  "context_relation": "CONDITIONED_COMPATIBLE",
+  "polarity_relation": "SAME",
+  "modality_relation": "SAME",
+  "attribution_relation": "SAME_SPEAKER_OR_SOURCE",
+  "discourse_relation": "ALIGNED",
+  "mapping_relation": "CONDITIONAL_TRANSFORM",
+  "preservation_conditions": [
+    "Mapping is not bijective; some information is lost in each direction",
+    "Dimension weighting / conversion factors must be specified"
+  ],
+  "non_preserved_coordinates": [
+    "construct",
+    "measurement"
+  ],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "GLUE_ALLOWED",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "mapping_relation:CONDITIONAL_TRANSFORM",
+    "preservation_conditions:non_bijective",
+    "non_preserved_coordinates:construct,measurement"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for valid_invalid_representation_mapping case P3.CLIMATE.006. referent=SAME, construct=RELATED_NOT_SAME, measurement=TRANSFORMABLE_WITH_CONDITIONS, context=CONDITIONED_COMPATIBLE, mapping=CONDITIONAL_TRANSFORM, integration=GLUE_ALLOWED. Seed manifest notes: Two scenario generations. Gold: VALID mapping WITH concentration-path family correspondence, not identity.",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

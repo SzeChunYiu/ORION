@@ -1,0 +1,52 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.CLIMATE.001.GOLD",
+  "case_id": "P3.CLIMATE.001",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "essd:SEED-CLIM001A",
+    "document_version": "v1",
+    "span_start": 3820,
+    "span_end": 4150,
+    "text_hash": "seed:sha256:8182838a9bb",
+    "discipline": "climate",
+    "text": "Climate science: 'forcing' as radiative forcing (W/m^2)"
+  },
+  "source_b": {
+    "document_id": "essd:SEED-CLIM001B",
+    "document_version": "v1",
+    "span_start": 7140,
+    "span_end": 7470,
+    "text_hash": "seed:sha256:8182838a9bc",
+    "discipline": "climate",
+    "text": "Ocean dynamics: 'forcing' as wind stress forcing (momentum)"
+  },
+  "referent_relation": "DIFFERENT",
+  "construct_relation": "DIFFERENT",
+  "measurement_relation": "NOT_APPLICABLE",
+  "context_relation": "DIFFERENT_STATE_OR_TIME",
+  "polarity_relation": "NOT_COMPARABLE",
+  "modality_relation": "NOT_COMPARABLE",
+  "attribution_relation": "NOT_APPLICABLE",
+  "discourse_relation": "NOT_COMPARABLE",
+  "mapping_relation": "NO_LICENSED_MAPPING",
+  "preservation_conditions": [],
+  "non_preserved_coordinates": [
+    "referent",
+    "construct",
+    "context"
+  ],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "OBSTRUCTION",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "referent_relation:DIFFERENT",
+    "mapping_relation:NO_LICENSED_MAPPING"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for same_name_different_referent case P3.CLIMATE.001. referent=DIFFERENT, construct=DIFFERENT, measurement=NOT_APPLICABLE, context=DIFFERENT_STATE_OR_TIME, mapping=NO_LICENSED_MAPPING, integration=OBSTRUCTION. Seed manifest notes: Same surface 'forcing' DIFFERENT referents (energy vs momentum). Gold: DIFFERENT referent.",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

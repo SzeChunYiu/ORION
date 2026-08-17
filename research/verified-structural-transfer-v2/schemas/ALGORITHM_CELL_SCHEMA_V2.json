@@ -1,0 +1,17 @@
+{
+  "$id": "ORION.algorithm-cell.v2",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assumptions": {"items": {"type": "string"}, "minItems": 1, "type": "array", "uniqueItems": true},
+    "cell_id": {"minLength": 1, "type": "string"},
+    "failure_modes": {"items": {"type": "string"}, "type": "array", "uniqueItems": true},
+    "falsifiers": {"items": {"type": "string"}, "minItems": 1, "type": "array", "uniqueItems": true},
+    "invariants": {"items": {"type": "string"}, "type": "array", "uniqueItems": true},
+    "mechanism": {"minLength": 1, "type": "string"},
+    "source_signature": {"$ref": "ORION.problem-signature.v2"},
+    "stopping_rule": {"type": "string"}
+  },
+  "required": ["cell_id", "source_signature", "mechanism", "assumptions", "invariants", "stopping_rule", "failure_modes", "falsifiers"],
+  "type": "object"
+}

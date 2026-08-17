@@ -1,0 +1,55 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.BIOMED.005.GOLD",
+  "case_id": "P3.BIOMED.005",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "pmc:SEED-BIOMED005A",
+    "document_version": "v1",
+    "span_start": 9203,
+    "span_end": 9550,
+    "text_hash": "seed:sha256:3132333a435",
+    "discipline": "biomed",
+    "text": "RCT report: 'drug X significantly reduced mortality' (direct evidence)"
+  },
+  "source_b": {
+    "document_id": "pmc:SEED-BIOMED005B",
+    "document_version": "v1",
+    "span_start": 6011,
+    "span_end": 6390,
+    "text_hash": "seed:sha256:3637383a940",
+    "discipline": "biomed",
+    "text": "Review article: 'drug X may reduce mortality' (secondary citation)"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "SAME",
+  "measurement_relation": "EQUIVALENT",
+  "context_relation": "ALIGNED",
+  "polarity_relation": "SAME",
+  "modality_relation": "DIFFERENT_STRENGTH",
+  "attribution_relation": "DIFFERENT_ATTRIBUTION",
+  "discourse_relation": "ALIGNED",
+  "mapping_relation": "SUBSUMPTION",
+  "preservation_conditions": [
+    "Modality and attribution differences are carried forward as metadata",
+    "Asserted claim subsumes the hedged version"
+  ],
+  "non_preserved_coordinates": [
+    "modality",
+    "attribution"
+  ],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "GLUE_ALLOWED",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "modality_relation:DIFFERENT_STRENGTH",
+    "attribution_relation:DIFFERENT_ATTRIBUTION",
+    "contradiction_verdict:NO_CONTRADICTION"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for polarity_modality_attribution_context case P3.BIOMED.005. referent=SAME, construct=SAME, measurement=EQUIVALENT, context=ALIGNED, mapping=SUBSUMPTION, integration=GLUE_ALLOWED. Seed manifest notes: Polarity SAME (positive effect) but modality DIFFERENT (asserted vs hedged) and attribution DIFFERENT (primary RCT vs secondary review). Gold: NOT a contradiction; modality/attribution carried separately.",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

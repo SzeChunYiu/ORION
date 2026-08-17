@@ -2,7 +2,7 @@
   "schema_version": "orion.publication-protocol.v1",
   "paper_id": "P1",
   "protocol_id": "P1.hidden-formulation.v1",
-  "protocol_status": "DESIGN_FROZEN",
+  "protocol_status": "EXECUTION_FROZEN",
   "outcome_accessed": false,
   "primary_hypothesis": {
     "id": "P1.H1",
@@ -11,9 +11,18 @@
     "direction": "superiority_and_safety"
   },
   "secondary_hypotheses": [
-    {"id": "P1.H2", "text": "Full ORION is non-inferior on unnecessary-reframe rate for evidence-only and execution-only negative controls."},
-    {"id": "P1.H3", "text": "Dependency-directed reopening improves reopen F1 versus no reset and full reset."},
-    {"id": "P1.H4", "text": "Mechanic obligations, trace identity and authority/invariant structure remain stable as recursion depth increases."}
+    {
+      "id": "P1.H2",
+      "text": "Full ORION is non-inferior on unnecessary-reframe rate for evidence-only and execution-only negative controls."
+    },
+    {
+      "id": "P1.H3",
+      "text": "Dependency-directed reopening improves reopen F1 versus no reset and full reset."
+    },
+    {
+      "id": "P1.H4",
+      "text": "Mechanic obligations, trace identity and authority/invariant structure remain stable as recursion depth increases."
+    }
   ],
   "task_families": [
     "hidden_parent_domain",
@@ -38,7 +47,11 @@
     "orion_without_mechanic_self_audit"
   ],
   "metrics": {
-    "primary": ["root_success", "hidden_shift_success", "unnecessary_reframe_rate"],
+    "primary": [
+      "root_success",
+      "hidden_shift_success",
+      "unnecessary_reframe_rate"
+    ],
     "secondary": [
       "responsibility_macro_f1",
       "reframe_target_accuracy",
@@ -67,20 +80,52 @@
     "hidden_labels": "Gold hidden cause, responsibility, required reframe and dependent-reopen labels are inaccessible to evaluated systems.",
     "evaluator_custody": "Gold/adjudication artifact is host-owned and versioned before final candidate runs.",
     "search_contamination_policy": "Public benchmark use is declared; web-search access to benchmark solutions is audited and may invalidate contaminated cases.",
-    "access_logging": "Tool/search requests and accesses to benchmark/evaluator paths are retained."
+    "access_logging": "Tool/search requests and accesses to benchmark/evaluator paths are retained.",
+    "adjudication_standard": "Model panel. At least two structurally independent judges (distinct judge and lineage ids, globally unique context ids, no visibility of peers' verdicts), each reading only the PublicView and the hashed rubric. Cohen/Fleiss kappa reported per question; below the frozen floor the case degrades to CANNOT_CHECK and is excluded from adjudicated analysis while remaining archived.",
+    "human_adjudication_required": false
   },
-  "plots": ["P1-1_protocol", "P1-2_root_success_by_family", "P1-3_reframe_selectivity_frontier", "P1-4_reopen_by_dependency_depth", "P1-5_success_cost_frontier", "P1-6_recursion_stability"],
-  "tables": ["P1-T1_nearest_work_matrix", "P1-T2_baseline_ablation_results", "P1-T3_failure_taxonomy"],
+  "plots": [
+    "P1-1_protocol",
+    "P1-2_root_success_by_family",
+    "P1-3_reframe_selectivity_frontier",
+    "P1-4_reopen_by_dependency_depth",
+    "P1-5_success_cost_frontier",
+    "P1-6_recursion_stability"
+  ],
+  "tables": [
+    "P1-T1_nearest_work_matrix",
+    "P1-T2_baseline_ablation_results",
+    "P1-T3_failure_taxonomy"
+  ],
   "reference_revisions": {
     "SciAgentArena": "HelloWorldLTY/SciAgentArena@9865bb0c261bd9a59ef23576805b268b458b59d2"
   },
   "execution_bindings": {
-    "subject_revision": "UNBOUND",
-    "dataset_revisions": {"hidden_shift_suite": "UNBOUND_FINAL_HASH"},
-    "model_provider_revisions": "UNBOUND",
-    "baseline_config_hashes": "UNBOUND",
-    "evaluator_hash": "UNBOUND",
-    "split_hashes": "UNBOUND",
-    "evaluation_epoch": "UNBOUND"
-  }
+    "subject_revision": "bd4a6b2154f8cb7b6fe40471348c5399cfb9561a",
+    "dataset_revisions": {
+      "hidden_shift_suite_pilot": "7a50a2d5025beb7dea4835911fa7dbf4a191431447397c73939c276b71dc49b5",
+      "hidden_shift_suite_test": "21b461d89280631b93b766d6fb000c7f9f5fbeccee7cb6664f238c2c5c8e6420"
+    },
+    "model_provider_revisions": "glm-5.2-via-anthropic-compatible-relay@api2.cmkey.cn/v1",
+    "baseline_config_hashes": "e4ab2add3ecb6c1dc98600935269067b86126a05a640fb3f271e714f1f3f7bc3",
+    "evaluator_hash": "a1d59277f5db49d40e4438dd6b149b4fc6add351f2f5eec306f978254e0f9020",
+    "split_hashes": {
+      "hidden_shift_suite_pilot": "7a50a2d5025beb7dea4835911fa7dbf4a191431447397c73939c276b71dc49b5",
+      "hidden_shift_suite_test": "21b461d89280631b93b766d6fb000c7f9f5fbeccee7cb6664f238c2c5c8e6420"
+    },
+    "evaluation_epoch": "20260817075918",
+    "subject_model": "glm-5.2"
+  },
+  "protocol_version": "P1.hidden-formulation.v1.1",
+  "amendments": [
+    {
+      "amendment_id": "A1.model-adjudication-is-the-standard",
+      "date": "2026-08-16",
+      "directed_by": "operator",
+      "changes": "Human adjudication is removed as a requirement. A blinded, rubric-driven panel of structurally independent model judges with reported chance-corrected agreement is the adjudication standard for this study.",
+      "rationale": "No human panel is available to this programme and none will be. Carrying a requirement that cannot be met would leave the study permanently CANNOT_CHECK on a gate nobody intends to satisfy, which reports as an open question rather than as the design decision it actually is.",
+      "admissible_because": "outcome_accessed is false and no result has been scored against any fingerprint, so this changes the design before any outcome is visible rather than after.",
+      "what_is_NOT_changed": "The MODEL_ADJUDICATED tier still cannot present itself as ADJUDICATED or MECHANICAL_GOLD; the record type mechanically refuses those values and PanelReport refuses human_adjudication=True. Adjudicated labels remain model-derived and must be described as such in the manuscript. Independence, blinding, the frozen rubric hash, the pre-declared disagreement policy and the kappa floor are unchanged and still binding."
+    }
+  ]
 }
