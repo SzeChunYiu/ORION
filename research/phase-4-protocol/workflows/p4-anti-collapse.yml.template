@@ -1,5 +1,11 @@
+# INERT TEMPLATE — MUST NOT live under .github/workflows/.
+# GitHub Actions treats every *.yml/*.yaml in that directory as a live workflow.
+# Relocated here after `.template.yml` still registered as an active workflow
+# and failed on every push. Do not copy back until #209 is closed with
+# independent Phase-3 evidence AND #210 authorizes programme operation.
+#
 # Phase 4 Anti-Collapse Monitoring Workflow Template
-# Status: PREPARATORY — Not active until Issue #209 closes and Issue #210 authorizes
+# Status: PREPARATORY_AWAITING_ACTIVATION
 
 name: p4-anti-collapse-monitor
 

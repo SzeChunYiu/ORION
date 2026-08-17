@@ -1,6 +1,13 @@
+# INERT TEMPLATE — MUST NOT live under .github/workflows/.
+# GitHub Actions treats every *.yml/*.yaml in that directory as a live workflow.
+# The previous `.template.yml` suffix did not prevent activation: this file
+# registered as an active workflow and failed on every push because
+# `cron: 'DISABLED'` is not a valid schedule. Relocated here so it cannot run.
+# Do not copy back until #209 is closed with independent Phase-3 evidence AND
+# #210 authorizes programme operation.
+#
 # Phase 4 Programme Cycle Workflow Template
-# Status: PREPARATORY — Not active until Issue #209 closes and Issue #210 authorizes
-# This template defines the structure for programme-cycle CI
+# Status: PREPARATORY_AWAITING_ACTIVATION
 
 name: p4-programme-cycle
 
