@@ -33,7 +33,9 @@ from __future__ import annotations
 
 import argparse
 import importlib.util
+import hashlib
 import json
+import random
 import time
 import urllib.error
 import urllib.parse
@@ -50,7 +52,13 @@ BASE = Path(__file__).with_name("run_autoresearchbench_wide_keyless.py")
 DECLARED_CONSTANTS: dict[str, Any] = {
     "provider_requests_per_task": 3,
     "max_candidates_returned": 20,
-    "arxiv_min_interval_seconds": 3.0,
+    # arXiv's published budget is one request per three seconds. Under sustained
+    # load its edge returned 429 to a compliant 3.0 s cadence, so the cadence here
+    # is deliberately slower than documented, with bounded backoff on top. A
+    # retry is transport, not search: it never buys a system extra queries.
+    "arxiv_min_interval_seconds": 5.0,
+    "transport_retry_attempts": 2,
+    "transport_retry_sleep_seconds": 20.0,
     "other_backend_min_interval_seconds": 1.5,
     "switch_on_novel_below": 1,
     "http_timeout_seconds": 30.0,
@@ -169,7 +177,7 @@ class Clock:
         self._last[host] = time.monotonic()
 
 
-def _http_get(url: str, *, timeout: float) -> tuple[int, bytes, str]:
+def _http_get_once(url: str, *, timeout: float) -> tuple[int, bytes, str]:
     request = urllib.request.Request(
         url, headers={"User-Agent": DECLARED_CONSTANTS["user_agent"]}
     )
@@ -180,6 +188,31 @@ def _http_get(url: str, *, timeout: float) -> tuple[int, bytes, str]:
         return int(error.code), b"", f"http_error:{error.code}"
     except (urllib.error.URLError, TimeoutError) as error:
         return 0, b"", f"transport_error:{type(error).__name__}"
+
+
+def _http_get(url: str, *, timeout: float, retries: int | None = None) -> tuple[int, bytes, str, int]:
+    """Fetch with bounded backoff on throttling, reporting attempts made.
+
+    Retrying a 429 is the polite response only if it is bounded and spaced; an
+    unbounded retry loop is how a well-meaning client becomes the problem. The
+    attempt count is returned so the trace can distinguish "the provider was
+    slow" from "the provider refused", which are different outcomes for a paper
+    about unavailability.
+    """
+
+    attempts_allowed = (
+        DECLARED_CONSTANTS["transport_retry_attempts"] if retries is None else retries
+    )
+    attempts = 0
+    status, body, note = 0, b"", "not_attempted"
+    while attempts <= attempts_allowed:
+        attempts += 1
+        status, body, note = _http_get_once(url, timeout=timeout)
+        if status not in (429, 503, 0):
+            return status, body, note, attempts
+        if attempts <= attempts_allowed:
+            time.sleep(DECLARED_CONSTANTS["transport_retry_sleep_seconds"])
+    return status, body, note, attempts
 
 
 def arxiv_route(query: str, *, clock: Clock, max_results: int) -> tuple[str, tuple[str, ...], str]:
@@ -195,11 +228,16 @@ def arxiv_route(query: str, *, clock: Clock, max_results: int) -> tuple[str, tup
             }
         )
     )
-    status, body, note = _http_get(url, timeout=DECLARED_CONSTANTS["http_timeout_seconds"])
+    status, body, note, attempts = _http_get(url, timeout=DECLARED_CONSTANTS["http_timeout_seconds"])
+    suffix = f" attempts:{attempts}" if attempts > 1 else ""
     if status != 200 or not body:
-        return ("UNAVAILABLE" if status in (0, 429, 503) else "ERROR"), (), note or f"status:{status}"
+        return (
+            ("UNAVAILABLE" if status in (0, 429, 503) else "ERROR"),
+            (),
+            (note or f"status:{status}") + suffix,
+        )
     ids = tuple(dict.fromkeys(base.ARXIV_ID.findall(body.decode("utf-8", "replace"))))
-    return "OK", ids, ""
+    return "OK", ids, suffix.strip()
 
 
 def openaire_route(query: str, *, clock: Clock, max_results: int) -> tuple[str, tuple[str, ...], str]:
@@ -207,12 +245,17 @@ def openaire_route(query: str, *, clock: Clock, max_results: int) -> tuple[str, 
     url = "https://api.openaire.eu/search/publications?" + urllib.parse.urlencode(
         {"title": query, "size": max_results, "format": "json"}
     )
-    status, body, note = _http_get(url, timeout=DECLARED_CONSTANTS["http_timeout_seconds"])
+    status, body, note, attempts = _http_get(url, timeout=DECLARED_CONSTANTS["http_timeout_seconds"])
+    suffix = f" attempts:{attempts}" if attempts > 1 else ""
     if status != 200 or not body:
-        return ("UNAVAILABLE" if status in (0, 429, 503) else "ERROR"), (), note or f"status:{status}"
+        return (
+            ("UNAVAILABLE" if status in (0, 429, 503) else "ERROR"),
+            (),
+            (note or f"status:{status}") + suffix,
+        )
     text = body.decode("utf-8", "replace")
     ids = tuple(dict.fromkeys(base.ARXIV_ID.findall(text)))
-    return "OK", ids, "" if ids else "no_arxiv_identifier_in_response"
+    return "OK", ids, ("no_arxiv_identifier_in_response" if not ids else "") + suffix
 
 
 def dblp_route(query: str, *, clock: Clock, max_results: int) -> tuple[str, tuple[str, ...], str]:
@@ -220,12 +263,17 @@ def dblp_route(query: str, *, clock: Clock, max_results: int) -> tuple[str, tupl
     url = "https://dblp.org/search/publ/api?" + urllib.parse.urlencode(
         {"q": query, "format": "json", "h": max_results}
     )
-    status, body, note = _http_get(url, timeout=DECLARED_CONSTANTS["http_timeout_seconds"])
+    status, body, note, attempts = _http_get(url, timeout=DECLARED_CONSTANTS["http_timeout_seconds"])
+    suffix = f" attempts:{attempts}" if attempts > 1 else ""
     if status != 200 or not body:
-        return ("UNAVAILABLE" if status in (0, 429, 503) else "ERROR"), (), note or f"status:{status}"
+        return (
+            ("UNAVAILABLE" if status in (0, 429, 503) else "ERROR"),
+            (),
+            (note or f"status:{status}") + suffix,
+        )
     text = body.decode("utf-8", "replace")
     ids = tuple(dict.fromkeys(base.ARXIV_ID.findall(text)))
-    return "OK", ids, "" if ids else "no_arxiv_identifier_in_response"
+    return "OK", ids, ("no_arxiv_identifier_in_response" if not ids else "") + suffix
 
 
 # ---------------------------------------------------------------------------
@@ -445,6 +493,40 @@ def _scorer_record(question: str, run: TaskRun) -> dict[str, Any]:
     }
 
 
+def select_subsample(
+    tasks: list[dict[str, Any]], *, size: int | None, seed: int
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """Choose which tasks run, deterministically, and record the choice.
+
+    Provider throttling, not statistics, is what bounds N here. Saying so and
+    recording the selected ids up front is the difference between a declared
+    subsample and a convenient one; the achieved precision is then reported
+    against the frozen plan's tiers rather than assumed adequate.
+    """
+
+    if size is None or size >= len(tasks):
+        chosen = list(tasks)
+        rule = "all released Wide tasks"
+    else:
+        rng = random.Random(seed)
+        indices = sorted(rng.sample(range(len(tasks)), size))
+        chosen = [tasks[index] for index in indices]
+        rule = f"seeded random sample of {size} of {len(tasks)} released Wide tasks"
+    ids = [str(item.get("task_id", index)) for index, item in enumerate(chosen)]
+    manifest = {
+        "selection_rule": rule,
+        "seed": seed,
+        "released_task_count": len(tasks),
+        "selected_task_count": len(chosen),
+        "selected_task_ids_sha256": hashlib.sha256(
+            "\n".join(ids).encode("utf-8")
+        ).hexdigest(),
+        "selected_task_ids": ids,
+        "bound_by": "provider throttling, not statistical choice",
+    }
+    return chosen, manifest
+
+
 def run_comparison(
     public_path: Path,
     out_dir: Path,
@@ -453,10 +535,13 @@ def run_comparison(
     max_results: int,
     limit: int | None,
     progress_every: int,
+    subsample: int | None = None,
+    subsample_seed: int = 20260817,
 ) -> dict[str, Any]:
     tasks = base._jsonl(public_path)
     if limit is not None:
         tasks = tasks[:limit]
+    tasks, subsample_manifest = select_subsample(tasks, size=subsample, seed=subsample_seed)
 
     leaked = [
         path
@@ -474,6 +559,7 @@ def run_comparison(
         "declared_constants": DECLARED_CONSTANTS,
         "public_sha256": base._sha256(public_path),
         "tasks_attempted": len(tasks),
+        "subsample": subsample_manifest,
         "systems": {},
     }
 
@@ -548,6 +634,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--max-results", type=int, default=20)
     parser.add_argument("--limit", type=int)
     parser.add_argument("--progress-every", type=int, default=25)
+    parser.add_argument(
+        "--subsample",
+        type=int,
+        help="run a seeded random subsample of this many tasks (provider-throttling bound)",
+    )
+    parser.add_argument("--subsample-seed", type=int, default=20260817)
     args = parser.parse_args(argv)
 
     systems = [item.strip() for item in args.systems.split(",") if item.strip()]
@@ -562,6 +654,8 @@ def main(argv: list[str] | None = None) -> int:
         max_results=args.max_results,
         limit=args.limit,
         progress_every=args.progress_every,
+        subsample=args.subsample,
+        subsample_seed=args.subsample_seed,
     )
     print("ARB_WIDE_COMPARISON=" + json.dumps(summary, sort_keys=True))
     return 0
