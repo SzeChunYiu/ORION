@@ -95,14 +95,21 @@ def test_full_certificate_beats_all_engulfed_strong_parents_on_development_hidde
 
 
 def test_causalflow_parent_engulfs_minimal_repair_but_not_protected_science_gate() -> None:
-    _, summary = _run(RUNNABLE_ARMS)
+    rows, summary = _run(RUNNABLE_ARMS)
     causalflow = summary["causalflow_minimal_counterfactual_parent"]
     full = summary["orion_mutation_necessity"]
+    hidden_rows = [
+        row
+        for row in rows
+        if row["arm_id"] == "causalflow_minimal_counterfactual_parent"
+        and row["hidden_shift"]
+    ]
+    target_success_rate = sum(bool(row["target_success"]) for row in hidden_rows) / len(hidden_rows)
     # The parent is strong: it observes all four same-budget counterfactual
-    # repairs and often recovers.  It is nevertheless vulnerable to the hidden
-    # protected-sibling trap because target-flip minimality is not sufficient
-    # scientific validity.
-    assert causalflow["hidden_shift_root_target_success_rate"] > 0.90
+    # repairs and achieves the motivating target. It is nevertheless vulnerable
+    # to the hidden protected-sibling trap because target-flip minimality is not
+    # sufficient scientific validity.
+    assert target_success_rate > 0.90
     assert causalflow["hidden_shift_protected_root_task_success_rate"] < full[
         "hidden_shift_protected_root_task_success_rate"
     ]
