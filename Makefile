@@ -96,8 +96,18 @@ paper03-public-reference:
 		--cases $(P3_PUBLIC_CASES) \
 		--output $(P3_PUBLIC_EVAL_OUT)
 
+P3_PUBLIC_ANALYSIS_OUT ?= papers/paper-03-global-knowledge-portrait/evaluation/public-reference-analysis.json
+
+.PHONY: paper03-public-reference-analysis
+## Publication analysis: Wilson intervals, paired bootstrap and coordinate ablations.
+paper03-public-reference-analysis:
+	@PYTHONPATH=$(SRC) $(PYTHON) -m orion.study.p3_public_reference_analysis \
+		--cases $(P3_PUBLIC_CASES) \
+		--output $(P3_PUBLIC_ANALYSIS_OUT)
+
 .PHONY: paper03-public-reference-tests
 paper03-public-reference-tests:
 	PYTHONPATH=$(SRC) $(PYTHON) -m pytest -q \
 		tests/unit/study/test_p3_public_reference.py \
-		tests/unit/study/test_p3_public_reference_build.py
+		tests/unit/study/test_p3_public_reference_build.py \
+		tests/unit/study/test_p3_public_reference_analysis.py
