@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Fail-closed checks for the P1 donor-assimilation ledger.
+"""Fail-closed checks for P1 donor-assimilation ledgers.
 
-The ledger is research evidence about prior-art boundaries, not scientific
-promotion authority. This checker deliberately validates identity, canonical
-receipt hashes, explicit direct-baseline/ablation obligations, and the
-non-escalation boundary. It does not decide novelty.
+The ledgers are research evidence about prior-art boundaries, not scientific
+promotion authority. This checker validates identity, canonical receipt hashes,
+explicit direct-baseline/ablation obligations, and the non-escalation boundary.
+It does not decide novelty or saturation by itself.
 """
 
 from __future__ import annotations
@@ -113,20 +113,18 @@ def validate_ledger(payload: dict[str, Any]) -> tuple[str, ...]:
 
     saturation = str(payload.get("saturation_claim", ""))
     if saturation == "ABSORPTION_SATURATED":
-        errors.append("false_saturation_without_two_round_receipt")
-    if "ROUND_B_REQUIRED" not in saturation and saturation != "ABSORPTION_SATURATED":
-        errors.append("saturation_state_missing_round_b_requirement")
+        errors.append("false_saturation_without_cross_round_receipt")
+    if not saturation.startswith("ROUND_"):
+        errors.append("saturation_round_state_missing")
+    terminal = str(payload.get("terminal", ""))
+    if not terminal:
+        errors.append("terminal_missing")
     return tuple(errors)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "ledger",
-        nargs="?",
-        type=Path,
-        default=Path(__file__).with_name("P1_DONOR_ASSIMILATION_LEDGER_V1.json"),
-    )
+    parser.add_argument("ledger", type=Path)
     args = parser.parse_args()
     payload = json.loads(args.ledger.read_text())
     errors = validate_ledger(payload)
