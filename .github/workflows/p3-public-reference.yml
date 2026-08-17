@@ -31,7 +31,9 @@ jobs:
         run: python -m pip install --disable-pip-version-check -e '.[dev]'
 
       - name: Run isolated public-reference tests
-        run: make paper03-public-reference-tests
+        run: |
+          make paper03-public-reference-tests
+          PYTHONPATH=src python -m pytest -q tests/unit/study/test_p3_public_reference_freeze.py
 
       - name: Fetch pinned public authorities
         shell: bash
@@ -58,7 +60,7 @@ jobs:
         shell: bash
         run: |
           set +e
-          mkdir -p artifacts/build artifacts/evaluation
+          mkdir -p artifacts/build artifacts/frozen artifacts/replay artifacts/evaluation
           make paper03-public-reference-build \
             P3_MUSE_ROOT="$PWD/upstream/MUSE/dataset/human_Expert_annotations" \
             P3_SCIFACT_CLAIMS="$PWD/upstream/SciFact/data/claims_train.jsonl" \
@@ -69,18 +71,42 @@ jobs:
           echo "code=$code" >> "$GITHUB_OUTPUT"
           exit 0
 
+      - name: Freeze portable gold and replay
+        if: steps.build.outputs.code == '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          common=(
+            --cases "$PWD/artifacts/build/cases.jsonl"
+            --muse-root "$PWD/upstream/MUSE/dataset/human_Expert_annotations"
+            --scifact-claims "$PWD/upstream/SciFact/data/claims_train.jsonl"
+            --scischema-root "$PWD/upstream/SciSchema/schemas"
+          )
+          PYTHONPATH=src python -m orion.study.p3_public_reference_freeze "${common[@]}" --out "$PWD/artifacts/frozen"
+          PYTHONPATH=src python -m orion.study.p3_public_reference_freeze "${common[@]}" --out "$PWD/artifacts/replay"
+          cmp artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl artifacts/replay/PUBLIC_REFERENCE_GOLD_V1.jsonl
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a = json.loads(Path('artifacts/frozen/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json').read_text())
+          b = json.loads(Path('artifacts/replay/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json').read_text())
+          assert a['portable_cases_sha256'] == b['portable_cases_sha256']
+          assert a['status'] == 'PUBLIC_REFERENCE_GOLD_FROZEN'
+          print(json.dumps({'replay': 'PASS', 'portable_cases_sha256': a['portable_cases_sha256']}, indent=2))
+          PY
+
       - name: Evaluate deterministic mapping route
         if: steps.build.outputs.code == '0'
         run: |
           make paper03-public-reference \
-            P3_PUBLIC_CASES="$PWD/artifacts/build/cases.jsonl" \
+            P3_PUBLIC_CASES="$PWD/artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl" \
             P3_PUBLIC_EVAL_OUT="$PWD/artifacts/evaluation/summary.json"
 
       - name: Run publication analysis
         if: steps.build.outputs.code == '0'
         run: |
           make paper03-public-reference-analysis \
-            P3_PUBLIC_CASES="$PWD/artifacts/build/cases.jsonl" \
+            P3_PUBLIC_CASES="$PWD/artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl" \
             P3_PUBLIC_ANALYSIS_OUT="$PWD/artifacts/evaluation/analysis.json"
 
       - name: Record provenance and checksums
@@ -89,20 +115,25 @@ jobs:
         run: |
           mkdir -p artifacts
           {
-            echo "ORION_SHA=$(git rev-parse HEAD)"
+            echo "ORION_HEAD_SHA=${{ github.event.pull_request.head.sha || github.sha }}"
             echo "MUSE_SHA=f7a40317db46145d0c90b221311d8324db5da1b9"
             echo "SCISCHEMA_SHA=55b6197cdb0b66c3123df16d0b0c70b02c4bde8b"
             echo "SCIFACT_SHA=68b98a56d93e0f9da0d2aab4e6c3294699a0f72e"
             echo "BUILD_EXIT=${{ steps.build.outputs.code }}"
           } > artifacts/PROVENANCE.env
-          find artifacts -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > artifacts/SHA256SUMS || true
+          find artifacts -type f ! -path 'artifacts/replay/*' ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > artifacts/SHA256SUMS || true
 
       - name: Upload public-reference evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: p3-public-reference-${{ github.sha }}
-          path: artifacts/
+          path: |
+            artifacts/PROVENANCE.env
+            artifacts/SHA256SUMS
+            artifacts/build/BUILD_REPORT.json
+            artifacts/frozen/
+            artifacts/evaluation/
           if-no-files-found: error
           retention-days: 30
 
@@ -111,3 +142,5 @@ jobs:
         shell: bash
         run: |
           test "${{ steps.build.outputs.code }}" = "0"
+          test -s artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl
+          test -s artifacts/frozen/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json
