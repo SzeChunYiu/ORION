@@ -214,10 +214,25 @@ class DiscoveryWorld:
             missing = sorted(set(document.references) - known)
             if missing:
                 raise ValueError(f"{document.doc_id}: dangling references {missing}")
+        # Host-side lookup indexes, built once. Rebuilding these per call turned
+        # freezing the 78-topic world into a 22-second operation: `by_id` alone was
+        # reconstructing a 1230-entry dict inside a loop over every topic.
+        # `object.__setattr__` is how a frozen dataclass caches derived state.
+        object.__setattr__(self, "_by_id", {item.doc_id: item for item in self.documents})
+        postings: dict[tuple[str, str], list[str]] = {}
+        for document in self.documents:
+            for route_name, key in document.access_keys:
+                postings.setdefault((route_name, key), []).append(document.doc_id)
+        object.__setattr__(
+            self, "_postings", {key: tuple(sorted(value)) for key, value in postings.items()}
+        )
 
     @property
     def by_id(self) -> dict[str, Document]:
-        return {item.doc_id: item for item in self.documents}
+        """Host-internal document index. Systems never reach this — they get a
+        `PublicIndex` projection with the relevance rule stripped out."""
+
+        return self._by_id  # type: ignore[attr-defined,no-any-return]
 
     def topic(self, topic_id: str) -> Topic:
         for candidate in self.topics:
@@ -257,19 +272,14 @@ class DiscoveryWorld:
         retrieval system rather than of route governance.
         """
 
+        index = self.by_id
         if route is DiscoveryRoute.CITATION:
-            reachable = set(self.citation_reachable(probe))
             return tuple(
-                sorted(
-                    (item for item in self.documents if item.doc_id in reachable),
-                    key=lambda item: item.doc_id,
-                )
+                index[item] for item in self.citation_reachable(probe) if item in index
             )
         return tuple(
-            sorted(
-                (item for item in self.documents if probe in item.keys_for(route)),
-                key=lambda item: item.doc_id,
-            )
+            index[item]
+            for item in self._postings.get((route.value, probe), ())  # type: ignore[attr-defined]
         )
 
     def probes_for(self, route: DiscoveryRoute) -> tuple[str, ...]:
@@ -279,10 +289,13 @@ class DiscoveryWorld:
             return tuple(
                 sorted({item.doc_id for item in self.documents if item.references})
             )
-        keys: set[str] = set()
-        for document in self.documents:
-            keys.update(document.keys_for(route))
-        return tuple(sorted(keys))
+        return tuple(
+            sorted(
+                key
+                for (route_name, key) in self._postings  # type: ignore[attr-defined]
+                if route_name == route.value
+            )
+        )
 
     def as_json(self) -> dict[str, Any]:
         return {
@@ -308,6 +321,53 @@ class DiscoveryWorld:
 
 
 @dataclass(frozen=True)
+class _Stem:
+    """One half of a composed topic: a tag plus three token-disjoint vocabularies."""
+
+    tag: str
+    lexical: str
+    semantic: str
+    reformulation: str
+
+
+# Topics are composed from a method stem and a domain stem rather than authored
+# one by one. The statistical plan commits `offline_complete_gold` to N >= 385
+# tasks, and 78 hand-written topics would be 78 chances to introduce a vocabulary
+# collision by hand. Composition makes the invariants checkable instead: every
+# topic's rule is a two-tag conjunction, so a document carrying one method tag and
+# one domain tag satisfies exactly one topic, and the completeness checker
+# verifies that over the whole corpus for every topic.
+#
+# Lexical and semantic vocabularies are globally token-disjoint. That is what
+# makes paraphrase-only reachability real: no amount of lexical budget reaches a
+# work whose only access key shares no token with the lexical key.
+_METHODS: tuple[_Stem, ...] = (
+    _Stem("capture_recapture", "capture recapture", "mark release resight", "abundance estimator"),
+    _Stem("sequential_stopping", "sequential stopping", "halting criterion", "sample size reestimation"),
+    _Stem("query_diversification", "query diversification", "probe spreading", "novelty maximisation"),
+    _Stem("measurement_invariance", "measurement invariance", "scalar equivalence", "differential item functioning"),
+    _Stem("active_screening", "active screening", "adaptive triage", "prioritised assessment"),
+    _Stem("information_foraging", "information foraging", "patch residence", "scent following"),
+    _Stem("federated_search", "federated search", "distributed broker", "cross provider merge"),
+    _Stem("citation_snowballing", "citation snowballing", "reference chaining", "backward forward tracing"),
+    _Stem("duplicate_detection", "duplicate detection", "near identical matching", "record linkage"),
+    _Stem("relevance_feedback", "relevance feedback", "iterative refinement", "pseudo expansion"),
+    _Stem("coverage_estimation", "coverage estimation", "unseen mass inference", "richness extrapolation"),
+    _Stem("protocol_registration", "protocol registration", "prespecified declaration", "amendment tracking"),
+    _Stem("provenance_tracking", "provenance tracking", "lineage recording", "audit trail"),
+)
+
+_DOMAINS: tuple[_Stem, ...] = (
+    _Stem("clinical_trials", "clinical trials", "therapeutic studies", "randomised medicine"),
+    _Stem("materials_science", "materials science", "condensed matter", "alloy discovery"),
+    _Stem("ecology_surveys", "ecology surveys", "field census", "habitat sampling"),
+    _Stem("software_engineering", "software engineering", "program construction", "build practice"),
+    _Stem("astronomy_catalogues", "astronomy catalogues", "sky inventories", "transient archives"),
+    _Stem("education_assessment", "education assessment", "learner appraisal", "classroom testing"),
+)
+
+
+@dataclass(frozen=True)
 class _TopicPlan:
     topic_id: str
     label: str
@@ -319,48 +379,29 @@ class _TopicPlan:
     partial_concept: str
 
 
-_TOPIC_PLANS: tuple[_TopicPlan, ...] = (
-    _TopicPlan(
-        "topic-measurement-invariance",
-        "Measurement invariance of latent trait instruments",
-        ("latent_trait", "measurement_invariance"),
-        "measurement invariance latent trait",
-        "scalar equivalence across respondent groups",
-        "differential item functioning",
-        "restricted archive: psychometric invariance",
-        "latent_trait",
-    ),
-    _TopicPlan(
-        "topic-capture-recapture",
-        "Capture-recapture coverage estimation for literature search",
-        ("capture_recapture", "coverage_estimation"),
-        "capture recapture coverage estimation",
-        "mark release resight abundance inference",
-        "unseen species richness estimator",
-        "restricted archive: population size estimation",
-        "coverage_estimation",
-    ),
-    _TopicPlan(
-        "topic-sequential-stopping",
-        "Sequential stopping rules in screening workflows",
-        ("sequential_stopping", "screening_recall"),
-        "sequential stopping screening recall",
-        "when to halt reviewing candidate records",
-        "sample size re-estimation for reviews",
-        "restricted archive: stopping criteria",
-        "screening_recall",
-    ),
-    _TopicPlan(
-        "topic-query-diversification",
-        "Query diversification across federated search backends",
-        ("query_diversification", "federated_search"),
-        "query diversification federated search",
-        "spreading probes over heterogeneous providers",
-        "result set novelty maximization",
-        "restricted archive: distributed retrieval",
-        "federated_search",
-    ),
-)
+def _topic_plans() -> tuple[_TopicPlan, ...]:
+    plans: list[_TopicPlan] = []
+    for method in _METHODS:
+        for domain in _DOMAINS:
+            slug = f"{method.tag}-{domain.tag}".replace("_", "-")
+            plans.append(
+                _TopicPlan(
+                    topic_id=f"topic-{slug}",
+                    label=f"{method.lexical.title()} in {domain.lexical}",
+                    required_concepts=(method.tag, domain.tag),
+                    lexical_key=f"{method.lexical} {domain.lexical}",
+                    semantic_key=f"{method.semantic} {domain.semantic}",
+                    reformulation_key=f"{method.reformulation} {domain.reformulation}",
+                    restricted_key=f"restricted archive: {method.lexical} {domain.lexical}",
+                    # A distractor carries one required tag and never both, so the
+                    # two-tag rule excludes it while a lexical route still returns it.
+                    partial_concept=method.tag,
+                )
+            )
+    return tuple(plans)
+
+
+_TOPIC_PLANS: tuple[_TopicPlan, ...] = _topic_plans()
 
 _VENUES = (
     "Journal of Measurement Science",
@@ -564,7 +605,7 @@ def _filler_documents(count: int, rng: random.Random) -> list[Document]:
     return documents
 
 
-def build_world(seed: int, *, filler_documents: int = 40) -> DiscoveryWorld:
+def build_world(seed: int, *, filler_documents: int = 60) -> DiscoveryWorld:
     """Generate the controlled index deterministically from a seed.
 
     Determinism is load-bearing: the committed frozen suite is only meaningful if

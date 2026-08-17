@@ -1,16 +1,24 @@
-"""Budget-enforcing executor for the ORION-P2 offline discovery study.
+"""Cap-enforcing executor for the ORION-P2 offline discovery study.
 
 The session is the whole enforcement story. It hands out the only access a
-system has to the world, meters every call against the task's frozen budget,
-records what happened as it happens, and stays closed once a budget dimension is
-spent. A system that catches `BudgetExhausted` and keeps going gains nothing: the
-next call raises again. Enforcement is a property of the harness rather than a
-courtesy the candidate extends.
+system has to the world, meters every call against the frozen matched caps,
+records what happened as it happens, and stays closed once a cap is reached. A
+system that catches `CapReached` and keeps going gains nothing: the next call
+raises again. Spend is charged against counters that only increment, never
+against the length of a log the candidate could clear, and `gold` audits the
+recorded run against the caps afterwards — the guarantee that survives Python
+having no hard private attribute.
 
-Failures are outcomes. A budget-exhausted run, a crashed system, a timeout and an
-abstention all produce records; none are dropped. `ANALYSIS_STANDARD_V1` is
-explicit that candidate-caused failures stay in the denominator, and a harness
-that quietly retries or discards them would make every rate it reports optimistic.
+Failures are outcomes. `matched_budget_policy.cap_hit_rule` is explicit that a
+capped run is RETAINED and scored as-is with `failure_class TRUNCATED_AT_CAP`,
+and `exclusion_policy.retained_always` keeps candidate errors, timeouts,
+abstentions, transport failures and cannot-check outcomes in the denominator.
+Discarding a truncated run is forbidden.
+
+Read encounters use ORION's own `decide_read`: oracle O3 names
+`src/orion/knowledge/identity.py` as the mechanism source, so the metric is
+defined as that function's output and reimplementing it would compute a
+different quantity.
 """
 
 from __future__ import annotations
@@ -22,7 +30,14 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from .cases import DiscoveryTask, PROTOCOL_TASK_FAMILY
+from orion.knowledge.identity import (
+    ReadReceipt,
+    SourceIdentity,
+    decide_read,
+    merge_identities,
+)
+
+from .cases import PROTOCOL_TASK_FAMILY, Budget, DiscoveryTask
 from .corpus import (
     ROUTE_SPEC_BY_ROUTE,
     DiscoveryRoute,
@@ -30,15 +45,16 @@ from .corpus import (
     Document,
     sha256_digest,
 )
-from .gold import EvaluationInputs, evaluate
+from .gold import EvaluationInputs, evaluate, evaluator_hash
 from .systems import (
-    ReadClassification,
-    ReadEvent,
+    OBLIGATION_STATUSES,
+    Capture,
+    ReadEncounter,
     ReadOutcome,
     ResourceUse,
     RetrievedRecord,
-    RouteEvent,
     RouteOutcome,
+    RouteTrial,
     StopDecision,
     StopScope,
     SystemReport,
@@ -52,12 +68,12 @@ P2_PROTOCOL_ID = "P2.open-world-discovery.v1"
 _HEX = set("0123456789abcdef")
 
 
-class BudgetExhausted(RuntimeError):
-    """Raised when an action would exceed a frozen budget dimension."""
+class CapReached(RuntimeError):
+    """Raised when an action would exceed a frozen matched cap."""
 
-    def __init__(self, dimension: str) -> None:
-        super().__init__(f"budget exhausted: {dimension}")
-        self.dimension = dimension
+    def __init__(self, resource: str) -> None:
+        super().__init__(f"cap reached: {resource}")
+        self.resource = resource
 
 
 def _as_record(document: Document) -> RetrievedRecord:
@@ -81,6 +97,25 @@ def _as_record(document: Document) -> RetrievedRecord:
     )
 
 
+def merged_source_ids(identities: Iterable[str]) -> dict[str, str]:
+    """Map each content identity to its post-`merge_identities` primary key.
+
+    B4 forbids raw retrieval ids. The world already keys works by content
+    identity, but running the repository's own merge over them is what makes the
+    emitted key the *same object* the rest of ORION means by a source — and a
+    test asserts the two groupings agree, so a divergence fails loudly rather
+    than silently shifting every oracle id.
+    """
+
+    ordered = tuple(sorted(set(identities)))
+    merged = merge_identities(tuple(SourceIdentity(source_id=item) for item in ordered))
+    mapping: dict[str, str] = {}
+    for identity in merged:
+        for key in sorted(identity.keys):
+            mapping[key] = identity.source_id
+    return {item: mapping.get(item, item) for item in ordered}
+
+
 @dataclass(frozen=True)
 class PublicIndex:
     """The world as a system may encounter it: records and reachability, no labels.
@@ -94,10 +129,15 @@ class PublicIndex:
 
     records: tuple[tuple[str, RetrievedRecord], ...]
     postings: tuple[tuple[str, str, tuple[str, ...]], ...]
+    merged: tuple[tuple[str, str], ...]
 
     @property
     def by_id(self) -> dict[str, RetrievedRecord]:
         return dict(self.records)
+
+    @property
+    def merged_of(self) -> dict[str, str]:
+        return dict(self.merged)
 
     def lookup(self, route: str, probe: str) -> tuple[RetrievedRecord, ...]:
         by_id = self.by_id
@@ -120,7 +160,12 @@ def build_public_index(world: DiscoveryWorld) -> PublicIndex:
             doc_ids = tuple(item.doc_id for item in world.lookup(route, probe))
             if doc_ids:
                 postings.append((route.value, probe, doc_ids))
-    return PublicIndex(records=records, postings=tuple(sorted(postings)))
+    mapping = merged_source_ids(item.content_identity for item in world.documents)
+    return PublicIndex(
+        records=records,
+        postings=tuple(sorted(postings)),
+        merged=tuple(sorted(mapping.items())),
+    )
 
 
 @dataclass(frozen=True)
@@ -129,8 +174,9 @@ class SessionConfig:
 
     task_id: str
     availability: tuple[Any, ...]
-    budget: Any
+    budget: Budget
     extraction_questions: tuple[str, ...]
+    extraction_schemas: tuple[str, ...]
     extraction_shift_after_reads: int | None
 
     @classmethod
@@ -140,6 +186,7 @@ class SessionConfig:
             availability=task.availability,
             budget=task.budget,
             extraction_questions=task.extraction_questions,
+            extraction_schemas=task.extraction_schemas,
             extraction_shift_after_reads=task.extraction_shift_after_reads,
         )
 
@@ -165,58 +212,64 @@ class BudgetedSession:
         self._clock = clock
         self._started = clock()
         self._sequence = 0
-        self._route_calls: dict[str, int] = {}
-        self._route_events: list[RouteEvent] = []
-        self._read_events: list[ReadEvent] = []
+        self._route_attempts: dict[str, int] = {}
+        self._zero_novelty: dict[str, int] = {}
+        self._route_trials: list[RouteTrial] = []
+        self._encounters: list[ReadEncounter] = []
         self._stop_decisions: list[StopDecision] = []
         self._seen_identities: set[str] = set()
         self._retrieved_doc_ids: set[str] = set()
-        self._read_keys: set[tuple[str, str, str]] = set()
-        self._read_identity_digests: set[tuple[str, str]] = set()
-        # Spend is charged against monotone counters that only ever increment,
-        # never against `len(self._route_events)`. The event log is an ordinary
-        # list, so charging against its length let a system clear the log and
-        # keep querying forever — the budget was enforced against a number the
-        # candidate could edit. These are name-mangled, which is obfuscation and
-        # not a boundary; the guarantee is the post-run overrun check in
-        # `gold._status_and_failure`, which compares the recorded event count
-        # against the frozen budget and voids any run that exceeded it.
-        self.__route_calls_made = 0
+        self._receipts: list[ReadReceipt] = []
+        self._open_obligations: dict[str, str] = {}
+        self._resolved_obligations: set[str] = set()
+        # Spend is charged against counters that only ever increment, never
+        # against the length of a log a candidate could clear.
+        self.__queries_made = 0
         self.__reads_made = 0
         self.__model_tokens = 0
         self.__tool_calls = 0
-        self.__exhausted = ""
+        self.__capped = ""
 
     # -- state a system may observe -------------------------------------
 
     @property
-    def current_extraction_question(self) -> str:
-        """The active frame, advanced by the host after the frozen number of reads."""
-
+    def _stage(self) -> int:
         shift = self._task.extraction_shift_after_reads
+        if shift is None:
+            return 0
+        return len(self._receipts) // shift
+
+    @property
+    def current_extraction_question(self) -> str:
         questions = self._task.extraction_questions
-        if shift is None or len(questions) < 2:
-            return questions[0]
-        stage = min(len(self._read_events) // shift, len(questions) - 1)
-        return questions[stage]
+        return questions[min(self._stage, len(questions) - 1)]
+
+    @property
+    def current_extraction_schema(self) -> str:
+        schemas = self._task.extraction_schemas
+        return schemas[min(self._stage, len(schemas) - 1)]
 
     # -- host-side accessors (never exposed through the Protocol) --------
 
     @property
-    def route_events(self) -> tuple[RouteEvent, ...]:
-        return tuple(self._route_events)
+    def route_trials(self) -> tuple[RouteTrial, ...]:
+        return tuple(self._route_trials)
 
     @property
-    def read_events(self) -> tuple[ReadEvent, ...]:
-        return tuple(self._read_events)
+    def read_encounters(self) -> tuple[ReadEncounter, ...]:
+        return tuple(self._encounters)
 
     @property
     def stop_decisions(self) -> tuple[StopDecision, ...]:
         return tuple(self._stop_decisions)
 
     @property
-    def exhausted_dimension(self) -> str:
-        return self.__exhausted
+    def capped_resource(self) -> str:
+        return self.__capped
+
+    @property
+    def unresolved_obligation_ids(self) -> tuple[str, ...]:
+        return tuple(sorted(self._open_obligations))
 
     @property
     def resources(self) -> ResourceUse:
@@ -224,27 +277,27 @@ class BudgetedSession:
             wallclock_seconds=max(0.0, self._clock() - self._started),
             model_tokens=self.__model_tokens,
             tool_calls=self.__tool_calls,
-            search_queries=self.__route_calls_made,
+            query_count=self.__queries_made,
             reads=self.__reads_made,
         )
 
     # -- enforcement ----------------------------------------------------
 
-    def _charge(self, dimension: str, current: int | float, ceiling: int | float) -> None:
-        """Refuse the action, and stay refusing. Exhaustion is terminal by design."""
+    def _charge(self, resource: str, current: int | float, ceiling: int | float) -> None:
+        """Refuse the action, and stay refusing. A reached cap is terminal."""
 
-        if self.__exhausted:
-            raise BudgetExhausted(self.__exhausted)
+        if self.__capped:
+            raise CapReached(self.__capped)
         elapsed = self._clock() - self._started
-        if elapsed > self._task.budget.max_wallclock_seconds:
-            self.__exhausted = "wallclock_seconds"
-            raise BudgetExhausted(self.__exhausted)
+        if elapsed > self._task.budget.wallclock_seconds:
+            self.__capped = "wallclock_seconds"
+            raise CapReached(self.__capped)
         if current >= ceiling:
-            self.__exhausted = dimension
-            raise BudgetExhausted(dimension)
+            self.__capped = resource
+            raise CapReached(resource)
 
     def _next_index(self) -> int:
-        """Monotone position in the run timeline. Stop audits replay against it."""
+        """Monotone position in the run timeline. Oracles replay against it."""
 
         self._sequence += 1
         return self._sequence
@@ -252,155 +305,236 @@ class BudgetedSession:
     # -- the system-facing surface --------------------------------------
 
     def query(self, route: str, probe: str) -> RouteOutcome:
-        self._charge("route_calls", self.__route_calls_made, self._task.budget.max_route_calls)
-        self.__route_calls_made += 1
+        self._charge("query_count", self.__queries_made, self._task.budget.query_count)
+        self.__queries_made += 1
         try:
             kind = DiscoveryRoute(route)
         except ValueError:
-            return self._record_route(route, probe, TransportStatus.ERROR, (), "unknown_route")
+            return self._record_trial(route, probe, TransportStatus.ERROR, (), "unknown_route", admissible=False)
 
-        used = self._route_calls.get(route, 0)
-        self._route_calls[route] = used + 1
+        used = self._route_attempts.get(route, 0)
         availability = self._task.availability_for(kind)
 
         if availability is not None and availability.goes_unavailable_after_calls is not None:
             if used >= availability.goes_unavailable_after_calls:
-                # A dead provider censors what it held. It does not report that
-                # nothing is there, and the harness must not let it look that way.
-                return self._record_route(route, probe, TransportStatus.UNAVAILABLE, (), "provider_down")
+                # A dead provider censors what it held. Under O4 this opens an
+                # obligation; it does not report that nothing is there.
+                return self._record_trial(route, probe, TransportStatus.UNAVAILABLE, (), "provider_down")
 
         if kind is DiscoveryRoute.CITATION and probe not in self._retrieved_doc_ids:
-            # Snowballing means chaining from something you actually hold.
-            return self._record_route(route, probe, TransportStatus.ERROR, (), "citation_seed_not_retrieved")
+            # An inadmissible probe is not a transport failure, so it must not
+            # open an unavailability obligation — that would let a system
+            # manufacture CANNOT_CHECK outcomes by chaining from nothing.
+            return self._record_trial(
+                route, probe, TransportStatus.ERROR, (), "citation_seed_not_retrieved", admissible=False
+            )
 
         documents = self._index.lookup(route, probe)
 
         if availability is not None and availability.goes_flat_after_calls is not None:
             if used >= availability.goes_flat_after_calls:
                 # Exhaustion: the route answers, and has nothing new to say.
-                return self._record_route(route, probe, TransportStatus.OK, (), "route_flat")
+                return self._record_trial(route, probe, TransportStatus.OK, (), "route_flat")
 
-        return self._record_route(route, probe, TransportStatus.OK, documents, "")
+        return self._record_trial(route, probe, TransportStatus.OK, documents, "")
 
-    def _record_route(
+    def _record_trial(
         self,
         route: str,
         probe: str,
         status: TransportStatus,
         documents: tuple[RetrievedRecord, ...],
         note: str,
+        *,
+        admissible: bool = True,
     ) -> RouteOutcome:
-        identities = tuple(sorted({item.content_identity for item in documents}))
+        attempt_index = self._route_attempts.get(route, 0)
+        self._route_attempts[route] = attempt_index + 1
+        merged_of = self._index.merged_of
+
+        captures = tuple(
+            Capture(
+                merged_source_id=merged_of.get(item.content_identity, item.content_identity),
+                content_digest=item.content_digest,
+                doc_id=item.doc_id,
+            )
+            for item in sorted(documents, key=lambda record: record.doc_id)
+        )
+        identities = tuple(sorted({item.merged_source_id for item in captures}))
         novel = tuple(sorted(set(identities) - self._seen_identities))
+
+        spec = ROUTE_SPEC_BY_ROUTE.get(
+            DiscoveryRoute(route) if route in {item.value for item in DiscoveryRoute} else DiscoveryRoute.LEXICAL
+        )
+        derivation = spec.query_derivation_identity if spec else "unknown"
+        backend = spec.backend_identity if spec else "unknown"
+
+        # O4 obligations. A non-OK transport opens one; a later successful trial
+        # on the same route and query derivation resolves it.
+        opened = ""
+        obligation_key = f"{route}:{derivation}"
+        if status.value in OBLIGATION_STATUSES and admissible:
+            opened = f"{obligation_key}@{attempt_index}"
+            self._open_obligations[opened] = obligation_key
+        elif status is TransportStatus.OK:
+            for identifier, key in sorted(self._open_obligations.items()):
+                if key == obligation_key:
+                    self._resolved_obligations.add(identifier)
+            self._open_obligations = {
+                identifier: key
+                for identifier, key in self._open_obligations.items()
+                if key != obligation_key
+            }
+
+        # B3, in the currency of FrozenRouteControlPolicy: consecutive attempts
+        # that succeeded at transport and returned nothing new. Read *before* this
+        # attempt updates it, which is what the binding asks for.
+        before = self._zero_novelty.get(route, 0)
+        if status is TransportStatus.OK and admissible:
+            self._zero_novelty[route] = 0 if novel else before + 1
+        elif status is not TransportStatus.OK:
+            # A failed or unavailable trial is not evidence of flatness.
+            self._zero_novelty[route] = before
+
         self._seen_identities.update(identities)
-        self._retrieved_doc_ids.update(item.doc_id for item in documents)
-        spec = ROUTE_SPEC_BY_ROUTE.get(DiscoveryRoute(route)) if route in {
-            item.value for item in DiscoveryRoute
-        } else None
-        self._route_events.append(
-            RouteEvent(
+        self._retrieved_doc_ids.update(item.doc_id for item in captures)
+
+        self._route_trials.append(
+            RouteTrial(
                 index=self._next_index(),
-                route=route,
+                route_id=route,
+                attempt_index=attempt_index,
                 probe=probe,
-                backend_identity=spec.backend_identity if spec else "unknown",
-                query_derivation_identity=spec.query_derivation_identity if spec else "unknown",
-                status=status.value,
-                retrieved_doc_ids=tuple(sorted(item.doc_id for item in documents)),
-                retrieved_content_identities=identities,
-                novel_content_identities=novel,
+                backend_identity=backend,
+                query_derivation_identity=derivation,
+                transport_status=status.value,
+                consecutive_zero_novelty_before=before,
+                captures=captures,
+                novel_merged_source_ids=novel,
+                open_obligation_ids=tuple(sorted(self._open_obligations)),
+                opened_obligation_id=opened,
+                probe_admissible=admissible,
                 note=note,
             )
         )
-        return RouteOutcome(
-            route=route,
-            probe=probe,
-            status=status,
-            records=documents,
-            note=note,
+        # Every presentation is a read encounter, whether or not a read follows.
+        for record in sorted(documents, key=lambda item: item.doc_id):
+            self._record_encounter(record, executed=False)
+        return RouteOutcome(route=route, probe=probe, status=status, records=documents, note=note)
+
+    def _record_encounter(self, record: RetrievedRecord, *, executed: bool) -> ReadEncounter:
+        merged = self._index.merged_of.get(record.content_identity, record.content_identity)
+        question = self.current_extraction_question
+        schema = self.current_extraction_schema
+        decision = decide_read(
+            merged, record.content_digest, schema, question, tuple(self._receipts)
         )
+        encounter = ReadEncounter(
+            index=self._next_index(),
+            merged_source_id=merged,
+            content_digest=record.content_digest,
+            schema_version=schema,
+            frame_id=question,
+            decision_before_execution=decision.value,
+            executed=executed,
+            doc_id=record.doc_id,
+        )
+        self._encounters.append(encounter)
+        return encounter
 
     def read(self, doc_id: str) -> ReadOutcome:
-        self._charge("reads", self.__reads_made, self._task.budget.max_reads)
+        self._charge("tool_calls", self.__tool_calls, self._task.budget.tool_calls)
         if doc_id not in self._retrieved_doc_ids:
             raise ValueError(f"{doc_id} has not been retrieved by any route")
-        self.__reads_made += 1
-        document = self._index.by_id[doc_id]
+        record = self._index.by_id[doc_id]
+        merged = self._index.merged_of.get(record.content_identity, record.content_identity)
         question = self.current_extraction_question
-        classification = self._classify_read(document, question)
-        self._read_keys.add((document.content_identity, document.content_digest, question))
-        self._read_identity_digests.add((document.content_identity, document.content_digest))
-        self._read_events.append(
-            ReadEvent(
-                index=self._next_index(),
-                doc_id=doc_id,
-                content_identity=document.content_identity,
-                content_digest=document.content_digest,
-                extraction_question=question,
-                classification=classification.value,
+        schema = self.current_extraction_schema
+        decision = decide_read(
+            merged, record.content_digest, schema, question, tuple(self._receipts)
+        )
+
+        # Mark the most recent matching unexecuted presentation as executed. If
+        # the frame or schema moved since the document was presented, no
+        # presentation matches — reading it now is a genuinely different
+        # encounter, so it gets its own record rather than back-dating an old one.
+        matched = False
+        for position in range(len(self._encounters) - 1, -1, -1):
+            candidate = self._encounters[position]
+            if candidate.executed:
+                continue
+            if (
+                candidate.merged_source_id == merged
+                and candidate.content_digest == record.content_digest
+                and candidate.schema_version == schema
+                and candidate.frame_id == question
+            ):
+                self._encounters[position] = ReadEncounter(
+                    index=candidate.index,
+                    merged_source_id=candidate.merged_source_id,
+                    content_digest=candidate.content_digest,
+                    schema_version=candidate.schema_version,
+                    frame_id=candidate.frame_id,
+                    decision_before_execution=candidate.decision_before_execution,
+                    executed=True,
+                    doc_id=candidate.doc_id,
+                )
+                matched = True
+                break
+        if not matched:
+            self._record_encounter(record, executed=True)
+
+        self.__reads_made += 1
+        self.__tool_calls += 1
+        self._receipts.append(
+            ReadReceipt(
+                source_id=merged,
+                content_digest=record.content_digest,
+                schema_version=schema,
+                frame_id=question,
             )
         )
         return ReadOutcome(
             doc_id=doc_id,
-            content_identity=document.content_identity,
-            content_digest=document.content_digest,
+            merged_source_id=merged,
+            content_digest=record.content_digest,
             extraction_question=question,
-            classification=classification,
-            text=f"{document.title}\n\n{document.abstract}",
+            extraction_schema=schema,
+            decision=decision.value,
+            text=f"{record.title}\n\n{record.abstract}",
         )
-
-    def _classify_read(self, document: RetrievedRecord, question: str) -> ReadClassification:
-        """Classify independently of the subsystem under test.
-
-        Mirrors `decide_read`'s precedence — content before frame — but is
-        computed here, because an evaluator that scored reads by calling the
-        module being evaluated would bury that module's bugs inside its own
-        verdict.
-        """
-
-        key = (document.content_identity, document.content_digest, question)
-        if key in self._read_keys:
-            return ReadClassification.DUPLICATE
-        identity_seen = any(
-            identity == document.content_identity
-            for identity, _ in self._read_identity_digests
-        )
-        if not identity_seen:
-            return ReadClassification.FIRST_READ
-        if (document.content_identity, document.content_digest) not in self._read_identity_digests:
-            return ReadClassification.REVISION_REREAD
-        return ReadClassification.NEW_QUESTION_REREAD
 
     def declare_route_stop(self, route: str, reason: str) -> None:
         self._stop_decisions.append(
             StopDecision(
                 index=self._next_index(),
                 scope=StopScope.ROUTE.value,
-                route=route,
+                route_id=route,
+                attempt_index=max(0, self._route_attempts.get(route, 0) - 1),
                 reason=reason,
-                claimed_complete=False,
+                declared=True,
             )
         )
 
     def spend(self, *, model_tokens: int = 0, tool_calls: int = 0) -> None:
         self._charge(
-            "model_tokens", self.__model_tokens + model_tokens, self._task.budget.max_model_tokens
+            "model_tokens", self.__model_tokens + model_tokens, self._task.budget.model_tokens
         )
-        self._charge(
-            "tool_calls", self.__tool_calls + tool_calls, self._task.budget.max_tool_calls
-        )
+        self._charge("tool_calls", self.__tool_calls + tool_calls, self._task.budget.tool_calls)
         self.__model_tokens += max(0, model_tokens)
         self.__tool_calls += max(0, tool_calls)
 
-    def record_task_stop(self, *, reason: str, claimed_complete: bool) -> None:
-        """Host-invoked at the end of a run so task closure carries a timeline position."""
+    def record_task_stop(self, *, reason: str, declared: bool) -> None:
+        """Host-invoked at the end of a run so closure carries a timeline position."""
 
         self._stop_decisions.append(
             StopDecision(
                 index=self._next_index(),
                 scope=StopScope.TASK.value,
-                route="",
+                route_id="",
+                attempt_index=-1,
                 reason=reason,
-                claimed_complete=claimed_complete,
+                declared=declared,
             )
         )
 
@@ -425,57 +559,86 @@ def execute(
     *,
     seed: int,
     run_manifest_hash: str,
+    repeat_index: int = 0,
+    caps: Budget | None = None,
     clock: Callable[[], float] = time.monotonic,
 ) -> RunOutcome:
     """Run one system on one task once, and normalize the outcome.
 
     `run_manifest_hash` is supplied by the caller rather than minted here. A run
     manifest binds a subject revision, provider revisions and evaluator hash; none
-    of those exist while the world is outcome-blind and no system is configured,
-    and manufacturing one would be asserting bindings that were never made.
+    of those exist while the world is outcome-blind, and manufacturing one would
+    assert bindings that were never made.
+
+    `caps` likewise overrides the suite's reference budget, because the plan makes
+    caps a property of the run manifest derived from a pilot, not a property of
+    the corpus. The frozen reference cap exists so the world's difficulty is a
+    checkable property before any pilot has been run.
     """
 
     if len(run_manifest_hash) != 64 or not set(run_manifest_hash) <= _HEX:
         raise ValueError("run_manifest_hash must be a lowercase SHA-256 hex digest")
 
-    session = BudgetedSession(
-        build_public_index(world), SessionConfig.from_task(task), clock=clock
-    )
+    config = SessionConfig.from_task(task)
+    if caps is not None:
+        config = SessionConfig(
+            task_id=config.task_id,
+            availability=config.availability,
+            budget=caps,
+            extraction_questions=config.extraction_questions,
+            extraction_schemas=config.extraction_schemas,
+            extraction_shift_after_reads=config.extraction_shift_after_reads,
+        )
+
+    session = BudgetedSession(build_public_index(world), config, clock=clock)
     error_class = ""
     try:
         report = system.run(task.public_view, session, seed=seed)
-    except BudgetExhausted:
-        report = SystemReport(notes="run terminated by budget enforcement")
+    except CapReached:
+        report = SystemReport(notes="run truncated at a matched cap")
     except Exception as exc:  # noqa: BLE001 - a crashing candidate is an outcome
         error_class = type(exc).__name__
         report = SystemReport(notes=f"candidate raised {error_class}")
 
+    truncated = session.capped_resource
+    # cap_hit_rule: a truncated task did not declare closure. Recording it as a
+    # closure would let truncation be scored as safe stopping.
+    declared = report.task_closed_as_complete and not truncated
     session.record_task_stop(
-        reason="run_complete" if not error_class else "candidate_error",
-        claimed_complete=report.task_closed_as_complete,
+        reason="declared_closure"
+        if declared
+        else ("truncated_at_cap" if truncated else ("candidate_error" if error_class else "run_ended")),
+        declared=declared,
     )
 
     trace = SystemTrace(
         task_id=task.task_id,
         system_id=system.system_id,
         seed=seed,
+        repeat_index=repeat_index,
         report=report,
-        route_events=session.route_events,
-        read_events=session.read_events,
+        route_trials=session.route_trials,
+        read_encounters=session.read_encounters,
         stop_decisions=session.stop_decisions,
         resources=session.resources,
-        budget_exhausted=session.exhausted_dimension,
+        truncated_at_cap=truncated,
         error_class=error_class,
+        unresolved_obligation_ids=session.unresolved_obligation_ids,
     )
 
-    evaluation = evaluate(EvaluationInputs(world=world, task=task, trace=trace))
+    evaluation = evaluate(EvaluationInputs(world=world, task=task, trace=trace, caps=config.budget))
     artifact = {
-        "schema_version": "orion.p2.run-artifact.v1",
+        "schema_version": "orion.p2.run-artifact.v2",
         "task_id": task.task_id,
         "case_family": task.case_family.value,
         "system_id": system.system_id,
         "seed": seed,
+        "repeat_index": repeat_index,
         "trace": trace.as_json(),
+        "route_trials": [item.as_json() for item in trace.route_trials],
+        "read_encounters": [item.as_json() for item in trace.read_encounters],
+        "task_closure": trace.task_closure,
+        "oracle": evaluation.oracle_block(),
         "evaluation": evaluation.as_json(),
     }
     record = {
@@ -483,7 +646,7 @@ def execute(
         "paper_id": "P2",
         "protocol_id": P2_PROTOCOL_ID,
         "run_manifest_hash": run_manifest_hash,
-        "result_id": f"{system.system_id}:{task.task_id}:{seed}",
+        "result_id": f"{system.system_id}:{task.task_id}:{repeat_index}:{seed}",
         "system_id": system.system_id,
         "task_id": task.task_id,
         "task_family": PROTOCOL_TASK_FAMILY,
@@ -494,11 +657,19 @@ def execute(
             "wallclock_seconds": trace.resources.wallclock_seconds,
             "model_tokens": float(trace.resources.model_tokens),
             "tool_calls": float(trace.resources.tool_calls),
-            "search_queries": float(trace.resources.search_queries),
+            "query_count": float(trace.resources.query_count),
         },
         "failure_class": evaluation.failure_class,
         "raw_artifact_hash": sha256_digest(artifact),
         "authority_flags": evaluation.authority_flags(),
+        "contamination": {
+            # B13. A synthetic offline world has no search-time contamination
+            # surface: nothing is fetched, so no benchmark answer can leak in.
+            "evaluator_hash": evaluator_hash(),
+            "contamination_flagged": False,
+            "contamination_evidence": "offline synthetic world; no external retrieval performed",
+        },
+        "repeat_index": repeat_index,
         "notes": task.case_family.value,
     }
     return RunOutcome(record=record, artifact=artifact, trace=trace)
@@ -511,20 +682,23 @@ def run_suite(
     *,
     seeds: tuple[int, ...],
     run_manifest_hash: str,
+    caps: Budget | None = None,
     clock: Callable[[], float] = time.monotonic,
 ) -> Iterator[RunOutcome]:
-    """Every task, every seed, in a fixed order. Repeats are nested, never pooled."""
+    """Every task, every repeat, in a fixed order. Repeats nest, never pool."""
 
     if not seeds:
         raise ValueError("at least one seed is required")
     for task in sorted(tasks, key=lambda item: item.task_id):
-        for seed in seeds:
+        for repeat_index, seed in enumerate(seeds):
             yield execute(
                 system,
                 world,
                 task,
                 seed=seed,
+                repeat_index=repeat_index,
                 run_manifest_hash=run_manifest_hash,
+                caps=caps,
                 clock=clock,
             )
 
@@ -557,8 +731,8 @@ def write_artifacts(outcomes: Iterable[RunOutcome], root: Path) -> tuple[Path, .
 
 
 __all__ = [
-    "BudgetExhausted",
     "BudgetedSession",
+    "CapReached",
     "P2_PROTOCOL_ID",
     "PublicIndex",
     "RESULT_RECORD_SCHEMA_VERSION",
@@ -566,6 +740,7 @@ __all__ = [
     "SessionConfig",
     "build_public_index",
     "execute",
+    "merged_source_ids",
     "run_suite",
     "write_artifacts",
     "write_records",

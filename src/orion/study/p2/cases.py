@@ -11,13 +11,19 @@ Each `CaseFamily` isolates one mechanism the paper claims:
   coverage is bounded above no matter the budget spent;
 - `ROUTE_EXHAUSTION` — a route stops yielding new material, so route-stop can be
   separated from task-stop;
-- `UNAVAILABLE_ROUTE` — a provider goes down mid-run, leaving gold that is
-  *censored* rather than absent, so closing the task as complete is an error a
-  fail-closed system does not make;
-- `EXTRACTION_QUESTION_SHIFT` — the extraction question changes mid-task, so a
-  reread of already-read material is legitimate rather than wasteful;
-- `DUPLICATE_IDENTITY` — republications and a revision are both present, so
-  duplicate processing and legitimate reread must be told apart.
+- `UNAVAILABLE_ROUTE` — a provider goes down mid-run, opening an obligation that
+  makes the material *censored* rather than absent;
+- `EXTRACTION_QUESTION_SHIFT` — the extraction frame changes mid-task, so a
+  reread is legitimate (`NEW_FRAME`) rather than wasteful;
+- `EXTRACTION_SCHEMA_SHIFT` — the extraction schema version changes mid-task,
+  exercising `NEW_SCHEMA`. This family exists because binding B14 types
+  `read_encounter.decision_before_execution` over the full `ReadDecision` enum,
+  and a state no task can reach is a state no metric can measure.
+
+There is deliberately no duplicate-identity family. Republications and revisions
+are present in every topic, so duplicate processing is measured everywhere by
+O3's encounter-denominator rates; a separate label would have been a task
+structurally identical to the multiroute one wearing a different name.
 
 The record-level `task_family` emitted for every one of these is
 `offline_complete_gold`, the single P2 family PROTOCOL_V1 froze for this world.
@@ -38,12 +44,17 @@ from .corpus import (
     sha256_digest,
 )
 
-TASK_SCHEMA_VERSION = "orion.p2.discovery-task.v1"
+TASK_SCHEMA_VERSION = "orion.p2.discovery-task.v2"
 
 #: The only value that may appear as `task_family` in a result record. The
 #: protocol froze five families; this world is one of them, and inventing a
 #: sixth would put results outside the frozen design.
 PROTOCOL_TASK_FAMILY = "offline_complete_gold"
+
+#: Extraction schema versions. The second is reached only by the schema-shift
+#: family and is what makes `ReadDecision.NEW_SCHEMA` reachable.
+EXTRACTION_SCHEMA_V1 = "p2.extraction.v1"
+EXTRACTION_SCHEMA_V2 = "p2.extraction.v2"
 
 
 class CaseFamily(str, Enum):
@@ -51,49 +62,99 @@ class CaseFamily(str, Enum):
     ROUTE_EXHAUSTION = "route_exhaustion"
     UNAVAILABLE_ROUTE = "unavailable_route"
     EXTRACTION_QUESTION_SHIFT = "extraction_question_shift"
-    DUPLICATE_IDENTITY = "duplicate_identity"
+    EXTRACTION_SCHEMA_SHIFT = "extraction_schema_shift"
+
+
+# Frozen resource ladder from STATISTICAL_PLAN_V1.json `matched_budget_policy`.
+# A cap that is not a rung on this ladder cannot be written into a run manifest.
+LADDER_QUERY_COUNT: tuple[int, ...] = (10, 20, 40, 80, 120, 200)
+LADDER_TOOL_CALLS: tuple[int, ...] = (20, 40, 80, 160, 260, 400)
+LADDER_MODEL_TOKENS: tuple[int, ...] = (100_000, 250_000, 500_000, 1_000_000, 2_000_000)
+LADDER_WALLCLOCK_SECONDS: tuple[int, ...] = (300, 600, 1200, 1800, 3600)
 
 
 @dataclass(frozen=True)
 class Budget:
-    """Matched resources. A system that wins by spending more has not won.
+    """Matched resources, on the plan's frozen ladder.
 
-    `max_route_calls` is set below the cost of enumerating every published probe
-    on every route. Exhaustive probing is therefore not a strategy, and route
-    allocation and stopping become the thing under measurement.
+    The four capped resources are exactly `matched_budget_policy.capped_resources`
+    and every value must be a rung on its ladder, because a cap that is not a rung
+    cannot legally be written into a run manifest. Caps are identical for every
+    task and every system in the family, as the plan requires — there is no
+    per-task tightening.
+
+    Reads are charged against `tool_calls` rather than getting a cap of their own:
+    a read *is* a tool call, and inventing a fifth capped resource would put the
+    world outside the plan's budget-matching verification.
     """
 
-    max_route_calls: int
-    max_reads: int
-    max_tool_calls: int
-    max_model_tokens: int
-    max_wallclock_seconds: float
+    query_count: int
+    tool_calls: int
+    model_tokens: int
+    wallclock_seconds: int
 
     def __post_init__(self) -> None:
-        if min(self.max_route_calls, self.max_reads, self.max_tool_calls) < 1:
-            raise ValueError("every budget dimension must admit at least one action")
-        if self.max_model_tokens < 1 or self.max_wallclock_seconds <= 0:
-            raise ValueError("token and wall-clock budgets must be positive")
+        for name, value, ladder in (
+            ("query_count", self.query_count, LADDER_QUERY_COUNT),
+            ("tool_calls", self.tool_calls, LADDER_TOOL_CALLS),
+            ("model_tokens", self.model_tokens, LADDER_MODEL_TOKENS),
+            ("wallclock_seconds", self.wallclock_seconds, LADDER_WALLCLOCK_SECONDS),
+        ):
+            if value not in ladder:
+                raise ValueError(f"{name}={value} is not a rung on the frozen ladder {ladder}")
 
     def as_json(self) -> dict[str, Any]:
         return {
-            "max_route_calls": self.max_route_calls,
-            "max_reads": self.max_reads,
-            "max_tool_calls": self.max_tool_calls,
-            "max_model_tokens": self.max_model_tokens,
-            "max_wallclock_seconds": self.max_wallclock_seconds,
+            "query_count": self.query_count,
+            "tool_calls": self.tool_calls,
+            "model_tokens": self.model_tokens,
+            "wallclock_seconds": self.wallclock_seconds,
         }
+
+
+#: The suite's reference cap. `matched_budget_policy.cap_derivation_rule` derives
+#: the final cap from the maximum consumption observed by any baseline during a
+#: declared pilot — which cannot be run before any baseline exists. This is
+#: therefore a *placeholder on the ladder*, frozen so the world's difficulty is a
+#: checkable property, and the next phase must re-derive it from a pilot rather
+#: than inherit it.
+#:
+#: The constraint that must survive re-derivation: `query_count` has to stay below
+#: `PUBLISHED_PROBES_PER_ROUTE * len(PUBLISHED_PROBE_ROUTES)`, or a system can
+#: enumerate every published probe and the task stops measuring route allocation.
+REFERENCE_BUDGET = Budget(
+    query_count=20,
+    tool_calls=40,
+    model_tokens=100_000,
+    wallclock_seconds=300,
+)
+
+# Routes whose probe vocabulary is published to the system. CITATION is excluded:
+# its probes are document identifiers, earned by retrieval rather than given.
+PUBLISHED_PROBE_ROUTES: tuple[DiscoveryRoute, ...] = (
+    DiscoveryRoute.LEXICAL,
+    DiscoveryRoute.SEMANTIC,
+    DiscoveryRoute.REFORMULATION,
+    DiscoveryRoute.RESTRICTED,
+)
+
+#: Probes published per route per task: the task's own, plus decoys drawn from
+#: other topics. Bounded per task rather than world-wide so the allocation problem
+#: stays the same size as the corpus grows — publishing all 78 topics' probes
+#: would turn a route-allocation task into a needle-in-a-haystack search, which is
+#: query formulation and explicitly not what this world measures.
+PUBLISHED_PROBES_PER_ROUTE = 12
 
 
 @dataclass(frozen=True)
 class RouteAvailability:
     """When a route stops being usable, and how it fails.
 
-    `goes_unavailable_after_calls` is a transport failure: the provider is gone
-    and whatever it held is *censored*, not absent. `goes_flat_after_calls` is
-    exhaustion: the route still answers but has nothing new. Conflating them is
-    the error the paper's typed route/task stop separation exists to prevent —
-    one licenses switching routes, neither licenses closing the task.
+    `goes_unavailable_after_calls` is a transport failure: under O4 it opens an
+    obligation, and whatever the route held is *censored*, not absent.
+    `goes_flat_after_calls` is exhaustion: the route still answers and has nothing
+    new. Conflating them is the error the typed route/task stop separation exists
+    to prevent — one licenses switching routes, neither licenses closing the task.
     """
 
     route: DiscoveryRoute
@@ -123,6 +184,7 @@ class ProtectedGold:
     censored_content_identities: tuple[str, ...]
     unreachable_content_identities: tuple[str, ...]
     relevance_rule_concepts: tuple[str, ...]
+    gold_set_complete: bool = True
 
     def reachable_via(self, route: DiscoveryRoute) -> tuple[str, ...]:
         for name, identities in self.route_reachable_identities:
@@ -141,6 +203,7 @@ class ProtectedGold:
             "censored_content_identities": list(self.censored_content_identities),
             "unreachable_content_identities": list(self.unreachable_content_identities),
             "relevance_rule_concepts": list(self.relevance_rule_concepts),
+            "gold_set_complete": self.gold_set_complete,
         }
 
 
@@ -161,6 +224,7 @@ class PublicView:
     task_id: str
     question: str
     initial_extraction_question: str
+    initial_extraction_schema: str
     available_routes: tuple[str, ...]
     route_probes: tuple[tuple[str, tuple[str, ...]], ...]
     budget: Budget
@@ -179,6 +243,7 @@ class DiscoveryTask:
     topic_id: str
     question: str
     extraction_questions: tuple[str, ...]
+    extraction_schemas: tuple[str, ...]
     extraction_shift_after_reads: int | None
     availability: tuple[RouteAvailability, ...]
     budget: Budget
@@ -187,10 +252,11 @@ class DiscoveryTask:
     notes: str = ""
 
     def __post_init__(self) -> None:
-        if not self.extraction_questions:
-            raise ValueError(f"{self.task_id}: an extraction question is required")
-        if len(self.extraction_questions) > 1 and self.extraction_shift_after_reads is None:
-            raise ValueError(f"{self.task_id}: a second extraction question needs a shift point")
+        if not self.extraction_questions or not self.extraction_schemas:
+            raise ValueError(f"{self.task_id}: an extraction question and schema are required")
+        shifting = len(self.extraction_questions) > 1 or len(self.extraction_schemas) > 1
+        if shifting and self.extraction_shift_after_reads is None:
+            raise ValueError(f"{self.task_id}: a second frame or schema needs a shift point")
         lowered = self.task_id.lower()
         for identity in self.protected_gold.gold_content_identities:
             if identity.lower() in lowered:
@@ -203,11 +269,26 @@ class DiscoveryTask:
         return PROTOCOL_TASK_FAMILY
 
     @property
+    def public_probe_digest(self) -> str:
+        """Binds the derived probe vocabulary into the frozen suite hash.
+
+        The probes themselves are recomputed from the world on load rather than
+        stored per task — 48 probes on each of 390 tasks is most of a megabyte of
+        duplicated strings. Storing the digest keeps the selection inside the
+        fingerprint, so changing the decoy count changes the suite identity.
+        """
+
+        return sha256_digest(
+            [{"route": name, "probes": list(probes)} for name, probes in self.public_route_probes]
+        )
+
+    @property
     def public_view(self) -> PublicView:
         return PublicView(
             task_id=self.task_id,
             question=self.question,
             initial_extraction_question=self.extraction_questions[0],
+            initial_extraction_schema=self.extraction_schemas[0],
             available_routes=tuple(sorted(item.route.value for item in self.availability)),
             route_probes=self.public_route_probes,
             budget=self.budget,
@@ -227,63 +308,100 @@ class DiscoveryTask:
             "topic_id": self.topic_id,
             "question": self.question,
             "extraction_questions": list(self.extraction_questions),
+            "extraction_schemas": list(self.extraction_schemas),
             "extraction_shift_after_reads": self.extraction_shift_after_reads,
             "availability": [item.as_json() for item in self.availability],
             "budget": self.budget.as_json(),
             "protected_gold": self.protected_gold.as_json(),
-            "public_route_probes": [
-                {"route": name, "probes": list(probes)} for name, probes in self.public_route_probes
-            ],
+            "public_probe_digest": self.public_probe_digest,
             "notes": self.notes,
         }
 
 
-# Routes whose probe vocabulary is published to the system. CITATION is excluded:
-# its probes are document identifiers, earned by retrieval rather than given.
-PUBLISHED_PROBE_ROUTES: tuple[DiscoveryRoute, ...] = (
-    DiscoveryRoute.LEXICAL,
-    DiscoveryRoute.SEMANTIC,
-    DiscoveryRoute.REFORMULATION,
-    DiscoveryRoute.RESTRICTED,
-)
+@dataclass(frozen=True)
+class ProbeMap:
+    """Each topic's own probe on each published route, built in one pass.
 
-DEFAULT_BUDGET = Budget(
-    max_route_calls=12,
-    max_reads=24,
-    max_tool_calls=48,
-    max_model_tokens=120_000,
-    max_wallclock_seconds=120.0,
-)
+    Documents are named `<topic-slug>:<slug>`, so a single scan attributes every
+    access key to its topic. Rebuilding this per task would be quadratic in the
+    corpus, which at 78 topics and 1230 documents is the difference between a
+    fast freeze and a slow one.
+    """
 
-#: Read budgets are per-family because each family measures a different waste.
-#: `DUPLICATE_IDENTITY` is tightened until re-reading a republication actually
-#: costs recall — a duplicate-processing metric that no budget ever binds is
-#: measuring nothing. `EXTRACTION_QUESTION_SHIFT` is loosened so that the
-#: legitimate rereads the shift creates are affordable; charging them against a
-#: budget sized for one frame would punish the correct behaviour.
-_FAMILY_READ_BUDGET: dict[str, int] = {
-    CaseFamily.DUPLICATE_IDENTITY.value: 12,
-    CaseFamily.EXTRACTION_QUESTION_SHIFT.value: 30,
-}
+    topic_ids: tuple[str, ...]
+    probes: tuple[tuple[str, tuple[tuple[str, str], ...]], ...]
+
+    def probe(self, route: DiscoveryRoute, topic_id: str) -> str:
+        for name, pairs in self.probes:
+            if name != route.value:
+                continue
+            for candidate, value in pairs:
+                if candidate == topic_id:
+                    return value
+        return ""
 
 
-def _budget_for(family: CaseFamily) -> Budget:
-    reads = _FAMILY_READ_BUDGET.get(family.value, DEFAULT_BUDGET.max_reads)
-    if reads == DEFAULT_BUDGET.max_reads:
-        return DEFAULT_BUDGET
-    return Budget(
-        max_route_calls=DEFAULT_BUDGET.max_route_calls,
-        max_reads=reads,
-        max_tool_calls=DEFAULT_BUDGET.max_tool_calls,
-        max_model_tokens=DEFAULT_BUDGET.max_model_tokens,
-        max_wallclock_seconds=DEFAULT_BUDGET.max_wallclock_seconds,
+def build_probe_map(world: DiscoveryWorld) -> ProbeMap:
+    by_route: dict[str, dict[str, set[str]]] = {
+        route.value: {topic.topic_id: set() for topic in world.topics}
+        for route in PUBLISHED_PROBE_ROUTES
+    }
+    slug_to_topic = {
+        topic.topic_id.removeprefix("topic-"): topic.topic_id for topic in world.topics
+    }
+    for document in world.documents:
+        slug = document.doc_id.split(":", 1)[0]
+        topic_id = slug_to_topic.get(slug)
+        if topic_id is None:
+            continue
+        for route in PUBLISHED_PROBE_ROUTES:
+            by_route[route.value][topic_id].update(document.keys_for(route))
+    return ProbeMap(
+        topic_ids=tuple(item.topic_id for item in world.topics),
+        probes=tuple(
+            (
+                route.value,
+                tuple(
+                    (topic_id, sorted(keys)[0] if keys else "")
+                    for topic_id, keys in sorted(by_route[route.value].items())
+                ),
+            )
+            for route in PUBLISHED_PROBE_ROUTES
+        ),
     )
 
 
-def _published_probes(world: DiscoveryWorld) -> tuple[tuple[str, tuple[str, ...]], ...]:
-    return tuple(
-        (route.value, world.probes_for(route)) for route in PUBLISHED_PROBE_ROUTES
-    )
+def published_probes(
+    probe_map: ProbeMap, topic_id: str
+) -> tuple[tuple[str, tuple[str, ...]], ...]:
+    """The task's own probe per route, plus deterministic decoys from other topics.
+
+    Selection strides through the sorted topic list rather than sampling, so it is
+    stable across processes and independent of `PYTHONHASHSEED`.
+    """
+
+    topic_ids = list(probe_map.topic_ids)
+    if topic_id not in topic_ids:
+        raise KeyError(topic_id)
+    home = topic_ids.index(topic_id)
+    total = len(topic_ids)
+    wanted = min(PUBLISHED_PROBES_PER_ROUTE, total)
+    positions: list[int] = []
+    step = 0
+    while len(positions) < wanted:
+        candidate = (home + step * 7) % total
+        if candidate not in positions:
+            positions.append(candidate)
+        step += 1
+        if step > total * 7:  # pragma: no cover - stride covers a full cycle first
+            break
+
+    published: list[tuple[str, tuple[str, ...]]] = []
+    for route in PUBLISHED_PROBE_ROUTES:
+        chosen = {probe_map.probe(route, topic_ids[position]) for position in positions}
+        chosen.add(probe_map.probe(route, topic_id))
+        published.append((route.value, tuple(sorted(item for item in chosen if item))))
+    return tuple(published)
 
 
 def _reachability(
@@ -291,20 +409,20 @@ def _reachability(
 ) -> tuple[tuple[str, tuple[str, ...]], ...]:
     """Which gold works each route can reach, derived from the corpus itself.
 
-    Citation reachability is derived from reference edges rather than declared
-    separately, so the map cannot drift away from the graph it describes.
+    Citation reachability is recomputed from the reference edges rather than
+    declared separately, so the map cannot drift away from the graph it describes.
     """
 
     gold_docs = [item for item in world.documents if is_relevant(item, topic)]
+    gold_ids = {item.doc_id for item in gold_docs}
     reachable: list[tuple[str, tuple[str, ...]]] = []
     for route in DiscoveryRoute:
         identities: set[str] = set()
         if route is DiscoveryRoute.CITATION:
             for seed in world.documents:
                 for target in world.citation_reachable(seed.doc_id):
-                    document = world.by_id.get(target)
-                    if document is not None and is_relevant(document, topic):
-                        identities.add(document.content_identity)
+                    if target in gold_ids:
+                        identities.add(world.by_id[target].content_identity)
         else:
             for document in gold_docs:
                 if document.keys_for(route):
@@ -313,18 +431,39 @@ def _reachability(
     return tuple(reachable)
 
 
+@dataclass(frozen=True)
+class _TopicGoldBase:
+    """Per-topic quantities shared by that topic's five tasks.
+
+    Reachability is the expensive part and does not depend on the case family —
+    only the censored split does. Recomputing it once per family made freezing
+    five times slower for no additional truth.
+    """
+
+    doc_ids: tuple[str, ...]
+    identities: tuple[str, ...]
+    reachable: tuple[tuple[str, tuple[str, ...]], ...]
+    concepts: tuple[str, ...]
+
+
+def _gold_base(world: DiscoveryWorld, topic: Topic) -> _TopicGoldBase:
+    return _TopicGoldBase(
+        doc_ids=world.relevant_doc_ids(topic),
+        identities=world.relevant_content_identities(topic),
+        reachable=_reachability(world, topic),
+        concepts=tuple(sorted(topic.required_concepts)),
+    )
+
+
 def _build_gold(
-    world: DiscoveryWorld,
-    topic: Topic,
+    base: _TopicGoldBase,
     availability: tuple[RouteAvailability, ...],
 ) -> ProtectedGold:
-    reachable = _reachability(world, topic)
-    all_identities = set(world.relevant_content_identities(topic))
+    reachable = base.reachable
+    all_identities = set(base.identities)
 
     live_routes = {
-        item.route
-        for item in availability
-        if item.goes_unavailable_after_calls is None
+        item.route for item in availability if item.goes_unavailable_after_calls is None
     }
     reachable_live: set[str] = set()
     reachable_any: set[str] = set()
@@ -334,7 +473,7 @@ def _build_gold(
             reachable_live.update(identities)
 
     return ProtectedGold(
-        gold_doc_ids=world.relevant_doc_ids(topic),
+        gold_doc_ids=base.doc_ids,
         gold_content_identities=tuple(sorted(all_identities)),
         route_reachable_identities=reachable,
         # Censored: relevant, reachable in principle, but only through a route
@@ -342,7 +481,17 @@ def _build_gold(
         # is not evidence of absence.
         censored_content_identities=tuple(sorted(reachable_any - reachable_live)),
         unreachable_content_identities=tuple(sorted(all_identities - reachable_any)),
-        relevance_rule_concepts=tuple(sorted(topic.required_concepts)),
+        relevance_rule_concepts=base.concepts,
+        # B6. True here because `base.identities` was derived by applying the
+        # relevance rule to every document in the corpus, so the denominator is
+        # the complete relevant set by construction; `test_gold_is_complete_by_
+        # construction_for_every_task` recomputes the rule and checks it both
+        # ways. Completeness is not the same property as reachability — gold
+        # behind a dead provider is still in the denominator, and is accounted
+        # for by `censored_content_identities` instead. The field exists because
+        # the plan makes every complete-denominator metric CANNOT_CHECK when it
+        # is false, which is what a live-corpus family would set.
+        gold_set_complete=True,
     )
 
 
@@ -352,21 +501,25 @@ _ALL_ROUTES_LIVE = tuple(RouteAvailability(route) for route in DiscoveryRoute)
 def build_tasks(world: DiscoveryWorld) -> tuple[DiscoveryTask, ...]:
     """Author one task per (topic, case family). Gold is computed, never typed in."""
 
-    probes = _published_probes(world)
     tasks: list[DiscoveryTask] = []
+    probe_map = build_probe_map(world)
 
     for topic in world.topics:
         slug = topic.topic_id.removeprefix("topic-")
+        probes = published_probes(probe_map, topic.topic_id)
+        gold_base = _gold_base(world, topic)
         base_question = f"Identify every study addressing {topic.label.lower()}."
-        primary_extraction = f"What does this record report about {topic.label.lower()}?"
+        primary = f"What does this record report about {topic.label.lower()}?"
+        secondary = f"Which procedure does this record use for {topic.label.lower()}?"
 
         specs: tuple[tuple[CaseFamily, dict[str, Any]], ...] = (
             (
                 CaseFamily.COMPLETE_GOLD_MULTIROUTE,
                 {
                     "availability": _ALL_ROUTES_LIVE,
-                    "extraction_questions": (primary_extraction,),
-                    "extraction_shift_after_reads": None,
+                    "questions": (primary,),
+                    "schemas": (EXTRACTION_SCHEMA_V1,),
+                    "shift": None,
                     "notes": "All routes live. Gold is split across routes, so no single route reaches it all.",
                 },
             ),
@@ -379,8 +532,9 @@ def build_tasks(world: DiscoveryWorld) -> tuple[DiscoveryTask, ...]:
                         else RouteAvailability(route)
                         for route in DiscoveryRoute
                     ),
-                    "extraction_questions": (primary_extraction,),
-                    "extraction_shift_after_reads": None,
+                    "questions": (primary,),
+                    "schemas": (EXTRACTION_SCHEMA_V1,),
+                    "shift": None,
                     "notes": "The lexical route runs dry after two calls. Route-stop is licensed; task-stop is not.",
                 },
             ),
@@ -393,30 +547,30 @@ def build_tasks(world: DiscoveryWorld) -> tuple[DiscoveryTask, ...]:
                         else RouteAvailability(route)
                         for route in DiscoveryRoute
                     ),
-                    "extraction_questions": (primary_extraction,),
-                    "extraction_shift_after_reads": None,
-                    "notes": "The restricted provider dies after one call, censoring the gold only it reaches.",
+                    "questions": (primary,),
+                    "schemas": (EXTRACTION_SCHEMA_V1,),
+                    "shift": None,
+                    "notes": "The restricted provider dies after one call, opening an obligation over the gold only it reaches.",
                 },
             ),
             (
                 CaseFamily.EXTRACTION_QUESTION_SHIFT,
                 {
                     "availability": _ALL_ROUTES_LIVE,
-                    "extraction_questions": (
-                        primary_extraction,
-                        f"Which measurement or estimation procedure does this record use for {topic.label.lower()}?",
-                    ),
-                    "extraction_shift_after_reads": 3,
-                    "notes": "The extraction question changes after three reads; rereads under the new frame are legitimate.",
+                    "questions": (primary, secondary),
+                    "schemas": (EXTRACTION_SCHEMA_V1,),
+                    "shift": 3,
+                    "notes": "The extraction question changes after three reads; rereads under the new frame are NEW_FRAME.",
                 },
             ),
             (
-                CaseFamily.DUPLICATE_IDENTITY,
+                CaseFamily.EXTRACTION_SCHEMA_SHIFT,
                 {
                     "availability": _ALL_ROUTES_LIVE,
-                    "extraction_questions": (primary_extraction,),
-                    "extraction_shift_after_reads": None,
-                    "notes": "A republication and a revision are both in reach; one is a duplicate, the other is not.",
+                    "questions": (primary,),
+                    "schemas": (EXTRACTION_SCHEMA_V1, EXTRACTION_SCHEMA_V2),
+                    "shift": 3,
+                    "notes": "The extraction schema changes after three reads; rereads under the new schema are NEW_SCHEMA.",
                 },
             ),
         )
@@ -429,11 +583,12 @@ def build_tasks(world: DiscoveryWorld) -> tuple[DiscoveryTask, ...]:
                     case_family=family,
                     topic_id=topic.topic_id,
                     question=base_question,
-                    extraction_questions=spec["extraction_questions"],
-                    extraction_shift_after_reads=spec["extraction_shift_after_reads"],
+                    extraction_questions=spec["questions"],
+                    extraction_schemas=spec["schemas"],
+                    extraction_shift_after_reads=spec["shift"],
                     availability=availability,
-                    budget=_budget_for(family),
-                    protected_gold=_build_gold(world, topic, availability),
+                    budget=REFERENCE_BUDGET,
+                    protected_gold=_build_gold(gold_base, availability),
                     public_route_probes=probes,
                     notes=spec["notes"],
                 )
@@ -459,14 +614,18 @@ def suite_fingerprint(world: DiscoveryWorld, tasks: tuple[DiscoveryTask, ...]) -
     )
 
 
-def task_from_json(payload: dict[str, Any]) -> DiscoveryTask:
+def task_from_json(payload: dict[str, Any], probe_map: ProbeMap) -> DiscoveryTask:
+    """Rebuild a task, recomputing its probe vocabulary from the frozen world."""
+
     gold = payload["protected_gold"]
-    return DiscoveryTask(
+    probes = published_probes(probe_map, payload["topic_id"])
+    task = DiscoveryTask(
         task_id=payload["task_id"],
         case_family=CaseFamily(payload["case_family"]),
         topic_id=payload["topic_id"],
         question=payload["question"],
         extraction_questions=tuple(payload["extraction_questions"]),
+        extraction_schemas=tuple(payload["extraction_schemas"]),
         extraction_shift_after_reads=payload["extraction_shift_after_reads"],
         availability=tuple(
             RouteAvailability(
@@ -487,26 +646,40 @@ def task_from_json(payload: dict[str, Any]) -> DiscoveryTask:
             censored_content_identities=tuple(gold["censored_content_identities"]),
             unreachable_content_identities=tuple(gold["unreachable_content_identities"]),
             relevance_rule_concepts=tuple(gold["relevance_rule_concepts"]),
+            gold_set_complete=bool(gold["gold_set_complete"]),
         ),
-        public_route_probes=tuple(
-            (item["route"], tuple(item["probes"])) for item in payload["public_route_probes"]
-        ),
+        public_route_probes=probes,
         notes=payload.get("notes", ""),
     )
+    if task.public_probe_digest != payload["public_probe_digest"]:
+        raise ValueError(
+            f"{task.task_id}: recomputed probe vocabulary does not match the frozen digest"
+        )
+    return task
 
 
 __all__ = [
     "Budget",
     "CaseFamily",
-    "DEFAULT_BUDGET",
-    "DiscoveryTask",
+    "EXTRACTION_SCHEMA_V1",
+    "EXTRACTION_SCHEMA_V2",
+    "LADDER_MODEL_TOKENS",
+    "LADDER_QUERY_COUNT",
+    "LADDER_TOOL_CALLS",
+    "LADDER_WALLCLOCK_SECONDS",
     "PROTOCOL_TASK_FAMILY",
+    "PUBLISHED_PROBES_PER_ROUTE",
     "PUBLISHED_PROBE_ROUTES",
     "ProtectedGold",
+    "ProbeMap",
     "PublicView",
+    "REFERENCE_BUDGET",
+    "build_probe_map",
     "RouteAvailability",
     "TASK_SCHEMA_VERSION",
+    "DiscoveryTask",
     "build_tasks",
+    "published_probes",
     "suite_fingerprint",
     "task_from_json",
 ]

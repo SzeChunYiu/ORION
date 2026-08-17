@@ -17,6 +17,7 @@ with no arguments to verify the committed one.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from dataclasses import dataclass
@@ -26,6 +27,7 @@ from typing import Any
 from .cases import (
     TASK_SCHEMA_VERSION,
     DiscoveryTask,
+    build_probe_map,
     build_tasks,
     suite_fingerprint,
     task_from_json,
@@ -69,13 +71,60 @@ DEFAULT_ROOT = (
     / "offline_gold"
 )
 
-WORLD_FILE = "world.json"
-TASKS_FILE = "tasks.json"
 MANIFEST_FILE = "MANIFEST.json"
+
+#: Committed shards. The world and task set are both larger than one comfortable
+#: file at N=390, so each is split. Shard membership is a hash of the record's own
+#: id rather than its position in the list, so adding or removing a topic moves
+#: only the affected records instead of reshuffling every boundary.
+SHARD_COUNT = 4
+WORLD_SHARD = "world-{index:02d}.json"
+TASKS_SHARD = "tasks-{index:02d}.json"
+
+
+def _shard_of(identifier: str) -> int:
+    return int(hashlib.sha256(identifier.encode("utf-8")).hexdigest()[:8], 16) % SHARD_COUNT
 
 #: Keep every committed shard comfortably below the repository's file-size
 #: comfort zone. Checked at write time rather than assumed.
 MAX_FILE_BYTES = 1_000_000
+
+
+#: `precision_plan.precision_tiers` from STATISTICAL_PLAN_V1.json, as
+#: (required_n, tier, half_width). The plan commits `offline_complete_gold` to
+#: TIER_B and requires the *achieved* tier be recorded, so the suite computes it
+#: from its own N rather than asserting the committed one.
+PRECISION_TIERS: tuple[tuple[int, str, float], ...] = (
+    (1068, "TIER_A_full", 0.03),
+    (385, "TIER_B_committed", 0.05),
+    (171, "TIER_C_reduced", 0.075),
+    (97, "TIER_D_minimum_inferential", 0.1),
+)
+
+
+def achieved_tier(task_count: int) -> dict[str, Any]:
+    """The precision tier this suite's N actually reaches.
+
+    Below TIER_D the family is `DESCRIPTIVE_ONLY` and cannot carry a promoted
+    primary claim, which is a fact about the suite the run manifest has to carry.
+    """
+
+    for required, tier, half_width in PRECISION_TIERS:
+        if task_count >= required:
+            return {
+                "tier": tier,
+                "half_width": half_width,
+                "required_n": required,
+                "achieved_n": task_count,
+                "descriptive_only": False,
+            }
+    return {
+        "tier": "DESCRIPTIVE_ONLY",
+        "half_width": None,
+        "required_n": 97,
+        "achieved_n": task_count,
+        "descriptive_only": True,
+    }
 
 
 @dataclass(frozen=True)
@@ -102,21 +151,40 @@ def write_suite(root: Path = DEFAULT_ROOT, *, seed: int = FROZEN_SEED) -> dict[s
 
     suite = build_suite(seed)
     root.mkdir(parents=True, exist_ok=True)
+    for stale in sorted(root.glob("*.json")):
+        stale.unlink()
 
-    world_payload = suite.world.as_json()
-    tasks_payload = {
-        "schema_version": TASK_SCHEMA_VERSION,
-        "tasks": [task.as_json() for task in suite.tasks],
-    }
+    files: dict[str, Any] = {}
+    for index in range(SHARD_COUNT):
+        documents = [
+            item.as_json()
+            for item in suite.world.documents
+            if _shard_of(item.doc_id) == index
+        ]
+        files[WORLD_SHARD.format(index=index)] = {
+            "schema_version": CORPUS_SCHEMA_VERSION,
+            "seed": seed,
+            "shard": index,
+            "shard_count": SHARD_COUNT,
+            "documents": documents,
+            "topics": [item.as_json() for item in suite.world.topics] if index == 0 else [],
+        }
+        files[TASKS_SHARD.format(index=index)] = {
+            "schema_version": TASK_SCHEMA_VERSION,
+            "shard": index,
+            "shard_count": SHARD_COUNT,
+            "tasks": [
+                item.as_json() for item in suite.tasks if _shard_of(item.task_id) == index
+            ],
+        }
 
-    files = {WORLD_FILE: world_payload, TASKS_FILE: tasks_payload}
-    for name, payload in files.items():
+    for name, payload in sorted(files.items()):
         text = _dump(payload)
         size = len(text.encode("utf-8"))
         if size > MAX_FILE_BYTES:
             raise ValueError(
                 f"{name} is {size} bytes, above the {MAX_FILE_BYTES}-byte shard ceiling; "
-                "reduce filler_documents or shard the corpus before committing"
+                "raise SHARD_COUNT before committing"
             )
         (root / name).write_text(text, encoding="utf-8")
 
@@ -130,6 +198,8 @@ def write_suite(root: Path = DEFAULT_ROOT, *, seed: int = FROZEN_SEED) -> dict[s
         "document_count": len(suite.world.documents),
         "topic_count": len(suite.world.topics),
         "task_count": len(suite.tasks),
+        "shard_count": SHARD_COUNT,
+        "achieved_precision_tier": achieved_tier(len(suite.tasks)),
         "files": {
             name: {
                 "sha256": sha256_digest(payload),
@@ -146,14 +216,34 @@ def write_suite(root: Path = DEFAULT_ROOT, *, seed: int = FROZEN_SEED) -> dict[s
 
 
 def load_suite(root: Path = DEFAULT_ROOT) -> FrozenSuite:
-    """Load the committed suite from disk without regenerating it."""
+    """Load the committed suite from its shards without regenerating it."""
 
-    world = world_from_json(json.loads((root / WORLD_FILE).read_text(encoding="utf-8")))
-    payload = json.loads((root / TASKS_FILE).read_text(encoding="utf-8"))
-    tasks = tuple(
-        sorted((task_from_json(item) for item in payload["tasks"]), key=lambda item: item.task_id)
+    documents: list[dict[str, Any]] = []
+    topics: list[dict[str, Any]] = []
+    seed = FROZEN_SEED
+    schema = CORPUS_SCHEMA_VERSION
+    for index in range(SHARD_COUNT):
+        payload = json.loads(
+            (root / WORLD_SHARD.format(index=index)).read_text(encoding="utf-8")
+        )
+        documents.extend(payload["documents"])
+        topics.extend(payload["topics"])
+        seed = int(payload["seed"])
+        schema = payload["schema_version"]
+    world = world_from_json(
+        {"schema_version": schema, "seed": seed, "documents": documents, "topics": topics}
     )
-    return FrozenSuite(world=world, tasks=tasks)
+
+    probe_map = build_probe_map(world)
+    tasks: list[DiscoveryTask] = []
+    for index in range(SHARD_COUNT):
+        payload = json.loads(
+            (root / TASKS_SHARD.format(index=index)).read_text(encoding="utf-8")
+        )
+        tasks.extend(task_from_json(item, probe_map) for item in payload["tasks"])
+    return FrozenSuite(
+        world=world, tasks=tuple(sorted(tasks, key=lambda item: item.task_id))
+    )
 
 
 def load_manifest(root: Path = DEFAULT_ROOT) -> dict[str, Any]:
