@@ -4,132 +4,245 @@
 
 ## Abstract
 
-Autonomous scientific agents can retrieve evidence, revise formulations, merge representations, assert conclusions and modify their own procedures. Capability alone does not establish that any such transition is justified. Across ORION's current five-paper programme, the same distinction appears repeatedly: a system may be able to reframe without being licensed to alter the problem, able to stop without being licensed to declare closure, able to map without being licensed to merge, able to state a claim without scientific authority, or able to improve on replay without being licensed to promote a self-change. This paper investigates whether these cases admit a reusable **epistemic authority calculus**. The candidate formalism types proposed epistemic actions, required obligations, defeaters, authority sources, refusal/CANNOT_CHECK and revocation. It is explicitly non-compensatory: confidence, utility or success in one dimension cannot automatically offset a missing obligation in another. The central empirical question is whether a shared calculus prevents cross-module authority laundering better than independent capability-specific gates. The candidate is not yet a novelty claim and must survive direct comparison with P4, abstention, provenance/verification, dynamic/deontic logic and agent-governance work.
+Autonomous scientific agents can reframe problems, search and stop, align representations, assert claims and modify their own procedures. Capability to construct such actions does not establish authority to commit them. This distinction is increasingly explicit in agent security and programming-language research: ETAS provides typed effects, persistent action traces, residual obligations and policy safety; FAVA builds evidence-backed permission graphs and uses deterministic SMT authorization before effectful actions; AgentAbstain evaluates whether tool-using agents know when not to act; ProvenanceGuard treats source attribution as an independent verification dimension; execution-provenance work moves agent evaluation from final outputs toward process accountability. ORION must absorb these mechanisms rather than claim permissions, abstention or provenance as new. P8 therefore studies a narrower cross-domain problem: can heterogeneous *epistemic* effect domains share a typed authorization calculus that preserves domain-specific gates while preventing one domain's valid signal from being laundered into another domain's authority? We define typed effects, hard obligations, grants, explicit cross-domain coercions, `CANNOT_CHECK`, dependency-grounded revocation and protected authority roots. We prove a syntactic anti-laundering theorem, show why extensible additive evidence cannot encode absolute blockers with finite penalties, and give countermodels for post-hoc refusal and candidate-controlled self-promotion. P8 remains a candidate until it embeds P1–P5 conservatively and demonstrates cross-domain failures or transfer advantages beyond strong effect/permission and independent-gate baselines.
 
 ## 1. Introduction
 
-Reliable autonomous science requires more than increasingly capable models. It requires rules governing when capabilities may be exercised.
+Reliable autonomous science requires more than capable models and successful tool use. It requires rules governing when epistemically consequential actions may be committed.
 
-Consider five actions:
+Consider five action families:
 
-1. rewrite the problem formulation;
-2. stop searching;
-3. merge two scientific representations;
-4. promote a claim to verified scientific status;
+1. change the problem formulation or search universe;
+2. stop searching or declare a task closed;
+3. merge scientific representations;
+4. promote a claim to verified scientific authority;
 5. modify and promote the agent's own mechanism.
 
-A model can generate each action. A high confidence score can accompany each action. A local evaluator can even reward each action. None of those facts alone establishes authority.
+A model can generate each action. It can assign high confidence to each. A local evaluator can reward each. A system may even execute each successfully in a narrow operational sense. None of those facts alone determines whether the transition is authorized.
 
-The ORION programme currently implements authority in domain-specific ways. P1 couples responsibility to reformulation permission. P2 separates route progress from task closure. P3 preserves obstruction when mapping is not authorized. P4 explicitly studies scientific-authority promotion under protected custody. P5 denies self-promotion even after apparent local improvement.
+ORION already implements this distinction in five domain-specific ways. P1 governs formulation/search mutation through responsibility. P2 separates route progress from task closure. P3 preserves obstruction when mapping is not authorized. P4 protects scientific-authority promotion with content-bound evidence and independent checks. P5 denies self-promotion and requires replay, fresh transfer and protected assurance.
 
-P8 asks whether a common calculus exists above those cases.
+P8 cannot claim those mechanisms. Its question is whether there is a **typed composition theory above them** that explains when authority may and may not cross domain boundaries.
 
-## 2. Capability versus authority
+## 2. Why current permission work raises the bar
 
-Let `a` be a proposed epistemic action in typed domain `d`:
+The contemporary nearest-work landscape already contains strong formal and systems mechanisms.
 
-`d in {REFRAME, SEARCH_STOP, MAP_MERGE, ASSERT, SELF_MODIFY}`.
+### ETAS
+ETAS (arXiv:2607.17780) treats agent actions, tools, typed memory, human approvals, policies and traces as semantic program elements. Its static semantics tracks effects and potential action traces; policies express allow/deny/temporal constraints; residual obligations remain when static proof is insufficient; dynamic semantics distinguish requested, handled, denied and committed events. P8 therefore cannot claim typed effects, residual obligations or trace-visible policy enforcement.
 
-We distinguish:
+### FAVA
+FAVA (arXiv:2607.27267) translates ambiguous tasks into a structured Permission IR, lowers that into an evidence-backed permission graph tracking dependencies/context, and uses an SMT authorizer before effectful execution. P8 therefore cannot claim evidence-backed permission graphs or deterministic pre-action authorization.
 
-- `Cap(a)`: the system can construct/execute `a`;
-- `Supp(a)`: evidence positively supports `a`;
-- `Def(a)`: active defeaters against `a`;
-- `Obl(a)`: obligations that must be satisfied before authorization;
-- `Auth(a)`: the action is licensed to commit;
-- `Revoke(a)`: new evidence removes prior authority;
-- `CC(a)`: authority cannot currently be established (`CANNOT_CHECK`).
+### AgentAbstain
+AgentAbstain (arXiv:2607.10059) uses paired should-act/should-abstain tasks and reports that abstention competence is substantially distinct from ordinary task-solving capability. It also identifies post-hoc abstention, where irreversible action occurs before refusal. P8 therefore cannot claim that agents need to know when not to act.
 
-The core thesis is that `Cap(a)`, confidence, expected utility and support are not interchangeable with `Auth(a)`.
+### ProvenanceGuard and execution provenance
+ProvenanceGuard (arXiv:2606.18037) shows that a claim can be supported somewhere yet attributed to the wrong source; source ownership is an independent verification axis. A 2026 execution-provenance survey (arXiv:2606.04990) unifies evidence tracing, tool-use lineage, memory provenance, guardrails, debugging, audit and recovery. P8 therefore cannot claim provenance as authority by itself.
 
-## 3. Non-compensatory authorization
+### Runtime governance and permission systems
+Agent-Sentry, Policy Cards and the 2026 user-permission-systems survey provide additional pressure from behavioral bounds, machine-readable obligations and runtime enforcement. Classical deontic/action and authorization logics are broader historical parents.
 
-Many agent policies aggregate evidence into a scalar. This is attractive computationally but dangerous for scientific authority.
+The ORION opportunity, if any, begins after these are absorbed.
 
-Suppose an assertion has excellent support from three sources but lacks an independent check required by the protocol. More support from the same route should not necessarily compensate for the missing check.
+## 3. Epistemic effects and authority domains
 
-Likewise, a self-modification with strong replay improvement should not be admitted if fresh-transfer or evaluator-custody obligations fail.
+Let `D` be a set of effect domains. The initial ORION embedding uses
 
-We therefore consider an obligation family
+\[
+D_0=\{REFRAME,SEARCH\_STOP,MAP\_MERGE,ASSERT,SELF\_MODIFY\}.
+\]
 
-`Obl(a) = {o1, ..., ok}`
+An effect request is
 
-with typed satisfaction states rather than a single score. Authorization is tentatively:
+\[
+e=(id,d,op,S,p,epoch),
+\]
 
-`Auth(a) iff Required(a) subset Satisfied(a) and no blocking Def(a)`.
+with identity, domain, operation, target scope, payload/state delta and epoch.
 
-Some obligations may be soft/resource-related; others are non-compensatory blockers. The formalism must make that distinction explicit rather than burying it in prompt text.
+A typed judgment records at least a kind, domain, scope, content/provenance identity and epoch. Kinds include support, blocker, obligation satisfaction, grant, revocation, capability, utility and closure.
 
-## 4. Authority domains
+A bare `PASS`, `SUCCESS`, `VERIFIED`, high confidence score or positive replay delta is not sufficient authority currency because it omits the domain and scope in which the judgment is valid.
 
-### 4.1 Reframe authority
-A failure diagnosis may suggest that the formulation is wrong. The authority question is whether the available evidence licenses mutation of specific formulation/search coordinates, or whether only more diagnosis/probing is allowed.
+## 4. Requested versus committed effects
 
-### 4.2 Search/stop authority
-A route may be exhausted or low-value. That can justify reallocating resources without authorizing global scientific closure when important routes are censored or unresolved.
+P8 adopts a request/commit semantics:
 
-### 4.3 Mapping/integration authority
-Semantic similarity can suggest a cross-source mapping, but merge authority depends on referent, context, measurement, modality and preservation conditions. Obstruction is a legitimate terminal.
+\[
+REQUEST(e),\;ALLOW(e),\;DENY(e),\;CANNOT\_CHECK(e),\;COMMIT(e).
+\]
 
-### 4.4 Assertion authority
-P4 already demonstrates a protected, non-escalating scientific-authority transition. P8 treats this as one action domain and must not relabel the P4 contribution as new.
+An effect may commit only when the authorization derivation matches the exact effect identity, scope, content identity and current epoch.
 
-### 4.5 Self-modification authority
-A candidate change can be generated, compiled and locally improved while still lacking authority to promote itself. Fresh transfer, regression limits, negative history and protected evaluation may be mandatory obligations.
+This is deliberately compatible with effect/permission systems rather than presented as a competitor. P8's scientific question concerns *which epistemic judgments may be reused across effect domains*.
 
-## 5. Authority laundering
+## 5. Hard obligations and non-compensation
 
-A central candidate failure class is **authority laundering**: a signal valid in one module is treated as authorization in another.
+For effect `e`, let `O_h(e)` be hard obligations and `O_s(e)` soft/resource considerations. Authorization requires every hard obligation to be satisfied and every blocking defeater absent. Soft utility can rank already-admissible options but does not discharge a hard obligation.
 
-Examples include:
+A simple algebraic result clarifies why this distinction must be represented explicitly. Suppose an authorization score is
 
-- a planner's confidence becoming permission to alter the scientific formulation;
-- retrieval saturation becoming permission to declare the literature complete;
-- semantic similarity becoming permission to merge scientific constructs;
-- citation support becoming permission to claim verification;
-- replay success becoming permission to self-promote.
+\[
+S(e)=\sum_i w_i x_i-Mb
+\]
 
-Cross-module composition is therefore well formed only if the downstream action explicitly recognizes the upstream signal's authority type. A `PASS` token is not universal currency.
+with a finite blocker penalty `M`, fixed threshold and an extensible/unbounded stream of positive evidence. For any finite `M`, sufficiently much positive evidence eventually crosses the threshold while the blocker remains active. Therefore an *absolute* blocker requires a conjunctive, veto, lexicographic or otherwise explicitly non-compensatory layer unless the positive evidence space is externally bounded.
 
-## 6. Revocation and non-monotonicity
+This is a limited theorem. A fixed-dimensional bounded score can simulate a veto with a sufficiently large finite weight; P8 does not claim every scalar decision rule is invalid.
 
-Scientific authority must sometimes be withdrawn.
+## 6. Cross-domain coercions
 
-If evidence supporting an assertion is invalidated, downstream authority should be revoked or reopened. If a mapping's measurement-equivalence assumption fails, integrated conclusions may need demotion. If a self-change later causes harmful transfer, prior promotion authority should not be treated as permanently valid.
+The core P8 object is an explicit coercion
 
-P8 therefore requires a revocation operator tied to evidence/provenance dependency rather than confidence decay alone.
+\[
+c:d\Rightarrow d'
+\]
 
-## 7. Related-work boundary
+that specifies when a judgment rooted in domain `d` may contribute to authority in `d'`. A coercion includes premises, scope transformation, evidence-preservation conditions and an authorized issuer/root.
 
-The candidate sits near several mature areas. Dynamic epistemic logic models informational actions and changing knowledge. Deontic and action logics formalize permission and obligation. Belief-revision systems model non-monotonic change. Selective prediction and abstention study when a system should refuse. Recent AgentAbstain work directly evaluates when tool-using agents should not act. Provenance and scientific-verification systems track whether claims are supported and correctly attributed. Protected-evaluation and benchmark-auditing work separates candidate capability from evaluation authority.
+Without such a rule:
 
-P8 therefore cannot claim novelty for permission, abstention, provenance or non-monotonic revision in isolation.
+- planner confidence does not imply reframe authority;
+- route exhaustion does not imply global task closure;
+- semantic similarity does not imply merge authority;
+- citation support does not imply verified scientific authority;
+- replay improvement does not imply self-promotion authority.
 
-The hostile residual is narrower: a **typed authorization layer shared across heterogeneous epistemic actions**, with non-compensatory obligations, cross-module anti-laundering and revocation, grounded in executable autonomous-science workflows.
+### Authority laundering
 
-#340 must establish whether this already exists.
+**Authority laundering** occurs when an authority-bearing signal valid in `d` is used to authorize an effect in `d'` without a valid registered coercion path.
 
-## 8. Prospective experiment
+This is intentionally broader than a single failure pattern. P4 already has an internal authority-laundering falsifier in the assertion/verification lane. P8's candidate contribution is only **cross-domain** laundering.
 
-#341 proposes paired adversarial cases across all five domains. Each pair contains an action that is technically feasible; the authority conditions differ.
+## 7. Anti-laundering theorem
 
-The strongest baseline is not a scalar confidence threshold. We must compare against:
+Assume every judgment is domain-typed and every ordinary inference rule preserves the authority domain. The only rules allowed to change domain are registered coercions.
 
-- existing P1–P5 capability-specific gates;
+Then no derivation can conclude `Auth_{d'}(e)` from authority-bearing premises rooted exclusively in `d != d'` unless a valid coercion path from `d` to `d'` occurs.
+
+The proof is by induction on derivation height. Base axioms preserve their domain. Ordinary inference preserves domain by assumption. Therefore any domain change in a derivation must be introduced by a coercion rule.
+
+The theorem is syntactic. It does not prove that registered coercions are semantically correct. Soundness of each coercion is a separate obligation.
+
+## 8. Dependency-grounded revocation
+
+Authority is non-monotonic. Evidence can be invalidated, a source can lose admissibility, an evaluator can be compromised, a scope can expire, or a mapping assumption can fail.
+
+P8 records a dependency graph over evidence judgments, grants, coercion applications and authorization certificates. If an ancestor is revoked, every certificate that necessarily depends on it becomes invalid. A certificate with an independent complete trusted derivation may survive.
+
+This yields a targeted revocation property: revoke affected descendants without globally destroying unrelated authorization state.
+
+The mechanism is closely related to dependency repair/provenance work and is not claimed in isolation. Its role in P8 is to make cross-domain authority composition reversible and auditable.
+
+## 9. `CANNOT_CHECK` is not refusal
+
+`CANNOT_CHECK(e)` means a mandatory authorization premise cannot currently be established or refuted. It differs from:
+
+- `DENY`, where a blocker/violation is established;
+- `UNAUTHORIZED`, where no valid authority derivation exists;
+- `REVOKED`, where prior authorization lost a premise;
+- `DEFER`, where scheduling/resources postpone an action;
+- ordinary abstention, which may not explain which authorization premise is unresolved.
+
+This distinction matters because a system can be correct to avoid an action for several epistemically different reasons. A benchmark that collapses all of them into “refused” loses information about authority calibration.
+
+## 10. Pre-effect authorization and post-hoc abstention
+
+For irreversible/effectful actions, an authorization decision must precede the commit if it is to be preventive.
+
+If the effect is already committed and the system later emits `DENY` or `CANNOT_CHECK`, that later refusal cannot retroactively satisfy pre-effect authorization. AgentAbstain already identifies this empirically as post-hoc abstention; P8 adopts it as a timing invariant.
+
+## 11. Protected roots and self-promotion
+
+If a self-modifying candidate can rewrite both its admission predicate and every evidence value read by that predicate, it can construct an accepting policy regardless of any external target property. Internal acceptance therefore cannot imply external promotion soundness without at least one protected root or invariant outside candidate write control.
+
+P5 already owns this operational mechanism. P8 uses it as one instance of a more general root/delegation boundary and must not relabel it.
+
+## 12. Conservative embeddings of P1–P5
+
+A valid general calculus must reproduce existing domain gates when instantiated on their native cases.
+
+**P1 / `REFRAME`.** Responsibility and evidence determine which formulation/search coordinates may be mutated; dependent closure reopens.
+
+**P2 / `SEARCH_STOP`.** Route stop is not task stop; mandatory censored/open coverage obligations block global closure.
+
+**P3 / `MAP_MERGE`.** Similarity alone cannot discharge referent, context, measurement and obstruction obligations.
+
+**P4 / `ASSERT`.** Content-bound evidence, source ownership/support, independent/hostile checking and protected evaluator identity determine scientific-authority promotion.
+
+**P5 / `SELF_MODIFY`.** Replay, fresh transfer, protected assurance, negative history and host-only promotion govern self-change admission.
+
+P8 gains no novelty from these within-domain instances. The required theorem/checker target is **conservative gate embedding**: the general calculus reproduces their frozen native decisions exactly.
+
+## 13. Why cross-domain composition might still matter
+
+Independent local gates can all be correct while their composition is wrong.
+
+Imagine P2 emits a valid `ROUTE_STOP` judgment. A downstream component sees the generic token `PASS` and interprets it as permission to assert “the scientific literature is complete.” Nothing is wrong with the P2 route judgment. The error lies in the untyped transport from search-route authority to assertion/closure authority.
+
+Likewise, a P3 mapping similarity score can be valid evidence while being insufficient merge authority; a P4 citation-supported claim can be validly sourced while lacking a stronger verification obligation; a P5 replay improvement can be real while lacking self-promotion authority.
+
+P8 therefore predicts a distinct failure family: **composition can introduce authority violations even when every producing module emits a locally valid judgment**.
+
+This is the key discriminator against a programme consisting only of five independent correct gates.
+
+## 14. Donor-faithful embedding
+
+P8 must also embed strong external donors conservatively.
+
+- ETAS-style typed effects/traces should retain their native policy behavior when scientific-domain coercions are inactive.
+- FAVA-style permission graphs and deterministic authorization should remain valid specializations.
+- AgentAbstain paired act/abstain cases should retain their act/abstain truth while P8 adds a more typed explanation of why.
+- ProvenanceGuard's source-specific support/attribution judgments should remain non-fungible evidence dimensions.
+
+A generalization that changes donor-native verdicts merely to look more comprehensive is rejected.
+
+## 15. Deterministic hostile checks
+
+The first checker is committed at `papers/candidates/checkers/p8_finite_falsifiers_v1.py`. The current local run is 7/7 PASS on bounded fixtures covering:
+
+1. blocked cross-domain authorization without a coercion and allowed transport with an explicit path;
+2. scope narrowing versus widening;
+3. the finite-penalty additive-blocker counterexample;
+4. dependency revocation that preserves an independent authorization path;
+5. stale epoch replay plus post-hoc-refusal timing;
+6. candidate-controlled constant-accept self-promotion countermodel;
+7. a clean authorized control preventing total-refusal behavior.
+
+The protected benchmark must expand this to paired cases across all five domains, cross-module laundering attacks, revocation timing, scope/epoch replay and valid-coercion positive controls.
+
+## 16. Prospective evaluation
+
+The strongest baseline is not a confidence threshold. P8 must compare against:
+
+- the existing independent P1–P5 gates;
+- FAVA/ETAS-style typed-policy implementations where feasible;
 - provenance-only verification;
 - an abstention policy;
 - expected-utility authorization;
-- rule-based domain-specific policies;
-- the proposed shared calculus.
+- rule-based domain-specific authorization;
+- untyped/global `PASS` tokens;
+- no-revocation and no-hard-obligation ablations.
 
-Primary outcomes include unauthorized-action rate, unnecessary refusal, clean authorized coverage, authority-laundering rate, correct revocation after defeaters and calibrated CANNOT_CHECK.
+Primary outcomes include unauthorized-action rate, authority-laundering rate, unnecessary refusal, clean authorized coverage, correct revocation, stale-certificate acceptance, calibrated `CANNOT_CHECK`, and cost/latency.
 
-If the shared calculus performs no better than independent per-domain gates, P8 should be merged into programme synthesis or P4 rather than published independently.
+The decisive P8 result would be a case where independent gates are locally correct but fail under composition, while typed cross-domain coercion blocks the invalid transport without reducing valid action coverage.
 
-## 9. Limitations
+If that does not occur, P8 should merge into P4/programme synthesis.
 
-Authority is partly normative and task-specific. A shared calculus may become too abstract to improve real systems. Obligation design can merely relocate human judgment. Protected custody is expensive and not appropriate for every action. Excessive fail-closed behavior can reduce useful scientific autonomy. Formal authorization does not establish truth; it establishes only that a transition satisfied a defined authority contract.
+## 17. Exact ownership boundary
 
-## 10. Conclusion
+The V1 P1–P5 ownership matrix marks all five within-domain authority transitions `MERGE_EXISTING`. Generic permissions/effect typing, provenance and abstention are `ADOPT / DO NOT CLAIM` because strong external donors own them.
 
-The candidate thesis is that autonomous science needs a typed answer to a question that capability benchmarks mostly ignore: **what is this system allowed to change, close, combine, assert or promote on the basis of the evidence it actually has?** P8 remains a candidate until it demonstrates a distinct cross-capability object beyond P4 and existing logic, abstention and provenance frameworks.
+The only P8 rows allowed to remain paper-level candidates are cross-domain coercion/anti-laundering and related dependency revocation—each still `CANNOT_CHECK` pending external saturation and prospective evaluation.
+
+## 18. Limitations
+
+Authority contracts are normative and task-specific. A typed calculus can merely move human judgment into the coercion registry. Protected roots can be compromised. Conservative embeddings can be technically correct yet scientifically uninteresting. Excessive fail-closed behavior can reduce useful autonomy. Formal authorization establishes contract compliance, not truth. Cross-domain boundaries themselves may be disputed or fluid.
+
+There is also a serious novelty risk: authorization and effect systems are mature, and current agent-security work is moving rapidly. P8 should be terminated if its cross-domain object is already standard policy composition with renamed domains.
+
+## 19. Conclusion
+
+P8 treats autonomous science as a system of effectful epistemic actions whose authority is typed, scoped, evidence-bound, revocable and compositional. The programme's strategy is assimilation-first: absorb the strongest permission, effect, abstention and provenance mechanisms, embed the existing ORION gates without stealing them, then test whether cross-domain scientific authority has failure modes that those components do not resolve individually. Until that test succeeds, P8 remains a candidate rather than a flagship.
