@@ -60,7 +60,21 @@ The P1-T2 table reduces stochastic repeats per-case before computing intervals:
 
 ## Determinism
 
-ARCHIVED TABLES ARE THE AUTHORITATIVE OUTPUT from the campaign run. Regeneration from the current worktree code does NOT reproduce exact digests (code drift between campaign execution time and now). To reproduce exactly, use the same commit that generated the tables.
+Archived tables are reproducible at HEAD. The only difference between archived and regenerated tables is the `provenance.generated_utc` timestamp written by `tables.py:_provenance()`. After nullifying this field, regenerated tables are bit-identical to archived.
+
+**Generating commit:** `0cf4e8d82771252de94be8c696a3f39fd3191019` ("Merge pull request #222", 2026-08-17 10:14:55 +0200)
+
+**Regeneration recipe:**
+```bash
+cd /path/to/ORION
+git checkout 0cf4e8d82771252de94be8c696a3f39fd3191019
+export PYTHONPATH=$(pwd)/src
+python3 -m orion.study.p1.tables \
+  --archive papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl \
+  --out papers/paper-01-recursive-epistemic-reconstruction/results
+```
+
+Note: Point `--archive` at `test_scored.jsonl` directly, not the `raw/` directory, because `load_records()` loads all `.json/.jsonl` files in a directory and `test_runs.jsonl` lacks the `schema_version` field required by the reader.
 
 ## Digests
 
