@@ -5,8 +5,16 @@
   "audit_timestamp_utc": "2026-08-16T17:33:33Z",
   "audit_completed_utc": "2026-08-16T18:07:00Z",
   "revision_history": [
-    {"revision": 1, "completed_utc": "2026-08-16T17:46:22Z", "summary": "Initial audit: obtainability, licences, content hashes, contamination exposure."},
-    {"revision": 2, "completed_utc": "2026-08-16T18:07:00Z", "summary": "CORRECTION. Revision 1 reported the unpublished deepxiv paper-search backend as the hard blocker for AutoResearchBench official evaluation, and described MetaSyn retrieval/screening as only 'in principle' credential-free. Both conflated a benchmark's reference agent with its scorer, sourced from example.env and README rather than from the code. Verified at the pinned revisions: AutoResearchBench Wide scores with no credentials (400/400 wide records carry usable gold arXiv ids), Deep needs only a judge endpoint (deterministic id-match deviation available for 540/600), and MetaSyn's retrieval/screening scoring path imports no LLM client. Added official_evaluation_runnable_by_family so the distinction is machine-readable. The SAGE verdict is unchanged. No content hash, licence or state value changed."}
+    {
+      "revision": 1,
+      "completed_utc": "2026-08-16T17:46:22Z",
+      "summary": "Initial audit: obtainability, licences, content hashes, contamination exposure."
+    },
+    {
+      "revision": 2,
+      "completed_utc": "2026-08-16T18:07:00Z",
+      "summary": "CORRECTION. Revision 1 reported the unpublished deepxiv paper-search backend as the hard blocker for AutoResearchBench official evaluation, and described MetaSyn retrieval/screening as only 'in principle' credential-free. Both conflated a benchmark's reference agent with its scorer, sourced from example.env and README rather than from the code. Verified at the pinned revisions: AutoResearchBench Wide scores with no credentials (400/400 wide records carry usable gold arXiv ids), Deep needs only a judge endpoint (deterministic id-match deviation available for 540/600), and MetaSyn's retrieval/screening scoring path imports no LLM client. Added official_evaluation_runnable_by_family so the distinction is machine-readable. The SAGE verdict is unchanged. No content hash, licence or state value changed."
+    }
   ],
   "auditor_context": {
     "host": "darwin",
@@ -40,11 +48,20 @@
         "tree_sha": "8181218bf3da4b8be9a88a61ccd4c03d20760820",
         "author_date_utc": "2026-04-24T07:08:22Z",
         "committer_date_utc": "2026-04-24T07:08:57Z",
-        "parents": ["eb8b7761", "f48b0510"],
+        "parents": [
+          "eb8b7761",
+          "f48b0510"
+        ],
         "message_first_line": "Merge remote-tracking branch 'origin/main'",
         "note": "Merge commit; both parents are ancestors of the pinned tree."
       },
-      "repository_status": {"public": true, "archived": false, "fork": false, "default_branch": "main", "size_kb": 13876},
+      "repository_status": {
+        "public": true,
+        "archived": false,
+        "fork": false,
+        "default_branch": "main",
+        "size_kb": 13876
+      },
       "state": "OBTAINED",
       "license": "Apache-2.0",
       "license_source": "GET /repos/CherYou/AutoResearchBench/license -> HTTP 200, spdx_id Apache-2.0; LICENSE blob present in tree 8181218b at path LICENSE (10253 bytes).",
@@ -57,7 +74,10 @@
       },
       "local_path": "<session-scratchpad>/p2-access/code/AutoResearchBench-a46c9bfb.tar.gz",
       "fetch_timestamp_utc": "2026-08-16T17:37:12Z",
-      "official_evaluation_runnable": {"autoresearchbench_wide": "YES_NO_CREDENTIALS", "autoresearchbench_deep": "YES_WITH_JUDGE_KEY"},
+      "official_evaluation_runnable": {
+        "autoresearchbench_wide": "YES_NO_CREDENTIALS",
+        "autoresearchbench_deep": "YES_WITH_JUDGE_KEY"
+      },
       "run_requirements": {
         "layer_separation_note": "CORRECTED 2026-08-16 (supersedes the v1 record). The first pass reported the unpublished deepxiv paper-search backend as the hard blocker for official evaluation. That conflated two independent layers. Verified at the pinned revision: PAPER_SEARCH_API_URL, deepxiv and SERPER appear only in run_inference.sh, inference.py, tool_deepxivsearch.py and tool_websearch.py, and in no file under evaluate/. They are inputs to the repository's own reference agent, not to the scorer. They block reproducing the authors' baseline agent; they do not block running our system on their tasks and scoring it officially.",
         "evaluator_requirements": {
@@ -72,7 +92,11 @@
               "command": "env -u JINA_API_KEY -u OPENAI_API_KEY -u SERPER_API_KEY -u EVAL_OPENAI_API_KEY -u PAPER_SEARCH_API_URL -u OPENAI_API_BASE python3 evaluate_wide_search.py --input <synthetic>.jsonl --output <out>.json",
               "exit_code": 0,
               "input": "Synthetic inference file built from three real wide records (gold sizes 20, 21, 6) with one perfect, one partial-plus-false-positive and one empty prediction.",
-              "observed": {"avg_iou": 0.484848, "avg_recall": 0.492063, "avg_precision": 0.636364},
+              "observed": {
+                "avg_iou": 0.484848,
+                "avg_recall": 0.492063,
+                "avg_precision": 0.636364
+              },
               "hand_check": "Metrics reproduce by hand from the set arithmetic, so the scorer is behaving as read.",
               "outcome_blind_note": "This is a self-test of the scorer on synthetic input. No ORION or baseline output was scored and these are not results for any system."
             }
@@ -84,7 +108,12 @@
           }
         },
         "reference_agent_requirements": {
-          "credentials": ["OpenAI-compatible chat endpoint (agent)", "paper-search backend (unpublished)", "Serper (web search)", "Jina (web reader)"],
+          "credentials": [
+            "OpenAI-compatible chat endpoint (agent)",
+            "paper-search backend (unpublished)",
+            "Serper (web search)",
+            "Jina (web reader)"
+          ],
           "blocks": "Reproducing the authors' own baseline agent only.",
           "detail": "example.env leaves PAPER_SEARCH_API_URL blank and defaults SEARCH_TOOL=deepxiv, which resolves to tool_deepxivsearch.py against a service the repository does not publish. MAX_TURNS defaults to 10 agent turns per task, each turn issuing an agent LLM call plus tool calls whose summarisers are themselves LLM calls, so one full pass over 1000 tasks is order 1e4 agent calls plus a comparable number of summariser calls.",
           "consequence": "The AutoResearchBench-native agent cannot serve as one of our matched baselines. Our own baselines (BM25, dense, hybrid, one-pass RAG, agentic single-route) are unaffected and are scored by the same official scorer."
@@ -94,21 +123,44 @@
       },
       "contamination_note": "Wide gold is a set of real arXiv ids and our discovery routes are the arXiv and OpenAlex APIs, so the specific exposure is that a route can return the benchmark's own artifacts as ordinary search results: the AutoResearchBench paper (arXiv:2604.25256), its GitHub repository or its HuggingFace dataset page can surface for a topical query and hand a candidate the answer key rather than the paper the task is about. Route logs must therefore be scanned for these three identifiers per query and any hit reported, not merely for generic 'answer leakage'. Separately, the bundle's obfuscation is key-less and locally reversible, and gold labels ship inside the question records, so access_policy.hidden_labels must be enforced by the ORION harness. Deep additionally depends on an LLM judge whose model identity must be frozen in the run manifest.",
       "attempt_log": [
-        {"timestamp_utc": "2026-08-16T17:33:47Z", "action": "GET /repos/CherYou/AutoResearchBench", "http_status": 200, "outcome": "public repository"},
-        {"timestamp_utc": "2026-08-16T17:34:31Z", "action": "GET /repos/CherYou/AutoResearchBench/commits/a46c9bfb8968786f73f0a6a5b365b5384cd0f96d", "http_status": 200, "outcome": "pinned revision resolves"},
-        {"timestamp_utc": "2026-08-16T17:37:12Z", "action": "GET /repos/CherYou/AutoResearchBench/tarball/a46c9bfb8968786f73f0a6a5b365b5384cd0f96d", "http_status": 200, "outcome": "10376180 bytes, 28 entries, extracted successfully"}
+        {
+          "timestamp_utc": "2026-08-16T17:33:47Z",
+          "action": "GET /repos/CherYou/AutoResearchBench",
+          "http_status": 200,
+          "outcome": "public repository"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:34:31Z",
+          "action": "GET /repos/CherYou/AutoResearchBench/commits/a46c9bfb8968786f73f0a6a5b365b5384cd0f96d",
+          "http_status": 200,
+          "outcome": "pinned revision resolves"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:37:12Z",
+          "action": "GET /repos/CherYou/AutoResearchBench/tarball/a46c9bfb8968786f73f0a6a5b365b5384cd0f96d",
+          "http_status": 200,
+          "outcome": "10376180 bytes, 28 entries, extracted successfully"
+        }
       ]
     },
     {
       "artifact_id": "AutoResearchBench_dataset",
-      "official_evaluation_runnable": {"autoresearchbench_wide": "YES_NO_CREDENTIALS", "autoresearchbench_deep": "YES_WITH_JUDGE_KEY"},
+      "official_evaluation_runnable": {
+        "autoresearchbench_wide": "YES_NO_CREDENTIALS",
+        "autoresearchbench_deep": "YES_WITH_JUDGE_KEY"
+      },
       "protocol_reference_key": "AutoResearchBench_dataset",
       "kind": "dataset",
       "locator": "https://huggingface.co/datasets/Lk123/AutoResearchBench",
       "pinned_revision": null,
       "pinned_revision_note": "PROTOCOL_V1.json pins no dataset revision and records the bundle content hash as UNBOUND. Observed repository revision at audit time: 4df92b46c2905c8593abd857aa3a2cdede142da6 (lastModified 2026-05-21T06:29:30Z).",
       "revision_exists": null,
-      "repository_status": {"public": true, "gated": false, "disabled": false, "downloads": 255},
+      "repository_status": {
+        "public": true,
+        "gated": false,
+        "disabled": false,
+        "downloads": 255
+      },
       "state": "OBTAINED",
       "license": "Apache-2.0",
       "license_source": "HuggingFace dataset card metadata license: apache-2.0 (GET https://huggingface.co/api/datasets/Lk123/AutoResearchBench -> HTTP 200, cardData.license). Matches the protocol's Apache-2.0 claim.",
@@ -130,15 +182,26 @@
       "local_path": "<session-scratchpad>/p2-access/bundles/AutoResearchBench.jsonl.obf.json",
       "fetch_timestamp_utc": "2026-08-16T17:35:41Z",
       "run_requirements": {
-        "provider": ["none for download or decryption"],
+        "provider": [
+          "none for download or decryption"
+        ],
         "model": null,
         "judge_calls_per_task": null,
         "estimated_scale": "1000 records: 600 type=deep, 400 type=wide; fields question, answer, arxiv_id, type.",
         "hard_blocker": "none for obtaining the data",
         "decryption": "Required before use, and it succeeded with no secret. Scheme public_canary_xor_sha256: the XOR mask is sha256(canary_string) where canary_string is stored inside the bundle metadata. The repository also ships an AES-GCM/scrypt path (via the cryptography package) for a passphrase variant, which the published bundle does not use.",
         "gold_id_coverage_verified": {
-          "wide": {"records": 400, "with_usable_arxiv_ids": 400, "share": 1.0},
-          "deep": {"records": 600, "with_usable_arxiv_ids": 540, "unusable_value": "arxiv_id == ['']", "share": 0.9},
+          "wide": {
+            "records": 400,
+            "with_usable_arxiv_ids": 400,
+            "share": 1.0
+          },
+          "deep": {
+            "records": 600,
+            "with_usable_arxiv_ids": 540,
+            "unusable_value": "arxiv_id == ['']",
+            "share": 0.9
+          },
           "note": "Counted over the decrypted bundle by normalising each arxiv_id entry the way evaluate_wide_search.normalize_arxiv_id does and discarding empties. This is what makes credential-free Wide scoring possible and bounds the deterministic Deep deviation at 540/600.",
           "gold_consistency_note": "Two wide records have len(arxiv_id) != len(answer) (11 vs 10 and 21 vs 20). Wide scores on id sets, so the extra id enlarges the gold denominator for those two tasks. Minor and not a blocker, but it should be visible in the archive rather than discovered later."
         },
@@ -146,14 +209,31 @@
       },
       "contamination_note": "LOW-MODERATE. No public plaintext mirror surfaced in a web-search probe, but the upstream README states the obfuscation 'is not strong access control', and this audit confirmed it is key-less and locally reversible. Separately: gold labels (answer, arxiv_id) ship in the same records as the questions, so the protocol's access_policy.hidden_labels guarantee must be enforced by the harness rather than inherited from the benchmark. See evidence/access/contamination_probes.md.",
       "attempt_log": [
-        {"timestamp_utc": "2026-08-16T17:34:12Z", "action": "GET https://huggingface.co/api/datasets/Lk123/AutoResearchBench", "http_status": 200, "outcome": "public, ungated, apache-2.0, 3 files"},
-        {"timestamp_utc": "2026-08-16T17:35:41Z", "action": "GET https://huggingface.co/datasets/Lk123/AutoResearchBench/resolve/main/AutoResearchBench.jsonl.obf.json", "http_status": 200, "outcome": "462529 bytes downloaded, no Authorization header sent"},
-        {"timestamp_utc": "2026-08-16T17:38:10Z", "action": "python3 decrypt_benchmark.py --input-file AutoResearchBench.jsonl.obf.json --output-file AutoResearchBench.jsonl", "http_status": null, "outcome": "exit 0; scheme public_canary_xor_sha256; decrypted sha256 equals the bundle's declared original_sha256"}
+        {
+          "timestamp_utc": "2026-08-16T17:34:12Z",
+          "action": "GET https://huggingface.co/api/datasets/Lk123/AutoResearchBench",
+          "http_status": 200,
+          "outcome": "public, ungated, apache-2.0, 3 files"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:35:41Z",
+          "action": "GET https://huggingface.co/datasets/Lk123/AutoResearchBench/resolve/main/AutoResearchBench.jsonl.obf.json",
+          "http_status": 200,
+          "outcome": "462529 bytes downloaded, no Authorization header sent"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:38:10Z",
+          "action": "python3 decrypt_benchmark.py --input-file AutoResearchBench.jsonl.obf.json --output-file AutoResearchBench.jsonl",
+          "http_status": null,
+          "outcome": "exit 0; scheme public_canary_xor_sha256; decrypted sha256 equals the bundle's declared original_sha256"
+        }
       ]
     },
     {
       "artifact_id": "SAGE_benchmark",
-      "official_evaluation_runnable": {"sage_scientific_retrieval": "NO_ARTIFACT_MISSING"},
+      "official_evaluation_runnable": {
+        "sage_scientific_retrieval": "NO_ARTIFACT_MISSING"
+      },
       "protocol_reference_key": "SAGE_benchmark",
       "kind": "dataset",
       "locator": "https://github.com/HughieHu/Sage",
@@ -163,10 +243,19 @@
         "tree_sha": "4d3b461d9de9c5a5406793f6bd58dd28057ad978",
         "author_date_utc": "2026-04-01T09:12:46Z",
         "committer_date_utc": "2026-04-01T09:12:46Z",
-        "parents": ["b8bdf543"],
+        "parents": [
+          "b8bdf543"
+        ],
         "message_first_line": "Update README: simplify field descriptions"
       },
-      "repository_status": {"public": true, "archived": false, "fork": false, "default_branch": "main", "size_kb": 777, "stargazers": 1},
+      "repository_status": {
+        "public": true,
+        "archived": false,
+        "fork": false,
+        "default_branch": "main",
+        "size_kb": 777,
+        "stargazers": 1
+      },
       "state": "AVAILABLE_LICENSE_BLOCKED",
       "license": "NONE_FOUND",
       "license_source": "GET /repos/HughieHu/Sage/license -> HTTP 404 {\"message\":\"Not Found\"}. Full recursive tree at pinned commit 4d3b461d enumerated (11 entries, truncated=false): no LICENSE, COPYING or NOTICE blob at any depth. README.md at the pinned commit contains no licence or terms statement. Absence asserted over the complete tree, not a filtered subset.",
@@ -180,7 +269,9 @@
       "local_path": "<session-scratchpad>/p2-access/code/Sage-bc62257a.tar.gz",
       "fetch_timestamp_utc": "2026-08-16T17:44:03Z",
       "run_requirements": {
-        "provider": ["not specified by the repository"],
+        "provider": [
+          "not specified by the repository"
+        ],
         "model": null,
         "judge_calls_per_task": "not applicable; the stated metrics are Exact Match and Weighted Recall, neither of which needs an LLM judge",
         "estimated_scale": "1200 queries: 600 short-form and 600 open-ended, 150 per domain across computer_science, healthcare, humanities, natural_science.",
@@ -189,15 +280,37 @@
       },
       "contamination_note": "HIGH / UNAVOIDABLE. Query records carry fields paper_id, paper_title, complete_query and ground_truth {paperId, title} in one public, unobfuscated GitHub JSON file: the question-to-answer mapping is itself an indexable web document. Spot-check: the ground_truth title of record 0 of Sage_Short_Form_Questions/natural_science.json was web-searched verbatim and the exact target paper was the top result. Any SAGE number produced with a live web route is contaminated by construction. See evidence/access/contamination_probes.md.",
       "attempt_log": [
-        {"timestamp_utc": "2026-08-16T17:33:47Z", "action": "GET /repos/HughieHu/Sage", "http_status": 200, "outcome": "public repository, license field null"},
-        {"timestamp_utc": "2026-08-16T17:34:31Z", "action": "GET /repos/HughieHu/Sage/commits/bc62257a13d81ae233ecbd508037614746d2776b", "http_status": 200, "outcome": "pinned revision resolves"},
-        {"timestamp_utc": "2026-08-16T17:35:12Z", "action": "GET /repos/HughieHu/Sage/license", "http_status": 404, "outcome": "{\"message\":\"Not Found\"} - no detectable licence"},
-        {"timestamp_utc": "2026-08-16T17:44:03Z", "action": "GET /repos/HughieHu/Sage/tarball/bc62257a13d81ae233ecbd508037614746d2776b", "http_status": 200, "outcome": "788416 bytes, 12 entries; queries readable, no licence to redistribute them under"}
+        {
+          "timestamp_utc": "2026-08-16T17:33:47Z",
+          "action": "GET /repos/HughieHu/Sage",
+          "http_status": 200,
+          "outcome": "public repository, license field null"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:34:31Z",
+          "action": "GET /repos/HughieHu/Sage/commits/bc62257a13d81ae233ecbd508037614746d2776b",
+          "http_status": 200,
+          "outcome": "pinned revision resolves"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:35:12Z",
+          "action": "GET /repos/HughieHu/Sage/license",
+          "http_status": 404,
+          "outcome": "{\"message\":\"Not Found\"} - no detectable licence"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:44:03Z",
+          "action": "GET /repos/HughieHu/Sage/tarball/bc62257a13d81ae233ecbd508037614746d2776b",
+          "http_status": 200,
+          "outcome": "788416 bytes, 12 entries; queries readable, no licence to redistribute them under"
+        }
       ]
     },
     {
       "artifact_id": "SAGE_retrieval_corpus",
-      "official_evaluation_runnable": {"sage_scientific_retrieval": "NO_ARTIFACT_MISSING"},
+      "official_evaluation_runnable": {
+        "sage_scientific_retrieval": "NO_ARTIFACT_MISSING"
+      },
       "protocol_reference_key": null,
       "kind": "dataset",
       "locator": "unpublished; claimed in arXiv:2602.05975 as a 200,000 paper retrieval corpus",
@@ -221,15 +334,37 @@
       },
       "contamination_note": "Not applicable; artifact not obtained. Note that a closed corpus is exactly what would be needed to de-contaminate SAGE, so its absence compounds the SAGE_benchmark contamination finding.",
       "attempt_log": [
-        {"timestamp_utc": "2026-08-16T17:44:03Z", "action": "Enumerate full recursive tree of HughieHu/Sage at bc62257a (11 entries, truncated=false)", "http_status": 200, "outcome": "no corpus present; repository total is 777 KB of queries plus README"},
-        {"timestamp_utc": "2026-08-16T17:43:20Z", "action": "GET https://arxiv.org/html/2602.05975v1 and scan for huggingface.co | github.com | zenodo.org | figshare URLs", "http_status": 200, "outcome": "only https://github.com/HughieHu/Sage plus arXiv/LaTeXML/pdfplumber/pymupdf infrastructure links; no corpus location published"},
-        {"timestamp_utc": "2026-08-16T17:42:05Z", "action": "GET https://huggingface.co/api/datasets?search=Sage%20scientific%20literature%20retrieval", "http_status": 200, "outcome": "zero matching datasets"},
-        {"timestamp_utc": "2026-08-16T17:46:22Z", "action": "GET https://huggingface.co/api/datasets/HughieHu/Sage", "http_status": 401, "outcome": "HuggingFace returns 401 for both absent and private repositories to unauthenticated callers, so this response alone does not prove non-existence; combined with the paper publishing no corpus link, the corpus is not obtainable from published artifacts. No credentials were supplied."}
+        {
+          "timestamp_utc": "2026-08-16T17:44:03Z",
+          "action": "Enumerate full recursive tree of HughieHu/Sage at bc62257a (11 entries, truncated=false)",
+          "http_status": 200,
+          "outcome": "no corpus present; repository total is 777 KB of queries plus README"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:43:20Z",
+          "action": "GET https://arxiv.org/html/2602.05975v1 and scan for huggingface.co | github.com | zenodo.org | figshare URLs",
+          "http_status": 200,
+          "outcome": "only https://github.com/HughieHu/Sage plus arXiv/LaTeXML/pdfplumber/pymupdf infrastructure links; no corpus location published"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:42:05Z",
+          "action": "GET https://huggingface.co/api/datasets?search=Sage%20scientific%20literature%20retrieval",
+          "http_status": 200,
+          "outcome": "zero matching datasets"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:46:22Z",
+          "action": "GET https://huggingface.co/api/datasets/HughieHu/Sage",
+          "http_status": 401,
+          "outcome": "HuggingFace returns 401 for both absent and private repositories to unauthenticated callers, so this response alone does not prove non-existence; combined with the paper publishing no corpus link, the corpus is not obtainable from published artifacts. No credentials were supplied."
+        }
       ]
     },
     {
       "artifact_id": "SAGE_official_evaluator",
-      "official_evaluation_runnable": {"sage_scientific_retrieval": "NO_ARTIFACT_MISSING"},
+      "official_evaluation_runnable": {
+        "sage_scientific_retrieval": "NO_ARTIFACT_MISSING"
+      },
       "protocol_reference_key": null,
       "kind": "evaluator",
       "locator": "not published",
@@ -253,7 +388,12 @@
       },
       "contamination_note": "Not applicable.",
       "attempt_log": [
-        {"timestamp_utc": "2026-08-16T17:44:03Z", "action": "Enumerate full recursive tree of HughieHu/Sage at bc62257a", "http_status": 200, "outcome": "11 entries: README.md and 8 query JSON files under two directories. No .py, no requirements.txt, no evaluation script."}
+        {
+          "timestamp_utc": "2026-08-16T17:44:03Z",
+          "action": "Enumerate full recursive tree of HughieHu/Sage at bc62257a",
+          "http_status": 200,
+          "outcome": "11 entries: README.md and 8 query JSON files under two directories. No .py, no requirements.txt, no evaluation script."
+        }
       ]
     },
     {
@@ -267,10 +407,18 @@
         "tree_sha": "ee7ee5889e13c275415199f5ce7801a935a4b774",
         "author_date_utc": "2026-07-25T12:43:11Z",
         "committer_date_utc": "2026-07-25T12:43:11Z",
-        "parents": ["002824ce"],
+        "parents": [
+          "002824ce"
+        ],
         "message_first_line": "Add project website under docs/ for GitHub Pages"
       },
-      "repository_status": {"public": true, "archived": false, "fork": false, "default_branch": "main", "size_kb": 6113},
+      "repository_status": {
+        "public": true,
+        "archived": false,
+        "fork": false,
+        "default_branch": "main",
+        "size_kb": 6113
+      },
       "state": "OBTAINED",
       "license": "MIT",
       "license_source": "GET /repos/THUIR/MetaSyn/license -> HTTP 200, spdx_id MIT; LICENSE blob present in tree ee7ee588 (1072 bytes); pyproject.toml declares license = {text = \"MIT\"}.",
@@ -283,7 +431,9 @@
       },
       "local_path": "<session-scratchpad>/p2-access/code/MetaSyn-51b95b70.tar.gz",
       "fetch_timestamp_utc": "2026-08-16T17:44:06Z",
-      "official_evaluation_runnable": {"metasyn_retrieval_screening": "YES_NO_CREDENTIALS"},
+      "official_evaluation_runnable": {
+        "metasyn_retrieval_screening": "YES_NO_CREDENTIALS"
+      },
       "run_requirements": {
         "layer_separation_note": "CORRECTED 2026-08-16 alongside the AutoResearchBench record, and the correction is larger here than expected. The v1 record said retrieval and screening 'could in principle' run without a key, sourced from the README. Verified at the pinned revision by reading the import graph instead: src/metasyn/evaluation.py, evaluator.py, retrieval.py and sparse.py import no LLM client, and judge.py imports only numpy and sentence_transformers -- MetaSyn's 'judge' is an embedding scorer, not an LLM judge. Only rag.py imports openai. scripts/run_retrieval.py contains no LLM reference and scripts/evaluate.py declares --judge-model without required=True.",
         "evaluator_requirements": {
@@ -302,21 +452,43 @@
       },
       "contamination_note": "CANNOT_CHECK. The dataset is public and ungated and included-study lists are directly downloadable, so exposure is plausible, but no contamination probe was run against MetaSyn items in this audit and no contamination rate is claimed.",
       "attempt_log": [
-        {"timestamp_utc": "2026-08-16T17:33:48Z", "action": "GET /repos/THUIR/MetaSyn", "http_status": 200, "outcome": "public repository, MIT"},
-        {"timestamp_utc": "2026-08-16T17:34:31Z", "action": "GET /repos/THUIR/MetaSyn/commits/51b95b7061e1faf241c205eb7f8e5c2bccff4848", "http_status": 200, "outcome": "pinned revision resolves"},
-        {"timestamp_utc": "2026-08-16T17:44:06Z", "action": "GET /repos/THUIR/MetaSyn/tarball/51b95b7061e1faf241c205eb7f8e5c2bccff4848", "http_status": 200, "outcome": "4979957 bytes, 4192 entries"}
+        {
+          "timestamp_utc": "2026-08-16T17:33:48Z",
+          "action": "GET /repos/THUIR/MetaSyn",
+          "http_status": 200,
+          "outcome": "public repository, MIT"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:34:31Z",
+          "action": "GET /repos/THUIR/MetaSyn/commits/51b95b7061e1faf241c205eb7f8e5c2bccff4848",
+          "http_status": 200,
+          "outcome": "pinned revision resolves"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:44:06Z",
+          "action": "GET /repos/THUIR/MetaSyn/tarball/51b95b7061e1faf241c205eb7f8e5c2bccff4848",
+          "http_status": 200,
+          "outcome": "4979957 bytes, 4192 entries"
+        }
       ]
     },
     {
       "artifact_id": "MetaSyn_dataset",
-      "official_evaluation_runnable": {"metasyn_retrieval_screening": "YES_NO_CREDENTIALS"},
+      "official_evaluation_runnable": {
+        "metasyn_retrieval_screening": "YES_NO_CREDENTIALS"
+      },
       "protocol_reference_key": null,
       "kind": "dataset",
       "locator": "https://huggingface.co/datasets/THUIR/MetaSyn",
       "pinned_revision": null,
       "pinned_revision_note": "Not pinned by PROTOCOL_V1.json; execution_bindings.dataset_revisions.MetaSyn is UNBOUND. Observed revision at audit time: c8fa07d89c44093d623f9a213c6bf070f40ab960 (lastModified 2026-07-23T04:48:53Z).",
       "revision_exists": null,
-      "repository_status": {"public": true, "gated": false, "disabled": false, "downloads": 360},
+      "repository_status": {
+        "public": true,
+        "gated": false,
+        "disabled": false,
+        "downloads": 360
+      },
       "state": "OBTAINED",
       "license": "MIT (project-authored annotations only); upstream terms retained for third-party text",
       "license_source": "HuggingFace card metadata license: other. Resolved by fetching https://huggingface.co/datasets/THUIR/MetaSyn/raw/main/LICENSE (HTTP 200, 1277 bytes), whose preamble reads: 'The MIT license below applies only to project-authored MetaSyn annotations. Third-party article metadata, abstracts, identifiers, source-review excerpts, and PMC-derived text retain their upstream terms.' The card's 'other' is therefore a partial-MIT, not an unlicensed artifact.",
@@ -344,7 +516,9 @@
       "local_path": "<session-scratchpad>/p2-access/bundles/metasyn_reviews_test.parquet",
       "fetch_timestamp_utc": "2026-08-16T17:52:10Z",
       "run_requirements": {
-        "provider": ["HuggingFace (anonymous download)"],
+        "provider": [
+          "HuggingFace (anonymous download)"
+        ],
         "model": "BFTree/MA-Retriever (HuggingFace model, public, ungated, MIT, revision 05f427fc08ed70e686159a2cb655319ad44c844c) for the retrieval stage",
         "judge_calls_per_task": null,
         "estimated_scale": "~620 MB of parquet; 140,585-article shared corpus plus review splits and test_ids.json.",
@@ -353,15 +527,37 @@
       },
       "contamination_note": "CANNOT_CHECK. Public and ungated with downloadable included-study lists; no contamination probe run.",
       "attempt_log": [
-        {"timestamp_utc": "2026-08-16T17:45:10Z", "action": "GET https://huggingface.co/api/datasets/THUIR/MetaSyn", "http_status": 200, "outcome": "public, ungated, card license 'other'"},
-        {"timestamp_utc": "2026-08-16T17:45:40Z", "action": "GET https://huggingface.co/datasets/THUIR/MetaSyn/raw/main/LICENSE", "http_status": 200, "outcome": "1277 bytes; partial-MIT scope statement recovered"},
-        {"timestamp_utc": "2026-08-16T17:46:22Z", "action": "GET .../resolve/main/data/corpus/train-00000-of-00006.parquet with Range: bytes=0-1048575", "http_status": 206, "outcome": "1048576 bytes served; payload confirmed fetchable without credentials"},
-        {"timestamp_utc": "2026-08-16T17:52:10Z", "action": "GET .../resolve/main/data/reviews/test-00000-of-00001.parquet", "http_status": 200, "outcome": "688358 bytes downloaded; local sha256 matched API-published LFS sha256"}
+        {
+          "timestamp_utc": "2026-08-16T17:45:10Z",
+          "action": "GET https://huggingface.co/api/datasets/THUIR/MetaSyn",
+          "http_status": 200,
+          "outcome": "public, ungated, card license 'other'"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:45:40Z",
+          "action": "GET https://huggingface.co/datasets/THUIR/MetaSyn/raw/main/LICENSE",
+          "http_status": 200,
+          "outcome": "1277 bytes; partial-MIT scope statement recovered"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:46:22Z",
+          "action": "GET .../resolve/main/data/corpus/train-00000-of-00006.parquet with Range: bytes=0-1048575",
+          "http_status": 206,
+          "outcome": "1048576 bytes served; payload confirmed fetchable without credentials"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:52:10Z",
+          "action": "GET .../resolve/main/data/reviews/test-00000-of-00001.parquet",
+          "http_status": 200,
+          "outcome": "688358 bytes downloaded; local sha256 matched API-published LFS sha256"
+        }
       ]
     },
     {
       "artifact_id": "AgentSLR",
-      "official_evaluation_runnable": {"protocol_driven_systematic_review_baseline": "NOT_ASSESSED"},
+      "official_evaluation_runnable": {
+        "protocol_driven_systematic_review_baseline": "NOT_ASSESSED"
+      },
       "protocol_reference_key": "AgentSLR",
       "kind": "code",
       "locator": "https://github.com/OxRML/AgentSLR",
@@ -371,10 +567,18 @@
         "tree_sha": "0b0966e5b6ee17298125e4ab32b04dc0297d72b2",
         "author_date_utc": "2026-05-07T15:10:45Z",
         "committer_date_utc": "2026-05-07T15:10:45Z",
-        "parents": ["81507b11"],
+        "parents": [
+          "81507b11"
+        ],
         "message_first_line": "Update README for AgentSLR harness"
       },
-      "repository_status": {"public": true, "archived": false, "fork": false, "default_branch": "main", "size_kb": 80850},
+      "repository_status": {
+        "public": true,
+        "archived": false,
+        "fork": false,
+        "default_branch": "main",
+        "size_kb": 80850
+      },
       "state": "AVAILABLE_LICENSE_BLOCKED",
       "license": "NONE_FOUND",
       "license_source": "GET /repos/OxRML/AgentSLR/license -> HTTP 404 {\"message\":\"Not Found\"}. Full recursive tree at pinned commit 0b0966e5 enumerated (437 entries, truncated=false): no LICENSE, COPYING or NOTICE blob at any depth. README.MD contains no licence statement. Absence asserted over the complete tree.",
@@ -388,7 +592,14 @@
       "local_path": "<session-scratchpad>/p2-access/code/AgentSLR-3111fcf4.tar.gz",
       "fetch_timestamp_utc": "2026-08-16T17:44:20Z",
       "run_requirements": {
-        "provider": ["OpenAI", "OpenRouter", "Mistral (OCR)", "OpenAlex", "NCBI", "or a local vLLM server"],
+        "provider": [
+          "OpenAI",
+          "OpenRouter",
+          "Mistral (OCR)",
+          "OpenAlex",
+          "NCBI",
+          "or a local vLLM server"
+        ],
         "model": "operator-chosen via OpenRouter or local vLLM; requirements.txt pins no model",
         "judge_calls_per_task": "Not an LLM-judge design: eval/ scores generated artefacts against PERG ground truth. LLM calls are consumed by the pipeline stages themselves (abstract screening, OCR, full-text screening, extraction, write-up) rather than by the evaluator.",
         "estimated_scale": "Seven pathogens (ebola, lassa, marburg, mers, nipah, sars, zika) with screening and extraction stages over full article sets.",
@@ -397,22 +608,49 @@
       },
       "contamination_note": "CANNOT_CHECK. The label dataset is public and ungated; no contamination probe was run.",
       "attempt_log": [
-        {"timestamp_utc": "2026-08-16T17:33:48Z", "action": "GET /repos/OxRML/AgentSLR", "http_status": 200, "outcome": "public repository, license field null"},
-        {"timestamp_utc": "2026-08-16T17:34:31Z", "action": "GET /repos/OxRML/AgentSLR/commits/3111fcf456c6fbcba768dfdce2bd2934d8cb5cef", "http_status": 200, "outcome": "pinned revision resolves"},
-        {"timestamp_utc": "2026-08-16T17:35:12Z", "action": "GET /repos/OxRML/AgentSLR/license", "http_status": 404, "outcome": "{\"message\":\"Not Found\"} - no detectable licence"},
-        {"timestamp_utc": "2026-08-16T17:44:20Z", "action": "GET /repos/OxRML/AgentSLR/tarball/3111fcf456c6fbcba768dfdce2bd2934d8cb5cef", "http_status": 200, "outcome": "83559155 bytes, 438 entries; code readable, no licence to redistribute it under"}
+        {
+          "timestamp_utc": "2026-08-16T17:33:48Z",
+          "action": "GET /repos/OxRML/AgentSLR",
+          "http_status": 200,
+          "outcome": "public repository, license field null"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:34:31Z",
+          "action": "GET /repos/OxRML/AgentSLR/commits/3111fcf456c6fbcba768dfdce2bd2934d8cb5cef",
+          "http_status": 200,
+          "outcome": "pinned revision resolves"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:35:12Z",
+          "action": "GET /repos/OxRML/AgentSLR/license",
+          "http_status": 404,
+          "outcome": "{\"message\":\"Not Found\"} - no detectable licence"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:44:20Z",
+          "action": "GET /repos/OxRML/AgentSLR/tarball/3111fcf456c6fbcba768dfdce2bd2934d8cb5cef",
+          "http_status": 200,
+          "outcome": "83559155 bytes, 438 entries; code readable, no licence to redistribute it under"
+        }
       ]
     },
     {
       "artifact_id": "AgentSLR_dataset",
-      "official_evaluation_runnable": {"protocol_driven_systematic_review_baseline": "NOT_ASSESSED"},
+      "official_evaluation_runnable": {
+        "protocol_driven_systematic_review_baseline": "NOT_ASSESSED"
+      },
       "protocol_reference_key": null,
       "kind": "dataset",
       "locator": "https://huggingface.co/datasets/OxRML/AgentSLR",
       "pinned_revision": null,
       "pinned_revision_note": "Not pinned by PROTOCOL_V1.json. Observed revision at audit time: 01843a781bbd839c434c50271a7b1456a59cd656 (lastModified 2026-05-07T04:45:23Z).",
       "revision_exists": null,
-      "repository_status": {"public": true, "gated": false, "disabled": false, "downloads": 107},
+      "repository_status": {
+        "public": true,
+        "gated": false,
+        "disabled": false,
+        "downloads": 107
+      },
       "state": "OBTAINED",
       "license": "CC-BY-4.0",
       "license_source": "HuggingFace card metadata license: cc-by-4.0 (GET https://huggingface.co/api/datasets/OxRML/AgentSLR -> HTTP 200, cardData.license and tags include license:cc-by-4.0).",
@@ -431,7 +669,9 @@
       "local_path": "<session-scratchpad>/p2-access/bundles/agentslr_lassa.parquet",
       "fetch_timestamp_utc": "2026-08-16T17:46:22Z",
       "run_requirements": {
-        "provider": ["HuggingFace (anonymous download)"],
+        "provider": [
+          "HuggingFace (anonymous download)"
+        ],
         "model": null,
         "judge_calls_per_task": null,
         "estimated_scale": "~253 MB across 18 parquet files: harvest metadata and screening for 7 pathogens, plus parameter, transmission-model and outbreak extractions for a subset.",
@@ -440,13 +680,25 @@
       },
       "contamination_note": "CANNOT_CHECK. Public and ungated; no contamination probe run.",
       "attempt_log": [
-        {"timestamp_utc": "2026-08-16T17:45:55Z", "action": "GET https://huggingface.co/api/datasets/OxRML/AgentSLR", "http_status": 200, "outcome": "public, ungated, cc-by-4.0, 18 parquet files"},
-        {"timestamp_utc": "2026-08-16T17:46:22Z", "action": "GET .../resolve/main/data/harvest_metadata_and_screening/lassa.parquet", "http_status": 200, "outcome": "710392 bytes downloaded; local sha256 matched API-published LFS sha256"}
+        {
+          "timestamp_utc": "2026-08-16T17:45:55Z",
+          "action": "GET https://huggingface.co/api/datasets/OxRML/AgentSLR",
+          "http_status": 200,
+          "outcome": "public, ungated, cc-by-4.0, 18 parquet files"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:46:22Z",
+          "action": "GET .../resolve/main/data/harvest_metadata_and_screening/lassa.parquet",
+          "http_status": 200,
+          "outcome": "710392 bytes downloaded; local sha256 matched API-published LFS sha256"
+        }
       ]
     },
     {
       "artifact_id": "ResearchArena",
-      "official_evaluation_runnable": {"not_a_protocol_task_family": "NOT_ASSESSED"},
+      "official_evaluation_runnable": {
+        "not_a_protocol_task_family": "NOT_ASSESSED"
+      },
       "protocol_reference_key": null,
       "kind": "code",
       "locator": "arXiv:2406.10291; no canonical repository pinned by P2 material",
@@ -470,14 +722,31 @@
       },
       "contamination_note": "Not assessed; artifact identity unresolved.",
       "attempt_log": [
-        {"timestamp_utc": "2026-08-16T17:42:50Z", "action": "GET https://export.arxiv.org/api/query?id_list=2406.10291", "http_status": 200, "outcome": "resolves: 'ResearchArena: Benchmarking Large Language Models' Ability to Collect and Organize Information', published 2024-06-13"},
-        {"timestamp_utc": "2026-08-16T17:44:50Z", "action": "GET /search/repositories?q=ResearchArena+in:name", "http_status": 200, "outcome": "four candidate repositories with divergent licences; no canonical owner indicated by P2 material"},
-        {"timestamp_utc": "2026-08-16T17:44:50Z", "action": "GET /repos/cafferychen777/ResearchArena", "http_status": 404, "outcome": "not found"}
+        {
+          "timestamp_utc": "2026-08-16T17:42:50Z",
+          "action": "GET https://export.arxiv.org/api/query?id_list=2406.10291",
+          "http_status": 200,
+          "outcome": "resolves: 'ResearchArena: Benchmarking Large Language Models' Ability to Collect and Organize Information', published 2024-06-13"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:44:50Z",
+          "action": "GET /search/repositories?q=ResearchArena+in:name",
+          "http_status": 200,
+          "outcome": "four candidate repositories with divergent licences; no canonical owner indicated by P2 material"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:44:50Z",
+          "action": "GET /repos/cafferychen777/ResearchArena",
+          "http_status": 404,
+          "outcome": "not found"
+        }
       ]
     },
     {
       "artifact_id": "OpenScholar",
-      "official_evaluation_runnable": {"not_a_protocol_task_family": "NOT_ASSESSED"},
+      "official_evaluation_runnable": {
+        "not_a_protocol_task_family": "NOT_ASSESSED"
+      },
       "protocol_reference_key": null,
       "kind": "code",
       "locator": "https://github.com/AkariAsai/OpenScholar (arXiv:2411.14199)",
@@ -501,8 +770,18 @@
       },
       "contamination_note": "Not assessed; artifact not pinned.",
       "attempt_log": [
-        {"timestamp_utc": "2026-08-16T17:42:50Z", "action": "GET https://export.arxiv.org/api/query?id_list=2411.14199", "http_status": 200, "outcome": "resolves: 'OpenScholar: Synthesizing Scientific Literature with Retrieval-augmented LMs', published 2024-11-21"},
-        {"timestamp_utc": "2026-08-16T17:44:50Z", "action": "GET /repos/AkariAsai/OpenScholar", "http_status": 200, "outcome": "public, Apache-2.0; no revision pinned by P2 material so no snapshot was taken"}
+        {
+          "timestamp_utc": "2026-08-16T17:42:50Z",
+          "action": "GET https://export.arxiv.org/api/query?id_list=2411.14199",
+          "http_status": 200,
+          "outcome": "resolves: 'OpenScholar: Synthesizing Scientific Literature with Retrieval-augmented LMs', published 2024-11-21"
+        },
+        {
+          "timestamp_utc": "2026-08-16T17:44:50Z",
+          "action": "GET /repos/AkariAsai/OpenScholar",
+          "http_status": 200,
+          "outcome": "public, Apache-2.0; no revision pinned by P2 material so no snapshot was taken"
+        }
       ]
     }
   ],
@@ -517,7 +796,9 @@
     "reference_revision_keys_total": 5,
     "keys_with_pinned_sha": 4,
     "keys_without_pinned_sha": 1,
-    "keys_without_pinned_sha_list": ["AutoResearchBench_dataset"],
+    "keys_without_pinned_sha_list": [
+      "AutoResearchBench_dataset"
+    ],
     "pinned_shas_resolving": 4,
     "pinned_shas_missing": 0,
     "verdict": "No P0. Every 40-character SHA in PROTOCOL_V1.json reference_revisions resolves at its named repository, and all four repositories are public and unarchived. The fifth key, AutoResearchBench_dataset, pins no revision at all: it records a HuggingFace dataset id with the bundle content hash left UNBOUND, so there is no SHA to resolve. That key was audited on availability, licence and content hash instead."
@@ -554,5 +835,51 @@
     "Whether the MetaSyn retrieval/screening scorer executes end to end. Its credential-independence was established by reading the import graph, not by running it; the corpus encode was out of scope for this session. The AutoResearchBench Wide scorer WAS executed and is not subject to this caveat.",
     "Whether the Deep LLM judge behaves as documented, since no judge endpoint was exercised.",
     "Total monetary cost of a full evaluation. Call-count scale is estimated from configuration defaults; no provider pricing was applied."
-  ]
+  ],
+  "usable_task_family_under_declared_deviation": {
+    "enum": {
+      "NOT_ASSESSED": "Not established in this audit.",
+      "NOT_USABLE": "Neither an official nor a declared-scoring run is possible.",
+      "USABLE_OFFICIAL": "Runnable and scored by the benchmark's own evaluator.",
+      "USABLE_WITH_DECLARED_SCORING": "Queries and gold are obtainable and the task can be run, but at least one scoring element is host-defined and must be labelled a declared deviation."
+    },
+    "families": {
+      "autoresearchbench_deep": "USABLE_OFFICIAL",
+      "autoresearchbench_wide": "USABLE_OFFICIAL",
+      "metasyn_retrieval_screening": "USABLE_OFFICIAL",
+      "offline_complete_gold": "USABLE_WITH_DECLARED_SCORING",
+      "sage_scientific_retrieval": "USABLE_WITH_DECLARED_SCORING"
+    },
+    "note": "Separate question from official-scorer runnability. A family can be unusable for an OFFICIAL number while still being a legitimate external task set under scoring we declare as a deviation. Collapsing the two is what made an earlier reading of this audit treat SAGE as removed from the paper entirely.",
+    "sage_scientific_retrieval_detail": {
+      "consequence_for_contamination": "Search-time contamination stays the binding risk: gold sits in the same public plaintext GitHub record as the query, so a live run must measure exposure to the benchmark's own artifacts rather than assume it away. Unchanged from revision 1.",
+      "consequence_for_statistics": "Short-form alone is N=600, which clears the frozen statistical plan's TIER_B (N >= 385, half-width 0.05 at assumed_p 0.5). It is therefore the largest external task set available to this paper, and larger than the 400 released AutoResearchBench Wide tasks.",
+      "missing": {
+        "official_evaluator": "No evaluator ships at the pinned revision.",
+        "open_ended_tier_weights": "README states weighted recall over tiers with decreasing weights but never states the weights, so any weighted-recall number is host-defined.",
+        "retrieval_corpus": "Unpublished, so the authors' closed-index setting cannot be reproduced. The queries can still be run open-world, which is this paper's setting."
+      },
+      "obtainable": {
+        "open_ended_fields": [
+          "question",
+          "generation_plan",
+          "source_paper_id",
+          "cited_paper_id",
+          "ground_truth{most_relevant,relevant}"
+        ],
+        "open_ended_files": 4,
+        "open_ended_records": 600,
+        "short_form_fields": [
+          "paper_id",
+          "paper_title",
+          "complete_query",
+          "ground_truth{paperId,title}"
+        ],
+        "short_form_files": 4,
+        "short_form_records": 600,
+        "verified_by": "Two of the eight files downloaded from the pinned commit and parsed; counts and field names read off the parsed objects, not the README."
+      },
+      "redistribution": "Still blocked: no licence at the pinned revision, so hashes and counts may be recorded but the data may not be vendored."
+    }
+  }
 }
