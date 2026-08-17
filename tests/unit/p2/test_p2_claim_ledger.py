@@ -780,3 +780,72 @@ def test_no_claim_is_confirmatory_on_offline_mechanism_support() -> None:
         if entry["support_type"] == "OFFLINE_MECHANISM" and entry["strength"] == "CONFIRMATORY"
     ]
     assert not offenders, f"offline support cannot be confirmatory: {offenders}"
+
+
+# --------------------------------------------------------------------------- #
+# Generated-macro resolution
+#
+# The manuscript splices suite facts in as macros (``\OfflineTaskCount{}``) so
+# prose cannot hardcode a count.  Before the checker resolved them, the generic
+# command strip deleted the invocation silently and the abstract read "a frozen
+# -task index" -- a claim quietly lost a number and the ledger still matched.
+# That silent deletion is what drifted this ledger red, so each property the
+# resolver relies on gets an injected-defect test of its own.
+# --------------------------------------------------------------------------- #
+
+
+def test_undeclared_value_macro_is_caught(paper: Path) -> None:
+    """An unresolved ``\\Name{}`` must fail loudly instead of vanishing from prose."""
+    main = paper / "manuscript" / "main.tex"
+    source = main.read_text(encoding="utf-8")
+    assert "\\OfflineTaskCount{}-task" in source
+    main.write_text(
+        source.replace("\\OfflineTaskCount{}-task", "\\FabricatedCount{}-task", 1),
+        encoding="utf-8",
+    )
+
+    proc = run(paper)
+    assert proc.returncode == EXIT_VIOLATIONS, messages(proc)
+    assert "UNRESOLVED_MACRO" in messages(proc)
+    assert "FabricatedCount" in messages(proc)
+
+
+def test_dropping_macro_sources_cannot_silence_the_resolver(paper: Path) -> None:
+    """Un-declaring the macro file must fail, not restore the old silent strip."""
+    ledger = load_ledger(paper)
+    assert ledger.get("macro_sources"), "committed ledger must declare its macro sources"
+    del ledger["macro_sources"]
+    save_ledger(paper, ledger)
+
+    proc = run(paper)
+    assert proc.returncode == EXIT_VIOLATIONS, messages(proc)
+    assert "UNRESOLVED_MACRO" in messages(proc)
+
+
+def test_generated_macro_value_must_agree_with_the_archive(paper: Path) -> None:
+    """Macro resolution transitively verifies the generated file against evidence.
+
+    Editing the rendered suite fact -- without touching prose or the ledger --
+    must be caught, otherwise the macro layer would be a hole through which a
+    number could reach the page without ever meeting its artifact.
+    """
+    facts = paper / "manuscript" / "generated" / "suite_facts.tex"
+    source = facts.read_text(encoding="utf-8")
+    assert "{\\OfflineTaskCount}{390}" in source
+    facts.write_text(
+        source.replace("{\\OfflineTaskCount}{390}", "{\\OfflineTaskCount}{391}"),
+        encoding="utf-8",
+    )
+
+    proc = run(paper)
+    assert proc.returncode == EXIT_VIOLATIONS, messages(proc)
+    assert "LEDGER_STALE_NUMBER" in messages(proc) or "NUMERIC_MISMATCH" in messages(proc)
+
+
+def test_missing_macro_source_is_a_harness_error_not_a_clean_run(paper: Path) -> None:
+    """A macro file that cannot be read is 'could not check', never 'checked and fine'."""
+    (paper / "manuscript" / "generated" / "suite_facts.tex").unlink()
+
+    proc = run(paper)
+    assert proc.returncode == EXIT_HARNESS, messages(proc)
+    assert "declared macro source missing" in messages(proc)
