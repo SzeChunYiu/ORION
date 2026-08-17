@@ -71,7 +71,7 @@ frozen snapshot of them can ship — their datasets differ; see Table P2-1).
 Closed: licences and access notes; Table P2-1 generated from records; pinned-revision integrity; and
 — newly — **AutoResearchBench Wide official evaluation is executable here**, which revision 1
 wrongly reported as blocked. Still `CANNOT_CHECK` pending execution: Deep (judge key), MetaSyn
-(compute), AgentSLR (keys + PDFs), and contamination *rates* everywhere. Struck for the *official* metric only: SAGE — its 1200 queries with gold remain usable under declared scoring (largest external N, TIER_B); see [`access/SAGE_USABILITY_REVISION_3.md`](access/SAGE_USABILITY_REVISION_3.md) and the audit's `usable_task_family_under_declared_deviation`.
+(compute), AgentSLR (keys + PDFs), and contamination *rates* everywhere. Struck: SAGE.
 
 The external discovery claim is no longer blocked at the access layer for Wide — it is now a
 question of running the study, not of obtaining the means. The offline controlled-index companion
