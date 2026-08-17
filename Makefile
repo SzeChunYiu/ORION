@@ -122,3 +122,43 @@ paper03-public-reference-tests:
 		tests/unit/study/test_p3_public_reference_build.py \
 		tests/unit/study/test_p3_public_reference_analysis.py \
 		tests/unit/study/test_p3_public_reference_publication.py
+
+# --- ORION-P5: self-ORION journal tables (issue #102) -------------------------
+#
+# Regenerates publication tables from the archived glm-5.2 attribution JSONL.
+# Populates P5-3 (21/24 confusion) and the residual-error ledger. Campaign
+# plots/tables P5-2/P5-4/P5-5/P5-6/P5-7 and P5-T2/P5-T3 are emitted as
+# CANNOT_CHECK stubs with no imputed numbers.
+#
+# Exit codes:
+#   0  tables regenerated; 21/24 verified from raw records
+#   2  archive malformed (including a 24-of-24 rewrite or dropped errors)
+#   3  CANNOT_CHECK — archive missing
+
+P5_ARCHIVE ?= papers/paper-05-self-orion/evidence/glm-5.2-attribution/results.jsonl
+P5_REPORT ?= papers/paper-05-self-orion/evidence/glm-5.2-attribution/report.json
+P5_OUT ?= papers/paper-05-self-orion/evidence/tables
+P5_TEX ?= papers/paper-05-self-orion/manuscript/tables
+
+.PHONY: paper05-results
+paper05-results:
+	@PYTHONPATH=$(SRC) $(PYTHON) -m orion.study.p5.tables \
+		--archive $(P5_ARCHIVE) \
+		--report $(P5_REPORT) \
+		--out $(P5_OUT) \
+		--tex-out $(P5_TEX) ; \
+	code=$$? ; \
+	if [ $$code -eq 3 ]; then \
+		echo "" >&2 ; \
+		echo "make: paper05-results -> CANNOT_CHECK (exit 3)." >&2 ; \
+		echo "      No attribution archive is present. This is not a build failure." >&2 ; \
+	fi ; \
+	exit $$code
+
+.PHONY: paper05-tests
+paper05-tests:
+	PYTHONPATH=$(SRC) $(PYTHON) -m pytest -q \
+		tests/test_p5_attribution_tables.py \
+		tests/test_p5_hidden_cause_freeze.py \
+		tests/test_p5_protocol_v2.py
+

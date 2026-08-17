@@ -1,0 +1,31 @@
+{
+  "archive_sha256": "c39663de6e16581a6454770f136f5014cb676ea5134155602aec332d62fe7418",
+  "empirical_authority": "DESCRIPTIVE_ONLY",
+  "errors": [
+    {
+      "attributed": "REPRESENTATION_GAP",
+      "case_id": "P5-HC-002",
+      "confidence": "MEDIUM",
+      "gold": "RETRIEVAL_MISS"
+    },
+    {
+      "attributed": "IMPLEMENTATION_BUG",
+      "case_id": "P5-HC-012",
+      "confidence": "HIGH",
+      "gold": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE"
+    },
+    {
+      "attributed": "METHOD_BASIS_GAP",
+      "case_id": "P5-HC-018",
+      "confidence": "HIGH",
+      "gold": "REPRESENTATION_GAP"
+    }
+  ],
+  "issue": 102,
+  "n_errors": 3,
+  "paper_id": "P5",
+  "promotion_forbidden": "These three rows remain incorrect attributions. They must not be relabeled as successes, excluded from the denominator, or averaged away.",
+  "status": "OK",
+  "table_id": "P5-ATTRIBUTION_RESIDUAL_ERRORS",
+  "title": "Retained residual attribution errors (not successes)"
+}
