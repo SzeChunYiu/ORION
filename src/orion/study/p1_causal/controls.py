@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 from .belief import AuthorityClass, uniform_unresolved
 from .cases import gold_leak, known_answer_bundles
-from .discriminator import DEFAULT_PROBES, ProbeCatalog, ProbeSpec
+from .discriminator import DEFAULT_PROBES, ProbeSpec
 from .engine import run_cycle
 from .intervention import apply_probe
 from .licensing import (
@@ -17,6 +17,7 @@ from .licensing import (
     audit_matrix,
     request_action,
 )
+from .protocol import load_protocol
 
 
 @dataclass(frozen=True)
@@ -47,9 +48,10 @@ def _unresolved_blocks_mutation() -> ControlReceipt:
         decision = request_action(state, action)
         if decision.granted:
             mismatches.append(f"granted:{action.value}")
-        if decision.refusal is not RefusalReason.UNRESOLVED and action is not (
-            EpistemicAction.REWRITE_METHOD
-        ) and action is not EpistemicAction.BROAD_WM_MUTATION:
+        if decision.refusal is not RefusalReason.UNRESOLVED and action not in {
+            EpistemicAction.REWRITE_METHOD,
+            EpistemicAction.BROAD_WM_MUTATION,
+        }:
             mismatches.append(f"refusal:{action.value}:{decision.refusal}")
         if action in {
             EpistemicAction.REWRITE_FORMULATION,
@@ -104,15 +106,48 @@ def _matrix_audit() -> ControlReceipt:
 
 
 def _oracle_ceiling_not_a_candidate() -> ControlReceipt:
+    """Prove the oracle ceiling is analysis-only rather than trusting its name."""
+
+    mismatches: list[str] = []
+    payload = load_protocol()
+    oracle_id = "oracle_diagnosis_ceiling_non_runnable"
+    baselines = tuple(str(item) for item in payload.get("baselines", ()))
+    if oracle_id not in baselines:
+        mismatches.append("oracle_missing_from_frozen_baselines")
+
+    # Bind the prohibition to the oracle itself. Independent substring checks can
+    # be satisfied by unrelated clauses (for example, saying some *other*
+    # baseline is "never a candidate"). The frozen sentence is deliberately
+    # precise enough for a hostile structural control.
+    resource_policy = " ".join(str(payload.get("resource_policy", "")).lower().split())
+    oracle_candidate_prohibition = (
+        "oracle diagnosis is labelled non-runnable and is never a candidate"
+    )
+    if oracle_candidate_prohibition not in resource_policy:
+        mismatches.append("resource_policy_does_not_bind_oracle_nonrunnable_candidate_rule")
+
+    for probe in DEFAULT_PROBES:
+        if "oracle" in probe.probe_id.lower():
+            mismatches.append(f"default_probe_exposes_oracle:{probe.probe_id}")
+    for bundle in known_answer_bundles():
+        for view in bundle.public_members():
+            exposed = tuple(view.allowed_probe_ids) + tuple(view.allowed_intervention_ids)
+            for capability_id in exposed:
+                if "oracle" in capability_id.lower():
+                    mismatches.append(
+                        f"{view.member_id}:candidate_capability_exposes_oracle:{capability_id}"
+                    )
     return ControlReceipt(
         "oracle_diagnosis_ceiling_non_runnable",
-        True,
-        (),
+        not mismatches,
+        tuple(mismatches),
     )
 
 
 def _known_answer_cycle_selectivity() -> ControlReceipt:
     mismatches: list[str] = []
+    from .discriminator import ProbeCatalog
+
     catalog = ProbeCatalog(DEFAULT_PROBES)
     for bundle in known_answer_bundles():
         for member in bundle.members:
