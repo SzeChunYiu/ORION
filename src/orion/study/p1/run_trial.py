@@ -11,6 +11,7 @@ from pathlib import Path
 from .arm_validity import assess_arm_discrimination
 from .baselines import baseline_systems
 from .cases import Split, load_cases, suite_fingerprint
+from .execution_freeze import build_manifest
 from .harness import run_study
 from .orion_system import orion_systems
 from .provider import CREDENTIAL_ENV_VAR, ProviderBackedSystem, credential_present
@@ -66,6 +67,27 @@ def run(
             file=sys.stderr,
         )
         return EXIT_CANNOT_CHECK
+
+    # The frozen TEST split may not be run until every scientific identity is
+    # bound. Once outcomes are visible, each remaining design choice — which
+    # margin, which comparator, whether the suite is large enough — can be made
+    # knowing which answer flatters the result, so the freeze is what makes
+    # `outcome_accessed: false` mean anything.
+    #
+    # PILOT is deliberately exempt: the protocol designates it for debugging and
+    # variance estimation, and gating it would make the freeze impossible to
+    # reach, since the pilot is how the machinery gets working in the first
+    # place.
+    if split is Split.TEST:
+        manifest = build_manifest()
+        print(f"execution freeze: {manifest.status.value}")
+        if not manifest.permits_outcome_access:
+            print(
+                "\nrefusing to run the frozen TEST split: "
+                + ", ".join(manifest.unresolved or ("outcomes already accessed",)),
+                file=sys.stderr,
+            )
+            return EXIT_CANNOT_CHECK
 
     raw = out_root / "raw"
     raw.mkdir(parents=True, exist_ok=True)
