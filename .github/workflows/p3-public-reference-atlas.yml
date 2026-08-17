@@ -1,0 +1,167 @@
+name: p3-public-reference-atlas
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/p3-public-reference-atlas.yml'
+      - 'src/orion/study/p3_public_reference*.py'
+      - 'src/orion/knowledge/semantics.py'
+      - 'papers/paper-03-global-knowledge-portrait/gold/PUBLIC_REFERENCE_*'
+      - 'papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_PROTOCOL_V1*.json'
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION
+        run: python -m pip install -e '.[dev]'
+
+      - name: Fetch pinned MUSE expert annotations
+        run: |
+          git init -q /tmp/muse
+          git -C /tmp/muse remote add origin https://github.com/cohentsofia/MUSE.git
+          git -C /tmp/muse fetch -q --depth=1 origin f7a40317db46145d0c90b221311d8324db5da1b9
+          git -C /tmp/muse checkout -q --detach FETCH_HEAD
+          test "$(git -C /tmp/muse rev-parse HEAD)" = "f7a40317db46145d0c90b221311d8324db5da1b9"
+
+      - name: Fetch pinned SciSchema expert schemas
+        run: |
+          git init -q /tmp/scischema
+          git -C /tmp/scischema remote add origin https://github.com/scischema/scischema.git
+          git -C /tmp/scischema fetch -q --depth=1 origin 55b6197cdb0b66c3123df16d0b0c70b02c4bde8b
+          git -C /tmp/scischema checkout -q --detach FETCH_HEAD
+          test "$(git -C /tmp/scischema rev-parse HEAD)" = "55b6197cdb0b66c3123df16d0b0c70b02c4bde8b"
+
+      - name: Fetch pinned SciFact release code and labelled data
+        run: |
+          git init -q /tmp/scifact
+          git -C /tmp/scifact remote add origin https://github.com/allenai/scifact.git
+          git -C /tmp/scifact fetch -q --depth=1 origin 68b98a56d93e0f9da0d2aab4e6c3294699a0f72e
+          git -C /tmp/scifact checkout -q --detach FETCH_HEAD
+          test "$(git -C /tmp/scifact rev-parse HEAD)" = "68b98a56d93e0f9da0d2aab4e6c3294699a0f72e"
+          (cd /tmp/scifact && bash script/download-data.sh)
+          test -s /tmp/scifact/data/claims_dev.jsonl
+
+      - name: Freeze exact upstream identities before evaluation
+        env:
+          ORION_SHA: ${{ github.sha }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          mkdir -p p3-public-reference-run
+          python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          def digest(path: str) -> str:
+              return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+          payload = {
+              'schema_version': 'orion.p3.public-reference-pre-bindings.v1.1',
+              'orion_revision': os.environ['ORION_SHA'],
+              'github_run_id': os.environ['RUN_ID'],
+              'protocol_id': 'P3.public-reference-mapping.v1.1',
+              'upstream_revisions': {
+                  'MUSE': 'f7a40317db46145d0c90b221311d8324db5da1b9',
+                  'SciSchema': '55b6197cdb0b66c3123df16d0b0c70b02c4bde8b',
+                  'SciFact': '68b98a56d93e0f9da0d2aab4e6c3294699a0f72e',
+              },
+              'external_content_hashes': {
+                  'SciFact:claims_dev.jsonl': digest('/tmp/scifact/data/claims_dev.jsonl'),
+              },
+              'outcome_accessed': False,
+          }
+          Path('p3-public-reference-run/PRE_BINDINGS.json').write_text(
+              json.dumps(payload, indent=2, sort_keys=True) + '\n', encoding='utf-8'
+          )
+          print(json.dumps(payload, indent=2, sort_keys=True))
+          PY
+
+      - name: Build frozen-authority public-reference atlas v1.1
+        run: |
+          PYTHONPATH=src python -m orion.study.p3_public_reference_build_v11 \
+            --muse-root /tmp/muse/dataset/human_Expert_annotations \
+            --scifact-claims /tmp/scifact/data/claims_dev.jsonl \
+            --scischema-root /tmp/scischema/schemas \
+            --target-n 32 \
+            --out p3-public-reference-run
+
+      - name: Canonicalize all source provenance paths
+        run: |
+          PYTHONPATH=src python -m orion.study.p3_public_reference_finalize_v11 \
+            --cases p3-public-reference-run/cases.jsonl \
+            --report p3-public-reference-run/BUILD_REPORT.json \
+            --muse-root /tmp/muse/dataset/human_Expert_annotations \
+            --scifact-file /tmp/scifact/data/claims_dev.jsonl \
+            --scischema-root /tmp/scischema/schemas
+          if grep -q '/tmp/' p3-public-reference-run/cases.jsonl; then
+            echo 'runner-local path leaked into frozen case provenance' >&2
+            exit 1
+          fi
+
+      - name: Evaluate deterministic mapping systems
+        run: |
+          PYTHONPATH=src python -m orion.study.p3_public_reference \
+            --cases p3-public-reference-run/cases.jsonl \
+            --output p3-public-reference-run/SUMMARY.json
+
+      - name: Run paired statistics and coordinate ablations
+        run: |
+          PYTHONPATH=src python -m orion.study.p3_public_reference_analysis \
+            --cases p3-public-reference-run/cases.jsonl \
+            --output p3-public-reference-run/ANALYSIS.json
+
+      - name: Bind exact result identities
+        env:
+          ORION_SHA: ${{ github.sha }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          root = Path('p3-public-reference-run')
+          def digest(name: str) -> str:
+              return hashlib.sha256((root / name).read_bytes()).hexdigest()
+          pre = json.loads((root / 'PRE_BINDINGS.json').read_text(encoding='utf-8'))
+          payload = {
+              'schema_version': 'orion.p3.public-reference-run-bindings.v1.1',
+              'orion_revision': os.environ['ORION_SHA'],
+              'github_run_id': os.environ['RUN_ID'],
+              'protocol_id': 'P3.public-reference-mapping.v1.1',
+              'pre_bindings_hash': digest('PRE_BINDINGS.json'),
+              'upstream_revisions': pre['upstream_revisions'],
+              'external_content_hashes': pre['external_content_hashes'],
+              'artifact_hashes': {
+                  'cases.jsonl': digest('cases.jsonl'),
+                  'BUILD_REPORT.json': digest('BUILD_REPORT.json'),
+                  'SUMMARY.json': digest('SUMMARY.json'),
+                  'ANALYSIS.json': digest('ANALYSIS.json'),
+              },
+          }
+          (root / 'RUN_BINDINGS.json').write_text(
+              json.dumps(payload, indent=2, sort_keys=True) + '\n', encoding='utf-8'
+          )
+          print(json.dumps(payload, indent=2, sort_keys=True))
+          PY
+
+      - name: Show build and analysis summary
+        run: |
+          cat p3-public-reference-run/PRE_BINDINGS.json
+          cat p3-public-reference-run/BUILD_REPORT.json
+          cat p3-public-reference-run/SUMMARY.json
+          cat p3-public-reference-run/ANALYSIS.json
+          cat p3-public-reference-run/RUN_BINDINGS.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p3-public-reference-${{ github.sha }}
+          path: p3-public-reference-run/
+          if-no-files-found: error
+          retention-days: 90

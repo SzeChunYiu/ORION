@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.p3.public-reference-case.v1",
+  "title": "ORION-P3 public-reference mapping case",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "case_id",
+    "discipline",
+    "case_family",
+    "source_records",
+    "left_projection",
+    "right_projection",
+    "expected"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "orion.p3.public-reference-case.v1"
+    },
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "discipline": {
+      "type": "string",
+      "minLength": 1
+    },
+    "case_family": {
+      "enum": [
+        "same_name_different_referent",
+        "different_name_same_referent",
+        "same_construct_different_measurement",
+        "same_entity_different_temporal_state",
+        "polarity_modality_attribution_context",
+        "valid_invalid_representation_mapping",
+        "valid_invalid_literature_bridge",
+        "genuine_plural_obstruction"
+      ]
+    },
+    "source_records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "dataset",
+          "revision",
+          "locator",
+          "content_hash"
+        ],
+        "properties": {
+          "dataset": {
+            "type": "string",
+            "minLength": 1
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "content_hash": {
+            "type": "string",
+            "minLength": 1
+          },
+          "license": {
+            "type": "string"
+          }
+        },
+        "not": {
+          "required": [
+            "text"
+          ]
+        }
+      }
+    },
+    "left_projection": {
+      "$ref": "#/$defs/projection"
+    },
+    "right_projection": {
+      "$ref": "#/$defs/projection"
+    },
+    "pivot_referent_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expected": {
+      "type": "object",
+      "required": [
+        "meaning_relation",
+        "authority"
+      ],
+      "properties": {
+        "meaning_relation": {
+          "enum": [
+            "COMPATIBLE",
+            "CONTRADICTORY",
+            "CONTEXTUAL_DIFFERENCE",
+            "DISTINCT_REFERENT",
+            "DISTINCT_CONSTRUCT",
+            "DISTINCT_MEASUREMENT",
+            "UNRESOLVED"
+          ]
+        },
+        "authority": {
+          "type": "object",
+          "required": [
+            "kind",
+            "evidence"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "UPSTREAM_EXPERT",
+                "UPSTREAM_HUMAN",
+                "DETERMINISTIC_STANDARD",
+                "DERIVED_FROM_ALLOWED"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "derivation": {
+              "type": "object",
+              "properties": {
+                "rule": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "inputs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "rule"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "projection": {
+      "type": "object",
+      "required": [
+        "projection_id",
+        "source_id",
+        "source_span",
+        "predicate"
+      ],
+      "properties": {
+        "projection_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_span": {
+          "type": "string",
+          "minLength": 1
+        },
+        "predicate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "argument_roles": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "referent_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "construct_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "measurement_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "temporal_context_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "discourse_relation": {
+          "type": "string"
+        },
+        "attribution_id": {
+          "type": "string"
+        },
+        "polarity": {
+          "enum": [
+            "POSITIVE",
+            "NEGATED",
+            "UNKNOWN"
+          ]
+        },
+        "modality": {
+          "enum": [
+            "ASSERTED",
+            "POSSIBLE",
+            "PROBABLE",
+            "NECESSARY",
+            "CONDITIONAL",
+            "COUNTERFACTUAL",
+            "UNKNOWN"
+          ]
+        },
+        "assumption_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unresolved_ambiguities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

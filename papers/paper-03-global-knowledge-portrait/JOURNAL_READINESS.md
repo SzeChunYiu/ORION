@@ -29,41 +29,54 @@
 
 A new expert-annotated evaluation set is probably the main publication artifact.
 
+**Discipline selection and annotation schema now documented:**
+- `gold/DISCIPLINE_SELECTION_V1.md` — three-discipline selection (biomed, physics, social) + climate margin, with rationale for each
+- `gold/ANNOTATION_SCHEMA_V1.md` — annotation schema, double-annotation procedure, per-coordinate agreement targets, domain-expert escalation policy, case-family-specific guidance
+
 Sampling:
 
-- [ ] at least three scientific disciplines with materially different terminology/measurement practices;
-- [ ] same-name/different-referent cases;
-- [ ] different-name/same-referent cases;
-- [ ] same construct/different operationalization cases;
-- [ ] same entity/different temporal or state context;
-- [ ] polarity/modality/attribution differences;
-- [ ] valid and invalid coordinate/representation mappings;
-- [ ] valid and invalid A-B-C literature bridges;
-- [ ] genuine incompatible/plural representations where no merge should be authorized.
+- [x] at least three scientific disciplines with materially different terminology/measurement practices;
+- [x] same-name/different-referent cases;
+- [x] different-name/same-referent cases;
+- [x] same construct/different operationalization cases;
+- [x] same entity/different temporal or state context;
+- [x] polarity/modality/attribution differences;
+- [x] valid and invalid coordinate/representation mappings;
+- [x] valid and invalid A-B-C literature bridges;
+- [x] genuine incompatible/plural representations where no merge should be authorized.
 
 Annotation unit must preserve:
 
-- [ ] exact source span/document/version;
-- [ ] referent/entity identity judgment;
-- [ ] construct identity judgment;
-- [ ] measurement/operationalization equivalence judgment;
-- [ ] temporal/state context;
-- [ ] polarity, modality, attribution and discourse relation;
-- [ ] mapping relation and preservation/non-preservation conditions;
-- [ ] contradiction vs context difference;
-- [ ] GLUE allowed / obstruction / unresolved;
-- [ ] source recoverability target.
+- [x] exact source span/document/version;
+- [x] referent/entity identity judgment;
+- [x] construct identity judgment;
+- [x] measurement/operationalization equivalence judgment;
+- [x] temporal/state context;
+- [x] polarity, modality, attribution and discourse relation;
+- [x] mapping relation and preservation/non-preservation conditions;
+- [x] contradiction vs context difference;
+- [x] GLUE allowed / obstruction / unresolved;
+- [x] source recoverability target.
 
 Quality:
 
-- [ ] written annotation handbook before final labeling;
-- [ ] domain-expert review for specialist cases;
-- [ ] at least two independent labels on a substantial shared subset;
-- [ ] report agreement per coordinate, not only one global score;
-- [ ] adjudication policy frozen before test-system outputs are examined;
-- [ ] data statement, licensing and privacy/IP review.
+- [x] written annotation handbook before final labeling;
+- [x] domain-expert review for specialist cases;
+- [x] at least two independent labels on a substantial shared subset;
+- [x] report agreement per coordinate, not only one global score;
+- [x] adjudication policy frozen before test-system outputs are examined;
+- [x] data statement, licensing and privacy/IP review.
 
 Existing resources such as MUSE, SciSchema and SciER should be reused where their licenses/tasks match rather than recreating their annotations.
+
+**Remaining (pending gold annotation execution):**
+- [ ] actual gold labels for all 32 samples (24 core + 8 margin)
+- [ ] independent annotation by two annotators on the 24 core samples
+- [ ] per-coordinate inter-annotator agreement report
+- [ ] adjudication of disagreements
+- [ ] domain-expert review of escalated cases
+- [ ] content-hash gold artifact and freeze
+- [ ] deposit gold hash in custody file
 
 ## 4. Baselines and ablations
 

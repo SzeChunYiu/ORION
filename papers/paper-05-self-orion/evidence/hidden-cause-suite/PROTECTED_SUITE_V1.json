@@ -1,0 +1,635 @@
+{
+  "schema_version": "orion.p5.protected-hidden-cause-suite.v1",
+  "suite_id": "p5-hidden-cause-glm-5.2-attribution-v1",
+  "created_before_outcome_access": true,
+  "evaluator_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "cases": [
+    {
+      "case_id": "P5-HC-001",
+      "visible_symptom": "Retrieval system returns empty results for queries that should match documents in the index. Search logs show the query was processed but no candidates were returned.",
+      "candidate_visible_context": {
+        "system": "literature retrieval system",
+        "query_type": "semantic search",
+        "index_status": "active",
+        "document_count": 10000
+      },
+      "protected_root_cause": "RETRIEVAL_MISS",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000001",
+      "competing_cause_set": ["RETRIEVAL_MISS", "REPRESENTATION_GAP"],
+      "motivating_tasks": ["search-optimization-1"],
+      "replay_tasks": ["search-replay-1"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-001",
+          "changed_axes": ["TASK", "DATA"],
+          "content_hash": "placeholder_hash_for_fresh_task_001"
+        }
+      ],
+      "allowed_change_surface": ["src/retrieval/index.py"],
+      "protected_surface": ["protected/evaluator/retrieval_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_001",
+      "harm_rubric": "SECRET_HARM_RUBRIC_001",
+      "negative_variant_ids": ["negative-hc-001"]
+    },
+    {
+      "case_id": "P5-HC-002",
+      "visible_symptom": "Document embeddings were generated but the nearest neighbor search fails to find semantically similar documents despite clear content overlap.",
+      "candidate_visible_context": {
+        "system": "vector database",
+        "embedding_model": "sentence-transformers",
+        "search_method": "cosine similarity"
+      },
+      "protected_root_cause": "RETRIEVAL_MISS",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000002",
+      "competing_cause_set": ["RETRIEVAL_MISS", "REPRESENTATION_GAP"],
+      "motivating_tasks": ["vector-search-2"],
+      "replay_tasks": ["vector-replay-2"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-002",
+          "changed_axes": ["TASK", "MODEL"],
+          "content_hash": "placeholder_hash_for_fresh_task_002"
+        }
+      ],
+      "allowed_change_surface": ["src/vector/search.py"],
+      "protected_surface": ["protected/evaluator/vector_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_002",
+      "harm_rubric": "SECRET_HARM_RUBRIC_002",
+      "negative_variant_ids": ["negative-hc-002"]
+    },
+    {
+      "case_id": "P5-HC-003",
+      "visible_symptom": "Cross-reference API calls succeed but return no matching records despite known DOI existence in the target database.",
+      "candidate_visible_context": {
+        "system": "crossref client",
+        "api_status": "200 OK",
+        "query_type": "DOI lookup"
+      },
+      "protected_root_cause": "RETRIEVAL_MISS",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000003",
+      "competing_cause_set": ["RETRIEVAL_MISS", "IMPLEMENTATION_BUG"],
+      "motivating_tasks": ["crossref-lookup-3"],
+      "replay_tasks": ["crossref-replay-3"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-003",
+          "changed_axes": ["TASK", "ENVIRONMENT"],
+          "content_hash": "placeholder_hash_for_fresh_task_003"
+        }
+      ],
+      "allowed_change_surface": ["src/crossref/client.py"],
+      "protected_surface": ["protected/evaluator/crossref_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_003",
+      "harm_rubric": "SECRET_HARM_RUBRIC_003",
+      "negative_variant_ids": ["negative-hc-003"]
+    },
+    {
+      "case_id": "P5-HC-004",
+      "visible_symptom": "Agent successfully researches a topic but fails to route the write-up task to the appropriate specialized module, defaulting to a generic writer.",
+      "candidate_visible_context": {
+        "system": "multi-agent router",
+        "task_type": "academic writing",
+        "available_modules": ["literature", "methods", "discussion"]
+      },
+      "protected_root_cause": "ROUTING_PLANNING_MISS",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000004",
+      "competing_cause_set": ["ROUTING_PLANNING_MISS", "REPRESENTATION_GAP"],
+      "motivating_tasks": ["agent-routing-4"],
+      "replay_tasks": ["routing-replay-4"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-004",
+          "changed_axes": ["TASK", "DOMAIN"],
+          "content_hash": "placeholder_hash_for_fresh_task_004"
+        }
+      ],
+      "allowed_change_surface": ["src/agent/router.py"],
+      "protected_surface": ["protected/evaluator/routing_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_004",
+      "harm_rubric": "SECRET_HARM_RUBRIC_004",
+      "negative_variant_ids": ["negative-hc-004"]
+    },
+    {
+      "case_id": "P5-HC-005",
+      "visible_symptom": "Task planning module generates a valid plan but execution fails because critical sub-steps were omitted from the plan.",
+      "candidate_visible_context": {
+        "system": "hierarchical planner",
+        "plan_validity": "structurally valid",
+        "execution_status": "failed at step 3"
+      },
+      "protected_root_cause": "ROUTING_PLANNING_MISS",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000005",
+      "competing_cause_set": ["ROUTING_PLANNING_MISS", "IMPLEMENTATION_BUG"],
+      "motivating_tasks": ["planner-5"],
+      "replay_tasks": ["planner-replay-5"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-005",
+          "changed_axes": ["TASK", "MODEL"],
+          "content_hash": "placeholder_hash_for_fresh_task_005"
+        }
+      ],
+      "allowed_change_surface": ["src/planning/hierarchical.py"],
+      "protected_surface": ["protected/evaluator/planning_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_005",
+      "harm_rubric": "SECRET_HARM_RUBRIC_005",
+      "negative_variant_ids": ["negative-hc-005"]
+    },
+    {
+      "case_id": "P5-HC-006",
+      "visible_symptom": "Research agent identifies relevant papers but fails to plan the proper sequence of analysis steps, processing them in suboptimal order.",
+      "candidate_visible_context": {
+        "system": "literature analysis agent",
+        "papers_found": 15,
+        "analysis_order": "chronological by publication date"
+      },
+      "protected_root_cause": "ROUTING_PLANNING_MISS",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000006",
+      "competing_cause_set": ["ROUTING_PLANNING_MISS", "RETRIEVAL_MISS"],
+      "motivating_tasks": ["analysis-planning-6"],
+      "replay_tasks": ["analysis-replay-6"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-006",
+          "changed_axes": ["TASK", "DATA"],
+          "content_hash": "placeholder_hash_for_fresh_task_006"
+        }
+      ],
+      "allowed_change_surface": ["src/analysis/planner.py"],
+      "protected_surface": ["protected/evaluator/analysis_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_006",
+      "harm_rubric": "SECRET_HARM_RUBRIC_006",
+      "negative_variant_ids": ["negative-hc-006"]
+    },
+    {
+      "case_id": "P5-HC-007",
+      "visible_symptom": "Code passes static type checking but crashes at runtime due to incorrect assumption about data structure passed between modules.",
+      "candidate_visible_context": {
+        "system": "distributed data pipeline",
+        "type_check": "passed",
+        "runtime_error": "AttributeError"
+      },
+      "protected_root_cause": "IMPLEMENTATION_BUG",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000007",
+      "competing_cause_set": ["IMPLEMENTATION_BUG", "REPRESENTATION_GAP"],
+      "motivating_tasks": ["pipeline-integration-7"],
+      "replay_tasks": ["pipeline-replay-7"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-007",
+          "changed_axes": ["TASK", "ENVIRONMENT"],
+          "content_hash": "placeholder_hash_for_fresh_task_007"
+        }
+      ],
+      "allowed_change_surface": ["src/pipeline/transform.py"],
+      "protected_surface": ["protected/evaluator/pipeline_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_007",
+      "harm_rubric": "SECRET_HARM_RUBRIC_007",
+      "negative_variant_ids": ["negative-hc-007"]
+    },
+    {
+      "case_id": "P5-HC-008",
+      "visible_symptom": "Function correctly computes results for single inputs but produces wrong answers when processing batches due to incorrect accumulation logic.",
+      "candidate_visible_context": {
+        "system": "batch processing module",
+        "single_input": "correct",
+        "batch_input": "incorrect aggregation"
+      },
+      "protected_root_cause": "IMPLEMENTATION_BUG",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000008",
+      "competing_cause_set": ["IMPLEMENTATION_BUG", "MEASUREMENT_SPECIFICATION_GAP"],
+      "motivating_tasks": ["batch-processing-8"],
+      "replay_tasks": ["batch-replay-8"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-008",
+          "changed_axes": ["TASK", "DATA"],
+          "content_hash": "placeholder_hash_for_fresh_task_008"
+        }
+      ],
+      "allowed_change_surface": ["src/batch/processor.py"],
+      "protected_surface": ["protected/evaluator/batch_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_008",
+      "harm_rubric": "SECRET_HARM_RUBRIC_008",
+      "negative_variant_ids": ["negative-hc-008"]
+    },
+    {
+      "case_id": "P5-HC-009",
+      "visible_symptom": "Algorithm produces mathematically correct results but exceeds timeout limits for the specified input size due to inefficient nested loops.",
+      "candidate_visible_context": {
+        "system": "numerical computation",
+        "correctness": "verified",
+        "performance": "O(n³) instead of documented O(n²)"
+      },
+      "protected_root_cause": "IMPLEMENTATION_BUG",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000009",
+      "competing_cause_set": ["IMPLEMENTATION_BUG", "METHOD_BASIS_GAP"],
+      "motivating_tasks": ["numerical-optimization-9"],
+      "replay_tasks": ["numerical-replay-9"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-009",
+          "changed_axes": ["TASK", "MODEL"],
+          "content_hash": "placeholder_hash_for_fresh_task_009"
+        }
+      ],
+      "allowed_change_surface": ["src/numerical/compute.py"],
+      "protected_surface": ["protected/evaluator/numerical_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_009",
+      "harm_rubric": "SECRET_HARM_RUBRIC_009",
+      "negative_variant_ids": ["negative-hc-009"]
+    },
+    {
+      "case_id": "P5-HC-010",
+      "visible_symptom": "Tests pass locally but fail in CI environment due to missing external dependency that isn't properly declared.",
+      "candidate_visible_context": {
+        "system": "continuous integration",
+        "local_status": "passing",
+        "ci_status": "dependency not found"
+      },
+      "protected_root_cause": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+      "root_cause_nonce": "000000000000000000000000000000000000000000000000000000000000000a",
+      "competing_cause_set": ["ENVIRONMENT_DEPENDENCY_TOOL_FAILURE", "IMPLEMENTATION_BUG"],
+      "motivating_tasks": ["ci-dependency-10"],
+      "replay_tasks": ["ci-replay-10"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-010",
+          "changed_axes": ["TASK", "ENVIRONMENT"],
+          "content_hash": "placeholder_hash_for_fresh_task_010"
+        }
+      ],
+      "allowed_change_surface": ["src/ci/dependencies.py"],
+      "protected_surface": ["protected/evaluator/ci_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_010",
+      "harm_rubric": "SECRET_HARM_RUBRIC_010",
+      "negative_variant_ids": ["negative-hc-010"]
+    },
+    {
+      "case_id": "P5-HC-011",
+      "visible_symptom": "External API integration fails because the API endpoint changed and the client library wasn't updated.",
+      "candidate_visible_context": {
+        "system": "third-party API client",
+        "api_version": "v2 (updated)",
+        "client_version": "v1 (legacy)"
+      },
+      "protected_root_cause": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+      "root_cause_nonce": "000000000000000000000000000000000000000000000000000000000000000b",
+      "competing_cause_set": ["ENVIRONMENT_DEPENDENCY_TOOL_FAILURE", "REPRESENTATION_GAP"],
+      "motivating_tasks": ["api-integration-11"],
+      "replay_tasks": ["api-replay-11"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-011",
+          "changed_axes": ["TASK", "ENVIRONMENT"],
+          "content_hash": "placeholder_hash_for_fresh_task_011"
+        }
+      ],
+      "allowed_change_surface": ["src/api/client.py"],
+      "protected_surface": ["protected/evaluator/api_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_011",
+      "harm_rubric": "SECRET_HARM_RUBRIC_011",
+      "negative_variant_ids": ["negative-hc-011"]
+    },
+    {
+      "case_id": "P5-HC-012",
+      "visible_symptom": "Data processing pipeline fails when encountering file paths with spaces, despite working on test data with simple names.",
+      "candidate_visible_context": {
+        "system": "file processing utility",
+        "test_data": "simple filenames",
+        "production_data": "filenames with spaces"
+      },
+      "protected_root_cause": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+      "root_cause_nonce": "000000000000000000000000000000000000000000000000000000000000000c",
+      "competing_cause_set": ["ENVIRONMENT_DEPENDENCY_TOOL_FAILURE", "IMPLEMENTATION_BUG"],
+      "motivating_tasks": ["file-processing-12"],
+      "replay_tasks": ["file-replay-12"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-012",
+          "changed_axes": ["TASK", "DATA"],
+          "content_hash": "placeholder_hash_for_fresh_task_012"
+        }
+      ],
+      "allowed_change_surface": ["src/file/processor.py"],
+      "protected_surface": ["protected/evaluator/file_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_012",
+      "harm_rubric": "SECRET_HARM_RUBRIC_012",
+      "negative_variant_ids": ["negative-hc-012"]
+    },
+    {
+      "case_id": "P5-HC-013",
+      "visible_symptom": "Model achieves high accuracy on validation set but fails to reproduce published benchmark results despite using same data split.",
+      "candidate_visible_context": {
+        "system": "model evaluation framework",
+        "validation_accuracy": "0.95",
+        "benchmark_reproduction": "mismatch"
+      },
+      "protected_root_cause": "EVALUATOR_METRIC_BUG",
+      "root_cause_nonce": "000000000000000000000000000000000000000000000000000000000000000d",
+      "competing_cause_set": ["EVALUATOR_METRIC_BUG", "MEASUREMENT_SPECIFICATION_GAP"],
+      "motivating_tasks": ["evaluation-13"],
+      "replay_tasks": ["evaluation-replay-13"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-013",
+          "changed_axes": ["TASK", "MODEL"],
+          "content_hash": "placeholder_hash_for_fresh_task_013"
+        }
+      ],
+      "allowed_change_surface": ["src/evaluation/metrics.py"],
+      "protected_surface": ["protected/evaluator/evaluator_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_013",
+      "harm_rubric": "SECRET_HARM_RUBRIC_013",
+      "negative_variant_ids": ["negative-hc-013"]
+    },
+    {
+      "case_id": "P5-HC-014",
+      "visible_symptom": "Performance metrics report significant improvement but A/B test shows no statistically significant difference.",
+      "candidate_visible_context": {
+        "system": "experiment evaluation",
+        "metric_delta": "+15%",
+        "statistical_significance": "p > 0.05"
+      },
+      "protected_root_cause": "EVALUATOR_METRIC_BUG",
+      "root_cause_nonce": "000000000000000000000000000000000000000000000000000000000000000e",
+      "competing_cause_set": ["EVALUATOR_METRIC_BUG", "MEASUREMENT_SPECIFICATION_GAP"],
+      "motivating_tasks": ["experiment-evaluation-14"],
+      "replay_tasks": ["experiment-replay-14"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-014",
+          "changed_axes": ["TASK", "DATA"],
+          "content_hash": "placeholder_hash_for_fresh_task_014"
+        }
+      ],
+      "allowed_change_surface": ["src/experiment/evaluator.py"],
+      "protected_surface": ["protected/evaluator/experiment_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_014",
+      "harm_rubric": "SECRET_HARM_RUBRIC_014",
+      "negative_variant_ids": ["negative-hc-014"]
+    },
+    {
+      "case_id": "P5-HC-015",
+      "visible_symptom": "System reports 100% success rate but manual inspection reveals 30% of tasks actually failed silently.",
+      "candidate_visible_context": {
+        "system": "task monitoring",
+        "reported_success": "100%",
+        "actual_success": "70%"
+      },
+      "protected_root_cause": "EVALUATOR_METRIC_BUG",
+      "root_cause_nonce": "000000000000000000000000000000000000000000000000000000000000000f",
+      "competing_cause_set": ["EVALUATOR_METRIC_BUG", "IMPLEMENTATION_BUG"],
+      "motivating_tasks": ["monitoring-15"],
+      "replay_tasks": ["monitoring-replay-15"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-015",
+          "changed_axes": ["TASK", "DOMAIN"],
+          "content_hash": "placeholder_hash_for_fresh_task_015"
+        }
+      ],
+      "allowed_change_surface": ["src/monitoring/metrics.py"],
+      "protected_surface": ["protected/evaluator/monitoring_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_015",
+      "harm_rubric": "SECRET_HARM_RUBRIC_015",
+      "negative_variant_ids": ["negative-hc-015"]
+    },
+    {
+      "case_id": "P5-HC-016",
+      "visible_symptom": "LLM produces factually correct content but in a format incompatible with downstream processing.",
+      "candidate_visible_context": {
+        "system": "content generation pipeline",
+        "content_quality": "factually correct",
+        "format_compatibility": "fails validation"
+      },
+      "protected_root_cause": "REPRESENTATION_GAP",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000010",
+      "competing_cause_set": ["REPRESENTATION_GAP", "ROUTING_PLANNING_MISS"],
+      "motivating_tasks": ["format-generation-16"],
+      "replay_tasks": ["format-replay-16"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-016",
+          "changed_axes": ["TASK", "MODEL"],
+          "content_hash": "placeholder_hash_for_fresh_task_016"
+        }
+      ],
+      "allowed_change_surface": ["src/format/generator.py"],
+      "protected_surface": ["protected/evaluator/format_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_016",
+      "harm_rubric": "SECRET_HARM_RUBRIC_016",
+      "negative_variant_ids": ["negative-hc-016"]
+    },
+    {
+      "case_id": "P5-HC-017",
+      "visible_symptom": "Code implements correct algorithm but uses wrong data structure, causing O(n²) performance instead of O(n log n).",
+      "candidate_visible_context": {
+        "system": "algorithm implementation",
+        "algorithm_correctness": "verified",
+        "performance": "degraded by data structure choice"
+      },
+      "protected_root_cause": "REPRESENTATION_GAP",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000011",
+      "competing_cause_set": ["REPRESENTATION_GAP", "IMPLEMENTATION_BUG"],
+      "motivating_tasks": ["data-structure-17"],
+      "replay_tasks": ["data-structure-replay-17"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-017",
+          "changed_axes": ["TASK", "DATA"],
+          "content_hash": "placeholder_hash_for_fresh_task_017"
+        }
+      ],
+      "allowed_change_surface": ["src/data/structure.py"],
+      "protected_surface": ["protected/evaluator/structure_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_017",
+      "harm_rubric": "SECRET_HARM_RUBRIC_017",
+      "negative_variant_ids": ["negative-hc-017"]
+    },
+    {
+      "case_id": "P5-HC-018",
+      "visible_symptom": "Model correctly learns the training distribution but fails to generalize because the representation doesn't capture causal structure.",
+      "candidate_visible_context": {
+        "system": "causal inference model",
+        "training_performance": "excellent",
+        "generalization": "fails on causal queries"
+      },
+      "protected_root_cause": "REPRESENTATION_GAP",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000012",
+      "competing_cause_set": ["REPRESENTATION_GAP", "METHOD_BASIS_GAP"],
+      "motivating_tasks": ["causal-representation-18"],
+      "replay_tasks": ["causal-replay-18"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-018",
+          "changed_axes": ["TASK", "DOMAIN"],
+          "content_hash": "placeholder_hash_for_fresh_task_018"
+        }
+      ],
+      "allowed_change_surface": ["src/causal/representation.py"],
+      "protected_surface": ["protected/evaluator/causal_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_018",
+      "harm_rubric": "SECRET_HARM_RUBRIC_018",
+      "negative_variant_ids": ["negative-hc-018"]
+    },
+    {
+      "case_id": "P5-HC-019",
+      "visible_symptom": "System measures optimization objective but the metric doesn't correlate with the intended outcome due to misspecification.",
+      "candidate_visible_context": {
+        "system": "optimization framework",
+        "measured_objective": "improving",
+        "intended_outcome": "unchanged"
+      },
+      "protected_root_cause": "MEASUREMENT_SPECIFICATION_GAP",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000013",
+      "competing_cause_set": ["MEASUREMENT_SPECIFICATION_GAP", "EVALUATOR_METRIC_BUG"],
+      "motivating_tasks": ["measurement-19"],
+      "replay_tasks": ["measurement-replay-19"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-019",
+          "changed_axes": ["TASK", "MODEL"],
+          "content_hash": "placeholder_hash_for_fresh_task_019"
+        }
+      ],
+      "allowed_change_surface": ["src/measurement/spec.py"],
+      "protected_surface": ["protected/evaluator/measurement_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_019",
+      "harm_rubric": "SECRET_HARM_RUBRIC_019",
+      "negative_variant_ids": ["negative-hc-019"]
+    },
+    {
+      "case_id": "P5-HC-020",
+      "visible_symptom": "Evaluation protocol is well-specified but cannot be implemented because required ground truth data doesn't exist.",
+      "candidate_visible_context": {
+        "system": "evaluation protocol",
+        "specification_status": "complete",
+        "ground_truth_availability": "missing"
+      },
+      "protected_root_cause": "MEASUREMENT_SPECIFICATION_GAP",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000014",
+      "competing_cause_set": ["MEASUREMENT_SPECIFICATION_GAP", "REPRESENTATION_GAP"],
+      "motivating_tasks": ["evaluation-protocol-20"],
+      "replay_tasks": ["evaluation-protocol-replay-20"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-020",
+          "changed_axes": ["TASK", "DATA"],
+          "content_hash": "placeholder_hash_for_fresh_task_020"
+        }
+      ],
+      "allowed_change_surface": ["src/evaluation/protocol.py"],
+      "protected_surface": ["protected/evaluator/protocol_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_020",
+      "harm_rubric": "SECRET_HARM_RUBRIC_020",
+      "negative_variant_ids": ["negative-hc-020"]
+    },
+    {
+      "case_id": "P5-HC-021",
+      "visible_symptom": "Benchmark uses correct methodology but measures the wrong construct due to misalignment between task and metric.",
+      "candidate_visible_context": {
+        "system": "benchmark evaluation",
+        "methodology": "sound",
+        "construct_validity": "misaligned"
+      },
+      "protected_root_cause": "MEASUREMENT_SPECIFICATION_GAP",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000015",
+      "competing_cause_set": ["MEASUREMENT_SPECIFICATION_GAP", "METHOD_BASIS_GAP"],
+      "motivating_tasks": ["benchmark-21"],
+      "replay_tasks": ["benchmark-replay-21"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-021",
+          "changed_axes": ["TASK", "DOMAIN"],
+          "content_hash": "placeholder_hash_for_fresh_task_021"
+        }
+      ],
+      "allowed_change_surface": ["src/benchmark/evaluator.py"],
+      "protected_surface": ["protected/evaluator/benchmark_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_021",
+      "harm_rubric": "SECRET_HARM_RUBRIC_021",
+      "negative_variant_ids": ["negative-hc-021"]
+    },
+    {
+      "case_id": "P5-HC-022",
+      "visible_symptom": "Current approach works but cannot scale because the foundational method has exponential complexity.",
+      "candidate_visible_context": {
+        "system": "scaling framework",
+        "current_performance": "acceptable at small scale",
+        "scaling_limit": "exponential blowup"
+      },
+      "protected_root_cause": "METHOD_BASIS_GAP",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000016",
+      "competing_cause_set": ["METHOD_BASIS_GAP", "REPRESENTATION_GAP"],
+      "motivating_tasks": ["scaling-method-22"],
+      "replay_tasks": ["scaling-method-replay-22"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-022",
+          "changed_axes": ["TASK", "MODEL"],
+          "content_hash": "placeholder_hash_for_fresh_task_022"
+        }
+      ],
+      "allowed_change_surface": ["src/scaling/method.py"],
+      "protected_surface": ["protected/evaluator/scaling_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_022",
+      "harm_rubric": "SECRET_HARM_RUBRIC_022",
+      "negative_variant_ids": ["negative-hc-022"]
+    },
+    {
+      "case_id": "P5-HC-023",
+      "visible_symptom": "Algorithm produces correct results but the underlying mathematical approach cannot handle required generalizations.",
+      "candidate_visible_context": {
+        "system": "mathematical solver",
+        "current_scope": "correctly solved",
+        "required_generalization": "not supported by method"
+      },
+      "protected_root_cause": "METHOD_BASIS_GAP",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000017",
+      "competing_cause_set": ["METHOD_BASIS_GAP", "IMPLEMENTATION_BUG"],
+      "motivating_tasks": ["mathematical-method-23"],
+      "replay_tasks": ["mathematical-method-replay-23"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-023",
+          "changed_axes": ["TASK", "DOMAIN"],
+          "content_hash": "placeholder_hash_for_fresh_task_023"
+        }
+      ],
+      "allowed_change_surface": ["src/mathematical/solver.py"],
+      "protected_surface": ["protected/evaluator/mathematical_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_023",
+      "harm_rubric": "SECRET_HARM_RUBRIC_023",
+      "negative_variant_ids": ["negative-hc-023"]
+    },
+    {
+      "case_id": "P5-HC-024",
+      "visible_symptom": "System works for current problem class but cannot be extended because the foundational assumption limits applicability.",
+      "candidate_visible_context": {
+        "system": "problem-solving framework",
+        "current_problem_class": "well-supported",
+        "extension_requirements": "incompatible with foundation"
+      },
+      "protected_root_cause": "METHOD_BASIS_GAP",
+      "root_cause_nonce": "0000000000000000000000000000000000000000000000000000000000000018",
+      "competing_cause_set": ["METHOD_BASIS_GAP", "ROUTING_PLANNING_MISS"],
+      "motivating_tasks": ["framework-extension-24"],
+      "replay_tasks": ["framework-extension-replay-24"],
+      "fresh_tasks": [
+        {
+          "task_id": "fresh-hc-024",
+          "changed_axes": ["TASK", "ENVIRONMENT"],
+          "content_hash": "placeholder_hash_for_fresh_task_024"
+        }
+      ],
+      "allowed_change_surface": ["src/framework/core.py"],
+      "protected_surface": ["protected/evaluator/framework_quality.json"],
+      "success_rubric": "SECRET_SUCCESS_RUBRIC_024",
+      "harm_rubric": "SECRET_HARM_RUBRIC_024",
+      "negative_variant_ids": ["negative-hc-024"]
+    }
+  ],
+  "fresh_task_payloads": {},
+  "negative_variant_payloads": {}
+}

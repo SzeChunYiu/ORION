@@ -1,0 +1,74 @@
+{
+  "schema_version": "orion.p3.public-reference-source-registry.v1",
+  "status": "DESIGN_FROZEN",
+  "frozen_utc_date": "2026-08-17",
+  "sources": [
+    {
+      "id": "MUSE",
+      "kind": "git_repository_plus_external_dataset",
+      "revision": "cohentsofia/MUSE@f7a40317db46145d0c90b221311d8324db5da1b9",
+      "authority": "UPSTREAM_EXPERT",
+      "usable_annotations": [
+        "problem_salient",
+        "solution_salient",
+        "rationale",
+        "solves",
+        "rationale_of",
+        "coreference",
+        "context_of_problem"
+      ],
+      "custody": "pointer_and_content_hash_only",
+      "license_mode": "UPSTREAM_POINTER_ONLY_UNTIL_DATA_LICENCE_CONFIRMED",
+      "notes": "Do not vendor MUSE paragraph text into ORION gold merely because the repository is public."
+    },
+    {
+      "id": "SciSchema",
+      "kind": "git_repository",
+      "revision": "scischema/scischema@55b6197cdb0b66c3123df16d0b0c70b02c4bde8b",
+      "authority": "UPSTREAM_EXPERT",
+      "usable_annotations": [
+        "domain process schema",
+        "quantity/measurement structure",
+        "units",
+        "conditions",
+        "provenance-related schema fields"
+      ],
+      "custody": "pointer_hash_or_licensed_schema_fragment",
+      "license_mode": "CC-BY-SA-4.0"
+    },
+    {
+      "id": "SciFact",
+      "kind": "git_repository_dataset",
+      "revision": "allenai/scifact@68b98a56d93e0f9da0d2aab4e6c3294699a0f72e",
+      "authority": "UPSTREAM_EXPERT",
+      "usable_annotations": [
+        "SUPPORT",
+        "CONTRADICT",
+        "evidence sentence indices",
+        "expert-written scientific claims"
+      ],
+      "custody": "pointer_and_content_hash_preferred",
+      "license_mode": "CC-BY-4.0 annotations; S2ORC abstracts follow their upstream terms"
+    },
+    {
+      "id": "SciER",
+      "kind": "published_dataset",
+      "revision": "ACL-Anthology:2024.emnlp-main.726",
+      "authority": "UPSTREAM_HUMAN",
+      "usable_annotations": [
+        "full-text scientific entities",
+        "scientific relations",
+        "OOD evaluation split"
+      ],
+      "custody": "upstream_dataset_pointer_and_hash",
+      "license_mode": "USE_UPSTREAM_DATASET_TERMS; no redistribution assumption",
+      "notes": "No authoritative repository pin was found in the frozen source audit; publication identity is used until a dataset revision can be content-hashed."
+    }
+  ],
+  "forbidden_gold_sources": [
+    "LLM_PROPOSAL",
+    "HEURISTIC_PROXY",
+    "SIMULATED",
+    "SELF_LABEL"
+  ]
+}

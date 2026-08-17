@@ -47,7 +47,7 @@ Protocol:
 - [ ] hide responsibility/domain labels and gold reformulation from all candidate systems;
 - [ ] have at least two independent adjudicators label whether a reframe was required and which coordinates should reopen;
 - [ ] report agreement and resolve disagreements under a prewritten policy;
-- [ ] perform power/precision analysis before freezing final N;
+- [x] perform power/precision analysis before freezing final N;
 - [ ] preserve every failed/null run.
 
 ## 4. Baselines and ablations

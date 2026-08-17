@@ -1,0 +1,13 @@
+parsed 600 with_gold 599 nogold [{'domain': 'healthcare', 'paper_id': 'bbecae5da4f5a7bc59e560f253fe0c3a4d305884', 'source_index': 63}]
+id_title_identical 599/599
+dupes_dropped 13 eligible 586
+distinct_targets 584 reused 2
+test 385 pilot 8 perdomain {'computer_science': 97, 'healthcare': 96, 'humanities': 96, 'natural_science': 96}
+ids_sha c5c9b81e00a66c088305eb6a52d7e7f4f2d6894a2fb6561e7559522c78a122f1
+tier TIER_B_committed hw 0.0497 under True
+contam overlap {'mean': 0.5324, 'median': 0.5333, 'records_at_or_above_half': 234, 'records_with_every_gold_token_present': 5}
+contam run {'max': 8, 'mean': 2.387, 'records_at_or_above_five': 22}
+verbatim 0
+collisions strict 0 relaxed 0
+public_sha 328ce9a834d2ab0a gold_sha 107b6fb35660fe08
+per_file {'computer_science': '63f1575f3db3', 'healthcare': '7739c02064d4', 'humanities': '9df2af0b18cc', 'natural_science': '905fc6bb8e22'}
