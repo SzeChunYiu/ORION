@@ -65,34 +65,6 @@ def sort_key(artifact: dict) -> tuple:
     return (pinned, STATE_ORDER.get(artifact["state"], 9), artifact["artifact_id"])
 
 
-def evaluator_needs(run_requirements: dict) -> str:
-    """Render only requirements consumed by the official evaluator/scorer."""
-    requirements = run_requirements.get("evaluator_requirements")
-    if not isinstance(requirements, dict):
-        return "n/a"
-    return "; ".join(
-        f"{name}: {cell(details.get('credentials'))}"
-        for name, details in requirements.items()
-        if isinstance(details, dict)
-    ) or "n/a"
-
-
-def pipeline_needs(run_requirements: dict) -> str:
-    """Render candidate/reference-agent or data-pipeline requirements, never evaluator needs."""
-    reference_agent = run_requirements.get("reference_agent_requirements")
-    if isinstance(reference_agent, dict) and reference_agent.get("credentials"):
-        return cell(reference_agent["credentials"])
-
-    parts: list[str] = []
-    provider = run_requirements.get("provider")
-    model = run_requirements.get("model")
-    if provider:
-        parts.append(f"provider: {cell(provider)}")
-    if model:
-        parts.append(f"model: {cell(model)}")
-    return "; ".join(parts) or "n/a"
-
-
 def render(audit: dict) -> str:
     artifacts = sorted(audit["artifacts"], key=sort_key)
     lines: list[str] = []
@@ -151,16 +123,22 @@ def render(audit: dict) -> str:
 
     add("## C. Provider, run requirements and contamination exposure")
     add("")
-    add("| Artifact | State | Official evaluator needs | Pipeline / reference-agent needs | Hard blocker | Contamination |")
+    add("| Artifact | State | Evaluator needs | Reference agent needs | Hard blocker | Contamination |")
     add("| --- | --- | --- | --- | --- | --- |")
     for a in artifacts:
         rr = a.get("run_requirements") or {}
+        er = rr.get("evaluator_requirements")
+        if isinstance(er, dict):
+            needs = "; ".join(f"{k}: {v.get('credentials')}" for k, v in er.items())
+        else:
+            needs = rr.get("provider")
+        agent = (rr.get("reference_agent_requirements") or {}).get("credentials")
         add(
-            "| `{id}` | `{state}` | {needs} | {pipeline} | {blk} | {cont} |".format(
+            "| `{id}` | `{state}` | {needs} | {agent} | {blk} | {cont} |".format(
                 id=cell(a["artifact_id"]),
                 state=cell(a["state"]),
-                needs=clip(evaluator_needs(rr), 110),
-                pipeline=clip(pipeline_needs(rr), 110),
+                needs=clip(needs, 110),
+                agent=clip(agent, 70),
                 blk=clip(rr.get("hard_blocker"), 150),
                 cont=clip(a.get("contamination_note"), 120),
             )
