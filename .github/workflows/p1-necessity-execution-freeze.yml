@@ -1,5 +1,6 @@
 name: p1-necessity-execution-freeze
 
+# Receipt-only push gate. This workflow never imports or invokes candidate arms.
 on:
   push:
     branches:
