@@ -96,7 +96,7 @@ jobs:
             --out "$PWD/artifacts/frozen"
           test "$(sha256sum artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl | cut -d' ' -f1)" = 13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b
 
-      - name: Execute confirmatory ORION and controls for first time
+      - name: Execute confirmatory ORION and controls from execution-frozen inputs
         shell: bash
         run: |
           set -euo pipefail
@@ -145,6 +145,8 @@ jobs:
           git add "$gold_dir" "$evidence_dir"
           if ! git diff --cached --quiet; then
             git commit -m 'data(p3): archive execution-frozen confirmatory evidence'
+            git fetch origin "${{ github.head_ref }}"
+            git rebase "origin/${{ github.head_ref }}"
             git push origin HEAD:${{ github.head_ref }}
           fi
 
