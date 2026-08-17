@@ -1,17 +1,7 @@
 name: p2-v2-wide-bounded
 
 on:
-  pull_request:
-    paths:
-      - '.github/workflows/p2-v2-wide-bounded.yml'
-      - 'papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_WIDE_BOUNDED_MATCHED_FREEZE_2026-08-18.json'
-      - 'papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py'
-      - 'papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_comparison.py'
   workflow_dispatch:
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -84,14 +74,12 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-
           root = Path('/tmp/p2-wide-bounded/run')
           manifest = json.loads((root / 'COMPARISON_RUN_MANIFEST.json').read_text())
           lex = json.loads((root / 'eval_wide_lexical_arxiv.json').read_text())['aggregate_stats']
           gov = json.loads((root / 'eval_wide_governed_multiroute.json').read_text())['aggregate_stats']
           lm = manifest['systems']['wide_lexical_arxiv']
           gm = manifest['systems']['wide_governed_multiroute']
-
           lexical_calls = int(lm['provider_requests'])
           lexical_ok = int((lm.get('route_status_counts') or {}).get('OK', 0))
           lexical_ok_fraction = lexical_ok / lexical_calls if lexical_calls else 0.0
@@ -99,7 +87,6 @@ jobs:
           delta_iou = float(gov['avg_iou']) - float(lex['avg_iou'])
           delta_recall = float(gov['avg_recall']) - float(lex['avg_recall'])
           delta_precision = float(gov['avg_precision']) - float(lex['avg_precision'])
-
           if lexical_ok_fraction < 0.8:
               verdict = 'CANNOT_CHECK_PROVIDER'
           elif not matched_request_rate:
@@ -108,7 +95,6 @@ jobs:
               verdict = 'BOUNDED_EXTERNAL_SIGNAL_POSITIVE'
           else:
               verdict = 'BOUNDED_EXTERNAL_SIGNAL_NOT_POSITIVE'
-
           payload = {
               'schema': 'P2.v2.wide-bounded-matched-result.v1',
               'authority': 'BOUNDED_EXTERNAL_DEVELOPMENT_EVIDENCE_NOT_V2_CONFIRMATION',
