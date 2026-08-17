@@ -25,7 +25,7 @@ DEFAULT_PROTOCOL = (
     / "revival"
     / "p1"
     / "protocol"
-    / "P1.epistemic-mutation-necessity.v2.2.3.json"
+    / "P1.epistemic-mutation-necessity.v2.2.4.json"
 )
 AMENDMENT_SCHEMA = "orion.publication-protocol-amendment.v1"
 SOURCE_PATHS = (
@@ -101,15 +101,39 @@ def _load_node(
     return effective, [*nodes, node], material + b"\0" + raw
 
 
+def _validate_ancestor_pins(
+    tip_payload: dict[str, Any],
+    nodes: list[dict[str, str]],
+) -> None:
+    pins = tip_payload.get("ancestor_blob_pins")
+    if pins is None:
+        return
+    if not isinstance(pins, dict) or not pins:
+        raise ValueError("ancestor_blob_pins must be a non-empty object")
+    node_by_path = {node["path"]: node for node in nodes}
+    tip_path = nodes[-1]["path"]
+    required_paths = set(node_by_path) - {tip_path}
+    if set(str(key) for key in pins) != required_paths:
+        raise ValueError("ancestor blob-pin path set mismatch")
+    for raw_path, expected in pins.items():
+        path = str(raw_path)
+        actual = node_by_path[path]["git_blob_sha"]
+        if actual != str(expected):
+            raise ValueError(f"ancestor Git blob identity mismatch:{path}")
+
+
 def load_effective_protocol(
     path: Path = DEFAULT_PROTOCOL,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
+    tip_payload = json.loads(path.read_text())
     effective, nodes, material = _load_node(path, seen=frozenset())
+    _validate_ancestor_pins(tip_payload, nodes)
     return effective, {
         "kind": "base_only" if len(nodes) == 1 else "base_plus_amendments",
         "nodes": nodes,
         "effective_protocol_version": effective["protocol_version"],
         "chain_sha256": hashlib.sha256(material).hexdigest(),
+        "ancestor_pins_validated": bool(tip_payload.get("ancestor_blob_pins")),
     }
 
 
