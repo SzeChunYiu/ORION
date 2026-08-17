@@ -1,6 +1,6 @@
 # P1-T2_baseline_ablation_results
 
-**Status:** `PARTIAL`
+**Status:** `OK`
 
 Suite fingerprint(s): `21b461d89280631b93b766d6fb000c7f9f5fbeccee7cb6664f238c2c5c8e6420` · subject revision(s): `0cf4e8d82771252de94be8c696a3f39fd3191019` · records: 2880 · repeats/case: 5
 Intervals: Wilson 95% on the case unit; matched differences by paired percentile bootstrap (10000 resamples, seed 20260815).
@@ -53,15 +53,15 @@ Comparator: `arex_like_recursive_audit_followup` — highest overall root_succes
 | `orion_full` | SUBJECT | hidden_measurement_or_operationalization | root_success | 8 | 0.0000 | [0.0000, 0.3244] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | NOT_SUPPORTED | 0 |
 | `orion_full` | SUBJECT | evidence_only_negative_control | unnecessary_reframe | 8 | 0.0000 | [0.0000, 0.3244] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | EQUIVALENT | 0 |
 | `orion_full` | SUBJECT | execution_only_negative_control | unnecessary_reframe | 8 | 0.0000 | [0.0000, 0.3244] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | EQUIVALENT | 0 |
-| `orion_live_provider` | BASELINE | ALL | root_success | 25 | 0.0000 | [0.0000, 0.1332] | -0.0400 | [-0.1200, 0.0000] | -0.2897 | 0.7366 | CANNOT_CHECK | 23 |
-| `orion_live_provider` | BASELINE | HIDDEN_SHIFT_SUBSET | root_success | 17 | 0.0000 | [0.0000, 0.1843] | -0.0588 | [-0.1765, 0.0000] | -0.3554 | 0.7152 | CANNOT_CHECK | 15 |
-| `orion_live_provider` | BASELINE | NEGATIVE_CONTROLS | unnecessary_reframe | 8 | 0.0000 | [0.0000, 0.3244] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | CANNOT_CHECK | 8 |
-| `orion_live_provider` | BASELINE | hidden_parent_domain | root_success | 4 | 0.0000 | [0.0000, 0.4899] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | CANNOT_CHECK | 4 |
-| `orion_live_provider` | BASELINE | hidden_representation_or_coordinate_system | root_success | 5 | 0.0000 | [0.0000, 0.4345] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | CANNOT_CHECK | 3 |
-| `orion_live_provider` | BASELINE | hidden_decomposition_or_interface | root_success | 5 | 0.0000 | [0.0000, 0.4345] | -0.2000 | [-0.6000, 0.0000] | -0.7227 | 0.6640 | CANNOT_CHECK | 3 |
-| `orion_live_provider` | BASELINE | hidden_measurement_or_operationalization | root_success | 3 | 0.0000 | [0.0000, 0.5615] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | CANNOT_CHECK | 5 |
-| `orion_live_provider` | BASELINE | evidence_only_negative_control | unnecessary_reframe | 5 | 0.0000 | [0.0000, 0.4345] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | CANNOT_CHECK | 3 |
-| `orion_live_provider` | BASELINE | execution_only_negative_control | unnecessary_reframe | 3 | 0.0000 | [0.0000, 0.5615] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | CANNOT_CHECK | 5 |
+| `orion_live_provider` | BASELINE | ALL | root_success | 48 | 0.0000 | [0.0000, 0.0741] | -0.0208 | [-0.0625, 0.0000] | -0.2897 | 0.7342 | NOT_SUPPORTED | 0 |
+| `orion_live_provider` | BASELINE | HIDDEN_SHIFT_SUBSET | root_success | 32 | 0.0000 | [0.0000, 0.1072] | -0.0312 | [-0.0938, 0.0000] | -0.3554 | 0.7284 | NOT_SUPPORTED | 0 |
+| `orion_live_provider` | BASELINE | NEGATIVE_CONTROLS | unnecessary_reframe | 16 | 0.0000 | [0.0000, 0.1936] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | EQUIVALENT | 0 |
+| `orion_live_provider` | BASELINE | hidden_parent_domain | root_success | 8 | 0.0000 | [0.0000, 0.3244] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | NOT_SUPPORTED | 0 |
+| `orion_live_provider` | BASELINE | hidden_representation_or_coordinate_system | root_success | 8 | 0.0000 | [0.0000, 0.3244] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | NOT_SUPPORTED | 0 |
+| `orion_live_provider` | BASELINE | hidden_decomposition_or_interface | root_success | 8 | 0.0000 | [0.0000, 0.3244] | -0.1250 | [-0.3750, 0.0000] | -0.7227 | 0.7004 | NOT_SUPPORTED | 0 |
+| `orion_live_provider` | BASELINE | hidden_measurement_or_operationalization | root_success | 8 | 0.0000 | [0.0000, 0.3244] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | NOT_SUPPORTED | 0 |
+| `orion_live_provider` | BASELINE | evidence_only_negative_control | unnecessary_reframe | 8 | 0.0000 | [0.0000, 0.3244] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | EQUIVALENT | 0 |
+| `orion_live_provider` | BASELINE | execution_only_negative_control | unnecessary_reframe | 8 | 0.0000 | [0.0000, 0.3244] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | EQUIVALENT | 0 |
 | `orion_without_explicit_M` | ABLATION | ALL | root_success | 48 | 0.0208 | [0.0037, 0.1090] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | NOT_SUPPORTED | 0 |
 | `orion_without_explicit_M` | ABLATION | HIDDEN_SHIFT_SUBSET | root_success | 32 | 0.0312 | [0.0055, 0.1574] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | NOT_SUPPORTED | 0 |
 | `orion_without_explicit_M` | ABLATION | NEGATIVE_CONTROLS | unnecessary_reframe | 16 | 0.0000 | [0.0000, 0.1936] | 0.0000 | [0.0000, 0.0000] | 0.0000 | 1.0000 | EQUIVALENT | 0 |
@@ -126,7 +126,7 @@ Comparator: `arex_like_recursive_audit_followup` — highest overall root_succes
 | `generic_retry_instead_of_typed_reframe` | 0.0000 | 0.0000 | 0.2727 | 0.0200 | 0.0373 | 0.9800 | 0.0000 | 0.0000 | 1.0000 | 0.00 | 0.0 | 8.88 |
 | `iris_like_information_state_revision` | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 0.0000 | 0.0000 | 1.0000 | 0.00 | 0.0 | 8.88 |
 | `orion_full` | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 0.0000 | 0.0000 | 1.0000 | 0.00 | 0.0 | 8.88 |
-| `orion_live_provider` | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 0.0000 | 0.0000 | 1.0000 | 11.88 | 1196.7 | 1.00 |
+| `orion_live_provider` | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 0.0000 | 0.0000 | 1.0000 | 11.68 | 1205.3 | 1.00 |
 | `orion_without_explicit_M` | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 0.0000 | 0.0000 | 1.0000 | 0.00 | 0.0 | 8.88 |
 | `orion_without_explicit_W` | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 1.0000 | 0.0000 | 0.0000 | 1.0000 | 0.00 | 0.0 | 8.88 |
 | `orion_without_mechanic_self_audit` | 0.0455 | 0.0000 | 0.3333 | 0.0333 | 0.0606 | 0.9667 | 0.0000 | 0.0000 | 1.0000 | 0.00 | 0.0 | 8.88 |

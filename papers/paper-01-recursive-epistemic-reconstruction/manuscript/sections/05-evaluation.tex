@@ -1,5 +1,3 @@
-\input{generated/suite_facts}
-
 \section{Falsifiable hypotheses and current evidence}
 
 \subsection{Hypotheses}
@@ -54,7 +52,7 @@ An independent blind audit rates 55 of 66 cases SOLVABLE from public content alo
 The deterministic suite exposed an over-broad reframe gate: singular EVIDENCE/EXECUTION responsibility could previously enter the reframe path. The gate was repaired so those cases can no longer reframe merely because responsibility is singular. Artifact: \texttt{evidence/FALSIFIER\_V1.md}.
 
 \subsubsection{Power and tier status}
-The achieved tier is \AchievedTier{} with half-width \AchievedHalfWidth{}. Required N for H1 is \RequiredNForH1{}; for H2 is \RequiredNForH2{}. The study is \Underpowered{} for the primary hypothesis. Stochastic repeats per case: \StochasticRepeats{}. Artifact: \texttt{generated/suite\_facts.tex} via \texttt{scripts/render\_suite\_facts.py}.
+The achieved tier is \AchievedTier{} with half-width \AchievedHalfWidth{}. Required N for H1 is \RequiredNForHOne{}; for H2 is \RequiredNForHTwo{}. The study is \Underpowered{} for the primary hypothesis. Stochastic repeats per case: \StochasticRepeats{}. Artifact: \texttt{generated/suite\_facts.tex} via \texttt{scripts/render\_suite\_facts.py}.
 
 \subsection{Discussion}
 
@@ -62,10 +60,14 @@ The achieved tier is \AchievedTier{} with half-width \AchievedHalfWidth{}. Requi
 The falsifier suite served its intended role by exposing a design defect (the over-broad reframe gate) and forcing a repair. The mechanical arm demonstrates that responsibility attribution is possible without LLM comprehension on 62 of 66 cases, with zero false positives on the 22 negative controls. Four general relations cover 26 cases; the remaining attributions rest on narrower rules whose generality is untested.
 
 \subsubsection{What the local evidence cannot establish}
-The current N=\TestCaseCount{} falls short of the required \RequiredNForH1{} for H1 and \RequiredNForH2{} for H2. The achieved tier \AchievedTier{} is below the minimum standard (TIER D). The study is therefore \Underpowered{} for its primary hypotheses. Effect sizes with confidence intervals cannot be reported until the external campaign completes and results are bound.
+The current N=\TestCaseCount{} falls short of the required \RequiredNForHOne{} for H1 and \RequiredNForHTwo{} for H2. The achieved tier \AchievedTier{} is below the minimum standard (TIER D). The study is therefore \Underpowered{} for its primary hypotheses. Within-study system comparisons are populated (all systems below 0.03 root success; Table~\ref{tab:P1-T2}), but effect sizes against a matched external superiority baseline remain unavailable until the external campaign completes and results are bound.
+
+\input{tables/P1-T2_baseline_ablation}
 
 \subsubsection{Failure modes}
-A prospective failure taxonomy (Table P1-3) is defined in the protocol but results are not yet available. The local suite identified specific failure patterns: blind-responder shortcuts in template phrasing, filename-based family separation, and arithmetic defects in case resources. These are documented in the solvability audit artifact.
+The prospective failure taxonomy (Table~\ref{tab:P1-T3}) is populated from the frozen 2880-record archive. Abstention dominates across systems (81.4\% of scored trials), with wrong-responsibility attributions at 9.2\% and missed reframes at 7.5\%; unnecessary reframes occur only under generic retry, tree search, and no-self-audit variants. The local suite additionally identified blind-responder shortcuts in template phrasing, filename-based family separation, and arithmetic defects in case resources, documented in the solvability audit artifact.
+
+\input{tables/P1-T3_failure_taxonomy}
 
 \subsubsection{Limitations of the local suite}
 The local falsifier uses constructed cases with frozen semantic properties. It cannot establish open-world adequacy or external superiority. Template-level leaks (perfect separation on fixed phrases like ``The team's framing is'') were identified and documented but not repaired in this iteration. Half the mechanical arm attributions rest on singleton rules that may function as case-specific recognizers.
