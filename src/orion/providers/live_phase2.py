@@ -6,11 +6,16 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
+from orion.providers.llm.copilot_cli import CopilotCLIConfig, CopilotCLILLMProvider
 from orion.providers.llm.openai_responses import OpenAIResponsesConfig, OpenAIResponsesLLMProvider
 from orion.providers.retrieval.literature import (
     CrossrefRetrievalProvider,
     EuropePMCRetrievalProvider,
     MultiSourceLiteratureRetrievalProvider,
+)
+from orion.providers.verification.copilot_cli import (
+    CopilotCLIVerificationConfig,
+    CopilotCLIVerificationProvider,
 )
 from orion.providers.verification.protected_http import (
     ProtectedHTTPVerificationConfig,
@@ -19,6 +24,13 @@ from orion.providers.verification.protected_http import (
 
 
 PROVIDER_MANIFEST_SCHEMA = "LivePhase2ProviderManifest.v1"
+_PRIVATE_CONFIG_NAMES = (
+    "OPENAI_API_KEY",
+    "ORION_PROTECTED_VERIFIER_URL",
+    "ORION_PROTECTED_VERIFIER_TOKEN",
+    "ORION_PROTECTED_VERIFIER_ARTIFACT_HASH",
+    "ORION_PHASE2_EVALUATION_EPOCH_ID",
+)
 
 
 @dataclass(frozen=True)
@@ -48,9 +60,9 @@ class LivePhase2ProviderManifest:
 
 @dataclass(frozen=True)
 class LivePhase2ProviderStack:
-    llm: OpenAIResponsesLLMProvider
+    llm: OpenAIResponsesLLMProvider | CopilotCLILLMProvider
     retrieval: MultiSourceLiteratureRetrievalProvider
-    verification: ProtectedHTTPVerificationProvider
+    verification: ProtectedHTTPVerificationProvider | CopilotCLIVerificationProvider
     manifest: LivePhase2ProviderManifest
 
     @property
@@ -59,7 +71,7 @@ class LivePhase2ProviderStack:
 
     @property
     def evaluator_artifact_hash(self) -> str:
-        return self.verification.config.evaluator_artifact_hash
+        return str(self.verification.config.evaluator_artifact_hash)
 
     @property
     def evaluation_epoch_id(self) -> str:
@@ -70,11 +82,37 @@ def _identity_tuple(mapping: dict[str, object]) -> tuple[tuple[str, str], ...]:
     return tuple(sorted((str(key), str(value)) for key, value in mapping.items()))
 
 
+def _retrieval_stack(crossref_mailto: str) -> tuple[
+    MultiSourceLiteratureRetrievalProvider,
+    tuple[tuple[tuple[str, str], ...], ...],
+]:
+    europe_pmc = EuropePMCRetrievalProvider()
+    crossref = CrossrefRetrievalProvider(mailto=crossref_mailto)
+    retrieval = MultiSourceLiteratureRetrievalProvider((europe_pmc, crossref))
+    identities = (
+        _identity_tuple({"provider": "europe-pmc-rest", "endpoint": europe_pmc.endpoint, "result_type": "core"}),
+        _identity_tuple({"provider": "crossref-rest", "endpoint": crossref.endpoint, "query": "query.bibliographic"}),
+    )
+    return retrieval, identities
+
+
+def _secret_values(stack: LivePhase2ProviderStack) -> tuple[str, ...]:
+    values: list[str] = []
+    for provider in (stack.llm, stack.verification):
+        config = getattr(provider, "config", None)
+        if config is None:
+            continue
+        for attribute in ("api_key", "bearer_token", "token"):
+            value = getattr(config, attribute, "")
+            if isinstance(value, str) and value:
+                values.append(value)
+    return tuple(values)
+
+
 def write_live_phase2_provider_manifest(stack: LivePhase2ProviderStack, path: Path | str) -> None:
     payload = {**stack.manifest.payload, "provider_manifest_hash": stack.provider_manifest_hash}
     serialized = json.dumps(payload, indent=2, sort_keys=True) + "\n"
-    secrets = (stack.llm.config.api_key, stack.verification.config.bearer_token)
-    if any(secret and secret in serialized for secret in secrets):
+    if any(secret in serialized for secret in _secret_values(stack)):
         raise RuntimeError("provider manifest serialization attempted to include secret material")
     Path(path).write_text(serialized, encoding="utf-8")
 
@@ -116,8 +154,7 @@ def build_phase2_live_provider_stack(
     evaluation_epoch_id: str,
     crossref_mailto: str = "",
 ) -> LivePhase2ProviderStack:
-    """Build a concrete real-network stack with authority outside the LLM lane."""
-
+    """Build the private OpenAI + separately controlled HTTPS verifier stack."""
     reasoner_config = OpenAIResponsesConfig(model=reasoner_model, api_key=reasoner_api_key, store=False)
     verification_config = ProtectedHTTPVerificationConfig(
         endpoint=protected_verifier_endpoint,
@@ -127,16 +164,41 @@ def build_phase2_live_provider_stack(
     )
     reasoner = OpenAIResponsesLLMProvider(reasoner_config)
     verification = ProtectedHTTPVerificationProvider(verification_config)
-    europe_pmc = EuropePMCRetrievalProvider()
-    crossref = CrossrefRetrievalProvider(mailto=crossref_mailto)
-    retrieval = MultiSourceLiteratureRetrievalProvider((europe_pmc, crossref))
+    retrieval, retrieval_ids = _retrieval_stack(crossref_mailto)
     manifest = LivePhase2ProviderManifest(
         reasoner_provider=_identity_tuple(reasoner_config.public_identity),
         verification_provider=_identity_tuple(verification_config.public_identity),
-        retrieval_sources=(
-            _identity_tuple({"provider": "europe-pmc-rest", "endpoint": europe_pmc.endpoint, "result_type": "core"}),
-            _identity_tuple({"provider": "crossref-rest", "endpoint": crossref.endpoint, "query": "query.bibliographic"}),
-        ),
+        retrieval_sources=retrieval_ids,
+    )
+    return LivePhase2ProviderStack(reasoner, retrieval, verification, manifest)
+
+
+def build_phase2_copilot_provider_stack(
+    *,
+    token: str,
+    reasoner_model: str,
+    evaluator_model: str,
+    cli_version: str,
+    evaluation_epoch_id: str,
+    crossref_mailto: str = "",
+) -> LivePhase2ProviderStack:
+    """Build an isolated prompt-only GitHub Copilot CLI reasoner/evaluator stack."""
+    if reasoner_model == evaluator_model:
+        raise ValueError("Copilot reasoner and evaluator models must be distinct")
+    reasoner_config = CopilotCLIConfig(model=reasoner_model, token=token, cli_version=cli_version)
+    verification_config = CopilotCLIVerificationConfig(
+        model=evaluator_model,
+        token=token,
+        cli_version=cli_version,
+        evaluation_epoch_id=evaluation_epoch_id,
+    )
+    reasoner = CopilotCLILLMProvider(reasoner_config)
+    verification = CopilotCLIVerificationProvider(verification_config)
+    retrieval, retrieval_ids = _retrieval_stack(crossref_mailto)
+    manifest = LivePhase2ProviderManifest(
+        reasoner_provider=_identity_tuple(reasoner_config.public_identity),
+        verification_provider=_identity_tuple(verification_config.public_identity),
+        retrieval_sources=retrieval_ids,
     )
     return LivePhase2ProviderStack(reasoner, retrieval, verification, manifest)
 
@@ -172,10 +234,62 @@ def build_phase2_live_provider_stack_from_env(
     )
 
 
+def build_phase2_auto_provider_stack_from_env(
+    *,
+    private_reasoner_model: str,
+    copilot_reasoner_model: str,
+    copilot_evaluator_model: str,
+    copilot_evaluation_epoch_id: str,
+    copilot_token_env: str = "COPILOT_GITHUB_TOKEN",
+    copilot_cli_version_env: str = "ORION_COPILOT_CLI_VERSION",
+    crossref_mailto_env: str = "CROSSREF_MAILTO",
+) -> tuple[LivePhase2ProviderStack, str]:
+    """Select one fully bound provider lane; never mix private and Copilot identities."""
+    private_values = {name: os.environ.get(name, "") for name in _PRIVATE_CONFIG_NAMES}
+    present = tuple(name for name, value in private_values.items() if value)
+    if len(present) == len(_PRIVATE_CONFIG_NAMES):
+        return (
+            build_phase2_live_provider_stack(
+                reasoner_api_key=private_values["OPENAI_API_KEY"],
+                reasoner_model=private_reasoner_model,
+                protected_verifier_endpoint=private_values["ORION_PROTECTED_VERIFIER_URL"],
+                protected_verifier_token=private_values["ORION_PROTECTED_VERIFIER_TOKEN"],
+                evaluator_artifact_hash=private_values["ORION_PROTECTED_VERIFIER_ARTIFACT_HASH"],
+                evaluation_epoch_id=private_values["ORION_PHASE2_EVALUATION_EPOCH_ID"],
+                crossref_mailto=os.environ.get(crossref_mailto_env, ""),
+            ),
+            "private-openai-protected-http",
+        )
+    if present:
+        missing = tuple(name for name in _PRIVATE_CONFIG_NAMES if name not in present)
+        raise RuntimeError(
+            "partial private Phase-2 provider configuration is forbidden; missing: " + ",".join(missing)
+        )
+    token = os.environ.get(copilot_token_env, "")
+    cli_version = os.environ.get(copilot_cli_version_env, "")
+    if not token:
+        raise RuntimeError(f"Copilot fallback token is missing: {copilot_token_env}")
+    if not cli_version:
+        raise RuntimeError(f"Copilot CLI frozen version is missing: {copilot_cli_version_env}")
+    return (
+        build_phase2_copilot_provider_stack(
+            token=token,
+            reasoner_model=copilot_reasoner_model,
+            evaluator_model=copilot_evaluator_model,
+            cli_version=cli_version,
+            evaluation_epoch_id=copilot_evaluation_epoch_id,
+            crossref_mailto=os.environ.get(crossref_mailto_env, ""),
+        ),
+        "github-copilot-cli-external",
+    )
+
+
 __all__ = [
     "PROVIDER_MANIFEST_SCHEMA",
     "LivePhase2ProviderManifest",
     "LivePhase2ProviderStack",
+    "build_phase2_auto_provider_stack_from_env",
+    "build_phase2_copilot_provider_stack",
     "build_phase2_live_provider_stack",
     "build_phase2_live_provider_stack_from_env",
     "load_live_phase2_provider_manifest",
