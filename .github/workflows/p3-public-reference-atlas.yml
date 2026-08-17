@@ -49,7 +49,7 @@ jobs:
           git -C /tmp/scifact fetch -q --depth=1 origin 68b98a56d93e0f9da0d2aab4e6c3294699a0f72e
           git -C /tmp/scifact checkout -q --detach FETCH_HEAD
           test "$(git -C /tmp/scifact rev-parse HEAD)" = "68b98a56d93e0f9da0d2aab4e6c3294699a0f72e"
-          bash /tmp/scifact/script/download-data.sh
+          (cd /tmp/scifact && bash script/download-data.sh)
           test -s /tmp/scifact/data/claims_dev.jsonl
 
       - name: Build frozen-authority public-reference atlas
