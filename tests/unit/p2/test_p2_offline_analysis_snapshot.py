@@ -7,8 +7,13 @@ import json
 from pathlib import Path
 
 from orion.study.p2.corpus import canonical_bytes
-from orion.study.p2.freeze import load_suite, verify
-from orion.study.p2.offline_analysis import run_offline_companion
+from orion.study.p2.freeze import load_manifest, load_suite, verify
+from orion.study.p2.offline_analysis import (
+    DEFAULT_SEEDS,
+    achieved_precision_tier,
+    run_offline_companion,
+)
+from orion.study.p2.offline_systems import ALL_SYSTEMS
 
 PAPER = Path("papers/paper-02-open-world-scientific-discovery")
 MANIFEST = PAPER / "protocol" / "OFFLINE_RUN_MANIFEST_V1.json"
@@ -57,6 +62,7 @@ def _publication_projection(summary: dict) -> dict:
                 "raw_artifact_hash_list_digest_sha256"
             ],
         },
+        "achieved_precision": summary["achieved_precision"],
         "headline": {
             "strongest_confirmatory_baseline": summary[
                 "strongest_confirmatory_baseline"
@@ -159,7 +165,71 @@ def test_offline_archive_is_reproducible_and_matches_committed_snapshot() -> Non
         suite.tasks,
         run_manifest_hash=_manifest_hash(),
     )
-    assert len(archive.outcomes) == 20 * 3 * 14
+    # Read from the manifest rather than written here as a literal: the suite's task
+    # count is host-owned and moved once already to meet the frozen power
+    # commitment, and an arithmetic literal turns that into an unrelated test
+    # failure instead of a check on the archive's shape.
+    manifest = load_manifest()
+    expected_runs = manifest["task_count"] * len(DEFAULT_SEEDS) * len(ALL_SYSTEMS)
+    assert len(archive.outcomes) == expected_runs
+    assert archive.summary["n_result_records"] == expected_runs
     assert not any(item.record["status"] == "INVALID" for item in archive.outcomes)
     expected = json.loads(EXPECTED.read_text(encoding="utf-8"))
     assert _publication_projection(archive.summary) == expected
+
+
+def test_offline_archive_carries_the_achieved_precision_the_plan_committed_to() -> None:
+    """The family must state its achieved tier, and must not promote a primary.
+
+    Reaching the committed N lifts the `DESCRIPTIVE_ONLY` label, which is one of the
+    six conditions the frozen decision rule requires. This asserts the distinction
+    holds in the artifact: tier reported, promotion withheld.
+    """
+
+    manifest = load_manifest()
+    achieved = achieved_precision_tier(manifest["task_count"])
+
+    assert achieved["committed_tier"] == "TIER_B_committed"
+    assert achieved["committed_required_n"] == 385
+    assert manifest["task_count"] >= achieved["committed_required_n"]
+    assert achieved["committed_tier_met"] is True
+    assert achieved["achieved_tier"] == "TIER_B_committed"
+    assert achieved["achieved_tier_half_width"] == 0.05
+    assert achieved["primary_promoted"] is False
+
+    committed = json.loads(EXPECTED.read_text(encoding="utf-8"))
+    assert committed["analysis_authority"] == "TIER_B_committed"
+    assert committed["achieved_precision"]["primary_promoted"] is False
+    # Half-widths must come from the bootstrap, never from the planning table.
+    assert committed["achieved_precision"]["bootstrap"]["half_width_source"] == (
+        "observed_percentile_bootstrap"
+    )
+    for key in (
+        "orion_complete_gold_recall",
+        "strongest_baseline_complete_gold_recall",
+        "paired_orion_minus_strongest_baseline_recall",
+    ):
+        interval = committed["achieved_precision"][key]
+        assert interval["n"] == manifest["task_count"]
+        assert interval["ci_low"] <= interval["mean"] <= interval["ci_high"]
+
+
+def test_below_the_inferential_floor_the_family_stays_descriptive_only() -> None:
+    """The no-alarm and alarm cases for the tier classifier, on both sides.
+
+    A tier function that only ever returns the tier this run achieved would pass the
+    test above while silently having lost the floor that makes a small family
+    descriptive. Both directions are asserted.
+    """
+
+    assert achieved_precision_tier(96)["achieved_tier"] == "DESCRIPTIVE_ONLY"
+    assert achieved_precision_tier(96)["achieved_tier_half_width"] is None
+    assert achieved_precision_tier(96)["committed_tier_met"] is False
+    assert achieved_precision_tier(97)["achieved_tier"] == "TIER_D_minimum_inferential"
+    assert achieved_precision_tier(171)["achieved_tier"] == "TIER_C_reduced"
+    assert achieved_precision_tier(384)["achieved_tier"] == "TIER_C_reduced"
+    assert achieved_precision_tier(385)["achieved_tier"] == "TIER_B_committed"
+    assert achieved_precision_tier(1068)["achieved_tier"] == "TIER_A_full"
+    # Never promoted, at any N.
+    for n_tasks in (96, 97, 385, 1068, 100_000):
+        assert achieved_precision_tier(n_tasks)["primary_promoted"] is False

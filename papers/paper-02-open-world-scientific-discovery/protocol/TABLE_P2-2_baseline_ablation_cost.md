@@ -10,11 +10,11 @@
 
 | Field | Value |
 | --- | --- |
-| Analysis authority | `DESCRIPTIVE_ONLY` |
-| Tasks (n) | 20 |
+| Analysis authority | `TIER_B_committed` |
+| Tasks (n) | 390 |
 | Systems (total) | 14 |
-| Result records | 840 |
-| Results SHA256 | `611808dc80846d5057c84c12af7ff8ec…` |
+| Result records | 16380 |
+| Results SHA256 | `27b8e55b68a65906fe0971ed2f24a814…` |
 
 ## Resource limits (per-task budgets)
 
@@ -40,29 +40,29 @@
 
 | System | Recall | Premature closure | Duplicate processing | Routes used | Legitimate rereads | Pass | Cannot check |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ORION full | 0.994444 | 0.0 | 0.0 | 5.0 | 1.6 | 0.95 | 0.05 |
+| ORION full | 0.979487 | 0.0 | 0.0 | 4.989744 | 1.533333 | 0.817949 | 0.030769 |
 
 ## Safety ablations
 
 | System | Recall | Premature closure | Duplicate processing | Routes used | Legitimate rereads | Pass | Cannot check |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Ablation: no route-independence check | 0.444444 | 1.0 | 0.0 | 2.0 | 0.6 | 0.0 | 0.0 |
-| Ablation: no question-conditioned read ledger | 0.994444 | 0.0 | 0.0 | 5.0 | 1.0 | 0.95 | 0.05 |
+| Ablation: no question-conditioned read ledger | 0.979487 | 0.0 | 0.0 | 4.989744 | 1.0 | 0.817949 | 0.030769 |
 | Ablation: route stop can close task | 0.333333 | 1.0 | 0.0 | 1.0 | 0.6 | 0.0 | 0.0 |
-| Ablation: no unavailable-route open state | 0.994444 | 0.0 | 0.0 | 5.0 | 1.6 | 0.95 | 0.0 |
+| Ablation: no unavailable-route open state | 0.979487 | 0.0 | 0.0 | 4.989744 | 1.533333 | 0.817949 | 0.0 |
 | Ablation: coverage diagnostic controls stopping | 0.555556 | 1.0 | 0.0 | 2.0 | 1.6 | 0.0 | 0.0 |
-| Ablation: no content-identity dedup | 0.966667 | 0.0 | 0.101429 | 5.0 | 1.3 | 0.7 | 0.05 |
+| Ablation: no content-identity dedup | 0.952707 | 0.0 | 0.101446 | 4.969231 | 1.235897 | 0.605128 | 0.023077 |
 
 ## Exploratory comparator (non-confirmatory)
 
 | System | Recall | Premature closure | Duplicate processing | Routes used | Legitimate rereads | Pass | Cannot check |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Exploratory: adaptive multiroute | 0.772222 | 0.8 | 0.0 | 4.0 | 1.6 | 0.0 | 0.05 |
+| Exploratory: adaptive multiroute | 0.774074 | 0.758974 | 0.0 | 4.0 | 1.6 | 0.0 | 0.033333 |
 
 ## Interpretation
 
-- Authority: `DESCRIPTIVE_ONLY` — no inferential claims are made from this n=20 offline campaign.
+- Authority: `TIER_B_committed` — no inferential claims are made from this n=390 offline campaign.
 - Strongest confirmatory baseline: `protocol_driven_systematic_review` with recall 0.666667.
-- ORION full recall advantage: +0.327777 over strongest baseline.
+- ORION full recall advantage: +0.31282 over strongest baseline.
 - ORION full premature-closure advantage: -1.0 (negative = fewer premature closures).
 - Cost metrics (routes used, legitimate rereads) are descriptive resource consumption from the frozen offline companion; wall-clock is intentionally fixed to zero, so these reflect algorithmic behavior, not empirical time.

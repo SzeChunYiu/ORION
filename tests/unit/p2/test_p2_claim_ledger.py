@@ -347,10 +347,10 @@ def test_manuscript_number_diverging_from_artifact_is_caught(paper: Path) -> Non
     """A number edited in the prose but not in the archive is the core defect."""
     results = paper / "manuscript" / "sections" / "results.tex"
     source = results.read_text(encoding="utf-8")
-    assert "Full ORION attains mean complete-gold recall 0.994444" in source
+    assert "Full ORION attains mean complete-gold recall 0.979487" in source
     results.write_text(
         source.replace(
-            "Full ORION attains mean complete-gold recall 0.994444",
+            "Full ORION attains mean complete-gold recall 0.979487",
             "Full ORION attains mean complete-gold recall 0.999999",
         ),
         encoding="utf-8",
@@ -415,7 +415,7 @@ def test_ledger_number_rotting_away_from_the_manuscript_is_caught(paper: Path) -
     results = paper / "manuscript" / "sections" / "results.tex"
     results.write_text(
         results.read_text(encoding="utf-8").replace(
-            "recall 0.994444 and precision 1.0.", "recall 0.994444 and precision 0.97."
+            "recall 0.979487 and precision 1.0.", "recall 0.979487 and precision 0.97."
         ),
         encoding="utf-8",
     )
@@ -430,8 +430,8 @@ def test_role_swap_is_caught_by_positional_binding(paper: Path) -> None:
     source = main.read_text(encoding="utf-8")
     main.write_text(
         source.replace(
-            "full ORION reaches mean recall 0.994444 versus 0.666667 for the strongest",
-            "full ORION reaches mean recall 0.666667 versus 0.994444 for the strongest",
+            "full ORION reaches mean recall 0.979487 versus 0.666667 for the strongest",
+            "full ORION reaches mean recall 0.666667 versus 0.979487 for the strongest",
         ),
         encoding="utf-8",
     )
@@ -452,10 +452,10 @@ def test_coordinated_regeneration_stays_green(paper: Path) -> None:
     summary_path.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
 
     for relative, old, new in (
-        (Path("manuscript") / "main.tex", "mean recall 0.994444", "mean recall 0.981111"),
+        (Path("manuscript") / "main.tex", "mean recall 0.979487", "mean recall 0.981111"),
         (
             Path("manuscript") / "sections" / "results.tex",
-            "complete-gold recall 0.994444",
+            "complete-gold recall 0.979487",
             "complete-gold recall 0.981111",
         ),
     ):
@@ -465,7 +465,7 @@ def test_coordinated_regeneration_stays_green(paper: Path) -> None:
     ledger = load_ledger(paper)
     for claim_id in ("P2-C01", "P2-R05"):
         entry = claim(ledger, claim_id)
-        entry["sentence"] = entry["sentence"].replace("0.994444", "0.981111")
+        entry["sentence"] = entry["sentence"].replace("0.979487", "0.981111")
     save_ledger(paper, ledger)
 
     proc = run(paper)
@@ -720,13 +720,22 @@ def test_named_list_selector_must_resolve_uniquely(paper: Path) -> None:
     assert "ARTIFACT_KEY_MISSING" in messages(proc)
 
 
-def test_tier_binding_points_at_the_lowest_inferential_tier() -> None:
-    """The prose says 'lowest inferential tier'; verify the bound tier really is it."""
+def test_tier_binding_points_at_the_tier_the_prose_names() -> None:
+    """The prose names the achieved tier; verify the bound tier is that plan tier.
+
+    The 20-task era carried DESCRIPTIVE_ONLY prose; the 390-task reconciliation
+    names the committed tier the campaign actually reached. Either way the
+    binding must address the tier the manuscript claims, that tier must exist
+    in the frozen plan, and the archived N must genuinely meet its required_n.
+    """
     plan = json.loads(
         (PAPER / "protocol" / "STATISTICAL_PLAN_V1.json").read_text(encoding="utf-8")
     )
-    tiers = plan["precision_plan"]["precision_tiers"]
-    lowest = min(tiers, key=lambda t: t["required_n"])
+    tiers = {t["tier"]: t for t in plan["precision_plan"]["precision_tiers"]}
+    methods = (PAPER / "manuscript" / "sections" / "methods.tex").read_text(encoding="utf-8")
+    named = [name for name in tiers if name in methods]
+    assert named, "methods.tex must name a tier that exists in the frozen plan"
+
     ledger = json.loads((PAPER / LEDGER_RELATIVE).read_text(encoding="utf-8"))
     bound = {
         binding["key"]
@@ -736,9 +745,19 @@ def test_tier_binding_points_at_the_lowest_inferential_tier() -> None:
     }
     assert bound, "expected at least one tier binding"
     for key in bound:
-        assert f"[tier={lowest['tier']}]" in key, (
-            f"binding {key} does not address the lowest inferential tier "
-            f"({lowest['tier']}, required_n={lowest['required_n']})"
+        assert any(f"[tier={name}]" in key for name in named), (
+            f"binding {key} does not address a tier the prose names as achieved ({named})"
+        )
+
+    evidence = json.loads(
+        (PAPER / "evidence" / "offline_results" / "OFFLINE_MECHANISMS_V1.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    for name in named:
+        assert evidence["n_tasks"] >= tiers[name]["required_n"], (
+            f"prose names {name} (required_n={tiers[name]['required_n']}) but the "
+            f"archived offline world has only n={evidence['n_tasks']} tasks"
         )
 
 

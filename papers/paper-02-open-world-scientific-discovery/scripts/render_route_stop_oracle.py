@@ -46,6 +46,20 @@ LABELS = {
     "no_content_identity_dedup": "No content-identity dedup",
 }
 
+PRECISION_TIERS = (
+    ("TIER_A_full", 1068),
+    ("TIER_B_committed", 385),
+    ("TIER_C_reduced", 171),
+    ("TIER_D_minimum_inferential", 97),
+)
+
+
+def _expected_authority(n_tasks: int) -> str:
+    for name, required in PRECISION_TIERS:
+        if n_tasks >= required:
+            return name
+    return "DESCRIPTIVE_ONLY"
+
 
 def _rate(value: float | None) -> str:
     return "CANNOT_CHECK" if value is None else f"{value:.4f}"
@@ -54,15 +68,20 @@ def _rate(value: float | None) -> str:
 def render(data: dict) -> str:
     if data.get("schema_version") != "orion.p2.offline-route-stop-oracle.v1":
         raise ValueError("unexpected route-stop oracle schema")
-    if data.get("analysis_authority") != "DESCRIPTIVE_ONLY":
-        raise ValueError("route-stop table must remain descriptive")
-    if data.get("n_tasks") != 20:
-        raise ValueError("route-stop table is frozen to the 20-task companion")
+    n_tasks = data.get("n_tasks")
+    if not isinstance(n_tasks, int) or isinstance(n_tasks, bool) or n_tasks < 1:
+        raise ValueError("route-stop table requires a positive integer n_tasks")
+    expected_authority = _expected_authority(n_tasks)
+    if data.get("analysis_authority") != expected_authority:
+        raise ValueError(
+            "route-stop authority does not match the frozen precision tiers: "
+            f"n={n_tasks} requires {expected_authority}"
+        )
 
     lines = [
         "# Table P2-S1 — Complete-gold route-stop oracle replay",
         "",
-        "**Authority:** `DESCRIPTIVE_ONLY`; 20 frozen tasks. Deterministic repeat seeds were checked for identical route/stop traces and collapsed within task before counting denominators.",
+        f"**Authority:** `{expected_authority}`; {n_tasks} frozen tasks. Deterministic repeat seeds were checked for identical route/stop traces and collapsed within task before counting denominators. The authority is an achieved precision tier, not a promoted primary claim.",
         "",
         "| System | Route-stop events | FP | FP rate | Routes reaching oracle exhaustion | FN | FN rate | Attempts after exhaustion |",
         "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
@@ -85,6 +104,7 @@ def render(data: dict) -> str:
             )
         )
 
+    orion = systems["orion_full"]
     restricted = data["orion_full_by_route"]["RESTRICTED"]
     lines.extend(
         [
@@ -93,9 +113,9 @@ def render(data: dict) -> str:
             "",
             "O1 defines a route-stop false positive as a declared route stop while at least one previously unfound gold identity remains reachable on that route and at least one route-call budget unit remains. It defines a route-stop false negative as **more than one** attempt after the gold-defined oracle exhaustion point; one confirming attempt is explicitly allowed.",
             "",
-            f"Full ORION records 1 O1 route-stop FP in 100 route-stop events (0.0100) and 0 FN over 99 routes that reach oracle exhaustion. The single FP is the frozen unavailable `RESTRICTED` case. That route has {restricted['routes_reaching_oracle_exhaustion']} exhaustible task-routes and {restricted['attempts_after_exhaustion_total']} total post-exhaustion attempts: exactly one allowed confirming attempt on each of the 19 non-censored tasks, so none is an FN.",
+            f"Full ORION records {orion['route_stop_false_positive_count']} O1 route-stop FP in {orion['route_stop_events']} route-stop events ({orion['route_stop_false_positive_rate']:.4f}) and {orion['route_stop_false_negative_count']} FN over {orion['routes_reaching_oracle_exhaustion']} routes that reach oracle exhaustion. On the `RESTRICTED` route, {restricted['route_stop_false_positive_count']} stops are false positives, {restricted['routes_reaching_oracle_exhaustion']} task-routes reach oracle exhaustion, and {restricted['attempts_after_exhaustion_total']} post-exhaustion attempts are retained.",
             "",
-            "The route-level FP does **not** become a task-level false closure: O4 opens an unresolved obligation for the unavailable restricted route, and full ORION returns `CANNOT_CHECK` instead of asserting task completeness. This is the intended separation between route stopping and task stopping.",
+            "A route-level FP does **not** automatically become a task-level false closure: O4 keeps unresolved unavailable-route evidence open, and full ORION may return `CANNOT_CHECK` instead of asserting task completeness. This is the intended separation between route stopping and task stopping.",
             "",
             f"Source record digest: `{data['source_record_digest_sha256']}`  ",
             f"Source rich-artifact hash-list digest: `{data['source_raw_artifact_hash_list_digest_sha256']}`",

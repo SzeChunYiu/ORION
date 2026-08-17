@@ -2,7 +2,7 @@
 """Render the completed P2 offline failure table and stopping-safety figure.
 
 Publication-layer only: reads the immutable compact result summary and does not
-recompute or change scientific outcomes.  Use ``--check`` in CI to prevent a
+recompute or change scientific outcomes. Use ``--check`` in CI to prevent a
 hand-edited table/figure from drifting from the archived summary.
 """
 
@@ -47,12 +47,36 @@ FAILURE_KEYS = (
 )
 
 
+def _scope(payload: dict) -> tuple[int, str, int]:
+    frozen = payload.get("frozen_run")
+    if not isinstance(frozen, dict):
+        raise ValueError("missing frozen_run")
+    n_tasks = frozen.get("n_tasks")
+    n_records = frozen.get("n_result_records")
+    authority = payload.get("analysis_authority")
+    achieved = payload.get("achieved_precision")
+    if not isinstance(n_tasks, int) or isinstance(n_tasks, bool) or n_tasks < 1:
+        raise ValueError("frozen_run.n_tasks must be a positive integer")
+    if not isinstance(n_records, int) or isinstance(n_records, bool) or n_records < 1:
+        raise ValueError("frozen_run.n_result_records must be a positive integer")
+    if not isinstance(authority, str) or not authority:
+        raise ValueError("analysis_authority must be non-empty")
+    if not isinstance(achieved, dict) or achieved.get("n_tasks") != n_tasks:
+        raise ValueError("achieved_precision must bind frozen_run.n_tasks")
+    if achieved.get("achieved_tier") != authority:
+        raise ValueError("analysis_authority must match achieved_precision.achieved_tier")
+    if achieved.get("primary_promoted") is not False:
+        raise ValueError("offline companion cannot self-promote a primary claim")
+    return n_tasks, authority, n_records
+
+
 def render_table(payload: dict) -> str:
+    n_tasks, authority, n_records = _scope(payload)
     systems = payload["systems"]
     lines = [
         "# Table P2-3 — offline controlled-index failure taxonomy",
         "",
-        "**Authority:** `DESCRIPTIVE_ONLY`. These are terminal task classifications from the frozen 20-task offline companion after the three deterministic repeats are collapsed within task. They are not external benchmark results and carry no inferential interval.",
+        f"**Authority:** `{authority}`. These are terminal task classifications from the frozen {n_tasks}-task offline companion after the three deterministic repeats are collapsed within task. They are not external benchmark results; the achieved precision for this family is recorded in `RESULTS_SUMMARY_V1.json` under `achieved_precision`, and no primary is promoted here.",
         "",
         "| System | PASS | CANNOT_CHECK | present-but-missed | retrieved-but-unused | screening miss | route starvation | transport failure | premature closure | budget exhausted |",
         "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
@@ -70,6 +94,21 @@ def render_table(payload: dict) -> str:
                 " | ".join(counts),
             )
         )
+
+    orion_cc = int(systems["orion_full"]["status_counts"].get("CANNOT_CHECK", 0))
+    unavailable_pc = int(
+        systems["no_unavailable_route_open_state"]["failure_counts"].get(
+            "premature_closure", 0
+        )
+    )
+    dedup_budget = int(
+        systems["no_content_identity_dedup"]["failure_counts"].get("budget_exhausted", 0)
+    )
+    exploratory_transport = int(
+        systems["adaptive_multiroute_exploratory"]["failure_counts"].get(
+            "transport_failure", 0
+        )
+    )
     lines.extend(
         [
             "",
@@ -79,13 +118,13 @@ def render_table(payload: dict) -> str:
             "",
             "The publication-bearing distinctions are:",
             "",
-            "- full ORION converts the one materially censored case into `CANNOT_CHECK` rather than a completeness claim;",
-            "- the `no_unavailable_route_open_state` ablation converts that same safety case into a premature-closure failure;",
-            "- the `no_content_identity_dedup` ablation creates five budget-exhaustion failures after duplicate work consumes the read budget;",
+            f"- full ORION converts {orion_cc} materially censored cases into `CANNOT_CHECK` rather than a completeness claim;",
+            f"- the `no_unavailable_route_open_state` ablation converts those same safety cases into {unavailable_pc} premature-closure failures;",
+            f"- the `no_content_identity_dedup` ablation creates {dedup_budget} budget-exhaustion failures after duplicate work consumes the read budget;",
             "- simple/single-pass baselines terminate with premature closure because reachable relevant material remains on unexercised routes;",
-            "- the exploratory adaptive comparator exposes three terminal `transport_failure` cases in addition to its premature closures.",
+            f"- the exploratory adaptive comparator exposes {exploratory_transport} terminal `transport_failure` cases in addition to its premature closures.",
             "",
-            "Source of record: `RESULTS_SUMMARY_V1.json`, itself checked by clean-CI regeneration against the frozen 840-run record digest.",
+            f"Source of record: `RESULTS_SUMMARY_V1.json`, itself checked by clean-CI regeneration against the frozen {n_records}-run record digest.",
             "",
         ]
     )
@@ -108,27 +147,36 @@ def _figure_rows(payload: dict) -> tuple[tuple[str, str, int], ...]:
     )
 
 
+def _ticks(n_tasks: int) -> tuple[int, ...]:
+    return tuple(round(n_tasks * fraction / 4) for fraction in range(5))
+
+
 def render_svg(payload: dict) -> str:
+    n_tasks, authority, _ = _scope(payload)
     rows = _figure_rows(payload)
     width, height = 920, 390
-    left, top, step, bar_height, scale = 255, 82, 44, 24, 25
+    left, top, step, bar_height = 255, 82, 44, 24
+    plot_width = 595
+    scale = plot_width / n_tasks
+    ticks = _ticks(n_tasks)
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
         '<rect width="100%" height="100%" fill="white"/>',
         '<text x="28" y="32" font-family="sans-serif" font-size="20" font-weight="700">P2-6 — stopping-safety failures in the frozen offline companion</text>',
-        '<text x="28" y="55" font-family="sans-serif" font-size="13">Terminal premature-closure classifications / 20 tasks · DESCRIPTIVE_ONLY</text>',
+        f'<text x="28" y="55" font-family="sans-serif" font-size="13">Terminal premature-closure classifications / {n_tasks} tasks · {authority}</text>',
         f'<line x1="{left}" y1="{top-12}" x2="{left}" y2="{top+step*(len(rows)-1)+bar_height+8}" stroke="black"/>',
     ]
-    for tick in (0, 5, 10, 15, 20):
-        x = left + tick * scale
+    for tick in ticks:
+        x = round(left + tick * scale)
         out.append(f'<line x1="{x}" y1="{top-12}" x2="{x}" y2="{top+step*(len(rows)-1)+bar_height+8}" stroke="#dddddd"/>')
         out.append(f'<text x="{x}" y="{height-28}" text-anchor="middle" font-family="sans-serif" font-size="12">{tick}</text>')
     for index, (label, _system_id, count) in enumerate(rows):
         y = top + index * step
         escaped = html.escape(label)
+        bar_width_px = round(count * scale)
         out.append(f'<text x="{left-12}" y="{y+17}" text-anchor="end" font-family="sans-serif" font-size="13">{escaped}</text>')
-        out.append(f'<rect x="{left}" y="{y}" width="{count*scale}" height="{bar_height}" fill="#555555"/>')
-        out.append(f'<text x="{left+count*scale+8}" y="{y+17}" font-family="sans-serif" font-size="13">{count}</text>')
+        out.append(f'<rect x="{left}" y="{y}" width="{bar_width_px}" height="{bar_height}" fill="#555555"/>')
+        out.append(f'<text x="{left+bar_width_px+8}" y="{y+17}" font-family="sans-serif" font-size="13">{count}</text>')
     out.extend(
         [
             f'<text x="{left+250}" y="{height-7}" text-anchor="middle" font-family="sans-serif" font-size="12">count of terminal premature-closure failures</text>',
@@ -140,13 +188,19 @@ def render_svg(payload: dict) -> str:
 
 
 def render_tikz(payload: dict) -> str:
+    n_tasks, authority, _ = _scope(payload)
     rows = _figure_rows(payload)
+    ticks = _ticks(n_tasks)
+    x_scale = 5.25 / n_tasks
+    node_offset = n_tasks / 80
+    axis_max = n_tasks * 1.05
+    escaped_authority = authority.replace("_", "\\\\_")
     lines = [
         "% GENERATED from evidence/offline_results/RESULTS_SUMMARY_V1.json",
-        "\\begin{tikzpicture}[x=0.25cm,y=0.65cm]",
-        "\\draw[->] (0,0) -- (21,0) node[right]{terminal premature-closure failures};",
+        f"\\begin{{tikzpicture}}[x={x_scale:.5f}cm,y=0.65cm]",
+        f"\\draw[->] (0,0) -- ({axis_max:.2f},0) node[right]{{terminal premature-closure failures}};",
     ]
-    for tick in (0, 5, 10, 15, 20):
+    for tick in ticks:
         lines.append(f"\\draw ({tick},0.08) -- ({tick},-0.08) node[below]{{{tick}}};")
     for index, (label, _system_id, count) in enumerate(rows, start=1):
         y = index
@@ -154,10 +208,10 @@ def render_tikz(payload: dict) -> str:
         lines.append(f"\\node[anchor=east] at (-0.35,{y+0.18}) {{{latex_label}}};")
         if count:
             lines.append(f"\\fill[black!65] (0,{y}) rectangle ({count},{y+0.36});")
-        lines.append(f"\\node[anchor=west] at ({count+0.25},{y+0.18}) {{{count}}};")
+        lines.append(f"\\node[anchor=west] at ({count+node_offset:.2f},{y+0.18}) {{{count}}};")
     lines.extend(
         [
-            f"\\node[anchor=west,font=\\small] at (0,{len(rows)+1.0}) {{20 frozen tasks; descriptive only}};",
+            f"\\node[anchor=west,font=\\small] at (0,{len(rows)+1.0}) {{{n_tasks} frozen tasks; achieved precision {escaped_authority}}};",
             "\\end{tikzpicture}",
             "",
         ]

@@ -141,12 +141,14 @@ system and never count as additional tasks.  The frozen plan defines paired
 bootstrap comparisons, Wilson intervals for standalone binary rates,
 superiority/non-inferiority margins, a cost ceiling and Holm correction for the
 external confirmatory analysis.  It also defines an authority ladder.  The
-completed offline suite has $n=\OfflineTaskCount$, below
-\idt{TIER_D_minimum_inferential} $n=97$, so its authority is
-\idt{DESCRIPTIVE_ONLY}.  The three deterministic repeat seeds verify stable
-execution; they do not manufacture $n=60$.  We therefore report descriptive
-absolute differences and mechanism diagnostics, with no promoted confidence
-interval, $p$-value or H1 decision from the offline companion.
+completed offline suite has $n=\OfflineTaskCount$, which reaches the plan's
+committed tier \idt{TIER_B_committed} ($n=385$) at an achieved half-width of
+\OfflineAchievedHalfWidth{}; because that half-width exceeds the frozen
+superiority margin, the primary offline result carries the plan's mandatory
+underpowered label.  The three deterministic repeat seeds verify stable
+execution; they do not manufacture additional tasks.  We therefore report
+descriptive absolute differences and mechanism diagnostics, with no promoted
+superiority decision from the offline companion.
 
 For a future external confirmatory result, the frozen primary rule requires the
 family superiority margin of 0.03 under matched resources with the premature

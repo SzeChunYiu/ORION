@@ -19,18 +19,36 @@ from pathlib import Path
 
 import pytest
 
-from orion.study.p2.cases import build_tasks, suite_fingerprint
+from orion.study.p2.cases import (
+    PUBLISHED_PROBE_ROUTES,
+    PUBLISHED_PROBES_PER_ROUTE,
+    CaseFamily,
+    build_tasks,
+    suite_fingerprint,
+)
 from orion.study.p2.corpus import (
+    TOPIC_COUNT,
     DiscoveryRoute,
     DiscoveryWorld,
     Topic,
     build_world,
     is_relevant,
+    validate_generated_vocabulary,
+    validate_topic_plans,
+)
+from orion.study.p2.corpus import (
+    _AUTHORED_TOPIC_PLANS,
+    _TOPIC_PLANS,
+    _TopicPlan,
+    _label_tokens,
 )
 from orion.study.p2.freeze import (
     DEFAULT_ROOT,
     FROZEN_SEED,
+    MANIFEST_FILE,
+    MAX_FILE_BYTES,
     PROVENANCE,
+    TOPICS_FILE,
     build_suite,
     load_manifest,
     load_suite,
@@ -320,13 +338,286 @@ def test_the_public_view_carries_no_gold() -> None:
 
 
 def test_budgets_do_not_admit_exhaustive_probing() -> None:
-    """If every probe could be tried, allocation and stopping would be free."""
+    """If every probe could be tried, allocation and stopping would be free.
+
+    Checked against the probes each task is actually *published*, not against the
+    world-wide vocabulary. The world-wide count grew with the corpus, which makes the
+    world-wide form of this assertion pass more and more easily while saying nothing
+    — the binding constraint is the space a single task must search.
+    """
 
     suite = load_suite()
-    total_probes = sum(
-        len(suite.world.probes_for(route))
-        for route in DiscoveryRoute
-        if route is not DiscoveryRoute.CITATION
-    )
     for task in suite.tasks:
-        assert task.budget.max_route_calls < total_probes, task.task_id
+        published = sum(len(probes) for _, probes in task.public_route_probes)
+        assert task.budget.max_route_calls < published, task.task_id
+
+
+# --------------------------------------------------------------------------
+# Scale: the power commitment, and holding difficulty fixed while N moves
+# --------------------------------------------------------------------------
+
+
+def test_the_suite_meets_the_frozen_power_commitment() -> None:
+    """`STATISTICAL_PLAN_V1.json` committed this family to TIER_B: n >= 385.
+
+    The family's n is host-owned, so a shortfall is something the world can be made
+    to fix rather than a fact to report around. This asserts it was.
+    """
+
+    manifest = load_manifest()
+    assert manifest["task_count"] >= 385, manifest["task_count"]
+    assert manifest["task_count"] == manifest["topic_count"] * len(CaseFamily)
+    assert manifest["topic_count"] == TOPIC_COUNT
+
+
+def test_published_probe_space_stays_the_size_the_superseded_world_had() -> None:
+    """Per-route probe space is bounded, and bounded at the value it always had.
+
+    The superseded 20-task world published one key per route per topic over four
+    topics: four probes per route, sixteen against a twelve-call budget. Publishing
+    all 78 topics' keys would have kept the inequality true while turning the
+    semantic route — whose correct key shares no token with the question by
+    construction — from a four-way trial into a 78-way lottery, collapsing recall for
+    every system for a reason that has nothing to do with route governance. Holding
+    the bound at four is what makes this a change of denominator and nothing else.
+    """
+
+    suite = load_suite()
+    assert PUBLISHED_PROBES_PER_ROUTE == 4
+    for task in suite.tasks:
+        published = dict(task.public_route_probes)
+        assert set(published) == {route.value for route in PUBLISHED_PROBE_ROUTES}
+        for route, probes in published.items():
+            assert len(probes) == PUBLISHED_PROBES_PER_ROUTE, (task.task_id, route)
+            assert len(set(probes)) == len(probes), (task.task_id, route)
+
+
+def test_every_task_is_published_its_own_key_on_every_published_route() -> None:
+    """A bounded probe set is only fair if the answer is inside it."""
+
+    suite = load_suite()
+    for task in suite.tasks:
+        topic = suite.world.topic(task.topic_id)
+        relevant = [item for item in suite.world.documents if is_relevant(item, topic)]
+        published = dict(task.public_route_probes)
+        for route in PUBLISHED_PROBE_ROUTES:
+            own = set()
+            for document in relevant:
+                own.update(document.keys_for(route))
+            assert own, (task.task_id, route.value)
+            assert own <= set(published[route.value]), (task.task_id, route.value)
+
+
+# --------------------------------------------------------------------------
+# Topic-plan invariants. Each is checked against the real plan set, where it must
+# stay silent, and against a plan set broken in exactly the way it exists to catch.
+# --------------------------------------------------------------------------
+
+
+def _plan_pair() -> tuple[_TopicPlan, _TopicPlan]:
+    return _TOPIC_PLANS[0], _TOPIC_PLANS[len(_AUTHORED_TOPIC_PLANS)]
+
+
+def test_the_plan_validator_is_silent_on_the_real_plan_set() -> None:
+    """The no-alarm half. A validator that fires on everything catches nothing."""
+
+    assert validate_topic_plans(_TOPIC_PLANS) == ()
+    assert validate_generated_vocabulary(_TOPIC_PLANS[len(_AUTHORED_TOPIC_PLANS):]) == ()
+
+
+def test_lexical_and_semantic_tokens_are_disjoint_within_every_topic() -> None:
+    authored, generated = _plan_pair()
+    for plan in _TOPIC_PLANS:
+        lexical = set(plan.lexical_key.lower().split())
+        semantic = set(plan.semantic_key.lower().split())
+        assert not (lexical & semantic), plan.topic_id
+
+    # Alarm: give one topic a semantic key built from its own lexical vocabulary.
+    broken = replace(generated, semantic_key=generated.lexical_key)
+    problems = validate_topic_plans((authored, broken))
+    assert any("shares" in item and "lexical key" in item for item in problems), problems
+
+
+def test_no_access_key_is_shared_between_topics() -> None:
+    """Route lookup is exact-key membership, so a shared key crosses the wires."""
+
+    for field in ("lexical_key", "semantic_key", "reformulation_key", "restricted_key"):
+        keys = [getattr(plan, field) for plan in _TOPIC_PLANS]
+        assert len(set(keys)) == len(keys), field
+
+    # Alarm: hand a second topic the first topic's lexical key.
+    authored, generated = _plan_pair()
+    broken = replace(generated, lexical_key=authored.lexical_key)
+    problems = validate_topic_plans((authored, broken))
+    assert any("shared by topics" in item for item in problems), problems
+
+
+def test_concept_tokens_are_globally_unique_to_one_topic() -> None:
+    """A concept claimed twice would let one topic's gold rule admit another's docs."""
+
+    owners: dict[str, list[str]] = {}
+    for plan in _TOPIC_PLANS:
+        for concept in plan.required_concepts:
+            owners.setdefault(concept, []).append(plan.topic_id)
+    duplicated = {k: v for k, v in owners.items() if len(v) > 1}
+    assert not duplicated, duplicated
+
+    # And the world agrees: no document satisfies two topics' rules at once.
+    world = load_suite().world
+    for document in world.documents:
+        matching = [t.topic_id for t in world.topics if is_relevant(document, t)]
+        assert len(matching) <= 1, (document.doc_id, matching)
+
+    # Alarm: two topics requiring the same concepts.
+    authored, generated = _plan_pair()
+    broken = replace(generated, required_concepts=authored.required_concepts,
+                     partial_concept=authored.partial_concept)
+    problems = validate_topic_plans((authored, broken))
+    assert any("claimed by topics" in item for item in problems), problems
+
+
+def test_topic_labels_share_at_most_one_token_so_screening_cannot_cross_topics() -> None:
+    """`offline_systems._on_topic` needs two shared tokens; labels must not supply them.
+
+    A record's text embeds its topic label, so two labels sharing two tokens would
+    make one topic's records screen as on-topic for another topic's question.
+    """
+
+    tokens = [(p.topic_id, _label_tokens(p.label)) for p in _TOPIC_PLANS]
+    for outer in range(len(tokens)):
+        for inner in range(outer + 1, len(tokens)):
+            shared = tokens[outer][1] & tokens[inner][1]
+            assert len(shared) <= 1, (tokens[outer][0], tokens[inner][0], sorted(shared))
+
+    # Alarm: two topics sharing a label.
+    authored, generated = _plan_pair()
+    broken = replace(generated, label=authored.label)
+    problems = validate_topic_plans((authored, broken))
+    assert any("share" in item and "screen as on-topic" in item for item in problems), problems
+
+
+def test_generated_paraphrase_keys_carry_no_spelling_shortcut() -> None:
+    """The paraphrase routes must be unreachable by characters as well as by tokens.
+
+    The semantic and reformulation keys share no *token* with the question by
+    construction, which is what makes them paraphrase-only. But a system orders
+    probes with a character-similarity term as well as a token term, so a shared
+    spelling — the same syllable in the label and in the semantic key — ranks the
+    correct probe without any word in common. This is the invariant that caught a
+    real defect: three successive arithmetic token layouts each left such a
+    signature, and the correct semantic probe ranked first for 71 of 74 generated
+    topics instead of spreading across all four ranks as the authored topics do.
+    """
+
+    generated = _TOPIC_PLANS[len(_AUTHORED_TOPIC_PLANS):]
+    assert validate_generated_vocabulary(generated) == ()
+
+    # Alarm: rebuild a semantic key from a syllable the label already uses.
+    plan = generated[0]
+    label_token = sorted(_label_tokens(plan.label))[0]
+    broken = replace(plan, semantic_key=f"{label_token[:3]}xyzmos {plan.semantic_key}")
+    problems = validate_generated_vocabulary((broken,))
+    assert any("opening 3 characters" in item for item in problems), problems
+
+
+# --------------------------------------------------------------------------
+# Sharding
+# --------------------------------------------------------------------------
+
+
+def test_shards_round_trip_and_every_one_stays_under_the_ceiling() -> None:
+    """The committed suite is sharded, and the shards reassemble to the same suite."""
+
+    manifest = load_manifest()
+    shards = manifest["shards"]
+    assert len(shards["world"]) >= 1
+    assert len(shards["tasks"]) >= 1
+    assert shards["topics"] == [TOPICS_FILE]
+
+    for name, recorded in sorted(manifest["files"].items()):
+        path = DEFAULT_ROOT / name
+        assert path.is_file(), name
+        assert path.stat().st_size == recorded["bytes"] , name
+        assert recorded["bytes"] <= MAX_FILE_BYTES, (name, recorded["bytes"])
+
+    # Round trip: the sharded bytes rebuild the object the seed produces.
+    loaded = load_suite()
+    assert loaded.fingerprint == manifest["suite_fingerprint"]
+    assert build_suite(FROZEN_SEED).fingerprint == loaded.fingerprint
+    assert len(loaded.world.documents) == manifest["document_count"]
+    assert len(loaded.tasks) == manifest["task_count"]
+    # Sharding must not reorder or duplicate.
+    doc_ids = [item.doc_id for item in loaded.world.documents]
+    assert doc_ids == sorted(doc_ids)
+    assert len(set(doc_ids)) == len(doc_ids)
+    task_ids = [item.task_id for item in loaded.tasks]
+    assert task_ids == sorted(task_ids)
+    assert len(set(task_ids)) == len(task_ids)
+
+
+def test_a_missing_shard_is_refused_rather_than_silently_shortening_the_corpus(
+    tmp_path: Path,
+) -> None:
+    """The alarm half. A short corpus with a complete-gold claim is the worst case."""
+
+    for name in sorted(load_manifest()["files"]):
+        (tmp_path / name).write_text(
+            (DEFAULT_ROOT / name).read_text(encoding="utf-8"), encoding="utf-8"
+        )
+    # No-alarm: the copy loads and matches before anything is removed.
+    assert load_suite(tmp_path).fingerprint == load_manifest()["suite_fingerprint"]
+
+    world_shards = sorted(tmp_path.glob("world-*.json"))
+    if len(world_shards) < 2:  # pragma: no cover - only if the corpus stops needing shards
+        pytest.skip("corpus currently fits in a single world shard")
+    world_shards[-1].unlink()
+    with pytest.raises(ValueError, match="missing shard indices"):
+        load_suite(tmp_path)
+
+
+def test_verify_notices_a_shard_that_no_hash_covers(tmp_path: Path) -> None:
+    """Per-file hashes all match while the loaded suite holds unsigned material."""
+
+    manifest = load_manifest()
+    for name in sorted(manifest["files"]):
+        (tmp_path / name).write_text(
+            (DEFAULT_ROOT / name).read_text(encoding="utf-8"), encoding="utf-8"
+        )
+    (tmp_path / MANIFEST_FILE).write_text(
+        (DEFAULT_ROOT / MANIFEST_FILE).read_text(encoding="utf-8"), encoding="utf-8"
+    )
+    assert verify(tmp_path).ok
+
+    smuggled = tmp_path / "world-900.json"
+    smuggled.write_text(
+        json.dumps(
+            {
+                "schema_version": manifest["corpus_schema_version"],
+                "seed": manifest["seed"],
+                "shard_index": 900,
+                "shard_count": 901,
+                "documents": [],
+            },
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    report = verify(tmp_path)
+    assert not report.ok
+    assert any("not recorded in the manifest" in item for item in report.problems), report.problems
+
+
+def test_gold_completeness_is_recomputed_over_the_whole_corpus_at_scale() -> None:
+    """Completeness is asserted document-by-document, both directions, at full size."""
+
+    suite = load_suite()
+    assert len(suite.world.documents) >= 1000
+    assert len(suite.tasks) >= 385
+    checked = 0
+    for task in suite.tasks:
+        topic = suite.world.topic(task.topic_id)
+        gold = frozenset(task.protected_gold.gold_doc_ids)
+        assert completeness_violations(suite.world, topic, gold) == (), task.task_id
+        checked += len(suite.world.documents)
+    assert checked == len(suite.tasks) * len(suite.world.documents)
