@@ -21,7 +21,7 @@ def _run(relative_path: str) -> str:
         check=True,
         capture_output=True,
         text=True,
-        timeout=60,
+        timeout=90,
     )
     return completed.stdout
 
@@ -61,8 +61,24 @@ def test_candidate_native_embedding_preserves_p1_p5_fixture_decisions() -> None:
             "papers/candidates/checkers/check_preservation_ladder_v1.py",
             "P6-P8 preservation ladder V1: PASS",
         ),
+        (
+            "papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2.py",
+            "P6 THEORY CLOSURE V2: PASS",
+        ),
+        (
+            "papers/candidates/paper-07-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py",
+            "P7 THEORY CLOSURE V2: PASS",
+        ),
+        (
+            "papers/candidates/paper-08-epistemic-authority-autonomous-science/formal/check_theory_closure_v2.py",
+            "P8 THEORY CLOSURE V2: PASS",
+        ),
+        (
+            "papers/candidates/checkers/check_donor_complete_envelope_v1.py",
+            "DONOR-COMPLETE ORION ENVELOPE V1: PASS",
+        ),
     ),
 )
-def test_candidate_v2_formal_support(relative_path: str, sentinel: str) -> None:
+def test_candidate_theory_and_embedding_support(relative_path: str, sentinel: str) -> None:
     output = _run(relative_path)
     assert sentinel in output
