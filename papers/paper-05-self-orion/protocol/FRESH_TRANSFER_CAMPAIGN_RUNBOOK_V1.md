@@ -25,9 +25,10 @@ until **all** of the following are true on `origin/main`:
    reach `READY_TO_EXECUTE_SHADOW_TRIAL`.
 3. Required credentials exist in the host environment without being printed.
 
-On the tree this runbook was frozen against, (1) and (2) fail and (3) is
-absent. The only admissible campaign status is `CANNOT_CHECK` /
-`REFUSED_UNBOUND`.
+As of `origin/main` after PR `#289`, condition (2) holds: the P0 probe no
+longer reaches READY. Conditions (1) and (3) still fail. The only admissible
+campaign status remains `CANNOT_CHECK` / `REFUSED_UNBOUND`. `#277` stays OPEN
+because the merged workflow still does not execute the frozen `#8` packet.
 
 | Binding | Frozen `#8` packet | In-source execution registry |
 |---|---|---|
@@ -72,12 +73,13 @@ ORION_PHASE2_EVALUATION_EPOCH_ID
 Presence is a boolean. A missing name is `credentials_absent:<NAME>`. A present
 name is never followed by its value in stdout, reports, or exceptions.
 
-## Host procedure once `#8` is bound and `#277` is on main
+## Host procedure once `#8` is bound
 
 Do not skip the preflight. Do not launch from a worker that can merge.
 
-1. Confirm `origin/main` contains fail-closed Phase-2 preflight (`#277` merged,
-   P0 probe no longer reaches READY).
+1. Confirm `origin/main` still contains fail-closed Phase-2 preflight (`#289`;
+   P0 probe must not reach READY). `#277` is not closed until the frozen `#8`
+   packet is the one the execution path would run.
 2. Confirm the in-source registry task ids equal the published `#8` packet.
    Governance, not this runbook, chooses which registry is canonical; this
    gate only refuses divergence.

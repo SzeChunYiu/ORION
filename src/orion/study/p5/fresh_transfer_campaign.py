@@ -616,7 +616,8 @@ def audit_issue_159_checkboxes(
             "277": {
                 "state": "OPEN",
                 "fail_closed_on_main": report.phase2_preflight_fail_closed,
-                "open_pr": 289,
+                "fail_closed_pr": 289,
+                "packet_still_unbound": not report.issue8_packet_bound,
                 "status": "CANNOT_CHECK",
             },
         },
