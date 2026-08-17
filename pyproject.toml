@@ -24,6 +24,9 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+# Two lanes landed the same basename (`test_hostile_controls.py`) under
+# different trees. Default prepend import mode then refuses collection.
+addopts = "--import-mode=importlib"
 
 [tool.ruff]
 # Without this section ruff runs on bare defaults, which flag the re-export
