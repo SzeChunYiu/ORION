@@ -10,9 +10,10 @@ on:
         description: 'Programme cycle to monitor'
         required: true
         type: string
-  schedule:
-    # Disabled until programme activation
-    - cron: 'DISABLED'
+  # schedule: intentionally omitted. This template is PREPARATORY and must not
+  # run on a timer. A placeholder cron value does NOT disable a workflow -- it is
+  # an invalid cron expression that fails workflow parsing, producing a failed
+  # run on every push. Add a real cron only when the programme is activated.
 
 env:
   PHASE_4_STATUS: 'PREPARATORY_AWAITING_ACTIVATION'
