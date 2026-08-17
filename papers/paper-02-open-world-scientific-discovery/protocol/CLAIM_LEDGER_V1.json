@@ -64,7 +64,7 @@
       "claim_id": "P2-C01",
       "region": "abstract",
       "manuscript_status": "ASSERTED",
-      "sentence": "In a frozen 20-task complete-gold controlled index, full ORION reaches mean recall 0.994444 versus 0.666667 for the strongest protocol-frozen confirmatory comparator and makes no premature task closures; targeted negative ablations expose the intended failure modes.",
+      "sentence": "In a frozen 390-task complete-gold controlled index, full ORION reaches mean recall 0.979487 versus 0.666667 for the strongest protocol-frozen confirmatory comparator and makes no premature task closures; targeted negative ablations expose the intended failure modes.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -97,7 +97,7 @@
       "claim_id": "P2-C02",
       "region": "abstract",
       "manuscript_status": "ASSERTED",
-      "sentence": "The frozen statistical plan classifies this campaign DESCRIPTIVE_ONLY, so these numbers support mechanism behavior rather than an inferential superiority claim.",
+      "sentence": "The frozen statistical plan awards this campaign its committed TIER_B_committed precision tier, but the achieved half-width still exceeds the frozen superiority margin, so the primary offline result carries the plan's mandatory underpowered label and these numbers support mechanism behavior rather than an inferential superiority claim.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [],
@@ -165,7 +165,7 @@
       "claim_id": "P2-C06",
       "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "The observed +0.327777 recall difference therefore cannot be transferred to the open web or to AutoResearchBench by analogy.",
+      "sentence": "The observed +0.31282 recall difference therefore cannot be transferred to the open web or to AutoResearchBench by analogy.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -181,7 +181,7 @@
       "claim_id": "P2-C07",
       "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "The suite carries 20 tasks, which reaches precision tier BELOW_TIER_D at an achieved half-width of 0.2191 for a standalone rate.",
+      "sentence": "The suite carries 390 tasks, which reaches precision tier TIER_B_committed at an achieved half-width of 0.0496 for a standalone rate.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -206,7 +206,7 @@
       "claim_id": "P2-C08",
       "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "The frozen statistics plan fixed those tiers before outcomes were inspected and assigns this campaign authority DESCRIPTIVE_ONLY; because the achieved half-width still exceeds the frozen superiority margin of 0.03, the primary offline result carries the plan's underpowered label whatever the task count becomes.",
+      "sentence": "The frozen statistics plan fixed those tiers before outcomes were inspected and assigns this campaign authority TIER_B_committed; because the achieved half-width still exceeds the frozen superiority margin of 0.03, the primary offline result carries the plan's underpowered label whatever the task count becomes.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -231,7 +231,7 @@
       "claim_id": "P2-C09",
       "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "All 840 system/task/repeat executions reproduce exactly, and the 3 deterministic repeat seeds demonstrate stable execution; repeats nest within task and never increase the statistical unit.",
+      "sentence": "All 16,380 system/task/repeat executions reproduce exactly, and the 3 deterministic repeat seeds demonstrate stable execution; repeats nest within task and never increase the statistical unit.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -357,7 +357,7 @@
       "claim_id": "P2-R01",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "First, the frozen offline complete-gold companion contains 20 tasks, 14 systems (full ORION, six confirmatory baselines, one explicitly exploratory comparator, and six ablations), and three predeclared repeat seeds, for 840 normalized run records.",
+      "sentence": "First, the frozen offline complete-gold companion contains 390 tasks, 14 systems (full ORION, six confirmatory baselines, one explicitly exploratory comparator, and six ablations), and three predeclared repeat seeds, for 16,380 normalized run records.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -386,7 +386,7 @@
       "claim_id": "P2-R02",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The systems are deterministic; the repeats therefore test harness stability and do not increase the statistical unit beyond 20 tasks.",
+      "sentence": "The systems are deterministic; the repeats therefore test harness stability and do not increase the statistical unit beyond 390 tasks.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -402,13 +402,21 @@
       "claim_id": "P2-R03",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The frozen statistical plan requires at least 97 tasks for its lowest inferential tier.",
+      "sentence": "The frozen statistical plan's committed tier TIER_B_committed requires 385 tasks, which the assembled 390 tasks reach at an achieved half-width of 0.0496 for a standalone rate.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
         {
           "artifact": "statistical_plan",
-          "key": "precision_plan.precision_tiers.[tier=TIER_D_minimum_inferential].required_n"
+          "key": "precision_plan.precision_tiers.[tier=TIER_B_committed].required_n"
+        },
+        {
+          "artifact": "offline_gold_manifest",
+          "key": "task_count"
+        },
+        {
+          "artifact": "suite_facts",
+          "key": "OfflineAchievedHalfWidth"
         }
       ],
       "support_artifacts": [],
@@ -418,7 +426,7 @@
       "claim_id": "P2-R04",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "It binds the full 840-record set by SHA-256 611808dc80846d5057c84c12af7ff8ec3fa88ef15a6ede91807e590f4edb6f1f and the corresponding rich-artifact hash list by 2da59dc21e6473e4a81eb93910501a67bed008dbc3e29c26116041b68dfbb325.",
+      "sentence": "It binds the full 16,380-record set by SHA-256 611808dc80846d5057c84c12af7ff8ec3fa88ef15a6ede91807e590f4edb6f1f and the corresponding rich-artifact hash list by 2da59dc21e6473e4a81eb93910501a67bed008dbc3e29c26116041b68dfbb325.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -443,7 +451,7 @@
       "claim_id": "P2-R05",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Full ORION attains mean complete-gold recall 0.994444 and precision 1.0.",
+      "sentence": "Full ORION attains mean complete-gold recall 0.979487 and precision 1.0.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -463,7 +471,7 @@
       "claim_id": "P2-R06",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "It passes 19 of 20 tasks and returns CANNOT_CHECK on the remaining task because a route holding unretrieved relevant material becomes unavailable; it never certifies that censored task complete.",
+      "sentence": "It passes 319 of 390 tasks, returns FAIL on 59 tasks after honestly exhausting its route-call budgets without certifying completeness, and returns CANNOT_CHECK on 12 tasks because a route holding unretrieved relevant material becomes unavailable; it never certifies a censored task complete.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -474,6 +482,14 @@
         {
           "artifact": "offline_gold_manifest",
           "key": "task_count"
+        },
+        {
+          "artifact": "results_summary",
+          "key": "systems.orion_full.status_counts.FAIL"
+        },
+        {
+          "artifact": "results_summary",
+          "key": "systems.orion_full.status_counts.CANNOT_CHECK"
         }
       ],
       "support_artifacts": [
@@ -525,7 +541,7 @@
       "claim_id": "P2-R09",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "That comparator claims task completion on all 20 tasks while reachable gold remains, so its premature-closure rate is 1.0.",
+      "sentence": "That comparator claims task completion on all 390 tasks while reachable gold remains, so its premature-closure rate is 1.0.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -545,7 +561,7 @@
       "claim_id": "P2-R10",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The descriptive recall difference is therefore +0.327777, with a descriptive premature-closure difference of -1.0.",
+      "sentence": "The descriptive recall difference is therefore +0.31282, with a descriptive premature-closure difference of -1.0.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -589,7 +605,7 @@
       "claim_id": "P2-R12",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "ORION is at 0.727778 by query 7 and continues to gain, reaching 0.994444 by query 12.",
+      "sentence": "ORION is at 0.757835 by query 7 and continues to gain, reaching 0.979487 by query 12.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -680,7 +696,7 @@
       "claim_id": "P2-R16",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Removing content-identity deduplication is less catastrophic but measurably wasteful in the controlled world: mean duplicate-processing rate rises from 0 to 0.101429, five of 20 tasks exhaust the read budget, pass rate falls from 0.95 to 0.70, and mean recall falls to 0.966667.",
+      "sentence": "Removing content-identity deduplication is less catastrophic but measurably wasteful in the controlled world: mean duplicate-processing rate rises from 0 to 0.101446, 145 of 390 tasks exhaust the read budget, pass rate falls from 0.817949 to 0.605128, and mean recall falls to 0.952707.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -691,6 +707,10 @@
         {
           "artifact": "results_summary",
           "key": "mechanism_checks.content_identity_dedup.ablated_duplicate_processing_rate"
+        },
+        {
+          "artifact": "results_summary",
+          "key": "mechanism_checks.content_identity_dedup.ablated_budget_exhaustion_failures"
         },
         {
           "artifact": "offline_gold_manifest",
@@ -721,7 +741,7 @@
       "claim_id": "P2-R17",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Removing the question coordinate from the read ledger leaves aggregate recall unchanged at 0.994444 but changes the extraction-question-shift mechanism exactly where expected: the mean count of legitimate rereads on that family falls from 4.0 to 1.0.",
+      "sentence": "Removing the question coordinate from the read ledger leaves aggregate recall unchanged at 0.979487 but changes the extraction-question-shift mechanism exactly where expected: the mean count of legitimate rereads on that family falls from 3.666667 to 1.0.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -761,7 +781,7 @@
       "claim_id": "P2-R19",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Semantic and citation routes each contribute 2.0 additional identities, reformulation contributes 1.0, and the restricted route contributes 0.95; the last mean is below one because one task becomes censored.",
+      "sentence": "Semantic and citation routes each contribute 2.0 additional identities, reformulation contributes 0.848718, and the restricted route contributes 0.966667; the last mean is below one because tasks that end censored or budget-exhausted before the restricted route is consulted contribute zero.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -790,7 +810,7 @@
       "claim_id": "P2-R20",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Conversely, lexical and semantic have nonzero mean overlap (0.079167) but remain structurally independent because neither backend nor query derivation is shared.",
+      "sentence": "Conversely, lexical and semantic have nonzero mean overlap (0.07557) but remain structurally independent because neither backend nor query derivation is shared.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -811,13 +831,21 @@
       "claim_id": "P2-R21",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Full ORION has no terminal failure classification: 19 tasks pass and one is censored.",
+      "sentence": "Full ORION's only terminal failure classification is honest budget exhaustion on 59 tasks: 319 tasks pass, 12 are censored, and premature closure remains at zero.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
         {
           "artifact": "results_summary",
+          "key": "systems.orion_full.status_counts.FAIL"
+        },
+        {
+          "artifact": "results_summary",
           "key": "systems.orion_full.status_counts.PASS"
+        },
+        {
+          "artifact": "results_summary",
+          "key": "systems.orion_full.status_counts.CANNOT_CHECK"
         }
       ],
       "support_artifacts": [
@@ -832,10 +860,14 @@
       "claim_id": "P2-R22",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Full ORION makes one route-stop false positive in 100 route-stop events (0.01): the unavailable restricted-route case still has a theoretically reachable gold identity and route-call budget when the route stops.",
+      "sentence": "Full ORION makes 13 route-stop false positives in 1,950 route-stop events (0.006667): those restricted-route cases still have a theoretically reachable gold identity when the route stops.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
+        {
+          "artifact": "route_stop_oracle",
+          "key": "systems.orion_full.route_stop_false_positive_count"
+        },
         {
           "artifact": "route_stop_oracle",
           "key": "systems.orion_full.route_stop_events"
@@ -861,7 +893,7 @@
       "claim_id": "P2-R23",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Among the 99 ORION task-routes that reach the O1 oracle exhaustion point, there are zero route-stop false negatives.",
+      "sentence": "Among the 1,878 ORION task-routes that reach the O1 oracle exhaustion point, there are zero route-stop false negatives.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
@@ -882,17 +914,13 @@
       "claim_id": "P2-R24",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "The restricted route records 19 post-exhaustion attempts, exactly one allowed confirming attempt on each of the 19 non-censored tasks; no route takes the two or more further attempts required for an O1 false negative.",
+      "sentence": "The restricted route records 377 post-exhaustion attempts in total; no task takes the two or more further attempts required for an O1 false negative.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
         {
           "artifact": "route_stop_oracle",
           "key": "systems.orion_full.attempts_after_exhaustion_total"
-        },
-        {
-          "artifact": "results_summary",
-          "key": "systems.orion_full.status_counts.PASS"
         }
       ],
       "support_artifacts": [
@@ -923,10 +951,15 @@
       "claim_id": "P2-R26",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Finally, removing the unavailable-route open state leaves mean recall numerically unchanged but turns the one censored CANNOT_CHECK case into an asserted completion and a premature-closure failure.",
+      "sentence": "Finally, removing the unavailable-route open state leaves mean recall numerically unchanged but turns the 12 censored CANNOT_CHECK cases into asserted completions and premature-closure failures.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
-      "numeric_bindings": [],
+      "numeric_bindings": [
+        {
+          "artifact": "results_summary",
+          "key": "systems.orion_full.status_counts.CANNOT_CHECK"
+        }
+      ],
       "support_artifacts": [
         {
           "artifact": "results_summary",
@@ -947,10 +980,19 @@
       "claim_id": "P2-R27",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "Under the evaluator's fixed terminal-failure precedence, premature closure is the dominant failure class in the controlled companion; the exploratory adaptive comparator also exposes three transport-failure classifications, while the no-dedup ablation exposes five budget-exhaustion failures.",
+      "sentence": "Under the evaluator's fixed terminal-failure precedence, premature closure is the dominant failure class in the controlled companion; the exploratory adaptive comparator also exposes 65 transport-failure classifications, while the no-dedup ablation exposes 145 budget-exhaustion failures.",
       "support_type": "OFFLINE_MECHANISM",
       "strength": "DESCRIPTIVE",
-      "numeric_bindings": [],
+      "numeric_bindings": [
+        {
+          "artifact": "results_summary",
+          "key": "systems.adaptive_multiroute_exploratory.failure_counts.transport_failure"
+        },
+        {
+          "artifact": "results_summary",
+          "key": "systems.no_content_identity_dedup.failure_counts.budget_exhausted"
+        }
+      ],
       "support_artifacts": [
         {
           "artifact": "results_summary",
@@ -1285,6 +1327,27 @@
         }
       ],
       "note": "Live-provider campaign held at CANNOT_CHECK; a missing credential is an authority failure, not an outcome."
+    },
+    {
+      "claim_id": "P2-R42",
+      "region": "results",
+      "manuscript_status": "ASSERTED",
+      "sentence": "Because that half-width still exceeds the frozen superiority margin of 0.03, the plan's underpowered label attaches to the primary offline result: no superiority decision from the offline companion is promoted to a paper-level claim.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [
+        {
+          "artifact": "statistical_plan",
+          "key": "margins.superiority_margin_delta_sup"
+        }
+      ],
+      "support_artifacts": [
+        {
+          "artifact": "suite_facts",
+          "key": "OfflineUnderpowered"
+        }
+      ],
+      "note": "Mandatory underpowered label: achieved tier-B half-width 0.0496 exceeds the frozen superiority margin 0.03, so no superiority decision is promoted."
     },
     {
       "claim_id": "P2-X01",

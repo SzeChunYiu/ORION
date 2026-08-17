@@ -37,11 +37,18 @@ def test_route_stop_projection_matches_frozen_snapshot() -> None:
     projection = build_route_stop_projection(suite.tasks, archive.outcomes)
     expected = json.loads(EXPECTED.read_text(encoding="utf-8"))
     assert projection == expected
+    assert projection["n_tasks"] == len(suite.tasks)
+
+    # The oracle's load-bearing property is the *direction*: ORION must never declare
+    # a route exhausted while that route still had reachable relevant material (a
+    # false negative on route-stop is the failure that licenses closing a task
+    # early). The false-positive count is a conservatism cost and scales with the
+    # suite, so it is bounded as a rate rather than pinned to the integer a
+    # 20-task run happened to produce.
     orion = projection["systems"]["orion_full"]
-    assert orion["route_stop_false_positive_count"] == 1
-    assert orion["route_stop_false_positive_rate"] == 0.01
     assert orion["route_stop_false_negative_count"] == 0
     assert orion["route_stop_false_negative_rate"] == 0.0
+    assert orion["route_stop_false_positive_rate"] < 0.05
     assert projection["orion_full_by_route"]["RESTRICTED"][
         "attempts_after_exhaustion_total"
-    ] == 19
+    ] > 0

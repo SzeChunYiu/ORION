@@ -105,9 +105,20 @@ paper03-public-reference-analysis:
 		--cases $(P3_PUBLIC_CASES) \
 		--output $(P3_PUBLIC_ANALYSIS_OUT)
 
+P3_CONFIRMATORY_ANALYSIS ?= papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json
+P3_PUBLICATION_OUT ?= papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/publication
+
+.PHONY: paper03-public-reference-publication
+## Rebuild the narrow public-reference publication tables/SVGs from immutable confirmatory analysis.
+paper03-public-reference-publication:
+	@PYTHONPATH=$(SRC) $(PYTHON) -m orion.study.p3_public_reference_publication \
+		--analysis $(P3_CONFIRMATORY_ANALYSIS) \
+		--out $(P3_PUBLICATION_OUT)
+
 .PHONY: paper03-public-reference-tests
 paper03-public-reference-tests:
 	PYTHONPATH=$(SRC) $(PYTHON) -m pytest -q \
 		tests/unit/study/test_p3_public_reference.py \
 		tests/unit/study/test_p3_public_reference_build.py \
-		tests/unit/study/test_p3_public_reference_analysis.py
+		tests/unit/study/test_p3_public_reference_analysis.py \
+		tests/unit/study/test_p3_public_reference_publication.py

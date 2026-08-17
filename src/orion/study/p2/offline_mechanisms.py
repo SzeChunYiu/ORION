@@ -24,6 +24,7 @@ from orion.knowledge.routes import RouteCapture, assess_pair
 
 from .cases import DiscoveryTask
 from .corpus import DiscoveryRoute, ROUTE_SPEC_BY_ROUTE, sha256_digest
+from .offline_analysis import achieved_precision_tier
 from .offline_systems import ORION_FULL
 from .runner import RunOutcome
 
@@ -236,7 +237,10 @@ def build_offline_mechanism_projection(
     )
     return {
         "schema_version": "orion.p2.offline-mechanisms.v1",
-        "analysis_authority": "DESCRIPTIVE_ONLY",
+        # Same derivation as the archive summary: the label tracks the achieved
+        # precision tier of the frozen N (20-task DESCRIPTIVE_ONLY era ->
+        # 390-task TIER_B_committed) instead of pinning a superseded campaign.
+        "analysis_authority": achieved_precision_tier(len(tasks_by_id))["achieved_tier"],
         "n_tasks": len(tasks_by_id),
         "repeat_handling": "collapsed_within_task_after_deterministic_trace_check",
         "source_record_digest_sha256": sha256_digest([item.record for item in outcomes]),

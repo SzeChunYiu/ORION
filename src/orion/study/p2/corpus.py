@@ -35,6 +35,7 @@ from __future__ import annotations
 import hashlib
 import json
 import random
+import re
 from dataclasses import dataclass
 from enum import Enum
 from typing import Any
@@ -307,6 +308,14 @@ class DiscoveryWorld:
 # --------------------------------------------------------------------------
 
 
+#: Topics in the frozen world. Five case families per topic, so 78 topics is 390
+#: tasks — at or above the 385 `STATISTICAL_PLAN_V1.json` committed this family to
+#: for its TIER_B_committed proportion half-width of 0.05 at assumed_p 0.5. The
+#: count is set by that pre-registered power commitment, not by any observed
+#: outcome: the plan was frozen outcome-blind and the world moves to meet it.
+TOPIC_COUNT = 78
+
+
 @dataclass(frozen=True)
 class _TopicPlan:
     topic_id: str
@@ -319,7 +328,7 @@ class _TopicPlan:
     partial_concept: str
 
 
-_TOPIC_PLANS: tuple[_TopicPlan, ...] = (
+_AUTHORED_TOPIC_PLANS: tuple[_TopicPlan, ...] = (
     _TopicPlan(
         "topic-measurement-invariance",
         "Measurement invariance of latent trait instruments",
@@ -361,6 +370,318 @@ _TOPIC_PLANS: tuple[_TopicPlan, ...] = (
         "federated_search",
     ),
 )
+
+
+# --------------------------------------------------------------------------
+# Coined vocabulary for the generated topics
+#
+# The four topics above are authored, and stay exactly as they were. Reaching the
+# committed N needs 74 more, and hand-authoring 74 topics whose vocabularies stay
+# pairwise disjoint is exactly the kind of thing a human does wrong once and never
+# notices. So the rest are coined from syllable banks by an injective function,
+# which makes the disjointness invariants hold *by construction* instead of by a
+# collision check bolted on afterwards.
+#
+# Three invariants are load-bearing, and `validate_topic_plans` enforces all three
+# at import time:
+#
+# 1. A topic's semantic key shares no token with its lexical key. This is what
+#    makes paraphrase-only gold genuinely unreachable by lexical budget — the
+#    single structural fact the whole reachability story rests on.
+# 2. No access key is shared between topics. Route lookup is exact-key set
+#    membership, so a shared key would silently hand one topic's documents to
+#    another topic's probe.
+# 3. Concept tokens are globally unique per topic, so the relevance rule cannot
+#    leak across topics and every gold set stays the topic's own.
+#
+# A fourth invariant belongs to the *systems* layer but is enforced here because
+# only here can it be guaranteed: any two topic labels share at most one
+# non-generic token. `offline_systems._on_topic` screens a record by demanding two
+# shared tokens between the question and the record text, and a record's text
+# embeds its topic label. Two labels sharing two tokens would make one topic's
+# records screen as on-topic for another topic's question, quietly inflating
+# claims and destroying precision. Combinatorial label generation — reusing a stem
+# across several topics — is precisely how that breaks, so labels are built only
+# from tokens unique to their own topic.
+# --------------------------------------------------------------------------
+
+_ONSETS = (
+    "bar", "cel", "dor", "fen", "gil", "hos",
+    "kav", "lum", "mir", "nod", "pel", "quor",
+)
+_MIDS = ("a", "e", "i", "o", "u", "ae", "ia", "ou")
+_TAILS = ("dine", "kar", "lith", "mos", "nex", "phor", "sil", "tane")
+
+#: Coined tokens allocated per generated topic. Nine rather than eight because one
+#: generated topic in four needs a ninth token for a restricted key that shares
+#: nothing with its label — see `_RESTRICTED_OPAQUE_EVERY`.
+_TOKENS_PER_TOPIC = 9
+
+#: One generated topic in this many gets a restricted key with no label token in it.
+#:
+#: This mirrors the authored composition rather than inventing one. Three of the four
+#: authored topics share a label word with their restricted key — "invariance",
+#: "estimation", "stopping" — so the correct restricted probe outranks the decoys.
+#: The fourth, query diversification, shares nothing, and its correct probe ranks
+#: third. That is not a detail: the restricted route is the one taken away in the
+#: `UNAVAILABLE_ROUTE` family, and the single task the superseded suite reported as
+#: `CANNOT_CHECK` was that same topic's unavailable-route task. A generator that made
+#: every restricted probe rank first would erase the harder quarter of the
+#: distribution and with it the censored-evidence case the family exists to measure.
+_RESTRICTED_OPAQUE_EVERY = 4
+
+#: Seed for the token pool shuffle. Fixed, so the pool is part of what the frozen
+#: seed determines.
+_TOKEN_POOL_SEED = 20260816
+
+#: Length of the leading character run that identifies a syllable bank entry. Three,
+#: because every onset is three characters except `quor`, whose first three are
+#: shared with nothing else — so a three-character prefix names the onset exactly.
+_ONSET_LEN = 3
+
+
+def _topic_token_blocks(count: int) -> tuple[tuple[str, ...], ...]:
+    """Allocate each generated topic eight tokens with eight distinct onsets.
+
+    Both halves of this matter, and each cost a failed attempt to understand.
+
+    *Why shuffled.* `_coined` is a mixed-radix encoding, so any arithmetic rule
+    relating a topic's tokens leaves a shared spelling signature. Contiguous indices
+    share an onset and differ only in the final syllable. A stride of 96 fixes the
+    onset but, being a multiple of eight, leaves every token of a topic ending in
+    the same syllable. A stride of 97 fixes both and still leaves the middle
+    syllable alternating with period two, so a topic's whole vocabulary draws on the
+    same two vowels while other topics draw on others.
+
+    *Why that leaks.* A system orders public probes by a Jaccard term plus a
+    character-similarity term, and the paraphrase-only routes are built to score
+    exactly zero on the Jaccard term — being unreachable by surface vocabulary is
+    what they are *for*. Any spelling regularity shared between a topic's label and
+    its semantic key therefore decides the ordering through the second term, and a
+    probe that was supposed to require blind trial allocation instead ranks first.
+    Measured against the superseded world, the arithmetic layouts put the correct
+    semantic probe first for 71 of 74 generated topics where the authored topics
+    spread uniformly across all four ranks.
+
+    *Why distinct onsets rather than a bare shuffle.* A shuffle alone destroys the
+    systematic signature but, with twelve onsets and eight tokens per topic,
+    collides incidentally most of the time. Requiring the eight onsets to differ
+    makes the no-shared-spelling invariant hold by construction, so
+    `validate_generated_vocabulary` becomes a check on the allocator rather than a
+    filter the allocator has to get lucky to pass.
+
+    Deterministic throughout: the pool is sorted before a fixed-seed shuffle, and
+    the allocation is a left-to-right scan, so nothing here varies with
+    `PYTHONHASHSEED`. Tokens passed over by one topic stay available to the next.
+    """
+
+    pool = sorted(_coined(index) for index in range(_COINED_SPAN))
+    random.Random(_TOKEN_POOL_SEED).shuffle(pool)
+
+    remaining = pool
+    blocks: list[tuple[str, ...]] = []
+    for position in range(count):
+        chosen: list[str] = []
+        onsets: set[str] = set()
+        leftover: list[str] = []
+        for token in remaining:
+            onset = token[:_ONSET_LEN]
+            if len(chosen) < _TOKENS_PER_TOPIC and onset not in onsets:
+                onsets.add(onset)
+                chosen.append(token)
+            else:
+                leftover.append(token)
+        if len(chosen) < _TOKENS_PER_TOPIC:
+            raise ValueError(
+                f"token pool exhausted allocating topic {position}: needed "
+                f"{_TOKENS_PER_TOPIC} distinct-onset tokens, found {len(chosen)}; "
+                "widen the syllable banks before raising TOPIC_COUNT"
+            )
+        blocks.append(tuple(chosen))
+        remaining = leftover
+    return tuple(blocks)
+
+_COINED_SPAN = len(_ONSETS) * len(_MIDS) * len(_TAILS)
+
+
+def _coined(index: int) -> str:
+    """Injective index -> token map: distinct indices give distinct strings.
+
+    A mixed-radix decomposition, and the concatenation stays injective because
+    every onset is three characters, every mid is vowels only and every tail
+    starts with a consonant — so a token's split point is recoverable and two
+    different triples cannot spell the same word.
+    """
+
+    if not 0 <= index < _COINED_SPAN:
+        raise ValueError(
+            f"coined-token index {index} outside the injective range 0..{_COINED_SPAN - 1}"
+        )
+    onset = _ONSETS[index // (len(_MIDS) * len(_TAILS))]
+    mid = _MIDS[(index // len(_TAILS)) % len(_MIDS)]
+    tail = _TAILS[index % len(_TAILS)]
+    return f"{onset}{mid}{tail}"
+
+
+_TOKEN_BLOCKS: tuple[tuple[str, ...], ...] = _topic_token_blocks(
+    TOPIC_COUNT - len(_AUTHORED_TOPIC_PLANS)
+)
+
+
+def _generated_topic_plan(index: int) -> _TopicPlan:
+    """Coin one topic. Route keys mirror the authored topics' score structure.
+
+    The mirroring is deliberate and it is the difference between scaling N and
+    changing the measurement. A system orders public probes by lexical similarity
+    to the question, so how much each route's correct key resembles the label
+    decides how many route calls that route costs — and the route-call budget
+    binds. The authored topics set the pattern: the lexical key is a subset of the
+    label, the restricted key shares one label token, and the semantic and
+    reformulation keys share none. Generated topics reproduce that exactly, so
+    per-task difficulty is unchanged and a rate that moves after this scale-up
+    moves for a reason other than the generator.
+    """
+
+    t0, t1, t2, t3, t4, t5, t6, t7, t8 = _TOKEN_BLOCKS[index]
+    # Three topics in four put a label token in the restricted key, so the correct
+    # restricted probe outranks the decoys; the fourth uses a token found nowhere in
+    # the label, so it does not.
+    restricted_tail = t8 if index % _RESTRICTED_OPAQUE_EVERY == _RESTRICTED_OPAQUE_EVERY - 1 else t3
+    return _TopicPlan(
+        topic_id=f"topic-{t0}-{t1}",
+        # "of" is in the systems layer's generic-word stoplist, so the label's
+        # screening tokens are exactly the four coined ones.
+        label=f"{t0.capitalize()} {t1} of {t2} {t3}",
+        required_concepts=(f"{t0}_axis", f"{t1}_regime"),
+        lexical_key=f"{t0} {t1} {t2}",
+        # Shares no token with the lexical key or the label: paraphrase-only.
+        semantic_key=f"{t4} {t5}",
+        reformulation_key=f"{t6} restatement",
+        restricted_key=f"restricted archive: {t7} {restricted_tail}",
+        partial_concept=f"{t0}_axis",
+    )
+
+
+_GENERIC_LABEL_WORDS = frozenset({"of", "the", "a", "and", "for", "in", "on", "across", "to"})
+
+
+def _label_tokens(label: str) -> frozenset[str]:
+    words = re.findall(r"[a-z0-9]+", label.lower())
+    return frozenset(words) - _GENERIC_LABEL_WORDS
+
+
+def _key_tokens(key: str) -> frozenset[str]:
+    return frozenset(re.findall(r"[a-z0-9]+", key.lower()))
+
+
+def validate_topic_plans(plans: tuple[_TopicPlan, ...]) -> tuple[str, ...]:
+    """Return every violated world invariant. Empty means the plan set is sound.
+
+    Returned rather than raised so a test can drive this with deliberately broken
+    input and see the specific complaint, instead of only ever observing that a
+    good plan set does not explode.
+    """
+
+    problems: list[str] = []
+
+    topic_ids = [plan.topic_id for plan in plans]
+    duplicate_ids = sorted({item for item in topic_ids if topic_ids.count(item) > 1})
+    if duplicate_ids:
+        problems.append(f"duplicate topic ids: {duplicate_ids}")
+
+    # 1. lexical/semantic token disjointness, per topic.
+    for plan in plans:
+        shared = sorted(_key_tokens(plan.lexical_key) & _key_tokens(plan.semantic_key))
+        if shared:
+            problems.append(
+                f"{plan.topic_id}: semantic key shares {shared} with its lexical key"
+            )
+
+    # 2. No access key shared between topics, on any route.
+    for field in ("lexical_key", "semantic_key", "reformulation_key", "restricted_key"):
+        owners: dict[str, list[str]] = {}
+        for plan in plans:
+            owners.setdefault(getattr(plan, field), []).append(plan.topic_id)
+        for key, holders in sorted(owners.items()):
+            if len(holders) > 1:
+                problems.append(f"{field} {key!r} shared by topics {sorted(holders)}")
+
+    # 3. Concept tokens globally unique to one topic.
+    concept_owners: dict[str, list[str]] = {}
+    for plan in plans:
+        for concept in plan.required_concepts:
+            concept_owners.setdefault(concept, []).append(plan.topic_id)
+    for concept, holders in sorted(concept_owners.items()):
+        if len(holders) > 1:
+            problems.append(f"concept {concept!r} claimed by topics {sorted(holders)}")
+    for plan in plans:
+        if plan.partial_concept not in plan.required_concepts:
+            problems.append(
+                f"{plan.topic_id}: partial concept {plan.partial_concept!r} is not a required concept"
+            )
+
+    # 4. Labels pairwise share at most one non-generic token.
+    tokens_by_topic = [(plan.topic_id, _label_tokens(plan.label)) for plan in plans]
+    for outer in range(len(tokens_by_topic)):
+        left_id, left = tokens_by_topic[outer]
+        for inner in range(outer + 1, len(tokens_by_topic)):
+            right_id, right = tokens_by_topic[inner]
+            shared = sorted(left & right)
+            if len(shared) > 1:
+                problems.append(
+                    f"labels of {left_id} and {right_id} share {shared}; "
+                    "two shared tokens let one topic's records screen as on-topic for the other"
+                )
+
+    return tuple(problems)
+
+
+def validate_generated_vocabulary(plans: tuple[_TopicPlan, ...]) -> tuple[str, ...]:
+    """Check that the generator manufactures no character-level shortcut.
+
+    Scoped to generated topics on purpose. The four authored topics are hand-written
+    natural language and one of them does share an onset between its label and its
+    reformulation key ("estimation"/"estimator"); that is a property of the world the
+    superseded suite already measured, and flagging it here would be a false alarm
+    about prose this function has no business policing. What this checks is narrower
+    and is the thing that can silently go wrong at scale: that a *generated* topic's
+    paraphrase-only route keys are not spelled from the same syllables as its label,
+    because a system that cannot match them on tokens could otherwise still match
+    them on characters.
+    """
+
+    problems: list[str] = []
+    for plan in plans:
+        label_prefixes = {
+            token[:_ONSET_LEN] for token in _label_tokens(plan.label)
+        }
+        for field in ("semantic_key", "reformulation_key"):
+            for token in sorted(_key_tokens(getattr(plan, field))):
+                if token[:_ONSET_LEN] in label_prefixes:
+                    problems.append(
+                        f"{plan.topic_id}: {field} token {token!r} shares the opening "
+                        f"{_ONSET_LEN} characters with a label token; a "
+                        "character-similarity score would rank this probe without "
+                        "sharing a single word with the question"
+                    )
+    return tuple(problems)
+
+
+def _topic_plans() -> tuple[_TopicPlan, ...]:
+    generated = tuple(
+        _generated_topic_plan(index)
+        for index in range(TOPIC_COUNT - len(_AUTHORED_TOPIC_PLANS))
+    )
+    ordered = _AUTHORED_TOPIC_PLANS + generated
+    problems = validate_topic_plans(ordered) + validate_generated_vocabulary(generated)
+    if problems:  # pragma: no cover - a broken generator must not produce a world
+        raise ValueError(
+            "topic plan invariants violated:\n  " + "\n  ".join(problems)
+        )
+    return ordered
+
+
+_TOPIC_PLANS: tuple[_TopicPlan, ...] = _topic_plans()
 
 _VENUES = (
     "Journal of Measurement Science",
@@ -630,10 +951,13 @@ __all__ = [
     "ROUTE_SPECS",
     "ROUTE_SPEC_BY_ROUTE",
     "RouteSpec",
+    "TOPIC_COUNT",
     "Topic",
     "build_world",
     "canonical_bytes",
     "is_relevant",
     "sha256_digest",
+    "validate_generated_vocabulary",
+    "validate_topic_plans",
     "world_from_json",
 ]

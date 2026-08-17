@@ -1,0 +1,38 @@
+{
+  "authority_kinds": [
+    "DERIVED_FROM_ALLOWED",
+    "DETERMINISTIC_STANDARD"
+  ],
+  "blockers": [],
+  "built_n": 32,
+  "case_families": [
+    "different_name_same_referent",
+    "polarity_modality_attribution_context",
+    "valid_invalid_representation_mapping"
+  ],
+  "cases_sha256": "79316a561c96ac968bf2598501850bd90deaf1b78501346b0c703663ef794f2b",
+  "disciplines": [
+    "materials",
+    "muse_cross_domain",
+    "physics",
+    "psychology",
+    "scientific_claim_verification"
+  ],
+  "excluded_primary_n": 32,
+  "expected_relations": [
+    "COMPATIBLE",
+    "CONTRADICTORY"
+  ],
+  "overlap_case_ids": [],
+  "overlap_count": 0,
+  "pool_counts": {
+    "MUSE": 258,
+    "SciFact": 957,
+    "SciSchema": 16
+  },
+  "schema_version": "orion.p3.public-reference-confirmatory-holdout-report.v1",
+  "selection_offset": 32,
+  "selection_rule": "outcome-blind round-robin window",
+  "status": "READY_FOR_CONFIRMATORY_FREEZE",
+  "target_n": 32
+}

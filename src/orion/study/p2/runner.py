@@ -187,8 +187,6 @@ class BudgetedSession:
         self.__tool_calls = 0
         self.__exhausted = ""
 
-    # -- state a system may observe -------------------------------------
-
     @property
     def current_extraction_question(self) -> str:
         """The active frame, advanced by the host after the frozen number of reads."""
@@ -199,8 +197,6 @@ class BudgetedSession:
             return questions[0]
         stage = min(len(self._read_events) // shift, len(questions) - 1)
         return questions[stage]
-
-    # -- host-side accessors (never exposed through the Protocol) --------
 
     @property
     def route_events(self) -> tuple[RouteEvent, ...]:
@@ -228,8 +224,6 @@ class BudgetedSession:
             reads=self.__reads_made,
         )
 
-    # -- enforcement ----------------------------------------------------
-
     def _charge(self, dimension: str, current: int | float, ceiling: int | float) -> None:
         """Refuse the action, and stay refusing. Exhaustion is terminal by design."""
 
@@ -249,8 +243,6 @@ class BudgetedSession:
         self._sequence += 1
         return self._sequence
 
-    # -- the system-facing surface --------------------------------------
-
     def query(self, route: str, probe: str) -> RouteOutcome:
         self._charge("route_calls", self.__route_calls_made, self._task.budget.max_route_calls)
         self.__route_calls_made += 1
@@ -265,19 +257,15 @@ class BudgetedSession:
 
         if availability is not None and availability.goes_unavailable_after_calls is not None:
             if used >= availability.goes_unavailable_after_calls:
-                # A dead provider censors what it held. It does not report that
-                # nothing is there, and the harness must not let it look that way.
                 return self._record_route(route, probe, TransportStatus.UNAVAILABLE, (), "provider_down")
 
         if kind is DiscoveryRoute.CITATION and probe not in self._retrieved_doc_ids:
-            # Snowballing means chaining from something you actually hold.
             return self._record_route(route, probe, TransportStatus.ERROR, (), "citation_seed_not_retrieved")
 
         documents = self._index.lookup(route, probe)
 
         if availability is not None and availability.goes_flat_after_calls is not None:
             if used >= availability.goes_flat_after_calls:
-                # Exhaustion: the route answers, and has nothing new to say.
                 return self._record_route(route, probe, TransportStatus.OK, (), "route_flat")
 
         return self._record_route(route, probe, TransportStatus.OK, documents, "")
@@ -349,13 +337,7 @@ class BudgetedSession:
         )
 
     def _classify_read(self, document: RetrievedRecord, question: str) -> ReadClassification:
-        """Classify independently of the subsystem under test.
-
-        Mirrors `decide_read`'s precedence — content before frame — but is
-        computed here, because an evaluator that scored reads by calling the
-        module being evaluated would bury that module's bugs inside its own
-        verdict.
-        """
+        """Classify independently of the subsystem under test."""
 
         key = (document.content_identity, document.content_digest, question)
         if key in self._read_keys:
@@ -426,6 +408,7 @@ def execute(
     seed: int,
     run_manifest_hash: str,
     clock: Callable[[], float] = time.monotonic,
+    index: PublicIndex | None = None,
 ) -> RunOutcome:
     """Run one system on one task once, and normalize the outcome.
 
@@ -433,14 +416,17 @@ def execute(
     manifest binds a subject revision, provider revisions and evaluator hash; none
     of those exist while the world is outcome-blind and no system is configured,
     and manufacturing one would be asserting bindings that were never made.
+
+    `index` is an optional host-built, label-free projection of `world`. Supplying
+    it only avoids rebuilding the same pure public index across a batch; systems
+    still receive only the `BudgetedSession`, never the world or protected gold.
     """
 
     if len(run_manifest_hash) != 64 or not set(run_manifest_hash) <= _HEX:
         raise ValueError("run_manifest_hash must be a lowercase SHA-256 hex digest")
 
-    session = BudgetedSession(
-        build_public_index(world), SessionConfig.from_task(task), clock=clock
-    )
+    public_index = build_public_index(world) if index is None else index
+    session = BudgetedSession(public_index, SessionConfig.from_task(task), clock=clock)
     error_class = ""
     try:
         report = system.run(task.public_view, session, seed=seed)
