@@ -4,9 +4,13 @@ Read-only audit of issue #76 against merged `main`. **This document closes no ga
 checkbox, and grants no authority.** It records what exists, what has never been exercised, and
 what is blocked on someone outside the code.
 
-- Audited subject: `main@86ebc024d2b7f0cde69c6b0ba129d3283a8a3c67`
+- Audited subject: `main@86ebc024d2b7f0cde69c6b0ba129d3283a8a3c67` (the #232 merge). `main` advanced
+  to `c881cded` during the audit; every classification below is stated as of `86ebc024` and each
+  cites its basis so it can be re-checked against a later head.
 - Audit date: 2026-08-17
 - Companion record: `research/phase2/PHASE1_TERMINAL_SUBJECT_ANCHOR_V1.json`
+- Merged receipt-persistence PRs: #216, #219, #223, #229, #230 — **and #231**, which #76 omits and
+  issue #159 lists.
 
 ## 1. The discriminating question
 
@@ -56,7 +60,31 @@ provisioning, not code.
 
 Legend: **ME** merged evidence · **SO** structure only · **AB** absent · **BX** blocked external.
 
-### Dependency
+### Dependency issues named by roadmap #208
+
+#76's real evidence dependencies are issues, not only its own gate text. States verified
+2026-08-17 against the single-issue endpoint:
+
+| Issue | State | Bearing on #76 |
+|---|---|---|
+| #8 | **open** | Gate A. The primary blocker |
+| #59 | **closed** | Gate C's battery exists and its issue is closed. The open question is only whether its evidence binds the exact closure subject — it does not (see gate C) |
+| #102 | **open** | P5 journal readiness; supplies the staged-acceptance and claim-contraction substrate gates D/E lean on |
+| #159 | **open** | "Execute protected hidden-cause fresh-transfer campaign … and close #8/#76 dependencies". Maps onto gate B's fresh-transfer item and gate E. Its own terminal is conditional on #8 and #76 |
+
+**#159 already records what #76 omits.** It carries "failed pre-outcome provider-entitlement
+evidence preserved as `CANNOT_CHECK` rather than laundered into a negative result", and its open
+line is "a valid, merged, result-bearing hidden-cause fresh-transfer campaign exists on the exact
+final subject". #76's gate text has no equivalent row. #159 also lists **#231** among the merged
+receipt-persistence PRs; #76 lists only #216/#219/#223/#229/#230.
+
+**#8 is the only remaining *named issue* blocker — that is not the same as being close.** Gates
+B, D, E and F are not independently blocked; they are blocked *through* A, because each requires
+artifacts a closure run produces. Clearing #8 does not clear them, it unblocks them. And gate A is
+not blocked solely on #8's external credential: run `32002591296` proved two code-side blockers
+inside it (§6.1).
+
+### Dependency (gate text)
 
 | # | Item | Class | Basis |
 |---|---|---|---|
@@ -208,7 +236,10 @@ label standing in for a hash.
    | 3 | `32002591296` | `6c7d2afb` | step 8, same | **Trial actually executed** — see below |
    | 4 | `32003937947` | `e5d78490` | step 8, "Probe and freeze explicit Copilot model pair" | Probe `CANNOT_CHECK`, all five candidates `MODEL_UNAVAILABLE`, exit 3; trial step `skipped` |
 
-   Run 3 is the substantive one. It froze a real subject and executed the matched wide/deep trial,
+   Run 3 is the substantive one, and its subject is legitimate: `6c7d2afb` **is an ancestor of
+   `main`** (92 ahead, 0 behind) and therefore satisfies the Phase-1 derivation predicate. This was
+   a real trial on a real main-line Phase-1-derived subject. It froze that subject and executed the
+   matched wide/deep trial,
    emitting a `P5_PHASE2_SAFE_SUMMARY` with `issue_8_gate: "FAIL"`, exit 4:
    `subject_commit_oid 6c7d2afbae96057ffa821ff538ff913e962066c8`,
    `subject_revision_hash 8ec1d9c46b8515b3eed494ff765f94b0748f3e0e28bbd9fbb6e24dadad06a389`,
@@ -241,3 +272,31 @@ label standing in for a hash.
    and per-blob content hashes of `HEAD`, but nothing asserts the subject is Phase-1-derived.
    #76's dependency line is therefore not mechanically checkable by the merged machinery — the
    companion JSON supplies the predicate; an executable checker is queued.
+
+4. **Roadmap #208's blocker list is stale, and stale in a way that inflates the blocker count.**
+   Two of its three named #76 blockers were already resolved. Verified 2026-08-17:
+
+   | Claim in #208 | Verified state |
+   |---|---|
+   | #211 open, "current main still n=20" | PR #211 `merged=false` (head `fd7e0391`, **diverged** from main). But PR **#232** `merged=true` at `86ebc024`, which **is** an ancestor of main and carries `task_count: 390` ≥ TIER_B `required_n` 385. **TIER_B is met; #211 is not a blocker** |
+   | #194 blocking, citing red CI run `32002655946` | PR #194 `merged=true` at `c4ba5515`, which **is** an ancestor of main (32 ahead, 0 behind). The cited red run's head `4b334043` (branch `claude/p2-gate`) is **diverged** from main — a superseded head |
+
+   Two verification traps produced that staleness, and both apply to every row of this inventory:
+
+   - **`merged` is `null` on the pull-request LIST endpoint** and carries its true value only on the
+     single-PR endpoint. Use `gh api repos/SzeChunYiu/ORION/pulls/<N> -q .merged`. Reading the list
+     would report #232 unmerged when it is merged.
+   - **A cited red CI run may have run on a head that is not an ancestor of `main`.** Get the head
+     with `gh api repos/SzeChunYiu/ORION/actions/runs/<id> -q .head_sha`, then
+     `git merge-base --is-ancestor <head_sha> origin/main`. A red on a superseded head is not a
+     blocker. The same check is what promotes run `32002591296` from "some CI log" to evidence on a
+     Phase-1-derived main-line subject.
+
+   Generalised: **before classifying anything blocked or absent, check whether another lane's PR
+   superseded it.** A closed-unmerged PR in one lane does not mean the work never landed.
+
+   Two further method notes for anyone re-running this audit. `rtk`-wrapped `git`/`grep` compresses
+   output and has silently returned empty results elsewhere in the fleet; every count in this
+   document that a classification rests on was re-checked with `/usr/bin/git grep -l … | wc -l`.
+   And an absence claim needs a justified scope, not merely a search that returned nothing — §1
+   states the scope of this document's absence claim and what it does not cover.
