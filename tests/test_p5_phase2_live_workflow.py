@@ -27,6 +27,26 @@ def test_live_phase2_workflow_is_main_push_only() -> None:
     assert "persist-credentials: false" in text
 
 
+def test_live_phase2_workflow_has_minimum_copilot_permission() -> None:
+    text = _workflow_text()
+    assert "permissions:\n  contents: read\n  copilot-requests: write" in text
+    assert "COPILOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}" in text
+    assert "models: read" not in text
+
+
+def test_live_phase2_workflow_installs_and_freezes_copilot_runtime_before_trial() -> None:
+    text = _workflow_text()
+    assert "npm install -g @github/copilot" in text
+    assert "node-version: '22'" in text
+    version_pos = text.index("ORION_COPILOT_CLI_VERSION")
+    provider_pos = text.index("stack, provider_mode = build_phase2_auto_provider_stack_from_env")
+    packet_pos = text.index("packet = build_frozen_live_trial_packet(preflight)")
+    run_pos = text.index("report = harness.runner.run(packet)")
+    assert version_pos < provider_pos < packet_pos < run_pos
+    assert "gpt-5.2" in text
+    assert "claude-sonnet-4.6" in text
+
+
 def test_live_phase2_workflow_uses_canonical_frozen_identities() -> None:
     text = _workflow_text()
     assert "protocol_id='phase2-shadow-closure-v1'" in text
@@ -46,6 +66,17 @@ def test_live_phase2_workflow_persists_replayable_binding_before_run() -> None:
     assert "PHASE2_CLOSURE_BINDING.json" in text
 
 
+def test_live_phase2_workflow_rejects_partial_private_lane_and_records_provider_identities() -> None:
+    text = _workflow_text()
+    assert "Partial private provider configuration is forbidden" in text
+    assert "present == ${#names[@]}" in text
+    assert "present == 0" in text
+    assert "build_phase2_auto_provider_stack_from_env" in text
+    assert "provider_mode" in text
+    assert "reasoner_identity" in text
+    assert "verifier_identity" in text
+
+
 def test_live_phase2_workflow_is_secret_safe_and_non_promoting() -> None:
     text = _workflow_text()
     for name in (
@@ -56,7 +87,7 @@ def test_live_phase2_workflow_is_secret_safe_and_non_promoting() -> None:
         "ORION_PHASE2_EVALUATION_EPOCH_ID",
     ):
         assert name in text
-    assert "values are not printed" in text
+    assert "No credential values are printed." in text
     assert "if loaded.grants_self_promotion:" in text
     assert "live_trial_exposed_self_promotion" in text
     assert "issue_8_gate" in text
