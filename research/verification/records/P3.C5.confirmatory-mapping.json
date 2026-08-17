@@ -1,0 +1,136 @@
+{
+  "atomic_claim_text": "On the disjoint confirmatory public-reference holdout (n=32), ORION false-merge rate is 0 versus flat 0.1875 (delta -0.1875).",
+  "bounded_claim_text": "Already-structured public-reference mapping only. Does not license raw-text extraction, C7/C8, or necessity of every coordinate.",
+  "claim_id": "P3.C5",
+  "denominator": {
+    "cannot_check_or_invalid_handling": "no CANNOT_CHECK cases in confirmatory gold",
+    "eligible_n": 32,
+    "notes": "initial 32 excluded from confirmatory verdict; overlap_count=0",
+    "post_outcome_exclusions": 0,
+    "repeats_nested_not_inflating_n": true,
+    "unit": "externally grounded mapping case"
+  },
+  "discrepancies": [],
+  "high_severity_integrity": [],
+  "invalidation_reason": null,
+  "layers": {
+    "baseline_pressure": {
+      "details": {
+        "in_battery": [
+          "flat_predicate_canonicalization",
+          "exact_coordinate_conservative"
+        ]
+      },
+      "status": "CANNOT_CHECK",
+      "summary": "Strongest in-battery baseline is flat predicate canonicalization. Official SCION/schema-contract software was not executed by this verifier."
+    },
+    "denominator_statistics": {
+      "details": {
+        "forbidden_authority": 0,
+        "n": 32,
+        "pooled_with_initial": false
+      },
+      "status": "PASS",
+      "summary": "n=32 mapping cases; stochastic repeats=1 because rules are deterministic; initial 32 not pooled."
+    },
+    "holdout_cross_host": {
+      "status": "CANNOT_CHECK",
+      "summary": "The confirmatory 32-case holdout is the original experiment, not a new verifier-run third sample or cross-host rerun."
+    },
+    "independent_scorer": {
+      "details": {
+        "confirmatory_primary_pass": true,
+        "false_merge_orion_minus_flat": {
+          "ci95_high": -0.0625,
+          "ci95_low": -0.34375,
+          "point": -0.1875
+        },
+        "false_merge_superiority": true,
+        "false_split_noninferiority": true,
+        "false_split_orion_minus_exact": {
+          "ci95_high": 0.0,
+          "ci95_low": 0.0,
+          "point": 0.0
+        }
+      },
+      "status": "PASS",
+      "summary": "Scorer implemented from PUBLIC_REFERENCE_PROTOCOL_V1_1 derivations, not orion.study.p3_public_reference_analysis."
+    },
+    "leakage_shortcut": {
+      "details": {
+        "contradictory_cases_with_polarity_mismatch": 6,
+        "flat_false_merges_on_contradictions": 6,
+        "flat_is_predicate_only_shortcut": true
+      },
+      "status": "PASS",
+      "summary": "Public-field polarity opposition is the intended contradiction mechanism (6 CONTRADICTORY cases). Not hidden-label leakage; it is the typed coordinate the paper claims."
+    },
+    "raw_artifact_replay": {
+      "details": {
+        "flat_false_merge": 0.1875,
+        "gold_sha256": "13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b",
+        "independent_n": 32,
+        "orion_false_merge": 0.0,
+        "overlap_count": 0
+      },
+      "status": "PASS",
+      "summary": "Independent mapping scorer on frozen confirmatory gold reproduces ORION false-merge 0 vs flat 0.1875, n=32, zero initial overlap."
+    }
+  },
+  "paper_id": "P3",
+  "protocol": {
+    "hash_sha256": "494616042d990a113533865092bf01a2ce2a314ba1ec660f798a6afc9a3530a9",
+    "id": "P3.public-reference-mapping.v1.1-confirmatory",
+    "path": "papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/EXECUTION_MANIFEST.json"
+  },
+  "raw_artifacts": [
+    {
+      "path": "papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+      "present": true,
+      "role": "gold",
+      "sha256": "13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b"
+    },
+    {
+      "path": "papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json",
+      "present": true,
+      "role": "aggregate",
+      "sha256": "c15676f2c897e963441e042df7911e97fc86955f2dd73b9fd823cdb2948fa92d"
+    },
+    {
+      "path": "papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/SUMMARY.json",
+      "present": true,
+      "role": "aggregate",
+      "sha256": "d2499156c5a4ab8fb9ed592044d34d59af3eb08b07cf2cdb881634e13b601df9"
+    },
+    {
+      "path": "papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/HOLDOUT_BUILD_REPORT.json",
+      "present": true,
+      "role": "manifest",
+      "sha256": "12a46490b2c907270e9a56165913dca5dbce21c1ed92e5fe104ff810317f0320"
+    },
+    {
+      "path": "papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+      "present": true,
+      "role": "gold",
+      "sha256": "35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8"
+    }
+  ],
+  "record_id": "P3.C5.confirmatory-mapping",
+  "record_sha256": "0f4fa076f24b1122b75b264f37dd3938f0b82f09bcdebe853543ec90128649f4",
+  "schema_version": "orion.scientific-result-verification.v1",
+  "scorers": {
+    "adjudication": [],
+    "agreement": "EXACT",
+    "independent_from_written_spec": true,
+    "independent_hash_sha256": "c867cc5be6cc55f80750053c54c2e19bd3a60d2a0ddd3756a551b6d388648c56",
+    "original_hash_sha256": "c15676f2c897e963441e042df7911e97fc86955f2dd73b9fd823cdb2948fa92d"
+  },
+  "self_authorizing": false,
+  "subject": {
+    "commit": "09929f208f581cda6985575ca419a7181a1f03ba",
+    "evaluated_system_mutated": false,
+    "note": "verifier_tree=09929f208f581cda6985575ca419a7181a1f03ba",
+    "tree": "a3566dd19afaedd35012321e529ff862d06475f5"
+  },
+  "verification_state": "BOUNDED_VERIFIED"
+}

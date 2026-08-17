@@ -1,0 +1,135 @@
+{
+  "atomic_claim_text": "On the frozen V2 battery, ORION has 0/360 false authority promotions versus 180/360 for the strongest frozen comparator.",
+  "bounded_claim_text": "Bounded to the frozen mechanical V2 battery and protocol-matched comparator reimplementations. Not a claim about original external systems or naturalistic fact-checking.",
+  "claim_id": "P4.H1",
+  "denominator": {
+    "cannot_check_or_invalid_handling": "published aggregates report 0 ambiguous and 0 human-rubric triggers",
+    "eligible_n": 360,
+    "notes": "bindings.counts.hostile=360 clean=60 cases=420",
+    "post_outcome_exclusions": 0,
+    "repeats_nested_not_inflating_n": true,
+    "unit": "hostile attack case (repeats nested; n is cases not repeats)"
+  },
+  "discrepancies": [
+    {
+      "id": "P4.public-tree-missing-case-jsonl",
+      "severity": "medium",
+      "text": "Protected case-level outputs are retained in Actions custody and are not in the public tree, so this verifier reconstructs paired CIs from count-implied binary vectors."
+    }
+  ],
+  "high_severity_integrity": [],
+  "invalidation_reason": null,
+  "layers": {
+    "baseline_pressure": {
+      "details": {
+        "disclosure": "Protocol-matched mechanism reimplementations, not executions of the external authors' original software.",
+        "strongest": "provenai-citation-fidelity-influence"
+      },
+      "status": "PASS",
+      "summary": "Strongest frozen comparator is protocol-matched ProvenAI-style reimplementation, not the original authors' software."
+    },
+    "denominator_statistics": {
+      "details": {
+        "ablations_worsen_fp": true,
+        "clean": 60,
+        "hostile": 360,
+        "repeats": 5
+      },
+      "status": "PASS",
+      "summary": "Hostile n=360, clean n=60, 5 nested repeats, 420 mechanical gold cases; n is cases."
+    },
+    "holdout_cross_host": {
+      "status": "CANNOT_CHECK",
+      "summary": "This verifier did not run a fresh holdout or cross-host campaign."
+    },
+    "independent_scorer": {
+      "details": {
+        "independent": {
+          "ci95_high": -0.44722222222222224,
+          "ci95_low": -0.5527777777777778,
+          "margin": -0.05,
+          "point": -0.5,
+          "status": "PASS"
+        },
+        "published": {
+          "ci95_high": -0.44722222222222224,
+          "ci95_low": -0.5527777777777778,
+          "orion_minus_baseline_false_promotion": -0.5,
+          "practical_margin": -0.05,
+          "status": "PASS"
+        }
+      },
+      "status": "PASS",
+      "summary": "Independent H1 from metrics-registry definitions and count-implied paired bootstrap."
+    },
+    "leakage_shortcut": {
+      "details": {
+        "candidate_external_ip_connects": 0,
+        "candidate_protected_identifier_hits": 0,
+        "comparator_protected_identifier_hits": 0,
+        "raw_strace_in_public_tree": false
+      },
+      "status": "CANNOT_CHECK",
+      "summary": "Published telemetry reports zero protected-identifier and external-IP hits; raw strace not independently replayed."
+    },
+    "raw_artifact_replay": {
+      "details": {
+        "comparator_fp": 180,
+        "hostile_n": 360,
+        "orion_fp": 0
+      },
+      "status": "CANNOT_CHECK",
+      "summary": "Headline 0/360 vs 180/360 replays from committed aggregates; protected JSONL is not in the public tree."
+    }
+  },
+  "paper_id": "P4",
+  "protocol": {
+    "hash_sha256": "fe11555a38f24bdb0161d011eef43e842f7bb149e8b0295467d95cbb5e83a77f",
+    "id": "P4.protected-authority.v2",
+    "path": "papers/paper-04-verified-scientific-discovery/protocol/PROTOCOL_V1.json"
+  },
+  "raw_artifacts": [
+    {
+      "path": "papers/paper-04-verified-scientific-discovery/evidence/protected_v2/PUBLICATION_METRICS_V2.json",
+      "present": true,
+      "role": "aggregate",
+      "sha256": "42c50a01c1d491fbf423aab3d88ec4f44192015e3fa96a78c007524ed19ef81d"
+    },
+    {
+      "path": "papers/paper-04-verified-scientific-discovery/protocol/PROTECTED_RUN_BINDINGS_V2.json",
+      "present": true,
+      "role": "manifest",
+      "sha256": "ea5c97b3032d461bb595b502f688cb82a7e0651ea9907742095b501340c30fc5"
+    },
+    {
+      "path": "papers/paper-04-verified-scientific-discovery/evidence/protected_v2/RESULT_ATTESTATION_V2.md",
+      "present": true,
+      "role": "published_table",
+      "sha256": "97e367528b90f51f7f5efce94508395ba3e991c2d9b5a6935acdd4a032281f4d"
+    },
+    {
+      "path": "protected P4 case-level JSONL (Actions artifact 9271228157; not copied into public tree)",
+      "present": false,
+      "role": "missing_required",
+      "sha256": "CANNOT_CHECK"
+    }
+  ],
+  "record_id": "P4.H1.false-authority-promotion",
+  "record_sha256": "f30cfe44cbf8fc2bf58fb3a32a04b278527294b63810d04947534a71cda7aee2",
+  "schema_version": "orion.scientific-result-verification.v1",
+  "scorers": {
+    "adjudication": [],
+    "agreement": "EXACT",
+    "independent_from_written_spec": true,
+    "independent_hash_sha256": "c867cc5be6cc55f80750053c54c2e19bd3a60d2a0ddd3756a551b6d388648c56",
+    "original_hash_sha256": "8ed4e0647ebd9f45acb95928de236b4ce59dd84865ca7556031ef53a4903682d"
+  },
+  "self_authorizing": false,
+  "subject": {
+    "commit": "f6e51b5c8f905382b8e2f5568d9035fc14241aa1",
+    "evaluated_system_mutated": false,
+    "note": "verifier_tree=09929f208f581cda6985575ca419a7181a1f03ba",
+    "tree": "6d7cdb479f42ae23a996ccc7b5352fbc966e68ff"
+  },
+  "verification_state": "BOUNDED_VERIFIED"
+}
