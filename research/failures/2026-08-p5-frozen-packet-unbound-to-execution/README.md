@@ -193,6 +193,73 @@ valid?" but "which definition does the code that spends money actually load?".
    would still be legitimately pre-outcome today, because no outcomes exist on
    these tasks.
 
+## Nearest work absorbed
+
+Twelve `codex/issue-102-*` / `codex/issue-159-*` branches work this problem. Read
+read-only via `git show`; none checked out or modified.
+
+**Merged (8):** `copilot-live-provider`, `copilot-model-probe`,
+`copilot-model-refresh`, `p5-v2-protocol`, `p5-v2-evidence`, `p5-v2-analysis`,
+`phase2-live-execution`, `phase2-live-preflight`. These produced the Copilot lane
+and the live-execution workflow analysed above.
+
+**Unmerged (4):** `github-models-fallback` (8 ahead), `open-weight-phase2` (6),
+`hidden-cause-suite` (9), `issue-159-p5-live-trial` (4). Per #208, unmerged branch
+work is not evidence.
+
+**The substitution question was already answered in practice, and answered wrongly.**
+`github-models-fallback` and `open-weight-phase2` each add a new reasoner/verifier
+adapter and edit `.github/workflows/p5_phase2_live_execution.yml`, and each touches
+**zero** files under any `protocol/` directory. Neither re-freezes
+`LIVE_TRIAL_PACKET_V1.json` or produces a new packet. Together with the merged
+Copilot lane, that is **three** successive provider substitutions into a packet
+frozen for none of them, with no new pre-outcome freeze in any case.
+
+This is not a precedent to follow. It is the predicted consequence of the defect
+above: because the workflow never loads the packet and the gate only shape-checks
+`provider_manifest_hash`, each new lane can add a constructor yielding a different
+manifest hash and be admitted silently. The pattern is evidence *for* the finding.
+
+**#8's governing text does not permit substitution within an existing freeze.**
+The ORION development protocol requires, before final trial outcome access:
+"Freeze task packet, provider identities, resource limits evaluator before
+observing outcomes." Trial requirements separately list "Real LLM provider identity
+frozen", "Real retrieval-source identities frozen" and "Protected evaluator/verifier
+identity epoch frozen outside candidate custody." Provider identity is named as a
+frozen quantity. Changing it changes the freeze, so it requires a **new** freeze that
+is itself pre-outcome. #8 contains no substitution-within-freeze clause.
+
+Mechanically this is already enforced at the artifact level and only there:
+`provider_manifest_hash` is `sha256` over a payload including the reasoner `model`
+and the verifier `endpoint`, so any substitution necessarily yields a hash other
+than the frozen `b08642b8…`. The binding exists; the gate does not consult it.
+
+**A correction to #159's reported result.** #159 comment 2 reports the GLM-5.2
+hidden-cause campaign as "Step 5/6 — COMPLETE" at 24/24 (100.0%), macro F1 1.000,
+all 24 cases at HIGH confidence, via `cmkey.cn`. The merged artifact on `main`
+reports **21/24** (0.875), macro F1 **0.875**, confidence MEDIUM 9 / HIGH 15, via
+`http://127.0.0.1:8765`, with `P5-HC-002`, `P5-HC-012` and `P5-HC-018` incorrect.
+Recounting the raw `results.jsonl` independently reproduces 21/24 and the
+MEDIUM/HIGH split, so the merged artifact is self-consistent.
+
+The commit history explains the gap: `1061d72` recorded 0/24 (all LOW confidence)
+against `https://api2.cmkey.cn/v1`; `688fe74`, titled "honest evidence re-run",
+recorded 21/24 against the local endpoint. The comment's 24/24 matches **neither**
+merged state. #212 already quarantined that report as `UNBOUND_EXECUTION_REPORT`;
+what is added here is that the honest re-run has since landed and gives it a
+definitive value. The comment remains uncorrected on the issue that is scoped to
+closing #8's dependencies, so a reader of #159 takes away a perfect score the
+repository's own evidence contradicts.
+
+**On the keyless route.** `AUTORESEARCHBENCH_WIDE_KEYLESS_PROBE_V1.json` records
+`candidate: "ORION keyless arXiv public-provider probe"` with `total_tokens: 0` and
+`claim_scope: "external_probe_not_full_multi_provider_orion"`. Keyless here means a
+public arXiv retrieval route consuming no LLM tokens — there is no LLM identity to
+freeze, so it cannot satisfy #8's "Real LLM provider identity frozen". The artifact
+scopes its own claim correctly. Its `provider_status_counts` also record 52/400
+`RATE_LIMITED`, a harness-level confound that any hit-rate near zero should be
+attributed against before being read as a capability null.
+
 ## Discriminator / reopen condition
 
 This note is superseded when **all** of the following hold on merged `main`:
