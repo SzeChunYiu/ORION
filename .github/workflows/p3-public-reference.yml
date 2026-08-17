@@ -12,15 +12,17 @@ on:
       - 'Makefile'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build-evaluate:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: Checkout ORION
+      - name: Checkout ORION head
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -40,15 +42,12 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p upstream
-
           git clone -q https://github.com/cohentsofia/MUSE.git upstream/MUSE
           git -C upstream/MUSE checkout -q f7a40317db46145d0c90b221311d8324db5da1b9
           test "$(git -C upstream/MUSE rev-parse HEAD)" = "f7a40317db46145d0c90b221311d8324db5da1b9"
-
           git clone -q https://github.com/scischema/scischema.git upstream/SciSchema
           git -C upstream/SciSchema checkout -q 55b6197cdb0b66c3123df16d0b0c70b02c4bde8b
           test "$(git -C upstream/SciSchema rev-parse HEAD)" = "55b6197cdb0b66c3123df16d0b0c70b02c4bde8b"
-
           git clone -q https://github.com/allenai/scifact.git upstream/SciFact
           git -C upstream/SciFact checkout -q 68b98a56d93e0f9da0d2aab4e6c3294699a0f72e
           test "$(git -C upstream/SciFact rev-parse HEAD)" = "68b98a56d93e0f9da0d2aab4e6c3294699a0f72e"
@@ -114,14 +113,44 @@ jobs:
         shell: bash
         run: |
           mkdir -p artifacts
+          evaluator_sha=$(git log -1 --format=%H -- \
+            src/orion/study/p3_public_reference.py \
+            src/orion/study/p3_public_reference_build.py \
+            src/orion/study/p3_public_reference_analysis.py \
+            src/orion/study/p3_public_reference_freeze.py \
+            papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_PROTOCOL_V1.json \
+            papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_GOLD_V1.md)
           {
-            echo "ORION_HEAD_SHA=${{ github.event.pull_request.head.sha || github.sha }}"
+            echo "ORION_EVALUATOR_SHA=$evaluator_sha"
             echo "MUSE_SHA=f7a40317db46145d0c90b221311d8324db5da1b9"
             echo "SCISCHEMA_SHA=55b6197cdb0b66c3123df16d0b0c70b02c4bde8b"
             echo "SCIFACT_SHA=68b98a56d93e0f9da0d2aab4e6c3294699a0f72e"
             echo "BUILD_EXIT=${{ steps.build.outputs.code }}"
           } > artifacts/PROVENANCE.env
           find artifacts -type f ! -path 'artifacts/replay/*' ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > artifacts/SHA256SUMS || true
+
+      - name: Archive frozen evidence on same-repository PR
+        if: steps.build.outputs.code == '0' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          gold_dir=papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1
+          evidence_dir=papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1
+          mkdir -p "$gold_dir" "$evidence_dir"
+          cp artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl "$gold_dir/"
+          cp artifacts/frozen/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json "$gold_dir/"
+          cp artifacts/build/BUILD_REPORT.json "$evidence_dir/"
+          cp artifacts/evaluation/summary.json "$evidence_dir/SUMMARY.json"
+          cp artifacts/evaluation/analysis.json "$evidence_dir/ANALYSIS.json"
+          cp artifacts/PROVENANCE.env "$evidence_dir/"
+          cp artifacts/SHA256SUMS "$evidence_dir/"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add "$gold_dir" "$evidence_dir"
+          if ! git diff --cached --quiet; then
+            git commit -m 'data(p3): archive frozen public-reference atlas evidence'
+            git push origin HEAD:${{ github.head_ref }}
+          fi
 
       - name: Upload public-reference evidence
         if: always()
