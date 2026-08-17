@@ -74,22 +74,22 @@ ORION-vs-baseline comparison remains unexecuted.}
 
 \begin{figure}[t]
 \centering
-\input{figures/P2-3_cumulative_discovery_publication}
-\caption{\textbf{Figure P2-3.} Cumulative complete-gold recall versus the
+\input{figures/P2-2_recall_vs_queries}
+\caption{\textbf{Figure P2-2.} Cumulative complete-gold recall versus the
 host-recorded number of search queries for full ORION and the strongest frozen
 confirmatory baseline.  Deterministic repeats are first checked for identical
 traces and then collapsed within task; the curves are means over the \OfflineTaskCount{} tasks
 and are descriptive only.  Synthetic wall-clock is intentionally fixed to zero,
 so the controlled companion supports the query axis, not an empirical-time
 claim.}
-\label{fig:p2-3}
+\label{fig:p2-2}
 \end{figure}
 
 The two systems are identical through their first three search calls in this
 authored world.  The protocol-driven comparator then reaches mean recall
 0.666667 by query 7 and remains at that value through query 12.  ORION is at
 0.727778 by query 7 and continues to gain, reaching 0.994444 by query 12.
-Figure~\ref{fig:p2-3} therefore localizes the descriptive gap to evidence gained
+Figure~\ref{fig:p2-2} therefore localizes the descriptive gap to evidence gained
 after the early common search prefix rather than to an initial retrieval
 advantage.
 
