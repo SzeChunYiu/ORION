@@ -126,6 +126,7 @@ class AnthropicProvider:
             client = Anthropic(
                 api_key=os.environ.get(CREDENTIAL_ENV_VAR),
                 **({"base_url": base_url} if base_url else {}),
+                timeout=120.0,  # Bounded timeout prevents indefinite SSL-read stalls (P1 hang triage 2026-08-17)
             )
             message = client.messages.create(
                 model=self.model,
