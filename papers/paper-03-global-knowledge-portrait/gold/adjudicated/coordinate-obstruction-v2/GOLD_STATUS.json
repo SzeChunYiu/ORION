@@ -1,0 +1,20 @@
+{
+  "expert_gold_bound": false,
+  "families_missing_schema_fixture": [],
+  "families_with_schema_fixture": [
+    "CONSTRUCT_IDENTITY",
+    "MEASUREMENT_OPERATIONALIZATION",
+    "MODALITY_POLARITY_ATTRIBUTION",
+    "PLURALISM_OBSTRUCTION",
+    "REFERENT_IDENTITY",
+    "REPRESENTATION_TRANSFORM",
+    "TEMPORAL_STATE_CONTEXT",
+    "UNRESOLVED"
+  ],
+  "fixture_count": 18,
+  "gold_status": "CANNOT_CHECK",
+  "llm_gold_used": false,
+  "protocol_id": "P3.coordinate-obstruction.v2",
+  "reason": "V2 gold requires pinned expert/public annotations or content-hashed deterministic standards. Schema fixtures and V1 confirmatory pointers are not V2 gold.",
+  "schema_version": "orion.p3.coordinate-obstruction-gold-status.v2"
+}
