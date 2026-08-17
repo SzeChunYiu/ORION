@@ -4,7 +4,7 @@
     "bootstrap_resamples": 10000,
     "bootstrap_seed": 20260815,
     "confidence": 0.95,
-    "generated_utc": "2026-08-17T08:55:58+00:00",
+    "generated_utc": "2026-08-17T16:26:17+00:00",
     "integrity": {
       "blockers": [],
       "coherent": true,
@@ -68,7 +68,7 @@
         "P1-C-239f672ebc",
         "P1-C-39818be118"
       ],
-      "share_of_all_scored_trials": 0.8392984967788117,
+      "share_of_all_scored_trials": 0.8142361111111112,
       "systems": 11,
       "trials": 2345
     },
@@ -79,31 +79,20 @@
         "P1-C-43c471c226",
         "P1-C-44d2443b8b"
       ],
-      "share_of_all_scored_trials": 0.08625626342161775,
+      "share_of_all_scored_trials": 0.0920138888888889,
       "systems": 4,
-      "trials": 241
+      "trials": 265
     },
     {
       "failure_mode": "MISSED_REFRAME",
       "representative_blinded_case_ids": [
         "P1-C-14aefdd887",
         "P1-C-2a87cda138",
-        "P1-C-3dba4ee7db"
+        "P1-C-39818be118"
       ],
-      "share_of_all_scored_trials": 0.05476020042949177,
+      "share_of_all_scored_trials": 0.07465277777777778,
       "systems": 12,
-      "trials": 153
-    },
-    {
-      "failure_mode": "CANNOT_CHECK",
-      "representative_blinded_case_ids": [
-        "P1-C-39818be118",
-        "P1-C-3dba4ee7db",
-        "P1-C-43c471c226"
-      ],
-      "share_of_all_scored_trials": 0.030780243378668574,
-      "systems": 1,
-      "trials": 86
+      "trials": 215
     },
     {
       "failure_mode": "UNNECESSARY_REFRAME",
@@ -112,7 +101,7 @@
         "P1-C-9fbf65695c",
         "P1-C-e2cb3aa558"
       ],
-      "share_of_all_scored_trials": 0.016105941302791697,
+      "share_of_all_scored_trials": 0.015625,
       "systems": 3,
       "trials": 45
     },
@@ -122,7 +111,7 @@
         "P1-C-557ed886fe",
         "P1-C-ffb30e12b4"
       ],
-      "share_of_all_scored_trials": 0.0035790980672870437,
+      "share_of_all_scored_trials": 0.003472222222222222,
       "systems": 1,
       "trials": 10
     }
@@ -257,6 +246,22 @@
       "trials": 235
     },
     {
+      "distinct_cases": 32,
+      "example_faults": [],
+      "failure_mode": "MISSED_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-14aefdd887",
+        "P1-C-2a87cda138",
+        "P1-C-39818be118"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.6666666666666666,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "orion_live_provider",
+      "system_role": "BASELINE",
+      "trials": 160
+    },
+    {
       "distinct_cases": 31,
       "example_faults": [],
       "failure_mode": "ABSTENTION",
@@ -305,36 +310,20 @@
       "trials": 155
     },
     {
-      "distinct_cases": 21,
+      "distinct_cases": 16,
       "example_faults": [],
-      "failure_mode": "MISSED_REFRAME",
+      "failure_mode": "WRONG_RESPONSIBILITY",
       "representative_blinded_case_ids": [
-        "P1-C-14aefdd887",
-        "P1-C-2a87cda138",
-        "P1-C-3dba4ee7db"
+        "P1-C-239f672ebc",
+        "P1-C-4dd49eab04",
+        "P1-C-8b5889326e"
       ],
-      "share_denominator": 154,
-      "share_of_scored_trials": 0.6363636363636364,
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.3333333333333333,
       "share_unit": "scored trial (case x seed)",
       "system_id": "orion_live_provider",
       "system_role": "BASELINE",
-      "trials": 98
-    },
-    {
-      "distinct_cases": 23,
-      "example_faults": [],
-      "failure_mode": "CANNOT_CHECK",
-      "representative_blinded_case_ids": [
-        "P1-C-39818be118",
-        "P1-C-3dba4ee7db",
-        "P1-C-43c471c226"
-      ],
-      "share_denominator": 154,
-      "share_of_scored_trials": 0.5584415584415584,
-      "share_unit": "scored trial (case x seed)",
-      "system_id": "orion_live_provider",
-      "system_role": "BASELINE",
-      "trials": 86
+      "trials": 80
     },
     {
       "distinct_cases": 13,
@@ -367,22 +356,6 @@
       "system_id": "tree_search_iterative_research",
       "system_role": "BASELINE",
       "trials": 65
-    },
-    {
-      "distinct_cases": 12,
-      "example_faults": [],
-      "failure_mode": "WRONG_RESPONSIBILITY",
-      "representative_blinded_case_ids": [
-        "P1-C-239f672ebc",
-        "P1-C-8b5889326e",
-        "P1-C-8f17134405"
-      ],
-      "share_denominator": 154,
-      "share_of_scored_trials": 0.36363636363636365,
-      "share_unit": "scored trial (case x seed)",
-      "system_id": "orion_live_provider",
-      "system_role": "BASELINE",
-      "trials": 56
     },
     {
       "distinct_cases": 11,
