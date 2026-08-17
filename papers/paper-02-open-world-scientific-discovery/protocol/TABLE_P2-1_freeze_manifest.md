@@ -32,19 +32,19 @@ Obtaining an artifact and being able to run its official scorer are different qu
 
 | Task family | Official scorer runnable | Meaning |
 | --- | --- | --- |
-| `autoresearchbench_wide` | `YES_NO_CREDENTIALS` | The official scorer runs here with no third-party credentials. |
 | `autoresearchbench_deep` | `YES_WITH_JUDGE_KEY` | The official scorer runs given an OpenAI-compatible judge endpoint. |
-| `sage_scientific_retrieval` | `NO_ARTIFACT_MISSING` | A required artifact (corpus or evaluator) is not published; no credential or budget fixes it. |
+| `autoresearchbench_wide` | `YES_NO_CREDENTIALS` | The official scorer runs here with no third-party credentials. |
 | `metasyn_retrieval_screening` | `YES_NO_CREDENTIALS` | The official scorer runs here with no third-party credentials. |
 | `offline_complete_gold` | `NOT_ASSESSED` | Runnability of an official scorer was not established for this family in this audit. |
+| `sage_scientific_retrieval` | `NO_ARTIFACT_MISSING` | A required artifact (corpus or evaluator) is not published; no credential or budget fixes it. |
 
 ## C. Provider, run requirements and contamination exposure
 
 | Artifact | State | Official evaluator needs | Pipeline / reference-agent needs | Hard blocker | Contamination |
 | --- | --- | --- | --- | --- | --- |
-| `AutoResearchBench_code` | `OBTAINED` | wide: none; deep: an OpenAI-compatible chat endpoint for the LLM judge | OpenAI-compatible chat endpoint (agent); paper-search backend (unpublished); Serper (web search); Jina (web r… | None for official Wide scoring, which needs no credentials at all. Deep as-shipped needs a judge endpoint, with a partial deterministic deviation ava… | Wide gold is a set of real arXiv ids and our discovery routes are the arXiv and OpenAlex APIs, so the specific exposure… |
+| `AutoResearchBench_code` | `OBTAINED` | deep: an OpenAI-compatible chat endpoint for the LLM judge; wide: none | OpenAI-compatible chat endpoint (agent); paper-search backend (unpublished); Serper (web search); Jina (web r… | None for official Wide scoring, which needs no credentials at all. Deep as-shipped needs a judge endpoint, with a partial deterministic deviation ava… | Wide gold is a set of real arXiv ids and our discovery routes are the arXiv and OpenAlex APIs, so the specific exposure… |
 | `AutoResearchBench_dataset` | `OBTAINED` | n/a | provider: none for download or decryption | none for obtaining the data | LOW-MODERATE. No public plaintext mirror surfaced in a web-search probe, but the upstream README states the obfuscation… |
-| `MetaSyn` | `OBTAINED` | retrieval_and_screening: none; generated_report_metrics: an OpenAI-compatible chat endpoint | n/a | None for the metasyn_retrieval_screening family the protocol actually names: it scores without credentials. Python >=3.10,<3.12 with pinned torch/fai… | CANNOT_CHECK. The dataset is public and ungated and included-study lists are directly downloadable, so exposure is plau… |
+| `MetaSyn` | `OBTAINED` | generated_report_metrics: an OpenAI-compatible chat endpoint; retrieval_and_screening: none | n/a | None for the metasyn_retrieval_screening family the protocol actually names: it scores without credentials. Python >=3.10,<3.12 with pinned torch/fai… | CANNOT_CHECK. The dataset is public and ungated and included-study lists are directly downloadable, so exposure is plau… |
 | `AgentSLR` | `AVAILABLE_LICENSE_BLOCKED` | n/a | provider: OpenAI; OpenRouter; Mistral (OCR); OpenAlex; NCBI; or a local vLLM server; model: operator-chosen v… | Requires paid API keys (OPENAI_API_KEY, OPENROUTER_API_KEY, MISTRAL_API_KEY for OCR, plus OPENALEX_API_KEY and NCBI_API_KEY) or a local GPU vLLM depl… | CANNOT_CHECK. The label dataset is public and ungated; no contamination probe was run. |
 | `SAGE_benchmark` | `AVAILABLE_LICENSE_BLOCKED` | n/a | provider: not specified by the repository | Two independent blockers. (1) No retrieval corpus: the paper (arXiv:2602.05975) states a 200,000-paper retrieval corpus, but the pinned repository is… | HIGH / UNAVOIDABLE. Query records carry fields paper_id, paper_title, complete_query and ground_truth {paperId, title}… |
 | `AgentSLR_dataset` | `OBTAINED` | n/a | provider: HuggingFace (anonymous download) | none for obtaining the labels; the article PDFs the labels describe are not included and must be fetched from publishers at run time | CANNOT_CHECK. Public and ungated; no contamination probe run. |

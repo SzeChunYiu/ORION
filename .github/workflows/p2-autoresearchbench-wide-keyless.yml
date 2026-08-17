@@ -3,7 +3,7 @@ name: p2-autoresearchbench-wide-keyless
 on:
   push:
     branches:
-      - chatgpt/issue-99-recursive-local
+      - chatgpt/p2-remaining-closure
 
 permissions:
   contents: read
@@ -39,6 +39,28 @@ jobs:
             --output-file /tmp/arb-run/AutoResearchBench.jsonl
           git -C /tmp/arb-upstream rev-parse HEAD
           sha256sum /tmp/arb-run/AutoResearchBench.jsonl.obf.json /tmp/arb-run/AutoResearchBench.jsonl
+
+      - name: Diagnose released task partition without exposing labels
+        run: |
+          python - <<'PY'
+          import json
+          from collections import Counter
+          from pathlib import Path
+          rows=[json.loads(x) for x in Path('/tmp/arb-run/AutoResearchBench.jsonl').read_text().splitlines() if x.strip()]
+          print('ARB_RECORDS', len(rows))
+          print('KEY_SETS', Counter(tuple(sorted(r)) for r in rows))
+          print('ARXIV_TYPES', Counter(type(r.get('arxiv_id')).__name__ for r in rows))
+          print('ARXIV_LIST_LENGTHS', Counter(len(r.get('arxiv_id') or []) if isinstance(r.get('arxiv_id'), list) else -1 for r in rows))
+          print('ANSWER_TYPES', Counter(type(r.get('answer')).__name__ for r in rows))
+          print('ANSWER_LIST_LENGTHS', Counter(len(r.get('answer') or []) if isinstance(r.get('answer'), list) else -1 for r in rows))
+          print('METADATA_TYPES', Counter(type(r.get('metadata')).__name__ for r in rows))
+          print('METADATA_KEY_SETS', Counter(tuple(sorted((r.get('metadata') or {}).keys())) if isinstance(r.get('metadata'), dict) else () for r in rows))
+          for key in ('task_type','type','task','paradigm','mode','split'):
+              vals=Counter(str(r.get(key)) for r in rows if key in r)
+              if vals: print('TOPLEVEL_'+key.upper(), vals)
+              mvals=Counter(str((r.get('metadata') or {}).get(key)) for r in rows if isinstance(r.get('metadata'), dict) and key in (r.get('metadata') or {}))
+              if mvals: print('METADATA_'+key.upper(), mvals)
+          PY
 
       - name: Split gold before candidate custody
         run: |

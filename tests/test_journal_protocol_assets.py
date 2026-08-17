@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import sys
 from pathlib import Path
 
 
@@ -22,6 +23,12 @@ def _load_module(name: str, path: Path):
     spec = importlib.util.spec_from_file_location(name, path)
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
+    # Register before executing. `@dataclass` resolves annotations through
+    # `sys.modules[cls.__module__]`, which is absent for a spec-loaded module, so
+    # the first dataclass added to any protocol module would fail here at class
+    # creation with an AttributeError nowhere near its cause. Cheap insurance
+    # against a confusing failure in a helper several test files share.
+    sys.modules[spec.name] = module
     spec.loader.exec_module(module)
     return module
 
@@ -130,7 +137,25 @@ def test_publication_stats_wilson_and_precision():
     module = _load_module("publication_stats", STATS_MODULE)
     lo, hi = module.wilson_interval(50, 100)
     assert lo < 0.5 < hi
-    assert module.required_n_for_proportion_half_width(0.05, 0.5) >= 384
+
+    # Assert the defining property, not a hand-typed constant. The previous
+    # assertion was `>= 384`, which is both wrong (the answer is 385) and
+    # unfalsifiable in the direction that matters: it would have passed for 384,
+    # an off-by-one on a sample size the papers commit to, and equally for
+    # 1,000,000. The property is that the returned N is the *smallest* integer
+    # whose half-width meets the target, which cannot rot as the library changes.
+    z = 1.959963984540054
+    for half_width in (0.03, 0.05, 0.075, 0.10):
+        n = module.required_n_for_proportion_half_width(half_width, 0.5)
+        achieved = z * 0.5 / (n ** 0.5)
+        one_fewer = z * 0.5 / ((n - 1) ** 0.5)
+        assert achieved <= half_width, f"N={n} does not reach half-width {half_width}"
+        assert one_fewer > half_width, f"N={n} is not minimal for half-width {half_width}"
+
+    # A tighter target must never ask for fewer observations.
+    tighter = module.required_n_for_proportion_half_width(0.03, 0.5)
+    looser = module.required_n_for_proportion_half_width(0.05, 0.5)
+    assert tighter > looser
 
 
 def test_publication_stats_paired_bootstrap_is_deterministic():
