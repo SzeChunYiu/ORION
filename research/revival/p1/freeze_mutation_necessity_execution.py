@@ -17,13 +17,26 @@ _SCRIPT_DIR = Path(__file__).resolve().parent
 if str(_SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRIPT_DIR))
 
-from freeze_mutation_necessity_worlds import DEFAULT_PROTOCOL, ROOT, load_effective_protocol  # noqa: E402
-from orion.study.p1_causal.necessity_policies import ABLATION_ARMS, RUNNABLE_ARMS  # noqa: E402
+from freeze_mutation_necessity_worlds import ROOT, load_effective_protocol  # noqa: E402
+from orion.study.p1_causal.necessity_policies_v3 import (  # noqa: E402
+    ABLATION_ARMS,
+    RUNNABLE_ARMS,
+)
 
+DEFAULT_PROTOCOL = (
+    ROOT
+    / "research"
+    / "revival"
+    / "p1"
+    / "protocol"
+    / "P1.epistemic-mutation-necessity.v2.2.3.json"
+)
 EXECUTION_SOURCE_PATHS = (
     "research/revival/p1/run_mutation_necessity_campaign.py",
+    "src/orion/study/p1_causal/absorbed_mechanics.py",
     "src/orion/study/p1_causal/necessity_engine.py",
     "src/orion/study/p1_causal/necessity_policies.py",
+    "src/orion/study/p1_causal/necessity_policies_v3.py",
     "src/orion/study/p1_causal/necessity_scoring.py",
     "src/orion/study/p1_causal/necessity_statistics.py",
 )
@@ -63,6 +76,10 @@ def freeze_execution(protocol_path: Path, world_dir: Path, out: Path) -> dict:
     if set(ablation_ids) != set(protocol["direct_ablations"]):
         raise ValueError("ablation registry drift")
 
+    h1_parents = tuple(protocol["primary_hypotheses"][0]["comparators"])
+    if not h1_parents or any(parent not in runnable_ids for parent in h1_parents):
+        raise ValueError("frozen H1 parent missing from runnable registry")
+
     binding = {
         "schema_version": "P1.epistemic-mutation-necessity-execution-freeze.v1",
         "protocol_id": protocol["protocol_id"],
@@ -77,7 +94,7 @@ def freeze_execution(protocol_path: Path, world_dir: Path, out: Path) -> dict:
         "intervention_budget_units": float(protocol["intervention_budget"]["units_per_task"]),
         "runnable_arms": list(runnable_ids),
         "ablation_arms": list(ablation_ids),
-        "h1_parents": list(protocol["primary_hypotheses"][0]["comparators"]),
+        "h1_parents": list(h1_parents),
         "control_parent": protocol["primary_hypotheses"][1]["comparators"][0],
         "statistics": protocol["statistics"],
         "support_rule": protocol["support_rule"],
