@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Fail-closed validator for Paper-2 V2 widening artifacts.
 
-This checker intentionally validates authority and provenance structure, not
-scientific outcomes. A passing result means the widening surface is internally
-consistent and cannot promote claims by prose alone.
+This checker validates authority/provenance structure, not scientific outcomes.
+A passing result means the widening surface is internally consistent and cannot
+promote claims by prose alone.
 """
 from __future__ import annotations
 
@@ -32,9 +32,7 @@ EXPECTED_RESIDUALS = {
     "unavailable_or_censored_routes_remain_open_obligations",
     "content_identity_separate_from_question_conditioned_read_state",
 }
-REQUIRED_DONORS = {
-    "SAGE", "AgentIR", "SIEVE", "HALT", "DeepControl", "Search-R1",
-}
+REQUIRED_DONORS = {"SAGE", "AgentIR", "SIEVE", "HALT", "DeepControl", "Search-R1"}
 
 
 def _load(name: str) -> dict:
@@ -60,10 +58,12 @@ def validate() -> list[str]:
         errors.append("every promotion invariant must remain true")
 
     systems = registry.get("development_systems", {})
-    if "ORION_MAX_COMPOSED" not in systems:
+    max_system = systems.get("ORION_MAX_COMPOSED", [])
+    if not max_system:
         errors.append("ORION_MAX_COMPOSED missing")
-    if "typed_closure_authority" not in systems.get("ORION_MAX_COMPOSED", []):
-        errors.append("max composed system lost typed closure authority")
+    for required in ("typed_closure_authority", "censoring_obligations", "earned_route_independence"):
+        if required not in max_system:
+            errors.append(f"max composed system lost {required}")
 
     cases = hostile.get("cases", [])
     ids = [case.get("id") for case in cases]
@@ -82,13 +82,12 @@ def validate() -> list[str]:
 
     main = (MANUSCRIPT / "main.tex").read_text(encoding="utf-8")
     authority = (MANUSCRIPT / "sections" / "acquisition_authority.tex").read_text(encoding="utf-8")
-    for needle in (
-        r"\input{sections/acquisition_authority}",
-        r"\input{figures/P2-7_acquisition_authority}",
-        r"\texttt{CANNOT\_CHECK}",
-    ):
-        if needle not in main:
-            errors.append(f"manuscript missing required gate/figure: {needle}")
+    if r"\input{sections/acquisition_authority}" not in main:
+        errors.append("main manuscript does not include acquisition-authority section")
+    if r"\texttt{CANNOT\_CHECK}" not in main:
+        errors.append("manuscript lost explicit CANNOT_CHECK external gate")
+    if r"\input{figures/P2-7_acquisition_authority}" not in authority:
+        errors.append("authority section does not include P2-7 architecture figure")
     for phrase in (
         "Acquisition is not closure",
         "typed obligation state",
