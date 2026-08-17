@@ -70,6 +70,7 @@ jobs:
           )
           from orion.self_orion.baseline import baseline_bundle_to_dict, write_baseline_bundle
           from orion.self_orion.live_campaign_factory import build_live_phase2_trial_harness
+          from orion.self_orion.phase2_io import load_phase2_binding, write_phase2_binding
           from orion.self_orion.phase2_preflight import (
               Phase2ClosurePreflight,
               Phase2PreflightStatus,
@@ -108,6 +109,12 @@ jobs:
               baseline_id='simple-llm-retrieval-baseline-v1',
               resource_budget_units=budget,
           )
+          binding_path = out / 'PHASE2_CLOSURE_BINDING.json'
+          write_phase2_binding(preflight, binding_path)
+          loaded_binding = load_phase2_binding(binding_path)
+          if loaded_binding != preflight:
+              raise RuntimeError('serialized Phase-2 closure binding does not replay to the frozen preflight')
+
           preflight_report = assess_phase2_preflight(preflight)
           preflight_payload = {
               'status': preflight_report.status.value,
@@ -119,6 +126,8 @@ jobs:
               'provider_manifest_hash': stack.provider_manifest_hash,
               'evaluator_artifact_hash': stack.evaluator_artifact_hash,
               'evaluation_epoch_id': stack.evaluation_epoch_id,
+              'protocol_id': preflight.protocol_id,
+              'baseline_id': preflight.baseline_id,
               'reasoner_model': model,
               'resource_budget_units': budget,
               'outcome_accessed': False,
@@ -180,6 +189,8 @@ jobs:
               'provider_manifest_hash': stack.provider_manifest_hash,
               'evaluator_artifact_hash': stack.evaluator_artifact_hash,
               'evaluation_epoch_id': stack.evaluation_epoch_id,
+              'protocol_id': preflight.protocol_id,
+              'baseline_id': preflight.baseline_id,
               'reasoner_model': model,
               'packet_fingerprint': packet.fingerprint,
               'live_trial_evidence_artifact_hash': loaded.evidence_artifact_hash,
