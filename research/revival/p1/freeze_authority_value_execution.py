@@ -11,8 +11,13 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import sys
 
-from freeze_authority_value_holdout import DEFAULT_PROTOCOL, ROOT, load_effective_protocol
+_SCRIPT_DIR = Path(__file__).resolve().parent
+if str(_SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(_SCRIPT_DIR))
+
+from freeze_authority_value_holdout import DEFAULT_PROTOCOL, ROOT, load_effective_protocol  # noqa: E402
 
 EXECUTION_SOURCE_PATHS = (
     "research/revival/p1/run_authority_value_campaign.py",
