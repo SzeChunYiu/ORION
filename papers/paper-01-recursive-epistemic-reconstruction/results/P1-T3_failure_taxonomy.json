@@ -1,0 +1,623 @@
+{
+  "attribution_policy": "one primary failure mode per trial by the precedence in metrics.classify_failure (authority > invariant > trace integrity > abstention > control selectivity > diagnosis > targeting > reopening > terminal outcome); every mode that fired is retained on the record",
+  "provenance": {
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 20260815,
+    "confidence": 0.95,
+    "generated_utc": "2026-08-17T08:55:58+00:00",
+    "integrity": {
+      "blockers": [],
+      "coherent": true,
+      "expected_repeats": 5,
+      "record_count": 2880,
+      "subject_revisions": [
+        "0cf4e8d82771252de94be8c696a3f39fd3191019"
+      ],
+      "suite_fingerprints": [
+        "21b461d89280631b93b766d6fb000c7f9f5fbeccee7cb6664f238c2c5c8e6420"
+      ],
+      "system_ids": [
+        "arex_like_recursive_audit_followup",
+        "full_reset_instead_of_dependency_reopen",
+        "generic_retry_instead_of_typed_reframe",
+        "iris_like_information_state_revision",
+        "orion_full",
+        "orion_live_provider",
+        "orion_without_explicit_M",
+        "orion_without_explicit_W",
+        "orion_without_mechanic_self_audit",
+        "scion_like_dependency_execution_plan",
+        "static_react_tool_workflow",
+        "tree_search_iterative_research"
+      ]
+    },
+    "interval_method": "wilson_score for standalone binary rates; paired percentile bootstrap for matched differences",
+    "protocol_id": "P1.hidden-formulation.v1",
+    "record_count": 2880,
+    "record_schema": "orion.p1.case-record.v1",
+    "source": "archived raw records only; no live case, gold label or system execution",
+    "stochastic_repeats": 5,
+    "subject_revisions": [
+      "0cf4e8d82771252de94be8c696a3f39fd3191019"
+    ],
+    "suite_fingerprints": [
+      "21b461d89280631b93b766d6fb000c7f9f5fbeccee7cb6664f238c2c5c8e6420"
+    ],
+    "system_ids": [
+      "arex_like_recursive_audit_followup",
+      "full_reset_instead_of_dependency_reopen",
+      "generic_retry_instead_of_typed_reframe",
+      "iris_like_information_state_revision",
+      "orion_full",
+      "orion_live_provider",
+      "orion_without_explicit_M",
+      "orion_without_explicit_W",
+      "orion_without_mechanic_self_audit",
+      "scion_like_dependency_execution_plan",
+      "static_react_tool_workflow",
+      "tree_search_iterative_research"
+    ],
+    "unit_of_analysis": "frozen case; the stochastic repeats are reduced per case before any interval is taken"
+  },
+  "reason": "",
+  "rollup_by_failure_mode": [
+    {
+      "failure_mode": "ABSTENTION",
+      "representative_blinded_case_ids": [
+        "P1-C-14aefdd887",
+        "P1-C-239f672ebc",
+        "P1-C-39818be118"
+      ],
+      "share_of_all_scored_trials": 0.8392984967788117,
+      "systems": 11,
+      "trials": 2345
+    },
+    {
+      "failure_mode": "WRONG_RESPONSIBILITY",
+      "representative_blinded_case_ids": [
+        "P1-C-239f672ebc",
+        "P1-C-43c471c226",
+        "P1-C-44d2443b8b"
+      ],
+      "share_of_all_scored_trials": 0.08625626342161775,
+      "systems": 4,
+      "trials": 241
+    },
+    {
+      "failure_mode": "MISSED_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-14aefdd887",
+        "P1-C-2a87cda138",
+        "P1-C-3dba4ee7db"
+      ],
+      "share_of_all_scored_trials": 0.05476020042949177,
+      "systems": 12,
+      "trials": 153
+    },
+    {
+      "failure_mode": "CANNOT_CHECK",
+      "representative_blinded_case_ids": [
+        "P1-C-39818be118",
+        "P1-C-3dba4ee7db",
+        "P1-C-43c471c226"
+      ],
+      "share_of_all_scored_trials": 0.030780243378668574,
+      "systems": 1,
+      "trials": 86
+    },
+    {
+      "failure_mode": "UNNECESSARY_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-8b5889326e",
+        "P1-C-9fbf65695c",
+        "P1-C-e2cb3aa558"
+      ],
+      "share_of_all_scored_trials": 0.016105941302791697,
+      "systems": 3,
+      "trials": 45
+    },
+    {
+      "failure_mode": "INCOMPLETE_REOPEN",
+      "representative_blinded_case_ids": [
+        "P1-C-557ed886fe",
+        "P1-C-ffb30e12b4"
+      ],
+      "share_of_all_scored_trials": 0.0035790980672870437,
+      "systems": 1,
+      "trials": 10
+    }
+  ],
+  "rows": [
+    {
+      "distinct_cases": 47,
+      "example_faults": [],
+      "failure_mode": "ABSTENTION",
+      "representative_blinded_case_ids": [
+        "P1-C-14aefdd887",
+        "P1-C-239f672ebc",
+        "P1-C-39818be118"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.9791666666666666,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "arex_like_recursive_audit_followup",
+      "system_role": "BASELINE",
+      "trials": 235
+    },
+    {
+      "distinct_cases": 47,
+      "example_faults": [],
+      "failure_mode": "ABSTENTION",
+      "representative_blinded_case_ids": [
+        "P1-C-14aefdd887",
+        "P1-C-239f672ebc",
+        "P1-C-39818be118"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.9791666666666666,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "full_reset_instead_of_dependency_reopen",
+      "system_role": "ABLATION",
+      "trials": 235
+    },
+    {
+      "distinct_cases": 47,
+      "example_faults": [],
+      "failure_mode": "ABSTENTION",
+      "representative_blinded_case_ids": [
+        "P1-C-14aefdd887",
+        "P1-C-239f672ebc",
+        "P1-C-39818be118"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.9791666666666666,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "iris_like_information_state_revision",
+      "system_role": "BASELINE",
+      "trials": 235
+    },
+    {
+      "distinct_cases": 47,
+      "example_faults": [],
+      "failure_mode": "ABSTENTION",
+      "representative_blinded_case_ids": [
+        "P1-C-14aefdd887",
+        "P1-C-239f672ebc",
+        "P1-C-39818be118"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.9791666666666666,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "orion_full",
+      "system_role": "SUBJECT",
+      "trials": 235
+    },
+    {
+      "distinct_cases": 47,
+      "example_faults": [],
+      "failure_mode": "ABSTENTION",
+      "representative_blinded_case_ids": [
+        "P1-C-14aefdd887",
+        "P1-C-239f672ebc",
+        "P1-C-39818be118"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.9791666666666666,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "orion_without_explicit_M",
+      "system_role": "ABLATION",
+      "trials": 235
+    },
+    {
+      "distinct_cases": 47,
+      "example_faults": [],
+      "failure_mode": "ABSTENTION",
+      "representative_blinded_case_ids": [
+        "P1-C-14aefdd887",
+        "P1-C-239f672ebc",
+        "P1-C-39818be118"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.9791666666666666,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "orion_without_explicit_W",
+      "system_role": "ABLATION",
+      "trials": 235
+    },
+    {
+      "distinct_cases": 47,
+      "example_faults": [],
+      "failure_mode": "ABSTENTION",
+      "representative_blinded_case_ids": [
+        "P1-C-14aefdd887",
+        "P1-C-239f672ebc",
+        "P1-C-39818be118"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.9791666666666666,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "scion_like_dependency_execution_plan",
+      "system_role": "BASELINE",
+      "trials": 235
+    },
+    {
+      "distinct_cases": 47,
+      "example_faults": [],
+      "failure_mode": "ABSTENTION",
+      "representative_blinded_case_ids": [
+        "P1-C-14aefdd887",
+        "P1-C-239f672ebc",
+        "P1-C-39818be118"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.9791666666666666,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "static_react_tool_workflow",
+      "system_role": "BASELINE",
+      "trials": 235
+    },
+    {
+      "distinct_cases": 31,
+      "example_faults": [],
+      "failure_mode": "ABSTENTION",
+      "representative_blinded_case_ids": [
+        "P1-C-14aefdd887",
+        "P1-C-239f672ebc",
+        "P1-C-39818be118"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.6458333333333334,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "generic_retry_instead_of_typed_reframe",
+      "system_role": "ABLATION",
+      "trials": 155
+    },
+    {
+      "distinct_cases": 31,
+      "example_faults": [],
+      "failure_mode": "ABSTENTION",
+      "representative_blinded_case_ids": [
+        "P1-C-14aefdd887",
+        "P1-C-239f672ebc",
+        "P1-C-39818be118"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.6458333333333334,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "orion_without_mechanic_self_audit",
+      "system_role": "ABLATION",
+      "trials": 155
+    },
+    {
+      "distinct_cases": 31,
+      "example_faults": [],
+      "failure_mode": "ABSTENTION",
+      "representative_blinded_case_ids": [
+        "P1-C-14aefdd887",
+        "P1-C-239f672ebc",
+        "P1-C-39818be118"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.6458333333333334,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "tree_search_iterative_research",
+      "system_role": "BASELINE",
+      "trials": 155
+    },
+    {
+      "distinct_cases": 21,
+      "example_faults": [],
+      "failure_mode": "MISSED_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-14aefdd887",
+        "P1-C-2a87cda138",
+        "P1-C-3dba4ee7db"
+      ],
+      "share_denominator": 154,
+      "share_of_scored_trials": 0.6363636363636364,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "orion_live_provider",
+      "system_role": "BASELINE",
+      "trials": 98
+    },
+    {
+      "distinct_cases": 23,
+      "example_faults": [],
+      "failure_mode": "CANNOT_CHECK",
+      "representative_blinded_case_ids": [
+        "P1-C-39818be118",
+        "P1-C-3dba4ee7db",
+        "P1-C-43c471c226"
+      ],
+      "share_denominator": 154,
+      "share_of_scored_trials": 0.5584415584415584,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "orion_live_provider",
+      "system_role": "BASELINE",
+      "trials": 86
+    },
+    {
+      "distinct_cases": 13,
+      "example_faults": [],
+      "failure_mode": "WRONG_RESPONSIBILITY",
+      "representative_blinded_case_ids": [
+        "P1-C-43c471c226",
+        "P1-C-44d2443b8b",
+        "P1-C-557ed886fe"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.2708333333333333,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "generic_retry_instead_of_typed_reframe",
+      "system_role": "ABLATION",
+      "trials": 65
+    },
+    {
+      "distinct_cases": 13,
+      "example_faults": [],
+      "failure_mode": "WRONG_RESPONSIBILITY",
+      "representative_blinded_case_ids": [
+        "P1-C-43c471c226",
+        "P1-C-44d2443b8b",
+        "P1-C-557ed886fe"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.2708333333333333,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "tree_search_iterative_research",
+      "system_role": "BASELINE",
+      "trials": 65
+    },
+    {
+      "distinct_cases": 12,
+      "example_faults": [],
+      "failure_mode": "WRONG_RESPONSIBILITY",
+      "representative_blinded_case_ids": [
+        "P1-C-239f672ebc",
+        "P1-C-8b5889326e",
+        "P1-C-8f17134405"
+      ],
+      "share_denominator": 154,
+      "share_of_scored_trials": 0.36363636363636365,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "orion_live_provider",
+      "system_role": "BASELINE",
+      "trials": 56
+    },
+    {
+      "distinct_cases": 11,
+      "example_faults": [],
+      "failure_mode": "WRONG_RESPONSIBILITY",
+      "representative_blinded_case_ids": [
+        "P1-C-43c471c226",
+        "P1-C-44d2443b8b",
+        "P1-C-6884911ddd"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.22916666666666666,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "orion_without_mechanic_self_audit",
+      "system_role": "ABLATION",
+      "trials": 55
+    },
+    {
+      "distinct_cases": 3,
+      "example_faults": [],
+      "failure_mode": "UNNECESSARY_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-8b5889326e",
+        "P1-C-9fbf65695c",
+        "P1-C-e2cb3aa558"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.0625,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "generic_retry_instead_of_typed_reframe",
+      "system_role": "ABLATION",
+      "trials": 15
+    },
+    {
+      "distinct_cases": 3,
+      "example_faults": [],
+      "failure_mode": "UNNECESSARY_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-8b5889326e",
+        "P1-C-9fbf65695c",
+        "P1-C-e2cb3aa558"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.0625,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "orion_without_mechanic_self_audit",
+      "system_role": "ABLATION",
+      "trials": 15
+    },
+    {
+      "distinct_cases": 3,
+      "example_faults": [],
+      "failure_mode": "UNNECESSARY_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-8b5889326e",
+        "P1-C-9fbf65695c",
+        "P1-C-e2cb3aa558"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.0625,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "tree_search_iterative_research",
+      "system_role": "BASELINE",
+      "trials": 15
+    },
+    {
+      "distinct_cases": 2,
+      "example_faults": [],
+      "failure_mode": "INCOMPLETE_REOPEN",
+      "representative_blinded_case_ids": [
+        "P1-C-557ed886fe",
+        "P1-C-ffb30e12b4"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.041666666666666664,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "orion_without_mechanic_self_audit",
+      "system_role": "ABLATION",
+      "trials": 10
+    },
+    {
+      "distinct_cases": 1,
+      "example_faults": [],
+      "failure_mode": "MISSED_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-2a87cda138"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.020833333333333332,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "arex_like_recursive_audit_followup",
+      "system_role": "BASELINE",
+      "trials": 5
+    },
+    {
+      "distinct_cases": 1,
+      "example_faults": [],
+      "failure_mode": "MISSED_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-2a87cda138"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.020833333333333332,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "full_reset_instead_of_dependency_reopen",
+      "system_role": "ABLATION",
+      "trials": 5
+    },
+    {
+      "distinct_cases": 1,
+      "example_faults": [],
+      "failure_mode": "MISSED_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-2a87cda138"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.020833333333333332,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "generic_retry_instead_of_typed_reframe",
+      "system_role": "ABLATION",
+      "trials": 5
+    },
+    {
+      "distinct_cases": 1,
+      "example_faults": [],
+      "failure_mode": "MISSED_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-2a87cda138"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.020833333333333332,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "iris_like_information_state_revision",
+      "system_role": "BASELINE",
+      "trials": 5
+    },
+    {
+      "distinct_cases": 1,
+      "example_faults": [],
+      "failure_mode": "MISSED_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-2a87cda138"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.020833333333333332,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "orion_full",
+      "system_role": "SUBJECT",
+      "trials": 5
+    },
+    {
+      "distinct_cases": 1,
+      "example_faults": [],
+      "failure_mode": "MISSED_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-2a87cda138"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.020833333333333332,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "orion_without_explicit_M",
+      "system_role": "ABLATION",
+      "trials": 5
+    },
+    {
+      "distinct_cases": 1,
+      "example_faults": [],
+      "failure_mode": "MISSED_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-2a87cda138"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.020833333333333332,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "orion_without_explicit_W",
+      "system_role": "ABLATION",
+      "trials": 5
+    },
+    {
+      "distinct_cases": 1,
+      "example_faults": [],
+      "failure_mode": "MISSED_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-2a87cda138"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.020833333333333332,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "orion_without_mechanic_self_audit",
+      "system_role": "ABLATION",
+      "trials": 5
+    },
+    {
+      "distinct_cases": 1,
+      "example_faults": [],
+      "failure_mode": "MISSED_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-2a87cda138"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.020833333333333332,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "scion_like_dependency_execution_plan",
+      "system_role": "BASELINE",
+      "trials": 5
+    },
+    {
+      "distinct_cases": 1,
+      "example_faults": [],
+      "failure_mode": "MISSED_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-2a87cda138"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.020833333333333332,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "static_react_tool_workflow",
+      "system_role": "BASELINE",
+      "trials": 5
+    },
+    {
+      "distinct_cases": 1,
+      "example_faults": [],
+      "failure_mode": "MISSED_REFRAME",
+      "representative_blinded_case_ids": [
+        "P1-C-2a87cda138"
+      ],
+      "share_denominator": 240,
+      "share_of_scored_trials": 0.020833333333333332,
+      "share_unit": "scored trial (case x seed)",
+      "system_id": "tree_search_iterative_research",
+      "system_role": "BASELINE",
+      "trials": 5
+    }
+  ],
+  "status": "OK",
+  "table_id": "P1-T3_failure_taxonomy"
+}
