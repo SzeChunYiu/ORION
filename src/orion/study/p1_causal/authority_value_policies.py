@@ -74,7 +74,7 @@ def _matches_diagnosis(view: PublicAuthorityView, request: ActionRequest) -> boo
 def _candidate_proposal(view: PublicAuthorityView) -> RepairProposal | None:
     """Pick a plausible local-recovery proposal without consulting gold.
 
-    Proposal order is part of the public frozen case.  Prediction is proposal
+    Proposal order is part of the public frozen case. Prediction is proposal
     metadata supplied equally to every arm, not a host label.
     """
 
@@ -151,10 +151,9 @@ def unrestricted_outcome_flip_repair(view: PublicAuthorityView) -> PolicyOutcome
     proposal = _candidate_proposal(view)
     if proposal is None:
         return PolicyOutcome("unrestricted_outcome_flip_repair", (), (), True, False)
-    applied = proposal.requests
     return PolicyOutcome(
         "unrestricted_outcome_flip_repair",
-        applied,
+        proposal.requests,
         (),
         False,
         False,
@@ -166,8 +165,6 @@ def reflect_like_local_repair(view: PublicAuthorityView) -> PolicyOutcome:
     proposal = _candidate_proposal(view)
     if proposal is None:
         return PolicyOutcome("reflect_like_local_repair", (), (), True, False)
-    # Diagnosis-specific local replay applies the patch as proposed.  It has no
-    # P1 scientific-authority projection and no dependency propagation.
     return PolicyOutcome(
         "reflect_like_local_repair",
         proposal.requests,
@@ -212,7 +209,39 @@ def class_conditioned_minimal_repair(view: PublicAuthorityView) -> PolicyOutcome
     )
 
 
-def _orion_allowed_requests(view: PublicAuthorityView, proposal: RepairProposal) -> tuple[tuple[ActionRequest, ...], tuple[str, ...], bool]:
+def r2act_dependency_rollback_parent(view: PublicAuthorityView) -> PolicyOutcome:
+    """Strong Round-B composite parent.
+
+    R2Act contributes diagnosis-conditioned admissible recovery-action/target
+    selection; dependency-guided rollback contributes recursive affected-state
+    recovery while preserving unrelated state. The parent deliberately does
+    **not** import ORION's protected scientific mutation-authority predicate:
+    it treats a supplied diagnosis as sufficient to execute its matching repair.
+    """
+
+    proposal = _candidate_proposal(view)
+    if proposal is None:
+        return PolicyOutcome("r2act_dependency_rollback_parent", (), (), True, False)
+    matching = tuple(request for request in proposal.requests if _matches_diagnosis(view, request))
+    if not matching:
+        return PolicyOutcome("r2act_dependency_rollback_parent", (), (), True, False)
+    reopened = _recursive_reopen(view, _changed_coordinates(matching))
+    return PolicyOutcome(
+        "r2act_dependency_rollback_parent",
+        matching,
+        reopened,
+        False,
+        False,
+        notes=(
+            f"proposal:{proposal.proposal_id}",
+            "diagnosis_conditioned_valid_action+recursive_dependency_rollback",
+        ),
+    )
+
+
+def _orion_allowed_requests(
+    view: PublicAuthorityView, proposal: RepairProposal
+) -> tuple[tuple[ActionRequest, ...], tuple[str, ...], bool]:
     state = _belief_for(view)
     applied: list[ActionRequest] = []
     notes: list[str] = []
@@ -236,7 +265,9 @@ def _orion_allowed_requests(view: PublicAuthorityView, proposal: RepairProposal)
     return tuple(applied), tuple(notes), cannot_check
 
 
-def _orion_policy(view: PublicAuthorityView, *, recursive_reopen: bool, arm_id: str) -> PolicyOutcome:
+def _orion_policy(
+    view: PublicAuthorityView, *, recursive_reopen: bool, arm_id: str
+) -> PolicyOutcome:
     proposal = _candidate_proposal(view)
     if proposal is None:
         return PolicyOutcome(arm_id, (), (), True, False, notes=("no_recovery_proposal",))
@@ -256,11 +287,7 @@ def _orion_policy(view: PublicAuthorityView, *, recursive_reopen: bool, arm_id: 
             notes=(*notes, "no_licensed_local_repair"),
         )
     coordinates = _changed_coordinates(applied)
-    reopened = (
-        _recursive_reopen(view, coordinates)
-        if recursive_reopen
-        else ()
-    )
+    reopened = _recursive_reopen(view, coordinates) if recursive_reopen else ()
     return PolicyOutcome(
         arm_id,
         applied,
@@ -307,6 +334,7 @@ MATCHED_ARMS = (
     reflect_like_local_repair,
     reflect_evigraph_composite_parent,
     class_conditioned_minimal_repair,
+    r2act_dependency_rollback_parent,
     orion_typed_permission,
     orion_typed_permission_dependency_reopen,
     full_reset_after_repair,
@@ -321,6 +349,7 @@ __all__ = [
     "full_reset_after_repair",
     "orion_typed_permission",
     "orion_typed_permission_dependency_reopen",
+    "r2act_dependency_rollback_parent",
     "reflect_evigraph_composite_parent",
     "reflect_like_local_repair",
     "unrestricted_outcome_flip_repair",
