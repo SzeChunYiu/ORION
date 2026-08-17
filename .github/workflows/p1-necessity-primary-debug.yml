@@ -6,6 +6,14 @@ on:
       - shadow/p1-necessity-primary-result-20260817
     paths:
       - '.github/workflows/p1-necessity-primary-debug.yml'
+  pull_request:
+    branches:
+      - shadow/p1-necessity-execution-freeze-20260817
+    paths:
+      - '.github/workflows/p1-necessity-primary-debug.yml'
+      - 'research/revival/p1/confirmatory/v2.2/PRIMARY_*_FREEZE.json'
+      - 'research/revival/p1/run_mutation_necessity_campaign.py'
+      - 'src/orion/study/p1_causal/necessity_*.py'
 
 permissions:
   contents: read
@@ -40,7 +48,7 @@ jobs:
       - name: Capture frozen runner exception structurally
         run: |
           python - <<'PY'
-          import json, subprocess, traceback
+          import json, subprocess
           from pathlib import Path
           command=[
               'python','research/revival/p1/run_mutation_necessity_campaign.py',
@@ -64,7 +72,6 @@ jobs:
               'result_exists':receipt['result_exists'],
               'stderr_tail':receipt['stderr'][-4000:],
           }, sort_keys=True))
-          # Debug workflow itself succeeds so the artifact is always retrievable.
           PY
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
