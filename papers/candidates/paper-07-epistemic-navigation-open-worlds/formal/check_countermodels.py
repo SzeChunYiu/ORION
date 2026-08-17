@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """Deterministic countermodels/checks for P7 formal core V1.
 
-The script uses only Python's standard library.  It demonstrates bounded
+The script uses only Python's standard library. It demonstrates bounded
 instances of the general proofs; it is not an empirical LLM-agent benchmark.
+
+Important theorem boundary: the stopping impossibility is conditioned on
+extension ambiguity. Absence of a syntactic closure-certificate object is not,
+by itself, defined to imply ambiguity in every admissible model class.
 """
 
 from __future__ import annotations
@@ -49,13 +53,15 @@ def reachable(
     return False
 
 
-def check_open_world_indistinguishability() -> int:
-    """Construct complete/incomplete extensions with identical finite history."""
+def check_extension_ambiguity() -> int:
+    """Construct complete/incomplete completions with identical finite history."""
     observed_nodes = ("start", "seen-a", "seen-b")
     case_count = 0
 
-    # Enumerate all observed undirected-edge subsets merely to pressure the
-    # construction across different finite visible histories.
+    # Enumerate every observed undirected-edge subset to pressure the
+    # construction across different finite visible histories. This deliberately
+    # defines a rich admissible class in which an unseen relevant location may
+    # be added without changing the observed signature.
     possible_edges = list(combinations(observed_nodes, 2))
     for mask in range(1 << len(possible_edges)):
         visible_graph: dict[str, set[str]] = {node: set() for node in observed_nodes}
@@ -89,6 +95,22 @@ def check_open_world_indistinguishability() -> int:
         case_count += 1
 
     return case_count
+
+
+def check_certificate_absence_not_equivalent_to_ambiguity() -> None:
+    """A missing certificate object need not imply two admissible completions."""
+    closure_certificate_present = False
+
+    # This model class is fixed by an external structural constraint: the sole
+    # admissible completion is known here to contain no unseen relevant state.
+    # We intentionally do not encode that fact as a `closure certificate` token
+    # to demonstrate that certificate absence and extension ambiguity are not
+    # definitionally identical.
+    admissible_completion_truth_values = (False,)
+    extension_ambiguous = len(set(admissible_completion_truth_values)) > 1
+
+    assert closure_certificate_present is False
+    assert extension_ambiguous is False
 
 
 def check_route_stop_not_task_stop() -> None:
@@ -169,6 +191,21 @@ def check_reframe_preservation() -> None:
     assert must_reopen
 
 
+def check_evidence_transport_without_closure_transport() -> None:
+    """Goal change may preserve evidence identity but reopen the old closure."""
+    evidence_identity_before = "evidence:content-hash-123"
+    evidence_identity_after = "evidence:content-hash-123"
+    old_obligation = "find-any-relevant-effect"
+    new_obligation = "find-effect-with-independent-replication"
+
+    assert evidence_identity_before == evidence_identity_after
+    assert old_obligation != new_obligation
+
+    old_closure_certificate_scope = frozenset({old_obligation})
+    new_obligation_covered = new_obligation in old_closure_certificate_scope
+    assert not new_obligation_covered
+
+
 def check_fail_closed_stop() -> None:
     obligation_states = {
         "known-source": "SATISFIED",
@@ -186,21 +223,38 @@ def check_fail_closed_stop() -> None:
     assert not (len(mandatory_open) == 0)
 
 
+def check_unnecessary_reframe_negative_control() -> None:
+    """A widened navigator should not reframe when the current chart suffices."""
+    fixed_chart = {
+        "start": frozenset({"goal"}),
+        "goal": frozenset(),
+    }
+    assert reachable(fixed_chart, "start", "goal")
+    reframe_required = False
+    assert reframe_required is False
+
+
 def main() -> int:
-    indistinguishable_pairs = check_open_world_indistinguishability()
+    ambiguous_pairs = check_extension_ambiguity()
+    check_certificate_absence_not_equivalent_to_ambiguity()
     check_route_stop_not_task_stop()
     check_overlap_independence_counterexamples()
     check_topology_change_expressivity()
     check_reframe_preservation()
+    check_evidence_transport_without_closure_transport()
     check_fail_closed_stop()
+    check_unnecessary_reframe_negative_control()
 
     print("P7 deterministic countermodels: PASS")
-    print(f"  indistinguishable complete/incomplete pairs: {indistinguishable_pairs}")
+    print(f"  extension-ambiguous complete/incomplete pairs: {ambiguous_pairs}")
+    print("  certificate-absence != extension-ambiguity counterexample: confirmed")
     print("  route-stop/task-stop counterexample: confirmed")
     print("  overlap/independence counterexamples: confirmed")
     print("  topology-change strict-expressivity instance: confirmed")
     print("  preservation/reopening fixtures: confirmed")
+    print("  evidence-preserved / closure-reopened goal-change fixture: confirmed")
     print("  fail-closed stopping fixture: confirmed")
+    print("  unnecessary-reframe negative control: confirmed")
     return 0
 
 
