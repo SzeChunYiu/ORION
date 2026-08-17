@@ -1,0 +1,209 @@
+{
+  "schema_version": "orion.p5.causal-repair-protocol.v2",
+  "paper_id": "P5",
+  "protocol_id": "P5.causal-repair.v2",
+  "parent_protocol_id": "P5.hidden-cause-staged-acceptance.v2",
+  "grandparent_protocol_id": "P5.hidden-cause-fresh-transfer.v1",
+  "protocol_status": "DESIGN_FROZEN",
+  "outcome_accessed": false,
+  "v1_protocol_mutated": false,
+  "v2_protocol_mutated": false,
+  "empirical_authority": "CANNOT_CHECK",
+  "adoption_decision": {
+    "mechanism": "intervention-backed adjacent-cause discrimination plus non-compensatory fresh/protected acceptance",
+    "disposition": "COMPOSE",
+    "nearest_work": [
+      {"id": "PAST-Bench", "reference": "arXiv:2608.04003", "disposition": "ADOPT", "role": "pathway-sensitive replay/fresh evaluation"},
+      {"id": "EvoAgentBench", "reference": "arXiv:2607.05202", "disposition": "ADAPT", "role": "procedural ability-transfer diagnostic; not standalone novelty"},
+      {"id": "SEVA", "reference": "arXiv:2606.29713", "disposition": "ADOPT", "role": "specialist-regression / harmful-transfer reporting"},
+      {"id": "PACE", "reference": "arXiv:2606.08106", "disposition": "ADAPT", "role": "anytime-valid within-stage acceptor, not a fresh-transfer substitute"},
+      {"id": "SEA", "reference": "arXiv:2607.00871", "disposition": "ADAPT", "role": "anytime-valid certificate pressure"},
+      {"id": "Darwin Gödel Machine", "reference": "arXiv:2505.22954", "disposition": "ADAPT", "role": "archive/self-edit/sandbox baseline"},
+      {"id": "REFLECT", "reference": "arXiv:2606.09071", "disposition": "ADAPT", "role": "intervention-supported attribution; does not replace protected fresh transfer"},
+      {"id": "Causal Agent Replay", "reference": "arXiv:2606.08275", "disposition": "ADAPT", "role": "counterfactual step attribution baseline"},
+      {"id": "SAGE", "reference": "arXiv:2606.31478", "disposition": "ADOPT", "role": "multi-hypothesis diagnosis is prior art"},
+      {"id": "CausalFlow", "reference": "arXiv:2605.25338", "disposition": "ADOPT", "role": "counterfactual/minimal repair is prior art"},
+      {"id": "ADIAS", "reference": "arXiv:2608.06410", "disposition": "ADOPT", "role": "persistent issue-centric self-improvement is prior art"},
+      {"id": "ADAS", "reference": "arXiv:2408.08435", "disposition": "ADAPT", "role": "meta-agent search baseline"}
+    ],
+    "non_novel": [
+      "one-shot failure attribution",
+      "intervention-supported step localization",
+      "counterfactual replay attribution",
+      "archive plus sandbox self-edit",
+      "anytime-valid sequential acceptance",
+      "procedural ability transfer benchmarks"
+    ],
+    "residual": "evidence-bound adjacent-cause discriminators that license only the matching change class, then non-compensatory STATIC→DIAGNOSE→DISCRIMINATE→CANDIDATE→REPLAY→FRESH→PROTECTED acceptance with immutable negative-history recurrence checks, protected evaluator custody, and host-only RECOMMEND_HOST_PROMOTION"
+  },
+  "primary_hypothesis": {
+    "id": "P5.CR.H1",
+    "text": "Intervention-backed discrimination plus non-compensatory fresh/protected acceptance produces protected transferable improvement over one-shot attribution repair while preventing replay-overfit and harmful-transfer averaging.",
+    "decision_rule": "A positive transfer claim requires independent fresh transfer, no harmful-transfer safety violation, protected evaluator integrity, complete negative history, and host-only recommendation. Attribution accuracy alone is DIAGNOSIS_ONLY."
+  },
+  "stage_order": [
+    "STATIC",
+    "DIAGNOSE",
+    "DISCRIMINATE",
+    "CANDIDATE",
+    "REPLAY",
+    "FRESH",
+    "PROTECTED"
+  ],
+  "stage_semantics": {
+    "STATIC": {
+      "purpose": "structural/compile/invariant screening before diagnosis",
+      "pass": "frozen static and invariant checks pass",
+      "fail": "any frozen static or invariant check fails",
+      "cannot_check": "required static checker or bound artifact is unavailable"
+    },
+    "DIAGNOSE": {
+      "purpose": "record competing causes without committing a method change",
+      "pass": "competing-cause set is evidence-bound and includes the adjacent-level pair",
+      "fail": "diagnosis is missing, contradictory, or rewritten after seeing a candidate outcome",
+      "cannot_check": "required diagnostic evidence is unavailable"
+    },
+    "DISCRIMINATE": {
+      "purpose": "run the frozen adjacent-level intervention before repair evaluation",
+      "pass": "discriminator evidence updates cause state and licenses at most one change class",
+      "fail": "discriminator ignored, outcome-contingent, or used to license a broader rewrite",
+      "cannot_check": "required discriminator intervention cannot be executed"
+    },
+    "CANDIDATE": {
+      "purpose": "bind an isolated candidate whose change class matches the licensed cause",
+      "pass": "candidate fingerprint, change class, and allowed surface are bound",
+      "fail": "change class exceeds licensed cause or candidate can touch protected surfaces",
+      "cannot_check": "isolated candidate execution environment is unavailable"
+    },
+    "REPLAY": {
+      "purpose": "motivating/replay verification on previously exposed development evidence",
+      "pass": "replay meets frozen non-harm and acceptance rule",
+      "fail": "replay regression, harmful behavior, or acceptance-test failure",
+      "cannot_check": "required replay evidence is unavailable or invalid"
+    },
+    "FRESH": {
+      "purpose": "independent fresh-transfer evaluation unavailable as development feedback",
+      "pass": "fresh evidence meets frozen improvement/non-harm rule",
+      "fail": "fresh harmful transfer, regression beyond frozen margin, or acceptance-test failure",
+      "cannot_check": "fresh split/evidence is unavailable, contaminated, or invalid"
+    },
+    "PROTECTED": {
+      "purpose": "independently custodied evaluator/holdout and authority-integrity assessment",
+      "pass": "protected evaluator returns admissible PASS on exact bound candidate/epoch",
+      "fail": "protected evaluator returns FAIL or detects compromise",
+      "cannot_check": "protected evaluator cannot establish admissible evidence"
+    }
+  },
+  "change_classes": {
+    "RETRIEVAL_ROUTING_REPAIR": "licensed by retrieval or routing cause after discriminator",
+    "IMPLEMENTATION_REPAIR": "licensed by implementation cause that persists independent of environment",
+    "ENVIRONMENT_TOOL_ACCOMMODATION": "licensed by environment/tool cause; must not hide external failure",
+    "REPRESENTATION_REPAIR": "licensed by representation cause after holding method fixed",
+    "MEASUREMENT_SPECIFICATION_REPAIR": "requires host authority; candidate cannot rewrite the evaluator",
+    "METHOD_BASIS_CHANGE": "licensed only after all lower-level causes are ruled out"
+  },
+  "fresh_transfer_split_identities": {
+    "motivating_split_hash": "UNBOUND",
+    "replay_split_hash": "UNBOUND",
+    "fresh_split_hash": "UNBOUND",
+    "protected_split_hash": "UNBOUND",
+    "fresh_axis_requirement": "at_least_one_of_task_domain_model_environment",
+    "protected_holdout_custody": "outside_candidate_write_authority"
+  },
+  "global_decision_rules": {
+    "harmful_precedence": "any known harmful stage forces REJECT even if an earlier stage is missing",
+    "fail_precedence": "any known FAIL forces REJECT",
+    "greedy_replay_only": "replay-score rise without independent fresh transfer yields BLOCK, never promotion",
+    "missing_fresh_transfer": "absent FRESH evidence yields BLOCK",
+    "missing_protected_evaluator": "absent protected evaluator/holdout evidence yields BLOCK",
+    "negative_history_recurrence": "a fingerprint matching a retained rejected/harmful/null/blocked candidate yields BLOCK",
+    "cannot_check_precedence": "absent known harm/FAIL/BLOCK, any known CANNOT_CHECK forces CANNOT_CHECK",
+    "complete_pass": "only PASS at all seven stages with evidence-bound discriminator and licensed change class may yield RECOMMEND_HOST_PROMOTION",
+    "terminal": "RECOMMEND_HOST_PROMOTION",
+    "self_merge_authority": false,
+    "candidate_self_promotion_authority": false,
+    "negative_history": "append-only; failed, harmful, null, blocked and CANNOT_CHECK revisions remain retained"
+  },
+  "acceptance_doctrine": {
+    "replay_improvement_is_not_acceptance": true,
+    "required_for_host_promotion_recommendation": [
+      "diagnosis_discriminator_chain_evidence_bound",
+      "replay_passes",
+      "independent_fresh_transfer_passes",
+      "no_frozen_harmful_transfer_safety_violation",
+      "protected_evaluator_holdout_integrity_passes",
+      "negative_history_includes_rejected_null_harmful_candidates",
+      "host_only_RECOMMEND_HOST_PROMOTION"
+    ],
+    "pace_sea_statistics_cannot_replace_fresh_or_protected": true
+  },
+  "baselines": [
+    "fixed_no_improvement_agent",
+    "direct_self_edit_reflection",
+    "p5_v1_one_shot_attribution_repair",
+    "p5_staged_v2_without_active_discriminator",
+    "sage_like_multi_hypothesis_diagnosis",
+    "car_reflect_like_intervention_diagnosis",
+    "dgm_like_archive_self_edit",
+    "adias_like_issue_centric",
+    "pace_like_anytime_valid_acceptance",
+    "strongest_runnable_self_evolution_baseline"
+  ],
+  "ablations": [
+    "no_competing_causes",
+    "no_active_discriminator",
+    "discriminator_outcome_ignored",
+    "replay_only",
+    "fresh_without_protected_evaluator",
+    "greedy_accept_if_replay_score_rises",
+    "delete_ignore_harmful_variants",
+    "no_negative_history_recurrence_check",
+    "candidate_influences_evaluator_holdout",
+    "method_change_before_ruling_out_lower_causes"
+  ],
+  "negative_controls": [
+    "replay_gain_with_fresh_harm",
+    "greedy_replay_only_promotion_attempt",
+    "missing_fresh_transfer_laundering",
+    "negative_history_recurrence",
+    "method_basis_change_before_lower_causes_ruled_out",
+    "candidate_self_promotion"
+  ],
+  "metrics": {
+    "primary": [
+      "protected_fresh_task_improvement",
+      "harmful_transfer_regression_rate",
+      "worst_family_regression",
+      "fresh_transfer_success_rate"
+    ],
+    "mechanistic": [
+      "root_cause_attribution_macro_f1",
+      "discriminator_information_gain",
+      "false_method_change_rate",
+      "intervention_success_given_correct_diagnosis",
+      "replay_vs_fresh_gap",
+      "evaluator_holdout_negative_history_compromise_rate",
+      "recognized_failure_recurrence",
+      "cost_time_tool_calls_to_protected_validated_improvement"
+    ]
+  },
+  "execution_bindings": {
+    "subject_revision": "UNBOUND",
+    "hidden_cause_suite_hash": "UNBOUND",
+    "motivating_split_hash": "UNBOUND",
+    "replay_split_hash": "UNBOUND",
+    "fresh_split_hash": "UNBOUND",
+    "protected_split_hash": "UNBOUND",
+    "model_provider_revisions": "UNBOUND",
+    "evaluator_hash": "UNBOUND",
+    "evaluation_epoch": "UNBOUND"
+  },
+  "required_artifacts": [
+    "content-addressed attribution reproduction receipt",
+    "frozen three-error discriminator artifact",
+    "content-addressed stage receipts",
+    "append-only negative-history digest",
+    "fresh/protected access logs",
+    "all harmful/null/blocked/CANNOT_CHECK candidates"
+  ]
+}

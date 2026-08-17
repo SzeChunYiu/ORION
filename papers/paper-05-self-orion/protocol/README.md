@@ -32,3 +32,14 @@ Before any V2 outcome access, the protected host must create a fully bound `orio
 Stage observations and candidate decisions are archived under `P5_RESULT_ARCHIVE_V2_SCHEMA.json`. Finalization fails closed on binding mismatches, missing arm×episode×seed coverage, V2 decisions inconsistent with the non-compensatory gate, or an accepted candidate without independent FRESH and PROTECTED audit. Comparator false acceptance remains measurable evidence rather than being discarded as invalid.
 
 See `V2_EVIDENCE_HANDOFF.md`. Passing the validator establishes artifact integrity only; it still reports empirical authority as `CANNOT_CHECK` until the external study exists.
+
+## Causal-repair V2 — intervention-backed diagnosis plus protected fresh transfer
+
+**Protocol:** `P5.causal-repair.v2`  
+**Status:** `DESIGN_FROZEN`  
+**Outcome access:** false  
+**Parent:** staged-acceptance V2, which remains unchanged.
+
+Issue #282 freezes the three GLM-5.2 adjacent-level attribution errors (`P5-HC-002`, `P5-HC-012`, `P5-HC-018`) as discriminator seeds, then requires `STATIC -> DIAGNOSE -> DISCRIMINATE -> CANDIDATE -> REPLAY -> FRESH -> PROTECTED`. Replay gain cannot compensate fresh harm. Missing fresh transfer is `BLOCK`. The only positive terminal remains host-only `RECOMMEND_HOST_PROMOTION`.
+
+See `PROTOCOL_CAUSAL_REPAIR_V2.json`, `CAUSAL_REPAIR_POLICY_V2.md`, and `P5_CAUSAL_DISCRIMINATORS_V1.json`. Attribution replay of the archived 21/24 result is diagnosis-only and does not close the issue.
