@@ -18,7 +18,7 @@ The protocol is \texttt{P2.open-world-discovery.v1}.  A result-bearing execution
 is admissible only after subject code, data, evaluator, system identities,
 budgets and repeat seeds are bound.  For the completed offline companion, the
 run manifest records \texttt{outcome\_accessed\_before\_freeze=false}, the exact
-subject revision, content hashes, 14 system identifiers, three repeat seeds and
+subject revision, content hashes, \OfflineSystemCount{} system identifiers, three repeat seeds and
 host-owned resource limits.  The bound subject revision passed the full test
 suite before the first aggregate outcome snapshot was recorded.  Publication
 summaries and manuscript prose may be generated after outcomes, but they may only
@@ -43,7 +43,7 @@ rereads; and unavailable-route cases distinguish transport censoring from
 absence.  Budgets are below exhaustive probing, so route allocation and stopping
 remain observable variables.
 
-The completed suite has 20 tasks over five case families.  Every candidate uses
+The completed suite has \OfflineTaskCount{} tasks over five case families, drawn from \OfflineTopicCount{} topics over \OfflineDocumentCount{} documents, frozen at suite fingerprint \texttt{\OfflineSuiteFingerprintShort}.  Every candidate uses
 the same host-owned session.  The session alone can access the world, meters
 queries and reads, records route stops and transport states, and evaluates claims
 after the candidate returns.  The candidate receives only a public task view and
@@ -55,7 +55,7 @@ AutoResearchBench provides Wide and Deep scientific-discovery tasks
 \cite{autoresearchbench2026}.  The access audit establishes a narrower fact than
 an external result: Wide's official exact IoU/recall/precision path scores
 normalized arXiv identifiers without a credential, while its sampled
-\texttt{max\_iou\_at\_k} family is noisy because upstream sampling is unseeded.
+\idt{max_iou_at_k} family is noisy because upstream sampling is unseeded.
 Deep's official title-matching evaluator needs an OpenAI-compatible judge.  The
 Wide scorer was exercised on synthetic scorer input to verify that credential
 independence; no ORION-vs-baseline Wide result is archived in this revision, and
@@ -84,11 +84,11 @@ external cost, latency or recall result is inferred from the capture audit.
 
 \subsection{Systems under test}
 The frozen offline companion compares full ORION with six confirmatory system
-identifiers: \texttt{bm25\_keyword}, \texttt{dense\_retrieval},
-\texttt{sparse\_dense\_hybrid}, \texttt{one\_pass\_rag},
-\texttt{agentic\_single\_route}, and
-\texttt{protocol\_driven\_systematic\_review}.  A seventh comparator,
-\texttt{adaptive\_multiroute\_exploratory}, was kept explicitly exploratory and
+identifiers: \idt{bm25_keyword}, \idt{dense_retrieval},
+\idt{sparse_dense_hybrid}, \idt{one_pass_rag},
+\idt{agentic_single_route}, and
+\idt{protocol_driven_systematic_review}.  A seventh comparator,
+\idt{adaptive_multiroute_exploratory}, was kept explicitly exploratory and
 was not retrofitted into the frozen confirmatory baseline set.
 
 These controlled-index systems are mechanism comparators, not claims to
@@ -128,7 +128,7 @@ duplicate processing and legitimate rereads, plus host-owned resource counters.
 Claims are normalized by content identity rather than locator so mirrors cannot
 inflate recall.  Rich per-run artifacts retain route calls, reads, stop events,
 authority flags and raw-artifact hashes; the publication summary binds the full
-840-record and rich-artifact sets by SHA-256.
+\OfflineRunRecordCount{}-record and rich-artifact sets by SHA-256.
 
 The external measurement plan additionally defines official Wide/Deep scores,
 screening metrics and ranking-only metrics where their denominators and task
@@ -141,9 +141,9 @@ system and never count as additional tasks.  The frozen plan defines paired
 bootstrap comparisons, Wilson intervals for standalone binary rates,
 superiority/non-inferiority margins, a cost ceiling and Holm correction for the
 external confirmatory analysis.  It also defines an authority ladder.  The
-completed offline suite has $n=20$, below
-\texttt{TIER\_D\_minimum\_inferential} $n=97$, so its authority is
-\texttt{DESCRIPTIVE\_ONLY}.  The three deterministic repeat seeds verify stable
+completed offline suite has $n=\OfflineTaskCount$, below
+\idt{TIER_D_minimum_inferential} $n=97$, so its authority is
+\idt{DESCRIPTIVE_ONLY}.  The three deterministic repeat seeds verify stable
 execution; they do not manufacture $n=60$.  We therefore report descriptive
 absolute differences and mechanism diagnostics, with no promoted confidence
 interval, $p$-value or H1 decision from the offline companion.
