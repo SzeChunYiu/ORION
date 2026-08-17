@@ -16,6 +16,7 @@ from orion.self_orion.phase2_preflight import (
     build_frozen_live_trial_packet,
 )
 from orion.self_orion.subject_binding import (
+    is_derived_from_commit,
     RepositorySubjectAttestation,
     attest_repository_subject,
     write_repository_subject_attestation,
@@ -49,6 +50,7 @@ def freeze_phase2_binding(
     protocol_id: str = "phase2-shadow-closure-v1",
     repository_identity: str | None = None,
     frozen_packet: FrozenPacketBinding | None = None,
+    phase1_anchor_commit: str = "",
 ) -> FrozenPhase2BindingReport:
     """Freeze exact subject/provider/evaluator identities into the Phase-2 binding."""
 
@@ -56,6 +58,18 @@ def freeze_phase2_binding(
         repository_root,
         repository_identity=repository_identity,
     )
+    # Derivation is a predicate, not a stored commit string: the subject is
+    # Phase-1-derived iff the declared anchor is an ancestor of it. The anchor
+    # is supplied by the caller because which commit is terminal is a
+    # governance fact, not something this module may assert.
+    if phase1_anchor_commit.strip() and not is_derived_from_commit(
+        repository_root, phase1_anchor_commit, subject.commit_oid
+    ):
+        raise RuntimeError(
+            "Phase-2 subject "
+            f"{subject.commit_oid} is not derived from the declared Phase-1 anchor "
+            f"{phase1_anchor_commit}"
+        )
     manifest = load_live_phase2_provider_manifest(provider_manifest_path)
     verification = dict(manifest.verification_provider)
     evaluator_artifact_hash = verification.get("evaluator_artifact_hash", "")
