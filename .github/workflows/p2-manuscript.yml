@@ -18,6 +18,13 @@ on:
 permissions:
   contents: read
 
+# Keep only the newest Paper-2 build for a PR/ref. The widening lane changes
+# several tightly coupled artifacts per iteration; validating superseded SHAs
+# wastes runner capacity and delays the exact tree that can actually merge.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate-v2:
     runs-on: ubuntu-latest
