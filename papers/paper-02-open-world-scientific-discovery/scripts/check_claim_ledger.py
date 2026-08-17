@@ -75,8 +75,13 @@ NUMBER_SLOT = "\u2588NUM\u2588"
 #                              leading minus sign (``-1.0``).
 #   ``(?![A-Za-z0-9])``     -- rejects hex digests (``611808dc...``, ``2da5...``).
 # The optional leading ``-`` is captured so that a negative archived value such
-# as ``-1.0`` compares correctly rather than as its absolute value.
-_NUMBER_RE = re.compile(r"(?<![A-Za-z0-9_.])(?<![A-Za-z0-9]-)-?\d+(?:\.\d+)?(?![A-Za-z0-9])")
+# as ``-1.0`` compares correctly rather than as its absolute value.  Thousands
+# separators are part of the token: without this, ``1,677`` parses as two
+# separate numbers and silently demands two bindings.
+_NUMBER_RE = re.compile(
+    r"(?<![A-Za-z0-9_.])(?<![A-Za-z0-9]-)-?\d{1,3}(?:,\d{3})+(?![A-Za-z0-9])"
+    r"|(?<![A-Za-z0-9_.])(?<![A-Za-z0-9]-)-?\d+(?:\.\d+)?(?![A-Za-z0-9])"
+)
 
 # Outcome vocabulary.  A sentence in a hard-fail region matching any of these
 # asserts a result and therefore needs a ledger entry.
@@ -137,7 +142,17 @@ _STRIP_COMMANDS_WITH_ARG = (
     "author",
     "date",
 )
-_UNWRAP_COMMANDS = ("texttt", "textbf", "textit", "emph", "textsc", "text")
+_UNWRAP_COMMANDS = ("texttt", "textbf", "textit", "emph", "textsc", "text", "idt", "path")
+
+_MACRO_DEF_RE = re.compile(
+    r"\\(?:newcommand|renewcommand|providecommand)\s*\*?\s*\{?\\([A-Za-z]+)\}?\s*\{([^{}]*)\}"
+)
+# ``\Name{}`` -- an empty-brace invocation.  This is the idiom for splicing a
+# generated value into prose (``\OfflineTaskCount{}-task``).  Formatting commands
+# are not written this way, so an unresolved one is a real defect rather than
+# noise: before macro resolution existed, the generic command strip deleted
+# ``\OfflineTaskCount{}`` silently and the abstract read "a frozen -task index".
+_VALUE_MACRO_USE_RE = re.compile(r"\\([A-Za-z]+)\{\}")
 
 
 def _strip_comments(text: str) -> str:
@@ -192,6 +207,38 @@ def _drop_environments(text: str, names: tuple[str, ...]) -> str:
         )
         text = pattern.sub(" ", text)
     return text
+
+
+def load_macros(paper: Path, sources: Any) -> dict[str, str]:
+    """Collect ``\\newcommand`` value definitions from generated macro files.
+
+    The manuscript splices suite facts in as macros (``\\OfflineTaskCount{}``) so
+    the prose cannot hardcode a task count.  The checker must resolve them to the
+    same values, then bind those values to artifact keys -- which transitively
+    verifies the generated macro file against the archive.
+    """
+    macros: dict[str, str] = {}
+    for relative in sources or []:
+        path = paper / "manuscript" / relative
+        if not path.is_file():
+            raise HarnessError(f"declared macro source missing: {path}")
+        for match in _MACRO_DEF_RE.finditer(_read(path)):
+            macros[match.group(1)] = match.group(2).strip()
+    return macros
+
+
+def expand_macros(text: str, macros: dict[str, str]) -> tuple[str, set[str]]:
+    """Substitute known value macros; report unresolved empty-brace invocations."""
+    unresolved: set[str] = set()
+
+    def replace(match: re.Match[str]) -> str:
+        name = match.group(1)
+        if name in macros:
+            return macros[name]
+        unresolved.add(name)
+        return match.group(0)
+
+    return _VALUE_MACRO_USE_RE.sub(replace, text), unresolved
 
 
 def normalize_latex(text: str) -> str:
@@ -249,7 +296,13 @@ def _read(path: Path) -> str:
         raise HarnessError(f"cannot read {path}: {exc}") from exc
 
 
-def extract_region(paper: Path, spec: dict[str, Any], name: str) -> str:
+def extract_region(
+    paper: Path,
+    spec: dict[str, Any],
+    name: str,
+    macros: dict[str, str] | None = None,
+    unresolved: set[str] | None = None,
+) -> str:
     source = paper / "manuscript" / spec["file"]
     if not source.is_file():
         raise HarnessError(f"region {name!r} source missing: {source}")
@@ -277,6 +330,9 @@ def extract_region(paper: Path, spec: dict[str, Any], name: str) -> str:
         body = _drop_environments(raw, ("figure", "figure*", "table", "table*"))
     else:
         raise HarnessError(f"region {name!r}: unknown mode {mode!r}")
+    body, missing = expand_macros(body, macros or {})
+    if unresolved is not None:
+        unresolved.update(f"{name}:\\{n}" for n in missing)
     return normalize_latex(body)
 
 
@@ -350,9 +406,10 @@ def numbers_equal(manuscript_token: str, archived: Any, scale: float = 1.0) -> b
     if isinstance(archived, bool) or not isinstance(archived, (int, float)):
         return False
     try:
-        written = float(manuscript_token)
+        written = float(manuscript_token.replace(",", ""))
     except ValueError:
         return False
+    manuscript_token = manuscript_token.replace(",", "")
     scaled = float(archived) * scale
     if "." in manuscript_token:
         places = len(manuscript_token.split(".")[1])
@@ -794,9 +851,19 @@ def run_check(paper: Path, strict: bool = False) -> tuple[int, Report]:
             raise HarnessError(f"claim ledger missing required field {required!r}")
     report = Report()
     _check_schema(ledger, report)
+    macros = load_macros(paper, ledger.get("macro_sources"))
+    unresolved: set[str] = set()
     regions = {
-        name: extract_region(paper, spec, name) for name, spec in ledger["regions"].items()
+        name: extract_region(paper, spec, name, macros, unresolved)
+        for name, spec in ledger["regions"].items()
     }
+    for item in sorted(unresolved):
+        report.fail(
+            "UNRESOLVED_MACRO",
+            f"{item} is invoked as a value macro but is not defined in any declared "
+            "macro_sources file; it would otherwise be deleted silently and the claim "
+            f"would lose a number. Add its source file to macro_sources in {LEDGER_RELATIVE}",
+        )
     payloads = _artifact_payloads(paper, ledger, report)
     _check_strength(ledger, report)
     matched, located = _check_presence(ledger, regions, report)
@@ -835,7 +902,9 @@ def main(argv: list[str] | None = None) -> int:
             spec = ledger["regions"].get(args.emit_sentences)
             if spec is None:
                 raise HarnessError(f"unknown region {args.emit_sentences!r}")
-            for sentence in split_sentences(extract_region(paper, spec, args.emit_sentences)):
+            macros = load_macros(paper, ledger.get("macro_sources"))
+            region = extract_region(paper, spec, args.emit_sentences, macros)
+            for sentence in split_sentences(region):
                 print(sentence)
             return 0
         code, report = run_check(paper, strict=args.strict)
