@@ -8,6 +8,7 @@ import copy
 import hashlib
 import json
 from pathlib import Path
+import subprocess
 from typing import Any
 
 from orion.study.p1_causal.necessity_cases import (
@@ -47,6 +48,20 @@ def _sha(path: Path) -> str:
 def _git_blob_sha(data: bytes) -> str:
     header = f"blob {len(data)}\0".encode()
     return hashlib.sha1(header + data).hexdigest()
+
+
+def _subject_git_sha() -> str:
+    try:
+        value = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            cwd=ROOT,
+            text=True,
+        ).strip()
+    except (OSError, subprocess.CalledProcessError) as exc:
+        raise ValueError("cannot bind subject Git revision") from exc
+    if len(value) != 40 or any(ch not in "0123456789abcdef" for ch in value):
+        raise ValueError("invalid subject Git revision")
+    return value
 
 
 def _load_node(
@@ -189,6 +204,7 @@ def freeze(protocol_path: Path, outdir: Path) -> dict[str, Any]:
         "protocol_id": protocol["protocol_id"],
         "protocol_version": protocol["protocol_version"],
         "protocol_chain": identity,
+        "subject_git_sha": _subject_git_sha(),
         "confirmatory_seed": int(plan["confirmatory_seed"]),
         "replication_seed": int(plan["replication_seed"]),
         "n": len(worlds),
