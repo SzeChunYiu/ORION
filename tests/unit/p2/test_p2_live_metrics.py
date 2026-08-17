@@ -20,6 +20,8 @@ from orion.knowledge.providers.openalex import OpenAlexClient
 from orion.knowledge.rate import RateGate
 from orion.knowledge.route_control import FrozenRouteControlPolicy
 from orion.study.p2.live_campaign import (
+    DeclaredRoute,
+    CampaignResult,
     LiveOutcome,
     LiveRoute,
     ResearchQuestion,
@@ -30,7 +32,14 @@ from orion.study.p2.live_campaign import (
 )
 from orion.study.p2.live_metrics import (
     DENOMINATOR_BOUND_METRICS,
+    require_all_declared_routes_available,
+    require_reproducible_from_code_hash,
+    require_samples,
     IncompleteDenominator,
+    MetricRefusal,
+    NoSamples,
+    UnavailableRoute,
+    UnpinnedNondeterminism,
     campaign_report,
     completeness,
     cost_and_latency,
@@ -105,7 +114,7 @@ def _scripted(*responses):
     return transport
 
 
-def _campaign(tmp_path: Path, arxiv_body, openalex_body, *, variants=("a",)):
+def _campaign(tmp_path: Path, arxiv_body, openalex_body, *, variants=("a",), disabled=()):
     gate = RateGate(clock=Clock())
     arxiv = LiveRoute(
         route_id="arxiv-topic",
@@ -139,6 +148,7 @@ def _campaign(tmp_path: Path, arxiv_body, openalex_body, *, variants=("a",)):
         gate=RateGate(clock=Clock()),
         policy=POLICY,
         clock=Clock(),
+        disabled_routes=disabled,
     )
 
 
@@ -306,6 +316,175 @@ def test_the_report_declares_its_own_denominator_and_omits_recall(
     serialized = json.dumps(report)
     for forbidden in ("\"recall\"", "false_negative", "completeness"):
         assert forbidden not in serialized
+
+
+# --- a declared route that never looked ------------------------------------
+
+
+def _openalex_disabled() -> DeclaredRoute:
+    return DeclaredRoute(
+        route_id="openalex-search",
+        backend="openalex",
+        route_kind=SearchRouteKind.FUNCTION_ONLY,
+        query_derivation="discipline-keyword-mapping",
+        executed=False,
+        disabled_reason="requires funded API credentials; 429 on first keyless request",
+    )
+
+
+def test_a_disabled_route_is_still_a_declared_route(tmp_path: Path) -> None:
+    result = _campaign(
+        tmp_path,
+        TransportResponse(200, _atom(("http://arxiv.org/abs/1606.01772v2", "T", "S", DOI))),
+        TransportResponse(200, _works(("https://openalex.org/W1", "A", "a", ""))),
+        disabled=(_openalex_disabled(),),
+    )
+    assert len(result.declared_routes) == 3
+    assert not result.all_declared_routes_available
+    assert result.unavailable_routes[0][0] == "openalex-search"
+
+
+def test_completeness_claims_are_refused_when_a_declared_route_never_looked(
+    tmp_path: Path,
+) -> None:
+    """Five declared, three executed, two that never reached an index.
+
+    A campaign that quietly ran a subset has not searched less thoroughly than
+    its report says — it searched a different, smaller space.
+    """
+
+    result = _campaign(
+        tmp_path,
+        TransportResponse(429, "", {"Retry-After": "60"}),  # arXiv rate-limited away
+        TransportResponse(200, _works(("https://openalex.org/W1", "A", "a", ""))),
+        disabled=(_openalex_disabled(),),
+    )
+    with pytest.raises(UnavailableRoute) as error:
+        require_all_declared_routes_available(result)
+    message = str(error.value)
+    assert "openalex-search" in message
+    assert "arxiv-topic" in message
+    assert "open obligation, not a finding of absence" in message
+
+
+def test_a_fully_available_campaign_is_not_refused(tmp_path: Path) -> None:
+    """The no-alarm case: every declared route looked, so nothing is raised."""
+
+    result = _shared_work_campaign(tmp_path)
+    assert result.all_declared_routes_available
+    require_all_declared_routes_available(result)  # must not raise
+
+
+def test_a_declared_route_that_did_not_run_must_say_why() -> None:
+    with pytest.raises(ValueError, match="must say why"):
+        DeclaredRoute(
+            route_id="r",
+            backend="b",
+            route_kind=SearchRouteKind.FRESHNESS,
+            query_derivation="d",
+            executed=False,
+        )
+
+
+def test_zero_retrieved_from_an_unavailable_route_is_not_zero_from_an_empty_look(
+    tmp_path: Path,
+) -> None:
+    """Both report retrieved=0; only one of them is evidence."""
+
+    result = _campaign(
+        tmp_path,
+        TransportResponse(503, ""),
+        TransportResponse(200, _works()),
+    )
+    by_route = {item.route_id: item for item in unique_contribution_per_route(result)}
+    assert by_route["arxiv-topic"].retrieved == 0
+    assert by_route["openalex-keyword"].retrieved == 0
+    assert not by_route["arxiv-topic"].observed_the_index  # never looked
+    assert by_route["openalex-keyword"].observed_the_index  # looked, found nothing
+
+
+def test_the_report_declares_when_its_claims_are_limited(tmp_path: Path) -> None:
+    result = _campaign(
+        tmp_path,
+        TransportResponse(200, _atom(("http://arxiv.org/abs/1606.01772v2", "T", "S", DOI))),
+        TransportResponse(200, _works(("https://openalex.org/W1", "A", "a", ""))),
+        disabled=(_openalex_disabled(),),
+    )
+    report = campaign_report(result)
+    assert report["claims_limited_by_unavailability"] is True
+    assert report["all_declared_routes_available"] is False
+    assert report["unavailable_routes"][0]["route_id"] == "openalex-search"
+    assert len(report["declared_routes"]) == 3
+
+
+# --- a metric a pinned code hash does not pin -------------------------------
+
+
+@pytest.mark.parametrize(
+    "metric", ["avg_max_iou_at_1", "avg_max_iou_at_4", "max_iou_at_k_sampling"]
+)
+def test_an_unseeded_sampling_metric_is_refused(metric: str) -> None:
+    """The official Wide evaluator samples 1000x without ever seeding."""
+
+    with pytest.raises(UnpinnedNondeterminism) as error:
+        require_reproducible_from_code_hash(metric)
+    assert "not reproducible from a pinned evaluator code hash" in str(error.value)
+
+
+def test_pinning_a_seed_makes_the_sampling_metric_acceptable() -> None:
+    require_reproducible_from_code_hash("avg_max_iou_at_4", seed=7)  # must not raise
+
+
+def test_a_deterministic_metric_is_not_refused_as_noisy() -> None:
+    """The no-alarm case: avg_iou, recall and precision are computed exactly."""
+
+    require_reproducible_from_code_hash("avg_iou")
+    require_reproducible_from_code_hash("route_overlap_content_digest")
+
+
+# --- nothing may report 0.0 for a metric it never measured ------------------
+
+
+def test_a_metric_with_no_samples_refuses_rather_than_reporting_zero() -> None:
+    with pytest.raises(NoSamples) as error:
+        require_samples(0, "avg_max_iou_at_4")
+    assert "indistinguishable from a measured zero" in str(error.value)
+
+
+def test_one_sample_is_enough_to_report() -> None:
+    """The no-alarm case: a real measurement must not be blocked."""
+
+    require_samples(1, "avg_max_iou_at_1")
+
+
+def test_cost_and_latency_refuses_on_a_campaign_that_never_ran(
+    tmp_path: Path,
+) -> None:
+    """0.0 wallclock would read as 'ran and cost nothing', not 'never ran'."""
+
+    # Construct a minimal CampaignResult with no attempts directly
+    result = CampaignResult(
+        campaign_id="c1",
+        question=QUESTION,
+        policy_id="p1",
+        runs=(),  # No attempts
+    )
+    assert result.attempts == ()
+    with pytest.raises(NoSamples):
+        cost_and_latency(result)
+
+
+def test_every_refusal_shares_one_catchable_base() -> None:
+    """A caller that means 'any refusal' should not enumerate four classes."""
+
+    for error_type in (
+        IncompleteDenominator,
+        UnavailableRoute,
+        UnpinnedNondeterminism,
+        NoSamples,
+    ):
+        assert issubclass(error_type, MetricRefusal)
+        assert issubclass(error_type, RuntimeError)
 
 
 def test_the_report_is_reproducible_from_the_same_recorded_run(
