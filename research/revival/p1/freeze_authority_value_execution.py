@@ -45,7 +45,7 @@ def freeze_execution(protocol_path: Path, holdout_dir: Path, out: Path) -> dict:
         raise ValueError("holdout count drifted")
 
     rules = protocol["primary_decision_rule"]
-    stats = protocol["statistics"]
+    parameters = protocol["decision_parameters"]
     binding = {
         "schema_version": "P1.authority-value-execution-freeze.v1",
         "protocol_id": protocol["protocol_id"],
@@ -58,7 +58,7 @@ def freeze_execution(protocol_path: Path, holdout_dir: Path, out: Path) -> dict:
         "primary_arm": "orion_typed_permission_dependency_reopen",
         "primary_comparator": protocol["primary_hypothesis"]["primary_comparator"],
         "primary_decision_rule": rules,
-        "bootstrap_seed": int(str(stats["primary_interval"]).split("seed ")[-1]) if "seed " in str(stats["primary_interval"]) else 2026081719,
+        "decision_parameters": parameters,
         "source_sha256": {path: _sha(ROOT / path) for path in EXECUTION_SOURCE_PATHS},
         "arms_executed": False,
         "outcome_accessed": False,
