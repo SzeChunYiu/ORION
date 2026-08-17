@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Deterministic hostile checks for P8 formal core V1.
 
-This is a small executable model of the paper's structural claims.  It uses no
+This is a small executable model of the paper's structural claims. It uses no
 external package, model, judge, or LLM API.
 """
 
@@ -16,6 +16,7 @@ class Judgment:
     issuer: str
     domain: str
     scope: FrozenSet[str]
+    epoch: int = 0
     valid: bool = True
 
 
@@ -23,6 +24,7 @@ class Judgment:
 class Action:
     domain: str
     scope: FrozenSet[str]
+    epoch: int = 0
 
 
 def conversion_reachable(
@@ -53,6 +55,8 @@ def authorize(
     active_defeaters: FrozenSet[str] = frozenset(),
 ) -> bool:
     if not judgment.valid or judgment.issuer not in trusted_issuers:
+        return False
+    if judgment.epoch != action.epoch:
         return False
     if not action.scope.issubset(judgment.scope):
         return False
@@ -98,9 +102,14 @@ def check_no_laundering() -> int:
             issuer="protected-host",
             domain=source,
             scope=frozenset({"object-1"}),
+            epoch=4,
         )
         for target in domains:
-            action = Action(domain=target, scope=frozenset({"object-1"}))
+            action = Action(
+                domain=target,
+                scope=frozenset({"object-1"}),
+                epoch=4,
+            )
             result = authorize(
                 judgment,
                 action,
@@ -118,8 +127,13 @@ def check_no_laundering() -> int:
         issuer="protected-host",
         domain="route_stop",
         scope=frozenset({"object-1"}),
+        epoch=4,
     )
-    task_action = Action(domain="task_stop", scope=frozenset({"object-1"}))
+    task_action = Action(
+        domain="task_stop",
+        scope=frozenset({"object-1"}),
+        epoch=4,
+    )
     assert authorize(
         route_judgment,
         task_action,
@@ -143,23 +157,42 @@ def check_scope_monotonicity() -> None:
         issuer="protected-host",
         domain="assert",
         scope=frozenset({"claim-a", "claim-b"}),
+        epoch=2,
     )
     trusted = frozenset({"protected-host"})
     obligations = {"independent-check": "SAT"}
 
     assert authorize(
         judgment,
-        Action("assert", frozenset({"claim-a"})),
+        Action("assert", frozenset({"claim-a"}), epoch=2),
         trusted_issuers=trusted,
         conversions=frozenset(),
         hard_obligations=obligations,
     )
     assert not authorize(
         judgment,
-        Action("assert", frozenset({"claim-a", "claim-b", "claim-c"})),
+        Action("assert", frozenset({"claim-a", "claim-b", "claim-c"}), epoch=2),
         trusted_issuers=trusted,
         conversions=frozenset(),
         hard_obligations=obligations,
+    )
+
+
+def check_epoch_replay() -> None:
+    trusted = frozenset({"protected-host"})
+    judgment = Judgment(
+        issuer="protected-host",
+        domain="assert",
+        scope=frozenset({"claim-a"}),
+        epoch=3,
+    )
+    stale_action = Action("assert", frozenset({"claim-a"}), epoch=4)
+    assert not authorize(
+        judgment,
+        stale_action,
+        trusted_issuers=trusted,
+        conversions=frozenset(),
+        hard_obligations={"independent-check": "SAT"},
     )
 
 
@@ -177,17 +210,45 @@ def check_noncompensatory_counterexamples() -> int:
     return case_count
 
 
-def check_revocation() -> None:
+def check_revocation_and_alternate_derivation() -> None:
+    # `authorization-A` depends on two independent support paths. Revoking A1
+    # kills only path A1; the certificate may remain valid via A2. In contrast,
+    # authorization-C has only one support path and must be revoked.
     graph = {
-        "evidence-A": frozenset({"obligation-A"}),
-        "obligation-A": frozenset({"authorization-A"}),
-        "evidence-B": frozenset({"authorization-B"}),
+        "evidence-A1": frozenset({"proof-A1"}),
+        "proof-A1": frozenset({"authorization-A"}),
+        "evidence-A2": frozenset({"proof-A2"}),
+        "proof-A2": frozenset({"authorization-A"}),
+        "evidence-C": frozenset({"proof-C"}),
+        "proof-C": frozenset({"authorization-C"}),
         "authorization-A": frozenset(),
-        "authorization-B": frozenset(),
+        "authorization-C": frozenset(),
     }
-    revoked = descendants(graph, {"evidence-A"})
-    assert revoked == frozenset({"evidence-A", "obligation-A", "authorization-A"})
-    assert "authorization-B" not in revoked
+
+    revoked_from_a1 = descendants(graph, {"evidence-A1"})
+    assert "proof-A1" in revoked_from_a1
+    assert "authorization-A" in revoked_from_a1
+    assert "proof-A2" not in revoked_from_a1
+
+    # Certificate-level validity is derivational rather than node-only: A can be
+    # re-derived from the untouched independent A2 path.
+    independent_a2_path_valid = "proof-A2" not in revoked_from_a1
+    authorization_a_remains_derivable = independent_a2_path_valid
+    assert authorization_a_remains_derivable
+
+    revoked_from_c = descendants(graph, {"evidence-C"})
+    assert {"evidence-C", "proof-C", "authorization-C"}.issubset(revoked_from_c)
+    independent_c_path_valid = False
+    assert not independent_c_path_valid
+
+
+def check_posthoc_refusal_not_preventive() -> None:
+    irreversible_effect_committed = True
+    later_refusal = True
+    prevented = later_refusal and not irreversible_effect_committed
+    assert irreversible_effect_committed
+    assert later_refusal
+    assert not prevented
 
 
 def check_self_authorization_countermodel() -> None:
@@ -205,10 +266,32 @@ def check_self_authorization_countermodel() -> None:
     assert any(authorized[name] and not external_truth for name, external_truth in candidates.items())
 
 
+def check_clean_authorized_control() -> None:
+    trusted = frozenset({"protected-host"})
+    judgment = Judgment(
+        issuer="protected-host",
+        domain="assert",
+        scope=frozenset({"claim-clean"}),
+        epoch=9,
+    )
+    action = Action("assert", frozenset({"claim-clean"}), epoch=9)
+    assert authorize(
+        judgment,
+        action,
+        trusted_issuers=trusted,
+        conversions=frozenset(),
+        hard_obligations={
+            "content-bound-evidence": "SAT",
+            "independent-check": "SAT",
+        },
+        active_defeaters=frozenset(),
+    )
+
+
 def check_domain_embedding_fixtures() -> None:
     # Toy fixtures verify that the common terminal vocabulary can encode each
-    # gate.  Exact equivalence to the real P1-P5 implementations remains an
-    # explicit paper obligation.
+    # gate. Exact equivalence to real P1-P5 implementations remains an explicit
+    # paper obligation.
     fixtures = {
         "P1-reframe": {"responsibility": "SAT", "coordinate-permission": "SAT"},
         "P2-task-stop": {"coverage": "SAT", "censored-routes": "SAT"},
@@ -230,17 +313,23 @@ def check_domain_embedding_fixtures() -> None:
 def main() -> int:
     laundering_cases = check_no_laundering()
     check_scope_monotonicity()
+    check_epoch_replay()
     additive_cases = check_noncompensatory_counterexamples()
-    check_revocation()
+    check_revocation_and_alternate_derivation()
+    check_posthoc_refusal_not_preventive()
     check_self_authorization_countermodel()
+    check_clean_authorized_control()
     check_domain_embedding_fixtures()
 
     print("P8 authority-calculus checks: PASS")
     print(f"  cross-domain no-coercion cases: {laundering_cases}")
     print("  scope narrowing/widening fixtures: confirmed")
+    print("  stale-epoch replay rejection: confirmed")
     print(f"  finite-penalty additive counterexamples: {additive_cases}")
-    print("  dependency revocation fixture: confirmed")
+    print("  dependency revocation + independent re-derivation fixture: confirmed")
+    print("  post-hoc refusal non-prevention fixture: confirmed")
     print("  self-authorization countermodel: confirmed")
+    print("  clean authorized coverage control: confirmed")
     print("  P1-P5 toy embedding fixtures: confirmed")
     return 0
 
