@@ -1,0 +1,88 @@
+{
+  "families": [
+    {
+      "binding": "UNBOUND",
+      "domain": "software",
+      "family_id": "software_debugging_development",
+      "required_for_admission": true,
+      "slot_status": "CANNOT_CHECK",
+      "splits": {
+        "cross_family": "UNBOUND",
+        "heldout_same_family": "UNBOUND",
+        "motivating": "UNBOUND",
+        "protected_regression": "UNBOUND"
+      },
+      "suggested_role": "software/debugging/development task"
+    },
+    {
+      "binding": "UNBOUND",
+      "domain": "open_world_research",
+      "family_id": "open_world_research_retrieval",
+      "required_for_admission": true,
+      "slot_status": "CANNOT_CHECK",
+      "splits": {
+        "cross_family": "UNBOUND",
+        "heldout_same_family": "UNBOUND",
+        "motivating": "UNBOUND",
+        "protected_regression": "UNBOUND"
+      },
+      "suggested_role": "open-world research/retrieval task"
+    },
+    {
+      "binding": "UNBOUND",
+      "domain": "structured_semantics",
+      "family_id": "structured_semantic_integration",
+      "required_for_admission": true,
+      "slot_status": "CANNOT_CHECK",
+      "splits": {
+        "cross_family": "UNBOUND",
+        "heldout_same_family": "UNBOUND",
+        "motivating": "UNBOUND",
+        "protected_regression": "UNBOUND"
+      },
+      "suggested_role": "structured semantic/integration task"
+    },
+    {
+      "binding": "UNBOUND",
+      "domain": "protected_authority",
+      "family_id": "protected_authority_evidence",
+      "required_for_admission": true,
+      "slot_status": "CANNOT_CHECK",
+      "splits": {
+        "cross_family": "UNBOUND",
+        "heldout_same_family": "UNBOUND",
+        "motivating": "UNBOUND",
+        "protected_regression": "UNBOUND"
+      },
+      "suggested_role": "protected authority/evidence task"
+    },
+    {
+      "binding": "UNBOUND",
+      "domain": "self_improvement",
+      "family_id": "hidden_cause_fresh_transfer",
+      "required_for_admission": false,
+      "slot_status": "CANNOT_CHECK",
+      "splits": {
+        "cross_family": "UNBOUND",
+        "heldout_same_family": "UNBOUND",
+        "motivating": "UNBOUND",
+        "protected_regression": "UNBOUND"
+      },
+      "suggested_role": "optional fifth: hidden-cause self-improvement/fresh transfer"
+    }
+  ],
+  "freeze_note": "Slot identities and margins are frozen before candidate outcomes. UNBOUND task payloads are placeholders; they do not become PASS. Binding real tasks requires a successor freeze, not a V1 edit.",
+  "issue": 285,
+  "min_required_families": 4,
+  "outcome_accessed": false,
+  "phase4_operation_authorized": false,
+  "required_splits": [
+    "motivating",
+    "heldout_same_family",
+    "cross_family",
+    "protected_regression"
+  ],
+  "schema_version": "orion.global-positive.portfolio-freeze.v1",
+  "successor_rule": "Real task payloads, if later bound, land in GlobalPositiveCertificate.v2+ with a new fingerprint. V1 margins/objectives/family ids remain immutable.",
+  "weights_tunable_after_outcomes": false
+}

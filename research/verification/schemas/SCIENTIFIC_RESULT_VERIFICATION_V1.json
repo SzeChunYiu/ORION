@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.scientific-result-verification.v1",
+  "title": "ORION Scientific Result Verification V1",
+  "description": "Machine-readable independent verification receipt for one atomic paper claim. The record reports evidence; it cannot authorize itself.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_id",
+    "self_authorizing",
+    "paper_id",
+    "claim_id",
+    "atomic_claim_text",
+    "bounded_claim_text",
+    "subject",
+    "protocol",
+    "raw_artifacts",
+    "scorers",
+    "denominator",
+    "layers",
+    "verification_state",
+    "discrepancies",
+    "high_severity_integrity"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "orion.scientific-result-verification.v1"
+    },
+    "record_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "self_authorizing": {
+      "const": false,
+      "description": "Must be false. A verification record cannot authorize the claim it describes."
+    },
+    "paper_id": {
+      "enum": ["P1", "P2", "P3", "P4", "P5"]
+    },
+    "claim_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "atomic_claim_text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bounded_claim_text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject": {
+      "type": "object",
+      "required": ["commit", "evaluated_system_mutated"],
+      "properties": {
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "tree": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "note": {"type": "string"},
+        "evaluated_system_mutated": {
+          "const": false,
+          "description": "Verifier must not edit the evaluated system to make the audit pass."
+        }
+      },
+      "additionalProperties": false
+    },
+    "protocol": {
+      "type": "object",
+      "required": ["id", "hash_sha256"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "hash_sha256": {
+          "type": "string",
+          "description": "SHA-256 of the protocol document bytes, or the literal CANNOT_CHECK."
+        },
+        "path": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "raw_artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "role", "present", "sha256"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "role": {
+            "enum": [
+              "raw_record",
+              "gold",
+              "aggregate",
+              "manifest",
+              "telemetry",
+              "protocol",
+              "published_table",
+              "missing_required"
+            ]
+          },
+          "present": {"type": "boolean"},
+          "sha256": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "scorers": {
+      "type": "object",
+      "required": [
+        "original_hash_sha256",
+        "independent_hash_sha256",
+        "independent_from_written_spec",
+        "agreement",
+        "adjudication"
+      ],
+      "properties": {
+        "original_hash_sha256": {"type": "string", "minLength": 1},
+        "independent_hash_sha256": {"type": "string", "minLength": 1},
+        "independent_from_written_spec": {"type": "boolean"},
+        "agreement": {
+          "enum": ["EXACT", "DISAGREE", "CANNOT_CHECK"]
+        },
+        "adjudication": {
+          "type": "array",
+          "items": {"type": "object"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "denominator": {
+      "type": "object",
+      "required": [
+        "eligible_n",
+        "unit",
+        "repeats_nested_not_inflating_n",
+        "cannot_check_or_invalid_handling",
+        "post_outcome_exclusions"
+      ],
+      "properties": {
+        "eligible_n": {"type": ["number", "string"]},
+        "unit": {"type": "string"},
+        "repeats_nested_not_inflating_n": {"type": "boolean"},
+        "cannot_check_or_invalid_handling": {"type": "string"},
+        "post_outcome_exclusions": {"type": "integer", "minimum": 0},
+        "notes": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "layers": {
+      "type": "object",
+      "required": [
+        "raw_artifact_replay",
+        "independent_scorer",
+        "leakage_shortcut",
+        "denominator_statistics",
+        "baseline_pressure",
+        "holdout_cross_host"
+      ],
+      "properties": {
+        "raw_artifact_replay": {"$ref": "#/$defs/layer_result"},
+        "independent_scorer": {"$ref": "#/$defs/layer_result"},
+        "leakage_shortcut": {"$ref": "#/$defs/layer_result"},
+        "denominator_statistics": {"$ref": "#/$defs/layer_result"},
+        "baseline_pressure": {"$ref": "#/$defs/layer_result"},
+        "holdout_cross_host": {"$ref": "#/$defs/layer_result"}
+      },
+      "additionalProperties": false
+    },
+    "verification_state": {
+      "enum": ["VERIFIED", "BOUNDED_VERIFIED", "INVALIDATED", "CANNOT_CHECK"]
+    },
+    "invalidation_reason": {
+      "type": ["string", "null"]
+    },
+    "discrepancies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "text"],
+        "properties": {
+          "id": {"type": "string"},
+          "severity": {"enum": ["low", "medium", "high"]},
+          "text": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "high_severity_integrity": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "record_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "$defs": {
+    "layer_result": {
+      "type": "object",
+      "required": ["status", "summary"],
+      "properties": {
+        "status": {
+          "enum": ["PASS", "FAIL", "CANNOT_CHECK", "NOT_RUN"]
+        },
+        "summary": {"type": "string"},
+        "details": {"type": "object"}
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -48,6 +48,60 @@ def _normalize_repository_identity(remote: str) -> str:
     return value.removesuffix(".git")
 
 
+def is_derived_from_commit(
+    root: Path | str,
+    anchor_commit: str,
+    commit_oid: str,
+) -> bool:
+    """Is `commit_oid` a descendant of `anchor_commit` in this repository?
+
+    Ancestry is the derivation predicate: a Phase-2 subject is Phase-1-derived
+    iff the Phase-1 terminal anchor is an ancestor of it. The anchor is supplied
+    by the caller and never hardcoded here -- which commit is terminal is a
+    governance fact recorded in the issue trail, not a constant this module may
+    assert on its own.
+
+    Ancestry is necessary, not sufficient: an evidence family must additionally
+    share one `subject_revision_hash`, which this predicate does not check.
+
+    Raises RuntimeError if either commit is unknown to the repository, so an
+    unanswerable question is never silently reported as False.
+    """
+
+    for label, value in (("anchor", anchor_commit), ("subject", commit_oid)):
+        if not value.strip():
+            raise ValueError(f"{label} commit is required to test derivation")
+    top = Path(_text(Path(root).resolve(), "rev-parse", "--show-toplevel")).resolve()
+    for label, value in (("anchor", anchor_commit), ("subject", commit_oid)):
+        try:
+            _git(top, "cat-file", "-e", f"{value}^{{commit}}")
+        except RuntimeError as error:
+            raise RuntimeError(f"{label} commit {value!r} is unknown to this repository") from error
+    result = subprocess.run(
+        ("git", "-C", str(top), "merge-base", "--is-ancestor", anchor_commit, commit_oid),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    if result.returncode == 0:
+        # A path was found, so it exists. This direction is sound even in a
+        # shallow clone: truncated history can hide a path, never invent one.
+        return True
+    if result.returncode == 1:
+        # "Not an ancestor" is only trustworthy over complete history. In a
+        # shallow clone the connecting path may simply have been cut at the
+        # graft boundary, so a bare False here would be a confident wrong
+        # answer -- exactly the kind a fail-closed gate must not emit.
+        if _text(top, "rev-parse", "--is-shallow-repository") == "true":
+            raise RuntimeError(
+                "cannot decide derivation in a shallow repository: no path was found "
+                f"from {anchor_commit} to {commit_oid}, but history is truncated. "
+                "Re-run with a complete clone (git fetch --unshallow)."
+            )
+        return False
+    detail = result.stderr.decode("utf-8", errors="replace")
+    raise RuntimeError(f"git merge-base --is-ancestor failed: {detail}")
+
+
 @dataclass(frozen=True)
 class TrackedObjectIdentity:
     path: str
@@ -228,5 +282,6 @@ __all__ = [
     "RepositorySubjectAttestation",
     "TrackedObjectIdentity",
     "attest_repository_subject",
+    "is_derived_from_commit",
     "write_repository_subject_attestation",
 ]

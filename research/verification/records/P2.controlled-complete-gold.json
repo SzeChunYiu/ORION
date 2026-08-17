@@ -1,0 +1,133 @@
+{
+  "atomic_claim_text": "On the frozen 390-task controlled complete-gold companion, ORION mean recall is 0.979487 versus 0.666667 for the strongest confirmatory baseline.",
+  "bounded_claim_text": "Controlled generated world only; TIER_B_committed with mandatory underpowered label relative to the 0.03 superiority margin; not external discovery superiority.",
+  "claim_id": "P2.controlled_complete_gold",
+  "denominator": {
+    "cannot_check_or_invalid_handling": "12 ORION CANNOT_CHECK tasks remain inside n=390; not recoded as zero without a label",
+    "eligible_n": 390,
+    "post_outcome_exclusions": 0,
+    "repeats_nested_not_inflating_n": true,
+    "unit": "task (repeats nested)"
+  },
+  "discrepancies": [
+    {
+      "id": "P2.missing-per-task-records",
+      "severity": "medium",
+      "text": "RESULTS_SUMMARY_V1 cites n_result_records=16380 and a record digest, but the per-task JSONL is not in the public evidence tree, so 0.979487 cannot be regenerated from case vectors."
+    },
+    {
+      "id": "P2.ledger-half-width-0.0496-vs-summary-0.05",
+      "severity": "low",
+      "text": "Claim ledger states achieved half-width 0.0496; RESULTS_SUMMARY achieved_tier_half_width is 0.05. Observed recall CI half-width is 0.004274. Underpowered label is the planning-tier vs margin rule, not the observed CI."
+    }
+  ],
+  "high_severity_integrity": [],
+  "invalidation_reason": null,
+  "layers": {
+    "baseline_pressure": {
+      "details": {
+        "strongest": "protocol_driven_systematic_review"
+      },
+      "status": "PASS",
+      "summary": "Strongest frozen confirmatory baseline in-battery is protocol_driven_systematic_review at 0.666667. Official AutoResearchBench Wide was not executed by this verifier. Deep official probe is a later negative (hit rate 0) and is not a flagship positive."
+    },
+    "denominator_statistics": {
+      "details": {
+        "cannot_check": 12,
+        "n_tasks": 390,
+        "underpowered_label_required": true
+      },
+      "status": "PASS",
+      "summary": "n=390 tasks, 3 nested repeats, 14 systems, 16380=390*3*14; task is the unit. 12 ORION CANNOT_CHECK remain in the 390-task denominator."
+    },
+    "holdout_cross_host": {
+      "status": "CANNOT_CHECK",
+      "summary": "External Wide/cross-host reproduction was not run by this verifier."
+    },
+    "independent_scorer": {
+      "details": {
+        "paired_difference": 0.31282
+      },
+      "status": "PASS",
+      "summary": "Independent arithmetic on committed aggregates; complete-gold scorer cannot be applied case-wise without the JSONL."
+    },
+    "leakage_shortcut": {
+      "status": "CANNOT_CHECK",
+      "summary": "Controlled complete-gold world coupling to ORION policy cannot be audited without the generator+per-task traces in this verifier run."
+    },
+    "raw_artifact_replay": {
+      "details": {
+        "baseline_premature_closure": 1.0,
+        "expected_records": 16380,
+        "n_repeats": 3,
+        "n_result_records": 16380,
+        "n_systems": 14,
+        "n_tasks": 390,
+        "observed_recall_half_width": 0.004274,
+        "orion_cannot_check_count": 12,
+        "orion_cannot_check_rate": 0.030769,
+        "orion_fail_count": 59,
+        "orion_pass_count": 319,
+        "orion_premature_closure": 0.0,
+        "orion_recall": 0.979487,
+        "paired_difference": 0.31282,
+        "paired_difference_matches_published": true,
+        "planning_half_width": 0.05,
+        "primary_promoted": false,
+        "published_paired_difference": 0.31282,
+        "record_count_consistent": true,
+        "status_sum_is_n": true,
+        "strongest_baseline_id": "protocol_driven_systematic_review",
+        "strongest_baseline_recall": 0.666667,
+        "superiority_margin": 0.03,
+        "underpowered_label_required": true
+      },
+      "status": "CANNOT_CHECK",
+      "summary": "Published aggregates replay 0.979487 vs 0.666667 on n=390; per-task records are not in the public tree."
+    }
+  },
+  "paper_id": "P2",
+  "protocol": {
+    "hash_sha256": "e2ae15b67b4ebe0f01139ca2346453840da0b891e63b4430b301abab720f7b5a",
+    "id": "P2.statistical-plan.v1",
+    "path": "papers/paper-02-open-world-scientific-discovery/protocol/STATISTICAL_PLAN_V1.json"
+  },
+  "raw_artifacts": [
+    {
+      "path": "papers/paper-02-open-world-scientific-discovery/evidence/offline_results/RESULTS_SUMMARY_V1.json",
+      "present": true,
+      "role": "aggregate",
+      "sha256": "ee414173bbc8da7a564d697a1bab280e856891a0750de93f660735772973c03b"
+    },
+    {
+      "path": "papers/paper-02-open-world-scientific-discovery/protocol/STATISTICAL_PLAN_V1.json",
+      "present": true,
+      "role": "protocol",
+      "sha256": "e2ae15b67b4ebe0f01139ca2346453840da0b891e63b4430b301abab720f7b5a"
+    },
+    {
+      "path": "P2 per-task complete-gold JSONL (16380 records cited by digest, not present as a tracked jsonl in evidence/offline_results)",
+      "present": false,
+      "role": "missing_required",
+      "sha256": "CANNOT_CHECK"
+    }
+  ],
+  "record_id": "P2.controlled-complete-gold",
+  "record_sha256": "c5e383e8d8de633f0ee666dadff9c05721401dea6caf4c2e7c03665780a22b71",
+  "schema_version": "orion.scientific-result-verification.v1",
+  "scorers": {
+    "adjudication": [],
+    "agreement": "EXACT",
+    "independent_from_written_spec": true,
+    "independent_hash_sha256": "c867cc5be6cc55f80750053c54c2e19bd3a60d2a0ddd3756a551b6d388648c56",
+    "original_hash_sha256": "ee414173bbc8da7a564d697a1bab280e856891a0750de93f660735772973c03b"
+  },
+  "self_authorizing": false,
+  "subject": {
+    "commit": "09929f208f581cda6985575ca419a7181a1f03ba",
+    "evaluated_system_mutated": false,
+    "note": "verifier_tree=09929f208f581cda6985575ca419a7181a1f03ba",
+    "tree": "a3566dd19afaedd35012321e529ff862d06475f5"
+  },
+  "verification_state": "BOUNDED_VERIFIED"
+}
