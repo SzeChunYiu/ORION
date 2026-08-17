@@ -1,0 +1,55 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.BIOMED.006.GOLD",
+  "case_id": "P3.BIOMED.006",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "pmc:SEED-BIOMED006A",
+    "document_version": "v1",
+    "span_start": 4230,
+    "span_end": 4598,
+    "text_hash": "seed:sha256:4142434a545",
+    "discipline": "biomed",
+    "text": "NYHA heart failure classification (I-IV classes)"
+  },
+  "source_b": {
+    "document_id": "pmc:SEED-BIOMED006B",
+    "document_version": "v1",
+    "span_start": 8330,
+    "span_end": 8688,
+    "text_hash": "seed:sha256:4647484a950",
+    "discipline": "biomed",
+    "text": "ACC/AHA heart failure staging (A-D stages)"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "RELATED_NOT_SAME",
+  "measurement_relation": "TRANSFORMABLE_WITH_CONDITIONS",
+  "context_relation": "CONDITIONED_COMPATIBLE",
+  "polarity_relation": "SAME",
+  "modality_relation": "SAME",
+  "attribution_relation": "SAME_SPEAKER_OR_SOURCE",
+  "discourse_relation": "ALIGNED",
+  "mapping_relation": "CONDITIONAL_TRANSFORM",
+  "preservation_conditions": [
+    "Mapping is not bijective; some information is lost in each direction",
+    "Dimension weighting / conversion factors must be specified"
+  ],
+  "non_preserved_coordinates": [
+    "construct",
+    "measurement"
+  ],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "GLUE_ALLOWED",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "mapping_relation:CONDITIONAL_TRANSFORM",
+    "preservation_conditions:non_bijective",
+    "non_preserved_coordinates:construct,measurement"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for valid_invalid_representation_mapping case P3.BIOMED.006. referent=SAME, construct=RELATED_NOT_SAME, measurement=TRANSFORMABLE_WITH_CONDITIONS, context=CONDITIONED_COMPATIBLE, mapping=CONDITIONAL_TRANSFORM, integration=GLUE_ALLOWED. Seed manifest notes: Two valid but non-isomorphic classification systems. Gold: VALID representation mapping WITH preservation conditions (projection not bijective).",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

@@ -1,0 +1,231 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{Authority of the result}
+Two result-bearing evidence families are complete in this revision, with
+different authority.  First, the frozen offline complete-gold companion contains
+\OfflineTaskCount{} tasks, \OfflineSystemCount{} systems (full ORION, six confirmatory baselines, one explicitly
+exploratory comparator, and six ablations), and three predeclared repeat seeds,
+for \OfflineRunRecordCount{} normalized run records.  The systems are deterministic; the repeats
+therefore test harness stability and do not increase the statistical unit beyond
+\OfflineTaskCount{} tasks.  The frozen statistical plan requires at least 97 tasks for its lowest
+inferential tier.  Consequently this campaign is
+\texttt{DESCRIPTIVE\_ONLY}: no confidence interval, $p$-value, or superiority
+decision from the offline companion is promoted to a paper-level claim.
+
+Second, the credential-free MetaSyn probe is a bounded external
+retrieval/screening result.  It completed all 86 released test reviews using the
+pinned MetaSyn BM25 title+abstract retriever followed by the predeclared
+public-protocol screening rule, and was scored by the pinned official ID-only
+evaluator.  That probe is not the complete multi-provider ORION system and is
+therefore reported separately from the paper's still-open matched external
+ORION-vs-baseline claim.
+
+The offline publication summary is
+\texttt{evidence/offline\_results/RESULTS\_SUMMARY\_V1.json}.  It binds the full
+\OfflineRunRecordCount{}-record set by SHA-256
+\texttt{611808dc80846d5057c84c12af7ff8ec3fa88ef15a6ede91807e590f4edb6f1f}
+and the corresponding rich-artifact hash list by
+\texttt{2da59dc21e6473e4a81eb93910501a67bed008dbc3e29c26116041b68dfbb325}.
+The exact run manifest was committed before the first outcome snapshot.  The
+mechanism projection used for Figures~\ref{fig:p2-3}--\ref{fig:p2-5} is archived
+separately as \texttt{evidence/offline\_results/OFFLINE\_MECHANISMS\_V1.json};
+it records the same two source digests and is regenerated from host-owned traces
+rather than copied from manuscript numbers.  The MetaSyn result is bound by
+\texttt{evidence/external\_results/METASYN\_ID\_ONLY\_PROBE\_V1.json} and its
+exact integer error decomposition by
+\texttt{METASYN\_SCREENING\_FN\_LEDGER\_V1.json}.
+
+\subsection{Controlled-index comparison}
+Full ORION attains mean complete-gold recall 0.994444 and precision 1.0.  It
+passes 19 of \OfflineTaskCount{} tasks and returns \texttt{CANNOT\_CHECK} on the remaining task
+because a route holding unretrieved relevant material becomes unavailable; it
+never certifies that censored task complete.  Its premature-task-closure rate is
+0.  The strongest of the six protocol-frozen confirmatory baselines is the
+protocol-driven systematic-review comparator, with mean recall 0.666667.  That
+comparator claims task completion on all \OfflineTaskCount{} tasks while reachable gold remains,
+so its premature-closure rate is 1.0.  The descriptive recall difference is
+therefore +0.327777, with a descriptive premature-closure difference of -1.0.
+These numbers are evidence about the authored controlled world, not an estimate
+of real-web superiority.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrr}
+\hline
+System & Recall & Premature closure & Pass & Cannot check \\
+\hline
+ORION full & 0.994444 & 0.00 & 0.95 & 0.05 \\
+Protocol-driven SLR & 0.666667 & 1.00 & 0.00 & 0.00 \\
+Sparse+dense hybrid & 0.555556 & 1.00 & 0.00 & 0.00 \\
+One-pass RAG & 0.555556 & 1.00 & 0.00 & 0.00 \\
+BM25/keyword & 0.333333 & 1.00 & 0.00 & 0.00 \\
+Dense-route comparator & 0.333333 & 1.00 & 0.00 & 0.00 \\
+Agentic single route & 0.333333 & 1.00 & 0.00 & 0.00 \\
+\hline
+\end{tabular}
+\caption{Controlled-index descriptive comparison.  Rates are over \OfflineTaskCount{} tasks;
+there are no inferential intervals because the frozen plan classifies this
+campaign below the minimum inferential tier.  A final matched external
+ORION-vs-baseline comparison remains unexecuted.}
+\label{tab:p2-offline-main}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\input{figures/P2-3_cumulative_discovery_publication}
+\caption{\textbf{Figure P2-3.} Cumulative complete-gold recall versus the
+host-recorded number of search queries for full ORION and the strongest frozen
+confirmatory baseline.  Deterministic repeats are first checked for identical
+traces and then collapsed within task; the curves are means over the \OfflineTaskCount{} tasks
+and are descriptive only.  Synthetic wall-clock is intentionally fixed to zero,
+so the controlled companion supports the query axis, not an empirical-time
+claim.}
+\label{fig:p2-3}
+\end{figure}
+
+The two systems are identical through their first three search calls in this
+authored world.  The protocol-driven comparator then reaches mean recall
+0.666667 by query 7 and remains at that value through query 12.  ORION is at
+0.727778 by query 7 and continues to gain, reaching 0.994444 by query 12.
+Figure~\ref{fig:p2-3} therefore localizes the descriptive gap to evidence gained
+after the early common search prefix rather than to an initial retrieval
+advantage.
+
+\subsection{Mechanism ablations}
+The safety ablations fail in the directions the frozen design intended them to
+probe.  Removing the route-independence check reduces mean recall to 0.444444
+and produces premature closure on every task.  Allowing a route stop to certify
+task closure yields recall 0.333333 with the same 100\% premature-closure rate.
+Letting a coverage diagnostic acquire stopping authority yields recall 0.555556
+and again closes every task prematurely.  These are negative controls: their
+purpose is to demonstrate that the forbidden transitions are observable, not to
+serve as competitive systems.
+
+Removing content-identity deduplication is less catastrophic but measurably
+wasteful in the controlled world: mean duplicate-processing rate rises from 0
+to 0.101429, five of \OfflineTaskCount{} tasks exhaust the read budget, pass rate falls from 0.95
+to 0.70, and mean recall falls to 0.966667.  Removing the question coordinate
+from the read ledger leaves aggregate recall unchanged at 0.994444 but changes
+the extraction-question-shift mechanism exactly where expected: the mean count
+of legitimate rereads on that family falls from 4.0 to 1.0.  This is a mechanism
+result, not evidence of a recall gain from the ledger.  Finally, removing the
+unavailable-route open state leaves mean recall numerically unchanged but turns
+the one censored \texttt{CANNOT\_CHECK} case into an asserted completion and a
+premature-closure failure.  The distinction is therefore one of epistemic
+safety rather than headline recall.
+
+\begin{figure}[t]
+\centering
+\input{figures/P2-4_route_contribution_publication}
+\caption{\textbf{Figure P2-4.} Mean number of first relevant content identities
+contributed by each route in full ORION's campaign order.  ``Independent'' is an
+earned structural annotation relative to the lexical reference route; the
+reformulation route is deliberately marked shared-backend even though it adds a
+new identity.  Values are task means over the frozen descriptive companion.}
+\label{fig:p2-4}
+\end{figure}
+
+The lexical route contributes 3.0 first relevant identities per task on
+average.  Semantic and citation routes each contribute 2.0 additional identities,
+reformulation contributes 1.0, and the restricted route contributes 0.95; the
+last mean is below one because one task becomes censored.  Contribution and
+independence are deliberately separate variables: reformulation adds relevant
+content but shares the lexical backend and therefore cannot be promoted to an
+independent capture occasion.
+
+\begin{figure}[t]
+\centering
+\input{figures/P2-5_route_overlap}
+\caption{\textbf{Figure P2-5.} Mean task-level Jaccard overlap between route
+captures, computed over content identities rather than source locators, together
+with the structural independence verdict for each off-diagonal pair.  The
+lexical--semantic overlap is 0.079167; the other off-diagonal mean overlaps are
+zero in this controlled world.  Zero observed overlap is not itself evidence of
+independence.}
+\label{fig:p2-5}
+\end{figure}
+
+Figure~\ref{fig:p2-5} exposes why ORION does not equate numerical disjointness
+with route independence.  In particular, lexical and reformulation have zero
+mean content overlap here yet are still rejected as independent because they
+share a backend.  Conversely, lexical and semantic have nonzero mean overlap
+(0.079167) but remain structurally independent because neither backend nor query
+derivation is shared.  The independence decision is therefore made from capture
+construction, while overlap remains a measured diagnostic.
+
+\begin{figure}[t]
+\centering
+\input{figures/P2-6_stopping_failures}
+\caption{\textbf{Figure P2-6.} Terminal premature-closure classifications for
+selected stopping-safety controls in the frozen \OfflineTaskCount{}-task offline companion.  The
+plot is generated from the immutable publication summary.  It shows task counts,
+not an inferential estimate; lower-precedence failure mechanisms can be masked by
+the evaluator's terminal-failure precedence.}
+\label{fig:p2-6}
+\end{figure}
+
+\subsection{MetaSyn external retrieval and screening probe}
+The corrected MetaSyn probe completed all 86 released test reviews with no
+failed review.  Under the pinned official ID-only evaluator, macro retrieval
+recall is 0.7485 and retrieval precision 0.0627.  Conditional retention among
+retrieved reference items is 0.7224; final inclusion recall is 0.5651,
+inclusion precision 0.1426 and inclusion F1 0.2033.  The evaluator reports
+post-retrieval loss 0.1834 and screening accuracy 0.7228.  Mean candidate output
+is fixed at 200 retrieved and 60 included items per review by the declared
+probe budget.
+
+The evaluator-side integer ledger makes the stage loss concrete.  Across the 86
+reviews there are 1,677 reference-article links.  The top-200 retrieval pools
+contain 1,079 of those links, so 598 are retrieval false negatives.  Of the
+1,079 retrieved reference links, 736 survive the deterministic screen and 343
+are lost post retrieval.  The final included sets therefore miss 941 reference
+links in total.  Gold is loaded only on the evaluator side after candidate
+output is frozen, and fresh regeneration verifies every deterministic official
+per-review metric before emitting the counts.  These results identify where the
+bounded probe fails; they do not establish superiority for full ORION.
+
+\subsection{Failure analysis and external status}
+Under the evaluator's fixed terminal-failure precedence, premature closure is
+the dominant failure class in the controlled companion; the exploratory
+adaptive comparator also exposes three transport-failure classifications, while
+the no-dedup ablation exposes five budget-exhaustion failures.  Full ORION has no
+terminal failure classification: 19 tasks pass and one is censored.  The full
+per-system taxonomy is archived beside the publication summary as Table P2-3.
+
+The gold-defined O1 route-stop replay is archived as supplementary Table P2-S1.
+Full ORION makes one route-stop false positive in 100 route-stop events (0.01):
+the unavailable restricted-route case still has a theoretically reachable gold
+identity and route-call budget when the route stops.  This does not become a
+task-level false closure.  The O4 unavailable-route obligation remains open, so
+ORION returns \texttt{CANNOT\_CHECK} rather than asserting task completeness.
+Among the 99 ORION task-routes that reach the O1 oracle exhaustion point, there
+are zero route-stop false negatives.  The restricted route records 19
+post-exhaustion attempts, exactly one allowed confirming attempt on each of the
+19 non-censored tasks; no route takes the two or more further attempts required
+for an O1 false negative.  This null-on-FN result is reported rather than being
+silently omitted, and it demonstrates why route-stop error and task-stop safety
+must be measured separately.
+
+The remaining external authorities are kept separate from the completed MetaSyn
+probe.  AutoResearchBench Wide's released scorer is deterministic and
+credential-free, while the official Deep metric uses the released LLM title
+judge.  A same-repository non-leaking preflight found neither a configured
+generic OpenAI-compatible judge key/base/model set nor \texttt{CMKEY\_API\_KEY},
+so official Deep scoring remains \texttt{CANNOT\_CHECK}; a declared exact-ID
+probe cannot substitute for that judge.  SAGE still lacks both the published
+retrieval corpus and an official evaluator.  The frozen three-route live
+campaign also remains \texttt{CANNOT\_CHECK}: its arXiv route is credential-free,
+but its two OpenAlex-backed route families require a funded
+\texttt{OPENALEX\_API\_KEY}, which the verified same-repository preflight did not
+find.  No absent credential is converted into a negative outcome or a zero-cost
+measurement.
+
+Therefore the externally supported full-ORION discovery-benefit claim remains
+\texttt{CANNOT\_CHECK}.  The controlled-index result supports the narrower
+statement that the frozen governance mechanisms behave as designed under a
+complete denominator and matched host-owned budgets; the MetaSyn result supports
+only its declared external retrieval/screening probe.  Bounded AutoResearchBench
+probe results, when archived, must remain separately labeled unless they exercise
+the final matched ORION system under the frozen promotion plan.

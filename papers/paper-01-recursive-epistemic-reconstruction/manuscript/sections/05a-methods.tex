@@ -1,0 +1,127 @@
+\input{generated/suite_facts}
+
+\section{Methods}
+\label{sec:methods}
+
+This section describes the executed design. Every quantity below is fixed by
+artifacts committed before any outcome was inspected; the protocol records
+\texttt{outcome\_accessed: false} and the dataset is bound by content hash, so
+the design cannot be reconstructed after the fact to fit a result.
+
+\subsection{Frozen protocol and bound artifacts}
+
+The design is \texttt{P1.hidden-formulation.v1.1}. Amendment~A1 removed human
+adjudication as a requirement and installed a blinded model panel as the
+adjudication standard; it was admitted while \texttt{outcome\_accessed} was
+still false, so it changed the design before any outcome was visible rather
+than after. The amendment did not relax provenance: panel output carries the
+tier \texttt{MODEL\_ADJUDICATED}, which the record type mechanically refuses to
+report as human adjudication, and adjudicated labels are described as
+model-derived throughout.
+
+The evaluation suite is bound by content hash over cases and gold: pilot
+\texttt{7a50a2d5}, test \texttt{21b461d8}. A result reported against an unbound
+dataset is unverifiable, so the hashes are carried in the protocol's
+\texttt{execution\_bindings} rather than in prose.
+
+\subsection{Task suite}
+
+Sixty-six constructed cases span six families: four in which the initially
+offered formulation, representation, decomposition or measurement model is
+genuinely insufficient, and two negative-control families in which the
+formulation is correct and the fault lies in missing evidence or in execution.
+\PilotCaseCount{} cases form a pilot split used only for debugging and variance
+estimation; \TestCaseCount{} form the frozen test split. Gold dependency depth
+ranges over one to three so that reopening can be analysed by depth.
+
+Each case exposes a \texttt{PublicView}: a prompt, a set of observable
+resources, and a budget class. Six labels are withheld in host custody---whether
+a reframe is required, the responsible coordinate family, the reframe target,
+the set of closures that must reopen, the dependency depth, and the task family
+itself. The family is withheld because four of six families are hidden-shift
+and two are controls, so naming the family restates the answer to~H2.
+Withholding is enforced by the type signature rather than by convention: a
+system under test receives a \texttt{PublicView} and never an object carrying
+gold, and a single scoring module is the only code permitted to read it.
+
+\subsection{Suite validity}
+
+The suite was audited for the possibility of answering without comprehension.
+Sixteen surface statistics were tested under two statistics (maximum
+between-family mean gap; leave-one-out nearest-class-mean accuracy) and two
+labellings (six-family; control versus hidden) on both splits, against
+shuffle-equal-$n$ nulls: no comparison survives Holm correction. Because
+univariate tests cannot see a cue carried by the interaction of two surfaces, a
+joint-space leave-one-out nearest-neighbour classifier was run over the
+$z$-scored feature space; it recovers the family at $0.062$ against a $0.167$
+majority baseline. Because statistical tests over derived surfaces cannot see a
+cue carried by the text itself, every token in the corpus was tested in both
+directions for presence predicting the label; no separator survives. Panel
+degeneracy was tested with an independent probe over case features and blind
+responders, which returns clean on both splits.
+
+Two exploitable rules were found and removed during construction. Both are
+reported because their removal is part of the executed design: a resource-count
+imbalance arising from balancing two members of a linearly dependent triple, and
+a rule keyed on the presence of a digit in the prompt that separated hidden
+cases from controls at $0.771$ against a $0.667$ baseline. A residual of
+low-level lexical cues remains at approximately $0.10$ lift and is reported as a
+limitation rather than pursued; with forty-eight cases and an unbounded space of
+text statistics, some statistic always separates.
+
+\subsection{Compared systems and matched budget}
+
+Eleven systems are compared. Five are protocol-matched reimplementations of
+published designs, constructed where original code was unavailable: a static
+tool workflow, an iterative tree-search workflow, an AREX-like recursive
+audit-and-follow-up controller, a SCION-like dependency-aware execution plan,
+and an Iris-like revisable information-state controller. Full ORION is compared
+against five ablations of itself: without explicit $W$, without explicit $M$,
+generic retry in place of typed responsibility-targeted reframing, full reset in
+place of dependency-directed reopening, and no mechanic self-audit.
+
+All systems share one perception layer, so no system can win by perceiving
+better rather than deciding better, and all are resource-matched. Root success
+is never self-asserted: each system re-runs the shared detector against its own
+post-repair state, and a formulation fault clears only if the policy actually
+moved the coordinate responsible for it.
+
+\subsection{Statistical analysis}
+
+The analysis unit is the frozen case, with five stochastic repetitions nested
+within case and system and reduced before any interval is computed; $n$ is
+therefore the number of cases and never cases~$\times$~seeds. Standalone binary
+rates receive Wilson score intervals. Matched differences use a paired
+percentile bootstrap with ten thousand resamples over the frozen case pairing.
+Effect sizes accompany every comparison. The primary hypothesis carries a
+prospective superiority margin of $+0.05$ absolute root success; the
+non-inferiority margin for unnecessary reframing is $+0.02$. Secondary
+inferential families are Holm-corrected. An interval that includes its margin
+does not report support.
+
+No candidate-caused failure, timeout, malformed action, abstention or incorrect
+reframe is excluded. Abstention is a distinct outcome that partitions with
+reframe and restraint, so a system cannot obtain a clean unnecessary-reframe
+rate by declining to answer. A case that could not be measured propagates as
+\textsc{cannot\_check} and leaves both numerator and denominator; it is never
+aggregated as a zero.
+
+Two admissibility conditions are evaluated before any system comparison is
+reported. First, non-compensatory blocking gates: a failed or unobserved
+requirement cannot be offset by performance elsewhere. Second, arm
+discrimination: if every compared system produced an identical outcome vector,
+the comparison reports a difference of exactly zero by construction rather than
+by measurement, and the honest verdict is \textsc{cannot\_check} rather than a
+null result. This condition is checked and reported, not assumed.
+
+\subsection{Reference levels}
+
+Two null levels are computed from the suite rather than adopted by convention.
+For reopening, the mechanism-free reference is a blind policy that reopens the
+largest closure component without reading the prompt or naming a
+responsibility; it scores $0.792$ on pilot and $0.823$ on test, above the
+full-reset ablation at $0.719$. A reopen result between those levels reflects
+graph shape rather than dependency-directed reasoning, so the ablation alone is
+not a sufficient comparison. For attribution, blind responders reading only case
+identifiers, surface counts, or structural shape are reported alongside the
+majority baseline.

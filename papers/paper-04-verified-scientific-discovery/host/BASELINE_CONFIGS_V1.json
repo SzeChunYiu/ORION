@@ -1,0 +1,110 @@
+{
+  "schema": "P4BaselineConfigs.v1",
+  "resource_budget_units": 12.0,
+  "panel_baseline_ids": [
+    "provenanceguard-style-source-routing",
+    "attributionbench-multisource-attribution",
+    "fire-iterative-retrieve-or-verify",
+    "claimbench-sciclaimhunt-scientific-evidence",
+    "provenai-citation-fidelity-influence",
+    "rewardhackingagents-search-contamination"
+  ],
+  "baselines": [
+    {
+      "system_id": "provenanceguard-style-source-routing",
+      "mechanism": "exact assigned-source ownership + declared content/provenance binding + assigned-source support",
+      "resource_units": 5.0
+    },
+    {
+      "system_id": "attributionbench-multisource-attribution",
+      "mechanism": "assigned-source identity + pooled semantic support",
+      "resource_units": 3.0
+    },
+    {
+      "system_id": "fire-iterative-retrieve-or-verify",
+      "mechanism": "iterative candidate-visible retrieval pool search + content integrity + semantic support; DeepSciVerify maps into this already-frozen current scientific-verification family",
+      "resource_units": 6.0
+    },
+    {
+      "system_id": "claimbench-sciclaimhunt-scientific-evidence",
+      "mechanism": "pooled scientific claim-evidence support/contradiction classification without authority-governance gates",
+      "resource_units": 4.0
+    },
+    {
+      "system_id": "provenai-citation-fidelity-influence",
+      "mechanism": "citation/content fidelity + behavioral-use trace without evaluator/holdout governance",
+      "resource_units": 5.0
+    },
+    {
+      "system_id": "rewardhackingagents-search-contamination",
+      "mechanism": "candidate-visible contamination/tamper/access checks + pooled support without exact source-authority transition",
+      "resource_units": 5.0
+    },
+    {
+      "system_id": "citation-presence-format",
+      "mechanism": "citation/evidence presence and format only",
+      "resource_units": 1.0
+    },
+    {
+      "system_id": "pooled-evidence-nli-support",
+      "mechanism": "pooled semantic support/contradiction without source ownership or authority governance",
+      "resource_units": 2.0
+    },
+    {
+      "system_id": "claim-level-auditability-provenance",
+      "mechanism": "content/provenance record plus behavioral-use trace without protected evaluator governance",
+      "resource_units": 5.0
+    }
+  ],
+  "ablations": [
+    {
+      "system_id": "ablation-no-exact-content-binding",
+      "removed_coordinate": "EXACT_CONTENT_BINDING",
+      "semantics": "force only the exact-content-binding gate to PASS; keep every other hard gate unchanged",
+      "resource_units": 9.0
+    },
+    {
+      "system_id": "ablation-no-content-provenance-distinction",
+      "removed_coordinate": "SOURCE_OWNERSHIP",
+      "semantics": "force only source-ownership identity to PASS, collapsing semantic support and source attribution",
+      "resource_units": 9.0
+    },
+    {
+      "system_id": "ablation-no-checker-lineage-independence",
+      "removed_coordinate": "CHECKER_INDEPENDENCE",
+      "semantics": "force checker-lineage independence to PASS",
+      "resource_units": 9.0
+    },
+    {
+      "system_id": "ablation-no-hostile-checker-battery",
+      "removed_coordinate": "CHECKER_DISCRIMINATION",
+      "semantics": "force hostile-checker discrimination to PASS",
+      "resource_units": 9.0
+    },
+    {
+      "system_id": "ablation-no-behavioral-influence",
+      "removed_coordinate": "BEHAVIORAL_INFLUENCE",
+      "semantics": "force behavioral-use evidence to PASS",
+      "resource_units": 9.0
+    },
+    {
+      "system_id": "ablation-no-evaluator-protection-telemetry",
+      "removed_coordinate": "EVALUATOR_CHRONOLOGY_INTEGRITY+PROTECTED_ACCESS_CLEAR",
+      "semantics": "force evaluator chronology/integrity and protected-access telemetry gates to PASS",
+      "resource_units": 9.0
+    },
+    {
+      "system_id": "ablation-soft-confidence",
+      "removed_coordinate": "NON_COMPENSATORY_TERMINAL",
+      "semantics": "replace fail-closed hard conjunction with PROMOTE when at least 6 of 9 gates PASS; otherwise BLOCK",
+      "resource_units": 9.0
+    },
+    {
+      "system_id": "ablation-no-search-contamination-block",
+      "removed_coordinate": "SEARCH_CONTAMINATION_CLEAR",
+      "semantics": "force the search-time-contamination gate to PASS",
+      "resource_units": 9.0
+    }
+  ],
+  "notes": "All comparators and ablations are deterministic mechanism-matched variants over the frozen synthetic P4 corpus. They receive the identical candidate-visible packet and never protected gold. The first six comparators are the exact AuthorityBenchmarkPanel.v1 frozen baseline IDs. The remaining three satisfy issue-101 citation-format, pooled-support and auditability comparison requirements. Ablations are resource-matched to full ORION at 9.0 units and remove only the predeclared coordinate(s) above."
+}

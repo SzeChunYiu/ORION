@@ -1,0 +1,32 @@
+\section{Limitations, ethics, and reproducibility}
+\label{sec:limitations}
+
+\subsection{Limitations}
+
+\paragraph{Expert subjectivity and theory-ladenness.}
+Scientific identity and measurement equivalence judgments are theory-laden and may depend on the annotator's disciplinary background. Two experts may reasonably disagree on whether a construct is ``the same'' across two sources, particularly when the sources operationalise the construct differently. The annotation protocol mitigates this through a written handbook, independent double annotation, and domain-expert escalation, but cannot eliminate subjectivity entirely. Inter-annotator agreement per coordinate will be reported, and the \textsc{Unresolved} label is available for cases where agreement cannot be reached.
+
+\paragraph{Domain coverage.}
+The gold dataset covers four disciplines (biomedicine, physics, social science, climate science) with 32 samples. This is sufficient for the primary hypothesis test but cannot establish universal cross-domain adequacy. The eight case families are designed to span the most challenging integration scenarios, but other scenarios (e.g., cross-linguistic terminology differences, historical conceptual change) are not covered.
+
+\paragraph{Evolving terminology.}
+Scientific terminology evolves over time. A construct that was operationalised one way in 2010 may be operationalised differently in 2026. The annotation captures the state of the literature at the time of annotation; the framework's ability to handle temporal drift in terminology is not evaluated.
+
+\paragraph{Ontology and schema dependence.}
+The 11-coordinate annotation schema is a choice. Other coordinate systems are possible (e.g., adding probability distributions, causal structure, or ethical considerations). The evaluation does not claim that the 11-coordinate schema is optimal --- only that it is a principled starting point for typed scientific integration.
+
+\paragraph{Extraction error propagation.}
+The text-to-scientific-meaning extraction layer is the highest-risk component of the pipeline. Errors in this layer propagate to every downstream decision (mapping, GLUE, obstruction). The gold study evaluates the full pipeline end-to-end, so extraction errors will be reflected in the headline metrics; attribution to individual stages will require the per-coordinate metrics and qualitative error analysis.
+
+\paragraph{Limited simultaneous coherence.}
+The ultimate purpose of a global knowledge portrait is to enhance the capacity for scientific research --- to expose the epistemic structure of a field, its incompatibilities, and its open questions. The gold study measures recoverability, obstruction quality, and downstream answer correctness, but no study of realistic size can capture the full cognitive and collaborative benefit of such a portrait.
+
+\subsection{Ethics}
+
+The ORION framework integrates scientific claims from published literature; it does not collect new human data. The gold dataset draws on published open-access sources, so no additional consent or ethics review is required. The annotation task involves expert scientists evaluating scientific claims; it does not involve sensitive personal data. We nonetheless note two ethical considerations. First, the framework's outputs --- including \textsc{Obstruction} and \textsc{Plural\_View} verdicts --- should be presented to users as structured records of incompatibility, not as judgments that one perspective is superior. Second, the provenance mechanism is designed to make every claim attributable to its source, supporting scientific accountability.
+
+\subsection{Reproducibility}
+
+The evaluation protocol is frozen in \texttt{protocol/PROTOCOL\_V1.json}, and the annotation schema in \texttt{protocol/ANNOTATION\_SCHEMA\_V1.json}. The annotation handbook and adjudication policy are frozen as \texttt{ANNOTATION\_HANDBOOK\_V1.md} and \texttt{ADJUDICATION\_POLICY\_V1.md} before any test-system outputs are examined. The MUSE reference implementation is pinned to a specific commit. Final sampled-source, gold, evaluator, model, and subject hashes remain unbound until \texttt{EXECUTION\_FROZEN}. The full reproducibility requirements are documented in the repository's reproducibility sections of the paper and its companion materials~\cite{orion2025paper3-nearest}.
+
+\endinput

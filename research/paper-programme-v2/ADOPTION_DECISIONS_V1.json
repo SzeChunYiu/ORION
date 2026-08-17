@@ -1,0 +1,58 @@
+{
+  "authority": "PROSPECTIVE_DESIGN_ONLY",
+  "decision_date": "2026-08-16",
+  "decisions": [
+    {
+      "claim_boundary": "Do not claim active diagnosis itself.",
+      "decision": "ADOPT",
+      "issue": 98,
+      "mechanism_id": "responsibility-diagnosability-scoped-licensing",
+      "nearest_work": ["arXiv:2509.04708"],
+      "paper_id": "P1",
+      "protocol_id": "P1.responsibility-diagnosability.v2",
+      "reason": "Active diagnosability is established prior art; the testable incremental residual is diagnosability composed with responsibility-scoped epistemic mutation authority."
+    },
+    {
+      "claim_boundary": "Do not claim conservative bandits or safe exploration as novelty.",
+      "decision": "ADAPT",
+      "issue": 99,
+      "mechanism_id": "conservative-censored-route-allocation",
+      "nearest_work": ["arXiv:2412.06165", "arXiv:2002.00467", "arXiv:1611.06426"],
+      "paper_id": "P2",
+      "protocol_id": "P2.conservative-censored-allocation.v2",
+      "reason": "Conservative/safe contextual bandits and safe exploration for IR are established; only the composition with P2 route identity, censoring and route/task authority is worth testing."
+    },
+    {
+      "claim_boundary": "Do not claim lenses, cycle consistency, transportability, or scientific obstruction in isolation.",
+      "decision": "ADOPT",
+      "issue": 100,
+      "mechanism_id": "typed-scientific-lens-consistency",
+      "nearest_work": ["arXiv:2601.04573", "arXiv:2605.14033", "arXiv:2503.23605"],
+      "paper_id": "P3",
+      "protocol_id": "P3.typed-lens-consistency.v2",
+      "reason": "Bidirectional lenses and scientific obstruction/transport already exist; the incremental question is whether typed scientific round-trip/cycle checks reduce unsafe integration on expert gold."
+    },
+    {
+      "claim_boundary": "Planner output can never grant scientific authority.",
+      "decision": "ADAPT",
+      "issue": 101,
+      "mechanism_id": "protected-defeater-evidence-planning",
+      "nearest_work": ["arXiv:2606.04104", "arXiv:2606.11462", "arXiv:2411.03291"],
+      "paper_id": "P4",
+      "protocol_id": "P4.defeater-evidence-planner.v2",
+      "reason": "Proof-carrying governance and structured defeater management are close prior work. The planner is retained only as an efficiency helper under unchanged protected authority semantics."
+    },
+    {
+      "claim_boundary": "Do not claim anytime-valid acceptance or validated self-evolution alone.",
+      "decision": "ADOPT",
+      "issue": 102,
+      "mechanism_id": "non-compensatory-staged-candidate-gate",
+      "nearest_work": ["arXiv:2606.08106", "arXiv:2607.00871", "arXiv:2605.23019"],
+      "paper_id": "P5",
+      "protocol_id": "P5.noncompensatory-evolution-gate.v2",
+      "reason": "Anytime-valid acceptance and validated self-evolution are already direct prior work. The surviving incremental question is non-compensatory replay/fresh/protected evidence with custody, negative history and host-only promotion."
+    }
+  ],
+  "schema_version": "orion.paper-v2-adoption-decisions.v1",
+  "source_merge": "a452b41c7f326f9d0d3424567c2ef408c6a54e8e"
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.PHYS.005.GOLD",
+  "case_id": "P3.PHYS.005",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "arxiv:SEED-PHYS005A",
+    "document_version": "v1",
+    "span_start": 6010,
+    "span_end": 6340,
+    "text_hash": "seed:sha256:8182838a993",
+    "discipline": "physics",
+    "text": "Primary measurement: 'expansion rate H0 = 73 km/s/Mpc' (direct Cepheid measurement)"
+  },
+  "source_b": {
+    "document_id": "arxiv:SEED-PHYS005B",
+    "document_version": "v1",
+    "span_start": 2210,
+    "span_end": 2520,
+    "text_hash": "seed:sha256:8182838a994",
+    "discipline": "physics",
+    "text": "Cosmic microwave background: 'H0 = 67.4 km/s/Mpc' (model-dependent inference)"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "SAME",
+  "measurement_relation": "EQUIVALENT",
+  "context_relation": "ALIGNED",
+  "polarity_relation": "SAME",
+  "modality_relation": "DIFFERENT_STRENGTH",
+  "attribution_relation": "DIFFERENT_ATTRIBUTION",
+  "discourse_relation": "ALIGNED",
+  "mapping_relation": "SUBSUMPTION",
+  "preservation_conditions": [
+    "Modality and attribution differences are carried forward as metadata",
+    "Asserted claim subsumes the hedged version"
+  ],
+  "non_preserved_coordinates": [
+    "modality",
+    "attribution"
+  ],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "GLUE_ALLOWED",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "modality_relation:DIFFERENT_STRENGTH",
+    "attribution_relation:DIFFERENT_ATTRIBUTION",
+    "contradiction_verdict:NO_CONTRADICTION"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for polarity_modality_attribution_context case P3.PHYS.005. referent=SAME, construct=SAME, measurement=EQUIVALENT, context=ALIGNED, mapping=SUBSUMPTION, integration=GLUE_ALLOWED. Seed manifest notes: The Hubble tension. Gold: NOT a contradiction of measurement but a MODEL-DEPENDENT disagreement; contexts (local vs early-universe) carried separately.",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

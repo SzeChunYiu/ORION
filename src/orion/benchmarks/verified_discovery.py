@@ -198,15 +198,74 @@ def external_authority_gate(
     heldout_access_logged: bool,
     matched_nearest_work_baseline_run: bool,
     false_promotion_better_than_baseline: bool | None,
+    claim_evidence_support_established: bool | None = None,
+    behavioral_influence_established: bool | None = None,
+    observed_activity: object | None = None,
+    require_observed_activity: bool = True,
 ) -> BenchmarkReport:
     """External Paper IV promotion gate.
 
     Unit tests cannot answer source-attribution accuracy, search-time benchmark
     contamination or protected-evaluator efficacy on a live agent. Those are
     mandatory before an external authority claim.
+
+    Candidate-facing booleans are attestations. Protected support/influence
+    assessments and host-observed activity are independent evidence surfaces;
+    neither can be replaced by the candidate's own declaration.
+
+    `observed_activity` supplies what the candidate actually did. It can only
+    LOWER the verdict, never raise it: an observation that contradicts an
+    attestation refuses, and an absent required observation is CANNOT_CHECK.
     """
 
     missing: list[str] = []
+    contradicted: list[str] = []
+    if require_observed_activity and observed_activity is None:
+        missing.append(
+            "observed activity was required and none was supplied; the "
+            "attestations alone cannot establish evaluator integrity"
+        )
+    if observed_activity is not None:
+        written = tuple(getattr(observed_activity, "written_paths", ()) or ())
+        read = tuple(getattr(observed_activity, "read_paths", ()) or ())
+        edits = tuple(getattr(observed_activity, "test_edits", ()) or ())
+        touched_evaluator = [
+            item
+            for item in written
+            if "evaluat" in item
+            or "metric" in item
+            or "guard" in item
+            or "gate" in item
+        ]
+        touched_heldout = [item for item in read if "heldout" in item or "held_out" in item]
+        if evaluator_locked and touched_evaluator:
+            contradicted.append(
+                "evaluator_locked was attested but the activity record shows writes to "
+                f"{sorted(touched_evaluator)}"
+            )
+        if heldout_access_logged and touched_heldout:
+            contradicted.append(
+                "heldout_access_logged was attested but the activity record shows reads of "
+                f"{sorted(touched_heldout)}"
+            )
+        if edits:
+            contradicted.append(
+                "the activity record shows test edits: "
+                f"{sorted(repr(item) for item in edits)}"
+            )
+    if contradicted:
+        return BenchmarkReport(
+            paper_id="P4",
+            case_id="external-authority-gate",
+            status=BenchmarkStatus.FAIL,
+            metrics=(),
+            blockers=tuple(contradicted),
+            observations=(
+                "Refused on observed activity, not on the attestations. An "
+                "attestation contradicted by a record of what the candidate did "
+                "is worse than a missing attestation, because it was offered.",
+            ),
+        )
     if not source_attribution_benchmark_run:
         missing.append("claim/source attribution benchmark not executed")
     if not search_time_contamination_audited:
@@ -219,6 +278,10 @@ def external_authority_gate(
         missing.append("matched source-aware verifier baseline not executed")
     if false_promotion_better_than_baseline is None:
         missing.append("false-promotion comparison unavailable")
+    if claim_evidence_support_established is not True:
+        missing.append("claim/evidence semantic support was not protectedly established")
+    if behavioral_influence_established is not True:
+        missing.append("behavioral influence of cited evidence was not protectedly established")
     if missing:
         return BenchmarkReport(
             paper_id="P4",

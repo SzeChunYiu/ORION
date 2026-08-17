@@ -1,0 +1,30 @@
+{
+  "case_id": "p1-c102",
+  "task_family": "evidence_only_negative_control",
+  "public_prompt": "3 candidate indexes have been proposed for a report query that now takes 95 seconds. The shortlist is settled and these 3 are genuinely the ones worth measuring. The route being taken: apply each in turn, take the query plan and the runtime, and pick the fastest. Pick an index.",
+  "observable_resources": [
+    "db/staging-counts.csv — the staging copy holds 0.4% of the production rows for every table in the query",
+    "db/staging-plans.txt — all three candidates produce an identical sequential-scan plan on staging, and all three run in 40 ms",
+    "db/replica-access.md — a production read replica exists; running an explain against it needs a request to the database team",
+    "db/anonymised-copy.md — a full-size anonymised copy can be provisioned in two days on request, with production row counts and value spreads preserved",
+    "closure:report-query-owner — closed; assigns the slow report query to the analytics team; rests on the ownership register, not on which index wins",
+    "closure:index-candidate-list — closed; narrows the field to these three after a review of the query's access pattern; rests on that review, not on any timing",
+    "closure:report-delivery-window — closed; commits the report to land by 07:00; rests on the customer agreement, not on which index is chosen",
+    "closure:staging-refresh-cadence — closed; refreshes the staging copy weekly; rests on the platform calendar, not on which index is chosen"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EVIDENCE",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the undersized staging data as the blocker, obtains a full-size copy or a production query plan before choosing, and leaves the measure-each-candidate route unchanged. FAIL if the answer picks an index from reasoning about the query alone, proposes rewriting the query or the schema instead of measuring, or reports the staging runtimes as the comparison.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Absent record: a production-representative dataset, with two documented routes to obtain it. The measure-each-candidate plan is correct. Reframing is the wrong move."
+}

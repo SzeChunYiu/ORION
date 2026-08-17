@@ -1,0 +1,36 @@
+{
+  "case_id": "p1-c123",
+  "task_family": "hidden_parent_domain",
+  "public_prompt": "Assign 60 engineers to 60 on-call weeks, one each way, from a matrix of submitted costs. The step already agreed: sort by lowest cost, assign greedily, break ties by seniority, then repair conflicts by hand. Produce an assignment and state whether it is the cheapest possible.",
+  "observable_resources": [
+    "roster/cost-matrix.csv — 60x60 integer costs in 1..9 with no missing entries",
+    "roster/greedy-run.log — the current script's output: total cost 214, with 11 weeks needing manual repair after conflicts",
+    "roster/manual-repairs.md — hand repairs in three past months lowered the total by 6, 9 and 4, each found by trial rather than by argument",
+    "roster/constraints.md — exactly one engineer per week and one week per engineer; costs add; there are no other constraints",
+    "closure:oncall-schedule-april — closed; publishes the greedy assignment at total cost 214 as final",
+    "closure:fairness-report-q2 — closed; derived from closure:oncall-schedule-april, reports the spread of costs across engineers as proof of a fair rotation",
+    "closure:oncall-compensation-rate — closed; sets the weekly on-call payment from the collective agreement; rests on that agreement, not on which engineer takes which week",
+    "closure:roster-publication-date — closed; fixes the date the roster must be published; rests on the operations calendar, not on which engineer takes which week"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "SEARCH",
+    "target_coordinates": [
+      "W.ACTIVE_DOMAINS",
+      "parent_domain:combinatorial_optimization"
+    ],
+    "dependencies_to_reopen": [
+      "closure:oncall-schedule-april",
+      "closure:fairness-report-q2"
+    ],
+    "root_success_rubric": "PASS iff the assignment is solved exactly for the stated constraints and the answer supplies a certificate that no cheaper assignment exists (dual potentials, a linear programming bound, or an equivalent argument). FAIL if the answer returns a greedy or hand-repaired assignment, claims the result is cheapest with no bound, or proposes a heuristic search without an optimality argument.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the greedy framing returns 214 or a slightly repaired variant and cannot answer the 'is it the cheapest' half of the question at all."
+}

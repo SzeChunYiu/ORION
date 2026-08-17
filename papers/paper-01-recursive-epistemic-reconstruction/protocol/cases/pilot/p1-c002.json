@@ -1,0 +1,37 @@
+{
+  "case_id": "p1-c002",
+  "task_family": "hidden_measurement_or_operationalization",
+  "public_prompt": "A new summariser scores 8.4 out of 10 on the in-house quality bench against the incumbent's 6.9. The route being taken: the bench is the arbiter, so ship. Report whether the new summariser is better.",
+  "observable_resources": [
+    "bench/protocol.md — each judge sees both outputs side by side, each captioned with which one is new and which is current",
+    "bench/judges.csv — all 6 judges belong to the team that built the new summariser",
+    "bench/prompt-set.md — the 120 prompts were picked by that same team from cases used while developing the new summariser",
+    "bench/rerun.md — a 40-prompt re-run with the captions removed and the left-right order shuffled gave 7.1 against 7.0",
+    "closure:launch-decision-summariser — closed; approves launch on the 8.4 against 6.9 result",
+    "closure:pricing-tier-summariser — closed; derived from closure:launch-decision-summariser",
+    "closure:sales-enablement-deck — closed; derived from closure:pricing-tier-summariser",
+    "closure:summariser-latency-budget — closed; caps response time at 400 ms; rests on the product requirement, not on which summariser writes better"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "EVALUATOR",
+    "target_coordinates": [
+      "M.EVALUATOR",
+      "evaluator:independent_blind_adjudication"
+    ],
+    "dependencies_to_reopen": [
+      "closure:launch-decision-summariser",
+      "closure:pricing-tier-summariser",
+      "closure:sales-enablement-deck"
+    ],
+    "root_success_rubric": "PASS iff the judging procedure is rebuilt so judges cannot tell which output is which, judges are drawn from outside the authoring team, and the prompt set is drawn separately from the cases used in development — and the answer reports that the 1.5-point gap is unsupported, citing the 7.1 against 7.0 re-run. FAIL if the answer accepts the 8.4 against 6.9 result, adds more judges from the same team, or only enlarges the same prompt set.",
+    "dependency_depth": 3
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the bench-as-arbiter framing ships on 8.4 against 6.9; the captioned re-run already shows the gap collapsing to 0.1."
+}

@@ -2,8 +2,19 @@
 \usepackage{amsmath,amssymb}
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
+\usepackage{xspace}
+\usepackage{booktabs}
+\emergencystretch=1em
 
-\title{ORION Paper III: A Recoverable Global Knowledge Portrait from Source-Local Scientific Projections}
+% Custom commands for manuscript conventions
+\newcommand{\conststatus}{\texttt{CANNOT\_CHECK}\xspace}
+\newcommand{\glue}{\textsc{glue}\xspace}
+\newcommand{\obstruction}{\textsc{obstruction}\xspace}
+\newcommand{\pluralview}{\textsc{plural\_view}\xspace}
+\newcommand{\unresolved}{\textsc{unresolved}\xspace}
+
+\title{ORION Paper III: A Recoverable Global Knowledge Portrait from\\
+Source-Local Scientific Projections}
 \author{Working framework draft}
 \date{August 2026}
 
@@ -11,46 +22,42 @@
 \maketitle
 
 \begin{abstract}
-Cross-domain scientific synthesis is vulnerable to false integration: identical names may denote different referents, nominally similar constructs may use incompatible operationalizations, and apparently contradictory claims may differ in context, modality or attribution. ORION Paper III represents source-local scientific views as provenance-preserving projections. Before global integration, proposed mappings distinguish referent identity, construct identity, measurement/operationalization, context and representation equivalence. Compatible projections may be GLUEd under explicit preservation conditions; incompatible or unresolved views remain typed obstructions or plural charts rather than being forced into one canonical summary. The resulting portrait must preserve enough lineage to recover its contributing source views and mapping assumptions. Local exact worlds falsify these semantics, but real cross-domain construct validity remains \texttt{CANNOT\_CHECK}. Publication requires an independently annotated multi-discipline gold set and comparison with long-context, RAG, schema-fusion and provenance-aware knowledge-integration baselines.
+\input{sections/00-abstract}
 \end{abstract}
 
 \noindent\textbf{Keywords:} scientific knowledge integration; provenance; schema alignment; measurement harmonization; scientific pluralism; knowledge representation.
 
-\section{Problem and claim boundary}
-Paper III does not claim the first scientific knowledge graph, cross-domain RAG system, schema matcher, literature-based discovery system or provenance graph. Its target is narrower: whether preserving source-local projections and explicitly representing failed mappings reduces scientifically damaging false integration while still enabling useful synthesis.
+\section{Introduction}
+\label{sec:introduction}
+\input{sections/10-introduction}
 
-\section{Source-local projections and scientific meaning}
-For source $s$, ORION retains a projection $P_s$ bound to exact source provenance. A scientific meaning proposal records predicate/roles, referents, constructs, measurements, temporal context, polarity, modality, discourse relation, attribution, assumptions and unresolved ambiguity before global mapping. This prevents an extraction or normalization step from silently acquiring scientific authority.
+\section{Related work}
+\label{sec:related}
+\input{sections/20-related-work}
 
-Recent resources already raise the baseline for structured scientific knowledge. MUSE extracts source-grounded cross-domain problem/solution/rationale structures \cite{muse2026}; SciSchema.org supplies expert multidisciplinary scientific-process schemas with parameters, measurements and provenance \cite{scischema2026}; SciER provides full-text scientific entity/relation annotations \cite{scier2024}. These capabilities are inputs/baselines, not ORION novelty.
+\section{Method}
+\label{sec:method}
+\input{sections/30-method}
 
-\section{Typed mappings, GLUE and obstruction}
-A proposed mapping $m:P_a\rightarrow P_b$ is not a generic similarity score. It may assert referent identity, construct equivalence, measurement/operationalization compatibility, a representation transform, or only a context-conditioned relation. Each mapping carries preservation/non-preservation conditions and remains proposal-level until supported.
+\section{Gold dataset}
+\label{sec:dataset}
+\input{sections/40-dataset}
 
-When compatibility obligations are satisfied, projections may be GLUEd into a larger chart. When they are violated or unresolved, the correct result is an obstruction or plural portrait. This is an informative output: it records that the global object currently requires multiple incompatible views rather than pretending a universal schema is justified.
+\section{Evaluation}
+\label{sec:eval}
+\input{sections/50-evaluation}
 
-Schema induction/fusion and shared schema contracts are strong nearest work. SCOPE/SCION provides evidence-linked conservative schema induction/fusion \cite{scopes2026}, while Executable Schema Contracts demonstrates provenance-aware multi-source integration and retrieval \cite{schemaContracts2026}. Paper III must therefore show value specifically from typed scientific identity/measurement distinctions, obstruction and recoverability.
-
-\section{Recoverable global portrait}
-A global statement is incomplete if its source projections, transformation/mapping path and lost/unpreserved coordinates cannot be recovered. Paper III therefore treats recoverability as an evaluation target rather than a visualization convenience. A new absorbed representation may also expand the relevance/search-universe model and reopen research rather than merely updating a static graph.
-
-\section{External evaluation protocol}
-The decisive study requires a frozen expert-annotated cross-domain set spanning at least three disciplines and difficult cases such as same-name/different-referent, same-construct/different-measurement, temporal-state changes, modality/attribution differences, valid/invalid transforms and genuine non-mergeable plural views. Annotation preserves exact source spans and separately labels referent, construct, measurement, context, mapping, contradiction and obstruction coordinates.
-
-The outcome-blind design is registered as \texttt{P3.cross-domain-atlas.v1}. The annotation contract, handbook and adjudication policy are frozen in \texttt{protocol/} before final gold labeling and final model-output inspection. The primary comparison targets false integration with a valid-integration safety guard: the design target is a five-percentage-point absolute reduction in false integration relative to the strongest matched baseline while valid integration remains non-inferior within three percentage points. These values are prospective design margins, not claimed results.
-
-Baselines include vanilla long-context synthesis, scientific RAG, cross-domain translation/RAG, flat universal-schema or KG canonicalization, SCOPE/SCION-like schema fusion, and provenance-aware schema-contract integration. Ablations remove individual scientific-meaning coordinates, explicit obstruction, recoverability and the $W$-expansion/reopen effect. The MUSE reference implementation is pinned to commit \texttt{f7a40317db46145d0c90b221311d8324db5da1b9}; final sampled-source, gold, evaluator, model and subject hashes remain unbound until \texttt{EXECUTION\_FROZEN}.
-
-Human labels follow the written handbook with independent double annotation on a substantial shared subset, agreement reported per coordinate, immutable pre-adjudication labels and domain-expert escalation where specialist operationalization is required. Remaining uncertainty is labeled \texttt{UNRESOLVED}; adjudication is not allowed to manufacture certainty.
-
-\section{Results status}
-Local exact worlds demonstrate implementation semantics and have already exposed a missing text-to-scientific-meaning layer. They do not establish real-literature adequacy. False-merge reduction, mapping validity, obstruction quality and downstream scientific benefit remain \texttt{CANNOT\_CHECK} until the external gold study is executed under the bound V1 protocol.
+\section{Results}
+\label{sec:results}
+\input{sections/06-results}
 
 \section{Limitations, ethics and reproducibility}
-Scientific identity and measurement equivalence can be theory-laden and expert-dependent. A finite annotation set cannot establish universal cross-domain adequacy. Copyright/licensing may limit redistribution of source text. The final artifact must therefore publish the annotation schema/handbook, source identifiers or legally shareable spans, adjudicated gold, baseline configurations, raw projections/mappings and scripts regenerating every metric and figure. The normalized result-record schema and common statistical rules are frozen under \texttt{research/paper-programme-v1/protocols/}.
+\label{sec:limitations}
+\input{sections/07-limitations}
 
 \section{Conclusion}
-Paper III tests whether an atlas of recoverable local projections with explicit obstruction is safer and more useful than premature canonicalization. That scientific claim remains external-evidence open.
+\label{sec:conclusion}
+\input{sections/08-conclusion}
 
 \bibliographystyle{plain}
 \bibliography{bibliography}

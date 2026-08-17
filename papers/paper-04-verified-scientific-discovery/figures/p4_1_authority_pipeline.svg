@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420">
+  <rect width="100%" height="100%" fill="white"/>
+  <text x="450" y="28" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold">ORION Authority Pipeline</text>
+
+  <!-- Stage 1: Proposal-Only Content -->
+  <rect x="30" y="55" width="140" height="100" rx="10" ry="10" fill="#E3F2FD" stroke="#2196F3" stroke-width="2"/>
+  <text x="100" y="82" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="bold">1. Proposal-Only</text>
+  <text x="100" y="98" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#555">Content</text>
+  <text x="100" y="114" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#888">(no authority)</text>
+  <text x="100" y="135" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666">Retrieved / generated</text>
+  <text x="100" y="148" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666">without evidence binding</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="170" y1="105" x2="200" y2="105" stroke="#2196F3" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2196F3"/>
+    </marker>
+  </defs>
+
+  <!-- Stage 2: Evidence Binding -->
+  <rect x="205" y="55" width="150" height="100" rx="10" ry="10" fill="#BBDEFB" stroke="#2196F3" stroke-width="2"/>
+  <text x="280" y="82" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="bold">2. Evidence Binding</text>
+  <text x="280" y="100" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555">Content match</text>
+  <text x="280" y="115" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555">Provenance hash</text>
+  <text x="280" y="135" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666">Exact content +</text>
+  <text x="280" y="148" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666">source ownership</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="355" y1="105" x2="385" y2="105" stroke="#2196F3" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Stage 3: Checker Admissibility -->
+  <rect x="390" y="55" width="150" height="100" rx="10" ry="10" fill="#90CAF9" stroke="#2196F3" stroke-width="2"/>
+  <text x="465" y="82" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="bold">3. Checker</text>
+  <text x="465" y="98" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="bold">Admissibility</text>
+  <text x="465" y="118" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555">Lineage verification</text>
+  <text x="465" y="133" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555">Hostility disc.</text>
+  <text x="465" y="148" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666">Independence check</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="540" y1="105" x2="570" y2="105" stroke="#2196F3" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Stage 4: Protected Evaluation -->
+  <rect x="575" y="55" width="150" height="100" rx="10" ry="10" fill="#64B5F6" stroke="#2196F3" stroke-width="2"/>
+  <text x="650" y="82" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="bold">4. Protected</text>
+  <text x="650" y="98" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="bold">Evaluation</text>
+  <text x="650" y="118" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555">Evaluator frozen</text>
+  <text x="650" y="133" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555">Holdout protected</text>
+  <text x="650" y="148" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666">Access telemetry</text>
+
+  <!-- Arrow 4→Decision -->
+  <line x1="725" y1="105" x2="755" y2="105" stroke="#2196F3" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Decision diamond -->
+  <polygon points="810,105 780,140 810,175 840,140" fill="#FFF9C4" stroke="#FFC107" stroke-width="2"/>
+  <text x="810" y="143" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold">All</text>
+  <text x="810" y="155" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold">gates</text>
+  <text x="810" y="166" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666">pass?</text>
+
+  <!-- Arrow: Yes → PROMOTE -->
+  <line x1="840" y1="140" x2="870" y2="140" stroke="#4CAF50" stroke-width="2"/>
+  <text x="855" y="135" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#4CAF50">Yes</text>
+  <rect x="870" y="120" width="28" height="40" rx="5" ry="5" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+  <text x="884" y="145" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#2E7D32">PROMOTE</text>
+
+  <!-- Arrow: No → BLOCK -->
+  <line x1="780" y1="175" x2="780" y2="230" stroke="#F44336" stroke-width="2"/>
+  <text x="776" y="225" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#F44336">No</text>
+  <rect x="750" y="235" width="60" height="40" rx="5" ry="5" fill="#FFEBEE" stroke="#F44336" stroke-width="2"/>
+  <text x="780" y="250" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#C62828">BLOCK</text>
+  <text x="780" y="265" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666">Claim false /</text>
+  <text x="780" y="275" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666">source wrong</text>
+
+  <!-- Arrow: Uncertain → CANNOT_CHECK -->
+  <line x1="780" y1="175" x2="780" y2="310" stroke="#FFC107" stroke-width="2"/>
+  <text x="776" y="305" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#FFC107">Uncertain</text>
+  <rect x="735" y="315" width="90" height="40" rx="5" ry="5" fill="#FFF8E1" stroke="#FFC107" stroke-width="2"/>
+  <text x="780" y="330" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#F57F17">CANNOT_CHECK</text>
+  <text x="780" y="345" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666">Gate unresolved /</text>
+  <text x="780" y="355" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666">insufficient evidence</text>
+
+  <!-- Non-escalating label -->
+  <text x="810" y="395" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10" font-style="italic" fill="#888">Non-escalating terminal states</text>
+
+  <!-- Fail-closed annotation -->
+  <text x="780" y="380" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#888">Fail-closed: no authority promotion</text>
+  <text x="780" y="392" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#888">when any prerequisite is unresolved</text>
+</svg>

@@ -1,0 +1,29 @@
+{
+  "case_id": "p1-c125",
+  "task_family": "evidence_only_negative_control",
+  "public_prompt": "Defects on the assembly line spiked over a 4-week window, from 40 units a week to 485. Process parameters have been cleared, leaving supplier material as the remaining common cause. The step already agreed: join the defect records to the supplier lot codes and name the supplier. Name it.",
+  "observable_resources": [
+    "quality/defects.csv — complete defect records for the window, 1,940 units, each with line and timestamp",
+    "quality/lot-codes.csv — the lot code column is populated for 41% of the window's units; the gaps line up exactly with lines 2, 4 and 5",
+    "ops/scanner-ticket-8841.md — the barcode scanners on lines 2, 4 and 5 were out of service for the whole window",
+    "warehouse/travellers.md — paper travellers carrying the lot code for every unit are retained 12 months and can be digitised in a week",
+    "quality/partial-join.csv — on the 41% that did scan, defects fall evenly across all four suppliers",
+    "closure:line-maintenance-schedule — closed; fixes the servicing calendar for all five lines; rests on the maintenance plan, not on which supplier is involved",
+    "closure:defect-classification — closed; fixes what counts as a defect for this window; rests on the quality standard, not on which supplier is involved"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EVIDENCE",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the unscanned lot codes on lines 2, 4 and 5 as the absent record, retrieves the paper travellers to complete the join, and keeps the join as stated. FAIL if the answer names a supplier from the 41% that did scan, treats the even spread there as the finding, or proposes a process-capability study in place of the join.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Absent record: lot codes for three lines during a scanner outage, recoverable from retained paper travellers. The join plan is correct. Reframing is the wrong move."
+}

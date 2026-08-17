@@ -1,0 +1,36 @@
+{
+  "case_id": "p1-c122",
+  "task_family": "hidden_representation_or_coordinate_system",
+  "public_prompt": "A dashboard panel reports 'mean requests = 4.1 billion' for a single hour, from a metric the agent scrapes every 15 seconds. The current line is: the panel averages the series correctly, so that figure is the hourly volume. Report the hour's request volume.",
+  "observable_resources": [
+    "metrics/scrape.csv — 240 samples for the hour; the value rises without interruption from 4,090,112,331 to 4,090,930,004, except at sample 96 where it drops to 812",
+    "metrics/agent-docs.md — the exported series is the process-lifetime running total since start, exported unchanged",
+    "metrics/dashboard.json — the panel applies avg_over_time to the raw series",
+    "metrics/restart-log.txt — the exporting process restarted at 14:24, matching sample 96",
+    "closure:capacity-forecast-h2 — closed; extrapolates fleet growth from 4.1 billion requests per hour",
+    "closure:contract-tier-upgrade — closed; derived from closure:capacity-forecast-h2, moves the account to a higher vendor tier",
+    "closure:dashboard-access-review — closed; sets who may view the panel; rests on the access standard, not on what the panel computes",
+    "closure:panel-refresh-interval — closed; fixes the 60-second refresh the panel redraws on; rests on the interface standard, not on what the panel computes"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "REPRESENTATION",
+    "target_coordinates": [
+      "W.REPRESENTATIONS",
+      "representation:monotonic_accumulator_differences"
+    ],
+    "dependencies_to_reopen": [
+      "closure:capacity-forecast-h2",
+      "closure:contract-tier-upgrade"
+    ],
+    "root_success_rubric": "PASS iff the hourly volume is computed from differences between consecutive samples with the drop at sample 96 treated as a restart rather than a decrease, giving roughly 818,000 requests for the hour, and the answer states that the exported series is a running total and not a level. FAIL if the answer averages or sums the raw series, reports 4.1 billion, or discards the whole hour because of the restart.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the panel framing reports 4.1 billion, which is the lifetime total of the process rather than anything that happened in the hour."
+}

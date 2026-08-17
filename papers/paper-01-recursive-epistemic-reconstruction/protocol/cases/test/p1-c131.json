@@ -1,0 +1,38 @@
+{
+  "case_id": "p1-c131",
+  "task_family": "hidden_measurement_or_operationalization",
+  "public_prompt": "Mean time to fix is published as 42 minutes and improving 30% year on year, while customers report that nothing is fixed any faster. The course settled on: the figure is right and the perception is wrong. Report the figure customers experience.",
+  "observable_resources": [
+    "support/tickets.csv — 61,000 tickets with created_at, first_status_change_at, closed_at and reopened_count",
+    "support/method.md — the published figure is the mean of (first_status_change_at - created_at)",
+    "support/reopen.csv — 31% of tickets are reopened at least once; the published figure counts the first status change and stops there",
+    "support/final-close.csv — the mean of (closed_at - created_at) taken at the final close is 19.4 hours and has been flat for a year",
+    "support/agent-guidance.md — agents are instructed to acknowledge every ticket within an hour, and an acknowledgement is a status change",
+    "closure:support-performance-review — closed; publishes 42 minutes and a 30% year-on-year gain",
+    "closure:staffing-model-h2 — closed; derived from closure:support-performance-review",
+    "closure:outsourcing-decision — closed; derived from closure:staffing-model-h2",
+    "closure:support-language-cover — closed; commits to six languages; rests on the staffing agreement, not on how the published figure is computed"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "MEASUREMENT",
+    "target_coordinates": [
+      "M.MEASUREMENT",
+      "measurement:terminal_state_anchor"
+    ],
+    "dependencies_to_reopen": [
+      "closure:support-performance-review",
+      "closure:staffing-model-h2",
+      "closure:outsourcing-decision"
+    ],
+    "root_success_rubric": "PASS iff the published quantity is re-anchored to end at the final close with reopens included — about 19.4 hours, flat year on year — and the answer states that the 42 minutes is tracking acknowledgement, which agents are directly instructed to do within an hour. FAIL if the answer defends 42 minutes, reports the 30% gain as real, or excludes reopened tickets to preserve the figure.",
+    "dependency_depth": 3
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the framing defends 42 minutes; the quantity ends at an event the agents are told to produce within an hour, so it cannot fall below that anyway."
+}
