@@ -218,6 +218,115 @@ def _tracked_paths(papers_root: pathlib.Path) -> frozenset[str]:
                      for item in result.stdout.split())
 
 
+#: Registry a paper commits, declaring which artifacts are generated and how to
+#: verify they still regenerate. Absent registry means the question is not asked
+#: for that paper, which is CANNOT_CHECK rather than SATISFIED.
+GENERATED_REGISTRY = "protocol/GENERATED_ARTIFACTS_V1.json"
+
+
+def check_generated_artifacts_regenerate(
+    paper_root: pathlib.Path, paper_id: str
+) -> ConformanceFinding | None:
+    """Committed generated artifacts must still match their generators.
+
+    The existing checks ask whether inputs are tracked. Nothing asked whether a
+    *derived* artifact in the repository still matches what its generator
+    produces. That gap is how a paper ends up shipping a table, figure or macro
+    file describing an earlier state of its own evidence: the generator is
+    correct, the artifact is committed, and no comparison happens. The defect
+    that motivated this had one paper's task count living as a literal in six
+    places, three of which were prose.
+
+    Each registry entry names an output and a check command. The command is
+    executed rather than trusted, but only under two constraints: it must invoke
+    a Python module or script, and every path it references must resolve inside
+    the paper root. A conformance checker that can be handed an arbitrary shell
+    command by a data file is a worse problem than the drift it detects.
+    """
+
+    import subprocess
+
+    registry_path = paper_root / GENERATED_REGISTRY
+    if not registry_path.is_file():
+        return None
+
+    try:
+        registry = json.loads(registry_path.read_text())
+    except (OSError, json.JSONDecodeError) as error:
+        return ConformanceFinding(
+            paper_id, "generated_artifacts_regenerate", "a readable registry", str(error),
+            ConformanceVerdict.VIOLATED,
+            f"{GENERATED_REGISTRY} does not parse, so no generated artifact can be verified",
+        )
+
+    entries = registry.get("artifacts") or []
+    if not entries:
+        return ConformanceFinding(
+            paper_id, "generated_artifacts_regenerate", "at least one entry", 0,
+            ConformanceVerdict.CANNOT_CHECK,
+            f"{GENERATED_REGISTRY} declares no artifacts",
+        )
+
+    stale: list[str] = []
+    unverifiable: list[str] = []
+    for entry in entries:
+        output = str(entry.get("output", ""))
+        command = entry.get("check") or []
+        if not output or not isinstance(command, list) or not command:
+            unverifiable.append(f"{output or '<unnamed>'}: no check command declared")
+            continue
+        if not (paper_root / output).is_file():
+            unverifiable.append(f"{output}: declared generated artifact is absent")
+            continue
+        if not _command_is_safe(command, paper_root):
+            unverifiable.append(f"{output}: check command is not a paper-local python invocation")
+            continue
+        result = subprocess.run(
+            command, cwd=str(paper_root), capture_output=True, text=True, check=False, timeout=300
+        )
+        if result.returncode != 0:
+            stale.append(f"{output}: {(result.stdout + result.stderr).strip().splitlines()[-1:] or ['no output']}")
+
+    if stale:
+        return ConformanceFinding(
+            paper_id, "generated_artifacts_regenerate", len(entries), len(stale),
+            ConformanceVerdict.VIOLATED,
+            "committed artifacts no longer match their generators: " + "; ".join(stale),
+        )
+    if unverifiable:
+        return ConformanceFinding(
+            paper_id, "generated_artifacts_regenerate", len(entries), len(unverifiable),
+            ConformanceVerdict.CANNOT_CHECK,
+            "declared artifacts could not be verified: " + "; ".join(unverifiable),
+        )
+    return ConformanceFinding(
+        paper_id, "generated_artifacts_regenerate", len(entries), len(entries),
+        ConformanceVerdict.SATISFIED,
+        "every declared generated artifact regenerates identically",
+    )
+
+
+def _command_is_safe(command: list[object], paper_root: pathlib.Path) -> bool:
+    """Only paper-local Python invocations, so a data file cannot run anything."""
+
+    import sys
+
+    head = str(command[0])
+    if head not in {"python3", "python", sys.executable}:
+        return False
+    for token in command[1:]:
+        text = str(token)
+        if text.startswith("-"):
+            continue
+        candidate = (paper_root / text).resolve()
+        if candidate.exists() or text.endswith(".py"):
+            try:
+                candidate.relative_to(paper_root.resolve())
+            except ValueError:
+                return False
+    return True
+
+
 def check_papers(papers_root: pathlib.Path) -> tuple[ConformanceFinding, ...]:
     """Every declared quantity checked against what is on disk."""
 
@@ -233,6 +342,7 @@ def check_papers(papers_root: pathlib.Path) -> tuple[ConformanceFinding, ...]:
         for finding in (
             check_annotator_independence(paper_root, paper_id),
             check_inputs_are_tracked(paper_root, paper_id, tracked),
+            check_generated_artifacts_regenerate(paper_root, paper_id),
             check_stochastic_repeats(paper_root, paper_id, declared_repeats)
             if isinstance(declared_repeats, int)
             else None,
@@ -337,6 +447,7 @@ __all__ = [
     "ConformanceVerdict",
     "INPUT_DIRECTORIES",
     "check_annotator_independence",
+    "check_generated_artifacts_regenerate",
     "check_inputs_are_tracked",
     "check_papers",
     "KNOWN_VIOLATIONS",
