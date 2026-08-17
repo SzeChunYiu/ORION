@@ -25,6 +25,17 @@
    "check_flags": [
     "--check"
    ]
+  },
+  {
+   "output": "evidence/ci_mirror/MANIFEST.json",
+   "generator": "scripts/mirror_ci_evidence.py",
+   "inputs": [
+    "evidence/ci_mirror/*.zip"
+   ],
+   "check_flags": [
+    "--check"
+   ],
+   "note": "Mirror of CI artifacts that expire 2026-09-15. Verified rather than regenerated: once upstream retention lapses the manifest is the only thing that can still be checked, so drift here means the archive itself was altered."
   }
  ]
 }
