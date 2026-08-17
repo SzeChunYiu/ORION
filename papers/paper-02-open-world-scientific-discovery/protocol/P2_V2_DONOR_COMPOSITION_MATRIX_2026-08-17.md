@@ -24,6 +24,7 @@ A donor mechanism can be adopted wholesale at the acquisition layer without inhe
 | SIEVE / Search-Inspect-Fetch | fielded Boolean admission, structure-rich inspection, selective section fetching | field-aware route + read-budget control | Boolean/field-aware retrieval; inspect/fetch interface | can local field exhaustion or selective fetch ever erase unresolved task obligations? |
 | bibliography / citation expansion | breadth-first graph expansion for high recall | citation route / graph frontier | citation chaining / bibliography expansion | route-local graph flatness must not certify global closure; dedup by content identity must prevent graph inflation |
 | HALT | claim-evidence coverage as a verification-aware stop signal | route-local continuation / verification signal | verification-aware stopping | evidence coverage may recommend stop but cannot discharge censored/unavailable route obligations by itself |
+| MiCP / conformal stopping | target-coverage guarantee for adaptive multi-turn early stopping | route-local continuation / calibrated stopping signal where task-valid | conformal coverage and error-budget allocation | a calibrated local coverage guarantee must not discharge unresolved route/source obligations outside the guarantee's denominator |
 | structured Search-R1 stopping | explicit sufficiency + remaining-gap representation | route-local stopping signal | learned STOP/CONTINUE; sufficiency/gap judge | structured STOP must be subordinate to typed task-level authority and safety guard |
 | DeepControl / utility continuation | marginal utility signal for continued retrieval | acquisition scheduling / route switching | utility-based continuation | low marginal utility cannot become proof that unknown or censored evidence is absent |
 | decision-theoretic screening stop | explicit cost/payoff-aware stop decisions | screening/continuation policy | decision-theoretic stopping | payoff-optimal local stop is distinct from a scientific completeness claim |
@@ -39,7 +40,8 @@ A donor mechanism can be adopted wholesale at the acquisition layer without inhe
 4. **Report the accuracy/resource frontier.** Token/query/candidate savings are positive only when the stopping-safety guard remains satisfied.
 5. **Use direct ablations for the residual.** Each claimed ORION mechanism must have a one-mechanism ablation and strongest relevant donor baseline.
 6. **Preserve unknowns as typed states.** Provider failure, censoring and unknown denominators remain `OPEN`/`CANNOT_CHECK`, never convenient zeros.
-7. **Use transfer as the widest claim gate.** One positive benchmark supports a benchmark claim; general open-world language requires a separately frozen transfer axis.
+7. **Treat statistical stopping guarantees as scoped authority.** A guarantee over a defined prediction process is not silently extended to unresolved source families or an unknown literature denominator.
+8. **Use transfer as the widest claim gate.** One positive benchmark supports a benchmark claim; general open-world language requires a separately frozen transfer axis.
 
 ## Prospective ORION composite candidates
 
@@ -65,8 +67,8 @@ These names identify pre-outcome development families, not authorized positive r
 
 ### `ORION_MAX_COMPOSED`
 - strongest prospectively selected acquisition components after development-only comparison
-- verification/sufficiency/utility signals available to route-local continuation
-- no signal may self-authorize task closure
+- verification/sufficiency/utility/conformal-coverage signals available to route-local continuation where task-valid
+- no signal may self-authorize task closure or erase an unresolved source obligation outside its valid denominator
 - content/read-state separation, earned independence, censoring obligations and task authority retained
 
 The final confirmatory system identity must be frozen before confirmatory outcome access. Development winners may determine that identity only using development evidence.
