@@ -4,11 +4,11 @@
 \subsection{Authority of the result}
 Two result-bearing evidence families are complete in this revision, with
 different authority.  First, the frozen offline complete-gold companion contains
-20 tasks, 14 systems (full ORION, six confirmatory baselines, one explicitly
+\OfflineTaskCount{} tasks, \OfflineSystemCount{} systems (full ORION, six confirmatory baselines, one explicitly
 exploratory comparator, and six ablations), and three predeclared repeat seeds,
-for 840 normalized run records.  The systems are deterministic; the repeats
+for \OfflineRunRecordCount{} normalized run records.  The systems are deterministic; the repeats
 therefore test harness stability and do not increase the statistical unit beyond
-20 tasks.  The frozen statistical plan requires at least 97 tasks for its lowest
+\OfflineTaskCount{} tasks.  The frozen statistical plan requires at least 97 tasks for its lowest
 inferential tier.  Consequently this campaign is
 \texttt{DESCRIPTIVE\_ONLY}: no confidence interval, $p$-value, or superiority
 decision from the offline companion is promoted to a paper-level claim.
@@ -23,7 +23,7 @@ ORION-vs-baseline claim.
 
 The offline publication summary is
 \texttt{evidence/offline\_results/RESULTS\_SUMMARY\_V1.json}.  It binds the full
-840-record set by SHA-256
+\OfflineRunRecordCount{}-record set by SHA-256
 \texttt{611808dc80846d5057c84c12af7ff8ec3fa88ef15a6ede91807e590f4edb6f1f}
 and the corresponding rich-artifact hash list by
 \texttt{2da59dc21e6473e4a81eb93910501a67bed008dbc3e29c26116041b68dfbb325}.
@@ -38,12 +38,12 @@ exact integer error decomposition by
 
 \subsection{Controlled-index comparison}
 Full ORION attains mean complete-gold recall 0.994444 and precision 1.0.  It
-passes 19 of 20 tasks and returns \texttt{CANNOT\_CHECK} on the remaining task
+passes 19 of \OfflineTaskCount{} tasks and returns \texttt{CANNOT\_CHECK} on the remaining task
 because a route holding unretrieved relevant material becomes unavailable; it
 never certifies that censored task complete.  Its premature-task-closure rate is
 0.  The strongest of the six protocol-frozen confirmatory baselines is the
 protocol-driven systematic-review comparator, with mean recall 0.666667.  That
-comparator claims task completion on all 20 tasks while reachable gold remains,
+comparator claims task completion on all \OfflineTaskCount{} tasks while reachable gold remains,
 so its premature-closure rate is 1.0.  The descriptive recall difference is
 therefore +0.327777, with a descriptive premature-closure difference of -1.0.
 These numbers are evidence about the authored controlled world, not an estimate
@@ -65,7 +65,7 @@ Dense-route comparator & 0.333333 & 1.00 & 0.00 & 0.00 \\
 Agentic single route & 0.333333 & 1.00 & 0.00 & 0.00 \\
 \hline
 \end{tabular}
-\caption{Controlled-index descriptive comparison.  Rates are over 20 tasks;
+\caption{Controlled-index descriptive comparison.  Rates are over \OfflineTaskCount{} tasks;
 there are no inferential intervals because the frozen plan classifies this
 campaign below the minimum inferential tier.  A final matched external
 ORION-vs-baseline comparison remains unexecuted.}
@@ -78,7 +78,7 @@ ORION-vs-baseline comparison remains unexecuted.}
 \caption{\textbf{Figure P2-3.} Cumulative complete-gold recall versus the
 host-recorded number of search queries for full ORION and the strongest frozen
 confirmatory baseline.  Deterministic repeats are first checked for identical
-traces and then collapsed within task; the curves are means over the 20 tasks
+traces and then collapsed within task; the curves are means over the \OfflineTaskCount{} tasks
 and are descriptive only.  Synthetic wall-clock is intentionally fixed to zero,
 so the controlled companion supports the query axis, not an empirical-time
 claim.}
@@ -105,7 +105,7 @@ serve as competitive systems.
 
 Removing content-identity deduplication is less catastrophic but measurably
 wasteful in the controlled world: mean duplicate-processing rate rises from 0
-to 0.101429, five of 20 tasks exhaust the read budget, pass rate falls from 0.95
+to 0.101429, five of \OfflineTaskCount{} tasks exhaust the read budget, pass rate falls from 0.95
 to 0.70, and mean recall falls to 0.966667.  Removing the question coordinate
 from the read ledger leaves aggregate recall unchanged at 0.994444 but changes
 the extraction-question-shift mechanism exactly where expected: the mean count
@@ -159,7 +159,7 @@ construction, while overlap remains a measured diagnostic.
 \centering
 \input{figures/P2-6_stopping_failures}
 \caption{\textbf{Figure P2-6.} Terminal premature-closure classifications for
-selected stopping-safety controls in the frozen 20-task offline companion.  The
+selected stopping-safety controls in the frozen \OfflineTaskCount{}-task offline companion.  The
 plot is generated from the immutable publication summary.  It shows task counts,
 not an inferential estimate; lower-precedence failure mechanisms can be masked by
 the evaluator's terminal-failure precedence.}

@@ -2,7 +2,7 @@
   "schema_version": "orion.publication-protocol.v1",
   "paper_id": "P1",
   "protocol_id": "P1.hidden-formulation.v1",
-  "protocol_status": "DESIGN_FROZEN",
+  "protocol_status": "EXECUTION_FROZEN",
   "outcome_accessed": false,
   "primary_hypothesis": {
     "id": "P1.H1",
@@ -101,16 +101,19 @@
     "SciAgentArena": "HelloWorldLTY/SciAgentArena@9865bb0c261bd9a59ef23576805b268b458b59d2"
   },
   "execution_bindings": {
-    "subject_revision": "UNBOUND",
+    "subject_revision": "bd4a6b2154f8cb7b6fe40471348c5399cfb9561a",
     "dataset_revisions": {
       "hidden_shift_suite_pilot": "7a50a2d5025beb7dea4835911fa7dbf4a191431447397c73939c276b71dc49b5",
       "hidden_shift_suite_test": "21b461d89280631b93b766d6fb000c7f9f5fbeccee7cb6664f238c2c5c8e6420"
     },
-    "model_provider_revisions": "UNBOUND",
-    "baseline_config_hashes": "UNBOUND",
-    "evaluator_hash": "UNBOUND",
-    "split_hashes": "UNBOUND",
-    "evaluation_epoch": "UNBOUND",
+    "model_provider_revisions": "glm-5.2-via-anthropic-compatible-relay@api2.cmkey.cn/v1",
+    "baseline_config_hashes": "e4ab2add3ecb6c1dc98600935269067b86126a05a640fb3f271e714f1f3f7bc3",
+    "evaluator_hash": "a1d59277f5db49d40e4438dd6b149b4fc6add351f2f5eec306f978254e0f9020",
+    "split_hashes": {
+      "hidden_shift_suite_pilot": "7a50a2d5025beb7dea4835911fa7dbf4a191431447397c73939c276b71dc49b5",
+      "hidden_shift_suite_test": "21b461d89280631b93b766d6fb000c7f9f5fbeccee7cb6664f238c2c5c8e6420"
+    },
+    "evaluation_epoch": "20260817075918",
     "subject_model": "glm-5.2"
   },
   "protocol_version": "P1.hidden-formulation.v1.1",

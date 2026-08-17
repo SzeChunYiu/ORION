@@ -1,0 +1,37 @@
+\section{Data and code availability}
+
+\subsection{Repository access}
+The source code, protocol definitions, case suite, and repository-held evidence artifacts used by this revision are version-controlled at \texttt{SzeChunYiu/ORION}. Persistent DOI assignment remains pending publication. Result-bearing artifacts are identified by their repository paths and content bindings rather than by an unverified archival claim.
+
+\subsection{Reproducing the results}
+\subsubsection{Archived-result regeneration}
+\begin{verbatim}
+make paper01-results
+\end{verbatim}
+regenerates the Paper I publication tables from archived raw records only. It does not execute systems under test or create missing external evidence. On a checkout without an admissible archived study run, the underlying module returns \texttt{CANNOT\_CHECK}; malformed or unbound archives are refused rather than converted into publishable numbers. The exact command, inputs, outputs, and exit semantics are documented in \texttt{papers/paper-01-recursive-epistemic-reconstruction/REPRODUCE.md}.
+
+\subsubsection{Clean environment}
+The repository is Python-based with \texttt{pyproject.toml} dependency specification. A fresh code/test environment requires:
+\begin{itemize}
+    \item Python 3.11 or later;
+    \item \texttt{pip install -e .[dev]} from the repository root; and
+    \item model-provider access only for commands that actually execute a live provider arm.
+\end{itemize}
+The paper-specific reproduction note above, rather than a repository-root container recipe, is the current executable reproduction contract.
+
+\subsection{Runtime and cost}
+No clean-environment timing artifact in this revision authorizes a numerical runtime claim for the deterministic falsifier or the full campaign. External model/provider cost likewise remains \texttt{CANNOT\_CHECK} until a result-bearing run records its actual usage under the frozen resource policy. Runtime and cost must be reported from retained execution evidence, not estimated here.
+
+\subsection{Licensing status}
+This revision does not contain a repository-level \texttt{LICENSE} file or a project license declaration in \texttt{pyproject.toml}. Redistribution terms for code, case definitions, and protocol artifacts are therefore \texttt{CANNOT\_CHECK} from the repository state and must be resolved explicitly before archival/publication. Model-provider terms remain separately governed by the relevant providers.
+
+\subsection{Artifact fingerprinting}
+Result-bearing execution identities are bound through the protocol and archived records. Relevant coordinates include:
+\begin{itemize}
+    \item dataset/suite revisions and fingerprints;
+    \item baseline configuration hashes;
+    \item evaluator identity;
+    \item frozen split hashes; and
+    \item the exact subject revision and provider/model revisions for a live run.
+\end{itemize}
+Reproduction of an empirical result requires the exact bound subject and admissible archived records; prose or a protocol declaration alone is not evidence that the run occurred.
