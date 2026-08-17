@@ -20,6 +20,12 @@ STATUSES = ("PEER_REVIEW_READY", "BLOCKED", "CANNOT_CHECK")
 PAPER_IDS = ("P1", "P2", "P3", "P4", "P5")
 
 TERMINAL_LINE = re.compile(r"^\*\*(?:Current )?Terminal:\*\*\s*(.+)$", re.IGNORECASE)
+# `PEER_REVIEW_READY` must not match inside a longer terminal such as
+# `PEER_REVIEW_READY_NARROWED`. A substring test reads a deliberately weaker
+# terminal as the full one, which is the single thing this scoreboard exists to
+# prevent, and it fails in the inflating direction where nothing downstream
+# would catch it.
+PEER_REVIEW_READY_TOKEN = re.compile(r"PEER_REVIEW_READY(?![A-Za-z0-9_])")
 READY_DECLARATION = re.compile(r"^\*\*`?ORION-P(?P<n>[1-5])\s*=\s*PEER_REVIEW_READY`?\.\*\*$")
 STATUS_LINE = re.compile(r"^\*\*Status:\*\*\s*(.+)$", re.IGNORECASE)
 
@@ -106,9 +112,11 @@ def parse_journal_readiness_terminal(text: str) -> str | None:
         if not match:
             continue
         value = match.group(1)
-        has_ready = "PEER_REVIEW_READY" in value
+        has_ready = PEER_REVIEW_READY_TOKEN.search(value) is not None
         has_cannot = "CANNOT_CHECK" in value
-        negated = re.search(r"\bnot\b[^*\n]*PEER_REVIEW_READY", value, re.IGNORECASE)
+        negated = re.search(
+            r"\bnot\b[^*\n]*PEER_REVIEW_READY(?![A-Za-z0-9_])", value, re.IGNORECASE
+        )
         if has_ready and not has_cannot and not negated:
             return "PEER_REVIEW_READY"
         if has_cannot or negated:
@@ -131,8 +139,15 @@ def readme_records_peer_review_ready(text: str) -> bool:
         match = STATUS_LINE.match(raw.strip())
         if match:
             value = match.group(1)
-            return "PEER_REVIEW_READY" in value and "CANNOT_CHECK" not in value
-    return "PEER_REVIEW_READY" in text.splitlines()[0] if text else False
+            return (
+                PEER_REVIEW_READY_TOKEN.search(value) is not None
+                and "CANNOT_CHECK" not in value
+            )
+    return (
+        PEER_REVIEW_READY_TOKEN.search(text.splitlines()[0]) is not None
+        if text
+        else False
+    )
 
 
 def _iter_unbound(value: Any, path: str = "$") -> Iterable[str]:

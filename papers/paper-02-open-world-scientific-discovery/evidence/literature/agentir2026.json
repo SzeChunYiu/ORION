@@ -1,0 +1,25 @@
+{
+  "bib_key": "agentir2026",
+  "claimed_title": "AgentIR: Reasoning-Aware Retrieval for Deep Research Agents",
+  "claim_provenance": "pre_existing_independent_claim",
+  "fetch_url": "https://export.arxiv.org/api/query?id_list=2603.04384",
+  "fetched_utc": "2026-08-17T23:10:57Z",
+  "verdict": "VERIFIED",
+  "verdict_reason": "claimed title matches fetched title exactly (normalised)",
+  "fetched_title": "AgentIR: Reasoning-Aware Retrieval for Deep Research Agents",
+  "fetched_authors": [
+    "Zijian Chen",
+    "Xueguang Ma",
+    "Shengyao Zhuang",
+    "Jimmy Lin",
+    "Akari Asai",
+    "Victor Zhong"
+  ],
+  "fetched_year": 2026,
+  "fetched_venue": "arXiv preprint",
+  "arxiv_id": "2603.04384v3",
+  "doi": null,
+  "published": "2026-03-04T18:47:26Z",
+  "updated": "2026-03-09T17:53:48Z",
+  "abstract": "Deep Research agents are rapidly emerging as primary consumers of modern retrieval systems. Unlike human users who issue and refine queries without documenting their intermediate thought processes, Deep Research agents generate explicit natural language reasoning before each search call, revealing rich intent and contextual information that existing retrievers entirely ignore. To exploit this overlooked signal, we introduce: (1) Reasoning-Aware Retrieval, a retrieval paradigm that jointly embeds the agent's reasoning trace alongside its query; and (2) DR-Synth, a data synthesis method that generates Deep Research retriever training data from standard QA datasets. We demonstrate that both components are independently effective, and their combination yields a trained embedding model, AgentIR-4B, with substantial gains. On the challenging BrowseComp-Plus benchmark, AgentIR-4B achieves 68\\% accuracy with the open-weight agent Tongyi-DeepResearch, compared to 50\\% with conventional embedding models twice its size, and 37\\% with BM25. Code and data are available at: https://texttron.github.io/AgentIR/."
+}

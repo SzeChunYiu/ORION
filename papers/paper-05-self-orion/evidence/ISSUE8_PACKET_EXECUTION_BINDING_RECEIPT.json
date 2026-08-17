@@ -1,5 +1,5 @@
 {
-  "artifact_hash": "3b7c6bf939a9f1e3e93d8c3ef512e16169ddde0965ea7ad87f7fa23f42c7dae4",
+  "artifact_hash": "76a634d519e7be646f4fa97adfc1d23a21379535d5cfa8b2a33c609ad18c56b4",
   "blocked_on": [
     "issue-277-fail-closed-preflight-gate-unmerged",
     "pr-289-not-on-origin-main",
@@ -60,7 +60,7 @@
   },
   "issue": "SzeChunYiu/ORION#8",
   "live_trial_launched": false,
-  "observed_at_commit": "cfeff0b0e5efa41e283b1166b14f7537923d46d7",
+  "observed_at_commit": "e8892c58f3305276e4785dcc19e214466492957f",
   "outcome_accessed": false,
   "reason": "The published LIVE_TRIAL_PACKET_V1.json and the merged p5-phase2-live-execution workflow name two different task registries. Issue #277 / PR #289 owns the fail-closed preflight gate and has not merged. This receipt records the divergence and refuses to elect either registry as canonical. Binding the workflow to the packet is forbidden until that gate is on origin/main. Launching the current workflow would produce UNBOUND_EXECUTION_REPORT.",
   "reopen_when": [
@@ -76,7 +76,7 @@
     "evaluation_epoch_id": "env:ORION_PHASE2_EVALUATION_EPOCH_ID_or_github-actions-<run_id>-attempt-<n>",
     "loads_published_packet": false,
     "packet_constructor": "orion.self_orion.phase2_preflight.build_frozen_live_trial_packet",
-    "preflight_blob_sha": "16ae0a2dc7bb84445c30021206937d3c9fcfb405",
+    "preflight_blob_sha": "71842f661d229f223bfc0d1ee30e525f01a36628",
     "preflight_path": "src/orion/self_orion/phase2_preflight.py",
     "protocol_id": "phase2-shadow-closure-v1",
     "reasoner_model_env_var": "ORION_PHASE2_REASONER_MODEL",
@@ -87,5 +87,10 @@
     ],
     "workflow_blob_sha": "8bbc5884cde50dc84bb8f3b477cfdb29fe9845f9",
     "workflow_path": ".github/workflows/p5_phase2_live_execution.yml"
+  },
+  "supersedes": {
+    "observed_at_commit": "cfeff0b0e5efa41e283b1166b14f7537923d46d7",
+    "preflight_blob_sha": "16ae0a2dc7bb84445c30021206937d3c9fcfb405",
+    "why": "The #277 fail-closed repair rewrote phase2_preflight.py after this receipt was issued. The divergence it records is unchanged; only the observed bytes moved, so the receipt is re-observed rather than left pointing at a blob the tree no longer has."
   }
 }

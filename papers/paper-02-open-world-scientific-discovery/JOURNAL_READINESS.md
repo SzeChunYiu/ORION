@@ -1,8 +1,8 @@
 # ORION-P2 journal readiness — narrowed publication track
 
-**Scientific terminal:** `P2_NARROWED` as of 2026-08-17.
+**Current terminal:** not PEER_REVIEW_READY. Scientific terminal is `P2_NARROWED` as of 2026-08-17; the publication terminal `PEER_REVIEW_READY_NARROWED` is withheld until the mechanical manuscript/package checks below pass.
 
-**Publication terminal:** not yet `PEER_REVIEW_READY_NARROWED` until the mechanical manuscript/package checks below pass.
+The line above is the machine-scored declaration read by `research/publication/scoreboard.py`, which matches only `**Terminal:**` / `**Current terminal:**`. The previous `**Scientific terminal:**` / `**Publication terminal:**` pair carried the same meaning to a human reader and no meaning at all to the scoreboard, which reported this paper as having no scorable terminal.
 
 Canonical scope receipt: `protocol/P2_NARROWED_PUBLICATION_TERMINAL_2026-08-17.md`.
 Dated nearest-work freeze: `protocol/P2_LITERATURE_ASSIMILATION_FREEZE_2026-08-17.md`.

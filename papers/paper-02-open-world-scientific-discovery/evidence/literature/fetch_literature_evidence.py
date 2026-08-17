@@ -6,6 +6,7 @@ Every field is copied from a live fetch; nothing is written from recall.
 from __future__ import annotations
 
 import json
+import sys
 import time
 import urllib.parse
 import urllib.request
@@ -14,10 +15,11 @@ from pathlib import Path
 
 import defusedxml.ElementTree as ET
 
-OUT = Path(
-    "/Users/billy/Desktop/projects/ORION-wt/p2-lit-closure/papers/"
-    "paper-02-open-world-scientific-discovery/evidence/literature"
-)
+# Repo-relative. The previous absolute path pointed at one machine's scratch
+# worktree, so re-running this script anywhere else silently wrote its records
+# into a directory the manuscript does not read -- a reproducibility script that
+# only reproduces on the laptop it was written on.
+OUT = Path(__file__).resolve().parent
 UA = "ORION-P2-lit-audit/1.0 (mailto:sze-chun.yiu@fysik.su.se)"
 ATOM = {"a": "http://www.w3.org/2005/Atom", "arxiv": "http://arxiv.org/schemas/atom"}
 
@@ -27,6 +29,54 @@ ATOM = {"a": "http://www.w3.org/2005/Atom", "arxiv": "http://arxiv.org/schemas/a
 #   derived_from_this_fetch -> new entry; the claim was written FROM the fetch,
 #     so the record is provenance, not an independent test.
 ENTRIES: dict[str, tuple[str, str, str, str]] = {
+    # Added by the 2026-08-17 narrowing audit into manuscript/recent_work.bib
+    # and cited by main.tex, but with no evidence record until now. The titles
+    # below are copied from that bib, not from the fetch, so each verdict is a
+    # genuine independent comparison against what the audit claimed.
+    "agentir2026": (
+        "arxiv", "2603.04384",
+        "AgentIR: Reasoning-Aware Retrieval for Deep Research Agents",
+        "pre_existing_independent_claim",
+    ),
+    "deepcontrol2026": (
+        "arxiv", "2602.01672",
+        "Adaptive Information Control for Search-Augmented LLM Reasoning",
+        "pre_existing_independent_claim",
+    ),
+    "rethinkinglitsearch2026": (
+        "arxiv", "2605.29234",
+        "Rethinking Literature Search Evaluation: Deep Research Helps, and Human "
+        "Citation Lists Are Not a Ground Truth",
+        "pre_existing_independent_claim",
+    ),
+    "halt2026": (
+        "arxiv", "2608.02009",
+        "HALT: Verification-Aware Stopping for Retrieval-Augmented Search Agents",
+        "pre_existing_independent_claim",
+    ),
+    "sieve2026": (
+        "arxiv", "2608.02751",
+        "Search, Inspect, Fetch: Exploiting Structure-Aware Boolean Retrieval for "
+        "Deep-Research Agents",
+        "pre_existing_independent_claim",
+    ),
+    "decisionstop2026": (
+        "arxiv", "2606.07071",
+        "Decision-Theoretic Stopping Rules for Document Screening",
+        "pre_existing_independent_claim",
+    ),
+    "multiragstop2026": (
+        "arxiv", "2608.13237",
+        "When Should Multi-Round RAG Stop? Structured Stopping Judgments and "
+        "Retrieval Reduction in Search-R1",
+        "pre_existing_independent_claim",
+    ),
+    "memchain2026": (
+        "arxiv", "2607.24097",
+        "MemChain: Learning Interpretable Memory Traces for Memory-Augmented LLM "
+        "Agents",
+        "pre_existing_independent_claim",
+    ),
     "autoresearchbench2026": (
         "arxiv", "2604.25256",
         "AutoResearchBench: Benchmarking AI Agents on Complex Scientific Literature Discovery",
@@ -212,9 +262,21 @@ def fetch_doi(doi: str) -> tuple[str, dict]:
 
 
 def main() -> None:
+    """Fetch every key, or only the keys named on the command line.
+
+    Existing records are content that later artifacts hash, so refetching all of
+    them to add one rewrites bytes nothing asked to change. Passing keys keeps a
+    top-up run scoped to the records that do not exist yet.
+    """
+
     OUT.mkdir(parents=True, exist_ok=True)
+    selected = [key for key in sys.argv[1:] if not key.startswith("-")]
+    unknown = sorted(set(selected) - set(ENTRIES))
+    if unknown:
+        raise SystemExit(f"unknown bibliography keys: {unknown}")
+    entries = {key: ENTRIES[key] for key in selected} if selected else dict(ENTRIES)
     report: list[str] = []
-    for key, (kind, ident, claimed, provenance) in ENTRIES.items():
+    for key, (kind, ident, claimed, provenance) in entries.items():
         stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         try:
             url, meta = fetch_arxiv(ident) if kind == "arxiv" else fetch_doi(ident)
@@ -265,10 +327,10 @@ def main() -> None:
         report.append(f"{key}\t{verdict}\t{fetched[:70]}")
         time.sleep(3)
 
-    Path(
-        "/private/tmp/claude-501/-Users-billy/"
-        "0615e855-3387-402f-82fd-6e672fc687c3/scratchpad/p2lit/evidence_report.txt"
-    ).write_text("\n".join(report) + "\n", encoding="utf-8")
+    # To stdout, not to one expired session's scratchpad directory. The previous
+    # destination no longer exists, so every later run of this script ended in
+    # FileNotFoundError after doing all of its network work.
+    print("\n".join(report))
 
 
 if __name__ == "__main__":
