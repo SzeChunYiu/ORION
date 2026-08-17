@@ -1,0 +1,89 @@
+{
+  "construction": {
+    "metadata_predictor": {
+      "features": "case_family|discipline|dataset",
+      "leave_one_out_accuracy": 0.78125,
+      "n": 32,
+      "note": "A metadata predictor is a construction diagnostic. High accuracy does not rewrite confirmatory PASS; it constrains how much of the result could be read from public fields rather than projections."
+    },
+    "overlap_with_primary": {
+      "case_id_overlap": [],
+      "case_id_overlap_count": 0,
+      "confirmatory_n": 32,
+      "primary_n": 32,
+      "source_locator_hash_overlap": [
+        "MUSE:dataset/human_Expert_annotations/relevant_examples/240507114635088FIIGCD_v0.json:dbbdbe4aeb5e",
+        "SciFact:data/claims_train.jsonl#line=22:f4c8fa82d8bd"
+      ],
+      "source_locator_hash_overlap_count": 2
+    },
+    "permutation": {
+      "case_order_invariant_rates": true,
+      "label_permutation_changes_orion_rates": true,
+      "label_permutation_status": "SCORED"
+    },
+    "source_hash_and_locator_complete": true,
+    "source_registry": {
+      "clean": true,
+      "leaked_fields": []
+    }
+  },
+  "frozen_claim_not_rewritten": true,
+  "gold_status": "BOUND",
+  "independent_evaluator": {
+    "agreed": 32,
+    "disagreements": [],
+    "n": 32,
+    "unanimous": true
+  },
+  "note": "Phase A verifies the frozen confirmatory result. It is not a V2 experiment archive.",
+  "report_sha256": "8021980deded42fc508f4a6d2afb82b0c88cb5a2b5eee18932c39579774b3a47",
+  "schema_version": "orion.p3.phase-a-verification.v1",
+  "secondary_baselines": {
+    "n_cases": 32,
+    "note": "Secondary baselines cannot rewrite the frozen confirmatory claim. Unimplemented stronger baselines remain CANNOT_CHECK.",
+    "systems": {
+      "exact_coordinate_conservative": {
+        "n_cannot_check": 0,
+        "n_scored": 32,
+        "reason": "merge only if every exposed coordinate is exactly equal; otherwise UNRESOLVED",
+        "status_counts": {
+          "SCORED": 32
+        }
+      },
+      "executable_schema_contracts_like": {
+        "n_cannot_check": 32,
+        "n_scored": 0,
+        "reason": "provenance-aware schema-contract baseline is not faithfully implemented; stub only",
+        "status_counts": {
+          "CANNOT_CHECK": 32
+        }
+      },
+      "flat_predicate_canonicalization": {
+        "n_cannot_check": 0,
+        "n_scored": 32,
+        "reason": "equal normalized predicate implies merge; otherwise UNRESOLVED",
+        "status_counts": {
+          "SCORED": 32
+        }
+      },
+      "provenance_world_attributed_statements": {
+        "n_cannot_check": 32,
+        "n_scored": 0,
+        "reason": "provenance-world/attributed-statement reasoning is not faithfully implemented; stub only",
+        "status_counts": {
+          "CANNOT_CHECK": 32
+        }
+      },
+      "scion_like_conservative_schema_fusion": {
+        "n_cannot_check": 32,
+        "n_scored": 0,
+        "reason": "SCION-like evidence-linked fusion is not faithfully implemented; stub only",
+        "status_counts": {
+          "CANNOT_CHECK": 32
+        }
+      }
+    }
+  },
+  "v2_experiment_executed": false
+}

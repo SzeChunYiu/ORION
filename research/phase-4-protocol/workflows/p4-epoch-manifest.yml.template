@@ -1,0 +1,109 @@
+# INERT TEMPLATE — MUST NOT live under .github/workflows/.
+# GitHub Actions treats every *.yml/*.yaml in that directory as a live workflow.
+# Relocated here after `.template.yml` still registered as an active workflow.
+# Do not copy back until #209 is closed with independent Phase-3 evidence AND
+# #210 authorizes programme operation.
+#
+# Phase 4 Epoch Manifest Workflow Template
+# Status: PREPARATORY_AWAITING_ACTIVATION
+
+name: p4-epoch-manifest
+
+on:
+  workflow_dispatch:
+    inputs:
+      epoch:
+        description: 'Evaluation epoch identifier'
+        required: true
+        type: string
+      freeze:
+        description: 'Freeze epoch as immutable'
+        required: false
+        type: boolean
+        default: true
+
+env:
+  PHASE_4_STATUS: 'PREPARATORY_AWAITING_ACTIVATION'
+
+jobs:
+  generate-manifest:
+    name: 'Generate Immutable Epoch Manifest'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate epoch snapshot
+        run: |
+          python src/phase4/epochs/snapshot.py --epoch ${{ inputs.epoch }}
+
+      - name: Compute content hashes
+        run: |
+          python src/phase4/epochs/hash_objects.py --epoch ${{ inputs.epoch }}
+
+      - name: Verify dependency graph
+        run: |
+          python src/phase4/epochs/verify_dependencies.py --epoch ${{ inputs.epoch }}
+
+      - name: Generate manifest JSON
+        run: |
+          python src/phase4/epochs/generate.py --epoch ${{ inputs.epoch }} --output epochs/${{ inputs.epoch }}/manifest.json
+
+      - name: Sign manifest
+        run: |
+          python src/phase4/epochs/sign.py --manifest epochs/${{ inputs.epoch }}/manifest.json
+
+      - name: Upload manifest artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: epoch-manifest-${{ inputs.epoch }}
+          path: epochs/${{ inputs.epoch }}/manifest.json
+          retention-days: 3650
+
+  verify-reproducibility:
+    name: 'Verify Epoch Reproducibility'
+    runs-on: ubuntu-latest
+    needs: generate-manifest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download manifest
+        uses: actions/download-artifact@v4
+        with:
+          name: epoch-manifest-${{ inputs.epoch }}
+          path: epochs/${{ inputs.epoch }}/
+
+      - name: Replay epoch from manifest
+        run: |
+          python src/phase4/epochs/replay.py --manifest epochs/${{ inputs.epoch }}/manifest.json
+
+      - name: Verify content integrity
+        run: |
+          python src/phase4/epochs/verify_integrity.py --manifest epochs/${{ inputs.epoch }}/manifest.json
+
+      - name: Compare against live state
+        run: |
+          python src/phase4/epochs/compare.py --manifest epochs/${{ inputs.epoch }}/manifest.json --live
+
+  freeze-if-requested:
+    name: 'Freeze Epoch as Immutable'
+    runs-on: ubuntu-latest
+    needs: [generate-manifest, verify-reproducibility]
+    if: inputs.freeze == true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create immutable epoch tag
+        run: |
+          git tag -a "epoch/${{ inputs.epoch }}" -m "Immutable epoch ${{ inputs.epoch }}"
+          git push origin "epoch/${{ inputs.epoch }}"
+
+      - name: Archive epoch to permanent storage
+        run: |
+          python src/phase4/epochs/archive.py --epoch ${{ inputs.epoch }} --destination permanent
+
+      - name: Register epoch in programme ledger
+        run: |
+          python src/phase4/epochs/register.py --epoch ${{ inputs.epoch }} --ledger epochs/ledger.json

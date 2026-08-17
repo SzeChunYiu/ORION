@@ -1,3 +1,8 @@
+"""LOCAL_ENGINEERING_ONLY: #136 structural-transfer substrate.
+
+Not scientific cross-domain transfer evidence for #286.
+"""
+
 from __future__ import annotations
 
 import math

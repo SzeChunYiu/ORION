@@ -5,6 +5,7 @@ import pytest
 
 from orion.self_orion.subject_binding import (
     attest_repository_subject,
+    is_derived_from_commit,
     write_repository_subject_attestation,
 )
 
@@ -89,3 +90,58 @@ def test_repository_identity_is_part_of_subject_identity(tmp_path):
     mirror = attest_repository_subject(root, repository_identity="mirror.example/ORION")
     assert canonical.source_tree_sha256 == mirror.source_tree_sha256
     assert canonical.subject_revision_hash != mirror.subject_revision_hash
+
+
+def test_derivation_predicate_answers_ancestry_in_both_directions(tmp_path):
+    root = _repo(tmp_path)
+    anchor = _git(root, "rev-parse", "HEAD")
+    (root / "gamma.txt").write_text("gamma\n")
+    _git(root, "add", ".")
+    _git(root, "commit", "-m", "later")
+    later = _git(root, "rev-parse", "HEAD")
+
+    assert is_derived_from_commit(root, anchor, later) is True
+    assert is_derived_from_commit(root, anchor, anchor) is True
+    assert is_derived_from_commit(root, later, anchor) is False
+
+
+def test_derivation_predicate_refuses_unknown_commits(tmp_path):
+    root = _repo(tmp_path)
+    head = _git(root, "rev-parse", "HEAD")
+    with pytest.raises(RuntimeError):
+        is_derived_from_commit(root, "0" * 40, head)
+    with pytest.raises(RuntimeError):
+        is_derived_from_commit(root, head, "0" * 40)
+    with pytest.raises(ValueError):
+        is_derived_from_commit(root, "", head)
+
+
+def test_derivation_predicate_refuses_to_answer_false_in_a_shallow_clone(tmp_path):
+    """A truncated history can hide a path, so "not derived" is unsound there.
+
+    A shallow clone otherwise returns a confident wrong answer: the connecting
+    commits are simply absent, which is indistinguishable from their never
+    having existed. Refusing is the only honest result.
+    """
+
+    root = _repo(tmp_path)
+    for index in range(4):
+        (root / f"file{index}.txt").write_text(f"{index}\n")
+        _git(root, "add", ".")
+        _git(root, "commit", "-m", f"commit {index}")
+    origin_head = _git(root, "rev-parse", "HEAD")
+
+    shallow = tmp_path / "shallow"
+    _git(tmp_path, "clone", "--depth", "1", f"file://{root}", str(shallow))
+    shallow_head = _git(shallow, "rev-parse", "HEAD")
+    assert _git(shallow, "rev-parse", "--is-shallow-repository") == "true"
+    assert shallow_head == origin_head
+
+    # Reachable-and-connected still answers True.
+    assert is_derived_from_commit(shallow, shallow_head, shallow_head) is True
+
+    # An object that exists but whose path is cut must refuse, not answer False.
+    unreachable = _git(root, "rev-list", "--max-parents=0", "HEAD")
+    _git(shallow, "fetch", "--depth", "1", f"file://{root}", unreachable)
+    with pytest.raises(RuntimeError, match="shallow"):
+        is_derived_from_commit(shallow, unreachable, shallow_head)

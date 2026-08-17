@@ -23,6 +23,7 @@ from orion.self_orion.phase2_campaign import (
 )
 from orion.self_orion.phase2_preflight import (
     Phase2ClosurePreflight,
+    FrozenPacketBinding,
     build_frozen_live_trial_packet,
 )
 
@@ -40,6 +41,21 @@ def _preflight():
         evaluation_epoch_id="epoch:frozen",
         baseline_id="simple-llm-retrieval-baseline-v1",
         resource_budget_units=100.0,
+        # Declare what this preflight was frozen against; without it the
+        # identity gate blocks, which is its purpose.
+        frozen_packet=FrozenPacketBinding(
+            packet_fingerprint=_digest("packet"),
+            subject_revision_hash=_digest("subject"),
+            provider_manifest_hash=_digest("provider"),
+            evaluator_artifact_hash=_digest("evaluator"),
+            evaluation_epoch_id="epoch:frozen",
+            baseline_id="simple-llm-retrieval-baseline-v1",
+            resource_budget_units=100.0,
+            task_ids=tuple(
+                task.task_id
+                for task in Phase2ClosurePreflight.__dataclass_fields__["tasks"].default
+            ),
+        ),
     )
 
 

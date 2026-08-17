@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.p1.causal-responsibility.cause-confusable.v1",
+  "title": "P1 V2 cause-confusable pair/triple",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "bundle_id",
+    "confusable_kind",
+    "shared_surface_symptoms",
+    "members",
+    "gold_hidden_from_candidates"
+  ],
+  "properties": {
+    "schema_version": {"const": "orion.p1.causal-responsibility.cause-confusable.v1"},
+    "bundle_id": {"type": "string", "minLength": 1},
+    "confusable_kind": {
+      "enum": [
+        "retrieval_miss_vs_search_universe_miss",
+        "implementation_failure_vs_environment_tool_failure",
+        "representation_gap_vs_method_basis_gap",
+        "measurement_miss_vs_formulation_miss",
+        "evidence_insufficiency_vs_genuine_reframe"
+      ]
+    },
+    "arity": {"enum": ["pair", "triple"]},
+    "shared_surface_symptoms": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string"}
+    },
+    "members": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["member_id", "public_view", "protected_gold"],
+        "properties": {
+          "member_id": {"type": "string"},
+          "public_view": {
+            "type": "object",
+            "required": ["prompt", "observable_resources", "allowed_probe_ids"],
+            "properties": {
+              "prompt": {"type": "string"},
+              "observable_resources": {"type": "array", "items": {"type": "string"}},
+              "allowed_probe_ids": {"type": "array", "items": {"type": "string"}},
+              "allowed_intervention_ids": {"type": "array", "items": {"type": "string"}}
+            },
+            "additionalProperties": false
+          },
+          "protected_gold": {
+            "type": "object",
+            "description": "Host custody only. Must not be serialised into candidate traces.",
+            "required": ["true_stage", "warranted_actions"],
+            "properties": {
+              "true_stage": {
+                "enum": ["EVIDENCE", "EXECUTION", "FORMULATION", "SEARCH_UNIVERSE"]
+              },
+              "true_coordinate": {"type": "string"},
+              "warranted_actions": {"type": "array", "items": {"type": "string"}},
+              "forbidden_actions": {"type": "array", "items": {"type": "string"}}
+            }
+          }
+        }
+      }
+    },
+    "gold_hidden_from_candidates": {"const": true}
+  },
+  "additionalProperties": false
+}

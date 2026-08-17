@@ -1,0 +1,71 @@
+{
+  "allocator_architecture": "not_implemented",
+  "backends": {
+    "arxiv": "forbidden_on_this_lane",
+    "permitted_keyless": [
+      "openaire",
+      "dblp",
+      "crossref"
+    ],
+    "semantic_scholar_429": "open_obligation_never_silent_drop"
+  },
+  "baselines_and_ablations_if_allocator_later": [
+    "fixed_v1_allocation",
+    "no_safety_floor",
+    "treat_censoring_as_zero_reward",
+    "no_earned_route_identity",
+    "optimistic_unknown_routes",
+    "duplicate_route_identity_attack",
+    "rejected_action_incorrectly_mutates_learning_state_attack"
+  ],
+  "components_tested_separately": [
+    {
+      "disposition_seed": "ADAPT",
+      "id": "sage_style_metadata_keyword_augmentation",
+      "note": "SAGE-style corpus metadata/keyword augmentation. Not novel by itself."
+    },
+    {
+      "disposition_seed": "ADAPT",
+      "id": "concept_entity_constraint_query_decomposition",
+      "note": "Explicit scientific concept/entity/constraint query decomposition."
+    },
+    {
+      "disposition_seed": "ADAPT",
+      "id": "title_author_citation_field_aware_retrieval",
+      "note": "Title/author/citation-field aware retrieval when the task permits it."
+    },
+    {
+      "disposition_seed": "COMPOSE",
+      "id": "query_diversification_with_content_identity_dedup",
+      "note": "Query diversification with existing content-identity dedup. Not novel by itself."
+    },
+    {
+      "disposition_seed": "DEFER",
+      "id": "route_selection_by_marginal_unique_relevant_gain",
+      "note": "Retrieval-route selection based on observed marginal unique-relevant gain. Deferred until the discriminator isolates whether route allocation, rather than query generation, is the loss."
+    }
+  ],
+  "dominant_earliest_stage": "CANDIDATE_GENERATION_MISS",
+  "issue": 279,
+  "not_in_scope": [
+    "adaptive_allocation_architecture",
+    "rewrite_of_PROTOCOL_V1",
+    "closing_issue_279_on_offline_390_task_positivity"
+  ],
+  "official_implementations": {
+    "AgentSLR": "CANNOT_CHECK",
+    "SAGE": "CANNOT_CHECK",
+    "rule": "If an official implementation cannot run, mark CANNOT_CHECK. Do not weaken the baseline."
+  },
+  "parent_protocol_id": "P2.open-world-discovery.v1",
+  "primary_criterion": [
+    "improve_external_wide_iou_or_recall_at_matched_budget",
+    "or_preserve_external_recall_within_frozen_non_inferiority_margin_while_reducing_queries"
+  ],
+  "protocol_id": "P2.open-world-discovery.v2-candidate-generation-discriminator",
+  "rewrites_parent": false,
+  "safety_floor": "no increase in premature closure beyond a frozen safety margin",
+  "schema_version": "orion.p2.v2-candidate-generation-discriminator.v1",
+  "status": "FROZEN_DISCRIMINATOR_NOT_IMPLEMENTED",
+  "why_now": "Deep official scoring (PR #266) has hit rate 0.000 with a passing judge control and exact/substring title recovery 0/564 from frozen candidates. The earliest failing stage is candidate generation. A novel adaptive allocator is not licensed until a matched Wide run, or this discriminator, says what is broken in query/candidate generation."
+}

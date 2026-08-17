@@ -1,0 +1,632 @@
+{
+  "schema": "Phase2ClosureGapLedger.v1",
+  "record_class": "CHECKBOX_AUDIT",
+  "grants_authority": "NONE",
+  "closes_gate": null,
+  "phase2_terminal_issued": false,
+  "terminal_string_not_issued": "PHASE_2_SHADOW_SELF_ORION_CLOSED",
+  "purpose": "Checkbox-by-checkbox audit of SzeChunYiu/ORION#76 against origin/main. Tick only boxes verified on main. Empirical gates A-F remain unticked because the frozen #8 packet is unbound and no Phase-2 closure subject exists.",
+  "observed_at": "2026-08-17",
+  "issue": 76,
+  "audited_subject": {
+    "ref": "origin/main",
+    "commit_oid": "266f6b94a285293364be7db86f4b98b526e7f4b8",
+    "tree_oid": "7b9b1dae444bffeaa68f68c25e364ad666ef9e19"
+  },
+  "phase1_anchor": {
+    "commit_oid": "7983401847ea2b33706aacbf6e45b6bc63a60d0d",
+    "tree_oid": "fd86b448b04e27ccd7ecc2372f1f391e6200c567",
+    "merged_pull_request": 86,
+    "issue": 75,
+    "issue_state": "CLOSED",
+    "declaring_comment_id": 5307421385,
+    "terminal_string": "PHASE_1_CORE_TECHNICALLY_CLOSED",
+    "ci_run_id": "31946971360",
+    "ci_conclusion": "success",
+    "ancestry_vs_audited_subject": "PASS"
+  },
+  "companion_records": {
+    "subject_anchor_binding": "research/phase2/PHASE2_SUBJECT_ANCHOR_BINDING_V1.md",
+    "live_packet_cannot_check": "research/phase2/PHASE2_LIVE_PACKET_EXECUTION_CANNOT_CHECK_V1.json",
+    "pr_271_inventory_not_on_main_at_audit": "research/phase2/PHASE2_CLOSURE_GAP_INVENTORY_V1.md"
+  },
+  "discriminators": [
+    "P2 in papers/paper-02-* and .github/workflows/p2-*.yml is Paper 2, not Phase 2.",
+    "A passing unit test is STRUCTURE_ONLY relative to a #76 gate. Gates ask for properties demonstrated on the frozen closure subject.",
+    "BLOCKED_EXTERNAL is reserved for provisioning. Code-side defects demonstrated on a non-closure subject remain STRUCTURE_ONLY plus a cited defect, not MERGED_EVIDENCE.",
+    "Ancestry of origin/main from the Phase-1 anchor is necessary and not sufficient for DEP2."
+  ],
+  "summary": {
+    "total_checkboxes": 58,
+    "already_ticked_and_verified_on_main": 14,
+    "unticked_and_not_tickable_on_main": 44,
+    "newly_ticked_by_this_audit": 0,
+    "merged_evidence": 0,
+    "structure_only": 36,
+    "absent": 5,
+    "blocked_external": 3,
+    "cannot_check_execution": 1
+  },
+  "items": [
+    {
+      "id": "DEP1",
+      "section": "dependency",
+      "text": "Phase 1 closure issue #75 is closed as PHASE_1_CORE_TECHNICALLY_CLOSED.",
+      "issue_checkbox": "checked",
+      "class": "VERIFIED_ON_MAIN",
+      "tickable_on_main": true,
+      "action": "KEEP_TICKED",
+      "basis": "gh issue view 75 state=CLOSED. Declaring comment 5307421385 exists and names the terminal string. Anchor commit 7983401847 is present in this object store."
+    },
+    {
+      "id": "DEP2",
+      "section": "dependency",
+      "text": "Final Phase-2 evidence is bound to the exact final Phase-1-derived subject used for the closure run.",
+      "issue_checkbox": "unchecked",
+      "class": "ABSENT",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "No closure-run subject exists. origin/main is Phase-1-derived by ancestry, which is necessary and not sufficient. The #8 packet corpus_revision is UNBOUND."
+    },
+    {
+      "id": "ARCH1",
+      "section": "architecture",
+      "text": "ShadowSelfDrivingController can mechanically select, research, compile, propose, sandbox-execute, assure, and at most recommend host promotion.",
+      "issue_checkbox": "checked",
+      "class": "VERIFIED_ON_MAIN",
+      "tickable_on_main": true,
+      "action": "KEEP_TICKED",
+      "basis": "src/orion/self_orion/self_driving.py class ShadowSelfDrivingController is present on origin/main."
+    },
+    {
+      "id": "ARCH2",
+      "section": "architecture",
+      "text": "No self-merge primitive.",
+      "issue_checkbox": "checked",
+      "class": "VERIFIED_ON_MAIN",
+      "tickable_on_main": true,
+      "action": "KEEP_TICKED",
+      "basis": "self_merge_authorized is structurally false across change_control.py, development_trial.py, phase2_campaign_io.py; readiness.py blocks self_merge_capability_present."
+    },
+    {
+      "id": "ARCH3",
+      "section": "architecture",
+      "text": "Immutable TaskEpisode / failure-learning / DevelopmentIssue / evolution history.",
+      "issue_checkbox": "checked",
+      "class": "VERIFIED_ON_MAIN",
+      "tickable_on_main": true,
+      "action": "KEEP_TICKED",
+      "basis": "TaskEpisode in src/orion/experience/model.py; DevelopmentIssue in issue_state.py; EvolutionArchive in evolution_archive.py."
+    },
+    {
+      "id": "ARCH4",
+      "section": "architecture",
+      "text": "Provider-neutral research runtime.",
+      "issue_checkbox": "checked",
+      "class": "VERIFIED_ON_MAIN",
+      "tickable_on_main": true,
+      "action": "KEEP_TICKED",
+      "basis": "src/orion/mechanics/research.py and runtime/mechanical_control.py derive provider-neutral search queries from mechanic cells."
+    },
+    {
+      "id": "ARCH5",
+      "section": "architecture",
+      "text": "Frozen wide-literature + deep-target trial packet/harness exists structurally.",
+      "issue_checkbox": "checked",
+      "class": "VERIFIED_ON_MAIN",
+      "tickable_on_main": true,
+      "action": "KEEP_TICKED",
+      "basis": "LIVE_TRIAL_PACKET_V1.json is present with WIDE and DEEP task ids and outcome_accessed=false. Structural presence is not live execution (see CANNOT_CHECK companion)."
+    },
+    {
+      "id": "ARCH6",
+      "section": "architecture",
+      "text": "Matched-baseline interface exists structurally.",
+      "issue_checkbox": "checked",
+      "class": "VERIFIED_ON_MAIN",
+      "tickable_on_main": true,
+      "action": "KEEP_TICKED",
+      "basis": "src/orion/self_orion/baseline.py class SimpleLLMRetrievalBaseline."
+    },
+    {
+      "id": "ARCH7",
+      "section": "architecture",
+      "text": "Content/lineage-bound readiness and external-evidence records exist structurally.",
+      "issue_checkbox": "checked",
+      "class": "VERIFIED_ON_MAIN",
+      "tickable_on_main": true,
+      "action": "KEEP_TICKED",
+      "basis": "src/orion/self_orion/readiness.py ReadinessEvidenceRecord path; src/orion/benchmarks/external_evidence.py ExternalEvidenceManifest.v1."
+    },
+    {
+      "id": "ARCH8",
+      "section": "architecture",
+      "text": "Internal readiness ceiling is READY_PENDING_EXTERNAL_ATTESTATION.",
+      "issue_checkbox": "checked",
+      "class": "VERIFIED_ON_MAIN",
+      "tickable_on_main": true,
+      "action": "KEEP_TICKED",
+      "basis": "SelfOrionReadinessStage.READY_PENDING_EXTERNAL_ATTESTATION in readiness.py; GOVERNED_SELF_ORION is absent from the enum."
+    },
+    {
+      "id": "ARCH9",
+      "section": "architecture",
+      "text": "Strict Phase2EvidenceReceipt.v1 persistence, secure actual-byte admission, independent exact-receipt audit, and prospective P5 V2 append-only negative-history chain are merged (#216/#219/#223/#229/#230).",
+      "issue_checkbox": "checked",
+      "class": "VERIFIED_ON_MAIN",
+      "tickable_on_main": true,
+      "action": "KEEP_TICKED",
+      "basis": "Phase2EvidenceReceipt in evidence_admission.py on main. PRs #216, #219, #223, #229, #230, and also #231 (omitted by the issue text; listed by #159) are all MERGED."
+    },
+    {
+      "id": "A1",
+      "section": "A",
+      "text": "Real LLM + real retrieval + protected verification/evaluation boundary.",
+      "issue_checkbox": "unchecked",
+      "class": "BLOCKED_EXTERNAL",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "Four p5-phase2-live-execution runs from main all failed or blocked. Current head has no resolvable explicit Copilot model pair (run 32003937947 CANNOT_CHECK / MODEL_UNAVAILABLE). Protected verifier credentials remain a host provisioning requirement."
+    },
+    {
+      "id": "A2",
+      "section": "A",
+      "text": "At least one wide-literature and one deep-target task.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "Packet and phase2_preflight each define one WIDE and one DEEP task. They are different task-id pairs. Neither pair has been executed against a closure subject."
+    },
+    {
+      "id": "A3",
+      "section": "A",
+      "text": "Task/provider/model/retrieval-source/evaluator/resource/split identities frozen before outcome access.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "phase2_freeze.py / subject_binding.py / LIVE_TRIAL_PACKET_V1.json exist. Packet corpus_revision remains UNBOUND, so the freeze is not a closure-subject freeze."
+    },
+    {
+      "id": "A4",
+      "section": "A",
+      "text": "Raw queries, retrieved documents, answer-use trace and mechanic episodes retained.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "live_trial.py implements retention. Run 32002591296 reported raw_search_trace_not_retained_for_every_task — a code-side defect on a non-closure subject, not merged gate evidence."
+    },
+    {
+      "id": "A5",
+      "section": "A",
+      "text": "Present-but-missed, retrieved-but-unused, interpretation/absorption, routing and saturation failures distinguished where ground truth permits.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "Taxonomy present in live_packet.py. Not exercised on a closure subject."
+    },
+    {
+      "id": "A6",
+      "section": "A",
+      "text": "Matched simple LLM+retrieval baseline under resource parity.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "SimpleLLMRetrievalBaseline exists. No matched live run is merged."
+    },
+    {
+      "id": "A7",
+      "section": "A",
+      "text": "Null/harmful results preserved.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "live_trial.py implements preservation. Run 32002591296 reported live_trial_failure_history_incomplete."
+    },
+    {
+      "id": "A8",
+      "section": "A",
+      "text": "Exact live artifact is merged and bound to the same subject used by the rest of the Phase-2 closure evidence.",
+      "issue_checkbox": "unchecked",
+      "class": "ABSENT",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "No live-trial artifact is merged. Companion CANNOT_CHECK record is an inventory verdict, not the missing artifact."
+    },
+    {
+      "id": "B1",
+      "section": "B",
+      "text": "Detect the failure.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "development_trial.py exists. Requires a consequential failure observed in a real gate-A run, which has not happened."
+    },
+    {
+      "id": "B2",
+      "section": "B",
+      "text": "Preserve immutable episode/history.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "evolution_archive.py / development_trial.py. No observed closure-run failure to preserve."
+    },
+    {
+      "id": "B3",
+      "section": "B",
+      "text": "Localize competing responsibility hypotheses.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "development_trial.py hypothesis/discriminator machinery. Downstream of A."
+    },
+    {
+      "id": "B4",
+      "section": "B",
+      "text": "Search current ORION/RAKL + external nearest work.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "research_loop.py / knowledge_runtime.py / rakl_transfer.py. Downstream of A."
+    },
+    {
+      "id": "B5",
+      "section": "B",
+      "text": "Freeze discriminator before repair outcome.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "development_trial.py. Downstream of A."
+    },
+    {
+      "id": "B6",
+      "section": "B",
+      "text": "Propose candidate change through worker/provider.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "live_shadow_development.py. Downstream of A."
+    },
+    {
+      "id": "B7",
+      "section": "B",
+      "text": "Execute in isolated candidate environment.",
+      "issue_checkbox": "unchecked",
+      "class": "BLOCKED_EXTERNAL",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "Needs ORION_PROTECTED_SANDBOX_URL / _TOKEN / _ARTIFACT_HASH. No protected sandbox is provisioned."
+    },
+    {
+      "id": "B8",
+      "section": "B",
+      "text": "Compare against incumbent under matched resources.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "baseline.py / development_trial.py. Downstream of A."
+    },
+    {
+      "id": "B9",
+      "section": "B",
+      "text": "Run motivating replay plus independent fresh transfer/protected assurance.",
+      "issue_checkbox": "unchecked",
+      "class": "BLOCKED_EXTERNAL",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "Needs ORION_PROTECTED_DEVELOPMENT_EVALUATOR_URL / _TOKEN. Fresh-transfer campaign itself is owned by #159."
+    },
+    {
+      "id": "B10",
+      "section": "B",
+      "text": "Retain failed/harmful alternatives and negative-history recurrence.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "development_trial.py / phase2_terminal_receipts.py. No closure-run alternatives to retain."
+    },
+    {
+      "id": "B11",
+      "section": "B",
+      "text": "Result can only recommend host promotion, never self-merge.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "change_control.py enforces it. There is no Shadow-cycle result to characterise. ARCH2 already records the merged code property."
+    },
+    {
+      "id": "C1",
+      "section": "C",
+      "text": "Wrong-source/correct-fact.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "authority_trial.py attack 0. #59 is CLOSED but its live campaign binds Paper-4 subject f6e51b5c, not a Phase-2 closure subject."
+    },
+    {
+      "id": "C2",
+      "section": "C",
+      "text": "Content substitution.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "authority_trial.py attack 1. Same subject-binding caveat as C1."
+    },
+    {
+      "id": "C3",
+      "section": "C",
+      "text": "Source conflation.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "authority_trial.py attack 2."
+    },
+    {
+      "id": "C4",
+      "section": "C",
+      "text": "Weak/self-authored checker.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "authority_trial.py attack 3."
+    },
+    {
+      "id": "C5",
+      "section": "C",
+      "text": "Same-lane verifier.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "authority_trial.py attack 4."
+    },
+    {
+      "id": "C6",
+      "section": "C",
+      "text": "Cited-but-unused evidence.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "authority_trial.py attack 5."
+    },
+    {
+      "id": "C7",
+      "section": "C",
+      "text": "Benchmark/search contamination.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "authority_trial.py attack 6."
+    },
+    {
+      "id": "C8",
+      "section": "C",
+      "text": "Evaluator/guard modification.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "authority_trial.py attack 7."
+    },
+    {
+      "id": "C9",
+      "section": "C",
+      "text": "Held-out leakage.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "authority_trial.py attack 8."
+    },
+    {
+      "id": "C10",
+      "section": "C",
+      "text": "Correct CANNOT_CHECK under insufficient evidence.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "authority_trial.py attack 9. The companion live-packet CANNOT_CHECK is an inventory verdict, not this attack executed on the closure subject."
+    },
+    {
+      "id": "D1",
+      "section": "D",
+      "text": "Produce content/lineage-bound ReadinessEvidenceRecord/external-manifest artifacts for the actual frozen subject.",
+      "issue_checkbox": "unchecked",
+      "class": "ABSENT",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "Zero ReadinessEvidenceRecord instances in the tree; only the type in readiness.py."
+    },
+    {
+      "id": "D2",
+      "section": "D",
+      "text": "Self-verification is rejected.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "readiness.py requires distinct producer/verifier lineage. Not demonstrated on a frozen closure subject."
+    },
+    {
+      "id": "D3",
+      "section": "D",
+      "text": "Post-hoc evaluator changes are rejected/versioned.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "readiness.py evaluator_artifact_hash; evidence_admission.py (#216/#219)."
+    },
+    {
+      "id": "D4",
+      "section": "D",
+      "text": "Mixed subject revisions are rejected.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "readiness.py subject_revision_hash; phase2_campaign.py cross-binding."
+    },
+    {
+      "id": "D5",
+      "section": "D",
+      "text": "Non-fresh splits are rejected where freshness is required.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "readiness.py fresh_split."
+    },
+    {
+      "id": "D6",
+      "section": "D",
+      "text": "Caller declaration booleans cannot create PASS.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "evidence_admission_io.py (#223), evidence_audit_cli.py (#229). Machinery, not a closure-subject receipt."
+    },
+    {
+      "id": "E1",
+      "section": "E",
+      "text": "Repaired + replayed + fresh-transfer tested.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "FailureReplayReceipt.v1 path REPAIRED_REPLAYED_FRESH_TRANSFER. #159 owns the fresh-transfer campaign and is still OPEN."
+    },
+    {
+      "id": "E2",
+      "section": "E",
+      "text": "Retained as an explicit unresolved/blocking fibre with a discriminator/reopen condition.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "FailureReplayReceipt.v1 path RETAINED_BLOCKING_FIBRE. Companion CANNOT_CHECK is not this fibre executed on a closure-run failure set."
+    },
+    {
+      "id": "E3",
+      "section": "E",
+      "text": "Same recognized failure class does not recur unnoticed in the closure run.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "FrozenFailureIndex.v1 exists. P5_NEGATIVE_HISTORY_CHAIN_V1.json self-declares status PROSPECTIVE_FROZEN / empirical_authority NONE. No closure run to audit."
+    },
+    {
+      "id": "F1",
+      "section": "F",
+      "text": "Papers/claim ledgers updated with local vs live/external evidence boundary.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "Paper READMEs carry a local-vs-external boundary, but none can record a Phase-2 live result because none exists."
+    },
+    {
+      "id": "F2",
+      "section": "F",
+      "text": "Phase-2 evidence binds the exact closure subject revision.",
+      "issue_checkbox": "unchecked",
+      "class": "ABSENT",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "Same as DEP2. This binding note names the Phase-1 anchor, not a closure subject."
+    },
+    {
+      "id": "F3",
+      "section": "F",
+      "text": "Full CI green on the exact main merge.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "FinalCIEvidence.v1 exists as a type. Routine green ci on main is not a closure-merge receipt. The only phase2-empirical.yml success (run 17, head 981db365) recorded blocked empirical execution."
+    },
+    {
+      "id": "F4",
+      "section": "F",
+      "text": "External artifact manifest reproducibly derives PASS/FAIL/CANNOT_CHECK without declaration booleans.",
+      "issue_checkbox": "unchecked",
+      "class": "STRUCTURE_ONLY",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "external_evidence.py / evidence_audit_cli.py. No external manifest instance for a closure subject."
+    },
+    {
+      "id": "F5",
+      "section": "F",
+      "text": "#8 and all required evidence dependencies are closed or explicitly retained as genuine external blockers.",
+      "issue_checkbox": "unchecked",
+      "class": "ABSENT",
+      "tickable_on_main": false,
+      "action": "LEAVE_UNTICKED",
+      "basis": "#8 is OPEN, #159 is OPEN. The companion CANNOT_CHECK retains the missing live-packet execution as an inventory verdict; it is not a Gate-F terminal retention and does not close this checkbox."
+    },
+    {
+      "id": "COORD1",
+      "section": "coordination",
+      "text": "Four-phase master roadmap exists in #208.",
+      "issue_checkbox": "checked",
+      "class": "VERIFIED_ON_MAIN",
+      "tickable_on_main": true,
+      "action": "KEEP_TICKED",
+      "basis": "Issue #208 is OPEN with that title."
+    },
+    {
+      "id": "COORD2",
+      "section": "coordination",
+      "text": "Governed Self-ORION Phase-3 closure gate is explicitly separated into #209 and remains blocked on this issue.",
+      "issue_checkbox": "checked",
+      "class": "VERIFIED_ON_MAIN",
+      "tickable_on_main": true,
+      "action": "KEEP_TICKED",
+      "basis": "Issue #209 is OPEN. PR #269 merged an inert Phase-3 protocol pre-freeze to main (cfeff0b0) and does not close #209 or #76."
+    },
+    {
+      "id": "COORD3",
+      "section": "coordination",
+      "text": "Self-sustaining Phase-4 programme gate is explicitly separated into #210 and remains blocked on #209.",
+      "issue_checkbox": "checked",
+      "class": "VERIFIED_ON_MAIN",
+      "tickable_on_main": true,
+      "action": "KEEP_TICKED",
+      "basis": "Issue #210 is OPEN."
+    },
+    {
+      "id": "COORD4",
+      "section": "coordination",
+      "text": "Open PR evidence identities are reconciled before being counted: mislabeled #207 was quarantined as an UNBOUND_EXECUTION_REPORT (#212).",
+      "issue_checkbox": "checked",
+      "class": "VERIFIED_ON_MAIN",
+      "tickable_on_main": true,
+      "action": "KEEP_TICKED",
+      "basis": "PR #212 is MERGED at 6d0810ec."
+    }
+  ]
+}
