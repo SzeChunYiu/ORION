@@ -1,0 +1,31 @@
+{
+  "schema": "P2.v2.promotion-state.v1",
+  "as_of": "2026-08-17",
+  "authorized_terminal": "P2_NARROWED",
+  "target_terminal": "P2_TRANSFER_SUPPORTED",
+  "development_complete": false,
+  "confirmatory_external_complete": false,
+  "transfer_complete": false,
+  "promotion_evidence": {
+    "P2_EXTERNAL_MECHANISM_SUPPORTED": null,
+    "P2_EXTERNAL_DISCOVERY_SUPPORTED": null,
+    "P2_OPEN_WORLD_STOPPING_SUPPORTED": null,
+    "P2_TRANSFER_SUPPORTED": null
+  },
+  "current_blockers": [
+    "final ORION_MAX_COMPOSED identity not yet frozen after development-only comparison",
+    "no new denominator-valid matched external V2 result archived",
+    "no independent V2 rescore archived",
+    "no separately frozen transfer result archived"
+  ],
+  "development_evidence_allowed": [
+    "archived AutoResearchBench Deep 0/600 probe",
+    "archived MetaSyn stage-failure ledger",
+    "controlled complete-gold V1 mechanism results"
+  ],
+  "development_evidence_forbidden_as_confirmation": [
+    "archived AutoResearchBench Deep 0/600 probe",
+    "any outcome used to select ORION_MAX_COMPOSED components"
+  ],
+  "rule": "Manuscript result language may promote only to authorized_terminal; target_terminal is a hypothesis, not evidence."
+}
