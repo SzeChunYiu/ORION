@@ -52,6 +52,42 @@ jobs:
           (cd /tmp/scifact && bash script/download-data.sh)
           test -s /tmp/scifact/data/claims_dev.jsonl
 
+      - name: Freeze exact upstream identities before evaluation
+        env:
+          ORION_SHA: ${{ github.sha }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          mkdir -p p3-public-reference-run
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          def digest(path: str) -> str:
+              return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+          payload = {
+              'schema_version': 'orion.p3.public-reference-pre-bindings.v1',
+              'orion_revision': os.environ['ORION_SHA'],
+              'github_run_id': os.environ['RUN_ID'],
+              'protocol_id': 'P3.public-reference-mapping.v1',
+              'upstream_revisions': {
+                  'MUSE': 'f7a40317db46145d0c90b221311d8324db5da1b9',
+                  'SciSchema': '55b6197cdb0b66c3123df16d0b0c70b02c4bde8b',
+                  'SciFact': '68b98a56d93e0f9da0d2aab4e6c3294699a0f72e',
+              },
+              'external_content_hashes': {
+                  'SciFact:claims_dev.jsonl': digest('/tmp/scifact/data/claims_dev.jsonl'),
+              },
+              'outcome_accessed': False,
+          }
+          Path('p3-public-reference-run/PRE_BINDINGS.json').write_text(
+              json.dumps(payload, indent=2, sort_keys=True) + '\n', encoding='utf-8'
+          )
+          print(json.dumps(payload, indent=2, sort_keys=True))
+          PY
+
       - name: Build frozen-authority public-reference atlas
         run: |
           PYTHONPATH=src python -m orion.study.p3_public_reference_build \
@@ -73,7 +109,7 @@ jobs:
             --cases p3-public-reference-run/cases.jsonl \
             --output p3-public-reference-run/ANALYSIS.json
 
-      - name: Bind exact run identities
+      - name: Bind exact result identities
         env:
           ORION_SHA: ${{ github.sha }}
           RUN_ID: ${{ github.run_id }}
@@ -88,21 +124,15 @@ jobs:
           def digest(name: str) -> str:
               return hashlib.sha256((root / name).read_bytes()).hexdigest()
 
+          pre = json.loads((root / 'PRE_BINDINGS.json').read_text(encoding='utf-8'))
           payload = {
               'schema_version': 'orion.p3.public-reference-run-bindings.v1',
               'orion_revision': os.environ['ORION_SHA'],
               'github_run_id': os.environ['RUN_ID'],
               'protocol_id': 'P3.public-reference-mapping.v1',
-              'upstream_revisions': {
-                  'MUSE': 'f7a40317db46145d0c90b221311d8324db5da1b9',
-                  'SciSchema': '55b6197cdb0b66c3123df16d0b0c70b02c4bde8b',
-                  'SciFact': '68b98a56d93e0f9da0d2aab4e6c3294699a0f72e',
-              },
-              'external_content_hashes': {
-                  'SciFact:claims_dev.jsonl': hashlib.sha256(
-                      Path('/tmp/scifact/data/claims_dev.jsonl').read_bytes()
-                  ).hexdigest(),
-              },
+              'pre_bindings_hash': digest('PRE_BINDINGS.json'),
+              'upstream_revisions': pre['upstream_revisions'],
+              'external_content_hashes': pre['external_content_hashes'],
               'artifact_hashes': {
                   'cases.jsonl': digest('cases.jsonl'),
                   'BUILD_REPORT.json': digest('BUILD_REPORT.json'),
@@ -118,9 +148,11 @@ jobs:
 
       - name: Show build and analysis summary
         run: |
+          cat p3-public-reference-run/PRE_BINDINGS.json
           cat p3-public-reference-run/BUILD_REPORT.json
           cat p3-public-reference-run/SUMMARY.json
           cat p3-public-reference-run/ANALYSIS.json
+          cat p3-public-reference-run/RUN_BINDINGS.json
 
       - uses: actions/upload-artifact@v4
         with:
