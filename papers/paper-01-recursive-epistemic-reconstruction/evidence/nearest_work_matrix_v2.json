@@ -4,9 +4,9 @@
     "ADOPT": 19,
     "ADAPT": 4,
     "COMPOSE": 7,
-    "DEFER": 3,
+    "DEFER": 5,
     "REJECT": 1,
-    "total": 34
+    "total": 36
   },
   "mechanisms": [
     {
@@ -314,6 +314,24 @@
       "does": "Minimal project-agent-resource object model organizing research across Research Application, Digital Collaboration, Physical Substrate and Physical World layers with pluggable trust mechanisms.",
       "disposition": "DEFER",
       "claim_effect": "Checked specifically for dependency-impact propagation and found to be an organizational/collaboration layer. Does not affect any delta."
+    },
+    {
+      "mechanism": "Aligned state checkpoints with rewind/resume for long-horizon agents",
+      "source": "AgentRewind: Recoverable Execution for Long-Horizon LLM Agents (Zhuang, Chen, Duan, Zheng, Li, Zhang; 14 Aug 2026)",
+      "arxiv_id": "2608.14380",
+      "body_checked": false,
+      "does": "Snapshots agent context plus a controlled environment at aligned checkpoints, and rewinds to a recoverable state for replay/resume on long-horizon tasks; verified on the MettleBench suite.",
+      "disposition": "DEFER",
+      "claim_effect": "Checked and found not close: state recovery and re-anchoring to a *checkpoint*, with no typed failure-responsibility taxonomy and no authority/permission model governing whether a formulation coordinate may be rewritten. Does not affect P1.D2."
+    },
+    {
+      "mechanism": "Executable-state transition with re-anchoring across long-horizon research",
+      "source": "ScienceFlow: A long-horizon agent for ML research, scientific discovery and beyond (Zhao et al., 14 Aug 2026)",
+      "arxiv_id": "2608.14354",
+      "body_checked": false,
+      "does": "ESTRA (Executable-State Transition through Re-Anchoring) keeps a long-horizon ML-research agent's state executable via re-anchoring under an evidence-aware controller; SOTA 70.22% Any-Medal on MLE-bench.",
+      "disposition": "DEFER",
+      "claim_effect": "The closest 2026 system we surfaced in the closure pass, but its re-anchoring rebuilds *executable state* on evidence, not a *formulation/search-universe rewrite* gated by the typed responsibility that produced the residual. Does not affect P1.D2."
     }
   ],
   "residual_claim": "In a research process whose object knowledge K, relevance/search-universe model W, and method state M are separately represented, ORION types the responsibility for an observed residual so that responsibility determines authority: only a formulation or search-universe responsibility licenses a coordinate-specific rewrite of W or M, while evidence and execution responsibilities are routed to acquisition and repair and are denied the rewrite licence; and it is that licensed rewrite - not an inconsistency internal to the evidence graph - that scopes the dependency-directed reopening of prior closure. The contribution is the licensing relation binding typed responsibility to the reframe target and to the reopen scope, evaluated on hidden formulation-shift tasks against matched baselines with evidence-only and execution-only negative controls.",
@@ -327,7 +345,7 @@
       "name": "P1.D2.TYPED_FORMULATION_REVISION",
       "survives_independently": true,
       "reason": "Survives narrowly and is the one delta to defend. ARTS (2606.21891) already diagnoses implementation-fault versus bad-hypothesis, striking the binary split; Iris already attributes failure to which specific claim is wrong; Who&When / Who&When Pro attribute to responsible agent and decisive step; MAST (2503.13657) classifies failures into 14 modes across system design issues, inter-agent misalignment and task verification; Auditable Agents lists responsibility attribution as a named auditability dimension. Unparented across all of these is that the TYPE of the responsibility acts as an authority gate: a formulation/search-universe diagnosis selects which coordinate may be rewritten, while an evidence-only or execution-only diagnosis withholds the rewrite licence entirely. Every neighbour produces a descriptive label; none attaches a permission to it. ORION has local mechanical evidence the distinction bites - the hidden-shift falsifier exposed an over-broad reframe gate treating singular responsibility as sufficient licence. Must be claimed as responsibility-typed licensing of formulation rewrite, never as failure attribution.",
-      "open_check_before_print": "MAST's 14 individual mode names were not retrieved (abstract only). If any mode already names a formulation coordinate, the narrowing tightens further. This is the single remaining literature check that could still move the P1.D2 verdict, and it must be completed before submission. The verdict is also provisional against the surfaced-but-unfetched error-diagnosis cluster listed in verification_gaps."
+      "open_check_before_print": "MAST's 14 individual mode names were not retrieved (abstract only). If any mode already names a formulation coordinate, the narrowing tightens further. This is the single remaining literature check that could still move the P1.D2 verdict, and it must be completed before submission. The verdict is also provisional against the surfaced-but-unfetched error-diagnosis cluster listed in verification_gaps. CLOSURE PASS (2026-08-17): 8 papers from the 2608 cs.AI series checked (AgentRewind, ScienceFlow, Demystifying Agent Skills, Drift Diagnosis, Wrong but Useful, Session Handover, SAFARI, Past and Future of AI Scientists). None attaches a responsibility-typed reformulation/authority licence; P1.D2 unaffected. The two closest papers (AgentRewind, ScienceFlow) added as DEFER rows."
     },
     "P1.D3": {
       "name": "P1.D3.SCOPED_REOPENING",
