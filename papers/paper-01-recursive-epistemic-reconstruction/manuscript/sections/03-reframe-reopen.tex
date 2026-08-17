@@ -21,7 +21,7 @@ Suppose a conclusion $c$ was closed under dependencies $D(c)$. When a reframe ch
 \[
 z\in D^{*}(c)\Rightarrow \mathrm{status}(c)\leftarrow \mathrm{STALE}.
 \]
-This rule avoids two opposite errors. Failing to reopen produces stale certainty: old conclusions remain ``solved'' after their assumptions changed. Reopening the entire project after every change destroys locality and makes recursive research unnecessarily expensive.
+This rule avoids two opposite errors. Failing to reopen produces stale certainty: old conclusions remain ``solved'' after their assumptions changed. Reopening the entire project after every change destroys locality and makes recursive research unnecessarily expensive. The underlying mechanism is an instance of Doyle's justification-based truth maintenance \cite{doyle1979}, with the de Kleer assumption-based extension \cite{dekleer1986} providing the multi-context form needed when a reframe is provisional rather than settled.
 
 The key evaluation object is therefore not only final task success. Reopening has its own precision/recall question: did the system stale exactly the closure that materially depended on the changed coordinate?
 

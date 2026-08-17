@@ -14,8 +14,9 @@ All figures are generated deterministically from the frozen archive at
 are current (CI-able). Matplotlib is imported lazily with a clear install hint
 if missing (it is an optional dependency under the ``plots`` extra).
 
-CANNOT_CHECK records (86, all orion_live_provider) are excluded from plots
-with the exclusion stated in the manifest metadata.
+The live arm (`orion_live_provider`) is included now that its 86 missing
+cells have been recovered: the frozen archive carries 2880 scored records and
+no CANNOT_CHECK record remains, so every system is plotted.
 """
 
 from __future__ import annotations
@@ -68,6 +69,7 @@ SYSTEMS_PLOTTED = [
     "generic_retry_instead_of_typed_reframe",
     "full_reset_instead_of_dependency_reopen",
     "orion_without_mechanic_self_audit",
+    "orion_live_provider",
 ]
 
 # System display names
@@ -83,6 +85,7 @@ SYSTEM_LABELS = {
     "generic_retry_instead_of_typed_reframe": "Generic Retry",
     "full_reset_instead_of_dependency_reopen": "Full Reset",
     "orion_without_mechanic_self_audit": "ORION no Self-Audit",
+    "orion_live_provider": "Live Provider (glm-5.2)",
 }
 
 # Task family display names
@@ -136,9 +139,13 @@ def load_records() -> list[dict[str, Any]]:
 
 
 def filter_cannot_check(records: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], int]:
-    """Filter out CANNOT_CHECK records (all orion_live_provider).
+    """Filter out any CANNOT_CHECK records that remain in the archive.
 
-    Returns (filtered_records, cannot_check_count).
+    Returns (filtered_records, cannot_check_count). After the 2026-08-17
+    live-provider recovery the archive carries zero CANNOT_CHECK records;
+    the filter is kept so that an unexpected regeneration that reintroduces
+    provider failures still degrades gracefully with the count reported in
+    the manifest instead of silently plotting incomplete cells.
     """
     filtered = [r for r in records if r.get("status") != "CANNOT_CHECK"]
     cannot_check = len(records) - len(filtered)
@@ -462,7 +469,11 @@ def compute_manifest(paths: dict[str, Path], cannot_check_count: int) -> dict[st
     manifest: dict[str, Any] = {
         "generated_by": "scripts/make_figures.py",
         "cannot_check_records_excluded": cannot_check_count,
-        "exclusion_reason": "86 orion_live_provider records with CANNOT_CHECK status (provider API failures)",
+        "exclusion_reason": (
+            f"{cannot_check_count} CANNOT_CHECK records excluded (provider API failures)"
+            if cannot_check_count
+            else "no CANNOT_CHECK records in the archive (all cells recovered)"
+        ),
         "figures": {},
     }
 
@@ -493,7 +504,7 @@ def main(argv: list[str] | None = None) -> int:
 
     # Filter CANNOT_CHECK
     filtered, cannot_check_count = filter_cannot_check(records)
-    print(f"Filtered out {cannot_check_count} CANNOT_CHECK records (orion_live_provider)")
+    print(f"Filtered out {cannot_check_count} CANNOT_CHECK records")
     print(f"Using {len(filtered)} records for plotting")
 
     # Generate figures

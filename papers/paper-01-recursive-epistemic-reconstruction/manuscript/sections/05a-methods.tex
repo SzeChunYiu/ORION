@@ -1,7 +1,12 @@
-\input{generated/suite_facts}
-
 \section{Methods}
 \label{sec:methods}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{P1-1_protocol_diagram.pdf}
+  \caption{Protocol diagram: host custody (fingerprint-bound cases and gold labels) $\rightarrow$ frozen case $\rightarrow$ system under test (PublicView only) $\rightarrow$ scoring pipeline. Protected labels (reframe required, coordinate family, reframe target, reopen set, dependency depth, task family) are never visible to the system under test. The adjudication panel is a blinded model panel (Amendment A1).}
+  \label{fig:P1-1}
+\end{figure}
 
 This section describes the executed design. Every quantity below is fixed by
 artifacts committed before any outcome was inspected; the protocol records
@@ -71,17 +76,22 @@ text statistics, some statistic always separates.
 
 \subsection{Compared systems and matched budget}
 
-Eleven systems are compared. Five are protocol-matched reimplementations of
+Twelve systems are compared. Five are protocol-matched reimplementations of
 published designs, constructed where original code was unavailable: a static
 tool workflow, an iterative tree-search workflow, an AREX-like recursive
 audit-and-follow-up controller, a SCION-like dependency-aware execution plan,
 and an Iris-like revisable information-state controller. Full ORION is compared
 against five ablations of itself: without explicit $W$, without explicit $M$,
 generic retry in place of typed responsibility-targeted reframing, full reset in
-place of dependency-directed reopening, and no mechanic self-audit.
+place of dependency-directed reopening, and no mechanic self-audit. An
+additional baseline answers from the same live provider (glm-5.2) in a single
+shot with the ORION control architecture removed, providing a fresh-provider
+reference from the same model family.
 
 All systems share one perception layer, so no system can win by perceiving
-better rather than deciding better, and all are resource-matched. Root success
+better rather than deciding better, and all are resource-matched, with the
+single exception of the live-provider baseline, which receives the same prompt
+and resource listing once without tool access. Root success
 is never self-asserted: each system re-runs the shared detector against its own
 post-repair state, and a formulation fault clears only if the policy actually
 moved the coordinate responsible for it.
@@ -124,4 +134,9 @@ full-reset ablation at $0.719$. A reopen result between those levels reflects
 graph shape rather than dependency-directed reasoning, so the ablation alone is
 not a sufficient comparison. For attribution, blind responders reading only case
 identifiers, surface counts, or structural shape are reported alongside the
-majority baseline.
+majority baseline. The frozen archive additionally records five stochastic
+repeats per case per system; intervals reported in Table P1-2 are taken on the
+reduced case unit with Wilson score intervals at the protocol confidence, and
+the archive carries no \textsc{cannot\_check} cell after the live-provider
+recovery (86 API-failed cells re-executed against the frozen subject; manifest
+\texttt{rerun\_cells\_manifest.json}).

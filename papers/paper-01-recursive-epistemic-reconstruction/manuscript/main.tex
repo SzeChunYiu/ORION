@@ -2,6 +2,16 @@
 \usepackage{amsmath,amssymb}
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
+% figure/table infrastructure
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{ragged2e}
+\graphicspath{{figures/}{../results/figures/}}
+\captionsetup{font=small,labelfont=bf}
 
 \title{ORION Paper I: Recursive Epistemic Reconstruction under Changing Problem Formulations}
 \author{Working framework draft}
@@ -9,6 +19,8 @@
 
 \begin{document}
 \maketitle
+
+\input{generated/suite_facts}
 
 \begin{abstract}
 Recent research-agent architectures increasingly expose structured plans, persistent information state, recursive auditing, and targeted follow-up research. ORION Paper I therefore studies a narrower unresolved question: does explicitly separating object knowledge $K_t$, the current relevance/search-universe model $W_t$, and governed method state $M_t$ improve research when new evidence or failure shows that the formulation, representation, decomposition, measurement or search universe itself is wrong? Typed residuals are diagnosed before high-impact revision; supported formulation/search-universe changes trigger dependency-directed reopening of stale closure and renewed research under the changed state. The same discipline recursively audits the workflow through inspectable mechanic cells whose missing coordinates generate explicit obligations. A frozen deterministic falsifier suite exercises hidden-domain, hidden-representation, missing-evidence and execution-only worlds and exposed an over-broad reframe gate that was repaired. This establishes an implemented and locally falsified mechanism, not external novelty or superiority. Matched prospective comparisons on fresh hidden-shift tasks against current recursive-research and information-state baselines remain \texttt{CANNOT\_CHECK}.

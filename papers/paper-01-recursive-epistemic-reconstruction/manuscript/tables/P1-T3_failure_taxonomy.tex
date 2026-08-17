@@ -1,0 +1,21 @@
+% Table P1-T3: Failure taxonomy (roll-up by failure mode, all systems)
+% Generated from results/P1-T3_failure_taxonomy.md
+\begin{table}[t]
+  \centering
+  \caption{Failure taxonomy: roll-up by failure mode across all 12 systems and 2880 scored trials}
+  \label{tab:P1-T3}
+  \small
+  \begin{tabular}{lrrrl}
+    \toprule
+    Failure mode & Trials & Systems & Share & Representative blinded cases \\
+    \midrule
+    ABSTENTION & 2345 & 11 & 0.8142 & \texttt{P1-C-14aefdd887}, \texttt{P1-C-239f672ebc} \\
+    WRONG\_RESPONSIBILITY & 265 & 4 & 0.0920 & \texttt{P1-C-239f672ebc}, \texttt{P1-C-43c471c226} \\
+    MISSED\_REFRAME & 215 & 12 & 0.0747 & \texttt{P1-C-14aefdd887}, \texttt{P1-C-2a87cda138} \\
+    UNNECESSARY\_REFRAME & 45 & 3 & 0.0156 & \texttt{P1-C-8b5889326e}, \texttt{P1-C-9fbf65695c} \\
+    INCOMPLETE\_REOPEN & 10 & 1 & 0.0035 & \texttt{P1-C-557ed886fe}, \texttt{P1-C-ffb30e12b4} \\
+    \bottomrule
+  \end{tabular}
+  \par\smallskip
+  \textit{Note:} One primary failure mode per trial by precedence (authority~$>$~invariant~$>$~trace integrity~$>$~abstention~$>$~control selectivity~$>$~diagnosis~$>$~targeting~$>$~reopening~$>$~terminal outcome). Case IDs are blinded pseudonyms derived from the host-owned suite fingerprint; the raw suite is never published. Abstention dominates across all systems (81.4\%). Wrong-responsibility attributions (9.2\%) and missed reframes (7.5\%) are the next most common; unnecessary reframes occur only under generic retry, tree search, and no-self-audit variants.
+\end{table}
