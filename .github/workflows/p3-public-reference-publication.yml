@@ -1,0 +1,57 @@
+name: P3 public-reference publication artifacts
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/p3-public-reference-publication.yml'
+      - 'src/orion/study/p3_public_reference_publication.py'
+      - 'tests/unit/study/test_p3_public_reference_publication.py'
+      - 'papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json'
+      - 'Makefile'
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install ORION
+        run: python -m pip install --disable-pip-version-check -e '.[dev]'
+      - name: Test generator
+        run: PYTHONPATH=src python -m pytest -q tests/unit/study/test_p3_public_reference_publication.py
+      - name: Generate publication artifacts
+        run: make paper03-public-reference-publication
+      - name: Verify expected outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/publication
+          test -s "$root/PUBLIC_REFERENCE_CONFIRMATORY_TABLES_V1.md"
+          test -s "$root/PR3-F1_false_merge_by_system.svg"
+          test -s "$root/PR3-F2_flat_false_merge_by_case_family.svg"
+          test -s "$root/PR3-F3_ablation_false_merge_deltas.svg"
+          sha256sum "$root"/* > "$root/SHA256SUMS"
+      - name: Archive deterministic generated outputs
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/publication
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add "$root"
+          if ! git diff --cached --quiet; then
+            git commit -m 'docs(p3): archive confirmatory publication tables and figures'
+            git fetch origin "${{ github.head_ref }}"
+            git rebase "origin/${{ github.head_ref }}"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
