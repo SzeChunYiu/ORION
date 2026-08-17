@@ -1,0 +1,169 @@
+name: P3 confirmatory public-reference evaluation
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/p3-public-reference-confirmatory-eval.yml'
+      - 'papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json'
+
+permissions:
+  contents: write
+
+jobs:
+  confirmatory-evaluation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install ORION test environment
+        run: python -m pip install --disable-pip-version-check -e '.[dev]'
+
+      - name: Verify execution-frozen evaluator and custody identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object src/orion/knowledge/semantics.py)" = eefefe9d188130eac1d55d2cb85db66fb296499a
+          test "$(git hash-object src/orion/study/statistics.py)" = b0aeddb3752d6f94657dbf6c3fd2c57ceb8fdea2
+          test "$(git hash-object src/orion/study/p3_public_reference.py)" = c4ab75d50f5b64c8e65e41342ec577e440be6681
+          test "$(git hash-object src/orion/study/p3_public_reference_build.py)" = f575b12b294f68ebe3b377390a932c2f70141b95
+          test "$(git hash-object src/orion/study/p3_public_reference_analysis.py)" = fa59a331104321305e5f7c4f3d897ccbaca5c76d
+          test "$(git hash-object src/orion/study/p3_public_reference_freeze.py)" = b0452d5a17d1e0b70138d9e48bdeb32bc19acb18
+          test "$(git hash-object src/orion/study/p3_public_reference_holdout.py)" = 28e64b1f503357882ceefc3a7bc99a277d04eec4
+          test "$(git hash-object src/orion/study/p3_public_reference_confirmatory.py)" = f5ac9247a326db6e52601fa66adb0d2584e06051
+          test "$(git hash-object papers/paper-03-global-knowledge-portrait/gold/PUBLIC_REFERENCE_SOURCE_REGISTRY_V1.json)" = 56e6494356776c331d5d271bd935d48ff889f46e
+          test "$(git hash-object papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl)" = 669dbaf5222148e0893d98f4cd15a13dd8eac7d7
+          test "$(sha256sum papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl | cut -d' ' -f1)" = 35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json').read_text())
+          assert p['protocol_status'] == 'EXECUTION_FROZEN'
+          assert p['confirmatory_outcome_accessed_at_freeze'] is False
+          assert p['holdout']['portable_cases_sha256'] == '13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b'
+          assert p['holdout']['selection_offset'] == 32
+          assert p['holdout']['overlap_with_primary'] == 0
+          print('execution freeze verified')
+          PY
+
+      - name: Run confirmatory-specific tests
+        run: |
+          PYTHONPATH=src python -m pytest -q \
+            tests/unit/study/test_p3_public_reference_holdout.py \
+            tests/unit/study/test_p3_public_reference_freeze.py \
+            tests/unit/study/test_p3_public_reference_confirmatory.py
+
+      - name: Fetch exact pinned public authorities
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p upstream
+          git clone -q https://github.com/cohentsofia/MUSE.git upstream/MUSE
+          git -C upstream/MUSE checkout -q f7a40317db46145d0c90b221311d8324db5da1b9
+          git clone -q https://github.com/scischema/scischema.git upstream/SciSchema
+          git -C upstream/SciSchema checkout -q 55b6197cdb0b66c3123df16d0b0c70b02c4bde8b
+          git clone -q https://github.com/allenai/scifact.git upstream/SciFact
+          git -C upstream/SciFact checkout -q 68b98a56d93e0f9da0d2aab4e6c3294699a0f72e
+          (cd upstream/SciFact && bash script/download-data.sh)
+          test -s upstream/SciFact/data/claims_train.jsonl
+
+      - name: Regenerate and verify frozen disjoint holdout before evaluation
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/holdout artifacts/frozen artifacts/evaluation
+          PYTHONPATH=src python -m orion.study.p3_public_reference_holdout \
+            --muse-root "$PWD/upstream/MUSE/dataset/human_Expert_annotations" \
+            --scifact-claims "$PWD/upstream/SciFact/data/claims_train.jsonl" \
+            --scischema-root "$PWD/upstream/SciSchema/schemas" \
+            --exclude-cases "$PWD/papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl" \
+            --offset 32 --target-n 32 --out "$PWD/artifacts/holdout"
+          test "$(sha256sum artifacts/holdout/cases.jsonl | cut -d' ' -f1)" = 79316a561c96ac968bf2598501850bd90deaf1b78501346b0c703663ef794f2b
+          PYTHONPATH=src python -m orion.study.p3_public_reference_freeze \
+            --cases "$PWD/artifacts/holdout/cases.jsonl" \
+            --muse-root "$PWD/upstream/MUSE/dataset/human_Expert_annotations" \
+            --scifact-claims "$PWD/upstream/SciFact/data/claims_train.jsonl" \
+            --scischema-root "$PWD/upstream/SciSchema/schemas" \
+            --out "$PWD/artifacts/frozen"
+          test "$(sha256sum artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl | cut -d' ' -f1)" = 13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b
+
+      - name: Execute confirmatory ORION and controls for first time
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=src python -m orion.study.p3_public_reference \
+            --cases "$PWD/artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl" \
+            --output "$PWD/artifacts/evaluation/SUMMARY.json"
+          PYTHONPATH=src python -m orion.study.p3_public_reference_confirmatory \
+            --cases "$PWD/artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl" \
+            --output "$PWD/artifacts/evaluation/CONFIRMATORY_ANALYSIS.json"
+
+      - name: Record immutable execution provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          manifest=papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json
+          {
+            echo "PROTOCOL=P3.public-reference-mapping.v1.1-confirmatory"
+            echo "EXECUTION_STATUS=EXECUTED_FROM_EXECUTION_FROZEN_MANIFEST"
+            echo "MANIFEST_SHA256=$(sha256sum "$manifest" | cut -d' ' -f1)"
+            echo "HOLDOUT_PORTABLE_SHA256=13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b"
+            echo "EVALUATOR_FROZEN_SOURCE_REVISION=8084a365bc0aad61a86708b1c5a4d1183b7f6f0d"
+            echo "MUSE_SHA=f7a40317db46145d0c90b221311d8324db5da1b9"
+            echo "SCISCHEMA_SHA=55b6197cdb0b66c3123df16d0b0c70b02c4bde8b"
+            echo "SCIFACT_SHA=68b98a56d93e0f9da0d2aab4e6c3294699a0f72e"
+          } > artifacts/evaluation/PROVENANCE.env
+          find artifacts/frozen artifacts/evaluation -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > artifacts/evaluation/SHA256SUMS
+
+      - name: Archive confirmatory frozen evidence on PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          gold_dir=papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory
+          evidence_dir=papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory
+          mkdir -p "$gold_dir" "$evidence_dir"
+          cp artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl "$gold_dir/"
+          cp artifacts/frozen/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json "$gold_dir/"
+          cp artifacts/holdout/HOLDOUT_BUILD_REPORT.json "$evidence_dir/"
+          cp artifacts/evaluation/SUMMARY.json "$evidence_dir/"
+          cp artifacts/evaluation/CONFIRMATORY_ANALYSIS.json "$evidence_dir/"
+          cp artifacts/evaluation/PROVENANCE.env "$evidence_dir/"
+          cp artifacts/evaluation/SHA256SUMS "$evidence_dir/"
+          cp papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json "$evidence_dir/EXECUTION_MANIFEST.json"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add "$gold_dir" "$evidence_dir"
+          if ! git diff --cached --quiet; then
+            git commit -m 'data(p3): archive execution-frozen confirmatory evidence'
+            git push origin HEAD:${{ github.head_ref }}
+          fi
+
+      - name: Upload confirmatory execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p3-confirmatory-evaluation-${{ github.sha }}
+          path: |
+            artifacts/holdout/HOLDOUT_BUILD_REPORT.json
+            artifacts/frozen/
+            artifacts/evaluation/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Require execution integrity, not a positive scientific result
+        if: always()
+        shell: bash
+        run: |
+          test -s artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl
+          test -s artifacts/evaluation/SUMMARY.json
+          test -s artifacts/evaluation/CONFIRMATORY_ANALYSIS.json
