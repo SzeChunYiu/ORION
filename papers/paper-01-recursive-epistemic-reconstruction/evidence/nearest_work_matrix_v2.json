@@ -348,8 +348,8 @@
     },
     {
       "item": "bibliography.bib SCION title defect",
-      "status": "FLAGGED_NOT_MODIFIED",
-      "detail": "manuscript/bibliography.bib records 'Rethinking Scientific Discovery in an Agentic Era'; the arXiv record reads 'Rethinking Scientific Discovery in the Agentic Era'. Flagged for the orchestrator; bibliography.bib was not modified by this pass."
+      "status": "REPAIRED_2026-08-17",
+      "detail": "manuscript/bibliography.bib now records 'Rethinking Scientific Discovery in the Agentic Era' matching the arXiv record (verified via export.arxiv.org id_list=2607.03863). Full 30-author list applied."
     },
     {
       "item": "AI Co-Scientist identifier",
@@ -368,13 +368,13 @@
     },
     {
       "item": "MAST mode names",
-      "status": "NOT_RETRIEVED",
-      "detail": "MAST's three categories and mode count are verified from the abstract; the 14 individual mode names are not. Because MAST is the closest taxonomic neighbour to P1.D2, this is the one outstanding check that could still move the surviving delta."
+      "status": "RETRIEVED_AND_CHECKED",
+      "detail": "All 14 mode names retrieved from full text (arXiv:2503.13657, Appendix A): system design FM-1.1 Disobey task specification, FM-1.2 Disobey role specification, FM-1.3 Step repetition, FM-1.4 Loss of conversation history, FM-1.5 Unaware of termination conditions; inter-agent misalignment FM-2.1 Conversation reset, FM-2.2 Fail to ask for clarification, FM-2.3 Task derailment, FM-2.4 Information withholding, FM-2.5 Ignored other agent's input, FM-2.6 Reasoning-action mismatch; task verification FM-3.1 Premature termination, FM-3.2 No or incomplete verification, FM-3.3 Incorrect verification. None targets a formulation, search-universe, representation, decomposition, or measurement-model coordinate. Closest is FM-1.1 (Disobey task specification) which addresses the given task specification, not the formulation coordinate that generated it. P1.D2 narrowing does not tighten further."
     },
     {
       "item": "Surfaced-but-unfetched error-diagnosis cluster",
-      "status": "SCOPE_OF_ABSENCE_CLAIM",
-      "detail": "The following were surfaced in search snippets and NOT retrieved, so nothing in this matrix rests on them and no claim is made about their content: TRAIL, AEGIS, AgenTracer, AgentErrorBench, ErrorProbe, AgentRx, REFLECT (2606.09071), Towards Self-Improving Error Diagnosis in Multi-Agent Systems (2604.17658), and span-level error localization (2606.02060). All sit in the failure-attribution/error-diagnosis family that constrains P1.D2; the P1.D2 verdict is provisional against this family until at least the span-level and self-improving-diagnosis entries are read."
+      "status": "RETRIEVED_AND_CHECKED",
+      "detail": "All cluster members retrieved and read 2026-08-17: TRAIL (2505.08638, error taxonomy + 148 traces, evaluation focus), AEGIS (2509.14295 error generation/attribution dataset, 2508.19504 agent-environment failure taxonomy), AgenTracer (2509.03312 counterfactual replay + fault injection, actor attribution), AgentErrorBench (2509.25370 taxonomy + AgentDebug corrective feedback), ErrorProbe (2604.17658 verified episodic memory, actor+step attribution), AgentRx (2602.02475 constraint synthesis + auditable validation log, step localization), REFLECT (2606.09071 intervention-supported error attribution for silent failures), span-level/DRIFT (2606.02060 claim-centric span localization). None attaches a permission to modify the formulation or search universe based on the diagnosed error type; all produce descriptive labels. P1.D2 verdict is safe against this family. Not a claim of exhaustive coverage of 2026 error-diagnosis literature."
     },
     {
       "item": "Scope of absence claims in this document",
@@ -383,9 +383,17 @@
     }
   ],
   "baselines_by_hypothesis": {
-    "H1_hidden_formulation_shift": ["Arbor (2606.11926) - authors state it degrades precisely when a new high-level formulation is needed, which is the condition H1 tests"],
-    "H2_repair_selectivity": ["Iris (2608.02143) - epistemic actions probe decision-critical unknowns without modifying the retained solution", "ARTS (2606.21891) - separates implementation faults from bad hypotheses"],
-    "H3_scoped_invalidation": ["EviGraph (2608.04738) - already performs dependency-directed reopening, so H3 must compare reopen TRIGGER and SCOPE, not reopening versus no reopening", "EA-Graph (2608.04278) - staleness and unprovable comparator"],
+    "H1_hidden_formulation_shift": [
+      "Arbor (2606.11926) - authors state it degrades precisely when a new high-level formulation is needed, which is the condition H1 tests"
+    ],
+    "H2_repair_selectivity": [
+      "Iris (2608.02143) - epistemic actions probe decision-critical unknowns without modifying the retained solution",
+      "ARTS (2606.21891) - separates implementation faults from bad hypotheses"
+    ],
+    "H3_scoped_invalidation": [
+      "EviGraph (2608.04738) - already performs dependency-directed reopening, so H3 must compare reopen TRIGGER and SCOPE, not reopening versus no reopening",
+      "EA-Graph (2608.04278) - staleness and unprovable comparator"
+    ],
     "note": "H2 is the hypothesis attached to P1.D2, the only surviving delta. Iris and ARTS compete directly on H2's metric; testing H2 against a static ReAct baseline alone would be a straw man against ORION's own surviving claim."
   },
   "table_label_conflict": "JOURNAL_READINESS.md section 6 calls this artifact 'Table P1-1'; the Step-1 task calls it 'Table P1-T1'. One label must be chosen before submission; no third label was introduced."

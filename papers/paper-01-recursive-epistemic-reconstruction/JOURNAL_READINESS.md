@@ -15,7 +15,7 @@
 
 **Status:** Section 1 COMPLETE. All 7 items closed via `evidence/NEAREST_WORK_MATRIX_V2.md` (34 mechanism rows, per-delta verdicts). The residual claim is a licensing relation: typed responsibility determines authority to rewrite formulation/search-universe coordinates, and the rewritten coordinate scopes reopening. P1.D1 = composition-only, P1.D2 = survives narrowly, P1.D3 = STRUCK, P1.D4 = composition-only. See `manuscript/sections/06-related-work-boundary.tex` for the integrated manuscript text.
 
-**Open checks before submission:** (1) MAST's 14 individual mode names not retrieved — if any names a formulation coordinate, P1.D2 narrows further. (2) Surfaced-but-unfetched failure-attribution cluster (TRAIL, AEGIS, AgenTracer, ErrorProbe, REFLECT) not read — P1.D2 provisional against this family. Both documented in §06 and the matrix.
+**Open checks before submission:** (1) MAST's 14 individual mode names retrieved — none targets a formulation coordinate; P1.D2 narrowing does not tighten further. (2) Surfaced-but-unfetched failure-attribution cluster (TRAIL, AEGIS, AgenTracer, ErrorProbe, REFLECT, AgentErrorBench, AgentRx, span-level/DRIFT) read in full — none attaches a permission to modify formulation/search universe; P1.D2 verdict safe against this family. Both documented in §06 and the matrix. (3) SCION checkpoint-failure semantics unresolved — changes no verdict but must be closed before submission. (4) Fresh literature-closure pass required before submission.
 
 ## 2. Primary hypotheses to freeze prospectively
 
@@ -160,5 +160,9 @@ Freeze plotting code/spec before final outcome analysis.
 1. ~~**Figure P1-1 (protocol diagram):**~~ DONE — `manuscript/figures/P1-1_protocol_diagram.pdf`, included in §05a-methods.
 2. ~~**Table P1-1 (nearest-work matrix):**~~ DONE — `manuscript/tables/P1-T1_nearest_work.tex`, included via `\input` in §06.
 3. ~~**Figure/table LaTeX infrastructure:**~~ DONE — graphicx/booktabs/tabularx/caption/longtable/array/ragged2e in `main.tex`; figures + tables all `\label`/`\ref`-linked; manuscript compiles clean.
-4. **MAST mode-name check:** Retrieve MAST's 14 individual mode names from full text — if any names a formulation coordinate, P1.D2 narrows further.
-5. **Surfaced-but-unfetched cluster:** Read TRAIL, AEGIS, AgenTracer, ErrorProbe, REFLECT to confirm P1.D2 verdict is safe against the failure-attribution family.
+4. ~~**MAST mode-name check:**~~ DONE — all 14 mode names retrieved from full text (Appendix A); none targets a formulation/search-universe/representation/decomposition/measurement coordinate; P1.D2 not narrowed further. Recorded in §06 and the matrix. No remaining open check can move the P1.D2 verdict.
+5. ~~**Surfaced-but-unfetched cluster:**~~ DONE — TRAIL, AEGIS, AgenTracer, AgentErrorBench, ErrorProbe, AgentRx, REFLECT and span-level/DRIFT all retrieved and read; none attaches a permission to modify the formulation or search universe on the basis of the diagnosed error type; P1.D2 safe against the failure-attribution family. Recorded in §06 and the matrix.
+
+**Remaining pre-submission checks (no longer blockers):**
+6. SCION checkpoint-failure semantics — a failed REP verification checkpoint's re-open semantics (reopen completed stages vs fall forward) unresolved; changes no verdict (EviGraph independently establishes dependency-directed reopening), but must be closed because SCION is a required protocol-matched baseline.
+7. Fresh literature-closure pass before submission — the nearest-work atlas and bibliography require one more closure pass, including the SCION bib-title correction (now fixed: "in the Agentic Era").
