@@ -1,0 +1,116 @@
+{
+  "ablations_planned": [
+    "remove_each_coordinate",
+    "remove_obstruction_force_best_map",
+    "remove_provenance_preservation",
+    "pairwise_only_without_cycle_roundtrip",
+    "no_source_recoverability"
+  ],
+  "baselines": {
+    "rule": "post-outcome baselines remain secondary and cannot rewrite confirmatory PASS",
+    "secondary_on_frozen_v1": [
+      "exact_coordinate_conservative",
+      "flat_predicate_canonicalization"
+    ],
+    "v2_unbound_until_faithful": [
+      "scion_like_conservative_schema_fusion",
+      "executable_schema_contracts_like",
+      "provenance_world_attributed_statements",
+      "strongest_ontology_schema_alignment_from_saturation"
+    ]
+  },
+  "execution_bindings": {
+    "evaluation_epoch": "UNBOUND",
+    "evaluator_hash": "UNBOUND",
+    "subject_revision": "UNBOUND",
+    "v2_gold_hash": "UNBOUND"
+  },
+  "gold_authority": {
+    "allowed": [
+      "UPSTREAM_EXPERT",
+      "UPSTREAM_HUMAN",
+      "DETERMINISTIC_STANDARD",
+      "DERIVED_FROM_ALLOWED"
+    ],
+    "forbidden": [
+      "LLM_PROPOSAL",
+      "HEURISTIC_PROXY",
+      "SIMULATED",
+      "SELF_LABEL"
+    ],
+    "rule": "LLM/proxy labels cannot become gold. Missing authority is CANNOT_CHECK."
+  },
+  "gold_status": "CANNOT_CHECK",
+  "integration_terminals": [
+    "GLUE",
+    "OBSTRUCTION",
+    "UNRESOLVED"
+  ],
+  "literature_saturation": {
+    "rule": "Stop after two consecutive primary-source + related-work rounds yield no mechanism-changing coordinate, mapping, obstruction, provenance, or baseline change.",
+    "seed_dispositions": [
+      {
+        "disposition": "ADAPT",
+        "role": "upstream expert coreference source; not a mapping calculus",
+        "work": "MUSE arXiv:2608.10974"
+      },
+      {
+        "disposition": "DEFER",
+        "role": "stronger conservative schema-fusion baseline; not implemented; not novelty",
+        "work": "SCOPE/SCION arXiv:2607.21610"
+      },
+      {
+        "disposition": "ADAPT",
+        "role": "deterministic schema-identity source; not ontology-fusion novelty",
+        "work": "SciSchema.org arXiv:2607.27955"
+      },
+      {
+        "disposition": "DEFER",
+        "role": "provenance-aware integration baseline stub; not novelty",
+        "work": "Executable Schema Contracts arXiv:2606.05415"
+      },
+      {
+        "disposition": "DEFER",
+        "role": "attributed-statement baseline stub; not novelty",
+        "work": "Provenance-Enhanced Statements arXiv:2606.15246"
+      },
+      {
+        "disposition": "REJECT",
+        "role": "explicitly out of novelty scope",
+        "work": "generic ontology alignment / schema matching"
+      }
+    ],
+    "status": "SEED_ONLY_NOT_CLOSED"
+  },
+  "novelty_nonclaims": [
+    "generic schema induction",
+    "ontology fusion",
+    "provenance knowledge graphs as such",
+    "structured scientific knowledge construction as such",
+    "standalone scientific obstruction without provenance-bound certificates"
+  ],
+  "novelty_target": "provenance-bound scientific obstruction / non-merge certificates that explain why two source-local representations must not be globally identified",
+  "outcome_accessed": false,
+  "paper_id": "P3",
+  "primary_hypothesis": {
+    "id": "P3.CO.V2.H1",
+    "status": "CANNOT_CHECK",
+    "text": "On a coordinate-targeted atlas with pinned expert or deterministic gold, obstruction certificates reduce false merge/false contradiction relative to flat canonicalization and exact conservative abstention while preserving valid integrations. Hypothesis is unbound until V2 gold exists."
+  },
+  "protocol_id": "P3.coordinate-obstruction.v2",
+  "protocol_status": "DESIGN_FROZEN",
+  "required_families": [
+    "REFERENT_IDENTITY",
+    "CONSTRUCT_IDENTITY",
+    "MEASUREMENT_OPERATIONALIZATION",
+    "TEMPORAL_STATE_CONTEXT",
+    "MODALITY_POLARITY_ATTRIBUTION",
+    "REPRESENTATION_TRANSFORM",
+    "PLURALISM_OBSTRUCTION",
+    "UNRESOLVED"
+  ],
+  "schema_version": "orion.p3.coordinate-obstruction-protocol.v2",
+  "terminal_rule": "Green tests or a pretty atlas alone never close issue #280. BROADER_THEORY_SUPPORTED requires targeted coordinate necessity plus certificate value under strong baselines. Otherwise NARROW_THEORY_CONFIRMED, POSITIVE_INVALIDATED, or CANNOT_CHECK.",
+  "v1_confirmatory_immutable": true,
+  "v1_protocol_mutated": false
+}

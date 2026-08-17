@@ -1,0 +1,85 @@
+{
+  "atomic_claim_text": "LLM-free reduction attributes correct top-ranked responsibility on 62 of 66 cases; 0 of 22 negative controls topped by formulation responsibility.",
+  "bounded_claim_text": "Descriptive only. Four general relations cover 26 cases; remaining attributions are untested for generality. Not H1 support. No machine-readable case table exists for independent rescoring.",
+  "claim_id": "P1.mechanical_arm_62_66",
+  "denominator": {
+    "cannot_check_or_invalid_handling": "no JSON case table; independent rescoring CANNOT_CHECK",
+    "eligible_n": 66,
+    "post_outcome_exclusions": 0,
+    "repeats_nested_not_inflating_n": true,
+    "unit": "mechanical-arm case"
+  },
+  "discrepancies": [
+    {
+      "id": "P1.mechanical-arm-no-case-table",
+      "severity": "medium",
+      "text": "62/66 is documented only in markdown; independent case-level replay is CANNOT_CHECK."
+    }
+  ],
+  "high_severity_integrity": [],
+  "invalidation_reason": null,
+  "layers": {
+    "baseline_pressure": {
+      "status": "CANNOT_CHECK",
+      "summary": "No second mechanical rater in this verifier run."
+    },
+    "denominator_statistics": {
+      "status": "CANNOT_CHECK",
+      "summary": "Cannot audit 62/66 without the case table."
+    },
+    "holdout_cross_host": {
+      "status": "CANNOT_CHECK",
+      "summary": "No fresh cases for the mechanical arm."
+    },
+    "independent_scorer": {
+      "status": "CANNOT_CHECK",
+      "summary": "No per-case mechanical-arm decisions in JSON."
+    },
+    "leakage_shortcut": {
+      "status": "PASS",
+      "summary": "The limitations note already records one-case rules (32/66) and template risk; retained rather than tuned away."
+    },
+    "raw_artifact_replay": {
+      "status": "CANNOT_CHECK",
+      "summary": "Only a limitations markdown exists; 62/66 cannot be regenerated from a case table."
+    }
+  },
+  "paper_id": "P1",
+  "protocol": {
+    "hash_sha256": "91d5dca84d927ccb5cc5a54fece12502f23c8cba22f8eb8e5a48377539eca0b7",
+    "id": "P1.hidden-formulation.v1",
+    "path": "papers/paper-01-recursive-epistemic-reconstruction/protocol/PROTOCOL_V1.json"
+  },
+  "raw_artifacts": [
+    {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/evidence/MECHANICAL_ARM_LIMITATIONS_V1.md",
+      "present": true,
+      "role": "published_table",
+      "sha256": "6055cf371618528c62c1918259b7f31c73ea90f00f751b7ca9d5b2f303e671bd"
+    },
+    {
+      "path": "P1 mechanical-arm per-case attribution JSON (only markdown limitations note is tracked)",
+      "present": false,
+      "role": "missing_required",
+      "sha256": "CANNOT_CHECK"
+    }
+  ],
+  "record_id": "P1.mechanical-arm-62-66",
+  "record_sha256": "b8e79207404a7de66fe34171a583296b598d524f1a2003b743bc65cc414b8483",
+  "schema_version": "orion.scientific-result-verification.v1",
+  "scorers": {
+    "adjudication": [],
+    "agreement": "CANNOT_CHECK",
+    "independent_from_written_spec": true,
+    "independent_hash_sha256": "c867cc5be6cc55f80750053c54c2e19bd3a60d2a0ddd3756a551b6d388648c56",
+    "original_hash_sha256": "6055cf371618528c62c1918259b7f31c73ea90f00f751b7ca9d5b2f303e671bd"
+  },
+  "self_authorizing": false,
+  "subject": {
+    "commit": "09929f208f581cda6985575ca419a7181a1f03ba",
+    "evaluated_system_mutated": false,
+    "note": "verifier_tree=09929f208f581cda6985575ca419a7181a1f03ba",
+    "tree": "a3566dd19afaedd35012321e529ff862d06475f5"
+  },
+  "verification_state": "CANNOT_CHECK"
+}

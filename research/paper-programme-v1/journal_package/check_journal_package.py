@@ -40,6 +40,7 @@ VERIFICATION_SCHEMA_MARKERS = (
     "ScientificResultVerification.v1",
     "orion.scientific-result-verification.v1",
 )
+VERIFICATION_RECORDS_DIR = Path("research/verification/records")
 HEX = set("0123456789abcdef")
 
 
@@ -107,21 +108,39 @@ def hashed_paths(manifest: dict[str, Any]) -> list[str]:
     return paths
 
 
-def consume_verification_records(paper_root: Path) -> list[str]:
+def _verification_schema(payload: dict[str, Any]) -> str:
+    return str(payload.get("schema_version") or payload.get("schema") or "")
+
+
+def consume_verification_records(
+    paper_id: str, paper_root: Path, repo_root: Path | None
+) -> list[str]:
+    """Consume issue #283 records; do not fork their schema."""
     found: list[str] = []
     evidence = paper_root / "evidence"
-    if not evidence.is_dir():
-        return found
-    for path in sorted(evidence.rglob("*.json")):
-        try:
-            payload = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            continue
-        if not isinstance(payload, dict):
-            continue
-        schema = str(payload.get("schema_version") or payload.get("schema") or "")
-        if schema in VERIFICATION_SCHEMA_MARKERS:
-            found.append(str(path.relative_to(paper_root)))
+    if evidence.is_dir():
+        for path in sorted(evidence.rglob("*.json")):
+            try:
+                payload = json.loads(path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                continue
+            if isinstance(payload, dict) and _verification_schema(payload) in VERIFICATION_SCHEMA_MARKERS:
+                found.append(str(path.relative_to(paper_root)))
+    if repo_root is not None:
+        records_dir = repo_root / VERIFICATION_RECORDS_DIR
+        if records_dir.is_dir():
+            for path in sorted(records_dir.glob("*.json")):
+                try:
+                    payload = json.loads(path.read_text(encoding="utf-8"))
+                except (OSError, json.JSONDecodeError):
+                    continue
+                if not isinstance(payload, dict):
+                    continue
+                if _verification_schema(payload) not in VERIFICATION_SCHEMA_MARKERS:
+                    continue
+                if payload.get("paper_id") != paper_id:
+                    continue
+                found.append(str(path.relative_to(repo_root)))
     return found
 
 
@@ -247,7 +266,7 @@ def check_package(paper_id: str, paper_root: Path, *, repo_root: Path | None = N
             report.errors.append("scientific_result_verification.owner_issue must be 283")
         if verification.get("schema_name") != "ScientificResultVerification.v1":
             report.errors.append("must consume ScientificResultVerification.v1, not a forked schema")
-        found = consume_verification_records(paper_root)
+        found = consume_verification_records(paper_id, paper_root, repo_root)
         recorded = verification.get("records_present")
         if not isinstance(recorded, list):
             report.errors.append("scientific_result_verification.records_present must be an array")

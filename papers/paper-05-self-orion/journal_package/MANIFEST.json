@@ -3,15 +3,34 @@
   "paper_id": "P5",
   "package_status": "SCAFFOLDING",
   "declared_paper_terminal": "CANNOT_CHECK",
-  "audit_subject_revision": "266f6b94a285293364be7db86f4b98b526e7f4b8",
+  "audit_subject_revision": "b7cfaecfb55d9ad6c12fb59374935769ed8d8787",
   "audit_date": "2026-08-17",
   "issue": 160,
   "required_files": [
-    {"path": "manuscript/main.tex", "role": "manuscript-source"},
-    {"path": "evidence/FALSIFIER_V1.md", "role": "local-falsifier"},
-    {"path": "evidence/glm-5.2-attribution/report.json", "role": "attribution-report"},
-    {"path": "REPRODUCE.md", "role": "reproduction-path"},
-    {"path": "JOURNAL_READINESS.md", "role": "gate-checklist"}
+    {
+      "path": "manuscript/main.tex",
+      "role": "manuscript-source"
+    },
+    {
+      "path": "evidence/FALSIFIER_V1.md",
+      "role": "local-falsifier"
+    },
+    {
+      "path": "evidence/glm-5.2-attribution/report.json",
+      "role": "attribution-report"
+    },
+    {
+      "path": "REPRODUCE.md",
+      "role": "reproduction-path"
+    },
+    {
+      "path": "JOURNAL_READINESS.md",
+      "role": "gate-checklist"
+    },
+    {
+      "path": "evidence/CLAIM_LEDGER_V1.md",
+      "role": "claim-ledger"
+    }
   ],
   "missing_artifacts": [
     {
@@ -19,12 +38,6 @@
       "role": "compiled-pdf",
       "status": "CANNOT_CHECK",
       "reason": "Working draft only. This package does not fabricate a PDF."
-    },
-    {
-      "path": "evidence/CLAIM_LEDGER_V1.md",
-      "role": "paper-claim-ledger",
-      "status": "CANNOT_CHECK",
-      "reason": "P5 has no machine-checked claim ledger analogous to P2; this independent audit is the current claim inventory."
     },
     {
       "path": "journal_package/DOI.txt",
@@ -49,19 +62,25 @@
     {
       "id": "P5.FALSIFIER",
       "text": "Local hostile suite exercises recurrence-not-cause, negative-history, replay/fresh separation, invention readiness and protected-path attacks.",
-      "artifacts": ["evidence/FALSIFIER_V1.md"],
+      "artifacts": [
+        "evidence/FALSIFIER_V1.md"
+      ],
       "status": "SUPPORTED"
     },
     {
       "id": "P5.ATTR",
       "text": "GLM-5.2 hidden-cause attribution: 21/24 = 0.875, macro-F1 0.875, three immutable errors.",
-      "artifacts": ["evidence/glm-5.2-attribution/report.json"],
+      "artifacts": [
+        "evidence/glm-5.2-attribution/report.json"
+      ],
       "status": "BOUNDED"
     },
     {
       "id": "P5.H1",
       "text": "Full Self-ORION produces more fresh-transfer improvement and less harmful transfer than matched self-edit/self-evolution baselines.",
-      "artifacts": ["JOURNAL_READINESS.md"],
+      "artifacts": [
+        "JOURNAL_READINESS.md"
+      ],
       "status": "CANNOT_CHECK"
     },
     {
@@ -74,6 +93,8 @@
   "scientific_result_verification": {
     "owner_issue": 283,
     "schema_name": "ScientificResultVerification.v1",
-    "records_present": []
+    "records_present": [
+      "research/verification/records/P5.glm-5.2-attribution-21-24.json"
+    ]
   }
 }

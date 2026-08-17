@@ -3,18 +3,42 @@
   "paper_id": "P1",
   "package_status": "SCAFFOLDING",
   "declared_paper_terminal": "CANNOT_CHECK",
-  "audit_subject_revision": "266f6b94a285293364be7db86f4b98b526e7f4b8",
+  "audit_subject_revision": "b7cfaecfb55d9ad6c12fb59374935769ed8d8787",
   "audit_date": "2026-08-17",
   "issue": 160,
   "required_files": [
-    {"path": "manuscript/main.tex", "role": "manuscript-source"},
-    {"path": "manuscript/bibliography.bib", "role": "bibliography"},
-    {"path": "evidence/CLAIM_LEDGER_V1.md", "role": "claim-ledger"},
-    {"path": "protocol/PROTOCOL_V1.json", "role": "frozen-protocol"},
-    {"path": "results/P1-T2_baseline_ablation_results.json", "role": "headline-table"},
-    {"path": "results/P1-T3_failure_taxonomy.json", "role": "failure-taxonomy"},
-    {"path": "REPRODUCE.md", "role": "reproduction-path"},
-    {"path": "JOURNAL_READINESS.md", "role": "gate-checklist"}
+    {
+      "path": "manuscript/main.tex",
+      "role": "manuscript-source"
+    },
+    {
+      "path": "manuscript/bibliography.bib",
+      "role": "bibliography"
+    },
+    {
+      "path": "evidence/CLAIM_LEDGER_V1.md",
+      "role": "claim-ledger"
+    },
+    {
+      "path": "protocol/PROTOCOL_V1.json",
+      "role": "frozen-protocol"
+    },
+    {
+      "path": "results/P1-T2_baseline_ablation_results.json",
+      "role": "headline-table"
+    },
+    {
+      "path": "results/P1-T3_failure_taxonomy.json",
+      "role": "failure-taxonomy"
+    },
+    {
+      "path": "REPRODUCE.md",
+      "role": "reproduction-path"
+    },
+    {
+      "path": "JOURNAL_READINESS.md",
+      "role": "gate-checklist"
+    }
   ],
   "missing_artifacts": [
     {
@@ -46,25 +70,34 @@
     {
       "id": "P1.H1",
       "text": "On hidden-formulation-shift tasks, full ORION improves root task success versus the strongest matched baseline by at least +0.05.",
-      "artifacts": ["results/P1-T2_baseline_ablation_results.json"],
+      "artifacts": [
+        "results/P1-T2_baseline_ablation_results.json"
+      ],
       "status": "NOT_SUPPORTED"
     },
     {
       "id": "P1.KWM",
       "text": "ORION explicitly separates object knowledge K, search-universe W, and governed method state M.",
-      "artifacts": ["manuscript/main.tex", "evidence/CLAIM_LEDGER_V1.md"],
+      "artifacts": [
+        "manuscript/main.tex",
+        "evidence/CLAIM_LEDGER_V1.md"
+      ],
       "status": "BOUNDED"
     },
     {
       "id": "P1.FALSIFIER",
       "text": "A frozen local falsifier exposed an over-broad reframe gate that was repaired.",
-      "artifacts": ["evidence/FALSIFIER_V1.md"],
+      "artifacts": [
+        "evidence/FALSIFIER_V1.md"
+      ],
       "status": "SUPPORTED"
     },
     {
       "id": "P1.EXTERNAL",
       "text": "Matched prospective comparisons on fresh hidden-shift tasks support external superiority.",
-      "artifacts": ["protocol/PROTOCOL_V1.json"],
+      "artifacts": [
+        "protocol/PROTOCOL_V1.json"
+      ],
       "status": "CANNOT_CHECK"
     },
     {
@@ -77,6 +110,10 @@
   "scientific_result_verification": {
     "owner_issue": 283,
     "schema_name": "ScientificResultVerification.v1",
-    "records_present": []
+    "records_present": [
+      "research/verification/records/P1.H1.root-success-not-supported.json",
+      "research/verification/records/P1.mechanical-arm-62-66.json",
+      "research/verification/records/P1.solvability-audit-55-66.json"
+    ]
   }
 }

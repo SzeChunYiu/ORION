@@ -61,7 +61,7 @@ def test_does_not_fork_scientific_result_verification_schema() -> None:
         block = manifest["scientific_result_verification"]
         assert block["owner_issue"] == 283
         assert block["schema_name"] == "ScientificResultVerification.v1"
-        assert block["records_present"] == []
+        assert block["records_present"], f"{relative} must consume #283 records now on main"
 
 
 def _copy_p5(tmp_path: Path) -> Path:

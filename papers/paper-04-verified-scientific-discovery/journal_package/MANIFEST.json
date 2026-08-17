@@ -3,18 +3,42 @@
   "paper_id": "P4",
   "package_status": "SCAFFOLDING",
   "declared_paper_terminal": "PEER_REVIEW_READY",
-  "audit_subject_revision": "266f6b94a285293364be7db86f4b98b526e7f4b8",
+  "audit_subject_revision": "b7cfaecfb55d9ad6c12fb59374935769ed8d8787",
   "audit_date": "2026-08-17",
   "issue": 160,
   "required_files": [
-    {"path": "manuscript/main.tex", "role": "manuscript-source"},
-    {"path": "evidence/CLAIM_LEDGER_V1.md", "role": "claim-ledger"},
-    {"path": "evidence/protected_v2/PUBLICATION_METRICS_V2.json", "role": "headline-metrics"},
-    {"path": "evidence/protected_v2/RESULT_ATTESTATION_V2.md", "role": "result-attestation"},
-    {"path": "reproducibility/BINDING_MANIFEST_V2.md", "role": "reproducibility-bindings"},
-    {"path": "submission/COVER_NOTE_TMLR.md", "role": "cover-note"},
-    {"path": "submission/TMLR_SCOPE_AND_CHECKLIST.md", "role": "journal-scope"},
-    {"path": "JOURNAL_READINESS.md", "role": "gate-checklist"}
+    {
+      "path": "manuscript/main.tex",
+      "role": "manuscript-source"
+    },
+    {
+      "path": "evidence/CLAIM_LEDGER_V1.md",
+      "role": "claim-ledger"
+    },
+    {
+      "path": "evidence/protected_v2/PUBLICATION_METRICS_V2.json",
+      "role": "headline-metrics"
+    },
+    {
+      "path": "evidence/protected_v2/RESULT_ATTESTATION_V2.md",
+      "role": "result-attestation"
+    },
+    {
+      "path": "reproducibility/BINDING_MANIFEST_V2.md",
+      "role": "reproducibility-bindings"
+    },
+    {
+      "path": "submission/COVER_NOTE_TMLR.md",
+      "role": "cover-note"
+    },
+    {
+      "path": "submission/TMLR_SCOPE_AND_CHECKLIST.md",
+      "role": "journal-scope"
+    },
+    {
+      "path": "JOURNAL_READINESS.md",
+      "role": "gate-checklist"
+    }
   ],
   "missing_artifacts": [
     {
@@ -40,19 +64,25 @@
     {
       "id": "P4.H1",
       "text": "ORION 0/360 false promotions vs strongest frozen comparator 180/360; effect -0.50, paired 95% CI [-0.553,-0.447].",
-      "artifacts": ["evidence/protected_v2/PUBLICATION_METRICS_V2.json"],
+      "artifacts": [
+        "evidence/protected_v2/PUBLICATION_METRICS_V2.json"
+      ],
       "status": "SUPPORTED"
     },
     {
       "id": "P4.H2",
       "text": "Both systems promote 60/60 clean positives.",
-      "artifacts": ["evidence/protected_v2/PUBLICATION_METRICS_V2.json"],
+      "artifacts": [
+        "evidence/protected_v2/PUBLICATION_METRICS_V2.json"
+      ],
       "status": "SUPPORTED"
     },
     {
       "id": "P4.H3",
       "text": "ORION is superior on correct CANNOT_CHECK selection.",
-      "artifacts": ["evidence/protected_v2/PUBLICATION_METRICS_V2.json"],
+      "artifacts": [
+        "evidence/protected_v2/PUBLICATION_METRICS_V2.json"
+      ],
       "status": "NOT_SUPPORTED"
     },
     {
@@ -65,6 +95,9 @@
   "scientific_result_verification": {
     "owner_issue": 283,
     "schema_name": "ScientificResultVerification.v1",
-    "records_present": []
+    "records_present": [
+      "research/verification/records/P4.H1.false-authority-promotion.json",
+      "research/verification/records/P4.H2.clean-authority-coverage.json"
+    ]
   }
 }

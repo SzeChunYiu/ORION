@@ -1,0 +1,210 @@
+{
+  "matrix_id": "ORION_CROSS_DOMAIN_TRANSFER_LITERATURE_V1",
+  "source": "local-docs-and-existing-citations",
+  "arxiv_api_queried": false,
+  "authority": "LOCAL_ENGINEERING_ONLY",
+  "consecutive_flat_rounds": 2,
+  "stop_rule": "Stop after two consecutive primary-source/related-work rounds yield no mechanism changing transfer representation, applicability test, negative-transfer control or benchmark design.",
+  "search_terms_covered": [
+    "cross-domain agent memory transfer",
+    "skill transfer language agents",
+    "case-based reasoning transfer",
+    "analogical transfer",
+    "program synthesis component reuse",
+    "algorithm selection meta-learning",
+    "negative transfer",
+    "transferability estimation",
+    "software design pattern transfer",
+    "assumption-aware transfer"
+  ],
+  "rounds": [
+    {
+      "round_id": 1,
+      "basis": "GitHub issue #286 literature seed plus research/verified-structural-transfer-v1/FAR_DOMAIN_AUDIT_2026-08-16.md",
+      "changed_representation_or_control": true,
+      "note": "Absorbed memory-transfer / analogy-retrieval as non-novelty; kept explicit assumption+falsifier gate."
+    },
+    {
+      "round_id": 2,
+      "basis": "Existing nearest-work closures (P5_NEAREST_WORK_CLOSURE_2026-08-16.md, NEAREST_WORK_V2_AUDIT_2026-08-16.md, CROSS.EXPERIENCE.v0.md) without live arXiv API",
+      "changed_representation_or_control": false,
+      "note": "Skill-lifecycle, harmful-skill admission, transport-under-assumptions, and CBR/algorithm-selection parents already covered; no new transfer object field."
+    },
+    {
+      "round_id": 3,
+      "basis": "Second pass over the same local citation set plus orion.transfer.types structural-score-is-not-authority invariant",
+      "changed_representation_or_control": false,
+      "note": "Surface similarity remains a retrieval heuristic. Two consecutive flat rounds."
+    }
+  ],
+  "rows": [
+    {
+      "identifier": "arXiv:2604.14004",
+      "title": "Memory Transfer Learning",
+      "mechanism": "Cross-domain gains attributed mainly to high-level meta-knowledge; low-level traces often cause negative transfer.",
+      "disposition": "ADAPT",
+      "local_source": "GitHub issue #286",
+      "effect": "ORION must not claim memory transfer. Low-level trajectory copy is a negative-transfer control, not a candidate cell."
+    },
+    {
+      "identifier": "arXiv:2606.02461",
+      "title": "AGENTCL",
+      "mechanism": "Controlled task streams are required to reveal reusable experience; held-out settings can expose memory-induced degradation.",
+      "disposition": "ADAPT",
+      "local_source": "GitHub issue #286",
+      "effect": "Independent source/target family slots and held-out targets are mandatory. Memory presence is not transfer evidence."
+    },
+    {
+      "identifier": "arXiv:2604.20087",
+      "title": "SkillLearnBench",
+      "mechanism": "Continual skill-learning gains are inconsistent; self-feedback can induce recursive drift.",
+      "disposition": "COMPOSE",
+      "local_source": "GitHub issue #286",
+      "effect": "Skill/instruction memory is a matched baseline, not an authority grant."
+    },
+    {
+      "identifier": "arXiv:2604.27003",
+      "title": "When Continual Learning Moves to Memory",
+      "mechanism": "External memory relocates, rather than removes, the stability-plasticity problem.",
+      "disposition": "ADAPT",
+      "local_source": "GitHub issue #286",
+      "effect": "Content-addressed receipts and retained harmful candidates are required; memory offload is not a solution."
+    },
+    {
+      "identifier": "arXiv:2604.05396",
+      "title": "Reason Analogically via Cross-domain Prior Knowledge",
+      "mechanism": "Cross-domain analogical transfer is conditionally useful, so analogy retrieval is not enough.",
+      "disposition": "ADOPT",
+      "local_source": "research/verified-structural-transfer-v1/FAR_DOMAIN_AUDIT_2026-08-16.md",
+      "effect": "Strikes standalone novelty of analogical retrieval. Surface similarity cannot admit transfer."
+    },
+    {
+      "identifier": "Forecast@ICML 2026 Analogical Deep Research",
+      "title": "Analogical Deep Research",
+      "mechanism": "Treats analogy retrieval as a causal/structural problem and argues that cross-confirming analogies can distinguish mechanism from coincidence.",
+      "disposition": "ADOPT",
+      "local_source": "research/verified-structural-transfer-v1/FAR_DOMAIN_AUDIT_2026-08-16.md",
+      "effect": "Independent-domain cross-confirmation stays a retrieval aid, never an authority grant."
+    },
+    {
+      "identifier": "arXiv:2607.01431",
+      "title": "IsoSci",
+      "mechanism": "Isomorphic problem structure can still require domain-specific knowledge.",
+      "disposition": "ADOPT",
+      "local_source": "research/verified-structural-transfer-v1/FAR_DOMAIN_AUDIT_2026-08-16.md",
+      "effect": "Assumption mismatch must refuse transfer even when signatures look isomorphic."
+    },
+    {
+      "identifier": "arXiv:2503.23605",
+      "title": "Partial Transportability for Domain Generalization",
+      "mechanism": "Conditional transport under explicit structural assumptions.",
+      "disposition": "ADAPT",
+      "local_source": "research/paper-programme-v2/NEAREST_WORK_V2_AUDIT_2026-08-16.md",
+      "effect": "Assumption-aware transport is prior art; ORION residual is mechanic-contract receipts plus authority boundaries."
+    },
+    {
+      "identifier": "arXiv:2605.14033",
+      "title": "Sheaf-Theoretic Transport and Obstruction for Detecting Scientific Theory Shift in AI Agents",
+      "mechanism": "Transport/gluing/obstruction applied to scientific representational change.",
+      "disposition": "DEFER",
+      "local_source": "research/paper-programme-v2/NEAREST_WORK_V2_AUDIT_2026-08-16.md",
+      "effect": "Adjacent to P3 obstruction, not a mechanic-contract transfer object. Revisit only if it supplies applicability receipts."
+    },
+    {
+      "identifier": "arXiv:2605.22148",
+      "title": "Ratchet",
+      "mechanism": "Self-evolving skill lifecycle with held-out transfer and mechanism ablations.",
+      "disposition": "ADAPT",
+      "local_source": "research/paper-programme-v1/P5_NEAREST_WORK_CLOSURE_2026-08-16.md",
+      "effect": "Held-out transfer and ablation are required protocol pieces, not ORION novelty."
+    },
+    {
+      "identifier": "arXiv:2608.05810",
+      "title": "Verifier-as-Gatekeeper / skill-contamination study",
+      "mechanism": "Harmful skill admission can contaminate later self-evolution; frozen-pool transfer is tested.",
+      "disposition": "ADOPT",
+      "local_source": "research/paper-programme-v1/P5_NEAREST_WORK_CLOSURE_2026-08-16.md",
+      "effect": "Every harmful transfer candidate must be retained. Admission is fail-closed."
+    },
+    {
+      "identifier": "arXiv:2608.04003",
+      "title": "PAST-Bench",
+      "mechanism": "Experience-on/off tests for whether retained experience causes later fresh-session improvement.",
+      "disposition": "COMPOSE",
+      "local_source": "research/paper-programme-v1/P5_NEAREST_WORK_CLOSURE_2026-08-16.md",
+      "effect": "No-transfer vs transfer comparison is a parent baseline family."
+    },
+    {
+      "identifier": "arXiv:2606.29713",
+      "title": "SEVA",
+      "mechanism": "Iterated self-evolution can create benchmark specialists with cross-benchmark regression.",
+      "disposition": "COMPOSE",
+      "local_source": "research/paper-programme-v1/P5_NEAREST_WORK_CLOSURE_2026-08-16.md",
+      "effect": "Worst-family and negative-transfer rate stay primary; average gain cannot hide harm."
+    },
+    {
+      "identifier": "arXiv:2606.08106",
+      "title": "PACE",
+      "mechanism": "Anytime-valid acceptance tests for self-evolving agents.",
+      "disposition": "ADOPT",
+      "local_source": "research/verified-structural-transfer-v1/FAR_DOMAIN_AUDIT_2026-08-16.md",
+      "effect": "Acceptance testing is absorbed. Does not supply a mechanic-contract transfer object."
+    },
+    {
+      "identifier": "arXiv:2608.02636",
+      "title": "Validation, robustness and transfer can disagree during self-evolution",
+      "mechanism": "Additional rounds are not monotone improvement; transfer can diverge from validation.",
+      "disposition": "ADAPT",
+      "local_source": "research/verified-structural-transfer-v1/FAR_DOMAIN_AUDIT_2026-08-16.md",
+      "effect": "Frozen splits before outcomes; validation success is not transfer evidence."
+    },
+    {
+      "identifier": "Aamodt & Plaza 1994",
+      "title": "Case-Based Reasoning: Foundational Issues, Methodological Variations, and System Approaches",
+      "mechanism": "Retrieve, reuse, revise, retain prior episodes.",
+      "disposition": "ADOPT",
+      "local_source": "research/development/mechanics-of-mechanics-v0/README.md; CROSS.EXPERIENCE.v0.md",
+      "effect": "Episode reuse is the parent of trajectory/summary baselines. CBR retrieve is not contract admission."
+    },
+    {
+      "identifier": "Rice 1976",
+      "title": "The Algorithm Selection Problem",
+      "mechanism": "Select among algorithms using problem features; parent of algorithm-selection meta-learning.",
+      "disposition": "ADOPT",
+      "local_source": "research/technical-companions/mechanics-of-mechanics-v1/archive/evidence/ROUND_2026-08-15_RESEARCH_AND_CI.md",
+      "effect": "Portfolio/algorithm selection is absorbed. Structural score may rank candidates for inspection only."
+    },
+    {
+      "identifier": "Gamma et al. 1994",
+      "title": "Design Patterns: Elements of Reusable Object-Oriented Software",
+      "mechanism": "Named reusable software structure without evidence-bound receipts or authority boundaries.",
+      "disposition": "REJECT",
+      "local_source": "issue #286 search term software design pattern transfer; no equivalent local receipt mechanism",
+      "effect": "Patterns are not mechanic-contract transfer. Rejected as an equivalent representation."
+    },
+    {
+      "identifier": "orion.transfer.types.ProblemSignature.structural_similarity",
+      "title": "ORION V1/V2 structural similarity heuristic",
+      "mechanism": "Far-domain structural score is a retrieval heuristic and never grants transfer authority.",
+      "disposition": "COMPOSE",
+      "local_source": "src/orion/transfer/types.py; tests/test_verified_structural_transfer.py",
+      "effect": "Surface-similarity selector is the frozen baseline, not an authority."
+    },
+    {
+      "identifier": "P5 continual / experiential learning parent",
+      "title": "Continual and experiential learning as parent disciplines",
+      "mechanism": "Persistent experience, replay, memory consolidation and cross-session adaptation.",
+      "disposition": "COMPOSE",
+      "local_source": "research/paper-programme-v1/P5_NEAREST_WORK_CLOSURE_2026-08-16.md",
+      "effect": "Generic experience retention is not scientific mechanic-contract transfer."
+    },
+    {
+      "identifier": "provenance/rakl TRANSFER_INVENTORY_V1",
+      "title": "RAKL donor/transfer inventory",
+      "mechanism": "Local engineering inventory of donor mechanics and transfer answers.",
+      "disposition": "COMPOSE",
+      "local_source": "provenance/rakl/TRANSFER_INVENTORY_V1.md; tests/unit/self_orion/test_transfer_answers.py",
+      "effect": "Program-synthesis-like component reuse inside ORION remains LOCAL_ENGINEERING_ONLY."
+    }
+  ]
+}

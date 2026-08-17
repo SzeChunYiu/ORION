@@ -1,6 +1,6 @@
 # Issue #160 checkbox audit versus `origin/main`
 
-Frozen at subject `266f6b94a285293364be7db86f4b98b526e7f4b8`. This ticks **verified** Gate 7–9 inventory items. Unticked items stay `CANNOT_CHECK` or `OPEN`. Scientific verification records are owned by #283 and are not duplicated here.
+Frozen at subject `b7cfaecfb55d9ad6c12fb59374935769ed8d8787`. This ticks **verified** Gate 7–9 inventory items. Unticked items stay `CANNOT_CHECK` or `OPEN`. Scientific verification records are owned by #283 and are not duplicated here.
 
 Parents: #153, #97. Child paper issues: #98 CLOSED, #99 OPEN, #100 OPEN, #101 CLOSED, #102 OPEN.
 
@@ -38,7 +38,7 @@ Parents: #153, #97. Child paper issues: #98 CLOSED, #99 OPEN, #100 OPEN, #101 CL
 - [x] P1 H1 remains **NOT_SUPPORTED** against `P1-T2`.
 - [x] Every paper lists claims vs artifacts; PDF proofread is **OPEN** where no in-tree PDF exists.
 - [x] Missing required package files fail `check_journal_package.py`.
-- [ ] `ScientificResultVerification.v1` records (consume from #283 when present).
+- [x] Consumes issue #283 `orion.scientific-result-verification.v1` records under `research/verification/records/`.
 
 ## Terminal
 

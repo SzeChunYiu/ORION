@@ -1,6 +1,6 @@
 # ORION-P1 independent claim / PDF audit
 
-Audit subject: `266f6b94a285293364be7db86f4b98b526e7f4b8` (origin/main at package freeze). Auditor: issue #160 journal-package lane. This is an inventory against artifacts, not a ScientificResultVerification.v1 record (owned by #283).
+Audit subject: `b7cfaecfb55d9ad6c12fb59374935769ed8d8787` (origin/main at package freeze). Auditor: issue #160 journal-package lane. This is an inventory against artifacts, not a ScientificResultVerification.v1 record (owned by #283).
 
 | ID | Claim | Artifact | Status |
 |---|---|---|---|

@@ -1,0 +1,77 @@
+{
+  "atomic_claim_text": "Independent blind solvability audit rates 55 of 66 cases SOLVABLE from public content.",
+  "bounded_claim_text": "Descriptive only (n=66). Not H1 support. Concurrent-edit note in the JSON is retained.",
+  "claim_id": "P1.solvability_55_66",
+  "denominator": {
+    "cannot_check_or_invalid_handling": "PARTIAL/UNSOLVABLE retained",
+    "eligible_n": 66,
+    "post_outcome_exclusions": 0,
+    "repeats_nested_not_inflating_n": true,
+    "unit": "mechanical-arm case"
+  },
+  "discrepancies": [],
+  "high_severity_integrity": [],
+  "invalidation_reason": null,
+  "layers": {
+    "baseline_pressure": {
+      "status": "CANNOT_CHECK",
+      "summary": "No independent second rater was run by this verifier."
+    },
+    "denominator_statistics": {
+      "status": "PASS",
+      "summary": "n=66 descriptive-only; below inferential n. Not H1 support."
+    },
+    "holdout_cross_host": {
+      "status": "CANNOT_CHECK",
+      "summary": "No fresh case set for the solvability audit."
+    },
+    "independent_scorer": {
+      "status": "PASS",
+      "summary": "Independent count of frozen audit verdicts. This verifier did not re-blind-solve the 66 cases."
+    },
+    "leakage_shortcut": {
+      "status": "PASS",
+      "summary": "The audit itself records template-level leaks and five arithmetic defects; those bounds are retained."
+    },
+    "raw_artifact_replay": {
+      "details": {
+        "n": 66,
+        "solvable": 55
+      },
+      "status": "PASS",
+      "summary": "mechanical_solvability_audit_v1.json contains 55/66 SOLVABLE verdicts."
+    }
+  },
+  "paper_id": "P1",
+  "protocol": {
+    "hash_sha256": "91d5dca84d927ccb5cc5a54fece12502f23c8cba22f8eb8e5a48377539eca0b7",
+    "id": "P1.hidden-formulation.v1",
+    "path": "papers/paper-01-recursive-epistemic-reconstruction/protocol/PROTOCOL_V1.json"
+  },
+  "raw_artifacts": [
+    {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/evidence/mechanical_solvability_audit_v1.json",
+      "present": true,
+      "role": "raw_record",
+      "sha256": "4c6f89a39354b37d81bab33096b0cc8bf420ff0e61b1f4b98336586270c3c923"
+    }
+  ],
+  "record_id": "P1.solvability-audit-55-66",
+  "record_sha256": "4764af4bdc5705a1a69d65e69f40f2c4c1a8a6ce74776994081cd2c030c4b2b9",
+  "schema_version": "orion.scientific-result-verification.v1",
+  "scorers": {
+    "adjudication": [],
+    "agreement": "EXACT",
+    "independent_from_written_spec": true,
+    "independent_hash_sha256": "c867cc5be6cc55f80750053c54c2e19bd3a60d2a0ddd3756a551b6d388648c56",
+    "original_hash_sha256": "4c6f89a39354b37d81bab33096b0cc8bf420ff0e61b1f4b98336586270c3c923"
+  },
+  "self_authorizing": false,
+  "subject": {
+    "commit": "09929f208f581cda6985575ca419a7181a1f03ba",
+    "evaluated_system_mutated": false,
+    "note": "verifier_tree=09929f208f581cda6985575ca419a7181a1f03ba",
+    "tree": "a3566dd19afaedd35012321e529ff862d06475f5"
+  },
+  "verification_state": "BOUNDED_VERIFIED"
+}
