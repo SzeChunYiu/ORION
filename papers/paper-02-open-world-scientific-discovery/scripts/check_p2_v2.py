@@ -43,6 +43,7 @@ def validate() -> list[str]:
     errors: list[str] = []
     registry = _load("P2_V2_SYSTEM_REGISTRY.json")
     hostile = _load("P2_V2_HOSTILE_AUTHORITY_CASES.json")
+    promotion = _load("P2_V2_PROMOTION_STATE.json")
 
     if registry.get("status") != "FROZEN_DEVELOPMENT_SURFACE":
         errors.append("system registry is not frozen")
@@ -64,6 +65,16 @@ def validate() -> list[str]:
     for required in ("typed_closure_authority", "censoring_obligations", "earned_route_independence"):
         if required not in max_system:
             errors.append(f"max composed system lost {required}")
+
+    if promotion.get("authorized_terminal") not in EXPECTED_LADDER:
+        errors.append("promotion state has unknown authorized terminal")
+    if promotion.get("target_terminal") != "P2_TRANSFER_SUPPORTED":
+        errors.append("V2 target is no longer maximal transfer support")
+    if not promotion.get("confirmatory_external_complete", False):
+        if promotion.get("authorized_terminal") != "P2_NARROWED":
+            errors.append("external claim promoted before confirmatory completion")
+    if promotion.get("development_complete", False) and not promotion.get("current_blockers"):
+        errors.append("completed development must still expose any external/transfer blockers")
 
     cases = hostile.get("cases", [])
     ids = [case.get("id") for case in cases]
