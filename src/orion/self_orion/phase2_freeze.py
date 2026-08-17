@@ -9,6 +9,7 @@ from orion.providers.live_phase2 import (
 )
 from orion.self_orion.phase2_io import write_phase2_binding
 from orion.self_orion.phase2_preflight import (
+    FrozenPacketBinding,
     Phase2ClosurePreflight,
     Phase2PreflightStatus,
     assess_phase2_preflight,
@@ -47,6 +48,7 @@ def freeze_phase2_binding(
     baseline_id: str = "simple-llm-retrieval-baseline-v1",
     protocol_id: str = "phase2-shadow-closure-v1",
     repository_identity: str | None = None,
+    frozen_packet: FrozenPacketBinding | None = None,
 ) -> FrozenPhase2BindingReport:
     """Freeze exact subject/provider/evaluator identities into the Phase-2 binding."""
 
@@ -62,6 +64,29 @@ def freeze_phase2_binding(
         raise ValueError(
             "provider manifest verification identity must bind evaluator artifact and evaluation epoch"
         )
+    # This tool CREATES a freeze; it does not verify one. At creation time there
+    # is no prior expectation to compare against, so when the caller declares
+    # none we bind the expectation to the values just attested: the real subject
+    # revision, the real provider manifest hash, the real evaluator identity.
+    # That is materially stronger than the shape check it replaces -- fabricated
+    # hashes cannot reach here, because `attest_repository_subject` and
+    # `load_live_phase2_provider_manifest` compute these from actual artifacts.
+    #
+    # Verifying a STORED freeze against live values is the execution-time job,
+    # and there the caller must pass the published packet explicitly.
+    if frozen_packet is None:
+        frozen_packet = FrozenPacketBinding(
+            packet_fingerprint="",
+            subject_revision_hash=subject.subject_revision_hash,
+            provider_manifest_hash=manifest.hash,
+            evaluator_artifact_hash=evaluator_artifact_hash,
+            evaluation_epoch_id=evaluation_epoch_id,
+            baseline_id=baseline_id,
+            resource_budget_units=resource_budget_units,
+            task_ids=tuple(
+                task.task_id for task in Phase2ClosurePreflight.__dataclass_fields__["tasks"].default
+            ),
+        )
     preflight = Phase2ClosurePreflight(
         protocol_id=protocol_id,
         subject_revision_hash=subject.subject_revision_hash,
@@ -70,6 +95,7 @@ def freeze_phase2_binding(
         evaluation_epoch_id=evaluation_epoch_id,
         baseline_id=baseline_id,
         resource_budget_units=resource_budget_units,
+        frozen_packet=frozen_packet,
     )
     assessed = assess_phase2_preflight(preflight)
     if assessed.status is not Phase2PreflightStatus.READY_TO_EXECUTE_SHADOW_TRIAL:
