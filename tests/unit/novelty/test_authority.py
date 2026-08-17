@@ -92,6 +92,14 @@ def test_literature_search_wrapped_around_llm_judge_is_not_supported():
     }
 
 
+def test_hostile_hits_do_not_absorb_without_functional_equivalence():
+    hit = _prior("arxiv:2222.22222")
+    cert = seal_certificate(
+        _draft(hostile_already_solved_route=_hostile(findings=(hit,), residual_changed=True))
+    )
+    assert cert.final_state is NoveltyFinalState.NOVELTY_SUPPORTED
+
+
 def test_abstract_only_close_prior_that_could_absorb_is_cannot_check():
     close = _prior("arxiv:2606.12071", access=SourceAccess.ABSTRACT_ONLY)
     cert = seal_certificate(

@@ -18,9 +18,6 @@ def _residual_absorbed(draft: CertificateDraft) -> bool:
     }
     if claimed_ids and claimed_ids <= absorbing:
         return True
-    hostile = draft.hostile_already_solved_route
-    if hostile is not None and hostile.findings and hostile.residual_changed and not residual:
-        return True
     return False
 
 
