@@ -296,8 +296,18 @@ def blank_numbers(sentence: str) -> str:
 _MISSING = object()
 
 
+_SELECTOR_RE = re.compile(r"^\[([^\]=]+)=([^\]]*)\]$")
+
+
 def resolve_key(payload: Any, dotted: str) -> Any:
-    """Resolve a dotted path, tolerating keys that themselves contain dots."""
+    """Resolve a dotted path into a JSON payload.
+
+    Tolerates keys that themselves contain dots.  List elements may be addressed
+    positionally (``tiers.3.required_n``) or, preferably, by a field match
+    (``tiers.[tier=TIER_D_minimum_inferential].required_n``).  The field match is
+    stable when a list gains or is reordered upstream, which a positional index is
+    not -- an index silently starts pointing at a different record.
+    """
     if not dotted:
         return payload
     if isinstance(payload, dict):
@@ -312,6 +322,17 @@ def resolve_key(payload: Any, dotted: str) -> Any:
         return _MISSING
     if isinstance(payload, list):
         head, _, rest = dotted.partition(".")
+        selector = _SELECTOR_RE.match(head)
+        if selector is not None:
+            field, wanted = selector.group(1), selector.group(2)
+            hits = [
+                item
+                for item in payload
+                if isinstance(item, dict) and str(item.get(field)) == wanted
+            ]
+            if len(hits) != 1:
+                return _MISSING
+            return resolve_key(hits[0], rest)
         if head.isdigit() and int(head) < len(payload):
             return resolve_key(payload[int(head)], rest)
         return _MISSING
@@ -551,17 +572,51 @@ def _check_presence(
             continue
         if present:
             matched[region].add(blank)
-            # Prefer the sentence-level match; fall back to the substring match
-            # for a claim that spans a sentence boundary after normalization.
             if blank in region_index[region]:
                 located[cid] = region_index[region][blank]
+            else:
+                # Substring hit without a discrete sentence match: the numeric
+                # check would otherwise fall back to comparing the ledger's own
+                # digits to the archive, which is vacuous.  Refuse instead.
+                report.fail(
+                    "SENTENCE_NOT_ISOLABLE",
+                    f"{cid} matches region {region!r} only as a substring, not as a whole "
+                    "sentence, so its numbers cannot be read from the manuscript; store "
+                    f"the sentence exactly as it is extracted (see --emit-sentences {region})",
+                )
         else:
-            report.fail(
-                "LEDGER_SENTENCE_MISSING",
+            hint = _nearest_sentence(claim["sentence"], region_index[region].values())
+            detail = (
                 f"{cid} sentence is no longer present in region {region!r}; the claim "
-                f"changed or moved -- re-verify and update {LEDGER_RELATIVE}",
+                f"changed or moved -- re-verify and update {LEDGER_RELATIVE}"
             )
+            if hint:
+                detail += f"\n    ledger:     {claim['sentence']}\n    manuscript: {hint}"
+            report.fail("LEDGER_SENTENCE_MISSING", detail)
     return matched, located
+
+
+def _nearest_sentence(target: str, candidates: Any) -> str | None:
+    """Best-overlap manuscript sentence, to make a drift failure reviewable.
+
+    A bare "sentence is missing" forces a manual sweep of the whole region.
+    Printing what the manuscript now reads turns that into a guided review.  This
+    only reports; nothing is auto-applied, so the ledger cannot self-heal.
+    """
+    wanted = {w for w in re.findall(r"[A-Za-z_]{4,}", target.lower())}
+    if not wanted:
+        return None
+    best: tuple[float, str] | None = None
+    for candidate in candidates:
+        words = {w for w in re.findall(r"[A-Za-z_]{4,}", candidate.lower())}
+        if not words:
+            continue
+        score = len(wanted & words) / len(wanted | words)
+        if best is None or score > best[0]:
+            best = (score, candidate)
+    if best is None or best[0] < 0.4:
+        return None
+    return best[1]
 
 
 def _asserts_outcome(sentence: str) -> bool:
@@ -677,6 +732,19 @@ def _check_known_defects(
                 "ARTIFACT_KEY_MISSING",
                 f"{did} cites key {key!r} absent from {alias}; the contradiction is "
                 "unproven as written",
+            )
+            continue
+        if _COMPARATIVE_RE.search(defect["sentence"]):
+            # A defect entry records a statement the archive contradicts, and it
+            # suppresses the unledgered scan for that sentence.  That is
+            # acceptable for an under-claim.  For a comparative-superiority
+            # sentence it would park an over-claim as a "known issue" instead of
+            # failing it, which is the one outcome this ledger exists to prevent.
+            report.fail(
+                "ILLEGAL_DEFECT",
+                f"{did} records a comparative-superiority sentence as a known defect: "
+                f"{defect['sentence']!r}. An over-claim must be removed from the "
+                "manuscript, not recorded and tolerated.",
             )
             continue
         detail = (

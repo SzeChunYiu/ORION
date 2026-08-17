@@ -19,12 +19,12 @@
       "file": "main.tex",
       "mode": "SECTION",
       "section": "Limitations and integrity",
-      "hard_fail_unledgered": false
+      "hard_fail_unledgered": true
     },
     "results": {
       "file": "sections/results.tex",
       "mode": "PROSE_FILE",
-      "hard_fail_unledgered": false
+      "hard_fail_unledgered": true
     }
   },
   "artifacts": {
@@ -198,7 +198,7 @@
       "numeric_bindings": [
         {
           "artifact": "statistical_plan",
-          "key": "precision_plan.precision_tiers.3.required_n"
+          "key": "precision_plan.precision_tiers.[tier=TIER_D_minimum_inferential].required_n"
         },
         {
           "artifact": "results_summary",
@@ -320,7 +320,7 @@
       "numeric_bindings": [
         {
           "artifact": "statistical_plan",
-          "key": "precision_plan.precision_tiers.3.required_n"
+          "key": "precision_plan.precision_tiers.[tier=TIER_D_minimum_inferential].required_n"
         }
       ],
       "support_artifacts": [],

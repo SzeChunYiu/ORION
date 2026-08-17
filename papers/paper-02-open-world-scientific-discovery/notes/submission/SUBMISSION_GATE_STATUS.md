@@ -35,7 +35,18 @@ own precondition is unmet, that is stated rather than absorbed into a `DONE`.
 
 | Item | State | Artifact |
 | --- | --- | --- |
-| Claim ledger mechanised and machine-checked | `DONE` | `protocol/CLAIM_LEDGER_V1.json` (43 rows), `scripts/check_claim_ledger.py`, `tests/unit/p2/test_p2_claim_ledger.py` (39 tests: injected-defect coverage plus the no-alarm case). Green on the committed tree; `--strict` fails only on the two recorded manuscript defects. |
+| Claim ledger mechanised and machine-checked | `DONE` | `protocol/CLAIM_LEDGER_V1.json` (43 rows), `scripts/check_claim_ledger.py`, `tests/unit/p2/test_p2_claim_ledger.py` (45 tests: injected-defect coverage plus the no-alarm case). Green on the committed tree; `--strict` fails only on the two recorded manuscript defects. |
+
+All four ledgered regions — abstract, conclusion, Limitations and Results prose —
+hard-fail on an unledgered outcome sentence. Every outcome sentence in those
+regions is currently either a ledger claim, an explicitly reasoned non-claim, or a
+recorded defect, so the check is green with no suppressions. **Consequence for
+other lanes:** the checker runs against the committed manuscript, so any lane that
+adds or rewords a result-bearing sentence in `main.tex` or `sections/results.tex`
+will turn CI red until the ledger is re-verified. That is intended — the failure
+message prints both the ledger sentence and the current manuscript text so the
+re-verification is guided rather than a manual sweep — but it was not scoped as a
+cross-lane gate and the lead should know it now behaves as one.
 
 ## Open defects blocking submission
 

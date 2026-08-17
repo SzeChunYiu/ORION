@@ -544,6 +544,35 @@ def test_defect_entry_needs_a_provable_contradiction(paper: Path) -> None:
     assert "ARTIFACT_KEY_MISSING" in messages(proc)
 
 
+def test_defect_entry_may_not_park_an_overclaim(paper: Path) -> None:
+    """A known-defect entry suppresses the unledgered scan, so it must never
+    be usable to record a comparative-superiority claim as a tolerated issue."""
+    sentence = "ORION outperforms every published deep-research baseline on the open web."
+    main = paper / "manuscript" / "main.tex"
+    main.write_text(
+        main.read_text(encoding="utf-8").replace(
+            "\\end{abstract}", sentence + " \\end{abstract}"
+        ),
+        encoding="utf-8",
+    )
+    ledger = load_ledger(paper)
+    ledger["known_defects"].append(
+        {
+            "defect_id": "P2-DXX",
+            "region": "abstract",
+            "sentence": sentence,
+            "contradicted_by": {"artifact": "results_summary", "key": "analysis_authority"},
+            "owner": "someone else",
+            "required_fix": "will get to it",
+        }
+    )
+    save_ledger(paper, ledger)
+
+    proc = run(paper)
+    assert proc.returncode == EXIT_VIOLATIONS, messages(proc)
+    assert "ILLEGAL_DEFECT" in messages(proc)
+
+
 def test_defect_entry_needs_an_owner_and_a_fix(paper: Path) -> None:
     ledger = load_ledger(paper)
     ledger["known_defects"][0]["required_fix"] = ""
@@ -590,6 +619,84 @@ def test_missing_manuscript_file_is_a_harness_error(paper: Path) -> None:
 # --------------------------------------------------------------------------- #
 # Ledger coverage of the surfaces that matter
 # --------------------------------------------------------------------------- #
+
+
+def test_new_unledgered_results_claim_is_caught(paper: Path) -> None:
+    """Results prose is hard-failing: a new outcome sentence there must not pass."""
+    results = paper / "manuscript" / "sections" / "results.tex"
+    results.write_text(
+        results.read_text(encoding="utf-8")
+        + "\nORION reaches a recall of 0.99 on real scientific literature.\n",
+        encoding="utf-8",
+    )
+    proc = run(paper)
+    assert proc.returncode == EXIT_VIOLATIONS, messages(proc)
+    assert "UNLEDGERED_CLAIM" in messages(proc)
+
+
+def test_drift_failure_names_the_current_manuscript_text(paper: Path) -> None:
+    """A drift failure must be reviewable without a manual sweep of the region."""
+    main = paper / "manuscript" / "main.tex"
+    main.write_text(
+        main.read_text(encoding="utf-8").replace(
+            "targeted negative ablations expose the intended failure modes.",
+            "targeted negative ablations reveal the intended failure modes.",
+        ),
+        encoding="utf-8",
+    )
+    proc = run(paper)
+    assert proc.returncode == EXIT_VIOLATIONS, messages(proc)
+    assert "LEDGER_SENTENCE_MISSING" in messages(proc)
+    assert "manuscript:" in messages(proc)
+    assert "reveal the intended failure modes" in messages(proc)
+
+
+def test_sentence_matching_only_as_a_substring_is_refused(paper: Path) -> None:
+    """A hand-trimmed ledger sentence must not silently disable the numeric check."""
+    ledger = load_ledger(paper)
+    entry = claim(ledger, "P2-R05")
+    entry["sentence"] = entry["sentence"].rstrip(".").split(" and precision")[0]
+    save_ledger(paper, ledger)
+
+    proc = run(paper)
+    assert proc.returncode == EXIT_VIOLATIONS, messages(proc)
+    assert "SENTENCE_NOT_ISOLABLE" in messages(proc)
+
+
+def test_named_list_selector_must_resolve_uniquely(paper: Path) -> None:
+    """The tier binding is addressed by name; a wrong name must fail, not fall back."""
+    ledger = load_ledger(paper)
+    entry = claim(ledger, "P2-R03")
+    binding = entry["numeric_bindings"][0]
+    assert "[tier=" in binding["key"], "fixture assumption: R03 uses a named selector"
+    binding["key"] = "precision_plan.precision_tiers.[tier=TIER_Z_nonexistent].required_n"
+    save_ledger(paper, ledger)
+
+    proc = run(paper)
+    assert proc.returncode == EXIT_VIOLATIONS, messages(proc)
+    assert "ARTIFACT_KEY_MISSING" in messages(proc)
+
+
+def test_tier_binding_points_at_the_lowest_inferential_tier() -> None:
+    """The prose says 'lowest inferential tier'; verify the bound tier really is it."""
+    plan = json.loads(
+        (PAPER / "protocol" / "STATISTICAL_PLAN_V1.json").read_text(encoding="utf-8")
+    )
+    tiers = plan["precision_plan"]["precision_tiers"]
+    lowest = min(tiers, key=lambda t: t["required_n"])
+    ledger = json.loads((PAPER / LEDGER_RELATIVE).read_text(encoding="utf-8"))
+    bound = {
+        binding["key"]
+        for entry in ledger["claims"]
+        for binding in entry.get("numeric_bindings", [])
+        if "precision_tiers" in binding["key"]
+    }
+    assert bound, "expected at least one tier binding"
+    for key in bound:
+        assert f"[tier={lowest['tier']}]" in key, (
+            f"binding {key} does not address the lowest inferential tier "
+            f"({lowest['tier']}, required_n={lowest['required_n']})"
+        )
 
 
 def test_every_hard_fail_region_has_at_least_one_claim() -> None:
