@@ -1,0 +1,70 @@
+{
+  "schema_version": "orion.p5.causal-discriminators.v1",
+  "protocol_id": "P5.causal-discriminators.v1",
+  "parent_issue": 282,
+  "seed_campaign_id": "p5-glm-5.2-attribution-v1",
+  "protocol_status": "DESIGN_FROZEN",
+  "outcome_accessed": false,
+  "authorizes_method_change": false,
+  "empirical_authority": "CANNOT_CHECK",
+  "notes": "Each discriminator updates cause state from immutable intervention evidence. It does not authorize a candidate repair or method rewrite.",
+  "discriminators": [
+    {
+      "error_id": "P5-HC-002",
+      "gold": "RETRIEVAL_MISS",
+      "observed_attribution": "REPRESENTATION_GAP",
+      "confusion": "retrieval_miss_vs_representation_gap",
+      "status": "DESIGN_FROZEN",
+      "authorizes_method_change": false,
+      "interventions": [
+        "broaden_retrieval_route_or_query_without_representation_change",
+        "representation_transform_holding_corpus_fixed",
+        "gold_evidence_exists_in_allowed_route_or_index"
+      ],
+      "predictions": {
+        "retrieval_cause": "route_or_query_expansion_surfaces_evidence",
+        "representation_cause": "same_corpus_usable_only_after_representation_change"
+      },
+      "licensed_change_class_if_retrieval": "RETRIEVAL_ROUTING_REPAIR",
+      "licensed_change_class_if_representation": "REPRESENTATION_REPAIR"
+    },
+    {
+      "error_id": "P5-HC-012",
+      "gold": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+      "observed_attribution": "IMPLEMENTATION_BUG",
+      "confusion": "environment_tool_vs_implementation_bug",
+      "status": "DESIGN_FROZEN",
+      "authorizes_method_change": false,
+      "interventions": [
+        "run_exact_code_in_known_good_environment",
+        "substitute_known_good_tool_keeping_code_fixed",
+        "static_local_test_independent_of_external_dependency"
+      ],
+      "predictions": {
+        "environment_cause": "fixed_code_succeeds_under_good_environment_or_tool",
+        "implementation_cause": "failure_persists_independent_of_environment"
+      },
+      "licensed_change_class_if_environment": "ENVIRONMENT_TOOL_ACCOMMODATION",
+      "licensed_change_class_if_implementation": "IMPLEMENTATION_REPAIR"
+    },
+    {
+      "error_id": "P5-HC-018",
+      "gold": "REPRESENTATION_GAP",
+      "observed_attribution": "METHOD_BASIS_GAP",
+      "confusion": "representation_gap_vs_method_basis_gap",
+      "status": "DESIGN_FROZEN",
+      "authorizes_method_change": false,
+      "interventions": [
+        "change_encoding_preserving_method",
+        "oracle_known_good_representation_transform",
+        "test_method_where_representation_assumptions_hold"
+      ],
+      "predictions": {
+        "representation_cause": "method_succeeds_after_representation_repair",
+        "method_basis_cause": "failure_persists_under_adequate_representations"
+      },
+      "licensed_change_class_if_representation": "REPRESENTATION_REPAIR",
+      "licensed_change_class_if_method_basis": "METHOD_BASIS_CHANGE"
+    }
+  ]
+}
