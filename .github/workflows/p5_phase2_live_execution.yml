@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: read
+  models: read
 
 jobs:
   live-phase2:
@@ -21,7 +22,10 @@ jobs:
       ORION_PROTECTED_VERIFIER_ARTIFACT_HASH: ${{ secrets.ORION_PROTECTED_VERIFIER_ARTIFACT_HASH }}
       ORION_PHASE2_EVALUATION_EPOCH_ID: ${{ secrets.ORION_PHASE2_EVALUATION_EPOCH_ID }}
       CROSSREF_MAILTO: ${{ secrets.CROSSREF_MAILTO }}
+      GITHUB_MODELS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       ORION_PHASE2_REASONER_MODEL: ${{ vars.ORION_PHASE2_REASONER_MODEL || 'gpt-5.6' }}
+      ORION_PHASE2_GITHUB_REASONER_MODEL: ${{ vars.ORION_PHASE2_GITHUB_REASONER_MODEL || 'openai/gpt-5' }}
+      ORION_PHASE2_GITHUB_EVALUATOR_MODEL: ${{ vars.ORION_PHASE2_GITHUB_EVALUATOR_MODEL || 'openai/gpt-4.1' }}
       ORION_PHASE2_RESOURCE_BUDGET_UNITS: ${{ vars.ORION_PHASE2_RESOURCE_BUDGET_UNITS || '32' }}
     steps:
       - uses: actions/checkout@v4
@@ -36,21 +40,33 @@ jobs:
       - name: Install exact subject
         run: python -m pip install -e '.[dev]'
 
-      - name: Check secret-safe live bindings
+      - name: Select one secret-safe provider lane
         shell: bash
         run: |
           set -euo pipefail
+          names=(OPENAI_API_KEY ORION_PROTECTED_VERIFIER_URL ORION_PROTECTED_VERIFIER_TOKEN ORION_PROTECTED_VERIFIER_ARTIFACT_HASH ORION_PHASE2_EVALUATION_EPOCH_ID)
+          present=0
           missing=()
-          for name in OPENAI_API_KEY ORION_PROTECTED_VERIFIER_URL ORION_PROTECTED_VERIFIER_TOKEN ORION_PROTECTED_VERIFIER_ARTIFACT_HASH ORION_PHASE2_EVALUATION_EPOCH_ID; do
-            if [[ -z "${!name:-}" ]]; then
+          for name in "${names[@]}"; do
+            if [[ -n "${!name:-}" ]]; then
+              present=$((present + 1))
+            else
               missing+=("$name")
             fi
           done
-          if (( ${#missing[@]} )); then
-            printf 'Missing required Phase-2 configuration names: %s\n' "${missing[*]}"
+          if (( present == ${#names[@]} )); then
+            echo 'Provider lane: fully configured private OpenAI + protected HTTPS verifier.'
+          elif (( present == 0 )); then
+            if [[ -z "${GITHUB_MODELS_TOKEN:-}" ]]; then
+              echo 'GitHub Models fallback token is unavailable.'
+              exit 3
+            fi
+            echo 'Provider lane: GitHub Models external reasoner + separately identified evaluator; repository secrets not required.'
+          else
+            printf 'Partial private provider configuration is forbidden. Missing names: %s\n' "${missing[*]}"
             exit 3
           fi
-          echo 'All required Phase-2 configuration names are present; values are not printed.'
+          echo 'No credential values are printed.'
 
       - name: Freeze bindings and execute matched wide/deep trial
         shell: bash
@@ -65,7 +81,7 @@ jobs:
           from pathlib import Path
 
           from orion.providers.live_phase2 import (
-              build_phase2_live_provider_stack_from_env,
+              build_phase2_auto_provider_stack_from_env,
               write_live_phase2_provider_manifest,
           )
           from orion.self_orion.baseline import baseline_bundle_to_dict, write_baseline_bundle
@@ -87,18 +103,26 @@ jobs:
           )
 
           out = Path(os.environ['RUNNER_TEMP']) / 'p5-phase2-live'
-          model = os.environ['ORION_PHASE2_REASONER_MODEL'].strip()
           budget = float(os.environ['ORION_PHASE2_RESOURCE_BUDGET_UNITS'])
-          if not model:
-              raise RuntimeError('ORION_PHASE2_REASONER_MODEL must be non-empty')
           if budget <= 0:
               raise RuntimeError('ORION_PHASE2_RESOURCE_BUDGET_UNITS must be positive')
 
           subject = attest_repository_subject('.', repository_identity='github.com/SzeChunYiu/ORION')
           write_repository_subject_attestation(subject, out / 'SUBJECT_ATTESTATION.json')
 
-          stack = build_phase2_live_provider_stack_from_env(reasoner_model=model)
+          github_epoch = (
+              f"github-actions-{os.environ.get('GITHUB_RUN_ID', 'unknown')}"
+              f"-attempt-{os.environ.get('GITHUB_RUN_ATTEMPT', '1')}"
+          )
+          stack, provider_mode = build_phase2_auto_provider_stack_from_env(
+              private_reasoner_model=os.environ['ORION_PHASE2_REASONER_MODEL'].strip(),
+              github_reasoner_model=os.environ['ORION_PHASE2_GITHUB_REASONER_MODEL'].strip(),
+              github_evaluator_model=os.environ['ORION_PHASE2_GITHUB_EVALUATOR_MODEL'].strip(),
+              github_evaluation_epoch_id=github_epoch,
+          )
           write_live_phase2_provider_manifest(stack, out / 'PROVIDER_MANIFEST.json')
+          reasoner_identity = dict(stack.manifest.reasoner_provider)
+          verifier_identity = dict(stack.manifest.verification_provider)
 
           preflight = Phase2ClosurePreflight(
               protocol_id='phase2-shadow-closure-v1',
@@ -123,12 +147,14 @@ jobs:
               'attack_ids': list(preflight_report.attack_ids),
               'subject_revision_hash': subject.subject_revision_hash,
               'subject_commit_oid': subject.commit_oid,
+              'provider_mode': provider_mode,
               'provider_manifest_hash': stack.provider_manifest_hash,
+              'reasoner_identity': reasoner_identity,
+              'verifier_identity': verifier_identity,
               'evaluator_artifact_hash': stack.evaluator_artifact_hash,
               'evaluation_epoch_id': stack.evaluation_epoch_id,
               'protocol_id': preflight.protocol_id,
               'baseline_id': preflight.baseline_id,
-              'reasoner_model': model,
               'resource_budget_units': budget,
               'outcome_accessed': False,
           }
@@ -186,12 +212,14 @@ jobs:
               'blockers': blockers,
               'subject_revision_hash': subject.subject_revision_hash,
               'subject_commit_oid': subject.commit_oid,
+              'provider_mode': provider_mode,
               'provider_manifest_hash': stack.provider_manifest_hash,
+              'reasoner_identity': reasoner_identity,
+              'verifier_identity': verifier_identity,
               'evaluator_artifact_hash': stack.evaluator_artifact_hash,
               'evaluation_epoch_id': stack.evaluation_epoch_id,
               'protocol_id': preflight.protocol_id,
               'baseline_id': preflight.baseline_id,
-              'reasoner_model': model,
               'packet_fingerprint': packet.fingerprint,
               'live_trial_evidence_artifact_hash': loaded.evidence_artifact_hash,
               'live_trial_document_hash': loaded.document_hash,
