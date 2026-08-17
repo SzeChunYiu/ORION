@@ -2,66 +2,100 @@
 
 **Current terminal:** `CANNOT_CHECK` / not a promoted paper / not peer-review ready.
 
+## 0. Earned local package state — 2026-08-17 wide pass
+
+Present now:
+
+- `manuscript/FORMAL_CORE_V1.md` widened from one topology to an epistemic atlas;
+- stopping theorem repaired to use **extension ambiguity**, with an explicit richness corollary rather than equating certificate absence with ambiguity;
+- `manuscript/DRAFT.md` rewritten around orientation, chart/objective change and support/closure transport;
+- synchronized `CLAIM_LEDGER_V1.md` preserving the repaired theorem premise;
+- internal ownership matrix marking P1 reframe and P2 route/stop mechanisms as prior internal ownership;
+- parent/donor map expanded through planning abstraction/representation languages, POMDPs, goal evolution, world models and exploration breadth;
+- deterministic countermodel checker plus small theorem-boundary falsifier;
+- additive `CHECK_RESULTS_V2.md` with certificate/ambiguity negative control, evidence-vs-closure transport and no-reframe control;
+- `REPRODUCE.md`;
+- `PROSPECTIVE_EVALUATION_V1.md` with exact-ground-truth atlas families, donor baseline slots and mandatory non-retrieval/negative controls;
+- five-role adversarial review log.
+
+These artifacts do not establish novelty, benchmark superiority or real-world scientific-navigation completeness.
+
 ## 1. Distinct-object gate
-- [ ] #343 proves P7 is more than P2 route-governance terminology.
-- [ ] exact P2-owned mechanics are listed and excluded from P7 novelty.
-- [ ] topology-changing navigation residual has a formal definition and direct discriminator.
+- [ ] #343 proves P7 is more than P1 representation reconstruction + P2 route-governance terminology.
+- [x] exact P1/P2-owned native mechanics are listed and excluded from P7 novelty in the ownership matrix.
+- [x] the candidate atlas residual has a formal definition and a direct prospective discriminator (support/closure transport across chart/objective change).
+- [ ] the discriminator survives external planning/representation literature saturation.
 
 ## 2. Nearest-work closure
-- [ ] graph/KG navigation families dispositioned.
+- [ ] graph/KG navigation families dispositioned with atomic receipts.
 - [ ] exploratory search/information-foraging families dispositioned.
 - [ ] POMDP/active information acquisition families dispositioned.
+- [ ] planning abstraction/homomorphism/representation-language families dispositioned.
+- [ ] learned/adaptive planning representation families dispositioned.
 - [ ] web/deep-search agent planning and stopping families dispositioned.
-- [ ] systematic-review stopping/query-diversification/capture-recapture/federated-search families dispositioned.
-- [ ] model-revision/replanning/representation-change families dispositioned.
+- [ ] model-revision/world-model/replanning families dispositioned.
+- [ ] goal/objective revision/evolution families dispositioned.
+- [ ] ontology/schema evolution and preservation-map families dispositioned.
 - [ ] scientific-exploration breadth/concentration work dispositioned.
 - [ ] hostile exact-composition search completed.
 - [ ] two no-material-change rounds.
 - [ ] #287 novelty certificate current.
 
 ## 3. Theory
-- [ ] navigation state and route relations frozen.
-- [ ] local route stop/task stop/defer/revisit/CANNOT_CHECK/reframe separated formally.
-- [ ] representation-change operator defines what topology/frontier/obligations are preserved or reopened.
-- [ ] exploration utility separated from completion authority.
+- [ ] atlas/chart/navigation definitions frozen after saturation.
+- [x] local route stop/task stop/defer/`CANNOT_CHECK`/reframe are separated formally, with P2 ownership explicit.
+- [x] representation/objective-change operator defines partial maps and support/obligation preservation/reopening conditions.
+- [x] exploration utility is separated from task-completion authority in the current formal core.
+- [x] certificate absence and extension ambiguity are explicitly distinguished.
+- [x] evidence identity versus closure/obligation transport is explicitly distinguished.
+- [ ] planning-abstraction donor mappings prove conservative embedding where feasible.
+- [ ] at least one high-value atlas theorem receives independent/mechanized proof review where justified.
 
 ## 4. Benchmark
-- [ ] generator frozen with hidden useful branches.
-- [ ] unknown-coverage/censored-route cases.
-- [ ] deceptive route-overlap/local-optimum cases.
-- [ ] dead-end/revisit cases.
-- [ ] topology-change cases.
-- [ ] negative controls where topology change is harmful/unnecessary.
-- [ ] at least one non-retrieval transfer domain.
-- [ ] gold and stop semantics frozen before candidate results.
+- [x] prospective benchmark protocol draft exists with hidden branches, orientation, unknown coverage, censored routes, deceptive route diversity, chart/objective changes, model-revision controls, breadth traps and negative controls.
+- [ ] versioned generator implementation frozen before candidate results.
+- [ ] hidden useful branches generated/replayed deterministically.
+- [ ] unknown-coverage/extension-ambiguity paired cases generated at benchmark scale.
+- [ ] censored-route cases generated.
+- [ ] deceptive route-overlap/local-optimum cases generated.
+- [ ] dead-end/revisit cases generated.
+- [ ] chart/ontology-change cases generated.
+- [ ] objective-change evidence/closure transport cases generated.
+- [ ] negative controls where topology change is harmful/unnecessary generated.
+- [ ] at least one non-retrieval transfer domain executed.
+- [ ] gold/stop/support semantics frozen before system results.
 
 ## 5. Baselines/ablations
-- [ ] graph-navigation baseline.
+- [ ] fixed-chart graph-navigation baseline.
+- [ ] Search-on-Graph-style iterative navigator where faithfully implementable.
 - [ ] active-information/POMDP baseline where valid.
-- [ ] search-agent/replanning baseline.
-- [ ] P2-style route-governance baseline.
-- [ ] resource-matched random/exploratory baseline.
-- [ ] direct no-topology-change ablation.
+- [ ] planning abstraction/world-model/goal-evolution donor baseline appropriate to each family.
+- [ ] exact P1+P2 native composition baseline.
+- [ ] resource-matched exploratory baseline where meaningful.
+- [ ] direct no-chart-change ablation.
 - [ ] direct no-censored-obligation ablation.
-- [ ] direct route-independence ablation.
+- [ ] direct no-support-transport gate ablation.
 
 ## 6. Metrics/statistics
-- [ ] root success.
-- [ ] obligation/frontier coverage.
-- [ ] redundant exploration and route-overlap.
-- [ ] premature-stop and false-independence rates.
-- [ ] dead-end recovery/revisit value.
-- [ ] unnecessary topology-change rate.
-- [ ] calibrated unresolved/CANNOT_CHECK.
-- [ ] cost/resources.
-- [ ] prospective margins/statistics frozen.
+- [x] primary metric families are prospectively specified (task/closure correctness, navigation, reframe/transport, breadth, resource cost).
+- [ ] root-task success results.
+- [ ] obligation/frontier coverage results.
+- [ ] useful structural breadth and redundant exploration results.
+- [ ] premature-stop/false-independence rates.
+- [ ] dead-end recovery/revisit results.
+- [ ] unnecessary reframe rate.
+- [ ] support-transport/reopening error rates.
+- [ ] calibrated unresolved/`CANNOT_CHECK` results.
+- [ ] prospective margins/statistical treatment frozen for sampled families.
 
 ## 7. Manuscript/reproducibility
 - [x] working markdown draft exists.
-- [ ] full-text related-work section.
-- [ ] claim ledger #346 complete.
-- [ ] deterministic benchmark and trace replay under #347.
-- [ ] figures/tables generated only from immutable records.
+- [x] formal core + synchronized claim ledger exist.
+- [ ] full-text related-work section with atomic donor dispositions.
+- [ ] claim ledger #346 terminal complete (ledger exists but open claims remain).
+- [x] deterministic theorem/countermodel reproduction path documented.
+- [ ] deterministic benchmark generator + full navigation-trace replay under #347.
+- [ ] immutable benchmark records/tables/figures.
 - [ ] every promoted empirical positive has #283 receipt.
 
 ## 8. Submission
@@ -71,4 +105,4 @@
 
 ## Done definition
 
-Promote P7 only if topology-changing epistemic navigation shows a distinct, prospectively identified benefit beyond P2 and strong navigation/planning baselines, including a non-retrieval transfer test. Otherwise merge the useful navigation framing into P2.
+Promote P7 only if atlas-level representation/objective change plus support/closure transport shows a distinct prospectively identified result beyond P1+P2 and strong navigation/planning donors, including a non-retrieval exact-ground-truth transfer test and low unnecessary-reframe behavior. Otherwise merge useful atlas framing into P1/P2/programme theory.
