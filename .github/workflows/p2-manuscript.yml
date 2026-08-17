@@ -5,8 +5,11 @@ on:
     paths:
       - 'papers/paper-02-open-world-scientific-discovery/manuscript/**'
       - 'papers/paper-02-open-world-scientific-discovery/JOURNAL_READINESS.md'
+      - 'papers/paper-02-open-world-scientific-discovery/JOURNAL_READINESS_V2.md'
+      - 'papers/paper-02-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V2.md'
       - 'papers/paper-02-open-world-scientific-discovery/notes/submission/**'
       - 'papers/paper-02-open-world-scientific-discovery/protocol/P2_*'
+      - 'papers/paper-02-open-world-scientific-discovery/scripts/check_claim_ledger.py'
       - 'papers/paper-02-open-world-scientific-discovery/scripts/check_p2_v2.py'
       - 'papers/paper-02-open-world-scientific-discovery/tests/test_p2_v2.py'
       - '.github/workflows/p2-manuscript.yml'
@@ -21,6 +24,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - name: Validate immutable V1 claim bindings
+        run: python papers/paper-02-open-world-scientific-discovery/scripts/check_claim_ledger.py --check
       - name: Validate V2 widening contract
         run: python papers/paper-02-open-world-scientific-discovery/scripts/check_p2_v2.py
       - name: Run V2 contract tests
