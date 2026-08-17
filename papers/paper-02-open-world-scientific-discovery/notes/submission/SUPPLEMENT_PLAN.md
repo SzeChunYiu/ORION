@@ -47,7 +47,7 @@ see `ARCHIVE_AND_COST_LEDGER.md` for whether to ship them expanded.
 | External access audit | `protocol/EXTERNAL_ACCESS_AUDIT_V1.json` | Which external evaluators are runnable, which are blocked, and the evidence for each — including the inherited unseeded `max_iou_at_k` nondeterminism. |
 | Claim ledger + checker | `protocol/CLAIM_LEDGER_V1.json`, `scripts/check_claim_ledger.py`, `evidence/CLAIM_LEDGER_V1.md` | Which sentence rests on which artifact key, and a command that fails when that stops being true. |
 | External probe archive | `evidence/external_results/METASYN_ID_ONLY_PROBE_V1.json` | The one completed external evaluation, with its declared scope and content bindings. |
-| Contamination probes | `evidence/access/contamination_probes.md` | Structural exposure analysis and spot checks completed to date (the benchmark-wide rate audit is not complete — see section 4). |
+| Contamination probes | `evidence/access/contamination_probes.md`, `evidence/external_results/AUTORESEARCHBENCH_SEARCH_CONTAMINATION_V1.json` | Structural exposure plus the archived Wide search-time self-exposure diagnostic. |
 
 Supplementary tables and figures already generated from the immutable summaries
 (P2-3, P2-4, P2-5, P2-6, P2-S1, P2-3 taxonomy) ship as both `.svg` and `.tex` so
@@ -63,9 +63,9 @@ judged unimportant. None may be described in the supplement as if present.
 | AutoResearchBench Wide ORION-vs-baseline result | No admissible ORION candidate run archived. Scorer runnability is established; a system result is not. |
 | AutoResearchBench Deep official metric | Requires an OpenAI-compatible judge endpoint. |
 | SAGE result | Published 200k retrieval corpus and official evaluator unavailable. **Struck**, not deferred: no substitute "official" evaluator will be constructed. |
-| Table P2-2 with intervals, Figure P2-2, Figure P2-7 | Require the cost-bearing external/live campaign; the offline result is `DESCRIPTIVE_ONLY` and cannot satisfy an interval requirement. |
-| Raw final live-provider request/response archive and cost ledger | Capture machinery exists and has been exercised; the final campaign has not been run. |
-| Benchmark-wide search-time contamination-rate audit | Only structural exposure and spot checks are complete. |
+| Table P2-2 with query-count resource metrics, Figure P2-2, Figure P2-7 | **Landed** on `main` (PR #244 / #243). Table P2-2 does not promote intervals. P2-7 is a bounded-probe comparison, not matched ORION-vs-baseline. |
+| Raw final live-provider request/response archive and monetary cost ledger | Capture machinery exists and has been exercised; the final campaign has not been run. Operator re-scope: query-count is the sanctioned cost axis. |
+| Benchmark-wide search-time contamination-rate audit | **Landed** as `AUTORESEARCHBENCH_SEARCH_CONTAMINATION_V1.json` (Wide self-exposure diagnostic; not a claim of absence of indirect/training-time contamination). |
 | Expert-review comparison cases | Deferred pending available domain experts. |
 
 ## 5. Excluded on licence grounds

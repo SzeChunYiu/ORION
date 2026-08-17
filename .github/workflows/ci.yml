@@ -5,6 +5,12 @@ on:
   push:
     branches: [main]
 
+# One run per PR / per main. New pushes cancel the stale queue so 25
+# parallel lanes do not wait behind superseded SHAs.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: ubuntu-latest

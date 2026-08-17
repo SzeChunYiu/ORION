@@ -42,10 +42,9 @@ FACT_UNITS = {
     "OfflineRunRecordCount": ("record", "records", "run", "runs", "execution", "executions"),
 }
 
-#: Excluded while a sibling lane rewrites it at a new N; the exclusion is named
-#: here rather than left silent, and is removed by the manuscript follow-up that
-#: lands after that lane's scale-up. Owner: this lane. Trigger: worldscale merge.
-PENDING_EXCLUSIONS = {"results.tex"}
+#: No manuscript file is excluded. The worldscale merge landed; results.tex
+#: must use generated macros rather than literal scale facts.
+PENDING_EXCLUSIONS: set[str] = set()
 
 
 def _module():

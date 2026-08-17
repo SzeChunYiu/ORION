@@ -4,22 +4,37 @@ Venue facts fetched **2026-08-17**; quotations are short and attributed to the U
 fetched. Pages that would not load are marked `CANNOT_CHECK`, and no scope, limit
 or policy is asserted for them.
 
+**Authority correction (2026-08-17, issue #99):** the offline campaign is
+`TIER_B_committed` with the frozen plan's mandatory underpowered label, not
+`DESCRIPTIVE_ONLY`. A bounded Deep official-judge probe is now archived
+(`DEEP_OFFICIAL_ARCHIVE_V1.json`, hit rate 0.000) and remains separately
+scoped from matched ORION-vs-baseline evidence. The TMLR recommendation
+below is unchanged. A second dated check
+(`protocol/TARGET_JOURNAL_SCOPE_CHECK_2026-08-17.md`) recommends IP&M.
+Neither check satisfies issue #99's "after external results stabilize"
+precondition: matched Wide/Deep execution is still open (#157 / #279).
+
 ## 1. What this paper can honestly offer
 
-From `protocol/CLAIM_LEDGER_V1.json` (43 rows, checker green):
+From `protocol/CLAIM_LEDGER_V1.json` (checker green; `known_defects` empty):
 
 - **Supported.** The governance mechanism — earned route independence,
   question-conditioned read state, route-stop/task-stop separation, fail-closed
   coverage — probed on a frozen, fully synthetic complete-gold index (task count per
   `evidence/offline_gold/MANIFEST.json` → `task_count`); negative ablations fail in
-  the designed directions. Authority `DESCRIPTIVE_ONLY`: below the frozen plan's
-  lowest inferential tier, so no interval, *p*-value or superiority decision exists.
+  the designed directions. Authority `TIER_B_committed` plus the plan's
+  mandatory underpowered label: assumed-p half-width exceeds the frozen
+  superiority margin, so no promoted interval, *p*-value or superiority
+  decision is drawn from the offline companion.
 - **Supported, bounded.** One external, official, credential-free retrieval and
   screening evaluation (MetaSyn ID-only, all released test reviews, pinned evaluator)
   whose candidate is a keyless BM25 + deterministic screening probe, **not** the
-  matched multi-provider ORION system.
-- **Not supported.** Superiority on real literature. `CANNOT_CHECK`: no Wide or Deep
-  system result archived, SAGE not reproducible as published, live campaign not run.
+  matched multi-provider ORION system. A separate AutoResearchBench Deep
+  official-judge probe of the keyless public-arXiv candidate is archived and
+  is likewise not a matched ORION-vs-baseline result.
+- **Not supported.** Superiority on real literature. `CANNOT_CHECK`: no matched
+  Wide or Deep ORION-vs-baseline result archived, SAGE not reproducible as
+  published, live OpenAlex campaign not run.
 
 Strongest honest sentence: *mechanism demonstrated on a synthetic
 complete-denominator world, plus one bounded external probe; external superiority

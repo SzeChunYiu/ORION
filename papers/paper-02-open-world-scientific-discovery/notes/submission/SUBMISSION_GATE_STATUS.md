@@ -17,11 +17,11 @@ own precondition is unmet, that is stated rather than absorbed into a `DONE`.
 | 9.1 | literature closure within 14 days of submission | `DEFERRED until a submission date exists` | The requirement is time-boxed to a date not yet set, so it cannot be satisfied early — closing it now would only expire again. Standing basis: `notes/NEAREST_WORK_AUDIT_2026-08.md`, `notes/nearest-work/*.md`, `evidence/literature/*.json`, and `tests/unit/p2/test_p2_literature_closure.py`. Owner: literature lane. Action: re-run the closure sweep inside the 14-day window. |
 | 9.2 | target-journal scope check after external results stabilize | `DONE` | `notes/submission/JOURNAL_SCOPE_CHECK.md`. Four venues assessed against pages fetched 2026-08-17; recommendation **TMLR**, with reasoning tied to what the claim ledger supports. Four further venues marked `CANNOT_CHECK` because their pages would not load. |
 | 9.2b | scope check re-verification once external results stabilize | `BLOCKED_ON external result stabilization` | The checkbox's stated precondition is **not** met: no Wide/Deep system result is archived, so the check above was necessarily made under `CANNOT_CHECK` external status. The recommendation is contingent by construction — TMLR fits *because* external superiority is unproven; if an external campaign lands, Research Synthesis Methods becomes viable and the venue decision must be retaken. |
-| 9.3a | cover letter | `DONE` | `notes/submission/COVER_LETTER_DRAFT.md`. Claims exactly what the ledger supports; names the four limits (synthetic index, external families under declared deviations, one inherited unseeded upstream metric, live-provider mutability); no superlatives, no invented endorsements, no reviewer suggestions. Must not be sent before defects `P2-D01`/`P2-D02` are fixed. |
+| 9.3a | cover letter | `DONE` (draft) | `notes/submission/COVER_LETTER_DRAFT.md`. Claims exactly what the ledger supports; names the four limits (synthetic index, external families under declared deviations, one inherited unseeded upstream metric, live-provider mutability); no superlatives, no invented endorsements, no reviewer suggestions. Venue is not finalized (TMLR vs IP&M). |
 | 9.3b | supplement | `DONE` (plan) / `BLOCKED_ON assembly` | `notes/submission/SUPPLEMENT_PLAN.md` enumerates included, deferred and licence-excluded contents plus a pre-submission checklist. The ZIP itself has not been built, and building it requires the anonymisation in 9.3c. |
 | 9.3c | journal formatting | `BLOCKED_ON TMLR style adoption and anonymisation` | `manuscript/main.tex` is `\documentclass[11pt]{article}`. TMLR requires its official LaTeX style file and double-blind anonymisation (<https://jmlr.org/tmlr/author-guide.html>, fetched 2026-08-17), and neither is applied. The author line is the placeholder `\author{Working framework draft}` and no acknowledgements or funding text exists, so anonymisation is unstarted rather than violated — but real author metadata must never be added except on the TMLR anonymised template. Owner: manuscript lane. |
 | 9.4 | final reference-metadata and figure-legibility audit | `BLOCKED_ON the manuscript compile and reference-audit workflow` | Depends on the ChatGPT lane's compile + reference audit (`chatgpt/p2-remaining-closure`, PR #170). Not startable from this lane: a legibility audit needs a rendered PDF, and there is no compile artifact to inspect. |
-| 9.5 | independent final PDF/claim proofread | `BLOCKED_ON 9.3c, 9.4 and defects P2-D01/P2-D02` | Two prerequisites are mechanical (a compiled, correctly formatted PDF) and one is substantive: the manuscript currently contains two statements the archive contradicts. Proofreading against a known-wrong text would certify the error. The claim half of this gate is now mechanised — `scripts/check_claim_ledger.py --check` is green in 0.04 s — but a human still owns the prose read. |
+| 9.5 | independent final PDF/claim proofread | `BLOCKED_ON 9.3c and 9.4` | Two prerequisites are mechanical (a compiled, correctly formatted PDF). The claim half of this gate is mechanised — `scripts/check_claim_ledger.py --check` is green; `known_defects` is empty — but a human still owns the prose/PDF read. |
 
 ## Section 8 — reproducibility package items owned by the gate
 
@@ -35,7 +35,7 @@ own precondition is unmet, that is stated rather than absorbed into a `DONE`.
 
 | Item | State | Artifact |
 | --- | --- | --- |
-| Claim ledger mechanised and machine-checked | `DONE` | `protocol/CLAIM_LEDGER_V1.json` (43 rows), `scripts/check_claim_ledger.py`, `tests/unit/p2/test_p2_claim_ledger.py` (45 tests: injected-defect coverage plus the no-alarm case). Green on the committed tree; `--strict` fails only on the two recorded manuscript defects. |
+| Claim ledger mechanised and machine-checked | `DONE` | `protocol/CLAIM_LEDGER_V1.json`, `scripts/check_claim_ledger.py`, `tests/unit/p2/test_p2_claim_ledger.py`. Green on the committed tree including `--strict`; `known_defects` is empty. Record-set SHA-256 values are bound (`DIGEST_MISMATCH`). |
 
 All four ledgered regions — abstract, conclusion, Limitations and Results prose —
 hard-fail on an unledgered outcome sentence. Every outcome sentence in those
@@ -50,24 +50,15 @@ cross-lane gate and the lead should know it now behaves as one.
 
 ## Open defects blocking submission
 
-Both are recorded in `protocol/CLAIM_LEDGER_V1.json` under `known_defects` and are
-printed on **every** checker run, so they cannot rot quietly. Neither file is
-editable from this lane.
+`protocol/CLAIM_LEDGER_V1.json` → `known_defects` is **empty**. The former
+MetaSyn under-claims `P2-D01`/`P2-D02` were fixed and retired on `main`.
 
-| ID | Location | Problem | Required fix |
-| --- | --- | --- | --- |
-| `P2-D01` | `manuscript/sections/results.tex` | States that no external MetaSyn performance result is reported in this revision. The archived probe scored **all released test reviews** under the pinned official ID-only evaluator. | Remove MetaSyn from the negative list; report the probe with its declared scope (keyless BM25 + deterministic screening candidate, not the matched multi-provider system). Then promote ledger row `P2-X01` from `NOT_ASSERTED_ARCHIVED_ONLY` to `ASSERTED`. |
-| `P2-D02` | `manuscript/main.tex`, Limitations | States that MetaSyn retrieval/screening is "runnable by source audit but unexecuted here". It was executed; the archive carries authority `OFFICIAL_METASYN_ID_ONLY_EVALUATOR`. | Replace the "unexecuted here" clause. The Wide, Deep and SAGE clauses in the same sentence are accurate and should be kept. |
+What still blocks a send is not a ledger defect:
 
-Both are **under**-claims, not over-claims, so neither inflates the paper — but a
-submitted manuscript that denies its own archived evidence is a reviewer-visible
-integrity problem, and `evidence/CLAIM_LEDGER_V1.md` already lists the MetaSyn row
-as `SUPPORTED`, so the paper currently contradicts its own ledger.
-
-A third, smaller item: `manuscript/main.tex` points readers at
-`evidence/CLAIM_LEDGER_V1.md` only. It should also cite
-`protocol/CLAIM_LEDGER_V1.json` and the checker, since the machine-checkable form
-is now the authoritative one and the prose table is the human view.
+1. Matched Wide/Deep ORION-vs-baseline evidence (`CANNOT_CHECK`; #157 / #279).
+2. TMLR vs IP&M venue conflict, and the checkbox's "after external results stabilize" precondition.
+3. Venue template / anonymisation / compiled PDF.
+4. Permanent archive/DOI, with the MetaSyn Actions artifact still expiring `2026-09-15T21:39:53Z`.
 
 ## Honest summary
 
@@ -87,7 +78,6 @@ submittable, not stronger.
 1. External result stabilization — venue decision re-verification (9.2b).
 2. TMLR style adoption and double-blind anonymisation (9.3c) — blocks supplement assembly (9.3b).
 3. Manuscript compile and reference-audit workflow, ChatGPT lane PR #170 (9.4).
-4. Items 2 and 3 plus defects `P2-D01`/`P2-D02` — final PDF/claim proofread (9.5).
-5. Final live-provider campaign — raw archive (8.4) and remaining cost-ledger rows (8.8).
+4. Manuscript compile and reference-audit workflow (`p2-manuscript-audit` is gated to another branch).
+5. Final live-provider campaign — raw archive (8.4) and remaining live-cost rows (8.8). Operator re-scope: query-count metrics are the completed cost axis.
 6. Archive deposit (8.10), with a hard deadline of 2026-09-15 to mirror the expiring MetaSyn artifact.
-7. Defect fixes `P2-D01` and `P2-D02` — owned by the results/manuscript lanes.
