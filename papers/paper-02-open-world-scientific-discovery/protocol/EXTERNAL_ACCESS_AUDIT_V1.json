@@ -14,6 +14,13 @@
       "revision": 2,
       "completed_utc": "2026-08-16T18:07:00Z",
       "summary": "CORRECTION. Revision 1 reported the unpublished deepxiv paper-search backend as the hard blocker for AutoResearchBench official evaluation, and described MetaSyn retrieval/screening as only 'in principle' credential-free. Both conflated a benchmark's reference agent with its scorer, sourced from example.env and README rather than from the code. Verified at the pinned revisions: AutoResearchBench Wide scores with no credentials (400/400 wide records carry usable gold arXiv ids), Deep needs only a judge endpoint (deterministic id-match deviation available for 540/600), and MetaSyn's retrieval/screening scoring path imports no LLM client. Added official_evaluation_runnable_by_family so the distinction is machine-readable. The SAGE verdict is unchanged. No content hash, licence or state value changed."
+    },
+    {
+      "author_context": "Claude orchestration lane",
+      "completed_utc": "2026-08-17T06:00:00Z",
+      "correction_of_a_correction": "An orchestrator note claimed this audit had mis-enumerated the SAGE repository as \"777 KB, 11 entries\". That claim was wrong: 777 KB is GitHub\"'s repository size field and the 11 tree entries are README plus eight query files plus two directories, which this audit had already enumerated correctly. The substantive gap was the missing usability verdict, not a bad inventory.",
+      "revision": 3,
+      "summary": "Added usable_task_family_under_declared_deviation. The official-scorer verdicts are unchanged and were correct: SAGE\"'s corpus and evaluator are genuinely unpublished. What was missing is the separate fact that SAGE\"'s 1200 queries and their gold ARE obtainable and give the largest external N available to this paper, so the family belongs in the study under declared scoring rather than being struck from it."
     }
   ],
   "auditor_context": {
