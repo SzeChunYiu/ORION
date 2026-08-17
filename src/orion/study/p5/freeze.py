@@ -394,17 +394,12 @@ def _write_json(path: Path, value: Mapping[str, Any]) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Freeze a protected ORION-P5 hidden-cause suite")
-    parser.add_argument("--protected-suite", type=Path, required=True)
-    parser.add_argument("--candidate-packet", type=Path, required=True)
-    parser.add_argument("--commitment", type=Path, required=True)
-    args = parser.parse_args(argv)
+    # Import lazily: freeze_cli imports the frozen semantic API from this module.
+    # Delaying the import until execution avoids a module-import cycle while
+    # ensuring every executable entrypoint uses the same custody-safe wrapper.
+    from .freeze_cli import main as secure_main
 
-    protected = json.loads(args.protected_suite.read_text(encoding="utf-8"))
-    candidate, commitment = freeze_protected_suite(protected)
-    _write_json(args.candidate_packet, candidate)
-    _write_json(args.commitment, commitment)
-    return 0
+    return secure_main(argv)
 
 
 if __name__ == "__main__":
