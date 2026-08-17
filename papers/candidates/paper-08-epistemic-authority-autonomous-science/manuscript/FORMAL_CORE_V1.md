@@ -2,319 +2,346 @@
 
 **Candidate paper:** A Theory of Epistemic Authority for Autonomous Science  
 **Authority:** mathematical working object; novelty not yet authorized  
-**Date:** 2026-08-17
+**Date:** 2026-08-17  
+**Donor policy:** absorb effect typing, evidence-backed authorization, abstention and provenance mechanisms; do not relabel them.
 
-## 1. Typed epistemic actions
+## 1. Domains, effects, and judgments
 
-Let
+Let `D` be a finite set of epistemic effect domains. The initial ORION embedding uses
 
 \[
-\mathcal D=\{\mathsf{reframe},\mathsf{search\_stop},\mathsf{map\_merge},\mathsf{assert},\mathsf{self\_modify}\}
+D_0=\{\mathsf{REFRAME},\mathsf{SEARCH\_STOP},\mathsf{MAP\_MERGE},\mathsf{ASSERT},\mathsf{SELF\_MODIFY}\},
 \]
 
-be the initial action-domain set.
+but the calculus is not restricted to these five domains.
 
-### Definition 1 (epistemic action)
-An epistemic action is a tuple
+### Definition 1 (effect request)
+An effect request is
 
 \[
-a=(d,s,p),
+e=(id,d,op,S,p,epoch),
 \]
 
-where \(d\in\mathcal D\) is the action domain, \(s\) is a typed scope, and \(p\) is the proposed state transition or payload.
+where `id` is an identity, `d\in D` is the effect domain, `op` the proposed operation, `S` its target scope, `p` its payload/proposed state delta, and `epoch` the state/version against which authorization is requested.
 
-### Definition 2 (capability)
-\(\mathsf{Cap}(a,E)\) means that the candidate system can construct and/or execute \(a\) from state \(E\). Capability has no authorization consequence unless a rule states one.
+A system may be capable of constructing or executing `e` even when it is not authorized to commit `e`.
 
-## 2. Judgments, obligations and certificates
-
-### Definition 3 (typed judgment)
-A judgment is
+### Definition 2 (typed judgment)
+A judgment has the form
 
 \[
-j=(i,k,d,s,e,t),
+j=(kind,d,scope,content,prov,epoch),
+\]
+
+where `kind` is one of support, blocker, obligation-satisfied, grant, revocation, capability, utility, or closure.
+
+Judgments are domain-typed. A judgment in domain `d` is not automatically usable in another domain `d'`.
+
+### Definition 3 (authority context)
+An authority context is
+
+\[
+\Gamma=(J,O_h,O_s,G,C,R,P,H),
 \]
 
 where:
 
-- \(i\) is the issuer;
-- \(k\) is the judgment kind (support, defeater, obligation satisfaction, authorization, revocation, coverage certificate, and so on);
-- \(d\) is its domain;
-- \(s\) is its scope;
-- \(e\) is its content-bound evidence/protocol identity;
-- \(t\) is its validity epoch/expiry.
+- `J` is the set of active typed judgments;
+- `O_h(e)` is the set of hard/non-compensatory obligations for effect `e`;
+- `O_s(e)` is the set of soft/resource obligations/preferences;
+- `G` is the set of authority grants/roots;
+- `C` is the registry of explicitly allowed cross-domain coercions;
+- `R` is the revocation relation/state;
+- `P` is the evidence/authority dependency and provenance graph;
+- `H` is the retained request/deny/commit/revoke history.
 
-A bare token such as `PASS`, `VERIFIED`, `HIGH_CONFIDENCE` or `DONE` is not an authority judgment without these fields.
+A bare token such as `PASS`, `VERIFIED`, `HIGH_CONFIDENCE` or `DONE` is not an authority judgment without domain, scope, content identity and epoch.
 
-### Definition 4 (obligation status)
-For action \(a\), each obligation \(o\in\operatorname{Obl}(a)\) has status
+## 2. Requested versus committed effects
 
-\[
-\operatorname{st}(o)\in\{\mathsf{sat},\mathsf{violated},\mathsf{unknown},\mathsf{conflict}\}.
-\]
-
-Obligations are partitioned into hard blockers \(H(a)\) and soft/resource considerations \(S(a)\).
-
-### Definition 5 (authority contract)
-An authority contract for action \(a\) is
+ORION adopts the request/commit distinction made explicit by current effect/authorization systems:
 
 \[
-\mathcal C_a=(H(a),S(a),B(a),I(a),K(a)),
+\mathsf{REQUEST}(e),\quad \mathsf{ALLOW}(e),\quad \mathsf{DENY}(e),\quad \mathsf{CANNOT\_CHECK}(e),\quad \mathsf{COMMIT}(e).
 \]
 
-where \(B(a)\) is a defeater set, \(I(a)\) is the set of trusted issuer policies, and \(K(a)\) is the set of registered cross-domain coercions/delegations accepted by the action domain.
-
-### Definition 6 (authorization)
-An action is authorized, written \(\Gamma\vdash\mathsf{Auth}(a)\), only if:
-
-1. every hard obligation in \(H(a)\) has a valid \(\mathsf{sat}\) judgment;
-2. no blocking defeater in \(B(a)\) is active;
-3. every authority judgment used in the derivation is unexpired, evidence-bound and issued by a trusted issuer or obtained through a registered sound coercion;
-4. the derived scope is no broader than the scopes in the premises;
-5. no premise has been revoked.
-
-If a hard obligation is \(\mathsf{unknown}\) or \(\mathsf{conflict}\), the terminal is \(\mathsf{CANNOT\_CHECK}\) unless a contract-specific rule requests more evidence.
-
-## 3. Core inference rules
-
-The following rules are schematic.
-
-### Rule A1 (trusted base authorization)
+### Definition 4 (commit rule)
+An effect may commit only if an authorization derivation exists for the same effect identity, scope, content identity and valid epoch:
 
 \[
-\frac{j=(i,\mathsf{authorize},d,s,e,t)\in\Gamma\quad i\in I(a)\quad d=d(a)\quad s(a)\subseteq s\quad \mathsf{valid}(j)}
-{\Gamma\vdash\mathsf{Auth}(a)}
+\Gamma\vdash \mathsf{Auth}_d(e)
+\quad\Longrightarrow\quad
+\mathsf{COMMIT}(e).
 \]
 
-provided all hard obligations and defeater checks in the contract also pass.
+Computational success, model confidence, expected utility, a prior successful replay, or a foreign-domain `PASS` is not a commit rule.
 
-### Rule A2 (scope restriction)
+### Definition 5 (`CANNOT_CHECK`)
+`CANNOT_CHECK(e)` means at least one mandatory authorization premise cannot currently be established or refuted from admissible evidence.
+
+It is not equivalent to `DENY`: `DENY` has a satisfied blocker or failed mandatory condition. It is also distinct from resource `DEFER`.
+
+## 3. Hard obligations and non-compensation
+
+### Definition 6 (hard authorization obligations)
+Let
 
 \[
-\frac{\Gamma\vdash\mathsf{Auth}(d,s,p)\quad s'\subseteq s}
-{\Gamma\vdash\mathsf{Auth}(d,s',p|_{s'})}
+O_h(e)=\{o_1,\ldots,o_k\}.
 \]
 
-Authority may narrow without a new grant; widening requires a new derivation.
+A hard obligation is satisfied only by a content-bound typed judgment whose scope/epoch match the obligation contract.
 
-### Rule A3 (registered coercion/delegation)
+Authorization requires
 
 \[
-\frac{\Gamma\vdash j:d\quad \kappa_{d\to d'}\in K(a)\quad \mathsf{Pre}_\kappa(j,a)}
-{\Gamma\vdash \kappa(j):d'}
+\forall o\in O_h(e):\mathsf{Sat}(o)
 \]
 
-The coercion records its source, target, scope transformation, assumptions and proof/evidence obligation.
+and absence of an active blocker. Soft utility/preferences may rank multiple already-admissible actions but cannot discharge a hard obligation.
 
-### Rule A4 (hard-obligation conjunction)
+### Proposition 1 (finite additive penalties cannot encode an absolute blocker)
+Consider an authorization score
 
 \[
-\frac{\forall o\in H(a),\ \Gamma\vdash\mathsf{Sat}(o)\quad \nexists b\in B(a),\ \Gamma\vdash\mathsf{Active}(b)}
-{\Gamma\vdash\mathsf{ObligationsCleared}(a)}
+S(e)=\sum_i w_i x_i-Mb,
 \]
 
-### Rule A5 (revocation)
-If a premise judgment or evidence identity used by an authorization derivation is revoked, every dependent authorization certificate is invalid until re-derived from valid premises.
-
-### Non-rule (implicit universal PASS)
-There is deliberately no rule
-
-\[
-\frac{\Gamma\vdash\mathsf{PASS}(x)}{\Gamma\vdash\mathsf{Auth}(a)}.
-\]
-
-## 4. Authority laundering
-
-### Definition 7 (authority laundering)
-Authority laundering occurs when a judgment valid for one kind/domain/scope is used to authorize an action outside that kind/domain/scope without an explicit sound coercion.
-
-Examples include confidence-to-permission, route-stop-to-task-stop, similarity-to-merge, citation-support-to-verification, and replay-gain-to-self-promotion.
-
-### Theorem 1 (no authority laundering in the typed calculus)
-Assume every derivation rule either:
-
-1. preserves judgment domain and narrows scope; or
-2. applies a registered coercion \(\kappa_{d\to d'}\).
-
-If no coercion path exists from domain \(d\) to domain \(d'\), then a set of premises containing only judgments in \(d\) cannot derive authorization of an action in \(d'\).
+with fixed threshold `\theta`, finite blocker penalty `M<\infty`, positive evidence increments, and blocker bit `b=1`. If positive increments are not globally bounded, there exists a finite amount of positive evidence such that `S(e)\ge\theta` while the blocker remains active.
 
 #### Proof
-Proceed by induction on derivation height. Base judgments retain their declared domain. For the induction step, a domain-preserving rule cannot change \(d\) to \(d'\). The only domain-changing rule is registered coercion; by assumption no coercion path from \(d\) to \(d'\) exists. Therefore no derivation ending in domain \(d'\) can be constructed from only domain-\(d\) premises. \(\square\)
+Choose positive evidence total greater than `\theta+M`. Then `S(e)\ge\theta` despite `b=1`. Therefore a finite additive penalty cannot represent an absolute non-compensatory blocker without a separate veto/conjunctive/lexicographic layer or an externally imposed bound. `\square`
 
-### Corollary 1.1
-A valid `route_stop` judgment cannot authorize `task_stop` unless the calculus registers a coverage coercion whose premises prove that all mandatory task obligations are covered.
+### Limitation
+A bounded fixed-dimensional scoring system can simulate a veto by choosing a dominating finite weight. The proposition concerns extensible/unbounded evidence accumulation and should not be overclaimed as a result about every scalar policy.
 
-### Corollary 1.2
-A valid replay-improvement judgment cannot authorize self-change promotion unless a coercion explicitly requires fresh-transfer, regression and protected-evaluator obligations.
+## 4. Authority grants and protected roots
 
-## 5. Non-compensatory authority
-
-### Definition 8 (unbounded additive accumulator)
-An additive authority surrogate has the form
+### Definition 7 (grant)
+A grant is
 
 \[
-S=\sum_{i=1}^{n}w_i x_i-pb,
+g=(issuer,d,scope,premises,epoch,expiry,lineage).
 \]
 
-where positive evidence increments \(x_i\ge 0\) may be accumulated without a fixed finite upper bound on \(n\), \(b\in\{0,1\}\) indicates a blocking violation, \(p<\infty\) is its penalty, and authorization occurs when \(S\ge\theta\).
+`issuer` is either a trusted root or an entity whose own delegation authority is derivable. A grant may narrow scope; widening requires an explicit authority-producing rule.
 
-### Theorem 2 (finite penalties do not encode absolute blockers under unbounded accumulation)
-For every finite penalty \(p\), threshold \(\theta\) and positive evidence weight \(w>0\), there exists a number \(n\) of positive evidence increments such that the additive rule authorizes despite \(b=1\).
+### Definition 8 (non-escalating derivation)
+A derivation is non-escalating when every authority conclusion is obtained by:
+
+1. retaining a valid in-scope grant;
+2. narrowing an existing grant;
+3. applying a registered sound coercion; or
+4. using a trusted authority-producing rule whose root is outside the candidate effect's write control.
+
+## 5. Cross-domain coercions and authority laundering
+
+### Definition 9 (coercion)
+A cross-domain coercion is an explicit rule
+
+\[
+c:d\Rightarrow d'
+\]
+
+with premises `Prem_c`, a scope map, an evidence-preservation condition, and an issuer/root authorized to register that coercion.
+
+A coercion is not merely semantic similarity between judgments.
+
+Typical non-coercions without additional premises include:
+
+- planner confidence `\not\Rightarrow` reframe authority;
+- route exhaustion `\not\Rightarrow` task closure;
+- semantic similarity `\not\Rightarrow` merge authority;
+- citation support `\not\Rightarrow` verified-science authority;
+- replay improvement `\not\Rightarrow` self-promotion authority.
+
+### Definition 10 (authority laundering)
+A derivation of `\mathsf{Auth}_{d'}(e)` contains authority laundering when it uses an authority-bearing judgment rooted in `d\neq d'` and no valid registered coercion path from `d` to `d'` appears in the derivation.
+
+### Theorem 2 (typed anti-laundering)
+Assume all judgments are domain-typed and the only rules capable of changing authority domain are registered coercions. Then no derivation can conclude `\mathsf{Auth}_{d'}(e)` from authority-bearing premises exclusively rooted in `d\neq d'` unless a valid coercion path from `d` to `d'` occurs.
 
 #### Proof
-Set all positive increments to one with weight \(w\). Choose
+By induction on derivation height. Base axioms preserve their declared domain. For the induction step, every ordinary rule preserves the authority domain, so a conclusion in `d'` can arise only from premises already in `d'`. The only rules whose conclusion changes domain are registered coercions. Therefore a derivation beginning with authority-bearing judgments in `d` can reach `d'` only through at least one coercion; repeated changes require a coercion path. `\square`
+
+### Corollary 2.1
+A generic token such as `PASS`, `SUCCESS`, or high confidence is unsafe as authority currency unless its type includes the domain/scope or it is explicitly interpreted through a sound coercion.
+
+## 6. Provenance, dependency, and revocation
+
+Let `P` be a directed dependency graph over evidence judgments, grants, coercion applications and authorization certificates.
+
+### Definition 11 (authorization certificate)
+A certificate is
 
 \[
-n\ge \left\lceil\frac{\theta+p}{w}\right\rceil.
+\kappa=(e,d,scope,roots,premises,derivation,epoch).
 \]
 
-Then \(S=nw-p\ge\theta\) while the blocker remains active. \(\square\)
+Every premise used by the derivation is an ancestor of `\kappa` in `P`.
 
-### Consequence
-An absolute scientific blocker cannot be represented by an unbounded additive evidence accumulator with finite penalties. It requires a conjunctive veto, lexicographic layer, infinite penalty in the mathematical idealization, or another explicitly non-compensatory semantics.
-
-### Limitation of the theorem
-A bounded fixed-dimensional additive model can encode a veto by choosing a sufficiently dominant weight. The claim concerns unbounded or extensible evidence accumulation, not every possible scoring function.
-
-## 6. Revocation
-
-Let \(G=(J,E_D)\) be a directed acyclic derivation graph whose nodes are evidence/judgment/certificate identities and whose edges record premise dependence.
-
-### Definition 9 (revocation closure)
-For revoked node set \(X\), define
+### Definition 12 (revocation closure)
+For revoked object `x`, define
 
 \[
-\operatorname{Rev}_G(X)=X\cup\operatorname{Desc}_G(X).
+\operatorname{RevDesc}_P(x)
 \]
 
-Every authorization certificate in this set loses validity until a fresh derivation not depending on revoked nodes is supplied.
+as every authorization certificate or authority-bearing intermediate judgment that depends transitively on `x` and lacks an independent still-valid derivation.
 
-### Theorem 3 (sound dependency-grounded revocation)
-If \(G\) contains every premise dependency of each certificate, revoking \(\operatorname{Rev}_G(X)\) invalidates every authorization whose derivation may have become unsound because of \(X\), while certificates outside the closure retain their derivations.
+### Theorem 3 (dependency-grounded revocation)
+If `P` is sound for authorization dependencies, revoking `x` and invalidating `\operatorname{RevDesc}_P(x)` removes every authorization whose derivation necessarily depends on `x`. Certificates with a complete independent derivation not depending on `x` may remain valid.
 
 #### Proof
-Any affected authorization has a premise path from some \(x\in X\), hence lies in the descendant closure and is revoked. Any certificate outside the closure has no recorded derivation path from \(X\); under dependency completeness its proof uses no revoked premise, so its existing derivation remains intact. \(\square\)
+For any certificate necessarily depending on `x`, soundness places `x` on an ancestor path to that certificate, so it is included in the revocation closure and invalidated. If a certificate has another complete derivation whose premises remain valid and exclude `x`, dependency necessity does not hold for that alternative; preserving it is sound. `\square`
 
-### Remark
-This is a structural theorem. Whether the dependency graph is complete is an empirical/engineering obligation.
+### Corollary 3.1
+Full authority reset is unnecessary whenever valid independent derivations exist outside the revoked dependency closure.
 
-## 7. Self-promotion and protected roots
+## 7. Timing: pre-effect versus post-hoc refusal
 
-### Theorem 4 (candidate-controlled admission cannot establish external promotion soundness)
-Let candidate \(c\) have write access to both the admission predicate \(J\) and every evidence value read by \(J\). Without a protected external invariant, for every candidate \(c\) there exists an internally reachable state in which \(J(c)=\mathsf{authorize}\), independently of whether \(c\) satisfies an external target property \(P\).
+### Definition 13 (pre-effect authorization)
+An authorization mechanism is pre-effect for effect class `E_f` when every irreversible/effectful commit in `E_f` is preceded by a valid authorization judgment for the exact requested effect identity and epoch.
+
+### Proposition 4 (post-hoc abstention is not preventive authorization)
+If an irreversible effect commits before the system emits `DENY` or `CANNOT_CHECK`, the later abstention cannot satisfy pre-effect authorization for that effect.
+
+This is a structural observation. Agentic-abstention work already empirically identifies post-hoc abstention; P8 adopts that failure mode rather than claiming it.
+
+## 8. Self-promotion boundary
+
+### Proposition 5 (candidate-controlled admission cannot guarantee external promotion soundness)
+Suppose candidate transformation `m` can rewrite both the predicate deciding its own admission and every evidence value read by that predicate, with no protected invariant/root outside `m`'s write authority. Then for any `m` there exists a reachable admission policy/evidence state that authorizes `m`, independently of an externally defined correctness property.
 
 #### Proof
-The candidate can replace \(J\) with the constant-authorization predicate, or edit its inputs to satisfy an acceptance branch. Since no protected invariant constrains those writes, authorization is reachable for arbitrary \(c\). Therefore internal admission does not imply \(P(c)\). \(\square\)
+The candidate may choose a constant-accepting predicate or produce candidate-controlled evidence satisfying its own accepting branch. Because no protected external constraint relates admission to the external property, internal acceptance does not imply that property. `\square`
 
-### Corollary 4.1
-A candidate system may propose, test and recommend its own modification, but its promotion certificate must ultimately depend on at least one authority root outside the candidate's write domain.
+## 9. ORION P1–P5 embeddings
 
-## 8. Embedding the five existing gates
+These embeddings are ownership constraints, not new contributions.
 
-### Definition 10 (domain embedding)
-An existing gate embeds into the calculus when its action, hard obligations, defeaters, authority issuer, scope and revocation conditions are represented without changing the gate's decisions on its defined domain.
+### `REFRAME` — P1
+Capability: construct a new formulation/search universe.  
+Authority: mutate only coordinates licensed by the responsibility/evidence diagnosis; dependent closures reopen.
 
-### Proposition 5 (candidate embeddings)
-The current ORION gates can be represented provisionally as follows:
+### `SEARCH_STOP` — P2
+Capability: stop a route or return an answer.  
+Authority: route stop and task stop are distinct; unresolved/censored mandatory obligations block global closure.
 
-1. **P1 reframe:** action domain `reframe`; hard obligations include supported responsibility and coordinate-scoped permission; unresolved responsibility blocks broad mutation.
-2. **P2 task stop:** action domain `search_stop`; hard obligations include route/task distinction, mandatory coverage obligations and censored-route accounting.
-3. **P3 merge:** action domain `map_merge`; hard obligations include referent/context/measurement/preservation conditions; obstruction is a valid non-authorization terminal.
-4. **P4 assert/promote:** action domain `assert`; hard obligations are the protected non-compensatory authority checks in the frozen protocol.
-5. **P5 promote self-change:** action domain `self_modify`; hard obligations include replay, fresh transfer, non-regression/protected assurance and no candidate-controlled promotion root.
+### `MAP_MERGE` — P3
+Capability: propose correspondences or merged constructs.  
+Authority: similarity does not discharge referent/context/measurement/obstruction obligations.
 
-This proposition is an encoding plan, not yet a verified equivalence proof. #343 and the P1–P5 claim ledgers must confirm exact decisions and strike mismatches.
+### `ASSERT` — P4
+Capability: state a claim.  
+Authority: protected, content-bound evidence and independent checks govern scientific-authority promotion. P4 owns this within-domain transition.
 
-### Consequence
-Within a single domain, the shared calculus may add no expressive power beyond the existing gate. P8's possible incremental contribution is therefore:
+### `SELF_MODIFY` — P5
+Capability: generate/compile/replay a self-change.  
+Authority: protected evaluation, fresh transfer, negative-history and non-self-promotion constraints govern admission. P5 owns this within-domain transition.
 
-- typed composition across domains;
-- explicit anti-laundering guarantees;
-- common revocation/dependency semantics;
-- analysis of protected roots and delegation;
-- reusable hostile cases involving cross-module authority.
+### Theorem target 6 (conservative gate embedding)
+For each P1–P5 domain, instantiate the general calculus so that on the domain's frozen native cases it reproduces the existing gate decisions exactly.
 
-A vocabulary-level unification is insufficient for a separate paper.
+Failure to embed a domain faithfully is evidence against the claimed generality.
 
-## 9. Soundness target
+## 10. Donor embeddings and protected ownership
 
-### Definition 11 (contract-relative soundness)
-Let \(\llbracket\mathcal C_a\rrbracket\) be the intended semantic condition under which action \(a\) is permitted. The calculus is sound for contract family \(\mathfrak C\) when
+P8 explicitly absorbs, but does not relabel:
 
-\[
-\Gamma\vdash\mathsf{Auth}(a)
-\Rightarrow
-\llbracket\mathcal C_a\rrbracket(E)=\mathsf{permitted}
-\]
+- **ETAS (arXiv:2607.17780):** typed effects, residual obligations, requested/denied/committed trace semantics, policy safety;
+- **FAVA (arXiv:2607.27267):** evidence-backed permission graphs, deterministic SMT authorization and pre-effect enforcement;
+- **AgentAbstain (arXiv:2607.10059):** paired act/abstain evaluation and pre/post-effect abstention timing;
+- **ProvenanceGuard (arXiv:2606.18037):** source-aware claim/evidence attribution as an independent verification dimension;
+- **execution-provenance work (arXiv:2606.04990):** trace/evidence lineage, granularity and recovery/audit structures;
+- **Agent-Sentry (arXiv:2603.22868), Policy Cards (arXiv:2510.24383), and user-permission systems (arXiv:2607.13718):** behavioral bounds, intent/policy representation, obligations and runtime enforcement;
+- **deontic/action/authorization logics:** permission, obligation, delegation and revocation as mature formal objects.
 
-for every \(\mathcal C_a\in\mathfrak C\).
+The possible residual is therefore not “agents need permissions.” It is the cross-domain scientific-epistemic composition problem: whether heterogeneous authorization domains can share a typed derivation layer that preserves donor-native decisions while preventing invalid authority transport, enabling dependency-grounded revocation, and distinguishing unresolved authority from refusal.
 
-The general soundness proof will require each trusted base rule and registered coercion to be semantically sound. Theorem 1 supplies the syntactic non-laundering part but does not prove that trusted issuers or coercions are correct.
+## 11. Hostile cases required by #341/#353
 
-## 10. `CANNOT_CHECK`, refusal and rejection
+The deterministic/protected evaluation must include at least:
 
-### Definition 12 (terminals)
-For action \(a\):
+1. foreign `SEARCH_STOP` pass presented as `ASSERT` authority;
+2. correct citation support presented as independent verification;
+3. strong semantic similarity presented as merge permission;
+4. low expected search value presented as task closure;
+5. replay improvement presented as self-change promotion authority;
+6. evidence/grant ancestor revoked after authorization but before commit;
+7. narrow grant reused on an out-of-scope target;
+8. old authorization certificate replayed after relevant state changes;
+9. irreversible effect committed before a blocker is recognized;
+10. negative control in which every hard obligation is satisfied and refusal is unnecessary;
+11. positive control with an explicitly registered sound cross-domain coercion;
+12. revocation control where an independent trusted derivation should survive.
 
-- `AUTHORIZED`: all hard obligations and authority checks pass;
-- `REJECTED`: a blocking defeater or violated hard obligation is established;
-- `CANNOT_CHECK`: a required hard judgment is unknown/conflicting/unavailable;
-- `GATHER_MORE`: an admissible evidence-acquisition action exists and is separately authorized;
-- `UNAUTHORIZED`: the action may be feasible/supported but has no valid authority derivation;
-- `REVOKED`: prior authorization depends on an invalidated premise.
+Strong baselines must include the existing P1–P5 gates and, where implementation permits, FAVA/ETAS-style typed-policy variants rather than scalar confidence strawmen.
 
-These terminals must not be collapsed into a binary score during evaluation.
+## 12. Deterministic checking obligations
 
-## 11. Deterministic hostile-check obligations
-
-The finite checker associated with this core must verify at least:
+The finite checker must verify at least:
 
 1. cross-domain judgments cannot authorize without a registered coercion;
 2. scope narrowing is allowed but widening is not;
-3. the additive blocker counterexample exists for arbitrary finite penalties;
-4. revocation propagates exactly through the descendant closure;
+3. the additive-blocker counterexample exists for arbitrary finite penalties under extensible evidence;
+4. revocation propagates through the dependency closure but preserves independent derivations;
 5. a candidate-controlled constant-accept policy defeats internal self-certification;
-6. P1–P5 embedding fixtures reproduce their declared toy decisions;
-7. authority-laundering attack fixtures fail closed.
+6. authority-laundering fixtures fail closed;
+7. conservative P1–P5 embedding fixtures reproduce native toy decisions.
 
 No LLM API is required.
 
-## 12. Nearest-work pressure and nonclaims
+## 13. Nearest-work pressure and nonclaims
 
 This core does **not** claim novelty for:
 
-- deontic logic, input/output logic or dynamic action logics;
+- deontic/input-output/dynamic action logic;
 - authorization/access-control calculi;
 - delegation, scope restriction or revocation;
+- typed effects or residual obligations;
+- evidence-backed permission graphs or SMT authorization;
 - abstention/selective prediction;
 - provenance-based action guarding;
-- runtime shielding and policy enforcement;
+- runtime shielding/policy enforcement;
 - capability-versus-permission governance frameworks;
-- P4's protected scientific-authority transition.
+- P4's protected scientific-authority transition;
+- P5's no-self-promotion/protected-evaluation mechanism.
 
-The candidate residual is narrower:
+The widened candidate residual is:
 
 \[
-\text{typed authorization across heterogeneous epistemic actions}
+\text{donor-faithful typed authorization across heterogeneous epistemic effects}
 +
 \text{non-compensatory obligations}
 +
-\text{cross-module anti-laundering}
+\text{explicit sound cross-domain coercions}
 +
-\text{dependency revocation}
+\text{anti-laundering}
++
+\text{dependency-grounded revocation}
 +
 \text{protected-root semantics}.
 \]
 
-Recent capability-versus-permission governance work increases the novelty burden: P8 must establish a formal and experimentally discriminating calculus, not merely the conceptual distinction.
+This residual must survive #340/#352/#343 and must produce a discriminator beyond vocabulary-level unification.
 
-## 13. What this formal core establishes now
+## 14. What this formal core establishes now
 
-It establishes elementary syntactic and algebraic results under the proposed definitions. It does not yet establish:
+The formal core establishes elementary consequences of its definitions:
 
-- semantic soundness of all trusted issuers/coercions;
-- novelty over deontic/authorization/policy-composition literature;
-- exact equivalence of the P1–P5 embeddings;
-- practical superiority over independent gates;
-- that authority contracts capture all relevant norms;
+- finite additive penalties do not encode an unbounded absolute blocker;
+- domain-preserving derivations cannot cross authority domains without an explicit coercion;
+- sound dependency lineage supports targeted revocation;
+- post-hoc refusal cannot retroactively prevent an already committed irreversible effect;
+- candidate-controlled admission cannot guarantee an external promotion property.
+
+It does **not** establish:
+
+- novelty over authorization/deontic/effect-system literature;
+- semantic soundness of every trusted root/coercion;
+- that one shared calculus is better than independent domain gates;
+- that all P1–P5 gates embed without semantic loss;
 - peer-review readiness or separate-paper status.
+
+Current novelty/promotion terminal remains `CANNOT_CHECK`.
