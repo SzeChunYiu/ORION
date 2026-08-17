@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import errno
 import hashlib
+import os
+import stat
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -54,8 +57,61 @@ class EvidenceAdmissionReport:
         return not self.blockers
 
 
-def _inside(root: Path, candidate: Path) -> bool:
-    return candidate == root or root in candidate.parents
+def _secure_descriptor_traversal_available() -> bool:
+    return bool(
+        hasattr(os, "O_NOFOLLOW")
+        and hasattr(os, "O_DIRECTORY")
+        and os.open in getattr(os, "supports_dir_fd", set())
+    )
+
+
+def _read_beneath_root_fd(
+    root_fd: int,
+    logical: Path,
+) -> tuple[bytes | None, str | None]:
+    """Read one regular file without re-resolving attacker-mutable pathnames.
+
+    Every parent directory and the final file are opened relative to an
+    already-open root descriptor with ``O_NOFOLLOW``.  A symlink swap between
+    a pathname check and the read therefore cannot redirect the verifier to a
+    different tree.
+    """
+
+    parts = logical.parts
+    if not parts:
+        return None, "artifact_path_invalid"
+
+    current_fd = os.dup(root_fd)
+    file_fd: int | None = None
+    try:
+        directory_flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+        for part in parts[:-1]:
+            next_fd = os.open(part, directory_flags, dir_fd=current_fd)
+            os.close(current_fd)
+            current_fd = next_fd
+
+        file_fd = os.open(parts[-1], os.O_RDONLY | os.O_NOFOLLOW, dir_fd=current_fd)
+        metadata = os.fstat(file_fd)
+        if not stat.S_ISREG(metadata.st_mode):
+            return None, "artifact_not_regular"
+
+        chunks: list[bytes] = []
+        while True:
+            chunk = os.read(file_fd, 1024 * 1024)
+            if not chunk:
+                break
+            chunks.append(chunk)
+        return b"".join(chunks), None
+    except OSError as exc:
+        if exc.errno == errno.ENOENT:
+            return None, "artifact_missing"
+        if exc.errno in {errno.ELOOP, errno.ENOTDIR}:
+            return None, "artifact_path_unsafe"
+        return None, f"artifact_read_error:{exc.errno}"
+    finally:
+        if file_fd is not None:
+            os.close(file_fd)
+        os.close(current_fd)
 
 
 def verify_phase2_evidence_receipt(
@@ -71,11 +127,12 @@ def verify_phase2_evidence_receipt(
     The caller may supply the expected closure bindings.  A receipt never
     proves those identities by merely restating them; they are compared here
     against host-selected expectations and the bytes are read from disk.
+    Path traversal is descriptor-relative and no-follow so the checked path
+    cannot be swapped to a symlink between validation and read.
     """
 
     blockers: list[str] = []
     observed: list[tuple[str, str]] = []
-    root = Path(artifact_root).resolve()
 
     if expected_subject_revision_hash is not None:
         if receipt.subject_revision_hash != expected_subject_revision_hash:
@@ -91,41 +148,56 @@ def verify_phase2_evidence_receipt(
         blockers.append("no_artifacts_bound")
         return EvidenceAdmissionReport(tuple(blockers), tuple(observed))
 
+    if not _secure_descriptor_traversal_available():
+        blockers.append("secure_descriptor_traversal_unavailable")
+        return EvidenceAdmissionReport(tuple(blockers), tuple(observed))
+
+    root_path = Path(artifact_root)
+    try:
+        root_fd = os.open(
+            root_path,
+            os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW,
+        )
+    except OSError as exc:
+        if exc.errno in {errno.ELOOP, errno.ENOTDIR}:
+            blockers.append("artifact_root_unsafe")
+        elif exc.errno == errno.ENOENT:
+            blockers.append("artifact_root_missing")
+        else:
+            blockers.append(f"artifact_root_open_error:{exc.errno}")
+        return EvidenceAdmissionReport(tuple(blockers), tuple(observed))
+
     seen_ids: set[str] = set()
     seen_paths: set[str] = set()
+    try:
+        for binding in receipt.artifacts:
+            if binding.artifact_id in seen_ids:
+                blockers.append(f"duplicate_artifact_id:{binding.artifact_id}")
+            else:
+                seen_ids.add(binding.artifact_id)
 
-    for binding in receipt.artifacts:
-        if binding.artifact_id in seen_ids:
-            blockers.append(f"duplicate_artifact_id:{binding.artifact_id}")
-        else:
-            seen_ids.add(binding.artifact_id)
+            if binding.relative_path in seen_paths:
+                blockers.append(f"duplicate_artifact_path:{binding.relative_path}")
+            else:
+                seen_paths.add(binding.relative_path)
 
-        if binding.relative_path in seen_paths:
-            blockers.append(f"duplicate_artifact_path:{binding.relative_path}")
-        else:
-            seen_paths.add(binding.relative_path)
+            logical = Path(binding.relative_path)
+            if logical.is_absolute() or ".." in logical.parts:
+                blockers.append(f"artifact_path_escape:{binding.artifact_id}")
+                continue
 
-        logical = Path(binding.relative_path)
-        if logical.is_absolute() or ".." in logical.parts:
-            blockers.append(f"artifact_path_escape:{binding.artifact_id}")
-            continue
+            data, read_blocker = _read_beneath_root_fd(root_fd, logical)
+            if read_blocker is not None:
+                blockers.append(f"{read_blocker}:{binding.artifact_id}")
+                continue
+            assert data is not None
 
-        candidate = root / logical
-        resolved = candidate.resolve(strict=False)
-        if not _inside(root, resolved):
-            blockers.append(f"artifact_path_escape:{binding.artifact_id}")
-            continue
-        if candidate.is_symlink():
-            blockers.append(f"artifact_symlink_forbidden:{binding.artifact_id}")
-            continue
-        if not candidate.is_file():
-            blockers.append(f"artifact_missing:{binding.artifact_id}")
-            continue
-
-        actual = hashlib.sha256(candidate.read_bytes()).hexdigest()
-        observed.append((binding.artifact_id, actual))
-        if actual != binding.sha256:
-            blockers.append(f"artifact_hash_mismatch:{binding.artifact_id}")
+            actual = hashlib.sha256(data).hexdigest()
+            observed.append((binding.artifact_id, actual))
+            if actual != binding.sha256:
+                blockers.append(f"artifact_hash_mismatch:{binding.artifact_id}")
+    finally:
+        os.close(root_fd)
 
     return EvidenceAdmissionReport(tuple(blockers), tuple(observed))
 
