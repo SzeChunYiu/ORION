@@ -1,0 +1,7 @@
+P5 Phase-2 live execution trigger v1
+
+Purpose: a change to this file on main intentionally launches the protected Phase-2 live execution workflow after all task/provider/evaluator identities are frozen inside the job before outcome access.
+
+Initial requested execution base: main@3ab1ea8651ff3cfdbbd1d6de753707a1fd5113c9
+Issue chain: #8 -> #76 -> #102
+Authority boundary: no workflow result grants self-merge or governed Self-ORION authority.

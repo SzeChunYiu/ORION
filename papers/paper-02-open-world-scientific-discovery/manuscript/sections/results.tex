@@ -2,18 +2,26 @@
 \label{sec:results}
 
 \subsection{Authority of the result}
-The only completed result-bearing campaign in this revision is the frozen
-offline complete-gold companion.  It contains 20 tasks, 14 systems (full ORION,
-six confirmatory baselines, one explicitly exploratory comparator, and six
-ablations), and three predeclared repeat seeds, for 840 normalized run records.
-The systems are deterministic; the repeats therefore test harness stability and
-do not increase the statistical unit beyond 20 tasks.  The frozen statistical
-plan requires at least 97 tasks for its lowest inferential tier.  Consequently
-this campaign is \texttt{DESCRIPTIVE\_ONLY}: no confidence interval, $p$-value,
-or superiority decision from the offline companion is promoted to a paper-level
-claim.
+Two result-bearing evidence families are complete in this revision, with
+different authority.  First, the frozen offline complete-gold companion contains
+20 tasks, 14 systems (full ORION, six confirmatory baselines, one explicitly
+exploratory comparator, and six ablations), and three predeclared repeat seeds,
+for 840 normalized run records.  The systems are deterministic; the repeats
+therefore test harness stability and do not increase the statistical unit beyond
+20 tasks.  The frozen statistical plan requires at least 97 tasks for its lowest
+inferential tier.  Consequently this campaign is
+\texttt{DESCRIPTIVE\_ONLY}: no confidence interval, $p$-value, or superiority
+decision from the offline companion is promoted to a paper-level claim.
 
-The publication summary is
+Second, the credential-free MetaSyn probe is a bounded external
+retrieval/screening result.  It completed all 86 released test reviews using the
+pinned MetaSyn BM25 title+abstract retriever followed by the predeclared
+public-protocol screening rule, and was scored by the pinned official ID-only
+evaluator.  That probe is not the complete multi-provider ORION system and is
+therefore reported separately from the paper's still-open matched external
+ORION-vs-baseline claim.
+
+The offline publication summary is
 \texttt{evidence/offline\_results/RESULTS\_SUMMARY\_V1.json}.  It binds the full
 840-record set by SHA-256
 \texttt{611808dc80846d5057c84c12af7ff8ec3fa88ef15a6ede91807e590f4edb6f1f}
@@ -23,7 +31,10 @@ The exact run manifest was committed before the first outcome snapshot.  The
 mechanism projection used for Figures~\ref{fig:p2-3}--\ref{fig:p2-5} is archived
 separately as \texttt{evidence/offline\_results/OFFLINE\_MECHANISMS\_V1.json};
 it records the same two source digests and is regenerated from host-owned traces
-rather than copied from manuscript numbers.
+rather than copied from manuscript numbers.  The MetaSyn result is bound by
+\texttt{evidence/external\_results/METASYN\_ID\_ONLY\_PROBE\_V1.json} and its
+exact integer error decomposition by
+\texttt{METASYN\_SCREENING\_FN\_LEDGER\_V1.json}.
 
 \subsection{Controlled-index comparison}
 Full ORION attains mean complete-gold recall 0.994444 and precision 1.0.  It
@@ -56,14 +67,14 @@ Agentic single route & 0.333333 & 1.00 & 0.00 & 0.00 \\
 \end{tabular}
 \caption{Controlled-index descriptive comparison.  Rates are over 20 tasks;
 there are no inferential intervals because the frozen plan classifies this
-campaign below the minimum inferential tier.  The external benchmark comparison
-remains unexecuted.}
+campaign below the minimum inferential tier.  A final matched external
+ORION-vs-baseline comparison remains unexecuted.}
 \label{tab:p2-offline-main}
 \end{table}
 
 \begin{figure}[t]
 \centering
-\input{figures/P2-3_cumulative_discovery}
+\input{figures/P2-3_cumulative_discovery_publication}
 \caption{\textbf{Figure P2-3.} Cumulative complete-gold recall versus the
 host-recorded number of search queries for full ORION and the strongest frozen
 confirmatory baseline.  Deterministic repeats are first checked for identical
@@ -107,7 +118,7 @@ safety rather than headline recall.
 
 \begin{figure}[t]
 \centering
-\input{figures/P2-4_route_contribution}
+\input{figures/P2-4_route_contribution_publication}
 \caption{\textbf{Figure P2-4.} Mean number of first relevant content identities
 contributed by each route in full ORION's campaign order.  ``Independent'' is an
 earned structural annotation relative to the lexical reference route; the
@@ -155,6 +166,26 @@ the evaluator's terminal-failure precedence.}
 \label{fig:p2-6}
 \end{figure}
 
+\subsection{MetaSyn external retrieval and screening probe}
+The corrected MetaSyn probe completed all 86 released test reviews with no
+failed review.  Under the pinned official ID-only evaluator, macro retrieval
+recall is 0.7485 and retrieval precision 0.0627.  Conditional retention among
+retrieved reference items is 0.7224; final inclusion recall is 0.5651,
+inclusion precision 0.1426 and inclusion F1 0.2033.  The evaluator reports
+post-retrieval loss 0.1834 and screening accuracy 0.7228.  Mean candidate output
+is fixed at 200 retrieved and 60 included items per review by the declared
+probe budget.
+
+The evaluator-side integer ledger makes the stage loss concrete.  Across the 86
+reviews there are 1,677 reference-article links.  The top-200 retrieval pools
+contain 1,079 of those links, so 598 are retrieval false negatives.  Of the
+1,079 retrieved reference links, 736 survive the deterministic screen and 343
+are lost post retrieval.  The final included sets therefore miss 941 reference
+links in total.  Gold is loaded only on the evaluator side after candidate
+output is frozen, and fresh regeneration verifies every deterministic official
+per-review metric before emitting the counts.  These results identify where the
+bounded probe fails; they do not establish superiority for full ORION.
+
 \subsection{Failure analysis and external status}
 Under the evaluator's fixed terminal-failure precedence, premature closure is
 the dominant failure class in the controlled companion; the exploratory
@@ -177,13 +208,24 @@ for an O1 false negative.  This null-on-FN result is reported rather than being
 silently omitted, and it demonstrates why route-stop error and task-stop safety
 must be measured separately.
 
-No external Wide, Deep, MetaSyn or SAGE performance result is reported in this
-revision.  The access audit establishes that AutoResearchBench Wide scoring is
-credential-free and that MetaSyn retrieval/screening scoring does not itself
-need an LLM credential; it does not turn those audits into system outcomes.
-AutoResearchBench Deep still needs an OpenAI-compatible judge for its official
-metric, and SAGE lacks both the published retrieval corpus and an official
-evaluator.  Therefore the externally supported discovery-benefit claim remains
-\texttt{CANNOT\_CHECK}.  The controlled-index result supports only the narrower
+The remaining external authorities are kept separate from the completed MetaSyn
+probe.  AutoResearchBench Wide's released scorer is deterministic and
+credential-free, while the official Deep metric uses the released LLM title
+judge.  A same-repository non-leaking preflight found neither a configured
+generic OpenAI-compatible judge key/base/model set nor \texttt{CMKEY\_API\_KEY},
+so official Deep scoring remains \texttt{CANNOT\_CHECK}; a declared exact-ID
+probe cannot substitute for that judge.  SAGE still lacks both the published
+retrieval corpus and an official evaluator.  The frozen three-route live
+campaign also remains \texttt{CANNOT\_CHECK}: its arXiv route is credential-free,
+but its two OpenAlex-backed route families require a funded
+\texttt{OPENALEX\_API\_KEY}, which the verified same-repository preflight did not
+find.  No absent credential is converted into a negative outcome or a zero-cost
+measurement.
+
+Therefore the externally supported full-ORION discovery-benefit claim remains
+\texttt{CANNOT\_CHECK}.  The controlled-index result supports the narrower
 statement that the frozen governance mechanisms behave as designed under a
-complete denominator and matched host-owned budgets.
+complete denominator and matched host-owned budgets; the MetaSyn result supports
+only its declared external retrieval/screening probe.  Bounded AutoResearchBench
+probe results, when archived, must remain separately labeled unless they exercise
+the final matched ORION system under the frozen promotion plan.
