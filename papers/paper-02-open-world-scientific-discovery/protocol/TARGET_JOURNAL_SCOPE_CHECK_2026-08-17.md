@@ -1,5 +1,12 @@
 # P2 target-journal scope check — 2026-08-17
 
+**Correction (issue #99):** the offline companion is a 390-task
+`TIER_B_committed` campaign with the plan's mandatory underpowered label,
+not a 20-task `DESCRIPTIVE_ONLY` result. The IP&M/JASIST recommendation
+below is otherwise unchanged. A parallel check
+(`notes/submission/JOURNAL_SCOPE_CHECK.md`) recommends TMLR. Venue is not
+finalized while matched external results remain open.
+
 ## Decision
 
 **Primary target:** *Information Processing & Management* (IP&M).
@@ -25,7 +32,7 @@ Official sources checked 2026-08-17:
 
 ## Scope-preserving claim boundary
 
-For IP&M, the paper should remain a **methods / critical system-design** contribution unless final external results justify a stronger empirical discovery-benefit claim.  The controlled 20-task evidence remains `DESCRIPTIVE_ONLY`; the MetaSyn probe is bounded retrieval/screening evidence; AutoResearchBench probes are bounded by their candidate design/evaluator authority; unavailable SAGE, Deep-judge, and live-OpenAlex authority must remain visible.
+For IP&M, the paper should remain a **methods / critical system-design** contribution unless final external results justify a stronger empirical discovery-benefit claim.  The controlled 390-task evidence is `TIER_B_committed` and underpowered, so it is not a promoted superiority result; the MetaSyn probe is bounded retrieval/screening evidence; AutoResearchBench probes are bounded by their candidate design/evaluator authority; unavailable SAGE and live-OpenAlex authority must remain visible.  A bounded Deep official-judge probe is archived and is not a matched ORION-vs-baseline result.
 
 ## Trigger to revisit
 

@@ -1,9 +1,12 @@
 # P2 cover letter — draft
 
-**Status:** draft for the recommended venue (TMLR; see `JOURNAL_SCOPE_CHECK.md`).
-Every factual statement below is a row in `protocol/CLAIM_LEDGER_V1.json` and is
-verified by `scripts/check_claim_ledger.py --check`. Nothing here claims more
-than that checker will allow.
+**Status:** draft. `JOURNAL_SCOPE_CHECK.md` recommends TMLR;
+`protocol/TARGET_JOURNAL_SCOPE_CHECK_2026-08-17.md` recommends IP&M. Those
+checks conflict, and neither is a submission decision while matched
+Wide/Deep ORION-vs-baseline evidence remains `CANNOT_CHECK`. Every factual
+statement below is a row in `protocol/CLAIM_LEDGER_V1.json` and is verified
+by `scripts/check_claim_ledger.py --check`. Nothing here claims more than
+that checker will allow.
 
 **Author/affiliation lines are deliberately absent.** TMLR review is double-blind
 (<https://jmlr.org/tmlr/author-guide.html>, fetched 2026-08-17); add author
@@ -39,10 +42,11 @@ read:
   also what makes the numbers unsuitable as an estimate of real retrieval
   difficulty. The authored routes, public probe vocabulary and easy screening text
   are all easier than the open web.
-- The campaign's authority is **`DESCRIPTIVE_ONLY`**. Our pre-registered
-  statistical plan set a minimum task count for its lowest inferential tier
-  before any outcome was inspected, and this suite is below it. We therefore
-  report no confidence interval, *p*-value or superiority decision from it. The
+- The campaign's authority is **`TIER_B_committed` with the frozen plan's
+  mandatory underpowered label**. The suite reaches the committed precision
+  tier, but the plan's assumed-p half-width still exceeds the frozen
+  superiority margin, so we report no promoted superiority decision, *p*-value,
+  or interval-backed discovery claim from the offline companion. The
   deterministic repeat seeds demonstrate harness stability; they do not increase
   the statistical unit, and we do not treat them as if they did.
 - Negative and null results are reported as such. Removing the question
@@ -121,6 +125,5 @@ The authors
 - Re-run `scripts/check_claim_ledger.py --check` after any manuscript change
   before re-sending this letter, so the letter's scope statements cannot outlive
   the evidence.
-- Two open manuscript defects (`P2-D01`, `P2-D02`) currently assert that MetaSyn
-  is unexecuted, contradicting the archived probe. **Fix those before sending**,
-  or the letter's fourth bullet will contradict the submitted paper.
+- Known manuscript defects `P2-D01`/`P2-D02` (MetaSyn described as unexecuted)
+  were retired on `main`; `known_defects` is empty. Re-check before sending.
