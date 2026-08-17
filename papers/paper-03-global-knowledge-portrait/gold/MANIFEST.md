@@ -10,6 +10,8 @@
 | `README.md` | ✓ | Dataset documentation |
 | `MANIFEST.md` | ✓ | This file (index) |
 | `CORPUS_DESIGN_V1.md` | ✓ | Corpus design rationale |
+| `DISCIPLINE_SELECTION_V1.md` | ✓ FROZEN | Three-discipline selection + case-family coverage (Issue #158) |
+| `ANNOTATION_SCHEMA_V1.md` | ✓ FROZEN | Annotation schema, double-annotation procedure, agreement targets, expert escalation |
 
 ## Coverage Matrix
 
@@ -17,6 +19,13 @@
 
 All samples are SEED placeholders with retrieval_hints. Final gold requires
 replacing these with verified open-access source spans.
+
+**Design docs frozen:** `DISCIPLINE_SELECTION_V1.md` and `ANNOTATION_SCHEMA_V1.md`
+define the three-discipline selection (biomed, physics, social + climate margin),
+the annotation schema for all 8 case families, the double-annotation procedure
+(2 independent labels on 24 core samples), per-coordinate agreement targets, and
+the domain-expert escalation policy (Issue #158). Actual gold labels are produced
+only after these docs are frozen and before any system-output inspection.
 
 ## Protocol Files (referenced)
 

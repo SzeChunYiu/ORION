@@ -88,6 +88,8 @@ python3 annotate.py stats             # coverage statistics
 | `README.md` | This file |
 | `MANIFEST.md` | File index and coverage matrix |
 | `CORPUS_DESIGN_V1.md` | Corpus design rationale |
+| `DISCIPLINE_SELECTION_V1.md` | Three-discipline selection + case-family coverage (Issue #158) |
+| `ANNOTATION_SCHEMA_V1.md` | Annotation schema, procedure, agreement targets, expert escalation |
 
 ## Licensing
 
