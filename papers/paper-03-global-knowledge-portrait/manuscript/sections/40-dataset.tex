@@ -104,15 +104,17 @@ Each sample is annotated on the 11 coordinates of
 \texttt{mapping\_relation},
 \texttt{contradiction\_verdict},
 and \texttt{integration\_verdict}.
+\end{quote}
 Every coordinate is a typed judgment in a frozen taxonomy, and every
 annotation binds its verdicts to exact source spans via
 \texttt{source\_span} (\texttt{document\_id},
-\texttt{document\_version}, \texttt{span\_start}, \texttt{span\_end},
-\texttt{text\_hash}). The integration verdict is one of
+\texttt{document\_version}, \texttt{span\_start},
+\texttt{span\_end}, \texttt{text\_hash}).
+
+The integration verdict is one of
 \texttt{GLUE\_ALLOWED}, \texttt{OBSTRUCTION}, \texttt{PLURAL\_VIEW}, or
 \texttt{UNRESOLVED}. \texttt{UNRESOLVED} is a first-class, legitimate
 label: adjudication is not permitted to manufacture certainty.
-\end{quote}
 
 The written handbook (\texttt{protocol/ANNOTATION\_HANDBOOK\_V1.md})
 gives instructions for each coordinate, boundary cases, and the rule that
