@@ -1,0 +1,130 @@
+name: P3 confirmatory holdout freeze
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/p3-public-reference-confirmatory-freeze.yml'
+      - 'src/orion/study/p3_public_reference_holdout.py'
+      - 'tests/unit/study/test_p3_public_reference_holdout.py'
+
+permissions:
+  contents: read
+
+jobs:
+  freeze-holdout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout ORION head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install ORION test environment
+        run: python -m pip install --disable-pip-version-check -e '.[dev]'
+
+      - name: Validate holdout selector
+        run: PYTHONPATH=src python -m pytest -q tests/unit/study/test_p3_public_reference_holdout.py tests/unit/study/test_p3_public_reference_freeze.py
+
+      - name: Fetch exact pinned public authorities
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p upstream
+          git clone -q https://github.com/cohentsofia/MUSE.git upstream/MUSE
+          git -C upstream/MUSE checkout -q f7a40317db46145d0c90b221311d8324db5da1b9
+          git clone -q https://github.com/scischema/scischema.git upstream/SciSchema
+          git -C upstream/SciSchema checkout -q 55b6197cdb0b66c3123df16d0b0c70b02c4bde8b
+          git clone -q https://github.com/allenai/scifact.git upstream/SciFact
+          git -C upstream/SciFact checkout -q 68b98a56d93e0f9da0d2aab4e6c3294699a0f72e
+          (cd upstream/SciFact && bash script/download-data.sh)
+          test -s upstream/SciFact/data/claims_train.jsonl
+
+      - name: Build disjoint second-window holdout
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/holdout artifacts/frozen artifacts/replay
+          PYTHONPATH=src python -m orion.study.p3_public_reference_holdout \
+            --muse-root "$PWD/upstream/MUSE/dataset/human_Expert_annotations" \
+            --scifact-claims "$PWD/upstream/SciFact/data/claims_train.jsonl" \
+            --scischema-root "$PWD/upstream/SciSchema/schemas" \
+            --exclude-cases "$PWD/papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl" \
+            --offset 32 \
+            --target-n 32 \
+            --out "$PWD/artifacts/holdout"
+
+      - name: Portable freeze only — no system evaluation
+        shell: bash
+        run: |
+          set -euo pipefail
+          common=(
+            --cases "$PWD/artifacts/holdout/cases.jsonl"
+            --muse-root "$PWD/upstream/MUSE/dataset/human_Expert_annotations"
+            --scifact-claims "$PWD/upstream/SciFact/data/claims_train.jsonl"
+            --scischema-root "$PWD/upstream/SciSchema/schemas"
+          )
+          PYTHONPATH=src python -m orion.study.p3_public_reference_freeze "${common[@]}" --out "$PWD/artifacts/frozen"
+          PYTHONPATH=src python -m orion.study.p3_public_reference_freeze "${common[@]}" --out "$PWD/artifacts/replay"
+          cmp artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl artifacts/replay/PUBLIC_REFERENCE_GOLD_V1.jsonl
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          holdout = json.loads(Path('artifacts/holdout/HOLDOUT_BUILD_REPORT.json').read_text())
+          frozen = json.loads(Path('artifacts/frozen/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json').read_text())
+          replay = json.loads(Path('artifacts/replay/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json').read_text())
+          assert holdout['status'] == 'READY_FOR_CONFIRMATORY_FREEZE'
+          assert holdout['overlap_count'] == 0
+          assert frozen['portable_cases_sha256'] == replay['portable_cases_sha256']
+          print(json.dumps({
+              'phase': 'FREEZE_ONLY_NO_SYSTEM_OUTPUTS',
+              'holdout_cases_sha256': holdout['cases_sha256'],
+              'portable_cases_sha256': frozen['portable_cases_sha256'],
+              'case_count': frozen['case_count'],
+              'disciplines': holdout['disciplines'],
+              'case_families': holdout['case_families'],
+          }, indent=2))
+          PY
+
+      - name: Record pre-evaluation identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          evaluator_sha=$(git log -1 --format=%H -- \
+            src/orion/study/p3_public_reference.py \
+            src/orion/study/p3_public_reference_analysis.py \
+            src/orion/study/p3_public_reference_freeze.py \
+            src/orion/study/p3_public_reference_holdout.py)
+          {
+            echo "PHASE=FREEZE_ONLY_NO_SYSTEM_OUTPUTS"
+            echo "EVALUATOR_SOURCE_SHA=$evaluator_sha"
+            echo "PRIMARY_GOLD_SHA=35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8"
+            echo "MUSE_SHA=f7a40317db46145d0c90b221311d8324db5da1b9"
+            echo "SCISCHEMA_SHA=55b6197cdb0b66c3123df16d0b0c70b02c4bde8b"
+            echo "SCIFACT_SHA=68b98a56d93e0f9da0d2aab4e6c3294699a0f72e"
+          } > artifacts/PRE_EVALUATION_PROVENANCE.env
+          sha256sum \
+            artifacts/holdout/HOLDOUT_BUILD_REPORT.json \
+            artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl \
+            artifacts/frozen/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json \
+            artifacts/PRE_EVALUATION_PROVENANCE.env \
+            > artifacts/PRE_EVALUATION_SHA256SUMS
+
+      - name: Upload frozen holdout for execution binding
+        uses: actions/upload-artifact@v4
+        with:
+          name: p3-confirmatory-freeze-${{ github.sha }}
+          path: |
+            artifacts/holdout/HOLDOUT_BUILD_REPORT.json
+            artifacts/frozen/PUBLIC_REFERENCE_GOLD_V1.jsonl
+            artifacts/frozen/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json
+            artifacts/PRE_EVALUATION_PROVENANCE.env
+            artifacts/PRE_EVALUATION_SHA256SUMS
+          if-no-files-found: error
+          retention-days: 30
