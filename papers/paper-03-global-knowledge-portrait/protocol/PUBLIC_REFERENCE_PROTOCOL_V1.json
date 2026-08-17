@@ -1,0 +1,154 @@
+{
+  "schema_version": "orion.p3.public-reference-protocol.v1",
+  "paper_id": "P3",
+  "protocol_id": "P3.public-reference-mapping.v1",
+  "protocol_status": "DESIGN_FROZEN",
+  "outcome_accessed": false,
+  "relationship_to_v1": {
+    "supersedes": false,
+    "mutates": false,
+    "v1_protocol": "P3.cross-domain-atlas.v1",
+    "purpose": "Resource-constrained primary route evaluating the mapping/integration layer from externally annotated or deterministic reference projections; raw-text end-to-end expert-gold evaluation remains a separate stronger follow-up."
+  },
+  "primary_hypothesis": {
+    "id": "P3.PR.H1",
+    "text": "Given source-local scientific projections whose tested coordinates are externally human/expert-annotated or deterministically grounded in a published standard, ORION's typed comparison reduces invalid merges relative to a flat predicate/canonicalization baseline without materially increasing false splits versus an exact-coordinate conservative baseline.",
+    "primary_metrics": [
+      "false_merge_rate",
+      "false_split_rate",
+      "relation_accuracy",
+      "abstention_rate"
+    ],
+    "practical_margins": {
+      "false_merge_superiority_absolute": 0.05,
+      "false_split_noninferiority_absolute": 0.03
+    }
+  },
+  "scope": {
+    "evaluated_layer": "projection-to-mapping/integration semantics",
+    "not_primary": [
+      "raw-text extraction quality",
+      "model-provider quality",
+      "retrieval quality",
+      "end-to-end downstream scientific answering"
+    ],
+    "reason": "Those layers require model/provider or new expert resources. They remain explicitly CANNOT_CHECK rather than being simulated."
+  },
+  "gold_authority": {
+    "allowed": [
+      "UPSTREAM_EXPERT",
+      "UPSTREAM_HUMAN",
+      "DETERMINISTIC_STANDARD",
+      "DERIVED_FROM_ALLOWED"
+    ],
+    "forbidden": [
+      "LLM_PROPOSAL",
+      "HEURISTIC_PROXY",
+      "SIMULATED",
+      "SELF_LABEL"
+    ],
+    "coordinate_masking": "A coordinate without allowed authority is UNRESOLVED/NOT_EVALUATED; it is never filled by a proxy to increase coverage.",
+    "source_text_policy": "Do not vendor upstream source text unless its licence explicitly permits redistribution. Store repository/dataset revision, locator and content hash instead."
+  },
+  "primary_task_families": [
+    "different_name_same_referent",
+    "polarity_modality_attribution_context",
+    "valid_invalid_representation_mapping"
+  ],
+  "future_extension_families": [
+    "same_name_different_referent",
+    "same_construct_different_measurement",
+    "same_entity_different_temporal_state",
+    "valid_invalid_literature_bridge",
+    "genuine_plural_obstruction"
+  ],
+  "reference_sources": [
+    {
+      "id": "MUSE",
+      "revision": "cohentsofia/MUSE@f7a40317db46145d0c90b221311d8324db5da1b9",
+      "authority": "UPSTREAM_EXPERT",
+      "usable_labels": [
+        "problem/solution/rationale spans",
+        "solves",
+        "rationale_of",
+        "conceptual coreference",
+        "source span identity"
+      ],
+      "redistribution": "UPSTREAM_POINTER_ONLY_UNTIL_DATA_LICENCE_CONFIRMED"
+    },
+    {
+      "id": "SciSchema",
+      "revision": "scischema/scischema@55b6197cdb0b66c3123df16d0b0c70b02c4bde8b",
+      "authority": "UPSTREAM_EXPERT",
+      "usable_labels": [
+        "domain schema fields",
+        "measurement/process structure",
+        "conditions",
+        "provenance-related fields"
+      ],
+      "redistribution": "CC-BY-SA-4.0"
+    },
+    {
+      "id": "SciFact",
+      "revision": "allenai/scifact@68b98a56d93e0f9da0d2aab4e6c3294699a0f72e",
+      "authority": "UPSTREAM_EXPERT",
+      "usable_labels": [
+        "SUPPORT",
+        "CONTRADICT",
+        "evidence sentence indices",
+        "expert-written claims"
+      ],
+      "redistribution": "claims/evidence annotations CC-BY-4.0; S2ORC abstracts ODC-By-1.0"
+    },
+    {
+      "id": "SciER",
+      "revision": "ACL Anthology 2024.emnlp-main.726",
+      "authority": "UPSTREAM_HUMAN",
+      "usable_labels": [
+        "full-text scientific entities",
+        "relations",
+        "OOD split"
+      ],
+      "redistribution": "USE_UPSTREAM_DATASET_TERMS; do not assume a licence not present in the frozen registry"
+    }
+  ],
+  "baselines": [
+    "flat_predicate_canonicalization",
+    "exact_coordinate_conservative",
+    "source_provenance_only_abstain"
+  ],
+  "orion_system": "orion.knowledge.semantics.compare_meaning plus bridge_compatible",
+  "ablations": [
+    "remove_referent",
+    "remove_construct",
+    "remove_measurement",
+    "remove_temporal_context",
+    "remove_modality_polarity_attribution_discourse",
+    "force_compatibility_without_obstruction"
+  ],
+  "statistics": {
+    "unit": "externally grounded mapping case",
+    "paired": true,
+    "confidence": "Wilson 95% intervals for rates; paired bootstrap for system differences once final N is frozen",
+    "discipline_analysis": "report each upstream/domain stratum separately and pooled",
+    "multiplicity": "single primary family; Holm correction across coordinate ablations",
+    "stochastic_repeats": 1,
+    "reason_for_one_repeat": "The mapping algorithms in this route are deterministic. Random model extraction is outside the primary route."
+  },
+  "quality_gates": [
+    "every final case passes PUBLIC_REFERENCE_CASE_SCHEMA_V1.json",
+    "every expected relation has allowed gold authority with evidence locators",
+    "no final gold case contains LLM_PROPOSAL/HEURISTIC_PROXY/SIMULATED/SELF_LABEL authority",
+    "all upstream revisions and content hashes are frozen before evaluated-system outputs",
+    "case selection is deterministic and outcome-blind",
+    "primary results exclude LOCAL_ENGINEERING_ONLY fixtures"
+  ],
+  "execution_bindings": {
+    "subject_revision": "UNBOUND",
+    "case_manifest_hash": "UNBOUND",
+    "source_registry_hash": "UNBOUND",
+    "evaluator_hash": "UNBOUND",
+    "split_hashes": "UNBOUND",
+    "evaluation_epoch": "UNBOUND"
+  }
+}
