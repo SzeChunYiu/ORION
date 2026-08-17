@@ -29,7 +29,7 @@ DEFAULT_PROTOCOL = (
     / "revival"
     / "p1"
     / "protocol"
-    / "P1.epistemic-mutation-necessity.v2.2.3.json"
+    / "P1.epistemic-mutation-necessity.v2.2.4.json"
 )
 EXECUTION_SOURCE_PATHS = (
     "research/revival/p1/run_mutation_necessity_campaign.py",
