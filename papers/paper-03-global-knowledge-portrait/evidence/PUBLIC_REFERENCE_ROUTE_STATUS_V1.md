@@ -2,49 +2,50 @@
 
 **Date:** 2026-08-17  
 **Issue:** #100  
-**Route:** `P3.public-reference-mapping.v1`
+**Route:** `P3.public-reference-mapping.v1` + disjoint confirmatory `v1.1`
 
 ## Resource-constrained route
 
-Merged PR #255 provides the prospective public-reference protocol, authority policy, pinned MUSE/SciSchema/SciFact inputs, deterministic builder/evaluator/analysis, claim ledger and tests. Merged PR #260 adds portable freezing, independent replay, credential-free execution, and the frozen evidence archive.
+Merged PRs #255/#260 established the zero-paid-resource public-reference route using pinned MUSE, SciFact and SciSchema authority, portable gold freezing, deterministic evaluation and archived evidence. Merged PR #262 moved only the immutable narrow result into the manuscript and claim ledger.
 
 No paid annotator commission, provider credential, or GPU is required. Unsupported coordinates are not guessed; they remain outside the narrower public-reference claim.
 
-## Executed evidence
+## Initial executed evidence
 
-GitHub Actions run `32046403537` reached the complete gate on 2026-08-17:
+The first 32-case public-reference atlas is archived under `public-reference-v1/` with portable gold SHA-256 `35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8`. It produced ORION false-merge 0.000 versus 0.125 for flat predicate canonicalization, paired delta -0.125 with 95% CI [-0.250,-0.03125].
 
-- isolated public-reference tests: GREEN;
-- exact pinned MUSE / SciSchema / SciFact retrieval: GREEN;
-- authoritative candidate pools: MUSE 258, SciFact 957, SciSchema 16;
-- deterministic selected atlas: 32 cases;
-- represented strata: biology, imaging, materials, MUSE cross-domain, scientific claim verification;
-- represented case families: different-name/same-referent, polarity/modality/attribution/context, valid/invalid representation mapping;
-- build status: `READY_FOR_FREEZE`, no blockers;
-- portable gold status: `PUBLIC_REFERENCE_GOLD_FROZEN`;
-- portable gold SHA-256: `35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8`;
-- independent second freeze: byte-for-byte identical / replay PASS;
-- deterministic evaluation and publication analysis: GREEN.
+Because that first run's execution identities were not fully bound prospectively, it is treated as an initial narrow result rather than the final confirmatory authority.
 
-The pointer/hash-only gold and evidence are archived on `main` under:
+## Execution-frozen disjoint confirmation
 
-- `gold/adjudicated/public-reference-v1/`;
-- `evidence/public-reference-v1/`.
+A second 32-case holdout was selected/frozen before any confirmatory system output in freeze-only workflow run `32047464810`:
 
-No upstream MUSE paragraph text is vendored into the gold artifact.
+- deterministic selection offset 32 from the same pinned authority pools;
+- zero case overlap with the first atlas;
+- five represented strata: materials, MUSE cross-domain, physics, psychology, scientific claim verification;
+- three represented case families: different-name/same-referent, polarity/modality/attribution/context, valid/invalid representation mapping;
+- raw holdout SHA-256 `79316a561c96ac968bf2598501850bd90deaf1b78501346b0c703663ef794f2b`;
+- portable holdout SHA-256 `13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b`;
+- portable freeze independently replayed before execution.
 
-## Narrow empirical result
+`protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json` then froze the exact holdout hash, source revisions, evaluator Git blobs, bootstrap seed, margins and pass rule while `confirmatory_outcome_accessed_at_freeze=false`.
 
-On the frozen 32-case public-reference mapping atlas:
+Confirmatory workflow run `32048125743` is GREEN and verified every bound identity before evaluation. On the disjoint holdout:
 
-- ORION mapping semantics: accuracy `1.000`, false-merge `0.000`, false-split `0.000`;
-- flat predicate canonicalization: accuracy `0.875`, false-merge `0.125`, false-split `0.000`;
-- paired ORION-minus-flat false-merge difference: `-0.125`, 95% paired bootstrap CI `[-0.250, -0.03125]`;
-- forcing compatibility without obstruction produces `+0.125` false-merge delta, 95% CI `[+0.03125, +0.250]`;
-- removing modality/polarity/attribution/discourse produces the same `+0.125` false-merge delta on the covered cases.
+- ORION: accuracy 1.000, false-merge 0.000, false-split 0.000;
+- flat predicate canonicalization: accuracy 0.8125, false-merge 0.1875, false-split 0.000;
+- paired ORION-minus-flat false-merge delta: -0.1875, 95% CI [-0.34375,-0.0625];
+- ORION-minus-exact false-split delta: 0.000, 95% CI [0.000,0.000];
+- predeclared false-merge superiority: PASS;
+- predeclared false-split non-inferiority: PASS;
+- combined confirmatory primary verdict: **PASS**.
 
-These results apply only to the public-reference mapping route and must not be promoted to raw-text extraction, retrieval, provider, downstream-answering, or universal cross-domain adequacy.
+The discriminating effect is concentrated in the 13 polarity/modality/attribution/context cases: flat canonicalization false-merged 6/13 while ORION false-merged none. The other covered families were correct under all compared rules.
+
+Covered ablations reproduce the structural signal: forcing compatibility without obstruction and removing modality/polarity/attribution/discourse each add +0.1875 false merges, 95% CI [+0.0625,+0.34375]. Other zero-effect ablations remain coverage-limited/descriptive.
+
+Frozen confirmatory gold, execution manifest, summary, analysis, provenance and checksums are archived under `public-reference-v1.1-confirmatory/`.
 
 ## Remaining scientific boundary
 
-The original stronger `P3.cross-domain-atlas.v1` end-to-end study still requires evidence for its broader eight-family construct-validity/recoverability claim. That remains `CANNOT_CHECK`; the public-reference route is not a semantic shortcut around missing authority.
+This is now a prospectively replicated result for the already-structured mapping calculus. It still does **not** establish the original `P3.cross-domain-atlas.v1` end-to-end claims about raw-text extraction, strongest model/RAG/schema baselines, full eight-family construct validity, recoverability of generated portraits, downstream scientific utility, or W-expansion. Those remain `CANNOT_CHECK` until separately frozen evidence exists.

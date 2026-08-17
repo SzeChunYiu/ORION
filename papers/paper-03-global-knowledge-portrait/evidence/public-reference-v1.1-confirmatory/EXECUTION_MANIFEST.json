@@ -1,0 +1,87 @@
+{
+  "schema_version": "orion.p3.public-reference-confirmatory-execution.v1",
+  "paper_id": "P3",
+  "protocol_id": "P3.public-reference-mapping.v1.1-confirmatory",
+  "protocol_status": "EXECUTION_FROZEN",
+  "frozen_date": "2026-08-17",
+  "predecessor": {
+    "protocol_id": "P3.public-reference-mapping.v1",
+    "outcome_accessed": true,
+    "primary_gold_sha256": "35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8",
+    "rule": "The predecessor result may motivate replication but may not change the confirmatory holdout, evaluator, margins, or pass criteria."
+  },
+  "confirmatory_outcome_accessed_at_freeze": false,
+  "hypothesis": {
+    "id": "P3.PR.H1.REPLICATION",
+    "text": "On a disjoint, prospectively frozen second 32-case public-reference holdout, ORION's typed comparison reduces invalid merges relative to flat predicate canonicalization while remaining non-inferior in false splits to the exact-coordinate conservative control.",
+    "false_merge_superiority_margin_absolute": -0.05,
+    "false_split_noninferiority_margin_absolute": 0.03,
+    "pass_rule": {
+      "false_merge": "ORION-minus-flat point estimate <= -0.05 AND paired 95% bootstrap CI upper bound < 0",
+      "false_split": "ORION-minus-exact point estimate <= +0.03 AND paired 95% bootstrap CI upper bound <= +0.03",
+      "terminal": "PASS only if both conditions hold"
+    }
+  },
+  "holdout": {
+    "selection_rule": "outcome-blind deterministic round-robin window over sorted MUSE, SciFact, SciSchema candidate pools",
+    "selection_offset": 32,
+    "target_n": 32,
+    "exclude_primary_case_ids": true,
+    "overlap_with_primary": 0,
+    "raw_cases_sha256": "79316a561c96ac968bf2598501850bd90deaf1b78501346b0c703663ef794f2b",
+    "portable_cases_sha256": "13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b",
+    "freeze_only_workflow_run": 32047464810,
+    "freeze_only_phase": "FREEZE_ONLY_NO_SYSTEM_OUTPUTS",
+    "case_families": [
+      "different_name_same_referent",
+      "polarity_modality_attribution_context",
+      "valid_invalid_representation_mapping"
+    ],
+    "strata": [
+      "materials",
+      "muse_cross_domain",
+      "physics",
+      "psychology",
+      "scientific_claim_verification"
+    ],
+    "expected_relation_support": ["COMPATIBLE", "CONTRADICTORY"]
+  },
+  "source_bindings": {
+    "MUSE": "f7a40317db46145d0c90b221311d8324db5da1b9",
+    "SciFact": "68b98a56d93e0f9da0d2aab4e6c3294699a0f72e",
+    "SciSchema": "55b6197cdb0b66c3123df16d0b0c70b02c4bde8b",
+    "source_registry_git_blob": "56e6494356776c331d5d271bd935d48ff889f46e",
+    "primary_exclusion_gold_git_blob": "669dbaf5222148e0893d98f4cd15a13dd8eac7d7"
+  },
+  "evaluator_bindings": {
+    "frozen_source_revision": "8084a365bc0aad61a86708b1c5a4d1183b7f6f0d",
+    "components": {
+      "src/orion/knowledge/semantics.py": "eefefe9d188130eac1d55d2cb85db66fb296499a",
+      "src/orion/study/statistics.py": "b0aeddb3752d6f94657dbf6c3fd2c57ceb8fdea2",
+      "src/orion/study/p3_public_reference.py": "c4ab75d50f5b64c8e65e41342ec577e440be6681",
+      "src/orion/study/p3_public_reference_build.py": "f575b12b294f68ebe3b377390a932c2f70141b95",
+      "src/orion/study/p3_public_reference_analysis.py": "fa59a331104321305e5f7c4f3d897ccbaca5c76d",
+      "src/orion/study/p3_public_reference_freeze.py": "b0452d5a17d1e0b70138d9e48bdeb32bc19acb18",
+      "src/orion/study/p3_public_reference_holdout.py": "28e64b1f503357882ceefc3a7bc99a277d04eec4",
+      "src/orion/study/p3_public_reference_confirmatory.py": "f5ac9247a326db6e52601fa66adb0d2584e06051"
+    }
+  },
+  "statistics": {
+    "unit": "externally grounded confirmatory mapping case",
+    "rate_interval": "Wilson 95%",
+    "paired_interval": "paired percentile bootstrap, 10000 resamples",
+    "bootstrap_seed": 20260817,
+    "stochastic_repeats": 1,
+    "reason_for_one_repeat": "all evaluated mapping rules are deterministic",
+    "stratification": "report pooled result plus descriptive results by discipline and case family",
+    "ablations": "secondary/descriptive paired intervals only; no significance claims and no multiplicity-adjusted p-values",
+    "pooling_policy": "do not pool the predecessor 32 cases into the confirmatory verdict"
+  },
+  "custody": {
+    "confirmatory_gold_hidden_from_evaluated_system": true,
+    "selection_may_not_change_after_this_manifest": true,
+    "evaluator_may_not_change_after_this_manifest": true,
+    "pass_rule_may_not_change_after_this_manifest": true,
+    "failure_policy": "any hash mismatch, overlap, source drift, or evaluator drift => CANNOT_CHECK"
+  }
+}

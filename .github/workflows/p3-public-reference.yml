@@ -130,7 +130,7 @@ jobs:
           find artifacts -type f ! -path 'artifacts/replay/*' ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > artifacts/SHA256SUMS || true
 
       - name: Archive frozen evidence on same-repository PR
-        if: steps.build.outputs.code == '0' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        if: steps.build.outputs.code == '0' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && !startsWith(github.head_ref, 'chatgpt/p3-public-reference-confirmatory')
         shell: bash
         run: |
           set -euo pipefail
