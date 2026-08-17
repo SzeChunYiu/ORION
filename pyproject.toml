@@ -24,6 +24,9 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+# Two lanes landed `test_schema.py` (global_positive vs verification). Prepend
+# importlib mode so collection does not abort on duplicate basenames.
+addopts = "--import-mode=importlib"
 
 [tool.ruff]
 # Without this section ruff runs on bare defaults, which flag the re-export
