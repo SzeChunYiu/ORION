@@ -57,6 +57,10 @@ def test_candidate_native_embedding_preserves_p1_p5_fixture_decisions() -> None:
             "papers/candidates/paper-08-epistemic-authority-autonomous-science/formal/check_authority_calculus.py",
             "P8 authority-calculus checks: PASS",
         ),
+        (
+            "papers/candidates/checkers/check_preservation_ladder_v1.py",
+            "P6-P8 preservation ladder V1: PASS",
+        ),
     ),
 )
 def test_candidate_v2_formal_support(relative_path: str, sentinel: str) -> None:
