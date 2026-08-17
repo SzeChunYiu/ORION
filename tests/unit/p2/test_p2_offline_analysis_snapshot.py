@@ -62,6 +62,7 @@ def _publication_projection(summary: dict) -> dict:
                 "raw_artifact_hash_list_digest_sha256"
             ],
         },
+        "achieved_precision": summary["achieved_precision"],
         "headline": {
             "strongest_confirmatory_baseline": summary[
                 "strongest_confirmatory_baseline"
