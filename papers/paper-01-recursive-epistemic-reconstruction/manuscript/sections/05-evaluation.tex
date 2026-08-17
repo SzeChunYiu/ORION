@@ -1,3 +1,5 @@
+\input{generated/suite_facts}
+
 \section{Falsifiable hypotheses and current evidence}
 
 \subsection{Hypotheses}
@@ -39,3 +41,31 @@ The current discriminator instead asks whether name-independent functional signa
 \subsection{External promotion gate}
 
 The publication-level test remains unexecuted. Final evidence requires the execution bindings above, fresh hidden-formulation tasks, matched current baselines, protected labels/evaluation, and the frozen statistical analysis. Until those conditions are satisfied and the external evidence manifest is independently bound, the external state is \texttt{CANNOT\_CHECK}. Repository tests and the prospective protocol cannot convert that state into a novelty or superiority claim.
+
+\subsection{Local results}
+
+\subsubsection{Mechanical arm attribution}
+The LLM-free reduction layer attributes the correct top-ranked responsibility on 62 of 66 cases, with 0 of 22 negative controls receiving a formulation responsibility. Four relations cover 26 cases: \texttt{required\_input\_absent\_but\_obtainable} (10 cases), \texttt{framing\_remedy\_tried\_and\_failed} (8 cases), \texttt{counterfactual\_restores\_baseline} (5 cases), and \texttt{equal\_weight\_aggregation\_over\_skewed\_units} (3 cases). Half the attributions rest on rules that fire on exactly one case. Artifact: \texttt{evidence/MECHANICAL\_ARM\_LIMITATIONS\_V1.md}.
+
+\subsubsection{Solvability audit}
+An independent blind audit rates 55 of 66 cases SOLVABLE from public content alone. Pre-gold family prediction accuracy is 61 of 66. Five arithmetic defects were found and confirmed. Artifact: \texttt{evidence/MECHANICAL\_SOLVABILITY\_AUDIT\_V1.md} and companion \texttt{mechanical\_solvability\_audit\_v1.json}.
+
+\subsubsection{Falsifier repair}
+The deterministic suite exposed an over-broad reframe gate: singular EVIDENCE/EXECUTION responsibility could previously enter the reframe path. The gate was repaired so those cases can no longer reframe merely because responsibility is singular. Artifact: \texttt{evidence/FALSIFIER\_V1.md}.
+
+\subsubsection{Power and tier status}
+The achieved tier is \AchievedTier{} with half-width \AchievedHalfWidth{}. Required N for H1 is \RequiredNForH1{}; for H2 is \RequiredNForH2{}. The study is \Underpowered{} for the primary hypothesis. Stochastic repeats per case: \StochasticRepeats{}. Artifact: \texttt{generated/suite\_facts.tex} via \texttt{scripts/render\_suite\_facts.py}.
+
+\subsection{Discussion}
+
+\subsubsection{What the local evidence establishes}
+The falsifier suite served its intended role by exposing a design defect (the over-broad reframe gate) and forcing a repair. The mechanical arm demonstrates that responsibility attribution is possible without LLM comprehension on 62 of 66 cases, with zero false positives on the 22 negative controls. Four general relations cover 26 cases; the remaining attributions rest on narrower rules whose generality is untested.
+
+\subsubsection{What the local evidence cannot establish}
+The current N=\TestCaseCount{} falls short of the required \RequiredNForH1{} for H1 and \RequiredNForH2{} for H2. The achieved tier \AchievedTier{} is below the minimum standard (TIER D). The study is therefore \Underpowered{} for its primary hypotheses. Effect sizes with confidence intervals cannot be reported until the external campaign completes and results are bound.
+
+\subsubsection{Failure modes}
+A prospective failure taxonomy (Table P1-3) is defined in the protocol but results are not yet available. The local suite identified specific failure patterns: blind-responder shortcuts in template phrasing, filename-based family separation, and arithmetic defects in case resources. These are documented in the solvability audit artifact.
+
+\subsubsection{Limitations of the local suite}
+The local falsifier uses constructed cases with frozen semantic properties. It cannot establish open-world adequacy or external superiority. Template-level leaks (perfect separation on fixed phrases like ``The team's framing is'') were identified and documented but not repaired in this iteration. Half the mechanical arm attributions rest on singleton rules that may function as case-specific recognizers.

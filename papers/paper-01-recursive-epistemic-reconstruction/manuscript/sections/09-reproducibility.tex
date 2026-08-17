@@ -1,0 +1,36 @@
+\section{Data and code availability}
+
+\subsection{Repository access}
+The complete source code, protocol definitions, case suite, and evidence artifacts are version-controlled at \texttt{SzeChunYiu/ORION} with persistent DOI assignment pending publication. The manuscript branch pins exact commit hashes for all frozen artifacts.
+
+\subsection{Reproducing the results}
+\subsubsection{Automated reproduction}
+\begin{verbatim}
+make paper01-results
+\end{verbatim}
+executes the full Paper I evaluation pipeline: dataset binding, baseline/ablation runs, statistical analysis, and figure/table generation. The target returns a non-zero exit code with diagnostic output if any execution binding is missing or tampered.
+
+\subsubsection{Clean environment}
+The repository is Python-based with \texttt{pyproject.toml} dependency specification. A fresh reproduction requires:
+\begin{itemize}
+    \item Python 3.11 or later
+    \item \texttt{pip install -e .[dev]} from the repository root
+    \item Model provider access compatible with the frozen execution bindings
+\end{itemize}
+Container reproduction instructions are provided in \texttt{REPRODUCE.md}.
+
+\subsection{Runtime and cost}
+Local deterministic falsifier runtime: approximately 15 minutes on a standard CPU-only instance. Full external campaign cost is model- and provider-dependent; exact usage tokens are recorded in the evidence manifest.
+
+\subsection{Licenses}
+All code is released under MIT License. Case definitions and protocol schemas are released under CC-BY-4.0. Model-specific terms apply to provider usage.
+
+\subsection{Artifact fingerprinting}
+Every artifact that could affect results is fingerprinted by content hash and bound in the protocol:
+\begin{itemize}
+    \item Datasets: \texttt{execution\_bindings.dataset\_revisions}
+    \item Baseline configurations: \texttt{execution\_bindings.baseline\_config\_hashes}
+    \item Evaluator: \texttt{execution\_bindings.evaluator\_hash}
+    \item Splits: \texttt{execution\_bindings.split\_hashes}
+\end{itemize}
+Reproduction is defined as obtaining the same numerical results on the same frozen hashes.
