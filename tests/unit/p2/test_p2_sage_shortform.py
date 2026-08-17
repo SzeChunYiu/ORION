@@ -290,6 +290,22 @@ def test_both_systems_run_under_an_identical_budget(tmp_path: Path) -> None:
     systems = manifest["systems"]
     issued = {name: value["max_provider_requests_observed"] for name, value in systems.items()}
     assert len(set(issued.values())) == 1, "one system got more provider requests than the other"
+
+    # Systems are interleaved per task, so both candidate files cover exactly the
+    # same tasks. Were the lanes sequential, an interruption would leave one file
+    # complete and the other empty, which is no paired comparison at all.
+    covered = {}
+    for name in systems:
+        rows = [
+            json.loads(line)
+            for line in (tmp_path / "out" / f"candidates_{name}.jsonl")
+            .read_text(encoding="utf-8")
+            .splitlines()
+        ]
+        covered[name] = [row["task_id"] for row in rows]
+    task_lists = list(covered.values())
+    assert task_lists[0] == task_lists[1], "systems must cover the same tasks in the same order"
+    assert len(task_lists[0]) == manifest["tasks_attempted"]
     assert systems["sage_single_backend"]["is_frozen_baseline"] is False
     assert systems["sage_governed_multiroute"]["backends"] == list(module.MULTIROUTE_BACKENDS)
 

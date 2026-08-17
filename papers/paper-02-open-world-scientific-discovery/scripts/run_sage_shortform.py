@@ -1182,6 +1182,53 @@ def _count(values: list[str]) -> dict[str, int]:
     return counts
 
 
+def _candidate_row(item: dict[str, Any]) -> str:
+    return json.dumps(
+        {
+            "task_id": item["task_id"],
+            "domain": item["domain"],
+            "system_id": item["system_id"],
+            "candidate_titles": item["candidate_titles"],
+        },
+        ensure_ascii=False,
+        sort_keys=True,
+    )
+
+
+def _trace_row(item: dict[str, Any]) -> str:
+    return json.dumps(
+        {
+            "task_id": item["task_id"],
+            "system_id": item["system_id"],
+            "provider_requests_issued": item["provider_requests_issued"],
+            "candidate_count": item["candidate_count"],
+            "status_counts": item["status_counts"],
+            "first_candidate_backend": item["first_candidate_backend"],
+            "route_independence_verdicts": _count(
+                [pair["verdict"] for pair in item["route_independence"]]
+            ),
+            "attempts": [
+                {
+                    "attempt_index": attempt["attempt_index"],
+                    "backend": attempt["backend"],
+                    "derivation_id": attempt["derivation_id"],
+                    "route_kind": attempt["route_kind"],
+                    "status": attempt["status"],
+                    "retrieved_digests": attempt["retrieved_digests"],
+                    "novel_digests": attempt["novel_digests"],
+                    "consecutive_zero_novelty_before": attempt.get(
+                        "consecutive_zero_novelty_before"
+                    ),
+                    "route_control_action": attempt.get("route_control_action"),
+                }
+                for attempt in item["attempts"]
+            ],
+        },
+        ensure_ascii=False,
+        sort_keys=True,
+    )
+
+
 def assert_budget_parity(per_system: dict[str, Any]) -> dict[str, Any]:
     """Refuse to report a family whose systems ran under different caps.
 
@@ -1243,20 +1290,24 @@ def run_systems(
     sleeper = sleeper or time.sleep
     gate = RateGate(clock, budgets=SAGE_PROVIDER_BUDGETS)
 
-    per_system: dict[str, Any] = {}
-    for spec in SYSTEMS:
-        results: list[dict[str, Any]] = []
-        candidate_path = output_dir / f"candidates_{spec.system_id}.jsonl"
-        trace_path = output_dir / f"trace_{spec.system_id}.jsonl"
-        output_dir.mkdir(parents=True, exist_ok=True)
-        # Written and flushed per task. A run this long over three public APIs
-        # will occasionally be interrupted, and an interruption should cost the
-        # remaining tasks rather than every task already paid for.
-        with (
-            candidate_path.open("w", encoding="utf-8") as candidate_handle,
-            trace_path.open("w", encoding="utf-8") as trace_handle,
-        ):
-            for position, task in enumerate(tasks, 1):
+    # Systems are interleaved per task, not run one lane after the other. Two
+    # reasons, both learned the hard way on this family: sequential lanes mean an
+    # interruption leaves one system complete and the other empty, which is no
+    # paired comparison at all, whereas interleaving leaves both systems complete
+    # over the tasks that finished and the achieved N can be reported honestly.
+    # It is also faster, because one system's rate-gate wait on a provider is
+    # spent issuing the other system's request to a different provider.
+    output_dir.mkdir(parents=True, exist_ok=True)
+    collected: dict[str, list[dict[str, Any]]] = {spec.system_id: [] for spec in SYSTEMS}
+    handles: dict[str, tuple[Any, Any]] = {}
+    try:
+        for spec in SYSTEMS:
+            handles[spec.system_id] = (
+                (output_dir / f"candidates_{spec.system_id}.jsonl").open("w", encoding="utf-8"),
+                (output_dir / f"trace_{spec.system_id}.jsonl").open("w", encoding="utf-8"),
+            )
+        for position, task in enumerate(tasks, 1):
+            for spec in SYSTEMS:
                 item = run_task(
                     spec,
                     task,
@@ -1266,58 +1317,24 @@ def run_systems(
                     budget=budget,
                     max_results=max_results,
                 )
-                results.append(item)
-                candidate_handle.write(
-                    json.dumps(
-                        {
-                            "task_id": item["task_id"],
-                            "domain": item["domain"],
-                            "system_id": item["system_id"],
-                            "candidate_titles": item["candidate_titles"],
-                        },
-                        ensure_ascii=False,
-                        sort_keys=True,
-                    )
-                    + "\n"
-                )
-                trace_handle.write(
-                    json.dumps(
-                        {
-                            "task_id": item["task_id"],
-                            "system_id": item["system_id"],
-                            "provider_requests_issued": item["provider_requests_issued"],
-                            "candidate_count": item["candidate_count"],
-                            "status_counts": item["status_counts"],
-                            "first_candidate_backend": item["first_candidate_backend"],
-                            "route_independence_verdicts": _count(
-                                [pair["verdict"] for pair in item["route_independence"]]
-                            ),
-                            "attempts": [
-                                {
-                                    "attempt_index": attempt["attempt_index"],
-                                    "backend": attempt["backend"],
-                                    "derivation_id": attempt["derivation_id"],
-                                    "route_kind": attempt["route_kind"],
-                                    "status": attempt["status"],
-                                    "retrieved_digests": attempt["retrieved_digests"],
-                                    "novel_digests": attempt["novel_digests"],
-                                    "consecutive_zero_novelty_before": attempt.get(
-                                        "consecutive_zero_novelty_before"
-                                    ),
-                                    "route_control_action": attempt.get("route_control_action"),
-                                }
-                                for attempt in item["attempts"]
-                            ],
-                        },
-                        ensure_ascii=False,
-                        sort_keys=True,
-                    )
-                    + "\n"
-                )
+                collected[spec.system_id].append(item)
+                candidate_handle, trace_handle = handles[spec.system_id]
+                candidate_handle.write(_candidate_row(item) + "\n")
+                trace_handle.write(_trace_row(item) + "\n")
                 candidate_handle.flush()
                 trace_handle.flush()
-                if progress_every and (position % progress_every == 0 or position == len(tasks)):
-                    print(f"SAGE_RUN {spec.system_id} {position}/{len(tasks)}", flush=True)
+            if progress_every and (position % progress_every == 0 or position == len(tasks)):
+                print(f"SAGE_RUN paired {position}/{len(tasks)}", flush=True)
+    finally:
+        for candidate_handle, trace_handle in handles.values():
+            candidate_handle.close()
+            trace_handle.close()
+
+    per_system: dict[str, Any] = {}
+    for spec in SYSTEMS:
+        results = collected[spec.system_id]
+        candidate_path = output_dir / f"candidates_{spec.system_id}.jsonl"
+        trace_path = output_dir / f"trace_{spec.system_id}.jsonl"
         issued = [item["provider_requests_issued"] for item in results]
         per_system[spec.system_id] = {
             "role": spec.role,
