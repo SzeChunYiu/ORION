@@ -162,3 +162,16 @@ paper05-tests:
 		tests/test_p5_hidden_cause_freeze.py \
 		tests/test_p5_protocol_v2.py
 
+# --- Cross-paper journal packages (issue #160) --------------------------------
+#
+# Additive Gate 7–9 inventory. Does not compile PDFs or mint
+# ScientificResultVerification.v1 (issue #283).
+
+.PHONY: journal-packages
+journal-packages:
+	$(PYTHON) research/paper-programme-v1/journal_package/check_journal_package.py
+
+.PHONY: journal-package-tests
+journal-package-tests:
+	PYTHONPATH=$(SRC) $(PYTHON) -m pytest -q tests/unit/publication/test_journal_package.py
+
