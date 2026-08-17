@@ -93,10 +93,16 @@ jobs:
             --target-n 32 \
             --out p3-public-reference-run
 
-      - name: Reject runner-local locators
+      - name: Canonicalize all source provenance paths
         run: |
-          if grep -qE '"(locator|source_span)":"/|"(locator|source_span)": "/' p3-public-reference-run/cases.jsonl; then
-            echo 'absolute local locator leaked into frozen cases' >&2
+          PYTHONPATH=src python -m orion.study.p3_public_reference_finalize_v11 \
+            --cases p3-public-reference-run/cases.jsonl \
+            --report p3-public-reference-run/BUILD_REPORT.json \
+            --muse-root /tmp/muse/dataset/human_Expert_annotations \
+            --scifact-file /tmp/scifact/data/claims_dev.jsonl \
+            --scischema-root /tmp/scischema/schemas
+          if grep -q '/tmp/' p3-public-reference-run/cases.jsonl; then
+            echo 'runner-local path leaked into frozen case provenance' >&2
             exit 1
           fi
 
