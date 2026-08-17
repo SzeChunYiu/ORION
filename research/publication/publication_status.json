@@ -186,15 +186,23 @@
     },
     {
       "attestation_paths": [],
-      "claim_ledger_cannot_check": [],
-      "claim_ledgers": [],
+      "claim_ledger_cannot_check": [
+        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Abstract: EXTERNAL NOT EXECUTED",
+        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Results: EXTERNAL NOT EXECUTED",
+        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Conclusion: EXTERNAL NOT EXECUTED"
+      ],
+      "claim_ledgers": [
+        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md"
+      ],
       "issue": 102,
       "journal_readiness": "papers/paper-05-self-orion/JOURNAL_READINESS.md",
       "journal_readiness_terminal": "CANNOT_CHECK",
       "missing_artifacts": [
         "papers/paper-05-self-orion/JOURNAL_READINESS.md: current terminal is CANNOT_CHECK, not PEER_REVIEW_READY",
         "papers/paper-05-self-orion/protocol/PROTOCOL_V1.json: protocol_status=DESIGN_FROZEN; UNBOUND identities remain: $.baseline_config_hashes, $.dataset_revisions.fresh_transfer_split, $.dataset_revisions.hidden_cause_suite, $.dataset_revisions.motivating_replay_split, $.evaluation_epoch, $.evaluator_hash, $.model_provider_revisions, $.split_hashes, $.subject_revision",
-        "papers/paper-05-self-orion: no claim ledger file found"
+        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Abstract: EXTERNAL NOT EXECUTED",
+        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Results: EXTERNAL NOT EXECUTED",
+        "papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md :: Conclusion: EXTERNAL NOT EXECUTED"
       ],
       "notes": [
         "Artifacts exist and the paper is not PEER_REVIEW_READY; listed missing_artifacts are the blockers."

@@ -24,10 +24,6 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
-# Unique module names by path. Parallel lanes independently added
-# test_schema.py / test_metrics.py; the default prepend import mode
-# then fails collection with "import file mismatch" and reds every PR.
-addopts = ["--import-mode=importlib"]
 
 [tool.ruff]
 # Without this section ruff runs on bare defaults, which flag the re-export

@@ -68,12 +68,13 @@ def test_p1_closed_issue_does_not_invent_readiness():
     assert p1["attestation_paths"] == []
 
 
-def test_p5_is_blocked_in_part_because_claim_ledger_is_absent():
+def test_p5_is_blocked_despite_claim_ledger_existing():
     module = _load_module()
     p5 = next(paper for paper in module.derive_scoreboard(ROOT)["papers"] if paper["paper_id"] == "P5")
     assert p5["status"] == "BLOCKED"
-    assert p5["claim_ledgers"] == []
-    assert any("no claim ledger" in item for item in p5["missing_artifacts"])
+    assert p5["claim_ledgers"]
+    assert p5["journal_readiness_terminal"] == "CANNOT_CHECK"
+    assert any("not PEER_REVIEW_READY" in item for item in p5["missing_artifacts"])
     assert p5["protocol_status"] == "DESIGN_FROZEN"
     assert p5["unbound_execution_bindings"]
 
