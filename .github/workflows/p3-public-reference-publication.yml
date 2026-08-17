@@ -8,10 +8,13 @@ on:
       - 'src/orion/study/p3_public_reference_publication.py'
       - 'tests/unit/study/test_p3_public_reference_publication.py'
       - 'papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json'
-      - 'Makefile'
 
 permissions:
   contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   regenerate:
