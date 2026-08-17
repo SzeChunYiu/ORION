@@ -69,13 +69,74 @@ DEFAULT_ROOT = (
     / "offline_gold"
 )
 
-WORLD_FILE = "world.json"
-TASKS_FILE = "tasks.json"
+TOPICS_FILE = "topics.json"
 MANIFEST_FILE = "MANIFEST.json"
+
+WORLD_SHARD_PREFIX = "world-"
+TASKS_SHARD_PREFIX = "tasks-"
 
 #: Keep every committed shard comfortably below the repository's file-size
 #: comfort zone. Checked at write time rather than assumed.
 MAX_FILE_BYTES = 1_000_000
+
+#: The size each shard is packed toward. Below `MAX_FILE_BYTES` on purpose: the
+#: ceiling is a hard limit checked after the fact, and packing right up to it would
+#: leave a future seed or a slightly longer generated label to push a shard over it.
+SHARD_TARGET_BYTES = 700_000
+
+
+def _shard_name(prefix: str, index: int) -> str:
+    return f"{prefix}{index:03d}.json"
+
+
+def _slices(items: list[Any], count: int) -> list[list[Any]]:
+    """Split into `count` contiguous near-equal chunks, order preserved."""
+
+    if count < 1:
+        raise ValueError("a shard count of at least one is required")
+    total = len(items)
+    base, extra = divmod(total, count)
+    chunks: list[list[Any]] = []
+    start = 0
+    for position in range(count):
+        size = base + (1 if position < extra else 0)
+        chunks.append(items[start : start + size])
+        start += size
+    return chunks
+
+
+def _shard_payloads(
+    items: list[Any],
+    *,
+    field: str,
+    header: dict[str, Any],
+    prefix: str,
+) -> dict[str, dict[str, Any]]:
+    """Pack `items` into as few shards as keep each one under the target size.
+
+    The count is derived from the content, so it is part of what the seed
+    determines: the same seed on a clean checkout produces the same number of
+    shards with the same contents, and therefore the same manifest.
+    """
+
+    count = 1
+    while True:
+        chunks = _slices(items, count)
+        payloads = {
+            _shard_name(prefix, index): {
+                **header,
+                "shard_index": index,
+                "shard_count": count,
+                field: chunk,
+            }
+            for index, chunk in enumerate(chunks)
+        }
+        largest = max(
+            len(_dump(payload).encode("utf-8")) for payload in payloads.values()
+        )
+        if largest <= SHARD_TARGET_BYTES or count >= len(items):
+            return payloads
+        count += 1
 
 
 @dataclass(frozen=True)
@@ -103,20 +164,49 @@ def write_suite(root: Path = DEFAULT_ROOT, *, seed: int = FROZEN_SEED) -> dict[s
     suite = build_suite(seed)
     root.mkdir(parents=True, exist_ok=True)
 
-    world_payload = suite.world.as_json()
-    tasks_payload = {
-        "schema_version": TASK_SCHEMA_VERSION,
-        "tasks": [task.as_json() for task in suite.tasks],
+    world_json = suite.world.as_json()
+    files: dict[str, dict[str, Any]] = {
+        TOPICS_FILE: {
+            "schema_version": CORPUS_SCHEMA_VERSION,
+            "seed": seed,
+            "topics": world_json["topics"],
+        }
     }
+    files.update(
+        _shard_payloads(
+            list(world_json["documents"]),
+            field="documents",
+            header={"schema_version": CORPUS_SCHEMA_VERSION, "seed": seed},
+            prefix=WORLD_SHARD_PREFIX,
+        )
+    )
+    files.update(
+        _shard_payloads(
+            [task.as_json() for task in suite.tasks],
+            field="tasks",
+            header={"schema_version": TASK_SCHEMA_VERSION},
+            prefix=TASKS_SHARD_PREFIX,
+        )
+    )
 
-    files = {WORLD_FILE: world_payload, TASKS_FILE: tasks_payload}
-    for name, payload in files.items():
+    world_shards = sorted(
+        name for name in files if name.startswith(WORLD_SHARD_PREFIX)
+    )
+    task_shards = sorted(name for name in files if name.startswith(TASKS_SHARD_PREFIX))
+
+    # Any stale shard from a previous, larger suite would otherwise sit alongside
+    # the new one, be loaded, and quietly corrupt the corpus.
+    for existing in sorted(root.glob("*.json")):
+        if existing.name not in files and existing.name != MANIFEST_FILE:
+            existing.unlink()
+
+    for name, payload in sorted(files.items()):
         text = _dump(payload)
         size = len(text.encode("utf-8"))
         if size > MAX_FILE_BYTES:
             raise ValueError(
                 f"{name} is {size} bytes, above the {MAX_FILE_BYTES}-byte shard ceiling; "
-                "reduce filler_documents or shard the corpus before committing"
+                "the shard packer failed to split it small enough"
             )
         (root / name).write_text(text, encoding="utf-8")
 
@@ -130,6 +220,12 @@ def write_suite(root: Path = DEFAULT_ROOT, *, seed: int = FROZEN_SEED) -> dict[s
         "document_count": len(suite.world.documents),
         "topic_count": len(suite.world.topics),
         "task_count": len(suite.tasks),
+        "shards": {
+            "topics": [TOPICS_FILE],
+            "world": world_shards,
+            "tasks": task_shards,
+        },
+        "max_file_bytes": MAX_FILE_BYTES,
         "files": {
             name: {
                 "sha256": sha256_digest(payload),
@@ -145,13 +241,60 @@ def write_suite(root: Path = DEFAULT_ROOT, *, seed: int = FROZEN_SEED) -> dict[s
     return manifest
 
 
+def _read_shards(root: Path, prefix: str, field: str) -> list[Any]:
+    """Concatenate a sharded collection, refusing any incomplete shard set.
+
+    A missing shard is the failure mode that matters here: it would silently
+    shorten the corpus, and a shortened corpus with a complete-gold claim is worse
+    than no corpus at all. So the declared `shard_count` is checked against the
+    shards actually present, and the indices must form the full sequence.
+    """
+
+    shards: dict[int, dict[str, Any]] = {}
+    declared: set[int] = set()
+    for path in sorted(root.glob(f"{prefix}*.json")):
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        index = int(payload["shard_index"])
+        if index in shards:
+            raise ValueError(f"duplicate shard index {index} for {prefix}*")
+        shards[index] = payload
+        declared.add(int(payload["shard_count"]))
+    if not shards:
+        raise FileNotFoundError(f"no shards found for {prefix}* under {root}")
+    if len(declared) != 1:
+        raise ValueError(f"{prefix}* shards disagree on shard_count: {sorted(declared)}")
+    count = declared.pop()
+    missing = sorted(set(range(count)) - set(shards))
+    if missing:
+        raise ValueError(f"{prefix}* is missing shard indices {missing}")
+    if len(shards) != count:
+        raise ValueError(f"{prefix}* has {len(shards)} shards but declares {count}")
+    items: list[Any] = []
+    for index in range(count):
+        items.extend(shards[index][field])
+    return items
+
+
 def load_suite(root: Path = DEFAULT_ROOT) -> FrozenSuite:
     """Load the committed suite from disk without regenerating it."""
 
-    world = world_from_json(json.loads((root / WORLD_FILE).read_text(encoding="utf-8")))
-    payload = json.loads((root / TASKS_FILE).read_text(encoding="utf-8"))
+    topics_payload = json.loads((root / TOPICS_FILE).read_text(encoding="utf-8"))
+    world = world_from_json(
+        {
+            "schema_version": topics_payload["schema_version"],
+            "seed": topics_payload["seed"],
+            "topics": topics_payload["topics"],
+            "documents": _read_shards(root, WORLD_SHARD_PREFIX, "documents"),
+        }
+    )
     tasks = tuple(
-        sorted((task_from_json(item) for item in payload["tasks"]), key=lambda item: item.task_id)
+        sorted(
+            (
+                task_from_json(item)
+                for item in _read_shards(root, TASKS_SHARD_PREFIX, "tasks")
+            ),
+            key=lambda item: item.task_id,
+        )
     )
     return FrozenSuite(world=world, tasks=tasks)
 
@@ -196,7 +339,8 @@ def verify(root: Path = DEFAULT_ROOT) -> VerificationReport:
     if regenerated.world.content_hash != str(manifest.get("world_content_hash", "")):
         problems.append("regenerated world content hash does not match the manifest")
 
-    for name, expected in sorted(manifest.get("files", {}).items()):
+    recorded_files = manifest.get("files", {})
+    for name, expected in sorted(recorded_files.items()):
         path = root / name
         if not path.is_file():
             problems.append(f"missing frozen file: {name}")
@@ -204,6 +348,34 @@ def verify(root: Path = DEFAULT_ROOT) -> VerificationReport:
         payload = json.loads(path.read_text(encoding="utf-8"))
         if sha256_digest(payload) != expected.get("sha256"):
             problems.append(f"{name} content hash does not match the manifest")
+        size = len(_dump(payload).encode("utf-8"))
+        if size > MAX_FILE_BYTES:
+            problems.append(f"{name} is {size} bytes, above the {MAX_FILE_BYTES}-byte ceiling")
+
+    # A shard present on disk but absent from the manifest is the case a per-file
+    # hash loop cannot catch: every recorded hash still matches while the loaded
+    # suite contains material nobody signed for.
+    on_disk = {path.name for path in root.glob("*.json")} - {MANIFEST_FILE}
+    unrecorded = sorted(on_disk - set(recorded_files))
+    if unrecorded:
+        problems.append(f"files present but not recorded in the manifest: {unrecorded}")
+
+    shards = manifest.get("shards", {})
+    for kind, prefix in (("world", WORLD_SHARD_PREFIX), ("tasks", TASKS_SHARD_PREFIX)):
+        declared = list(shards.get(kind, ()))
+        found = sorted(path.name for path in root.glob(f"{prefix}*.json"))
+        if declared != found:
+            problems.append(
+                f"{kind} shard set on disk {found} does not match the manifest {declared}"
+            )
+
+    for label, key, actual in (
+        ("document_count", "document_count", len(loaded.world.documents)),
+        ("topic_count", "topic_count", len(loaded.world.topics)),
+        ("task_count", "task_count", len(loaded.tasks)),
+    ):
+        if manifest.get(key) != actual:
+            problems.append(f"manifest {label} {manifest.get(key)!r} != loaded {actual}")
 
     return VerificationReport(
         ok=not problems,
@@ -244,9 +416,15 @@ __all__ = [
     "DEFAULT_ROOT",
     "FROZEN_SEED",
     "FrozenSuite",
+    "MANIFEST_FILE",
     "MANIFEST_SCHEMA_VERSION",
+    "MAX_FILE_BYTES",
     "PROVENANCE",
+    "SHARD_TARGET_BYTES",
+    "TASKS_SHARD_PREFIX",
+    "TOPICS_FILE",
     "VerificationReport",
+    "WORLD_SHARD_PREFIX",
     "build_suite",
     "load_manifest",
     "load_suite",

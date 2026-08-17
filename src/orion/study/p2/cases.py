@@ -45,6 +45,20 @@ TASK_SCHEMA_VERSION = "orion.p2.discovery-task.v1"
 #: sixth would put results outside the frozen design.
 PROTOCOL_TASK_FAMILY = "offline_complete_gold"
 
+#: Routes for which probe keys are published to the candidate. CITATION is
+#: excluded because it is snowball-based: seeds are withheld and probes are
+#: discovered during execution, not announced upfront.
+PUBLISHED_PROBE_ROUTES = (
+    DiscoveryRoute.LEXICAL,
+    DiscoveryRoute.SEMANTIC,
+    DiscoveryRoute.REFORMULATION,
+    DiscoveryRoute.RESTRICTED,
+)
+
+#: Number of probes published per route per topic. Bound at 4 to hold
+#: difficulty fixed while N moves from 20 to 390 tasks.
+PUBLISHED_PROBES_PER_ROUTE = 4
+
 
 class CaseFamily(str, Enum):
     COMPLETE_GOLD_MULTIROUTE = "complete_gold_multiroute"
@@ -247,6 +261,30 @@ PUBLISHED_PROBE_ROUTES: tuple[DiscoveryRoute, ...] = (
     DiscoveryRoute.RESTRICTED,
 )
 
+#: Probes published per route per task: the task's own key plus decoys drawn from
+#: other topics.
+#:
+#: This is bounded rather than world-wide, and the bound is what keeps a larger
+#: world the *same* measurement rather than a harder one. `DEFAULT_BUDGET`'s
+#: `max_route_calls` is deliberately set below the cost of enumerating every
+#: published probe on every route, so with four published routes the search space
+#: a system faces is `4 * PUBLISHED_PROBES_PER_ROUTE = 16` against a 12-call
+#: budget. Publishing all 78 topics' keys instead would make that 312 against 12,
+#: and the semantic route — whose correct key shares no token with the question by
+#: construction, so lexical scoring cannot order it — would stop being a bounded
+#: trial and become a lottery. Recall would collapse for every system, and the
+#: collapse would be an artifact of the enlarged denominator rather than anything
+#: about route governance.
+#:
+#: Four is therefore not a free parameter: it is the value the superseded 20-task
+#: world published (one key per route per topic, four topics), held fixed so that
+#: raising N changes the denominator and nothing else.
+PUBLISHED_PROBES_PER_ROUTE = 4
+
+#: Stride used to pick decoys. Coprime with nothing in particular — it only has to
+#: be deterministic and to walk away from the home position, which it does.
+_DECOY_STRIDE = 7
+
 DEFAULT_BUDGET = Budget(
     max_route_calls=12,
     max_reads=24,
@@ -280,10 +318,77 @@ def _budget_for(family: CaseFamily) -> Budget:
     )
 
 
-def _published_probes(world: DiscoveryWorld) -> tuple[tuple[str, tuple[str, ...]], ...]:
-    return tuple(
-        (route.value, world.probes_for(route)) for route in PUBLISHED_PROBE_ROUTES
-    )
+def _route_key_index(
+    world: DiscoveryWorld,
+) -> dict[str, tuple[tuple[str, str], ...]]:
+    """Map each published route to the sorted (topic, key) pairs that route accepts.
+
+    Derived from the corpus rather than declared alongside it: a topic's key on a
+    route is the key its own relevant documents carry there. A separately authored
+    map could drift away from the documents it claims to describe; this one cannot.
+    """
+
+    collected: dict[str, list[tuple[str, str]]] = {
+        route.value: [] for route in PUBLISHED_PROBE_ROUTES
+    }
+    for topic in sorted(world.topics, key=lambda item: item.topic_id):
+        # Relevance is decided once per topic and reused across routes; deciding it
+        # per route would rescan the whole corpus four times over.
+        relevant = [item for item in world.documents if is_relevant(item, topic)]
+        for route in PUBLISHED_PROBE_ROUTES:
+            keys: set[str] = set()
+            for document in relevant:
+                keys.update(document.keys_for(route))
+            for key in sorted(keys):
+                collected[route.value].append((topic.topic_id, key))
+    return {name: tuple(pairs) for name, pairs in collected.items()}
+
+
+def published_probes(
+    route_index: dict[str, tuple[tuple[str, str], ...]],
+    topic_id: str,
+) -> tuple[tuple[str, tuple[str, ...]], ...]:
+    """The task's own probe on each published route, plus deterministic decoys.
+
+    Decoys are real keys belonging to other topics, so calling one costs a route
+    call and returns records that the system's own screening must reject — which is
+    what makes probe selection, and therefore the route-call budget, bind.
+    """
+
+    published: list[tuple[str, tuple[str, ...]]] = []
+    for route in PUBLISHED_PROBE_ROUTES:
+        pairs = route_index[route.value]
+        total = len(pairs)
+        if total == 0:
+            published.append((route.value, ()))
+            continue
+        home = next(
+            (position for position, (owner, _) in enumerate(pairs) if owner == topic_id),
+            None,
+        )
+        if home is None:
+            raise ValueError(f"{topic_id}: no {route.value} key found in the corpus")
+        positions = [home]
+        wanted = min(PUBLISHED_PROBES_PER_ROUTE, total)
+        # Walk the stride for at most one full lap, then fill any shortfall by
+        # ascending scan. The lap bound matters: when the stride and the list length
+        # share a factor the walk visits only a subset of positions and would
+        # otherwise spin forever looking for a candidate it can never reach.
+        for step in range(1, total + 1):
+            if len(positions) >= wanted:
+                break
+            candidate = (home + step * _DECOY_STRIDE) % total
+            if candidate not in positions:
+                positions.append(candidate)
+        for candidate in range(total):
+            if len(positions) >= wanted:
+                break
+            if candidate not in positions:
+                positions.append(candidate)
+        published.append(
+            (route.value, tuple(sorted(pairs[position][1] for position in positions)))
+        )
+    return tuple(published)
 
 
 def _reachability(
@@ -317,8 +422,13 @@ def _build_gold(
     world: DiscoveryWorld,
     topic: Topic,
     availability: tuple[RouteAvailability, ...],
+    reachable: tuple[tuple[str, tuple[str, ...]], ...] | None = None,
 ) -> ProtectedGold:
-    reachable = _reachability(world, topic)
+    # `_reachability` is pure in (world, topic) and costs a full corpus scan plus a
+    # walk of every reference edge. Availability only splits its output into live
+    # and censored, so the caller computes it once per topic and passes it to all
+    # five case families rather than paying for it five times.
+    reachable = _reachability(world, topic) if reachable is None else reachable
     all_identities = set(world.relevant_content_identities(topic))
 
     live_routes = {
@@ -352,10 +462,12 @@ _ALL_ROUTES_LIVE = tuple(RouteAvailability(route) for route in DiscoveryRoute)
 def build_tasks(world: DiscoveryWorld) -> tuple[DiscoveryTask, ...]:
     """Author one task per (topic, case family). Gold is computed, never typed in."""
 
-    probes = _published_probes(world)
+    route_index = _route_key_index(world)
     tasks: list[DiscoveryTask] = []
 
     for topic in world.topics:
+        probes = published_probes(route_index, topic.topic_id)
+        reachable = _reachability(world, topic)
         slug = topic.topic_id.removeprefix("topic-")
         base_question = f"Identify every study addressing {topic.label.lower()}."
         primary_extraction = f"What does this record report about {topic.label.lower()}?"
@@ -433,7 +545,7 @@ def build_tasks(world: DiscoveryWorld) -> tuple[DiscoveryTask, ...]:
                     extraction_shift_after_reads=spec["extraction_shift_after_reads"],
                     availability=availability,
                     budget=_budget_for(family),
-                    protected_gold=_build_gold(world, topic, availability),
+                    protected_gold=_build_gold(world, topic, availability, reachable),
                     public_route_probes=probes,
                     notes=spec["notes"],
                 )
@@ -501,12 +613,14 @@ __all__ = [
     "DEFAULT_BUDGET",
     "DiscoveryTask",
     "PROTOCOL_TASK_FAMILY",
+    "PUBLISHED_PROBES_PER_ROUTE",
     "PUBLISHED_PROBE_ROUTES",
     "ProtectedGold",
     "PublicView",
     "RouteAvailability",
     "TASK_SCHEMA_VERSION",
     "build_tasks",
+    "published_probes",
     "suite_fingerprint",
     "task_from_json",
 ]

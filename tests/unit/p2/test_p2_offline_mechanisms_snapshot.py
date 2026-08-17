@@ -38,9 +38,17 @@ def test_offline_mechanism_projection_matches_frozen_snapshot() -> None:
     projection = build_offline_mechanism_projection(suite.tasks, archive.outcomes)
     expected = json.loads(EXPECTED.read_text(encoding="utf-8"))
     assert projection == expected
+
+    # The digests are checked against the archive this projection was built from
+    # rather than against literals. Literals pinned the digests of a superseded
+    # 20-task run, so they measured "has the suite changed" — which the frozen
+    # manifest already checks — while saying nothing about whether the projection
+    # actually came from the run it claims. Tying them to the summary does.
     assert projection["source_record_digest_sha256"] == (
-        "611808dc80846d5057c84c12af7ff8ec3fa88ef15a6ede91807e590f4edb6f1f"
+        archive.summary["record_digest_sha256"]
     )
     assert projection["source_raw_artifact_hash_list_digest_sha256"] == (
-        "2da59dc21e6473e4a81eb93910501a67bed008dbc3e29c26116041b68dfbb325"
+        archive.summary["raw_artifact_hash_list_digest_sha256"]
     )
+    assert projection["n_tasks"] == len(suite.tasks)
+    assert projection["analysis_authority"] == archive.summary["analysis_authority"]
