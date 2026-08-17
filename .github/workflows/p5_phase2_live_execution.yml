@@ -24,8 +24,6 @@ jobs:
       CROSSREF_MAILTO: ${{ secrets.CROSSREF_MAILTO }}
       COPILOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       ORION_PHASE2_REASONER_MODEL: ${{ vars.ORION_PHASE2_REASONER_MODEL || 'gpt-5.6' }}
-      ORION_PHASE2_COPILOT_REASONER_MODEL: ${{ vars.ORION_PHASE2_COPILOT_REASONER_MODEL || 'gpt-5.4' }}
-      ORION_PHASE2_COPILOT_EVALUATOR_MODEL: ${{ vars.ORION_PHASE2_COPILOT_EVALUATOR_MODEL || 'claude-sonnet-4.6' }}
       ORION_PHASE2_RESOURCE_BUDGET_UNITS: ${{ vars.ORION_PHASE2_RESOURCE_BUDGET_UNITS || '32' }}
     steps:
       - uses: actions/checkout@v4
@@ -64,7 +62,7 @@ jobs:
               exit 3
             fi
             echo 'provider_lane=copilot' >> "$GITHUB_OUTPUT"
-            echo 'Provider lane: GitHub Copilot CLI prompt-only reasoner + distinct protected evaluator model.'
+            echo 'Provider lane: GitHub Copilot CLI prompt-only reasoner + protected evaluator.'
           else
             printf 'Partial private provider configuration is forbidden. Missing names: %s\n' "${missing[*]}"
             exit 3
@@ -89,6 +87,44 @@ jobs:
           fi
           printf 'ORION_COPILOT_CLI_VERSION=%s\n' "$version" >> "$GITHUB_ENV"
           echo "Frozen Copilot CLI runtime: $version"
+
+      - name: Probe and freeze explicit Copilot model pair
+        if: steps.provider-lane.outputs.provider_lane == 'copilot'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/p5-phase2-live"
+          python - <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          from orion.providers.live_phase2 import probe_copilot_model_pair
+
+          out = Path(os.environ['RUNNER_TEMP']) / 'p5-phase2-live'
+          report = probe_copilot_model_pair(
+              token=os.environ['COPILOT_GITHUB_TOKEN'],
+              cli_version=os.environ['ORION_COPILOT_CLI_VERSION'],
+          )
+          encoded = json.dumps(report, indent=2, sort_keys=True) + '\n'
+          (out / 'COPILOT_MODEL_PROBE_SAFE_SUMMARY.json').write_text(encoded, encoding='utf-8')
+          digest = hashlib.sha256(
+              json.dumps(report, sort_keys=True, separators=(',', ':')).encode('utf-8')
+          ).hexdigest()
+          print('P5_COPILOT_MODEL_PROBE_SAFE_SUMMARY_BEGIN')
+          print(encoded.rstrip())
+          print('P5_COPILOT_MODEL_PROBE_SAFE_SUMMARY_END')
+          if report['status'] != 'READY':
+              raise SystemExit(3)
+          env_path = Path(os.environ['GITHUB_ENV'])
+          with env_path.open('a', encoding='utf-8') as handle:
+              handle.write(f"ORION_PHASE2_COPILOT_REASONER_MODEL={report['reasoner_model']}\n")
+              handle.write(f"ORION_PHASE2_COPILOT_EVALUATOR_MODEL={report['evaluator_model']}\n")
+              handle.write(f"ORION_COPILOT_MODEL_PROBE_HASH={digest}\n")
+          PY
 
       - name: Freeze bindings and execute matched wide/deep trial
         shell: bash
@@ -138,13 +174,14 @@ jobs:
           )
           stack, provider_mode = build_phase2_auto_provider_stack_from_env(
               private_reasoner_model=os.environ['ORION_PHASE2_REASONER_MODEL'].strip(),
-              copilot_reasoner_model=os.environ['ORION_PHASE2_COPILOT_REASONER_MODEL'].strip(),
-              copilot_evaluator_model=os.environ['ORION_PHASE2_COPILOT_EVALUATOR_MODEL'].strip(),
+              copilot_reasoner_model=os.environ.get('ORION_PHASE2_COPILOT_REASONER_MODEL', '').strip(),
+              copilot_evaluator_model=os.environ.get('ORION_PHASE2_COPILOT_EVALUATOR_MODEL', '').strip(),
               copilot_evaluation_epoch_id=copilot_epoch,
           )
           write_live_phase2_provider_manifest(stack, out / 'PROVIDER_MANIFEST.json')
           reasoner_identity = dict(stack.manifest.reasoner_provider)
           verifier_identity = dict(stack.manifest.verification_provider)
+          model_probe_hash = os.environ.get('ORION_COPILOT_MODEL_PROBE_HASH', '')
 
           preflight = Phase2ClosurePreflight(
               protocol_id='phase2-shadow-closure-v1',
@@ -173,6 +210,7 @@ jobs:
               'provider_manifest_hash': stack.provider_manifest_hash,
               'reasoner_identity': reasoner_identity,
               'verifier_identity': verifier_identity,
+              'model_probe_hash': model_probe_hash,
               'evaluator_artifact_hash': stack.evaluator_artifact_hash,
               'evaluation_epoch_id': stack.evaluation_epoch_id,
               'protocol_id': preflight.protocol_id,
@@ -238,6 +276,7 @@ jobs:
               'provider_manifest_hash': stack.provider_manifest_hash,
               'reasoner_identity': reasoner_identity,
               'verifier_identity': verifier_identity,
+              'model_probe_hash': model_probe_hash,
               'evaluator_artifact_hash': stack.evaluator_artifact_hash,
               'evaluation_epoch_id': stack.evaluation_epoch_id,
               'protocol_id': preflight.protocol_id,

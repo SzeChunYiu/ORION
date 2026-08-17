@@ -6,6 +6,7 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
+from orion.providers.llm.base import LLMRequest
 from orion.providers.llm.copilot_cli import CopilotCLIConfig, CopilotCLILLMProvider
 from orion.providers.llm.openai_responses import OpenAIResponsesConfig, OpenAIResponsesLLMProvider
 from orion.providers.retrieval.literature import (
@@ -24,6 +25,21 @@ from orion.providers.verification.protected_http import (
 
 
 PROVIDER_MANIFEST_SCHEMA = "LivePhase2ProviderManifest.v1"
+COPILOT_MODEL_PROBE_SCHEMA = "CopilotModelAvailabilityProbe.v1"
+COPILOT_REASONER_MODEL_CANDIDATES = (
+    "gpt-5.3-codex",
+    "gpt-5-mini",
+    "claude-sonnet-4.6",
+    "claude-haiku-4.5",
+    "gemini-3.5-flash",
+)
+COPILOT_EVALUATOR_MODEL_CANDIDATES = (
+    "claude-sonnet-4.6",
+    "gemini-3.5-flash",
+    "gpt-5-mini",
+    "claude-haiku-4.5",
+    "gpt-5.3-codex",
+)
 _PRIVATE_CONFIG_NAMES = (
     "OPENAI_API_KEY",
     "ORION_PROTECTED_VERIFIER_URL",
@@ -80,6 +96,124 @@ class LivePhase2ProviderStack:
 
 def _identity_tuple(mapping: dict[str, object]) -> tuple[tuple[str, str], ...]:
     return tuple(sorted((str(key), str(value)) for key, value in mapping.items()))
+
+
+def _model_family(model: str) -> str:
+    lowered = model.lower()
+    if lowered.startswith("gpt-"):
+        return "openai"
+    if lowered.startswith("claude-"):
+        return "anthropic"
+    if lowered.startswith("gemini-"):
+        return "google"
+    if lowered.startswith("mai-"):
+        return "microsoft"
+    return "other:" + lowered.split("-", 1)[0]
+
+
+def _probe_copilot_model(*, token: str, cli_version: str, model: str) -> tuple[bool, str]:
+    provider = CopilotCLILLMProvider(
+        CopilotCLIConfig(model=model, token=token, cli_version=cli_version, timeout_seconds=90.0)
+    )
+    try:
+        response = provider.complete(
+            LLMRequest(
+                task="provider_availability_probe",
+                system="This is a provider/model availability probe. Do not use tools. Reply READY only.",
+                user="No study data is supplied. Reply READY.",
+            )
+        )
+    except Exception as error:  # noqa: BLE001 - probe outcome is retained as safe preflight data
+        error_text = str(error).lower()
+        if "not available" in error_text or "not enabled" in error_text:
+            return False, "MODEL_UNAVAILABLE"
+        return False, type(error).__name__
+    if not response.content.strip():
+        return False, "EMPTY_RESPONSE"
+    return True, ""
+
+
+def probe_copilot_model_pair(
+    *,
+    token: str,
+    cli_version: str,
+    reasoner_candidates: tuple[str, ...] = COPILOT_REASONER_MODEL_CANDIDATES,
+    evaluator_candidates: tuple[str, ...] = COPILOT_EVALUATOR_MODEL_CANDIDATES,
+) -> dict[str, object]:
+    """Probe neutral prompts and freeze a distinct-family explicit model pair.
+
+    Probes carry no study data and run through the same isolated/no-tool CLI
+    adapter as the study. The returned safe report never contains credentials or
+    model output. Auto model selection is deliberately not admissible because it
+    would not freeze a reproducible model identity before study outcome access.
+    """
+
+    if not token.strip() or not cli_version.strip():
+        raise ValueError("Copilot token and frozen CLI version are required for model probing")
+    if not reasoner_candidates or not evaluator_candidates:
+        raise ValueError("Copilot model probe candidate lists must be non-empty")
+    if len(set(reasoner_candidates)) != len(reasoner_candidates):
+        raise ValueError("reasoner model probe candidates must be unique")
+    if len(set(evaluator_candidates)) != len(evaluator_candidates):
+        raise ValueError("evaluator model probe candidates must be unique")
+
+    attempts: list[dict[str, str]] = []
+    cache: dict[str, tuple[bool, str]] = {}
+
+    def probe(model: str, role: str) -> bool:
+        if model not in cache:
+            cache[model] = _probe_copilot_model(token=token, cli_version=cli_version, model=model)
+        available, failure_class = cache[model]
+        attempts.append(
+            {
+                "role": role,
+                "model": model,
+                "family": _model_family(model),
+                "status": "AVAILABLE" if available else "UNAVAILABLE",
+                "failure_class": failure_class,
+            }
+        )
+        return available
+
+    reasoner_model: str | None = None
+    for model in reasoner_candidates:
+        if probe(model, "reasoner"):
+            reasoner_model = model
+            break
+
+    evaluator_model: str | None = None
+    if reasoner_model is not None:
+        reasoner_family = _model_family(reasoner_model)
+        for model in evaluator_candidates:
+            if model == reasoner_model or _model_family(model) == reasoner_family:
+                attempts.append(
+                    {
+                        "role": "evaluator",
+                        "model": model,
+                        "family": _model_family(model),
+                        "status": "SKIPPED_SAME_FAMILY",
+                        "failure_class": "",
+                    }
+                )
+                continue
+            if probe(model, "evaluator"):
+                evaluator_model = model
+                break
+
+    ready = reasoner_model is not None and evaluator_model is not None
+    return {
+        "schema": COPILOT_MODEL_PROBE_SCHEMA,
+        "status": "READY" if ready else "CANNOT_CHECK",
+        "reasoner_model": reasoner_model,
+        "reasoner_family": _model_family(reasoner_model) if reasoner_model else None,
+        "evaluator_model": evaluator_model,
+        "evaluator_family": _model_family(evaluator_model) if evaluator_model else None,
+        "explicit_models_only": True,
+        "distinct_model_families_required": True,
+        "study_data_used": False,
+        "cli_version": cli_version,
+        "attempts": attempts,
+    }
 
 
 def _retrieval_stack(crossref_mailto: str) -> tuple[
@@ -185,6 +319,8 @@ def build_phase2_copilot_provider_stack(
     """Build an isolated prompt-only GitHub Copilot CLI reasoner/evaluator stack."""
     if reasoner_model == evaluator_model:
         raise ValueError("Copilot reasoner and evaluator models must be distinct")
+    if _model_family(reasoner_model) == _model_family(evaluator_model):
+        raise ValueError("Copilot reasoner and evaluator models must come from distinct model families")
     reasoner_config = CopilotCLIConfig(model=reasoner_model, token=token, cli_version=cli_version)
     verification_config = CopilotCLIVerificationConfig(
         model=evaluator_model,
@@ -271,6 +407,8 @@ def build_phase2_auto_provider_stack_from_env(
         raise RuntimeError(f"Copilot fallback token is missing: {copilot_token_env}")
     if not cli_version:
         raise RuntimeError(f"Copilot CLI frozen version is missing: {copilot_cli_version_env}")
+    if not copilot_reasoner_model or not copilot_evaluator_model:
+        raise RuntimeError("Copilot reasoner/evaluator models must be explicitly frozen before provider construction")
     return (
         build_phase2_copilot_provider_stack(
             token=token,
@@ -285,6 +423,9 @@ def build_phase2_auto_provider_stack_from_env(
 
 
 __all__ = [
+    "COPILOT_EVALUATOR_MODEL_CANDIDATES",
+    "COPILOT_MODEL_PROBE_SCHEMA",
+    "COPILOT_REASONER_MODEL_CANDIDATES",
     "PROVIDER_MANIFEST_SCHEMA",
     "LivePhase2ProviderManifest",
     "LivePhase2ProviderStack",
@@ -293,5 +434,6 @@ __all__ = [
     "build_phase2_live_provider_stack",
     "build_phase2_live_provider_stack_from_env",
     "load_live_phase2_provider_manifest",
+    "probe_copilot_model_pair",
     "write_live_phase2_provider_manifest",
 ]

@@ -340,11 +340,40 @@ class TaskClosure:
 
 
 @dataclass(frozen=True)
+class DeclaredRoute:
+    """A route the campaign declared, whether or not it ever ran.
+
+    Executed runs alone cannot answer "did every route we intended actually
+    look?". A route disabled for want of credentials, or one that ran but never
+    once reached its index, leaves the same hole in the campaign as a route that
+    was never configured — and a report built only from what ran would show a
+    clean two-route campaign where five were declared.
+    """
+
+    route_id: str
+    backend: str
+    route_kind: SearchRouteKind
+    query_derivation: str
+    executed: bool
+    disabled_reason: str = ""
+
+    def __post_init__(self) -> None:
+        if not self.route_id.strip() or not self.backend.strip():
+            raise ValueError("a declared route needs a route id and a backend")
+        if not self.executed and not self.disabled_reason.strip():
+            raise ValueError(
+                "a declared route that did not run must say why; an unexplained "
+                "absence is indistinguishable from an oversight"
+            )
+
+
+@dataclass(frozen=True)
 class CampaignResult:
     campaign_id: str
     question: ResearchQuestion
     policy_id: str
     runs: tuple[RouteRun, ...]
+    declared_routes: tuple[DeclaredRoute, ...] = ()
 
     @property
     def captures(self) -> tuple[RouteCapture, ...]:
@@ -360,6 +389,48 @@ class CampaignResult:
         for run in self.runs:
             union |= run.capture.captured
         return frozenset(union)
+
+    @property
+    def unavailable_routes(self) -> tuple[tuple[str, str], ...]:
+        """Declared routes that never reached their index, and why.
+
+        Two distinct ways to never look, both of which must show up here: a route
+        disabled before the run, and a route that ran but whose every attempt
+        failed, deferred or went unfunded. Only a route with at least one attempt
+        that actually observed the index counts as having looked.
+        """
+
+        unavailable: list[tuple[str, str]] = []
+        observed_by_route = {
+            run.route.route_id: any(
+                item.outcome.observed_the_index for item in run.attempts
+            )
+            for run in self.runs
+        }
+        for declared in self.declared_routes:
+            if not declared.executed:
+                unavailable.append((declared.route_id, declared.disabled_reason))
+                continue
+            if not observed_by_route.get(declared.route_id, False):
+                reasons = next(
+                    (
+                        run.open_obligations
+                        for run in self.runs
+                        if run.route.route_id == declared.route_id
+                    ),
+                    (),
+                )
+                unavailable.append(
+                    (
+                        declared.route_id,
+                        "never observed the index: " + (", ".join(reasons) or "no attempts"),
+                    )
+                )
+        return tuple(unavailable)
+
+    @property
+    def all_declared_routes_available(self) -> bool:
+        return not self.unavailable_routes
 
 
 def _normalize(text: str) -> str:
@@ -650,6 +721,7 @@ def run_campaign(
     policy: FrozenRouteControlPolicy,
     clock: Callable[[], float],
     recorder: object | None = None,
+    disabled_routes: Sequence[DeclaredRoute] = (),
     max_attempts: int = 8,
 ) -> CampaignResult:
     """Run every route for one question, feeding confirmed seeds forward.
@@ -691,11 +763,24 @@ def run_campaign(
             for identity in attempt.identities:
                 if identity.resolvable and identity.work_key not in confirmed:
                     confirmed.append(identity.work_key)
+    if any(item.executed for item in disabled_routes):
+        raise ValueError("a disabled route cannot be marked executed")
+    declared = tuple(
+        DeclaredRoute(
+            route_id=item.route_id,
+            backend=item.backend,
+            route_kind=item.route_kind,
+            query_derivation=item.query_derivation,
+            executed=True,
+        )
+        for item in routes
+    ) + tuple(disabled_routes)
     return CampaignResult(
         campaign_id=campaign_id,
         question=question,
         policy_id=policy.policy_id,
         runs=tuple(runs),
+        declared_routes=declared,
     )
 
 
@@ -894,6 +979,7 @@ __all__ = [
     "AttemptRecord",
     "CampaignResult",
     "ContentIdentity",
+    "DeclaredRoute",
     "LiveOutcome",
     "LiveQuery",
     "LiveRecord",

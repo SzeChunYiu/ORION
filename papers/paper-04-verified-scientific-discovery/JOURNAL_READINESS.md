@@ -44,11 +44,14 @@ Frozen identities are recorded in `protocol/PROTECTED_RUN_BINDINGS_V2.json` and 
 - [x] RewardHackingAgents evaluator/holdout attack surface absorbed;
 - [x] Search-Time Contamination absorbed;
 - [x] DeepSciVerify evidence escalation included in the repaired-subject frozen panel;
+- [x] SciIntegrity-Bench and AgentAbstain absorbed as abstention/integrity parent-domain pressure;
+- [x] Automated Benchmark Auditing and Holistic Agent Leaderboard absorbed as benchmark/evaluator-audit pressure;
+- [x] INSPECT-AI/RIPE-KG and Behavioral Integrity Verification absorbed as research-integrity provenance / declared-vs-actual integrity pressure;
 - [x] residual claim remains the **non-compensatory, non-escalating scientific-authority transition under protected custody**.
 
 Comparator arms are protocol-matched mechanism reimplementations, **not executions of the external authors' original systems**. The empirical claim is restricted to those frozen mechanisms and this battery.
 
-The dated nearest-work audit is `2026-08-16`. Re-run it only if actual submission occurs after `2026-08-30`.
+The submission-literature saturation audit was refreshed on `2026-08-17` using a functional stop rule across scientific verification, provenance/research integrity, abstention/refusal, benchmark/evaluator auditing, protected evaluation/assurance, and contamination-resistant evaluation. The bibliography expanded from 13 to 19 targeted references; SRE-Bench and later duplicate-family hits were screened/deferred rather than added as padding. Re-run the audit if actual submission occurs after `2026-08-31`.
 
 ## Exploratory evidence excluded from authorization
 
@@ -68,20 +71,26 @@ The earlier V1 420-case protected campaign remains valid for its older frozen su
 - [x] hidden labels/raw traces remain protected;
 - [x] clean-room TMLR compile with pinned, unmodified official `tmlr.sty` + `tmlr.bst`;
 - [x] undefined-reference and stale-pre-result scans pass;
-- [x] exact publication source merge `846a0573fb881c5f9b6caa8e98aede2e51090fca` is GitHub-verified;
-- [x] exact-main ordinary CI `31978918884` passed;
-- [x] exact-main TMLR audit `31978918885` passed;
-- [x] audited 11-page PDF SHA-256 `562af78b7e634159317a002f8ac651ddc0180ea012712a5def555548b267d3db`.
+- [x] citation-saturated publication source merge `46a3a4f893ac936cb1f1215494c9662ed1a5c66e` is GitHub-verified;
+- [x] citation-saturated exact-main ordinary CI `32005097845` passed;
+- [x] citation-saturated exact-main TMLR audit `32005097963` passed;
+- [x] audited 12-page citation-saturated PDF SHA-256 `f2ede371e254e37cf57c309565a5ede09ab3d61f9feba75b67eccca2a4893ccf`.
+
+The previous 11-page publication source/audit remains valid historical readiness evidence but is superseded for submission by the citation-saturated source above.
 
 ## Permanent archive gate
 
-- [x] permanent GitHub Release tag: `orion-p4-v2-peer-review-ready`;
-- [x] release target is the exact publication source commit `846a0573fb881c5f9b6caa8e98aede2e51090fca`;
-- [x] release contains audited PDF, safe result bundle, source supplement, and SHA-256 manifest;
-- [x] archive workflow run `31979303097` passed after independently re-verifying publication signature/CI/audit and artifact identities;
-- [x] archive merge `00c19ecd71071e1ad70a8820df4c198153e4da84` is GitHub-verified;
-- [x] archive-merge ordinary CI `31979303114` passed;
-- [x] archive-merge clean-room TMLR audit `31979303109` passed.
+Original readiness archive (historical, retained immutably):
+- [x] release tag `orion-p4-v2-peer-review-ready`;
+- [x] target source `846a0573fb881c5f9b6caa8e98aede2e51090fca`;
+- [x] archive workflow run `31979303097` passed.
+
+Citation-saturated submission archive (current):
+- [x] permanent GitHub Release tag `orion-p4-v2-peer-review-ready-saturated-2026-08-17`;
+- [x] release target is exact citation-saturated publication source `46a3a4f893ac936cb1f1215494c9662ed1a5c66e`;
+- [x] release contains audited 12-page PDF, unchanged safe protected-V2 result bundle, exact-source supplement, and SHA-256 manifest;
+- [x] citation-saturated archive workflow run `32005792158` passed after independently re-verifying publication signature, exact-main CI/audit, PDF artifact/digest, PDF SHA, and safe-bundle identity;
+- [x] archive wiring merge `24a362eca98a67066d1985fa1eaf6566ffea57d6` is GitHub-verified.
 
 Protected gold and raw traces are deliberately absent from the public release.
 
@@ -89,10 +98,10 @@ Protected gold and raw traces are deliberately absent from the public release.
 
 - [ ] Insert the OpenReview submission ID after an actual TMLR submission is created.
 
-This is an external submission action, not a scientific or reproducibility readiness blocker. If submission is delayed beyond `2026-08-30`, refresh the nearest-work audit first.
+This is an external submission action, not a scientific or reproducibility readiness blocker. If submission is delayed beyond `2026-08-31`, refresh the nearest-work audit first.
 
 ## Done definition
 
-All scientific, custody, reproducibility, manuscript, PDF, and permanent-archive gates required for peer review are satisfied. Security-by-total-refusal is ruled out by `60/60` clean promotions. The strongest supported statement is bounded to the protected mechanical-gold benchmark and frozen comparator mechanisms.
+All scientific, custody, reproducibility, manuscript, PDF, literature-saturation, and permanent-archive gates required for peer review are satisfied. Security-by-total-refusal is ruled out by `60/60` clean promotions. The strongest supported statement is bounded to the protected mechanical-gold benchmark and frozen comparator mechanisms.
 
 **`ORION-P4 = PEER_REVIEW_READY`.**

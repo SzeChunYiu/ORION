@@ -9,8 +9,11 @@ import pytest
 from orion.core.contributions import AssimilationOutcome, KnowledgeContribution
 from orion.core.search import RetrievedItem
 from orion.providers.live_phase2 import (
+    COPILOT_EVALUATOR_MODEL_CANDIDATES,
+    COPILOT_REASONER_MODEL_CANDIDATES,
     build_phase2_auto_provider_stack_from_env,
     build_phase2_copilot_provider_stack,
+    probe_copilot_model_pair,
     write_live_phase2_provider_manifest,
 )
 from orion.providers.llm.base import LLMRequest
@@ -69,19 +72,14 @@ def _assert_isolated_command(command: list[str], env: dict[str, str], cwd: Path)
 
 
 def test_copilot_reasoner_is_prompt_only_and_token_free(monkeypatch: pytest.MonkeyPatch) -> None:
-    observed: dict[str, object] = {}
-
     def fake_run(command, *, cwd, env, capture_output, text, timeout, check):
-        observed["command"] = command
-        observed["env"] = env
-        observed["cwd"] = cwd
         _assert_isolated_command(command, env, Path(cwd))
         assert "transport-secret" not in command[command.index("-p") + 1]
         return subprocess.CompletedProcess(command, 0, stdout='{"answer":"ok"}\n', stderr="")
 
     monkeypatch.setattr(subprocess, "run", fake_run)
     config = CopilotCLIConfig(
-        model="gpt-5.2",
+        model="gpt-5.3-codex",
         token="transport-secret",
         cli_version="1.2.3",
     )
@@ -94,7 +92,7 @@ def test_copilot_reasoner_is_prompt_only_and_token_free(monkeypatch: pytest.Monk
         )
     )
     assert response.content == '{"answer":"ok"}'
-    assert response.model_id == "gpt-5.2"
+    assert response.model_id == "gpt-5.3-codex"
     assert response.response_id and response.response_id.startswith("copilot-cli-response:")
     assert "transport-secret" not in json.dumps(config.public_identity, sort_keys=True)
 
@@ -186,8 +184,19 @@ def test_copilot_stack_requires_distinct_reasoner_and_evaluator_models() -> None
     with pytest.raises(ValueError, match="must be distinct"):
         build_phase2_copilot_provider_stack(
             token="transport-secret",
-            reasoner_model="gpt-5.2",
-            evaluator_model="gpt-5.2",
+            reasoner_model="gpt-5.3-codex",
+            evaluator_model="gpt-5.3-codex",
+            cli_version="1.2.3",
+            evaluation_epoch_id="epoch-1",
+        )
+
+
+def test_copilot_stack_requires_distinct_model_families() -> None:
+    with pytest.raises(ValueError, match="distinct model families"):
+        build_phase2_copilot_provider_stack(
+            token="transport-secret",
+            reasoner_model="gpt-5.3-codex",
+            evaluator_model="gpt-5-mini",
             cli_version="1.2.3",
             evaluation_epoch_id="epoch-1",
         )
@@ -196,7 +205,7 @@ def test_copilot_stack_requires_distinct_reasoner_and_evaluator_models() -> None
 def test_copilot_provider_manifest_excludes_token(tmp_path: Path) -> None:
     stack = build_phase2_copilot_provider_stack(
         token="transport-secret",
-        reasoner_model="gpt-5.2",
+        reasoner_model="gpt-5.3-codex",
         evaluator_model="claude-sonnet-4.6",
         cli_version="1.2.3",
         evaluation_epoch_id="epoch-1",
@@ -209,8 +218,51 @@ def test_copilot_provider_manifest_excludes_token(tmp_path: Path) -> None:
     assert payload["secret_material_included"] is False
     assert payload["reasoner_provider"]["provider"] == "github-copilot-cli"
     assert payload["verification_provider"]["provider"] == "github-copilot-cli-protected-verifier"
-    assert payload["reasoner_provider"]["model"] == "gpt-5.2"
+    assert payload["reasoner_provider"]["model"] == "gpt-5.3-codex"
     assert payload["verification_provider"]["model"] == "claude-sonnet-4.6"
+
+
+def test_model_probe_freezes_first_available_distinct_family_pair(monkeypatch: pytest.MonkeyPatch) -> None:
+    available = {"gpt-5.3-codex", "claude-sonnet-4.6"}
+
+    def fake_run(command, *, cwd, env, capture_output, text, timeout, check):
+        model = command[command.index("--model") + 1]
+        if model in available:
+            return subprocess.CompletedProcess(command, 0, stdout="READY\n", stderr="")
+        return subprocess.CompletedProcess(command, 1, stdout="", stderr=f'Model "{model}" is not available.')
+
+    monkeypatch.setattr(subprocess, "run", fake_run)
+    report = probe_copilot_model_pair(token="transport-secret", cli_version="1.2.3")
+    assert report["status"] == "READY"
+    assert report["reasoner_model"] == "gpt-5.3-codex"
+    assert report["reasoner_family"] == "openai"
+    assert report["evaluator_model"] == "claude-sonnet-4.6"
+    assert report["evaluator_family"] == "anthropic"
+    assert report["study_data_used"] is False
+    assert report["explicit_models_only"] is True
+    assert "transport-secret" not in json.dumps(report, sort_keys=True)
+
+
+def test_model_probe_cannot_use_same_family_as_protected_evaluator(monkeypatch: pytest.MonkeyPatch) -> None:
+    def fake_run(command, *, cwd, env, capture_output, text, timeout, check):
+        model = command[command.index("--model") + 1]
+        if model.startswith("gpt-"):
+            return subprocess.CompletedProcess(command, 0, stdout="READY\n", stderr="")
+        return subprocess.CompletedProcess(command, 1, stdout="", stderr=f'Model "{model}" is not available.')
+
+    monkeypatch.setattr(subprocess, "run", fake_run)
+    report = probe_copilot_model_pair(token="transport-secret", cli_version="1.2.3")
+    assert report["status"] == "CANNOT_CHECK"
+    assert report["reasoner_model"] == "gpt-5.3-codex"
+    assert report["evaluator_model"] is None
+    assert any(item["status"] == "SKIPPED_SAME_FAMILY" for item in report["attempts"])
+
+
+def test_probe_candidates_exclude_failed_historical_guesses() -> None:
+    assert "gpt-5.2" not in COPILOT_REASONER_MODEL_CANDIDATES
+    assert "gpt-5.4" not in COPILOT_REASONER_MODEL_CANDIDATES
+    assert "gpt-5.2" not in COPILOT_EVALUATOR_MODEL_CANDIDATES
+    assert "gpt-5.4" not in COPILOT_EVALUATOR_MODEL_CANDIDATES
 
 
 def test_auto_stack_uses_copilot_only_when_private_lane_fully_absent(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -226,12 +278,12 @@ def test_auto_stack_uses_copilot_only_when_private_lane_fully_absent(monkeypatch
     monkeypatch.setenv("ORION_COPILOT_CLI_VERSION", "1.2.3")
     stack, mode = build_phase2_auto_provider_stack_from_env(
         private_reasoner_model="gpt-5.6",
-        copilot_reasoner_model="gpt-5.2",
+        copilot_reasoner_model="gpt-5.3-codex",
         copilot_evaluator_model="claude-sonnet-4.6",
         copilot_evaluation_epoch_id="github-actions-1-attempt-1",
     )
     assert mode == "github-copilot-cli-external"
-    assert dict(stack.manifest.reasoner_provider)["model"] == "gpt-5.2"
+    assert dict(stack.manifest.reasoner_provider)["model"] == "gpt-5.3-codex"
     assert dict(stack.manifest.verification_provider)["model"] == "claude-sonnet-4.6"
 
 
@@ -250,7 +302,7 @@ def test_auto_stack_rejects_partial_private_configuration(monkeypatch: pytest.Mo
     with pytest.raises(RuntimeError, match="partial private Phase-2 provider configuration is forbidden"):
         build_phase2_auto_provider_stack_from_env(
             private_reasoner_model="gpt-5.6",
-            copilot_reasoner_model="gpt-5.2",
+            copilot_reasoner_model="gpt-5.3-codex",
             copilot_evaluator_model="claude-sonnet-4.6",
             copilot_evaluation_epoch_id="github-actions-1-attempt-1",
         )

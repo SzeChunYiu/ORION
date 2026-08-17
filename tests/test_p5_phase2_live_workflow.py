@@ -34,18 +34,23 @@ def test_live_phase2_workflow_has_minimum_copilot_permission() -> None:
     assert "models: read" not in text
 
 
-def test_live_phase2_workflow_installs_and_freezes_copilot_runtime_before_trial() -> None:
+def test_live_phase2_workflow_probes_models_before_subject_and_study_execution() -> None:
     text = _workflow_text()
     assert "npm install -g @github/copilot" in text
     assert "node-version: '22'" in text
     version_pos = text.index("ORION_COPILOT_CLI_VERSION")
+    probe_pos = text.index("report = probe_copilot_model_pair(")
+    subject_pos = text.index("subject = attest_repository_subject")
     provider_pos = text.index("stack, provider_mode = build_phase2_auto_provider_stack_from_env")
     packet_pos = text.index("packet = build_frozen_live_trial_packet(preflight)")
     run_pos = text.index("report = harness.runner.run(packet)")
-    assert version_pos < provider_pos < packet_pos < run_pos
-    assert "gpt-5.4" in text
+    assert version_pos < probe_pos < subject_pos < provider_pos < packet_pos < run_pos
+    assert "COPILOT_MODEL_PROBE_SAFE_SUMMARY.json" in text
+    assert "ORION_COPILOT_MODEL_PROBE_HASH" in text
+    assert "ORION_PHASE2_COPILOT_REASONER_MODEL" in text
+    assert "ORION_PHASE2_COPILOT_EVALUATOR_MODEL" in text
     assert "gpt-5.2" not in text
-    assert "claude-sonnet-4.6" in text
+    assert "gpt-5.4" not in text
 
 
 def test_live_phase2_workflow_uses_canonical_frozen_identities() -> None:
@@ -76,6 +81,7 @@ def test_live_phase2_workflow_rejects_partial_private_lane_and_records_provider_
     assert "provider_mode" in text
     assert "reasoner_identity" in text
     assert "verifier_identity" in text
+    assert "model_probe_hash" in text
 
 
 def test_live_phase2_workflow_is_secret_safe_and_non_promoting() -> None:
