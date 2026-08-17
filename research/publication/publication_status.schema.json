@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.publication-status.v1",
+  "title": "ORION P1-P5 publication scoreboard",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "generated_from", "programme", "papers"],
+  "properties": {
+    "schema_version": {"const": "orion.publication-status.v1"},
+    "generated_from": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rule"],
+      "properties": {
+        "rule": {"type": "string", "minLength": 1}
+      }
+    },
+    "programme": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["issue", "status", "close_allowed", "papers_peer_review_ready", "reason"],
+      "properties": {
+        "issue": {"const": 97},
+        "status": {"enum": ["PEER_REVIEW_READY", "BLOCKED", "CANNOT_CHECK"]},
+        "close_allowed": {"type": "boolean"},
+        "papers_peer_review_ready": {
+          "type": "array",
+          "items": {"enum": ["P1", "P2", "P3", "P4", "P5"]}
+        },
+        "reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "papers": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": [
+          "paper_id",
+          "issue",
+          "title",
+          "root",
+          "status",
+          "journal_readiness",
+          "journal_readiness_terminal",
+          "protocol",
+          "protocol_status",
+          "outcome_accessed",
+          "unbound_execution_bindings",
+          "claim_ledgers",
+          "claim_ledger_cannot_check",
+          "readme_records_peer_review_ready",
+          "attestation_paths",
+          "missing_artifacts",
+          "notes"
+        ],
+        "properties": {
+          "paper_id": {"enum": ["P1", "P2", "P3", "P4", "P5"]},
+          "issue": {"type": "integer", "minimum": 98, "maximum": 102},
+          "title": {"type": "string", "minLength": 1},
+          "root": {"type": "string", "minLength": 1},
+          "status": {"enum": ["PEER_REVIEW_READY", "BLOCKED", "CANNOT_CHECK"]},
+          "journal_readiness": {"type": "string", "minLength": 1},
+          "journal_readiness_terminal": {
+            "type": ["string", "null"],
+            "enum": ["PEER_REVIEW_READY", "CANNOT_CHECK", null]
+          },
+          "protocol": {"type": "string"},
+          "protocol_id": {"type": ["string", "null"]},
+          "protocol_status": {"type": ["string", "null"]},
+          "outcome_accessed": {"type": ["boolean", "null"]},
+          "unbound_execution_bindings": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "v2_protocol": {"type": "string"},
+          "v2_protocol_status": {"type": ["string", "null"]},
+          "claim_ledgers": {"type": "array", "items": {"type": "string"}},
+          "claim_ledger_cannot_check": {"type": "array", "items": {"type": "string"}},
+          "readme": {"type": "string"},
+          "readme_records_peer_review_ready": {"type": "boolean"},
+          "attestation_paths": {"type": "array", "items": {"type": "string"}},
+          "missing_artifacts": {"type": "array", "items": {"type": "string"}},
+          "warnings": {"type": "array", "items": {"type": "string"}},
+          "notes": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}
