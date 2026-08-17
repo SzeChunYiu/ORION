@@ -1,36 +1,37 @@
 \section{Data and code availability}
 
 \subsection{Repository access}
-The complete source code, protocol definitions, case suite, and evidence artifacts are version-controlled at \texttt{SzeChunYiu/ORION} with persistent DOI assignment pending publication. The manuscript branch pins exact commit hashes for all frozen artifacts.
+The source code, protocol definitions, case suite, and repository-held evidence artifacts used by this revision are version-controlled at \texttt{SzeChunYiu/ORION}. Persistent DOI assignment remains pending publication. Result-bearing artifacts are identified by their repository paths and content bindings rather than by an unverified archival claim.
 
 \subsection{Reproducing the results}
-\subsubsection{Automated reproduction}
+\subsubsection{Archived-result regeneration}
 \begin{verbatim}
 make paper01-results
 \end{verbatim}
-executes the full Paper I evaluation pipeline: dataset binding, baseline/ablation runs, statistical analysis, and figure/table generation. The target returns a non-zero exit code with diagnostic output if any execution binding is missing or tampered.
+regenerates the Paper I publication tables from archived raw records only. It does not execute systems under test or create missing external evidence. On a checkout without an admissible archived study run, the underlying module returns \texttt{CANNOT\_CHECK}; malformed or unbound archives are refused rather than converted into publishable numbers. The exact command, inputs, outputs, and exit semantics are documented in \texttt{papers/paper-01-recursive-epistemic-reconstruction/REPRODUCE.md}.
 
 \subsubsection{Clean environment}
-The repository is Python-based with \texttt{pyproject.toml} dependency specification. A fresh reproduction requires:
+The repository is Python-based with \texttt{pyproject.toml} dependency specification. A fresh code/test environment requires:
 \begin{itemize}
-    \item Python 3.11 or later
-    \item \texttt{pip install -e .[dev]} from the repository root
-    \item Model provider access compatible with the frozen execution bindings
+    \item Python 3.11 or later;
+    \item \texttt{pip install -e .[dev]} from the repository root; and
+    \item model-provider access only for commands that actually execute a live provider arm.
 \end{itemize}
-Container reproduction instructions are provided in \texttt{REPRODUCE.md}.
+The paper-specific reproduction note above, rather than a repository-root container recipe, is the current executable reproduction contract.
 
 \subsection{Runtime and cost}
-Local deterministic falsifier runtime: approximately 15 minutes on a standard CPU-only instance. Full external campaign cost is model- and provider-dependent; exact usage tokens are recorded in the evidence manifest.
+No clean-environment timing artifact in this revision authorizes a numerical runtime claim for the deterministic falsifier or the full campaign. External model/provider cost likewise remains \texttt{CANNOT\_CHECK} until a result-bearing run records its actual usage under the frozen resource policy. Runtime and cost must be reported from retained execution evidence, not estimated here.
 
-\subsection{Licenses}
-All code is released under MIT License. Case definitions and protocol schemas are released under CC-BY-4.0. Model-specific terms apply to provider usage.
+\subsection{Licensing status}
+This revision does not contain a repository-level \texttt{LICENSE} file or a project license declaration in \texttt{pyproject.toml}. Redistribution terms for code, case definitions, and protocol artifacts are therefore \texttt{CANNOT\_CHECK} from the repository state and must be resolved explicitly before archival/publication. Model-provider terms remain separately governed by the relevant providers.
 
 \subsection{Artifact fingerprinting}
-Every artifact that could affect results is fingerprinted by content hash and bound in the protocol:
+Result-bearing execution identities are bound through the protocol and archived records. Relevant coordinates include:
 \begin{itemize}
-    \item Datasets: \texttt{execution\_bindings.dataset\_revisions}
-    \item Baseline configurations: \texttt{execution\_bindings.baseline\_config\_hashes}
-    \item Evaluator: \texttt{execution\_bindings.evaluator\_hash}
-    \item Splits: \texttt{execution\_bindings.split\_hashes}
+    \item dataset/suite revisions and fingerprints;
+    \item baseline configuration hashes;
+    \item evaluator identity;
+    \item frozen split hashes; and
+    \item the exact subject revision and provider/model revisions for a live run.
 \end{itemize}
-Reproduction is defined as obtaining the same numerical results on the same frozen hashes.
+Reproduction of an empirical result requires the exact bound subject and admissible archived records; prose or a protocol declaration alone is not evidence that the run occurred.

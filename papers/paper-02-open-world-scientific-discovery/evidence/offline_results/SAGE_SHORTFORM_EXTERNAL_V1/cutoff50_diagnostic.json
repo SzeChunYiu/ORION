@@ -1,0 +1,55 @@
+{
+  "hypothesis": "candidate-pool-size confound — the governed multiroute splits requests across OpenAIRE/DBLP/Crossref, many routes return EMPTY/SERVICE_ERROR, yielding smaller pools than the single backend that concentrates all requests on Crossref",
+  "hypothesis_status": "CONFIRMED_PARTIAL",
+  "finding": "Pool-size confound explains much of the gap but not all: single_backend maintains 1-hit advantage even on tasks where both systems have >=50 candidates",
+  "full_sample_385_tasks": {
+    "sage_governed_multiroute": {
+      "mean_pool_size": 55.84,
+      "median_pool_size": 49,
+      "min_pool_size": 20,
+      "max_pool_size": 100,
+      "tasks_with_pool_lt_50": 205,
+      "tasks_with_pool_ge_50": 180
+    },
+    "sage_single_backend": {
+      "mean_pool_size": 126.66,
+      "median_pool_size": 130,
+      "min_pool_size": 71,
+      "max_pool_size": 149,
+      "tasks_with_pool_lt_50": 0,
+      "tasks_with_pool_ge_50": 385
+    }
+  },
+  "restricted_sample_180_tasks_both_pools_ge_50": {
+    "strict_hit_at_50": {
+      "sage_governed_multiroute": {
+        "hits": 3,
+        "n": 180,
+        "rate": 0.016667
+      },
+      "sage_single_backend": {
+        "hits": 4,
+        "n": 180,
+        "rate": 0.022222
+      },
+      "single_backend_advantage": 1,
+      "interpretation": "BASELINE_AHEAD survives restriction but narrows from 12-hit margin to 1-hit margin"
+    },
+    "relaxed_hit_at_50": {
+      "sage_governed_multiroute": {
+        "hits": 3,
+        "n": 180,
+        "rate": 0.016667
+      },
+      "sage_single_backend": {
+        "hits": 4,
+        "n": 180,
+        "rate": 0.022222
+      },
+      "single_backend_advantage": 1,
+      "interpretation": "Same 1-hit gap as strict matcher"
+    }
+  },
+  "conclusion": "The BASELINE_AHEAD negative at hit@50 is partly a candidate-pool artifact: 53% of governed tasks are mechanically capped due to small pools. However, the single backend does maintain a retrieval advantage (1 more hit) even when both systems have >=50 candidates, suggesting a real backend-diversity effect rather than pure pool-size confound.",
+  "recommendation": "Future head-to-head comparisons should either (a) equalize candidate pools before scoring, or (b) use ranking metrics that are insensitive to absolute pool size (e.g., MRR, precision-recall curves rather than fixed-k cutoffs)."
+}
