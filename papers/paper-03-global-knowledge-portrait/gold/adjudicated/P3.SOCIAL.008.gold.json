@@ -1,0 +1,52 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.SOCIAL.008.GOLD",
+  "case_id": "P3.SOCIAL.008",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "socarxiv:SEED-SOC008A",
+    "document_version": "v1",
+    "span_start": 2640,
+    "span_end": 2960,
+    "text_hash": "seed:sha256:8182838a9b9",
+    "discipline": "social",
+    "text": "Rational choice model of protest participation"
+  },
+  "source_b": {
+    "document_id": "socarxiv:SEED-SOC008B",
+    "document_version": "v1",
+    "span_start": 5980,
+    "span_end": 6310,
+    "text_hash": "seed:sha256:8182838a9ba",
+    "discipline": "social",
+    "text": "Identity-based model of protest participation"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "DIFFERENT",
+  "measurement_relation": "NOT_APPLICABLE",
+  "context_relation": "ALIGNED",
+  "polarity_relation": "NOT_COMPARABLE",
+  "modality_relation": "SAME",
+  "attribution_relation": "DIFFERENT_ATTRIBUTION",
+  "discourse_relation": "ALIGNED",
+  "mapping_relation": "NO_LICENSED_MAPPING",
+  "preservation_conditions": [],
+  "non_preserved_coordinates": [
+    "construct",
+    "mapping"
+  ],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "PLURAL_VIEW",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "integration_verdict:PLURAL_VIEW",
+    "construct_relation:DIFFERENT",
+    "mapping_relation:NO_LICENSED_MAPPING"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for genuine_plural_obstruction case P3.SOCIAL.008. referent=SAME, construct=DIFFERENT, measurement=NOT_APPLICABLE, context=ALIGNED, mapping=NO_LICENSED_MAPPING, integration=PLURAL_VIEW. Seed manifest notes: Competing explanatory models for same phenomenon. Gold: PLURAL_VIEW obstruction (models not mutually exclusive).",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

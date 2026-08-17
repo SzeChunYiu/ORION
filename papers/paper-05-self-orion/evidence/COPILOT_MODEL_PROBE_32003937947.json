@@ -1,0 +1,49 @@
+{
+  "attempts": [
+    {
+      "failure_class": "MODEL_UNAVAILABLE",
+      "family": "openai",
+      "model": "gpt-5.3-codex",
+      "role": "reasoner",
+      "status": "UNAVAILABLE"
+    },
+    {
+      "failure_class": "MODEL_UNAVAILABLE",
+      "family": "openai",
+      "model": "gpt-5-mini",
+      "role": "reasoner",
+      "status": "UNAVAILABLE"
+    },
+    {
+      "failure_class": "MODEL_UNAVAILABLE",
+      "family": "anthropic",
+      "model": "claude-sonnet-4.6",
+      "role": "reasoner",
+      "status": "UNAVAILABLE"
+    },
+    {
+      "failure_class": "MODEL_UNAVAILABLE",
+      "family": "anthropic",
+      "model": "claude-haiku-4.5",
+      "role": "reasoner",
+      "status": "UNAVAILABLE"
+    },
+    {
+      "failure_class": "MODEL_UNAVAILABLE",
+      "family": "google",
+      "model": "gemini-3.5-flash",
+      "role": "reasoner",
+      "status": "UNAVAILABLE"
+    }
+  ],
+  "cli_version": "GitHub Copilot CLI 1.0.80.",
+  "distinct_model_families_required": true,
+  "evaluator_family": null,
+  "evaluator_model": null,
+  "explicit_models_only": true,
+  "reasoner_family": null,
+  "reasoner_model": null,
+  "schema": "CopilotModelAvailabilityProbe.v1",
+  "status": "CANNOT_CHECK",
+  "study_data_used": false
+}

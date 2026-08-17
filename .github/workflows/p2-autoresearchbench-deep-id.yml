@@ -1,0 +1,202 @@
+name: p2-autoresearchbench-deep-id
+
+on:
+  push:
+    branches:
+      - chatgpt/p2-remaining-closure
+
+permissions:
+  contents: read
+
+jobs:
+  deep-id:
+    if: contains(github.event.head_commit.message, '[run-deep-id]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install ORION and official Deep evaluator dependencies
+        run: |
+          python -m pip install -e '.[dev]'
+          python -m pip install openai tiktoken tqdm python-dotenv requests
+
+      - name: Detect judge authority without exposing credentials
+        id: judge
+        shell: bash
+        env:
+          GENERIC_KEY: ${{ secrets.EVAL_OPENAI_API_KEY || secrets.OPENAI_API_KEY }}
+          GENERIC_BASE: ${{ vars.EVAL_OPENAI_API_BASE || vars.OPENAI_API_BASE || secrets.EVAL_OPENAI_API_BASE || secrets.OPENAI_API_BASE }}
+          GENERIC_MODEL: ${{ vars.EVAL_MODEL || vars.OPENAI_MODEL || secrets.EVAL_MODEL || secrets.OPENAI_MODEL }}
+          CMKEY_KEY: ${{ secrets.CMKEY_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [[ -n "$GENERIC_KEY" && -n "$GENERIC_BASE" && -n "$GENERIC_MODEL" ]]; then
+            echo 'available=true' >> "$GITHUB_OUTPUT"
+            echo 'source=generic_openai_compatible' >> "$GITHUB_OUTPUT"
+            echo "model=$GENERIC_MODEL" >> "$GITHUB_OUTPUT"
+          elif [[ -n "$CMKEY_KEY" ]]; then
+            echo 'available=true' >> "$GITHUB_OUTPUT"
+            echo 'source=cmkey_glm52' >> "$GITHUB_OUTPUT"
+            echo 'model=glm-5.2' >> "$GITHUB_OUTPUT"
+          else
+            echo 'available=false' >> "$GITHUB_OUTPUT"
+            echo 'source=none' >> "$GITHUB_OUTPUT"
+            echo 'model=none' >> "$GITHUB_OUTPUT"
+          fi
+          python - <<'PY'
+          import json, os
+          payload = {
+              'schema_version': 'orion.p2.autoresearchbench-deep-judge-preflight.v1',
+              'generic_key_present': bool(os.environ.get('GENERIC_KEY')),
+              'generic_base_present': bool(os.environ.get('GENERIC_BASE')),
+              'generic_model_present': bool(os.environ.get('GENERIC_MODEL')),
+              'cmkey_key_present': bool(os.environ.get('CMKEY_KEY')),
+          }
+          from pathlib import Path
+          Path('/tmp').joinpath('arb-deep-judge-preflight.json').write_text(
+              json.dumps(payload, indent=2, sort_keys=True) + '\n', encoding='utf-8'
+          )
+          print('ARB_DEEP_JUDGE_PREFLIGHT=' + json.dumps(payload, sort_keys=True))
+          PY
+
+      - name: Fetch pinned AutoResearchBench code and public bundle
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none https://github.com/CherYou/AutoResearchBench.git /tmp/arb-upstream
+          git -C /tmp/arb-upstream checkout a46c9bfb8968786f73f0a6a5b365b5384cd0f96d
+          mkdir -p /tmp/arb-deep
+          mv /tmp/arb-deep-judge-preflight.json /tmp/arb-deep/judge_preflight.json
+          curl --fail --location --retry 4 --retry-delay 3 \
+            --output /tmp/arb-deep/AutoResearchBench.jsonl.obf.json \
+            https://huggingface.co/datasets/Lk123/AutoResearchBench/resolve/main/AutoResearchBench.jsonl.obf.json
+          python /tmp/arb-upstream/decrypt_benchmark.py \
+            --input-file /tmp/arb-deep/AutoResearchBench.jsonl.obf.json \
+            --output-file /tmp/arb-deep/AutoResearchBench.jsonl
+          git -C /tmp/arb-upstream rev-parse HEAD
+          sha256sum /tmp/arb-deep/AutoResearchBench.jsonl.obf.json /tmp/arb-deep/AutoResearchBench.jsonl
+
+      - name: Split Deep gold before candidate custody
+        run: |
+          set -euo pipefail
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py prepare \
+            --full /tmp/arb-deep/AutoResearchBench.jsonl \
+            --public /tmp/arb-deep/deep_public.jsonl \
+            --gt /tmp/arb-deep/deep_gt.jsonl \
+            --manifest /tmp/arb-deep/split_manifest.json
+
+      - name: Run gold-blind keyless arXiv candidate
+        run: |
+          set -euo pipefail
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py run \
+            --public /tmp/arb-deep/deep_public.jsonl \
+            --output /tmp/arb-deep/candidate.jsonl \
+            --trace /tmp/arb-deep/trace.jsonl \
+            --manifest /tmp/arb-deep/run_manifest.json \
+            --max-results 20
+
+      - name: Run deterministic exact-ID deviation
+        run: |
+          set -euo pipefail
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py evaluate \
+            --public /tmp/arb-deep/deep_public.jsonl \
+            --gt /tmp/arb-deep/deep_gt.jsonl \
+            --candidate /tmp/arb-deep/candidate.jsonl \
+            --output /tmp/arb-deep/evaluation.json
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py summarize \
+            --split-manifest /tmp/arb-deep/split_manifest.json \
+            --run-manifest /tmp/arb-deep/run_manifest.json \
+            --evaluation /tmp/arb-deep/evaluation.json \
+            --trace /tmp/arb-deep/trace.jsonl \
+            --output /tmp/arb-deep/summary.json
+          cat /tmp/arb-deep/summary.json
+
+      - name: Build host-owned official Deep judge input
+        run: |
+          set -euo pipefail
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py build-official-input \
+            --public /tmp/arb-deep/deep_public.jsonl \
+            --gt /tmp/arb-deep/deep_gt.jsonl \
+            --candidate /tmp/arb-deep/candidate.jsonl \
+            --output /tmp/arb-deep/official_input.jsonl
+
+      - name: Run pinned official Deep title judge when authority exists
+        if: steps.judge.outputs.available == 'true'
+        shell: bash
+        env:
+          GENERIC_KEY: ${{ secrets.EVAL_OPENAI_API_KEY || secrets.OPENAI_API_KEY }}
+          GENERIC_BASE: ${{ vars.EVAL_OPENAI_API_BASE || vars.OPENAI_API_BASE || secrets.EVAL_OPENAI_API_BASE || secrets.OPENAI_API_BASE }}
+          GENERIC_MODEL: ${{ vars.EVAL_MODEL || vars.OPENAI_MODEL || secrets.EVAL_MODEL || secrets.OPENAI_MODEL }}
+          CMKEY_KEY: ${{ secrets.CMKEY_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [[ "${{ steps.judge.outputs.source }}" == 'generic_openai_compatible' ]]; then
+            KEY="$GENERIC_KEY"
+            BASE="$GENERIC_BASE"
+            MODEL="$GENERIC_MODEL"
+          else
+            KEY="$CMKEY_KEY"
+            BASE='https://cmkey.cn/v1'
+            MODEL='glm-5.2'
+          fi
+          python /tmp/arb-upstream/evaluate/evaluate_deep_search.py \
+            --input-file /tmp/arb-deep/official_input.jsonl \
+            --output-file /tmp/arb-deep/official_evaluation.json \
+            --max-workers 20 \
+            --model "$MODEL" \
+            --api-base "$BASE" \
+            --api-key "$KEY" \
+            --max-candidates-per-pass 1
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_deep_id_probe.py summarize-official \
+            --split-manifest /tmp/arb-deep/split_manifest.json \
+            --run-manifest /tmp/arb-deep/run_manifest.json \
+            --official-input /tmp/arb-deep/official_input.jsonl \
+            --official-evaluation /tmp/arb-deep/official_evaluation.json \
+            --trace /tmp/arb-deep/trace.jsonl \
+            --output /tmp/arb-deep/official_summary.json \
+            --judge-model "$MODEL"
+          cat /tmp/arb-deep/official_summary.json
+
+      - name: Record explicit official-judge blocker when authority is absent
+        if: steps.judge.outputs.available != 'true'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          payload = {
+              'schema_version': 'orion.p2.autoresearchbench-deep-official-blocker.v1',
+              'authority': 'CANNOT_CHECK',
+              'reason': 'No repository-configured OpenAI-compatible judge key/base/model and no CMKEY_API_KEY were available to this same-repository Actions run.',
+              'candidate_execution_completed': True,
+              'official_input_built': True,
+          }
+          Path('/tmp/arb-deep/official_blocker.json').write_text(
+              json.dumps(payload, indent=2, sort_keys=True) + '\n', encoding='utf-8'
+          )
+          print('ARB_DEEP_OFFICIAL_BLOCKER=' + json.dumps(payload, sort_keys=True))
+          PY
+
+      - name: Archive Deep result-bearing artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-autoresearchbench-deep-id-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: warn
+          path: |
+            /tmp/arb-deep/judge_preflight.json
+            /tmp/arb-deep/split_manifest.json
+            /tmp/arb-deep/run_manifest.json
+            /tmp/arb-deep/deep_public.jsonl
+            /tmp/arb-deep/candidate.jsonl
+            /tmp/arb-deep/trace.jsonl
+            /tmp/arb-deep/evaluation.json
+            /tmp/arb-deep/summary.json
+            /tmp/arb-deep/official_input.jsonl
+            /tmp/arb-deep/official_evaluation.json
+            /tmp/arb-deep/official_summary.json
+            /tmp/arb-deep/official_blocker.json

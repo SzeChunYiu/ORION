@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.p3.sample-manifest.v1",
+  "title": "ORION-P3 cross-domain atlas sample manifest V1",
+  "description": "Describes one source-pair case for the gold annotation study. Each entry identifies two source spans and declares which coordinates must be annotated.",
+  "type": "object",
+  "required": ["sample_id", "discipline", "case_family", "source_a", "source_b", "annotation_required", "specialist_domain_required"],
+  "properties": {
+    "sample_id": { "type": "string", "pattern": "^P3\\.[A-Z]+\\.[0-9]{3}$" },
+    "discipline": {
+      "type": "string",
+      "enum": ["biomed", "physics", "social", "climate", "cross"]
+    },
+    "case_family": {
+      "type": "string",
+      "enum": [
+        "same_name_different_referent",
+        "different_name_same_referent",
+        "same_construct_different_measurement",
+        "same_entity_different_temporal_state",
+        "polarity_modality_attribution_context",
+        "valid_invalid_representation_mapping",
+        "valid_invalid_literature_bridge",
+        "genuine_plural_obstruction"
+      ]
+    },
+    "source_a": { "$ref": "#/$defs/source_entry" },
+    "source_b": { "$ref": "#/$defs/source_entry" },
+    "annotation_required": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "specialist_domain_required": { "type": "boolean" },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "source_entry": {
+      "type": "object",
+      "required": ["document_id", "document_version", "span_start", "span_end", "text_hash"],
+      "properties": {
+        "document_id": { "type": "string" },
+        "document_version": { "type": "string" },
+        "span_start": { "type": "integer", "minimum": 0 },
+        "span_end": { "type": "integer", "minimum": 0 },
+        "text_hash": { "type": "string" },
+        "discipline": { "type": "string" },
+        "retrieval_hint": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "case_id": "p1-c139",
+  "task_family": "hidden_measurement_or_operationalization",
+  "public_prompt": "Quarterly availability is published as 99.95%, obtained by averaging 40 services' individual percentages with equal contribution. A customer disputes it. The reading so far: the published figure is the platform's availability. Report the availability a customer actually met.",
+  "observable_resources": [
+    "sre/service-availability.csv — 40 services, individual quarterly availability from 99.20% to 100.00%; the equal-contribution average is 99.95%",
+    "sre/service-volume.csv — the lowest-scoring service carries 71% of all calls; 28 services carry under 0.5% of calls each",
+    "sre/customer-claim.md — a customer reports 17.3 hours of failed calls across the 2,160-hour quarter, which matches 99.2% on the service they use",
+    "sre/report-method.md — the published figure adds the 40 percentages and divides by 40",
+    "closure:sla-credit-denial — closed; refuses credits on the 99.95% figure",
+    "closure:enterprise-renewal-terms — closed; derived from closure:sla-credit-denial, renews on the published figure",
+    "closure:status-page-update-standard — closed; requires a public note within 30 minutes of an outage; rests on the communications standard, not on how the quarterly figure is combined",
+    "closure:health-check-interval — closed; fixes the one-minute probe interval; rests on the monitoring standard, not on how the 40 services are combined"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "MEASUREMENT",
+    "target_coordinates": [
+      "M.MEASUREMENT",
+      "measurement:exposure_weighting"
+    ],
+    "dependencies_to_reopen": [
+      "closure:sla-credit-denial",
+      "closure:enterprise-renewal-terms"
+    ],
+    "root_success_rubric": "PASS iff availability is recomputed with each service contributing in proportion to the calls it carries, giving roughly 99.4% or worse, and the answer states that an equal-contribution average lets 28 near-idle services mask the one service carrying 71% of calls. FAIL if the answer defends 99.95%, reports only the worst service's figure, or proposes adding more health checks.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the equal-contribution framing denies the credit; the customer's 17.3 hours is exactly what the dominant service's 99.2% predicts."
+}

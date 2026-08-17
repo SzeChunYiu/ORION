@@ -1,0 +1,30 @@
+{
+  "case_id": "p1-c136",
+  "task_family": "execution_only_negative_control",
+  "public_prompt": "Every deployment is recorded as successful, including one that never reached the target and left the previous version live. The reading so far: find the defect in the pipeline step and repair it. Name the defect and give the repair.",
+  "observable_resources": [
+    "ci/deploy.sh — the step is `deploy_cmd | tee deploy.log`, with no pipefail setting",
+    "ci/run-1841.log — deploy_cmd printed 'authentication failed' and the step was recorded green",
+    "ci/exit-codes.md — 41 of the last 300 runs hold an error line in deploy.log and are recorded green",
+    "ops/version-audit.csv — for 6 of those 41 the target version never moved",
+    "closure:deploy-frequency-target — closed; commits to daily production deploys; rests on the delivery plan, not on how a step reports its result",
+    "closure:deploy-approval-gate — closed; requires two approvals before a production deploy; rests on the change standard, not on how the step reports its result",
+    "closure:rollback-runbook — closed; documents how to revert a bad version; rests on the operations standard, not on this reporting defect",
+    "closure:deploy-notification-channel — closed; fixes where deploy outcomes are announced; rests on the communications standard, not on how the step decides its result"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EXECUTION",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the unset pipefail — the failing command's status being discarded by the pipe — as the defect, repairs the step, and re-checks the 41 affected runs. The pipeline's structure must be left untouched. FAIL if the answer proposes scraping logs for error strings as the primary repair, redesigns the pipeline, or concludes the deployments genuinely succeeded.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Run defect: a pipe discards the deploy command's exit status. The pipeline design is correct; setting pipefail resolves it. Reframing is the wrong move."
+}

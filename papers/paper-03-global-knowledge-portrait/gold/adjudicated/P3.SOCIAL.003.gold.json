@@ -1,0 +1,54 @@
+{
+  "schema_version": "orion.p3.annotation.v1",
+  "annotation_id": "P3.SOCIAL.003.GOLD",
+  "case_id": "P3.SOCIAL.003",
+  "annotator_id": "seed-to-gold-v1",
+  "annotation_round": "ADJUDICATION",
+  "source_a": {
+    "document_id": "socarxiv:SEED-SOC003A",
+    "document_version": "v1",
+    "span_start": 5030,
+    "span_end": 5380,
+    "text_hash": "seed:sha256:8182838a9af",
+    "discipline": "social",
+    "text": "Welfare measurement: self-reported life satisfaction (SWB index)"
+  },
+  "source_b": {
+    "document_id": "socarxiv:SEED-SOC003B",
+    "document_version": "v1",
+    "span_start": 9610,
+    "span_end": 9930,
+    "text_hash": "seed:sha256:8182838a9b0",
+    "discipline": "social",
+    "text": "Welfare measurement: objective income + consumption bundle"
+  },
+  "referent_relation": "SAME",
+  "construct_relation": "SAME",
+  "measurement_relation": "NON_EQUIVALENT",
+  "context_relation": "CONDITIONED_COMPATIBLE",
+  "polarity_relation": "SAME",
+  "modality_relation": "SAME",
+  "attribution_relation": "SAME_SPEAKER_OR_SOURCE",
+  "discourse_relation": "ALIGNED",
+  "mapping_relation": "CONDITIONAL_TRANSFORM",
+  "preservation_conditions": [
+    "Calibration curve or bridging study required between measurement instruments",
+    "Direct numeric comparison without calibration is invalid"
+  ],
+  "non_preserved_coordinates": [
+    "measurement"
+  ],
+  "contradiction_verdict": "NO_CONTRADICTION",
+  "integration_verdict": "GLUE_ALLOWED",
+  "recoverability_target": [
+    "source_a.document_id",
+    "source_b.document_id",
+    "construct_relation:SAME",
+    "measurement_relation:NON_EQUIVALENT",
+    "preservation_conditions:calibration_required"
+  ],
+  "confidence": 1.0,
+  "rationale": "Gold annotation for same_construct_different_measurement case P3.SOCIAL.003. referent=SAME, construct=SAME, measurement=NON_EQUIVALENT, context=CONDITIONED_COMPATIBLE, mapping=CONDITIONAL_TRANSFORM, integration=GLUE_ALLOWED. Seed manifest notes: Same construct (welfare) DIFFERENT measurement grounds (subjective vs objective). Gold: measurement non-equivalence; no direct ranking transfer.",
+  "specialist_domain_required": true,
+  "annotated_at": "2026-08-16T18:43:22+00:00"
+}

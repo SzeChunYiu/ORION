@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import hashlib
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass, field, replace
 from functools import partial
 from time import perf_counter
@@ -30,6 +30,9 @@ from orion.engine.operators.search import SearchOperator
 from orion.engine.trace import MECHANIC_ID_BY_OPERATOR, SolveTrace, TraceEvent
 from orion.mechanics.receipt import MechanicReceipt, MechanicRunStatus
 from orion.providers.reasoner.base import ResearchReasoner
+
+from .deterministic_route import attempt_deterministic_route
+from .deterministic_solver import CompiledProblem, DeterministicProblemSolver
 from orion.providers.retrieval.base import RetrievalProvider
 from orion.providers.verification.base import VerificationProvider
 from orion.registry import CORE_OPERATOR_IDS, FRAMEWORK_VERSION
@@ -69,8 +72,15 @@ class OrionSolver:
         verification: VerificationProvider,
         config: SolverConfig | None = None,
         guards: tuple[MechanicGuard, ...] = (),
+        deterministic: DeterministicProblemSolver | None = None,
+        compiled_problems: Mapping[str, CompiledProblem] | None = None,
     ) -> None:
         self._reasoner = reasoner
+        # When a problem has a typed model, it is closed by verified transition
+        # search and the reasoner is never consulted. Uncompiled problems keep
+        # the existing route; nothing is silently delegated.
+        self._deterministic = deterministic
+        self._compiled_problems = dict(compiled_problems or {})
         self._config = config or SolverConfig()
         self._frame = FrameOperator()
         self._search = SearchOperator(
@@ -423,6 +433,16 @@ class OrionSolver:
         state = initial_state or self.initial_state(problem)
         events: list[TraceEvent] = []
         trace_id = trace_id or f"trace:{problem.problem_id}:{uuid4().hex}"
+
+        route = attempt_deterministic_route(
+            problem,
+            self._compiled_problems.get(problem.problem_id),
+            self._deterministic,
+        )
+        if route.solution is not None:
+            self._last_route = route
+            return route.solution, state, SolveTrace(trace_id=trace_id, events=())
+        self._last_route = route
 
         # ORION_SOLVE is one guarded root invocation, not merely the later
         # iteration-record/final-composition steps that share its RECURSE receipt

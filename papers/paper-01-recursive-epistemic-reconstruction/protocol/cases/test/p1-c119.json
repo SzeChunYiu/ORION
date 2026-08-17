@@ -1,0 +1,36 @@
+{
+  "case_id": "p1-c119",
+  "task_family": "hidden_representation_or_coordinate_system",
+  "public_prompt": "Stops are assigned to the nearest of 40 depots. The route being taken: latitude and longitude are two numbers, so take the straight-line distance between the pairs. Six per cent of assignments disagree with the driver-measured nearest depot. Report the corrected assignment rule.",
+  "observable_resources": [
+    "logistics/depots.csv — 40 depots between 25 and 68 degrees north",
+    "logistics/assign.py — computes sqrt((lat1-lat2)^2 + (lon1-lon2)^2) directly on degrees",
+    "logistics/audit.csv — 1,900 stops; 6% of assignments differ from the driver-measured nearest depot, and 94% of those sit north of 55 degrees",
+    "logistics/span-note.md — at 60 degrees north, one degree of longitude covers about half the ground span of one degree of latitude; at 25 degrees north it covers about nine tenths",
+    "closure:depot-catchment-map — closed; publishes catchment polygons drawn from the straight-line rule",
+    "closure:northern-depot-closure — closed; derived from closure:depot-catchment-map, recommends closing two northern depots on thin catchment",
+    "logistics/driver-odometer.csv — measured road distance for 1,900 stop-to-depot journeys, against which the assignment can be checked",
+    "closure:driver-shift-limits — closed; caps driving hours from the transport regulation; rests on that regulation, not on which depot serves which stop"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "REPRESENTATION",
+    "target_coordinates": [
+      "W.REPRESENTATIONS",
+      "representation:great_circle_geometry"
+    ],
+    "dependencies_to_reopen": [
+      "closure:depot-catchment-map",
+      "closure:northern-depot-closure"
+    ],
+    "root_success_rubric": "PASS iff distances are computed on the sphere (a great-circle formula) or in a projection that preserves distance locally, and the answer explains the concentration of errors above 55 degrees by the shrinking ground span of a longitude degree. FAIL if the answer applies one global scaling factor to longitude, treats the 6% as acceptable error, or fixes the assignment by hand for the northern depots.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the planar framing accepts the 6% as noise; the errors are systematic and concentrated exactly where the two degree units diverge most."
+}

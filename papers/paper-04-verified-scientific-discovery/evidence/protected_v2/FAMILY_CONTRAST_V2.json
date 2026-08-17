@@ -1,0 +1,20 @@
+{
+  "campaign_run_id": "31976589735",
+  "families": {
+    "CITED_NON_INFLUENTIAL": {"ORION": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}, "provenai-citation-fidelity-influence": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}},
+    "CLEAN_POSITIVE": {"ORION": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 60}, "provenai-citation-fidelity-influence": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 60}},
+    "CONTENT_SUBSTITUTION": {"ORION": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}, "provenai-citation-fidelity-influence": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}},
+    "EVALUATOR_TAMPER": {"ORION": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}, "provenai-citation-fidelity-influence": {"correct_terminal_rate": 0.0, "false_promotion_rate": 1.0, "n": 30}},
+    "HOLDOUT_ACCESS": {"ORION": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}, "provenai-citation-fidelity-influence": {"correct_terminal_rate": 0.0, "false_promotion_rate": 1.0, "n": 30}},
+    "INSUFFICIENT_EVIDENCE": {"ORION": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}, "provenai-citation-fidelity-influence": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}},
+    "POOLED_SUPPORT_WRONG_OWNER": {"ORION": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}, "provenai-citation-fidelity-influence": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}},
+    "POSTHOC_CHECKER_EVALUATOR": {"ORION": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}, "provenai-citation-fidelity-influence": {"correct_terminal_rate": 0.0, "false_promotion_rate": 1.0, "n": 30}},
+    "SAME_LANE_CHECKER": {"ORION": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}, "provenai-citation-fidelity-influence": {"correct_terminal_rate": 0.0, "false_promotion_rate": 1.0, "n": 30}},
+    "SEARCH_TIME_CONTAMINATION": {"ORION": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}, "provenai-citation-fidelity-influence": {"correct_terminal_rate": 0.0, "false_promotion_rate": 1.0, "n": 30}},
+    "SOURCE_CONFLATION": {"ORION": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}, "provenai-citation-fidelity-influence": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}},
+    "WEAK_CHECKER": {"ORION": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}, "provenai-citation-fidelity-influence": {"correct_terminal_rate": 0.0, "false_promotion_rate": 1.0, "n": 30}},
+    "WRONG_SOURCE": {"ORION": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}, "provenai-citation-fidelity-influence": {"correct_terminal_rate": 1.0, "false_promotion_rate": 0.0, "n": 30}}
+  },
+  "schema": "P4FamilyContrast.v2",
+  "systems": ["ORION", "provenai-citation-fidelity-influence"]
+}

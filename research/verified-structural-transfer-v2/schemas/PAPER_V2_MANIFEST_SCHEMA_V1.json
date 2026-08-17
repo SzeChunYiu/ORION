@@ -1,0 +1,22 @@
+{
+  "$id": "ORION.paper-v2-manifest.v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adoption_class": {"enum": ["V2_CANDIDATE", "EXPLORATORY_V2", "PERFORMANCE_HELPER"]},
+    "execution_authority": {"const": "NONE"},
+    "local_evidence_authority": {"const": "LOCAL_ENGINEERING_ONLY"},
+    "manifest_version": {"const": "ORION_PAPER_V2_MANIFEST_V1"},
+    "mechanism_id": {"minLength": 1, "type": "string"},
+    "module": {"pattern": "^orion\\.transfer\\.v2\\.", "type": "string"},
+    "outcome_accessed": {"const": false},
+    "paper_id": {"enum": ["ORION-P1", "ORION-P2", "ORION-P3", "ORION-P4", "ORION-P5"]},
+    "preconditions_for_execution_freeze": {"items": {"minLength": 1, "type": "string"}, "minItems": 1, "type": "array"},
+    "requires_new_protocol_version": {"const": true},
+    "source_issue": {"minimum": 1, "type": "integer"},
+    "status": {"const": "V2_FUTURE_STUDY"},
+    "v1_protocol_mutated": {"const": false}
+  },
+  "required": ["manifest_version", "paper_id", "mechanism_id", "status", "adoption_class", "outcome_accessed", "execution_authority", "v1_protocol_mutated", "local_evidence_authority", "requires_new_protocol_version", "source_issue", "module", "preconditions_for_execution_freeze"],
+  "type": "object"
+}

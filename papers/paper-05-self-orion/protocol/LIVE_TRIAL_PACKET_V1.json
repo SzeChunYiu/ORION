@@ -1,0 +1,297 @@
+{
+  "authority": {
+    "model_output_may_increase_authority": false,
+    "repairs": "proposal_only",
+    "self_orion_may_merge_or_promote": false
+  },
+  "corpus_revision": "UNBOUND",
+  "evaluation_epoch_id": "P5.shadow-live-research.epoch-1",
+  "evaluator": {
+    "criteria": [
+      {
+        "check": "EVERY_CITATION_IN_RAW_TRACE",
+        "criterion_id": "W1.citations-grounded",
+        "description": "Every cited item id appears verbatim in the retained raw retrieval trace.",
+        "threshold": 0
+      },
+      {
+        "check": "DISTINCT_ROUTE_FAMILIES",
+        "criterion_id": "W2.route-breadth",
+        "description": "At least four distinct route families returned at least one item.",
+        "threshold": 4
+      },
+      {
+        "check": "INDEPENDENT_CORROBORATION",
+        "criterion_id": "W3.independent-corroboration",
+        "description": "At least one item was captured by two route families with distinct backends.",
+        "threshold": 1
+      },
+      {
+        "check": "RETRIEVAL_FULLY_CLASSIFIED",
+        "criterion_id": "W4.retrieval-classified",
+        "description": "Every retrieved item is classified used / unused, with none dropped.",
+        "threshold": 0
+      },
+      {
+        "check": "RESOURCE_WITHIN_MATCHED_LIMIT",
+        "criterion_id": "W5.resource-matched",
+        "description": "ORION spend is within the frozen budget and the baseline-matched ratio.",
+        "threshold": 0
+      },
+      {
+        "check": "EVERY_CITATION_IN_RAW_TRACE",
+        "criterion_id": "D1.citations-grounded",
+        "description": "Every cited item id appears verbatim in the retained raw retrieval trace.",
+        "threshold": 0
+      },
+      {
+        "check": "PROTECTED_GOLD_TOKENS_RECOVERED",
+        "criterion_id": "D2.gold-tokens",
+        "description": "The answer contains every protected gold token, checked against the held-out gold rather than against a self-report.",
+        "threshold": 0
+      },
+      {
+        "check": "PROTECTED_GOLD_ANCHOR_CITED",
+        "criterion_id": "D3.gold-anchor-cited",
+        "description": "The protected anchor source is among the cited evidence ids.",
+        "threshold": 0
+      },
+      {
+        "check": "NON_RECOVERY_DECLARES_RESIDUAL",
+        "criterion_id": "D4.non-recovery-declares-residual",
+        "description": "If the target is not recovered, a residual is declared; silence is a failure.",
+        "threshold": 0
+      },
+      {
+        "check": "RETRIEVAL_FULLY_CLASSIFIED",
+        "criterion_id": "D5.retrieval-classified",
+        "description": "Every retrieved item is classified used / unused, with none dropped.",
+        "threshold": 0
+      },
+      {
+        "check": "RESOURCE_WITHIN_MATCHED_LIMIT",
+        "criterion_id": "D6.resource-matched",
+        "description": "ORION spend is within the frozen budget and the baseline-matched ratio.",
+        "threshold": 0
+      }
+    ],
+    "evaluator_id": "P5.shadow-live-research.evaluator.v1",
+    "model_cooperation_required": false
+  },
+  "evaluator_artifact_hash": "5be0d7f2fb408c8f29384096e1feb993c73e7bb2e0b6f409301f06df56b93330",
+  "execution": {
+    "command": "python -m orion.self_orion.live_packet --live",
+    "credential_env_vars": [
+      "OPENAI_API_KEY",
+      "ORION_PROTECTED_VERIFIER_TOKEN",
+      "ORION_PROTECTED_VERIFIER_ARTIFACT_HASH",
+      "ORION_PHASE2_EVALUATION_EPOCH_ID",
+      "ORION_PROTECTED_VERIFIER_URL"
+    ],
+    "runner": "orion.self_orion.live_trial.ShadowLiveTrialRunner.from_providers",
+    "stack_constructor": "orion.providers.live_phase2.build_phase2_live_provider_stack_from_env"
+  },
+  "issue": "SzeChunYiu/ORION#8",
+  "matched_baseline": {
+    "baseline_id": "simple_llm_retrieval_baseline.v1",
+    "description": "One current-vocabulary retrieval call plus one completion, answering only from returned item ids. No ORION mechanics, no route ensemble, no residual detection, no failure learning. Runs under the identical FrozenResourceLimits object the ORION arm receives.",
+    "implementation": "orion.self_orion.baseline.SimpleLLMRetrievalBaseline",
+    "limits": {
+      "budget_units": 24.0,
+      "max_model_calls": 12,
+      "max_model_tokens": 120000,
+      "max_orion_to_baseline_ratio": 1.0,
+      "max_retrieval_calls": 12,
+      "max_wallclock_seconds": 900.0
+    }
+  },
+  "outcome_accessed": false,
+  "packet_fingerprint": "53f99a2c7e6cfdd74cf5b10a62ba273bc911999b5719cf700eda64044f917e48",
+  "packet_id": "P5.shadow-live-research.v1",
+  "provider_manifest_hash": "b08642b8d2de16c28a4e9110e7fbbffd0a2afcf4aee9a31ec53afe6b4324083d",
+  "providers": [
+    {
+      "adapter": "orion.providers.verification.protected_http.ProtectedHTTPVerificationProvider",
+      "credential_env_vars": [
+        "ORION_PROTECTED_VERIFIER_TOKEN",
+        "ORION_PROTECTED_VERIFIER_ARTIFACT_HASH",
+        "ORION_PHASE2_EVALUATION_EPOCH_ID",
+        "ORION_PROTECTED_VERIFIER_URL"
+      ],
+      "identity": {
+        "custody": "outside_the_answering_lane",
+        "endpoint_env_var": "ORION_PROTECTED_VERIFIER_URL"
+      },
+      "role": "protected_verification",
+      "secret_material_included": false
+    },
+    {
+      "adapter": "orion.providers.llm.openai_responses.OpenAIResponsesLLMProvider",
+      "credential_env_vars": [
+        "OPENAI_API_KEY"
+      ],
+      "identity": {
+        "model_env_var": "ORION_P5_REASONER_MODEL",
+        "store": "false",
+        "transport": "https"
+      },
+      "role": "reasoner",
+      "secret_material_included": false
+    },
+    {
+      "adapter": "orion.providers.retrieval.literature.MultiSourceLiteratureRetrievalProvider",
+      "credential_env_vars": [],
+      "identity": {
+        "policy": "strict-all-sources",
+        "source_a": "europe-pmc-rest",
+        "source_b": "crossref-rest"
+      },
+      "role": "retrieval",
+      "secret_material_included": false
+    }
+  ],
+  "resource_limits": {
+    "budget_units": 24.0,
+    "max_model_calls": 12,
+    "max_model_tokens": 120000,
+    "max_orion_to_baseline_ratio": 1.0,
+    "max_retrieval_calls": 12,
+    "max_wallclock_seconds": 900.0
+  },
+  "schema": "orion.self-orion.live-research-packet.v1",
+  "status": "DESIGN_FROZEN",
+  "success_boundary": "Exercising the governed loop and yielding interpretable failure evidence is the whole of the success claim. This packet does not establish autonomous-science capability, and it does not establish Self-ORION readiness.",
+  "task_bindings": [
+    {
+      "corpus_revision": "UNBOUND",
+      "criteria": [
+        {
+          "check": "EVERY_CITATION_IN_RAW_TRACE",
+          "criterion_id": "D1.citations-grounded",
+          "description": "Every cited item id appears verbatim in the retained raw retrieval trace.",
+          "threshold": 0
+        },
+        {
+          "check": "PROTECTED_GOLD_TOKENS_RECOVERED",
+          "criterion_id": "D2.gold-tokens",
+          "description": "The answer contains every protected gold token, checked against the held-out gold rather than against a self-report.",
+          "threshold": 0
+        },
+        {
+          "check": "PROTECTED_GOLD_ANCHOR_CITED",
+          "criterion_id": "D3.gold-anchor-cited",
+          "description": "The protected anchor source is among the cited evidence ids.",
+          "threshold": 0
+        },
+        {
+          "check": "NON_RECOVERY_DECLARES_RESIDUAL",
+          "criterion_id": "D4.non-recovery-declares-residual",
+          "description": "If the target is not recovered, a residual is declared; silence is a failure.",
+          "threshold": 0
+        },
+        {
+          "check": "RETRIEVAL_FULLY_CLASSIFIED",
+          "criterion_id": "D5.retrieval-classified",
+          "description": "Every retrieved item is classified used / unused, with none dropped.",
+          "threshold": 0
+        },
+        {
+          "check": "RESOURCE_WITHIN_MATCHED_LIMIT",
+          "criterion_id": "D6.resource-matched",
+          "description": "ORION spend is within the frozen budget and the baseline-matched ratio.",
+          "threshold": 0
+        }
+      ],
+      "ground_truth_bound": true,
+      "protected_gold_digest": "0c237e14d15549f0c45477c87fe3bbd869ca026637a3355b2b1b5652ad3b655e",
+      "task_id": "P5.LIVE.DEEP.flat-round-without-lineage"
+    },
+    {
+      "corpus_revision": "UNBOUND",
+      "criteria": [
+        {
+          "check": "EVERY_CITATION_IN_RAW_TRACE",
+          "criterion_id": "W1.citations-grounded",
+          "description": "Every cited item id appears verbatim in the retained raw retrieval trace.",
+          "threshold": 0
+        },
+        {
+          "check": "DISTINCT_ROUTE_FAMILIES",
+          "criterion_id": "W2.route-breadth",
+          "description": "At least four distinct route families returned at least one item.",
+          "threshold": 4
+        },
+        {
+          "check": "INDEPENDENT_CORROBORATION",
+          "criterion_id": "W3.independent-corroboration",
+          "description": "At least one item was captured by two route families with distinct backends.",
+          "threshold": 1
+        },
+        {
+          "check": "RETRIEVAL_FULLY_CLASSIFIED",
+          "criterion_id": "W4.retrieval-classified",
+          "description": "Every retrieved item is classified used / unused, with none dropped.",
+          "threshold": 0
+        },
+        {
+          "check": "RESOURCE_WITHIN_MATCHED_LIMIT",
+          "criterion_id": "W5.resource-matched",
+          "description": "ORION spend is within the frozen budget and the baseline-matched ratio.",
+          "threshold": 0
+        }
+      ],
+      "ground_truth_bound": false,
+      "protected_gold_digest": null,
+      "task_id": "P5.LIVE.WIDE.stopping-rule-source-families"
+    }
+  ],
+  "tasks": [
+    {
+      "initial_domain_ids": [
+        "domain:orion-source"
+      ],
+      "kind": "DEEP_TARGET",
+      "question": "Within the frozen ORION source corpus, determine what bounded saturation returns when a flat round declares no evidence lineage, name the module and function that decide it, and state why that guard exists instead of counting the round toward saturation.",
+      "required_evidence_ids": [],
+      "scope": "Single deep target inside a corpus that is fixed at execution time. One exact answer exists and is held back from this packet.",
+      "split_id": "P5.shadow-live.deep",
+      "success_criteria": [
+        "Every cited item id appears verbatim in the retained raw retrieval trace.",
+        "The answer contains every protected gold token, checked against the held-out gold rather than against a self-report.",
+        "The protected anchor source is among the cited evidence ids.",
+        "If the target is not recovered, a residual is declared; silence is a failure.",
+        "Every retrieved item is classified used / unused, with none dropped.",
+        "ORION spend is within the frozen budget and the baseline-matched ratio."
+      ],
+      "task_id": "P5.LIVE.DEEP.flat-round-without-lineage",
+      "variation_signature": [
+        "deep_target",
+        "single_verdict_recovery"
+      ]
+    },
+    {
+      "initial_domain_ids": [
+        "domain:evidence-synthesis",
+        "domain:information-retrieval"
+      ],
+      "kind": "WIDE_LITERATURE",
+      "question": "Which distinct research literatures state stopping rules for an evidence search, and for each one, what does it require before a flat search may be called saturated? Cite only material returned by the trial's own retrieval routes.",
+      "required_evidence_ids": [],
+      "scope": "Wide literature sweep. Breadth across source families is the target; depth on any single family is not.",
+      "split_id": "P5.shadow-live.wide",
+      "success_criteria": [
+        "Every cited item id appears verbatim in the retained raw retrieval trace.",
+        "At least four distinct route families returned at least one item.",
+        "At least one item was captured by two route families with distinct backends.",
+        "Every retrieved item is classified used / unused, with none dropped.",
+        "ORION spend is within the frozen budget and the baseline-matched ratio."
+      ],
+      "task_id": "P5.LIVE.WIDE.stopping-rule-source-families",
+      "variation_signature": [
+        "wide_literature",
+        "route_family_breadth"
+      ]
+    }
+  ],
+  "trial_fingerprint": "86a117f916413dd749c954ac9db52aa27b72005cb2d6dc7c8739de53ec195ca7"
+}
