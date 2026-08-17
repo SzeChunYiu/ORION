@@ -69,3 +69,45 @@ paper01-trial-live:
 ## unknown, not wrong, and failing on it would get this switched off.
 conformance:
 	@PYTHONPATH=$(SRC) $(PYTHON) -m orion.conformance --papers papers
+
+# --- ORION-P3: public-reference mapping route (issue #100) --------------------
+
+P3_PUBLIC_BUILD_OUT ?= papers/paper-03-global-knowledge-portrait/gold/public-reference
+P3_PUBLIC_CASES ?= $(P3_PUBLIC_BUILD_OUT)/cases.jsonl
+P3_PUBLIC_EVAL_OUT ?= papers/paper-03-global-knowledge-portrait/evaluation/public-reference-summary.json
+P3_PUBLIC_TARGET_N ?= 32
+
+.PHONY: paper03-public-reference-build
+## Build a pointer/hash-only atlas from pinned external human/expert annotations.
+## Optional inputs: P3_MUSE_ROOT, P3_SCIFACT_CLAIMS, P3_SCISCHEMA_ROOT.
+## Exit 3 means the authoritative pool cannot yet meet the frozen coverage gate.
+paper03-public-reference-build:
+	@PYTHONPATH=$(SRC) $(PYTHON) -m orion.study.p3_public_reference_build \
+		$(if $(P3_MUSE_ROOT),--muse-root $(P3_MUSE_ROOT),) \
+		$(if $(P3_SCIFACT_CLAIMS),--scifact-claims $(P3_SCIFACT_CLAIMS),) \
+		$(if $(P3_SCISCHEMA_ROOT),--scischema-root $(P3_SCISCHEMA_ROOT),) \
+		--target-n $(P3_PUBLIC_TARGET_N) \
+		--out $(P3_PUBLIC_BUILD_OUT)
+
+.PHONY: paper03-public-reference
+## Deterministic mapping-layer evaluation. No model/provider credential required.
+paper03-public-reference:
+	@PYTHONPATH=$(SRC) $(PYTHON) -m orion.study.p3_public_reference \
+		--cases $(P3_PUBLIC_CASES) \
+		--output $(P3_PUBLIC_EVAL_OUT)
+
+P3_PUBLIC_ANALYSIS_OUT ?= papers/paper-03-global-knowledge-portrait/evaluation/public-reference-analysis.json
+
+.PHONY: paper03-public-reference-analysis
+## Publication analysis: Wilson intervals, paired bootstrap and coordinate ablations.
+paper03-public-reference-analysis:
+	@PYTHONPATH=$(SRC) $(PYTHON) -m orion.study.p3_public_reference_analysis \
+		--cases $(P3_PUBLIC_CASES) \
+		--output $(P3_PUBLIC_ANALYSIS_OUT)
+
+.PHONY: paper03-public-reference-tests
+paper03-public-reference-tests:
+	PYTHONPATH=$(SRC) $(PYTHON) -m pytest -q \
+		tests/unit/study/test_p3_public_reference.py \
+		tests/unit/study/test_p3_public_reference_build.py \
+		tests/unit/study/test_p3_public_reference_analysis.py
