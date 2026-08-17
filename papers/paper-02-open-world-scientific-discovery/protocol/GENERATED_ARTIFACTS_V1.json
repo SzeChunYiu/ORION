@@ -1,7 +1,7 @@
 {
- "schema_version": "orion.p2.generated-artifacts.v1",
+ "schema_version": "orion.p2.generated-artifacts.v2",
  "paper_id": "P2",
- "why": "Every artifact here is derived. Committing a derived artifact without a way to re-derive it is how a paper ends up describing an earlier state of its own evidence: the generator is correct, the file is committed, and nothing compares them. The programme conformance check runs each command below, so drift fails centrally rather than only in this paper's own tests.",
+ "why": "Every artifact here is derived. Committing a derived artifact without a way to re-derive it is how a paper ends up describing an earlier state of its own evidence: the generator is correct, the file is committed, and nothing compares them. The programme conformance check re-derives each one. The registry declares a generator script and flag names only, never a command line, so it cannot introduce an interpreter or a payload.",
  "artifacts": [
   {
    "output": "manuscript/generated/suite_facts.tex",
@@ -10,15 +10,21 @@
     "evidence/offline_gold/MANIFEST.json",
     "evidence/offline_results/RESULTS_SUMMARY_V1.json"
    ],
-   "check": ["python3", "scripts/render_suite_facts.py", "--check"],
-   "note": "Scale facts cited by the manuscript as macros. A stale value here would put a wrong task count into the abstract."
+   "note": "Scale facts cited by the manuscript as macros. A stale value here would put a wrong task count into the abstract.",
+   "check_flags": [
+    "--check"
+   ]
   },
   {
    "output": "protocol/TABLE_P2-1_freeze_manifest.md",
    "generator": "scripts/render_table_p2_1.py",
-   "inputs": ["protocol/EXTERNAL_ACCESS_AUDIT_V1.json"],
-   "check": ["python3", "scripts/render_table_p2_1.py", "--check"],
-   "note": "Benchmark/licence/freeze manifest. Its parity with the audit JSON is the reason a reader can trust either."
+   "inputs": [
+    "protocol/EXTERNAL_ACCESS_AUDIT_V1.json"
+   ],
+   "note": "Benchmark/licence/freeze manifest. Its parity with the audit JSON is the reason a reader can trust either.",
+   "check_flags": [
+    "--check"
+   ]
   }
  ]
 }

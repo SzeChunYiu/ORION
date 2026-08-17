@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import pathlib
 from collections.abc import Sequence
 from dataclasses import dataclass
@@ -237,14 +238,17 @@ def check_generated_artifacts_regenerate(
     that motivated this had one paper's task count living as a literal in six
     places, three of which were prose.
 
-    Each registry entry names an output and a check command. The command is
-    executed rather than trusted, but only under two constraints: it must invoke
-    a Python module or script, and every path it references must resolve inside
-    the paper root. A conformance checker that can be handed an arbitrary shell
-    command by a data file is a worse problem than the drift it detects.
+    The registry names a **generator script and flags**, never a command line.
+    An earlier version accepted an argv list and tried to validate it; that was
+    an arbitrary-code-execution hole, because ``["python3", "-c", "<payload>"]``
+    passes any check that skips flag-shaped tokens. The interpreter is chosen
+    here, the script must resolve inside the paper root, and flags must match a
+    conservative pattern — so a data file cannot introduce an interpreter, ``-c``,
+    ``-m`` or any positional argument.
     """
 
     import subprocess
+    import sys
 
     registry_path = paper_root / GENERATED_REGISTRY
     if not registry_path.is_file():
@@ -270,22 +274,20 @@ def check_generated_artifacts_regenerate(
     stale: list[str] = []
     unverifiable: list[str] = []
     for entry in entries:
-        output = str(entry.get("output", ""))
-        command = entry.get("check") or []
-        if not output or not isinstance(command, list) or not command:
-            unverifiable.append(f"{output or '<unnamed>'}: no check command declared")
+        output = str(entry.get("output", "")) or "<unnamed>"
+        argv = _verified_argv(entry, paper_root, sys.executable)
+        if argv is None:
+            unverifiable.append(f"{output}: no safely resolvable generator declared")
             continue
-        if not (paper_root / output).is_file():
+        if not (paper_root / str(entry.get("output", ""))).is_file():
             unverifiable.append(f"{output}: declared generated artifact is absent")
             continue
-        if not _command_is_safe(command, paper_root):
-            unverifiable.append(f"{output}: check command is not a paper-local python invocation")
-            continue
         result = subprocess.run(
-            command, cwd=str(paper_root), capture_output=True, text=True, check=False, timeout=300
+            argv, cwd=str(paper_root), capture_output=True, text=True, check=False, timeout=300
         )
         if result.returncode != 0:
-            stale.append(f"{output}: {(result.stdout + result.stderr).strip().splitlines()[-1:] or ['no output']}")
+            tail = (result.stdout + result.stderr).strip().splitlines()[-1:] or ["no output"]
+            stale.append(f"{output}: {tail[0]}")
 
     if stale:
         return ConformanceFinding(
@@ -306,25 +308,44 @@ def check_generated_artifacts_regenerate(
     )
 
 
-def _command_is_safe(command: list[object], paper_root: pathlib.Path) -> bool:
-    """Only paper-local Python invocations, so a data file cannot run anything."""
+#: A flag the registry may pass to its own generator. Deliberately narrow: no
+#: values, no short flags, nothing that could smuggle a payload or a path.
+_SAFE_FLAG = re.compile(r"^--[a-z][a-z0-9-]{0,30}$")
 
-    import sys
 
-    head = str(command[0])
-    if head not in {"python3", "python", sys.executable}:
-        return False
-    for token in command[1:]:
-        text = str(token)
-        if text.startswith("-"):
-            continue
-        candidate = (paper_root / text).resolve()
-        if candidate.exists() or text.endswith(".py"):
-            try:
-                candidate.relative_to(paper_root.resolve())
-            except ValueError:
-                return False
-    return True
+def _verified_argv(
+    entry: object, paper_root: pathlib.Path, interpreter: str
+) -> list[str] | None:
+    """Build the argv ourselves from a declared script and flags, or refuse.
+
+    Returns None rather than raising, so an unsafe or unresolvable entry is
+    reported as unverifiable instead of aborting the whole conformance run.
+    """
+
+    if not isinstance(entry, dict):
+        return None
+    generator = entry.get("generator")
+    if not isinstance(generator, str) or not generator.endswith(".py"):
+        return None
+    if generator.startswith("/") or ".." in pathlib.PurePosixPath(generator).parts:
+        return None
+    script = (paper_root / generator).resolve()
+    try:
+        script.relative_to(paper_root.resolve())
+    except ValueError:
+        return None
+    if not script.is_file():
+        return None
+
+    flags = entry.get("check_flags", [])
+    if not isinstance(flags, list):
+        return None
+    verified: list[str] = []
+    for flag in flags:
+        if not isinstance(flag, str) or not _SAFE_FLAG.match(flag):
+            return None
+        verified.append(flag)
+    return [interpreter, str(script), *verified]
 
 
 def check_papers(papers_root: pathlib.Path) -> tuple[ConformanceFinding, ...]:

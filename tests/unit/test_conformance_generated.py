@@ -41,7 +41,7 @@ def _entry(**overrides) -> dict:
     entry = {
         "output": "manuscript/generated/facts.tex",
         "generator": "scripts/render.py",
-        "check": ["python3", "scripts/render.py", "--check"],
+        "check_flags": ["--check"],
     }
     entry.update(overrides)
     return {"artifacts": [entry]}
@@ -94,36 +94,45 @@ def test_a_declared_output_that_does_not_exist_cannot_be_verified(tmp_path):
     assert "absent" in finding.detail
 
 
-def test_a_missing_check_command_cannot_be_verified(tmp_path):
-    root = _paper(tmp_path, _entry(check=[]), script=PASSING)
+def test_a_missing_generator_cannot_be_verified(tmp_path):
+    root = _paper(tmp_path, _entry(generator=None), script=PASSING)
     finding = check_generated_artifacts_regenerate(root, "P99")
     assert finding is not None
     assert finding.verdict is ConformanceVerdict.CANNOT_CHECK
 
 
 def test_the_registry_cannot_make_the_checker_run_arbitrary_things(tmp_path):
-    """A data file must not be able to hand the checker a shell command."""
+    """The registry supplies a script and flags; the checker supplies the argv.
 
-    shell = _paper(tmp_path, _entry(check=["rm", "-rf", "/"]), script=PASSING)
-    finding = check_generated_artifacts_regenerate(shell, "P99")
-    assert finding is not None
-    assert finding.verdict is ConformanceVerdict.CANNOT_CHECK
-    assert "paper-local python" in finding.detail
+    A background security review caught the earlier design, which accepted an argv
+    list and tried to validate it. That is not securable: ["python3", "-c",
+    "<payload>"] passes any check that skips flag-shaped tokens, so a data file in
+    the repository became arbitrary code execution in CI. Each case below is a way
+    that design could have been abused.
+    """
 
-    escaping = _paper(
-        tmp_path / "escape",
-        _entry(check=["python3", "../../../outside.py", "--check"]),
-        script=PASSING,
-    )
-    finding = check_generated_artifacts_regenerate(escaping, "P99")
-    assert finding is not None
-    assert finding.verdict is ConformanceVerdict.CANNOT_CHECK
+    cases = {
+        "shell command": _entry(generator="rm"),
+        "interpreter flag payload": _entry(generator="-c", check_flags=["--check"]),
+        "module payload": _entry(check_flags=["-m", "http.server"]),
+        "flag with an argument": _entry(check_flags=["--out", "/tmp/x"]),
+        "path escape": _entry(generator="../../../outside.py"),
+        "absolute path": _entry(generator="/etc/passwd.py"),
+        "non-python generator": _entry(generator="scripts/render.sh"),
+        "flags not a list": _entry(check_flags="--check"),
+    }
+    for name, registry in cases.items():
+        root = _paper(tmp_path / name.replace(" ", "_"), registry, script=PASSING)
+        finding = check_generated_artifacts_regenerate(root, "P99")
+        assert finding is not None, name
+        assert finding.verdict is ConformanceVerdict.CANNOT_CHECK, f"{name} was accepted"
 
 
-def test_the_real_interpreter_is_accepted(tmp_path):
-    """sys.executable must work, or CI with a venv python reports CANNOT_CHECK."""
+def test_the_interpreter_is_ours_not_the_registrys(tmp_path):
+    """The running interpreter is used, so a venv CI cannot be diverted or broken."""
 
-    root = _paper(tmp_path, _entry(check=[sys.executable, "scripts/render.py"]), script=PASSING)
+    root = _paper(tmp_path, _entry(), script="import sys\nsys.exit(0 if sys.executable else 1)\n")
     finding = check_generated_artifacts_regenerate(root, "P99")
     assert finding is not None
     assert finding.verdict is ConformanceVerdict.SATISFIED
+    assert sys.executable
