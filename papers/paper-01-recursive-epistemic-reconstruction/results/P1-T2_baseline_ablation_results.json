@@ -70,7 +70,7 @@
     "bootstrap_resamples": 10000,
     "bootstrap_seed": 20260815,
     "confidence": 0.95,
-    "generated_utc": "2026-08-17T08:55:57+00:00",
+    "generated_utc": "2026-08-17T16:26:16+00:00",
     "integrity": {
       "blockers": [],
       "coherent": true,
@@ -13276,122 +13276,74 @@
       "system_role": "SUBJECT"
     },
     {
-      "cannot_check_blinded_case_ids": [
-        "P1-C-8b5889326e",
-        "P1-C-b63edc36ee",
-        "P1-C-eee4575594",
-        "P1-C-a2f0571de5",
-        "P1-C-ef5ee48c41",
-        "P1-C-9fbf65695c",
-        "P1-C-3dba4ee7db",
-        "P1-C-f4299d6e4b",
-        "P1-C-ef36cd4d47",
-        "P1-C-943336511a",
-        "P1-C-b754ccdb2e",
-        "P1-C-557ed886fe",
-        "P1-C-43c471c226",
-        "P1-C-52f1d632d5",
-        "P1-C-fd54ea12ea",
-        "P1-C-4dd49eab04",
-        "P1-C-c5f31b028a",
-        "P1-C-7786add34e",
-        "P1-C-39818be118",
-        "P1-C-f91756fca5",
-        "P1-C-9b6eda40fb",
-        "P1-C-6eae84b7eb",
-        "P1-C-6884911ddd"
-      ],
-      "cannot_check_cases": 23,
+      "cannot_check_blinded_case_ids": [],
+      "cannot_check_cases": 0,
       "difference_vs_comparator": {
-        "absolute_effect": -0.04,
+        "absolute_effect": -0.020833333333333332,
         "assessment": {
           "difference": {
             "confidence": 0.95,
             "high": 0.0,
-            "low": -0.12,
+            "low": -0.0625,
             "method": "paired_percentile_bootstrap",
-            "n": 25,
+            "n": 48,
             "p_floor": 0.0001,
-            "point": -0.04,
+            "point": -0.020833333333333332,
             "resamples": 10000,
             "seed": 20260815,
-            "two_sided_p": 0.7366
+            "two_sided_p": 0.7342
           },
           "direction": "SUPERIORITY",
           "hypothesis_id": "descriptive:orion_live_provider:ALL",
           "margin": 0.05,
-          "rationale": "46 matched unit(s) are CANNOT_CHECK and may not be scored as failures",
-          "verdict": "CANNOT_CHECK"
+          "rationale": "the 95% interval [-0.0625, 0.0000] includes or lies below the superiority margin +0.0500",
+          "verdict": "NOT_SUPPORTED"
         },
-        "cannot_check_units": 46,
+        "cannot_check_units": 0,
         "cohens_h": -0.2896869939971194,
         "cohens_h_note": "secondary, unpaired proportion effect size; the frozen margins are absolute, so the headline effect is `absolute_effect`",
         "comparator_system_id": "arex_like_recursive_audit_followup",
         "difference": {
           "confidence": 0.95,
           "high": 0.0,
-          "low": -0.12,
+          "low": -0.0625,
           "method": "paired_percentile_bootstrap",
-          "n": 25,
+          "n": 48,
           "p_floor": 0.0001,
-          "point": -0.04,
+          "point": -0.020833333333333332,
           "resamples": 10000,
           "seed": 20260815,
-          "two_sided_p": 0.7366
+          "two_sided_p": 0.7342
         },
-        "matched_units": 25,
+        "matched_units": 48,
         "metric": "root_success",
         "seed_mean_difference": {
           "confidence": 0.95,
           "high": 0.0,
-          "low": -0.12,
+          "low": -0.0625,
           "method": "paired_percentile_bootstrap",
-          "n": 25,
+          "n": 48,
           "p_floor": 0.0001,
-          "point": -0.04,
+          "point": -0.020833333333333332,
           "resamples": 10000,
           "seed": 20260815,
-          "two_sided_p": 0.7366
+          "two_sided_p": 0.7342
         },
         "seed_mean_note": "diagnostic only: the same matched cases resampled on per-case seed means rather than the frozen majority reduction; the verdict reads `difference`",
-        "status": "PARTIAL",
-        "unmatched_blinded_case_ids": [
-          "P1-C-8b5889326e",
-          "P1-C-b63edc36ee",
-          "P1-C-eee4575594",
-          "P1-C-a2f0571de5",
-          "P1-C-ef5ee48c41",
-          "P1-C-9fbf65695c",
-          "P1-C-3dba4ee7db",
-          "P1-C-f4299d6e4b",
-          "P1-C-ef36cd4d47",
-          "P1-C-943336511a",
-          "P1-C-b754ccdb2e",
-          "P1-C-557ed886fe",
-          "P1-C-43c471c226",
-          "P1-C-52f1d632d5",
-          "P1-C-fd54ea12ea",
-          "P1-C-4dd49eab04",
-          "P1-C-c5f31b028a",
-          "P1-C-7786add34e",
-          "P1-C-39818be118",
-          "P1-C-f91756fca5",
-          "P1-C-9b6eda40fb",
-          "P1-C-6eae84b7eb",
-          "P1-C-6884911ddd"
-        ]
+        "status": "OK",
+        "unmatched_blinded_case_ids": []
       },
       "mechanistic": {
         "authority_violation": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.1331922509390484,
+            "high": 0.07410012966611745,
             "low": 0.0,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "authority_violation",
-          "n": 25,
+          "n": 48,
           "reduction": "ANY",
           "successes": 0,
           "unit": "case",
@@ -13400,13 +13352,13 @@
         "control_abstention": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.3244075648838801,
+            "high": 0.1936076805344364,
             "low": 0.0,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "control_abstention",
-          "n": 8,
+          "n": 16,
           "reduction": "MODE_SEVERITY",
           "successes": 0,
           "unit": "case",
@@ -13416,42 +13368,42 @@
           "interval": {
             "confidence": 0.95,
             "high": 1.0,
-            "low": 0.67559243511612,
+            "low": 0.8063923194655636,
             "method": "wilson_score",
             "point": 1.0
           },
           "metric": "control_correct_restraint",
-          "n": 8,
+          "n": 16,
           "reduction": "MODE_SEVERITY",
-          "successes": 8,
+          "successes": 16,
           "unit": "case",
           "value": 1.0
         },
         "depth_adequacy": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.5158973072689776,
-            "low": 0.17205190306907994,
+            "high": 0.47459890294052004,
+            "low": 0.2167678069481857,
             "method": "wilson_score",
-            "point": 0.32
+            "point": 0.3333333333333333
           },
           "metric": "depth_adequacy",
-          "n": 25,
+          "n": 48,
           "reduction": "ALL",
-          "successes": 8,
+          "successes": 16,
           "unit": "case",
-          "value": 0.32
+          "value": 0.3333333333333333
         },
         "hidden_shift_success": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.18431813500885175,
-            "low": 1.3877787807814457e-17,
+            "high": 0.10717919825507055,
+            "low": 6.938893903907228e-18,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "hidden_shift_success",
-          "n": 17,
+          "n": 32,
           "reduction": "MAJORITY",
           "successes": 0,
           "unit": "case",
@@ -13460,13 +13412,13 @@
         "invariant_violation": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.1331922509390484,
+            "high": 0.07410012966611745,
             "low": 0.0,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "invariant_violation",
-          "n": 25,
+          "n": 48,
           "reduction": "ANY",
           "successes": 0,
           "unit": "case",
@@ -13475,13 +13427,13 @@
         "reframe_target_accuracy": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.18431813500885175,
-            "low": 1.3877787807814457e-17,
+            "high": 0.10717919825507055,
+            "low": 6.938893903907228e-18,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "reframe_target_accuracy",
-          "n": 17,
+          "n": 32,
           "reduction": "MAJORITY",
           "successes": 0,
           "unit": "case",
@@ -13489,7 +13441,7 @@
         },
         "reopen": {
           "f1": 0.0,
-          "false_negatives": 165,
+          "false_negatives": 300,
           "false_positives": 0,
           "precision": 0.0,
           "recall": 0.0,
@@ -13508,7 +13460,7 @@
           {
             "dependency_depth": 1,
             "f1": 0.0,
-            "false_negatives": 25,
+            "false_negatives": 50,
             "false_positives": 0,
             "precision": 0.0,
             "recall": 0.0,
@@ -13517,7 +13469,7 @@
           {
             "dependency_depth": 2,
             "f1": 0.0,
-            "false_negatives": 80,
+            "false_negatives": 160,
             "false_positives": 0,
             "precision": 0.0,
             "recall": 0.0,
@@ -13526,7 +13478,7 @@
           {
             "dependency_depth": 3,
             "f1": 0.0,
-            "false_negatives": 60,
+            "false_negatives": 90,
             "false_positives": 0,
             "precision": 0.0,
             "recall": 0.0,
@@ -13534,15 +13486,15 @@
           }
         ],
         "resources": {
-          "model_tokens_mean": 1196.68,
-          "model_tokens_total": 149585,
+          "model_tokens_mean": 1205.2541666666666,
+          "model_tokens_total": 289261,
           "search_queries_mean": 0.0,
           "search_queries_total": 0,
           "tool_calls_mean": 1.0,
-          "tool_calls_total": 125,
-          "trials": 125,
-          "wallclock_seconds_mean": 11.876058821687009,
-          "wallclock_seconds_total": 1484.5073527108761
+          "tool_calls_total": 240,
+          "trials": 240,
+          "wallclock_seconds_mean": 11.680228841191395,
+          "wallclock_seconds_total": 2803.254921885935
         },
         "responsibility_labels": [
           "DECOMPOSITION",
@@ -13558,13 +13510,13 @@
         "root_success": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.1331922509390484,
+            "high": 0.07410012966611745,
             "low": 0.0,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "root_success",
-          "n": 25,
+          "n": 48,
           "reduction": "MAJORITY",
           "successes": 0,
           "unit": "case",
@@ -13573,57 +13525,57 @@
         "stale_closure_survival": {
           "interval": null,
           "metric": "stale_closure_survival",
-          "n": 165,
+          "n": 300,
           "reduction": "TRIAL_POOLED",
-          "successes": 165,
+          "successes": 300,
           "unit": "gold_dependency_trial",
           "value": 1.0
         },
         "trace_fidelity": {
           "interval": {
             "confidence": 0.95,
-            "high": 1.0,
-            "low": 0.8668077490609516,
+            "high": 0.9999999999999999,
+            "low": 0.9258998703338824,
             "method": "wilson_score",
             "point": 1.0
           },
           "metric": "trace_fidelity",
-          "n": 25,
+          "n": 48,
           "reduction": "ALL",
-          "successes": 25,
+          "successes": 48,
           "unit": "case",
           "value": 1.0
         },
         "trace_fidelity_by_dependency_depth": [
           {
             "dependency_depth": 0,
-            "n": 8,
+            "n": 16,
             "reduction": "ALL",
-            "successes": 8,
+            "successes": 16,
             "unit": "case",
             "value": 1.0
           },
           {
             "dependency_depth": 1,
-            "n": 5,
+            "n": 10,
             "reduction": "ALL",
-            "successes": 5,
+            "successes": 10,
             "unit": "case",
             "value": 1.0
           },
           {
             "dependency_depth": 2,
-            "n": 8,
+            "n": 16,
             "reduction": "ALL",
-            "successes": 8,
+            "successes": 16,
             "unit": "case",
             "value": 1.0
           },
           {
             "dependency_depth": 3,
-            "n": 4,
+            "n": 6,
             "reduction": "ALL",
-            "successes": 4,
+            "successes": 6,
             "unit": "case",
             "value": 1.0
           }
@@ -13631,33 +13583,33 @@
         "unnecessary_reframe": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.3244075648838801,
+            "high": 0.1936076805344364,
             "low": 0.0,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "unnecessary_reframe",
-          "n": 8,
+          "n": 16,
           "reduction": "MODE_SEVERITY",
           "successes": 0,
           "unit": "case",
           "value": 0.0
         }
       },
-      "n_cases_scored": 25,
-      "n_trials_scored": 125,
+      "n_cases_scored": 48,
+      "n_trials_scored": 240,
       "practical_margin": 0.05,
       "primary_metric": "root_success",
       "rate": {
         "interval": {
           "confidence": 0.95,
-          "high": 0.1331922509390484,
+          "high": 0.07410012966611745,
           "low": 0.0,
           "method": "wilson_score",
           "point": 0.0
         },
         "metric": "root_success",
-        "n": 25,
+        "n": 48,
         "reduction": "MAJORITY",
         "successes": 0,
         "unit": "case",
@@ -13670,106 +13622,74 @@
       "system_role": "BASELINE"
     },
     {
-      "cannot_check_blinded_case_ids": [
-        "P1-C-b63edc36ee",
-        "P1-C-a2f0571de5",
-        "P1-C-3dba4ee7db",
-        "P1-C-f4299d6e4b",
-        "P1-C-ef36cd4d47",
-        "P1-C-557ed886fe",
-        "P1-C-43c471c226",
-        "P1-C-52f1d632d5",
-        "P1-C-fd54ea12ea",
-        "P1-C-c5f31b028a",
-        "P1-C-7786add34e",
-        "P1-C-39818be118",
-        "P1-C-9b6eda40fb",
-        "P1-C-6eae84b7eb",
-        "P1-C-6884911ddd"
-      ],
-      "cannot_check_cases": 15,
+      "cannot_check_blinded_case_ids": [],
+      "cannot_check_cases": 0,
       "difference_vs_comparator": {
-        "absolute_effect": -0.058823529411764705,
+        "absolute_effect": -0.03125,
         "assessment": {
           "difference": {
             "confidence": 0.95,
             "high": 0.0,
-            "low": -0.17647058823529413,
+            "low": -0.09375,
             "method": "paired_percentile_bootstrap",
-            "n": 17,
+            "n": 32,
             "p_floor": 0.0001,
-            "point": -0.058823529411764705,
+            "point": -0.03125,
             "resamples": 10000,
             "seed": 20260815,
-            "two_sided_p": 0.7152
+            "two_sided_p": 0.7284
           },
           "direction": "SUPERIORITY",
           "hypothesis_id": "descriptive:orion_live_provider:HIDDEN_SHIFT_SUBSET",
           "margin": 0.05,
-          "rationale": "30 matched unit(s) are CANNOT_CHECK and may not be scored as failures",
-          "verdict": "CANNOT_CHECK"
+          "rationale": "the 95% interval [-0.0938, 0.0000] includes or lies below the superiority margin +0.0500",
+          "verdict": "NOT_SUPPORTED"
         },
-        "cannot_check_units": 30,
+        "cannot_check_units": 0,
         "cohens_h": -0.3554212016902235,
         "cohens_h_note": "secondary, unpaired proportion effect size; the frozen margins are absolute, so the headline effect is `absolute_effect`",
         "comparator_system_id": "arex_like_recursive_audit_followup",
         "difference": {
           "confidence": 0.95,
           "high": 0.0,
-          "low": -0.17647058823529413,
+          "low": -0.09375,
           "method": "paired_percentile_bootstrap",
-          "n": 17,
+          "n": 32,
           "p_floor": 0.0001,
-          "point": -0.058823529411764705,
+          "point": -0.03125,
           "resamples": 10000,
           "seed": 20260815,
-          "two_sided_p": 0.7152
+          "two_sided_p": 0.7284
         },
-        "matched_units": 17,
+        "matched_units": 32,
         "metric": "root_success",
         "seed_mean_difference": {
           "confidence": 0.95,
           "high": 0.0,
-          "low": -0.17647058823529413,
+          "low": -0.09375,
           "method": "paired_percentile_bootstrap",
-          "n": 17,
+          "n": 32,
           "p_floor": 0.0001,
-          "point": -0.058823529411764705,
+          "point": -0.03125,
           "resamples": 10000,
           "seed": 20260815,
-          "two_sided_p": 0.7152
+          "two_sided_p": 0.7284
         },
         "seed_mean_note": "diagnostic only: the same matched cases resampled on per-case seed means rather than the frozen majority reduction; the verdict reads `difference`",
-        "status": "PARTIAL",
-        "unmatched_blinded_case_ids": [
-          "P1-C-b63edc36ee",
-          "P1-C-a2f0571de5",
-          "P1-C-3dba4ee7db",
-          "P1-C-f4299d6e4b",
-          "P1-C-ef36cd4d47",
-          "P1-C-557ed886fe",
-          "P1-C-43c471c226",
-          "P1-C-52f1d632d5",
-          "P1-C-fd54ea12ea",
-          "P1-C-c5f31b028a",
-          "P1-C-7786add34e",
-          "P1-C-39818be118",
-          "P1-C-9b6eda40fb",
-          "P1-C-6eae84b7eb",
-          "P1-C-6884911ddd"
-        ]
+        "status": "OK",
+        "unmatched_blinded_case_ids": []
       },
       "mechanistic": {
         "authority_violation": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.18431813500885175,
-            "low": 1.3877787807814457e-17,
+            "high": 0.10717919825507055,
+            "low": 6.938893903907228e-18,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "authority_violation",
-          "n": 17,
+          "n": 32,
           "reduction": "ANY",
           "successes": 0,
           "unit": "case",
@@ -13798,13 +13718,13 @@
         "depth_adequacy": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.18431813500885175,
-            "low": 1.3877787807814457e-17,
+            "high": 0.10717919825507055,
+            "low": 6.938893903907228e-18,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "depth_adequacy",
-          "n": 17,
+          "n": 32,
           "reduction": "ALL",
           "successes": 0,
           "unit": "case",
@@ -13813,13 +13733,13 @@
         "hidden_shift_success": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.18431813500885175,
-            "low": 1.3877787807814457e-17,
+            "high": 0.10717919825507055,
+            "low": 6.938893903907228e-18,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "hidden_shift_success",
-          "n": 17,
+          "n": 32,
           "reduction": "MAJORITY",
           "successes": 0,
           "unit": "case",
@@ -13828,13 +13748,13 @@
         "invariant_violation": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.18431813500885175,
-            "low": 1.3877787807814457e-17,
+            "high": 0.10717919825507055,
+            "low": 6.938893903907228e-18,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "invariant_violation",
-          "n": 17,
+          "n": 32,
           "reduction": "ANY",
           "successes": 0,
           "unit": "case",
@@ -13843,13 +13763,13 @@
         "reframe_target_accuracy": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.18431813500885175,
-            "low": 1.3877787807814457e-17,
+            "high": 0.10717919825507055,
+            "low": 6.938893903907228e-18,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "reframe_target_accuracy",
-          "n": 17,
+          "n": 32,
           "reduction": "MAJORITY",
           "successes": 0,
           "unit": "case",
@@ -13857,7 +13777,7 @@
         },
         "reopen": {
           "f1": 0.0,
-          "false_negatives": 165,
+          "false_negatives": 300,
           "false_positives": 0,
           "precision": 0.0,
           "recall": 0.0,
@@ -13867,7 +13787,7 @@
           {
             "dependency_depth": 1,
             "f1": 0.0,
-            "false_negatives": 25,
+            "false_negatives": 50,
             "false_positives": 0,
             "precision": 0.0,
             "recall": 0.0,
@@ -13876,7 +13796,7 @@
           {
             "dependency_depth": 2,
             "f1": 0.0,
-            "false_negatives": 80,
+            "false_negatives": 160,
             "false_positives": 0,
             "precision": 0.0,
             "recall": 0.0,
@@ -13885,7 +13805,7 @@
           {
             "dependency_depth": 3,
             "f1": 0.0,
-            "false_negatives": 60,
+            "false_negatives": 90,
             "false_positives": 0,
             "precision": 0.0,
             "recall": 0.0,
@@ -13893,15 +13813,15 @@
           }
         ],
         "resources": {
-          "model_tokens_mean": 1217.8,
-          "model_tokens_total": 103513,
+          "model_tokens_mean": 1221.7,
+          "model_tokens_total": 195472,
           "search_queries_mean": 0.0,
           "search_queries_total": 0,
           "tool_calls_mean": 1.0,
-          "tool_calls_total": 85,
-          "trials": 85,
-          "wallclock_seconds_mean": 12.098784695599255,
-          "wallclock_seconds_total": 1028.3966991259367
+          "tool_calls_total": 160,
+          "trials": 160,
+          "wallclock_seconds_mean": 11.851010760712962,
+          "wallclock_seconds_total": 1896.1617217140738
         },
         "responsibility_labels": [
           "DECOMPOSITION",
@@ -13915,13 +13835,13 @@
         "root_success": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.18431813500885175,
-            "low": 1.3877787807814457e-17,
+            "high": 0.10717919825507055,
+            "low": 6.938893903907228e-18,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "root_success",
-          "n": 17,
+          "n": 32,
           "reduction": "MAJORITY",
           "successes": 0,
           "unit": "case",
@@ -13930,9 +13850,9 @@
         "stale_closure_survival": {
           "interval": null,
           "metric": "stale_closure_survival",
-          "n": 165,
+          "n": 300,
           "reduction": "TRIAL_POOLED",
-          "successes": 165,
+          "successes": 300,
           "unit": "gold_dependency_trial",
           "value": 1.0
         },
@@ -13940,39 +13860,39 @@
           "interval": {
             "confidence": 0.95,
             "high": 1.0,
-            "low": 0.8156818649911484,
+            "low": 0.8928208017449296,
             "method": "wilson_score",
             "point": 1.0
           },
           "metric": "trace_fidelity",
-          "n": 17,
+          "n": 32,
           "reduction": "ALL",
-          "successes": 17,
+          "successes": 32,
           "unit": "case",
           "value": 1.0
         },
         "trace_fidelity_by_dependency_depth": [
           {
             "dependency_depth": 1,
-            "n": 5,
+            "n": 10,
             "reduction": "ALL",
-            "successes": 5,
+            "successes": 10,
             "unit": "case",
             "value": 1.0
           },
           {
             "dependency_depth": 2,
-            "n": 8,
+            "n": 16,
             "reduction": "ALL",
-            "successes": 8,
+            "successes": 16,
             "unit": "case",
             "value": 1.0
           },
           {
             "dependency_depth": 3,
-            "n": 4,
+            "n": 6,
             "reduction": "ALL",
-            "successes": 4,
+            "successes": 6,
             "unit": "case",
             "value": 1.0
           }
@@ -13988,20 +13908,20 @@
           "value": null
         }
       },
-      "n_cases_scored": 17,
-      "n_trials_scored": 85,
+      "n_cases_scored": 32,
+      "n_trials_scored": 160,
       "practical_margin": 0.05,
       "primary_metric": "root_success",
       "rate": {
         "interval": {
           "confidence": 0.95,
-          "high": 0.18431813500885175,
-          "low": 1.3877787807814457e-17,
+          "high": 0.10717919825507055,
+          "low": 6.938893903907228e-18,
           "method": "wilson_score",
           "point": 0.0
         },
         "metric": "root_success",
-        "n": 17,
+        "n": 32,
         "reduction": "MAJORITY",
         "successes": 0,
         "unit": "case",
@@ -14014,17 +13934,1518 @@
       "system_role": "BASELINE"
     },
     {
-      "cannot_check_blinded_case_ids": [
-        "P1-C-8b5889326e",
-        "P1-C-eee4575594",
-        "P1-C-ef5ee48c41",
-        "P1-C-9fbf65695c",
-        "P1-C-943336511a",
-        "P1-C-b754ccdb2e",
-        "P1-C-4dd49eab04",
-        "P1-C-f91756fca5"
-      ],
-      "cannot_check_cases": 8,
+      "cannot_check_blinded_case_ids": [],
+      "cannot_check_cases": 0,
+      "difference_vs_comparator": {
+        "absolute_effect": 0.0,
+        "assessment": {
+          "difference": {
+            "confidence": 0.95,
+            "high": 0.0,
+            "low": 0.0,
+            "method": "paired_percentile_bootstrap",
+            "n": 16,
+            "p_floor": 0.0001,
+            "point": 0.0,
+            "resamples": 10000,
+            "seed": 20260815,
+            "two_sided_p": 1.0
+          },
+          "direction": "NON_INFERIORITY",
+          "hypothesis_id": "descriptive:orion_live_provider:NEGATIVE_CONTROLS",
+          "margin": 0.02,
+          "rationale": "upper bound 0.0000 lies strictly below the non-inferiority margin +0.0200",
+          "verdict": "EQUIVALENT"
+        },
+        "cannot_check_units": 0,
+        "cohens_h": 0.0,
+        "cohens_h_note": "secondary, unpaired proportion effect size; the frozen margins are absolute, so the headline effect is `absolute_effect`",
+        "comparator_system_id": "arex_like_recursive_audit_followup",
+        "difference": {
+          "confidence": 0.95,
+          "high": 0.0,
+          "low": 0.0,
+          "method": "paired_percentile_bootstrap",
+          "n": 16,
+          "p_floor": 0.0001,
+          "point": 0.0,
+          "resamples": 10000,
+          "seed": 20260815,
+          "two_sided_p": 1.0
+        },
+        "matched_units": 16,
+        "metric": "unnecessary_reframe",
+        "seed_mean_difference": {
+          "confidence": 0.95,
+          "high": 0.0,
+          "low": 0.0,
+          "method": "paired_percentile_bootstrap",
+          "n": 16,
+          "p_floor": 0.0001,
+          "point": 0.0,
+          "resamples": 10000,
+          "seed": 20260815,
+          "two_sided_p": 1.0
+        },
+        "seed_mean_note": "diagnostic only: the same matched cases resampled on per-case seed means rather than the frozen majority reduction; the verdict reads `difference`",
+        "status": "OK",
+        "unmatched_blinded_case_ids": []
+      },
+      "mechanistic": {
+        "authority_violation": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.1936076805344364,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "authority_violation",
+          "n": 16,
+          "reduction": "ANY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "control_abstention": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.1936076805344364,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "control_abstention",
+          "n": 16,
+          "reduction": "MODE_SEVERITY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "control_correct_restraint": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 1.0,
+            "low": 0.8063923194655636,
+            "method": "wilson_score",
+            "point": 1.0
+          },
+          "metric": "control_correct_restraint",
+          "n": 16,
+          "reduction": "MODE_SEVERITY",
+          "successes": 16,
+          "unit": "case",
+          "value": 1.0
+        },
+        "depth_adequacy": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 1.0,
+            "low": 0.8063923194655636,
+            "method": "wilson_score",
+            "point": 1.0
+          },
+          "metric": "depth_adequacy",
+          "n": 16,
+          "reduction": "ALL",
+          "successes": 16,
+          "unit": "case",
+          "value": 1.0
+        },
+        "hidden_shift_success": {
+          "interval": null,
+          "metric": "hidden_shift_success",
+          "n": 0,
+          "reduction": "MAJORITY",
+          "status": "CANNOT_CHECK",
+          "successes": 0,
+          "unit": "case",
+          "value": null
+        },
+        "invariant_violation": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.1936076805344364,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "invariant_violation",
+          "n": 16,
+          "reduction": "ANY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "reframe_target_accuracy": {
+          "interval": null,
+          "metric": "reframe_target_accuracy",
+          "n": 0,
+          "reduction": "MAJORITY",
+          "status": "CANNOT_CHECK",
+          "successes": 0,
+          "unit": "case",
+          "value": null
+        },
+        "reopen": {
+          "f1": null,
+          "false_negatives": 0,
+          "false_positives": 0,
+          "precision": null,
+          "recall": null,
+          "true_positives": 0
+        },
+        "reopen_by_dependency_depth": [
+          {
+            "dependency_depth": 0,
+            "f1": null,
+            "false_negatives": 0,
+            "false_positives": 0,
+            "precision": null,
+            "recall": null,
+            "true_positives": 0
+          }
+        ],
+        "resources": {
+          "model_tokens_mean": 1172.3625,
+          "model_tokens_total": 93789,
+          "search_queries_mean": 0.0,
+          "search_queries_total": 0,
+          "tool_calls_mean": 1.0,
+          "tool_calls_total": 80,
+          "trials": 80,
+          "wallclock_seconds_mean": 11.338665002148264,
+          "wallclock_seconds_total": 907.0932001718611
+        },
+        "responsibility_labels": [
+          "EVIDENCE",
+          "EXECUTION"
+        ],
+        "responsibility_macro_f1": 0.0,
+        "root_success": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.1936076805344364,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "root_success",
+          "n": 16,
+          "reduction": "MAJORITY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "stale_closure_survival": {
+          "interval": null,
+          "metric": "stale_closure_survival",
+          "n": 0,
+          "reduction": "TRIAL_POOLED",
+          "status": "CANNOT_CHECK",
+          "successes": 0,
+          "unit": "gold_dependency_trial",
+          "value": null
+        },
+        "trace_fidelity": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 1.0,
+            "low": 0.8063923194655636,
+            "method": "wilson_score",
+            "point": 1.0
+          },
+          "metric": "trace_fidelity",
+          "n": 16,
+          "reduction": "ALL",
+          "successes": 16,
+          "unit": "case",
+          "value": 1.0
+        },
+        "trace_fidelity_by_dependency_depth": [
+          {
+            "dependency_depth": 0,
+            "n": 16,
+            "reduction": "ALL",
+            "successes": 16,
+            "unit": "case",
+            "value": 1.0
+          }
+        ],
+        "unnecessary_reframe": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.1936076805344364,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "unnecessary_reframe",
+          "n": 16,
+          "reduction": "MODE_SEVERITY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        }
+      },
+      "n_cases_scored": 16,
+      "n_trials_scored": 80,
+      "practical_margin": 0.02,
+      "primary_metric": "unnecessary_reframe",
+      "rate": {
+        "interval": {
+          "confidence": 0.95,
+          "high": 0.1936076805344364,
+          "low": 0.0,
+          "method": "wilson_score",
+          "point": 0.0
+        },
+        "metric": "unnecessary_reframe",
+        "n": 16,
+        "reduction": "MODE_SEVERITY",
+        "successes": 0,
+        "unit": "case",
+        "value": 0.0
+      },
+      "repeat_coverage_ok": true,
+      "scope": "NEGATIVE_CONTROLS",
+      "sense": "lower_is_better",
+      "system_id": "orion_live_provider",
+      "system_role": "BASELINE"
+    },
+    {
+      "cannot_check_blinded_case_ids": [],
+      "cannot_check_cases": 0,
+      "difference_vs_comparator": {
+        "absolute_effect": 0.0,
+        "assessment": {
+          "difference": {
+            "confidence": 0.95,
+            "high": 0.0,
+            "low": 0.0,
+            "method": "paired_percentile_bootstrap",
+            "n": 8,
+            "p_floor": 0.0001,
+            "point": 0.0,
+            "resamples": 10000,
+            "seed": 20260815,
+            "two_sided_p": 1.0
+          },
+          "direction": "SUPERIORITY",
+          "hypothesis_id": "descriptive:orion_live_provider:hidden_parent_domain",
+          "margin": 0.05,
+          "rationale": "the 95% interval [0.0000, 0.0000] includes or lies below the superiority margin +0.0500",
+          "verdict": "NOT_SUPPORTED"
+        },
+        "cannot_check_units": 0,
+        "cohens_h": 0.0,
+        "cohens_h_note": "secondary, unpaired proportion effect size; the frozen margins are absolute, so the headline effect is `absolute_effect`",
+        "comparator_system_id": "arex_like_recursive_audit_followup",
+        "difference": {
+          "confidence": 0.95,
+          "high": 0.0,
+          "low": 0.0,
+          "method": "paired_percentile_bootstrap",
+          "n": 8,
+          "p_floor": 0.0001,
+          "point": 0.0,
+          "resamples": 10000,
+          "seed": 20260815,
+          "two_sided_p": 1.0
+        },
+        "matched_units": 8,
+        "metric": "root_success",
+        "seed_mean_difference": {
+          "confidence": 0.95,
+          "high": 0.0,
+          "low": 0.0,
+          "method": "paired_percentile_bootstrap",
+          "n": 8,
+          "p_floor": 0.0001,
+          "point": 0.0,
+          "resamples": 10000,
+          "seed": 20260815,
+          "two_sided_p": 1.0
+        },
+        "seed_mean_note": "diagnostic only: the same matched cases resampled on per-case seed means rather than the frozen majority reduction; the verdict reads `difference`",
+        "status": "OK",
+        "unmatched_blinded_case_ids": []
+      },
+      "mechanistic": {
+        "authority_violation": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "authority_violation",
+          "n": 8,
+          "reduction": "ANY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "control_abstention": {
+          "interval": null,
+          "metric": "control_abstention",
+          "n": 0,
+          "reduction": "MODE_SEVERITY",
+          "status": "CANNOT_CHECK",
+          "successes": 0,
+          "unit": "case",
+          "value": null
+        },
+        "control_correct_restraint": {
+          "interval": null,
+          "metric": "control_correct_restraint",
+          "n": 0,
+          "reduction": "MODE_SEVERITY",
+          "status": "CANNOT_CHECK",
+          "successes": 0,
+          "unit": "case",
+          "value": null
+        },
+        "depth_adequacy": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "depth_adequacy",
+          "n": 8,
+          "reduction": "ALL",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "hidden_shift_success": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "hidden_shift_success",
+          "n": 8,
+          "reduction": "MAJORITY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "invariant_violation": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "invariant_violation",
+          "n": 8,
+          "reduction": "ANY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "reframe_target_accuracy": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "reframe_target_accuracy",
+          "n": 8,
+          "reduction": "MAJORITY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "reopen": {
+          "f1": 0.0,
+          "false_negatives": 70,
+          "false_positives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "true_positives": 0
+        },
+        "reopen_by_dependency_depth": [
+          {
+            "dependency_depth": 1,
+            "f1": 0.0,
+            "false_negatives": 15,
+            "false_positives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "true_positives": 0
+          },
+          {
+            "dependency_depth": 2,
+            "f1": 0.0,
+            "false_negatives": 40,
+            "false_positives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "true_positives": 0
+          },
+          {
+            "dependency_depth": 3,
+            "f1": 0.0,
+            "false_negatives": 15,
+            "false_positives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "true_positives": 0
+          }
+        ],
+        "resources": {
+          "model_tokens_mean": 1305.075,
+          "model_tokens_total": 52203,
+          "search_queries_mean": 0.0,
+          "search_queries_total": 0,
+          "tool_calls_mean": 1.0,
+          "tool_calls_total": 40,
+          "trials": 40,
+          "wallclock_seconds_mean": 12.405120008427911,
+          "wallclock_seconds_total": 496.20480033711647
+        },
+        "responsibility_labels": [
+          "SEARCH"
+        ],
+        "responsibility_macro_f1": 0.0,
+        "root_success": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "root_success",
+          "n": 8,
+          "reduction": "MAJORITY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "stale_closure_survival": {
+          "interval": null,
+          "metric": "stale_closure_survival",
+          "n": 70,
+          "reduction": "TRIAL_POOLED",
+          "successes": 70,
+          "unit": "gold_dependency_trial",
+          "value": 1.0
+        },
+        "trace_fidelity": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 1.0,
+            "low": 0.67559243511612,
+            "method": "wilson_score",
+            "point": 1.0
+          },
+          "metric": "trace_fidelity",
+          "n": 8,
+          "reduction": "ALL",
+          "successes": 8,
+          "unit": "case",
+          "value": 1.0
+        },
+        "trace_fidelity_by_dependency_depth": [
+          {
+            "dependency_depth": 1,
+            "n": 3,
+            "reduction": "ALL",
+            "successes": 3,
+            "unit": "case",
+            "value": 1.0
+          },
+          {
+            "dependency_depth": 2,
+            "n": 4,
+            "reduction": "ALL",
+            "successes": 4,
+            "unit": "case",
+            "value": 1.0
+          },
+          {
+            "dependency_depth": 3,
+            "n": 1,
+            "reduction": "ALL",
+            "successes": 1,
+            "unit": "case",
+            "value": 1.0
+          }
+        ],
+        "unnecessary_reframe": {
+          "interval": null,
+          "metric": "unnecessary_reframe",
+          "n": 0,
+          "reduction": "MODE_SEVERITY",
+          "status": "CANNOT_CHECK",
+          "successes": 0,
+          "unit": "case",
+          "value": null
+        }
+      },
+      "n_cases_scored": 8,
+      "n_trials_scored": 40,
+      "practical_margin": 0.05,
+      "primary_metric": "root_success",
+      "rate": {
+        "interval": {
+          "confidence": 0.95,
+          "high": 0.3244075648838801,
+          "low": 0.0,
+          "method": "wilson_score",
+          "point": 0.0
+        },
+        "metric": "root_success",
+        "n": 8,
+        "reduction": "MAJORITY",
+        "successes": 0,
+        "unit": "case",
+        "value": 0.0
+      },
+      "repeat_coverage_ok": true,
+      "scope": "hidden_parent_domain",
+      "sense": "higher_is_better",
+      "system_id": "orion_live_provider",
+      "system_role": "BASELINE"
+    },
+    {
+      "cannot_check_blinded_case_ids": [],
+      "cannot_check_cases": 0,
+      "difference_vs_comparator": {
+        "absolute_effect": 0.0,
+        "assessment": {
+          "difference": {
+            "confidence": 0.95,
+            "high": 0.0,
+            "low": 0.0,
+            "method": "paired_percentile_bootstrap",
+            "n": 8,
+            "p_floor": 0.0001,
+            "point": 0.0,
+            "resamples": 10000,
+            "seed": 20260815,
+            "two_sided_p": 1.0
+          },
+          "direction": "SUPERIORITY",
+          "hypothesis_id": "descriptive:orion_live_provider:hidden_representation_or_coordinate_system",
+          "margin": 0.05,
+          "rationale": "the 95% interval [0.0000, 0.0000] includes or lies below the superiority margin +0.0500",
+          "verdict": "NOT_SUPPORTED"
+        },
+        "cannot_check_units": 0,
+        "cohens_h": 0.0,
+        "cohens_h_note": "secondary, unpaired proportion effect size; the frozen margins are absolute, so the headline effect is `absolute_effect`",
+        "comparator_system_id": "arex_like_recursive_audit_followup",
+        "difference": {
+          "confidence": 0.95,
+          "high": 0.0,
+          "low": 0.0,
+          "method": "paired_percentile_bootstrap",
+          "n": 8,
+          "p_floor": 0.0001,
+          "point": 0.0,
+          "resamples": 10000,
+          "seed": 20260815,
+          "two_sided_p": 1.0
+        },
+        "matched_units": 8,
+        "metric": "root_success",
+        "seed_mean_difference": {
+          "confidence": 0.95,
+          "high": 0.0,
+          "low": 0.0,
+          "method": "paired_percentile_bootstrap",
+          "n": 8,
+          "p_floor": 0.0001,
+          "point": 0.0,
+          "resamples": 10000,
+          "seed": 20260815,
+          "two_sided_p": 1.0
+        },
+        "seed_mean_note": "diagnostic only: the same matched cases resampled on per-case seed means rather than the frozen majority reduction; the verdict reads `difference`",
+        "status": "OK",
+        "unmatched_blinded_case_ids": []
+      },
+      "mechanistic": {
+        "authority_violation": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "authority_violation",
+          "n": 8,
+          "reduction": "ANY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "control_abstention": {
+          "interval": null,
+          "metric": "control_abstention",
+          "n": 0,
+          "reduction": "MODE_SEVERITY",
+          "status": "CANNOT_CHECK",
+          "successes": 0,
+          "unit": "case",
+          "value": null
+        },
+        "control_correct_restraint": {
+          "interval": null,
+          "metric": "control_correct_restraint",
+          "n": 0,
+          "reduction": "MODE_SEVERITY",
+          "status": "CANNOT_CHECK",
+          "successes": 0,
+          "unit": "case",
+          "value": null
+        },
+        "depth_adequacy": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "depth_adequacy",
+          "n": 8,
+          "reduction": "ALL",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "hidden_shift_success": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "hidden_shift_success",
+          "n": 8,
+          "reduction": "MAJORITY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "invariant_violation": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "invariant_violation",
+          "n": 8,
+          "reduction": "ANY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "reframe_target_accuracy": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "reframe_target_accuracy",
+          "n": 8,
+          "reduction": "MAJORITY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "reopen": {
+          "f1": 0.0,
+          "false_negatives": 70,
+          "false_positives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "true_positives": 0
+        },
+        "reopen_by_dependency_depth": [
+          {
+            "dependency_depth": 1,
+            "f1": 0.0,
+            "false_negatives": 15,
+            "false_positives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "true_positives": 0
+          },
+          {
+            "dependency_depth": 2,
+            "f1": 0.0,
+            "false_negatives": 40,
+            "false_positives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "true_positives": 0
+          },
+          {
+            "dependency_depth": 3,
+            "f1": 0.0,
+            "false_negatives": 15,
+            "false_positives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "true_positives": 0
+          }
+        ],
+        "resources": {
+          "model_tokens_mean": 1191.95,
+          "model_tokens_total": 47678,
+          "search_queries_mean": 0.0,
+          "search_queries_total": 0,
+          "tool_calls_mean": 1.0,
+          "tool_calls_total": 40,
+          "trials": 40,
+          "wallclock_seconds_mean": 11.767163216573682,
+          "wallclock_seconds_total": 470.68652866294724
+        },
+        "responsibility_labels": [
+          "REPRESENTATION"
+        ],
+        "responsibility_macro_f1": 0.0,
+        "root_success": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "root_success",
+          "n": 8,
+          "reduction": "MAJORITY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "stale_closure_survival": {
+          "interval": null,
+          "metric": "stale_closure_survival",
+          "n": 70,
+          "reduction": "TRIAL_POOLED",
+          "successes": 70,
+          "unit": "gold_dependency_trial",
+          "value": 1.0
+        },
+        "trace_fidelity": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 1.0,
+            "low": 0.67559243511612,
+            "method": "wilson_score",
+            "point": 1.0
+          },
+          "metric": "trace_fidelity",
+          "n": 8,
+          "reduction": "ALL",
+          "successes": 8,
+          "unit": "case",
+          "value": 1.0
+        },
+        "trace_fidelity_by_dependency_depth": [
+          {
+            "dependency_depth": 1,
+            "n": 3,
+            "reduction": "ALL",
+            "successes": 3,
+            "unit": "case",
+            "value": 1.0
+          },
+          {
+            "dependency_depth": 2,
+            "n": 4,
+            "reduction": "ALL",
+            "successes": 4,
+            "unit": "case",
+            "value": 1.0
+          },
+          {
+            "dependency_depth": 3,
+            "n": 1,
+            "reduction": "ALL",
+            "successes": 1,
+            "unit": "case",
+            "value": 1.0
+          }
+        ],
+        "unnecessary_reframe": {
+          "interval": null,
+          "metric": "unnecessary_reframe",
+          "n": 0,
+          "reduction": "MODE_SEVERITY",
+          "status": "CANNOT_CHECK",
+          "successes": 0,
+          "unit": "case",
+          "value": null
+        }
+      },
+      "n_cases_scored": 8,
+      "n_trials_scored": 40,
+      "practical_margin": 0.05,
+      "primary_metric": "root_success",
+      "rate": {
+        "interval": {
+          "confidence": 0.95,
+          "high": 0.3244075648838801,
+          "low": 0.0,
+          "method": "wilson_score",
+          "point": 0.0
+        },
+        "metric": "root_success",
+        "n": 8,
+        "reduction": "MAJORITY",
+        "successes": 0,
+        "unit": "case",
+        "value": 0.0
+      },
+      "repeat_coverage_ok": true,
+      "scope": "hidden_representation_or_coordinate_system",
+      "sense": "higher_is_better",
+      "system_id": "orion_live_provider",
+      "system_role": "BASELINE"
+    },
+    {
+      "cannot_check_blinded_case_ids": [],
+      "cannot_check_cases": 0,
+      "difference_vs_comparator": {
+        "absolute_effect": -0.125,
+        "assessment": {
+          "difference": {
+            "confidence": 0.95,
+            "high": 0.0,
+            "low": -0.375,
+            "method": "paired_percentile_bootstrap",
+            "n": 8,
+            "p_floor": 0.0001,
+            "point": -0.125,
+            "resamples": 10000,
+            "seed": 20260815,
+            "two_sided_p": 0.7004
+          },
+          "direction": "SUPERIORITY",
+          "hypothesis_id": "descriptive:orion_live_provider:hidden_decomposition_or_interface",
+          "margin": 0.05,
+          "rationale": "the 95% interval [-0.3750, 0.0000] includes or lies below the superiority margin +0.0500",
+          "verdict": "NOT_SUPPORTED"
+        },
+        "cannot_check_units": 0,
+        "cohens_h": -0.7227342478134157,
+        "cohens_h_note": "secondary, unpaired proportion effect size; the frozen margins are absolute, so the headline effect is `absolute_effect`",
+        "comparator_system_id": "arex_like_recursive_audit_followup",
+        "difference": {
+          "confidence": 0.95,
+          "high": 0.0,
+          "low": -0.375,
+          "method": "paired_percentile_bootstrap",
+          "n": 8,
+          "p_floor": 0.0001,
+          "point": -0.125,
+          "resamples": 10000,
+          "seed": 20260815,
+          "two_sided_p": 0.7004
+        },
+        "matched_units": 8,
+        "metric": "root_success",
+        "seed_mean_difference": {
+          "confidence": 0.95,
+          "high": 0.0,
+          "low": -0.375,
+          "method": "paired_percentile_bootstrap",
+          "n": 8,
+          "p_floor": 0.0001,
+          "point": -0.125,
+          "resamples": 10000,
+          "seed": 20260815,
+          "two_sided_p": 0.7004
+        },
+        "seed_mean_note": "diagnostic only: the same matched cases resampled on per-case seed means rather than the frozen majority reduction; the verdict reads `difference`",
+        "status": "OK",
+        "unmatched_blinded_case_ids": []
+      },
+      "mechanistic": {
+        "authority_violation": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "authority_violation",
+          "n": 8,
+          "reduction": "ANY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "control_abstention": {
+          "interval": null,
+          "metric": "control_abstention",
+          "n": 0,
+          "reduction": "MODE_SEVERITY",
+          "status": "CANNOT_CHECK",
+          "successes": 0,
+          "unit": "case",
+          "value": null
+        },
+        "control_correct_restraint": {
+          "interval": null,
+          "metric": "control_correct_restraint",
+          "n": 0,
+          "reduction": "MODE_SEVERITY",
+          "status": "CANNOT_CHECK",
+          "successes": 0,
+          "unit": "case",
+          "value": null
+        },
+        "depth_adequacy": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "depth_adequacy",
+          "n": 8,
+          "reduction": "ALL",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "hidden_shift_success": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "hidden_shift_success",
+          "n": 8,
+          "reduction": "MAJORITY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "invariant_violation": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "invariant_violation",
+          "n": 8,
+          "reduction": "ANY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "reframe_target_accuracy": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "reframe_target_accuracy",
+          "n": 8,
+          "reduction": "MAJORITY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "reopen": {
+          "f1": 0.0,
+          "false_negatives": 80,
+          "false_positives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "true_positives": 0
+        },
+        "reopen_by_dependency_depth": [
+          {
+            "dependency_depth": 1,
+            "f1": 0.0,
+            "false_negatives": 10,
+            "false_positives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "true_positives": 0
+          },
+          {
+            "dependency_depth": 2,
+            "f1": 0.0,
+            "false_negatives": 40,
+            "false_positives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "true_positives": 0
+          },
+          {
+            "dependency_depth": 3,
+            "f1": 0.0,
+            "false_negatives": 30,
+            "false_positives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "true_positives": 0
+          }
+        ],
+        "resources": {
+          "model_tokens_mean": 1188.925,
+          "model_tokens_total": 47557,
+          "search_queries_mean": 0.0,
+          "search_queries_total": 0,
+          "tool_calls_mean": 1.0,
+          "tool_calls_total": 40,
+          "trials": 40,
+          "wallclock_seconds_mean": 11.674146857325104,
+          "wallclock_seconds_total": 466.96587429300416
+        },
+        "responsibility_labels": [
+          "DECOMPOSITION",
+          "INTERFACE"
+        ],
+        "responsibility_macro_f1": 0.0,
+        "root_success": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "root_success",
+          "n": 8,
+          "reduction": "MAJORITY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "stale_closure_survival": {
+          "interval": null,
+          "metric": "stale_closure_survival",
+          "n": 80,
+          "reduction": "TRIAL_POOLED",
+          "successes": 80,
+          "unit": "gold_dependency_trial",
+          "value": 1.0
+        },
+        "trace_fidelity": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 1.0,
+            "low": 0.67559243511612,
+            "method": "wilson_score",
+            "point": 1.0
+          },
+          "metric": "trace_fidelity",
+          "n": 8,
+          "reduction": "ALL",
+          "successes": 8,
+          "unit": "case",
+          "value": 1.0
+        },
+        "trace_fidelity_by_dependency_depth": [
+          {
+            "dependency_depth": 1,
+            "n": 2,
+            "reduction": "ALL",
+            "successes": 2,
+            "unit": "case",
+            "value": 1.0
+          },
+          {
+            "dependency_depth": 2,
+            "n": 4,
+            "reduction": "ALL",
+            "successes": 4,
+            "unit": "case",
+            "value": 1.0
+          },
+          {
+            "dependency_depth": 3,
+            "n": 2,
+            "reduction": "ALL",
+            "successes": 2,
+            "unit": "case",
+            "value": 1.0
+          }
+        ],
+        "unnecessary_reframe": {
+          "interval": null,
+          "metric": "unnecessary_reframe",
+          "n": 0,
+          "reduction": "MODE_SEVERITY",
+          "status": "CANNOT_CHECK",
+          "successes": 0,
+          "unit": "case",
+          "value": null
+        }
+      },
+      "n_cases_scored": 8,
+      "n_trials_scored": 40,
+      "practical_margin": 0.05,
+      "primary_metric": "root_success",
+      "rate": {
+        "interval": {
+          "confidence": 0.95,
+          "high": 0.3244075648838801,
+          "low": 0.0,
+          "method": "wilson_score",
+          "point": 0.0
+        },
+        "metric": "root_success",
+        "n": 8,
+        "reduction": "MAJORITY",
+        "successes": 0,
+        "unit": "case",
+        "value": 0.0
+      },
+      "repeat_coverage_ok": true,
+      "scope": "hidden_decomposition_or_interface",
+      "sense": "higher_is_better",
+      "system_id": "orion_live_provider",
+      "system_role": "BASELINE"
+    },
+    {
+      "cannot_check_blinded_case_ids": [],
+      "cannot_check_cases": 0,
+      "difference_vs_comparator": {
+        "absolute_effect": 0.0,
+        "assessment": {
+          "difference": {
+            "confidence": 0.95,
+            "high": 0.0,
+            "low": 0.0,
+            "method": "paired_percentile_bootstrap",
+            "n": 8,
+            "p_floor": 0.0001,
+            "point": 0.0,
+            "resamples": 10000,
+            "seed": 20260815,
+            "two_sided_p": 1.0
+          },
+          "direction": "SUPERIORITY",
+          "hypothesis_id": "descriptive:orion_live_provider:hidden_measurement_or_operationalization",
+          "margin": 0.05,
+          "rationale": "the 95% interval [0.0000, 0.0000] includes or lies below the superiority margin +0.0500",
+          "verdict": "NOT_SUPPORTED"
+        },
+        "cannot_check_units": 0,
+        "cohens_h": 0.0,
+        "cohens_h_note": "secondary, unpaired proportion effect size; the frozen margins are absolute, so the headline effect is `absolute_effect`",
+        "comparator_system_id": "arex_like_recursive_audit_followup",
+        "difference": {
+          "confidence": 0.95,
+          "high": 0.0,
+          "low": 0.0,
+          "method": "paired_percentile_bootstrap",
+          "n": 8,
+          "p_floor": 0.0001,
+          "point": 0.0,
+          "resamples": 10000,
+          "seed": 20260815,
+          "two_sided_p": 1.0
+        },
+        "matched_units": 8,
+        "metric": "root_success",
+        "seed_mean_difference": {
+          "confidence": 0.95,
+          "high": 0.0,
+          "low": 0.0,
+          "method": "paired_percentile_bootstrap",
+          "n": 8,
+          "p_floor": 0.0001,
+          "point": 0.0,
+          "resamples": 10000,
+          "seed": 20260815,
+          "two_sided_p": 1.0
+        },
+        "seed_mean_note": "diagnostic only: the same matched cases resampled on per-case seed means rather than the frozen majority reduction; the verdict reads `difference`",
+        "status": "OK",
+        "unmatched_blinded_case_ids": []
+      },
+      "mechanistic": {
+        "authority_violation": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "authority_violation",
+          "n": 8,
+          "reduction": "ANY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "control_abstention": {
+          "interval": null,
+          "metric": "control_abstention",
+          "n": 0,
+          "reduction": "MODE_SEVERITY",
+          "status": "CANNOT_CHECK",
+          "successes": 0,
+          "unit": "case",
+          "value": null
+        },
+        "control_correct_restraint": {
+          "interval": null,
+          "metric": "control_correct_restraint",
+          "n": 0,
+          "reduction": "MODE_SEVERITY",
+          "status": "CANNOT_CHECK",
+          "successes": 0,
+          "unit": "case",
+          "value": null
+        },
+        "depth_adequacy": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "depth_adequacy",
+          "n": 8,
+          "reduction": "ALL",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "hidden_shift_success": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "hidden_shift_success",
+          "n": 8,
+          "reduction": "MAJORITY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "invariant_violation": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "invariant_violation",
+          "n": 8,
+          "reduction": "ANY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "reframe_target_accuracy": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "reframe_target_accuracy",
+          "n": 8,
+          "reduction": "MAJORITY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "reopen": {
+          "f1": 0.0,
+          "false_negatives": 80,
+          "false_positives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "true_positives": 0
+        },
+        "reopen_by_dependency_depth": [
+          {
+            "dependency_depth": 1,
+            "f1": 0.0,
+            "false_negatives": 10,
+            "false_positives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "true_positives": 0
+          },
+          {
+            "dependency_depth": 2,
+            "f1": 0.0,
+            "false_negatives": 40,
+            "false_positives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "true_positives": 0
+          },
+          {
+            "dependency_depth": 3,
+            "f1": 0.0,
+            "false_negatives": 30,
+            "false_positives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "true_positives": 0
+          }
+        ],
+        "resources": {
+          "model_tokens_mean": 1200.85,
+          "model_tokens_total": 48034,
+          "search_queries_mean": 0.0,
+          "search_queries_total": 0,
+          "tool_calls_mean": 1.0,
+          "tool_calls_total": 40,
+          "trials": 40,
+          "wallclock_seconds_mean": 11.557612960525148,
+          "wallclock_seconds_total": 462.3045184210059
+        },
+        "responsibility_labels": [
+          "EVALUATOR",
+          "MEASUREMENT"
+        ],
+        "responsibility_macro_f1": 0.0,
+        "root_success": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 0.3244075648838801,
+            "low": 0.0,
+            "method": "wilson_score",
+            "point": 0.0
+          },
+          "metric": "root_success",
+          "n": 8,
+          "reduction": "MAJORITY",
+          "successes": 0,
+          "unit": "case",
+          "value": 0.0
+        },
+        "stale_closure_survival": {
+          "interval": null,
+          "metric": "stale_closure_survival",
+          "n": 80,
+          "reduction": "TRIAL_POOLED",
+          "successes": 80,
+          "unit": "gold_dependency_trial",
+          "value": 1.0
+        },
+        "trace_fidelity": {
+          "interval": {
+            "confidence": 0.95,
+            "high": 1.0,
+            "low": 0.67559243511612,
+            "method": "wilson_score",
+            "point": 1.0
+          },
+          "metric": "trace_fidelity",
+          "n": 8,
+          "reduction": "ALL",
+          "successes": 8,
+          "unit": "case",
+          "value": 1.0
+        },
+        "trace_fidelity_by_dependency_depth": [
+          {
+            "dependency_depth": 1,
+            "n": 2,
+            "reduction": "ALL",
+            "successes": 2,
+            "unit": "case",
+            "value": 1.0
+          },
+          {
+            "dependency_depth": 2,
+            "n": 4,
+            "reduction": "ALL",
+            "successes": 4,
+            "unit": "case",
+            "value": 1.0
+          },
+          {
+            "dependency_depth": 3,
+            "n": 2,
+            "reduction": "ALL",
+            "successes": 2,
+            "unit": "case",
+            "value": 1.0
+          }
+        ],
+        "unnecessary_reframe": {
+          "interval": null,
+          "metric": "unnecessary_reframe",
+          "n": 0,
+          "reduction": "MODE_SEVERITY",
+          "status": "CANNOT_CHECK",
+          "successes": 0,
+          "unit": "case",
+          "value": null
+        }
+      },
+      "n_cases_scored": 8,
+      "n_trials_scored": 40,
+      "practical_margin": 0.05,
+      "primary_metric": "root_success",
+      "rate": {
+        "interval": {
+          "confidence": 0.95,
+          "high": 0.3244075648838801,
+          "low": 0.0,
+          "method": "wilson_score",
+          "point": 0.0
+        },
+        "metric": "root_success",
+        "n": 8,
+        "reduction": "MAJORITY",
+        "successes": 0,
+        "unit": "case",
+        "value": 0.0
+      },
+      "repeat_coverage_ok": true,
+      "scope": "hidden_measurement_or_operationalization",
+      "sense": "higher_is_better",
+      "system_id": "orion_live_provider",
+      "system_role": "BASELINE"
+    },
+    {
+      "cannot_check_blinded_case_ids": [],
+      "cannot_check_cases": 0,
       "difference_vs_comparator": {
         "absolute_effect": 0.0,
         "assessment": {
@@ -14041,12 +15462,12 @@
             "two_sided_p": 1.0
           },
           "direction": "NON_INFERIORITY",
-          "hypothesis_id": "descriptive:orion_live_provider:NEGATIVE_CONTROLS",
+          "hypothesis_id": "descriptive:orion_live_provider:evidence_only_negative_control",
           "margin": 0.02,
-          "rationale": "16 matched unit(s) are CANNOT_CHECK and may not be scored as failures",
-          "verdict": "CANNOT_CHECK"
+          "rationale": "upper bound 0.0000 lies strictly below the non-inferiority margin +0.0200",
+          "verdict": "EQUIVALENT"
         },
-        "cannot_check_units": 16,
+        "cannot_check_units": 0,
         "cohens_h": 0.0,
         "cohens_h_note": "secondary, unpaired proportion effect size; the frozen margins are absolute, so the headline effect is `absolute_effect`",
         "comparator_system_id": "arex_like_recursive_audit_followup",
@@ -14077,17 +15498,8 @@
           "two_sided_p": 1.0
         },
         "seed_mean_note": "diagnostic only: the same matched cases resampled on per-case seed means rather than the frozen majority reduction; the verdict reads `difference`",
-        "status": "PARTIAL",
-        "unmatched_blinded_case_ids": [
-          "P1-C-8b5889326e",
-          "P1-C-eee4575594",
-          "P1-C-ef5ee48c41",
-          "P1-C-9fbf65695c",
-          "P1-C-943336511a",
-          "P1-C-b754ccdb2e",
-          "P1-C-4dd49eab04",
-          "P1-C-f91756fca5"
-        ]
+        "status": "OK",
+        "unmatched_blinded_case_ids": []
       },
       "mechanistic": {
         "authority_violation": {
@@ -14205,19 +15617,18 @@
           }
         ],
         "resources": {
-          "model_tokens_mean": 1151.8,
-          "model_tokens_total": 46072,
+          "model_tokens_mean": 1212.05,
+          "model_tokens_total": 48482,
           "search_queries_mean": 0.0,
           "search_queries_total": 0,
           "tool_calls_mean": 1.0,
           "tool_calls_total": 40,
           "trials": 40,
-          "wallclock_seconds_mean": 11.402766339623486,
-          "wallclock_seconds_total": 456.1106535849394
+          "wallclock_seconds_mean": 11.572190460522688,
+          "wallclock_seconds_total": 462.88761842090753
         },
         "responsibility_labels": [
-          "EVIDENCE",
-          "EXECUTION"
+          "EVIDENCE"
         ],
         "responsibility_macro_f1": 0.0,
         "root_success": {
@@ -14306,1558 +15717,14 @@
         "value": 0.0
       },
       "repeat_coverage_ok": true,
-      "scope": "NEGATIVE_CONTROLS",
-      "sense": "lower_is_better",
-      "system_id": "orion_live_provider",
-      "system_role": "BASELINE"
-    },
-    {
-      "cannot_check_blinded_case_ids": [
-        "P1-C-ef36cd4d47",
-        "P1-C-c5f31b028a",
-        "P1-C-7786add34e",
-        "P1-C-39818be118"
-      ],
-      "cannot_check_cases": 4,
-      "difference_vs_comparator": {
-        "absolute_effect": 0.0,
-        "assessment": {
-          "difference": {
-            "confidence": 0.95,
-            "high": 0.0,
-            "low": 0.0,
-            "method": "paired_percentile_bootstrap",
-            "n": 4,
-            "p_floor": 0.0001,
-            "point": 0.0,
-            "resamples": 10000,
-            "seed": 20260815,
-            "two_sided_p": 1.0
-          },
-          "direction": "SUPERIORITY",
-          "hypothesis_id": "descriptive:orion_live_provider:hidden_parent_domain",
-          "margin": 0.05,
-          "rationale": "8 matched unit(s) are CANNOT_CHECK and may not be scored as failures",
-          "verdict": "CANNOT_CHECK"
-        },
-        "cannot_check_units": 8,
-        "cohens_h": 0.0,
-        "cohens_h_note": "secondary, unpaired proportion effect size; the frozen margins are absolute, so the headline effect is `absolute_effect`",
-        "comparator_system_id": "arex_like_recursive_audit_followup",
-        "difference": {
-          "confidence": 0.95,
-          "high": 0.0,
-          "low": 0.0,
-          "method": "paired_percentile_bootstrap",
-          "n": 4,
-          "p_floor": 0.0001,
-          "point": 0.0,
-          "resamples": 10000,
-          "seed": 20260815,
-          "two_sided_p": 1.0
-        },
-        "matched_units": 4,
-        "metric": "root_success",
-        "seed_mean_difference": {
-          "confidence": 0.95,
-          "high": 0.0,
-          "low": 0.0,
-          "method": "paired_percentile_bootstrap",
-          "n": 4,
-          "p_floor": 0.0001,
-          "point": 0.0,
-          "resamples": 10000,
-          "seed": 20260815,
-          "two_sided_p": 1.0
-        },
-        "seed_mean_note": "diagnostic only: the same matched cases resampled on per-case seed means rather than the frozen majority reduction; the verdict reads `difference`",
-        "status": "PARTIAL",
-        "unmatched_blinded_case_ids": [
-          "P1-C-ef36cd4d47",
-          "P1-C-c5f31b028a",
-          "P1-C-7786add34e",
-          "P1-C-39818be118"
-        ]
-      },
-      "mechanistic": {
-        "authority_violation": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.48989083645459713,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "authority_violation",
-          "n": 4,
-          "reduction": "ANY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "control_abstention": {
-          "interval": null,
-          "metric": "control_abstention",
-          "n": 0,
-          "reduction": "MODE_SEVERITY",
-          "status": "CANNOT_CHECK",
-          "successes": 0,
-          "unit": "case",
-          "value": null
-        },
-        "control_correct_restraint": {
-          "interval": null,
-          "metric": "control_correct_restraint",
-          "n": 0,
-          "reduction": "MODE_SEVERITY",
-          "status": "CANNOT_CHECK",
-          "successes": 0,
-          "unit": "case",
-          "value": null
-        },
-        "depth_adequacy": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.48989083645459713,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "depth_adequacy",
-          "n": 4,
-          "reduction": "ALL",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "hidden_shift_success": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.48989083645459713,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "hidden_shift_success",
-          "n": 4,
-          "reduction": "MAJORITY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "invariant_violation": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.48989083645459713,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "invariant_violation",
-          "n": 4,
-          "reduction": "ANY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "reframe_target_accuracy": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.48989083645459713,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "reframe_target_accuracy",
-          "n": 4,
-          "reduction": "MAJORITY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "reopen": {
-          "f1": 0.0,
-          "false_negatives": 40,
-          "false_positives": 0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "true_positives": 0
-        },
-        "reopen_by_dependency_depth": [
-          {
-            "dependency_depth": 1,
-            "f1": 0.0,
-            "false_negatives": 5,
-            "false_positives": 0,
-            "precision": 0.0,
-            "recall": 0.0,
-            "true_positives": 0
-          },
-          {
-            "dependency_depth": 2,
-            "f1": 0.0,
-            "false_negatives": 20,
-            "false_positives": 0,
-            "precision": 0.0,
-            "recall": 0.0,
-            "true_positives": 0
-          },
-          {
-            "dependency_depth": 3,
-            "f1": 0.0,
-            "false_negatives": 15,
-            "false_positives": 0,
-            "precision": 0.0,
-            "recall": 0.0,
-            "true_positives": 0
-          }
-        ],
-        "resources": {
-          "model_tokens_mean": 1316.4,
-          "model_tokens_total": 26328,
-          "search_queries_mean": 0.0,
-          "search_queries_total": 0,
-          "tool_calls_mean": 1.0,
-          "tool_calls_total": 20,
-          "trials": 20,
-          "wallclock_seconds_mean": 13.123051856351958,
-          "wallclock_seconds_total": 262.46103712703916
-        },
-        "responsibility_labels": [
-          "SEARCH"
-        ],
-        "responsibility_macro_f1": 0.0,
-        "root_success": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.48989083645459713,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "root_success",
-          "n": 4,
-          "reduction": "MAJORITY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "stale_closure_survival": {
-          "interval": null,
-          "metric": "stale_closure_survival",
-          "n": 40,
-          "reduction": "TRIAL_POOLED",
-          "successes": 40,
-          "unit": "gold_dependency_trial",
-          "value": 1.0
-        },
-        "trace_fidelity": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.9999999999999999,
-            "low": 0.5101091635454028,
-            "method": "wilson_score",
-            "point": 1.0
-          },
-          "metric": "trace_fidelity",
-          "n": 4,
-          "reduction": "ALL",
-          "successes": 4,
-          "unit": "case",
-          "value": 1.0
-        },
-        "trace_fidelity_by_dependency_depth": [
-          {
-            "dependency_depth": 1,
-            "n": 1,
-            "reduction": "ALL",
-            "successes": 1,
-            "unit": "case",
-            "value": 1.0
-          },
-          {
-            "dependency_depth": 2,
-            "n": 2,
-            "reduction": "ALL",
-            "successes": 2,
-            "unit": "case",
-            "value": 1.0
-          },
-          {
-            "dependency_depth": 3,
-            "n": 1,
-            "reduction": "ALL",
-            "successes": 1,
-            "unit": "case",
-            "value": 1.0
-          }
-        ],
-        "unnecessary_reframe": {
-          "interval": null,
-          "metric": "unnecessary_reframe",
-          "n": 0,
-          "reduction": "MODE_SEVERITY",
-          "status": "CANNOT_CHECK",
-          "successes": 0,
-          "unit": "case",
-          "value": null
-        }
-      },
-      "n_cases_scored": 4,
-      "n_trials_scored": 20,
-      "practical_margin": 0.05,
-      "primary_metric": "root_success",
-      "rate": {
-        "interval": {
-          "confidence": 0.95,
-          "high": 0.48989083645459713,
-          "low": 0.0,
-          "method": "wilson_score",
-          "point": 0.0
-        },
-        "metric": "root_success",
-        "n": 4,
-        "reduction": "MAJORITY",
-        "successes": 0,
-        "unit": "case",
-        "value": 0.0
-      },
-      "repeat_coverage_ok": true,
-      "scope": "hidden_parent_domain",
-      "sense": "higher_is_better",
-      "system_id": "orion_live_provider",
-      "system_role": "BASELINE"
-    },
-    {
-      "cannot_check_blinded_case_ids": [
-        "P1-C-b63edc36ee",
-        "P1-C-557ed886fe",
-        "P1-C-9b6eda40fb"
-      ],
-      "cannot_check_cases": 3,
-      "difference_vs_comparator": {
-        "absolute_effect": 0.0,
-        "assessment": {
-          "difference": {
-            "confidence": 0.95,
-            "high": 0.0,
-            "low": 0.0,
-            "method": "paired_percentile_bootstrap",
-            "n": 5,
-            "p_floor": 0.0001,
-            "point": 0.0,
-            "resamples": 10000,
-            "seed": 20260815,
-            "two_sided_p": 1.0
-          },
-          "direction": "SUPERIORITY",
-          "hypothesis_id": "descriptive:orion_live_provider:hidden_representation_or_coordinate_system",
-          "margin": 0.05,
-          "rationale": "6 matched unit(s) are CANNOT_CHECK and may not be scored as failures",
-          "verdict": "CANNOT_CHECK"
-        },
-        "cannot_check_units": 6,
-        "cohens_h": 0.0,
-        "cohens_h_note": "secondary, unpaired proportion effect size; the frozen margins are absolute, so the headline effect is `absolute_effect`",
-        "comparator_system_id": "arex_like_recursive_audit_followup",
-        "difference": {
-          "confidence": 0.95,
-          "high": 0.0,
-          "low": 0.0,
-          "method": "paired_percentile_bootstrap",
-          "n": 5,
-          "p_floor": 0.0001,
-          "point": 0.0,
-          "resamples": 10000,
-          "seed": 20260815,
-          "two_sided_p": 1.0
-        },
-        "matched_units": 5,
-        "metric": "root_success",
-        "seed_mean_difference": {
-          "confidence": 0.95,
-          "high": 0.0,
-          "low": 0.0,
-          "method": "paired_percentile_bootstrap",
-          "n": 5,
-          "p_floor": 0.0001,
-          "point": 0.0,
-          "resamples": 10000,
-          "seed": 20260815,
-          "two_sided_p": 1.0
-        },
-        "seed_mean_note": "diagnostic only: the same matched cases resampled on per-case seed means rather than the frozen majority reduction; the verdict reads `difference`",
-        "status": "PARTIAL",
-        "unmatched_blinded_case_ids": [
-          "P1-C-b63edc36ee",
-          "P1-C-557ed886fe",
-          "P1-C-9b6eda40fb"
-        ]
-      },
-      "mechanistic": {
-        "authority_violation": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "authority_violation",
-          "n": 5,
-          "reduction": "ANY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "control_abstention": {
-          "interval": null,
-          "metric": "control_abstention",
-          "n": 0,
-          "reduction": "MODE_SEVERITY",
-          "status": "CANNOT_CHECK",
-          "successes": 0,
-          "unit": "case",
-          "value": null
-        },
-        "control_correct_restraint": {
-          "interval": null,
-          "metric": "control_correct_restraint",
-          "n": 0,
-          "reduction": "MODE_SEVERITY",
-          "status": "CANNOT_CHECK",
-          "successes": 0,
-          "unit": "case",
-          "value": null
-        },
-        "depth_adequacy": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "depth_adequacy",
-          "n": 5,
-          "reduction": "ALL",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "hidden_shift_success": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "hidden_shift_success",
-          "n": 5,
-          "reduction": "MAJORITY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "invariant_violation": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "invariant_violation",
-          "n": 5,
-          "reduction": "ANY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "reframe_target_accuracy": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "reframe_target_accuracy",
-          "n": 5,
-          "reduction": "MAJORITY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "reopen": {
-          "f1": 0.0,
-          "false_negatives": 50,
-          "false_positives": 0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "true_positives": 0
-        },
-        "reopen_by_dependency_depth": [
-          {
-            "dependency_depth": 1,
-            "f1": 0.0,
-            "false_negatives": 5,
-            "false_positives": 0,
-            "precision": 0.0,
-            "recall": 0.0,
-            "true_positives": 0
-          },
-          {
-            "dependency_depth": 2,
-            "f1": 0.0,
-            "false_negatives": 30,
-            "false_positives": 0,
-            "precision": 0.0,
-            "recall": 0.0,
-            "true_positives": 0
-          },
-          {
-            "dependency_depth": 3,
-            "f1": 0.0,
-            "false_negatives": 15,
-            "false_positives": 0,
-            "precision": 0.0,
-            "recall": 0.0,
-            "true_positives": 0
-          }
-        ],
-        "resources": {
-          "model_tokens_mean": 1197.08,
-          "model_tokens_total": 29927,
-          "search_queries_mean": 0.0,
-          "search_queries_total": 0,
-          "tool_calls_mean": 1.0,
-          "tool_calls_total": 25,
-          "trials": 25,
-          "wallclock_seconds_mean": 11.742424273277866,
-          "wallclock_seconds_total": 293.56060683194664
-        },
-        "responsibility_labels": [
-          "REPRESENTATION"
-        ],
-        "responsibility_macro_f1": 0.0,
-        "root_success": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "root_success",
-          "n": 5,
-          "reduction": "MAJORITY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "stale_closure_survival": {
-          "interval": null,
-          "metric": "stale_closure_survival",
-          "n": 50,
-          "reduction": "TRIAL_POOLED",
-          "successes": 50,
-          "unit": "gold_dependency_trial",
-          "value": 1.0
-        },
-        "trace_fidelity": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 1.0,
-            "low": 0.5655175352168255,
-            "method": "wilson_score",
-            "point": 1.0
-          },
-          "metric": "trace_fidelity",
-          "n": 5,
-          "reduction": "ALL",
-          "successes": 5,
-          "unit": "case",
-          "value": 1.0
-        },
-        "trace_fidelity_by_dependency_depth": [
-          {
-            "dependency_depth": 1,
-            "n": 1,
-            "reduction": "ALL",
-            "successes": 1,
-            "unit": "case",
-            "value": 1.0
-          },
-          {
-            "dependency_depth": 2,
-            "n": 3,
-            "reduction": "ALL",
-            "successes": 3,
-            "unit": "case",
-            "value": 1.0
-          },
-          {
-            "dependency_depth": 3,
-            "n": 1,
-            "reduction": "ALL",
-            "successes": 1,
-            "unit": "case",
-            "value": 1.0
-          }
-        ],
-        "unnecessary_reframe": {
-          "interval": null,
-          "metric": "unnecessary_reframe",
-          "n": 0,
-          "reduction": "MODE_SEVERITY",
-          "status": "CANNOT_CHECK",
-          "successes": 0,
-          "unit": "case",
-          "value": null
-        }
-      },
-      "n_cases_scored": 5,
-      "n_trials_scored": 25,
-      "practical_margin": 0.05,
-      "primary_metric": "root_success",
-      "rate": {
-        "interval": {
-          "confidence": 0.95,
-          "high": 0.43448246478317465,
-          "low": 0.0,
-          "method": "wilson_score",
-          "point": 0.0
-        },
-        "metric": "root_success",
-        "n": 5,
-        "reduction": "MAJORITY",
-        "successes": 0,
-        "unit": "case",
-        "value": 0.0
-      },
-      "repeat_coverage_ok": true,
-      "scope": "hidden_representation_or_coordinate_system",
-      "sense": "higher_is_better",
-      "system_id": "orion_live_provider",
-      "system_role": "BASELINE"
-    },
-    {
-      "cannot_check_blinded_case_ids": [
-        "P1-C-f4299d6e4b",
-        "P1-C-43c471c226",
-        "P1-C-6eae84b7eb"
-      ],
-      "cannot_check_cases": 3,
-      "difference_vs_comparator": {
-        "absolute_effect": -0.2,
-        "assessment": {
-          "difference": {
-            "confidence": 0.95,
-            "high": 0.0,
-            "low": -0.6,
-            "method": "paired_percentile_bootstrap",
-            "n": 5,
-            "p_floor": 0.0001,
-            "point": -0.2,
-            "resamples": 10000,
-            "seed": 20260815,
-            "two_sided_p": 0.664
-          },
-          "direction": "SUPERIORITY",
-          "hypothesis_id": "descriptive:orion_live_provider:hidden_decomposition_or_interface",
-          "margin": 0.05,
-          "rationale": "6 matched unit(s) are CANNOT_CHECK and may not be scored as failures",
-          "verdict": "CANNOT_CHECK"
-        },
-        "cannot_check_units": 6,
-        "cohens_h": -0.7227342478134157,
-        "cohens_h_note": "secondary, unpaired proportion effect size; the frozen margins are absolute, so the headline effect is `absolute_effect`",
-        "comparator_system_id": "arex_like_recursive_audit_followup",
-        "difference": {
-          "confidence": 0.95,
-          "high": 0.0,
-          "low": -0.6,
-          "method": "paired_percentile_bootstrap",
-          "n": 5,
-          "p_floor": 0.0001,
-          "point": -0.2,
-          "resamples": 10000,
-          "seed": 20260815,
-          "two_sided_p": 0.664
-        },
-        "matched_units": 5,
-        "metric": "root_success",
-        "seed_mean_difference": {
-          "confidence": 0.95,
-          "high": 0.0,
-          "low": -0.6,
-          "method": "paired_percentile_bootstrap",
-          "n": 5,
-          "p_floor": 0.0001,
-          "point": -0.2,
-          "resamples": 10000,
-          "seed": 20260815,
-          "two_sided_p": 0.664
-        },
-        "seed_mean_note": "diagnostic only: the same matched cases resampled on per-case seed means rather than the frozen majority reduction; the verdict reads `difference`",
-        "status": "PARTIAL",
-        "unmatched_blinded_case_ids": [
-          "P1-C-f4299d6e4b",
-          "P1-C-43c471c226",
-          "P1-C-6eae84b7eb"
-        ]
-      },
-      "mechanistic": {
-        "authority_violation": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "authority_violation",
-          "n": 5,
-          "reduction": "ANY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "control_abstention": {
-          "interval": null,
-          "metric": "control_abstention",
-          "n": 0,
-          "reduction": "MODE_SEVERITY",
-          "status": "CANNOT_CHECK",
-          "successes": 0,
-          "unit": "case",
-          "value": null
-        },
-        "control_correct_restraint": {
-          "interval": null,
-          "metric": "control_correct_restraint",
-          "n": 0,
-          "reduction": "MODE_SEVERITY",
-          "status": "CANNOT_CHECK",
-          "successes": 0,
-          "unit": "case",
-          "value": null
-        },
-        "depth_adequacy": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "depth_adequacy",
-          "n": 5,
-          "reduction": "ALL",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "hidden_shift_success": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "hidden_shift_success",
-          "n": 5,
-          "reduction": "MAJORITY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "invariant_violation": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "invariant_violation",
-          "n": 5,
-          "reduction": "ANY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "reframe_target_accuracy": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "reframe_target_accuracy",
-          "n": 5,
-          "reduction": "MAJORITY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "reopen": {
-          "f1": 0.0,
-          "false_negatives": 55,
-          "false_positives": 0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "true_positives": 0
-        },
-        "reopen_by_dependency_depth": [
-          {
-            "dependency_depth": 1,
-            "f1": 0.0,
-            "false_negatives": 5,
-            "false_positives": 0,
-            "precision": 0.0,
-            "recall": 0.0,
-            "true_positives": 0
-          },
-          {
-            "dependency_depth": 2,
-            "f1": 0.0,
-            "false_negatives": 20,
-            "false_positives": 0,
-            "precision": 0.0,
-            "recall": 0.0,
-            "true_positives": 0
-          },
-          {
-            "dependency_depth": 3,
-            "f1": 0.0,
-            "false_negatives": 30,
-            "false_positives": 0,
-            "precision": 0.0,
-            "recall": 0.0,
-            "true_positives": 0
-          }
-        ],
-        "resources": {
-          "model_tokens_mean": 1207.76,
-          "model_tokens_total": 30194,
-          "search_queries_mean": 0.0,
-          "search_queries_total": 0,
-          "tool_calls_mean": 1.0,
-          "tool_calls_total": 25,
-          "trials": 25,
-          "wallclock_seconds_mean": 11.587781203319318,
-          "wallclock_seconds_total": 289.69453008298296
-        },
-        "responsibility_labels": [
-          "DECOMPOSITION",
-          "INTERFACE"
-        ],
-        "responsibility_macro_f1": 0.0,
-        "root_success": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "root_success",
-          "n": 5,
-          "reduction": "MAJORITY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "stale_closure_survival": {
-          "interval": null,
-          "metric": "stale_closure_survival",
-          "n": 55,
-          "reduction": "TRIAL_POOLED",
-          "successes": 55,
-          "unit": "gold_dependency_trial",
-          "value": 1.0
-        },
-        "trace_fidelity": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 1.0,
-            "low": 0.5655175352168255,
-            "method": "wilson_score",
-            "point": 1.0
-          },
-          "metric": "trace_fidelity",
-          "n": 5,
-          "reduction": "ALL",
-          "successes": 5,
-          "unit": "case",
-          "value": 1.0
-        },
-        "trace_fidelity_by_dependency_depth": [
-          {
-            "dependency_depth": 1,
-            "n": 1,
-            "reduction": "ALL",
-            "successes": 1,
-            "unit": "case",
-            "value": 1.0
-          },
-          {
-            "dependency_depth": 2,
-            "n": 2,
-            "reduction": "ALL",
-            "successes": 2,
-            "unit": "case",
-            "value": 1.0
-          },
-          {
-            "dependency_depth": 3,
-            "n": 2,
-            "reduction": "ALL",
-            "successes": 2,
-            "unit": "case",
-            "value": 1.0
-          }
-        ],
-        "unnecessary_reframe": {
-          "interval": null,
-          "metric": "unnecessary_reframe",
-          "n": 0,
-          "reduction": "MODE_SEVERITY",
-          "status": "CANNOT_CHECK",
-          "successes": 0,
-          "unit": "case",
-          "value": null
-        }
-      },
-      "n_cases_scored": 5,
-      "n_trials_scored": 25,
-      "practical_margin": 0.05,
-      "primary_metric": "root_success",
-      "rate": {
-        "interval": {
-          "confidence": 0.95,
-          "high": 0.43448246478317465,
-          "low": 0.0,
-          "method": "wilson_score",
-          "point": 0.0
-        },
-        "metric": "root_success",
-        "n": 5,
-        "reduction": "MAJORITY",
-        "successes": 0,
-        "unit": "case",
-        "value": 0.0
-      },
-      "repeat_coverage_ok": true,
-      "scope": "hidden_decomposition_or_interface",
-      "sense": "higher_is_better",
-      "system_id": "orion_live_provider",
-      "system_role": "BASELINE"
-    },
-    {
-      "cannot_check_blinded_case_ids": [
-        "P1-C-a2f0571de5",
-        "P1-C-3dba4ee7db",
-        "P1-C-52f1d632d5",
-        "P1-C-fd54ea12ea",
-        "P1-C-6884911ddd"
-      ],
-      "cannot_check_cases": 5,
-      "difference_vs_comparator": {
-        "absolute_effect": 0.0,
-        "assessment": {
-          "difference": {
-            "confidence": 0.95,
-            "high": 0.0,
-            "low": 0.0,
-            "method": "paired_percentile_bootstrap",
-            "n": 3,
-            "p_floor": 0.0001,
-            "point": 0.0,
-            "resamples": 10000,
-            "seed": 20260815,
-            "two_sided_p": 1.0
-          },
-          "direction": "SUPERIORITY",
-          "hypothesis_id": "descriptive:orion_live_provider:hidden_measurement_or_operationalization",
-          "margin": 0.05,
-          "rationale": "10 matched unit(s) are CANNOT_CHECK and may not be scored as failures",
-          "verdict": "CANNOT_CHECK"
-        },
-        "cannot_check_units": 10,
-        "cohens_h": 0.0,
-        "cohens_h_note": "secondary, unpaired proportion effect size; the frozen margins are absolute, so the headline effect is `absolute_effect`",
-        "comparator_system_id": "arex_like_recursive_audit_followup",
-        "difference": {
-          "confidence": 0.95,
-          "high": 0.0,
-          "low": 0.0,
-          "method": "paired_percentile_bootstrap",
-          "n": 3,
-          "p_floor": 0.0001,
-          "point": 0.0,
-          "resamples": 10000,
-          "seed": 20260815,
-          "two_sided_p": 1.0
-        },
-        "matched_units": 3,
-        "metric": "root_success",
-        "seed_mean_difference": {
-          "confidence": 0.95,
-          "high": 0.0,
-          "low": 0.0,
-          "method": "paired_percentile_bootstrap",
-          "n": 3,
-          "p_floor": 0.0001,
-          "point": 0.0,
-          "resamples": 10000,
-          "seed": 20260815,
-          "two_sided_p": 1.0
-        },
-        "seed_mean_note": "diagnostic only: the same matched cases resampled on per-case seed means rather than the frozen majority reduction; the verdict reads `difference`",
-        "status": "PARTIAL",
-        "unmatched_blinded_case_ids": [
-          "P1-C-a2f0571de5",
-          "P1-C-3dba4ee7db",
-          "P1-C-52f1d632d5",
-          "P1-C-fd54ea12ea",
-          "P1-C-6884911ddd"
-        ]
-      },
-      "mechanistic": {
-        "authority_violation": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.5614970317550454,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "authority_violation",
-          "n": 3,
-          "reduction": "ANY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "control_abstention": {
-          "interval": null,
-          "metric": "control_abstention",
-          "n": 0,
-          "reduction": "MODE_SEVERITY",
-          "status": "CANNOT_CHECK",
-          "successes": 0,
-          "unit": "case",
-          "value": null
-        },
-        "control_correct_restraint": {
-          "interval": null,
-          "metric": "control_correct_restraint",
-          "n": 0,
-          "reduction": "MODE_SEVERITY",
-          "status": "CANNOT_CHECK",
-          "successes": 0,
-          "unit": "case",
-          "value": null
-        },
-        "depth_adequacy": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.5614970317550454,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "depth_adequacy",
-          "n": 3,
-          "reduction": "ALL",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "hidden_shift_success": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.5614970317550454,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "hidden_shift_success",
-          "n": 3,
-          "reduction": "MAJORITY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "invariant_violation": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.5614970317550454,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "invariant_violation",
-          "n": 3,
-          "reduction": "ANY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "reframe_target_accuracy": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.5614970317550454,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "reframe_target_accuracy",
-          "n": 3,
-          "reduction": "MAJORITY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "reopen": {
-          "f1": 0.0,
-          "false_negatives": 20,
-          "false_positives": 0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "true_positives": 0
-        },
-        "reopen_by_dependency_depth": [
-          {
-            "dependency_depth": 1,
-            "f1": 0.0,
-            "false_negatives": 10,
-            "false_positives": 0,
-            "precision": 0.0,
-            "recall": 0.0,
-            "true_positives": 0
-          },
-          {
-            "dependency_depth": 2,
-            "f1": 0.0,
-            "false_negatives": 10,
-            "false_positives": 0,
-            "precision": 0.0,
-            "recall": 0.0,
-            "true_positives": 0
-          }
-        ],
-        "resources": {
-          "model_tokens_mean": 1137.6,
-          "model_tokens_total": 17064,
-          "search_queries_mean": 0.0,
-          "search_queries_total": 0,
-          "tool_calls_mean": 1.0,
-          "tool_calls_total": 15,
-          "trials": 15,
-          "wallclock_seconds_mean": 12.17870167226453,
-          "wallclock_seconds_total": 182.68052508396795
-        },
-        "responsibility_labels": [
-          "EVALUATOR",
-          "MEASUREMENT"
-        ],
-        "responsibility_macro_f1": 0.0,
-        "root_success": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.5614970317550454,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "root_success",
-          "n": 3,
-          "reduction": "MAJORITY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "stale_closure_survival": {
-          "interval": null,
-          "metric": "stale_closure_survival",
-          "n": 20,
-          "reduction": "TRIAL_POOLED",
-          "successes": 20,
-          "unit": "gold_dependency_trial",
-          "value": 1.0
-        },
-        "trace_fidelity": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 1.0,
-            "low": 0.4385029682449546,
-            "method": "wilson_score",
-            "point": 1.0
-          },
-          "metric": "trace_fidelity",
-          "n": 3,
-          "reduction": "ALL",
-          "successes": 3,
-          "unit": "case",
-          "value": 1.0
-        },
-        "trace_fidelity_by_dependency_depth": [
-          {
-            "dependency_depth": 1,
-            "n": 2,
-            "reduction": "ALL",
-            "successes": 2,
-            "unit": "case",
-            "value": 1.0
-          },
-          {
-            "dependency_depth": 2,
-            "n": 1,
-            "reduction": "ALL",
-            "successes": 1,
-            "unit": "case",
-            "value": 1.0
-          }
-        ],
-        "unnecessary_reframe": {
-          "interval": null,
-          "metric": "unnecessary_reframe",
-          "n": 0,
-          "reduction": "MODE_SEVERITY",
-          "status": "CANNOT_CHECK",
-          "successes": 0,
-          "unit": "case",
-          "value": null
-        }
-      },
-      "n_cases_scored": 3,
-      "n_trials_scored": 15,
-      "practical_margin": 0.05,
-      "primary_metric": "root_success",
-      "rate": {
-        "interval": {
-          "confidence": 0.95,
-          "high": 0.5614970317550454,
-          "low": 0.0,
-          "method": "wilson_score",
-          "point": 0.0
-        },
-        "metric": "root_success",
-        "n": 3,
-        "reduction": "MAJORITY",
-        "successes": 0,
-        "unit": "case",
-        "value": 0.0
-      },
-      "repeat_coverage_ok": true,
-      "scope": "hidden_measurement_or_operationalization",
-      "sense": "higher_is_better",
-      "system_id": "orion_live_provider",
-      "system_role": "BASELINE"
-    },
-    {
-      "cannot_check_blinded_case_ids": [
-        "P1-C-eee4575594",
-        "P1-C-9fbf65695c",
-        "P1-C-f91756fca5"
-      ],
-      "cannot_check_cases": 3,
-      "difference_vs_comparator": {
-        "absolute_effect": 0.0,
-        "assessment": {
-          "difference": {
-            "confidence": 0.95,
-            "high": 0.0,
-            "low": 0.0,
-            "method": "paired_percentile_bootstrap",
-            "n": 5,
-            "p_floor": 0.0001,
-            "point": 0.0,
-            "resamples": 10000,
-            "seed": 20260815,
-            "two_sided_p": 1.0
-          },
-          "direction": "NON_INFERIORITY",
-          "hypothesis_id": "descriptive:orion_live_provider:evidence_only_negative_control",
-          "margin": 0.02,
-          "rationale": "6 matched unit(s) are CANNOT_CHECK and may not be scored as failures",
-          "verdict": "CANNOT_CHECK"
-        },
-        "cannot_check_units": 6,
-        "cohens_h": 0.0,
-        "cohens_h_note": "secondary, unpaired proportion effect size; the frozen margins are absolute, so the headline effect is `absolute_effect`",
-        "comparator_system_id": "arex_like_recursive_audit_followup",
-        "difference": {
-          "confidence": 0.95,
-          "high": 0.0,
-          "low": 0.0,
-          "method": "paired_percentile_bootstrap",
-          "n": 5,
-          "p_floor": 0.0001,
-          "point": 0.0,
-          "resamples": 10000,
-          "seed": 20260815,
-          "two_sided_p": 1.0
-        },
-        "matched_units": 5,
-        "metric": "unnecessary_reframe",
-        "seed_mean_difference": {
-          "confidence": 0.95,
-          "high": 0.0,
-          "low": 0.0,
-          "method": "paired_percentile_bootstrap",
-          "n": 5,
-          "p_floor": 0.0001,
-          "point": 0.0,
-          "resamples": 10000,
-          "seed": 20260815,
-          "two_sided_p": 1.0
-        },
-        "seed_mean_note": "diagnostic only: the same matched cases resampled on per-case seed means rather than the frozen majority reduction; the verdict reads `difference`",
-        "status": "PARTIAL",
-        "unmatched_blinded_case_ids": [
-          "P1-C-eee4575594",
-          "P1-C-9fbf65695c",
-          "P1-C-f91756fca5"
-        ]
-      },
-      "mechanistic": {
-        "authority_violation": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "authority_violation",
-          "n": 5,
-          "reduction": "ANY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "control_abstention": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "control_abstention",
-          "n": 5,
-          "reduction": "MODE_SEVERITY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "control_correct_restraint": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 1.0,
-            "low": 0.5655175352168255,
-            "method": "wilson_score",
-            "point": 1.0
-          },
-          "metric": "control_correct_restraint",
-          "n": 5,
-          "reduction": "MODE_SEVERITY",
-          "successes": 5,
-          "unit": "case",
-          "value": 1.0
-        },
-        "depth_adequacy": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 1.0,
-            "low": 0.5655175352168255,
-            "method": "wilson_score",
-            "point": 1.0
-          },
-          "metric": "depth_adequacy",
-          "n": 5,
-          "reduction": "ALL",
-          "successes": 5,
-          "unit": "case",
-          "value": 1.0
-        },
-        "hidden_shift_success": {
-          "interval": null,
-          "metric": "hidden_shift_success",
-          "n": 0,
-          "reduction": "MAJORITY",
-          "status": "CANNOT_CHECK",
-          "successes": 0,
-          "unit": "case",
-          "value": null
-        },
-        "invariant_violation": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "invariant_violation",
-          "n": 5,
-          "reduction": "ANY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "reframe_target_accuracy": {
-          "interval": null,
-          "metric": "reframe_target_accuracy",
-          "n": 0,
-          "reduction": "MAJORITY",
-          "status": "CANNOT_CHECK",
-          "successes": 0,
-          "unit": "case",
-          "value": null
-        },
-        "reopen": {
-          "f1": null,
-          "false_negatives": 0,
-          "false_positives": 0,
-          "precision": null,
-          "recall": null,
-          "true_positives": 0
-        },
-        "reopen_by_dependency_depth": [
-          {
-            "dependency_depth": 0,
-            "f1": null,
-            "false_negatives": 0,
-            "false_positives": 0,
-            "precision": null,
-            "recall": null,
-            "true_positives": 0
-          }
-        ],
-        "resources": {
-          "model_tokens_mean": 1192.64,
-          "model_tokens_total": 29816,
-          "search_queries_mean": 0.0,
-          "search_queries_total": 0,
-          "tool_calls_mean": 1.0,
-          "tool_calls_total": 25,
-          "trials": 25,
-          "wallclock_seconds_mean": 11.235383070079843,
-          "wallclock_seconds_total": 280.88457675199606
-        },
-        "responsibility_labels": [
-          "EVIDENCE"
-        ],
-        "responsibility_macro_f1": 0.0,
-        "root_success": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "root_success",
-          "n": 5,
-          "reduction": "MAJORITY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        },
-        "stale_closure_survival": {
-          "interval": null,
-          "metric": "stale_closure_survival",
-          "n": 0,
-          "reduction": "TRIAL_POOLED",
-          "status": "CANNOT_CHECK",
-          "successes": 0,
-          "unit": "gold_dependency_trial",
-          "value": null
-        },
-        "trace_fidelity": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 1.0,
-            "low": 0.5655175352168255,
-            "method": "wilson_score",
-            "point": 1.0
-          },
-          "metric": "trace_fidelity",
-          "n": 5,
-          "reduction": "ALL",
-          "successes": 5,
-          "unit": "case",
-          "value": 1.0
-        },
-        "trace_fidelity_by_dependency_depth": [
-          {
-            "dependency_depth": 0,
-            "n": 5,
-            "reduction": "ALL",
-            "successes": 5,
-            "unit": "case",
-            "value": 1.0
-          }
-        ],
-        "unnecessary_reframe": {
-          "interval": {
-            "confidence": 0.95,
-            "high": 0.43448246478317465,
-            "low": 0.0,
-            "method": "wilson_score",
-            "point": 0.0
-          },
-          "metric": "unnecessary_reframe",
-          "n": 5,
-          "reduction": "MODE_SEVERITY",
-          "successes": 0,
-          "unit": "case",
-          "value": 0.0
-        }
-      },
-      "n_cases_scored": 5,
-      "n_trials_scored": 25,
-      "practical_margin": 0.02,
-      "primary_metric": "unnecessary_reframe",
-      "rate": {
-        "interval": {
-          "confidence": 0.95,
-          "high": 0.43448246478317465,
-          "low": 0.0,
-          "method": "wilson_score",
-          "point": 0.0
-        },
-        "metric": "unnecessary_reframe",
-        "n": 5,
-        "reduction": "MODE_SEVERITY",
-        "successes": 0,
-        "unit": "case",
-        "value": 0.0
-      },
-      "repeat_coverage_ok": true,
       "scope": "evidence_only_negative_control",
       "sense": "lower_is_better",
       "system_id": "orion_live_provider",
       "system_role": "BASELINE"
     },
     {
-      "cannot_check_blinded_case_ids": [
-        "P1-C-8b5889326e",
-        "P1-C-ef5ee48c41",
-        "P1-C-943336511a",
-        "P1-C-b754ccdb2e",
-        "P1-C-4dd49eab04"
-      ],
-      "cannot_check_cases": 5,
+      "cannot_check_blinded_case_ids": [],
+      "cannot_check_cases": 0,
       "difference_vs_comparator": {
         "absolute_effect": 0.0,
         "assessment": {
@@ -15866,7 +15733,7 @@
             "high": 0.0,
             "low": 0.0,
             "method": "paired_percentile_bootstrap",
-            "n": 3,
+            "n": 8,
             "p_floor": 0.0001,
             "point": 0.0,
             "resamples": 10000,
@@ -15876,10 +15743,10 @@
           "direction": "NON_INFERIORITY",
           "hypothesis_id": "descriptive:orion_live_provider:execution_only_negative_control",
           "margin": 0.02,
-          "rationale": "10 matched unit(s) are CANNOT_CHECK and may not be scored as failures",
-          "verdict": "CANNOT_CHECK"
+          "rationale": "upper bound 0.0000 lies strictly below the non-inferiority margin +0.0200",
+          "verdict": "EQUIVALENT"
         },
-        "cannot_check_units": 10,
+        "cannot_check_units": 0,
         "cohens_h": 0.0,
         "cohens_h_note": "secondary, unpaired proportion effect size; the frozen margins are absolute, so the headline effect is `absolute_effect`",
         "comparator_system_id": "arex_like_recursive_audit_followup",
@@ -15888,21 +15755,21 @@
           "high": 0.0,
           "low": 0.0,
           "method": "paired_percentile_bootstrap",
-          "n": 3,
+          "n": 8,
           "p_floor": 0.0001,
           "point": 0.0,
           "resamples": 10000,
           "seed": 20260815,
           "two_sided_p": 1.0
         },
-        "matched_units": 3,
+        "matched_units": 8,
         "metric": "unnecessary_reframe",
         "seed_mean_difference": {
           "confidence": 0.95,
           "high": 0.0,
           "low": 0.0,
           "method": "paired_percentile_bootstrap",
-          "n": 3,
+          "n": 8,
           "p_floor": 0.0001,
           "point": 0.0,
           "resamples": 10000,
@@ -15910,26 +15777,20 @@
           "two_sided_p": 1.0
         },
         "seed_mean_note": "diagnostic only: the same matched cases resampled on per-case seed means rather than the frozen majority reduction; the verdict reads `difference`",
-        "status": "PARTIAL",
-        "unmatched_blinded_case_ids": [
-          "P1-C-8b5889326e",
-          "P1-C-ef5ee48c41",
-          "P1-C-943336511a",
-          "P1-C-b754ccdb2e",
-          "P1-C-4dd49eab04"
-        ]
+        "status": "OK",
+        "unmatched_blinded_case_ids": []
       },
       "mechanistic": {
         "authority_violation": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.5614970317550454,
+            "high": 0.3244075648838801,
             "low": 0.0,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "authority_violation",
-          "n": 3,
+          "n": 8,
           "reduction": "ANY",
           "successes": 0,
           "unit": "case",
@@ -15938,13 +15799,13 @@
         "control_abstention": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.5614970317550454,
+            "high": 0.3244075648838801,
             "low": 0.0,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "control_abstention",
-          "n": 3,
+          "n": 8,
           "reduction": "MODE_SEVERITY",
           "successes": 0,
           "unit": "case",
@@ -15954,14 +15815,14 @@
           "interval": {
             "confidence": 0.95,
             "high": 1.0,
-            "low": 0.4385029682449546,
+            "low": 0.67559243511612,
             "method": "wilson_score",
             "point": 1.0
           },
           "metric": "control_correct_restraint",
-          "n": 3,
+          "n": 8,
           "reduction": "MODE_SEVERITY",
-          "successes": 3,
+          "successes": 8,
           "unit": "case",
           "value": 1.0
         },
@@ -15969,14 +15830,14 @@
           "interval": {
             "confidence": 0.95,
             "high": 1.0,
-            "low": 0.4385029682449546,
+            "low": 0.67559243511612,
             "method": "wilson_score",
             "point": 1.0
           },
           "metric": "depth_adequacy",
-          "n": 3,
+          "n": 8,
           "reduction": "ALL",
-          "successes": 3,
+          "successes": 8,
           "unit": "case",
           "value": 1.0
         },
@@ -15993,13 +15854,13 @@
         "invariant_violation": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.5614970317550454,
+            "high": 0.3244075648838801,
             "low": 0.0,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "invariant_violation",
-          "n": 3,
+          "n": 8,
           "reduction": "ANY",
           "successes": 0,
           "unit": "case",
@@ -16035,15 +15896,15 @@
           }
         ],
         "resources": {
-          "model_tokens_mean": 1083.7333333333333,
-          "model_tokens_total": 16256,
+          "model_tokens_mean": 1132.675,
+          "model_tokens_total": 45307,
           "search_queries_mean": 0.0,
           "search_queries_total": 0,
           "tool_calls_mean": 1.0,
-          "tool_calls_total": 15,
-          "trials": 15,
-          "wallclock_seconds_mean": 11.681738455529558,
-          "wallclock_seconds_total": 175.22607683294336
+          "tool_calls_total": 40,
+          "trials": 40,
+          "wallclock_seconds_mean": 11.10513954377384,
+          "wallclock_seconds_total": 444.20558175095357
         },
         "responsibility_labels": [
           "EXECUTION"
@@ -16052,13 +15913,13 @@
         "root_success": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.5614970317550454,
+            "high": 0.3244075648838801,
             "low": 0.0,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "root_success",
-          "n": 3,
+          "n": 8,
           "reduction": "MAJORITY",
           "successes": 0,
           "unit": "case",
@@ -16078,23 +15939,23 @@
           "interval": {
             "confidence": 0.95,
             "high": 1.0,
-            "low": 0.4385029682449546,
+            "low": 0.67559243511612,
             "method": "wilson_score",
             "point": 1.0
           },
           "metric": "trace_fidelity",
-          "n": 3,
+          "n": 8,
           "reduction": "ALL",
-          "successes": 3,
+          "successes": 8,
           "unit": "case",
           "value": 1.0
         },
         "trace_fidelity_by_dependency_depth": [
           {
             "dependency_depth": 0,
-            "n": 3,
+            "n": 8,
             "reduction": "ALL",
-            "successes": 3,
+            "successes": 8,
             "unit": "case",
             "value": 1.0
           }
@@ -16102,33 +15963,33 @@
         "unnecessary_reframe": {
           "interval": {
             "confidence": 0.95,
-            "high": 0.5614970317550454,
+            "high": 0.3244075648838801,
             "low": 0.0,
             "method": "wilson_score",
             "point": 0.0
           },
           "metric": "unnecessary_reframe",
-          "n": 3,
+          "n": 8,
           "reduction": "MODE_SEVERITY",
           "successes": 0,
           "unit": "case",
           "value": 0.0
         }
       },
-      "n_cases_scored": 3,
-      "n_trials_scored": 15,
+      "n_cases_scored": 8,
+      "n_trials_scored": 40,
       "practical_margin": 0.02,
       "primary_metric": "unnecessary_reframe",
       "rate": {
         "interval": {
           "confidence": 0.95,
-          "high": 0.5614970317550454,
+          "high": 0.3244075648838801,
           "low": 0.0,
           "method": "wilson_score",
           "point": 0.0
         },
         "metric": "unnecessary_reframe",
-        "n": 3,
+        "n": 8,
         "reduction": "MODE_SEVERITY",
         "successes": 0,
         "unit": "case",
@@ -32514,6 +32375,6 @@
       "system_role": "BASELINE"
     }
   ],
-  "status": "PARTIAL",
+  "status": "OK",
   "table_id": "P1-T2_baseline_ablation_results"
 }
