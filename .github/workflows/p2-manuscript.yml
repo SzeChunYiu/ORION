@@ -7,6 +7,8 @@ on:
       - 'papers/paper-02-open-world-scientific-discovery/JOURNAL_READINESS.md'
       - 'papers/paper-02-open-world-scientific-discovery/notes/submission/**'
       - 'papers/paper-02-open-world-scientific-discovery/protocol/P2_*'
+      - 'papers/paper-02-open-world-scientific-discovery/scripts/check_p2_v2.py'
+      - 'papers/paper-02-open-world-scientific-discovery/tests/test_p2_v2.py'
       - '.github/workflows/p2-manuscript.yml'
   workflow_dispatch:
 
@@ -14,9 +16,20 @@ permissions:
   contents: read
 
 jobs:
+  validate-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate V2 widening contract
+        run: python papers/paper-02-open-world-scientific-discovery/scripts/check_p2_v2.py
+      - name: Run V2 contract tests
+        run: python -m unittest discover -s papers/paper-02-open-world-scientific-discovery/tests -p 'test_p2_v2.py'
+
   compile:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    needs: validate-v2
     defaults:
       run:
         working-directory: papers/paper-02-open-world-scientific-discovery/manuscript
