@@ -237,7 +237,7 @@ def _repair_set(rng: random.Random, *, task_id: str, true_level: RepairLevel, fa
         PublicRepair(_opaque("repair", task_id, "evidence"), RepairLevel.EVIDENCE, "", _cost(rng), round(0.45 + 0.25 * rng.random(), 3)),
         PublicRepair(_opaque("repair", task_id, "execution"), RepairLevel.EXECUTION, "", _cost(rng), round(0.45 + 0.25 * rng.random(), 3)),
         PublicRepair(_opaque("repair", task_id, "high-primary"), high_level, high_coordinate, _cost(rng), _confidence(rng, hidden_shift=true_level in {RepairLevel.FORMULATION, RepairLevel.SEARCH_UNIVERSE})),
-        PublicRepair(_opaque("repair", task_id, "high-decoy"), high_level, high_coordinate, _cost(rng), _confidence(rng, hidden_shift=false)),
+        PublicRepair(_opaque("repair", task_id, "high-decoy"), high_level, high_coordinate, _cost(rng), _confidence(rng, hidden_shift=False)),
     ]
     rng.shuffle(repairs)
     return tuple(repairs)
@@ -253,7 +253,6 @@ def _probes(task_id: str) -> tuple[PublicDiagnosticProbe, ...]:
 
 
 def _probe_responses(public: NecessityPublicWorld, true_level: RepairLevel) -> tuple[tuple[str, ProbeResponse], ...]:
-    by_desc = {item.description: item for item in public.diagnostic_probes}
     source = next(item for item in public.diagnostic_probes if item.description.startswith("check whether the missing evidence"))
     execution = next(item for item in public.diagnostic_probes if item.description.startswith("check whether the current implementation"))
     high = next(item for item in public.diagnostic_probes if item.description.startswith("check whether a formulation"))
@@ -293,7 +292,6 @@ def _world_from_family(rng: random.Random, *, seed: int, family_id: str, index: 
     )
 
     responses: list[tuple[str, RepairResponse]] = []
-    valid_minimal: list[str] = []
     for repair in repairs:
         impact = _impact_for(repair, dependencies)
         if repair.level is true_level:
@@ -307,8 +305,8 @@ def _world_from_family(rng: random.Random, *, seed: int, family_id: str, index: 
             sibling_ok = (index % 2 == 0)
         elif true_level in {RepairLevel.FORMULATION, RepairLevel.SEARCH_UNIVERSE} and repair.level in {RepairLevel.FORMULATION, RepairLevel.SEARCH_UNIVERSE}:
             # One high-level proposal is the valid mutation; the other is a
-            # plausible target-flip that fails a protected sibling.
-            primary = "high-primary" in repair.repair_id  # opaque ids make this false; fixed below by rank
+            # plausible target-flip that fails a protected sibling. The v2
+            # wrapper randomizes which public proposal is objectively safe.
             target_success = True
             sibling_ok = False
         else:
@@ -316,9 +314,9 @@ def _world_from_family(rng: random.Random, *, seed: int, family_id: str, index: 
             sibling_ok = True
         responses.append((repair.repair_id, RepairResponse(target_success, sibling_ok, impact)))
 
-    # For high-level worlds, choose the higher-confidence high-level proposal as
-    # the public motivating proposal and make exactly that proposal objectively
-    # safe. This uses public candidate content, not candidate-specific logic.
+    # Base-v1 compatibility: mark the highest-confidence high-level proposal
+    # safe. The v2 generator subsequently swaps safety on a parity-balanced
+    # subset, breaking confidence/gold alignment before any confirmatory use.
     if hidden_shift:
         high_repairs = sorted(
             (item for item in repairs if item.level in {RepairLevel.FORMULATION, RepairLevel.SEARCH_UNIVERSE}),
