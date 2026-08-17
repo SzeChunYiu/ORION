@@ -119,10 +119,110 @@ def check_stochastic_repeats(paper_root: pathlib.Path, paper_id: str, declared: 
     )
 
 
+#: Directories whose contents are INPUTS to a published claim. An untracked
+#: output is ordinary — it regenerates from tracked inputs. An untracked input
+#: breaks the derivation chain: the artifact derived from it is in the
+#: repository, and the thing it was derived from is not, so nobody outside the
+#: machine that produced it can regenerate or verify either.
+INPUT_DIRECTORIES = ("gold", "evidence", "protocol")
+
+
+def check_inputs_are_tracked(
+    paper_root: pathlib.Path, paper_id: str, tracked: frozenset[str]
+) -> ConformanceFinding | None:
+    """Inputs to a claim that exist on disk and not in the repository.
+
+    Found on P3: 32 annotation files present locally, none tracked, while the
+    adjudicated gold derived from them was tracked and modified. A content hash
+    over files that live on one machine records a fingerprint of something
+    unrecoverable, and CI had never seen any of them.
+    """
+
+    # `git ls-files` yields repository-relative paths, so both sides are
+    # normalised to that form. Comparing raw strings worked only when the caller
+    # happened to pass a relative root: with an absolute one every file looked
+    # untracked and all five papers reported VIOLATED. A checker whose verdict
+    # depends on how its argument was spelled is the same ambient-state
+    # dependency its own tests were fixed for.
+    import subprocess
+
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(paper_root), "rev-parse", "--show-toplevel"],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        repository = (
+            pathlib.Path(result.stdout.strip())
+            if result.returncode == 0 and result.stdout.strip()
+            else paper_root.parent
+        )
+    except OSError:
+        repository = paper_root.parent
+
+    def relative(path: pathlib.Path) -> str:
+        try:
+            return str(path.resolve().relative_to(repository.resolve()))
+        except ValueError:
+            return str(path)
+
+    missing: list[str] = []
+    for directory in INPUT_DIRECTORIES:
+        root = paper_root / directory
+        if not root.is_dir():
+            continue
+        for path in root.rglob("*"):
+            if not path.is_file() or "__pycache__" in str(path):
+                continue
+            if relative(path) not in tracked and str(path) not in tracked:
+                missing.append(relative(path))
+    if not missing:
+        return ConformanceFinding(
+            paper_id, "inputs_tracked", 0, 0, ConformanceVerdict.SATISFIED,
+            "every input file under gold/, evidence/ and protocol/ is in the repository",
+        )
+    shown = ", ".join(sorted(missing)[:3])
+    return ConformanceFinding(
+        paper_id, "inputs_tracked", 0, len(missing), ConformanceVerdict.VIOLATED,
+        f"{len(missing)} input files exist on disk and not in git (e.g. {shown}); "
+        "artifacts derived from them cannot be regenerated or verified from a checkout",
+    )
+
+
+def _tracked_paths(papers_root: pathlib.Path) -> frozenset[str]:
+    """Tracked paths, asked of the repository containing `papers_root`.
+
+    Not of the working directory. Running `git ls-files` wherever the process
+    happens to be returns nothing outside a repository, which makes every file
+    look untracked and every paper look defective — a confident wrong answer
+    rather than an error, which is the worse of the two failure modes.
+    """
+
+    import subprocess
+
+    anchor = papers_root if papers_root.is_dir() else papers_root.parent
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(anchor), "ls-files", "--full-name", "."],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+    except OSError:
+        return frozenset()
+    if result.returncode != 0:
+        return frozenset()
+    prefix = pathlib.Path(anchor).name
+    return frozenset(f"{prefix}/{item}" if not item.startswith(prefix) else item
+                     for item in result.stdout.split())
+
+
 def check_papers(papers_root: pathlib.Path) -> tuple[ConformanceFinding, ...]:
     """Every declared quantity checked against what is on disk."""
 
     findings: list[ConformanceFinding] = []
+    tracked = _tracked_paths(papers_root)
     for protocol_path in sorted(papers_root.glob("*/protocol/PROTOCOL_V1.json")):
         paper_root = protocol_path.parent.parent
         protocol = _protocol(protocol_path)
@@ -132,6 +232,7 @@ def check_papers(papers_root: pathlib.Path) -> tuple[ConformanceFinding, ...]:
             declared_repeats = protocol.get("stochastic_repeats")
         for finding in (
             check_annotator_independence(paper_root, paper_id),
+            check_inputs_are_tracked(paper_root, paper_id, tracked),
             check_stochastic_repeats(paper_root, paper_id, declared_repeats)
             if isinstance(declared_repeats, int)
             else None,
@@ -234,7 +335,9 @@ def main(argv: Sequence[str] | None = None) -> int:
 __all__ = [
     "ConformanceFinding",
     "ConformanceVerdict",
+    "INPUT_DIRECTORIES",
     "check_annotator_independence",
+    "check_inputs_are_tracked",
     "check_papers",
     "KNOWN_VIOLATIONS",
     "check_stochastic_repeats",

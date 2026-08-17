@@ -160,3 +160,73 @@ def test_an_unchecked_requirement_is_not_a_stale_waiver() -> None:
     from orion.conformance import stale_waivers
 
     assert stale_waivers(()) == ()
+
+
+def test_untracked_inputs_are_a_violation_and_untracked_outputs_are_not(tmp_path) -> None:
+    """The distinction that makes this check usable rather than noisy.
+
+    An untracked output is ordinary — it regenerates from tracked inputs. An
+    untracked input breaks the derivation chain: the artifact derived from it
+    sits in the repository while the thing it came from does not, so nobody
+    outside the machine that produced it can regenerate or verify either.
+
+    Found on P3, where 32 annotation files existed locally with none tracked
+    while the adjudicated gold derived from them was tracked and modified. A
+    content hash over files that live on one machine fingerprints something
+    unrecoverable.
+    """
+
+    from orion.conformance import check_inputs_are_tracked
+
+    (tmp_path / "gold").mkdir()
+    (tmp_path / "results").mkdir()
+    (tmp_path / "gold" / "labels.json").write_text("{}")
+    (tmp_path / "results" / "run.jsonl").write_text("{}")
+
+    # Nothing tracked: the gold input is a violation.
+    absent = check_inputs_are_tracked(tmp_path, "PX", frozenset())
+    assert absent is not None and absent.verdict is ConformanceVerdict.VIOLATED
+    assert absent.observed == 1, "the output under results/ must not be counted"
+
+    # Input tracked: satisfied, even though the output still is not.
+    present = check_inputs_are_tracked(
+        tmp_path, "PX", frozenset({str(tmp_path / "gold" / "labels.json")})
+    )
+    assert present is not None and present.verdict is ConformanceVerdict.SATISFIED
+
+
+def test_the_tracked_inputs_check_discriminates_across_the_real_papers() -> None:
+    """Four papers satisfied and one violated is the shape that keeps a checker
+    alive. One that flagged every paper would be switched off the same day."""
+
+    findings = [
+        item for item in check_papers(PAPERS) if item.requirement == "inputs_tracked"
+    ]
+    if not findings:
+        import pytest
+
+        pytest.skip("no papers in this checkout")
+    verdicts = {item.verdict for item in findings}
+    assert ConformanceVerdict.SATISFIED in verdicts, "nothing passes; not discriminating"
+
+
+def test_the_verdict_does_not_depend_on_how_the_path_was_spelled() -> None:
+    """`git ls-files` yields repository-relative paths. Comparing raw strings
+    worked only when the caller happened to pass a relative root; with an
+    absolute one every file looked untracked and all five papers reported
+    VIOLATED.
+
+    A checker whose verdict depends on how its argument was spelled is the same
+    ambient-state dependency this file's own tests were fixed for, and it is the
+    kind that produces a confident wrong answer rather than an error.
+    """
+
+    relative = check_papers(pathlib.Path("papers"))
+    absolute = check_papers(PAPERS)
+    if not relative or not absolute:
+        import pytest
+
+        pytest.skip("no papers in this checkout")
+    assert {(item.paper_id, item.requirement, item.verdict) for item in relative} == {
+        (item.paper_id, item.requirement, item.verdict) for item in absolute
+    }
