@@ -242,14 +242,22 @@ reports **21/24** (0.875), macro F1 **0.875**, confidence MEDIUM 9 / HIGH 15, vi
 Recounting the raw `results.jsonl` independently reproduces 21/24 and the
 MEDIUM/HIGH split, so the merged artifact is self-consistent.
 
-The commit history explains the gap: `1061d72` recorded 0/24 (all LOW confidence)
-against `https://api2.cmkey.cn/v1`; `688fe74`, titled "honest evidence re-run",
-recorded 21/24 against the local endpoint. The comment's 24/24 matches **neither**
-merged state. #212 already quarantined that report as `UNBOUND_EXECUTION_REPORT`;
-what is added here is that the honest re-run has since landed and gives it a
-definitive value. The comment remains uncorrected on the issue that is scoped to
-closing #8's dependencies, so a reader of #159 takes away a perfect score the
-repository's own evidence contradicts.
+Two merged states exist for this campaign. `1061d72` recorded 0/24, all LOW
+confidence, endpoint `https://api2.cmkey.cn/v1`. `688fe74`, titled "honest evidence
+re-run", recorded 21/24, endpoint `http://127.0.0.1:8765`, and is what `main`
+carries. The comment's figure matches neither.
+
+Which run the comment describes is **not determinable from the repository**. It may
+describe the cmkey run whose merged record is 0/24, an unrecorded third run, or a
+mis-transcription; nothing in the tree distinguishes these. The numbers and
+endpoints above are stated as facts and the mapping is left open, for the same
+reason the subject binding is left at `CANNOT_CHECK`.
+
+#212 already quarantined the 24/24 report as `UNBOUND_EXECUTION_REPORT`, so it
+already carries no empirical authority. What is added here is only that the honest
+re-run has since landed and supplies a verified value, 21/24, to set against it.
+The comment remains uncorrected on the issue scoped to closing #8's dependencies,
+so a reader of #159 still takes away a perfect score.
 
 **On the keyless route.** `AUTORESEARCHBENCH_WIDE_KEYLESS_PROBE_V1.json` records
 `candidate: "ORION keyless arXiv public-provider probe"` with `total_tokens: 0` and
