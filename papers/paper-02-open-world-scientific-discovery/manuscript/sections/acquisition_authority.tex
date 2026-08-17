@@ -29,6 +29,20 @@ $A$ and may recommend a local stop, but it cannot by itself delete an unresolved
 obligation in $O_t$.  This is the interface at which Paper II locates its
 candidate residual contribution.
 
+\begin{figure}[t]
+\centering
+\input{figures/P2-7_acquisition_authority}
+\caption{\textbf{Figure P2-7.} Acquisition mechanisms are intentionally
+composable: lexical/metadata augmentation, reasoning-aware or hybrid retrieval,
+field-aware selective fetching, citation expansion and continuation signals may
+all improve what is acquired.  Their outputs update evidence and typed
+obligations, but a separate authority layer controls route stop, open or
+\texttt{CANNOT\_CHECK} states and task closure.  The figure therefore locates the
+candidate ORION residual at the meaning of acquisition outcomes rather than at a
+claim to have invented the strongest retriever.}
+\label{fig:p2-7}
+\end{figure}
+
 \subsection{Absorbing strong acquisition mechanisms}
 
 The acquisition layer is intentionally donor-composable.  SAGE shows that
