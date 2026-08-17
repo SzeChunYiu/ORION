@@ -1,0 +1,113 @@
+{
+  "schema_version": "orion.publication-protocol.v1",
+  "paper_id": "P4",
+  "protocol_id": "P4.partial-evidence-acquisition.v2",
+  "protocol_status": "DESIGN_FROZEN",
+  "outcome_accessed": false,
+  "incremental_over_protocol": "P4.protected-authority.v2",
+  "v1_protocol_mutated": false,
+  "p4_v2_mutated": false,
+  "p4_v2_readiness": "PEER_REVIEW_READY",
+  "local_evidence_authority": "LOCAL_ENGINEERING_ONLY",
+  "requires_new_execution_freeze": true,
+  "authority_cap": "PLANNER_CAN_NEVER_AUTHORIZE",
+  "mechanism_id": "defeater-directed-protected-evidence-acquisition",
+  "adoption_decision": "ADAPT",
+  "primary_hypothesis": {
+    "id": "P4.PEA.H1",
+    "text": "Under a frozen partial-evidence action budget and unchanged non-escalating authority lattice, defeater-directed protected acquisition reduces unresolved critical authority risk versus static P4 V2 blocking without increasing false authority promotion.",
+    "primary_metric": "false_authority_promotion_rate",
+    "direction": "safety_then_resolution",
+    "safety_guard": "false_authority_promotion_delta <= 0 and clean_coverage_delta >= 0"
+  },
+  "secondary_hypotheses": [
+    {
+      "id": "P4.PEA.H2",
+      "text": "Correct next protected action is selected over cheaper decoys and unprotected substitutes."
+    },
+    {
+      "id": "P4.PEA.H3",
+      "text": "Absence of an admissible protected action yields CANNOT_CHECK rather than manufactured AUTHORIZE."
+    }
+  ],
+  "task_families": [
+    "wrong_source_ambiguity",
+    "pooled_support_ambiguity",
+    "citation_without_influence",
+    "checker_independence_unknown",
+    "evaluator_epoch_uncertain",
+    "conflicting_sources",
+    "evidence_unavailable",
+    "clean_no_acquisition",
+    "decoy_cheap_non_discharging",
+    "expensive_protected_vs_cheap_unprotected"
+  ],
+  "baselines": [
+    "p4_v2_static_authority_gate",
+    "greedy_cheapest_action",
+    "confidence_score_verifier_with_tools",
+    "fire_retrieve_or_verify",
+    "source_aware_verification",
+    "random_valid_action",
+    "oracle_action_selection_ceiling_non_runnable"
+  ],
+  "ablations": [
+    "allow_unprotected_action_to_discharge_protected_defeater",
+    "planner_output_directly_authorizes",
+    "no_custody_check",
+    "no_defeater_action_binding",
+    "cost_only_selection",
+    "confidence_only_selection",
+    "posthoc_evaluator_action_after_outcome",
+    "candidate_modifies_action_registry",
+    "no_cannot_check_when_no_valid_action"
+  ],
+  "metrics": {
+    "primary": ["false_authority_promotion_rate", "clean_authority_coverage"],
+    "secondary": [
+      "unnecessary_action_rate",
+      "correct_action_selection",
+      "protected_evidence_cost_to_resolution",
+      "correct_cannot_check_rate",
+      "unresolved_critical_defeaters_at_terminal",
+      "action_registry_tamper_detection"
+    ]
+  },
+  "resource_policy": "Every runnable policy shares the frozen action registry, cost envelope, authority lattice, evaluator identity and hidden labels. The planner may choose among admissible actions only.",
+  "exclusion_policy": "No case is removed after planner choice. Missing protected evidence or host yields CANNOT_CHECK and remains in the denominator.",
+  "statistics": {
+    "unit": "paired partial-evidence case",
+    "interval": "Wilson 95% intervals for rates; paired percentile bootstrap for matched differences",
+    "stochastic_repeats": 1,
+    "multiplicity": "Single primary false-promotion guard; Holm correction for secondary action-selection comparisons",
+    "practical_margin": {
+      "false_promotion_max_increase": 0.0,
+      "clean_coverage_min_delta": 0.0,
+      "cost_reduction_fraction": -0.1
+    }
+  },
+  "access_policy": {
+    "hidden_labels": true,
+    "evaluator_custody": "independent_protected_host",
+    "access_logging": true,
+    "search_contamination_policy": "candidate cannot observe attack labels, holdout labels, gold terminals, or planner-private protected evidence; all accesses logged"
+  },
+  "execution_bindings": {
+    "subject_revision": "UNBOUND",
+    "evaluator_hash": "UNBOUND",
+    "evaluation_epoch": "UNBOUND",
+    "split_hashes": ["UNBOUND"],
+    "dataset_revisions": ["UNBOUND"],
+    "baseline_config_hashes": ["UNBOUND"]
+  },
+  "plots": [
+    "PEA-1 unresolved critical defeaters vs action budget",
+    "PEA-2 false-promotion vs resolution frontier",
+    "PEA-3 cost of protected acquisition to terminal"
+  ],
+  "tables": [
+    "PEA-T1 family gold and discharge map",
+    "PEA-T2 baseline/ablation comparison",
+    "PEA-T3 CANNOT_CHECK taxonomy"
+  ]
+}

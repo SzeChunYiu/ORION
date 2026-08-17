@@ -1,0 +1,37 @@
+{
+  "schema_version": "orion.p2.issue-157-keyless-backend-probe.v1",
+  "issue": 157,
+  "authority": "CONNECTIVITY_PROBE_NOT_MATCHED_CAMPAIGN",
+  "arxiv_api_called": false,
+  "claim_scope": "three_task_keyless_backend_reachability_not_official_wide",
+  "public_split": {
+    "source": "evidence/ci_mirror/p2-autoresearchbench-wide-keyless.zip :: wide_public.jsonl",
+    "sha256": "af795b78a53a805e972d6574e441bfe9e80be4077cf6c95e73d9b2a0b43f43ae",
+    "n_records": 400,
+    "tasks_probed": ["arb-wide-0001", "arb-wide-0002", "arb-wide-0003"],
+    "questions_reproduced": false
+  },
+  "backends": ["openaire", "dblp", "crossref"],
+  "http": {
+    "ok": 9,
+    "not_ok": 0,
+    "calls": 9
+  },
+  "identity_bridge": {
+    "official_wide_scorer_requires": "bare unversioned arXiv ids",
+    "openaire_arxiv_id_regex_matches": 0,
+    "dblp_arxiv_id_regex_matches": 0,
+    "dblp_hit_total_sum": 0,
+    "crossref_items_with_doi": 30,
+    "crossref_naive_arxiv_regex_matches": 18,
+    "crossref_naive_regex_is_identity_bridge": false,
+    "note": "The Wide comparison adapter extracts arXiv ids with (\\d{4}\\.\\d{4,5}). Applied to Crossref JSON that pattern matches DOI/ISSN digit groups (e.g. 2026.37053, 1048.2026), not scorer-native arXiv identifiers. OpenAIRE and DBLP returned no regex matches on these three public tasks; DBLP reported hit_total=0."
+  },
+  "not_claimed": [
+    "matched ORION-vs-baseline Wide result",
+    "official Wide IoU from this probe",
+    "arXiv identity recovered from OpenAIRE/DBLP/Crossref",
+    "positive external discovery"
+  ],
+  "tmp_receipt": "/tmp/paper-157-wide/keyless_backend_probe/KEYLESS_BACKEND_PROBE.json"
+}

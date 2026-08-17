@@ -1,0 +1,31 @@
+{
+  "document_hash": "50c25acffca962f98e9ff440a51464dfd433ad3d67c13a31060710d61ba2cb4a",
+  "receipt": {
+    "anchor": {
+      "commit_oid": "7983401847ea2b33706aacbf6e45b6bc63a60d0d",
+      "git_object_format": "sha1",
+      "repository_identity": "github.com/SzeChunYiu/ORION",
+      "tree_oid": "fd86b448b04e27ccd7ecc2372f1f391e6200c567"
+    },
+    "ci_evidence": {
+      "conclusion": "SUCCESS",
+      "head_sha": "7983401847ea2b33706aacbf6e45b6bc63a60d0d",
+      "run_id": "31946971360",
+      "workflow_name": "ci"
+    },
+    "declaration": {
+      "declared_at": "2026-08-16T12:25:27Z",
+      "declared_terminal": "PHASE_1_CORE_TECHNICALLY_CLOSED",
+      "declaring_artifact": "issue/75",
+      "declaring_reference": "issuecomment-5307421385",
+      "declaring_system": "github.com/SzeChunYiu/ORION"
+    },
+    "derivation_rule": {
+      "rule_id": "PHASE_1_DERIVED_SUBJECT",
+      "statement": "A repository subject S is Phase-1-derived iff the receipt's anchor commit is an ancestor of S.commit_oid, evaluated at audit time. Ancestry is necessary and not sufficient for Phase-2 closure.",
+      "sufficient_for_phase2_closure": false
+    }
+  },
+  "receipt_hash": "cce797d9f59cd9452e41aac9110575505c430b909e80fab05e8e7f531a2874b8",
+  "schema": "Phase1TerminalReceipt.v1"
+}

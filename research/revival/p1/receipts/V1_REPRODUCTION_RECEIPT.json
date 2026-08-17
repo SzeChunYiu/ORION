@@ -1,0 +1,160 @@
+{
+  "archive": {
+    "cannot_check_reasons_nonempty": 0,
+    "cannot_check_records": 0,
+    "n_cases": 48,
+    "n_scored_records": 2880,
+    "n_systems": 12,
+    "repeats_per_system_case": [
+      5
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "statuses": {
+      "SCORED": 2880
+    },
+    "subject_revisions": [
+      "0cf4e8d82771252de94be8c696a3f39fd3191019"
+    ],
+    "suite_fingerprints": [
+      "21b461d89280631b93b766d6fb000c7f9f5fbeccee7cb6664f238c2c5c8e6420"
+    ],
+    "system_ids": [
+      "arex_like_recursive_audit_followup",
+      "full_reset_instead_of_dependency_reopen",
+      "generic_retry_instead_of_typed_reframe",
+      "iris_like_information_state_revision",
+      "orion_full",
+      "orion_live_provider",
+      "orion_without_explicit_M",
+      "orion_without_explicit_W",
+      "orion_without_mechanic_self_audit",
+      "scion_like_dependency_execution_plan",
+      "static_react_tool_workflow",
+      "tree_search_iterative_research"
+    ]
+  },
+  "artifacts": {
+    "P1-T2.json": {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/results/P1-T2_baseline_ablation_results.json",
+      "sha256": "28945162ede36e85f8f662dbef59d51d0623b5317c696db068c5303aed768b4a"
+    },
+    "P1-T2.md": {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/results/P1-T2_baseline_ablation_results.md",
+      "sha256": "8bcc750750c50150d1e5a3defb708ca6970cf693768f9c109c0754e3165bd176"
+    },
+    "P1-T3.json": {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/results/P1-T3_failure_taxonomy.json",
+      "sha256": "bfb6fe00b0e12d3777e3761489e265d0a2d19547c56e89099f445a938c5842ae"
+    },
+    "P1-T3.md": {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/results/P1-T3_failure_taxonomy.md",
+      "sha256": "df6c07150f68ab89bf0c4ccca8d909244356c135d409745c3db82a584ec062a7"
+    },
+    "PROTOCOL_V1.json": {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/protocol/PROTOCOL_V1.json",
+      "sha256": "91d5dca84d927ccb5cc5a54fece12502f23c8cba22f8eb8e5a48377539eca0b7"
+    },
+    "test_runs.jsonl": {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_runs.jsonl",
+      "sha256": "83cc652ce8a6dbeab6cb664af42ca36dee2704ef58ee7e6ea32cd060ea9fc17e"
+    },
+    "test_scored.jsonl": {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl",
+      "sha256": "f37db6247dd1f5883e443b6d7b454e099759cb26baa3e09f74e7fd275e4d7f7b"
+    }
+  },
+  "blockers": [],
+  "claimed_facts": {
+    "cannot_check_after_stale_table_repair": 0,
+    "h1_paired_difference": {
+      "high": 0.0,
+      "low": 0.0,
+      "point": 0.0
+    },
+    "live_missed_reframe": {
+      "cases": 32,
+      "trials": 160
+    },
+    "live_wrong_responsibility": {
+      "cases": 16,
+      "trials": 80
+    },
+    "n_cases": 48,
+    "orion_full_abstention": {
+      "cases": 47,
+      "trial_denominator": 240,
+      "trials": 235
+    },
+    "orion_full_root_success": {
+      "n": 48,
+      "rate": 0.0208,
+      "successes": 1
+    },
+    "repeats_per_case": 5,
+    "scored_records": 2880,
+    "suite_fingerprint_prefix": "21b461d8",
+    "tied_with_arex_like": true,
+    "v1_underpowered_for_plus_0_05": true
+  },
+  "comparator": {
+    "majority_root_success_cases": 1,
+    "n_cases": 48,
+    "system_id": "arex_like_recursive_audit_followup"
+  },
+  "h1": {
+    "h_r6_majority_masks_seed_gains": false,
+    "high": 0.0,
+    "low": 0.0,
+    "matched_units": 48,
+    "metric": "root_success",
+    "point": 0.0,
+    "reduction": "MAJORITY",
+    "resamples": 10000,
+    "seed": 20260815,
+    "seed_mean_difference_point": 0.0,
+    "two_sided_p": 1.0
+  },
+  "issue": 278,
+  "main_head_at_reproduction": "09929f208f581cda6985575ca419a7181a1f03ba",
+  "orion_full": {
+    "abstention_cases_all_repeats": 47,
+    "abstention_trials": 235,
+    "failure_modes": {
+      "ABSTENTION": 235,
+      "MISSED_REFRAME": 5
+    },
+    "majority_root_success_cases": 1,
+    "n_cases": 48,
+    "n_trials": 240,
+    "rate": 0.020833333333333332,
+    "rate_4dp": 0.0208
+  },
+  "orion_live_provider": {
+    "failure_mode_cases": {
+      "MISSED_REFRAME": 32,
+      "WRONG_RESPONSIBILITY": 16
+    },
+    "failure_modes": {
+      "MISSED_REFRAME": 160,
+      "WRONG_RESPONSIBILITY": 80
+    },
+    "n_trials": 240
+  },
+  "power": {
+    "frozen_h1_margin": 0.05,
+    "half_width_p05": 0.14144821675952146,
+    "licenses_h1_superiority": false,
+    "n": 48,
+    "tier": "BELOW_TIER_D",
+    "underpowered": true
+  },
+  "schema_version": "orion.p1.v1-reproduction-receipt.v1",
+  "v1_files_mutated": false,
+  "verdict": "VERIFIED"
+}

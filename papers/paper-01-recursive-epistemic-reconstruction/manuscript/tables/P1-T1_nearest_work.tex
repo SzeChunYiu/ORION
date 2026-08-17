@@ -1,12 +1,12 @@
-% Table P1-T1: Nearest-work mechanism matrix (34 rows)
-% Generated from evidence/NEAREST_WORK_MATRIX_V2.md (2026-08-16 retrieval pass)
-% Dispositions: ADOPT 19 · ADAPT 4 · COMPOSE 7 · DEFER 3 · REJECT 1
+% Table P1-T1: Nearest-work mechanism matrix (36 rows)
+% Generated from evidence/NEAREST_WORK_MATRIX_V2.md (2026-08-16 retrieval pass; closure pass 2026-08-17)
+% Dispositions: ADOPT 19 · ADAPT 4 · COMPOSE 7 · DEFER 5 · REJECT 1
 
 \newcolumntype{N}[1]{>{\raggedright\arraybackslash\fontsize{6.4pt}{7.8pt}\selectfont}p{#1}}
 
 {\fontsize{6.4pt}{7.8pt}\selectfont
 \begin{longtable}{N{0.62in}N{1.14in}N{1.90in}N{0.42in}N{2.42in}}
-  \caption{Nearest-work mechanism matrix: 34 mechanisms, dispositions, and their effect on ORION's claim. Every arXiv identifier was resolved to a live abstract page and cross-checked for title/author/date before entry; rows marked \lbrack body-checked\rbrack\ were verified against the paper's full text. Full source: \texttt{evidence/NEAREST\_WORK\_MATRIX\_V2.md}.}
+  \caption{Nearest-work mechanism matrix: 36 mechanisms, dispositions, and their effect on ORION's claim. Every arXiv identifier was resolved to a live abstract page and cross-checked for title/author/date before entry; rows marked \lbrack body-checked\rbrack\ were verified against the paper's full text. Full source: \texttt{evidence/NEAREST\_WORK\_MATRIX\_V2.md}.}
   \label{tab:P1-T1}\\
   \toprule
   Mechanism & Nearest work & What it does & Disp. & Effect on ORION's claim \\
@@ -52,10 +52,12 @@
   Post-hoc dependency and execution graph & GRADE \cite{spanlevel2026}\textsuperscript{b} (Zhao, 2026) & Run graph with execution and dependency edges for diagnosis & DEFER & No runtime invalidation or reopening; no delta effect \\
   Critic agent: causal questioning and falsification & AHOIS \cite{selfimproving2026}\textsuperscript{c} (Zeng et al., 2026) & Interrogates hypotheses via causal questioning, counterexamples, falsification criteria & COMPOSE & Falsification-criteria generation is distinct from typed coordinate revision \\
   Project--agent--resource collaboration layer & Clarus (Guo et al., 2026) & Multi-phase auditable research-process organization & DEFER & Organizational layer; no delta effect \\
+	  Aligned state checkpoints with rewind/resume & AgentRewind \cite{agentrewind2026} (Zhuang et al., 2026) & Snapshots agent context + controlled environment; rewinds to recoverable state & DEFER & State recovery to a checkpoint, no typed failure-responsibility taxonomy; no P1.D2 effect \\
+	  Executable-state transition with re-anchoring & ScienceFlow \cite{scienceflow2026} (Zhao et al., 2026) & Re-anchors ML-research agent's executable state under evidence-aware controller & DEFER & Rebuilds \emph{executable state}, not a formulation-coordinate rewrite gated by typed responsibility; no P1.D2 effect \\
 \end{longtable}
 }
 
 \par\medskip
-\noindent\textit{Dispositions:} \textbf{ADOPT} 19 (mechanism absorbed; stripped from novelty) \textperiodcentered\ ADAPT 4 (mechanism absorbed with a stated variant) \textperiodcentered\ COMPOSE 7 (constrains the composition, not a parent) \textperiodcentered\ DEFER 3 (checked, not close; body unverified) \textperiodcentered\ REJECT 1 (withdrawn). Row total: 34.\\
-\noindent\textit{Verification gaps (stated, not papered over):} (1)~SCION checkpoint-failure reopening semantics unresolved---does not change any verdict, since EviGraph independently strikes P1.D3; (2)~MAST's 14 individual mode names not retrieved---if any names a formulation coordinate, the P1.D2 narrowing tightens further; (3)~surfaced-but-unfetched cluster (TRAIL, AEGIS, AgenTracer, ErrorProbe, REFLECT, span-level error localization, self-improving error diagnosis) unread---P1.D2 provisional against that family; (4)~absence claims are scoped to the stated function-only search space, not exhaustive 2026 coverage.\\
+\noindent\textit{Dispositions:} \textbf{ADOPT} 19 (mechanism absorbed; stripped from novelty) \textperiodcentered\ ADAPT 4 (mechanism absorbed with a stated variant) \textperiodcentered\ COMPOSE 7 (constrains the composition, not a parent) \textperiodcentered\ DEFER 5 (checked, not close; body unverified) \textperiodcentered\ REJECT 1 (withdrawn). Row total: 36.\\
+\noindent\textit{Verification gaps (stated, not papered over):} (1)~SCION checkpoint-failure reopening semantics---closed by full-text reading: runtime rollback is procedural-anomaly gated, not epistemic-formulation-change gated; EviGraph independently strikes P1.D3, so the gap changes no verdict; (2)~MAST mode names---retrieved from full text (Appendix A); none targets a formulation coordinate; P1.D2 narrowing does not tighten further; (3)~surfaced-but-unfetched cluster---retrieved and read; none attaches a permission to modify the formulation or search universe; P1.D2 safe against that family; (4)~fresh literature-closure pass---completed 2026-08-17: 8 papers from the 2608 cs.AI series checked; none attaches a responsibility-typed reformulation/authority licence; P1.D2 unaffected; (5)~absence claims scoped to the stated function-only search space, not exhaustive 2026 coverage.\\
 \textsuperscript{a} The AI Co-Scientist identifier (arXiv:2502.18864, \textit{Towards an AI co-scientist}, Gottweis et al., 2025) was verified; a journal version exists unverified and is not cited. \textsuperscript{b} GRADE \cite{spanlevel2026} is cited in the bibliography as span-level error localization (arXiv:2606.02060); the GRADE arXiv ID 2606.22741 is recorded in the matrix source. \textsuperscript{c} AHOIS (arXiv:2606.26722) is cited in the bibliography as self-improving error diagnosis (arXiv:2604.17658); both IDs recorded in the matrix source.

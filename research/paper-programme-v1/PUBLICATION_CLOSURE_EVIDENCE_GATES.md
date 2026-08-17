@@ -173,5 +173,6 @@ Gate 7 leftovers that #160 owns once scientific terminals stabilize: permanent D
 
 - Do not edit `JOURNAL_READINESS.md` on P3 (PR #270) or P5 (#102/#159) from this wave.
 - Do not mark P1 ready. Revival of H1 is #278, not this checklist.
-- Archives, journal conversion, cover letters, independent PDF audits: #160.
+- Archives, journal conversion, cover letters, independent PDF audits: #160 (`make journal-packages`).
+- Machine-readable status JSON that also refuses invented readiness: `research/publication/scoreboard.py` (landed on `main` while this wave was in flight). This gate remains the fail-closed CI check for false `PEER_REVIEW_READY` claims and for promoting underpowered P1 H1.
 - Programme master issue text: #97.

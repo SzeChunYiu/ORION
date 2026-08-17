@@ -1,0 +1,21 @@
+{
+  "schema_version": "orion.p1.causal-responsibility.disposition.v1",
+  "issue": 278,
+  "arxiv_fetched": false,
+  "rounds": 2,
+  "stop_rule_met_locally": true,
+  "dispositions": [
+    {"mechanism": "Who&When Pro", "arxiv": "2607.09996", "disposition": "COMPOSE"},
+    {"mechanism": "REFLECT", "arxiv": "2606.09071", "disposition": "ADAPT"},
+    {"mechanism": "Causal Agent Replay (CAR)", "arxiv": "2606.08275", "disposition": "ADAPT", "primary_source": "CANNOT_CHECK"},
+    {"mechanism": "AREX", "disposition": "COMPOSE"},
+    {"mechanism": "Iris", "disposition": "COMPOSE"},
+    {"mechanism": "EviGraph", "disposition": "COMPOSE"},
+    {"mechanism": "ARTS", "disposition": "COMPOSE"},
+    {"mechanism": "failure-attribution cluster", "disposition": "COMPOSE"},
+    {"mechanism": "P1.responsibility-diagnosability.v2 (#137)", "disposition": "ADOPT", "role": "substrate"},
+    {"mechanism": "one-shot LLM responsibility classifier", "disposition": "REJECT"}
+  ],
+  "residual": "intervention-supported causal responsibility coupled to scoped epistemic-action authority with explicit UNRESOLVED",
+  "paper_level_claim": false
+}

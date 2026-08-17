@@ -1,0 +1,160 @@
+{
+  "atomic_claim_text": "P1 H1 (root-success superiority vs strongest matched baseline) is NOT_SUPPORTED on the frozen TEST split (ORION 1/48).",
+  "bounded_claim_text": "The null is preserved. Mechanistic subclaims must not be rewritten as H1 support. n=48 is below required inferential n=385.",
+  "claim_id": "P1.H1",
+  "denominator": {
+    "cannot_check_or_invalid_handling": "offline H1 uses SCORED repeats; live-provider CANNOT_CHECK isolated to that system",
+    "eligible_n": 48,
+    "post_outcome_exclusions": 0,
+    "repeats_nested_not_inflating_n": true,
+    "unit": "case after majority reduction of 5 repeats"
+  },
+  "discrepancies": [
+    {
+      "id": "P1.strongest-baseline-identity",
+      "severity": "low",
+      "text": "Independent strongest baseline tree_search_iterative_research vs published comparator arex_like_recursive_audit_followup (tie-breaking may differ among equal 1/48 systems)."
+    }
+  ],
+  "high_severity_integrity": [],
+  "invalidation_reason": null,
+  "layers": {
+    "baseline_pressure": {
+      "details": {
+        "n": 48,
+        "rate": 0.020833333333333332,
+        "successes": 1,
+        "system_id": "tree_search_iterative_research"
+      },
+      "status": "PASS",
+      "summary": "In-battery strongest matched baseline ties ORION at 1/48. No external superiority campaign is claimed."
+    },
+    "denominator_statistics": {
+      "details": {
+        "n_records": 2880,
+        "orion_n": 48
+      },
+      "status": "PASS",
+      "summary": "2880=12 systems \u00d7 48 cases \u00d7 5 repeats; case is the unit. Live-provider CANNOT_CHECK records are not recoded as zeros for offline H1."
+    },
+    "holdout_cross_host": {
+      "status": "CANNOT_CHECK",
+      "summary": "No new hidden-shift holdout was run by this verifier. H1 stays NOT_SUPPORTED."
+    },
+    "independent_scorer": {
+      "status": "PASS",
+      "summary": "Independent majority reduction over 5 repeats; did not import orion.study.p1.tables."
+    },
+    "leakage_shortcut": {
+      "status": "PASS",
+      "summary": "Promoted mechanistic claims already record template-level leaks (66/66 framing phrase). H1 remains NOT_SUPPORTED; this verifier does not relabel the null as a positive."
+    },
+    "raw_artifact_replay": {
+      "details": {
+        "difference": 0.0,
+        "h1_status": "NOT_SUPPORTED",
+        "margin": 0.05,
+        "n_records": 2880,
+        "n_systems": 12,
+        "orion_abstained_scored_trials": 235,
+        "orion_n": 48,
+        "orion_rate": 0.020833333333333332,
+        "orion_successes": 1,
+        "orion_wilson": [
+          0.003687110977510649,
+          0.10899217995251861
+        ],
+        "statuses": {
+          "arex_like_recursive_audit_followup": {
+            "SCORED": 240
+          },
+          "full_reset_instead_of_dependency_reopen": {
+            "SCORED": 240
+          },
+          "generic_retry_instead_of_typed_reframe": {
+            "SCORED": 240
+          },
+          "iris_like_information_state_revision": {
+            "SCORED": 240
+          },
+          "orion_full": {
+            "SCORED": 240
+          },
+          "orion_live_provider": {
+            "SCORED": 240
+          },
+          "orion_without_explicit_M": {
+            "SCORED": 240
+          },
+          "orion_without_explicit_W": {
+            "SCORED": 240
+          },
+          "orion_without_mechanic_self_audit": {
+            "SCORED": 240
+          },
+          "scion_like_dependency_execution_plan": {
+            "SCORED": 240
+          },
+          "static_react_tool_workflow": {
+            "SCORED": 240
+          },
+          "tree_search_iterative_research": {
+            "SCORED": 240
+          }
+        },
+        "strongest_baseline": {
+          "n": 48,
+          "rate": 0.020833333333333332,
+          "successes": 1,
+          "system_id": "tree_search_iterative_research"
+        }
+      },
+      "status": "PASS",
+      "summary": "Raw test_scored.jsonl majority reduction reproduces ORION 1/48 root_success and H1 NOT_SUPPORTED."
+    }
+  },
+  "paper_id": "P1",
+  "protocol": {
+    "hash_sha256": "91d5dca84d927ccb5cc5a54fece12502f23c8cba22f8eb8e5a48377539eca0b7",
+    "id": "P1.hidden-formulation.v1",
+    "path": "papers/paper-01-recursive-epistemic-reconstruction/protocol/PROTOCOL_V1.json"
+  },
+  "raw_artifacts": [
+    {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl",
+      "present": true,
+      "role": "raw_record",
+      "sha256": "f37db6247dd1f5883e443b6d7b454e099759cb26baa3e09f74e7fd275e4d7f7b"
+    },
+    {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/results/P1-T2_baseline_ablation_results.json",
+      "present": true,
+      "role": "aggregate",
+      "sha256": "28945162ede36e85f8f662dbef59d51d0623b5317c696db068c5303aed768b4a"
+    },
+    {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/protocol/PROTOCOL_V1.json",
+      "present": true,
+      "role": "protocol",
+      "sha256": "91d5dca84d927ccb5cc5a54fece12502f23c8cba22f8eb8e5a48377539eca0b7"
+    }
+  ],
+  "record_id": "P1.H1.root-success-not-supported",
+  "record_sha256": "d1d6cef36aa99b0f7653ffcdf2a044e119fbd4b19170c9ff59045ba21e17014f",
+  "schema_version": "orion.scientific-result-verification.v1",
+  "scorers": {
+    "adjudication": [],
+    "agreement": "EXACT",
+    "independent_from_written_spec": true,
+    "independent_hash_sha256": "c867cc5be6cc55f80750053c54c2e19bd3a60d2a0ddd3756a551b6d388648c56",
+    "original_hash_sha256": "28945162ede36e85f8f662dbef59d51d0623b5317c696db068c5303aed768b4a"
+  },
+  "self_authorizing": false,
+  "subject": {
+    "commit": "0cf4e8d82771252de94be8c696a3f39fd3191019",
+    "evaluated_system_mutated": false,
+    "note": "verifier_tree=09929f208f581cda6985575ca419a7181a1f03ba",
+    "tree": "f6381095c7ee4b5c0aaf5a8494fdae483e5212da"
+  },
+  "verification_state": "BOUNDED_VERIFIED"
+}

@@ -1,0 +1,70 @@
+{
+  "ablations_that_must_fail_admission": [
+    "allow_compensation_across_dimensions",
+    "remove_worst_family_rule",
+    "remove_negative_history_recurrence_check",
+    "no_cross_domain_heldout",
+    "no_fresh_transfer",
+    "no_protected_evaluator_custody",
+    "fixed_scalar_weights_as_authority",
+    "drop_old_evaluation_families_after_improvement"
+  ],
+  "baselines": [
+    "average_score",
+    "replay_only",
+    "fresh_only_without_safety",
+    "p5_staged_acceptance",
+    "no_change_conservative",
+    "continual_optimizer_unavailable",
+    "oracle_pareto_ceiling"
+  ],
+  "coordinates_with": {
+    "independent_verification": 283,
+    "p5_fresh_transfer": 282,
+    "phase3_governed_operation": 209,
+    "phase4_research_programme": 210,
+    "revival_parent": 284
+  },
+  "does_not_authorize": [
+    "PHASE_3_GOVERNED_SELF_ORION_CLOSED",
+    "PHASE_4_SELF_SUSTAINING_RESEARCH_PROGRAM_CLOSED",
+    "GLOBAL_POSITIVE_SUPPORTED_without_multi_round_prospective_evidence"
+  ],
+  "issue": 285,
+  "local_evidence_authority": "ENGINEERING_ADMISSION_ONLY",
+  "min_prospective_rounds_for_global_positive_supported": 2,
+  "outcome_accessed": false,
+  "phase4_operation_authorized": false,
+  "primary_hypotheses": [
+    {
+      "id": "H-GP1",
+      "text": "Compared with scalar-score / replay-only / average-improvement acceptance, protected Pareto admission produces a higher rate of changes that remain beneficial under independent cross-domain fresh evaluation, with fewer hidden regressions."
+    },
+    {
+      "id": "H-GP2",
+      "text": "Immutable negative-history retrieval reduces repeated regression classes."
+    },
+    {
+      "id": "H-GP3",
+      "text": "Protected non-regression constraints do not collapse to total refusal."
+    },
+    {
+      "id": "H-GP4",
+      "text": "The Pareto set retains useful diversity rather than converging to one overly conservative solution."
+    }
+  ],
+  "protocol_id": "GlobalPositiveCertificate.v1",
+  "protocol_status": "DESIGN_FROZEN_TASKS_UNBOUND",
+  "requires_new_execution_freeze_before_outcome_access": true,
+  "schema_version": "orion.global-positive.protocol.v1",
+  "statistics": {
+    "cannot_check": "A CANNOT_CHECK result on a dimension declared mandatory for the candidate class blocks admission. It is never recoded as 0 or PASS.",
+    "interval": "Per-dimension effects and intervals are reported separately. No mean global score is a decision input.",
+    "multiplicity": "All frozen dimensions must pass. Selecting a flattering subset of objectives after outcomes is forbidden.",
+    "non_inferiority": "higher_better: delta >= -margin; lower_better: delta <= margin; fail_closed: PASS or block.",
+    "sequential": "Adaptive candidate arrival reuses this freeze. Weights and margins are not updated after any candidate outcome.",
+    "unit": "one candidate change evaluated on the frozen family portfolio",
+    "worst_family": "Safety and non-regression decisions use the worst family on that dimension. Family means are not authority."
+  },
+  "v1_protocol_mutated": false
+}

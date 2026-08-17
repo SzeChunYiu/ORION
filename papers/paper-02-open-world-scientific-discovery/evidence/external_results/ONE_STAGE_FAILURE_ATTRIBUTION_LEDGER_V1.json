@@ -1,0 +1,66 @@
+{
+  "allocator_architecture": "not_licensed_before_external_test",
+  "close_issue": false,
+  "close_reason": "Offline 390-task positivity cannot close #279. External Wide matched campaign is not yet executed; Deep bounded probe hit rate is 0.000.",
+  "deep": {
+    "benchmark": "AutoResearchBench Deep",
+    "earliest_stage": "CANDIDATE_GENERATION_MISS",
+    "exact_title_recoveries": 0,
+    "item_level_computable": true,
+    "items_empty_candidates": 36,
+    "judge_control_passed": true,
+    "n_items": 600,
+    "official_hit_rate": 0.0,
+    "official_hits": 0,
+    "reason": "Judge control passed; official hits 0; judge-free exact and substring recovery of reference titles from frozen candidates is 0. The failing stage is candidate generation, not judging, screening, or stopping.",
+    "source_records": [
+      "evidence/external_results/DEEP_ZERO_HIT_STAGE_ATTRIBUTION_2026-08-17.json",
+      "evidence/external_results/DEEP_OFFICIAL_ARCHIVE_V1.json"
+    ],
+    "substring_recoveries": 0,
+    "token_overlap_ge_0.5_recoveries": 8
+  },
+  "dominant_earliest_stage": "CANDIDATE_GENERATION_MISS",
+  "issue": 279,
+  "p2_v1_mutation": "forbidden",
+  "revival_family": "query_and_candidate_generation",
+  "rule": "Classify the earliest causal stage from retained traces. Do not average stages. Do not treat provider unavailability as a scientific zero.",
+  "schema_version": "orion.p2.one-stage-failure-attribution.v1",
+  "taxonomy": [
+    "QUERY_DERIVATION_MISS",
+    "CANDIDATE_GENERATION_MISS",
+    "RANKING_MISS",
+    "SCREENING_MISS",
+    "IDENTITY_DEDUP_ERROR",
+    "ROUTE_STOP_ERROR",
+    "TASK_STOP_ERROR",
+    "CENSORED_ROUTE",
+    "BUDGET_EXHAUSTION",
+    "OTHER_UNRESOLVED"
+  ],
+  "wide": {
+    "archive": "AUTORESEARCHBENCH_WIDE_KEYLESS_PROBE_V1.json",
+    "avg_iou": 0.005226,
+    "avg_recall": 0.020012,
+    "benchmark": "AutoResearchBench Wide",
+    "censored_route_census": {
+      "RATE_LIMITED": 52,
+      "SERVICE_ERROR": 2,
+      "rule": "HTTP 429 / service error is CENSORED_ROUTE (open obligation), never a silent drop and never evidence of absence.",
+      "total": 54
+    },
+    "claim_scope": "external_probe_not_full_multi_provider_orion",
+    "item_level_blocker": "Per-task candidate/query traces for the keyless Wide probe are not committed in the repository; only the official summary is.",
+    "item_level_computable": false,
+    "item_level_stage": "CANNOT_CHECK",
+    "n_tasks_attempted": 400,
+    "ok_traffic_consistent_with": "CANDIDATE_GENERATION_MISS",
+    "ok_traffic_n": 346,
+    "provider_status_counts": {
+      "OK": 346,
+      "RATE_LIMITED": 52,
+      "SERVICE_ERROR": 2
+    },
+    "reason": "346 provider-OK tasks scored avg_recall 0.020012 / avg_iou 0.005226; 54 tasks are censored-route obligations. Item-level confirmation requires retained traces."
+  }
+}
