@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Materialize and bind the P1 authority-value holdout without running any arm.
 
-The effective protocol is an immutable base plus an optional pre-confirmatory
-amendment.  The freezer binds the whole protocol chain so a later execution
-cannot silently evaluate the easier predecessor decision rule.
+The effective protocol is an immutable base plus zero or more pre-confirmatory
+amendments. The freezer binds the whole chain so a later execution cannot
+silently evaluate an easier predecessor decision rule.
 """
 
 from __future__ import annotations
@@ -21,6 +21,7 @@ from orion.study.p1_causal.authority_value_cases import (
     serialize_public,
     task_manifest,
 )
+from orion.study.p1_causal.authority_value_scoring import authority_critical_task
 
 ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_PROTOCOL = (
@@ -29,14 +30,17 @@ DEFAULT_PROTOCOL = (
     / "revival"
     / "p1"
     / "protocol"
-    / "P1.authority-value.v2.1.1.json"
+    / "P1.authority-value.v2.1.2.json"
 )
 SOURCE_PATHS = (
     "src/orion/study/p1_causal/authority_value_cases.py",
     "src/orion/study/p1_causal/authority_value_policies.py",
     "src/orion/study/p1_causal/authority_value_scoring.py",
     "research/revival/p1/P1_DONOR_ASSIMILATION_LEDGER_V1.json",
+    "research/revival/p1/P1_DONOR_ASSIMILATION_LEDGER_ROUND_B_V1.json",
+    "research/revival/p1/P1_DONOR_ASSIMILATION_COVERAGE_V1.json",
 )
+AMENDMENT_SCHEMA = "orion.publication-protocol-amendment.v1"
 
 
 def _sha(path: Path) -> str:
@@ -48,69 +52,75 @@ def _git_blob_sha(data: bytes) -> str:
     return hashlib.sha1(header + data).hexdigest()
 
 
-def load_effective_protocol(protocol_path: Path) -> tuple[dict[str, Any], dict[str, Any]]:
-    """Return effective protocol plus immutable chain identity.
-
-    Direct base protocols are accepted for development tooling.  Publication
-    freezing uses the amendment path by default.
-    """
-
+def _load_protocol_node(
+    protocol_path: Path,
+    *,
+    seen: frozenset[Path],
+) -> tuple[dict[str, Any], list[dict[str, str]], bytes]:
+    resolved = protocol_path.resolve()
+    if resolved in seen:
+        raise ValueError("authority-value protocol amendment cycle")
     raw = protocol_path.read_bytes()
     payload = json.loads(raw)
-    if payload.get("schema_version") != "orion.publication-protocol-amendment.v1":
+    rel = str(protocol_path.relative_to(ROOT))
+    node = {
+        "path": rel,
+        "protocol_version": str(payload.get("protocol_version", "")),
+        "sha256": hashlib.sha256(raw).hexdigest(),
+        "git_blob_sha": _git_blob_sha(raw),
+        "schema_version": str(payload.get("schema_version", "")),
+    }
+
+    if payload.get("schema_version") != AMENDMENT_SCHEMA:
         if payload.get("protocol_status") != "DESIGN_FROZEN":
             raise ValueError("authority-value protocol is not DESIGN_FROZEN")
         if payload.get("outcome_accessed") is not False:
             raise ValueError("authority-value protocol records outcome access")
-        identity = {
-            "kind": "base_only",
-            "base_path": str(protocol_path.relative_to(ROOT)),
-            "base_sha256": hashlib.sha256(raw).hexdigest(),
-            "base_git_blob_sha": _git_blob_sha(raw),
-            "effective_protocol_version": payload["protocol_version"],
-            "chain_sha256": hashlib.sha256(raw).hexdigest(),
-        }
-        return payload, identity
+        return copy.deepcopy(payload), [node], raw
 
     if payload.get("protocol_status") != "DESIGN_FROZEN":
         raise ValueError("authority-value amendment is not DESIGN_FROZEN")
     if payload.get("confirmatory_outcome_accessed") is not False:
         raise ValueError("authority-value amendment records confirmatory outcome access")
+
     base_rel = Path(str(payload["base_protocol_path"]))
     base_path = ROOT / base_rel
     base_raw = base_path.read_bytes()
-    base = json.loads(base_raw)
-    if base.get("protocol_status") != "DESIGN_FROZEN":
-        raise ValueError("amendment base is not DESIGN_FROZEN")
-    if base.get("outcome_accessed") is not False:
-        raise ValueError("amendment base records outcome access")
-    if base.get("protocol_version") != payload.get("base_protocol_version"):
-        raise ValueError("amendment base protocol version mismatch")
+    base_payload = json.loads(base_raw)
+    if base_payload.get("protocol_version") != payload.get("base_protocol_version"):
+        raise ValueError("amendment direct-base protocol version mismatch")
     actual_blob = _git_blob_sha(base_raw)
     if actual_blob != payload.get("base_protocol_git_blob_sha"):
-        raise ValueError("amendment base Git blob identity mismatch")
+        raise ValueError("amendment direct-base Git blob identity mismatch")
 
-    effective = copy.deepcopy(base)
+    effective, nodes, material = _load_protocol_node(
+        base_path,
+        seen=seen | frozenset({resolved}),
+    )
     overrides = payload.get("overrides", {})
     if not isinstance(overrides, dict):
         raise ValueError("amendment overrides must be an object")
     for key, value in overrides.items():
         effective[key] = copy.deepcopy(value)
     effective["protocol_version"] = payload["protocol_version"]
-    effective["effective_amendment_path"] = str(protocol_path.relative_to(ROOT))
+    effective["effective_amendment_path"] = rel
     effective["confirmatory_outcome_accessed"] = False
+    return effective, [*nodes, node], material + b"\0" + raw
 
-    chain_material = base_raw + b"\0" + raw
+
+def load_effective_protocol(protocol_path: Path) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Return effective protocol plus immutable recursive-chain identity."""
+
+    effective, nodes, material = _load_protocol_node(protocol_path, seen=frozenset())
     identity = {
-        "kind": "base_plus_amendment",
-        "base_path": str(base_rel),
-        "base_sha256": hashlib.sha256(base_raw).hexdigest(),
-        "base_git_blob_sha": actual_blob,
-        "amendment_path": str(protocol_path.relative_to(ROOT)),
-        "amendment_sha256": hashlib.sha256(raw).hexdigest(),
-        "amendment_git_blob_sha": _git_blob_sha(raw),
+        "kind": "base_only" if len(nodes) == 1 else "base_plus_amendments",
+        "nodes": nodes,
+        "base_path": nodes[0]["path"],
+        "base_git_blob_sha": nodes[0]["git_blob_sha"],
+        "latest_path": nodes[-1]["path"],
+        "latest_git_blob_sha": nodes[-1]["git_blob_sha"],
         "effective_protocol_version": effective["protocol_version"],
-        "chain_sha256": hashlib.sha256(chain_material).hexdigest(),
+        "chain_sha256": hashlib.sha256(material).hexdigest(),
     }
     return effective, identity
 
@@ -128,6 +138,14 @@ def freeze(protocol_path: Path, outdir: Path) -> dict:
     if manifest["candidate_view_leak_count"] != 0:
         raise ValueError("candidate-view leak detected before arm execution")
 
+    subset = protocol.get("authority_critical_subset", {})
+    expected_authority_critical = int(subset.get("expected_n_from_registered_factor_grid", -1))
+    authority_critical_n = sum(authority_critical_task(task) for task in tasks)
+    if authority_critical_n != expected_authority_critical:
+        raise ValueError(
+            f"authority-critical denominator drift:{authority_critical_n}!={expected_authority_critical}"
+        )
+
     public_bytes = serialize_public(tasks)
     gold_bytes = serialize_gold(tasks)
     public_ids = [json.loads(line)["task_id"] for line in public_bytes.decode().splitlines()]
@@ -143,6 +161,7 @@ def freeze(protocol_path: Path, outdir: Path) -> dict:
         "primary_comparator": protocol["primary_hypothesis"]["primary_comparator"],
         "confirmatory_seed": seed,
         "n": expected_n,
+        "authority_critical_n": authority_critical_n,
         "public_sha256": hashlib.sha256(public_bytes).hexdigest(),
         "protected_gold_sha256": hashlib.sha256(gold_bytes).hexdigest(),
         "candidate_view_leak_count": 0,
