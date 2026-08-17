@@ -218,10 +218,16 @@ must be measured separately.
 The remaining external authorities are kept separate from the completed MetaSyn
 probe.  AutoResearchBench Wide's released scorer is deterministic and
 credential-free, while the official Deep metric uses the released LLM title
-judge.  A same-repository non-leaking preflight found neither a configured
-generic OpenAI-compatible judge key/base/model set nor \texttt{CMKEY\_API\_KEY},
-so official Deep scoring remains \texttt{CANNOT\_CHECK}; a declared exact-ID
-probe cannot substitute for that judge.  SAGE still lacks both the published
+judge.  That judge has now executed for the declared keyless public-arXiv
+probe: all 600 released Deep tasks were scored under the pinned judge prompt
+and model reached through a local protocol adapter, and the judge matched the
+reference title on 0 of them, a hit rate of 0.000.  A nine-case
+positive/negative judge control---verbatim, truncated, and case-variant
+matches alongside distinct-paper non-matches---passed in full before the
+archive was accepted, so a zero-match outcome is attributable to the probe
+rather than to an always-no-match judge failure.  This is a bounded external
+probe, not a matched ORION-versus-baseline Deep comparison, and no Deep
+superiority claim is drawn from it.  SAGE still lacks both the published
 retrieval corpus and an official evaluator.  The frozen three-route live
 campaign also remains \texttt{CANNOT\_CHECK}: its arXiv route is credential-free,
 but its two OpenAlex-backed route families require a funded

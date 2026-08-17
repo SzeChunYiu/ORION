@@ -36,7 +36,8 @@
     "metasyn_fn_ledger": "evidence/external_results/METASYN_SCREENING_FN_LEDGER_V1.json",
     "suite_facts": "manuscript/generated/suite_facts.json",
     "statistical_plan": "protocol/STATISTICAL_PLAN_V1.json",
-    "external_access_audit": "protocol/EXTERNAL_ACCESS_AUDIT_V1.json"
+    "external_access_audit": "protocol/EXTERNAL_ACCESS_AUDIT_V1.json",
+    "deep_official_archive": "evidence/external_results/DEEP_OFFICIAL_ARCHIVE_V1.json"
   },
   "macro_sources": [
     "generated/suite_facts.tex"
@@ -251,7 +252,7 @@
       "claim_id": "P2-C10",
       "region": "limitations",
       "manuscript_status": "ASSERTED",
-      "sentence": "Several external authorities remain unavailable rather than negative.",
+      "sentence": "Several external authorities remain partially unavailable rather than negative.",
       "support_type": "EXTERNAL_OFFICIAL",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [],
@@ -1053,17 +1054,34 @@
       "claim_id": "P2-R30",
       "region": "results",
       "manuscript_status": "ASSERTED",
-      "sentence": "A same-repository non-leaking preflight found neither a configured generic OpenAI-compatible judge key/base/model set nor CMKEY_API_KEY, so official Deep scoring remains CANNOT_CHECK; a declared exact-ID probe cannot substitute for that judge.",
+      "sentence": "That judge has now executed for the declared keyless public-arXiv probe: all 600 released Deep tasks were scored under the pinned judge prompt and model reached through a local protocol adapter, and the judge matched the reference title on 0 of them, a hit rate of 0.000.",
       "support_type": "EXTERNAL_OFFICIAL",
       "strength": "DESCRIPTIVE",
-      "numeric_bindings": [],
-      "support_artifacts": [
+      "numeric_bindings": [
         {
-          "artifact": "external_access_audit",
-          "key": "schema_version"
+          "artifact": "deep_official_archive",
+          "key": "official_metrics.total_items"
+        },
+        {
+          "artifact": "deep_official_archive",
+          "key": "official_metrics.hits"
+        },
+        {
+          "artifact": "deep_official_archive",
+          "key": "official_metrics.hit_rate"
         }
       ],
-      "note": "Deep judge credential absence is an authority failure, not a system outcome."
+      "support_artifacts": [
+        {
+          "artifact": "deep_official_archive",
+          "key": "authority"
+        },
+        {
+          "artifact": "deep_official_archive",
+          "key": "claim_scope"
+        }
+      ],
+      "note": "Bounded keyless-probe execution of the official Deep LLM title judge via a local protocol adapter; not a matched multi-provider ORION Deep comparison and not a Deep superiority claim."
     },
     {
       "claim_id": "P2-R31",
@@ -1381,6 +1399,50 @@
         }
       ],
       "note": "Promoted from NOT_ASSERTED_ARCHIVED_ONLY once the manuscript began reporting the probe (defect P2-D01's required fix). External official probe; bounded scope, not an ORION superiority result."
+    },
+    {
+      "claim_id": "P2-R43",
+      "region": "results",
+      "manuscript_status": "ASSERTED",
+      "sentence": "A nine-case positive/negative judge control--verbatim, truncated, and case-variant matches alongside distinct-paper non-matches--passed in full before the archive was accepted, so a zero-match outcome is attributable to the probe rather than to an always-no-match judge failure.",
+      "support_type": "EXTERNAL_OFFICIAL",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [],
+      "support_artifacts": [
+        {
+          "artifact": "deep_official_archive",
+          "key": "judge_control.verdict"
+        },
+        {
+          "artifact": "deep_official_archive",
+          "key": "judge_control.passed"
+        }
+      ],
+      "note": "Judge-control evidence for the official Deep title-judge archive; nine cases, no numeric slots in prose."
+    },
+    {
+      "claim_id": "P2-C14",
+      "region": "limitations",
+      "manuscript_status": "ASSERTED",
+      "sentence": "AutoResearchBench Deep official scoring has now executed through a local OpenAI-compatible adapter for the bounded keyless probe, with the judge control passing in full, but the matched multi-provider Deep comparison remains unexecuted.",
+      "support_type": "EXTERNAL_OFFICIAL",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [],
+      "support_artifacts": [
+        {
+          "artifact": "deep_official_archive",
+          "key": "authority"
+        },
+        {
+          "artifact": "deep_official_archive",
+          "key": "claim_scope"
+        },
+        {
+          "artifact": "deep_official_archive",
+          "key": "judge_control.passed"
+        }
+      ],
+      "note": "Limitations-region status sentence for the executed official Deep judge probe; execution and control outcome archived, matched comparison still unexecuted. No numeric slots in prose."
     }
   ],
   "non_claim_sentences": [

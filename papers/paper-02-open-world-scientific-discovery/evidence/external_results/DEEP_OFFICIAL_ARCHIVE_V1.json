@@ -1,0 +1,64 @@
+{
+  "schema_version": "orion.p2.autoresearchbench-deep-official-archive.v1",
+  "authority": "OFFICIAL_DEEP_LLM_TITLE_JUDGE",
+  "benchmark": "AutoResearchBench Deep",
+  "candidate": "ORION keyless public-arXiv probe",
+  "claim_scope": "external_probe_not_full_multi_provider_orion",
+  "pinned_upstream_commit": "a46c9bfb8968786f73f0a6a5b365b5384cd0f96d",
+  "release_partition": {
+    "task_type_field": "type",
+    "deep_tasks": 600,
+    "wide_tasks": 400
+  },
+  "coverage": {
+    "tasks_attempted": 600,
+    "official_records_evaluated": 600,
+    "judge_requests": 3000
+  },
+  "official_metrics": {
+    "total_items": 600,
+    "hits": 0,
+    "hit_rate": 0.0,
+    "target_hit_rate": 0.0
+  },
+  "judge_control": {
+    "control_file": "DEEP_JUDGE_CONTROL_2026-08-17.json",
+    "verdict": "CONTROL_PASSED",
+    "passed": 9,
+    "total": 9,
+    "positives_passed": 6,
+    "negatives_passed": 3
+  },
+  "content_bindings": {
+    "public_input_sha256": "46fd5500859dd1c8f2853316e186b6921b80d90cde7ba12ba1b8a5bbf86b9ef6",
+    "candidate_output_sha256": "dea22d63f6c953be13b674d8436902ae89ad725bd876b6d352d3466eae372e53",
+    "trace_sha256": "2d035be524b8c3dc1d437dd94b666c904b8d7d3ab4d4ad578a75e83ed94783b0",
+    "official_evaluation_sha256": "30f93827ead018421aa7a0b82d03be7eec0074904603d6071d6341ffab50c88d",
+    "judge_adapter": "anthropic_to_openai_adapter.py",
+    "judge_model": "glm-5.3",
+    "judge_endpoint": "https://api.z.ai/api/anthropic/v1/messages",
+    "judge_temperature": 0.5,
+    "max_candidates_judged_per_item": 5
+  },
+  "candidate_actions": {
+    "workflow_run_id": 31976116215,
+    "head_sha": "91fef308bbae4860d07a1e73935004055c5065e5",
+    "created_at": "2026-08-16T22:21:27Z",
+    "artifact_id": "from_ci_mirror_zip",
+    "artifact_name": "p2-autoresearchbench-deep-id-91fef308bbae4860d07a1e73935004055c5065e5",
+    "note": "Candidate execution completed with blocker: no judge credentials available. Official scoring completed via local adapter."
+  },
+  "scorer_actions": {
+    "scorer": "run_deep_official_scoring.py (executed via judge_checkpointed.py)",
+    "adapter": "anthropic_to_openai_adapter.py",
+    "completed_at": "2026-08-17T19:48:30.558621"
+  },
+  "interpretation": {
+    "completed": "official Deep LLM title judge scoring completed via local Anthropic\u2192OpenAI protocol adapter",
+    "not_claimed": [
+      "full multi-provider ORION execution",
+      "matched ORION-vs-baseline superiority",
+      "inferential superiority"
+    ]
+  }
+}
