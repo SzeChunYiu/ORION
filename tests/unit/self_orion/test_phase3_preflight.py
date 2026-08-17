@@ -16,6 +16,7 @@ from orion.self_orion.phase3_io import (
     BINDING_SCHEMA,
     PROTOCOL_SCHEMA,
     load_phase3_host_binding,
+    phase3_host_binding_to_dict,
     phase3_protocol_freeze_to_dict,
     write_phase3_host_binding,
 )
@@ -30,6 +31,7 @@ from orion.self_orion.phase3_preflight import (
     OrdinaryDevelopmentTaskKind,
     Phase3AuthorityBoundary,
     Phase3CycleTerminalState,
+    HOST_BINDABLE_IDENTITY_FIELDS,
     Phase3EscalationCondition,
     Phase3ExternalExpectation,
     Phase3PreflightStatus,
@@ -115,6 +117,8 @@ EXPECTATION = Phase3ExternalExpectation(
     phase2_evidence_receipt_hash=BOUND_B,
     external_promotion_authority_id="host:external-promotion-authority",
     protected_custody_lineage_hash="c" * 64,
+    sampling_epoch_id="phase3:epoch:2026-08-17",
+    issue_pool_fingerprint="d" * 64,
 )
 
 
@@ -162,35 +166,70 @@ def test_plausible_wrong_identities_are_rejected_by_comparison() -> None:
     assert "identity_mismatch:phase2_terminal_subject_revision_hash" in substituted.blockers
 
 
-def test_every_expectation_field_is_compared() -> None:
+PERTURBATIONS = {
+    "phase2_terminal_subject_revision_hash": "9" * 64,
+    "phase2_evidence_receipt_hash": "8" * 64,
+    "external_promotion_authority_id": "host:some-other-authority",
+    "protected_custody_lineage_hash": "7" * 64,
+    "sampling_epoch_id": "phase3:epoch:2020-01-01",
+    "issue_pool_fingerprint": "6" * 64,
+}
+
+
+def test_every_host_bindable_identity_is_compared() -> None:
     """Anti-recurrence device for the real failure class.
 
-    The Phase-2 defect persisted beside a comment stating its own lesson,
-    because a lesson in a comment does not propagate to sibling checks. This
-    test enumerates ``Phase3ExternalExpectation``'s fields reflectively and
-    perturbs each one, so a binding added later without a matching comparison
-    fails here instead of silently widening the gate.
+    The anchor is deliberately ``HOST_BINDABLE_IDENTITY_FIELDS`` — the set of
+    identities ``Phase3HostBinding.v1`` lets a host set — rather than
+    ``Phase3ExternalExpectation``'s own fields. Anchoring to the dataclass was
+    the first version of this test, and it was blind in exactly the way the
+    Phase-2 defect is blind: it could verify that every declared field was
+    compared, but not that every *bindable* identity had been declared.
+    ``sampling_epoch_id`` and ``issue_pool_fingerprint`` were host-bindable and
+    uncompared, and the test could not see them.
+
+    Both directions are now enforced, so a binding added to the schema without
+    a comparison fails here instead of silently widening the gate.
     """
 
-    perturbations = {
-        "phase2_terminal_subject_revision_hash": "9" * 64,
-        "phase2_evidence_receipt_hash": "8" * 64,
-        "external_promotion_authority_id": "host:some-other-authority",
-        "protected_custody_lineage_hash": "7" * 64,
-    }
-    field_names = [f.name for f in dataclasses.fields(Phase3ExternalExpectation)]
-    assert set(field_names) == set(perturbations), (
-        "Phase3ExternalExpectation gained or lost a field; add its perturbation "
-        "and confirm assess_phase3_preflight compares it"
-    )
+    expectation_fields = {f.name for f in dataclasses.fields(Phase3ExternalExpectation)}
+    binding_keys = set(phase3_host_binding_to_dict(repository_phase3_protocol_freeze()))
+    # Non-identity envelope metadata a host does not "bind" in the evidential sense.
+    envelope = {"schema", "protocol_id", "protocol_version", "boundary_id"}
+    bindable = binding_keys - envelope
 
-    for name in field_names:
-        skewed = dataclasses.replace(EXPECTATION, **{name: perturbations[name]})
+    assert set(HOST_BINDABLE_IDENTITY_FIELDS) == bindable, (
+        "Phase3HostBinding.v1 gained or lost a bindable identity; add it to "
+        "HOST_BINDABLE_IDENTITY_FIELDS and to Phase3ExternalExpectation"
+    )
+    assert set(HOST_BINDABLE_IDENTITY_FIELDS) <= expectation_fields, (
+        "a host-bindable identity has no field on Phase3ExternalExpectation, so "
+        "nothing can compare it"
+    )
+    assert set(HOST_BINDABLE_IDENTITY_FIELDS) == set(PERTURBATIONS)
+
+    for name in HOST_BINDABLE_IDENTITY_FIELDS:
+        skewed = dataclasses.replace(EXPECTATION, **{name: PERTURBATIONS[name]})
         report = assess_phase3_preflight(_fully_bound_freeze(), skewed)
         assert f"identity_mismatch:{name}" in report.blockers, (
-            f"{name} is declared on the expectation but never compared"
+            f"{name} is host-bindable but never compared"
         )
         assert report.status is Phase3PreflightStatus.COMPARE_AGAINST_EXTERNAL_EXPECTATION
+        assert not report.grants_phase3_operating_authority
+
+
+def test_a_substituted_issue_pool_cannot_reach_authorization() -> None:
+    """Step 1 requires the issue pool frozen before outcomes are observed.
+
+    A pool swapped after the freeze is well-formed and passes every shape
+    check, so only comparison catches it.
+    """
+
+    report = assess_phase3_preflight(
+        _fully_bound_freeze(issue_pool_fingerprint="e" * 64), EXPECTATION
+    )
+    assert report.status is Phase3PreflightStatus.COMPARE_AGAINST_EXTERNAL_EXPECTATION
+    assert "identity_mismatch:issue_pool_fingerprint" in report.blockers
 
 
 def test_expectation_itself_refuses_unbound_identities() -> None:

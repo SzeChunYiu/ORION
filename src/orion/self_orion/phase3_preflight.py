@@ -645,17 +645,44 @@ class Phase3ExternalExpectation:
     phase2_evidence_receipt_hash: str
     external_promotion_authority_id: str
     protected_custody_lineage_hash: str
+    # The sampling epoch and issue pool are host-bindable in
+    # ``Phase3HostBinding.v1`` and are therefore identities, not metadata. They
+    # were omitted from the first version of this object and stayed format-only
+    # -- the same defect, one level up: the completeness test was anchored to
+    # this dataclass's own fields, so it could not see a binding that had never
+    # been added to it. The anchor is now the host-binding schema itself, via
+    # ``HOST_BINDABLE_IDENTITY_FIELDS``.
+    sampling_epoch_id: str = "phase3:epoch:unbound"
+    issue_pool_fingerprint: str = UNBOUND_DIGEST
 
     def __post_init__(self) -> None:
         for digest in (
             self.phase2_terminal_subject_revision_hash,
             self.phase2_evidence_receipt_hash,
             self.protected_custody_lineage_hash,
+            self.issue_pool_fingerprint,
         ):
             if not _is_bound_digest(digest):
                 raise ValueError("host expectations must bind real SHA-256 identities")
         if not self.external_promotion_authority_id.strip():
             raise ValueError("host expectation requires a promotion authority identity")
+        if not self.sampling_epoch_id.strip() or self.sampling_epoch_id.endswith(":unbound"):
+            raise ValueError("host expectation requires a frozen sampling epoch")
+
+
+# Every host-bindable identity in ``Phase3HostBinding.v1``. A field named here
+# must appear on ``Phase3ExternalExpectation`` and must be compared in
+# ``assess_phase3_preflight``; ``test_every_host_bindable_identity_is_compared``
+# enforces both directions, so adding a binding to the schema without a
+# comparison fails the suite.
+HOST_BINDABLE_IDENTITY_FIELDS: tuple[str, ...] = (
+    "phase2_terminal_subject_revision_hash",
+    "phase2_evidence_receipt_hash",
+    "external_promotion_authority_id",
+    "protected_custody_lineage_hash",
+    "sampling_epoch_id",
+    "issue_pool_fingerprint",
+)
 
 
 class Phase3PreflightStatus(str, Enum):
@@ -903,6 +930,16 @@ def assess_phase3_preflight(
                 "protected_custody_lineage_hash",
                 boundary.protected_custody_lineage_hash,
                 expectation.protected_custody_lineage_hash,
+            ),
+            (
+                "sampling_epoch_id",
+                freeze.sampling_epoch_id,
+                expectation.sampling_epoch_id,
+            ),
+            (
+                "issue_pool_fingerprint",
+                freeze.issue_pool_fingerprint,
+                expectation.issue_pool_fingerprint,
             ),
         )
         if declared != expected
