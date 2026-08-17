@@ -22,8 +22,11 @@ from orion.study.p1_causal.necessity_cases import (
     RepairResponse,
 )
 from orion.study.p1_causal.necessity_engine import FrozenWorldSession
-from orion.study.p1_causal.necessity_policies import ABLATION_ARMS, RUNNABLE_ARMS
-from orion.study.p1_causal.necessity_scoring import aggregate_necessity_scores, score_necessity_world
+from orion.study.p1_causal.necessity_policies_v3 import ABLATION_ARMS, RUNNABLE_ARMS
+from orion.study.p1_causal.necessity_scoring import (
+    aggregate_necessity_scores,
+    score_necessity_world,
+)
 from orion.study.p1_causal.necessity_statistics import analyze_necessity_campaign
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -88,16 +91,26 @@ def _protected(payload: dict[str, Any]) -> NecessityProtectedWorld:
             (str(probe_id), ProbeResponse(str(response["observation"])))
             for probe_id, response in payload["response_by_probe"].items()
         ),
-        gold_minimal_repair_ids=tuple(str(item) for item in payload["gold_minimal_repair_ids"]),
-        gold_dependency_impact_ids=tuple(str(item) for item in payload["gold_dependency_impact_ids"]),
+        gold_minimal_repair_ids=tuple(
+            str(item) for item in payload["gold_minimal_repair_ids"]
+        ),
+        gold_dependency_impact_ids=tuple(
+            str(item) for item in payload["gold_dependency_impact_ids"]
+        ),
         hidden_shift=bool(payload["hidden_shift"]),
         negative_control=bool(payload["negative_control"]),
     )
 
 
 def load_worlds(world_dir: Path) -> tuple[NecessityWorld, ...]:
-    public_rows = [json.loads(line) for line in (world_dir / "WORLD_PUBLIC.jsonl").read_text().splitlines()]
-    protected_rows = [json.loads(line) for line in (world_dir / "PROTECTED_RESPONSE_MATRIX.jsonl").read_text().splitlines()]
+    public_rows = [
+        json.loads(line)
+        for line in (world_dir / "WORLD_PUBLIC.jsonl").read_text().splitlines()
+    ]
+    protected_rows = [
+        json.loads(line)
+        for line in (world_dir / "PROTECTED_RESPONSE_MATRIX.jsonl").read_text().splitlines()
+    ]
     if [row["task_id"] for row in public_rows] != [row["task_id"] for row in protected_rows]:
         raise ValueError("public/protected task order mismatch")
     return tuple(
@@ -153,8 +166,16 @@ def execute(world_dir: Path, execution_path: Path, outdir: Path) -> dict[str, An
             by_arm[score.arm_id].append(score)
 
         for policy in ABLATION_ARMS:
-            ablation_budget = 99.0 if policy.__name__ == "orion_with_unlimited_intervention_budget" else budget
-            session = FrozenWorldSession(world.public, world.protected, budget=ablation_budget)
+            ablation_budget = (
+                99.0
+                if policy.__name__ == "orion_with_unlimited_intervention_budget"
+                else budget
+            )
+            session = FrozenWorldSession(
+                world.public,
+                world.protected,
+                budget=ablation_budget,
+            )
             outcome = policy(session)
             score = score_necessity_world(world, outcome.to_payload())
             raw_rows.append(
@@ -184,7 +205,10 @@ def execute(world_dir: Path, execution_path: Path, outdir: Path) -> dict[str, An
     outdir.mkdir(parents=True, exist_ok=True)
     raw_path = outdir / "RAW_RESULTS.jsonl"
     raw_path.write_text(
-        "".join(json.dumps(row, sort_keys=True, separators=(",", ":")) + "\n" for row in raw_rows)
+        "".join(
+            json.dumps(row, sort_keys=True, separators=(",", ":")) + "\n"
+            for row in raw_rows
+        )
     )
     terminal = (
         "P1_MUTATION_NECESSITY_SUPPORTED"
@@ -206,9 +230,14 @@ def execute(world_dir: Path, execution_path: Path, outdir: Path) -> dict[str, An
             "runnable": False,
             "reason": "host-only protected response matrix / gold minimal repair ids",
         },
-        "claim_boundary": "CREDENTIAL_FREE_MECHANICAL_P1_NECESSITY_RESULT_ONLY__V1_H1_HISTORY_UNCHANGED__NO_MODEL_GENERAL_OR_OPEN_ENDED_SUPERIORITY",
+        "claim_boundary": (
+            "CREDENTIAL_FREE_MECHANICAL_P1_NECESSITY_RESULT_ONLY__"
+            "V1_H1_HISTORY_UNCHANGED__NO_MODEL_GENERAL_OR_OPEN_ENDED_SUPERIORITY"
+        ),
     }
-    (outdir / "RESULT.json").write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+    (outdir / "RESULT.json").write_text(
+        json.dumps(result, indent=2, sort_keys=True) + "\n"
+    )
     return result
 
 
