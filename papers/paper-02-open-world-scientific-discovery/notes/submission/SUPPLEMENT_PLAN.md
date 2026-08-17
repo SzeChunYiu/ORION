@@ -3,7 +3,7 @@
 Scientific terminal: `P2_NARROWED`.
 Primary target: *Information Processing & Management* (IP&M).
 
-The exact current IP&M supplementary-file size, format, anonymisation and declaration requirements were not authoritatively recovered in this lane. Do **not** carry forward the previous TMLR 100 MB/double-blind assumptions as if they were IP&M rules. Before upload, apply the current official IP&M author/submission instructions and then assemble the package below within those constraints.
+The current IP&M Guide for Authors was recovered and checked on 2026-08-17; the binding submission requirements are summarized in `IPM_SUBMISSION_REQUIREMENTS_2026-08-17.md`. Review is double anonymized, author details go on a separate title page, editable LaTeX source is required, and IP&M points LaTeX authors to the Elsevier CAS single-column template. The guide does not justify carrying forward the retired TMLR 100 MB supplement assumption. Assemble the package below under the live Editorial Manager file constraints at upload time.
 
 No item below is included unless it already exists in the repository. Unavailable future campaigns are listed as reopen/future-work items, not as missing evidence required by the narrowed paper.
 
@@ -79,7 +79,7 @@ Per `protocol/TABLE_P2-1_freeze_manifest.md`:
 5. `.github/workflows/p2-manuscript.yml` compiles the final manuscript and rejects unresolved citations/references; retain the PDF/log artifact for review.
 6. Visually inspect every rendered page/figure and resolve clipping, overflow, broken glyphs or unreadable labels.
 7. Repeat the primary-source nearest-work search within 14 days of the actual submission date. New material that changes the residual claim/baseline reopens the novelty gate.
-8. Apply the current official IP&M submission/template/anonymisation/declaration requirements. Do not infer them from the retired TMLR plan.
+8. Apply `IPM_SUBMISSION_REQUIREMENTS_2026-08-17.md`: separate anonymized manuscript and title page, editable source/CAS single-column wrapper, glossary, CRediT, separate figure captions, and author-approved generative-AI disclosure; re-check the live Editorial Manager fields for changes at upload time.
 9. Insert actual author/affiliation/corresponding-author metadata only from the authors or the live submission form; automation must not invent it.
 10. Confirm no licence-blocked material has been swept into the final supplement/archive.
 11. Mirror expiring raw external evidence into a durable archive where redistribution is permitted, especially the MetaSyn Actions artifact before its recorded 2026-09-15 expiry.
