@@ -6,7 +6,7 @@ import inspect
 import json
 from pathlib import Path
 
-from orion.study.p1_causal.necessity_policies import ABLATION_ARMS, RUNNABLE_ARMS
+from orion.study.p1_causal.necessity_policies_v3 import ABLATION_ARMS, RUNNABLE_ARMS
 import orion.study.p1_causal.necessity_scoring as scoring_module
 
 ROOT = Path(__file__).resolve().parents[4]
@@ -14,20 +14,21 @@ P1 = ROOT / "research" / "revival" / "p1"
 BASE = P1 / "protocol" / "P1.epistemic-mutation-necessity.v2.2.json"
 AMENDMENT_1 = P1 / "protocol" / "P1.epistemic-mutation-necessity.v2.2.1.json"
 AMENDMENT_2 = P1 / "protocol" / "P1.epistemic-mutation-necessity.v2.2.2.json"
+AMENDMENT_3 = P1 / "protocol" / "P1.epistemic-mutation-necessity.v2.2.3.json"
 FREEZER = P1 / "freeze_mutation_necessity_worlds.py"
 
 _spec = importlib.util.spec_from_file_location("p1_nc_freezer", FREEZER)
 assert _spec is not None and _spec.loader is not None
 freezer = importlib.util.module_from_spec(_spec)
-_freeze_spec = _spec.loader
-_freeze_spec.exec_module(freezer)
+_spec.loader.exec_module(freezer)
 
 
 def test_protocol_chain_is_frozen_before_confirmatory_world_access() -> None:
     base = json.loads(BASE.read_text())
     amendment_1 = json.loads(AMENDMENT_1.read_text())
     amendment_2 = json.loads(AMENDMENT_2.read_text())
-    effective, identity = freezer.load_effective_protocol(AMENDMENT_2)
+    amendment_3 = json.loads(AMENDMENT_3.read_text())
+    effective, identity = freezer.load_effective_protocol(AMENDMENT_3)
 
     assert base["protocol_version"] == "P1.epistemic-mutation-necessity.v2.2.0"
     assert base["outcome_accessed"] is False
@@ -38,7 +39,12 @@ def test_protocol_chain_is_frozen_before_confirmatory_world_access() -> None:
     assert amendment_2["base_protocol_git_blob_sha"] == freezer._git_blob_sha(
         AMENDMENT_1.read_bytes()
     )
-    assert effective["protocol_version"] == "P1.epistemic-mutation-necessity.v2.2.2"
+    assert amendment_3["base_protocol_version"] == amendment_2["protocol_version"]
+    assert amendment_3["confirmatory_outcome_accessed"] is False
+    assert amendment_3["base_protocol_git_blob_sha"] == freezer._git_blob_sha(
+        AMENDMENT_2.read_bytes()
+    )
+    assert effective["protocol_version"] == "P1.epistemic-mutation-necessity.v2.2.3"
     assert effective["fresh_world_plan"]["confirmatory_seed"] == 202608172211
     assert effective["fresh_world_plan"]["replication_seed"] == 202608172212
     assert effective["fresh_world_plan"]["confirmatory_seed"] != 30303
@@ -46,16 +52,22 @@ def test_protocol_chain_is_frozen_before_confirmatory_world_access() -> None:
     assert effective["fresh_world_plan"]["negative_control_n"] == 2402
     assert effective["fresh_world_plan"]["total_n"] == 2882
     assert effective["intervention_budget"]["units_per_task"] == 4
+    assert effective["primary_hypotheses"][0]["comparators"] == [
+        "active_voi_repair_parent",
+        "darc_r2act_dependency_parent",
+        "causalflow_minimal_counterfactual_parent",
+    ]
     assert identity["kind"] == "base_plus_amendments"
     assert [node["protocol_version"] for node in identity["nodes"]] == [
         "P1.epistemic-mutation-necessity.v2.2.0",
         "P1.epistemic-mutation-necessity.v2.2.1",
         "P1.epistemic-mutation-necessity.v2.2.2",
+        "P1.epistemic-mutation-necessity.v2.2.3",
     ]
 
 
 def test_protocol_arm_and_ablation_registries_match_code() -> None:
-    effective, _ = freezer.load_effective_protocol(AMENDMENT_2)
+    effective, _ = freezer.load_effective_protocol(AMENDMENT_3)
     frozen_runnable = tuple(
         item["id"]
         for item in effective["matched_arms"]
@@ -65,6 +77,7 @@ def test_protocol_arm_and_ablation_registries_match_code() -> None:
     assert set(effective["direct_ablations"]) == {
         item.__name__ for item in ABLATION_ARMS
     }
+    assert "causalflow_minimal_counterfactual_parent" in frozen_runnable
     assert "oracle_minimal_valid_ceiling" not in {
         item.__name__ for item in RUNNABLE_ARMS
     }
@@ -79,6 +92,7 @@ def test_independent_scorer_imports_neither_policies_nor_orion_licensing() -> No
         elif isinstance(node, ast.Import):
             imports.extend(alias.name for alias in node.names)
     assert not any(name.endswith("necessity_policies") for name in imports)
+    assert not any(name.endswith("necessity_policies_v3") for name in imports)
     assert not any(name.endswith("licensing") for name in imports)
 
 
@@ -99,3 +113,21 @@ def test_v222_strengthens_precision_without_relaxing_mechanism_or_seed() -> None
     assert effective_2["support_rule"] == effective_1["support_rule"]
     assert effective_2["matched_arms"] == effective_1["matched_arms"]
     assert effective_2["direct_ablations"] == effective_1["direct_ablations"]
+
+
+def test_v223_only_strengthens_parent_set_after_round_f_absorption() -> None:
+    effective_2, _ = freezer.load_effective_protocol(AMENDMENT_2)
+    effective_3, _ = freezer.load_effective_protocol(AMENDMENT_3)
+
+    assert effective_3["fresh_world_plan"] == effective_2["fresh_world_plan"]
+    assert effective_3["intervention_budget"] == effective_2["intervention_budget"]
+    assert effective_3["direct_ablations"] == effective_2["direct_ablations"]
+    assert effective_3["statistics"]["H1_superiority_margin_each_parent"] == effective_2[
+        "statistics"
+    ]["H1_superiority_margin_each_parent"]
+    assert effective_3["primary_hypotheses"][0]["comparators"][:-1] == effective_2[
+        "primary_hypotheses"
+    ][0]["comparators"]
+    assert effective_3["primary_hypotheses"][0]["comparators"][-1] == (
+        "causalflow_minimal_counterfactual_parent"
+    )
