@@ -15,6 +15,11 @@ refuses four distinct defect classes:
    manuscript number that disagrees with the archived value.
 4. ``OVERSTATED_STRENGTH`` -- a claim labelled ``CONFIRMATORY`` whose support is
    ``NONE_YET``, or a ``NONE_YET`` claim not held at ``CANNOT_CHECK``.
+5. ``DIGEST_MISMATCH`` -- a ``support_artifacts`` SHA-256 that does not appear
+   in the manuscript sentence, or a 64-hex digest in that sentence that is not
+   one of the bound artifact values.  Hex digests are excluded from numeric
+   slots on purpose; this class is the binding that exclusion would otherwise
+   skip.
 
 Two deliberate design decisions, both documented so they can be vetoed rather
 than discovered:
@@ -82,6 +87,10 @@ _NUMBER_RE = re.compile(
     r"(?<![A-Za-z0-9_.])(?<![A-Za-z0-9]-)-?\d{1,3}(?:,\d{3})+(?![A-Za-z0-9])"
     r"|(?<![A-Za-z0-9_.])(?<![A-Za-z0-9]-)-?\d+(?:\.\d+)?(?![A-Za-z0-9])"
 )
+
+# SHA-256 hex strings.  Intentionally not numeric slots (see _NUMBER_RE);
+# compared as exact identity against support_artifacts values.
+_DIGEST_RE = re.compile(r"\b[0-9a-fA-F]{64}\b")
 
 # Outcome vocabulary.  A sentence in a hard-fail region matching any of these
 # asserts a result and therefore needs a ledger entry.
@@ -598,6 +607,51 @@ def _check_bindings(
                     "ARTIFACT_KEY_MISSING",
                     f"{cid} support cites key {key!r} absent from {alias}",
                 )
+        _check_digest_bindings(cid, claim, found, payloads, report)
+
+
+def _check_digest_bindings(
+    cid: str,
+    claim: dict[str, Any],
+    found: str | None,
+    payloads: dict[str, Any],
+    report: Report,
+) -> None:
+    """Bind 64-hex SHA-256 strings that numeric slots deliberately ignore."""
+
+    expected: list[tuple[str, str, str]] = []
+    for support in claim.get("support_artifacts", []):
+        alias = support["artifact"]
+        key = support.get("key", "")
+        if alias not in payloads or not key:
+            continue
+        value = resolve_key(payloads[alias], key)
+        if isinstance(value, str) and _DIGEST_RE.fullmatch(value.strip()):
+            expected.append((alias, key, value.strip().lower()))
+    if not expected:
+        return
+    expected_set = {digest for _, _, digest in expected}
+    for source_name, text in (
+        ("manuscript", found),
+        ("ledger", claim["sentence"]),
+    ):
+        if text is None:
+            continue
+        observed = {match.group(0).lower() for match in _DIGEST_RE.finditer(text)}
+        for alias, key, digest in expected:
+            if digest not in observed:
+                report.fail(
+                    "DIGEST_MISMATCH",
+                    f"{cid} {source_name} sentence is missing SHA-256 {digest} "
+                    f"bound as {alias}:{key}",
+                )
+        extras = observed - expected_set
+        if extras:
+            report.fail(
+                "DIGEST_MISMATCH",
+                f"{cid} {source_name} sentence carries unbound SHA-256 "
+                f"{sorted(extras)}; bind them as support_artifacts or remove them",
+            )
 
 
 def _check_presence(

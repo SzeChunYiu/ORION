@@ -62,6 +62,7 @@ No network, no credentials, no third-party data, no monetary cost.
 | Emit the complete raw record and artifact sets | `python3 $PAPER/scripts/run_offline_companion.py --write-raw DIR` | 0 | none | `UNKNOWN_PENDING_RUN` |
 | Regenerate published tables and figures | `render_offline_results.py --check`, `render_offline_mechanisms.py --check`, `render_route_stop_oracle.py --check`, `render_table_p2_1.py --check` | 0 | none | `UNKNOWN_PENDING_RUN` |
 | Verify claims against artifacts | `python3 $PAPER/scripts/check_claim_ledger.py --check` | 0 | none | ~1 s (observed on the authoring host) |
+| Check query-count figure/table (Figure P2-2, Table P2-2) | `render_figure_p2_2.py --check`, `render_table_p2_2.py --check` | 0 | none | regenerates from archived `OFFLINE_MECHANISMS_V1.json` / `RESULTS_SUMMARY_V1.json`; ORION mean routes used 4.989744, protocol-driven comparator 3.0 |
 | Unit suite for this tier | `python3 -m pytest tests/unit/p2` | 0 | none | `UNKNOWN_PENDING_RUN` |
 
 Scale note: the record count is `frozen_run.n_result_records` in
@@ -98,9 +99,9 @@ Cannot be re-derived by a third party; the archive is the evidence.
 | Item | Status |
 | --- | --- |
 | Final live-provider result-bearing campaign: raw request/response bytes, timestamps, typed transport failures | Capture machinery exists and has been exercised. **Campaign not executed.** Request counts, wall-clock and monetary cost all `UNKNOWN_PENDING_RUN`. |
-| Live-provider cost/latency/query/token plots (Figure P2-2, Figure P2-7, Table P2-2 with intervals) | Blocked on the above. |
+| Live-provider cost/latency/query/token plots (Figure P2-2, Figure P2-7, Table P2-2 with intervals) | Figure P2-2 and Table P2-2 now report **offline query-count** resource metrics (operator re-scope 2026-08-17). Live monetary cost/wall-clock remain `UNKNOWN_PENDING_RUN`. Figure P2-7 is a bounded Wide/Deep probe table, not a live-cost plot. |
 | MetaSyn probe raw Actions artifact | Archived, expires `2026-09-15T21:39:53Z`; mirror into the DOI archive before then (§1.1). |
-| Benchmark-wide contamination-rate audit | Not complete; structural exposure and spot checks only. |
+| Benchmark-wide contamination-rate audit | Wide search-time self-exposure diagnostic archived (`AUTORESEARCHBENCH_SEARCH_CONTAMINATION_V1.json`, task rate 0.0). Not a claim of absence of indirect, training-time, or live-provider contamination. |
 
 Live-provider evidence is archive-only by design, not by omission: providers are
 mutable and metered, so a later re-run would produce different results and would
@@ -111,10 +112,11 @@ as a typed transport failure rather than as evidence of absence.
 
 - Reproducing Tier 1 confirms that the mechanism result is exact and drift-free.
   It does **not** raise its statistical authority: `analysis_authority` stays
-  `DESCRIPTIVE_ONLY`.
+  `TIER_B_committed` with the plan's mandatory underpowered label; no
+  superiority decision is promoted.
 - Reproducing the completed Tier 2 item confirms one bounded external retrieval
   and screening evaluation under an official evaluator. It does **not** produce an
   ORION-vs-baseline external result.
 - Nothing in Tier 1 or Tier 2 as currently executed can settle the paper's
-  external superiority claim. That remains `CANNOT_CHECK` until a Tier 2 candidate
-  run or the Tier 3 campaign is archived.
+  external superiority claim. That remains `CANNOT_CHECK` until a Tier 2 matched
+  candidate run or the Tier 3 campaign is archived.

@@ -4,7 +4,7 @@ This ledger is intentionally narrower than the original paper ambition. A row is
 
 | Claim surface | Claim allowed in this revision | Authority | Supporting artifact | Status |
 | --- | --- | --- | --- | --- |
-| Abstract | ORION's route/read/stopping governance is implemented and survives the controlled complete-gold mechanism tests. | 390-task offline companion, `TIER_B_committed` with the plan's mandatory underpowered label | `evidence/offline_results/RESULTS_SUMMARY_V1.json`; frozen record digest `611808dc…` | `SUPPORTED` |
+| Abstract | ORION's route/read/stopping governance is implemented and survives the controlled complete-gold mechanism tests. | 390-task offline companion, `TIER_B_committed` with the plan's mandatory underpowered label | `evidence/offline_results/RESULTS_SUMMARY_V1.json`; frozen record digest `27b8e55b…` | `SUPPORTED` |
 | Abstract | ORION improves real scientific-literature discovery over BM25/dense/agentic baselines. | Requires external Wide/Deep or other denominator-valid matched ORION result | No matched external superiority result archived | `CANNOT_CHECK` |
 | Results | Full ORION mean complete-gold recall is 0.979487 on the frozen controlled index; strongest frozen confirmatory baseline is 0.666667; descriptive difference +0.31282. | `TIER_B_committed` (n=390 ≥ 385), achieved half-width 0.0496 exceeds the frozen superiority margin 0.03 ⇒ mandatory underpowered label; no superiority promotion | `RESULTS_SUMMARY_V1.json` | `SUPPORTED` |
 | Results | Full ORION has zero premature task closures in the controlled companion; the strongest confirmatory baseline has rate 1.0. | `DESCRIPTIVE_ONLY` | `RESULTS_SUMMARY_V1.json`; `TABLE_P2-3_failure_taxonomy.md` | `SUPPORTED` |

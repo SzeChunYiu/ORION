@@ -50,7 +50,10 @@ families.  A non-leaking Actions preflight is archived as
 that arXiv is credential-free but that no funded \idt{OPENALEX_API_KEY} is
 available in the same-repository execution context.  Therefore the three-route
 live campaign cannot enter \idt{EXECUTION_FROZEN} here, and no raw live
-campaign or live cost ledger is fabricated.
+campaign or live monetary-cost ledger is fabricated.  Operator re-scope
+2026-08-17 removed the empirical-cost requirement: the sanctioned cost axis
+is the host-recorded search-query count (Figure~\ref{fig:p2-2}, Table P2-2),
+not a live OpenAlex or arXiv API bill.
 
 \section{Reproducibility}
 \label{sec:reproducibility}
@@ -86,5 +89,18 @@ live layer is designed to archive mutable provider evidence rather than
 re-derive it, but the frozen route set requires funded OpenAlex access that is
 absent in the verified execution context.  Until that authority is supplied and
 the campaign is actually run, the paper keeps raw live-provider outcomes,
-empirical live cost/wall-clock and the matched external discovery claim at
-\idt{CANNOT_CHECK}.
+empirical live monetary cost/wall-clock and the matched external discovery
+claim at \idt{CANNOT_CHECK}.  Query-count metrics from the offline companion
+are the completed cost evidence in this revision.
+
+\section{Ethics}
+\label{sec:ethics}
+
+This work does not collect new human-subject records or personally identifiable
+information.  The frozen complete-gold companion is fully synthetic and
+regenerable from a recorded seed.  External probes use publicly released
+benchmark questions and evaluator interfaces; third-party corpora are not
+redistributed where Table P2-1 records a licence block or partial
+redistribution.  Dual-use risk is that of any scientific-literature retrieval
+system: the paper evaluates discovery governance and does not present a
+deployment, surveillance, or human-facing study.
