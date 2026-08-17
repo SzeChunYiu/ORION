@@ -35,7 +35,7 @@ class LiveJudgment:
 # API configuration
 # ---------------------------------------------------------------------------
 
-BASE_URL = "https://cmkey.cn/v1"
+BASE_URL = "https://api2.cmkey.cn/v1"
 MODEL = "glm-5.2"
 
 JUDGMENT_PROMPT = """You are a rigorous scientific claim verifier. Given a claim, a cited source, and evidence text, produce three judgments:

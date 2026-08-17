@@ -1,3 +1,5 @@
+\input{generated/suite_facts}
+
 \section{Methods}
 \label{sec:methods}
 
@@ -28,8 +30,8 @@ Sixty-six constructed cases span six families: four in which the initially
 offered formulation, representation, decomposition or measurement model is
 genuinely insufficient, and two negative-control families in which the
 formulation is correct and the fault lies in missing evidence or in execution.
-Eighteen cases form a pilot split used only for debugging and variance
-estimation; forty-eight form the frozen test split. Gold dependency depth
+\PilotCaseCount{} cases form a pilot split used only for debugging and variance
+estimation; \TestCaseCount{} form the frozen test split. Gold dependency depth
 ranges over one to three so that reopening can be analysed by depth.
 
 Each case exposes a \texttt{PublicView}: a prompt, a set of observable

@@ -28,13 +28,68 @@ from orion.knowledge.routes import (
 from .live_campaign import CampaignResult, LiveOutcome, RouteRun
 
 
-class IncompleteDenominator(RuntimeError):
+class MetricRefusal(RuntimeError):
+    """Base for every reason this module declines to produce a number.
+
+    All four subclasses exist to stop the same substitution: a quantity that
+    could not be established being emitted as a value that looks established.
+    """
+
+
+class IncompleteDenominator(MetricRefusal):
     """Raised when a metric would need a complete denominator this run lacks.
 
     Distinct from a failed computation: the quantity is not unavailable, it is
     undefined for an open-world run. Returning ``None`` or zero here would let
     a caller treat "we cannot know" as "we checked and it was fine".
     """
+
+
+class UnavailableRoute(MetricRefusal):
+    """Raised when a declared route never reached its index.
+
+    A campaign that declared five routes and executed two has not searched less
+    thoroughly than it claims — it has searched a different, smaller space than
+    the one its report describes. Any coverage-flavoured reading of such a run
+    is a claim about routes that never looked.
+    """
+
+
+class UnpinnedNondeterminism(MetricRefusal):
+    """Raised when a metric's value is not reproducible from a pinned code hash.
+
+    The live analogue of the AutoResearchBench Wide defect: an evaluator that
+    samples without seeding produces a Monte-Carlo estimate that moves run to
+    run on identical inputs, so pinning ``evaluator_hash`` pins the code and not
+    the number. A freeze that records only the hash is not a freeze.
+    """
+
+
+class NoSamples(MetricRefusal):
+    """Raised where a metric has nothing to average and 0.0 would be a lie.
+
+    Modelled directly on the same defect: when ``len(record_ious) >= k`` fails,
+    the official evaluator reports ``0.0`` for ``avg_max_iou_at_k`` rather than
+    declining, so an unmeasured metric is indistinguishable from a measured
+    floor. Nothing in this module may make that substitution.
+    """
+
+
+# Metrics known to be Monte-Carlo estimates in the official evaluator, which
+# draws random.sample without ever seeding. Recorded here so a caller cannot
+# request one from a live campaign and receive a number that a rerun would
+# contradict. Source: papers/.../protocol/TABLE_P2-1_freeze_manifest.md.
+NONDETERMINISTIC_METRICS = frozenset(
+    {
+        "max_iou_at_k",
+        "max_iou_at_k_sampling",
+        "avg_max_iou_at_1",
+        "avg_max_iou_at_2",
+        "avg_max_iou_at_4",
+        "avg_max_iou_at_8",
+        "avg_max_iou_at_16",
+    }
+)
 
 
 DENOMINATOR_BOUND_METRICS = frozenset(
@@ -90,6 +145,55 @@ def require_complete_denominator(name: str) -> None:
         raise IncompleteDenominator(f"'{name}' is not reportable from a live campaign: {_WHY}")
 
 
+def require_all_declared_routes_available(result: CampaignResult) -> None:
+    """Refuse any coverage-flavoured claim when a declared route never looked.
+
+    Called before completeness-shaped reporting rather than after, because the
+    damage is not a wrong number but a right-looking one: a campaign whose
+    OpenAlex route was disabled for want of credentials and whose Semantic
+    Scholar route was rate-limited away has searched three backends, not five,
+    and every union it reports is a union over three.
+    """
+
+    unavailable = result.unavailable_routes
+    if unavailable:
+        detail = "; ".join(f"{route_id} ({reason})" for route_id, reason in unavailable)
+        raise UnavailableRoute(
+            f"{len(unavailable)} declared route(s) never observed their index: {detail}. "
+            "A route that could not look is an open obligation, not a finding of "
+            "absence, so no coverage or completeness claim may be made over this "
+            "campaign until the obligation is discharged or explicitly retired."
+        )
+
+
+def require_reproducible_from_code_hash(name: str, *, seed: int | None = None) -> None:
+    """Refuse a sampling-noisy metric that no seed pins.
+
+    Pinning the evaluator's code hash is not enough for this family: the
+    estimator draws without seeding, so identical inputs and identical code
+    still yield different numbers.
+    """
+
+    if name.strip().lower() in NONDETERMINISTIC_METRICS and seed is None:
+        raise UnpinnedNondeterminism(
+            f"'{name}' is a Monte-Carlo estimate drawn without a seed, so its "
+            "value is not reproducible from a pinned evaluator code hash. Pin an "
+            "explicit seed or declare the metric sampling-noisy; do not report it "
+            "as though the code hash froze it."
+        )
+
+
+def require_samples(count: int, name: str) -> None:
+    """Refuse to emit a number for a metric that has nothing to measure."""
+
+    if count <= 0:
+        raise NoSamples(
+            f"'{name}' has no samples in this campaign. Reporting 0.0 here would "
+            "be indistinguishable from a measured zero, which is the exact "
+            "substitution that makes an unmeasured metric look like a finding."
+        )
+
+
 def denominator_bound_metric(result: CampaignResult, name: str) -> float:
     """Single entry point for every metric this run structurally cannot give."""
 
@@ -135,6 +239,13 @@ class RouteContribution:
     latency_seconds: float
     terminal_action: str
     open_obligations: tuple[str, ...]
+    observed_the_index: bool = True
+    """Whether any attempt actually reached the backend.
+
+    Without this, ``retrieved=0`` from a route that was rate-limited away reads
+    identically to ``retrieved=0`` from a route that searched and found nothing
+    — the first is an unmet obligation, the second is evidence.
+    """
 
 
 def unique_contribution_per_route(
@@ -170,6 +281,9 @@ def unique_contribution_per_route(
                 ),
                 terminal_action=run.decision.action.value,
                 open_obligations=run.open_obligations,
+                observed_the_index=any(
+                    item.outcome.observed_the_index for item in run.attempts
+                ),
             )
         )
     return tuple(contributions)
@@ -276,6 +390,10 @@ def cost_and_latency(result: CampaignResult) -> dict[str, float]:
     """Resource use: queries issued, requests made, dollars and seconds."""
 
     attempts = result.attempts
+    # A campaign with no attempts has no wallclock, no cost and no queries. The
+    # sums below would all be a clean 0.0, which reads as "ran and cost nothing"
+    # rather than "never ran" — the same substitution avg_max_iou_at_k makes.
+    require_samples(len(attempts), "cost_and_latency")
     return {
         "attempts": float(len(attempts)),
         "queries": float(len({item.query.query_id for item in attempts})),
@@ -298,6 +416,21 @@ def campaign_report(result: CampaignResult) -> dict:
         "denominator": "INCOMPLETE_OPEN_WORLD",
         "recall_reportable": False,
         "observed_union": len(result.union_digests),
+        "declared_routes": [
+            {
+                "route_id": item.route_id,
+                "backend": item.backend,
+                "executed": item.executed,
+                "disabled_reason": item.disabled_reason,
+            }
+            for item in result.declared_routes
+        ],
+        "unavailable_routes": [
+            {"route_id": route_id, "reason": reason}
+            for route_id, reason in result.unavailable_routes
+        ],
+        "all_declared_routes_available": result.all_declared_routes_available,
+        "claims_limited_by_unavailability": not result.all_declared_routes_available,
         "unique_relevant_per_route": [
             {
                 "route_id": item.route_id,
@@ -312,6 +445,7 @@ def campaign_report(result: CampaignResult) -> dict:
                 "latency_seconds": item.latency_seconds,
                 "terminal_action": item.terminal_action,
                 "open_obligations": list(item.open_obligations),
+                "observed_the_index": item.observed_the_index,
             }
             for item in unique_contribution_per_route(result)
         ],
@@ -352,7 +486,15 @@ def campaign_report(result: CampaignResult) -> dict:
 __all__ = [
     "DENOMINATOR_BOUND_METRICS",
     "DENOMINATOR_FREE_METRICS",
+    "NONDETERMINISTIC_METRICS",
     "IncompleteDenominator",
+    "MetricRefusal",
+    "NoSamples",
+    "UnavailableRoute",
+    "UnpinnedNondeterminism",
+    "require_all_declared_routes_available",
+    "require_reproducible_from_code_hash",
+    "require_samples",
     "RouteContribution",
     "campaign_report",
     "completeness",

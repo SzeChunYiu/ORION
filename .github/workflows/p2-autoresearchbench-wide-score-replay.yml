@@ -1,0 +1,104 @@
+name: p2-autoresearchbench-wide-score-replay
+
+on:
+  push:
+    branches:
+      - chatgpt/p2-remaining-closure
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  score-wide:
+    if: contains(github.event.head_commit.message, '[score-wide]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install scorer runtime only
+        run: |
+          python -m pip install -e '.[dev]'
+          python -m pip install requests tiktoken python-dotenv tqdm openai
+
+      - name: Recover frozen candidate artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/arb-wide-replay
+          gh run download 31975808402 \
+            --repo SzeChunYiu/ORION \
+            --name p2-autoresearchbench-wide-keyless-22ef44c6624b7bbdd04244f9534fdef95f781520 \
+            --dir /tmp/arb-wide-replay
+          sha256sum /tmp/arb-wide-replay/candidate.jsonl /tmp/arb-wide-replay/trace.jsonl
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root = Path('/tmp/arb-wide-replay')
+          manifest = json.loads((root/'run_manifest.json').read_text())
+          for name, field in [('candidate.jsonl','candidate_output_sha256'), ('trace.jsonl','trace_sha256')]:
+              actual = hashlib.sha256((root/name).read_bytes()).hexdigest()
+              assert actual == manifest[field], (name, actual, manifest[field])
+          print('ARB_WIDE_FROZEN_CANDIDATE_VERIFIED=true')
+          PY
+
+      - name: Reconstruct pinned evaluator gold only
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none https://github.com/CherYou/AutoResearchBench.git /tmp/arb-upstream
+          git -C /tmp/arb-upstream checkout a46c9bfb8968786f73f0a6a5b365b5384cd0f96d
+          curl --fail --location --retry 4 --retry-delay 3 \
+            --output /tmp/arb-wide-replay/AutoResearchBench.jsonl.obf.json \
+            https://huggingface.co/datasets/Lk123/AutoResearchBench/resolve/main/AutoResearchBench.jsonl.obf.json
+          python /tmp/arb-upstream/decrypt_benchmark.py \
+            --input-file /tmp/arb-wide-replay/AutoResearchBench.jsonl.obf.json \
+            --output-file /tmp/arb-wide-replay/AutoResearchBench.jsonl
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
+            --full /tmp/arb-wide-replay/AutoResearchBench.jsonl \
+            --public /tmp/arb-wide-replay/reconstructed_public.jsonl \
+            --gt /tmp/arb-wide-replay/wide_gt.jsonl \
+            --manifest /tmp/arb-wide-replay/reconstructed_split_manifest.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('/tmp/arb-wide-replay')
+          frozen=json.loads((root/'split_manifest.json').read_text())
+          reconstructed=json.loads((root/'reconstructed_split_manifest.json').read_text())
+          assert reconstructed['gt_sha256'] == frozen['gt_sha256']
+          assert reconstructed['public_sha256'] == frozen['public_sha256']
+          print('ARB_WIDE_RECONSTRUCTED_GOLD_VERIFIED=true')
+          PY
+
+      - name: Run pinned official Wide scorer against frozen candidate
+        run: |
+          set -euo pipefail
+          python /tmp/arb-upstream/evaluate/evaluate_wide_search.py \
+            --input-file /tmp/arb-wide-replay/candidate.jsonl \
+            --gt-file /tmp/arb-wide-replay/wide_gt.jsonl \
+            --no-jina \
+            --output-file /tmp/arb-wide-replay/official_evaluation.json
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py summarize \
+            --split-manifest /tmp/arb-wide-replay/split_manifest.json \
+            --run-manifest /tmp/arb-wide-replay/run_manifest.json \
+            --evaluation /tmp/arb-wide-replay/official_evaluation.json \
+            --candidate /tmp/arb-wide-replay/candidate.jsonl \
+            --trace /tmp/arb-wide-replay/trace.jsonl \
+            --output /tmp/arb-wide-replay/summary.json
+          cat /tmp/arb-wide-replay/summary.json
+
+      - name: Archive scorer replay
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-autoresearchbench-wide-score-replay-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: error
+          path: |
+            /tmp/arb-wide-replay/official_evaluation.json
+            /tmp/arb-wide-replay/summary.json
+            /tmp/arb-wide-replay/reconstructed_split_manifest.json

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import pathlib
 from collections.abc import Sequence
 from dataclasses import dataclass
@@ -218,6 +219,135 @@ def _tracked_paths(papers_root: pathlib.Path) -> frozenset[str]:
                      for item in result.stdout.split())
 
 
+#: Registry a paper commits, declaring which artifacts are generated and how to
+#: verify they still regenerate. Absent registry means the question is not asked
+#: for that paper, which is CANNOT_CHECK rather than SATISFIED.
+GENERATED_REGISTRY = "protocol/GENERATED_ARTIFACTS_V1.json"
+
+
+def check_generated_artifacts_regenerate(
+    paper_root: pathlib.Path, paper_id: str
+) -> ConformanceFinding | None:
+    """Committed generated artifacts must still match their generators.
+
+    The existing checks ask whether inputs are tracked. Nothing asked whether a
+    *derived* artifact in the repository still matches what its generator
+    produces. That gap is how a paper ends up shipping a table, figure or macro
+    file describing an earlier state of its own evidence: the generator is
+    correct, the artifact is committed, and no comparison happens. The defect
+    that motivated this had one paper's task count living as a literal in six
+    places, three of which were prose.
+
+    The registry names a **generator script and flags**, never a command line.
+    An earlier version accepted an argv list and tried to validate it; that was
+    an arbitrary-code-execution hole, because ``["python3", "-c", "<payload>"]``
+    passes any check that skips flag-shaped tokens. The interpreter is chosen
+    here, the script must resolve inside the paper root, and flags must match a
+    conservative pattern — so a data file cannot introduce an interpreter, ``-c``,
+    ``-m`` or any positional argument.
+    """
+
+    import subprocess
+    import sys
+
+    registry_path = paper_root / GENERATED_REGISTRY
+    if not registry_path.is_file():
+        return None
+
+    try:
+        registry = json.loads(registry_path.read_text())
+    except (OSError, json.JSONDecodeError) as error:
+        return ConformanceFinding(
+            paper_id, "generated_artifacts_regenerate", "a readable registry", str(error),
+            ConformanceVerdict.VIOLATED,
+            f"{GENERATED_REGISTRY} does not parse, so no generated artifact can be verified",
+        )
+
+    entries = registry.get("artifacts") or []
+    if not entries:
+        return ConformanceFinding(
+            paper_id, "generated_artifacts_regenerate", "at least one entry", 0,
+            ConformanceVerdict.CANNOT_CHECK,
+            f"{GENERATED_REGISTRY} declares no artifacts",
+        )
+
+    stale: list[str] = []
+    unverifiable: list[str] = []
+    for entry in entries:
+        output = str(entry.get("output", "")) or "<unnamed>"
+        argv = _verified_argv(entry, paper_root, sys.executable)
+        if argv is None:
+            unverifiable.append(f"{output}: no safely resolvable generator declared")
+            continue
+        if not (paper_root / str(entry.get("output", ""))).is_file():
+            unverifiable.append(f"{output}: declared generated artifact is absent")
+            continue
+        result = subprocess.run(
+            argv, cwd=str(paper_root), capture_output=True, text=True, check=False, timeout=300
+        )
+        if result.returncode != 0:
+            tail = (result.stdout + result.stderr).strip().splitlines()[-1:] or ["no output"]
+            stale.append(f"{output}: {tail[0]}")
+
+    if stale:
+        return ConformanceFinding(
+            paper_id, "generated_artifacts_regenerate", len(entries), len(stale),
+            ConformanceVerdict.VIOLATED,
+            "committed artifacts no longer match their generators: " + "; ".join(stale),
+        )
+    if unverifiable:
+        return ConformanceFinding(
+            paper_id, "generated_artifacts_regenerate", len(entries), len(unverifiable),
+            ConformanceVerdict.CANNOT_CHECK,
+            "declared artifacts could not be verified: " + "; ".join(unverifiable),
+        )
+    return ConformanceFinding(
+        paper_id, "generated_artifacts_regenerate", len(entries), len(entries),
+        ConformanceVerdict.SATISFIED,
+        "every declared generated artifact regenerates identically",
+    )
+
+
+#: A flag the registry may pass to its own generator. Deliberately narrow: no
+#: values, no short flags, nothing that could smuggle a payload or a path.
+_SAFE_FLAG = re.compile(r"^--[a-z][a-z0-9-]{0,30}$")
+
+
+def _verified_argv(
+    entry: object, paper_root: pathlib.Path, interpreter: str
+) -> list[str] | None:
+    """Build the argv ourselves from a declared script and flags, or refuse.
+
+    Returns None rather than raising, so an unsafe or unresolvable entry is
+    reported as unverifiable instead of aborting the whole conformance run.
+    """
+
+    if not isinstance(entry, dict):
+        return None
+    generator = entry.get("generator")
+    if not isinstance(generator, str) or not generator.endswith(".py"):
+        return None
+    if generator.startswith("/") or ".." in pathlib.PurePosixPath(generator).parts:
+        return None
+    script = (paper_root / generator).resolve()
+    try:
+        script.relative_to(paper_root.resolve())
+    except ValueError:
+        return None
+    if not script.is_file():
+        return None
+
+    flags = entry.get("check_flags", [])
+    if not isinstance(flags, list):
+        return None
+    verified: list[str] = []
+    for flag in flags:
+        if not isinstance(flag, str) or not _SAFE_FLAG.match(flag):
+            return None
+        verified.append(flag)
+    return [interpreter, str(script), *verified]
+
+
 def check_papers(papers_root: pathlib.Path) -> tuple[ConformanceFinding, ...]:
     """Every declared quantity checked against what is on disk."""
 
@@ -233,6 +363,7 @@ def check_papers(papers_root: pathlib.Path) -> tuple[ConformanceFinding, ...]:
         for finding in (
             check_annotator_independence(paper_root, paper_id),
             check_inputs_are_tracked(paper_root, paper_id, tracked),
+            check_generated_artifacts_regenerate(paper_root, paper_id),
             check_stochastic_repeats(paper_root, paper_id, declared_repeats)
             if isinstance(declared_repeats, int)
             else None,
@@ -337,6 +468,7 @@ __all__ = [
     "ConformanceVerdict",
     "INPUT_DIRECTORIES",
     "check_annotator_independence",
+    "check_generated_artifacts_regenerate",
     "check_inputs_are_tracked",
     "check_papers",
     "KNOWN_VIOLATIONS",
