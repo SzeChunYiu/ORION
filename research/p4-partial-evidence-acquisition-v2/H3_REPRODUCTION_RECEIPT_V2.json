@@ -1,0 +1,44 @@
+{
+  "H1": {
+    "ci95": [
+      -0.5527777777777778,
+      -0.44722222222222224
+    ],
+    "comparator_false_promotions": "180/360",
+    "effect": -0.5,
+    "orion_false_promotions": "0/360",
+    "status": "PASS"
+  },
+  "H2": {
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "comparator_clean_promotions": "60/60",
+    "effect": 0.0,
+    "orion_clean_promotions": "60/60",
+    "status": "PASS"
+  },
+  "H3": {
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "comparator_correct_cannot_check": "30/30",
+    "effect": 0.0,
+    "note": "Easy-abstention saturation; H3 remains a null and is not converted into a follow-up win.",
+    "orion_correct_cannot_check": "30/30",
+    "relabeled": false,
+    "status": "NOT_SUPPORTED"
+  },
+  "ablations_preserve_clean_coverage": true,
+  "ablations_worsen_false_promotion": true,
+  "campaign_run_id": "31976589735",
+  "followup_protocol_id": "P4.partial-evidence-acquisition.v2",
+  "frozen_campaign_id": "P4.protected-authority.v2",
+  "p4_v2_readiness": "PEER_REVIEW_READY",
+  "receipt_digest": "sha256:1902f94001c33801655d90146c9ca99a7fb425c8bfc2bb6a65003b3ba3902039",
+  "schema": "orion.p4.partial-evidence.h3-reproduction.v2",
+  "subject_commit": "f6e51b5c8f905382b8e2f5568d9035fc14241aa1",
+  "telemetry_pass": true
+}
