@@ -1,0 +1,26 @@
+{
+  "schema_version": "orion.p2.deep-judge-control.v1",
+  "purpose": "Positive/negative control for the official Deep LLM title judge. A judge validated only on 0-hit items cannot be distinguished from an always-no-match bug; this control closes that gap.",
+  "scorer_source": "scripts/run_deep_official_scoring.py (prompts/model/temperature/parser extracted at runtime, never transcribed)",
+  "judge_model": "glm-5.3",
+  "judge_temperature": 0.5,
+  "adapter": "http://127.0.0.1:8765/v1/chat/completions",
+  "run_date": "2026-08-17",
+  "verdict": "CONTROL_PASSED",
+  "passed": 9,
+  "total": 9,
+  "positives_passed": 6,
+  "negatives_passed": 3,
+  "cases": [
+    {"label": "pos-verbatim-1", "expected": true, "got": true, "status": "PASS", "duration_s": 11.0},
+    {"label": "pos-verbatim-2", "expected": true, "got": true, "status": "PASS", "duration_s": 8.4},
+    {"label": "pos-verbatim-3", "expected": true, "got": true, "status": "PASS", "duration_s": 3.8},
+    {"label": "pos-truncation-1", "expected": true, "got": true, "status": "PASS", "duration_s": 7.5},
+    {"label": "pos-truncation-2", "expected": true, "got": true, "status": "PASS", "duration_s": 13.5},
+    {"label": "pos-casing-punct", "expected": true, "got": true, "status": "PASS", "duration_s": 8.7},
+    {"label": "neg-different-1", "expected": false, "got": false, "status": "PASS", "duration_s": 9.5},
+    {"label": "neg-different-2", "expected": false, "got": false, "status": "PASS", "duration_s": 22.0},
+    {"label": "neg-different-3", "expected": false, "got": false, "status": "PASS", "duration_s": 21.0}
+  ],
+  "interpretation": "The judge says yes on verbatim, truncated, and case/punctuation-variant matches of the same paper, and no on different papers. Combined with the scored run, hits and zero-hits are both observable outcomes of a functioning judge."
+}

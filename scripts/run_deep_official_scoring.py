@@ -82,7 +82,7 @@ async def judge_title_match(
     }
 
     try:
-        async with session.post(ADAPTER_URL, json=payload, timeout=aiohttp.ClientTimeout(total=60)) as resp:
+        async with session.post(ADAPTER_URL, json=payload, timeout=aiohttp.ClientTimeout(total=120)) as resp:
             if resp.status != 200:
                 error_text = await resp.text()
                 raise RuntimeError(f"Adapter error {resp.status}: {error_text}")
