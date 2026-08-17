@@ -1,0 +1,79 @@
+{
+  "schema_version": "orion.journal-package.v1",
+  "paper_id": "P3",
+  "package_status": "SCAFFOLDING",
+  "declared_paper_terminal": "CANNOT_CHECK",
+  "audit_subject_revision": "266f6b94a285293364be7db86f4b98b526e7f4b8",
+  "audit_date": "2026-08-17",
+  "issue": 160,
+  "required_files": [
+    {"path": "manuscript/main.tex", "role": "manuscript-source"},
+    {"path": "CLAIM_LEDGER_V1.md", "role": "claim-ledger"},
+    {"path": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json", "role": "confirmatory-analysis"},
+    {"path": "evidence/public-reference-v1.1-confirmatory/publication/README.md", "role": "publication-figures"},
+    {"path": "JOURNAL_READINESS.md", "role": "gate-checklist"}
+  ],
+  "missing_artifacts": [
+    {
+      "path": "journal_package/manuscript.pdf",
+      "role": "compiled-pdf",
+      "status": "CANNOT_CHECK",
+      "reason": "No journal-formatted PDF is tracked. This package does not fabricate one."
+    },
+    {
+      "path": "journal_package/DOI.txt",
+      "role": "permanent-archive-doi",
+      "status": "CANNOT_CHECK",
+      "reason": "No DOI for the public-reference gold or manuscript."
+    },
+    {
+      "path": "gold/adjudicated/expert-eight-family-v1/GOLD.jsonl",
+      "role": "original-eight-family-expert-gold",
+      "status": "CANNOT_CHECK",
+      "reason": "Original P3.cross-domain-atlas.v1 expert gold has not been executed."
+    },
+    {
+      "path": "journal_package/cover_letter.md",
+      "role": "journal-cover-letter",
+      "status": "CANNOT_CHECK",
+      "reason": "No frozen cover letter; paper is not PEER_REVIEW_READY."
+    }
+  ],
+  "claims": [
+    {
+      "id": "P3.C5",
+      "text": "On the disjoint confirmatory public-reference holdout (n=32), ORION false-merge 0 vs flat 0.1875, paired delta -0.1875, CI [-0.34375,-0.0625]; false-split non-inferiority 0 [0,0].",
+      "artifacts": ["evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json"],
+      "status": "BOUNDED"
+    },
+    {
+      "id": "P3.C7",
+      "text": "ORION improves raw-text end-to-end scientific integration relative to model/RAG/schema baselines.",
+      "artifacts": ["CLAIM_LEDGER_V1.md"],
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "id": "P3.C8",
+      "text": "ORION improves downstream scientific answer quality.",
+      "artifacts": ["CLAIM_LEDGER_V1.md"],
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "id": "P3.FALSIFIER",
+      "text": "Local semantic/ignorance falsifier passed.",
+      "artifacts": ["evidence/FALSIFIER_V1.md"],
+      "status": "SUPPORTED"
+    },
+    {
+      "id": "P3.PDF",
+      "text": "Independent final PDF proofread of a journal-formatted manuscript.",
+      "artifacts": [],
+      "status": "OPEN"
+    }
+  ],
+  "scientific_result_verification": {
+    "owner_issue": 283,
+    "schema_name": "ScientificResultVerification.v1",
+    "records_present": []
+  }
+}
