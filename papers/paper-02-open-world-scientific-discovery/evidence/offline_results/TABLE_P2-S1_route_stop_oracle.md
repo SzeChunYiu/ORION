@@ -1,6 +1,6 @@
 # Table P2-S1 — Complete-gold route-stop oracle replay
 
-**Authority:** `TIER_B_committed`; 390 frozen tasks. Deterministic repeat seeds were checked for identical route/stop traces and collapsed within task before counting denominators.
+**Authority:** `TIER_B_committed`; 390 frozen tasks. Deterministic repeat seeds were checked for identical route/stop traces and collapsed within task before counting denominators. The authority is an achieved precision tier, not a promoted primary claim.
 
 | System | Route-stop events | FP | FP rate | Routes reaching oracle exhaustion | FN | FN rate | Attempts after exhaustion |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -23,9 +23,9 @@
 
 O1 defines a route-stop false positive as a declared route stop while at least one previously unfound gold identity remains reachable on that route and at least one route-call budget unit remains. It defines a route-stop false negative as **more than one** attempt after the gold-defined oracle exhaustion point; one confirming attempt is explicitly allowed.
 
-Full ORION records 1 O1 route-stop FP in 100 route-stop events (0.0100) and 0 FN over 99 routes that reach oracle exhaustion. The single FP is the frozen unavailable `RESTRICTED` case. That route has 377 exhaustible task-routes and 377 total post-exhaustion attempts: exactly one allowed confirming attempt on each of the 19 non-censored tasks, so none is an FN.
+Full ORION records 13 O1 route-stop FP in 1950 route-stop events (0.0067) and 0 FN over 1878 routes that reach oracle exhaustion. On the `RESTRICTED` route, 13 stops are false positives, 377 task-routes reach oracle exhaustion, and 377 post-exhaustion attempts are retained.
 
-The route-level FP does **not** become a task-level false closure: O4 opens an unresolved obligation for the unavailable restricted route, and full ORION returns `CANNOT_CHECK` instead of asserting task completeness. This is the intended separation between route stopping and task stopping.
+A route-level FP does **not** automatically become a task-level false closure: O4 keeps unresolved unavailable-route evidence open, and full ORION may return `CANNOT_CHECK` instead of asserting task completeness. This is the intended separation between route stopping and task stopping.
 
 Source record digest: `e9bbce93aa2d8560ae2871801761dcaf847dcb6eeb9a4db9921bbe84593e507f`  
 Source rich-artifact hash-list digest: `ed5cf7bd823fcabd6a57658a05560bd5f1e30256aa3f8eb8404325c493ed3cfe`
