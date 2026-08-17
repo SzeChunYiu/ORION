@@ -6,6 +6,7 @@ Publication terminal remains open until the mechanical PDF/package checks pass.
 
 Canonical scope receipt: `protocol/P2_NARROWED_PUBLICATION_TERMINAL_2026-08-17.md`.
 Venue scope: `protocol/TARGET_JOURNAL_SCOPE_CHECK_2026-08-17.md`.
+Current author-guide requirements: `notes/submission/IPM_SUBMISSION_REQUIREMENTS_2026-08-17.md`.
 
 States are `DONE`, `DEFERRED`, `CANNOT_CHECK`, or `BLOCKED_ON`.
 
@@ -17,12 +18,18 @@ States are `DONE`, `DEFERRED`, `CANNOT_CHECK`, or `BLOCKED_ON`.
 | Target journal | `DONE` | IP&M selected for the narrowed methods / critical system-design claim surface. JASIST remains fallback after a larger use-oriented reframe. |
 | Literature closure | `DEFERRED until actual submission date` | Dated primary-source freeze exists at `protocol/P2_LITERATURE_ASSIMILATION_FREEZE_2026-08-17.md`, but material stopping work appeared on 2026-08-13; no saturation is claimed. Re-run inside 14 days of submission. |
 | Cover letter | `DONE` as draft / `BLOCKED_ON final metadata` | Narrowed IP&M draft exists. Author names, affiliations and corresponding-author details are intentionally not invented. |
-| Supplement plan | `DONE` as plan / `BLOCKED_ON assembly` | Existing plan enumerates evidence and licence exclusions. Build the final package only after the exact current venue instructions are applied. |
-| Exact IP&M template / anonymisation / declaration requirements | `CANNOT_CHECK` in this lane | The official scope page is current, but the exact author-guide/template requirements were not authoritatively recovered. Do not infer them. Re-check the official author/submission instructions at upload time. |
-| Neutral manuscript compile | `BLOCKED_ON repository CI` | Compile the narrowed `manuscript/main.tex` and retain PDF/log. A clean neutral compile is useful even before venue-template conversion. |
+| Supplement plan | `DONE` as plan / `BLOCKED_ON final assembly` | Plan enumerates evidence, licence exclusions, current venue constraints and future-work routes. |
+| Current IP&M author-guide requirements | `DONE` | Official Guide for Authors recovered 2026-08-17: double-anonymized review; separate title page + anonymized manuscript; editable source; CAS LaTeX single-column template; abstract ≤250 words; 1–7 keywords; glossary; CRediT; generative-AI disclosure; submission checklist. |
+| Title-page structure | `DONE` as template / `BLOCKED_ON human metadata` | `IPM_TITLE_PAGE_TEMPLATE.md`; identities/contact details/declarations require author input. |
+| Abstract/keywords | `DONE` | Abstract is ~220 words after LaTeX normalization; 6 English keywords. |
+| Glossary | `DONE` | `IPM_GLOSSARY.md`. |
+| Generative-AI disclosure | `DONE` as truthful draft / `BLOCKED_ON author approval` | `GENERATIVE_AI_DECLARATION_DRAFT.md`; human authors must perform/approve the stated final verification. |
+| Separate figure captions | `DONE` as companion | `IPM_FIGURE_CAPTIONS.md`; reconcile after any later caption edit. |
+| Neutral manuscript compile | `BLOCKED_ON repository CI` | Compile narrowed `manuscript/main.tex` and retain PDF/log. This evidence-bound neutral compile precedes final CAS venue wrapping. |
 | Reference metadata + figure legibility | `BLOCKED_ON compiled PDF` | Static identifier checks are not a substitute for visual inspection of the rendered paper. |
-| Independent final PDF/claim proofread | `BLOCKED_ON compiled PDF + venue formatting` | Claim-ledger checks guard evidence drift but do not replace a final human/independent PDF read. |
-| Author metadata | `BLOCKED_ON authors` | Repository placeholder remains `Working framework draft`; automation must not infer authorship/affiliations. |
+| Independent final PDF/claim proofread | `BLOCKED_ON compiled PDF` | Claim-ledger checks guard evidence drift but do not replace a final PDF read. |
+| CAS venue wrapper / final anonymization | `BLOCKED_ON clean neutral PDF + author review` | Apply the current Elsevier CAS single-column template and remove/check direct and indirect identity signals before upload. |
+| Author metadata | `BLOCKED_ON authors` | Automation must not infer authorship, affiliations, author order or corresponding-author details. |
 | Permanent archive / DOI | `BLOCKED_ON deposit` | Recommended before public release. Mirror expiring raw external artifacts before retention windows lapse. |
 
 ## Scientific external routes — future work, not blockers for the narrowed paper
@@ -49,13 +56,13 @@ The exact Wide blockers remain `FROZEN_ADAPTER_REQUIRES_ARXIV`, `OFFICIAL_SCORER
 
 ## What now blocks `PEER_REVIEW_READY_NARROWED`
 
-Only ordinary publication mechanics and dated freshness checks remain:
+Only publication mechanics, human authorship inputs and dated freshness checks remain:
 
-1. repository-CI compile of the narrowed manuscript with retained PDF/log;
+1. repository-CI compile of the narrowed evidence-bound manuscript with retained PDF/log;
 2. reference metadata + figure-legibility audit on that PDF;
 3. independent final PDF/claim proofread;
-4. current official IP&M submission instructions/template/declarations applied without guessing;
-5. actual author/submission metadata supplied by the authors;
+4. final CAS single-column venue wrapper + double-anonymization check;
+5. actual author/title-page/CRediT/funding/competing-interest metadata and approval of the generative-AI disclosure;
 6. literature refresh within 14 days of the chosen submission date;
 7. preferably, permanent archive/deposit of durable reproducibility material, especially raw external artifacts with finite retention.
 
