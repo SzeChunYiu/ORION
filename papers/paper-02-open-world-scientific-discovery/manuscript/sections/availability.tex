@@ -13,7 +13,7 @@ clean CI run against its committed content hashes and suite fingerprint.
 The compact publication result is
 \texttt{evidence/offline\_results/RESULTS\_SUMMARY\_V1.json}.  The command
 \texttt{python3 papers/paper-02-open-world-scientific-discovery/scripts/
-run\_offline\_companion.py --check} reconstructs all 840 runs and refuses drift.
+run\_offline\_companion.py --check} reconstructs all \OfflineRunRecordCount{} runs and refuses drift.
 With \texttt{--write-raw DIR} it also emits the complete normalized JSONL result
 set and all rich run artifacts.  The committed summary records SHA-256 digests
 of both complete sets, so a reproduction can be checked without requiring
@@ -45,11 +45,11 @@ result archive, cost ledger or immutable live comparison already exists.
 Three levels are distinguished, and we claim only what the current artifacts
 support.
 
-\textbf{Fully reproducible now.}  The 20-task offline controlled-index companion
+\textbf{Fully reproducible now.}  The \OfflineTaskCount{}-task offline controlled-index companion
 regenerates from committed data and subject code with no network access and no
 third-party credentials.  A clean GitHub Actions job independently rebuilds the
-840-run publication projection and compares it to the committed summary.  The
-frozen plan classifies the result \texttt{DESCRIPTIVE\_ONLY}; reproduction does
+\OfflineRunRecordCount{}-run publication projection and compares it to the committed summary.  The
+frozen plan classifies the result \idt{DESCRIPTIVE_ONLY}; reproduction does
 not elevate its statistical authority.
 
 \textbf{Runnable given the external benchmark, but not yet a published system
@@ -63,4 +63,4 @@ providers are mutable, metered and sometimes unavailable.  The committed
 capture layer is designed to archive such evidence rather than re-derive it,
 but final live-provider outcomes and their empirical cost/wall-clock remain
 outstanding.  Until that campaign is run, the paper keeps the external discovery
-claim at \texttt{CANNOT\_CHECK}.
+claim at \idt{CANNOT_CHECK}.
