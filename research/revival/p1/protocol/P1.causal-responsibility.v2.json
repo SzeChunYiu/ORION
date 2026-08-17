@@ -1,0 +1,188 @@
+{
+  "schema_version": "orion.publication-protocol.v1",
+  "paper_id": "P1",
+  "protocol_id": "P1.causal-responsibility.v2",
+  "protocol_version": "P1.causal-responsibility.v2.0",
+  "protocol_status": "DESIGN_FROZEN",
+  "outcome_accessed": false,
+  "issue": 278,
+  "parents": [97, 98, 137],
+  "incremental_over_protocol": "P1.hidden-formulation.v1.1",
+  "substrate_protocol": "P1.responsibility-diagnosability.v2",
+  "v1_protocol_mutated": false,
+  "v1_results_mutated": false,
+  "local_evidence_authority": "LOCAL_ENGINEERING_ONLY",
+  "requires_new_execution_freeze": true,
+  "candidate_residual": "intervention-supported causal responsibility -> explicit permission over K/W/M mutation -> dependency-scoped reopening",
+  "primary_hypothesis": {
+    "id": "P1.CR-H1",
+    "text": "On held-out cause-confusable pairs/triples, an intervention-backed responsibility belief with scoped licensing improves responsibility accuracy versus the strongest matched attribution baseline by at least 10 percentage points at equal probe/intervention budget, while unauthorized epistemic-mutation rate is at least 3 percentage points lower than a one-shot classifier.",
+    "primary_metric": "responsibility_accuracy_on_cause_confusable_holdout",
+    "direction": "superiority_and_safety"
+  },
+  "secondary_hypotheses": [
+    {
+      "id": "P1.CR-H2",
+      "text": "Active discriminators improve calibrated diagnosability versus passive diagnosis at matched probe budget."
+    },
+    {
+      "id": "P1.CR-H3",
+      "text": "Feeding intervention outcomes back into attribution is necessary; probes alone must not grant mutating authority."
+    },
+    {
+      "id": "P1.CR-H4",
+      "text": "The permission matrix prevents harmful or unnecessary W/M mutation beyond attribution alone."
+    },
+    {
+      "id": "P1.CR-H5",
+      "text": "Root-task success is non-inferior to frozen P1 V1 orion_full within 2 percentage points (safety guard, not the primary claim)."
+    }
+  ],
+  "competing_root_cause_hypotheses": [
+    {
+      "id": "H-R1",
+      "claim": "The case surface is genuinely non-diagnosable from allowed observations.",
+      "discriminator": "oracle_with_public_observations_still_unresolved_and_label_permutation_does_not_change_candidate_accuracy",
+      "pass_if": "even an oracle restricted to PublicView cannot separate the gold class above chance; permuting gold leaves candidate accuracy unchanged",
+      "fail_if": "an allowed observation or cheapest allowed probe separates the gold class",
+      "confusable_with": ["H-R2"]
+    },
+    {
+      "id": "H-R2",
+      "claim": "Signal exists but the current state/prompt representation suppresses it.",
+      "discriminator": "same_observations_transformed_representation_recovers_diagnosis",
+      "pass_if": "a frozen representation transform on the same PublicView yields a diagnosable unique argmax that the incumbent encoding misses",
+      "fail_if": "no admissible transform of the allowed observation set recovers the class",
+      "confusable_with": ["H-R1", "H-R3"]
+    },
+    {
+      "id": "H-R3",
+      "claim": "Responsibility becomes identifiable only after an active probe or intervention.",
+      "discriminator": "passive_unresolved_then_cheapest_probe_or_intervention_separates",
+      "pass_if": "passive diagnosis is UNRESOLVED; the cheapest allowed probe or diagnosis-specific intervention then separates the top pair in the predicted direction",
+      "fail_if": "passive diagnosis is already unique-argmax, or probes do not move the posterior",
+      "confusable_with": ["H-R2", "H-R4"]
+    },
+    {
+      "id": "H-R4",
+      "claim": "Diagnosis is adequate but the permission/licensing matrix is wrong.",
+      "discriminator": "oracle_diagnosis_plus_incumbent_matrix_still_unauthorized_or_refuses_warranted",
+      "pass_if": "oracle diagnosis plus frozen V1/V2-substrate licensing still mutates a forbidden coordinate or refuses a warranted one",
+      "fail_if": "oracle diagnosis plus the frozen matrix licenses exactly the warranted coordinate and no other mutating action",
+      "confusable_with": ["H-R3", "H-R5"]
+    },
+    {
+      "id": "H-R5",
+      "claim": "Diagnosis and licensing are adequate; downstream reframe/reopen is the failure.",
+      "discriminator": "oracle_diagnosis_and_correct_license_but_reframe_or_reopen_fails",
+      "pass_if": "correct license is issued and the subsequent reframe/reopen still misses the gold coordinate or dependencies",
+      "fail_if": "given a correct license, reframe/reopen hits the gold target",
+      "confusable_with": ["H-R4"]
+    },
+    {
+      "id": "H-R6",
+      "claim": "Frozen majority case reduction masks per-seed gains enough to distort H1.",
+      "discriminator": "seed_mean_paired_difference_disagrees_with_majority_reduced_h1",
+      "pass_if": "the paired seed-mean difference and the frozen majority-reduced difference disagree in sign or in whether the +0.05 H1 margin is inside the interval",
+      "fail_if": "both reductions give the same sign and the same practical-significance relation to the frozen +0.05 margin",
+      "confusable_with": []
+    }
+  ],
+  "task_families": [
+    "retrieval_miss_vs_search_universe_miss",
+    "implementation_failure_vs_environment_tool_failure",
+    "representation_gap_vs_method_basis_gap",
+    "measurement_miss_vs_formulation_miss",
+    "evidence_insufficiency_vs_genuine_reframe"
+  ],
+  "cause_confusable_schema": "research/revival/p1/schema/CAUSE_CONFUSABLE_CASE_V1.json",
+  "gold_policy": "Gold stage, warranted actions, and pair/triple identity stay in host custody. Candidates receive PublicView plus allowed probe/intervention interfaces only. Hidden-gold identifiers must not appear in candidate traces or access telemetry.",
+  "baselines": [
+    "frozen_p1_v1_diagnosis_licensing",
+    "one_shot_llm_responsibility_classifier",
+    "one_shot_plus_self_consistency",
+    "reflect_like_intervention_supported_attribution",
+    "car_like_replay_attribution_where_executable",
+    "strongest_attribution_baseline_from_saturation",
+    "oracle_diagnosis_ceiling_non_runnable"
+  ],
+  "ablations": [
+    "no_active_discriminator",
+    "random_discriminator_same_budget",
+    "intervention_outcome_not_fed_back",
+    "diagnosis_without_permission_matrix",
+    "permission_matrix_without_dependency_scoped_reopen",
+    "broad_wm_mutation_after_any_failure",
+    "no_explicit_unresolved_state"
+  ],
+  "metrics": {
+    "primary": [
+      "responsibility_accuracy_on_cause_confusable_holdout",
+      "calibrated_diagnosability",
+      "unauthorized_epistemic_mutation_rate",
+      "unnecessary_reframe_rate",
+      "correct_target_reopen_rate_given_warranted_mutation"
+    ],
+    "secondary": [
+      "root_task_success",
+      "cost_probes_interventions",
+      "abstention_cannot_check_quality",
+      "harmful_mutation_rate"
+    ]
+  },
+  "resource_policy": "Pair every candidate on identical cause-confusable members with equal model/tool/token/time ceilings. Diagnostic probes and interventions consume the same budget; they are not free extra calls. Oracle diagnosis is labelled non-runnable and is never a candidate.",
+  "exclusion_policy": "No outcome-driven exclusions. Provider failures, timeouts, UNRESOLVED, CANNOT_CHECK, unauthorized mutations, and harmful mutations remain in raw records and are reported under the frozen denominator rules. Abstention is a distinct outcome, never recoded as 0.",
+  "statistics": {
+    "unit": "cause-confusable member (pair/triple member) as the paired unit; stochastic repeats nested within member",
+    "interval": "Wilson 95% for standalone binary rates; paired percentile bootstrap (10000 resamples, seed 20260817) for matched differences",
+    "stochastic_repeats": 5,
+    "multiplicity": "Single primary hypothesis P1.CR-H1; Holm correction across secondary inferential comparisons",
+    "practical_margin": {
+      "responsibility_accuracy_superiority": 0.10,
+      "unauthorized_mutation_superiority": -0.03,
+      "root_success_noninferiority": -0.02,
+      "note": "Frozen before any V2 outcome access. These are design targets, not observed results."
+    }
+  },
+  "access_policy": {
+    "hidden_labels": true,
+    "evaluator_custody": "host_or_protected_evaluator",
+    "search_contamination_policy": "candidate cannot access responsibility gold, pair identity, or diagnostic outcome truth outside the allowed probe/intervention interface",
+    "access_logging": true
+  },
+  "plots": [
+    "P1CR-1 hypothesis posterior over H-R1..H-R6 after each discriminator",
+    "P1CR-2 responsibility accuracy vs unauthorized mutation on cause-confusable holdout",
+    "P1CR-3 intervention information gain and calibration"
+  ],
+  "tables": [
+    "P1CR-T1 baseline and ablation results",
+    "P1CR-T2 unauthorized-mutation and CANNOT_CHECK taxonomy",
+    "P1CR-T3 H-R discriminator outcomes"
+  ],
+  "positive_result_verification": [
+    "independent_scorer_from_written_spec",
+    "exact_raw_record_regeneration",
+    "lexical_template_leakage_probe",
+    "label_permutation_negative_control",
+    "fresh_post_freeze_holdout",
+    "another_model_provider_if_model_general_claim",
+    "no_hidden_gold_identifiers_in_candidate_traces"
+  ],
+  "novelty_decision_rule": [
+    "intervention-supported responsibility improves diagnosis/authorization over strong attribution baselines",
+    "gain is not just extra budget",
+    "permission layer prevents harmful/unnecessary W/M mutation beyond attribution alone",
+    "nearest work does not already couple causal attribution to explicit epistemic-action authority"
+  ],
+  "terminal_rule": "Close #278 only as MECHANISM_SUPPORTED, MECHANISM_REFUTED, or CANNOT_CHECK. Green tests never close the issue.",
+  "execution_bindings": {
+    "subject_revision": "UNBOUND",
+    "dataset_revisions": ["UNBOUND"],
+    "model_provider_revisions": ["UNBOUND"],
+    "baseline_config_hashes": ["UNBOUND"],
+    "evaluator_hash": "UNBOUND",
+    "split_hashes": ["UNBOUND"],
+    "evaluation_epoch": "UNBOUND"
+  }
+}
