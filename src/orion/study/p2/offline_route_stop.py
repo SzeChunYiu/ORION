@@ -13,6 +13,7 @@ from typing import Any
 
 from .cases import DiscoveryTask
 from .corpus import DiscoveryRoute, sha256_digest
+from .offline_analysis import achieved_precision_tier
 from .runner import RunOutcome
 from .systems import StopScope
 
@@ -189,7 +190,9 @@ def build_route_stop_projection(
 
     return {
         "schema_version": "orion.p2.offline-route-stop-oracle.v1",
-        "analysis_authority": "DESCRIPTIVE_ONLY",
+        # Same derivation as the archive summary: the label tracks the achieved
+        # precision tier of the frozen N instead of pinning a superseded campaign.
+        "analysis_authority": achieved_precision_tier(len(tasks_by_id))["achieved_tier"],
         "oracle": "O1",
         "n_tasks": len(tasks_by_id),
         "repeat_handling": "collapsed_within_task_after_deterministic_trace_check",
