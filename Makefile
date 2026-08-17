@@ -122,3 +122,13 @@ paper03-public-reference-tests:
 		tests/unit/study/test_p3_public_reference_build.py \
 		tests/unit/study/test_p3_public_reference_analysis.py \
 		tests/unit/study/test_p3_public_reference_publication.py
+
+P5_ATTRIBUTION_RESULTS ?= papers/paper-05-self-orion/evidence/glm-5.2-attribution/results.jsonl
+P5_ATTRIBUTION_PUBLICATION_OUT ?= papers/paper-05-self-orion/evidence/glm-5.2-attribution/publication
+
+.PHONY: paper05-attribution-publication
+## Rebuild P5-2..P5-7 tables from the archived glm-5.2 attribution results (no model call).
+paper05-attribution-publication:
+	@PYTHONPATH=$(SRC) $(PYTHON) -m orion.study.p5_attribution_publication \
+		--results $(P5_ATTRIBUTION_RESULTS) \
+		--out $(P5_ATTRIBUTION_PUBLICATION_OUT)
