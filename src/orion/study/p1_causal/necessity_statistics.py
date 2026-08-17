@@ -1,6 +1,9 @@
-"""Frozen statistics for P1 epistemic-mutation necessity v2.2.1.
+"""Frozen statistics for P1 epistemic-mutation necessity v2.2.3.
 
-Standard-library only and independent of candidate policies.
+Standard-library only and independent of candidate policies.  The primary H1
+parent set is deliberately generic: later pre-outcome donor absorption may add
+strong parents without changing the statistical semantics or dropping earlier
+comparators.
 """
 
 from __future__ import annotations
@@ -51,7 +54,9 @@ def paired_bootstrap(
     }
 
 
-def _by_arm(rows: Sequence[Mapping[str, object]]) -> dict[str, dict[str, Mapping[str, object]]]:
+def _by_arm(
+    rows: Sequence[Mapping[str, object]],
+) -> dict[str, dict[str, Mapping[str, object]]]:
     out: dict[str, dict[str, Mapping[str, object]]] = {}
     for row in rows:
         arm = str(row["arm_id"])
@@ -105,7 +110,10 @@ def binary_contrast(
     resamples: int,
 ) -> dict[str, object]:
     left_rows, right_rows = _paired_rows(
-        rows, left_arm, right_arm, subset_field=subset_field
+        rows,
+        left_arm,
+        right_arm,
+        subset_field=subset_field,
     )
     left = [1.0 if bool(item[field]) else 0.0 for item in left_rows]
     right = [1.0 if bool(item[field]) else 0.0 for item in right_rows]
@@ -135,7 +143,10 @@ def continuous_contrast(
     resamples: int,
 ) -> dict[str, object]:
     left_rows, right_rows = _paired_rows(
-        rows, left_arm, right_arm, subset_field=subset_field
+        rows,
+        left_arm,
+        right_arm,
+        subset_field=subset_field,
     )
     left = [float(item[field]) for item in left_rows]
     right = [float(item[field]) for item in right_rows]
@@ -148,22 +159,71 @@ def continuous_contrast(
     }
 
 
-def holm_two(p1: float, p2: float, *, alpha: float = 0.05) -> dict[str, object]:
-    ordered = sorted((("p1", p1), ("p2", p2)), key=lambda item: item[1])
-    first_ok = ordered[0][1] <= alpha / 2.0
-    second_ok = first_ok and ordered[1][1] <= alpha
-    passed = {ordered[0][0]: first_ok, ordered[1][0]: second_ok}
-    return {"alpha": alpha, "p1_pass": passed["p1"], "p2_pass": passed["p2"], "all_pass": all(passed.values())}
+def holm_many(
+    pvalues: Sequence[float],
+    *,
+    alpha: float = 0.05,
+) -> dict[str, object]:
+    """Holm step-down family-wise correction for an arbitrary parent set."""
+
+    if not pvalues:
+        raise ValueError("Holm requires at least one p-value")
+    indexed = sorted(enumerate(float(p) for p in pvalues), key=lambda item: item[1])
+    passed = [False] * len(pvalues)
+    stopped = False
+    thresholds = [0.0] * len(pvalues)
+    for rank, (index, pvalue) in enumerate(indexed):
+        threshold = alpha / float(len(pvalues) - rank)
+        thresholds[index] = threshold
+        if stopped or pvalue > threshold:
+            stopped = True
+            passed[index] = False
+        else:
+            passed[index] = True
+    return {
+        "alpha": alpha,
+        "pvalues": [float(item) for item in pvalues],
+        "thresholds_by_input": thresholds,
+        "passes_by_input": passed,
+        "all_pass": all(passed),
+    }
+
+
+def holm_two(
+    p1: float,
+    p2: float,
+    *,
+    alpha: float = 0.05,
+) -> dict[str, object]:
+    """Compatibility wrapper retained for the earlier frozen tests."""
+
+    result = holm_many((p1, p2), alpha=alpha)
+    passes = result["passes_by_input"]
+    assert isinstance(passes, list)
+    return {
+        "alpha": alpha,
+        "p1_pass": bool(passes[0]),
+        "p2_pass": bool(passes[1]),
+        "all_pass": bool(result["all_pass"]),
+    }
 
 
 def analyze_necessity_campaign(
     rows: Sequence[Mapping[str, object]],
     *,
     full_arm: str,
-    h1_parents: tuple[str, str],
+    h1_parents: Sequence[str],
     control_parent: str,
     parameters: Mapping[str, object],
 ) -> dict[str, object]:
+    parents = tuple(str(item) for item in h1_parents)
+    if not parents:
+        raise ValueError("at least one frozen H1 parent is required")
+    if len(set(parents)) != len(parents):
+        raise ValueError("duplicate H1 parent")
+    if full_arm in parents:
+        raise ValueError("full arm cannot be its own parent")
+
     seed = int(parameters["bootstrap_seed"])
     resamples = int(parameters.get("bootstrap_resamples", 10000))
     margin = float(parameters["H1_superiority_margin_each_parent"])
@@ -172,19 +232,18 @@ def analyze_necessity_campaign(
     cost_margin = float(parameters["cost_noninferiority_margin_units"])
 
     h1 = []
-    for index, parent in enumerate(h1_parents):
-        h1.append(
-            binary_contrast(
-                rows,
-                left_arm=full_arm,
-                right_arm=parent,
-                field="protected_root_task_success",
-                subset_field="hidden_shift",
-                seed=seed + index,
-                resamples=resamples,
-            )
+    for index, parent in enumerate(parents):
+        contrast = binary_contrast(
+            rows,
+            left_arm=full_arm,
+            right_arm=parent,
+            field="protected_root_task_success",
+            subset_field="hidden_shift",
+            seed=seed + index,
+            resamples=resamples,
         )
-    holm = holm_two(float(h1[0]["mcnemar_p"]), float(h1[1]["mcnemar_p"]))
+        h1.append({"parent": parent, **contrast})
+    holm = holm_many([float(item["mcnemar_p"]) for item in h1])
 
     control_success = binary_contrast(
         rows,
@@ -192,58 +251,86 @@ def analyze_necessity_campaign(
         right_arm=control_parent,
         field="protected_root_task_success",
         subset_field="negative_control",
-        seed=seed + 10,
+        seed=seed + 100,
         resamples=resamples,
     )
     full_control, _ = _paired_rows(
-        rows, full_arm, control_parent, subset_field="negative_control"
+        rows,
+        full_arm,
+        control_parent,
+        subset_field="negative_control",
     )
-    unnecessary_count = sum(bool(item["unnecessary_high_level_reframe"]) for item in full_control)
+    unnecessary_count = sum(
+        bool(item["unnecessary_high_level_reframe"])
+        for item in full_control
+    )
 
     whole_grid = []
     cost = []
-    for index, parent in enumerate(h1_parents):
+    for index, parent in enumerate(parents):
         whole_grid.append(
-            binary_contrast(
-                rows,
-                left_arm=full_arm,
-                right_arm=parent,
-                field="protected_root_task_success",
-                subset_field=None,
-                seed=seed + 20 + index,
-                resamples=resamples,
-            )
+            {
+                "parent": parent,
+                **binary_contrast(
+                    rows,
+                    left_arm=full_arm,
+                    right_arm=parent,
+                    field="protected_root_task_success",
+                    subset_field=None,
+                    seed=seed + 200 + index,
+                    resamples=resamples,
+                ),
+            }
         )
         cost.append(
-            continuous_contrast(
-                rows,
-                left_arm=full_arm,
-                right_arm=parent,
-                field="spent_budget",
-                subset_field=None,
-                seed=seed + 30 + index,
-                resamples=resamples,
-            )
+            {
+                "parent": parent,
+                **continuous_contrast(
+                    rows,
+                    left_arm=full_arm,
+                    right_arm=parent,
+                    field="spent_budget",
+                    subset_field=None,
+                    seed=seed + 300 + index,
+                    resamples=resamples,
+                ),
+            }
         )
 
-    full_all, _ = _paired_rows(rows, full_arm, h1_parents[0])
-    sibling_regressions = sum(bool(item["protected_sibling_regression"]) for item in full_all)
-    forbidden = sum(bool(item["forbidden_high_level_mutation"]) for item in full_all)
+    full_all, _ = _paired_rows(rows, full_arm, parents[0])
+    sibling_regressions = sum(
+        bool(item["protected_sibling_regression"])
+        for item in full_all
+    )
+    forbidden = sum(
+        bool(item["forbidden_high_level_mutation"])
+        for item in full_all
+    )
 
     gates = {
-        "h1_each_parent_practical": all(float(item["difference"]) >= margin for item in h1),
-        "h1_each_parent_ci_positive": all(float(item["ci95_low"]) > 0.0 for item in h1),
+        "h1_each_parent_practical": all(
+            float(item["difference"]) >= margin for item in h1
+        ),
+        "h1_each_parent_ci_positive": all(
+            float(item["ci95_low"]) > 0.0 for item in h1
+        ),
         "h1_holm": bool(holm["all_pass"]),
         "h2_zero_unnecessary_reframe": unnecessary_count == 0,
-        "h2_control_success_noninferior": float(control_success["ci95_low"]) >= -ni,
-        "whole_grid_success_noninferior": all(float(item["ci95_low"]) >= -whole_ni for item in whole_grid),
+        "h2_control_success_noninferior": (
+            float(control_success["ci95_low"]) >= -ni
+        ),
+        "whole_grid_success_noninferior": all(
+            float(item["ci95_low"]) >= -whole_ni for item in whole_grid
+        ),
         "zero_protected_sibling_regression": sibling_regressions == 0,
         "zero_forbidden_high_level_mutation": forbidden == 0,
-        "cost_within_margin": all(float(item["difference"]) <= cost_margin for item in cost),
+        "cost_within_margin": all(
+            float(item["difference"]) <= cost_margin for item in cost
+        ),
     }
     return {
         "full_arm": full_arm,
-        "h1_parents": list(h1_parents),
+        "h1_parents": list(parents),
         "h1_hidden_shift": h1,
         "h1_holm": holm,
         "h2_control_parent": control_parent,
@@ -263,6 +350,7 @@ __all__ = [
     "binary_contrast",
     "continuous_contrast",
     "exact_mcnemar_p",
+    "holm_many",
     "holm_two",
     "paired_bootstrap",
 ]
