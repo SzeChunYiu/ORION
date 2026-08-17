@@ -1,0 +1,24 @@
+\section{Ethics, safety, and reproducibility}
+
+\subsection{Ethical considerations}
+This paper studies governed method evolution for research software. The frozen local falsifier and the diagnostic attribution suite use constructed hidden-cause cases. They do not involve human-subject records or personally identifiable information. No live provider campaign was executed in this revision.
+
+\subsection{Safety and authority}
+Self-ORION has no self-merge primitive. The strongest internal terminal remains a host-only promotion recommendation. Isolated self-certification ablations, if ever executed, are forbidden on the production/main authority path. Negative, null, blocked and cannot-check outcomes are retained rather than dropped.
+
+\subsection{Reproducibility and data/code availability}
+Source, protocol, the diagnostic JSONL, and the table generator are version-controlled in \texttt{SzeChunYiu/ORION}. Persistent DOI assignment remains pending publication.
+
+Archived-result regeneration, without executing a live system, is:
+
+\begin{verbatim}
+make paper05-results
+\end{verbatim}
+
+which runs \texttt{python -m orion.study.p5.tables}. The command recomputes 21/24 from \texttt{evidence/glm-5.2-attribution/results.jsonl}, writes Table P5-3 and the residual-error ledger, and writes \texttt{CANNOT\_CHECK} stubs for P5-2, P5-4, P5-5, P5-6, P5-7 and Tables P5-T2/P5-T3. A rewrite of the archive that hides the three errors is refused (exit 2). A missing archive is \texttt{CANNOT\_CHECK} (exit 3). Exact commands are in \texttt{papers/paper-05-self-orion/REPRODUCE.md}.
+
+\subsection{Compute and conservative-abstention cost}
+The diagnostic archive records 14\,190 tokens and mean latency $\approx$13\,s per case for glm-5.2 attribution only. Cost and time to \emph{protected validated improvement} remain \texttt{CANNOT\_CHECK}. No campaign-level abstention/cost trade-off is reported.
+
+\subsection{Licensing}
+This revision does not add a repository-level license. Redistribution terms remain \texttt{CANNOT\_CHECK} from the repository state until they are declared explicitly.
