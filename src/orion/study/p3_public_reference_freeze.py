@@ -53,27 +53,25 @@ def freeze_cases(
     scifact_claims: Path | None = None,
     scischema_root: Path | None = None,
 ) -> dict[str, object]:
-    """Create the portable, content-addressed public-reference gold artifact.
-
-    The builder may run in any checkout location. This stage removes only the
-    supplied machine-local roots, preserving upstream-relative paths, hashes,
-    authority records and semantic content. The normalized artifact is then
-    validated again and content-addressed.
-    """
+    """Create the portable, content-addressed public-reference gold artifact."""
     input_bytes = source_cases.read_bytes()
     replacements: dict[str, str] = {}
+    normalization_rules: dict[str, str] = {}
     if muse_root is not None:
         replacements[muse_root.as_posix()] = "dataset/human_Expert_annotations"
+        normalization_rules["MUSE"] = "dataset/human_Expert_annotations"
     if scifact_claims is not None:
         replacements[scifact_claims.as_posix()] = "data/claims_train.jsonl"
+        normalization_rules["SciFact"] = "data/claims_train.jsonl"
     if scischema_root is not None:
         replacements[scischema_root.as_posix()] = "schemas"
+        normalization_rules["SciSchema"] = "schemas"
 
     original = _read_cases(source_cases)
     frozen: list[dict[str, object]] = []
     for case in original:
         rewritten = _rewrite(case, replacements)
-        if not isinstance(rewritten, dict):  # pragma: no cover - guarded by _read_cases
+        if not isinstance(rewritten, dict):  # pragma: no cover
             raise TypeError("rewritten case is not an object")
         rendered = json.dumps(rewritten, sort_keys=True)
         for local_root in replacements:
@@ -86,8 +84,7 @@ def freeze_cases(
     if case_bytes:
         case_bytes += b"\n"
     out_dir.mkdir(parents=True, exist_ok=True)
-    frozen_path = out_dir / "PUBLIC_REFERENCE_GOLD_V1.jsonl"
-    frozen_path.write_bytes(case_bytes)
+    (out_dir / "PUBLIC_REFERENCE_GOLD_V1.jsonl").write_bytes(case_bytes)
 
     manifest: dict[str, object] = {
         "schema_version": "orion.p3.public-reference-freeze-manifest.v1",
@@ -101,10 +98,9 @@ def freeze_cases(
             "SciSchema": SCISCHEMA_REVISION,
         },
         "locator_policy": "upstream-relative path plus immutable revision/content hash",
-        "normalization_replacements": replacements,
+        "normalization_rules": normalization_rules,
     }
-    manifest_path = out_dir / "PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json"
-    manifest_path.write_text(
+    (out_dir / "PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json").write_text(
         json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
     return manifest
