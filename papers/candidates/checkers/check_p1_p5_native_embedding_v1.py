@@ -21,7 +21,7 @@ from orion.core.closure import ClosureCertificate
 from orion.core.method import MethodState
 from orion.core.search_universe import SearchUniverseState
 from orion.core.state import KnowledgeState, OrionState
-from orion.engine.cycle import Responsibility, local_reframe_allowed
+from orion.engine.cycle import Responsibility, local_reframe_allowed, revision_allowed
 from orion.engine.operators.reopen import ReopenOperator
 from orion.kernel.hard_gates import (
     HardGateContract,
@@ -43,11 +43,6 @@ from orion.self_orion.readiness import (
     ShadowSelfDrivingArchitectureEvidence,
     assess_readiness_stage,
 )
-from orion.study.p1.orion_system import (
-    ReframeStatus,
-    ResponsibilityAssessment,
-    revision_allowed,
-)
 from orion.study.p2.corpus import DiscoveryRoute
 from orion.study.p2.freeze import load_suite
 from orion.study.p2.runner import execute
@@ -58,40 +53,39 @@ FIXTURE_RUN_MANIFEST_HASH = "c" * 64
 
 
 def check_p1_reframe_and_reopen() -> None:
-    """P1: local reframe scope + exact dependency-coordinate reopening."""
+    """P1: exact responsibility-to-local-reframe gate + dependency reopening."""
 
-    assert local_reframe_allowed(Responsibility.KNOWLEDGE) is False
-    assert local_reframe_allowed(Responsibility.WORLD) is True
-    assert local_reframe_allowed(Responsibility.MECHANICS) is True
-    assert local_reframe_allowed(Responsibility.UNRESOLVED) is False
+    # These are the live engine responsibilities licensed for local formulation
+    # / search-space repair. Do not collapse them back into paper-level W/M
+    # shorthand in executable embeddings.
+    locally_reframable = {
+        Responsibility.QUESTION,
+        Responsibility.REPRESENTATION,
+        Responsibility.SEARCH,
+        Responsibility.ROUTING,
+        Responsibility.DECOMPOSITION,
+        Responsibility.INTERFACE,
+        Responsibility.MEASUREMENT,
+    }
+    protected_or_nonreframe = {
+        Responsibility.EVALUATOR,
+        Responsibility.METHOD,
+        Responsibility.EVIDENCE,
+        Responsibility.EXECUTION,
+    }
+    assert all(local_reframe_allowed(item) for item in locally_reframable)
+    assert not any(local_reframe_allowed(item) for item in protected_or_nonreframe)
 
-    unique_world = ResponsibilityAssessment(
-        responsibility=Responsibility.WORLD,
-        confidence=1.0,
-        scores=(
-            (Responsibility.KNOWLEDGE, 0.0),
-            (Responsibility.WORLD, 1.0),
-            (Responsibility.MECHANICS, 0.0),
-            (Responsibility.UNRESOLVED, 0.0),
-        ),
-        margins=(
-            (Responsibility.KNOWLEDGE, 0.0),
-            (Responsibility.WORLD, 1.0),
-            (Responsibility.MECHANICS, 0.0),
-            (Responsibility.UNRESOLVED, 0.0),
-        ),
-        unresolved=(),
-        rationale=("fixture",),
-    )
-    assert revision_allowed(unique_world) is ReframeStatus.LOCAL_REFRAME
-
-    ambiguous = replace(
-        unique_world,
-        responsibility=Responsibility.UNRESOLVED,
-        confidence=0.5,
-        unresolved=(Responsibility.WORLD, Responsibility.MECHANICS),
-    )
-    assert revision_allowed(ambiguous) is ReframeStatus.PROBE_FIRST
+    # High-impact revision requires a singular attribution, but singularity is
+    # not sufficient for local REFRAME: EVIDENCE is uniquely diagnosed here and
+    # still belongs to acquisition/verification rather than formulation rewrite.
+    assert revision_allowed((Responsibility.REPRESENTATION,)) is True
+    assert revision_allowed((Responsibility.EVIDENCE,)) is True
+    assert local_reframe_allowed(Responsibility.EVIDENCE) is False
+    assert revision_allowed(
+        (Responsibility.REPRESENTATION, Responsibility.SEARCH)
+    ) is False
+    assert revision_allowed(()) is False
 
     state = OrionState(
         knowledge=KnowledgeState(),
@@ -345,7 +339,7 @@ def check_p5_protected_self_change_readiness() -> None:
 
 def main() -> int:
     check_p1_reframe_and_reopen()
-    print("PASS P1 reframe/reopen native decisions")
+    print("PASS P1 responsibility/reframe/reopen native decisions")
     check_p2_route_stop_vs_task_stop()
     print("PASS P2 route-stop/task-stop native decisions")
     check_p3_merge_obstruction()
