@@ -25,7 +25,7 @@ DEFAULT_PROTOCOL = (
     / "revival"
     / "p1"
     / "protocol"
-    / "P1.epistemic-mutation-necessity.v2.2.1.json"
+    / "P1.epistemic-mutation-necessity.v2.2.2.json"
 )
 AMENDMENT_SCHEMA = "orion.publication-protocol-amendment.v1"
 SOURCE_PATHS = (
@@ -77,9 +77,13 @@ def _load_node(
     if payload.get("confirmatory_outcome_accessed") is not False:
         raise ValueError("amendment records confirmatory outcome access")
     base_path = ROOT / str(payload["base_protocol_path"])
-    base_payload = json.loads(base_path.read_text())
+    base_raw = base_path.read_bytes()
+    base_payload = json.loads(base_raw)
     if base_payload.get("protocol_version") != payload.get("base_protocol_version"):
         raise ValueError("amendment base version mismatch")
+    expected_blob = payload.get("base_protocol_git_blob_sha")
+    if expected_blob is not None and _git_blob_sha(base_raw) != expected_blob:
+        raise ValueError("amendment base Git blob identity mismatch")
     effective, nodes, material = _load_node(
         base_path,
         seen=seen | frozenset({resolved}),
@@ -95,7 +99,9 @@ def _load_node(
     return effective, [*nodes, node], material + b"\0" + raw
 
 
-def load_effective_protocol(path: Path = DEFAULT_PROTOCOL) -> tuple[dict[str, Any], dict[str, Any]]:
+def load_effective_protocol(
+    path: Path = DEFAULT_PROTOCOL,
+) -> tuple[dict[str, Any], dict[str, Any]]:
     effective, nodes, material = _load_node(path, seen=frozenset())
     return effective, {
         "kind": "base_only" if len(nodes) == 1 else "base_plus_amendments",
@@ -126,15 +132,29 @@ def freeze(protocol_path: Path, outdir: Path) -> dict[str, Any]:
         raise ValueError("candidate-view leak detected")
     if any(candidate_view_leaks(item.public) for item in worlds):
         raise ValueError("candidate-view leak audit disagreement")
-    if {repair.declared_cost for item in worlds for repair in item.public.repairs} != {1.0}:
+    if {
+        repair.declared_cost
+        for item in worlds
+        for repair in item.public.repairs
+    } != {1.0}:
         raise ValueError("v2 repair unit-cost drift")
-    if {probe.declared_cost for item in worlds for probe in item.public.diagnostic_probes} != {1.0}:
+    if {
+        probe.declared_cost
+        for item in worlds
+        for probe in item.public.diagnostic_probes
+    } != {1.0}:
         raise ValueError("v2 probe unit-cost drift")
 
     public = serialize_public(worlds)
     protected = serialize_protected(worlds)
-    public_ids = [json.loads(line)["task_id"] for line in public.decode().splitlines()]
-    protected_ids = [json.loads(line)["task_id"] for line in protected.decode().splitlines()]
+    public_ids = [
+        json.loads(line)["task_id"]
+        for line in public.decode().splitlines()
+    ]
+    protected_ids = [
+        json.loads(line)["task_id"]
+        for line in protected.decode().splitlines()
+    ]
     if public_ids != protected_ids or len(set(public_ids)) != len(worlds):
         raise ValueError("public/protected task identity mismatch")
 
@@ -144,6 +164,7 @@ def freeze(protocol_path: Path, outdir: Path) -> dict[str, Any]:
         "protocol_version": protocol["protocol_version"],
         "protocol_chain": identity,
         "confirmatory_seed": int(plan["confirmatory_seed"]),
+        "replication_seed": int(plan["replication_seed"]),
         "n": len(worlds),
         "hidden_shift_n": manifest["hidden_shift_n"],
         "negative_control_n": manifest["negative_control_n"],
@@ -154,12 +175,16 @@ def freeze(protocol_path: Path, outdir: Path) -> dict[str, Any]:
         "source_sha256": {path: _sha(ROOT / path) for path in SOURCE_PATHS},
         "arms_executed": False,
         "outcome_accessed": False,
-        "claim_boundary": "WORLD_AND_RESPONSE_IDENTITY_ONLY__NO_ARM_OUTPUT__NO_SCIENTIFIC_RESULT",
+        "claim_boundary": (
+            "WORLD_AND_RESPONSE_IDENTITY_ONLY__NO_ARM_OUTPUT__NO_SCIENTIFIC_RESULT"
+        ),
     }
     outdir.mkdir(parents=True, exist_ok=True)
     (outdir / "WORLD_PUBLIC.jsonl").write_bytes(public)
     (outdir / "PROTECTED_RESPONSE_MATRIX.jsonl").write_bytes(protected)
-    (outdir / "WORLD_FREEZE.json").write_text(json.dumps(binding, indent=2, sort_keys=True) + "\n")
+    (outdir / "WORLD_FREEZE.json").write_text(
+        json.dumps(binding, indent=2, sort_keys=True) + "\n"
+    )
     return binding
 
 
