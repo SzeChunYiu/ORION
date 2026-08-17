@@ -1,0 +1,387 @@
+{
+  "ablation_deltas": {
+    "force_compatibility_without_obstruction": {
+      "accuracy_ablation_minus_full": {
+        "candidate_minus_baseline": -0.125,
+        "ci95_high": -0.03125,
+        "ci95_low": -0.25,
+        "n": 32.0
+      },
+      "false_merge_ablation_minus_full": {
+        "candidate_minus_baseline": 0.125,
+        "ci95_high": 0.25,
+        "ci95_low": 0.03125,
+        "n": 32.0
+      },
+      "false_split_ablation_minus_full": {
+        "candidate_minus_baseline": 0.0,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "n": 32.0
+      }
+    },
+    "remove_construct": {
+      "accuracy_ablation_minus_full": {
+        "candidate_minus_baseline": 0.0,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "n": 32.0
+      },
+      "false_merge_ablation_minus_full": {
+        "candidate_minus_baseline": 0.0,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "n": 32.0
+      },
+      "false_split_ablation_minus_full": {
+        "candidate_minus_baseline": 0.0,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "n": 32.0
+      }
+    },
+    "remove_measurement": {
+      "accuracy_ablation_minus_full": {
+        "candidate_minus_baseline": 0.0,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "n": 32.0
+      },
+      "false_merge_ablation_minus_full": {
+        "candidate_minus_baseline": 0.0,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "n": 32.0
+      },
+      "false_split_ablation_minus_full": {
+        "candidate_minus_baseline": 0.0,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "n": 32.0
+      }
+    },
+    "remove_modality_polarity_attribution_discourse": {
+      "accuracy_ablation_minus_full": {
+        "candidate_minus_baseline": -0.125,
+        "ci95_high": -0.03125,
+        "ci95_low": -0.25,
+        "n": 32.0
+      },
+      "false_merge_ablation_minus_full": {
+        "candidate_minus_baseline": 0.125,
+        "ci95_high": 0.25,
+        "ci95_low": 0.03125,
+        "n": 32.0
+      },
+      "false_split_ablation_minus_full": {
+        "candidate_minus_baseline": 0.0,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "n": 32.0
+      }
+    },
+    "remove_referent": {
+      "accuracy_ablation_minus_full": {
+        "candidate_minus_baseline": 0.0,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "n": 32.0
+      },
+      "false_merge_ablation_minus_full": {
+        "candidate_minus_baseline": 0.0,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "n": 32.0
+      },
+      "false_split_ablation_minus_full": {
+        "candidate_minus_baseline": 0.0,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "n": 32.0
+      }
+    },
+    "remove_temporal_context": {
+      "accuracy_ablation_minus_full": {
+        "candidate_minus_baseline": 0.0,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "n": 32.0
+      },
+      "false_merge_ablation_minus_full": {
+        "candidate_minus_baseline": 0.0,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "n": 32.0
+      },
+      "false_split_ablation_minus_full": {
+        "candidate_minus_baseline": 0.0,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "n": 32.0
+      }
+    }
+  },
+  "case_count": 32,
+  "primary_comparisons": {
+    "false_merge_margin_met_point_estimate": true,
+    "false_merge_orion_minus_flat": {
+      "candidate_minus_baseline": -0.125,
+      "ci95_high": -0.03125,
+      "ci95_low": -0.25,
+      "n": 32.0
+    },
+    "false_split_margin_met_point_estimate": true,
+    "false_split_orion_minus_exact": {
+      "candidate_minus_baseline": 0.0,
+      "ci95_high": 0.0,
+      "ci95_low": 0.0,
+      "n": 32.0
+    },
+    "noninferiority_margin": 0.03,
+    "note": "Point-estimate margin flags are descriptive. Publication inference must also report the paired confidence intervals and the frozen protocol.",
+    "superiority_margin": -0.05
+  },
+  "schema_version": "orion.p3.public-reference-analysis.v1",
+  "statistics": {
+    "bootstrap_seed": 20260817,
+    "paired_interval": "paired percentile bootstrap, 10000 resamples",
+    "rate_interval": "Wilson 95%",
+    "unit": "externally grounded mapping case"
+  },
+  "systems": {
+    "ablation:force_compatibility_without_obstruction": {
+      "abstention": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      },
+      "accuracy": {
+        "ci95_high": 0.9502986561251991,
+        "ci95_low": 0.7193169451834978,
+        "n": 32.0,
+        "rate": 0.875
+      },
+      "false_merge": {
+        "ci95_high": 0.2806830548165022,
+        "ci95_low": 0.04970134387480073,
+        "n": 32.0,
+        "rate": 0.125
+      },
+      "false_split": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      }
+    },
+    "ablation:remove_construct": {
+      "abstention": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      },
+      "accuracy": {
+        "ci95_high": 1.0,
+        "ci95_low": 0.8928208017449293,
+        "n": 32.0,
+        "rate": 1.0
+      },
+      "false_merge": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      },
+      "false_split": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      }
+    },
+    "ablation:remove_measurement": {
+      "abstention": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      },
+      "accuracy": {
+        "ci95_high": 1.0,
+        "ci95_low": 0.8928208017449293,
+        "n": 32.0,
+        "rate": 1.0
+      },
+      "false_merge": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      },
+      "false_split": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      }
+    },
+    "ablation:remove_modality_polarity_attribution_discourse": {
+      "abstention": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      },
+      "accuracy": {
+        "ci95_high": 0.9502986561251991,
+        "ci95_low": 0.7193169451834978,
+        "n": 32.0,
+        "rate": 0.875
+      },
+      "false_merge": {
+        "ci95_high": 0.2806830548165022,
+        "ci95_low": 0.04970134387480073,
+        "n": 32.0,
+        "rate": 0.125
+      },
+      "false_split": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      }
+    },
+    "ablation:remove_referent": {
+      "abstention": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      },
+      "accuracy": {
+        "ci95_high": 1.0,
+        "ci95_low": 0.8928208017449293,
+        "n": 32.0,
+        "rate": 1.0
+      },
+      "false_merge": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      },
+      "false_split": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      }
+    },
+    "ablation:remove_temporal_context": {
+      "abstention": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      },
+      "accuracy": {
+        "ci95_high": 1.0,
+        "ci95_low": 0.8928208017449293,
+        "n": 32.0,
+        "rate": 1.0
+      },
+      "false_merge": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      },
+      "false_split": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      }
+    },
+    "exact_coordinate_conservative": {
+      "abstention": {
+        "ci95_high": 0.2806830548165022,
+        "ci95_low": 0.04970134387480073,
+        "n": 32.0,
+        "rate": 0.125
+      },
+      "accuracy": {
+        "ci95_high": 0.9502986561251991,
+        "ci95_low": 0.7193169451834978,
+        "n": 32.0,
+        "rate": 0.875
+      },
+      "false_merge": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      },
+      "false_split": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      }
+    },
+    "flat_predicate_canonicalization": {
+      "abstention": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      },
+      "accuracy": {
+        "ci95_high": 0.9502986561251991,
+        "ci95_low": 0.7193169451834978,
+        "n": 32.0,
+        "rate": 0.875
+      },
+      "false_merge": {
+        "ci95_high": 0.2806830548165022,
+        "ci95_low": 0.04970134387480073,
+        "n": 32.0,
+        "rate": 0.125
+      },
+      "false_split": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      }
+    },
+    "orion": {
+      "abstention": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      },
+      "accuracy": {
+        "ci95_high": 1.0,
+        "ci95_low": 0.8928208017449293,
+        "n": 32.0,
+        "rate": 1.0
+      },
+      "false_merge": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      },
+      "false_split": {
+        "ci95_high": 0.1071791982550706,
+        "ci95_low": 0.0,
+        "n": 32.0,
+        "rate": 0.0
+      }
+    }
+  }
+}
