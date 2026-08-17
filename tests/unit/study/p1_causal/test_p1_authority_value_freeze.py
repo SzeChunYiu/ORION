@@ -18,15 +18,20 @@ from orion.study.p1_causal.authority_value_policies import (
     block_all_conservative,
     orion_typed_permission,
     orion_typed_permission_dependency_reopen,
+    r2act_dependency_rollback_parent,
     unrestricted_outcome_flip_repair,
 )
-from orion.study.p1_causal.authority_value_scoring import score_task
+from orion.study.p1_causal.authority_value_scoring import (
+    authority_critical_task,
+    score_task,
+)
 import orion.study.p1_causal.authority_value_scoring as scoring_module
 
 ROOT = Path(__file__).resolve().parents[4]
 FREEZER = ROOT / "research" / "revival" / "p1" / "freeze_authority_value_holdout.py"
-AMENDMENT = ROOT / "research" / "revival" / "p1" / "protocol" / "P1.authority-value.v2.1.1.json"
 BASE_PROTOCOL = ROOT / "research" / "revival" / "p1" / "protocol" / "P1.authority-value.v2.1.json"
+V211 = ROOT / "research" / "revival" / "p1" / "protocol" / "P1.authority-value.v2.1.1.json"
+V212 = ROOT / "research" / "revival" / "p1" / "protocol" / "P1.authority-value.v2.1.2.json"
 
 _freeze_spec = importlib.util.spec_from_file_location("p1_authority_value_freezer", FREEZER)
 assert _freeze_spec is not None and _freeze_spec.loader is not None
@@ -47,6 +52,7 @@ def test_development_generator_has_registered_factor_grid_and_no_candidate_leaks
     assert set(manifest["by_family"]) == {item.family_id for item in FAMILY_SPECS}
     assert set(manifest["by_family"].values()) == {64}
     assert len({task.public.task_id for task in tasks}) == 384
+    assert sum(authority_critical_task(task) for task in tasks) == 32
 
 
 def test_independent_scorer_does_not_import_orion_licensing_or_candidate_policies() -> None:
@@ -61,28 +67,38 @@ def test_independent_scorer_does_not_import_orion_licensing_or_candidate_policie
     assert not any(name.endswith("authority_value_policies") for name in imported)
 
 
-def test_v211_amendment_strengthens_primary_parent_without_mutating_base() -> None:
+def test_preconfirmatory_protocol_chain_is_recursive_and_immutable() -> None:
     base = json.loads(BASE_PROTOCOL.read_text())
-    amendment = json.loads(AMENDMENT.read_text())
-    effective, identity = freezer.load_effective_protocol(AMENDMENT)
+    v211 = json.loads(V211.read_text())
+    v212 = json.loads(V212.read_text())
+    effective, identity = freezer.load_effective_protocol(V212)
 
     assert base["protocol_version"] == "P1.authority-value.v2.1.0"
-    assert base["primary_hypothesis"]["primary_comparator"] == "reflect_evigraph_composite_parent"
-    assert amendment["confirmatory_outcome_accessed"] is False
-    assert amendment["change_direction"].startswith("STRICTLY_STRONGER_PRIMARY_COMPARATOR")
-    assert effective["protocol_version"] == "P1.authority-value.v2.1.1"
-    assert effective["primary_hypothesis"]["primary_comparator"] == "class_conditioned_minimal_repair"
+    assert v211["base_protocol_git_blob_sha"] == "555e6dc77a8377a4a7392f5fb5e05ee5aa0c7657"
+    assert v212["base_protocol_git_blob_sha"] == "e147377f435b061d952c6bd6abae71773f88f7a3"
+    assert v211["confirmatory_outcome_accessed"] is False
+    assert v212["confirmatory_outcome_accessed"] is False
+    assert effective["protocol_version"] == "P1.authority-value.v2.1.2"
     assert effective["fresh_holdout_plan"] == base["fresh_holdout_plan"]
     assert effective["statistics"] == base["statistics"]
-    assert identity["kind"] == "base_plus_amendment"
-    assert identity["base_git_blob_sha"] == amendment["base_protocol_git_blob_sha"]
+    assert effective["primary_hypothesis"]["primary_comparator"] == "r2act_dependency_rollback_parent"
+    assert effective["authority_critical_subset"]["expected_n_from_registered_factor_grid"] == 32
+    assert identity["kind"] == "base_plus_amendments"
+    assert [node["protocol_version"] for node in identity["nodes"]] == [
+        "P1.authority-value.v2.1.0",
+        "P1.authority-value.v2.1.1",
+        "P1.authority-value.v2.1.2",
+    ]
+    assert identity["base_git_blob_sha"] == "555e6dc77a8377a4a7392f5fb5e05ee5aa0c7657"
+    assert identity["latest_git_blob_sha"] == freezer._git_blob_sha(V212.read_bytes())
 
 
 def test_protocol_arm_registry_matches_frozen_candidate_functions() -> None:
-    effective, _ = freezer.load_effective_protocol(AMENDMENT)
+    effective, _ = freezer.load_effective_protocol(V212)
     frozen_ids = tuple(item["id"] for item in effective["matched_arms"])
     code_ids = tuple(function.__name__ for function in MATCHED_ARMS)
     assert frozen_ids == code_ids
+    assert len(code_ids) == 9
     assert effective["primary_hypothesis"]["primary_comparator"] in code_ids
 
 
@@ -97,6 +113,27 @@ def test_blanket_refusal_fails_a_legitimate_repair_control() -> None:
     score = score_task(task, outcome)
     assert score.legitimate_repair_available is True
     assert score.scientifically_valid_repair is False
+
+
+def test_authority_critical_case_separates_operational_parent_from_orion() -> None:
+    task = next(item for item in _development_tasks() if authority_critical_task(item))
+    assert task.gold.should_block is True
+    assert task.public.diagnosis.intervention_backed is False
+
+    parent = r2act_dependency_rollback_parent(task.public)
+    parent_score = score_task(task, parent.to_payload())
+    assert parent.blocked is False
+    assert parent_score.authority_critical is True
+    assert parent_score.unauthorized_mutation is True
+    assert parent_score.scientifically_valid_repair is False
+
+    full = orion_typed_permission_dependency_reopen(task.public)
+    full_score = score_task(task, full.to_payload())
+    assert full.blocked is True
+    assert full.cannot_check is True
+    assert full.applied_requests == ()
+    assert full_score.correct_block is True
+    assert full_score.scientifically_valid_repair is True
 
 
 def test_missing_intervention_blocks_mutation_without_counting_as_failure_to_repair() -> None:
