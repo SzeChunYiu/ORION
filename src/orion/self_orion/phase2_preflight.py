@@ -24,6 +24,7 @@ class Phase2PreflightStatus(str, Enum):
     BIND_EXTERNAL_PROVIDER = "BIND_EXTERNAL_PROVIDER"
     BIND_PROTECTED_EVALUATOR = "BIND_PROTECTED_EVALUATOR"
     BIND_FROZEN_PACKET = "BIND_FROZEN_PACKET"
+    CANNOT_CHECK = "CANNOT_CHECK"
     READY_TO_EXECUTE_SHADOW_TRIAL = "READY_TO_EXECUTE_SHADOW_TRIAL"
     INVALID = "INVALID"
 
@@ -142,11 +143,19 @@ class FrozenPacketBinding:
         bindings = tuple(document.get("task_bindings") or ())
         limits = document.get("resource_limits") or {}
         baseline = document.get("matched_baseline") or {}
+        evaluator = document.get("evaluator") or {}
+        evaluator_hash = document.get("evaluator_artifact_hash") or (
+            evaluator.get("artifact_hash") if isinstance(evaluator, dict) else ""
+        )
+        # The published #8 packet schema does not carry `subject_revision_hash`.
+        # Leave it empty. `assess_phase2_preflight` treats an undeclared freeze
+        # field as CANNOT_CHECK rather than comparing against "", which would
+        # look like the freeze declared the empty string as the expected hash.
         return cls(
             packet_fingerprint=str(document.get("packet_fingerprint", "")),
             subject_revision_hash=str(document.get("subject_revision_hash", "")),
             provider_manifest_hash=str(document.get("provider_manifest_hash", "")),
-            evaluator_artifact_hash=str(document.get("evaluator_artifact_hash", "")),
+            evaluator_artifact_hash=str(evaluator_hash or ""),
             evaluation_epoch_id=str(document.get("evaluation_epoch_id", "")),
             baseline_id=str(baseline.get("baseline_id", "")),
             resource_budget_units=float(limits.get("budget_units", 0.0)),
@@ -263,6 +272,7 @@ def assess_phase2_preflight(preflight: Phase2ClosurePreflight) -> Phase2Prefligh
         )
 
     mismatches: list[str] = []
+    cannot_check: list[str] = []
     for label, declared, expected in (
         ("subject_revision_hash", preflight.subject_revision_hash, frozen.subject_revision_hash),
         ("provider_manifest_hash", preflight.provider_manifest_hash, frozen.provider_manifest_hash),
@@ -270,21 +280,32 @@ def assess_phase2_preflight(preflight: Phase2ClosurePreflight) -> Phase2Prefligh
         ("evaluation_epoch_id", preflight.evaluation_epoch_id, frozen.evaluation_epoch_id),
         ("baseline_id", preflight.baseline_id, frozen.baseline_id),
     ):
-        if declared != expected:
+        if not str(expected).strip():
+            # A freeze that does not declare the field cannot certify it.
+            # Comparing against "" would report a mismatch, as if the freeze
+            # had said the value was the empty string, which it did not.
+            cannot_check.append(f"{label}_undeclared_in_frozen_packet")
+        elif declared != expected:
             mismatches.append(f"{label}_mismatch")
-    if preflight.resource_budget_units != frozen.resource_budget_units:
+    if frozen.resource_budget_units <= 0:
+        cannot_check.append("resource_budget_undeclared_in_frozen_packet")
+    elif preflight.resource_budget_units != frozen.resource_budget_units:
         mismatches.append("resource_budget_mismatch")
 
     # Two frozen task registries exist in this repository and they do not agree.
     # Which one carries the intended Phase-2 subject is a governance decision, so
-    # this gate refuses to choose: it names both sides and blocks. Silently
-    # adopting either would settle an authority question by fiat, which is the
-    # one thing a preflight exists to prevent. No caller can clear this blocker.
-    if task_ids != tuple(frozen.task_ids):
+    # this gate refuses to choose: it names both sides and returns CANNOT_CHECK.
+    # Silently adopting either would settle an authority question by fiat, which
+    # is the one thing a preflight exists to prevent. Membership is the identity
+    # of a registry; order is not.
+    frozen_ids = tuple(str(item) for item in frozen.task_ids)
+    if not frozen_ids or any(not item.strip() for item in frozen_ids):
+        cannot_check.append("frozen_packet_task_ids_undeclared")
+    elif frozenset(task_ids) != frozenset(frozen_ids):
         in_source = "|".join(task_ids)
-        frozen_ids = "|".join(frozen.task_ids)
-        mismatches.append(
-            f"frozen_packet_registry_divergence:in_source={in_source};frozen={frozen_ids}"
+        frozen_listed = "|".join(frozen_ids)
+        cannot_check.append(
+            f"frozen_packet_registry_divergence:in_source={in_source};frozen={frozen_listed}"
         )
 
     # A task the freeze says carries held-out ground truth must still declare it
@@ -298,6 +319,13 @@ def assess_phase2_preflight(preflight: Phase2ClosurePreflight) -> Phase2Prefligh
     if missing_gold:
         mismatches.append("frozen_ground_truth_not_bound:" + ",".join(missing_gold))
 
+    if cannot_check:
+        return Phase2PreflightReport(
+            Phase2PreflightStatus.CANNOT_CHECK,
+            tuple(cannot_check + mismatches),
+            task_ids,
+            preflight.authority_attack_ids,
+        )
     if mismatches:
         return Phase2PreflightReport(
             Phase2PreflightStatus.BIND_FROZEN_PACKET,

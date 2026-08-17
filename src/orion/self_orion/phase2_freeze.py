@@ -49,6 +49,7 @@ def freeze_phase2_binding(
     baseline_id: str = "simple-llm-retrieval-baseline-v1",
     protocol_id: str = "phase2-shadow-closure-v1",
     repository_identity: str | None = None,
+    phase1_anchor_commit: str = "",
     frozen_packet: FrozenPacketBinding | None = None,
     phase1_anchor_commit: str = "",
 ) -> FrozenPhase2BindingReport:
