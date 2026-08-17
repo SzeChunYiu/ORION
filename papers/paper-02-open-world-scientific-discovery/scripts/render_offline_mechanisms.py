@@ -13,6 +13,12 @@ PAPER = Path(__file__).resolve().parents[1]
 SOURCE = PAPER / "evidence" / "offline_results" / "OFFLINE_MECHANISMS_V1.json"
 FIGURES = PAPER / "manuscript" / "figures"
 ROUTES = ("LEXICAL", "SEMANTIC", "CITATION", "REFORMULATION", "RESTRICTED")
+PRECISION_TIERS = (
+    ("TIER_A_full", 1068),
+    ("TIER_B_committed", 385),
+    ("TIER_C_reduced", 171),
+    ("TIER_D_minimum_inferential", 97),
+)
 
 
 def _number(value: float) -> str:
@@ -20,11 +26,32 @@ def _number(value: float) -> str:
     return text or "0"
 
 
+def _expected_authority(n_tasks: int) -> str:
+    for name, required in PRECISION_TIERS:
+        if n_tasks >= required:
+            return name
+    return "DESCRIPTIVE_ONLY"
+
+
+def _scope(data: dict[str, Any], *, detail: str) -> str:
+    return (
+        f"{data['n_tasks']} frozen tasks; {detail}; "
+        f"authority {data['analysis_authority']} (precision tier only, no primary promotion)"
+    )
+
+
 def _validate(data: dict[str, Any]) -> None:
     if data.get("schema_version") != "orion.p2.offline-mechanisms.v1":
         raise ValueError("unexpected offline mechanism schema")
-    if data.get("analysis_authority") != "DESCRIPTIVE_ONLY" or data.get("n_tasks") != 20:
-        raise ValueError("mechanism figures are frozen to the 20-task descriptive companion")
+    n_tasks = data.get("n_tasks")
+    if not isinstance(n_tasks, int) or isinstance(n_tasks, bool) or n_tasks < 1:
+        raise ValueError("offline mechanism snapshot requires a positive integer n_tasks")
+    expected = _expected_authority(n_tasks)
+    if data.get("analysis_authority") != expected:
+        raise ValueError(
+            "offline mechanism authority does not match frozen precision tiers: "
+            f"n={n_tasks} requires {expected}"
+        )
     if len(str(data.get("source_record_digest_sha256", ""))) != 64:
         raise ValueError("source record digest missing")
     if len(str(data.get("source_raw_artifact_hash_list_digest_sha256", ""))) != 64:
@@ -49,6 +76,7 @@ def render_p2_3_tex(data: dict[str, Any]) -> str:
         f"({int(point['queries'])},{_number(point['mean_complete_gold_recall'])})"
         for point in baseline
     )
+    scope = _scope(data, detail="repeats collapsed")
     return "\n".join(
         [
             "% GENERATED from evidence/offline_results/OFFLINE_MECHANISMS_V1.json",
@@ -61,7 +89,7 @@ def render_p2_3_tex(data: dict[str, Any]) -> str:
             rf"\draw[thick,dashed] plot coordinates {{{coords_b}}};",
             r"\node[anchor=west] at (8.3,0.94) {ORION full};",
             r"\node[anchor=west] at (8.3,0.69) {Protocol SLR};",
-            r"\node[anchor=west,font=\small] at (0,1.16) {20 frozen tasks; repeats collapsed; descriptive only};",
+            rf"\node[anchor=west,font=\small] at (0,1.16) {{{scope.replace('_', r'\_')}}};",
             r"\end{tikzpicture}",
         ]
     ) + "\n"
@@ -111,7 +139,7 @@ def render_p2_3_svg(data: dict[str, Any]) -> str:
             f'<polyline points="{points(baseline)}" fill="none" stroke="#777" stroke-width="3" stroke-dasharray="8 6"/>',
             '<text x="500" y="72" font-family="sans-serif" font-size="13">ORION full</text>',
             '<text x="500" y="166" font-family="sans-serif" font-size="13">Protocol SLR</text>',
-            '<text x="70" y="22" font-family="sans-serif" font-size="12">20 frozen tasks; deterministic repeats collapsed; descriptive only</text>',
+            f'<text x="70" y="22" font-family="sans-serif" font-size="12">{_scope(data, detail="deterministic repeats collapsed")}</text>',
             '</svg>',
         ]
     )
@@ -152,9 +180,10 @@ def render_p2_4_tex(data: dict[str, Any]) -> str:
                 rf"\node[rotate=90,anchor=west,font=\scriptsize] at ({x + 0.3:.1f},0.10) {{{verdict_labels[verdict]}}};",
             ]
         )
+    scope = _scope(data, detail="contribution counted by content identity")
     lines.extend(
         [
-            r"\node[anchor=west,font=\small] at (0,3.70) {20 frozen tasks; contribution counted by content identity; descriptive only};",
+            rf"\node[anchor=west,font=\small] at (0,3.70) {{{scope.replace('_', r'\_')}}};",
             r"\end{tikzpicture}",
         ]
     )
@@ -184,7 +213,7 @@ def render_p2_4_svg(data: dict[str, Any]) -> str:
         f'<line x1="{left}" y1="{bottom}" x2="720" y2="{bottom}" stroke="#111" stroke-width="2"/>',
         f'<line x1="{left}" y1="{bottom}" x2="{left}" y2="55" stroke="#111" stroke-width="2"/>',
         '<text x="16" y="30" font-family="sans-serif" font-size="13">mean contribution</text>',
-        '<text x="70" y="20" font-family="sans-serif" font-size="12">20 frozen tasks; content-identity first relevant contribution; descriptive only</text>',
+        f'<text x="70" y="20" font-family="sans-serif" font-size="12">{_scope(data, detail="content-identity first relevant contribution")}</text>',
     ]
     for y_value in (0, 1, 2, 3):
         y = bottom - y_value / 3 * plot_height
@@ -263,10 +292,11 @@ def render_p2_5_tex(data: dict[str, Any]) -> str:
                 lines.append(
                     rf"\node[text={text_color},font=\tiny] at ({x + 0.4:.2f},{y + 0.16:.2f}) {{{short}}};"
                 )
+    scope = _scope(data, detail="content identity; deterministic repeats collapsed")
     lines.extend(
         [
             r"\node[anchor=west,font=\small] at (0.7,-0.55) {cell = mean task-level content Jaccard; ind. = structurally independent};",
-            r"\node[anchor=west,font=\small] at (0.7,-0.95) {20 frozen tasks; descriptive only};",
+            rf"\node[anchor=west,font=\small] at (0.7,-0.95) {{{scope.replace('_', r'\_')}}};",
             r"\end{tikzpicture}",
         ]
     )
@@ -321,7 +351,7 @@ def render_p2_5_svg(data: dict[str, Any]) -> str:
     lines.extend(
         [
             '<text x="150" y="552" font-family="sans-serif" font-size="11">Diagonal is self-overlap. Lexical/Reformulation share a backend and are not independent.</text>',
-            '<text x="150" y="570" font-family="sans-serif" font-size="11">20 frozen tasks; content identity; deterministic repeats collapsed; descriptive only.</text>',
+            f'<text x="150" y="570" font-family="sans-serif" font-size="11">{_scope(data, detail="content identity; deterministic repeats collapsed")}</text>',
             '</svg>',
         ]
     )
