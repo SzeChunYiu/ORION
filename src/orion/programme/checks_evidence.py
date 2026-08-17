@@ -68,6 +68,11 @@ def _check_evaluator_gaming(state: ProgrammeState) -> CheckResult:
         if epoch.evaluator_custody != EXTERNAL_CUSTODY
     ]
 
+    # A declared revision is one where a reopen event sits at the same point in
+    # the epoch ordering as the swap. ``ReopenEvent.epoch`` and
+    # ``EpochSnapshot.sequence`` are the same ordinal under different names; the
+    # pass branch of this correspondence is exercised by
+    # ``test_evaluator_gaming_passes_on_a_declared_revision``.
     declared = {
         event.epoch
         for event in state.reopen_events

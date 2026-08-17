@@ -26,6 +26,8 @@ from orion.programme.checks_evidence import (
     INSUFFICIENT_PROTECTED_EVIDENCE,
     STALE_AUTHORITY,
 )
+from orion.programme.dependency import InvalidationTrigger, Layer, ReopenEvent
+from orion.programme.identity import content_digest
 from orion.programme.programme_state import CANDIDATE_CUSTODY, ProgrammeState
 from orion.programme.records import Outcome
 
@@ -65,6 +67,53 @@ def test_evaluator_gaming_fails_on_undeclared_evaluator_swap(
     swapped = replace(clean_state.epochs[1], evaluator_artifact_hash="b" * 64)
     state = replace(clean_state, epochs=(clean_state.epochs[0], swapped))
     assert _outcome(state, EVALUATOR_GAMING) is Outcome.FAIL
+
+
+def test_evaluator_gaming_passes_on_a_declared_revision(
+    clean_state: ProgrammeState,
+) -> None:
+    """The honest case: an evaluator that changed *with* a declared revision.
+
+    Without this, only the firing path is covered, and a check that fires on
+    every legitimate evaluator update is a false-positive generator.
+    """
+
+    swapped = replace(clean_state.epochs[1], evaluator_artifact_hash="b" * 64)
+    declared = ReopenEvent(
+        event_id="reopen-eval-1",
+        trigger=InvalidationTrigger.EVALUATOR_REVISION,
+        origin_layer=Layer.METHOD,
+        origin_record_id="m-a",
+        changed_coordinates=("EVALUATOR",),
+        reason="evaluator rebuilt by the external host",
+        epoch=1,
+        superseded_record_digests=(content_digest({"record": "evaluator-old"}),),
+        successor_record_digests=(content_digest({"record": "evaluator-new"}),),
+    )
+    state = replace(
+        clean_state,
+        epochs=(clean_state.epochs[0], swapped),
+        reopen_events=(declared,),
+    )
+    assert _outcome(state, EVALUATOR_GAMING) is Outcome.PASS
+
+
+def test_hidden_deletion_fails_on_supersession_without_a_successor(
+    clean_state: ProgrammeState,
+) -> None:
+    laundering = ReopenEvent(
+        event_id="reopen-retire-1",
+        trigger=InvalidationTrigger.NEGATIVE_HISTORY_ADDITION,
+        origin_layer=Layer.OBJECT,
+        origin_record_id="obj-1",
+        changed_coordinates=("K.CLAIM.obj-1",),
+        reason="retire an inconvenient record",
+        epoch=1,
+        superseded_record_digests=(content_digest({"record": "retired"}),),
+        successor_record_digests=(),
+    )
+    state = replace(clean_state, reopen_events=(laundering,))
+    assert _outcome(state, HIDDEN_DELETION) is Outcome.FAIL
 
 
 def test_stale_authority_fails_on_source_version_substitution(
