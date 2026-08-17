@@ -5,6 +5,12 @@
   "closes_gate": null,
   "purpose": "Bind the exact Phase-1 terminal commit so that any future Phase-2 closure-run subject can be mechanically checked to be Phase-1-derived. This record is not evidence for any Phase-2 closure gate and does not attest that any Phase-2 trial was executed.",
   "repository_identity": "github.com/SzeChunYiu/ORION",
+  "machine_readable_form": {
+    "schema": "Phase1TerminalReceipt.v1",
+    "path": "provenance/phases/PHASE1_TERMINAL_RECEIPT_V1.json",
+    "loader": "orion.self_orion.phase1_terminal_receipt.load_phase1_terminal_receipt_v1",
+    "relationship": "That receipt is the canonical machine-loadable record of the Phase-1 terminal; this file is its human-readable audit companion. The two describe one commit and must not drift — tests/unit/self_orion/test_phase1_terminal_receipt.py asserts they agree. On any conflict the receipt governs, because it is content-hash bound."
+  },
 
   "anchor": {
     "commit_oid": "7983401847ea2b33706aacbf6e45b6bc63a60d0d",
