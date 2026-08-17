@@ -98,6 +98,11 @@ jobs:
                   'SciSchema': '55b6197cdb0b66c3123df16d0b0c70b02c4bde8b',
                   'SciFact': '68b98a56d93e0f9da0d2aab4e6c3294699a0f72e',
               },
+              'external_content_hashes': {
+                  'SciFact:claims_dev.jsonl': hashlib.sha256(
+                      Path('/tmp/scifact/data/claims_dev.jsonl').read_bytes()
+                  ).hexdigest(),
+              },
               'artifact_hashes': {
                   'cases.jsonl': digest('cases.jsonl'),
                   'BUILD_REPORT.json': digest('BUILD_REPORT.json'),
