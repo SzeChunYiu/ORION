@@ -1,157 +1,291 @@
 # P6–P8 mathematical completion path
 
 **Status:** active candidate-paper programme.  
-**External LLM API requirement:** **none**.
+**External LLM API requirement:** **none**.  
+**Breadth policy:** assimilate strong donor mechanisms before narrowing; preserve donor-native semantics; claim only cross-donor residuals that survive falsification.
 
-The three candidate papers can be completed as theorem-led mathematical and formal-methods papers. Internet access is still required for current literature closure and source verification, and independent scholarly review is required before claiming peer-review readiness. Neither task requires a paid or proprietary LLM API.
+The three candidate papers can be advanced as theorem-led formal-methods papers with prospective cross-domain experiments. Internet access is required for current literature closure and source verification, and independent scholarly review is required before peer-review readiness can be claimed. No theorem, proof, novelty verdict or completion gate may depend on a proprietary LLM judge.
 
 ## 1. What “complete” means
 
-Three terminals must remain distinct.
+Three terminals remain distinct.
 
 1. **Mathematically complete manuscript** — definitions, semantics, theorem statements, proofs/countermodels, examples, limitations, bibliography and reproducibility instructions are present.
-2. **Novelty-bounded manuscript** — the smallest residual survives the nearest-work and P1–P5 ownership audits (#318, #287, #343).
-3. **Peer-review ready** — mathematical arguments have independent review, mechanized or deterministic checks reproduce where applicable, the final literature closure is current, and the claim ledger authorizes every headline sentence.
+2. **Novelty-bounded manuscript** — the surviving residual has passed donor assimilation (#352), nearest-work review (#334/#337/#340), novelty (#287) and P1–P5 ownership (#343).
+3. **Peer-review ready** — mathematical arguments have independent review, deterministic/mechanized checks reproduce where applicable, prospective evaluations are complete, final literature closure is current, and the claim ledger authorizes every headline sentence.
 
-A manuscript can reach (1) while remaining `CANNOT_CHECK`, `ALREADY_SOLVED`, or `MERGE_INTO_EXISTING_PAPER` at (2). No paper will be forced into existence by renaming an existing ORION contribution.
+A manuscript may reach (1) while terminating as `MERGE_INTO_EXISTING_PAPER`, `PROCESS_ONLY_NOT_NOVEL`, `ALREADY_SOLVED`, `REFUTED` or `CANNOT_CHECK` at (2). That counts as a successful research outcome.
 
 ## 2. Non-LLM toolchain
 
-The default completion path uses only deterministic/open tooling:
+Default completion path:
 
 - Markdown/LaTeX for manuscripts;
 - Python standard-library finite-model enumerators and counterexample generators;
-- a proof assistant such as Lean 4 or Isabelle/HOL for selected structural theorems where the formalization cost is justified;
-- SAT/SMT/model checking only when useful and reproducible;
+- Lean 4/Isabelle/HOL or another proof assistant for selected structural theorems where formalization cost is justified;
+- SAT/SMT/model checking when useful and reproducible;
 - BibTeX plus DOI/arXiv/source-identity checks;
 - Git/GitHub Actions for immutable execution and artifact hashes.
 
-LLMs may be compared as an optional application layer in future work, but no theorem, proof, novelty verdict, or completion gate may depend on an LLM judge.
-
 ## 3. Expert-role review model
 
-Every finding is pressure-tested from five explicit roles. These are review functions, not claims of human participation.
+Every material finding is pressure-tested from five review functions. These are analytical roles, not claims of human participation.
 
-- **Formal logician:** syntax, semantics, soundness, countermodels and proof obligations.
-- **Formal-methods engineer:** executable correspondence, finite-model checks, proof-assistant targets and reproducibility.
-- **Epistemic-navigation theorist:** partial observability, route/topology semantics, stopping impossibility and transfer.
-- **Authorization/governance logician:** obligation, permission, delegation, revocation, laundering and protected roots.
-- **Scientific editor/novelty auditor:** P1–P5 ownership, nearest work, nonclaims, quantifier scope and journal-readiness authority.
+- **Formal logician:** syntax, semantics, quantifiers, soundness, countermodels and theorem strength.
+- **Formal-methods engineer:** executable correspondence, finite-model checks, proof-assistant targets, effect/process semantics and reproducibility.
+- **Epistemic-navigation theorist:** partial observability, orientation, route identity, planning/representation abstractions, stopping and support transfer.
+- **Authorization/governance logician:** obligation, permission, delegation, revocation, non-interference, laundering, epochs and protected roots.
+- **Scientific editor/novelty auditor:** P1–P5 ownership, donor uniqueness, nonclaims, external literature breadth, transfer discriminators and claim authority.
 
-A proposed theorem or novelty statement is not retained until each relevant role records what it establishes and what it does not.
+A proposed result is retained only when the relevant roles agree on both what it establishes and what it does **not** establish.
 
-## 4. P6 theorem programme — Formal Epistemic Structures and Mechanics
+## 4. Assimilation-first research architecture
 
-### Formal objects
-- typed epistemic coordinates and valuations;
-- claims/obligations with certification state;
-- provenance and dependency hypergraphs;
-- mechanic contracts with read/write sets, preconditions, evidence obligations, transition relation, authority scope, emitted obligations, failures and invariants;
-- sequential, conditional, separated-parallel and recursive-audit composition;
-- dependency-scoped reopening and retained negative history.
+The broad common scaffold under test is an epistemic transition contract
 
-### Primary theorem targets
+\[
+\mathcal C=(S,Req,Eff,Dep,Prov,Auth,Obs,Hist,Inv),
+\]
 
-**P6.T1 — Minimal sound reopening.** Under a sound dependency graph, reopening the downstream closure of a changed coordinate is sufficient to prevent stale dependent certifications and is minimal among strategies that must be sound for every semantics compatible with that graph.
+covering typed state, residual requirements, requested/committed effects, dependency, provenance, authority, observations/coverage, retained history and invariants.
 
-**P6.T2 — Commutation under separation.** Two deterministic mechanics commute when each mechanic’s write set is disjoint from the other’s read/write footprint and both preserve shared invariants.
+This scaffold is not itself a novelty claim. #352 requires donor-faithful embeddings. If a strong donor cannot be embedded without changing its native verdicts, ORION's generalization is rejected or revised.
 
-**P6.T3 — Sequential non-escalation.** Sequential composition of mechanics that cannot mint stronger authority and consume only typed in-scope authority cannot increase authority beyond the union of trusted external grants.
+Current wide parent-field map: `PARENT_FIELD_PRESSURE_MAP_2026-08-17.md`.  
+Current atomic donor map: `DONOR_ASSIMILATION_MATRIX_2026-08-17.md`.  
+Internal ownership map: `P1_P5_OWNERSHIP_MATRIX_V1.md`.
 
-**P6.T4 — Recursive-audit termination.** Recursive mechanic audit terminates when every recursive call strictly decreases a well-founded rank; a finite countermodel demonstrates nontermination when this condition is absent.
+## 5. P6 theorem programme — Formal Epistemic Structures and Mechanics
 
-**P6.T5 — No internal self-authorization guarantee.** If an auditor may rewrite both the predicate and evidence by which its own change is authorized, nontrivial promotion soundness cannot be guaranteed without a protected authority root.
+### Current widened object
+A **history-aware epistemic effect/repair algebra** combining typed effects, residual obligations, provenance, scoped commit authority, dependency repair, frame/separation conditions, retained audit traces and recursive audit under protected roots.
 
-### Required proof artifacts
-- mathematical proof for P6.T1–T4;
-- explicit countermodel for P6.T5;
-- bounded finite-model checker for reopening, separation and escalation cases;
-- exact mapping from selected ORION registry objects into the formal signature;
-- proof/nonproof boundary against AGM, dynamic epistemic logic, truth-maintenance and architecture formalisms.
-
-## 5. P7 theorem programme — Epistemic Navigation in Open Worlds
-
-### Formal objects
-- epistemic topology, locations, frontiers and route signatures;
-- observed history versus possible unobserved extensions;
-- open/censored/unavailable obligations;
-- local route stopping, global task stopping, defer/revisit and `CANNOT_CHECK`;
-- topology-changing reframes with partial preservation maps;
-- support-preserving transfer and dependency-based reopening.
+Native P1 mechanic cells, recursive audit and reconstruction reopening remain P1-owned special cases.
 
 ### Primary theorem targets
 
-**P7.T1 — Open-world stopping impossibility.** For any finite observation history lacking a closure certificate, there exist two observationally indistinguishable world extensions—one complete and one containing an unseen relevant state. Therefore no rule can soundly authorize global completion on that history for both worlds.
+**P6.T1 — Minimal sound reopening.** Under a dependency relation sound for the admissible semantic class, reopening every certified descendant of a changed coordinate is sufficient to prevent stale dependent certification and inclusion-minimal among graph-only strategies that must be uniformly sound for every compatible semantics.
 
-**P7.T2 — Strict expressivity of topology change.** There exists a task family whose goal is unreachable under every policy restricted to the initial topology but reachable after an admissible reframe; fixed-topology navigation is therefore strictly weaker on that family.
+**P6.T2 — History-aware commutation under strong separation.** Two deterministic strongly separated mechanics commute on the current scientific-state projection, while ordered histories need only be equivalent under swaps of independent events:
 
-**P7.T3 — Preservation under reframe.** A closed obligation may transfer across a reframe only when its complete support substructure lies in the preservation map and the map preserves the predicates/relations used by its certificate; otherwise the obligation must reopen or become `CANNOT_CHECK`.
+\[
+\pi_{sci}(m;n(E))=\pi_{sci}(n;m(E)),
+\qquad H_{mn}\equiv_I H_{nm}.
+\]
 
-**P7.T4 — Output overlap does not identify route independence.** Equal observed outputs do not imply structural dependence, and disjoint observed outputs do not imply structural independence; constructive counterexamples establish both directions.
+Literal equality of whole states is **not** claimed because audit chronology is retained.
 
-**P7.T5 — Fail-closed task stopping.** A task-stop judgment is sound only if every mandatory obligation is satisfied or is explicitly discharged by a valid closure certificate; low utility, route exhaustion or budget depletion alone cannot derive completion.
+**P6.T3 — Sequential non-escalation.** Sequential composition of mechanics that can only retain/narrow authority or receive trusted-root grants cannot mint stronger untrusted authority.
 
-### Required proof artifacts
-- indistinguishability proof for P7.T1;
-- graph/topology countermodel for P7.T2;
-- transfer lemma for P7.T3;
-- explicit route counterexamples for P7.T4;
-- deterministic generator/checker for finite dynamic-topology instances.
+**P6.T4 — Residual-obligation preservation.** A hard residual obligation emitted by one mechanic survives composition until an authorized discharge rule closes it; later computational success cannot silently erase it.
 
-## 6. P8 theorem programme — Epistemic Authority for Autonomous Science
+**P6.T5 — Recursive-audit termination.** Recursive audit terminates when each recursive call strictly decreases a well-founded rank; a self-loop gives the finite nontermination countermodel when no such condition exists.
 
-### Formal objects
-- typed epistemic action domains: reframe, search/stop, map/merge, assert and self-modify;
-- capability, support, defeaters, hard/soft obligations, authority, delegation, revocation and `CANNOT_CHECK`;
-- typed authority certificates with issuer, domain, scope, evidence identity and expiry;
-- explicit sound coercions between authority domains;
-- dependency-tracked revocation and protected authority roots.
+**P6.T6 — No internal self-authorization guarantee.** If a candidate can rewrite both its admission predicate and all evidence read by that predicate, external promotion soundness cannot be guaranteed without a protected authority root/invariant.
+
+**P6.T7 — Conservative donor embedding.** When P6-only dimensions are inert, adopted donor systems retain their native update/allow/rollback/locality judgments.
+
+### Priority donor embeddings
+
+- Dynamic Epistemic Logic/action models;
+- AGM/iterated belief revision and belief bases;
+- TMS/ATMS/dependency-directed repair;
+- separation/process/event-structure semantics;
+- CoALA and mechanism-level agent architectures;
+- ETAS typed effects/residual obligations/traces;
+- FAVA evidence-backed permission graphs/pre-effect authorization;
+- AgentTether transition-unit failure localization;
+- dependency-guided rollback/selective replay.
+
+### Existing deterministic artifact
+`checkers/p6_finite_falsifiers_v1.py` — current bounded sanity pass: **5/5 PASS**. It is supporting evidence only, not a proof.
+
+### Next proof/engineering artifacts
+
+- exhaustive bounded enumeration rather than only hand fixtures;
+- explicit donor-native conservative-embedding fixtures;
+- partial-order/trace-equivalence checker;
+- proof assistant target for P6.T2 or P6.T4 after semantics freeze;
+- cross-domain exact-ground-truth transfer from #353.
+
+## 6. P7 theorem programme — Epistemic Navigation in Open Worlds
+
+### Current widened object
+An **open-world epistemic atlas**
+
+\[
+\mathfrak A=(\{T_i\}_{i\in I},\mathcal M,\Xi),
+\]
+
+where local charts can differ in representation, world model, route structure and objective/obligation semantics, and partial maps specify what may transport between them.
+
+P1 owns native responsibility-triggered representation reconstruction; P2 owns route independence, route/task stopping and fail-closed coverage. P7 may only generalize their interaction with external navigation/planning donors.
 
 ### Primary theorem targets
 
-**P8.T1 — No authority laundering.** In a derivation system where judgments are domain-typed and the only cross-domain rules are registered sound coercions, a judgment from domain `d` cannot authorize an action in domain `d'` unless a valid coercion path exists. Proof is by induction over derivations.
+**P7.T1 — Stopping impossibility under extension ambiguity.** If a finite history admits two observationally equivalent admissible completions with different mandatory-task completion truth values, no history-only rule can soundly certify task completion for both.
 
-**P8.T2 — Non-compensatory blockers cannot be represented by an unbounded additive evidence accumulator with finite penalties.** For every finite blocker penalty, sufficiently many positive evidence increments can cross a fixed threshold while the blocker remains unsatisfied. A hard obligation therefore requires a conjunctive/veto or lexicographic layer.
+**Correction:** absence of a closure certificate alone is **not** logically sufficient in every world class. A separate richness premise is needed to infer extension ambiguity from certificate absence.
 
-**P8.T3 — Dependency-grounded revocation.** Revoking an evidence or authority ancestor invalidates every downstream authorization certificate whose derivation depends on it; unrelated certificates remain unchanged under a sound dependency relation.
+**P7.T2 — Strict expressivity of admissible chart change.** There exists a task family whose goal is unreachable under every policy restricted to the initial chart but reachable after an admissible chart change. This is an expressivity lemma, not a novelty claim by itself.
 
-**P8.T4 — Self-promotion requires an authority root outside candidate control.** If a candidate can alter the policy and evidence that determine its own admission, it can construct a policy that admits any candidate; internal acceptance alone cannot establish promotion soundness.
+**P7.T3 — Support/obligation transport.** A closed obligation transports across a reframe only when its complete support, semantic predicates/relations, evidence identities and relevant obligation meaning are preserved; otherwise it reopens or becomes `CANNOT_CHECK`.
 
-**P8.T5 — Domain-gate embedding.** Each existing P1–P5 authority gate can be represented as an instance of the calculus. Consequently, P8’s possible incremental contribution is cross-domain composition, anti-laundering and revocation—not greater within-domain expressive power by vocabulary alone.
+**P7.T4 — Evidence can survive while closure fails.** Objective/obligation change may preserve content-bound evidence while invalidating the prior task-closure judgment.
 
-### Required proof artifacts
-- derivation calculus and induction proof for P8.T1;
-- algebraic construction for P8.T2;
-- dependency proof for P8.T3;
-- countermodel for P8.T4;
-- explicit embeddings for P8.T5;
-- deterministic hostile-case checker.
+**P7.T5 — Output overlap does not identify route independence.** Equal observed output can arise from structurally independent routes; disjoint output can arise from structurally dependent routes.
 
-## 7. Literature and novelty obligations
+**P7.T6 — Fail-closed task stopping.** Route exhaustion, low utility, budget depletion or reframing cannot by themselves derive `TASK_STOP` while a mandatory-open obligation remains.
 
-Mathematics does not eliminate related-work obligations. The following must be treated as prior art where applicable:
+**P7.T7 — Conservative donor embedding.** Fixed-chart/standard-model specializations reproduce donor-native navigation/update/stop judgments.
+
+### Priority donor/parent embeddings
+
+- Search-on-Graph;
+- Mind-ParaWorld / MPW-Bench;
+- Initial Exploration Problem;
+- POMDP/belief-space information gathering;
+- planning abstractions, representation-language and plan-preserving homomorphism work;
+- learned/adaptive planning representations;
+- SAGA objective evolution;
+- self-evolving/graph world models;
+- scientific-exploration breadth/concentration work;
+- P2 native route/stop mechanics.
+
+### Existing deterministic artifact
+`checkers/p7_finite_falsifiers_v1.py` — current bounded sanity pass: **7/7 PASS**.
+
+### Next proof/engineering artifacts
+
+- exhaustive bounded atlas generator;
+- explicit counterexample where no closure certificate exists but extension ambiguity is absent;
+- plan/goal-preservation map fixtures from planning-abstraction donors;
+- objective-change fixtures where evidence transports but closure reopens;
+- non-retrieval exact-ground-truth benchmark from #353;
+- negative controls penalizing unnecessary chart changes.
+
+## 7. P8 theorem programme — Epistemic Authority for Autonomous Science
+
+### Current widened object
+A **typed cross-domain epistemic authority calculus** over effect requests, hard obligations, content-bound judgments, grants, explicit cross-domain coercions, epochs, dependency-grounded revocation, `CANNOT_CHECK` and protected roots.
+
+All five within-domain gates remain P1–P5-owned. Generic permission/effect/provenance/abstention machinery is donor-owned.
+
+### Primary theorem targets
+
+**P8.T1 — Typed anti-laundering.** If all ordinary derivation rules preserve authority domain and only registered coercions may change it, a judgment rooted in `d` cannot authorize an effect in `d'` without a valid coercion path.
+
+**P8.T2 — Absolute blockers and extensible additive evidence.** With unbounded/extensible positive evidence and a finite blocker penalty, sufficiently much positive evidence can cross any fixed threshold while the blocker remains active. Absolute blockers therefore need explicit veto/conjunctive/lexicographic semantics or an externally bounded score space.
+
+**P8.T3 — Dependency-grounded revocation.** Revoking an evidence/grant ancestor invalidates certificates whose derivations necessarily depend on it while permitting a certificate with a complete independent valid derivation to survive.
+
+**P8.T4 — Pre-effect authorization.** A post-hoc refusal cannot retroactively prevent an already committed irreversible effect.
+
+**P8.T5 — Self-promotion boundary.** Candidate-controlled admission policy + candidate-controlled admission evidence cannot establish an externally defined promotion property.
+
+**P8.T6 — Conservative P1–P5 gate embedding.** The general calculus reproduces frozen native decisions for reframe, search/stop, map/merge, assert and self-modify domains.
+
+**P8.T7 — Conservative external donor embedding.** ETAS/FAVA-style native policy decisions are preserved when cross-epistemic-domain coercions are inactive.
+
+**P8.T8 — Cross-domain composition discriminator.** There exist compositions in which all producing modules issue locally valid judgments but an untyped composition authorizes an invalid downstream epistemic action; the typed-coercion calculus blocks the transport without blocking a matched valid-coercion control.
+
+P8.T8 is the decisive candidate-paper discriminator. If it collapses to standard authorization/non-interference theory with renamed domains and no scientific transfer value, P8 should merge into P4/programme synthesis.
+
+### Priority donor/parent embeddings
+
+- Delegation Logic / trust management;
+- SecPAL;
+- authorization logics including NAL/belief semantics/flow-limited authorization;
+- deontic/input-output/action logics;
+- ETAS;
+- FAVA;
+- Policy Cards/user-permission systems;
+- AgentAbstain;
+- ProvenanceGuard/execution provenance;
+- Agent-Sentry;
+- information-flow/non-interference systems;
+- P1–P5 native gates.
+
+### Existing deterministic artifact
+`checkers/p8_finite_falsifiers_v1.py` — current bounded sanity pass: **7/7 PASS**.
+
+### Next proof/engineering artifacts
+
+- exact P1–P5 decision fixtures;
+- ETAS/FAVA-style donor fixtures;
+- cross-domain laundering dataset with matched valid-coercion controls;
+- temporal/epoch and revocation exhaustive cases;
+- proof assistant target for anti-laundering or revocation theorem after rule freeze;
+- protected cross-capability evaluation from #341/#353.
+
+## 8. Cross-paper theorem programme
+
+The width pass suggests several common statements that may become lemmas, synthesis results or reasons to merge papers rather than force separation.
+
+### G1 — Donor-faithful conservative extension
+Adding ORION dimensions that are inert on a donor's native problem must not change that donor's native verdict.
+
+### G2 — Dependency invalidation skeleton
+P6 state reopening, P7 closure reopening and P8 authority revocation all use a dependency-closure skeleton but have different semantic terminals. Investigate a common theorem parameterized by domain-specific validity semantics.
+
+### G3 — Evidence/authority non-fungibility
+Content-bound evidence or authority from one semantic/action domain is not automatically substitutable for a hard premise in another domain.
+
+### G4 — History-sensitive equivalence
+Current-state equivalence does not imply history equivalence. Later policy may legitimately depend on chronology, issuer identity, provenance or revocation lineage.
+
+### G5 — Width with negative controls
+A more expressive formalism must not automatically dominate: on tasks where simple fixed-chart navigation, local gates or full/simple repair suffice, ORION should avoid unnecessary reframing, refusal and reopening.
+
+## 9. Literature and novelty obligations
+
+The programme must explicitly disposition, not merely cite:
 
 - dynamic epistemic/action logics and belief change;
-- AGM/iterated revision and formalized belief-revision libraries;
-- truth-maintenance and dependency-directed backtracking;
-- process/separation/temporal logics and typed transition systems;
+- AGM/iterated revision and belief-base formalisms;
+- TMS/ATMS/dependency-directed repair;
+- process/separation/event/temporal/effect systems;
+- provenance/audit/accountability;
+- planning abstraction, representation languages and representation learning;
 - graph navigation, exploratory search, information foraging and POMDP information acquisition;
-- deontic/input-output/action logics, access-control authorization logics and policy composition;
-- abstention/selective prediction, provenance guardrails and shielding/formal runtime enforcement;
-- current agent-architecture and capability-versus-permission work.
+- goal/objective revision/evolution and world-model adaptation;
+- deontic/input-output/action/authorization/trust-management logics;
+- delegation, revocation, non-interference and information-flow control;
+- abstention/selective prediction, provenance guardrails, runtime shielding and agent permission systems;
+- current language-agent architecture and repair work.
 
-The novelty residual is recomputed after every close donor is absorbed. Renaming an established theorem or applying it to ORION is not a new theorem.
+After each `ADOPT`, `ADAPT` or `COMPOSE`, recompute the surviving theorem/benchmark residual. A larger bibliography is not evidence of a larger contribution.
 
-## 8. Completion order
+## 10. Current completed artifacts in this pass
 
-1. Finish the P6/P7/P8 formal cores and theorem proofs.
-2. Implement deterministic finite checks and countermodels.
-3. Complete the P1–P5 overlap/embedding matrix.
-4. Saturate nearest work and strike absorbed claims.
-5. Convert drafts into complete LaTeX manuscripts and bibliographies.
-6. Run independent proof/claim review.
-7. Promote only candidates with a non-duplicative residual; merge or close the others honestly.
+- [x] widened donor-assimilation programme opened as #352;
+- [x] cross-domain width/transfer programme opened as #353;
+- [x] `DONOR_ASSIMILATION_MATRIX_2026-08-17.md`;
+- [x] `PARENT_FIELD_PRESSURE_MAP_2026-08-17.md`;
+- [x] `P1_P5_OWNERSHIP_MATRIX_V1.md`;
+- [x] P6/P7/P8 formal cores widened;
+- [x] P6 history-aware commutation theorem repaired;
+- [x] P7 stopping-impossibility premise repaired;
+- [x] P8 cross-domain formal core expanded;
+- [x] first deterministic P6/P7/P8 finite falsifier scripts committed;
+- [x] current bounded runs: P6 5/5, P7 7/7, P8 7/7;
+- [x] P6/P7/P8 Markdown manuscripts rewritten around the wider donor-faithful objects.
 
-## 9. Current authority
+These completions do **not** close novelty or empirical gates.
 
-All three papers remain candidates. The theorem statements above are research targets until proofs and literature boundaries are committed and independently checked. The absence of an LLM API dependency does not itself establish novelty, correctness or peer-review readiness.
+## 11. Remaining completion order
+
+1. Finish the broad parent-field/donor saturation until two consecutive passes yield no material change to the formal objects.
+2. Implement conservative donor + P1–P5 embedding fixtures.
+3. Upgrade hand fixtures to exhaustive bounded generators/model checks.
+4. Formalize one high-value theorem per surviving candidate in a proof assistant if feasible.
+5. Freeze #353 cross-domain transfer benchmarks and strongest donor baselines prospectively.
+6. Execute protected/fresh evaluations; route positives through #283.
+7. Complete sentence-level claim ledgers #346 and final overlap dispositions #343.
+8. Convert surviving candidates into LaTeX journal packages with verified bibliographies.
+9. Run final literature refresh #344 and venue gate #345.
+10. Promote only a candidate whose independent paper-level residual still survives.
+
+## 12. Current authority
+
+All three papers remain candidates and all external novelty/superiority terminals remain `CANNOT_CHECK`. The work completed so far strengthens the formal objects and falsification programme; it does not authorize promotion to Papers VI–VIII.
