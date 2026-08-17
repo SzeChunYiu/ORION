@@ -1,0 +1,177 @@
+# Publication closure evidence gates — issue #153
+
+**Wave:** closure checklist + mechanical `PEER_REVIEW_READY` gate.  
+**Programme owner:** #97 (`cursor/paper-97`).  
+**Archive/submission package owner:** #160 (`cursor/paper-160`).  
+**Classified against:** `origin/main` at `03b2dae910ac3cc4a1bc21cb422caea6e37cfb22` (2026-08-17).  
+**Mechanical gate:** `make peer-review-ready-gate` (`python3 -m orion.publication.peer_review_ready`).
+
+This file enumerates the shared Gates 0–9 from `JOURNAL_READINESS_STANDARD.md` / #97 against what is actually on `main`. It ticks only what the tree verifies. It does **not** convert `CANNOT_CHECK`, underpowered, or null results into a ready terminal.
+
+## Mechanical rule
+
+A paper may *claim* `PEER_REVIEW_READY` (asserted `**Terminal:**` / attestation file, not an “only when” done-definition) only if all of these exist:
+
+- `JOURNAL_READINESS.md`
+- `manuscript/main.tex`
+- a claim ledger (`CLAIM_LEDGER*`)
+- `protocol/PROTOCOL_V1.json`
+- a `*PEER_REVIEW_READY*` attestation
+- `REPRODUCE.md` or `reproducibility/`
+- at least one file under `evidence/`
+
+P1 H1 on the frozen 48-case TEST arm is `NOT_SUPPORTED` / `UNDERPOWERED` (`TierRule.from_n(48)`). Promoting that arm to `SUPPORTED`/`PASS` or to `PEER_REVIEW_READY` fails the gate.
+
+## Per-paper evidence-gate table
+
+| Paper | Issue | Claimed terminal on `main` | G0 identity | G1 nearest-work | G2 manuscript | G3 freeze | G4 empirical | G5 mechanism | G6 figures/tables | G7 repro | G8 integrity | G9 submission | `PEER_REVIEW_READY` |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| P1 | #98 closed (local freeze only) | **not claimed** (`CANNOT_CHECK`) | PASS | PASS local; 14-day resubmission OPEN | PASS | PASS `EXECUTION_FROZEN` | **BLOCKED** H1 n=48 `BELOW_TIER_D` | PARTIAL (ablations archived, not confirmatory) | PASS (P1-1…P1-6, T1–T3 tracked) | PARTIAL (tables replayed; DOI OPEN) | PASS local | OPEN | **no** |
+| P2 | #99 open / #157 | **not claimed** (`CANNOT_CHECK`) | PASS | PASS local | PASS | PARTIAL (offline freeze; live/Wide/Deep confirmatory unbound) | **BLOCKED** official Wide/Deep/SAGE/live | PARTIAL (offline ablations only) | PARTIAL (P2-2, P2-7, T2 intervals open) | PARTIAL | PARTIAL (contamination audit incomplete) | OPEN | **no** |
+| P3 | #100 open | **not claimed** (`CANNOT_CHECK`) | PASS | PARTIAL (atlas exists; JOURNAL_READINESS absorb boxes still open; PR #270 owns ticks) | PARTIAL (manuscript present; results unpopulated) | PARTIAL | **BLOCKED** gold: 32 single-annotator, 0 `annotator-a`/`annotator-b` | OPEN | OPEN | OPEN | PARTIAL (`CANNOT_CHECK` retained) | OPEN | **no** |
+| P4 | #101 closed | **claimed** `PEER_REVIEW_READY` | PASS | PASS (refresh if submit after 2026-08-31) | PASS | PASS protected V2 | PASS H1/H2; H3 **NOT_SUPPORTED** (honest null) | PASS (8 ablations) | PASS | PASS (release tag + independent headline replay) | PASS | PARTIAL (TMLR package yes; OpenReview ID external) | **yes — artifacts present** |
+| P5 | #102 open / #159 | **not claimed** (`CANNOT_CHECK`) | PASS | PARTIAL (closure note on `main`; JOURNAL_READINESS still 0/87 ticked — owned by #102) | PARTIAL | **BLOCKED** campaign identities not frozen | **BLOCKED** live Copilot `MODEL_UNAVAILABLE`; #8/#76 not result-bearing | OPEN | OPEN | OPEN | PARTIAL (failed entitlement preserved, not a negative study) | OPEN | **no** |
+
+## P1 H1 — honest non-closure
+
+| Coordinate | On `main` | May this close `PEER_REVIEW_READY`? |
+|---|---|---|
+| Frozen TEST N | 48 cases (32 hidden-shift) | no |
+| Prospective power | `PROSPECTIVE_POWER_V1.md`; H1 +0.05 needs far larger N; achieved `BELOW_TIER_D` | no |
+| T2 `orion_full` × `P1.H1` | `NOT_SUPPORTED` (interval includes/below +0.05; n=48) | no — and must not be rewritten to `SUPPORTED` |
+| Precision tier | `underpowered=True`; does not license H1 superiority | no |
+| Live `orion_live_provider` | 48/48 scored, 0 `CANNOT_CHECK`, root success 0 | descriptive / underpowered, not a superiority close |
+| Optional SciAgentArena cases | still open | no |
+| Permanent DOI | still open (external) | no (Gate 7 leftover; not a fake scientific close) |
+
+Issue #278 (`REVIVAL-P1`) owns explaining/repairing the H1 null. This wave does not reinterpret it.
+
+## Shared Gates 0–9 vs `origin/main` (detail)
+
+Statuses: **PASS** = verified on `main`; **PARTIAL** = local substrate present, confirmatory evidence missing; **OPEN** = not started; **BLOCKED** = cannot close without external/credential/expert input; **HONEST-NULL** = executed and not supported.
+
+### Gate 0 — claim coherence
+
+| Paper | Status | Evidence on `main` |
+|---|---|---|
+| P1 | PASS | Stable ID, scoped residual, claim ledger `evidence/CLAIM_LEDGER_V1.md` |
+| P2 | PASS | Discovery ≠ synthesis; claim ledger `evidence/CLAIM_LEDGER_V1.md` |
+| P3 | PASS | Portrait residual scoped; `CLAIM_LEDGER_V1.md` at paper root |
+| P4 | PASS | Non-compensatory authority residual; `evidence/CLAIM_LEDGER_V1.md` |
+| P5 | PASS | No-self-promotion residual; manuscript present |
+
+### Gate 1 — nearest-work
+
+| Paper | Status | Notes |
+|---|---|---|
+| P1 | PASS local | `NEAREST_WORK_MATRIX_V2.md`; SCION checkpoint-failure closed on `main`; 14-day resubmission pass still required |
+| P2 | PASS local | JOURNAL_READINESS §1 all ticked; SAGE struck rather than faked |
+| P3 | PARTIAL | `NEAREST_WORK_DISPOSITIONS_V1.md` exists; JOURNAL_READINESS absorb boxes still `[ ]` (do not tick here — #270) |
+| P4 | PASS | Saturated 2026-08-17; refresh if submit after 2026-08-31 |
+| P5 | PARTIAL | `P5_NEAREST_WORK_CLOSURE_2026-08-16.md` + #102 comments; JOURNAL_READINESS still unticked (owned by #102/#159) |
+
+### Gate 2 — manuscript
+
+| Paper | Status | Notes |
+|---|---|---|
+| P1 | PASS | `manuscript/main.tex` compiles; results/limitations populated from archive |
+| P2 | PASS | Canonical manuscript; Results bounded to offline + MetaSyn |
+| P3 | PARTIAL | `manuscript/main.tex` exists; gold-study Results not executable |
+| P4 | PASS | Anonymous TMLR manuscript, H3 null reported |
+| P5 | PARTIAL | Canonical manuscript; external Results unpopulated |
+
+### Gate 3 — prospective freeze
+
+| Paper | Status | Notes |
+|---|---|---|
+| P1 | PASS | `PROTOCOL_V1.json` `EXECUTION_FROZEN` |
+| P2 | PARTIAL | Offline manifest frozen; official Wide/Deep/live confirmatory freeze incomplete |
+| P3 | PARTIAL | Protocol present; gold execution identities unbound |
+| P4 | PASS | Protected V2 bindings + signed freeze |
+| P5 | BLOCKED | #159: exact campaign subject/provider/model/evaluator/split/epoch still open |
+
+### Gate 4 — empirical adequacy
+
+| Paper | Status | Notes |
+|---|---|---|
+| P1 | BLOCKED | H1 underpowered / `NOT_SUPPORTED`; live arm 0/48; optional SciAgentArena open |
+| P2 | BLOCKED | Official Deep judge; admissible Wide ORION-vs-baseline; SAGE unavailable; live campaign |
+| P3 | BLOCKED | Independent annotators absent; expert gold unresolved |
+| P4 | PASS + HONEST-NULL | H1/H2 PASS; H3 `NOT_SUPPORTED` retained |
+| P5 | BLOCKED | Copilot run `32003937947` is `CANNOT_CHECK` (`MODEL_UNAVAILABLE`), not a negative study |
+
+### Gate 5 — mechanism identification
+
+| Paper | Status | Notes |
+|---|---|---|
+| P1 | PARTIAL | 5 ablations archived; cannot attribute H1 (underpowered) |
+| P2 | PARTIAL | Offline ablations; external matched baselines incomplete |
+| P3 | OPEN | Ablation campaign not run |
+| P4 | PASS | Eight registered ablations |
+| P5 | OPEN | Matched self-improvement baselines not executed |
+
+### Gate 6 — figures/tables
+
+| Paper | Status | Notes |
+|---|---|---|
+| P1 | PASS | P1-1 PDF + P1-T1 TeX now match the JOURNAL_READINESS ticks on this wave |
+| P2 | PARTIAL | P2-2, P2-7, T2-with-intervals still need confirmatory campaigns |
+| P3 | OPEN | P3-1…P3-7 / T1–T3 ungenerated from gold |
+| P4 | PASS | Five figures + three tables from immutable V2 aggregates |
+| P5 | OPEN | P5-1…P5-7 / T1–T3 ungenerated |
+
+### Gate 7 — reproducible artifact
+
+| Paper | Status | Notes |
+|---|---|---|
+| P1 | PARTIAL | `make paper01-results`; independent T2 replay (PR #259); DOI open |
+| P2 | PARTIAL | Offline `--check` path; no permanent archive/DOI; live archive missing |
+| P3 | OPEN | Gold not independently annotatable from checkout |
+| P4 | PASS | `orion-p4-v2-peer-review-ready` + saturated successor release |
+| P5 | OPEN | No result-bearing archive |
+
+Gate 7 leftovers that #160 owns once scientific terminals stabilize: permanent DOI/archive, journal template conversion, cover letters, independent PDF/claim audits.
+
+### Gate 8 — integrity/authority
+
+| Paper | Status | Notes |
+|---|---|---|
+| P1 | PASS local | `PublicView`; failed/null preserved; H1 not promoted |
+| P2 | PARTIAL | Contamination audit incomplete; SAGE not substituted |
+| P3 | PASS local | Single-annotator corpus kept `CANNOT_CHECK` for agreement |
+| P4 | PASS | Protected custody telemetry; H3 null preserved |
+| P5 | PARTIAL | Failed Copilot entitlement preserved via #198/#199; not counted as a study result |
+
+### Gate 9 — submission package
+
+| Paper | Status | Notes |
+|---|---|---|
+| P1–P3, P5 | OPEN | Blocked on scientific terminals |
+| P4 | PARTIAL | TMLR checklist/PDF/archive ready; OpenReview ID is an external filing step, not a scientific blocker |
+
+## JOURNAL_READINESS checkbox census vs `main`
+
+| Paper | Ticked | Open | This wave ticked | Left honestly open |
+|---|---:|---:|---|---|
+| P1 | 74 | 2 | Figure P1-1, Table P1-1 (files already on `main`); independent T2 replay (PR #259) already ticked | optional SciAgentArena; permanent DOI. H1 stays `NOT_SUPPORTED`/`UNDERPOWERED` — not a box |
+| P2 | 70 | 22 | none (owned by #99/#157) | official Wide/Deep, SAGE struck, live campaign, submission |
+| P3 | 25 | 69 | none (PR #270 owns ticks) | independent annotators, gold study, baselines/ablations/results |
+| P4 | 44 | 1 | none | OpenReview submission ID |
+| P5 | 0 | 87 | none (owned by #102/#159) | freeze, hidden-cause execution, #8/#76, plots, submission |
+
+## Remaining blockers to `PEER_REVIEW_READY`
+
+1. **P1** — powered H1 (or a versioned larger protocol); do not relabel the n=48 non-finding as confirmatory. Optional SciAgentArena. DOI/archive + Gate 9 (#160).
+2. **P2** — admissible official Wide ORION-vs-baseline; official Deep only with a valid judge; SAGE remains unavailable; live cost-bearing campaign; then #160.
+3. **P3** — two independent annotators + domain-expert gold; then matched study, plots, #160. PR #270 may tick stale local boxes; it cannot invent the second annotator.
+4. **P4** — scientific terminal met. Remaining: OpenReview ID (external); literature refresh if submit after 2026-08-31; #160 grayscale/DOI-if-any polish if not already in the saturated release.
+5. **P5** — freeze identities; hidden-cause splits; live/protected #8/#76 execution that is not `MODEL_UNAVAILABLE`; matched baselines; then #160.
+
+#153 stays open until #98–#102 scientific terminals are actually `PEER_REVIEW_READY` **and** #160’s submission/repro packages exist. #98/#101 being closed is not sufficient: #98 closed a local freeze tranche, not the journal terminal.
+
+## Coordination
+
+- Do not edit `JOURNAL_READINESS.md` on P3 (PR #270) or P5 (#102/#159) from this wave.
+- Do not mark P1 ready. Revival of H1 is #278, not this checklist.
+- Archives, journal conversion, cover letters, independent PDF audits: #160.
+- Programme master issue text: #97.
