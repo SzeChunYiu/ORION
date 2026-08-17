@@ -1,0 +1,138 @@
+{
+  "authority_rule": "non_compensatory_all_dimensions",
+  "candidate_terminals": [
+    "GLOBAL_POSITIVE",
+    "LOCAL_POSITIVE_WITH_TRADEOFF",
+    "NULL_NONINFERIOR_ONLY",
+    "HARMFUL_REGRESSION",
+    "CANNOT_CHECK"
+  ],
+  "cannot_check_policy": "mandatory_dimension_cannot_check_blocks_admission",
+  "compensation": "forbidden",
+  "coordinates_with": [282, 283, 209, 210],
+  "dimensions": [
+    {
+      "catastrophic": false,
+      "description": "Task correctness / scientific utility on the motivating and same-family work.",
+      "direction": "higher_better",
+      "id": "correctness",
+      "kind": "PRIMARY_UTILITY",
+      "mandatory": true,
+      "min_effect": 0.02,
+      "non_inferiority_margin": 0.02,
+      "scope": "per_family"
+    },
+    {
+      "catastrophic": false,
+      "description": "Independent fresh-transfer performance on a frozen split that predates the candidate.",
+      "direction": "higher_better",
+      "id": "fresh_transfer",
+      "kind": "PRIMARY_UTILITY",
+      "mandatory": true,
+      "min_effect": 0.02,
+      "non_inferiority_margin": 0.02,
+      "scope": "per_family"
+    },
+    {
+      "catastrophic": true,
+      "description": "Harmful-transfer / regression rate. Worst family is authoritative; a mean cannot hide a disaster.",
+      "direction": "lower_better",
+      "id": "harmful_transfer",
+      "kind": "CATASTROPHIC_SAFETY",
+      "mandatory": true,
+      "min_effect": null,
+      "non_inferiority_margin": 0.0,
+      "scope": "per_family"
+    },
+    {
+      "catastrophic": true,
+      "description": "False authority promotion / integrity. Any increase is catastrophic.",
+      "direction": "lower_better",
+      "id": "false_authority",
+      "kind": "CATASTROPHIC_SAFETY",
+      "mandatory": true,
+      "min_effect": null,
+      "non_inferiority_margin": 0.0,
+      "scope": "per_family"
+    },
+    {
+      "catastrophic": false,
+      "description": "Abstention / CANNOT_CHECK correctness: missing evidence must remain missing, not PASS.",
+      "direction": "higher_better",
+      "id": "abstention_correctness",
+      "kind": "PROTECTED_NONREGRESSION",
+      "mandatory": true,
+      "min_effect": null,
+      "non_inferiority_margin": 0.02,
+      "scope": "per_family"
+    },
+    {
+      "catastrophic": false,
+      "description": "Retrieval / discovery recall where the family uses a search universe.",
+      "direction": "higher_better",
+      "id": "retrieval_recall",
+      "kind": "PROTECTED_NONREGRESSION",
+      "mandatory": true,
+      "min_effect": null,
+      "non_inferiority_margin": 0.03,
+      "scope": "per_family"
+    },
+    {
+      "catastrophic": true,
+      "description": "Semantic false-merge / obstruction safety. False merges cannot be averaged away.",
+      "direction": "lower_better",
+      "id": "obstruction_safety",
+      "kind": "CATASTROPHIC_SAFETY",
+      "mandatory": true,
+      "min_effect": null,
+      "non_inferiority_margin": 0.0,
+      "scope": "per_family"
+    },
+    {
+      "catastrophic": false,
+      "description": "Cost / query / tool budget as a ratio versus the matched baseline (1.0 = matched).",
+      "direction": "lower_better",
+      "id": "cost",
+      "kind": "PROTECTED_NONREGRESSION",
+      "mandatory": true,
+      "min_effect": null,
+      "non_inferiority_margin": 0.2,
+      "scope": "per_family"
+    },
+    {
+      "catastrophic": true,
+      "description": "Evaluator / holdout / negative-history integrity. Fail-closed; not a numeric tradeoff.",
+      "direction": "fail_closed",
+      "id": "evaluator_integrity",
+      "kind": "INTEGRITY",
+      "mandatory": true,
+      "min_effect": null,
+      "non_inferiority_margin": 0.0,
+      "scope": "portfolio"
+    }
+  ],
+  "forbidden_primary_authority": [
+    "average_score",
+    "global_score",
+    "mean_score",
+    "scalar_utility",
+    "weighted_sum"
+  ],
+  "issue": 285,
+  "min_prospective_rounds_for_global_positive_supported": 2,
+  "negative_history_policy": "recognized_failure_class_recurrence_blocks_admission",
+  "parent_issue": 284,
+  "phase4_operation_authorized": false,
+  "programme_terminals": [
+    "GLOBAL_POSITIVE_SUPPORTED",
+    "LOCAL_ONLY",
+    "OVERCONSERVATIVE",
+    "REFUTED",
+    "CANNOT_CHECK"
+  ],
+  "requires_independent_verification_issue": 283,
+  "schema_id": "GlobalPositiveCertificate.v1",
+  "schema_version": "orion.global-positive.certificate-schema.v1",
+  "self_certification": "forbidden",
+  "worst_family_rule": "safety_and_nonregression_use_worst_family_never_mean"
+}
