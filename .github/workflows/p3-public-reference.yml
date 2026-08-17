@@ -1,0 +1,110 @@
+name: P3 public-reference atlas
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/p3-public-reference.yml'
+      - 'src/orion/study/p3_public_reference*.py'
+      - 'tests/unit/study/test_p3_public_reference*.py'
+      - 'papers/paper-03-global-knowledge-portrait/gold/PUBLIC_REFERENCE_*'
+      - 'papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_*'
+      - 'Makefile'
+
+permissions:
+  contents: read
+
+jobs:
+  build-evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout ORION
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run isolated public-reference tests
+        run: make paper03-public-reference-tests
+
+      - name: Fetch pinned public authorities
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p upstream
+
+          git clone -q https://github.com/cohentsofia/MUSE.git upstream/MUSE
+          git -C upstream/MUSE checkout -q f7a40317db46145d0c90b221311d8324db5da1b9
+          test "$(git -C upstream/MUSE rev-parse HEAD)" = "f7a40317db46145d0c90b221311d8324db5da1b9"
+
+          git clone -q https://github.com/scischema/scischema.git upstream/SciSchema
+          git -C upstream/SciSchema checkout -q 55b6197cdb0b66c3123df16d0b0c70b02c4bde8b
+          test "$(git -C upstream/SciSchema rev-parse HEAD)" = "55b6197cdb0b66c3123df16d0b0c70b02c4bde8b"
+
+          git clone -q https://github.com/allenai/scifact.git upstream/SciFact
+          git -C upstream/SciFact checkout -q 68b98a56d93e0f9da0d2aab4e6c3294699a0f72e
+          test "$(git -C upstream/SciFact rev-parse HEAD)" = "68b98a56d93e0f9da0d2aab4e6c3294699a0f72e"
+          (cd upstream/SciFact && bash script/download-data.sh)
+          test -s upstream/SciFact/data/claims_train.jsonl
+
+      - name: Build 32-case public-reference atlas
+        id: build
+        shell: bash
+        run: |
+          set +e
+          mkdir -p artifacts/build artifacts/evaluation
+          make paper03-public-reference-build \
+            P3_MUSE_ROOT="$PWD/upstream/MUSE/dataset/human_Expert_annotations" \
+            P3_SCIFACT_CLAIMS="$PWD/upstream/SciFact/data/claims_train.jsonl" \
+            P3_SCISCHEMA_ROOT="$PWD/upstream/SciSchema/schemas" \
+            P3_PUBLIC_BUILD_OUT="$PWD/artifacts/build" \
+            P3_PUBLIC_TARGET_N=32
+          code=$?
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Evaluate deterministic mapping route
+        if: steps.build.outputs.code == '0'
+        run: |
+          make paper03-public-reference \
+            P3_PUBLIC_CASES="$PWD/artifacts/build/cases.jsonl" \
+            P3_PUBLIC_EVAL_OUT="$PWD/artifacts/evaluation/summary.json"
+
+      - name: Run publication analysis
+        if: steps.build.outputs.code == '0'
+        run: |
+          make paper03-public-reference-analysis \
+            P3_PUBLIC_CASES="$PWD/artifacts/build/cases.jsonl" \
+            P3_PUBLIC_ANALYSIS_OUT="$PWD/artifacts/evaluation/analysis.json"
+
+      - name: Record provenance and checksums
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p artifacts
+          {
+            echo "ORION_SHA=$(git rev-parse HEAD)"
+            echo "MUSE_SHA=f7a40317db46145d0c90b221311d8324db5da1b9"
+            echo "SCISCHEMA_SHA=55b6197cdb0b66c3123df16d0b0c70b02c4bde8b"
+            echo "SCIFACT_SHA=68b98a56d93e0f9da0d2aab4e6c3294699a0f72e"
+            echo "BUILD_EXIT=${{ steps.build.outputs.code }}"
+          } > artifacts/PROVENANCE.env
+          find artifacts -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > artifacts/SHA256SUMS || true
+
+      - name: Upload public-reference evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p3-public-reference-${{ github.sha }}
+          path: artifacts/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Require freeze-ready build
+        if: always()
+        shell: bash
+        run: |
+          test "${{ steps.build.outputs.code }}" = "0"
