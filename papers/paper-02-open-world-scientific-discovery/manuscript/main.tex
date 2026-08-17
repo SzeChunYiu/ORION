@@ -4,18 +4,25 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
+\PassOptionsToPackage{hyphens}{url}
 \usepackage{hyperref}
-\setlength{\emergencystretch}{3em}
+\setlength{\emergencystretch}{4em}
+% Long snake_case identifiers are unbreakable inside \texttt, and every overfull
+% line in this paper traced back to one. \idt lets them break at underscores.
+\urlstyle{tt}
+\newcommand{\idt}[1]{\path{#1}}
 
 \title{ORION Paper II: Open-World Scientific Knowledge Discovery with Fail-Closed Coverage and Stopping}
 \author{Working framework draft}
 \date{August 2026}
 
+\input{generated/suite_facts}
+
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Scientific-literature discovery remains a distinct bottleneck even when downstream synthesis is fluent. ORION Paper II studies a narrow governance hypothesis: heterogeneous search routes should count as independent evidence channels only when independence is earned through backend, query-derivation and capture identity; read history should be conditioned on the scientific question and content version; stopping one route must not certify task-level completeness; unavailable or censored routes remain explicit open obligations; and promotion should be recall-first against strong simple baselines. In a frozen 20-task complete-gold controlled index, full ORION reaches mean recall 0.994444 versus 0.666667 for the strongest protocol-frozen confirmatory comparator and makes no premature task closures; targeted negative ablations expose the intended failure modes. The frozen statistical plan classifies this campaign \texttt{DESCRIPTIVE\_ONLY}, so these numbers support mechanism behavior rather than an inferential superiority claim. A separate credential-free MetaSyn probe, evaluated with the pinned official ID-only evaluator on all 86 released test reviews, reaches retrieval recall 0.7485 and inclusion recall 0.5651; it is a bounded external retrieval/screening probe rather than evidence of full multi-provider ORION superiority. A matched external ORION-vs-baseline Wide/Deep result is not archived in this revision, so the paper-level real-world superiority claim remains \texttt{CANNOT\_CHECK}.
+Scientific-literature discovery remains a distinct bottleneck even when downstream synthesis is fluent. ORION Paper II studies a narrow governance hypothesis: heterogeneous search routes should count as independent evidence channels only when independence is earned through backend, query-derivation and capture identity; read history should be conditioned on the scientific question and content version; stopping one route must not certify task-level completeness; unavailable or censored routes remain explicit open obligations; and promotion should be recall-first against strong simple baselines. In a frozen \OfflineTaskCount{}-task complete-gold controlled index, full ORION reaches mean recall 0.994444 versus 0.666667 for the strongest protocol-frozen confirmatory comparator and makes no premature task closures; targeted negative ablations expose the intended failure modes. The frozen statistical plan classifies this campaign \texttt{DESCRIPTIVE\_ONLY}, so these numbers support mechanism behavior rather than an inferential superiority claim. A separate credential-free MetaSyn probe, evaluated with the pinned official ID-only evaluator on all 86 released test reviews, reaches retrieval recall 0.7485 and inclusion recall 0.5651; it is a bounded external retrieval/screening probe rather than evidence of full multi-provider ORION superiority. A matched external ORION-vs-baseline Wide/Deep result is not archived in this revision, so the paper-level real-world superiority claim remains \texttt{CANNOT\_CHECK}.
 \end{abstract}
 
 \noindent\textbf{Keywords:} scientific literature discovery; information retrieval; deep research agents; systematic review; recall; stopping rules.
@@ -60,7 +67,7 @@ AutoResearchBench shows that both specific-target and open-ended scientific lite
 \section{Limitations and integrity}
 The completed controlled experiment is deliberately synthetic. Its complete denominator is what makes missed relevant material and premature closure observable, but the authored routes, public probe vocabulary and easy screening text make it a mechanism test rather than a realistic estimate of retrieval difficulty. The observed +0.327777 recall difference therefore cannot be transferred to the open web or to AutoResearchBench by analogy.
 
-The suite has only 20 tasks. The frozen statistics plan set 97 tasks as the lowest inferential tier before outcomes were inspected, so the offline campaign is descriptive even though all 840 system/task/repeat executions reproduce exactly. Three deterministic repeat seeds demonstrate stable execution; they do not increase the statistical unit.
+The suite has only \OfflineTaskCount{} tasks. The frozen statistics plan set 97 tasks as the lowest inferential tier before outcomes were inspected, so the offline campaign is descriptive even though all \OfflineRunRecordCount{} system/task/repeat executions reproduce exactly. Three deterministic repeat seeds demonstrate stable execution; they do not increase the statistical unit.
 
 Open-world completeness remains generally unprovable from finite search. External providers are mutable, rate limited and differently scoped, and public benchmark questions/gold identifiers create search-time contamination risk. The corrected MetaSyn run is external but narrow: it uses pinned BM25 retrieval plus a deterministic public-protocol screening rule and the official ID-only evaluator, not the complete ORION route system. Its exact evaluator-side ledger contains 1,677 reference links, of which 598 are missed at retrieval and another 343 are lost after retrieval, leaving 941 final false negatives. These numbers characterize that probe and are not promoted to a general ORION claim.
 
