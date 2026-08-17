@@ -77,7 +77,11 @@ def test_stale_receipt_hash_is_rejected_even_if_document_hash_is_recomputed(tmp_
         load_phase2_evidence_receipt_v1(path)
 
 
-def test_unknown_document_or_artifact_fields_fail_closed(tmp_path) -> None:
+def test_unknown_document_or_artifact_fields_fail_closed_after_hash_recomputation(
+    tmp_path,
+) -> None:
+    from orion.self_orion import evidence_admission_io as io
+
     for location in ("document", "artifact"):
         path = tmp_path / f"{location}.json"
         document = phase2_evidence_receipt_v1_to_dict(_receipt())
@@ -85,6 +89,13 @@ def test_unknown_document_or_artifact_fields_fail_closed(tmp_path) -> None:
             document["candidate_says_valid"] = True
         else:
             document["receipt"]["artifacts"][0]["candidate_says_valid"] = True
+            # Assume an attacker can recompute every unkeyed digest.  The strict
+            # schema must still reject the undeclared authority-bearing field.
+            document["receipt_hash"] = io._canonical_hash(document["receipt"])
+        without_document_hash = {
+            key: value for key, value in document.items() if key != "document_hash"
+        }
+        document["document_hash"] = io._canonical_hash(without_document_hash)
         path.write_text(json.dumps(document))
 
         with pytest.raises(ValueError, match="keys mismatch"):
