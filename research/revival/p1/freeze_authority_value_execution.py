@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Bind the exact P1 authority-value evaluator/arms after holdout freeze.
 
-This step runs **no candidate arm**.  It converts a valid HOLDOUT_FREEZE into an
+This step runs **no candidate arm**. It converts a valid HOLDOUT_FREEZE into an
 execution identity that later outcome code must reproduce byte-for-byte.
 """
 
@@ -51,6 +51,9 @@ def freeze_execution(protocol_path: Path, holdout_dir: Path, out: Path) -> dict:
 
     rules = protocol["primary_decision_rule"]
     parameters = protocol["decision_parameters"]
+    expected_authority_n = int(parameters["expected_authority_critical_n"])
+    if int(holdout.get("authority_critical_n", -1)) != expected_authority_n:
+        raise ValueError("holdout authority-critical denominator drifted")
     binding = {
         "schema_version": "P1.authority-value-execution-freeze.v1",
         "protocol_id": protocol["protocol_id"],
@@ -60,6 +63,7 @@ def freeze_execution(protocol_path: Path, holdout_dir: Path, out: Path) -> dict:
         "public_sha256": holdout["public_sha256"],
         "protected_gold_sha256": holdout["protected_gold_sha256"],
         "n": holdout["n"],
+        "authority_critical_n": expected_authority_n,
         "primary_arm": "orion_typed_permission_dependency_reopen",
         "primary_comparator": protocol["primary_hypothesis"]["primary_comparator"],
         "primary_decision_rule": rules,
