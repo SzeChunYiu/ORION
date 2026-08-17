@@ -89,7 +89,13 @@ def test_phase2_freeze_cli_binds_clean_subject_provider_evaluator_and_packet(tmp
     assert subject["subject_revision_hash"] == payload["subject_revision_hash"]
     assert binding.subject_revision_hash == payload["subject_revision_hash"]
     assert binding.provider_manifest_hash == stack.provider_manifest_hash
-    assert assess_phase2_preflight(binding).status is Phase2PreflightStatus.READY_TO_EXECUTE_SHADOW_TRIAL
+    # A reloaded binding carries values but no declared expectation to compare
+    # them against, so on its own it no longer certifies execution. The freeze
+    # tool above still reaches READY, because it binds the expectation to the
+    # subject and provider manifest it actually attested.
+    reloaded = assess_phase2_preflight(binding)
+    assert reloaded.status is Phase2PreflightStatus.BIND_FROZEN_PACKET
+    assert reloaded.blockers == ("frozen_packet_binding_absent",)
 
 
 def test_provider_manifest_loader_rejects_tampering(tmp_path):
