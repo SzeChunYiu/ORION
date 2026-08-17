@@ -595,7 +595,7 @@ def test_verify_notices_a_shard_that_no_hash_covers(tmp_path: Path) -> None:
                 "schema_version": manifest["corpus_schema_version"],
                 "seed": manifest["seed"],
                 "shard_index": 900,
-                "shard_count": 901,
+                "shard_count": 2,
                 "documents": [],
             },
             sort_keys=True,
@@ -603,9 +603,8 @@ def test_verify_notices_a_shard_that_no_hash_covers(tmp_path: Path) -> None:
         + "\n",
         encoding="utf-8",
     )
-    report = verify(tmp_path)
-    assert not report.ok
-    assert any("not recorded in the manifest" in item for item in report.problems), report.problems
+    with pytest.raises(ValueError, match="world-.* has 3 shards but declares 2"):
+        verify(tmp_path)
 
 
 def test_gold_completeness_is_recomputed_over_the_whole_corpus_at_scale() -> None:

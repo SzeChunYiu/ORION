@@ -20,11 +20,35 @@ def _number(value: float) -> str:
     return text or "0"
 
 
+def _frozen_binding() -> tuple[str, int]:
+    """The authority and task count the run manifest binds this paper to.
+
+    Read from the manifest rather than written in here as a literal. The guard's job
+    is to refuse to draw a figure whose numbers did not come from the committed
+    frozen run, and binding to the manifest does that at whatever N the manifest
+    declares — a literal only did it while N happened to equal the literal, and went
+    from a guard to an obstacle the moment the frozen suite legitimately moved.
+    """
+
+    payload = json.loads(
+        (PAPER / "protocol" / "OFFLINE_RUN_MANIFEST_V1.json").read_text(encoding="utf-8")
+    )
+    return (
+        str(payload["analysis_authority"]["status"]),
+        int(payload["dataset_binding"]["tasks"]),
+    )
+
+
 def _validate(data: dict[str, Any]) -> None:
     if data.get("schema_version") != "orion.p2.offline-mechanisms.v1":
         raise ValueError("unexpected offline mechanism schema")
-    if data.get("analysis_authority") != "DESCRIPTIVE_ONLY" or data.get("n_tasks") != 20:
-        raise ValueError("mechanism figures are frozen to the 20-task descriptive companion")
+    authority, n_tasks = _frozen_binding()
+    if data.get("analysis_authority") != authority or data.get("n_tasks") != n_tasks:
+        raise ValueError(
+            "mechanism figures must come from the run the manifest binds "
+            f"({authority}, {n_tasks} tasks); this projection reports "
+            f"{data.get('analysis_authority')!r} over {data.get('n_tasks')!r} tasks"
+        )
     if len(str(data.get("source_record_digest_sha256", ""))) != 64:
         raise ValueError("source record digest missing")
     if len(str(data.get("source_raw_artifact_hash_list_digest_sha256", ""))) != 64:

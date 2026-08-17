@@ -13,7 +13,7 @@ Examples::
     python3 papers/paper-02-open-world-scientific-discovery/scripts/run_offline_companion.py --stdout
     python3 papers/paper-02-open-world-scientific-discovery/scripts/run_offline_companion.py --write-raw /tmp/p2-offline
 
-``--write-raw`` writes all 840 normalized result records and all rich per-run
+``--write-raw`` writes every normalized result record and all rich per-run
 artifacts.  Those files are regenerable evidence; the committed summary carries
 cryptographic digests of both complete sets so a reproduction can be compared
 without committing hundreds of generated files.
@@ -71,6 +71,11 @@ def publication_projection(summary: dict) -> dict:
         "schema_version": "orion.p2.offline-publication-summary.v1",
         "analysis_authority": summary["analysis_authority"],
         "authority_reason": summary["authority_reason"],
+        # Carried into the publication layer because the frozen plan requires the
+        # achieved precision to travel with the numbers, and because the achieved
+        # half-widths here are observed from the bootstrap rather than read off the
+        # planning table.
+        "achieved_precision": summary["achieved_precision"],
         "frozen_run": {
             "n_tasks": summary["n_tasks"],
             "n_repeats": summary["n_repeats"],
@@ -209,7 +214,8 @@ def main(argv: list[str] | None = None) -> int:
         if projection != expected:
             print("offline publication summary drifted from the frozen run", file=sys.stderr)
             return 1
-        print("offline publication summary matches the frozen 840-run archive")
+        run_count = projection["frozen_run"]["n_result_records"]
+        print(f"offline publication summary matches the frozen {run_count}-run archive")
     return 0
 
 

@@ -95,16 +95,33 @@ class PublicIndex:
     records: tuple[tuple[str, RetrievedRecord], ...]
     postings: tuple[tuple[str, str, tuple[str, ...]], ...]
 
+    def __post_init__(self) -> None:
+        # Both maps are derived caches, not state: they are a pure function of the
+        # two tuples above, which are frozen. Built once here rather than on every
+        # lookup because a route call used to rebuild the whole record dictionary
+        # and then linear-scan the postings — invisible at 100 documents and 546
+        # postings, quadratic-feeling at corpus scale.
+        #
+        # `setdefault` preserves the previous first-match-wins behaviour exactly.
+        by_id: dict[str, RetrievedRecord] = {}
+        for doc_id, record in self.records:
+            by_id[doc_id] = record
+        by_probe: dict[tuple[str, str], tuple[str, ...]] = {}
+        for name, key, doc_ids in self.postings:
+            by_probe.setdefault((name, key), doc_ids)
+        object.__setattr__(self, "_by_id", by_id)
+        object.__setattr__(self, "_by_probe", by_probe)
+
     @property
     def by_id(self) -> dict[str, RetrievedRecord]:
-        return dict(self.records)
+        return dict(self._by_id)  # type: ignore[attr-defined]
 
     def lookup(self, route: str, probe: str) -> tuple[RetrievedRecord, ...]:
-        by_id = self.by_id
-        for name, key, doc_ids in self.postings:
-            if name == route and key == probe:
-                return tuple(by_id[item] for item in doc_ids if item in by_id)
-        return ()
+        doc_ids = self._by_probe.get((route, probe))  # type: ignore[attr-defined]
+        if doc_ids is None:
+            return ()
+        by_id: dict[str, RetrievedRecord] = self._by_id  # type: ignore[attr-defined]
+        return tuple(by_id[item] for item in doc_ids if item in by_id)
 
 
 def build_public_index(world: DiscoveryWorld) -> PublicIndex:
@@ -426,6 +443,7 @@ def execute(
     seed: int,
     run_manifest_hash: str,
     clock: Callable[[], float] = time.monotonic,
+    index: PublicIndex | None = None,
 ) -> RunOutcome:
     """Run one system on one task once, and normalize the outcome.
 
@@ -433,13 +451,20 @@ def execute(
     manifest binds a subject revision, provider revisions and evaluator hash; none
     of those exist while the world is outcome-blind and no system is configured,
     and manufacturing one would be asserting bindings that were never made.
+
+    `index` is an optional prebuilt public view of the world. It is a pure function
+    of `world`, so passing one in cannot change any outcome — it only avoids
+    rebuilding the same index once per run, which a full campaign does thousands of
+    times. Left at `None` the behaviour is exactly as before.
     """
 
     if len(run_manifest_hash) != 64 or not set(run_manifest_hash) <= _HEX:
         raise ValueError("run_manifest_hash must be a lowercase SHA-256 hex digest")
 
     session = BudgetedSession(
-        build_public_index(world), SessionConfig.from_task(task), clock=clock
+        build_public_index(world) if index is None else index,
+        SessionConfig.from_task(task),
+        clock=clock,
     )
     error_class = ""
     try:
