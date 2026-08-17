@@ -8,6 +8,7 @@ from pathlib import Path
 
 from orion.providers.llm.base import LLMRequest
 from orion.providers.llm.copilot_cli import CopilotCLIConfig, CopilotCLILLMProvider
+from orion.providers.llm.github_models import GitHubModelsConfig, GitHubModelsLLMProvider
 from orion.providers.llm.openai_responses import OpenAIResponsesConfig, OpenAIResponsesLLMProvider
 from orion.providers.retrieval.literature import (
     CrossrefRetrievalProvider,
@@ -17,6 +18,10 @@ from orion.providers.retrieval.literature import (
 from orion.providers.verification.copilot_cli import (
     CopilotCLIVerificationConfig,
     CopilotCLIVerificationProvider,
+)
+from orion.providers.verification.github_models import (
+    GitHubModelsVerificationConfig,
+    GitHubModelsVerificationProvider,
 )
 from orion.providers.verification.protected_http import (
     ProtectedHTTPVerificationConfig,
@@ -76,9 +81,13 @@ class LivePhase2ProviderManifest:
 
 @dataclass(frozen=True)
 class LivePhase2ProviderStack:
-    llm: OpenAIResponsesLLMProvider | CopilotCLILLMProvider
+    llm: OpenAIResponsesLLMProvider | CopilotCLILLMProvider | GitHubModelsLLMProvider
     retrieval: MultiSourceLiteratureRetrievalProvider
-    verification: ProtectedHTTPVerificationProvider | CopilotCLIVerificationProvider
+    verification: (
+        ProtectedHTTPVerificationProvider
+        | CopilotCLIVerificationProvider
+        | GitHubModelsVerificationProvider
+    )
     manifest: LivePhase2ProviderManifest
 
     @property
@@ -339,6 +348,37 @@ def build_phase2_copilot_provider_stack(
     return LivePhase2ProviderStack(reasoner, retrieval, verification, manifest)
 
 
+def build_phase2_github_models_provider_stack(
+    *,
+    github_token: str,
+    reasoner_model: str,
+    evaluator_model: str,
+    evaluation_epoch_id: str,
+    crossref_mailto: str = "",
+) -> LivePhase2ProviderStack:
+    """Build a credentialless-for-the-repo GitHub Models external stack.
+
+    GitHub Actions supplies the token at runtime with `models: read`. The
+    verifier has a distinct frozen model/policy identity and produces content-
+    bound certificates; neither token is serialized into evidence manifests.
+    """
+    reasoner_config = GitHubModelsConfig(model=reasoner_model, token=github_token)
+    verification_config = GitHubModelsVerificationConfig(
+        model=evaluator_model,
+        token=github_token,
+        evaluation_epoch_id=evaluation_epoch_id,
+    )
+    reasoner = GitHubModelsLLMProvider(reasoner_config)
+    verification = GitHubModelsVerificationProvider(verification_config)
+    retrieval, retrieval_identities = _retrieval_stack(crossref_mailto)
+    manifest = LivePhase2ProviderManifest(
+        reasoner_provider=_identity_tuple(reasoner_config.public_identity),
+        verification_provider=_identity_tuple(verification_config.public_identity),
+        retrieval_sources=retrieval_identities,
+    )
+    return LivePhase2ProviderStack(reasoner, retrieval, verification, manifest)
+
+
 def build_phase2_live_provider_stack_from_env(
     *,
     reasoner_model: str,
@@ -373,14 +413,23 @@ def build_phase2_live_provider_stack_from_env(
 def build_phase2_auto_provider_stack_from_env(
     *,
     private_reasoner_model: str,
-    copilot_reasoner_model: str,
-    copilot_evaluator_model: str,
-    copilot_evaluation_epoch_id: str,
+    copilot_reasoner_model: str = "",
+    copilot_evaluator_model: str = "",
+    copilot_evaluation_epoch_id: str = "",
     copilot_token_env: str = "COPILOT_GITHUB_TOKEN",
     copilot_cli_version_env: str = "ORION_COPILOT_CLI_VERSION",
+    github_reasoner_model: str = "",
+    github_evaluator_model: str = "",
+    github_evaluation_epoch_id: str = "",
+    github_token_env: str = "GITHUB_MODELS_TOKEN",
     crossref_mailto_env: str = "CROSSREF_MAILTO",
 ) -> tuple[LivePhase2ProviderStack, str]:
-    """Select one fully bound provider lane; never mix private and Copilot identities."""
+    """Select one fully bound provider lane; never mix private, Copilot, or GitHub Models identities.
+
+    Lane precedence: full private OpenAI + protected-HTTPS, then Copilot CLI
+    (token + frozen CLI version), then GitHub Models. A partially configured
+    lane is a hard error, never silently skipped.
+    """
     private_values = {name: os.environ.get(name, "") for name in _PRIVATE_CONFIG_NAMES}
     present = tuple(name for name, value in private_values.items() if value)
     if len(present) == len(_PRIVATE_CONFIG_NAMES):
@@ -403,22 +452,47 @@ def build_phase2_auto_provider_stack_from_env(
         )
     token = os.environ.get(copilot_token_env, "")
     cli_version = os.environ.get(copilot_cli_version_env, "")
-    if not token:
-        raise RuntimeError(f"Copilot fallback token is missing: {copilot_token_env}")
-    if not cli_version:
-        raise RuntimeError(f"Copilot CLI frozen version is missing: {copilot_cli_version_env}")
-    if not copilot_reasoner_model or not copilot_evaluator_model:
-        raise RuntimeError("Copilot reasoner/evaluator models must be explicitly frozen before provider construction")
-    return (
-        build_phase2_copilot_provider_stack(
-            token=token,
-            reasoner_model=copilot_reasoner_model,
-            evaluator_model=copilot_evaluator_model,
-            cli_version=cli_version,
-            evaluation_epoch_id=copilot_evaluation_epoch_id,
-            crossref_mailto=os.environ.get(crossref_mailto_env, ""),
-        ),
-        "github-copilot-cli-external",
+    if token or cli_version:
+        copilot_missing = [
+            name
+            for name, value in ((copilot_token_env, token), (copilot_cli_version_env, cli_version))
+            if not value
+        ]
+        if copilot_missing:
+            raise RuntimeError(
+                "partial Copilot Phase-2 provider configuration is forbidden; missing: "
+                + ",".join(copilot_missing)
+            )
+        if not copilot_reasoner_model or not copilot_evaluator_model:
+            raise RuntimeError(
+                "Copilot reasoner/evaluator models must be explicitly frozen before provider construction"
+            )
+        return (
+            build_phase2_copilot_provider_stack(
+                token=token,
+                reasoner_model=copilot_reasoner_model,
+                evaluator_model=copilot_evaluator_model,
+                cli_version=cli_version,
+                evaluation_epoch_id=copilot_evaluation_epoch_id,
+                crossref_mailto=os.environ.get(crossref_mailto_env, ""),
+            ),
+            "github-copilot-cli-external",
+        )
+    github_token = os.environ.get(github_token_env, "")
+    if github_token:
+        return (
+            build_phase2_github_models_provider_stack(
+                github_token=github_token,
+                reasoner_model=github_reasoner_model,
+                evaluator_model=github_evaluator_model,
+                evaluation_epoch_id=github_evaluation_epoch_id,
+                crossref_mailto=os.environ.get(crossref_mailto_env, ""),
+            ),
+            "github-models-external",
+        )
+    raise RuntimeError(
+        "no Phase-2 provider lane is fully configured: provide the full private lane, "
+        f"{copilot_token_env} + {copilot_cli_version_env}, or {github_token_env}"
     )
 
 
@@ -431,6 +505,7 @@ __all__ = [
     "LivePhase2ProviderStack",
     "build_phase2_auto_provider_stack_from_env",
     "build_phase2_copilot_provider_stack",
+    "build_phase2_github_models_provider_stack",
     "build_phase2_live_provider_stack",
     "build_phase2_live_provider_stack_from_env",
     "load_live_phase2_provider_manifest",
