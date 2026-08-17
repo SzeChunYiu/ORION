@@ -62,6 +62,62 @@ Negative history consulted: the Phase-2 preflight scar (counting strings
 certifies the caller, not the attacks) and the repository's rule that caller
 declaration booleans cannot create a PASS.
 
+## Motivating defect — a real instance, not an invented category
+
+The Step-5 battery is grounded in a defect confirmed on merged `main` rather
+than in a category name.
+
+`src/orion/self_orion/phase2_preflight.py` gates its three external identities
+with `_sha256`, which is `len(value) == 64 and all(character in "0123456789abcdef" ...)`
+— a **format** check. `assess_phase2_preflight` applies that check plus a
+not-all-zeros test to `subject_revision_hash`, `provider_manifest_hash` and
+`evaluator_artifact_hash`, then returns `READY_TO_EXECUTE_SHADOW_TRIAL`.
+Nothing compares any of the three against a frozen expected value, so
+`("a"*64, "b"*64, "c"*64)` certifies the Phase-2 live campaign as ready to
+execute. The module's own test `test_binding_order_requires_subject_then_provider_then_evaluator`
+performs exactly that substitution and asserts it advances.
+
+Two divergent wide-task registries also exist in the tree —
+`phase2:wide:microglia-complement-cross-disease` in `phase2_preflight.py` and
+`P5.LIVE.WIDE.stopping-rule-source-families` in `live_packet.py`. Whether a
+merged workflow rebuilds the packet from the second while the freeze declares
+the first is a routing question I did not verify; it belongs to the issue-8
+lane. The format-only gate above I did verify directly on `origin/main`.
+
+**Repair of the Phase-2 module is not in this lane** (issue 8 owns it). What is
+in this lane is making the class impossible to reintroduce in Phase 3.
+
+### The generalizable class
+
+*A registry or declared identity that exists but is never consulted is not a
+gate.* Well-formed is not bound.
+
+The bitter detail is the part worth designing against: that module records this
+exact lesson verbatim in a comment above its attack-id check, and the identical
+defect sits ten lines below it, in the same function, on the identity bindings.
+**A lesson recorded in a comment does not propagate to sibling checks.**
+
+### What this protocol does about it
+
+1. `Phase3ProtocolInvariant` makes the class machine-readable
+   (`DECLARED_IDENTITIES_MUST_BE_COMPARED`, `WELL_FORMED_IS_NOT_BOUND`,
+   `FROZEN_REGISTRIES_MUST_BE_CONSULTED_BY_IDENTITY`,
+   `EVERY_BINDING_CARRIES_ITS_OWN_HOSTILE_TEST`) and serializes it into the
+   frozen protocol artifact, so it travels with the protocol rather than living
+   in a comment.
+2. `assess_phase3_preflight` takes a host-owned `Phase3ExternalExpectation` and
+   **compares** every declared identity against it. With no expectation there is
+   nothing to compare against, so well-formed values stop at
+   `COMPARE_AGAINST_EXTERNAL_EXPECTATION` no matter how correctly shaped.
+3. `test_every_expectation_field_is_compared` enumerates the expectation
+   dataclass's fields reflectively and perturbs each one. A binding added later
+   without a matching comparison fails the suite instead of silently widening
+   the gate — this is the anti-recurrence device, and it does not depend on a
+   future author reading a comment.
+4. The no-alarm case is asserted throughout: a correct, fully bound, fully
+   matched input must reach `REQUEST_EXTERNAL_PHASE3_AUTHORIZATION` with zero
+   blockers, so fail-closed is distinguishable from broken-shut.
+
 ## Saturation assessment
 
 The bounded question is not "is Governed Self-ORION ready?" — that is exactly

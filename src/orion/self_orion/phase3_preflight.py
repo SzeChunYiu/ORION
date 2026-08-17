@@ -618,7 +618,48 @@ class Phase3ProtocolFreeze:
 # ---------------------------------------------------------------------------
 
 
+@dataclass(frozen=True)
+class Phase3ExternalExpectation:
+    """Host-owned expected identities, supplied out of band.
+
+    This object exists because of a defect confirmed on merged ``main``:
+    ``assess_phase2_preflight`` gates ``subject_revision_hash``,
+    ``provider_manifest_hash`` and ``evaluator_artifact_hash`` with a *format*
+    check only (``_sha256`` is ``len == 64 and hex``) plus a not-all-zeros test,
+    and never compares any of them to an expected value.  Passing
+    ``"a"*64, "b"*64, "c"*64`` therefore reaches
+    ``READY_TO_EXECUTE_SHADOW_TRIAL`` and certifies the Phase-2 live campaign.
+
+    The generalizable failure class this protocol names and forbids:
+    **a declared identity that is never compared is not a gate.**  Well-formed
+    is not the same as correct.  A candidate supplies the freeze; only a host
+    supplies this, so equality between the two is the only thing that binds.
+
+    Every field here must be compared in ``assess_phase3_preflight``.  That is
+    not left to reviewer diligence: ``test_every_expectation_field_is_compared``
+    enumerates these fields reflectively, so adding a binding without a
+    comparison fails the suite rather than silently widening the gate.
+    """
+
+    phase2_terminal_subject_revision_hash: str
+    phase2_evidence_receipt_hash: str
+    external_promotion_authority_id: str
+    protected_custody_lineage_hash: str
+
+    def __post_init__(self) -> None:
+        for digest in (
+            self.phase2_terminal_subject_revision_hash,
+            self.phase2_evidence_receipt_hash,
+            self.protected_custody_lineage_hash,
+        ):
+            if not _is_bound_digest(digest):
+                raise ValueError("host expectations must bind real SHA-256 identities")
+        if not self.external_promotion_authority_id.strip():
+            raise ValueError("host expectation requires a promotion authority identity")
+
+
 class Phase3PreflightStatus(str, Enum):
+    COMPARE_AGAINST_EXTERNAL_EXPECTATION = "COMPARE_AGAINST_EXTERNAL_EXPECTATION"
     BIND_PHASE2_TERMINAL_EVIDENCE = "BIND_PHASE2_TERMINAL_EVIDENCE"
     BIND_EXTERNAL_PROMOTION_AUTHORITY = "BIND_EXTERNAL_PROMOTION_AUTHORITY"
     BIND_PROTECTED_CUSTODY = "BIND_PROTECTED_CUSTODY"
@@ -667,6 +708,40 @@ class Phase3PreflightReport:
 # Step 5 — frozen hostile governance battery identities
 # ---------------------------------------------------------------------------
 
+class Phase3ProtocolInvariant(str, Enum):
+    """Named failure classes this protocol forbids by construction.
+
+    These are enumerated rather than left in prose because of how the Phase-2
+    equivalent failed: ``phase2_preflight`` records the identity-not-count
+    lesson verbatim in a comment above its attack-id check, and the *identical*
+    defect sits ten lines below it in the same function, on the identity
+    bindings. A lesson recorded in a comment does not propagate to sibling
+    checks. A lesson with an enum member and a test does.
+    """
+
+    DECLARED_IDENTITIES_MUST_BE_COMPARED = "DECLARED_IDENTITIES_MUST_BE_COMPARED"
+    FROZEN_REGISTRIES_MUST_BE_CONSULTED_BY_IDENTITY = (
+        "FROZEN_REGISTRIES_MUST_BE_CONSULTED_BY_IDENTITY"
+    )
+    EVERY_BINDING_CARRIES_ITS_OWN_HOSTILE_TEST = "EVERY_BINDING_CARRIES_ITS_OWN_HOSTILE_TEST"
+    WELL_FORMED_IS_NOT_BOUND = "WELL_FORMED_IS_NOT_BOUND"
+    MISSING_EVIDENCE_NEVER_BECOMES_PASS = "MISSING_EVIDENCE_NEVER_BECOMES_PASS"
+    NO_IN_PROCESS_STATE_GRANTS_AUTHORITY = "NO_IN_PROCESS_STATE_GRANTS_AUTHORITY"
+
+
+PHASE3_PROTOCOL_INVARIANTS: tuple[Phase3ProtocolInvariant, ...] = tuple(Phase3ProtocolInvariant)
+
+# The merged-main instance that motivated the invariants above, recorded so the
+# protocol cites a real defect rather than an invented category.
+MOTIVATING_DEFECT_REFERENCE = (
+    "src/orion/self_orion/phase2_preflight.py@origin/main: assess_phase2_preflight gates "
+    "subject_revision_hash, provider_manifest_hash and evaluator_artifact_hash with the "
+    "format-only _sha256 check plus a not-all-zeros test and never compares them to an "
+    "expected value, so ('a'*64, 'b'*64, 'c'*64) reaches READY_TO_EXECUTE_SHADOW_TRIAL. "
+    "Repair belongs to the issue-8 lane, not to this protocol."
+)
+
+
 HOSTILE_ATTACK_IDS: tuple[str, ...] = (
     "P3-H01-CANDIDATE-SELF-CERTIFICATION",
     "P3-H02-EVALUATOR-GUARD-MUTATION",
@@ -677,13 +752,23 @@ HOSTILE_ATTACK_IDS: tuple[str, ...] = (
 )
 
 
-def assess_phase3_preflight(freeze: Phase3ProtocolFreeze) -> Phase3PreflightReport:
+def assess_phase3_preflight(
+    freeze: Phase3ProtocolFreeze,
+    expectation: Phase3ExternalExpectation | None = None,
+) -> Phase3PreflightReport:
     """Report which external bindings are still missing. Never report readiness.
 
     Binding order mirrors ``assess_phase2_preflight``: the Phase-2 terminal
     evidence first, then external promotion authority, then protected custody,
     then the sampling epoch.  The terminal status is a *request* for external
     authorization, and even it grants nothing.
+
+    It departs from ``assess_phase2_preflight`` in the one way that matters.
+    That function accepts any well-formed digest; this one requires a host-owned
+    ``expectation`` and compares every declared identity against it.  Without an
+    expectation there is nothing to compare against, so no amount of
+    well-formedness advances past ``COMPARE_AGAINST_EXTERNAL_EXPECTATION``.
+    Absent evidence cannot become a pass by being correctly shaped.
     """
 
     blockers: list[str] = []
@@ -776,12 +861,56 @@ def assess_phase3_preflight(freeze: Phase3ProtocolFreeze) -> Phase3PreflightRepo
             Phase3PreflightStatus.BIND_PROTECTED_CUSTODY,
             ("protected_evaluator_custody_lineage_not_bound",),
         )
+
     if not _is_bound_digest(freeze.issue_pool_fingerprint) or freeze.sampling_epoch_id.endswith(
         ":unbound"
     ):
         return _report(
             Phase3PreflightStatus.BIND_SAMPLING_EPOCH,
             ("sampling_epoch_and_issue_pool_not_frozen",),
+        )
+
+    # Everything above is a shape check. Shape checks are where the Phase-2
+    # gate stopped, and stopping there is what let "a"*64 certify a live
+    # campaign. What follows is the part that actually binds.
+    if expectation is None:
+        return _report(
+            Phase3PreflightStatus.COMPARE_AGAINST_EXTERNAL_EXPECTATION,
+            (
+                "no_external_expectation_supplied",
+                "declared_identities_are_well_formed_but_uncompared",
+            ),
+        )
+    comparison_blockers = tuple(
+        f"identity_mismatch:{field_name}"
+        for field_name, declared, expected in (
+            (
+                "phase2_terminal_subject_revision_hash",
+                boundary.phase2_terminal_subject_revision_hash,
+                expectation.phase2_terminal_subject_revision_hash,
+            ),
+            (
+                "phase2_evidence_receipt_hash",
+                boundary.phase2_evidence_receipt_hash,
+                expectation.phase2_evidence_receipt_hash,
+            ),
+            (
+                "external_promotion_authority_id",
+                boundary.external_promotion_authority_id,
+                expectation.external_promotion_authority_id,
+            ),
+            (
+                "protected_custody_lineage_hash",
+                boundary.protected_custody_lineage_hash,
+                expectation.protected_custody_lineage_hash,
+            ),
+        )
+        if declared != expected
+    )
+    if comparison_blockers:
+        return _report(
+            Phase3PreflightStatus.COMPARE_AGAINST_EXTERNAL_EXPECTATION,
+            comparison_blockers,
         )
     return _report(Phase3PreflightStatus.REQUEST_EXTERNAL_PHASE3_AUTHORIZATION, ())
 
@@ -796,6 +925,7 @@ __all__ = [
     "BudgetDimension",
     "GovernanceContractFreeze",
     "HOSTILE_ATTACK_IDS",
+    "MOTIVATING_DEFECT_REFERENCE",
     "MatchedBaselineFreeze",
     "MetricDirection",
     "MetricRole",
@@ -808,15 +938,18 @@ __all__ = [
     "PHASE3_MATCHED_BASELINE",
     "PHASE3_METRICS",
     "PHASE3_PROTOCOL_ID",
+    "PHASE3_PROTOCOL_INVARIANTS",
     "PHASE3_PROTOCOL_VERSION",
     "PHASE3_UNCERTAINTY_POLICY",
     "PROTECTED_WORK_KINDS",
     "Phase3AuthorityBoundary",
     "Phase3CycleTerminalState",
     "Phase3EscalationCondition",
+    "Phase3ExternalExpectation",
     "Phase3PreflightReport",
     "Phase3PreflightStatus",
     "Phase3ProtocolFreeze",
+    "Phase3ProtocolInvariant",
     "PredeclaredMetric",
     "ProtectedWorkKind",
     "RESOLUTION_CLAIMING_TERMINALS",

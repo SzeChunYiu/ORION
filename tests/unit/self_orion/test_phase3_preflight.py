@@ -31,6 +31,7 @@ from orion.self_orion.phase3_preflight import (
     Phase3AuthorityBoundary,
     Phase3CycleTerminalState,
     Phase3EscalationCondition,
+    Phase3ExternalExpectation,
     Phase3PreflightStatus,
     Phase3ProtocolFreeze,
     ProtectedWorkKind,
@@ -109,16 +110,112 @@ def test_binding_order_is_phase2_then_authority_then_custody_then_epoch() -> Non
     assert after_custody.status is Phase3PreflightStatus.BIND_SAMPLING_EPOCH
 
 
-def test_fully_bound_freeze_reaches_a_request_not_an_authorization() -> None:
-    """The most favourable reachable state is still only a request to a host."""
+EXPECTATION = Phase3ExternalExpectation(
+    phase2_terminal_subject_revision_hash=BOUND_A,
+    phase2_evidence_receipt_hash=BOUND_B,
+    external_promotion_authority_id="host:external-promotion-authority",
+    protected_custody_lineage_hash="c" * 64,
+)
 
-    report = assess_phase3_preflight(
-        Phase3ProtocolFreeze(
-            sampling_epoch_id="phase3:epoch:2026-08-17",
-            issue_pool_fingerprint="d" * 64,
-            authority_boundary=_bound_boundary(),
-        )
+
+def _fully_bound_freeze(**overrides: object) -> Phase3ProtocolFreeze:
+    values: dict[str, object] = dict(
+        sampling_epoch_id="phase3:epoch:2026-08-17",
+        issue_pool_fingerprint="d" * 64,
+        authority_boundary=_bound_boundary(),
     )
+    values.update(overrides)
+    return Phase3ProtocolFreeze(**values)  # type: ignore[arg-type]
+
+
+# --------------------------------------------------------------------------
+# Well-formed is not bound — grounded in the merged-main Phase-2 defect
+# --------------------------------------------------------------------------
+
+
+def test_well_formed_but_uncompared_identities_cannot_reach_authorization() -> None:
+    """Direct analogue of the confirmed defect in ``assess_phase2_preflight``.
+
+    There, ``("a"*64, "b"*64, "c"*64)`` reaches
+    ``READY_TO_EXECUTE_SHADOW_TRIAL`` because the gate checks digest *format*
+    and never compares against an expected value. Here the same shape of input
+    must stop at ``COMPARE_AGAINST_EXTERNAL_EXPECTATION``.
+    """
+
+    report = assess_phase3_preflight(_fully_bound_freeze())
+    assert report.status is Phase3PreflightStatus.COMPARE_AGAINST_EXTERNAL_EXPECTATION
+    assert "no_external_expectation_supplied" in report.blockers
+    assert not report.grants_phase3_operating_authority
+    assert not report.grants_governed_self_orion
+
+
+def test_plausible_wrong_identities_are_rejected_by_comparison() -> None:
+    """Well-formed *and* compared, but not equal: still not authorized."""
+
+    substituted = assess_phase3_preflight(
+        _fully_bound_freeze(
+            authority_boundary=_bound_boundary(phase2_terminal_subject_revision_hash="f" * 64)
+        ),
+        EXPECTATION,
+    )
+    assert substituted.status is Phase3PreflightStatus.COMPARE_AGAINST_EXTERNAL_EXPECTATION
+    assert "identity_mismatch:phase2_terminal_subject_revision_hash" in substituted.blockers
+
+
+def test_every_expectation_field_is_compared() -> None:
+    """Anti-recurrence device for the real failure class.
+
+    The Phase-2 defect persisted beside a comment stating its own lesson,
+    because a lesson in a comment does not propagate to sibling checks. This
+    test enumerates ``Phase3ExternalExpectation``'s fields reflectively and
+    perturbs each one, so a binding added later without a matching comparison
+    fails here instead of silently widening the gate.
+    """
+
+    perturbations = {
+        "phase2_terminal_subject_revision_hash": "9" * 64,
+        "phase2_evidence_receipt_hash": "8" * 64,
+        "external_promotion_authority_id": "host:some-other-authority",
+        "protected_custody_lineage_hash": "7" * 64,
+    }
+    field_names = [f.name for f in dataclasses.fields(Phase3ExternalExpectation)]
+    assert set(field_names) == set(perturbations), (
+        "Phase3ExternalExpectation gained or lost a field; add its perturbation "
+        "and confirm assess_phase3_preflight compares it"
+    )
+
+    for name in field_names:
+        skewed = dataclasses.replace(EXPECTATION, **{name: perturbations[name]})
+        report = assess_phase3_preflight(_fully_bound_freeze(), skewed)
+        assert f"identity_mismatch:{name}" in report.blockers, (
+            f"{name} is declared on the expectation but never compared"
+        )
+        assert report.status is Phase3PreflightStatus.COMPARE_AGAINST_EXTERNAL_EXPECTATION
+
+
+def test_expectation_itself_refuses_unbound_identities() -> None:
+    """The thing being compared against cannot itself be a sentinel."""
+
+    for name in (
+        "phase2_terminal_subject_revision_hash",
+        "phase2_evidence_receipt_hash",
+        "protected_custody_lineage_hash",
+    ):
+        with pytest.raises(ValueError):
+            dataclasses.replace(EXPECTATION, **{name: UNBOUND_DIGEST})
+    with pytest.raises(ValueError):
+        dataclasses.replace(EXPECTATION, external_promotion_authority_id="")
+
+
+def test_fully_bound_freeze_reaches_a_request_not_an_authorization() -> None:
+    """The most favourable reachable state is still only a request to a host.
+
+    This is the no-alarm case for every check above: a correct, fully bound,
+    fully *matched* input must pass, or the gate is broken shut rather than
+    fail-closed.
+    """
+
+    report = assess_phase3_preflight(_fully_bound_freeze(), EXPECTATION)
     assert report.status is Phase3PreflightStatus.REQUEST_EXTERNAL_PHASE3_AUTHORIZATION
     assert report.blockers == ()
     # Fully bound, zero blockers — and still no authority. This is the
