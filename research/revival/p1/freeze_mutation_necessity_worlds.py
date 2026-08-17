@@ -25,14 +25,16 @@ DEFAULT_PROTOCOL = (
     / "revival"
     / "p1"
     / "protocol"
-    / "P1.epistemic-mutation-necessity.v2.2.2.json"
+    / "P1.epistemic-mutation-necessity.v2.2.3.json"
 )
 AMENDMENT_SCHEMA = "orion.publication-protocol-amendment.v1"
 SOURCE_PATHS = (
+    "src/orion/study/p1_causal/absorbed_mechanics.py",
     "src/orion/study/p1_causal/necessity_cases.py",
     "src/orion/study/p1_causal/necessity_cases_v2.py",
     "src/orion/study/p1_causal/necessity_engine.py",
     "src/orion/study/p1_causal/necessity_policies.py",
+    "src/orion/study/p1_causal/necessity_policies_v3.py",
     "src/orion/study/p1_causal/necessity_scoring.py",
     "src/orion/study/p1_causal/necessity_statistics.py",
 )
