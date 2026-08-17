@@ -16,6 +16,10 @@ from pathlib import Path
 import pytest
 
 
+# Skip all tests if matplotlib is not available
+matplotlib = pytest.importorskip("matplotlib")
+
+
 ROOT = Path(__file__).resolve().parent.parent
 PAPER = ROOT / "papers" / "paper-01-recursive-epistemic-reconstruction"
 SCRIPT = PAPER / "scripts" / "make_figures.py"
