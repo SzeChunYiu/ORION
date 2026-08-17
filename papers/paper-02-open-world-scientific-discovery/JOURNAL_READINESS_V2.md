@@ -10,14 +10,16 @@
 
 - [x] stronger manuscript thesis: **Acquisition Is Not Closure**;
 - [x] donor-composable architecture section and Figure P2-7;
-- [x] 2026 nearest-work donor matrix covering SAGE, AgentIR, SIEVE, bibliography expansion, HALT, Search-R1, DeepControl, decision-theoretic stopping and stage-separated evaluation;
+- [x] 2026 nearest-work donor matrix covering SAGE, AgentIR, SIEVE, bibliography expansion, HALT, MiCP/conformal stopping, Search-R1, DeepControl, decision-theoretic stopping and stage-separated evaluation;
 - [x] prospectively frozen widening protocol;
 - [x] machine-readable V2 system/baseline registry;
 - [x] 12-case hostile closure-authority suite;
 - [x] machine-readable claim-promotion state;
 - [x] prospective V2 claim ledger;
 - [x] fail-closed V2 validator and contract tests;
-- [x] manuscript CI gated on the V2 validator/tests.
+- [x] P2 manuscript CI gated first on immutable V1 claim-ledger validation, then V2 validator/tests, then LaTeX build;
+- [x] existing P2 Wide runtime re-audited for matched budgets, typed provider failure/open obligations, earned independence and route/task closure separation;
+- [x] result-bearing abstract/conclusion sentences kept inside the immutable V1 evidence contract while the surrounding framing is widened.
 
 ## Development lane
 
@@ -30,7 +32,7 @@ Development families are frozen in `protocol/P2_V2_SYSTEM_REGISTRY.json`:
 3. `ORION_ACQ_STRUCTURED_EXPAND`;
 4. `ORION_MAX_COMPOSED`.
 
-A final `ORION_MAX_COMPOSED` identity must be frozen only from development evidence, before confirmatory outcome access.
+A final `ORION_MAX_COMPOSED` identity must be frozen only from development evidence, before confirmatory outcome access. Donor-specific mechanisms must be genuinely implemented/runnable or remain explicit baseline/composition pressure; a proxy may not be called the donor's official system.
 
 ## Required external promotion sequence
 
@@ -55,7 +57,7 @@ All L1 requirements plus:
 All L2 requirements plus:
 
 - [ ] direct external/fresh evidence on premature closure or unresolved-obligation errors;
-- [ ] fixed-depth, verification/sufficiency and utility continuation baselines;
+- [ ] fixed-depth, verification/sufficiency, utility and conformal-coverage stopping pressure where task-valid;
 - [ ] censored/unavailable-route hostile cases retain fail-closed behavior.
 
 ### L4 — `P2_TRANSFER_SUPPORTED`
@@ -74,9 +76,9 @@ A second transfer axis should be chosen only after the first positive external r
 
 ## Publication strategy
 
-The current narrowed manuscript remains submission-safe while V2 is incomplete. Do not hold or weaken it merely because V2 is ambitious.
+The current narrowed evidence remains submission-safe while V2 is incomplete. The manuscript may already use the broader architectural framing because it is not an external-superiority result claim; numerical/result sentences remain bound to V1 evidence.
 
-If V2 reaches L1/L2, update title/abstract/results/conclusion to an external discovery claim. If it reaches L3, make open-world stopping authority a primary empirical contribution. If it reaches L4, rerun venue fit and promote transfer/generality language.
+If V2 reaches L1/L2, update result language to an external discovery claim. If it reaches L3, make open-world stopping authority a primary empirical contribution. If it reaches L4, rerun venue fit and promote transfer/generality language.
 
 ## Hard blockers that automation must not invent away
 
@@ -88,9 +90,13 @@ If V2 reaches L1/L2, update title/abstract/results/conclusion to an external dis
 
 These remain explicit human/external gates, not scientific zeros.
 
+## Current finalization state
+
+The **paper/reproducibility widening package is complete** when the exact PR head passes the V1 claim checker, V2 validator/tests and manuscript build. The **scientific widening campaign is not complete** until outcome-producing L1-L4 gates above are actually executed or reach an explicit stable negative/`CANNOT_CHECK` terminal.
+
 ## Done definition
 
 `P2_V2_COMPLETE` means either:
 
 1. the highest evidence-supported L1-L4 terminal is archived, independently verified, and reflected in the manuscript without exceeding it; or
-2. the campaign reaches a stable negative / `CANNOT_CHECK` terminal while the existing `P2_NARROWED` paper remains intact and submission-ready.
+2. the campaign reaches a stable negative / `CANNOT_CHECK` terminal while the existing `P2_NARROWED` evidence remains intact and submission-ready.
