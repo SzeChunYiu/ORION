@@ -7,6 +7,7 @@ from orion.study.p1_causal.absorbed_mechanics import (
     ABSORBED_COMPONENTS,
     ClaimRecord,
     ClaimStatus,
+    CounterfactualRepairCandidate,
     DependencyNode,
     DiagnosticProbe,
     ExecutionRequest,
@@ -20,6 +21,7 @@ from orion.study.p1_causal.absorbed_mechanics import (
     component_registry,
     dependency_impact_closure,
     enforce_certificate,
+    inclusion_minimal_successful_repairs,
     missing_verification_obligations,
 )
 
@@ -115,6 +117,33 @@ def test_intervention_evidence_and_active_probe_do_not_mint_authority() -> None:
     )
     assert probe is not None and probe.probe_id == "source"
     assert not hasattr(evidence, "granted")
+
+
+def test_counterfactual_minimal_repair_is_absorbed_but_not_authority() -> None:
+    result = inclusion_minimal_successful_repairs(
+        (
+            CounterfactualRepairCandidate("broad", frozenset({"a", "b"}), True),
+            CounterfactualRepairCandidate("minimal", frozenset({"a"}), True),
+            CounterfactualRepairCandidate("failed", frozenset({"c"}), False),
+        )
+    )
+    assert result.repair_ids == ("minimal",)
+    assert result.cardinality == 1
+    assert not hasattr(result, "granted")
+
+
+def test_protected_minimal_repair_can_reject_a_target_flip() -> None:
+    candidates = (
+        CounterfactualRepairCandidate("unsafe", frozenset({"a"}), True, False),
+        CounterfactualRepairCandidate("safe", frozenset({"b"}), True, True),
+    )
+    raw = inclusion_minimal_successful_repairs(candidates)
+    protected = inclusion_minimal_successful_repairs(
+        candidates,
+        require_protected_ok=True,
+    )
+    assert raw.repair_ids == ("safe", "unsafe")
+    assert protected.repair_ids == ("safe",)
 
 
 def test_recovery_admission_and_dependency_rollback_are_separate_layers() -> None:

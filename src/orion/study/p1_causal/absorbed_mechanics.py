@@ -1,16 +1,17 @@
 """Reusable donor mechanics absorbed into the Paper-1 ORION substrate.
 
-This module makes the project's assimilation rule executable: strong nearest
-work is *engulfed* as reusable framework structure with provenance, then ORION
-claims only what survives after composition.  The implementations here are
-protocol-level abstractions, not claims of reproducing every donor system.
+Strong nearest work is engulfed as reusable framework structure with provenance,
+then ORION claims only what survives after composition.  The implementations
+here are protocol-level abstractions, not claims of reproducing every donor
+system.
 
 Primary structural parents represented here include Iris/AGM-style revisable
 information state, REFLECT/CAR-style intervention-backed attribution,
-R2Act/DARC-style diagnosis-to-action admission, EviGraph/TMS/change-impact
-scoped invalidation, value-of-information metareasoning, and SEB-style
-certificate-bound execution.  Source-level provenance remains in the P1 donor
-engulfment ledger.
+HERALD/CausalFlow-style counterfactual minimal repair, R2Act/DARC-style
+diagnosis-to-action admission, EviGraph/TMS/change-impact scoped invalidation,
+value-of-information metareasoning, and SEB/PORTICO-style scoped revocable
+execution authority.  Source-level provenance remains in the P1 donor
+engulfment ledgers.
 """
 
 from __future__ import annotations
@@ -68,9 +69,7 @@ class InquiryRevisionState:
             current,
             text=current.text if text is None else text,
             scope=current.scope if scope is None else scope,
-            support_ids=(
-                current.support_ids if support_ids is None else support_ids
-            ),
+            support_ids=current.support_ids if support_ids is None else support_ids,
             refute_ids=current.refute_ids if refute_ids is None else refute_ids,
             status=current.status if status is None else status,
         )
@@ -134,9 +133,7 @@ def choose_information_probe(
     """MedAction/VOI-style cheapest discriminator of the live cause pair."""
 
     target = frozenset(live_causes)
-    candidates = [
-        probe for probe in probes if target.issubset(probe.separates)
-    ]
+    candidates = [probe for probe in probes if target.issubset(probe.separates)]
     if not candidates:
         candidates = [
             probe
@@ -146,6 +143,53 @@ def choose_information_probe(
     if not candidates:
         return None
     return min(candidates, key=lambda item: (item.cost, item.probe_id))
+
+
+@dataclass(frozen=True)
+class CounterfactualRepairCandidate:
+    """HERALD/CausalFlow-style candidate evaluated under an intervention."""
+
+    repair_id: str
+    edited_atoms: frozenset[str]
+    target_success: bool
+    protected_ok: bool = True
+
+
+@dataclass(frozen=True)
+class MinimalRepairSet:
+    repair_ids: tuple[str, ...]
+    cardinality: int | None
+
+
+def inclusion_minimal_successful_repairs(
+    candidates: Iterable[CounterfactualRepairCandidate],
+    *,
+    require_protected_ok: bool = False,
+) -> MinimalRepairSet:
+    """Return inclusion-minimal successful counterfactual repairs.
+
+    This explicitly absorbs counterfactual minimal-repair structure.  It does
+    not decide scientific K/W/M authority: the output is a repair candidate set
+    consumed by later scientific-state constraints.
+    """
+
+    eligible = tuple(
+        item
+        for item in candidates
+        if item.target_success and (item.protected_ok or not require_protected_ok)
+    )
+    minimal: list[CounterfactualRepairCandidate] = []
+    for item in eligible:
+        if any(
+            other.repair_id != item.repair_id
+            and other.edited_atoms < item.edited_atoms
+            for other in eligible
+        ):
+            continue
+        minimal.append(item)
+    ordered = tuple(sorted(item.repair_id for item in minimal))
+    cardinality = min((len(item.edited_atoms) for item in minimal), default=None)
+    return MinimalRepairSet(ordered, cardinality)
 
 
 @dataclass(frozen=True)
@@ -232,7 +276,7 @@ def missing_verification_obligations(
 
 @dataclass(frozen=True)
 class MutationCertificate:
-    """SEB-style certificate-bound mutation contract.
+    """SEB/PORTICO-style certificate-bound mutation contract.
 
     A certificate records authority produced elsewhere; the broker only enforces
     exact action/scope/epoch/state bindings and never invents authority.
@@ -299,6 +343,12 @@ ABSORBED_COMPONENTS: tuple[AbsorbedComponent, ...] = (
         ("InterventionEvidence", "DiagnosticProbe", "choose_information_probe"),
     ),
     AbsorbedComponent(
+        "COUNTERFACTUAL_MINIMAL_REPAIR",
+        "same-task intervention audit plus inclusion-minimal causal repair",
+        ("HERALD", "CausalFlow"),
+        ("CounterfactualRepairCandidate", "inclusion_minimal_successful_repairs"),
+    ),
+    AbsorbedComponent(
         "ADMISSIBLE_RECOVERY",
         "diagnosis-conditioned valid action/target selection",
         ("R2Act", "DARC"),
@@ -319,7 +369,7 @@ ABSORBED_COMPONENTS: tuple[AbsorbedComponent, ...] = (
     AbsorbedComponent(
         "CERTIFICATE_BOUND_EXECUTION",
         "proposal/admission/execution separation with scoped revocable authority",
-        ("SAB", "SEB"),
+        ("SAB", "SEB", "PORTICO"),
         ("MutationCertificate", "ExecutionRequest", "enforce_certificate"),
     ),
 )
@@ -335,11 +385,13 @@ __all__ = [
     "BrokerDecision",
     "ClaimRecord",
     "ClaimStatus",
+    "CounterfactualRepairCandidate",
     "DependencyNode",
     "DiagnosticProbe",
     "ExecutionRequest",
     "InquiryRevisionState",
     "InterventionEvidence",
+    "MinimalRepairSet",
     "MutationCertificate",
     "RecoveryAction",
     "RecoveryAdmission",
@@ -349,5 +401,6 @@ __all__ = [
     "component_registry",
     "dependency_impact_closure",
     "enforce_certificate",
+    "inclusion_minimal_successful_repairs",
     "missing_verification_obligations",
 ]

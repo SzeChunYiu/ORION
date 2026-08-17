@@ -27,6 +27,17 @@
       "orion_role": "ORION consumes intervention-supported responsibility evidence; generic attribution, active diagnosis and metareasoning are donor-owned and are not claimed as new."
     },
     {
+      "component_id": "COUNTERFACTUAL_MINIMAL_REPAIR",
+      "integration_mode": "EXECUTABLE_SUBSTRATE",
+      "matrix_rows": [],
+      "extra_donors": [
+        "HERALD arXiv:2608.06012",
+        "CausalFlow arXiv:2605.25338"
+      ],
+      "extracted_structure": "Apply controlled same-task/trace interventions, identify repairs that causally flip the outcome, and retain inclusion-minimal successful repair sets rather than broad hardening or heuristic retry.",
+      "orion_role": "Counterfactual minimal repair is now incumbent ORION substrate and a strong matched parent. P1 may not claim counterfactual repair minimality itself; the residual must require science-specific state ordering, protected invariants and dependency-impact correctness beyond a successful minimal edit."
+    },
+    {
       "component_id": "ADMISSIBLE_RECOVERY",
       "integration_mode": "EXECUTABLE_SUBSTRATE",
       "matrix_rows": [],
@@ -59,10 +70,11 @@
       "matrix_rows": [],
       "extra_donors": [
         "Sovereign Assurance Boundary / certificate producer",
-        "Sovereign Execution Broker arXiv:2606.20520"
+        "Sovereign Execution Broker arXiv:2606.20520",
+        "PORTICO / Lingering Authority arXiv:2606.22504"
       ],
-      "extracted_structure": "Separate proposal, admission and execution; bind mutation to a certificate, exact action/scope, validity/revocation epoch and live-state digest; fail closed on drift.",
-      "orion_role": "ORION adopts mandatory runtime enforcement for authority already earned elsewhere. The broker enforces authority and never creates it."
+      "extracted_structure": "Separate proposal, admission and execution; bind mutation to a certificate/capability, exact action/scope, validity/revocation epoch and live-state digest; revoke stale authority and fail closed on drift.",
+      "orion_role": "ORION adopts mandatory runtime enforcement and revocation for authority already earned elsewhere. The broker/reference monitor enforces authority and never creates it."
     },
     {
       "component_id": "RECURSIVE_RESEARCH_CONTROL",
@@ -106,11 +118,11 @@
     }
   ],
   "engulfment_invariant": {
-    "coverage": "Every one of the 36 merged nearest-work rows appears exactly once in this ledger.",
+    "coverage": "Every one of the 36 merged nearest-work rows appears exactly once in this ledger; post-matrix donors may enter through extra_donors but must still receive an integration component.",
     "adopt_adapt_compose": "Every ADOPT/ADAPT/COMPOSE row must map to executable substrate, framework orchestration, evaluation governance, or framework knowledge; it may not disappear into citation-only treatment.",
     "defer": "Every DEFER row remains an explicit watchlist/reopen trigger.",
     "reject": "Every REJECT row remains negative history and grants no authority.",
     "novelty": "Novelty is assessed only after the engulfed framework is treated as the incumbent ORION system. Donor-owned atoms are credited to their sources even when ORION executes them internally."
   },
-  "current_residual_after_engulfment": "Counterfactual evidence that a high-level scientific K/W/M mutation is necessary rather than merely locally useful: lower-level alternatives are experimentally ruled out, the high-level mutation restores the target, protected sibling/invariant checks survive, and dependency impact matches the bound reopen set."
+  "current_residual_after_engulfment": "Beyond causal/inclusion-minimal repair: counterfactual evidence that a high-level scientific K/W/M mutation is necessary at the correct epistemic level, preserves registered sibling/invariant checks, and produces exactly the dependency impact bound to the reopen set after lower-level alternatives are ruled out."
 }
