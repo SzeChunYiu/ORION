@@ -9,7 +9,8 @@ whose digest is computed under a different JSON encoding can never chain onto a
 P5 negative-history link, and the divergence would only surface on the first
 record carrying a non-ASCII character.
 
-The relationship is expressed as a *test* (``tests/unit/programme/test_identity.py``)
+The relationship is expressed as a *test*
+(``tests/unit/programme/test_programme_identity.py``)
 rather than an import, because ``orion.programme`` sits above ``orion.study.p5``
 in the layering ``development/README.md`` mandates, and an upward import would
 invert it. A pinning test also fails loudly if either side drifts, which a shared
