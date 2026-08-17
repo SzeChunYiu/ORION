@@ -66,13 +66,13 @@ Legend: **ME** merged evidence · **SO** structure only · **AB** absent · **BX
 
 | # | Item | Class | Basis |
 |---|---|---|---|
-| A1 | Real LLM + real retrieval + protected verification boundary | **BX** | `.github/workflows/p5_phase2_live_execution.yml` (PR #185, #190) exists and has run 4 times from `main`; **all 4 failed**. Run `32003937947` (head `e5d78490`) failed at step 8 "Probe and freeze explicit Copilot model pair": probe returned `status: CANNOT_CHECK`, every candidate (`gpt-5.3-codex`, `gpt-5-mini`, `claude-sonnet-4.6`, `claude-haiku-4.5`, `gemini-3.5-flash`) `MODEL_UNAVAILABLE`, exit 3. Step 9 (the trial itself) `skipped`. The machine fail-closed correctly; the blocker is provider entitlement |
+| A1 | Real LLM + real retrieval + protected verification boundary | **BX** | `.github/workflows/p5_phase2_live_execution.yml` (PR #185, #190) has run 4 times from `main`; **all 4 failed, at three distinct stages** — see §6.1. At the current head the blocker is external (no resolvable model), so `BX`; but a code-side blocker is also proven, and the discrimination between them is not settled — see the A4/A7 rows and §6.1 |
 | A2 | ≥1 wide-literature and ≥1 deep-target task | **SO** | `src/orion/self_orion/live_packet.py` (`build_frozen_live_trial_packet`); workflow asserts `wide_task_count`/`deep_task_count` ≥ 1 |
 | A3 | Task/provider/model/retrieval/evaluator/resource/split frozen before outcome access | **SO** | `src/orion/self_orion/phase2_freeze.py`, `subject_binding.py` (PR #91), `phase2_preflight.py` |
-| A4 | Raw queries, documents, answer-use trace, mechanic episodes retained | **SO** | `src/orion/self_orion/live_trial.py`; workflow blocker `raw_search_trace_not_retained_for_every_task` |
+| A4 | Raw queries, documents, answer-use trace, mechanic episodes retained | **SO** | `src/orion/self_orion/live_trial.py`. **Defect demonstrated:** run `32002591296` executed the trial and reported `raw_search_trace_not_retained_for_every_task` as a blocker — the retention requirement is checked and currently not met. `SO` still holds literally (never exercised on *the closure subject*), but this row is a known code-side gap, not merely an unexercised one |
 | A5 | Present-but-missed / retrieved-but-unused / interpretation / routing / saturation distinguished | **SO** | Taxonomy present in `src/orion/self_orion/live_packet.py` (`PRESENT_BUT_MISSED`, `RETRIEVED_BUT_UNUSED`, `SATURATION`, …) |
 | A6 | Matched simple LLM+retrieval baseline under resource parity | **SO** | `src/orion/self_orion/baseline.py`, `live_campaign_factory.py`; workflow blockers `live_trial_resources_not_matched`, `matched_baseline_task_coverage_incomplete` |
-| A7 | Null/harmful results preserved | **SO** | `src/orion/self_orion/live_trial.py`; blocker `live_trial_failure_history_incomplete` |
+| A7 | Null/harmful results preserved | **SO** | `src/orion/self_orion/live_trial.py`. **Defect demonstrated:** the same run reported `live_trial_failure_history_incomplete`, with both `comparison_statuses` `BLOCKED`. Same caveat as A4 |
 | A8 | Exact live artifact merged and bound to the same subject as the rest of the evidence | **AB** | No live-trial artifact is merged. `papers/paper-05-self-orion/phase2/LIVE_EXECUTION_TRIGGER.txt` is a trigger, not a result |
 
 ### B. Shadow self-development trial
@@ -183,16 +183,55 @@ producing lane; gate F's terminal audit is explicitly a host/external-reviewer a
 
 **Downstream, correctly blocked.** #209 (Phase 3) is blocked on #76; #210 (Phase 4) on #209 (#208).
 
-**Not blocked on code.** No gate above is waiting on a missing module. Every gap is either a run
-that has not been executed or an external artifact that has not been provisioned.
+**Partly blocked on code, contrary to first appearance.** No gate is waiting on a *missing module*,
+but run `32002591296` proves two code-side blockers inside gate A (`raw_search_trace_not_retained…`,
+`live_trial_failure_history_incomplete`), and the Copilot candidate model list is hardcoded. Those
+belong to a development lane, not to the operator. See §6.1.
+
+**Prior work adjacent to this record.** `research/development/mechanic-answer-loop/candidate-answers/ABSORB.EVIDENCE_BIND.v0.md`
+(claude lane) already argues the content-identity contract used here: every load-bearing identity on
+an authority path must be a lowercase SHA-256 content digest, and human display labels are
+inadmissible *even when placed in fields named `*_hash`*. The anchor record follows it — where a
+digest was not computed it records `null` plus a `NOT_COMPUTED` status and the reason, never a
+label standing in for a hash.
 
 ## 6. Discrepancies against issue #76's own text
 
-1. **#76 does not record that gate A has already been attempted and failed.** Four `main` runs of
-   `p5-phase2-live-execution` (2026-08-17, PRs #185/#190) failed at the provider probe. Gate A reads
-   as "not started"; it is "started, fail-closed at provider availability". This is favourable to
-   ORION — the machine returned `CANNOT_CHECK` rather than manufacturing a PASS — and it belongs in
-   the record.
+1. **#76 does not record that gate A has already been executed once, and returned `FAIL`.** Four
+   `main` runs of `p5-phase2-live-execution` (2026-08-17, PRs #185/#190) failed, at three distinct
+   stages — the attribution differs per run and must not be generalised:
+
+   | Run | id | head | Failed at | Attribution |
+   |---|---|---|---|---|
+   | 1 | `32000698181` | `44427fcc` | step 5, "Check secret-safe live bindings" | Secrets absent. Predates #190's Copilot lane, so it cannot have failed at the model probe |
+   | 2 | `32002199600` | `cfa79640` | step 8, "Freeze bindings and execute matched wide/deep trial" | Trial reached |
+   | 3 | `32002591296` | `6c7d2afb` | step 8, same | **Trial actually executed** — see below |
+   | 4 | `32003937947` | `e5d78490` | step 8, "Probe and freeze explicit Copilot model pair" | Probe `CANNOT_CHECK`, all five candidates `MODEL_UNAVAILABLE`, exit 3; trial step `skipped` |
+
+   Run 3 is the substantive one. It froze a real subject and executed the matched wide/deep trial,
+   emitting a `P5_PHASE2_SAFE_SUMMARY` with `issue_8_gate: "FAIL"`, exit 4:
+   `subject_commit_oid 6c7d2afbae96057ffa821ff538ff913e962066c8`,
+   `subject_revision_hash 8ec1d9c46b8515b3eed494ff765f94b0748f3e0e28bbd9fbb6e24dadad06a389`,
+   `packet_fingerprint b9658d23…`, `provider_mode "github-copilot-cli-external"`,
+   `wide_task_count 1`, `deep_task_count 1`, `protocol_id "phase2-shadow-closure-v1"`,
+   `grants_self_promotion false`, `comparison_statuses ["BLOCKED","BLOCKED"]`, blockers
+   `raw_search_trace_not_retained_for_every_task` and `live_trial_failure_history_incomplete`.
+
+   Three consequences. **(i)** Gate A is not purely provisioning-blocked: run 3 stood the live
+   boundary up and failed on trace/failure-history retention, which is code-side. **(ii)** The only
+   real Phase-2 live-execution evidence that exists lives in **expiring GitHub Actions logs**,
+   merged nowhere and bound to no retained artifact — the same unbound-execution shape that got
+   #207 quarantined as `UNBOUND_EXECUTION_REPORT` (#212). If it is worth anything it should be
+   mirrored before it expires; if it is worth nothing it should be said so explicitly. **(iii)** A
+   `FAIL` here is legitimate Phase-2 material by #76's own text ("a failure that does not improve
+   is still valid Phase-2 evidence if attribution, preservation and non-promotion are correct") —
+   but only once bound to the closure subject, which `6c7d2afb` is not.
+
+   Run 4's regression has a further code-side component: `COPILOT_REASONER_MODEL_CANDIDATES` and
+   `COPILOT_EVALUATOR_MODEL_CANDIDATES` are **hardcoded tuples** at
+   `src/orion/providers/live_phase2.py:29-41` under `explicit_models_only: true`. "All models
+   unavailable" may therefore be a stale candidate list rather than an entitlement fact. Whether
+   the blocker is the account or the list is not discriminated here; it is queued.
 2. **Gate C cites issue #59, which is closed.** #59 is titled "P8 — Verified Scientific Discovery
    hostile authority/evaluator benchmark" and its live evidence binds the Paper-4 subject
    `f6e51b5c…`. Its closure does not satisfy #76's gate C, which demands the exact closure subject.
