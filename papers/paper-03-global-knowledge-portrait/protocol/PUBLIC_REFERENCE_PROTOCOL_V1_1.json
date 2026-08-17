@@ -1,0 +1,95 @@
+{
+  "schema_version": "orion.p3.public-reference-protocol.v1.1",
+  "paper_id": "P3",
+  "protocol_id": "P3.public-reference-mapping.v1.1",
+  "protocol_status": "DESIGN_FROZEN",
+  "outcome_accessed": false,
+  "frozen_utc_date": "2026-08-17",
+  "provenance": {
+    "prior_protocol": "P3.public-reference-mapping.v1",
+    "prior_run_id": "32034567843",
+    "prior_outcomes_accessed": true,
+    "prior_run_authority": "DEVELOPMENT_PILOT_ONLY",
+    "reason_for_new_version": [
+      "v1 artifacts used runner-local absolute source locators",
+      "v1 selected cases did not independently exercise referent, construct and measurement ablations",
+      "v1 therefore cannot be promoted as the final publication atlas"
+    ]
+  },
+  "primary_hypothesis": {
+    "id": "P3.PR11.H1",
+    "text": "On an outcome-blind public-reference atlas containing externally grounded positive mappings, contradictions, and targeted referent/construct/measurement distinctions, ORION's typed semantic comparison reduces invalid merges versus flat canonicalization without increasing false splits versus a conservative exact-coordinate baseline.",
+    "practical_margins": {
+      "false_merge_superiority_absolute": 0.05,
+      "false_split_noninferiority_absolute": 0.03
+    }
+  },
+  "scope": {
+    "evaluated_layer": "externally grounded structured projection-to-mapping/integration semantics",
+    "explicit_nonclaims": [
+      "raw-text extraction superiority",
+      "retrieval superiority",
+      "model/provider superiority",
+      "universal construct-validity adequacy",
+      "downstream scientific-answer superiority"
+    ]
+  },
+  "gold_authority": {
+    "allowed": [
+      "UPSTREAM_EXPERT",
+      "UPSTREAM_HUMAN",
+      "DETERMINISTIC_STANDARD",
+      "DERIVED_FROM_ALLOWED"
+    ],
+    "forbidden": [
+      "LLM_PROPOSAL",
+      "HEURISTIC_PROXY",
+      "SIMULATED",
+      "SELF_LABEL"
+    ]
+  },
+  "required_relations": [
+    "COMPATIBLE",
+    "CONTRADICTORY",
+    "DISTINCT_REFERENT",
+    "DISTINCT_CONSTRUCT",
+    "DISTINCT_MEASUREMENT"
+  ],
+  "required_case_properties": {
+    "n": 32,
+    "minimum_discipline_strata": 3,
+    "minimum_case_families": 2,
+    "stable_upstream_relative_locators": true,
+    "both_merge_and_nonmerge_outcomes": true,
+    "targeted_ablation_coverage": [
+      "referent",
+      "construct",
+      "measurement",
+      "polarity_or_modality",
+      "forced_compatibility_without_obstruction"
+    ]
+  },
+  "deterministic_derivations": {
+    "distinct_referent": "different immutable SciSchema schema $id values within one discipline",
+    "distinct_construct": "different expert-schema property keys within one schema while holding referent and measurement unit fixed",
+    "distinct_measurement": "expert-schema quantity fields whose explicit units belong to different frozen physical dimensions; same-dimension convertible units are never labelled non-equivalent",
+    "contradiction": "SciFact expert CONTRADICT label mapped to an asserted polarity opposition control",
+    "compatible_referent": "MUSE expert conceptual-coreference edge"
+  },
+  "statistics": {
+    "unit": "externally grounded mapping case",
+    "standalone_rate_interval": "Wilson 95%",
+    "paired_difference_interval": "paired percentile bootstrap, 10000 resamples",
+    "bootstrap_seed": 20260817,
+    "multiplicity": "Holm across coordinate ablation family",
+    "stochastic_repeats": 1,
+    "reason": "mapping systems in this protocol are deterministic"
+  },
+  "execution_bindings": {
+    "subject_revision": "UNBOUND",
+    "case_manifest_hash": "UNBOUND",
+    "source_content_hashes": "UNBOUND",
+    "evaluator_hash": "UNBOUND",
+    "evaluation_epoch": "UNBOUND"
+  }
+}

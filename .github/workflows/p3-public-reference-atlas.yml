@@ -9,7 +9,7 @@ on:
       - 'src/orion/study/p3_public_reference*.py'
       - 'src/orion/knowledge/semantics.py'
       - 'papers/paper-03-global-knowledge-portrait/gold/PUBLIC_REFERENCE_*'
-      - 'papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_PROTOCOL_V1.json'
+      - 'papers/paper-03-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_PROTOCOL_V1*.json'
 
 permissions:
   contents: read
@@ -59,19 +59,15 @@ jobs:
         run: |
           mkdir -p p3-public-reference-run
           python - <<'PY'
-          import hashlib
-          import json
-          import os
+          import hashlib, json, os
           from pathlib import Path
-
           def digest(path: str) -> str:
               return hashlib.sha256(Path(path).read_bytes()).hexdigest()
-
           payload = {
-              'schema_version': 'orion.p3.public-reference-pre-bindings.v1',
+              'schema_version': 'orion.p3.public-reference-pre-bindings.v1.1',
               'orion_revision': os.environ['ORION_SHA'],
               'github_run_id': os.environ['RUN_ID'],
-              'protocol_id': 'P3.public-reference-mapping.v1',
+              'protocol_id': 'P3.public-reference-mapping.v1.1',
               'upstream_revisions': {
                   'MUSE': 'f7a40317db46145d0c90b221311d8324db5da1b9',
                   'SciSchema': '55b6197cdb0b66c3123df16d0b0c70b02c4bde8b',
@@ -88,14 +84,27 @@ jobs:
           print(json.dumps(payload, indent=2, sort_keys=True))
           PY
 
-      - name: Build frozen-authority public-reference atlas
+      - name: Build frozen-authority public-reference atlas v1.1
         run: |
-          PYTHONPATH=src python -m orion.study.p3_public_reference_build \
+          PYTHONPATH=src python -m orion.study.p3_public_reference_build_v11 \
             --muse-root /tmp/muse/dataset/human_Expert_annotations \
             --scifact-claims /tmp/scifact/data/claims_dev.jsonl \
             --scischema-root /tmp/scischema/schemas \
             --target-n 32 \
             --out p3-public-reference-run
+
+      - name: Canonicalize all source provenance paths
+        run: |
+          PYTHONPATH=src python -m orion.study.p3_public_reference_finalize_v11 \
+            --cases p3-public-reference-run/cases.jsonl \
+            --report p3-public-reference-run/BUILD_REPORT.json \
+            --muse-root /tmp/muse/dataset/human_Expert_annotations \
+            --scifact-file /tmp/scifact/data/claims_dev.jsonl \
+            --scischema-root /tmp/scischema/schemas
+          if grep -q '/tmp/' p3-public-reference-run/cases.jsonl; then
+            echo 'runner-local path leaked into frozen case provenance' >&2
+            exit 1
+          fi
 
       - name: Evaluate deterministic mapping systems
         run: |
@@ -115,21 +124,17 @@ jobs:
           RUN_ID: ${{ github.run_id }}
         run: |
           python - <<'PY'
-          import hashlib
-          import json
-          import os
+          import hashlib, json, os
           from pathlib import Path
-
           root = Path('p3-public-reference-run')
           def digest(name: str) -> str:
               return hashlib.sha256((root / name).read_bytes()).hexdigest()
-
           pre = json.loads((root / 'PRE_BINDINGS.json').read_text(encoding='utf-8'))
           payload = {
-              'schema_version': 'orion.p3.public-reference-run-bindings.v1',
+              'schema_version': 'orion.p3.public-reference-run-bindings.v1.1',
               'orion_revision': os.environ['ORION_SHA'],
               'github_run_id': os.environ['RUN_ID'],
-              'protocol_id': 'P3.public-reference-mapping.v1',
+              'protocol_id': 'P3.public-reference-mapping.v1.1',
               'pre_bindings_hash': digest('PRE_BINDINGS.json'),
               'upstream_revisions': pre['upstream_revisions'],
               'external_content_hashes': pre['external_content_hashes'],
