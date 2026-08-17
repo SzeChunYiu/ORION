@@ -52,13 +52,16 @@ The Deep benchmark probe uses deterministic target identification (not the offic
 ## Interpretation
 
 ### Wide probe
+Completed: credential-free 400-task AutoResearchBench Wide external probe scored by the pinned official deterministic scorer
+
+Not claimed:
 - full multi-provider ORION execution
 - matched ORION-vs-baseline superiority
 - inferential superiority
 - absence of provider throttling or service failures
 
 ### Deep probe
-*No explicit interpretation field in source JSON. Deep probe authority is `DETERMINISTIC_DEEP_ID_EXTERNAL_PROBE`, which is a deterministic target-ID probe, not the official Deep title judge.*
+*No explicit interpretation field in source JSON. Deep probe authority is `DETERMINISTIC_DEEP_ID_EXTERNAL_PROBE`, which is a deterministic target-ID probe, not the official Deep title judge. A separate official-judge archive exists as `evidence/external_results/DEEP_OFFICIAL_ARCHIVE_V1.json` and is not this table's Deep row.*
 
 ## Content integrity hashes (representative)
 

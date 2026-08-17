@@ -111,20 +111,34 @@ def render(wide: dict, deep: dict) -> str:
     add("## Interpretation")
     add("")
     add("### Wide probe")
-    wide_interpret = wide.get('interpretation', {})
+    wide_interpret = wide.get("interpretation", {})
     if wide_interpret:
-        for item in wide_interpret.get('not_claimed', []):
-            add(f"- {cell(item)}")
+        completed = wide_interpret.get("completed")
+        if completed:
+            add(f"Completed: {cell(completed)}")
+            add("")
+        not_claimed = wide_interpret.get("not_claimed", [])
+        if not_claimed:
+            add("Not claimed:")
+            for item in not_claimed:
+                add(f"- {cell(item)}")
     else:
         add("*No explicit interpretation field in source JSON*")
     add("")
     add("### Deep probe")
-    deep_interpret = deep.get('interpretation', {})
+    deep_interpret = deep.get("interpretation", {})
     if deep_interpret:
-        for item in deep_interpret.get('not_claimed', []):
-            add(f"- {cell(item)}")
+        completed = deep_interpret.get("completed")
+        if completed:
+            add(f"Completed: {cell(completed)}")
+            add("")
+        not_claimed = deep_interpret.get("not_claimed", [])
+        if not_claimed:
+            add("Not claimed:")
+            for item in not_claimed:
+                add(f"- {cell(item)}")
     else:
-        add("*No explicit interpretation field in source JSON. Deep probe authority is `DETERMINISTIC_DEEP_ID_EXTERNAL_PROBE`, which is a deterministic target-ID probe, not the official Deep title judge.*")
+        add("*No explicit interpretation field in source JSON. Deep probe authority is `DETERMINISTIC_DEEP_ID_EXTERNAL_PROBE`, which is a deterministic target-ID probe, not the official Deep title judge. A separate official-judge archive exists as `evidence/external_results/DEEP_OFFICIAL_ARCHIVE_V1.json` and is not this table's Deep row.*")
     add("")
 
     # Content bindings
