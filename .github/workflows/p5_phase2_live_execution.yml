@@ -100,12 +100,12 @@ jobs:
           write_live_phase2_provider_manifest(stack, out / 'PROVIDER_MANIFEST.json')
 
           preflight = Phase2ClosurePreflight(
-              protocol_id='P5.phase2-shadow-live.v1',
+              protocol_id='phase2-shadow-closure-v1',
               subject_revision_hash=subject.subject_revision_hash,
               provider_manifest_hash=stack.provider_manifest_hash,
               evaluator_artifact_hash=stack.evaluator_artifact_hash,
               evaluation_epoch_id=stack.evaluation_epoch_id,
-              baseline_id='simple-llm-retrieval-v1',
+              baseline_id='simple-llm-retrieval-baseline-v1',
               resource_budget_units=budget,
           )
           preflight_report = assess_phase2_preflight(preflight)
