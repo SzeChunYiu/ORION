@@ -4,115 +4,186 @@
 
 ## Abstract
 
-Autonomous research agents increasingly combine planning, memory, retrieval, reflection, verification and tool use, but the mechanisms controlling these capabilities are usually described operationally rather than as first-class epistemic objects. ORION currently represents scientific work using explicit state coordinates, obligations, mechanic cells, dependencies, authority bounds and recursive audit. This paper investigates whether those ingredients admit a reusable formal semantics. We propose to model an epistemic mechanic as a typed state transformer whose read/write domain, evidence obligations, authority, emitted obligations, failure terminals and dependency effects are explicit. We then study composition, selective invalidation and recursive self-audit. The central hypothesis is not that state machines, belief revision or modular cognitive architectures are new. It is that coupling **typed responsibility and obligations to explicit mutation authority and dependency-scoped reopening** may yield a distinct calculus for research-agent mechanics. Novelty and empirical value remain unestablished pending nearest-work saturation and prospective evaluation.
+Autonomous research systems increasingly combine planning, retrieval, memory, reflection, verification, authorization and tool use, yet these capabilities are usually connected through implementation conventions rather than a common formal contract. This paper asks whether the mechanisms that *change* an agent's epistemic state can themselves be modeled as first-class epistemic objects. We develop a candidate calculus in which a mechanic has typed read/write footprints, preconditions, hard and soft residual obligations, requested and committed effects, dependency/provenance structure, scoped authority, failure terminals, invariants and retained audit history. The formalism deliberately absorbs rather than competes with mature parent ideas: dynamic epistemic logic supplies action/update semantics; belief revision supplies rational change operators; truth-maintenance and recent dependency-guided rollback supply selective invalidation and preservation; separation/process logics supply locality; ETAS supplies typed effects, residual obligations and trace-visible commits; FAVA supplies evidence-backed permission graphs and deterministic pre-effect authorization; recent agent-repair work supplies dependency-aware transition localization. The candidate contribution, if one survives, is therefore not any component in isolation but a history-aware epistemic effect/repair algebra coupling commit authority, dependency-minimal reopening, residual obligations, frame-style preservation and recursive audit. We prove elementary reopening, non-escalation, termination and history-aware commutation properties, give self-authorization countermodels, and specify donor-faithful embeddings and cross-domain falsifiers. P6 remains `CANNOT_CHECK` for distinct novelty until these embeddings, external nearest-work saturation and prospective transfer tests close.
 
 ## 1. Introduction
 
-A research agent does more than transform text. It maintains a changing representation of what is known, what remains unresolved, what procedure is currently in force, what evidence licenses which actions, and what prior conclusions depend on assumptions that may later fail.
+A research agent does more than transform text. It maintains representations of what is known, what remains unresolved, what search universe is currently relevant, which procedure is in force, what evidence licenses which actions, and which prior conclusions depend on assumptions that may later fail. Errors in one of these objects can propagate into later retrieval, reasoning, memory writes, claims and self-modification.
 
-Contemporary language-agent architectures make many of these elements visible as modules—memory, planning, reflection, tools, verification—but module names do not by themselves specify control semantics. Two systems can both contain a planner and a critic while differing radically in what either component is allowed to change after failure.
+Modern agent architectures expose many of these concerns as modules—memory, planning, reflection, tools, verification, runtime policy—but module names do not specify control semantics. Two systems can both have a planner and a critic while differing fundamentally in what either component may mutate, what evidence is required before committing a change, which conclusions must reopen afterward, and what failures remain in history.
 
-ORION's existing papers expose this control problem repeatedly. P1 distinguishes knowledge, epistemic/world obligations and mechanics while using responsibility to decide whether a failure licenses reformulation. P2 distinguishes route exhaustion from task closure. P3 separates semantic similarity from authorized integration. P4 separates evidence accumulation from scientific-authority promotion. P5 separates successful modification from authorization to self-promote.
+ORION already contains several domain-specific instances of this problem. P1 owns the canonical `K/W/M` epistemic reconstruction, responsibility-targeted reframing, dependency-directed reopening, `MechanicCell.v1` and recursive mechanic self-audit. P2 owns route coverage and stopping. P3 owns source projection and obstruction-preserving integration. P4 owns protected scientific-authority promotion. P5 owns failure-to-method learning and protected self-improvement. P6 therefore cannot acquire novelty by describing these objects at a higher level.
 
-This manuscript asks whether there is a formal substrate beneath these examples.
+The broader research question is whether these instances—and strong external systems—can be embedded in one formal language of **epistemic transition contracts** without erasing the unique semantics that make each system useful.
 
-The intended contribution, if it survives nearest-work pressure, is a calculus in which a mechanic is not merely a function from input to output. It is a contract over epistemic state.
+## 2. Epistemic states and transition contracts
 
-## 2. State and mechanics
+Let an epistemic signature contain typed state coordinates `C`, value domains `V_c`, claim identifiers `Q`, obligation types, authority types and effect kinds. An epistemic state is provisionally
 
-Let an epistemic state be a typed object
+\[
+E=(\nu,s,D,P,O,A,H),
+\]
 
-`E = (K, W, M, O, D, P, A, H)`
+where `\nu` is the current coordinate valuation, `s` records claim/certificate status, `D` is a dependency relation or hypergraph projection, `P` binds provenance/evidence identities, `O` contains active obligations, `A` contains active authority tokens/certificates, and `H` retains requests, commits, failures, invalidations and other audit-relevant history.
 
-where, provisionally:
+A mechanic is
 
-- `K` contains content treated as current knowledge/evidence-bearing claims;
-- `W` contains problem/world representation and open research coordinates;
-- `M` contains active mechanics/procedures;
-- `O` contains unresolved obligations and defeaters;
-- `D` is a dependency relation over claims, obligations and mechanics;
-- `P` records provenance/evidence identity;
-- `A` records authority/licensing state;
-- `H` retains negative history and prior invalidated states where required.
+\[
+m=(R_m,W_m,Pre_m,Req_m,Eff_m,\tau_m,Emit_m,Fail_m,Inv_m).
+\]
 
-This tuple is a research hypothesis, not yet the canonical ORION schema. #333 must map every coordinate to actual registry objects or strike it.
+The difference from a plain transition function is contractual. A mechanic declares what it may read and write, what hard requirements must be established before a commit, which effects are merely requested versus actually committed, what residual obligations are emitted, what provenance and authority are required, and which invariants must remain true.
 
-A mechanic `m` is tentatively represented as
+The distinction between requested and committed effects is not claimed as new. ETAS (arXiv:2607.17780) already makes typed action traces, residual obligations, requested/handled/denied/committed events and policy safety explicit. FAVA (arXiv:2607.27267) already lowers natural-language permission intent into evidence-backed permission graphs and uses a deterministic SMT authorizer before effectful actions. P6 adopts these as donor mechanisms.
 
-`m = (R, W, Pre, Ev, T, Emit, Fail, Auth, Inv)`
+The P6 question is what happens when effect authorization is coupled to **epistemic dependency repair** and recursive scientific workflow state.
 
-where `R/W` are readable/writable state domains, `Pre` preconditions, `Ev` evidence obligations, `T` the transition relation, `Emit` newly emitted claims/obligations, `Fail` typed failure terminals, `Auth` authority required or produced, and `Inv` invariants that must survive execution.
+## 3. Selective reopening as a repair operator
 
-The key distinction is between **ability to compute a transition** and **authority to commit it**.
+Suppose a set `X` of upstream coordinates changes. A system can reset everything, reset nothing, or reopen only state that depended on the changed coordinates.
 
-## 3. Composition
+Let `Desc_D(X)` be the transitive downstream closure under a dependency graph `D`. Under a dependency-soundness assumption, the reopening operator invalidates every certified descendant of `X`, preserves independent certified state, records the invalidation cause in history, and retains content-bound provenance.
 
-We plan to define at least four composition forms.
+Two elementary results follow.
 
-**Sequential composition.** `m2 ∘ m1` is well formed only if outputs and invariants of `m1` satisfy the preconditions/read requirements of `m2`, and `m2` does not write coordinates for which authority is absent.
+**Sufficiency.** If `D` contains every semantic support that can affect a certified claim, reopening every certified descendant of `X` prevents stale affected certification.
 
-**Conditional composition.** A mechanic may branch on explicit evidence/diagnostic state. Branch conditions must be represented rather than hidden in prose or prompting.
+**Graph-information minimality.** If the only available semantic dependency information is `D` and a strategy must be sound for every semantics compatible with `D`, then every certified descendant of `X` must reopen. Full reset is sound but non-minimal whenever independent certified state exists outside the descendant closure.
 
-**Parallel/independent composition.** Mechanics may execute independently only if their write sets and dependency effects are compatible. Structural independence must not be inferred from superficial naming.
+These are structural results, not novelty claims. Truth-maintenance systems have long studied justification-dependent retraction, and recent dependency-guided rollback repair for memory-augmented agents (arXiv:2608.10502) explicitly builds a typed memory-to-action graph, removes downstream effects of faulty memories, preserves independently supported benign memories and selectively replays affected computation. P6 must therefore demonstrate a genuine generalization across heterogeneous epistemic coordinates, effects and authority-bearing commits rather than claiming selective rollback itself.
 
-**Recursive self-audit.** A mechanic may inspect a representation of itself or its parent composition. This creates immediate questions about termination, fixed points, authority escalation and whether an auditor can rewrite the contract that grants its own authority.
+## 4. Composition and history-aware commutation
 
-## 4. Dependency-scoped reopening
+P6 distinguishes sequential, conditional, separated-parallel and recursive composition.
 
-When an upstream coordinate changes, a research system can reset everything, reset nothing, or invalidate only dependent closures.
+For separated mechanics `m` and `n`, each write set is disjoint from the other's read/write footprint, and neither mechanic mutates authority, dependencies, obligations, provenance or invariants consumed by the other.
 
-Let `D(x)` denote the transitive downstream dependency set of a changed state element `x`. A selective reopening operator tentatively has the form
+An earlier draft made an over-strong claim: that independent execution orders produce the same entire state. This is false when `H` intentionally records ordered history. The corrected theorem uses a scientific projection
 
-`Reopen(E, x) = invalidate(D(x)) + preserve(E \ D(x))`
+\[
+\pi_{sci}(E)=(\nu,s,D,P,O,A)
+\]
 
-subject to provenance and authority conditions.
+and a trace equivalence `\equiv_I` generated by swapping adjacent independent events.
 
-The difficult part is not graph reachability. It is deciding **which change is epistemically licensed** and therefore which dependency relation is relevant. P1 currently owns the empirical reconstruction version of this idea; P6 requires a more general formal property or should be merged into P1.
+For deterministic admissible strongly separated mechanics,
 
-## 5. Candidate invariants
+\[
+\pi_{sci}(\tau_n(\tau_m(E)))
+=
+\pi_{sci}(\tau_m(\tau_n(E))),
+\]
 
-We will pressure at least these invariants:
+while the histories satisfy only
 
-1. **Mutation locality:** a mechanic cannot commit writes outside its authorized write domain.
-2. **Non-escalation:** successful execution cannot silently grant stronger authority than its evidence obligations permit.
-3. **Dependency soundness:** changing an upstream coordinate cannot leave a dependent closure certified without an explicit preservation proof.
-4. **Unrelated preservation:** selective reopening should not invalidate independent certified state.
-5. **Provenance preservation:** every retained or promoted claim remains traceable to supporting evidence identity.
-6. **Negative-history retention:** a failed/rejected transition cannot disappear when that history is needed for recurrence or governance.
-7. **No self-authorization:** recursive audit cannot promote changes to the rules that authorize its own promotion without an external/independent authority path.
+\[
+H_{mn}\equiv_I H_{nm}.
+\]
 
-These are candidate properties, not established theorems.
+This distinction matters operationally. Scientific state can commute while audit chronology remains recoverable.
 
-## 6. Relationship to prior work
+A second composition property is non-escalation. If each mechanic can only retain authority, narrow its scope, or receive authority from a protected root, sequential composition cannot mint stronger untrusted authority. P8 owns the general authority calculus; P6 uses the result as a mechanic-composition invariant.
 
-P6 sits under heavy prior-work pressure. Dynamic epistemic logic already models knowledge-changing actions and model transformations. AGM and later belief-revision theory formalize expansion, contraction and revision. Truth-maintenance and dependency-directed systems study dependency-aware revision. Hyperintensional approaches weaken idealized equivalence assumptions. Separation and process logics provide tools for local state ownership and compositional reasoning. Cognitive-architecture work and CoALA provide modular descriptions of language agents. Recent mechanism-level reviews explicitly reconstruct agent systems in terms such as state, control, transition, persistence, failure, learning and resource governance.
+A further theorem target concerns **residual-obligation preservation**: a hard obligation emitted by one mechanic must survive composition until explicitly discharged by an authorized rule or terminated as `CANNOT_CHECK`. Later computational success cannot erase it implicitly.
 
-Therefore the paper cannot claim novelty for formalizing change, modules or dependencies.
+## 5. Recursive audit and self-authorization
 
-The residual question is whether prior formalisms already combine the following relation in one operationally grounded object:
+A mechanic may inspect a representation of itself or its parent composition. Recursive audit is useful but creates immediate termination and governance problems.
 
-`typed responsibility/evidence obligation -> mutation authority -> dependency-scoped reopening -> recursively composable mechanic contract`.
+If every recursive call strictly decreases a rank in a well-founded order, termination follows by the standard descending-chain argument. Without such a condition, an auditor can recursively invoke the identical unresolved audit state forever.
 
-#334 owns that saturation decision.
+More importantly, recursive audit cannot be allowed to rewrite both the predicate and all evidence that decide its own promotion if the desired promotion property is external to the candidate. A constant-accepting self-written predicate is an explicit countermodel. P5 already owns the protected self-change/no-self-promotion mechanism; P6 uses this as a boundary condition for recursive mechanic semantics.
 
-## 7. Evaluation plan
+## 6. Donor assimilation rather than avoidance
 
-A formal paper still needs falsification.
+P6 is intentionally constructed from strong donors.
 
-We propose three evidence layers.
+### Dynamic epistemic logic and belief revision
+Dynamic epistemic/action logics already provide formal model-changing actions; AGM and iterated-revision theory already provide rational postulates for belief change. P6 treats these as special mechanic families, not novelty targets.
 
-**Formal counterexamples/checking.** Generate bounded mechanic/state configurations containing authority escalation, invalid composition, stale dependent closure and recursive cycles; test whether a checker derived from the calculus detects them.
+### Truth maintenance and dependency repair
+Dependency-directed invalidation is prior art. The contribution question begins only when repair is coupled to typed effects, authority, residual obligations, provenance and recursive mechanic composition.
 
-**Executable correspondence.** Map selected current ORION mechanics into the formal representation. Record coverage gaps instead of inventing fields after the fact.
+### Separation, process and effect systems
+Locality, frame reasoning, commutation and effect typing are mature. P6 imports these proof patterns and must state exactly where retained ordered history or epistemic obligations change the composition problem.
 
-**Discriminating comparison.** Compare against an untyped state-machine/dependency representation on the same hostile cases. The candidate calculus should add value only if typing authority/evidence/dependency relations catches errors or preserves valid state more precisely.
+### Agent architecture and repair
+CoALA (arXiv:2309.02427) supplies modular language-agent architecture. The 2026 mechanism-level review (arXiv:2607.23942) already reconstructs mechanisms through state, control, transition, persistence, failure, learning and resource governance. AgentTether (arXiv:2607.06273) introduces Transition Units and a Critical Transition Graph for failure localization and repair. These are direct architecture/repair donors.
 
-An empirical positive must route through #283; novelty must route through #287.
+### Effect and authorization languages
+ETAS and FAVA sharply raise P6's burden. P6 cannot claim typed actions, residual obligations, policy traces, permission graphs or deterministic authorization. Instead, the candidate must demonstrate a cross-mechanic epistemic repair/composition property that survives when these mechanisms are treated as embedded components.
 
-## 8. Limitations
+## 7. A widened candidate object
 
-The formalism may prove to be an explanatory notation rather than a novel calculus. Mapping messy language-agent execution to typed state may require judgment. Formal safety properties do not imply scientific correctness. Bounded model checking does not establish correctness at unrestricted recursion depth. P1 may remain the proper home if the only useful results are reconstruction-specific.
+The current P6 candidate is a **history-aware epistemic effect/repair algebra** with the following coupled structure:
 
-## 9. Conclusion
+\[
+\text{typed state/effects}
++
+\text{hard residual obligations}
++
+\text{content-bound provenance}
++
+\text{scoped commit authority}
++
+\text{dependency repair}
++
+\text{frame/separation conditions}
++
+\text{retained audit history}
++
+\text{recursive audit under protected roots}.
+\]
 
-The candidate thesis is that reliable autonomous research requires explicit semantics not only for knowledge but for the **mechanics that are allowed to change knowledge and problem structure**. P6 will be retained only if that thesis yields a distinct formal residual, nontrivial properties, and evidence beyond a restatement of existing ORION papers or classical belief-change formalisms.
+This is broader than the original chain from responsibility to reopening, but broader vocabulary is not itself a paper. The scientific burden is to show that these components generate new composition obligations or transfer predictions when combined.
+
+## 8. Donor-faithful embedding requirement
+
+Each adopted donor must have a conservative embedding into the relevant P6 projection. When P6-specific dimensions are inert, the embedding should preserve the donor's decisive native judgments: update, allow/deny, rollback, locality or trace behavior.
+
+A purported generalization that changes a donor's native verdict merely so that ORION can subsume it is invalid.
+
+The same rule applies internally. P1 native `MechanicCell.v1`, recursive-audit and reconstruction fixtures must remain P1-owned and reproduce their existing decisions under the P6 representation.
+
+## 9. Deterministic falsifiers
+
+The first Python-standard-library checker is committed under `papers/candidates/checkers/p6_finite_falsifiers_v1.py`. It currently exercises five bounded cases:
+
+1. affected descendants reopen while independent certified state is preserved;
+2. separated mechanics commute on current scientific state but preserve different ordered histories;
+3. untrusted authority cannot be minted by the toy composition;
+4. a later successful computation does not erase an unresolved hard obligation;
+5. recursive self-loop and candidate-controlled admission countermodels are representable.
+
+The current local run is 5/5 PASS. This supports the definitions and catches regressions; it is not a proof of the unrestricted calculus.
+
+The next version should perform exhaustive bounded enumeration rather than only hand-constructed fixtures.
+
+## 10. Cross-domain evaluation
+
+P6 must transfer outside the P1 reconstruction setting. #353 requires at least:
+
+- exact-ground-truth symbolic workflow systems;
+- memory/state repair with selective rollback;
+- effectful tool workflows with authorization-bearing commits;
+- a negative-control family where a simple transition graph or full reset is sufficient and the extra contract should add no benefit.
+
+The comparator set must include donor-specific systems, not merely an untyped strawman. In particular, dependency-guided rollback, effect-typed policy representations and evidence-backed authorization graphs should be treated as strong components/baselines where implementable.
+
+Potential outcomes include invalid-composition detection, stale-state prevention, preservation of unaffected state, unnecessary reopening, unauthorized commits, residual-obligation loss, repair cost and audit recoverability.
+
+## 11. Exact boundary against P1–P5
+
+The V1 ownership matrix marks native P1 mechanic cells, recursive audit and reconstruction reopening as `MERGE_EXISTING`. P4/P5 retain ownership of their authority/promotion mechanisms. P6 survives only if the donor-faithful algebra creates a distinct theorem or transfer behavior beyond these native cases.
+
+This makes a collapse into P1 or a technical companion a scientifically valid terminal.
+
+## 12. Limitations
+
+The formalism may remain explanatory notation rather than a distinct calculus. Dependency graphs can be incomplete. Authority roots can be wrong. Typed state extraction from language-agent execution may require judgment. Local structural soundness does not imply scientific truth. The algebra may be too general to improve implementations, or too implementation-specific to interest formal-methods readers. Bounded finite checking cannot establish unbounded recursive correctness.
+
+Most importantly, several of the strongest-looking P6 components are already owned either by classical theory, current external systems, or P1/P5. A publishable P6 must earn its existence through composition results rather than scope expansion.
+
+## 13. Conclusion
+
+P6 asks whether autonomous research workflows can be treated as compositions of epistemic effect contracts whose commits, residual obligations, dependencies, authority and audit history are explicit. The current programme deliberately absorbs stronger prior mechanisms instead of narrowing around them. The paper remains a candidate until conservative donor embeddings, theorem checking, P1–P5 ownership audit and cross-domain prospective tests show that the composition itself has scientific value.
