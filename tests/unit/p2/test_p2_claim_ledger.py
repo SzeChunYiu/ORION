@@ -68,6 +68,35 @@ def claim(ledger: dict, claim_id: str) -> dict:
     raise AssertionError(f"claim {claim_id} not in ledger")
 
 
+def inject_defect(paper: Path) -> dict:
+    """Recreate the archived-only defect pattern the committed ledger used to carry.
+
+    The pristine tree now has an empty ``known_defects`` list (its two defects
+    were fixed and retired), so every test that exercises defect machinery
+    first rebuilds the pattern: a manuscript sentence tolerated as an open
+    defect instead of a ledgered claim.  P2-R07 is un-claimed and re-entered
+    as defect ``P2-DTEST``; its sentence stays in ``results.tex``.
+    """
+    ledger = load_ledger(paper)
+    entry = claim(ledger, "P2-R07")
+    ledger["claims"].remove(entry)
+    ledger["known_defects"].append(
+        {
+            "defect_id": "P2-DTEST",
+            "region": "results",
+            "sentence": entry["sentence"],
+            "contradicted_by": {
+                "artifact": "results_summary",
+                "key": "systems.orion_full.premature_task_closure_rate",
+            },
+            "owner": "test harness",
+            "required_fix": "restore the ledgered claim",
+        }
+    )
+    save_ledger(paper, ledger)
+    return ledger
+
+
 def messages(proc: subprocess.CompletedProcess[str]) -> str:
     return proc.stdout + proc.stderr
 
@@ -91,9 +120,19 @@ def test_copied_tree_is_also_clean(paper: Path) -> None:
     assert proc.returncode == EXIT_CLEAN, messages(proc)
 
 
-def test_clean_tree_still_reports_open_defects_as_advisory() -> None:
-    """Known manuscript defects stay visible on a green run rather than vanishing."""
+def test_open_defects_stay_visible_as_advisory_on_a_green_run(paper: Path) -> None:
+    """Known manuscript defects stay visible on a green run rather than vanishing.
+
+    The pristine tree now carries zero open defects, so the advisory channel is
+    exercised on a copy with a defect re-injected; the pristine tree must state
+    its zero-advisory count honestly.
+    """
     proc = run(PAPER)
+    assert proc.returncode == EXIT_CLEAN, messages(proc)
+    assert "0 advisory" in proc.stdout
+
+    inject_defect(paper)
+    proc = run(paper)
     assert proc.returncode == EXIT_CLEAN, messages(proc)
     assert "KNOWN_DEFECT_OPEN" in proc.stdout
 
@@ -107,8 +146,10 @@ def test_claim_deleted_from_manuscript_is_caught(paper: Path) -> None:
     target = claim(load_ledger(paper), "P2-C01")["sentence"]
     main = paper / "manuscript" / "main.tex"
     source = main.read_text(encoding="utf-8")
-    # Delete the abstract's headline result by its distinctive opening.
-    start = source.index("In a frozen 20-task complete-gold controlled index")
+    # Delete the abstract's headline result by its distinctive opening.  The
+    # task count is a generated macro in main.tex, so the anchor must not
+    # depend on the expanded digit.
+    start = source.index("In a frozen ")
     end = source.index("targeted negative ablations expose the intended failure modes.") + len(
         "targeted negative ablations expose the intended failure modes."
     )
@@ -485,7 +526,11 @@ def test_invalid_support_type_is_caught(paper: Path) -> None:
 
 def test_archived_only_row_must_give_a_reason(paper: Path) -> None:
     ledger = load_ledger(paper)
-    claim(ledger, "P2-X01")["not_asserted_reason"] = ""
+    # X01 is ASSERTED in the committed ledger; demote it to archived-only with
+    # an empty reason to exercise the reason requirement.
+    entry = claim(ledger, "P2-X01")
+    entry["manuscript_status"] = "NOT_ASSERTED_ARCHIVED_ONLY"
+    entry["not_asserted_reason"] = ""
     save_ledger(paper, ledger)
 
     proc = run(paper)
@@ -496,11 +541,10 @@ def test_archived_only_row_must_give_a_reason(paper: Path) -> None:
 def test_archived_only_row_asserted_in_manuscript_must_be_promoted(paper: Path) -> None:
     """If the text starts asserting an archived-only row, the ledger must say so."""
     ledger = load_ledger(paper)
-    sentence = claim(ledger, "P2-X01")["sentence"]
-    results = paper / "manuscript" / "sections" / "results.tex"
-    results.write_text(
-        results.read_text(encoding="utf-8") + "\n" + sentence + "\n", encoding="utf-8"
-    )
+    entry = claim(ledger, "P2-X01")
+    entry["manuscript_status"] = "NOT_ASSERTED_ARCHIVED_ONLY"
+    entry["not_asserted_reason"] = "not yet reported in the manuscript"
+    save_ledger(paper, ledger)
     proc = run(paper)
     assert proc.returncode == EXIT_VIOLATIONS, messages(proc)
     assert "STALE_NOT_ASSERTED" in messages(proc)
@@ -511,30 +555,28 @@ def test_archived_only_row_asserted_in_manuscript_must_be_promoted(paper: Path) 
 # --------------------------------------------------------------------------- #
 
 
-def test_strict_mode_promotes_known_defects_to_violations() -> None:
-    proc = run(PAPER, "--strict")
+def test_strict_mode_promotes_known_defects_to_violations(paper: Path) -> None:
+    inject_defect(paper)
+    proc = run(paper, "--strict")
     assert proc.returncode == EXIT_VIOLATIONS, messages(proc)
     assert "KNOWN_DEFECT" in messages(proc)
 
 
 def test_defect_entry_becomes_stale_once_the_manuscript_is_fixed(paper: Path) -> None:
     """A fixed manuscript must force the defect entry to be retired."""
+    inject_defect(paper)
     results = paper / "manuscript" / "sections" / "results.tex"
     source = results.read_text(encoding="utf-8")
-    assert "No external Wide, Deep, MetaSyn or SAGE performance result" in source
-    results.write_text(
-        source.replace(
-            "No external Wide, Deep, MetaSyn or SAGE performance result is reported in this\nrevision.",
-            "No external Wide, Deep or SAGE performance result is reported in this revision.",
-        ),
-        encoding="utf-8",
-    )
+    start = source.index("Its premature-task-closure rate is")
+    end = source.index("The strongest of the six protocol-frozen")
+    results.write_text(source[:start] + source[end:], encoding="utf-8")
     proc = run(paper)
     assert proc.returncode == EXIT_VIOLATIONS, messages(proc)
     assert "STALE_DEFECT_ENTRY" in messages(proc)
 
 
 def test_defect_entry_needs_a_provable_contradiction(paper: Path) -> None:
+    inject_defect(paper)
     ledger = load_ledger(paper)
     ledger["known_defects"][0]["contradicted_by"]["key"] = "coverage.invented_field"
     save_ledger(paper, ledger)
@@ -574,6 +616,7 @@ def test_defect_entry_may_not_park_an_overclaim(paper: Path) -> None:
 
 
 def test_defect_entry_needs_an_owner_and_a_fix(paper: Path) -> None:
+    inject_defect(paper)
     ledger = load_ledger(paper)
     ledger["known_defects"][0]["required_fix"] = ""
     save_ledger(paper, ledger)
