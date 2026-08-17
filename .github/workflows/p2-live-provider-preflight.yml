@@ -1,0 +1,48 @@
+name: p2-live-provider-preflight
+
+on:
+  push:
+    branches:
+      - chatgpt/p2-remaining-closure
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    if: contains(github.event.head_commit.message, '[run-live-preflight]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Record live-provider authority without exposing credentials
+        env:
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p2-live-preflight
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          present = bool(os.environ.get('OPENALEX_API_KEY'))
+          payload = {
+              'schema_version': 'orion.p2.live-provider-preflight.v1',
+              'openalex_api_key_present': present,
+              'arxiv_credential_required': False,
+              'execution_frozen_possible': present,
+              'blocking_precondition': None if present else 'Funded OPENALEX_API_KEY is absent from this same-repository Actions context.',
+          }
+          Path('/tmp/p2-live-preflight/preflight.json').write_text(
+              json.dumps(payload, indent=2, sort_keys=True) + '\n', encoding='utf-8'
+          )
+          print('P2_LIVE_PREFLIGHT=' + json.dumps(payload, sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p2-live-provider-preflight-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: error
+          path: /tmp/p2-live-preflight/preflight.json

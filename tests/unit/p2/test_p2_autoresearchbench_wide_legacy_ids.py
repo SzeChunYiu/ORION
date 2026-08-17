@@ -26,7 +26,7 @@ def test_normalizer_matches_modern_and_legacy_scorer_domain() -> None:
     assert module.normalize_arxiv_id("   ") == ""
 
 
-def test_prepare_preserves_full_scorer_domain_without_candidate_leak(
+def test_prepare_uses_explicit_type_and_preserves_full_scorer_domain_without_candidate_leak(
     tmp_path: Path,
 ) -> None:
     module = _module()
@@ -34,6 +34,18 @@ def test_prepare_preserves_full_scorer_domain_without_candidate_leak(
     public = tmp_path / "public.jsonl"
     gt = tmp_path / "gt.jsonl"
     rows = []
+
+    # Released Deep rows are also list-valued; they must not be mistaken for Wide.
+    for index in range(600):
+        rows.append(
+            {
+                "type": "deep",
+                "question": f"deep public question {index}",
+                "answer": [f"deep hidden title {index}"],
+                "arxiv_id": ["" if index < 60 else f"23{index % 100:02d}.{index:05d}"],
+            }
+        )
+
     for index in range(400):
         if index == 0:
             target = ["hep-th/9901001"]
@@ -49,6 +61,7 @@ def test_prepare_preserves_full_scorer_domain_without_candidate_leak(
             question = f"Unique public research question {index} about representation learning"
         rows.append(
             {
+                "type": "wide",
                 "question": question,
                 "answer": [f"hidden title {index}"],
                 "arxiv_id": target,
@@ -58,6 +71,7 @@ def test_prepare_preserves_full_scorer_domain_without_candidate_leak(
 
     manifest = module.prepare(full, public, gt)
     assert manifest["wide_tasks"] == 400
+    assert manifest["release_task_type_counts"] == {"deep": 600, "wide": 400}
     assert manifest["legacy_target_id_count"] == 1
     assert manifest["empty_target_task_count"] == 1
     assert manifest["empty_question_task_count"] == 1
@@ -66,9 +80,8 @@ def test_prepare_preserves_full_scorer_domain_without_candidate_leak(
     public_text = public.read_text(encoding="utf-8")
     assert "arxiv_id" not in public_text
     assert "hidden title" not in public_text
-    public_rows = [
-        json.loads(line) for line in public.read_text(encoding="utf-8").splitlines()
-    ]
+    assert "deep public question" not in public_text
+    public_rows = [json.loads(line) for line in public_text.splitlines()]
     gt_rows = [json.loads(line) for line in gt.read_text(encoding="utf-8").splitlines()]
     assert len(public_rows) == len(gt_rows) == 400
     assert public_rows[2]["question"] == ""
