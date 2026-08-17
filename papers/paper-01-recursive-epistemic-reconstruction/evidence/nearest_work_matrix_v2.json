@@ -343,8 +343,8 @@
   "verification_gaps": [
     {
       "item": "SCION checkpoint-failure semantics",
-      "status": "UNRESOLVED",
-      "detail": "Whether a failed REP verification checkpoint invalidates and reopens already-completed dependent stages, or only falls forward to a precompiled fallback, could not be established. Searched: arxiv.org/abs/2607.03863 (abstract retrieved and quoted); arxiv.org/pdf/2607.03863v2 and /pdf/2607.03863 (compressed binary PDF streams, no reliable text extraction, deliberately not paraphrased); arxiv.org/html/2607.03863, /html/2607.03863v1, /html/2607.03863v2 (all HTTP 404); plus two targeted web searches on REP checkpoint/fallback/re-execution semantics. Does not change any verdict, since EviGraph independently and body-verifiably establishes dependency-directed reopening. Must still be closed before submission because SCION is a required protocol-matched baseline."
+      "status": "RESOLVED_2026-08-17",
+      "detail": "Full paper text extracted and read (pdftotext, 1289 lines). SCION has two distinct failure-handling layers: (a) precompiled fallback conditions in the Research Execution Plan, and (b) a runtime rollback mechanism triggered by critic checkpoints when the coordinator detects agent drift, hallucinated content, unproductive branches, or physical-constraint violations. The runtime rollback is procedural-anomaly gated, not epistemic-formulation-change gated. SCION does not have dependency-directed reopening of completed dependent stages conditional on the TYPE of responsibility for the failure. EviGraph independently establishes dependency-directed reopening from evidence-graph inconsistency, so P1.D3 is struck regardless. The gap is orthogonal to ORION's P1.D2 claim and is now closed."
     },
     {
       "item": "bibliography.bib SCION title defect",
