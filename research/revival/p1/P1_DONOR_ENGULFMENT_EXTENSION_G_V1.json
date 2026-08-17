@@ -1,0 +1,34 @@
+{
+  "schema_version": "P1.donor-engulfment-extension.v1",
+  "extends": "research/revival/p1/P1_DONOR_ENGULFMENT_V1.json",
+  "date": "2026-08-18",
+  "round_id": "G",
+  "changes": [
+    {
+      "component_id": "CAUSAL_DIAGNOSIS",
+      "donor": "CausalRepair arXiv:2608.10613",
+      "disposition": "ADAPT",
+      "extracted_structure": "Dual-slicing causal context: combine context-aware static test/source semantics with execution-trace dynamic dependencies to supply compact causally relevant repair context.",
+      "framework_integration": "The CAUSAL_DIAGNOSIS layer gains a causal-context-construction obligation for future executable-trace settings. The current V2.2.4 mechanical worlds already expose the complete frozen repair/intervention candidate set, so no confirmatory protocol field changes.",
+      "authority_boundary": "Context selection guides diagnosis/repair evidence only; it grants no K/W/M mutation authority."
+    },
+    {
+      "component_id": "DEPENDENCY_TRUTH_MAINTENANCE",
+      "donor": "Dependency-Guided Rollback Repair arXiv:2608.10502",
+      "disposition": "ADOPT_REINFORCEMENT",
+      "extracted_structure": "Preserve independently supported benign state while deactivating unsupported dependent state and selectively replaying affected computation.",
+      "framework_integration": "Strengthens the existing dependency rollback substrate and its independent-support preservation rule.",
+      "authority_boundary": "Rollback follows an already diagnosed/authorized change; it does not decide whether high-level scientific mutation is warranted."
+    },
+    {
+      "component_id": "BENCHMARK_AND_AUDIT_DISCIPLINE",
+      "donor": "AI scientists produce results without reasoning scientifically arXiv:2604.18805",
+      "disposition": "COMPOSE",
+      "extracted_structure": "Successful task outcomes are insufficient evidence of scientific reasoning; refutation response, belief revision and convergent evidence should be evaluated explicitly.",
+      "framework_integration": "Retain process-validity outputs as first-class evaluation gates alongside root-task success.",
+      "authority_boundary": "Evaluation pressure changes what must be measured, not what actions are authorized."
+    }
+  ],
+  "design_effect": "NO_CHANGE_TO_V2_2_4",
+  "residual_effect": "NO_CHANGE_TO_POST_ROUND_F_RESIDUAL"
+}
