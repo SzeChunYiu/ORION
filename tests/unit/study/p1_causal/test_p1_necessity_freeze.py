@@ -15,6 +15,7 @@ BASE = P1 / "protocol" / "P1.epistemic-mutation-necessity.v2.2.json"
 AMENDMENT_1 = P1 / "protocol" / "P1.epistemic-mutation-necessity.v2.2.1.json"
 AMENDMENT_2 = P1 / "protocol" / "P1.epistemic-mutation-necessity.v2.2.2.json"
 AMENDMENT_3 = P1 / "protocol" / "P1.epistemic-mutation-necessity.v2.2.3.json"
+AMENDMENT_4 = P1 / "protocol" / "P1.epistemic-mutation-necessity.v2.2.4.json"
 FREEZER = P1 / "freeze_mutation_necessity_worlds.py"
 
 _spec = importlib.util.spec_from_file_location("p1_nc_freezer", FREEZER)
@@ -28,7 +29,8 @@ def test_protocol_chain_is_frozen_before_confirmatory_world_access() -> None:
     amendment_1 = json.loads(AMENDMENT_1.read_text())
     amendment_2 = json.loads(AMENDMENT_2.read_text())
     amendment_3 = json.loads(AMENDMENT_3.read_text())
-    effective, identity = freezer.load_effective_protocol(AMENDMENT_3)
+    amendment_4 = json.loads(AMENDMENT_4.read_text())
+    effective, identity = freezer.load_effective_protocol(AMENDMENT_4)
 
     assert base["protocol_version"] == "P1.epistemic-mutation-necessity.v2.2.0"
     assert base["outcome_accessed"] is False
@@ -44,7 +46,12 @@ def test_protocol_chain_is_frozen_before_confirmatory_world_access() -> None:
     assert amendment_3["base_protocol_git_blob_sha"] == freezer._git_blob_sha(
         AMENDMENT_2.read_bytes()
     )
-    assert effective["protocol_version"] == "P1.epistemic-mutation-necessity.v2.2.3"
+    assert amendment_4["base_protocol_version"] == amendment_3["protocol_version"]
+    assert amendment_4["confirmatory_outcome_accessed"] is False
+    assert amendment_4["base_protocol_git_blob_sha"] == freezer._git_blob_sha(
+        AMENDMENT_3.read_bytes()
+    )
+    assert effective["protocol_version"] == "P1.epistemic-mutation-necessity.v2.2.4"
     assert effective["fresh_world_plan"]["confirmatory_seed"] == 202608172211
     assert effective["fresh_world_plan"]["replication_seed"] == 202608172212
     assert effective["fresh_world_plan"]["confirmatory_seed"] != 30303
@@ -58,16 +65,18 @@ def test_protocol_chain_is_frozen_before_confirmatory_world_access() -> None:
         "causalflow_minimal_counterfactual_parent",
     ]
     assert identity["kind"] == "base_plus_amendments"
+    assert identity["ancestor_pins_validated"] is True
     assert [node["protocol_version"] for node in identity["nodes"]] == [
         "P1.epistemic-mutation-necessity.v2.2.0",
         "P1.epistemic-mutation-necessity.v2.2.1",
         "P1.epistemic-mutation-necessity.v2.2.2",
         "P1.epistemic-mutation-necessity.v2.2.3",
+        "P1.epistemic-mutation-necessity.v2.2.4",
     ]
 
 
 def test_protocol_arm_and_ablation_registries_match_code() -> None:
-    effective, _ = freezer.load_effective_protocol(AMENDMENT_3)
+    effective, _ = freezer.load_effective_protocol(AMENDMENT_4)
     frozen_runnable = tuple(
         item["id"]
         for item in effective["matched_arms"]
@@ -131,3 +140,29 @@ def test_v223_only_strengthens_parent_set_after_round_f_absorption() -> None:
     assert effective_3["primary_hypotheses"][0]["comparators"][-1] == (
         "causalflow_minimal_counterfactual_parent"
     )
+
+
+def test_v224_pins_every_ancestor_without_scientific_override() -> None:
+    effective_3, _ = freezer.load_effective_protocol(AMENDMENT_3)
+    effective_4, identity = freezer.load_effective_protocol(AMENDMENT_4)
+    amendment_4 = json.loads(AMENDMENT_4.read_text())
+
+    assert amendment_4["overrides"] == {}
+    assert identity["ancestor_pins_validated"] is True
+    assert effective_4["fresh_world_plan"] == effective_3["fresh_world_plan"]
+    assert effective_4["primary_hypotheses"] == effective_3["primary_hypotheses"]
+    assert effective_4["matched_arms"] == effective_3["matched_arms"]
+    assert effective_4["statistics"] == effective_3["statistics"]
+
+
+def test_ancestor_blob_pin_mismatch_is_fail_closed() -> None:
+    amendment_4 = json.loads(AMENDMENT_4.read_text())
+    _, identity = freezer.load_effective_protocol(AMENDMENT_4)
+    nodes = [dict(node) for node in identity["nodes"]]
+    nodes[0]["git_blob_sha"] = "0" * 40
+    try:
+        freezer._validate_ancestor_pins(amendment_4, nodes)
+    except ValueError as exc:
+        assert "ancestor Git blob identity mismatch" in str(exc)
+    else:
+        raise AssertionError("ancestor blob drift must fail closed")
