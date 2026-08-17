@@ -1,18 +1,9 @@
-# P2 cover letter — draft
+# P2 cover letter — IP&M narrowed-scope draft
 
-**Status:** draft. `JOURNAL_SCOPE_CHECK.md` recommends TMLR;
-`protocol/TARGET_JOURNAL_SCOPE_CHECK_2026-08-17.md` recommends IP&M. Those
-checks conflict, and neither is a submission decision while matched
-Wide/Deep ORION-vs-baseline evidence remains `CANNOT_CHECK`. Every factual
-statement below is a row in `protocol/CLAIM_LEDGER_V1.json` and is verified
-by `scripts/check_claim_ledger.py --check`. Nothing here claims more than
-that checker will allow.
+**Status:** scientific-scope draft complete; author/affiliation/corresponding-author metadata intentionally absent until supplied by the authors. Primary target: *Information Processing & Management* (IP&M).
 
-**Author/affiliation lines are deliberately absent.** TMLR review is double-blind
-(<https://jmlr.org/tmlr/author-guide.html>, fetched 2026-08-17); add author
-identity only if the venue changes to one that expects it in the letter. The
-manuscript itself still carries the placeholder `\author{Working framework
-draft}` and has not been put on the TMLR anonymised template.
+Canonical claim boundary: `protocol/P2_NARROWED_PUBLICATION_TERMINAL_2026-08-17.md`.
+Every result-bearing manuscript sentence remains governed by `protocol/CLAIM_LEDGER_V1.json` and `scripts/check_claim_ledger.py --check`.
 
 ---
 
@@ -20,91 +11,27 @@ draft}` and has not been put on the TMLR anonymised template.
 
 Dear Editors,
 
-We submit *Open-World Scientific Knowledge Discovery with Fail-Closed Coverage
-Stopping* for consideration.
+We submit *Fail-Closed Coverage and Stopping for Scientific-Literature Discovery: Controlled Mechanism Evidence and External Stress Tests* for consideration in *Information Processing & Management*.
 
-The paper addresses a control problem that sits around retrieval rather than
-inside it. When a scientific-discovery agent searches heterogeneously, four
-decisions determine whether its output can be trusted: whether two search routes
-are genuinely independent evidence channels, what has already been read *for the
-current question and content version*, when a single route may stop, and when
-task-level coverage must remain open. We formalise these as typed states with one
-governing rule — a route stop never certifies task-level completeness — and we
-show that the rule is testable.
+The manuscript studies a control problem around scientific-literature retrieval rather than proposing another general retrieval architecture. When a discovery system searches through heterogeneous routes, it must distinguish whether routes are genuinely independent evidence channels, what material has already been processed for the current scientific question and content version, when a single route may stop, and when task-level coverage must remain open. We formalize these as typed states and enforce a fail-closed rule: local route stopping, provider unavailability, retrieval utility, coverage estimates, and evidence-sufficiency signals do not silently certify global scientific completeness.
 
-Our contribution is a mechanism and its measurement, not a performance result.
-We state the boundary plainly, because it determines how the paper should be
-read:
+The empirical contribution is deliberately bounded. The main experiment is a frozen complete-gold controlled-index campaign designed to make missed relevant material and premature closure observable. Its statistical authority is `TIER_B_committed` with the frozen plan's mandatory underpowered label, so we use it to study mechanism behavior rather than to claim inferential retrieval superiority. The manuscript also retains external MetaSyn and AutoResearchBench probes as retrieval/screening stress tests and negative diagnostics. It does **not** claim a matched external ORION-vs-baseline Wide/Deep superiority result, because no admissible such result is archived in this revision.
 
-- The completed experiment runs on a **fully synthetic, frozen, complete-gold
-  controlled index**. That design is deliberate: a complete denominator is what
-  makes missed relevant material and premature closure *observable at all*. It is
-  also what makes the numbers unsuitable as an estimate of real retrieval
-  difficulty. The authored routes, public probe vocabulary and easy screening text
-  are all easier than the open web.
-- The campaign's authority is **`TIER_B_committed` with the frozen plan's
-  mandatory underpowered label**. The suite reaches the committed precision
-  tier, but the plan's assumed-p half-width still exceeds the frozen
-  superiority margin, so we report no promoted superiority decision, *p*-value,
-  or interval-backed discovery claim from the offline companion. The
-  deterministic repeat seeds demonstrate harness stability; they do not increase
-  the statistical unit, and we do not treat them as if they did.
-- Negative and null results are reported as such. Removing the question
-  coordinate from the read ledger changes reread behaviour but leaves aggregate
-  recall unchanged; removing the unavailable-route open state changes closure
-  semantics while leaving aggregate recall numerically unchanged. Both are
-  retained as nulls rather than converted into a stronger claim. The route-stop
-  oracle replay publishes both the false-positive **and** the false-negative
-  table, including a null false-negative count.
-- **Externally supported superiority over strong baselines remains
-  `CANNOT_CHECK`.** We have not archived an AutoResearchBench Wide or Deep system
-  result; SAGE cannot be reproduced as published because neither its retrieval
-  corpus nor its official evaluator is available, and we decline to substitute an
-  unofficial stand-in; and the cost-bearing live-provider campaign has not been
-  run. One external evaluation *is* complete — a credential-free retrieval and
-  screening probe scored by the pinned official MetaSyn ID-only evaluator over
-  all released test reviews — but its candidate is a keyless lexical retriever
-  with deterministic screening, **not** the matched multi-provider system, so it
-  is not evidence of ORION's external superiority and we do not present it as
-  such.
+We also narrow novelty against current adjacent work rather than presenting established mechanisms as new. Strong lexical and metadata-augmented retrieval, reasoning-aware retrieval, field-aware deep-research retrieval, stage-separated retrieval/screening analysis, marginal-utility continuation, verification-aware stopping, decision-theoretic stopping, structured STOP/CONTINUE judgments, and generic question-conditioned memory are all treated as prior-art pressure. The surviving candidate contribution is narrower: typed authority semantics under unknown coverage, especially the rule that unresolved unavailable/censored routes remain open obligations, together with earned route identity and dual content-identity/question-conditioned processing state.
 
-Four limits deserve the editors' attention up front:
+Several limits are therefore explicit in the paper:
 
-1. **Synthetic controlled index.** The headline mechanism evidence comes from an
-   authored world, not from real literature.
-2. **External families under declared deviations.** Where an official artifact was
-   unavailable, we recorded the deviation rather than manufacturing an
-   "official" substitute. Two upstream families are additionally
-   redistribution-blocked because no licence could be found in their pinned
-   repositories, so they cannot be included in any archive we publish.
-3. **One inherited unseeded upstream metric.** In the AutoResearchBench Wide
-   evaluator, the exact IoU, recall and precision paths were bit-identical across
-   repeated runs, but the sampled `max_iou_at_k` family is unseeded Monte-Carlo
-   upstream. We inherit that nondeterminism; we did not fix it, and we do not
-   report that metric family as reproducible.
-4. **Live-provider mutability.** Scholarly providers are mutable, metered and
-   sometimes unavailable. Our capture layer retains raw request and response
-   bytes, timestamps and typed transport failures precisely so that such evidence
-   is archived rather than re-derived — but provider unavailability is recorded as
-   unavailability, never as evidence of absence.
+- the controlled index is synthetic and should not be interpreted as an estimate of open-web retrieval difficulty;
+- bounded external probes do not validate the complete multi-route system;
+- unavailable official resources or provider routes remain `CANNOT_CHECK`, never evidence of absence;
+- null-on-recall mechanism findings are retained as nulls rather than converted into stronger claims;
+- the nearest-work state is dated, not declared saturated, and is subject to a pre-submission refresh.
 
-What we offer in exchange for these limits is unusual auditability. Every
-result-bearing sentence in the abstract, Results and conclusion is bound by
-identifier to an immutable artifact and key, and a committed checker fails the
-build when a claim drifts from its evidence, when a number in the prose no longer
-matches the archived value it cites, or when a sentence asserts an outcome that
-no archived artifact supports. The complete offline record set is bound by
-SHA-256 and regenerates from committed data and code with no network access and
-no third-party credentials; an independent clean continuous-integration job
-rebuilds it and refuses drift.
+The reproducibility package is designed so that the claim boundary is auditable. Result-bearing manuscript sentences are bound to immutable evidence artifacts, the complete offline record set regenerates without network access or third-party credentials, and a source-bound donor-assimilation ledger is hostile-checked against source substitution, authority escalation, baseline weakening, negative-history deletion, and false saturation claims.
 
-We believe the paper is a good fit for a venue that evaluates whether claims are
-supported by the evidence presented rather than whether the contribution is
-large. Our claims are deliberately narrow, and we would rather they were
-assessed as narrow than as more than they are.
+We believe this scope is appropriate for IP&M because the manuscript is an information-retrieval methods and critical system-design contribution centered on evidence/coverage semantics and scientific-discovery control rather than a broad performance claim.
 
-We confirm that the manuscript is not under consideration elsewhere, and we
-declare no competing interests.
+We will supply the required author, affiliation, corresponding-author, declaration, and submission metadata in accordance with the current journal instructions at upload time. No such metadata is inferred in the repository draft.
 
 Sincerely,
 
@@ -114,16 +41,8 @@ The authors
 
 ## Rules for editing this letter
 
-- **No superlative claims.** "First", "state-of-the-art", "significantly
-  outperforms" are unsupportable today and must not appear.
-- **No invented endorsements** and **no suggested reviewers** — we have no
-  grounded basis for naming any, and inventing one would be fabrication.
-- Any number added here must exist as a bound row in
-  `protocol/CLAIM_LEDGER_V1.json`. The current draft states no numeric result on
-  purpose: the letter's job is scope, and the numbers live in the paper where the
-  checker guards them.
-- Re-run `scripts/check_claim_ledger.py --check` after any manuscript change
-  before re-sending this letter, so the letter's scope statements cannot outlive
-  the evidence.
-- Known manuscript defects `P2-D01`/`P2-D02` (MetaSyn described as unexecuted)
-  were retired on `main`; `known_defects` is empty. Re-check before sending.
+- Do not add "state-of-the-art", "first", "significantly outperforms", or other superiority language unless a new prospective result and claim-ledger update legitimately support it.
+- Do not turn `CANNOT_CHECK`, provider unavailability, or bounded null probes into positive evidence.
+- Any numeric result added here should be traceable to the claim ledger / archived evidence.
+- Re-run the claim ledger and P2 assimilation checks after substantive manuscript changes.
+- Apply current IP&M author/submission requirements at upload time; do not guess template, anonymisation, declaration, or metadata requirements from stale instructions.
