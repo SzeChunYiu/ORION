@@ -141,6 +141,7 @@ class Phase3ScreenReport:
 # than trusting that the checks below happen to be complete.
 BLOCKER_TO_ATTACK_ID: dict[str, str] = {
     "candidate_self_certification": "P3-H01-CANDIDATE-SELF-CERTIFICATION",
+    "process_lineage_unbound": "P3-H01-CANDIDATE-SELF-CERTIFICATION",
     "protected_custody_not_independent": "P3-H01-CANDIDATE-SELF-CERTIFICATION",
     "evaluator_artifact_mutated": "P3-H02-EVALUATOR-GUARD-MUTATION",
     "protected_work_kind_claimed_by_candidate": "P3-H02-EVALUATOR-GUARD-MUTATION",
@@ -172,6 +173,14 @@ def screen_phase3_cycle_claim(
     # cannot share the candidate's process lineage.
     if claim.self_certified:
         blockers.append("candidate_self_certification")
+    # Inequality alone does not establish independence: an unbound lineage is an
+    # *absent* one, and two lineages of which one is missing are trivially
+    # unequal. Without this, a claim could reach EXTERNAL_DECISION_REQUIRED
+    # while naming no verifier at all.
+    if not _is_bound(claim.producer_process_lineage_hash) or not _is_bound(
+        claim.verifier_process_lineage_hash
+    ):
+        blockers.append("process_lineage_unbound")
     if claim.protected_custody_lineage_hash in {
         claim.producer_process_lineage_hash,
         claim.verifier_process_lineage_hash,

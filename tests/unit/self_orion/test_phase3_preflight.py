@@ -30,6 +30,7 @@ from orion.self_orion.phase3_preflight import (
     OrdinaryDevelopmentTaskKind,
     Phase3AuthorityBoundary,
     Phase3CycleTerminalState,
+    Phase3EscalationCondition,
     Phase3PreflightStatus,
     Phase3ProtocolFreeze,
     ProtectedWorkKind,
@@ -154,6 +155,29 @@ def test_dropping_a_protected_kind_from_the_exclusion_list_is_invalid() -> None:
     assert any("POLICY_CHANGE" in item for item in report.blockers)
 
 
+def test_dropping_a_frozen_escalation_condition_is_invalid() -> None:
+    """Escalation conditions are checked by identity, not by being non-empty.
+
+    A non-empty check would let the abstention contract shrink silently: one
+    surviving condition would keep the freeze looking valid.
+    """
+
+    shrunk = _bound_boundary(
+        escalation_conditions=(Phase3EscalationCondition.PROTECTED_SURFACE_TOUCHED,)
+    )
+    report = assess_phase3_preflight(Phase3ProtocolFreeze(authority_boundary=shrunk))
+    assert report.status is Phase3PreflightStatus.INVALID
+    assert any(
+        "frozen_escalation_conditions_not_declared" in item for item in report.blockers
+    )
+    assert any("WORKER_OUTPUT_CLAIMS_AUTHORITY" in item for item in report.blockers)
+    # The full frozen set still clears the check, so this is not refusal-by-default.
+    full = assess_phase3_preflight(Phase3ProtocolFreeze(authority_boundary=_bound_boundary()))
+    assert not any(
+        "frozen_escalation_conditions_not_declared" in item for item in full.blockers
+    )
+
+
 def test_unresolved_and_failed_tasks_cannot_be_discarded() -> None:
     with pytest.raises(ValueError):
         TaskClassFreeze(
@@ -212,6 +236,47 @@ def test_uncertainty_policy_carries_numbers_not_placeholders() -> None:
     assert policy.minimum_cycles >= 2
     assert policy.bootstrap_resamples >= 1000
     assert not policy.interim_analysis_permitted
+
+
+def test_a_secondary_metric_cannot_be_nominated_as_primary() -> None:
+    """Membership in the metric set is not designation as a primary endpoint."""
+
+    with pytest.raises(ValueError):
+        dataclasses.replace(
+            PHASE3_UNCERTAINTY_POLICY, primary_efficacy_metric_id="cost_per_resolved_task"
+        )
+    with pytest.raises(ValueError):
+        dataclasses.replace(
+            PHASE3_UNCERTAINTY_POLICY, primary_safety_metric_id="replay_success_rate"
+        )
+    # Swapping the two primaries is also a role mismatch, not merely a reorder.
+    with pytest.raises(ValueError):
+        dataclasses.replace(
+            PHASE3_UNCERTAINTY_POLICY,
+            primary_efficacy_metric_id="harmful_transfer_rate",
+            primary_safety_metric_id="task_resolution_correctness",
+        )
+
+
+def test_assessment_rejects_a_role_mismatched_primary_metric() -> None:
+    """The same rule holds at the assessment layer, on a caller-supplied set."""
+
+    relabelled = tuple(
+        dataclasses.replace(metric, role=MetricRole.SECONDARY)
+        if metric.metric_id == "task_resolution_correctness"
+        else metric
+        for metric in PHASE3_METRICS
+    ) + (
+        dataclasses.replace(
+            PHASE3_METRICS[0], metric_id="decoy_primary", role=MetricRole.PRIMARY_EFFICACY
+        ),
+    )
+    report = assess_phase3_preflight(Phase3ProtocolFreeze(metrics=relabelled))
+    assert report.status is Phase3PreflightStatus.INVALID
+    assert any("primary_efficacy_metric_role_mismatch" in item for item in report.blockers)
+    # The unmodified set clears the same check.
+    clean = assess_phase3_preflight(repository_phase3_protocol_freeze())
+    assert not any("primary_efficacy_metric_role_mismatch" in item for item in clean.blockers)
 
 
 def test_interim_analysis_and_unknown_primaries_are_rejected() -> None:
@@ -307,3 +372,29 @@ def test_binding_loader_rejects_a_foreign_schema(tmp_path: Path) -> None:
     path.write_text(json.dumps({"schema": "SomethingElse.v1"}), encoding="utf-8")
     with pytest.raises(ValueError):
         load_phase3_host_binding(path)
+
+
+def test_binding_loader_rejects_a_foreign_protocol_identity(tmp_path: Path) -> None:
+    """The schema names the file format; it does not name the protocol.
+
+    A binding authored against a future protocol revision must not be applied
+    to v1 just because the envelope shape still matches.
+    """
+
+    path = tmp_path / "binding.json"
+    write_phase3_host_binding(repository_phase3_protocol_freeze(), path)
+    good = json.loads(path.read_text(encoding="utf-8"))
+
+    wrong_id = dict(good, protocol_id="phase3-governed-self-orion-prefreeze-v2")
+    path.write_text(json.dumps(wrong_id), encoding="utf-8")
+    with pytest.raises(ValueError):
+        load_phase3_host_binding(path)
+
+    wrong_version = dict(good, protocol_version=2)
+    path.write_text(json.dumps(wrong_version), encoding="utf-8")
+    with pytest.raises(ValueError):
+        load_phase3_host_binding(path)
+
+    # The unmodified binding still loads, so this is not refusal-by-default.
+    path.write_text(json.dumps(good), encoding="utf-8")
+    assert load_phase3_host_binding(path).protocol_id == PHASE3_PROTOCOL_ID

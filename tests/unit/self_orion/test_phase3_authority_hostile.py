@@ -131,6 +131,19 @@ def test_h01_candidate_cannot_verify_its_own_change() -> None:
     )
 
 
+def test_h01_an_absent_lineage_does_not_count_as_an_independent_one() -> None:
+    """Two lineages of which one is missing are trivially unequal.
+
+    Equality alone would let a claim naming no verifier at all clear H01 and
+    reach EXTERNAL_DECISION_REQUIRED.
+    """
+
+    for field_name in ("producer_process_lineage_hash", "verifier_process_lineage_hash"):
+        assert_discriminates(
+            clean_claim(**{field_name: UNBOUND_DIGEST}), "process_lineage_unbound"
+        )
+
+
 def test_h01_protected_custody_cannot_share_the_candidate_lineage() -> None:
     assert_discriminates(
         clean_claim(protected_custody_lineage_hash=PRODUCER), "protected_custody_not_independent"

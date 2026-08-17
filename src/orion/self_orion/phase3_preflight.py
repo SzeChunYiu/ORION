@@ -479,11 +479,11 @@ class UncertaintyPolicyFreeze:
             raise ValueError("safety margin cannot be negative")
         if self.interim_analysis_permitted:
             raise ValueError("interim analysis is not permitted under this freeze")
-        known = {metric.metric_id for metric in PHASE3_METRICS}
-        if self.primary_efficacy_metric_id not in known:
-            raise ValueError("primary efficacy metric must be in the frozen metric set")
-        if self.primary_safety_metric_id not in known:
-            raise ValueError("primary safety metric must be in the frozen metric set")
+        roles = {metric.metric_id: metric.role for metric in PHASE3_METRICS}
+        if roles.get(self.primary_efficacy_metric_id) is not MetricRole.PRIMARY_EFFICACY:
+            raise ValueError("primary efficacy metric must carry the PRIMARY_EFFICACY role")
+        if roles.get(self.primary_safety_metric_id) is not MetricRole.PRIMARY_SAFETY:
+            raise ValueError("primary safety metric must carry the PRIMARY_SAFETY role")
 
 
 PHASE3_UNCERTAINTY_POLICY = UncertaintyPolicyFreeze(
@@ -709,10 +709,37 @@ def assess_phase3_preflight(freeze: Phase3ProtocolFreeze) -> Phase3PreflightRepo
         blockers.append("exactly_one_primary_efficacy_metric_required")
     if roles.count(MetricRole.PRIMARY_SAFETY) != 1:
         blockers.append("exactly_one_primary_safety_metric_required")
-    if freeze.uncertainty.primary_efficacy_metric_id not in metric_ids:
+    by_metric_id = {metric.metric_id: metric for metric in freeze.metrics}
+    efficacy = by_metric_id.get(freeze.uncertainty.primary_efficacy_metric_id)
+    safety = by_metric_id.get(freeze.uncertainty.primary_safety_metric_id)
+    # Membership is not designation. Requiring only that the id exists lets the
+    # statistics policy nominate a secondary metric as primary while the role
+    # counts above still look valid, which is the "identity, not count" defect
+    # in a second costume.
+    if efficacy is None:
         blockers.append("primary_efficacy_metric_not_in_frozen_set")
-    if freeze.uncertainty.primary_safety_metric_id not in metric_ids:
+    elif efficacy.role is not MetricRole.PRIMARY_EFFICACY:
+        blockers.append(
+            "primary_efficacy_metric_role_mismatch:" + freeze.uncertainty.primary_efficacy_metric_id
+        )
+    if safety is None:
         blockers.append("primary_safety_metric_not_in_frozen_set")
+    elif safety.role is not MetricRole.PRIMARY_SAFETY:
+        blockers.append(
+            "primary_safety_metric_role_mismatch:" + freeze.uncertainty.primary_safety_metric_id
+        )
+
+    # Escalation conditions are frozen by identity, not merely by being present.
+    # A boundary that silently drops conditions would otherwise keep clearing
+    # every check here while the abstention contract quietly shrank.
+    declared_escalations = set(boundary.escalation_conditions)
+    absent_escalations = sorted(
+        item.value for item in set(PHASE3_ESCALATION_CONDITIONS) - declared_escalations
+    )
+    if absent_escalations:
+        blockers.append("frozen_escalation_conditions_not_declared:" + ",".join(absent_escalations))
+    if len(boundary.escalation_conditions) != len(declared_escalations):
+        blockers.append("duplicate_escalation_condition")
 
     # Identity, not count — the same lesson as the Phase-2 attack registry.
     declared_included = set(freeze.task_class.included_kinds)

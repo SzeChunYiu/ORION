@@ -15,6 +15,8 @@ from typing import Any
 
 from orion.self_orion.phase3_preflight import (
     HOSTILE_ATTACK_IDS,
+    PHASE3_PROTOCOL_ID,
+    PHASE3_PROTOCOL_VERSION,
     UNBOUND_DIGEST,
     UNBOUND_IDENTITY,
     Phase3AuthorityBoundary,
@@ -186,6 +188,15 @@ def load_phase3_host_binding(path: Path | str) -> Phase3ProtocolFreeze:
     )
     if raw.get("schema") != BINDING_SCHEMA:
         raise ValueError(f"phase3 host binding schema must be {BINDING_SCHEMA}")
+    # The schema name identifies the file format, not the protocol the bindings
+    # belong to. A binding written against a future protocol revision must not
+    # be silently applied to v1, so protocol identity is checked too.
+    if raw.get("protocol_id", PHASE3_PROTOCOL_ID) != PHASE3_PROTOCOL_ID:
+        raise ValueError(f"phase3 host binding protocol_id must be {PHASE3_PROTOCOL_ID}")
+    if raw.get("protocol_version", PHASE3_PROTOCOL_VERSION) != PHASE3_PROTOCOL_VERSION:
+        raise ValueError(
+            f"phase3 host binding protocol_version must be {PHASE3_PROTOCOL_VERSION}"
+        )
 
     boundary = Phase3AuthorityBoundary(
         boundary_id=_require_text(
