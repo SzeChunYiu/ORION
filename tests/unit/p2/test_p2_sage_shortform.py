@@ -497,6 +497,99 @@ def test_score_refuses_when_no_task_is_common_to_gold_and_every_system(tmp_path:
         module.score(gold, run_manifest, {"sage_single_backend": orphan}, rank_cutoffs=(1, 10))
 
 
+def test_a_floor_tie_is_cannot_discriminate_not_a_lexical_win() -> None:
+    module = _module()
+    # Both systems at zero. A bare `baseline >= candidate` boolean is vacuously
+    # true here and would report the gate as firing on a comparison that
+    # distinguished nothing.
+    floor = module.discriminate(0.0, 0.0, [0.0, 0.0])
+    assert floor["verdict"] == "CANNOT_DISCRIMINATE"
+    assert floor["discriminating"] is False
+    assert floor["at_floor"] is True
+    assert floor["floor_artifact"] is True
+    assert floor["candidate_at_least_matches_baseline"] is None, "no ordering may be claimed at floor"
+
+    # An interval straddling zero above the floor is still not an ordering.
+    straddle = module.discriminate(0.10, 0.08, [-0.04, 0.08])
+    assert straddle["verdict"] == "CANNOT_DISCRIMINATE"
+    assert straddle["at_floor"] is False
+    assert straddle["candidate_at_least_matches_baseline"] is None
+
+    # No-alarm: genuine separation in each direction is reported as such.
+    ahead = module.discriminate(0.30, 0.10, [0.08, 0.32])
+    assert ahead["verdict"] == "CANDIDATE_AHEAD"
+    assert ahead["candidate_at_least_matches_baseline"] is True
+    behind = module.discriminate(0.05, 0.25, [-0.31, -0.09])
+    assert behind["verdict"] == "BASELINE_AHEAD"
+    assert behind["candidate_at_least_matches_baseline"] is False
+
+
+def test_gate_reports_no_direction_when_the_comparison_cannot_discriminate(tmp_path: Path) -> None:
+    module = _module()
+    gold = tmp_path / "gold.jsonl"
+    gold.write_text(
+        "".join(
+            json.dumps({"task_id": f"t{i}", "domain": "d", "gold_paper_id": f"p{i}", "gold_title": f"Unfound Title Number {i}"}) + "\n"
+            for i in range(6)
+        ),
+        encoding="utf-8",
+    )
+    paths = {}
+    for system_id in ("sage_single_backend", "sage_governed_multiroute"):
+        path = tmp_path / f"candidates_{system_id}.jsonl"
+        path.write_text(
+            "".join(
+                json.dumps({"task_id": f"t{i}", "system_id": system_id, "candidate_titles": ["irrelevant result"]}) + "\n"
+                for i in range(6)
+            ),
+            encoding="utf-8",
+        )
+        paths[system_id] = path
+    run_manifest = tmp_path / "run.json"
+    run_manifest.write_text(json.dumps({"budget_parity": {"parity_holds": True}}), encoding="utf-8")
+
+    summary = module.score(gold, run_manifest, paths, rank_cutoffs=(1, 10))
+    gate = summary["lexical_gate"]
+    assert gate["discrimination"]["verdict"] == "CANNOT_DISCRIMINATE"
+    assert gate["gate_fired"] is None, "a floor tie must not be recorded as the gate firing"
+    assert gate["gate_informed"] is False
+    assert gate["closes_the_frozen_gate"] is False
+    assert "CANNOT_DISCRIMINATE" in gate["verdict_text"]
+    # The gate rests on an ordering-insensitive cutoff, not on hit@1.
+    assert gate["comparison_metric"] == module.GATE_COMPARISON_METRIC
+    assert module.GATE_COMPARISON_METRIC != "strict_hit_at_1"
+    assert "strict_hit_at_1" in summary["ordering_asymmetry"]["affects"]
+
+
+def test_score_refuses_a_run_that_consumed_a_different_candidate_file(tmp_path: Path) -> None:
+    module = _module()
+    gold, run_manifest, candidates = _score_fixture(tmp_path, module)
+    split = tmp_path / "split.json"
+    split.write_text(
+        json.dumps({"custody": {"public_sha256": "aaaa", "gold_sha256": "bbbb"}}), encoding="utf-8"
+    )
+    with pytest.raises(AssertionError, match="hash chain"):
+        module.score(
+            gold, run_manifest, candidates, rank_cutoffs=(1, 10), split_manifest_path=split
+        )
+
+    # No-alarm: a consistent chain scores normally and records that it checked.
+    consistent = tmp_path / "consistent.json"
+    manifest = json.loads(run_manifest.read_text(encoding="utf-8"))
+    manifest["candidate_input_sha256"] = "cccc"
+    run_manifest.write_text(json.dumps(manifest), encoding="utf-8")
+    consistent.write_text(
+        json.dumps(
+            {"custody": {"public_sha256": "cccc", "gold_sha256": module._sha256(gold)}}
+        ),
+        encoding="utf-8",
+    )
+    summary = module.score(
+        gold, run_manifest, candidates, rank_cutoffs=(1, 10), split_manifest_path=consistent
+    )
+    assert summary["stage_hash_chain"]["checked"] is True
+
+
 def test_nothing_is_ever_labelled_official(tmp_path: Path) -> None:
     module = _module()
     gold, run_manifest, candidates = _score_fixture(tmp_path, module)

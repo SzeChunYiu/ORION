@@ -1163,6 +1163,10 @@ def run_task(
         "provider_requests_issued": requests_issued,
         "candidate_titles": [item["title"] for item in candidates],
         "candidate_digests": [item["content_digest"] for item in candidates],
+        "candidate_backends": [item["backend"] for item in candidates],
+        # Which backend supplied rank 1. hit@1 is sensitive to this and the two
+        # systems differ in it for reasons unrelated to backend diversity.
+        "first_candidate_backend": candidates[0]["backend"] if candidates else None,
         "candidate_count": len(candidates),
         "attempts": attempts,
         "route_independence": independence,
@@ -1242,9 +1246,18 @@ def run_systems(
     per_system: dict[str, Any] = {}
     for spec in SYSTEMS:
         results: list[dict[str, Any]] = []
-        for position, task in enumerate(tasks, 1):
-            results.append(
-                run_task(
+        candidate_path = output_dir / f"candidates_{spec.system_id}.jsonl"
+        trace_path = output_dir / f"trace_{spec.system_id}.jsonl"
+        output_dir.mkdir(parents=True, exist_ok=True)
+        # Written and flushed per task. A run this long over three public APIs
+        # will occasionally be interrupted, and an interruption should cost the
+        # remaining tasks rather than every task already paid for.
+        with (
+            candidate_path.open("w", encoding="utf-8") as candidate_handle,
+            trace_path.open("w", encoding="utf-8") as trace_handle,
+        ):
+            for position, task in enumerate(tasks, 1):
+                item = run_task(
                     spec,
                     task,
                     transport=transport,
@@ -1253,58 +1266,58 @@ def run_systems(
                     budget=budget,
                     max_results=max_results,
                 )
-            )
-            if progress_every and (position % progress_every == 0 or position == len(tasks)):
-                print(
-                    f"SAGE_RUN {spec.system_id} {position}/{len(tasks)}",
-                    flush=True,
-                )
-        candidate_path = output_dir / f"candidates_{spec.system_id}.jsonl"
-        _write_jsonl(
-            candidate_path,
-            [
-                {
-                    "task_id": item["task_id"],
-                    "domain": item["domain"],
-                    "system_id": item["system_id"],
-                    "candidate_titles": item["candidate_titles"],
-                }
-                for item in results
-            ],
-        )
-        trace_path = output_dir / f"trace_{spec.system_id}.jsonl"
-        _write_jsonl(
-            trace_path,
-            [
-                {
-                    "task_id": item["task_id"],
-                    "system_id": item["system_id"],
-                    "provider_requests_issued": item["provider_requests_issued"],
-                    "candidate_count": item["candidate_count"],
-                    "status_counts": item["status_counts"],
-                    "route_independence_verdicts": _count(
-                        [pair["verdict"] for pair in item["route_independence"]]
-                    ),
-                    "attempts": [
+                results.append(item)
+                candidate_handle.write(
+                    json.dumps(
                         {
-                            "attempt_index": attempt["attempt_index"],
-                            "backend": attempt["backend"],
-                            "derivation_id": attempt["derivation_id"],
-                            "route_kind": attempt["route_kind"],
-                            "status": attempt["status"],
-                            "retrieved_digests": attempt["retrieved_digests"],
-                            "novel_digests": attempt["novel_digests"],
-                            "consecutive_zero_novelty_before": attempt.get(
-                                "consecutive_zero_novelty_before"
+                            "task_id": item["task_id"],
+                            "domain": item["domain"],
+                            "system_id": item["system_id"],
+                            "candidate_titles": item["candidate_titles"],
+                        },
+                        ensure_ascii=False,
+                        sort_keys=True,
+                    )
+                    + "\n"
+                )
+                trace_handle.write(
+                    json.dumps(
+                        {
+                            "task_id": item["task_id"],
+                            "system_id": item["system_id"],
+                            "provider_requests_issued": item["provider_requests_issued"],
+                            "candidate_count": item["candidate_count"],
+                            "status_counts": item["status_counts"],
+                            "first_candidate_backend": item["first_candidate_backend"],
+                            "route_independence_verdicts": _count(
+                                [pair["verdict"] for pair in item["route_independence"]]
                             ),
-                            "route_control_action": attempt.get("route_control_action"),
-                        }
-                        for attempt in item["attempts"]
-                    ],
-                }
-                for item in results
-            ],
-        )
+                            "attempts": [
+                                {
+                                    "attempt_index": attempt["attempt_index"],
+                                    "backend": attempt["backend"],
+                                    "derivation_id": attempt["derivation_id"],
+                                    "route_kind": attempt["route_kind"],
+                                    "status": attempt["status"],
+                                    "retrieved_digests": attempt["retrieved_digests"],
+                                    "novel_digests": attempt["novel_digests"],
+                                    "consecutive_zero_novelty_before": attempt.get(
+                                        "consecutive_zero_novelty_before"
+                                    ),
+                                    "route_control_action": attempt.get("route_control_action"),
+                                }
+                                for attempt in item["attempts"]
+                            ],
+                        },
+                        ensure_ascii=False,
+                        sort_keys=True,
+                    )
+                    + "\n"
+                )
+                candidate_handle.flush()
+                trace_handle.flush()
+                if progress_every and (position % progress_every == 0 or position == len(tasks)):
+                    print(f"SAGE_RUN {spec.system_id} {position}/{len(tasks)}", flush=True)
         issued = [item["provider_requests_issued"] for item in results]
         per_system[spec.system_id] = {
             "role": spec.role,
@@ -1328,6 +1341,14 @@ def run_systems(
             "route_independence_verdicts": _count(
                 [pair["verdict"] for item in results for pair in item["route_independence"]]
             ),
+            "first_candidate_backend_counts": _count(
+                [
+                    str(item["first_candidate_backend"])
+                    for item in results
+                    if item["first_candidate_backend"]
+                ]
+            ),
+            "tasks_with_no_candidate": sum(1 for item in results if not item["candidate_count"]),
         }
 
     parity = assert_budget_parity(per_system)
@@ -1413,6 +1434,53 @@ def achieved_precision(n: int) -> dict[str, Any]:
     }
 
 
+# Ordering-insensitive by construction, so it is the comparison the gate rests
+# on. hit@1 depends on which route happened to answer first, which differs
+# between a one-backend and a three-backend system for reasons unrelated to
+# backend diversity (see ordering_asymmetry in the summary).
+GATE_COMPARISON_METRIC = "strict_hit_at_10"
+
+
+def discriminate(
+    candidate_point: float, baseline_point: float, interval: list[float]
+) -> dict[str, Any]:
+    """Three-state verdict on a paired difference of candidate minus baseline.
+
+    A boolean `candidate >= baseline` is vacuously true when both rates are
+    zero, which would report "the baseline at least matches the candidate" for
+    a comparison that in fact distinguished nothing. Ordering is only claimed
+    where the interval excludes zero.
+    """
+
+    low, high = interval[0], interval[1]
+    at_floor = candidate_point == 0.0 and baseline_point == 0.0
+    if low > 0.0:
+        verdict = "CANDIDATE_AHEAD"
+    elif high < 0.0:
+        verdict = "BASELINE_AHEAD"
+    else:
+        verdict = "CANNOT_DISCRIMINATE"
+    discriminating = verdict != "CANNOT_DISCRIMINATE"
+    return {
+        "verdict": verdict,
+        "discriminating": discriminating,
+        "at_floor": at_floor,
+        "floor_artifact": at_floor and not discriminating,
+        # Claimed only where the data supports an ordering.
+        "candidate_at_least_matches_baseline": (
+            candidate_point >= baseline_point if discriminating else None
+        ),
+        "note": (
+            "Both systems scored zero, so this comparison distinguishes nothing and the interval "
+            "is a floor artifact rather than a tight null."
+            if at_floor and not discriminating
+            else "Interval contains zero: no ordering is claimed."
+            if not discriminating
+            else "Interval excludes zero."
+        ),
+    }
+
+
 def contrast_orientation(system_ids: set[str]) -> tuple[str, str] | None:
     """Return (candidate, baseline) for the paired difference, or None.
 
@@ -1451,10 +1519,32 @@ def score(
     *,
     rank_cutoffs: tuple[int, ...] = (1, 10, 50),
     per_task_path: Path | None = None,
+    split_manifest_path: Path | None = None,
 ) -> dict[str, Any]:
     stats = load_publication_stats()
     gold_records = {item["task_id"]: item for item in _jsonl(gt_path)}
     run_manifest = json.loads(run_manifest_path.read_text(encoding="utf-8"))
+
+    # Close the chain prepare -> run -> score. Without this a stale run could be
+    # scored against a freshly split gold file and nothing would say so.
+    chain: dict[str, Any] = {"checked": False}
+    if split_manifest_path is not None:
+        split_manifest = json.loads(split_manifest_path.read_text(encoding="utf-8"))
+        expected = split_manifest["custody"]["public_sha256"]
+        observed = run_manifest.get("candidate_input_sha256")
+        if expected != observed:
+            raise AssertionError(
+                "stage hash chain broken: the run consumed a candidate file that is not the one "
+                f"this split produced (split={expected}, run={observed})"
+            )
+        if _sha256(gt_path) != split_manifest["custody"]["gold_sha256"]:
+            raise AssertionError("gold file does not match the split manifest that declared it")
+        chain = {
+            "checked": True,
+            "split_public_sha256": expected,
+            "run_candidate_input_sha256": observed,
+            "gold_sha256_matches_split": True,
+        }
 
     per_system_candidates: dict[str, dict[str, list[str]]] = {}
     for system_id, path in candidate_paths.items():
@@ -1513,6 +1603,11 @@ def score(
                     "aggregation_unit": "query",
                     "n": len(task_ids),
                     "excludes_zero": low > 0.0 or high < 0.0,
+                    "discrimination": discriminate(
+                        per_system[candidate_id]["point_estimate"],
+                        per_system[baseline_id]["point_estimate"],
+                        [round(low, 6), round(high, 6)],
+                    ),
                 }
             metrics[metric_id] = {
                 "declared_deviation": True,
@@ -1542,26 +1637,45 @@ def score(
 
     lexical = "sage_single_backend"
     governed = "sage_governed_multiroute"
-    gate_verdict: dict[str, Any] = {"gate_id": "sage_lexical_gate", "status": "OPEN_NOT_CLOSED"}
-    headline = metrics.get("strict_hit_at_1", {}).get("per_system", {})
-    if lexical in headline and governed in headline:
-        lexical_point = headline[lexical]["point_estimate"]
-        governed_point = headline[governed]["point_estimate"]
+    gate_verdict: dict[str, Any] = {
+        "gate_id": "sage_lexical_gate",
+        "status": "OPEN_NOT_CLOSED",
+        "comparison_metric": GATE_COMPARISON_METRIC,
+        "predeclared_reading": (
+            "The frozen plan says this family exists because a strong in-call lexical baseline is "
+            "competitive. If the lexical contrast beats the governed system on a DISCRIMINATING "
+            "comparison, that is the gate firing and is reported as such. A comparison whose "
+            "interval contains zero fires nothing in either direction."
+        ),
+        "closes_the_frozen_gate": False,
+        "why_not_closed": (
+            "The frozen gate is bm25_keyword over SAGE's own 200k corpus. That corpus is "
+            "unpublished, so provider-side ranking over OpenAIRE/DBLP/Crossref indices can inform "
+            "the gate but cannot close it."
+        ),
+    }
+    gate_metric = metrics.get(GATE_COMPARISON_METRIC, {})
+    gate_systems = gate_metric.get("per_system", {})
+    gate_paired = gate_metric.get("paired_difference") or {}
+    if lexical in gate_systems and governed in gate_systems and gate_paired:
+        discrimination = gate_paired["discrimination"]
+        fired = discrimination["verdict"] == "BASELINE_AHEAD"
         gate_verdict.update(
             {
-                "predeclared_reading": (
-                    "The frozen plan says this family exists because a strong in-call lexical "
-                    "baseline is competitive. If the lexical contrast matches or beats the "
-                    "governed system, that is the gate firing and is reported as such."
-                ),
-                "lexical_strict_hit_at_1": lexical_point,
-                "governed_strict_hit_at_1": governed_point,
-                "lexical_at_least_matches_governed": lexical_point >= governed_point,
-                "closes_the_frozen_gate": False,
-                "why_not_closed": (
-                    "The frozen gate is bm25_keyword over SAGE's own 200k corpus. That corpus is "
-                    "unpublished, so provider-side ranking over OpenAIRE/DBLP/Crossref indices can "
-                    "inform the gate but cannot close it."
+                "lexical_point_estimate": gate_systems[lexical]["point_estimate"],
+                "governed_point_estimate": gate_systems[governed]["point_estimate"],
+                "paired_difference_governed_minus_lexical": gate_paired["absolute_effect_size"],
+                "paired_interval_95": gate_paired["interval_95"],
+                "discrimination": discrimination,
+                "gate_fired": fired if discrimination["discriminating"] else None,
+                "gate_informed": discrimination["discriminating"],
+                "verdict_text": (
+                    "The lexical contrast is ahead on a discriminating comparison: the gate fires."
+                    if fired
+                    else "The governed system is ahead on a discriminating comparison."
+                    if discrimination["discriminating"]
+                    else "Neither system is distinguishable at this budget, so this family informs "
+                    "the gate in neither direction. Reported as CANNOT_DISCRIMINATE, not as a tie."
                 ),
             }
         )
@@ -1588,7 +1702,22 @@ def score(
         "family_carries_confirmatory_primary": False,
         "tasks_scored": len(task_ids),
         "gold_sha256": _sha256(gt_path),
+        "stage_hash_chain": chain,
         "run_manifest_budget_parity": run_manifest.get("budget_parity"),
+        "ordering_asymmetry": {
+            "affects": [f"{variant}_hit_at_1" for variant in MATCHERS],
+            "ordering_insensitive": [
+                f"{variant}_hit_at_{k}" for variant in MATCHERS for k in rank_cutoffs if k > 1
+            ],
+            "explanation": (
+                "sage_single_backend takes all three attempts on one backend, so its early "
+                "candidates carry that provider's own ranking. sage_governed_multiroute fills its "
+                "first slots from whichever route answered first, and its route-1 backend "
+                "(OpenAIRE) frequently returns nothing. A hit@1 gap can therefore reflect candidate "
+                "ordering rather than backend diversity, so the gate rests on "
+                f"{GATE_COMPARISON_METRIC}, which is insensitive to order within the cutoff."
+            ),
+        },
         "precision": achieved_precision(len(task_ids)),
         "metrics": metrics,
         "lexical_gate": gate_verdict,
@@ -1660,6 +1789,7 @@ def main(argv: list[str] | None = None) -> int:
     score_parser.add_argument("--candidates", type=Path, nargs="+", required=True)
     score_parser.add_argument("--output", type=Path, required=True)
     score_parser.add_argument("--per-task", type=Path)
+    score_parser.add_argument("--split-manifest", type=Path)
     score_parser.add_argument("--rank-cutoffs", type=int, nargs="+", default=[1, 10, 50])
 
     args = parser.parse_args(argv)
@@ -1700,6 +1830,7 @@ def main(argv: list[str] | None = None) -> int:
             candidate_paths,
             rank_cutoffs=tuple(args.rank_cutoffs),
             per_task_path=args.per_task,
+            split_manifest_path=args.split_manifest,
         )
         _write_json(args.output, summary)
         print("SAGE_SCORE=" + json.dumps(summary["metrics"]["strict_hit_at_1"]["per_system"], sort_keys=True))
