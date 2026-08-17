@@ -28,8 +28,9 @@ repo_root = script_dir.parent
 sys.path.insert(0, str(repo_root / "src"))
 
 # Configuration from the original run
-BASE_URL = "https://api2.cmkey.cn/v1"  # Updated from original cmkey.cn/v1
-MODEL = "glm-5.2"
+# Allow env override for endpoint and model (required for local adapter)
+BASE_URL = os.environ.get("GLM_BASE_URL", "https://api2.cmkey.cn/v1")
+MODEL = os.environ.get("GLM_MODEL", "glm-5.2")
 TEMPERATURE = 0.0
 MAX_TOKENS = 4096
 
@@ -102,16 +103,10 @@ def load_protected_suite(path: Path) -> dict[str, Any]:
 def call_glm(prompt: str) -> tuple[str, int, int, float]:
     """Call GLM-5.2 API and return response, token counts, and latency."""
     api_key = os.environ.get("GLM_API_KEY", "")
+    is_local = BASE_URL.startswith("http://127.0.0.1") or BASE_URL.startswith("http://localhost")
 
-    # Fallback: use z.ai Anthropic endpoint if configured
-    if not api_key and os.environ.get("ANTHROPIC_API_KEY"):
-        # Using z.ai as Anthropic-compatible endpoint
-        BASE_URL = "https://api.zai.ai/v1"
-        MODEL = "claude-sonnet-4-20250514"  # Or equivalent
-        api_key = os.environ.get("ANTHROPIC_API_KEY")
-
-    if not api_key:
-        raise RuntimeError("Set GLM_API_KEY or ANTHROPIC_API_KEY environment variable")
+    if not api_key and not is_local:
+        raise RuntimeError("Set GLM_API_KEY environment variable (no silent fallback)")
 
     body = json.dumps({
         "model": MODEL,
@@ -120,13 +115,14 @@ def call_glm(prompt: str) -> tuple[str, int, int, float]:
         "messages": [{"role": "user", "content": prompt}]
     }).encode()
 
+    headers = {"Content-Type": "application/json"}
+    if api_key:
+        headers["Authorization"] = f"Bearer {api_key}"
+
     req = urllib.request.Request(
         f"{BASE_URL}/chat/completions",
         data=body,
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {api_key}"
-        }
+        headers=headers
     )
 
     start = time.time()
