@@ -1,0 +1,116 @@
+{
+  "arxiv_requests_issued": 0,
+  "authority": "DECLARED_DEVIATION_NEVER_OFFICIAL",
+  "budget_parity": {
+    "budgets": {
+      "sage_governed_multiroute": 3,
+      "sage_single_backend": 3
+    },
+    "capped_resource": "query_count",
+    "caps": {
+      "sage_governed_multiroute": 10,
+      "sage_single_backend": 10
+    },
+    "parity_holds": true,
+    "policy": "a family in which any system's cap differs from another's is INVALID"
+  },
+  "candidate_input_sha256": "328ce9a834d2ab0ae2a0fcd2439c6c3bfaa4409687296365bb38e33bc6fa309a",
+  "credentials_used": "NONE",
+  "gold_visible_to_candidate": false,
+  "max_results_per_request": 50,
+  "pinned_upstream_commit": "bc62257a13d81ae233ecbd508037614746d2776b",
+  "provider_budgets": {
+    "crossref_list": {
+      "basis": "PUBLISHED",
+      "citation": "Crossref limits changed 2025-12-01: list requests 1/s public, 3/s polite; list is 3-5x tighter than single-DOI lookup",
+      "min_interval_seconds": 1.0
+    },
+    "dblp": {
+      "basis": "ASSUMED",
+      "citation": "DBLP publishes no numeric rate limit and asks for considerate use, returning 429 under bursts; 1.5s assumed conservatively",
+      "min_interval_seconds": 1.5
+    },
+    "openaire": {
+      "basis": "ASSUMED",
+      "citation": "OpenAIRE publishes no explicit per-second limit for the legacy search API; 1/s assumed conservatively because an unstated limit is not an absent one",
+      "min_interval_seconds": 1.0
+    }
+  },
+  "resource_limits": {
+    "absolute_ceiling_per_task": 200,
+    "cap_source": "frozen_ladder_rounded_up_from_declared_pilot_max",
+    "capped_resource": "query_count",
+    "identical_for_every_system": true,
+    "per_task_cap": 10
+  },
+  "route_control_policy": {
+    "certifies_task_saturation": false,
+    "policy_id": "sage_shortform_route_control_v1",
+    "reformulate_after_zero_novelty": 1,
+    "switch_after_zero_novelty": 2
+  },
+  "schema_version": "orion.p2.sage-shortform-run.v1",
+  "systems": {
+    "sage_governed_multiroute": {
+      "backends": [
+        "openaire",
+        "dblp",
+        "crossref"
+      ],
+      "backends_unavailable": [],
+      "candidate_path": "/private/tmp/claude-501/-Users-billy/0615e855-3387-402f-82fd-6e672fc687c3/scratchpad/p2-sage/final/out/candidates_sage_governed_multiroute.jsonl",
+      "candidate_sha256": "7da80493c7552c5e96d409bc25b683e508499e5031b0ac23c1d01db33c41aaa6",
+      "first_candidate_backend_counts": {
+        "crossref": 163,
+        "openaire": 222
+      },
+      "gate_id": null,
+      "is_frozen_baseline": false,
+      "max_provider_requests_observed": 3,
+      "per_task_cap_from_frozen_ladder": 10,
+      "per_task_request_budget": 3,
+      "role": "system_under_test",
+      "route_independence_verdicts": {
+        "INDEPENDENT": 1155
+      },
+      "status_counts": {
+        "EMPTY": 462,
+        "OK": 609,
+        "SERVICE_ERROR": 84
+      },
+      "tasks_with_no_candidate": 0,
+      "total_provider_requests": 1155,
+      "trace_path": "/private/tmp/claude-501/-Users-billy/0615e855-3387-402f-82fd-6e672fc687c3/scratchpad/p2-sage/final/out/trace_sage_governed_multiroute.jsonl",
+      "trace_sha256": "d91c74f14f41df00548da3075138e25b494b584725e58428353e44afb1f82453"
+    },
+    "sage_single_backend": {
+      "backends": [
+        "crossref"
+      ],
+      "backends_unavailable": [],
+      "candidate_path": "/private/tmp/claude-501/-Users-billy/0615e855-3387-402f-82fd-6e672fc687c3/scratchpad/p2-sage/final/out/candidates_sage_single_backend.jsonl",
+      "candidate_sha256": "f2a1ace2778128c699d4282da8aa64b7be15123afd552c44d9cd6c3b059a5f29",
+      "first_candidate_backend_counts": {
+        "crossref": 385
+      },
+      "gate_id": "sage_lexical_gate_INFORMS_ONLY",
+      "is_frozen_baseline": false,
+      "max_provider_requests_observed": 3,
+      "per_task_cap_from_frozen_ladder": 10,
+      "per_task_request_budget": 3,
+      "role": "matched_budget_internal_contrast_lexical",
+      "route_independence_verdicts": {
+        "SHARED_BACKEND": 1155
+      },
+      "status_counts": {
+        "OK": 1155
+      },
+      "tasks_with_no_candidate": 0,
+      "total_provider_requests": 1155,
+      "trace_path": "/private/tmp/claude-501/-Users-billy/0615e855-3387-402f-82fd-6e672fc687c3/scratchpad/p2-sage/final/out/trace_sage_single_backend.jsonl",
+      "trace_sha256": "429776124a2c849a34f81f8a2a64b549770483673e996f6a783308aa3bc5c147"
+    }
+  },
+  "tasks_attempted": 385,
+  "upstream": "HughieHu/Sage"
+}

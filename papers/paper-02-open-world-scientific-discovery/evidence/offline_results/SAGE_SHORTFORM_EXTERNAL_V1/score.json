@@ -1,0 +1,483 @@
+{
+  "authority": "DECLARED_DEVIATION_NEVER_OFFICIAL",
+  "benchmark": "SAGE short-form scientific retrieval",
+  "family_carries_confirmatory_primary": false,
+  "family_role": "lexical_baseline_promotion_gate",
+  "gold_sha256": "107b6fb35660fe08f3e1e8c54dd1d8040e7abc129967c95b88bbb60477a4fa29",
+  "invalid_metrics_cannot_check": {
+    "complete_gold_recall": "CANNOT_CHECK",
+    "marginal_relevant_gain": "CANNOT_CHECK",
+    "precision": "CANNOT_CHECK",
+    "premature_task_closure_rate": "CANNOT_CHECK",
+    "route_stop_false_negative_rate": "CANNOT_CHECK",
+    "route_stop_false_positive_rate": "CANNOT_CHECK",
+    "screening_recall": "CANNOT_CHECK",
+    "unique_relevant_per_route": "CANNOT_CHECK"
+  },
+  "invalid_metrics_reason": "Bindings B8 (oracle.route_residual_yield) and B10 (oracle.task_residual_discoverable_within_budget) are defined under a frozen corpus/index. SAGE's retrieval corpus is unpublished, so no residual-yield oracle exists and every metric derived from one is CANNOT_CHECK rather than zero.",
+  "lexical_gate": {
+    "closes_the_frozen_gate": false,
+    "comparison_metric": "strict_hit_at_10",
+    "discrimination": {
+      "at_floor": false,
+      "candidate_at_least_matches_baseline": null,
+      "discriminating": false,
+      "floor_artifact": false,
+      "note": "Interval contains zero: no ordering is claimed.",
+      "verdict": "CANNOT_DISCRIMINATE"
+    },
+    "gate_fired": null,
+    "gate_id": "sage_lexical_gate",
+    "gate_informed": false,
+    "governed_point_estimate": 0.012987,
+    "lexical_point_estimate": 0.01039,
+    "paired_difference_governed_minus_lexical": 0.002597,
+    "paired_interval_95": [
+      -0.01039,
+      0.015584
+    ],
+    "predeclared_reading": "The frozen plan says this family exists because a strong in-call lexical baseline is competitive. If the lexical contrast beats the governed system on a DISCRIMINATING comparison, that is the gate firing and is reported as such. A comparison whose interval contains zero fires nothing in either direction.",
+    "status": "OPEN_NOT_CLOSED",
+    "verdict_text": "Neither system is distinguishable at this budget, so this family informs the gate in neither direction. Reported as CANNOT_DISCRIMINATE, not as a tie.",
+    "why_not_closed": "The frozen gate is bm25_keyword over SAGE's own 200k corpus. That corpus is unpublished, so provider-side ranking over OpenAIRE/DBLP/Crossref indices can inform the gate but cannot close it."
+  },
+  "metrics": {
+    "relaxed_hit_at_1": {
+      "declared_deviation": true,
+      "matcher": "relaxed",
+      "matcher_transforms": [
+        "unicode_nfkd",
+        "drop_combining_marks",
+        "map_typographic_punctuation_to_ascii",
+        "casefold",
+        "non_alphanumeric_runs_to_single_space",
+        "collapse_and_strip_whitespace",
+        "gold_token_run_contained_in_candidate"
+      ],
+      "official": false,
+      "paired_difference": {
+        "absolute_effect_size": -0.002597,
+        "aggregation_unit": "query",
+        "analysis_seed": 20260816,
+        "contrast": "sage_governed_multiroute_minus_sage_single_backend",
+        "discrimination": {
+          "at_floor": false,
+          "candidate_at_least_matches_baseline": null,
+          "discriminating": false,
+          "floor_artifact": false,
+          "note": "Interval contains zero: no ordering is claimed.",
+          "verdict": "CANNOT_DISCRIMINATE"
+        },
+        "estimator": "paired_bootstrap_difference_ci",
+        "excludes_zero": false,
+        "interval_95": [
+          -0.007792,
+          0.0
+        ],
+        "n": 385,
+        "resamples": 10000
+      },
+      "per_system": {
+        "sage_governed_multiroute": {
+          "aggregation_unit": "query",
+          "interval_95": [
+            0.0,
+            0.009879
+          ],
+          "interval_estimator": "wilson_interval",
+          "n": 385,
+          "point_estimate": 0.0,
+          "successes": 0
+        },
+        "sage_single_backend": {
+          "aggregation_unit": "query",
+          "interval_95": [
+            0.000459,
+            0.014564
+          ],
+          "interval_estimator": "wilson_interval",
+          "n": 385,
+          "point_estimate": 0.002597,
+          "successes": 1
+        }
+      },
+      "rank_cutoff": 1
+    },
+    "relaxed_hit_at_10": {
+      "declared_deviation": true,
+      "matcher": "relaxed",
+      "matcher_transforms": [
+        "unicode_nfkd",
+        "drop_combining_marks",
+        "map_typographic_punctuation_to_ascii",
+        "casefold",
+        "non_alphanumeric_runs_to_single_space",
+        "collapse_and_strip_whitespace",
+        "gold_token_run_contained_in_candidate"
+      ],
+      "official": false,
+      "paired_difference": {
+        "absolute_effect_size": 0.002597,
+        "aggregation_unit": "query",
+        "analysis_seed": 20260816,
+        "contrast": "sage_governed_multiroute_minus_sage_single_backend",
+        "discrimination": {
+          "at_floor": false,
+          "candidate_at_least_matches_baseline": null,
+          "discriminating": false,
+          "floor_artifact": false,
+          "note": "Interval contains zero: no ordering is claimed.",
+          "verdict": "CANNOT_DISCRIMINATE"
+        },
+        "estimator": "paired_bootstrap_difference_ci",
+        "excludes_zero": false,
+        "interval_95": [
+          -0.01039,
+          0.015584
+        ],
+        "n": 385,
+        "resamples": 10000
+      },
+      "per_system": {
+        "sage_governed_multiroute": {
+          "aggregation_unit": "query",
+          "interval_95": [
+            0.00556,
+            0.030037
+          ],
+          "interval_estimator": "wilson_interval",
+          "n": 385,
+          "point_estimate": 0.012987,
+          "successes": 5
+        },
+        "sage_single_backend": {
+          "aggregation_unit": "query",
+          "interval_95": [
+            0.004048,
+            0.026406
+          ],
+          "interval_estimator": "wilson_interval",
+          "n": 385,
+          "point_estimate": 0.01039,
+          "successes": 4
+        }
+      },
+      "rank_cutoff": 10
+    },
+    "relaxed_hit_at_50": {
+      "declared_deviation": true,
+      "matcher": "relaxed",
+      "matcher_transforms": [
+        "unicode_nfkd",
+        "drop_combining_marks",
+        "map_typographic_punctuation_to_ascii",
+        "casefold",
+        "non_alphanumeric_runs_to_single_space",
+        "collapse_and_strip_whitespace",
+        "gold_token_run_contained_in_candidate"
+      ],
+      "official": false,
+      "paired_difference": {
+        "absolute_effect_size": -0.031169,
+        "aggregation_unit": "query",
+        "analysis_seed": 20260816,
+        "contrast": "sage_governed_multiroute_minus_sage_single_backend",
+        "discrimination": {
+          "at_floor": false,
+          "candidate_at_least_matches_baseline": false,
+          "discriminating": true,
+          "floor_artifact": false,
+          "note": "Interval excludes zero.",
+          "verdict": "BASELINE_AHEAD"
+        },
+        "estimator": "paired_bootstrap_difference_ci",
+        "excludes_zero": true,
+        "interval_95": [
+          -0.057143,
+          -0.007792
+        ],
+        "n": 385,
+        "resamples": 10000
+      },
+      "per_system": {
+        "sage_governed_multiroute": {
+          "aggregation_unit": "query",
+          "interval_95": [
+            0.010566,
+            0.040461
+          ],
+          "interval_estimator": "wilson_interval",
+          "n": 385,
+          "point_estimate": 0.020779,
+          "successes": 8
+        },
+        "sage_single_backend": {
+          "aggregation_unit": "query",
+          "interval_95": [
+            0.033877,
+            0.078872
+          ],
+          "interval_estimator": "wilson_interval",
+          "n": 385,
+          "point_estimate": 0.051948,
+          "successes": 20
+        }
+      },
+      "rank_cutoff": 50
+    },
+    "strict_hit_at_1": {
+      "declared_deviation": true,
+      "matcher": "strict",
+      "matcher_transforms": [
+        "unicode_nfkd",
+        "drop_combining_marks",
+        "map_typographic_punctuation_to_ascii",
+        "casefold",
+        "non_alphanumeric_runs_to_single_space",
+        "collapse_and_strip_whitespace"
+      ],
+      "official": false,
+      "paired_difference": {
+        "absolute_effect_size": -0.002597,
+        "aggregation_unit": "query",
+        "analysis_seed": 20260816,
+        "contrast": "sage_governed_multiroute_minus_sage_single_backend",
+        "discrimination": {
+          "at_floor": false,
+          "candidate_at_least_matches_baseline": null,
+          "discriminating": false,
+          "floor_artifact": false,
+          "note": "Interval contains zero: no ordering is claimed.",
+          "verdict": "CANNOT_DISCRIMINATE"
+        },
+        "estimator": "paired_bootstrap_difference_ci",
+        "excludes_zero": false,
+        "interval_95": [
+          -0.007792,
+          0.0
+        ],
+        "n": 385,
+        "resamples": 10000
+      },
+      "per_system": {
+        "sage_governed_multiroute": {
+          "aggregation_unit": "query",
+          "interval_95": [
+            0.0,
+            0.009879
+          ],
+          "interval_estimator": "wilson_interval",
+          "n": 385,
+          "point_estimate": 0.0,
+          "successes": 0
+        },
+        "sage_single_backend": {
+          "aggregation_unit": "query",
+          "interval_95": [
+            0.000459,
+            0.014564
+          ],
+          "interval_estimator": "wilson_interval",
+          "n": 385,
+          "point_estimate": 0.002597,
+          "successes": 1
+        }
+      },
+      "rank_cutoff": 1
+    },
+    "strict_hit_at_10": {
+      "declared_deviation": true,
+      "matcher": "strict",
+      "matcher_transforms": [
+        "unicode_nfkd",
+        "drop_combining_marks",
+        "map_typographic_punctuation_to_ascii",
+        "casefold",
+        "non_alphanumeric_runs_to_single_space",
+        "collapse_and_strip_whitespace"
+      ],
+      "official": false,
+      "paired_difference": {
+        "absolute_effect_size": 0.002597,
+        "aggregation_unit": "query",
+        "analysis_seed": 20260816,
+        "contrast": "sage_governed_multiroute_minus_sage_single_backend",
+        "discrimination": {
+          "at_floor": false,
+          "candidate_at_least_matches_baseline": null,
+          "discriminating": false,
+          "floor_artifact": false,
+          "note": "Interval contains zero: no ordering is claimed.",
+          "verdict": "CANNOT_DISCRIMINATE"
+        },
+        "estimator": "paired_bootstrap_difference_ci",
+        "excludes_zero": false,
+        "interval_95": [
+          -0.01039,
+          0.015584
+        ],
+        "n": 385,
+        "resamples": 10000
+      },
+      "per_system": {
+        "sage_governed_multiroute": {
+          "aggregation_unit": "query",
+          "interval_95": [
+            0.00556,
+            0.030037
+          ],
+          "interval_estimator": "wilson_interval",
+          "n": 385,
+          "point_estimate": 0.012987,
+          "successes": 5
+        },
+        "sage_single_backend": {
+          "aggregation_unit": "query",
+          "interval_95": [
+            0.004048,
+            0.026406
+          ],
+          "interval_estimator": "wilson_interval",
+          "n": 385,
+          "point_estimate": 0.01039,
+          "successes": 4
+        }
+      },
+      "rank_cutoff": 10
+    },
+    "strict_hit_at_50": {
+      "declared_deviation": true,
+      "matcher": "strict",
+      "matcher_transforms": [
+        "unicode_nfkd",
+        "drop_combining_marks",
+        "map_typographic_punctuation_to_ascii",
+        "casefold",
+        "non_alphanumeric_runs_to_single_space",
+        "collapse_and_strip_whitespace"
+      ],
+      "official": false,
+      "paired_difference": {
+        "absolute_effect_size": -0.031169,
+        "aggregation_unit": "query",
+        "analysis_seed": 20260816,
+        "contrast": "sage_governed_multiroute_minus_sage_single_backend",
+        "discrimination": {
+          "at_floor": false,
+          "candidate_at_least_matches_baseline": false,
+          "discriminating": true,
+          "floor_artifact": false,
+          "note": "Interval excludes zero.",
+          "verdict": "BASELINE_AHEAD"
+        },
+        "estimator": "paired_bootstrap_difference_ci",
+        "excludes_zero": true,
+        "interval_95": [
+          -0.057143,
+          -0.007792
+        ],
+        "n": 385,
+        "resamples": 10000
+      },
+      "per_system": {
+        "sage_governed_multiroute": {
+          "aggregation_unit": "query",
+          "interval_95": [
+            0.010566,
+            0.040461
+          ],
+          "interval_estimator": "wilson_interval",
+          "n": 385,
+          "point_estimate": 0.020779,
+          "successes": 8
+        },
+        "sage_single_backend": {
+          "aggregation_unit": "query",
+          "interval_95": [
+            0.033877,
+            0.078872
+          ],
+          "interval_estimator": "wilson_interval",
+          "n": 385,
+          "point_estimate": 0.051948,
+          "successes": 20
+        }
+      },
+      "rank_cutoff": 50
+    }
+  },
+  "official_scorer_exists_publicly": false,
+  "official_scorer_used": false,
+  "ordering_asymmetry": {
+    "affects": [
+      "strict_hit_at_1",
+      "relaxed_hit_at_1"
+    ],
+    "explanation": "sage_single_backend takes all three attempts on one backend, so its early candidates carry that provider's own ranking. sage_governed_multiroute fills its first slots from whichever route answered first, and its route-1 backend (OpenAIRE) frequently returns nothing. A hit@1 gap can therefore reflect candidate ordering rather than backend diversity, so the gate rests on strict_hit_at_10, which is insensitive to order within the cutoff.",
+    "ordering_insensitive": [
+      "strict_hit_at_10",
+      "strict_hit_at_50",
+      "relaxed_hit_at_10",
+      "relaxed_hit_at_50"
+    ]
+  },
+  "pinned_upstream_commit": "bc62257a13d81ae233ecbd508037614746d2776b",
+  "precision": {
+    "achieved_tier": "TIER_B_committed",
+    "delta_sup": 0.03,
+    "descriptive_only": false,
+    "family_carries_primary": false,
+    "family_role": "lexical_baseline_promotion_gate",
+    "n": 385,
+    "note": "The frozen plan gives sage_scientific_retrieval no confirmatory primary: achieved precision is reported and no promotion rests on it. The UNDERPOWERED label is therefore descriptive here rather than a gate on a primary claim.",
+    "tier_half_width": 0.05,
+    "underpowered": true,
+    "underpowered_label_is_mandatory": true,
+    "worst_case_half_width_at_this_n": 0.0497
+  },
+  "required_bindings_emitted": {
+    "B10_task_residual_discoverable_within_budget": "CANNOT_CHECK",
+    "B1_result_record_task_id": "EMITTED",
+    "B2_route_trial_attempt_index": "EMITTED",
+    "B3_route_trial_consecutive_zero_novelty_before": "EMITTED",
+    "B4_captures_merged_source_id": "EMITTED_AS_CONTENT_DIGEST",
+    "B5_oracle_gold_items": "EMITTED_SINGLE_TARGET",
+    "B6_declaration": "Short-form asks for one target paper and upstream ships exactly one gold record per query, so the denominator is 1 by construction. This is a declared reading of a targeted-identification task, not an upstream statement.",
+    "B6_oracle_gold_set_complete": "DECLARED_TRUE_FOR_TARGETED_IDENTIFICATION",
+    "B7_captures_content_digest": "EMITTED",
+    "B8_oracle_route_residual_yield": "CANNOT_CHECK",
+    "B9_task_closure_declared": "NOT_APPLICABLE_FIXED_BUDGET_NO_CLOSURE_DECLARATION"
+  },
+  "run_manifest_budget_parity": {
+    "budgets": {
+      "sage_governed_multiroute": 3,
+      "sage_single_backend": 3
+    },
+    "capped_resource": "query_count",
+    "caps": {
+      "sage_governed_multiroute": 10,
+      "sage_single_backend": 10
+    },
+    "parity_holds": true,
+    "policy": "a family in which any system's cap differs from another's is INVALID"
+  },
+  "schema_version": "orion.p2.sage-shortform-score.v1",
+  "stage_hash_chain": {
+    "checked": true,
+    "gold_sha256_matches_split": true,
+    "run_candidate_input_sha256": "328ce9a834d2ab0ae2a0fcd2439c6c3bfaa4409687296365bb38e33bc6fa309a",
+    "split_public_sha256": "328ce9a834d2ab0ae2a0fcd2439c6c3bfaa4409687296365bb38e33bc6fa309a"
+  },
+  "statistics_library": "research/paper-programme-v1/protocols/publication_stats.py",
+  "statistics_library_reimplemented": false,
+  "tasks_scored": 385,
+  "upstream": "HughieHu/Sage",
+  "valid_metrics": [
+    "relaxed_hit_at_1",
+    "relaxed_hit_at_10",
+    "relaxed_hit_at_50",
+    "strict_hit_at_1",
+    "strict_hit_at_10",
+    "strict_hit_at_50"
+  ]
+}
