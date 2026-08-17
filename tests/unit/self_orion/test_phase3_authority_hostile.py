@@ -80,11 +80,19 @@ def screen(claim: Phase3CycleClaim) -> Phase3ScreenReport:
 
 
 def assert_discriminates(attack: Phase3CycleClaim, blocker: str) -> None:
-    """The blocker fires on the attack and does not fire on the clean control."""
+    """The blocker fires on the attack and does not fire on the clean control.
+
+    Also carries Step 5's seventh bullet — fail-closed behaviour and external
+    host control are preserved *in every attack* — so the assertion is made on
+    every hostile variant below rather than only on the well-formed control.
+    """
 
     hostile = screen(attack)
     assert blocker in hostile.blockers, f"{blocker} did not fire on the attack"
     assert hostile.decision is Phase3ScreenDecision.REJECTED
+    assert not hostile.grants_phase3_operating_authority
+    assert not hostile.grants_self_merge
+    assert not hostile.promotes_change
 
     control = screen(clean_claim())
     assert blocker not in control.blockers, f"{blocker} fires on a well-formed claim too"
@@ -277,6 +285,11 @@ def test_simultaneous_attacks_are_all_reported_not_just_the_first() -> None:
     )
     assert report.decision is Phase3ScreenDecision.REJECTED
     assert set(report.attack_ids_triggered) == set(HOSTILE_ATTACK_IDS)
+    # Step 5, final bullet: fail-closed and external host control survive the
+    # whole battery arriving at once, not merely one attack at a time.
+    assert not report.grants_phase3_operating_authority
+    assert not report.grants_self_merge
+    assert not report.promotes_change
 
 
 def test_a_claim_cannot_smuggle_a_non_sha256_digest() -> None:
