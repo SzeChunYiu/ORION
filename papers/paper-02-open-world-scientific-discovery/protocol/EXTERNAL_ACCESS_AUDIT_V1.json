@@ -21,6 +21,12 @@
       "correction_of_a_correction": "An orchestrator note claimed this audit had mis-enumerated the SAGE repository as \"777 KB, 11 entries\". That claim was wrong: 777 KB is GitHub\"'s repository size field and the 11 tree entries are README plus eight query files plus two directories, which this audit had already enumerated correctly. The substantive gap was the missing usability verdict, not a bad inventory.",
       "revision": 3,
       "summary": "Added usable_task_family_under_declared_deviation. The official-scorer verdicts are unchanged and were correct: SAGE\"'s corpus and evaluator are genuinely unpublished. What was missing is the separate fact that SAGE\"'s 1200 queries and their gold ARE obtainable and give the largest external N available to this paper, so the family belongs in the study under declared scoring rather than being struck from it."
+    },
+    {
+      "revision": 4,
+      "author_context": "local operator lane (claude)",
+      "completed_utc": "2026-08-17T18:20:00Z",
+      "summary": "Official Deep LLM title judge executed for the declared keyless public-arXiv probe via local OpenAI-compatible protocol adapter (judge model glm-5.3, temperature 0.5, pinned judge prompt): 600/600 Deep tasks scored, hit rate 0.000. Nine-case judge control CONTROL_PASSED. Archive: evidence/external_results/DEEP_OFFICIAL_ARCHIVE_V1.json; control: evidence/external_results/DEEP_JUDGE_CONTROL_2026-08-17.json. Bounded probe only (external_probe_not_full_multi_provider_orion); matched multi-provider Deep comparison remains unexecuted."
     }
   ],
   "auditor_context": {
