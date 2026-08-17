@@ -45,8 +45,15 @@ def test_current_frozen_protocols_are_valid_and_content_addressable():
 
 
 def test_execution_frozen_protocol_rejects_unbound_bindings():
+    """Test that EXECUTION_FROZEN status requires all bindings to be bound.
+
+    Uses P2 as the test fixture because P1 is now EXECUTION_FROZEN with fully
+    bound bindings. The test simulates promoting P2 to EXECUTION_FROZEN while
+    leaving bindings UNBOUND, and verifies that the validator rejects it.
+    """
     module = _load_module()
-    payload = json.loads(PAPER_PROTOCOLS[0].read_text(encoding="utf-8"))
+    # Use P2 (paper-02) which is DESIGN_FROZEN with UNBOUND bindings
+    payload = json.loads(PAPER_PROTOCOLS[1].read_text(encoding="utf-8"))
     payload["protocol_status"] = "EXECUTION_FROZEN"
     errors = module.validate_protocol(payload)
     assert any("UNBOUND" in error for error in errors)
