@@ -1,0 +1,59 @@
+{
+  "schema_version": "orion.p2.metasyn-actions-artifact-manifest.v1",
+  "purpose": "Permanently retain the identity, integrity bindings, recovery path, and redistribution boundary of the completed MetaSyn ID-only Actions artifact without copying third-party text whose redistribution terms are not inherited from MetaSyn's project-authored MIT annotations.",
+  "authority": "REPRODUCIBILITY_IDENTITY_ONLY",
+  "scientific_authority": "NO_NEW_AUTHORITY",
+  "source_evidence": {
+    "workflow_run_id": 31973786111,
+    "head_sha": "93fcb5b7b9951fd385f999a53cd34d85c9c2ed81",
+    "artifact_id": 9270589591,
+    "artifact_name": "p2-metasyn-keyless-93fcb5b7b9951fd385f999a53cd34d85c9c2ed81",
+    "artifact_size_bytes": 180422,
+    "artifact_sha256": "edd8073b7fe5e5d7826968cd48dd52ed3befcaa649652e009216c89ead1b4786",
+    "artifact_created_at": "2026-08-16T21:39:54Z",
+    "artifact_expires_at": "2026-09-15T21:39:53Z",
+    "download_verified": true,
+    "downloaded_zip_sha256": "edd8073b7fe5e5d7826968cd48dd52ed3befcaa649652e009216c89ead1b4786",
+    "archive_member_count": 92,
+    "archive_uncompressed_bytes": 900612
+  },
+  "inner_bindings": {
+    "dataset_revision": "c8fa07d89c44093d623f9a213c6bf070f40ab960",
+    "pinned_upstream_commit": "51b95b7061e1faf241c205eb7f8e5c2bccff4848",
+    "public_reviews_sha256": "4936368cbc2e388e5fcdf770dfea56b49835f58f17b0c1a0687069e64606a1b8",
+    "official_evaluation_sha256": "b13b36b54ac72488749d72eedd5af35981cd46208f9bee9dcc7077e2cbccfa25",
+    "results_tree_sha256": "923e96c56361ffdda8ef55bf4ebc32ee882f8dc74781fa909d2e54a6992765cc",
+    "summary_json_sha256": "0c3f9968dbf77c3270564133bded426635ce0cd2bad7fadc66f8c50d7e530138",
+    "run_manifest_json_sha256": "aefce0c2e5899cc3df9b7c99186ae50722c03dcdd06483b9583f79eef7921809",
+    "split_manifest_json_sha256": "e23dc06b4e47c12716d3fc21ec7545c6c682236e113fa5df0596cf6b059e28d8"
+  },
+  "completed_probe_binding": {
+    "archive_record": "METASYN_ID_ONLY_PROBE_V1.json",
+    "screening_false_negative_ledger": "METASYN_SCREENING_FN_LEDGER_V1.json",
+    "claim_scope": "external_probe_not_full_multi_provider_orion",
+    "coverage_expected_reviews": 86,
+    "coverage_succeeded_reviews": 86,
+    "coverage_failed_reviews": 0
+  },
+  "redistribution": {
+    "raw_actions_zip_committed": false,
+    "public_reviews_committed": false,
+    "reason": "The audited MetaSyn licence is MIT only for project-authored annotations. Third-party article metadata, abstracts, identifiers, source-review excerpts, and PMC-derived text retain upstream terms, so this repository does not assume that the mixed raw Actions snapshot may be redistributed wholesale.",
+    "audit_source": "../../protocol/EXTERNAL_ACCESS_AUDIT_V1.json",
+    "status": "PARTIAL_LICENSE_REQUIRES_SCOPED_ARCHIVE"
+  },
+  "recovery": {
+    "before_expiry": "Fetch Actions artifact 9270589591 and require its downloaded ZIP SHA-256 to equal artifact_sha256 before use.",
+    "after_expiry": "Reconstruct from the pinned MetaSyn code revision and dataset revision under their upstream terms, then require public_reviews_sha256, results_tree_sha256, and official_evaluation_sha256 to match before treating the reconstruction as the same run content.",
+    "permanent_raw_snapshot": "CANNOT_CHECK_WITH_CURRENT_REPOSITORY_REDISTRIBUTION_SCOPE"
+  },
+  "interpretation": {
+    "preserved": "Exact artifact identity and the content bindings needed to verify a retained or reconstructed copy.",
+    "not_preserved_here": "Third-party text-bearing raw snapshot bytes.",
+    "not_claimed": [
+      "full multi-provider ORION superiority",
+      "inferential superiority over a matched external baseline",
+      "a permanent redistribution right for MetaSyn third-party content"
+    ]
+  }
+}
