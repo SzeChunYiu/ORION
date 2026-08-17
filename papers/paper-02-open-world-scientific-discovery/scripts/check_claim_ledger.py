@@ -144,8 +144,12 @@ _STRIP_COMMANDS_WITH_ARG = (
 )
 _UNWRAP_COMMANDS = ("texttt", "textbf", "textit", "emph", "textsc", "text", "idt", "path")
 
+# One level of brace nesting inside the value, for LaTeX thousands-grouping
+# literals like ``{16{,}380}`` (render_suite_facts emits ``{,}`` so the comma
+# survives math-mode spacing).  The raw value is then canonicalized to ``16,380``
+# in load_macros so substituted prose forms a single number token.
 _MACRO_DEF_RE = re.compile(
-    r"\\(?:newcommand|renewcommand|providecommand)\s*\*?\s*\{?\\([A-Za-z]+)\}?\s*\{([^{}]*)\}"
+    r"\\(?:newcommand|renewcommand|providecommand)\s*\*?\s*\{?\\([A-Za-z]+)\}?\s*\{((?:[^{}]|\{[^{}]*\})*)\}"
 )
 # ``\Name{}`` -- an empty-brace invocation.  This is the idiom for splicing a
 # generated value into prose (``\OfflineTaskCount{}-task``).  Formatting commands
@@ -223,7 +227,10 @@ def load_macros(paper: Path, sources: Any) -> dict[str, str]:
         if not path.is_file():
             raise HarnessError(f"declared macro source missing: {path}")
         for match in _MACRO_DEF_RE.finditer(_read(path)):
-            macros[match.group(1)] = match.group(2).strip()
+            # Canonicalize ``{,}`` (LaTeX thousands separator) to a plain
+            # comma so substituted prose carries ``16,380`` as one number
+            # token; the numeric compare already strips grouping commas.
+            macros[match.group(1)] = match.group(2).strip().replace("{,}", ",")
     return macros
 
 
