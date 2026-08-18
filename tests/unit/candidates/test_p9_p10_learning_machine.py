@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
@@ -64,8 +65,36 @@ def test_results_are_present_and_not_covered_by_the_source_manifest() -> None:
         assert f"results/{name}" not in named
 
 
+def test_ci_still_installs_what_the_re_derivation_needs() -> None:
+    """Keep the re-derivation from degrading into a silent skip.
+
+    `test_phase2a_re_derives_byte_identically` skips when numpy is absent, which is the
+    honest reading of "could not check". But a guard that skips in CI guards nothing, and
+    the skip is invisible in a green run. This asserts the extra exists and that CI
+    installs it, so removing either turns into a failure rather than a quiet gap.
+    """
+
+    pyproject = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
+    assert "candidates = [" in pyproject, "the candidates extra is gone from pyproject.toml"
+    assert "numpy" in pyproject.split("candidates = [")[1].split("]")[0]
+
+    workflow = (ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
+    installs = [line for line in workflow.splitlines() if "pip install -e" in line]
+    assert installs, "CI no longer installs the package"
+    for line in installs:
+        assert "candidates" in line, f"CI install drops the candidates extra: {line.strip()}"
+
+
 def test_phase2a_re_derives_byte_identically(tmp_path: Path) -> None:
-    """The only real-source evidence in the lane, checked by re-running it."""
+    """The only real-source evidence in the lane, checked by re-running it.
+
+    Phase 2A needs numpy despite using none of it: the framework package re-exports
+    `competence.py`, which imports numpy at module level. Skipping without it is
+    `CANNOT_CHECK`; `test_ci_still_installs_what_the_re_derivation_needs` is what stops
+    that skip from becoming permanent.
+    """
+
+    pytest.importorskip("numpy", reason="phase 2A imports the framework package, which needs numpy")
 
     script = LANE / "experiments" / "phase2_real_source" / "run_phase2a.py"
     written = script.parent / "RESULTS_PHASE2A.json"
@@ -74,7 +103,7 @@ def test_phase2a_re_derives_byte_identically(tmp_path: Path) -> None:
         completed = subprocess.run(
             [sys.executable, str(script)],
             cwd=LANE,
-            env={"PYTHONPATH": str(LANE / "framework"), "PATH": "/usr/bin:/bin"},
+            env={**os.environ, "PYTHONPATH": str(LANE / "framework"), "PYTHONHASHSEED": "0"},
             capture_output=True,
             text=True,
             timeout=300,

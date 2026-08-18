@@ -17,6 +17,11 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["pytest>=8"]
 plots = ["matplotlib>=3.10"]
+# The P9/P10 candidate lane re-derives phase 2A live in CI to prove the committed
+# result still reproduces. That needs numpy: the lane's framework package re-exports
+# competence.py, which imports it. Without this the guard degrades to a skip, and a
+# guard that never runs is not a guard.
+candidates = ["numpy>=2"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
