@@ -15,6 +15,7 @@ Standard library only.
 
 from __future__ import annotations
 
+import ast
 import json
 import re
 from pathlib import Path
@@ -187,3 +188,46 @@ def test_audit_core_stays_within_its_line_budget() -> None:
         f"split further into {AUDIT_DETAIL_DIR.name}/ rather than growing the core"
     )
     assert list(AUDIT_DETAIL_DIR.glob("*.md")), "audit core has no detail files to drill into"
+
+
+FETCHER = EVIDENCE_DIR / "fetch_literature_evidence.py"
+
+
+def _fetcher_registered_keys() -> set[str]:
+    """Keys the fetch script knows how to fetch, read without executing it."""
+
+    tree = ast.parse(FETCHER.read_text(encoding="utf-8"))
+    for node in ast.walk(tree):
+        target = None
+        if isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
+            target = node.target.id
+        elif isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
+            target = node.targets[0].id
+        if target == "ENTRIES" and isinstance(node.value, ast.Dict):
+            return {k.value for k in node.value.keys if isinstance(k, ast.Constant)}
+    raise AssertionError("ENTRIES dict not found in fetch_literature_evidence.py")
+
+
+def test_every_bibliography_key_is_registered_with_the_fetcher() -> None:
+    """The drift that turned main red at 73e9505.
+
+    `ENTRIES` is a hand-maintained list, so adding a citation and registering it for
+    fetching are two disconnected edits. When 73e9505 added `micp2026` to both bib files
+    and cited it from `main.tex` without touching the fetcher, the missing-record test
+    failed but pointed at the record rather than at the reason there was no way to produce
+    one. This test names the reason at the point of the edit.
+    """
+
+    keys = set(_bib_entries())
+    unregistered = sorted(keys - _fetcher_registered_keys())
+    assert not unregistered, (
+        "bibliography keys the fetch script cannot fetch, so no evidence record can be "
+        f"produced for them: {unregistered}"
+    )
+
+
+def test_the_fetcher_registry_has_no_phantom_keys() -> None:
+    """No alarm: a registry entry with no bibliography key is also drift."""
+
+    phantom = sorted(_fetcher_registered_keys() - set(_bib_entries()))
+    assert not phantom, f"fetch script registers keys absent from the bibliography: {phantom}"

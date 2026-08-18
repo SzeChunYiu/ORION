@@ -29,6 +29,15 @@ ATOM = {"a": "http://www.w3.org/2005/Atom", "arxiv": "http://arxiv.org/schemas/a
 #   derived_from_this_fetch -> new entry; the claim was written FROM the fetch,
 #     so the record is provenance, not an independent test.
 ENTRIES: dict[str, tuple[str, str, str, str]] = {
+    # Added by 73e9505 ("P2 V2: widen architecture and close external acquisition
+    # campaign"), which cited it from main.tex and put it in both bib files but
+    # registered no evidence record, turning main red. The title here is taken from
+    # the fetch rather than claimed independently, so the record is provenance.
+    "micp2026": (
+        "arxiv", "2604.01413",
+        "Adaptive Stopping for Multi-Turn LLM Reasoning",
+        "derived_from_this_fetch",
+    ),
     # Added by the 2026-08-17 narrowing audit into manuscript/recent_work.bib
     # and cited by main.tex, but with no evidence record until now. The titles
     # below are copied from that bib, not from the fetch, so each verdict is a
