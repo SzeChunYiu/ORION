@@ -1,0 +1,20 @@
+{
+  "schema": "P6.HigherOrderEpistemicMechanics.T2T3Countermodels.v1",
+  "protocol_id": "P6.higher-order-epistemic-mechanics.t2-t3.v1",
+  "authority_scope": "FORMAL_FRAMEWORK_COUNTERMODELS_ONLY",
+  "grants_scientific_authority": false,
+  "grants_self_orion_adoption": false,
+  "cases": [
+    {"id": "T23-01", "kind": "responsibility_ambiguous", "expected_status": "AMBIGUOUS"},
+    {"id": "T23-02", "kind": "responsibility_identified", "expected_status": "IDENTIFIED", "expected_selected": "interface-gap"},
+    {"id": "T23-03", "kind": "responsibility_unresolved", "expected_status": "UNRESOLVED"},
+    {"id": "T23-04", "kind": "responsibility_no_survivor", "expected_status": "NO_SURVIVING"},
+    {"id": "T23-05", "kind": "interface_failure", "expected_status": "REPAIR_REQUIRED"},
+    {"id": "T23-06", "kind": "interface_unresolved", "expected_status": "UNRESOLVED"},
+    {"id": "T23-07", "kind": "gate_narrow_interface", "expected_status": "CANDIDATE_SELECTED", "expected_selected": "repair-interface"},
+    {"id": "T23-08", "kind": "gate_no_broad_fallback", "expected_status": "INTERFACE_REPAIR_REQUIRED"},
+    {"id": "T23-09", "kind": "gate_adequate_minimum", "expected_status": "CANDIDATE_SELECTED", "expected_selected": "repair-interface"}
+  ],
+  "expected_terminal": "T2_T3_FORMAL_COUNTERMODELS_GREEN",
+  "claim_ceiling": "NON_AUTHORIZING_RESPONSIBILITY_INTERFACE_SUBSTRATE_ONLY"
+}

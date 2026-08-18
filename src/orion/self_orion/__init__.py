@@ -165,6 +165,11 @@ from orion.self_orion.research_loop import (
     ShadowSelfOrionResearchLoop,
     empirical_work_to_problem,
 )
+from orion.self_orion.revision_gate import (
+    RevisionGateReport,
+    RevisionGateStatus,
+    assess_revision_gate,
+)
 from orion.self_orion.saturation_vector import (
     DevelopmentNoveltyRound,
     DevelopmentSaturationAxis,
