@@ -20,6 +20,8 @@ REQUIRED_PROGRAMME = [
     CAND / "PEER_REVIEW_READY_GATE_2026-08-18.md",
     CAND / "PRE_SUBMISSION_LITERATURE_DELTA_2026-08-18.md",
     CAND / "VENUE_REQUIREMENTS_VERIFIED_2026-08-18.md",
+    CAND / "SUBMISSION_CLAIM_AUTHORITY_V1.md",
+    CAND / "PEER_REVIEW_READY_PACKAGE.md",
 ]
 
 
@@ -42,6 +44,11 @@ def visible_words(s: str) -> list[str]:
 def check_tex(path: Path, *, jaamas: bool = False) -> None:
     s = text(path)
     lower = s.lower()
+    require("\\begin{document}" in s and "\\end{document}" in s, f"document wrapper missing: {path}")
+    require(s.count("{") == s.count("}"), f"unbalanced braces in {path}")
+    for env in ("document", "abstract", "thebibliography"):
+        require(s.count(f"\\begin{{{env}}}") == s.count(f"\\end{{{env}}}"),
+                f"unbalanced {env} environment in {path}")
     require("\\begin{abstract}" in s and "\\end{abstract}" in s, f"abstract missing: {path}")
     require("\\section{introduction}" in lower, f"Introduction missing: {path}")
     require("\\section{limitations}" in lower, f"Limitations missing: {path}")
@@ -53,8 +60,8 @@ def check_tex(path: Path, *, jaamas: bool = False) -> None:
             f"author/corresponding metadata missing: {path}")
     for bad in ("TODO", "TBD", "PLACEHOLDER", "INSERT CITATION", "FIXME"):
         require(bad not in s, f"submission placeholder {bad!r} in {path}")
-    # The submitted paper may discuss 'first' in references or negated nonclaims, but
-    # it must not use common unsupported first-of-kind sales phrases.
+    # Submitted papers may discuss priority language as a nonclaim; common sales
+    # formulations themselves are prohibited by the submission contract.
     for banned in ("we are the first", "first-ever", "first of its kind", "unprecedented framework"):
         require(banned not in lower, f"unsupported novelty phrase {banned!r} in {path}")
 
@@ -108,6 +115,14 @@ def main() -> None:
     require("Round 1" in lit and "Round 2" in lit, "two literature rounds not frozen")
     require("SUBMISSION_SCOPED_RESIDUALS = STABLE_2026_08_18" in lit,
             "literature terminal missing")
+
+    claims = text(CAND / "SUBMISSION_CLAIM_AUTHORITY_V1.md")
+    for paper in ("P6-S1", "P7-S1", "P8-S1"):
+        require(paper in claims, f"submission claim authority missing for {paper}")
+    require("SUBMISSION_HEADLINE_AUTHORITY = COMPLETE" in claims,
+            "submission claim-authority terminal missing")
+    require("empirical superiority over ideal donor product: `CANNOT_CHECK / NOT CLAIMED`" in claims,
+            "empirical-superiority nonclaim missing")
 
     print("P6-P8 peer-review-ready structural gate: PASS")
 
