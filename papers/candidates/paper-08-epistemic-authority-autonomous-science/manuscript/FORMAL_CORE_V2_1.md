@@ -89,7 +89,8 @@ Only revocation can.
 
 For judgment `j` and effect request `e`:
 
-- `Conf(j)\in[0,1]` — the agent's confidence in `j`;
+- `Conf(j)\in[0,1]` — the agent's confidence in judgment `j`. For an effect request `e`,
+  write `Conf(e)` for the profile of confidences over the judgments available to `e`;
 - `EU(e)\in\mathbb R` — the expected utility of committing `e`;
 - `Sup(o)` — factual support: the support family (Definition 12) witnessing discharge of
   obligation `o`;
@@ -105,8 +106,10 @@ There is no well-defined map `f` with `Perm(e)=f(Conf,EU)`.
 #### Proof
 
 Definition 10 reads only obligations, blockers, grants, freshness and binding. Construct
-`e_1,e_2` with identical `Conf` and `EU` differing only in that some `o\in O_h` is
-discharged for `e_1` and undischarged for `e_2` with its evidence unavailable. By
+`e_1,e_2` with `Conf(e_1)=Conf(e_2)` and `EU(e_1)=EU(e_2)`, differing only in that some
+`o\in O_h` is discharged for `e_1` and undischarged for `e_2` because the evidence its
+required judgment type names is unavailable. Unavailable evidence removes a support set,
+not a confidence value, so the confidence profiles remain equal by construction. By
 Definition 10 clause 1, `Perm(e_1)=AUTHORIZED` and `Perm(e_2)=CANNOT\_CHECK`. Both lie in
 the same fibre of `(Conf,EU)`, so `f` is not well defined. `\square`
 
