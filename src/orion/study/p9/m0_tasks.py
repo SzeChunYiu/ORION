@@ -152,10 +152,17 @@ def _context_payload(world: P9StructuralWorld, mode: ViewMode) -> dict[str, obje
 def _candidate_order_key(
     *,
     order_seed: str,
-    semantic_fingerprint: str,
+    visible_view_fingerprint: str,
     candidate_id: str,
 ) -> str:
-    material = f"{order_seed}|{semantic_fingerprint}|{candidate_id}"
+    """Order candidates using only information admitted by the declared view.
+
+    A previous pre-execution design used the full SEMANTIC fingerprint here,
+    which would leak hidden relation/transport/history coordinates into candidate
+    presentation for weaker views.  Protocol V0.1 forbids that side channel.
+    """
+
+    material = f"{order_seed}|{visible_view_fingerprint}|{candidate_id}"
     return sha256(material.encode("utf-8")).hexdigest()
 
 
@@ -167,12 +174,12 @@ def _ordered_candidates(
 ) -> tuple[CandidateInput, ...]:
     if not order_seed:
         raise ValueError("candidate order seed is required")
-    semantic_fingerprint = world.fingerprint(ViewMode.SEMANTIC)
+    visible_view_fingerprint = world.fingerprint(mode)
     mechanics = sorted(
         world.mechanics,
         key=lambda mechanic: _candidate_order_key(
             order_seed=order_seed,
-            semantic_fingerprint=semantic_fingerprint,
+            visible_view_fingerprint=visible_view_fingerprint,
             candidate_id=mechanic.mechanic_id,
         ),
     )
@@ -205,7 +212,7 @@ def build_task(
         task = MechanicRankingTask(
             task_id=content_digest(
                 {
-                    "schema": "P9.MechanicRankingTaskIdentity.v0",
+                    "schema": "P9.MechanicRankingTaskIdentity.v0.1",
                     "semantic_fingerprint": world.fingerprint(ViewMode.SEMANTIC),
                     "mode": mode.value,
                     "order_seed_digest": content_digest(order_seed),
@@ -224,7 +231,7 @@ def build_task(
         task = GluingTask(
             task_id=content_digest(
                 {
-                    "schema": "P9.GluingTaskIdentity.v0",
+                    "schema": "P9.GluingTaskIdentity.v0.1",
                     "semantic_fingerprint": world.fingerprint(ViewMode.SEMANTIC),
                     "mode": mode.value,
                 }
