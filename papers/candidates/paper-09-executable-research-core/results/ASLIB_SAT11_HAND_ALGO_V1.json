@@ -1,0 +1,974 @@
+{
+  "algorithms": [
+    "CryptoMiniSat_Strange-Night2-st_fixed_",
+    "MPhaseSAT_2011-02-15",
+    "PicoSAT_941",
+    "QuteRSat_2011-05-12_fixed_",
+    "RestartSAT_B95",
+    "SAT07referencesolverminisat_SAT2007",
+    "SAT09referencesolverclasp_1.2.0-SAT09-32",
+    "SApperloT2010_2011-05-15_fixed_",
+    "Sol_2011-04-04",
+    "clasp_2.0-R4092-crafted",
+    "glucose_2",
+    "jMiniSat_2011",
+    "sathys_2011-04-01",
+    "sattime+_2011-03-02",
+    "sattime_2011-03-02"
+  ],
+  "bootstrap_95_percent_intervals": {
+    "FAILURE_AWARE_RF": {
+      "abstention_precision_vbs_unsolved": [
+        0.7419354838709677,
+        0.9206349206349206
+      ],
+      "abstention_recall_vbs_unsolved": [
+        0.6111111111111112,
+        0.8133333333333334
+      ],
+      "attempt_coverage": [
+        0.7297297297297297,
+        0.8243243243243243
+      ],
+      "attempt_rate_vbs_unsolved": [
+        0.18666666666666668,
+        0.3888888888888889
+      ],
+      "mean_par10": [
+        15570.519111571284,
+        20911.60842553049
+      ],
+      "mean_par10_regret_vs_vbs": [
+        3283.644844076689,
+        6562.978665230321
+      ],
+      "solve_rate": [
+        0.5878378378378378,
+        0.6959459459459459
+      ]
+    },
+    "FAILURE_MEMORY_KNN": {
+      "abstention_precision_vbs_unsolved": [
+        0.6666666666666666,
+        0.9583333333333334
+      ],
+      "abstention_recall_vbs_unsolved": [
+        0.2,
+        0.40450107009095765
+      ],
+      "attempt_coverage": [
+        0.8716216216216216,
+        0.9358108108108109
+      ],
+      "attempt_rate_vbs_unsolved": [
+        0.5954989299090423,
+        0.8
+      ],
+      "mean_par10": [
+        14939.56549612331,
+        20229.738885635637
+      ],
+      "mean_par10_regret_vs_vbs": [
+        2730.601070383699,
+        5785.851450094256
+      ],
+      "solve_rate": [
+        0.6013513513513513,
+        0.7094594594594594
+      ]
+    },
+    "RF_ROUTER": {
+      "abstention_precision_vbs_unsolved": null,
+      "abstention_recall_vbs_unsolved": [
+        0.0,
+        0.0
+      ],
+      "attempt_coverage": [
+        1.0,
+        1.0
+      ],
+      "attempt_rate_vbs_unsolved": [
+        1.0,
+        1.0
+      ],
+      "mean_par10": [
+        14466.74553919654,
+        19712.184788411403
+      ],
+      "mean_par10_regret_vs_vbs": [
+        2322.8507579862335,
+        5200.860124427449
+      ],
+      "solve_rate": [
+        0.6114864864864865,
+        0.7162162162162162
+      ]
+    },
+    "SBS": {
+      "abstention_precision_vbs_unsolved": null,
+      "abstention_recall_vbs_unsolved": [
+        0.0,
+        0.0
+      ],
+      "attempt_coverage": [
+        1.0,
+        1.0
+      ],
+      "attempt_rate_vbs_unsolved": [
+        1.0,
+        1.0
+      ],
+      "mean_par10": [
+        23395.686318478463,
+        28905.912472912332
+      ],
+      "mean_par10_regret_vs_vbs": [
+        10382.260086602533,
+        15291.431684789526
+      ],
+      "solve_rate": [
+        0.43243243243243246,
+        0.543918918918919
+      ]
+    },
+    "VBS": {
+      "abstention_precision_vbs_unsolved": null,
+      "abstention_recall_vbs_unsolved": [
+        0.0,
+        0.0
+      ],
+      "attempt_coverage": [
+        1.0,
+        1.0
+      ],
+      "attempt_rate_vbs_unsolved": [
+        1.0,
+        1.0
+      ],
+      "mean_par10": [
+        10932.276150291724,
+        15847.121508326773
+      ],
+      "mean_par10_regret_vs_vbs": [
+        0.0,
+        0.0
+      ],
+      "solve_rate": [
+        0.6891891891891891,
+        0.7905405405405406
+      ]
+    }
+  },
+  "disposition": "PENDING_NEAREST_WORK_AND_OWNERSHIP_REVIEW",
+  "environment": {
+    "numpy": "2.4.4",
+    "python": "3.12.13",
+    "scikit_learn": "1.8.0"
+  },
+  "fold_receipts": [
+    {
+      "failure_aware_threshold": 0.4,
+      "outer_fold": 1,
+      "sbs_solver": "clasp_2.0-R4092-crafted",
+      "test_instances": 30,
+      "threshold_selection": {
+        "candidates": [
+          {
+            "qualifies": true,
+            "rf_solved_retained": 1.0,
+            "threshold": 0.1,
+            "vbs_unsolved_attempt_reduction": 0.24285714285714285
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 1.0,
+            "threshold": 0.2,
+            "vbs_unsolved_attempt_reduction": 0.44285714285714284
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9940476190476191,
+            "threshold": 0.3,
+            "vbs_unsolved_attempt_reduction": 0.6
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9821428571428571,
+            "threshold": 0.4,
+            "vbs_unsolved_attempt_reduction": 0.7
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.9464285714285714,
+            "threshold": 0.5,
+            "vbs_unsolved_attempt_reduction": 0.7428571428571429
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.9166666666666666,
+            "threshold": 0.6,
+            "vbs_unsolved_attempt_reduction": 0.8285714285714286
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.8035714285714286,
+            "threshold": 0.7,
+            "vbs_unsolved_attempt_reduction": 0.8428571428571429
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.6428571428571429,
+            "threshold": 0.8,
+            "vbs_unsolved_attempt_reduction": 0.8857142857142857
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.35714285714285715,
+            "threshold": 0.9,
+            "vbs_unsolved_attempt_reduction": 0.9714285714285714
+          }
+        ],
+        "constraint_miss": false,
+        "selected": {
+          "qualifies": true,
+          "rf_solved_retained": 0.9821428571428571,
+          "threshold": 0.4,
+          "vbs_unsolved_attempt_reduction": 0.7
+        }
+      },
+      "train_instances": 266
+    },
+    {
+      "failure_aware_threshold": 0.5,
+      "outer_fold": 2,
+      "sbs_solver": "SAT09referencesolverclasp_1.2.0-SAT09-32",
+      "test_instances": 29,
+      "threshold_selection": {
+        "candidates": [
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9942196531791907,
+            "threshold": 0.1,
+            "vbs_unsolved_attempt_reduction": 0.17391304347826086
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9942196531791907,
+            "threshold": 0.2,
+            "vbs_unsolved_attempt_reduction": 0.463768115942029
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9884393063583815,
+            "threshold": 0.3,
+            "vbs_unsolved_attempt_reduction": 0.5362318840579711
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.976878612716763,
+            "threshold": 0.4,
+            "vbs_unsolved_attempt_reduction": 0.6376811594202898
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.953757225433526,
+            "threshold": 0.5,
+            "vbs_unsolved_attempt_reduction": 0.7246376811594203
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.8901734104046243,
+            "threshold": 0.6,
+            "vbs_unsolved_attempt_reduction": 0.782608695652174
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.8034682080924855,
+            "threshold": 0.7,
+            "vbs_unsolved_attempt_reduction": 0.8405797101449275
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.6358381502890174,
+            "threshold": 0.8,
+            "vbs_unsolved_attempt_reduction": 0.8695652173913043
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.37572254335260113,
+            "threshold": 0.9,
+            "vbs_unsolved_attempt_reduction": 0.9710144927536232
+          }
+        ],
+        "constraint_miss": false,
+        "selected": {
+          "qualifies": true,
+          "rf_solved_retained": 0.953757225433526,
+          "threshold": 0.5,
+          "vbs_unsolved_attempt_reduction": 0.7246376811594203
+        }
+      },
+      "train_instances": 267
+    },
+    {
+      "failure_aware_threshold": 0.4,
+      "outer_fold": 3,
+      "sbs_solver": "clasp_2.0-R4092-crafted",
+      "test_instances": 30,
+      "threshold_selection": {
+        "candidates": [
+          {
+            "qualifies": true,
+            "rf_solved_retained": 1.0,
+            "threshold": 0.1,
+            "vbs_unsolved_attempt_reduction": 0.28169014084507044
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 1.0,
+            "threshold": 0.2,
+            "vbs_unsolved_attempt_reduction": 0.5070422535211268
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9942196531791907,
+            "threshold": 0.3,
+            "vbs_unsolved_attempt_reduction": 0.5774647887323944
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9653179190751445,
+            "threshold": 0.4,
+            "vbs_unsolved_attempt_reduction": 0.676056338028169
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.9421965317919075,
+            "threshold": 0.5,
+            "vbs_unsolved_attempt_reduction": 0.7323943661971831
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.9017341040462428,
+            "threshold": 0.6,
+            "vbs_unsolved_attempt_reduction": 0.8028169014084507
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.8265895953757225,
+            "threshold": 0.7,
+            "vbs_unsolved_attempt_reduction": 0.8591549295774648
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.5895953757225434,
+            "threshold": 0.8,
+            "vbs_unsolved_attempt_reduction": 0.9154929577464789
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.34104046242774566,
+            "threshold": 0.9,
+            "vbs_unsolved_attempt_reduction": 1.0
+          }
+        ],
+        "constraint_miss": false,
+        "selected": {
+          "qualifies": true,
+          "rf_solved_retained": 0.9653179190751445,
+          "threshold": 0.4,
+          "vbs_unsolved_attempt_reduction": 0.676056338028169
+        }
+      },
+      "train_instances": 266
+    },
+    {
+      "failure_aware_threshold": 0.5,
+      "outer_fold": 4,
+      "sbs_solver": "SAT09referencesolverclasp_1.2.0-SAT09-32",
+      "test_instances": 29,
+      "threshold_selection": {
+        "candidates": [
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9943181818181818,
+            "threshold": 0.1,
+            "vbs_unsolved_attempt_reduction": 0.18571428571428572
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9943181818181818,
+            "threshold": 0.2,
+            "vbs_unsolved_attempt_reduction": 0.44285714285714284
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9886363636363636,
+            "threshold": 0.3,
+            "vbs_unsolved_attempt_reduction": 0.5571428571428572
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9659090909090909,
+            "threshold": 0.4,
+            "vbs_unsolved_attempt_reduction": 0.6428571428571429
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9545454545454546,
+            "threshold": 0.5,
+            "vbs_unsolved_attempt_reduction": 0.7285714285714285
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.8920454545454546,
+            "threshold": 0.6,
+            "vbs_unsolved_attempt_reduction": 0.7857142857142857
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.8011363636363636,
+            "threshold": 0.7,
+            "vbs_unsolved_attempt_reduction": 0.8428571428571429
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.5909090909090909,
+            "threshold": 0.8,
+            "vbs_unsolved_attempt_reduction": 0.8571428571428571
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.32954545454545453,
+            "threshold": 0.9,
+            "vbs_unsolved_attempt_reduction": 1.0
+          }
+        ],
+        "constraint_miss": false,
+        "selected": {
+          "qualifies": true,
+          "rf_solved_retained": 0.9545454545454546,
+          "threshold": 0.5,
+          "vbs_unsolved_attempt_reduction": 0.7285714285714285
+        }
+      },
+      "train_instances": 267
+    },
+    {
+      "failure_aware_threshold": 0.4,
+      "outer_fold": 5,
+      "sbs_solver": "clasp_2.0-R4092-crafted",
+      "test_instances": 30,
+      "threshold_selection": {
+        "candidates": [
+          {
+            "qualifies": true,
+            "rf_solved_retained": 1.0,
+            "threshold": 0.1,
+            "vbs_unsolved_attempt_reduction": 0.1875
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 1.0,
+            "threshold": 0.2,
+            "vbs_unsolved_attempt_reduction": 0.390625
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9884393063583815,
+            "threshold": 0.3,
+            "vbs_unsolved_attempt_reduction": 0.578125
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9710982658959537,
+            "threshold": 0.4,
+            "vbs_unsolved_attempt_reduction": 0.703125
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.9421965317919075,
+            "threshold": 0.5,
+            "vbs_unsolved_attempt_reduction": 0.71875
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.9248554913294798,
+            "threshold": 0.6,
+            "vbs_unsolved_attempt_reduction": 0.828125
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.8497109826589595,
+            "threshold": 0.7,
+            "vbs_unsolved_attempt_reduction": 0.84375
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.6936416184971098,
+            "threshold": 0.8,
+            "vbs_unsolved_attempt_reduction": 0.921875
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.4161849710982659,
+            "threshold": 0.9,
+            "vbs_unsolved_attempt_reduction": 0.953125
+          }
+        ],
+        "constraint_miss": false,
+        "selected": {
+          "qualifies": true,
+          "rf_solved_retained": 0.9710982658959537,
+          "threshold": 0.4,
+          "vbs_unsolved_attempt_reduction": 0.703125
+        }
+      },
+      "train_instances": 266
+    },
+    {
+      "failure_aware_threshold": 0.5,
+      "outer_fold": 6,
+      "sbs_solver": "SAT09referencesolverclasp_1.2.0-SAT09-32",
+      "test_instances": 30,
+      "threshold_selection": {
+        "candidates": [
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9940828402366864,
+            "threshold": 0.1,
+            "vbs_unsolved_attempt_reduction": 0.17391304347826086
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9940828402366864,
+            "threshold": 0.2,
+            "vbs_unsolved_attempt_reduction": 0.43478260869565216
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9881656804733728,
+            "threshold": 0.3,
+            "vbs_unsolved_attempt_reduction": 0.5942028985507246
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9763313609467456,
+            "threshold": 0.4,
+            "vbs_unsolved_attempt_reduction": 0.6956521739130435
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9585798816568047,
+            "threshold": 0.5,
+            "vbs_unsolved_attempt_reduction": 0.7536231884057971
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.9171597633136095,
+            "threshold": 0.6,
+            "vbs_unsolved_attempt_reduction": 0.8260869565217391
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.8402366863905325,
+            "threshold": 0.7,
+            "vbs_unsolved_attempt_reduction": 0.8695652173913043
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.6331360946745562,
+            "threshold": 0.8,
+            "vbs_unsolved_attempt_reduction": 0.8840579710144928
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.39644970414201186,
+            "threshold": 0.9,
+            "vbs_unsolved_attempt_reduction": 0.9855072463768116
+          }
+        ],
+        "constraint_miss": false,
+        "selected": {
+          "qualifies": true,
+          "rf_solved_retained": 0.9585798816568047,
+          "threshold": 0.5,
+          "vbs_unsolved_attempt_reduction": 0.7536231884057971
+        }
+      },
+      "train_instances": 266
+    },
+    {
+      "failure_aware_threshold": 0.5,
+      "outer_fold": 7,
+      "sbs_solver": "SAT09referencesolverclasp_1.2.0-SAT09-32",
+      "test_instances": 30,
+      "threshold_selection": {
+        "candidates": [
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9939759036144579,
+            "threshold": 0.1,
+            "vbs_unsolved_attempt_reduction": 0.2191780821917808
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9939759036144579,
+            "threshold": 0.2,
+            "vbs_unsolved_attempt_reduction": 0.4931506849315068
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9879518072289156,
+            "threshold": 0.3,
+            "vbs_unsolved_attempt_reduction": 0.589041095890411
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9819277108433735,
+            "threshold": 0.4,
+            "vbs_unsolved_attempt_reduction": 0.6712328767123288
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9578313253012049,
+            "threshold": 0.5,
+            "vbs_unsolved_attempt_reduction": 0.7397260273972602
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.927710843373494,
+            "threshold": 0.6,
+            "vbs_unsolved_attempt_reduction": 0.7945205479452054
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.8313253012048193,
+            "threshold": 0.7,
+            "vbs_unsolved_attempt_reduction": 0.863013698630137
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.6626506024096386,
+            "threshold": 0.8,
+            "vbs_unsolved_attempt_reduction": 0.9315068493150684
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.3855421686746988,
+            "threshold": 0.9,
+            "vbs_unsolved_attempt_reduction": 1.0
+          }
+        ],
+        "constraint_miss": false,
+        "selected": {
+          "qualifies": true,
+          "rf_solved_retained": 0.9578313253012049,
+          "threshold": 0.5,
+          "vbs_unsolved_attempt_reduction": 0.7397260273972602
+        }
+      },
+      "train_instances": 266
+    },
+    {
+      "failure_aware_threshold": 0.4,
+      "outer_fold": 8,
+      "sbs_solver": "clasp_2.0-R4092-crafted",
+      "test_instances": 30,
+      "threshold_selection": {
+        "candidates": [
+          {
+            "qualifies": true,
+            "rf_solved_retained": 1.0,
+            "threshold": 0.1,
+            "vbs_unsolved_attempt_reduction": 0.15942028985507245
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 1.0,
+            "threshold": 0.2,
+            "vbs_unsolved_attempt_reduction": 0.5072463768115942
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9941520467836257,
+            "threshold": 0.3,
+            "vbs_unsolved_attempt_reduction": 0.5362318840579711
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9649122807017544,
+            "threshold": 0.4,
+            "vbs_unsolved_attempt_reduction": 0.6521739130434783
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.9415204678362573,
+            "threshold": 0.5,
+            "vbs_unsolved_attempt_reduction": 0.7246376811594203
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.9005847953216374,
+            "threshold": 0.6,
+            "vbs_unsolved_attempt_reduction": 0.7681159420289855
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.8245614035087719,
+            "threshold": 0.7,
+            "vbs_unsolved_attempt_reduction": 0.8260869565217391
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.6081871345029239,
+            "threshold": 0.8,
+            "vbs_unsolved_attempt_reduction": 0.9130434782608695
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.38011695906432746,
+            "threshold": 0.9,
+            "vbs_unsolved_attempt_reduction": 1.0
+          }
+        ],
+        "constraint_miss": false,
+        "selected": {
+          "qualifies": true,
+          "rf_solved_retained": 0.9649122807017544,
+          "threshold": 0.4,
+          "vbs_unsolved_attempt_reduction": 0.6521739130434783
+        }
+      },
+      "train_instances": 266
+    },
+    {
+      "failure_aware_threshold": 0.5,
+      "outer_fold": 9,
+      "sbs_solver": "SAT09referencesolverclasp_1.2.0-SAT09-32",
+      "test_instances": 29,
+      "threshold_selection": {
+        "candidates": [
+          {
+            "qualifies": true,
+            "rf_solved_retained": 1.0,
+            "threshold": 0.1,
+            "vbs_unsolved_attempt_reduction": 0.15714285714285714
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 1.0,
+            "threshold": 0.2,
+            "vbs_unsolved_attempt_reduction": 0.4714285714285714
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 1.0,
+            "threshold": 0.3,
+            "vbs_unsolved_attempt_reduction": 0.5571428571428572
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9767441860465116,
+            "threshold": 0.4,
+            "vbs_unsolved_attempt_reduction": 0.6714285714285714
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9593023255813954,
+            "threshold": 0.5,
+            "vbs_unsolved_attempt_reduction": 0.7285714285714285
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.9244186046511628,
+            "threshold": 0.6,
+            "vbs_unsolved_attempt_reduction": 0.8142857142857143
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.8313953488372093,
+            "threshold": 0.7,
+            "vbs_unsolved_attempt_reduction": 0.8571428571428571
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.6511627906976745,
+            "threshold": 0.8,
+            "vbs_unsolved_attempt_reduction": 0.9
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.37790697674418605,
+            "threshold": 0.9,
+            "vbs_unsolved_attempt_reduction": 0.9857142857142858
+          }
+        ],
+        "constraint_miss": false,
+        "selected": {
+          "qualifies": true,
+          "rf_solved_retained": 0.9593023255813954,
+          "threshold": 0.5,
+          "vbs_unsolved_attempt_reduction": 0.7285714285714285
+        }
+      },
+      "train_instances": 267
+    },
+    {
+      "failure_aware_threshold": 0.4,
+      "outer_fold": 10,
+      "sbs_solver": "SAT09referencesolverclasp_1.2.0-SAT09-32",
+      "test_instances": 29,
+      "threshold_selection": {
+        "candidates": [
+          {
+            "qualifies": true,
+            "rf_solved_retained": 1.0,
+            "threshold": 0.1,
+            "vbs_unsolved_attempt_reduction": 0.1323529411764706
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9941176470588236,
+            "threshold": 0.2,
+            "vbs_unsolved_attempt_reduction": 0.4117647058823529
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9882352941176471,
+            "threshold": 0.3,
+            "vbs_unsolved_attempt_reduction": 0.5735294117647058
+          },
+          {
+            "qualifies": true,
+            "rf_solved_retained": 0.9705882352941176,
+            "threshold": 0.4,
+            "vbs_unsolved_attempt_reduction": 0.6764705882352942
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.9411764705882353,
+            "threshold": 0.5,
+            "vbs_unsolved_attempt_reduction": 0.7058823529411765
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.888235294117647,
+            "threshold": 0.6,
+            "vbs_unsolved_attempt_reduction": 0.7647058823529411
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.8176470588235294,
+            "threshold": 0.7,
+            "vbs_unsolved_attempt_reduction": 0.8235294117647058
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.6294117647058823,
+            "threshold": 0.8,
+            "vbs_unsolved_attempt_reduction": 0.9117647058823529
+          },
+          {
+            "qualifies": false,
+            "rf_solved_retained": 0.37058823529411766,
+            "threshold": 0.9,
+            "vbs_unsolved_attempt_reduction": 1.0
+          }
+        ],
+        "constraint_miss": false,
+        "selected": {
+          "qualifies": true,
+          "rf_solved_retained": 0.9705882352941176,
+          "threshold": 0.4,
+          "vbs_unsolved_attempt_reduction": 0.6764705882352942
+        }
+      },
+      "train_instances": 267
+    }
+  ],
+  "input_sha256": {
+    "algorithm_runs.arff": "a34fb8d2c6f389b095aebc90f1faeaaee809c8a55212fad770df368a07babfa0",
+    "citation.bib": "ffb9ad24707ca17f81c96f3e2f08d66b922c5e5fdfd0fd0b40738ce6769e3b0e",
+    "cv.arff": "3896fef81ee8c90c21a8963531c96fabd3cecf84c7238bb81444ef709def2414",
+    "description.txt": "8631ec532f65f3a1af39706b36e63fe6c3d5279e6f039d9ff6c84bd617de0907",
+    "feature_values.arff": "42084d51566aff75e9fedec7def8991718ce933ef0b10108cea60cdba7b15157",
+    "readme.txt": "182e2874eac98ff344532306fb5794f96cbfd4a153c1a88127144f9f83bc1b1c"
+  },
+  "metrics": {
+    "FAILURE_AWARE_RF": {
+      "abstention_precision_vbs_unsolved": 0.8333333333333334,
+      "abstention_recall_vbs_unsolved": 0.7142857142857143,
+      "attempt_coverage": 0.777027027027027,
+      "attempt_rate_vbs_unsolved": 0.2857142857142857,
+      "mean_par10": 18226.499377787164,
+      "mean_par10_regret_vs_vbs": 4865.835439216216,
+      "solve_rate": 0.6418918918918919
+    },
+    "FAILURE_MEMORY_KNN": {
+      "abstention_precision_vbs_unsolved": 0.8214285714285714,
+      "abstention_recall_vbs_unsolved": 0.2987012987012987,
+      "attempt_coverage": 0.9054054054054054,
+      "attempt_rate_vbs_unsolved": 0.7012987012987013,
+      "mean_par10": 17564.731708054052,
+      "mean_par10_regret_vs_vbs": 4204.067769483108,
+      "solve_rate": 0.6554054054054054
+    },
+    "RF_ROUTER": {
+      "abstention_precision_vbs_unsolved": null,
+      "abstention_recall_vbs_unsolved": 0.0,
+      "attempt_coverage": 1.0,
+      "attempt_rate_vbs_unsolved": 1.0,
+      "mean_par10": 17057.97618420608,
+      "mean_par10_regret_vs_vbs": 3697.312245635135,
+      "solve_rate": 0.6655405405405406
+    },
+    "SBS": {
+      "abstention_precision_vbs_unsolved": null,
+      "abstention_recall_vbs_unsolved": 0.0,
+      "attempt_coverage": 1.0,
+      "attempt_rate_vbs_unsolved": 1.0,
+      "mean_par10": 26188.08828200338,
+      "mean_par10_regret_vs_vbs": 12827.424343432433,
+      "solve_rate": 0.4864864864864865
+    },
+    "VBS": {
+      "abstention_precision_vbs_unsolved": null,
+      "abstention_recall_vbs_unsolved": 0.0,
+      "attempt_coverage": 1.0,
+      "attempt_rate_vbs_unsolved": 1.0,
+      "mean_par10": 13360.663938570948,
+      "mean_par10_regret_vs_vbs": 0.0,
+      "solve_rate": 0.7398648648648649
+    }
+  },
+  "numerical_standalone_gate": {
+    "note": "The protocol also requires a literature/ownership residual; this numerical result alone cannot keep P9 standalone.",
+    "passes": true,
+    "required_attempt_reduction": 0.2,
+    "required_rf_solved_retention": 0.95,
+    "requires_interval_excluding_zero": true
+  },
+  "population": {
+    "algorithms": 15,
+    "features": 115,
+    "instances": 296,
+    "outer_folds": 10,
+    "vbs_unsolved_instances": 77
+  },
+  "primary_comparison": {
+    "estimate": 0.7142857142857143,
+    "failure_aware_rf_solved_instances": 190,
+    "metric": "absolute reduction in attempt rate on VBS-unsolved instances: FAILURE_AWARE_RF versus RF_ROUTER",
+    "paired_bootstrap_95_percent_interval": [
+      0.6103896103896104,
+      0.8181818181818182
+    ],
+    "resamples": 10000,
+    "rf_solved_instances": 197,
+    "rf_solved_retention": 0.9644670050761421
+  },
+  "protocol_sha256": "4193506a7f25d512c59bad774fd9813e30f002e68456d5a7bf3b0b66601aefa3",
+  "schema": "P9AslibSat11Result.v1",
+  "source_commit": "551b22beef8df17de59286b4822ef720e0aa4d6f"
+}
