@@ -88,6 +88,21 @@ FALSIFIERS = {
     for candidate_id in CANDIDATE_DIRS
 }
 
+#: Files one candidate owns that live outside its own directory.
+#:
+#: `SHARED_SUBJECT` is the wrong home for these: everything in it is bound into all
+#: three packages, so putting a P8-only test there would bind it into P6 and P7 and
+#: make their manifests claim a subject they do not have.
+#:
+#: P8's `REPRODUCE` prose tells a reader to run `test_p8_formal_core_primitives.py`,
+#: which lives under `tests/unit/candidates/` because that is where the suite
+#: collects from. Naming a file in reproduction instructions without binding it means
+#: the file can change while the binding still verifies -- the reader runs something
+#: other than what was bound, and nothing says so. The checker caught exactly that.
+CANDIDATE_SUBJECT: dict[str, tuple[Path, ...]] = {
+    "P8": (Path("tests/unit/candidates/test_p8_formal_core_primitives.py"),),
+}
+
 CLAIM_SCOPE = (
     "Binds the bytes of one candidate package and names the commit they were "
     "read at. Not a readiness verdict, not novelty or claim authority, and not "
@@ -287,7 +302,11 @@ def bound_paths(repo_root: Path, candidate_id: str) -> list[str]:
     # yet, and enumerating only what is on disk would omit it from its own set,
     # so the next `--check` would report drift against a tree nobody touched.
     paths.add((CANDIDATE_DIRS[candidate_id] / MANIFEST_NAME).as_posix())
-    for shared in (*SHARED_SUBJECT, FALSIFIERS[candidate_id]):
+    for shared in (
+        *SHARED_SUBJECT,
+        FALSIFIERS[candidate_id],
+        *CANDIDATE_SUBJECT.get(candidate_id, ()),
+    ):
         if (repo_root / shared).is_file():
             paths.add(shared.as_posix())
     programme = parse_package_declaration(repo_root)[PROGRAMME_SECTION]

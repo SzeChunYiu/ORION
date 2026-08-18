@@ -15,7 +15,9 @@ from typing import Any
 
 from orion.self_orion.phase3_preflight import (
     HOSTILE_ATTACK_IDS,
+    MOTIVATING_DEFECT_REFERENCE,
     PHASE3_PROTOCOL_ID,
+    PHASE3_PROTOCOL_INVARIANTS,
     PHASE3_PROTOCOL_VERSION,
     UNBOUND_DIGEST,
     UNBOUND_IDENTITY,
@@ -141,6 +143,8 @@ def phase3_protocol_freeze_to_dict(freeze: Phase3ProtocolFreeze) -> dict[str, ob
             "grants_phase_transition": boundary.grants_phase_transition,
         },
         "hostile_attack_ids": list(HOSTILE_ATTACK_IDS),
+        "protocol_invariants": [item.value for item in PHASE3_PROTOCOL_INVARIANTS],
+        "motivating_defect_reference": MOTIVATING_DEFECT_REFERENCE,
     }
 
 
