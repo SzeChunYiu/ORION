@@ -41,6 +41,18 @@ def visible_words(s: str) -> list[str]:
     return re.findall(r"[A-Za-z0-9][A-Za-z0-9'’-]*", s)
 
 
+def check_citation_closure(s: str, path: Path) -> None:
+    bibkeys = re.findall(r"\\bibitem\{([^}]+)\}", s)
+    require(len(bibkeys) == len(set(bibkeys)), f"duplicate bibliography key in {path}")
+    require(bibkeys, f"empty bibliography in {path}")
+
+    cited: set[str] = set()
+    for group in re.findall(r"\\cite\{([^}]+)\}", s):
+        cited.update(k.strip() for k in group.split(",") if k.strip())
+    missing = sorted(cited.difference(bibkeys))
+    require(not missing, f"citation keys missing from bibliography in {path}: {missing}")
+
+
 def check_tex(path: Path, *, jaamas: bool = False) -> None:
     s = text(path)
     lower = s.lower()
@@ -55,6 +67,7 @@ def check_tex(path: Path, *, jaamas: bool = False) -> None:
     require("\\section{conclusion}" in lower, f"Conclusion missing: {path}")
     require("\\begin{thebibliography}" in s, f"reference list missing: {path}")
     require("\\bibitem{" in s and "\\cite{" in s, f"in-text/reference citations missing: {path}")
+    check_citation_closure(s, path)
     require("chatgpt" in lower and "openai" in lower, f"AI-use disclosure missing: {path}")
     require("stockholm university" in lower and "sze-chun.yiu@fysik.su.se" in lower,
             f"author/corresponding metadata missing: {path}")
