@@ -1,6 +1,43 @@
 # P8 candidate journal-readiness plan — A Theory of Epistemic Authority for Autonomous Science
 
-**Current terminal:** `CANNOT_CHECK` / not a promoted paper / not peer-review ready.
+**Current terminal:** computed per commit, not asserted here. See
+`../PEER_REVIEW_READY_PACKAGE.md`, which defines
+
+```text
+PEER_REVIEW_READY := p6-p8-candidate-ci == success AND ci == success
+                     on one immutable head
+```
+
+This line previously read `CANNOT_CHECK / not a promoted paper / not peer-review
+ready`. That was written before the submission package existed and had gone
+stale: it contradicted `JOURNAL_READINESS_V2_1.md`, which already deferred to the
+computed terminal, so the two files in this directory disagreed about P8.
+
+It is deliberately **not** replaced with `PEER_REVIEW_READY`. The package file
+states that it does not hard-code a claim that could become stale after a content
+edit, and writing a terminal into this file would reintroduce the staleness being
+removed. What follows is the last observation, not a standing claim.
+
+**Last observed on `2f701036`** (merge of #402 into `main`):
+
+| predicate | result |
+|---|---|
+| `p6-p8-candidate-ci` | success |
+| `ci` | success |
+
+The candidate workflow's four required steps all passed on that head: *Theory and
+live-embedding gate*, *Peer-review submission gate*, *Build and audit submission
+PDFs*, *Archive audited submission PDFs*. The PDF step compiled
+`submission/JAAMAS_MANUSCRIPT.tex` with `latexmk` and rejected no overfull box, undefined
+reference or undefined citation.
+
+Any commit after `2f701036` — including the one carrying this sentence — has to be
+re-evaluated against the same two predicates. That is the point of computing the
+terminal rather than storing it.
+
+**Not claimed:** `PEER_REVIEW_READY` means ready for external editorial and
+referee evaluation. It does not mean `PEER_REVIEWED`, `ACCEPTED`,
+`FLAGSHIP_PROMOTED`, or empirically superior to any baseline.
 
 ## 0. Earned local package state — 2026-08-17 wide pass
 
