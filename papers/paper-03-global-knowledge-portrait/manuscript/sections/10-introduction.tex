@@ -1,92 +1,86 @@
-% Introduction: problem statement, motivation, and contribution for ORION Paper III.
-The global scientific literature is increasingly fragmented across
-disciplines, each with its own terminology, measurement practices, and
-epistemic norms. Integrating claims from diverse sources into a coherent
-body of knowledge is a central challenge for scientific knowledge
-representation, literature-based discovery, and cross-domain synthesis.
-
-Consider a simple example: two papers both mention ``zebrafish.'' One uses
-it as a model organism in developmental biology; the other studies it as an
-invasive species in ecology. The surface term is the same, but the referent
-is different --- a scientific knowledge integrator that treats them as the
-same entity silently produces a false merge. Conversely, two papers in
-different subfields may use different terms (``evaluative conditioning''
-and ``affective priming'') to refer to the same underlying construct. A
-system that fails to recognize this equivalence produces a false split,
-missing the connection.
-
-These are not edge cases. They are the normal state of cross-domain
-scientific knowledge. The problem is that current integration approaches
---- whether based on long-context synthesis, retrieval-augmented generation
-(RAG), or schema fusion --- lack a principled representation of what exactly
-is being compared. They conflate referent identity, construct identity,
-measurement/operationalization equivalence, temporal context, modality, and
-attribution into a single similarity or alignment score.
+% Introduction: scoped problem statement and bounded contribution for ORION Paper III.
+Scientific claims are distributed across disciplines, each with its own
+terminology, measurement practices, contexts, and representational choices.
+A global synthesis can therefore fail even when every local statement is
+individually well formed: identical surface terms can refer to different
+objects, different labels can denote compatible objects, and apparently
+contradictory claims can differ only in modality, attribution, or context.
+The central problem of this paper is not retrieval itself, but the authority
+to identify two already-structured scientific representations as one global
+statement.
 
 \subsection{The proposal in brief}
 
-ORION Paper III proposes a \emph{recoverable global knowledge portrait}
-built from \emph{source-local scientific projections}. Rather than
-extracting facts into a canonical knowledge graph, ORION retains each
-source's claim as a projection bound to its exact provenance, with
-separately represented coordinates for referent, construct, measurement,
-context, polarity, modality, and attribution. A proposed mapping between
-two projections is not a generic similarity score but a typed assertion
-that may target specific coordinates. When all relevant coordinates are
-compatible, projections may be \textsc{glue}d into a unified chart. When
-they are not, the correct output is a \emph{typed obstruction} or
-\emph{plural portrait} --- an informative representation of
-incompatibility.
+ORION Paper III represents each source as a \emph{source-local scientific
+projection} bound to its provenance. A proposed cross-source mapping records
+scientific coordinates such as referent, construct, measurement,
+context, polarity, modality, and attribution separately rather than reducing
+them to one similarity score. When the coordinates required by the claim are
+compatible, the projections may be \textsc{glue}d. When a load-bearing
+coordinate is incompatible or unresolved, the mapping remains a typed
+\emph{obstruction} or plural view rather than being forced into a canonical
+merge.
 
-The key claim is that this architecture measurably reduces false
-integration --- the erroneous merging of claims that should not be
-merged --- while preserving useful synthesis. We test this claim through a
-frozen, independently annotated gold dataset spanning four disciplines
-(biomedicine, physics, social science, climate science) and eight case
-families designed to stress specific failure modes.
+This paper evaluates that mapping rule at the layer for which external
+evidence currently exists. The initial public-reference study contains 32
+already-structured cases derived from pinned external sources. A second,
+disjoint 32-case holdout was selected and execution-frozen before its system
+outputs, including its exact gold hash, source revisions, evaluator code,
+bootstrap seed, margins, and pass rule. On that confirmatory holdout, ORION
+produced zero false merges versus 0.1875 for flat predicate canonicalization;
+the paired difference was $-0.1875$ with a 95\% bootstrap interval of
+$[-0.34375,-0.0625]$. The false-split difference versus an exact-coordinate
+conservative control was $0.000$ with interval $[0.000,0.000]$, satisfying the
+predeclared confirmatory rule.
+
+The evidence is intentionally narrower than the full Global Knowledge
+Portrait programme. It does not establish raw-text extraction superiority,
+expert eight-family construct validity, reader-level recoverability of a
+generated portrait, downstream scientific-answer improvement, or necessity
+of every semantic coordinate. Those are follow-up claims and remain
+\conststatus{} rather than being inferred from the mapping result.
 
 \subsection{Claims and non-claims}
 
-To bound the novelty space, we explicitly absorb the following as
-established prior work rather than claimed contributions:
+The paper absorbs the following mechanism families as prior work rather than
+claiming them independently:
 
 \begin{itemize}
-    \item Source-grounded cross-domain structured knowledge extraction
-          (MUSE~\cite{muse2026}, Discovery Engine~\cite{discoveryEngine2025})
-    \item Multidisciplinary expert scientific-process schemas
-          (SciSchema.org~\cite{scischema2026})
-    \item Evidence-linked schema induction and fusion
-          (SCOPE/SCION~\cite{scopes2026})
-    \item Provenance-aware multi-source knowledge integration
-          (Executable Schema Contracts~\cite{schemaContracts2026})
-    \item Scientific entity/relation extraction and discourse parsing
-          (SciER~\cite{scier2024})
-    \item Ontology and schema alignment~\cite{euzenat2007ontology}
-    \item Entity resolution, data integration, and record linkage
-          \cite{oh2017unified,liu2022scholar}
-    \item Contradiction and stance detection
-          \cite{raghunathan2022stance}
-    \item Literature-based discovery~\cite{swanson1986}
-    \item Scientific pluralism in philosophy of science
-          \cite{kellert2006,cartwright1999,chang2012}
-    \item LLM-based structured knowledge representation
-          \cite{openScholar2024,biosage2025,llmatch2025,adias2026}
+    \item source-grounded scientific structure extraction and knowledge
+          assembly (MUSE~\cite{muse2026}, Discovery Engine~\cite{discoveryEngine2025});
+    \item multidisciplinary scientific schemas (SciSchema.org~\cite{scischema2026});
+    \item evidence-linked schema induction and fusion
+          (SCOPE/SCION~\cite{scopes2026});
+    \item provenance-aware schema-conditioned integration and retrieval
+          (Executable Schema Contracts~\cite{schemaContracts2026});
+    \item scientific entity/relation extraction (SciER~\cite{scier2024});
+    \item ontology and schema alignment
+          (Ontology Matching~\cite{euzenat2007ontology}, LLMATCH~\cite{llmatch2025});
+    \item heterogeneous knowledge-graph construction, entity resolution,
+          fusion, and provenance~\cite{hofer2024kgconstruction,verma2023scholarlykg};
+    \item stance and claim-comparison methods~\cite{hardalov2022stance};
+    \item literature-based discovery~\cite{swanson1986,swanson1997interactive};
+    \item scientific pluralism~\cite{kellert2006,cartwright1999};
+    \item retrieval-augmented scientific synthesis and cross-domain agent
+          orchestration~\cite{openScholar2024,biosage2025}.
 \end{itemize}
 
-The surviving residual is the claim that \emph{typed coordinate
-distinctions, conditional \textsc{glue} with obstruction, recoverability,
-and the W effect jointly produce a measurable reduction in false
-integration} compared with the strongest flat integration baseline. This
-is a narrow, falsifiable claim that the gold study is designed to test.
+The surviving scoped empirical claim is P3.C5: for the frozen
+public-reference mapping task, explicit scientific-coordinate conditions plus
+an obstruction state reduce false merges relative to flat predicate
+canonicalization while satisfying the predeclared false-split guard. The
+initial 32 cases are not pooled into the confirmatory verdict. Zero-effect
+coordinate ablations are retained as limitations, not interpreted as proof
+that those coordinates are unnecessary.
 
 \subsection{Structure of the paper}
 
-Section~\ref{sec:related} situates the proposal within the absorbed
-literature. Section~\ref{sec:method} provides formal definitions of the
-key concepts. Section~\ref{sec:dataset} describes the gold dataset and
-annotation protocol. Section~\ref{sec:eval} specifies the evaluation
-design, baselines, ablations, and hypotheses. Section~\ref{sec:results}
-reports results (currently \conststatus{}). Section~\ref{sec:limitations}
-discusses limitations and reproducibility. Section~\ref{sec:conclusion}
-concludes.
+Section~\ref{sec:related} establishes the absorbed prior-work boundary.
+Section~\ref{sec:method} defines source projections, mappings, \textsc{glue},
+and obstruction. Section~\ref{sec:dataset} describes the two public-reference
+mapping datasets and their provenance. Section~\ref{sec:eval} records the
+prospective confirmatory design and controls. Section~\ref{sec:results}
+reports the frozen result and ablations. Section~\ref{sec:limitations}
+separates the supported mapping claim from the broader unexecuted programme,
+and Section~\ref{sec:conclusion} states the bounded conclusion.
 \endinput
