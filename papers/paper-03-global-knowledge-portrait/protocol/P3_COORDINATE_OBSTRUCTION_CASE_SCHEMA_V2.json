@@ -1,0 +1,87 @@
+{
+  "$id": "orion.p3.coordinate-obstruction-case.v2",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "arity": {
+      "enum": [
+        "pair",
+        "triple"
+      ]
+    },
+    "cannot_check_reason": {
+      "type": "string"
+    },
+    "expected_integration": {
+      "enum": [
+        "GLUE",
+        "OBSTRUCTION",
+        "UNRESOLVED",
+        null
+      ],
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "family": {
+      "enum": [
+        "REFERENT_IDENTITY",
+        "CONSTRUCT_IDENTITY",
+        "MEASUREMENT_OPERATIONALIZATION",
+        "TEMPORAL_STATE_CONTEXT",
+        "MODALITY_POLARITY_ATTRIBUTION",
+        "REPRESENTATION_TRANSFORM",
+        "PLURALISM_OBSTRUCTION",
+        "UNRESOLVED"
+      ]
+    },
+    "fixture_id": {
+      "type": "string"
+    },
+    "gold_authority": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "gold_status": {
+      "const": "CANNOT_CHECK"
+    },
+    "held_constant": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "llm_gold_forbidden": {
+      "const": true
+    },
+    "pair_kind": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "orion.p3.coordinate-obstruction-case.v2"
+    },
+    "v1_confirmatory_exemplars": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "varied_coordinate": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "fixture_id",
+    "family",
+    "pair_kind",
+    "gold_status",
+    "expected_integration",
+    "llm_gold_forbidden"
+  ],
+  "title": "ORION-P3 coordinate-obstruction V2 case fixture",
+  "type": "object"
+}

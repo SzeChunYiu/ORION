@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.research-revival.programme-tracker.v1",
+  "title": "ORION Research Revival Programme Tracker V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "parent_issue",
+    "programme_status",
+    "authority",
+    "scientific_children_complete",
+    "scientific_children_total",
+    "claims_children_done",
+    "children"
+  ],
+  "properties": {
+    "schema_version": {"const": "orion.research-revival.programme-tracker.v1"},
+    "parent_issue": {"const": 284},
+    "programme_status": {"enum": ["SCAFFOLDING_ONLY", "IN_PROGRESS", "CLOSED"]},
+    "authority": {"const": "PROGRAMME_INFRASTRUCTURE_ONLY"},
+    "scientific_children_complete": {"type": "integer", "minimum": 0, "maximum": 10},
+    "scientific_children_total": {"const": 10},
+    "claims_children_done": {"const": false},
+    "notes": {"type": "string"},
+    "children": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {"$ref": "#/$defs/child"}
+    }
+  },
+  "$defs": {
+    "child": {
+      "type": "object",
+      "required": [
+        "issue",
+        "paper",
+        "title",
+        "current_state",
+        "allowed_terminals",
+        "scientific_terminal_reached",
+        "engineering_complete_counts_as_scientific",
+        "claimed_done_without_terminal",
+        "next_discriminator",
+        "cannot_check",
+        "verification_record_id"
+      ],
+      "properties": {
+        "issue": {"type": "integer"},
+        "paper": {"type": ["string", "null"]},
+        "title": {"type": "string"},
+        "current_state": {"type": "string"},
+        "allowed_terminals": {
+          "type": "array",
+          "items": {"type": "string"},
+          "minItems": 1
+        },
+        "scientific_terminal_reached": {"type": "boolean"},
+        "engineering_complete_counts_as_scientific": {"const": false},
+        "claimed_done_without_terminal": {"const": false},
+        "next_discriminator": {"type": ["string", "null"]},
+        "cannot_check": {"type": "array", "items": {"type": "string"}},
+        "verification_record_id": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

@@ -22,6 +22,14 @@ The complete protocol lives at \texttt{protocol/PROTOCOL\_V1.json}; case structu
 
 This is not yet an execution freeze. The exact subject revision, hidden-cause suite hash, motivating/replay/fresh split hashes, provider/model versions, baseline configs, evaluator artifact and evaluation epoch remain unbound. The fresh evaluator/holdout must be frozen outside challenger write authority before candidate generation, and the fresh set cannot be recycled as development feedback without losing freshness. Search/file/evaluator/patch access is retained for contamination and integrity review. PAST-Bench is reference-pinned to \texttt{Gen-Verse/PAST-Bench@f8223517ae7491e776b69793d9f11e9d074ab42e}; any actual use still requires a frozen task/split manifest.
 
+\subsection{Statistical methods}
+
+Standalone rates use Wilson 95\% intervals. Matched improvement differences, when an archive exists, use paired percentile bootstrap with 10\,000 resamples nested in episode $\times$ system $\times$ seed. The primary H1 family is protected fresh-task improvement with a harmful-transfer guard; Holm correction applies to inferential secondary attribution/governance families. Catastrophic fresh regressions are reported by family and are not averaged away. Missing protected evidence remains \texttt{CANNOT\_CHECK}, never zero. The diagnostic 21/24 attribution interval in Table~\ref{tab:P5-3} is a standalone Wilson interval on $n=24$; it is not an H1 effect size.
+
+\subsection{Threat model}
+
+The evaluation treats evaluator compromise, holdout leakage, search contamination, replay-only laundering, missing-stage compensation, negative-history deletion and self-certification as first-class failure modes rather than as missing data. A candidate that can rewrite the protected evaluator, recycle the fresh set as development feedback, or certify its own readiness has not produced an admissible improvement. Local hostile tests exercise registered instances of those attacks; unknown gaming strategies remain outside the present evidence.
+
 \subsection{External promotion boundary}
 
-The external governed self-improvement state remains \texttt{CANNOT\_CHECK} until the execution identities are bound and the prospective observations exist. Repository CI, structural specification closure, local hostile tests, replay-only success, or an internal readiness state cannot promote that boundary. Even a positive fresh-transfer result is evidence for an external host recommendation rather than self-merge authority.
+The external governed self-improvement state remains \texttt{CANNOT\_CHECK} until the execution identities are bound and the prospective observations exist. Repository CI, structural specification closure, local hostile tests, replay-only success, a diagnostic 21/24 attribution score, or an internal readiness state cannot promote that boundary. Even a positive fresh-transfer result is evidence for an external host recommendation rather than self-merge authority.

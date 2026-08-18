@@ -1,0 +1,43 @@
+{
+  "aggregate": {
+    "dominant_failure": "CANDIDATE_GENERATION",
+    "governed_arxiv_raw_gold_hits": 7,
+    "governed_dblp_raw_gold_hits": 0,
+    "governed_fewer_hits_tasks": 0,
+    "governed_openaire_raw_gold_hits": 0,
+    "governed_strictly_more_hits_tasks": 2,
+    "governed_tasks_with_any_hit": 4,
+    "lexical_tasks_with_any_hit": 3,
+    "note": "OpenAIRE/DBLP returned records but zero scorer-gold arXiv identifiers on this slice; most tasks had zero final hits under both systems.",
+    "tasks": 24
+  },
+  "authority": "DEVELOPMENT_ONLY_AFTER_BOUNDED_MATCHED_RESULT",
+  "schema": "P2.v2.wide-bounded-stage-diagnostic.v1",
+  "source_result_verdict": "BOUNDED_EXTERNAL_SIGNAL_NOT_POSITIVE",
+  "tasks": [
+    {"task_id":"arb-wide-0054","gt_count":3,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0055","gt_count":17,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0111","gt_count":3,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0117","gt_count":3,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0120","gt_count":2,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0128","gt_count":7,"lexical_hit_count":2,"governed_hit_count":3,"lexical_recall":0.285714,"governed_recall":0.428571,"recall_delta":0.142857,"governed_raw_route_gold_hits":{"arxiv":3,"openaire":0,"dblp":0},"earliest_supported_failure":"PARTIAL_CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0142","gt_count":16,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0157","gt_count":3,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0172","gt_count":4,"lexical_hit_count":0,"governed_hit_count":1,"lexical_recall":0.0,"governed_recall":0.25,"recall_delta":0.25,"governed_raw_route_gold_hits":{"arxiv":1,"openaire":0,"dblp":0},"earliest_supported_failure":"PARTIAL_CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0178","gt_count":3,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0230","gt_count":5,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0253","gt_count":13,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":1,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0260","gt_count":21,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0288","gt_count":18,"lexical_hit_count":1,"governed_hit_count":1,"lexical_recall":0.055556,"governed_recall":0.055556,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":1,"openaire":0,"dblp":0},"earliest_supported_failure":"PARTIAL_CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0307","gt_count":21,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0313","gt_count":6,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0315","gt_count":6,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0318","gt_count":9,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0319","gt_count":15,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0339","gt_count":4,"lexical_hit_count":1,"governed_hit_count":1,"lexical_recall":0.25,"governed_recall":0.25,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":1,"openaire":0,"dblp":0},"earliest_supported_failure":"PARTIAL_CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0342","gt_count":10,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0367","gt_count":15,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0393","gt_count":7,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"},
+    {"task_id":"arb-wide-0398","gt_count":18,"lexical_hit_count":0,"governed_hit_count":0,"lexical_recall":0.0,"governed_recall":0.0,"recall_delta":0.0,"governed_raw_route_gold_hits":{"arxiv":0,"openaire":0,"dblp":0},"earliest_supported_failure":"CANDIDATE_GENERATION"}
+  ]
+}

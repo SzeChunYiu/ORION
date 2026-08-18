@@ -1,0 +1,114 @@
+{
+  "schema": "P2.v2.system-registry.v1",
+  "status": "FROZEN_DEVELOPMENT_SURFACE",
+  "frozen_on": "2026-08-17",
+  "immutable_predecessor": "71b9e01be34f566c66702c4f31d0140017f80b96",
+  "development_systems": {
+    "ORION_ACQ_LEXICAL_PLUS": [
+      "lexical_bm25",
+      "metadata_keyword_augmentation",
+      "query_decomposition",
+      "query_diversification",
+      "content_identity",
+      "typed_closure_authority"
+    ],
+    "ORION_ACQ_REASONED_HYBRID": [
+      "lexical_bm25",
+      "dense_retrieval",
+      "rrf_or_equivalent_fusion",
+      "reasoning_aware_query_representation",
+      "metadata_or_field_filters",
+      "content_identity",
+      "typed_closure_authority"
+    ],
+    "ORION_ACQ_STRUCTURED_EXPAND": [
+      "hybrid_retrieval",
+      "field_aware_boolean_admission",
+      "structure_inspection",
+      "selective_fetch",
+      "citation_bibliography_expansion",
+      "content_identity",
+      "typed_closure_authority"
+    ],
+    "ORION_MAX_COMPOSED": [
+      "development_selected_acquisition_components",
+      "verification_signal",
+      "sufficiency_gap_signal",
+      "utility_signal",
+      "conformal_coverage_signal_where_task_valid",
+      "earned_route_independence",
+      "route_task_stop_separation",
+      "censoring_obligations",
+      "content_question_read_state_separation",
+      "typed_closure_authority"
+    ]
+  },
+  "required_baseline_families": [
+    "lexical_bm25",
+    "dense_retrieval",
+    "hybrid_retrieval",
+    "metadata_augmented_retrieval",
+    "reasoning_aware_retrieval",
+    "field_aware_boolean_retrieval",
+    "citation_bibliography_expansion",
+    "fixed_depth_stopping",
+    "verification_aware_stopping",
+    "sufficiency_gap_stopping",
+    "utility_based_continuation",
+    "conformal_coverage_stopping_where_task_valid"
+  ],
+  "donor_non_novelty": [
+    "BM25",
+    "metadata_keyword_augmentation",
+    "reasoning_aware_retrieval",
+    "field_aware_boolean_retrieval",
+    "selective_section_fetch",
+    "citation_bibliography_expansion",
+    "verification_aware_stopping",
+    "sufficiency_gap_stopping",
+    "utility_based_continuation",
+    "conformal_coverage_stopping",
+    "generic_question_conditioned_memory"
+  ],
+  "candidate_orion_residuals": [
+    "earned_route_independence",
+    "route_local_vs_task_global_authority",
+    "unavailable_or_censored_routes_remain_open_obligations",
+    "content_identity_separate_from_question_conditioned_read_state"
+  ],
+  "failure_stage_enum": [
+    "QUERY_DERIVATION",
+    "INDEX_COVERAGE",
+    "CANDIDATE_GENERATION",
+    "RANKING",
+    "SCREENING",
+    "IDENTITY",
+    "ROUTE_STOP",
+    "TASK_STOP",
+    "CENSORED",
+    "BUDGET",
+    "EVALUATOR",
+    "OTHER"
+  ],
+  "claim_ladder": [
+    "P2_NARROWED",
+    "P2_EXTERNAL_MECHANISM_SUPPORTED",
+    "P2_EXTERNAL_DISCOVERY_SUPPORTED",
+    "P2_OPEN_WORLD_STOPPING_SUPPORTED",
+    "P2_TRANSFER_SUPPORTED"
+  ],
+  "promotion_invariants": {
+    "confirmatory_outcomes_not_used_for_development": true,
+    "matched_resources_required": true,
+    "absolute_misses_reported": true,
+    "uncertainty_required": true,
+    "direct_residual_ablation_required": true,
+    "independent_rescore_required": true,
+    "fresh_or_transfer_evidence_required_for_generality": true,
+    "unavailable_never_zero_or_pass": true,
+    "post_outcome_margin_change_forbidden": true,
+    "post_outcome_baseline_deletion_forbidden": true,
+    "post_outcome_scorer_substitution_forbidden": true,
+    "negative_and_null_variants_retained": true
+  }
+}

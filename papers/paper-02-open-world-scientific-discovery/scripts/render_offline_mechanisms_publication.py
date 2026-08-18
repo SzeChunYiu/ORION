@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Render/check legible publication TikZ variants of P2-3 and P2-4.
 
-The scientific coordinates remain owned by ``render_offline_mechanisms.py`` and
-``OFFLINE_MECHANISMS_V1.json``.  This module imports the canonical renderer and
-changes only annotation layout so the compiled journal PDF has no overlapping
-axis/header or short-bar labels.
+The scientific coordinates and scope annotation remain owned by
+``render_offline_mechanisms.py`` and ``OFFLINE_MECHANISMS_V1.json``.  This module
+imports the canonical renderer and changes only annotation layout so the compiled
+journal PDF has no overlapping axis/header or short-bar labels.
 """
 
 from __future__ import annotations
@@ -31,32 +31,32 @@ def _base():
 
 
 def _p3(text: str) -> str:
-    text = text.replace(
-        r"\draw[->] (0,0) -- (0,1.08) node[above]{complete-gold recall};",
-        "\n".join(
-            [
-                r"\draw[->] (0,0) -- (0,1.08);",
-                r"\node[rotate=90,anchor=south] at (-0.62,0.54) {complete-gold recall};",
-            ]
-        ),
+    """Move the P2-3 y-axis title; leave evidence-derived scope text untouched."""
+    old = r"\draw[->] (0,0) -- (0,1.08) node[above]{complete-gold recall};"
+    new = "\n".join(
+        [
+            r"\draw[->] (0,0) -- (0,1.08);",
+            r"\node[rotate=90,anchor=south] at (-0.62,0.54) {complete-gold recall};",
+        ]
     )
-    text = text.replace(
-        r"\node[anchor=west,font=\small] at (0,1.16) {20 frozen tasks; repeats collapsed; descriptive only};",
-        r"\node[anchor=west,font=\scriptsize] at (0,1.14) {20 frozen tasks; repeats collapsed; descriptive only};",
-    )
-    return text
+    if old not in text:
+        raise ValueError("canonical P2-3 y-axis token missing")
+    return text.replace(old, new)
 
 
 def _p4(text: str) -> str:
-    text = text.replace(
-        r"\draw[->] (0,0) -- (0,3.45) node[above]{mean first relevant contribution};",
-        "\n".join(
-            [
-                r"\draw[->] (0,0) -- (0,3.45);",
-                r"\node[rotate=90,anchor=south] at (-0.48,1.72) {mean first relevant contribution};",
-            ]
-        ),
+    """Move P2-4 labels for legibility; never rewrite task/authority scope."""
+    old_axis = r"\draw[->] (0,0) -- (0,3.45) node[above]{mean first relevant contribution};"
+    new_axis = "\n".join(
+        [
+            r"\draw[->] (0,0) -- (0,3.45);",
+            r"\node[rotate=90,anchor=south] at (-0.48,1.72) {mean first relevant contribution};",
+        ]
     )
+    if old_axis not in text:
+        raise ValueError("canonical P2-4 y-axis token missing")
+    text = text.replace(old_axis, new_axis)
+
     replacements = {
         r"\node[rotate=90,anchor=west,font=\scriptsize] at (0.7,0.10) {reference};":
             r"\node[font=\tiny,text=white] at (0.7,1.50) {ref.};",
@@ -73,10 +73,6 @@ def _p4(text: str) -> str:
         if old not in text:
             raise ValueError(f"canonical P2-4 layout token missing: {old}")
         text = text.replace(old, new)
-    text = text.replace(
-        r"\node[anchor=west,font=\small] at (0,3.70) {20 frozen tasks; contribution counted by content identity; descriptive only};",
-        r"\node[anchor=west,font=\scriptsize] at (0,3.60) {20 frozen tasks; contribution counted by content identity; descriptive only};",
-    )
     return text
 
 

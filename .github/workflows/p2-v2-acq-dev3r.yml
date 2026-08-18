@@ -1,0 +1,22 @@
+name: p2-v2-acq-dev3r
+
+# The harness-corrected final development result is archived. Keep only an
+# explicit reproduction entry point; later PR edits must not create new
+# outcome-seeking external runs after the frozen stop rule fired.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dev3r-reproduction-note:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Frozen terminal
+        run: |
+          echo 'Dev-3R is the valid final acquisition-development result.'
+          echo 'Verdict: DEV3R_FINAL_NON_ELIGIBLE.'
+          echo 'The pre-frozen rule forbids Dev-4 and forbids executing the fresh 48-task confirmation.'
+          echo 'Manual reproductions must not be interpreted as a new selection outcome.'

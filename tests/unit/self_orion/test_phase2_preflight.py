@@ -262,13 +262,41 @@ def test_budget_inflated_above_the_frozen_limit_is_blocked():
 def test_task_id_divergence_blocks_and_names_both_registries():
     substituted = dataclasses.replace(WIDE_LITERATURE_TASK, task_id="phase2:wide:substituted")
     report = assess_phase2_preflight(_bound(tasks=(substituted, DEEP_TARGET_TASK)))
-    assert report.status is Phase2PreflightStatus.BIND_FROZEN_PACKET
+    assert report.status is Phase2PreflightStatus.CANNOT_CHECK
     divergence = [b for b in report.blockers if b.startswith("frozen_packet_registry_divergence:")]
     assert len(divergence) == 1
     # Both sides are reported. The gate must not resolve which registry is
     # canonical -- that is a governance decision, not a checker's.
     assert "phase2:wide:substituted" in divergence[0]
     assert WIDE_LITERATURE_TASK.task_id in divergence[0]
+
+
+def test_task_id_order_alone_is_not_registry_divergence():
+    """Membership is the identity of a registry; sequence is not.
+
+    The published packet serializes task_bindings alphabetically. The in-source
+    defaults are wide-then-deep. After the ids themselves agree, that order
+    difference must not keep the gate shut.
+    """
+
+    reversed_ids = (DEEP_TARGET_TASK.task_id, WIDE_LITERATURE_TASK.task_id)
+    report = assess_phase2_preflight(_bound(frozen_packet=_binding(task_ids=reversed_ids)))
+    assert report.status is Phase2PreflightStatus.READY_TO_EXECUTE_SHADOW_TRIAL
+    assert report.blockers == ()
+
+
+def test_undeclared_subject_revision_in_frozen_packet_is_cannot_check():
+    """The published packet schema does not carry subject_revision_hash.
+
+    Comparing against "" would look like a mismatch with a declared empty
+    hash. Undeclared is CANNOT_CHECK: the freeze never stated a value.
+    """
+
+    report = assess_phase2_preflight(_bound(frozen_packet=_binding(subject_revision_hash="")))
+    assert report.status is Phase2PreflightStatus.CANNOT_CHECK
+    assert "subject_revision_hash_undeclared_in_frozen_packet" in report.blockers
+    assert "subject_revision_hash_mismatch" not in report.blockers
+    assert report.status is not Phase2PreflightStatus.READY_TO_EXECUTE_SHADOW_TRIAL
 
 
 def test_deep_task_without_declared_ground_truth_is_blocked():
@@ -316,22 +344,48 @@ def test_existing_shape_gates_are_retained_and_still_ordered_first():
 def test_published_packet_is_actually_compared_against_the_in_source_registry():
     """The freeze of record must be consulted, not merely exist on disk.
 
-    Written as a strict implication so it stays correct whichever way the
-    governance decision about the two registries eventually goes.
+    Divergence is CANNOT_CHECK: the gate names both registries and refuses to
+    pick a canonical one. Written as a strict implication on the id sets so it
+    stays correct whichever way the governance decision eventually goes.
     """
 
-    import json
+    from orion.self_orion.live_packet import DEEP_TASK_ID, WIDE_TASK_ID, load_packet_document
 
-    from orion.self_orion.live_packet import PROTOCOL_PATH
-
-    binding = FrozenPacketBinding.from_packet_document(
-        json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
-    )
+    binding = FrozenPacketBinding.from_packet_document(load_packet_document())
     report = assess_phase2_preflight(_bound(frozen_packet=binding))
     divergent = [b for b in report.blockers if b.startswith("frozen_packet_registry_divergence:")]
     in_source = (WIDE_LITERATURE_TASK.task_id, DEEP_TARGET_TASK.task_id)
-    if tuple(binding.task_ids) != in_source:
-        assert report.status is Phase2PreflightStatus.BIND_FROZEN_PACKET
+    if frozenset(binding.task_ids) != frozenset(in_source):
+        assert report.status is Phase2PreflightStatus.CANNOT_CHECK
         assert len(divergent) == 1
+        for task_id in (*in_source, WIDE_TASK_ID, DEEP_TASK_ID):
+            assert task_id in divergent[0]
     else:
         assert not divergent
+    # An undeclared subject hash must not be treated as a match against "".
+    assert "subject_revision_hash_undeclared_in_frozen_packet" in report.blockers
+    # Fabricated a/b/c hashes against the published packet must never certify.
+    assert report.status is not Phase2PreflightStatus.READY_TO_EXECUTE_SHADOW_TRIAL
+    assert not report.grants_phase2_closure
+
+
+def test_from_packet_document_does_not_invent_a_matchable_empty_subject():
+    binding = FrozenPacketBinding.from_packet_document(
+        {
+            "packet_fingerprint": "f" * 64,
+            "provider_manifest_hash": "b" * 64,
+            "evaluator_artifact_hash": "c" * 64,
+            "evaluation_epoch_id": "phase2:epoch:frozen-before-outcomes",
+            "matched_baseline": {"baseline_id": "simple-llm-retrieval-baseline-v1"},
+            "resource_limits": {"budget_units": 100.0},
+            "task_bindings": [
+                {"task_id": WIDE_LITERATURE_TASK.task_id},
+                {"task_id": DEEP_TARGET_TASK.task_id},
+            ],
+        }
+    )
+    assert binding.subject_revision_hash == ""
+    report = assess_phase2_preflight(_bound(frozen_packet=binding))
+    assert report.status is Phase2PreflightStatus.CANNOT_CHECK
+    assert "subject_revision_hash_undeclared_in_frozen_packet" in report.blockers
+    assert report.status is not Phase2PreflightStatus.READY_TO_EXECUTE_SHADOW_TRIAL

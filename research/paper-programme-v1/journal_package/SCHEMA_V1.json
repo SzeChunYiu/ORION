@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion.journal-package.v1",
+  "title": "ORION journal-package scaffolding V1",
+  "description": "Gate 7–9 submission-package inventory. Distinct from issue #283 ScientificResultVerification.v1, which this schema consumes if present and never forks.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "paper_id",
+    "package_status",
+    "declared_paper_terminal",
+    "audit_subject_revision",
+    "required_files",
+    "missing_artifacts",
+    "claims",
+    "scientific_result_verification"
+  ],
+  "properties": {
+    "schema_version": {"const": "orion.journal-package.v1"},
+    "paper_id": {"enum": ["P1", "P2", "P3", "P4", "P5"]},
+    "package_status": {
+      "enum": ["SCAFFOLDING", "SUBMISSION_READY"],
+      "description": "SUBMISSION_READY only when a compiled PDF, claim audit, and remaining CANNOT_CHECK rows are all closed. SCAFFOLDING is the honest state while PDFs/DOIs/external campaigns are absent."
+    },
+    "declared_paper_terminal": {"type": "string"},
+    "audit_subject_revision": {"type": "string", "minLength": 40, "maxLength": 40},
+    "required_files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "role"],
+        "properties": {
+          "path": {"type": "string"},
+          "role": {"type": "string"}
+        }
+      }
+    },
+    "missing_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "role", "status", "reason"],
+        "properties": {
+          "path": {"type": "string"},
+          "role": {"type": "string"},
+          "status": {"const": "CANNOT_CHECK"},
+          "reason": {"type": "string"}
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "text", "artifacts", "status"],
+        "properties": {
+          "id": {"type": "string"},
+          "text": {"type": "string"},
+          "artifacts": {"type": "array", "items": {"type": "string"}},
+          "status": {"enum": ["SUPPORTED", "NOT_SUPPORTED", "BOUNDED", "CANNOT_CHECK", "OPEN"]}
+        }
+      }
+    },
+    "scientific_result_verification": {
+      "type": "object",
+      "required": ["owner_issue", "schema_name", "records_present"],
+      "properties": {
+        "owner_issue": {"const": 283},
+        "schema_name": {"const": "ScientificResultVerification.v1"},
+        "records_present": {"type": "array"}
+      }
+    }
+  }
+}

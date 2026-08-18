@@ -19,7 +19,7 @@ which is exactly:
 
 ```bash
 PYTHONPATH=src python3 -m orion.study.p1.tables \
-  --archive papers/paper-01-recursive-epistemic-reconstruction/results/raw \
+  --archive papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl \
   --out    papers/paper-01-recursive-epistemic-reconstruction/results \
   --expected-repeats 5 \
   --bootstrap-seed 20260815 \

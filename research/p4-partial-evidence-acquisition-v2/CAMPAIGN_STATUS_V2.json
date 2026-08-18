@@ -1,0 +1,16 @@
+{
+  "schema": "orion.p4.partial-evidence.campaign-status.v2",
+  "protocol_id": "P4.partial-evidence-acquisition.v2",
+  "frozen_campaign_id": "P4.protected-authority.v2",
+  "status": "CANNOT_CHECK",
+  "reason": "protected_host_evaluator_unavailable",
+  "p4_v2_readiness": "PEER_REVIEW_READY",
+  "outcome_accessed": false,
+  "remaining_cannot_check": [
+    "fresh_secret_seeded_protected_split",
+    "matched_baselines_and_ablations_execution",
+    "headline_acquisition_experiment",
+    "independent_red_team_via_issue_283",
+    "followup_scientific_terminal"
+  ]
+}

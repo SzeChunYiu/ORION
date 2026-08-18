@@ -1,3 +1,6 @@
+> **SUPERSEDED IN PART (2026-08-17, Paper III public-reference route only).**
+> This audit's Paper-III external-evaluation bottleneck and the programme-wide line that superiority claims cannot be completed are **historical** for the *narrow* public-reference mapping calculus. Frozen artifacts on `origin/main` after PRs #263/#264 include `PUBLIC_REFERENCE_GOLD_V1.jsonl`, `SHA256SUMS`, `PROVENANCE.env`, and `CONFIRMATORY_ANALYSIS.json`. See `JOURNAL_READINESS_AUDIT_2026-08-16_SUPERSEDE_P3_V1.md`. The original eight-family expert-gold study, dual annotators, and `PEER_REVIEW_READY` remain `CANNOT_CHECK`. This file is preserved as a historical record.
+
 # Five-paper journal-readiness audit — 2026-08-16
 
 **Subject:** `SzeChunYiu/ORION@e96218032ad783164ee419e8a2a31b7688361b5c`  

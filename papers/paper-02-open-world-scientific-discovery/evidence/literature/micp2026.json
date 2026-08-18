@@ -1,0 +1,24 @@
+{
+  "bib_key": "micp2026",
+  "claimed_title": "Adaptive Stopping for Multi-Turn LLM Reasoning",
+  "claim_provenance": "derived_from_this_fetch",
+  "fetch_url": "https://export.arxiv.org/api/query?id_list=2604.01413",
+  "fetched_utc": "2026-08-18T06:47:45Z",
+  "verdict": "VERIFIED",
+  "verdict_reason": "claimed title matches fetched title exactly (normalised)",
+  "fetched_title": "Adaptive Stopping for Multi-Turn LLM Reasoning",
+  "fetched_authors": [
+    "Xiaofan Zhou",
+    "Huy Nguyen",
+    "Bo Yu",
+    "Chenxi Liu",
+    "Lu Cheng"
+  ],
+  "fetched_year": 2026,
+  "fetched_venue": "arXiv preprint",
+  "arxiv_id": "2604.01413v3",
+  "doi": null,
+  "published": "2026-04-01T21:22:19Z",
+  "updated": "2026-08-14T05:34:20Z",
+  "abstract": "Large Language Models (LLMs) increasingly rely on multi-turn reasoning and interaction, such as adaptive retrieval-augmented generation (RAG) and ReAct-style agents, to answer difficult questions. These methods improve accuracy by iteratively retrieving information, reasoning, or acting, but introduce a key challenge: \\textbf{When should the model stop?} Existing approaches rely on heuristic stopping rules or fixed turn budgets and provide no formal guarantees that the final prediction still contains the correct answer. This limitation is particularly problematic in high-stakes domains such as finance and healthcare, where unnecessary turns increase cost and latency, while stopping too early risks incorrect decisions. Conformal prediction (CP) provides formal coverage guarantees, but existing LLM-CP methods only apply to a single model output and cannot handle multi-turn pipelines with adaptive stopping. To address this gap, we propose Multi-Turn Language Models with Conformal Prediction (MiCP), the first CP framework for multi-turn reasoning. MiCP allocates different error budgets across turns, enabling the model to stop early while maintaining an overall coverage guarantee. We demonstrate MiCP on adaptive RAG and ReAct, where it achieves the target coverage on both single-hop and multi-hop question answering benchmarks while reducing the number of turns, inference cost, and prediction set size. We further introduce a new metric that jointly evaluates coverage validity and answering efficiency."
+}

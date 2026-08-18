@@ -1,0 +1,1023 @@
+{
+  "design_id": "ORION_CROSS_DOMAIN_TRANSFER_BENCHMARK_V1",
+  "freeze_status": "PAIRS_AND_REPRESENTATIONS_FROZEN",
+  "outcomes_accessed": false,
+  "authority": "LOCAL_ENGINEERING_ONLY",
+  "family_ids": [
+    "debugging",
+    "retrieval_stopping",
+    "semantic_mapping",
+    "protected_verification"
+  ],
+  "source_slots": [
+    {
+      "slot_id": "source:debugging:primary",
+      "family_id": "debugging",
+      "transfer_object": {
+        "schema_version": "ORION_SCIENTIFIC_TRANSFER_OBJECT_V1",
+        "object_id": "cell:debugging:primary",
+        "problem_signature": {
+          "signature_id": "sig:debugging:primary",
+          "family_id": "debugging",
+          "surface_domain": "software-failure-diagnosis",
+          "hidden_state": "latent-responsible-component",
+          "observability": "partial-probeable",
+          "actions": [
+            "probe",
+            "abstain"
+          ],
+          "ground_truth_class": "protected",
+          "dependence": 0.6,
+          "authority_risk": 0.8,
+          "nonstationarity": 0.2,
+          "reversibility": 0.7
+        },
+        "io_contract": {
+          "inputs": [
+            "failure-report",
+            "declared-graph"
+          ],
+          "outputs": [
+            "responsibility-hypothesis"
+          ],
+          "observables": [
+            "probe-outcome"
+          ]
+        },
+        "obligations": [
+          "respect-debugging-authority-boundary"
+        ],
+        "assumptions": [
+          "probes_are_reversible",
+          "components_are_separable"
+        ],
+        "preconditions": [
+          "declared-tool-available"
+        ],
+        "transformation_steps": [
+          "active_discriminator",
+          "probe",
+          "update-hypothesis"
+        ],
+        "failure_modes": [
+          "assumption-violation"
+        ],
+        "verification_hooks": [
+          "compatibility:debugging"
+        ],
+        "falsifiers": [
+          "separates-debugging-toy"
+        ],
+        "authority_boundaries": {
+          "may_grant": [
+            "inspection-license"
+          ],
+          "may_not_grant": [
+            "publication-authority",
+            "cross-family-label-access"
+          ]
+        },
+        "cost_requirements": {
+          "context_budget": 4,
+          "tools_required": [
+            "probe"
+          ]
+        },
+        "evidence_level": "LOCAL_ENGINEERING_ONLY",
+        "source_evidence_identities": [
+          "artifact:debugging:primary"
+        ],
+        "target_compatibility_tests": [
+          "assumption:probes_are_reversible"
+        ],
+        "forbidden_transfers": [
+          "copy-source-patch"
+        ]
+      }
+    },
+    {
+      "slot_id": "source:debugging:patch",
+      "family_id": "debugging",
+      "transfer_object": {
+        "schema_version": "ORION_SCIENTIFIC_TRANSFER_OBJECT_V1",
+        "object_id": "cell:debugging:patch",
+        "problem_signature": {
+          "signature_id": "sig:debugging:patch",
+          "family_id": "debugging",
+          "surface_domain": "software-failure-diagnosis",
+          "hidden_state": "latent-responsible-component",
+          "observability": "partial-probeable",
+          "actions": [
+            "probe",
+            "abstain"
+          ],
+          "ground_truth_class": "protected",
+          "dependence": 0.6,
+          "authority_risk": 0.8,
+          "nonstationarity": 0.2,
+          "reversibility": 0.7
+        },
+        "io_contract": {
+          "inputs": [
+            "failure-report",
+            "declared-graph"
+          ],
+          "outputs": [
+            "responsibility-hypothesis"
+          ],
+          "observables": [
+            "probe-outcome"
+          ]
+        },
+        "obligations": [
+          "respect-debugging-authority-boundary"
+        ],
+        "assumptions": [
+          "target-is-the-same-task"
+        ],
+        "preconditions": [
+          "declared-tool-available"
+        ],
+        "transformation_steps": [
+          "copy-source-patch"
+        ],
+        "failure_modes": [
+          "assumption-violation"
+        ],
+        "verification_hooks": [
+          "compatibility:debugging"
+        ],
+        "falsifiers": [
+          "separates-debugging-toy"
+        ],
+        "authority_boundaries": {
+          "may_grant": [
+            "inspection-license"
+          ],
+          "may_not_grant": [
+            "publication-authority",
+            "cross-family-label-access"
+          ]
+        },
+        "cost_requirements": {
+          "context_budget": 4,
+          "tools_required": [
+            "probe"
+          ]
+        },
+        "evidence_level": "LOCAL_ENGINEERING_ONLY",
+        "source_evidence_identities": [
+          "artifact:debugging:patch"
+        ],
+        "target_compatibility_tests": [
+          "assumption:target-is-the-same-task"
+        ],
+        "forbidden_transfers": [
+          "copy-source-patch"
+        ]
+      }
+    },
+    {
+      "slot_id": "source:retrieval_stopping:primary",
+      "family_id": "retrieval_stopping",
+      "transfer_object": {
+        "schema_version": "ORION_SCIENTIFIC_TRANSFER_OBJECT_V1",
+        "object_id": "cell:retrieval_stopping:primary",
+        "problem_signature": {
+          "signature_id": "sig:retrieval_stopping:primary",
+          "family_id": "retrieval_stopping",
+          "surface_domain": "scientific-retrieval-stopping",
+          "hidden_state": "latent-responsible-route",
+          "observability": "partial-probeable",
+          "actions": [
+            "query",
+            "stop"
+          ],
+          "ground_truth_class": "protected",
+          "dependence": 0.6,
+          "authority_risk": 0.8,
+          "nonstationarity": 0.2,
+          "reversibility": 0.7
+        },
+        "io_contract": {
+          "inputs": [
+            "candidate-pool",
+            "declared-graph"
+          ],
+          "outputs": [
+            "responsibility-hypothesis"
+          ],
+          "observables": [
+            "probe-outcome"
+          ]
+        },
+        "obligations": [
+          "respect-retrieval_stopping-authority-boundary"
+        ],
+        "assumptions": [
+          "probes_are_reversible",
+          "components_are_separable"
+        ],
+        "preconditions": [
+          "declared-tool-available"
+        ],
+        "transformation_steps": [
+          "active_discriminator",
+          "probe",
+          "update-hypothesis"
+        ],
+        "failure_modes": [
+          "assumption-violation"
+        ],
+        "verification_hooks": [
+          "compatibility:retrieval_stopping"
+        ],
+        "falsifiers": [
+          "separates-retrieval_stopping-toy"
+        ],
+        "authority_boundaries": {
+          "may_grant": [
+            "inspection-license"
+          ],
+          "may_not_grant": [
+            "publication-authority",
+            "cross-family-label-access"
+          ]
+        },
+        "cost_requirements": {
+          "context_budget": 4,
+          "tools_required": [
+            "probe"
+          ]
+        },
+        "evidence_level": "LOCAL_ENGINEERING_ONLY",
+        "source_evidence_identities": [
+          "artifact:retrieval_stopping:primary"
+        ],
+        "target_compatibility_tests": [
+          "assumption:probes_are_reversible"
+        ],
+        "forbidden_transfers": [
+          "copy-source-patch"
+        ]
+      }
+    },
+    {
+      "slot_id": "source:retrieval_stopping:patch",
+      "family_id": "retrieval_stopping",
+      "transfer_object": {
+        "schema_version": "ORION_SCIENTIFIC_TRANSFER_OBJECT_V1",
+        "object_id": "cell:retrieval_stopping:patch",
+        "problem_signature": {
+          "signature_id": "sig:retrieval_stopping:patch",
+          "family_id": "retrieval_stopping",
+          "surface_domain": "scientific-retrieval-stopping",
+          "hidden_state": "latent-responsible-route",
+          "observability": "partial-probeable",
+          "actions": [
+            "query",
+            "stop"
+          ],
+          "ground_truth_class": "protected",
+          "dependence": 0.6,
+          "authority_risk": 0.8,
+          "nonstationarity": 0.2,
+          "reversibility": 0.7
+        },
+        "io_contract": {
+          "inputs": [
+            "candidate-pool",
+            "declared-graph"
+          ],
+          "outputs": [
+            "responsibility-hypothesis"
+          ],
+          "observables": [
+            "probe-outcome"
+          ]
+        },
+        "obligations": [
+          "respect-retrieval_stopping-authority-boundary"
+        ],
+        "assumptions": [
+          "target-is-the-same-task"
+        ],
+        "preconditions": [
+          "declared-tool-available"
+        ],
+        "transformation_steps": [
+          "copy-source-patch"
+        ],
+        "failure_modes": [
+          "assumption-violation"
+        ],
+        "verification_hooks": [
+          "compatibility:retrieval_stopping"
+        ],
+        "falsifiers": [
+          "separates-retrieval_stopping-toy"
+        ],
+        "authority_boundaries": {
+          "may_grant": [
+            "inspection-license"
+          ],
+          "may_not_grant": [
+            "publication-authority",
+            "cross-family-label-access"
+          ]
+        },
+        "cost_requirements": {
+          "context_budget": 4,
+          "tools_required": [
+            "probe"
+          ]
+        },
+        "evidence_level": "LOCAL_ENGINEERING_ONLY",
+        "source_evidence_identities": [
+          "artifact:retrieval_stopping:patch"
+        ],
+        "target_compatibility_tests": [
+          "assumption:target-is-the-same-task"
+        ],
+        "forbidden_transfers": [
+          "copy-source-patch"
+        ]
+      }
+    },
+    {
+      "slot_id": "source:semantic_mapping:primary",
+      "family_id": "semantic_mapping",
+      "transfer_object": {
+        "schema_version": "ORION_SCIENTIFIC_TRANSFER_OBJECT_V1",
+        "object_id": "cell:semantic_mapping:primary",
+        "problem_signature": {
+          "signature_id": "sig:semantic_mapping:primary",
+          "family_id": "semantic_mapping",
+          "surface_domain": "scientific-semantic-mapping",
+          "hidden_state": "latent-coordinate-mismatch",
+          "observability": "source-local-projections",
+          "actions": [
+            "map",
+            "obstruct"
+          ],
+          "ground_truth_class": "protected",
+          "dependence": 0.6,
+          "authority_risk": 0.8,
+          "nonstationarity": 0.2,
+          "reversibility": 0.7
+        },
+        "io_contract": {
+          "inputs": [
+            "projection-pair",
+            "declared-graph"
+          ],
+          "outputs": [
+            "responsibility-hypothesis"
+          ],
+          "observables": [
+            "probe-outcome"
+          ]
+        },
+        "obligations": [
+          "respect-semantic_mapping-authority-boundary"
+        ],
+        "assumptions": [
+          "probes_are_reversible",
+          "components_are_separable"
+        ],
+        "preconditions": [
+          "declared-tool-available"
+        ],
+        "transformation_steps": [
+          "active_discriminator",
+          "probe",
+          "update-hypothesis"
+        ],
+        "failure_modes": [
+          "assumption-violation"
+        ],
+        "verification_hooks": [
+          "compatibility:semantic_mapping"
+        ],
+        "falsifiers": [
+          "separates-semantic_mapping-toy"
+        ],
+        "authority_boundaries": {
+          "may_grant": [
+            "inspection-license"
+          ],
+          "may_not_grant": [
+            "publication-authority",
+            "cross-family-label-access"
+          ]
+        },
+        "cost_requirements": {
+          "context_budget": 4,
+          "tools_required": [
+            "probe"
+          ]
+        },
+        "evidence_level": "LOCAL_ENGINEERING_ONLY",
+        "source_evidence_identities": [
+          "artifact:semantic_mapping:primary"
+        ],
+        "target_compatibility_tests": [
+          "assumption:probes_are_reversible"
+        ],
+        "forbidden_transfers": [
+          "copy-source-patch"
+        ]
+      }
+    },
+    {
+      "slot_id": "source:semantic_mapping:patch",
+      "family_id": "semantic_mapping",
+      "transfer_object": {
+        "schema_version": "ORION_SCIENTIFIC_TRANSFER_OBJECT_V1",
+        "object_id": "cell:semantic_mapping:patch",
+        "problem_signature": {
+          "signature_id": "sig:semantic_mapping:patch",
+          "family_id": "semantic_mapping",
+          "surface_domain": "scientific-semantic-mapping",
+          "hidden_state": "latent-coordinate-mismatch",
+          "observability": "source-local-projections",
+          "actions": [
+            "map",
+            "obstruct"
+          ],
+          "ground_truth_class": "protected",
+          "dependence": 0.6,
+          "authority_risk": 0.8,
+          "nonstationarity": 0.2,
+          "reversibility": 0.7
+        },
+        "io_contract": {
+          "inputs": [
+            "projection-pair",
+            "declared-graph"
+          ],
+          "outputs": [
+            "responsibility-hypothesis"
+          ],
+          "observables": [
+            "probe-outcome"
+          ]
+        },
+        "obligations": [
+          "respect-semantic_mapping-authority-boundary"
+        ],
+        "assumptions": [
+          "target-is-the-same-task"
+        ],
+        "preconditions": [
+          "declared-tool-available"
+        ],
+        "transformation_steps": [
+          "copy-source-patch"
+        ],
+        "failure_modes": [
+          "assumption-violation"
+        ],
+        "verification_hooks": [
+          "compatibility:semantic_mapping"
+        ],
+        "falsifiers": [
+          "separates-semantic_mapping-toy"
+        ],
+        "authority_boundaries": {
+          "may_grant": [
+            "inspection-license"
+          ],
+          "may_not_grant": [
+            "publication-authority",
+            "cross-family-label-access"
+          ]
+        },
+        "cost_requirements": {
+          "context_budget": 4,
+          "tools_required": [
+            "probe"
+          ]
+        },
+        "evidence_level": "LOCAL_ENGINEERING_ONLY",
+        "source_evidence_identities": [
+          "artifact:semantic_mapping:patch"
+        ],
+        "target_compatibility_tests": [
+          "assumption:target-is-the-same-task"
+        ],
+        "forbidden_transfers": [
+          "copy-source-patch"
+        ]
+      }
+    },
+    {
+      "slot_id": "source:protected_verification:primary",
+      "family_id": "protected_verification",
+      "transfer_object": {
+        "schema_version": "ORION_SCIENTIFIC_TRANSFER_OBJECT_V1",
+        "object_id": "cell:protected_verification:primary",
+        "problem_signature": {
+          "signature_id": "sig:protected_verification:primary",
+          "family_id": "protected_verification",
+          "surface_domain": "protected-evidence-verification",
+          "hidden_state": "latent-authority-gap",
+          "observability": "evaluator-custody",
+          "actions": [
+            "acquire",
+            "abstain"
+          ],
+          "ground_truth_class": "protected",
+          "dependence": 0.6,
+          "authority_risk": 0.8,
+          "nonstationarity": 0.2,
+          "reversibility": 0.7
+        },
+        "io_contract": {
+          "inputs": [
+            "claim-bundle",
+            "declared-graph"
+          ],
+          "outputs": [
+            "responsibility-hypothesis"
+          ],
+          "observables": [
+            "probe-outcome"
+          ]
+        },
+        "obligations": [
+          "respect-protected_verification-authority-boundary"
+        ],
+        "assumptions": [
+          "probes_are_reversible",
+          "components_are_separable"
+        ],
+        "preconditions": [
+          "declared-tool-available"
+        ],
+        "transformation_steps": [
+          "active_discriminator",
+          "probe",
+          "update-hypothesis"
+        ],
+        "failure_modes": [
+          "assumption-violation"
+        ],
+        "verification_hooks": [
+          "compatibility:protected_verification"
+        ],
+        "falsifiers": [
+          "separates-protected_verification-toy"
+        ],
+        "authority_boundaries": {
+          "may_grant": [
+            "inspection-license"
+          ],
+          "may_not_grant": [
+            "publication-authority",
+            "cross-family-label-access"
+          ]
+        },
+        "cost_requirements": {
+          "context_budget": 4,
+          "tools_required": [
+            "probe"
+          ]
+        },
+        "evidence_level": "LOCAL_ENGINEERING_ONLY",
+        "source_evidence_identities": [
+          "artifact:protected_verification:primary"
+        ],
+        "target_compatibility_tests": [
+          "assumption:probes_are_reversible"
+        ],
+        "forbidden_transfers": [
+          "copy-source-patch"
+        ]
+      }
+    },
+    {
+      "slot_id": "source:protected_verification:patch",
+      "family_id": "protected_verification",
+      "transfer_object": {
+        "schema_version": "ORION_SCIENTIFIC_TRANSFER_OBJECT_V1",
+        "object_id": "cell:protected_verification:patch",
+        "problem_signature": {
+          "signature_id": "sig:protected_verification:patch",
+          "family_id": "protected_verification",
+          "surface_domain": "protected-evidence-verification",
+          "hidden_state": "latent-authority-gap",
+          "observability": "evaluator-custody",
+          "actions": [
+            "acquire",
+            "abstain"
+          ],
+          "ground_truth_class": "protected",
+          "dependence": 0.6,
+          "authority_risk": 0.8,
+          "nonstationarity": 0.2,
+          "reversibility": 0.7
+        },
+        "io_contract": {
+          "inputs": [
+            "claim-bundle",
+            "declared-graph"
+          ],
+          "outputs": [
+            "responsibility-hypothesis"
+          ],
+          "observables": [
+            "probe-outcome"
+          ]
+        },
+        "obligations": [
+          "respect-protected_verification-authority-boundary"
+        ],
+        "assumptions": [
+          "target-is-the-same-task"
+        ],
+        "preconditions": [
+          "declared-tool-available"
+        ],
+        "transformation_steps": [
+          "copy-source-patch"
+        ],
+        "failure_modes": [
+          "assumption-violation"
+        ],
+        "verification_hooks": [
+          "compatibility:protected_verification"
+        ],
+        "falsifiers": [
+          "separates-protected_verification-toy"
+        ],
+        "authority_boundaries": {
+          "may_grant": [
+            "inspection-license"
+          ],
+          "may_not_grant": [
+            "publication-authority",
+            "cross-family-label-access"
+          ]
+        },
+        "cost_requirements": {
+          "context_budget": 4,
+          "tools_required": [
+            "probe"
+          ]
+        },
+        "evidence_level": "LOCAL_ENGINEERING_ONLY",
+        "source_evidence_identities": [
+          "artifact:protected_verification:patch"
+        ],
+        "target_compatibility_tests": [
+          "assumption:target-is-the-same-task"
+        ],
+        "forbidden_transfers": [
+          "copy-source-patch"
+        ]
+      }
+    }
+  ],
+  "target_slots": [
+    {
+      "slot_id": "target:debugging:primary",
+      "family_id": "debugging",
+      "problem_signature": {
+        "signature_id": "sig:debugging:heldout-primary",
+        "family_id": "debugging",
+        "surface_domain": "software-failure-diagnosis",
+        "hidden_state": "latent-responsible-component",
+        "observability": "partial-probeable",
+        "actions": [
+          "probe",
+          "abstain"
+        ],
+        "ground_truth_class": "protected",
+        "dependence": 0.6,
+        "authority_risk": 0.8,
+        "nonstationarity": 0.2,
+        "reversibility": 0.7
+      }
+    },
+    {
+      "slot_id": "target:debugging:alt",
+      "family_id": "debugging",
+      "problem_signature": {
+        "signature_id": "sig:debugging:heldout-alt",
+        "family_id": "debugging",
+        "surface_domain": "software-failure-diagnosis",
+        "hidden_state": "latent-responsible-component",
+        "observability": "partial-probeable",
+        "actions": [
+          "probe",
+          "abstain"
+        ],
+        "ground_truth_class": "protected",
+        "dependence": 0.6,
+        "authority_risk": 0.8,
+        "nonstationarity": 0.2,
+        "reversibility": 0.7
+      }
+    },
+    {
+      "slot_id": "target:retrieval_stopping:primary",
+      "family_id": "retrieval_stopping",
+      "problem_signature": {
+        "signature_id": "sig:retrieval_stopping:heldout-primary",
+        "family_id": "retrieval_stopping",
+        "surface_domain": "scientific-retrieval-stopping",
+        "hidden_state": "latent-responsible-route",
+        "observability": "partial-probeable",
+        "actions": [
+          "query",
+          "stop"
+        ],
+        "ground_truth_class": "protected",
+        "dependence": 0.6,
+        "authority_risk": 0.8,
+        "nonstationarity": 0.2,
+        "reversibility": 0.7
+      }
+    },
+    {
+      "slot_id": "target:retrieval_stopping:alt",
+      "family_id": "retrieval_stopping",
+      "problem_signature": {
+        "signature_id": "sig:retrieval_stopping:heldout-alt",
+        "family_id": "retrieval_stopping",
+        "surface_domain": "scientific-retrieval-stopping",
+        "hidden_state": "latent-responsible-route",
+        "observability": "partial-probeable",
+        "actions": [
+          "query",
+          "stop"
+        ],
+        "ground_truth_class": "protected",
+        "dependence": 0.6,
+        "authority_risk": 0.8,
+        "nonstationarity": 0.2,
+        "reversibility": 0.7
+      }
+    },
+    {
+      "slot_id": "target:semantic_mapping:primary",
+      "family_id": "semantic_mapping",
+      "problem_signature": {
+        "signature_id": "sig:semantic_mapping:heldout-primary",
+        "family_id": "semantic_mapping",
+        "surface_domain": "scientific-semantic-mapping",
+        "hidden_state": "latent-coordinate-mismatch",
+        "observability": "source-local-projections",
+        "actions": [
+          "map",
+          "obstruct"
+        ],
+        "ground_truth_class": "protected",
+        "dependence": 0.6,
+        "authority_risk": 0.8,
+        "nonstationarity": 0.2,
+        "reversibility": 0.7
+      }
+    },
+    {
+      "slot_id": "target:semantic_mapping:alt",
+      "family_id": "semantic_mapping",
+      "problem_signature": {
+        "signature_id": "sig:semantic_mapping:heldout-alt",
+        "family_id": "semantic_mapping",
+        "surface_domain": "scientific-semantic-mapping",
+        "hidden_state": "latent-coordinate-mismatch",
+        "observability": "source-local-projections",
+        "actions": [
+          "map",
+          "obstruct"
+        ],
+        "ground_truth_class": "protected",
+        "dependence": 0.6,
+        "authority_risk": 0.8,
+        "nonstationarity": 0.2,
+        "reversibility": 0.7
+      }
+    },
+    {
+      "slot_id": "target:protected_verification:primary",
+      "family_id": "protected_verification",
+      "problem_signature": {
+        "signature_id": "sig:protected_verification:heldout-primary",
+        "family_id": "protected_verification",
+        "surface_domain": "protected-evidence-verification",
+        "hidden_state": "latent-authority-gap",
+        "observability": "evaluator-custody",
+        "actions": [
+          "acquire",
+          "abstain"
+        ],
+        "ground_truth_class": "protected",
+        "dependence": 0.6,
+        "authority_risk": 0.8,
+        "nonstationarity": 0.2,
+        "reversibility": 0.7
+      }
+    },
+    {
+      "slot_id": "target:protected_verification:alt",
+      "family_id": "protected_verification",
+      "problem_signature": {
+        "signature_id": "sig:protected_verification:heldout-alt",
+        "family_id": "protected_verification",
+        "surface_domain": "protected-evidence-verification",
+        "hidden_state": "latent-authority-gap",
+        "observability": "evaluator-custody",
+        "actions": [
+          "acquire",
+          "abstain"
+        ],
+        "ground_truth_class": "protected",
+        "dependence": 0.6,
+        "authority_risk": 0.8,
+        "nonstationarity": 0.2,
+        "reversibility": 0.7
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "pair_id": "pair:debugging:retrieval_stopping:positive",
+      "source_slot_id": "source:debugging:primary",
+      "target_slot_id": "target:retrieval_stopping:primary",
+      "source_family_id": "debugging",
+      "target_family_id": "retrieval_stopping",
+      "pair_kind": "positive"
+    },
+    {
+      "pair_id": "pair:debugging:semantic_mapping:near_miss",
+      "source_slot_id": "source:debugging:primary",
+      "target_slot_id": "target:semantic_mapping:primary",
+      "source_family_id": "debugging",
+      "target_family_id": "semantic_mapping",
+      "pair_kind": "near_miss"
+    },
+    {
+      "pair_id": "pair:debugging:protected_verification:negative",
+      "source_slot_id": "source:debugging:patch",
+      "target_slot_id": "target:protected_verification:primary",
+      "source_family_id": "debugging",
+      "target_family_id": "protected_verification",
+      "pair_kind": "negative"
+    },
+    {
+      "pair_id": "pair:debugging:retrieval_stopping:partial",
+      "source_slot_id": "source:debugging:primary",
+      "target_slot_id": "target:retrieval_stopping:alt",
+      "source_family_id": "debugging",
+      "target_family_id": "retrieval_stopping",
+      "pair_kind": "partial"
+    },
+    {
+      "pair_id": "pair:retrieval_stopping:semantic_mapping:positive",
+      "source_slot_id": "source:retrieval_stopping:primary",
+      "target_slot_id": "target:semantic_mapping:primary",
+      "source_family_id": "retrieval_stopping",
+      "target_family_id": "semantic_mapping",
+      "pair_kind": "positive"
+    },
+    {
+      "pair_id": "pair:retrieval_stopping:protected_verification:near_miss",
+      "source_slot_id": "source:retrieval_stopping:primary",
+      "target_slot_id": "target:protected_verification:primary",
+      "source_family_id": "retrieval_stopping",
+      "target_family_id": "protected_verification",
+      "pair_kind": "near_miss"
+    },
+    {
+      "pair_id": "pair:retrieval_stopping:debugging:negative",
+      "source_slot_id": "source:retrieval_stopping:patch",
+      "target_slot_id": "target:debugging:primary",
+      "source_family_id": "retrieval_stopping",
+      "target_family_id": "debugging",
+      "pair_kind": "negative"
+    },
+    {
+      "pair_id": "pair:retrieval_stopping:semantic_mapping:partial",
+      "source_slot_id": "source:retrieval_stopping:primary",
+      "target_slot_id": "target:semantic_mapping:alt",
+      "source_family_id": "retrieval_stopping",
+      "target_family_id": "semantic_mapping",
+      "pair_kind": "partial"
+    },
+    {
+      "pair_id": "pair:semantic_mapping:protected_verification:positive",
+      "source_slot_id": "source:semantic_mapping:primary",
+      "target_slot_id": "target:protected_verification:primary",
+      "source_family_id": "semantic_mapping",
+      "target_family_id": "protected_verification",
+      "pair_kind": "positive"
+    },
+    {
+      "pair_id": "pair:semantic_mapping:debugging:near_miss",
+      "source_slot_id": "source:semantic_mapping:primary",
+      "target_slot_id": "target:debugging:primary",
+      "source_family_id": "semantic_mapping",
+      "target_family_id": "debugging",
+      "pair_kind": "near_miss"
+    },
+    {
+      "pair_id": "pair:semantic_mapping:retrieval_stopping:negative",
+      "source_slot_id": "source:semantic_mapping:patch",
+      "target_slot_id": "target:retrieval_stopping:primary",
+      "source_family_id": "semantic_mapping",
+      "target_family_id": "retrieval_stopping",
+      "pair_kind": "negative"
+    },
+    {
+      "pair_id": "pair:semantic_mapping:protected_verification:partial",
+      "source_slot_id": "source:semantic_mapping:primary",
+      "target_slot_id": "target:protected_verification:alt",
+      "source_family_id": "semantic_mapping",
+      "target_family_id": "protected_verification",
+      "pair_kind": "partial"
+    },
+    {
+      "pair_id": "pair:protected_verification:debugging:positive",
+      "source_slot_id": "source:protected_verification:primary",
+      "target_slot_id": "target:debugging:primary",
+      "source_family_id": "protected_verification",
+      "target_family_id": "debugging",
+      "pair_kind": "positive"
+    },
+    {
+      "pair_id": "pair:protected_verification:retrieval_stopping:near_miss",
+      "source_slot_id": "source:protected_verification:primary",
+      "target_slot_id": "target:retrieval_stopping:primary",
+      "source_family_id": "protected_verification",
+      "target_family_id": "retrieval_stopping",
+      "pair_kind": "near_miss"
+    },
+    {
+      "pair_id": "pair:protected_verification:semantic_mapping:negative",
+      "source_slot_id": "source:protected_verification:patch",
+      "target_slot_id": "target:semantic_mapping:primary",
+      "source_family_id": "protected_verification",
+      "target_family_id": "semantic_mapping",
+      "pair_kind": "negative"
+    },
+    {
+      "pair_id": "pair:protected_verification:debugging:partial",
+      "source_slot_id": "source:protected_verification:primary",
+      "target_slot_id": "target:debugging:alt",
+      "source_family_id": "protected_verification",
+      "target_family_id": "debugging",
+      "pair_kind": "partial"
+    }
+  ],
+  "hostile_falsifiers": [
+    {
+      "kind": "same_terms_incompatible_assumptions",
+      "source_slot_id": "source:debugging:primary",
+      "target_slot_id": "target:retrieval_stopping:primary",
+      "expected_selector_admission": false,
+      "notes": "Shared discriminator vocabulary with irreversible probes on the receiving family."
+    },
+    {
+      "kind": "different_terms_same_mechanic",
+      "source_slot_id": "source:debugging:primary",
+      "target_slot_id": "target:semantic_mapping:alt",
+      "expected_selector_admission": false,
+      "notes": "Surface vocabulary diverges; contract selector may still inspect. Surface similarity is not admission."
+    },
+    {
+      "kind": "omitted_precondition",
+      "source_slot_id": "source:retrieval_stopping:primary",
+      "target_slot_id": "target:debugging:primary",
+      "expected_selector_admission": false,
+      "notes": "Declared tool precondition is unbound on the receiving family."
+    },
+    {
+      "kind": "stale_source_evidence",
+      "source_slot_id": "source:semantic_mapping:primary",
+      "target_slot_id": "target:protected_verification:primary",
+      "expected_selector_admission": false,
+      "notes": "Source evidence identity is older than the frozen receiving split."
+    },
+    {
+      "kind": "unavailable_tool",
+      "source_slot_id": "source:protected_verification:primary",
+      "target_slot_id": "target:debugging:alt",
+      "expected_selector_admission": false,
+      "notes": "Required probe tool is not in the receiving family's tool set."
+    },
+    {
+      "kind": "corrupted_falsifier",
+      "source_slot_id": "source:debugging:patch",
+      "target_slot_id": "target:semantic_mapping:primary",
+      "expected_selector_admission": false,
+      "notes": "Falsifier bytes do not match the bound source evidence identity."
+    }
+  ],
+  "notes": [
+    "Source catalogs and receiving-family catalogs are independent slots.",
+    "Pair kinds are experimental conditions, not measured results.",
+    "No receiving-family answers, labels, or transfer gains are stored."
+  ]
+}
