@@ -70,7 +70,13 @@ jobs:
         run: |
           start=$(date +%s)
           set +e
-          PYTHON="uv run python" make paper01-results
+          # Into RUNNER_TEMP, not the checkout. `results/P1-T2_*.json` and
+          # `P1-T3_*.json` are content-hash-bound in P1's journal package, and the
+          # generated tables carry a `provenance.generated_utc` wall-clock stamp --
+          # so every honest reproduction rewrites two hashed artifacts and drifts
+          # the package. A reproduction test that mutates the evidence it is
+          # reproducing cannot then check that evidence.
+          PYTHON="uv run python" make paper01-results P1_OUT="${RUNNER_TEMP}/p1-tables"
           code=$?
           set -e
           elapsed=$(( $(date +%s) - start ))
@@ -85,8 +91,16 @@ jobs:
         run: |
           start=$(date +%s)
           uv run python research/development/cannot_check_inventory.py --check
-          uv run python research/paper-programme-v1/journal_package/check_journal_package.py > /dev/null
+          # Its report goes to stdout, so discarding stdout discards the reason
+          # this step failed. An earlier revision did exactly that and produced a
+          # red job with no message in the log at all.
+          uv run python research/paper-programme-v1/journal_package/check_journal_package.py \
+            > "${RUNNER_TEMP}/journal-packages.json" \
+            || { echo "::error::journal package check failed"; cat "${RUNNER_TEMP}/journal-packages.json"; exit 1; }
           uv run python papers/paper-01-recursive-epistemic-reconstruction/scripts/make_mechanical_arm_case_table.py --check
+          # Nothing above may modify the checkout. If something did, the check
+          # that follows it was run against a mutated tree.
+          git diff --exit-code || { echo "::error::a derived-artifact check modified the working tree"; exit 1; }
           echo "derived-artifact checks elapsed=$(( $(date +%s) - start ))s" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Runtime and cost statement
