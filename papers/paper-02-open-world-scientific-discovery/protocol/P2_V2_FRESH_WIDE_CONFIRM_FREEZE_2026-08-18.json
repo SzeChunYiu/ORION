@@ -1,0 +1,94 @@
+{
+  "schema": "P2.v2.fresh-wide-confirm-freeze.v1",
+  "status": "FROZEN_BEFORE_DEV2_DEVELOPMENT_OUTCOME_AND_CONFIRMATORY_OUTCOME_ACCESS",
+  "frozen_on": "2026-08-18",
+  "authority": "FRESH_HELD_OUT_EXTERNAL_CONFIRMATION_IF_DEVELOPMENT_GATE_PASSES",
+  "execution_precondition": {
+    "artifact": "P2_V2_ACQUISITION_DEV2_RESULT.json",
+    "required_verdict": "DEV2_ELIGIBLE_FOR_FRESH_SLICE_FREEZE",
+    "rule": "If the development gate does not pass, this confirmatory design is not executed and no fresh outcomes are accessed."
+  },
+  "benchmark": {
+    "repository": "CherYou/AutoResearchBench",
+    "revision": "a46c9bfb8968786f73f0a6a5b365b5384cd0f96d",
+    "decrypted_bundle_sha256": "db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6",
+    "public_wide_sha256": "af795b78a53a805e972d6574e441bfe9e80be4077cf6c95e73d9b2a0b43f43ae",
+    "official_wide_scorer": "evaluate/evaluate_wide_search.py --no-jina --gt-file wide_gt.jsonl"
+  },
+  "frozen_systems": {
+    "baseline": {
+      "id": "wide_lexical_arxiv",
+      "implementation_blob_sha": "c6dad6fcf5c03539582b0d0cfc1024bb6165a5ea",
+      "provider_requests_per_task": 3,
+      "max_results_per_call": 20,
+      "max_candidates_returned": 20
+    },
+    "candidate": {
+      "id": "wide_diversified_arxiv_dev2",
+      "implementation_blob_sha": "812aac449457d6dad4a8e1c0ecc8009a7031f0a1",
+      "provider_requests_per_task": 3,
+      "max_results_per_call": 20,
+      "max_candidates_returned": 20,
+      "same_backend_query_agreement_is_route_independence": false
+    }
+  },
+  "fresh_slice": {
+    "released_wide_task_count": 400,
+    "burned_development_task_count": 24,
+    "eligible_pool_count": 376,
+    "n": 48,
+    "selection_algorithm": "Python random.Random(20260820).sample over task IDs arb-wide-0001..arb-wide-0400 after excluding the 24 development IDs; result sorted by numeric task ID",
+    "seed": 20260820,
+    "selected_task_ids": [
+      "arb-wide-0024", "arb-wide-0025", "arb-wide-0028", "arb-wide-0036", "arb-wide-0037", "arb-wide-0038",
+      "arb-wide-0102", "arb-wide-0134", "arb-wide-0154", "arb-wide-0159", "arb-wide-0167", "arb-wide-0168",
+      "arb-wide-0170", "arb-wide-0179", "arb-wide-0181", "arb-wide-0209", "arb-wide-0210", "arb-wide-0217",
+      "arb-wide-0220", "arb-wide-0223", "arb-wide-0231", "arb-wide-0232", "arb-wide-0247", "arb-wide-0258",
+      "arb-wide-0269", "arb-wide-0278", "arb-wide-0281", "arb-wide-0282", "arb-wide-0284", "arb-wide-0294",
+      "arb-wide-0298", "arb-wide-0306", "arb-wide-0311", "arb-wide-0312", "arb-wide-0316", "arb-wide-0317",
+      "arb-wide-0326", "arb-wide-0332", "arb-wide-0333", "arb-wide-0345", "arb-wide-0351", "arb-wide-0357",
+      "arb-wide-0360", "arb-wide-0373", "arb-wide-0374", "arb-wide-0383", "arb-wide-0390", "arb-wide-0397"
+    ],
+    "selected_task_ids_sha256": "f4af8ac37a2dc49a2aad26368403a3cc5639fedc274db05f28953a3f826d85ed",
+    "development_overlap_allowed": false,
+    "gold_access_during_candidate_execution": false
+  },
+  "execution": {
+    "comparison": "contemporaneous matched run of baseline and candidate on the exact same 48 tasks",
+    "provider": "arxiv export API",
+    "transport_handling": "typed; failed provider calls remain failures and cannot be converted to empty evidence",
+    "required_transport_validity": "all planned provider requests complete with OK status for both systems",
+    "candidate_cap": 20,
+    "request_budget_per_task_per_system": 3,
+    "task_order": "selected_task_ids ascending",
+    "system_order_within_task": ["wide_lexical_arxiv", "wide_diversified_arxiv_dev2"]
+  },
+  "primary_outcome": {
+    "metric": "official per-task recall, paired candidate-minus-baseline mean difference",
+    "substantive_margin": 0.02,
+    "uncertainty": "paired nonparametric bootstrap over tasks, 20000 resamples, seed 20260820, percentile 95% CI",
+    "positive_rule": "mean recall delta >= 0.02 AND 95% bootstrap lower bound > 0"
+  },
+  "secondary_guardrails": {
+    "official_mean_iou_delta": "> 0",
+    "official_mean_precision_delta": ">= 0",
+    "matched_provider_requests_per_task": true,
+    "open_obligation_count": 0,
+    "candidate_task_closure_declared": 0,
+    "absolute_zero-hit_tasks": "report for both systems; never omitted"
+  },
+  "multiplicity": "single primary confirmatory contrast; secondary metrics are guardrails, not separately promoted hypotheses",
+  "promotion_scope": {
+    "if_positive": "supports fresh external acquisition/discovery benefit on AutoResearchBench Wide only; does not by itself establish ORION closure-authority residual, stopping safety, or transfer",
+    "if_nonpositive": "retain archived narrowed paper and bounded development findings; no threshold relaxation or resampling of a different fresh slice"
+  },
+  "forbidden": [
+    "running the fresh slice if Dev-2 development eligibility is not achieved",
+    "changing selected task IDs after any fresh outcome access",
+    "changing candidate or baseline implementations after any fresh outcome access",
+    "relaxing the 0.02 recall margin or bootstrap rule after outcomes",
+    "dropping zero-hit or provider-failure tasks",
+    "using the 24 development tasks in confirmatory statistics",
+    "calling same-backend query formulations independent routes"
+  ]
+}
