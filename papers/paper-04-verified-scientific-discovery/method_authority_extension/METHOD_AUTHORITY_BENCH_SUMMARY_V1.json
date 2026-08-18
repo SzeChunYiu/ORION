@@ -1,0 +1,28 @@
+{
+  "result_version": "P4_METHOD_AUTHORITY_BENCH_SUMMARY_V1",
+  "protocol_id": "P4.MethodAuthorityBench.v1",
+  "n_cases": 10,
+  "n_clean_promotable": 3,
+  "n_negative_or_blocked": 7,
+  "systems": {
+    "P4_MethodTransferReceipt_coordinate_product": {
+      "false_promotion_rate": 0.0,
+      "clean_promotion_coverage": 1.0
+    },
+    "visible_success_policy": {
+      "false_promotion_rate": 1.0,
+      "clean_promotion_coverage": 1.0
+    },
+    "provenance_only_policy": {
+      "false_promotion_rate": 1.0,
+      "clean_promotion_coverage": 1.0
+    },
+    "all_deny_policy": {
+      "false_promotion_rate": 0.0,
+      "clean_promotion_coverage": 0.0
+    }
+  },
+  "terminal": "P4_METHOD_AUTHORITY_SUPPORTED",
+  "claim_ceiling": "Closed synthetic MethodAuthorityBench supports the coordinate-separation and anti-laundering semantics only. It does not establish novelty, transfer utility, or frontier-method quality outside the frozen benchmark world.",
+  "adoption_authority": "P5_HOST_GOVERNANCE_REQUIRED"
+}
