@@ -24,7 +24,12 @@ concurrency:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # The TeX install alone has twice exceeded a 20-minute *job* budget on a slow
+    # apt mirror, and GitHub reports a job timeout as `cancelled` -- which reads
+    # as a failed gate in `gh pr checks` while telling nobody that the gate never
+    # actually ran. Budget the job for its slowest real step rather than its
+    # typical one.
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
@@ -70,9 +75,19 @@ jobs:
 
       - name: Install TeX/PDF/rendering tools
         shell: bash
+        # Its own budget, so a hang here is reported as this step timing out
+        # rather than as the whole audit being cancelled with no attribution.
+        timeout-minutes: 25
         run: |
+          set -euo pipefail
           sudo apt-get update -qq
-          sudo apt-get install -y -qq latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended lmodern poppler-utils librsvg2-bin
+          # One retry. Both observed hangs were in this install, and a transient
+          # mirror stall should not consume a submission gate.
+          sudo apt-get install -y -qq latexmk texlive-latex-base texlive-latex-extra \
+            texlive-fonts-recommended lmodern poppler-utils librsvg2-bin \
+            || { sleep 15; sudo apt-get update -qq; sudo apt-get install -y -qq latexmk \
+                 texlive-latex-base texlive-latex-extra texlive-fonts-recommended lmodern \
+                 poppler-utils librsvg2-bin; }
 
       - name: Render SVG result figures to submission PNGs
         shell: bash
