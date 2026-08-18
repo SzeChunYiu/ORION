@@ -1,0 +1,21 @@
+name: p2-v2-acq-dev3
+
+# Dev-3 reached the frozen final-development terminal. Preserve only an explicit
+# reproduction entry point; PR edits must not trigger additional outcome-seeking
+# provider runs after the stop rule has fired.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dev3-reproduction-note:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Frozen terminal
+        run: |
+          echo 'Dev-3 is archived as the final acquisition-development iteration.'
+          echo 'The pre-frozen stop rule forbids Dev-4 and fresh confirmation because Dev-3 was not eligible.'
+          echo 'Manual reproductions must not be treated as a new selection outcome.'

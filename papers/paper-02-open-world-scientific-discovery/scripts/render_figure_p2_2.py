@@ -65,6 +65,7 @@ def render_plt(trajectory_data: dict, plt) -> Path:
     # Extract trajectory data for the two systems
     orion_trajectory = trajectory_data["trajectory_systems"]["orion_full"]
     protocol_trajectory = trajectory_data["trajectory_systems"]["protocol_driven_systematic_review"]
+    n_tasks = int(trajectory_data["n_tasks"])
 
     # Extract query counts and recall values
     orion_queries = [point["queries"] for point in orion_trajectory]
@@ -100,7 +101,7 @@ def render_plt(trajectory_data: dict, plt) -> Path:
     ax.legend(loc='lower right', framealpha=0.9)
 
     # Add annotation about data source
-    ax.text(0.02, 0.98, '20 frozen tasks; deterministic repeats collapsed; descriptive only',
+    ax.text(0.02, 0.98, f'{n_tasks} frozen tasks; deterministic repeats collapsed; descriptive only',
             transform=ax.transAxes, fontsize=8, verticalalignment='top',
             bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.3))
 
@@ -118,6 +119,7 @@ def render_tex(trajectory_data: dict) -> str:
     """Generate the LaTeX version of the figure for manuscript inclusion."""
     lines: list[str] = []
     add = lines.append
+    n_tasks = int(trajectory_data["n_tasks"])
 
     add("% GENERATED from evidence/offline_results/OFFLINE_MECHANISMS_V1.json")
     add("% Regenerate with: papers/paper-02-open-world-scientific-discovery/scripts/render_figure_p2_2.py")
@@ -132,20 +134,20 @@ def render_tex(trajectory_data: dict) -> str:
     add("\\foreach \\x in {0,2,4,6,8,10,12} \\draw (\\x,0.012) -- (\\x,-0.012) node[below]{\\x};")
     add("\\foreach \\y/\\lab in {0/0,0.25/.25,0.5/.50,0.75/.75,1/1.0} \\draw (0.10,\\y) -- (-0.10,\\y) node[left]{\\lab};")
 
-    # ORION full trajectory
+    # TikZ coordinates are whitespace-separated. Commas between tuples make
+    # pgf parse the next tuple as part of the previous coordinate and fail.
     orion_trajectory = trajectory_data["trajectory_systems"]["orion_full"]
-    orion_coords = ", ".join(f"({pt['queries']},{pt['mean_complete_gold_recall']:.6f})" for pt in orion_trajectory)
+    orion_coords = " ".join(f"({pt['queries']},{pt['mean_complete_gold_recall']:.6f})" for pt in orion_trajectory)
     add(f"\\draw[thick] plot coordinates {{{orion_coords}}};")
 
-    # Protocol trajectory
     protocol_trajectory = trajectory_data["trajectory_systems"]["protocol_driven_systematic_review"]
-    protocol_coords = ", ".join(f"({pt['queries']},{pt['mean_complete_gold_recall']:.6f})" for pt in protocol_trajectory)
+    protocol_coords = " ".join(f"({pt['queries']},{pt['mean_complete_gold_recall']:.6f})" for pt in protocol_trajectory)
     add(f"\\draw[thick,dashed] plot coordinates {{{protocol_coords}}};")
 
     # Labels
     add("\\node[anchor=west] at (8.3,0.94) {ORION full};")
     add("\\node[anchor=west] at (8.3,0.69) {Protocol SLR};")
-    add("\\node[anchor=west,font=\\scriptsize] at (0,1.14) {20 frozen tasks; repeats collapsed; descriptive only};")
+    add(f"\\node[anchor=west,font=\\scriptsize] at (0,1.14) {{{n_tasks} frozen tasks; repeats collapsed; descriptive only}};")
 
     add("\\end{tikzpicture}")
     return "\n".join(lines)

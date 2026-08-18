@@ -1,0 +1,22 @@
+{
+  "bib_key": "rethinkinglitsearch2026",
+  "claimed_title": "Rethinking Literature Search Evaluation: Deep Research Helps, and Human Citation Lists Are Not a Ground Truth",
+  "claim_provenance": "pre_existing_independent_claim",
+  "fetch_url": "https://export.arxiv.org/api/query?id_list=2605.29234",
+  "fetched_utc": "2026-08-17T23:11:04Z",
+  "verdict": "VERIFIED",
+  "verdict_reason": "claimed title matches fetched title exactly (normalised)",
+  "fetched_title": "Rethinking Literature Search Evaluation: Deep Research Helps, and Human Citation Lists Are Not a Ground Truth",
+  "fetched_authors": [
+    "Gaurav Sahu",
+    "Laurent Charlin",
+    "Christopher Pal"
+  ],
+  "fetched_year": 2026,
+  "fetched_venue": "arXiv preprint",
+  "arxiv_id": "2605.29234v1",
+  "doi": null,
+  "published": "2026-05-28T01:50:52Z",
+  "updated": "2026-05-28T01:50:52Z",
+  "abstract": "We study large-scale literature search from two complementary angles: improving the retrieval pipeline, and stress-testing the human reference list as an evaluation target. First, we implement a Deep Research pipeline that processes the full query paper and expands the retrieved results breadth-first along their bibliographies, and show that it substantially outperforms vanilla API-only search, raising recall on RollingEval-Jun25 (a 250-paper literature-search benchmark) from below 20% to above 80%. Second, we use a neutral LLM-as-a-judge to determine if human references are sound ground truth for the task. We find significant limitations: only 51% of human citations are judged moderately relevant or higher, against 86--88% for the strongest AI-based re-rankers. We study this gap on the OpenAlex co-authorship graph, finding that humans are 2.5x more likely than the best AI re-rankers to cite a direct collaborator. Together, our results argue against single-axis literature-search evaluation: recall, topical-relevance scoring, ranked-list diversity, and a co-authorship-distance diagnostic each measure complementary properties of citation quality and should be reported jointly."
+}

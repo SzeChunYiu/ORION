@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from .belief import AuthorityClass, BeliefState, uniform_unresolved
+from .belief import AuthorityClass, BeliefState, MUTATION_BEARING, uniform_unresolved
 from .cases import PublicMemberView, World
 from .discriminator import (
     DEFAULT_PROBES,
@@ -76,13 +76,18 @@ def run_cycle(
     catalog: ProbeCatalog | None = None,
     max_probes: int = 2,
 ) -> CausalCycle:
-    """Mechanical cycle. ``world`` is host-side and must not be logged as gold."""
+    """Mechanical cycle. ``world`` is host-side and must not be logged as gold.
+
+    The public probe/intervention allowlists are a hard candidate capability
+    boundary. An empty allowlist stays empty; the cycle never falls back to a
+    broader catalog or runs an unadvertised intervention.
+    """
 
     if not isinstance(view, PublicMemberView):
         raise TypeError("candidates receive PublicMemberView only")
     menu = catalog or ProbeCatalog(DEFAULT_PROBES)
     allowed = [probe for probe in menu.probes if probe.probe_id in view.allowed_probe_ids]
-    probes = ProbeCatalog(tuple(allowed) or menu.probes)
+    probes = ProbeCatalog(tuple(allowed))
     state = uniform_unresolved(evidence_ids=(f"surface:{view.member_id}",))
     notes: list[str] = []
     used: set[str] = set()
@@ -103,13 +108,25 @@ def run_cycle(
     hypothesized = state.authority_class
     if hypothesized is not AuthorityClass.UNRESOLVED:
         spec = _INTERVENTION_BY_CLASS[hypothesized]
-        observed = world.intervention_directions.get(spec.intervention_id, "vanish")
-        outcome = match_outcome(spec, observed)
-        state = apply_intervention(state, spec, outcome)
-        notes.append(f"ran_intervention:{spec.intervention_id}:{outcome.matched}")
+        if spec.intervention_id not in view.allowed_intervention_ids:
+            notes.append(f"intervention_not_allowed:{spec.intervention_id}")
+        else:
+            observed = world.intervention_directions.get(spec.intervention_id, "vanish")
+            outcome = match_outcome(spec, observed)
+            state = apply_intervention(state, spec, outcome)
+            notes.append(f"ran_intervention:{spec.intervention_id}:{outcome.matched}")
     decisions = tuple(request_action(state, action) for action in EpistemicAction)
-    cannot_check = state.authority_class is AuthorityClass.UNRESOLVED or any(
-        item.cannot_check for item in decisions if item.action in MUTATING_FOR_CHECK
+    cannot_check = (
+        state.authority_class is AuthorityClass.UNRESOLVED
+        or (
+            state.authority_class in MUTATION_BEARING
+            and not state.intervention_backed
+        )
+        or any(
+            item.cannot_check
+            for item in decisions
+            if item.action in MUTATING_FOR_CHECK
+        )
     )
     return CausalCycle(
         view=view,

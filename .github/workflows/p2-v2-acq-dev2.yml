@@ -1,0 +1,28 @@
+name: p2-v2-acq-dev2
+
+# The frozen development run has completed. Keep this workflow only as an
+# explicit reproduction path; PR edits must not silently spend the external
+# provider budget again or create a post-outcome rerun that could be mistaken
+# for a new development decision.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dev2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and pinned scorer runtime dependencies
+        run: python -m pip install -e . requests tiktoken openai
+      - name: Reproduction note
+        run: |
+          echo 'Frozen Dev-2 evidence is archived in the P2 evidence tree.'
+          echo 'Use the frozen protocol and archived candidate/trace hashes for reproduction.'
+          echo 'Do not reinterpret a manual rerun as a new development-selection outcome.'

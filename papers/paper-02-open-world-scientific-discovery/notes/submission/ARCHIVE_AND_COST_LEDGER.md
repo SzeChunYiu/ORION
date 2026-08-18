@@ -1,122 +1,86 @@
-# P2 permanent archive and reproduction cost ledger
+# P2 permanent archive and reproduction-cost ledger — narrowed track
 
-Two questions this file answers: what a permanent DOI-bearing archive may and may
-not contain, and what it actually costs a third party to reproduce each tier of
-the paper's evidence.
+Scientific terminal: `P2_NARROWED`.
 
-`UNKNOWN_PENDING_RUN` means the number is not knowable until a campaign executes.
-It is never replaced with an estimate. Counts and durations recorded below were
-read from artifacts or from the run's own metadata, not inferred.
+This ledger separates evidence that is exactly reproducible, evidence that depends on pinned third-party benchmarks, and evidence that is archive-only or unavailable. `UNKNOWN_PENDING_RUN` is never replaced with an estimate. The narrowed paper does not require matched Wide/Deep or live-provider superiority; unavailable authorities remain visible reopen conditions rather than being turned into zeros.
 
-## 1. Permanent archive (Zenodo-style DOI)
+## 1. Permanent archive
 
-### 1.1 May contain
+### 1.1 Include where licence permits
 
-| Contents | Source | Licence basis |
+| Contents | Source | Basis |
 | --- | --- | --- |
-| Frozen synthetic world + tasks + manifest | `evidence/offline_gold/**` | Fully synthetic, generated from a recorded seed by `src/orion/study/p2/corpus.py`; contains no third-party text. Ours to publish. |
-| Subject code and evaluation harness | `src/orion/study/p2/**` | Repository licence. |
-| Publication summaries and supplementary tables | `evidence/offline_results/**` | Derived from our own runs. |
-| Protocol, statistical plan, measurement plan, freeze manifest | `protocol/**` | Ours. |
-| Claim ledger, checker, access audit | `protocol/CLAIM_LEDGER_V1.json`, `scripts/check_claim_ledger.py`, `protocol/EXTERNAL_ACCESS_AUDIT_V1.json` | Ours. The audit records *facts about* third-party artifacts, not the artifacts. |
-| MetaSyn probe archive | `evidence/external_results/METASYN_ID_ONLY_PROBE_V1.json` | Our own scored output plus content-binding digests; no upstream corpus embedded. |
-| Manuscript source and figures | `manuscript/**` | Ours. |
-| Literature evidence records | `evidence/literature/*.json` | Bibliographic metadata records, not article full text. |
+| Frozen synthetic world, tasks and manifest | `evidence/offline_gold/**` | Project-generated synthetic material. |
+| P2 subject code/evaluation harness | `src/orion/study/p2/**` | Repository licence. |
+| Publication summaries/tables | `evidence/offline_results/**` | Derived project output. |
+| Protocol/statistical/measurement plans | `protocol/**` | Project-authored. |
+| Claim ledger/checker | `protocol/CLAIM_LEDGER_V1.json`, `scripts/check_claim_ledger.py` | Project-authored integrity layer. |
+| P2 donor-assimilation ledger/checker | `protocol/P2_DONOR_ASSIMILATION_LEDGER_V1.json`, `scripts/check_p2_assimilation.py` | Project-authored source/authority binding. |
+| MetaSyn bounded probe archive | `evidence/external_results/METASYN_ID_ONLY_PROBE_V1.json` and FN ledger | Project-scored output/content bindings; do not embed upstream restricted data. |
+| AutoResearchBench bounded Wide/Deep archives | committed external-results artifacts | Project outputs under their declared bounded authority; keep upstream benchmark revisions/digests separately. |
+| Manuscript source and generated figures | `manuscript/**` | Project-authored; archive the final compiled source set after the render gate passes. |
+| Dated literature freeze / publication terminal | `protocol/P2_LITERATURE_ASSIMILATION_FREEZE_2026-08-17.md`, `protocol/P2_NARROWED_PUBLICATION_TERMINAL_2026-08-17.md` | Audit trail for final claim scope. |
 
-**Mirror before the window closes.** The MetaSyn probe's GitHub Actions artifact
-(`artifact_id` 9270589591) records `artifact_expires_at`
-`2026-09-15T21:39:53Z` in `METASYN_ID_ONLY_PROBE_V1.json`. After that date the
-committed digests remain verifiable but the raw artifact is gone unless it has
-been copied into the permanent archive. Copy it now, not at submission time.
+**Retention risk:** the committed MetaSyn probe records GitHub Actions artifact expiry `2026-09-15T21:39:53Z` (artifact id 9270589591). Mirror the raw artifact into a durable archive before that date where licensing permits; committed digests alone cannot restore expired raw bytes.
 
-### 1.2 May **not** contain
+### 1.2 Exclude or bind by reference
 
-From `protocol/TABLE_P2-1_freeze_manifest.md`, which records the licence audit per
-artifact:
-
-| Artifact | State | Why it is excluded |
-| --- | --- | --- |
-| `SAGE_benchmark` dataset | `AVAILABLE_LICENSE_BLOCKED`, `Redistribute: no` | The fully enumerated pinned tree contains no `LICENSE`, `COPYING` or `NOTICE`. No licence, no redistribution. |
-| `AgentSLR` code | `AVAILABLE_LICENSE_BLOCKED`, `Redistribute: no` | Same: licence endpoint returned 404 and the enumerated pinned tree has no licence file. |
-| `MetaSyn_dataset` | `Redistribute: partial` | Project-authored annotations are MIT; upstream terms differ. Ship the pinned dataset revision identifier and content binding, not the data. |
-| AutoResearchBench code/dataset | Apache-2.0, redistributable | Redistribution is *permitted*, but we still exclude it: the archive should carry pinned revisions and digests so the archive does not become a stale fork of an upstream benchmark. |
-| Any live-provider raw response bodies | n/a | Provider terms govern re-publication; excluded until reviewed per provider. Currently moot — no final live campaign exists. |
-
-For every excluded artifact the archive ships the pinned revision, the audited
-content binding (git tree SHA or HF revision SHA) and the access state, so a third
-party can obtain the original themselves.
+- SAGE benchmark data: `AVAILABLE_LICENSE_BLOCKED` in the freeze manifest; do not redistribute without a licence basis.
+- AgentSLR code: `AVAILABLE_LICENSE_BLOCKED`; do not redistribute without a licence basis.
+- MetaSyn upstream data: only redistribute portions whose terms permit it; otherwise ship pinned revision/content bindings.
+- AutoResearchBench upstream corpus/code: even where redistribution is permitted, prefer pinned revisions/digests unless the archive has a concrete reason to embed a fork.
+- Any live-provider raw response body: provider terms govern redistribution; no final live campaign is claimed by the narrowed paper.
 
 ## 2. Reproduction ledger
 
-Commands are run from the repository root. `PAPER` abbreviates
-`papers/paper-02-open-world-scientific-discovery`.
+Commands are run from repository root. `PAPER` abbreviates `papers/paper-02-open-world-scientific-discovery`.
 
-### Tier 1 — fully reproducible in a clean environment
+### Tier 1 — controlled result; local/offline authority
 
-No network, no credentials, no third-party data, no monetary cost.
+No provider credential or metered API is needed for the frozen controlled campaign.
 
-| Step | Command | Provider requests | Cost | Runtime |
-| --- | --- | --- | --- | --- |
-| Verify the frozen world against its committed hashes | `python3 -m orion.study.p2.freeze --write` (then confirm no diff) | 0 | none | `UNKNOWN_PENDING_RUN` — not yet timed in a clean environment |
-| Rebuild every offline run and compare to the committed summary | `python3 $PAPER/scripts/run_offline_companion.py --check` | 0 | none | `UNKNOWN_PENDING_RUN` |
-| Emit the complete raw record and artifact sets | `python3 $PAPER/scripts/run_offline_companion.py --write-raw DIR` | 0 | none | `UNKNOWN_PENDING_RUN` |
-| Regenerate published tables and figures | `render_offline_results.py --check`, `render_offline_mechanisms.py --check`, `render_route_stop_oracle.py --check`, `render_table_p2_1.py --check` | 0 | none | `UNKNOWN_PENDING_RUN` |
-| Verify claims against artifacts | `python3 $PAPER/scripts/check_claim_ledger.py --check` | 0 | none | ~1 s (observed on the authoring host) |
-| Check query-count figure/table (Figure P2-2, Table P2-2) | `render_figure_p2_2.py --check`, `render_table_p2_2.py --check` | 0 | none | regenerates from archived `OFFLINE_MECHANISMS_V1.json` / `RESULTS_SUMMARY_V1.json`; ORION mean routes used 4.989744, protocol-driven comparator 3.0 |
-| Unit suite for this tier | `python3 -m pytest tests/unit/p2` | 0 | none | `UNKNOWN_PENDING_RUN` |
+| Step | Command / evidence | Provider requests | Cost authority |
+| --- | --- | --- | --- |
+| Verify/regenerate controlled campaign | `python3 $PAPER/scripts/run_offline_companion.py --check` | 0 | none |
+| Emit raw controlled records | `python3 $PAPER/scripts/run_offline_companion.py --write-raw DIR` | 0 | none |
+| Verify publication projections | offline result/mechanism/route-stop/table render `--check` commands | 0 | none |
+| Verify result-bearing manuscript claims | `python3 $PAPER/scripts/check_claim_ledger.py --check` | 0 | none |
+| Verify donor assimilation | `python3 $PAPER/scripts/check_p2_assimilation.py` | 0 | none |
+| Compile publication PDF | `.github/workflows/p2-manuscript.yml` | package-network only | no scientific provider cost |
+| P2 unit/integrity suite | repository CI / P2 tests | 0 scientific-provider requests | none |
 
-Scale note: the record count is `frozen_run.n_result_records` in
-`RESULTS_SUMMARY_V1.json` and the task count is `task_count` in
-`evidence/offline_gold/MANIFEST.json`. Runtime scales with those, so it must be
-re-timed after any suite scale-up rather than carried over.
+The record count, task count and all reported headline values come from their bound artifacts, not this prose. Reproduction confirms exact mechanism evidence; it does **not** raise the frozen `TIER_B_committed` result to an inferential superiority claim.
 
-Environment: Python 3.13 on the authoring host; the clean CI job for this tier
-runs on `ubuntu-24.04` with Python 3.11. Dependencies are the repository's own —
-the claim-ledger checker is stdlib-only.
+### Tier 2 — pinned third-party benchmark evidence
 
-### Tier 2 — benchmark-dependent
+| Evidence | Current status | Credential/metering | Reproduction meaning |
+| --- | --- | --- | --- |
+| MetaSyn official ID-only retrieval/screening probe | **COMPLETED** on all 86 released reviews | no LLM credential; archived run used pinned benchmark/data revisions | confirms the bounded retrieval/screening probe only |
+| AutoResearchBench Wide bounded credential-free probe | **COMPLETED/ARCHIVED** | official scoring path credential-free | weak/null external stress test; **not** a matched ORION-vs-baseline result |
+| AutoResearchBench Deep bounded official-judge probe | **COMPLETED/ARCHIVED** at 0/600 with judge control 9/9 | judge executed through the declared compatible adapter | negative candidate-generation diagnostic; **not** matched multi-provider superiority |
+| Matched AutoResearchBench Wide ORION-vs-baseline | `CANNOT_CHECK` | current frozen matched runner/scorer authority is arXiv-native | prospective reopen only |
+| Matched multi-provider Deep | `CANNOT_CHECK` | unavailable under current backend/authority setup | prospective reopen only |
+| SAGE as published | `CANNOT_CHECK/STRUCK` | official 200k corpus/evaluator unavailable | no substitute may be labelled official |
 
-Requires downloading third-party artifacts. Free of monetary charge as configured,
-but not free of network dependency, and not reproducible offline.
+The Wide scorer's exact IoU/recall/precision path is the relevant deterministic authority. Any upstream unseeded sampled metric remains non-bit-reproducible and must not be presented as exact.
 
-| Step | Requirements | Provider requests | Cost | Runtime |
-| --- | --- | --- | --- | --- |
-| MetaSyn ID-only retrieval + screening probe (**completed**) | Workflow `.github/workflows/p2-metasyn-keyless.yml`; clone `THUIR/MetaSyn` at `51b95b7061e1faf241c205eb7f8e5c2bccff4848`; HF dataset `THUIR/MetaSyn` at revision `c8fa07d89c44093d623f9a213c6bf070f40ab960`; CPU `torch==2.3.1`. No LLM credential (`judge_model: null`). | 1 git clone + 1 HF dataset fetch + package installs; **0 LLM API calls** | **$0** — no metered service used | **7 min 34 s** wall clock, verified from Actions run `31973786111` (job `metasyn`, 2026-08-16T21:32:23Z → 21:39:57Z, `ubuntu-24.04`, `timeout-minutes: 120`) |
-| AutoResearchBench Wide official scoring | Pinned scorer (Apache-2.0) + decrypted task bundle; credential-free per the access audit | `UNKNOWN_PENDING_RUN` | $0 for scoring itself; candidate generation is separate | `UNKNOWN_PENDING_RUN` |
-| AutoResearchBench Wide ORION candidate run | Not executed. Needs an admissible candidate producing resolved arXiv identifiers per candidate | `UNKNOWN_PENDING_RUN` | `UNKNOWN_PENDING_RUN` | `UNKNOWN_PENDING_RUN` |
-| AutoResearchBench Deep official metric | Requires an OpenAI-compatible judge endpoint — the one metered dependency in this tier | `UNKNOWN_PENDING_RUN` | `UNKNOWN_PENDING_RUN` (metered judge; must be measured, never estimated) | `UNKNOWN_PENDING_RUN` |
-| SAGE as published | **Not reproducible.** Neither the 200k retrieval corpus nor the official evaluator is available | n/a | n/a | n/a |
+### Tier 3 — live-provider/archive-only future evidence
 
-Caveat inherited from upstream: the Wide evaluator's exact `avg_iou`, `avg_recall`
-and `avg_precision` paths were bit-identical across five identical runs, but the
-sampled `avg_max_iou_at_k` family is unseeded Monte-Carlo upstream. That metric
-family is not reproducible bit-for-bit and is not reported as if it were.
+The final live-provider result-bearing campaign was **not executed** and is no longer required by the narrowed paper because no live-provider superiority, monetary-cost, latency or token claim is made. If reopened prospectively, raw request/response bytes, timestamps, transport outcomes and measured monetary/runtime/token costs must be archived; a later provider rerun would not verify historical mutable-provider evidence.
 
-### Tier 3 — archived-only
+Provider unavailability remains a typed transport/censoring state, never evidence that no relevant literature exists.
 
-Cannot be re-derived by a third party; the archive is the evidence.
+## 3. Publication-authority interpretation
 
-| Item | Status |
-| --- | --- |
-| Final live-provider result-bearing campaign: raw request/response bytes, timestamps, typed transport failures | Capture machinery exists and has been exercised. **Campaign not executed.** Request counts, wall-clock and monetary cost all `UNKNOWN_PENDING_RUN`. |
-| Live-provider cost/latency/query/token plots (Figure P2-2, Figure P2-7, Table P2-2 with intervals) | Figure P2-2 and Table P2-2 now report **offline query-count** resource metrics (operator re-scope 2026-08-17). Live monetary cost/wall-clock remain `UNKNOWN_PENDING_RUN`. Figure P2-7 is a bounded Wide/Deep probe table, not a live-cost plot. |
-| MetaSyn probe raw Actions artifact | Archived, expires `2026-09-15T21:39:53Z`; mirror into the DOI archive before then (§1.1). |
-| Benchmark-wide contamination-rate audit | Wide search-time self-exposure diagnostic archived (`AUTORESEARCHBENCH_SEARCH_CONTAMINATION_V1.json`, task rate 0.0). Not a claim of absence of indirect, training-time, or live-provider contamination. |
+- Tier 1 confirms the controlled mechanism result is reproducible and evidence-bound; it remains descriptive/underpowered under the frozen statistical plan.
+- Completed Tier 2 probes characterize external retrieval/screening and candidate-generation failure modes; they do not validate the complete multi-route ORION system.
+- Matched Wide/Deep, official SAGE and live-provider routes are reopen conditions, not prerequisites for `P2_NARROWED`.
+- No absent credential, unavailable corpus, null probe or unexecuted campaign may be promoted into positive evidence.
 
-Live-provider evidence is archive-only by design, not by omission: providers are
-mutable and metered, so a later re-run would produce different results and would
-not verify the recorded ones. This is also why provider unavailability is recorded
-as a typed transport failure rather than as evidence of absence.
+## 4. Before public release
 
-## 3. What a reproducer can honestly conclude
-
-- Reproducing Tier 1 confirms that the mechanism result is exact and drift-free.
-  It does **not** raise its statistical authority: `analysis_authority` stays
-  `TIER_B_committed` with the plan's mandatory underpowered label; no
-  superiority decision is promoted.
-- Reproducing the completed Tier 2 item confirms one bounded external retrieval
-  and screening evaluation under an official evaluator. It does **not** produce an
-  ORION-vs-baseline external result.
-- Nothing in Tier 1 or Tier 2 as currently executed can settle the paper's
-  external superiority claim. That remains `CANNOT_CHECK` until a Tier 2 matched
-  candidate run or the Tier 3 campaign is archived.
+1. Retain the final manuscript PDF/log produced by the manuscript workflow and visually audit every page.
+2. Mirror expiring raw benchmark-run evidence into a durable repository-independent archive where licensing permits.
+3. Deposit the frozen controlled evidence, integrity ledgers, scripts and permitted bounded external artifacts under a persistent identifier where practical.
+4. Record the final deposited version/hash in the submission package.
+5. Re-run the dated literature refresh within 14 days of the actual submission date and update the archive if the residual claim changes.

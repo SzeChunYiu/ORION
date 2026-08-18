@@ -194,7 +194,7 @@ def render_tikz(payload: dict) -> str:
     x_scale = 5.25 / n_tasks
     node_offset = n_tasks / 80
     axis_max = n_tasks * 1.05
-    escaped_authority = authority.replace("_", "\\\\_")
+    escaped_authority = authority.replace("_", r"\_")
     lines = [
         "% GENERATED from evidence/offline_results/RESULTS_SUMMARY_V1.json",
         f"\\begin{{tikzpicture}}[x={x_scale:.5f}cm,y=0.65cm]",

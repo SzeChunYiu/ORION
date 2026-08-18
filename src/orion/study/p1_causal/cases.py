@@ -14,9 +14,14 @@ class GoldLeakError(RuntimeError):
 
 @dataclass(frozen=True)
 class PublicMemberView:
+    """Candidate-facing state.
+
+    Pair/bundle identity and the host's causal-family name are intentionally not
+    represented here. They remain on ``CauseConfusableBundle`` in host custody.
+    ``member_id`` must be opaque with respect to the protected responsibility.
+    """
+
     member_id: str
-    bundle_id: str
-    confusable_kind: str
     shared_surface_symptoms: tuple[str, ...]
     prompt: str
     observable_resources: tuple[str, ...]
@@ -26,8 +31,6 @@ class PublicMemberView:
     def to_payload(self) -> dict:
         return {
             "member_id": self.member_id,
-            "bundle_id": self.bundle_id,
-            "confusable_kind": self.confusable_kind,
             "shared_surface_symptoms": list(self.shared_surface_symptoms),
             "prompt": self.prompt,
             "observable_resources": list(self.observable_resources),
@@ -85,17 +88,39 @@ class CauseConfusableBundle:
 
 
 def gold_leak(view: PublicMemberView) -> tuple[str, ...]:
-    """Fields on a public view that would constitute a gold leak if present."""
+    """Candidate-visible fields/ids that would expose protected structure."""
 
     payload = view.to_payload()
-    forbidden = (
+    leaks: list[str] = []
+    forbidden_keys = (
         "true_stage",
         "protected_gold",
         "warranted_actions",
         "true_coordinate",
         "gold",
+        "bundle_id",
+        "confusable_kind",
     )
-    return tuple(key for key in forbidden if key in payload)
+    for key in forbidden_keys:
+        if key in payload:
+            leaks.append(f"field:{key}")
+    member_id = view.member_id.lower()
+    for token in (
+        "evidence",
+        "execution",
+        "formulation",
+        "search-universe",
+        "search_universe",
+        "retrieval",
+        "implementation",
+        "environment",
+        "measurement",
+        "method-basis",
+        "method_basis",
+    ):
+        if token in member_id:
+            leaks.append(f"member_id:{token}")
+    return tuple(leaks)
 
 
 def _member(
@@ -111,10 +136,12 @@ def _member(
     intervention_directions: dict[str, str],
     resources: tuple[str, ...] = ("trace.jsonl", "environment.log"),
 ) -> CauseConfusableMember:
+    # ``bundle_id`` and ``kind`` are accepted here because the host-side bundle
+    # constructor owns them; they are deliberately not copied into the public
+    # candidate view.
+    _ = (bundle_id, kind)
     public = PublicMemberView(
         member_id=member_id,
-        bundle_id=bundle_id,
-        confusable_kind=kind,
         shared_surface_symptoms=symptoms,
         prompt=prompt,
         observable_resources=resources,
@@ -160,7 +187,7 @@ def known_answer_bundles() -> tuple[CauseConfusableBundle, ...]:
                 bundle_id="pair-retrieval-vs-search",
                 kind="retrieval_miss_vs_search_universe_miss",
                 symptoms=retrieval_symptoms,
-                member_id="m-retrieval",
+                member_id="p1cr-ka-001",
                 prompt="The cited table is missing from the working corpus.",
                 stage=AuthorityClass.EVIDENCE,
                 warranted=(EpistemicAction.ACQUIRE_EVIDENCE,),
@@ -177,7 +204,7 @@ def known_answer_bundles() -> tuple[CauseConfusableBundle, ...]:
                 bundle_id="pair-retrieval-vs-search",
                 kind="retrieval_miss_vs_search_universe_miss",
                 symptoms=retrieval_symptoms,
-                member_id="m-search-universe",
+                member_id="p1cr-ka-002",
                 prompt="The cited table is missing from the working corpus.",
                 stage=AuthorityClass.SEARCH_UNIVERSE,
                 warranted=(
@@ -206,7 +233,7 @@ def known_answer_bundles() -> tuple[CauseConfusableBundle, ...]:
                 bundle_id="pair-implementation-vs-environment",
                 kind="implementation_failure_vs_environment_tool_failure",
                 symptoms=exec_symptoms,
-                member_id="m-implementation",
+                member_id="p1cr-ka-003",
                 prompt="The solver output does not match the frozen fixture.",
                 stage=AuthorityClass.FORMULATION,
                 warranted=(
@@ -226,7 +253,7 @@ def known_answer_bundles() -> tuple[CauseConfusableBundle, ...]:
                 bundle_id="pair-implementation-vs-environment",
                 kind="implementation_failure_vs_environment_tool_failure",
                 symptoms=exec_symptoms,
-                member_id="m-environment",
+                member_id="p1cr-ka-004",
                 prompt="The solver output does not match the frozen fixture.",
                 stage=AuthorityClass.EXECUTION,
                 warranted=(EpistemicAction.REPAIR_EXECUTION,),

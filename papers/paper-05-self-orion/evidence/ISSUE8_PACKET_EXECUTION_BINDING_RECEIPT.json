@@ -99,5 +99,10 @@
     ],
     "workflow_blob_sha": "8bbc5884cde50dc84bb8f3b477cfdb29fe9845f9",
     "workflow_path": ".github/workflows/p5_phase2_live_execution.yml"
+  },
+  "supersedes": {
+    "observed_at_commit": "cfeff0b0e5efa41e283b1166b14f7537923d46d7",
+    "preflight_blob_sha": "16ae0a2dc7bb84445c30021206937d3c9fcfb405",
+    "why": "The #277 fail-closed repair rewrote phase2_preflight.py after this receipt was issued. The divergence it records is unchanged; only the observed bytes moved, so the receipt is re-observed rather than left pointing at a blob the tree no longer has."
   }
 }
