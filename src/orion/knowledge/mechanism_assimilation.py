@@ -323,6 +323,13 @@ def seal_assimilation(draft: AssimilationDraft) -> MechanismAssimilationReceipt:
     An unreachable donor with no findings is still `CANNOT_CHECK`: the checks that
     matter most cannot be evaluated *against the donor*, and calling that
     `ADMITTED` would convert *could not check* into *checked and clean*.
+
+    An abstract-only donor is `CANNOT_CHECK` too, and this holds even when the
+    receipt declares no assumptions at all. An abstract does not establish that a
+    mechanism carries no assumptions -- it establishes that none were read. The
+    two are indistinguishable from the abstract and opposite in consequence, so
+    treating a declared-empty assumption set as verified would admit precisely the
+    absorptions whose validated regime nobody checked.
     """
 
     findings = assess_assimilation(draft)
@@ -335,11 +342,11 @@ def seal_assimilation(draft: AssimilationDraft) -> MechanismAssimilationReceipt:
     elif draft.donor.access is DonorSourceAccess.UNREACHABLE:
         verdict = AssimilationVerdict.CANNOT_CHECK
         reasons.append("donor source unreachable; assumptions and authority cannot be checked against it")
-    elif draft.donor.access is DonorSourceAccess.ABSTRACT_ONLY and draft.mechanism.assumptions:
+    elif draft.donor.access is DonorSourceAccess.ABSTRACT_ONLY:
         verdict = AssimilationVerdict.CANNOT_CHECK
         reasons.append(
-            "assumptions are declared from an abstract-only read; a full text is required to "
-            "confirm the donor's validated regime"
+            "donor body was not read; its validated regime is unknown, so no assumption set "
+            "about it can be confirmed -- including the claim that it has none"
         )
     else:
         verdict = AssimilationVerdict.ADMITTED

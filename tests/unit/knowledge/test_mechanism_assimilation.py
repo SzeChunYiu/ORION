@@ -228,8 +228,17 @@ def test_an_unreachable_donor_with_no_findings_is_cannot_check_not_admitted() ->
     assert receipt.hostile_findings == ()
 
 
-def test_assumptions_declared_from_an_abstract_cannot_be_admitted() -> None:
-    """Declaring a donor's validated regime from its abstract is a guess."""
+def test_nothing_read_from_an_abstract_alone_can_be_admitted() -> None:
+    """An abstract does not establish a validated regime -- including an empty one.
+
+    The first version of this rule only forced CANNOT_CHECK when assumptions were
+    *declared*, so a receipt that declared none was admitted. That is the wrong
+    way round: an abstract cannot distinguish "this mechanism carries no
+    assumptions" from "nobody read what its assumptions were", and the two are
+    opposite in consequence. It would have rubber-stamped exactly the absorptions
+    whose validated regime was never checked -- 30 of P1's 36 donor mechanisms
+    carry `body_checked: false`.
+    """
 
     abstract_only = DonorIdentity(
         donor_id="arxiv:2509.04708",
@@ -240,8 +249,8 @@ def test_assumptions_declared_from_an_abstract_cannot_be_admitted() -> None:
     )
     assert seal_assimilation(_draft(donor=abstract_only)).verdict is AssimilationVerdict.CANNOT_CHECK
 
-    # No alarm: an abstract-only donor whose mechanism declares no assumptions is
-    # not guessing about anything, so it is admissible.
+    # Declaring no assumptions does not help: an unread body cannot establish that
+    # there are none.
     assumption_free = DonorMechanism(
         mechanism_id=MECHANISM.mechanism_id,
         donor_name=MECHANISM.donor_name,
@@ -249,7 +258,12 @@ def test_assumptions_declared_from_an_abstract_cannot_be_admitted() -> None:
         donor_authority=MECHANISM.donor_authority,
     )
     receipt = seal_assimilation(_draft(donor=abstract_only, mechanism=assumption_free))
-    assert receipt.verdict is AssimilationVerdict.ADMITTED
+    assert receipt.verdict is AssimilationVerdict.CANNOT_CHECK
+    assert "body was not read" in " ".join(receipt.verdict_reasons)
+
+    # No alarm: reading the full text is what makes an absorption admissible, so
+    # the rule is not simply refusing everything.
+    assert seal_assimilation(_draft()).verdict is AssimilationVerdict.ADMITTED
 
 
 def test_the_authority_ladder_is_ordered_and_total() -> None:
