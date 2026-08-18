@@ -1,0 +1,115 @@
+name: clean-install-reproduction
+
+# Issue #160 Gate 7 asks for a dependency lock and a clean-machine install test
+# for every paper. A committed lock that nothing installs from is a file, not
+# evidence: it proves a resolution existed once, not that the resolution still
+# reproduces the papers. This job installs *only* from the lock on a fresh
+# runner and then exercises the derived-artifact paths under it.
+#
+# Deliberately separate from `ci.yml`. That workflow installs with pip and is
+# the suite gate for every lane; a build-input change should not be able to red
+# it, and attribution stays clean if this job breaks.
+
+on:
+  pull_request:
+    paths:
+      - 'uv.lock'
+      - 'pyproject.toml'
+      - '.github/workflows/clean-install-reproduction.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'uv.lock'
+      - 'pyproject.toml'
+      - '.github/workflows/clean-install-reproduction.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  clean-install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: '0.11.1'
+
+      - name: Install from the lock only
+        # --frozen fails if uv.lock disagrees with pyproject.toml, so a stale
+        # lock is a build failure rather than a silent re-resolution. That is
+        # the whole point: the environment under test has to be the recorded
+        # one, not whatever resolves today.
+        run: |
+          uv sync --frozen --all-extras
+          uv pip list
+
+      - name: Record the resolved environment
+        run: |
+          {
+            echo "## Clean-install environment"
+            echo
+            echo '```'
+            uv run python -c "import sys; print('python', sys.version.split()[0])"
+            uv pip list --format=freeze
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Reproduce the P1 headline tables
+        # `make paper01-results` exits 3 for CANNOT_CHECK, which is the honest
+        # state when no archived study run is present -- not a build failure.
+        # Failing the job on it would push a later change toward suppressing an
+        # honest CANNOT_CHECK to get a green tick.
+        run: |
+          start=$(date +%s)
+          set +e
+          # Into RUNNER_TEMP, not the checkout. `results/P1-T2_*.json` and
+          # `P1-T3_*.json` are content-hash-bound in P1's journal package, and the
+          # generated tables carry a `provenance.generated_utc` wall-clock stamp --
+          # so every honest reproduction rewrites two hashed artifacts and drifts
+          # the package. A reproduction test that mutates the evidence it is
+          # reproducing cannot then check that evidence.
+          PYTHON="uv run python" make paper01-results P1_OUT="${RUNNER_TEMP}/p1-tables"
+          code=$?
+          set -e
+          elapsed=$(( $(date +%s) - start ))
+          echo "paper01-results exit=${code} elapsed=${elapsed}s" >> "$GITHUB_STEP_SUMMARY"
+          if [ "$code" -eq 3 ]; then
+            echo "::notice::paper01-results reported CANNOT_CHECK (exit 3); recorded, not failed"
+            exit 0
+          fi
+          exit "$code"
+
+      - name: Re-derive the machine-checked artifacts
+        run: |
+          start=$(date +%s)
+          uv run python research/development/cannot_check_inventory.py --check
+          # Its report goes to stdout, so discarding stdout discards the reason
+          # this step failed. An earlier revision did exactly that and produced a
+          # red job with no message in the log at all.
+          uv run python research/paper-programme-v1/journal_package/check_journal_package.py \
+            > "${RUNNER_TEMP}/journal-packages.json" \
+            || { echo "::error::journal package check failed"; cat "${RUNNER_TEMP}/journal-packages.json"; exit 1; }
+          uv run python papers/paper-01-recursive-epistemic-reconstruction/scripts/make_mechanical_arm_case_table.py --check
+          # Nothing above may modify the checkout. If something did, the check
+          # that follows it was run against a mutated tree.
+          git diff --exit-code || { echo "::error::a derived-artifact check modified the working tree"; exit 1; }
+          echo "derived-artifact checks elapsed=$(( $(date +%s) - start ))s" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Runtime and cost statement
+        # Gate 7's runtime/hardware/cost box needs a number from a known machine,
+        # not an estimate. This is that number.
+        run: |
+          {
+            echo
+            echo "Runner: ubuntu-latest (GitHub-hosted, 4 vCPU / 16 GB)."
+            echo "No accelerator, no network egress beyond the package index."
+            echo "Total job wall-clock is reported by Actions on this run."
+          } >> "$GITHUB_STEP_SUMMARY"
