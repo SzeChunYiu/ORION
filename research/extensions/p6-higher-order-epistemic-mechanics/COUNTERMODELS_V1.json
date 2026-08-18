@@ -1,0 +1,120 @@
+{
+  "schema_version": "P6.HigherOrderEpistemicMechanicsCountermodels.v1",
+  "protocol_id": "P6.higher-order-epistemic-mechanics.tranche1.v1",
+  "claim_ceiling": "FORMAL_NON_AUTHORIZING_MINIMAL_REVISION_SUBSTRATE_ONLY",
+  "cases": [
+    {
+      "id": "CM-01-narrow-evidence-before-model",
+      "family": "MINIMAL_REVISION",
+      "mechanics": [
+        {
+          "mechanic_id": "acquire-evidence",
+          "write_coordinates": ["K"],
+          "preservation_obligations": ["preserve-model", "preserve-objective"],
+          "hard_requirements": ["route-available"],
+          "obligation_states": {"route-available": "SATISFIED"},
+          "cost": 5.0
+        },
+        {
+          "mechanic_id": "expand-model",
+          "write_coordinates": ["K", "M"],
+          "preservation_obligations": ["preserve-objective"],
+          "hard_requirements": ["model-inadequacy-supported"],
+          "obligation_states": {"model-inadequacy-supported": "SATISFIED"},
+          "required_authorities": ["MODEL_MUTATION"],
+          "granted_authorities": ["MODEL_MUTATION"],
+          "cost": 0.1
+        }
+      ],
+      "expected_status": "UNIQUE_MINIMUM",
+      "expected_selected": "acquire-evidence"
+    },
+    {
+      "id": "CM-02-incomparable-repairs",
+      "family": "INCOMPARABLE_MINIMA",
+      "mechanics": [
+        {
+          "mechanic_id": "repair-measurement",
+          "write_coordinates": ["F.measurement"],
+          "preservation_obligations": ["preserve-model"],
+          "cost": 1.0
+        },
+        {
+          "mechanic_id": "repair-execution",
+          "write_coordinates": ["X.execution"],
+          "preservation_obligations": ["preserve-model"],
+          "cost": 1.0
+        }
+      ],
+      "expected_status": "MULTIPLE_MINIMA",
+      "expected_selected": null
+    },
+    {
+      "id": "CM-03-unresolved-narrower-blocks-escalation",
+      "family": "UNRESOLVED_ESCALATION_GUARD",
+      "mechanics": [
+        {
+          "mechanic_id": "check-route",
+          "write_coordinates": ["K"],
+          "preservation_obligations": ["preserve-model", "preserve-objective"],
+          "hard_requirements": ["route-status-known"],
+          "obligation_states": {"route-status-known": "UNRESOLVED"},
+          "cost": 1.0
+        },
+        {
+          "mechanic_id": "rewrite-model",
+          "write_coordinates": ["K", "M"],
+          "preservation_obligations": ["preserve-objective"],
+          "required_authorities": ["MODEL_MUTATION"],
+          "granted_authorities": ["MODEL_MUTATION"],
+          "cost": 1.0
+        }
+      ],
+      "expected_status": "UNRESOLVED",
+      "expected_selected": null
+    },
+    {
+      "id": "CM-04-missing-authority",
+      "family": "AUTHORITY_NON_COMPENSATION",
+      "mechanics": [
+        {
+          "mechanic_id": "rewrite-objective",
+          "write_coordinates": ["Q"],
+          "required_authorities": ["OBJECTIVE_MUTATION"],
+          "cost": 0.0
+        }
+      ],
+      "expected_status": "NO_ADMISSIBLE",
+      "expected_selected": null
+    },
+    {
+      "id": "CM-05-protected-evaluator-write",
+      "family": "FORBIDDEN_WRITE",
+      "mechanics": [
+        {
+          "mechanic_id": "edit-protected-evaluator",
+          "write_coordinates": ["A.evaluator"],
+          "forbidden_writes": ["A.evaluator"],
+          "cost": 0.0
+        }
+      ],
+      "expected_status": "NO_ADMISSIBLE",
+      "expected_selected": null
+    },
+    {
+      "id": "CM-06-clean-no-alarm",
+      "family": "CLEAN_CONTROL",
+      "mechanics": [
+        {
+          "mechanic_id": "recheck-source",
+          "write_coordinates": ["K"],
+          "preconditions": ["anomaly-observed"],
+          "obligation_states": {"anomaly-observed": "SATISFIED"},
+          "cost": 1.0
+        }
+      ],
+      "expected_status": "UNIQUE_MINIMUM",
+      "expected_selected": "recheck-source"
+    }
+  ]
+}
