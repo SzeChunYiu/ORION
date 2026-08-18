@@ -1,0 +1,94 @@
+{
+  "accuracy": 1.0,
+  "claim_ceiling": "NON_AUTHORIZING_RESPONSIBILITY_INTERFACE_SUBSTRATE_ONLY",
+  "grants_scientific_authority": false,
+  "grants_self_orion_adoption": false,
+  "n_cases": 9,
+  "n_pass": 9,
+  "protocol_id": "P6.higher-order-epistemic-mechanics.t2-t3.v1",
+  "result_version": "P6_T2_T3_COUNTERMODEL_SUMMARY_V1",
+  "rows": [
+    {
+      "actual_selected": null,
+      "actual_status": "AMBIGUOUS",
+      "expected_selected": null,
+      "expected_status": "AMBIGUOUS",
+      "id": "T23-01",
+      "kind": "responsibility_ambiguous",
+      "pass": true
+    },
+    {
+      "actual_selected": "interface-gap",
+      "actual_status": "IDENTIFIED",
+      "expected_selected": "interface-gap",
+      "expected_status": "IDENTIFIED",
+      "id": "T23-02",
+      "kind": "responsibility_identified",
+      "pass": true
+    },
+    {
+      "actual_selected": null,
+      "actual_status": "UNRESOLVED",
+      "expected_selected": null,
+      "expected_status": "UNRESOLVED",
+      "id": "T23-03",
+      "kind": "responsibility_unresolved",
+      "pass": true
+    },
+    {
+      "actual_selected": null,
+      "actual_status": "NO_SURVIVING",
+      "expected_selected": null,
+      "expected_status": "NO_SURVIVING",
+      "id": "T23-04",
+      "kind": "responsibility_no_survivor",
+      "pass": true
+    },
+    {
+      "actual_selected": null,
+      "actual_status": "REPAIR_REQUIRED",
+      "expected_selected": null,
+      "expected_status": "REPAIR_REQUIRED",
+      "id": "T23-05",
+      "kind": "interface_failure",
+      "pass": true
+    },
+    {
+      "actual_selected": null,
+      "actual_status": "UNRESOLVED",
+      "expected_selected": null,
+      "expected_status": "UNRESOLVED",
+      "id": "T23-06",
+      "kind": "interface_unresolved",
+      "pass": true
+    },
+    {
+      "actual_selected": "repair-interface",
+      "actual_status": "CANDIDATE_SELECTED",
+      "expected_selected": "repair-interface",
+      "expected_status": "CANDIDATE_SELECTED",
+      "id": "T23-07",
+      "kind": "gate_narrow_interface",
+      "pass": true
+    },
+    {
+      "actual_selected": null,
+      "actual_status": "INTERFACE_REPAIR_REQUIRED",
+      "expected_selected": null,
+      "expected_status": "INTERFACE_REPAIR_REQUIRED",
+      "id": "T23-08",
+      "kind": "gate_no_broad_fallback",
+      "pass": true
+    },
+    {
+      "actual_selected": "repair-interface",
+      "actual_status": "CANDIDATE_SELECTED",
+      "expected_selected": "repair-interface",
+      "expected_status": "CANDIDATE_SELECTED",
+      "id": "T23-09",
+      "kind": "gate_adequate_minimum",
+      "pass": true
+    }
+  ],
+  "terminal": "T2_T3_FORMAL_COUNTERMODELS_GREEN"
+}
