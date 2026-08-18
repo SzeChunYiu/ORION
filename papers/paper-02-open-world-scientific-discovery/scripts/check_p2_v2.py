@@ -85,6 +85,8 @@ def validate() -> list[str]:
         errors.append("V2 target is no longer maximal transfer support")
     if not confirmatory_complete and authorized != "P2_NARROWED":
         errors.append("external claim promoted before confirmatory completion")
+    if authorized == "P2_TRANSFER_SUPPORTED" and not transfer_complete:
+        errors.append("P2_TRANSFER_SUPPORTED cannot be authorized before transfer completion")
     # Once development is complete, blockers may be empty only when the whole
     # external + transfer programme is genuinely complete. Intermediate states
     # must continue to expose what remains rather than looking silently done.
