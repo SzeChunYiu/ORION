@@ -87,6 +87,29 @@ jobs:
           fi
           exit "$code"
 
+      - name: Reproduce P3 and P5, and prove they are byte-identical
+        # P1 has to write into RUNNER_TEMP because its tables carry a wall-clock
+        # `provenance.generated_utc` and are content-hash-bound, so regenerating
+        # them in place drifts its journal package.
+        #
+        # P3 and P5 carry no such field. That allows the stronger test: run them
+        # in place and require `git diff` to be empty. "A reproduction path exists"
+        # becomes "the published artifacts are exactly what the path produces",
+        # which is what Gate 7's word *deterministic* actually asks for.
+        run: |
+          set -euo pipefail
+          for target in paper03-public-reference-publication paper05-results; do
+            start=$(date +%s)
+            PYTHON="uv run python" make "$target"
+            echo "$target elapsed=$(( $(date +%s) - start ))s" >> "$GITHUB_STEP_SUMMARY"
+          done
+          # P5 reports CANNOT_CHECK for the seven tables awaiting its campaign and
+          # populates the two it can. That is the honest state, and it is stable
+          # across runs -- so it must not change any committed byte either.
+          git diff --exit-code -- papers/paper-03-global-knowledge-portrait \
+            papers/paper-05-self-orion \
+            || { echo "::error::P3/P5 regeneration is no longer byte-identical"; exit 1; }
+
       - name: Re-derive the machine-checked artifacts
         run: |
           start=$(date +%s)
