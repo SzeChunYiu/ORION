@@ -756,5 +756,197 @@ def _tx() -> CertificateDraft:
     )
 
 
+def _nov() -> CertificateDraft:
+    """#287's own claim, run through #287's own mechanism.
+
+    The certificate machinery had been applied to seven other claims and never to
+    itself, which is the one application where a novelty checker's result is also
+    a test of the checker. Searched 2026-08-18 against live literature rather than
+    the in-tree audits the other drafts reuse, because no in-tree nearest-work
+    audit exists for novelty assessment itself.
+    """
+
+    rinobench = prior_work(
+        "arxiv:2603.10303",
+        title="Is this Idea Novel? An Automated Benchmark for Judgment of Research Ideas",
+        mechanism_summary="Benchmarks automated novelty judgment of research ideas against expert labels.",
+        access=SourceAccess.ABSTRACT_ONLY,
+    )
+    judge_limits = prior_work(
+        "arxiv:2606.12071",
+        title="On the Limits of LLM-as-Judge for Scientific Novelty Assessment",
+        mechanism_summary=(
+            "Documents that LLM novelty verdicts diverge from expert gold even when the "
+            "rationale reads as human-like."
+        ),
+        access=SourceAccess.ABSTRACT_ONLY,
+    )
+    axiomatic = prior_work(
+        "arxiv:2604.15145",
+        title="An Axiomatic Benchmark for Evaluating Scientific Novelty Metrics",
+        mechanism_summary="Evaluates novelty metrics against axioms and expert labels rather than model opinion.",
+        access=SourceAccess.ABSTRACT_ONLY,
+    )
+    novbench = prior_work(
+        "arxiv:2604.11543",
+        title="NovBench: Evaluating Large Language Models on Academic Paper Novelty Assessment",
+        mechanism_summary="Benchmarks LLM novelty assessment of full papers.",
+        access=SourceAccess.ABSTRACT_ONLY,
+    )
+    screening_stop = prior_work(
+        "doi:10.1186/s13643-020-01521-4",
+        title="Statistical stopping criteria for automated screening in systematic reviews",
+        mechanism_summary=(
+            "Parent discipline: decides when a literature search may stop, with an explicit "
+            "statistical criterion rather than a judgement call."
+        ),
+        access=SourceAccess.ABSTRACT_ONLY,
+    )
+    poisson_stop = prior_work(
+        "arxiv:1909.06239",
+        title="Modelling Stopping Criteria for Search Results using Poisson Processes",
+        mechanism_summary="Parent discipline: models search-result exhaustion to time a stopping decision.",
+        access=SourceAccess.ABSTRACT_ONLY,
+    )
+    original = (
+        "verifiable scientific novelty certificates whose final state is computed only from an "
+        "executed hostile already-solved route, route completeness, source accessibility, overlap "
+        "absorption and claim shrinkage, with an LLM novelty score recordable but structurally "
+        "unable to set the state, and CANNOT_CHECK mandatory when any of those is open"
+    )
+    residual = (
+        "mandatory CANNOT_CHECK as a first-class novelty terminal, computed from route completeness "
+        "and source accessibility rather than from a score"
+    )
+    return CertificateDraft(
+        claim_id="orion:NOV:#287",
+        claim_text=original,
+        problem_task_definition=(
+            "Assess the novelty of a scientific claim without letting a model's novelty opinion "
+            "determine the verdict."
+        ),
+        claimed_mechanism_decomposition=(
+            MechanismAtom("m:evidence-grounded-novelty", "Novelty judged against retrieved evidence", "absorbed-family"),
+            MechanismAtom("m:llm-judge-distrust", "LLM novelty score cannot set the final state", "absorbed-family"),
+            MechanismAtom("m:mandatory-cannot-check", "Abstention forced by route/accessibility state", "residual"),
+        ),
+        closest_prior_by_term=(rinobench, novbench, axiomatic),
+        closest_prior_by_function=(judge_limits, rinobench),
+        parent_discipline_mechanisms=(screening_stop, poisson_stop),
+        benchmark_implementation_routes=(rinobench, novbench, axiomatic),
+        hostile_already_solved_route=hostile_route(
+            findings=(judge_limits, rinobench, axiomatic),
+            queries=(
+                "assume already solved: automated novelty assessment grounded in retrieved evidence",
+                "assume already solved: benchmark showing LLM novelty judges disagree with experts",
+            ),
+            residual_changed=True,
+            note=(
+                "The hostile route recovered the two load-bearing parts of the claim. That LLM novelty "
+                "verdicts are unreliable is documented (2606.12071); grounding novelty in retrieved "
+                "evidence rather than model opinion is the stated motivation of the benchmark cluster. "
+                "Neither is ORION's to claim."
+            ),
+        ),
+        overlap_classifications=(
+            OverlapRecord(
+                "m:evidence-grounded-novelty",
+                "arxiv:2603.10303",
+                MechanismOverlap.FUNCTIONAL_EQUIVALENT,
+                "Grounding novelty judgment in retrieved evidence is the benchmark cluster's own premise.",
+            ),
+            OverlapRecord(
+                "m:llm-judge-distrust",
+                "arxiv:2606.12071",
+                MechanismOverlap.FUNCTIONAL_EQUIVALENT,
+                "Distrust of LLM novelty verdicts is the finding of this work, not a consequence of ORION's design.",
+            ),
+            OverlapRecord(
+                "m:mandatory-cannot-check",
+                "arxiv:2604.15145",
+                MechanismOverlap.UNRESOLVED,
+                (
+                    "Axiomatic evaluation scores metrics; whether any of these systems emits a "
+                    "structurally-forced abstention rather than a low score is unread. The search "
+                    "surfaced no work on abstention as a novelty terminal."
+                ),
+            ),
+        ),
+        absorption_decisions=(
+            AbsorptionDecision(
+                "m:evidence-grounded-novelty",
+                AbsorptionDisposition.ADOPT,
+                ("NOV.EVIDENCE",),
+                "Adopt evidence-grounded novelty; strike it from ORION's novelty claim.",
+            ),
+            AbsorptionDecision(
+                "m:llm-judge-distrust",
+                AbsorptionDisposition.ADOPT,
+                ("NOV.AUTHORITY",),
+                "Adopt the documented unreliability of LLM novelty judges; ORION did not discover it.",
+            ),
+            AbsorptionDecision(
+                "m:mandatory-cannot-check",
+                AbsorptionDisposition.DEFER,
+                (),
+                "Defer until the benchmark cluster's full texts are read for a forced-abstention terminal.",
+            ),
+        ),
+        original_claim_text=original,
+        smallest_residual=residual,
+        residual_implementation_evidence=(
+            "src/orion/novelty/certificate.py",
+            "src/orion/novelty/saturation.py",
+        ),
+        discriminating_experiment=DiscriminatingExperiment(
+            experiment_id="exp:nov-forced-abstention",
+            hypothesis=(
+                "On claims whose nearest work is inaccessible, ORION's certificate abstains where "
+                "score-based novelty metrics return a confident value."
+            ),
+            observation_if_novel="Score-based metrics rate the claim while ORION returns CANNOT_CHECK.",
+            observation_if_already_solved=(
+                "RINoBench or the axiomatic benchmark already emits an insufficient-evidence verdict "
+                "on the same claims."
+            ),
+            status="PROPOSED",
+        ),
+        unresolved_sources=(
+            "arxiv:2603.10303",
+            "arxiv:2606.12071",
+            "arxiv:2604.15145",
+            "arxiv:2604.11543",
+        ),
+        unresolved_search_routes=(
+            "full-text read of the novelty-benchmark cluster for a forced-abstention terminal",
+            "OpenNovelty / GraphMind system behaviour under insufficient retrieved evidence",
+        ),
+        inaccessible_material_sources=(
+            "arxiv:2603.10303",
+            "arxiv:2606.12071",
+            "arxiv:2604.15145",
+            "arxiv:2604.11543",
+        ),
+        saturation=documented_saturation(
+            _queries(
+                exact=("scientific novelty certificate", "verifiable novelty assessment"),
+                function=("LLM-as-judge novelty", "evidence-grounded novelty report", "novelty metric benchmark"),
+                decomp=("novelty verdict authority", "who sets the novelty state"),
+                parent=(
+                    "systematic review stopping criteria",
+                    "search saturation",
+                    "selective prediction abstention",
+                ),
+                bench=("RINoBench", "NovBench", "axiomatic novelty benchmark"),
+                hostile=("assume already solved: automated novelty assessment grounded in retrieved evidence",),
+            )
+        ),
+        snapshot_date="2026-08-18",
+    )
+
+
 def apply_orion_residuals() -> tuple[ScientificNoveltyCertificate, ...]:
-    return tuple(seal_certificate(draft) for draft in (_p1(), _p2(), _p3(), _p4(), _p5(), _gp(), _tx()))
+    return tuple(
+        seal_certificate(draft)
+        for draft in (_p1(), _p2(), _p3(), _p4(), _p5(), _gp(), _tx(), _nov())
+    )
