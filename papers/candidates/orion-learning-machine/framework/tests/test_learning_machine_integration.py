@@ -27,8 +27,11 @@ def test_absorbed_transition_does_not_self_authorize():
 
 def test_recording_experience_is_append_only_and_separate_from_fitting():
     lm=LearningMachine.empty()
+    spec=MechanicSpec('m','stable','absorbed capability')
+    lm.library.register(spec)
     rows=[Experience('m',{'x':0.},Verdict.FAIL,'s','D','t',0)]
     lm.fit_competence(rows)
+    assert lm.library.resolve('m')==spec
     assert len(lm.ledger.entries)==0
     lm.record_experiences(rows)
     assert len(lm.ledger.entries)==1 and lm.ledger.verify()

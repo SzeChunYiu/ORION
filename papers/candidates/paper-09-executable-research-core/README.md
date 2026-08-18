@@ -1,6 +1,6 @@
 # P9 candidate — Executable Research Core
 
-**Status:** SCRIPTS AND RESULTS LANDED / NO MANUSCRIPT / NOVELTY `CANNOT_CHECK`
+**Status:** MERGED INTO P8/PROGRAMME / PUBLIC DISCRIMINATOR PASSED / NO STANDALONE MANUSCRIPT
 **Shared lane:** `../orion-learning-machine/`
 
 ## Research question
@@ -21,6 +21,20 @@ Can an agent accumulate *capability* — named mechanics, a competence map over 
 The module states the boundary in its own docstring: *"None of those components can authorize an external effect. Execution always passes through an authority callback owned outside P9."* That is the same capability/authority split P8 formalizes, instantiated as running code rather than as a calculus.
 
 ## Evidence that exists
+
+### Public discriminator — ASlib `SAT11-HAND-ALGO`
+
+The protocol was committed before public-outcome access and binds exact ASlib
+source digests plus the scenario-provided outer folds. On 296 instances, 115
+features and 15 algorithms, FAILURE_AWARE_RF reduced attempts on 77
+VBS-unsolved instances by **0.7143 absolute** (paired bootstrap 95% CI
+0.6104–0.8182) while retaining **0.9645** of RF_ROUTER's solved instances. It
+paid the visible cost of lower solve rate and higher mean PAR10.
+
+Two complete runs produced byte-identical JSON with SHA-256 `8246d007…`.
+Reproduce with `benchmark/run_aslib_v1.py`; the exact protocol, public inputs,
+source record, full-precision result and hostile tests live under `benchmark/`
+and `results/`.
 
 Two experiments, both **byte-identical on re-run** (`SEED=20260818`), with outputs committed under `../orion-learning-machine/results/`.
 
@@ -62,19 +76,24 @@ numeric claim from returning.
 - **P5** owns protected self-change and no-self-promotion.
 - P9 claims none of those. Its object is the executable core that accumulates capability under those constraints.
 
+After constructive nearest-work saturation, that object is retained as P8's
+executable/public empirical companion rather than a ninth manuscript. See
+`SATURATION_LEDGER_2026-08-18.md`, `CLAIM_LEDGER.md`,
+`MERGE_DISPOSITION.md`, and `JOURNAL_READINESS.md`.
+
 ### Explicit nonclaims
 
 P9 does not claim novelty for algorithm selection, algorithm portfolios, meta-learning, macro/option discovery, learned schedulers, or competence modelling. Each is a mature field and the phase-0 result is a standard portfolio-routing shape. What is being proposed is the *separation* — accumulation that structurally cannot become permission — not the routing itself.
 
-## What does not exist yet
+## Deliberate limits
 
-Recorded rather than glossed:
-
-- **No manuscript.** No abstract, introduction, formalism, related work or conclusion.
-- **No claim ledger** and no `JOURNAL_READINESS.md`.
-- **No nearest-work pass.** The nonclaims above are the authors' assertions carried over from code comments; no literature search has been run, so novelty is `CANNOT_CHECK` and no overlap matrix against P1–P8 exists.
-- **No external baseline.** Every arm in phase 1 is defined inside the same harness; there is no comparison against an independent portfolio or meta-learning implementation, so nothing here supports a superiority claim.
-- **Task distributions are synthetic.** Phase 0 and phase 1 generate their own tasks. The only real-source evidence in this lane is phase 2, which belongs to P10 and returned a null.
+- **No standalone manuscript.** The terminal is an evidenced merge, not an
+  unfinished paper.
+- **No AutoFolio-class baseline.** This blocks selector-superiority language and
+  is a named reopen condition.
+- Phase 0 and phase 1 remain synthetic. The public ASlib discriminator is a
+  single bounded scenario, not cross-domain evidence.
+- Routing and abstention cannot authorize execution; P8 owns that boundary.
 
 ## Reproduce
 
