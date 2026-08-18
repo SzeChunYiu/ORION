@@ -17,8 +17,8 @@ from orion.transfer.v2.p2_structure import (
 
 ROOT = Path(__file__).resolve().parents[1]
 PANEL = ROOT / "structural_extension" / "HISTORICAL_PANEL_V1.json"
+SUMMARY = ROOT / "structural_extension" / "HISTORICAL_PILOT_SUMMARY_V1.json"
 RESULT = ROOT / "structural_extension" / "HISTORICAL_PILOT_RESULT_V1.json"
-
 _TOKEN = re.compile(r"[a-z0-9]+")
 
 
@@ -166,20 +166,24 @@ def _load(path: Path) -> dict[str, Any]:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--write", action="store_true")
-    parser.add_argument("--check", action="store_true")
+    parser.add_argument("--write", action="store_true", help="optionally archive the detailed trace")
+    parser.add_argument("--check", action="store_true", help="check the frozen summary")
     args = parser.parse_args()
     result = run(_load(PANEL))
-    text = json.dumps(result, indent=2, sort_keys=True) + "\n"
     if args.write:
-        RESULT.write_text(text, encoding="utf-8")
+        RESULT.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     if args.check:
-        if not RESULT.exists():
-            raise SystemExit("missing HISTORICAL_PILOT_RESULT_V1.json")
-        if RESULT.read_text(encoding="utf-8") != text:
-            raise SystemExit("historical structural pilot result drift")
-    if not args.write and not args.check:
-        print(text, end="")
+        summary = _load(SUMMARY)
+        for key, value in (
+            ("protocol_id", result["protocol_id"]),
+            ("n_cases", result["n_cases"]),
+            ("metrics", result["metrics"]),
+        ):
+            if summary[key] != value:
+                raise SystemExit(f"historical structural pilot summary drift: {key}")
+        if summary["terminal"] != result["interpretation"]["terminal"]:
+            raise SystemExit("historical structural pilot terminal drift")
+    print(json.dumps(result, indent=2, sort_keys=True))
     return 0
 
 
