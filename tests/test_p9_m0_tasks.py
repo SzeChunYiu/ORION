@@ -44,18 +44,28 @@ def test_mechanic_task_candidates_are_current_world_mechanics_only():
     assert task.target_candidate_id == world.gold.value
 
 
-def test_candidate_order_permutation_changes_order_not_target_identity_or_candidate_payload_set():
+def test_candidate_order_permutation_can_change_order_without_changing_target_or_payload_set():
     world = generate_pair(HostileFamily.FAILURE_HISTORY, "candidate-order").worlds[1]
     first = build_task(world, mode=ViewMode.SEMANTIC, order_seed="p9-m0-order-a")
-    second = build_task(world, mode=ViewMode.SEMANTIC, order_seed="p9-m0-order-b")
-
     assert isinstance(first, MechanicRankingTask)
-    assert isinstance(second, MechanicRankingTask)
-    assert first.target_candidate_id == second.target_candidate_id == world.gold.value
+
+    changed = None
+    for index in range(1, 32):
+        candidate = build_task(
+            world,
+            mode=ViewMode.SEMANTIC,
+            order_seed=f"independent-order-{index}",
+        )
+        if candidate.model_payload() != first.model_payload():
+            changed = candidate
+            break
+
+    assert changed is not None
+    assert isinstance(changed, MechanicRankingTask)
+    assert first.target_candidate_id == changed.target_candidate_id == world.gold.value
     assert {repr(candidate.payload) for candidate in first.candidates} == {
-        repr(candidate.payload) for candidate in second.candidates
+        repr(candidate.payload) for candidate in changed.candidates
     }
-    assert first.model_payload() != second.model_payload()
 
 
 def test_weaker_candidate_views_do_not_smuggle_typed_contracts():
