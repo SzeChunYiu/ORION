@@ -244,6 +244,10 @@ def test_expectation_itself_refuses_unbound_identities() -> None:
             dataclasses.replace(EXPECTATION, **{name: UNBOUND_DIGEST})
     with pytest.raises(ValueError):
         dataclasses.replace(EXPECTATION, external_promotion_authority_id="")
+    with pytest.raises(ValueError):
+        dataclasses.replace(EXPECTATION, sampling_epoch_id="phase3:epoch:unbound")
+    with pytest.raises(ValueError):
+        dataclasses.replace(EXPECTATION, issue_pool_fingerprint=UNBOUND_DIGEST)
 
 
 def test_fully_bound_freeze_reaches_a_request_not_an_authorization() -> None:

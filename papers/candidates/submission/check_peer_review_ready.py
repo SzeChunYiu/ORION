@@ -17,11 +17,13 @@ P7 = CAND / "paper-07-epistemic-navigation-open-worlds" / "submission"
 P8 = CAND / "paper-08-epistemic-authority-autonomous-science" / "submission"
 
 REQUIRED_PROGRAMME = [
+    CAND / "P6_P10_ISSUE_RECONCILIATION_2026-08-18.md",
     CAND / "PEER_REVIEW_READY_GATE_2026-08-18.md",
     CAND / "PRE_SUBMISSION_LITERATURE_DELTA_2026-08-18.md",
     CAND / "VENUE_REQUIREMENTS_VERIFIED_2026-08-18.md",
     CAND / "SUBMISSION_CLAIM_AUTHORITY_V1.md",
     CAND / "PEER_REVIEW_READY_PACKAGE.md",
+    CAND / "submission" / "build_and_audit_p6_p8_pdfs.py",
 ]
 
 
@@ -113,14 +115,42 @@ def main() -> None:
         text(path)
 
     check_tex(P6 / "AIJ_MANUSCRIPT.tex")
+    p6_text = text(P6 / "AIJ_MANUSCRIPT.tex")
+    p6_flat = " ".join(p6_text.split())
+    for marker in (
+        "Sequential composition is",
+        "A conditional requires",
+        "Independent parallel composition",
+        "Recursive composition additionally requires",
+    ):
+        require(marker in p6_flat, f"P6 composition form missing: {marker}")
     check_highlights(P6 / "HIGHLIGHTS.txt")
     text(P6 / "COVER_LETTER.md")
 
     check_tex(P7 / "AIJ_MANUSCRIPT.tex")
+    p7_text = text(P7 / "AIJ_MANUSCRIPT.tex")
+    p7_flat = " ".join(p7_text.split())
+    for marker in (
+        "A route identity binds",
+        "Structural equivalence requires",
+        "DEFER\\_REVISIT",
+        "A forced reframe requires",
+    ):
+        require(marker in p7_flat, f"P7 route/recovery primitive missing: {marker}")
     check_highlights(P7 / "HIGHLIGHTS.txt")
     text(P7 / "COVER_LETTER.md")
 
     check_tex(P8 / "JAAMAS_MANUSCRIPT.tex", jaamas=True)
+    p8_text = text(P8 / "JAAMAS_MANUSCRIPT.tex")
+    p8_flat = " ".join(p8_text.split())
+    for marker in (
+        "absence of an observed blocker",
+        "Confidence, expected utility, support, and permission",
+        "Authority is non-monotone",
+        "Demotion is forward-only",
+        "Protected custody is likewise one root class",
+    ):
+        require(marker in p8_flat, f"P8 V2.1 reviewer-facing primitive missing: {marker}")
     check_jaamas_sheet(P8 / "JAAMAS_INFORMATION_SHEET.md")
     text(P8 / "COVER_LETTER.md")
 
@@ -136,6 +166,12 @@ def main() -> None:
             "submission claim-authority terminal missing")
     require("empirical superiority over ideal donor product: `CANNOT_CHECK / NOT CLAIMED`" in claims,
             "empirical-superiority nonclaim missing")
+
+    workflow = text(ROOT / ".github" / "workflows" / "p6-p8-candidate-ci.yml")
+    require("Build and audit submission PDFs" in workflow,
+            "submission PDF build/audit is not wired into candidate CI")
+    require("Archive audited submission PDFs" in workflow,
+            "audited submission PDFs are not retained as an exact-head artifact")
 
     print("P6-P8 peer-review-ready structural gate: PASS")
 

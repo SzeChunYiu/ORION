@@ -190,6 +190,135 @@ def check_stop_terminals() -> int:
     return 4
 
 
+@dataclass(frozen=True)
+class RouteStructure:
+    chart: str
+    objective: str
+    nodes: frozenset[str]
+    edges: frozenset[tuple[str, str]]
+    initial_obligations: frozenset[str]
+    normalized_trace: tuple[str, ...]
+    terminal_semantics: tuple[str, ...]
+
+
+def structurally_equivalent(
+    source: RouteStructure,
+    target: RouteStructure,
+    renaming: dict[str, str],
+) -> bool:
+    return (
+        {renaming[node] for node in source.nodes} == set(target.nodes)
+        and {(renaming[a], renaming[b]) for a, b in source.edges} == set(target.edges)
+        and source.objective == target.objective
+        and source.initial_obligations == target.initial_obligations
+        and tuple(renaming[node] for node in source.normalized_trace) == target.normalized_trace
+        and source.terminal_semantics == target.terminal_semantics
+    )
+
+
+def route_refines(
+    coarse: RouteStructure,
+    fine: RouteStructure,
+    projection: dict[str, str],
+) -> bool:
+    return (
+        {projection[node] for node in fine.nodes} == set(coarse.nodes)
+        and {(projection[a], projection[b]) for a, b in fine.edges} == set(coarse.edges)
+        and fine.objective == coarse.objective
+        and fine.initial_obligations == coarse.initial_obligations
+        and tuple(projection[node] for node in fine.normalized_trace) == coarse.normalized_trace
+        and fine.terminal_semantics == coarse.terminal_semantics
+    )
+
+
+def check_route_relations() -> int:
+    terminals = ("ROUTE_STOP", "TASK_STOP", "CANNOT_CHECK")
+    original = RouteStructure(
+        "coarse",
+        "objective-1",
+        frozenset({"a", "b"}),
+        frozenset({("a", "b")}),
+        frozenset({"o"}),
+        ("a", "b"),
+        terminals,
+    )
+    renamed = RouteStructure(
+        "renamed",
+        "objective-1",
+        frozenset({"x", "y"}),
+        frozenset({("x", "y")}),
+        frozenset({"o"}),
+        ("x", "y"),
+        terminals,
+    )
+    assert structurally_equivalent(original, renamed, {"a": "x", "b": "y"})
+
+    refined = RouteStructure(
+        "fine",
+        "objective-1",
+        frozenset({"a0", "a1", "b"}),
+        frozenset({("a0", "b"), ("a1", "b")}),
+        frozenset({"o"}),
+        ("a0", "b"),
+        terminals,
+    )
+    assert route_refines(original, refined, {"a0": "a", "a1": "a", "b": "b"})
+
+    changed_obligation = RouteStructure(
+        original.chart,
+        original.objective,
+        original.nodes,
+        original.edges,
+        frozenset({"different"}),
+        original.normalized_trace,
+        terminals,
+    )
+    assert not structurally_equivalent(original, changed_obligation, {"a": "a", "b": "b"})
+    assert not route_refines(original, changed_obligation, {"a": "a", "b": "b"})
+    return 4
+
+
+def recovery_transition(
+    *,
+    open_obligation: bool,
+    dead_end_or_loop: bool,
+    alternative_frontier: bool,
+    revisit_trigger: bool,
+    current_chart_can_resolve: bool,
+    candidate_chart_expresses_need: bool,
+) -> str:
+    if not open_obligation:
+        return "TASK_STOP"
+    if not current_chart_can_resolve and candidate_chart_expresses_need:
+        return "REFRAME"
+    if revisit_trigger:
+        return "DEFER_REVISIT"
+    if dead_end_or_loop and alternative_frontier:
+        return "BACKTRACK"
+    return "CANNOT_CHECK"
+
+
+def check_recovery_transitions() -> int:
+    common = {
+        "open_obligation": True,
+        "dead_end_or_loop": False,
+        "alternative_frontier": False,
+        "revisit_trigger": False,
+        "current_chart_can_resolve": True,
+        "candidate_chart_expresses_need": False,
+    }
+    assert recovery_transition(**(common | {"open_obligation": False})) == "TASK_STOP"
+    assert recovery_transition(
+        **(common | {"current_chart_can_resolve": False, "candidate_chart_expresses_need": True})
+    ) == "REFRAME"
+    assert recovery_transition(**(common | {"revisit_trigger": True})) == "DEFER_REVISIT"
+    assert recovery_transition(
+        **(common | {"dead_end_or_loop": True, "alternative_frontier": True})
+    ) == "BACKTRACK"
+    assert recovery_transition(**(common | {"dead_end_or_loop": True})) == "CANNOT_CHECK"
+    return 5
+
+
 def check_fixed_chart_special_case() -> int:
     states = ("u", "v")
     edges = {("u", "v")}
@@ -207,6 +336,8 @@ def main() -> int:
         "evidence_vs_closure": check_evidence_not_closure_transport(),
         "support_transport": check_support_transport(),
         "stop_terminals": check_stop_terminals(),
+        "route_relations": check_route_relations(),
+        "recovery_transitions": check_recovery_transitions(),
         "fixed_chart_special_case": check_fixed_chart_special_case(),
     }
     print("P7 THEORY CLOSURE V2: PASS")

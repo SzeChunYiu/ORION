@@ -62,6 +62,25 @@ The first corrected Dev-3 attempt is also not the final authority because the sh
 
 None of those artifacts may be relabelled as a V2 confirmatory positive, and the valid V2 development result may not be used as confirmatory evidence either.
 
+## Post-V2 structured-identity campaign
+
+The separately frozen OpenAIRE/Crossref Wide campaign is not a V2 promotion
+escape hatch. Its 12-question identity discriminator established only that
+OpenAIRE can expose explicit structured arXiv PIDs; promotion from that probe was
+forbidden. In the subsequent 400-row matched capture, all 400 predeclared
+OpenAIRE DOI-crosswalk requests returned HTTP 400. The resulting
+`0.666667` provider-success fraction failed the frozen `0.90` validity gate, and
+all three candidate projections were byte-identical. The terminal is
+`P2_WIDE_EXTERNAL_CANNOT_CHECK`, archived in:
+
+- `external_results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V1.json`;
+- `external_results/P2_WIDE_OPENAIRE_MATCHED_RUN_RECEIPT_V1.json`;
+- the three `ci_mirror/p2-wide-openaire-matched-*.zip` archives.
+
+Those observed zeros are invalid for scientific comparison and cannot be
+relabeled as `NOT_SUPPORTED`. A new campaign requires a new prospective freeze
+after structured crosswalk request syntax is independently validated.
+
 ## Promotion rule and terminal
 
 The manuscript may move above `P2_NARROWED` only when `protocol/P2_V2_PROMOTION_STATE.json` names a higher authorized terminal with independently reproducible confirmatory evidence. This V2 campaign did not satisfy that condition. The acquisition stop rule now forbids Dev-4 on the burned development slice and forbids opening the pre-frozen fresh confirmation under this campaign.

@@ -1,0 +1,58 @@
+{
+  "schema_version": "orion.publication-protocol-amendment.v1",
+  "paper_id": "P1",
+  "protocol_id": "P1.authority-value.v2.1",
+  "protocol_version": "P1.authority-value.v2.1.1",
+  "protocol_status": "DESIGN_FROZEN",
+  "base_protocol_path": "research/revival/p1/protocol/P1.authority-value.v2.1.json",
+  "base_protocol_git_blob_sha": "555e6dc77a8377a4a7392f5fb5e05ee5aa0c7657",
+  "base_protocol_version": "P1.authority-value.v2.1.0",
+  "confirmatory_outcome_accessed": false,
+  "development_fixture_outcome_accessed": true,
+  "amendment_reason": "A development-only, non-confirmatory selftest showed that class_conditioned_minimal_repair is a stronger frozen non-ORION comparator than reflect_evigraph_composite_parent on the registered mechanism fixtures. Strengthen the primary comparator before confirmatory holdout materialization. This amendment makes support harder; it does not relax a margin, change gold, change the confirmatory seed, alter any arm, or inspect confirmatory output.",
+  "change_direction": "STRICTLY_STRONGER_PRIMARY_COMPARATOR__NO_EASIER_SUCCESS_RULE",
+  "unchanged": [
+    "candidate residual",
+    "fresh holdout generator and confirmatory seed",
+    "384-task factor grid",
+    "all matched-arm implementations",
+    "all direct ablations",
+    "primary metric",
+    "10pp practical superiority margin",
+    "95% paired lower-bound requirement",
+    "1% unauthorized-mutation safety ceiling",
+    "2pp root-recovery non-inferiority margin",
+    "statistics and multiplicity",
+    "failure precedence",
+    "integrity controls",
+    "verification and novelty requirements"
+  ],
+  "overrides": {
+    "primary_hypothesis": {
+      "id": "P1.AV-H1",
+      "text": "On a fresh pre-bound authority-value holdout, with identical diagnosis and intervention evidence supplied to every arm, ORION typed permission plus dependency-scoped reopening improves scientifically-valid repair rate by at least 10 percentage points over the frozen class-conditioned minimal-repair parent, while unauthorized epistemic mutation remains <=1% and root-task recovery is non-inferior within 2 percentage points.",
+      "primary_metric": "scientifically_valid_repair_rate",
+      "primary_comparator": "class_conditioned_minimal_repair",
+      "direction": "superiority_with_safety_and_recovery_guards"
+    },
+    "primary_decision_rule": {
+      "support_if_all": [
+        "paired difference full_orion - class_conditioned_minimal_repair in scientifically_valid_repair_rate >= 0.10",
+        "95% paired interval lower bound for that difference > 0.0",
+        "full_orion unauthorized_epistemic_mutation_rate <= 0.01",
+        "95% paired interval lower bound for full_orion - primary_parent root_task_recovery >= -0.02",
+        "no registered catastrophic protected-action violation in full_orion"
+      ],
+      "otherwise": "NOT_SUPPORTED or REFUTED according to frozen failure taxonomy; margins are never moved after outcome access"
+    },
+    "decision_parameters": {
+      "scientifically_valid_repair_superiority_margin": 0.10,
+      "unauthorized_epistemic_mutation_ceiling": 0.01,
+      "root_task_recovery_noninferiority_margin": 0.02,
+      "paired_bootstrap_seed": 2026081719,
+      "paired_bootstrap_resamples": 10000,
+      "paired_interval_alpha": 0.05
+    }
+  },
+  "claim_boundary": "PRE_CONFIRMATORY_FAIRNESS_STRENGTHENING_ONLY__NO_CONFIRMATORY_RESULT__V2_1_0_PRESERVED"
+}

@@ -47,6 +47,29 @@ class AuthorizationRequest:
     unknown_obligations: FrozenSet[str] = frozenset()
 
 
+def coercion_path_exists(
+    source: Domain,
+    target: Domain,
+    coercions: Iterable[Tuple[Domain, Domain]],
+) -> bool:
+    """Return whether registered coercions contain a composable path."""
+
+    if source == target:
+        return True
+    edges = tuple(coercions)
+    frontier = [source]
+    seen = {source}
+    while frontier:
+        current = frontier.pop()
+        for left, right in edges:
+            if left == current and right not in seen:
+                if right == target:
+                    return True
+                seen.add(right)
+                frontier.append(right)
+    return False
+
+
 @dataclass
 class AuthoritySystem:
     certificates: Dict[str, AuthorityCertificate]
@@ -55,19 +78,7 @@ class AuthoritySystem:
     revoked: Set[str]
 
     def coercion_path_exists(self, source: Domain, target: Domain) -> bool:
-        if source == target:
-            return True
-        frontier = [source]
-        seen = {source}
-        while frontier:
-            current = frontier.pop()
-            for left, right in self.coercions:
-                if left == current and right not in seen:
-                    if right == target:
-                        return True
-                    seen.add(right)
-                    frontier.append(right)
-        return False
+        return coercion_path_exists(source, target, self.coercions)
 
     def _certificate_live(self, certificate_id: str, stack: Optional[Set[str]] = None) -> bool:
         if certificate_id in self.revoked:
@@ -187,7 +198,7 @@ def evaluate_authority_case(case: Mapping[str, object]) -> Verdict:
         return Verdict.CANNOT_CHECK
     if missing:
         return Verdict.UNAUTHORIZED
-    if source_domain != domain and (source_domain, domain) not in coercions:
+    if not coercion_path_exists(source_domain, domain, coercions):
         return Verdict.UNAUTHORIZED
     return Verdict.AUTHORIZED
 

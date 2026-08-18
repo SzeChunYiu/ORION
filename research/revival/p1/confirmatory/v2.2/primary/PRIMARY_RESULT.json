@@ -1,0 +1,390 @@
+{
+  "analysis": {
+    "all_support_gates_pass": true,
+    "cost": [
+      {
+        "ci95_high": -0.7272727272727273,
+        "ci95_low": -0.7706453851492019,
+        "difference": -0.7491325468424705,
+        "field": "spent_budget",
+        "left_mean": 1.8341429562803608,
+        "n": 2882,
+        "parent": "active_voi_repair_parent",
+        "resamples": 10000,
+        "right_mean": 2.5832755031228314,
+        "seed": 202608172533,
+        "subset_field": null
+      },
+      {
+        "ci95_high": 0.10582928521859819,
+        "ci95_low": 0.045454545454545456,
+        "difference": 0.07564191533657183,
+        "field": "spent_budget",
+        "left_mean": 1.8341429562803608,
+        "n": 2882,
+        "parent": "darc_r2act_dependency_parent",
+        "resamples": 10000,
+        "right_mean": 1.7585010409437891,
+        "seed": 202608172534,
+        "subset_field": null
+      },
+      {
+        "ci95_high": -2.13324080499653,
+        "ci95_low": -2.1981263011797365,
+        "difference": -2.165857043719639,
+        "field": "spent_budget",
+        "left_mean": 1.8341429562803608,
+        "n": 2882,
+        "parent": "causalflow_minimal_counterfactual_parent",
+        "resamples": 10000,
+        "right_mean": 4.0,
+        "seed": 202608172535,
+        "subset_field": null
+      }
+    ],
+    "cost_guard": {
+      "difference_from_maximum_parent": -2.1658570437196394,
+      "full_mean": 1.8341429562803608,
+      "margin_units": 1.0,
+      "maximum_strong_parent_mean": 4.0
+    },
+    "full_arm": "orion_mutation_necessity",
+    "full_forbidden_high_level_mutation_count": 0,
+    "full_protected_sibling_regression_count": 0,
+    "gates": {
+      "cost_within_margin": true,
+      "h1_each_parent_ci_positive": true,
+      "h1_each_parent_practical": true,
+      "h1_holm": true,
+      "h2_control_success_noninferior": true,
+      "h2_zero_unnecessary_reframe": true,
+      "whole_grid_success_noninferior": true,
+      "zero_forbidden_high_level_mutation": true,
+      "zero_protected_sibling_regression": true
+    },
+    "h1_hidden_shift": [
+      {
+        "ci95_high": 0.5520833333333334,
+        "ci95_low": 0.4625,
+        "difference": 0.50625,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 243,
+        "mcnemar_c": 0,
+        "mcnemar_p": 1.4149498560666738e-73,
+        "n": 480,
+        "parent": "active_voi_repair_parent",
+        "resamples": 10000,
+        "right_rate": 0.49375,
+        "seed": 202608172233,
+        "subset_field": "hidden_shift"
+      },
+      {
+        "ci95_high": 0.55,
+        "ci95_low": 0.46041666666666664,
+        "difference": 0.50625,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 243,
+        "mcnemar_c": 0,
+        "mcnemar_p": 1.4149498560666738e-73,
+        "n": 480,
+        "parent": "darc_r2act_dependency_parent",
+        "resamples": 10000,
+        "right_rate": 0.49375,
+        "seed": 202608172234,
+        "subset_field": "hidden_shift"
+      },
+      {
+        "ci95_high": 0.5520833333333334,
+        "ci95_low": 0.4625,
+        "difference": 0.50625,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 243,
+        "mcnemar_c": 0,
+        "mcnemar_p": 1.4149498560666738e-73,
+        "n": 480,
+        "parent": "causalflow_minimal_counterfactual_parent",
+        "resamples": 10000,
+        "right_rate": 0.49375,
+        "seed": 202608172235,
+        "subset_field": "hidden_shift"
+      }
+    ],
+    "h1_holm": {
+      "all_pass": true,
+      "alpha": 0.05,
+      "passes_by_input": [
+        true,
+        true,
+        true
+      ],
+      "pvalues": [
+        1.4149498560666738e-73,
+        1.4149498560666738e-73,
+        1.4149498560666738e-73
+      ],
+      "thresholds_by_input": [
+        0.016666666666666666,
+        0.025,
+        0.05
+      ]
+    },
+    "h1_parents": [
+      "active_voi_repair_parent",
+      "darc_r2act_dependency_parent",
+      "causalflow_minimal_counterfactual_parent"
+    ],
+    "h2_control_parent": "active_voi_repair_parent",
+    "h2_control_success": {
+      "ci95_high": 0.0,
+      "ci95_low": 0.0,
+      "difference": 0.0,
+      "field": "protected_root_task_success",
+      "left_rate": 1.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "n": 2402,
+      "resamples": 10000,
+      "right_rate": 1.0,
+      "seed": 202608172333,
+      "subset_field": "negative_control"
+    },
+    "h2_full_unnecessary_reframe_count": 0,
+    "whole_grid_success": [
+      {
+        "ci95_high": 0.09437890353920889,
+        "ci95_low": 0.07460097154753643,
+        "difference": 0.08431644691186677,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 243,
+        "mcnemar_c": 0,
+        "mcnemar_p": 1.4149498560666738e-73,
+        "n": 2882,
+        "parent": "active_voi_repair_parent",
+        "resamples": 10000,
+        "right_rate": 0.9156835530881332,
+        "seed": 202608172433,
+        "subset_field": null
+      },
+      {
+        "ci95_high": 0.3386537126995142,
+        "ci95_low": 0.3046495489243581,
+        "difference": 0.32199861207494795,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 928,
+        "mcnemar_c": 0,
+        "mcnemar_p": 8.814425663402488e-280,
+        "n": 2882,
+        "parent": "darc_r2act_dependency_parent",
+        "resamples": 10000,
+        "right_rate": 0.678001387925052,
+        "seed": 202608172434,
+        "subset_field": null
+      },
+      {
+        "ci95_high": 0.916030534351145,
+        "ci95_low": 0.8945176960444136,
+        "difference": 0.9056210964607911,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 2610,
+        "mcnemar_c": 0,
+        "mcnemar_p": 0.0,
+        "n": 2882,
+        "parent": "causalflow_minimal_counterfactual_parent",
+        "resamples": 10000,
+        "right_rate": 0.09437890353920889,
+        "seed": 202608172435,
+        "subset_field": null
+      }
+    ]
+  },
+  "arm_summary": {
+    "active_voi_repair_parent": {
+      "forbidden_high_level_mutation_rate": 0.0,
+      "hidden_shift_n": 480,
+      "hidden_shift_protected_root_task_success_rate": 0.49375,
+      "mean_dependency_reopen_f1": 0.9156835530881332,
+      "mean_spent_budget": 2.5832755031228314,
+      "n": 2882,
+      "negative_control_n": 2402,
+      "negative_control_unnecessary_high_level_reframe_rate": 0.0,
+      "protected_root_task_success_rate": 0.9156835530881332,
+      "protected_sibling_regression_rate": 0.0
+    },
+    "car_like_causal_replay": {
+      "forbidden_high_level_mutation_rate": 0.8206106870229007,
+      "hidden_shift_n": 480,
+      "hidden_shift_protected_root_task_success_rate": 0.4895833333333333,
+      "mean_dependency_reopen_f1": 1.0,
+      "mean_spent_budget": 4.0,
+      "n": 2882,
+      "negative_control_n": 2402,
+      "negative_control_unnecessary_high_level_reframe_rate": 0.9845961698584513,
+      "protected_root_task_success_rate": 0.09437890353920889,
+      "protected_sibling_regression_rate": 0.4951422623178348
+    },
+    "causalflow_minimal_counterfactual_parent": {
+      "forbidden_high_level_mutation_rate": 0.8213046495489243,
+      "hidden_shift_n": 480,
+      "hidden_shift_protected_root_task_success_rate": 0.49375,
+      "mean_dependency_reopen_f1": 1.0,
+      "mean_spent_budget": 4.0,
+      "n": 2882,
+      "negative_control_n": 2402,
+      "negative_control_unnecessary_high_level_reframe_rate": 0.985428809325562,
+      "protected_root_task_success_rate": 0.09437890353920889,
+      "protected_sibling_regression_rate": 0.49479528105482307
+    },
+    "cost_greedy_repair": {
+      "forbidden_high_level_mutation_rate": 0.8213046495489243,
+      "hidden_shift_n": 480,
+      "hidden_shift_protected_root_task_success_rate": 0.49375,
+      "mean_dependency_reopen_f1": 1.0,
+      "mean_spent_budget": 1.0131852879944483,
+      "n": 2882,
+      "negative_control_n": 2402,
+      "negative_control_unnecessary_high_level_reframe_rate": 0.985428809325562,
+      "protected_root_task_success_rate": 0.09437890353920889,
+      "protected_sibling_regression_rate": 0.49479528105482307
+    },
+    "darc_r2act_dependency_parent": {
+      "forbidden_high_level_mutation_rate": 0.2376821651630812,
+      "hidden_shift_n": 480,
+      "hidden_shift_protected_root_task_success_rate": 0.49375,
+      "mean_dependency_reopen_f1": 0.9156835530881332,
+      "mean_spent_budget": 1.7585010409437891,
+      "n": 2882,
+      "negative_control_n": 2402,
+      "negative_control_unnecessary_high_level_reframe_rate": 0.2851790174854288,
+      "protected_root_task_success_rate": 0.678001387925052,
+      "protected_sibling_regression_rate": 0.0
+    },
+    "immediate_outcome_flip_repair": {
+      "forbidden_high_level_mutation_rate": 0.8213046495489243,
+      "hidden_shift_n": 480,
+      "hidden_shift_protected_root_task_success_rate": 0.49375,
+      "mean_dependency_reopen_f1": 1.0,
+      "mean_spent_budget": 1.0131852879944483,
+      "n": 2882,
+      "negative_control_n": 2402,
+      "negative_control_unnecessary_high_level_reframe_rate": 0.985428809325562,
+      "protected_root_task_success_rate": 0.09437890353920889,
+      "protected_sibling_regression_rate": 0.49479528105482307
+    },
+    "orion_mutation_necessity": {
+      "forbidden_high_level_mutation_rate": 0.0,
+      "hidden_shift_n": 480,
+      "hidden_shift_protected_root_task_success_rate": 1.0,
+      "mean_dependency_reopen_f1": 1.0,
+      "mean_spent_budget": 1.8341429562803608,
+      "n": 2882,
+      "negative_control_n": 2402,
+      "negative_control_unnecessary_high_level_reframe_rate": 0.0,
+      "protected_root_task_success_rate": 1.0,
+      "protected_sibling_regression_rate": 0.0
+    },
+    "orion_with_unlimited_intervention_budget": {
+      "forbidden_high_level_mutation_rate": 0.0,
+      "hidden_shift_n": 480,
+      "hidden_shift_protected_root_task_success_rate": 1.0,
+      "mean_dependency_reopen_f1": 1.0,
+      "mean_spent_budget": 1.8341429562803608,
+      "n": 2882,
+      "negative_control_n": 2402,
+      "negative_control_unnecessary_high_level_reframe_rate": 0.0,
+      "protected_root_task_success_rate": 1.0,
+      "protected_sibling_regression_rate": 0.0
+    },
+    "orion_without_KWM_level_ordering": {
+      "forbidden_high_level_mutation_rate": 0.4108258154059681,
+      "hidden_shift_n": 480,
+      "hidden_shift_protected_root_task_success_rate": 1.0,
+      "mean_dependency_reopen_f1": 1.0,
+      "mean_spent_budget": 2.0829285218598197,
+      "n": 2882,
+      "negative_control_n": 2402,
+      "negative_control_unnecessary_high_level_reframe_rate": 0.4929225645295587,
+      "protected_root_task_success_rate": 0.5891741845940319,
+      "protected_sibling_regression_rate": 0.0
+    },
+    "orion_without_dependency_impact_binding": {
+      "forbidden_high_level_mutation_rate": 0.0,
+      "hidden_shift_n": 480,
+      "hidden_shift_protected_root_task_success_rate": 0.0,
+      "mean_dependency_reopen_f1": 0.8334489937543372,
+      "mean_spent_budget": 1.8341429562803608,
+      "n": 2882,
+      "negative_control_n": 2402,
+      "negative_control_unnecessary_high_level_reframe_rate": 0.0,
+      "protected_root_task_success_rate": 0.8334489937543372,
+      "protected_sibling_regression_rate": 0.0
+    },
+    "orion_without_lower_level_exclusion": {
+      "forbidden_high_level_mutation_rate": 0.4170714781401804,
+      "hidden_shift_n": 480,
+      "hidden_shift_protected_root_task_success_rate": 1.0,
+      "mean_dependency_reopen_f1": 1.0,
+      "mean_spent_budget": 1.5006939625260236,
+      "n": 2882,
+      "negative_control_n": 2402,
+      "negative_control_unnecessary_high_level_reframe_rate": 0.5004163197335554,
+      "protected_root_task_success_rate": 0.16655100624566274,
+      "protected_sibling_regression_rate": 0.0
+    },
+    "orion_without_protected_sibling_check": {
+      "forbidden_high_level_mutation_rate": 0.0,
+      "hidden_shift_n": 480,
+      "hidden_shift_protected_root_task_success_rate": 0.49375,
+      "mean_dependency_reopen_f1": 1.0,
+      "mean_spent_budget": 1.7498265093684942,
+      "n": 2882,
+      "negative_control_n": 2402,
+      "negative_control_unnecessary_high_level_reframe_rate": 0.0,
+      "protected_root_task_success_rate": 0.9156835530881332,
+      "protected_sibling_regression_rate": 0.08431644691186677
+    },
+    "reflect_like_replay": {
+      "forbidden_high_level_mutation_rate": 0.8334489937543372,
+      "hidden_shift_n": 480,
+      "hidden_shift_protected_root_task_success_rate": 0.49375,
+      "mean_dependency_reopen_f1": 1.0,
+      "mean_spent_budget": 1.0,
+      "n": 2882,
+      "negative_control_n": 2402,
+      "negative_control_unnecessary_high_level_reframe_rate": 1.0,
+      "protected_root_task_success_rate": 0.08223455933379598,
+      "protected_sibling_regression_rate": 0.5006939625260236
+    },
+    "static_no_reframe": {
+      "forbidden_high_level_mutation_rate": 0.0,
+      "hidden_shift_n": 480,
+      "hidden_shift_protected_root_task_success_rate": 0.0,
+      "mean_dependency_reopen_f1": 0.8334489937543372,
+      "mean_spent_budget": 0.0,
+      "n": 2882,
+      "negative_control_n": 2402,
+      "negative_control_unnecessary_high_level_reframe_rate": 0.0,
+      "protected_root_task_success_rate": 0.0,
+      "protected_sibling_regression_rate": 0.0
+    }
+  },
+  "claim_boundary": "CREDENTIAL_FREE_MECHANICAL_P1_NECESSITY_RESULT_ONLY__V1_H1_HISTORY_UNCHANGED__NO_MODEL_GENERAL_OR_OPEN_ENDED_SUPERIORITY",
+  "execution_freeze_sha256": "da982bca3e7e37027b3bb9f14c33d77eeb81752dc5fd2da74f71abf46ea8122e",
+  "n_ablation_arms": 5,
+  "n_runnable_arms": 9,
+  "n_worlds": 2882,
+  "oracle_minimal_valid_ceiling": {
+    "protected_root_task_success_rate": 1.0,
+    "reason": "host-only protected response matrix / gold minimal repair ids",
+    "runnable": false
+  },
+  "raw_results_sha256": "a198e83d8714535e488ac795eeb6a4490409c3ed909442bf0912660800386a31",
+  "schema_version": "P1.epistemic-mutation-necessity-result.v1",
+  "terminal": "P1_MUTATION_NECESSITY_SUPPORTED"
+}

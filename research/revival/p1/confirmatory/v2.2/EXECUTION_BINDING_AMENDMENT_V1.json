@@ -1,0 +1,22 @@
+{
+  "arms_executed_before_correction": false,
+  "claim_boundary": "POST_ACCESS_INSTRUMENT_BINDING_CORRECTION_ONLY__NO_SCIENTIFIC_RULE_OR_OUTCOME_CHANGE",
+  "committed_world_receipt_sha256": "212f5891af4945f66d31149b2e07f6f7593d40a2cb9d1cbe9e42701060a18d77",
+  "confirmatory_worlds_changed": false,
+  "date": "2026-08-18",
+  "debug_job_id": 95548624691,
+  "debug_run_id": 32082698013,
+  "failed_primary_job_id": 95547656300,
+  "failed_primary_run_id": 32082350567,
+  "new_execution_receipt_sha256": "15c1c9cb7e0a329a3fb648ab3598f2db32ec0a630c161bd9f2ce357b0efbef8c",
+  "new_world_freeze_sha256": "212f5891af4945f66d31149b2e07f6f7593d40a2cb9d1cbe9e42701060a18d77",
+  "old_execution_receipt_sha256": "28228fc5bbd943b4841ef749c2c57777016fe0a9e6d0325b9139b0cf2b9ac50a",
+  "old_world_freeze_sha256": "7fce21009dce50a66d6169680f77a746fd0b7ed7d1e0cf7a43c72d8c83ea58b5",
+  "protocol_or_margin_changed": false,
+  "protocol_version": "P1.epistemic-mutation-necessity.v2.2.4",
+  "reason": "The first observable primary attempt aborted before any arm execution because the original execution receipt bound a branch-local regenerated WORLD_FREEZE envelope rather than the earlier committed PRIMARY_WORLD_FREEZE receipt. Public/protected rows, protocol chain, source hashes, N, parents, scorer and statistics were identical.",
+  "schema_version": "P1.epistemic-mutation-necessity-execution-binding-amendment.v1",
+  "scientific_fields_changed": [],
+  "scientific_terminal_observed_before_correction": false,
+  "source_hashes_changed": []
+}

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Validate ORION journal-package scaffolding for P1–P5.
+"""Validate ORION journal packages for P1–P5.
 
 This checker owns Gate 7–9 *inventory*: required files exist, hashes match,
 missing submission artifacts stay CANNOT_CHECK, and claims without artifacts
-stay OPEN. It does not mint ScientificResultVerification.v1 (issue #283) and
-does not fabricate compiled PDFs.
+stay OPEN. It does not mint ScientificResultVerification.v1 (issue #283).
+Compiled PDFs are admitted only for packages that declare ``SUBMISSION_READY``
+and bind the PDF as a required, checksummed file.
 """
 from __future__ import annotations
 
@@ -258,6 +259,19 @@ def check_package(paper_id: str, paper_root: Path, *, repo_root: Path | None = N
                 f"claim {claim_id!r} is CANNOT_CHECK while cited artifacts exist; keep if authority is still insufficient"
             )
 
+    if manifest.get("package_status") == "SUBMISSION_READY":
+        if missing:
+            report.errors.append("SUBMISSION_READY package must not list missing_artifacts")
+        open_claims = [
+            claim.get("id")
+            for claim in claims
+            if isinstance(claim, dict) and claim.get("status") == "OPEN"
+        ]
+        if open_claims:
+            report.errors.append(
+                "SUBMISSION_READY package has OPEN claims: " + ", ".join(map(str, open_claims))
+            )
+
     verification = manifest.get("scientific_result_verification")
     if not isinstance(verification, dict):
         report.errors.append("scientific_result_verification object missing")
@@ -276,11 +290,21 @@ def check_package(paper_id: str, paper_root: Path, *, repo_root: Path | None = N
             )
 
     pdfs = list(package_dir.glob("*.pdf"))
-    if pdfs:
+    required_paths = {
+        str(entry.get("path")) for entry in required if isinstance(entry, dict)
+    }
+    if pdfs and manifest.get("package_status") != "SUBMISSION_READY":
         report.errors.append(
-            "journal_package/ contains a PDF; do not fabricate compiled manuscripts. "
+            "journal_package/ contains a PDF but the package is not SUBMISSION_READY: "
             + ", ".join(path.name for path in pdfs)
         )
+    if manifest.get("package_status") == "SUBMISSION_READY":
+        if not pdfs:
+            report.errors.append("SUBMISSION_READY package has no compiled PDF")
+        for pdf in pdfs:
+            relative = f"journal_package/{pdf.name}"
+            if relative not in required_paths:
+                report.errors.append(f"compiled PDF is not a required file: {relative}")
 
     try:
         sums = parse_sha256sums(package_dir / "SHA256SUMS")

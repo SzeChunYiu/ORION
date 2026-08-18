@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="950" viewBox="0 0 1400 950">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <style>
+      text { font-family: Helvetica, Arial, sans-serif; fill: #172033; }
+      .cluster { stroke-width: 2.5; rx: 18; }
+      .box { fill: #fff; stroke: #475569; stroke-width: 1.8; rx: 12; }
+      .title { font-size: 21px; font-weight: 700; letter-spacing: .7px; }
+      .head { font-size: 19px; font-weight: 700; }
+      .body { font-size: 16px; }
+      .small { font-size: 14px; }
+      .edge { fill: none; stroke: #475569; stroke-width: 2.2; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect x="290" y="20" width="820" height="205" class="cluster" fill="#eff6ff" stroke="#3b82f6"/>
+  <text x="700" y="50" text-anchor="middle" class="title">FROZEN CASE</text>
+  <ellipse cx="700" cy="102" rx="275" ry="38" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="700" y="96" text-anchor="middle" class="head">Hidden cause</text>
+  <text x="700" y="119" text-anchor="middle" class="body">insufficient formulation, representation, decomposition, or measurement model</text>
+  <rect x="395" y="153" width="610" height="54" class="box"/>
+  <text x="700" y="176" text-anchor="middle" class="head">Observable trace</text>
+  <text x="700" y="197" text-anchor="middle" class="small">public prompt + resources: numbers, ranges, tokens, capability states, closure edges</text>
+  <path d="M700 140 V151" class="edge" stroke-dasharray="7 6"/>
+  <text x="718" y="148" class="small">manifests as; never states</text>
+
+  <rect x="385" y="254" width="630" height="72" class="box" fill="#eff6ff" stroke="#3b82f6"/>
+  <text x="700" y="280" text-anchor="middle" class="head">PublicView</text>
+  <text x="700" y="305" text-anchor="middle" class="body">case ID · public prompt · observable resources · budget class</text>
+  <path d="M700 208 V251" class="edge"/>
+
+  <rect x="45" y="370" width="545" height="245" class="cluster" fill="#fef2f2" stroke="#dc2626"/>
+  <text x="318" y="401" text-anchor="middle" class="title">HOST CUSTODY — NEVER EXPOSED</text>
+  <rect x="75" y="425" width="485" height="87" class="box"/>
+  <text x="318" y="451" text-anchor="middle" class="head">Protected gold</text>
+  <text x="318" y="476" text-anchor="middle" class="body">reframe required · responsibility family · target coordinates</text>
+  <text x="318" y="499" text-anchor="middle" class="body">dependencies to reopen · success rubric · dependency depth</text>
+  <rect x="75" y="530" width="485" height="62" class="box"/>
+  <text x="318" y="554" text-anchor="middle" class="head">Task family</text>
+  <text x="318" y="577" text-anchor="middle" class="body">withheld: four hidden-shift families vs two controls</text>
+
+  <rect x="625" y="370" width="730" height="245" class="cluster" fill="#f0fdf4" stroke="#16a34a"/>
+  <text x="990" y="401" text-anchor="middle" class="title">SYSTEM UNDER TEST — MATCHED BUDGET</text>
+  <rect x="650" y="432" width="214" height="125" class="box"/>
+  <text x="757" y="458" text-anchor="middle" class="head">Five baselines</text>
+  <text x="757" y="485" text-anchor="middle" class="body">static ReAct · tree search</text>
+  <text x="757" y="509" text-anchor="middle" class="body">AREX-like · SCION-like</text>
+  <text x="757" y="533" text-anchor="middle" class="body">Iris-like</text>
+  <rect x="885" y="432" width="205" height="125" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
+  <text x="988" y="501" text-anchor="middle" class="head">Full ORION</text>
+  <rect x="1110" y="432" width="220" height="125" class="box"/>
+  <text x="1220" y="458" text-anchor="middle" class="head">Five ablations</text>
+  <text x="1220" y="485" text-anchor="middle" class="body">no W · no M · generic retry</text>
+  <text x="1220" y="509" text-anchor="middle" class="body">full reset · no self-audit</text>
+
+  <path d="M700 327 V348 H757 V429" class="edge"/>
+  <path d="M700 327 V348 H988 V429" class="edge"/>
+  <path d="M700 327 V348 H1220 V429" class="edge"/>
+
+  <rect x="640" y="655" width="700" height="78" class="box" fill="#f0fdf4" stroke="#16a34a"/>
+  <text x="990" y="681" text-anchor="middle" class="head">SystemTrace</text>
+  <text x="990" y="706" text-anchor="middle" class="body">reframed · responsibility family · target coordinates · reopened</text>
+  <text x="990" y="728" text-anchor="middle" class="body">root solved · abstained · resources</text>
+  <path d="M757 558 V635 H990 V652" class="edge"/>
+  <path d="M988 558 V652" class="edge"/>
+  <path d="M1220 558 V635 H990 V652" class="edge"/>
+
+  <rect x="430" y="782" width="540" height="70" rx="12" fill="#fff7ed" stroke="#d97706" stroke-width="3"/>
+  <text x="700" y="809" text-anchor="middle" class="head">Host scoring boundary</text>
+  <text x="700" y="835" text-anchor="middle" class="body">metrics.py is the only module that reads protected gold</text>
+  <path d="M990 734 V760 H700 V779" class="edge"/>
+  <path d="M318 513 V757 H570 V779" class="edge"/>
+  <path d="M318 593 V745 H620 V779" class="edge"/>
+
+  <rect x="505" y="884" width="390" height="48" class="box" fill="#f5f3ff" stroke="#8b5cf6"/>
+  <text x="700" y="914" text-anchor="middle" class="head">Case records → frozen tables</text>
+  <path d="M700 853 V881" class="edge"/>
+</svg>

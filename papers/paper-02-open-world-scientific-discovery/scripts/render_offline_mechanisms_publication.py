@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Render/check legible publication TikZ variants of P2-3 and P2-4.
 
-The scientific coordinates and scope annotation remain owned by
+The scientific coordinates and authority remain owned by
 ``render_offline_mechanisms.py`` and ``OFFLINE_MECHANISMS_V1.json``.  This module
 imports the canonical renderer and changes only annotation layout so the compiled
-journal PDF has no overlapping axis/header or short-bar labels.
+journal PDF has no overlapping axis/header, short-bar labels, or clipped scope
+annotations.  The figure captions retain the full claim/authority boundary.
 """
 
 from __future__ import annotations
@@ -45,7 +46,7 @@ def _p3(text: str) -> str:
 
 
 def _p4(text: str) -> str:
-    """Move P2-4 labels for legibility; never rewrite task/authority scope."""
+    """Move P2-4 annotations for legibility without changing scientific values."""
     old_axis = r"\draw[->] (0,0) -- (0,3.45) node[above]{mean first relevant contribution};"
     new_axis = "\n".join(
         [
@@ -73,7 +74,22 @@ def _p4(text: str) -> str:
         if old not in text:
             raise ValueError(f"canonical P2-4 layout token missing: {old}")
         text = text.replace(old, new)
-    return text
+
+    scope_prefix = r"\node[anchor=west,font=\small] at (0,3.70) {"
+    scope_line = next(
+        (line for line in text.splitlines() if line.startswith(scope_prefix)),
+        None,
+    )
+    if scope_line is None:
+        raise ValueError("canonical P2-4 scope token missing")
+    n_tasks = scope_line[len(scope_prefix):].split(" frozen tasks;", 1)[0]
+    if not n_tasks.isdigit():
+        raise ValueError("canonical P2-4 scope does not start with a task count")
+    compact_scope = (
+        rf"\node[anchor=west,font=\scriptsize,text width=7.2cm,align=left] at (0,3.70) "
+        rf"{{{n_tasks} frozen tasks; content-identity contribution; descriptive only}};"
+    )
+    return text.replace(scope_line, compact_scope)
 
 
 def render() -> dict[Path, str]:

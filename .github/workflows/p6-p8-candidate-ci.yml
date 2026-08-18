@@ -29,6 +29,25 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install -e '.[dev]'
       - name: Theory and live-embedding gate
-        run: pytest -q tests/unit/candidates/test_p6_p8_candidate_embedding.py
+        run: >-
+          pytest -q
+          tests/unit/candidates/test_p6_p8_candidate_embedding.py
+          tests/unit/candidates/test_p6_p8_theory_closure_v21.py
+          tests/unit/candidates/test_p8_formal_core_primitives.py
+          tests/unit/candidates/test_p6_p8_merged_review_suites.py
       - name: Peer-review submission gate
         run: pytest -q tests/unit/candidates/test_p6_p8_peer_review_ready.py
+      - name: Install submission PDF toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-extra
+      - name: Build and audit submission PDFs
+        run: >-
+          python papers/candidates/submission/build_and_audit_p6_p8_pdfs.py
+          --clean --output-root "$RUNNER_TEMP/p6-p8-submission-pdfs"
+      - name: Archive audited submission PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: p6-p8-submission-pdfs-${{ github.sha }}
+          path: ${{ runner.temp }}/p6-p8-submission-pdfs
+          if-no-files-found: error

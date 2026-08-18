@@ -74,6 +74,26 @@ def _proof_start(block: list[str]) -> int | None:
     return None
 
 
+def _conservative_proof_end(block: list[str], proof_start: int, declaration_indent: int) -> int:
+    """Stop when layout returns to the declaration level after ``by``.
+
+    Lean tactic blocks are layout-sensitive. A proof command must be indented
+    beyond its declaration; a later nonblank line at the declaration indent is
+    therefore outside the projected proof. Stopping there is intentionally
+    conservative: unusual formatting may lose actions, but later definitions,
+    instances, namespace commands, and unrelated proofs cannot leak in.
+    """
+    for index in range(proof_start + 1, len(block)):
+        line = block[index]
+        code = line.split("--", 1)[0].rstrip()
+        if not code.strip():
+            continue
+        indentation = len(line) - len(line.lstrip())
+        if indentation <= declaration_indent:
+            return index
+    return len(block)
+
+
 def parse_lean_source(text: str, source_id: str) -> list[SourceTheorem]:
     """Conservatively project tactic-style theorem source into action families.
 
@@ -95,6 +115,8 @@ def parse_lean_source(text: str, source_id: str) -> list[SourceTheorem]:
         ps=_proof_start(block)
         if ps is None:
             continue
+        declaration_indent = len(lines[i]) - len(lines[i].lstrip())
+        block = block[:_conservative_proof_end(block, ps, declaration_indent)]
         fam=[]
         for l in block[ps+1:]:
             f=tactic_family(l)

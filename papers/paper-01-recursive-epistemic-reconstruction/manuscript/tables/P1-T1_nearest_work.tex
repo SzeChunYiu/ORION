@@ -5,22 +5,24 @@
 \newcolumntype{N}[1]{>{\raggedright\arraybackslash\fontsize{6.4pt}{7.8pt}\selectfont}p{#1}}
 
 {\fontsize{6.4pt}{7.8pt}\selectfont
-\begin{longtable}{N{0.62in}N{1.14in}N{1.90in}N{0.42in}N{2.42in}}
+\setlength{\tabcolsep}{2pt}
+\begin{longtable}{N{0.60in}N{1.05in}N{1.70in}N{0.60in}N{2.20in}}
   \caption{Nearest-work mechanism matrix: 36 mechanisms, dispositions, and their effect on ORION's claim. Every arXiv identifier was resolved to a live abstract page and cross-checked for title/author/date before entry; rows marked \lbrack body-checked\rbrack\ were verified against the paper's full text. Full source: \texttt{evidence/NEAREST\_WORK\_MATRIX\_V2.md}.}
   \label{tab:P1-T1}\\
   \toprule
   Mechanism & Nearest work & What it does & Disp. & Effect on ORION's claim \\
   \midrule
   \endfirsthead
-  \caption*{\textit{Table P1-T1 (continued):} nearest-work mechanism matrix}\\
+  \caption*{\textit{Table~\thetable\ (continued):} nearest-work mechanism matrix}\\
   \toprule
   Mechanism & Nearest work & What it does & Disp. & Effect on ORION's claim \\
   \midrule
   \endhead
   \bottomrule
   \endfoot
-  Recursive constraint-wise audit with targeted follow-up & AREX \cite{arex2026} (Lu et al., 2026) & Recursively refines answers via constraint-wise checks and targeted research iterations & \textbf{ADOPT} & Strikes ``recursive audit + targeted follow-up'' and ``compact persistent research state'' from novelty \\
-  Staged dependency-aware Research Execution Plan & SCION \cite{scion2026} (Zheng et al., 2026) & Compiles intent into staged objectives, dependencies, verification checkpoints, fallbacks, layered epistemic memory & \textbf{ADOPT} & Strikes structured/dependency-aware scientific planning; checkpoint-failure reopening semantics unresolved \\
+  Recursive constraint-wise audit with targeted follow-up & AREX \cite{arex2026} (Lu et al., 2026) & Recursively refines answers via constraint-wise checks and targeted research iterations & \textbf{ADOPT} & Strikes ``recursive audit + targeted follow-up'' from novelty \\
+  Compact persistent research state & AREX \cite{arex2026} & Compresses long-horizon interaction history into retained state across research iterations & \textbf{ADOPT} & Strikes compact persistent research state from novelty \\
+  Staged dependency-aware Research Execution Plan & SCION \cite{scion2026} (Zheng et al., 2026) & Compiles intent into staged objectives, dependencies, verification checkpoints, fallbacks, layered epistemic memory & \textbf{ADOPT} & Strikes structured/dependency-aware planning; full-text check finds procedural rollback, not typed epistemic reopening \\
   Target-conditioned hidden-target inverse search & SCION \cite{scion2026} & Inverse search conditioned on a target; batch active search under finite budgets & DEFER & Hidden \emph{target} inside a fixed space $\neq$ wrong \emph{search space}; body unverified \\
   Evolving information state of revisable claims \lbrack body-checked\rbrack & Iris \cite{iris2026} (Fu et al., 2026) & Claims with scope, evidence-pointer sets, status; Add/Update/Invalidate operators & \textbf{ADOPT} & Strikes the $K$ half of P1.D1 outright \\
   Epistemic actions decoupled from solution modification \lbrack body-checked\rbrack & Iris \cite{iris2026} & Discriminative evidence acquisition without modifying the retained solution & \textbf{ADOPT} & Confirms evidence responsibility routes to acquisition, not rewrite---the repair ORION's own falsifier forced \\
@@ -37,7 +39,7 @@
   Recursive decomposition with interfaces and V\&V & NASA SE Handbook \cite{nasa2016} & Recursive decomposition; interface fixing; parent/child V\&V transport & \textbf{ADOPT} & Recursive engineering decomposition is not a delta \\
   Named auditability dimensions incl.\ responsibility attribution & Auditable Agents \cite{auditable2026} (Nian et al., 2026) & Five auditability dimensions incl.\ responsibility attribution & COMPOSE & ``The agent audits itself'' is not ORION's contribution \\
   Attribution to responsible agent and decisive step & Who\&When \cite{whowhen2025}; Who\&When Pro \cite{whowhenpro2026} & Annotates trajectories; attribution target is agent identity + step & COMPOSE & Attribution per se excluded; formulation-coordinate typing stays open \\
-  Empirical 14-mode failure taxonomy & MAST \cite{mast2025} (Cemri et al., 2025) & 14 modes over system design, inter-agent misalignment, task verification & COMPOSE & Descriptive labels, no rewrite permission; mode names unretrieved (open check) \\
+  Empirical 14-mode failure taxonomy & MAST \cite{mast2025} (Cemri et al., 2025) & 14 modes over system design, inter-agent misalignment, task verification & COMPOSE & Full-text mode check finds descriptive labels but no formulation-coordinate rewrite permission \\
   Progressive agentic tree search + experiment manager & AI Scientist-v2 (Yamada et al., 2025) & End-to-end hypothesis$\rightarrow$experiment$\rightarrow$manuscript cycle & \textbf{ADOPT} & Tree search and automated science excluded from novelty \\
   Role-specialized generate/debate/evolve + tournament ranking & AI Co-Scientist \cite{kosmos2025}\textsuperscript{a} (Gottweis et al., 2025) & Generation, reflection, ranking, evolution, proximity, meta-review roles & ADAPT & Multi-role reasoning not a delta; tournament standing is never scientific authority \\
   Structured world model shared across agents & Kosmos \cite{kosmos2025} (Mitchener et al., 2025) & Shares a structured world model across analysis and search agents & \textbf{ADOPT} & Long-horizon coordination excluded; objective revisability unestablished \\

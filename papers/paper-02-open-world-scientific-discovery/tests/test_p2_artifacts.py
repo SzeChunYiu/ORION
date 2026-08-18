@@ -65,7 +65,8 @@ def test_table_p2_2_exists():
     content = table.read_text(encoding="utf-8")
     assert "Table P2-2" in content
     assert "GENERATED FILE" in content
-    assert "DESCRIPTIVE_ONLY" in content
+    assert "TIER_B_committed" in content
+    assert "no inferential claims are made" in content
 
 
 if __name__ == "__main__":

@@ -1,0 +1,244 @@
+{
+  "analysis_mismatch_count": 0,
+  "analysis_mismatches": [],
+  "archived_terminal": "P1_MUTATION_NECESSITY_SUPPORTED",
+  "expected_rows": 40348,
+  "implementation_boundary": "standard-library independent scorer/statistics; imports no necessity_scoring, necessity_statistics, necessity_policies, or ORION licensing",
+  "input_sha256": {
+    "execution_freeze": "da982bca3e7e37027b3bb9f14c33d77eeb81752dc5fd2da74f71abf46ea8122e",
+    "primary_result": "1eaab37f246ac3a03edddb7ef00f3c0b0387c1aa9474dfcfcaee6aa18fb853fd",
+    "protected_response_matrix": "31c9d3a39b60da7c0d0c337c461b7179d866957105144d228466f75f20757542",
+    "raw_results": "a198e83d8714535e488ac795eeb6a4490409c3ed909442bf0912660800386a31",
+    "world_public": "9b77470167a7e22937bc3c498d2277639ea8f02f3e2cbe90e24fe998785bbdf6"
+  },
+  "n_raw_rows": 40348,
+  "n_worlds": 2882,
+  "outcome_counts_by_arm": {
+    "active_voi_repair_parent": 2882,
+    "car_like_causal_replay": 2882,
+    "causalflow_minimal_counterfactual_parent": 2882,
+    "cost_greedy_repair": 2882,
+    "darc_r2act_dependency_parent": 2882,
+    "immediate_outcome_flip_repair": 2882,
+    "orion_mutation_necessity": 2882,
+    "orion_with_unlimited_intervention_budget": 2882,
+    "orion_without_KWM_level_ordering": 2882,
+    "orion_without_dependency_impact_binding": 2882,
+    "orion_without_lower_level_exclusion": 2882,
+    "orion_without_protected_sibling_check": 2882,
+    "reflect_like_replay": 2882,
+    "static_no_reframe": 2882
+  },
+  "protocol_version": "P1.epistemic-mutation-necessity.v2.2.4",
+  "recomputed_analysis": {
+    "all_support_gates_pass": true,
+    "cost": [
+      {
+        "ci95_high": -0.7272727272727273,
+        "ci95_low": -0.7706453851492019,
+        "difference": -0.7491325468424705,
+        "field": "spent_budget",
+        "left_mean": 1.8341429562803608,
+        "n": 2882,
+        "parent": "active_voi_repair_parent",
+        "resamples": 10000,
+        "right_mean": 2.5832755031228314,
+        "seed": 202608172533,
+        "subset_field": null
+      },
+      {
+        "ci95_high": 0.10582928521859819,
+        "ci95_low": 0.045454545454545456,
+        "difference": 0.07564191533657183,
+        "field": "spent_budget",
+        "left_mean": 1.8341429562803608,
+        "n": 2882,
+        "parent": "darc_r2act_dependency_parent",
+        "resamples": 10000,
+        "right_mean": 1.7585010409437891,
+        "seed": 202608172534,
+        "subset_field": null
+      },
+      {
+        "ci95_high": -2.13324080499653,
+        "ci95_low": -2.1981263011797365,
+        "difference": -2.165857043719639,
+        "field": "spent_budget",
+        "left_mean": 1.8341429562803608,
+        "n": 2882,
+        "parent": "causalflow_minimal_counterfactual_parent",
+        "resamples": 10000,
+        "right_mean": 4.0,
+        "seed": 202608172535,
+        "subset_field": null
+      }
+    ],
+    "cost_guard": {
+      "difference_from_maximum_parent": -2.1658570437196394,
+      "full_mean": 1.8341429562803608,
+      "margin_units": 1.0,
+      "maximum_strong_parent_mean": 4.0
+    },
+    "full_arm": "orion_mutation_necessity",
+    "full_forbidden_high_level_mutation_count": 0,
+    "full_protected_sibling_regression_count": 0,
+    "gates": {
+      "cost_within_margin": true,
+      "h1_each_parent_ci_positive": true,
+      "h1_each_parent_practical": true,
+      "h1_holm": true,
+      "h2_control_success_noninferior": true,
+      "h2_zero_unnecessary_reframe": true,
+      "whole_grid_success_noninferior": true,
+      "zero_forbidden_high_level_mutation": true,
+      "zero_protected_sibling_regression": true
+    },
+    "h1_hidden_shift": [
+      {
+        "ci95_high": 0.5520833333333334,
+        "ci95_low": 0.4625,
+        "difference": 0.50625,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 243,
+        "mcnemar_c": 0,
+        "mcnemar_p": 1.4149498560666738e-73,
+        "n": 480,
+        "parent": "active_voi_repair_parent",
+        "resamples": 10000,
+        "right_rate": 0.49375,
+        "seed": 202608172233,
+        "subset_field": "hidden_shift"
+      },
+      {
+        "ci95_high": 0.55,
+        "ci95_low": 0.46041666666666664,
+        "difference": 0.50625,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 243,
+        "mcnemar_c": 0,
+        "mcnemar_p": 1.4149498560666738e-73,
+        "n": 480,
+        "parent": "darc_r2act_dependency_parent",
+        "resamples": 10000,
+        "right_rate": 0.49375,
+        "seed": 202608172234,
+        "subset_field": "hidden_shift"
+      },
+      {
+        "ci95_high": 0.5520833333333334,
+        "ci95_low": 0.4625,
+        "difference": 0.50625,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 243,
+        "mcnemar_c": 0,
+        "mcnemar_p": 1.4149498560666738e-73,
+        "n": 480,
+        "parent": "causalflow_minimal_counterfactual_parent",
+        "resamples": 10000,
+        "right_rate": 0.49375,
+        "seed": 202608172235,
+        "subset_field": "hidden_shift"
+      }
+    ],
+    "h1_holm": {
+      "all_pass": true,
+      "alpha": 0.05,
+      "passes_by_input": [
+        true,
+        true,
+        true
+      ],
+      "pvalues": [
+        1.4149498560666738e-73,
+        1.4149498560666738e-73,
+        1.4149498560666738e-73
+      ],
+      "thresholds_by_input": [
+        0.016666666666666666,
+        0.025,
+        0.05
+      ]
+    },
+    "h1_parents": [
+      "active_voi_repair_parent",
+      "darc_r2act_dependency_parent",
+      "causalflow_minimal_counterfactual_parent"
+    ],
+    "h2_control_parent": "active_voi_repair_parent",
+    "h2_control_success": {
+      "ci95_high": 0.0,
+      "ci95_low": 0.0,
+      "difference": 0.0,
+      "field": "protected_root_task_success",
+      "left_rate": 1.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "n": 2402,
+      "resamples": 10000,
+      "right_rate": 1.0,
+      "seed": 202608172333,
+      "subset_field": "negative_control"
+    },
+    "h2_full_unnecessary_reframe_count": 0,
+    "whole_grid_success": [
+      {
+        "ci95_high": 0.09437890353920889,
+        "ci95_low": 0.07460097154753643,
+        "difference": 0.08431644691186677,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 243,
+        "mcnemar_c": 0,
+        "mcnemar_p": 1.4149498560666738e-73,
+        "n": 2882,
+        "parent": "active_voi_repair_parent",
+        "resamples": 10000,
+        "right_rate": 0.9156835530881332,
+        "seed": 202608172433,
+        "subset_field": null
+      },
+      {
+        "ci95_high": 0.3386537126995142,
+        "ci95_low": 0.3046495489243581,
+        "difference": 0.32199861207494795,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 928,
+        "mcnemar_c": 0,
+        "mcnemar_p": 8.814425663402488e-280,
+        "n": 2882,
+        "parent": "darc_r2act_dependency_parent",
+        "resamples": 10000,
+        "right_rate": 0.678001387925052,
+        "seed": 202608172434,
+        "subset_field": null
+      },
+      {
+        "ci95_high": 0.916030534351145,
+        "ci95_low": 0.8945176960444136,
+        "difference": 0.9056210964607911,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 2610,
+        "mcnemar_c": 0,
+        "mcnemar_p": 0.0,
+        "n": 2882,
+        "parent": "causalflow_minimal_counterfactual_parent",
+        "resamples": 10000,
+        "right_rate": 0.09437890353920889,
+        "seed": 202608172435,
+        "subset_field": null
+      }
+    ]
+  },
+  "recomputed_terminal": "P1_MUTATION_NECESSITY_SUPPORTED",
+  "schema_version": "ScientificResultVerification.p1.v2.2.4.independent.v1",
+  "score_mismatch_count": 0,
+  "score_mismatches": [],
+  "terminal_matches": true,
+  "verdict": "PASS"
+}

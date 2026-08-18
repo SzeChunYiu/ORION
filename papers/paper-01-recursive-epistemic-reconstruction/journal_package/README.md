@@ -1,13 +1,23 @@
 # ORION-P1 journal package
 
-**Status:** `SCAFFOLDING` — not `PEER_REVIEW_READY`, not a submission ZIP.
+**Status:** `PEER_REVIEW_READY` for the bounded credential-free mechanical
+mutation-necessity claim. Model-general and open-ended scientific superiority
+are not claimed.
 
-This directory is the Gate 7–9 inventory for Paper I. Required files, hashes, compile instructions, license gaps, and the independent claim/PDF audit live here. Missing PDFs, DOIs, cover letters, and independent reproduction receipts are listed as `CANNOT_CHECK` in `MANIFEST.json`.
+The package binds the compiled 27-page manuscript, sources, current and
+historical claim ledgers, frozen historical protocol, powered primary and
+disjoint-replication results, independent verification records, and exact
+checksums. The historical 48-case H1 remains
+`NOT_SUPPORTED` / `UNDERPOWERED`; it is not rewritten or pooled with the
+v2.2.4 successor.
 
-Headline reproduction (tables only):
+Verify the package from the paper directory:
 
 ```bash
-make paper01-results
+sha256sum -c journal_package/SHA256SUMS
 ```
 
-See `../REPRODUCE.md`. Issue #283 owns `ScientificResultVerification.v1`; this package consumes those records if they appear under `evidence/` and does not fork the schema.
+The final DOI and venue-specific cover letter are submission operations because
+no archive or target venue has been selected. Repository redistribution terms
+also remain unlicensed; see `LICENSE.md`. Neither point expands the scientific
+claim authorized for peer review.

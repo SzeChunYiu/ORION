@@ -71,6 +71,18 @@ class CompetenceEstimate:
 
 
 @dataclass(frozen=True)
+class CapabilityRoute:
+    """Auditable route-or-abstain output that carries no execution authority."""
+
+    selected_mechanic_id: str | None
+    status: Verdict
+    assessments: tuple[CompetenceEstimate, ...]
+    min_success_probability: float
+    reason: str
+    authorizes_execution: bool = False
+
+
+@dataclass(frozen=True)
 class PlanStep:
     mechanic_id: str
     predicted_success: float

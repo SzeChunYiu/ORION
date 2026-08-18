@@ -37,7 +37,11 @@
     "suite_facts": "manuscript/generated/suite_facts.json",
     "statistical_plan": "protocol/STATISTICAL_PLAN_V1.json",
     "external_access_audit": "protocol/EXTERNAL_ACCESS_AUDIT_V1.json",
-    "deep_official_archive": "evidence/external_results/DEEP_OFFICIAL_ARCHIVE_V1.json"
+    "deep_official_archive": "evidence/external_results/DEEP_OFFICIAL_ARCHIVE_V1.json",
+    "openaire_identity_probe": "evidence/external_results/P2_OPENAIRE_IDENTITY_PROBE_V1.json",
+    "openaire_matched_result": "evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V1.json",
+    "openaire_matched_receipt": "evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RUN_RECEIPT_V1.json",
+    "openaire_matched_freeze": "protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V1.json"
   },
   "macro_sources": [
     "generated/suite_facts.tex"
@@ -1443,6 +1447,94 @@
         }
       ],
       "note": "Limitations-region status sentence for the executed official Deep judge probe; execution and control outcome archived, matched comparison still unexecuted. No numeric slots in prose."
+    },
+    {
+      "claim_id": "P2-R44",
+      "region": "results",
+      "manuscript_status": "ASSERTED",
+      "sentence": "A separate gold-blind OpenAIRE identity discriminator first established that structured scheme=arxiv PID objects were available on 3 of 12 frozen public Wide questions, with 12 of 12 HTTP requests successful; that discriminator was forbidden to score or promote the paper.",
+      "support_type": "EXTERNAL_DECLARED_DEVIATION",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [
+        {"artifact": "openaire_identity_probe", "key": "outcome.tasks_with_structured_arxiv_pid"},
+        {"artifact": "openaire_identity_probe", "key": "outcome.selected_tasks"},
+        {"artifact": "openaire_identity_probe", "key": "outcome.http_ok"},
+        {"artifact": "openaire_identity_probe", "key": "outcome.selected_tasks"}
+      ],
+      "support_artifacts": [
+        {"artifact": "openaire_identity_probe", "key": "authority"},
+        {"artifact": "openaire_identity_probe", "key": "promotion"},
+        {"artifact": "openaire_identity_probe", "key": "independent_archive_check.performed"}
+      ],
+      "note": "Gold-blind structured-identity availability discriminator only; its own receipt forbids scientific promotion."
+    },
+    {
+      "claim_id": "P2-R45",
+      "region": "results",
+      "manuscript_status": "ASSERTED",
+      "sentence": "A subsequently frozen 400-row OpenAIRE/Crossref matched campaign then issued exactly 1,200 logical provider requests over one shared capture.",
+      "support_type": "EXTERNAL_OFFICIAL",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [
+        {"artifact": "openaire_matched_result", "key": "validity.candidate_contracts.wide_dual_backend_balanced.rows"},
+        {"artifact": "openaire_matched_receipt", "key": "observed_failure.logical_provider_calls_planned"}
+      ],
+      "support_artifacts": [
+        {"artifact": "openaire_matched_result", "key": "validity.same_acquisition_capture_for_all_systems"},
+        {"artifact": "openaire_matched_result", "key": "validity.logical_request_count_exact"}
+      ],
+      "note": "Campaign-execution fact only; subsequent validity failure prevents a scientific comparison."
+    },
+    {
+      "claim_id": "P2-R46",
+      "region": "results",
+      "manuscript_status": "ASSERTED",
+      "sentence": "The 400 Crossref discovery calls and 400 direct OpenAIRE calls succeeded, but every predeclared OpenAIRE DOI-crosswalk call returned HTTP 400.",
+      "support_type": "EXTERNAL_OFFICIAL",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [
+        {"artifact": "openaire_matched_receipt", "key": "observed_failure.crossref_discovery_calls_ok"},
+        {"artifact": "openaire_matched_receipt", "key": "observed_failure.openaire_direct_calls_ok"},
+        {"artifact": "openaire_matched_receipt", "key": "observed_failure.failed_route_calls"}
+      ],
+      "support_artifacts": [
+        {"artifact": "openaire_matched_receipt", "key": "observed_failure.failed_route"},
+        {"artifact": "openaire_matched_receipt", "key": "observed_failure.failed_route_status"}
+      ],
+      "note": "Typed transport failure preserved from the shared capture; not evidence of scientific absence."
+    },
+    {
+      "claim_id": "P2-R47",
+      "region": "results",
+      "manuscript_status": "ASSERTED",
+      "sentence": "The observed provider-success fraction was therefore 0.666667, below the frozen 0.90 validity gate.",
+      "support_type": "EXTERNAL_OFFICIAL",
+      "strength": "CANNOT_CHECK",
+      "numeric_bindings": [
+        {"artifact": "openaire_matched_result", "key": "validity.logical_provider_ok_fraction"},
+        {"artifact": "openaire_matched_freeze", "key": "validity.minimum_logical_provider_ok_fraction"}
+      ],
+      "support_artifacts": [
+        {"artifact": "openaire_matched_result", "key": "validity.logical_provider_ok"},
+        {"artifact": "openaire_matched_result", "key": "terminal"}
+      ],
+      "note": "The predeclared validity condition fails; the campaign terminal is CANNOT_CHECK."
+    },
+    {
+      "claim_id": "P2-R48",
+      "region": "results",
+      "manuscript_status": "ASSERTED",
+      "sentence": "Without a valid cross-backend route, the balanced baseline, direct-first diagnostic and governed projection were byte-identical; their paired IoU differences were zero on all 399 distinct questions.",
+      "support_type": "EXTERNAL_OFFICIAL",
+      "strength": "CANNOT_CHECK",
+      "numeric_bindings": [
+        {"artifact": "openaire_matched_result", "key": "paired_distinct_question_iou.n"}
+      ],
+      "support_artifacts": [
+        {"artifact": "openaire_matched_receipt", "key": "observed_failure.candidate_files_identical"},
+        {"artifact": "openaire_matched_result", "key": "paired_distinct_question_iou.ties"}
+      ],
+      "note": "The zero paired effect is a consequence of the invalid capture and may not be interpreted as a valid null result."
     }
   ],
   "non_claim_sentences": [

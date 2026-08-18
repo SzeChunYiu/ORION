@@ -6,30 +6,31 @@
   \centering
   \caption{Baseline and ablation comparison: root success and unnecessary-reframe rates with 95\%~Wilson score intervals}
   \label{tab:P1-T2}
-  \small
-  \begin{tabular}{lcccl}
+  \scriptsize
+  \setlength{\tabcolsep}{3pt}
+  \begin{tabular}{>{\raggedright\arraybackslash}p{3.05cm}lccc}
     \toprule
     System & Role & ALL root\_success & HIDDEN\_SHIFT & NC unnecessary \\
     & & & root\_success & reframe \\
     \midrule
-    \texttt{orion\_full} & SUBJECT & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
-    \texttt{orion\_live\_provider} & BASELINE & 0.0000 [0.0000, 0.0741] & 0.0000 [0.0000, 0.1072] & 0.0000 [0.0000, 0.1936] \\
+    ORION full & SUBJECT & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
+    Live provider & BASELINE & 0.0000 [0.0000, 0.0741] & 0.0000 [0.0000, 0.1072] & 0.0000 [0.0000, 0.1936] \\
     \addlinespace
     \multicolumn{5}{l}{\textit{Baselines}} \\
-    \texttt{static\_react\_tool\_workflow} & BASELINE & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
-    \texttt{tree\_search\_iterative\_research} & BASELINE & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.1875 [0.0659, 0.4301] \\
-    \texttt{arex\_like\_recursive\_audit\_followup} & BASELINE & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
-    \texttt{scion\_like\_dependency\_execution\_plan} & BASELINE & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
-    \texttt{iris\_like\_information\_state\_revision} & BASELINE & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
+    Static ReAct workflow & BASELINE & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
+    Tree-search research & BASELINE & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.1875 [0.0659, 0.4301] \\
+    AREX-like audit/follow-up & BASELINE & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
+    SCION-like dependency plan & BASELINE & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
+    Iris-like information state & BASELINE & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
     \addlinespace
     \multicolumn{5}{l}{\textit{Ablations}} \\
-    \texttt{without\_explicit\_W} & ABLATION & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
-    \texttt{without\_explicit\_M} & ABLATION & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
-    \texttt{generic\_retry\_instead\_of\_typed\_reframe} & ABLATION & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.1875 [0.0659, 0.4301] \\
-    \texttt{full\_reset\_instead\_of\_dependency\_reopen} & ABLATION & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
-    \texttt{without\_mechanic\_self\_audit} & ABLATION & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.1875 [0.0659, 0.4301] \\
+    No explicit $W$ & ABLATION & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
+    No explicit $M$ & ABLATION & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
+    Generic retry & ABLATION & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.1875 [0.0659, 0.4301] \\
+    Full reset & ABLATION & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
+    No mechanic self-audit & ABLATION & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.1875 [0.0659, 0.4301] \\
     \bottomrule
   \end{tabular}
   \par\smallskip
-  \textit{Note:} N=48 cases per system, 5 stochastic repeats, 2880 records total. 0 CANNOT\_CHECK after live-provider recovery. Comparator is \texttt{arex\_like\_recursive\_audit\_followup} (highest root\_success among baselines). All systems except \texttt{orion\_live\_provider} share one perception layer and are resource-matched. Paired percentile bootstrap (10k resamples) used for all comparisons; Holm correction applied to secondary inferential families. See \texttt{results/P1-T2\_baseline\_ablation\_results.md} for full per-family breakdown and mechanistic metrics.
+  \textit{Note:} N=48 cases per system, 5 stochastic repeats, 2880 records total. 0 CANNOT\_CHECK after live-provider recovery. The AREX-like arm is the highest-root-success baseline. All systems except the live-provider arm share one perception layer and are resource-matched. Paired percentile bootstrap (10k resamples) was used for comparisons; Holm correction was applied to secondary families. Full system IDs, per-family results, and mechanistic metrics are archived in \path{results/P1-T2_baseline_ablation_results.md}.
 \end{table}

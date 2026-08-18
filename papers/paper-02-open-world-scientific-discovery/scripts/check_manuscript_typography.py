@@ -25,12 +25,7 @@ from pathlib import Path
 
 #: file basename -> why it is allowed to be overfull, and who owns clearing it.
 #: A file listed here that is now clean FAILS the run: delete the entry instead.
-ALLOWED_OVERFULL: dict[str, str] = {
-    "results.tex": (
-        "long SHA-256 and identifier lines remain; clear only after "
-        "p2-manuscript-audit produces a clean main.log on this revision"
-    ),
-}
+ALLOWED_OVERFULL: dict[str, str] = {}
 
 OVERFULL = re.compile(r"Overfull \\hbox \(([0-9.]+)pt too wide\)")
 #: A real LaTeX log writes "(sections/results [7]" — the extension is elided when

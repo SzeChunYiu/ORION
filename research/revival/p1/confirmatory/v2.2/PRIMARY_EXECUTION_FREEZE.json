@@ -1,0 +1,79 @@
+{
+  "ablation_arms": [
+    "orion_without_lower_level_exclusion",
+    "orion_without_protected_sibling_check",
+    "orion_without_dependency_impact_binding",
+    "orion_without_KWM_level_ordering",
+    "orion_with_unlimited_intervention_budget"
+  ],
+  "arms_executed": false,
+  "claim_boundary": "EXECUTION_IDENTITY_ONLY__NO_ARM_OUTPUT__NO_SCIENTIFIC_RESULT",
+  "control_parent": "active_voi_repair_parent",
+  "h1_parents": [
+    "active_voi_repair_parent",
+    "darc_r2act_dependency_parent",
+    "causalflow_minimal_counterfactual_parent"
+  ],
+  "hidden_shift_n": 480,
+  "intervention_budget_units": 4.0,
+  "n": 2882,
+  "negative_control_n": 2402,
+  "outcome_accessed": false,
+  "protected_response_matrix_sha256": "31c9d3a39b60da7c0d0c337c461b7179d866957105144d228466f75f20757542",
+  "protocol_chain_sha256": "cf756cb932d0c63c60feaac5883c9717dbf1c03f350d329098b33652826f0600",
+  "protocol_id": "P1.epistemic-mutation-necessity.v2.2",
+  "protocol_version": "P1.epistemic-mutation-necessity.v2.2.4",
+  "public_sha256": "9b77470167a7e22937bc3c498d2277639ea8f02f3e2cbe90e24fe998785bbdf6",
+  "runnable_arms": [
+    "static_no_reframe",
+    "immediate_outcome_flip_repair",
+    "cost_greedy_repair",
+    "reflect_like_replay",
+    "car_like_causal_replay",
+    "active_voi_repair_parent",
+    "darc_r2act_dependency_parent",
+    "causalflow_minimal_counterfactual_parent",
+    "orion_mutation_necessity"
+  ],
+  "schema_version": "P1.epistemic-mutation-necessity-execution-freeze.v1",
+  "source_sha256": {
+    "research/revival/p1/run_mutation_necessity_campaign.py": "6e4a011d4cae6ce7cd93728367b79d27dd7783e49eb27e23da95a191ab63d8cf",
+    "src/orion/study/p1_causal/absorbed_mechanics.py": "6e4a44b87c6dde1da9db74dd8e25b97d841021dfbad2c5e401b8290e9ee7f56b",
+    "src/orion/study/p1_causal/necessity_engine.py": "db5d9fbeecd957fd85b62a6d04a3f04e97bde04f5921db05f12d660b98642969",
+    "src/orion/study/p1_causal/necessity_policies.py": "5ec6bb802b2914133bcdb4a6876a20e6eab0b1f21cacc722a61a6ce2beb119be",
+    "src/orion/study/p1_causal/necessity_policies_v3.py": "2f8bb68e84e70fb3fb6b1b4698347a9f5fa7af45ede302326efc22d5f2d85612",
+    "src/orion/study/p1_causal/necessity_scoring.py": "848370224e2ab433ba9a754f0f2cfebb6328087c4bf347185323ad3d61ff9cd3",
+    "src/orion/study/p1_causal/necessity_statistics.py": "89968274cd7458e0cd91defda10796a8d8e99b65683f6e39663e1eede0059c3c"
+  },
+  "statistics": {
+    "H1_superiority_margin_each_parent": 0.1,
+    "H2_control_protected_success_noninferiority_margin": 0.02,
+    "H2_orion_unnecessary_reframe_ceiling": 0.0,
+    "binary_rate_interval": "Wilson 95%",
+    "bootstrap_seed": 202608172233,
+    "cost_noninferiority_margin_units": 1.0,
+    "multiplicity": "H1 is tested against all three frozen strong parents; Holm correction across the three H1 paired p-values. H2 is a hard zero-reframe safety gate plus protected-success non-inferiority. Secondary/ablation contrasts are Holm-corrected separately.",
+    "paired_binary_secondary": "exact McNemar",
+    "paired_unit": "task",
+    "primary_interval": "paired percentile bootstrap 10000 resamples",
+    "repeat_policy": "deterministic arms execute once per frozen world; stochastic/model extensions require a separate protocol",
+    "total_protected_success_noninferiority_margin": 0.02
+  },
+  "support_rule": {
+    "all_required": [
+      "hidden-shift protected-root-success ORION - active_voi_repair_parent >= 0.10 and paired 95% interval lower bound > 0",
+      "hidden-shift protected-root-success ORION - darc_r2act_dependency_parent >= 0.10 and paired 95% interval lower bound > 0",
+      "hidden-shift protected-root-success ORION - causalflow_minimal_counterfactual_parent >= 0.10 and paired 95% interval lower bound > 0",
+      "Holm-adjusted H1 paired significance checks against all three parents pass",
+      "negative-control ORION unnecessary high-level reframe count = 0",
+      "negative-control protected-root-success ORION - active_voi paired interval lower bound >= -0.02",
+      "whole-grid protected-root-success ORION - every frozen strong parent paired interval lower bound >= -0.02",
+      "full ORION protected-sibling regression rate = 0",
+      "full ORION forbidden high-level mutation count = 0",
+      "full ORION mean intervention cost <= maximum strong-parent mean + 1.0 unit",
+      "no holdout/evaluator/source identity mismatch"
+    ],
+    "otherwise": "NOT_SUPPORTED / PARTIALLY_SUPPORTED / REFUTED using the frozen gate vector; no parent removal, margin change, exclusion or generator change after confirmatory outcome access"
+  },
+  "world_freeze_sha256": "7fce21009dce50a66d6169680f77a746fd0b7ed7d1e0cf7a43c72d8c83ea58b5"
+}

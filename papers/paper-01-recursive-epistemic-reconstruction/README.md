@@ -1,7 +1,7 @@
 # Paper 01 — Recursive Epistemic Reconstruction
 
 **Stable ID:** ORION-P1  
-**Status:** SCOPED WORKING MANUSCRIPT COMPLETE / LOCAL FALSIFIER V1 PASSED / EXTERNAL SUPERIORITY `CANNOT_CHECK`
+**Status:** `PEER_REVIEW_READY` for the powered, replicated, independently verified credential-free mechanical claim; model-general/open-ended superiority is not claimed.
 
 ## Scoped paper
 
@@ -14,7 +14,11 @@ The paper centers four candidate deltas:
 3. dependency-directed reopening of closure after a material reframe;
 4. recursive self-audit of the research workflow through the canonical partial `MechanicCell.v1` representation and deterministic missing-coordinate questions.
 
-These are candidate differences, not established novelty.
+The original four-part decomposition remains architectural context. After
+nearest-work rounds A--H, active diagnosis, counterfactual minimal repair,
+diagnosis-to-action admission, dependency rollback, causal-context slicing and
+certificate enforcement are donor-owned substrate. The powered successor tests
+only the residual protected mutation-necessity composition.
 
 The canonical research object is `research/paper-programme-v1/PAPER_01_RECURSIVE_RECONSTRUCTION.md`.
 
@@ -36,11 +40,18 @@ The hidden-shift suite directly exercises parent-domain and representation chang
 
 Frozen local evidence: `evidence/FALSIFIER_V1.md` and `research/paper-programme-v1/FLAGSHIP_FALSIFIER_RESULTS_V1.md`.
 
-## External evidence still required
+## Powered successor evidence
 
-The publication-level hypothesis remains open. ORION must be compared with matched static-workflow and tree-search/agentic baselines on fresh tasks where the hidden representation/search universe genuinely must change, while avoiding unnecessary reframes on ordinary missing-evidence tasks. Responsibility/domain labels must be hidden and resource use matched.
+The prospectively frozen v2.2.4 study runs nine systems and five direct
+ablations on 2,882 credential-free worlds per run. Both the primary and the
+pre-bound disjoint replication are `P1_MUTATION_NECESSITY_SUPPORTED`; an
+independent implementation recomputes all 40,348 score rows per run with zero
+score or analysis mismatches. Evidence and hashes are under
+`research/revival/p1/confirmatory/v2.2/`.
 
-Until that prospective evaluation exists, external superiority, broad novelty, and publication readiness remain `CANNOT_CHECK`.
+The supported claim is bounded to the registered mechanical world family.
+Model-general, open-ended scientific, retrieval, and broad novelty claims are
+not made and would require a separately frozen study.
 
 ## Manuscript
 

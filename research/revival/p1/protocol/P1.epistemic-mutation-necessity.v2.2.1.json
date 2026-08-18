@@ -1,0 +1,110 @@
+{
+  "schema_version": "orion.publication-protocol-amendment.v1",
+  "paper_id": "P1",
+  "protocol_id": "P1.epistemic-mutation-necessity.v2.2",
+  "protocol_version": "P1.epistemic-mutation-necessity.v2.2.1",
+  "protocol_status": "DESIGN_FROZEN",
+  "base_protocol_path": "research/revival/p1/protocol/P1.epistemic-mutation-necessity.v2.2.json",
+  "base_protocol_version": "P1.epistemic-mutation-necessity.v2.2.0",
+  "confirmatory_outcome_accessed": false,
+  "development_fixture_outcome_accessed": false,
+  "amendment_reason": "A pre-execution structural audit found that v2.2.0 let the active-diagnosis parent take essentially the same lower-stage route as ORION, making the control-selectivity superiority claim artificial and leaving too little hidden-shift separation. Strengthen the test before any confirmatory world is materialized: use a versioned target-flip-trap generator with equal one-unit interventions, raise the shared budget to four units so the full certificate can reject one unsafe high-level target flip and test an alternative, require hidden-shift superiority against both active diagnosis and DARC/R2Act+dependency parents, and convert control selectivity from a superiority claim into a zero-false-reframe safety/non-regression gate. No confirmatory seed has been materialized or scored.",
+  "change_direction": "STRONGER_PARENTS_AND_HARDER_TRAPS__NO_CONFIRMATORY_OUTCOME__NO_MARGIN_RELAXATION",
+  "overrides": {
+    "fresh_world_plan": {
+      "generator_id": "P1.mutation-necessity-worlds.v2",
+      "generator_module": "orion.study.p1_causal.necessity_cases_v2.generate_necessity_worlds_v2",
+      "confirmatory_seed": 202608172211,
+      "hidden_shift_n": 480,
+      "negative_control_n": 2400,
+      "total_n": 2880,
+      "hidden_shift_families": [
+        "hidden_parent_domain_search_universe",
+        "hidden_representation_formulation",
+        "hidden_decomposition_formulation",
+        "hidden_measurement_formulation"
+      ],
+      "negative_control_families": ["evidence_only_control", "execution_only_control"],
+      "power_basis": {
+        "H1_registered_required_n": 385,
+        "H1_frozen_n": 480,
+        "H2_registered_required_n": 2401,
+        "H2_frozen_n": 2400,
+        "H2_boundary": "H2 is a safety/selectivity guard in v2.2.1; the complete 2400-control grid is reported with Wilson precision and no claim below supported resolution."
+      },
+      "candidate_visible": [
+        "opaque task id",
+        "neutral symptom surface",
+        "public repair candidates with action level, coordinate, equal unit cost and overlapping confidence",
+        "public diagnostic menu with neutral ids/descriptions and equal unit cost",
+        "public dependency graph without hidden response outcomes",
+        "intervention outcomes only after the arm spends the corresponding unit"
+      ],
+      "host_only": [
+        "true responsibility",
+        "family identity",
+        "counterfactual response matrix for every repair/intervention",
+        "which of two high-level target-flipping proposals preserves protected siblings",
+        "protected sibling outcomes",
+        "gold minimal causal repair level",
+        "gold dependency-impact set",
+        "pair/template identity"
+      ],
+      "pre_arm_freeze": "Materialize WORLD_PUBLIC.jsonl + PROTECTED_RESPONSE_MATRIX.jsonl + WORLD_FREEZE.json with exact count/hashes/leak audit before any arm output."
+    },
+    "intervention_budget": {
+      "units_per_task": 4,
+      "unit_definition": "one frozen repair or diagnostic intervention; every v2 repair/probe costs exactly one unit",
+      "same_budget_all_runnable_arms": true,
+      "unused_budget_not_transferable_between_tasks": true,
+      "oracle_ceiling_non_runnable": true
+    },
+    "primary_hypotheses": [
+      {
+        "id": "P1.NC-H1",
+        "text": "On the fresh hidden-shift subset, full ORION mutation-necessity certification improves protected root-task success by at least 10 percentage points over EACH of the frozen active-VOI and DARC/R2Act+dependency parents, with each 95% paired interval lower bound > 0.",
+        "metric": "protected_root_task_success",
+        "subset": "hidden_shift",
+        "comparators": ["active_voi_repair_parent", "darc_r2act_dependency_parent"]
+      },
+      {
+        "id": "P1.NC-H2",
+        "text": "On the fresh evidence/execution controls, full ORION performs zero unnecessary FORMULATION/SEARCH_UNIVERSE reframes and remains non-inferior in protected root-task success to the active-VOI parent within 2 percentage points.",
+        "metric": "unnecessary_high_level_reframe_rate",
+        "subset": "negative_control",
+        "comparators": ["active_voi_repair_parent"]
+      }
+    ],
+    "primary_comparators": ["active_voi_repair_parent", "darc_r2act_dependency_parent"],
+    "statistics": {
+      "paired_unit": "task",
+      "primary_interval": "paired percentile bootstrap 10000 resamples",
+      "bootstrap_seed": 202608172233,
+      "binary_rate_interval": "Wilson 95%",
+      "paired_binary_secondary": "exact McNemar",
+      "H1_superiority_margin_each_parent": 0.10,
+      "H2_orion_unnecessary_reframe_ceiling": 0.0,
+      "H2_control_protected_success_noninferiority_margin": 0.02,
+      "total_protected_success_noninferiority_margin": 0.02,
+      "cost_noninferiority_margin_units": 1.0,
+      "multiplicity": "H1 is tested against two frozen primary parents; Holm across the two H1 paired p-values. H2 is a hard zero-reframe safety gate plus protected-success non-inferiority. Secondary/ablation contrasts Holm-corrected separately.",
+      "repeat_policy": "deterministic arms execute once per frozen world; stochastic/model extensions require a separate protocol"
+    },
+    "support_rule": {
+      "all_required": [
+        "hidden-shift protected-root-success ORION - active_voi_repair_parent >= 0.10 and paired 95% interval lower bound > 0",
+        "hidden-shift protected-root-success ORION - darc_r2act_dependency_parent >= 0.10 and paired 95% interval lower bound > 0",
+        "Holm-adjusted H1 paired significance checks both pass",
+        "negative-control ORION unnecessary high-level reframe count = 0",
+        "negative-control protected-root-success ORION - active_voi paired interval lower bound >= -0.02",
+        "whole-grid protected-root-success ORION - strongest frozen parent paired interval lower bound >= -0.02",
+        "full ORION protected-sibling regression rate = 0",
+        "full ORION forbidden high-level mutation count = 0",
+        "full ORION mean intervention cost <= strongest parent mean + 1.0 unit",
+        "no holdout/evaluator/source identity mismatch"
+      ],
+      "otherwise": "NOT_SUPPORTED / PARTIALLY_SUPPORTED / REFUTED using the frozen gate vector; no parent removal, margin change, exclusion or generator change after confirmatory outcome access"
+    }
+  },
+  "claim_boundary": "PRE_CONFIRMATORY_STRUCTURAL_STRENGTHENING_ONLY__V2_2_0_PRESERVED__NO_WORLD_FREEZE_OR_RESULT"
+}

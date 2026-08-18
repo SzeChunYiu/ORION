@@ -38,34 +38,70 @@ def test_committed_scoreboard_matches_derived_artifacts():
     assert payload["programme"]["status"] == "BLOCKED"
 
 
-def test_p4_is_peer_review_ready_and_others_are_blocked():
+def test_p1_p2_and_p4_are_peer_review_ready_and_others_are_blocked():
+    """P2 joined P1 and P4 when its terminal line stopped naming two terminals.
+
+    This previously pinned P2 as BLOCKED. That was a true description of the
+    scoreboard and a false description of the paper: P2's terminal line declared
+    `PEER_REVIEW_READY` on a bounded claim while naming the excluded superiority
+    claim as `CANNOT_CHECK` in the same sentence, and the parser resolves any
+    `CANNOT_CHECK` on that line as the verdict. Its own fail-closed evidence gate
+    reported `ok=True` with no blockers throughout.
+
+    Splitting the verdict from its scope moved P2 to PEER_REVIEW_READY. Updating
+    the expectation is therefore recording a fixed defect, not relaxing a bar --
+    every corroborating condition below is still asserted for P2, and P3 and P5
+    are still required to be blocked with a named reason.
+    """
+
     module = _load_module()
     derived = module.derive_scoreboard(ROOT)
     by_id = {paper["paper_id"]: paper for paper in derived["papers"]}
-    assert by_id["P4"]["status"] == "PEER_REVIEW_READY"
-    assert by_id["P4"]["journal_readiness_terminal"] == "PEER_REVIEW_READY"
-    assert by_id["P4"]["attestation_paths"]
-    assert by_id["P4"]["claim_ledgers"]
-    for paper_id in ("P1", "P2", "P3", "P5"):
+    for paper_id in ("P1", "P2", "P4"):
+        assert by_id[paper_id]["status"] == "PEER_REVIEW_READY", paper_id
+        assert by_id[paper_id]["journal_readiness_terminal"] == "PEER_REVIEW_READY"
+        assert by_id[paper_id]["attestation_paths"]
+        assert by_id[paper_id]["claim_ledgers"]
+        assert not by_id[paper_id]["missing_artifacts"], paper_id
+    for paper_id in ("P3", "P5"):
         assert by_id[paper_id]["status"] == "BLOCKED", paper_id
         assert by_id[paper_id]["journal_readiness_terminal"] == "CANNOT_CHECK"
         assert by_id[paper_id]["missing_artifacts"]
-    assert derived["programme"]["papers_peer_review_ready"] == ["P4"]
+    assert derived["programme"]["papers_peer_review_ready"] == ["P1", "P2", "P4"]
+    # Still false: two papers remain blocked, so the programme does not close.
     assert derived["programme"]["close_allowed"] is False
 
 
-def test_p1_closed_issue_does_not_invent_readiness():
-    """#98 is closed on GitHub; artifacts on this tree still say CANNOT_CHECK."""
+def test_p2_readiness_rests_on_an_unambiguous_terminal_line():
+    """Guard the mechanism, not just the outcome.
+
+    If the scope caveat drifts back onto the terminal line, P2 silently returns to
+    BLOCKED with twelve blockers and the test above starts failing for a reason
+    that has nothing to do with P2's evidence. Naming the cause here means the
+    failure message points at the sentence.
+    """
+
+    module = _load_module()
+    readiness = (
+        ROOT / "papers" / "paper-02-open-world-scientific-discovery" / "JOURNAL_READINESS.md"
+    ).read_text(encoding="utf-8")
+    assert module.terminal_line_is_ambiguous(readiness) is None, (
+        "P2's terminal line names both PEER_REVIEW_READY and CANNOT_CHECK again; the "
+        "scoreboard reads that one line and will resolve it fail-closed"
+    )
+
+
+def test_p1_readiness_is_artifact_backed_not_inferred_from_closed_issue():
+    """#98's state is irrelevant; the successor bundle and attestation authorize P1."""
     module = _load_module()
     p1 = next(paper for paper in module.derive_scoreboard(ROOT)["papers"] if paper["paper_id"] == "P1")
-    assert p1["status"] != "PEER_REVIEW_READY"
+    assert p1["status"] == "PEER_REVIEW_READY"
     assert p1["protocol_status"] == "EXECUTION_FROZEN"
     assert p1["outcome_accessed"] is False
-    joined = "\n".join(p1["missing_artifacts"])
-    assert "JOURNAL_READINESS.md" in joined
-    assert "not PEER_REVIEW_READY" in joined
-    assert "EXTERNAL NOT EXECUTED" in joined
-    assert p1["attestation_paths"] == []
+    assert p1["missing_artifacts"] == []
+    assert p1["attestation_paths"] == [
+        "papers/paper-01-recursive-epistemic-reconstruction/evidence/PEER_REVIEW_READY_BOUNDED_V2.md"
+    ]
 
 
 def test_p5_is_blocked_by_unbound_identities_and_unexecuted_claims():
@@ -91,15 +127,29 @@ def test_p5_is_blocked_by_unbound_identities_and_unexecuted_claims():
 
 
 def test_forged_peer_review_ready_is_rejected():
+    """Claiming readiness in the JSON must not survive validation against the tree.
+
+    The subject is derived from whichever papers are actually blocked rather than
+    hardcoded. It used to name P2, which stopped being a forgery the moment P2
+    became genuinely ready -- the test then asserted that a true statement ought to
+    be rejected, and failed for a reason unrelated to forgery. Deriving the subject
+    keeps this about forgery instead of about which paper happens to be blocked.
+    """
+
     module = _load_module()
     payload = module.derive_scoreboard(ROOT)
-    p1 = next(paper for paper in payload["papers"] if paper["paper_id"] == "P1")
-    p1["status"] = "PEER_REVIEW_READY"
-    p1["missing_artifacts"] = []
+    blocked = [paper for paper in payload["papers"] if paper["status"] == "BLOCKED"]
+    assert blocked, "no blocked paper left to forge; this test needs a new subject"
+    victim = blocked[0]
+    paper_id = victim["paper_id"]
+    victim["status"] = "PEER_REVIEW_READY"
+    victim["missing_artifacts"] = []
     payload["programme"]["status"] = "BLOCKED"
     payload["programme"]["close_allowed"] = False
     errors = module.validate_scoreboard(payload, ROOT)
-    assert any("P1" in error and "PEER_REVIEW_READY" in error for error in errors)
+    assert any(paper_id in error and "PEER_REVIEW_READY" in error for error in errors), (
+        f"validate_scoreboard accepted a forged PEER_REVIEW_READY for {paper_id}"
+    )
 
 
 def test_close_allowed_requires_all_five_ready():

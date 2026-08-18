@@ -2,7 +2,7 @@
 
 A paper may claim the terminal only when the required artifacts exist.
 An honest non-claim (CANNOT_CHECK / not ready) must pass. P1 H1 on the
-frozen 48-case arm is underpowered; promoting it to PEER_REVIEW_READY or
+frozen 48-case arm is underpowered; promoting that arm to PEER_REVIEW_READY or
 to a confirmatory SUPPORTED/PASS finding must fail closed.
 """
 
@@ -40,6 +40,14 @@ def test_done_definition_is_not_a_claim() -> None:
 
 def test_explicit_terminal_line_is_a_claim() -> None:
     text = "**Terminal:** `ORION-P4 = PEER_REVIEW_READY`\n"
+    assert claims_peer_review_ready(text) is True
+
+
+def test_only_in_present_tense_prose_does_not_hide_a_claim() -> None:
+    text = (
+        "**Terminal:** `ORION-P4 = PEER_REVIEW_READY`; "
+        "the only remaining work is external editorial review.\n"
+    )
     assert claims_peer_review_ready(text) is True
 
 
@@ -94,13 +102,19 @@ def test_a_complete_claim_passes(tmp_path: Path) -> None:
     assert report.ok is True
 
 
-def test_real_tree_only_p4_claims_ready_and_has_artifacts() -> None:
+def test_real_tree_p1_p2_and_p4_claim_ready_and_have_artifacts() -> None:
     reports = {item.paper_id: item for item in evaluate_tree(PAPERS)}
     assert set(reports) == {"P1", "P2", "P3", "P4", "P5"}
     assert reports["P4"].claims_ready is True
     assert reports["P4"].ok is True
     assert reports["P4"].missing_artifacts == ()
-    for paper_id in ("P1", "P2", "P3", "P5"):
+    assert reports["P1"].claims_ready is True
+    assert reports["P1"].p1_successor_valid is True
+    assert reports["P1"].ok is True
+    assert reports["P2"].claims_ready is True
+    assert reports["P2"].ok is True
+    assert reports["P2"].missing_artifacts == ()
+    for paper_id in ("P3", "P5"):
         assert reports[paper_id].claims_ready is False, paper_id
         assert reports[paper_id].ok is True, paper_id
 
@@ -111,18 +125,23 @@ def test_p1_h1_on_the_frozen_arm_is_underpowered_and_not_supported() -> None:
     assert p1.h1_verdict == "NOT_SUPPORTED"
     assert p1.h1_powered is False
     assert TierRule.from_n(48).underpowered
-    assert p1.claims_ready is False
+    assert p1.claims_ready is True
+    assert p1.p1_successor_valid is True
     assert p1.ok is True
 
 
-def test_claiming_p1_ready_while_h1_is_underpowered_fails() -> None:
-    paper = PAPERS / "paper-01-recursive-epistemic-reconstruction"
-    original = (paper / "JOURNAL_READINESS.md").read_text()
-    report = evaluate_paper(paper, readiness_text="**Terminal:** `ORION-P1 = PEER_REVIEW_READY`\n")
-    assert original  # the real file still exists; we only overrode the parse
+def test_claiming_p1_ready_without_the_powered_successor_fails(tmp_path: Path) -> None:
+    paper = tmp_path / "repo" / "papers" / "paper-01-recursive-epistemic-reconstruction"
+    _write(paper / "JOURNAL_READINESS.md", "**Terminal:** `ORION-P1 = PEER_REVIEW_READY`\n")
+    _write(
+        paper / "results" / "P1-T2_baseline_ablation_results.json",
+        json.dumps({"rows": []}),
+    )
+    report = evaluate_paper(paper)
     assert report.claims_ready is True
+    assert report.p1_successor_valid is False
     assert report.ok is False
-    assert any("underpowered" in reason.lower() or "NOT_SUPPORTED" in reason for reason in report.blockers)
+    assert any("successor" in reason.lower() for reason in report.blockers)
 
 
 def test_h1_supported_while_underpowered_fails_even_without_a_ready_claim(tmp_path: Path) -> None:

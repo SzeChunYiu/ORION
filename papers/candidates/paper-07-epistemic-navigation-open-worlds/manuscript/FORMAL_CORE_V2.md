@@ -117,6 +117,40 @@ Take one exhausted executed route and a second unexecuted or censored route that
 
 P2 already owns this local/global stopping distinction in ORION; P7 embeds it as an invariant across chart change.
 
+### Definition 8.1 — route identity, equivalence and refinement
+
+A route identity binds the chart and active objective, the initial mandatory
+obligation set, and the normalized action/observation/evidence trace. Observed
+content overlap alone never determines route identity.
+
+Two routes are structurally equivalent only through a protected bijection that
+preserves adjacency/action availability, evidence identity, obligation labels
+and terminal semantics. A route `r'` refines `r` when a declared projection
+from `r'` to `r` preserves every old relation/obligation while `r'` may expose
+additional distinctions. A route is genuinely new relative to an archive only
+when no archived route is structurally equivalent and no declared
+refinement/projection reduces it to an archived route with the same reachable
+obligations and terminal semantics.
+
+### Definition 8.2 — recovery transitions
+
+- `DEFER_REVISIT(r,o,t)` stores the exact open obligation and a protected
+  revisit trigger; it is neither route nor task completion.
+- `BACKTRACK(r,v)` returns to a recorded frontier only when the failed suffix
+  has a dead-end, loop or violated-premise witness and an admissible alternative
+  remains.
+- `FORCED_REFRAME` is licensed only when the current chart has no authorized
+  action capable of resolving an active mandatory obligation and a candidate
+  chart makes a relevant distinction expressible; closure is transported only
+  by the contracts below and otherwise reopens.
+
+A dead end has no admissible successor. A loop repeats the normalized
+chart/location/objective/open-obligation state without new support. A deceptive
+local optimum is not declared from low marginal gain alone: it requires an
+independent witness that another reachable route can improve an unresolved
+mandatory obligation. These are recovery predicates, not new navigation
+algorithms.
+
 ## 4. Representation-only refinement under fixed latent information
 
 The V1 strictness witness added a newly represented goal state. That established only that a larger model can solve more tasks. V2 freezes the latent world, dynamics, goals and raw sensing and changes only the representation applied to retained information.

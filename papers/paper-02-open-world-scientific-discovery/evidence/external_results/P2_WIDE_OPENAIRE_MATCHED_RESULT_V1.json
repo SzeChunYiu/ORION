@@ -1,0 +1,172 @@
+{
+  "all_validity_conditions": false,
+  "authority": "PINNED_OFFICIAL_WIDE_PLUS_PROSPECTIVE_PAIRED_ANALYSIS",
+  "candidate_sha256": {
+    "wide_dual_backend_balanced": "ff7a8f3ef9e255f41abe437a729fd7e7535594064f788633a277ad520ec32cf0",
+    "wide_dual_backend_direct_first": "ff7a8f3ef9e255f41abe437a729fd7e7535594064f788633a277ad520ec32cf0",
+    "wide_dual_backend_governed": "ff7a8f3ef9e255f41abe437a729fd7e7535594064f788633a277ad520ec32cf0"
+  },
+  "capture_manifest_sha256": "c28c20c27e259ac05a59c40c8fe111840b3873c543db50516e9804690278406a",
+  "claim_boundary": "A positive terminal supports external acquisition/governance on the pinned Wide benchmark. It does not independently establish universal open-web superiority or replace the separately frozen stopping-safety evidence. A valid negative result is retained and must not be converted into a narrower success claim.",
+  "evaluator_output_sha256": {
+    "wide_dual_backend_balanced": "a149ea211eb58791170478424ae4d813a135d4a7461fdfbd4527922b08c0b150",
+    "wide_dual_backend_direct_first": "a149ea211eb58791170478424ae4d813a135d4a7461fdfbd4527922b08c0b150",
+    "wide_dual_backend_governed": "a149ea211eb58791170478424ae4d813a135d4a7461fdfbd4527922b08c0b150"
+  },
+  "freeze_sha256": "2f8fe632bf472d2a951957872132b6460bae24b4913943e849951ce28be21ea7",
+  "official": {
+    "orion_minus_primary_baseline": {
+      "avg_iou": 0.0,
+      "avg_precision": 0.0,
+      "avg_recall": 0.0
+    },
+    "wide_dual_backend_balanced": {
+      "avg_iou": 0.003924,
+      "avg_last_tokens": 0.0,
+      "avg_max_iou_at_1": 0.003924,
+      "avg_max_iou_at_16": 0.0,
+      "avg_max_iou_at_2": 0.0,
+      "avg_max_iou_at_4": 0.0,
+      "avg_max_iou_at_8": 0.0,
+      "avg_precision": 0.012814,
+      "avg_recall": 0.004894,
+      "avg_tool_call_count": 0.0,
+      "avg_total_duration_sec": 0.0,
+      "avg_turn_count": 0.0,
+      "iou_distribution": {
+        "max": 0.5,
+        "min": 0.0
+      },
+      "recall_distribution": {
+        "max": 0.5,
+        "min": 0.0
+      },
+      "total_duration_sec": 0.0,
+      "total_pass_results": 400,
+      "total_passes": 1,
+      "total_records": 400,
+      "total_tokens": 0
+    },
+    "wide_dual_backend_direct_first": {
+      "avg_iou": 0.003924,
+      "avg_last_tokens": 0.0,
+      "avg_max_iou_at_1": 0.003924,
+      "avg_max_iou_at_16": 0.0,
+      "avg_max_iou_at_2": 0.0,
+      "avg_max_iou_at_4": 0.0,
+      "avg_max_iou_at_8": 0.0,
+      "avg_precision": 0.012814,
+      "avg_recall": 0.004894,
+      "avg_tool_call_count": 0.0,
+      "avg_total_duration_sec": 0.0,
+      "avg_turn_count": 0.0,
+      "iou_distribution": {
+        "max": 0.5,
+        "min": 0.0
+      },
+      "recall_distribution": {
+        "max": 0.5,
+        "min": 0.0
+      },
+      "total_duration_sec": 0.0,
+      "total_pass_results": 400,
+      "total_passes": 1,
+      "total_records": 400,
+      "total_tokens": 0
+    },
+    "wide_dual_backend_governed": {
+      "avg_iou": 0.003924,
+      "avg_last_tokens": 0.0,
+      "avg_max_iou_at_1": 0.003924,
+      "avg_max_iou_at_16": 0.0,
+      "avg_max_iou_at_2": 0.0,
+      "avg_max_iou_at_4": 0.0,
+      "avg_max_iou_at_8": 0.0,
+      "avg_precision": 0.012814,
+      "avg_recall": 0.004894,
+      "avg_tool_call_count": 0.0,
+      "avg_total_duration_sec": 0.0,
+      "avg_turn_count": 0.0,
+      "iou_distribution": {
+        "max": 0.5,
+        "min": 0.0
+      },
+      "recall_distribution": {
+        "max": 0.5,
+        "min": 0.0
+      },
+      "total_duration_sec": 0.0,
+      "total_pass_results": 400,
+      "total_passes": 1,
+      "total_records": 400,
+      "total_tokens": 0
+    }
+  },
+  "paired_distinct_question_iou": {
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 20260818,
+    "ci95_high": 0.0,
+    "ci95_low": 0.0,
+    "losses": 0,
+    "mean": 0.0,
+    "median": 0.0,
+    "n": 399,
+    "percentile_method": "linear_interpolation",
+    "ties": 399,
+    "wins": 0
+  },
+  "paper_id": "P2",
+  "schema_version": "orion.p2.wide-openaire-matched-result.v1",
+  "scientific_rule": {
+    "official_avg_iou_delta": 0.0,
+    "official_avg_recall_delta": 0.0,
+    "paired_iou_ci95_low": 0.0,
+    "required_official_avg_iou_delta": 0.03,
+    "required_official_avg_recall_delta": 0.0,
+    "required_paired_iou_ci95_low_strictly_greater_than": 0.0
+  },
+  "scientific_supported": false,
+  "terminal": "P2_WIDE_EXTERNAL_CANNOT_CHECK",
+  "validity": {
+    "all_candidate_hashes_match": true,
+    "candidate_contracts": {
+      "wide_dual_backend_balanced": {
+        "cap_respected": true,
+        "hidden_input_fields": [],
+        "malformed_candidates": 0,
+        "max_candidate_count": 18,
+        "rows": 400,
+        "sha256": "ff7a8f3ef9e255f41abe437a729fd7e7535594064f788633a277ad520ec32cf0"
+      },
+      "wide_dual_backend_direct_first": {
+        "cap_respected": true,
+        "hidden_input_fields": [],
+        "malformed_candidates": 0,
+        "max_candidate_count": 18,
+        "rows": 400,
+        "sha256": "ff7a8f3ef9e255f41abe437a729fd7e7535594064f788633a277ad520ec32cf0"
+      },
+      "wide_dual_backend_governed": {
+        "cap_respected": true,
+        "hidden_input_fields": [],
+        "malformed_candidates": 0,
+        "max_candidate_count": 18,
+        "rows": 400,
+        "sha256": "ff7a8f3ef9e255f41abe437a729fd7e7535594064f788633a277ad520ec32cf0"
+      }
+    },
+    "candidate_contracts_valid": true,
+    "candidate_hash_matches_frozen_capture": {
+      "wide_dual_backend_balanced": true,
+      "wide_dual_backend_direct_first": true,
+      "wide_dual_backend_governed": true
+    },
+    "freeze_hash_matches_capture": true,
+    "logical_provider_ok": false,
+    "logical_provider_ok_fraction": 0.666667,
+    "logical_request_count_exact": true,
+    "raw_regex_arxiv_identity_extraction": false,
+    "same_acquisition_capture_for_all_systems": true,
+    "same_candidate_cap": true
+  }
+}

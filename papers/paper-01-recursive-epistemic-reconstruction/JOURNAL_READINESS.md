@@ -1,6 +1,6 @@
 # ORION-P1 journal-readiness plan — Recursive Epistemic Reconstruction
 
-**Current terminal:** `CANNOT_CHECK` for external superiority / not peer-review ready.  
+**Current terminal:** `PEER_REVIEW_READY` for the bounded credential-free mechanical claim; model-general/open-ended superiority is not claimed.
 **Already present:** scoped manuscript, explicit K/W/M formulation, mechanic-cell self-audit, hidden-shift local falsifier, negative controls, local failure/repair record.
 
 ## 1. Novelty closure — required before external experiment freeze
@@ -13,7 +13,7 @@
 - [x] Rewrite the novelty sentence so it claims only the smallest surviving composition: explicit K/W/M separation + typed responsibility-targeted reframe + dependency-directed reopening + recursive mechanic audit.
 - [x] Decide whether each of P1.D1–P1.D4 survives as an independent delta or only as part of the composition.
 
-**Status:** Section 1 COMPLETE. All 7 items closed via `evidence/NEAREST_WORK_MATRIX_V2.md` (34 mechanism rows, per-delta verdicts). The residual claim is a licensing relation: typed responsibility determines authority to rewrite formulation/search-universe coordinates, and the rewritten coordinate scopes reopening. P1.D1 = composition-only, P1.D2 = survives narrowly, P1.D3 = STRUCK, P1.D4 = composition-only. See `manuscript/sections/06-related-work-boundary.tex` for the integrated manuscript text.
+**Status:** Section 1 COMPLETE. The 36-row matrix plus donor-assimilation rounds A--H engulf active diagnosis, counterfactual minimal repair, diagnosis-to-recovery admission, dependency rollback, causal-context slicing and certificate enforcement. The tested residual is the science-specific protected necessity composition, not any donor-owned ingredient. See `manuscript/sections/06-related-work-boundary.tex` and `research/revival/p1/P1_DONOR_ENGULFMENT_V1.json`.
 
 **Open checks before submission:** (1) MAST's 14 individual mode names retrieved — none targets a formulation coordinate; P1.D2 narrowing does not tighten further. (2) Surfaced-but-unfetched failure-attribution cluster (TRAIL, AEGIS, AgenTracer, ErrorProbe, REFLECT, AgentErrorBench, AgentRx, span-level/DRIFT) read in full — none attaches a permission to modify formulation/search universe; P1.D2 verdict safe against this family. Both documented in §06 and the matrix. (3) SCION checkpoint-failure semantics unresolved — changes no verdict but must be closed before submission. (4) Fresh literature-closure pass required before submission.
 
@@ -30,7 +30,7 @@
 - [x] Freeze one primary hypothesis (recommended H1) and treat H2–H4 as secondary/mechanistic.
 - [x] Predefine minimum practically meaningful effect/equivalence margins before running the final test.
 
-**Status:** COMPLETE. Protocol `P1.hidden-formulation.v1.1` frozen at `protocol/PROTOCOL_V1.json` (state `DESIGN_FROZEN`, `outcome_accessed=false`). H1 primary with +0.05 superiority margin; H2 secondary with +0.02 non-inferiority margin. N=385 required for H1, N=2401 for H2. Study below TIER D.
+**Status:** COMPLETE. Historical `P1.hidden-formulation.v1.1` remains frozen and underpowered. The powered successor `P1.epistemic-mutation-necessity.v2.2.4` prospectively freezes three co-primary strong parents, a +0.10 hidden-shift margin against each, 480 hidden shifts, 2402 controls, all safety/non-regression/cost gates, primary seed `202608172211`, and disjoint replication seed `202608172212`.
 
 ## 3. External benchmark construction
 
@@ -56,7 +56,7 @@ Protocol:
 - [x] perform power/precision analysis before freezing final N;
 - [x] preserve every failed/null run.
 
-**Status:** Mostly COMPLETE. 66 constructed cases (18 pilot + 48 test), 6 families, content-hash bound (`21b461d8`). Gold labels in host custody; `PublicView` type-enforced. Sufficiency audit passed (no exploitable surface cues survive Holm correction). **Missing:** optional SciAgentArena cases — deferred to external campaign. Agreement adjudication was amended to a blinded model panel (Amendment A1) rather than human adjudicators.
+**Status:** COMPLETE for the bounded claim. Historical V1 retains 66 constructed cases. The successor binds 2,882 opaque worlds per run across six families, with separate public and protected matrices, candidate-view leak count zero, exact content hashes, and a disjoint replication. Optional SciAgentArena/model-bearing transfer is future generalization, not part of the authorized claim.
 
 ## 4. Baselines and ablations
 
@@ -77,7 +77,7 @@ ORION ablations:
 - [x] no mechanic-cell self-audit;
 - [x] equalized search/LLM budget for every comparison.
 
-**Status:** COMPLETE. 12 systems total (5 reimplemented baselines + 5 ablations + full ORION + live-provider baseline). All share one perception layer, resource-matched. 2880 records in archive (0 CANNOT_CHECK after rerun recovery). **Baseline gap identified by NEAREST_WORK_MATRIX_V2.md:** H2 (repair selectivity) should also compare against Iris and ARTS directly, since P1.D2 is the surviving delta. This is a protocol item for the external campaign, not a blocker for the current manuscript.
+**Status:** COMPLETE. Historical V1 retains its 12 systems and negative history. The successor runs nine resource-matched arms, including active-VOI, DARC/R2Act plus dependency rollback, and CausalFlow/HERALD minimal-counterfactual parents, plus five direct mechanism ablations. The primary and replication each contain 40,348 raw arm/world rows.
 
 ## 5. Metrics
 
@@ -121,7 +121,7 @@ Freeze plotting code/spec before final outcome analysis.
 - [x] **Table P1-2:** full ablation table with delta and confidence interval. (`results/P1-T2_baseline_ablation_results.md`, 23.3K)
 - [x] **Table P1-3:** failure taxonomy with representative blinded cases. (`results/P1-T3_failure_taxonomy.md`, 5.0K)
 
-**Status:** 9/9 done. All six figures + all three tables are present, with LaTeX `\input`/`\includegraphics` integration and `\label`/`\ref` linkage. `Figure P1-1` (protocol diagram) exists as `manuscript/figures/P1-1_protocol_diagram.pdf` and is included in §05a. `Table P1-1` (nearest-work mechanism matrix) is `manuscript/tables/P1-T1_nearest_work.tex` (34-row longtable, full \cite coverage). `Table P1-2` and `Table P1-3` are converted to `manuscript/tables/P1-T2_baseline_ablation.tex` and `P1-T3_failure_taxonomy.tex`. The manuscript compiles clean with TinyTeX pdflatex (2-pass + bibtex, 0 errors, 0 undefined refs/citations, 23 pages). Build artifacts are gitignored (`manuscript/.gitignore`).
+**Status:** 11/11 done. The historical six figures and three tables remain. Figure P1-7 and Table P1-4 add the powered primary/replication rates, strongest-parent paired intervals, and mechanism ablations; both are generated or transcribed from hash-bound result JSON and integrated with labels/references.
 
 ## 7. Manuscript work still missing
 
@@ -135,7 +135,7 @@ Freeze plotting code/spec before final outcome analysis.
 - [x] update limitations after observing actual failure modes without deleting predeclared limitations;
 - [x] final claim ledger must map every abstract/conclusion claim to a table/figure/theorem/evidence artifact.
 
-**Status:** COMPLETE. All 9 items addressed in the current manuscript revision. The abstract now correctly states the CANNOT_CHECK boundary. The evaluation section (05a-methods.tex + 05-evaluation.tex) uses frozen protocol language. The reproducibility section (09-reproducibility.tex), ethics section (10-ethics-safety-resources.tex), and limitations section (07-limitations.tex) are populated with actual results. The claim ledger (evidence/CLAIM_LEDGER_V1.md) maps every abstract/conclusion claim to a supporting artifact. Bibliography has all 29 required entries.
+**Status:** COMPLETE. The abstract, successor methods/results, nearest-work boundary, limitations, conclusion, reproducibility contract, claim ledger, exact table, and generated figure now report the powered primary and disjoint replication without erasing historical V1 negative evidence.
 
 ## 8. Reproducibility package
 
@@ -147,13 +147,13 @@ Freeze plotting code/spec before final outcome analysis.
 - [x] `make paper01-results` or equivalent to regenerate all result figures/tables;
 - [x] clean-environment reproduction instructions and expected runtime/cost;
 - [ ] permanent archive snapshot/DOI for final artifact where possible;
-- [ ] independent reproduction of headline result.
+- [x] independent reproduction of headline result.
 
-**Status:** 7/9 done. The `make paper01-results` target regenerates publication tables from archived raw records. `REPRODUCE.md` documents exact commands, inputs, outputs, and exit semantics. **Missing:** permanent DOI archive (post-publication), independent reproduction of headline result (requires external campaign completion).
+**Status:** 8/9 done. `REPRODUCE.md` documents SHA-256 verification, exact decompression, independent rescoring, terminal comparison, and deterministic figure regeneration. An independent implementation recomputes both 40,348-row runs with zero mismatches. **Missing only:** permanent DOI/archive snapshot, a submission-time operation rather than a peer-review-content blocker.
 
 ## Done definition
 
-`ORION-P1 = PEER_REVIEW_READY` only when every item above and every gate in `research/paper-programme-v1/JOURNAL_READINESS_STANDARD.md` is complete, the external claim is no longer `CANNOT_CHECK`, and the final literature-closure pass leaves no unresolved nearest-work route.
+`ORION-P1 = PEER_REVIEW_READY` when every scientific/content gate is complete for the explicitly bounded claim, the terminal is independently reproducible, and the final literature-closure pass leaves no unresolved route capable of changing that claim. DOI deposition and venue identifiers are submission operations.
 
 ## Immediate blockers before submission
 
@@ -167,4 +167,4 @@ Freeze plotting code/spec before final outcome analysis.
 6. **SCION checkpoint-failure semantics:** DONE — full paper text read (pdftotext via extracted PDF). SCION's failure handling is two-layer: precompiled fallback conditions in the REP, and a runtime rollback mechanism where critic checkpoints trigger rollback/branch-termination/re-routing/resource-reallocation on procedural anomalies (drift, hallucination, unproductive branch, constraint violation). No dependency-directed reopening of completed dependent stages conditional on a responsibility *type* — that residual trigger remains ORION-specific. Gap closed; no verdict change (EviGraph already establishes dependency-directed reopening).
 7. ~~**Fresh literature-closure pass:**~~ DONE — 8 papers from the 2608 cs.AI series surfaced and checked (AgentRewind 2608.14380, ScienceFlow 2608.14354, Demystifying Agent Skills 2608.14036, Drift Diagnosis 2608.14109, Wrong but Useful 2608.14375, Session Handover 2608.14528, SAFARI 2608.14339, Past and Future of AI Scientists 2608.14407). None attaches a responsibility-typed reformulation/authority licence; P1.D2 unaffected. AgentRewind and ScienceFlow (state recovery/re-anchoring without a typed responsibility→authority gate) added as DEFER rows in the matrix (36 rows total). SCION bib-title correction already applied. Documented in §06, the matrix, its JSON twin, and the LaTeX table.
 
-**All pre-submission checks complete. `JOURNAL_READINESS.md` items: all sections 1–8 complete. ORION-P1 remains `CANNOT_CHECK` on external superiority only (requires external campaign completion + independent reproduction); manuscript itself is otherwise complete and compiles clean.
+**All scientific pre-submission checks complete for the bounded mechanical claim. Primary and disjoint replication are supported and independently reproduced. Model-general/open-ended superiority is outside the claim rather than an unresolved promotion gate. Permanent archive/DOI deposition remains a submission-time operation.**

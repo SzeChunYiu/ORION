@@ -13,9 +13,9 @@
 5. the manuscript contains a normal in-text citation system and reference list;
 6. title page, corresponding-author metadata, keywords, declarations and transparent AI-use disclosure are supplied;
 7. venue-specific submission assets are present;
-8. deterministic theory/benchmark checks and a submission-package linter pass on the exact commit;
+8. deterministic theory/benchmark checks, a submission-package linter, and clean LaTeX PDF builds pass on the exact commit;
 9. repository CI passes on the exact submission PR head;
-10. no `TODO`, `TBD`, placeholder citation, fabricated result or unsupported superiority sentence remains.
+10. no `TODO`, `TBD`, placeholder citation, fabricated result, unsupported superiority sentence, undefined reference/citation, or overfull PDF box remains.
 
 `PEER_REVIEW_READY` does **not** mean `PEER_REVIEWED`, `ACCEPTED`, or `EMPIRICALLY_SUPERIOR`.
 
@@ -31,7 +31,8 @@ Fallback venues remain as recorded in `VENUE_DECISION_V2.md`; this gate is froze
 
 - P6: `THEORY_FINISHED_V2_1`.
 - P7: `THEORY_FINISHED_V2`.
-- P8: `THEORY_FINISHED_V2`.
+- P8: `THEORY_FINISHED_V2_1` (`FORMAL_CORE_V2.md` plus its superseding
+  primitive-closure addendum `FORMAL_CORE_V2_1.md`).
 
 ## Current submission claim terminals after the 2026-08-18 delta
 

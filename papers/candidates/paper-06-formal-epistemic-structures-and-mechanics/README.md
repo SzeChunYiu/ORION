@@ -1,6 +1,7 @@
 # P6 candidate — Formal Epistemic Structures and Mechanics
 
-**Status:** PROPOSED / `CANNOT_CHECK` for distinct publishable novelty.
+**Status:** `SUBMISSION_CONTENT_COMPLETE`; exact-head CI determines
+`PEER_REVIEW_READY` as specified in `JOURNAL_READINESS_V2_1.md`.
 
 **Parent:** #332. Theory #333. Literature #334. Evaluation #335. Anti-overlap #343.
 
@@ -8,7 +9,7 @@
 
 Can the structural ideas already present in ORION—typed epistemic state, mechanic cells, obligations, authority bounds, dependencies, recursive audit, and selective reopening—be given a compact formal semantics that yields nontrivial properties, executable checks, or transfer value beyond P1's application-specific reconstruction paper?
 
-## Candidate contribution
+## Scoped contribution
 
 A typed mechanic is tentatively represented as an object with:
 
@@ -32,7 +33,7 @@ P1 currently owns mechanic-cell and recursive-audit theory inside Recursive Epis
 
 P6 does **not** currently claim novelty for belief revision, dynamic epistemic logic, modular cognitive architectures, state machines, dependency graphs, provenance, reflection, failure attribution, typed process systems, or recursive reasoning individually.
 
-## First nearest-work pressure
+## Constructive nearest-work result
 
 The initial literature pass already identifies direct parent domains: dynamic epistemic logic/action models; AGM and iterated belief revision; hyperintensional/incomplete-information revision; separation/dynamic logics; cognitive architectures for language agents; recent mechanism-level agent-architecture reviews; failure-attribution/debugging systems; planning/replanning work.
 
@@ -40,12 +41,19 @@ The hostile novelty question is therefore narrow:
 
 > Is there a prior formalism that already couples typed failure/obligation responsibility to explicit read/write authority over epistemic coordinates, dependency-scoped reopening, and recursively composable mechanic contracts?
 
-Until #334 answers that, novelty remains `CANNOT_CHECK`.
+Two dated, no-material-change closure rounds absorb truth maintenance,
+incremental computation, epistemic update, typed effects, authorization,
+provenance and dependency-aware repair. Broad component novelty is rejected.
+The surviving submission object is the scientific-admissibility layer and its
+typed-erasure separation over that donor-complete envelope.
 
-## Planned evidence
+## Evidence
 
-P6 must not stop at notation. #335 requires bounded theorem/checker artifacts, counterexamples, executable correspondence to selected ORION mechanics, and at least one discriminating comparison against an alternative formalization.
+The normative V2.1 core includes theorem premises, countermodels, donor special
+cases, composition boundaries, and deterministic finite checkers. P6 makes no
+deployed-agent or donor-product superiority claim.
 
-## Working manuscript
+## Reviewer artifacts
 
-See `manuscript/DRAFT.md`. The abstract is intentionally written as a proposed research programme rather than a positive novelty claim.
+See `submission/AIJ_MANUSCRIPT.tex`, `CLAIM_LEDGER_V2_1.md`,
+`REPRODUCE_V2_1.md`, and `JOURNAL_READINESS_V2_1.md`.

@@ -1,0 +1,112 @@
+{
+  "schema_version": "orion.publication-protocol-amendment.v1",
+  "paper_id": "P1",
+  "protocol_id": "P1.epistemic-mutation-necessity.v2.2",
+  "protocol_version": "P1.epistemic-mutation-necessity.v2.2.3",
+  "protocol_status": "DESIGN_FROZEN",
+  "base_protocol_path": "research/revival/p1/protocol/P1.epistemic-mutation-necessity.v2.2.2.json",
+  "base_protocol_version": "P1.epistemic-mutation-necessity.v2.2.2",
+  "base_protocol_git_blob_sha": "0f8c130c1172ccc7754f78594cdc3adc288c7c5b",
+  "confirmatory_outcome_accessed": false,
+  "development_fixture_outcome_accessed": true,
+  "amendment_reason": "Round-F pre-outcome donor engulfment found HERALD and CausalFlow, which materially own counterfactual inclusion-minimal/outcome-flipping repair. Strengthen the study before any confirmatory world freeze by adding a CausalFlow/HERALD-style minimal-counterfactual parent and requiring the ORION residual to beat it as well as active-VOI and DARC/R2Act+dependency parents. Counterfactual repair minimality is removed from ORION novelty. Seeds, world generator, N, four-unit budget, margins, gold, scorer semantics and direct ablations are unchanged.",
+  "change_direction": "MATERIAL_DONOR_ABSORPTION__THIRD_STRONG_PARENT__NO_EASIER_SUCCESS_RULE",
+  "unchanged": [
+    "confirmatory seed 202608172211",
+    "replication seed 202608172212",
+    "480 hidden-shift worlds",
+    "2402 evidence/execution controls",
+    "four intervention units per task",
+    "objective protected response-matrix generator",
+    "10 percentage-point H1 superiority margin against each parent",
+    "zero unnecessary high-level reframe safety gate",
+    "2 percentage-point protected-success non-inferiority margins",
+    "1.0-unit cost non-inferiority margin",
+    "five direct necessity-certificate ablations",
+    "no post-outcome exclusions or parent removal"
+  ],
+  "overrides": {
+    "scientific_question": "After engulfing active diagnosis, diagnosis-to-action recovery, dependency rollback, and causal inclusion-minimal counterfactual repair, does science-specific K/W/M level ordering plus protected-invariant and dependency-impact binding add prospective protected root-task value on hidden formulation/search-universe shifts?",
+    "matched_arms": [
+      {"id":"static_no_reframe","description":"Never performs high-level mutation; can only accept already-solved/public evidence state."},
+      {"id":"immediate_outcome_flip_repair","description":"Accepts the first motivating-target flip; no necessity or protected-invariant requirement."},
+      {"id":"cost_greedy_repair","description":"Tests candidates in ascending declared cost and accepts the first target success."},
+      {"id":"reflect_like_replay","description":"Diagnosis-specific controlled replay and outcome-flip repair; generic intervention-supported attribution is donor substrate."},
+      {"id":"car_like_causal_replay","description":"Causal replay of diagnosis-linked candidates and selection by observed target effect; generic causal attribution is donor substrate."},
+      {"id":"active_voi_repair_parent","description":"Active diagnosis/value-of-information followed by class-conditioned recovery and dependency rollback under the same budget."},
+      {"id":"darc_r2act_dependency_parent","description":"Diagnosis-conditioned admissible action selection plus dependency rollback/preservation under the same budget."},
+      {"id":"causalflow_minimal_counterfactual_parent","description":"Tests all repair interventions within the same four-unit budget, retains inclusion-minimal target-flipping repairs, chooses using only public proposal confidence, and applies dependency rollback; does not use P1 protected-invariant or K/W/M-level necessity criteria."},
+      {"id":"orion_mutation_necessity","description":"Engulfed donor substrate plus hierarchical lower-level exclusion, science-specific K/W/M level necessity, protected sibling/invariant preservation, and exact dependency-impact binding."},
+      {"id":"oracle_minimal_valid_ceiling","description":"Analysis-only host-gold ceiling; structurally non-runnable."}
+    ],
+    "primary_hypotheses": [
+      {
+        "id": "P1.NC-H1",
+        "text": "On the fresh hidden-shift subset, full ORION mutation-necessity certification improves protected root-task success by at least 10 percentage points over EACH frozen strong parent: active-VOI recovery, DARC/R2Act+dependency recovery, and CausalFlow/HERALD-style minimal counterfactual repair; every paired 95% interval lower bound must exceed zero.",
+        "metric": "protected_root_task_success",
+        "subset": "hidden_shift",
+        "comparators": [
+          "active_voi_repair_parent",
+          "darc_r2act_dependency_parent",
+          "causalflow_minimal_counterfactual_parent"
+        ]
+      },
+      {
+        "id": "P1.NC-H2",
+        "text": "On the fresh evidence/execution controls, full ORION performs zero unnecessary FORMULATION/SEARCH_UNIVERSE reframes and remains non-inferior in protected root-task success to the active-VOI parent within 2 percentage points.",
+        "metric": "unnecessary_high_level_reframe_rate",
+        "subset": "negative_control",
+        "comparators": ["active_voi_repair_parent"]
+      }
+    ],
+    "primary_comparators": [
+      "active_voi_repair_parent",
+      "darc_r2act_dependency_parent",
+      "causalflow_minimal_counterfactual_parent"
+    ],
+    "statistics": {
+      "paired_unit": "task",
+      "primary_interval": "paired percentile bootstrap 10000 resamples",
+      "bootstrap_seed": 202608172233,
+      "binary_rate_interval": "Wilson 95%",
+      "paired_binary_secondary": "exact McNemar",
+      "H1_superiority_margin_each_parent": 0.10,
+      "H2_orion_unnecessary_reframe_ceiling": 0.0,
+      "H2_control_protected_success_noninferiority_margin": 0.02,
+      "total_protected_success_noninferiority_margin": 0.02,
+      "cost_noninferiority_margin_units": 1.0,
+      "multiplicity": "H1 is tested against all three frozen strong parents; Holm correction across the three H1 paired p-values. H2 is a hard zero-reframe safety gate plus protected-success non-inferiority. Secondary/ablation contrasts are Holm-corrected separately.",
+      "repeat_policy": "deterministic arms execute once per frozen world; stochastic/model extensions require a separate protocol"
+    },
+    "support_rule": {
+      "all_required": [
+        "hidden-shift protected-root-success ORION - active_voi_repair_parent >= 0.10 and paired 95% interval lower bound > 0",
+        "hidden-shift protected-root-success ORION - darc_r2act_dependency_parent >= 0.10 and paired 95% interval lower bound > 0",
+        "hidden-shift protected-root-success ORION - causalflow_minimal_counterfactual_parent >= 0.10 and paired 95% interval lower bound > 0",
+        "Holm-adjusted H1 paired significance checks against all three parents pass",
+        "negative-control ORION unnecessary high-level reframe count = 0",
+        "negative-control protected-root-success ORION - active_voi paired interval lower bound >= -0.02",
+        "whole-grid protected-root-success ORION - every frozen strong parent paired interval lower bound >= -0.02",
+        "full ORION protected-sibling regression rate = 0",
+        "full ORION forbidden high-level mutation count = 0",
+        "full ORION mean intervention cost <= maximum strong-parent mean + 1.0 unit",
+        "no holdout/evaluator/source identity mismatch"
+      ],
+      "otherwise": "NOT_SUPPORTED / PARTIALLY_SUPPORTED / REFUTED using the frozen gate vector; no parent removal, margin change, exclusion or generator change after confirmatory outcome access"
+    },
+    "claim_boundary": {
+      "if_supported": "Credential-free evidence that, after engulfing causal minimal repair and other strongest donors, science-specific epistemic-level necessity plus protected-invariant and dependency-impact constraints improve protected recovery on the frozen hidden-shift/control family.",
+      "forbidden": [
+        "generic causal debugging is novel",
+        "counterfactual minimal repair is novel",
+        "generic active diagnosis is novel",
+        "generic diagnosis-to-action recovery is novel",
+        "generic dependency rollback is novel",
+        "generic certificate/revocable-capability enforcement is novel",
+        "all scientific reframing is solved",
+        "model-general or open-ended scientific superiority has been established"
+      ]
+    }
+  },
+  "claim_boundary": "PRE_CONFIRMATORY_ROUND_F_STRENGTHENING_ONLY__V2_2_0_TO_V2_2_2_PRESERVED__NO_WORLD_FREEZE_OR_RESULT"
+}

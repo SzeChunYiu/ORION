@@ -1,0 +1,69 @@
+{
+  "schema_version": "orion.p2.wide-openaire-matched-run-receipt.v1",
+  "paper_id": "P2",
+  "date": "2026-08-18",
+  "subject": {
+    "pull_request": 397,
+    "branch_head": "220a34b6e7eae271085bf8a60fe1ff019ef51cfd",
+    "freeze_sha256": "2f8fe632bf472d2a951957872132b6460bae24b4913943e849951ce28be21ea7"
+  },
+  "workflows": {
+    "matched_run": {
+      "run_id": 32125915375,
+      "host_public_split_job": 95676311504,
+      "acquisition_job": 95676388196,
+      "evaluate_job": 95682201615,
+      "conclusion": "failure",
+      "failure": "official scorer process lacked the tiktoken runtime dependency; candidate acquisition had already completed and frozen"
+    },
+    "evaluator_repair": {
+      "run_id": 32125915417,
+      "job_id": 95676312228,
+      "conclusion": "success",
+      "scope": "score the already-frozen candidate capture with complete pinned evaluator dependencies"
+    }
+  },
+  "actions_artifacts": [
+    {
+      "artifact_id": 9321016634,
+      "name": "p2-wide-openaire-capture-7974cffac4c4b1ac9bf61b6adf405f1d8c360f77",
+      "downloaded_archive_sha256": "aa89815c69460e98198e8961cdf2523d16a630507f8723acc17f16c735e683e0",
+      "mirror": "evidence/ci_mirror/p2-wide-openaire-matched-capture.zip"
+    },
+    {
+      "artifact_id": 9321028218,
+      "name": "p2-wide-openaire-evaluation-7974cffac4c4b1ac9bf61b6adf405f1d8c360f77",
+      "downloaded_archive_sha256": "83453f5234c222f3eb3b86a36cc10b7f1df83832ffa75d66c144292c477357ed",
+      "mirror": "evidence/ci_mirror/p2-wide-openaire-matched-initial-evaluation.zip"
+    },
+    {
+      "artifact_id": 9320334801,
+      "name": "p2-wide-openaire-evaluator-repair-7974cffac4c4b1ac9bf61b6adf405f1d8c360f77",
+      "downloaded_archive_sha256": "577a7637ce7c3f7c0673835d59dd6f6bca6570b04d0d3d9e832b253dc9626028",
+      "mirror": "evidence/ci_mirror/p2-wide-openaire-matched-evaluator-repair.zip"
+    }
+  ],
+  "observed_failure": {
+    "terminal": "P2_WIDE_EXTERNAL_CANNOT_CHECK",
+    "logical_provider_calls_planned": 1200,
+    "logical_provider_calls_ok": 800,
+    "logical_provider_ok_fraction": 0.666667,
+    "crossref_discovery_calls_ok": 400,
+    "openaire_direct_calls_ok": 400,
+    "failed_route": "openaire_doi_crosswalk",
+    "failed_route_calls": 400,
+    "failed_route_status": "http_error:400",
+    "candidate_files_identical": true,
+    "paired_distinct_questions": 399,
+    "paired_ties": 399
+  },
+  "custody": {
+    "candidate_hashes_frozen_before_gold": true,
+    "candidate_hashes_unchanged_after_scoring": true,
+    "hidden_candidate_fields": [],
+    "same_capture_and_cap_for_all_systems": true,
+    "raw_regex_identity_extraction": false
+  },
+  "authority": "INVALID_TRANSPORT_CAMPAIGN_RETAINED__NO_SCIENTIFIC_PROMOTION",
+  "reopen_condition": "Freeze a new campaign version before outcome access, after independently validating the documented structured DOI-to-arXiv crosswalk request syntax; never reinterpret this failed v1 capture as a valid negative result."
+}

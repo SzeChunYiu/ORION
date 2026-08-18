@@ -1,6 +1,7 @@
 # P7 candidate — Epistemic Navigation in Open Worlds
 
-**Status:** PROPOSED / `CANNOT_CHECK` for distinct publishable novelty.
+**Status:** `SUBMISSION_CONTENT_COMPLETE`; exact-head CI determines
+`PEER_REVIEW_READY` as specified in `JOURNAL_READINESS_V2_1.md`.
 
 **Parent:** #332. Theory #336. Literature #337. Evaluation #338. Anti-overlap #343.
 
@@ -8,7 +9,7 @@
 
 Can open-world scientific reasoning be modeled as navigation over an epistemic space whose topology can itself change when the system reframes the problem, rather than as search over a fixed graph or retrieval index?
 
-## Candidate contribution
+## Scoped contribution
 
 P7 tentatively models navigation state using:
 
@@ -32,7 +33,7 @@ P2 owns open-world scientific discovery, route independence, question-conditione
 
 P7 does not claim novelty for graph search, knowledge-graph navigation, information foraging, POMDP exploration, query diversification, retrieval planning, replanning, or stopping criteria individually.
 
-## First nearest-work pressure
+## Constructive nearest-work result
 
 The initial literature pass surfaced Search-on-Graph, Mind-ParaWorld/MPW-Bench, the Initial Exploration Problem in knowledge graphs, and evidence that current AI research agents can narrow rather than broaden scientific exploration. P2 already contains a large nearest-work base in open-world retrieval and stopping.
 
@@ -40,12 +41,21 @@ The hostile novelty question is:
 
 > Does prior work already treat an agent's search/navigation topology as revisable under representation change while preserving explicit censored/open obligations and separate stopping authority?
 
-Until #337 closes that route, novelty remains `CANNOT_CHECK`.
+Two dated, no-material-change closure rounds absorb graph/POMDP navigation,
+planning abstraction, schema/ontology transport, categorical and sheaf
+transport, goal/world-model evolution, and open-world stopping. Broad
+navigation and representation-transport novelty is rejected. The surviving
+submission object is scientific evidence/closure/obligation transport under
+representation or objective change with fail-closed open/censored stopping.
 
-## Planned evidence
+## Evidence
 
-#338 requires a benchmark spanning fixed graphs, censored coverage, deceptive local optima, dead ends, and representation-changing cases, plus at least one non-retrieval transfer domain. A direct topology-change ablation is mandatory.
+Eight prospectively frozen reference contracts cover fixed/hidden/censored
+routes, deceptive diversity, revisitation/dead ends, beneficial and harmful
+reframing, and a non-retrieval experimental-design case. These are exact
+formal/reference-contract discriminators, not live-agent superiority evidence.
 
-## Working manuscript
+## Reviewer artifacts
 
-See `manuscript/DRAFT.md`.
+See `submission/AIJ_MANUSCRIPT.tex`, `CLAIM_LEDGER_V2.md`,
+`REPRODUCE_V2_1.md`, and `JOURNAL_READINESS_V2_1.md`.

@@ -1,0 +1,19 @@
+{
+  "schema": "ORIONP9P10LocalClosureAuthority.v2",
+  "authority": "LOCAL_REPRODUCIBLE_CORE_ONLY",
+  "date": "2026-08-18",
+  "includes": [
+    "current publication manifest integrity",
+    "shared framework hostile tests",
+    "P9 merged-evidence readiness gate",
+    "P10 merged technical-note readiness gate"
+  ],
+  "excludes": [
+    "external scientific authority",
+    "theorem statement faithfulness",
+    "standalone novelty authority",
+    "journal acceptance",
+    "the unavailable legacy Phase-2B input"
+  ],
+  "supersedes_unavailable_claim": "The delivered LOCAL_CORE_COMPLETE assertion depended on missing CLOSURE_MANIFEST.json and closure_logs/FROZEN_SHA256SUMS.txt and is not adopted."
+}

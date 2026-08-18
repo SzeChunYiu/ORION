@@ -206,6 +206,30 @@ Semantic separation guarantees that each mechanic reads the same values and admi
 
 The theorem intentionally does not equate ordered audit histories.
 
+### Composition-form closure
+
+The contract closes four composition forms without claiming a new process
+algebra:
+
+- **sequential** `m;n` is defined only when `m`'s postcondition establishes
+  `n`'s precondition and every residual hard obligation/authority restriction
+  from `m` is present at the input to `n`;
+- **conditional** `if g then m else n` requires a footprint-faithful,
+  authority-valid guard and a declared join contract satisfied by either
+  branch; only the selected branch runs, but its residual obligations and
+  provenance cannot be hidden by the join;
+- **independent parallel** `m || n` is the independent-history equivalence
+  class of the two sequential interleavings, and is defined only under the full
+  scientific separation premises of Theorem 4;
+- **recursive/self-audit** composition is defined only under the well-founded
+  rank or pre-recursion cycle rejection of Definition 12.
+
+A composition is well formed only when every component is admissible at its
+actual input, interfaces match, no protected authority is widened without a
+root, and no hard obligation or provenance event disappears at a boundary.
+Conditional choice and parallel scheduling therefore add no authority of their
+own.
+
 ## 6. Authority non-escalation
 
 Fix protected roots `A_0`.

@@ -1,6 +1,22 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb,amsthm}
+% Typesetting only; no content change. The submission gate rejects any
+% Overfull \hbox, and these manuscripts are dense with unbreakable compounds --
+% "chart/location/objective/open-obligation", "request/handled/denied/committed"
+% -- because TeX does not break at "/" and will not hyphenate across it.
+%
+% microtype supplies character protrusion and font expansion, which is the
+% standard way to absorb a few points of overflow without touching prose.
+% \emergencystretch lets TeX stretch interword space in a final pass rather than
+% run past the margin.
+%
+% That second one is a deliberate trade, not a way around the gate: an overfull
+% box puts text into the margin, which is a real defect in a submitted PDF, while
+% the underfull box it may produce instead is loose spacing. The gate forbids the
+% former and permits the latter for exactly that reason.
+\usepackage{microtype}
+\emergencystretch=1em
 \usepackage{hyperref}
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}{Proposition}
@@ -20,7 +36,7 @@ Autonomous scientific systems combine capabilities governed by different evident
 \section{Introduction}
 A general scientific agent may be able to construct a reframe, stop a route, merge two constructs, assert a conclusion, or modify its own method. These actions are all executable computations, yet they need not share an authorization criterion. Planner confidence does not itself establish responsibility for changing the problem formulation. Search saturation on one route does not prove global completion. Semantic similarity does not prove construct identity. Citation support does not establish independent verification. Successful replay of a self-change does not grant the candidate authority to promote itself.
 
-This problem must be scoped carefully because adjacent work is already strong. Authorization logics, trust management, and usage control formalize permission, delegation, conditions, and revocation \cite{ucon2002,ucon2004,secpal2010}. Current agent systems add typed effects and residual obligations \cite{etas2026}, evidence-backed permission graphs \cite{fava2026}, multiple independent authorities and governance receipts \cite{agentbound2026}, multi-agent authorization propagation \cite{propagation2026}, provenance-aware verification \cite{provguard2026}, and action-boundary abstention/calibration \cite{abstain2026,steerbench2026}. Most directly, SAGE-Fin already demonstrates that correct context or workflow progress does not imply authority to commit an effect; it uses typed adapter-bound candidates, missing/stale obligations, exact-artifact receipts, and authorization rechecking after state change \cite{sagefin2026}. Current action-evidence specifications likewise bind heterogeneous evidence roles and freshness to exact actions \cite{aeb2026,aec2026}. P8 therefore does not claim any generic ``evidence is not authority'' principle, exact-artifact binding, pre-commit checking, delegation, provenance, or revocation as new.
+This problem must be scoped carefully because adjacent work is already strong. Authorization logics, trust management, and usage control formalize permission, delegation, conditions, and revocation \cite{ucon2002,ucon2004,secpal2010}. Current agent systems add typed effects and residual obligations \cite{etas2026}, evidence-backed permission graphs \cite{fava2026}, multiple independent authorities and governance receipts \cite{agentbound2026}, multi-agent authorization propagation \cite{propagation2026}, provenance-aware verification \cite{provguard2026}, and action-boundary abstention\slash calibration \cite{abstain2026,steerbench2026}. Most directly, SAGE-Fin already demonstrates that correct context or workflow progress does not imply authority to commit an effect; it uses typed adapter-bound candidates, missing/stale obligations, exact-artifact receipts, and authorization rechecking after state change \cite{sagefin2026}. Current action-evidence specifications likewise bind heterogeneous evidence roles and freshness to exact actions \cite{aeb2026,aec2026}. P8 therefore does not claim any generic ``evidence is not authority'' principle, exact-artifact binding, pre-commit checking, delegation, provenance, or revocation as new.
 
 The residual question is scientific: when does a valid source-domain judgment actually discharge the \emph{different scientific obligation} required by a target effect? We formalize the answer through complete judgment types and protected coercions. The central type is not merely a security domain; it includes the scientific role of the evidence, target scope/content, and epoch. The framework also represents authorization support as a family of complete alternative derivations, preventing a naive descendant graph from revoking too much or too little.
 
@@ -31,7 +47,7 @@ The final result is deliberately negative about architecture: if five domain-spe
 UCON extends one-shot access control with obligations, conditions, changing attributes, and ongoing decisions \cite{ucon2002,ucon2004}. SecPAL provides a formal decentralized authorization language with policy proof and delegation structure \cite{secpal2010}. These traditions already own permission, delegation, policy proof, revocation, and continuing authorization. P8 treats them as the generic policy layer.
 
 \subsection{Typed effects and evidence-backed governance}
-ETAS exposes typed requested/handled/denied/committed agent effects and residual obligations \cite{etas2026}. FAVA formalizes evidence-backed permission graphs and deterministic authorization before effects \cite{fava2026}. AgentBound composes multiple authority sources into verifiable behavioral governance \cite{agentbound2026}; authorization-propagation work models transitive delegation and temporal validity across agent workflows \cite{propagation2026}. These systems own typed action governance and authority propagation.
+ETAS exposes typed requested\slash handled\slash denied\slash committed agent effects and residual obligations \cite{etas2026}. FAVA formalizes evidence-backed permission graphs and deterministic authorization before effects \cite{fava2026}. AgentBound composes multiple authority sources into verifiable behavioral governance \cite{agentbound2026}; authorization-propagation work models transitive delegation and temporal validity across agent workflows \cite{propagation2026}. These systems own typed action governance and authority propagation.
 
 SAGE-Fin is a particularly close current donor because it makes the proposed effect the governed object, tracks missing/stale institutional obligations, requires exact-artifact receipts, and rechecks authority after state change \cite{sagefin2026}. Action Evidence Boundary and Authorization Evidence Chains similarly emphasize exact-action identity, heterogeneous evidence roles, freshness, and fail-closed evidence-chain satisfaction \cite{aeb2026,aec2026}. P8's claim therefore begins \emph{after} these structures: it asks whether an otherwise valid source judgment has the right scientific type to discharge the target obligation.
 
@@ -53,7 +69,7 @@ Every authority-relevant judgment has a complete type
 \]
 Here \emph{kind} distinguishes evidential roles such as support, independent verification, closure, responsibility, protected evaluation, or authority grant. An obligation $o$ specifies the exact expected judgment type $\tau_o$ plus any conjunctive premises.
 
-The authority context contains active typed judgments, hard and soft obligations, grants, a protected coercion registry, revocation state, provenance/derivation lineage, and retained request/allow/deny/commit/revoke history.
+The authority context contains active typed judgments, hard and soft obligations, grants, a protected coercion registry, revocation state, provenance/derivation lineage, and retained request\slash allow\slash deny\slash commit\slash revoke history.
 
 A hard obligation is discharged only by a current judgment of the expected type or by a valid typed coercion derivation that produces that exact target type. Soft confidence or utility can rank already admissible effects but cannot replace a missing hard premise.
 
@@ -81,7 +97,7 @@ Proceed by induction on derivation height. A base judgment has its declared type
 The theorem does not establish that a registered coercion is semantically good. Trusted coercion design remains an external policy/scientific specification responsibility.
 
 \section{Non-compensatory obligations and terminals}
-Authorization requires all hard obligations discharged, no active blocker, a valid grant, fresh bindings, and matching effect identity/scope/content/epoch immediately before commit.
+Authorization requires all hard obligations discharged, no active blocker, a valid grant, fresh bindings, and matching effect identity\slash scope\slash content\slash epoch immediately before commit.
 
 A finite penalty in an extensible additive score cannot represent an absolute blocker if positive evidence can grow without a global bound: enough positive mass eventually outweighs the penalty. A hard scientific blocker therefore needs a conjunctive, veto, or lexicographic layer unless the score domain is externally bounded.
 
@@ -92,6 +108,21 @@ The calculus distinguishes three authority terminals:
 \item \texttt{CANNOT\_CHECK}: at least one mandatory premise cannot currently be established or refuted.
 \end{itemize}
 This distinction is operational. Missing a verifier suggests evidence acquisition or escalation; an established blocker is not repaired by collecting unrelated confidence.
+
+The fail-closed reading needs one further distinction. A blocker is a positive,
+currently supported judgment that an effect is impermissible. For each blocker
+type, its status is \emph{established}, \emph{refuted}, or \emph{undetermined}.
+Authorization requires refutation of every in-scope blocker type, not merely the
+absence of an observed blocker. An undetermined blocker therefore yields
+\texttt{CANNOT\_CHECK}; treating it as absent can authorize a request before the
+evidence that establishes the blocker is consulted.
+
+Confidence, expected utility, support, and permission are separate quantities.
+Two effects can have equal confidence and expected utility while only one has a
+complete obligation-support family; their permission terminals then differ.
+Consequently confidence and utility may rank effects already in the
+\texttt{AUTHORIZED} fibre but cannot promote \texttt{DENIED} or
+\texttt{CANNOT\_CHECK}.
 
 \section{Alternative-derivation revocation}
 A simple dependency graph can conflate conjunction and alternatives. If a certificate can be derived from $A\wedge B$ or independently from $C\wedge D$, revoking $A$ should break the first derivation without necessarily destroying the second.
@@ -114,8 +145,23 @@ This semantics preserves independent derivations and invalidates exactly when al
 \section{Commit-time authority}
 A certificate is bound to the exact requested effect and state epoch. A later refusal cannot retroactively prevent an irreversible effect already committed, and an authorization from an earlier epoch cannot be replayed after a relevant policy/evidence change unless a freshness proof revalidates it. These constraints are donor-owned by ongoing authorization and current runtime-governance systems \cite{ucon2004,sagefin2026}; P8 uses them as premises rather than novelty claims.
 
+Authority is non-monotone in the premise stream: new evidence can establish a
+blocker and move an otherwise admissible pending request to \texttt{DENIED},
+whereas revocation can break its only complete support set and move it to
+\texttt{CANNOT\_CHECK}. Demotion is forward-only. It changes pending and future
+permission, while the immutable history continues to record the terminal that
+was actually computed at the old epoch; that historical record is not authority
+to act at the new epoch.
+
+Protected custody is likewise one root class rather than a premise of every
+ordinary authorization. Delegated grants, standing policy, and explicitly
+obligation-free effects can ground authority in their valid scopes. Protected
+external custody becomes mandatory when an effect can change the policy or
+evidence that would admit that same effect; an unprotected self-admission root
+cannot certify its own promotion.
+
 \section{Generic permission is weaker than scientific discharge}
-\begin{theorem}[Permission/scientific-discharge separation]
+\begin{theorem}[Permission\slash scientific-discharge separation]
 There exists a context in which a generic policy grant validly permits an operation while the corresponding scientific effect remains \texttt{CANNOT\_CHECK} because a mandatory scientific obligation is unresolved.
 \end{theorem}
 \begin{proof}
@@ -125,7 +171,7 @@ Give an assertion operation a valid generic in-scope write/communication grant a
 This is not a criticism of access control: the two layers answer different questions. The interface is valuable precisely because both can be correct on their own terms.
 
 \section{Five scientific effect domains}
-The calculus conservatively embeds five ORION-native scientific gates. For \texttt{REFRAME}, the ability to propose a new formulation is distinct from authority/responsibility to mutate the protected problem representation. For \texttt{SEARCH\_STOP}, route exhaustion is distinct from task completion under open/censored obligations. For \texttt{MAP\_MERGE}, similarity does not by itself discharge referent, measurement, and obstruction obligations. For \texttt{ASSERT}, source support is distinct from protected independent verification. For \texttt{SELF\_MODIFY}, replay improvement is evidence about a candidate change, not authority to promote the candidate.
+The calculus conservatively embeds five ORION-native scientific gates. For \texttt{REFRAME}, the ability to propose a new formulation is distinct from authority\slash responsibility to mutate the protected problem representation. For \texttt{SEARCH\_STOP}, route exhaustion is distinct from task completion under open/censored obligations. For \texttt{MAP\_MERGE}, similarity does not by itself discharge referent, measurement, and obstruction obligations. For \texttt{ASSERT}, source support is distinct from protected independent verification. For \texttt{SELF\_MODIFY}, replay improvement is evidence about a candidate change, not authority to promote the candidate.
 
 These within-domain gates are not P8 contributions; they are ownership constraints. The general calculus is acceptable only if its embeddings reproduce their native decisions when P8-specific cross-domain coercions are inert.
 
@@ -144,7 +190,7 @@ Both implementations evaluate the same predicates over the same request/context.
 This negative result is important: P8 cannot use architectural centralization as an expressivity claim. A real engineering advantage must be demonstrated prospectively through fewer cross-module inconsistencies, more complete global revocation lineage, reduced proof/audit duplication, or implementation reliability.
 
 \section{Deterministic verification and evaluation contract}
-The normative checker exercises all 25 direct source-domain/target-domain combinations, valid and invalid typed coercion paths, scope mismatches, stale epochs, non-compensatory blockers, protected self-promotion boundaries, exact alternative-derivation revocation, and the three authority terminals. It also runs 160 shared-calculus/ideal-product equivalence cases. A frozen 17-case authority manifest contains clean authorized controls in each domain, paired blockers, five explicit cross-domain laundering attacks, an inability-to-check case, and a positive registered coercion.
+The normative checker exercises all 25 direct source-domain\slash target-domain combinations, valid and invalid typed coercion paths, scope mismatches, stale epochs, non-compensatory blockers, protected self-promotion boundaries, exact alternative-derivation revocation, and the three authority terminals. It also runs 160 shared-calculus\slash ideal-product equivalence cases. A frozen 17-case authority manifest contains clean authorized controls in each domain, paired blockers, five explicit cross-domain laundering attacks, an inability-to-check case, and a positive registered coercion.
 
 Any empirical extension must be bidirectional. SteerBench-Work shows that over-refusal can be a major action-boundary failure mode \cite{steerbench2026}. P8 therefore precommits to report unauthorized commits, unnecessary refusal, clean authorized coverage, inability-to-check calibration, stale authorization reuse, revocation correctness, cross-domain coercion accuracy, and proof/audit cost. Blocking more actions is not automatically better.
 
@@ -167,7 +213,7 @@ OpenAI ChatGPT (GPT-5.6 Sol) was used during research preparation to assist with
 \section*{Statements and Declarations}
 \textbf{Data and code availability.} Formal checkers, frozen authority contracts, claim ledgers, and reproduction instructions are maintained in the ORION repository at the exact submission commit. This theoretical study reports no human-subject or animal data.
 
-\textbf{Competing interests and funding.} Personal competing-interest and funding declarations are entered in the submission system after direct author confirmation. This manuscript does not infer or fabricate private financial/non-financial declarations from repository data.
+\textbf{Competing interests and funding.} Personal competing-interest and funding declarations are entered in the submission system after direct author confirmation. This manuscript does not infer or fabricate private financial\slash non-financial declarations from repository data.
 
 \textbf{Author contribution.} Sze Chun Yiu is the sole human author and is responsible for conception, formal analysis, source verification, manuscript revision, and the final submission decision.
 

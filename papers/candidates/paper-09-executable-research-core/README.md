@@ -1,6 +1,6 @@
 # P9 candidate — Executable Research Core
 
-**Status:** SCRIPTS AND RESULTS LANDED / NO MANUSCRIPT / NOVELTY `CANNOT_CHECK`
+**Status:** MERGED INTO P8/PROGRAMME / PUBLIC DISCRIMINATOR PASSED / NO STANDALONE MANUSCRIPT
 **Shared lane:** `../orion-learning-machine/`
 
 ## Research question
@@ -22,6 +22,20 @@ The module states the boundary in its own docstring: *"None of those components 
 
 ## Evidence that exists
 
+### Public discriminator — ASlib `SAT11-HAND-ALGO`
+
+The protocol was committed before public-outcome access and binds exact ASlib
+source digests plus the scenario-provided outer folds. On 296 instances, 115
+features and 15 algorithms, FAILURE_AWARE_RF reduced attempts on 77
+VBS-unsolved instances by **0.7143 absolute** (paired bootstrap 95% CI
+0.6104–0.8182) while retaining **0.9645** of RF_ROUTER's solved instances. It
+paid the visible cost of lower solve rate and higher mean PAR10.
+
+Two complete runs produced byte-identical JSON with SHA-256 `8246d007…`.
+Reproduce with `benchmark/run_aslib_v1.py`; the exact protocol, public inputs,
+source record, full-precision result and hostile tests live under `benchmark/`
+and `results/`.
+
 Two experiments, both **byte-identical on re-run** (`SEED=20260818`), with outputs committed under `../orion-learning-machine/results/`.
 
 ### Phase 0 — solver ecology (`PHASE0_SOLVER_ECOLOGY.txt`)
@@ -35,21 +49,25 @@ A learned schedule matches the best fixed solver's success at roughly a third of
 
 Competence AUC 0.993–1.000 (IID) and 0.978–0.999 (shift). First-choice success degrades under shift (0.937 → 0.880) while scheduled success does not — the routing recovers what the first guess loses.
 
-### Phase 1 — mechanic composition (`PHASE1_MECHANIC_COMPOSITION.txt`)
+### Phase 1 — mechanic composition (`PHASE1_MECHANIC_COMPOSITION_V2.txt`)
 
 Across three regimes (scale, length, mixed), `failure_aware` composition **matches the oracle on every metric**:
 
-| Arm | solve_rate | effort (mixed) | early_abstain_opaque | effort_opaque | false_commit |
+| Arm | solve_rate | effort (mixed) | early_abstain_opaque | effort_opaque | false-commit status |
 |---|---|---|---|---|---|
-| `frequency` | 0.642 | 48.7 | 0.000 | 15.0 | 0.000 |
-| `blind` | 0.642 | 31.5 | 0.000 | 12.0 | 0.000 |
-| `imitation` | 1.000 | 18.0 | 0.000 | 12.0 | 0.000 |
-| `failure_aware` | 1.000 | 18.0 | **1.000** | **0.000** | 0.000 |
-| `oracle` | 1.000 | 18.0 | 1.000 | 0.000 | 0.000 |
+| `frequency` | 0.642 | 48.7 | 0.000 | 15.0 | NOT MEASURED |
+| `blind` | 0.642 | 31.5 | 0.000 | 12.0 | NOT MEASURED |
+| `imitation` | 1.000 | 18.0 | 0.000 | 12.0 | NOT MEASURED |
+| `failure_aware` | 1.000 | 18.0 | **1.000** | **0.000** | NOT MEASURED |
+| `oracle` | 1.000 | 18.0 | 1.000 | 0.000 | NOT MEASURED |
 
 **Read this carefully.** `imitation` and `failure_aware` are indistinguishable on solve rate and effort — both reach the ceiling. The whole difference is on *opaque* tasks: `failure_aware` abstains immediately at zero effort, `imitation` spends 12. So the claim supported here is about **knowing when not to try**, not about solving more. Anyone quoting "matches oracle" without that qualification is overstating it.
 
-`false_commit` is 0.000 for every arm including the baselines, so this suite does not discriminate on false commitment at all.
+Phase 1 has no commit event and did not prospectively define false commitment.
+The delivered V1 runner hard-coded `false_commit=0.000`; that field is rejected,
+not interpreted as an observed null. The V2 result reports
+`false_commit_status=NOT_MEASURED` for every arm and a hostile test prevents the
+numeric claim from returning.
 
 ## Ownership boundary
 
@@ -58,19 +76,26 @@ Across three regimes (scale, length, mixed), `failure_aware` composition **match
 - **P5** owns protected self-change and no-self-promotion.
 - P9 claims none of those. Its object is the executable core that accumulates capability under those constraints.
 
+After constructive nearest-work saturation, that object is retained as P8's
+executable/public empirical companion rather than a ninth manuscript. See
+`SATURATION_LEDGER_2026-08-18.md`, `CLAIM_LEDGER.md`,
+`MERGE_DISPOSITION.md`, and `JOURNAL_READINESS.md`.
+
 ### Explicit nonclaims
 
 P9 does not claim novelty for algorithm selection, algorithm portfolios, meta-learning, macro/option discovery, learned schedulers, or competence modelling. Each is a mature field and the phase-0 result is a standard portfolio-routing shape. What is being proposed is the *separation* — accumulation that structurally cannot become permission — not the routing itself.
 
-## What does not exist yet
+## Deliberate limits
 
-Recorded rather than glossed:
-
-- **No manuscript.** No abstract, introduction, formalism, related work or conclusion.
-- **No claim ledger** and no `JOURNAL_READINESS.md`.
-- **No nearest-work pass.** The nonclaims above are the authors' assertions carried over from code comments; no literature search has been run, so novelty is `CANNOT_CHECK` and no overlap matrix against P1–P8 exists.
-- **No external baseline.** Every arm in phase 1 is defined inside the same harness; there is no comparison against an independent portfolio or meta-learning implementation, so nothing here supports a superiority claim.
-- **Task distributions are synthetic.** Phase 0 and phase 1 generate their own tasks. The only real-source evidence in this lane is phase 2, which belongs to P10 and returned a null.
+- **No standalone manuscript.** The terminal is an evidenced merge, not an
+  unfinished paper.
+- **No AutoFolio-class baseline.** This blocks selector-superiority language and
+  is a named reopen condition.
+- Phase 0 and phase 1 remain synthetic. The public ASlib discriminator is a
+  single bounded scenario, not cross-domain evidence.
+- Routing and abstention cannot authorize execution; P8 owns that boundary.
+- External authority and multi-scenario selector superiority remain
+  `CANNOT_CHECK` from P9 alone and are not promoted by the merge terminal.
 
 ## Reproduce
 

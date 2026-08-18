@@ -173,6 +173,7 @@ def request_action(
         return refuse(
             RefusalReason.NOT_INTERVENTION_BACKED,
             "a probe or passive diagnosis cannot grant mutating authority",
+            cannot_check=True,
         )
     permitted = table.get(ground)
     if permitted is None:

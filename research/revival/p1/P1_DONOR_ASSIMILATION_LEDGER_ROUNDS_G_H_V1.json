@@ -1,0 +1,67 @@
+{
+  "schema_version": "P1.nearest-work-fixed-point.v1",
+  "literature_cutoff": "2026-08-18",
+  "subject_ref": "POST_ROUND_F_PRE_OUTCOME_V2_2_4",
+  "scope": "Two hostile post-Round-F searches against the exact post-engulfment residual, before any confirmatory world freeze.",
+  "rounds": [
+    {
+      "round_id": "G",
+      "routes": ["exact residual", "causal repair", "minimal repair + dependency", "autonomous-science counterfactual belief revision"],
+      "material_design_change": false,
+      "material_baseline_change": false,
+      "material_residual_change": false,
+      "new_useful_structure": true,
+      "receipts": [
+        {
+          "donor_title": "CausalRepair: Bridging the Causality Gap in Large Language Model-Based Automated Program Repair via Dual-Slicing",
+          "source_id": "arXiv:2608.10613",
+          "source_url": "https://arxiv.org/abs/2608.10613",
+          "disposition": "ADAPT",
+          "extracted_structure": "Construct repair context from context-aware static slicing plus execution-trace dynamic slicing so repair reasoning sees compact causally relevant dependencies rather than noisy whole-program context.",
+          "engulfment_target": "CAUSAL_DIAGNOSIS",
+          "orion_use": "Adopt dual static/dynamic causal-context construction where P1 moves from mechanical response-matrix worlds to richer executable traces. It does not change the current V2.2.4 world generator because those worlds already expose the complete frozen intervention candidates and dependency graph.",
+          "novelty_effect": "REMOVE_MINIMAL_CAUSAL_REPAIR_CONTEXT_NOVELTY",
+          "why_no_design_change": "The powered mechanical study tests protected scientific mutation validity after candidate interventions are already enumerated; repair-context acquisition is not the active bottleneck or differentiating variable in that frozen study."
+        },
+        {
+          "donor_title": "From Faulty Memories to Corrected Actions: Dependency-Guided Rollback Repair for Memory-Augmented Agents",
+          "source_id": "arXiv:2608.10502",
+          "source_url": "https://arxiv.org/abs/2608.10502",
+          "disposition": "ADOPT_ALREADY_COVERED",
+          "engulfment_target": "DEPENDENCY_TRUTH_MAINTENANCE",
+          "extracted_structure": "Typed memory-to-action dependency graph, independent-support preservation, unsupported-state deactivation, and selective replay of affected computation.",
+          "orion_use": "Confirms and strengthens the existing dependency/truth-maintenance substrate; no new P1 standalone reopening claim.",
+          "novelty_effect": "REINFORCE_DEPENDENCY_ROLLBACK_PRIOR_ART",
+          "why_no_design_change": "The DARC/R2Act and CausalFlow parents already receive dependency rollback, and ORION's residual is downstream of that substrate."
+        },
+        {
+          "donor_title": "AI scientists produce results without reasoning scientifically",
+          "source_id": "arXiv:2604.18805",
+          "source_url": "https://arxiv.org/abs/2604.18805",
+          "disposition": "COMPOSE_EVALUATION_PRESSURE",
+          "engulfment_target": "BENCHMARK_AND_AUDIT_DISCIPLINE",
+          "extracted_structure": "Outcome success is insufficient evidence of scientific reasoning quality; belief revision, response to refutation, and convergent evidence must be measured directly.",
+          "orion_use": "Treat protected epistemic process checks as first-class evaluation outputs instead of accepting target success alone.",
+          "novelty_effect": "REMOVE_OUTCOME_ONLY_SCIENTIFIC_REASONING_CLAIM",
+          "why_no_design_change": "V2.2.4 already makes target flip insufficient and scores protected sibling/invariant and dependency correctness separately."
+        }
+      ]
+    },
+    {
+      "round_id": "H",
+      "routes": ["protected counterfactual repair", "minimal repair + dependency", "belief revision + counterfactual", "invariant + counterfactual agent repair"],
+      "material_design_change": false,
+      "material_baseline_change": false,
+      "material_residual_change": false,
+      "new_useful_structure": false,
+      "finding": "No primary source found that composes counterfactual/inclusion-minimal repair with P1's exact science-specific epistemic-level necessity, protected sibling/invariant preservation, and bound dependency-impact/reopen obligation. Historical counterfactual belief-revision work remains parent theory rather than an executable equivalent of the frozen P1 mechanism."
+    }
+  ],
+  "fixed_point_statement": "Rounds G and H are two consecutive post-Round-F searches with no material change to the frozen V2.2.4 design, strongest baseline set, or surviving residual. Useful CausalRepair context slicing is engulfed for richer future trace settings without altering the current mechanical confirmatory protocol.",
+  "reopen_triggers": [
+    "new material prior art before submission",
+    "a donor composes causal minimal repair with protected scientific-state level and dependency-impact necessity",
+    "the confirmatory result exposes a new earliest failing causal stage",
+    "P1 expands its generality claim beyond credential-free mechanical worlds"
+  ]
+}

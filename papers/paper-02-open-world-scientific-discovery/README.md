@@ -1,7 +1,7 @@
 # Paper 02 — Open-World Scientific Knowledge Discovery
 
 **Stable ID:** ORION-P2  
-**Status:** STRUCTURED WORKING MANUSCRIPT / LOCAL FALSIFIER V1 PASSED / EXTERNAL RECALL CLAIM `CANNOT_CHECK`
+**Status:** `PEER_REVIEW_READY` on the bounded methods / critical system-design claim. Matched external discovery superiority remains `CANNOT_CHECK` and is not claimed.
 
 ## Scoped claim
 
@@ -19,18 +19,16 @@ A complete-gold local retrieval world plus hostile route/coverage cases exercise
 
 Evidence: `evidence/FALSIFIER_V1.md` and `research/paper-programme-v1/FLAGSHIP_FALSIFIER_RESULTS_V1.md`.
 
-## External evidence still required
+## External evidence boundary
 
-- frozen AutoResearchBench Wide/Deep, SAGE and MetaSyn-compatible evaluations where licensing/access permits;
-- matched BM25/keyword, dense, hybrid and agentic retrieval baselines;
-- frozen provider/search trajectories plus an offline controlled-index companion;
-- route-stop versus task-stop errors measured separately;
-- recall/lost-evidence results only where the gold denominator is legitimate;
-- search-time contamination accounting for public benchmarks;
-- unavailable routes/resource censoring remain `OPEN/CANNOT_CHECK` rather than closure.
+- The 390-task complete-gold controlled mechanism campaign, MetaSyn probe, and bounded AutoResearchBench probes are archived with their exact authority limits.
+- The V2 acquisition programme ended at `P2_V2_ACQUISITION_NOT_PROMOTED`; its valid final development candidate did not earn fresh confirmation.
+- A structured OpenAIRE identity discriminator passed, but the subsequent matched Wide campaign failed its frozen transport gate and remains `P2_WIDE_EXTERNAL_CANNOT_CHECK`; all three Actions artifacts are mirrored before expiry.
+- Official SAGE and matched multi-provider Deep superiority remain future-work reopen triggers.
+- Unavailable routes, invalid transport, and resource censoring remain `OPEN/CANNOT_CHECK`, never evidence of absence or scientific zeros.
 
-Current retrieval/ledger/route-control/research-packet code and the local falsifier establish implementation semantics only; they do not establish that ORION discovers more literature than simpler systems.
+The ready paper claims governance semantics and bounded controlled mechanism evidence. It does not claim that ORION discovers more literature than simpler systems on the open web.
 
 ## Manuscript
 
-`manuscript/main.tex` is now the canonical structured Paper-II working manuscript. Its Results section deliberately remains external-evidence open rather than inventing benchmark outcomes.
+`manuscript/main.tex` is the canonical source. The visually audited 21-page review PDF and checksummed package are under `journal_package/`; its Results section preserves failed and non-promoted campaigns instead of inventing benchmark support.

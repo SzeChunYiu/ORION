@@ -39,7 +39,7 @@ No live arXiv API was used. Self-application search snapshots reuse the programm
 
 | Claim | Issue | Final state | Residual |
 |---|---|---|---|
-| P1 causal epistemic responsibility | #278 | `CANNOT_CHECK` | Who&When Pro / REFLECT / CAR full texts unread and could absorb the licensing residual |
+| P1 protected mutation necessity | #278 / #393 | `NOVELTY_NARROWED` | Who&When Pro, REFLECT, CAR, admission, rollback, minimal-repair, causal-context and certificate donors absorbed; only the bounded science-specific necessity composition remains |
 | P2 censored stopping authority | #279 | `CANNOT_CHECK` | External Wide unexecuted; Super Research unread |
 | P3 obstruction certificates | #280 | `NOVELTY_NARROWED` | Standalone obstruction absorbed (sheaf); typed-coordinate non-merge remains |
 | P4 protected acquisition | #281 | `NOVELTY_NARROWED` | Proof-carrying/defeaters absorbed; acquisition-under-lattice remains untested |
