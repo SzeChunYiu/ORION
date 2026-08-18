@@ -21,6 +21,14 @@ class AlignmentState(str, Enum):
     UNRESOLVED = "UNRESOLVED"
 
 
+P1_UNKNOWN_TO_P3 = {
+    "progress_measure": "progress",
+    "terminal_condition": "termination",
+    "reconstruction_map": "reconstruction",
+    "failure_modes": "failure",
+}
+
+
 @dataclass(frozen=True)
 class MethodStructureProjection:
     projection_id: str
@@ -102,7 +110,8 @@ def build_projection(
     unknown_coordinates: Sequence[str] = (),
 ) -> MethodStructureProjection:
     realization.verify()
-    unknown = tuple(sorted(set(realization.unknown_coordinates) | set(unknown_coordinates)))
+    inherited_unknown = {P1_UNKNOWN_TO_P3.get(name, name) for name in realization.unknown_coordinates}
+    unknown = tuple(sorted(inherited_unknown | set(unknown_coordinates)))
     if not source_span_digests:
         raise ValueError("at least one source span required")
     state = ProjectionState.PARTIAL if unknown else ProjectionState.SUPPORTED
@@ -254,8 +263,6 @@ def align_projections(
     elif unresolved:
         overall = AlignmentState.UNRESOLVED
     else:
-        # P3 only proposes a candidate alignment. ALIGNED means all declared source-local
-        # coordinates agree; it still does not mean P6-equivalence.
         overall = AlignmentState.ALIGNED
     base = {
         "version": "P3.MethodAlignment.v1",
