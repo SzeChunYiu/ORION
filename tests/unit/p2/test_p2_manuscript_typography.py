@@ -128,11 +128,11 @@ def test_cli_returns_nonzero_for_an_unexcused_box(tmp_path):
     assert module.main(["--log", str(missing)]) == 1, "a missing log is not a pass"
 
 
-def test_the_committed_allowance_names_its_owner():
-    """An allowance without an owner and a trigger is how exclusions become permanent."""
+def test_every_committed_allowance_names_its_owner():
+    """Any allowance that exists must name its owner and removal trigger."""
 
     module = _module()
-    assert module.ALLOWED_OVERFULL, "the allowance list documents current known offenders"
+    assert isinstance(module.ALLOWED_OVERFULL, dict)
     for name, reason in module.ALLOWED_OVERFULL.items():
         assert len(reason) > 40, f"{name}: the allowance must say who owns clearing it and when"
 

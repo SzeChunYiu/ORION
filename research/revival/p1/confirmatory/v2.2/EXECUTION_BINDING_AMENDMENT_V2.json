@@ -1,0 +1,36 @@
+{
+  "schema_version": "P1.epistemic-mutation-necessity-execution-binding-amendment.v1",
+  "amendment_sequence": 2,
+  "date": "2026-08-18",
+  "protocol_version": "P1.epistemic-mutation-necessity.v2.2.4",
+  "reason": "Before any arm executed or scientific terminal was observed, review found that the implementation tested the frozen cost requirement against every parent rather than the protocol's maximum strong-parent mean. The statistic now implements the unchanged registered rule exactly. The donor registry also exposes the already-absorbed CausalRepair context surface. Regenerated public/protected world rows remain byte-identical.",
+  "supersedes_execution_receipt": "PRIMARY_EXECUTION_FREEZE_V2.json",
+  "superseded_execution_receipt_sha256": "15c1c9cb7e0a329a3fb648ab3598f2db32ec0a630c161bd9f2ce357b0efbef8c",
+  "new_execution_receipt": "PRIMARY_EXECUTION_FREEZE_V3.json",
+  "new_execution_receipt_sha256": "da982bca3e7e37027b3bb9f14c33d77eeb81752dc5fd2da74f71abf46ea8122e",
+  "committed_world_receipt_sha256": "212f5891af4945f66d31149b2e07f6f7593d40a2cb9d1cbe9e42701060a18d77",
+  "public_world_sha256": "9b77470167a7e22937bc3c498d2277639ea8f02f3e2cbe90e24fe998785bbdf6",
+  "protected_response_matrix_sha256": "31c9d3a39b60da7c0d0c337c461b7179d866957105144d228466f75f20757542",
+  "confirmatory_worlds_changed": false,
+  "protocol_or_margin_changed": false,
+  "statistical_implementation_changed": true,
+  "scientific_terminal_observed_before_correction": false,
+  "arms_executed_before_correction": false,
+  "source_hash_changes": {
+    "src/orion/study/p1_causal/necessity_statistics.py": {
+      "old": "89968274cd7458e0cd91defda10796a8d8e99b65683f6e39663e1eede0059c3c",
+      "new": "e78a729f492564f883f9682084057ff3b98d49594643105796f8f8d76141315b",
+      "effect": "Align cost gate with the unchanged registered maximum-strong-parent rule and expose its exact means."
+    },
+    "src/orion/study/p1_causal/absorbed_mechanics.py": {
+      "old": "6e4a44b87c6dde1da9db74dd8e25b97d841021dfbad2c5e401b8290e9ee7f56b",
+      "new": "2f15e587a7c3d682a67cda98a23fc4870b41dc72251e1efbf04cffac2ca85c46",
+      "effect": "Register CausalRepair dual-slice context as absorbed CAUSAL_DIAGNOSIS substrate; no generated world or scoring change."
+    }
+  },
+  "review_regressions": [
+    "A cheap non-maximal parent can no longer veto the registered maximum-parent cost comparison.",
+    "Every independently recomputed result must include and match the explicit cost_guard payload."
+  ],
+  "claim_boundary": "PRE_OUTCOME_REVIEW_CORRECTION__FROZEN_PROTOCOL_AND_WORLD_ROWS_UNCHANGED__NO_RESULT_USED_TO_CHOOSE_FIX"
+}

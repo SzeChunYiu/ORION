@@ -1,0 +1,59 @@
+{
+  "schema_version": "orion.p2.openaire-identity-probe-freeze.v1",
+  "paper_id": "P2",
+  "date": "2026-08-18",
+  "authority": "DEVELOPMENT_DISCRIMINATOR_NOT_SCIENTIFIC_RESULT",
+  "subject_base_commit": "9010fea545ad83f479b756d61cd9cd8588bcaad7",
+  "benchmark": {
+    "upstream": "CherYou/AutoResearchBench",
+    "revision": "a46c9bfb8968786f73f0a6a5b365b5384cd0f96d",
+    "decrypted_bundle_sha256": "db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6",
+    "candidate_split": "run_autoresearchbench_wide_compat.py prepare",
+    "candidate_schema": ["task_id", "question"],
+    "gold_access": "FORBIDDEN_TO_PROBE"
+  },
+  "selection": {
+    "rule": "first 12 released Wide rows in the scorer-compatible public split",
+    "task_ids": [
+      "arb-wide-0001",
+      "arb-wide-0002",
+      "arb-wide-0003",
+      "arb-wide-0004",
+      "arb-wide-0005",
+      "arb-wide-0006",
+      "arb-wide-0007",
+      "arb-wide-0008",
+      "arb-wide-0009",
+      "arb-wide-0010",
+      "arb-wide-0011",
+      "arb-wide-0012"
+    ],
+    "note": "This is a development identity-availability probe, not the older 399-distinct-question manifest and not a scored subsample."
+  },
+  "provider": {
+    "endpoint": "https://api.openaire.eu/graph/v3/research-products",
+    "type": "publication",
+    "page_size": 20,
+    "requests_per_task": 1,
+    "query_derivation": "top_four_gold_blind_salient_tokens_joined_as_keyword_search",
+    "raw_regex_identity_extraction": "FORBIDDEN"
+  },
+  "identity_rule": {
+    "accepted_container_fields": ["pid", "pids"],
+    "required_scheme_casefold": "arxiv",
+    "normalization": ["strip optional arXiv: prefix", "strip optional /abs/ URL prefix", "strip terminal vN version suffix"],
+    "accepted_id_families": ["modern YYYY.NNNN[N]", "legacy archive/YYMMNNN"],
+    "all_other_identifier_schemes": "REJECT"
+  },
+  "bridge_criterion": {
+    "minimum_http_ok_fraction": 0.8,
+    "minimum_tasks_with_structured_arxiv_pid": 3,
+    "hostile_identity_tests_must_pass": true,
+    "candidate_hidden_fields": 0,
+    "positive_terminal": "SCORER_NATIVE_IDENTITY_BRIDGE_OBSERVED",
+    "negative_terminal": "OPENAIRE_IDENTITY_BRIDGE_NOT_OBSERVED"
+  },
+  "promotion": "FORBIDDEN_FROM_THIS_PROBE",
+  "next_step_if_positive": "Freeze a separate matched Wide lexical-vs-governed OpenAIRE experiment with equal provider and candidate budgets before scoring any output.",
+  "next_step_if_negative": "Reject OpenAIRE-only scorer identity bridging without weakening the official Wide scorer; investigate another structured keyless crosswalk or retain CANNOT_CHECK."
+}

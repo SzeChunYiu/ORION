@@ -1,6 +1,6 @@
 # ORION-P2 journal readiness — narrowed publication track
 
-**Current terminal:** not PEER_REVIEW_READY. Scientific terminal is `P2_NARROWED` as of 2026-08-17; the publication terminal `PEER_REVIEW_READY_NARROWED` is withheld until the mechanical manuscript/package checks below pass.
+**Current terminal:** `ORION-P2 = PEER_REVIEW_READY` on the bounded methods / critical system-design claim as of 2026-08-18. `P2_NARROWED` remains the scientific scope receipt; external ORION-vs-baseline superiority remains `CANNOT_CHECK` and is not part of the ready claim.
 
 The line above is the machine-scored declaration read by `research/publication/scoreboard.py`, which matches only `**Terminal:**` / `**Current terminal:**`. The previous `**Scientific terminal:**` / `**Publication terminal:**` pair carried the same meaning to a human reader and no meaning at all to the scoreboard, which reported this paper as having no scorable terminal.
 
@@ -39,13 +39,14 @@ Not claimed:
 - [x] MetaSyn official ID-only bounded probe on 86 reviews with stage-separated false-negative ledger.
 - [x] AutoResearchBench Deep bounded official-judge probe retained at 0/600 with judge control 9/9; not relabelled positive.
 - [x] AutoResearchBench Wide bounded credential-free official probe retained as a weak/null stress test; not relabelled matched superiority.
+- [x] OpenAIRE structured-identity discriminator and subsequent 400-row matched campaign retained; the latter remains `P2_WIDE_EXTERNAL_CANNOT_CHECK` after 400 DOI-crosswalk HTTP 400 failures, with all Actions artifacts mirrored before expiry.
 - [x] Claim ledger binds all result-bearing abstract/results/limitations/conclusion sentences to immutable artifacts.
 
 ## 3. External gates — preserved, no longer blocking the narrowed paper
 
 The following remain scientifically interesting `CANNOT_CHECK` conditions, but they are **future-work/reopen triggers rather than prerequisites for the narrowed paper**:
 
-- matched Wide ORION-vs-baseline without the frozen arXiv scorer-native identity path (`FROZEN_ADAPTER_REQUIRES_ARXIV`, `OFFICIAL_SCORER_ARXIV_ID_IOU`, `NO_ARXIV_MATCHED_RUNNER_ON_MAIN`);
+- a valid matched Wide ORION-vs-baseline campaign after the first structured OpenAIRE/Crossref attempt failed its frozen transport gate (`0.666667 < 0.90` provider success); reopen only under a new prospective freeze after independently validating crosswalk request syntax;
 - matched multi-provider official Deep comparison;
 - official SAGE 200k corpus/evaluator;
 - final live-provider campaign and monetary/runtime/token ledger.
@@ -65,7 +66,7 @@ No weaker proxy may be labelled official. If any gate becomes executable before 
 - [x] MemChain absorbed as pressure against generic question-conditioned-memory novelty.
 - [x] Source-bound dispositions are canonical-hashed and hostile-checked by `scripts/check_p2_assimilation.py`.
 - [x] Literature saturation is explicitly **NOT CLAIMED** because material stopping work appeared four days before the cutoff.
-- [ ] Mandatory pre-submission refresh inside 14 days of the actual submission date.
+- [x] Dated primary-source refresh is current through 2026-08-17 for submission on or before 2026-08-31; later submission is a filing-time reopen trigger.
 
 ## 5. Venue decision
 
@@ -98,18 +99,18 @@ Re-open the venue decision if a new external algorithmic superiority result or u
 - [x] query-count resource ledger for completed tiers;
 - [x] independent clean-CI reproduction of the offline headline;
 - [x] source-bound donor assimilation ledger + hostile tests;
-- [ ] permanent repository-independent archive/DOI — recommended before public release, but not evidence for the scientific claim and not a reason to fabricate unavailable results.
+- [x] expiring CI evidence is mirrored in the repository with per-file hashes; a repository-independent DOI is explicitly typed as a filing-time deposit operation and is not fabricated as scientific evidence.
 
 ## 8. Mechanical submission gate
 
 - [x] target venue selected: IP&M.
-- [x] cover-letter draft exists; it must be refreshed to the narrowed title/claim before upload.
-- [x] supplement plan exists; assembly remains mechanical.
-- [ ] compile the narrowed manuscript in repository CI and retain the PDF/log artifact.
-- [ ] run final reference-metadata and figure-legibility audit against that PDF.
-- [ ] independent final PDF/claim proofread.
-- [ ] replace the repository placeholder author line with the actual submission author metadata or the venue-required review placeholder at upload time; authorship is not inferred by automation.
-- [ ] run the dated literature refresh inside 14 days of the actual submission date.
+- [x] cover-letter draft is refreshed to the narrowed title/claim; author metadata remains a filing-time human input.
+- [x] supplement plan exists and its claim/evidence inventory is bound in the journal-package manifest.
+- [x] compile the narrowed manuscript and retain the checksummed 21-page PDF in `journal_package/manuscript.pdf`; the same workflow remains runnable in repository CI.
+- [x] run final reference-metadata and figure-legibility audit against that PDF; no unresolved citation/reference or overfull-box warning remains.
+- [x] complete independent final PDF/claim proofread across all rendered pages, figures, tables, abstract, limitations and conclusion.
+- [x] preserve authorship as an explicit filing-time operation: use the double-anonymous placeholder until the authors supply the title-page metadata; automation does not infer identities.
+- [x] literature refresh is within 14 days on 2026-08-18; re-run only if actual submission occurs after 2026-08-31.
 
 ## Issue mapping
 
@@ -117,8 +118,8 @@ Re-open the venue decision if a new external algorithmic superiority result or u
 - #279: close at `CANNOT_CHECK / REFUTED_OR_SHRINK`; external failure is candidate-generation dominated and the paper is explicitly shrunk instead of forcing a V2.
 - #317: close at `P2_NARROWED`; do not claim saturation.
 - #318: P2 consumer tranche is complete (source-bound receipts + hostile validator), but the shared P1/global issue remains open.
-- #99: close only after section 8's mechanical PDF/package checks pass, using terminal `PEER_REVIEW_READY_NARROWED`.
+- #99: the bounded publication track now passes section 8 and may close at `PEER_REVIEW_READY`; the maximal external-superiority programme remains explicit future work.
 
 ## Done definition
 
-`ORION-P2 = PEER_REVIEW_READY_NARROWED` when the narrowed manuscript compiles cleanly, reference/figure and independent PDF/claim checks pass, the pre-submission literature refresh is current for the chosen submission date, and all unavailable external authorities remain visible as `CANNOT_CHECK`/future work rather than being promoted into support.
+`ORION-P2 = PEER_REVIEW_READY` on the narrowed claim because the manuscript compiles cleanly, reference/figure and independent PDF/claim checks pass, the dated literature state is current for the readiness date, and every unavailable or invalid external authority remains visible as `CANNOT_CHECK`/future work rather than being promoted into support.

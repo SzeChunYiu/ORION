@@ -38,13 +38,18 @@ The deterministic five-paper suite passed at branch commit `8a8a7feed588363f8e2c
 
 The working claim does **not** treat autonomous iterative science, multi-agent hypothesis evolution, tree search, structured world models or recursive systems engineering as novel. The scoped candidate is the typed co-evolution of `K/W/M`, responsibility-targeted formulation revision, dependency-directed reopening and recursive mechanic-cell self-audit.
 
-The **local** hidden-representation/search-universe-shift falsifier is now executed and passed, including negative missing-evidence/execution controls. The stronger external comparison against matched static-workflow/tree-search baselines on fresh hidden-shift tasks remains `CANNOT_CHECK`.
+The historical hidden-representation/search-universe-shift falsifier is executed and passed, including negative missing-evidence/execution controls. It remains underpowered for its original broad H1 and is retained as negative history.
+
+The separate v2.2.4 mutation-necessity successor is powered and complete. On a prospectively frozen 2,882-world primary and disjoint replication, full ORION achieves protected hidden-shift success 1.0000 versus 0.4938/0.4833 for each of three strong assimilated parents, with paired advantages 0.5063/0.5167 whose 95% intervals exceed the 0.10 registered margin. ORION has zero unnecessary high-level control reframes, protected-sibling regressions, and forbidden high-level mutations in both runs. Every frozen gate passes. Independent verification recomputes all 40,348 score rows per run with zero score or analysis mismatches. Evidence: `research/revival/p1/confirmatory/v2.2/PRIMARY_REPLICATION_CONCORDANCE.json`, the two result directories, and their SHA-256 manifests.
+
+This establishes only the credential-free mechanical composition of lower-level exclusion, same-task counterfactual effect, protected-invariant preservation, and dependency-impact binding. Attribution, minimal repair, diagnosis-to-recovery admission, dependency rollback, causal-context slicing, and certificate enforcement are credited as donor substrate. Model-general and open-ended scientific superiority remain untested.
 
 ## Empirical claims deliberately not made
 
 - ORION is superior to generic LLM research.
 - ORION is externally novel merely because a nearest-work comparison produced `CANDIDATE_DELTA`.
-- The local five-paper falsifier suite proves external novelty or publication readiness.
+- The local five-paper falsifier suite by itself proves external novelty or publication readiness.
+- The powered P1 mechanical successor proves model-general or open-ended scientific superiority.
 - ORION reliably achieves high literature recall on the open web.
 - The required route family or mechanic-question registry is sufficient for unknown-unknown discovery.
 - Governed Self-ORION improves ORION on fresh development tasks.

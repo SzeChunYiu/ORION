@@ -4,11 +4,11 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
-\PassOptionsToPackage{hyphens}{url}
-\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
 \setlength{\emergencystretch}{4em}
-% Long snake_case identifiers are unbreakable inside \texttt, and every overfull
-% line in this paper traced back to one. \idt lets them break at underscores.
+% Long snake_case identifiers and content hashes need legal breakpoints in the
+% rendered review PDF. xurl extends url/path breaking without changing text.
 \urlstyle{tt}
 \newcommand{\idt}[1]{\path{#1}}
 

@@ -1,13 +1,63 @@
 # ORION-P1 — reproducing the headline results
 
-Scope: how to regenerate the frozen publication tables for **ORION-P1 —
-Recursive Epistemic Reconstruction** (issue #98, steps 6/7/9) and exactly which
-claims cannot be checked without a live provider credential.
+Scope: how to verify the powered P1 v2.2.4 primary and disjoint replication,
+regenerate their publication figure, and retain the historical V1 table path.
 
-**Current state: `CANNOT_CHECK`.** No archived study run exists in this
-repository, so the command below regenerates tables that report `CANNOT_CHECK`
-and contain no numbers. That is the correct output, not a failure — every number
-these tables can emit must come from an archived raw record, and there are none.
+**Current state:** the credential-free mechanical successor is
+`P1_MUTATION_NECESSITY_SUPPORTED` in both the prospectively frozen primary and
+disjoint replication, with independent verification `PASS`. The historical
+66-case V1 provider-oriented claim remains underpowered and is not pooled with
+the successor.
+
+## Powered v2.2.4 successor
+
+Verify every archived byte and the two independent-verification terminals:
+
+```bash
+(cd research/revival/p1/confirmatory/v2.2/primary && sha256sum -c SHA256SUMS)
+(cd research/revival/p1/confirmatory/v2.2/replication && sha256sum -c SHA256SUMS)
+jq -e '.verdict == "PASS" and .score_mismatch_count == 0 and .analysis_mismatch_count == 0' \
+  research/revival/p1/confirmatory/v2.2/primary/INDEPENDENT_VERIFICATION.json
+jq -e '.verdict == "PASS" and .score_mismatch_count == 0 and .analysis_mismatch_count == 0' \
+  research/revival/p1/confirmatory/v2.2/replication/INDEPENDENT_VERIFICATION.json
+jq -e '.required_concordance | all(.[]; . == true)' \
+  research/revival/p1/confirmatory/v2.2/PRIMARY_REPLICATION_CONCORDANCE.json
+```
+
+Regenerate and byte-check the publication figure directly from the two result
+JSON files:
+
+```bash
+MPLCONFIGDIR=/tmp/orion-matplotlib uv run python \
+  papers/paper-01-recursive-epistemic-reconstruction/scripts/make_necessity_figure.py --check
+```
+
+To re-run the independent primary verification from compressed archives, first
+restore the three immutable line-oriented inputs into a temporary directory:
+
+```bash
+work=$(mktemp -d /tmp/orion-p1-primary.XXXXXX)
+gzip -dc research/revival/p1/confirmatory/v2.2/primary/WORLD_PUBLIC.jsonl.gz > "$work/WORLD_PUBLIC.jsonl"
+gzip -dc research/revival/p1/confirmatory/v2.2/primary/PROTECTED_RESPONSE_MATRIX.jsonl.gz > "$work/PROTECTED_RESPONSE_MATRIX.jsonl"
+gzip -dc research/revival/p1/confirmatory/v2.2/primary/RAW_RESULTS.jsonl.gz > "$work/RAW_RESULTS.jsonl"
+uv run python research/revival/p1/verify_mutation_necessity_independent.py \
+  --world-public "$work/WORLD_PUBLIC.jsonl" \
+  --protected "$work/PROTECTED_RESPONSE_MATRIX.jsonl" \
+  --raw-results "$work/RAW_RESULTS.jsonl" \
+  --execution-freeze research/revival/p1/confirmatory/v2.2/PRIMARY_EXECUTION_FREEZE_V3.json \
+  --result research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RESULT.json \
+  --out "$work/INDEPENDENT_VERIFICATION.json"
+cmp "$work/INDEPENDENT_VERIFICATION.json" \
+  research/revival/p1/confirmatory/v2.2/primary/INDEPENDENT_VERIFICATION.json
+```
+
+The replication uses the analogous files under `replication/` and its
+`REPLICATION_EXECUTION_FREEZE.json`. Each run contains 2,882 worlds and 40,348
+arm/world result rows. On the current CPU environment the deterministic campaign
+and independent verification each take roughly one minute; no network or model
+credential is used.
+
+## Historical V1 command
 
 ## Command
 
@@ -142,9 +192,11 @@ call, needs no credential, and is deterministic given the archive and the
 bootstrap seed — regenerating from the same archive reproduces the same numbers
 byte for byte apart from the `generated_utc` provenance stamp.
 
-## What is CANNOT_CHECK without a live provider credential
+## What remains CANNOT_CHECK for historical V1 without a live provider
 
-Everything that requires actually running the systems under test:
+The following statements apply only to the original provider-oriented V1
+archive and are preserved as negative history. They do not describe the
+credential-free v2.2.4 successor above:
 
 - **H1 (root-success superiority) and H2 (unnecessary-reframe non-inferiority).**
   Both need traces from full ORION *and* from the five matched baselines under a

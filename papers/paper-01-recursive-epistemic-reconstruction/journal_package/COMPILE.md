@@ -1,16 +1,19 @@
-# ORION-P1 compile instructions
-
-This is a working-draft compile path, not a journal-template conversion.
+# ORION-P1 compile and visual-verification instructions
 
 From `papers/paper-01-recursive-epistemic-reconstruction/manuscript/`:
 
 ```bash
-pdflatex main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
 bibtex main
-pdflatex main.tex
-pdflatex main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-Requirements: a TeX distribution with `amsmath`, `graphicx`, `booktabs`, `longtable`, `hyperref`.
+Requirements: a TeX distribution with `amsmath`, `graphicx`, `booktabs`,
+`longtable`, `hyperref`, and `underscore`.
 
-`main.pdf` is gitignored. Do not copy a compiled PDF into `journal_package/`. The independent PDF proofread remains OPEN until a journal-formatted PDF exists in a permanent archive.
+Before replacing `journal_package/manuscript.pdf`, require all citations and
+cross-references to resolve, render every page with Poppler, and inspect the
+title/abstract, both figures, all result tables, the multi-page nearest-work
+matrix, section transitions, bibliography, margins, and page numbering. Then
+refresh `journal_package/SHA256SUMS` and run its check.

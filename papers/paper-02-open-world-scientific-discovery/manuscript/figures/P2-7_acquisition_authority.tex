@@ -9,10 +9,10 @@
 
   \node[draw,very thick,rounded corners,align=center,text width=5.2cm] (authority) at (0,-1.7) {ORION closure authority\\route stop $\neq$ task closure\\unresolved obligations cannot be erased};
 
-  \node[draw,rounded corners,align=center,text width=2.3cm] (continue) at (-3.8,-3.5) {CONTINUE /\\REFORMULATE};
-  \node[draw,rounded corners,align=center,text width=2.3cm] (open) at (-1.25,-3.5) {OPEN /\\CANNOT CHECK};
-  \node[draw,rounded corners,align=center,text width=2.3cm] (rstop) at (1.25,-3.5) {ROUTE\\STOP};
-  \node[draw,rounded corners,align=center,text width=2.3cm] (close) at (3.8,-3.5) {TASK\\CLOSE};
+  \node[draw,rounded corners,align=center,text width=2.3cm,font=\tiny] (continue) at (-3.8,-3.5) {CONTINUE /\\REFORMULATE};
+  \node[draw,rounded corners,align=center,text width=2.3cm,font=\scriptsize] (open) at (-1.25,-3.5) {OPEN /\\CANNOT CHECK};
+  \node[draw,rounded corners,align=center,text width=2.3cm,font=\scriptsize] (rstop) at (1.25,-3.5) {ROUTE\\STOP};
+  \node[draw,rounded corners,align=center,text width=2.3cm,font=\scriptsize] (close) at (3.8,-3.5) {TASK\\CLOSE};
 
   \draw[->] (lex) -- (ledger);
   \draw[->] (reason) -- (ledger);
@@ -27,5 +27,5 @@
   \draw[->] (authority) -- (rstop);
   \draw[->] (authority) -- (close);
 
-  \node[align=center,text width=12.0cm] at (0,3.35) {\textbf{Donor-composable acquisition layer: stronger mechanisms are welcome; their local signals do not automatically gain scientific-closure authority.}};
+  \node[align=center,text width=11.0cm,font=\small] at (0,3.50) {\textbf{Donor-composable acquisition: stronger acquisition mechanisms may improve evidence, but local signals do not confer scientific-closure authority.}};
 \end{tikzpicture}

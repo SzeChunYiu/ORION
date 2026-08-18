@@ -1,9 +1,17 @@
 # Mirrored CI evidence
 
 The external-probe evidence for this paper was produced by GitHub Actions, whose
-artifacts **expire on 2026-09-15**. After that date the upstream copies are gone
-and only what is here can be checked, so the archives are mirrored into the
-repository rather than referenced.
+artifacts expire after their short retention windows (the older probe set on
+2026-09-15 and the matched OpenAIRE/Crossref set on 2026-09-17). After those
+dates the upstream copies are gone and only what is here can be checked, so the
+archives are mirrored into the repository rather than merely referenced.
+
+The three `p2-wide-openaire-matched-*` archives retain the full candidate
+capture, the failed first evaluator handoff, and the successful evaluator-only
+repair. Their terminal is `P2_WIDE_EXTERNAL_CANNOT_CHECK`: every structured DOI
+crosswalk request returned HTTP 400, so transport validity failed and all three
+candidate projections collapsed to the same bytes. These archives preserve a
+failed campaign; they do not support external superiority.
 
 Verify with:
 

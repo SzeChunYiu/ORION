@@ -15,6 +15,8 @@ import re
 from pathlib import Path
 from typing import Any, Iterable
 
+from orion.publication.peer_review_ready import evaluate_paper
+
 SCHEMA_VERSION = "orion.publication-status.v1"
 STATUSES = ("PEER_REVIEW_READY", "BLOCKED", "CANNOT_CHECK")
 PAPER_IDS = ("P1", "P2", "P3", "P4", "P5")
@@ -347,6 +349,17 @@ def derive_paper(spec: dict[str, Any], repo: Path) -> dict[str, Any]:
             record["status"] = "CANNOT_CHECK"
             notes.append("A PEER_REVIEW_READY declaration must be backed by an attestation or completed-terminal line.")
             return record
+        mechanical_gate = evaluate_paper(paper_root)
+        if not mechanical_gate.ok:
+            missing.extend(
+                f"{spec['root']}: {blocker}" for blocker in mechanical_gate.blockers
+            )
+            record["status"] = "CANNOT_CHECK"
+            notes.append(
+                "JOURNAL_READINESS declares PEER_REVIEW_READY but the fail-closed "
+                "paper-specific evidence gate did not corroborate it."
+            )
+            return record
         if not record["readme_records_peer_review_ready"]:
             warnings.append(
                 f"{record['readme']}: canonical README does not yet record PEER_REVIEW_READY "
@@ -354,7 +367,8 @@ def derive_paper(spec: dict[str, Any], repo: Path) -> dict[str, Any]:
             )
         record["status"] = "PEER_REVIEW_READY"
         notes.append(
-            "JOURNAL_READINESS declares PEER_REVIEW_READY and protocol/claim-ledger artifacts exist."
+            "JOURNAL_READINESS declares PEER_REVIEW_READY and the paper-specific "
+            "artifact/evidence gate corroborates it."
         )
         return record
 

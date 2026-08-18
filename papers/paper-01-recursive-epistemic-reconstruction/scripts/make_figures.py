@@ -191,8 +191,11 @@ def figure_p1_2_main_outcome(records: list[dict[str, Any]], plt) -> Path:
             if total > 0:
                 interval = wilson_interval(successes, total, confidence=PROTOCOL_CONFIDENCE)
                 rates.append(interval.point)
-                yerr_low.append(interval.point - interval.low)
-                yerr_high.append(interval.high - interval.point)
+                # Round-off can place the Wilson point a few ulps outside an
+                # endpoint at exact 0/1 cells. Matplotlib rejects a negative
+                # error magnitude even when it is only floating-point noise.
+                yerr_low.append(max(0.0, interval.point - interval.low))
+                yerr_high.append(max(0.0, interval.high - interval.point))
             else:
                 rates.append(0.0)
                 yerr_low.append(0.0)
@@ -468,6 +471,8 @@ def compute_manifest(paths: dict[str, Path], cannot_check_count: int) -> dict[st
     """Compute SHA256 hashes of all generated PDFs for reproducibility."""
     manifest: dict[str, Any] = {
         "generated_by": "scripts/make_figures.py",
+        "generator_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "archive_sha256": hashlib.sha256(ARCHIVE.read_bytes()).hexdigest(),
         "cannot_check_records_excluded": cannot_check_count,
         "exclusion_reason": (
             f"{cannot_check_count} CANNOT_CHECK records excluded (provider API failures)"
@@ -491,12 +496,45 @@ def compute_manifest(paths: dict[str, Path], cannot_check_count: int) -> dict[st
     return manifest
 
 
+def check_committed_figures(cannot_check_count: int) -> list[str]:
+    """Return fail-closed staleness errors without rewriting committed files."""
+
+    if not MANIFEST_PATH.is_file():
+        return [f"manifest absent: {MANIFEST_PATH}"]
+    try:
+        manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return [f"manifest is invalid JSON: {exc}"]
+
+    errors: list[str] = []
+    expected_inputs = {
+        "generator_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "archive_sha256": hashlib.sha256(ARCHIVE.read_bytes()).hexdigest(),
+    }
+    for key, expected in expected_inputs.items():
+        if manifest.get(key) != expected:
+            errors.append(f"{key} is stale")
+    if manifest.get("cannot_check_records_excluded") != cannot_check_count:
+        errors.append("CANNOT_CHECK exclusion count is stale")
+
+    entries = manifest.get("figures") or {}
+    for name, path in FIGURES.items():
+        entry = entries.get(name) or {}
+        if not path.is_file():
+            errors.append(f"figure absent: {name}")
+            continue
+        actual = hashlib.sha256(path.read_bytes()).hexdigest()
+        if entry.get("sha256") != actual:
+            errors.append(f"figure hash mismatch: {name}")
+        if entry.get("size_bytes") != path.stat().st_size:
+            errors.append(f"figure size mismatch: {name}")
+    return errors
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="fail if committed PDFs are stale")
     args = parser.parse_args(argv)
-
-    plt = _import_matplotlib()
 
     # Load data
     records = load_records()
@@ -506,6 +544,17 @@ def main(argv: list[str] | None = None) -> int:
     filtered, cannot_check_count = filter_cannot_check(records)
     print(f"Filtered out {cannot_check_count} CANNOT_CHECK records")
     print(f"Using {len(filtered)} records for plotting")
+
+    if args.check:
+        errors = check_committed_figures(cannot_check_count)
+        if errors:
+            for error in errors:
+                print(f"FIGURE_CHECK: ERROR: {error}", file=sys.stderr)
+            return 1
+        print("FIGURE_CHECK: OK")
+        return 0
+
+    plt = _import_matplotlib()
 
     # Generate figures
     generated = {}
@@ -528,15 +577,6 @@ def main(argv: list[str] | None = None) -> int:
     manifest = compute_manifest(generated, cannot_check_count)
     MANIFEST_PATH.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     print(f"Wrote {MANIFEST_PATH}")
-
-    if args.check:
-        # In check mode, verify manifest matches committed
-        if not MANIFEST_PATH.exists():
-            print("ERROR: Manifest not found after generation")
-            return 1
-        # Manifest check is just ensuring it exists and is valid
-        print("FIGURE_CHECK: OK")
-        return 0
 
     return 0
 

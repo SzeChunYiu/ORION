@@ -1,0 +1,197 @@
+{
+  "schema_version": "orion.publication-protocol.v1",
+  "paper_id": "P1",
+  "protocol_id": "P1.epistemic-mutation-necessity.v2.2",
+  "protocol_version": "P1.epistemic-mutation-necessity.v2.2.0",
+  "protocol_status": "DESIGN_FROZEN",
+  "outcome_accessed": false,
+  "issues": [98, 278, 316],
+  "parents": [283, 287, 318],
+  "historical_evidence_mutated": false,
+  "scientific_question": "Under hidden causal responsibility and a fixed counterfactual intervention budget, does hierarchical epistemic-mutation necessity testing improve protected root-task recovery on genuine formulation/search-universe shifts while avoiding unnecessary high-level reframes on evidence/execution controls, relative to strong outcome-flip, active-diagnosis and diagnosis-to-repair parents?",
+  "candidate_mechanism": {
+    "name": "EpistemicMutationNecessityCertificate.v1",
+    "high_level_actions": ["REWRITE_FORMULATION", "EXPAND_SEARCH_UNIVERSE"],
+    "certificate_conjunction": [
+      "all registered lower-level EVIDENCE/EXECUTION repair alternatives within the frozen candidate set fail to restore the motivating target or are mechanically unavailable",
+      "the proposed high-level mutation restores the motivating target under a frozen intervention",
+      "all registered protected sibling/invariant checks remain valid under the mutation",
+      "the observed dependency-impact set matches the mutation-bound invalidation/reopen set"
+    ],
+    "non_escalation": "A target flip alone never proves necessity. A high-level mutation without the full conjunction is denied or remains CANNOT_CHECK."
+  },
+  "primary_hypotheses": [
+    {
+      "id": "P1.NC-H1",
+      "text": "On the fresh hidden-shift subset, full ORION necessity-guided reconstruction improves protected root-task success by at least 10 percentage points over the strongest frozen credential-free active diagnosis/recovery parent, with 95% paired interval lower bound > 0.",
+      "metric": "protected_root_task_success",
+      "subset": "hidden_shift"
+    },
+    {
+      "id": "P1.NC-H2",
+      "text": "On the fresh evidence/execution negative-control subset, full ORION reduces unnecessary high-level reframe rate by at least 3 percentage points versus the strongest frozen recovery parent, with 95% paired interval upper bound for ORION-minus-parent < 0.",
+      "metric": "unnecessary_high_level_reframe_rate",
+      "subset": "negative_control"
+    }
+  ],
+  "secondary_hypotheses": [
+    "necessity certification reduces protected-sibling regression relative to immediate outcome-flip and cost-greedy repair",
+    "dependency-impact binding improves reopen precision/recall over local repair and full reset",
+    "the full mechanism remains non-inferior in total protected success and cost-normalized success under the frozen intervention budget",
+    "no protected/invariant violation occurs in the full arm"
+  ],
+  "fresh_world_plan": {
+    "generator_id": "P1.mutation-necessity-worlds.v1",
+    "confirmatory_seed": 202608172211,
+    "hidden_shift_n": 480,
+    "negative_control_n": 2400,
+    "total_n": 2880,
+    "hidden_shift_families": [
+      "hidden_parent_domain_search_universe",
+      "hidden_representation_formulation",
+      "hidden_decomposition_formulation",
+      "hidden_measurement_formulation"
+    ],
+    "negative_control_families": ["evidence_only_control", "execution_only_control"],
+    "power_basis": {
+      "H1_registered_required_n": 385,
+      "H1_frozen_n": 480,
+      "H2_registered_required_n": 2401,
+      "H2_frozen_n": 2400,
+      "H2_note": "The historical planning memo rounded the H2 requirement to approximately 2401. This protocol freezes the complete 2400-control factor grid and does not claim a smaller-than-3pp effect if interval precision is insufficient."
+    },
+    "candidate_visible": [
+      "opaque task id",
+      "neutral symptom surface",
+      "public repair candidates with action level and declared cost",
+      "public intervention menu with neutral ids/descriptions and cost",
+      "public dependency graph without hidden response outcomes",
+      "intervention outcomes only after the arm spends the corresponding budget"
+    ],
+    "host_only": [
+      "true responsibility",
+      "family identity",
+      "counterfactual response matrix for every repair/intervention",
+      "protected sibling outcomes",
+      "gold necessity state",
+      "gold dependency-impact set",
+      "pair/template identity"
+    ],
+    "pre_arm_freeze": "Materialize WORLD_PUBLIC.jsonl + PROTECTED_RESPONSE_MATRIX.jsonl + WORLD_FREEZE.json with count/hashes/leak audit before any arm output."
+  },
+  "intervention_budget": {
+    "units_per_task": 3,
+    "unit_definition": "one frozen candidate repair or diagnostic intervention execution against the hidden world",
+    "same_budget_all_runnable_arms": true,
+    "unused_budget_not_transferable_between_tasks": true,
+    "oracle_ceiling_non_runnable": true
+  },
+  "matched_arms": [
+    {"id":"static_no_reframe","description":"Never performs high-level mutation; can only accept already-solved/public evidence state."},
+    {"id":"immediate_outcome_flip_repair","description":"Tests the highest-ranked diagnosis-matching repair and accepts the first motivating-target flip; no necessity or protected sibling requirement."},
+    {"id":"cost_greedy_repair","description":"Within budget, tests candidates in ascending declared cost and accepts the first motivating-target success."},
+    {"id":"reflect_like_replay","description":"Uses a one-shot responsibility hypothesis, runs one diagnosis-specific controlled replay, and updates/repairs from that result."},
+    {"id":"car_like_causal_replay","description":"Uses the frozen budget for causal replay of diagnosis-linked candidates and selects the largest motivating-target intervention effect."},
+    {"id":"active_voi_repair_parent","description":"Selects the next intervention by expected reduction in responsibility uncertainty under the public probe model, then applies the class-conditioned minimal recovery action."},
+    {"id":"darc_r2act_dependency_parent","description":"Diagnosis-conditioned admissible action selection plus recursive dependency rollback/preservation under the same budget; no mutation-necessity certificate."},
+    {"id":"orion_mutation_necessity","description":"Hierarchical lower-level elimination + high-level target effect + protected sibling/invariant preservation + dependency-impact binding."},
+    {"id":"oracle_minimal_valid_ceiling","description":"Analysis-only non-runnable ceiling with protected response-matrix access; never a candidate arm."}
+  ],
+  "primary_comparator": "darc_r2act_dependency_parent",
+  "direct_ablations": [
+    "orion_without_lower_level_exclusion",
+    "orion_without_protected_sibling_check",
+    "orion_without_dependency_impact_binding",
+    "orion_without_KWM_level_ordering",
+    "orion_with_unlimited_intervention_budget"
+  ],
+  "outcome_definitions": {
+    "protected_root_task_success": "motivating target is restored when a repair is warranted; no registered protected sibling/invariant is broken; no forbidden high-level mutation occurs; all mutation-invalidated dependencies are reopened and unrelated verified closures remain intact; correct no-change/low-level repair on controls counts as success",
+    "unnecessary_high_level_reframe": "FORMULATION or SEARCH_UNIVERSE mutation occurs in a world where at least one registered lower-level EVIDENCE/EXECUTION repair restores the motivating target and protected siblings",
+    "protected_sibling_regression": "any registered sibling/invariant flips from valid to invalid after the selected repair",
+    "dependency_error": "stale invalidated closure survives or unrelated verified closure is reopened/deleted"
+  },
+  "statistics": {
+    "paired_unit": "task",
+    "primary_interval": "paired percentile bootstrap 10000 resamples",
+    "bootstrap_seed": 202608172233,
+    "binary_rate_interval": "Wilson 95%",
+    "paired_binary_secondary": "exact McNemar",
+    "H1_superiority_margin": 0.10,
+    "H2_reframe_reduction_margin": 0.03,
+    "total_protected_success_noninferiority_margin": 0.02,
+    "cost_noninferiority_margin_units": 0.25,
+    "multiplicity": "H1 and H2 are co-primary; Holm correction across their paired significance checks; secondary/ablation contrasts Holm-corrected separately",
+    "repeat_policy": "deterministic arms execute once per frozen world; stochastic/model extensions require a separate protocol"
+  },
+  "support_rule": {
+    "all_required": [
+      "H1 hidden-shift protected-root-success difference ORION-parent >= 0.10",
+      "H1 paired 95% interval lower bound > 0",
+      "H2 control unnecessary-reframe difference ORION-parent <= -0.03",
+      "H2 paired 95% interval upper bound < 0",
+      "whole-grid protected-root-success ORION-parent paired interval lower bound >= -0.02",
+      "full ORION protected-sibling regression rate = 0",
+      "full ORION forbidden high-level mutation count = 0",
+      "full ORION mean intervention cost <= parent mean + 0.25 units",
+      "no holdout/evaluator/source identity mismatch"
+    ],
+    "otherwise": "NOT_SUPPORTED / PARTIALLY_SUPPORTED / REFUTED using the frozen gate vector; no margin/exclusion changes after outcome access"
+  },
+  "integrity_controls": [
+    "candidate cannot read protected response matrix or family/cause/template ids",
+    "intervention menu order is randomized from the frozen seed and carries no gold ranking",
+    "declared repair cost is independent of gold causal level",
+    "all runnable arms receive identical public worlds and intervention budgets",
+    "oracle ceiling is structurally inaccessible to candidate registry",
+    "planted response-matrix permutation changes scorer output",
+    "planted family/id leak is rejected before arm execution",
+    "block-all fails hidden-shift positive controls",
+    "always-reframe fails evidence/execution controls",
+    "target-flip-only policy fails protected sibling traps",
+    "full-reset policy fails unrelated-closure preservation controls"
+  ],
+  "publication_outputs": {
+    "plots": [
+      "P1NC-1 protected root success by family/system with 95% intervals",
+      "P1NC-2 hidden-shift success vs unnecessary-control-reframe frontier",
+      "P1NC-3 protected-sibling regression vs intervention cost",
+      "P1NC-4 dependency reopen precision/recall by depth"
+    ],
+    "tables": [
+      "P1NC-T1 matched systems and primary effects",
+      "P1NC-T2 necessity-certificate ablations",
+      "P1NC-T3 failure taxonomy and representative blinded worlds"
+    ]
+  },
+  "claim_boundary": {
+    "if_supported": "Credential-free mechanical evidence for a science-specific counterfactual necessity certificate over the frozen hidden-shift/control world family. Does not establish open-ended scientific-agent or model-general superiority.",
+    "forbidden": [
+      "generic causal debugging is novel",
+      "generic active diagnosis is novel",
+      "generic diagnosis-to-action recovery is novel",
+      "generic certificate-bound mutation authority is novel",
+      "all scientific reframing is solved",
+      "human/external domain validation completed"
+    ]
+  },
+  "positive_verification": [
+    "independent scorer from response-matrix specification",
+    "fresh disjoint post-method-freeze seed",
+    "second CI/session reproduction of raw rows and headline statistics",
+    "metadata/template/repair-order leakage attacks",
+    "#283 ScientificResultVerification receipt",
+    "#287 post-evidence novelty certificate",
+    "final nearest-work closure within 14 days of submission"
+  ],
+  "execution_bindings": {
+    "subject_revision": "UNBOUND",
+    "generator_sha256": "UNBOUND",
+    "public_world_sha256": "UNBOUND",
+    "protected_response_matrix_sha256": "UNBOUND",
+    "arm_registry_sha256": "UNBOUND",
+    "evaluator_sha256": "UNBOUND",
+    "statistics_sha256": "UNBOUND",
+    "outcome_archive_sha256": "UNBOUND"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "orion.p2.openaire-identity-probe-receipt.v1",
+  "paper_id": "P2",
+  "date": "2026-08-18",
+  "authority": "SCORER_NATIVE_IDENTITY_BRIDGE_OBSERVED",
+  "promotion": "FORBIDDEN_FROM_THIS_PROBE",
+  "subject": {
+    "pr": 396,
+    "branch_head": "df5127ddc869151cf012c4791f2bb88cddcc7dff",
+    "pull_request_merge_ref": "4927aadc12344c223afd76b66e412a4fbe940951"
+  },
+  "workflow": {
+    "run_id": 32122381210,
+    "host_split_job": 95665431623,
+    "identity_probe_job": 95665511639,
+    "artifact_id": 9319046483,
+    "artifact_sha256": "0ac8c7f6d75c7c0c0ecae2fab35b6366c0575eba9086cd87fd2d8271c7e4f190"
+  },
+  "bindings": {
+    "freeze_sha256": "06458b5b2fe8849aea7e4ad20f673d0cb5f2373609c0bb0b1fd8a9840057e361",
+    "public_split_sha256": "af795b78a53a805e972d6574e441bfe9e80be4077cf6c95e73d9b2a0b43f43ae",
+    "trace_sha256": "f4b0ddffb27240d6b86fe884426a9389aced45060a8fc3a4cc443b5681a57484",
+    "benchmark_revision": "CherYou/AutoResearchBench@a46c9bfb8968786f73f0a6a5b365b5384cd0f96d",
+    "decrypted_bundle_sha256": "db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6"
+  },
+  "frozen_criterion": {
+    "minimum_http_ok_fraction": 0.8,
+    "minimum_tasks_with_structured_arxiv_pid": 3,
+    "raw_regex_identity_extraction": false,
+    "accepted_scheme": "arxiv"
+  },
+  "outcome": {
+    "selected_tasks": 12,
+    "http_ok": 12,
+    "http_ok_fraction": 1.0,
+    "tasks_with_structured_arxiv_pid": 3,
+    "unique_ids_total_across_tasks": 18,
+    "terminal": "SCORER_NATIVE_IDENTITY_BRIDGE_OBSERVED"
+  },
+  "positive_task_receipts": [
+    {
+      "task_id": "arb-wide-0004",
+      "query": "transformer-based understanding empirically computational",
+      "response_sha256": "3158b4823f38dc7f1945d6ac0b77c3f140f5451a5f190c8f5cbe4dcee1022092",
+      "arxiv_scheme_objects": 12,
+      "malformed_arxiv_scheme_objects": 0,
+      "ids": ["2402.14200", "1908.11775", "2203.03691", "2406.14036", "2506.14551", "2110.14746", "1909.10351", "2411.16618", "2209.05534", "2605.31558", "2209.07584", "2403.15388"]
+    },
+    {
+      "task_id": "arb-wide-0005",
+      "query": "change-detection deep-learning multi-temporal photogrammetry",
+      "response_sha256": "c54a422cf6092dd106b2cfa8cc311920c6b686b7b761d0a0571874a75bed9ef3",
+      "arxiv_scheme_objects": 1,
+      "malformed_arxiv_scheme_objects": 0,
+      "ids": ["2204.12535"]
+    },
+    {
+      "task_id": "arb-wide-0009",
+      "query": "transformer-based representation generalization multimodal",
+      "response_sha256": "e1f0ea60a7d62de012181aa624a9e65c4d846940cca35b249c83921ea0fe6b10",
+      "arxiv_scheme_objects": 5,
+      "malformed_arxiv_scheme_objects": 0,
+      "ids": ["2512.02474", "2511.10774", "2605.31580", "2511.17477", "2605.16104"]
+    }
+  ],
+  "independent_archive_check": {
+    "performed": true,
+    "method": "Downloaded Actions artifact and inspected archived raw OpenAIRE JSON responses. Every admitted id above occurs in a direct PID object whose scheme is case-insensitively arXiv; no title, DOI, ISSN or original-id regex was used.",
+    "gold_inspected": false,
+    "scientific_relevance_scored": false
+  },
+  "next_authorized_step": "Freeze a separate matched Wide experiment using structured OpenAIRE arXiv PID extraction with equal provider/candidate budgets before any official Wide outcome is inspected."
+}

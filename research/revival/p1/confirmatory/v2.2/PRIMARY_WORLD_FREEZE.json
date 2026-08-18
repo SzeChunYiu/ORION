@@ -1,0 +1,78 @@
+{
+  "arms_executed": false,
+  "by_family": {
+    "evidence_only_control": 1201,
+    "execution_only_control": 1201,
+    "hidden_decomposition_formulation": 120,
+    "hidden_measurement_formulation": 120,
+    "hidden_parent_domain_search_universe": 120,
+    "hidden_representation_formulation": 120
+  },
+  "candidate_view_leak_count": 0,
+  "claim_boundary": "WORLD_AND_RESPONSE_IDENTITY_ONLY__NO_ARM_OUTPUT__NO_SCIENTIFIC_RESULT",
+  "confirmatory_seed": 202608172211,
+  "hidden_shift_n": 480,
+  "n": 2882,
+  "negative_control_n": 2402,
+  "outcome_accessed": false,
+  "protected_response_matrix_sha256": "31c9d3a39b60da7c0d0c337c461b7179d866957105144d228466f75f20757542",
+  "protocol_chain": {
+    "ancestor_pins_validated": true,
+    "chain_sha256": "cf756cb932d0c63c60feaac5883c9717dbf1c03f350d329098b33652826f0600",
+    "effective_protocol_version": "P1.epistemic-mutation-necessity.v2.2.4",
+    "kind": "base_plus_amendments",
+    "nodes": [
+      {
+        "git_blob_sha": "7ba57a8b4df185804c9f8bc821f90a17e84e5b50",
+        "path": "research/revival/p1/protocol/P1.epistemic-mutation-necessity.v2.2.json",
+        "protocol_version": "P1.epistemic-mutation-necessity.v2.2.0",
+        "schema_version": "orion.publication-protocol.v1",
+        "sha256": "a5da6660689a31326eba5821e41f7f44e4a9b16046cfaaf2d7c21ad35e945706"
+      },
+      {
+        "git_blob_sha": "054d6ef887d7713f44021bd907fc9846849b48bb",
+        "path": "research/revival/p1/protocol/P1.epistemic-mutation-necessity.v2.2.1.json",
+        "protocol_version": "P1.epistemic-mutation-necessity.v2.2.1",
+        "schema_version": "orion.publication-protocol-amendment.v1",
+        "sha256": "d01f935e19a0d6efd48ff7941379b5c93744de3c818cb65210c7dc9d3006efdf"
+      },
+      {
+        "git_blob_sha": "0f8c130c1172ccc7754f78594cdc3adc288c7c5b",
+        "path": "research/revival/p1/protocol/P1.epistemic-mutation-necessity.v2.2.2.json",
+        "protocol_version": "P1.epistemic-mutation-necessity.v2.2.2",
+        "schema_version": "orion.publication-protocol-amendment.v1",
+        "sha256": "88ad578fe343625fe5b879bc7b32f0d3fc81ad47f4aa05c5fa61cee3c573a57c"
+      },
+      {
+        "git_blob_sha": "04bf3269fceb7f86738aed4a7c47491ef83ea32b",
+        "path": "research/revival/p1/protocol/P1.epistemic-mutation-necessity.v2.2.3.json",
+        "protocol_version": "P1.epistemic-mutation-necessity.v2.2.3",
+        "schema_version": "orion.publication-protocol-amendment.v1",
+        "sha256": "c6c2370993d508c81291671953f0921f45e8ecaa5d76b40d3fcb7f626b4a754a"
+      },
+      {
+        "git_blob_sha": "93f29a930ae953bd07588858d425b1305793ee5d",
+        "path": "research/revival/p1/protocol/P1.epistemic-mutation-necessity.v2.2.4.json",
+        "protocol_version": "P1.epistemic-mutation-necessity.v2.2.4",
+        "schema_version": "orion.publication-protocol-amendment.v1",
+        "sha256": "abe9e19a5ee40a6fb2ec12ac518dc6c67f74622dcc009da3fdd61733a6c7cfdb"
+      }
+    ]
+  },
+  "protocol_id": "P1.epistemic-mutation-necessity.v2.2",
+  "protocol_version": "P1.epistemic-mutation-necessity.v2.2.4",
+  "public_sha256": "9b77470167a7e22937bc3c498d2277639ea8f02f3e2cbe90e24fe998785bbdf6",
+  "replication_seed": 202608172212,
+  "schema_version": "P1.epistemic-mutation-necessity-world-freeze.v1",
+  "source_sha256": {
+    "src/orion/study/p1_causal/absorbed_mechanics.py": "6e4a44b87c6dde1da9db74dd8e25b97d841021dfbad2c5e401b8290e9ee7f56b",
+    "src/orion/study/p1_causal/necessity_cases.py": "75ca726a6f16564a9f1c43570981984b6301a7f6b41fdde78be41cfd15469c88",
+    "src/orion/study/p1_causal/necessity_cases_v2.py": "5ee35f0686971dfd64eaaaba5e4773b377665c8b96d98b5115b393b0e8ca3018",
+    "src/orion/study/p1_causal/necessity_engine.py": "db5d9fbeecd957fd85b62a6d04a3f04e97bde04f5921db05f12d660b98642969",
+    "src/orion/study/p1_causal/necessity_policies.py": "5ec6bb802b2914133bcdb4a6876a20e6eab0b1f21cacc722a61a6ce2beb119be",
+    "src/orion/study/p1_causal/necessity_policies_v3.py": "2f8bb68e84e70fb3fb6b1b4698347a9f5fa7af45ede302326efc22d5f2d85612",
+    "src/orion/study/p1_causal/necessity_scoring.py": "848370224e2ab433ba9a754f0f2cfebb6328087c4bf347185323ad3d61ff9cd3",
+    "src/orion/study/p1_causal/necessity_statistics.py": "89968274cd7458e0cd91defda10796a8d8e99b65683f6e39663e1eede0059c3c"
+  },
+  "subject_git_sha": "f49124f07aa8cf7486610cb009e05956a8eb1c80"
+}

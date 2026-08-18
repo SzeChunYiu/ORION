@@ -73,8 +73,9 @@ Agentic single route & 0.333333 & 1.00 & 0.00 & 0.00 & 1.00 \\
 \caption{Controlled-index descriptive comparison.  Rates are over \OfflineTaskCount{} tasks;
 \texttt{FAIL} on ORION's row is honest budget exhaustion, not premature
 closure.  The frozen plan's underpowered label applies to the primary offline
-comparison, so no superiority interval or decision is reported here.  A final
-matched external ORION-vs-baseline comparison remains unexecuted.}
+comparison, so no superiority interval or decision is reported here.  A
+prospective external Wide campaign was executed but failed its frozen transport
+validity gate; it is retained separately as \texttt{CANNOT\_CHECK}.}
 \label{tab:p2-offline-main}
 \end{table}
 
@@ -234,6 +235,27 @@ but its two OpenAlex-backed route families require a funded
 \texttt{OPENALEX\_API\_KEY}, which the verified same-repository preflight did not
 find.  No absent credential is converted into a negative outcome or a zero-cost
 measurement.
+
+A separate gold-blind OpenAIRE identity discriminator first established that
+structured \texttt{scheme=arxiv} PID objects were available on 3 of 12 frozen
+public Wide questions, with 12 of 12 HTTP requests successful; that discriminator
+was forbidden to score or promote the paper.  A subsequently frozen 400-row
+OpenAIRE/Crossref matched campaign then issued exactly 1,200 logical provider
+requests over one shared capture.  The 400 Crossref discovery calls and 400
+direct OpenAIRE calls succeeded, but every predeclared OpenAIRE DOI-crosswalk
+call returned HTTP 400.  The observed provider-success fraction was therefore
+0.666667, below the frozen 0.90 validity gate.  Without a valid cross-backend
+route, the balanced baseline, direct-first diagnostic and governed projection
+were byte-identical; their paired IoU differences were zero on all 399 distinct
+questions.  The frozen analyzer correctly emitted
+\texttt{P2\_WIDE\_EXTERNAL\_CANNOT\_CHECK}, not a valid negative result.  The
+terminal, workflow receipt and expiring Actions archives are retained as
+\texttt{P2\_WIDE\_OPENAIRE\_MATCHED\_RESULT\_V1.json},
+\texttt{P2\_WIDE\_OPENAIRE\_MATCHED\_RUN\_RECEIPT\_V1.json}, and checksummed
+mirrors under \texttt{evidence/ci\_mirror/}.  A new campaign would require a new
+prospective freeze after independently validating the documented structured
+crosswalk request syntax; this failed capture cannot be reinterpreted after the
+fact.
 
 Therefore the externally supported full-ORION discovery-benefit claim remains
 \texttt{CANNOT\_CHECK}.  The controlled-index result supports the narrower

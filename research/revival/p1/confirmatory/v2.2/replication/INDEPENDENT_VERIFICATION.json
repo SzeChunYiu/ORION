@@ -1,0 +1,244 @@
+{
+  "analysis_mismatch_count": 0,
+  "analysis_mismatches": [],
+  "archived_terminal": "P1_MUTATION_NECESSITY_SUPPORTED",
+  "expected_rows": 40348,
+  "implementation_boundary": "standard-library independent scorer/statistics; imports no necessity_scoring, necessity_statistics, necessity_policies, or ORION licensing",
+  "input_sha256": {
+    "execution_freeze": "466ba4dcde25f61309e0cdcda874e27e6b686f05a580d058c7b90a3ff6b32f1e",
+    "primary_result": "cc739a6f506fa845c7f6bfaaf25364bed1684771e593055daa3aae7dc8970b1a",
+    "protected_response_matrix": "768b659a17f055b19dfefc720cee67030c40c6a5f8f55e38fa0c6158c4836d0e",
+    "raw_results": "eff79ebc252f6e3dbbed246ef963e227373913c8cfcaaffbdd50d286fc336f73",
+    "world_public": "b4772f693db1e69460bcb531a86bb883afd562bcb219e2038c978e33f7f34afb"
+  },
+  "n_raw_rows": 40348,
+  "n_worlds": 2882,
+  "outcome_counts_by_arm": {
+    "active_voi_repair_parent": 2882,
+    "car_like_causal_replay": 2882,
+    "causalflow_minimal_counterfactual_parent": 2882,
+    "cost_greedy_repair": 2882,
+    "darc_r2act_dependency_parent": 2882,
+    "immediate_outcome_flip_repair": 2882,
+    "orion_mutation_necessity": 2882,
+    "orion_with_unlimited_intervention_budget": 2882,
+    "orion_without_KWM_level_ordering": 2882,
+    "orion_without_dependency_impact_binding": 2882,
+    "orion_without_lower_level_exclusion": 2882,
+    "orion_without_protected_sibling_check": 2882,
+    "reflect_like_replay": 2882,
+    "static_no_reframe": 2882
+  },
+  "protocol_version": "P1.epistemic-mutation-necessity.v2.2.4",
+  "recomputed_analysis": {
+    "all_support_gates_pass": true,
+    "cost": [
+      {
+        "ci95_high": -0.7255378209576683,
+        "ci95_low": -0.7692574600971548,
+        "difference": -0.7473976405274115,
+        "field": "spent_budget",
+        "left_mean": 1.8358778625954197,
+        "n": 2882,
+        "parent": "active_voi_repair_parent",
+        "resamples": 10000,
+        "right_mean": 2.5832755031228314,
+        "seed": 202608172533,
+        "subset_field": null
+      },
+      {
+        "ci95_high": 0.12109646079111729,
+        "ci95_low": 0.05968077723802915,
+        "difference": 0.08986814712005552,
+        "field": "spent_budget",
+        "left_mean": 1.8358778625954197,
+        "n": 2882,
+        "parent": "darc_r2act_dependency_parent",
+        "resamples": 10000,
+        "right_mean": 1.7460097154753644,
+        "seed": 202608172534,
+        "subset_field": null
+      },
+      {
+        "ci95_high": -2.1315058986814712,
+        "ci95_low": -2.1967383761276893,
+        "difference": -2.16412213740458,
+        "field": "spent_budget",
+        "left_mean": 1.8358778625954197,
+        "n": 2882,
+        "parent": "causalflow_minimal_counterfactual_parent",
+        "resamples": 10000,
+        "right_mean": 4.0,
+        "seed": 202608172535,
+        "subset_field": null
+      }
+    ],
+    "cost_guard": {
+      "difference_from_maximum_parent": -2.16412213740458,
+      "full_mean": 1.8358778625954197,
+      "margin_units": 1.0,
+      "maximum_strong_parent_mean": 4.0
+    },
+    "full_arm": "orion_mutation_necessity",
+    "full_forbidden_high_level_mutation_count": 0,
+    "full_protected_sibling_regression_count": 0,
+    "gates": {
+      "cost_within_margin": true,
+      "h1_each_parent_ci_positive": true,
+      "h1_each_parent_practical": true,
+      "h1_holm": true,
+      "h2_control_success_noninferior": true,
+      "h2_zero_unnecessary_reframe": true,
+      "whole_grid_success_noninferior": true,
+      "zero_forbidden_high_level_mutation": true,
+      "zero_protected_sibling_regression": true
+    },
+    "h1_hidden_shift": [
+      {
+        "ci95_high": 0.5604166666666667,
+        "ci95_low": 0.4708333333333333,
+        "difference": 0.5166666666666667,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 248,
+        "mcnemar_c": 0,
+        "mcnemar_p": 4.421718300208356e-75,
+        "n": 480,
+        "parent": "active_voi_repair_parent",
+        "resamples": 10000,
+        "right_rate": 0.48333333333333334,
+        "seed": 202608172233,
+        "subset_field": "hidden_shift"
+      },
+      {
+        "ci95_high": 0.5604166666666667,
+        "ci95_low": 0.47291666666666665,
+        "difference": 0.5166666666666667,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 248,
+        "mcnemar_c": 0,
+        "mcnemar_p": 4.421718300208356e-75,
+        "n": 480,
+        "parent": "darc_r2act_dependency_parent",
+        "resamples": 10000,
+        "right_rate": 0.48333333333333334,
+        "seed": 202608172234,
+        "subset_field": "hidden_shift"
+      },
+      {
+        "ci95_high": 0.5625,
+        "ci95_low": 0.4708333333333333,
+        "difference": 0.5166666666666667,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 248,
+        "mcnemar_c": 0,
+        "mcnemar_p": 4.421718300208356e-75,
+        "n": 480,
+        "parent": "causalflow_minimal_counterfactual_parent",
+        "resamples": 10000,
+        "right_rate": 0.48333333333333334,
+        "seed": 202608172235,
+        "subset_field": "hidden_shift"
+      }
+    ],
+    "h1_holm": {
+      "all_pass": true,
+      "alpha": 0.05,
+      "passes_by_input": [
+        true,
+        true,
+        true
+      ],
+      "pvalues": [
+        4.421718300208356e-75,
+        4.421718300208356e-75,
+        4.421718300208356e-75
+      ],
+      "thresholds_by_input": [
+        0.016666666666666666,
+        0.025,
+        0.05
+      ]
+    },
+    "h1_parents": [
+      "active_voi_repair_parent",
+      "darc_r2act_dependency_parent",
+      "causalflow_minimal_counterfactual_parent"
+    ],
+    "h2_control_parent": "active_voi_repair_parent",
+    "h2_control_success": {
+      "ci95_high": 0.0,
+      "ci95_low": 0.0,
+      "difference": 0.0,
+      "field": "protected_root_task_success",
+      "left_rate": 1.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "n": 2402,
+      "resamples": 10000,
+      "right_rate": 1.0,
+      "seed": 202608172333,
+      "subset_field": "negative_control"
+    },
+    "h2_full_unnecessary_reframe_count": 0,
+    "whole_grid_success": [
+      {
+        "ci95_high": 0.09646079111727966,
+        "ci95_low": 0.07598889659958362,
+        "difference": 0.08605135322692574,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 248,
+        "mcnemar_c": 0,
+        "mcnemar_p": 4.421718300208356e-75,
+        "n": 2882,
+        "parent": "active_voi_repair_parent",
+        "resamples": 10000,
+        "right_rate": 0.9139486467730743,
+        "seed": 202608172433,
+        "subset_field": null
+      },
+      {
+        "ci95_high": 0.35392088827203333,
+        "ci95_low": 0.3188757807078418,
+        "difference": 0.33622484385843165,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 969,
+        "mcnemar_c": 0,
+        "mcnemar_p": 4.008336720017946e-292,
+        "n": 2882,
+        "parent": "darc_r2act_dependency_parent",
+        "resamples": 10000,
+        "right_rate": 0.6637751561415683,
+        "seed": 202608172434,
+        "subset_field": null
+      },
+      {
+        "ci95_high": 0.9087439278278973,
+        "ci95_low": 0.8872310895211658,
+        "difference": 0.8979875086745316,
+        "field": "protected_root_task_success",
+        "left_rate": 1.0,
+        "mcnemar_b": 2588,
+        "mcnemar_c": 0,
+        "mcnemar_p": 0.0,
+        "n": 2882,
+        "parent": "causalflow_minimal_counterfactual_parent",
+        "resamples": 10000,
+        "right_rate": 0.10201249132546843,
+        "seed": 202608172435,
+        "subset_field": null
+      }
+    ]
+  },
+  "recomputed_terminal": "P1_MUTATION_NECESSITY_SUPPORTED",
+  "schema_version": "ScientificResultVerification.p1.v2.2.4.independent.v1",
+  "score_mismatch_count": 0,
+  "score_mismatches": [],
+  "terminal_matches": true,
+  "verdict": "PASS"
+}

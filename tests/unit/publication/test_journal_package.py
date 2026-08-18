@@ -1,4 +1,4 @@
-"""Journal-package scaffolding: required files, hashes, P1 H1 null, no PDF fabrication."""
+"""Journal packages: required files, hashes, bounded readiness, and P1 H1 history."""
 from __future__ import annotations
 
 import json
@@ -36,18 +36,26 @@ def test_p1_h1_remains_not_supported() -> None:
     assert report.ok
 
 
-def test_every_paper_flags_pdf_claim_open() -> None:
+def test_scaffolding_packages_flag_an_open_claim() -> None:
     for paper_id, relative in PAPER_DIRS.items():
         manifest = load_manifest(ROOT / relative / "journal_package")
+        if manifest["package_status"] == "SUBMISSION_READY":
+            continue
         pdf_claims = [claim for claim in manifest["claims"] if claim["status"] == "OPEN"]
         assert pdf_claims, f"{paper_id} must have at least one OPEN claim (PDF without artifact)"
         assert all(claim["artifacts"] == [] for claim in pdf_claims)
 
 
-def test_no_fabricated_pdfs_in_journal_packages() -> None:
+def test_pdfs_exist_only_in_submission_ready_packages() -> None:
     for relative in PAPER_DIRS.values():
+        manifest = load_manifest(ROOT / relative / "journal_package")
         pdfs = list((ROOT / relative / "journal_package").glob("*.pdf"))
-        assert pdfs == []
+        if manifest["package_status"] == "SUBMISSION_READY":
+            assert pdfs
+            required = {entry["path"] for entry in manifest["required_files"]}
+            assert all(f"journal_package/{pdf.name}" in required for pdf in pdfs)
+        else:
+            assert pdfs == []
 
 
 def test_does_not_fork_scientific_result_verification_schema() -> None:
@@ -146,7 +154,6 @@ def test_p1_h1_rewrite_to_supported_fails(tmp_path: Path) -> None:
         if claim["id"] == "P1.H1":
             claim["status"] = "SUPPORTED"
     manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
-    write_sha256sums(paper, hashed_paths(manifest))
     report = check_package("P1", paper)
     assert not report.ok
     assert any("NOT_SUPPORTED" in error for error in report.errors)

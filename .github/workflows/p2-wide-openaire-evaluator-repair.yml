@@ -1,0 +1,154 @@
+name: p2-wide-openaire-evaluator-repair
+
+on:
+  pull_request:
+    branches:
+      - shadow/p2-wide-openaire-identity-v1-2026-08-18
+    paths:
+      - '.github/workflows/p2-wide-openaire-evaluator-repair.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  evaluate-frozen-capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+
+      - name: Download exact pre-gold candidate capture from original acquisition run
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: p2-wide-openaire-capture-f865968d5c2156cb178baee5e2fbc19e7735b417
+          path: /tmp/p2-wide-repair/capture
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: SzeChunYiu/ORION
+          run-id: 32123841105
+
+      - name: Rebind exact frozen candidate bytes before any gold materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          roots=list(Path('/tmp/p2-wide-repair/capture').rglob('SHARED_ACQUISITION_MANIFEST.json'))
+          assert len(roots)==1, roots
+          root=roots[0].parent
+          manifest=json.loads((root/'SHARED_ACQUISITION_MANIFEST.json').read_text())
+          assert manifest['same_acquisition_capture_for_all_systems'] is True
+          assert manifest['candidate_cap']==20
+          assert manifest['raw_regex_arxiv_identity_extraction'] is False
+          binding={}
+          for system_id, expected in manifest['candidate_hashes'].items():
+              path=root/f'candidate_{system_id}.jsonl'
+              actual=hashlib.sha256(path.read_bytes()).hexdigest()
+              assert actual==expected, (system_id,actual,expected)
+              binding[system_id]=actual
+          Path('/tmp/p2-wide-repair/CAPTURE_ROOT.txt').write_text(str(root))
+          Path('/tmp/p2-wide-repair/PRE_GOLD_CANDIDATE_HASHES.json').write_text(json.dumps(binding,sort_keys=True))
+          print('P2_WIDE_REPAIR_FROZEN_CAPTURE=PASS')
+          print(json.dumps({
+              'original_run_id':32123841105,
+              'original_artifact_id':9320259686,
+              'original_artifact_zip_sha256':'9de29c65f53601f721adc401eacd501f73391ff5b803ddf6d3dec2d613339969',
+              'logical_provider_ok_fraction':manifest['logical_provider_ok_fraction'],
+              'candidate_hashes':binding,
+          },sort_keys=True))
+          PY
+
+      - name: Materialize pinned evaluator and install its exact declared requirements
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/arb-upstream /tmp/p2-wide-repair/gold
+          git clone --filter=blob:none https://github.com/CherYou/AutoResearchBench.git /tmp/arb-upstream
+          git -C /tmp/arb-upstream checkout a46c9bfb8968786f73f0a6a5b365b5384cd0f96d
+          python -m pip install -e '.[dev]'
+          python -m pip install -r /tmp/arb-upstream/requirements.txt
+          mkdir -p /tmp/p2-wide-repair/gold
+          curl --fail --location --retry 4 --retry-delay 3 \
+            --output /tmp/p2-wide-repair/gold/AutoResearchBench.jsonl.obf.json \
+            https://huggingface.co/datasets/Lk123/AutoResearchBench/resolve/main/AutoResearchBench.jsonl.obf.json
+          python /tmp/arb-upstream/decrypt_benchmark.py \
+            --input-file /tmp/p2-wide-repair/gold/AutoResearchBench.jsonl.obf.json \
+            --output-file /tmp/p2-wide-repair/gold/AutoResearchBench.jsonl
+          echo 'db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6  /tmp/p2-wide-repair/gold/AutoResearchBench.jsonl' | sha256sum -c -
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
+            --full /tmp/p2-wide-repair/gold/AutoResearchBench.jsonl \
+            --public /tmp/p2-wide-repair/gold/public_rederived_not_candidate_visible.jsonl \
+            --gt /tmp/p2-wide-repair/gold/wide_gt.jsonl \
+            --manifest /tmp/p2-wide-repair/gold/split_manifest.json
+
+      - name: Run pinned official Wide scorer on the exact frozen candidate bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=$(cat /tmp/p2-wide-repair/CAPTURE_ROOT.txt)
+          mkdir -p /tmp/p2-wide-repair/results
+          for SYSTEM in wide_dual_backend_balanced wide_dual_backend_governed wide_dual_backend_direct_first; do
+            python /tmp/arb-upstream/evaluate/evaluate_wide_search.py \
+              --input-file "$ROOT/candidate_${SYSTEM}.jsonl" \
+              --gt-file /tmp/p2-wide-repair/gold/wide_gt.jsonl \
+              --no-jina \
+              --output-file "/tmp/p2-wide-repair/results/eval_${SYSTEM}.json"
+          done
+
+      - name: Apply unchanged prospective paired analysis and terminal
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=$(cat /tmp/p2-wide-repair/CAPTURE_ROOT.txt)
+          python papers/paper-02-open-world-scientific-discovery/scripts/analyze_autoresearchbench_wide_openaire_matched.py \
+            --freeze papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V1.json \
+            --manifest "$ROOT/SHARED_ACQUISITION_MANIFEST.json" \
+            --baseline-eval /tmp/p2-wide-repair/results/eval_wide_dual_backend_balanced.json \
+            --orion-eval /tmp/p2-wide-repair/results/eval_wide_dual_backend_governed.json \
+            --diagnostic-eval /tmp/p2-wide-repair/results/eval_wide_dual_backend_direct_first.json \
+            --baseline-candidate "$ROOT/candidate_wide_dual_backend_balanced.jsonl" \
+            --orion-candidate "$ROOT/candidate_wide_dual_backend_governed.jsonl" \
+            --diagnostic-candidate "$ROOT/candidate_wide_dual_backend_direct_first.jsonl" \
+            --output /tmp/p2-wide-repair/results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V1.json
+
+      - name: Rehash candidates after scoring and print scientific terminal
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          root=Path(Path('/tmp/p2-wide-repair/CAPTURE_ROOT.txt').read_text())
+          before=json.loads(Path('/tmp/p2-wide-repair/PRE_GOLD_CANDIDATE_HASHES.json').read_text())
+          for system_id,expected in before.items():
+              actual=hashlib.sha256((root/f'candidate_{system_id}.jsonl').read_bytes()).hexdigest()
+              assert actual==expected
+          result=json.loads(Path('/tmp/p2-wide-repair/results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V1.json').read_text())
+          assert result['terminal'] in {
+              'P2_WIDE_EXTERNAL_SUPPORTED',
+              'P2_WIDE_EXTERNAL_NOT_SUPPORTED',
+              'P2_WIDE_EXTERNAL_CANNOT_CHECK',
+          }
+          print('P2_WIDE_POST_SCORE_CANDIDATE_IMMUTABILITY=PASS')
+          print('P2_WIDE_SCIENTIFIC_TERMINAL='+result['terminal'])
+          print(json.dumps(result,sort_keys=True))
+          PY
+
+      - name: Upload official scoring evidence; evaluator gold remains private to job
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: p2-wide-openaire-evaluator-repair-${{ github.sha }}
+          path: |
+            /tmp/p2-wide-repair/results/*.json
+            /tmp/p2-wide-repair/PRE_GOLD_CANDIDATE_HASHES.json
+            /tmp/p2-wide-repair/gold/split_manifest.json
+            papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V1.json
+          if-no-files-found: warn
+          retention-days: 30

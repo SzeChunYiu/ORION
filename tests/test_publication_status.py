@@ -38,34 +38,34 @@ def test_committed_scoreboard_matches_derived_artifacts():
     assert payload["programme"]["status"] == "BLOCKED"
 
 
-def test_p4_is_peer_review_ready_and_others_are_blocked():
+def test_p1_and_p4_are_peer_review_ready_and_others_are_blocked():
     module = _load_module()
     derived = module.derive_scoreboard(ROOT)
     by_id = {paper["paper_id"]: paper for paper in derived["papers"]}
-    assert by_id["P4"]["status"] == "PEER_REVIEW_READY"
-    assert by_id["P4"]["journal_readiness_terminal"] == "PEER_REVIEW_READY"
-    assert by_id["P4"]["attestation_paths"]
-    assert by_id["P4"]["claim_ledgers"]
-    for paper_id in ("P1", "P2", "P3", "P5"):
+    for paper_id in ("P1", "P4"):
+        assert by_id[paper_id]["status"] == "PEER_REVIEW_READY"
+        assert by_id[paper_id]["journal_readiness_terminal"] == "PEER_REVIEW_READY"
+        assert by_id[paper_id]["attestation_paths"]
+        assert by_id[paper_id]["claim_ledgers"]
+    for paper_id in ("P2", "P3", "P5"):
         assert by_id[paper_id]["status"] == "BLOCKED", paper_id
         assert by_id[paper_id]["journal_readiness_terminal"] == "CANNOT_CHECK"
         assert by_id[paper_id]["missing_artifacts"]
-    assert derived["programme"]["papers_peer_review_ready"] == ["P4"]
+    assert derived["programme"]["papers_peer_review_ready"] == ["P1", "P4"]
     assert derived["programme"]["close_allowed"] is False
 
 
-def test_p1_closed_issue_does_not_invent_readiness():
-    """#98 is closed on GitHub; artifacts on this tree still say CANNOT_CHECK."""
+def test_p1_readiness_is_artifact_backed_not_inferred_from_closed_issue():
+    """#98's state is irrelevant; the successor bundle and attestation authorize P1."""
     module = _load_module()
     p1 = next(paper for paper in module.derive_scoreboard(ROOT)["papers"] if paper["paper_id"] == "P1")
-    assert p1["status"] != "PEER_REVIEW_READY"
+    assert p1["status"] == "PEER_REVIEW_READY"
     assert p1["protocol_status"] == "EXECUTION_FROZEN"
     assert p1["outcome_accessed"] is False
-    joined = "\n".join(p1["missing_artifacts"])
-    assert "JOURNAL_READINESS.md" in joined
-    assert "not PEER_REVIEW_READY" in joined
-    assert "EXTERNAL NOT EXECUTED" in joined
-    assert p1["attestation_paths"] == []
+    assert p1["missing_artifacts"] == []
+    assert p1["attestation_paths"] == [
+        "papers/paper-01-recursive-epistemic-reconstruction/evidence/PEER_REVIEW_READY_BOUNDED_V2.md"
+    ]
 
 
 def test_p5_is_blocked_by_unbound_identities_and_unexecuted_claims():
@@ -93,13 +93,13 @@ def test_p5_is_blocked_by_unbound_identities_and_unexecuted_claims():
 def test_forged_peer_review_ready_is_rejected():
     module = _load_module()
     payload = module.derive_scoreboard(ROOT)
-    p1 = next(paper for paper in payload["papers"] if paper["paper_id"] == "P1")
-    p1["status"] = "PEER_REVIEW_READY"
-    p1["missing_artifacts"] = []
+    p2 = next(paper for paper in payload["papers"] if paper["paper_id"] == "P2")
+    p2["status"] = "PEER_REVIEW_READY"
+    p2["missing_artifacts"] = []
     payload["programme"]["status"] = "BLOCKED"
     payload["programme"]["close_allowed"] = False
     errors = module.validate_scoreboard(payload, ROOT)
-    assert any("P1" in error and "PEER_REVIEW_READY" in error for error in errors)
+    assert any("P2" in error and "PEER_REVIEW_READY" in error for error in errors)
 
 
 def test_close_allowed_requires_all_five_ready():

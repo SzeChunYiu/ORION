@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "orion.journal-package.v1",
-  "title": "ORION journal-package scaffolding V1",
+  "title": "ORION journal package V1",
   "description": "Gate 7–9 submission-package inventory. Distinct from issue #283 ScientificResultVerification.v1, which this schema consumes if present and never forks.",
   "type": "object",
   "required": [
@@ -20,7 +20,7 @@
     "paper_id": {"enum": ["P1", "P2", "P3", "P4", "P5"]},
     "package_status": {
       "enum": ["SCAFFOLDING", "SUBMISSION_READY"],
-      "description": "SUBMISSION_READY only when a compiled PDF, claim audit, and remaining CANNOT_CHECK rows are all closed. SCAFFOLDING is the honest state while PDFs/DOIs/external campaigns are absent."
+      "description": "SUBMISSION_READY only when a compiled, checksummed PDF and claim audit exist and every package-level missing artifact or OPEN claim is closed. Filing-time DOI/editor operations may remain separately typed as submission operations. SCAFFOLDING is the honest state otherwise."
     },
     "declared_paper_terminal": {"type": "string"},
     "audit_subject_revision": {"type": "string", "minLength": 40, "maxLength": 40},

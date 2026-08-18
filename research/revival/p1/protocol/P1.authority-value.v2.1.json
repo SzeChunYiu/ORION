@@ -1,0 +1,249 @@
+{
+  "schema_version": "orion.publication-protocol.v1",
+  "paper_id": "P1",
+  "protocol_id": "P1.authority-value.v2.1",
+  "protocol_version": "P1.authority-value.v2.1.0",
+  "protocol_status": "DESIGN_FROZEN",
+  "outcome_accessed": false,
+  "issue": 316,
+  "parents": [97, 98, 278, 315, 318],
+  "incremental_over_protocol": "P1.causal-responsibility.v2.0",
+  "v1_protocol_mutated": false,
+  "v1_results_mutated": false,
+  "v2_0_protocol_mutated": false,
+  "v2_0_results_exist": false,
+  "local_evidence_authority": "PROSPECTIVE_MECHANISM_STUDY_ONLY",
+  "candidate_residual": "intervention-supported causal responsibility -> typed scientific mutation authority -> dependency-scoped invalidation/reopening",
+  "design_reason": "Primary-source donor assimilation makes intervention-supported attribution itself prior art pressure. This additive R3 successor holds diagnosis/intervention evidence fixed across arms so the experiment identifies the authority/reopening layer rather than rewarding ORION for a weaker attribution comparator.",
+  "primary_hypothesis": {
+    "id": "P1.AV-H1",
+    "text": "On a fresh pre-bound authority-value holdout, with identical diagnosis and intervention evidence supplied to every arm, ORION typed permission plus dependency-scoped reopening improves scientifically-valid repair rate by at least 10 percentage points over the frozen REFLECT+EviGraph-style composite parent, while unauthorized epistemic mutation remains <=1% and root-task recovery is non-inferior within 2 percentage points.",
+    "primary_metric": "scientifically_valid_repair_rate",
+    "primary_comparator": "reflect_evigraph_composite_parent",
+    "direction": "superiority_with_safety_and_recovery_guards"
+  },
+  "secondary_hypotheses": [
+    {
+      "id": "P1.AV-H2",
+      "text": "Typed permission reduces unauthorized or over-broad K/W/M mutation versus unrestricted and outcome-flip-driven repair without reducing legitimate repair recall beyond the frozen non-inferiority margin."
+    },
+    {
+      "id": "P1.AV-H3",
+      "text": "Dependency-scoped reopening reduces stale dependent closures versus typed permission alone while preserving unrelated verified closures better than full reset."
+    },
+    {
+      "id": "P1.AV-H4",
+      "text": "Explicit UNRESOLVED / missing-intervention evidence correctly blocks mutation rather than becoming a broad repair, and this restraint does not count as successful repair unless the host task contract requires blocking."
+    }
+  ],
+  "scientifically_valid_repair_definition": {
+    "required_conjunction": [
+      "host root task is recovered when an admissible repair exists",
+      "every host-warranted epistemic action required by the task is applied",
+      "no host-forbidden or protected epistemic action is applied",
+      "every closure whose declared dependency basis is invalidated by the applied mutation is reopened",
+      "no unrelated verified closure is reopened or deleted",
+      "negative/history records required by the task remain retained",
+      "when no admissible repair exists or intervention support is missing, the arm returns BLOCK/CANNOT_CHECK and performs no mutating action"
+    ],
+    "non_success": [
+      "blanket refusal on a legitimately repairable task",
+      "root task recovery achieved through forbidden or over-broad mutation",
+      "local patch with stale invalid dependent closure",
+      "full reset that invalidates unrelated verified closures",
+      "missing or suppressed negative history"
+    ],
+    "authority_source": "host-side benchmark contract frozen independently of candidate policy; evaluator must not import the ORION licensing decision function"
+  },
+  "registered_task_families": [
+    "hidden_parent_domain_search_universe",
+    "hidden_representation_formulation",
+    "hidden_decomposition_formulation",
+    "hidden_measurement_formulation",
+    "evidence_only_control",
+    "execution_only_control"
+  ],
+  "fresh_holdout_plan": {
+    "generator_id": "P1.authority-value-generator.v1",
+    "confirmatory_seed": 2026081707,
+    "base_task_count": 384,
+    "factorization": "6 task families x 8 public surface templates x 8 dependency/proposal patterns",
+    "candidate_repair_variants_per_base_task": 1,
+    "unit_of_analysis": "base task",
+    "opaque_ids": true,
+    "pair_or_family_identity_candidate_visible": false,
+    "same_candidate_capability_menu_across_confusable_surfaces": true,
+    "gold_and_public_cases_separate": true,
+    "gold_fields": [
+      "responsibility_class",
+      "intervention_backed",
+      "warranted_actions",
+      "forbidden_actions",
+      "required_root_repair",
+      "invalidated_closure_ids",
+      "unrelated_verified_closure_ids",
+      "negative_history_required"
+    ],
+    "pre_arm_freeze": "A dedicated holdout-freeze step must materialize public cases + protected gold, publish case/gold SHA-256 and count, and complete leakage/collision audits before any arm is executed. Evaluation refuses any other hash.",
+    "development_data_policy": "Existing V1/V2 known-answer cases may be used only for code/selftest development; they never enter the confirmatory denominator."
+  },
+  "fixed_upstream_evidence": {
+    "diagnosis_policy": "R3 conditions on one frozen diagnosis/intervention-evidence packet per task; every arm receives byte-identical responsibility class, intervention-backed flag, proposed repair candidates, public closure graph and allowed resources.",
+    "not_a_candidate_oracle": "The upstream packet is a mechanistic conditioning variable for R3, not a runnable diagnosis baseline and not evidence that ORION diagnoses better. R1/R2 attribution claims remain governed by P1.causal-responsibility.v2.0.",
+    "candidate_gold_access": false
+  },
+  "matched_arms": [
+    {
+      "id": "block_all_conservative",
+      "description": "Never mutate; establishes the safety-by-refusal floor and must fail legitimate-repair recall."
+    },
+    {
+      "id": "unrestricted_outcome_flip_repair",
+      "description": "Apply any proposed repair predicted to restore the local task; no protected-coordinate or dependency guard."
+    },
+    {
+      "id": "reflect_like_local_repair",
+      "description": "Use the supplied intervention-supported diagnosis to apply the diagnosis-specific local patch; no scientific-authority lattice and no downstream dependency invalidation."
+    },
+    {
+      "id": "reflect_evigraph_composite_parent",
+      "description": "Strong primary parent: intervention-supported diagnosis/local patch plus evidence-graph-style downstream regeneration of directly affected work; no ORION scientific mutation-authority gate."
+    },
+    {
+      "id": "class_conditioned_minimal_repair",
+      "description": "Strong simple parent mapping the supplied responsibility class to the smallest matching local repair and direct dependency update; no protected K/W/M authority semantics."
+    },
+    {
+      "id": "orion_typed_permission",
+      "description": "ORION permission matrix filters proposed actions but dependency-scoped reopen is disabled."
+    },
+    {
+      "id": "orion_typed_permission_dependency_reopen",
+      "description": "Full candidate: ORION permission matrix plus recursive dependency-scoped reopening; this is the primary subject."
+    },
+    {
+      "id": "full_reset_after_repair",
+      "description": "Same accepted local repair as full ORION but invalidates all closures; measures over-reopening."
+    }
+  ],
+  "direct_ablations": [
+    "permission_matrix_without_dependency_scoped_reopen",
+    "dependency_reopen_without_permission_gate",
+    "ignore_intervention_backing",
+    "broad_wm_mutation_after_any_failure",
+    "no_explicit_unresolved_state",
+    "delete_negative_history_after_success",
+    "direct_dependencies_only_without_recursive_descendants"
+  ],
+  "resource_policy": "Every matched arm receives byte-identical upstream diagnosis/intervention packet and candidate repair menu. Policy execution is deterministic and charged one decision unit plus one unit per applied repair/reopen; no arm may query protected gold or use extra probes. The primary R3 result is not an LLM-budget comparison.",
+  "primary_decision_rule": {
+    "support_if_all": [
+      "paired difference full_orion - reflect_evigraph_composite_parent in scientifically_valid_repair_rate >= 0.10",
+      "95% paired interval lower bound for that difference > 0.0",
+      "full_orion unauthorized_epistemic_mutation_rate <= 0.01",
+      "95% paired interval lower bound for full_orion - primary_parent root_task_recovery >= -0.02",
+      "no registered catastrophic protected-action violation in full_orion"
+    ],
+    "otherwise": "NOT_SUPPORTED or REFUTED according to frozen failure taxonomy; margins are never moved after outcome access"
+  },
+  "metrics": {
+    "primary": [
+      "scientifically_valid_repair_rate",
+      "unauthorized_epistemic_mutation_rate",
+      "root_task_recovery_rate"
+    ],
+    "mechanistic": [
+      "legitimate_repair_recall",
+      "forbidden_action_acceptance_rate",
+      "stale_dependent_closure_rate",
+      "unrelated_closure_invalidation_rate",
+      "dependency_reopen_precision",
+      "dependency_reopen_recall",
+      "correct_block_cannot_check_rate",
+      "negative_history_retention_rate",
+      "applied_action_count",
+      "reopened_closure_count"
+    ]
+  },
+  "statistics": {
+    "paired_unit": "base task",
+    "primary_interval": "paired percentile bootstrap 10000 resamples, seed 2026081719",
+    "standalone_binary_interval": "Wilson 95%",
+    "paired_binary_test": "exact McNemar reported for full vs primary comparator as a secondary inferential check",
+    "multiplicity": "single primary P1.AV-H1; Holm correction across secondary arm/ablation contrasts",
+    "precision_plan": "N=384 is the complete registered factor grid, not an outcome-sized sample. At a 0.5 rate the Wilson 95% half-width is approximately 0.05; task-level paired intervals remain the decision authority.",
+    "repeat_policy": "deterministic policy arms execute once per frozen base task; any later stochastic/model generality successor is a separate protocol and cannot inflate this n"
+  },
+  "failure_precedence": [
+    "PROTECTED_OR_FORBIDDEN_MUTATION",
+    "GOLD_OR_PAIR_IDENTITY_LEAK",
+    "EVALUATOR_OR_HOLDOUT_IDENTITY_MISMATCH",
+    "STALE_DEPENDENT_CLOSURE",
+    "UNRELATED_VERIFIED_CLOSURE_INVALIDATED",
+    "ROOT_NOT_RECOVERED",
+    "OVER_REFUSAL_LEGITIMATE_REPAIR",
+    "CANNOT_CHECK",
+    "VALID_REPAIR"
+  ],
+  "integrity_controls": [
+    "candidate payload contains no task-family/gold/pair identity",
+    "opaque ids carry no responsibility or action token",
+    "all arms receive byte-identical upstream packet",
+    "holdout public/gold hashes bound before arm execution",
+    "evaluator source/hash frozen before arm output",
+    "gold scorer does not import or call ORION request_action/permission code",
+    "label and authorization permutation planted-negative controls move the score",
+    "a weakened allow-all policy fails protected-action controls",
+    "a block-all policy fails legitimate-repair controls",
+    "a direct-only reopen policy fails recursive dependency controls",
+    "no outcome-driven exclusions",
+    "all null/harmful variants retained"
+  ],
+  "positive_result_verification": [
+    "independent scorer implementation from the written task contract",
+    "raw record and holdout hash regeneration",
+    "template/member-id/metadata leakage scan",
+    "gold/action label permutation tests",
+    "fresh second seed or disjoint factor window after method freeze",
+    "second CI/session reproduction on exact subject",
+    "post-absorption #287 novelty certificate",
+    "#283 ScientificResultVerification receipt before manuscript promotion"
+  ],
+  "publication_outputs": {
+    "plots": [
+      "P1AV-1 scientifically-valid repair vs unauthorized mutation frontier",
+      "P1AV-2 root recovery vs stale/unrelated closure error by arm",
+      "P1AV-3 family-wise authority failure taxonomy"
+    ],
+    "tables": [
+      "P1AV-T1 matched arms with paired effects/intervals",
+      "P1AV-T2 direct ablations and authority/dependency errors",
+      "P1AV-T3 donor assimilation and residual-claim boundary"
+    ]
+  },
+  "literature_boundary": {
+    "generic_intervention_attribution_not_novel": [
+      "REFLECT arXiv:2606.09071",
+      "Causal Agent Replay arXiv:2606.08275",
+      "Who&When Pro arXiv:2607.09996",
+      "OAT arXiv:2607.12747",
+      "MedAction arXiv:2605.07305"
+    ],
+    "dependency_regeneration_not_novel": ["EviGraph arXiv:2608.04738"],
+    "candidate_residual_only": "intervention-supported responsibility coupled to explicit scientific K/W/M mutation authority and non-escalating dependency invalidation/reopening",
+    "novelty_authority": "#287 after the experiment; this protocol makes no novelty certification"
+  },
+  "terminal_rule": "This protocol can support a scoped P1 mechanism claim only. Close #316 as P1_BOUNDED_SATURATION_SUPPORTED only after donor assimilation, fresh replication, #283 verification, #287 post-absorption certificate and a second no-material-change literature/failure round. It does not rewrite the V1 H1 null.",
+  "execution_bindings": {
+    "subject_revision": "UNBOUND",
+    "parent_integrity_pr": 331,
+    "generator_blob_sha": "UNBOUND",
+    "public_holdout_sha256": "UNBOUND",
+    "protected_gold_sha256": "UNBOUND",
+    "holdout_count": 384,
+    "arm_config_hashes": ["UNBOUND"],
+    "evaluator_hash": "UNBOUND",
+    "evaluation_epoch": "UNBOUND",
+    "outcome_archive_sha256": "UNBOUND"
+  }
+}

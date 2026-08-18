@@ -78,9 +78,14 @@ SHARED_SUBJECT = (
     CANDIDATES_DIR / "checkers" / "check_donor_complete_envelope_v1.py",
     Path("tests/unit/candidates/test_p6_p8_candidate_embedding.py"),
     Path("tests/unit/candidates/test_p6_p8_theory_closure_v21.py"),
-    Path("tests/unit/candidates/test_p8_formal_core_primitives.py"),
     Path("tests/unit/candidates/test_p6_p8_merged_review_suites.py"),
 )
+
+# Candidate-owned reproduction files outside the candidate directory must not be
+# widened into every package. P8's formal-primitives test belongs to P8 only.
+CANDIDATE_SUBJECT: dict[str, tuple[Path, ...]] = {
+    "P8": (Path("tests/unit/candidates/test_p8_formal_core_primitives.py"),),
+}
 
 #: Heading of the declaration section holding artifacts shared by all three
 #: candidates rather than owned by one.
@@ -271,6 +276,19 @@ def parse_package_declaration(repo_root: Path) -> dict[str, dict[str, str]]:
     return roles
 
 
+#: Directories and suffixes that are build output, not subject.
+_EXCLUDED_DIR_NAMES = frozenset({"__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache"})
+_EXCLUDED_SUFFIXES = frozenset({".pyc", ".pyo", ".pyd"})
+
+
+def _is_build_artifact(path: Path) -> bool:
+    """True for generated files that no content binding should ever include."""
+
+    if path.suffix in _EXCLUDED_SUFFIXES:
+        return True
+    return any(part in _EXCLUDED_DIR_NAMES for part in path.parts)
+
+
 def bound_paths(repo_root: Path, candidate_id: str) -> list[str]:
     """Every file this manifest binds, repo-relative and sorted.
 
@@ -283,13 +301,17 @@ def bound_paths(repo_root: Path, candidate_id: str) -> list[str]:
     paths = {
         path.relative_to(repo_root).as_posix()
         for path in directory.rglob("*")
-        if path.is_file() and path.name != SUMS_NAME
+        if path.is_file() and path.name != SUMS_NAME and not _is_build_artifact(path)
     }
     # Listed unconditionally: on a first `--write` the manifest does not exist
     # yet, and enumerating only what is on disk would omit it from its own set,
     # so the next `--check` would report drift against a tree nobody touched.
     paths.add((CANDIDATE_DIRS[candidate_id] / MANIFEST_NAME).as_posix())
-    for shared in (*SHARED_SUBJECT, FALSIFIERS[candidate_id]):
+    for shared in (
+        *SHARED_SUBJECT,
+        FALSIFIERS[candidate_id],
+        *CANDIDATE_SUBJECT.get(candidate_id, ()),
+    ):
         if (repo_root / shared).is_file():
             paths.add(shared.as_posix())
     programme = parse_package_declaration(repo_root)[PROGRAMME_SECTION]

@@ -1,19 +1,42 @@
-# ORION-P1 independent claim / PDF audit
+# ORION-P1 claim and PDF audit
 
-Audit subject: `b7cfaecfb55d9ad6c12fb59374935769ed8d8787` (origin/main at package freeze). Auditor: issue #160 journal-package lane. This is an inventory against artifacts, not a ScientificResultVerification.v1 record (owned by #283).
+**Audit date:** 2026-08-18
+**Subject:** `journal_package/manuscript.pdf`, content-bound by `SHA256SUMS`
 
-| ID | Claim | Artifact | Status |
-|---|---|---|---|
-| P1.H1 | Hidden-formulation root-success superiority ≥ +0.05 vs strongest matched baseline | `results/P1-T2_baseline_ablation_results.json` (`orion_full` / `P1.H1`) | **NOT_SUPPORTED** |
-| P1.KWM | Explicit K/W/M separation | manuscript + claim ledger | BOUNDED (implementation/contract) |
-| P1.FALSIFIER | Local falsifier repaired over-broad reframe | `evidence/FALSIFIER_V1.md` | SUPPORTED |
-| P1.EXTERNAL | External matched superiority on fresh hidden-shift tasks | protocol still `DESIGN_FROZEN` / unbound execution identities | CANNOT_CHECK |
-| P1.PDF | Independent final PDF proofread | no compiled journal PDF in tree or archive | **OPEN** |
+| Claim | Evidence | Verdict |
+|---|---|---|
+| Historical V1 broad H1 | `results/P1-T2_baseline_ablation_results.json` | `NOT_SUPPORTED` / `UNDERPOWERED`; preserved as negative history |
+| Powered mechanical necessity | primary and replication result JSON plus concordance | `SUPPORTED` in both pre-bound runs |
+| Independent result reconstruction | two `INDEPENDENT_VERIFICATION.json` records | `PASS`; 40,348 rows/run, zero score/analysis mismatches, exact terminal match |
+| Safety and selectivity | result gate vectors | zero unnecessary control reframes, sibling regressions, and forbidden mutations in both runs |
+| Claim boundary | abstract, results, limitations, conclusion, claim ledger | bounded to the credential-free mechanical world family; no model-general/open-ended claim |
+| Nearest-work absorption | 36-row matrix plus rounds A--H ledgers | donor structures credited and incorporated into parents/ablations |
+| Compiled PDF | rendered 27-page manuscript | `PASS` |
 
-## H1 null
+## PDF review
 
-The archived T2 table records `orion_full` primary H1 as `NOT_SUPPORTED` (paired difference 0.000, interval `[0.000, 0.000]`, below the +0.05 superiority margin). This audit must not rewrite that null as `SUPPORTED`, `PASS`, or a positive abstract claim. Descriptive mechanical-arm counts (62/66) are not H1 support.
+The final PDF was compiled after BibTeX and two convergence passes, then every
+page was rendered with Poppler. The review explicitly checked:
 
-## PDF
+- no unresolved citations or cross-references;
+- no blank or multi-page figure payloads;
+- Figure 1's host/candidate authority boundary and Figure 2's paired primary/
+  replication labels are legible;
+- historical Table 1, failure Table 2, powered Table 3, and the three-page
+  36-row nearest-work Table 4 fit within the page and remain readable;
+- no figure was stranded after the bibliography;
+- section order distinguishes historical V1 evidence from the powered
+  successor; and
+- page numbering, margins, captions, and bibliography render consistently.
 
-No `manuscript.pdf` is tracked. Compiling locally does not close Gate 9. The PDF claim stays OPEN.
+The original Figure 1 artifact failed this audit because it was a malformed
+three-page PDF whose included first page was blank. It was rebuilt from a
+tracked single-page SVG before this audit passed. Figure 2's float placement
+was also corrected before the final render.
+
+## Remaining external operations
+
+A permanent DOI and a venue-specific cover letter cannot be produced until an
+archive and venue are selected. They are recorded as submission operations,
+not as scientific-evidence gaps. Repository redistribution remains restricted
+until the owner selects a license.

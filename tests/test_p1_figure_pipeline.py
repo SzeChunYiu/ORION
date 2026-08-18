@@ -73,10 +73,8 @@ def test_figure_check_fails_on_mutated_pdf():
             capture_output=True,
             text=True,
         )
-        # --check doesn't currently check PDF content, only that files exist
-        # This test validates the checker structure; we expect 0 for now
-        # If we add PDF hash checking, this would fail
-        assert result.returncode == 0  # Will need to change when hash checking is added
+        assert result.returncode != 0
+        assert "figure hash mismatch: P1-2" in result.stderr
 
     finally:
         # Restore original
@@ -101,7 +99,9 @@ def test_manifest_exists_and_contains_sha256_hashes():
     # Check required keys
     assert "generated_by" in manifest
     assert "cannot_check_records_excluded" in manifest
-    assert manifest["cannot_check_records_excluded"] == 86
+    assert manifest["cannot_check_records_excluded"] == 0
+    assert "generator_sha256" in manifest
+    assert "archive_sha256" in manifest
     assert "exclusion_reason" in manifest
     assert "figures" in manifest
 
@@ -120,15 +120,14 @@ def test_manifest_exists_and_contains_sha256_hashes():
         assert actual_sha256 == entry["sha256"], f"SHA256 mismatch for {name}"
 
 
-def test_manifest_explains_cannot_check_exclusion():
-    """The manifest must document why 86 orion_live_provider records are excluded."""
+def test_manifest_records_complete_live_provider_recovery():
+    """The manifest must record that all former provider failures were recovered."""
     import json
 
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
 
-    assert manifest["cannot_check_records_excluded"] == 86
-    assert "provider" in manifest["exclusion_reason"].lower()
-    assert "api" in manifest["exclusion_reason"].lower()
+    assert manifest["cannot_check_records_excluded"] == 0
+    assert "all cells recovered" in manifest["exclusion_reason"].lower()
 
 
 def test_figure_generation_produces_valid_pdfs():

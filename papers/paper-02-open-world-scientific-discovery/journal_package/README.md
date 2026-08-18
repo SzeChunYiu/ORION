@@ -1,7 +1,13 @@
 # ORION-P2 journal package
 
-**Status:** `SCAFFOLDING`. Declared paper terminal remains `CANNOT_CHECK` for external discovery superiority.
+**Status:** `SUBMISSION_READY`; bounded paper terminal `PEER_REVIEW_READY`.
 
-Required inventory, hashes, compile path, license gaps, and claim/PDF audit. Submission drafts already live under `../notes/submission/`; this package does not replace them.
+This package contains the canonical 21-page review PDF, exact source/evidence
+inventory, claim/PDF audit, reproduction route, submission-operation register,
+and SHA-256 bindings. External ORION-vs-baseline superiority remains
+`CANNOT_CHECK`; the failed OpenAIRE/Crossref campaign is retained rather than
+used as support.
 
-Issue #283 owns `ScientificResultVerification.v1`.
+Author metadata, the final venue wrapper, DOI minting, and a literature refresh
+after 2026-08-31 are filing operations. Issue #283 continues to own
+`ScientificResultVerification.v1`.

@@ -1,110 +1,88 @@
 {
   "schema_version": "orion.journal-package.v1",
   "paper_id": "P1",
-  "package_status": "SCAFFOLDING",
-  "declared_paper_terminal": "CANNOT_CHECK",
-  "audit_subject_revision": "b7cfaecfb55d9ad6c12fb59374935769ed8d8787",
-  "audit_date": "2026-08-17",
-  "issue": 160,
+  "package_status": "SUBMISSION_READY",
+  "declared_paper_terminal": "PEER_REVIEW_READY",
+  "claim_boundary": "CREDENTIAL_FREE_MECHANICAL_MUTATION_NECESSITY_ONLY__NO_MODEL_GENERAL_OR_OPEN_ENDED_SUPERIORITY",
+  "audit_subject_revision": "7fc78cbe0fba344de396dae00cac500e65ca1dfa",
+  "audit_date": "2026-08-18",
+  "issue": 393,
   "required_files": [
-    {
-      "path": "manuscript/main.tex",
-      "role": "manuscript-source"
-    },
-    {
-      "path": "manuscript/bibliography.bib",
-      "role": "bibliography"
-    },
-    {
-      "path": "evidence/CLAIM_LEDGER_V1.md",
-      "role": "claim-ledger"
-    },
-    {
-      "path": "protocol/PROTOCOL_V1.json",
-      "role": "frozen-protocol"
-    },
-    {
-      "path": "results/P1-T2_baseline_ablation_results.json",
-      "role": "headline-table"
-    },
-    {
-      "path": "results/P1-T3_failure_taxonomy.json",
-      "role": "failure-taxonomy"
-    },
-    {
-      "path": "REPRODUCE.md",
-      "role": "reproduction-path"
-    },
-    {
-      "path": "JOURNAL_READINESS.md",
-      "role": "gate-checklist"
-    }
+    {"path": "journal_package/manuscript.pdf", "role": "compiled-and-visually-reviewed-manuscript"},
+    {"path": "manuscript/main.tex", "role": "manuscript-source"},
+    {"path": "manuscript/bibliography.bib", "role": "bibliography"},
+    {"path": "evidence/CLAIM_LEDGER.md", "role": "current-claim-ledger"},
+    {"path": "evidence/CLAIM_LEDGER_V1.md", "role": "immutable-historical-v1-claim-ledger"},
+    {"path": "evidence/PEER_REVIEW_READY_BOUNDED_V2.md", "role": "bounded-readiness-attestation"},
+    {"path": "protocol/PROTOCOL_V1.json", "role": "historical-v1-frozen-protocol"},
+    {"path": "results/P1-T2_baseline_ablation_results.json", "role": "historical-v1-headline-table"},
+    {"path": "results/P1-T3_failure_taxonomy.json", "role": "historical-v1-failure-taxonomy"},
+    {"path": "REPRODUCE.md", "role": "reproduction-path"},
+    {"path": "JOURNAL_READINESS.md", "role": "gate-checklist"},
+    {"path": "../../research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RESULT.json", "role": "powered-primary-result"},
+    {"path": "../../research/revival/p1/confirmatory/v2.2/primary/INDEPENDENT_VERIFICATION.json", "role": "primary-independent-verification"},
+    {"path": "../../research/revival/p1/confirmatory/v2.2/replication/REPLICATION_RESULT.json", "role": "disjoint-replication-result"},
+    {"path": "../../research/revival/p1/confirmatory/v2.2/replication/INDEPENDENT_VERIFICATION.json", "role": "replication-independent-verification"},
+    {"path": "../../research/revival/p1/confirmatory/v2.2/PRIMARY_REPLICATION_CONCORDANCE.json", "role": "cross-run-concordance"}
   ],
-  "missing_artifacts": [
-    {
-      "path": "journal_package/manuscript.pdf",
-      "role": "compiled-pdf",
-      "status": "CANNOT_CHECK",
-      "reason": "Working-draft PDF is gitignored and not a submission artifact; this package does not fabricate a PDF of an unready manuscript."
-    },
+  "missing_artifacts": [],
+  "submission_operations": [
     {
       "path": "journal_package/DOI.txt",
       "role": "permanent-archive-doi",
-      "status": "CANNOT_CHECK",
-      "reason": "No permanent archival DOI exists for P1."
-    },
-    {
-      "path": "journal_package/independent_reproduction_receipt.json",
-      "role": "independent-headline-reproduction",
-      "status": "CANNOT_CHECK",
-      "reason": "No independent session receipt for the headline H1 comparison is archived."
+      "status": "SUBMISSION_OPERATION",
+      "reason": "A DOI can be minted only when the selected archive receives the final accepted deposit."
     },
     {
       "path": "journal_package/cover_letter.md",
-      "role": "journal-cover-letter",
-      "status": "CANNOT_CHECK",
-      "reason": "No target-journal cover letter is frozen; scientific terminal is not PEER_REVIEW_READY."
+      "role": "venue-specific-cover-letter",
+      "status": "SUBMISSION_OPERATION",
+      "reason": "No target venue was selected; the scientific package does not invent venue metadata."
     }
   ],
   "claims": [
     {
       "id": "P1.H1",
-      "text": "On hidden-formulation-shift tasks, full ORION improves root task success versus the strongest matched baseline by at least +0.05.",
-      "artifacts": [
-        "results/P1-T2_baseline_ablation_results.json"
-      ],
+      "text": "The historical 48-case hidden-formulation study supports broad external superiority.",
+      "artifacts": ["results/P1-T2_baseline_ablation_results.json"],
       "status": "NOT_SUPPORTED"
     },
     {
-      "id": "P1.KWM",
-      "text": "ORION explicitly separates object knowledge K, search-universe W, and governed method state M.",
+      "id": "P1.NECESSITY.V2.2.4",
+      "text": "On the frozen credential-free mechanical worlds, the protected mutation-necessity composition improves recovery over every assimilated strong parent while satisfying every registered safety, non-regression, control, and cost gate.",
       "artifacts": [
-        "manuscript/main.tex",
-        "evidence/CLAIM_LEDGER_V1.md"
-      ],
-      "status": "BOUNDED"
-    },
-    {
-      "id": "P1.FALSIFIER",
-      "text": "A frozen local falsifier exposed an over-broad reframe gate that was repaired.",
-      "artifacts": [
-        "evidence/FALSIFIER_V1.md"
+        "../../research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RESULT.json",
+        "../../research/revival/p1/confirmatory/v2.2/replication/REPLICATION_RESULT.json",
+        "../../research/revival/p1/confirmatory/v2.2/PRIMARY_REPLICATION_CONCORDANCE.json"
       ],
       "status": "SUPPORTED"
     },
     {
-      "id": "P1.EXTERNAL",
-      "text": "Matched prospective comparisons on fresh hidden-shift tasks support external superiority.",
+      "id": "P1.KWM",
+      "text": "ORION explicitly separates object knowledge K, search-universe W, and governed method state M.",
+      "artifacts": ["manuscript/main.tex", "evidence/CLAIM_LEDGER.md"],
+      "status": "BOUNDED"
+    },
+    {
+      "id": "P1.FALSIFIER",
+      "text": "A frozen local falsifier exposed and repaired an over-broad reframe gate.",
+      "artifacts": ["evidence/FALSIFIER_V1.md"],
+      "status": "SUPPORTED"
+    },
+    {
+      "id": "P1.MODEL_GENERAL_BOUNDARY",
+      "text": "The mechanical successor is explicitly bounded away from model-general or open-ended scientific superiority.",
       "artifacts": [
-        "protocol/PROTOCOL_V1.json"
+        "evidence/PEER_REVIEW_READY_BOUNDED_V2.md",
+        "manuscript/main.tex"
       ],
-      "status": "CANNOT_CHECK"
+      "status": "BOUNDED"
     },
     {
       "id": "P1.PDF",
-      "text": "Independent final PDF proofread of a journal-formatted manuscript.",
-      "artifacts": [],
-      "status": "OPEN"
+      "text": "The compiled manuscript has complete references and was rendered and visually reviewed for clipping, overlap, figure placement, and table legibility.",
+      "artifacts": ["journal_package/manuscript.pdf", "journal_package/CLAIM_PDF_AUDIT.md"],
+      "status": "SUPPORTED"
     }
   ],
   "scientific_result_verification": {
@@ -115,6 +93,13 @@
       "research/verification/records/P1.mechanical-arm-62-66.json",
       "research/verification/records/P1.mechanical-arm-62-66.v2.json",
       "research/verification/records/P1.solvability-audit-55-66.json"
-    ]
+    ],
+    "successor_verifier_schema": "ScientificResultVerification.p1.v2.2.4.independent.v1",
+    "primary_rows_recomputed": 40348,
+    "replication_rows_recomputed": 40348,
+    "score_mismatch_count": 0,
+    "analysis_mismatch_count": 0,
+    "terminal_match": true,
+    "verdict": "PASS"
   }
 }

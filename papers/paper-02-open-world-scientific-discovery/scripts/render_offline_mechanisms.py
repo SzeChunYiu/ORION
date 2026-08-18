@@ -292,11 +292,14 @@ def render_p2_5_tex(data: dict[str, Any]) -> str:
                 lines.append(
                     rf"\node[text={text_color},font=\tiny] at ({x + 0.4:.2f},{y + 0.16:.2f}) {{{short}}};"
                 )
-    scope = _scope(data, detail="content identity; deterministic repeats collapsed")
+    compact_scope = (
+        f"{data['n_tasks']} frozen tasks; content identity; repeats collapsed; "
+        f"authority {data['analysis_authority']}"
+    )
     lines.extend(
         [
             r"\node[anchor=west,font=\small] at (0.7,-0.55) {cell = mean task-level content Jaccard; ind. = structurally independent};",
-            rf"\node[anchor=west,font=\small] at (0.7,-0.95) {{{scope.replace('_', r'\_')}}};",
+            rf"\node[anchor=west,font=\scriptsize,text width=6.8cm,align=left] at (0.7,-0.95) {{{compact_scope.replace('_', r'\_')}}};",
             r"\end{tikzpicture}",
         ]
     )
