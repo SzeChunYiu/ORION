@@ -1,21 +1,20 @@
 #!/usr/bin/env python3
 """P2 V2 acquisition Dev-2: diversified scorer-native arXiv candidate generation.
 
-This is a DEVELOPMENT-ONLY runner over the already-burned 24-task Wide slice
-frozen in P2_V2_ACQUISITION_DEV2_FREEZE_2026-08-18.json. It may improve the
-candidate generator selected for a later fresh-slice freeze, but its outcomes
-can never serve as final V2 confirmation.
+Development-only runner over the already-burned 24-task Wide slice frozen in
+P2_V2_ACQUISITION_DEV2_FREEZE_2026-08-18.json. Outcomes from this slice can
+select a candidate generator for a later fresh-slice freeze, but can never serve
+as final V2 confirmation.
 
-The system spends exactly three arXiv provider requests per non-empty task:
-
+Exactly three arXiv requests are spent per non-empty task:
 1. FIELD_AWARE_PHRASES -- title/abstract phrase clauses from public text;
-2. DIVERSIFIED_OR -- a broad OR over high-information public-question anchors;
-3. CORE_CONJUNCTION -- a compact AND over early topical concepts.
+2. DIVERSIFIED_OR -- broad OR over high-information public-question anchors;
+3. CORE_CONJUNCTION -- recall-first conjunction of two early topical terms, with
+   a third only when all three are contiguous in the original public question.
 
-All three calls share one backend. Query-family agreement is therefore only a
-ranking signal; it is NEVER represented as route independence.
+All calls share the arXiv backend. Query-family agreement is a ranking signal
+only and is never represented as route independence.
 """
-
 from __future__ import annotations
 
 import argparse
@@ -23,8 +22,9 @@ import importlib.util
 import json
 import re
 import time
+import urllib.parse
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 HERE = Path(__file__).resolve().parent
 CMP_PATH = HERE / "run_autoresearchbench_wide_comparison.py"
@@ -43,11 +43,7 @@ cmp = _load_cmp()
 base = cmp.base
 
 SYSTEM_ID = "wide_diversified_arxiv_dev2"
-QUERY_FAMILIES = (
-    "FIELD_AWARE_PHRASES",
-    "DIVERSIFIED_OR",
-    "CORE_CONJUNCTION",
-)
+QUERY_FAMILIES = ("FIELD_AWARE_PHRASES", "DIVERSIFIED_OR", "CORE_CONJUNCTION")
 PROVIDER_REQUESTS_PER_TASK = 3
 MAX_CANDIDATES_RETURNED = 20
 DEFAULT_SUBSAMPLE = 24
@@ -59,40 +55,39 @@ _RANGE_PATTERNS = (
     re.compile(r"\b(19\d{2}|20\d{2})\s*[-–—]\s*(19\d{2}|20\d{2})\b"),
 )
 _EXTRA_GENERIC = frozenset(
-    """
-    aim aims identify identifies identified investigating investigate investigated
-    examining examine examined focus focuses focused focusing literature articles
-    article relevant most recent recent key notable specifically explicit explicitly
-    ask asks question questions consider considering considered evidence empirical
-    paper papers study studies research works work result results report reports
-    approach approaches method methods technique techniques framework frameworks
-    system systems model models dataset datasets benchmark benchmarks compare comparison
-    looking find finding including include includes propose proposes proposed show shows
-    demonstrated demonstrate using used uses based primarily roughly particular
-    """.split()
+    """aim aims identify identifies identified investigating investigate investigated
+    examining examine examined focus focuses focused focusing literature articles article
+    relevant most recent key notable specifically explicit explicitly ask asks question
+    questions consider considering considered evidence empirical paper papers study studies
+    research works work result results report reports approach approaches method methods
+    technique techniques framework frameworks system systems model models dataset datasets
+    benchmark benchmarks compare comparison looking find finding including include includes
+    propose proposes proposed show shows demonstrated demonstrate using used uses based
+    primarily roughly particular""".split()
 )
 
 
-def _content_words(question: str) -> list[tuple[int, str, str]]:
-    """Ordered public-question words as (position, raw, normalized)."""
+def _eligible_match(match: re.Match[str]) -> bool:
+    raw = match.group(0)
+    token = raw.lower().strip("-")
+    return (
+        token not in base.STOPWORDS
+        and token not in _EXTRA_GENERIC
+        and not token.isdigit()
+        and not re.fullmatch(r"(?:19|20)\d{2}", token)
+        and len(token) >= 3
+    )
 
-    rows: list[tuple[int, str, str]] = []
-    for match in _WORD.finditer(question):
-        raw = match.group(0)
-        token = raw.lower().strip("-")
-        if token in base.STOPWORDS or token in _EXTRA_GENERIC:
-            continue
-        if token.isdigit() or re.fullmatch(r"(?:19|20)\d{2}", token):
-            continue
-        if len(token) < 3:
-            continue
-        rows.append((match.start(), raw, token))
-    return rows
+
+def _content_words(question: str) -> list[tuple[int, int, str, str]]:
+    return [
+        (m.start(), m.end(), m.group(0), m.group(0).lower().strip("-"))
+        for m in _WORD.finditer(question)
+        if _eligible_match(m)
+    ]
 
 
 def _explicit_year_range(question: str) -> tuple[int, int] | None:
-    """Return only an explicit public-text year RANGE, never inferred gold time."""
-
     for pattern in _RANGE_PATTERNS:
         match = pattern.search(question)
         if match:
@@ -102,127 +97,136 @@ def _explicit_year_range(question: str) -> tuple[int, int] | None:
     return None
 
 
-def _date_clause(question: str) -> str:
+def _with_date(query: str, question: str) -> str:
     years = _explicit_year_range(question)
     if years is None:
-        return ""
+        return query
     lo, hi = years
-    return f"submittedDate:[{lo}01010000 TO {hi}12312359]"
-
-
-def _with_date(query: str, question: str) -> str:
-    date = _date_clause(question)
-    return f"({query}) AND {date}" if date else query
+    return f"({query}) AND submittedDate:[{lo}01010000 TO {hi}12312359]"
 
 
 def _phrase_candidates(question: str) -> list[str]:
-    """High-information contiguous public-text 2/3-grams, deterministic."""
-
+    """Return deterministic high-information contiguous 2/3-grams."""
     matches = list(_WORD.finditer(question))
-    content = {
-        match.start(): (
-            match.group(0),
-            match.group(0).lower().strip("-"),
-        )
-        for match in matches
-        if match.group(0).lower().strip("-") not in base.STOPWORDS
-        and match.group(0).lower().strip("-") not in _EXTRA_GENERIC
-        and not re.fullmatch(r"(?:19|20)\d{2}", match.group(0))
-        and len(match.group(0).strip("-")) >= 3
-    }
-    ordered = [match for match in matches if match.start() in content]
+    eligible = [m for m in matches if _eligible_match(m)]
     candidates: list[tuple[int, int, str]] = []
     seen: set[str] = set()
-
     for n in (3, 2):
-        for index in range(0, max(0, len(ordered) - n + 1)):
-            window = ordered[index : index + n]
-            # Require actual contiguity in the original question: punctuation or
-            # whitespace is fine; an omitted generic/content word is not.
-            left = window[0].start()
-            right = window[-1].end()
-            raw_segment = question[left:right]
-            segment_tokens = _WORD.findall(raw_segment)
-            if len(segment_tokens) != n:
+        for i in range(len(eligible) - n + 1):
+            window = eligible[i : i + n]
+            left, right = window[0].start(), window[-1].end()
+            segment = question[left:right]
+            # If a filtered-out word lies between the eligible terms, this is not
+            # a contiguous topical phrase and must not be silently contracted.
+            tokens = _WORD.findall(segment)
+            if len(tokens) != n:
                 continue
-            phrase = " ".join(item.lower().strip("-") for item in segment_tokens)
+            phrase = " ".join(t.lower().strip("-") for t in tokens)
             if phrase in seen:
                 continue
             seen.add(phrase)
-            score = sum(len(item) for item in segment_tokens)
-            score += sum(4 for item in segment_tokens if "-" in item)
-            score += sum(3 for item in segment_tokens if item.isupper() and len(item) >= 3)
-            # A light early-position prior keeps the task's central noun phrase
-            # ahead of later examples without overwhelming technical specificity.
+            score = sum(len(t) for t in tokens)
+            score += sum(4 for t in tokens if "-" in t)
+            score += sum(3 for t in tokens if t.isupper() and len(t) >= 3)
             score += max(0, 6 - left // 35)
             candidates.append((score, -left, phrase))
-
     candidates.sort(reverse=True)
     return [phrase for _, _, phrase in candidates[:3]]
 
 
 def derive_field_aware_phrases(question: str) -> str:
     phrases = _phrase_candidates(question)
-    if not phrases:
+    if phrases:
+        clauses = [f'(ti:"{phrase}" OR abs:"{phrase}")' for phrase in phrases]
+    else:
         anchors = base._salient_tokens(question, count=3)
         if not anchors:
             raise ValueError("could not derive field-aware query")
         clauses = [f"(ti:{token} OR abs:{token})" for token in anchors]
-    else:
-        clauses = [f'(ti:"{phrase}" OR abs:"{phrase}")' for phrase in phrases]
     return _with_date(" OR ".join(clauses), question)
 
 
 def derive_diversified_or(question: str) -> str:
     anchors = base._salient_tokens(question, count=6)
     if len(anchors) < 2:
-        anchors = [token for _, _, token in _content_words(question)[:6]]
+        anchors = [row[3] for row in _content_words(question)[:6]]
     if len(anchors) < 2:
         raise ValueError("could not derive diversified OR query")
     return _with_date(" OR ".join(f"all:{token}" for token in anchors[:6]), question)
 
 
-def derive_core_conjunction(question: str) -> str:
-    ordered = [token for _, _, token in _content_words(question)]
-    distinct: list[str] = []
+def _core_terms(question: str) -> list[str]:
+    """Two early topical terms; add a third only for a true contiguous 3-gram."""
+    rows = _content_words(question)
+    distinct: list[tuple[int, int, str]] = []
     seen: set[str] = set()
-    for token in ordered:
+    for start, end, _raw, token in rows:
         if token in seen:
             continue
         seen.add(token)
-        distinct.append(token)
+        distinct.append((start, end, token))
     if len(distinct) < 2:
-        distinct = base._salient_tokens(question, count=3)
-    if len(distinct) < 2:
-        raise ValueError("could not derive core conjunction query")
-    # Two terms is intentionally recall-first; a third term is used only when it
-    # immediately belongs to the same early topical phrase.
-    core = distinct[:3] if len(distinct) >= 3 else distinct[:2]
-    return _with_date(" AND ".join(f"all:{token}" for token in core), question)
+        fallback = base._salient_tokens(question, count=2)
+        if len(fallback) < 2:
+            raise ValueError("could not derive core conjunction query")
+        return fallback[:2]
+
+    core = [distinct[0][2], distinct[1][2]]
+    if len(distinct) >= 3:
+        left, right = distinct[0][0], distinct[2][1]
+        # This is the frozen "same early topical phrase" gate: no omitted word
+        # may occur between the three selected content terms.
+        if len(_WORD.findall(question[left:right])) == 3:
+            core.append(distinct[2][2])
+    return core
 
 
-DERIVERS = (
+def derive_core_conjunction(question: str) -> str:
+    return _with_date(" AND ".join(f"all:{token}" for token in _core_terms(question)), question)
+
+
+DERIVERS: tuple[tuple[str, Callable[[str], str]], ...] = (
     (QUERY_FAMILIES[0], derive_field_aware_phrases),
     (QUERY_FAMILIES[1], derive_diversified_or),
     (QUERY_FAMILIES[2], derive_core_conjunction),
 )
 
 
-def _agreement_first(
-    cap: int,
-    groups: list[tuple[str, ...]],
-    found_by: dict[str, set[str]],
-) -> list[str]:
-    """Query-family agreement first, then deterministic round-robin.
+def _arxiv_fielded_route(query: str, *, clock: Any, max_results: int) -> tuple[str, tuple[str, ...], str]:
+    """Execute an already-formed arXiv search_query without adding ``all:``.
 
-    This function intentionally does NOT use cmp.select_agreement_first because
-    that helper documents cross-backend agreement. Here all families share
-    arXiv, so agreement is ranking evidence only, never independence evidence.
+    The parent comparison helper is intentionally for plain lexical strings and
+    prepends ``all:``. Dev-2 produces full field-aware Boolean expressions, so
+    using that helper would corrupt ``ti:``, ``abs:``, ``all:`` and date clauses.
     """
+    clock.wait("arxiv", cmp.DECLARED_CONSTANTS["arxiv_min_interval_seconds"])
+    url = "https://export.arxiv.org/api/query?" + urllib.parse.urlencode(
+        {
+            "search_query": query,
+            "start": 0,
+            "max_results": max_results,
+            "sortBy": "relevance",
+        }
+    )
+    status, body, note, attempts = cmp._http_get(
+        url, timeout=cmp.DECLARED_CONSTANTS["http_timeout_seconds"]
+    )
+    suffix = f" attempts:{attempts}" if attempts > 1 else ""
+    if status != 200 or not body:
+        return (
+            "UNAVAILABLE" if status in (0, 429, 503) else "ERROR",
+            (),
+            (note or f"status:{status}") + suffix,
+        )
+    ids = tuple(dict.fromkeys(base.ARXIV_ID.findall(body.decode("utf-8", "replace"))))
+    return "OK", ids, suffix.strip()
 
+
+def _agreement_first(cap: int, groups: list[tuple[str, ...]], found_by: dict[str, set[str]]) -> list[str]:
     stream = cmp.select_round_robin(cap * 4, groups)
     confirmed = [item for item in stream if len(found_by.get(item, ())) >= 2]
-    remainder = [item for item in stream if item not in set(confirmed)]
+    confirmed_set = set(confirmed)
+    remainder = [item for item in stream if item not in confirmed_set]
     return (confirmed + remainder)[:cap]
 
 
@@ -230,14 +234,13 @@ def run_task(task_id: str, question: str, *, clock: Any, max_results: int) -> An
     run = cmp.TaskRun(task_id=task_id, system_id=SYSTEM_ID)
     budget = cmp.RequestBudget(PROVIDER_REQUESTS_PER_TASK)
     found_by: dict[str, set[str]] = {}
-
     for family, derive in DERIVERS:
         if budget.remaining <= 0:
             break
         query = derive(question)
         budget.take()
         started = time.monotonic()
-        status, ids, note = cmp.arxiv_route(query, clock=clock, max_results=max_results)
+        status, ids, note = _arxiv_fielded_route(query, clock=clock, max_results=max_results)
         novel = tuple(item for item in ids if item not in found_by)
         for item in ids:
             found_by.setdefault(item, set()).add(family)
@@ -265,15 +268,7 @@ def run_task(task_id: str, question: str, *, clock: Any, max_results: int) -> An
     return run
 
 
-def run_dev2(
-    public_path: Path,
-    out_dir: Path,
-    *,
-    max_results: int,
-    subsample: int,
-    seed: int,
-    progress_every: int,
-) -> dict[str, Any]:
+def run_dev2(public_path: Path, out_dir: Path, *, max_results: int, subsample: int, seed: int, progress_every: int) -> dict[str, Any]:
     tasks = base._jsonl(public_path)
     tasks, selection = cmp.select_subsample(tasks, size=subsample, seed=seed)
     leaked = [path for record in tasks for path in base._hidden_paths(record)]
@@ -285,31 +280,23 @@ def run_dev2(
     outputs: list[dict[str, Any]] = []
     traces: list[dict[str, Any]] = []
     statuses: dict[str, int] = {}
-
     for index, task in enumerate(tasks, start=1):
         question = str(task.get("question", "") or "")
         task_id = str(task.get("task_id", index))
-        if not question.strip():
-            run = cmp.TaskRun(task_id=task_id, system_id=SYSTEM_ID)
-        else:
-            run = run_task(task_id, question, clock=clock, max_results=max_results)
+        run = cmp.TaskRun(task_id=task_id, system_id=SYSTEM_ID) if not question.strip() else run_task(
+            task_id, question, clock=clock, max_results=max_results
+        )
         outputs.append(cmp._scorer_record(question, run))
         traces.append(run.as_json())
         for call in run.calls:
             statuses[call.status] = statuses.get(call.status, 0) + 1
         if progress_every and index % progress_every == 0:
-            print(
-                f"ARB_WIDE_DEV2 {index}/{len(tasks)} statuses={json.dumps(statuses, sort_keys=True)}",
-                flush=True,
-            )
+            print(f"ARB_WIDE_DEV2 {index}/{len(tasks)} statuses={json.dumps(statuses, sort_keys=True)}", flush=True)
 
     candidate_path = out_dir / f"candidate_{SYSTEM_ID}.jsonl"
     trace_path = out_dir / f"trace_{SYSTEM_ID}.json"
     base._write_jsonl(candidate_path, outputs)
-    trace_path.write_text(
-        json.dumps({"system_id": SYSTEM_ID, "tasks": traces}, sort_keys=True, indent=1) + "\n",
-        encoding="utf-8",
-    )
+    trace_path.write_text(json.dumps({"system_id": SYSTEM_ID, "tasks": traces}, sort_keys=True, indent=1) + "\n", encoding="utf-8")
     total_requests = sum(len(item["calls"]) for item in traces)
     manifest = {
         "schema_version": "orion.p2.autoresearchbench-wide-acquisition-dev2.v1",
@@ -328,18 +315,13 @@ def run_dev2(
         "route_status_counts": statuses,
         "tasks_with_open_obligations": sum(1 for item in traces if item["open_obligations"]),
         "tasks_closed_as_complete": sum(1 for item in traces if item["closed_as_complete"]),
-        "mean_candidates_returned": (
-            round(sum(len(item["candidate_arxiv_ids"]) for item in traces) / len(tasks), 4)
-            if tasks else 0.0
-        ),
+        "mean_candidates_returned": round(sum(len(item["candidate_arxiv_ids"]) for item in traces) / len(tasks), 4) if tasks else 0.0,
         "candidate_path": candidate_path.name,
         "candidate_sha256": base._sha256(candidate_path),
         "trace_path": trace_path.name,
         "trace_sha256": base._sha256(trace_path),
     }
-    (out_dir / "DEV2_RUN_MANIFEST.json").write_text(
-        json.dumps(manifest, sort_keys=True, indent=1) + "\n", encoding="utf-8"
-    )
+    (out_dir / "DEV2_RUN_MANIFEST.json").write_text(json.dumps(manifest, sort_keys=True, indent=1) + "\n", encoding="utf-8")
     return manifest
 
 
@@ -352,12 +334,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--subsample-seed", type=int, default=DEFAULT_SEED)
     parser.add_argument("--progress-every", type=int, default=4)
     args = parser.parse_args(argv)
-
     if args.subsample != DEFAULT_SUBSAMPLE or args.subsample_seed != DEFAULT_SEED:
         parser.error("Dev-2 is frozen to n=24 and seed=20260818")
     if args.max_results != 20:
         parser.error("Dev-2 is frozen to max-results=20")
-
     payload = run_dev2(
         args.public,
         args.out_dir,
