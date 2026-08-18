@@ -1,0 +1,51 @@
+{
+  "schema_version": "orion.p3.bounded-publication-track.v1",
+  "paper_id": "P3",
+  "paper_parent_issue": 100,
+  "revival_issue": 280,
+  "verification_issue": 283,
+  "status": "FROZEN_BOUNDED_TRACK",
+  "decision_date": "2026-08-18",
+  "primary_claim": "On the frozen already-structured public-reference mapping task, the P3 typed mapping/obstruction procedure reduces false integration relative to the flat comparator on the disjoint confirmatory set without increasing false splits within the reported bounded result.",
+  "confirmatory_result": {
+    "n": 32,
+    "orion_false_merges": 0,
+    "flat_false_merges": 6,
+    "flat_false_merge_rate": 0.1875,
+    "paired_absolute_difference": -0.1875,
+    "reported_95_interval": [-0.34375, -0.0625],
+    "false_split_difference": 0.0,
+    "reported_false_split_interval": [0.0, 0.0]
+  },
+  "evidence_scope": "already_structured_public_reference_mapping_only",
+  "verification_requirement": ["VERIFIED", "BOUNDED_VERIFIED"],
+  "expert_atlas": {
+    "preserved": true,
+    "current_publication_blocker": false,
+    "disposition": "FOLLOW_UP_GENERALIZATION",
+    "becomes_blocker_if": "the current manuscript broadens its headline to expert-atlas, unrestricted cross-domain, or raw-to-structure generalization"
+  },
+  "nonclaims": [
+    "universal cross-domain ontology construction",
+    "raw-document-to-global-portrait extraction",
+    "expert-atlas generality",
+    "all semantic coordinates are independently necessary",
+    "generic ontology alignment or schema matching is P3 novelty",
+    "unrestricted real-world scientific-integration superiority",
+    "formal or local checks substitute for independent scientific verification"
+  ],
+  "authority": {
+    "may_claim_peer_review_ready_from_this_record_alone": false,
+    "may_claim_novelty_from_this_record_alone": false,
+    "may_claim_external_generality_from_this_record_alone": false,
+    "negative_null_history_must_remain_visible": true
+  },
+  "reopen_triggers": [
+    "raw confirmatory evidence or denominator changes",
+    "independent verification becomes discrepant or invalidated",
+    "manuscript or claim ledger broadens beyond mapping-only scope",
+    "nearest work materially absorbs the residual claim",
+    "exact-subject reproduction or publication-package gate fails",
+    "expert-atlas generalization is promoted into the current headline"
+  ]
+}
