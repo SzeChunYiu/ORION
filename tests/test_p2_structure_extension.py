@@ -75,16 +75,18 @@ def test_same_surface_shape_with_incompatible_assumption_is_obstruction():
     assert structural_match_score(need(), candidate(assumptions=("continuous_state",))) < 0
 
 
-def test_missing_reconstruction_is_cannot_check_not_candidate():
+def test_missing_reconstruction_is_acquisition_unknown_not_candidate():
     receipt = assess_structural_candidate(need(), candidate(reconstruction=None))
-    assert receipt.status is StructuralCandidateStatus.CANNOT_CHECK
+    assert receipt.status is StructuralCandidateStatus.UNKNOWN
     assert receipt.reason_codes == ("RECONSTRUCTION_UNKNOWN",)
+    assert receipt.authority_terminal == "NONE"
 
 
-def test_missing_provenance_is_cannot_check():
+def test_missing_provenance_is_acquisition_unknown():
     receipt = assess_structural_candidate(need(), candidate(provenance_digest=""))
-    assert receipt.status is StructuralCandidateStatus.CANNOT_CHECK
+    assert receipt.status is StructuralCandidateStatus.UNKNOWN
     assert receipt.reason_codes == ("PROVENANCE_UNKNOWN",)
+    assert receipt.authority_terminal == "NONE"
 
 
 def test_structural_route_derives_from_bound_need_and_cannot_close_task():
