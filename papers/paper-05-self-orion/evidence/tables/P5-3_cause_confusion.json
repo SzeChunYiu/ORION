@@ -35,56 +35,99 @@
   "empirical_authority": "DESCRIPTIVE_ONLY",
   "incorrect": 3,
   "issue": 102,
+  "macro_f1": 0.8726190476190476,
+  "macro_precision": 0.8958333333333334,
+  "macro_recall": 0.875,
   "n_cases": 24,
   "paper_id": "P5",
   "per_family": [
     {
       "correct": 2,
+      "f1": 0.8,
       "family": "RETRIEVAL_MISS",
+      "fn": 1,
+      "fp": 0,
+      "precision": 1.0,
       "recall": 0.6666666666666666,
-      "total": 3
+      "total": 3,
+      "tp": 2
     },
     {
       "correct": 3,
+      "f1": 1.0,
       "family": "ROUTING_PLANNING_MISS",
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
       "recall": 1.0,
-      "total": 3
+      "total": 3,
+      "tp": 3
     },
     {
       "correct": 3,
+      "f1": 0.8571428571428571,
       "family": "IMPLEMENTATION_BUG",
+      "fn": 0,
+      "fp": 1,
+      "precision": 0.75,
       "recall": 1.0,
-      "total": 3
+      "total": 3,
+      "tp": 3
     },
     {
       "correct": 2,
+      "f1": 0.8,
       "family": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+      "fn": 1,
+      "fp": 0,
+      "precision": 1.0,
       "recall": 0.6666666666666666,
-      "total": 3
+      "total": 3,
+      "tp": 2
     },
     {
       "correct": 3,
+      "f1": 1.0,
       "family": "EVALUATOR_METRIC_BUG",
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
       "recall": 1.0,
-      "total": 3
+      "total": 3,
+      "tp": 3
     },
     {
       "correct": 2,
+      "f1": 0.6666666666666666,
       "family": "REPRESENTATION_GAP",
+      "fn": 1,
+      "fp": 1,
+      "precision": 0.6666666666666666,
       "recall": 0.6666666666666666,
-      "total": 3
+      "total": 3,
+      "tp": 2
     },
     {
       "correct": 3,
+      "f1": 1.0,
       "family": "MEASUREMENT_SPECIFICATION_GAP",
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
       "recall": 1.0,
-      "total": 3
+      "total": 3,
+      "tp": 3
     },
     {
       "correct": 3,
+      "f1": 0.8571428571428571,
       "family": "METHOD_BASIS_GAP",
+      "fn": 0,
+      "fp": 1,
+      "precision": 0.75,
       "recall": 1.0,
-      "total": 3
+      "total": 3,
+      "tp": 3
     }
   ],
   "residual_errors": [
