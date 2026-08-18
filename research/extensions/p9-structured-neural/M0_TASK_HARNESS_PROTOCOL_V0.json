@@ -1,0 +1,91 @@
+{
+  "schema": "P9.M0TaskHarnessProtocol.v0",
+  "protocol_status": "DESIGN_FROZEN",
+  "outcome_accessed": false,
+  "paper_id": "P9",
+  "purpose": "architecture-neutral task/evaluator/leakage validation before any learned P9 model",
+  "source_subject": {
+    "base_commit": "e5504065dcf1f71b371a611b5d5ad8db7f4a8ce0",
+    "generated_corpus_schema": "P9.GeneratedCorpus.v0"
+  },
+  "corpus": {
+    "seed": "p9-m0-task-harness-v0",
+    "train_pairs_per_family": 32,
+    "dev_pairs_per_family": 8,
+    "test_pairs_per_family": 16
+  },
+  "candidate_order": {
+    "rule": "ascending sha256(order_seed | semantic_fingerprint | candidate_id)",
+    "order_seeds": [
+      "p9-m0-order-a",
+      "p9-m0-order-b"
+    ],
+    "target_identity_not_index": true
+  },
+  "tasks": {
+    "MECHANIC_RANKING": {
+      "input": "context projection plus current-example candidate mechanic projections",
+      "output": "one supplied candidate mechanic id",
+      "global_mechanic_class_vocabulary": false
+    },
+    "GLUING": {
+      "input": "context projection",
+      "output_vocabulary": [
+        "GLUE",
+        "OBSTRUCTION",
+        "UNKNOWN"
+      ]
+    }
+  },
+  "view_modes": [
+    "SURFACE",
+    "TOPOLOGY",
+    "TYPED",
+    "CURRENT",
+    "SEMANTIC"
+  ],
+  "null_baselines": [
+    "FIRST_CANDIDATE",
+    "LAST_CANDIDATE",
+    "LEXICOGRAPHIC_ID",
+    "HASH_PARITY",
+    "ALWAYS_GLUE",
+    "ALWAYS_OBSTRUCTION",
+    "ALWAYS_UNKNOWN"
+  ],
+  "oracle": {
+    "name": "EXACT_SEMANTIC_ORACLE",
+    "may_read_world_gold": false,
+    "relation_rules": {
+      "SUPPORTS": "candidate effect ASSIMILATE_EVIDENCE",
+      "DEFEATS": "candidate effect REOPEN_CLAIM"
+    },
+    "failure_history_rule": "choose lowest-cost candidate not named by admitted matching failure history; if none failed choose lowest-cost candidate",
+    "gluing_rule": "exact classify_cycle_gluing over representation cycle"
+  },
+  "metrics": [
+    "accuracy_by_task",
+    "accuracy_by_hostile_family",
+    "candidate_order_consistency",
+    "invalid_prediction_count",
+    "view_deterministic_accuracy_ceiling",
+    "ceiling_violation_flag"
+  ],
+  "leakage_exclusions": [
+    "row_index",
+    "pair_orientation",
+    "pair_id",
+    "hostile_family_id",
+    "raw_generator_seed",
+    "split_namespace",
+    "evaluator_gold"
+  ],
+  "authority": {
+    "scientific_authority": false,
+    "novelty_authority": false,
+    "paper_readiness_authority": false,
+    "model_promotion_authority": false
+  },
+  "terminal": "M0_TASK_HARNESS_VALIDATED_ONLY",
+  "claim_boundary": "M0 validates task/evaluator plumbing only; no learned P9 capability claim is authorized"
+}
