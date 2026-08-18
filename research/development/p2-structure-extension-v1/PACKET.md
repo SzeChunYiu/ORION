@@ -20,7 +20,7 @@ Issues #406/#407 were frozen before this implementation session and supplied the
 
 - route kind changed while backend/query/capture stay the same -> no earned independence;
 - same surface/graph shape with incompatible assumption -> `OBSTRUCTION`;
-- missing reconstruction or provenance -> `CANNOT_CHECK`;
+- missing reconstruction or provenance -> acquisition-local `UNKNOWN`, with scientific authority still `NONE` until downstream P4/P8 evaluation;
 - semantically distant but structurally unrelated donor -> `OBSTRUCTION`;
 - unavailable/censored/exhausted structural route -> task remains `OPEN`;
 - source structural digest changed after route freeze -> receipt verification fails;
@@ -37,6 +37,7 @@ The only admissible terminal from this pilot is `P2_STRUCTURAL_DISCOVERY_NARROWE
 - P2 surfaces candidates only.
 - P3/P6 own structural mapping/equivalence.
 - P4/P8 own scientific authority.
+- acquisition-local `UNKNOWN` is not a scientific authority terminal.
 - novelty remains externally adjudicated.
 - the current P2 publication terminal and external-superiority `CANNOT_CHECK` boundary remain unchanged.
 
@@ -46,6 +47,7 @@ Run at minimum:
 
 ```bash
 pytest -q tests/test_p2_structure_extension.py tests/test_p2_structural_pilot.py tests/test_p2_structure_claim_boundary.py
+python papers/paper-02-open-world-scientific-discovery/scripts/run_structural_discovery_pilot.py --check
 ```
 
 Then run repository CI on the PR head. No issue closes from prose or a local green alone.
