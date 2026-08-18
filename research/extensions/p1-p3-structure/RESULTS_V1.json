@@ -1,0 +1,36 @@
+{
+  "claim_ceiling": "This pilot tests typed structural recoverability and plural alignment on deterministic authored method specifications across three domains. It is not an expert-annotated 50-100-paper corpus and cannot support broad cross-domain extraction or P9 sufficiency claims.",
+  "coordinate_recoverability": 1.0,
+  "correct_unresolved_rate": 1.0,
+  "corruption_detection_recall": 1.0,
+  "corruptions": [
+    {"detected": true, "id": "delete_invariant"},
+    {"detected": true, "id": "delete_reconstruction"},
+    {"detected": true, "id": "reverse_dependency"},
+    {"detected": true, "id": "swap_precondition"},
+    {"detected": true, "id": "collapse_failure_semantics"},
+    {"detected": true, "id": "erase_lineage"},
+    {"detected": true, "id": "widen_authority"},
+    {"detected": true, "id": "fabricate_unknown"}
+  ],
+  "false_substitutability_rate": 0.0,
+  "n_domains": 3,
+  "n_pairs": 6,
+  "pair_rows": [
+    {"gold": "ALIGNED", "id": "numeric_true", "pass": true, "transcript": "OBSTRUCTION", "typed": "ALIGNED"},
+    {"gold": "OBSTRUCTION", "id": "numeric_false", "pass": true, "transcript": "OBSTRUCTION", "typed": "OBSTRUCTION"},
+    {"gold": "ALIGNED", "id": "graph_true", "pass": true, "transcript": "OBSTRUCTION", "typed": "ALIGNED"},
+    {"gold": "OBSTRUCTION", "id": "graph_false", "pass": true, "transcript": "OBSTRUCTION", "typed": "OBSTRUCTION"},
+    {"gold": "ALIGNED", "id": "workflow_true", "pass": true, "transcript": "OBSTRUCTION", "typed": "ALIGNED"},
+    {"gold": "UNRESOLVED", "id": "workflow_unresolved", "pass": true, "transcript": "OBSTRUCTION", "typed": "UNRESOLVED"}
+  ],
+  "projection_alignment_accuracy": 1.0,
+  "protocol_digest": "sha256:c41b7e055b1886ce27cf0f05969ad645a615431b1acaaa83dbcdf045326c3368",
+  "protocol_id": "ORION.P1P3.StructurePilot.v1",
+  "result_digest": "sha256:79a8884b060baeb093a3d065b6528c29e0dfa998b366772a9d27e0de77fc1e48",
+  "substitution_false": "NOT_SUBSTITUTABLE",
+  "substitution_true": "SUBSTITUTABLE_FOR_CLAIM",
+  "substitution_unresolved": "UNRESOLVED",
+  "terminal": "P1_METHOD_RECONSTRUCTION_NARROWED__P3_METHOD_PROJECTION_NARROWED",
+  "transcript_only_pair_accuracy": 0.3333333333333333
+}
