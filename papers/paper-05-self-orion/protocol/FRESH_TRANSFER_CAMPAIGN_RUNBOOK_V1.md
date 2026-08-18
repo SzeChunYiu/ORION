@@ -48,7 +48,7 @@ the diagnosis seed later campaigns must start from:
 
 - path: `papers/paper-05-self-orion/evidence/glm-5.2-attribution/`
 - model: `glm-5.2`
-- `21/24 = 0.875` correct, macro-F1 `0.875`
+- `21/24 = 0.875` correct, macro-F1 `0.8726`
 - transport/execution errors: `0`
 - immutable misclassifications:
   1. `P5-HC-002`: `RETRIEVAL_MISS -> REPRESENTATION_GAP`
