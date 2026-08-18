@@ -23,8 +23,23 @@ import json
 import re
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[3]
-P7 = ROOT / "papers" / "candidates" / "paper-07-epistemic-navigation-open-worlds"
+CANDIDATES = ROOT / "papers" / "candidates"
+
+#: Papers that keep retrieval records, and whose citations must be backed.
+#:
+#: P6 and P7 arrived at the same rule from different gaps. P7's section 2.3
+#: asserted what "planning research has long shown" and named nobody. P6 names
+#: its parents in prose -- Doyle, de Kleer, AGM -- but carries no bibliography
+#: and no records, so a reader cannot tell which of several same-author papers
+#: is meant. The binding rule is identical for both, so it lives in one place.
+PAPERS = {
+    "P6": CANDIDATES / "paper-06-formal-epistemic-structures-and-mechanics",
+    "P7": CANDIDATES / "paper-07-epistemic-navigation-open-worlds",
+}
+P7 = PAPERS["P7"]
 LITERATURE = P7 / "evidence" / "literature"
 MANUSCRIPT = P7 / "manuscript" / "FINAL.md"
 
@@ -109,3 +124,40 @@ def test_the_section_that_prompted_this_now_carries_a_citation() -> None:
         "the counterweight is gone; 2.3 would again read as though abstraction is "
         "uniformly beneficial"
     )
+
+
+@pytest.mark.parametrize("paper_id", sorted(PAPERS))
+def test_every_paper_with_records_binds_its_citations(paper_id: str) -> None:
+    """The binding rule holds for every candidate that keeps records, not just P7.
+
+    Same asymmetry: a record may sit uncited as a lead, but a citation with no
+    VERIFIED record is a name in a manuscript that nothing backs. Scans every
+    manuscript in the paper, not only the one file P7 happens to cite from, so a
+    citation added to a draft is caught too.
+    """
+
+    root = PAPERS[paper_id]
+    directory = root / "evidence" / "literature"
+    if not directory.is_dir():
+        pytest.skip(f"{paper_id} keeps no retrieval records yet")
+
+    records = {
+        path.stem: json.loads(path.read_text(encoding="utf-8"))
+        for path in sorted(directory.glob("*.json"))
+    }
+    assert records, f"{paper_id} has an empty literature directory"
+    for key, record in records.items():
+        assert record["verdict"] in VALID_VERDICTS, (
+            f"{paper_id}/{key}: unknown verdict {record['verdict']!r}"
+        )
+        assert record.get("verdict_reason"), f"{paper_id}/{key}: verdict with no reason"
+
+    verified = {k for k, r in records.items() if r["verdict"] == "VERIFIED"}
+    for manuscript in sorted((root / "manuscript").glob("*.md")):
+        text = manuscript.read_text(encoding="utf-8")
+        for author, year in CITATION.findall(text):
+            name = f"{author.lower()}{year}"
+            assert any(v.startswith(name[:8]) for v in verified), (
+                f"{paper_id} {manuscript.name} cites [{author} {year}] with no VERIFIED "
+                f"record. Verified records: {sorted(verified) or 'none'}"
+            )
