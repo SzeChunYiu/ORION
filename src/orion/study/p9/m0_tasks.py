@@ -110,23 +110,30 @@ class GluingTask:
 P9Task = MechanicRankingTask | GluingTask
 
 
+def _incidence_payload(mechanic: MechanicView) -> dict[str, object]:
+    return {
+        "read_atom_ids": list(sorted(set(mechanic.read_atom_ids))),
+        "write_atom_ids": list(sorted(set(mechanic.write_atom_ids))),
+    }
+
+
 def _candidate_payload(mechanic: MechanicView, mode: ViewMode) -> dict[str, object]:
+    incidence = _incidence_payload(mechanic)
     if mode is ViewMode.SURFACE:
         return {
             "candidate_id": mechanic.mechanic_id,
             "surface_label": mechanic.surface_label,
+            **incidence,
         }
     if mode is ViewMode.TOPOLOGY:
         return {
             "candidate_id": mechanic.mechanic_id,
-            "read_atom_ids": list(sorted(set(mechanic.read_atom_ids))),
-            "write_atom_ids": list(sorted(set(mechanic.write_atom_ids))),
+            **incidence,
         }
     if mode in (ViewMode.TYPED, ViewMode.CURRENT, ViewMode.SEMANTIC):
         return {
             "candidate_id": mechanic.mechanic_id,
-            "read_atom_ids": list(sorted(set(mechanic.read_atom_ids))),
-            "write_atom_ids": list(sorted(set(mechanic.write_atom_ids))),
+            **incidence,
             "preconditions": list(sorted(set(mechanic.preconditions))),
             "effects": list(sorted(set(mechanic.effects))),
             "failure_modes": list(sorted(set(mechanic.failure_modes))),
@@ -136,7 +143,13 @@ def _candidate_payload(mechanic: MechanicView, mode: ViewMode) -> dict[str, obje
 
 
 def _context_payload(world: P9StructuralWorld, mode: ViewMode) -> dict[str, object]:
-    """Project one world while removing mechanic fields moved into candidates."""
+    """Project one world while moving mechanic fields into candidate payloads.
+
+    For SURFACE, the original world view carries mechanic incidence inside the
+    nested topology object.  That incidence is removed from context and restored
+    in each candidate payload so the adapter preserves the view's information
+    while keeping candidates example-local.
+    """
 
     payload = dict(world.view_payload(mode))
     payload.pop("mechanics", None)
