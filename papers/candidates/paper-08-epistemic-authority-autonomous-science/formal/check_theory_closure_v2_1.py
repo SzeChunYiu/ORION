@@ -270,6 +270,13 @@ def check_demotion_is_forward_only() -> int:
     assert history["terminal"] == AUTHORIZED
     checks += 1
 
+    # And the historical record is not forward authority. Reading "the commit was
+    # authorized" as "it stands" is the fail-open error Proposition 14 clause 2 rules out:
+    # the same effect evaluated at t' is not AUTHORIZED, committed or not.
+    assert permission(effect, at_t_prime) != AUTHORIZED
+    assert history["terminal"] != permission(effect, at_t_prime)
+    checks += 1
+
     # Proposition 5, the other direction: a blocker found at t' does not retro-authorize.
     late_blocker = Effect(
         name="e",

@@ -155,8 +155,11 @@ complete support set of `\kappa` survives.
 
 1. If `e` has not been committed, `e` is not authorized at `t'`; the prior certificate does
    not transport (Definition 14).
-2. If `e` was committed at `t`, the demotion does not retroactively unauthorize the commit,
-   and symmetrically a blocker discovered at `t'` does not make the commit pre-effect
+2. If `e` was committed at `t`, the epoch-`t` authorization judgment stands as a historical
+   fact: it was correctly issued on the epoch-`t` premises, and `t'` does not rewrite it.
+   This is **not** a claim that the commit remains authorized. `\kappa` is invalid at `t'`,
+   so `e` carries no forward authorization and any dependent effect must be re-derived.
+   Symmetrically, a blocker discovered at `t'` does not make the commit pre-effect
    authorized (Proposition 5).
 
 #### Proof
@@ -167,7 +170,9 @@ judgment is not an epoch-`t` premise. `\square`
 
 Point 2 is why demotion is an obligation on the *pending* queue rather than a rewrite of
 history: history is immutable `H`, and the recorded fact is that the commit occurred under
-premises later revoked.
+premises later revoked. Reading it as "the commit was authorized, so it stands" is the
+fail-open error — the historical judgment is preserved precisely so that the loss of support
+is visible, not so that it can be cited as continuing authority.
 
 ## 4. Root classes
 
