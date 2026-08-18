@@ -1,0 +1,29 @@
+{
+  "accuracy": 1.0,
+  "claim_ceiling": "NON_AUTHORIZING_COMPUTATION_CONTAINMENT_SOCIAL_SUBSTRATE_ONLY",
+  "grants_scientific_authority": false,
+  "grants_self_orion_adoption": false,
+  "n_cases": 16,
+  "n_pass": 16,
+  "protocol_id": "P6.higher-order-epistemic-mechanics.t4-t6.v1",
+  "result_version": "P6_T4_T6_COUNTERMODEL_SUMMARY_V1",
+  "rows": [
+    {"actual_selected": "protected-verify", "actual_status": "SELECTED", "expected_selected": "protected-verify", "expected_status": "SELECTED", "id": "T46-01", "kind": "compute_mandatory", "pass": true},
+    {"actual_selected": null, "actual_status": "NO_ADMISSIBLE", "expected_selected": null, "expected_status": "NO_ADMISSIBLE", "id": "T46-02", "kind": "compute_uncovered", "pass": true},
+    {"actual_selected": null, "actual_status": "UNRESOLVED", "expected_selected": null, "expected_status": "UNRESOLVED", "id": "T46-03", "kind": "compute_unresolved", "pass": true},
+    {"actual_selected": null, "actual_status": "MULTIPLE_OPTIMA", "expected_selected": null, "expected_status": "MULTIPLE_OPTIMA", "id": "T46-04", "kind": "compute_tie", "pass": true},
+    {"actual_selected": null, "actual_status": "LOCAL_COMPUTATION_STOP", "expected_selected": null, "expected_status": "LOCAL_COMPUTATION_STOP", "id": "T46-05", "kind": "compute_stop", "pass": true},
+    {"actual_selected": null, "actual_status": "IN_SCOPE", "expected_selected": null, "expected_status": "IN_SCOPE", "id": "T46-06", "kind": "contain_supported", "pass": true},
+    {"actual_selected": null, "actual_status": "BLOCKED", "expected_selected": null, "expected_status": "BLOCKED", "id": "T46-07", "kind": "contain_invalid", "pass": true},
+    {"actual_selected": null, "actual_status": "UNRESOLVED", "expected_selected": null, "expected_status": "UNRESOLVED", "id": "T46-08", "kind": "contain_unresolved", "pass": true},
+    {"actual_selected": null, "actual_status": "UNRESOLVED", "expected_selected": null, "expected_status": "UNRESOLVED", "id": "T46-09", "kind": "contain_missing", "pass": true},
+    {"actual_selected": null, "actual_status": "CORRELATED", "expected_selected": null, "expected_status": "CORRELATED", "id": "T46-10", "kind": "social_correlated", "pass": true},
+    {"actual_selected": null, "actual_status": "INDEPENDENT", "expected_selected": null, "expected_status": "INDEPENDENT", "id": "T46-11", "kind": "social_independent", "pass": true},
+    {"actual_selected": null, "actual_status": "UNRESOLVED", "expected_selected": null, "expected_status": "UNRESOLVED", "id": "T46-12", "kind": "social_unresolved", "pass": true},
+    {"actual_selected": null, "actual_status": "UNRELIABLE", "expected_selected": null, "expected_status": "UNRELIABLE", "id": "T46-13", "kind": "social_unreliable", "pass": true},
+    {"actual_selected": null, "actual_status": "UNRESOLVED", "expected_selected": null, "expected_status": "UNRESOLVED", "id": "T46-14", "kind": "credit_unresolved", "pass": true},
+    {"actual_selected": null, "actual_status": "SHARED", "expected_selected": null, "expected_status": "SHARED", "id": "T46-15", "kind": "credit_shared", "pass": true},
+    {"actual_selected": "visible", "actual_status": "EXCLUSIVE_SUPPORTED", "expected_selected": "visible", "expected_status": "EXCLUSIVE_SUPPORTED", "id": "T46-16", "kind": "credit_exclusive", "pass": true}
+  ],
+  "terminal": "T4_T6_FORMAL_COUNTERMODELS_GREEN"
+}
