@@ -1,0 +1,64 @@
+{
+  "protocol_id": "P6.MethodFibreEval.v2",
+  "frozen_on": "2026-08-18",
+  "authority": "BOUNDED_EXACT_GROUND_TRUTH_COUNTERMODELS",
+  "claim_ceiling": "The evaluation establishes behavior of the typed fibre calculus on enumerated synthetic/correspondence fixtures. It does not establish universal cross-domain method equivalence, expert natural-paper annotation reliability, or superiority to official external formal-system implementations.",
+  "comparators": [
+    "topology_only",
+    "effect_only",
+    "untyped_state_machine",
+    "behavioral_bisimulation_style",
+    "p6_typed_bound"
+  ],
+  "membership_cases": [
+    {"id":"same_topology_diff_precondition","family":"FALSE_FIBRE","kind":"precondition","gold":"DIFFERENT"},
+    {"id":"same_behavior_diff_invariant","family":"FALSE_FIBRE","kind":"invariant","gold":"DIFFERENT"},
+    {"id":"same_behavior_diff_reconstruction","family":"FALSE_FIBRE","kind":"reconstruction","gold":"DIFFERENT"},
+    {"id":"same_surface_diff_effect","family":"FALSE_FIBRE","kind":"effect","gold":"DIFFERENT"},
+    {"id":"finite_panel_coincidence","family":"FALSE_FIBRE","kind":"one_panel","gold":"UNRESOLVED"},
+    {"id":"missing_reconstruction_evidence","family":"FALSE_FIBRE","kind":"missing_reconstruction","gold":"UNRESOLVED"},
+    {"id":"alternate_surface_realization","family":"FAITHFUL_SUBSTITUTION","kind":"faithful","gold":"SAME"},
+    {"id":"domain_renamed_isomorph","family":"FAITHFUL_SUBSTITUTION","kind":"faithful_domain","gold":"SAME"},
+    {"id":"alternate_implementation","family":"FAITHFUL_SUBSTITUTION","kind":"faithful_impl","gold":"SAME"}
+  ],
+  "composition_cases": [
+    {"id":"parallel_read_write_collision","kind":"parallel_collision","gold":"BLOCKED"},
+    {"id":"right_precondition_invalidated","kind":"precondition","gold":"BLOCKED"},
+    {"id":"authority_escalation","kind":"authority","gold":"BLOCKED"},
+    {"id":"hidden_dependency","kind":"dependency","gold":"BLOCKED"},
+    {"id":"recursive_cycle","kind":"recursive","gold":"BLOCKED"},
+    {"id":"clean_sequential","kind":"clean","gold":"COMPATIBLE"}
+  ],
+  "relation_cases": [
+    {"id":"valid_specialization","kind":"specialization","gold":"SPECIALIZES"},
+    {"id":"overgeneralization_drops_assumption","kind":"overgeneralization","gold":"UNRESOLVED"},
+    {"id":"effect_preserved_termination_changed","kind":"termination_change","gold":"NEW_SIGNATURE_REQUIRED"},
+    {"id":"valid_generalization_with_obligation","kind":"generalization","gold":"GENERALIZES"},
+    {"id":"lift_without_reconstruction","kind":"representation_lift","gold":"OBSTRUCTION"}
+  ],
+  "correspondence_cases": [
+    {"id":"p1_bisection_threshold","source":"P1.MethodRealization.v1 + P3.MethodAlignment.v1","gold":"SAME"},
+    {"id":"p3_bisection_nonmonotone","source":"P3 obstruction certificate","gold":"DIFFERENT"},
+    {"id":"donor_dependency_rollback","source":"#318 donor-assimilation lineage example","gold":"SAME"}
+  ],
+  "hostile_mutations": [
+    "delete_reduction_receipt",
+    "alter_preserved_coordinate_after_signature",
+    "swap_source_realization_receipt",
+    "fabricate_membership_from_embedding_similarity",
+    "hide_composition_collision",
+    "substitute_stale_formal_version",
+    "fail_open_accept_all",
+    "broken_shut_reject_all"
+  ],
+  "primary_metrics": [
+    "false_fibre_rejection_rate",
+    "valid_substitution_acceptance",
+    "composition_obligation_detection",
+    "unnecessary_rejection_rate",
+    "correct_unresolved_rate",
+    "mutation_detection_rate",
+    "comparator_accuracy"
+  ],
+  "terminal_rule": "P6_METHOD_FIBRE_COUNTERMODELS_GREEN iff the bound typed calculus matches all frozen exact-ground-truth cases, all hostile mutations are detected, and clean controls pass; external-generalization claims remain outside this terminal."
+}

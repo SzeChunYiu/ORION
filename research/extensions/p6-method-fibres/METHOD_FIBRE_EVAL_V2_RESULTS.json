@@ -1,0 +1,62 @@
+{
+  "all_typed_cases_pass": true,
+  "claim_ceiling": "The evaluation establishes behavior of the typed fibre calculus on enumerated synthetic/correspondence fixtures. It does not establish universal cross-domain method equivalence, expert natural-paper annotation reliability, or superiority to official external formal-system implementations.",
+  "comparator_accuracy": {
+    "behavioral_bisimulation_style": 0.5555555555555556,
+    "effect_only": 0.4444444444444444,
+    "p6_typed_bound": 1.0,
+    "topology_only": 0.1111111111111111,
+    "untyped_state_machine": 0.2222222222222222
+  },
+  "composition_obligation_detection": 1.0,
+  "composition_rows": [
+    {"actual":"BLOCKED","gold":"BLOCKED","id":"parallel_read_write_collision","pass":true,"reasons":["READ_WRITE_COLLISION:x"]},
+    {"actual":"BLOCKED","gold":"BLOCKED","id":"right_precondition_invalidated","pass":true,"reasons":["RIGHT_PRECONDITION_NOT_GUARANTEED:ready"]},
+    {"actual":"BLOCKED","gold":"BLOCKED","id":"authority_escalation","pass":true,"reasons":["AUTHORITY_ESCALATION:ADOPT"]},
+    {"actual":"BLOCKED","gold":"BLOCKED","id":"hidden_dependency","pass":true,"reasons":["HIDDEN_DEPENDENCY:sensor"]},
+    {"actual":"BLOCKED","gold":"BLOCKED","id":"recursive_cycle","pass":true,"reasons":["RECURSIVE_RANK_NOT_DECREASING"]},
+    {"actual":"COMPATIBLE","gold":"COMPATIBLE","id":"clean_sequential","pass":true,"reasons":[]}
+  ],
+  "correct_unresolved_rate": 1.0,
+  "correspondence_rows": [
+    {"actual":"SAME","gold":"SAME","id":"p1_bisection_threshold","pass":true},
+    {"actual":"DIFFERENT","gold":"DIFFERENT","id":"p3_bisection_nonmonotone","pass":true},
+    {"actual":"SAME","gold":"SAME","id":"donor_dependency_rollback","pass":true}
+  ],
+  "false_fibre_rejection_rate": 1.0,
+  "membership_rows": [
+    {"behavioral_bisimulation_style":"DIFFERENT","effect_only":"SAME","gold":"DIFFERENT","id":"same_topology_diff_precondition","p6_typed_bound":"DIFFERENT","pass":true,"topology_only":"SAME","untyped_state_machine":"SAME"},
+    {"behavioral_bisimulation_style":"SAME","effect_only":"SAME","gold":"DIFFERENT","id":"same_behavior_diff_invariant","p6_typed_bound":"DIFFERENT","pass":true,"topology_only":"SAME","untyped_state_machine":"SAME"},
+    {"behavioral_bisimulation_style":"SAME","effect_only":"SAME","gold":"DIFFERENT","id":"same_behavior_diff_reconstruction","p6_typed_bound":"DIFFERENT","pass":true,"topology_only":"SAME","untyped_state_machine":"SAME"},
+    {"behavioral_bisimulation_style":"DIFFERENT","effect_only":"DIFFERENT","gold":"DIFFERENT","id":"same_surface_diff_effect","p6_typed_bound":"DIFFERENT","pass":true,"topology_only":"SAME","untyped_state_machine":"DIFFERENT"},
+    {"behavioral_bisimulation_style":"SAME","effect_only":"SAME","gold":"UNRESOLVED","id":"finite_panel_coincidence","p6_typed_bound":"UNRESOLVED","pass":true,"topology_only":"SAME","untyped_state_machine":"SAME"},
+    {"behavioral_bisimulation_style":"SAME","effect_only":"SAME","gold":"UNRESOLVED","id":"missing_reconstruction_evidence","p6_typed_bound":"UNRESOLVED","pass":true,"topology_only":"SAME","untyped_state_machine":"SAME"},
+    {"behavioral_bisimulation_style":"SAME","effect_only":"SAME","gold":"SAME","id":"alternate_surface_realization","p6_typed_bound":"SAME","pass":true,"topology_only":"DIFFERENT","untyped_state_machine":"DIFFERENT"},
+    {"behavioral_bisimulation_style":"SAME","effect_only":"SAME","gold":"SAME","id":"domain_renamed_isomorph","p6_typed_bound":"SAME","pass":true,"topology_only":"DIFFERENT","untyped_state_machine":"DIFFERENT"},
+    {"behavioral_bisimulation_style":"SAME","effect_only":"SAME","gold":"SAME","id":"alternate_implementation","p6_typed_bound":"SAME","pass":true,"topology_only":"SAME","untyped_state_machine":"SAME"}
+  ],
+  "mutation_detection_rate": 1.0,
+  "mutation_rows": [
+    {"detected":true,"id":"delete_reduction_receipt"},
+    {"detected":true,"id":"alter_preserved_coordinate_after_signature"},
+    {"detected":true,"id":"swap_source_realization_receipt"},
+    {"detected":true,"id":"fabricate_membership_from_embedding_similarity"},
+    {"detected":true,"id":"hide_composition_collision"},
+    {"detected":true,"id":"substitute_stale_formal_version"},
+    {"detected":true,"id":"fail_open_accept_all"},
+    {"detected":true,"id":"broken_shut_reject_all"}
+  ],
+  "protocol_digest": "sha256:e44d300b5da465fa57eabf71d225116b50a2cf4d9b82f55e2f6150568fc2002b",
+  "protocol_id": "P6.MethodFibreEval.v2",
+  "relation_rows": [
+    {"actual":"SPECIALIZES","gold":"SPECIALIZES","id":"valid_specialization","pass":true},
+    {"actual":"UNRESOLVED","gold":"UNRESOLVED","id":"overgeneralization_drops_assumption","pass":true},
+    {"actual":"NEW_SIGNATURE_REQUIRED","gold":"NEW_SIGNATURE_REQUIRED","id":"effect_preserved_termination_changed","pass":true},
+    {"actual":"GENERALIZES","gold":"GENERALIZES","id":"valid_generalization_with_obligation","pass":true},
+    {"actual":"OBSTRUCTION","gold":"OBSTRUCTION","id":"lift_without_reconstruction","pass":true}
+  ],
+  "result_digest": "sha256:6060c9fea6c4d264adab1ac22aa1afcbe67d6cce56694c888647be4bef89a829",
+  "terminal": "P6_METHOD_FIBRE_COUNTERMODELS_GREEN",
+  "unnecessary_rejection_rate": 0.0,
+  "valid_substitution_acceptance": 1.0
+}
