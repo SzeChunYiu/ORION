@@ -1,0 +1,162 @@
+{
+  "metadata": {
+    "claim_boundary": "Counterexamples target the reviewed formalization/checker scope; they do not establish paper novelty or empirical value.",
+    "implementation": "standard-library additive hostile review",
+    "programme": "ORION candidate papers P6-P8",
+    "python": "3.13.5",
+    "review_date": "2026-08-17",
+    "reviewed_snapshot": "999abd4899f3fed906ba024ae8ecd775a69b6560"
+  },
+  "report_sha256": "5a285ea29e14fab5cbc76de2d97d6b4d2ae45f55ac9987d1d67006a176e08e77",
+  "results": [
+    {
+      "cases": 1,
+      "finding": "H1 directly changed certified roots",
+      "paper": "P6",
+      "reviewed_snapshot": "999abd4899f3fed906ba024ae8ecd775a69b6560",
+      "scope": "Exact one-node counterexample to Definition 8/Theorems 1--2 when X may contain Q.",
+      "status": "COUNTEREXAMPLE_CONFIRMED",
+      "summary": "Strict descendants omit a changed certified root with no outgoing edge; a root-inclusive affected closure reopens it.",
+      "witness": {
+        "certified": [
+          "q"
+        ],
+        "changed": [
+          "q"
+        ],
+        "corrected_reopen": [
+          "q"
+        ],
+        "snapshot_reopen": []
+      }
+    },
+    {
+      "cases": 32,
+      "finding": "H2 protected preservation certificates",
+      "paper": "P6",
+      "reviewed_snapshot": "999abd4899f3fed906ba024ae8ecd775a69b6560",
+      "scope": "bounded deterministic hostile review",
+      "status": "PASS",
+      "summary": "Only a valid, evidence-bearing, protected certificate for a downstream node preserved certification; changed roots and forged/stale certificates reopened.",
+      "witness": null
+    },
+    {
+      "cases": 4,
+      "finding": "H3 residual-obligation non-erasure",
+      "paper": "P6",
+      "reviewed_snapshot": "999abd4899f3fed906ba024ae8ecd775a69b6560",
+      "scope": "bounded deterministic hostile review",
+      "status": "PASS",
+      "summary": "Later success and an unauthorized discharge request did not erase a hard residual obligation; an authorized discharge did.",
+      "witness": null
+    },
+    {
+      "cases": 1,
+      "finding": "H1 unconstrained chart-injection witness",
+      "paper": "P7",
+      "reviewed_snapshot": "999abd4899f3fed906ba024ae8ecd775a69b6560",
+      "scope": "Counterexample to the theorem's discriminating strength, not to the existential statement itself.",
+      "status": "COUNTEREXAMPLE_CONFIRMED",
+      "summary": "Allowing T' to add a new goal state proves only that a larger model is more expressive; it does not isolate representation-only reframing.",
+      "witness": {
+        "added_goal": "new-goal",
+        "new_nodes": [
+          "dead",
+          "new-goal",
+          "start"
+        ],
+        "old_nodes": [
+          "dead",
+          "start"
+        ]
+      }
+    },
+    {
+      "cases": 4,
+      "finding": "H2 representation-only strictness",
+      "paper": "P7",
+      "reviewed_snapshot": "999abd4899f3fed906ba024ae8ecd775a69b6560",
+      "scope": "Strictness relative to stationary observation-based policies over the old quotient; no new sensing or latent state is added.",
+      "status": "PASS",
+      "summary": "With latent states, transitions, goals and retained information fixed, no old-quotient policy solved both starts while a legal observation refinement did.",
+      "witness": {
+        "old_class": [
+          "start-left",
+          "start-right"
+        ],
+        "retained_feature": [
+          "left-context",
+          "right-context"
+        ]
+      }
+    },
+    {
+      "cases": 1,
+      "finding": "H3 negative transport premise",
+      "paper": "P7",
+      "reviewed_snapshot": "999abd4899f3fed906ba024ae8ecd775a69b6560",
+      "scope": "bounded deterministic hostile review",
+      "status": "COUNTEREXAMPLE_CONFIRMED",
+      "summary": "Absence of a replacement proof does not logically create two target completions in every model class; the negative direction needs a richness premise or must be stated as a fail-closed rule.",
+      "witness": {
+        "admissible_target_count": 1,
+        "proof_supplied": false,
+        "support_preserved": true
+      }
+    },
+    {
+      "cases": 4,
+      "finding": "H4 fail-closed stop terminals",
+      "paper": "P7",
+      "reviewed_snapshot": "999abd4899f3fed906ba024ae8ecd775a69b6560",
+      "scope": "bounded deterministic hostile review",
+      "status": "PASS",
+      "summary": "Known complete coverage permitted task stop; local incompleteness yielded route stop; unknown/censored coverage yielded CANNOT_CHECK.",
+      "witness": null
+    },
+    {
+      "cases": 25,
+      "finding": "H1 typed evidence-to-obligation discharge",
+      "paper": "P8",
+      "reviewed_snapshot": "999abd4899f3fed906ba024ae8ecd775a69b6560",
+      "scope": "Full five-by-five evidence/obligation matrix; this is stricter than typing only the authority-bearing judgment.",
+      "status": "PASS",
+      "summary": "Every one of the 20 foreign-domain evidence substitutions was denied and all five same-domain cases authorized.",
+      "witness": null
+    },
+    {
+      "cases": 1,
+      "finding": "H2 coercion-path compositionality",
+      "paper": "P8",
+      "reviewed_snapshot": "999abd4899f3fed906ba024ae8ecd775a69b6560",
+      "scope": "bounded deterministic hostile review",
+      "status": "COUNTEREXAMPLE_CONFIRMED",
+      "summary": "A domain-only path exists even though adjacent coercions have incompatible scope maps; domain reachability alone would authorize an invalid composition.",
+      "witness": {
+        "first_output_scope": "map-A",
+        "second_input_scope": "map-B"
+      }
+    },
+    {
+      "cases": 2,
+      "finding": "H3 alternative-derivation revocation",
+      "paper": "P8",
+      "reviewed_snapshot": "999abd4899f3fed906ba024ae8ecd775a69b6560",
+      "scope": "Finite AND/OR derivation graph; a simple descendant graph cannot express this distinction by itself.",
+      "status": "PASS",
+      "summary": "Revoking one evidence route preserved the certificate and its dependent through an independent derivation; revoking both routes removed both.",
+      "witness": null
+    },
+    {
+      "cases": 5,
+      "finding": "H4 terminal separation",
+      "paper": "P8",
+      "reviewed_snapshot": "999abd4899f3fed906ba024ae8ecd775a69b6560",
+      "scope": "bounded deterministic hostile review",
+      "status": "PASS",
+      "summary": "Missing evidence yielded CANNOT_CHECK; mismatched evidence, malformed obligation contracts and blockers yielded DENIED; a clean typed case authorized.",
+      "witness": null
+    }
+  ],
+  "schema": "orion.p6_p8.hostile_formal_review.v1"
+}

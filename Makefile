@@ -181,3 +181,20 @@ journal-packages:
 journal-package-tests:
 	PYTHONPATH=$(SRC) $(PYTHON) -m pytest -q tests/unit/publication/test_journal_package.py
 
+# --- Publication closure wave (issue #153) ------------------------------------
+#
+# Fails closed if any paper *claims* PEER_REVIEW_READY without the required
+# manuscript/ledger/protocol/attestation/reproducibility bundle, or if P1 H1 is
+# promoted to a confirmatory finding / ready terminal while the frozen 48-case
+# arm remains underpowered. An honest non-claim does not fail.
+#
+# Additive: this target does not rewrite paper terminals. Complements
+# research/publication/scoreboard.py (status JSON) and journal-packages (#160).
+
+.PHONY: peer-review-ready-gate
+peer-review-ready-gate:
+	PYTHONPATH=$(SRC) $(PYTHON) -m orion.publication --papers papers
+
+.PHONY: peer-review-ready-gate-tests
+peer-review-ready-gate-tests:
+	PYTHONPATH=$(SRC) $(PYTHON) -m pytest -q tests/unit/publication/test_peer_review_ready_gate.py
