@@ -1,16 +1,20 @@
 """The CI split must cover every test exactly once.
 
-The suite is split across jobs for speed: one job runs everything except
-``tests/unit/p2``, and a four-way matrix runs ``tests/unit/p2`` alone, because that
-one directory is ~400s of a ~405s suite. The arrangement is only sound while the
-excluded path and the split path stay the same path. If they drift apart, the
-result is not a loud failure -- it is a green run that quietly stopped testing a
-directory, which is the worst way for a test gate to break.
+The suite is split by measured cost, not by test count. A profiling run recorded
+all 3077 tests at 1878s, of which one file -- `test_p2_offline_systems.py`, 14
+parametrised cases at ~107s each -- is roughly 80%. So there are three lanes: a
+serial job for everything outside `tests/unit/p2`, a six-way matrix over the
+heavy file alone, and one job for the rest of p2.
 
-Verified by collection when the split was introduced: 2490 tests in the fast job,
-501 across the four p2 groups, 2991 in the unsplit suite, no duplicates and none
-missing. This module pins the structural invariant that keeps that true, cheaply
-enough to run on every commit.
+The arrangement is only sound while those three lanes stay disjoint and
+exhaustive. If they drift apart the result is not a loud failure -- it is a green
+run that quietly stopped testing something, which is the worst way for a test
+gate to break.
+
+Verified by collection when this split was introduced: 3096 collected across the
+three lanes against 3096 unsplit, no duplicates and none missing. This module
+pins the structural invariants that keep that true, cheaply enough to run on
+every commit.
 """
 
 from __future__ import annotations
@@ -23,6 +27,7 @@ yaml = pytest.importorskip("yaml", reason="PyYAML is needed to read the workflow
 
 ROOT = Path(__file__).resolve().parents[3]
 WORKFLOW = ROOT / ".github" / "workflows" / "ci.yml"
+HEAVY_FILE = "tests/unit/p2/test_p2_offline_systems.py"
 
 
 def _workflow() -> dict:
@@ -31,35 +36,42 @@ def _workflow() -> dict:
 
 def _pytest_commands(job: dict) -> list[str]:
     return [
-        step["run"].strip()
+        " ".join(step["run"].split())
         for step in job.get("steps", [])
         if isinstance(step.get("run"), str) and "pytest" in step["run"]
     ]
 
 
-def test_the_excluded_directory_is_exactly_the_one_the_matrix_runs() -> None:
-    """The single invariant the whole split rests on."""
+def test_the_three_lanes_are_disjoint_and_exhaustive() -> None:
+    """Every test belongs to exactly one lane, by construction of the commands."""
 
     jobs = _workflow()["jobs"]
     fast = " ".join(_pytest_commands(jobs["fast"]))
-    p2 = " ".join(_pytest_commands(jobs["p2"]))
+    heavy = " ".join(_pytest_commands(jobs["p2-heavy"]))
+    rest = " ".join(_pytest_commands(jobs["p2-rest"]))
 
-    assert "--ignore=tests/unit/p2" in fast, (
-        "the fast job no longer excludes tests/unit/p2; it would now run the slow "
-        "directory as well as the matrix, or the matrix path has moved"
+    # fast excludes all of p2.
+    assert "--ignore=tests/unit/p2 " in fast + " ", (
+        "the fast job no longer excludes tests/unit/p2, so p2 would run twice"
     )
-    assert "tests/unit/p2" in p2, "the p2 matrix job no longer targets tests/unit/p2"
+    # heavy runs only the heavy file.
+    assert HEAVY_FILE in heavy, "the heavy matrix no longer targets the heavy file"
+    # rest runs p2 minus the heavy file. Both halves matter: drop the target and
+    # nothing runs, drop the ignore and the heavy file runs twice.
+    assert "tests/unit/p2" in rest, "the p2-rest job no longer targets p2"
+    assert f"--ignore={HEAVY_FILE}" in rest, (
+        "p2-rest no longer excludes the heavy file, so it would run in two lanes"
+    )
 
 
 def test_every_split_group_is_actually_run() -> None:
     """A group listed but never executed is coverage that silently disappears."""
 
     jobs = _workflow()["jobs"]
-    groups = jobs["p2"]["strategy"]["matrix"]["group"]
-    command = " ".join(_pytest_commands(jobs["p2"]))
+    groups = jobs["p2-heavy"]["strategy"]["matrix"]["group"]
+    command = " ".join(_pytest_commands(jobs["p2-heavy"]))
 
-    assert groups == sorted(groups), "matrix groups should be listed in order"
-    assert groups[0] == 1 and groups == list(range(1, len(groups) + 1)), (
+    assert groups == list(range(1, len(groups) + 1)), (
         f"pytest-split groups must be 1..N with no gaps, got {groups}"
     )
     assert f"--splits {len(groups)}" in command, (
@@ -69,20 +81,22 @@ def test_every_split_group_is_actually_run() -> None:
 
 
 def test_the_aggregate_gate_fails_on_anything_that_is_not_success() -> None:
-    """`cancelled` and `skipped` must not read as a pass.
+    """`cancelled` must not read as a pass, and here that is not hypothetical.
 
-    The concurrency group cancels superseded runs, so `cancelled` is a routine
-    outcome here rather than an exotic one. A gate that only checks for `failure`
-    reports a cancelled run as green.
+    The concurrency group cancels superseded runs, so `cancelled` is routine. More
+    sharply: GitHub reports a job that exceeds `timeout-minutes` as `cancelled`
+    too, not as `failure`. A 20-minute bound on the old unbalanced p2 shard fired
+    exactly that way, and a gate testing only for `failure` would have called that
+    run green.
     """
 
     jobs = _workflow()["jobs"]
     gate = jobs["test"]
     assert gate["if"] == "always()" or gate["if"] is True, (
-        "the aggregate gate must run even when a needed job failed, or it is skipped "
-        "along with them and the PR shows no failing required check"
+        "the gate must run even when a needed job failed, or it is skipped along "
+        "with them and the PR shows no failing required check"
     )
-    assert set(gate["needs"]) == {"fast", "p2"}, (
+    assert set(gate["needs"]) == {"fast", "p2-heavy", "p2-rest"}, (
         f"the gate must depend on every test job, got {gate['needs']}"
     )
 
@@ -91,16 +105,12 @@ def test_the_aggregate_gate_fails_on_anything_that_is_not_success() -> None:
     )
     assert '!= "success"' in script, (
         "the gate must test for 'not success' rather than for 'failure', so that a "
-        "cancelled or skipped job cannot pass it"
+        "cancelled, timed-out or skipped job cannot pass it"
     )
 
 
 def test_no_test_directory_is_excluded_without_a_job_that_runs_it() -> None:
-    """Catch a second --ignore being added without a matching job.
-
-    One exclusion is accounted for. A future edit that excludes another directory
-    to make CI faster, without adding a job to run it, would silently drop it.
-    """
+    """Catch a new --ignore added without a lane to cover it."""
 
     jobs = _workflow()["jobs"]
     ignored: set[str] = set()
@@ -110,7 +120,20 @@ def test_no_test_directory_is_excluded_without_a_job_that_runs_it() -> None:
                 if token.startswith("--ignore="):
                     ignored.add(token.split("=", 1)[1])
 
-    assert ignored == {"tests/unit/p2"}, (
+    assert ignored == {"tests/unit/p2", HEAVY_FILE}, (
         f"exclusions changed to {sorted(ignored)}. Every excluded path needs a job "
         f"that runs it, and this test updated to say so."
     )
+
+
+def test_every_job_is_bounded_in_time() -> None:
+    """A job with no timeout sits at GitHub's six-hour default when it hangs."""
+
+    for name, job in _workflow()["jobs"].items():
+        if name == "test":
+            continue  # the gate is a shell echo; it cannot hang on tests
+        assert "timeout-minutes" in job, f"{name} has no timeout-minutes"
+        assert job["timeout-minutes"] <= 30, (
+            f"{name} allows {job['timeout-minutes']}m; the whole suite is ~31m "
+            f"serial, so a single lane past 30 is wrong rather than slow"
+        )

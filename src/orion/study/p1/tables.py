@@ -27,7 +27,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import sys
+import tempfile
 from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -866,6 +868,184 @@ def generate(
     return t2, t3
 
 
+#: The one field that cannot reproduce. Everything else in `provenance` is derived from
+#: the archive, so excluding the wall clock is what makes the byte comparison meaningful
+#: rather than impossible: the two committed tables were written a second apart, so no
+#: single pinned timestamp reproduces both.
+_NON_REPRODUCIBLE_PROVENANCE = ("generated_utc",)
+
+
+def _without_clock(table: dict) -> dict:
+    provenance = {
+        key: value
+        for key, value in table.get("provenance", {}).items()
+        if key not in _NON_REPRODUCIBLE_PROVENANCE
+    }
+    return {**table, "provenance": provenance}
+
+
+#: Tolerance for "the same computation, run on a different CPU".
+#:
+#: IEEE754 double arithmetic is not bit-reproducible across platforms: summation
+#: order, libm, and FMA contraction all differ between macOS arm64 and the Linux
+#: x86-64 CI runner. The committed tables were generated on one and are checked on
+#: the other, and 20 bootstrap interval bounds differed in their last bits -- the
+#: largest delta 5.551e-17, which is 2 ULP near 0.19. The markdown renderings, which
+#: round to four digits and are compared byte-for-byte, matched exactly; the numbers
+#: are the same numbers.
+#:
+#: These bounds come from a 10,000-resample percentile bootstrap, whose Monte Carlo
+#: error is on the order of 1e-3. Asserting bit-equality on them asserts something
+#: that is neither true of the arithmetic nor meaningful about the science.
+#:
+#: The band is deliberately wide of the noise and far below anything real. Platform
+#: noise sits at ~3e-16 relative; a changed seed, changed archive or changed
+#: estimator moves these values by ~1e-3. There is no realistic edit that lands in
+#: between, so nothing real hides here.
+#:
+#: abs_tol exists for one observed case: a bound computed as 6.938893903907228e-18 on
+#: one platform and exactly 0.0 on the other. Relative comparison against zero is
+#: undefined, and these are probabilities in [0, 1] where 1e-15 absolute is nothing.
+_FLOAT_REL_TOL = 1e-12
+_FLOAT_ABS_TOL = 1e-15
+
+
+def _near(committed: float, regenerated: float) -> bool:
+    """Same value to within cross-platform floating-point noise."""
+
+    return math.isclose(committed, regenerated, rel_tol=_FLOAT_REL_TOL, abs_tol=_FLOAT_ABS_TOL)
+
+
+def _differences(
+    committed: object, regenerated: object, path: str = ""
+) -> tuple[list[str], list[str]]:
+    """Leaves where two table payloads disagree, split by whether it matters.
+
+    Returns ``(hard, soft)``. ``hard`` is real drift and fails the check. ``soft`` is
+    float difference within :data:`_FLOAT_REL_TOL` -- reported, never silent, but not
+    a failure.
+
+    A drift detector that only says "something changed" makes the next reader
+    re-derive the diff by hand, and cross-platform float drift is invisible in the
+    markdown rendering because that rounds to four digits. Reporting the pointer and
+    both values is what turns a red run into a diagnosis.
+    """
+
+    if isinstance(committed, dict) and isinstance(regenerated, dict):
+        hard: list[str] = []
+        soft: list[str] = []
+        for key in sorted(set(committed) | set(regenerated)):
+            if key not in committed:
+                hard.append(f"{path}/{key}: absent in committed, regenerated={regenerated[key]!r}")
+            elif key not in regenerated:
+                hard.append(f"{path}/{key}: committed={committed[key]!r}, absent in regeneration")
+            else:
+                sub_hard, sub_soft = _differences(committed[key], regenerated[key], f"{path}/{key}")
+                hard.extend(sub_hard)
+                soft.extend(sub_soft)
+        return hard, soft
+    if isinstance(committed, list) and isinstance(regenerated, list):
+        if len(committed) != len(regenerated):
+            return [f"{path}: length {len(committed)} vs {len(regenerated)}"], []
+        hard, soft = [], []
+        for index, (left, right) in enumerate(zip(committed, regenerated, strict=True)):
+            sub_hard, sub_soft = _differences(left, right, f"{path}/{index}")
+            hard.extend(sub_hard)
+            soft.extend(sub_soft)
+        return hard, soft
+    if committed == regenerated:
+        return [], []
+    if isinstance(committed, float) and isinstance(regenerated, float):
+        detail = f"{path}: {committed!r} vs {regenerated!r} (delta {regenerated - committed:+.3e})"
+        if _near(committed, regenerated):
+            return [], [detail]
+        return [detail], []
+    return [f"{path}: {committed!r} vs {regenerated!r}"], []
+
+
+def _check(args: argparse.Namespace) -> int:
+    """Compare a live regeneration against the committed tables.
+
+    `git diff --exit-code` cannot be used on P1 the way it is used on P3, P5 and P4:
+    `provenance.generated_utc` is a wall clock, so following REPRODUCE.md always drifts a
+    package whose tables are content-hash-bound. Comparing every field except that one
+    states the claim that is actually true and actually useful -- given the same archive,
+    every published number reproduces exactly.
+    """
+
+    with tempfile.TemporaryDirectory(prefix="p1-tables-check-") as scratch:
+        try:
+            regenerated = generate(
+                args.archive,
+                Path(scratch),
+                expected_repeats=args.expected_repeats,
+                bootstrap_seed=args.bootstrap_seed,
+                resamples=args.resamples,
+                min_units=args.min_units,
+                representatives=args.representatives,
+            )
+        except ValueError as error:
+            print(f"P1 tables: archive is malformed and was not used: {error}", file=sys.stderr)
+            return EXIT_ERROR
+
+        drifted: list[str] = []
+        missing: list[str] = []
+        for table in regenerated:
+            name = f'{table["table_id"]}.json'
+            committed_path = args.out / name
+            if not committed_path.is_file():
+                missing.append(str(committed_path))
+                continue
+            committed = json.loads(committed_path.read_text(encoding="utf-8"))
+            hard, soft = _differences(_without_clock(committed), _without_clock(table))
+            if soft:
+                # Never silent: a reader must be able to see that the bytes are not
+                # identical even when the numbers are.
+                print(
+                    f"P1 tables: {name}: {len(soft)} field(s) differ within floating-point "
+                    f"tolerance (rel {_FLOAT_REL_TOL:g}); treated as reproduced, not as drift.",
+                    file=sys.stderr,
+                )
+                for line in soft[:5]:
+                    print(f"P1 tables:   near-equal {name}{line}", file=sys.stderr)
+            if hard:
+                drifted.append(name)
+                for line in hard[:20]:
+                    print(f"P1 tables: {name}{line}", file=sys.stderr)
+
+            # The markdown renderings carry no clock, so they get the strict comparison
+            # the JSON cannot have. If they ever drift while the JSON matches, the
+            # renderer changed without the data changing, which is worth catching.
+            rendered_name = f'{table["table_id"]}.md'
+            committed_md = args.out / rendered_name
+            scratch_md = Path(scratch) / rendered_name
+            if not committed_md.is_file():
+                missing.append(str(committed_md))
+            elif committed_md.read_text(encoding="utf-8") != scratch_md.read_text(encoding="utf-8"):
+                drifted.append(rendered_name)
+
+    if missing:
+        # Absent is not the same as different, and neither is a pass.
+        for path in missing:
+            print(f"P1 tables: CANNOT_CHECK — committed table absent: {path}", file=sys.stderr)
+        return EXIT_CANNOT_CHECK
+    if drifted:
+        for name in drifted:
+            print(f"P1 tables: DRIFT — {name} does not match a live regeneration", file=sys.stderr)
+        return EXIT_ERROR
+
+    names = ", ".join(f'{table["table_id"]}.json' for table in regenerated)
+    print(f"P1 tables: {names} reproduce exactly, ignoring provenance.generated_utc")
+    if STATUS_CANNOT_CHECK in {table["status"] for table in regenerated}:
+        print(
+            "P1 tables: CANNOT_CHECK — the committed tables match, but they carry no "
+            "publishable numbers without an archived study run.",
+            file=sys.stderr,
+        )
+        return EXIT_CANNOT_CHECK
+    return EXIT_OK
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="python -m orion.study.p1.tables",
@@ -878,7 +1058,18 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--resamples", type=int, default=stats.PROTOCOL_RESAMPLES)
     parser.add_argument("--min-units", type=int, default=0, help="declared prospective N; below it an inconclusive result reads UNDERPOWERED. No frozen default exists.")
     parser.add_argument("--representatives", type=int, default=DEFAULT_REPRESENTATIVES)
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help=(
+            "regenerate into a scratch directory and compare against the committed tables, "
+            "ignoring provenance.generated_utc; write nothing"
+        ),
+    )
     args = parser.parse_args(argv)
+
+    if args.check:
+        return _check(args)
 
     try:
         t2, t3 = generate(

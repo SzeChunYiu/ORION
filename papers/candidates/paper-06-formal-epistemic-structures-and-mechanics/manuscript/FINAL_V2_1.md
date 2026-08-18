@@ -43,6 +43,16 @@ Typed effects, ETAS-like residual obligations, FAVA-like evidence-backed authori
 
 The strongest future comparator is therefore not an isolated TMS or effect system. It is an integrated donor product containing repair + incremental computation + typed effects + authorization + provenance with correct interfaces.
 
+### Non-contributions and internal ownership
+
+The per-donor disclaimers above state what P6 does not claim against the external literature. This subsection states the same for the ORION programme, which the donor stance does not cover.
+
+ORION Paper I already owns mechanic cells, recursive audit, responsibility-based reframing and dependency-directed reopening. In particular, `P1.D2` — the surviving P1 delta after Iris (`arXiv:2608.02143`) and ARTS (`arXiv:2606.21891`) narrowed it — is the **licensing relation**: the *type* of responsibility determines the authority to rewrite a formulation/search-universe coordinate, and the rewritten coordinate then scopes reopening. P6 claims none of it.
+
+The separation is not a difference of vocabulary. `P1.D2` decides *whether a coordinate may be rewritten and on whose authority*; P6 decides *what must be reopened once something has changed, and whether that set can be minimal*. Each settles a case the other cannot see. Holding the dependency graph `D` and the changed set `X` fixed and varying only the responsibility type leaves `Aff_D(E,X)` unchanged, so P6 returns one answer where `P1.D2` returns two. Conversely, the spurious-edge countermodel of §5 varies the admissible semantics class while holding responsibility type and rewritten coordinate fixed, so `P1.D2` returns one answer where P6's minimality verdict differs.
+
+P6 must therefore not restate responsibility-typed authority to rewrite a formulation coordinate; doing so would collapse this paper into `P1.D2` rather than extend it. P5 owns protected self-change promotion and P8 owns the general authority calculus, as noted in §10.
+
 ## 3. Epistemic mechanic contracts
 
 Let an epistemic state be

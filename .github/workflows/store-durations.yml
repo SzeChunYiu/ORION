@@ -1,0 +1,80 @@
+name: store-test-durations
+
+# Runs the whole suite once, records how long every test actually takes, and
+# uploads the result so it can be committed as `.test_durations`.
+#
+# This exists because pytest-split cannot balance without it. With no durations
+# file it splits the collected list into contiguous chunks of equal *count*, and
+# ORION's expensive tests cluster alphabetically -- test_p2_offline_analysis,
+# _gold_world, _mechanisms, _publication, _systems are adjacent -- so they land in
+# the same chunk and one shard carries the whole run. That is exactly what
+# happened: five shards finished in ~43s and the sixth ran 20+ minutes.
+#
+# Triggered by pushing a `ci/store-durations*` branch rather than by
+# workflow_dispatch, because a dispatchable workflow has to exist on the default
+# branch before it can be dispatched at all, and this needs to run against a
+# branch whose tests have not merged yet.
+#
+# It is not part of `ci`: it is a ~30 minute serial run, and its output is only
+# needed when the shape of the suite changes materially.
+#
+# It also cannot be produced locally. A single `tests/unit/p2` run leaves ~9.1G
+# under $TMPDIR, and repeating it will fill a laptop disk.
+
+on:
+  push:
+    branches: ['ci/store-durations**']
+
+jobs:
+  store:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -e '.[dev,candidates]'
+      # continue-on-error, deliberately. This job measures how long tests take;
+      # it is not the correctness gate --  is. A single unrelated red test
+      # should not throw away 30 minutes of timing data, which is exactly what
+      # happened on the first attempt: the run finished, the step exited non-zero,
+      # and the upload never ran.
+      - name: Run the suite and record per-test durations
+        continue-on-error: true
+        run: pytest -q --store-durations --durations-path .test_durations
+      - if: always()
+        name: Report what was recorded
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          data = json.loads(Path(".test_durations").read_text())
+          total = sum(data.values())
+          ranked = sorted(data.items(), key=lambda kv: -kv[1])
+          print(f"{len(data)} tests recorded, {total:.0f}s total")
+          print("\nslowest 15:")
+          for name, seconds in ranked[:15]:
+              print(f"  {seconds:8.1f}s  {name}")
+          # No split can finish faster than its single largest test, so print the
+          # floor alongside the ideal, to show which one is binding.
+          print()
+          for n in (4, 8, 12, 16):
+              ideal = total / n
+              floor = max(ideal, ranked[0][1])
+              binding = "granularity" if ranked[0][1] > ideal else "shard count"
+              print(f"  split {n:>2}: ~{floor:6.0f}s per shard   (bound by {binding})")
+          PY
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-durations
+          path: .test_durations
+          # Without this the upload finds nothing and the run ends red after a
+          # successful 32-minute profile: upload-artifact excludes dotfiles by
+          # default, and the durations file is . The suite and
+          # the report step both succeeded; only the upload failed.
+          include-hidden-files: true
+          if-no-files-found: error

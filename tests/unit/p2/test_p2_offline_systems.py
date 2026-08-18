@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+import functools
 import json
 from pathlib import Path
+
+import pytest
 
 from orion.study.p2.cases import CaseFamily, build_tasks
 from orion.study.p2.corpus import build_world
@@ -22,7 +25,17 @@ MANIFEST_HASH = "0" * 64
 PROTOCOL = Path("papers/paper-02-open-world-scientific-discovery/protocol/PROTOCOL_V1.json")
 
 
+@functools.cache
 def _suite():
+    """Build the frozen world once per session.
+
+    `build_world` + `build_tasks` costs ~4s and is called by every helper below,
+    18 times across this module, for about 70s of pure repetition. It is
+    deterministic on SEED, `world` and every task are frozen dataclasses, and
+    `build_tasks` returns a tuple, so there is nothing a test could mutate to leak
+    state into the next one. Caching changes timing only.
+    """
+
     world = build_world(SEED)
     return world, build_tasks(world)
 
@@ -53,26 +66,38 @@ def test_confirmatory_system_ids_match_the_frozen_protocol_exactly() -> None:
     assert "adaptive_multiroute_exploratory" not in protocol["baselines"]
 
 
-def test_every_frozen_system_respects_host_budgets_and_never_emits_invalid_claims() -> None:
+@pytest.mark.parametrize("system", ALL_SYSTEMS, ids=lambda s: s.system_id)
+def test_every_frozen_system_respects_host_budgets_and_never_emits_invalid_claims(
+    system,
+) -> None:
+    """Every system, every task: valid claims and budgets respected.
+
+    Parametrised over systems rather than looping over them inside one test. The
+    coverage is identical -- 14 systems x 390 tasks either way -- but this was a
+    single 675s test, and one test is one item to pytest-split no matter how many
+    groups exist, so it set the floor on total CI time by itself. As 14 items it
+    distributes across shards, and a failure now names the offending system in the
+    test id rather than only inside an assertion message.
+    """
+
     world, tasks = _suite()
-    for system in ALL_SYSTEMS:
-        for task in tasks:
-            outcome = execute(
-                system,
-                world,
-                task,
-                seed=1,
-                run_manifest_hash=MANIFEST_HASH,
-            )
-            assert outcome.record["status"] != "INVALID", (
-                system.system_id,
-                task.task_id,
-                outcome.record,
-            )
-            assert len(outcome.trace.route_events) <= task.budget.max_route_calls
-            assert len(outcome.trace.read_events) <= task.budget.max_reads
-            assert outcome.trace.resources.search_queries <= task.budget.max_route_calls
-            assert outcome.trace.resources.reads <= task.budget.max_reads
+    for task in tasks:
+        outcome = execute(
+            system,
+            world,
+            task,
+            seed=1,
+            run_manifest_hash=MANIFEST_HASH,
+        )
+        assert outcome.record["status"] != "INVALID", (
+            system.system_id,
+            task.task_id,
+            outcome.record,
+        )
+        assert len(outcome.trace.route_events) <= task.budget.max_route_calls
+        assert len(outcome.trace.read_events) <= task.budget.max_reads
+        assert outcome.trace.resources.search_queries <= task.budget.max_route_calls
+        assert outcome.trace.resources.reads <= task.budget.max_reads
 
 
 def test_full_orion_beats_lexical_only_on_complete_gold_multiroute() -> None:
