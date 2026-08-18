@@ -1,0 +1,121 @@
+name: p2-v2-acq-dev3r
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/p2-v2-acq-dev3r.yml'
+      - 'papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_DEV3R_HARNESS_CORRECTION_FREEZE_2026-08-18.json'
+      - 'papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_acq_dev3r.py'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+
+jobs:
+  dev3r:
+    runs-on: ubuntu-latest
+    timeout-minutes: 32
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and official scorer runtime
+        run: python -m pip install -e . requests tiktoken openai
+      - name: Materialize pinned AutoResearchBench release
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/arb-upstream /tmp/p2-dev3r
+          git clone --filter=blob:none https://github.com/CherYou/AutoResearchBench.git /tmp/arb-upstream
+          git -C /tmp/arb-upstream checkout a46c9bfb8968786f73f0a6a5b365b5384cd0f96d
+          mkdir -p /tmp/p2-dev3r/run
+          curl --fail --location --retry 4 --retry-delay 3 \
+            --output /tmp/p2-dev3r/AutoResearchBench.jsonl.obf.json \
+            https://huggingface.co/datasets/Lk123/AutoResearchBench/resolve/main/AutoResearchBench.jsonl.obf.json
+          python /tmp/arb-upstream/decrypt_benchmark.py --input-file /tmp/p2-dev3r/AutoResearchBench.jsonl.obf.json --output-file /tmp/p2-dev3r/AutoResearchBench.jsonl
+          echo 'db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6  /tmp/p2-dev3r/AutoResearchBench.jsonl' | sha256sum -c -
+      - name: Prepare split and exact frozen development IDs
+        run: |
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
+            --full /tmp/p2-dev3r/AutoResearchBench.jsonl --public /tmp/p2-dev3r/wide_public.jsonl \
+            --gt /tmp/p2-dev3r/wide_gt.jsonl --manifest /tmp/p2-dev3r/split_manifest.json
+          python - <<'PY'
+          import json, hashlib
+          from pathlib import Path
+          f=json.loads(Path('papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_ACQUISITION_DEV3_FREEZE_2026-08-18.json').read_text())
+          ids=f['development_slice']['task_ids']
+          assert hashlib.sha256('\n'.join(ids).encode()).hexdigest()==f['development_slice']['task_ids_sha256']
+          Path('/tmp/p2-dev3r/task_ids.json').write_text(json.dumps(ids)+'\n')
+          PY
+      - name: Preflight service-error correction only
+        run: |
+          python - <<'PY'
+          import importlib.util, sys
+          from pathlib import Path
+          p=Path('papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_acq_dev3r.py')
+          s=importlib.util.spec_from_file_location('dev3rpreflight',p); m=importlib.util.module_from_spec(s); sys.modules[s.name]=m; s.loader.exec_module(m)
+          legitimate='''<feed xmlns="http://www.w3.org/2005/Atom"><entry><id>http://arxiv.org/abs/2401.12345v1</id><title>Error Correction for Something</title><summary>Legitimate science mentioning arXiv:2501.99999.</summary></entry></feed>'''
+          st,ids,note=m.parse_entry_ids(legitimate,max_results=20)
+          assert st=='OK' and ids==('2401.12345',), (st,ids,note)
+          apierr='''<feed xmlns="http://www.w3.org/2005/Atom"><entry><id>http://arxiv.org/api/errors#x</id><title>Error</title><summary>bad query</summary></entry></feed>'''
+          st2,ids2,note2=m.parse_entry_ids(apierr,max_results=20)
+          assert st2=='ERROR' and not ids2 and 'bad query' in note2
+          assert m.dev3.BASELINE_PLAN and m.dev3.CANDIDATE_PLAN
+          print('DEV3R_PREFLIGHT_OK')
+          PY
+      - name: Run exact frozen Dev-3 acquisition with corrected response classifier
+        run: |
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_acq_dev3r.py \
+            --public /tmp/p2-dev3r/wide_public.jsonl --task-ids /tmp/p2-dev3r/task_ids.json \
+            --out-dir /tmp/p2-dev3r/run --progress-every 4
+      - name: Score both systems with pinned official Wide scorer
+        run: |
+          python /tmp/arb-upstream/evaluate/evaluate_wide_search.py --input /tmp/p2-dev3r/run/candidate_wide_lexical_arxiv_atom_v3.jsonl --gt-file /tmp/p2-dev3r/wide_gt.jsonl --no-jina --output /tmp/p2-dev3r/run/eval_wide_lexical_arxiv_atom_v3.json
+          python /tmp/arb-upstream/evaluate/evaluate_wide_search.py --input /tmp/p2-dev3r/run/candidate_wide_diversified_arxiv_atom_v3.jsonl --gt-file /tmp/p2-dev3r/wide_gt.jsonl --no-jina --output /tmp/p2-dev3r/run/eval_wide_diversified_arxiv_atom_v3.json
+      - name: Apply unchanged frozen Dev-3 eligibility rule
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('/tmp/p2-dev3r/run')
+          f=json.loads(Path('papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_ACQUISITION_DEV3_FREEZE_2026-08-18.json').read_text())
+          m=json.loads((root/'DEV3R_RUN_MANIFEST.json').read_text())
+          b=json.loads((root/'eval_wide_lexical_arxiv_atom_v3.json').read_text()); c=json.loads((root/'eval_wide_diversified_arxiv_atom_v3.json').read_text())
+          bm=b['aggregate_stats']; cm=c['aggregate_stats']; expected=f['validity']['required_provider_calls_per_system']
+          valid=m['task_ids_sha256']==f['validity']['required_exact_task_id_hash']
+          for sid in ('wide_lexical_arxiv_atom_v3','wide_diversified_arxiv_atom_v3'):
+              x=m['systems'][sid]
+              valid &= x['provider_requests']==expected and int((x.get('route_status_counts') or {}).get('OK',0))==expected
+              valid &= x['tasks_with_open_obligations']==0 and x['tasks_closed_as_complete']==0
+          dr=round(float(cm['avg_recall'])-float(bm['avg_recall']),6); di=round(float(cm['avg_iou'])-float(bm['avg_iou']),6); dp=round(float(cm['avg_precision'])-float(bm['avg_precision']),6)
+          rule=f['development_eligibility_rule']
+          eligible=valid and dr>=float(rule['candidate_minus_baseline_recall_at_least']) and di>float(rule['candidate_minus_baseline_iou_greater_than']) and dp>=float(rule['candidate_minus_baseline_precision_at_least'])
+          zero=lambda p: sum(1 for r in p['per_record_results'] if float(r['pass_results'][0]['recall'])==0.0)
+          verdict='DEV3R_ELIGIBLE_FOR_FRESH_CONFIRMATION' if eligible else ('CANNOT_CHECK_EXECUTION_VALIDITY' if not valid else 'DEV3R_FINAL_NON_ELIGIBLE')
+          payload={'schema':'P2.v2.acquisition-dev3r-result.v1','authority':'HARNESS_CORRECTED_FINAL_DEVELOPMENT_ONLY','verdict':verdict,'validity_passed':bool(valid),'official_metrics':{'baseline':bm,'candidate':cm,'candidate_minus_baseline':{'avg_recall':dr,'avg_iou':di,'avg_precision':dp},'zero_hit_tasks':{'baseline':zero(b),'candidate':zero(c)}},'systems':m['systems'],'task_ids_sha256':m['task_ids_sha256'],'eligibility_rule':rule,'promotion':'FORBIDDEN_FROM_DEVELOPMENT_SLICE','next_step':'EXECUTE_PRE_FROZEN_FRESH_DEV3R_CONFIRMATION' if eligible else 'TERMINATE_ACQUISITION_WIDENING_NO_DEV4'}
+          (root/'P2_V2_ACQUISITION_DEV3R_RESULT.json').write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          print('P2_V2_ACQ_DEV3R='+json.dumps(payload,sort_keys=True))
+          PY
+      - name: Upload immutable Dev-3R evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-v2-acq-dev3r-${{ github.sha }}
+          path: |
+            /tmp/p2-dev3r/split_manifest.json
+            /tmp/p2-dev3r/task_ids.json
+            /tmp/p2-dev3r/run/DEV3R_RUN_MANIFEST.json
+            /tmp/p2-dev3r/run/candidate_*.jsonl
+            /tmp/p2-dev3r/run/trace_*.json
+            /tmp/p2-dev3r/run/eval_*.json
+            /tmp/p2-dev3r/run/P2_V2_ACQUISITION_DEV3R_RESULT.json
+            papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_ACQUISITION_DEV3_FREEZE_2026-08-18.json
+            papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_DEV3R_HARNESS_CORRECTION_FREEZE_2026-08-18.json
+            papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_FRESH_WIDE_CONFIRM_DEV3R_FREEZE_2026-08-18.json
+          if-no-files-found: warn
+          retention-days: 30
