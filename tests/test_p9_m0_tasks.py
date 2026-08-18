@@ -68,6 +68,26 @@ def test_candidate_order_permutation_can_change_order_without_changing_target_or
     }
 
 
+def test_colliding_weaker_view_cannot_leak_hidden_semantics_through_candidate_order():
+    relation_pair = generate_pair(HostileFamily.RELATION_SEMANTICS, "order-side-channel-r")
+    for mode in (ViewMode.SURFACE, ViewMode.TOPOLOGY):
+        left = build_task(relation_pair.worlds[0], mode=mode, order_seed="same-order")
+        right = build_task(relation_pair.worlds[1], mode=mode, order_seed="same-order")
+        assert isinstance(left, MechanicRankingTask)
+        assert isinstance(right, MechanicRankingTask)
+        assert left.model_payload() == right.model_payload()
+        assert left.target_candidate_id != right.target_candidate_id
+
+    history_pair = generate_pair(HostileFamily.FAILURE_HISTORY, "order-side-channel-h")
+    for mode in (ViewMode.SURFACE, ViewMode.TOPOLOGY, ViewMode.TYPED, ViewMode.CURRENT):
+        left = build_task(history_pair.worlds[0], mode=mode, order_seed="same-order")
+        right = build_task(history_pair.worlds[1], mode=mode, order_seed="same-order")
+        assert isinstance(left, MechanicRankingTask)
+        assert isinstance(right, MechanicRankingTask)
+        assert left.model_payload() == right.model_payload()
+        assert left.target_candidate_id != right.target_candidate_id
+
+
 def test_weaker_candidate_views_do_not_smuggle_typed_contracts():
     world = generate_pair(HostileFamily.RELATION_SEMANTICS, "candidate-fields").worlds[0]
 
