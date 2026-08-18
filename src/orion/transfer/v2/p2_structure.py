@@ -10,8 +10,8 @@ from .canonical import content_digest
 class StructuralRouteKind(str, Enum):
     """How a discovery query was derived.
 
-    The first three values are ordinary discovery routes.  The final three are
-    structure-conditioned routes introduced by the P2 extension.  A route kind
+    The first three values are ordinary discovery routes. The final three are
+    structure-conditioned routes introduced by the P2 extension. A route kind
     describes derivation only; it does not grant route independence, transfer
     validity, novelty, or task-closure authority.
     """
@@ -27,7 +27,7 @@ class StructuralRouteKind(str, Enum):
 class StructuralCandidateStatus(str, Enum):
     CANDIDATE = "CANDIDATE"
     OBSTRUCTION = "OBSTRUCTION"
-    CANNOT_CHECK = "CANNOT_CHECK"
+    UNKNOWN = "UNKNOWN"
 
 
 class StructuralRouteStop(str, Enum):
@@ -41,8 +41,8 @@ class StructuralRouteStop(str, Enum):
 class StructuralNeed:
     """A bounded structural need exported by an upstream ORION object.
 
-    This is deliberately a small adapter surface.  P1/P3/P6 remain owners of
-    method reconstruction, projection and formal equivalence.  P2 receives only
+    This is deliberately a small adapter surface. P1/P3/P6 remain owners of
+    method reconstruction, projection and formal equivalence. P2 receives only
     the coordinates needed to derive candidate-acquisition routes.
     """
 
@@ -201,7 +201,7 @@ def assess_structural_candidate(
     if reasons:
         status = StructuralCandidateStatus.OBSTRUCTION
     elif need.reconstruction is not None and candidate.reconstruction is None:
-        status = StructuralCandidateStatus.CANNOT_CHECK
+        status = StructuralCandidateStatus.UNKNOWN
         reasons.append("RECONSTRUCTION_UNKNOWN")
     elif need.reconstruction is not None and candidate.reconstruction != need.reconstruction:
         status = StructuralCandidateStatus.OBSTRUCTION
@@ -211,7 +211,7 @@ def assess_structural_candidate(
         if need.reconstruction is not None:
             matched.append("reconstruction")
         if not candidate.provenance_digest:
-            status = StructuralCandidateStatus.CANNOT_CHECK
+            status = StructuralCandidateStatus.UNKNOWN
             reasons.append("PROVENANCE_UNKNOWN")
 
     unsigned = {
@@ -427,6 +427,6 @@ def structural_match_score(
     if total == 0:
         return 0.0
     score = len(receipt.matched_coordinates) / total
-    if receipt.status is StructuralCandidateStatus.CANNOT_CHECK:
+    if receipt.status is StructuralCandidateStatus.UNKNOWN:
         score -= 0.25
     return score
