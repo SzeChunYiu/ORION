@@ -1,0 +1,34 @@
+{
+  "protocol_id": "ORION.P1P3.StructurePilot.v1",
+  "frozen_on": "2026-08-18",
+  "authority": "BOUNDED_EXACT_GROUND_TRUTH_PILOT",
+  "claim_ceiling": "This pilot tests typed structural recoverability and plural alignment on deterministic authored method specifications across three domains. It is not an expert-annotated 50-100-paper corpus and cannot support broad cross-domain extraction or P9 sufficiency claims.",
+  "domains": ["numerical_methods", "graph_algorithms", "transactional_workflows"],
+  "pairs": [
+    {"id": "numeric_true", "domain": "numerical_methods", "left": "bisection", "right": "threshold_calibration", "gold": "ALIGNED"},
+    {"id": "numeric_false", "domain": "numerical_methods", "left": "bisection", "right": "nonmonotone_midpoint", "gold": "OBSTRUCTION"},
+    {"id": "graph_true", "domain": "graph_algorithms", "left": "queue_bfs", "right": "layer_frontier_bfs", "gold": "ALIGNED"},
+    {"id": "graph_false", "domain": "graph_algorithms", "left": "queue_bfs", "right": "stack_dfs", "gold": "OBSTRUCTION"},
+    {"id": "workflow_true", "domain": "transactional_workflows", "left": "transaction_rollback", "right": "deployment_rollback", "gold": "ALIGNED"},
+    {"id": "workflow_unresolved", "domain": "transactional_workflows", "left": "transaction_rollback", "right": "opaque_recovery", "gold": "UNRESOLVED"}
+  ],
+  "corruptions": [
+    "delete_invariant",
+    "delete_reconstruction",
+    "reverse_dependency",
+    "swap_precondition",
+    "collapse_failure_semantics",
+    "erase_lineage",
+    "widen_authority",
+    "fabricate_unknown"
+  ],
+  "primary_metrics": [
+    "coordinate_recoverability",
+    "corruption_detection_recall",
+    "false_substitutability_rate",
+    "correct_unresolved_rate",
+    "projection_alignment_accuracy",
+    "transcript_only_pair_accuracy"
+  ],
+  "terminal_rule": "NARROWED if typed representation/alignment is non-vacuous and catches all prospectively frozen material corruptions on this exact-ground-truth panel; broader expert-paper claims remain unavailable."
+}
