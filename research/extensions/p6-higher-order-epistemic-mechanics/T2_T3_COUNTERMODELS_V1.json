@@ -6,7 +6,7 @@
   "grants_self_orion_adoption": false,
   "cases": [
     {"id": "T23-01", "kind": "responsibility_ambiguous", "expected_status": "AMBIGUOUS"},
-    {"id": "T23-02", "kind": "responsibility_identified", "expected_status": "IDENTIFIED"},
+    {"id": "T23-02", "kind": "responsibility_identified", "expected_status": "IDENTIFIED", "expected_selected": "interface-gap"},
     {"id": "T23-03", "kind": "responsibility_unresolved", "expected_status": "UNRESOLVED"},
     {"id": "T23-04", "kind": "responsibility_no_survivor", "expected_status": "NO_SURVIVING"},
     {"id": "T23-05", "kind": "interface_failure", "expected_status": "REPAIR_REQUIRED"},
