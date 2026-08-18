@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import sys
 import tempfile
 from collections.abc import Callable, Iterable, Sequence
@@ -883,37 +884,83 @@ def _without_clock(table: dict) -> dict:
     return {**table, "provenance": provenance}
 
 
-def _differences(committed: object, regenerated: object, path: str = "") -> list[str]:
-    """Every leaf where two table payloads disagree, as a JSON pointer.
+#: Tolerance for "the same computation, run on a different CPU".
+#:
+#: IEEE754 double arithmetic is not bit-reproducible across platforms: summation
+#: order, libm, and FMA contraction all differ between macOS arm64 and the Linux
+#: x86-64 CI runner. The committed tables were generated on one and are checked on
+#: the other, and 20 bootstrap interval bounds differed in their last bits -- the
+#: largest delta 5.551e-17, which is 2 ULP near 0.19. The markdown renderings, which
+#: round to four digits and are compared byte-for-byte, matched exactly; the numbers
+#: are the same numbers.
+#:
+#: These bounds come from a 10,000-resample percentile bootstrap, whose Monte Carlo
+#: error is on the order of 1e-3. Asserting bit-equality on them asserts something
+#: that is neither true of the arithmetic nor meaningful about the science.
+#:
+#: The band is deliberately wide of the noise and far below anything real. Platform
+#: noise sits at ~3e-16 relative; a changed seed, changed archive or changed
+#: estimator moves these values by ~1e-3. There is no realistic edit that lands in
+#: between, so nothing real hides here.
+#:
+#: abs_tol exists for one observed case: a bound computed as 6.938893903907228e-18 on
+#: one platform and exactly 0.0 on the other. Relative comparison against zero is
+#: undefined, and these are probabilities in [0, 1] where 1e-15 absolute is nothing.
+_FLOAT_REL_TOL = 1e-12
+_FLOAT_ABS_TOL = 1e-15
+
+
+def _near(committed: float, regenerated: float) -> bool:
+    """Same value to within cross-platform floating-point noise."""
+
+    return math.isclose(committed, regenerated, rel_tol=_FLOAT_REL_TOL, abs_tol=_FLOAT_ABS_TOL)
+
+
+def _differences(
+    committed: object, regenerated: object, path: str = ""
+) -> tuple[list[str], list[str]]:
+    """Leaves where two table payloads disagree, split by whether it matters.
+
+    Returns ``(hard, soft)``. ``hard`` is real drift and fails the check. ``soft`` is
+    float difference within :data:`_FLOAT_REL_TOL` -- reported, never silent, but not
+    a failure.
 
     A drift detector that only says "something changed" makes the next reader
-    re-derive the diff by hand, and cross-platform float drift is invisible in
-    the markdown rendering because that rounds to four digits. Reporting the
-    pointer and both values is what turns a red run into a diagnosis.
+    re-derive the diff by hand, and cross-platform float drift is invisible in the
+    markdown rendering because that rounds to four digits. Reporting the pointer and
+    both values is what turns a red run into a diagnosis.
     """
 
     if isinstance(committed, dict) and isinstance(regenerated, dict):
-        out: list[str] = []
+        hard: list[str] = []
+        soft: list[str] = []
         for key in sorted(set(committed) | set(regenerated)):
             if key not in committed:
-                out.append(f"{path}/{key}: absent in committed, regenerated={regenerated[key]!r}")
+                hard.append(f"{path}/{key}: absent in committed, regenerated={regenerated[key]!r}")
             elif key not in regenerated:
-                out.append(f"{path}/{key}: committed={committed[key]!r}, absent in regeneration")
+                hard.append(f"{path}/{key}: committed={committed[key]!r}, absent in regeneration")
             else:
-                out.extend(_differences(committed[key], regenerated[key], f"{path}/{key}"))
-        return out
+                sub_hard, sub_soft = _differences(committed[key], regenerated[key], f"{path}/{key}")
+                hard.extend(sub_hard)
+                soft.extend(sub_soft)
+        return hard, soft
     if isinstance(committed, list) and isinstance(regenerated, list):
         if len(committed) != len(regenerated):
-            return [f"{path}: length {len(committed)} vs {len(regenerated)}"]
-        out = []
+            return [f"{path}: length {len(committed)} vs {len(regenerated)}"], []
+        hard, soft = [], []
         for index, (left, right) in enumerate(zip(committed, regenerated, strict=True)):
-            out.extend(_differences(left, right, f"{path}/{index}"))
-        return out
+            sub_hard, sub_soft = _differences(left, right, f"{path}/{index}")
+            hard.extend(sub_hard)
+            soft.extend(sub_soft)
+        return hard, soft
     if committed == regenerated:
-        return []
+        return [], []
     if isinstance(committed, float) and isinstance(regenerated, float):
-        return [f"{path}: {committed!r} vs {regenerated!r} (delta {regenerated - committed:+.3e})"]
-    return [f"{path}: {committed!r} vs {regenerated!r}"]
+        detail = f"{path}: {committed!r} vs {regenerated!r} (delta {regenerated - committed:+.3e})"
+        if _near(committed, regenerated):
+            return [], [detail]
+        return [detail], []
+    return [f"{path}: {committed!r} vs {regenerated!r}"], []
 
 
 def _check(args: argparse.Namespace) -> int:
@@ -950,9 +997,20 @@ def _check(args: argparse.Namespace) -> int:
                 missing.append(str(committed_path))
                 continue
             committed = json.loads(committed_path.read_text(encoding="utf-8"))
-            if _without_clock(committed) != _without_clock(table):
+            hard, soft = _differences(_without_clock(committed), _without_clock(table))
+            if soft:
+                # Never silent: a reader must be able to see that the bytes are not
+                # identical even when the numbers are.
+                print(
+                    f"P1 tables: {name}: {len(soft)} field(s) differ within floating-point "
+                    f"tolerance (rel {_FLOAT_REL_TOL:g}); treated as reproduced, not as drift.",
+                    file=sys.stderr,
+                )
+                for line in soft[:5]:
+                    print(f"P1 tables:   near-equal {name}{line}", file=sys.stderr)
+            if hard:
                 drifted.append(name)
-                for line in _differences(_without_clock(committed), _without_clock(table))[:20]:
+                for line in hard[:20]:
                     print(f"P1 tables: {name}{line}", file=sys.stderr)
 
             # The markdown renderings carry no clock, so they get the strict comparison
