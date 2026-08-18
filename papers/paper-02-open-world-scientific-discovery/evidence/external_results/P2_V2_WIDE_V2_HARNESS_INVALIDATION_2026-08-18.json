@@ -1,0 +1,25 @@
+{
+  "schema": "P2.v2.wide-harness-invalidation.v1",
+  "date": "2026-08-18",
+  "status": "SUPERSEDED_FOR_SYSTEM_SELECTION",
+  "scope": "V2 Wide development evidence only; does not alter immutable P2 V1 evidence",
+  "affected_artifacts": [
+    "P2_V2_WIDE_BOUNDED_MATCHED_RESULT_2026-08-18.json",
+    "P2_V2_WIDE_BOUNDED_STAGE_DIAGNOSTIC_2026-08-18.json",
+    "P2_V2_ACQUISITION_DEV2_RESULT.json"
+  ],
+  "defect": {
+    "class": "CANDIDATE_IDENTITY_EXTRACTION",
+    "description": "The V2 comparison/Dev-2 arXiv route extracted arXiv-looking identifiers by regex over the complete Atom response body. An Atom entry summary or other feed metadata may contain an arXiv identifier that is not the identity of a returned result entry. Some max_results=20 calls consequently exposed more than 20 identifiers to the candidate pool.",
+    "observed_counterexample": "Dev-2 traces contain arXiv calls configured for max_results=20 with returned_ids counts above 20.",
+    "required_fix": "Parse only Atom entry identities using the repository arXiv parser; normalize each returned entry identity once; assert returned scorer IDs do not exceed max_results."
+  },
+  "authority": {
+    "previous_verdicts_retained_for_history": true,
+    "previous_numeric_outputs_may_be_reported_only_as_invalidated_diagnostics": true,
+    "may_select_final_system": false,
+    "may_support_manuscript_promotion": false,
+    "fresh_confirmation_may_not_use_affected_candidate_artifacts": true
+  },
+  "next_step": "Prospectively freeze and execute one corrected acquisition-development comparison before any fresh confirmation."
+}
