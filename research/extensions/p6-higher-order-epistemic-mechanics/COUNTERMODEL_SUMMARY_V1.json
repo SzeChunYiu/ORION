@@ -1,0 +1,104 @@
+{
+  "accuracy": 1.0,
+  "claim_ceiling": "FORMAL_NON_AUTHORIZING_MINIMAL_REVISION_SUBSTRATE_ONLY",
+  "grants_scientific_authority": false,
+  "grants_self_orion_adoption": false,
+  "n_cases": 6,
+  "n_pass": 6,
+  "panel_digest": "sha256:733c74cb842ad610d33bc5314290f4d9ee144632e7be1883e1684031571595c8",
+  "protocol_id": "P6.higher-order-epistemic-mechanics.tranche1.v1",
+  "result_digest": "sha256:87e3304321b6fa891b072d556c6984b555c4ae475a52bb9fe4593d520a734cbc",
+  "result_version": "P6_HIGHER_ORDER_COUNTERMODEL_SUMMARY_V1",
+  "rows": [
+    {
+      "actual_selected": "acquire-evidence",
+      "actual_status": "UNIQUE_MINIMUM",
+      "expected_selected": "acquire-evidence",
+      "expected_status": "UNIQUE_MINIMUM",
+      "family": "MINIMAL_REVISION",
+      "id": "CM-01-narrow-evidence-before-model",
+      "minimal_mechanics": [
+        "acquire-evidence"
+      ],
+      "pass": true,
+      "reasons": []
+    },
+    {
+      "actual_selected": null,
+      "actual_status": "MULTIPLE_MINIMA",
+      "expected_selected": null,
+      "expected_status": "MULTIPLE_MINIMA",
+      "family": "INCOMPARABLE_MINIMA",
+      "id": "CM-02-incomparable-repairs",
+      "minimal_mechanics": [
+        "repair-measurement",
+        "repair-execution"
+      ],
+      "pass": true,
+      "reasons": [
+        "INCOMPARABLE_MINIMAL_REVISIONS"
+      ]
+    },
+    {
+      "actual_selected": null,
+      "actual_status": "UNRESOLVED",
+      "expected_selected": null,
+      "expected_status": "UNRESOLVED",
+      "family": "UNRESOLVED_ESCALATION_GUARD",
+      "id": "CM-03-unresolved-narrower-blocks-escalation",
+      "minimal_mechanics": [
+        "rewrite-model"
+      ],
+      "pass": true,
+      "reasons": [
+        "NARROWER_UNRESOLVED_CANDIDATE"
+      ]
+    },
+    {
+      "actual_selected": null,
+      "actual_status": "NO_ADMISSIBLE",
+      "expected_selected": null,
+      "expected_status": "NO_ADMISSIBLE",
+      "family": "AUTHORITY_NON_COMPENSATION",
+      "id": "CM-04-missing-authority",
+      "minimal_mechanics": [],
+      "pass": true,
+      "reasons": [
+        "ALL_CANDIDATES_BLOCKED"
+      ]
+    },
+    {
+      "actual_selected": null,
+      "actual_status": "NO_ADMISSIBLE",
+      "expected_selected": null,
+      "expected_status": "NO_ADMISSIBLE",
+      "family": "FORBIDDEN_WRITE",
+      "id": "CM-05-protected-evaluator-write",
+      "minimal_mechanics": [],
+      "pass": true,
+      "reasons": [
+        "ALL_CANDIDATES_BLOCKED"
+      ]
+    },
+    {
+      "actual_selected": "recheck-source",
+      "actual_status": "UNIQUE_MINIMUM",
+      "expected_selected": "recheck-source",
+      "expected_status": "UNIQUE_MINIMUM",
+      "family": "CLEAN_CONTROL",
+      "id": "CM-06-clean-no-alarm",
+      "minimal_mechanics": [
+        "recheck-source"
+      ],
+      "pass": true,
+      "reasons": []
+    }
+  ],
+  "status_counts": {
+    "MULTIPLE_MINIMA": 1,
+    "NO_ADMISSIBLE": 2,
+    "UNIQUE_MINIMUM": 2,
+    "UNRESOLVED": 1
+  },
+  "terminal": "TRANCHE1_FORMAL_COUNTERMODELS_GREEN"
+}
