@@ -1,12 +1,12 @@
 {
-  "blocker_sites": 419,
+  "blocker_sites": 422,
   "classification": {
     "INSUFFICIENT_EVIDENCE": 8,
     "MISSING_ACCESS": 5,
     "MISSING_CUSTODY": 26,
     "MISSING_IDENTITY": 27,
     "UNAVAILABLE_PROVIDER": 12,
-    "UNCLASSIFIED": 341
+    "UNCLASSIFIED": 344
   },
   "closes_gate": null,
   "grants_authority": "NONE",
@@ -1986,6 +1986,36 @@
       "reasons": [
         "measurement_capability_insufficient_for_declared_equivalence_tolerance"
       ],
+      "role": "EMITS"
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "AssimilationVerdict",
+      "file": "knowledge/mechanism_assimilation.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 104,
+      "reasons": [],
+      "role": "EMITS"
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "seal_assimilation",
+      "file": "knowledge/mechanism_assimilation.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 336,
+      "reasons": [],
+      "role": "EMITS"
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "seal_assimilation",
+      "file": "knowledge/mechanism_assimilation.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 339,
+      "reasons": [],
       "role": "EMITS"
     },
     {
@@ -6038,8 +6068,8 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "94f5abed193b4b5c6ebf9bef4acdae5f75f78a30",
-  "total_sites": 465,
+  "subject_commit": "9ad44fbeb4adf29ebe06b83b9dbf331062ed14f4",
+  "total_sites": 468,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_reason": 210
 }
