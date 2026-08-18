@@ -1,0 +1,25 @@
+{
+  "bib_key": "sieve2026",
+  "claimed_title": "Search, Inspect, Fetch: Exploiting Structure-Aware Boolean Retrieval for Deep-Research Agents",
+  "claim_provenance": "pre_existing_independent_claim",
+  "fetch_url": "https://export.arxiv.org/api/query?id_list=2608.02751",
+  "fetched_utc": "2026-08-17T23:11:11Z",
+  "verdict": "VERIFIED",
+  "verdict_reason": "claimed title matches fetched title exactly (normalised)",
+  "fetched_title": "Search, Inspect, Fetch: Exploiting Structure-Aware Boolean Retrieval for Deep-Research Agents",
+  "fetched_authors": [
+    "Shuai Wang",
+    "Haodong Chen",
+    "Yu Yin",
+    "Shengyao Zhuang",
+    "Bevan Koopman",
+    "Guido Zuccon"
+  ],
+  "fetched_year": 2026,
+  "fetched_venue": "arXiv preprint",
+  "arxiv_id": "2608.02751v2",
+  "doi": null,
+  "published": "2026-08-03T18:01:05Z",
+  "updated": "2026-08-05T02:06:16Z",
+  "abstract": "Existing deep-research agents use a Search--Visit workflow that retrieves whole webpages without considering the structure they expose through titles, headings, sections, and metadata. This prevents agents from directly constraining retrieval to parts of a webpage and often carries irrelevant content into their context. We introduce \\textsc{Sieve}, a search--inspect--fetch strategy driven by a Boolean Query Language (BQL): it searches webpage fields to filter candidates, uses an interchangeable ranker to order them, presents structure-rich result cards for inspection, and fetches only selected sections. Across three QA collections, \\textsc{Sieve} is more accurate than the strongest conventional Search--Visit configuration on each collection while using $20.7$--$50.6\\%$ fewer tokens. Boolean filtering improves every tested ranker, and the accuracy--context advantage persists across retriever choices and agent backbones. Our implementation is included in the SkimSearchAgent library at https://github.com/ielab/skim-search-agent."
+}

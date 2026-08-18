@@ -1,0 +1,23 @@
+{
+  "bib_key": "deepcontrol2026",
+  "claimed_title": "Adaptive Information Control for Search-Augmented LLM Reasoning",
+  "claim_provenance": "pre_existing_independent_claim",
+  "fetch_url": "https://export.arxiv.org/api/query?id_list=2602.01672",
+  "fetched_utc": "2026-08-17T23:11:01Z",
+  "verdict": "VERIFIED",
+  "verdict_reason": "claimed title matches fetched title exactly (normalised)",
+  "fetched_title": "Adaptive Information Control for Search-Augmented LLM Reasoning",
+  "fetched_authors": [
+    "Siheng Xiong",
+    "Oguzhan Gungordu",
+    "James C. Kerce",
+    "Faramarz Fekri"
+  ],
+  "fetched_year": 2026,
+  "fetched_venue": "arXiv preprint",
+  "arxiv_id": "2602.01672v2",
+  "doi": null,
+  "published": "2026-02-02T05:40:38Z",
+  "updated": "2026-06-03T03:49:17Z",
+  "abstract": "Search-augmented reasoning agents interleave multi-step reasoning with external retrieval, but uncontrolled retrieval can introduce redundant evidence, saturate the context, and destabilize reinforcement learning (RL). Existing outcome-based RL methods provide only sparse terminal rewards, offering limited guidance for intermediate information-acquisition decisions. We propose DeepControl, an adaptive information-control framework based on information utility, a state-dependent estimate of the marginal value of retrieved evidence. The framework regulates information acquisition along two axes: extent, i.e., whether retrieval should continue, and resolution, i.e., how much retrieved detail should be exposed. It implements these controls through retrieval-continuation guidance, hierarchical granularity control, and an annealed control-forcing scheme. This enables the policy to internalize effective acquisition behavior during training and operate without external control at test time. Across seven benchmarks, DeepControl consistently outperforms strong RL and retrieval baselines without explicit information control; compared with Search-R1, it improves average performance by +9.4 and +8.6 points on Qwen2.5-7B and Qwen2.5-3B, respectively. Additional analyses show improved search effectiveness, training stability, and evidence utilization."
+}

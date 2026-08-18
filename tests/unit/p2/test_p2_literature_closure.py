@@ -21,7 +21,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 PAPER = ROOT / "papers" / "paper-02-open-world-scientific-discovery"
-BIBLIOGRAPHY = PAPER / "manuscript" / "bibliography.bib"
 MAIN_TEX = PAPER / "manuscript" / "main.tex"
 PROTOCOL = PAPER / "protocol" / "PROTOCOL_V1.json"
 READINESS = PAPER / "JOURNAL_READINESS.md"
@@ -35,6 +34,7 @@ AUDIT_MAX_LINES = 180
 
 ENTRY_RE = re.compile(r"@(\w+)\s*\{\s*([^,\s]+)\s*,", re.MULTILINE)
 CITE_RE = re.compile(r"\\cite(?:t|p)?\{([^}]+)\}")
+BIBLIOGRAPHY_DECLARATION_RE = re.compile(r"\\bibliography\{([^}]+)\}")
 IDENTIFIER_FIELD_RE = re.compile(r"(?:^|,)\s*(doi|eprint|url)\s*=", re.IGNORECASE | re.MULTILINE)
 
 # Literature families required by JOURNAL_READINESS.md section 1 ("Novelty
@@ -61,15 +61,39 @@ REQUIRED_LITERATURE_FAMILIES = {
 ALLOWED_VERDICTS = {"VERIFIED", "MISMATCH", "CANNOT_CHECK"}
 
 
+def _bibliography_paths() -> list[Path]:
+    """Every .bib file `main.tex` actually loads, in declaration order.
+
+    Reading one hard-coded path made this suite report every key defined in a
+    second bib file as missing from the bibliography. That is a false positive in
+    the expensive direction: the failure names real citation keys and reads as a
+    broken manuscript, so the manuscript gets edited to satisfy the checker.
+    Deriving the set from the `\\bibliography{...}` declaration means adding a bib
+    file cannot manufacture a failure, while a key defined in none of them still
+    does.
+    """
+
+    match = BIBLIOGRAPHY_DECLARATION_RE.search(MAIN_TEX.read_text(encoding="utf-8"))
+    assert match, "main.tex declares no \\bibliography{...}"
+    names = [part.strip() for part in match.group(1).split(",") if part.strip()]
+    paths = [MAIN_TEX.parent / f"{name}.bib" for name in names]
+    missing = [path.name for path in paths if not path.exists()]
+    assert not missing, f"main.tex loads bibliography files that do not exist: {missing}"
+    return paths
+
+
 def _bib_entries() -> dict[str, str]:
     """Map bibliography key -> entry body, with % comment lines stripped."""
-    raw = BIBLIOGRAPHY.read_text(encoding="utf-8")
-    text = "\n".join(line for line in raw.splitlines() if not line.lstrip().startswith("%"))
-    starts = [(m.group(2), m.start(), m.end()) for m in ENTRY_RE.finditer(text)]
     entries: dict[str, str] = {}
-    for index, (key, _, body_start) in enumerate(starts):
-        body_end = starts[index + 1][1] if index + 1 < len(starts) else len(text)
-        entries[key] = text[body_start:body_end]
+    for path in _bibliography_paths():
+        raw = path.read_text(encoding="utf-8")
+        text = "\n".join(
+            line for line in raw.splitlines() if not line.lstrip().startswith("%")
+        )
+        starts = [(m.group(2), m.start(), m.end()) for m in ENTRY_RE.finditer(text)]
+        for index, (key, _, body_start) in enumerate(starts):
+            body_end = starts[index + 1][1] if index + 1 < len(starts) else len(text)
+            entries[key] = text[body_start:body_end]
     return entries
 
 
