@@ -1,0 +1,34 @@
+name: Materialize P9-P10 integration payload
+
+on:
+  push:
+    branches:
+      - shadow/p6-p10-integration-2026-08-18
+    paths:
+      - '.github/workflows/materialize-p9p10-integration.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Materialize exact P9-P10 snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .integration/p9p10.part* > /tmp/p9p10.b64
+          base64 -d /tmp/p9p10.b64 > /tmp/p9p10.tar.gz
+          echo "027a09c1a609e9fcf66969b578131f1ae1267154cc2c0fa30c52728551cc7e91  /tmp/p9p10.tar.gz" | sha256sum -c -
+          tar -xzf /tmp/p9p10.tar.gz -C .
+          rm -rf .integration
+          rm -f .github/workflows/materialize-p9p10-integration.yml
+          git config user.name "ORION integration"
+          git config user.email "52784502+SzeChunYiu@users.noreply.github.com"
+          git add -A
+          git commit -m "papers: materialize P9-P10 learning-machine research closure"
+          git push origin HEAD:shadow/p6-p10-integration-2026-08-18
