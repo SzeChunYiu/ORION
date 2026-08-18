@@ -162,3 +162,52 @@ def test_the_else_branch_does_not_inherit_the_guard() -> None:
     ]
     # The `if` body carries the guard; the `else` body carries none.
     assert sorted(preconditions, key=lambda v: (v is None, v or "")) == ["x", None]
+
+
+def test_terminal_and_field_names_are_not_counted_as_reasons() -> None:
+    """`with_reason` was inflated by 12 sites in the first published inventory.
+
+    A site returning `{"status": "PASS"}` was recorded as carrying a reason when
+    nothing there says why the check could not run, so the gap this inventory exists
+    to measure read smaller than it is.
+    """
+
+    module = _load_module()
+    for name in ("PASS", "FAIL", "status", "authority", "CANNOT_CHECK", "verdict", "ACCEPT"):
+        assert not module._is_reason(name), f"{name!r} is a terminal or field name, not a cause"
+
+
+def test_domain_values_survive_the_filter() -> None:
+    """No alarm, and the reason the first filter was too blunt.
+
+    Rejecting every bare `SCREAMING_CASE` token threw away `CREDENTIALS_PRESENT` in
+    `study/p5/causal_repair.py` -- a status value stating exactly why that site is
+    `CANNOT_CHECK`, and one that was correctly driving its classification. Case does
+    not separate a terminal name from a domain value; only the name does.
+    """
+
+    module = _load_module()
+    for name in (
+        "CREDENTIALS_PRESENT",
+        "required_core_feature_unresolved",
+        "no held-out root was declared to protect",
+        "protected path does not exist in the checkout",
+    ):
+        assert module._is_reason(name), f"{name!r} states a cause and must be kept"
+
+
+def test_the_precision_fix_lost_no_classification() -> None:
+    """Filtering noise must not remove signal.
+
+    Every classification in the inventory was driven by a genuine reason, so tightening
+    the extractor lowers `with_reason` without moving a single site between categories.
+    If this ever fails, the filter has started eating causes.
+    """
+
+    committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
+    classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
+    assert sum(classified.values()) == 141, classified
+    assert committed["with_reason"] < committed["blocker_sites"]
+    assert committed["with_reason"] >= sum(classified.values()), (
+        "more sites are classified than carry a reason, so something is classifying on nothing"
+    )

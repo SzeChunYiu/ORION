@@ -81,18 +81,27 @@ SHARED_SUBJECT = (
     Path("tests/unit/candidates/test_p6_p8_merged_review_suites.py"),
 )
 
-# Candidate-owned reproduction files outside the candidate directory must not be
-# widened into every package. P8's formal-primitives test belongs to P8 only.
-CANDIDATE_SUBJECT: dict[str, tuple[Path, ...]] = {
-    "P8": (Path("tests/unit/candidates/test_p8_formal_core_primitives.py"),),
-}
-
 #: Heading of the declaration section holding artifacts shared by all three
 #: candidates rather than owned by one.
 PROGRAMME_SECTION = "PROGRAMME"
 FALSIFIERS = {
     candidate_id: CANDIDATES_DIR / "checkers" / f"{candidate_id.lower()}_finite_falsifiers_v1.py"
     for candidate_id in CANDIDATE_DIRS
+}
+
+#: Files one candidate owns that live outside its own directory.
+#:
+#: `SHARED_SUBJECT` is the wrong home for these: everything in it is bound into all
+#: three packages, so putting a P8-only test there would bind it into P6 and P7 and
+#: make their manifests claim a subject they do not have.
+#:
+#: P8's `REPRODUCE` prose tells a reader to run `test_p8_formal_core_primitives.py`,
+#: which lives under `tests/unit/candidates/` because that is where the suite
+#: collects from. Naming a file in reproduction instructions without binding it means
+#: the file can change while the binding still verifies -- the reader runs something
+#: other than what was bound, and nothing says so. The checker caught exactly that.
+CANDIDATE_SUBJECT: dict[str, tuple[Path, ...]] = {
+    "P8": (Path("tests/unit/candidates/test_p8_formal_core_primitives.py"),),
 }
 
 CLAIM_SCOPE = (
@@ -277,6 +286,15 @@ def parse_package_declaration(repo_root: Path) -> dict[str, dict[str, str]]:
 
 
 #: Directories and suffixes that are build output, not subject.
+#:
+#: `rglob("*")` was binding `__pycache__/*.pyc`, which cannot work: the filenames
+#: carry the interpreter and plugin versions that produced them
+#: (`..cpython-312-pytest-8.4.2.pyc`), so the bound set differed between a laptop
+#: and CI and the binding failed on machine identity rather than on content. It
+#: also made the binding depend on whether anything had imported the package yet.
+#:
+#: Bytecode is derived from the `.py` files that *are* bound, so excluding it
+#: loses no coverage: change the source and the binding still fails.
 _EXCLUDED_DIR_NAMES = frozenset({"__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache"})
 _EXCLUDED_SUFFIXES = frozenset({".pyc", ".pyo", ".pyd"})
 
