@@ -157,6 +157,8 @@ def test_m0_harness_replays_and_oracle_is_perfect_on_frozen_protocol_corpus():
     assert first["authority"] == "NO_SCIENTIFIC_AUTHORITY"
     assert first["test"]["oracle"]["accuracy"] == pytest.approx(1.0)
     assert first["test"]["oracle"]["invalid_prediction_count"] == 0
+    assert first["test"]["oracle"]["uses_full_semantics"] is True
+    assert first["test"]["oracle"]["declared_view_ceiling_applies"] is False
 
 
 def test_m0_harness_reports_view_ceiling_and_never_promotes_nulls():
@@ -179,5 +181,10 @@ def test_m0_harness_reports_view_ceiling_and_never_promotes_nulls():
 
     assert result["test"]["view_deterministic_accuracy_ceiling"] == pytest.approx(2 / 3)
     assert result["test"]["world_count"] == len(split.worlds)
+    assert result["test"]["view_restricted_null_ceiling_violation_flag"] is False
+    assert all(
+        baseline["ceiling_violation_flag"] is False
+        for baseline in result["test"]["null_baselines"].values()
+    )
     assert result["terminal"] == "M0_TASK_HARNESS_VALIDATED_ONLY"
     assert result["grants_model_promotion"] is False
