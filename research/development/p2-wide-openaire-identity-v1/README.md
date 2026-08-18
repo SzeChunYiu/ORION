@@ -13,7 +13,7 @@ Atomic fibres:
 
 1. Does current OpenAIRE Graph keyword search return research-product objects containing an explicit structured arXiv PID?
 2. Can the adapter admit only explicit `scheme=arxiv` identifiers and refuse regex-looking digit strings in DOI/ISSN/text fields?
-3. Can public task selection remain gold-blind and content-addressed against the already frozen 399-task manifest?
+3. Can public task selection remain gold-blind and content-addressed under the **current scorer-compatible 400-row Wide split**, including its official duplicate-question semantics?
 4. If the identity bridge is viable, can a later matched comparison give baseline and ORION the same provider-request/candidate budget while treating identity resolution as an explicit cost rather than a free hidden operation?
 
 ## Incumbent evidence / negative history
@@ -23,6 +23,12 @@ Atomic fibres:
 `WIDE_MATCHED_CAMPAIGN_FREEZE_V1.json` consequently records `BLOCKED_NOT_EXECUTED`: the old matched runner calls arXiv/OpenAlex, while the no-arXiv keyless lane lacked scorer-native identities.
 
 This packet preserves those failures. It does not reinterpret the old probe as a success.
+
+### Split-identity reconciliation
+
+An older `ARB_WIDE_SUBSAMPLE_V1.json` represents 399 distinct questions after collapsing one duplicate. The current scorer-compatible host splitter `run_autoresearchbench_wide_compat.py prepare` intentionally retains all 400 released Wide rows and mirrors the pinned official scorer's behavior: empty questions are omitted from its GT map and duplicate nonempty questions use last-write mapping. These are different execution objects and are not interchangeable.
+
+The identity discriminator therefore freezes explicit current public-split IDs `arb-wide-0001` through `arb-wide-0012`. It does not claim that this twelve-row probe is a subset of the older 399-id manifest.
 
 ## Knowledge / search-universe saturation
 
@@ -35,9 +41,9 @@ The evaluation question spans three parent domains rather than only IR:
 Primary-source findings frozen for this discriminator:
 
 1. AutoResearchBench's official repository exposes `evaluate/evaluate_wide_search.py` as the Wide retrieval metric path and the benchmark uses arXiv identifiers as the candidate/gold identity object.
-2. Current OpenAIRE Graph documentation (11.2/current API docs) exposes research-product persistent identifiers structurally (`pid`/`pids`) rather than requiring text scraping.
+2. Current OpenAIRE Graph V3 documentation exposes research-product persistent identifiers structurally through `pid` scheme/value objects rather than requiring text scraping.
 3. Current OpenAIRE Graph V4 filter documentation names `ids.arxiv` explicitly as an identity field. This makes arXiv identity a first-class graph property rather than a regex inference.
-4. OpenAIRE Graph aggregates arXiv as a source alongside Crossref and other scholarly metadata sources.
+4. OpenAIRE's PID data-model documentation identifies `arxiv` as an authoritative PID scheme when collected from arXiv.
 
 Saturation for this **adapter atom** is reached because the discriminator only needs to answer whether a structured scorer identity exists. New retrieval-ranking papers do not change that identity question. Retrieval-mechanism novelty remains governed by P2's existing nearest-work campaign.
 
@@ -57,11 +63,11 @@ Implement a new additive probe that:
 
 1. queries `https://api.openaire.eu/graph/v3/research-products` with public-question-derived keywords only;
 2. requests publication results under a bounded result cap;
-3. parses JSON structure and accepts an identifier **only** when it occurs in a PID object whose scheme is exactly `arxiv` (case-insensitive); support the documented `pid` and `pids` field spellings;
-4. normalizes only an optional `arXiv:` prefix and terminal `vN` version suffix;
+3. parses JSON structure and accepts an identifier **only** when it occurs in a PID object whose scheme is exactly `arxiv` (case-insensitive); support the documented `pid` and a conservative `pids` alias without scanning unrelated fields;
+4. normalizes only an optional `arXiv:` prefix, optional `/abs/` URL prefix and terminal `vN` version suffix, then requires a full modern or legacy arXiv-ID shape;
 5. never scans the raw response body with an arXiv regex;
-6. records HTTP/parse status, query, exact task id, admitted IDs, and open obligations;
-7. first runs on a frozen small prefix of the already content-addressed 399-task manifest;
+6. records HTTP/parse status, query, exact task id, admitted IDs, response digest/raw response and open obligations;
+7. first runs on the frozen twelve-row prefix of the **current 400-row scorer-compatible public split**;
 8. does not inspect Wide gold and cannot emit a positive paper verdict.
 
 If this probe yields structured arXiv IDs on public Wide tasks, the next separately frozen step may implement a matched comparison. If it yields none, the OpenAIRE-only scorer bridge is rejected without weakening the official scorer.
