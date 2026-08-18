@@ -40,7 +40,7 @@ The surrounding literature already contains powerful mechanisms. Search-on-Graph
 
 The residual problem is \emph{scientific closure transport}. Evidence can remain authentic and semantically useful after a representation or objective change while no longer discharging the active scientific obligation. Conversely, a representation transformation can be computationally beneficial without licensing a task-completion judgment. Open or censored obligations can survive local route exhaustion and must remain visible after a reframe.
 
-We formalize this interface through an epistemic atlas: a family of charts connected by partial representation/objective transformations and explicit preservation contracts. The central results are: (1) history-only task stopping is unsound under observational extension ambiguity; (2) representation refinement can change worst-case solvability with latent state and retained raw information fixed; (3) evidence preservation does not imply closure preservation; and (4) closure transfer requires a complete support/obligation witness or another proof that resolves the target ambiguity. The framework keeps route stop, task stop, continuation, and inability-to-check as distinct terminals.
+We formalize this interface through an epistemic atlas: a family of charts connected by partial representation\slash objective transformations and explicit preservation contracts. The central results are: (1) history-only task stopping is unsound under observational extension ambiguity; (2) representation refinement can change worst-case solvability with latent state and retained raw information fixed; (3) evidence preservation does not imply closure preservation; and (4) closure transfer requires a complete support/obligation witness or another proof that resolves the target ambiguity. The framework keeps route stop, task stop, continuation, and inability-to-check as distinct terminals.
 
 \section{Related work as donor structure}
 \subsection{Graph and open-world navigation}
@@ -49,7 +49,7 @@ Search-on-Graph is a strong fixed-chart donor: it observes local graph structure
 Recent evaluation also separates completing a world task from knowing when one is entitled to stop. VIGIL independently scores world completion and terminal commitment \cite{vigil2026}. A broader science-of-intent proposal describes open-world closure gaps and delegation envelopes \cite{intent2026}. P7 therefore does not claim the generic distinction between undersearch and misclosure.
 
 \subsection{Planning abstraction and representation change}
-Planning abstraction studies mappings that preserve or expose structure relevant to solvability. Situation-calculus abstraction and generalized-planning work provide soundness/completeness conditions for transferred planning properties \cite{banihashemi2017,dong2025}. These results are natural providers of part of a P7 transport witness; P7 does not re-prove their native abstraction theorems.
+Planning abstraction studies mappings that preserve or expose structure relevant to solvability. Situation-calculus abstraction and generalized-planning work provide soundness\slash completeness conditions for transferred planning properties \cite{banihashemi2017,dong2025}. These results are natural providers of part of a P7 transport witness; P7 does not re-prove their native abstraction theorems.
 
 The closest scientific-representation donors are now explicit. Wang and Buehler model self-revising discovery as verified transitions between typed representational regimes, transporting old artifacts categorically while identifying residual content beyond transport \cite{categorical2026}. Olivieri and Hern\'andez use sheaf-theoretic transport and obstruction to detect when a scientific representation should deform or extend \cite{sheaf2026}. These works directly own representation-regime transport and obstruction. P7's distinct target is the additional question of when transported evidence still supports a \emph{scientific completion judgment} under a possibly changed obligation and incomplete/open coverage.
 
@@ -64,7 +64,7 @@ An epistemic chart is
 \[
 T=(S,A,\delta,Y,h,\Omega,\mathcal C),
 \]
-where $S$ is latent state, $A$ actions, $\delta$ dynamics, $Y$ retained raw observations/evidence, $h:Y\rightarrow V$ the active representation, $\Omega$ scientific obligations/objectives, and $\mathcal C$ route/coverage/censoring constraints. An atlas is
+where $S$ is latent state, $A$ actions, $\delta$ dynamics, $Y$ retained raw observations/evidence, $h:Y\rightarrow V$ the active representation, $\Omega$ scientific obligations\slash objectives, and $\mathcal C$ route\slash coverage\slash censoring constraints. An atlas is
 \[
 \mathfrak A=(\{T_i\}_{i\in I},\mathcal R,\Xi),
 \]
@@ -102,7 +102,7 @@ We distinguish:
 Route exhaustion is not task completion when another route is censored, unavailable, or structurally uncovered. This local/global result is donor-owned by ORION's earlier search theory; P7's concern is preserving the distinction after a chart or objective change.
 
 A route identity binds the chart/objective, initial mandatory obligations, and
-normalized action/observation/evidence trace. Structural equivalence requires a
+normalized action\slash observation\slash evidence trace. Structural equivalence requires a
 protected renaming that preserves adjacency, actions, evidence identities,
 obligations, and terminal semantics; content overlap is insufficient. A
 refinement has a declared projection preserving every old relation and
@@ -116,7 +116,7 @@ licensed by a dead-end, loop, or violated-premise witness plus an admissible
 alternative frontier. A forced reframe requires both the absence of a current
 authorized action capable of resolving an active obligation and a candidate
 chart that makes a relevant distinction expressible. A loop repeats the
-normalized chart/location/objective/open-obligation state without new support;
+normalized chart\slash location\slash objective\slash open-obligation state without new support;
 a deceptive local optimum additionally needs an independent witness to a
 reachable obligation-improving alternative, not merely low marginal gain.
 
@@ -178,14 +178,14 @@ Any policy that retains closure makes the same decision in the two target comple
 If the witness is incomplete but the admissible target class is not ambiguous, P7 does not invent a falsifying completion. It records inability-to-check unless another proof establishes preservation or failure.
 
 \section{Conservative donor embeddings}
-With atlas transformations disabled, P7 reduces to fixed-chart navigation such as Search-on-Graph. A POMDP belief state and value-of-information policy can occupy the within-chart navigator unchanged. A planning-abstraction theorem can discharge the corresponding reachability-preservation component of a transport witness. A categorical/sheaf/lens/ontology mapping can discharge representation or semantic components without being forced to prove unrelated scientific coverage. Goal evolution becomes an explicit objective transformation; evidence is retained if its content/provenance remains valid, while closure is re-evaluated under the new obligation. World-model parameter updates with fixed vocabulary remain intra-chart updates; changes to distinctions, route identity, or objective semantics require inter-chart transport analysis.
+With atlas transformations disabled, P7 reduces to fixed-chart navigation such as Search-on-Graph. A POMDP belief state and value-of-information policy can occupy the within-chart navigator unchanged. A planning-abstraction theorem can discharge the corresponding reachability-preservation component of a transport witness. A categorical\slash sheaf\slash lens\slash ontology mapping can discharge representation or semantic components without being forced to prove unrelated scientific coverage. Goal evolution becomes an explicit objective transformation; evidence is retained if its content/provenance remains valid, while closure is re-evaluated under the new obligation. World-model parameter updates with fixed vocabulary remain intra-chart updates; changes to distinctions, route identity, or objective semantics require inter-chart transport analysis.
 
 These embeddings are conservative by design: when P7-specific scientific-closure dimensions are inert, donor-native judgments should not change.
 
 \section{Strongest baseline and falsifiers}
-The strongest baseline is not an isolated graph searcher. It is an ideal integrated product of fixed-graph/POMDP navigation, planning abstraction, representation/ontology transport, goal evolution, world-model revision, provenance tracking, and correct stopping rules. If the product implements the same closure-transport contract, P7 predicts the same behavior. The contribution is then a common scientific interface and theorem boundary, not superior expressivity.
+The strongest baseline is not an isolated graph searcher. It is an ideal integrated product of fixed-graph/POMDP navigation, planning abstraction, representation\slash ontology transport, goal evolution, world-model revision, provenance tracking, and correct stopping rules. If the product implements the same closure-transport contract, P7 predicts the same behavior. The contribution is then a common scientific interface and theorem boundary, not superior expressivity.
 
-A separate-paper claim should be withdrawn if an existing donor-complete system is shown to implement the same evidence/closure/obligation transport semantics under equivalent assumptions, if the formal object cannot conservatively embed the parent mechanisms, or if representation/objective transformations never alter a scientific closure judgment beyond what the donor product already exposes.
+A separate-paper claim should be withdrawn if an existing donor-complete system is shown to implement the same evidence\slash closure\slash obligation transport semantics under equivalent assumptions, if the formal object cannot conservatively embed the parent mechanisms, or if representation\slash objective transformations never alter a scientific closure judgment beyond what the donor product already exposes.
 
 \section{Deterministic theory support}
 The repository checker exercises an extension-ambiguous complete/incomplete pair; a closed-world counterexample to ``no certificate implies ambiguity''; fixed-information representation refinement; harmful coarsening; unchanged evidence with changed closure truth; all 64 combinations of six support-transport conditions; and the four stopping terminals. Eight frozen prospective reference contracts add hidden useful branches, unknown/censored coverage, deceptive route diversity, revisitation/dead ends, beneficial topology change, harmful unnecessary reframing, and a non-retrieval experimental-design transfer case.
