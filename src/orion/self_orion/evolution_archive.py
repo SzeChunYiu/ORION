@@ -4,6 +4,11 @@ from dataclasses import dataclass, replace
 from enum import Enum
 
 from orion.self_orion.change_control import ChangeControlResult, ChangeControlVerdict
+from orion.self_orion.method_challenger import (
+    HostDisposition,
+    MethodChallenger,
+    assess_method_challenger,
+)
 
 
 class VariantStatus(str, Enum):
@@ -52,6 +57,12 @@ class EvolutionArchive:
     variants: tuple[OrionVariant, ...]
     trials: tuple[EvolutionTrialRecord, ...] = ()
     incumbent_id: str = ""
+    challengers: tuple[MethodChallenger, ...] = ()
+    challenger_dispositions: tuple[tuple[str, HostDisposition], ...] = ()
+
+
+def changelog_recorded(archive: EvolutionArchive, challenger_id: str) -> bool:
+    return any(record_id == challenger_id for record_id, _ in archive.challenger_dispositions)
 
 
 @dataclass(frozen=True)
@@ -81,6 +92,45 @@ def register_challenger(archive: EvolutionArchive, challenger: OrionVariant) -> 
         archive.variants + (replace(challenger, status=VariantStatus.CHALLENGER),),
         archive.trials,
         archive.incumbent_id,
+        archive.challengers,
+        archive.challenger_dispositions,
+    )
+
+
+def register_method_challenger(archive: EvolutionArchive, challenger: MethodChallenger) -> EvolutionArchive:
+    """Register a method-level challenger candidate in the evolution archive.
+
+    The challenger is validated for admissible structure; its adoption
+    authority remains external.  The challenger record is stored alongside
+    the variant archive for cross-reference by issue/obstruction lineage.
+    """
+    if any(item.challenger_id == challenger.challenger_id for item in archive.challengers):
+        raise ValueError("duplicate method challenger id")
+    return EvolutionArchive(
+        archive.variants,
+        archive.trials,
+        archive.incumbent_id,
+        archive.challengers + (challenger,),
+        archive.challenger_dispositions,
+    )
+
+
+def record_method_challenger_disposition(
+    archive: EvolutionArchive,
+    challenger_id: str,
+    disposition: HostDisposition,
+) -> EvolutionArchive:
+    """Record the host disposition for a previously registered method challenger."""
+    if not any(item.challenger_id == challenger_id for item in archive.challengers):
+        raise ValueError("challenger not registered")
+    if changelog_recorded(archive, challenger_id):
+        raise ValueError("challenger disposition already recorded")
+    return EvolutionArchive(
+        archive.variants,
+        archive.trials,
+        archive.incumbent_id,
+        archive.challengers,
+        archive.challenger_dispositions + ((challenger_id, disposition),),
     )
 
 
@@ -128,7 +178,7 @@ def record_change_control_result(
         fresh_assurance_delta=result.assurance.fresh_assurance_delta,
         reasons=result.reasons,
     )
-    return EvolutionArchive(variants, archive.trials + (trial,), archive.incumbent_id)
+    return EvolutionArchive(variants, archive.trials + (trial,), archive.incumbent_id, archive.challengers, archive.challenger_dispositions)
 
 
 def recommend_host_promotion(archive: EvolutionArchive, variant_id: str) -> HostPromotionRecommendation:
@@ -161,8 +211,11 @@ __all__ = [
     "HostPromotionRecommendation",
     "OrionVariant",
     "VariantStatus",
+    "changelog_recorded",
     "initialize_evolution_archive",
-    "record_change_control_result",
     "recommend_host_promotion",
+    "record_change_control_result",
+    "record_method_challenger_disposition",
     "register_challenger",
+    "register_method_challenger",
 ]

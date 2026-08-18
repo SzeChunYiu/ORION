@@ -603,7 +603,8 @@ def audit_p5(root: Path, independent_hash: str) -> list[dict[str, Any]]:
     layers = {
         "raw_artifact_replay": layer_result(
             "PASS" if numbers else "FAIL",
-            "Recomputed 21/24 and macro-F1 0.875 from results.jsonl vs suite gold, ignoring report.json correct flags.",
+            "Recomputed 21/24 and standard macro-F1 "
+            f"{scored['macro_f1']:.15f} from results.jsonl vs suite gold, ignoring report.json correct flags.",
             {"correct": scored["correct"], "n": scored["n"], "macro_f1": scored["macro_f1"], "errors": scored["errors"]},
         ),
         "independent_scorer": layer_result(

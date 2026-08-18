@@ -263,6 +263,7 @@ def run_self_orion_known_world() -> BenchmarkReport:
             ontology_gap_supported=False,
             discriminator_evidence_ids=("evidence:disc",),
             rakl_donor_audit=donor_audit,
+            method_challenger_id="challenger:known-world",
         ),
     )
     ready = assess_invention_readiness(
@@ -276,6 +277,7 @@ def run_self_orion_known_world() -> BenchmarkReport:
             ontology_gap_supported=False,
             discriminator_evidence_ids=("evidence:disc",),
             rakl_donor_audit=donor_audit,
+            method_challenger_id="challenger:known-world",
         ),
     )
 

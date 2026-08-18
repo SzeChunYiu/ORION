@@ -30,6 +30,7 @@ class InventionReadinessEvidence:
     ontology_gap_supported: bool
     discriminator_evidence_ids: tuple[str, ...]
     rakl_donor_audit: RaklDonorAudit | None = None
+    method_challenger_id: str = ""
 
 
 @dataclass(frozen=True)
@@ -83,6 +84,12 @@ def assess_invention_readiness(
         reasons.append("cross_domain_transfer_search_not_bounded_flat")
     if not evidence.discriminator_evidence_ids:
         reasons.append("discriminator_evidence_missing")
+
+    # Method-level invention requires a registered method challenger record
+    # showing that the method-evolution search/absorb ladder was exhausted
+    # before escalating to clean-sheet invention.
+    if evidence.method_basis_gap_supported and not evidence.method_challenger_id:
+        reasons.append("method_challenger_not_registered")
 
     if evidence.rakl_donor_audit is None:
         reasons.append("rakl_donor_audit_missing")

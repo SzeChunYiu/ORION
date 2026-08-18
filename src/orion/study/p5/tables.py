@@ -192,19 +192,36 @@ def verify_frozen_archive(records: Sequence[Mapping[str, Any]]) -> dict[str, Any
         row = confusion[family]
         family_total = sum(row.values())
         family_correct = row.get(family, 0)
+        tp = family_correct
+        fp = sum(confusion[gold].get(family, 0) for gold in FAMILY_ORDER if gold != family)
+        fn = family_total - tp
+        precision = tp / (tp + fp) if tp + fp else 0.0
+        recall = tp / (tp + fn) if tp + fn else 0.0
+        f1 = 2 * tp / (2 * tp + fp + fn) if 2 * tp + fp + fn else 0.0
         per_family.append(
             {
                 "family": family,
                 "correct": family_correct,
                 "total": family_total,
-                "recall": family_correct / family_total if family_total else 0.0,
+                "precision": precision,
+                "recall": recall,
+                "f1": f1,
+                "tp": tp,
+                "fp": fp,
+                "fn": fn,
             }
         )
+    macro_precision = sum(row["precision"] for row in per_family) / len(per_family)
+    macro_recall = sum(row["recall"] for row in per_family) / len(per_family)
+    macro_f1 = sum(row["f1"] for row in per_family) / len(per_family)
     return {
         "total_cases": EXPECTED_TOTAL,
         "correct_attributions": correct,
         "incorrect_attributions": len(incorrect),
         "accuracy": correct / EXPECTED_TOTAL,
+        "macro_precision": macro_precision,
+        "macro_recall": macro_recall,
+        "macro_f1": macro_f1,
         "wilson95": {"low": lo, "high": hi},
         "confusion": confusion,
         "per_family": per_family,
@@ -271,6 +288,9 @@ def build_p5_3(metrics: Mapping[str, Any], archive_digest: str) -> dict[str, Any
         "correct": metrics["correct_attributions"],
         "incorrect": metrics["incorrect_attributions"],
         "accuracy": metrics["accuracy"],
+        "macro_precision": metrics["macro_precision"],
+        "macro_recall": metrics["macro_recall"],
+        "macro_f1": metrics["macro_f1"],
         "wilson95": metrics["wilson95"],
         "confusion": metrics["confusion"],
         "per_family": metrics["per_family"],
@@ -318,7 +338,9 @@ def render_p5_3_markdown(table: Mapping[str, Any]) -> str:
         f"# {table['table_id']}\n\n"
         f"**Status:** {table['status']} / {table['empirical_authority']}\n\n"
         f"Accuracy **{table['correct']}/{table['n_cases']}** = {table['accuracy']:.3f} "
-        f"(Wilson 95% CI {lo:.3f}–{hi:.3f}). Three residual errors are retained.\n\n"
+        f"(macro precision {table['macro_precision']:.6f}; macro recall "
+        f"{table['macro_recall']:.6f}; standard macro-F1 {table['macro_f1']:.6f}; "
+        f"Wilson 95% CI {lo:.3f}–{hi:.3f}). Three residual errors are retained.\n\n"
         f"{header}\n{sep}\n" + "\n".join(rows) + "\n\n"
         f"## Residual errors (not successes)\n\n{errors}\n\n"
         f"{table['scope']}\n"
