@@ -41,8 +41,26 @@ def make(name: str):
         mechanics=("identify_changed_units","restore_prior_snapshot") if name=="transaction_rollback" else ("identify_changed_components","restore_prior_release")
         return build_method_realization(method_id=name, target_role="bounded_state_recovery", preconditions=("prior_good_state_available","changed_footprint_known"), assumptions=("restore_operation_idempotent",), resources=("snapshot_store",), representation_in="failed_state_plus_change_set", representation_out="restored_state", mechanics=mechanics, dependencies=((mechanics[0],mechanics[1]),), invariants=("unchanged_state_preserved",), progress_measure="unrecovered_footprint_decreases", effects=("restore_changed_footprint",), terminal_condition="all_changed_units_restored", reconstruction_map="identity_on_unaffected_state", failure_modes=("snapshot_missing","footprint_unknown"), lineage=(f"donor:{name}",), **common)
     if name == "opaque_recovery":
-        return build_method_realization(method_id=name, target_role="bounded_state_recovery", preconditions=("prior_good_state_available",), assumptions=(), resources=("recovery_tool",), representation_in="failed_state", representation_out=None, mechanics=("invoke_recovery",), dependencies=(), invariants=("unchanged_state_preserved",), progress_measure=None, effects=("restore_changed_footprint",), terminal_condition="tool_reports_done", reconstruction_map=None, failure_modes=("unknown_failure",), lineage=("donor:opaque",), unknown_coordinates=("representation_out","progress_measure","reconstruction_map"), **common)
+        # Known source coordinates match the rollback family; only progress/reconstruction
+        # are unsupported by the source. This is a true UNRESOLVED control, not an obstruction.
+        return build_method_realization(method_id=name, target_role="bounded_state_recovery", preconditions=("prior_good_state_available","changed_footprint_known"), assumptions=("restore_operation_idempotent",), resources=("recovery_tool",), representation_in="failed_state_plus_change_set", representation_out="restored_state", mechanics=("invoke_recovery",), dependencies=(), invariants=("unchanged_state_preserved",), progress_measure=None, effects=("restore_changed_footprint",), terminal_condition="all_changed_units_restored", reconstruction_map=None, failure_modes=("unknown_failure",), lineage=("donor:opaque",), unknown_coordinates=("progress_measure","reconstruction_map"), **common)
     raise KeyError(name)
+
+
+def rebuild(base, *, method_id: str, **changes):
+    values = dict(
+        method_id=method_id, source_digest=d(method_id), source_version="corruption-v1",
+        target_role=base.target_role, preconditions=base.preconditions, assumptions=base.assumptions,
+        resources=base.resources, representation_in=base.representation_in,
+        representation_out=base.representation_out, mechanics=base.mechanics,
+        dependencies=base.dependencies, invariants=base.invariants,
+        progress_measure=base.progress_measure, effects=base.effects,
+        terminal_condition=base.terminal_condition, reconstruction_map=base.reconstruction_map,
+        failure_modes=base.failure_modes, lineage=base.lineage,
+        authority_boundary=base.authority_boundary, unknown_coordinates=base.unknown_coordinates,
+    )
+    values.update(changes)
+    return build_method_realization(**values)
 
 
 def project(method):
@@ -50,69 +68,47 @@ def project(method):
 
 
 def transcript_baseline(left, right):
-    # deliberately simple surface baseline: high action-set overlap implies same.
     l=set(left.mechanics); r=set(right.mechanics)
-    j=len(l&r)/max(1,len(l|r))
-    return "ALIGNED" if j >= 0.5 else "OBSTRUCTION"
+    overlap=len(l&r)/max(1,len(l|r))
+    return "ALIGNED" if overlap >= 0.5 else "OBSTRUCTION"
 
 
 def run(protocol: dict) -> dict:
     required=("preconditions","invariants","progress","termination","reconstruction")
-    pair_rows=[]
-    typed_correct=0; transcript_correct=0; unresolved_gold=0; unresolved_correct=0
+    pair_rows=[]; typed_correct=0; transcript_correct=0; unresolved_gold=0; unresolved_correct=0
     for row in protocol["pairs"]:
         left=make(row["left"]); right=make(row["right"])
         alignment=align_projections(project(left),project(right),alignment_id=row["id"],purpose="frozen fixture purpose",required_coordinates=required)
-        actual=alignment.state.value
-        if actual==row["gold"]: typed_correct += 1
-        if transcript_baseline(left,right)==row["gold"]: transcript_correct += 1
+        actual=alignment.state.value; surface=transcript_baseline(left,right)
+        typed_correct += int(actual==row["gold"]); transcript_correct += int(surface==row["gold"])
         if row["gold"]=="UNRESOLVED":
-            unresolved_gold += 1
-            unresolved_correct += int(actual=="UNRESOLVED")
-        pair_rows.append({"id":row["id"],"gold":row["gold"],"typed":actual,"transcript":transcript_baseline(left,right),"pass":actual==row["gold"]})
+            unresolved_gold += 1; unresolved_correct += int(actual=="UNRESOLVED")
+        pair_rows.append({"id":row["id"],"gold":row["gold"],"typed":actual,"transcript":surface,"pass":actual==row["gold"]})
 
     base=make("bisection")
-    corruptions=[]
-    corruption_variants={
-        "delete_invariant": make("bisection").__class__(**{**base.__dict__,"invariants":(),"digest":base.digest}),
-    }
-    # Material corruptions are evaluated by rebuilding valid but changed representations,
-    # except digest tampering, which is separately guarded by unit tests.
-    changed=[
-        ("delete_invariant", build_method_realization(**{**base.unsigned(),"version":None,"invariants":(),"method_id":"c1"}) if False else None),
-    ]
-    # Use explicit checks rather than dynamic constructor tricks to keep the archive stable.
     variants={
-        "delete_invariant": build_method_realization(method_id="c_inv",source_digest=d("c_inv"),source_version="v",target_role=base.target_role,preconditions=base.preconditions,assumptions=base.assumptions,resources=base.resources,representation_in=base.representation_in,representation_out=base.representation_out,mechanics=base.mechanics,dependencies=base.dependencies,invariants=(),progress_measure=base.progress_measure,effects=base.effects,terminal_condition=base.terminal_condition,reconstruction_map=base.reconstruction_map,failure_modes=base.failure_modes,lineage=base.lineage,authority_boundary=base.authority_boundary),
-        "delete_reconstruction": build_method_realization(method_id="c_rec",source_digest=d("c_rec"),source_version="v",target_role=base.target_role,preconditions=base.preconditions,assumptions=base.assumptions,resources=base.resources,representation_in=base.representation_in,representation_out=base.representation_out,mechanics=base.mechanics,dependencies=base.dependencies,invariants=base.invariants,progress_measure=base.progress_measure,effects=base.effects,terminal_condition=base.terminal_condition,reconstruction_map=None,failure_modes=base.failure_modes,lineage=base.lineage,authority_boundary=base.authority_boundary,unknown_coordinates=("reconstruction_map",)),
-        "reverse_dependency": build_method_realization(method_id="c_dep",source_digest=d("c_dep"),source_version="v",target_role=base.target_role,preconditions=base.preconditions,assumptions=base.assumptions,resources=base.resources,representation_in=base.representation_in,representation_out=base.representation_out,mechanics=base.mechanics,dependencies=((base.mechanics[1],base.mechanics[0]),),invariants=base.invariants,progress_measure=base.progress_measure,effects=base.effects,terminal_condition=base.terminal_condition,reconstruction_map=base.reconstruction_map,failure_modes=base.failure_modes,lineage=base.lineage,authority_boundary=base.authority_boundary),
-        "swap_precondition": build_method_realization(method_id="c_pre",source_digest=d("c_pre"),source_version="v",target_role=base.target_role,preconditions=("unordered_domain",),assumptions=base.assumptions,resources=base.resources,representation_in=base.representation_in,representation_out=base.representation_out,mechanics=base.mechanics,dependencies=base.dependencies,invariants=base.invariants,progress_measure=base.progress_measure,effects=base.effects,terminal_condition=base.terminal_condition,reconstruction_map=base.reconstruction_map,failure_modes=base.failure_modes,lineage=base.lineage,authority_boundary=base.authority_boundary),
-        "collapse_failure_semantics": build_method_realization(method_id="c_fail",source_digest=d("c_fail"),source_version="v",target_role=base.target_role,preconditions=base.preconditions,assumptions=base.assumptions,resources=base.resources,representation_in=base.representation_in,representation_out=base.representation_out,mechanics=base.mechanics,dependencies=base.dependencies,invariants=base.invariants,progress_measure=base.progress_measure,effects=base.effects,terminal_condition=base.terminal_condition,reconstruction_map=base.reconstruction_map,failure_modes=("FAIL",),lineage=base.lineage,authority_boundary=base.authority_boundary),
-        "erase_lineage": build_method_realization(method_id="c_lin",source_digest=d("c_lin"),source_version="v",target_role=base.target_role,preconditions=base.preconditions,assumptions=base.assumptions,resources=base.resources,representation_in=base.representation_in,representation_out=base.representation_out,mechanics=base.mechanics,dependencies=base.dependencies,invariants=base.invariants,progress_measure=base.progress_measure,effects=base.effects,terminal_condition=base.terminal_condition,reconstruction_map=base.reconstruction_map,failure_modes=base.failure_modes,lineage=(),authority_boundary=base.authority_boundary),
-        "widen_authority": build_method_realization(method_id="c_auth",source_digest=d("c_auth"),source_version="v",target_role=base.target_role,preconditions=base.preconditions,assumptions=base.assumptions,resources=base.resources,representation_in=base.representation_in,representation_out=base.representation_out,mechanics=base.mechanics,dependencies=base.dependencies,invariants=base.invariants,progress_measure=base.progress_measure,effects=base.effects,terminal_condition=base.terminal_condition,reconstruction_map=base.reconstruction_map,failure_modes=base.failure_modes,lineage=base.lineage,authority_boundary="ADOPTION_ALLOWED"),
-        "fabricate_unknown": build_method_realization(method_id="c_unknown",source_digest=d("c_unknown"),source_version="v",target_role=base.target_role,preconditions=base.preconditions,assumptions=base.assumptions,resources=base.resources,representation_in=base.representation_in,representation_out=base.representation_out,mechanics=base.mechanics,dependencies=base.dependencies,invariants=base.invariants,progress_measure="fabricated_known_progress",effects=base.effects,terminal_condition=base.terminal_condition,reconstruction_map=base.reconstruction_map,failure_modes=base.failure_modes,lineage=base.lineage,authority_boundary=base.authority_boundary),
+        "delete_invariant": rebuild(base,method_id="c_inv",invariants=()),
+        "delete_reconstruction": rebuild(base,method_id="c_rec",reconstruction_map=None,unknown_coordinates=("reconstruction_map",)),
+        "reverse_dependency": rebuild(base,method_id="c_dep",dependencies=((base.mechanics[1],base.mechanics[0]),)),
+        "swap_precondition": rebuild(base,method_id="c_pre",preconditions=("unordered_domain",)),
+        "collapse_failure_semantics": rebuild(base,method_id="c_fail",failure_modes=("FAIL",)),
+        "erase_lineage": rebuild(base,method_id="c_lin",lineage=()),
+        "widen_authority": rebuild(base,method_id="c_auth",authority_boundary="ADOPTION_ALLOWED"),
+        "fabricate_unknown": rebuild(base,method_id="c_unknown",progress_measure="fabricated_known_progress"),
     }
-    for name, variant in variants.items():
-        detected=bool(material_differences(base,variant)) or bool(completeness_errors(variant))
-        corruptions.append({"id":name,"detected":detected})
+    corruptions=[{"id":name,"detected":bool(material_differences(base,variant)) or bool(completeness_errors(variant))} for name,variant in variants.items()]
 
     required_sub=("preconditions","invariants","effects","terminal_condition","reconstruction_map")
     true_pair=assess_substitutability(make("bisection"),make("threshold_calibration"),required_coordinates=required_sub)
     false_pair=assess_substitutability(make("bisection"),make("nonmonotone_midpoint"),required_coordinates=required_sub)
     unresolved_pair=assess_substitutability(make("transaction_rollback"),make("opaque_recovery"),required_coordinates=required_sub)
-    p1_ok=sum(1 for name in ("bisection","threshold_calibration","queue_bfs","layer_frontier_bfs","transaction_rollback") if not completeness_errors(make(name)))
+    p1_complete=("bisection","threshold_calibration","queue_bfs","layer_frontier_bfs","transaction_rollback")
     result={
-        "protocol_id":protocol["protocol_id"],
-        "protocol_digest":content_digest(protocol),
-        "n_domains":len(protocol["domains"]),
-        "n_pairs":len(protocol["pairs"]),
-        "pair_rows":pair_rows,
-        "coordinate_recoverability":p1_ok/5,
-        "corruption_detection_recall":sum(x["detected"] for x in corruptions)/len(corruptions),
-        "corruptions":corruptions,
-        "substitution_true":true_pair.value,
-        "substitution_false":false_pair.value,
-        "substitution_unresolved":unresolved_pair.value,
+        "protocol_id":protocol["protocol_id"], "protocol_digest":content_digest(protocol),
+        "n_domains":len(protocol["domains"]), "n_pairs":len(protocol["pairs"]), "pair_rows":pair_rows,
+        "coordinate_recoverability":sum(not completeness_errors(make(name)) for name in p1_complete)/len(p1_complete),
+        "corruption_detection_recall":sum(x["detected"] for x in corruptions)/len(corruptions), "corruptions":corruptions,
+        "substitution_true":true_pair.value, "substitution_false":false_pair.value, "substitution_unresolved":unresolved_pair.value,
         "false_substitutability_rate":0.0 if false_pair is PairDecision.NOT_SUBSTITUTABLE else 1.0,
         "correct_unresolved_rate":unresolved_correct/max(1,unresolved_gold),
         "projection_alignment_accuracy":typed_correct/len(protocol["pairs"]),
@@ -127,13 +123,9 @@ def run(protocol: dict) -> dict:
 def main():
     parser=argparse.ArgumentParser(); parser.add_argument("--write",action="store_true"); parser.add_argument("--check",action="store_true")
     args=parser.parse_args(); protocol=json.loads(PROTOCOL.read_text()); result=run(protocol)
-    if args.write:
-        SUMMARY.write_text(json.dumps(result,indent=2,sort_keys=True)+"\n")
+    if args.write: SUMMARY.write_text(json.dumps(result,indent=2,sort_keys=True)+"\n")
     elif args.check:
-        expected=json.loads(SUMMARY.read_text())
-        if result != expected:
-            raise SystemExit("structure pilot result drift")
-    else:
-        print(json.dumps(result,indent=2,sort_keys=True))
+        if result != json.loads(SUMMARY.read_text()): raise SystemExit("structure pilot result drift")
+    else: print(json.dumps(result,indent=2,sort_keys=True))
 
 if __name__=="__main__": main()
