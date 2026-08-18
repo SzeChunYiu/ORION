@@ -1,9 +1,10 @@
 {
   "schema": "P2.v2.promotion-state.v1",
-  "as_of": "2026-08-17",
+  "as_of": "2026-08-18",
   "authorized_terminal": "P2_NARROWED",
   "target_terminal": "P2_TRANSFER_SUPPORTED",
-  "development_complete": false,
+  "campaign_terminal": "P2_V2_ACQUISITION_NOT_PROMOTED",
+  "development_complete": true,
   "confirmatory_external_complete": false,
   "transfer_complete": false,
   "promotion_evidence": {
@@ -12,20 +13,39 @@
     "P2_OPEN_WORLD_STOPPING_SUPPORTED": null,
     "P2_TRANSFER_SUPPORTED": null
   },
+  "final_development_evidence": {
+    "path": "evidence/external_results/P2_V2_ACQUISITION_DEV3R_RESULT_2026-08-18.json",
+    "terminal_receipt": "evidence/external_results/P2_V2_ACQUISITION_TERMINAL_2026-08-18.json",
+    "verdict": "DEV3R_FINAL_NON_ELIGIBLE",
+    "validity_passed": true,
+    "candidate_minus_baseline": {
+      "avg_recall": -0.007209,
+      "avg_iou": 0.001719,
+      "avg_precision": 0.002084
+    },
+    "fresh_confirmation_precondition_met": false,
+    "fresh_confirmation_outcomes_accessed": false
+  },
   "current_blockers": [
-    "final ORION_MAX_COMPOSED identity not yet frozen after development-only comparison",
-    "no new denominator-valid matched external V2 result archived",
-    "no independent V2 rescore archived",
-    "no separately frozen transfer result archived"
+    "the valid final acquisition-development candidate did not satisfy the frozen eligibility gate; no Dev-4 is permitted on the burned development slice",
+    "the pre-frozen 48-task fresh confirmation was not executed because its development precondition was not met; fresh outcomes remain unaccessed",
+    "no V2 confirmatory external acquisition/discovery result, independent rescore, external stopping result, or transfer result exists; L1-L4 promotion remains unauthorized"
   ],
   "development_evidence_allowed": [
     "archived AutoResearchBench Deep 0/600 probe",
     "archived MetaSyn stage-failure ledger",
-    "controlled complete-gold V1 mechanism results"
+    "controlled complete-gold V1 mechanism results",
+    "valid harness-corrected Dev-3R matched 24-task acquisition development result"
+  ],
+  "development_evidence_superseded_for_selection": [
+    "initial V2 Wide bounded matched result using feed-wide regex arXiv-ID extraction",
+    "Dev-2 result using feed-wide regex arXiv-ID extraction",
+    "first Dev-3 attempt with false service-error classification for legitimate titles beginning with Error"
   ],
   "development_evidence_forbidden_as_confirmation": [
     "archived AutoResearchBench Deep 0/600 probe",
-    "any outcome used to select ORION_MAX_COMPOSED components"
+    "valid Dev-3R 24-task development result",
+    "any outcome used to select or reject acquisition components on the burned 24-task development slice"
   ],
-  "rule": "Manuscript result language may promote only to authorized_terminal; target_terminal is a hypothesis, not evidence."
+  "rule": "Manuscript result language may promote only to authorized_terminal. The V2 acquisition campaign is complete at a stable non-promotion terminal; target_terminal remains a research target, not evidence."
 }
