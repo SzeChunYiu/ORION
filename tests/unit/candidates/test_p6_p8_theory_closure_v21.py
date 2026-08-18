@@ -40,6 +40,10 @@ def _run(relative_path: str) -> str:
             "papers/candidates/paper-08-epistemic-authority-autonomous-science/formal/check_contract_manifest_v2.py",
             "P8 CONTRACT MANIFEST V2: PASS",
         ),
+        (
+            "papers/candidates/paper-08-epistemic-authority-autonomous-science/formal/check_theory_closure_v2_1.py",
+            "P8 THEORY CLOSURE V2.1: PASS",
+        ),
     ),
 )
 def test_parallel_completion_findings_are_absorbed(relative_path: str, sentinel: str) -> None:
