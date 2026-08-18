@@ -1,6 +1,6 @@
 # P3 manuscript ↔ claim-ledger map V1
 
-**Date:** 2026-08-17  
+**Date:** 2026-08-18  
 **Ledger:** `CLAIM_LEDGER_V1.md`  
 **Rule:** a manuscript sentence may not outrank this ledger. This file is a map, not a promotion.
 
@@ -10,16 +10,18 @@
 | P3.C2 | IMPLEMENTED / LOCAL_ENGINEERING | method + local-world discussion | yes |
 | P3.C3 | IMPLEMENTED / LOCAL_ENGINEERING | method (invalid bridges / pivot change) | yes |
 | P3.C4 | EXECUTED / EXTERNAL-PUBLIC AUTHORITY | `40-dataset.tex`, `06-results.tex` public-reference construction | yes |
-| P3.C5 | CONFIRMED IN FROZEN NARROW SCOPE (confirmatory n=32, false-merge delta −0.1875) | `06-results.tex` confirmatory subsection | **yes in Results** |
-| P3.C5 vs abstract | same | `00-abstract.tex` quotes the *initial* run (false-merge 0.125, delta −0.125) | **stale relative to C5** — initial numbers are allowed as the first experiment but must not be read as the confirmatory authority |
-| P3.C5 vs conclusion | same | `08-conclusion.tex` repeats the initial 0.125 / −0.125 result and omits confirmatory PASS | **stale relative to C5** |
-| P3.C6 | PARTIAL ONLY | `06-results.tex` covered ablations | yes (zero-effect coordinates not claimed necessary) |
-| P3.C7 | CANNOT_CHECK | abstract, results status, conclusion all keep `\conststatus{}` for end-to-end raw text | yes |
-| P3.C8 | CANNOT_CHECK | same | yes |
-| P3.C9 | SATISFIED FOR PUBLIC-REFERENCE ROUTE | results (byte-for-byte freeze + execution-frozen confirmatory) | yes |
+| P3.C5 | CONFIRMED IN FROZEN NARROW SCOPE (confirmatory n=32, false-merge delta −0.1875) | `00-abstract.tex`, `06-results.tex`, `08-conclusion.tex` | **yes — synchronized to disjoint confirmatory authority** |
+| P3.C6 | PARTIAL ONLY | `06-results.tex` covered ablations; `07-limitations.tex` coverage boundary | yes (zero-effect coordinates not claimed necessary or dispensable) |
+| P3.C7 | CANNOT_CHECK | abstract, results status, limitations, conclusion keep raw-text/end-to-end claims bounded | yes |
+| P3.C8 | CANNOT_CHECK | results, limitations, conclusion keep downstream-utility claim bounded | yes |
+| P3.C9 | SATISFIED FOR PUBLIC-REFERENCE ROUTE | results + reproducibility subsection | yes |
 
-## Overclaim risks left in place (not rewritten here)
+## Synchronization performed 2026-08-18
 
-`07-limitations.tex` still describes the evaluation as a four-discipline, 32-sample, eight-family, double-annotated gold study. That is the *intended* expert-gold protocol, not the executed public-reference route. Additive policy: do not silently retcon limitations into a completed expert study. A later manuscript pass should either mark those paragraphs as protocol-not-executed or wait for real dual annotation.
+The abstract and conclusion now report the prospectively execution-frozen disjoint confirmatory result rather than leaving the earlier 32-case exploratory numbers as the headline: ORION false merge 0.000 versus flat canonicalization 0.1875; paired delta −0.1875 with 95% interval [−0.34375, −0.0625]; false-split difference versus the exact-coordinate control 0.000 [0.000, 0.000]. The conclusion also reports the covered force-compatibility ablation at +0.1875 false merges [0.0625, 0.34375].
 
-Issue #100 Step 8 “claim ledger maps every headline claim to an artifact” is satisfied by `CLAIM_LEDGER_V1.md` plus this map. Stage-attributed extraction vs mapping vs integration error remains `CANNOT_CHECK` (no extractor run).
+`07-limitations.tex` now distinguishes the executed public-reference mapping route from the unexecuted expert eight-family/raw-text protocol. It no longer describes prospective double annotation, four-discipline expert gold, stage-attributed extraction error, recoverability, or downstream utility as completed evidence.
+
+## Authority boundary
+
+The scoped manuscript may use P3.C5/P3.C9 as replicated public-reference mapping evidence. It may not promote P3.C7/P3.C8, claim necessity for every coordinate from P3.C6, or convert the unexecuted expert atlas into gold. Issue #280 and structural-learning extensions #408/#409 remain follow-up scientific programmes unless the chosen submission claim explicitly requires them.

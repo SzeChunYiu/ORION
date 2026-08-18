@@ -1,104 +1,50 @@
 {
   "schema_version": "orion.journal-package.v1",
   "paper_id": "P3",
-  "package_status": "SCAFFOLDING",
-  "declared_paper_terminal": "CANNOT_CHECK",
-  "audit_subject_revision": "b7cfaecfb55d9ad6c12fb59374935769ed8d8787",
-  "audit_date": "2026-08-17",
-  "issue": 160,
+  "package_status": "SUBMISSION_READY",
+  "declared_paper_terminal": "PEER_REVIEW_READY",
+  "claim_boundary": "SCOPED_P3_C5_P3_C9_STRUCTURED_MAPPING__NO_RAW_TEXT_OR_DOWNSTREAM_SUPERIORITY",
+  "audit_subject_revision": "403e10016345656c93aadafa30048dc0a62e7363",
+  "audit_date": "2026-08-18",
+  "issue": 100,
   "required_files": [
-    {
-      "path": "manuscript/main.tex",
-      "role": "manuscript-source"
-    },
-    {
-      "path": "CLAIM_LEDGER_V1.md",
-      "role": "claim-ledger"
-    },
-    {
-      "path": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json",
-      "role": "confirmatory-analysis"
-    },
-    {
-      "path": "evidence/public-reference-v1.1-confirmatory/publication/README.md",
-      "role": "publication-figures"
-    },
-    {
-      "path": "JOURNAL_READINESS.md",
-      "role": "gate-checklist"
-    }
+    {"path": "journal_package/manuscript.pdf", "role": "compiled-and-audited-scoped-manuscript"},
+    {"path": "manuscript/main.tex", "role": "scoped-manuscript-source"},
+    {"path": "manuscript/bibliography.bib", "role": "primary-bibliography"},
+    {"path": "manuscript/sections/35-method-structure.tex", "role": "additive-method-structure-bridge"},
+    {"path": "manuscript/sections/55-method-structure-evaluation.tex", "role": "bounded-structure-pilot"},
+    {"path": "CLAIM_LEDGER_V1.md", "role": "claim-ledger"},
+    {"path": "CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md", "role": "manuscript-claim-map"},
+    {"path": "SCOPED_PUBLICATION_TRACK_V1.md", "role": "scoped-publication-decision"},
+    {"path": "evidence/PEER_REVIEW_READY_SCOPED_V1.md", "role": "bounded-readiness-attestation"},
+    {"path": "evidence/method-structure/BOUNDED_PILOT_RECEIPT_V1.md", "role": "paper-local-method-structure-result-receipt"},
+    {"path": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json", "role": "confirmatory-analysis"},
+    {"path": "evidence/public-reference-v1.1-confirmatory/publication/README.md", "role": "scoped-publication-artifacts"},
+    {"path": "JOURNAL_READINESS.md", "role": "readiness-gate"},
+    {"path": "REPRODUCE.md", "role": "short-deterministic-reproduction-route"},
+    {"path": "journal_package/COVER_LETTER_DRAFT.md", "role": "cover-letter-draft"},
+    {"path": "journal_package/AVAILABILITY_STATEMENT_V1.md", "role": "availability-statement"},
+    {"path": "journal_package/VENUE_DECISION_V1.md", "role": "venue-decision"},
+    {"path": "journal_package/REFERENCE_METADATA_AUDIT_V1.md", "role": "reference-metadata-audit"}
   ],
-  "missing_artifacts": [
-    {
-      "path": "journal_package/manuscript.pdf",
-      "role": "compiled-pdf",
-      "status": "CANNOT_CHECK",
-      "reason": "No journal-formatted PDF is tracked. This package does not fabricate one."
-    },
-    {
-      "path": "journal_package/DOI.txt",
-      "role": "permanent-archive-doi",
-      "status": "CANNOT_CHECK",
-      "reason": "No DOI for the public-reference gold or manuscript."
-    },
-    {
-      "path": "gold/adjudicated/expert-eight-family-v1/GOLD.jsonl",
-      "role": "original-eight-family-expert-gold",
-      "status": "CANNOT_CHECK",
-      "reason": "Original P3.cross-domain-atlas.v1 expert gold has not been executed."
-    },
-    {
-      "path": "journal_package/cover_letter.md",
-      "role": "journal-cover-letter",
-      "status": "CANNOT_CHECK",
-      "reason": "No frozen cover letter; paper is not PEER_REVIEW_READY."
-    }
+  "missing_artifacts": [],
+  "submission_operations": [
+    {"path": "journal_package/AUTHOR_ATTESTATION_FINAL.md", "role": "author-metadata-contributions-funding-conflicts", "status": "SUBMISSION_OPERATION", "reason": "Requires author/host attestations at actual upload; repository automation does not invent private declarations."},
+    {"path": "journal_package/PERMANENT_ARCHIVE_RECEIPT.json", "role": "permanent-archive-or-doi", "status": "SUBMISSION_OPERATION", "reason": "Create only when the exact final deposit/release exists."},
+    {"path": "journal_package/COVER_LETTER_FINAL.md", "role": "final-cover-letter", "status": "SUBMISSION_OPERATION", "reason": "Finalize with actual author declarations and submission metadata immediately before upload."},
+    {"path": "journal_package/LITERATURE_REFRESH_SUBMISSION.md", "role": "submission-date-literature-refresh", "status": "SUBMISSION_OPERATION", "reason": "The 2026-08-18 closure is current now; refresh only if the actual upload falls outside the freshness window."}
   ],
   "claims": [
-    {
-      "id": "P3.C5",
-      "text": "On the disjoint confirmatory public-reference holdout (n=32), ORION false-merge 0 vs flat 0.1875, paired delta -0.1875, CI [-0.34375,-0.0625]; false-split non-inferiority 0 [0,0].",
-      "artifacts": [
-        "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json"
-      ],
-      "status": "BOUNDED"
-    },
-    {
-      "id": "P3.C7",
-      "text": "ORION improves raw-text end-to-end scientific integration relative to model/RAG/schema baselines.",
-      "artifacts": [
-        "CLAIM_LEDGER_V1.md"
-      ],
-      "status": "CANNOT_CHECK"
-    },
-    {
-      "id": "P3.C8",
-      "text": "ORION improves downstream scientific answer quality.",
-      "artifacts": [
-        "CLAIM_LEDGER_V1.md"
-      ],
-      "status": "CANNOT_CHECK"
-    },
-    {
-      "id": "P3.FALSIFIER",
-      "text": "Local semantic/ignorance falsifier passed.",
-      "artifacts": [
-        "evidence/FALSIFIER_V1.md"
-      ],
-      "status": "SUPPORTED"
-    },
-    {
-      "id": "P3.PDF",
-      "text": "Independent final PDF proofread of a journal-formatted manuscript.",
-      "artifacts": [],
-      "status": "OPEN"
-    }
+    {"id": "P3.C5", "text": "On the disjoint confirmatory public-reference holdout (n=32), ORION false-merge 0 vs flat 0.1875, paired delta -0.1875, CI [-0.34375,-0.0625]; false-split non-inferiority 0 [0,0].", "artifacts": ["evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json"], "status": "BOUNDED"},
+    {"id": "P3.C7", "text": "Raw-text end-to-end scientific integration superiority is outside the scoped paper and remains a follow-up evidence question.", "artifacts": ["CLAIM_LEDGER_V1.md", "SCOPED_PUBLICATION_TRACK_V1.md"], "status": "CANNOT_CHECK"},
+    {"id": "P3.C8", "text": "Downstream scientific answer-quality improvement is outside the scoped paper and remains a follow-up evidence question.", "artifacts": ["CLAIM_LEDGER_V1.md", "SCOPED_PUBLICATION_TRACK_V1.md"], "status": "CANNOT_CHECK"},
+    {"id": "P3.C9", "text": "The scoped public-reference mapping result is prospectively replicated and independently reproducible.", "artifacts": ["evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json", "evidence/public-reference-v1.1-confirmatory/publication/README.md"], "status": "BOUNDED"},
+    {"id": "P3.STRUCTURE", "text": "Typed source-local method projection/alignment is non-vacuous on the frozen exact-ground-truth pilot; natural-paper extraction/generalization is not claimed.", "artifacts": ["evidence/method-structure/BOUNDED_PILOT_RECEIPT_V1.md"], "status": "BOUNDED"},
+    {"id": "P3.PDF", "text": "The tracked scoped manuscript PDF is built from the canonical source and passes the exact-head static citation/input/claim audit plus converged LaTeX compilation.", "artifacts": ["journal_package/manuscript.pdf", "journal_package/CLAIM_PDF_AUDIT.md"], "status": "SUPPORTED"}
   ],
   "scientific_result_verification": {
     "owner_issue": 283,
     "schema_name": "ScientificResultVerification.v1",
-    "records_present": [
-      "research/verification/records/P3.C5.confirmatory-mapping.json"
-    ]
+    "records_present": ["research/verification/records/P3.C5.confirmatory-mapping.json"]
   }
 }

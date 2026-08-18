@@ -1,40 +1,41 @@
 # Paper 03 — Global Knowledge Portrait
 
 **Stable ID:** ORION-P3  
-**Status:** STRUCTURED WORKING MANUSCRIPT / LOCAL SEMANTIC + IGNORANCE ROUTING FALSIFIERS PASSED / REAL CROSS-DOMAIN CLAIM `CANNOT_CHECK`
+**Status:** `PEER_REVIEW_READY` — scoped P3.C5/P3.C9 already-structured public-reference mapping claim; broader raw-text/downstream claims remain follow-up / `CANNOT_CHECK`.
 
-## Scoped claim
+## Scoped contribution
 
-The candidate contribution is not cross-domain RAG, scientific knowledge graphs, schema induction/fusion or source-grounded structured extraction. ORION represents source-local scientific views as provenance-preserving projections, aligns referents/context/measurement/representations under typed mappings, preserves source-local known-unknown statements without promoting them into global gaps, GLUEs compatible charts, preserves incompatibilities as obstructions/plural views, and reconstructs a global portrait whose source projections remain recoverable.
+ORION represents source-local scientific views as provenance-preserving projections, distinguishes referent/construct/measurement/context/modality/attribution differences before integration, GLUEs compatible mappings under explicit preservation conditions, and retains incompatibility or insufficient evidence as obstruction/plural view/`CANNOT_CHECK` rather than forcing one canonical statement.
+
+The current paper is deliberately narrower than the original eight-family programme. Its empirical headline is the prospectively frozen disjoint 32-case public-reference confirmation: ORION false merges 0.000 versus 0.1875 for flat predicate canonicalization, paired delta -0.1875 with 95% bootstrap CI [-0.34375, -0.0625], while false-split delta versus the exact-coordinate conservative control is 0.000 [0.000, 0.000]. The public-reference result concerns already-structured scientific projections, not raw-text extraction.
+
+## Additive method-structure bridge
+
+`MethodStructureProjection.v1` and the cross-domain alignment bridge preserve source-local assumptions, invariants, effects, reconstruction, failure semantics, lineage and explicit unknowns. The frozen small exact-ground-truth pilot is only a non-vacuity discriminator: the typed path reproduces all six pair labels and detects all eight material corruptions. It does not establish general extraction from arbitrary papers or P9 learning performance.
 
 ## Nearest-work boundary
 
-The programme absorbs mechanisms from OpenScholar, BioSage, MUSE, SciSchema.org, SCOPE/SCION schema fusion, Executable Schema Contracts, scientific information extraction/discourse, Swanson-style literature-based discovery and scientific-ignorance taxonomies.
+The paper absorbs and credits mechanisms from scientific schema/provenance/knowledge-integration work including MUSE, SciSchema.org, SCOPE/SCION, Executable Schema Contracts, SciER and related scientific information-extraction and knowledge-representation systems. Broad component novelty and first-of-kind language are not used.
 
-See `research/paper-programme-v1/PAPER_03_GLOBAL_PORTRAIT.md`, `NEAREST_WORK_ATLAS.md`, `JOURNAL_READINESS_AUDIT_2026-08-16.md`, `research/knowledge/typed-ignorance-v1/README.md`, and this directory's `JOURNAL_READINESS.md`.
+## Explicit nonclaims / future work
 
-## Falsifier V1 and semantic projection
+The current ready paper does **not** claim:
 
-The first exact atlas world exposed a missing source-text boundary and produced `ScientificMeaningProjection.v1`. Source-local interpretations represent predicate roles, referents, constructs, measurements, temporal context, polarity, modality, discourse relation, attribution, assumptions and unresolved ambiguity before any GLUE hypothesis.
+- raw-text end-to-end scientific-integration superiority (P3.C7);
+- downstream scientific answer-quality improvement (P3.C8);
+- completion of the original expert eight-family atlas;
+- universal necessity of every semantic coordinate;
+- general method-learning or cross-domain extraction performance.
 
-The local suite passes traps for distinct referents, distinct measurements, contradiction versus modal/context difference, attribution difference, valid/invalid literature bridges, ORION-native source recoverability and portrait projection/mapping lineage.
+Those are future research questions requiring new prospective evidence; their absence from this scoped paper does not convert missing evidence into PASS.
 
-Evidence: `evidence/FALSIFIER_V1.md` and `research/paper-programme-v1/FLAGSHIP_FALSIFIER_RESULTS_V1.md`.
+## Reproduction and package
 
-## Typed scientific ignorance V1
+- `JOURNAL_READINESS.md` — exact bounded readiness boundary;
+- `CLAIM_LEDGER_V1.md` and `CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md` — sentence/evidence authority;
+- `REPRODUCE.md` — short deterministic headline reproduction route;
+- `evidence/PEER_REVIEW_READY_SCOPED_V1.md` — scoped terminal attestation;
+- `journal_package/` — venue/package/checksum/PDF audit;
+- `.github/workflows/p3-manuscript-audit.yml` — exact-head static claim/citation/input checks plus converged PDF build.
 
-`IgnoranceProjection.v1` preserves source-local statements of missing/incomplete knowledge and their implied knowledge goals. It intentionally does **not** assert that a gap is globally real/current/exhaustive. Its routing discriminator is local implementation evidence; real text-to-ignorance extraction remains empirical-open.
-
-## External evidence still required
-
-- a real expert-annotated gold set spanning at least three scientific disciplines;
-- source-local projection, referent/construct/measurement and mapping gold;
-- false merge / contradiction / obstruction / recoverability metrics;
-- long-context, RAG/translation, schema-fusion and provenance-aware integration baselines;
-- ablation of referent/discourse/modality/measurement/ignorance/obstruction coordinates;
-- extraction precision/recall for scientific meaning and ignorance statements;
-- annotation agreement, licensing/data statement and reproducible release.
-
-## Manuscript
-
-`manuscript/main.tex` is now the canonical structured Paper-III working manuscript. Real-literature Results remain `CANNOT_CHECK` until the gold study runs.
+The `PEER_REVIEW_READY` terminal is consumed only on a final PR head where repository CI and `p3-manuscript-audit` both pass. Author/funding/conflict/DOI/portal fields and confidential journal review remain external submission/post-submission operations.
