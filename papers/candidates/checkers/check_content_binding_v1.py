@@ -284,6 +284,28 @@ def parse_package_declaration(repo_root: Path) -> dict[str, dict[str, str]]:
     return roles
 
 
+#: Directories and suffixes that are build output, not subject.
+#:
+#: `rglob("*")` was binding `__pycache__/*.pyc`, which cannot work: the filenames
+#: carry the interpreter and plugin versions that produced them
+#: (`..cpython-312-pytest-8.4.2.pyc`), so the bound set differed between a laptop
+#: and CI and the binding failed on machine identity rather than on content. It
+#: also made the binding depend on whether anything had imported the package yet.
+#:
+#: Bytecode is derived from the `.py` files that *are* bound, so excluding it
+#: loses no coverage: change the source and the binding still fails.
+_EXCLUDED_DIR_NAMES = frozenset({"__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache"})
+_EXCLUDED_SUFFIXES = frozenset({".pyc", ".pyo", ".pyd"})
+
+
+def _is_build_artifact(path: Path) -> bool:
+    """True for generated files that no content binding should ever include."""
+
+    if path.suffix in _EXCLUDED_SUFFIXES:
+        return True
+    return any(part in _EXCLUDED_DIR_NAMES for part in path.parts)
+
+
 def bound_paths(repo_root: Path, candidate_id: str) -> list[str]:
     """Every file this manifest binds, repo-relative and sorted.
 
@@ -296,7 +318,7 @@ def bound_paths(repo_root: Path, candidate_id: str) -> list[str]:
     paths = {
         path.relative_to(repo_root).as_posix()
         for path in directory.rglob("*")
-        if path.is_file() and path.name != SUMS_NAME
+        if path.is_file() and path.name != SUMS_NAME and not _is_build_artifact(path)
     }
     # Listed unconditionally: on a first `--write` the manifest does not exist
     # yet, and enumerating only what is on disk would omit it from its own set,

@@ -179,3 +179,33 @@ def test_cli_check_passes_on_the_committed_tree() -> None:
     )
     assert completed.returncode == 0, completed.stderr
     assert "P6-P8 CANDIDATE CONTENT BINDING: PASS" in completed.stdout
+
+
+def test_build_artifacts_are_never_bound() -> None:
+    """`__pycache__` is not subject, and binding it made CI fail on machine identity.
+
+    `bound_paths` used a bare `rglob("*")`, so any `.pyc` sitting under a candidate
+    package joined the bound set. Those filenames carry the interpreter and plugin
+    versions that produced them -- `..cpython-312-pytest-8.4.2.pyc` -- so the bound
+    set differed between a laptop and the CI runner, and the binding failed on where
+    it ran rather than on what changed. It also made the result depend on whether
+    anything had imported the package yet.
+
+    Excluding bytecode costs no coverage: it is derived from the `.py` files that are
+    bound, so changing the source still fails the check. Both halves are asserted
+    here, because an exclusion that also stopped catching real edits would pass the
+    first half alone.
+    """
+
+    for candidate_id in CANDIDATE_IDS:
+        bound = binding.bound_paths(ROOT, candidate_id)
+        offenders = [
+            path
+            for path in bound
+            if path.endswith((".pyc", ".pyo", ".pyd")) or "__pycache__" in path
+        ]
+        assert offenders == [], f"{candidate_id} binds build artifacts: {offenders}"
+        assert bound, f"{candidate_id} binds nothing at all"
+        assert any(path.endswith(".py") for path in bound), (
+            f"{candidate_id} binds no Python source; the exclusion is too broad"
+        )
