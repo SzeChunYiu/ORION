@@ -5,11 +5,13 @@
 
 ## 1. Reproduction subject
 
-`SCRIPT_MANIFEST_SHA256.txt` binds the 36 source files exactly as delivered and
-still verifies 36/36. The delivered Phase-1 V1 runner and result are preserved
-under that identity even though review found that their `false_commit=0.000`
+`SCRIPT_MANIFEST_SHA256.txt` binds the 36 source files exactly as delivered at
+commit `bbe178d`; it is a historical receipt, not the manifest for the repaired
+current tree. The delivered Phase-1 V1 runner and result are preserved under
+that commit identity even though review found that their `false_commit=0.000`
 field is a hard-coded, unmeasured value. The corrective V2 wrapper and V2 result
-have separate paths; they do not rewrite the delivered subject.
+have separate paths; they do not rewrite the delivered subject. A fresh
+publication manifest is generated only after the P9/P10 closure changes stop.
 
 Committed outputs live in `results/` and are not covered by the delivery
 manifest, because it was generated before they existed. The publication package
@@ -39,7 +41,7 @@ python --version
 cd framework && python -m pytest -q
 ```
 
-Expected: `25 passed`. Recorded in `results/FRAMEWORK_TESTS.txt`.
+Expected: `27 passed`. Recorded in `results/FRAMEWORK_TESTS.txt`.
 
 ## 4. Deterministic experiments
 
@@ -78,6 +80,10 @@ Both scripts are retained as delivered rather than repaired, so the gap stays vi
 
 - A learned competence map routes solvers to the best fixed solver's success at ~1/3 its effort, and holds under distribution shift (P9, phase 0).
 - Failure-aware composition matches the oracle by **abstaining on opaque tasks at zero effort**, where imitation spends effort. It does *not* solve more than imitation — both reach the ceiling (P9, phase 1). False commitment is not measured by this harness.
+- The framework exposes an auditable route-or-abstain `CapabilityRoute`: it
+  retains every candidate competence estimate and is structurally marked
+  `authorizes_execution=False`; a selected route must still pass through the
+  external-authority boundary (P9/P8 assimilation).
 - Macros mined from a 7-file Lean corpus are **not distinguishable from shuffled tactic order**, p = 0.83 at bigram order against a 1000-rep shuffle null (P10, phase 2A).
 
 ## 7. What they do not establish

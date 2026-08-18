@@ -1,6 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, replace
-from typing import Any, Callable
+from typing import Any, Callable, Mapping
 from .library import MechanicLibrary
 from .competence import CompetenceMap
 from .abstraction import mine_macros
@@ -9,7 +9,7 @@ from .ledger import ExperienceLedger
 from .types import (
     Experience, MechanicSpec, Provenance, Verdict, SolverPlan,
     ExecutionResult, PlanExecution, TransitionObservation,
-    EmpiricalMechanicContract,
+    CapabilityRoute, EmpiricalMechanicContract,
 )
 
 Authorizer = Callable[[Any, MechanicSpec], Verdict]
@@ -89,6 +89,68 @@ class LearningMachine:
     def fit_competence(self, experiences: list[Experience]) -> None:
         """Fit competence without silently rewriting the evidence ledger."""
         self.competence.fit(experiences)
+
+    def route_capability(
+        self,
+        candidate_mechanic_ids: tuple[str, ...] | list[str],
+        features_by_mechanic: Mapping[str, Mapping[str, float]],
+        *,
+        min_success_probability: float = 0.5,
+    ) -> CapabilityRoute:
+        """Select supported capability or abstain, without authorizing execution.
+
+        This is the framework-level selective-prediction boundary. Every
+        candidate receives an inspectable competence estimate. Unknown or
+        failure-only evidence fails closed; ties are deterministic by mechanic
+        ID. A successful route must still pass through ``execute_plan`` and its
+        external authorizer before any effect occurs.
+        """
+        if not 0.0 <= min_success_probability <= 1.0:
+            raise ValueError("min_success_probability must be in [0, 1]")
+        candidate_ids = tuple(dict.fromkeys(candidate_mechanic_ids))
+        if not candidate_ids:
+            raise ValueError("at least one candidate mechanic is required")
+
+        assessments = []
+        for mechanic_id in candidate_ids:
+            self.library.resolve(mechanic_id)
+            assessments.append(
+                self.competence.estimate(
+                    mechanic_id,
+                    dict(features_by_mechanic.get(mechanic_id, {})),
+                )
+            )
+        eligible = [
+            estimate
+            for estimate in assessments
+            if estimate.status == Verdict.SUCCESS
+            and estimate.p_success >= min_success_probability
+        ]
+        if eligible:
+            selected = sorted(
+                eligible,
+                key=lambda estimate: (-estimate.p_success, estimate.mechanic_id),
+            )[0]
+            return CapabilityRoute(
+                selected_mechanic_id=selected.mechanic_id,
+                status=Verdict.SUCCESS,
+                assessments=tuple(assessments),
+                min_success_probability=min_success_probability,
+                reason="highest supported competence estimate; external authorization still required",
+            )
+
+        status = (
+            Verdict.UNKNOWN
+            if any(estimate.status == Verdict.UNKNOWN for estimate in assessments)
+            else Verdict.FAIL
+        )
+        return CapabilityRoute(
+            selected_mechanic_id=None,
+            status=status,
+            assessments=tuple(assessments),
+            min_success_probability=min_success_probability,
+            reason="abstained: no candidate has supported success above threshold",
+        )
 
     def execute_plan(
         self,
