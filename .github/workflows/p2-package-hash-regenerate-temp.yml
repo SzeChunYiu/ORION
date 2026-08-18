@@ -1,0 +1,31 @@
+name: p2-package-hash-regenerate-temp
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/p2-package-hash-regenerate-temp.yml'
+      - 'papers/paper-02-open-world-scientific-discovery/**'
+      - 'research/paper-programme-v1/journal_package/check_journal_package.py'
+
+permissions:
+  contents: read
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regenerate canonical package hashes
+        run: python research/paper-programme-v1/journal_package/check_journal_package.py --write-hashes
+      - name: Verify P2 package after regeneration
+        run: python research/paper-programme-v1/journal_package/check_journal_package.py
+      - name: Upload P2 SHA256SUMS only
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-journal-package-sha-${{ github.sha }}
+          path: papers/paper-02-open-world-scientific-discovery/journal_package/SHA256SUMS
+          if-no-files-found: error
+          retention-days: 7
