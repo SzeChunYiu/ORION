@@ -47,11 +47,11 @@ def test_p1_and_p4_are_peer_review_ready_and_others_are_blocked():
         assert by_id[paper_id]["journal_readiness_terminal"] == "PEER_REVIEW_READY"
         assert by_id[paper_id]["attestation_paths"]
         assert by_id[paper_id]["claim_ledgers"]
-    for paper_id in ("P2", "P3", "P5"):
+    for paper_id in ("P3", "P5"):
         assert by_id[paper_id]["status"] == "BLOCKED", paper_id
         assert by_id[paper_id]["journal_readiness_terminal"] == "CANNOT_CHECK"
         assert by_id[paper_id]["missing_artifacts"]
-    assert derived["programme"]["papers_peer_review_ready"] == ["P1", "P4"]
+    assert derived["programme"]["papers_peer_review_ready"] == ["P1", "P2", "P4"]
     assert derived["programme"]["close_allowed"] is False
 
 
@@ -93,13 +93,13 @@ def test_p5_is_blocked_by_unbound_identities_and_unexecuted_claims():
 def test_forged_peer_review_ready_is_rejected():
     module = _load_module()
     payload = module.derive_scoreboard(ROOT)
-    p2 = next(paper for paper in payload["papers"] if paper["paper_id"] == "P2")
-    p2["status"] = "PEER_REVIEW_READY"
-    p2["missing_artifacts"] = []
+    p3 = next(paper for paper in payload["papers"] if paper["paper_id"] == "P3")
+    p3["status"] = "PEER_REVIEW_READY"
+    p3["missing_artifacts"] = []
     payload["programme"]["status"] = "BLOCKED"
     payload["programme"]["close_allowed"] = False
     errors = module.validate_scoreboard(payload, ROOT)
-    assert any("P2" in error and "PEER_REVIEW_READY" in error for error in errors)
+    assert any("P3" in error and "PEER_REVIEW_READY" in error for error in errors)
 
 
 def test_close_allowed_requires_all_five_ready():
@@ -113,11 +113,20 @@ def test_close_allowed_requires_all_five_ready():
 def test_terminal_parser_distinguishes_ready_from_cannot_check():
     module = _load_module()
     ready = "**Terminal:** `ORION-P4 = PEER_REVIEW_READY`\n"
+    ready_with_explanation = (
+        "**Current terminal:** `ORION-P2 = PEER_REVIEW_READY` on the bounded claim; "
+        "external superiority remains `CANNOT_CHECK`.\n"
+    )
     blocked = "**Current terminal:** `CANNOT_CHECK` for external superiority / not peer-review ready.\n"
     negated = "**Current terminal:** `CANNOT_CHECK`; **not** `PEER_REVIEW_READY`.\n"
+    narrowed = "**Current terminal:** `PEER_REVIEW_READY_NARROWED`; external work is `CANNOT_CHECK`.\n"
+    conditional = "**Current terminal:** `ORION-P2 = PEER_REVIEW_READY` when the manuscript compiles.\n"
     assert module.parse_journal_readiness_terminal(ready) == "PEER_REVIEW_READY"
+    assert module.parse_journal_readiness_terminal(ready_with_explanation) == "PEER_REVIEW_READY"
     assert module.parse_journal_readiness_terminal(blocked) == "CANNOT_CHECK"
     assert module.parse_journal_readiness_terminal(negated) == "CANNOT_CHECK"
+    assert module.parse_journal_readiness_terminal(narrowed) == "CANNOT_CHECK"
+    assert module.parse_journal_readiness_terminal(conditional) == "CANNOT_CHECK"
 
 
 def test_a_narrowed_terminal_is_never_scored_as_peer_review_ready():

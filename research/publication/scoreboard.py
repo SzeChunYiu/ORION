@@ -114,14 +114,24 @@ def parse_journal_readiness_terminal(text: str) -> str | None:
         if not match:
             continue
         value = match.group(1)
-        has_ready = PEER_REVIEW_READY_TOKEN.search(value) is not None
-        has_cannot = "CANNOT_CHECK" in value
+        ready_match = PEER_REVIEW_READY_TOKEN.search(value)
+        cannot_match = re.search(r"\bCANNOT_CHECK\b", value)
         negated = re.search(
-            r"\bnot\b[^*\n]*PEER_REVIEW_READY(?![A-Za-z0-9_])", value, re.IGNORECASE
+            r"\bnot\b[^*\n]*(?:PEER_REVIEW_READY(?![A-Za-z0-9_])|peer[- ]review[- ]ready)",
+            value,
+            re.IGNORECASE,
         )
-        if has_ready and not has_cannot and not negated:
+        conditional = re.search(r"\b(?:when|once|after|until|if)\b", value, re.IGNORECASE)
+        if negated or conditional:
+            return "CANNOT_CHECK"
+        # A bounded ready declaration may explain an unresolved external
+        # comparison afterwards.  The declaration wins only when it precedes
+        # that explanatory CANNOT_CHECK; a cannot-check lead-in remains blocked.
+        if ready_match and (
+            cannot_match is None or ready_match.start() < cannot_match.start()
+        ):
             return "PEER_REVIEW_READY"
-        if has_cannot or negated:
+        if cannot_match:
             return "CANNOT_CHECK"
         return None
     return None
