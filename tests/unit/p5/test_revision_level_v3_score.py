@@ -100,12 +100,12 @@ def test_incorrect_narrow_and_false_broad_are_separate() -> None:
     report = score_revision_decisions(
         PROTECTED,
         (
-            _decision("S1", "MODEL_CLASS_EXPANSION"),
-            _decision("S2", "EVIDENCE_REPAIR"),
+            _decision("S1", "NO_REVISION"),  # incorrect but less invasive than evidence repair
+            _decision("S2", "EVIDENCE_REPAIR"),  # incorrect and broader than protected UNRESOLVED
         ),
     )
     assert report.correct_revision_count == 0
-    assert report.false_broad_revision_count == 1  # S1 only: rank 4 > gold rank 1
+    assert report.false_broad_revision_count == 1
     assert report.incorrect_revision_count == 2
 
 
