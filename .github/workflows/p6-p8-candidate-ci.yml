@@ -14,6 +14,7 @@ on:
       - 'tests/unit/candidates/**'
       - 'src/orion/**'
       - '.github/workflows/p6-p8-candidate-ci.yml'
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
