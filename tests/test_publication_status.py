@@ -38,37 +38,29 @@ def test_committed_scoreboard_matches_derived_artifacts():
     assert payload["programme"]["status"] == "BLOCKED"
 
 
-def test_p1_p2_and_p4_are_peer_review_ready_and_others_are_blocked():
-    """P2 joined P1 and P4 when its terminal line stopped naming two terminals.
+def test_p1_through_p4_are_peer_review_ready_and_p5_is_blocked():
+    """P3 joins P1/P2/P4 only after its bounded artifact gate is real.
 
-    This previously pinned P2 as BLOCKED. That was a true description of the
-    scoreboard and a false description of the paper: P2's terminal line declared
-    `PEER_REVIEW_READY` on a bounded claim while naming the excluded superiority
-    claim as `CANNOT_CHECK` in the same sentence, and the parser resolves any
-    `CANNOT_CHECK` on that line as the verdict. Its own fail-closed evidence gate
-    reported `ok=True` with no blockers throughout.
-
-    Splitting the verdict from its scope moved P2 to PEER_REVIEW_READY. Updating
-    the expectation is therefore recording a fixed defect, not relaxing a bar --
-    every corroborating condition below is still asserted for P2, and P3 and P5
-    are still required to be blocked with a named reason.
+    This does not treat the retired eight-family/raw-text programme as executed.
+    P3 is ready only on the scoped P3.C5/P3.C9 claim, with its own attestation,
+    tracked checksummed PDF and exact-head manuscript audit. P5 remains blocked.
     """
 
     module = _load_module()
     derived = module.derive_scoreboard(ROOT)
     by_id = {paper["paper_id"]: paper for paper in derived["papers"]}
-    for paper_id in ("P1", "P2", "P4"):
+    for paper_id in ("P1", "P2", "P3", "P4"):
         assert by_id[paper_id]["status"] == "PEER_REVIEW_READY", paper_id
         assert by_id[paper_id]["journal_readiness_terminal"] == "PEER_REVIEW_READY"
         assert by_id[paper_id]["attestation_paths"]
         assert by_id[paper_id]["claim_ledgers"]
         assert not by_id[paper_id]["missing_artifacts"], paper_id
-    for paper_id in ("P3", "P5"):
+    for paper_id in ("P5",):
         assert by_id[paper_id]["status"] == "BLOCKED", paper_id
         assert by_id[paper_id]["journal_readiness_terminal"] == "CANNOT_CHECK"
         assert by_id[paper_id]["missing_artifacts"]
-    assert derived["programme"]["papers_peer_review_ready"] == ["P1", "P2", "P4"]
-    # Still false: two papers remain blocked, so the programme does not close.
+    assert derived["programme"]["papers_peer_review_ready"] == ["P1", "P2", "P3", "P4"]
+    # Still false: P5 remains blocked, so the programme does not close.
     assert derived["programme"]["close_allowed"] is False
 
 

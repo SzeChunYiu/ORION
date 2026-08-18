@@ -93,25 +93,19 @@
       ]
     },
     {
-      "attestation_paths": [],
-      "claim_ledger_cannot_check": [
-        "papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_V1.md :: P3.C7: **CANNOT_CHECK / stronger follow-up**",
-        "papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_V1.md :: P3.C8: **CANNOT_CHECK**"
+      "attestation_paths": [
+        "papers/paper-03-global-knowledge-portrait/evidence/PEER_REVIEW_READY_SCOPED_V1.md"
       ],
+      "claim_ledger_cannot_check": [],
       "claim_ledgers": [
         "papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_V1.md"
       ],
       "issue": 100,
       "journal_readiness": "papers/paper-03-global-knowledge-portrait/JOURNAL_READINESS.md",
-      "journal_readiness_terminal": "CANNOT_CHECK",
-      "missing_artifacts": [
-        "papers/paper-03-global-knowledge-portrait/JOURNAL_READINESS.md: current terminal is CANNOT_CHECK, not PEER_REVIEW_READY",
-        "papers/paper-03-global-knowledge-portrait/protocol/PROTOCOL_V1.json: protocol_status=DESIGN_FROZEN; UNBOUND identities remain: $.baseline_config_hashes, $.dataset_revisions.adjudicated_gold, $.dataset_revisions.cross_domain_source_corpus, $.dataset_revisions.sample_manifest, $.evaluation_epoch, $.evaluator_hash, $.model_provider_revisions, $.split_hashes, $.subject_revision",
-        "papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_V1.md :: P3.C7: **CANNOT_CHECK / stronger follow-up**",
-        "papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_V1.md :: P3.C8: **CANNOT_CHECK**"
-      ],
+      "journal_readiness_terminal": "PEER_REVIEW_READY",
+      "missing_artifacts": [],
       "notes": [
-        "Artifacts exist and the paper is not PEER_REVIEW_READY; listed missing_artifacts are the blockers."
+        "JOURNAL_READINESS declares PEER_REVIEW_READY and the paper-specific artifact/evidence gate corroborates it."
       ],
       "outcome_accessed": false,
       "paper_id": "P3",
@@ -121,7 +115,7 @@
       "readme": "papers/paper-03-global-knowledge-portrait/README.md",
       "readme_records_peer_review_ready": false,
       "root": "papers/paper-03-global-knowledge-portrait",
-      "status": "BLOCKED",
+      "status": "PEER_REVIEW_READY",
       "title": "Global Knowledge Portrait",
       "unbound_execution_bindings": [
         "$.baseline_config_hashes",
@@ -137,8 +131,7 @@
       "v2_protocol": "research/paper-programme-v2/protocols/P3_V2.json",
       "v2_protocol_status": "DESIGN_FROZEN",
       "warnings": [
-        "papers/paper-03-global-knowledge-portrait/JOURNAL_READINESS.md: the terminal line names both PEER_REVIEW_READY and CANNOT_CHECK, so it was resolved fail-closed to CANNOT_CHECK. If the CANNOT_CHECK describes a claim excluded from the ready declaration, move it off the terminal line; the scoreboard reads that one line and cannot represent a scoped verdict. Line: **Current terminal:** `CANNOT_CHECK` for `PEER_REVIEW_READY` / end-to-end eight-family construct validity.",
-        "papers/paper-03-global-knowledge-portrait/README.md: README does not record PEER_REVIEW_READY"
+        "papers/paper-03-global-knowledge-portrait/README.md: canonical README does not yet record PEER_REVIEW_READY (programme close still wants this; JOURNAL_READINESS remains the scoring terminal)"
       ]
     },
     {
@@ -230,9 +223,10 @@
     "papers_peer_review_ready": [
       "P1",
       "P2",
+      "P3",
       "P4"
     ],
-    "reason": "Issue #97 may close only when P1–P5 are PEER_REVIEW_READY on main. ready=P1,P2,P4; blocked=P3,P5",
+    "reason": "Issue #97 may close only when P1–P5 are PEER_REVIEW_READY on main. ready=P1,P2,P3,P4; blocked=P5",
     "status": "BLOCKED"
   },
   "schema_version": "orion.publication-status.v1"
