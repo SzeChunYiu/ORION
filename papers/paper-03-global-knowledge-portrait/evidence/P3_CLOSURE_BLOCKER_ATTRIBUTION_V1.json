@@ -1,0 +1,20 @@
+{
+  "schema_version": "orion.p3.closure-blocker-attribution.v1",
+  "paper_id": "P3",
+  "as_of": "2026-08-18",
+  "bounded_publication_subject": "public-reference mapping/obstruction confirmatory result",
+  "items": [
+    {"id":"P3-B01","name":"bounded confirmatory scientific result","state":"SATISFIED_ON_MAIN","class":"SCIENTIFIC_EVIDENCE","evidence":"disjoint public-reference confirmatory mapping result; n=32; false-merge and false-split outcomes frozen in P3_BOUNDED_PUBLICATION_TRACK_V1.json"},
+    {"id":"P3-B02","name":"P3 result independent-verification routing","state":"SATISFIED_BOUNDED","class":"VERIFICATION","evidence":"current #283 P3 confirmatory verification surface; any future material discrepancy reopens this item"},
+    {"id":"P3-B03","name":"deterministic public-reference reproduction path","state":"SATISFIED_ON_MAIN","class":"REPRODUCIBILITY","evidence":"clean-install reproduction work already exercises the P3 public-reference publication path; exact final submission subject still has to be re-audited after later edits"},
+    {"id":"P3-B04","name":"full expert-annotated cross-domain atlas","state":"FOLLOW_UP_NONBLOCKING","class":"GENERALIZATION_FOLLOW_UP","evidence":"preserved as follow-up; becomes blocking only if the current headline expands to expert-atlas or unrestricted cross-domain generality"},
+    {"id":"P3-B05","name":"bounded manuscript and claim-ledger agreement","state":"OPEN_REPO_FIXABLE","class":"MANUSCRIPT_AUTHORITY","required_action":"run the exact-manuscript hostile scope audit against the bounded-track record and remove or bound any sentence exceeding mapping-only evidence"},
+    {"id":"P3-B06","name":"current novelty authority on final residual","state":"OPEN_SHARED_SERVICE","class":"NOVELTY","required_action":"route the final bounded residual through the current #287 / nearest-work authority; do not infer novelty from this blocker record"},
+    {"id":"P3-B07","name":"exact final-subject clean reproduction and package audit","state":"OPEN_REPO_FIXABLE_AFTER_FINAL_EDITS","class":"REPRODUCIBILITY_PACKAGE","required_action":"freeze the final submission subject and rerun deterministic artifacts/PDF/package checks after all P3 edits land"},
+    {"id":"P3-B08","name":"submission-window literature refresh","state":"OPEN_SUBMISSION_TIME","class":"FRESHNESS","required_action":"run the final current-literature closure within 14 days of actual submission"},
+    {"id":"P3-B09","name":"final PDF and claim proofread","state":"OPEN_REPO_FIXABLE_AFTER_FINAL_PDF","class":"EDITORIAL_INTEGRITY","required_action":"compile the exact final manuscript, audit references/figures, and perform an independent claim/PDF proofread"},
+    {"id":"P3-B10","name":"permanent archive / DOI where available","state":"OPEN_EXTERNAL_OR_SUBMISSION_OPERATION","class":"ARCHIVAL","required_action":"bind any archive/DOI to the exact final paper/result identities; do not fabricate an unavailable DOI"}
+  ],
+  "closure_rule": "P3-specific publication closure must not be blocked by P3-B04 unless the selected claim broadens. All other OPEN items retain their own authority and must be satisfied or explicitly bounded by the parent terminal.",
+  "self_authorizing": false
+}
