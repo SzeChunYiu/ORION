@@ -16,7 +16,7 @@ A different structural label does not create another evidential route. For the b
 
 ### False analogy is an explicit failure state
 
-Semantic distance is not creativity evidence. Before a returned donor is even treated as a structural candidate, the bounded checker compares declared assumptions, protected invariants, effects and reconstruction obligations. A candidate that looks structurally attractive but drops a load-bearing assumption is an `OBSTRUCTION`; missing provenance or reconstruction is `CANNOT_CHECK`. A clean match remains only `CANDIDATE`, because P2 cannot certify that the donor-to-target mapping is valid.
+Semantic distance is not creativity evidence. Before a returned donor is even treated as a structural candidate, the bounded checker compares declared assumptions, protected invariants, effects and reconstruction obligations. A candidate that looks structurally attractive but drops a load-bearing assumption is an `OBSTRUCTION`; missing provenance or reconstruction is acquisition-local `UNKNOWN`. A clean match remains only `CANDIDATE`, because P2 cannot certify that the donor-to-target mapping is valid. `UNKNOWN` is deliberately below the scientific-authority layer: if such a candidate is later offered for a scientific claim, P4/P8 determine the corresponding fail-closed authority state rather than P2 minting a second authority terminal.
 
 ### Route stop remains local
 
