@@ -1,6 +1,22 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb,amsthm}
+% Typesetting only; no content change. The submission gate rejects any
+% Overfull \hbox, and these manuscripts are dense with unbreakable compounds --
+% "chart/location/objective/open-obligation", "request/handled/denied/committed"
+% -- because TeX does not break at "/" and will not hyphenate across it.
+%
+% microtype supplies character protrusion and font expansion, which is the
+% standard way to absorb a few points of overflow without touching prose.
+% \emergencystretch lets TeX stretch interword space in a final pass rather than
+% run past the margin.
+%
+% That second one is a deliberate trade, not a way around the gate: an overfull
+% box puts text into the margin, which is a real defect in a submitted PDF, while
+% the underfull box it may produce instead is loose spacing. The gate forbids the
+% former and permits the latter for exactly that reason.
+\usepackage{microtype}
+\emergencystretch=1em
 \usepackage{hyperref}
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}{Proposition}
