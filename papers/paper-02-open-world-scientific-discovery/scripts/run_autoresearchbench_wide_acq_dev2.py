@@ -21,6 +21,7 @@ import argparse
 import importlib.util
 import json
 import re
+import sys
 import time
 import urllib.parse
 from pathlib import Path
@@ -35,6 +36,9 @@ def _load_cmp():
     if spec is None or spec.loader is None:
         raise RuntimeError(f"cannot load matched Wide runner at {CMP_PATH}")
     module = importlib.util.module_from_spec(spec)
+    # dataclasses and other runtime type machinery resolve the defining module
+    # through sys.modules while the file is executing.
+    sys.modules[spec.name] = module
     spec.loader.exec_module(module)
     return module
 
@@ -174,8 +178,6 @@ def _core_terms(question: str) -> list[str]:
     core = [distinct[0][2], distinct[1][2]]
     if len(distinct) >= 3:
         left, right = distinct[0][0], distinct[2][1]
-        # This is the frozen "same early topical phrase" gate: no omitted word
-        # may occur between the three selected content terms.
         if len(_WORD.findall(question[left:right])) == 3:
             core.append(distinct[2][2])
     return core
@@ -193,12 +195,7 @@ DERIVERS: tuple[tuple[str, Callable[[str], str]], ...] = (
 
 
 def _arxiv_fielded_route(query: str, *, clock: Any, max_results: int) -> tuple[str, tuple[str, ...], str]:
-    """Execute an already-formed arXiv search_query without adding ``all:``.
-
-    The parent comparison helper is intentionally for plain lexical strings and
-    prepends ``all:``. Dev-2 produces full field-aware Boolean expressions, so
-    using that helper would corrupt ``ti:``, ``abs:``, ``all:`` and date clauses.
-    """
+    """Execute an already-formed arXiv search_query without adding ``all:``."""
     clock.wait("arxiv", cmp.DECLARED_CONSTANTS["arxiv_min_interval_seconds"])
     url = "https://export.arxiv.org/api/query?" + urllib.parse.urlencode(
         {
@@ -263,8 +260,8 @@ def run_task(task_id: str, question: str, *, clock: Any, max_results: int) -> An
     groups = [call.returned_ids for call in run.calls]
     run.candidates = _agreement_first(MAX_CANDIDATES_RETURNED, groups, found_by)
     run.agreement_candidates = list(run.candidates)
-    run.multi_route_confirmed = []  # same backend: never route independence
-    run.closed_as_complete = False  # acquisition development never certifies closure
+    run.multi_route_confirmed = []
+    run.closed_as_complete = False
     return run
 
 
