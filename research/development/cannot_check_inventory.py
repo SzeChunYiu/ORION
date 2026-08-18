@@ -37,6 +37,7 @@ SCHEMA_VERSION = "orion.cannot-check-inventory.v2"
 
 #: Issue #322's blocker vocabulary, plus the explicit "could not classify" state.
 CATEGORIES = (
+    "MISSING_DECLARATION",
     "MISSING_IDENTITY",
     "MISSING_CUSTODY",
     "MISSING_ACCESS",
@@ -156,21 +157,66 @@ def classify(reasons: tuple[str, ...], context: str) -> str:
     return "UNCLASSIFIED"
 
 
-def _enclosing(tree: ast.AST) -> dict[int, tuple[str, ast.AST]]:
-    """Map each node id to (qualified enclosing name, enclosing statement)."""
+def _dotted(node: ast.AST) -> str | None:
+    """`observation.hidden_label_exposed` for an attribute/name chain, else None."""
 
-    mapping: dict[int, tuple[str, ast.AST]] = {}
+    if isinstance(node, ast.Name):
+        return node.id
+    if isinstance(node, ast.Attribute):
+        base = _dotted(node.value)
+        return f"{base}.{node.attr}" if base else None
+    return None
 
-    def walk(node: ast.AST, prefix: str, statement: ast.AST | None) -> None:
+
+def _unmet_precondition(test: ast.AST) -> str | None:
+    """The input a guard found missing, when the guard says so structurally.
+
+    `if observation.hidden_label_exposed is None:` does not mean the evidence was
+    weak -- it means the caller never declared the field. That is a different
+    blocker from missing evidence, and it is the one case where the *earliest
+    missing obligation* #322 asks for can be derived rather than guessed: the
+    obligation is to populate exactly this name.
+
+    Only `is None` and bare falsiness on a name or attribute chain are read. A
+    richer condition is not guessed at; it stays unclassified.
+    """
+
+    if isinstance(test, ast.Compare) and len(test.ops) == 1:
+        if isinstance(test.ops[0], ast.Is) and len(test.comparators) == 1:
+            comparator = test.comparators[0]
+            if isinstance(comparator, ast.Constant) and comparator.value is None:
+                return _dotted(test.left)
+    if isinstance(test, ast.UnaryOp) and isinstance(test.op, ast.Not):
+        return _dotted(test.operand)
+    return None
+
+
+def _enclosing(tree: ast.AST) -> dict[int, tuple[str, ast.AST, str | None]]:
+    """Map each node id to (qualified enclosing name, statement, unmet precondition)."""
+
+    mapping: dict[int, tuple[str, ast.AST, str | None]] = {}
+
+    def walk(node: ast.AST, prefix: str, statement: ast.AST | None, guard: str | None) -> None:
         name = prefix
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
             name = f"{prefix}.{node.name}" if prefix else node.name
         current = node if isinstance(node, ast.stmt) else statement
-        mapping[id(node)] = (name, current or node)
+        mapping[id(node)] = (name, current or node, guard)
+        if isinstance(node, ast.If):
+            # Only the taken branch inherits the guard. The `else` body runs when
+            # the precondition held, so attributing the same missing input to it
+            # would be exactly backwards.
+            body_guard = _unmet_precondition(node.test) or guard
+            walk(node.test, name, current, guard)
+            for child in node.body:
+                walk(child, name, current, body_guard)
+            for child in node.orelse:
+                walk(child, name, current, guard)
+            return
         for child in ast.iter_child_nodes(node):
-            walk(child, name, current)
+            walk(child, name, current, guard)
 
-    walk(tree, "", None)
+    walk(tree, "", None, None)
     return mapping
 
 
@@ -184,10 +230,22 @@ def collect_sites(source_root: Path = SOURCE_ROOT) -> list[dict[str, object]]:
         for node in ast.walk(tree):
             if not _is_cannot_check(node):
                 continue
-            context, statement = enclosing.get(id(node), ("", node))
+            context, statement, precondition = enclosing.get(id(node), ("", node, None))
             reasons = _reason_strings(statement)
             kind = _site_kind(statement)
             role = "OBSERVES" if kind in OBSERVING_KINDS else "EMITS"
+            if role != "EMITS":
+                category = "NOT_A_BLOCKER"
+            else:
+                # The reason rules win when they match. A derived obligation says
+                # *which input* is absent; it does not say what kind of blocker it
+                # is, and a guard on `protected_evaluator_id` is still a custody
+                # problem. MISSING_DECLARATION is the fallback for sites the reason
+                # rules cannot place -- there it is strictly better than
+                # UNCLASSIFIED, because the guard names the obligation exactly.
+                category = classify(reasons, context)
+                if category == "UNCLASSIFIED" and precondition is not None:
+                    category = "MISSING_DECLARATION"
             sites.append(
                 {
                     "file": str(path.relative_to(source_root)),
@@ -197,7 +255,17 @@ def collect_sites(source_root: Path = SOURCE_ROOT) -> list[dict[str, object]]:
                     "role": role,
                     "reasons": list(reasons),
                     "has_reason": bool(reasons),
-                    "category": classify(reasons, context) if role == "EMITS" else "NOT_A_BLOCKER",
+                    "unmet_precondition": precondition,
+                    "missing_obligation": (
+                        # What the guard establishes, and no more. Some of these
+                        # names are locals derived from I/O, so "the caller must
+                        # declare it" would overclaim about who supplies it; the
+                        # guard only proves it was absent here.
+                        f"{precondition} must be present at this guard"
+                        if precondition is not None
+                        else None
+                    ),
+                    "category": category,
                 }
             )
     sites.sort(key=lambda site: (site["file"], site["lineno"], site["context"]))
@@ -220,6 +288,7 @@ def derive_inventory(source_root: Path = SOURCE_ROOT) -> dict[str, object]:
         "blocker_sites": len(blockers),
         "observing_sites": len(sites) - len(blockers),
         "with_reason": sum(1 for site in blockers if site["has_reason"]),
+        "with_derived_obligation": sum(1 for site in blockers if site["missing_obligation"]),
         "classification": counts,
         "unclassified_note": (
             "UNCLASSIFIED means the site carried no extractable reason, not that it "

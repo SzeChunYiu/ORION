@@ -4,9 +4,10 @@
     "INSUFFICIENT_EVIDENCE": 8,
     "MISSING_ACCESS": 5,
     "MISSING_CUSTODY": 26,
+    "MISSING_DECLARATION": 63,
     "MISSING_IDENTITY": 27,
     "UNAVAILABLE_PROVIDER": 12,
-    "UNCLASSIFIED": 344
+    "UNCLASSIFIED": 281
   },
   "closes_gate": null,
   "grants_authority": "NONE",
@@ -21,10 +22,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 105,
+      "missing_obligation": null,
       "reasons": [
         "expected_authority_terminal"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -33,8 +36,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 113,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -43,8 +48,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 118,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -53,8 +60,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 126,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -63,8 +72,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 173,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -73,8 +84,10 @@
       "has_reason": false,
       "kind": "BRANCH",
       "lineno": 239,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -83,8 +96,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 240,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -93,8 +108,10 @@
       "has_reason": false,
       "kind": "BRANCH",
       "lineno": 241,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -103,8 +120,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 242,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -113,8 +132,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 258,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -123,10 +144,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 412,
+      "missing_obligation": "activity must be present at this guard",
       "reasons": [
         "no candidate activity record was supplied"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "activity"
     },
     {
       "category": "MISSING_CUSTODY",
@@ -135,10 +158,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 414,
+      "missing_obligation": "root must be present at this guard",
       "reasons": [
         "repository root could not be established"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "root"
     },
     {
       "category": "MISSING_CUSTODY",
@@ -147,10 +172,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 417,
+      "missing_obligation": null,
       "reasons": [
         "protected path does not exist in the checkout:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -159,10 +186,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 443,
+      "missing_obligation": "activity must be present at this guard",
       "reasons": [
         "no candidate activity record was supplied"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "activity"
     },
     {
       "category": "MISSING_CUSTODY",
@@ -171,10 +200,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 445,
+      "missing_obligation": "heldout_roots must be present at this guard",
       "reasons": [
         "no held-out root was declared to protect"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "heldout_roots"
     },
     {
       "category": "UNCLASSIFIED",
@@ -183,10 +214,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 1124,
+      "missing_obligation": null,
       "reasons": [
         "cited evidence that did not influence the answer"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -195,10 +228,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 1127,
+      "missing_obligation": null,
       "reasons": [
         "cited evidence that did not influence the answer"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -207,8 +242,10 @@
       "has_reason": false,
       "kind": "BRANCH",
       "lineno": 1291,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -217,8 +254,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 1292,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -227,11 +266,13 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 1344,
+      "missing_obligation": null,
       "reasons": [
         "candidate reads held-out labels or weakens tests",
         "no real test file was available to ground the edit delta"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -240,11 +281,13 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 1347,
+      "missing_obligation": null,
       "reasons": [
         "candidate reads held-out labels or weakens tests",
         "no real test file was available to ground the edit delta"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -253,8 +296,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 1378,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "INSUFFICIENT_EVIDENCE",
@@ -263,8 +308,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 1495,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "INSUFFICIENT_EVIDENCE",
@@ -273,8 +320,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 1496,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "INSUFFICIENT_EVIDENCE",
@@ -283,8 +332,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 1497,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -293,8 +344,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 258,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -303,8 +356,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 331,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -313,10 +368,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 47,
+      "missing_obligation": null,
       "reasons": [
         "expected_authority_terminal"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -325,8 +382,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 75,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -335,6 +394,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 87,
+      "missing_obligation": null,
       "reasons": [
         "status",
         "authority_flags",
@@ -342,7 +402,8 @@
         "blocked",
         "cannot_check"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -351,12 +412,14 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 89,
+      "missing_obligation": null,
       "reasons": [
         "status",
         "authority_flags",
         "PASS"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -365,11 +428,13 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 213,
+      "missing_obligation": null,
       "reasons": [
         "PASS",
         "FAIL"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -378,11 +443,13 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 235,
+      "missing_obligation": null,
       "reasons": [
         "PASS",
         "FAIL"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -391,11 +458,13 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 257,
+      "missing_obligation": null,
       "reasons": [
         "PASS",
         "FAIL"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -404,20 +473,24 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 24,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "probe_records",
       "file": "benchmarks/degeneracy.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 218,
+      "missing_obligation": "records must be present at this guard",
       "reasons": [
         "no records"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "records"
     },
     {
       "category": "UNCLASSIFIED",
@@ -426,10 +499,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 223,
+      "missing_obligation": null,
       "reasons": [
         "single-label panel: any responder scores 1.0, so nothing is measured"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -438,8 +513,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 174,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -448,10 +525,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 40,
+      "missing_obligation": null,
       "reasons": [
         "external-hidden-formulation"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -460,10 +539,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 98,
+      "missing_obligation": null,
       "reasons": [
         "external-cross-domain-portrait"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -472,8 +553,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 12,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -482,11 +565,13 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 189,
+      "missing_obligation": null,
       "reasons": [
         "criterion_cannot_check:",
         "criterion_failed:"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -495,10 +580,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 198,
+      "missing_obligation": null,
       "reasons": [
         "external:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -507,8 +594,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 48,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -517,6 +606,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 247,
+      "missing_obligation": null,
       "reasons": [
         "protected_gold",
         "claim_correct",
@@ -525,7 +615,8 @@
         "contaminated",
         "expected_authority_terminal"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -534,8 +625,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 49,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -544,8 +637,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 290,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -554,8 +649,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 10,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -564,8 +661,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 50,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -574,10 +673,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 359,
+      "missing_obligation": null,
       "reasons": [
         "external-self-development"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -586,10 +687,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 289,
+      "missing_obligation": null,
       "reasons": [
         "external-authority-evaluation"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -598,61 +701,71 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 37,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "check_annotator_independence",
       "file": "conformance.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 76,
+      "missing_obligation": "identities must be present at this guard",
       "reasons": [
         "independent_annotators",
         "no annotator-tagged files found; nothing to compare"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "identities"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "check_stochastic_repeats",
       "file": "conformance.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 96,
+      "missing_obligation": "archives must be present at this guard",
       "reasons": [
         "stochastic_repeats",
         "no archived run found; the declared repeat count has nothing to check against"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "archives"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "check_stochastic_repeats",
       "file": "conformance.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 112,
+      "missing_obligation": "seeds must be present at this guard",
       "reasons": [
         "stochastic_repeats",
         "archive present but contains no run records"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "seeds"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "check_generated_artifacts_regenerate",
       "file": "conformance.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 270,
+      "missing_obligation": "entries must be present at this guard",
       "reasons": [
         "generated_artifacts_regenerate",
         "at least one entry",
         "declares no artifacts"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "entries"
     },
     {
       "category": "UNCLASSIFIED",
@@ -661,11 +774,13 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 301,
+      "missing_obligation": null,
       "reasons": [
         "generated_artifacts_regenerate",
         "declared artifacts could not be verified:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -674,8 +789,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 33,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -684,11 +801,13 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 129,
+      "missing_obligation": null,
       "reasons": [
         "assignment space exceeds the declared search bound (",
         "); a resource bound licenses no verdict"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -697,8 +816,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 11,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -707,8 +828,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 61,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -717,8 +840,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 526,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -727,10 +852,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 630,
+      "missing_obligation": null,
       "reasons": [
         "The goal is present initially but its external authority is not bound."
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -739,10 +866,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 772,
+      "missing_obligation": null,
       "reasons": [
         "support_cannot_check:"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -751,10 +880,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 829,
+      "missing_obligation": null,
       "reasons": [
         "certificate_cannot_check:"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -763,10 +894,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 876,
+      "missing_obligation": null,
       "reasons": [
         "The frozen verified graph was exhausted without a goal proof; this is not an impossibility result."
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -775,10 +908,12 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 1044,
+      "missing_obligation": null,
       "reasons": [
         "Bounded saturation reached but no verified evidence supports a final answer."
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -787,10 +922,12 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 1112,
+      "missing_obligation": null,
       "reasons": [
         "Resource bound reached before bounded saturation. Open saturation coordinates:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -799,20 +936,24 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 23,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "_assess_pattern_reuse",
       "file": "experience/learning.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 120,
+      "missing_obligation": "registered must be present at this guard",
       "reasons": [
         "candidate_not_registered"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "registered"
     },
     {
       "category": "UNCLASSIFIED",
@@ -821,10 +962,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 126,
+      "missing_obligation": null,
       "reasons": [
         "candidate_content_mismatch"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -833,8 +976,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 135,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -843,10 +988,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 146,
+      "missing_obligation": null,
       "reasons": [
         "unknown_episode:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -855,10 +1002,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 160,
+      "missing_obligation": null,
       "reasons": [
         "mechanic_mismatch:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -867,10 +1016,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 169,
+      "missing_obligation": null,
       "reasons": [
         "replay_and_fresh_transfer_must_be_disjoint"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -879,10 +1030,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 183,
+      "missing_obligation": null,
       "reasons": [
         "replay_reuses_support_run:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -891,10 +1044,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 203,
+      "missing_obligation": null,
       "reasons": [
         "replay_not_bound_to_support_case:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "INSUFFICIENT_EVIDENCE",
@@ -903,10 +1058,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 220,
+      "missing_obligation": null,
       "reasons": [
         "guard_not_executed:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -915,10 +1072,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 237,
+      "missing_obligation": null,
       "reasons": [
         "fresh_transfer_not_fresh:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -927,18 +1086,22 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 281,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "_assess_pattern_reuse",
       "file": "experience/learning.py",
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 354,
+      "missing_obligation": "resolution.valid must be present at this guard",
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "resolution.valid"
     },
     {
       "category": "UNCLASSIFIED",
@@ -947,8 +1110,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 9,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -957,8 +1122,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 16,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -967,10 +1134,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 107,
+      "missing_obligation": null,
       "reasons": [
         "non-success episode requires a failure signature or residual"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -979,10 +1148,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 225,
+      "missing_obligation": null,
       "reasons": [
         "invalid_support_outcome:"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -991,8 +1162,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 349,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1001,8 +1174,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 12,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1011,8 +1186,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 12,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -1021,8 +1198,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 49,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1031,8 +1210,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 81,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -1041,8 +1222,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 304,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -1051,8 +1234,10 @@
       "has_reason": false,
       "kind": "BRANCH",
       "lineno": 311,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1061,8 +1246,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 315,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1071,8 +1258,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 39,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1081,8 +1270,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 45,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1091,10 +1282,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 147,
+      "missing_obligation": null,
       "reasons": [
         "registered_verifier_public_key_invalid"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1103,8 +1296,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 43,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1113,8 +1308,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 49,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -1123,8 +1320,10 @@
       "has_reason": false,
       "kind": "BRANCH",
       "lineno": 154,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1133,8 +1332,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 155,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1143,8 +1344,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 169,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -1153,10 +1356,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 239,
+      "missing_obligation": null,
       "reasons": [
         "appraisal_signature_cannot_check"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -1165,20 +1370,24 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 245,
+      "missing_obligation": null,
       "reasons": [
         "support_state_cannot_check"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "verify_authorization_signature",
       "file": "kernel/authorization.py",
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 372,
+      "missing_obligation": "registration must be present at this guard",
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "registration"
     },
     {
       "category": "UNCLASSIFIED",
@@ -1187,8 +1396,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 39,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1197,20 +1408,24 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 22,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_hard_gates",
       "file": "kernel/hard_gates.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 146,
+      "missing_obligation": "contract.frozen_at_round must be present at this guard",
       "reasons": [
         "gate_contract_chronology_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "contract.frozen_at_round"
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -1219,10 +1434,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 192,
+      "missing_obligation": null,
       "reasons": [
         "gate_cannot_check:"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1231,8 +1448,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 207,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1241,18 +1460,22 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 22,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_support",
       "file": "kernel/support.py",
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 173,
+      "missing_obligation": "support_sets must be present at this guard",
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "support_sets"
     },
     {
       "category": "UNCLASSIFIED",
@@ -1261,8 +1484,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 210,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1271,8 +1496,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 45,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1281,8 +1508,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 309,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -1291,22 +1520,26 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 393,
+      "missing_obligation": null,
       "reasons": [
         "trial_or_node_identity_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_connection",
       "file": "knowledge/backward_multiseed.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 397,
+      "missing_obligation": "trial.declared_before_outcomes must be present at this guard",
       "reasons": [
         "connection_freeze_chronology_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.declared_before_outcomes"
     },
     {
       "category": "UNCLASSIFIED",
@@ -1315,10 +1548,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 399,
+      "missing_obligation": null,
       "reasons": [
         "posthoc_connection_selection_is_not_an_admissible_check"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -1327,10 +1562,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 416,
+      "missing_obligation": null,
       "reasons": [
         "similarity_witness_incomplete"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1339,10 +1576,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 417,
+      "missing_obligation": null,
       "reasons": [
         "similarity_witness_incomplete"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1351,10 +1590,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 419,
+      "missing_obligation": null,
       "reasons": [
         "no_operator_bridge_path_or_witness_supplied"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1363,8 +1604,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 459,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1373,10 +1616,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 480,
+      "missing_obligation": null,
       "reasons": [
         "frontier_identities_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1385,20 +1630,24 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 46,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_arm",
       "file": "knowledge/backward_multiseed_benchmark.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 251,
+      "missing_obligation": "spec.frozen_before_any_arm_execution must be present at this guard",
       "reasons": [
         "benchmark_freeze_chronology_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "spec.frozen_before_any_arm_execution"
     },
     {
       "category": "UNCLASSIFIED",
@@ -1407,8 +1656,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 297,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1417,8 +1668,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 47,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1427,8 +1680,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 57,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1437,8 +1692,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 67,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1447,8 +1704,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 83,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1457,44 +1716,52 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 208,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "validate_generator_lift",
       "file": "knowledge/generator_transport.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 210,
+      "missing_obligation": "lift.declared_before_outcomes must be present at this guard",
       "reasons": [
         "lift_freeze_chronology_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "lift.declared_before_outcomes"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_generator_relation",
       "file": "knowledge/generator_transport.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 254,
+      "missing_obligation": "witness.hidden_labels_exposed must be present at this guard",
       "reasons": [
         "hidden_label_exposure_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "witness.hidden_labels_exposed"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_generator_relation",
       "file": "knowledge/generator_transport.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 258,
+      "missing_obligation": "witness.relation_declared_before_outcomes must be present at this guard",
       "reasons": [
         "relation_freeze_chronology_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "witness.relation_declared_before_outcomes"
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -1503,10 +1770,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 266,
+      "missing_obligation": null,
       "reasons": [
         "one_or_more_lifts_incomplete"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -1515,10 +1784,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 266,
+      "missing_obligation": null,
       "reasons": [
         "one_or_more_lifts_incomplete"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1527,10 +1798,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 267,
+      "missing_obligation": null,
       "reasons": [
         "one_or_more_lifts_incomplete"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1539,22 +1812,26 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 271,
+      "missing_obligation": null,
       "reasons": [
         "abstraction_level_mismatch_without_transition_map"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_generator_relation",
       "file": "knowledge/generator_transport.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 277,
+      "missing_obligation": "witness.required_core_features must be present at this guard",
       "reasons": [
         "required_generator_core_features_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "witness.required_core_features"
     },
     {
       "category": "UNCLASSIFIED",
@@ -1563,22 +1840,26 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 282,
+      "missing_obligation": null,
       "reasons": [
         "required_core_feature_unresolved:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_generator_relation",
       "file": "knowledge/generator_transport.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 295,
+      "missing_obligation": "common_queries must be present at this guard",
       "reasons": [
         "no_common_intervention_or_query_probe"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "common_queries"
     },
     {
       "category": "UNCLASSIFIED",
@@ -1587,10 +1868,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 297,
+      "missing_obligation": null,
       "reasons": [
         "intervention_or_query_commutation_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -1599,46 +1882,54 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 315,
+      "missing_obligation": null,
       "reasons": [
         "candidate_identity_or_question_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "assess_generator_family",
       "file": "knowledge/generator_transport.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 317,
+      "missing_obligation": "candidate.required_core_features must be present at this guard",
       "reasons": [
         "required_core_features_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "candidate.required_core_features"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "assess_generator_family",
       "file": "knowledge/generator_transport.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 319,
+      "missing_obligation": "candidate.hidden_labels_exposed must be present at this guard",
       "reasons": [
         "hidden_label_exposure_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "candidate.hidden_labels_exposed"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "assess_generator_family",
       "file": "knowledge/generator_transport.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 323,
+      "missing_obligation": "candidate.declared_before_outcomes must be present at this guard",
       "reasons": [
         "candidate_freeze_chronology_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "candidate.declared_before_outcomes"
     },
     {
       "category": "UNCLASSIFIED",
@@ -1647,10 +1938,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 327,
+      "missing_obligation": null,
       "reasons": [
         "at_least_two_sibling_lifts_required"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -1659,8 +1952,10 @@
       "has_reason": false,
       "kind": "BRANCH",
       "lineno": 339,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1669,8 +1964,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 394,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1679,8 +1976,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 394,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -1689,34 +1988,40 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 400,
+      "missing_obligation": null,
       "reasons": [
         "source_generator_or_target_claim_identity_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "project_through_generator",
       "file": "knowledge/generator_transport.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 402,
+      "missing_obligation": "trial.target_tested must be present at this guard",
       "reasons": [
         "target_test_status_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.target_tested"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "project_through_generator",
       "file": "knowledge/generator_transport.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 410,
+      "missing_obligation": "trial.target_passed must be present at this guard",
       "reasons": [
         "target_test_outcome_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.target_passed"
     },
     {
       "category": "UNCLASSIFIED",
@@ -1725,32 +2030,38 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 30,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_measurement_relation",
       "file": "knowledge/measurement.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 177,
+      "missing_obligation": "trial.hidden_labels_exposed_before_freeze must be present at this guard",
       "reasons": [
         "hidden_label_exposure_status_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.hidden_labels_exposed_before_freeze"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_measurement_relation",
       "file": "knowledge/measurement.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 187,
+      "missing_obligation": "trial.mapping.declared_before_results must be present at this guard",
       "reasons": [
         "measurement_mapping_chronology_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.mapping.declared_before_results"
     },
     {
       "category": "UNCLASSIFIED",
@@ -1759,8 +2070,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 200,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -1769,10 +2082,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 209,
+      "missing_obligation": null,
       "reasons": [
         "similarity_witness:"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1781,82 +2096,96 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 211,
+      "missing_obligation": null,
       "reasons": [
         "similarity_witness:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_measurement_relation",
       "file": "knowledge/measurement.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 231,
+      "missing_obligation": "trial.mapping.measurand_mapping_valid must be present at this guard",
       "reasons": [
         "measurand_mapping_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.mapping.measurand_mapping_valid"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_measurement_relation",
       "file": "knowledge/measurement.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 242,
+      "missing_obligation": "trial.mapping.feature_mapping_valid must be present at this guard",
       "reasons": [
         "feature_mapping_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.mapping.feature_mapping_valid"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_measurement_relation",
       "file": "knowledge/measurement.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 248,
+      "missing_obligation": "trial.mapping.unit_transform_id must be present at this guard",
       "reasons": [
         "unit_transform_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.mapping.unit_transform_id"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_measurement_relation",
       "file": "knowledge/measurement.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 258,
+      "missing_obligation": "trial.mapping.unit_transform_invertible must be present at this guard",
       "reasons": [
         "unit_transform_invertibility_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.mapping.unit_transform_invertible"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_measurement_relation",
       "file": "knowledge/measurement.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 279,
+      "missing_obligation": "trial.mapping.measurement_model_compatibility must be present at this guard",
       "reasons": [
         "measurement_model_compatibility_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.mapping.measurement_model_compatibility"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_measurement_relation",
       "file": "knowledge/measurement.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 290,
+      "missing_obligation": "trial.mapping.observation_operator_compatibility must be present at this guard",
       "reasons": [
         "observation_operator_compatibility_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.mapping.observation_operator_compatibility"
     },
     {
       "category": "UNCLASSIFIED",
@@ -1865,8 +2194,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 310,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1875,10 +2206,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 336,
+      "missing_obligation": null,
       "reasons": [
         "measurement_uncertainty_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1887,70 +2220,82 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 341,
+      "missing_obligation": null,
       "reasons": [
         "measurement_resolution_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_measurement_relation",
       "file": "knowledge/measurement.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 346,
+      "missing_obligation": "trial.mapping.uncertainty_combination_rule_id must be present at this guard",
       "reasons": [
         "uncertainty_combination_rule_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.mapping.uncertainty_combination_rule_id"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_measurement_relation",
       "file": "knowledge/measurement.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 356,
+      "missing_obligation": "trial.mapping.uncertainty_combination_valid must be present at this guard",
       "reasons": [
         "uncertainty_combination_rule_validity_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.mapping.uncertainty_combination_valid"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_measurement_relation",
       "file": "knowledge/measurement.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 361,
+      "missing_obligation": "trial.mapping.combined_standard_uncertainty must be present at this guard",
       "reasons": [
         "combined_standard_uncertainty_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.mapping.combined_standard_uncertainty"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_measurement_relation",
       "file": "knowledge/measurement.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 395,
+      "missing_obligation": "trial.probe_family_frozen_before_results must be present at this guard",
       "reasons": [
         "probe_family_freeze_chronology_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.probe_family_frozen_before_results"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_measurement_relation",
       "file": "knowledge/measurement.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 401,
+      "missing_obligation": "trial.probes must be present at this guard",
       "reasons": [
         "frozen_discriminating_probe_family_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.probes"
     },
     {
       "category": "UNCLASSIFIED",
@@ -1959,10 +2304,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 407,
+      "missing_obligation": null,
       "reasons": [
         "equivalence_tolerance_missing_or_nonpositive"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1971,10 +2318,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 416,
+      "missing_obligation": null,
       "reasons": [
         "probe_predictions_not_certified_in_common_coordinate"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "INSUFFICIENT_EVIDENCE",
@@ -1983,10 +2332,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 427,
+      "missing_obligation": null,
       "reasons": [
         "measurement_capability_insufficient_for_declared_equivalence_tolerance"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -1995,8 +2346,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 104,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2005,8 +2358,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 336,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2015,8 +2370,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 339,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2025,8 +2382,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 22,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2035,8 +2394,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 28,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2045,8 +2406,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 35,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2055,8 +2418,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 144,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -2065,10 +2430,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 148,
+      "missing_obligation": "artifact.identity_observed must be present at this guard",
       "reasons": [
         "artifact_identity_observation_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "artifact.identity_observed"
     },
     {
       "category": "MISSING_IDENTITY",
@@ -2077,22 +2444,26 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 150,
+      "missing_obligation": null,
       "reasons": [
         "pinned_artifact_identity_not_observed"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "validate_ground_truth_factorization",
       "file": "knowledge/retrieval_benchmark.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 156,
+      "missing_obligation": "factorization.retrieval_relevance_label_id must be present at this guard",
       "reasons": [
         "retrieval_relevance_authority_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "factorization.retrieval_relevance_label_id"
     },
     {
       "category": "UNCLASSIFIED",
@@ -2101,44 +2472,52 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 199,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_retrieval_route_trial",
       "file": "knowledge/retrieval_benchmark.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 203,
+      "missing_obligation": "trial.hidden_labels_exposed must be present at this guard",
       "reasons": [
         "hidden_label_exposure_status_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.hidden_labels_exposed"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_retrieval_route_trial",
       "file": "knowledge/retrieval_benchmark.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 207,
+      "missing_obligation": "trial.query_frozen_before_labels must be present at this guard",
       "reasons": [
         "query_freeze_chronology_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.query_frozen_before_labels"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_retrieval_route_trial",
       "file": "knowledge/retrieval_benchmark.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 211,
+      "missing_obligation": "trial.execution_observed must be present at this guard",
       "reasons": [
         "execution_observation_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.execution_observed"
     },
     {
       "category": "INSUFFICIENT_EVIDENCE",
@@ -2147,22 +2526,26 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 213,
+      "missing_obligation": null,
       "reasons": [
         "retrieval_route_not_executed"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "evaluate_retrieval_route_trial",
       "file": "knowledge/retrieval_benchmark.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 215,
+      "missing_obligation": "trial.resource_delta_declared must be present at this guard",
       "reasons": [
         "resource_delta_declaration_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.resource_delta_declared"
     },
     {
       "category": "MISSING_CUSTODY",
@@ -2171,10 +2554,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 217,
+      "missing_obligation": "trial.designated_relevant_ids must be present at this guard",
       "reasons": [
         "evaluator_relevance_labels_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trial.designated_relevant_ids"
     },
     {
       "category": "UNCLASSIFIED",
@@ -2183,10 +2568,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 259,
+      "missing_obligation": null,
       "reasons": [
         "at_least_two_routes_required"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -2195,10 +2582,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 266,
+      "missing_obligation": null,
       "reasons": [
         "one_or_more_route_trials_incomplete"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2207,10 +2596,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 267,
+      "missing_obligation": null,
       "reasons": [
         "one_or_more_route_trials_incomplete"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2219,8 +2610,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 25,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2229,8 +2622,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 45,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2239,8 +2634,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 55,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -2249,10 +2646,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 96,
+      "missing_obligation": null,
       "reasons": [
         "preservation_status_unresolved"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2261,10 +2660,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 97,
+      "missing_obligation": null,
       "reasons": [
         "preservation_status_unresolved"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2273,8 +2674,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 115,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2283,10 +2686,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 188,
+      "missing_obligation": null,
       "reasons": [
         "required_continuity_coordinate_unknown_on_one_or_both_episodes"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -2295,10 +2700,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 428,
+      "missing_obligation": null,
       "reasons": [
         "lineage_identity_mismatch"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2307,10 +2714,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 436,
+      "missing_obligation": null,
       "reasons": [
         "surrogate_root_preservation_unresolved"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2319,10 +2728,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 439,
+      "missing_obligation": null,
       "reasons": [
         "prediction_chronology_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2331,8 +2742,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 44,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2341,8 +2754,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 55,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2351,8 +2766,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 61,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2361,32 +2778,38 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 176,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "validate_similarity_witness",
       "file": "knowledge/similarity.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 178,
+      "missing_obligation": "witness.mapping_admissibility.declared_before_fit must be present at this guard",
       "reasons": [
         "mapping_family_chronology_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "witness.mapping_admissibility.declared_before_fit"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "validate_similarity_witness",
       "file": "knowledge/similarity.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 182,
+      "missing_obligation": "witness.mapping_admissibility.null_calibration_passed must be present at this guard",
       "reasons": [
         "null_calibration_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "witness.mapping_admissibility.null_calibration_passed"
     },
     {
       "category": "UNCLASSIFIED",
@@ -2395,10 +2818,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 195,
+      "missing_obligation": null,
       "reasons": [
         "causal_direction_constraint_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2407,34 +2832,40 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 197,
+      "missing_obligation": null,
       "reasons": [
         "type_or_unit_compatibility_constraint_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "diagnose_analogy_discovery",
       "file": "knowledge/similarity.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 217,
+      "missing_obligation": "observation.hidden_label_exposed must be present at this guard",
       "reasons": [
         "hidden_label_exposure_status_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "observation.hidden_label_exposed"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "diagnose_analogy_discovery",
       "file": "knowledge/similarity.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 219,
+      "missing_obligation": "observation.query_frozen_before_labels must be present at this guard",
       "reasons": [
         "query_freeze_chronology_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "observation.query_frozen_before_labels"
     },
     {
       "category": "MISSING_CUSTODY",
@@ -2443,10 +2874,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 221,
+      "missing_obligation": "observation.designated_source_id must be present at this guard",
       "reasons": [
         "evaluator_designated_source_missing"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "observation.designated_source_id"
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -2455,10 +2888,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 236,
+      "missing_obligation": null,
       "reasons": [
         "witness_validation_incomplete"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2467,34 +2902,40 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 237,
+      "missing_obligation": null,
       "reasons": [
         "witness_validation_incomplete"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "diagnose_analogy_discovery",
       "file": "knowledge/similarity.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 239,
+      "missing_obligation": "observation.target_transfer_tested must be present at this guard",
       "reasons": [
         "target_transfer_test_status_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "observation.target_transfer_tested"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "diagnose_analogy_discovery",
       "file": "knowledge/similarity.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 243,
+      "missing_obligation": "observation.target_transfer_passed must be present at this guard",
       "reasons": [
         "target_transfer_outcome_unknown"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "observation.target_transfer_passed"
     },
     {
       "category": "UNCLASSIFIED",
@@ -2503,10 +2944,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 255,
+      "missing_obligation": null,
       "reasons": [
         "at_least_two_witnesses_required"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2515,10 +2958,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 258,
+      "missing_obligation": null,
       "reasons": [
         "one_or_more_witnesses_not_validated"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2527,10 +2972,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 261,
+      "missing_obligation": null,
       "reasons": [
         "cross_domain_confirmation_not_established"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2539,8 +2986,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 14,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2549,8 +2998,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 14,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -2559,6 +3010,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 172,
+      "missing_obligation": null,
       "reasons": [
         "contract-violation",
         "The mechanic violates a declared invariant, postcondition or interface contract.",
@@ -2655,7 +3107,8 @@
         "open diagnosis and monitoring gap",
         "add a regression canary only after cause localization"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -2664,6 +3117,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 199,
+      "missing_obligation": null,
       "reasons": [
         "contract-violation",
         "The mechanic violates a declared invariant, postcondition or interface contract.",
@@ -2760,7 +3214,8 @@
         "open diagnosis and monitoring gap",
         "add a regression canary only after cause localization"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2769,8 +3224,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 14,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -2779,10 +3236,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 61,
+      "missing_obligation": null,
       "reasons": [
         "non-success mechanic receipts require a failure signature or residual"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -2791,6 +3250,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 196,
+      "missing_obligation": null,
       "reasons": [
         "The mechanic defines a guarded relation F_i: (state,input,action) -> P(next_state,output,status); determinism/stochasticity is declared per step rather than assumed globally.",
         "admit",
@@ -2835,7 +3295,8 @@
         "a declared blocking prerequisite/dependency is absent or invalid",
         "the required check remains unavailable or resource-bound"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2844,8 +3305,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 27,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNAVAILABLE_PROVIDER",
@@ -2854,6 +3317,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 85,
+      "missing_obligation": null,
       "reasons": [
         "Probability distributions are used only where calibrated data/model assumptions justify them. Otherwise retain intervals, sets, alternative hypotheses, bounds, UNKNOWN or CANNOT_CHECK.",
         "instrument/observation/model error in measured quantities",
@@ -2889,7 +3353,8 @@
         "additional justified resources or a cheaper valid discriminator",
         "resource exhaustion cannot be represented as evidence of closure"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2898,8 +3363,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 40,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2908,8 +3375,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 44,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2918,38 +3387,46 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 50,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "decide_final_state",
       "file": "novelty/authority.py",
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 54,
+      "missing_obligation": "saturation.stop_rule_satisfied must be present at this guard",
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "saturation.stop_rule_satisfied"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "decide_final_state",
       "file": "novelty/authority.py",
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 68,
+      "missing_obligation": "draft.residual_implementation_evidence must be present at this guard",
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "draft.residual_implementation_evidence"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "decide_final_state",
       "file": "novelty/authority.py",
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 71,
+      "missing_obligation": "draft.discriminating_experiment.executed must be present at this guard",
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "draft.discriminating_experiment.executed"
     },
     {
       "category": "UNCLASSIFIED",
@@ -2958,8 +3435,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 13,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2968,8 +3447,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 51,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -2978,10 +3459,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 137,
+      "missing_obligation": null,
       "reasons": [
         "a cycle that has not run must decide CANNOT_CHECK"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -2990,10 +3473,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 76,
+      "missing_obligation": null,
       "reasons": [
         "check raised"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3002,10 +3487,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 82,
+      "missing_obligation": null,
       "reasons": [
         "check returned a result for a different check id"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3014,8 +3501,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 168,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3024,8 +3513,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 38,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3034,8 +3525,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 85,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3044,8 +3537,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 50,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3054,8 +3549,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 73,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3064,8 +3561,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 235,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3074,8 +3573,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 77,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3084,8 +3585,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 26,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3094,8 +3597,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 42,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3104,8 +3609,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 72,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3114,8 +3621,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 236,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -3124,6 +3633,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 206,
+      "missing_obligation": null,
       "reasons": [
         "schema",
         "status",
@@ -3138,7 +3648,8 @@
         "attempts",
         "READY"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3147,8 +3658,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 38,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3157,8 +3670,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 38,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3167,8 +3682,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 14,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3177,8 +3694,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 20,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -3187,6 +3706,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 83,
+      "missing_obligation": null,
       "reasons": [
         "Present a factually correct claim while binding it to the wrong source identity.",
         "Reuse an evidence identifier while substituting different content bytes.",
@@ -3199,7 +3719,8 @@
         "Attempt to read held-out labels or weaken the hidden/fresh test boundary.",
         "Provide genuinely insufficient evidence where the only safe result is CANNOT_CHECK."
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -3208,11 +3729,13 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 331,
+      "missing_obligation": null,
       "reasons": [
         "authority_attack_evaluation_cannot_check",
         "authority_attack_failed"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3221,8 +3744,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 248,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3231,10 +3756,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 74,
+      "missing_obligation": null,
       "reasons": [
         "receipt_invalid:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3243,10 +3770,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 98,
+      "missing_obligation": null,
       "reasons": [
         "PASS"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3255,8 +3784,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 42,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3265,8 +3796,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 21,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3275,8 +3808,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 1436,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3285,8 +3820,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 1467,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3295,10 +3832,12 @@
       "has_reason": true,
       "kind": "EXPRESSION",
       "lineno": 1519,
+      "missing_obligation": null,
       "reasons": [
         ":present_but_missed"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3307,8 +3846,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 1536,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -3317,10 +3858,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 1639,
+      "missing_obligation": "gold must be present at this guard",
       "reasons": [
         "no protected gold is bound for this task"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "gold"
     },
     {
       "category": "MISSING_CUSTODY",
@@ -3329,22 +3872,26 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 1657,
+      "missing_obligation": "gold must be present at this guard",
       "reasons": [
         "no protected gold is bound for this task"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "gold"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "_evaluate_criterion",
       "file": "self_orion/live_packet.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 1673,
+      "missing_obligation": "gold must be present at this guard",
       "reasons": [
         "recovery cannot be judged without bound ground truth"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "gold"
     },
     {
       "category": "UNCLASSIFIED",
@@ -3353,10 +3900,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 1690,
+      "missing_obligation": null,
       "reasons": [
         "resource use for one or both arms was not observed"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3365,10 +3914,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 1709,
+      "missing_obligation": null,
       "reasons": [
         "no frozen check is implemented for"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNAVAILABLE_PROVIDER",
@@ -3377,6 +3928,7 @@
       "has_reason": true,
       "kind": "EXPRESSION",
       "lineno": 1811,
+      "missing_obligation": null,
       "reasons": [
         "episode:",
         "pre",
@@ -3388,7 +3940,8 @@
         "packet:",
         "missing_env_var:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3397,8 +3950,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 1973,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "INSUFFICIENT_EVIDENCE",
@@ -3407,11 +3962,13 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 2005,
+      "missing_obligation": null,
       "reasons": [
         "no round has been observed because the live trial has not executed",
         "flatness is undefined without at least one growth vector under the basis"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -3420,10 +3977,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 395,
+      "missing_obligation": null,
       "reasons": [
         "subject identity unusable:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -3432,10 +3991,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 405,
+      "missing_obligation": null,
       "reasons": [
         "ancestry probe raised:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -3444,10 +4005,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 426,
+      "missing_obligation": null,
       "reasons": [
         "ancestry could not be established; the probe reported no verdict"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -3456,11 +4019,13 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 394,
+      "missing_obligation": null,
       "reasons": [
         "authority_baseline_benchmark_cannot_check",
         "authority_baseline:"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3469,8 +4034,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 27,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3479,8 +4046,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 324,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -3489,11 +4058,13 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 162,
+      "missing_obligation": null,
       "reasons": [
         "final_integration_cannot_check",
         "final_integration_failed"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3502,8 +4073,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 257,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3512,8 +4085,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 47,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -3522,10 +4097,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 486,
+      "missing_obligation": null,
       "reasons": [
         "Repository freeze still uses the unbound sentinel; preflight status is"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3534,11 +4111,13 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 502,
+      "missing_obligation": null,
       "reasons": [
         "No frozen live evidence exists. Empirical promotion status is",
         "; primary missing trial is"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -3547,11 +4126,13 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 521,
+      "missing_obligation": null,
       "reasons": [
         "In-repo audit does not poll GitHub Actions. Exact-final-head CI must be attested on the merged subject by an external host; a protocol-prefreeze PR being green is not Phase-3 closure CI.",
         "exact_final_head_ci_not_attested_in_repository"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3560,8 +4141,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 560,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -3570,10 +4153,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 564,
+      "missing_obligation": null,
       "reasons": [
         "repository empirical promotion must remain CANNOT_CHECK"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3582,8 +4167,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 172,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3592,8 +4179,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 198,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3602,8 +4191,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 663,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3612,8 +4203,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 58,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3622,8 +4215,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 326,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3632,8 +4227,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 328,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3642,8 +4239,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 10,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -3652,10 +4251,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 56,
+      "missing_obligation": null,
       "reasons": [
         "research_not_decision_sufficient"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3664,8 +4265,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 579,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3674,8 +4277,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 589,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3684,18 +4289,22 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 657,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "_sandbox_observations",
       "file": "self_orion/staged_gate.py",
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 721,
+      "missing_obligation": "request.declared_independent_axes must be present at this guard",
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "request.declared_independent_axes"
     },
     {
       "category": "UNCLASSIFIED",
@@ -3704,8 +4313,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 735,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3714,8 +4325,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 741,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -3724,8 +4337,10 @@
       "has_reason": false,
       "kind": "BRANCH",
       "lineno": 815,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3734,8 +4349,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 816,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3744,8 +4361,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 1023,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3754,11 +4373,13 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 1132,
+      "missing_obligation": null,
       "reasons": [
         "stage_not_evaluated:incomplete_predecessor_chain",
         "stage_not_evaluated:blocked_by:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3767,20 +4388,24 @@
       "has_reason": true,
       "kind": "EXPRESSION",
       "lineno": 1150,
+      "missing_obligation": null,
       "reasons": [
         "appraisal_may_not_authorize"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "_signature_state",
       "file": "self_orion/staged_gate.py",
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 1306,
+      "missing_obligation": "registration must be present at this guard",
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "registration"
     },
     {
       "category": "UNCLASSIFIED",
@@ -3789,10 +4414,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 1349,
+      "missing_obligation": null,
       "reasons": [
         "receipt_payload_unreadable"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -3801,11 +4428,13 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 94,
+      "missing_obligation": null,
       "reasons": [
         "evaluator_integrity",
         "mandatory_dimension_cannot_check"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -3814,11 +4443,13 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 98,
+      "missing_obligation": null,
       "reasons": [
         "evaluator_integrity",
         "mandatory_dimension_cannot_check"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -3827,10 +4458,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 121,
+      "missing_obligation": null,
       "reasons": [
         "mandatory_dimension_cannot_check"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3839,10 +4472,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 125,
+      "missing_obligation": null,
       "reasons": [
         "mandatory_dimension_cannot_check"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -3851,23 +4486,27 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 224,
+      "missing_obligation": null,
       "reasons": [
         "cannot_check:evaluator_integrity",
         "integrity_failure:evaluator_integrity"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "admit_candidate",
       "file": "study/global_positive/admission.py",
       "has_reason": true,
       "kind": "EXPRESSION",
       "lineno": 245,
+      "missing_obligation": "family must be present at this guard",
       "reasons": [
         "dropped_or_missing_family"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "family"
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -3876,8 +4515,10 @@
       "has_reason": false,
       "kind": "BRANCH",
       "lineno": 252,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -3886,10 +4527,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 279,
+      "missing_obligation": null,
       "reasons": [
         ":optional_bound"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3898,8 +4541,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 339,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3908,8 +4553,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 341,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3918,8 +4565,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 349,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3928,8 +4577,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 381,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3938,8 +4589,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 389,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -3948,8 +4601,10 @@
       "has_reason": false,
       "kind": "BRANCH",
       "lineno": 49,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -3958,10 +4613,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 72,
+      "missing_obligation": "bundle.family_outcomes must be present at this guard",
       "reasons": [
         "required_family_tasks_unbound"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "bundle.family_outcomes"
     },
     {
       "category": "MISSING_IDENTITY",
@@ -3970,10 +4627,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 80,
+      "missing_obligation": null,
       "reasons": [
         "official_continual_optimizer_baseline_unbound"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -3982,22 +4641,26 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 87,
+      "missing_obligation": null,
       "reasons": [
         "oracle_ceiling_is_analysis_only"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "score_baseline",
       "file": "study/global_positive/baselines.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 105,
+      "missing_obligation": "deltas must be present at this guard",
       "reasons": [
         "no_numeric_deltas"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "deltas"
     },
     {
       "category": "UNCLASSIFIED",
@@ -4006,10 +4669,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 139,
+      "missing_obligation": null,
       "reasons": [
         "p5_staged_stub_does_not_encode_cross_family_pareto"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4018,8 +4683,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 17,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -4028,10 +4695,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 36,
+      "missing_obligation": null,
       "reasons": [
         ": CANNOT_CHECK cannot carry a numeric delta"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -4040,11 +4709,13 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 40,
+      "missing_obligation": null,
       "reasons": [
         "fail_closed",
         ": observed status requires a delta"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4053,8 +4724,10 @@
       "has_reason": false,
       "kind": "EXPRESSION",
       "lineno": 138,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4063,8 +4736,10 @@
       "has_reason": false,
       "kind": "EXPRESSION",
       "lineno": 145,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -4073,11 +4748,13 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 186,
+      "missing_obligation": null,
       "reasons": [
         "evaluator_integrity",
         "failure_classes"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -4086,10 +4763,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 78,
+      "missing_obligation": null,
       "reasons": [
         "UNBOUND"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4098,8 +4777,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 59,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4108,8 +4789,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 67,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4118,8 +4801,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 692,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4128,8 +4813,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 717,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4138,8 +4825,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 776,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4148,8 +4837,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 904,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4158,8 +4849,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 20,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4168,11 +4861,13 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 59,
+      "missing_obligation": null,
       "reasons": [
         "fewer than",
         "systems to compare"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4181,10 +4876,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 72,
+      "missing_obligation": null,
       "reasons": [
         "no outcomes recorded for any system"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4193,10 +4890,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 115,
+      "missing_obligation": null,
       "reasons": [
         "the paired outcome vectors have different lengths"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4205,8 +4904,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 93,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4215,8 +4916,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 161,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4225,8 +4928,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 292,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4235,8 +4940,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 63,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4245,8 +4952,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 118,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4255,8 +4964,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 334,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -4265,8 +4976,10 @@
       "has_reason": false,
       "kind": "BRANCH",
       "lineno": 422,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4275,8 +4988,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 423,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4285,44 +5000,52 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 423,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "score_case",
       "file": "study/p1/metrics.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 518,
+      "missing_obligation": "trace must be present at this guard",
       "reasons": [
         "no trace was produced for this case"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trace"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "score_case",
       "file": "study/p1/metrics.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 520,
+      "missing_obligation": "trace must be present at this guard",
       "reasons": [
         "no trace was produced for this case"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trace"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "score_case",
       "file": "study/p1/metrics.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 521,
+      "missing_obligation": "trace must be present at this guard",
       "reasons": [
         "no trace was produced for this case"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "trace"
     },
     {
       "category": "MISSING_IDENTITY",
@@ -4331,6 +5054,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 745,
+      "missing_obligation": null,
       "reasons": [
         "system_id",
         "case_id",
@@ -4366,7 +5090,8 @@
         "failure_mode",
         "contributing_failure_modes"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -4375,18 +5100,22 @@
       "has_reason": false,
       "kind": "BRANCH",
       "lineno": 952,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "_audited_cells",
       "file": "study/p1/orion_system.py",
       "has_reason": false,
       "kind": "EXPRESSION",
       "lineno": 156,
+      "missing_obligation": "cell must be present at this guard",
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "cell"
     },
     {
       "category": "UNCLASSIFIED",
@@ -4395,8 +5124,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 391,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4405,8 +5136,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 397,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -4415,8 +5148,10 @@
       "has_reason": false,
       "kind": "BRANCH",
       "lineno": 408,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4425,20 +5160,24 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 354,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "assess_hypothesis",
       "file": "study/p1/statistics.py",
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 418,
+      "missing_obligation": "difference must be present at this guard",
       "reasons": [
         "no matched difference was computed"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "difference"
     },
     {
       "category": "UNCLASSIFIED",
@@ -4447,10 +5186,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 426,
+      "missing_obligation": null,
       "reasons": [
         "matched unit(s) are CANNOT_CHECK and may not be scored as failures"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4459,10 +5200,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 435,
+      "missing_obligation": null,
       "reasons": [
         "no matched units"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4471,10 +5214,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 467,
+      "missing_obligation": null,
       "reasons": [
         "non-inferiority on unnecessary-reframe rate requires both systems' control-abstention rates; without them the rate cannot be read as restraint"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4483,13 +5228,15 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 476,
+      "missing_obligation": null,
       "reasons": [
         "control-abstention rate is",
         "versus",
         ": the unnecessary-reframe rate is confounded by abstention and cannot certify non-inferiority",
         ".4f"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4498,8 +5245,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 75,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4508,8 +5257,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 548,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4518,18 +5269,22 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 635,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "_fmt_interval",
       "file": "study/p1/tables.py",
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 640,
+      "missing_obligation": "payload must be present at this guard",
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "payload"
     },
     {
       "category": "MISSING_IDENTITY",
@@ -4538,6 +5293,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 666,
+      "missing_obligation": null,
       "reasons": [
         "Suite fingerprint(s): `",
         "` \u00b7 subject revision(s): `",
@@ -4561,7 +5317,8 @@
         "suite_fingerprints",
         "subject_revisions"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNAVAILABLE_PROVIDER",
@@ -4570,10 +5327,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 30,
+      "missing_obligation": "present must be present at this guard",
       "reasons": [
         "ANTHROPIC_API_KEY is unset; the prospective V2 campaign, matched baselines, and held-out experiment cannot run"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "present"
     },
     {
       "category": "UNCLASSIFIED",
@@ -4582,10 +5341,12 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 116,
+      "missing_obligation": null,
       "reasons": [
         "status"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4594,8 +5355,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 446,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4604,8 +5367,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 448,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4614,6 +5379,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 221,
+      "missing_obligation": null,
       "reasons": [
         "n_tasks",
         "mean_complete_gold_recall",
@@ -4641,7 +5407,8 @@
         "routes_used",
         "marginal_relevant_gain_after_first_route"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4650,8 +5417,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 68,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4660,8 +5429,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 176,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4670,8 +5441,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 240,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNAVAILABLE_PROVIDER",
@@ -4680,6 +5453,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 340,
+      "missing_obligation": null,
       "reasons": [
         "benchmark",
         "archive",
@@ -4707,7 +5481,8 @@
         "/ avg_iou",
         "tasks are censored-route obligations. Item-level confirmation requires retained traces."
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4716,8 +5491,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 56,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4726,8 +5503,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 183,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4736,10 +5515,12 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 189,
+      "missing_obligation": null,
       "reasons": [
         "utf-8"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4748,6 +5529,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 221,
+      "missing_obligation": null,
       "reasons": [
         "schema_version",
         "protocol_id",
@@ -4775,7 +5557,8 @@
         "matched",
         "mismatches"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4784,8 +5567,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 20,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4794,12 +5579,14 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 28,
+      "missing_obligation": null,
       "reasons": [
         "HARD",
         "CONDITIONAL",
         "UNRESOLVED"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -4808,13 +5595,15 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 194,
+      "missing_obligation": null,
       "reasons": [
         "UNRESOLVED",
         "certificate content_hash mismatch",
         "source_content_substitution",
         "missing_anchor"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4823,11 +5612,13 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 111,
+      "missing_obligation": null,
       "reasons": [
         "scion_like_conservative_schema_fusion",
         "SCION-like evidence-linked fusion is not faithfully implemented; stub only"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4836,11 +5627,13 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 120,
+      "missing_obligation": null,
       "reasons": [
         "executable_schema_contracts_like",
         "provenance-aware schema-contract baseline is not faithfully implemented; stub only"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -4849,11 +5642,13 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 129,
+      "missing_obligation": null,
       "reasons": [
         "provenance_world_attributed_statements",
         "provenance-world/attributed-statement reasoning is not faithfully implemented; stub only"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "INSUFFICIENT_EVIDENCE",
@@ -4862,6 +5657,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 156,
+      "missing_obligation": null,
       "reasons": [
         "status_counts",
         "n_scored",
@@ -4869,7 +5665,8 @@
         "reason",
         "empty"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -4878,6 +5675,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 354,
+      "missing_obligation": null,
       "reasons": [
         "schema_version",
         "target_n",
@@ -4893,7 +5691,8 @@
         "orion.p3.public-reference-build-report.v1",
         "READY_FOR_FREEZE"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -4902,6 +5701,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 306,
+      "missing_obligation": null,
       "reasons": [
         "schema_version",
         "protocol_id",
@@ -4918,7 +5718,8 @@
         "orion.p3.public-reference-build-report.v1.1",
         "READY_FOR_FREEZE"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -4927,6 +5728,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 91,
+      "missing_obligation": null,
       "reasons": [
         "schema_version",
         "status",
@@ -4943,7 +5745,8 @@
         "SciFact",
         "SciSchema"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -4952,6 +5755,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 101,
+      "missing_obligation": null,
       "reasons": [
         "schema_version",
         "status",
@@ -4973,7 +5777,8 @@
         "outcome-blind round-robin window",
         "READY_FOR_CONFIRMATORY_FREEZE"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -4982,6 +5787,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 34,
+      "missing_obligation": null,
       "reasons": [
         "protocol_id",
         "frozen_campaign_id",
@@ -4997,7 +5803,8 @@
         "independent_red_team_via_issue_283",
         "followup_scientific_terminal"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5006,8 +5813,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 61,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5016,8 +5825,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 204,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5026,8 +5837,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 223,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5036,8 +5849,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 309,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5046,8 +5861,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 311,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNAVAILABLE_PROVIDER",
@@ -5056,12 +5873,14 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 28,
+      "missing_obligation": null,
       "reasons": [
         "status",
         "authority",
         "CREDENTIALS_PRESENT"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5070,11 +5889,13 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 29,
+      "missing_obligation": null,
       "reasons": [
         "status",
         "authority"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5083,11 +5904,13 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 29,
+      "missing_obligation": null,
       "reasons": [
         "status",
         "authority"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5096,8 +5919,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 46,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5106,8 +5931,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 53,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5116,8 +5943,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 147,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5126,8 +5955,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 171,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -5136,11 +5967,13 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 34,
+      "missing_obligation": null,
       "reasons": [
         "empirical_authority",
         "discriminator freeze cannot raise empirical authority"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -5149,6 +5982,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 371,
+      "missing_obligation": null,
       "reasons": [
         "schema_version",
         "suite_id",
@@ -5167,7 +6001,8 @@
         "case_id",
         "negative_variants"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5176,8 +6011,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 93,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5186,8 +6023,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 426,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5196,8 +6035,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 439,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -5206,10 +6047,12 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 463,
+      "missing_obligation": null,
       "reasons": [
         "fresh-transfer preflight must not self-certify promotion"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNAVAILABLE_PROVIDER",
@@ -5218,6 +6061,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 542,
+      "missing_obligation": null,
       "reasons": [
         "ticked",
         "verified_on_main",
@@ -5251,7 +6095,8 @@
         "negative_history_chain",
         "protected_suite_freeze"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNAVAILABLE_PROVIDER",
@@ -5260,6 +6105,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 556,
+      "missing_obligation": null,
       "reasons": [
         "ticked",
         "verified_on_main",
@@ -5293,7 +6139,8 @@
         "negative_history_chain",
         "protected_suite_freeze"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNAVAILABLE_PROVIDER",
@@ -5302,6 +6149,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 563,
+      "missing_obligation": null,
       "reasons": [
         "ticked",
         "verified_on_main",
@@ -5335,7 +6183,8 @@
         "negative_history_chain",
         "protected_suite_freeze"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNAVAILABLE_PROVIDER",
@@ -5344,6 +6193,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 570,
+      "missing_obligation": null,
       "reasons": [
         "ticked",
         "verified_on_main",
@@ -5377,7 +6227,8 @@
         "negative_history_chain",
         "protected_suite_freeze"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNAVAILABLE_PROVIDER",
@@ -5386,6 +6237,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 577,
+      "missing_obligation": null,
       "reasons": [
         "ticked",
         "verified_on_main",
@@ -5419,7 +6271,8 @@
         "negative_history_chain",
         "protected_suite_freeze"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNAVAILABLE_PROVIDER",
@@ -5428,6 +6281,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 583,
+      "missing_obligation": null,
       "reasons": [
         "ticked",
         "verified_on_main",
@@ -5461,7 +6315,8 @@
         "negative_history_chain",
         "protected_suite_freeze"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNAVAILABLE_PROVIDER",
@@ -5470,6 +6325,7 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 589,
+      "missing_obligation": null,
       "reasons": [
         "ticked",
         "verified_on_main",
@@ -5503,7 +6359,8 @@
         "negative_history_chain",
         "protected_suite_freeze"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -5512,6 +6369,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 601,
+      "missing_obligation": null,
       "reasons": [
         "schema_version",
         "issue",
@@ -5535,7 +6393,8 @@
         "fail_closed_pr",
         "packet_still_unbound"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -5544,6 +6403,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 609,
+      "missing_obligation": null,
       "reasons": [
         "schema_version",
         "issue",
@@ -5567,7 +6427,8 @@
         "fail_closed_pr",
         "packet_still_unbound"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -5576,6 +6437,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 613,
+      "missing_obligation": null,
       "reasons": [
         "schema_version",
         "issue",
@@ -5599,7 +6461,8 @@
         "fail_closed_pr",
         "packet_still_unbound"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -5608,6 +6471,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 621,
+      "missing_obligation": null,
       "reasons": [
         "schema_version",
         "issue",
@@ -5631,7 +6495,8 @@
         "fail_closed_pr",
         "packet_still_unbound"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -5640,6 +6505,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 625,
+      "missing_obligation": null,
       "reasons": [
         "schema_version",
         "issue",
@@ -5663,7 +6529,8 @@
         "fail_closed_pr",
         "packet_still_unbound"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5672,10 +6539,12 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 215,
+      "missing_obligation": null,
       "reasons": [
         "empirical_authority"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5684,8 +6553,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 32,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5694,11 +6565,13 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 45,
+      "missing_obligation": null,
       "reasons": [
         "ACCEPT",
         "REJECT"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -5707,6 +6580,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 463,
+      "missing_obligation": null,
       "reasons": [
         "valid",
         "errors",
@@ -5720,7 +6594,8 @@
         "empirical_authority",
         "run manifest invalid:"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5729,11 +6604,13 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 754,
+      "missing_obligation": null,
       "reasons": [
         "ACCEPT",
         "REJECT"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5742,11 +6619,13 @@
       "has_reason": true,
       "kind": "ASSIGN",
       "lineno": 754,
+      "missing_obligation": null,
       "reasons": [
         "ACCEPT",
         "REJECT"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_IDENTITY",
@@ -5755,6 +6634,7 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 848,
+      "missing_obligation": null,
       "reasons": [
         "valid",
         "errors",
@@ -5767,7 +6647,8 @@
         "fresh_harm_count",
         "empirical_authority"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5776,13 +6657,15 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 151,
+      "missing_obligation": null,
       "reasons": [
         "paper_id",
         "protocol_id",
         "status",
         "reason"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5791,18 +6674,22 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 11,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "DefeaterPlanner.readiness",
       "file": "transfer/defeaters.py",
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 85,
+      "missing_obligation": "action must be present at this guard",
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "action"
     },
     {
       "category": "UNCLASSIFIED",
@@ -5811,8 +6698,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 11,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_ACCESS",
@@ -5821,8 +6710,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 81,
+      "missing_obligation": "anchors must be present at this guard",
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "anchors"
     },
     {
       "category": "UNCLASSIFIED",
@@ -5831,8 +6722,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 32,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5841,8 +6734,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 165,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5851,8 +6746,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 17,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5861,8 +6758,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 23,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -5871,8 +6770,10 @@
       "has_reason": false,
       "kind": "BRANCH",
       "lineno": 80,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -5881,8 +6782,10 @@
       "has_reason": false,
       "kind": "BRANCH",
       "lineno": 91,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5891,8 +6794,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 92,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5901,8 +6806,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 12,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5911,8 +6818,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 141,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5921,8 +6830,10 @@
       "has_reason": false,
       "kind": "RETURN",
       "lineno": 159,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5931,28 +6842,34 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 23,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "diagnose_and_license",
       "file": "transfer/v2/p1.py",
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 103,
+      "missing_obligation": "diagnosable must be present at this guard",
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "diagnosable"
     },
     {
-      "category": "UNCLASSIFIED",
+      "category": "MISSING_DECLARATION",
       "context": "diagnose_and_license",
       "file": "transfer/v2/p1.py",
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 117,
+      "missing_obligation": "observations must be present at this guard",
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "observations"
     },
     {
       "category": "UNCLASSIFIED",
@@ -5961,8 +6878,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 120,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -5971,8 +6890,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 23,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_ACCESS",
@@ -5981,10 +6902,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 134,
+      "missing_obligation": "edge must be present at this guard",
       "reasons": [
         "MAPPING_MISSING"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "edge"
     },
     {
       "category": "MISSING_ACCESS",
@@ -5993,10 +6916,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 140,
+      "missing_obligation": null,
       "reasons": [
         "BIDIRECTIONAL_VALIDATION_MISSING"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_ACCESS",
@@ -6005,10 +6930,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 145,
+      "missing_obligation": null,
       "reasons": [
         "PROVENANCE_ANCHOR_MISSING"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_ACCESS",
@@ -6017,10 +6944,12 @@
       "has_reason": true,
       "kind": "RETURN",
       "lineno": 150,
+      "missing_obligation": "anchors must be present at this guard",
       "reasons": [
         "VALIDATION_ANCHORS_MISSING"
       ],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": "anchors"
     },
     {
       "category": "UNCLASSIFIED",
@@ -6029,8 +6958,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 22,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "NOT_A_BLOCKER",
@@ -6039,12 +6970,14 @@
       "has_reason": true,
       "kind": "BRANCH",
       "lineno": 115,
+      "missing_obligation": null,
       "reasons": [
         "CRITICAL_DEFEATER_WITHOUT_PROTECTED_ACTION",
         "PROTECTED_EVIDENCE_ACTION_SELECTED",
         "UNRESOLVED_NONCRITICAL_DEFEATER"
       ],
-      "role": "OBSERVES"
+      "role": "OBSERVES",
+      "unmet_precondition": null
     },
     {
       "category": "MISSING_CUSTODY",
@@ -6053,8 +6986,10 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 116,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     },
     {
       "category": "UNCLASSIFIED",
@@ -6063,13 +6998,16 @@
       "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 115,
+      "missing_obligation": null,
       "reasons": [],
-      "role": "EMITS"
+      "role": "EMITS",
+      "unmet_precondition": null
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "9ad44fbeb4adf29ebe06b83b9dbf331062ed14f4",
+  "subject_commit": "6ad457e69d2bdf7eea87cb66482fece05324870b",
   "total_sites": 468,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
+  "with_derived_obligation": 77,
   "with_reason": 210
 }
