@@ -1,0 +1,130 @@
+name: p3-manuscript-audit
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-03-global-knowledge-portrait/manuscript/**'
+      - 'papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_V1.md'
+      - 'papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md'
+      - 'papers/paper-03-global-knowledge-portrait/SCOPED_PUBLICATION_TRACK_V1.md'
+      - 'papers/paper-03-global-knowledge-portrait/journal_package/**'
+      - '.github/workflows/p3-manuscript-audit.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/paper-03-global-knowledge-portrait/manuscript/**'
+      - 'papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_V1.md'
+      - 'papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md'
+      - 'papers/paper-03-global-knowledge-portrait/SCOPED_PUBLICATION_TRACK_V1.md'
+      - 'papers/paper-03-global-knowledge-portrait/journal_package/**'
+      - '.github/workflows/p3-manuscript-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  manuscript:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install TeX toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-pictures texlive-fonts-recommended poppler-utils
+
+      - name: Audit scoped claim wiring and manuscript inputs
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          paper = Path('papers/paper-03-global-knowledge-portrait')
+          root = paper / 'manuscript'
+          tex_files = [root / 'main.tex', *sorted((root / 'sections').glob('*.tex'))]
+          text = '\n'.join(path.read_text(encoding='utf-8') for path in tex_files)
+          bib = (root / 'bibliography.bib').read_text(encoding='utf-8')
+          bib_keys = set(re.findall(r'@\w+\s*\{\s*([^,\s]+)', bib))
+          cite_keys = set()
+          for group in re.findall(r'\\cite\w*\{([^}]+)\}', text):
+              cite_keys.update(key.strip() for key in group.split(',') if key.strip())
+          missing_cites = sorted(cite_keys - bib_keys)
+
+          missing_inputs = []
+          for target in re.findall(r'\\input\{([^}]+)\}', (root / 'main.tex').read_text(encoding='utf-8')):
+              path = root / target
+              if not path.suffix:
+                  path = path.with_suffix('.tex')
+              if not path.is_file():
+                  missing_inputs.append(str(path.relative_to(root)))
+
+          labels = re.findall(r'\\label\{([^}]+)\}', text)
+          duplicate_labels = sorted({label for label in labels if labels.count(label) > 1})
+
+          abstract = (root / 'sections' / '00-abstract.tex').read_text(encoding='utf-8')
+          conclusion = (root / 'sections' / '08-conclusion.tex').read_text(encoding='utf-8')
+          limitations = (root / 'sections' / '07-limitations.tex').read_text(encoding='utf-8')
+          scoped = (paper / 'SCOPED_PUBLICATION_TRACK_V1.md').read_text(encoding='utf-8')
+
+          claim_errors = []
+          for name, fragment in [('abstract', abstract), ('conclusion', conclusion)]:
+              if '0.1875' not in fragment or '-0.1875' not in fragment:
+                  claim_errors.append(f'{name}_missing_confirmatory_effect')
+              if '0.125 for flat predicate' in fragment or '$-0.125$' in fragment:
+                  claim_errors.append(f'{name}_still_uses_exploratory_headline')
+          if '\\conststatus{}' not in abstract or '\\conststatus{}' not in conclusion:
+              claim_errors.append('headline_missing_cannot_check_boundary')
+          if 'has not been executed' not in limitations:
+              claim_errors.append('limitations_do_not_mark_broad_study_unexecuted')
+          if 'P3.C7' not in scoped or 'P3.C8' not in scoped:
+              claim_errors.append('scoped_track_missing_nonclaim_ids')
+
+          report = {
+              'schema_version': 'orion.p3.manuscript-static-audit.v1',
+              'tex_files_scanned': len(tex_files),
+              'bibliography_entries': len(bib_keys),
+              'citation_keys_used': len(cite_keys),
+              'missing_citation_keys': missing_cites,
+              'missing_input_files': missing_inputs,
+              'duplicate_labels': duplicate_labels,
+              'claim_errors': claim_errors,
+          }
+          Path('/tmp/p3-manuscript-audit.json').write_text(
+              json.dumps(report, indent=2, sort_keys=True) + '\n', encoding='utf-8'
+          )
+          print('P3_MANUSCRIPT_STATIC_AUDIT=' + json.dumps(report, sort_keys=True))
+          if missing_cites or missing_inputs or duplicate_labels or claim_errors:
+              raise SystemExit(1)
+          PY
+
+      - name: Verify journal package checksums
+        working-directory: papers/paper-03-global-knowledge-portrait
+        run: sha256sum -c journal_package/SHA256SUMS
+
+      - name: Compile canonical scoped PDF
+        working-directory: papers/paper-03-global-knowledge-portrait/manuscript
+        run: |
+          set -euo pipefail
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          test -s main.pdf
+          if grep -E 'LaTeX Warning: (Citation|Reference).*(undefined)|There were undefined references|undefined citations|multiply defined' main.log; then
+            echo 'Unresolved or duplicate LaTeX reference/citation remains after convergence.' >&2
+            exit 1
+          fi
+          pdfinfo main.pdf | tee /tmp/p3-pdfinfo.txt
+
+      - name: Archive audit and compiled PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: p3-manuscript-audit-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: error
+          path: |
+            /tmp/p3-manuscript-audit.json
+            /tmp/p3-pdfinfo.txt
+            papers/paper-03-global-knowledge-portrait/manuscript/main.pdf
+            papers/paper-03-global-knowledge-portrait/manuscript/main.log
