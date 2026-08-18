@@ -3,9 +3,10 @@ import importlib.util, json
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
-SCRIPT=ROOT/'papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/scripts/run_method_fibre_bench.py'
-SUMMARY=ROOT/'papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/method_fibre_extension/METHOD_FIBRE_BENCH_SUMMARY_V1.json'
-PANEL=ROOT/'papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/method_fibre_extension/METHOD_FIBRE_BENCH_V1.json'
+EXT=ROOT/'research/extensions/p6-method-fibres'
+SCRIPT=EXT/'run_method_fibre_bench.py'
+SUMMARY=EXT/'METHOD_FIBRE_BENCH_SUMMARY_V1.json'
+PANEL=EXT/'METHOD_FIBRE_BENCH_V1.json'
 
 def test_frozen_summary_rederives_exactly():
     spec=importlib.util.spec_from_file_location('p6_bench',SCRIPT); assert spec and spec.loader
