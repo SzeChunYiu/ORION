@@ -20,6 +20,9 @@ import argparse
 import hashlib
 import json
 import sys
+import zlib
+import tempfile
+import re
 from pathlib import Path
 
 PAPER_ROOT = Path(__file__).resolve().parents[1]
@@ -60,7 +63,7 @@ def _import_matplotlib():
         raise SystemExit(1) from e
 
 
-def render_plt(trajectory_data: dict, plt) -> Path:
+def render_plt(trajectory_data: dict, plt, destination: Path | None = None) -> Path:
     """Generate the recall-vs-query-count figure using matplotlib."""
     # Extract trajectory data for the two systems
     orion_trajectory = trajectory_data["trajectory_systems"]["orion_full"]
@@ -108,11 +111,12 @@ def render_plt(trajectory_data: dict, plt) -> Path:
     fig.tight_layout()
 
     # Save PDF
-    FIGURE_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(FIGURE_OUTPUT, format='pdf', dpi=300, bbox_inches='tight')
+    target = destination or FIGURE_OUTPUT
+    target.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(target, format='pdf', dpi=300, bbox_inches='tight')
     plt.close(fig)
 
-    return FIGURE_OUTPUT
+    return target
 
 
 def render_tex(trajectory_data: dict) -> str:
@@ -153,6 +157,12 @@ def render_tex(trajectory_data: dict) -> str:
     return "\n".join(lines)
 
 
+def _matplotlib_version() -> str:
+    import matplotlib
+
+    return matplotlib.__version__
+
+
 def compute_manifest() -> dict:
     """Compute SHA256 hashes of generated artifacts."""
     manifest: dict[str, any] = {
@@ -183,7 +193,89 @@ def compute_manifest() -> dict:
     else:
         manifest["artifacts"]["tex"] = {"error": "file not generated"}
 
+    manifest["matplotlib_version"] = _matplotlib_version()
     return manifest
+
+
+
+def _check(mechanisms_data: dict, rendered_tex: str) -> int:
+    """Compare the committed artifacts against a fresh render, writing nothing.
+
+    The previous `--check` wrote the tex, the PDF and the manifest and *then* asserted
+    that those freshly written files existed. It destroyed the evidence of drift before
+    looking for it, so it could not fail -- which is how the manifest came to record a
+    `source_hash` for a version of `OFFLINE_MECHANISMS_V1.json` that is no longer in the
+    tree, and how the committed PDF came to differ from what the committed data renders.
+
+    Absent is reported separately from different. "Could not check" is not a pass.
+    """
+
+    missing = [path for path in (TEX_OUTPUT, FIGURE_OUTPUT, MANIFEST_OUTPUT) if not path.exists()]
+    if missing:
+        for path in missing:
+            print(f"CANNOT_CHECK: committed artifact absent: {path}", file=sys.stderr)
+        return 2
+
+    drift: list[str] = []
+
+    if TEX_OUTPUT.read_text(encoding="utf-8") != rendered_tex:
+        drift.append(f"{TEX_OUTPUT.name}: committed tex differs from a fresh render")
+
+    manifest = json.loads(MANIFEST_OUTPUT.read_text(encoding="utf-8"))
+    recorded_source = manifest.get("source_hash", {}).get(MECHANISMS_PATH.name)
+    actual_source = hashlib.sha256(MECHANISMS_PATH.read_bytes()).hexdigest()
+    if recorded_source != actual_source:
+        drift.append(
+            f"{MANIFEST_OUTPUT.name}: records source_hash {recorded_source} for "
+            f"{MECHANISMS_PATH.name}, which currently hashes to {actual_source}"
+        )
+
+    # The PDF is only comparable against the renderer that produced it. Matplotlib changes
+    # its output between minor versions, so running a different one and reporting DRIFT
+    # would be a false alarm, and reporting a pass would be worse. Say which it is.
+    recorded_renderer = manifest.get("matplotlib_version")
+    running_renderer = _matplotlib_version()
+    unchecked: list[str] = []
+    if recorded_renderer is not None and recorded_renderer != running_renderer:
+        unchecked.append(
+            f"{FIGURE_OUTPUT.name}: rendered by matplotlib {recorded_renderer}, running "
+            f"{running_renderer}; figure content is not comparable across renderer versions"
+        )
+    else:
+        with tempfile.TemporaryDirectory(prefix="p2-2-check-") as scratch:
+            fresh_pdf = render_plt(mechanisms_data, _import_matplotlib(), Path(scratch) / FIGURE_OUTPUT.name)
+            # Matplotlib stamps a CreationDate, so the bytes never match. The drawn content
+            # is what matters, and it is deterministic: two renders of the same data under
+            # one renderer version produce identical content streams.
+            if _pdf_content(fresh_pdf) != _pdf_content(FIGURE_OUTPUT):
+                drift.append(f"{FIGURE_OUTPUT.name}: committed figure content differs from a fresh render")
+
+    if drift:
+        for line in drift:
+            print(f"DRIFT: {line}", file=sys.stderr)
+        return 1
+
+    if unchecked:
+        for line in unchecked:
+            print(f"CANNOT_CHECK: {line}", file=sys.stderr)
+        print("P2-2 tex and manifest source hash match; the figure content was not comparable")
+        return 3
+
+    print("P2-2 tex, figure content and manifest source hash all match the committed data")
+    return 0
+
+
+def _pdf_content(path: Path) -> bytes:
+    """The drawn content of a PDF, excluding the metadata matplotlib stamps with a clock."""
+
+    raw = path.read_bytes()
+    streams = []
+    for match in re.finditer(rb"stream\r?\n(.*?)endstream", raw, re.S):
+        try:
+            streams.append(zlib.decompress(match.group(1)))
+        except zlib.error:
+            streams.append(match.group(1))
+    return b"".join(streams)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -206,6 +298,9 @@ def main(argv: list[str] | None = None) -> int:
         sys.stdout.write(rendered_tex)
         return 0
 
+    if args.check:
+        return _check(mechanisms_data, rendered_tex)
+
     # Write LaTeX
     TEX_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     TEX_OUTPUT.write_text(rendered_tex, encoding="utf-8")
@@ -219,16 +314,6 @@ def main(argv: list[str] | None = None) -> int:
     manifest = compute_manifest()
     MANIFEST_OUTPUT.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     print(f"wrote {MANIFEST_OUTPUT}")
-
-    if args.check:
-        if not TEX_OUTPUT.exists():
-            print(f"missing rendered tex: {TEX_OUTPUT}", file=sys.stderr)
-            return 1
-        if not FIGURE_OUTPUT.exists():
-            print(f"missing rendered pdf: {FIGURE_OUTPUT}", file=sys.stderr)
-            return 1
-        print("P2-2 artifacts match source mechanisms JSON")
-        return 0
 
     return 0
 
