@@ -129,20 +129,75 @@ def _site_kind(statement: ast.AST) -> str:
     return "OTHER_STATEMENT"
 
 
+#: Sibling literals that are terminal names, field names or enum members rather
+#: than causes. Counting these as reasons inflated `with_reason` by 18 sites in the
+#: first published inventory: a site returning `("status", "PASS")` was recorded as
+#: carrying a reason when nothing there says why the check could not run. The gap
+#: this inventory exists to measure is understated by exactly that much.
+_NON_REASON_LITERALS = frozenset(
+    {
+        "accept",
+        "authority",
+        "authority_flags",
+        "blocked",
+        "cannot_check",
+        "deny",
+        "denied",
+        "fail",
+        "failed",
+        "inconclusive",
+        "pass",
+        "passed",
+        "pending",
+        "promoted",
+        "protocol_id",
+        "reject",
+        "rejected",
+        "status",
+        "verdict",
+        "verified",
+    }
+)
+
+
+def _is_reason(value: str) -> bool:
+    """A reason says why; a bare terminal or field name does not.
+
+    Rejection is by *name*, not by case. A first attempt also rejected every bare
+    `SCREAMING_CASE` token as an enum member, which was too blunt: it threw away
+    `CREDENTIALS_PRESENT` in `study/p5/causal_repair.py`, a status value that states
+    exactly why that site is `CANNOT_CHECK` and that was correctly driving an
+    `UNAVAILABLE_PROVIDER` classification. Case does not distinguish a terminal name
+    from a domain value; only the name does.
+
+    Everything not named is kept, including short snake_case blocker codes such as
+    `required_core_feature_unresolved`, which are genuine causes.
+    """
+
+    stripped = value.strip()
+    if len(stripped) <= 2:
+        return False
+    return stripped.lower() not in _NON_REASON_LITERALS
+
+
 def _reason_strings(statement: ast.AST) -> tuple[str, ...]:
-    """Every string literal in the statement other than `CANNOT_CHECK` itself.
+    """Every string literal in the statement that states a cause.
 
     A `CANNOT_CHECK` carrying a reason nearly always carries it as a sibling
     literal in the same statement -- a returned tuple, a call argument, an appended
     blocker code. Reading the statement rather than the single node is what makes
     the difference between a reason and a placeholder.
+
+    Sibling literals that name a terminal or a field are filtered out by
+    `_is_reason`; see the note on `_NON_REASON_LITERALS` for why that matters to the
+    headline count.
     """
 
     found: list[str] = []
     for node in ast.walk(statement):
         if isinstance(node, ast.Constant) and isinstance(node.value, str):
             value = node.value.strip()
-            if value and value != "CANNOT_CHECK" and len(value) > 2:
+            if value != "CANNOT_CHECK" and _is_reason(value):
                 found.append(value)
     return tuple(dict.fromkeys(found))
 

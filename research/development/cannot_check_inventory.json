@@ -391,17 +391,11 @@
       "category": "UNCLASSIFIED",
       "context": "_derive_verdict_fields",
       "file": "benchmarks/campaign_runner.py",
-      "has_reason": true,
+      "has_reason": false,
       "kind": "RETURN",
       "lineno": 87,
       "missing_obligation": null,
-      "reasons": [
-        "status",
-        "authority_flags",
-        "promoted",
-        "blocked",
-        "cannot_check"
-      ],
+      "reasons": [],
       "role": "EMITS",
       "unmet_precondition": null
     },
@@ -409,15 +403,11 @@
       "category": "UNCLASSIFIED",
       "context": "_derive_verdict_fields",
       "file": "benchmarks/campaign_runner.py",
-      "has_reason": true,
+      "has_reason": false,
       "kind": "RETURN",
       "lineno": 89,
       "missing_obligation": null,
-      "reasons": [
-        "status",
-        "authority_flags",
-        "PASS"
-      ],
+      "reasons": [],
       "role": "EMITS",
       "unmet_precondition": null
     },
@@ -425,14 +415,11 @@
       "category": "UNCLASSIFIED",
       "context": "run_manifest_campaign",
       "file": "benchmarks/campaign_runner.py",
-      "has_reason": true,
+      "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 213,
       "missing_obligation": null,
-      "reasons": [
-        "PASS",
-        "FAIL"
-      ],
+      "reasons": [],
       "role": "EMITS",
       "unmet_precondition": null
     },
@@ -440,14 +427,11 @@
       "category": "UNCLASSIFIED",
       "context": "run_manifest_campaign",
       "file": "benchmarks/campaign_runner.py",
-      "has_reason": true,
+      "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 235,
       "missing_obligation": null,
-      "reasons": [
-        "PASS",
-        "FAIL"
-      ],
+      "reasons": [],
       "role": "EMITS",
       "unmet_precondition": null
     },
@@ -455,14 +439,11 @@
       "category": "UNCLASSIFIED",
       "context": "run_manifest_campaign",
       "file": "benchmarks/campaign_runner.py",
-      "has_reason": true,
+      "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 257,
       "missing_obligation": null,
-      "reasons": [
-        "PASS",
-        "FAIL"
-      ],
+      "reasons": [],
       "role": "EMITS",
       "unmet_precondition": null
     },
@@ -3270,13 +3251,9 @@
         "PARTIAL",
         "partial/false-progress condition",
         "partial output is explicitly typed and cannot masquerade as success",
-        "failed",
-        "FAILED",
         "failure-mode detector fires",
         "failed output is quarantined from authority promotion",
-        "blocked",
         "CREATED|READY|RUNNING",
-        "BLOCKED",
         "mandatory prerequisite cannot be satisfied",
         "no downstream state transition may assume the blocked operation executed",
         "cannot-check",
@@ -3636,7 +3613,6 @@
       "missing_obligation": null,
       "reasons": [
         "schema",
-        "status",
         "reasoner_model",
         "reasoner_family",
         "evaluator_model",
@@ -3767,13 +3743,11 @@
       "category": "UNCLASSIFIED",
       "context": "audit_phase2_evidence_receipt_file",
       "file": "self_orion/evidence_audit_cli.py",
-      "has_reason": true,
+      "has_reason": false,
       "kind": "RETURN",
       "lineno": 98,
       "missing_obligation": null,
-      "reasons": [
-        "PASS"
-      ],
+      "reasons": [],
       "role": "EMITS",
       "unmet_precondition": null
     },
@@ -5080,7 +5054,6 @@
         "system_role",
         "dependency_depth",
         "seed",
-        "status",
         "is_control",
         "is_hidden_shift",
         "reframe_required",
@@ -5338,13 +5311,11 @@
       "category": "UNCLASSIFIED",
       "context": "reproduce_v1",
       "file": "study/p1_causal/reproduce_v1.py",
-      "has_reason": true,
+      "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 116,
       "missing_obligation": null,
-      "reasons": [
-        "status"
-      ],
+      "reasons": [],
       "role": "EMITS",
       "unmet_precondition": null
     },
@@ -5396,8 +5367,6 @@
         "invalid_rate",
         "status_counts",
         "failure_counts",
-        "PASS",
-        "FAIL",
         "INVALID",
         "complete_gold_recall",
         "precision",
@@ -5532,7 +5501,6 @@
       "missing_obligation": null,
       "reasons": [
         "schema_version",
-        "protocol_id",
         "reproduction_verdict",
         "v1_confirmatory_immutable",
         "claim_boundary",
@@ -5680,7 +5648,6 @@
         "schema_version",
         "target_n",
         "built_n",
-        "status",
         "pool_counts",
         "disciplines",
         "case_families",
@@ -5704,8 +5671,6 @@
       "missing_obligation": null,
       "reasons": [
         "schema_version",
-        "protocol_id",
-        "status",
         "target_n",
         "built_n",
         "pool_counts",
@@ -5731,7 +5696,6 @@
       "missing_obligation": null,
       "reasons": [
         "schema_version",
-        "status",
         "case_count",
         "input_cases_sha256",
         "portable_cases_sha256",
@@ -5758,7 +5722,6 @@
       "missing_obligation": null,
       "reasons": [
         "schema_version",
-        "status",
         "selection_rule",
         "selection_offset",
         "target_n",
@@ -5789,9 +5752,7 @@
       "lineno": 34,
       "missing_obligation": null,
       "reasons": [
-        "protocol_id",
         "frozen_campaign_id",
-        "status",
         "reason",
         "p4_v2_readiness",
         "remaining_cannot_check",
@@ -5875,8 +5836,6 @@
       "lineno": 28,
       "missing_obligation": null,
       "reasons": [
-        "status",
-        "authority",
         "CREDENTIALS_PRESENT"
       ],
       "role": "EMITS",
@@ -5886,14 +5845,11 @@
       "category": "UNCLASSIFIED",
       "context": "live_campaign_preflight",
       "file": "study/p5/causal_repair.py",
-      "has_reason": true,
+      "has_reason": false,
       "kind": "RETURN",
       "lineno": 29,
       "missing_obligation": null,
-      "reasons": [
-        "status",
-        "authority"
-      ],
+      "reasons": [],
       "role": "EMITS",
       "unmet_precondition": null
     },
@@ -5901,14 +5857,11 @@
       "category": "UNCLASSIFIED",
       "context": "live_campaign_preflight",
       "file": "study/p5/causal_repair.py",
-      "has_reason": true,
+      "has_reason": false,
       "kind": "RETURN",
       "lineno": 29,
       "missing_obligation": null,
-      "reasons": [
-        "status",
-        "authority"
-      ],
+      "reasons": [],
       "role": "EMITS",
       "unmet_precondition": null
     },
@@ -6074,7 +6027,6 @@
         "papers/paper-05-self-orion/protocol/P5_NEGATIVE_HISTORY_CHAIN_V1.json",
         "precondition.protected_suite_freeze_protocol",
         "papers/paper-05-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md",
-        "status",
         "reason",
         "precondition.final_campaign_identities_frozen",
         "exact final subject/provider/model/evaluator/split/epoch are not bound",
@@ -6118,7 +6070,6 @@
         "papers/paper-05-self-orion/protocol/P5_NEGATIVE_HISTORY_CHAIN_V1.json",
         "precondition.protected_suite_freeze_protocol",
         "papers/paper-05-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md",
-        "status",
         "reason",
         "precondition.final_campaign_identities_frozen",
         "exact final subject/provider/model/evaluator/split/epoch are not bound",
@@ -6162,7 +6113,6 @@
         "papers/paper-05-self-orion/protocol/P5_NEGATIVE_HISTORY_CHAIN_V1.json",
         "precondition.protected_suite_freeze_protocol",
         "papers/paper-05-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md",
-        "status",
         "reason",
         "precondition.final_campaign_identities_frozen",
         "exact final subject/provider/model/evaluator/split/epoch are not bound",
@@ -6206,7 +6156,6 @@
         "papers/paper-05-self-orion/protocol/P5_NEGATIVE_HISTORY_CHAIN_V1.json",
         "precondition.protected_suite_freeze_protocol",
         "papers/paper-05-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md",
-        "status",
         "reason",
         "precondition.final_campaign_identities_frozen",
         "exact final subject/provider/model/evaluator/split/epoch are not bound",
@@ -6250,7 +6199,6 @@
         "papers/paper-05-self-orion/protocol/P5_NEGATIVE_HISTORY_CHAIN_V1.json",
         "precondition.protected_suite_freeze_protocol",
         "papers/paper-05-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md",
-        "status",
         "reason",
         "precondition.final_campaign_identities_frozen",
         "exact final subject/provider/model/evaluator/split/epoch are not bound",
@@ -6294,7 +6242,6 @@
         "papers/paper-05-self-orion/protocol/P5_NEGATIVE_HISTORY_CHAIN_V1.json",
         "precondition.protected_suite_freeze_protocol",
         "papers/paper-05-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md",
-        "status",
         "reason",
         "precondition.final_campaign_identities_frozen",
         "exact final subject/provider/model/evaluator/split/epoch are not bound",
@@ -6338,7 +6285,6 @@
         "papers/paper-05-self-orion/protocol/P5_NEGATIVE_HISTORY_CHAIN_V1.json",
         "precondition.protected_suite_freeze_protocol",
         "papers/paper-05-self-orion/protocol/PROTECTED_SUITE_FREEZE_V1.md",
-        "status",
         "reason",
         "precondition.final_campaign_identities_frozen",
         "exact final subject/provider/model/evaluator/split/epoch are not bound",
@@ -6386,7 +6332,6 @@
         "277",
         "state",
         "packet_bound",
-        "status",
         "OPEN",
         "blocked_on",
         "fail_closed_on_main",
@@ -6420,7 +6365,6 @@
         "277",
         "state",
         "packet_bound",
-        "status",
         "OPEN",
         "blocked_on",
         "fail_closed_on_main",
@@ -6454,7 +6398,6 @@
         "277",
         "state",
         "packet_bound",
-        "status",
         "OPEN",
         "blocked_on",
         "fail_closed_on_main",
@@ -6488,7 +6431,6 @@
         "277",
         "state",
         "packet_bound",
-        "status",
         "OPEN",
         "blocked_on",
         "fail_closed_on_main",
@@ -6522,7 +6464,6 @@
         "277",
         "state",
         "packet_bound",
-        "status",
         "OPEN",
         "blocked_on",
         "fail_closed_on_main",
@@ -6562,14 +6503,11 @@
       "category": "UNCLASSIFIED",
       "context": "",
       "file": "study/p5/v2_evidence.py",
-      "has_reason": true,
+      "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 45,
       "missing_obligation": null,
-      "reasons": [
-        "ACCEPT",
-        "REJECT"
-      ],
+      "reasons": [],
       "role": "EMITS",
       "unmet_precondition": null
     },
@@ -6601,14 +6539,11 @@
       "category": "UNCLASSIFIED",
       "context": "validate_result_archive",
       "file": "study/p5/v2_evidence.py",
-      "has_reason": true,
+      "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 754,
       "missing_obligation": null,
-      "reasons": [
-        "ACCEPT",
-        "REJECT"
-      ],
+      "reasons": [],
       "role": "EMITS",
       "unmet_precondition": null
     },
@@ -6616,14 +6551,11 @@
       "category": "UNCLASSIFIED",
       "context": "validate_result_archive",
       "file": "study/p5/v2_evidence.py",
-      "has_reason": true,
+      "has_reason": false,
       "kind": "ASSIGN",
       "lineno": 754,
       "missing_obligation": null,
-      "reasons": [
-        "ACCEPT",
-        "REJECT"
-      ],
+      "reasons": [],
       "role": "EMITS",
       "unmet_precondition": null
     },
@@ -6660,8 +6592,6 @@
       "missing_obligation": null,
       "reasons": [
         "paper_id",
-        "protocol_id",
-        "status",
         "reason"
       ],
       "role": "EMITS",
@@ -7005,9 +6935,9 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "b48038f0fa49dd3fb7993e9b0cfa813158537871",
+  "subject_commit": "73e9505e41f0c49ddec366aeb49d8a4aa73c5322",
   "total_sites": 468,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_derived_obligation": 77,
-  "with_reason": 210
+  "with_reason": 198
 }
