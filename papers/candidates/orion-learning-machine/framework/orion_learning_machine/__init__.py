@@ -7,4 +7,12 @@ from .residuals import residual_clusters
 from .induction import TransitionContractInducer
 from .ledger import ExperienceLedger
 from .runtime import LearningMachine
-from .math_eval import FrozenMathTask, MathAttempt, VerifierReceipt, BoundMathResult, bind_verifier_receipt
+from .math_eval import (
+    BoundMathResult,
+    FrozenMathTask,
+    MathAttempt,
+    MathEvaluationEnvironment,
+    VerifierReceipt,
+    bind_verifier_receipt,
+    verdict_from_native_exit,
+)
