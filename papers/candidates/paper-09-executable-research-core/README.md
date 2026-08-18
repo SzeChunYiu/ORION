@@ -35,21 +35,25 @@ A learned schedule matches the best fixed solver's success at roughly a third of
 
 Competence AUC 0.993–1.000 (IID) and 0.978–0.999 (shift). First-choice success degrades under shift (0.937 → 0.880) while scheduled success does not — the routing recovers what the first guess loses.
 
-### Phase 1 — mechanic composition (`PHASE1_MECHANIC_COMPOSITION.txt`)
+### Phase 1 — mechanic composition (`PHASE1_MECHANIC_COMPOSITION_V2.txt`)
 
 Across three regimes (scale, length, mixed), `failure_aware` composition **matches the oracle on every metric**:
 
-| Arm | solve_rate | effort (mixed) | early_abstain_opaque | effort_opaque | false_commit |
+| Arm | solve_rate | effort (mixed) | early_abstain_opaque | effort_opaque | false-commit status |
 |---|---|---|---|---|---|
-| `frequency` | 0.642 | 48.7 | 0.000 | 15.0 | 0.000 |
-| `blind` | 0.642 | 31.5 | 0.000 | 12.0 | 0.000 |
-| `imitation` | 1.000 | 18.0 | 0.000 | 12.0 | 0.000 |
-| `failure_aware` | 1.000 | 18.0 | **1.000** | **0.000** | 0.000 |
-| `oracle` | 1.000 | 18.0 | 1.000 | 0.000 | 0.000 |
+| `frequency` | 0.642 | 48.7 | 0.000 | 15.0 | NOT MEASURED |
+| `blind` | 0.642 | 31.5 | 0.000 | 12.0 | NOT MEASURED |
+| `imitation` | 1.000 | 18.0 | 0.000 | 12.0 | NOT MEASURED |
+| `failure_aware` | 1.000 | 18.0 | **1.000** | **0.000** | NOT MEASURED |
+| `oracle` | 1.000 | 18.0 | 1.000 | 0.000 | NOT MEASURED |
 
 **Read this carefully.** `imitation` and `failure_aware` are indistinguishable on solve rate and effort — both reach the ceiling. The whole difference is on *opaque* tasks: `failure_aware` abstains immediately at zero effort, `imitation` spends 12. So the claim supported here is about **knowing when not to try**, not about solving more. Anyone quoting "matches oracle" without that qualification is overstating it.
 
-`false_commit` is 0.000 for every arm including the baselines, so this suite does not discriminate on false commitment at all.
+Phase 1 has no commit event and did not prospectively define false commitment.
+The delivered V1 runner hard-coded `false_commit=0.000`; that field is rejected,
+not interpreted as an observed null. The V2 result reports
+`false_commit_status=NOT_MEASURED` for every arm and a hostile test prevents the
+numeric claim from returning.
 
 ## Ownership boundary
 

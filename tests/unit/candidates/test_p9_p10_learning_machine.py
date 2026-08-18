@@ -27,6 +27,7 @@ LANE = ROOT / "papers" / "candidates" / "orion-learning-machine"
 MANIFEST = LANE / "SCRIPT_MANIFEST_SHA256.txt"
 RESULTS = LANE / "results"
 PHASE2A = RESULTS / "PHASE2A_RESULTS.json"
+PHASE1_V2 = RESULTS / "PHASE1_MECHANIC_COMPOSITION_V2.txt"
 
 MANIFEST_ROW = re.compile(r"([0-9a-f]{64})\s+\*?(.+)")
 
@@ -62,6 +63,28 @@ def test_results_are_present_and_not_covered_by_the_source_manifest() -> None:
     ):
         assert (RESULTS / name).is_file(), f"missing committed result: {name}"
         assert f"results/{name}" not in named
+
+
+def test_phase1_false_commit_is_explicitly_not_measured() -> None:
+    """A hard-coded zero must never re-enter the result as an observation."""
+
+    delivered = (
+        LANE / "experiments" / "phase1_mechanic_composition" / "run_v1.py"
+    ).read_text(encoding="utf-8")
+    corrected = (
+        LANE / "experiments" / "phase1_mechanic_composition" / "run_v2.py"
+    ).read_text(encoding="utf-8")
+    result = PHASE1_V2.read_text(encoding="utf-8")
+    readme = (
+        ROOT / "papers" / "candidates" / "paper-09-executable-research-core" / "README.md"
+    ).read_text(encoding="utf-8")
+
+    assert "'false_commit':0.0" in delivered, "delivered defect identity changed"
+    assert 'metrics.pop("false_commit")' in corrected
+    assert "false_commit_status=NOT_MEASURED" in result
+    assert "false_commit=0.000" not in result
+    assert "false_commit_status=NOT_MEASURED" in readme
+    assert "hard-coded `false_commit=0.000`" in readme
 
 
 def test_phase2a_re_derives_byte_identically(tmp_path: Path) -> None:
