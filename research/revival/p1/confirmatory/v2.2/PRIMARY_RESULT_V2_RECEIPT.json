@@ -1,0 +1,83 @@
+{
+  "schema_version": "orion.p1.mutation-necessity-primary-result-receipt.v2",
+  "paper_id": "P1",
+  "date": "2026-08-18",
+  "authority": "POWERED_PRIMARY_SUPPORTED_REPLICATION_REQUIRED",
+  "terminal": "P1_MUTATION_NECESSITY_SUPPORTED",
+  "claim_boundary": "CREDENTIAL_FREE_MECHANICAL_P1_NECESSITY_RESULT_ONLY__V1_H1_HISTORY_UNCHANGED__NO_MODEL_GENERAL_OR_OPEN_ENDED_SUPERIORITY",
+  "subject": {
+    "pr": 398,
+    "branch_head": "5dcfb14e7b0bbd83120635f70f5945ddc953da80",
+    "pull_request_merge_ref": "ed92d7d39cc66944be6ed8ed7511287b0a258237"
+  },
+  "workflow": {
+    "run_id": 32125169211,
+    "job_id": 95673996398,
+    "artifact_id": 9320090394,
+    "artifact_sha256": "c8df922450d397b42f77b0915b113070111edff6aa51f61ba4c5ea9463af9bcd",
+    "result_json_sha256": "4b2025c5e4a91317e668878a1327f6411e5f646594def7d413a0c7377c0fb0e7",
+    "raw_results_sha256": "a198e83d8714535e488ac795eeb6a4490409c3ed909442bf0912660800386a31",
+    "raw_result_bytes": 41035947
+  },
+  "prospective_bindings": {
+    "protocol_version": "P1.epistemic-mutation-necessity.v2.2.4",
+    "confirmatory_seed": 202608172211,
+    "replication_seed": 202608172212,
+    "execution_freeze_sha256": "15c1c9cb7e0a329a3fb648ab3598f2db32ec0a630c161bd9f2ce357b0efbef8c",
+    "world_freeze_sha256": "212f5891af4945f66d31149b2e07f6f7593d40a2cb9d1cbe9e42701060a18d77",
+    "n_worlds": 2882,
+    "hidden_shift_n": 480,
+    "negative_control_n": 2402,
+    "runnable_arms": 9,
+    "ablation_arms": 5,
+    "h1_parents": [
+      "active_voi_repair_parent",
+      "darc_r2act_dependency_parent",
+      "causalflow_minimal_counterfactual_parent"
+    ]
+  },
+  "primary_outcome": {
+    "orion_hidden_shift_success_rate": 1.0,
+    "parent_hidden_shift_success_rate_each": 0.49375,
+    "orion_minus_each_parent_hidden_shift_success": 0.50625,
+    "h1_parent_ci95": {
+      "active_voi_repair_parent": [0.4625, 0.5520833333333334],
+      "darc_r2act_dependency_parent": [0.46041666666666664, 0.55],
+      "causalflow_minimal_counterfactual_parent": [0.4625, 0.5520833333333334]
+    },
+    "h1_mcnemar_p_each": 1.4149498560666738e-73,
+    "h1_holm_all_pass": true,
+    "orion_negative_control_success_rate": 1.0,
+    "active_voi_negative_control_success_rate": 1.0,
+    "h2_control_difference": 0.0,
+    "h2_unnecessary_reframe_count": 0,
+    "forbidden_high_level_mutation_count": 0,
+    "protected_sibling_regression_count": 0,
+    "mean_orion_spent_budget": 1.8341429562803608,
+    "all_support_gates_pass": true
+  },
+  "frozen_gate_results": {
+    "h1_each_parent_ci_positive": true,
+    "h1_each_parent_practical": true,
+    "h1_holm": true,
+    "h2_control_success_noninferior": true,
+    "h2_zero_unnecessary_reframe": true,
+    "whole_grid_success_noninferior": true,
+    "zero_forbidden_high_level_mutation": true,
+    "zero_protected_sibling_regression": true,
+    "cost_within_margin": true
+  },
+  "independent_artifact_check": {
+    "performed": true,
+    "downloaded_artifact": true,
+    "result_terminal": "P1_MUTATION_NECESSITY_SUPPORTED",
+    "raw_sha_matches_result_binding": true,
+    "result_json_sha256": "4b2025c5e4a91317e668878a1327f6411e5f646594def7d413a0c7377c0fb0e7",
+    "raw_results_sha256": "a198e83d8714535e488ac795eeb6a4490409c3ed909442bf0912660800386a31"
+  },
+  "next_required_authority": [
+    "Execute the already-bound disjoint replication seed 202608172212 without tuning the primary protocol.",
+    "Run the independent P1 necessity verifier on primary and replication evidence.",
+    "Integrate the bounded supported result into P1 claim ledger/manuscript without altering V1 historical H1 status or claiming model-general/open-ended superiority."
+  ]
+}
