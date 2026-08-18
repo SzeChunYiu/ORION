@@ -40,9 +40,11 @@ This file is the current entry point. Older V1/V2 files remain as scientific his
 ## P8 current paper
 
 - manuscript: `paper-08-epistemic-authority-autonomous-science/manuscript/FINAL.md`
-- formal core: `paper-08-epistemic-authority-autonomous-science/manuscript/FORMAL_CORE_V2.md`
+- formal core: `paper-08-epistemic-authority-autonomous-science/manuscript/FORMAL_CORE_V2_1.md`
+- Supporting V2 core: `paper-08-epistemic-authority-autonomous-science/manuscript/FORMAL_CORE_V2.md`
 - claim ledger: `paper-08-epistemic-authority-autonomous-science/CLAIM_LEDGER_V2.md`
-- theorem checker: `paper-08-epistemic-authority-autonomous-science/formal/check_theory_closure_v2.py`
+- theorem checker: `paper-08-epistemic-authority-autonomous-science/formal/check_theory_closure_v2_1.py`
+- supporting V2 checker: `paper-08-epistemic-authority-autonomous-science/formal/check_theory_closure_v2.py`
 - contract manifest: `paper-08-epistemic-authority-autonomous-science/benchmark/authority_cases_v2.jsonl`
 - contract executor: `paper-08-epistemic-authority-autonomous-science/formal/check_contract_manifest_v2.py`
 - reproduce: `paper-08-epistemic-authority-autonomous-science/REPRODUCE_V2_1.md`
