@@ -1,0 +1,36 @@
+name: p4-refresh-cannot-check-inventory
+
+on:
+  push:
+    branches:
+      - shadow/p4-method-authority-extension-2026-08-18
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: shadow/p4-method-authority-extension-2026-08-18
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regenerate canonical inventory
+        run: python research/development/cannot_check_inventory.py --write
+      - name: Commit generated inventory if changed
+        shell: bash
+        run: |
+          if git diff --quiet -- research/development/cannot_check_inventory.json; then
+            echo 'inventory already current'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/development/cannot_check_inventory.json
+          git commit -m 'docs(p4): refresh cannot-check authority inventory'
+          git push origin HEAD:shadow/p4-method-authority-extension-2026-08-18
