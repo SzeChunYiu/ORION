@@ -73,15 +73,27 @@ def validate() -> list[str]:
         if required not in max_system:
             errors.append(f"max composed system lost {required}")
 
-    if promotion.get("authorized_terminal") not in EXPECTED_LADDER:
+    authorized = promotion.get("authorized_terminal")
+    confirmatory_complete = bool(promotion.get("confirmatory_external_complete", False))
+    transfer_complete = bool(promotion.get("transfer_complete", False))
+    development_complete = bool(promotion.get("development_complete", False))
+    blockers = promotion.get("current_blockers") or []
+
+    if authorized not in EXPECTED_LADDER:
         errors.append("promotion state has unknown authorized terminal")
     if promotion.get("target_terminal") != "P2_TRANSFER_SUPPORTED":
         errors.append("V2 target is no longer maximal transfer support")
-    if not promotion.get("confirmatory_external_complete", False):
-        if promotion.get("authorized_terminal") != "P2_NARROWED":
-            errors.append("external claim promoted before confirmatory completion")
-    if promotion.get("development_complete", False) and not promotion.get("current_blockers"):
-        errors.append("completed development must still expose any external/transfer blockers")
+    if not confirmatory_complete and authorized != "P2_NARROWED":
+        errors.append("external claim promoted before confirmatory completion")
+    # Once development is complete, blockers may be empty only when the whole
+    # external + transfer programme is genuinely complete. Intermediate states
+    # must continue to expose what remains rather than looking silently done.
+    if development_complete and not blockers and not (confirmatory_complete and transfer_complete):
+        errors.append("completed development must still expose external/transfer blockers until L4 is complete")
+    if transfer_complete and not confirmatory_complete:
+        errors.append("transfer cannot be complete before confirmatory external evidence")
+    if transfer_complete and authorized != "P2_TRANSFER_SUPPORTED":
+        errors.append("completed transfer must authorize P2_TRANSFER_SUPPORTED")
 
     cases = hostile.get("cases", [])
     ids = [case.get("id") for case in cases]
@@ -102,8 +114,8 @@ def validate() -> list[str]:
     authority = (MANUSCRIPT / "sections" / "acquisition_authority.tex").read_text(encoding="utf-8")
     if r"\input{sections/acquisition_authority}" not in main:
         errors.append("main manuscript does not include acquisition-authority section")
-    if r"\texttt{CANNOT\_CHECK}" not in main:
-        errors.append("manuscript lost explicit CANNOT_CHECK external gate")
+    if r"\texttt{CANNOT\_CHECK}" not in main and authorized == "P2_NARROWED":
+        errors.append("narrowed manuscript lost explicit CANNOT_CHECK external gate")
     if r"\input{figures/P2-7_acquisition_authority}" not in authority:
         errors.append("authority section does not include P2-7 architecture figure")
     for phrase in (
