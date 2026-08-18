@@ -12,12 +12,80 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
+  # The suite took 27m53s as a single job, which made every red PR a half-hour
+  # round trip. Measured per directory, the cost is not spread out at all:
+  #
+  #   tests/unit/p2            ~400s
+  #   everything else combined    ~2s
+  #
+  # and inside p2 it concentrates further, in tests that spawn real subprocesses
+  # or regenerate frozen snapshots:
+  #
+  #   test_p2_offline_systems.py               120s
+  #   test_p2_offline_gold_world.py             57s
+  #   test_p2_offline_analysis_snapshot.py      27s
+  #   test_p2_offline_mechanisms_snapshot.py    27s
+  #   test_p2_route_stop_oracle_snapshot.py     27s
+  #   test_p2_offline_publication_artifacts.py  26s
+  #
+  # Those are doing real work -- test_regeneration_is_deterministic_across_processes
+  # is parametrised over three hash seeds and genuinely re-runs generation in a
+  # subprocess, which is the only way to test what it claims. So this splits
+  # around them rather than trying to make them cheap.
+  #
+  # An earlier attempt split the whole suite six ways by test count. Five shards
+  # finished in ~43s and the sixth ran 20+ minutes, because a test count says
+  # nothing about a test's cost. Splitting by measured cost is the fix.
+  #
+  # Sharding across runners rather than xdist workers in one checkout is also
+  # deliberate: 58 test files write outside tmp_path and at least one mutates a
+  # committed artifact and restores it, so a shared working tree would race.
+
+  # Everything except p2: ~2s of tests, so one job, no split.
+  fast:
+    name: fast (all but p2)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install -e '.[dev]'
-      - run: pytest -q
+      - run: python -m pip install -e '.[dev,candidates]'
+      - run: pytest -q --ignore=tests/unit/p2 --durations=10
+
+  # p2 alone, split four ways by pytest-split's deterministic partition of the
+  # collected list. Every test lands in exactly one group and none is dropped.
+  p2:
+    name: p2 ${{ matrix.group }}/4
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e '.[dev,candidates]'
+      - run: pytest -q tests/unit/p2 --splits 4 --group ${{ matrix.group }} --durations=10
+
+  # Aggregate gate. Keeps one stable check name, and fails if any job failed,
+  # was cancelled, or was skipped -- "not success" is the condition, so a job
+  # that never ran cannot read as a pass.
+  test:
+    if: always()
+    needs: [fast, p2]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report job results
+        env:
+          FAST_RESULT: ${{ needs.fast.result }}
+          P2_RESULT: ${{ needs.p2.result }}
+        run: |
+          echo "fast: $FAST_RESULT"
+          echo "p2:   $P2_RESULT"
+          if [ "$FAST_RESULT" != "success" ] || [ "$P2_RESULT" != "success" ]; then
+            echo "::error::at least one test job did not succeed"
+            exit 1
+          fi

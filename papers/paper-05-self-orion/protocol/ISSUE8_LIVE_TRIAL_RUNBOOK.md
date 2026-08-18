@@ -11,10 +11,14 @@ Receipt: `papers/paper-05-self-orion/evidence/ISSUE8_PACKET_EXECUTION_BINDING_RE
 
 Do not edit `papers/paper-05-self-orion/phase2/LIVE_EXECUTION_TRIGGER.txt`.
 Do not push a change to `.github/workflows/p5_phase2_live_execution.yml` for the
-purpose of starting a run. The merged workflow rebuilds a packet from
-`phase2_preflight.build_frozen_live_trial_packet` instead of loading
-`protocol/LIVE_TRIAL_PACKET_V1.json`. A run on that path would be
-`UNBOUND_EXECUTION_REPORT`, the class already quarantined via #212.
+purpose of starting a run. The merged workflow still rebuilds a packet from
+`phase2_preflight.build_frozen_live_trial_packet` and does not pass
+`frozen_packet`. After #277 / PR #289, that construction blocks at
+`BIND_FROZEN_PACKET` rather than executing a bound #8 trial. Editing the
+workflow YAML to attach the packet would itself launch a live run; do not
+do that from this lane. A run that executed the preflight registry instead of
+the published packet would be `UNBOUND_EXECUTION_REPORT`, the class already
+quarantined via #212.
 
 The packet's own command, `python -m orion.self_orion.live_packet --live`, is
 the sound preflight: it refuses on missing credentials, on `corpus_revision:
@@ -35,24 +39,19 @@ immutable `CANNOT_CHECK` episodes. It is not what the merged workflow calls.
 These are different research problems. This lane does not choose which registry
 is canonical. That is a governance decision, not a coding convenience.
 
-## Fail-closed wiring (owned by #277)
+## Fail-closed wiring (merged via #277 / PR #289)
 
-Issue #277 / PR #289 owns making `assess_phase2_preflight` fail closed on
-binding identity. This lane does not fork `phase2_preflight.py`.
+`assess_phase2_preflight` now fail-closes on binding identity and reports
+`CANNOT_CHECK` when the in-source registry and the published packet disagree,
+without electing either side. Merge commits: `8aaa9e64becefbdf6efc39fe24c05abdc1c52f7b`
+and `86e8f15f2406ae32ef271364e10f9cc40e03a3b2`.
 
-Bind the published packet to the merged workflow **only after** that fail-closed
-gate is on `origin/main`. Until then, keep this `CANNOT_CHECK` receipt.
-
-After the gate merges, the binding must:
-
-1. load `LIVE_TRIAL_PACKET_V1.json`;
-2. recompute and verify `packet_fingerprint`;
-3. identity-check task ids, epoch, baseline id, resource budget, provider
-   manifest hash, and evaluator artifact hash against the freeze;
-4. fail closed on any divergence, reporting both registries, without silently
-   adopting one of them;
-5. refuse `corpus_revision: UNBOUND`;
-6. leave protected gold outside candidate custody.
+This lane still does not fork `phase2_preflight.py` and still does not elect a
+canonical registry. The remaining execution-path gap is that
+`p5_phase2_live_execution.yml` constructs `Phase2ClosurePreflight` without
+`frozen_packet`, so the published packet is not consulted by the workflow.
+Attaching `FrozenPacketBinding.from_packet_document(...)` belongs in a change
+that does not launch the live workflow as a side effect.
 
 ## Operator blockers that remain after code binding
 

@@ -1,0 +1,22 @@
+
+== IID holdout ==
+rational   success=0.623 effort=11.4
+bisection  success=0.539 effort=9.6
+newton     success=0.949 effort=9.7
+companion  success=0.953 effort=56.2
+symbolic   success=0.953 effort=125.9
+best_fixed: companion
+learned schedule: success=0.953 effort=17.9; first-choice success=0.937
+oracle: success=0.953 effort=5.9
+competence AUC: rational=1.000, bisection=1.000, newton=0.993, companion=0.999, symbolic=0.999
+
+== distribution shift ==
+rational   success=0.424 effort=12.3
+bisection  success=0.524 effort=14.8
+newton     success=0.939 effort=11.2
+companion  success=0.957 effort=58.2
+symbolic   success=0.957 effort=129.3
+best_fixed: companion
+learned schedule: success=0.957 effort=22.1; first-choice success=0.880
+oracle: success=0.957 effort=8.1
+competence AUC: rational=0.978, bisection=1.000, newton=0.981, companion=0.999, symbolic=0.999
