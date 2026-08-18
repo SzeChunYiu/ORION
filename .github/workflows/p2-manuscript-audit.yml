@@ -59,6 +59,8 @@ jobs:
           python papers/paper-02-open-world-scientific-discovery/scripts/check_p2_v2.py
 
       - name: Validate publication schema, readiness, and scoreboard
+        env:
+          PYTHONPATH: src
         run: |
           set -euo pipefail
           python -m json.tool research/publication/publication_status.schema.json >/dev/null
