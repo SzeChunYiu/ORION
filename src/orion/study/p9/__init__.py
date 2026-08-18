@@ -1,6 +1,16 @@
 """P9 structured epistemic neural-computation study helpers."""
 
 from .bootstrap import bootstrap_information_lattice, bootstrap_worlds
+from .generated_worlds import (
+    CorpusSplit,
+    GeneratedCorpus,
+    GeneratedPair,
+    GeneratedSplit,
+    HostileFamily,
+    generate_balanced_split,
+    generate_corpus,
+    generate_pair,
+)
 from .identifiability import (
     IdentifiabilityCollision,
     IdentifiabilityReport,
@@ -29,10 +39,15 @@ __all__ = [
     "AffineTransport",
     "Atom",
     "AtomType",
+    "CorpusSplit",
     "FailureRecord",
+    "GeneratedCorpus",
+    "GeneratedPair",
+    "GeneratedSplit",
     "GluingVerdict",
     "GoldKind",
     "GoldTarget",
+    "HostileFamily",
     "IdentifiabilityCollision",
     "IdentifiabilityReport",
     "MechanicView",
@@ -45,6 +60,9 @@ __all__ = [
     "bootstrap_worlds",
     "classify_cycle_gluing",
     "failure_history_pair",
+    "generate_balanced_split",
+    "generate_corpus",
+    "generate_pair",
     "relation_semantics_pair",
     "transport_gluing_pair",
 ]
