@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Map P1's nearest-work matrix onto donor cells, and measure what a receipt needs (#318).
+"""Map P1 and P2 nearest-work onto donor cells, and measure what a receipt needs (#318).
 
 #318's first box asks to *"audit existing P1/P2 nearest-work matrices and map every
 close paper to one or more atomic donor cells"*. This does that, and then reports
@@ -35,6 +35,32 @@ MATRIX_PATH = (
 )
 OUTPUT_PATH = Path(__file__).resolve().parent / "P1_DONOR_READINESS_V1.json"
 SCHEMA_VERSION = "orion.p1-donor-readiness.v1"
+
+P2_VERDICTS_PATH = (
+    REPO_ROOT
+    / "papers"
+    / "paper-02-open-world-scientific-discovery"
+    / "notes"
+    / "nearest-work"
+    / "mechanism-verdicts.md"
+)
+P2_OUTPUT_PATH = Path(__file__).resolve().parent / "P2_DONOR_READINESS_V1.json"
+P2_SCHEMA_VERSION = "orion.p2-donor-readiness.v1"
+
+#: Parents in P2's verdict table that name a specific system, benchmark or paper.
+#: Everything else names a *field*. The distinction is a judgement, so it is made
+#: once here in the open rather than inferred from string shape -- a receipt needs
+#: a specific artifact, and "the diversification literature" is not one.
+P2_NAMED_ARTIFACT_PARENTS = frozenset(
+    {
+        "AutoResearchBench",
+        "SAGE",
+        "ResearchArena",
+        "OpenScholar",
+        "MetaSyn",
+        "AgentSLR",
+    }
+)
 
 #: Fields `MechanismAssimilationReceipt.v1` needs that the matrix does not carry.
 #: Listed once so the report cannot drift from the schema silently.
@@ -111,6 +137,80 @@ def build_readiness() -> dict[str, object]:
     }
 
 
+def _p2_rows() -> list[list[str]]:
+    """The `mechanism | parent | verdict | disposition` rows, verbatim."""
+
+    rows: list[list[str]] = []
+    for line in P2_VERDICTS_PATH.read_text(encoding="utf-8").splitlines():
+        if not line.startswith("|") or line.startswith("|---") or line.startswith("| mechanism"):
+            continue
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        if len(cells) == 4:
+            rows.append(cells)
+    return rows
+
+
+def build_p2_readiness() -> dict[str, object]:
+    """P2's donor map, whose gap is different in kind from P1's.
+
+    P1's matrix names individual works with arXiv ids. P2's verdict table names
+    *parents*, and several of them are fields rather than artifacts -- "the
+    diversification literature", "information foraging", "SR stopping literature".
+    A receipt requires a specific primary paper or official code, so those cannot
+    be bound at all until a representative work is chosen for each, which is a
+    scientific decision rather than a lookup.
+    """
+
+    rows: list[dict[str, object]] = []
+    for mechanism, parent, verdict, disposition in _p2_rows():
+        named = parent in P2_NAMED_ARTIFACT_PARENTS
+        blockers = list(RECEIPT_FIELDS_NOT_IN_MATRIX)
+        blockers.append("no access field recorded; body-read state is unknown")
+        if not named:
+            blockers.append(
+                f"parent {parent!r} names a literature family, not an artifact; "
+                "a representative primary work must be chosen before a donor id exists"
+            )
+        rows.append(
+            {
+                "mechanism": mechanism,
+                "parent": parent,
+                "verdict": verdict.replace("**", ""),
+                "disposition_note": disposition,
+                "donor_is_named_artifact": named,
+                "receipt_sealable": False,
+                "receipt_blockers": blockers,
+            }
+        )
+    rows.sort(key=lambda row: (str(row["parent"]), str(row["mechanism"])))
+    named_rows = [row for row in rows if row["donor_is_named_artifact"]]
+    return {
+        "schema_version": P2_SCHEMA_VERSION,
+        "issue": 318,
+        "grants_authority": "NONE",
+        "closes_gate": None,
+        "source": str(P2_VERDICTS_PATH.relative_to(REPO_ROOT)),
+        "receipt_schema": "orion.mechanism-assimilation-receipt.v1",
+        "summary": {
+            "donor_mechanisms": len(rows),
+            "distinct_parents": len({row["parent"] for row in rows}),
+            "parents_naming_an_artifact": len({row["parent"] for row in named_rows}),
+            "mechanisms_bindable_to_an_artifact": len(named_rows),
+            "mechanisms_from_a_literature_family": len(rows) - len(named_rows),
+            "with_recorded_access": 0,
+            "receipt_sealable_now": sum(1 for row in rows if row["receipt_sealable"]),
+        },
+        "how_p2_differs_from_p1": (
+            "P1's matrix names individual works with arXiv identifiers and records whether "
+            "each body was read. P2's table names parents, several of which are literature "
+            "families rather than artifacts, and records no access state at all. So P2's gap "
+            "is upstream of P1's: before a receipt can be blocked on missing ORION-side "
+            "fields, a donor artifact has to exist to bind to."
+        ),
+        "mechanisms": rows,
+    }
+
+
 def _comparable(payload: dict[str, object]) -> dict[str, object]:
     return {key: value for key, value in payload.items() if key != "subject_commit"}
 
@@ -127,18 +227,33 @@ def validate(committed: dict[str, object]) -> list[str]:
     return errors
 
 
+def validate_p2(committed: dict[str, object]) -> list[str]:
+    derived = build_p2_readiness()
+    if _comparable(committed) == _comparable(derived):
+        return []
+    errors = []
+    if committed.get("summary") != derived["summary"]:
+        errors.append(f"p2 summary: committed {committed.get('summary')} != derived {derived['summary']}")
+    if not errors:
+        errors.append("committed P2 readiness report differs from a live re-derivation; regenerate")
+    return errors
+
+
 def main() -> int:
     if "--check" in sys.argv[1:]:
         errors = validate(json.loads(OUTPUT_PATH.read_text(encoding="utf-8")))
+        errors += validate_p2(json.loads(P2_OUTPUT_PATH.read_text(encoding="utf-8")))
         for error in errors:
             print(error, file=sys.stderr)
         return 1 if errors else 0
-    payload = build_readiness()
-    payload["subject_commit"] = _git("rev-parse", "HEAD")
-    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_PATH.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    print(f"wrote {OUTPUT_PATH.relative_to(REPO_ROOT)}")
-    print(json.dumps(payload["summary"], indent=2, sort_keys=True))
+    head = _git("rev-parse", "HEAD")
+    for builder, path in ((build_readiness, OUTPUT_PATH), (build_p2_readiness, P2_OUTPUT_PATH)):
+        payload = builder()
+        payload["subject_commit"] = head
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        print(f"wrote {path.relative_to(REPO_ROOT)}")
+        print(json.dumps(payload["summary"], indent=2, sort_keys=True))
     return 0
 
 

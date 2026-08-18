@@ -86,3 +86,56 @@ def test_the_report_grants_nothing() -> None:
     assert committed["grants_authority"] == "NONE"
     assert committed["closes_gate"] is None
     assert committed["issue"] == 318
+
+
+P2_REPORT_PATH = ROOT / "research" / "assimilation" / "P2_DONOR_READINESS_V1.json"
+
+
+def test_committed_p2_report_matches_a_live_re_derivation() -> None:
+    module = _load_module()
+    committed = json.loads(P2_REPORT_PATH.read_text(encoding="utf-8"))
+    assert committed["schema_version"] == module.P2_SCHEMA_VERSION
+    assert module.validate_p2(committed) == []
+
+
+def test_p2_donors_that_are_literature_families_are_named_as_unbindable() -> None:
+    """P2's gap is upstream of P1's, and the report has to say so.
+
+    A receipt binds to a specific primary paper or official code. "the
+    diversification literature" is not one, so those mechanisms cannot be blocked
+    merely on missing ORION-side fields -- they have no donor artifact at all
+    until a representative work is chosen, which is a scientific decision rather
+    than a lookup.
+    """
+
+    committed = json.loads(P2_REPORT_PATH.read_text(encoding="utf-8"))
+    unbindable = [row for row in committed["mechanisms"] if not row["donor_is_named_artifact"]]
+    assert unbindable, "no unbindable donors found; the named-artifact split is inert"
+    for row in unbindable:
+        assert any("literature family" in blocker for blocker in row["receipt_blockers"]), row["parent"]
+    # No alarm: the split is a real partition, not a blanket refusal.
+    bindable = [row for row in committed["mechanisms"] if row["donor_is_named_artifact"]]
+    assert bindable
+    for row in bindable:
+        assert not any("literature family" in blocker for blocker in row["receipt_blockers"])
+
+
+def test_p2_records_no_access_state_at_all() -> None:
+    """P1 records `body_checked`; P2 records nothing equivalent.
+
+    That absence is a finding rather than an oversight to paper over: without it,
+    nobody can say whether P2's absorptions rest on read bodies, and the question
+    that mattered most for P1 cannot even be asked of P2.
+    """
+
+    committed = json.loads(P2_REPORT_PATH.read_text(encoding="utf-8"))
+    assert committed["summary"]["with_recorded_access"] == 0
+    for row in committed["mechanisms"]:
+        assert any("no access field recorded" in blocker for blocker in row["receipt_blockers"])
+
+
+def test_neither_paper_can_seal_a_receipt_yet() -> None:
+    p1 = json.loads(REPORT_PATH.read_text(encoding="utf-8"))
+    p2 = json.loads(P2_REPORT_PATH.read_text(encoding="utf-8"))
+    assert p1["summary"]["receipt_sealable_now"] == 0
+    assert p2["summary"]["receipt_sealable_now"] == 0
