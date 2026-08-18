@@ -17,6 +17,7 @@
     {"path": "CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md", "role": "manuscript-claim-map"},
     {"path": "SCOPED_PUBLICATION_TRACK_V1.md", "role": "scoped-publication-decision"},
     {"path": "evidence/PEER_REVIEW_READY_SCOPED_V1.md", "role": "bounded-readiness-attestation"},
+    {"path": "evidence/method-structure/BOUNDED_PILOT_RECEIPT_V1.md", "role": "paper-local-method-structure-result-receipt"},
     {"path": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json", "role": "confirmatory-analysis"},
     {"path": "evidence/public-reference-v1.1-confirmatory/publication/README.md", "role": "scoped-publication-artifacts"},
     {"path": "JOURNAL_READINESS.md", "role": "readiness-gate"},
@@ -38,7 +39,7 @@
     {"id": "P3.C7", "text": "Raw-text end-to-end scientific integration superiority is outside the scoped paper and remains a follow-up evidence question.", "artifacts": ["CLAIM_LEDGER_V1.md", "SCOPED_PUBLICATION_TRACK_V1.md"], "status": "CANNOT_CHECK"},
     {"id": "P3.C8", "text": "Downstream scientific answer-quality improvement is outside the scoped paper and remains a follow-up evidence question.", "artifacts": ["CLAIM_LEDGER_V1.md", "SCOPED_PUBLICATION_TRACK_V1.md"], "status": "CANNOT_CHECK"},
     {"id": "P3.C9", "text": "The scoped public-reference mapping result is prospectively replicated and independently reproducible.", "artifacts": ["evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json", "evidence/public-reference-v1.1-confirmatory/publication/README.md"], "status": "BOUNDED"},
-    {"id": "P3.STRUCTURE", "text": "Typed source-local method projection/alignment is non-vacuous on the frozen exact-ground-truth pilot; natural-paper extraction/generalization is not claimed.", "artifacts": ["research/extensions/p1-p3-structure/RESULTS_V1.json"], "status": "BOUNDED"},
+    {"id": "P3.STRUCTURE", "text": "Typed source-local method projection/alignment is non-vacuous on the frozen exact-ground-truth pilot; natural-paper extraction/generalization is not claimed.", "artifacts": ["evidence/method-structure/BOUNDED_PILOT_RECEIPT_V1.md"], "status": "BOUNDED"},
     {"id": "P3.PDF", "text": "The tracked scoped manuscript PDF is built from the canonical source and passes the exact-head static citation/input/claim audit plus converged LaTeX compilation.", "artifacts": ["journal_package/manuscript.pdf", "journal_package/CLAIM_PDF_AUDIT.md"], "status": "SUPPORTED"}
   ],
   "scientific_result_verification": {
