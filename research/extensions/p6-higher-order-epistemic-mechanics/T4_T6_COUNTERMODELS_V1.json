@@ -1,0 +1,27 @@
+{
+  "schema": "P6.HigherOrderEpistemicMechanics.T4T6Countermodels.v1",
+  "protocol_id": "P6.higher-order-epistemic-mechanics.t4-t6.v1",
+  "authority_scope": "FORMAL_FRAMEWORK_COUNTERMODELS_ONLY",
+  "grants_scientific_authority": false,
+  "grants_self_orion_adoption": false,
+  "cases": [
+    {"id": "T46-01", "kind": "compute_mandatory", "expected_status": "SELECTED", "expected_selected": "protected-verify"},
+    {"id": "T46-02", "kind": "compute_uncovered", "expected_status": "NO_ADMISSIBLE"},
+    {"id": "T46-03", "kind": "compute_unresolved", "expected_status": "UNRESOLVED"},
+    {"id": "T46-04", "kind": "compute_tie", "expected_status": "MULTIPLE_OPTIMA"},
+    {"id": "T46-05", "kind": "compute_stop", "expected_status": "LOCAL_COMPUTATION_STOP"},
+    {"id": "T46-06", "kind": "contain_supported", "expected_status": "IN_SCOPE"},
+    {"id": "T46-07", "kind": "contain_invalid", "expected_status": "BLOCKED"},
+    {"id": "T46-08", "kind": "contain_unresolved", "expected_status": "UNRESOLVED"},
+    {"id": "T46-09", "kind": "contain_missing", "expected_status": "UNRESOLVED"},
+    {"id": "T46-10", "kind": "social_correlated", "expected_status": "CORRELATED"},
+    {"id": "T46-11", "kind": "social_independent", "expected_status": "INDEPENDENT"},
+    {"id": "T46-12", "kind": "social_unresolved", "expected_status": "UNRESOLVED"},
+    {"id": "T46-13", "kind": "social_unreliable", "expected_status": "UNRELIABLE"},
+    {"id": "T46-14", "kind": "credit_unresolved", "expected_status": "UNRESOLVED"},
+    {"id": "T46-15", "kind": "credit_shared", "expected_status": "SHARED"},
+    {"id": "T46-16", "kind": "credit_exclusive", "expected_status": "EXCLUSIVE_SUPPORTED", "expected_selected": "visible"}
+  ],
+  "expected_terminal": "T4_T6_FORMAL_COUNTERMODELS_GREEN",
+  "claim_ceiling": "NON_AUTHORIZING_COMPUTATION_CONTAINMENT_SOCIAL_SUBSTRATE_ONLY"
+}
