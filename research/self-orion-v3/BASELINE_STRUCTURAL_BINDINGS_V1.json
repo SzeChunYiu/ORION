@@ -1,0 +1,38 @@
+{
+  "schema_version": "orion.p5.self-orion-v3-baseline-bindings.v1",
+  "protocol_id": "P5.self-orion-v3.revision-level.v1",
+  "owner_issue": 454,
+  "programme_receipt_frozen": false,
+  "authority_scope": "T8_PREFLIGHT_ONLY",
+  "records": [
+    {
+      "baseline_id": "m_open_only",
+      "donor_id": "arxiv:2608.09696",
+      "source_identity": "MDA:mechanism-class-expansion",
+      "disposition": "CANNOT_CHECK",
+      "structural_binding_id": "",
+      "official_reproduction": false,
+      "notes": ["Mechanism comparator implemented; #454 programme-wide structural receipt not frozen, so confirmatory donor-equivalence binding is not yet available."]
+    },
+    {
+      "baseline_id": "world_model_revision",
+      "donor_id": "arxiv:2606.30639",
+      "source_identity": "world-model:self-revision-mechanism",
+      "disposition": "CANNOT_CHECK",
+      "structural_binding_id": "",
+      "official_reproduction": false,
+      "notes": ["Mechanism comparator implemented; not labelled an official reproduction and not confirmatory-bound before #454 structural assimilation is frozen."]
+    },
+    {
+      "baseline_id": "representation_regime_revision",
+      "donor_id": "arxiv:2606.01444",
+      "source_identity": "representation-regime:transition-mechanism",
+      "disposition": "CANNOT_CHECK",
+      "structural_binding_id": "",
+      "official_reproduction": false,
+      "notes": ["Mechanism comparator implemented; no official-reproduction claim and no final structural binding yet."]
+    }
+  ],
+  "confirmatory_rule": "Every required baseline must move to MECHANISM_COMPARATOR_BOUND or OFFICIAL_REPRODUCTION_BOUND with a nonempty structural binding identity before READY_TO_FREEZE_CONFIRMATORY.",
+  "current_terminal": "CANNOT_CHECK"
+}
