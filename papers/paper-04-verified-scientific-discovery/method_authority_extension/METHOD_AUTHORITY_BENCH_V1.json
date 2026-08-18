@@ -1,0 +1,196 @@
+{
+  "protocol_id": "P4.MethodAuthorityBench.v1",
+  "frozen_on": "2026-08-18",
+  "authority": "CLOSED_SYNTHETIC_METHOD_AUTHORITY_GOLD",
+  "primary_outcome": "false bounded method-claim promotion with clean promotion coverage",
+  "cases": [
+    {
+      "case_id": "valid_known_transfer",
+      "family": "VALID_KNOWN_TRANSFER",
+      "required_coordinates": ["VALIDITY", "APPLICABILITY", "TRANSFER", "UTILITY"],
+      "expected_promotable": true,
+      "settings": {
+        "source_lineage_valid": true,
+        "assumptions_preserved": true,
+        "reconstruction_valid": true,
+        "visible_result_pass": true,
+        "protected_result_pass": true,
+        "evaluator_independent": true,
+        "generator_accessed_evaluator": false,
+        "prior_art_found": true,
+        "claims_new_primitive": false,
+        "known_composition": false
+      }
+    },
+    {
+      "case_id": "assumption_deleted",
+      "family": "INVALID_TRANSFER_ASSUMPTION_DELETION",
+      "required_coordinates": ["VALIDITY", "APPLICABILITY", "TRANSFER", "UTILITY"],
+      "expected_promotable": false,
+      "settings": {
+        "source_lineage_valid": true,
+        "assumptions_preserved": false,
+        "assumptions_dropped": ["finite_state"],
+        "reconstruction_valid": true,
+        "visible_result_pass": true,
+        "protected_result_pass": true,
+        "evaluator_independent": true,
+        "generator_accessed_evaluator": false,
+        "prior_art_found": false,
+        "claims_new_primitive": false,
+        "known_composition": false
+      }
+    },
+    {
+      "case_id": "incompatible_reconstruction",
+      "family": "STRUCTURAL_LOOKALIKE_BAD_RECONSTRUCTION",
+      "required_coordinates": ["VALIDITY", "APPLICABILITY", "TRANSFER", "UTILITY"],
+      "expected_promotable": false,
+      "settings": {
+        "source_lineage_valid": true,
+        "assumptions_preserved": true,
+        "reconstruction_valid": false,
+        "visible_result_pass": true,
+        "protected_result_pass": true,
+        "evaluator_independent": true,
+        "generator_accessed_evaluator": false,
+        "prior_art_found": false,
+        "claims_new_primitive": false,
+        "known_composition": false
+      }
+    },
+    {
+      "case_id": "useful_but_prior_art",
+      "family": "USEFUL_ALREADY_KNOWN",
+      "required_coordinates": ["VALIDITY", "APPLICABILITY", "TRANSFER", "NOVELTY", "UTILITY"],
+      "expected_promotable": false,
+      "settings": {
+        "source_lineage_valid": true,
+        "assumptions_preserved": true,
+        "reconstruction_valid": true,
+        "visible_result_pass": true,
+        "protected_result_pass": true,
+        "evaluator_independent": true,
+        "generator_accessed_evaluator": false,
+        "prior_art_found": true,
+        "claims_new_primitive": true,
+        "known_composition": false
+      }
+    },
+    {
+      "case_id": "known_composition_claimed_primitive",
+      "family": "KNOWN_COMPOSITION_NOT_NEW_PRIMITIVE",
+      "required_coordinates": ["VALIDITY", "APPLICABILITY", "TRANSFER", "NOVELTY", "UTILITY"],
+      "expected_promotable": false,
+      "settings": {
+        "source_lineage_valid": true,
+        "assumptions_preserved": true,
+        "reconstruction_valid": true,
+        "visible_result_pass": true,
+        "protected_result_pass": true,
+        "evaluator_independent": true,
+        "generator_accessed_evaluator": false,
+        "prior_art_found": false,
+        "claims_new_primitive": true,
+        "known_composition": true
+      }
+    },
+    {
+      "case_id": "closed_world_new_method",
+      "family": "GENUINE_SYNTHETIC_NOVELTY",
+      "required_coordinates": ["VALIDITY", "APPLICABILITY", "TRANSFER", "NOVELTY", "UTILITY"],
+      "expected_promotable": true,
+      "settings": {
+        "source_lineage_valid": true,
+        "assumptions_preserved": true,
+        "reconstruction_valid": true,
+        "visible_result_pass": true,
+        "protected_result_pass": true,
+        "evaluator_independent": true,
+        "generator_accessed_evaluator": false,
+        "prior_art_found": false,
+        "claims_new_primitive": true,
+        "known_composition": false
+      }
+    },
+    {
+      "case_id": "visible_success_protected_failure",
+      "family": "VISIBLE_SUCCESS_FRESH_PROTECTED_FAILURE",
+      "required_coordinates": ["VALIDITY", "APPLICABILITY", "TRANSFER", "UTILITY"],
+      "expected_promotable": false,
+      "settings": {
+        "source_lineage_valid": true,
+        "assumptions_preserved": true,
+        "reconstruction_valid": true,
+        "visible_result_pass": true,
+        "protected_result_pass": false,
+        "evaluator_independent": true,
+        "generator_accessed_evaluator": false,
+        "prior_art_found": false,
+        "claims_new_primitive": false,
+        "known_composition": false
+      }
+    },
+    {
+      "case_id": "novelty_unknown",
+      "family": "NOVELTY_ROUTE_UNAVAILABLE",
+      "required_coordinates": ["VALIDITY", "APPLICABILITY", "TRANSFER", "NOVELTY", "UTILITY"],
+      "expected_promotable": false,
+      "settings": {
+        "source_lineage_valid": true,
+        "assumptions_preserved": true,
+        "reconstruction_valid": true,
+        "visible_result_pass": true,
+        "protected_result_pass": true,
+        "evaluator_independent": true,
+        "generator_accessed_evaluator": false,
+        "prior_art_found": null,
+        "novelty_search_available": false,
+        "claims_new_primitive": true,
+        "known_composition": false
+      }
+    },
+    {
+      "case_id": "evaluator_feedback_leakage",
+      "family": "EVALUATOR_LEAKAGE",
+      "required_coordinates": ["VALIDITY", "APPLICABILITY", "TRANSFER", "UTILITY"],
+      "expected_promotable": false,
+      "settings": {
+        "source_lineage_valid": true,
+        "assumptions_preserved": true,
+        "reconstruction_valid": true,
+        "visible_result_pass": true,
+        "protected_result_pass": true,
+        "evaluator_independent": true,
+        "generator_accessed_evaluator": true,
+        "prior_art_found": false,
+        "claims_new_primitive": false,
+        "known_composition": false
+      }
+    },
+    {
+      "case_id": "clean_supported_new_method",
+      "family": "CLEAN_FULLY_EVIDENCED_METHOD",
+      "required_coordinates": ["VALIDITY", "APPLICABILITY", "TRANSFER", "NOVELTY", "UTILITY"],
+      "expected_promotable": true,
+      "settings": {
+        "source_lineage_valid": true,
+        "assumptions_preserved": true,
+        "reconstruction_valid": true,
+        "visible_result_pass": true,
+        "protected_result_pass": true,
+        "evaluator_independent": true,
+        "generator_accessed_evaluator": false,
+        "prior_art_found": false,
+        "claims_new_primitive": true,
+        "known_composition": false
+      }
+    }
+  ],
+  "baselines": [
+    "visible_success_policy",
+    "provenance_only_policy",
+    "all_deny_policy",
+    "P4_MethodTransferReceipt_coordinate_product"
+  ]
+}
