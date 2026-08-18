@@ -19,6 +19,7 @@ and observable resources, and the gold is read from the case only to score.
 from __future__ import annotations
 
 import json
+import sys
 import subprocess
 from pathlib import Path
 
@@ -120,7 +121,41 @@ def build_table() -> dict[str, object]:
     }
 
 
+def check() -> list[str]:
+    """Compare the committed table against a live re-run.
+
+    `subject_commit` is provenance, not substance: it changes on every commit, so
+    comparing it would make this check fail on any commit that did not regenerate
+    the table -- a checker that cries wolf on its first real run gets switched
+    off. Everything that describes what the arm *did* is compared.
+    """
+
+    committed = json.loads(OUTPUT_PATH.read_text(encoding="utf-8"))
+    derived = build_table()
+    ignored = {"subject_commit"}
+    left = {key: value for key, value in committed.items() if key not in ignored}
+    right = {key: value for key, value in derived.items() if key not in ignored}
+    if left == right:
+        return []
+    errors: list[str] = []
+    if left.get("summary") != right.get("summary"):
+        errors.append(f"summary: committed {left.get('summary')} != derived {right.get('summary')}")
+    if left.get("split_suite_fingerprints") != right.get("split_suite_fingerprints"):
+        errors.append("split_suite_fingerprints differ: the frozen suite changed")
+    if left.get("mismatches") != right.get("mismatches"):
+        errors.append(f"mismatches: committed {left.get('mismatches')} != derived {right.get('mismatches')}")
+    if not errors:
+        errors.append("committed table differs from a live re-run; regenerate it")
+    return errors
+
+
 def main() -> int:
+    if "--check" in sys.argv[1:]:
+        errors = check()
+        for error in errors:
+            print(error, file=sys.stderr)
+        return 1 if errors else 0
+
     payload = build_table()
     payload["subject_commit"] = subprocess.run(
         ["git", "-C", str(REPO_ROOT), "rev-parse", "HEAD"],
