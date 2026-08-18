@@ -2,18 +2,26 @@
   "schema_version": "orion.journal-package.v1",
   "paper_id": "P3",
   "package_status": "SCAFFOLDING",
-  "declared_paper_terminal": "CANNOT_CHECK",
-  "audit_subject_revision": "b7cfaecfb55d9ad6c12fb59374935769ed8d8787",
-  "audit_date": "2026-08-17",
+  "declared_paper_terminal": "P3_SCOPED_PACKAGING",
+  "audit_subject_revision": "d6757202b72eb62ec7bd37f5d26639f0f6678f64",
+  "audit_date": "2026-08-18",
   "issue": 160,
   "required_files": [
     {
       "path": "manuscript/main.tex",
-      "role": "manuscript-source"
+      "role": "scoped-manuscript-source"
     },
     {
       "path": "CLAIM_LEDGER_V1.md",
       "role": "claim-ledger"
+    },
+    {
+      "path": "CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md",
+      "role": "manuscript-claim-map"
+    },
+    {
+      "path": "SCOPED_PUBLICATION_TRACK_V1.md",
+      "role": "scoped-publication-decision"
     },
     {
       "path": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json",
@@ -21,37 +29,37 @@
     },
     {
       "path": "evidence/public-reference-v1.1-confirmatory/publication/README.md",
-      "role": "publication-figures"
+      "role": "scoped-publication-artifacts"
     },
     {
       "path": "JOURNAL_READINESS.md",
-      "role": "gate-checklist"
+      "role": "scoped-gate-checklist"
     }
   ],
   "missing_artifacts": [
     {
       "path": "journal_package/manuscript.pdf",
-      "role": "compiled-pdf",
+      "role": "compiled-final-submission-pdf",
       "status": "CANNOT_CHECK",
-      "reason": "No journal-formatted PDF is tracked. This package does not fabricate one."
+      "reason": "The manuscript is not yet final-subject/host-attested. CI builds a review artifact, but a final journal-package PDF is not tracked until the exact submission subject is frozen."
     },
     {
-      "path": "journal_package/DOI.txt",
-      "role": "permanent-archive-doi",
+      "path": "journal_package/AUTHOR_ATTESTATION_FINAL.md",
+      "role": "authorship-funding-conflict-attestation",
       "status": "CANNOT_CHECK",
-      "reason": "No DOI for the public-reference gold or manuscript."
+      "reason": "Final author list, affiliations, corresponding-author approval, contributions, funding, conflicts and acknowledgements require host-authoritative attestation."
     },
     {
-      "path": "gold/adjudicated/expert-eight-family-v1/GOLD.jsonl",
-      "role": "original-eight-family-expert-gold",
+      "path": "journal_package/PERMANENT_ARCHIVE_RECEIPT.json",
+      "role": "permanent-submission-archive",
       "status": "CANNOT_CHECK",
-      "reason": "Original P3.cross-domain-atlas.v1 expert gold has not been executed."
+      "reason": "The exact final submission commit and stable archive/release URL are not frozen yet; DOI is recorded only if actually minted/available."
     },
     {
-      "path": "journal_package/cover_letter.md",
-      "role": "journal-cover-letter",
+      "path": "journal_package/COVER_LETTER_FINAL.md",
+      "role": "final-cover-letter",
       "status": "CANNOT_CHECK",
-      "reason": "No frozen cover letter; paper is not PEER_REVIEW_READY."
+      "reason": "A scoped draft exists, but final authorship, overlap, funding/conflict and archive statements require host attestation before the cover letter can be finalized."
     }
   ],
   "claims": [
@@ -65,19 +73,30 @@
     },
     {
       "id": "P3.C7",
-      "text": "ORION improves raw-text end-to-end scientific integration relative to model/RAG/schema baselines.",
+      "text": "Follow-up nonclaim: raw-text end-to-end scientific integration superiority is not part of the scoped submission claim.",
       "artifacts": [
-        "CLAIM_LEDGER_V1.md"
+        "CLAIM_LEDGER_V1.md",
+        "SCOPED_PUBLICATION_TRACK_V1.md"
       ],
       "status": "CANNOT_CHECK"
     },
     {
       "id": "P3.C8",
-      "text": "ORION improves downstream scientific answer quality.",
+      "text": "Follow-up nonclaim: downstream scientific answer-quality improvement is not part of the scoped submission claim.",
       "artifacts": [
-        "CLAIM_LEDGER_V1.md"
+        "CLAIM_LEDGER_V1.md",
+        "SCOPED_PUBLICATION_TRACK_V1.md"
       ],
       "status": "CANNOT_CHECK"
+    },
+    {
+      "id": "P3.C9",
+      "text": "The scoped public-reference mapping result is independently reproducible and prospectively replicated.",
+      "artifacts": [
+        "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json",
+        "evidence/public-reference-v1.1-confirmatory/publication/README.md"
+      ],
+      "status": "BOUNDED"
     },
     {
       "id": "P3.FALSIFIER",
@@ -89,7 +108,7 @@
     },
     {
       "id": "P3.PDF",
-      "text": "Independent final PDF proofread of a journal-formatted manuscript.",
+      "text": "Independent final PDF proofread of the exact final journal-formatted scoped manuscript.",
       "artifacts": [],
       "status": "OPEN"
     }
