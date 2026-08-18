@@ -1,143 +1,94 @@
-% Data: the P3.cross-domain-atlas.v1 gold dataset. Written before final
-% labeling per the frozen protocol; numbers reflect the seed manifest.
-The decisive evaluation of ORION Paper III requires ground truth that
-challenges an integrator where failure is most damaging. This section
-documents the \emph{P3.cross-domain-atlas.v1} gold dataset: the corpus
-design, the eight case families, the annotation schema and handbook, the
-adjudication policy, and the status of the released seed manifest. The
-annotation contract is frozen before final gold labeling and before any
-evaluated system output is inspected (\texttt{outcome-blind}; see
-\texttt{protocol/ADJUDICATION\_POLICY\_V1.md}).
+% Dataset: scoped public-reference mapping sets used by P3.C5.
+The empirical result in this paper uses two content-addressed
+\emph{public-reference mapping datasets}. They contain already-structured
+scientific projections assembled from pinned external human/expert resources
+and deterministic standards. They are not newly commissioned expert gold and
+do not evaluate raw-text extraction.
 
-\subsection{Corpus design}
+\subsection{Initial public-reference set}
+
+The initial mapping study contains 32 cases generated from pinned revisions of
+MUSE, SciFact, and SciSchema. The portable gold archive has SHA-256
+\texttt{35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8}.
+The evidence package binds the external-source revisions and evaluator
+identity in \texttt{evidence/public-reference-v1/PROVENANCE.env} and retains a
+checksum manifest rather than redistributing restricted third-party text.
+This first result is treated as development/initial evidence; it is not pooled
+into the confirmatory verdict.
+
+\subsection{Disjoint confirmatory set}
+
+A second 32-case holdout was selected by an outcome-blind deterministic
+round-robin window over the sorted source pools, starting after the initial
+window and excluding all initial case identifiers. Its overlap with the first
+set is zero. Before confirmatory system outputs were evaluated, the execution
+manifest froze the portable gold hash
+\texttt{13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b},
+the MUSE/SciFact/SciSchema revisions, evaluator component identities,
+bootstrap seed, margins, and terminal rule.
 
 \begin{table}[t]
 \centering
 \small
 \begin{tabular}{lr}
 \toprule
-\textbf{Discipline} & \textbf{Samples} \\
+\textbf{Confirmatory case family} & \textbf{Cases} \\
 \midrule
-Biomedicine & 8 \\
-Physics & 8 \\
-Social Science & 8 \\
-Climate Science & 8 \\
+Different name / same referent & 13 \\
+Polarity, modality, attribution, or context & 13 \\
+Valid / invalid representation mapping & 6 \\
 \midrule
 \textbf{Total} & \textbf{32} \\
 \bottomrule
 \end{tabular}
-\caption{Discipline distribution of the seed manifest. Balanced 8 per
-discipline per \texttt{case\_family\_coverage} of
-\texttt{SAMPLE\_MANIFEST\_SEED\_V1.json}.}
-\label{tab:discipline-dist}
+\caption{Case-family composition of the disjoint confirmatory
+public-reference holdout.}
+\label{tab:public-reference-families}
 \end{table}
 
-Sources are selected from open-access publications (PMC, arXiv, or
-open-access journals) per the licensing rules in
-\texttt{protocol/CORPUS\_DESIGN\_V1.md}: peer-reviewed, open-access or
-CC-BY licensed, with stable metadata (DOI, arXiv ID, or PMID) and at
-least one comparable claim pair per case. The four disciplines were
-chosen (Table~\ref{tab:discipline-dist}) to produce materially different
-terminology, measurement cultures, and integration failure modes:
-biomedicine for high-stakes integration and a mature ontology landscape;
-physics for mathematical precision and multiple interpretation
-frameworks; social science for construct-measurement diversity and
-pluralism challenges; climate science for multi-scale integration and
-attribution complexity. No full-text is redistributed; the release carries
-document identifiers, exact span addresses, and retrieval instructions,
-with legally shareable spans where licensing permits.
+The 13 different-name/same-referent cases come from the MUSE cross-domain
+stratum. The 13 polarity/modality/attribution/context cases come from a
+scientific-claim-verification stratum. The six representation-mapping cases
+span materials, physics, and psychology and use deterministic standards where
+appropriate. Each record retains its source authority class and exact frozen
+input identity.
 
-\subsection{Case families}
+\subsection{What the public-reference labels mean}
 
-Thirty-two samples are organized into eight case families of four samples
-each (one per discipline), each designed to stress a distinct failure mode
-of an integrator:
+The evaluated decision is a mapping-level terminal over already-structured
+projections. Depending on the source relation and tested rule, the correct
+outcome can permit integration, forbid integration, or preserve an unresolved
+relation. The scoped study evaluates false merges and false splits under these
+frozen cases. It does not claim that a model recovered the semantic coordinates
+from raw papers.
 
-\begin{enumerate}
-    \item \textbf{same\_name\_different\_referent}: two sources use the
-        same surface term for distinct entities (e.g.\ ``zebrafish'' as
-        model organism versus invasive species). A naive integrator that
-        merges on surface form false-merges.
-    \item \textbf{different\_name\_same\_referent}: two sources use
-        different surface terms for the same entity or construct. A naive
-        integrator false-splits.
-    \item \textbf{same\_construct\_different\_measurement}: the same
-        underlying construct is measured with different instruments or
-        operationalizations; integration is valid only under explicit
-        transformation conditions.
-    \item \textbf{same\_entity\_different\_temporal\_state}: the same
-        entity appears at different time points or states; the apparent
-        discrepancy is \emph{not} a contradiction.
-    \item \textbf{polarity\_modality\_attribution\_context}: claims that
-        share polarity but differ in modality, attribution, or context;
-        resolving them requires the coordinate-wise representation.
-    \item \textbf{valid\_invalid\_representation\_mapping}: a
-        non-isomorphic but valid mapping between two classification or
-        representation systems, where the mapping is legitimate if and
-        only if preservation conditions hold.
-    \item \textbf{valid\_invalid\_literature\_bridge}: an A-B-C bridge
-        between literatures where the transfer is valid only under
-        conditions (Swanson-style), and invalid without them.
-    \item \textbf{genuine\_plural\_obstruction}: genuinely incompatible
-        scientific representations where no merge should be authorized;
-        the correct verdict is \textsc{plural\_view}.
-\end{enumerate}
+The confirmatory set is particularly discriminating for the
+polarity/modality/attribution/context family: flat predicate canonicalization
+false-merges 6 of 13 cases (rate 0.4615), while ORION has zero false merges.
+The different-name/same-referent and representation-mapping strata are clean
+controls on this holdout: all evaluated rules are correct there. This
+localization is reported rather than hidden, because the observed pooled effect
+is not evidence that every coordinate is necessary.
 
-The full seed manifest (\texttt{gold/SAMPLE\_MANIFEST\_SEED\_V1.json})
-carries 32 structurally valid entries with placeholder document
-identifiers and hashes. Final gold replaces these with verified
-open-access spans and full text hashes.
+\subsection{Broader expert-atlas protocol is follow-up}
 
-\subsection{Annotation schema and handbook}
+The repository also preserves the prospective \texttt{P3.cross-domain-atlas.v1}
+protocol, annotation schema, handbook, adjudication policy, and 32
+\texttt{seed-to-gold-v1} templates spanning a broader eight-family design.
+Those templates are not expert gold: no independent dual annotation,
+per-coordinate inter-annotator agreement, specialist adjudication, or
+prospectively bound raw-text model run exists for that broader object. It is
+therefore excluded from the scoped P3.C5 submission claim and remains
+\conststatus{} follow-up science rather than being retrospectively presented
+as the dataset used here.
 
-\begin{quote}\raggedright
-Each sample is annotated on the 11 coordinates of
-\texttt{protocol/ANNOTATION\_\-SCHEMA\_\-V1.json}:
-\texttt{referent\_relation},
-\texttt{construct\_relation},
-\texttt{measurement\_relation},
-\texttt{context\_relation},
-\texttt{polarity\_relation},
-\texttt{modality\_relation},
-\texttt{attribution\_relation},
-\texttt{discourse\_relation},
-\texttt{mapping\_relation},
-\texttt{contradiction\_verdict},
-and \texttt{integration\_verdict}.
-\end{quote}
-Every coordinate is a typed judgment in a frozen taxonomy, and every
-annotation binds its verdicts to exact source spans via
-\texttt{source\_span} (\texttt{document\_id},
-\texttt{document\_version}, \texttt{span\_start},
-\texttt{span\_end}, \texttt{text\_hash}).
+\subsection{Data and licensing boundary}
 
-The integration verdict is one of
-\texttt{GLUE\_ALLOWED}, \texttt{OBSTRUCTION}, \texttt{PLURAL\_VIEW}, or
-\texttt{UNRESOLVED}. \texttt{UNRESOLVED} is a first-class, legitimate
-label: adjudication is not permitted to manufacture certainty.
-
-The written handbook (\texttt{protocol/ANNOTATION\_HANDBOOK\_V1.md})
-gives instructions for each coordinate, boundary cases, and the rule that
-annotators must not inspect evaluated-system outputs. The adjudication
-sequence (\texttt{protocol/ADJUDICATION\_POLICY\_V1.md}) is: independent
-double annotation on a shared subset; per-coordinate agreement reporting
-(not only a single global score); adjudication of disagreements;
-domain-expert escalation where specialist operationalization knowledge is
-required; and default to \texttt{UNRESOLVED} where agreement cannot be
-reached. The policy prohibits deleting hard cases, revising the handbook
-after outcomes are known, and collapsing measurement disagreement into
-construct disagreement.
-
-\subsection{Status and release}
-
-The released manifest is \texttt{SEED}: structurally valid placeholders
-awaiting expert annotation. The target states are \texttt{GOLD\_COMPLETE}
-(all 32 samples annotated and adjudicated) and \texttt{QUALITY\_GATE}
-(inter-annotator agreement at or above threshold on every coordinate).
-The gold, adjudicated records, and reproducibility checklist will be
-released under CC-BY 4.0 with the data statement in
-\texttt{gold/README.md}. Reuse of overlapping existing resources (MUSE,
-SciSchema, SciER) is preferred wherever licenses and task shapes match,
-per \texttt{JOURNAL\_READINESS.md}.
+The public-reference package stores source identities, pinned revisions,
+locators, provenance and content commitments needed for replay. Third-party
+text is not vendored where redistribution is not permitted. The final
+submission archive will freeze the exact repository subject and stable public
+release URL for the legally shareable package; absence of a permanent archive
+at the current drafting stage does not change the scientific result.
 
 \endinput

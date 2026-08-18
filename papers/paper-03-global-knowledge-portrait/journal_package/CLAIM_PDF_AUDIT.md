@@ -1,13 +1,13 @@
-# ORION-P3 independent claim / PDF audit
+# ORION-P3 claim / PDF audit boundary
 
-Audit subject: `b7cfaecfb55d9ad6c12fb59374935769ed8d8787`. Not a #283 verification record.
+This file does not self-authorize the paper. The exact subject is acceptable only when `p3-manuscript-audit` and repository CI are green on that same commit/PR head.
 
-| ID | Claim | Artifact | Status |
-|---|---|---|---|
-| P3.C5 | Disjoint confirmatory mapping n=32; false-merge 0 vs 0.1875 | `evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json` | BOUNDED (already-structured public-reference mapping only) |
-| P3.C7 | Raw-text end-to-end integration superiority | named expert-gold model run absent | CANNOT_CHECK |
-| P3.C8 | Downstream answer-quality improvement | no frozen downstream task result | CANNOT_CHECK |
-| P3.FALSIFIER | Local semantic falsifier | `evidence/FALSIFIER_V1.md` | SUPPORTED |
-| P3.PDF | Independent final PDF proofread | no journal PDF in tree | **OPEN** |
+| ID | Claim | Status |
+|---|---|---|
+| P3.C5 | disjoint confirmatory mapping: false merge 0 vs 0.1875, delta -0.1875 | BOUNDED / independently verified |
+| P3.C7 | raw-text end-to-end superiority | NOT_CLAIMED / follow-up |
+| P3.C8 | downstream answer-quality improvement | NOT_CLAIMED / follow-up |
+| P3.STRUCTURE | typed method projection/alignment non-vacuity on six exact-ground-truth pairs | BOUNDED |
+| P3.PDF | static citation/input/claim audit + converged LaTeX PDF | CI_BOUND |
 
-Do not describe C5 as completion of the original eight-family study.
+A later human referee/editorial assessment is external peer review, not a prerequisite for the repository terminal `PEER_REVIEW_READY`.
