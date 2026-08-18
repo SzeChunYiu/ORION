@@ -79,6 +79,9 @@ def test_generate_populates_p5_3_and_leaves_campaign_tables_cannot_check(
     assert tables["P5-3_cause_confusion"]["status"] == STATUS_OK
     assert tables["P5-3_cause_confusion"]["correct"] == 21
     assert tables["P5-3_cause_confusion"]["incorrect"] == 3
+    assert tables["P5-3_cause_confusion"]["macro_precision"] == pytest.approx(0.8958333333333334)
+    assert tables["P5-3_cause_confusion"]["macro_recall"] == pytest.approx(0.875)
+    assert tables["P5-3_cause_confusion"]["macro_f1"] == pytest.approx(0.8726190476190476)
     assert tables["P5-ATTRIBUTION_RESIDUAL_ERRORS"]["n_errors"] == 3
     for key in (
         "P5-2_replay_vs_fresh_scatter",
