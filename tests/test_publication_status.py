@@ -138,6 +138,18 @@ def test_a_narrowed_terminal_is_never_scored_as_peer_review_ready():
     # guard cannot pass by refusing every terminal it is shown.
     assert module.readme_records_peer_review_ready("**Status:** `PEER_REVIEW_READY`\n") is True
 
+    # The third consumer of this token. Its anchor was reasoned to be safe --
+    # `PEER_REVIEW_READY_NARROWED` cannot reach the trailing `.**` -- but a
+    # reasoned-safe guard in the same family as two that were not is worth
+    # asserting rather than inferring, since the failure would be silent and in
+    # the inflating direction.
+    narrowed_declaration = "**`ORION-P2 = PEER_REVIEW_READY_NARROWED`.**"
+    assert module.journal_readiness_declares_complete(narrowed_declaration, "P2") is False
+    assert (
+        module.journal_readiness_declares_complete("**`ORION-P2 = PEER_REVIEW_READY`.**", "P2")
+        is True
+    )
+
 
 def test_every_paper_declares_a_machine_scorable_terminal():
     """A terminal only a human can read is not a terminal this scoreboard has.
