@@ -1,5 +1,5 @@
 {
-  "artifact_hash": "a79cc801f1936d89b9e80cc01ab1ce85f0bf4e09f623321c7e7e8f910f39e8ec",
+  "artifact_hash": "7b40757e257ecdbcbc5be6858b9b9f37d211f0aaad5872b573756656a6c3fb98",
   "blocked_on": [
     "workflow_omits_frozen_packet_binding",
     "workflow_does_not_load_LIVE_TRIAL_PACKET_V1",
@@ -82,6 +82,11 @@
   ],
   "schema": "orion.p5.issue8-packet-execution-binding-receipt.v1",
   "status": "CANNOT_CHECK",
+  "supersedes": {
+    "observed_at_commit": "cfeff0b0e5efa41e283b1166b14f7537923d46d7",
+    "preflight_blob_sha": "16ae0a2dc7bb84445c30021206937d3c9fcfb405",
+    "why": "The #277 fail-closed repair rewrote phase2_preflight.py after this receipt was issued. The divergence it records is unchanged; only the observed bytes moved, so the receipt is re-observed rather than left pointing at a blob the tree no longer has."
+  },
   "workflow_registry": {
     "baseline_id": "simple-llm-retrieval-baseline-v1",
     "evaluation_epoch_id": "env:ORION_PHASE2_EVALUATION_EPOCH_ID_or_github-actions-<run_id>-attempt-<n>",
@@ -99,10 +104,5 @@
     ],
     "workflow_blob_sha": "8bbc5884cde50dc84bb8f3b477cfdb29fe9845f9",
     "workflow_path": ".github/workflows/p5_phase2_live_execution.yml"
-  },
-  "supersedes": {
-    "observed_at_commit": "cfeff0b0e5efa41e283b1166b14f7537923d46d7",
-    "preflight_blob_sha": "16ae0a2dc7bb84445c30021206937d3c9fcfb405",
-    "why": "The #277 fail-closed repair rewrote phase2_preflight.py after this receipt was issued. The divergence it records is unchanged; only the observed bytes moved, so the receipt is re-observed rather than left pointing at a blob the tree no longer has."
   }
 }
