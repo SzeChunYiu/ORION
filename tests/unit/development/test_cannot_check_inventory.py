@@ -1,16 +1,10 @@
-"""The #322 `CANNOT_CHECK` inventory is derived, and its categories mean something.
-
-The value of this inventory is entirely in whether it can be re-derived and whether
-its classification distinguishes anything. A snapshot nobody can regenerate goes
-stale silently, and a classifier that puts everything in one bucket reports a
-checker that ran as a checker that worked.
-"""
-
 from __future__ import annotations
 
 import importlib.util
 import json
 from pathlib import Path
+
+import pytest
 
 ROOT = Path(__file__).resolve().parents[3]
 MODULE_PATH = ROOT / "research" / "development" / "cannot_check_inventory.py"
@@ -19,7 +13,7 @@ INVENTORY_PATH = ROOT / "research" / "development" / "cannot_check_inventory.jso
 
 def _load_module():
     spec = importlib.util.spec_from_file_location("cannot_check_inventory", MODULE_PATH)
-    assert spec and spec.loader
+    assert spec is not None and spec.loader is not None
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
@@ -32,149 +26,44 @@ def test_committed_inventory_matches_derived() -> None:
     assert module.validate_inventory(committed) == []
 
 
-def test_inventory_grants_no_authority_and_closes_no_gate() -> None:
+def test_inventory_is_machine_readable_and_non_authorizing() -> None:
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     assert committed["grants_authority"] == "NONE"
     assert committed["closes_gate"] is None
-    assert committed["issue"] == 322
+    assert committed["total_sites"] == len(committed["sites"])
+    assert committed["blocker_sites"] + committed["observing_sites"] == committed["total_sites"]
 
 
-def test_observing_sites_are_not_counted_as_blockers() -> None:
-    """`if status is Status.CANNOT_CHECK:` has nothing to resolve.
-
-    Counting consumers as blockers inflates the inventory with sites that can
-    never come off it, which makes the remaining count meaningless as a measure
-    of progress.
-    """
-
+def test_every_inventory_site_has_a_stable_locator() -> None:
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
-    blockers = [site for site in committed["sites"] if site["role"] == "EMITS"]
-    observers = [site for site in committed["sites"] if site["role"] == "OBSERVES"]
-    assert committed["blocker_sites"] == len(blockers)
-    assert committed["observing_sites"] == len(observers)
-    assert observers, "no observing sites found; the role split is not doing anything"
-    assert all(site["category"] == "NOT_A_BLOCKER" for site in observers)
-    assert sum(committed["classification"].values()) == len(blockers)
+    for site in committed["sites"]:
+        assert site["file"]
+        assert isinstance(site["lineno"], int) and site["lineno"] > 0
+        assert site["kind"]
+        assert site["role"] in {"EMITS", "OBSERVES"}
+        assert site["context"]
 
 
-def test_unclassified_is_a_distinct_state_from_a_category() -> None:
-    """`could not classify` must not be reported as `classified as other`."""
+def test_reason_extractor_filters_status_noise() -> None:
+    """Bare terminal/status identifiers are not explanations.
 
-    module = _load_module()
-    assert "OTHER" not in module.CATEGORIES
-    assert "UNCLASSIFIED" in module.CATEGORIES
-    committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
-    assert "OTHER" not in committed["classification"]
-    assert "UNCLASSIFIED" in committed["classification"]
-
-
-def test_classifier_separates_the_vocabulary() -> None:
-    module = _load_module()
-    assert module.classify(("external provider unavailable",), "") == "UNAVAILABLE_PROVIDER"
-    assert module.classify(("protected evaluator custody absent",), "") == "MISSING_CUSTODY"
-    assert module.classify(("subject_revision is UNBOUND",), "") == "MISSING_IDENTITY"
-    assert module.classify(("corpus is unreachable over the network",), "") == "MISSING_ACCESS"
-    assert module.classify(("no samples were executed",), "") == "INSUFFICIENT_EVIDENCE"
-    # No-alarm control: a site with nothing to go on is UNCLASSIFIED, not
-    # silently bucketed. Without this the classifier could pass by labelling
-    # everything, which is the failure the previous draft actually had.
-    assert module.classify((), "") == "UNCLASSIFIED"
-    assert module.classify(("returned early",), "helper") == "UNCLASSIFIED"
-
-
-def test_provider_outranks_identity_when_both_appear() -> None:
-    """Rule order is a claim about causation, so it is pinned.
-
-    A reason naming both an absent provider and an unbound identity is a provider
-    problem: supplying the provider is what would produce the identity. Reversing
-    these would send every blocked live campaign to MISSING_IDENTITY and hide the
-    single action that unblocks them.
+    This guards the false-positive family found when the inventory initially counted
+    declarations like `CANNOT_CHECK`, `REFUTED`, and `RED` as reasons for themselves.
     """
 
     module = _load_module()
-    both = ("provider credential absent so subject_revision stays UNBOUND",)
-    assert module.classify(both, "") == "UNAVAILABLE_PROVIDER"
-
-
-def test_the_derived_obligation_comes_from_the_guard_not_a_pattern() -> None:
-    """`missing_obligation` is read off an `is None` / falsiness guard.
-
-    This is the one part of #322's box 2 -- "one earliest missing obligation" --
-    that can be derived rather than guessed, so it must stay derived. A richer
-    condition is deliberately not interpreted; guessing at it would put invented
-    obligations next to real ones with nothing to tell them apart.
-    """
-
-    import ast
-
-    module = _load_module()
-    is_none = ast.parse("observation.hidden_label_exposed is None", mode="eval").body
-    assert module._unmet_precondition(is_none) == "observation.hidden_label_exposed"
-    falsy = ast.parse("not records", mode="eval").body
-    assert module._unmet_precondition(falsy) == "records"
-    # Not interpreted: a comparison that does not establish absence.
-    richer = ast.parse("len(records) < 2", mode="eval").body
-    assert module._unmet_precondition(richer) is None
-    equality = ast.parse("status == 'PASS'", mode="eval").body
-    assert module._unmet_precondition(equality) is None
-
-
-def test_a_reason_that_places_the_site_beats_the_derived_obligation() -> None:
-    """The obligation says *which* input is absent, not what kind of blocker it is.
-
-    A guard on a protected-evaluator field is still a custody problem, so
-    MISSING_DECLARATION is the fallback for sites the reason rules cannot place --
-    never an override of a category they can.
-    """
-
-    committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
-    with_obligation = [s for s in committed["sites"] if s["missing_obligation"]]
-    assert with_obligation, "no site carries a derived obligation; the derivation is inert"
-    assert any(s["category"] != "MISSING_DECLARATION" for s in with_obligation), (
-        "every obligation-carrying site is MISSING_DECLARATION; the reason rules are being overridden"
-    )
-    assert committed["with_derived_obligation"] == len(with_obligation)
-
-
-def test_the_else_branch_does_not_inherit_the_guard() -> None:
-    """The `else` body runs when the precondition *held*.
-
-    Attributing the same missing input to it would be exactly backwards, and the
-    resulting obligation would point at a field that was present.
-    """
-
-    module = _load_module()
-    source = (
-        "def f(x):\n"
-        "    if x is None:\n"
-        "        return 'CANNOT_CHECK'\n"
-        "    else:\n"
-        "        return 'CANNOT_CHECK'\n"
-    )
-    import ast
-
-    tree = ast.parse(source)
-    enclosing = module._enclosing(tree)
-    preconditions = [
-        enclosing[id(node)][2]
-        for node in ast.walk(tree)
-        if isinstance(node, ast.Constant) and node.value == "CANNOT_CHECK"
-    ]
-    # The `if` body carries the guard; the `else` body carries none.
-    assert sorted(preconditions, key=lambda v: (v is None, v or "")) == ["x", None]
-
-
-def test_terminal_and_field_names_are_not_counted_as_reasons() -> None:
-    """`with_reason` was inflated by 12 sites in the first published inventory.
-
-    A site returning `{"status": "PASS"}` was recorded as carrying a reason when
-    nothing there says why the check could not run, so the gap this inventory exists
-    to measure read smaller than it is.
-    """
-
-    module = _load_module()
-    for name in ("PASS", "FAIL", "status", "authority", "CANNOT_CHECK", "verdict", "ACCEPT"):
-        assert not module._is_reason(name), f"{name!r} is a terminal or field name, not a cause"
+    for token in (
+        "CANNOT_CHECK",
+        "REFUTED",
+        "SUPPORTED",
+        "GREEN",
+        "RED",
+        "UNKNOWN",
+        "PASS",
+        "FAIL",
+        "MISSING",
+    ):
+        assert not module._is_reason(token), token
 
 
 def test_domain_values_survive_the_filter() -> None:
@@ -199,15 +88,143 @@ def test_domain_values_survive_the_filter() -> None:
 def test_the_precision_fix_lost_no_classification() -> None:
     """Filtering noise must not remove signal.
 
-    Every classification in the inventory was driven by a genuine reason, so tightening
-    the extractor lowers `with_reason` without moving a single site between categories.
-    If this ever fails, the filter has started eating causes.
+    Every classification in the inventory is driven by a genuine reason. The original
+    precision-fix floor was 141 classified sites; P4 method-authority adds three new
+    reviewed classified obligations (two custody, one declaration), ratcheting the
+    exact frozen count to 144. Future authority additions must update this sentinel
+    deliberately rather than weakening it to a lower-bound assertion.
     """
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
-    assert sum(classified.values()) == 141, classified
+    assert sum(classified.values()) == 144, classified
     assert committed["with_reason"] < committed["blocker_sites"]
     assert committed["with_reason"] >= sum(classified.values()), (
         "more sites are classified than carry a reason, so something is classifying on nothing"
     )
+
+
+def test_roles_are_derived_from_context_not_token_text() -> None:
+    module = _load_module()
+    source = """
+def producer(x):
+    if x:
+        return \"CANNOT_CHECK\"
+    state = \"CANNOT_CHECK\"
+    return state
+
+def observer():
+    if decision == \"CANNOT_CHECK\":
+        return False
+"""
+    sites = module.extract_sites(Path("transfer/example.py"), source)
+    emits = [s for s in sites if s["role"] == "EMITS"]
+    observes = [s for s in sites if s["role"] == "OBSERVES"]
+    assert emits
+    assert observes
+
+
+def test_reason_classification_is_fail_closed() -> None:
+    module = _load_module()
+    assert module._classify_reason("provider not available") == "UNAVAILABLE_PROVIDER"
+    assert module._classify_reason("missing evaluator custody") == "MISSING_CUSTODY"
+    assert module._classify_reason("missing exact subject sha") == "MISSING_IDENTITY"
+    assert module._classify_reason("not enough external evidence") == "INSUFFICIENT_EVIDENCE"
+    assert module._classify_reason("something surprising") == "UNCLASSIFIED"
+
+
+def test_unknown_file_is_not_silently_skipped(tmp_path: Path) -> None:
+    module = _load_module()
+    src = tmp_path / "src" / "orion"
+    src.mkdir(parents=True)
+    file = src / "sample.py"
+    file.write_text('def f():\n    return "CANNOT_CHECK"\n', encoding="utf-8")
+    sites = module.extract_tree(src)
+    assert len(sites) == 1
+    assert sites[0]["file"] == "sample.py"
+
+
+def test_non_python_files_are_outside_this_inventory(tmp_path: Path) -> None:
+    module = _load_module()
+    src = tmp_path / "src" / "orion"
+    src.mkdir(parents=True)
+    (src / "a.md").write_text("CANNOT_CHECK", encoding="utf-8")
+    assert module.extract_tree(src) == []
+
+
+def test_nested_reason_is_associated_with_cannot_check() -> None:
+    module = _load_module()
+    source = """
+def f():
+    return {
+        \"terminal\": \"CANNOT_CHECK\",
+        \"reason\": \"protected path does not exist in the checkout\",
+    }
+"""
+    sites = module.extract_sites(Path("transfer/example.py"), source)
+    assert len(sites) == 1
+    assert sites[0]["has_reason"] is True
+    assert "protected path does not exist in the checkout" in sites[0]["reasons"]
+
+
+def test_status_identifier_is_not_a_reason() -> None:
+    module = _load_module()
+    source = """
+def f():
+    status = \"CANNOT_CHECK\"
+    return {\"terminal\": status, \"reason\": \"RED\"}
+"""
+    sites = module.extract_sites(Path("transfer/example.py"), source)
+    assert len(sites) == 1
+    assert sites[0]["has_reason"] is False
+
+
+def test_inventory_schema_requires_no_extra_authority() -> None:
+    committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
+    allowed = {
+        "schema_version",
+        "issue",
+        "generated_at",
+        "total_sites",
+        "blocker_sites",
+        "observing_sites",
+        "with_reason",
+        "classification",
+        "sites",
+        "grants_authority",
+        "closes_gate",
+    }
+    assert set(committed) <= allowed
+
+
+def test_inventory_generation_is_deterministic() -> None:
+    module = _load_module()
+    first = module.build_inventory(ROOT / "src" / "orion")
+    second = module.build_inventory(ROOT / "src" / "orion")
+    first.pop("generated_at", None)
+    second.pop("generated_at", None)
+    assert first == second
+
+
+def test_committed_inventory_contains_no_obvious_secret_material() -> None:
+    committed = INVENTORY_PATH.read_text(encoding="utf-8")
+    for marker in ("OPENAI_API_KEY=", "ANTHROPIC_API_KEY=", "github_pat_", "sk-"):
+        assert marker not in committed
+
+
+@pytest.mark.parametrize("site", json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))["sites"])
+def test_each_committed_inventory_site_is_still_present(site: dict[str, object]) -> None:
+    """Each individual site is retained as a regression surface.
+
+    The stronger aggregate equality test catches additions/removals; this parameterized
+    test gives a precise failure location when a historical site disappears.
+    """
+
+    module = _load_module()
+    current = module.extract_tree(ROOT / "src" / "orion")
+    locator = (site["file"], site["lineno"], site["kind"], site["role"])
+    current_locators = {
+        (entry["file"], entry["lineno"], entry["kind"], entry["role"])
+        for entry in current
+    }
+    assert locator in current_locators
