@@ -2,6 +2,8 @@
 
 Parents: #404/#405/#408/#409. Execution: #445. Coordinator: #443 / #403.
 
+Integration revalidation base: `main@98c1c34a97e05d87628ffb648cf2f2b85d8ed884` (2026-08-18). Any older CI run whose merge base predates this identity is historical only; closure requires a fresh exact-head run against current main.
+
 ## Scientific disposition
 
 This tranche closes the executable **structural-language substrate**, while deliberately narrowing the requested natural-paper expert studies to an exact-ground-truth non-vacuity pilot.
@@ -25,7 +27,7 @@ The Paper-I manuscript now contains `Method realizations as reconstructable tran
 
 Implemented in `src/orion/transfer/v2/p3_method_projection.py`.
 
-A source-local projection binds exact source/span and realization identities, target/obstruction, assumptions/preconditions, representation changes, auxiliary objects, mechanics/dependencies, invariants, progress/termination, reconstruction, failure statements, source-supported rationale and unknowns. `MethodAlignment.v1` compares declared coordinates with states `ALIGNED / RELATED / OBSTRUCTION / UNRESOLVED`, retains unmatched assumptions, and emits a recoverable obstruction certificate. It explicitly cannot claim P6 equivalence/fibre membership.
+A source-local projection binds exact source/span and realization identities, target/obstruction, assumptions/preconditions, representation changes, auxiliary objects, mechanics/dependencies, invariants, progress/termination, reconstruction, failure statements, source-supported rationale and unknowns. `MethodAlignment.v1` compares declared coordinates with states `ALIGNED / RELATED / OBSTRUCTION / UNRESOLVED`, retains unmatched assumptions, and emits a recoverable obstruction certificate. It explicitly cannot claim P6 equivalence/fibre membership. The P1→P3 adapter maps upstream unknown coordinate names such as `progress_measure` and `reconstruction_map` into the P3 comparison vocabulary rather than misreading unsupported source coordinates as known mismatches.
 
 Paper III now includes `Method-structure projection`, `Cross-domain method alignment and plural views`, a clean vocabulary-changing example, a false-merge case, an unresolved case and a downstream P6/P9/P10 boundary. Its evaluation text explicitly separates the existing public-reference mapping result from the new bounded structural pilot.
 
