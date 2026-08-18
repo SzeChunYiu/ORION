@@ -1,0 +1,26 @@
+{
+  "schema": "P6.HigherOrderEpistemicMechanics.T7Countermodels.v1",
+  "protocol_id": "P6.higher-order-epistemic-mechanics.t7.v1",
+  "base_subject": "0694b517bf637c70ef4aec75b6968692ba728aa6",
+  "authority_scope": "NON_AUTHORIZING_CONTROL_COMPOSITION_ONLY",
+  "grants_scientific_authority": false,
+  "grants_revision_authority": false,
+  "grants_adoption_authority": false,
+  "grants_promotion_authority": false,
+  "grants_merge_authority": false,
+  "grants_global_task_stop_authority": false,
+  "cases": [
+    {"id": "T7-01", "kind": "hard_compute_preempts_revision", "expected_status": "COMPUTATION_REQUIRED", "expected_computation": "verify"},
+    {"id": "T7-02", "kind": "revision_preempts_optional_compute", "expected_status": "REVISION_CANDIDATE", "expected_revision": "repair-interface"},
+    {"id": "T7-03", "kind": "unresolved_revision_recommends_compute", "expected_status": "COMPUTATION_RECOMMENDED", "expected_computation": "diagnose"},
+    {"id": "T7-04", "kind": "invalid_context_contained", "expected_status": "CONTAINED"},
+    {"id": "T7-05", "kind": "unresolved_context_fails_closed", "expected_status": "UNRESOLVED"},
+    {"id": "T7-06", "kind": "correlated_social_evidence_blocks", "expected_status": "SOCIAL_EVIDENCE_REQUIRED"},
+    {"id": "T7-07", "kind": "independent_social_evidence_allows_revision", "expected_status": "REVISION_CANDIDATE", "expected_revision": "repair-interface"},
+    {"id": "T7-08", "kind": "multiple_minimal_revisions", "expected_status": "REVISION_AMBIGUOUS"},
+    {"id": "T7-09", "kind": "local_compute_stop_not_global_stop", "expected_status": "LOCAL_COMPUTATION_STOP"},
+    {"id": "T7-10", "kind": "no_admissible_revision_or_compute", "expected_status": "NO_ADMISSIBLE_ACTION"}
+  ],
+  "expected_terminal": "T7_CONTROL_COMPOSITION_GREEN",
+  "claim_ceiling": "DETERMINISTIC_NON_AUTHORIZING_NEXT_STEP_COMPOSITION_ONLY"
+}
