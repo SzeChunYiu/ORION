@@ -1,0 +1,25 @@
+{
+  "claim_ceiling": "This protocol tests navigation, false-analogy, reframe, reopen and stop semantics on enumerated exact-ground-truth worlds. It does not establish real-world semantic retrieval superiority, LLM navigation gains, or global method-space coverage.",
+  "false_analogy_control": 1.0,
+  "harmful_reframe_control": true,
+  "invention_escalation_correctness": true,
+  "loop_control": true,
+  "mutation_detection_rate": 1.0,
+  "n_worlds": 15,
+  "policy_accuracy": {
+    "deterministic_random": 0.3333333333333333,
+    "nearest_neighbor": 0.13333333333333333,
+    "oracle_ceiling": 1.0,
+    "p2_topical_multiroute": 0.2,
+    "p7_method_chart": 1.0,
+    "p7_v2_local_navigation": 0.5333333333333333,
+    "semantic_topic": 0.2
+  },
+  "premature_stop_rate": 0.0,
+  "protocol_digest": "sha256:f257f32e9d84ee19653c502313e90190d0d103913efdd3db121df0b85332ce69",
+  "protocol_id": "P7.MethodSpaceEval.v2",
+  "reopen_correctness": true,
+  "result_digest": "sha256:1248bce8a4ab09e5a8171e25bcf7c4bfa5d17e3549e386773de7018715cce5cf",
+  "target_discovery_rate": 1.0,
+  "terminal": "P7_METHOD_SPACE_NAVIGATION_NARROWED"
+}

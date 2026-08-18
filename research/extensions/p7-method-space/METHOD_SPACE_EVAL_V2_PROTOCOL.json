@@ -1,0 +1,57 @@
+{
+  "protocol_id": "P7.MethodSpaceEval.v2",
+  "frozen_on": "2026-08-18",
+  "authority": "BOUNDED_EXACT_GROUND_TRUTH_NAVIGATION_WORLDS",
+  "budget_per_world": 6,
+  "claim_ceiling": "This protocol tests navigation, false-analogy, reframe, reopen and stop semantics on enumerated exact-ground-truth worlds. It does not establish real-world semantic retrieval superiority, LLM navigation gains, or global method-space coverage.",
+  "policies": [
+    "nearest_neighbor",
+    "semantic_topic",
+    "deterministic_random",
+    "p2_topical_multiroute",
+    "p7_v2_local_navigation",
+    "p7_method_chart",
+    "oracle_ceiling"
+  ],
+  "worlds": [
+    {"id":"immediate_neighbour","family":"NAVIGATION_SUCCESS","required":"METHOD_NEIGHBOR","gold":"FOUND"},
+    {"id":"specialize_then_compose","family":"NAVIGATION_SUCCESS","required":"SPECIALIZE_COMPOSE","gold":"FOUND"},
+    {"id":"representation_unlock","family":"NAVIGATION_SUCCESS","required":"REPRESENTATION_CHANGE","reconstruction_valid":true,"gold":"FOUND"},
+    {"id":"distant_structural_route","family":"NAVIGATION_SUCCESS","required":"STRUCTURAL_ANALOGY_ROUTE","semantic_distance":"HIGH","gold":"FOUND"},
+    {"id":"new_fibre_after_reopen","family":"NAVIGATION_SUCCESS","required":"REOPEN_NEW_FIBRE","gold":"FOUND"},
+
+    {"id":"invariant_false_analogy","family":"FALSE_ANALOGY","trap":"INVARIANT_VIOLATION","gold":"REJECT"},
+    {"id":"lost_reconstruction","family":"FALSE_ANALOGY","trap":"RECONSTRUCTION_LOST","gold":"REJECT"},
+    {"id":"topology_only_decoy","family":"FALSE_ANALOGY","trap":"SURFACE_TOPOLOGY_ONLY","gold":"REJECT"},
+    {"id":"composition_precondition_conflict","family":"FALSE_ANALOGY","trap":"COMPOSITION_CONFLICT","gold":"REJECT"},
+    {"id":"reframe_oscillation","family":"FALSE_ANALOGY","trap":"DUPLICATE_EVIDENCE_REFRAME","gold":"REJECT"},
+
+    {"id":"route_stop_other_route_productive","family":"STOP_HIERARCHY","stop_scope":"ROUTE","remaining_productive":true,"gold":"OPEN"},
+    {"id":"chart_stop_distant_library_candidate","family":"STOP_HIERARCHY","stop_scope":"CHART","remaining_productive":true,"gold":"OPEN"},
+    {"id":"known_library_exhausted","family":"STOP_HIERARCHY","stop_scope":"KNOWN_LIBRARY","remaining_productive":false,"gold":"OPEN"},
+    {"id":"bounded_invention_escalation","family":"STOP_HIERARCHY","stop_scope":"KNOWN_LIBRARY","all_required_routes_attempted":true,"gold":"ESCALATE_NONAUTHORITATIVE"},
+    {"id":"externally_authorized_task_stop","family":"STOP_HIERARCHY","stop_scope":"TASK","external_authority":true,"gold":"CLOSED"}
+  ],
+  "hostile_mutations": [
+    "route_stop_relabelled_task_stop",
+    "hide_distant_chart_after_local_exhaustion",
+    "fake_route_diversity_same_source_family",
+    "alter_signature_after_chart_construction",
+    "remove_reconstruction_obligation",
+    "always_escalate_to_invention",
+    "never_escalate_to_invention",
+    "reject_legitimate_task_stop"
+  ],
+  "primary_metrics": [
+    "target_discovery_rate",
+    "false_analogy_control",
+    "harmful_reframe_control",
+    "premature_stop_rate",
+    "reopen_correctness",
+    "invention_escalation_correctness",
+    "loop_control",
+    "mutation_detection_rate",
+    "policy_accuracy"
+  ],
+  "terminal_rule": "P7_METHOD_SPACE_NAVIGATION_NARROWED iff MethodChart is correct on every frozen contract world and hostile mutation while the result remains explicitly synthetic/non-authoritative."
+}
