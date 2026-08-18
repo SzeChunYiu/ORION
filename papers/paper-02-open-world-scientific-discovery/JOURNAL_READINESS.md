@@ -1,8 +1,12 @@
 # ORION-P2 journal readiness — narrowed publication track
 
-**Current terminal:** `ORION-P2 = PEER_REVIEW_READY` on the bounded methods / critical system-design claim as of 2026-08-18. `P2_NARROWED` remains the scientific scope receipt; external ORION-vs-baseline superiority remains `CANNOT_CHECK` and is not part of the ready claim.
+**Current terminal:** `ORION-P2 = PEER_REVIEW_READY` on the bounded methods / critical system-design claim as of 2026-08-18.
 
-The line above is the machine-scored declaration read by `research/publication/scoreboard.py`, which matches only `**Terminal:**` / `**Current terminal:**`. The previous `**Scientific terminal:**` / `**Publication terminal:**` pair carried the same meaning to a human reader and no meaning at all to the scoreboard, which reported this paper as having no scorable terminal.
+**Scope of that terminal (not machine-scored, and deliberately adjacent to it):** `P2_NARROWED` remains the scientific scope receipt. External ORION-vs-baseline superiority remains `CANNOT_CHECK` and is **not** part of the ready claim. Nothing about that exclusion has changed; it moved off the terminal line because the scoreboard reads that one line and cannot represent a scoped verdict.
+
+The `**Current terminal:**` line is the machine-scored declaration read by `research/publication/scoreboard.py`, which matches only `**Terminal:**` / `**Current terminal:**`. The previous `**Scientific terminal:**` / `**Publication terminal:**` pair carried the same meaning to a human reader and no meaning at all to the scoreboard, which reported this paper as having no scorable terminal.
+
+The terminal line then acquired a second problem, fixed above. It declared `PEER_REVIEW_READY` **and** named the excluded superiority claim as `CANNOT_CHECK` in the same sentence. That reads correctly to a person and is unresolvable for the parser, which treats any `CANNOT_CHECK` on the terminal line as the verdict — fail-closed, and therefore silent. P2 was scored `CANNOT_CHECK` with twelve blockers while its own fail-closed evidence gate (`orion.publication.peer_review_ready.evaluate_paper`) reported `ok=True` with none. The verdict and the scope now occupy separate lines, so the machine reads one claim and the reader still sees both.
 
 Canonical scope receipt: `protocol/P2_NARROWED_PUBLICATION_TERMINAL_2026-08-17.md`.
 Dated nearest-work freeze: `protocol/P2_LITERATURE_ASSIMILATION_FREEZE_2026-08-17.md`.
