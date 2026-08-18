@@ -1,16 +1,11 @@
 name: p2-v2-acq-dev2
 
+# The frozen development run has completed. Keep this workflow only as an
+# explicit reproduction path; PR edits must not silently spend the external
+# provider budget again or create a post-outcome rerun that could be mistaken
+# for a new development decision.
 on:
-  pull_request:
-    paths:
-      - '.github/workflows/p2-v2-acq-dev2.yml'
-      - 'papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_ACQUISITION_DEV2_FREEZE_2026-08-18.json'
-      - 'papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_acq_dev2.py'
   workflow_dispatch:
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -21,134 +16,13 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
       - name: Install ORION and pinned scorer runtime dependencies
         run: python -m pip install -e . requests tiktoken openai
-
-      - name: Materialize pinned AutoResearchBench release
-        shell: bash
+      - name: Reproduction note
         run: |
-          set -euo pipefail
-          rm -rf /tmp/arb-upstream /tmp/p2-dev2
-          git clone --filter=blob:none https://github.com/CherYou/AutoResearchBench.git /tmp/arb-upstream
-          git -C /tmp/arb-upstream checkout a46c9bfb8968786f73f0a6a5b365b5384cd0f96d
-          mkdir -p /tmp/p2-dev2
-          curl --fail --location --retry 4 --retry-delay 3 \
-            --output /tmp/p2-dev2/AutoResearchBench.jsonl.obf.json \
-            https://huggingface.co/datasets/Lk123/AutoResearchBench/resolve/main/AutoResearchBench.jsonl.obf.json
-          python /tmp/arb-upstream/decrypt_benchmark.py \
-            --input-file /tmp/p2-dev2/AutoResearchBench.jsonl.obf.json \
-            --output-file /tmp/p2-dev2/AutoResearchBench.jsonl
-          echo 'db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6  /tmp/p2-dev2/AutoResearchBench.jsonl' | sha256sum -c -
-
-      - name: Prepare exact gold-blind Wide split
-        run: |
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
-            --full /tmp/p2-dev2/AutoResearchBench.jsonl \
-            --public /tmp/p2-dev2/wide_public.jsonl \
-            --gt /tmp/p2-dev2/wide_gt.jsonl \
-            --manifest /tmp/p2-dev2/split_manifest.json
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          freeze=json.loads(Path('papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_ACQUISITION_DEV2_FREEZE_2026-08-18.json').read_text())
-          split=json.loads(Path('/tmp/p2-dev2/split_manifest.json').read_text())
-          assert split['public_sha256']=='af795b78a53a805e972d6574e441bfe9e80be4077cf6c95e73d9b2a0b43f43ae'
-          assert freeze['development_slice']['n']==24
-          assert freeze['development_slice']['seed']==20260818
-          PY
-
-      - name: Static Dev-2 query-contract preflight
-        run: |
-          python - <<'PY'
-          import importlib.util
-          from pathlib import Path
-          p=Path('papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_acq_dev2.py')
-          s=importlib.util.spec_from_file_location('dev2', p); m=importlib.util.module_from_spec(s); s.loader.exec_module(m)
-          q='Between 2018 and 2022, identify graph neural network methods for molecular property prediction.'
-          field=m.derive_field_aware_phrases(q)
-          broad=m.derive_diversified_or(q)
-          core=m.derive_core_conjunction(q)
-          assert 'ti:' in field and 'abs:' in field and 'submittedDate:' in field
-          assert 'all:all:' not in field + broad + core
-          assert field.count('submittedDate:') == 1
-          assert len(m._core_terms('alpha beta generic research gamma')) in (2,3)
-          print('DEV2_QUERY_PREFLIGHT_OK', field, broad, core)
-          PY
-
-      - name: Run frozen Dev-2 acquisition system
-        run: |
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_acq_dev2.py \
-            --public /tmp/p2-dev2/wide_public.jsonl \
-            --out-dir /tmp/p2-dev2/run \
-            --max-results 20 \
-            --subsample 24 \
-            --subsample-seed 20260818 \
-            --progress-every 4
-
-      - name: Score Dev-2 with pinned official Wide scorer
-        run: |
-          python /tmp/arb-upstream/evaluate/evaluate_wide_search.py \
-            --input /tmp/p2-dev2/run/candidate_wide_diversified_arxiv_dev2.jsonl \
-            --gt-file /tmp/p2-dev2/wide_gt.jsonl \
-            --no-jina \
-            --output /tmp/p2-dev2/run/eval_wide_diversified_arxiv_dev2.json
-
-      - name: Apply frozen Dev-2 success rule
-        shell: bash
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          root=Path('/tmp/p2-dev2/run')
-          freeze=json.loads(Path('papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_ACQUISITION_DEV2_FREEZE_2026-08-18.json').read_text())
-          manifest=json.loads((root/'DEV2_RUN_MANIFEST.json').read_text())
-          metrics=json.loads((root/'eval_wide_diversified_arxiv_dev2.json').read_text())['aggregate_stats']
-          ok=int((manifest.get('route_status_counts') or {}).get('OK',0))
-          calls=int(manifest['provider_requests'])
-          transport_ok=(calls==72 and ok==72 and manifest['provider_requests_per_task']==3.0)
-          selection=manifest['selection']
-          selection_ok=(selection['selected_task_ids_sha256']==freeze['development_slice']['selected_task_ids_sha256'])
-          recall=float(metrics['avg_recall']); iou=float(metrics['avg_iou'])
-          if not transport_ok or not selection_ok:
-              verdict='CANNOT_CHECK_EXECUTION_VALIDITY'
-          elif recall > float(freeze['development_success_criteria']['require_recall_above']) and iou > float(freeze['development_success_criteria']['require_iou_above']):
-              verdict='DEV2_ELIGIBLE_FOR_FRESH_SLICE_FREEZE'
-          else:
-              verdict='DEV2_NOT_ELIGIBLE'
-          payload={
-            'schema':'P2.v2.acquisition-dev2-result.v1',
-            'authority':'DEVELOPMENT_ONLY_NOT_CONFIRMATION',
-            'verdict':verdict,
-            'selection':selection,
-            'transport_valid':transport_ok,
-            'selection_valid':selection_ok,
-            'official_metrics':metrics,
-            'development_success_criteria':freeze['development_success_criteria'],
-            'candidate_sha256':manifest['candidate_sha256'],
-            'trace_sha256':manifest['trace_sha256'],
-            'promotion':'FORBIDDEN_FROM_DEVELOPMENT_SLICE',
-          }
-          (root/'P2_V2_ACQUISITION_DEV2_RESULT.json').write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
-          print('P2_V2_ACQ_DEV2='+json.dumps(payload,sort_keys=True))
-          PY
-
-      - name: Upload immutable Dev-2 evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: p2-v2-acq-dev2-${{ github.sha }}
-          path: |
-            /tmp/p2-dev2/split_manifest.json
-            /tmp/p2-dev2/run/DEV2_RUN_MANIFEST.json
-            /tmp/p2-dev2/run/candidate_wide_diversified_arxiv_dev2.jsonl
-            /tmp/p2-dev2/run/trace_wide_diversified_arxiv_dev2.json
-            /tmp/p2-dev2/run/eval_wide_diversified_arxiv_dev2.json
-            /tmp/p2-dev2/run/P2_V2_ACQUISITION_DEV2_RESULT.json
-            papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_ACQUISITION_DEV2_FREEZE_2026-08-18.json
-          if-no-files-found: warn
-          retention-days: 30
+          echo 'Frozen Dev-2 evidence is archived in the P2 evidence tree.'
+          echo 'Use the frozen protocol and archived candidate/trace hashes for reproduction.'
+          echo 'Do not reinterpret a manual rerun as a new development-selection outcome.'
