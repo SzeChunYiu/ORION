@@ -45,12 +45,18 @@ jobs:
   fast:
     name: fast (all but p2)
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
       - run: python -m pip install -e '.[dev,candidates]'
+      # Serial on purpose. 2490 tests in ~63s, and this half of the suite is
+      # where the 58 files that write outside tmp_path live, so there is no
+      # speed to win here and a real race surface to avoid.
       - run: pytest -q --ignore=tests/unit/p2 --durations=10
 
   # p2 alone, split four ways by pytest-split's deterministic partition of the
@@ -58,6 +64,9 @@ jobs:
   p2:
     name: p2 ${{ matrix.group }}/4
     runs-on: ubuntu-latest
+    # A shard past 20 minutes is wrong, not slow: the whole suite is ~28
+    # minutes serial. Without this a hung job sits at GitHub's 6 hour default.
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -67,8 +76,22 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
       - run: python -m pip install -e '.[dev,candidates]'
-      - run: pytest -q tests/unit/p2 --splits 4 --group ${{ matrix.group }} --durations=10
+      # -n auto here, and only here. Checked file by file: every write under
+      # tests/unit/p2 is tmp_path-scoped, and xdist gives each worker its own
+      # tmp_path. The dominant test, test_p2_offline_systems.py, writes nothing
+      # to disk at all -- it is a pure in-memory cross product -- so it is the
+      # safest possible candidate for parallel execution and the one with by
+      # far the most to gain.
+      #
+      # Default (load) distribution, deliberately, not --dist loadfile: the 14
+      # parametrised cases of the dominant test all live in one file, so grouping
+      # by file would put them on a single worker and win nothing. The cached
+      # _suite() is functools.cache, which is per-process, so each worker simply
+      # builds the world once -- ~4s -- rather than contending for it.
+      - run: pytest -q tests/unit/p2 --splits 4 --group ${{ matrix.group }} -n auto --durations=10
 
   # Aggregate gate. Keeps one stable check name, and fails if any job failed,
   # was cancelled, or was skipped -- "not success" is the condition, so a job
