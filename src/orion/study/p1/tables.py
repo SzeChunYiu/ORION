@@ -883,6 +883,39 @@ def _without_clock(table: dict) -> dict:
     return {**table, "provenance": provenance}
 
 
+def _differences(committed: object, regenerated: object, path: str = "") -> list[str]:
+    """Every leaf where two table payloads disagree, as a JSON pointer.
+
+    A drift detector that only says "something changed" makes the next reader
+    re-derive the diff by hand, and cross-platform float drift is invisible in
+    the markdown rendering because that rounds to four digits. Reporting the
+    pointer and both values is what turns a red run into a diagnosis.
+    """
+
+    if isinstance(committed, dict) and isinstance(regenerated, dict):
+        out: list[str] = []
+        for key in sorted(set(committed) | set(regenerated)):
+            if key not in committed:
+                out.append(f"{path}/{key}: absent in committed, regenerated={regenerated[key]!r}")
+            elif key not in regenerated:
+                out.append(f"{path}/{key}: committed={committed[key]!r}, absent in regeneration")
+            else:
+                out.extend(_differences(committed[key], regenerated[key], f"{path}/{key}"))
+        return out
+    if isinstance(committed, list) and isinstance(regenerated, list):
+        if len(committed) != len(regenerated):
+            return [f"{path}: length {len(committed)} vs {len(regenerated)}"]
+        out = []
+        for index, (left, right) in enumerate(zip(committed, regenerated, strict=True)):
+            out.extend(_differences(left, right, f"{path}/{index}"))
+        return out
+    if committed == regenerated:
+        return []
+    if isinstance(committed, float) and isinstance(regenerated, float):
+        return [f"{path}: {committed!r} vs {regenerated!r} (delta {regenerated - committed:+.3e})"]
+    return [f"{path}: {committed!r} vs {regenerated!r}"]
+
+
 def _check(args: argparse.Namespace) -> int:
     """Compare a live regeneration against the committed tables.
 
@@ -919,6 +952,8 @@ def _check(args: argparse.Namespace) -> int:
             committed = json.loads(committed_path.read_text(encoding="utf-8"))
             if _without_clock(committed) != _without_clock(table):
                 drifted.append(name)
+                for line in _differences(_without_clock(committed), _without_clock(table))[:20]:
+                    print(f"P1 tables: {name}{line}", file=sys.stderr)
 
             # The markdown renderings carry no clock, so they get the strict comparison
             # the JSON cannot have. If they ever drift while the JSON matches, the
