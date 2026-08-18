@@ -82,7 +82,7 @@ jobs:
           set -euo pipefail
           rm -rf /tmp/p1-v2-worlds /tmp/p1-v2-result
           python research/revival/p1/freeze_mutation_necessity_worlds.py \
-            --protocol research/revival/p1/protocol/P1.epistemic-mutation-necessity.v2.2.4.json \
+            --protocol "$GITHUB_WORKSPACE/research/revival/p1/protocol/P1.epistemic-mutation-necessity.v2.2.4.json" \
             --outdir /tmp/p1-v2-worlds
           python - <<'PY'
           import hashlib, json, shutil
