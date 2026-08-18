@@ -1,0 +1,63 @@
+{
+  "schema": "P2.v2.fresh-wide-confirm-dev3r-freeze.v1",
+  "status": "FROZEN_BEFORE_DEV3R_DEVELOPMENT_AND_FRESH_OUTCOME_ACCESS",
+  "date": "2026-08-18",
+  "authority": "FRESH_CONFIRMATION_CONDITIONAL_ON_VALID_DEV3R_ELIGIBILITY",
+  "parent_fresh_design": "P2_V2_FRESH_WIDE_CONFIRM_DEV3_FREEZE_2026-08-18.json",
+  "acquisition_implementation": {
+    "frozen_dev3_blob": "4d2c6d08efa3cd79139968a439c4e08644b196d8",
+    "harness_wrapper_blob": "ec72b3e3d91077cbdce020c70e6e627e32199cd0",
+    "allowed_difference_from_parent_design": "service-error classification only; queries, ranking, budgets and candidate selection unchanged"
+  },
+  "execution_precondition": {
+    "required_development_verdict": "DEV3R_ELIGIBLE_FOR_FRESH_CONFIRMATION",
+    "otherwise": "DO_NOT_EXECUTE_OR_ACCESS_FRESH_OUTCOMES"
+  },
+  "fresh_slice": {
+    "n": 48,
+    "selected_task_ids_sha256": "f4af8ac37a2dc49a2aad26368403a3cc5639fedc274db05f28953a3f826d85ed",
+    "selected_task_ids": [
+      "arb-wide-0024", "arb-wide-0025", "arb-wide-0028", "arb-wide-0036", "arb-wide-0037", "arb-wide-0038",
+      "arb-wide-0102", "arb-wide-0134", "arb-wide-0154", "arb-wide-0159", "arb-wide-0167", "arb-wide-0168",
+      "arb-wide-0170", "arb-wide-0179", "arb-wide-0181", "arb-wide-0209", "arb-wide-0210", "arb-wide-0217",
+      "arb-wide-0220", "arb-wide-0223", "arb-wide-0231", "arb-wide-0232", "arb-wide-0247", "arb-wide-0258",
+      "arb-wide-0269", "arb-wide-0278", "arb-wide-0281", "arb-wide-0282", "arb-wide-0284", "arb-wide-0294",
+      "arb-wide-0298", "arb-wide-0306", "arb-wide-0311", "arb-wide-0312", "arb-wide-0316", "arb-wide-0317",
+      "arb-wide-0326", "arb-wide-0332", "arb-wide-0333", "arb-wide-0345", "arb-wide-0351", "arb-wide-0357",
+      "arb-wide-0360", "arb-wide-0373", "arb-wide-0374", "arb-wide-0383", "arb-wide-0390", "arb-wide-0397"
+    ],
+    "development_overlap": 0,
+    "outcomes_accessed_as_of_freeze": false
+  },
+  "matched_execution": {
+    "requests_per_task_per_system": 3,
+    "max_results_per_call": 20,
+    "max_candidates_returned": 20,
+    "required_all_provider_calls_ok": true,
+    "required_open_obligations": 0,
+    "required_task_closures": 0,
+    "official_scorer": "AutoResearchBench a46c9bfb evaluate/evaluate_wide_search.py --no-jina"
+  },
+  "primary_outcome": {
+    "metric": "paired per-task official recall difference candidate minus baseline",
+    "substantive_margin": 0.02,
+    "bootstrap": "20000 paired task resamples, seed 20260820, percentile 95% CI",
+    "positive_rule": "mean recall delta >= 0.02 AND bootstrap 95% lower bound > 0"
+  },
+  "secondary_guardrails": {
+    "mean_iou_delta": "> 0",
+    "mean_precision_delta": ">= 0",
+    "matched_requests": true,
+    "zero_open_obligations": true,
+    "zero_task_closures": true,
+    "report_zero_hit_tasks": true
+  },
+  "promotion_scope": "A positive valid result may support external acquisition/discovery on AutoResearchBench Wide only. It does not establish closure-authority residual, stopping safety, or transfer.",
+  "forbidden": [
+    "editing query/ranking/acquisition behavior after Dev-3 partial outcomes and using this confirmation",
+    "changing the 48 fresh tasks",
+    "relaxing recall margin or bootstrap rule",
+    "executing if Dev-3R is invalid or non-eligible",
+    "dropping failed or zero-hit tasks"
+  ]
+}

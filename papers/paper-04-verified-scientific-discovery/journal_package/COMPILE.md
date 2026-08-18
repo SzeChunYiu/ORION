@@ -18,4 +18,19 @@ Figures regenerate from immutable public V2 aggregates:
 python papers/paper-04-verified-scientific-discovery/figures/generate_figures.py
 ```
 
+The generator emits SVG; `main.tex` includes PNG. Rasterise before compiling, or
+every `\includegraphics` fails on a file that does not exist:
+
+```bash
+F=papers/paper-04-verified-scientific-discovery/figures
+for stem in p4_2_false_promotion p4_3_coverage_frontier p4_4_detection_by_attack \
+            p4_5_attribution_vs_support p4_6_cost_false_promotion; do
+  rsvg-convert -w 1440 -o "$F/$stem.png" "$F/$stem.svg"
+done
+```
+
+This is the same step `.github/workflows/p4_tmlr_submission_audit.yml` performs,
+which is why the clean-room compile passes there while the sequence documented
+here previously did not run locally.
+
 Do not copy a PDF into `journal_package/`. The audited release PDF identity is recorded as a missing in-tree artifact with its GitHub Release SHA in `MANIFEST.json`.

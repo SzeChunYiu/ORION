@@ -3,4 +3,8 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .pytest_cache/
-uv.lock
+# uv.lock is intentionally NOT ignored. It arrived in this file's initial
+# commit alongside .venv/, __pycache__/ and .pytest_cache/ -- all derived
+# artifacts -- but a lock is an input, and issue #160 Gate 7 requires a
+# dependency lock sufficient for clean reproduction of every paper. An
+# ignored lock makes that gate permanently unclosable.
