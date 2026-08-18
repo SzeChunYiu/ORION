@@ -10,7 +10,9 @@
     "incorrect_attributions": 3,
     "errors": 0,
     "accuracy": 0.875,
-    "macro_f1": 0.875,
+    "macro_precision": 0.8958333333333334,
+    "macro_recall": 0.875,
+    "macro_f1": 0.8726190476190476,
     "false_method_change_rate": 0.14285714285714285,
     "confidence_distribution": {
       "MEDIUM": 9,
@@ -37,6 +39,6 @@
   "empirical_authority": "ATTRIBUTION_DIAGNOSIS_ONLY",
   "promotion_terminal": null,
   "self_merge_authority": false,
-  "notes": "Replay of archived raw records only. Does not execute a live campaign or authorize host promotion.",
-  "receipt_sha256": "8f667d78a06c6d71be41fbae4feee1ffc8fc21030c98100cabfc69744f728d9c"
+  "notes": "Replay of archived raw records only. Standard macro metrics are derived one-vs-rest from TP/FP/FN. Does not execute a live campaign or authorize host promotion.",
+  "receipt_sha256": "63ae215f7a1c376e4672066e61e4ceae44ad669e755fe744ba9f4113698a9ab1"
 }
