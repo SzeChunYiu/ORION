@@ -44,6 +44,34 @@ Each check names the precondition it needs, and returns `CANNOT_CHECK` naming
 that precondition when it is absent — so a blocked report says what it could not
 see, not merely that it blocked.
 
+## Pre-registered assumptions
+
+Written down now, before evidence exists, so they cannot later be reconciled to
+whatever the first real epochs happen to look like.
+
+- **Metric polarity.** `protected_metric`, `fresh_transfer_metric` and
+  `worst_family_metric` are higher-is-better. `HC-BENCHMARK-OVERFIT` compares
+  them directly, so a loss-like metric inverts the check — it would pass through
+  real overfitting and fire on healthy improvement. A producer emitting a
+  loss-like metric must negate it before populating `EpochSnapshot`. Encoding
+  polarity as a field is a schema change, and belongs to whichever change first
+  has a real producer to justify it.
+- **Epoch numbering.** `HC-EVALUATOR-GAMING` treats `ReopenEvent.epoch` and
+  `EpochSnapshot.sequence` as the same ordinal. No producer enforces that today.
+  Both branches of the comparison are tested, so a wrong correspondence fails
+  visibly rather than silently.
+
+## Fields declared but not yet consulted
+
+`EpochSnapshot.worst_family_metric` is declared because issue #210 Step 6
+requires worst-family regressions to be reported explicitly, but no check reads
+it yet. Likewise `ProgrammeState.search_universe`: the Layer-2 record is
+validated by `validate_search_universe_record`, but `HC-UNIVERSE-COLLAPSE` works
+purely from per-epoch source-family counts and never consults its
+`unattempted_route_ids`, obligations or blind-spot tests. Wiring saturation state
+into the collapse check needs the per-epoch universe versions that only executed
+cycles produce.
+
 ## Every check must have failed at least once
 
 Each `HostileCheck` declares `negative_fixture_id`: the test that shows it

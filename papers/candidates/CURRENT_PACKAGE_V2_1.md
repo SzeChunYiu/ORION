@@ -42,9 +42,11 @@ The 8 contract cases are absorbed from the parallel mathematical-completion lane
 ## P8 normative artifacts
 
 - Final manuscript: `paper-08-epistemic-authority-autonomous-science/manuscript/FINAL.md`
-- Formal core: `paper-08-epistemic-authority-autonomous-science/manuscript/FORMAL_CORE_V2.md`
+- Formal core: `paper-08-epistemic-authority-autonomous-science/manuscript/FORMAL_CORE_V2_1.md`
+- Supporting V2 core: `paper-08-epistemic-authority-autonomous-science/manuscript/FORMAL_CORE_V2.md`
 - Claim ledger: `paper-08-epistemic-authority-autonomous-science/CLAIM_LEDGER_V2.md`
-- Theory checker: `paper-08-epistemic-authority-autonomous-science/formal/check_theory_closure_v2.py`
+- Theory checker: `paper-08-epistemic-authority-autonomous-science/formal/check_theory_closure_v2_1.py`
+- Supporting V2 checker: `paper-08-epistemic-authority-autonomous-science/formal/check_theory_closure_v2.py`
 - Frozen authority cases: `paper-08-epistemic-authority-autonomous-science/benchmark/authority_cases_v2.jsonl`
 - Contract executor: `paper-08-epistemic-authority-autonomous-science/formal/check_contract_manifest_v2.py`
 - Reproduction: `paper-08-epistemic-authority-autonomous-science/REPRODUCE_V2_1.md`
