@@ -110,6 +110,21 @@ jobs:
             papers/paper-05-self-orion \
             || { echo "::error::P3/P5 regeneration is no longer byte-identical"; exit 1; }
 
+      - name: Reproduce P4's tables and prove they are byte-identical
+        # Only the tables. P4's five result SVGs are generated but not committed,
+        # so there is nothing to diff them against, and the manuscript compile
+        # needs a TeX toolchain that lives in p4_tmlr_submission_audit.yml rather
+        # than here. The three .tex tables *are* committed, and they regenerate
+        # from immutable public V2 aggregates -- so their determinism is checkable
+        # in this job at no extra cost.
+        run: |
+          set -euo pipefail
+          start=$(date +%s)
+          uv run python papers/paper-04-verified-scientific-discovery/figures/generate_figures.py
+          echo "p4 figures+tables elapsed=$(( $(date +%s) - start ))s" >> "$GITHUB_STEP_SUMMARY"
+          git diff --exit-code -- papers/paper-04-verified-scientific-discovery/tables \
+            || { echo "::error::P4 table regeneration is no longer byte-identical"; exit 1; }
+
       - name: Re-derive the machine-checked artifacts
         run: |
           start=$(date +%s)
