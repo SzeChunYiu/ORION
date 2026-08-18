@@ -48,3 +48,32 @@ def test_p6_p8_peer_review_ready_package() -> None:
     )
     assert result.returncode == 0, result.stdout + "\n" + result.stderr
     assert "peer-review-ready structural gate: PASS" in result.stdout
+
+
+def test_p6_p8_candidate_ci_runs_exact_source_binding_gate() -> None:
+    """The submission workflow must verify the manifest against the checkout.
+
+    PDF/source checks alone can pass after a candidate package drifts from its
+    committed content manifest. Keep this as a source-level contract test so a
+    future workflow simplification cannot silently remove the custody gate.
+    """
+
+    root = Path(__file__).resolve().parents[3]
+    workflow = (root / ".github" / "workflows" / "p6-p8-candidate-ci.yml").read_text(
+        encoding="utf-8"
+    )
+    assert "Candidate exact-source binding gate" in workflow
+    assert "check_content_binding_v1.py --check" in workflow
+
+
+def test_pdf_audit_receipt_declares_each_exact_manuscript_source() -> None:
+    """The build script must bind all three PDFs to source bytes."""
+
+    root = Path(__file__).resolve().parents[3]
+    script = (root / "papers" / "candidates" / "submission" /
+              "build_and_audit_p6_p8_pdfs.py").read_text(encoding="utf-8")
+    assert '"source"' in script
+    assert '"source_sha256"' in script
+    assert '"pdf_sha256"' in script
+    assert '"log_sha256"' in script
+    assert '"manuscripts": [build(manuscript, output_root) for manuscript in MANUSCRIPTS]' in script
