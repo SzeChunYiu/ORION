@@ -1,0 +1,19 @@
+{
+  "result_version": "P2_STRUCTURAL_DISCOVERY_HISTORICAL_PILOT_SUMMARY_V1",
+  "protocol_id": "P2.structural-discovery.historical-pilot.v1",
+  "n_cases": 4,
+  "metrics": {
+    "lexical_top1_recall": 0.0,
+    "structural_top1_recall": 1.0,
+    "hybrid_top1_recall": 1.0,
+    "structural_false_analogy_rate": 0.0
+  },
+  "terminal": "P2_STRUCTURAL_DISCOVERY_NARROWED",
+  "claim_ceiling": "On this curated historical candidate-universe discriminator, typed structural coordinates retrieve the documented/declared donor precursor while same-topic and assumption-incompatible decoys are rejected. This is not an open-web, embedding, LLM, transfer-validity, utility, or novelty superiority claim.",
+  "unexecuted_strong_baselines": [
+    "dense embedding retrieval",
+    "citation expansion",
+    "LLM query reformulation"
+  ],
+  "reopen_condition": "Run a prospectively frozen external candidate-retrieval study with strong semantic/citation/LLM baselines before widening the claim."
+}

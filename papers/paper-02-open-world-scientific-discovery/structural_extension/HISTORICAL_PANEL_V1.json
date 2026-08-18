@@ -1,0 +1,276 @@
+{
+  "protocol_id": "P2.structural-discovery.historical-pilot.v1",
+  "frozen_on": "2026-08-18",
+  "authority": "BOUNDED_CURATED_HISTORICAL_PILOT",
+  "claim_ceiling": "P2_STRUCTURAL_DISCOVERY_NARROWED",
+  "notes": [
+    "This panel tests candidate acquisition, not donor-to-target transfer validity or novelty.",
+    "Gold donors are pre-transfer method sources; transfer_validation_source records a later primary-source realization.",
+    "The candidate universe is curated and adversarial, so a positive result cannot establish open-web retrieval superiority."
+  ],
+  "cases": [
+    {
+      "case_id": "simulated_annealing",
+      "family": "FAILURE_DRIVEN_DISTANT_DONOR",
+      "cutoff": "1982-12-31",
+      "target_domain": "combinatorial_optimization",
+      "target_text": "combinatorial optimization circuit layout search objective local minima greedy configuration",
+      "need": {
+        "assumptions": ["finite_state"],
+        "invariants": ["retain_feasible_state"],
+        "effects": ["escape_local_minimum"],
+        "failure_signature": ["local_minimum"],
+        "representation_signature": ["energy_landscape"],
+        "reconstruction": "return_best_configuration"
+      },
+      "gold_candidate_id": "metropolis_1953",
+      "donor_primary_source": {
+        "title": "Equation of State Calculations by Fast Computing Machines",
+        "year": 1953,
+        "doi": "10.1063/1.1699114",
+        "url": "https://doi.org/10.1063/1.1699114"
+      },
+      "transfer_validation_source": {
+        "title": "Optimization by Simulated Annealing",
+        "year": 1983,
+        "doi": "10.1126/science.220.4598.671",
+        "url": "https://doi.org/10.1126/science.220.4598.671"
+      },
+      "candidates": [
+        {
+          "candidate_id": "metropolis_1953",
+          "domain": "statistical_mechanics",
+          "surface_text": "thermal equilibrium finite temperature stochastic molecular configurations Monte Carlo acceptance",
+          "assumptions": ["finite_state"],
+          "invariants": ["retain_feasible_state"],
+          "effects": ["escape_local_minimum"],
+          "reconstruction": "return_best_configuration"
+        },
+        {
+          "candidate_id": "topical_greedy_decoy",
+          "domain": "combinatorial_optimization",
+          "surface_text": "combinatorial optimization circuit layout search objective local minima greedy configuration",
+          "assumptions": ["monotone_improvement"],
+          "invariants": ["retain_feasible_state"],
+          "effects": ["descend_objective_only"],
+          "reconstruction": "return_best_configuration"
+        },
+        {
+          "candidate_id": "assumption_decoy",
+          "domain": "statistical_mechanics",
+          "surface_text": "temperature schedule stochastic transition energy configuration",
+          "assumptions": ["continuous_reversible_dynamics"],
+          "invariants": ["retain_feasible_state"],
+          "effects": ["escape_local_minimum"],
+          "reconstruction": "return_best_configuration"
+        },
+        {
+          "candidate_id": "random_distant_decoy",
+          "domain": "linguistics",
+          "surface_text": "phoneme morphology syntax corpus discourse",
+          "assumptions": ["finite_state"],
+          "invariants": ["preserve_word_order"],
+          "effects": ["compress_sentence"],
+          "reconstruction": "render_text"
+        }
+      ]
+    },
+    {
+      "case_id": "graph_cut_segmentation",
+      "family": "REPRESENTATION_CHANGE_AND_RECONSTRUCTION",
+      "cutoff": "2000-12-31",
+      "target_domain": "computer_vision",
+      "target_text": "image segmentation pixels object boundary region labeling foreground background",
+      "need": {
+        "assumptions": ["nonnegative_pairwise_costs"],
+        "invariants": ["source_sink_separation"],
+        "effects": ["global_binary_partition"],
+        "failure_signature": ["local_boundary_noise"],
+        "representation_signature": ["capacity_graph"],
+        "reconstruction": "map_partition_to_pixel_labels"
+      },
+      "gold_candidate_id": "ford_fulkerson_1956",
+      "donor_primary_source": {
+        "title": "Maximal Flow Through a Network",
+        "year": 1956,
+        "doi": "10.4153/CJM-1956-045-5",
+        "url": "https://doi.org/10.4153/CJM-1956-045-5"
+      },
+      "transfer_validation_source": {
+        "title": "Interactive Graph Cuts for Optimal Boundary and Region Segmentation of Objects in N-D Images",
+        "year": 2001,
+        "doi": "10.1109/ICCV.2001.10011",
+        "url": "https://doi.org/10.1109/ICCV.2001.10011"
+      },
+      "candidates": [
+        {
+          "candidate_id": "ford_fulkerson_1956",
+          "domain": "network_optimization",
+          "surface_text": "network capacities source sink maximal flow minimum cut partition",
+          "assumptions": ["nonnegative_pairwise_costs"],
+          "invariants": ["source_sink_separation"],
+          "effects": ["global_binary_partition"],
+          "reconstruction": "map_partition_to_pixel_labels"
+        },
+        {
+          "candidate_id": "topical_region_growing_decoy",
+          "domain": "computer_vision",
+          "surface_text": "image segmentation pixels object boundary region labeling foreground background",
+          "assumptions": ["local_similarity_is_sufficient"],
+          "invariants": ["connected_region"],
+          "effects": ["local_region_growth"],
+          "reconstruction": "map_partition_to_pixel_labels"
+        },
+        {
+          "candidate_id": "capacity_sign_decoy",
+          "domain": "network_optimization",
+          "surface_text": "network cut graph partition signed edge costs",
+          "assumptions": ["signed_pairwise_costs"],
+          "invariants": ["source_sink_separation"],
+          "effects": ["global_binary_partition"],
+          "reconstruction": "map_partition_to_pixel_labels"
+        },
+        {
+          "candidate_id": "random_distant_decoy",
+          "domain": "thermodynamics",
+          "surface_text": "heat capacity phase transition equilibrium temperature",
+          "assumptions": ["nonnegative_pairwise_costs"],
+          "invariants": ["energy_conservation"],
+          "effects": ["thermal_equilibrium"],
+          "reconstruction": "temperature_field"
+        }
+      ]
+    },
+    {
+      "case_id": "sinkhorn_transport",
+      "family": "RELAXATION_AND_RECONSTRUCTION",
+      "cutoff": "2012-12-31",
+      "target_domain": "machine_learning",
+      "target_text": "machine learning histograms distribution distance mnist fast optimal transport computation",
+      "need": {
+        "assumptions": ["positive_kernel"],
+        "invariants": ["prescribed_marginals"],
+        "effects": ["iterative_matrix_scaling"],
+        "failure_signature": ["transport_linear_program_too_expensive"],
+        "representation_signature": ["positive_transport_matrix"],
+        "reconstruction": "recover_transport_coupling"
+      },
+      "gold_candidate_id": "sinkhorn_1964",
+      "donor_primary_source": {
+        "title": "A Relationship Between Arbitrary Positive Matrices and Doubly Stochastic Matrices",
+        "year": 1964,
+        "doi": "10.1214/aoms/1177703591",
+        "url": "https://doi.org/10.1214/aoms/1177703591"
+      },
+      "transfer_validation_source": {
+        "title": "Sinkhorn Distances: Lightspeed Computation of Optimal Transport",
+        "year": 2013,
+        "url": "https://papers.nips.cc/paper/2013/hash/af21d0c97db2e27e13572cbf59eb343d-Abstract.html"
+      },
+      "candidates": [
+        {
+          "candidate_id": "sinkhorn_1964",
+          "domain": "matrix_analysis",
+          "surface_text": "positive matrices doubly stochastic row column scaling iterative normalization",
+          "assumptions": ["positive_kernel"],
+          "invariants": ["prescribed_marginals"],
+          "effects": ["iterative_matrix_scaling"],
+          "reconstruction": "recover_transport_coupling"
+        },
+        {
+          "candidate_id": "topical_histogram_decoy",
+          "domain": "machine_learning",
+          "surface_text": "machine learning histograms distribution distance mnist fast optimal transport computation",
+          "assumptions": ["euclidean_embedding"],
+          "invariants": ["class_labels"],
+          "effects": ["nearest_neighbor_classification"],
+          "reconstruction": "predicted_class"
+        },
+        {
+          "candidate_id": "zero_kernel_decoy",
+          "domain": "matrix_analysis",
+          "surface_text": "matrix row column normalization sparse zeros",
+          "assumptions": ["arbitrary_signed_matrix"],
+          "invariants": ["prescribed_marginals"],
+          "effects": ["iterative_matrix_scaling"],
+          "reconstruction": "recover_transport_coupling"
+        },
+        {
+          "candidate_id": "random_distant_decoy",
+          "domain": "ecology",
+          "surface_text": "species abundance habitat diversity population",
+          "assumptions": ["positive_kernel"],
+          "invariants": ["species_count"],
+          "effects": ["estimate_biodiversity"],
+          "reconstruction": "ecology_index"
+        }
+      ]
+    },
+    {
+      "case_id": "citation_influence_to_web_rank",
+      "family": "LOCAL_TO_GLOBAL_RECURSIVE_INFLUENCE",
+      "cutoff": "1997-12-31",
+      "target_domain": "web_information_retrieval",
+      "target_text": "web search ranking important pages hyperlinks keyword relevance search engine",
+      "need": {
+        "assumptions": ["directed_link_graph"],
+        "invariants": ["normalized_influence"],
+        "effects": ["recursive_global_importance"],
+        "failure_signature": ["keyword_frequency_is_gamed"],
+        "representation_signature": ["link_graph"],
+        "reconstruction": "rank_nodes_by_influence"
+      },
+      "gold_candidate_id": "pinski_narin_1976",
+      "donor_primary_source": {
+        "title": "Citation influence for journal aggregates of scientific publications: Theory, with application to the literature of physics",
+        "year": 1976,
+        "doi": "10.1016/0306-4573(76)90048-0",
+        "url": "https://doi.org/10.1016/0306-4573(76)90048-0"
+      },
+      "transfer_validation_source": {
+        "title": "The Anatomy of a Large-Scale Hypertextual Web Search Engine",
+        "year": 1998,
+        "url": "https://infolab.stanford.edu/~backrub/google.html"
+      },
+      "lineage_note": "The panel treats citation influence as a structural precursor, not as a claim of exclusive causal lineage for PageRank.",
+      "candidates": [
+        {
+          "candidate_id": "pinski_narin_1976",
+          "domain": "bibliometrics",
+          "surface_text": "scientific journals citation cross citing matrix eigenvalue influence weight",
+          "assumptions": ["directed_link_graph"],
+          "invariants": ["normalized_influence"],
+          "effects": ["recursive_global_importance"],
+          "reconstruction": "rank_nodes_by_influence"
+        },
+        {
+          "candidate_id": "topical_keyword_decoy",
+          "domain": "web_information_retrieval",
+          "surface_text": "web search ranking important pages hyperlinks keyword relevance search engine",
+          "assumptions": ["term_frequency_represents_authority"],
+          "invariants": ["document_length_normalization"],
+          "effects": ["keyword_relevance_score"],
+          "reconstruction": "rank_nodes_by_influence"
+        },
+        {
+          "candidate_id": "undirected_centrality_decoy",
+          "domain": "network_science",
+          "surface_text": "graph centrality influence nodes edges",
+          "assumptions": ["undirected_graph"],
+          "invariants": ["normalized_influence"],
+          "effects": ["recursive_global_importance"],
+          "reconstruction": "rank_nodes_by_influence"
+        },
+        {
+          "candidate_id": "random_distant_decoy",
+          "domain": "geology",
+          "surface_text": "sediment strata minerals erosion basin",
+          "assumptions": ["directed_link_graph"],
+          "invariants": ["mass_balance"],
+          "effects": ["estimate_erosion"],
+          "reconstruction": "geologic_profile"
+        }
+      ]
+    }
+  ]
+}
