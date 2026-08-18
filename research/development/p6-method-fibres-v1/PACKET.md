@@ -8,6 +8,8 @@ Base: `main@8ec0bb2323b833d520a75797dc38f90e6b7d67ed`. Lane: `shadow/p6-method-f
 
 P6 owns claim-relative formal reduction, signatures, fibre membership and conditional substitution/composition. P1/P3 remain owners of concrete reconstruction/source projection. P4/P8 own authority. P9 may learn over P6 objects but cannot turn embedding similarity into fibre membership.
 
+The peer-review candidate tree under `papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/` is content-bound historical authority. The successor manuscript bridge, benchmark and checker therefore live under `research/extensions/p6-method-fibres/`; exact-head candidate binding must remain byte-identical to the pre-extension package.
+
 ## RED families
 
 - same surface, incompatible precondition;
