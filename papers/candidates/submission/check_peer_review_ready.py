@@ -22,6 +22,7 @@ REQUIRED_PROGRAMME = [
     CAND / "VENUE_REQUIREMENTS_VERIFIED_2026-08-18.md",
     CAND / "SUBMISSION_CLAIM_AUTHORITY_V1.md",
     CAND / "PEER_REVIEW_READY_PACKAGE.md",
+    CAND / "submission" / "build_and_audit_p6_p8_pdfs.py",
 ]
 
 
@@ -136,6 +137,12 @@ def main() -> None:
             "submission claim-authority terminal missing")
     require("empirical superiority over ideal donor product: `CANNOT_CHECK / NOT CLAIMED`" in claims,
             "empirical-superiority nonclaim missing")
+
+    workflow = text(ROOT / ".github" / "workflows" / "p6-p8-candidate-ci.yml")
+    require("Build and audit submission PDFs" in workflow,
+            "submission PDF build/audit is not wired into candidate CI")
+    require("Archive audited submission PDFs" in workflow,
+            "audited submission PDFs are not retained as an exact-head artifact")
 
     print("P6-P8 peer-review-ready structural gate: PASS")
 

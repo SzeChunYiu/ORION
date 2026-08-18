@@ -19,9 +19,16 @@ AND submission/p6-p8-peer-review-ready-2026-08-18 is the tested PR head
 The fast candidate workflow must explicitly contain successful steps named:
 
 - `Theory and live-embedding gate`;
-- `Peer-review submission gate`.
+- `Peer-review submission gate`;
+- `Build and audit submission PDFs`;
+- `Archive audited submission PDFs`.
 
-The second step runs `tests/unit/candidates/test_p6_p8_peer_review_ready.py`, which executes the deterministic submission-source linter. The repository-wide `ci` workflow independently runs the full project `pytest -q` suite.
+The second step runs `tests/unit/candidates/test_p6_p8_peer_review_ready.py`,
+which executes the deterministic submission-source linter. The PDF step builds
+all three manuscripts with `latexmk`, rejects overfull boxes and undefined or
+multiply-defined references/citations, and archives the exact-head PDFs plus a
+hash receipt. The repository-wide `ci` workflow independently runs the full
+project `pytest -q` suite.
 
 When those predicates hold on one immutable head, the repository terminal for P6, P7 and P8 is `PEER_REVIEW_READY`. A later content change invalidates the terminal until the new head passes both checks again.
 
@@ -34,6 +41,7 @@ When those predicates hold on one immutable head, the repository terminal for P6
 - `VENUE_REQUIREMENTS_VERIFIED_2026-08-18.md` — live AIJ/JAAMAS author requirements.
 - `SUBMISSION_CLAIM_AUTHORITY_V1.md` — journal-headline claim authority and nonclaims.
 - `submission/check_peer_review_ready.py` — deterministic structural/citation/venue submission gate.
+- `submission/build_and_audit_p6_p8_pdfs.py` — clean PDF build, layout/reference warning gate and hash receipt.
 - `tests/unit/candidates/test_p6_p8_peer_review_ready.py` — submission gate test.
 - `.github/workflows/p6-p8-candidate-ci.yml` — fast theory + submission gate wiring.
 

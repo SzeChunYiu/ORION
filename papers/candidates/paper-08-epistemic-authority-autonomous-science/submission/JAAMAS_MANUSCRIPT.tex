@@ -116,7 +116,7 @@ A certificate is bound to the exact requested effect and state epoch. A later re
 
 \section{Generic permission is weaker than scientific discharge}
 \begin{theorem}[Permission/scientific-discharge separation]
-There exists a context in which a generic policy grant validly permits an operation while the corresponding scientific effect remains \texttt{CANNOT\_CHECK} because a mandatory scientific obligation is unresolved.
+There exists a context in which a generic policy grant validly permits an operation while the corresponding scientific effect remains at the inability-to-check terminal because a mandatory scientific obligation is unresolved.
 \end{theorem}
 \begin{proof}
 Give an assertion operation a valid generic in-scope write/communication grant and no security blocker. Add a scientific obligation requiring an independent verification judgment for the exact asserted content. Let that verification evidence be unavailable. Generic permission is valid, but the scientific obligation is unresolved, so the scientific authorization cannot be \texttt{AUTHORIZED}.
