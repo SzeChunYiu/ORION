@@ -32,6 +32,7 @@ def bootstrap_information_lattice() -> dict[str, object]:
         reports[mode.value] = {
             "sample_count": report.sample_count,
             "unique_fingerprint_count": report.unique_fingerprint_count,
+            "deterministic_accuracy_ceiling": report.deterministic_accuracy_ceiling,
             "collision_count": len(report.collisions),
             "is_identifying": report.is_identifying,
             "collisions": [
