@@ -114,7 +114,11 @@ Both ORION and the strongest comparator promoted 60/60 clean positives, with zer
 \label{fig:p4_3}
 \end{figure}
 
-H3 was not supported. Both ORION and the strongest comparator correctly selected \cannot on all 30 genuinely insufficient-evidence cases, giving a difference of zero with 95\% CI $[0,0]$. Table~\ref{tab:p4_t3} reports abstention and false-negative cost rather than treating the null as a win.
+H3 was not supported, and the cause is in the battery rather than in the systems. Every one of the eleven panel members, ORION included, correctly selected \cannot on all 30 insufficient-evidence cases, so the difference is zero with 95\% CI $[0,0]$, and the ablations do not instrument the metric at all.
+
+The construction explains why. In this battery the insufficient-evidence family was generated with an \emph{empty} evidence list, while every other family carried exactly one evidence object. The rule ``predict \cannot\ if and only if the evidence list is empty'' therefore classifies all 420 cases correctly. Detecting an empty list is not an act of judgement, so the metric was saturated by construction and the comparison had no resolving power: a difference could not have been observed had one existed. We report this as an inability to discriminate rather than as evidence that no difference exists, and we do not treat the null as a finding about abstention. Table~\ref{tab:p4_t3} reports abstention and false-negative cost on that basis.
+
+The repair is a change to what must be reasoned about, not to any gold label. Cases now present evidence that is read but does not establish the claim, in two subtypes: one where the pool contains no supporting record at all, and one where a supporting record is present but carries no verifiable provenance, so its authenticity can be neither confirmed nor refuted. The first sits one step from the pooled-support family, which is identical except that support exists elsewhere and the terminal is a block; the second sits one step from content substitution, where the hashes disagree, tampering is provable and the terminal is again a block. Under the repaired construction no evidence-free rule we tested classifies the battery: the best falls from $1.00$ to $0.96$. The repaired battery has not been executed, and no H3 result is claimed from it here.
 
 \input{../tables/p4_t3_cannot_check_errors.tex}
 
@@ -165,6 +169,18 @@ Third, comparator mechanisms are matched reimplementations. They instantiate pub
 Recent benchmark-auditing work is an additional caution: expert-built tasks and evaluation harnesses can contain specification, environment, ground-truth, or grading defects that materially alter measured rankings \citep{benchguard2026,autobenchmarkaudit2026,hal2025}. P4 mitigates this risk with deterministic generation, typed-panel validation, exact split/harness binding, protected custody, post-run public slicing, and independent reproduction, but these controls do not prove that the 13-family taxonomy is complete or that every benchmark-design assumption is correct.
 
 The appropriate interpretation is architectural: under the frozen attack families and custody model, non-compensatory authority gates prevent promotions that survive strong semantic/citation/source mechanisms when a governance prerequisite is missing. This supports a fail-closed authority transition as an assurance layer; it does not prove universal scientific truth, general abstention ability, or evaluator security.
+
+Fifth, two of the three hypotheses are measured on axes that this battery
+saturates, and for H3 the mechanism is now identified rather than suspected. Clean coverage is $1.0$ for all eleven panel systems and for all eight ablations,
+and the correct-\cannot\ rate is $1.0$ for all eleven systems and is not instrumented in the
+ablations at all. Only false authority promotion varies: it takes six distinct values across
+the panel and four across the ablations. The whole empirical separation reported here rests on
+that one axis. H1 is therefore a measurement; H2's non-inferiority pass and H3's null are
+statements about a battery in which neither quantity was ever observed to move. Testing them
+would require clean positives that a weaker governance mechanism actually declines, and
+insufficient-evidence cases that a weaker mechanism actually over-promotes or over-abstains on
+--- cases the current gold construction does not contain. Until such cases exist, H2 and H3
+should be read as design limits rather than as comparative findings.
 
 \section{Broader impact and governance}
 False scientific-authority promotion can amplify incorrect or misattributed claims, particularly when a system presents verification artifacts that appear independent but are not. A fail-closed layer may reduce this risk, but excessive blocking can delay legitimate scientific communication or concentrate power in whoever controls evidence and evaluator registries. Work on academic integrity and agentic abstention reinforces that refusal can be the correct behavior under genuine insufficiency, while also showing that productive abstention remains difficult and should not be conflated with generic non-response \citep{sciintegrity2026,agentabstain2026}. We therefore report abstention cost, clean coverage, custody identity, and artifact transparency rather than optimizing only a security metric.
