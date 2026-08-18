@@ -8,6 +8,32 @@ authority, or promoting synthetic/null evidence beyond what the archived
 records support, and can every remaining locally controllable publication gate
 then be made executable?
 
+## ORION saturation principle: learn, absorb, then test the residual
+
+ORION does not treat nearest work as a citation perimeter. The purpose of
+saturation is to make the papers and framework stronger by incorporating the
+best structures already discovered. For every serious nearest-work donor this
+packet therefore requires four receipts:
+
+1. **Structure extraction:** state the donor's strongest reusable mechanism,
+   evaluation discipline, failure boundary or representation—not merely its
+   topic or conclusion.
+2. **Assimilation:** identify the exact ORION code, formal object, protocol,
+   benchmark, claim boundary or paper owner that adopts the structure. A
+   citation without an adoption decision is incomplete.
+3. **Strength check:** record how the assimilation makes ORION more capable,
+   more reproducible, more falsifiable or more honest. If adoption is deferred,
+   name the incompatible assumption and a concrete reopen trigger.
+4. **Residual test:** assess a standalone contribution only after assimilation.
+   The residual must be an object that the strengthened donor-aware system
+   still lacks; vocabulary changes and paper-count targets do not qualify.
+
+This is **saturation before residual**, not novelty before reading. `ABSORBED`,
+`ALREADY_PRESENT`, and `DEFERRED_WITH_TRIGGER` are valid donor dispositions.
+`CITED_ONLY` is not. Saturation remains bounded and dated: it can support a
+peer-review-ready search record and hostile already-solved test, never a claim
+that no relevant knowledge exists outside the search.
+
 ## Atomic fibers
 
 1. **Ref identity.** Which exact remote heads contain the latest P6–P8
@@ -74,9 +100,11 @@ P6–P8 merge was checked with `git merge-tree`.
 Not yet saturated. P6–P8 carry a dated pre-submission literature delta and
 claim-bound submission package that must be replayed. P9/P10 have no current
 nearest-work closure. They cannot use standalone novelty language until dated
-search ledgers, donor receipts and a hostile already-solved pass exist. The
-working terminal is consequently bounded publication readiness, never a claim
-that all relevant literature has been found.
+search ledgers, structure-extraction/assimilation receipts and a hostile
+already-solved pass exist. Each ledger must show where a donor's strongest
+structure entered ORION or why a named trigger blocks adoption. The working
+terminal is consequently bounded publication readiness, never a claim that all
+relevant literature has been found.
 
 ### Formulation universe
 
@@ -136,10 +164,13 @@ No fixed paper count is an admissible reason to select a formulation.
    observed zero.
 4. Bind P9/P10 paper subjects to exact source/result manifests before adding
    evaluation or manuscript claims.
-5. Prefer generated tables/figures and machine-checkable claim ledgers. A
+5. Run constructive nearest-work saturation: extract the strongest donor
+   structures, absorb compatible mechanics into the framework/evaluation, and
+   test the remaining paper object only after that strengthening.
+6. Prefer generated tables/figures and machine-checkable claim ledgers. A
    missing input or native verifier remains `CANNOT_CHECK` unless a legally
    sourced, revision-bound replacement is committed and replayed.
-6. Treat negative/equivalence outcomes as successful scientific results and
+7. Treat negative/equivalence outcomes as successful scientific results and
    select merge/technical-note dispositions when no standalone residual
    survives.
 
@@ -156,6 +187,9 @@ No fixed paper count is an admissible reason to select a formulation.
 - native verifier rejection must never be converted into `PASS`;
 - paper gates must fail if novelty, availability, checksum, generated-artifact
   or independent-replay evidence is absent.
+- donor ledgers must fail closure if a nearest work is only cited: every donor
+  requires structure extraction plus `ABSORBED`, `ALREADY_PRESENT`, or
+  `DEFERRED_WITH_TRIGGER` evidence before the residual decision.
 
 ## Reopen triggers
 
