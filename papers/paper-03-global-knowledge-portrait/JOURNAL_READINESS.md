@@ -1,174 +1,129 @@
-# ORION-P3 journal-readiness plan — Global Knowledge Portrait
+# ORION-P3 journal-readiness plan — scoped Global Knowledge Portrait
 
-**Current terminal:** `CANNOT_CHECK` for `PEER_REVIEW_READY` / end-to-end eight-family construct validity.  
-**Narrow V1 public-reference mapping route:** `CONFIRMED IN FROZEN NARROW SCOPE` on `origin/main` (PRs #255/#260/#262/#263/#264). This does not close raw-text extraction, recoverability of generated portraits, downstream utility, or the original expert-gold atlas. Adversarial V2 gold is owned by issue #280 and is not claimed here.
+**Current terminal:** `P3_SCOPED_PACKAGING` — the bounded public-reference mapping/obstruction paper is selected; `PEER_REVIEW_READY` is not yet claimed.  
+**Scoped scientific object:** `SCOPED_PUBLICATION_TRACK_V1.md`.  
+**Empirical headline:** P3.C5 + P3.C9 only.  
+**Broad follow-up:** P3.C7/P3.C8, the original eight-family/raw-text atlas, #280, and #408/#409 remain separate science and do not inherit authority from the scoped paper.
 
-**Already present:** typed source projections, representation mappings, scientific meaning and ignorance projections, GLUE/obstruction semantics, local exact semantic worlds and source-recoverability tests.
+This file is the current paper-level readiness plan. The original broad `P3.cross-domain-atlas.v1` protocol and its unexecuted expert-gold/raw-text obligations remain preserved in the repository and issue history as follow-up work; they are not relabelled PASS.
 
-Checkbox audit (2026-08-17 vs `origin/main`): `evidence/JOURNAL_READINESS_CHECKBOX_AUDIT_2026-08-17.md`. Remaining `CANNOT_CHECK` record: `evidence/CANNOT_CHECK_REMAINING_V1.md`. Manuscript claim map: `CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md`.
+## 1. Scoped claim coherence — complete
 
-## 1. Novelty closure
+- [x] one bounded primary empirical claim: typed mapping reduces false merges versus flat predicate canonicalization on the prospectively frozen public-reference holdout while satisfying the false-split guard;
+- [x] abstract, Results, limitations and conclusion use the disjoint confirmatory authority rather than the exploratory numbers;
+- [x] P3.C7 raw-text end-to-end superiority is `NOT_CLAIMED / FOLLOW_UP — CANNOT_CHECK`;
+- [x] P3.C8 downstream scientific-answer improvement is `NOT_CLAIMED / FOLLOW_UP — CANNOT_CHECK`;
+- [x] P3.C6 does not convert zero-effect coordinate ablations into necessity or dispensability claims;
+- [x] manuscript-to-ledger authority map is current: `CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md`;
+- [x] scoped/non-scoped ownership boundary is frozen in `SCOPED_PUBLICATION_TRACK_V1.md`.
 
-- [x] Absorb MUSE (arXiv:2608.10974): source-grounded cross-domain structured problem/solution/rationale knowledge is not novel.
-- [x] Absorb SciSchema.org (arXiv:2607.27955): multidisciplinary expert scientific-process schemas with measurements/provenance are not novel.
-- [x] Absorb SCOPE/SCION schema induction/fusion (arXiv:2607.21610): evidence-linked conservative schema fusion is a direct baseline.
-- [x] Absorb Executable Schema Contracts (arXiv:2606.05415): shared schema contracts + provenance-aware multi-source KG/retrieval are not novel.
-- [x] Retain SciER (EMNLP 2024) and related scientific IE/discourse as extraction baselines, not novelty.
-- [x] Re-search ontology alignment, construct/measurement harmonization, data integration, multimodel/federated KGs, contradiction detection and scientific epistemic pluralism.
-- [x] Keep the candidate residual narrow: typed identity/context/construct/measurement hypotheses + explicit obstruction/pluralism + source recoverability + feedback from new representations into W.
+## 2. Prospectively frozen external mapping evidence — complete for scoped claim
 
-## 2. Primary hypotheses
+Initial public-reference route:
+- [x] 32-case portable public-reference gold, content hash `35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8`;
+- [x] source revisions/provenance and checksum manifest retained;
+- [x] deterministic mapping evaluator and publication-generation path retained.
 
-**H1 — safe integration:** ORION reduces false merges/false contradictions relative to flat-schema or direct synthesis baselines while preserving useful integrations.
+Disjoint confirmation:
+- [x] separate 32-case confirmatory gold with zero case overlap, content hash `13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b`;
+- [x] exact gold hash, source revisions, evaluator code identities, bootstrap seed, practical margins and decision rule frozen before confirmatory outputs;
+- [x] ORION false merge `0.000` vs flat canonicalization `0.1875`;
+- [x] paired false-merge delta `-0.1875`, 95% CI `[-0.34375,-0.0625]`;
+- [x] false-split delta versus exact-coordinate conservative control `0.000 [0.000,0.000]`;
+- [x] predeclared confirmatory primary verdict `PASS`;
+- [x] covered obstruction/compatibility ablation retained: forcing compatibility increases false merges by `+0.1875 [0.0625,0.34375]`;
+- [x] null/zero-effect coordinate ablations remain visible and coverage-bounded.
 
-**H2 — recoverability:** a reader/evaluator can recover the source projection, mapping conditions and non-preserved information behind a global statement.
+This evidence concerns already-structured scientific projections only.
 
-**H3 — obstruction value:** explicitly retaining incompatible charts improves downstream scientific answering/decision quality compared with forced canonicalization.
+## 3. Independent verification / integrity — scoped claim complete, programme follow-up open
 
-**H4 — semantic-coordinate necessity:** removing referent/context/measurement/modality/attribution coordinates causes measurable errors on targeted cases.
+- [x] `ScientificResultVerification.v1` exists for P3.C5 under #283;
+- [x] independent confirmatory replay/evaluator agreement is retained;
+- [x] initial and confirmatory sets are disjoint;
+- [x] raw public-reference artifacts outrank issue/manuscript prose;
+- [x] no expert/LLM seed template is promoted to expert gold;
+- [x] manuscript keeps the external-result boundary explicit.
 
-- [x] Freeze one primary hypothesis and a practical false-merge safety margin.
+Programme-wide #283 may remain open for other papers/claims; that does not invalidate the existing bounded P3.C5 verification record. Any new promoted P3 claim must obtain a new current verification receipt.
 
-## 3. Real gold dataset required
+## 4. Nearest work / reference integrity — current scoped pass complete, submission refresh open
 
-> **Two gold objects must not be conflated.** (1) Public-reference V1/V1.1 jsonl + SHA256SUMS + PROVENANCE.env on `origin/main` is a completed *narrow* mapping freeze from pinned MUSE/SciFact/SciSchema authorities. (2) `gold/adjudicated/P3.*.gold.json` (32 files, annotator `seed-to-gold-v1`) is a schema-valid *seed template*, not expert gold. An LLM/heuristic/simulated label cannot become gold. The 2026-08-16 programme audit's implication that P3 external evaluation had never been run is superseded for route (1) only; see `research/paper-programme-v1/JOURNAL_READINESS_AUDIT_2026-08-16_SUPERSEDE_P3_V1.md`.
+- [x] absorb MUSE, SciSchema.org, SCOPE/SCION, Executable Schema Contracts, SciER, ontology/schema matching, KG construction/entity resolution/fusion, stance analysis, measurement-equivalence work, literature-based discovery, scientific pluralism, OpenScholar and BioSage as prior mechanisms;
+- [x] remove broad component-novelty language;
+- [x] repair source-inaccurate related-work descriptions;
+- [x] repair materially wrong bibliography identities and record them in `journal_package/REFERENCE_METADATA_AUDIT_V1.md`;
+- [x] current 2026-08-18 source-faithful related-work boundary is consistent with the scoped claim;
+- [ ] rerun exact/function/parent-discipline/implementation/hostile `already solved` literature routes inside 14 days of actual submission;
+- [ ] if that refresh changes the residual claim or strongest necessary comparator, reopen the manuscript/claim ledger before submission.
 
-A new expert-annotated evaluation set remains the main *end-to-end* publication artifact and is still `CANNOT_CHECK`.
+## 5. Manuscript — content coherent; exact-head PDF gate open until CI proves it
 
-**Discipline selection and annotation schema now documented:**
-- `gold/DISCIPLINE_SELECTION_V1.md` — three-discipline selection (biomed, physics, social) + climate margin, with rationale for each
-- `gold/ANNOTATION_SCHEMA_V1.md` — annotation schema, double-annotation procedure, per-coordinate agreement targets, domain-expert escalation policy, case-family-specific guidance
+- [x] canonical manuscript exists under `manuscript/`;
+- [x] projection, scientific-meaning coordinates, mapping, GLUE and obstruction are specified;
+- [x] related work reflects the corrected donor mechanisms;
+- [x] Results use immutable public-reference artifacts only;
+- [x] limitations distinguish executed mapping evidence from unexecuted raw-text/expert-atlas/recoverability/downstream studies;
+- [x] ethics and scoped reproducibility/data-availability boundaries are present;
+- [x] duplicate Results/Limitations/Conclusion section wrappers were removed from `main.tex`;
+- [x] permanent `p3-manuscript-audit` workflow added for citation/input/claim/label/static checks plus `latexmk` PDF compilation;
+- [ ] exact final PR/main head passes `p3-manuscript-audit`;
+- [ ] compiled exact-final-subject PDF receives independent final claim/proofread audit.
 
-Sampling:
+## 6. Scoped figures/tables — complete from immutable confirmatory inputs
 
-- [x] at least three scientific disciplines with materially different terminology/measurement practices;
-- [x] same-name/different-referent cases;
-- [x] different-name/same-referent cases;
-- [x] same construct/different operationalization cases;
-- [x] same entity/different temporal or state context;
-- [x] polarity/modality/attribution differences;
-- [x] valid and invalid coordinate/representation mappings;
-- [x] valid and invalid A-B-C literature bridges;
-- [x] genuine incompatible/plural representations where no merge should be authorized.
+The original P3-1..P3-7 list belonged to the broader end-to-end atlas claim and is not silently declared executed. For the scoped paper, the result-bearing publication artifacts are the public-reference confirmatory package:
 
-Annotation unit must preserve:
+- [x] `evidence/public-reference-v1.1-confirmatory/publication/` regenerates the scoped mechanism/result/ablation/failure-facing figures and tables;
+- [x] all scoped result numbers are regenerated by deterministic script from archived inputs;
+- [x] uncertainty/sample-size definitions are bound to the confirmatory analysis;
+- [x] the publication package preserves negative/zero-effect ablation evidence.
 
-- [x] exact source span/document/version;
-- [x] referent/entity identity judgment;
-- [x] construct identity judgment;
-- [x] measurement/operationalization equivalence judgment;
-- [x] temporal/state context;
-- [x] polarity, modality, attribution and discourse relation;
-- [x] mapping relation and preservation/non-preservation conditions;
-- [x] contradiction vs context difference;
-- [x] GLUE allowed / obstruction / unresolved;
-- [x] source recoverability target.
+Any future manuscript that promotes raw-text extraction, recoverability or downstream utility must add the corresponding broader figures/tables prospectively.
 
-Quality:
+## 7. Reproducibility — scoped result substantially complete; final-subject/archive binding open
 
-- [x] written annotation handbook before final labeling;
-- [ ] domain-expert review for specialist cases — **CANNOT_CHECK** (no specialist-review artifacts; `GOLD_METHODOLOGY_V1.md` §3.1);
-- [ ] at least two independent labels on a substantial shared subset — **CANNOT_CHECK** (annotator-a/b files: 0);
-- [ ] report agreement per coordinate, not only one global score — **CANNOT_CHECK** (agreement not computable);
-- [x] adjudication policy frozen before test-system outputs are examined;
-- [x] data statement, licensing and privacy/IP review.
+- [x] public-reference source identities and legally shareable provenance/locators retained;
+- [x] initial and confirmatory gold are content-addressed;
+- [x] deterministic evaluator and short reproduction commands exist;
+- [x] `make paper03-public-reference` reproduces the scoped evaluation;
+- [x] `make paper03-public-reference-publication` regenerates scoped publication artifacts;
+- [x] independent replay of the confirmatory headline exists;
+- [x] journal-package checksum gate exists;
+- [x] exact manuscript/PDF audit workflow exists;
+- [ ] freeze the exact final submission commit after all remaining edits;
+- [ ] replay deterministic headline reproduction on that exact final subject in a clean environment;
+- [ ] freeze a stable permanent archive/release URL and checksums for the final submission subject;
+- [ ] mint/archive DOI where available; absence of a DOI is not relabelled as scientific failure.
 
-Existing resources such as MUSE, SciSchema and SciER should be reused where their licenses/tasks match rather than recreating their annotations.
+## 8. Venue and submission package — primary selected, host attestations still open
 
-**Remaining (original eight-family expert-gold execution — still `CANNOT_CHECK`):**
-- [ ] actual *expert* gold labels for all 32 samples (24 core + 8 margin) — seed-to-gold-v1 templates exist; they are not expert gold
-- [ ] independent annotation by two annotators on the 24 core samples — **CANNOT_CHECK**
-- [ ] per-coordinate inter-annotator agreement report — **CANNOT_CHECK**
-- [ ] adjudication of disagreements — **CANNOT_CHECK** (no independent annotators to disagree)
-- [ ] domain-expert review of escalated cases — **CANNOT_CHECK**
+- [x] primary scoped venue selected: Semantic Web Journal;
+- [x] fallback recorded: Journal of Web Semantics;
+- [x] dated venue rationale/current requirements recorded in `journal_package/VENUE_DECISION_V1.md`;
+- [x] scoped cover-letter draft exists in `journal_package/COVER_LETTER_DRAFT.md`;
+- [x] scoped code/data availability text exists in `journal_package/AVAILABILITY_STATEMENT_V1.md`;
+- [ ] host-authoritative final author list, affiliations and corresponding-author contact;
+- [ ] host-authoritative author approval/contribution statement;
+- [ ] host-authoritative funding, conflicts and acknowledgements;
+- [ ] confirm no parallel submission and disclose any prior/preprint overlap as required;
+- [ ] bind the final stable archive/release URL in the availability statement;
+- [ ] re-check current APC/institutional arrangement immediately before submission;
+- [ ] convert/check the final submission PDF against current venue instructions without changing the scientific claim.
 
-**Public-reference V1 gold freeze (verified 2026-08-17 against `origin/main`; not a substitute for the boxes above):**
-- [x] portable gold jsonl, 32 lines — SHA-256 `35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8`
-- [x] confirmatory holdout jsonl, 32 lines, zero overlap — SHA-256 `13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b`
-- [x] content-hash freeze in `evidence/public-reference-v1/SHA256SUMS` and `evidence/public-reference-v1.1-confirmatory/SHA256SUMS`
-- [x] `PROVENANCE.env` bound for both archives
-- [x] 32 schema-valid `gold/adjudicated/P3.*.gold.json` files exist on disk and remain `seed-to-gold-v1` templates (not promoted)
+## 9. Final mechanical terminal
 
-## 4. Baselines and ablations
+`ORION-P3 = PEER_REVIEW_READY` for the **scoped P3.C5/P3.C9 paper** only when all of the following hold simultaneously:
 
-Baselines:
+- [x] replicated prospectively frozen public-reference mapping result;
+- [x] bounded claim ledger with P3.C7/P3.C8 explicitly not claimed;
+- [x] independent P3.C5 verification receipt;
+- [x] source-faithful nearest-work/reference audit as of 2026-08-18;
+- [x] coherent manuscript and deterministic result-generation path;
+- [ ] exact final submission subject frozen and clean reproduction green;
+- [ ] exact final PDF builds cleanly and receives independent final claim/proofread audit;
+- [ ] final venue package/cover letter/availability/authorship/funding/conflict fields are host-attested;
+- [ ] permanent archive/release/checksum path is frozen where available;
+- [ ] literature refresh is completed inside 14 days of actual submission.
 
-- [ ] vanilla long-context multi-paper synthesis;
-- [ ] standard scientific RAG with citations;
-- [ ] cross-domain translation/RAG baseline;
-- [x] flat universal-schema / KG canonicalization baseline — **narrow public-reference control only** (flat predicate canonicalization on frozen jsonl; not a full KG system and not the original eight-family study);
-- [ ] SCOPE/SCION-like schema-fusion baseline where compatible;
-- [ ] provenance-aware schema-contract/KG baseline where compatible.
-
-Ablations:
-
-- [ ] remove referent identity coordinate;
-- [ ] remove measurement/operationalization coordinate;
-- [ ] remove temporal/context coordinate;
-- [ ] remove modality/polarity/attribution/discourse coordinates;
-- [ ] remove explicit obstruction state and force best mapping;
-- [ ] remove source-projection recoverability requirement;
-- [ ] remove W-expansion/reopen effect;
-- [ ] resource-match all systems.
-
-Covered *public-reference confirmatory* ablations (not a tick of the eight-family study): `force_compatibility_without_obstruction` and `remove_modality_polarity_attribution_discourse` each add +0.1875 false merges on the disjoint holdout; referent/construct/measurement/temporal removals are zero-effect and coverage-limited (`CLAIM_LEDGER_V1.md` P3.C6). Stronger schema/provenance baselines and a coordinate-targeted V2 atlas are issue #280.
-
-## 5. Metrics
-
-- [x] false merge rate — **public-reference mapping layer only** (initial + confirmatory);
-- [x] false split rate where same referent/construct should align — **public-reference mapping layer only**;
-- [ ] false contradiction and missed contradiction rates;
-- [ ] mapping precision/recall/F1 by mapping type;
-- [ ] measurement-equivalence accuracy;
-- [ ] obstruction precision/recall;
-- [ ] source-projection recoverability rate;
-- [ ] preservation-condition accuracy;
-- [ ] literature-bridge validity precision/recall;
-- [ ] downstream answer correctness using the reconstructed portrait;
-- [ ] calibration/abstention quality for unresolved mappings;
-- [ ] annotation agreement per coordinate;
-- [ ] cost/latency/storage overhead.
-
-## 6. Required plots
-
-- [ ] **Figure P3-1:** projection → mapping → GLUE/obstruction → portrait pipeline with provenance paths.
-- [ ] **Figure P3-2:** false-merge vs useful-integration frontier across systems.
-- [ ] **Figure P3-3:** mapping/identity confusion matrix by case family.
-- [ ] **Figure P3-4:** source recoverability distribution or rate by discipline/system.
-- [ ] **Figure P3-5:** obstruction detection precision/recall by incompatibility type.
-- [ ] **Figure P3-6:** ablation effect sizes for referent, measurement, context, modality/discourse and obstruction coordinates.
-- [ ] **Figure P3-7:** downstream answer accuracy before/after portrait reconstruction by baseline.
-- [ ] **Table P3-1:** dataset composition and annotation agreement.
-- [ ] **Table P3-2:** main baseline/ablation results with intervals.
-- [ ] **Table P3-3:** representative false-merge/false-contradiction/obstruction cases with source lineage.
-
-Public-reference *substitutes* (do not close P3-1..P3-7): `evidence/public-reference-v1.1-confirmatory/publication/` PR3-F1..F3 and PR3-T1..T4, regenerated by `make paper03-public-reference-publication`.
-
-## 7. Manuscript work missing
-
-- [x] create canonical full manuscript under `manuscript/`;
-- [x] define source projection, scientific meaning projection, representation mapping, GLUE and obstruction formally enough for reimplementation;
-- [x] explain why a universal canonical schema is an unsafe default rather than attacking KGs broadly;
-- [x] include MUSE/SciSchema/SCOPE-SCION/Executable-Schema-Contracts in related work;
-- [x] write dataset/annotation Methods before final labeling;
-- [x] add Results only from frozen artifacts;
-- [ ] include extraction-vs-mapping-vs-integration stage error attribution — **CANNOT_CHECK** (no end-to-end extractor run);
-- [x] add limitations on expert subjectivity, domain coverage, evolving terminology and ontology dependence;
-- [x] include data/code availability and ethics/licensing statements.
-
-Claim ledger: `CLAIM_LEDGER_V1.md`. Sentence-to-claim map: `CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md`. Abstract/conclusion still quote the *initial* 32-case numbers; confirmatory authority is `P3.C5`.
-
-## 8. Reproducibility package
-
-- [x] annotation handbook + versioned schemas;
-- [ ] document/source IDs and legally shareable source spans or retrieval instructions — **partial**: public-reference stores revision/locator/content hash without vendoring restricted text; eight-family spans remain SEED placeholders;
-- [x] adjudicated gold with provenance — **public-reference V1/V1.1 only** (`PUBLIC_REFERENCE_GOLD_V1.jsonl` + `PROVENANCE.env` + `SHA256SUMS`);
-- [ ] baseline prompts/configs — **CANNOT_CHECK** for raw-text/RAG/synthesis arms;
-- [ ] raw model projections/mappings/portraits — **CANNOT_CHECK**;
-- [x] scripts for every *public-reference* metric/plot/table (`make paper03-public-reference-publication`); original P3-1..P3-7 remain ungenerated;
-- [x] one-command or short deterministic evaluation path (`make paper03-public-reference`);
-- [x] independent replay of headline *public-reference mapping* results (byte-for-byte gold freeze + confirmatory eval workflow). Headline eight-family obstruction results remain **CANNOT_CHECK**.
-
-## Done definition
-
-`ORION-P3 = PEER_REVIEW_READY` only when the real cross-domain gold study validates the claimed integration/recoverability advantage, annotation quality is defensible, strongest structured-integration baselines are included, and all programme readiness gates pass.
+The full expert eight-family/raw-text atlas is **not** a hidden prerequisite of this scoped terminal. It is preserved as follow-up science under P3.C7/P3.C8, #280 and the structural-learning extensions. If the manuscript reintroduces a broad end-to-end/recoverability/downstream claim, those follow-up obligations become blocking again.
