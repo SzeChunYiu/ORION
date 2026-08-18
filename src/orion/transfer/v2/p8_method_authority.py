@@ -34,18 +34,25 @@ def provenance(*,method_id:str,provenance_class:ProvenanceClass,subject_digest:s
 @dataclass(frozen=True)
 class CapabilityOutput:
     kind:CapabilityKind; subject_digest:str; evidence_digest:str; score:float|None=None; label:str=''
+
 @dataclass(frozen=True)
 class CoercionDecision:
-    source:CapabilityKind; coordinate:AuthorityCoordinate; state:AuthorityState; reason:str; evidence_digest:str; digest:str
-    def unsigned(self):return {'version':'P8.CoercionDecision.v1','source':self.source.value,'coordinate':self.coordinate.value,'state':self.state.value,'reason':self.reason,'evidence_digest':self.evidence_digest}
+    source:CapabilityKind; coordinate:AuthorityCoordinate; state:AuthorityState; reason:str; subject_digest:str; evidence_digest:str; digest:str
+    def unsigned(self):return {'version':'P8.CoercionDecision.v2','source':self.source.value,'coordinate':self.coordinate.value,'state':self.state.value,'reason':self.reason,'subject_digest':self.subject_digest,'evidence_digest':self.evidence_digest}
     def verify(self):
+        if not self.subject_digest.startswith('sha256:'):raise ValueError('coercion subject must be content-bound')
+        if self.state is AuthorityState.SUPPORTED:
+            if self.coordinate not in LEGAL[self.source]:raise ValueError('supported coercion is not legal for source capability')
+            if not self.evidence_digest.startswith('sha256:'):raise ValueError('supported coercion requires bound evidence')
         if content_digest(self.unsigned())!=self.digest:raise ValueError('coercion digest mismatch')
 
 def coerce(output:CapabilityOutput, coordinate:AuthorityCoordinate):
+    if not output.subject_digest.startswith('sha256:'):raise ValueError('capability subject must be content-bound')
     if coordinate not in LEGAL[output.kind]: state=AuthorityState.BLOCKED;reason='ILLICIT_CAPABILITY_TO_AUTHORITY_COERCION'
     elif not output.evidence_digest or not output.evidence_digest.startswith('sha256:'): state=AuthorityState.CANNOT_CHECK;reason='BOUND_EVIDENCE_MISSING'
     else: state=AuthorityState.SUPPORTED;reason='DECLARED_LEGAL_COERCION_WITH_BOUND_EVIDENCE'
-    base={'version':'P8.CoercionDecision.v1','source':output.kind.value,'coordinate':coordinate.value,'state':state.value,'reason':reason,'evidence_digest':output.evidence_digest};x=CoercionDecision(output.kind,coordinate,state,reason,output.evidence_digest,content_digest(base));x.verify();return x
+    base={'version':'P8.CoercionDecision.v2','source':output.kind.value,'coordinate':coordinate.value,'state':state.value,'reason':reason,'subject_digest':output.subject_digest,'evidence_digest':output.evidence_digest}
+    x=CoercionDecision(output.kind,coordinate,state,reason,output.subject_digest,output.evidence_digest,content_digest(base));x.verify();return x
 
 @dataclass(frozen=True)
 class MethodAuthorityRecord:
@@ -53,29 +60,39 @@ class MethodAuthorityRecord:
     def state(self,c):return dict(self.states)[c]
     def unsigned(self):return {'version':'P8.MethodAuthorityRecord.v1','method_id':self.method_id,'subject_digest':self.subject_digest,'provenance_digest':self.provenance_digest,'states':[[c.value,s.value] for c,s in self.states],'epoch':self.epoch,'predecessor_digest':self.predecessor_digest,'reasons':list(self.reasons)}
     def verify(self):
+        if not self.subject_digest.startswith('sha256:'):raise ValueError('authority subject must be content-bound')
         if content_digest(self.unsigned())!=self.digest:raise ValueError('authority digest mismatch')
 
 def authority_record(p:MethodProvenanceRecord):
     p.verify(); states=tuple((c,AuthorityState.CANNOT_CHECK) for c in AuthorityCoordinate);base={'version':'P8.MethodAuthorityRecord.v1','method_id':p.method_id,'subject_digest':p.subject_digest,'provenance_digest':p.digest,'states':[[c.value,s.value] for c,s in states],'epoch':1,'predecessor_digest':'','reasons':['NO_COORDINATE_AUTHORITY_YET']};return MethodAuthorityRecord(p.method_id,p.subject_digest,p.digest,states,1,'',('NO_COORDINATE_AUTHORITY_YET',),content_digest(base))
 
 def apply_decision(record:MethodAuthorityRecord, decision:CoercionDecision):
-    record.verify();decision.verify(); states=dict(record.states);states[decision.coordinate]=decision.state;ordered=tuple((c,states[c]) for c in AuthorityCoordinate);reasons=tuple((*record.reasons,f'{decision.coordinate.value}:{decision.reason}'));base={'version':'P8.MethodAuthorityRecord.v1','method_id':record.method_id,'subject_digest':record.subject_digest,'provenance_digest':record.provenance_digest,'states':[[c.value,s.value] for c,s in ordered],'epoch':record.epoch+1,'predecessor_digest':record.digest,'reasons':list(reasons)};return MethodAuthorityRecord(record.method_id,record.subject_digest,record.provenance_digest,ordered,record.epoch+1,record.digest,reasons,content_digest(base))
+    record.verify();decision.verify()
+    if decision.subject_digest != record.subject_digest:raise ValueError('coercion subject does not match authority record')
+    if decision.coordinate not in LEGAL[decision.source]:raise ValueError('illicit coercion is non-mutating')
+    if decision.state is AuthorityState.SUPPORTED and not decision.evidence_digest.startswith('sha256:'):raise ValueError('supported decision missing bound evidence')
+    states=dict(record.states);states[decision.coordinate]=decision.state;ordered=tuple((c,states[c]) for c in AuthorityCoordinate);reasons=tuple((*record.reasons,f'{decision.coordinate.value}:{decision.reason}'));base={'version':'P8.MethodAuthorityRecord.v1','method_id':record.method_id,'subject_digest':record.subject_digest,'provenance_digest':record.provenance_digest,'states':[[c.value,s.value] for c,s in ordered],'epoch':record.epoch+1,'predecessor_digest':record.digest,'reasons':list(reasons)};return MethodAuthorityRecord(record.method_id,record.subject_digest,record.provenance_digest,ordered,record.epoch+1,record.digest,reasons,content_digest(base))
 
 def p9_prediction(*,subject_digest:str,evidence_digest:str,score:float):return CapabilityOutput(CapabilityKind.P9_PREDICTION,subject_digest,evidence_digest,score,'prediction')
 def p10_candidate(*,subject_digest:str,evidence_digest:str):return CapabilityOutput(CapabilityKind.P10_GENERATION,subject_digest,evidence_digest,None,'generated_candidate')
+
+def _blocked_p4_decision(subject_digest:str, coordinate:AuthorityCoordinate, evidence_digest:str):
+    base={'version':'P8.CoercionDecision.v2','source':CapabilityKind.P4_VERIFICATION.value,'coordinate':coordinate.value,'state':AuthorityState.BLOCKED.value,'reason':'P4_COORDINATE_BLOCKED','subject_digest':subject_digest,'evidence_digest':evidence_digest}
+    x=CoercionDecision(CapabilityKind.P4_VERIFICATION,coordinate,AuthorityState.BLOCKED,'P4_COORDINATE_BLOCKED',subject_digest,evidence_digest,content_digest(base));x.verify();return x
 
 def apply_p4(record:MethodAuthorityRecord, states:Mapping[str,str], evidence_digest:str):
     out=record
     for c in (AuthorityCoordinate.VALIDITY,AuthorityCoordinate.APPLICABILITY,AuthorityCoordinate.TRANSFER,AuthorityCoordinate.UTILITY):
         if states.get(c.value)=='SUPPORTED':out=apply_decision(out,coerce(CapabilityOutput(CapabilityKind.P4_VERIFICATION,record.subject_digest,evidence_digest),c))
-        elif states.get(c.value)=='BLOCKED':
-            dec=coerce(CapabilityOutput(CapabilityKind.P4_VERIFICATION,record.subject_digest,evidence_digest),c); payload={'version':'P8.CoercionDecision.v1','source':dec.source.value,'coordinate':dec.coordinate.value,'state':'BLOCKED','reason':'P4_COORDINATE_BLOCKED','evidence_digest':evidence_digest};dec=CoercionDecision(dec.source,dec.coordinate,AuthorityState.BLOCKED,'P4_COORDINATE_BLOCKED',evidence_digest,content_digest(payload));out=apply_decision(out,dec)
+        elif states.get(c.value)=='BLOCKED':out=apply_decision(out,_blocked_p4_decision(record.subject_digest,c,evidence_digest))
     return out
 
 DEFEATER_COORDS={
  DefeaterKind.HIDDEN_ASSUMPTION:(AuthorityCoordinate.APPLICABILITY,AuthorityCoordinate.TRANSFER),DefeaterKind.FRESH_COUNTEREXAMPLE:(AuthorityCoordinate.VALIDITY,AuthorityCoordinate.APPLICABILITY,AuthorityCoordinate.UTILITY),DefeaterKind.PRIOR_ART:(AuthorityCoordinate.NOVELTY,),DefeaterKind.PROTECTED_HARM:(AuthorityCoordinate.UTILITY,AuthorityCoordinate.ADOPTION),DefeaterKind.REPRESENTATION_CHANGED:(AuthorityCoordinate.APPLICABILITY,AuthorityCoordinate.TRANSFER,AuthorityCoordinate.SEARCH_STOP),DefeaterKind.SUBJECT_IDENTITY_CHANGED:tuple(AuthorityCoordinate),DefeaterKind.COMPOSITION_FOOTPRINT_CHANGED:(AuthorityCoordinate.TRANSFER,AuthorityCoordinate.UTILITY,AuthorityCoordinate.ADOPTION),DefeaterKind.EVALUATOR_CHANGED:(AuthorityCoordinate.VALIDITY,AuthorityCoordinate.UTILITY)}
 
 def revoke(record:MethodAuthorityRecord, *, defeater:DefeaterKind,evidence_digest:str):
-    record.verify();states=dict(record.states)
+    record.verify()
+    if not evidence_digest.startswith('sha256:'):raise ValueError('revocation requires content-bound defeater evidence')
+    states=dict(record.states)
     for c in DEFEATER_COORDS[defeater]:states[c]=AuthorityState.BLOCKED if defeater not in {DefeaterKind.SUBJECT_IDENTITY_CHANGED,DefeaterKind.EVALUATOR_CHANGED,DefeaterKind.REPRESENTATION_CHANGED} else AuthorityState.CANNOT_CHECK
     ordered=tuple((c,states[c]) for c in AuthorityCoordinate);reasons=tuple((*record.reasons,f'DEFEATER:{defeater.value}:{evidence_digest}'));base={'version':'P8.MethodAuthorityRecord.v1','method_id':record.method_id,'subject_digest':record.subject_digest,'provenance_digest':record.provenance_digest,'states':[[c.value,s.value] for c,s in ordered],'epoch':record.epoch+1,'predecessor_digest':record.digest,'reasons':list(reasons)};return MethodAuthorityRecord(record.method_id,record.subject_digest,record.provenance_digest,ordered,record.epoch+1,record.digest,reasons,content_digest(base))
