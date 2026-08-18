@@ -95,7 +95,14 @@ def test_the_manuscript_states_the_limitation_it_now_relies_on() -> None:
         "the H3 passage no longer explains that the comparison could not have detected a "
         "difference; without it, 'not supported' reads as a comparative finding"
     )
-    assert "not as evidence that no difference exists" in text, (
+    # Matched on the distinction rather than one phrasing of it: the passage has been
+    # reworded once already ("not as" -> "rather than as"), and a test that breaks on
+    # that is testing prose style, not the claim.
+    assert "evidence that no difference exists" in text, (
         "the H3 passage no longer distinguishes inability to discriminate from absence of "
         "an effect"
+    )
+    assert "empty" in text and "420" in text, (
+        "the H3 passage no longer states the measured cause -- the empty-evidence "
+        "construction that makes the terminal trivially separable across all 420 cases"
     )

@@ -236,9 +236,78 @@ def _mutate(
         )
         return
     if family == "INSUFFICIENT_EVIDENCE":
-        view["evidence"] = []
-        view["retrieval_pool"] = []
-        view["behavioral_trace"]["used_evidence_ids"] = []
+        # V2 construction: evidence is present but does not establish the claim, and
+        # no supporting record exists anywhere in the retrieval pool.
+        #
+        # The V1 construction emitted an empty evidence list. That made the family
+        # trivially separable: across the 420-case battery, `len(evidence) == 0`
+        # classified CANNOT_CHECK with 420/420 accuracy, because every
+        # INSUFFICIENT_EVIDENCE case had zero evidence objects and every other case
+        # had exactly one. Detecting an empty list requires no judgement, so all
+        # eleven panel systems scored `correct_cannot_check_rate` 1.0 and H3 could
+        # not have observed a difference had one existed.
+        #
+        # The repair keeps the terminal and changes what must be reasoned about. The
+        # case now sits one step from POOLED_SUPPORT_WRONG_OWNER, which is already a
+        # discriminating family: both present a single non-supporting evidence object
+        # assigned to the claim. They differ only in whether the pool also contains a
+        # record that does support the token --
+        #
+        #     support exists elsewhere, from the right owner -> BLOCK (wrong owner used)
+        #     support exists nowhere                          -> CANNOT_CHECK (insufficient)
+        #
+        # so separating them requires inspecting the pool rather than counting
+        # objects. `used_evidence_ids` records that the candidate did consult the
+        # evidence, which distinguishes a considered abstention from a blind one.
+        assert item is not None
+        token = view["claim"]["support_token"]
+        if ordinal % 2 == 0:
+            # Subtype A -- no support anywhere. Evidence is present and was read; it
+            # simply does not establish the claim, and the pool holds nothing that
+            # does. One step from POOLED_SUPPORT_WRONG_OWNER, which is identical
+            # except that support *does* exist elsewhere and the terminal is BLOCK.
+            item.update(
+                _evidence(
+                    evidence_id=item["evidence_id"],
+                    source_id=item["source_id"],
+                    assigned_source_id=item["source_id"],
+                    content=(
+                        f"Synthetic source record without direct support for token {token}. "
+                        "No corroborating record exists in the pool."
+                    ),
+                )
+            )
+        else:
+            # Subtype B -- support present, authenticity undecidable.
+            #
+            # Subtype A alone leaves the family separable by a single rule: "no
+            # SUPPORT:: token in the pool" classified CANNOT_CHECK at 420/420,
+            # because insufficiency was the only reason support could be absent. This
+            # subtype supplies support and withholds the means to verify it.
+            #
+            # The distinction from CONTENT_SUBSTITUTION is the point. There,
+            # content_hash and declared_content_hash disagree, so tampering is
+            # *provable* and the terminal is BLOCK. Here the declared hash is absent:
+            # the record cannot be shown genuine and cannot be shown altered. A system
+            # that treats missing provenance as refutation will over-BLOCK; one that
+            # treats it as adequate will over-PROMOTE. Only correctly reporting the
+            # inability yields CANNOT_CHECK.
+            item.update(
+                _evidence(
+                    evidence_id=item["evidence_id"],
+                    source_id=item["source_id"],
+                    assigned_source_id=item["source_id"],
+                    content=(
+                        f"Synthetic source record. SUPPORT::{token}. "
+                        "Provenance attestation unavailable for this record."
+                    ),
+                )
+            )
+            item["declared_content_hash"] = None
+            item["declared_provenance_hash"] = None
+        view["evidence"] = [item]
+        view["retrieval_pool"] = [item]
+        view["behavioral_trace"]["used_evidence_ids"] = [item["evidence_id"]]
         gold.update(
             {
                 "claim_correct": None,
