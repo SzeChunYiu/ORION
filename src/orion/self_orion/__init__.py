@@ -53,6 +53,11 @@ from orion.self_orion.development_trial import (
     ShadowDevelopmentTrialReport,
     ShadowDevelopmentTrialRunner,
 )
+from orion.self_orion.epistemic_control import (
+    EpistemicControlDecision,
+    EpistemicControlStatus,
+    compose_epistemic_control,
+)
 from orion.self_orion.evolution_archive import (
     EvolutionArchive,
     EvolutionTrialRecord,
