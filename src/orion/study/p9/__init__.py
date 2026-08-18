@@ -1,5 +1,11 @@
 """P9 structured epistemic neural-computation study helpers."""
 
+from .bootstrap import bootstrap_information_lattice, bootstrap_worlds
+from .identifiability import (
+    IdentifiabilityCollision,
+    IdentifiabilityReport,
+    analyze_identifiability,
+)
 from .structural_world import (
     AffineTransport,
     Atom,
@@ -27,11 +33,16 @@ __all__ = [
     "GluingVerdict",
     "GoldKind",
     "GoldTarget",
+    "IdentifiabilityCollision",
+    "IdentifiabilityReport",
     "MechanicView",
     "P9StructuralWorld",
     "Relation",
     "RelationType",
     "ViewMode",
+    "analyze_identifiability",
+    "bootstrap_information_lattice",
+    "bootstrap_worlds",
     "classify_cycle_gluing",
     "failure_history_pair",
     "relation_semantics_pair",
