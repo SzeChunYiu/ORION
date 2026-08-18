@@ -9,9 +9,12 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
+
 from orion.study.p5.attribution_receipt import (
     IMMUTABLE_RESIDUAL_ERRORS,
     RESULTS_RELPATH,
+    compute_metrics,
     reproduce_attribution_from_records,
     write_reproduction_artifacts,
 )
@@ -32,7 +35,9 @@ def test_raw_records_reproduce_21_of_24_and_preserve_three_errors() -> None:
     assert report["metrics"]["incorrect_attributions"] == 3
     assert report["metrics"]["errors"] == 0
     assert report["metrics"]["accuracy"] == 0.875
-    assert report["metrics"]["macro_f1"] == 0.875
+    assert report["metrics"]["macro_precision"] == pytest.approx(0.8958333333333333)
+    assert report["metrics"]["macro_recall"] == 0.875
+    assert report["metrics"]["macro_f1"] == pytest.approx(0.8726190476190476)
     assert report["metrics"]["false_method_change_rate"] == 3 / 21
     assert report["metrics"]["confidence_distribution"] == {"HIGH": 15, "MEDIUM": 9}
     assert report["residual_errors"] == list(IMMUTABLE_RESIDUAL_ERRORS)
@@ -62,6 +67,47 @@ def test_raw_records_reproduce_21_of_24_and_preserve_three_errors() -> None:
     assert report["self_merge_authority"] is False
 
 
+def test_false_positive_changes_f1_even_when_recall_stays_perfect() -> None:
+    """Hostile control for the exact D1 bug: F1 must not alias recall."""
+
+    records = [
+        {
+            "case_id": "A1",
+            "gold_root_cause": "IMPLEMENTATION_BUG",
+            "attributed_root_cause": "IMPLEMENTATION_BUG",
+            "confidence": "HIGH",
+            "intervention_prediction": "YES",
+            "error": None,
+        },
+        {
+            "case_id": "B1",
+            "gold_root_cause": "RETRIEVAL_MISS",
+            "attributed_root_cause": "IMPLEMENTATION_BUG",
+            "confidence": "HIGH",
+            "intervention_prediction": "YES",
+            "error": None,
+        },
+        {
+            "case_id": "B2",
+            "gold_root_cause": "RETRIEVAL_MISS",
+            "attributed_root_cause": "RETRIEVAL_MISS",
+            "confidence": "HIGH",
+            "intervention_prediction": "YES",
+            "error": None,
+        },
+    ]
+    metrics = compute_metrics(records)
+    implementation = metrics["per_family_metrics"]["IMPLEMENTATION_BUG"]
+
+    assert implementation["tp"] == 1
+    assert implementation["fp"] == 1
+    assert implementation["fn"] == 0
+    assert implementation["precision"] == 0.5
+    assert implementation["recall"] == 1.0
+    assert implementation["f1"] == pytest.approx(2 / 3)
+    assert implementation["f1"] < implementation["recall"]
+
+
 def test_reproduction_receipt_and_table_are_content_addressed() -> None:
     artifacts = write_reproduction_artifacts(ROOT)
     receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
@@ -70,12 +116,30 @@ def test_reproduction_receipt_and_table_are_content_addressed() -> None:
     assert artifacts["receipt_sha256"] == receipt["receipt_sha256"]
     assert receipt["metrics"]["correct_attributions"] == 21
     assert receipt["metrics"]["total_cases"] == 24
+    assert receipt["metrics"]["macro_f1"] == pytest.approx(0.8726190476190476)
     assert [error["case_id"] for error in receipt["residual_errors"]] == [
         "P5-HC-002",
         "P5-HC-012",
         "P5-HC-018",
     ]
     assert table["summary_metrics"]["correct_attributions"] == 21
+    assert table["summary_metrics"]["macro_precision"] == pytest.approx(0.8958333333333333)
+    assert table["summary_metrics"]["macro_recall"] == 0.875
+    assert table["summary_metrics"]["macro_f1"] == pytest.approx(0.8726190476190476)
+    assert table["per_family_metrics"]["IMPLEMENTATION_BUG"] == {
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1": pytest.approx(6 / 7),
+        "tp": 3,
+        "fp": 1,
+        "fn": 0,
+        "cases": ["P5-HC-007", "P5-HC-008", "P5-HC-009"],
+        "correct": 3,
+        "total": 3,
+    }
+    assert table["per_family_metrics"]["RETRIEVAL_MISS"]["precision"] == 1.0
+    assert table["per_family_metrics"]["RETRIEVAL_MISS"]["recall"] == pytest.approx(2 / 3)
+    assert table["per_family_metrics"]["RETRIEVAL_MISS"]["f1"] == pytest.approx(0.8)
     assert table["incorrect_cases"][0]["case_id"] == "P5-HC-002"
     assert table["incorrect_cases"][1]["case_id"] == "P5-HC-012"
     assert table["incorrect_cases"][2]["case_id"] == "P5-HC-018"
