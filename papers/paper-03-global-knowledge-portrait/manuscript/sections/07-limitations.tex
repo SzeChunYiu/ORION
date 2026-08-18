@@ -3,30 +3,33 @@
 
 \subsection{Limitations}
 
-\paragraph{Expert subjectivity and theory-ladenness.}
-Scientific identity and measurement equivalence judgments are theory-laden and may depend on the annotator's disciplinary background. Two experts may reasonably disagree on whether a construct is ``the same'' across two sources, particularly when the sources operationalise the construct differently. The annotation protocol mitigates this through a written handbook, independent double annotation, and domain-expert escalation, but cannot eliminate subjectivity entirely. Inter-annotator agreement per coordinate will be reported, and the \textsc{Unresolved} label is available for cases where agreement cannot be reached.
+\paragraph{Scope of the reported external result.}
+The reported external result is the public-reference projection-to-mapping study, not the original end-to-end expert atlas. It contains two separately frozen 32-case mapping sets assembled from pinned public human/expert resources; the confirmatory set is disjoint at the case level from the initial set. These cases are already structured scientific projections. They therefore test mapping and obstruction semantics, not whether a model can reliably extract all required semantic coordinates from raw papers.
 
-\paragraph{Domain coverage.}
-The gold dataset covers four disciplines (biomedicine, physics, social science, climate science) with 32 samples. This is sufficient for the primary hypothesis test but cannot establish universal cross-domain adequacy. The eight case families are designed to span the most challenging integration scenarios, but other scenarios (e.g., cross-linguistic terminology differences, historical conceptual change) are not covered.
+\paragraph{Expert subjectivity and theory-ladenness.}
+Scientific identity and measurement equivalence judgments are theory-laden and may depend on disciplinary background. The broader \texttt{P3.cross-domain-atlas.v1} protocol mitigates this through a written handbook, independent double annotation, coordinate-wise agreement reporting, domain-expert escalation, and an \textsc{Unresolved} state. That broader expert-gold study has not been executed, so this manuscript does not report inter-annotator agreement or present seed templates as expert gold.
+
+\paragraph{Domain and case-family coverage.}
+The public-reference route covers only the case families supported by its pinned source authorities. Its confirmatory effect is concentrated in polarity/modality/attribution/context cases; different-name/same-referent and representation-mapping cases are useful controls but do not discriminate the compared rules on that holdout. The result therefore cannot establish universal cross-domain adequacy or necessity of every semantic coordinate. In particular, zero measured ablation effects for referent, construct, measurement, or context on under-supported strata are coverage limitations, not evidence that those coordinates are dispensable.
 
 \paragraph{Evolving terminology.}
-Scientific terminology evolves over time. A construct that was operationalised one way in 2010 may be operationalised differently in 2026. The annotation captures the state of the literature at the time of annotation; the framework's ability to handle temporal drift in terminology is not evaluated.
+Scientific terminology and operationalization change over time. The current mapping study is bound to specific source revisions and does not establish robustness to temporal drift, historical conceptual change, or cross-lingual terminology.
 
 \paragraph{Ontology and schema dependence.}
-The 11-coordinate annotation schema is a choice. Other coordinate systems are possible (e.g., adding probability distributions, causal structure, or ethical considerations). The evaluation does not claim that the 11-coordinate schema is optimal --- only that it is a principled starting point for typed scientific integration.
+The semantic-coordinate representation is a design choice. Other representations may encode additional causal, probabilistic, temporal, or normative structure. The current evidence supports a bounded typed mapping/obstruction result; it does not establish that the chosen coordinate system is uniquely correct or optimal.
 
 \paragraph{Extraction error propagation.}
-The text-to-scientific-meaning extraction layer is the highest-risk component of the pipeline. Errors in this layer propagate to every downstream decision (mapping, GLUE, obstruction). The gold study evaluates the full pipeline end-to-end, so extraction errors will be reflected in the headline metrics; attribution to individual stages will require the per-coordinate metrics and qualitative error analysis.
+The text-to-scientific-meaning extraction layer remains an unexecuted part of the broader protocol. Extraction errors could propagate into mapping, \glue{}, and obstruction decisions. Because no prospectively bound raw-text extractor run supports the headline result, this paper does not report stage-attributed extraction error or claim end-to-end superiority over raw-text/RAG/schema systems.
 
-\paragraph{Limited simultaneous coherence.}
-The ultimate purpose of a global knowledge portrait is to enhance the capacity for scientific research --- to expose the epistemic structure of a field, its incompatibilities, and its open questions. The gold study measures recoverability, obstruction quality, and downstream answer correctness, but no study of realistic size can capture the full cognitive and collaborative benefit of such a portrait.
+\paragraph{Recoverability and downstream utility remain open.}
+The framework is designed so global statements retain source projections, mapping paths, preservation conditions, and non-preserved coordinates. Local tests verify those mechanics, but the current external study does not establish reader-level recoverability of generated portraits or downstream scientific-answer improvement. Those claims remain \conststatus{} pending their own frozen evaluations.
 
 \subsection{Ethics}
 
-The ORION framework integrates scientific claims from published literature; it does not collect new human data. The gold dataset draws on published open-access sources, so no additional consent or ethics review is required. The annotation task involves expert scientists evaluating scientific claims; it does not involve sensitive personal data. We nonetheless note two ethical considerations. First, the framework's outputs --- including \textsc{Obstruction} and \textsc{Plural\_View} verdicts --- should be presented to users as structured records of incompatibility, not as judgments that one perspective is superior. Second, the provenance mechanism is designed to make every claim attributable to its source, supporting scientific accountability.
+The scoped public-reference study reuses published research resources and does not collect new human-participant data. The broader expert-annotation protocol is prospective and has not been executed. ORION's outputs, including \textsc{Obstruction} and \textsc{Plural\_View}, should be presented as provenance-bound records of incompatibility or unresolved mapping rather than as judgments that one scientific perspective is intrinsically superior. Source lineage is retained so a downstream reader can inspect the evidence and conditions behind an integration decision.
 
 \subsection{Reproducibility}
 
-The evaluation protocol is frozen in \texttt{protocol/PROTOCOL\_V1.json}, and the annotation schema in \texttt{protocol/ANNOTATION\_SCHEMA\_V1.json}. The annotation handbook and adjudication policy are frozen as \texttt{ANNOTATION\_HANDBOOK\_V1.md} and \texttt{ADJUDICATION\_POLICY\_V1.md} before any test-system outputs are examined. The MUSE reference implementation is pinned to a specific commit. Final sampled-source, gold, evaluator, model, and subject hashes remain unbound until \texttt{EXECUTION\_FROZEN}. The full reproducibility requirements are documented in the repository's reproducibility sections of the paper and its companion materials~\cite{orion2025paper3-nearest}.
+The original end-to-end design remains frozen in \texttt{protocol/PROTOCOL\_V1.json} without pretending its unbound expert-gold/model identities have executed. The scoped public-reference route is separately content-addressed: the initial portable gold and its disjoint confirmatory holdout are hash-bound, and the confirmatory execution manifest freezes the holdout hash, upstream source revisions, evaluator code identities, bootstrap seed, practical margins, and decision rule before confirmatory outputs. The deterministic repository commands regenerate the public-reference metrics and publication artifacts from those immutable inputs. Broader expert-gold, raw-text, recoverability, and downstream-utility results require new prospective artifacts rather than reinterpretation of the current mapping evidence.
 
 \endinput
