@@ -59,10 +59,12 @@ from orion.self_orion.evolution_archive import (
     HostPromotionRecommendation,
     OrionVariant,
     VariantStatus,
+    changelog_recorded,
     initialize_evolution_archive,
     record_change_control_result,
-    recommend_host_promotion,
+    record_method_challenger_disposition,
     register_challenger,
+    register_method_challenger,
 )
 from orion.self_orion.experience_policy import (
     ExperienceConditionedWork,
@@ -93,6 +95,15 @@ from orion.self_orion.live_trial import (
     ShadowLiveTrialReport,
     ShadowLiveTrialRunner,
     TrialTaskComparison,
+)
+from orion.self_orion.method_challenger import (
+    HostDisposition,
+    MethodChallenger,
+    MethodEvidenceStatus,
+    MethodEvolutionStage,
+    MethodStageEvidence,
+    assess_method_challenger,
+    validate_method_challenger,
 )
 from orion.self_orion.novelty import (
     DevelopmentNoveltyClass,

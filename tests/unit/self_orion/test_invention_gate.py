@@ -97,12 +97,31 @@ def test_supported_method_basis_gap_can_become_operator_invention_candidate_only
             ontology_gap_supported=False,
             discriminator_evidence_ids=("e:1", "e:2"),
             rakl_donor_audit=_donor_audit(),
+            method_challenger_id="challenger:method:1",
         ),
     )
     assert report.ready
     assert report.target is InventionTarget.OPERATOR
     assert not report.grants_invention_authority
     assert not report.grants_promotion_authority
+
+
+def test_method_basis_gap_requires_registered_method_challenger():
+    report = assess_invention_readiness(
+        _flat_report(),
+        InventionReadinessEvidence(
+            stable_residual_variation_ids=("v1", "v2", "v3"),
+            ordinary_causes_excluded=True,
+            cross_domain_routes_bounded_flat=True,
+            representation_gap_supported=False,
+            method_basis_gap_supported=True,
+            ontology_gap_supported=False,
+            discriminator_evidence_ids=("e:1", "e:2"),
+            rakl_donor_audit=_donor_audit(),
+        ),
+    )
+    assert not report.ready
+    assert "method_challenger_not_registered" in report.reasons
 
 
 def test_missing_rakl_donor_audit_blocks_otherwise_ready_invention():
