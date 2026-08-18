@@ -54,21 +54,60 @@ def load_raw_records(path: Path) -> list[dict[str, Any]]:
     return records
 
 
+def _safe_ratio(numerator: int, denominator: int) -> float:
+    return numerator / denominator if denominator else 0.0
+
+
 def _family_metrics(records: list[dict[str, Any]]) -> dict[str, Any]:
+    """Compute standard one-vs-rest precision/recall/F1 for each gold family.
+
+    The original publication report populated ``f1`` with recall. That is only
+    valid when false positives into a family are zero. The three immutable P5
+    errors include false positives into several families, so F1 must be derived
+    from TP/FP/FN explicitly rather than copied from recall.
+    """
+
     metrics: dict[str, Any] = {}
     for family in sorted(ROOT_CAUSES):
         family_records = [record for record in records if record["gold_root_cause"] == family]
         if not family_records:
             continue
-        correct = sum(1 for record in family_records if record["gold_root_cause"] == record["attributed_root_cause"])
-        total = len(family_records)
-        recall = correct / total
+        tp = sum(
+            1
+            for record in records
+            if record.get("error") in (None, "")
+            and record["gold_root_cause"] == family
+            and record["attributed_root_cause"] == family
+        )
+        fp = sum(
+            1
+            for record in records
+            if record.get("error") in (None, "")
+            and record["gold_root_cause"] != family
+            and record["attributed_root_cause"] == family
+        )
+        fn = sum(
+            1
+            for record in records
+            if record["gold_root_cause"] == family
+            and (
+                record.get("error") not in (None, "")
+                or record["attributed_root_cause"] != family
+            )
+        )
+        precision = _safe_ratio(tp, tp + fp)
+        recall = _safe_ratio(tp, tp + fn)
+        f1 = _safe_ratio(2 * tp, 2 * tp + fp + fn)
         metrics[family] = {
+            "precision": precision,
             "recall": recall,
-            "f1": recall,
+            "f1": f1,
+            "tp": tp,
+            "fp": fp,
+            "fn": fn,
             "cases": [record["case_id"] for record in family_records],
-            "correct": correct,
-            "total": total,
+            "correct": tp,
+            "total": len(family_records),
         }
     return metrics
 
@@ -84,6 +123,8 @@ def compute_metrics(records: list[dict[str, Any]]) -> dict[str, Any]:
     )
     incorrect = total - correct - transport_errors
     family_metrics = _family_metrics(records)
+    macro_precision = sum(item["precision"] for item in family_metrics.values()) / len(family_metrics)
+    macro_recall = sum(item["recall"] for item in family_metrics.values()) / len(family_metrics)
     macro_f1 = sum(item["f1"] for item in family_metrics.values()) / len(family_metrics)
     false_method_changes = [
         record
@@ -102,6 +143,8 @@ def compute_metrics(records: list[dict[str, Any]]) -> dict[str, Any]:
         "incorrect_attributions": incorrect,
         "errors": transport_errors,
         "accuracy": correct / total,
+        "macro_precision": macro_precision,
+        "macro_recall": macro_recall,
         "macro_f1": macro_f1,
         "false_method_change_rate": len(false_method_changes) / correct if correct else 0.0,
         "per_family_metrics": family_metrics,
@@ -160,6 +203,8 @@ def _unsigned_receipt(records: list[dict[str, Any]], records_sha256: str) -> dic
             "incorrect_attributions": metrics["incorrect_attributions"],
             "errors": metrics["errors"],
             "accuracy": metrics["accuracy"],
+            "macro_precision": metrics["macro_precision"],
+            "macro_recall": metrics["macro_recall"],
             "macro_f1": metrics["macro_f1"],
             "false_method_change_rate": metrics["false_method_change_rate"],
             "confidence_distribution": metrics["confidence_distribution"],
@@ -168,7 +213,10 @@ def _unsigned_receipt(records: list[dict[str, Any]], records_sha256: str) -> dic
         "empirical_authority": "ATTRIBUTION_DIAGNOSIS_ONLY",
         "promotion_terminal": None,
         "self_merge_authority": False,
-        "notes": "Replay of archived raw records only. Does not execute a live campaign or authorize host promotion.",
+        "notes": (
+            "Replay of archived raw records only. Standard macro metrics are derived one-vs-rest "
+            "from TP/FP/FN. Does not execute a live campaign or authorize host promotion."
+        ),
     }
 
 
@@ -197,6 +245,8 @@ def build_table_p5_3(results_path: Path) -> dict[str, Any]:
             "incorrect_attributions": metrics["incorrect_attributions"],
             "errors": metrics["errors"],
             "accuracy": metrics["accuracy"],
+            "macro_precision": metrics["macro_precision"],
+            "macro_recall": metrics["macro_recall"],
             "macro_f1": metrics["macro_f1"],
             "false_method_change_rate": metrics["false_method_change_rate"],
         },
@@ -216,8 +266,9 @@ def build_table_p5_3(results_path: Path) -> dict[str, Any]:
         "intervention_predictions": intervention_counts(records),
         "empirical_authority": "ATTRIBUTION_DIAGNOSIS_ONLY",
         "limitations": (
-            "Archived single-model attribution replay. Tables P5-2 and P5-4..P5-7 require a "
-            "protected fresh-transfer campaign and remain CANNOT_CHECK."
+            "Archived single-model attribution replay. The original report.json is retained as a "
+            "superseded historical aggregate because its per-family F1 column copied recall. "
+            "Tables P5-2 and P5-4..P5-7 require a protected fresh-transfer campaign and remain CANNOT_CHECK."
         ),
     }
 
