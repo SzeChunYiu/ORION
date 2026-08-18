@@ -1,0 +1,1 @@
+"""Publication-closure mechanical gates."""
