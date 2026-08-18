@@ -43,6 +43,8 @@ VERIFICATION_SCHEMA_MARKERS = (
 )
 VERIFICATION_RECORDS_DIR = Path("research/verification/records")
 HEX = set("0123456789abcdef")
+P2_CLAIM_BOUNDARY = "NARROWED_METHODS_AND_CRITICAL_SYSTEM_DESIGN__NO_EXTERNAL_ORION_SUPERIORITY"
+P2_UNRESOLVED_CLAIMS = {"P2.H1"}
 
 
 class PackageReport:
@@ -198,13 +200,106 @@ def check_package(paper_id: str, paper_root: Path, *, repo_root: Path | None = N
     if not isinstance(required, list) or not required:
         report.errors.append("required_files must be a non-empty array")
         required = []
+    required_paths: set[str] = set()
     for entry in required:
         if not isinstance(entry, dict) or not entry.get("path") or not entry.get("role"):
             report.errors.append(f"malformed required_files entry: {entry!r}")
             continue
-        target = paper_root / str(entry["path"])
+        path = str(entry["path"])
+        required_paths.add(path)
+        target = paper_root / path
         if not target.is_file():
             report.errors.append(f"required file missing: {entry['path']}")
+
+    operations = manifest.get("submission_operations", [])
+    if not isinstance(operations, list):
+        report.errors.append("submission_operations must be an array")
+        operations = []
+    operation_paths: set[str] = set()
+    for entry in operations:
+        if not isinstance(entry, dict):
+            report.errors.append(f"malformed submission_operations entry: {entry!r}")
+            continue
+        expected_keys = {"path", "role", "status", "reason"}
+        if set(entry) != expected_keys:
+            report.errors.append(
+                f"submission_operations entry must contain exactly {sorted(expected_keys)}: {entry!r}"
+            )
+            continue
+        path = entry.get("path")
+        if not all(isinstance(entry.get(key), str) and entry.get(key) for key in ("path", "role", "reason")):
+            report.errors.append(f"malformed submission_operations entry: {entry!r}")
+            continue
+        if entry.get("status") != "SUBMISSION_OPERATION":
+            report.errors.append(
+                f"submission operation {path!r} must be SUBMISSION_OPERATION, not {entry.get('status')!r}"
+            )
+        if path in operation_paths:
+            report.errors.append(f"duplicate submission operation path: {path}")
+        operation_paths.add(path)
+        if path in required_paths:
+            report.errors.append(f"submission operation is also a required file: {path}")
+
+    readiness = manifest.get("readiness_scope")
+    if readiness is not None:
+        if paper_id != "P2":
+            report.errors.append("readiness_scope is only allowed for P2")
+        elif not isinstance(readiness, dict):
+            report.errors.append("P2 readiness_scope must be an object")
+        else:
+            expected_keys = {
+                "scope_id", "terminal", "claim_boundary", "attestation_path",
+                "unresolved_claims", "external_superiority",
+            }
+            if set(readiness) != expected_keys:
+                report.errors.append(
+                    f"P2 readiness_scope must contain exactly {sorted(expected_keys)}"
+                )
+            if readiness.get("scope_id") != "P2_NARROWED":
+                report.errors.append("P2 readiness_scope.scope_id must be P2_NARROWED")
+            if readiness.get("terminal") != manifest.get("declared_paper_terminal"):
+                report.errors.append(
+                    "P2 readiness_scope.terminal must match declared_paper_terminal"
+                )
+            if readiness.get("terminal") != "PEER_REVIEW_READY":
+                report.errors.append(
+                    "P2 readiness_scope.terminal must be PEER_REVIEW_READY"
+                )
+            if readiness.get("claim_boundary") != manifest.get("claim_boundary"):
+                report.errors.append(
+                    "P2 readiness_scope.claim_boundary must match manifest claim_boundary"
+                )
+            if readiness.get("claim_boundary") != P2_CLAIM_BOUNDARY:
+                report.errors.append("P2 readiness_scope.claim_boundary is not the approved boundary")
+            attestation = readiness.get("attestation_path")
+            if not isinstance(attestation, str) or not attestation:
+                report.errors.append("P2 readiness_scope.attestation_path must be non-empty")
+            else:
+                if Path(attestation).is_absolute() or ".." in Path(attestation).parts:
+                    report.errors.append("P2 readiness_scope.attestation_path must be package-relative")
+                if not (paper_root / attestation).is_file():
+                    report.errors.append(
+                        f"P2 readiness_scope attestation missing: {attestation}"
+                    )
+                if attestation not in required_paths:
+                    report.errors.append(
+                        "P2 readiness_scope.attestation_path must be a required file"
+                    )
+            unresolved = readiness.get("unresolved_claims")
+            if not isinstance(unresolved, list) or any(
+                not isinstance(item, str) or not item for item in unresolved
+            ):
+                report.errors.append(
+                    "P2 readiness_scope.unresolved_claims must be a non-empty string array"
+                )
+            elif set(unresolved) != P2_UNRESOLVED_CLAIMS:
+                report.errors.append(
+                    "P2 readiness_scope.unresolved_claims must be exactly P2.H1"
+                )
+            if readiness.get("external_superiority") != "CANNOT_CHECK":
+                report.errors.append(
+                    "P2 readiness_scope.external_superiority must be CANNOT_CHECK"
+                )
 
     missing = manifest.get("missing_artifacts")
     if not isinstance(missing, list):

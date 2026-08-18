@@ -36,7 +36,54 @@ def test_p1_h1_remains_not_supported() -> None:
     assert report.ok
 
 
-def test_scaffolding_packages_flag_an_open_claim() -> None:
+def test_p2_readiness_scope_is_bound_and_bounded() -> None:
+    manifest = load_manifest(ROOT / PAPER_DIRS["P2"] / "journal_package")
+    scope = manifest["readiness_scope"]
+    assert scope["scope_id"] == "P2_NARROWED"
+    assert scope["terminal"] == manifest["declared_paper_terminal"] == "PEER_REVIEW_READY"
+    assert scope["claim_boundary"] == manifest["claim_boundary"]
+    assert scope["unresolved_claims"] == ["P2.H1"]
+    assert scope["external_superiority"] == "CANNOT_CHECK"
+    assert check_package("P2", ROOT / PAPER_DIRS["P2"], repo_root=ROOT).ok
+
+
+def test_p2_readiness_scope_rejects_tampering(tmp_path: Path) -> None:
+    paper = tmp_path / "paper-02-open-world-scientific-discovery"
+    shutil.copytree(ROOT / PAPER_DIRS["P2"], paper, ignore=shutil.ignore_patterns("__pycache__"))
+    manifest_path = paper / "journal_package" / "MANIFEST.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["readiness_scope"]["external_superiority"] = "SUPPORTED"
+    manifest["readiness_scope"]["attestation_path"] = "evidence/missing.md"
+    manifest["readiness_scope"]["unresolved_claims"] = []
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    write_sha256sums(paper, hashed_paths(manifest))
+    report = check_package("P2", paper)
+    assert not report.ok
+    assert any("external_superiority" in error for error in report.errors)
+    assert any("attestation" in error for error in report.errors)
+    assert any("unresolved_claims" in error for error in report.errors)
+
+
+def test_submission_operations_are_strict(tmp_path: Path) -> None:
+    paper = _copy_p5(tmp_path)
+    manifest_path = paper / "journal_package" / "MANIFEST.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["submission_operations"] = [
+        {
+            "path": "journal_package/DOI.txt",
+            "role": "archive-doi",
+            "status": "CANNOT_CHECK",
+            "reason": "not minted",
+            "extra": True,
+        }
+    ]
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    write_sha256sums(paper, hashed_paths(manifest))
+    report = check_package("P5", paper)
+    assert not report.ok
+    assert any("submission_operations entry" in error for error in report.errors)
+
+
     for paper_id, relative in PAPER_DIRS.items():
         manifest = load_manifest(ROOT / relative / "journal_package")
         if manifest["package_status"] == "SUBMISSION_READY":

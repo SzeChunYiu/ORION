@@ -16,12 +16,26 @@ on:
       - 'uv.lock'
       - 'pyproject.toml'
       - '.github/workflows/clean-install-reproduction.yml'
+      - 'research/paper-programme-v1/journal_package/**'
+      - 'papers/paper-01-*/journal_package/**'
+      - 'papers/paper-02-*/journal_package/**'
+      - 'papers/paper-03-*/journal_package/**'
+      - 'papers/paper-04-*/journal_package/**'
+      - 'papers/paper-05-*/journal_package/**'
+      - 'tests/unit/publication/test_journal_package.py'
   push:
     branches: [main]
     paths:
       - 'uv.lock'
       - 'pyproject.toml'
       - '.github/workflows/clean-install-reproduction.yml'
+      - 'research/paper-programme-v1/journal_package/**'
+      - 'papers/paper-01-*/journal_package/**'
+      - 'papers/paper-02-*/journal_package/**'
+      - 'papers/paper-03-*/journal_package/**'
+      - 'papers/paper-04-*/journal_package/**'
+      - 'papers/paper-05-*/journal_package/**'
+      - 'tests/unit/publication/test_journal_package.py'
   workflow_dispatch:
 
 concurrency:

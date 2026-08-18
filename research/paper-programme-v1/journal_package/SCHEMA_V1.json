@@ -71,6 +71,34 @@
         "schema_name": {"const": "ScientificResultVerification.v1"},
         "records_present": {"type": "array"}
       }
+    },
+    "submission_operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "role", "status", "reason"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "role": {"type": "string", "minLength": 1},
+          "status": {"const": "SUBMISSION_OPERATION"},
+          "reason": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "readiness_scope": {
+      "description": "Optional bounded P2 readiness attestation; it never changes scoreboard semantics.",
+      "type": "object",
+      "required": ["scope_id", "terminal", "claim_boundary", "attestation_path", "unresolved_claims", "external_superiority"],
+      "properties": {
+        "scope_id": {"const": "P2_NARROWED"},
+        "terminal": {"const": "PEER_REVIEW_READY"},
+        "claim_boundary": {"type": "string", "minLength": 1},
+        "attestation_path": {"type": "string", "minLength": 1},
+        "unresolved_claims": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "external_superiority": {"const": "CANNOT_CHECK"}
+      },
+      "additionalProperties": false
     }
   }
 }
