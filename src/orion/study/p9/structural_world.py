@@ -463,7 +463,7 @@ def classify_cycle_gluing(
 
     scale = 1.0
     offset = 0.0
-    for source, target in zip(cycle, cycle[1:], strict=True):
+    for source, target in zip(cycle[:-1], cycle[1:], strict=True):
         candidates = by_edge.get((source, target), [])
         if len(candidates) != 1:
             return GluingVerdict.UNKNOWN
