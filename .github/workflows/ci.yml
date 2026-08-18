@@ -12,12 +12,48 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
+  # The suite is ~3000 tests and took 27m53s as a single job, which made every
+  # red PR a half-hour round trip. It is split across runners rather than
+  # parallelised inside one checkout on purpose: 58 test files write outside
+  # tmp_path, and at least one (tests/test_p1_figure_pipeline.py) mutates a
+  # committed artifact and restores it, so sharing a working tree between
+  # workers would race. Separate runners have separate checkouts and no shared
+  # filesystem, so there is no race surface to reason about.
+  #
+  # pytest-split partitions the collected test list deterministically: every
+  # test lands in exactly one group and none is dropped. Verified locally by
+  # collecting each group and checking the counts sum to the unsplit total.
+  shard:
+    name: shard ${{ matrix.group }}/6
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [1, 2, 3, 4, 5, 6]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: python -m pip install -e '.[dev,candidates]'
-      - run: pytest -q
+      # --durations surfaces what actually costs time. Groups are split by test
+      # count until a .test_durations file is committed, so a shard holding the
+      # slow tests will lag; these numbers are what tell us which.
+      - run: pytest -q --splits 6 --group ${{ matrix.group }} --durations=15
+
+  # Aggregate gate. Keeps a single stable check name for anything that
+  # references CI by name, and fails if any shard fails, is cancelled, or is
+  # skipped -- "not success" is the condition, so a shard that never ran cannot
+  # read as a pass.
+  test:
+    if: always()
+    needs: shard
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report shard results
+        run: |
+          echo "shard result: ${{ needs.shard.result }}"
+          if [ "${{ needs.shard.result }}" != "success" ]; then
+            echo "::error::at least one test shard did not succeed"
+            exit 1
+          fi
