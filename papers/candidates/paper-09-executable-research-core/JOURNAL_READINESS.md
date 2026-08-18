@@ -11,7 +11,7 @@ standalone paper.
 | Public result | JSON/Markdown generated from one in-memory result | `PASS` |
 | Determinism | Two complete runs; JSON SHA-256 `8246d007260be1bc5df437002c1de004bc98868edd114b29c3ffb22046532f06` both times | `PASS` |
 | Hostile tests | Digest substitution, source shape and numerical-gate assertions | `PASS` (3/3) |
-| Framework tests | Capability/authority, donor, ledger, planner and content-binding suite | `PASS` (29/29) |
+| Framework tests | Capability/authority, donor, ledger, planner and content-binding suite | `PASS` (33/33 on closure branch) |
 | Constructive saturation | Eight primary donors, each with extraction plus adoption/defer receipt | `PASS_BOUNDED` |
 | Strong configured selector | AutoFolio-class comparison | `NOT_RUN`; blocks standalone superiority only |
 | Independent standalone residual | Routing/abstention absorbed; authority separation owned by P8 | `NO_RESIDUAL` |

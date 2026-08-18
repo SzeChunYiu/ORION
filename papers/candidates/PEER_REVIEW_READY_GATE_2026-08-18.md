@@ -31,7 +31,8 @@ Fallback venues remain as recorded in `VENUE_DECISION_V2.md`; this gate is froze
 
 - P6: `THEORY_FINISHED_V2_1`.
 - P7: `THEORY_FINISHED_V2`.
-- P8: `THEORY_FINISHED_V2`.
+- P8: `THEORY_FINISHED_V2_1` (`FORMAL_CORE_V2.md` plus its superseding
+  primitive-closure addendum `FORMAL_CORE_V2_1.md`).
 
 ## Current submission claim terminals after the 2026-08-18 delta
 

@@ -94,6 +94,8 @@ P9 does not claim novelty for algorithm selection, algorithm portfolios, meta-le
 - Phase 0 and phase 1 remain synthetic. The public ASlib discriminator is a
   single bounded scenario, not cross-domain evidence.
 - Routing and abstention cannot authorize execution; P8 owns that boundary.
+- External authority and multi-scenario selector superiority remain
+  `CANNOT_CHECK` from P9 alone and are not promoted by the merge terminal.
 
 ## Reproduce
 

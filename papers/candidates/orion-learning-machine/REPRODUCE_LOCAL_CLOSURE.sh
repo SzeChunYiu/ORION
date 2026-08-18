@@ -2,23 +2,14 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT"
-mkdir -p closure_logs
 
-printf '== framework tests ==\n'
-(cd framework && python -m pytest -q) | tee closure_logs/pytest.txt
+printf '== bounded current closure ==\n'
+./VERIFY_LOCAL_CLOSURE.sh
 
-printf '\n== phase 0 ==\n'
-python experiments/phase0_solver_ecology/run.py | tee closure_logs/phase0.txt
+printf '\n== deterministic local experiments ==\n'
+PYTHONPATH=framework python experiments/phase0_solver_ecology/run.py
+PYTHONPATH=framework python experiments/phase1_mechanic_composition/run_v2.py
+PYTHONPATH=framework python experiments/phase2_real_source/run_phase2a.py
 
-printf '\n== phase 1 (CPU-heavy) ==\n'
-python experiments/phase1_mechanic_composition/run_v1.py | tee closure_logs/phase1.txt
-
-printf '\n== phase 2A ==\n'
-PYTHONPATH=framework python experiments/phase2_real_source/run_phase2a.py | tee closure_logs/phase2a.txt
-
-printf '\n== phase 2B ==\n'
-PYTHONPATH=framework python experiments/phase2_real_source/run_phase2b_goal_effect.py | tee closure_logs/phase2b.txt
-
-printf '\n== hashes ==\n'
-sha256sum closure_logs/*.txt | tee closure_logs/SHA256SUMS.txt
-printf 'Local closure reproduction complete.\n'
+printf '\nPhase 2B is intentionally not invoked: its legacy input is unavailable and the question is removed from the current P10 note.\n'
+printf 'P9/P10 local reproduction complete.\n'

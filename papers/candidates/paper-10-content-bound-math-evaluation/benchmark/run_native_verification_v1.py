@@ -33,9 +33,15 @@ def canonical_digest(payload: dict[str, Any]) -> str:
     return digest_bytes(raw)
 
 
-def run(command: list[str], cwd: Path, env: dict[str, str]) -> dict[str, Any]:
+def run(
+    command: list[str],
+    cwd: Path,
+    env: dict[str, str],
+    *,
+    include_stdout_utf8: bool = False,
+) -> dict[str, Any]:
     completed = subprocess.run(command, cwd=cwd, env=env, capture_output=True, check=False)
-    return {
+    receipt = {
         "command": command,
         "exit_status": completed.returncode,
         "verdict": "SUCCESS" if completed.returncode == 0 else "FAIL",
@@ -44,6 +50,9 @@ def run(command: list[str], cwd: Path, env: dict[str, str]) -> dict[str, Any]:
         "stdout_bytes": len(completed.stdout),
         "stderr_bytes": len(completed.stderr),
     }
+    if include_stdout_utf8:
+        receipt["stdout_utf8"] = completed.stdout.decode("utf-8", errors="strict").strip()
+    return receipt
 
 
 def main() -> None:
@@ -81,7 +90,12 @@ def main() -> None:
         }
         environment["LD_PRELOAD"] = str(args.runtime_adapter.resolve())
 
-    version = run([str(args.lake), "env", "lean", "--version"], checkout, environment)
+    version = run(
+        [str(args.lake), "env", "lean", "--version"],
+        checkout,
+        environment,
+        include_stdout_utf8=True,
+    )
     if version["exit_status"] != 0:
         raise AssertionError("native Lean version preflight failed")
 

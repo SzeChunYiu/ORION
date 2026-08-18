@@ -2,7 +2,7 @@
 
 **Paper:** Epistemic Navigation in Open Worlds  
 **Theory status:** `CLOSED_V2`  
-**Novelty status:** `CANNOT_CHECK` pending literature closure  
+**Novelty status:** broad navigation novelty rejected; scoped residual stable under the dated two-round literature closure
 **Rule:** donor mechanisms are engulfed as special cases; novelty must come from preservation/closure interaction, not from claiming adaptive search or representation change.
 
 | ID | Permitted claim | Authority | Evidence / proof | Forbidden upgrade |
@@ -19,6 +19,8 @@
 | P7-C10 | Fixed-graph navigation, POMDP belief-space planning, planning abstraction, schema/lens mappings, goal evolution and world-model revision can supply donor components/special cases in the atlas. | REPRESENTATION_LEVEL_DONOR_EMBEDDING | `FINAL.md` + donor envelope | P7 inherits every theorem or benchmark result of those fields. |
 | P7-C11 | The V2 checker covers stopping ambiguity, certificate boundary, fixed-information refinement/coarsening, evidence-vs-closure, 64 transport combinations and stop terminals. | DETERMINISTIC_ARTIFACT_FACT | `formal/check_theory_closure_v2.py` | Real-agent performance claim. |
 | P7-C12 | The strongest future comparison is an integrated donor product with correct adapters; ORION should not claim superiority merely by containing more modules. | PROGRAMME_DESIGN | donor-complete envelope | “ORION already beats Search-on-Graph/POMDP/SAGA/world-model systems.” |
+| P7-C13 | Route identity binds chart/objective, initial obligations and normalized trace; equivalence/refinement require protected structure- and obligation-preserving maps rather than content overlap. | FORMAL DEFINITION / CHECKER | Def. 8.1 + route-relation cases | Novel route-diversity algorithm claim. |
+| P7-C14 | Defer/revisit, witness-backed backtracking and forced reframe are distinct recovery transitions and never silently assert task completion. | FORMAL POLICY / REFERENCE CONTRACT | Def. 8.2 + frozen dead-end/revisit/reframe cases | Empirical optimality of the recovery policy. |
 
 ## Donor ownership that must remain visible
 

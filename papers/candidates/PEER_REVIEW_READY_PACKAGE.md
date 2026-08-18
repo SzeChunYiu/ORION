@@ -70,6 +70,7 @@ When those predicates hold on one immutable head, the repository terminal for P6
 - mandatory information sheet: `paper-08-epistemic-authority-autonomous-science/submission/JAAMAS_INFORMATION_SHEET.md`
 - cover letter: `paper-08-epistemic-authority-autonomous-science/submission/COVER_LETTER.md`
 - normative theory: `paper-08-epistemic-authority-autonomous-science/manuscript/FORMAL_CORE_V2.md`
+  plus superseding primitive closure `manuscript/FORMAL_CORE_V2_1.md`
 - frozen authority manifest: `paper-08-epistemic-authority-autonomous-science/benchmark/authority_cases_v2.jsonl`
 - claim authority: `paper-08-epistemic-authority-autonomous-science/CLAIM_LEDGER_V2.md` plus programme submission ledger;
 - reproduce: `paper-08-epistemic-authority-autonomous-science/REPRODUCE_V2_1.md`.

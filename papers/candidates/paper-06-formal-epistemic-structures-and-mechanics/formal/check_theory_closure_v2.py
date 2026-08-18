@@ -186,6 +186,68 @@ def check_commutation_and_history() -> int:
     return count
 
 
+def conditional_compose(
+    state: State,
+    *,
+    guard: bool,
+    when_true: Mechanic,
+    when_false: Mechanic,
+    guard_authorized: bool,
+) -> State:
+    """Run exactly one branch of an authority-valid conditional contract."""
+
+    if not guard_authorized:
+        raise PermissionError("conditional guard is not authorized")
+    branch = when_true if guard else when_false
+    return branch.run(state)
+
+
+def check_conditional_composition() -> int:
+    base = State(
+        (("x", 0), ("y", 0)),
+        obligations=frozenset({"open-o"}),
+        authority=frozenset({"root-a"}),
+        provenance=frozenset({"source-p"}),
+    )
+    when_true = Mechanic("true", frozenset({"x"}), frozenset({"x"}), 1)
+    when_false = Mechanic("false", frozenset({"y"}), frozenset({"y"}), 2)
+    true_result = conditional_compose(
+        base,
+        guard=True,
+        when_true=when_true,
+        when_false=when_false,
+        guard_authorized=True,
+    )
+    assert true_result.data == (("x", 1), ("y", 0))
+    assert true_result.obligations == base.obligations
+    assert true_result.authority == base.authority
+    assert true_result.provenance == base.provenance
+    false_result = conditional_compose(
+        base,
+        guard=False,
+        when_true=when_true,
+        when_false=when_false,
+        guard_authorized=True,
+    )
+    assert false_result.data == (("x", 0), ("y", 2))
+    assert false_result.obligations == base.obligations
+    assert false_result.authority == base.authority
+    assert false_result.provenance == base.provenance
+    try:
+        conditional_compose(
+            base,
+            guard=True,
+            when_true=when_true,
+            when_false=when_false,
+            guard_authorized=False,
+        )
+    except PermissionError:
+        pass
+    else:
+        raise AssertionError("unauthorized conditional guard was accepted")
+    return 9
+
+
 def compose_obligation(
     obligation_present: bool,
     *,
@@ -297,6 +359,7 @@ def main() -> int:
         "root_inclusive": check_root_inclusive_reopening(),
         "preservation_certificate": check_preservation_certificate_matrix(),
         "commutation": check_commutation_and_history(),
+        "conditional_composition": check_conditional_composition(),
         "residual_obligation": check_residual_obligation_preservation(),
         "non_escalation": check_non_escalation(),
         "typed_erasure": check_typed_erasure_separation(),

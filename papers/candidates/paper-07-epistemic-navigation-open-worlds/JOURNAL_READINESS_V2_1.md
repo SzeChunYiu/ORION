@@ -14,6 +14,8 @@
 - [x] Evidence-preservation/closure-preservation separation.
 - [x] Complete positive transport and ambiguity-conditioned negative transport.
 - [x] Distinct route/task/continue/cannot-check terminals.
+- [x] Route identity, structural equivalence/refinement and genuine-new-route boundary.
+- [x] Defer/revisit, witness-backed backtracking, loop/dead-end and forced-reframe semantics.
 - [x] Donor-complete embeddings for graph/POMDP/planning abstraction/schema/goal/world-model structures.
 - [x] 8 frozen prospective contracts absorbed and executable.
 - [x] Harmful/unnecessary-reframe control.

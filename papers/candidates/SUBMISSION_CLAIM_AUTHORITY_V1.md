@@ -138,7 +138,9 @@ Status vocabulary: `FORMAL`, `LOCALLY_TESTED`, `EXTERNALLY_SCOPED`, `NONCLAIM`, 
 **Submission sentence:** “A source judgment may discharge a differently typed target scientific obligation only by exact match or a protected composable coercion.”
 
 - status: `FORMAL + LOCALLY_TESTED`;
-- authority: `paper-08.../manuscript/FORMAL_CORE_V2.md` typed anti-laundering theorem; 5×5 direct domain matrix and typed coercion cases;
+- authority: `paper-08.../manuscript/FORMAL_CORE_V2.md` plus superseding
+  primitive closure `FORMAL_CORE_V2_1.md`; typed anti-laundering theorem; 5×5
+  direct domain matrix and typed coercion cases;
 - scope: complete type `(domain, kind, scope, content, epoch)` under rules where only protected coercions change type;
 - nonclaim: registered coercion semantic quality is assumed/protected, not derived by the calculus.
 
@@ -150,6 +152,8 @@ Status vocabulary: `FORMAL`, `LOCALLY_TESTED`, `EXTERNALLY_SCOPED`, `NONCLAIM`, 
 - authority: hard-obligation semantics, finite-penalty proposition under extensible evidence, terminal checker;
 - donor boundary: UCON, ETAS/FAVA, current runtime governance already own obligations/fail-closed authorization broadly;
 - scope: scientific target-discharge layer.
+- V2.1 boundary: blocker absence is not refutation; an undetermined blocker is
+  `CANNOT_CHECK`, and equal confidence/utility does not determine permission.
 
 ### P8-S3 — exact alternative-derivation revocation
 
@@ -159,6 +163,8 @@ Status vocabulary: `FORMAL`, `LOCALLY_TESTED`, `EXTERNALLY_SCOPED`, `NONCLAIM`, 
 - authority: support-family revocation theorem/checker;
 - donor boundary: delegation/revocation is mature; P8's formal representation is not claimed as first-of-kind;
 - scope: enumerated complete sufficient support families.
+- lifecycle boundary: authority is non-monotone under evidence/revocation and
+  demotion is forward-only; immutable history is not reusable future authority.
 
 ### P8-S4 — generic permission/scientific-discharge separation
 

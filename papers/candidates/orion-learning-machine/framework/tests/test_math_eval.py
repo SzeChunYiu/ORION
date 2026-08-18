@@ -76,6 +76,16 @@ def test_source_revision_substitution_invalidates_native_subject():
         bind_verifier_receipt(substituted_task, attempt, receipt)
 
 
+def test_unbound_task_id_control_silently_reuses_a_stale_result():
+    """Minimal conventional control: a task-id-only result cannot see drift."""
+
+    task, _, _ = _native_fixture()
+    substituted_task, _, _ = _native_fixture("different-revision")
+    unbound_results = {task.task_id: {"verdict": "SUCCESS"}}
+    assert unbound_results[substituted_task.task_id]["verdict"] == "SUCCESS"
+    assert substituted_task.statement_sha256 != task.statement_sha256
+
+
 def test_source_byte_substitution_invalidates_native_subject():
     task, attempt, receipt = _native_fixture()
     substituted_environment = MathEvaluationEnvironment(

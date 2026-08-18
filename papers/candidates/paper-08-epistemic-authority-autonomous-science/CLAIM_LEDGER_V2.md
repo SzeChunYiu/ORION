@@ -1,13 +1,14 @@
-# P8 claim ledger V2
+# P8 claim ledger V2.1
 
 **Paper:** A Theory of Epistemic Authority for Autonomous Science  
-**Theory status:** `CLOSED_V2`  
-**Novelty / separate-paper status:** `CANNOT_CHECK` pending literature and strong-baseline closure  
+**Normative core:** `manuscript/FORMAL_CORE_V2.md` plus superseding primitive closure `manuscript/FORMAL_CORE_V2_1.md`
+**Theory status:** `CLOSED_V2_1`
+**Publication status:** scoped residual stabilized by the dated two-round literature closure; no empirical superiority claim
 **Rule:** engulf authorization/effect/provenance/abstention structures before testing the scientific-obligation interface; do not claim centralization as inherent superiority.
 
 | ID | Permitted claim | Authority | Evidence / proof | Forbidden upgrade |
 |---|---|---|---|---|
-| P8-C1 | P8 types every authority-relevant judgment by domain, kind, scope, content contract and epoch, and binds hard obligations to exact discharge types. | FORMAL_DEFINITION | `manuscript/FORMAL_CORE_V2.md` | “P8 invents typed authorization.” |
+| P8-C1 | P8 types every authority-relevant judgment by domain, kind, scope, content contract and epoch, and binds hard obligations to exact discharge types. | FORMAL_DEFINITION | `manuscript/FORMAL_CORE_V2.md` + V2.1 primitive closure | “P8 invents typed authorization.” |
 | P8-C2 | If ordinary inference preserves type and only protected coercions change type, foreign-domain authority cannot discharge a target obligation without a composable coercion path. | THEOREM | Thm. 1 | Novelty over all information-flow/authorization type systems. |
 | P8-C3 | Coercion composition must match the full type; domain-only reachability can accept an invalid scope/kind/content interface. | COUNTEREXAMPLE / REPAIR | V2 coercion fixture | Claim that every existing propagation system is domain-only. |
 | P8-C4 | Hard scientific obligations are non-compensatory under the P8 rule; soft utility/confidence cannot discharge them. | FORMAL_POLICY | Def. 10 | Claim that all scoring methods are unsafe. |
@@ -21,6 +22,10 @@
 | P8-C12 | P1–P5 native authority gates are protected special cases to be reproduced, not overwritten. | INTERNAL_OWNERSHIP / EMBEDDING_CONSTRAINT | formal core + native embedding fixture | Claiming P1–P5 gate mechanisms as P8 novelty. |
 | P8-C13 | The V2 checker covers 25 domain pairs, typed coercion, revocation, terminals, finite-blocker cases, 160 shared/product equivalence cases, positive coercion, epoch and self-promotion boundaries. | DETERMINISTIC_ARTIFACT_FACT | `formal/check_theory_closure_v2.py` | Real-agent performance claim. |
 | P8-C14 | The donor-complete envelope attempts to combine authorization/trust management, UCON/ongoing authorization, multi-authority propagation, effects, provenance, abstention and scientific gates before narrowing. | PROGRAMME_DESIGN | donor-complete envelope | “ORION already outperforms all authorization systems.” |
+| P8-C15 | An undetermined blocker yields `CANNOT_CHECK`; blocker absence is not blocker refutation. | FORMAL_SEMANTICS / COUNTERMODEL | `FORMAL_CORE_V2_1.md`, Prop. 10 + checker | “Every unobserved blocker exists.” |
+| P8-C16 | Permission is not a function of confidence and expected utility; equal confidence/utility can coexist with different terminals. | SEPARATION_PROPOSITION | `FORMAL_CORE_V2_1.md`, Prop. 12 + witness pair | “Confidence is never useful for ranking authorized actions.” |
+| P8-C17 | Authority is non-monotone: new evidence can establish a blocker, while revocation can withdraw support; later demotion changes pending/future authority but not immutable history. | FORMAL_SEMANTICS | `FORMAL_CORE_V2_1.md`, Props. 13–14 + checker | Retroactive uncommit or retroactive authorization. |
+| P8-C18 | Protected custody is one root class; delegated grants, standing policy and obligation-free effects can authorize without custody, while self-admission still requires a protected external root. | FORMAL_BOUNDARY | `FORMAL_CORE_V2_1.md`, Props. 15–16 + checker | “Every authorized action requires protected custody.” |
 
 ## Donor ownership that must remain visible
 

@@ -24,7 +24,8 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[3]
 LANE = ROOT / "papers" / "candidates" / "orion-learning-machine"
-MANIFEST = LANE / "SCRIPT_MANIFEST_SHA256.txt"
+MANIFEST = LANE / "PUBLICATION_MANIFEST_SHA256.txt"
+HISTORICAL_MANIFEST = LANE / "SCRIPT_MANIFEST_SHA256.txt"
 RESULTS = LANE / "results"
 PHASE2A = RESULTS / "PHASE2A_RESULTS.json"
 PHASE1_V2 = RESULTS / "PHASE1_MECHANIC_COMPOSITION_V2.txt"
@@ -43,7 +44,7 @@ def _manifest_rows() -> list[tuple[str, str]]:
 
 def test_every_delivered_file_matches_its_manifest_digest() -> None:
     rows = _manifest_rows()
-    assert len(rows) == 36, f"manifest declares {len(rows)} files, expected 36"
+    assert len(rows) >= 500, f"publication manifest is unexpectedly small: {len(rows)}"
     for digest, relative in rows:
         path = LANE / relative
         assert path.is_file(), f"manifest names a file that is not in the tree: {relative}"
@@ -51,10 +52,14 @@ def test_every_delivered_file_matches_its_manifest_digest() -> None:
         assert actual == digest, f"{relative} does not match its manifest digest"
 
 
-def test_results_are_present_and_not_covered_by_the_source_manifest() -> None:
-    """The manifest predates the results, and saying so beats implying coverage."""
+def test_historical_source_manifest_does_not_claim_result_coverage() -> None:
+    """The 36-file delivery manifest remains archival, not current authority."""
 
-    named = {relative for _, relative in _manifest_rows()}
+    named = set()
+    for line in HISTORICAL_MANIFEST.read_text(encoding="utf-8").splitlines():
+        match = MANIFEST_ROW.match(line.strip())
+        if match:
+            named.add(match.group(2))
     for name in (
         "PHASE0_SOLVER_ECOLOGY.txt",
         "PHASE1_MECHANIC_COMPOSITION.txt",
@@ -149,18 +154,26 @@ def test_phase2b_input_is_absent_and_that_is_recorded() -> None:
         pytest.fail("phase 2B input has appeared; REPRODUCE.md still calls it absent")
 
 
-def test_the_closure_verify_script_cannot_be_run_and_the_lane_says_so() -> None:
-    """The bundle asserts an authority it does not ship the evidence for.
-
-    `VERIFY_LOCAL_CLOSURE.sh` checks `LOCAL_CORE_COMPLETE` against files that were never
-    delivered. Recording that is the honest state; quietly writing the missing files would
-    manufacture the authority instead of earning it.
-    """
+def test_current_closure_is_runnable_and_explicitly_bounded() -> None:
+    """The repaired closure must not recreate the unsupported legacy authority."""
 
     assert not (LANE / "CLOSURE_MANIFEST.json").exists()
     assert not (LANE / "closure_logs" / "FROZEN_SHA256SUMS.txt").exists()
+    authority = json.loads((LANE / "LOCAL_CLOSURE_AUTHORITY.json").read_text())
+    assert authority["authority"] == "LOCAL_REPRODUCIBLE_CORE_ONLY"
+    assert "journal acceptance" in authority["excludes"]
     reproduce = (LANE / "REPRODUCE.md").read_text(encoding="utf-8")
-    assert "not verifiable from what was delivered" in reproduce
+    assert "LOCAL_REPRODUCIBLE_CORE_ONLY" in reproduce
+    completed = subprocess.run(
+        [str(LANE / "VERIFY_LOCAL_CLOSURE.sh")],
+        cwd=LANE,
+        env={"PATH": str(Path(sys.executable).parent) + ":/usr/bin:/bin"},
+        capture_output=True,
+        text=True,
+        timeout=90,
+    )
+    assert completed.returncode == 0, completed.stdout + completed.stderr
+    assert "P9/P10 bounded local closure: PASS" in completed.stdout
 
 
 @pytest.mark.parametrize(

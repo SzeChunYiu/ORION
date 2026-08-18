@@ -116,6 +116,17 @@ Their histories need not be equal as sequences; they are equivalent under the co
 Footprint fidelity and full separation make each mechanic observe the same semantic inputs in either order and write disjoint scientific outputs. All non-history scientific components therefore agree. The audit log intentionally records a different event order, but the two events are independent and differ only by an allowed adjacent swap.
 \end{proof}
 
+This closes the other contract forms conservatively. Sequential composition is
+defined only when postconditions establish the next preconditions and residual
+obligations/authority restrictions cross the boundary. A conditional requires
+an authorized footprint-faithful guard and a common declared join contract;
+the selected branch's obligations and provenance remain visible. Independent
+parallel composition denotes the equivalence class of the two sequential
+interleavings under the theorem's full separation premises. Recursive
+composition additionally requires the well-founded or cycle-rejection rule
+below. These clauses specify well-formedness; they do not claim a new process
+algebra.
+
 \section{Obligation and authority conservation}
 A non-escalating mechanic may retain authority, narrow it, or obtain new authority only from a protected root. By induction, a finite sequential composition of such mechanics is non-escalating.
 

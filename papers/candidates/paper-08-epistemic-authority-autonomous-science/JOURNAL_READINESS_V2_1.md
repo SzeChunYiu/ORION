@@ -2,8 +2,8 @@
 
 **Theory manuscript:** `manuscript/FINAL.md`  
 **Submission manuscript:** `submission/JAAMAS_MANUSCRIPT.tex`  
-**Formal core:** `manuscript/FORMAL_CORE_V2.md`  
-**Theory:** `FINISHED_V2`  
+**Formal core:** `manuscript/FORMAL_CORE_V2.md` plus superseding primitive closure `manuscript/FORMAL_CORE_V2_1.md`
+**Theory:** `FINISHED_V2_1`
 **Primary venue:** Autonomous Agents and Multi-Agent Systems (JAAMAS)  
 **Peer-review terminal:** computed by `../../PEER_REVIEW_READY_PACKAGE.md` from exact-head GitHub checks.
 
@@ -12,6 +12,10 @@
 - [x] Full evidence-to-obligation type: domain/kind/scope/content/epoch.
 - [x] Exact typed coercion composition.
 - [x] Hard non-compensatory scientific obligations.
+- [x] Fail-closed blocker determination: absence is not refutation.
+- [x] Confidence and expected utility are not permission substitutes.
+- [x] Non-monotone authority and forward-only demotion.
+- [x] Protected custody identified as one root class rather than all authority.
 - [x] `AUTHORIZED` / `DENIED` / `CANNOT_CHECK` distinction.
 - [x] Support-family alternative-derivation revocation.
 - [x] Commit-time/stale-epoch boundary.

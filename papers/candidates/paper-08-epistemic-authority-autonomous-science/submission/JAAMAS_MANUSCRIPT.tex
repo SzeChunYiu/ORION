@@ -93,6 +93,21 @@ The calculus distinguishes three authority terminals:
 \end{itemize}
 This distinction is operational. Missing a verifier suggests evidence acquisition or escalation; an established blocker is not repaired by collecting unrelated confidence.
 
+The fail-closed reading needs one further distinction. A blocker is a positive,
+currently supported judgment that an effect is impermissible. For each blocker
+type, its status is \emph{established}, \emph{refuted}, or \emph{undetermined}.
+Authorization requires refutation of every in-scope blocker type, not merely the
+absence of an observed blocker. An undetermined blocker therefore yields
+\texttt{CANNOT\_CHECK}; treating it as absent can authorize a request before the
+evidence that establishes the blocker is consulted.
+
+Confidence, expected utility, support, and permission are separate quantities.
+Two effects can have equal confidence and expected utility while only one has a
+complete obligation-support family; their permission terminals then differ.
+Consequently confidence and utility may rank effects already in the
+\texttt{AUTHORIZED} fibre but cannot promote \texttt{DENIED} or
+\texttt{CANNOT\_CHECK}.
+
 \section{Alternative-derivation revocation}
 A simple dependency graph can conflate conjunction and alternatives. If a certificate can be derived from $A\wedge B$ or independently from $C\wedge D$, revoking $A$ should break the first derivation without necessarily destroying the second.
 
@@ -113,6 +128,21 @@ This semantics preserves independent derivations and invalidates exactly when al
 
 \section{Commit-time authority}
 A certificate is bound to the exact requested effect and state epoch. A later refusal cannot retroactively prevent an irreversible effect already committed, and an authorization from an earlier epoch cannot be replayed after a relevant policy/evidence change unless a freshness proof revalidates it. These constraints are donor-owned by ongoing authorization and current runtime-governance systems \cite{ucon2004,sagefin2026}; P8 uses them as premises rather than novelty claims.
+
+Authority is non-monotone in the premise stream: new evidence can establish a
+blocker and move an otherwise admissible pending request to \texttt{DENIED},
+whereas revocation can break its only complete support set and move it to
+\texttt{CANNOT\_CHECK}. Demotion is forward-only. It changes pending and future
+permission, while the immutable history continues to record the terminal that
+was actually computed at the old epoch; that historical record is not authority
+to act at the new epoch.
+
+Protected custody is likewise one root class rather than a premise of every
+ordinary authorization. Delegated grants, standing policy, and explicitly
+obligation-free effects can ground authority in their valid scopes. Protected
+external custody becomes mandatory when an effect can change the policy or
+evidence that would admit that same effect; an unprotected self-admission root
+cannot certify its own promotion.
 
 \section{Generic permission is weaker than scientific discharge}
 \begin{theorem}[Permission/scientific-discharge separation]
