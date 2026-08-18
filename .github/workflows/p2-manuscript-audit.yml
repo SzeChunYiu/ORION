@@ -1,16 +1,38 @@
 name: p2-manuscript-audit
 
+# This workflow does exactly what P2's JOURNAL_READINESS.md line 108 asks -- compile the
+# narrowed manuscript in repository CI and retain the PDF/log artifact -- and it feeds line
+# 109's reference-metadata audit. It was unreachable: triggered only by a push to
+# `chatgpt/p2-remaining-closure` carrying a magic token in the commit message, so it could
+# never run on `main` and neither box could be closed by anything short of recreating that
+# branch. The gate existed and was wired to nothing.
+#
+# `workflow_dispatch` makes it runnable on demand; the `main` push trigger produces the
+# artifact automatically at whatever commit the manuscript last changed, which is what
+# #160 and #376 want the evidence bound to. The TeX toolchain install is slow, so this is
+# deliberately not on `pull_request`.
 on:
   push:
     branches:
       - chatgpt/p2-remaining-closure
+      - main
+    paths:
+      - 'papers/paper-02-open-world-scientific-discovery/manuscript/**'
+      - 'papers/paper-02-open-world-scientific-discovery/scripts/check_manuscript_typography.py'
+      - '.github/workflows/p2-manuscript-audit.yml'
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
   manuscript:
-    if: contains(github.event.head_commit.message, '[run-p2-manuscript-audit]')
+    # The magic-token guard applies only to the legacy feature-branch trigger. A manual
+    # dispatch or a manuscript change on `main` is already an explicit request to run.
+    if: >-
+      github.event_name == 'workflow_dispatch'
+      || github.ref == 'refs/heads/main'
+      || contains(github.event.head_commit.message, '[run-p2-manuscript-audit]')
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:

@@ -73,6 +73,9 @@ def observed_packet_workflow_divergence() -> dict[str, object]:
         )
     )
     rebuilds_from_preflight = "build_frozen_live_trial_packet(preflight)" in workflow
+    passes_frozen_packet = (
+        "frozen_packet=" in workflow or "from_packet_document" in workflow
+    )
     packet_budget = float(packet["resource_limits"]["budget_units"])
     if "|| '32' }}" not in workflow:
         raise AssertionError("workflow default resource budget is no longer 32")
@@ -92,6 +95,7 @@ def observed_packet_workflow_divergence() -> dict[str, object]:
         "packet_corpus_revision": packet["corpus_revision"],
         "packet_fingerprint": packet["packet_fingerprint"],
         "loads_published_packet": loads_published_packet,
+        "passes_frozen_packet": passes_frozen_packet,
         "rebuilds_from_preflight": rebuilds_from_preflight,
         "workflow_budget": workflow_budget,
         "workflow_reasoner_env": "ORION_PHASE2_REASONER_MODEL",
@@ -111,6 +115,7 @@ def test_published_packet_and_workflow_registry_diverge_and_are_detected():
         "phase2:wide:microglia-complement-cross-disease",
     ]
     assert observed["loads_published_packet"] is False
+    assert observed["passes_frozen_packet"] is False
     assert observed["rebuilds_from_preflight"] is True
     assert observed["packet_corpus_revision"] == "UNBOUND"
     assert observed["packet_budget"] == 24.0
@@ -138,6 +143,9 @@ def test_binding_receipt_is_cannot_check_and_elects_no_registry():
     assert receipt["frozen_packet"]["corpus_revision"] == "UNBOUND"
     assert receipt["workflow_registry"]["task_ids"] == observed["workflow_task_ids"]
     assert receipt["workflow_registry"]["loads_published_packet"] is False
+    assert receipt["workflow_registry"]["passes_frozen_packet"] is False
+    assert receipt["fail_closed_gate"]["status"] == "merged_on_origin_main"
+    assert "issue-277-fail-closed-preflight-gate-unmerged" not in receipt["blocked_on"]
     assert (
         receipt["workflow_registry"]["packet_constructor"]
         == "orion.self_orion.phase2_preflight.build_frozen_live_trial_packet"
@@ -177,7 +185,8 @@ def test_runbook_forbids_unbound_launch_and_silent_registry_election():
     assert "UNBOUND_EXECUTION_REPORT" in text
     assert "LIVE_EXECUTION_TRIGGER.txt" in text
     assert "does not choose which registry" in text
-    assert "Issue #277" in text
+    assert "#277" in text
+    assert "frozen_packet" in text
     assert "phase2_preflight.py" in text
     assert "#8 -> #76 -> #102" in trigger
     assert "no workflow result grants self-merge" in trigger

@@ -16,6 +16,7 @@ from orion.self_orion.phase3_io import (
     BINDING_SCHEMA,
     PROTOCOL_SCHEMA,
     load_phase3_host_binding,
+    phase3_host_binding_to_dict,
     phase3_protocol_freeze_to_dict,
     write_phase3_host_binding,
 )
@@ -30,7 +31,9 @@ from orion.self_orion.phase3_preflight import (
     OrdinaryDevelopmentTaskKind,
     Phase3AuthorityBoundary,
     Phase3CycleTerminalState,
+    HOST_BINDABLE_IDENTITY_FIELDS,
     Phase3EscalationCondition,
+    Phase3ExternalExpectation,
     Phase3PreflightStatus,
     Phase3ProtocolFreeze,
     ProtectedWorkKind,
@@ -109,16 +112,149 @@ def test_binding_order_is_phase2_then_authority_then_custody_then_epoch() -> Non
     assert after_custody.status is Phase3PreflightStatus.BIND_SAMPLING_EPOCH
 
 
-def test_fully_bound_freeze_reaches_a_request_not_an_authorization() -> None:
-    """The most favourable reachable state is still only a request to a host."""
+EXPECTATION = Phase3ExternalExpectation(
+    phase2_terminal_subject_revision_hash=BOUND_A,
+    phase2_evidence_receipt_hash=BOUND_B,
+    external_promotion_authority_id="host:external-promotion-authority",
+    protected_custody_lineage_hash="c" * 64,
+    sampling_epoch_id="phase3:epoch:2026-08-17",
+    issue_pool_fingerprint="d" * 64,
+)
+
+
+def _fully_bound_freeze(**overrides: object) -> Phase3ProtocolFreeze:
+    values: dict[str, object] = dict(
+        sampling_epoch_id="phase3:epoch:2026-08-17",
+        issue_pool_fingerprint="d" * 64,
+        authority_boundary=_bound_boundary(),
+    )
+    values.update(overrides)
+    return Phase3ProtocolFreeze(**values)  # type: ignore[arg-type]
+
+
+# --------------------------------------------------------------------------
+# Well-formed is not bound — grounded in the merged-main Phase-2 defect
+# --------------------------------------------------------------------------
+
+
+def test_well_formed_but_uncompared_identities_cannot_reach_authorization() -> None:
+    """Direct analogue of the confirmed defect in ``assess_phase2_preflight``.
+
+    There, ``("a"*64, "b"*64, "c"*64)`` reaches
+    ``READY_TO_EXECUTE_SHADOW_TRIAL`` because the gate checks digest *format*
+    and never compares against an expected value. Here the same shape of input
+    must stop at ``COMPARE_AGAINST_EXTERNAL_EXPECTATION``.
+    """
+
+    report = assess_phase3_preflight(_fully_bound_freeze())
+    assert report.status is Phase3PreflightStatus.COMPARE_AGAINST_EXTERNAL_EXPECTATION
+    assert "no_external_expectation_supplied" in report.blockers
+    assert not report.grants_phase3_operating_authority
+    assert not report.grants_governed_self_orion
+
+
+def test_plausible_wrong_identities_are_rejected_by_comparison() -> None:
+    """Well-formed *and* compared, but not equal: still not authorized."""
+
+    substituted = assess_phase3_preflight(
+        _fully_bound_freeze(
+            authority_boundary=_bound_boundary(phase2_terminal_subject_revision_hash="f" * 64)
+        ),
+        EXPECTATION,
+    )
+    assert substituted.status is Phase3PreflightStatus.COMPARE_AGAINST_EXTERNAL_EXPECTATION
+    assert "identity_mismatch:phase2_terminal_subject_revision_hash" in substituted.blockers
+
+
+PERTURBATIONS = {
+    "phase2_terminal_subject_revision_hash": "9" * 64,
+    "phase2_evidence_receipt_hash": "8" * 64,
+    "external_promotion_authority_id": "host:some-other-authority",
+    "protected_custody_lineage_hash": "7" * 64,
+    "sampling_epoch_id": "phase3:epoch:2020-01-01",
+    "issue_pool_fingerprint": "6" * 64,
+}
+
+
+def test_every_host_bindable_identity_is_compared() -> None:
+    """Anti-recurrence device for the real failure class.
+
+    The anchor is deliberately ``HOST_BINDABLE_IDENTITY_FIELDS`` — the set of
+    identities ``Phase3HostBinding.v1`` lets a host set — rather than
+    ``Phase3ExternalExpectation``'s own fields. Anchoring to the dataclass was
+    the first version of this test, and it was blind in exactly the way the
+    Phase-2 defect is blind: it could verify that every declared field was
+    compared, but not that every *bindable* identity had been declared.
+    ``sampling_epoch_id`` and ``issue_pool_fingerprint`` were host-bindable and
+    uncompared, and the test could not see them.
+
+    Both directions are now enforced, so a binding added to the schema without
+    a comparison fails here instead of silently widening the gate.
+    """
+
+    expectation_fields = {f.name for f in dataclasses.fields(Phase3ExternalExpectation)}
+    binding_keys = set(phase3_host_binding_to_dict(repository_phase3_protocol_freeze()))
+    # Non-identity envelope metadata a host does not "bind" in the evidential sense.
+    envelope = {"schema", "protocol_id", "protocol_version", "boundary_id"}
+    bindable = binding_keys - envelope
+
+    assert set(HOST_BINDABLE_IDENTITY_FIELDS) == bindable, (
+        "Phase3HostBinding.v1 gained or lost a bindable identity; add it to "
+        "HOST_BINDABLE_IDENTITY_FIELDS and to Phase3ExternalExpectation"
+    )
+    assert set(HOST_BINDABLE_IDENTITY_FIELDS) <= expectation_fields, (
+        "a host-bindable identity has no field on Phase3ExternalExpectation, so "
+        "nothing can compare it"
+    )
+    assert set(HOST_BINDABLE_IDENTITY_FIELDS) == set(PERTURBATIONS)
+
+    for name in HOST_BINDABLE_IDENTITY_FIELDS:
+        skewed = dataclasses.replace(EXPECTATION, **{name: PERTURBATIONS[name]})
+        report = assess_phase3_preflight(_fully_bound_freeze(), skewed)
+        assert f"identity_mismatch:{name}" in report.blockers, (
+            f"{name} is host-bindable but never compared"
+        )
+        assert report.status is Phase3PreflightStatus.COMPARE_AGAINST_EXTERNAL_EXPECTATION
+        assert not report.grants_phase3_operating_authority
+
+
+def test_a_substituted_issue_pool_cannot_reach_authorization() -> None:
+    """Step 1 requires the issue pool frozen before outcomes are observed.
+
+    A pool swapped after the freeze is well-formed and passes every shape
+    check, so only comparison catches it.
+    """
 
     report = assess_phase3_preflight(
-        Phase3ProtocolFreeze(
-            sampling_epoch_id="phase3:epoch:2026-08-17",
-            issue_pool_fingerprint="d" * 64,
-            authority_boundary=_bound_boundary(),
-        )
+        _fully_bound_freeze(issue_pool_fingerprint="e" * 64), EXPECTATION
     )
+    assert report.status is Phase3PreflightStatus.COMPARE_AGAINST_EXTERNAL_EXPECTATION
+    assert "identity_mismatch:issue_pool_fingerprint" in report.blockers
+
+
+def test_expectation_itself_refuses_unbound_identities() -> None:
+    """The thing being compared against cannot itself be a sentinel."""
+
+    for name in (
+        "phase2_terminal_subject_revision_hash",
+        "phase2_evidence_receipt_hash",
+        "protected_custody_lineage_hash",
+    ):
+        with pytest.raises(ValueError):
+            dataclasses.replace(EXPECTATION, **{name: UNBOUND_DIGEST})
+    with pytest.raises(ValueError):
+        dataclasses.replace(EXPECTATION, external_promotion_authority_id="")
+
+
+def test_fully_bound_freeze_reaches_a_request_not_an_authorization() -> None:
+    """The most favourable reachable state is still only a request to a host.
+
+    This is the no-alarm case for every check above: a correct, fully bound,
+    fully *matched* input must pass, or the gate is broken shut rather than
+    fail-closed.
+    """
+
+    report = assess_phase3_preflight(_fully_bound_freeze(), EXPECTATION)
     assert report.status is Phase3PreflightStatus.REQUEST_EXTERNAL_PHASE3_AUTHORIZATION
     assert report.blockers == ()
     # Fully bound, zero blockers — and still no authority. This is the

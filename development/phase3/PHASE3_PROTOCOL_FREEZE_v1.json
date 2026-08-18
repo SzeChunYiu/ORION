@@ -221,7 +221,16 @@
       "unit": "count"
     }
   ],
+  "motivating_defect_reference": "src/orion/self_orion/phase2_preflight.py@origin/main: assess_phase2_preflight gates subject_revision_hash, provider_manifest_hash and evaluator_artifact_hash with the format-only _sha256 check plus a not-all-zeros test and never compares them to an expected value, so ('a'*64, 'b'*64, 'c'*64) reaches READY_TO_EXECUTE_SHADOW_TRIAL. Repair belongs to the issue-8 lane, not to this protocol.",
   "protocol_id": "phase3-governed-self-orion-prefreeze-v1",
+  "protocol_invariants": [
+    "DECLARED_IDENTITIES_MUST_BE_COMPARED",
+    "FROZEN_REGISTRIES_MUST_BE_CONSULTED_BY_IDENTITY",
+    "EVERY_BINDING_CARRIES_ITS_OWN_HOSTILE_TEST",
+    "WELL_FORMED_IS_NOT_BOUND",
+    "MISSING_EVIDENCE_NEVER_BECOMES_PASS",
+    "NO_IN_PROCESS_STATE_GRANTS_AUTHORITY"
+  ],
   "protocol_version": 1,
   "sampling_epoch_id": "phase3:epoch:unbound",
   "schema": "Phase3ProtocolFreeze.v1",
