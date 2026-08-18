@@ -94,3 +94,71 @@ def test_provider_outranks_identity_when_both_appear() -> None:
     module = _load_module()
     both = ("provider credential absent so subject_revision stays UNBOUND",)
     assert module.classify(both, "") == "UNAVAILABLE_PROVIDER"
+
+
+def test_the_derived_obligation_comes_from_the_guard_not_a_pattern() -> None:
+    """`missing_obligation` is read off an `is None` / falsiness guard.
+
+    This is the one part of #322's box 2 -- "one earliest missing obligation" --
+    that can be derived rather than guessed, so it must stay derived. A richer
+    condition is deliberately not interpreted; guessing at it would put invented
+    obligations next to real ones with nothing to tell them apart.
+    """
+
+    import ast
+
+    module = _load_module()
+    is_none = ast.parse("observation.hidden_label_exposed is None", mode="eval").body
+    assert module._unmet_precondition(is_none) == "observation.hidden_label_exposed"
+    falsy = ast.parse("not records", mode="eval").body
+    assert module._unmet_precondition(falsy) == "records"
+    # Not interpreted: a comparison that does not establish absence.
+    richer = ast.parse("len(records) < 2", mode="eval").body
+    assert module._unmet_precondition(richer) is None
+    equality = ast.parse("status == 'PASS'", mode="eval").body
+    assert module._unmet_precondition(equality) is None
+
+
+def test_a_reason_that_places_the_site_beats_the_derived_obligation() -> None:
+    """The obligation says *which* input is absent, not what kind of blocker it is.
+
+    A guard on a protected-evaluator field is still a custody problem, so
+    MISSING_DECLARATION is the fallback for sites the reason rules cannot place --
+    never an override of a category they can.
+    """
+
+    committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
+    with_obligation = [s for s in committed["sites"] if s["missing_obligation"]]
+    assert with_obligation, "no site carries a derived obligation; the derivation is inert"
+    assert any(s["category"] != "MISSING_DECLARATION" for s in with_obligation), (
+        "every obligation-carrying site is MISSING_DECLARATION; the reason rules are being overridden"
+    )
+    assert committed["with_derived_obligation"] == len(with_obligation)
+
+
+def test_the_else_branch_does_not_inherit_the_guard() -> None:
+    """The `else` body runs when the precondition *held*.
+
+    Attributing the same missing input to it would be exactly backwards, and the
+    resulting obligation would point at a field that was present.
+    """
+
+    module = _load_module()
+    source = (
+        "def f(x):\n"
+        "    if x is None:\n"
+        "        return 'CANNOT_CHECK'\n"
+        "    else:\n"
+        "        return 'CANNOT_CHECK'\n"
+    )
+    import ast
+
+    tree = ast.parse(source)
+    enclosing = module._enclosing(tree)
+    preconditions = [
+        enclosing[id(node)][2]
+        for node in ast.walk(tree)
+        if isinstance(node, ast.Constant) and node.value == "CANNOT_CHECK"
+    ]
+    # The `if` body carries the guard; the `else` body carries none.
+    assert sorted(preconditions, key=lambda v: (v is None, v or "")) == ["x", None]
