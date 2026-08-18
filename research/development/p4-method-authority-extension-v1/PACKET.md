@@ -8,7 +8,8 @@ Issues #410/#412 were frozen before this implementation session and supplied the
 
 ## Subject / branch
 
-- base: `main@451ed1da903d9b5eda67c60dadb280e4cea20a17`
+- implementation base: `main@451ed1da903d9b5eda67c60dadb280e4cea20a17`
+- final integration base after P2 extension merge: `main@741de5bb3f990271f3b2e128b7603e5b1c7df230`
 - lane: `shadow/p4-method-authority-extension-2026-08-18`
 - additive only: current citation-saturated protected-V2 P4 manuscript/result package remains unchanged.
 
@@ -56,4 +57,4 @@ pytest -q tests/test_p4_method_authority_extension.py tests/test_p4_method_autho
 python papers/paper-04-verified-scientific-discovery/scripts/run_method_authority_bench.py --check
 ```
 
-Then run repository CI on the PR head. No issue closes from prose or a local green alone.
+Then run repository CI on the PR head against the final integration base. No issue closes from prose or a local green alone.
