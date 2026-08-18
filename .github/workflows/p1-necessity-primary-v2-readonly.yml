@@ -142,16 +142,17 @@ jobs:
           import json
           from pathlib import Path
           p=json.loads(Path('/tmp/p1-v2-result/RESULT.json').read_text())
+          execution=json.loads(Path('research/revival/p1/confirmatory/v2.2/PRIMARY_EXECUTION_FREEZE_V2.json').read_text())
           assert p['terminal'] in {'P1_MUTATION_NECESSITY_SUPPORTED','P1_MUTATION_NECESSITY_NOT_SUPPORTED'}
-          assert p['n']==2882
-          assert p['hidden_shift_n']==480
-          assert p['negative_control_n']==2402
+          assert p['n_worlds']==execution['n']==2882
+          assert p['n_runnable_arms']==len(execution['runnable_arms'])==9
+          assert p['n_ablation_arms']==len(execution['ablation_arms'])==5
           assert p['analysis']['all_support_gates_pass']==(p['terminal']=='P1_MUTATION_NECESSITY_SUPPORTED')
           print(json.dumps({
               'terminal':p['terminal'],
-              'n':p['n'],
-              'hidden_shift_n':p['hidden_shift_n'],
-              'negative_control_n':p['negative_control_n'],
+              'n_worlds':p['n_worlds'],
+              'hidden_shift_n':execution['hidden_shift_n'],
+              'negative_control_n':execution['negative_control_n'],
               'all_support_gates_pass':p['analysis']['all_support_gates_pass'],
               'gates':p['analysis']['gates'],
               'h1_hidden_shift':p['analysis']['h1_hidden_shift'],
