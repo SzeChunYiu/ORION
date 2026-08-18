@@ -86,10 +86,11 @@ def run(protocol: dict) -> dict:
         pair_rows.append({"id":row["id"],"gold":row["gold"],"typed":actual,"transcript":surface,"pass":actual==row["gold"]})
 
     base=make("bisection")
+    dep_left, dep_right = base.dependencies[0]
     variants={
         "delete_invariant": rebuild(base,method_id="c_inv",invariants=()),
         "delete_reconstruction": rebuild(base,method_id="c_rec",reconstruction_map=None,unknown_coordinates=("reconstruction_map",)),
-        "reverse_dependency": rebuild(base,method_id="c_dep",dependencies=((base.mechanics[1],base.mechanics[0]),)),
+        "reverse_dependency": rebuild(base,method_id="c_dep",dependencies=((dep_right,dep_left),)),
         "swap_precondition": rebuild(base,method_id="c_pre",preconditions=("unordered_domain",)),
         "collapse_failure_semantics": rebuild(base,method_id="c_fail",failure_modes=("FAIL",)),
         "erase_lineage": rebuild(base,method_id="c_lin",lineage=()),
