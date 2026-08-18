@@ -9,6 +9,17 @@ blocks exactly as ``FAIL`` does.
 Nothing in this module is populated with programme content. Instances exist only
 in tests and in callers that supply their own observations; there is no
 module-level snapshot standing in for a cycle that did not run.
+
+Two declared fields are not yet consulted by any check, and are declared anyway
+so the observation shape is frozen before evidence arrives:
+``worst_family_metric`` (issue #210 Step 6 requires worst-family regressions to
+be reported; no check reads it yet) and the whole
+:class:`~orion.programme.search_universe_knowledge.SearchUniverseKnowledgeRecord`
+on :attr:`ProgrammeState.search_universe`, which is validated but not consulted —
+``HC-UNIVERSE-COLLAPSE`` works purely from per-epoch source-family counts.
+
+All metrics here are **higher-is-better**; see the polarity note in
+``orion.programme.checks_evidence``.
 """
 
 from __future__ import annotations

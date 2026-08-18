@@ -3,6 +3,18 @@
 Each check answers one question and returns ``CANNOT_CHECK`` the moment its own
 precondition is absent. The preconditions are stated in the reason string, so a
 blocked report says what it could not see rather than merely that it blocked.
+
+Pre-registered assumption — metric polarity
+-------------------------------------------
+``protected_metric``, ``fresh_transfer_metric`` and ``worst_family_metric`` are
+**higher-is-better**. ``HC-BENCHMARK-OVERFIT`` compares them directly, so a
+loss-like metric would invert the check: it would pass through real overfitting
+and fire on healthy improvement, which is the false-positive behaviour that gets
+a battery switched off. The assumption is recorded here rather than encoded as a
+per-metric polarity field because writing it down before evidence exists is the
+point of pre-registration; adding the field is a schema change and belongs to
+whichever change first has a real producer to justify it. A producer emitting a
+loss-like metric must negate it before populating ``EpochSnapshot``.
 """
 
 from __future__ import annotations
