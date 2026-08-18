@@ -1,167 +1,21 @@
 name: p2-v2-acq-dev3
 
+# Dev-3 reached the frozen final-development terminal. Preserve only an explicit
+# reproduction entry point; PR edits must not trigger additional outcome-seeking
+# provider runs after the stop rule has fired.
 on:
-  pull_request:
-    paths:
-      - '.github/workflows/p2-v2-acq-dev3.yml'
-      - 'papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_ACQUISITION_DEV3_FREEZE_2026-08-18.json'
-      - 'papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_acq_dev3.py'
   workflow_dispatch:
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-  dev3:
+  dev3-reproduction-note:
     runs-on: ubuntu-latest
-    timeout-minutes: 32
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install ORION and official scorer runtime
-        run: python -m pip install -e . requests tiktoken openai
-
-      - name: Materialize pinned AutoResearchBench release
-        shell: bash
+      - name: Frozen terminal
         run: |
-          set -euo pipefail
-          rm -rf /tmp/arb-upstream /tmp/p2-dev3
-          git clone --filter=blob:none https://github.com/CherYou/AutoResearchBench.git /tmp/arb-upstream
-          git -C /tmp/arb-upstream checkout a46c9bfb8968786f73f0a6a5b365b5384cd0f96d
-          mkdir -p /tmp/p2-dev3/run
-          curl --fail --location --retry 4 --retry-delay 3 \
-            --output /tmp/p2-dev3/AutoResearchBench.jsonl.obf.json \
-            https://huggingface.co/datasets/Lk123/AutoResearchBench/resolve/main/AutoResearchBench.jsonl.obf.json
-          python /tmp/arb-upstream/decrypt_benchmark.py \
-            --input-file /tmp/p2-dev3/AutoResearchBench.jsonl.obf.json \
-            --output-file /tmp/p2-dev3/AutoResearchBench.jsonl
-          echo 'db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6  /tmp/p2-dev3/AutoResearchBench.jsonl' | sha256sum -c -
-
-      - name: Prepare gold-blind Wide split and frozen development IDs
-        run: |
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
-            --full /tmp/p2-dev3/AutoResearchBench.jsonl \
-            --public /tmp/p2-dev3/wide_public.jsonl \
-            --gt /tmp/p2-dev3/wide_gt.jsonl \
-            --manifest /tmp/p2-dev3/split_manifest.json
-          python - <<'PY'
-          import json, hashlib
-          from pathlib import Path
-          freeze=json.loads(Path('papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_ACQUISITION_DEV3_FREEZE_2026-08-18.json').read_text())
-          split=json.loads(Path('/tmp/p2-dev3/split_manifest.json').read_text())
-          ids=freeze['development_slice']['task_ids']
-          assert split['public_sha256']==freeze['benchmark']['public_wide_sha256']
-          assert hashlib.sha256('\n'.join(ids).encode()).hexdigest()==freeze['development_slice']['task_ids_sha256']
-          Path('/tmp/p2-dev3/task_ids.json').write_text(json.dumps(ids)+'\n')
-          PY
-
-      - name: Preflight corrected identity and query contract
-        run: |
-          python - <<'PY'
-          import importlib.util, sys
-          from pathlib import Path
-          p=Path('papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_acq_dev3.py')
-          s=importlib.util.spec_from_file_location('dev3preflight',p); m=importlib.util.module_from_spec(s); sys.modules[s.name]=m; s.loader.exec_module(m)
-          fake='''<?xml version="1.0"?><feed xmlns="http://www.w3.org/2005/Atom"><entry><id>http://arxiv.org/abs/2401.12345v2</id><title>Example</title><summary>Discusses arXiv:2501.99999 but that cited work is not a returned entry.</summary></entry></feed>'''
-          status, records, note=m.parse_atom(fake)
-          ids=[m.normalize_entry_id(r.versioned_id) for r in records]
-          assert status is m.FetchStatus.OK and ids==['2401.12345'], (status,ids,note)
-          q='Between 2018 and 2022, identify graph neural network methods for molecular property prediction.'
-          rendered=' '.join([m.baseline_primary(q),m.baseline_core(q),m.baseline_broad(q),m.candidate_fielded(q),m.candidate_broad(q),m.candidate_pairs(q)])
-          for forbidden in ('all:and','all:identify','all:for','all:the','all:all:'):
-              assert forbidden not in rendered, (forbidden,rendered)
-          print('DEV3_PREFLIGHT_OK', rendered)
-          PY
-
-      - name: Run frozen corrected baseline vs Dev-3
-        run: |
-          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_acq_dev3.py \
-            --public /tmp/p2-dev3/wide_public.jsonl \
-            --task-ids /tmp/p2-dev3/task_ids.json \
-            --out-dir /tmp/p2-dev3/run \
-            --progress-every 4
-
-      - name: Score both systems with pinned official Wide scorer
-        run: |
-          python /tmp/arb-upstream/evaluate/evaluate_wide_search.py \
-            --input /tmp/p2-dev3/run/candidate_wide_lexical_arxiv_atom_v3.jsonl \
-            --gt-file /tmp/p2-dev3/wide_gt.jsonl --no-jina \
-            --output /tmp/p2-dev3/run/eval_wide_lexical_arxiv_atom_v3.json
-          python /tmp/arb-upstream/evaluate/evaluate_wide_search.py \
-            --input /tmp/p2-dev3/run/candidate_wide_diversified_arxiv_atom_v3.jsonl \
-            --gt-file /tmp/p2-dev3/wide_gt.jsonl --no-jina \
-            --output /tmp/p2-dev3/run/eval_wide_diversified_arxiv_atom_v3.json
-
-      - name: Apply frozen final development eligibility rule
-        shell: bash
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          root=Path('/tmp/p2-dev3/run')
-          freeze=json.loads(Path('papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_ACQUISITION_DEV3_FREEZE_2026-08-18.json').read_text())
-          manifest=json.loads((root/'DEV3_RUN_MANIFEST.json').read_text())
-          b=json.loads((root/'eval_wide_lexical_arxiv_atom_v3.json').read_text())
-          c=json.loads((root/'eval_wide_diversified_arxiv_atom_v3.json').read_text())
-          bm=b['aggregate_stats']; cm=c['aggregate_stats']
-          expected=freeze['validity']['required_provider_calls_per_system']
-          valid=True
-          for sid in ('wide_lexical_arxiv_atom_v3','wide_diversified_arxiv_atom_v3'):
-              x=manifest['systems'][sid]
-              valid &= x['provider_requests']==expected
-              valid &= int((x.get('route_status_counts') or {}).get('OK',0))==expected
-              valid &= x['tasks_with_open_obligations']==0 and x['tasks_closed_as_complete']==0
-          valid &= manifest['task_ids_sha256']==freeze['validity']['required_exact_task_id_hash']
-          dr=round(float(cm['avg_recall'])-float(bm['avg_recall']),6)
-          di=round(float(cm['avg_iou'])-float(bm['avg_iou']),6)
-          dp=round(float(cm['avg_precision'])-float(bm['avg_precision']),6)
-          rule=freeze['development_eligibility_rule']
-          eligible=(valid and dr>=float(rule['candidate_minus_baseline_recall_at_least']) and di>float(rule['candidate_minus_baseline_iou_greater_than']) and dp>=float(rule['candidate_minus_baseline_precision_at_least']))
-          def zero_hits(payload):
-              return sum(1 for r in payload['per_record_results'] if float(r['pass_results'][0]['recall'])==0.0)
-          verdict='DEV3_ELIGIBLE_FOR_FRESH_CONFIRMATION' if eligible else ('CANNOT_CHECK_EXECUTION_VALIDITY' if not valid else 'DEV3_FINAL_NON_ELIGIBLE')
-          payload={
-            'schema':'P2.v2.acquisition-dev3-result.v1',
-            'authority':'FINAL_DEVELOPMENT_ONLY_NOT_CONFIRMATION',
-            'verdict':verdict,
-            'validity_passed':bool(valid),
-            'task_ids_sha256':manifest['task_ids_sha256'],
-            'official_metrics':{
-              'baseline':bm,
-              'candidate':cm,
-              'candidate_minus_baseline':{'avg_recall':dr,'avg_iou':di,'avg_precision':dp},
-              'zero_hit_tasks':{'baseline':zero_hits(b),'candidate':zero_hits(c)}
-            },
-            'systems':manifest['systems'],
-            'development_eligibility_rule':rule,
-            'promotion':'FORBIDDEN_FROM_DEVELOPMENT_SLICE',
-            'next_step': 'EXECUTE_PRE_FROZEN_FRESH_CONFIRMATION' if eligible else 'TERMINATE_ACQUISITION_WIDENING_NO_DEV4'
-          }
-          (root/'P2_V2_ACQUISITION_DEV3_RESULT.json').write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
-          print('P2_V2_ACQ_DEV3='+json.dumps(payload,sort_keys=True))
-          PY
-
-      - name: Upload immutable Dev-3 evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: p2-v2-acq-dev3-${{ github.sha }}
-          path: |
-            /tmp/p2-dev3/split_manifest.json
-            /tmp/p2-dev3/task_ids.json
-            /tmp/p2-dev3/run/DEV3_RUN_MANIFEST.json
-            /tmp/p2-dev3/run/candidate_*.jsonl
-            /tmp/p2-dev3/run/trace_*.json
-            /tmp/p2-dev3/run/eval_*.json
-            /tmp/p2-dev3/run/P2_V2_ACQUISITION_DEV3_RESULT.json
-            papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_ACQUISITION_DEV3_FREEZE_2026-08-18.json
-            papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_FRESH_WIDE_CONFIRM_DEV3_FREEZE_2026-08-18.json
-          if-no-files-found: warn
-          retention-days: 30
+          echo 'Dev-3 is archived as the final acquisition-development iteration.'
+          echo 'The pre-frozen stop rule forbids Dev-4 and fresh confirmation because Dev-3 was not eligible.'
+          echo 'Manual reproductions must not be treated as a new selection outcome.'
