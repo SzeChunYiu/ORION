@@ -105,9 +105,7 @@ def test_p1_adapter_is_version_gated_and_preserves_context():
     view, adapter, _, _ = reduction_and_signature()
     assert adapter.upstream_schema == "P1.MethodRealization.v1@issue-404"
     assert "authority_boundary" in P1_ADAPTER_PROFILE["mandatory"]
-    assert dict(adapter.context_fields)["target_problem_role_signature"] == (
-        "bounded_monotone_threshold_localization"
-    )
+    assert dict(adapter.context_fields)["target_problem_role_signature"] == "bounded_monotone_threshold_localization"
     assert dict(adapter.context_fields)["assumptions"] == ("monotone_response",)
     assert view.lineage == ("donor:bisection",)
     assert adapter.authority_boundary == "FORMAL_STRUCTURE_ONLY"
@@ -173,10 +171,7 @@ def test_fibre_lineage_is_recoverable_from_member_digest():
     fibre = build_fibre(signature, (first, second))
     index = bind_fibre_lineage(
         fibre,
-        {
-            view.digest: adapter.digest,
-            alt_view.digest: alt_adapter.digest,
-        },
+        {view.digest: adapter.digest, alt_view.digest: alt_adapter.digest},
     )
     assert dict(index.member_links)[view.digest] == adapter.digest
     assert dict(index.member_links)[alt_view.digest] == alt_adapter.digest
@@ -292,10 +287,7 @@ def test_composition_outcome_distinguishes_same_fibre_from_new_signature_and_fai
         retained_contract_preserved=True,
         footprint_changed=False,
     ) is FibreCompositionOutcome.BLOCKED
-    recursive_unknown = CompositionContract(
-        CompositionKind.RECURSIVE,
-        rank_decreases=None,
-    )
+    recursive_unknown = CompositionContract(CompositionKind.RECURSIVE, rank_decreases=None)
     assert classify_fibre_composition(
         recursive_unknown,
         retained_contract_preserved=True,
