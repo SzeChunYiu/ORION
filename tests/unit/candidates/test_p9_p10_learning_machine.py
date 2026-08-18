@@ -76,7 +76,11 @@ def test_ci_still_installs_what_the_re_derivation_needs() -> None:
 
     pyproject = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
     assert "candidates = [" in pyproject, "the candidates extra is gone from pyproject.toml"
-    assert "numpy" in pyproject.split("candidates = [")[1].split("]")[0]
+    declared = pyproject.split("candidates = [")[1].split("]")[0]
+    # Both, not just the first one CI happened to trip over. competence.py imports
+    # numpy and scikit-learn; naming only numpy is how this failed twice.
+    for package in ("numpy", "scikit-learn"):
+        assert package in declared, f"the candidates extra no longer declares {package}"
 
     workflow = (ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
     installs = [line for line in workflow.splitlines() if "pip install -e" in line]
@@ -95,6 +99,7 @@ def test_phase2a_re_derives_byte_identically(tmp_path: Path) -> None:
     """
 
     pytest.importorskip("numpy", reason="phase 2A imports the framework package, which needs numpy")
+    pytest.importorskip("sklearn", reason="the same framework import chain needs scikit-learn")
 
     script = LANE / "experiments" / "phase2_real_source" / "run_phase2a.py"
     written = script.parent / "RESULTS_PHASE2A.json"

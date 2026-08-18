@@ -21,7 +21,7 @@ plots = ["matplotlib>=3.10"]
 # result still reproduces. That needs numpy: the lane's framework package re-exports
 # competence.py, which imports it. Without this the guard degrades to a skip, and a
 # guard that never runs is not a guard.
-candidates = ["numpy>=2"]
+candidates = ["numpy>=2", "scikit-learn>=1.5"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

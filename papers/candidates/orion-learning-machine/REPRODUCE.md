@@ -16,7 +16,7 @@ sympy 1.14.0
 scikit-learn 1.8.0
 ```
 
-Phase 0 and phase 1 require numpy, sympy and scikit-learn. **Phase 2A also requires numpy**, though nothing in its own logic uses it: `run_phase2a.py` imports `orion_learning_machine.runtime`, the package `__init__` re-exports `.competence`, and `competence.py` imports numpy at module level. It is the only numpy importer in the framework. An earlier draft of this file called phase 2A standard-library-only; that was wrong, and CI caught it by running phase 2A in an environment without numpy. The import is left as delivered rather than made lazy, because every framework file is byte-bound by `SCRIPT_MANIFEST_SHA256.txt`.
+Phase 0 and phase 1 require numpy, sympy and scikit-learn. **Phase 2A also requires numpy and scikit-learn**, though nothing in its own logic uses it: `run_phase2a.py` imports `orion_learning_machine.runtime`, the package `__init__` re-exports `.competence`, and `competence.py` imports both at module level (`import numpy as np` and `from sklearn.preprocessing import StandardScaler`). It is the only module in the framework importing either; an AST scan of every file under `framework/` finds no other third-party import besides pytest in the framework's own tests. An earlier draft of this file called phase 2A standard-library-only; that was wrong, and CI caught it by running phase 2A in an environment without numpy. The import is left as delivered rather than made lazy, because every framework file is byte-bound by `SCRIPT_MANIFEST_SHA256.txt`.
 
 No network access, no model provider, no LLM API, no judge.
 
