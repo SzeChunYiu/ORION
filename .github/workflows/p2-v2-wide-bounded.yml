@@ -1,0 +1,143 @@
+name: p2-v2-wide-bounded
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-wide:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install ORION and scorer dependencies
+        run: python -m pip install -e . requests tiktoken openai
+
+      - name: Materialize pinned AutoResearchBench release
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/arb-upstream /tmp/p2-wide-bounded
+          git clone --filter=blob:none https://github.com/CherYou/AutoResearchBench.git /tmp/arb-upstream
+          git -C /tmp/arb-upstream checkout a46c9bfb8968786f73f0a6a5b365b5384cd0f96d
+          mkdir -p /tmp/p2-wide-bounded
+          curl --fail --location --retry 4 --retry-delay 3 \
+            --output /tmp/p2-wide-bounded/AutoResearchBench.jsonl.obf.json \
+            https://huggingface.co/datasets/Lk123/AutoResearchBench/resolve/main/AutoResearchBench.jsonl.obf.json
+          python /tmp/arb-upstream/decrypt_benchmark.py \
+            --input-file /tmp/p2-wide-bounded/AutoResearchBench.jsonl.obf.json \
+            --output-file /tmp/p2-wide-bounded/AutoResearchBench.jsonl
+          echo 'db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6  /tmp/p2-wide-bounded/AutoResearchBench.jsonl' | sha256sum -c -
+
+      - name: Prepare gold-blind Wide split
+        run: |
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_compat.py prepare \
+            --full /tmp/p2-wide-bounded/AutoResearchBench.jsonl \
+            --public /tmp/p2-wide-bounded/wide_public.jsonl \
+            --gt /tmp/p2-wide-bounded/wide_gt.jsonl \
+            --manifest /tmp/p2-wide-bounded/split_manifest.json
+
+      - name: Run frozen matched 24-task comparison
+        run: |
+          python papers/paper-02-open-world-scientific-discovery/scripts/run_autoresearchbench_wide_comparison.py \
+            --public /tmp/p2-wide-bounded/wide_public.jsonl \
+            --out-dir /tmp/p2-wide-bounded/run \
+            --systems wide_lexical_arxiv,wide_governed_multiroute \
+            --max-results 20 \
+            --subsample 24 \
+            --subsample-seed 20260818 \
+            --progress-every 4
+
+      - name: Score both systems with pinned official Wide scorer
+        run: |
+          python /tmp/arb-upstream/evaluate/evaluate_wide_search.py \
+            --input /tmp/p2-wide-bounded/run/candidate_wide_lexical_arxiv.jsonl \
+            --gt-file /tmp/p2-wide-bounded/wide_gt.jsonl \
+            --no-jina \
+            --output /tmp/p2-wide-bounded/run/eval_wide_lexical_arxiv.json
+          python /tmp/arb-upstream/evaluate/evaluate_wide_search.py \
+            --input /tmp/p2-wide-bounded/run/candidate_wide_governed_multiroute.jsonl \
+            --gt-file /tmp/p2-wide-bounded/wide_gt.jsonl \
+            --no-jina \
+            --output /tmp/p2-wide-bounded/run/eval_wide_governed_multiroute.json
+
+      - name: Apply frozen authority rule
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path('/tmp/p2-wide-bounded/run')
+          manifest = json.loads((root / 'COMPARISON_RUN_MANIFEST.json').read_text())
+          lex = json.loads((root / 'eval_wide_lexical_arxiv.json').read_text())['aggregate_stats']
+          gov = json.loads((root / 'eval_wide_governed_multiroute.json').read_text())['aggregate_stats']
+          lm = manifest['systems']['wide_lexical_arxiv']
+          gm = manifest['systems']['wide_governed_multiroute']
+          lexical_calls = int(lm['provider_requests'])
+          lexical_ok = int((lm.get('route_status_counts') or {}).get('OK', 0))
+          lexical_ok_fraction = lexical_ok / lexical_calls if lexical_calls else 0.0
+          matched_request_rate = abs(float(lm['provider_requests_per_task']) - float(gm['provider_requests_per_task'])) < 1e-9
+          delta_iou = float(gov['avg_iou']) - float(lex['avg_iou'])
+          delta_recall = float(gov['avg_recall']) - float(lex['avg_recall'])
+          delta_precision = float(gov['avg_precision']) - float(lex['avg_precision'])
+          if lexical_ok_fraction < 0.8:
+              verdict = 'CANNOT_CHECK_PROVIDER'
+          elif not matched_request_rate:
+              verdict = 'INVALID_UNMATCHED_REQUEST_RATE'
+          elif delta_iou >= 0.03 and delta_recall >= 0.0:
+              verdict = 'BOUNDED_EXTERNAL_SIGNAL_POSITIVE'
+          else:
+              verdict = 'BOUNDED_EXTERNAL_SIGNAL_NOT_POSITIVE'
+          payload = {
+              'schema': 'P2.v2.wide-bounded-matched-result.v1',
+              'authority': 'BOUNDED_EXTERNAL_DEVELOPMENT_EVIDENCE_NOT_V2_CONFIRMATION',
+              'verdict': verdict,
+              'selection': manifest['subsample'],
+              'official_metrics': {
+                  'wide_lexical_arxiv': lex,
+                  'wide_governed_multiroute': gov,
+                  'delta_governed_minus_lexical': {
+                      'avg_iou': round(delta_iou, 6),
+                      'avg_recall': round(delta_recall, 6),
+                      'avg_precision': round(delta_precision, 6),
+                  },
+              },
+              'transport': {
+                  'lexical_arxiv_ok_fraction': round(lexical_ok_fraction, 6),
+                  'matched_provider_requests_per_task': matched_request_rate,
+                  'lexical': lm,
+                  'governed': gm,
+              },
+              'promotion': 'FORBIDDEN_FROM_THIS_SLICE_ALONE',
+              'frozen_positive_rule': {
+                  'iou_delta_at_least': 0.03,
+                  'recall_delta_at_least': 0.0,
+                  'lexical_arxiv_ok_fraction_at_least': 0.8,
+              },
+          }
+          (root / 'P2_V2_WIDE_BOUNDED_MATCHED_RESULT.json').write_text(json.dumps(payload, indent=2, sort_keys=True) + '\n')
+          print('P2_V2_WIDE_BOUNDED=' + json.dumps(payload, sort_keys=True))
+          PY
+
+      - name: Upload immutable bounded external evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-v2-wide-bounded-${{ github.sha }}
+          path: |
+            /tmp/p2-wide-bounded/split_manifest.json
+            /tmp/p2-wide-bounded/run/COMPARISON_RUN_MANIFEST.json
+            /tmp/p2-wide-bounded/run/candidate_*.jsonl
+            /tmp/p2-wide-bounded/run/trace_*.json
+            /tmp/p2-wide-bounded/run/eval_*.json
+            /tmp/p2-wide-bounded/run/P2_V2_WIDE_BOUNDED_MATCHED_RESULT.json
+            papers/paper-02-open-world-scientific-discovery/protocol/P2_V2_WIDE_BOUNDED_MATCHED_FREEZE_2026-08-18.json
+          if-no-files-found: warn
+          retention-days: 30

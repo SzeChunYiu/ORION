@@ -23,6 +23,8 @@ class Phase2PreflightStatus(str, Enum):
     BIND_FINAL_PHASE1_SUBJECT = "BIND_FINAL_PHASE1_SUBJECT"
     BIND_EXTERNAL_PROVIDER = "BIND_EXTERNAL_PROVIDER"
     BIND_PROTECTED_EVALUATOR = "BIND_PROTECTED_EVALUATOR"
+    BIND_FROZEN_PACKET = "BIND_FROZEN_PACKET"
+    CANNOT_CHECK = "CANNOT_CHECK"
     READY_TO_EXECUTE_SHADOW_TRIAL = "READY_TO_EXECUTE_SHADOW_TRIAL"
     INVALID = "INVALID"
 
@@ -41,6 +43,7 @@ class FrozenShadowTaskSpec:
     success_criteria: tuple[str, ...]
     variation_signature: tuple[str, ...]
     split_id: str
+    ground_truth_bound: bool = False
 
     def to_trial_task(self) -> FrozenTrialTask:
         return FrozenTrialTask(
@@ -111,6 +114,61 @@ AUTHORITY_ATTACK_IDS = (
 
 
 @dataclass(frozen=True)
+class FrozenPacketBinding:
+    """The declared expected values a preflight must reproduce exactly.
+
+    Shape validation answers "is this a hash?". Only identity comparison answers
+    "is this THE hash that was frozen before any outcome was observed", which is
+    the property #8 actually requires.
+    """
+
+    packet_fingerprint: str
+    subject_revision_hash: str
+    provider_manifest_hash: str
+    evaluator_artifact_hash: str
+    evaluation_epoch_id: str
+    baseline_id: str
+    resource_budget_units: float
+    task_ids: tuple[str, ...]
+    ground_truth_bound_task_ids: tuple[str, ...] = ()
+
+    @classmethod
+    def from_packet_document(cls, document: dict) -> "FrozenPacketBinding":
+        """Build the expectation from a published, fingerprint-verified packet.
+
+        Read the document through a loader that verifies `packet_fingerprint`
+        first; this constructor trusts the mapping it is handed.
+        """
+
+        bindings = tuple(document.get("task_bindings") or ())
+        limits = document.get("resource_limits") or {}
+        baseline = document.get("matched_baseline") or {}
+        evaluator = document.get("evaluator") or {}
+        evaluator_hash = document.get("evaluator_artifact_hash") or (
+            evaluator.get("artifact_hash") if isinstance(evaluator, dict) else ""
+        )
+        # The published #8 packet schema does not carry `subject_revision_hash`.
+        # Leave it empty. `assess_phase2_preflight` treats an undeclared freeze
+        # field as CANNOT_CHECK rather than comparing against "", which would
+        # look like the freeze declared the empty string as the expected hash.
+        return cls(
+            packet_fingerprint=str(document.get("packet_fingerprint", "")),
+            subject_revision_hash=str(document.get("subject_revision_hash", "")),
+            provider_manifest_hash=str(document.get("provider_manifest_hash", "")),
+            evaluator_artifact_hash=str(evaluator_hash or ""),
+            evaluation_epoch_id=str(document.get("evaluation_epoch_id", "")),
+            baseline_id=str(baseline.get("baseline_id", "")),
+            resource_budget_units=float(limits.get("budget_units", 0.0)),
+            task_ids=tuple(str(item.get("task_id", "")) for item in bindings),
+            ground_truth_bound_task_ids=tuple(
+                str(item.get("task_id", ""))
+                for item in bindings
+                if item.get("ground_truth_bound")
+            ),
+        )
+
+
+@dataclass(frozen=True)
 class Phase2ClosurePreflight:
     protocol_id: str
     subject_revision_hash: str
@@ -121,6 +179,7 @@ class Phase2ClosurePreflight:
     resource_budget_units: float
     tasks: tuple[FrozenShadowTaskSpec, ...] = (WIDE_LITERATURE_TASK, DEEP_TARGET_TASK)
     authority_attack_ids: tuple[str, ...] = AUTHORITY_ATTACK_IDS
+    frozen_packet: FrozenPacketBinding | None = None
 
 
 @dataclass(frozen=True)
@@ -192,6 +251,89 @@ def assess_phase2_preflight(preflight: Phase2ClosurePreflight) -> Phase2Prefligh
             task_ids,
             preflight.authority_attack_ids,
         )
+    # Identity, not shape. Everything above asks only whether the caller handed
+    # over something hash-shaped: `_sha256` is a 64-hex-character test, so
+    # "a" * 64 cleared all three binding gates and READY_TO_EXECUTE_SHADOW_TRIAL
+    # -- the gate guarding the entire live campaign -- was reachable with three
+    # fabricated strings. That is the same defect the authority-attack registry
+    # had one screen above, and it is fixed the same way: by comparing against
+    # what was actually frozen.
+    #
+    # An absent expectation is a blocker, never a pass. A preflight that cannot
+    # say what it was frozen against has not been verified, and "not verified"
+    # must never be reported as "ready".
+    frozen = preflight.frozen_packet
+    if frozen is None:
+        return Phase2PreflightReport(
+            Phase2PreflightStatus.BIND_FROZEN_PACKET,
+            ("frozen_packet_binding_absent",),
+            task_ids,
+            preflight.authority_attack_ids,
+        )
+
+    mismatches: list[str] = []
+    cannot_check: list[str] = []
+    for label, declared, expected in (
+        ("subject_revision_hash", preflight.subject_revision_hash, frozen.subject_revision_hash),
+        ("provider_manifest_hash", preflight.provider_manifest_hash, frozen.provider_manifest_hash),
+        ("evaluator_artifact_hash", preflight.evaluator_artifact_hash, frozen.evaluator_artifact_hash),
+        ("evaluation_epoch_id", preflight.evaluation_epoch_id, frozen.evaluation_epoch_id),
+        ("baseline_id", preflight.baseline_id, frozen.baseline_id),
+    ):
+        if not str(expected).strip():
+            # A freeze that does not declare the field cannot certify it.
+            # Comparing against "" would report a mismatch, as if the freeze
+            # had said the value was the empty string, which it did not.
+            cannot_check.append(f"{label}_undeclared_in_frozen_packet")
+        elif declared != expected:
+            mismatches.append(f"{label}_mismatch")
+    if frozen.resource_budget_units <= 0:
+        cannot_check.append("resource_budget_undeclared_in_frozen_packet")
+    elif preflight.resource_budget_units != frozen.resource_budget_units:
+        mismatches.append("resource_budget_mismatch")
+
+    # Two frozen task registries exist in this repository and they do not agree.
+    # Which one carries the intended Phase-2 subject is a governance decision, so
+    # this gate refuses to choose: it names both sides and returns CANNOT_CHECK.
+    # Silently adopting either would settle an authority question by fiat, which
+    # is the one thing a preflight exists to prevent. Membership is the identity
+    # of a registry; order is not.
+    frozen_ids = tuple(str(item) for item in frozen.task_ids)
+    if not frozen_ids or any(not item.strip() for item in frozen_ids):
+        cannot_check.append("frozen_packet_task_ids_undeclared")
+    elif frozenset(task_ids) != frozenset(frozen_ids):
+        in_source = "|".join(task_ids)
+        frozen_listed = "|".join(frozen_ids)
+        cannot_check.append(
+            f"frozen_packet_registry_divergence:in_source={in_source};frozen={frozen_listed}"
+        )
+
+    # A task the freeze says carries held-out ground truth must still declare it
+    # here, or the gold-token criteria cannot be evaluated at execution time.
+    bound_here = {
+        task.task_id
+        for task in preflight.tasks
+        if getattr(task, "ground_truth_bound", False)
+    }
+    missing_gold = sorted(set(frozen.ground_truth_bound_task_ids) - bound_here)
+    if missing_gold:
+        mismatches.append("frozen_ground_truth_not_bound:" + ",".join(missing_gold))
+
+    if cannot_check:
+        return Phase2PreflightReport(
+            Phase2PreflightStatus.CANNOT_CHECK,
+            tuple(cannot_check + mismatches),
+            task_ids,
+            preflight.authority_attack_ids,
+        )
+    if mismatches:
+        return Phase2PreflightReport(
+            Phase2PreflightStatus.BIND_FROZEN_PACKET,
+            tuple(mismatches),
+            task_ids,
+            preflight.authority_attack_ids,
+        )
+
     return Phase2PreflightReport(
         Phase2PreflightStatus.READY_TO_EXECUTE_SHADOW_TRIAL,
         (),
@@ -218,6 +360,7 @@ def build_frozen_live_trial_packet(preflight: Phase2ClosurePreflight) -> FrozenL
 __all__ = [
     "AUTHORITY_ATTACK_IDS",
     "DEEP_TARGET_TASK",
+    "FrozenPacketBinding",
     "FrozenShadowTaskSpec",
     "Phase2ClosurePreflight",
     "Phase2PreflightReport",

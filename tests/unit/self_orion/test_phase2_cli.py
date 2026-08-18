@@ -23,7 +23,14 @@ def test_repository_phase2_preflight_stops_at_final_subject_binding(capsys):
     assert not payload["grants_governed_self_orion"]
 
 
-def test_fully_bound_phase2_preflight_emits_packet_fingerprint(tmp_path, capsys):
+def test_stored_binding_alone_no_longer_self_certifies(tmp_path, capsys):
+    """A serialized binding is data, not certification.
+
+    It used to reach READY_TO_EXECUTE_SHADOW_TRIAL and emit a live-trial
+    packet fingerprint on its own. A file that describes itself can always
+    satisfy itself, so certification now requires an externally declared
+    frozen packet to compare against."""
+
     binding = {
         "schema": BINDING_SCHEMA,
         "protocol_id": "phase2-shadow-closure-v1",
@@ -42,9 +49,10 @@ def test_fully_bound_phase2_preflight_emits_packet_fingerprint(tmp_path, capsys)
 
     assert main(["phase2-preflight", "--binding", str(path)]) == 0
     payload = json.loads(capsys.readouterr().out)
-    assert payload["status"] == "READY_TO_EXECUTE_SHADOW_TRIAL"
-    assert payload["ready_to_execute_shadow_trial"]
-    assert len(payload["live_trial_packet_fingerprint"]) == 64
+    assert payload["status"] == "BIND_FROZEN_PACKET"
+    assert payload["blockers"] == ["frozen_packet_binding_absent"]
+    assert not payload["ready_to_execute_shadow_trial"]
+    assert "live_trial_packet_fingerprint" not in payload
     assert "posthoc-task" not in payload["frozen_task_ids"]
     assert "posthoc-attack" not in payload["authority_attack_ids"]
     assert not payload["grants_phase2_closure"]

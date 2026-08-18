@@ -17,6 +17,7 @@ PAPERS = {
 INPUT_RE = re.compile(r"\\input\{([^}]+)\}")
 CITE_RE = re.compile(r"\\cite(?:t|p)?\{([^}]+)\}")
 BIB_KEY_RE = re.compile(r"@\w+\{\s*([^,\s]+)\s*,", re.MULTILINE)
+BIBLIOGRAPHY_DECLARATION_RE = re.compile(r"\\bibliography\{([^}]+)\}")
 
 
 def _collect_tex(manuscript: Path) -> tuple[list[Path], str]:
@@ -47,6 +48,32 @@ def _citation_keys(tex: str) -> set[str]:
     return keys
 
 
+def _bibliography_names(tex: str, paper_id: str) -> list[str]:
+    """The .bib basenames a manuscript loads, from its own `\\bibliography{...}`.
+
+    A manuscript may split its bibliography across several files. Hard-coding
+    `\\bibliography{bibliography}` made every key defined in a second file look
+    like a missing entry, which reads as a broken manuscript and invites deleting
+    real citations to satisfy the checker. Reading the declaration keeps the
+    check on what LaTeX will actually resolve.
+    """
+
+    match = BIBLIOGRAPHY_DECLARATION_RE.search(tex)
+    assert match, f"{paper_id} manuscript declares no \\bibliography{{...}}"
+    return [part.strip() for part in match.group(1).split(",") if part.strip()]
+
+
+def _bibliography_keys(manuscript: Path, tex: str, paper_id: str) -> list[str]:
+    """Every key defined across the loaded .bib files, duplicates preserved."""
+
+    keys: list[str] = []
+    for name in _bibliography_names(tex, paper_id):
+        path = manuscript / f"{name}.bib"
+        assert path.exists(), f"{paper_id} loads a bibliography that does not exist: {path.name}"
+        keys.extend(BIB_KEY_RE.findall(path.read_text(encoding="utf-8")))
+    return keys
+
+
 def _unbound_values(value: object) -> list[str]:
     if isinstance(value, dict):
         result: list[str] = []
@@ -68,7 +95,7 @@ def test_all_five_canonical_manuscripts_are_structurally_complete():
         assert files, paper_id
         assert "\\begin{abstract}" in tex and "\\end{abstract}" in tex, paper_id
         assert "\\textbf{Keywords:" in tex, paper_id
-        assert "\\bibliography{bibliography}" in tex, paper_id
+        assert _bibliography_names(tex, paper_id), paper_id
         assert "CANNOT\\_CHECK" in tex, f"{paper_id} must preserve the external evidence boundary"
 
         protocol = json.loads((paper / "protocol" / "PROTOCOL_V1.json").read_text(encoding="utf-8"))
@@ -86,17 +113,18 @@ def test_all_manuscript_citations_resolve_to_local_bibliography_keys():
         manuscript = paper / "manuscript"
         _, tex = _collect_tex(manuscript)
         citations = _citation_keys(tex)
-        bibliography = manuscript / "bibliography.bib"
-        assert bibliography.exists(), paper_id
-        bib_text = bibliography.read_text(encoding="utf-8")
-        bib_keys = set(BIB_KEY_RE.findall(bib_text))
+        bib_keys = set(_bibliography_keys(manuscript, tex, paper_id))
         missing = sorted(citations - bib_keys)
         assert not missing, f"{paper_id} missing bibliography entries: {missing}"
 
 
 def test_no_duplicate_bibliography_keys_within_a_paper():
     for paper_id, paper in PAPERS.items():
-        bib_text = (paper / "manuscript" / "bibliography.bib").read_text(encoding="utf-8")
-        keys = BIB_KEY_RE.findall(bib_text)
+        manuscript = paper / "manuscript"
+        _, tex = _collect_tex(manuscript)
+        # Across every loaded file, not within each one: the same key defined in
+        # two bib files is exactly the collision this test exists to catch, and
+        # checking them separately would miss it.
+        keys = _bibliography_keys(manuscript, tex, paper_id)
         duplicates = sorted({key for key in keys if keys.count(key) > 1})
         assert not duplicates, f"{paper_id} duplicate bibliography keys: {duplicates}"

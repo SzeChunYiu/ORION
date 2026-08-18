@@ -1,0 +1,112 @@
+{
+  "schema_version": "orion.journal-package.v1",
+  "paper_id": "P2",
+  "package_status": "SCAFFOLDING",
+  "declared_paper_terminal": "CANNOT_CHECK",
+  "audit_subject_revision": "b7cfaecfb55d9ad6c12fb59374935769ed8d8787",
+  "audit_date": "2026-08-17",
+  "issue": 160,
+  "required_files": [
+    {
+      "path": "manuscript/main.tex",
+      "role": "manuscript-source"
+    },
+    {
+      "path": "protocol/CLAIM_LEDGER_V1.json",
+      "role": "machine-claim-ledger"
+    },
+    {
+      "path": "evidence/CLAIM_LEDGER_V1.md",
+      "role": "human-claim-ledger"
+    },
+    {
+      "path": "evidence/offline_results/RESULTS_SUMMARY_V1.json",
+      "role": "offline-headline"
+    },
+    {
+      "path": "notes/submission/COVER_LETTER_DRAFT.md",
+      "role": "cover-letter-draft"
+    },
+    {
+      "path": "notes/submission/JOURNAL_SCOPE_CHECK.md",
+      "role": "journal-scope"
+    },
+    {
+      "path": "JOURNAL_READINESS.md",
+      "role": "gate-checklist"
+    }
+  ],
+  "missing_artifacts": [
+    {
+      "path": "journal_package/manuscript.pdf",
+      "role": "compiled-pdf",
+      "status": "CANNOT_CHECK",
+      "reason": "Manuscript is not on the TMLR template; no journal PDF is tracked. This package does not fabricate one."
+    },
+    {
+      "path": "journal_package/DOI.txt",
+      "role": "permanent-archive-doi",
+      "status": "CANNOT_CHECK",
+      "reason": "No DOI. MetaSyn Actions artifacts expire; a permanent archive has not been deposited."
+    },
+    {
+      "path": "evidence/external_results/WIDE_ORION_VS_BASELINE_V1.json",
+      "role": "wide-matched-orion-result",
+      "status": "CANNOT_CHECK",
+      "reason": "No archived AutoResearchBench Wide ORION-vs-baseline result."
+    },
+    {
+      "path": "journal_package/independent_reproduction_receipt.json",
+      "role": "independent-headline-reproduction",
+      "status": "CANNOT_CHECK",
+      "reason": "No independent clean-machine reproduction receipt for the 390-task offline headline."
+    }
+  ],
+  "claims": [
+    {
+      "id": "P2.OFFLINE",
+      "text": "On the frozen 390-task complete-gold index, full ORION mean recall is 0.979487 versus 0.666667 for the strongest confirmatory comparator.",
+      "artifacts": [
+        "evidence/offline_results/RESULTS_SUMMARY_V1.json"
+      ],
+      "status": "BOUNDED"
+    },
+    {
+      "id": "P2.H1",
+      "text": "ORION improves real scientific-literature discovery over BM25/dense/agentic baselines on matched external Wide/Deep evaluations.",
+      "artifacts": [
+        "evidence/CLAIM_LEDGER_V1.md"
+      ],
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "id": "P2.METASYN",
+      "text": "Credential-free MetaSyn ID-only probe completed on 86 reviews (retrieval recall 0.7485, inclusion recall 0.5651).",
+      "artifacts": [
+        "evidence/external_results/METASYN_ID_ONLY_PROBE_V1.json"
+      ],
+      "status": "BOUNDED"
+    },
+    {
+      "id": "P2.DEEP",
+      "text": "Official Deep LLM title judge keyless probe: 600 tasks, hit rate 0.000.",
+      "artifacts": [
+        "evidence/external_results/DEEP_OFFICIAL_ARCHIVE_V1.json"
+      ],
+      "status": "BOUNDED"
+    },
+    {
+      "id": "P2.PDF",
+      "text": "Independent final PDF proofread of a journal-formatted manuscript.",
+      "artifacts": [],
+      "status": "OPEN"
+    }
+  ],
+  "scientific_result_verification": {
+    "owner_issue": 283,
+    "schema_name": "ScientificResultVerification.v1",
+    "records_present": [
+      "research/verification/records/P2.controlled-complete-gold.json"
+    ]
+  }
+}

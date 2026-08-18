@@ -1,0 +1,89 @@
+{
+  "authority": "BOUNDED_EXTERNAL_DEVELOPMENT_EVIDENCE_NOT_V2_CONFIRMATION",
+  "frozen_positive_rule": {
+    "iou_delta_at_least": 0.03,
+    "lexical_arxiv_ok_fraction_at_least": 0.8,
+    "recall_delta_at_least": 0.0
+  },
+  "official_metrics": {
+    "delta_governed_minus_lexical": {
+      "avg_iou": 0.003687,
+      "avg_precision": 0.004167,
+      "avg_recall": 0.016369
+    },
+    "wide_governed_multiroute": {
+      "avg_iou": 0.009958,
+      "avg_max_iou_at_1": 0.009958,
+      "avg_precision": 0.0125,
+      "avg_recall": 0.041005,
+      "iou_distribution": {"max": 0.125, "min": 0.0},
+      "recall_distribution": {"max": 0.428571, "min": 0.0},
+      "total_pass_results": 24,
+      "total_passes": 1,
+      "total_records": 24
+    },
+    "wide_lexical_arxiv": {
+      "avg_iou": 0.006271,
+      "avg_max_iou_at_1": 0.006271,
+      "avg_precision": 0.008333,
+      "avg_recall": 0.024636,
+      "iou_distribution": {"max": 0.08, "min": 0.0},
+      "recall_distribution": {"max": 0.285714, "min": 0.0},
+      "total_pass_results": 24,
+      "total_passes": 1,
+      "total_records": 24
+    }
+  },
+  "promotion": "FORBIDDEN_FROM_THIS_SLICE_ALONE",
+  "schema": "P2.v2.wide-bounded-matched-result.v1",
+  "selection": {
+    "bound_by": "provider throttling, not statistical choice",
+    "released_task_count": 400,
+    "seed": 20260818,
+    "selected_task_count": 24,
+    "selected_task_ids": [
+      "arb-wide-0054", "arb-wide-0055", "arb-wide-0111", "arb-wide-0117",
+      "arb-wide-0120", "arb-wide-0128", "arb-wide-0142", "arb-wide-0157",
+      "arb-wide-0172", "arb-wide-0178", "arb-wide-0230", "arb-wide-0253",
+      "arb-wide-0260", "arb-wide-0288", "arb-wide-0307", "arb-wide-0313",
+      "arb-wide-0315", "arb-wide-0318", "arb-wide-0319", "arb-wide-0339",
+      "arb-wide-0342", "arb-wide-0367", "arb-wide-0393", "arb-wide-0398"
+    ],
+    "selected_task_ids_sha256": "7c7c774bf5a01bed939192fd761e0263e1209fd6350253f6fd19398e04e7a788",
+    "selection_rule": "seeded random sample of 24 of 400 released Wide tasks"
+  },
+  "transport": {
+    "governed": {
+      "candidate_sha256": "8a86a74281fd04bab7f692a2f385fa4468b762f032f42b68c2542df1368a656d",
+      "mean_candidates_returned": 19.9167,
+      "provider_requests": 72,
+      "provider_requests_per_task": 3.0,
+      "route_status_counts": {"OK": 72},
+      "tasks_closed_as_complete": 24,
+      "tasks_with_open_obligations": 0,
+      "trace_sha256": "290187ea0a786f0e17ab62c4e171bffaa76bbb308868a0cf848373434bc96d40"
+    },
+    "lexical": {
+      "candidate_sha256": "71817a28771cb3904b87890aed25f9c2cba7e4cd5787f4b3e66ae0e191a41f83",
+      "mean_candidates_returned": 20.0,
+      "provider_requests": 72,
+      "provider_requests_per_task": 3.0,
+      "route_status_counts": {"OK": 72},
+      "tasks_closed_as_complete": 0,
+      "tasks_with_open_obligations": 0,
+      "trace_sha256": "78bfb2e8e9ea1eeac8b8eeb2a02465a7261e5d26d6d1342f634504e243b444bd"
+    },
+    "lexical_arxiv_ok_fraction": 1.0,
+    "matched_provider_requests_per_task": true
+  },
+  "verdict": "BOUNDED_EXTERNAL_SIGNAL_NOT_POSITIVE",
+  "execution_receipt": {
+    "github_actions_run_id": 32077436750,
+    "github_actions_job_id": 95533500548,
+    "artifact_id": 9304125664,
+    "artifact_zip_sha256": "8da607e479690e30f51783a7038a5b1672400182951d7b05aa9147d2e17e6f1a",
+    "upstream_autoresearchbench_revision": "a46c9bfb8968786f73f0a6a5b365b5384cd0f96d",
+    "official_scorer": "evaluate/evaluate_wide_search.py --no-jina --gt-file wide_gt.jsonl",
+    "result_generated_at_utc": "2026-08-17T22:53:47Z"
+  }
+}

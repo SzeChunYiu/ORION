@@ -1,0 +1,86 @@
+{
+  "schema_version": "orion.research-revival.novelty-hypotheses.v1",
+  "parent_issue": 284,
+  "authority": "CERTIFICATES_TO_BE_NOT_CLAIMED_NOVELTY",
+  "notes": "N1-N4 are pointers to candidate certificates. None is claimed novelty. Promotion requires nearest-work saturation, a prospective incremental result, ablations, a #283 verification record, and a scoped claim (#287 owns the certificate schema).",
+  "hypotheses": [
+    {
+      "id": "N1",
+      "title": "causal epistemic responsibility",
+      "status": "CANDIDATE_CERTIFICATE_TO_BE",
+      "claimed_novelty": false,
+      "certificate_id": null,
+      "pointer": "issue://278#N1",
+      "cross_paper": ["P1", "P5"],
+      "candidate": "Causal/intervention evidence does not only identify a failure; it grants or withholds explicit authority over which epistemic state may change.",
+      "child_issues": [278, 282],
+      "promotion_requires": [
+        "nearest_work_does_not_already_solve_the_composition",
+        "prospective_incremental_value_over_strong_baselines",
+        "direct_ablations_identify_the_claimed_mechanism",
+        "issue_283_verification_record",
+        "claim_stays_within_tested_scope"
+      ]
+    },
+    {
+      "id": "N2",
+      "title": "scientific obstruction certificates",
+      "status": "CANDIDATE_CERTIFICATE_TO_BE",
+      "claimed_novelty": false,
+      "certificate_id": null,
+      "pointer": "issue://280#N2",
+      "cross_paper": ["P3", "P4"],
+      "candidate": "Instead of forced global canonicalization, emit verifiable provenance-bound reasons why a mapping/merge is invalid, conditional or unresolved.",
+      "child_issues": [280, 281],
+      "promotion_requires": [
+        "nearest_work_does_not_already_solve_the_composition",
+        "prospective_incremental_value_over_strong_baselines",
+        "direct_ablations_identify_the_claimed_mechanism",
+        "issue_283_verification_record",
+        "claim_stays_within_tested_scope"
+      ]
+    },
+    {
+      "id": "N3",
+      "title": "stopping authority under censored open-world search",
+      "status": "CANDIDATE_CERTIFICATE_TO_BE",
+      "claimed_novelty": false,
+      "certificate_id": null,
+      "pointer": "issue://279#N3",
+      "cross_paper": ["P2", "P4"],
+      "candidate": "Route exhaustion, provider unavailability and unknown coverage remain distinct; none automatically licenses global closure.",
+      "child_issues": [279, 281],
+      "promotion_requires": [
+        "nearest_work_does_not_already_solve_the_composition",
+        "prospective_incremental_value_over_strong_baselines",
+        "direct_ablations_identify_the_claimed_mechanism",
+        "issue_283_verification_record",
+        "claim_stays_within_tested_scope"
+      ]
+    },
+    {
+      "id": "N4",
+      "title": "non-compensatory protected self-improvement",
+      "status": "CANDIDATE_CERTIFICATE_TO_BE",
+      "claimed_novelty": false,
+      "certificate_id": null,
+      "pointer": "issue://282#N4",
+      "cross_paper": ["P5", "P4"],
+      "candidate": "Replay gain cannot compensate fresh harm; fresh gain cannot compensate evaluator compromise; missing protected evidence remains BLOCK/CANNOT_CHECK.",
+      "child_issues": [282, 281],
+      "promotion_requires": [
+        "nearest_work_does_not_already_solve_the_composition",
+        "prospective_incremental_value_over_strong_baselines",
+        "direct_ablations_identify_the_claimed_mechanism",
+        "issue_283_verification_record",
+        "claim_stays_within_tested_scope"
+      ]
+    }
+  ],
+  "related_pointers_not_in_this_certificate_set": [
+    {"id": "N5", "issue": 285, "note": "protected Pareto global positivity — child-owned"},
+    {"id": "N6", "issue": 286, "note": "contract-bound mechanic transfer — child-owned"},
+    {"id": "N7", "issue": 287, "note": "verifiable novelty authority — child-owned certificate schema"},
+    {"id": "N8", "issue": 288, "note": "protected goal evolution — child-owned"}
+  ]
+}

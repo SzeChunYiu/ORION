@@ -1,0 +1,64 @@
+{
+  "schema_version": "orion.research-revival.doctrine-protocol.v1",
+  "protocol_id": "ORION.research-revival.constitutional-doctrine.v1",
+  "parent_issue": 284,
+  "status": "IN_FORCE",
+  "outcome_tuning_permitted": false,
+  "authority": "PROCESS_CONSTRAINT_ONLY",
+  "checks": {
+    "never_tune_outcomes_positive": true,
+    "one_stage_attribution_required": true,
+    "freeze_discriminator_before_repair": true,
+    "new_immutable_protocol_for_repair": true,
+    "preserve_negative_history": true,
+    "margin_relaxation_after_outcome_access": false,
+    "rewrite_v1_results_in_place": false,
+    "delete_null_or_harmful_runs": false,
+    "treat_larger_n_as_mechanism_repair": false,
+    "call_implementation_novelty_scientific_novelty": false
+  },
+  "rules": [
+    {
+      "id": "NEVER_TUNE_OUTCOME_POSITIVE",
+      "enforced": true,
+      "forbidden": [
+        "relaxing a frozen margin after seeing the result",
+        "weakening or removing a strong baseline because it wins",
+        "changing exclusions after outcome access",
+        "turning CANNOT_CHECK or transport failure into zero or PASS",
+        "deleting null or harmful runs",
+        "changing gold or evaluator because the system failed",
+        "rewriting V1 protocol or results in place",
+        "treating a larger N as a mechanism repair when the observed failure is upstream and near-total",
+        "calling implementation novelty scientific novelty without external evidence"
+      ],
+      "allowed": [
+        "create a new immutable V2/V3 after diagnosing the V1 failure",
+        "build a fresh holdout after the new mechanism is frozen",
+        "add a stronger baseline as secondary pressure",
+        "shrink or reframe a claim when evidence is narrower than intended",
+        "end a revival as REFUTED when the repair does not work"
+      ]
+    },
+    {
+      "id": "ONE_STAGE_ATTRIBUTION",
+      "enforced": true,
+      "requirement": "Attribute the observed failure to exactly one earliest causal stage before designing a repair. Diffuse labels such as model weakness are not discriminators."
+    },
+    {
+      "id": "FREEZE_DISCRIMINATOR_BEFORE_REPAIR",
+      "enforced": true,
+      "requirement": "Write the discriminator and its expected observations while competing causes remain live, before the candidate repair is evaluated."
+    },
+    {
+      "id": "NEW_IMMUTABLE_PROTOCOL",
+      "enforced": true,
+      "requirement": "Bind subject, data, splits, provider, model, baselines, budgets, evaluator, statistics and plots in a new protocol version before final outcomes. The old protocol remains immutable."
+    },
+    {
+      "id": "PRESERVE_NEGATIVE_HISTORY",
+      "enforced": true,
+      "requirement": "Every rejected, harmful or null candidate stays content-addressed and available for recurrence analysis. Negative evolution history is not deleted when a later protocol succeeds."
+    }
+  ]
+}

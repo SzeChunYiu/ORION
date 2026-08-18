@@ -9,12 +9,14 @@ from orion.providers.live_phase2 import (
 )
 from orion.self_orion.phase2_io import write_phase2_binding
 from orion.self_orion.phase2_preflight import (
+    FrozenPacketBinding,
     Phase2ClosurePreflight,
     Phase2PreflightStatus,
     assess_phase2_preflight,
     build_frozen_live_trial_packet,
 )
 from orion.self_orion.subject_binding import (
+    is_derived_from_commit,
     RepositorySubjectAttestation,
     attest_repository_subject,
     write_repository_subject_attestation,
@@ -47,6 +49,8 @@ def freeze_phase2_binding(
     baseline_id: str = "simple-llm-retrieval-baseline-v1",
     protocol_id: str = "phase2-shadow-closure-v1",
     repository_identity: str | None = None,
+    phase1_anchor_commit: str = "",
+    frozen_packet: FrozenPacketBinding | None = None,
 ) -> FrozenPhase2BindingReport:
     """Freeze exact subject/provider/evaluator identities into the Phase-2 binding."""
 
@@ -54,6 +58,18 @@ def freeze_phase2_binding(
         repository_root,
         repository_identity=repository_identity,
     )
+    # Derivation is a predicate, not a stored commit string: the subject is
+    # Phase-1-derived iff the declared anchor is an ancestor of it. The anchor
+    # is supplied by the caller because which commit is terminal is a
+    # governance fact, not something this module may assert.
+    if phase1_anchor_commit.strip() and not is_derived_from_commit(
+        repository_root, phase1_anchor_commit, subject.commit_oid
+    ):
+        raise RuntimeError(
+            "Phase-2 subject "
+            f"{subject.commit_oid} is not derived from the declared Phase-1 anchor "
+            f"{phase1_anchor_commit}"
+        )
     manifest = load_live_phase2_provider_manifest(provider_manifest_path)
     verification = dict(manifest.verification_provider)
     evaluator_artifact_hash = verification.get("evaluator_artifact_hash", "")
@@ -61,6 +77,29 @@ def freeze_phase2_binding(
     if not evaluator_artifact_hash or not evaluation_epoch_id:
         raise ValueError(
             "provider manifest verification identity must bind evaluator artifact and evaluation epoch"
+        )
+    # This tool CREATES a freeze; it does not verify one. At creation time there
+    # is no prior expectation to compare against, so when the caller declares
+    # none we bind the expectation to the values just attested: the real subject
+    # revision, the real provider manifest hash, the real evaluator identity.
+    # That is materially stronger than the shape check it replaces -- fabricated
+    # hashes cannot reach here, because `attest_repository_subject` and
+    # `load_live_phase2_provider_manifest` compute these from actual artifacts.
+    #
+    # Verifying a STORED freeze against live values is the execution-time job,
+    # and there the caller must pass the published packet explicitly.
+    if frozen_packet is None:
+        frozen_packet = FrozenPacketBinding(
+            packet_fingerprint="",
+            subject_revision_hash=subject.subject_revision_hash,
+            provider_manifest_hash=manifest.hash,
+            evaluator_artifact_hash=evaluator_artifact_hash,
+            evaluation_epoch_id=evaluation_epoch_id,
+            baseline_id=baseline_id,
+            resource_budget_units=resource_budget_units,
+            task_ids=tuple(
+                task.task_id for task in Phase2ClosurePreflight.__dataclass_fields__["tasks"].default
+            ),
         )
     preflight = Phase2ClosurePreflight(
         protocol_id=protocol_id,
@@ -70,6 +109,7 @@ def freeze_phase2_binding(
         evaluation_epoch_id=evaluation_epoch_id,
         baseline_id=baseline_id,
         resource_budget_units=resource_budget_units,
+        frozen_packet=frozen_packet,
     )
     assessed = assess_phase2_preflight(preflight)
     if assessed.status is not Phase2PreflightStatus.READY_TO_EXECUTE_SHADOW_TRIAL:

@@ -1,0 +1,56 @@
+{
+  "schema": "P2.v2.wide-bounded-matched-freeze.v1",
+  "status": "FROZEN_BEFORE_OUTCOME_ACCESS",
+  "frozen_on": "2026-08-18",
+  "parent_issue": 350,
+  "immutable_predecessor": "71b9e01be34f566c66702c4f31d0140017f80b96",
+  "authority": "BOUNDED_EXTERNAL_DEVELOPMENT_EVIDENCE_NOT_V2_CONFIRMATION",
+  "benchmark": {
+    "repository": "CherYou/AutoResearchBench",
+    "revision": "a46c9bfb8968786f73f0a6a5b365b5384cd0f96d",
+    "bundle_url": "https://huggingface.co/datasets/Lk123/AutoResearchBench/resolve/main/AutoResearchBench.jsonl.obf.json",
+    "decrypted_sha256": "db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6",
+    "official_wide_scorer": "evaluate/evaluate_wide_search.py",
+    "scorer_args": ["--no-jina", "--gt-file", "wide_gt.jsonl"]
+  },
+  "selection": {
+    "population": "released Wide public split after repository prepare step",
+    "n": 24,
+    "seed": 20260818,
+    "gold_blind": true,
+    "selection_rule": "seeded random subsample before scoring"
+  },
+  "systems": [
+    "wide_lexical_arxiv",
+    "wide_governed_multiroute"
+  ],
+  "matched_resources": {
+    "provider_requests_per_task": 3,
+    "max_candidates_returned": 20,
+    "max_results_per_provider_call": 20
+  },
+  "primary_metric": "official_avg_iou",
+  "secondary_metrics": ["official_avg_recall", "official_avg_precision"],
+  "transport_validity": {
+    "lexical_arxiv_min_ok_fraction": 0.8,
+    "failure_terminal_below_threshold": "CANNOT_CHECK_PROVIDER",
+    "provider_failure_never_counts_as_empty_result": true,
+    "governed_open_obligations_must_be_reported": true
+  },
+  "bounded_signal_rule": {
+    "positive_requires_iou_delta_at_least": 0.03,
+    "positive_requires_recall_delta_at_least": 0.0,
+    "positive_label": "BOUNDED_EXTERNAL_SIGNAL_POSITIVE",
+    "otherwise": "BOUNDED_EXTERNAL_SIGNAL_NOT_POSITIVE"
+  },
+  "promotion_rule": "This 24-task slice may diagnose external acquisition/governance behavior and select development directions. It cannot by itself authorize P2_EXTERNAL_DISCOVERY_SUPPORTED or any higher V2 terminal, cannot be reused as final V2 confirmation, and cannot overwrite V1.",
+  "post_outcome_changes_forbidden": [
+    "sample size or seed",
+    "systems",
+    "provider request budget",
+    "candidate cap",
+    "scorer or metric",
+    "transport validity threshold",
+    "positive margin"
+  ]
+}

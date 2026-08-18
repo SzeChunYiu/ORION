@@ -1,0 +1,65 @@
+{
+  "blockers": [
+    "phase2_terminal_subject_and_receipt_not_bound",
+    "issue_76_must_close_on_merged_phase2_evidence_first",
+    "no_frozen_live_governed_cycle_receipts",
+    "no_matched_baseline_comparison_artifact",
+    "no_independent_fresh_transfer_panel",
+    "consecutive_cycle_count_below_predeclared_minimum:12"
+  ],
+  "closes_issue_209": false,
+  "emits_terminal_claim": false,
+  "evidence_status": "CANNOT_CHECK",
+  "grants_governed_self_orion": false,
+  "grants_phase3_operating_authority": false,
+  "measured_metric_ids": [],
+  "missing_trials": [
+    {
+      "blocked_on": [
+        "issue_76_must_close_on_merged_phase2_evidence_first",
+        "sampling_epoch_and_issue_pool_not_frozen",
+        "no_frozen_live_governed_cycle_receipts",
+        "no_matched_baseline_comparison_artifact",
+        "no_independent_fresh_transfer_panel"
+      ],
+      "description": "Prospective promotion study of at least 12 consecutive ordinary-development cycles in which ORION is the primary problem-solving process, compared against matched baseline phase3:baseline:human-directed-llm-agent-v1, under frozen protocol phase3-governed-self-orion-prefreeze-v1, after issue #76 closes on merged Phase-2 evidence and a host binds the Phase-2 terminal subject, Phase-2 evidence receipt, external promotion-authority identity, protected custody lineage, sampling epoch and issue-pool fingerprint. No frozen live cycle receipts, baseline-comparison artifact, or independent fresh-transfer panel exist on any merged subject.",
+      "trial_id": "phase3:trial:governed-ordinary-development-promotion-v1"
+    },
+    {
+      "blocked_on": [
+        "depends_on:phase3:trial:governed-ordinary-development-promotion-v1",
+        "no_accepted_governed_change_receipts",
+        "no_immutable_rejected_variant_index",
+        "no_independent_external_replay_of_promotion_recommendation"
+      ],
+      "description": "Longitudinal stability trial required by issue #209 Step 6: an accepted governed change later used as a dependency of another governed cycle and remaining replayable; a previously rejected/harmful variant remaining queryable; halt/resume from immutable history; independent external replay of a promotion recommendation.  This trial cannot start until phase3:trial:governed-ordinary-development-promotion-v1 has produced accepted-cycle receipts.",
+      "trial_id": "phase3:trial:longitudinal-stability-v1"
+    }
+  ],
+  "phase_3_governed_self_orion_closed": false,
+  "primary_missing_trial_id": "phase3:trial:governed-ordinary-development-promotion-v1",
+  "protocol_id": "phase3-governed-self-orion-prefreeze-v1",
+  "protocol_status": "BIND_PHASE2_TERMINAL_EVIDENCE",
+  "schema": "Phase3EmpiricalPromotionReceipt.v1",
+  "status": "CANNOT_CHECK",
+  "terminal_claim": null,
+  "unmeasured_metric_ids": [
+    "task_resolution_correctness",
+    "harmful_transfer_rate",
+    "exact_regression_rate",
+    "root_cause_attribution_correctness",
+    "false_method_change_rate",
+    "replay_success_rate",
+    "independent_fresh_transfer_success_rate",
+    "worst_case_regression_severity",
+    "recognized_failure_recurrence_rate",
+    "negative_history_use_rate",
+    "abstention_precision",
+    "escalation_appropriateness",
+    "cost_per_resolved_task",
+    "wall_clock_per_cycle",
+    "tool_calls_per_cycle",
+    "llm_calls_per_cycle",
+    "host_interventions_per_cycle"
+  ]
+}

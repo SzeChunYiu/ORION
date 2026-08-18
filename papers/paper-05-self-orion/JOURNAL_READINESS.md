@@ -1,63 +1,78 @@
 # ORION-P5 journal-readiness plan — Self-ORION
 
-**Current terminal:** `CANNOT_CHECK` for governed self-improvement benefit / not peer-review ready.  
-**Already present:** canonical manuscript, failure/issue state, invention-readiness gate, isolated change control, replay/fresh-transfer/protected assurance concepts, no self-merge, local hostile falsifier and readiness-gate failure history.
+**Current terminal:** `CANNOT_CHECK` for governed self-improvement benefit / **not** peer-review ready.  
+**Audit date:** 2026-08-17 against `origin/main` plus this worktree's archived-attribution tables.  
+**Headline empirical number:** diagnostic glm-5.2 attribution is **21/24** from `evidence/glm-5.2-attribution/results.jsonl` (three residual errors retained). A stale perfect-score report is refused.
 
-## 1. Novelty closure — major update required
+A checked design/protocol item does **not** convert `CANNOT_CHECK` into empirical PASS.
 
-- [ ] ADIAS (arXiv:2608.06410): persistent issue-centric state is explicitly non-novel.
-- [ ] SAGE / Multi-Hypothesis Failure Attribution (arXiv:2606.31478): structured multi-hypothesis failure attribution and intervention-level routing are not novel by themselves.
-- [ ] CausalFlow (arXiv:2605.25338): counterfactual/interventional causal responsibility and minimal repair pressure any broad causal-attribution claim.
-- [ ] Learning from Failure (arXiv:2606.31270): diagnosing failed trajectories and converting them into agent improvements is not novel.
-- [ ] PAST-Bench (arXiv:2608.04003): retained-experience improvement/pathway testing is a direct evaluation reference.
-- [ ] SEVA (arXiv:2606.29713): repeated self-evolution can create benchmark specialists with cross-benchmark regression; fresh/harmful transfer must be a primary measurement.
-- [ ] retain DGM (arXiv:2505.22954), ADAS (arXiv:2408.08435), direct self-edit and AlphaEvolve-like search as strong baselines.
-- [ ] re-search continual/experiential learning, self-refinement, debugging/root-cause analysis, program repair and safe self-modification before submission.
-- [ ] remove standalone novelty language around failure-driven learning, multi-hypothesis diagnosis or causal attribution if the fresh literature already provides it.
+## 0. Already present on `origin/main`
 
-Recommended surviving residual: **persistent issue state + evidence-bound causal discrimination + invention readiness + replay AND independent fresh transfer + protected evaluator/assurance + immutable negative evolution history + no self-certification/merge authority**.
+- [x] canonical working manuscript exists;
+- [x] persistent `DevelopmentIssue.v1` state exists;
+- [x] recurrence is structurally separated from causal support;
+- [x] invention-readiness gate exists;
+- [x] isolated/content-addressed change control and protected assurance concepts exist;
+- [x] no self-merge primitive / host-only promotion boundary;
+- [x] local failure/cause/fresh-transfer/reward-hacking falsifier passes;
+- [x] readiness-gate self-certification failure was preserved and repaired;
+- [x] related work + bibliography and 2026 novelty contraction exist;
+- [x] ADIAS, SAGE, CausalFlow, Learning-from-Failure, PAST-Bench and SEVA are explicit nearest work.
 
-## 2. Primary hypotheses
+**Still blocked:** governed self-improvement benefit, causal-attribution *utility*, fresh-transfer benefit and integrity advantage remain `CANNOT_CHECK`.
 
-**H1 — transferable improvement:** under hidden-cause development tasks, full Self-ORION produces more fresh-transfer improvement and less harmful transfer than matched self-edit/self-evolution baselines.
+## 1. Novelty closure
 
-**H2 — attribution:** explicit competing causes/discriminators reduce false method changes relative to reflection or candidate-centric optimization.
+- [x] ADIAS: persistent issue-centric state is explicitly non-novel.
+- [x] SAGE / Multi-Hypothesis Failure Attribution: not standalone novelty.
+- [x] CausalFlow: not standalone novelty.
+- [x] Learning from Failure: not standalone novelty.
+- [x] PAST-Bench: evaluation reference.
+- [x] SEVA: harmful/fresh transfer is a primary measurement.
+- [x] retain DGM, ADAS, direct self-edit and AlphaEvolve-like search as strong baselines.
+- [x] ADOPT/ADAPT/COMPOSE/DEFER/REJECT dispositions exist (`evidence/TABLE_P5_1_NEAREST_WORK.json`).
+- [x] surviving residual kept as the stated composition (issue + causal discrimination + invention readiness + replay AND fresh transfer + protected evaluator + negative history + no self-certification).
+- [ ] fresh literature closure within 14 days of an actual submission.
 
-**H3 — integrity:** protected assurance prevents evaluator/holdout/negative-history manipulation from being counted as improvement.
+## 2. Hypotheses and V2 protocol
 
-**H4 — governance cost:** the transfer/integrity gain remains useful after accounting for extra compute/time and conservative abstention.
-
-- [ ] freeze H1 as primary unless a preregistered pilot justifies another choice.
+- [x] freeze H1 as primary (protocol V1).
+- [x] freeze H2–H4 as secondary.
+- [x] freeze V2 non-compensatory `STATIC -> REPLAY -> FRESH -> PROTECTED` without rewriting V1.
+- [x] freeze V1-vs-V2 margins, negative controls, matched acceptance baselines and fail-closed manifest/archive validators.
+- [ ] freeze evaluator custody, splits, budgets, statistical plan and plots *as execution identities* (policy frozen; exact hashes remain `UNBOUND`).
+- [ ] bind the exact final subject, four split hashes, provider/model revisions, evaluator/epoch/custody and PACE config.
+- [ ] execute V1 vs V2 + matched baselines/ablations on real protected evidence.
+- [ ] admit V2 into the headline claim only if it earns fresh-transfer/integrity value.
 
 ## 3. Hidden failure-family benchmark
 
-Construct development tasks with deliberately similar visible symptoms but different hidden causes:
+Diagnostic 24-case suite exists on main (3 cases × 8 families) and is the source of the 21/24 archive. Fresh-task hashes and evaluator hash are placeholders, so this is **not** an execution-frozen protected campaign.
 
-- [ ] retrieval miss;
-- [ ] routing/planning miss;
-- [ ] implementation bug;
-- [ ] environment/dependency failure;
-- [ ] evaluator/metric bug;
-- [ ] representation gap;
-- [ ] measurement/specification gap;
-- [ ] genuine method-basis gap.
+- [x] retrieval miss (diagnostic cases present);
+- [x] routing/planning miss (diagnostic cases present);
+- [x] implementation/code bug (diagnostic cases present);
+- [x] environment/dependency/tool failure (diagnostic cases present);
+- [x] evaluator/metric bug (diagnostic cases present);
+- [x] representation gap (diagnostic cases present);
+- [x] measurement/specification gap (diagnostic cases present);
+- [x] genuine method-basis gap (diagnostic cases present);
+- [x] root-cause labels hidden from the attribution prompt;
+- [x] motivating/replay/fresh fields exist on each diagnostic case;
+- [x] fresh set declares at least one changed axis;
+- [x] negative/null/harmful variant ids retained on cases;
+- [x] no internally generated readiness boolean can substitute for external evidence.
+- [ ] protected evaluator/holdout frozen before candidate generation (execution identity);
+- [ ] exact subject commit frozen;
+- [ ] intervention/tool/LLM/time budgets matched on a live run;
+- [ ] prospective power/precision analysis before final N;
+- [ ] human causal adjudication rubric for non-mechanical truth.
 
-Protocol:
+## 4. Strong baselines
 
-- [ ] root-cause labels hidden from candidate systems;
-- [ ] motivating failure/replay set separated from fresh-transfer set;
-- [ ] at least one fresh domain/task/model axis differs from the motivating case;
-- [ ] protected evaluator and holdout frozen before candidate generation;
-- [ ] intervention budgets matched;
-- [ ] negative/null/harmful variants retained;
-- [ ] power/precision analysis performed before final N;
-- [ ] human root-cause adjudication uses a frozen rubric where causal truth is not mechanically generated.
+Protocol-registered; **not executed**.
 
-## 4. Baselines and ablations
-
-Baselines:
-
-- [ ] fixed coding/research agent with no self-improvement;
+- [ ] fixed agent with no self-improvement;
 - [ ] direct self-edit agent;
 - [ ] ADAS/meta-agent search;
 - [ ] DGM-like archive/self-edit;
@@ -65,89 +80,96 @@ Baselines:
 - [ ] SAGE-like multi-hypothesis failure attribution/reflection;
 - [ ] CausalFlow-like counterfactual repair where runnable;
 - [ ] failure-driven improvement baseline;
-- [ ] evaluator-only/evolutionary search baseline.
+- [ ] evaluator-only/evolutionary program search;
+- [ ] strongest current self-evolving agent found in Step 1.
 
-Ablations:
+## 5. ORION ablations
+
+Protocol-registered; **not executed**.
 
 - [ ] no persistent issue state;
 - [ ] recurrence/reflection without causal discriminator;
 - [ ] no invention-readiness gate;
-- [ ] replay only, no fresh transfer;
-- [ ] fresh transfer but no protected evaluator custody;
+- [ ] replay only / no independent fresh transfer;
+- [ ] fresh transfer without protected evaluator custody;
 - [ ] delete/ignore negative variants;
-- [ ] allow self-certification/promotion in an isolated safety ablation;
-- [ ] equalized LLM/tool/time budgets.
+- [ ] no contamination/access telemetry;
+- [ ] isolated safety ablation allowing self-certification/promotion (never on production/main authority path);
+- [ ] resource-match all variants.
 
-## 5. Metrics
+## 6. Metrics/statistics
 
-Primary:
+Definitions frozen in protocol. Only diagnostic attribution accuracy is populated from raw records.
 
-- [ ] protected root improvement on fresh tasks;
-- [ ] fresh-transfer success rate;
-- [ ] harmful-transfer/regression rate.
+- [x] protected fresh-task root improvement (definition frozen; value `CANNOT_CHECK`);
+- [x] fresh-transfer success rate (definition frozen; value `CANNOT_CHECK`);
+- [x] harmful-transfer/regression rate (definition frozen; value `CANNOT_CHECK`);
+- [x] root-cause attribution accuracy / macro-F1 (diagnostic 21/24 populated; campaign `CANNOT_CHECK`);
+- [x] false method-change rate (definition frozen; campaign `CANNOT_CHECK`);
+- [x] Wilson 95% interval for the diagnostic 21/24 rate;
+- [x] multiplicity / tail-reporting policy frozen;
+- [ ] confidence intervals + effect sizes for H1 matched differences;
+- [ ] motivating-benchmark trajectory across self-improvement rounds;
+- [ ] simultaneous fresh/other-benchmark trajectory;
+- [ ] issue-resolution time + interventions;
+- [ ] duplicate-repair/archive diversity metrics.
 
-Attribution/governance:
+## 7. Required plots/tables
 
-- [ ] root-cause attribution accuracy / macro-F1;
-- [ ] false method-change rate;
-- [ ] intervention success conditional on correct/incorrect attribution;
-- [ ] evaluator/holdout/negative-history compromise rate;
-- [ ] correct block/`CANNOT_CHECK` rate;
-- [ ] recurrence of previously recognized failure classes;
-- [ ] negative-history completeness;
-- [ ] time/cost/tool calls to validated improvement.
+- [x] **Table P5-1:** nearest-work/novelty disposition matrix.
+- [x] **Figure/Table P5-3:** confusion matrix from archived glm-5.2 JSONL (21/24; three errors retained).
+- [x] residual-error ledger for `P5-HC-002`, `P5-HC-012`, `P5-HC-018`.
+- [ ] **P5-1:** governed development loop figure.
+- [ ] **P5-2:** replay vs fresh scatter — `CANNOT_CHECK` stub only.
+- [ ] **P5-4:** longitudinal specialist regression — `CANNOT_CHECK` stub only.
+- [ ] **P5-5:** improvement vs integrity frontier — `CANNOT_CHECK` stub only.
+- [ ] **P5-6:** cumulative recurrence — `CANNOT_CHECK` stub only.
+- [ ] **P5-7:** cost/time to protected validated improvement — `CANNOT_CHECK` stub only.
+- [ ] **Table P5-2 / P5-T2:** baseline + ablation results — `CANNOT_CHECK` stub only.
+- [ ] **Table P5-3 / P5-T3:** campaign harmful/null interventions — `CANNOT_CHECK` stub only.
 
-Longitudinal:
+## 8. Dependencies #8 and #76
 
-- [ ] performance trajectory across improvement rounds on motivating benchmark;
-- [ ] simultaneous trajectory on fresh/other benchmarks to expose specialist regression;
-- [ ] issue-resolution time and number of interventions;
-- [ ] archive diversity/duplicate-repair rate.
+- [ ] live-provider trial #8 produces frozen research/evidence traces;
+- [ ] Phase-2 issue #76 demonstrates a consequential end-to-end Shadow cycle;
+- [ ] replay + fresh transfer use the final frozen subject;
+- [ ] protected authority/evaluator dependencies external to candidate custody;
+- [ ] all important failures from live trials enter immutable negative history;
+- [ ] post evidence links/artifacts into #8/#76 and this issue.
 
-## 6. Required plots
+Live rerun in this session: **`CANNOT_CHECK`** (credentials unset; #8 packet `corpus_revision` unbound).
 
-- [ ] **Figure P5-1:** governed self-development loop with authority boundary and external host promotion.
-- [ ] **Figure P5-2:** fresh-transfer improvement vs motivating-task replay improvement scatter; harmful-transfer quadrant highlighted.
-- [ ] **Figure P5-3:** root-cause attribution confusion matrix by hidden failure family.
-- [ ] **Figure P5-4:** performance across self-improvement rounds on motivating and fresh benchmarks (SEVA-style specialist-regression diagnostic).
-- [ ] **Figure P5-5:** improvement vs integrity/safety frontier across baselines/ablations.
-- [ ] **Figure P5-6:** cumulative recognized-failure recurrence over rounds with/without negative history.
-- [ ] **Figure P5-7:** cost/time to protected validated improvement.
-- [ ] **Table P5-1:** nearest-work mechanism/novelty disposition matrix.
-- [ ] **Table P5-2:** baseline/ablation results with uncertainty.
-- [ ] **Table P5-3:** all harmful/null interventions retained and categorized.
+## 9. Manuscript finalization
 
-## 7. Manuscript work still missing
+- [x] nearest-work section present for the current design freeze;
+- [x] novelty language contracted after SAGE/CausalFlow/Learning-from-Failure/PAST-Bench/PACE absorption;
+- [x] statistical methods subsection;
+- [x] explicit evaluator-compromise / contamination / meta-overfitting threat model;
+- [x] Results/Discussion of the diagnostic archive only from immutable JSONL;
+- [x] reproducibility/data/code availability;
+- [x] ethics/safety/governance discussion;
+- [x] limitations that do not relabel the three errors as successes;
+- [x] conclusion never equates internal readiness with external authority;
+- [x] claim ledger maps abstract/conclusion/results claims to exact evidence, including 21/24.
+- [ ] exact benchmark/evaluator Methods frozen before a *final campaign* run;
+- [ ] compute/cost of protected validated improvement (attribution-only tokens are not a substitute);
+- [ ] venue/template/cover letter / independent PDF proofread.
 
-- [ ] add a full related-work section and bibliography to the canonical manuscript;
-- [ ] shrink novelty language after SAGE/CausalFlow/Learning-from-Failure/PAST-Bench absorption;
-- [ ] distinguish failure persistence, causal attribution, issue persistence and protected promotion as separate prior-art axes;
-- [ ] convert evaluation proposal into a frozen Methods protocol before final run;
-- [ ] add external Results/Discussion only from immutable artifacts;
-- [ ] add statistical methods subsection;
-- [ ] expand threat model for evaluator compromise, benchmark leakage and meta-overfitting;
-- [ ] add reproducibility/data/code availability and compute/cost statement;
-- [ ] final conclusion must not equate internal readiness with external promotion authority.
+## 10. Reproducibility/protected artifact
 
-## 8. Reproducibility package
-
-- [ ] frozen hidden-cause benchmark generator/cases;
+- [x] diagnostic hidden-cause cases archived;
+- [x] scripts regenerate Table P5-3, the residual-error ledger, and honest `CANNOT_CHECK` stubs (`make paper05-results`);
+- [x] clean refusal of a  rewrite that hides residual errors.
+- [ ] frozen execution-grade hidden-cause generator/cases;
 - [ ] motivating/replay/fresh split identities;
-- [ ] baseline implementations/configs;
-- [ ] content-addressed candidate patches;
-- [ ] sandbox and evaluator access logs;
-- [ ] immutable issue/failure/evolution history;
-- [ ] raw per-round results for motivating and fresh tasks;
-- [ ] scripts regenerating every result plot/table;
-- [ ] clean-environment replay of accepted and rejected candidates;
-- [ ] independent external attestation/reproduction of the final promotion recommendation logic.
-
-## Existing dependencies
-
-- issue #8 owns the frozen live-provider research trial.
-- issue #76 owns Phase-2 Shadow Self-ORION closure and already requires a consequential end-to-end development cycle.
-- these are necessary evidence inputs but do not by themselves complete the paper-level nearest-work, statistical, ablation and manuscript gates above.
+- [ ] baseline implementations/configs bound;
+- [ ] content-addressed patches from a campaign;
+- [ ] sandbox/evaluator/access logs;
+- [ ] immutable issue/failure/evolution history from a campaign;
+- [ ] raw per-round motivating + fresh results;
+- [ ] independent external attestation of promotion-recommendation logic;
+- [ ] permanent archive/DOI.
 
 ## Done definition
 
-`ORION-P5 = PEER_REVIEW_READY` only when full Self-ORION demonstrates transferable protected improvement against current self-improvement baselines, harmful transfer/integrity outcomes are reported, no self-promotion authority is claimed, and all programme readiness gates pass.
+`ORION-P5 = PEER_REVIEW_READY` only when full Self-ORION demonstrates transferable protected improvement against current self-improvement baselines, harmful transfer/integrity outcomes are reported, no self-promotion authority is claimed, and all programme readiness gates pass. The 21/24 diagnostic archive does **not** satisfy that terminal.

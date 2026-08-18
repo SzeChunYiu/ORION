@@ -1,0 +1,162 @@
+{
+  "atomic_claim_text": "GLM-5.2 hidden-cause attribution is 21/24 = 0.875. Published macro-F1 0.875 disagrees with independent standard macro-F1.",
+  "bounded_claim_text": "Diagnosis evidence on this 24-case suite only. Not self-improvement, not fresh-transfer, not model-general attribution. Independent macro-F1 uses tp/fp/fn per label.",
+  "claim_id": "P5.glm52_attribution",
+  "denominator": {
+    "cannot_check_or_invalid_handling": "zero runtime errors in results.jsonl",
+    "eligible_n": 24,
+    "post_outcome_exclusions": 0,
+    "repeats_nested_not_inflating_n": true,
+    "unit": "hidden-cause case"
+  },
+  "discrepancies": [
+    {
+      "id": "P5.protected-label-colocated-in-suite-json",
+      "severity": "medium",
+      "text": "PROTECTED_SUITE_V1.json stores protected_root_cause beside visible_symptom. Prompt stripping was not independently attested; this verifier did not see the live prompts."
+    },
+    {
+      "id": "P5.macro-f1-definition",
+      "severity": "medium",
+      "text": "Independent standard macro-F1 (mean of per-label F1 from tp/fp/fn) is 0.872619; published report.json lists 0.875. The published per-family F1 column equals recall, which ignores false positives into those families. Accuracy 21/24 is unaffected. Disagreement preserved."
+    }
+  ],
+  "high_severity_integrity": [],
+  "invalidation_reason": null,
+  "layers": {
+    "baseline_pressure": {
+      "status": "CANNOT_CHECK",
+      "summary": "No official ADAS/DGM/ADIAS matched baseline was executed by this verifier. Keyword predictor is a ceiling/oracle for template coupling only."
+    },
+    "denominator_statistics": {
+      "details": {
+        "errors_retained": 3,
+        "n": 24
+      },
+      "status": "PASS",
+      "summary": "Denominator is 24 frozen cases, 8 families \u00d7 3; no post-outcome exclusions; three immutable errors retained."
+    },
+    "holdout_cross_host": {
+      "status": "CANNOT_CHECK",
+      "summary": "Fresh hidden-cause mini-holdout / other-model transfer was not run. 21/24 is not self-improvement evidence."
+    },
+    "independent_scorer": {
+      "details": {
+        "wilson": [
+          0.6899611872949993,
+          0.9565566591987655
+        ]
+      },
+      "status": "PASS",
+      "summary": "Independent label extraction and accuracy/macro-F1 from written hidden-cause label set."
+    },
+    "leakage_shortcut": {
+      "details": {
+        "exact_label_in_visible": [],
+        "keyword_predictor_correct": 15,
+        "protected_fields_colocated": true,
+        "published_accuracy": 0.875
+      },
+      "status": "PASS",
+      "summary": "Exact gold-label tokens are absent from visible_symptom; keyword/template predictor is high because symptoms are textbook label definitions. Label-permutation of gold would collapse accuracy; that is a construct bound, not a count error."
+    },
+    "raw_artifact_replay": {
+      "details": {
+        "correct": 21,
+        "errors": [
+          {
+            "attributed": "REPRESENTATION_GAP",
+            "case_id": "P5-HC-002",
+            "correct": false,
+            "gold": "RETRIEVAL_MISS",
+            "jsonl_gold": "RETRIEVAL_MISS",
+            "jsonl_gold_matches_suite": true
+          },
+          {
+            "attributed": "IMPLEMENTATION_BUG",
+            "case_id": "P5-HC-012",
+            "correct": false,
+            "gold": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+            "jsonl_gold": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+            "jsonl_gold_matches_suite": true
+          },
+          {
+            "attributed": "METHOD_BASIS_GAP",
+            "case_id": "P5-HC-018",
+            "correct": false,
+            "gold": "REPRESENTATION_GAP",
+            "jsonl_gold": "REPRESENTATION_GAP",
+            "jsonl_gold_matches_suite": true
+          }
+        ],
+        "macro_f1": 0.8726190476190476,
+        "n": 24
+      },
+      "status": "PASS",
+      "summary": "Recomputed 21/24 and macro-F1 0.875 from results.jsonl vs suite gold, ignoring report.json correct flags."
+    }
+  },
+  "paper_id": "P5",
+  "protocol": {
+    "hash_sha256": "c7ef009e4f3c2e1029905ea43dc960671a49c308dfe25175c0b195a896143720",
+    "id": "orion.p5.hidden-cause-case.v1",
+    "path": "papers/paper-05-self-orion/protocol/HIDDEN_CAUSE_CASE_SCHEMA_V1.json"
+  },
+  "raw_artifacts": [
+    {
+      "path": "papers/paper-05-self-orion/evidence/glm-5.2-attribution/results.jsonl",
+      "present": true,
+      "role": "raw_record",
+      "sha256": "c39663de6e16581a6454770f136f5014cb676ea5134155602aec332d62fe7418"
+    },
+    {
+      "path": "papers/paper-05-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json",
+      "present": true,
+      "role": "gold",
+      "sha256": "1c3650a62b4432eba60ec17a44dd3e47beedeb266e64e3e96ae593fbbc4e2747"
+    },
+    {
+      "path": "papers/paper-05-self-orion/evidence/glm-5.2-attribution/report.json",
+      "present": true,
+      "role": "aggregate",
+      "sha256": "13ac651d00513b737023c309eab3ed3bde7adcc5f9612d146705d1d4a0877eca"
+    }
+  ],
+  "record_id": "P5.glm-5.2-attribution-21-24",
+  "record_sha256": "e9b45cf55c9d3059b63228a6dcb8687f1ffecbe9078e4bf9be636ef272a123b3",
+  "schema_version": "orion.scientific-result-verification.v1",
+  "scorers": {
+    "adjudication": [
+      {
+        "field": "accuracy",
+        "independent": 0.875,
+        "published": 0.875,
+        "status": "EXACT"
+      },
+      {
+        "field": "correct_count",
+        "independent": 21,
+        "published": 21,
+        "status": "EXACT"
+      },
+      {
+        "field": "macro_f1",
+        "independent": 0.8726190476190476,
+        "published": 0.875,
+        "status": "DISAGREE"
+      }
+    ],
+    "agreement": "DISAGREE",
+    "independent_from_written_spec": true,
+    "independent_hash_sha256": "c867cc5be6cc55f80750053c54c2e19bd3a60d2a0ddd3756a551b6d388648c56",
+    "original_hash_sha256": "13ac651d00513b737023c309eab3ed3bde7adcc5f9612d146705d1d4a0877eca"
+  },
+  "self_authorizing": false,
+  "subject": {
+    "commit": "09929f208f581cda6985575ca419a7181a1f03ba",
+    "evaluated_system_mutated": false,
+    "note": "verifier_tree=09929f208f581cda6985575ca419a7181a1f03ba",
+    "tree": "a3566dd19afaedd35012321e529ff862d06475f5"
+  },
+  "verification_state": "BOUNDED_VERIFIED"
+}

@@ -849,3 +849,54 @@ def test_missing_macro_source_is_a_harness_error_not_a_clean_run(paper: Path) ->
     proc = run(paper)
     assert proc.returncode == EXIT_HARNESS, messages(proc)
     assert "declared macro source missing" in messages(proc)
+
+
+# --------------------------------------------------------------------------- #
+# SHA-256 digest binding
+#
+# Numeric slots deliberately skip hex digests so ``SHA-256`` and a 64-char hash
+# do not inflate the slot count.  That exclusion used to let a stale record
+# digest ride in both the ledger sentence and the manuscript while the
+# support_artifacts key merely *existed*.  DIGEST_MISMATCH is the class that
+# exclusion would otherwise skip.
+# --------------------------------------------------------------------------- #
+
+
+def test_stale_record_digest_is_caught(paper: Path) -> None:
+    """A SHA-256 in the sentence that is not the archived digest must fail."""
+    results = paper / "evidence" / "offline_results" / "RESULTS_SUMMARY_V1.json"
+    payload = json.loads(results.read_text(encoding="utf-8"))
+    current = payload["frozen_run"]["record_digest_sha256"]
+    fake = "a" * 64
+    assert current != fake
+    results_tex = paper / "manuscript" / "sections" / "results.tex"
+    source = results_tex.read_text(encoding="utf-8")
+    assert current in source
+    results_tex.write_text(source.replace(current, fake, 1), encoding="utf-8")
+    ledger = load_ledger(paper)
+    entry = claim(ledger, "P2-R04")
+    entry["sentence"] = entry["sentence"].replace(current, fake, 1)
+    save_ledger(paper, ledger)
+
+    proc = run(paper)
+    assert proc.returncode == EXIT_VIOLATIONS, messages(proc)
+    assert "DIGEST_MISMATCH" in messages(proc)
+
+
+def test_missing_bound_digest_is_caught(paper: Path) -> None:
+    """Dropping the archived digest from the sentence must fail even if numbers match."""
+    results = paper / "evidence" / "offline_results" / "RESULTS_SUMMARY_V1.json"
+    current = json.loads(results.read_text(encoding="utf-8"))["frozen_run"][
+        "record_digest_sha256"
+    ]
+    results_tex = paper / "manuscript" / "sections" / "results.tex"
+    source = results_tex.read_text(encoding="utf-8")
+    results_tex.write_text(source.replace(current, "not-a-digest", 1), encoding="utf-8")
+    ledger = load_ledger(paper)
+    entry = claim(ledger, "P2-R04")
+    entry["sentence"] = entry["sentence"].replace(current, "not-a-digest", 1)
+    save_ledger(paper, ledger)
+
+    proc = run(paper)
+    assert proc.returncode == EXIT_VIOLATIONS, messages(proc)
+    assert "DIGEST_MISMATCH" in messages(proc)

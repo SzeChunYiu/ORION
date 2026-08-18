@@ -1,0 +1,42 @@
+{
+  "schema_version": "orion.p5.glm-attribution-reproduction.v1",
+  "campaign_id": "p5-glm-5.2-attribution-v1",
+  "model": "glm-5.2",
+  "records_path": "papers/paper-05-self-orion/evidence/glm-5.2-attribution/results.jsonl",
+  "records_sha256": "c39663de6e16581a6454770f136f5014cb676ea5134155602aec332d62fe7418",
+  "metrics": {
+    "total_cases": 24,
+    "correct_attributions": 21,
+    "incorrect_attributions": 3,
+    "errors": 0,
+    "accuracy": 0.875,
+    "macro_f1": 0.875,
+    "false_method_change_rate": 0.14285714285714285,
+    "confidence_distribution": {
+      "MEDIUM": 9,
+      "HIGH": 15
+    }
+  },
+  "residual_errors": [
+    {
+      "case_id": "P5-HC-002",
+      "gold": "RETRIEVAL_MISS",
+      "attributed": "REPRESENTATION_GAP"
+    },
+    {
+      "case_id": "P5-HC-012",
+      "gold": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+      "attributed": "IMPLEMENTATION_BUG"
+    },
+    {
+      "case_id": "P5-HC-018",
+      "gold": "REPRESENTATION_GAP",
+      "attributed": "METHOD_BASIS_GAP"
+    }
+  ],
+  "empirical_authority": "ATTRIBUTION_DIAGNOSIS_ONLY",
+  "promotion_terminal": null,
+  "self_merge_authority": false,
+  "notes": "Replay of archived raw records only. Does not execute a live campaign or authorize host promotion.",
+  "receipt_sha256": "8f667d78a06c6d71be41fbae4feee1ffc8fc21030c98100cabfc69744f728d9c"
+}

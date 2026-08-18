@@ -1,0 +1,46 @@
+{
+  "schema": "P2.v2.acquisition-terminal.v1",
+  "date": "2026-08-18",
+  "terminal": "P2_V2_ACQUISITION_NOT_PROMOTED",
+  "publication_authority": "P2_NARROWED",
+  "development_complete": true,
+  "fresh_confirmation_executed": false,
+  "fresh_outcomes_accessed": false,
+  "reason": "The valid harness-corrected final development system did not satisfy the prospectively frozen acquisition eligibility gate. Its recall was lower than the contemporaneous corrected lexical baseline, despite small IoU/precision gains. The frozen stop rule forbids Dev-4 and forbids executing the pre-frozen fresh confirmation when development eligibility is not met.",
+  "final_valid_development_result": {
+    "path": "evidence/external_results/P2_V2_ACQUISITION_DEV3R_RESULT_2026-08-18.json",
+    "verdict": "DEV3R_FINAL_NON_ELIGIBLE",
+    "validity_passed": true,
+    "baseline": {"avg_recall": 0.051422, "avg_iou": 0.010756, "avg_precision": 0.014583},
+    "candidate": {"avg_recall": 0.044213, "avg_iou": 0.012475, "avg_precision": 0.016667},
+    "candidate_minus_baseline": {"avg_recall": -0.007209, "avg_iou": 0.001719, "avg_precision": 0.002084},
+    "zero_hit_tasks": {"baseline": 19, "candidate": 19},
+    "matched_provider_calls": {"baseline_ok": 72, "candidate_ok": 72},
+    "open_obligations": {"baseline": 0, "candidate": 0},
+    "task_closures": {"baseline": 0, "candidate": 0}
+  },
+  "execution_receipt": {
+    "github_actions_run_id": 32103589876,
+    "artifact_id": 9312637759,
+    "artifact_sha256": "82538ed661414cfd17776b2102a9fa70ee28fe48f68592c26a2ed4cf85e860a2",
+    "run_head_sha": "4ebffe89908d4956c524bb0bc9751a69777406a3"
+  },
+  "fresh_design_preserved_unopened": {
+    "path": "protocol/P2_V2_FRESH_WIDE_CONFIRM_DEV3R_FREEZE_2026-08-18.json",
+    "n": 48,
+    "task_ids_sha256": "f4af8ac37a2dc49a2aad26368403a3cc5639fedc274db05f28953a3f826d85ed",
+    "execution_precondition_met": false,
+    "outcomes_accessed": false
+  },
+  "superseded_development_evidence": {
+    "reason": "Earlier V2 Wide/Dev-2 scores used feed-wide regex identifier extraction and are retained only as invalidated diagnostics.",
+    "invalidation_path": "evidence/external_results/P2_V2_WIDE_V2_HARNESS_INVALIDATION_2026-08-18.json"
+  },
+  "forbidden_after_terminal": [
+    "Dev-4 or further acquisition tuning on the burned 24-task development slice",
+    "executing or inspecting the frozen 48-task fresh confirmation under this campaign",
+    "relaxing development or confirmatory thresholds after outcome access",
+    "promoting any V2 external acquisition/discovery, stopping, or transfer claim from these development results"
+  ],
+  "allowed_future_reopen": "A materially new prospectively frozen campaign may be opened only with a new independent development basis or a materially different external authority/benchmark; this terminal may not be rewritten retroactively."
+}

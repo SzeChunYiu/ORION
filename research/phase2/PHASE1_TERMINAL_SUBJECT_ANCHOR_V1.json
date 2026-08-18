@@ -1,0 +1,76 @@
+{
+  "schema": "Phase1TerminalSubjectAnchor.v1",
+  "record_class": "SUBJECT_IDENTITY_ANCHOR",
+  "grants_authority": "NONE",
+  "closes_gate": null,
+  "purpose": "Bind the exact Phase-1 terminal commit so that any future Phase-2 closure-run subject can be mechanically checked to be Phase-1-derived. This record is not evidence for any Phase-2 closure gate and does not attest that any Phase-2 trial was executed.",
+  "repository_identity": "github.com/SzeChunYiu/ORION",
+  "machine_readable_form": {
+    "schema": "Phase1TerminalReceipt.v1",
+    "path": "provenance/phases/PHASE1_TERMINAL_RECEIPT_V1.json",
+    "loader": "orion.self_orion.phase1_terminal_receipt.load_phase1_terminal_receipt_v1",
+    "relationship": "That receipt is the canonical machine-loadable record of the Phase-1 terminal; this file is its human-readable audit companion. The two describe one commit and must not drift — tests/unit/self_orion/test_phase1_terminal_receipt.py asserts they agree. On any conflict the receipt governs, because it is content-hash bound."
+  },
+
+  "anchor": {
+    "commit_oid": "7983401847ea2b33706aacbf6e45b6bc63a60d0d",
+    "tree_oid": "fd86b448b04e27ccd7ecc2372f1f391e6200c567",
+    "git_object_format": "sha1",
+    "committed_at": "2026-08-16T12:24:25Z",
+    "merged_pull_request": 86,
+    "merge_base_ref": "main",
+    "source_tree_sha256": null,
+    "source_tree_sha256_status": "NOT_COMPUTED",
+    "source_tree_sha256_reason": "attest_repository_subject() requires a clean full checkout of the anchor commit; this record was produced from a shallow clone plus GitHub metadata. Computing it is deferred to the closure run, which attests its own subject anyway. Absence of the value must not be read as agreement with any later-computed value."
+  },
+
+  "phase_1_terminal_declaration": {
+    "issue": 75,
+    "issue_state": "closed",
+    "issue_closed_at": "2026-08-16T12:25:33Z",
+    "declaring_comment_id": 5307421385,
+    "declaring_comment_url": "https://github.com/SzeChunYiu/ORION/issues/75#issuecomment-5307421385",
+    "terminal_string": "PHASE_1_CORE_TECHNICALLY_CLOSED"
+  },
+
+  "phase_1_ci_receipt": {
+    "workflow_name": "ci",
+    "run_id": "31946971360",
+    "head_sha": "7983401847ea2b33706aacbf6e45b6bc63a60d0d",
+    "head_branch": "main",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-08-16T12:24:27Z"
+  },
+
+  "derivation_predicate": {
+    "id": "PHASE_1_DERIVED_SUBJECT",
+    "statement": "A RepositorySubjectAttestation.v1 S is Phase-1-derived iff anchor.commit_oid is an ancestor of S.commit_oid in the github.com/SzeChunYiu/ORION history, evaluated at the time the Phase-2 closure evidence is audited.",
+    "check_command": "git merge-base --is-ancestor 7983401847ea2b33706aacbf6e45b6bc63a60d0d <S.commit_oid>",
+    "check_semantics": "exit 0 => Phase-1-derived; exit 1 => NOT Phase-1-derived; any other exit or a shallow/incomplete object store => CANNOT_CHECK, never PASS",
+    "shallow_clone_warning": "A shallow clone can return a false negative. The check requires an object store deep enough to contain the anchor commit; verify with `git cat-file -t 7983401847ea2b33706aacbf6e45b6bc63a60d0d` before trusting a negative result.",
+    "revalidation_rule": "This predicate must be re-evaluated at closure-audit time. It is not satisfied once and for all: a history rewrite, a force-update of main, or a subject taken from a branch that does not contain the anchor all invalidate a previously true result.",
+    "insufficiency_note": "Ancestry is necessary, not sufficient. Issue #76 additionally requires that the subject be the exact subject used by the closure run and that all Phase-2 evidence families bind that same subject_revision_hash. Ancestry alone closes nothing."
+  },
+
+  "as_of_observation": {
+    "observed_at": "2026-08-17",
+    "method": "GitHub compare API, GET /repos/SzeChunYiu/ORION/compare/<anchor>...<main>",
+    "main_head_commit_oid": "86ebc024d2b7f0cde69c6b0ba129d3283a8a3c67",
+    "status": "ahead",
+    "ahead_by": 398,
+    "behind_by": 0,
+    "interpretation": "As of the observation date, main descends from the anchor with no divergence, so a closure subject taken from main at or after 86ebc024 satisfies the ancestry predicate. This is an as-of fact, not a standing guarantee."
+  },
+
+  "explicit_non_claims": [
+    "No Phase-2 closure-run subject exists; this record does not name one, and none could be named at authoring time.",
+    "This record asserts nothing about gates A, B, C, D, E or F of issue #76.",
+    "This record is not a Phase2ClosureBinding, a Phase2EvidenceReceipt, a ReadinessEvidenceRecord, an ExternalEvidenceManifest, or a RepositorySubjectAttestation, and must not be admitted by any loader for those schemas.",
+    "No evaluator, provider, retrieval source, split or resource budget is frozen by this record."
+  ],
+
+  "queued_followups": [
+    "An executable checker for derivation_predicate is not provided here: making it importable would require editing src/orion/self_orion/__init__.py, a shared registry owned by another lane. Queued as a follow-up PR."
+  ]
+}

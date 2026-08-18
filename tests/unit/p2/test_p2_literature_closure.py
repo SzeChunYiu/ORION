@@ -15,13 +15,13 @@ Standard library only.
 
 from __future__ import annotations
 
+import ast
 import json
 import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 PAPER = ROOT / "papers" / "paper-02-open-world-scientific-discovery"
-BIBLIOGRAPHY = PAPER / "manuscript" / "bibliography.bib"
 MAIN_TEX = PAPER / "manuscript" / "main.tex"
 PROTOCOL = PAPER / "protocol" / "PROTOCOL_V1.json"
 READINESS = PAPER / "JOURNAL_READINESS.md"
@@ -35,6 +35,7 @@ AUDIT_MAX_LINES = 180
 
 ENTRY_RE = re.compile(r"@(\w+)\s*\{\s*([^,\s]+)\s*,", re.MULTILINE)
 CITE_RE = re.compile(r"\\cite(?:t|p)?\{([^}]+)\}")
+BIBLIOGRAPHY_DECLARATION_RE = re.compile(r"\\bibliography\{([^}]+)\}")
 IDENTIFIER_FIELD_RE = re.compile(r"(?:^|,)\s*(doi|eprint|url)\s*=", re.IGNORECASE | re.MULTILINE)
 
 # Literature families required by JOURNAL_READINESS.md section 1 ("Novelty
@@ -61,15 +62,39 @@ REQUIRED_LITERATURE_FAMILIES = {
 ALLOWED_VERDICTS = {"VERIFIED", "MISMATCH", "CANNOT_CHECK"}
 
 
+def _bibliography_paths() -> list[Path]:
+    """Every .bib file `main.tex` actually loads, in declaration order.
+
+    Reading one hard-coded path made this suite report every key defined in a
+    second bib file as missing from the bibliography. That is a false positive in
+    the expensive direction: the failure names real citation keys and reads as a
+    broken manuscript, so the manuscript gets edited to satisfy the checker.
+    Deriving the set from the `\\bibliography{...}` declaration means adding a bib
+    file cannot manufacture a failure, while a key defined in none of them still
+    does.
+    """
+
+    match = BIBLIOGRAPHY_DECLARATION_RE.search(MAIN_TEX.read_text(encoding="utf-8"))
+    assert match, "main.tex declares no \\bibliography{...}"
+    names = [part.strip() for part in match.group(1).split(",") if part.strip()]
+    paths = [MAIN_TEX.parent / f"{name}.bib" for name in names]
+    missing = [path.name for path in paths if not path.exists()]
+    assert not missing, f"main.tex loads bibliography files that do not exist: {missing}"
+    return paths
+
+
 def _bib_entries() -> dict[str, str]:
     """Map bibliography key -> entry body, with % comment lines stripped."""
-    raw = BIBLIOGRAPHY.read_text(encoding="utf-8")
-    text = "\n".join(line for line in raw.splitlines() if not line.lstrip().startswith("%"))
-    starts = [(m.group(2), m.start(), m.end()) for m in ENTRY_RE.finditer(text)]
     entries: dict[str, str] = {}
-    for index, (key, _, body_start) in enumerate(starts):
-        body_end = starts[index + 1][1] if index + 1 < len(starts) else len(text)
-        entries[key] = text[body_start:body_end]
+    for path in _bibliography_paths():
+        raw = path.read_text(encoding="utf-8")
+        text = "\n".join(
+            line for line in raw.splitlines() if not line.lstrip().startswith("%")
+        )
+        starts = [(m.group(2), m.start(), m.end()) for m in ENTRY_RE.finditer(text)]
+        for index, (key, _, body_start) in enumerate(starts):
+            body_end = starts[index + 1][1] if index + 1 < len(starts) else len(text)
+            entries[key] = text[body_start:body_end]
     return entries
 
 
@@ -163,3 +188,46 @@ def test_audit_core_stays_within_its_line_budget() -> None:
         f"split further into {AUDIT_DETAIL_DIR.name}/ rather than growing the core"
     )
     assert list(AUDIT_DETAIL_DIR.glob("*.md")), "audit core has no detail files to drill into"
+
+
+FETCHER = EVIDENCE_DIR / "fetch_literature_evidence.py"
+
+
+def _fetcher_registered_keys() -> set[str]:
+    """Keys the fetch script knows how to fetch, read without executing it."""
+
+    tree = ast.parse(FETCHER.read_text(encoding="utf-8"))
+    for node in ast.walk(tree):
+        target = None
+        if isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
+            target = node.target.id
+        elif isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
+            target = node.targets[0].id
+        if target == "ENTRIES" and isinstance(node.value, ast.Dict):
+            return {k.value for k in node.value.keys if isinstance(k, ast.Constant)}
+    raise AssertionError("ENTRIES dict not found in fetch_literature_evidence.py")
+
+
+def test_every_bibliography_key_is_registered_with_the_fetcher() -> None:
+    """The drift that turned main red at 73e9505.
+
+    `ENTRIES` is a hand-maintained list, so adding a citation and registering it for
+    fetching are two disconnected edits. When 73e9505 added `micp2026` to both bib files
+    and cited it from `main.tex` without touching the fetcher, the missing-record test
+    failed but pointed at the record rather than at the reason there was no way to produce
+    one. This test names the reason at the point of the edit.
+    """
+
+    keys = set(_bib_entries())
+    unregistered = sorted(keys - _fetcher_registered_keys())
+    assert not unregistered, (
+        "bibliography keys the fetch script cannot fetch, so no evidence record can be "
+        f"produced for them: {unregistered}"
+    )
+
+
+def test_the_fetcher_registry_has_no_phantom_keys() -> None:
+    """No alarm: a registry entry with no bibliography key is also drift."""
+
+    phantom = sorted(_fetcher_registered_keys() - set(_bib_entries()))
+    assert not phantom, f"fetch script registers keys absent from the bibliography: {phantom}"

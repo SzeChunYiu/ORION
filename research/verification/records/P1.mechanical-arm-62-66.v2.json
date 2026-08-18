@@ -1,0 +1,96 @@
+{
+  "atomic_claim_text": "LLM-free reduction attributes correct top-ranked responsibility on 62 of 66 cases; 0 of 22 negative controls topped by formulation responsibility.",
+  "bounded_claim_text": "Descriptive only. Four general relations cover 26 cases; remaining attributions are untested for generality. Not H1 support. A machine-readable case table now exists, so the count is replayable; independent rescoring from the written specification still does not exist.",
+  "claim_id": "P1.mechanical_arm_62_66",
+  "denominator": {
+    "cannot_check_or_invalid_handling": "Case table present. The one abstention (p1-c016, gold SEARCH) is scored incorrect, not excluded.",
+    "eligible_n": 66,
+    "notes": "Headline 62/66 pools PILOT 16/18 with TEST 46/48. VERIFIER_STANDARD_V1 lists no pilot/confirmatory pooling as a denominator item to verify, so the split figures are recorded here rather than left implicit. Both bindings are disclosed in MECHANICAL_ARM_LIMITATIONS_V1.md and the claim is bounded as descriptive; assigning a denominator verdict on the pooling is left to the #283 verifier lane.",
+    "post_outcome_exclusions": 0,
+    "repeats_nested_not_inflating_n": true,
+    "unit": "mechanical-arm case"
+  },
+  "discrepancies": [
+    {
+      "id": "P1.mechanical-arm-no-case-table",
+      "severity": "medium",
+      "text": "RESOLVED by MECHANICAL_ARM_CASE_TABLE_V1.json: 62/66 is no longer markdown-only and case-level replay now runs. Independent rescoring remains open for a different reason (oracle import), tracked below."
+    },
+    {
+      "id": "P1.mechanical-arm-replay-is-not-independent-scoring",
+      "severity": "medium",
+      "text": "The case table imports orion.study.p1.contradiction as its oracle, which the independent-scorer protocol forbids. The layer stays CANNOT_CHECK until a from-spec reimplementation exists."
+    },
+    {
+      "id": "P1.mechanical-arm-splits-pooled",
+      "severity": "low",
+      "text": "Headline 62/66 pools PILOT 16/18 and TEST 46/48. Per-split figures are now recoverable from the case table."
+    }
+  ],
+  "high_severity_integrity": [],
+  "invalidation_reason": null,
+  "layers": {
+    "baseline_pressure": {
+      "status": "CANNOT_CHECK",
+      "summary": "No second mechanical rater in this verifier run."
+    },
+    "denominator_statistics": {
+      "status": "CANNOT_CHECK",
+      "summary": "Cannot audit 62/66 without the case table."
+    },
+    "holdout_cross_host": {
+      "status": "CANNOT_CHECK",
+      "summary": "No fresh cases for the mechanical arm."
+    },
+    "independent_scorer": {
+      "status": "CANNOT_CHECK",
+      "summary": "Per-case decisions now exist in JSON, but the table calls the original reduction layer. VERIFIER_STANDARD_V1 independent-scorer protocol point 1 forbids importing original scorer internals as an oracle, so this is replay, not independent scoring. Promotion needs a reimplementation from the written specification, scored by a party that did not author the table."
+    },
+    "leakage_shortcut": {
+      "status": "PASS",
+      "summary": "The limitations note already records one-case rules (32/66) and template risk; retained rather than tuned away."
+    },
+    "raw_artifact_replay": {
+      "status": "PASS",
+      "summary": "MECHANICAL_ARM_CASE_TABLE_V1.json regenerates 62/66 and 0/22 by re-running orion.study.p1.contradiction.top_responsibility over the frozen suite. Split fingerprints PILOT 7a50a2d5... and TEST 21b461d8... match this record's declared bindings."
+    }
+  },
+  "paper_id": "P1",
+  "protocol": {
+    "hash_sha256": "91d5dca84d927ccb5cc5a54fece12502f23c8cba22f8eb8e5a48377539eca0b7",
+    "id": "P1.hidden-formulation.v1",
+    "path": "papers/paper-01-recursive-epistemic-reconstruction/protocol/PROTOCOL_V1.json"
+  },
+  "raw_artifacts": [
+    {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/evidence/MECHANICAL_ARM_LIMITATIONS_V1.md",
+      "present": true,
+      "role": "published_table",
+      "sha256": "6055cf371618528c62c1918259b7f31c73ea90f00f751b7ca9d5b2f303e671bd"
+    },
+    {
+      "path": "papers/paper-01-recursive-epistemic-reconstruction/evidence/MECHANICAL_ARM_CASE_TABLE_V1.json",
+      "present": true,
+      "role": "raw_record",
+      "sha256": "1e951c2b6c47b60e2c24bacd87e68a8910c4a67b6412f5bffb43aac242168756"
+    }
+  ],
+  "record_id": "P1.mechanical-arm-62-66.v2",
+  "record_sha256": "2889cdc0a262d327385a6cf3d649558552ac805ad37d94edc7276704499f06d8",
+  "schema_version": "orion.scientific-result-verification.v1",
+  "scorers": {
+    "adjudication": [],
+    "agreement": "CANNOT_CHECK",
+    "independent_from_written_spec": true,
+    "independent_hash_sha256": "c867cc5be6cc55f80750053c54c2e19bd3a60d2a0ddd3756a551b6d388648c56",
+    "original_hash_sha256": "6055cf371618528c62c1918259b7f31c73ea90f00f751b7ca9d5b2f303e671bd"
+  },
+  "self_authorizing": false,
+  "subject": {
+    "commit": "6d4ed6e27cb0af5838e935b10b0fdbbe57c6b050",
+    "evaluated_system_mutated": false,
+    "note": "re-observation of P1.mechanical-arm-62-66 (record_sha256 b8e79207404a7de66fe34171a583296b598d524f1a2003b743bc65cc414b8483) after the case table landed; verifier_tree=6d4ed6e27cb0af5838e935b10b0fdbbe57c6b050",
+    "tree": "1b8f270de443bae784f44bd3a73597e2c040f594"
+  },
+  "verification_state": "CANNOT_CHECK"
+}
