@@ -64,6 +64,38 @@ FORBIDDEN_LOG_PATTERNS = (
 )
 
 
+#: `Overfull \\hbox (12.3pt too wide) in paragraph at lines 120--124` and friends.
+#: The width and the line range are the whole diagnosis; without them the message
+#: names a class of defect and leaves the reader to rebuild the document to find
+#: the instance.
+_DIAGNOSTIC_LINE = re.compile(
+    r"^(?:Overfull|Underfull)\s+\\[hv]box.*$|^LaTeX Warning: (?:Citation|Reference).*$",
+    re.MULTILINE,
+)
+
+
+def _explain(log_text: str, limit: int = 25) -> str:
+    """Quote the log lines that caused the rejection.
+
+    The audit previously reported only the violation class -- "overfull horizontal
+    box" -- which is true, unactionable, and requires a local TeX install to turn
+    into a location. Every one of these findings carries its own coordinates in the
+    log; not printing them was throwing away the diagnosis and keeping the verdict.
+    """
+
+    found = _DIAGNOSTIC_LINE.findall(log_text)
+    if not found:
+        return (
+            "    (the forbidden pattern matched but no diagnostic line could be "
+            "extracted; inspect the archived .log)"
+        )
+    shown = found[:limit]
+    body = "\n".join(f"    {line.strip()}" for line in shown)
+    if len(found) > limit:
+        body += f"\n    ... and {len(found) - limit} more"
+    return body
+
+
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as stream:
@@ -120,7 +152,8 @@ def build(manuscript: Manuscript, output_root: Path) -> dict[str, object]:
     violations = [label for pattern, label in FORBIDDEN_LOG_PATTERNS if pattern.search(log_text)]
     if violations:
         raise AssertionError(
-            f"{manuscript.paper} PDF audit failed: {', '.join(sorted(set(violations)))}"
+            f"{manuscript.paper} PDF audit failed: {', '.join(sorted(set(violations)))}\n"
+            + _explain(log_text)
         )
 
     return {
