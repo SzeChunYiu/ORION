@@ -72,4 +72,9 @@ jobs:
         with:
           name: test-durations
           path: .test_durations
+          # Without this the upload finds nothing and the run ends red after a
+          # successful 32-minute profile: upload-artifact excludes dotfiles by
+          # default, and the durations file is . The suite and
+          # the report step both succeeded; only the upload failed.
+          include-hidden-files: true
           if-no-files-found: error
