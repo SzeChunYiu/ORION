@@ -24,11 +24,10 @@ concurrency:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    # The TeX install alone has twice exceeded a 20-minute *job* budget on a slow
-    # apt mirror, and GitHub reports a job timeout as `cancelled` -- which reads
-    # as a failed gate in `gh pr checks` while telling nobody that the gate never
-    # actually ran. Budget the job for its slowest real step rather than its
-    # typical one.
+    # Kept wide as defence in depth. The install is the real fix (see below), but
+    # GitHub reports a job timeout as `cancelled`, which reads as a failed gate in
+    # `gh pr checks` while telling nobody the gate never ran -- so the budget
+    # should not be the thing that decides whether this audit has an opinion.
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
@@ -83,11 +82,17 @@ jobs:
           sudo apt-get update -qq
           # One retry. Both observed hangs were in this install, and a transient
           # mirror stall should not consume a submission gate.
-          sudo apt-get install -y -qq latexmk texlive-latex-base texlive-latex-extra \
-            texlive-fonts-recommended lmodern poppler-utils librsvg2-bin \
-            || { sleep 15; sudo apt-get update -qq; sudo apt-get install -y -qq latexmk \
-                 texlive-latex-base texlive-latex-extra texlive-fonts-recommended lmodern \
-                 poppler-utils librsvg2-bin; }
+          # --no-install-recommends is the actual fix. p2-manuscript.yml installs a
+          # comparable TeX set with it and finishes in about a minute; this job
+          # installed the recommends too and twice blew a 20-minute budget. Every
+          # package the compile needs is named explicitly, and latexmk runs with
+          # -halt-on-error, so anything genuinely missing fails loudly here rather
+          # than silently degrading the PDF.
+          PKGS="latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended"
+          PKGS="$PKGS lmodern poppler-utils librsvg2-bin"
+          # One retry: a transient mirror stall should not consume a submission gate.
+          sudo apt-get install -y -qq --no-install-recommends $PKGS \
+            || { sleep 15; sudo apt-get update -qq; sudo apt-get install -y -qq --no-install-recommends $PKGS; }
 
       - name: Render SVG result figures to submission PNGs
         shell: bash
