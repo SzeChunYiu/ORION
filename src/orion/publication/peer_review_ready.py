@@ -41,19 +41,38 @@ class PaperGate:
         return not self.missing_artifacts and not self.blockers
 
 
+#: ``PEER_REVIEW_READY`` as a whole token, never as the prefix of a longer one.
+#:
+#: ``PEER_REVIEW_READY_NARROWED`` is a deliberately *weaker* terminal: a paper that
+#: has narrowed its claim rather than met the full bar. A plain substring test reads
+#: it as the full terminal, which is the one direction a readiness gate must never
+#: fail in. ``research/publication/scoreboard.py`` already draws this distinction
+#: with the same negative lookahead; this module now agrees with it rather than
+#: quietly scoring the two terminals the same.
+PEER_REVIEW_READY_TOKEN = re.compile(r"PEER_REVIEW_READY(?![A-Za-z0-9_])")
+
+#: Words that make a line a condition on some future state rather than an assertion
+#: about the present one. "only" alone was too narrow: P2 states its bar as
+#: ``ORION-P2 = PEER_REVIEW_READY_NARROWED when the narrowed manuscript compiles``,
+#: which is a definition of done and not a claim of being done.
+_CONDITIONAL_MARKERS = (" when ", " once ", " after ", " until ", " if ", "only")
+
+
 def claims_peer_review_ready(text: str) -> bool:
     """True only for an asserted terminal, never a done-definition.
 
     ``ORION-P1 = PEER_REVIEW_READY only when …`` is a predicate, not a claim.
     ``**not** PEER_REVIEW_READY`` on a current-terminal line is a non-claim.
+    ``ORION-P2 = PEER_REVIEW_READY_NARROWED`` is a different, weaker terminal and
+    is not a claim of this one.
     """
 
     for raw in text.splitlines():
         line = raw.strip()
-        if "PEER_REVIEW_READY" not in line:
+        if not PEER_REVIEW_READY_TOKEN.search(line):
             continue
         lower = line.lower()
-        if "only when" in lower or "only after" in lower:
+        if any(marker in lower for marker in _CONDITIONAL_MARKERS):
             continue
         if re.search(r"\bnot\b.*PEER_REVIEW_READY", line, flags=re.IGNORECASE):
             continue
@@ -61,7 +80,7 @@ def claims_peer_review_ready(text: str) -> bool:
             continue
         if "**Terminal:**" in line or "**Readiness:**" in line:
             return True
-        if re.search(r"ORION-P\d\s*=\s*PEER_REVIEW_READY", line) and "only" not in lower:
+        if re.search(r"ORION-P\d\s*=\s*PEER_REVIEW_READY(?![A-Za-z0-9_])", line):
             return True
     return False
 

@@ -22,7 +22,13 @@ SRC ?= src
 #
 # See papers/paper-01-recursive-epistemic-reconstruction/REPRODUCE.md.
 
-P1_ARCHIVE ?= papers/paper-01-recursive-epistemic-reconstruction/results/raw
+# The scored file, not the raw/ directory. load_records() reads every .json/.jsonl
+# under a directory and refuses to skip a record it cannot parse -- deliberately,
+# since silently skipping would turn an incomplete archive into confident numbers.
+# raw/ also holds test_runs.jsonl, which has no schema_version, so pointing the
+# archive at the directory made `make paper01-results` exit 2 on a clean checkout.
+# results/INTEGRITY_NOTE.md already recorded this; the Makefile did not agree.
+P1_ARCHIVE ?= papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl
 P1_OUT ?= papers/paper-01-recursive-epistemic-reconstruction/results
 P1_BOOTSTRAP_SEED ?= 20260815
 P1_RESAMPLES ?= 10000

@@ -166,3 +166,49 @@ def test_main_fails_a_hollow_claim(tmp_path: Path) -> None:
     paper = papers / "paper-99-hollow"
     _write(paper / "JOURNAL_READINESS.md", "**Terminal:** `ORION-P9 = PEER_REVIEW_READY`\n")
     assert main(["--papers", str(papers)]) == 1
+
+
+def test_a_narrowed_terminal_is_not_read_as_a_full_readiness_claim() -> None:
+    """`PEER_REVIEW_READY_NARROWED` is a weaker terminal, not this one.
+
+    This gate originally used a plain `"PEER_REVIEW_READY" in line` test and so read
+    P2's real line
+
+        `ORION-P2 = PEER_REVIEW_READY_NARROWED` when the narrowed manuscript compiles
+
+    as a claim of full readiness, then failed the paper for lacking the artifacts such
+    a claim would need. Two separate mistakes in one line: the token was matched as a
+    prefix of a longer one, and a "when" clause was treated as an assertion rather than
+    a definition of done.
+
+    Both directions are pinned here. A narrowed terminal and a conditional line must not
+    register as claims, and a real unconditional claim still must — a gate that stopped
+    firing altogether would also make this test's first half pass.
+    """
+
+    # Bare narrowed terminal, with no conditional word anywhere on the line. This is the
+    # case that actually exercises the token discipline: an earlier version of this test
+    # used P2's real line, which contains "when", and so still passed when the token was
+    # reverted to a plain substring test. The conditional clause was masking the defect.
+    bare_narrowed = "`ORION-P2 = PEER_REVIEW_READY_NARROWED`\n"
+    assert claims_peer_review_ready(bare_narrowed) is False
+
+    narrowed_terminal = "**Terminal:** `ORION-P2 PEER_REVIEW_READY_NARROWED`\n"
+    assert claims_peer_review_ready(narrowed_terminal) is False
+
+    # P2's real line, which is both narrowed and conditional.
+    narrowed = "`ORION-P2 = PEER_REVIEW_READY_NARROWED` when the manuscript compiles cleanly\n"
+    assert claims_peer_review_ready(narrowed) is False
+
+    conditional = "`ORION-P2 = PEER_REVIEW_READY` once section 8's checks pass\n"
+    assert claims_peer_review_ready(conditional) is False
+
+    negated = "**Current terminal:** not PEER_REVIEW_READY.\n"
+    assert claims_peer_review_ready(negated) is False
+
+    # Non-vacuity: the gate must still catch an unconditional present-tense claim.
+    real_claim = "`ORION-P2 = PEER_REVIEW_READY`\n"
+    assert claims_peer_review_ready(real_claim) is True
+
+    terminal_line = "**Terminal:** `ORION-P4 PEER_REVIEW_READY`\n"
+    assert claims_peer_review_ready(terminal_line) is True

@@ -27,8 +27,8 @@ from pathlib import Path
 #: A file listed here that is now clean FAILS the run: delete the entry instead.
 ALLOWED_OVERFULL: dict[str, str] = {
     "results.tex": (
-        "owned by the offline scale-up lane, which is rewriting the section at a "
-        "new N; the \\idt fix applies mechanically once that lands"
+        "long SHA-256 and identifier lines remain; clear only after "
+        "p2-manuscript-audit produces a clean main.log on this revision"
     ),
 }
 

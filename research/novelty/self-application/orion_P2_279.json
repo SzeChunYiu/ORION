@@ -1,0 +1,347 @@
+{
+  "absorption_decisions": [
+    {
+      "disposition": "ADAPT",
+      "mechanism_id": "m:conservative-explore",
+      "preserved_constraints": [],
+      "rationale": "Adapt conservative exploration; do not claim it as novelty.",
+      "target_mechanic_ids": [
+        "P2.ALLOCATOR"
+      ]
+    },
+    {
+      "disposition": "COMPOSE",
+      "mechanism_id": "m:censored-stop",
+      "preserved_constraints": [],
+      "rationale": "Compose censored stopping with earned route identity; Wide unexecuted.",
+      "target_mechanic_ids": [
+        "P2.ROUTE_STOP.v1"
+      ]
+    }
+  ],
+  "authority_reasons": [
+    "inaccessible sources could materially absorb the claim"
+  ],
+  "benchmark_implementation_routes": [
+    {
+      "access_status": "FULL_TEXT",
+      "evidence_refs": [
+        "arxiv:2604.25256"
+      ],
+      "mechanism_summary": "Wide+Deep literature discovery benchmark.",
+      "source_id": "arxiv:2604.25256",
+      "title": "AutoResearchBench",
+      "work_id": "arxiv:2604.25256"
+    }
+  ],
+  "claim_id": "orion:P2:#279",
+  "claim_text": "A route may be exhausted, unavailable or censored without licensing global task closure; novelty is authority semantics under unknown coverage.",
+  "claimed_mechanism_decomposition": [
+    {
+      "description": "Conservative/safe exploration",
+      "mechanism_id": "m:conservative-explore",
+      "role": "absorbed"
+    },
+    {
+      "description": "Censored stopping without task-closure authority",
+      "mechanism_id": "m:censored-stop",
+      "role": "residual"
+    }
+  ],
+  "closest_prior_by_function": [
+    {
+      "access_status": "FULL_TEXT",
+      "evidence_refs": [
+        "arxiv:2412.06165"
+      ],
+      "mechanism_summary": "Baseline-preserving exploration.",
+      "source_id": "arxiv:2412.06165",
+      "title": "Conservative Contextual Bandits",
+      "work_id": "arxiv:2412.06165"
+    }
+  ],
+  "closest_prior_by_term": [
+    {
+      "access_status": "FULL_TEXT",
+      "evidence_refs": [
+        "arxiv:2604.25256"
+      ],
+      "mechanism_summary": "Wide+Deep literature discovery benchmark.",
+      "source_id": "arxiv:2604.25256",
+      "title": "AutoResearchBench",
+      "work_id": "arxiv:2604.25256"
+    }
+  ],
+  "confidence": null,
+  "content_hash": "0e1fbea23963a97eff242a701134b51168636e85b27fd30cd05d68a934a7ef1e",
+  "discriminating_experiment": {
+    "experiment_id": "exp:p2-wide",
+    "hypothesis": "External Wide localizes failure to stopping vs candidate generation.",
+    "observation_if_already_solved": "Controlled-world construct validity explains the 390-task result.",
+    "observation_if_novel": "Censored stopping, not retrieval matching, carries any external gain.",
+    "result": "",
+    "status": "PROPOSED"
+  },
+  "final_state": "CANNOT_CHECK",
+  "hostile_already_solved_route": {
+    "assumption": "assume this is already solved \u2014 find it",
+    "executed": true,
+    "findings": [
+      {
+        "access_status": "FULL_TEXT",
+        "evidence_refs": [
+          "arxiv:2412.06165"
+        ],
+        "mechanism_summary": "Baseline-preserving exploration.",
+        "source_id": "arxiv:2412.06165",
+        "title": "Conservative Contextual Bandits",
+        "work_id": "arxiv:2412.06165"
+      }
+    ],
+    "note": "Hostile search absorbed conservative exploration; censored-authority residual remains untested externally.",
+    "queries": [
+      "assume already solved: conservative bandit literature search stopping"
+    ],
+    "residual_changed": true,
+    "route_id": "hostile:already-solved"
+  },
+  "inaccessible_material_sources": [
+    "arxiv:2603.00582",
+    "autoresearchbench:wide-unexecuted"
+  ],
+  "llm_novelty_score": null,
+  "llm_proposed_state": null,
+  "original_claim_text": "A route may be exhausted, unavailable or censored without licensing global task closure; novelty is authority semantics under unknown coverage.",
+  "overlap_classifications": [
+    {
+      "classification": "FUNCTIONAL_EQUIVALENT",
+      "mechanism_id": "m:conservative-explore",
+      "note": "Conservative bandits/safe exploration are not novel.",
+      "prior_work_id": "arxiv:2412.06165"
+    },
+    {
+      "classification": "PARTIAL",
+      "mechanism_id": "m:censored-stop",
+      "note": "ARB evaluates discovery; it does not separate route exhaustion from task-closure authority.",
+      "prior_work_id": "arxiv:2604.25256"
+    }
+  ],
+  "parent_discipline_mechanisms": [
+    {
+      "access_status": "FULL_TEXT",
+      "evidence_refs": [
+        "arxiv:2002.00467"
+      ],
+      "mechanism_summary": "Safe exploration in information retrieval.",
+      "source_id": "arxiv:2002.00467",
+      "title": "Safe Exploration for Optimizing Contextual Bandits",
+      "work_id": "arxiv:2002.00467"
+    }
+  ],
+  "problem_task_definition": "P2 revival: stopping authority under censored open-world search.",
+  "residual_implementation_evidence": [
+    "src/orion/knowledge/routes.py"
+  ],
+  "saturation": {
+    "required_consecutive_empty_rounds": 2,
+    "required_routes": [
+      "EXACT_TERM",
+      "SYNONYM_FUNCTION_ONLY",
+      "PROBLEM_DECOMPOSITION",
+      "PARENT_DISCIPLINE_HISTORY",
+      "BENCHMARK_IMPLEMENTATION",
+      "CITED_BY_RELATED",
+      "HOSTILE_ALREADY_SOLVED"
+    ],
+    "rounds": [
+      {
+        "changed_residual_or_disposition": true,
+        "finding_ids": [
+          "documented-audit"
+        ],
+        "queries": [
+          "censored stopping authority",
+          "route stop versus task stop"
+        ],
+        "round_index": 1,
+        "route": "EXACT_TERM"
+      },
+      {
+        "changed_residual_or_disposition": true,
+        "finding_ids": [
+          "documented-audit"
+        ],
+        "queries": [
+          "recall stopping",
+          "retrieval censoring",
+          "open set search stopping"
+        ],
+        "round_index": 2,
+        "route": "SYNONYM_FUNCTION_ONLY"
+      },
+      {
+        "changed_residual_or_disposition": true,
+        "finding_ids": [
+          "documented-audit"
+        ],
+        "queries": [
+          "documented problem decomposition"
+        ],
+        "round_index": 3,
+        "route": "PROBLEM_DECOMPOSITION"
+      },
+      {
+        "changed_residual_or_disposition": true,
+        "finding_ids": [
+          "documented-audit"
+        ],
+        "queries": [
+          "capture recapture",
+          "conservative contextual bandits"
+        ],
+        "round_index": 4,
+        "route": "PARENT_DISCIPLINE_HISTORY"
+      },
+      {
+        "changed_residual_or_disposition": true,
+        "finding_ids": [
+          "documented-audit"
+        ],
+        "queries": [
+          "AutoResearchBench Wide",
+          "SAGE",
+          "AgentSLR",
+          "MetaSyn"
+        ],
+        "round_index": 5,
+        "route": "BENCHMARK_IMPLEMENTATION"
+      },
+      {
+        "changed_residual_or_disposition": false,
+        "finding_ids": [],
+        "queries": [
+          "documented cited-by/related-work audit"
+        ],
+        "round_index": 6,
+        "route": "CITED_BY_RELATED"
+      },
+      {
+        "changed_residual_or_disposition": false,
+        "finding_ids": [],
+        "queries": [
+          "assume already solved: coverage estimator licenses task closure"
+        ],
+        "round_index": 7,
+        "route": "HOSTILE_ALREADY_SOLVED"
+      },
+      {
+        "changed_residual_or_disposition": false,
+        "finding_ids": [],
+        "queries": [
+          "related-work expansion; no residual change"
+        ],
+        "round_index": 8,
+        "route": "CITED_BY_RELATED"
+      },
+      {
+        "changed_residual_or_disposition": false,
+        "finding_ids": [],
+        "queries": [
+          "assume already solved: coverage estimator licenses task closure"
+        ],
+        "round_index": 9,
+        "route": "HOSTILE_ALREADY_SOLVED"
+      }
+    ]
+  },
+  "schema_id": "ScientificNoveltyCertificate.v1",
+  "search_snapshot": {
+    "queries_by_route": [
+      [
+        "EXACT_TERM",
+        [
+          "censored stopping authority",
+          "route stop versus task stop"
+        ]
+      ],
+      [
+        "SYNONYM_FUNCTION_ONLY",
+        [
+          "recall stopping",
+          "retrieval censoring",
+          "open set search stopping"
+        ]
+      ],
+      [
+        "PROBLEM_DECOMPOSITION",
+        [
+          "documented problem decomposition"
+        ]
+      ],
+      [
+        "PARENT_DISCIPLINE_HISTORY",
+        [
+          "capture recapture",
+          "conservative contextual bandits"
+        ]
+      ],
+      [
+        "BENCHMARK_IMPLEMENTATION",
+        [
+          "AutoResearchBench Wide",
+          "SAGE",
+          "AgentSLR",
+          "MetaSyn"
+        ]
+      ],
+      [
+        "CITED_BY_RELATED",
+        [
+          "documented cited-by/related-work audit"
+        ]
+      ],
+      [
+        "HOSTILE_ALREADY_SOLVED",
+        [
+          "assume already solved: coverage estimator licenses task closure"
+        ]
+      ],
+      [
+        "CITED_BY_RELATED",
+        [
+          "related-work expansion; no residual change"
+        ]
+      ],
+      [
+        "HOSTILE_ALREADY_SOLVED",
+        [
+          "assume already solved: coverage estimator licenses task closure"
+        ]
+      ],
+      [
+        "HOSTILE_ALREADY_SOLVED",
+        [
+          "assume already solved: conservative bandit literature search stopping"
+        ]
+      ]
+    ],
+    "snapshot_date": "2026-08-17",
+    "snapshot_hash": "068b98a4b1f4e8d150bb244cec8bc334ee027cba7a24014dcde6cc989004f6d4",
+    "source_ids": [
+      "documented-audit",
+      "arxiv:2604.25256",
+      "arxiv:2412.06165",
+      "arxiv:2002.00467"
+    ]
+  },
+  "smallest_residual": "earned route identity + censored provider unavailability + question-conditioned read state + non-authoritative route stopping",
+  "snapshot_hash": "068b98a4b1f4e8d150bb244cec8bc334ee027cba7a24014dcde6cc989004f6d4",
+  "unresolved_search_routes": [
+    "AutoResearchBench Wide official run",
+    "Super Research full text"
+  ],
+  "unresolved_sources": [
+    "arxiv:2603.00582",
+    "autoresearchbench:wide-unexecuted"
+  ]
+}

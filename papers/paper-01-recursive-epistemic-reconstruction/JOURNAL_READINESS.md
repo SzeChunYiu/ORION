@@ -111,13 +111,13 @@ Statistics:
 
 Freeze plotting code/spec before final outcome analysis.
 
-- [x] **Figure P1-1:** benchmark protocol diagram showing hidden cause, observable trace, allowed interventions and protected labels. (`manuscript/figures/P1-1_protocol_diagram.pdf`)
+- [x] **Figure P1-1:** benchmark protocol diagram showing hidden cause, observable trace, allowed interventions and protected labels. (`manuscript/figures/P1-1_protocol_diagram.pdf`, 49.1K)
 - [x] **Figure P1-2:** root success by task family and baseline with uncertainty intervals. (`results/figures/P1-2_main_outcome.pdf`, 19.3K)
 - [x] **Figure P1-3:** false-reframe rate vs hidden-shift success (selectivity frontier). (`results/figures/P1-3_selectivity_frontier.pdf`, 17.4K)
 - [x] **Figure P1-4:** reopen precision/recall or F1 by dependency depth. (`results/figures/P1-4_reopening.pdf`, 31.7K)
 - [x] **Figure P1-5:** cost-to-success / success-cost Pareto frontier. (`results/figures/P1-5_efficiency.pdf`, 17.3K)
 - [x] **Figure P1-6:** invariant/trace error vs recursion depth. (`results/figures/P1-6_recursion_stability.pdf`, 24.1K)
-- [x] **Table P1-1:** nearest-work mechanism matrix. (`manuscript/tables/P1-T1_nearest_work.tex`; source `evidence/NEAREST_WORK_MATRIX_V2.md`)
+- [x] **Table P1-1:** nearest-work mechanism matrix. (`manuscript/tables/P1-T1_nearest_work.tex`, 11.9K; `\input` at `manuscript/sections/06-related-work-boundary.tex:35`, `\ref{tab:P1-T1}` at :7)
 - [x] **Table P1-2:** full ablation table with delta and confidence interval. (`results/P1-T2_baseline_ablation_results.md`, 23.3K)
 - [x] **Table P1-3:** failure taxonomy with representative blinded cases. (`results/P1-T3_failure_taxonomy.md`, 5.0K)
 
@@ -147,9 +147,9 @@ Freeze plotting code/spec before final outcome analysis.
 - [x] `make paper01-results` or equivalent to regenerate all result figures/tables;
 - [x] clean-environment reproduction instructions and expected runtime/cost;
 - [ ] permanent archive snapshot/DOI for final artifact where possible;
-- [x] independent reproduction of headline result. (PR #259 / `61fd591`: independent session regenerated T2 from the raw live-provider archive via `python3 -m orion.study.p1.tables`)
+- [ ] independent reproduction of headline result.
 
-**Status:** 8/9 done. The `make paper01-results` target regenerates publication tables from archived raw records. `REPRODUCE.md` documents exact commands, inputs, outputs, and exit semantics. Independent table reproduction from the raw archive is in-repo. **Missing:** permanent DOI archive (external archival account; not a local scientific gate). H1 on the frozen 48-case TEST arm remains `NOT_SUPPORTED` / `UNDERPOWERED` and does **not** authorize `PEER_REVIEW_READY`.
+**Status:** 7/9 done. The `make paper01-results` target regenerates publication tables from archived raw records. `REPRODUCE.md` documents exact commands, inputs, outputs, and exit semantics. **Missing:** permanent DOI archive (post-publication), independent reproduction of headline result (requires external campaign completion).
 
 ## Done definition
 

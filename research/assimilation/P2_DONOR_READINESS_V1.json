@@ -1,0 +1,266 @@
+{
+  "closes_gate": null,
+  "grants_authority": "NONE",
+  "how_p2_differs_from_p1": "P1's matrix names individual works with arXiv identifiers and records whether each body was read. P2's table names parents, several of which are literature families rather than artifacts, and records no access state at all. So P2's gap is upstream of P1's: before a receipt can be blocked on missing ORION-side fields, a donor artifact has to exist to bind to.",
+  "issue": 318,
+  "mechanisms": [
+    {
+      "disposition_note": "Explicitly not claimed: automating the SLR pipeline is an active, occupied field. It enters only as the strongest protocol-driven baseline where runnable. Its code carries no licence, so a frozen redistributable snapshot is not possible.",
+      "donor_is_named_artifact": true,
+      "mechanism": "End-to-end protocol-driven SLR automation",
+      "parent": "AgentSLR",
+      "receipt_blockers": [
+        "claim.orion_name",
+        "claim.delta",
+        "claim.target_mechanic_ids",
+        "claim.orion_authority",
+        "mechanism.donor_authority",
+        "mechanism.assumptions",
+        "no access field recorded; body-read state is unknown"
+      ],
+      "receipt_sealable": false,
+      "verdict": "REJECT *(as novelty)* / COMPOSE *(as baseline)*"
+    },
+    {
+      "disposition_note": "Task-family split adopted verbatim as the external evaluation shape; ORION does not redefine the task. Official execution is `CANNOT_CHECK` (unpublished paper-search backend), which changes what we can *run*, not what we adopt.",
+      "donor_is_named_artifact": true,
+      "mechanism": "Split of discovery into specific-target (Deep) and open-set (Wide) tasks",
+      "parent": "AutoResearchBench",
+      "receipt_blockers": [
+        "claim.orion_name",
+        "claim.delta",
+        "claim.target_mechanic_ids",
+        "claim.orion_authority",
+        "mechanism.donor_authority",
+        "mechanism.assumptions",
+        "no access field recorded; body-read state is unknown"
+      ],
+      "receipt_sealable": false,
+      "verdict": "ADOPT"
+    },
+    {
+      "disposition_note": "Kept, but conditioned: read state is keyed on (work, content digest, extraction schema, frame) rather than a seen/unseen bit, so a changed question reopens a source without pretending it is newly discovered. The adaptation is the thing under test in H4.",
+      "donor_is_named_artifact": false,
+      "mechanism": "\"Already reviewed\" state in technology-assisted review",
+      "parent": "CAL / TAR",
+      "receipt_blockers": [
+        "claim.orion_name",
+        "claim.delta",
+        "claim.target_mechanic_ids",
+        "claim.orion_authority",
+        "mechanism.donor_authority",
+        "mechanism.assumptions",
+        "no access field recorded; body-read state is unknown",
+        "parent 'CAL / TAR' names a literature family, not an artifact; a representative primary work must be chosen before a donor id exists"
+      ],
+      "receipt_sealable": false,
+      "verdict": "ADAPT"
+    },
+    {
+      "disposition_note": "Kept as a diagnostic and inverted in authority: the estimator may refuse, is undefined at zero overlap, reports its most conservative admissible value, and can never certify closure. Adaptive routes are not treated as independent capture occasions.",
+      "donor_is_named_artifact": false,
+      "mechanism": "Capture\u2013recapture estimation of what remains unfound",
+      "parent": "CMR literature",
+      "receipt_blockers": [
+        "claim.orion_name",
+        "claim.delta",
+        "claim.target_mechanic_ids",
+        "claim.orion_authority",
+        "mechanism.donor_authority",
+        "mechanism.assumptions",
+        "no access field recorded; body-read state is unknown",
+        "parent 'CMR literature' names a literature family, not an artifact; a representative primary work must be chosen before a donor id exists"
+      ],
+      "receipt_sealable": false,
+      "verdict": "ADAPT"
+    },
+    {
+      "disposition_note": "Adopted as a measurement requirement: a retrieval ceiling never stands in for inclusion recall, and the two are reported separately. Judged report metrics need an LLM key, so the *external* MetaSyn run stays `CANNOT_CHECK`; the stage separation is enforced in our own metrics regardless.",
+      "donor_is_named_artifact": true,
+      "mechanism": "Retrieval recall and eligibility/screening recall as separate stages",
+      "parent": "MetaSyn",
+      "receipt_blockers": [
+        "claim.orion_name",
+        "claim.delta",
+        "claim.target_mechanic_ids",
+        "claim.orion_authority",
+        "mechanism.donor_authority",
+        "mechanism.assumptions",
+        "no access field recorded; body-read state is unknown"
+      ],
+      "receipt_sealable": false,
+      "verdict": "ADOPT"
+    },
+    {
+      "disposition_note": "Enters as a required baseline (one-pass RAG), not as a contribution. Its ceiling is exactly what a route-governance claim has to beat.",
+      "donor_is_named_artifact": true,
+      "mechanism": "One-pass scientific RAG over a fixed index",
+      "parent": "OpenScholar",
+      "receipt_blockers": [
+        "claim.orion_name",
+        "claim.delta",
+        "claim.target_mechanic_ids",
+        "claim.orion_authority",
+        "mechanism.donor_authority",
+        "mechanism.assumptions",
+        "no access field recorded; body-read state is unknown"
+      ],
+      "receipt_sealable": false,
+      "verdict": "COMPOSE"
+    },
+    {
+      "disposition_note": "The staging is kept as far as screening; organization is out of scope because Paper II measures discovery, not synthesis. The stage boundary is retained so a retrieval win cannot be claimed from a screening result.",
+      "donor_is_named_artifact": true,
+      "mechanism": "Discovery \u2192 selection \u2192 organization staging",
+      "parent": "ResearchArena",
+      "receipt_blockers": [
+        "claim.orion_name",
+        "claim.delta",
+        "claim.target_mechanic_ids",
+        "claim.orion_authority",
+        "mechanism.donor_authority",
+        "mechanism.assumptions",
+        "no access field recorded; body-read state is unknown"
+      ],
+      "receipt_sealable": false,
+      "verdict": "ADAPT"
+    },
+    {
+      "disposition_note": "Struck, not deferred: the 200k-paper corpus is published nowhere, no official evaluator exists, the open-ended weights are never stated, and the gold is public plaintext that a live provider can return verbatim. Nothing here is fixable by waiting.",
+      "donor_is_named_artifact": true,
+      "mechanism": "SAGE as an executable retrieval benchmark",
+      "parent": "SAGE",
+      "receipt_blockers": [
+        "claim.orion_name",
+        "claim.delta",
+        "claim.target_mechanic_ids",
+        "claim.orion_authority",
+        "mechanism.donor_authority",
+        "mechanism.assumptions",
+        "no access field recorded; body-read state is unknown"
+      ],
+      "receipt_sealable": false,
+      "verdict": "REJECT"
+    },
+    {
+      "disposition_note": "Becomes a promotion gate: a same-call BM25/keyword baseline runs inside every comparison, and ORION may not be promoted over an untested lexical alternative. This is an obligation on us, so it survives SAGE being unrunnable as a benchmark.",
+      "donor_is_named_artifact": true,
+      "mechanism": "Strong lexical retrieval as the reference point, not a straw man",
+      "parent": "SAGE",
+      "receipt_blockers": [
+        "claim.orion_name",
+        "claim.delta",
+        "claim.target_mechanic_ids",
+        "claim.orion_authority",
+        "mechanism.donor_authority",
+        "mechanism.assumptions",
+        "no access field recorded; body-read state is unknown"
+      ],
+      "receipt_sealable": false,
+      "verdict": "ADOPT"
+    },
+    {
+      "disposition_note": "Kept as the shape of a stopping guarantee, but split in two: a route may stop while the task stays open. The parent's binding constraint \u2014 a work-reduction number means nothing without a retained-recall guarantee \u2014 is adopted unchanged.",
+      "donor_is_named_artifact": false,
+      "mechanism": "Statistical stopping against a recall target",
+      "parent": "SR stopping literature",
+      "receipt_blockers": [
+        "claim.orion_name",
+        "claim.delta",
+        "claim.target_mechanic_ids",
+        "claim.orion_authority",
+        "mechanism.donor_authority",
+        "mechanism.assumptions",
+        "no access field recorded; body-read state is unknown",
+        "parent 'SR stopping literature' names a literature family, not an artifact; a representative primary work must be chosen before a donor id exists"
+      ],
+      "receipt_sealable": false,
+      "verdict": "ADAPT"
+    },
+    {
+      "disposition_note": "Reused as query-derivation identity: diversification usually optimises a result set, here it is evidence about whether two routes are independent capture occasions.",
+      "donor_is_named_artifact": false,
+      "mechanism": "Query diversification to cover distinct intents",
+      "parent": "diversification literature",
+      "receipt_blockers": [
+        "claim.orion_name",
+        "claim.delta",
+        "claim.target_mechanic_ids",
+        "claim.orion_authority",
+        "mechanism.donor_authority",
+        "mechanism.assumptions",
+        "no access field recorded; body-read state is unknown",
+        "parent 'diversification literature' names a literature family, not an artifact; a representative primary work must be chosen before a donor id exists"
+      ],
+      "receipt_sealable": false,
+      "verdict": "ADAPT"
+    },
+    {
+      "disposition_note": "Supplies the multi-backend substrate that makes route identity meaningful. Merging is done over content digests rather than result lists, which is a strictness change, not a novelty claim.",
+      "donor_is_named_artifact": false,
+      "mechanism": "Resource selection and result merging across heterogeneous backends",
+      "parent": "federated search",
+      "receipt_blockers": [
+        "claim.orion_name",
+        "claim.delta",
+        "claim.target_mechanic_ids",
+        "claim.orion_authority",
+        "mechanism.donor_authority",
+        "mechanism.assumptions",
+        "no access field recorded; body-read state is unknown",
+        "parent 'federated search' names a literature family, not an artifact; a representative primary work must be chosen before a donor id exists"
+      ],
+      "receipt_sealable": false,
+      "verdict": "COMPOSE"
+    },
+    {
+      "disposition_note": "Enters as the rationale for route switching and legitimate re-reads. No foraging model is fitted; the mechanism informs the control policy, it is not itself evaluated.",
+      "donor_is_named_artifact": false,
+      "mechanism": "Value-of-patch calculus for when to leave or revisit",
+      "parent": "information foraging",
+      "receipt_blockers": [
+        "claim.orion_name",
+        "claim.delta",
+        "claim.target_mechanic_ids",
+        "claim.orion_authority",
+        "mechanism.donor_authority",
+        "mechanism.assumptions",
+        "no access field recorded; body-read state is unknown",
+        "parent 'information foraging' names a literature family, not an artifact; a representative primary work must be chosen before a donor id exists"
+      ],
+      "receipt_sealable": false,
+      "verdict": "COMPOSE"
+    },
+    {
+      "disposition_note": "Expert review cases are optional in the protocol and are not in the frozen campaign: they need domain experts we do not have. Returns if expert adjudication becomes available. The study's finding \u2014 that expert search is not yet reproduced \u2014 is kept as a limitation, not converted into a target.",
+      "donor_is_named_artifact": false,
+      "mechanism": "Expert-versus-AI reference overlap as an evaluation object",
+      "parent": "physics/astro/cosmology study",
+      "receipt_blockers": [
+        "claim.orion_name",
+        "claim.delta",
+        "claim.target_mechanic_ids",
+        "claim.orion_authority",
+        "mechanism.donor_authority",
+        "mechanism.assumptions",
+        "no access field recorded; body-read state is unknown",
+        "parent 'physics/astro/cosmology study' names a literature family, not an artifact; a representative primary work must be chosen before a donor id exists"
+      ],
+      "receipt_sealable": false,
+      "verdict": "DEFER"
+    }
+  ],
+  "receipt_schema": "orion.mechanism-assimilation-receipt.v1",
+  "schema_version": "orion.p2-donor-readiness.v1",
+  "source": "papers/paper-02-open-world-scientific-discovery/notes/nearest-work/mechanism-verdicts.md",
+  "subject_commit": "4fe398c636f1c0d79224f305fc1438fe4711e58b",
+  "summary": {
+    "distinct_parents": 13,
+    "donor_mechanisms": 14,
+    "mechanisms_bindable_to_an_artifact": 7,
+    "mechanisms_from_a_literature_family": 7,
+    "parents_naming_an_artifact": 6,
+    "receipt_sealable_now": 0,
+    "with_recorded_access": 0
+  }
+}

@@ -1,6 +1,7 @@
 # ORION-P3 Claim Ledger V1
 
-**Status:** ACTIVE. Claims are promoted only when the named artifact has the stated authority.
+**Status:** ACTIVE. Claims are promoted only when the named artifact has the stated authority.  
+**Manuscript map (2026-08-17):** `CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md`. Checkbox audit: `evidence/JOURNAL_READINESS_CHECKBOX_AUDIT_2026-08-17.md`. Remaining `CANNOT_CHECK`: `evidence/CANNOT_CHECK_REMAINING_V1.md`.
 
 | ID | Claim | Required artifact | Current authority/status |
 |---|---|---|---|

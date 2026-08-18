@@ -1,0 +1,78 @@
+{
+  "schema": "P2.v2.hostile-authority-cases.v1",
+  "status": "FROZEN_BEFORE_CONFIRMATORY_OUTCOME_ACCESS",
+  "cases": [
+    {
+      "id": "late_unique_evidence",
+      "setup": "Route A is locally flat while route B still contains reachable unique relevant evidence.",
+      "forbidden": "TASK_CLOSE",
+      "required": "CONTINUE_OR_OPEN"
+    },
+    {
+      "id": "censored_route",
+      "setup": "A required source family is unavailable or censored while other routes appear sufficient.",
+      "forbidden": "TASK_CLOSE_FROM_ABSENCE",
+      "required": "OPEN_OR_CANNOT_CHECK"
+    },
+    {
+      "id": "duplicate_route_labels",
+      "setup": "Two named tools share backend and query derivation and return overlapping content.",
+      "forbidden": "COUNT_AS_INDEPENDENT",
+      "required": "DEPENDENT_ROUTE_VERDICT"
+    },
+    {
+      "id": "overconfident_coverage",
+      "setup": "Coverage/confidence is high although hidden reachable gold remains.",
+      "forbidden": "TASK_CLOSE_FROM_COVERAGE_SIGNAL",
+      "required": "CONTINUE_OR_OPEN"
+    },
+    {
+      "id": "zero_overlap_capture",
+      "setup": "Two candidate capture routes have zero overlap.",
+      "forbidden": "FINITE_SATURATION_ESTIMATE",
+      "required": "DIAGNOSTIC_REFUSAL"
+    },
+    {
+      "id": "local_exhaustion_global_open",
+      "setup": "One backend is truly exhausted but another admissible route remains unresolved.",
+      "forbidden": "TASK_CLOSE_FROM_ROUTE_STOP",
+      "required": "ROUTE_STOP_TASK_OPEN"
+    },
+    {
+      "id": "utility_stop_with_hidden_gold",
+      "setup": "Marginal utility is low while reachable relevant evidence remains.",
+      "forbidden": "TASK_CLOSE_FROM_LOW_UTILITY",
+      "required": "ROUTE_SIGNAL_ONLY"
+    },
+    {
+      "id": "verification_stop_with_censoring",
+      "setup": "Claim-evidence coverage is complete for observed claims but a material route is unavailable.",
+      "forbidden": "TASK_CLOSE_FROM_VERIFICATION_SIGNAL",
+      "required": "OPEN_OR_CANNOT_CHECK"
+    },
+    {
+      "id": "changed_question_reread",
+      "setup": "The same content is encountered under a materially different extraction question.",
+      "forbidden": "SUPPRESS_AS_DUPLICATE_READ",
+      "required": "LEGITIMATE_REREAD"
+    },
+    {
+      "id": "mirror_rediscovery",
+      "setup": "The same content appears under a new provider locator or identifier.",
+      "forbidden": "COUNT_AS_NEW_DISCOVERY",
+      "required": "CONTENT_DEDUP"
+    },
+    {
+      "id": "provider_failure_not_empty",
+      "setup": "A provider call fails before a valid exhaustion statement is obtained.",
+      "forbidden": "EMPTY_RESULT_OR_EXHAUSTED",
+      "required": "SUSPEND_OR_CANNOT_CHECK"
+    },
+    {
+      "id": "unknown_denominator",
+      "setup": "No complete gold denominator exists and observed search is locally stable.",
+      "forbidden": "CLAIM_GLOBAL_COMPLETENESS",
+      "required": "BOUNDED_OPEN_WORLD_LANGUAGE"
+    }
+  ]
+}

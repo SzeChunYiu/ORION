@@ -1,0 +1,707 @@
+{
+  "arm_module": "orion.study.p1.contradiction.top_responsibility",
+  "cases": [
+    {
+      "abstained": false,
+      "case_id": "p1-c001",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "MEASUREMENT",
+      "responsibility_predicted": "MEASUREMENT",
+      "split": "PILOT",
+      "task_family": "hidden_measurement_or_operationalization"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c002",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "EVALUATOR",
+      "responsibility_predicted": "EVALUATOR",
+      "split": "PILOT",
+      "task_family": "hidden_measurement_or_operationalization"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c003",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EVIDENCE",
+      "responsibility_predicted": "EVIDENCE",
+      "split": "PILOT",
+      "task_family": "evidence_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c004",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "INTERFACE",
+      "responsibility_predicted": "INTERFACE",
+      "split": "PILOT",
+      "task_family": "hidden_decomposition_or_interface"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c005",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "DECOMPOSITION",
+      "responsibility_predicted": "DECOMPOSITION",
+      "split": "PILOT",
+      "task_family": "hidden_decomposition_or_interface"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c006",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EXECUTION",
+      "responsibility_predicted": "EXECUTION",
+      "split": "PILOT",
+      "task_family": "execution_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c007",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "MEASUREMENT",
+      "responsibility_predicted": "MEASUREMENT",
+      "split": "PILOT",
+      "task_family": "hidden_measurement_or_operationalization"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c008",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "SEARCH",
+      "responsibility_predicted": "SEARCH",
+      "split": "PILOT",
+      "task_family": "hidden_parent_domain"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c009",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EVIDENCE",
+      "responsibility_predicted": "EVIDENCE",
+      "split": "PILOT",
+      "task_family": "evidence_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c010",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "REPRESENTATION",
+      "responsibility_predicted": "REPRESENTATION",
+      "split": "PILOT",
+      "task_family": "hidden_representation_or_coordinate_system"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c011",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EXECUTION",
+      "responsibility_predicted": "EXECUTION",
+      "split": "PILOT",
+      "task_family": "execution_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c012",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EXECUTION",
+      "responsibility_predicted": "EXECUTION",
+      "split": "PILOT",
+      "task_family": "execution_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c013",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "REPRESENTATION",
+      "responsibility_predicted": "REPRESENTATION",
+      "split": "PILOT",
+      "task_family": "hidden_representation_or_coordinate_system"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c014",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "REPRESENTATION",
+      "responsibility_predicted": "REPRESENTATION",
+      "split": "PILOT",
+      "task_family": "hidden_representation_or_coordinate_system"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c015",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EVIDENCE",
+      "responsibility_predicted": "EVIDENCE",
+      "split": "PILOT",
+      "task_family": "evidence_only_negative_control"
+    },
+    {
+      "abstained": true,
+      "case_id": "p1-c016",
+      "correct": false,
+      "is_negative_control": false,
+      "responsibility_gold": "SEARCH",
+      "responsibility_predicted": null,
+      "split": "PILOT",
+      "task_family": "hidden_parent_domain"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c017",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "SEARCH",
+      "responsibility_predicted": "SEARCH",
+      "split": "PILOT",
+      "task_family": "hidden_parent_domain"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c018",
+      "correct": false,
+      "is_negative_control": false,
+      "responsibility_gold": "DECOMPOSITION",
+      "responsibility_predicted": "INTERFACE",
+      "split": "PILOT",
+      "task_family": "hidden_decomposition_or_interface"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c101",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EXECUTION",
+      "responsibility_predicted": "EXECUTION",
+      "split": "TEST",
+      "task_family": "execution_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c102",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EVIDENCE",
+      "responsibility_predicted": "EVIDENCE",
+      "split": "TEST",
+      "task_family": "evidence_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c103",
+      "correct": false,
+      "is_negative_control": false,
+      "responsibility_gold": "DECOMPOSITION",
+      "responsibility_predicted": "INTERFACE",
+      "split": "TEST",
+      "task_family": "hidden_decomposition_or_interface"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c104",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "DECOMPOSITION",
+      "responsibility_predicted": "DECOMPOSITION",
+      "split": "TEST",
+      "task_family": "hidden_decomposition_or_interface"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c105",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "SEARCH",
+      "responsibility_predicted": "SEARCH",
+      "split": "TEST",
+      "task_family": "hidden_parent_domain"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c106",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "SEARCH",
+      "responsibility_predicted": "SEARCH",
+      "split": "TEST",
+      "task_family": "hidden_parent_domain"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c107",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EXECUTION",
+      "responsibility_predicted": "EXECUTION",
+      "split": "TEST",
+      "task_family": "execution_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c108",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EVIDENCE",
+      "responsibility_predicted": "EVIDENCE",
+      "split": "TEST",
+      "task_family": "evidence_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c109",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "REPRESENTATION",
+      "responsibility_predicted": "REPRESENTATION",
+      "split": "TEST",
+      "task_family": "hidden_representation_or_coordinate_system"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c110",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "REPRESENTATION",
+      "responsibility_predicted": "REPRESENTATION",
+      "split": "TEST",
+      "task_family": "hidden_representation_or_coordinate_system"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c111",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "INTERFACE",
+      "responsibility_predicted": "INTERFACE",
+      "split": "TEST",
+      "task_family": "hidden_decomposition_or_interface"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c112",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EVIDENCE",
+      "responsibility_predicted": "EVIDENCE",
+      "split": "TEST",
+      "task_family": "evidence_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c113",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "INTERFACE",
+      "responsibility_predicted": "INTERFACE",
+      "split": "TEST",
+      "task_family": "hidden_decomposition_or_interface"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c114",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "INTERFACE",
+      "responsibility_predicted": "INTERFACE",
+      "split": "TEST",
+      "task_family": "hidden_decomposition_or_interface"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c115",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "MEASUREMENT",
+      "responsibility_predicted": "MEASUREMENT",
+      "split": "TEST",
+      "task_family": "hidden_measurement_or_operationalization"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c116",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EXECUTION",
+      "responsibility_predicted": "EXECUTION",
+      "split": "TEST",
+      "task_family": "execution_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c117",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EVIDENCE",
+      "responsibility_predicted": "EVIDENCE",
+      "split": "TEST",
+      "task_family": "evidence_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c118",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "MEASUREMENT",
+      "responsibility_predicted": "MEASUREMENT",
+      "split": "TEST",
+      "task_family": "hidden_measurement_or_operationalization"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c119",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "REPRESENTATION",
+      "responsibility_predicted": "REPRESENTATION",
+      "split": "TEST",
+      "task_family": "hidden_representation_or_coordinate_system"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c120",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "REPRESENTATION",
+      "responsibility_predicted": "REPRESENTATION",
+      "split": "TEST",
+      "task_family": "hidden_representation_or_coordinate_system"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c121",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "MEASUREMENT",
+      "responsibility_predicted": "MEASUREMENT",
+      "split": "TEST",
+      "task_family": "hidden_measurement_or_operationalization"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c122",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "REPRESENTATION",
+      "responsibility_predicted": "REPRESENTATION",
+      "split": "TEST",
+      "task_family": "hidden_representation_or_coordinate_system"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c123",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "SEARCH",
+      "responsibility_predicted": "SEARCH",
+      "split": "TEST",
+      "task_family": "hidden_parent_domain"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c124",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "REPRESENTATION",
+      "responsibility_predicted": "REPRESENTATION",
+      "split": "TEST",
+      "task_family": "hidden_representation_or_coordinate_system"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c125",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EVIDENCE",
+      "responsibility_predicted": "EVIDENCE",
+      "split": "TEST",
+      "task_family": "evidence_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c126",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "EVALUATOR",
+      "responsibility_predicted": "EVALUATOR",
+      "split": "TEST",
+      "task_family": "hidden_measurement_or_operationalization"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c127",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "SEARCH",
+      "responsibility_predicted": "SEARCH",
+      "split": "TEST",
+      "task_family": "hidden_parent_domain"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c128",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EVIDENCE",
+      "responsibility_predicted": "EVIDENCE",
+      "split": "TEST",
+      "task_family": "evidence_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c129",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EXECUTION",
+      "responsibility_predicted": "EXECUTION",
+      "split": "TEST",
+      "task_family": "execution_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c130",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EVIDENCE",
+      "responsibility_predicted": "EVIDENCE",
+      "split": "TEST",
+      "task_family": "evidence_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c131",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "MEASUREMENT",
+      "responsibility_predicted": "MEASUREMENT",
+      "split": "TEST",
+      "task_family": "hidden_measurement_or_operationalization"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c132",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EXECUTION",
+      "responsibility_predicted": "EXECUTION",
+      "split": "TEST",
+      "task_family": "execution_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c133",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "INTERFACE",
+      "responsibility_predicted": "INTERFACE",
+      "split": "TEST",
+      "task_family": "hidden_decomposition_or_interface"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c134",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "SEARCH",
+      "responsibility_predicted": "SEARCH",
+      "split": "TEST",
+      "task_family": "hidden_parent_domain"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c135",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EXECUTION",
+      "responsibility_predicted": "EXECUTION",
+      "split": "TEST",
+      "task_family": "execution_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c136",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EXECUTION",
+      "responsibility_predicted": "EXECUTION",
+      "split": "TEST",
+      "task_family": "execution_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c137",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "REPRESENTATION",
+      "responsibility_predicted": "REPRESENTATION",
+      "split": "TEST",
+      "task_family": "hidden_representation_or_coordinate_system"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c138",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "INTERFACE",
+      "responsibility_predicted": "INTERFACE",
+      "split": "TEST",
+      "task_family": "hidden_decomposition_or_interface"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c139",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "MEASUREMENT",
+      "responsibility_predicted": "MEASUREMENT",
+      "split": "TEST",
+      "task_family": "hidden_measurement_or_operationalization"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c140",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "EVALUATOR",
+      "responsibility_predicted": "EVALUATOR",
+      "split": "TEST",
+      "task_family": "hidden_measurement_or_operationalization"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c141",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EXECUTION",
+      "responsibility_predicted": "EXECUTION",
+      "split": "TEST",
+      "task_family": "execution_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c142",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "SEARCH",
+      "responsibility_predicted": "SEARCH",
+      "split": "TEST",
+      "task_family": "hidden_parent_domain"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c143",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "SEARCH",
+      "responsibility_predicted": "SEARCH",
+      "split": "TEST",
+      "task_family": "hidden_parent_domain"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c144",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "SEARCH",
+      "responsibility_predicted": "SEARCH",
+      "split": "TEST",
+      "task_family": "hidden_parent_domain"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c145",
+      "correct": true,
+      "is_negative_control": true,
+      "responsibility_gold": "EVIDENCE",
+      "responsibility_predicted": "EVIDENCE",
+      "split": "TEST",
+      "task_family": "evidence_only_negative_control"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c146",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "REPRESENTATION",
+      "responsibility_predicted": "REPRESENTATION",
+      "split": "TEST",
+      "task_family": "hidden_representation_or_coordinate_system"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c147",
+      "correct": false,
+      "is_negative_control": false,
+      "responsibility_gold": "DECOMPOSITION",
+      "responsibility_predicted": "INTERFACE",
+      "split": "TEST",
+      "task_family": "hidden_decomposition_or_interface"
+    },
+    {
+      "abstained": false,
+      "case_id": "p1-c148",
+      "correct": true,
+      "is_negative_control": false,
+      "responsibility_gold": "EVALUATOR",
+      "responsibility_predicted": "EVALUATOR",
+      "split": "TEST",
+      "task_family": "hidden_measurement_or_operationalization"
+    }
+  ],
+  "claim_scope": "Descriptive diagnostic replay of the LLM-free reduction layer. Not H1 support, not a matched baseline comparison, and not evidence of external superiority.",
+  "closes_gate": null,
+  "grants_authority": "NONE",
+  "issue": 283,
+  "mismatches": [
+    {
+      "case_id": "p1-c016",
+      "responsibility_gold": "SEARCH",
+      "responsibility_predicted": null
+    },
+    {
+      "case_id": "p1-c018",
+      "responsibility_gold": "DECOMPOSITION",
+      "responsibility_predicted": "INTERFACE"
+    },
+    {
+      "case_id": "p1-c103",
+      "responsibility_gold": "DECOMPOSITION",
+      "responsibility_predicted": "INTERFACE"
+    },
+    {
+      "case_id": "p1-c147",
+      "responsibility_gold": "DECOMPOSITION",
+      "responsibility_predicted": "INTERFACE"
+    }
+  ],
+  "schema_version": "orion.p1.mechanical-arm-case-table.v1",
+  "split_suite_fingerprints": {
+    "PILOT": "7a50a2d5025beb7dea4835911fa7dbf4a191431447397c73939c276b71dc49b5",
+    "TEST": "21b461d89280631b93b766d6fb000c7f9f5fbeccee7cb6664f238c2c5c8e6420"
+  },
+  "subject_commit": "ee97c7121170c8376271a31502b3e0629c51d062",
+  "suite_fingerprint": "67282069fa3feb8a85878abf3353da0d1fe779d9b453a49d1bedb7181f3166ee",
+  "summary": {
+    "abstentions": 1,
+    "controls_given_a_formulation_responsibility": 0,
+    "correct": 62,
+    "formulation_cases": 44,
+    "formulation_correct": 40,
+    "negative_controls": 22,
+    "total_cases": 66
+  }
+}
