@@ -67,7 +67,9 @@ The additional boundary is scientific completion: low expected information gain,
 
 ### 2.3 Planning abstraction and representation change
 
-Planning research has long shown that representation and abstraction affect solvability, search complexity and solution preservation. Sound/complete abstraction or plan-preserving maps can therefore provide strong transport witnesses for reachability-related obligations.
+Planning research has long shown that representation and abstraction affect solvability, search complexity and solution preservation. The canonical preservation result is ordered monotonicity [Knoblock 1994], which “guarantees that the structure of an abstract solution is not changed in the process of refining it”. Sound/complete abstraction or plan-preserving maps can therefore provide strong transport witnesses for reachability-related obligations.
+
+This inheritance is not one-directional, and stating it as though it were would misrepresent the field. Abstraction is not free: hierarchies without a refinement guarantee can make search *exponentially worse*, and any scheme that transports an obligation across a representation change inherits that risk rather than escaping it. The nearest sources for both halves, including the downward refinement property and the negative result, are recorded under  with their retrieval status; only  has been verified against its primary source so far, and only it is cited here.
 
 P7 does not claim the existence or value of abstraction. It asks what else must be preserved when the object being transported is a scientific closure certificate rather than only a plan property.
 
