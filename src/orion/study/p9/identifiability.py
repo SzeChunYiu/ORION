@@ -9,6 +9,7 @@ both cases without extra information or leakage.
 
 from __future__ import annotations
 
+from collections import Counter
 from dataclasses import dataclass
 from typing import Sequence
 
@@ -27,6 +28,7 @@ class IdentifiabilityReport:
     mode: ViewMode
     sample_count: int
     unique_fingerprint_count: int
+    deterministic_accuracy_ceiling: float
     collisions: tuple[IdentifiabilityCollision, ...]
 
     @property
@@ -42,7 +44,16 @@ def analyze_identifiability(
     worlds: Sequence[P9StructuralWorld],
     mode: ViewMode,
 ) -> IdentifiabilityReport:
-    """Return exact collisions between one model view and evaluator targets."""
+    """Return exact collisions and the empirical deterministic accuracy ceiling.
+
+    The ceiling is the best possible accuracy of any deterministic predictor that
+    receives *only* the selected fingerprint on this exact frozen sample.  For
+    each fingerprint equivalence class, such a predictor can choose only one
+    output, so its best score is the size of that class's majority target.
+    """
+
+    if not worlds:
+        raise ValueError("at least one world is required")
 
     seen_world_ids: set[str] = set()
     groups: dict[str, list[P9StructuralWorld]] = {}
@@ -55,8 +66,11 @@ def analyze_identifiability(
         groups.setdefault(world.fingerprint(mode), []).append(world)
 
     collisions: list[IdentifiabilityCollision] = []
+    ceiling_correct = 0
     for fingerprint, group in groups.items():
-        targets = tuple(sorted({_target_key(world) for world in group}))
+        target_counts = Counter(_target_key(world) for world in group)
+        targets = tuple(sorted(target_counts))
+        ceiling_correct += max(target_counts.values())
         if len(targets) <= 1:
             continue
         collisions.append(
@@ -72,5 +86,6 @@ def analyze_identifiability(
         mode=mode,
         sample_count=len(worlds),
         unique_fingerprint_count=len(groups),
+        deterministic_accuracy_ceiling=ceiling_correct / len(worlds),
         collisions=tuple(collisions),
     )
