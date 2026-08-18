@@ -1,0 +1,214 @@
+{
+  "schema_version": "orion.p5.revision-level-v3.protected-suite.v1",
+  "suite_id": "P5.self-orion-v3.development-panel.v1",
+  "development_only": true,
+  "created_before_outcome_access": true,
+  "suite_nonce": "3141592653589793238462643383279502884197169399375105820974944592",
+  "revision_invasiveness": {
+    "UNRESOLVED": 0,
+    "NO_REVISION": 0,
+    "EVIDENCE_REPAIR": 1,
+    "EXECUTION_REPAIR": 1,
+    "EVALUATOR_REPAIR": 1,
+    "MEASUREMENT_REPAIR": 2,
+    "WITHIN_CLASS_MODEL_REPAIR": 2,
+    "MODEL_CLASS_EXPANSION": 4,
+    "REPRESENTATION_REGIME_REPAIR": 5,
+    "BROAD_SELF_EDIT": 6
+  },
+  "cases": [
+    {
+      "case_id": "V3-DEV-001",
+      "symptom_family": "prediction-residual-A",
+      "visible_symptom": "A held-out prediction disagrees with observation.",
+      "candidate_visible_context": {"domain": "toy-physics", "surface": "same-residual"},
+      "competing_revision_classes": ["EVIDENCE_REPAIR", "WITHIN_CLASS_MODEL_REPAIR", "MODEL_CLASS_EXPANSION"],
+      "hypotheses": {
+        "EVIDENCE_REPAIR": {"inspect-evidence-model": ["MISSING_SOURCE"]},
+        "WITHIN_CLASS_MODEL_REPAIR": {"inspect-evidence-model": ["PARAMETER_MISS"]},
+        "MODEL_CLASS_EXPANSION": {"inspect-evidence-model": ["STRUCTURAL_MISS"]}
+      },
+      "allowed_diagnostics": [{"action_id": "inspect-evidence-model", "cost": 1.0}],
+      "diagnostic_budget": 1.0,
+      "protected_diagnostic_outcomes": {"inspect-evidence-model": "MISSING_SOURCE"},
+      "protected_gold_revision_class": "EVIDENCE_REPAIR",
+      "preservation_obligations": ["preserve:model-class", "preserve:evaluator"],
+      "allowed_change_surface": ["evidence/acquisition"],
+      "protected_surface": ["evaluator", "model/class"],
+      "fresh_transfer_family": "fresh:prediction-residual-A"
+    },
+    {
+      "case_id": "V3-DEV-002",
+      "symptom_family": "prediction-residual-A",
+      "visible_symptom": "A held-out prediction disagrees with observation.",
+      "candidate_visible_context": {"domain": "toy-physics", "surface": "same-residual"},
+      "competing_revision_classes": ["EVIDENCE_REPAIR", "WITHIN_CLASS_MODEL_REPAIR", "MODEL_CLASS_EXPANSION"],
+      "hypotheses": {
+        "EVIDENCE_REPAIR": {"inspect-evidence-model": ["MISSING_SOURCE"]},
+        "WITHIN_CLASS_MODEL_REPAIR": {"inspect-evidence-model": ["PARAMETER_MISS"]},
+        "MODEL_CLASS_EXPANSION": {"inspect-evidence-model": ["STRUCTURAL_MISS"]}
+      },
+      "allowed_diagnostics": [{"action_id": "inspect-evidence-model", "cost": 1.0}],
+      "diagnostic_budget": 1.0,
+      "protected_diagnostic_outcomes": {"inspect-evidence-model": "STRUCTURAL_MISS"},
+      "protected_gold_revision_class": "MODEL_CLASS_EXPANSION",
+      "preservation_obligations": ["preserve:evidence", "preserve:evaluator"],
+      "allowed_change_surface": ["model/class"],
+      "protected_surface": ["evaluator", "evidence/gold"],
+      "fresh_transfer_family": "fresh:prediction-residual-A"
+    },
+    {
+      "case_id": "V3-DEV-003",
+      "symptom_family": "prediction-residual-A",
+      "visible_symptom": "A held-out prediction disagrees with observation.",
+      "candidate_visible_context": {"domain": "toy-physics", "surface": "same-residual"},
+      "competing_revision_classes": ["EVIDENCE_REPAIR", "WITHIN_CLASS_MODEL_REPAIR", "MODEL_CLASS_EXPANSION"],
+      "hypotheses": {
+        "EVIDENCE_REPAIR": {"inspect-evidence-model": ["MISSING_SOURCE"]},
+        "WITHIN_CLASS_MODEL_REPAIR": {"inspect-evidence-model": ["PARAMETER_MISS"]},
+        "MODEL_CLASS_EXPANSION": {"inspect-evidence-model": ["STRUCTURAL_MISS"]}
+      },
+      "allowed_diagnostics": [{"action_id": "inspect-evidence-model", "cost": 1.0}],
+      "diagnostic_budget": 1.0,
+      "protected_diagnostic_outcomes": {"inspect-evidence-model": "PARAMETER_MISS"},
+      "protected_gold_revision_class": "WITHIN_CLASS_MODEL_REPAIR",
+      "preservation_obligations": ["preserve:model-class", "preserve:evaluator"],
+      "allowed_change_surface": ["model/parameters"],
+      "protected_surface": ["evaluator", "model/class"],
+      "fresh_transfer_family": "fresh:prediction-residual-A"
+    },
+    {
+      "case_id": "V3-DEV-004",
+      "symptom_family": "measurement-vs-mechanism",
+      "visible_symptom": "The measured relation is inconsistent with the current account.",
+      "candidate_visible_context": {"domain": "toy-biology", "surface": "same-measurement-anomaly"},
+      "competing_revision_classes": ["MEASUREMENT_REPAIR", "MODEL_CLASS_EXPANSION"],
+      "hypotheses": {
+        "MEASUREMENT_REPAIR": {"audit-measurement": ["SENSOR_BIAS"]},
+        "MODEL_CLASS_EXPANSION": {"audit-measurement": ["MEASUREMENT_VALID_MECHANISM_MISSING"]}
+      },
+      "allowed_diagnostics": [{"action_id": "audit-measurement", "cost": 1.0}],
+      "diagnostic_budget": 1.0,
+      "protected_diagnostic_outcomes": {"audit-measurement": "SENSOR_BIAS"},
+      "protected_gold_revision_class": "MEASUREMENT_REPAIR",
+      "preservation_obligations": ["preserve:model-class", "preserve:raw-observations"],
+      "allowed_change_surface": ["measurement/calibration"],
+      "protected_surface": ["model/class", "evaluator"],
+      "fresh_transfer_family": "fresh:measurement-vs-mechanism"
+    },
+    {
+      "case_id": "V3-DEV-005",
+      "symptom_family": "measurement-vs-mechanism",
+      "visible_symptom": "The measured relation is inconsistent with the current account.",
+      "candidate_visible_context": {"domain": "toy-biology", "surface": "same-measurement-anomaly"},
+      "competing_revision_classes": ["MEASUREMENT_REPAIR", "MODEL_CLASS_EXPANSION"],
+      "hypotheses": {
+        "MEASUREMENT_REPAIR": {"audit-measurement": ["SENSOR_BIAS"]},
+        "MODEL_CLASS_EXPANSION": {"audit-measurement": ["MEASUREMENT_VALID_MECHANISM_MISSING"]}
+      },
+      "allowed_diagnostics": [{"action_id": "audit-measurement", "cost": 1.0}],
+      "diagnostic_budget": 1.0,
+      "protected_diagnostic_outcomes": {"audit-measurement": "MEASUREMENT_VALID_MECHANISM_MISSING"},
+      "protected_gold_revision_class": "MODEL_CLASS_EXPANSION",
+      "preservation_obligations": ["preserve:measurement", "preserve:evaluator"],
+      "allowed_change_surface": ["model/class"],
+      "protected_surface": ["measurement/raw", "evaluator"],
+      "fresh_transfer_family": "fresh:measurement-vs-mechanism"
+    },
+    {
+      "case_id": "V3-DEV-006",
+      "symptom_family": "representation-vs-model",
+      "visible_symptom": "Planning fails despite adequate observed data.",
+      "candidate_visible_context": {"domain": "toy-control", "surface": "same-planning-failure"},
+      "competing_revision_classes": ["REPRESENTATION_REGIME_REPAIR", "MODEL_CLASS_EXPANSION"],
+      "hypotheses": {
+        "REPRESENTATION_REGIME_REPAIR": {"probe-representation": ["STATE_NOT_SUFFICIENT"]},
+        "MODEL_CLASS_EXPANSION": {"probe-representation": ["STATE_SUFFICIENT_MODEL_MISS"]}
+      },
+      "allowed_diagnostics": [{"action_id": "probe-representation", "cost": 1.0}],
+      "diagnostic_budget": 1.0,
+      "protected_diagnostic_outcomes": {"probe-representation": "STATE_NOT_SUFFICIENT"},
+      "protected_gold_revision_class": "REPRESENTATION_REGIME_REPAIR",
+      "preservation_obligations": ["preserve:raw-history", "preserve:evaluator"],
+      "allowed_change_surface": ["representation/state"],
+      "protected_surface": ["evaluator", "raw-history/gold"],
+      "fresh_transfer_family": "fresh:representation-vs-model"
+    },
+    {
+      "case_id": "V3-DEV-007",
+      "symptom_family": "representation-vs-model",
+      "visible_symptom": "Planning fails despite adequate observed data.",
+      "candidate_visible_context": {"domain": "toy-control", "surface": "same-planning-failure"},
+      "competing_revision_classes": ["REPRESENTATION_REGIME_REPAIR", "MODEL_CLASS_EXPANSION"],
+      "hypotheses": {
+        "REPRESENTATION_REGIME_REPAIR": {"probe-representation": ["STATE_NOT_SUFFICIENT"]},
+        "MODEL_CLASS_EXPANSION": {"probe-representation": ["STATE_SUFFICIENT_MODEL_MISS"]}
+      },
+      "allowed_diagnostics": [{"action_id": "probe-representation", "cost": 1.0}],
+      "diagnostic_budget": 1.0,
+      "protected_diagnostic_outcomes": {"probe-representation": "STATE_SUFFICIENT_MODEL_MISS"},
+      "protected_gold_revision_class": "MODEL_CLASS_EXPANSION",
+      "preservation_obligations": ["preserve:representation", "preserve:evaluator"],
+      "allowed_change_surface": ["model/class"],
+      "protected_surface": ["representation/state", "evaluator"],
+      "fresh_transfer_family": "fresh:representation-vs-model"
+    },
+    {
+      "case_id": "V3-DEV-008",
+      "symptom_family": "execution-vs-science",
+      "visible_symptom": "The scientific procedure fails to produce the expected result.",
+      "candidate_visible_context": {"domain": "toy-lab", "surface": "same-failed-procedure"},
+      "competing_revision_classes": ["EXECUTION_REPAIR", "MODEL_CLASS_EXPANSION"],
+      "hypotheses": {
+        "EXECUTION_REPAIR": {"inspect-execution": ["TOOL_EXECUTION_FAILURE"]},
+        "MODEL_CLASS_EXPANSION": {"inspect-execution": ["EXECUTION_CLEAN_SCIENTIFIC_MISS"]}
+      },
+      "allowed_diagnostics": [{"action_id": "inspect-execution", "cost": 1.0}],
+      "diagnostic_budget": 1.0,
+      "protected_diagnostic_outcomes": {"inspect-execution": "TOOL_EXECUTION_FAILURE"},
+      "protected_gold_revision_class": "EXECUTION_REPAIR",
+      "preservation_obligations": ["preserve:scientific-model", "preserve:evaluator"],
+      "allowed_change_surface": ["execution/tooling"],
+      "protected_surface": ["model/class", "evaluator"],
+      "fresh_transfer_family": "fresh:execution-vs-science"
+    },
+    {
+      "case_id": "V3-DEV-009",
+      "symptom_family": "evaluator-vs-candidate",
+      "visible_symptom": "A candidate appears to regress under evaluation.",
+      "candidate_visible_context": {"domain": "toy-eval", "surface": "same-regression"},
+      "competing_revision_classes": ["EVALUATOR_REPAIR", "EXECUTION_REPAIR"],
+      "hypotheses": {
+        "EVALUATOR_REPAIR": {"audit-evaluator": ["EVALUATOR_STALE"]},
+        "EXECUTION_REPAIR": {"audit-evaluator": ["EVALUATOR_VALID_EXECUTION_FAILURE"]}
+      },
+      "allowed_diagnostics": [{"action_id": "audit-evaluator", "cost": 1.0}],
+      "diagnostic_budget": 1.0,
+      "protected_diagnostic_outcomes": {"audit-evaluator": "EVALUATOR_STALE"},
+      "protected_gold_revision_class": "EVALUATOR_REPAIR",
+      "preservation_obligations": ["preserve:candidate", "preserve:gold"],
+      "allowed_change_surface": ["evaluator/implementation"],
+      "protected_surface": ["candidate/revision", "gold"],
+      "fresh_transfer_family": "fresh:evaluator-vs-candidate"
+    },
+    {
+      "case_id": "V3-DEV-010",
+      "symptom_family": "nonidentifying-residual",
+      "visible_symptom": "A residual persists but the registered probe does not distinguish the leading explanations.",
+      "candidate_visible_context": {"domain": "toy-unknown", "surface": "same-nonidentifying-residual"},
+      "competing_revision_classes": ["EVIDENCE_REPAIR", "MODEL_CLASS_EXPANSION"],
+      "hypotheses": {
+        "EVIDENCE_REPAIR": {"registered-probe": ["NON_IDENTIFYING"]},
+        "MODEL_CLASS_EXPANSION": {"registered-probe": ["NON_IDENTIFYING"]}
+      },
+      "allowed_diagnostics": [{"action_id": "registered-probe", "cost": 1.0}],
+      "diagnostic_budget": 1.0,
+      "protected_diagnostic_outcomes": {"registered-probe": "NON_IDENTIFYING"},
+      "protected_gold_revision_class": "UNRESOLVED",
+      "preservation_obligations": ["preserve:all-material-scientific-state"],
+      "allowed_change_surface": ["evidence/diagnostic-log"],
+      "protected_surface": ["model", "evaluator", "objective"],
+      "fresh_transfer_family": "fresh:nonidentifying-residual"
+    }
+  ]
+}
