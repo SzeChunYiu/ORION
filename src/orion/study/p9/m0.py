@@ -9,13 +9,13 @@ from __future__ import annotations
 
 from collections import defaultdict
 from enum import Enum
-from typing import Iterable, Sequence
+from typing import Iterable
 
 from orion.transfer.v2.canonical import content_digest
 
 from .generated_worlds import GeneratedCorpus, GeneratedSplit, HostileFamily
 from .identifiability import analyze_identifiability
-from .m0_tasks import GluingTask, MechanicRankingTask, P9Task, TaskKind, build_task
+from .m0_tasks import GluingTask, MechanicRankingTask, P9Task, build_task
 from .structural_world import (
     AtomType,
     GluingVerdict,
@@ -198,6 +198,16 @@ def _accuracy_record(tasks_and_predictions: Iterable[tuple[P9Task, str]]) -> dic
     }
 
 
+def _restricted_ceiling(
+    worlds: list[P9StructuralWorld],
+    *,
+    mode: ViewMode,
+) -> float:
+    if not worlds:
+        raise ValueError("view ceiling requires at least one world")
+    return analyze_identifiability(worlds, mode).deterministic_accuracy_ceiling
+
+
 def _split_report(
     split: GeneratedSplit,
     *,
@@ -221,6 +231,8 @@ def _split_report(
         for _, world, task in task_records
     ]
     oracle = _accuracy_record(oracle_pairs)
+    oracle["uses_full_semantics"] = True
+    oracle["declared_view_ceiling_applies"] = False
 
     by_task: dict[str, list[tuple[P9Task, str]]] = defaultdict(list)
     by_family: dict[str, list[tuple[P9Task, str]]] = defaultdict(list)
@@ -229,15 +241,45 @@ def _split_report(
         by_task[task.kind.value].append((task, prediction))
         by_family[family.value].append((task, prediction))
 
+    mechanic_records = [
+        (world, task)
+        for _, world, task in task_records
+        if isinstance(task, MechanicRankingTask)
+    ]
+    gluing_records = [
+        (world, task)
+        for _, world, task in task_records
+        if isinstance(task, GluingTask)
+    ]
+    mechanic_ceiling = _restricted_ceiling(
+        [world for world, _ in mechanic_records],
+        mode=mode,
+    )
+    gluing_ceiling = _restricted_ceiling(
+        [world for world, _ in gluing_records],
+        mode=mode,
+    )
+
     nulls: dict[str, dict[str, object]] = {}
+    any_ceiling_violation = False
     for baseline in M0Baseline:
         if baseline in _CANDIDATE_BASELINES:
-            eligible = [task for _, _, task in task_records if isinstance(task, MechanicRankingTask)]
+            eligible = [task for _, task in mechanic_records]
+            baseline_ceiling = mechanic_ceiling
         else:
-            eligible = [task for _, _, task in task_records if isinstance(task, GluingTask)]
-        nulls[baseline.value] = _accuracy_record(
+            eligible = [task for _, task in gluing_records]
+            baseline_ceiling = gluing_ceiling
+        record = _accuracy_record(
             (task, predict_null(task, baseline)) for task in eligible
         )
+        accuracy = record["accuracy"]
+        violation = bool(
+            accuracy is not None and float(accuracy) > baseline_ceiling + 1e-12
+        )
+        record["deterministic_accuracy_ceiling"] = baseline_ceiling
+        record["ceiling_violation_flag"] = violation
+        any_ceiling_violation = any_ceiling_violation or violation
+        nulls[baseline.value] = record
 
     ceiling = analyze_identifiability(split.worlds, mode)
     return {
@@ -246,6 +288,7 @@ def _split_report(
         "view_mode": mode.value,
         "view_deterministic_accuracy_ceiling": ceiling.deterministic_accuracy_ceiling,
         "view_is_identifying": ceiling.is_identifying,
+        "view_restricted_null_ceiling_violation_flag": any_ceiling_violation,
         "oracle": oracle,
         "oracle_by_task": {
             key: _accuracy_record(value) for key, value in sorted(by_task.items())
