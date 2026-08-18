@@ -26,8 +26,10 @@ class MethodAuthorityState(str, Enum):
 class MethodTransferReceipt:
     """Content-bound evidence record for transferred/generated method claims.
 
-    The receipt is evidence input, not an authority declaration.  Coordinate
+    The receipt is evidence input, not an authority declaration. Coordinate
     authority is derived separately and P4 never grants Self-ORION adoption.
+    Donor IDs and digests are retained as aligned tuples; they must never be
+    sorted independently because that would corrupt lineage.
     """
 
     method_id: str
@@ -61,6 +63,8 @@ class MethodTransferReceipt:
             raise ValueError("method_id and target_id must be non-empty")
         if len(self.donor_ids) != len(self.donor_digests):
             raise ValueError("donor ids and digests must have equal length")
+        if len(set(self.donor_ids)) != len(self.donor_ids):
+            raise ValueError("donor ids must be unique")
         for label, digest in (
             ("target_digest", self.target_digest),
             ("structural_signature_digest", self.structural_signature_digest),
@@ -75,14 +79,20 @@ class MethodTransferReceipt:
         if self.novelty_search_digest and not self.novelty_search_digest.startswith("sha256:"):
             raise ValueError("novelty_search_digest must be sha256-prefixed when present")
 
+    @property
+    def donor_lineage(self) -> tuple[tuple[str, str], ...]:
+        return tuple(zip(self.donor_ids, self.donor_digests, strict=True))
+
     def unsigned_payload(self) -> dict[str, object]:
         return {
             "receipt_version": "MethodTransferReceipt.v1",
             "method_id": self.method_id,
             "target_id": self.target_id,
             "target_digest": self.target_digest,
-            "donor_ids": list(self.donor_ids),
-            "donor_digests": list(self.donor_digests),
+            "donor_lineage": [
+                {"donor_id": donor_id, "donor_digest": donor_digest}
+                for donor_id, donor_digest in self.donor_lineage
+            ],
             "structural_signature_digest": self.structural_signature_digest,
             "assumptions_retained": list(self.assumptions_retained),
             "assumptions_dropped": list(self.assumptions_dropped),
@@ -138,19 +148,35 @@ def build_method_transfer_receipt(
     claims_new_primitive: bool = False,
     known_composition: bool = False,
 ) -> MethodTransferReceipt:
-    base = {
+    if len(donor_ids) != len(donor_digests):
+        raise ValueError("donor ids and digests must have equal length")
+    donor_pairs = sorted(
+        (
+            (str(donor_id), str(donor_digest))
+            for donor_id, donor_digest in zip(donor_ids, donor_digests, strict=True)
+        ),
+        key=lambda pair: pair[0],
+    )
+    sorted_ids = tuple(pair[0] for pair in donor_pairs)
+    sorted_digests = tuple(pair[1] for pair in donor_pairs)
+    if len(set(sorted_ids)) != len(sorted_ids):
+        raise ValueError("donor ids must be unique")
+
+    payload = {
         "receipt_version": "MethodTransferReceipt.v1",
         "method_id": method_id,
         "target_id": target_id,
         "target_digest": target_digest,
-        "donor_ids": sorted(str(value) for value in donor_ids),
-        "donor_digests": sorted(str(value) for value in donor_digests),
+        "donor_lineage": [
+            {"donor_id": donor_id, "donor_digest": donor_digest}
+            for donor_id, donor_digest in donor_pairs
+        ],
         "structural_signature_digest": structural_signature_digest,
         "assumptions_retained": sorted(str(value) for value in assumptions_retained),
         "assumptions_dropped": sorted(str(value) for value in assumptions_dropped),
         "assumptions_modified": sorted(str(value) for value in assumptions_modified),
-        "adaptation_steps": list(str(value) for value in adaptation_steps),
-        "predicted_effects": list(str(value) for value in predicted_effects),
+        "adaptation_steps": [str(value) for value in adaptation_steps],
+        "predicted_effects": [str(value) for value in predicted_effects],
         "reconstruction": reconstruction,
         "source_lineage_valid": source_lineage_valid,
         "assumptions_preserved": assumptions_preserved,
@@ -171,14 +197,14 @@ def build_method_transfer_receipt(
         method_id=method_id,
         target_id=target_id,
         target_digest=target_digest,
-        donor_ids=tuple(base["donor_ids"]),
-        donor_digests=tuple(base["donor_digests"]),
+        donor_ids=sorted_ids,
+        donor_digests=sorted_digests,
         structural_signature_digest=structural_signature_digest,
-        assumptions_retained=tuple(base["assumptions_retained"]),
-        assumptions_dropped=tuple(base["assumptions_dropped"]),
-        assumptions_modified=tuple(base["assumptions_modified"]),
-        adaptation_steps=tuple(base["adaptation_steps"]),
-        predicted_effects=tuple(base["predicted_effects"]),
+        assumptions_retained=tuple(payload["assumptions_retained"]),
+        assumptions_dropped=tuple(payload["assumptions_dropped"]),
+        assumptions_modified=tuple(payload["assumptions_modified"]),
+        adaptation_steps=tuple(payload["adaptation_steps"]),
+        predicted_effects=tuple(payload["predicted_effects"]),
         reconstruction=reconstruction,
         source_lineage_valid=source_lineage_valid,
         assumptions_preserved=assumptions_preserved,
@@ -192,7 +218,7 @@ def build_method_transfer_receipt(
         prior_art_found=prior_art_found,
         claims_new_primitive=claims_new_primitive,
         known_composition=known_composition,
-        receipt_digest=content_digest(base),
+        receipt_digest=content_digest(payload),
     )
     receipt.verify()
     return receipt
@@ -263,7 +289,6 @@ def derive_method_authority(receipt: MethodTransferReceipt) -> MethodAuthorityRe
     receipt.verify()
     entries: list[CoordinateAuthority] = []
 
-    # VALIDITY: visible success never substitutes for protected, independent evidence.
     if receipt.generator_accessed_evaluator:
         entries.append(_entry(MethodAuthorityCoordinate.VALIDITY, MethodAuthorityState.BLOCKED, "EVALUATOR_LEAKAGE"))
     elif receipt.reconstruction_valid is False:
@@ -282,7 +307,6 @@ def derive_method_authority(receipt: MethodTransferReceipt) -> MethodAuthorityRe
     else:
         entries.append(_entry(MethodAuthorityCoordinate.VALIDITY, MethodAuthorityState.SUPPORTED, "PROTECTED_VALIDITY_SUPPORTED"))
 
-    # APPLICABILITY: dropping or changing a load-bearing assumption blocks the target claim.
     if receipt.assumptions_preserved is False or receipt.assumptions_dropped or receipt.assumptions_modified:
         reasons = ["ASSUMPTION_FOOTPRINT_CHANGED"]
         if receipt.assumptions_dropped:
@@ -295,7 +319,6 @@ def derive_method_authority(receipt: MethodTransferReceipt) -> MethodAuthorityRe
     else:
         entries.append(_entry(MethodAuthorityCoordinate.APPLICABILITY, MethodAuthorityState.SUPPORTED, "TARGET_ASSUMPTIONS_PRESERVED"))
 
-    # TRANSFER: structural similarity alone is insufficient; lineage, assumptions and reconstruction all matter.
     transfer_reasons: list[str] = []
     transfer_blocked = False
     transfer_unknown = False
@@ -324,7 +347,6 @@ def derive_method_authority(receipt: MethodTransferReceipt) -> MethodAuthorityRe
     else:
         entries.append(_entry(MethodAuthorityCoordinate.TRANSFER, MethodAuthorityState.SUPPORTED, "DONOR_TARGET_MAPPING_SUPPORTED"))
 
-    # NOVELTY: semantic distance and generation are irrelevant; current prior-art evidence is required.
     if receipt.prior_art_found is True:
         entries.append(_entry(MethodAuthorityCoordinate.NOVELTY, MethodAuthorityState.BLOCKED, "PRIOR_ART_FOUND"))
     elif receipt.claims_new_primitive and receipt.known_composition:
@@ -334,7 +356,6 @@ def derive_method_authority(receipt: MethodTransferReceipt) -> MethodAuthorityRe
     else:
         entries.append(_entry(MethodAuthorityCoordinate.NOVELTY, MethodAuthorityState.SUPPORTED, "BOUNDED_NOVELTY_SEARCH_CLEAR"))
 
-    # UTILITY: protected failure/harm dominates visible success.
     if receipt.generator_accessed_evaluator:
         entries.append(_entry(MethodAuthorityCoordinate.UTILITY, MethodAuthorityState.BLOCKED, "EVALUATOR_LEAKAGE"))
     elif receipt.protected_result_pass is False:
@@ -346,7 +367,6 @@ def derive_method_authority(receipt: MethodTransferReceipt) -> MethodAuthorityRe
     else:
         entries.append(_entry(MethodAuthorityCoordinate.UTILITY, MethodAuthorityState.SUPPORTED, "PROTECTED_UTILITY_SUPPORTED"))
 
-    # ADOPTION is represented but deliberately cannot be granted by P4.
     entries.append(_entry(MethodAuthorityCoordinate.ADOPTION, MethodAuthorityState.CANNOT_CHECK, "P5_HOST_AUTHORITY_REQUIRED"))
 
     entries = sorted(entries, key=lambda entry: entry.coordinate.value)
