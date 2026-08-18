@@ -228,12 +228,9 @@ def completeness_errors(realization: MethodRealization) -> tuple[str, ...]:
 
 def material_differences(left: MethodRealization, right: MethodRealization) -> tuple[str, ...]:
     left.verify(); right.verify()
-    fields = (
-        "preconditions", "assumptions", "dependencies", "invariants", "effects",
-        "terminal_condition", "reconstruction_map", "failure_modes", "lineage",
-        "authority_boundary", "unknown_coordinates",
-    )
-    return tuple(name for name in fields if getattr(left, name) != getattr(right, name))
+    # Every typed scientific coordinate is material to *some* downstream claim. P1 does
+    # not decide which can be erased; P6 later makes that reduction claim-relative.
+    return tuple(name for name in COORDINATES if getattr(left, name) != getattr(right, name))
 
 
 def assess_substitutability(
