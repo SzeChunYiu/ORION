@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
@@ -92,8 +93,26 @@ def test_phase1_false_commit_is_explicitly_not_measured() -> None:
     assert "hard-coded `false_commit=0.000`" in readme
 
 
+def test_ci_installs_the_full_candidate_dependency_closure() -> None:
+    """The exact-head replay must not silently skip its third-party imports."""
+
+    pyproject = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
+    declared = pyproject.split("candidates = [", 1)[1].split("]", 1)[0]
+    for package in ("numpy", "scikit-learn"):
+        assert package in declared, f"candidate extra no longer declares {package}"
+
+    workflow = (ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
+    installs = [line for line in workflow.splitlines() if "pip install -e" in line]
+    assert installs, "CI no longer installs the package"
+    for line in installs:
+        assert "candidates" in line, f"CI install drops candidate dependencies: {line.strip()}"
+
+
 def test_phase2a_re_derives_byte_identically(tmp_path: Path) -> None:
     """The only real-source evidence in the lane, checked by re-running it."""
+
+    pytest.importorskip("numpy", reason="the framework import chain requires numpy")
+    pytest.importorskip("sklearn", reason="the framework import chain requires scikit-learn")
 
     script = LANE / "experiments" / "phase2_real_source" / "run_phase2a.py"
     written = script.parent / "RESULTS_PHASE2A.json"
@@ -102,7 +121,7 @@ def test_phase2a_re_derives_byte_identically(tmp_path: Path) -> None:
         completed = subprocess.run(
             [sys.executable, str(script)],
             cwd=LANE,
-            env={"PYTHONPATH": str(LANE / "framework"), "PATH": "/usr/bin:/bin"},
+            env={**os.environ, "PYTHONPATH": str(LANE / "framework"), "PYTHONHASHSEED": "0"},
             capture_output=True,
             text=True,
             timeout=300,

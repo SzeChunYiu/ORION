@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 from papers.candidates.hostile_review_v1 import p6_reopening, p7_refinement, p8_authority
-from papers.candidates.hostile_review_v1.common import Status, write_report
+from papers.candidates.hostile_review_v1.common import ReviewResult, Status, write_report
 
 
 class P6HostileReviewTests(unittest.TestCase):
@@ -142,6 +142,23 @@ class ReportTests(unittest.TestCase):
             self.assertEqual(digest_first, digest_second)
             payload = json.loads(first.read_text(encoding="utf-8"))
             self.assertEqual("orion.p6_p8.hostile_formal_review.v1", payload["schema"])
+
+    def test_fail_witness_with_frozen_sets_is_serializable(self) -> None:
+        result = ReviewResult(
+            paper="P6",
+            finding="serialization regression",
+            status=Status.FAIL,
+            cases=1,
+            summary="A deliberately failing witness must remain reportable.",
+            reviewed_snapshot="test",
+            witness={"changed": frozenset({"x"}), "edge": ("x", "q")},
+        )
+        with tempfile.TemporaryDirectory() as tempdir:
+            target = Path(tempdir) / "fail.json"
+            write_report(target, (result,), {"fixed": True})
+            payload = json.loads(target.read_text(encoding="utf-8"))
+            self.assertEqual(["x"], payload["results"][0]["witness"]["changed"])
+            self.assertEqual(["x", "q"], payload["results"][0]["witness"]["edge"])
 
 
 if __name__ == "__main__":

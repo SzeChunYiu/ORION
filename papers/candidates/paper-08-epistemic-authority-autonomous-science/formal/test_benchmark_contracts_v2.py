@@ -41,6 +41,25 @@ class P8CheckerTests(unittest.TestCase):
         )
         self.assertEqual(self.system.authorize(request, "root"), Verdict.AUTHORIZED)
 
+    def test_transitive_coercion_has_one_semantics_in_system_and_case_oracle(self):
+        self.system.coercions = frozenset({
+            (Domain.ASSERT, Domain.MAP_MERGE),
+            (Domain.MAP_MERGE, Domain.REFRAME),
+        })
+        request = AuthorizationRequest(
+            "a", Domain.REFRAME, "claim", frozenset(), frozenset()
+        )
+        self.assertEqual(self.system.authorize(request, "root"), Verdict.AUTHORIZED)
+        case = {
+            "domain": "REFRAME",
+            "source_signal_domain": "ASSERT",
+            "hard_obligations": [],
+            "satisfied": [],
+            "defeaters": [],
+            "registered_coercions": [["ASSERT", "MAP_MERGE"], ["MAP_MERGE", "REFRAME"]],
+        }
+        self.assertEqual(evaluate_authority_case(case), Verdict.AUTHORIZED)
+
     def test_missing_known_hard_obligation_is_unauthorized(self):
         request = AuthorizationRequest(
             "a", Domain.ASSERT, "claim", frozenset({"support"}), frozenset()

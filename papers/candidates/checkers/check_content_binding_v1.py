@@ -78,6 +78,8 @@ SHARED_SUBJECT = (
     CANDIDATES_DIR / "checkers" / "check_donor_complete_envelope_v1.py",
     Path("tests/unit/candidates/test_p6_p8_candidate_embedding.py"),
     Path("tests/unit/candidates/test_p6_p8_theory_closure_v21.py"),
+    Path("tests/unit/candidates/test_p8_formal_core_primitives.py"),
+    Path("tests/unit/candidates/test_p6_p8_merged_review_suites.py"),
 )
 
 #: Heading of the declaration section holding artifacts shared by all three

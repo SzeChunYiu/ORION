@@ -53,6 +53,10 @@
       "role": null
     },
     {
+      "path": "papers/candidates/paper-07-epistemic-navigation-open-worlds/CLAIM_LEDGER_ADDENDUM_V2.md",
+      "role": null
+    },
+    {
       "path": "papers/candidates/paper-07-epistemic-navigation-open-worlds/CLAIM_LEDGER_V1.md",
       "role": null
     },
@@ -97,8 +101,24 @@
       "role": "Reproduction"
     },
     {
+      "path": "papers/candidates/paper-07-epistemic-navigation-open-worlds/benchmark/README.md",
+      "role": null
+    },
+    {
+      "path": "papers/candidates/paper-07-epistemic-navigation-open-worlds/benchmark/instances_v1.jsonl",
+      "role": null
+    },
+    {
       "path": "papers/candidates/paper-07-epistemic-navigation-open-worlds/benchmark/instances_v2.jsonl",
       "role": "Frozen contract cases"
+    },
+    {
+      "path": "papers/candidates/paper-07-epistemic-navigation-open-worlds/formal/__pycache__/check_benchmark_contracts_v2.cpython-312.pyc",
+      "role": null
+    },
+    {
+      "path": "papers/candidates/paper-07-epistemic-navigation-open-worlds/formal/check_benchmark_contracts_v2.py",
+      "role": null
     },
     {
       "path": "papers/candidates/paper-07-epistemic-navigation-open-worlds/formal/check_contract_manifest_v2.py",
@@ -111,6 +131,14 @@
     {
       "path": "papers/candidates/paper-07-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py",
       "role": "Theory checker"
+    },
+    {
+      "path": "papers/candidates/paper-07-epistemic-navigation-open-worlds/formal/test_benchmark_contracts_v2.py",
+      "role": null
+    },
+    {
+      "path": "papers/candidates/paper-07-epistemic-navigation-open-worlds/manuscript/BENCHMARK_AUDIT_V2.md",
+      "role": null
     },
     {
       "path": "papers/candidates/paper-07-epistemic-navigation-open-worlds/manuscript/DRAFT.md",
@@ -129,11 +157,31 @@
       "role": "Formal core"
     },
     {
+      "path": "papers/candidates/paper-07-epistemic-navigation-open-worlds/submission/AIJ_MANUSCRIPT.tex",
+      "role": null
+    },
+    {
+      "path": "papers/candidates/paper-07-epistemic-navigation-open-worlds/submission/COVER_LETTER.md",
+      "role": null
+    },
+    {
+      "path": "papers/candidates/paper-07-epistemic-navigation-open-worlds/submission/HIGHLIGHTS.txt",
+      "role": null
+    },
+    {
       "path": "tests/unit/candidates/test_p6_p8_candidate_embedding.py",
       "role": null
     },
     {
+      "path": "tests/unit/candidates/test_p6_p8_merged_review_suites.py",
+      "role": null
+    },
+    {
       "path": "tests/unit/candidates/test_p6_p8_theory_closure_v21.py",
+      "role": null
+    },
+    {
+      "path": "tests/unit/candidates/test_p8_formal_core_primitives.py",
       "role": null
     }
   ],
@@ -186,8 +234,11 @@
     }
   },
   "schema_version": "orion.candidate-content-binding.v1",
-  "subject_commit": "73e9505e41f0c49ddec366aeb49d8a4aa73c5322",
-  "subject_commit_blocker": null,
-  "subject_commit_status": "BOUND",
-  "subject_commit_unbound_paths": []
+  "subject_commit": "0a38b461aac3cfb53839f2290edd6dad055a40a1",
+  "subject_commit_blocker": "bound files differ from the recorded commit; the commit does not describe these bytes",
+  "subject_commit_status": "CANNOT_CHECK",
+  "subject_commit_unbound_paths": [
+    "papers/candidates/CURRENT_PACKAGE_V2_1.md",
+    "tests/unit/candidates/test_p6_p8_merged_review_suites.py"
+  ]
 }

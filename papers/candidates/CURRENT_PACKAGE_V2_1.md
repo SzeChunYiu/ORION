@@ -56,12 +56,14 @@ The 17 authority cases are absorbed from the parallel mathematical-completion la
 
 ## CI
 
-Two candidate pytest wrappers are normative:
+Four candidate pytest wrappers are normative:
 
 - `tests/unit/candidates/test_p6_p8_candidate_embedding.py`
 - `tests/unit/candidates/test_p6_p8_theory_closure_v21.py`
+- `tests/unit/candidates/test_p8_formal_core_primitives.py`
+- `tests/unit/candidates/test_p6_p8_merged_review_suites.py`
 
-Together they run live schema/native ORION embeddings, previous finite checks, preservation ladder, donor envelope, P6 V2.1 assumption regressions, and P7/P8 frozen contract manifests.
+Together they run live schema/native ORION embeddings, previous finite checks, preservation ladder, donor envelope, P6 V2.1 assumption regressions, P7/P8 frozen contract manifests, P8 primitive closure, and the merged hostile-review suites.
 
 ## Status vocabulary
 

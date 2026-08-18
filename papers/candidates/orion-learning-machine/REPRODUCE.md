@@ -26,8 +26,10 @@ delivered at commit `bbe178d`; it is not the current publication manifest.
 ## Environment
 
 The recorded Python result environment is CPython 3.13, NumPy 2.4.4, SymPy
-1.14.0 and scikit-learn 1.8.0. The framework and static gates require Python and
-pytest. The ASlib replay additionally requires NumPy/scikit-learn.
+1.14.0 and scikit-learn 1.8.0. The framework package imports its competence
+module eagerly, so the framework tests and Phase 2A replay require NumPy and
+scikit-learn even though Phase 2A's own tactic parser does not use them. The
+ASlib replay also requires NumPy/scikit-learn.
 
 ## Full local experiment replay
 
