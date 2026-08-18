@@ -28,6 +28,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import tempfile
 from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -866,6 +867,92 @@ def generate(
     return t2, t3
 
 
+#: The one field that cannot reproduce. Everything else in `provenance` is derived from
+#: the archive, so excluding the wall clock is what makes the byte comparison meaningful
+#: rather than impossible: the two committed tables were written a second apart, so no
+#: single pinned timestamp reproduces both.
+_NON_REPRODUCIBLE_PROVENANCE = ("generated_utc",)
+
+
+def _without_clock(table: dict) -> dict:
+    provenance = {
+        key: value
+        for key, value in table.get("provenance", {}).items()
+        if key not in _NON_REPRODUCIBLE_PROVENANCE
+    }
+    return {**table, "provenance": provenance}
+
+
+def _check(args: argparse.Namespace) -> int:
+    """Compare a live regeneration against the committed tables.
+
+    `git diff --exit-code` cannot be used on P1 the way it is used on P3, P5 and P4:
+    `provenance.generated_utc` is a wall clock, so following REPRODUCE.md always drifts a
+    package whose tables are content-hash-bound. Comparing every field except that one
+    states the claim that is actually true and actually useful -- given the same archive,
+    every published number reproduces exactly.
+    """
+
+    with tempfile.TemporaryDirectory(prefix="p1-tables-check-") as scratch:
+        try:
+            regenerated = generate(
+                args.archive,
+                Path(scratch),
+                expected_repeats=args.expected_repeats,
+                bootstrap_seed=args.bootstrap_seed,
+                resamples=args.resamples,
+                min_units=args.min_units,
+                representatives=args.representatives,
+            )
+        except ValueError as error:
+            print(f"P1 tables: archive is malformed and was not used: {error}", file=sys.stderr)
+            return EXIT_ERROR
+
+        drifted: list[str] = []
+        missing: list[str] = []
+        for table in regenerated:
+            name = f'{table["table_id"]}.json'
+            committed_path = args.out / name
+            if not committed_path.is_file():
+                missing.append(str(committed_path))
+                continue
+            committed = json.loads(committed_path.read_text(encoding="utf-8"))
+            if _without_clock(committed) != _without_clock(table):
+                drifted.append(name)
+
+            # The markdown renderings carry no clock, so they get the strict comparison
+            # the JSON cannot have. If they ever drift while the JSON matches, the
+            # renderer changed without the data changing, which is worth catching.
+            rendered_name = f'{table["table_id"]}.md'
+            committed_md = args.out / rendered_name
+            scratch_md = Path(scratch) / rendered_name
+            if not committed_md.is_file():
+                missing.append(str(committed_md))
+            elif committed_md.read_text(encoding="utf-8") != scratch_md.read_text(encoding="utf-8"):
+                drifted.append(rendered_name)
+
+    if missing:
+        # Absent is not the same as different, and neither is a pass.
+        for path in missing:
+            print(f"P1 tables: CANNOT_CHECK — committed table absent: {path}", file=sys.stderr)
+        return EXIT_CANNOT_CHECK
+    if drifted:
+        for name in drifted:
+            print(f"P1 tables: DRIFT — {name} does not match a live regeneration", file=sys.stderr)
+        return EXIT_ERROR
+
+    names = ", ".join(f'{table["table_id"]}.json' for table in regenerated)
+    print(f"P1 tables: {names} reproduce exactly, ignoring provenance.generated_utc")
+    if STATUS_CANNOT_CHECK in {table["status"] for table in regenerated}:
+        print(
+            "P1 tables: CANNOT_CHECK — the committed tables match, but they carry no "
+            "publishable numbers without an archived study run.",
+            file=sys.stderr,
+        )
+        return EXIT_CANNOT_CHECK
+    return EXIT_OK
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="python -m orion.study.p1.tables",
@@ -878,7 +965,18 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--resamples", type=int, default=stats.PROTOCOL_RESAMPLES)
     parser.add_argument("--min-units", type=int, default=0, help="declared prospective N; below it an inconclusive result reads UNDERPOWERED. No frozen default exists.")
     parser.add_argument("--representatives", type=int, default=DEFAULT_REPRESENTATIVES)
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help=(
+            "regenerate into a scratch directory and compare against the committed tables, "
+            "ignoring provenance.generated_utc; write nothing"
+        ),
+    )
     args = parser.parse_args(argv)
+
+    if args.check:
+        return _check(args)
 
     try:
         t2, t3 = generate(
