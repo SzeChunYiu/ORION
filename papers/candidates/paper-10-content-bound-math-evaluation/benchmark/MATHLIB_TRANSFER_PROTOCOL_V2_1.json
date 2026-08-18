@@ -1,0 +1,83 @@
+{
+  "schema": "P10MathlibTransferProtocol.v2_1",
+  "status": "FROZEN_AFTER_HOSTILE_AUDIT_BEFORE_REPAIRED_OUTCOME",
+  "frozen_at": "2026-08-18",
+  "amendment": {
+    "base_protocol_sha256": "2a7157be090c9fb6025eb0a915e249adb106ba5997274c780a69b3f87525ad24",
+    "invalidated_result_sha256": "bc58be088434aa5f1c2fdc417bfdcf210071f63eb9b0c7c004381393758520fe",
+    "contamination_audit_sha256": "fff4fc0f69cdcb7ae5bcba643266a969afded7a0d9d5928f0ed50dfcd258a756",
+    "trigger": "The inherited parser let 1289/4861 theorem blocks cross 3903 intervening top-level commands.",
+    "single_change": "After the explicit tactic-mode by opener, stop a projected proof at the first nonblank line whose indentation returns to or precedes the declaration indentation.",
+    "repaired_parser_sha256": "8f4abdc894c8f409fdfade4398d898f122f3349e26f8224acce163ce9916b013",
+    "hostile_tests": [
+      "intervening definition cannot leak into the prior theorem",
+      "instance, namespace and end commands terminate the projected proof",
+      "the repaired exact corpus has zero recognized top-level commands inside projected proof blocks"
+    ],
+    "unchanged": "Source revision, corpus selection, projection families, splits, systems, metrics, seeds, nulls, thresholds, decision rule, nonclaims and reopen triggers are identical to V2."
+  },
+  "research_question": "Do coarse tactic-family sequences recur and predict across source and top-module boundaries in a revision-bound programme-scale Mathlib sample beyond structure-preserving nulls?",
+  "source": {
+    "repository": "https://github.com/leanprover-community/mathlib4",
+    "commit": "e72c1e277f31441626621f7d0c7207862fc25569",
+    "commit_time": "2026-08-18T08:09:40Z",
+    "lean_toolchain": "leanprover/lean4:v4.34.0-rc1",
+    "license": "Apache-2.0",
+    "selection_manifest": "MATHLIB_CORPUS_V2_MANIFEST.json",
+    "selection": "Up to 16 paths per active top-level Mathlib module, ranked by sha256(path + NUL + ORION-P10-MATHLIB-V2); Deprecated and Testing excluded; no tactic content or outcome used."
+  },
+  "projection": {
+    "parser": "orion_learning_machine.adapters.lean_source.parse_lean_source at repaired_parser_sha256",
+    "unit": "tactic-mode theorem/lemma trajectory conservatively recognized after an explicit by opener and stopped by the V2.1 layout boundary",
+    "actions": "The 16 frozen coarse families in TACTIC_FAMILIES; consecutive duplicates collapsed; unknown and unclassified lines retained in source but excluded from sequences.",
+    "nonclaim": "This is a source-text projection, not a Lean grammar, proof-state trace, semantic tactic identity or kernel execution trace."
+  },
+  "splits": {
+    "leave_source_out": "Train on every selected file except one and pool held-out transitions.",
+    "leave_top_module_out": "Train on all selected top-level Mathlib modules except one and pool the held-out module transitions.",
+    "leakage_barrier": "A held-out file or top module contributes no sequence, transition count or fallback statistic to its trained predictor."
+  },
+  "systems": {
+    "UNIGRAM": "Training-split global most-frequent next action.",
+    "FIRST_ORDER_MARKOV": "Training-split most-frequent next action conditioned on the current action, with UNIGRAM fallback.",
+    "SEEN_NGRAM": "Whether a held-out bigram/trigram was observed in the training split."
+  },
+  "statistics": {
+    "cross_module_macro": "A unique n-gram occurring in at least two theorem trajectories and at least two top-level modules.",
+    "order_null": "Independently permute each trajectory's actions, preserving trajectory length and action multiset; recompute cross-module macro counts.",
+    "provenance_null": "Keep every trajectory sequence fixed and permute top-module labels across trajectories, preserving the observed label multiset; recompute cross-module macro counts.",
+    "random_seeds": [20260818, 20260819, 20260820, 20260821, 20260822],
+    "replicates_per_seed_and_null": 1000,
+    "p_values": "Add-one empirical upper and lower tails plus two-sided 2*min(tails), capped at one.",
+    "blocked_interval": "Top-module bootstrap 95% interval with 10000 resamples for the pooled FIRST_ORDER_MARKOV minus UNIGRAM accuracy difference."
+  },
+  "metrics": [
+    "recognized files, trajectories, projected actions and excluded unknown-line count",
+    "leave-source-out and leave-top-module-out bigram/trigram seen coverage",
+    "FIRST_ORDER_MARKOV and UNIGRAM next-action accuracy with paired difference",
+    "cross-module bigram/trigram macro count under both nulls and all seeds",
+    "provenance audit for every retained macro"
+  ],
+  "standalone_decision_rule": "KEEP_STANDALONE_P10 only if the leave-top-module-out Markov-minus-unigram improvement is at least 0.05 with a module-bootstrap 95% interval strictly above zero, an order statistic is significant at two-sided p<=0.01 under every frozen seed and both null families, native Lean verification receipts bind the corpus revision, and a distinct integrity residual survives nearest-work/ownership pressure. Otherwise TECHNICAL_NOTE_OR_MERGE_P10.",
+  "native_verification": {
+    "required_runtime": "leanprover/lean4:v4.34.0-rc1",
+    "receipt_subject": "selected file path, file sha256, Mathlib commit, Lean toolchain, verifier command, exit status and stdout/stderr sha256",
+    "negative_controls": [
+      "statement substitution invalidates FrozenMathTask binding",
+      "source revision substitution invalidates receipt subject binding",
+      "attempt substitution invalidates VerifierReceipt binding",
+      "native rejection cannot be recorded as SUCCESS"
+    ]
+  },
+  "nonclaims": [
+    "No theorem correctness, tactic semantic equivalence, proof-search, prover superiority, Mathlib-wide transfer, autoformalization or scientific authority claim.",
+    "A content hash establishes identity only; native Lean acceptance and external authority remain separate receipts.",
+    "Failure to reject a null is not evidence that sequences are random or equivalent to the null."
+  ],
+  "reopen_triggers": [
+    "Any selected source digest, Mathlib revision, Lean toolchain or parser definition changes.",
+    "A Lean-native trace representation reverses the source-projection result.",
+    "Repository/source-level blocking reverses an instance-level conclusion.",
+    "Nearest work absorbs the proposed content-binding integrity residual."
+  ]
+}

@@ -41,7 +41,7 @@ python --version
 cd framework && python -m pytest -q
 ```
 
-Expected: `27 passed`. Recorded in `results/FRAMEWORK_TESTS.txt`.
+Expected: `29 passed`. Recorded in `results/FRAMEWORK_TESTS.txt`.
 
 ## 4. Deterministic experiments
 
