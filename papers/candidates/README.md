@@ -11,6 +11,8 @@ As of 2026-08-17, `papers/README.md` on `main` defines exactly five flagship pap
 | P6 candidate | Formal Epistemic Structures and Mechanics | #332 / #333–#335 | PROPOSED / CANNOT_CHECK |
 | P7 candidate | Epistemic Navigation in Open Worlds | #332 / #336–#338 | PROPOSED / CANNOT_CHECK |
 | P8 candidate | A Theory of Epistemic Authority for Autonomous Science | #332 / #339–#341 | PROPOSED / CANNOT_CHECK |
+| P9 candidate | Executable Research Core | *no issue yet* | SCRIPTS+RESULTS / CANNOT_CHECK |
+| P10 candidate | Content-Bound Mathematical Evaluation | *no issue yet* | SCRIPTS+RESULTS / NULL RESULT / CANNOT_CHECK |
 
 ## Shared gates
 
@@ -30,5 +32,15 @@ The current five papers can be read as capability-specific epistemic transitions
 - P6 asks whether ORION mechanics admit a useful formal calculus of typed state transformations and recursive composition.
 - P7 asks whether open-world research can be treated as navigation over an evolving epistemic topology, rather than fixed-space search.
 - P8 asks whether the distinction between capability and authorization admits a reusable cross-capability authority calculus.
+- P9 asks whether an agent can accumulate capability — mechanics, competence, contracts, retained failure — such that routing measurably improves while none of that accumulation becomes authority to act.
+- P10 asks what must be content-bound for a mathematical claim to remain checkable, and what stays outside the evaluation harness entirely.
+
+P9 and P10 share one lane, `orion-learning-machine/`, which holds the framework, the
+experiments and the committed results both papers cite. They entered the programme as a
+script bundle rather than as manuscripts, so they are at an earlier stage than P6–P8:
+running code and reproducible results, but no manuscript, no claim ledger, no readiness
+file and no literature pass. P10's headline is a **null** — macros mined from real Lean
+source are indistinguishable from shuffled tactic order — and it is recorded as the
+headline rather than as a setback.
 
 These are hypotheses, not novelty claims.
