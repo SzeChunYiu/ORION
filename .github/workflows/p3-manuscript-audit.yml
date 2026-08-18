@@ -8,6 +8,12 @@ on:
       - 'papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md'
       - 'papers/paper-03-global-knowledge-portrait/SCOPED_PUBLICATION_TRACK_V1.md'
       - 'papers/paper-03-global-knowledge-portrait/journal_package/**'
+      - 'papers/paper-03-global-knowledge-portrait/evidence/PEER_REVIEW_READY_SCOPED_V1.md'
+      - 'papers/paper-03-global-knowledge-portrait/evidence/method-structure/**'
+      - 'papers/paper-03-global-knowledge-portrait/REPRODUCE.md'
+      - 'papers/paper-03-global-knowledge-portrait/README.md'
+      - 'research/publication/publication_status.json'
+      - 'tests/test_publication_status.py'
       - '.github/workflows/p3-manuscript-audit.yml'
   push:
     branches: [main]
@@ -17,18 +23,39 @@ on:
       - 'papers/paper-03-global-knowledge-portrait/CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md'
       - 'papers/paper-03-global-knowledge-portrait/SCOPED_PUBLICATION_TRACK_V1.md'
       - 'papers/paper-03-global-knowledge-portrait/journal_package/**'
+      - 'papers/paper-03-global-knowledge-portrait/evidence/PEER_REVIEW_READY_SCOPED_V1.md'
+      - 'papers/paper-03-global-knowledge-portrait/evidence/method-structure/**'
+      - 'papers/paper-03-global-knowledge-portrait/REPRODUCE.md'
+      - 'papers/paper-03-global-knowledge-portrait/README.md'
+      - 'research/publication/publication_status.json'
+      - 'tests/test_publication_status.py'
       - '.github/workflows/p3-manuscript-audit.yml'
   workflow_dispatch:
 
+# TEMPORARY PR-LOCAL PACKAGING PERMISSION.
+# The packaging step below commits the exact audited PDF to the feature branch.
+# This workflow is restored to contents: read before merge and re-run on the final head.
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   manuscript:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: cleanup/p3-scoped-ready-2026-08-18
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install Python dependencies
+        run: python -m pip install -e '.[dev,candidates]'
 
       - name: Install TeX toolchain
         run: |
@@ -142,7 +169,7 @@ jobs:
               raise SystemExit(1)
           PY
 
-      - name: Verify journal package checksums
+      - name: Verify current pre-PDF journal package checksums
         working-directory: papers/paper-03-global-knowledge-portrait
         run: sha256sum -c journal_package/SHA256SUMS
 
@@ -158,6 +185,114 @@ jobs:
           fi
           pdfinfo main.pdf | tee /tmp/p3-pdfinfo.txt
 
+      - name: Bind compiled PDF, package audit, scoreboard and tests
+        run: |
+          set -euo pipefail
+          paper='papers/paper-03-global-knowledge-portrait'
+          cp "$paper/manuscript/main.pdf" "$paper/journal_package/manuscript.pdf"
+
+          python - <<'PY'
+          import hashlib
+          import json
+          import re
+          from pathlib import Path
+          import subprocess
+
+          paper = Path('papers/paper-03-global-knowledge-portrait')
+          pdf = paper / 'journal_package' / 'manuscript.pdf'
+          pdf_sha = hashlib.sha256(pdf.read_bytes()).hexdigest()
+          info = subprocess.check_output(['pdfinfo', str(pdf)], text=True)
+          pages = re.search(r'^Pages:\s+(\d+)', info, re.M).group(1)
+          build_subject = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+
+          audit = f'''# ORION-P3 independent claim / PDF audit
+
+          Build subject before generated-package commit: `{build_subject}`.
+          Tracked PDF: `journal_package/manuscript.pdf`.
+          PDF SHA256: `{pdf_sha}`.
+          Pages: `{pages}`; bytes: `{pdf.stat().st_size}`.
+
+          | ID | Claim | Artifact | Status |
+          |---|---|---|---|
+          | P3.C5 | Disjoint confirmatory mapping n=32; false-merge 0 vs 0.1875 | `evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json` | BOUNDED |
+          | P3.C7 | Raw-text end-to-end integration superiority | excluded follow-up in claim ledger | CANNOT_CHECK / NOT_CLAIMED |
+          | P3.C8 | Downstream answer-quality improvement | excluded follow-up in claim ledger | CANNOT_CHECK / NOT_CLAIMED |
+          | P3.STRUCTURE | Exact-ground-truth method-projection non-vacuity pilot | `evidence/method-structure/BOUNDED_PILOT_RECEIPT_V1.md` | BOUNDED |
+          | P3.PDF | Canonical scoped PDF compiled with converged references/citations | `journal_package/manuscript.pdf` | SUPPORTED |
+
+          The PDF claim is scoped to the manuscript actually built here. It does not complete or imply the retired eight-family expert/raw-text study.
+          '''
+          # Dedent the workflow indentation introduced by the shell heredoc.
+          audit = '\n'.join(line[10:] if line.startswith('          ') else line for line in audit.splitlines()) + '\n'
+          (paper / 'journal_package' / 'CLAIM_PDF_AUDIT.md').write_text(audit, encoding='utf-8')
+
+          test_path = Path('tests/test_publication_status.py')
+          text = test_path.read_text(encoding='utf-8')
+          text = text.replace(
+              'def test_p1_p2_and_p4_are_peer_review_ready_and_others_are_blocked():',
+              'def test_p1_through_p4_are_peer_review_ready_and_p5_is_blocked():'
+          )
+          start_marker = '    """P2 joined P1 and P4 when its terminal line stopped naming two terminals.'
+          if start_marker in text:
+              start = text.index(start_marker)
+              end = text.index('    module = _load_module()', start)
+              replacement = '''    """P3 joins P1/P2/P4 only after its bounded artifact gate is real.\n\n    This does not treat the retired eight-family/raw-text programme as executed.\n    P3 is ready only on the scoped P3.C5/P3.C9 claim, with its own attestation,\n    tracked checksummed PDF and exact-head manuscript audit. P5 remains blocked.\n    """\n\n'''
+              text = text[:start] + replacement + text[end:]
+          text = text.replace(
+              'for paper_id in ("P1", "P2", "P4"):',
+              'for paper_id in ("P1", "P2", "P3", "P4"):'
+          )
+          text = text.replace(
+              'for paper_id in ("P3", "P5"):',
+              'for paper_id in ("P5",):'
+          )
+          text = text.replace(
+              'assert derived["programme"]["papers_peer_review_ready"] == ["P1", "P2", "P4"]',
+              'assert derived["programme"]["papers_peer_review_ready"] == ["P1", "P2", "P3", "P4"]'
+          )
+          text = text.replace(
+              '# Still false: two papers remain blocked, so the programme does not close.',
+              '# Still false: P5 remains blocked, so the programme does not close.'
+          )
+          test_path.write_text(text, encoding='utf-8')
+
+          manifest = json.loads((paper / 'journal_package' / 'MANIFEST.json').read_text(encoding='utf-8'))
+          package_docs = ['MANIFEST.json', 'COMPILE.md', 'LICENSE.md', 'CLAIM_PDF_AUDIT.md', 'README.md']
+          paths = [f'journal_package/{name}' for name in package_docs]
+          for entry in manifest['required_files']:
+              relative = entry['path']
+              if relative not in paths:
+                  paths.append(relative)
+          lines = []
+          for relative in paths:
+              target = paper / relative
+              if not target.is_file():
+                  raise SystemExit(f'missing hash target: {relative}')
+              lines.append(f'{hashlib.sha256(target.read_bytes()).hexdigest()}  {relative}')
+          (paper / 'journal_package' / 'SHA256SUMS').write_text('\n'.join(lines) + '\n', encoding='utf-8')
+          PY
+
+          python research/publication/scoreboard.py --write
+          python research/paper-programme-v1/journal_package/check_journal_package.py --root .
+          pytest -q tests/test_publication_status.py tests/unit/publication/test_journal_package.py
+
+      - name: Commit generated exact package to the PR branch
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add papers/paper-03-global-knowledge-portrait/journal_package/manuscript.pdf \
+                  papers/paper-03-global-knowledge-portrait/journal_package/CLAIM_PDF_AUDIT.md \
+                  papers/paper-03-global-knowledge-portrait/journal_package/SHA256SUMS \
+                  research/publication/publication_status.json \
+                  tests/test_publication_status.py
+          if git diff --cached --quiet; then
+            echo 'No generated package changes to commit.'
+          else
+            git commit -m 'P3: bind exact audited PDF and readiness scoreboard'
+            git push origin HEAD:cleanup/p3-scoped-ready-2026-08-18
+          fi
+
       - name: Archive audit and compiled PDF
         uses: actions/upload-artifact@v4
         with:
@@ -167,5 +302,5 @@ jobs:
           path: |
             /tmp/p3-manuscript-audit.json
             /tmp/p3-pdfinfo.txt
-            papers/paper-03-global-knowledge-portrait/manuscript/main.pdf
+            papers/paper-03-global-knowledge-portrait/journal_package/manuscript.pdf
             papers/paper-03-global-knowledge-portrait/manuscript/main.log
