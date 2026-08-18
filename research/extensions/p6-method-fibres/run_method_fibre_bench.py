@@ -9,9 +9,9 @@ from orion.transfer.v2.p6_method_fibres import (
     membership_evidence, assess_membership, check_composition,
     relation, representation_lift,
 )
-ROOT=Path(__file__).resolve().parents[1]
-PANEL=ROOT/'method_fibre_extension'/'METHOD_FIBRE_BENCH_V1.json'
-SUMMARY=ROOT/'method_fibre_extension'/'METHOD_FIBRE_BENCH_SUMMARY_V1.json'
+ROOT=Path(__file__).resolve().parent
+PANEL=ROOT/'METHOD_FIBRE_BENCH_V1.json'
+SUMMARY=ROOT/'METHOD_FIBRE_BENCH_SUMMARY_V1.json'
 
 def d(x): return content_digest({'x':x})
 def realization(name):
