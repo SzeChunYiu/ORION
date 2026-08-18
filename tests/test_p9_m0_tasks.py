@@ -88,7 +88,7 @@ def test_colliding_weaker_view_cannot_leak_hidden_semantics_through_candidate_or
         assert left.target_candidate_id != right.target_candidate_id
 
 
-def test_weaker_candidate_views_do_not_smuggle_typed_contracts():
+def test_surface_and_topology_candidate_views_preserve_declared_incidence_without_typed_contracts():
     world = generate_pair(HostileFamily.RELATION_SEMANTICS, "candidate-fields").worlds[0]
 
     surface = build_task(world, mode=ViewMode.SURFACE, order_seed="o")
@@ -100,7 +100,12 @@ def test_weaker_candidate_views_do_not_smuggle_typed_contracts():
     assert isinstance(typed, MechanicRankingTask)
 
     for candidate in surface.candidates:
-        assert set(candidate.payload) == {"candidate_id", "surface_label"}
+        assert set(candidate.payload) == {
+            "candidate_id",
+            "surface_label",
+            "read_atom_ids",
+            "write_atom_ids",
+        }
     for candidate in topology.candidates:
         assert set(candidate.payload) == {
             "candidate_id",
