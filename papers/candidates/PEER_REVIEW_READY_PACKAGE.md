@@ -3,15 +3,39 @@
 **Date:** 2026-08-18  
 **Scientific base:** theory package merged by #375.  
 **Submission gate:** #376.  
-**Status at file creation:** `SUBMISSION_CONTENT_COMPLETE / EXACT_COMMIT_CI_PENDING`.
+**Content terminal:** `SUBMISSION_CONTENT_COMPLETE`.
+
+## Computed peer-review terminal
+
+This file does not hard-code a claim that could become stale after a content edit. For the exact Git commit being evaluated, define
+
+```text
+PEER_REVIEW_READY :=
+    p6-p8-candidate-ci == success
+AND ci == success
+AND submission/p6-p8-peer-review-ready-2026-08-18 is the tested PR head
+```
+
+The fast candidate workflow must explicitly contain successful steps named:
+
+- `Theory and live-embedding gate`;
+- `Peer-review submission gate`.
+
+The second step runs `tests/unit/candidates/test_p6_p8_peer_review_ready.py`, which executes the deterministic submission-source linter. The repository-wide `ci` workflow independently runs the full project `pytest -q` suite.
+
+When those predicates hold on one immutable head, the repository terminal for P6, P7 and P8 is `PEER_REVIEW_READY`. A later content change invalidates the terminal until the new head passes both checks again.
+
+`PEER_REVIEW_READY` means ready for external editorial/referee evaluation. It does not mean `PEER_REVIEWED`, `ACCEPTED`, `FLAGSHIP_PROMOTED`, or `EMPIRICALLY_SUPERIOR`.
 
 ## Programme submission artifacts
 
 - `PEER_REVIEW_READY_GATE_2026-08-18.md` — terminal definition and narrowed claims.
 - `PRE_SUBMISSION_LITERATURE_DELTA_2026-08-18.md` — two-round current-literature closure.
 - `VENUE_REQUIREMENTS_VERIFIED_2026-08-18.md` — live AIJ/JAAMAS author requirements.
-- `submission/check_peer_review_ready.py` — deterministic structural submission gate.
-- `tests/unit/candidates/test_p6_p8_peer_review_ready.py` — normal-CI wiring.
+- `SUBMISSION_CLAIM_AUTHORITY_V1.md` — journal-headline claim authority and nonclaims.
+- `submission/check_peer_review_ready.py` — deterministic structural/citation/venue submission gate.
+- `tests/unit/candidates/test_p6_p8_peer_review_ready.py` — submission gate test.
+- `.github/workflows/p6-p8-candidate-ci.yml` — fast theory + submission gate wiring.
 
 ## P6 — Artificial Intelligence
 
@@ -19,8 +43,8 @@
 - highlights: `paper-06-formal-epistemic-structures-and-mechanics/submission/HIGHLIGHTS.txt`
 - cover letter: `paper-06-formal-epistemic-structures-and-mechanics/submission/COVER_LETTER.md`
 - normative theory: `paper-06-formal-epistemic-structures-and-mechanics/manuscript/FORMAL_CORE_V2_1.md`
-- claim authority: `paper-06-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V2_1.md`
-- reproduce: `paper-06-formal-epistemic-structures-and-mechanics/REPRODUCE_V2_1.md`
+- claim authority: `paper-06-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V2_1.md` plus programme submission ledger;
+- reproduce: `paper-06-formal-epistemic-structures-and-mechanics/REPRODUCE_V2_1.md`.
 
 ## P7 — Artificial Intelligence
 
@@ -29,8 +53,8 @@
 - cover letter: `paper-07-epistemic-navigation-open-worlds/submission/COVER_LETTER.md`
 - normative theory: `paper-07-epistemic-navigation-open-worlds/manuscript/FORMAL_CORE_V2.md`
 - frozen contract manifest: `paper-07-epistemic-navigation-open-worlds/benchmark/instances_v2.jsonl`
-- claim authority: `paper-07-epistemic-navigation-open-worlds/CLAIM_LEDGER_V2.md`
-- reproduce: `paper-07-epistemic-navigation-open-worlds/REPRODUCE_V2_1.md`
+- claim authority: `paper-07-epistemic-navigation-open-worlds/CLAIM_LEDGER_V2.md` plus programme submission ledger;
+- reproduce: `paper-07-epistemic-navigation-open-worlds/REPRODUCE_V2_1.md`.
 
 ## P8 — Autonomous Agents and Multi-Agent Systems
 
@@ -39,8 +63,8 @@
 - cover letter: `paper-08-epistemic-authority-autonomous-science/submission/COVER_LETTER.md`
 - normative theory: `paper-08-epistemic-authority-autonomous-science/manuscript/FORMAL_CORE_V2.md`
 - frozen authority manifest: `paper-08-epistemic-authority-autonomous-science/benchmark/authority_cases_v2.jsonl`
-- claim authority: `paper-08-epistemic-authority-autonomous-science/CLAIM_LEDGER_V2.md`
-- reproduce: `paper-08-epistemic-authority-autonomous-science/REPRODUCE_V2_1.md`
+- claim authority: `paper-08-epistemic-authority-autonomous-science/CLAIM_LEDGER_V2.md` plus programme submission ledger;
+- reproduce: `paper-08-epistemic-authority-autonomous-science/REPRODUCE_V2_1.md`.
 
 ## Author/correspondence metadata used in the package
 
@@ -51,7 +75,11 @@ Public institutional metadata:
 - corresponding e-mail `sze-chun.yiu@fysik.su.se`;
 - postal correspondence `SE-106 91 Stockholm, Sweden`.
 
-ORCID, private funding/grant information, and private competing-interest declarations are not inferred. See #377.
+ORCID, private funding/grant information, and private competing-interest declarations are not inferred. See #377. Those are author attestations at portal submission, not missing scientific claims.
+
+## Archival identity
+
+The exact successful PR head plus its GitHub check runs is the submission archive identity. #379 records the immutable head/check evidence after the computed terminal becomes true, without changing the tested manuscript bytes.
 
 ## External boundary
 
