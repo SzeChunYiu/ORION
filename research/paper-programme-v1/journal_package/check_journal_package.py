@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -115,6 +116,40 @@ def _verification_schema(payload: dict[str, Any]) -> str:
     return str(payload.get("schema_version") or payload.get("schema") or "")
 
 
+def _safe_relative_path(
+    value: Any, *, base: Path | None = None, allowed_root: Path | None = None
+) -> bool:
+    """Accept normalized relative paths that stay inside an optional root."""
+    if not isinstance(value, str) or not value or "\\x00" in value:
+        return False
+    path = Path(value)
+    if path.is_absolute() or path.as_posix() != value:
+        return False
+    if allowed_root is None:
+        return ".." not in path.parts
+    try:
+        ((base or allowed_root) / path).resolve().relative_to(allowed_root.resolve())
+    except ValueError:
+        return False
+    return True
+
+
+def _revision_exists(repo_root: Path | None, revision: Any) -> bool | None:
+    """Return whether a subject SHA resolves, or None when no repo is supplied."""
+    if repo_root is None or not isinstance(revision, str):
+        return None
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(repo_root), "cat-file", "-e", f"{revision}^{{commit}}"],
+            capture_output=True,
+            check=False,
+            text=True,
+        )
+    except OSError:
+        return None
+    return result.returncode == 0
+
+
 def consume_verification_records(
     paper_id: str, paper_root: Path, repo_root: Path | None
 ) -> list[str]:
@@ -206,6 +241,12 @@ def check_package(paper_id: str, paper_root: Path, *, repo_root: Path | None = N
             report.errors.append(f"malformed required_files entry: {entry!r}")
             continue
         path = str(entry["path"])
+        if not _safe_relative_path(path, base=paper_root, allowed_root=repo_root):
+            report.errors.append(f"required file path is not normalized and in-root: {path!r}")
+            continue
+        if path in required_paths:
+            report.errors.append(f"duplicate required file path: {path}")
+            continue
         required_paths.add(path)
         target = paper_root / path
         if not target.is_file():
@@ -234,6 +275,8 @@ def check_package(paper_id: str, paper_root: Path, *, repo_root: Path | None = N
             report.errors.append(
                 f"submission operation {path!r} must be SUBMISSION_OPERATION, not {entry.get('status')!r}"
             )
+        if not _safe_relative_path(path, base=paper_root, allowed_root=paper_root):
+            report.errors.append(f"submission operation path is not normalized and in-root: {path!r}")
         if path in operation_paths:
             report.errors.append(f"duplicate submission operation path: {path}")
         operation_paths.add(path)
