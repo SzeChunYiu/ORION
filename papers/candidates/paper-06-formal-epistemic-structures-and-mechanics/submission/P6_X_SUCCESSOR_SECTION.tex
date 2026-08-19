@@ -1,0 +1,66 @@
+\section{Post-saturation successor: scientific-certificate semantics as a conservative enrichment}
+\label{sec:p6x-successor}
+
+The original V2.1 theory isolates a typed-erasure separation between bare
+computation/dependency behavior and scientific admissibility.  A separate
+post-saturation successor generalizes that boundary without rewriting the V2.1
+evidence.  The successor grants mature donor mechanisms for dependency
+maintenance, effectful computation, continuing authorization, provenance,
+workflow reproducibility and execution attestation.  In particular, P6-X does
+not claim novelty for certificates or provenance-bearing execution.
+
+P6-X freezes three bounded donor semantic embeddings: dependency maintenance,
+effectful computation, and continuing authorization plus execution provenance.
+The scientific enrichment adds four certificate coordinates: current evidence
+version, authorized scientific source, supported claim scope, and current
+verification epoch.  For embedding $D$, scientific admissibility is donor-native
+validity together with discharge of every scientific certificate obligation.
+
+\begin{theorem}[Scientific non-reflection under non-inert erasure]
+Let $U_D$ preserve the complete donor-visible state while erasing the four
+scientific certificate coordinates.  If at least one erased scientific
+coordinate is non-inert---that is, changing it while holding donor-visible state
+and all other scientific coordinates fixed can change scientific
+admissibility---then $U_D$ does not reflect scientific admissibility.  There
+exist states $s,t$ with $U_D(s)=U_D(t)$ and equal donor-native validity but
+different scientific-admissibility judgments.
+\end{theorem}
+
+The condition is explicit: P6-X does not assert that every donor formalism
+necessarily erases scientifically relevant information.
+
+\begin{theorem}[Conservative reduction]
+If every scientific certificate obligation is discharged, scientific
+admissibility reduces exactly to donor-native validity under the embedding.
+\end{theorem}
+
+\begin{theorem}[Ideal-product equivalence]
+An ideal donor product enriched with the exact P6-X scientific coordinates and
+the same admissibility predicate is extensionally equivalent to P6-X.
+\end{theorem}
+
+This negative result rules out inherent expressivity or centralization as the
+source of the contribution.
+
+\begin{theorem}[Certificate continuity after change]
+A donor-valid transition preserves an existing scientific certificate only when
+every scientific certificate coordinate changed by the transition is either
+preserved under the exact change or explicitly revalidated.  Donor-valid
+recomputation, support, effect execution, or tool authorization alone cannot
+preserve a certificate after a non-inert scientific coordinate becomes false.
+\end{theorem}
+
+An exhaustive finite model evaluates 512 Boolean states per embedding, 1,536
+state evaluations total.  It records zero donor-preservation violations, 96
+typed-erasure separation witnesses spanning all four scientific coordinates,
+96 conservative-reduction cases with zero violations, zero ideal-product
+mismatches, 96 certificate-revocation countermodels, and 24 donor-valid
+no-alarm cases.  The canonical enumeration has SHA-256
+\texttt{9a181cc61f1a1b56daa8f313d63acc3928f758b4150d242fe03c14e347ec511c}.
+A second implementation independently reproduces all theorem counts.
+
+The wider P6 claim is therefore bounded to this scientific-admissibility
+separation and conservative-extension theorem family.  Generic certificates,
+provenance, authorization, effects and dependency maintenance remain donor
+territory; deployed-agent utility and universal scientific semantics are not
+claimed.
