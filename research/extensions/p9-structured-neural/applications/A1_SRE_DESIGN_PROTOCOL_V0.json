@@ -1,0 +1,103 @@
+{
+  "schema": "P9.ApplicationA1SREDesignProtocol.v0",
+  "status": "DESIGN_FROZEN_EXECUTION_UNBOUND",
+  "outcome_accessed": false,
+  "orion_subject_base": "f2d6b8b3f58da3e3577975ac5215c7439a9ffc5f",
+  "parent_issue": 536,
+  "scientific_question": "On real-world-inspired cloud incidents, does externally grounded typed evidence structure improve root-cause localization and calibrated unresolved behavior beyond matched surface/topology representations, and does explicit traversal/checking close residuals without requiring a larger end-to-end neural reasoner?",
+  "p9_negatives_targeted": [
+    "N1_TOPOLOGY_NON_IDENTIFYING_WHEN_RELATION_MEANING_MATTERS",
+    "N4_EXACT_INFERENCE_CAN_BE_PREFERABLE_TO_NEURAL_ESCALATION",
+    "N5_DEPLOY_FIRST_WHERE_STRUCTURE_AND_VALIDATION_ARE_NATIVE"
+  ],
+  "external_sources": {
+    "itbench_repository": {
+      "repository": "itbench-hub/ITBench",
+      "commit": "a1fffbe9221d5792c566e944c01763403413d97c",
+      "role": "scenario/specification source; evaluator-only fault identities must never enter model-visible payload"
+    },
+    "itbench_evaluations_repository": {
+      "repository": "itbench-hub/ITBench-Evaluations",
+      "commit": "14f026fc9cc348c4ecec5ab32714de954c95c1b1",
+      "role": "root-cause entity / propagation / fault-localization metric implementation where compatible"
+    },
+    "itbench_paper": "arXiv:2502.05352",
+    "graph_guided_rca_donor": "arXiv:2606.08590",
+    "stratus_donor": "arXiv:2506.02009"
+  },
+  "execution_binding": {
+    "snapshot_or_live_scenario_manifest": "UNBOUND",
+    "scenario_ids": "UNBOUND",
+    "ground_truth_digest": "UNBOUND",
+    "telemetry/evidence_manifest": "UNBOUND",
+    "candidate_model/provider_identity": "UNBOUND",
+    "reason": "design is frozen before inspecting protected pilot outcomes; execution binds only after data-access and contamination audit"
+  },
+  "task": {
+    "primary": "ROOT_CAUSE_ENTITY_LOCALIZATION",
+    "secondary": [
+      "PROPAGATION_CHAIN_WHERE_DETERMINISTIC_GOLD_EXISTS",
+      "CALIBRATED_UNRESOLVED_WHEN_DECISIVE_EVIDENCE_IS_WITHHELD"
+    ],
+    "explicitly_out_of_scope": [
+      "AUTONOMOUS_REMEDIATION",
+      "PRODUCTION_READINESS",
+      "MEAN_TIME_TO_REPAIR",
+      "GENERAL_CAUSAL_DISCOVERY"
+    ]
+  },
+  "model_visible_views": [
+    {
+      "id": "S0_SURFACE",
+      "content": "reminted alert/log/service tokens and matched scalar observations; no dependency or relation semantics"
+    },
+    {
+      "id": "S1_TOPOLOGY",
+      "content": "same evidence plus untyped service/resource dependency topology"
+    },
+    {
+      "id": "S2_TYPED_EVIDENCE",
+      "content": "same evidence plus externally grounded node/relation types such as service, workload, config, calls, owns, depends_on, emits"
+    },
+    {
+      "id": "S3_TYPED_WITH_EXPLICIT_TRAVERSAL",
+      "content": "S2 plus deterministic graph traversal/filter/check operations; no extra protected evidence"
+    }
+  ],
+  "matched_baselines": [
+    "SURFACE_SEQUENCE_OR_TEXT_CLASSIFIER",
+    "UNTYPED_GRAPH_OR_TOPOLOGY_MODEL",
+    "TYPED_RELATIONAL_MODEL",
+    "SAME_INFORMATION_TYPED_SERIALIZATION",
+    "EXPLICIT_TYPED_GRAPH_TRAVERSAL_CHECKER",
+    "DONOR_NATIVE_GRAPH_GUIDED_RCA_WHERE_REPRODUCIBLE"
+  ],
+  "hostile_controls": [
+    "service/resource names reminted in protected split",
+    "same or closely matched visible symptom with distinct injected root-cause classes",
+    "ground-truth injection identity absent from every model-visible payload",
+    "domain/scenario id unavailable as a reusable feature",
+    "dependency topology preserved while relation types are permuted/removed",
+    "decisive telemetry withheld on a registered subset; correct behavior is UNRESOLVED rather than forced root cause",
+    "prompt/scenario-specific hints removed from protected arm",
+    "explicit traversal receives no more information than typed learner",
+    "row/node/candidate ordering permutations",
+    "evaluator-independent result archive and exact scenario/source identities"
+  ],
+  "primary_metrics": [
+    "root_cause_entity_precision_recall_f1",
+    "pass_at_1_where_defined",
+    "unresolved_precision_recall_on_withheld_evidence_subset",
+    "false_confident_root_cause_rate",
+    "inference/tool/search_cost"
+  ],
+  "positive_terminal_rule": "P9_A1_SRE_STRUCTURE_NATIVE_PILOT_SUPPORTED only if a typed or typed+explicit arm improves the prospectively declared protected endpoint over both surface and same-information controls without extra information, while withheld-evidence cases do not become more fail-open.",
+  "negative_terminals": [
+    "P9_A1_SRE_NO_TYPED_INCREMENTAL_VALUE",
+    "P9_A1_SRE_EXPLICIT_TRAVERSAL_ONLY_VALUE",
+    "P9_A1_SRE_INFORMATION_NOT_STRUCTURE_BOTTLENECK",
+    "P9_A1_SRE_EVALUATOR_OR_CONTAMINATION_FAILURE",
+    "CANNOT_CHECK"
+  ],
+  "authority": "NO_SCIENTIFIC_AUTHORITY_DESIGN_ONLY"
+}
