@@ -1,7 +1,7 @@
 # P4 saturation — PR ancestry audit
 
 Audit date: 2026-08-19  
-Final integration cutoff: `main@b7abcc6ad76d2a985ea938fcbd070a6097b0fe99`  
+Final integration cutoff: `main@627ac5cb2cc0aba0fd2b3912c40a06227849167a`  
 Parent audit: #499  
 Saturation issue: #492
 
@@ -33,12 +33,17 @@ Saturation issue: #492
 - [x] comparator arms remain labelled mechanism reimplementations, not original donor software;
 - [x] H1/H2/H3 statistics language and denominators audited;
 - [x] TMLR primary + AIJ fallback + conditional NMI portability boundary documented;
-- [x] saturated manuscript/PDF/package was rebuilt and one-shot workflow self-removed;
-- [ ] final exact-current-main P4 TMLR audit + repository CI must pass before merge.
+- [ ] saturated PDF/package must be rebound to the edited manuscript and final exact-current-main P4 TMLR audit + repository CI must pass before merge.
 
 ## Successor exclusions
 - [x] #434 method-transfer authority and #461/P8/P9/P10 anti-laundering are downstream successor structure;
 - [x] P5/host adoption remains outside P4;
 - [x] no successor capability retroactively authorizes P4 claims.
 
-Status: `ANCESTRY_AUDIT_COMPLETE_AT_b7abcc6__P4_SATURATION_CONVERGED__AWAIT_FINAL_CI`.
+## Final main-delta recheck
+- [x] compared `d73e65c10f4f3b7ae773cea667f6dccd1507e8f0..627ac5cb2cc0aba0fd2b3912c40a06227849167a`;
+- [x] the 42-commit delta is confined to P9 research/workflow/test material;
+- [x] no P4 manuscript, protected V2 result/custody artifact, TMLR package or P4 authority record changed;
+- [x] P9 bounded inference work does not promote or falsify P4's protected authority result.
+
+Status: `ANCESTRY_AUDIT_COMPLETE_AT_627ac5c__P4_SATURATION_CONVERGED__AWAIT_PACKAGE_AND_FINAL_CI`.
