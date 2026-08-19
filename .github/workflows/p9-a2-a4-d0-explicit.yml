@@ -3,16 +3,14 @@ name: p9-a2-a4-d0-explicit
 on:
   pull_request:
     paths:
-      - 'src/orion/study/p9/a2_a4_explicit.py'
-      - 'research/extensions/p9-structured-neural/A2_A4_D0_EXPLICIT_PROTOCOL_V1.json'
-      - 'research/extensions/p9-structured-neural/run_a2_a4_d0_explicit.py'
-      - 'development/p9-a2-a4-explicit/**'
-      - 'tests/test_p9_a2_a4_explicit.py'
       - '.github/workflows/p9-a2-a4-d0-explicit.yml'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 concurrency:
-  group: p9-a2-a4-${{ github.event.pull_request.number || github.ref }}
+  group: p9-a2-a4-execution-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -21,12 +19,26 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Bind unchanged scientific subject
+        run: |
+          echo 'P9_A2_A4_SCIENTIFIC_CODE_SUBJECT=cc6b4d7bb1fc21460172b49563051463cb1f4663'
+          echo 'P9_A2_A4_ROUTING_SUBJECT=d306201094e4572944f8c72526ba613d82f89912'
+          CHANGED="$(git diff --name-only d306201094e4572944f8c72526ba613d82f89912..HEAD)"
+          printf '%s\n' "$CHANGED"
+          test "$CHANGED" = '.github/workflows/p9-a2-a4-d0-explicit.yml'
       - run: python -m pip install -e '.[dev,candidates]'
-      - run: pytest -q tests/test_p9_a2_a4_explicit.py
-      - run: >-
+      - name: Corrected hostile tests
+        run: pytest -q tests/test_p9_a2_a4_explicit.py
+      - name: Execute corrected frozen A2/A4 replay
+        run: >-
           python research/extensions/p9-structured-neural/run_a2_a4_d0_explicit.py
           --output "$RUNNER_TEMP/a2-a4-results.json"
           > "$RUNNER_TEMP/a2-a4-full-output.log"
@@ -42,7 +54,35 @@ jobs:
           for family_key in ('relation_views','history_views'):
               for view,row in result[family_key].items():
                   print(f"P9_A2_A4_VIEW family={family_key} view={view} full={row['full_task_accuracy']} coverage={row['coverage']}")
+          print('P9_A2_A4_HOSTILE='+json.dumps(result.get('hostile_checks', {}), sort_keys=True))
           PY
+      - name: Persist corrected replay on execution branch
+        env:
+          RESULT: ${{ runner.temp }}/a2-a4-results.json
+        run: |
+          mkdir -p research/extensions/p9-structured-neural/execution
+          cp "$RESULT" research/extensions/p9-structured-neural/execution/A2_A4_EXECUTION_RESULT_V1_1.json
+          python - <<'PY'
+          import json, os, pathlib
+          result=json.loads(pathlib.Path(os.environ['RESULT']).read_text())
+          receipt={
+              'schema':'P9.A2A4ExecutionReceipt.v1.1',
+              'scientific_code_subject':'cc6b4d7bb1fc21460172b49563051463cb1f4663',
+              'routing_subject':'d306201094e4572944f8c72526ba613d82f89912',
+              'execution_workflow_commit':os.environ['GITHUB_SHA'],
+              'protocol':result['protocol'],
+              'result_digest':result['result_digest'],
+              'terminal':result['terminal'],
+              'hostile_checks':result.get('hostile_checks',{}),
+              'authority':'OFFICIAL_FOCUSED_EXECUTION_PENDING_SCIENTIFIC_PR_INTEGRATION'
+          }
+          pathlib.Path('research/extensions/p9-structured-neural/execution/A2_A4_EXECUTION_RECEIPT_V1_1.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/extensions/p9-structured-neural/execution/A2_A4_EXECUTION_RESULT_V1_1.json research/extensions/p9-structured-neural/execution/A2_A4_EXECUTION_RECEIPT_V1_1.json
+          git commit -m 'P9 A2/A4 v1.1: persist focused corrected replay'
+          git push origin HEAD:${{ github.head_ref }}
       - uses: actions/upload-artifact@v4
         with:
           name: p9-a2-a4-d0-explicit-${{ github.sha }}
