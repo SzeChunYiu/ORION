@@ -1,15 +1,15 @@
 """ScientificStructureAssimilationReceipt.v1 — absorb epistemology before mechanics (#454).
 
-This is deliberately upstream of ``MechanismAssimilationReceipt.v1``.  A donor
+This is deliberately upstream of ``MechanismAssimilationReceipt.v1``. A donor
 paper can change what counts as an object, explanation, anomaly, admissible
 revision, inquiry, preservation rule, or scientific authority before any
-algorithmic primitive is copied.  Recording only the algorithm in that case is
+algorithmic primitive is copied. Recording only the algorithm in that case is
 not assimilation; it is loss of scientific structure.
 
-A receipt is non-authorizing.  ``ADMITTED`` means the donor's commitments and
+A receipt is non-authorizing. ``ADMITTED`` means the donor's commitments and
 ORION consequences were recorded without one of the fail-closed hostile modes;
 it never means the donor is reproduced, a scientific claim is true, or ORION owns
-novelty.  Material structural donors must carry a receipt identity before their
+novelty. Material structural donors must carry a receipt identity before their
 mechanics can be admitted downstream under #318.
 """
 
@@ -110,6 +110,32 @@ class StructuralDonorIdentity:
 
 
 @dataclass(frozen=True)
+class StructuralAssumptionProfile:
+    """Explicit schema-pressure assumptions from the #454/RLC harvest.
+
+    These are intentionally first-class fields rather than prose embedded in A-G.
+    An explicit ``NOT_MATERIAL: ...`` explanation is acceptable; an empty field is
+    not. This prevents an algorithm summary from silently discarding a donor's
+    agent/world, state, stochasticity, strategy, memory, computation, interface,
+    or simple-baseline assumptions.
+    """
+
+    agent_world_coupling_assumption: str
+    common_state_sufficiency_assumption: str
+    exogenous_stochasticity_semantics: str
+    strategic_link_required_followups: str
+    working_memory_vs_audit_history: str
+    computation_is_action_wait_semantics: str
+    interface_components_joint_or_independent: str
+    simple_baseline_that_could_make_donor_unnecessary: str
+
+    def __post_init__(self) -> None:
+        for name, value in self.__dict__.items():
+            if not str(value).strip():
+                raise ValueError(f"structural assumption profile field must be explicit: {name}")
+
+
+@dataclass(frozen=True)
 class CoordinateAssessment:
     coordinate: StructuralCoordinate
     commitment: str
@@ -125,6 +151,8 @@ class CoordinateAssessment:
             raise ValueError("coordinate assessment requires a donor commitment")
         if not self.evidence_refs:
             raise ValueError("coordinate assessment requires source-grounding evidence refs")
+        if not self.orion_consequence.strip():
+            raise ValueError("coordinate assessment requires an ORION consequence or explicit NO_CHANGE rationale")
 
 
 @dataclass(frozen=True)
@@ -132,6 +160,7 @@ class StructuralAssimilationDraft:
     receipt_id: str
     donor: StructuralDonorIdentity
     assessments: tuple[CoordinateAssessment, ...]
+    assumption_profile: StructuralAssumptionProfile
     donor_authority: StructuralAuthority
     claimed_authority: StructuralAuthority
     material_structural_donor: bool = True
@@ -174,6 +203,7 @@ class ScientificStructureAssimilationReceipt:
     receipt_id: str
     donor: StructuralDonorIdentity
     assessments: tuple[CoordinateAssessment, ...]
+    assumption_profile: StructuralAssumptionProfile
     hostile_findings: tuple[StructuralHostileFinding, ...]
     verdict: StructuralAssimilationVerdict
     verdict_reasons: tuple[str, ...]
@@ -217,11 +247,11 @@ def _finding(kind: StructuralHostileFindingKind, detail: str) -> StructuralHosti
 def assess_structural_assimilation(draft: StructuralAssimilationDraft) -> tuple[StructuralHostileFinding, ...]:
     findings: list[StructuralHostileFinding] = []
     coordinates = [assessment.coordinate for assessment in draft.assessments]
-    missing = [coordinate.value for coordinate in REQUIRED_COORDINATES if coordinates.count(coordinate) != 1]
-    if missing:
+    invalid = [coordinate.value for coordinate in REQUIRED_COORDINATES if coordinates.count(coordinate) != 1]
+    if invalid:
         findings.append(_finding(
             StructuralHostileFindingKind.ALGORITHM_ONLY_ABSORPTION,
-            "receipt must contain exactly one A-G structural assessment; invalid: " + ", ".join(missing),
+            "receipt must contain exactly one A-G structural assessment; invalid: " + ", ".join(invalid),
         ))
 
     if draft.donor.source_kind is StructuralSourceKind.SECONDARY:
@@ -314,13 +344,14 @@ def seal_structural_assimilation(draft: StructuralAssimilationDraft) -> Scientif
         reasons.append("donor body not fully source-grounded; structural commitments remain CANNOT_CHECK")
     else:
         verdict = StructuralAssimilationVerdict.ADMITTED
-        reasons.append("full primary/official source read; A-G structure recorded; no hostile finding")
+        reasons.append("full primary/official source read; A-G structure and explicit assumption profile recorded; no hostile finding")
 
     receipt = ScientificStructureAssimilationReceipt(
         schema_id=SCHEMA_ID,
         receipt_id=draft.receipt_id,
         donor=draft.donor,
         assessments=draft.assessments,
+        assumption_profile=draft.assumption_profile,
         hostile_findings=findings,
         verdict=verdict,
         verdict_reasons=tuple(reasons),
