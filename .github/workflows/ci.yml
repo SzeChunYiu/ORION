@@ -91,6 +91,144 @@ jobs:
           --ignore=tests/unit/p2/test_p2_offline_systems.py
           -n auto --durations=10
 
+  # One-shot science-first integrator. It replays only exact reviewed research
+  # deltas; publication PDF/render/package work is intentionally not included.
+  science-assemble:
+    if: github.event_name == 'pull_request' && github.head_ref == 'science/foundations-jump-convergence-v2-20260819' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Configure integration identity
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - name: Replay reviewed foundations and discovery science deltas
+        run: |
+          set -euo pipefail
+          # #522: full four-commit formal-closure/disposition chain.
+          git cherry-pick feaa927a60276446c1d2ff2642c6159d298c32b4
+          git cherry-pick 12f5c6c971480d067799d0ac0c81abadb3f874c3
+          git cherry-pick 4c66793958e64119d87f8f027d602d03285e0f34
+          git cherry-pick 3ca3ef8c1784aa7b50244ebcb84fc3ef6750d30f
+
+          # Recursive atom/failure substrate and evidence chronology.
+          git cherry-pick 49aa53adf32c0c034662029e4219a03e03cb1553
+          git cherry-pick 5b2b5b79ad10207ea7e55f9c81c937e2813f1e20
+
+          # Bounded atom outcomes + recursive study calculus.
+          git cherry-pick 6c62cbca1c767e9324f1c6e4063779667039e596
+          git cherry-pick 811fecef3c0f0cd5572d4709d67a90673c1a54d9
+          git cherry-pick d84af4cc49b3a9a8a48c15d4aeb8445ba45d0253
+
+          # Source-grounded discovery/failure studies.
+          git cherry-pick 9a38edff9f8057fd2cdce8220aef884335415c83
+          git cherry-pick a4a04722f86f23e0a55c227d1bc784ed3d87f08b
+          git cherry-pick 71fda75610cde080412c5322690ad5e4ee96b18a
+
+          # Zero-error Jump V2 + its independent-verifier review amendment.
+          git cherry-pick 3328144a007fad252dfbe24aa373066878613a15
+          git cherry-pick d16593f69b673588d9d33a18ee199ed7332f2602
+
+          # Programme synthesis; does not self-certify merge state.
+          git cherry-pick 4ef037007a2f1052622f3ec8bdbd6386ed1825ee
+      - name: Import reviewed non-PDF claim/literature governance repairs
+        run: |
+          set -euo pipefail
+          git fetch origin repair/p2x-claim-literature-integrity-20260819
+          src=origin/repair/p2x-claim-literature-integrity-20260819
+          git checkout "$src" -- \
+            research/claim_expansion/p1/check_p1_x_protocol.py \
+            research/claim_expansion/p1/v2/verify_p1_x_v2_independent.py \
+            research/claim_expansion/p2/verify_p2_x_independent.py \
+            tests/unit/study/p1_causal/test_p1_x_protocol.py \
+            tests/unit/p2/test_p2_claim_ledger.py \
+            papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/06-related-work-boundary.tex \
+            papers/paper-02-open-world-scientific-discovery/JOURNAL_READINESS.md \
+            papers/paper-02-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V1.md \
+            papers/paper-02-open-world-scientific-discovery/evidence/literature/confidencebasedstop2026.json \
+            papers/paper-02-open-world-scientific-discovery/evidence/literature/donotstopearly2026.json \
+            papers/paper-02-open-world-scientific-discovery/evidence/literature/fetch_literature_evidence.py \
+            papers/paper-02-open-world-scientific-discovery/evidence/literature/icore2026.json \
+            papers/paper-02-open-world-scientific-discovery/evidence/literature/knowplan2026.json \
+            papers/paper-02-open-world-scientific-discovery/evidence/literature/scienceintent2026.json \
+            papers/paper-02-open-world-scientific-discovery/evidence/p2x/P2_X_CLAIM_VALUES_V1.json \
+            papers/paper-02-open-world-scientific-discovery/evidence/p2x/P2_X_INDEPENDENT_VERIFICATION_V1.json \
+            papers/paper-02-open-world-scientific-discovery/evidence/p2x/P2_X_PROTECTED_RESULT_V1.json \
+            papers/paper-02-open-world-scientific-discovery/manuscript/novelty_refresh_2026.bib \
+            papers/paper-02-open-world-scientific-discovery/notes/P2_X_KNOWPLAN_METADATA_CORRECTION_V1.md \
+            papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json
+          git add research/claim_expansion/p1 research/claim_expansion/p2 \
+            tests/unit/study/p1_causal/test_p1_x_protocol.py tests/unit/p2/test_p2_claim_ledger.py \
+            papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/06-related-work-boundary.tex \
+            papers/paper-02-open-world-scientific-discovery
+          git commit -m 'fix(science): align P1 P2 claim and literature governance'
+      - name: Regenerate non-authorizing repository governance
+        run: |
+          set -euo pipefail
+          python -m pip install -e '.[dev,candidates]'
+          python papers/candidates/checkers/check_content_binding_v1.py --write
+          python research/development/cannot_check_inventory.py --write
+          git add \
+            research/development/cannot_check_inventory.json \
+            papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json \
+            papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/SHA256SUMS \
+            papers/candidates/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json \
+            papers/candidates/paper-07-epistemic-navigation-open-worlds/SHA256SUMS \
+            papers/candidates/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json \
+            papers/candidates/paper-08-epistemic-authority-autonomous-science/SHA256SUMS
+          if ! git diff --cached --quiet; then
+            git commit -m 'chore(science): regenerate bindings and cannot-check inventory'
+          fi
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('research/development/cannot_check_inventory.json')
+          d=json.loads(p.read_text())
+          print('cannot_check_total=', d.get('total_sites'))
+          print('cannot_check_classification=', d.get('classification'))
+          PY
+      - name: Run integrated scientific and hostile tests
+        run: |
+          set -euo pipefail
+          pytest -q \
+            tests/unit/transfer/test_higher_order_formal_closure.py \
+            tests/unit/transfer/test_higher_order_formal_closure_expected.py \
+            tests/unit/transfer/test_higher_order_foundation_dispositions.py \
+            tests/unit/transfer/test_recursive_atom_failure_substrate.py \
+            tests/unit/transfer/test_recursive_atom_failure_substrate_v2.py \
+            tests/unit/transfer/test_recursive_atom_trace_order.py \
+            tests/unit/discovery/test_jump_atom_records.py \
+            tests/unit/discovery/test_episode_event_cutoff.py \
+            tests/unit/discovery/test_episode_evidence.py \
+            tests/unit/discovery/test_failure_episode_evidence.py \
+            tests/unit/discovery/test_failure_atom_pilot_closure.py \
+            tests/unit/discovery/test_jump_atom_pilot_closure.py \
+            tests/unit/discovery/test_recursive_atom_calculus_closure.py \
+            tests/unit/discovery/test_discovery_morphology_closure.py \
+            tests/unit/discovery/test_failure_atlas_closure.py \
+            tests/unit/discovery/test_failure_atlas_closure_v2.py \
+            tests/unit/discovery/test_failure_epistemology_prospective.py \
+            tests/unit/discovery/test_executable_regime_witness.py \
+            tests/unit/discovery/test_zero_error_jump_benchmark.py \
+            tests/unit/discovery/test_zero_error_jump_v2_independence_guards.py \
+            tests/unit/discovery/test_jump_programme_closure.py \
+            tests/unit/study/p1_causal/test_p1_x_protocol.py \
+            tests/unit/study/p1_causal/test_p1_x_v2_independent.py \
+            tests/unit/study/p2_open_world/test_p2_x_protected_results.py \
+            tests/unit/p2/test_p2_claim_ledger.py \
+            tests/unit/candidates/test_candidate_content_binding.py
+      - name: Push integrated scientific tree
+        run: git push origin HEAD:science/foundations-jump-convergence-v2-20260819
+
   # Aggregate gate. One stable check name, and it fails on anything that is not
   # success. That distinction is load-bearing here twice over: the concurrency
   # group makes `cancelled` routine, and GitHub also reports a *timeout* as
