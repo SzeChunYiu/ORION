@@ -1,0 +1,65 @@
+{
+  "schema": "P9.IndependentVerificationProtocol.v1",
+  "protocol_id": "p9-independent-verification-v1",
+  "outcome_accessed": false,
+  "programme_owner": "#283",
+  "target_experiments": {
+    "M1": {
+      "latest_protocol": "P9.M1Protocol.v1.2",
+      "required_raw_predictions": true,
+      "independent_checks": [
+        "protected split identity and denominator",
+        "per-task exact identifiability ceiling",
+        "accuracy/per-family metrics from raw predictions",
+        "candidate order invariance",
+        "no task-specific ceiling violation",
+        "terminal recomputation"
+      ]
+    },
+    "D1": {
+      "latest_protocol": "P9.D1MethodTransferProtocol.v1.2",
+      "required_raw_predictions": true,
+      "independent_checks": [
+        "whole-domain split",
+        "single-vs-double corruption separation",
+        "explicit unresolved construction",
+        "dependency mutation materiality",
+        "typed comparator",
+        "learned-arm accuracy/macro-F1/per-label/double/unresolved metrics",
+        "terminal recomputation"
+      ]
+    },
+    "A5_D0": {
+      "latest_protocol": "P9.A5D0ExplicitInferenceProtocol.v1",
+      "required_raw_predictions": false,
+      "independent_checks": [
+        "regenerate frozen transport pairs",
+        "independent affine-cycle composition",
+        "TYPED unknown denominator",
+        "CURRENT/SEMANTIC GLUE/OBSTRUCTION accuracy",
+        "terminal recomputation"
+      ]
+    },
+    "A2_A4_D0": {
+      "latest_protocol": "P9.A2A4D0ExplicitProtocol.v1",
+      "required_raw_predictions": false,
+      "independent_checks": [
+        "regenerate relation/history pairs",
+        "independent relation-effect match",
+        "independent failure-history candidate exclusion",
+        "weak-view ambiguity/pair-indistinguishability",
+        "terminal recomputation"
+      ]
+    }
+  },
+  "states": ["VERIFIED", "BOUNDED_VERIFIED", "INVALIDATED", "CANNOT_CHECK"],
+  "rules": {
+    "original_correct_field_is_truth": false,
+    "original_terminal_is_truth": false,
+    "verifier_may_edit_experiment": false,
+    "disagreement_retained": true,
+    "high_severity_disagreement_blocks_promotion": true,
+    "final_claim_scope_must_match_verified_scope": true
+  },
+  "authority": "VERIFICATION_EVIDENCE_ONLY_NO_SELF_PROMOTION"
+}

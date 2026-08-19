@@ -1,0 +1,106 @@
+{
+  "schema": "P9.IndependentReplayExpectations.v1",
+  "status": "PRE_OFFICIAL_ARTIFACT_INDEPENDENT_REIMPLEMENTATION",
+  "purpose": "Freeze independently derived expectations before reading official GitHub result artifacts. Any material disagreement must remain visible and blocks promotion pending adjudication.",
+  "M1": {
+    "expected_terminal_family": "M1_GLOBAL_COMPOSITION_RESIDUAL",
+    "structural_reason": [
+      "SURFACE/TOPOLOGY hostile pairs are non-identifying by construction",
+      "TYPED/CURRENT relation semantics are identifiable but failure history remains hidden",
+      "SEMANTIC makes relation/history mechanic targets identifiable",
+      "CURRENT/SEMANTIC transport maps are information-identifying but the frozen generic classical feature grid does not explicitly implement affine cycle composition"
+    ],
+    "transport_F2_independent_reimplementation": {
+      "selected_dev_model_expected": "random-forest-class family",
+      "protected_test_accuracy_approx": 0.5,
+      "exact_information_ceiling": 1.0,
+      "interpretation": "global affine-composition computation residual, not missing information"
+    },
+    "claim_authority": "NONE_EXPECTATION_ONLY"
+  },
+  "A5_D0": {
+    "expected_terminal": "A5_D0_EXPLICIT_INFERENCE_SUFFICIENT",
+    "pairs": 256,
+    "TYPED": {
+      "sample_count": 512,
+      "accuracy": 0.0,
+      "unknown_rate": 1.0
+    },
+    "CURRENT": {
+      "sample_count": 512,
+      "accuracy": 1.0,
+      "unknown_rate": 0.0
+    },
+    "SEMANTIC": {
+      "sample_count": 512,
+      "accuracy": 1.0,
+      "unknown_rate": 0.0
+    },
+    "independent_method": "regenerate affine maps from frozen seed construction and independently compose (scale,offset) around the cycle; no original A5 predictor imported",
+    "claim_authority": "NONE_EXPECTATION_ONLY"
+  },
+  "A2_A4_D0": {
+    "expected_terminal": "A2_A4_D0_EXPLICIT_INFERENCE_SUFFICIENT",
+    "pairs_per_family": 256,
+    "relation": {
+      "SURFACE": {"coverage": 0.0, "full_task_accuracy": 0.0},
+      "TOPOLOGY": {"coverage": 0.0, "full_task_accuracy": 0.0},
+      "TYPED": {"coverage": 1.0, "full_task_accuracy": 1.0},
+      "CURRENT": {"coverage": 1.0, "full_task_accuracy": 1.0},
+      "SEMANTIC": {"coverage": 1.0, "full_task_accuracy": 1.0}
+    },
+    "history": {
+      "SURFACE": {"coverage": 0.0, "full_task_accuracy": 0.0, "hostile_pair_same_prediction": true},
+      "TOPOLOGY": {"coverage": 0.0, "full_task_accuracy": 0.0, "hostile_pair_same_prediction": true},
+      "TYPED": {"coverage": 1.0, "full_task_accuracy": 0.5, "hostile_pair_same_prediction": true},
+      "CURRENT": {"coverage": 1.0, "full_task_accuracy": 0.5, "hostile_pair_same_prediction": true},
+      "SEMANTIC": {"coverage": 1.0, "full_task_accuracy": 1.0}
+    },
+    "claim_authority": "NONE_EXPECTATION_ONLY"
+  },
+  "D1": {
+    "expected_terminal": "D1_TYPED_STRUCTURE_TRANSFER_SUPPORTED",
+    "whole_domain_test": "transactional_workflows",
+    "test_sample_count": 128,
+    "arms": {
+      "TRANSCRIPT_BAG": {
+        "selected_model": "logistic-C0.1",
+        "dev_accuracy": 0.3333333333333333,
+        "test_accuracy": 0.25,
+        "macro_f1": 0.13333333333333333,
+        "double_corruption_accuracy": 0.0,
+        "unresolved_accuracy": 0.0
+      },
+      "UNTYPED_PAIR": {
+        "selected_model": "logistic-C0.1",
+        "dev_accuracy": 0.875,
+        "test_accuracy": 0.90625,
+        "macro_f1": 0.9128856624319419,
+        "double_corruption_accuracy": 1.0,
+        "unresolved_accuracy": 1.0
+      },
+      "TYPED_RELATIONAL": {
+        "selected_model": "logistic-C0.1",
+        "dev_accuracy": 1.0,
+        "test_accuracy": 1.0,
+        "macro_f1": 1.0,
+        "double_corruption_accuracy": 1.0,
+        "unresolved_accuracy": 1.0
+      },
+      "TYPED_SERIALIZED_BAG": {
+        "selected_model": "logistic-C1",
+        "dev_accuracy": 0.9583333333333334,
+        "test_accuracy": 0.5,
+        "macro_f1": 0.2222222222222222,
+        "double_corruption_accuracy": 1.0,
+        "unresolved_accuracy": 0.0
+      }
+    },
+    "typed_minus_transcript": 0.75,
+    "typed_minus_same_information_serialized": 0.5,
+    "exact_typed_relational_comparator_accuracy": 1.0,
+    "independent_method": "separate Python reimplementation of the frozen D1 V1.2 data/projection/model protocol; did not import original D1 experiment scorer",
+    "claim_authority": "NONE_EXPECTATION_ONLY"
+  },
+  "verification_rule": "official exact-head artifacts must be compared against these expectations; disagreement is not auto-corrected"
+}
