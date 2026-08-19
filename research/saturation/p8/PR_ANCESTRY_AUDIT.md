@@ -1,7 +1,7 @@
 # P8 saturation — PR ancestry audit
 
 Audit date: 2026-08-19  
-Final integration cutoff: `main@b7abcc6ad76d2a985ea938fcbd070a6097b0fe99`  
+Final integration cutoff: `main@627ac5cb2cc0aba0fd2b3912c40a06227849167a`  
 Parent audit: #499  
 Saturation issue: #495
 
@@ -28,12 +28,18 @@ Saturation issue: #495
 - [x] two blind/hostile review rounds returned no unresolved major/blocking concern;
 - [x] JAAMAS primary + AIJ/JAIR fallback portability documented;
 - [x] shared/product equivalence negative theorem remains prominent rather than hidden;
-- [x] saturated JAAMAS source/content binding/PDF audit was rebuilt and the one-shot workflow self-removed;
-- [ ] final exact-current-main P6–P8 candidate CI + repository CI must pass before merge.
+- [x] the new donor confirms a mechanism family already explicitly subtracted by the frozen manuscript, so no frozen manuscript claim change is required;
+- [ ] final exact-current-main repository CI must pass before merge; the unchanged frozen P8 candidate/content-binding/PDF package remains authoritative.
 
 ## Stale/successor disposition
 - [x] #440 is superseded by #461;
 - [x] #461 typed method authority is `SUCCESSOR_ADDITIVE`, not retroactive frozen-P8 evidence;
 - [x] P6 higher-order/Self-ORION and P9/P10 work remains downstream unless it directly falsifies P8 semantics.
 
-Status: `ANCESTRY_AUDIT_COMPLETE_AT_b7abcc6__P8_SATURATION_CONVERGED__AWAIT_FINAL_CI`.
+## Final main-delta recheck
+- [x] compared `d73e65c10f4f3b7ae773cea667f6dccd1507e8f0..627ac5cb2cc0aba0fd2b3912c40a06227849167a`;
+- [x] the 42-commit delta is P9-only research/workflow/test material;
+- [x] no P8 V2.1 core, frozen authority contracts, JAAMAS submission package, candidate binding or P8 authority semantics changed;
+- [x] P9 bounded inference results are non-authorizing and do not retroactively broaden/falsify P8.
+
+Status: `ANCESTRY_AUDIT_COMPLETE_AT_627ac5c__P8_SATURATION_CONVERGED__AWAIT_FINAL_CI`.
