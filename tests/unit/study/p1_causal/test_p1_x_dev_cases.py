@@ -57,11 +57,7 @@ def test_candidate_visible_payload_never_contains_protected_gold_fields() -> Non
 
 
 def test_diagnosis_not_prescription_cases_separate_cause_and_intervention() -> None:
-    cases = [
-        case
-        for case in generator.generate_dev_cases()
-        if case["archetype"] == "DIAGNOSIS_NOT_PRESCRIPTION"
-    ]
+    cases = [case for case in generator.generate_dev_cases() if case["archetype"] == "DIAGNOSIS_NOT_PRESCRIPTION"]
     assert cases
     for case in cases:
         gold = case["protected_gold"]
@@ -69,36 +65,58 @@ def test_diagnosis_not_prescription_cases_separate_cause_and_intervention() -> N
         assert gold["best_intervention_set"] == gold["scientifically_justified_revision_set"]
 
 
-def test_incomparable_minima_never_force_a_revision() -> None:
-    cases = [
-        case
-        for case in generator.generate_dev_cases()
-        if case["archetype"] == "INCOMPARABLE_MINIMA"
-    ]
+def test_incomparable_minima_split_request_from_unresolved() -> None:
+    cases = [case for case in generator.generate_dev_cases() if case["archetype"] == "INCOMPARABLE_MINIMA"]
     assert cases
+    observed = set()
     for case in cases:
         gold = case["protected_gold"]
+        status = case["candidate_visible"]["discriminator_status"]
         assert gold["ambiguity_state"] == "INCOMPARABLE_MINIMA"
-        assert gold["correct_terminal"] == "REQUEST_DISCRIMINATOR"
         assert len(gold["scientifically_justified_revision_set"]) >= 2
+        if status == "AVAILABLE":
+            assert gold["correct_terminal"] == "REQUEST_DISCRIMINATOR"
+        elif status == "UNAVAILABLE":
+            assert gold["correct_terminal"] == "UNRESOLVED"
+        else:
+            raise AssertionError(status)
+        observed.add((status, gold["correct_terminal"]))
+    assert observed == {
+        ("AVAILABLE", "REQUEST_DISCRIMINATOR"),
+        ("UNAVAILABLE", "UNRESOLVED"),
+    }
+
+
+def test_model_experiment_family_covers_required_four_way_responsibility() -> None:
+    cases = [case for case in generator.generate_dev_cases() if case["domain"] == "MODEL_EXPERIMENT_DESIGN"]
+    classes = {item for case in cases for item in case["revision_classes"]}
+    assert {
+        "PARAMETER_REVISION",
+        "EXPERIMENT_MEASUREMENT_REVISION",
+        "MODEL_CLASS_EXPANSION",
+        "REPRESENTATION_REGIME_REVISION",
+    } <= classes
+
+
+def test_unique_justified_revision_maps_to_explicit_terminal() -> None:
+    high = generator.EPISTEMIC_HIGH_LEVEL
+    for case in generator.generate_dev_cases():
+        gold = case["protected_gold"]
+        justified = gold["scientifically_justified_revision_set"]
+        if gold["ambiguity_state"] != "UNIQUE_MINIMUM" or len(justified) != 1:
+            continue
+        expected = "REVISE_HIGH_LEVEL" if justified[0] in high else "REPAIR_LOCAL"
+        assert gold["correct_terminal"] == expected
 
 
 def test_preservation_failure_can_restore_target_but_still_be_unjustified() -> None:
-    cases = [
-        case
-        for case in generator.generate_dev_cases()
-        if case["archetype"] == "LOCAL_SUCCESS_PRESERVATION_FAILURE"
-    ]
+    cases = [case for case in generator.generate_dev_cases() if case["archetype"] == "LOCAL_SUCCESS_PRESERVATION_FAILURE"]
     assert cases
     for case in cases:
         gold = case["protected_gold"]
         justified = set(gold["scientifically_justified_revision_set"])
         evaluations = gold["revision_evaluations"]
-        bad = [
-            item
-            for item in evaluations
-            if item["restores_target"] and not item["preserves_invariants"]
-        ]
+        bad = [item for item in evaluations if item["restores_target"] and not item["preserves_invariants"]]
         good = [
             item
             for item in evaluations
@@ -112,11 +130,7 @@ def test_preservation_failure_can_restore_target_but_still_be_unjustified() -> N
 
 
 def test_reopen_scope_mismatch_is_candidate_visible_and_gold_is_separate() -> None:
-    cases = [
-        case
-        for case in generator.generate_dev_cases()
-        if case["archetype"] == "REOPEN_SCOPE_MISMATCH"
-    ]
+    cases = [case for case in generator.generate_dev_cases() if case["archetype"] == "REOPEN_SCOPE_MISMATCH"]
     assert cases
     for case in cases:
         gold = case["protected_gold"]
