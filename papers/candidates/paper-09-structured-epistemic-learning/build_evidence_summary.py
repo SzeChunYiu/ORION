@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[3]
 HERE = Path(__file__).resolve().parent
 RESEARCH = ROOT / "research" / "extensions" / "p9-structured-neural"
 OUT = HERE / "evidence" / "OFFICIAL_EVIDENCE_SUMMARY_V1.json"
+PAIRED_D1 = HERE / "evidence" / "D1_PAIRED_EFFECTS_V1.json"
 
 SOURCES = {
     "a5": RESEARCH / "A5_D0_EXPLICIT_RESULT_V1.json",
@@ -44,6 +45,18 @@ def load(path: Path) -> dict[str, Any]:
     if not isinstance(value, dict):
         raise SystemExit(f"official evidence is not a mapping: {path.relative_to(ROOT)}")
     return value
+
+
+def selected_dev(arm: dict[str, Any]) -> dict[str, Any]:
+    selected = arm.get("selected")
+    configurations = arm.get("dev_configurations")
+    if not isinstance(selected, dict) or not isinstance(configurations, list):
+        raise SystemExit("D1 arm lacks selected/dev_configurations structure")
+    config_id = selected.get("config_id")
+    matches = [row for row in configurations if isinstance(row, dict) and row.get("config_id") == config_id]
+    if len(matches) != 1 or not isinstance(matches[0].get("dev"), dict):
+        raise SystemExit(f"D1 selected config {config_id!r} does not bind exactly one dev row")
+    return matches[0]["dev"]
 
 
 def require_receipt(name: str, *tokens: str, status: str = "BOUNDED_VERIFIED") -> dict[str, Any]:
@@ -103,15 +116,24 @@ def check(name: str, data: dict[str, Any]) -> None:
             raise SystemExit(f"A2/A4 hostile checks not all green: {hostile!r}")
 
 
+def check_paired_d1(data: dict[str, Any]) -> None:
+    if data.get("schema") != "P9.D1PairedEffects.v1":
+        raise SystemExit(f"unexpected D1 paired schema: {data.get('schema')!r}")
+    if data.get("source_result_digest") != EXPECTED_DIGESTS["d1"]:
+        raise SystemExit("D1 paired analysis is not bound to the official D1 result")
+    if data.get("protected_n") != 128 or data.get("primary_arm") != "TYPED_RELATIONAL":
+        raise SystemExit("D1 paired analysis protected population/primary arm mismatch")
+
+
 def a5_summary(data: dict[str, Any]) -> dict[str, Any]:
     views = data["views"]
     return {
         "terminal": data["terminal"],
         "verification_state": data["verification_state"],
-        "typed_accuracy": views["TYPED"]["full_task_accuracy"],
+        "typed_accuracy": views["TYPED"]["accuracy"],
         "typed_unknown_rate": views["TYPED"]["unknown_rate"],
-        "current_accuracy": views["CURRENT"]["full_task_accuracy"],
-        "semantic_accuracy": views["SEMANTIC"]["full_task_accuracy"],
+        "current_accuracy": views["CURRENT"]["accuracy"],
+        "semantic_accuracy": views["SEMANTIC"]["accuracy"],
         "result_digest": data.get("result_digest"),
     }
 
@@ -167,9 +189,10 @@ def m1_summary(data: dict[str, Any]) -> dict[str, Any]:
 def d1_summary(data: dict[str, Any]) -> dict[str, Any]:
     compact: dict[str, Any] = {}
     for name, arm in data["results"].items():
+        dev = selected_dev(arm)
         compact[name] = {
             "selected_model": arm["selected"]["config_id"],
-            "dev_accuracy": arm["selected"]["dev"]["accuracy"],
+            "dev_accuracy": dev["accuracy"],
             "test_accuracy": arm["test"]["accuracy"],
             "macro_f1": arm["test"]["macro_f1"],
             "double_corruption_accuracy": arm["test"]["double_corruption_accuracy"],
@@ -193,6 +216,8 @@ def main() -> None:
     loaded = {name: load(path) for name, path in SOURCES.items()}
     for name, data in loaded.items():
         check(name, data)
+    paired = load(PAIRED_D1)
+    check_paired_d1(paired)
 
     verifications = {
         "a2_a4": require_receipt(
@@ -216,12 +241,14 @@ def main() -> None:
     integration = require_integration_authority()
 
     summary = {
-        "schema": "P9.OfficialEvidenceSummary.v1",
+        "schema": "P9.OfficialEvidenceSummary.v1.1",
         "source_paths": {name: str(path.relative_to(ROOT)) for name, path in SOURCES.items()},
+        "derived_source_paths": {"d1_paired": str(PAIRED_D1.relative_to(ROOT))},
         "a5": a5_summary(loaded["a5"]),
         "a2_a4": a2_summary(loaded["a2_a4"]),
         "m1": m1_summary(loaded["m1"]),
         "d1": d1_summary(loaded["d1"]),
+        "d1_paired": paired,
         "independent_verification": verifications,
         "integration_authority": integration,
         "independent_expectations_are_results": False,
