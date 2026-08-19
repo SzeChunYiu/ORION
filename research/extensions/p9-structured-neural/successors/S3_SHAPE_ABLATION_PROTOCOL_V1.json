@@ -1,0 +1,14 @@
+{
+  "schema":"P9.S3ShapeAblationProtocol.v1",
+  "date":"2026-08-19",
+  "issue":608,
+  "parent_rotation_result_digest":"sha256:ba58d54e673ddcad74b87eabb77e503363c417a39939eb16f4fe0ae4e9be7769",
+  "parent_outcomes_accessed":true,
+  "ablation_outcomes_accessed":false,
+  "question":"Does F3 graph-holdout failure come from additional coordinate length/shape features absent from the minimal relation-only F1 representation?",
+  "arms":["A0_F1_relation_only_serialized","A1_F3_full","A2_F3_relation_only","A3_F1_plus_lengths"],
+  "frozen_data":"same S3R three rotations",
+  "frozen_models":"same D1 model grid/dev-only selection/dense transport",
+  "terminal":{"EXTRA_SHAPE_FEATURES_CAUSE_GRAPH_SHORTCUT":"A2 graph>=.99; A3 graph<=A1+.01 and A3<.99; A0 graph=1.0; no contradictory numerical/workflow pattern","F3_GRAPH_FAILURE_NOT_LENGTH_ATTRIBUTABLE":"registered pattern fails with integrity green","CANNOT_CHECK":"integrity/runtime failure"},
+  "outcome_accessed":false
+}
