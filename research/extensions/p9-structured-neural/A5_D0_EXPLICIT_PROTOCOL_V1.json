@@ -1,0 +1,36 @@
+{
+  "schema": "P9.A5D0ExplicitInferenceProtocol.v1",
+  "protocol_id": "p9-a5-d0-explicit-v1",
+  "outcome_accessed": false,
+  "subject_base": "b7abcc6ad76d2a985ea938fcbd070a6097b0fe99",
+  "task": "D0_TRANSPORT_GLUING",
+  "corpus": {
+    "seed": "p9-a5-d0-explicit-v1",
+    "split": "TEST",
+    "transport_pairs": 256
+  },
+  "views": ["TYPED", "CURRENT", "SEMANTIC"],
+  "algorithm": {
+    "input": "GluingTask.model_payload only",
+    "topology": "recover one directed cycle from visible representation atoms + MAPS_TO edges",
+    "maps": "match unique visible affine transport to each directed edge",
+    "composition": "compose scale/offset around cycle in traversal order",
+    "tolerance": 1e-9,
+    "missing_or_ambiguous": "UNKNOWN",
+    "gold_access": false
+  },
+  "primary_hypotheses": {
+    "H1": "CURRENT explicit affine inference accuracy = 1.0",
+    "H2": "TYPED predictor returns UNKNOWN for every sample because values are absent",
+    "H3": "prediction is invariant to transport record ordering and reminted identities"
+  },
+  "metrics": [
+    "accuracy",
+    "unknown_rate",
+    "per_gold_accuracy",
+    "permutation_invariance",
+    "gold_falsification_invariance"
+  ],
+  "terminal_rule": "A5_D0_EXPLICIT_INFERENCE_SUFFICIENT iff CURRENT and SEMANTIC are perfect with no invalid predictions and TYPED remains fully UNKNOWN; otherwise NARROW/FAIL/CANNOT_CHECK.",
+  "authority": "NO_SCIENTIFIC_AUTHORITY_PROTOCOL_ONLY"
+}
