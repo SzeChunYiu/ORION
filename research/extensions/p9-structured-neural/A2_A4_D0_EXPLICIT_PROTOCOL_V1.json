@@ -1,0 +1,37 @@
+{
+  "schema": "P9.A2A4D0ExplicitProtocol.v1",
+  "protocol_id": "p9-a2-a4-d0-explicit-v1",
+  "outcome_accessed": false,
+  "subject_base": "b7abcc6ad76d2a985ea938fcbd070a6097b0fe99",
+  "corpus": {
+    "seed": "p9-a2-a4-d0-explicit-v1",
+    "relation_pairs": 256,
+    "history_pairs": 256
+  },
+  "relation_algorithm": {
+    "weak_views": ["SURFACE", "TOPOLOGY"],
+    "typed_views": ["TYPED", "CURRENT", "SEMANTIC"],
+    "mapping": {
+      "SUPPORTS": "ASSIMILATE_EVIDENCE",
+      "DEFEATS": "REOPEN_CLAIM"
+    },
+    "ambiguous_if": "decisive relation or unique candidate effect is not visible/unambiguous"
+  },
+  "history_algorithm": {
+    "history_view": "SEMANTIC",
+    "hidden_views": ["SURFACE", "TOPOLOGY", "TYPED", "CURRENT"],
+    "failed_candidate_rule": "exclude candidate ids explicitly named in admitted visible failure history",
+    "clean_case_rule": "if no failed candidate is visible and candidate cost is visible, choose unique minimum-cost candidate",
+    "ambiguous_if": "multiple candidates remain equally admissible or decisive history/cost is unavailable"
+  },
+  "diagnostic_ambiguous_label": "AMBIGUOUS",
+  "metrics": [
+    "accuracy_on_non_ambiguous_predictions",
+    "coverage",
+    "full_task_accuracy_with_ambiguous_incorrect",
+    "candidate_order_invariance",
+    "gold_falsification_invariance"
+  ],
+  "terminal_rule": "A2_A4_D0_EXPLICIT_INFERENCE_SUFFICIENT iff relation typed+ and history semantic are perfect, weaker decisive-coordinate views do not falsely distinguish hostile pairs, and order/gold invariance is green.",
+  "authority": "NO_SCIENTIFIC_AUTHORITY_PROTOCOL_ONLY"
+}
