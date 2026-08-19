@@ -1,17 +1,24 @@
-"""Execution adapter for P9 M1 protocol v1.2.
+"""Execution adapter for P9 M1 protocol v1.3.
 
 The frozen M1 data/features/model grid remain in :mod:`m1`.  This adapter
-preserves two pre-outcome review corrections:
+preserves pre-outcome review/execution corrections:
 
 1. diagnostic train-size points that cannot fit the selected configuration are
    recorded instead of mutating the model;
 2. row-order invariance is tested by re-running inference on a reversed batch,
-   and exact information ceilings are enforced separately per task.
+   and exact information ceilings are enforced separately per task;
+3. scikit-learn 1.9 sparse-index compatibility is kept outside feature semantics
+   by making DictVectorizer emit dense numeric arrays.  The prior focused smoke
+   test failed before protected protocol execution because liblinear rejected
+   int64 CSR index metadata; no corpus, feature, model grid, selection or test
+   rule changed.
 """
 
 from __future__ import annotations
 
 from typing import Sequence
+
+from sklearn.feature_extraction import DictVectorizer as _SklearnDictVectorizer
 
 from orion.transfer.v2.canonical import content_digest
 
@@ -26,6 +33,21 @@ from .structural_world import ViewMode
 
 _ORIGINAL_CURVE = _base._train_size_curve
 _ORIGINAL_RUN = _base.run_m1
+
+
+def _dense_dict_vectorizer(*args, **kwargs):
+    """Return the same DictVectorizer feature map without sparse index metadata."""
+
+    kwargs = dict(kwargs)
+    kwargs["sparse"] = False
+    return _SklearnDictVectorizer(*args, **kwargs)
+
+
+# Runtime-compatibility amendment only.  m1._make_estimator resolves
+# DictVectorizer from its module globals at call time, so this keeps all frozen
+# feature construction/model choices intact while avoiding sklearn 1.9's
+# liblinear rejection of int64 CSR index arrays.
+_base.DictVectorizer = _dense_dict_vectorizer
 
 
 def _safe_train_size_curve(
@@ -178,7 +200,7 @@ def run_m1(**kwargs):
     any_violation = _augment_corrected_evaluation(result, config=config)
     if any_violation:
         result["terminal"] = "M1_LEAKAGE_OR_EVALUATOR_FAILURE"
-    result["protocol"] = "P9.M1Protocol.v1.2"
+    result["protocol"] = "P9.M1Protocol.v1.3"
     result.pop("result_digest", None)
     result["result_digest"] = content_digest(result)
     return result
