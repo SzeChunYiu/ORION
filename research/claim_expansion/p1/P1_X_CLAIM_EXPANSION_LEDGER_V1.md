@@ -3,11 +3,11 @@
 Date: 2026-08-19  
 Parent: #529  
 Programme: #528  
-Status: `ALL_SUCCESSOR_CLAIMS_CANNOT_CHECK_PENDING_PROTECTED_EXECUTION`
+Status: `A1_A2_SUPPORTED_BOUNDED__A3_CANNOT_CHECK`
 
 ## Current paper claim retained
 
-The frozen P1 v2.2.4 mechanical result remains authoritative at its current bounded scope. Nothing in this successor protocol retroactively broadens that experiment.
+The frozen P1 v2.2.4 mechanical result remains authoritative at its original bounded scope. P1-X is a separately prospectively frozen successor study and is never retroactively described as part of v2.2.4.
 
 ## Claim ladder
 
@@ -19,47 +19,37 @@ State: `SUPPORTED_BOUNDED` from existing P1 evidence.
 
 ### A1 — successor integrated-system claim
 
-Candidate:
-
 > Above donor-complete diagnosis, repair, revision and generic authorization systems, an explicit scientific-layer escalation contract improves correct revision decisions by separating causal responsibility, best intervention and scientifically justified revision.
 
-Required evidence:
+Evidence:
 
-- protected P1-X 400-case successor battery;
-- P1-X vs B1 donor-complete product;
-- ESRD practical-margin success and non-regression gates;
-- #283 independent verification;
-- #287 exact novelty disposition.
+- immutable V1 retained but primary comparator fairness reopened by `P1X-V1-D001`;
+- disjoint comparator-fair V2: P1-X 400/400 ESRD vs B1 275/400, difference +0.3125, 95% bootstrap interval [0.2675, 0.3575];
+- predeclared +0.10 practical margin and all non-regression gates pass;
+- independent implementation reproduces identities, bundle/row digests, headline counts, and zero B3 mismatches;
+- bounded novelty certificate leaves the joint composition unabsorbed while crediting every atom.
 
-State: `CANNOT_CHECK`.
+State: `SUPPORTED_BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS`.
 
 ### A2 — successor architecture-level principle
 
-Candidate:
-
 > Scientific failures should not automatically license the intervention that most directly repairs the symptom or the broadest revision that succeeds locally. Broader epistemic mutation is justified only after registered narrower admissible revisions are insufficient, with preservation, scope and authority obligations retained; unresolved incomparable minima require further discrimination rather than arbitrary escalation.
 
-Required evidence:
+Evidence:
 
-- A1 positive result;
-- donor-substitution/architecture-independence phase;
-- formal boundary/countermodels coordinated with #463;
-- no material nearest-work absorption under #287.
+- A1 comparator-fair V2 positive;
+- exact five-domain effects all positive;
+- interface-substitution phase: P1-X 200/200 under all four equally informative diagnosis/recovery ordering realizations, B3 exact equality, zero false high-level reframes/invariant/budget violations, and P1-X-minus-B1 positive in every combination/domain;
+- ideal information-equivalent product B3 ties exactly, so no inherent-expressivity claim is made;
+- current novelty certificate supports only the joint scientific escalation composition.
 
-State: `CANNOT_CHECK`.
+State: `SUPPORTED_BOUNDED_INTERFACE_INVARIANCE`.
 
-### A3 — cross-domain/general scientific-agent claim
+### A3 — cross-domain/open-ended scientific-agent generality
 
-Candidate:
+> The same scientific-layer escalation principle improves revision decisions across heterogeneous scientific problem families and genuinely different donor implementations in deployed/open-ended scientific agents.
 
-> The same scientific-layer escalation principle improves revision decisions across heterogeneous scientific problem families and donor implementations.
-
-Required evidence:
-
-- positive direction across all five frozen domains with the predeclared worst-domain guard;
-- at least two diagnosis and two recovery-policy realizations where task mapping is valid;
-- no hidden compute/information advantage;
-- #283 and #287 exact-scope approval.
+The exact contract battery spans five heterogeneous task families, but the interface-substitution phase changes equally informative ordering policies rather than deploying independently learned diagnosis/recovery engines. No live/open-ended agent study has been executed.
 
 State: `CANNOT_CHECK`.
 
@@ -84,27 +74,18 @@ P1-X does not claim novelty for:
 
 ## Ideal-product boundary
 
-If an ideal donor product is supplied exactly the same revision classes, responsibility evidence, invasiveness relation, registered counterfactual outcomes, preservation predicates, dependency/reopen map and authority predicates, it is expected to implement the P1-X decision function extensionally.
+If an ideal donor product is supplied exactly the same revision classes, responsibility evidence, invasiveness relation, registered counterfactual outcomes, preservation predicates, dependency/reopen map and authority predicates, it implements the P1-X decision function extensionally.
 
-Therefore P1-X makes no claim of inherent expressivity over an information-equivalent ideal product. A formal version of this boundary is handed to #463.
+B3 demonstrates this boundary: exact 400/400 tie with zero V2 decision mismatches and exact equality across all architecture-interface combinations.
 
-## Novelty threats already absorbed into the successor design
+Therefore P1-X makes no claim of inherent expressivity over an information-equivalent ideal product.
 
-Direct pressure includes:
+## V1 discrepancy preserved
 
-- Preregistered Belief Revision Contracts;
-- Self-Revising Discovery Systems for Science;
-- Model Discovery Agent;
-- Model or Harness? repair assignment;
-- Diagnosis Is Not Prescription;
-- earned authority for evolving agents;
-- Explanation-Bound Tool Execution;
-- MARS modular reflective research;
-- Bayesian/model-discrepancy and model-based-diagnosis traditions;
-- goal-evolving scientific agents / explicit reflective runtimes.
+V1 must not be silently corrected or used as the final comparator-fair headline. Its B1/B2 `NO_CHANGE` guard iterated status-map keys instead of values, causing 25 clean-control misses per comparator. V1 is retained as `P1_X_V1_PROTOCOL_POSITIVE__COMPARATOR_FAIRNESS_REOPENED`; the claim promotion above relies on the separately frozen/disjoint V2.
 
-See #529 comments for exact source identities and dispositions.
+## Promotion boundary
 
-## Promotion rule
+A1/A2 may enter the manuscript only with their exact bounded scope and with V1 discrepancy + B3 equivalence visible. A3 remains prohibited. Any wording implying real/open-ended scientific-agent superiority, generic authorization novelty, or inherent expressivity fails the claim ledger.
 
-No P1 manuscript headline may be widened from A0 to A1/A2/A3 until the exact candidate level is independently verified and receives a current #287 novelty state. A1 may succeed while A2/A3 fail; claims are promoted independently rather than bundled.
+Terminal: `P1_X_A1_A2_PROMOTABLE_BOUNDED__A3_CANNOT_CHECK`.
