@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 from typing import Any
 
@@ -18,7 +19,7 @@ def _load_summary() -> dict[str, Any]:
             "missing fail-closed evidence summary; run build_evidence_summary.py first"
         )
     data = json.loads(SUMMARY.read_text(encoding="utf-8"))
-    if data.get("schema") != "P9.OfficialEvidenceSummary.v1":
+    if data.get("schema") != "P9.OfficialEvidenceSummary.v1.1":
         raise SystemExit(f"unexpected evidence summary schema: {data.get('schema')!r}")
     return data
 
@@ -27,6 +28,22 @@ def _fmt(value: Any) -> str:
     if isinstance(value, float):
         return f"{value:.6f}"
     return str(value)
+
+
+def _fmt_p(value: float) -> str:
+    if value >= 1e-4:
+        return f"{value:.6f}"
+    exponent = int(math.floor(math.log10(value)))
+    mantissa = value / (10**exponent)
+    return f"{mantissa:.3f}e{exponent}"
+
+
+def _fmt_p_latex(value: float) -> str:
+    if value >= 1e-4:
+        return f"{value:.6f}"
+    exponent = int(math.floor(math.log10(value)))
+    mantissa = value / (10**exponent)
+    return f"${mantissa:.3f}\\times 10^{{{exponent}}}$"
 
 
 def _latex_escape(text: str) -> str:
@@ -42,6 +59,7 @@ def _latex_escape(text: str) -> str:
 def build_tables(summary: dict[str, Any]) -> dict[str, Any]:
     m1 = summary["m1"]
     d1 = summary["d1"]
+    paired = summary["d1_paired"]["comparisons"]
     a2a4 = summary["a2_a4"]
     a5 = summary["a5"]
 
@@ -78,6 +96,27 @@ def build_tables(summary: dict[str, Any]) -> dict[str, Any]:
             }
         )
 
+    paired_rows = []
+    for comparator, label in (
+        ("TRANSCRIPT_BAG", "Transcript bag"),
+        ("UNTYPED_PAIR", "Untyped pair"),
+        ("TYPED_SERIALIZED_BAG", "Same-information typed serialization"),
+    ):
+        row = paired[comparator]
+        paired_rows.append(
+            {
+                "comparator": comparator,
+                "label": label,
+                "delta": row["absolute_accuracy_delta"],
+                "ci_low": row["paired_bootstrap_95pct_interval"][0],
+                "ci_high": row["paired_bootstrap_95pct_interval"][1],
+                "typed_wins": row["discordant"]["typed_correct_comparator_wrong"],
+                "typed_losses": row["discordant"]["typed_wrong_comparator_correct"],
+                "mcnemar_p": row["exact_mcnemar_two_sided_p"],
+                "n": row["n"],
+            }
+        )
+
     explicit_rows = [
         {
             "atom": "A2 relation semantics",
@@ -106,7 +145,7 @@ def build_tables(summary: dict[str, Any]) -> dict[str, Any]:
     ]
 
     return {
-        "schema": "P9.HeadlineTables.v1",
+        "schema": "P9.HeadlineTables.v1.1",
         "m1_terminal": m1["terminal"],
         "d1_terminal": d1["terminal"],
         "m1_view_ceiling_table": m1_rows,
@@ -118,6 +157,7 @@ def build_tables(summary: dict[str, Any]) -> dict[str, Any]:
             ],
         },
         "d1_transfer_table": d1_rows,
+        "d1_paired_effect_table": paired_rows,
         "d1_contrasts": {
             "typed_minus_transcript": d1["typed_minus_transcript"],
             "typed_minus_same_information_serialized": d1[
@@ -132,7 +172,7 @@ def build_tables(summary: dict[str, Any]) -> dict[str, Any]:
 
 def render_markdown(tables: dict[str, Any]) -> str:
     lines = [
-        "# P9 headline tables V1",
+        "# P9 headline tables V1.1",
         "",
         "Derived only from `OFFICIAL_EVIDENCE_SUMMARY_V1.json`.",
         "",
@@ -166,6 +206,23 @@ def render_markdown(tables: dict[str, Any]) -> str:
             "",
             f"Typed relational minus transcript: **{_fmt(tables['d1_contrasts']['typed_minus_transcript'])}**.",
             f"Typed relational minus same-information serialization: **{_fmt(tables['d1_contrasts']['typed_minus_same_information_serialized'])}**.",
+            "",
+            "## D1 — paired protected-case effects",
+            "",
+            "| Comparator | Delta | Paired 95% bootstrap CI | Discordant typed wins-losses | Exact McNemar p |",
+            "|---|---:|---|---:|---:|",
+        ]
+    )
+    for row in tables["d1_paired_effect_table"]:
+        lines.append(
+            f"| {row['label']} | {_fmt(row['delta'])} | "
+            f"[{_fmt(row['ci_low'])}, {_fmt(row['ci_high'])}] | "
+            f"{row['typed_wins']}-{row['typed_losses']} | {_fmt_p(float(row['mcnemar_p']))} |"
+        )
+    lines.extend(
+        [
+            "",
+            "The paired analysis is post-hoc and derived from the frozen 128 protected predictions; it quantifies the existing D1 result and is not a new preregistered endpoint.",
             "",
             "## Explicit-inference closure",
             "",
@@ -217,6 +274,27 @@ def render_latex(tables: dict[str, Any]) -> str:
             f"{_latex_escape(row['arm'])} & {_latex_escape(row['selected_model'])} & "
             f"{_fmt(row['test_accuracy'])} & {_fmt(row['macro_f1'])} & "
             f"{_fmt(row['double_corruption_accuracy'])} & {_fmt(row['unresolved_accuracy'])} "
+            f"{LATEX_ROW_BREAK}"
+        )
+    lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""])
+
+    lines.extend(
+        [
+            r"\begin{table*}[t]",
+            r"\centering",
+            r"\caption{Post-hoc paired uncertainty analysis of the frozen 128 protected D1 predictions. The analysis quantifies the existing endpoint; it is not a new preregistered endpoint.}",
+            r"\label{tab:d1-paired}",
+            r"\begin{tabular}{lrrrr}",
+            r"\toprule",
+            f"Comparator & Accuracy delta & Paired 95\\% CI & Discordant wins--losses & Exact McNemar $p$ {LATEX_ROW_BREAK}",
+            r"\midrule",
+        ]
+    )
+    for row in tables["d1_paired_effect_table"]:
+        lines.append(
+            f"{_latex_escape(row['label'])} & {_fmt(row['delta'])} & "
+            f"[{_fmt(row['ci_low'])}, {_fmt(row['ci_high'])}] & "
+            f"{row['typed_wins']}--{row['typed_losses']} & {_fmt_p_latex(float(row['mcnemar_p']))} "
             f"{LATEX_ROW_BREAK}"
         )
     lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""])
