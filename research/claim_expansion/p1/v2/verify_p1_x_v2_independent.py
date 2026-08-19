@@ -211,7 +211,7 @@ def verify() -> dict[str, Any]:
     }
     return {
         "schema_version": "P1_X_INDEPENDENT_VERIFICATION_V2",
-        "independent_of_execution_module": true,
+        "independent_of_execution_module": True,
         "case_count": len(cases),
         "arm_correct": counts,
         "identity_pair_digest": pair_digest,

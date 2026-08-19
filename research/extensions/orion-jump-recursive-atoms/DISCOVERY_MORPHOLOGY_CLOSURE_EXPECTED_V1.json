@@ -1,0 +1,50 @@
+{
+  "version": "DiscoveryMorphologyClosureExpected.v1",
+  "candidate_terminal": "USEFUL_MORPHOLOGY_BASIS_FOUND",
+  "atlas": {
+    "episodes": 51,
+    "domain_counts": {
+      "MATHEMATICS_FORMAL": 16,
+      "SCIENCE": 15,
+      "ENGINEERING_DESIGN": 12,
+      "EVERYDAY_PRACTICAL": 8
+    },
+    "no_jump_controls": 5,
+    "all_private_cognition": "CANNOT_INFER",
+    "all_morphology_roles": "STRUCTURAL_INTERPRETATION",
+    "all_historical_use": "MECHANISM_EXTRACTION_ONLY",
+    "protected_confirmatory_gold_allowed": false,
+    "minimum_competing_interpretations_per_episode": 2
+  },
+  "basis": {
+    "dimensions": 10,
+    "minimum_episode_support_per_dimension": 5,
+    "minimum_domain_support_per_dimension": 2,
+    "minimum_dimensions_spanning_all_four_domains": 1,
+    "dimension_episode_support": {
+      "REPRESENTATION_CHANGE": 12,
+      "NEW_OBJECT_OR_STATE_VARIABLE": 10,
+      "ABSTRACTION_EQUIVALENCE_STRUCTURE": 5,
+      "NEW_LAW_CONSTRAINT_OR_INVARIANT": 10,
+      "BRIDGE_CORRESPONDENCE": 6,
+      "NEW_OPERATOR_PROCEDURE": 18,
+      "SYSTEM_COMPOSITION_ARCHITECTURE": 13,
+      "INTERFACE_MEASUREMENT_REDESIGN": 8,
+      "FUNCTION_AFFORDANCE_INVENTION": 16,
+      "FIXED_REGIME_SEARCH_CONTROL": 5
+    }
+  },
+  "post_basis_saturation": {
+    "rounds": 2,
+    "material_change_rounds": 0,
+    "primary_sources": 8
+  },
+  "authority": {
+    "grants_historical_cognition_authority": false,
+    "grants_atom_independence_authority": false,
+    "grants_jump_authority": false,
+    "grants_novelty_authority": false,
+    "grants_protected_benchmark_authority": false,
+    "grants_issue_closure_authority": false
+  }
+}

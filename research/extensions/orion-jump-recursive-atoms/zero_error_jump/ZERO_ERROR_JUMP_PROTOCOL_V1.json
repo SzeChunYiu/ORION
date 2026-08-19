@@ -1,0 +1,141 @@
+{
+  "version": "ZeroErrorJumpProtocol.v1",
+  "issue": 501,
+  "date_frozen": "2026-08-19",
+  "cases_frozen_before_runner": true,
+  "outcome_accessed": false,
+  "candidate_terminal": "REPRESENTATION_INVENTION_NO_INCREMENTAL_VALUE",
+  "seeds": {
+    "primary": 202608190501,
+    "replication": 202608190502
+  },
+  "split_counts": {
+    "positive_families": 6,
+    "positive_variants_per_family": 4,
+    "positive_cases": 24,
+    "control_families": 6,
+    "control_variants_per_family": 3,
+    "control_cases": 18,
+    "cases_per_split": 42,
+    "total_cases": 84
+  },
+  "positive_families": [
+    {"id":"A_ZERO_ERROR_UNIFICATION","required_move":"BRIDGE_CORRESPONDENCE","thought_experiment_kind":"CROSS_DOMAIN_COUPLING"},
+    {"id":"B_COUNTERFACTUAL_FRAME","required_move":"FRAME_COORDINATE","thought_experiment_kind":"OBSERVER_OR_FRAME_CHANGE"},
+    {"id":"C_HIDDEN_SYMMETRY","required_move":"INVARIANT_ORBIT","thought_experiment_kind":"REGISTERED_TRANSFORMATION"},
+    {"id":"D_RELATIONAL_LIFT","required_move":"RELATIONAL_LIFT","thought_experiment_kind":"COMPOSED_PATH"},
+    {"id":"E_CAUSAL_OBJECT","required_move":"CAUSAL_SPLIT","thought_experiment_kind":"INTERVENTION"},
+    {"id":"F_BRIDGE_LAW","required_move":"BRIDGE_LAW","thought_experiment_kind":"CROSS_DESCRIPTION_CALIBRATION"}
+  ],
+  "control_families": [
+    "PARAMETER_UPDATE_SUFFICIENT",
+    "FIXED_LANGUAGE_STRUCTURE_SUFFICIENT",
+    "ADDITIONAL_EVIDENCE_SUFFICIENT",
+    "NO_CHANGE_NEEDED",
+    "MEASUREMENT_REPAIR_SUFFICIENT",
+    "SEARCH_HARD_BUT_EXPRESSIBLE"
+  ],
+  "representation_move_library": [
+    "NO_REPRESENTATION_CHANGE",
+    "BRIDGE_CORRESPONDENCE",
+    "FRAME_COORDINATE",
+    "INVARIANT_ORBIT",
+    "RELATIONAL_LIFT",
+    "CAUSAL_SPLIT",
+    "BRIDGE_LAW"
+  ],
+  "budgets": {
+    "thought_experiments_per_case": 1,
+    "representation_proposals_per_case": 1,
+    "old_dsl_candidates_per_positive": 6,
+    "old_dsl_candidates_per_control": 8,
+    "same_representation_expansion_slots": 1
+  },
+  "candidate_public_fields": [
+    "case_id",
+    "opaque_object_ids",
+    "opaque_relation_ids",
+    "public_observations",
+    "incumbent_public_predictions",
+    "old_language_public_signatures",
+    "thought_experiment_menu",
+    "selected_thought_experiment_outcome",
+    "representation_move_library",
+    "correspondence_obligation_ids",
+    "public_validation_interface_ids"
+  ],
+  "protected_fields": [
+    "family_id",
+    "is_jump_case",
+    "gold_representation_move",
+    "protected_full_contract_signatures",
+    "protected_novel_consequence_token",
+    "old_language_full_contract_solution_ids",
+    "scientific_terminal"
+  ],
+  "banned_public_or_gold_terms": [
+    "relativity",
+    "ether",
+    "dna",
+    "quantum",
+    "newton",
+    "einstein",
+    "mendeleev",
+    "noether",
+    "turing",
+    "darwin",
+    "maxwell"
+  ],
+  "structural_success_gates": {
+    "positive": [
+      "old_regime_insufficient_exact",
+      "jump_requested",
+      "representation_move_structurally_correct",
+      "informative_thought_experiment",
+      "correspondence_complete",
+      "protected_consequence_correct",
+      "no_authority_violation"
+    ],
+    "control": [
+      "old_regime_sufficient_exact",
+      "no_jump_requested",
+      "registered_old_regime_solution_used",
+      "no_authority_violation"
+    ]
+  },
+  "primary_executable_arms": [
+    "OLD_DSL_EXHAUSTIVE",
+    "M_OPEN_SAME_REPRESENTATION",
+    "FIXED_REP_WORLD_MODEL",
+    "VERIFIED_REGIME_REVISION_PARENT",
+    "ORION_JUMP",
+    "ORION_NO_CORRESPONDENCE",
+    "OVERJUMP_ALWAYS",
+    "ORACLE"
+  ],
+  "mechanism_only_comparators": [
+    "DIRECT_LLM_HYPOTHESIS_GENERATION",
+    "RETRIEVAL_AUGMENTED_LLM",
+    "ACTIVE_BAYESIAN_DESIGN_FIXED_MODEL_CLASS",
+    "THOUGHT_EXPERIMENT_PLUS_FIXED_LANGUAGE",
+    "REPRESENTATION_PROPOSER_WITHOUT_PROTECTED_VALIDATION"
+  ],
+  "strong_parent": "VERIFIED_REGIME_REVISION_PARENT",
+  "independent_verifier": {
+    "required": true,
+    "must_not_import_main_score_function": true,
+    "reconstructs": [
+      "split_case_ids",
+      "old_regime_insufficiency_counts",
+      "arm_metrics",
+      "parent_orion_decision_equality",
+      "terminal"
+    ]
+  },
+  "authority": {
+    "grants_scientific_adoption": false,
+    "grants_open_ended_creativity": false,
+    "grants_novelty_authority": false,
+    "grants_issue_closure_authority": false
+  }
+}

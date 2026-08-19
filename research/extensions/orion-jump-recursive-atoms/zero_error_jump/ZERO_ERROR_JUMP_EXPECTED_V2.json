@@ -1,0 +1,42 @@
+{
+  "version": "ZeroErrorJumpExpected.v2",
+  "protocol_version": "ZeroErrorJumpProtocol.v2",
+  "candidate_terminal": "REPRESENTATION_INVENTION_NO_INCREMENTAL_VALUE",
+  "split_expectations": {
+    "primary": {"seed":202608190501,"cases":42,"positive_cases":24,"control_cases":18},
+    "replication": {"seed":202608190502,"cases":42,"positive_cases":24,"control_cases":18}
+  },
+  "per_split_arm_metrics": {
+    "OLD_DSL_EXHAUSTIVE": {"structural_decision_correct":18,"positive_jump_success":0,"control_no_jump_correct":18,"false_jump_on_control":0,"old_regime_insufficiency_correct":24,"correspondence_success":0,"protected_consequence_success":0,"thought_experiment_success":24,"unresolved_or_rejected":24,"authority_violations":0},
+    "M_OPEN_SAME_REPRESENTATION": {"structural_decision_correct":18,"positive_jump_success":0,"control_no_jump_correct":18,"false_jump_on_control":0,"old_regime_insufficiency_correct":24,"correspondence_success":0,"protected_consequence_success":0,"thought_experiment_success":24,"unresolved_or_rejected":24,"authority_violations":0},
+    "FIXED_REP_WORLD_MODEL": {"structural_decision_correct":18,"positive_jump_success":0,"control_no_jump_correct":18,"false_jump_on_control":0,"old_regime_insufficiency_correct":24,"correspondence_success":0,"protected_consequence_success":0,"thought_experiment_success":24,"unresolved_or_rejected":24,"authority_violations":0},
+    "VERIFIED_REGIME_REVISION_PARENT": {"structural_decision_correct":42,"positive_jump_success":24,"control_no_jump_correct":18,"false_jump_on_control":0,"old_regime_insufficiency_correct":24,"correspondence_success":24,"protected_consequence_success":24,"thought_experiment_success":24,"unresolved_or_rejected":0,"authority_violations":0},
+    "ORION_JUMP": {"structural_decision_correct":42,"positive_jump_success":24,"control_no_jump_correct":18,"false_jump_on_control":0,"old_regime_insufficiency_correct":24,"correspondence_success":24,"protected_consequence_success":24,"thought_experiment_success":24,"unresolved_or_rejected":0,"authority_violations":0},
+    "ORION_NO_CORRESPONDENCE": {"structural_decision_correct":18,"positive_jump_success":0,"control_no_jump_correct":18,"false_jump_on_control":0,"old_regime_insufficiency_correct":24,"correspondence_success":0,"protected_consequence_success":24,"thought_experiment_success":24,"unresolved_or_rejected":24,"authority_violations":0},
+    "OVERJUMP_ALWAYS": {"structural_decision_correct":4,"positive_jump_success":4,"control_no_jump_correct":0,"false_jump_on_control":18,"old_regime_insufficiency_correct":24,"correspondence_success":4,"protected_consequence_success":4,"thought_experiment_success":24,"unresolved_or_rejected":20,"authority_violations":0},
+    "ORACLE": {"structural_decision_correct":42,"positive_jump_success":24,"control_no_jump_correct":18,"false_jump_on_control":0,"old_regime_insufficiency_correct":24,"correspondence_success":24,"protected_consequence_success":24,"thought_experiment_success":24,"unresolved_or_rejected":0,"authority_violations":0}
+  },
+  "cross_split": {
+    "verified_parent_equals_orion_decisions_primary":true,
+    "verified_parent_equals_orion_decisions_replication":true,
+    "verified_parent_equals_orion_metrics_primary":true,
+    "verified_parent_equals_orion_metrics_replication":true,
+    "orion_strong_parent_incremental_gap_primary":0,
+    "orion_strong_parent_incremental_gap_replication":0,
+    "primary_replication_terminal_equal":true,
+    "positive_old_dsl_full_contract_solutions":0,
+    "control_old_dsl_minimum_full_contract_solutions":1,
+    "false_jumps_for_parent":0,
+    "false_jumps_for_orion":0
+  },
+  "leakage_expectations": {
+    "public_tension_kind_present": false,
+    "positive_control_distinguishable_from_operation_kind_before_experiment": false,
+    "control_family_id_embedded_in_candidate_visible_outcome": false,
+    "fixed_representation_arms_use_only_public_probe_outcome_for_keep_vs_unresolved": true,
+    "menu_options_per_case": 2,
+    "uniform_menu_operation_kind": "REGISTERED_PROBE"
+  },
+  "independent_reconstruction": {"required":true,"expected_match":true},
+  "authority": {"grants_scientific_adoption":false,"grants_open_ended_creativity":false,"grants_novelty_authority":false,"grants_issue_closure_authority":false}
+}

@@ -1,0 +1,75 @@
+{
+  "version": "FailureAtlasSaturation.v1",
+  "schema_version": "FailureAtlasSchema.v1",
+  "pilot_version": "FailureAtlasPilot.v1",
+  "schema_and_pilot_frozen_before_rounds": true,
+  "normalization_material_schema_change": false,
+  "rounds": [
+    {
+      "round_id": "POST_SCHEMA_ROUND_1",
+      "challenge_neighborhood": "replication + publication visibility + model checking",
+      "primary_sources": [
+        {
+          "source_id": "OSC_2015_REPRODUCIBILITY",
+          "locator": "Open Science Collaboration, Estimating the reproducibility of psychological science, Science 349 (2015) aac4716, doi:10.1126/science.aac4716",
+          "pressure": "Replication outcomes require protocol/sample/context tracking and do not reduce to binary truth labels.",
+          "mapped_fields": ["patch_or_replication_records","first_negative_decisive_status","responsibility_resolution_class","still_live_alternative_ids"]
+        },
+        {
+          "source_id": "FRANCO_MALHOTRA_SIMONOVITS_2014",
+          "locator": "A. Franco, N. Malhotra and G. Simonovits, Publication bias in the social sciences: Unlocking the file drawer, Science 345 (2014) 1502–1505, doi:10.1126/science.1255484",
+          "pressure": "Null/non-significant outcomes can be selectively hidden, so visibility/publication status is a load-bearing corpus coordinate.",
+          "mapped_fields": ["visibility_status","first_negative_outcome_class","historical_use"]
+        },
+        {
+          "source_id": "GELMAN_MENG_STERN_1996",
+          "locator": "A. Gelman, X.-L. Meng and H. Stern, Posterior predictive assessment of model fitness via realized discrepancies, Statistica Sinica 6 (1996) 733–807",
+          "pressure": "A discrepancy can diagnose model inadequacy without uniquely identifying one replacement or causal responsibility.",
+          "mapped_fields": ["first_negative_decisive_status","responsibility_resolution_class","still_live_alternative_ids","materiality_class"]
+        },
+        {
+          "source_id": "RP_CANCER_BIOLOGY_2021",
+          "locator": "Errington et al., Investigating the replicability of preclinical cancer biology, eLife 10 (2021) e71601, doi:10.7554/eLife.71601",
+          "pressure": "Replication programs require feasibility/context/protocol distinctions and can yield mixed or non-identifying evidence rather than one global verdict.",
+          "mapped_fields": ["patch_or_replication_records","recognition_delay_class","responsibility_hypothesis_ids","visibility_status"]
+        }
+      ],
+      "new_schema_coordinate_ids": [],
+      "material_change": false,
+      "result": "NO_MATERIAL_CHANGE"
+    },
+    {
+      "round_id": "POST_SCHEMA_ROUND_2",
+      "challenge_neighborhood": "software deployment + clinical harm + industrial accident",
+      "primary_sources": [
+        {
+          "source_id": "SEC_KNIGHT_2013",
+          "locator": "U.S. Securities and Exchange Commission, In the Matter of Knight Capital Americas LLC, Exchange Act Release No. 70694 / Administrative Proceeding File No. 3-15570 (Oct. 16, 2013)",
+          "pressure": "A software deployment/configuration failure combines execution defects, missing deployment controls, rapid material harm and concrete remediation.",
+          "mapped_fields": ["first_negative_outcome_class","responsibility_hypothesis_ids","response_type_ids","patch_or_replication_records","successor_transition_class"]
+        },
+        {
+          "source_id": "APPROVE_ROFECOXIB_2005",
+          "locator": "R. S. Bresalier et al., Cardiovascular Events Associated with Rofecoxib in a Colorectal Adenoma Chemoprevention Trial, New England Journal of Medicine 352 (2005) 1092–1102, doi:10.1056/NEJMoa050493",
+          "pressure": "An intervention can fail through excess clinical harm in a registered population while the inference remains molecule/regimen/context scoped.",
+          "mapped_fields": ["first_negative_outcome_class","first_negative_decisive_status","materiality_class","excluded_scope_ids","still_live_alternative_ids"]
+        },
+        {
+          "source_id": "DEEPWATER_HORIZON_2011",
+          "locator": "National Commission on the BP Deepwater Horizon Oil Spill and Offshore Drilling, Deep Water: The Gulf Oil Disaster and the Future of Offshore Drilling, Report to the President (2011)",
+          "pressure": "Catastrophic engineering failure can require a multi-factor chain spanning technical barriers, decisions, signals and organizational controls rather than a single root-cause field.",
+          "mapped_fields": ["responsibility_resolution_class","responsibility_hypothesis_ids","misstep_class_ids","failure_detection_status","response_type_ids"]
+        }
+      ],
+      "new_schema_coordinate_ids": [],
+      "material_change": false,
+      "result": "NO_MATERIAL_CHANGE"
+    }
+  ],
+  "reopen_rule": "Any later source-grounded failure episode or methodology that requires a reusable revision-aware coordinate outside FailureAtlasSchema.v1 after normalization reopens #509 schema saturation and resets both rounds.",
+  "authority": {
+    "grants_corpus_ready_authority": false,
+    "grants_scientific_refutation": false,
+    "grants_issue_closure_authority": false
+  }
+}

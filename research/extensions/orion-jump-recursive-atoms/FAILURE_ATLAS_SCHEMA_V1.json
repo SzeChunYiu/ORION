@@ -1,0 +1,235 @@
+{
+  "version": "FailureAtlasSchema.v1",
+  "issue": 509,
+  "status": "PRE_ANNOTATION_FREEZE",
+  "dependency": "FailureEpisode.v1@PR-514",
+  "candidate_terminal": "FAILURE_ATLAS_SCHEMA_STABLE",
+  "forbidden_self_terminal": "FAILURE_MORPHOLOGY_CORPUS_READY",
+  "field_groups": {
+    "identity_and_cutoff": [
+      "episode_id",
+      "title",
+      "domain_bucket",
+      "knowledge_cutoff_date",
+      "incumbent_target_id",
+      "incumbent_regime_id"
+    ],
+    "source_and_chronology": [
+      "source_records",
+      "protocol_summary",
+      "attempt_summary",
+      "first_negative_evidence_summary",
+      "first_negative_outcome_class",
+      "first_negative_decisive_status",
+      "failure_detection_status",
+      "recognition_delay_class",
+      "response_type_ids",
+      "patch_or_replication_records"
+    ],
+    "responsibility_and_scope": [
+      "materiality_class",
+      "responsibility_resolution_class",
+      "responsibility_hypothesis_ids",
+      "excluded_scope_ids",
+      "still_live_alternative_ids",
+      "preserved_success_ids",
+      "misstep_class_ids"
+    ],
+    "successor_and_visibility": [
+      "successor_state_id",
+      "successor_transition_class",
+      "protected_novel_consequence_ids",
+      "visibility_status",
+      "post_cutoff_source_ids"
+    ],
+    "paired_and_hindsight_controls": [
+      "paired_case_ids",
+      "pair_relation_ids",
+      "alternative_interpretations",
+      "private_cognition",
+      "historical_use",
+      "protected_confirmatory_gold",
+      "independent_domain_expert_review_status"
+    ]
+  },
+  "source_record_fields": [
+    "source_id",
+    "date",
+    "source_kind",
+    "locator",
+    "temporal_relation",
+    "supported_coordinate_ids"
+  ],
+  "patch_or_replication_record_fields": [
+    "record_id",
+    "date",
+    "action_kind",
+    "outcome_id",
+    "source_ids",
+    "changes_context"
+  ],
+  "enums": {
+    "domain_bucket": [
+      "SCIENCE_MEASUREMENT",
+      "CLINICAL_BIOMEDICAL",
+      "MATHEMATICS_FORMAL",
+      "ENGINEERING_SAFETY",
+      "AI_AUTONOMOUS_SCIENCE"
+    ],
+    "source_kind": [
+      "PRIMARY_PUBLICATION",
+      "PRIMARY_TRIAL_REPORT",
+      "PRIMARY_FORMAL_PAPER",
+      "OFFICIAL_INQUIRY_REPORT",
+      "OFFICIAL_AGENCY_RECORD",
+      "PRIMARY_RETRACTION_OR_CORRECTION",
+      "PRIMARY_BENCHMARK_PAPER"
+    ],
+    "temporal_relation": [
+      "PRE_OR_AT_CUTOFF",
+      "POST_CUTOFF"
+    ],
+    "first_negative_outcome_class": [
+      "CONTRADICTORY_OBSERVATION",
+      "FORMAL_COUNTEREXAMPLE",
+      "PROOF_GAP_OR_INVALID_INFERENCE",
+      "NON_REPLICATION",
+      "NULL_OR_NONIDENTIFYING_RESULT",
+      "HARM_OR_ADVERSE_ENDPOINT",
+      "MEASUREMENT_OR_INSTRUMENT_ANOMALY",
+      "EXECUTION_OR_INTERFACE_DEFECT",
+      "PROCESS_OR_SCIENTIFIC_INCONSISTENCY",
+      "CONTEXT_OR_SCALE_FAILURE"
+    ],
+    "first_negative_decisive_status": [
+      "DECISIVE_FOR_REGISTERED_CLAIM",
+      "CONTEXT_SCOPED_NEGATIVE",
+      "NONDECISIVE",
+      "RESPONSIBILITY_UNRESOLVED",
+      "EXECUTION_OR_MEASUREMENT_INVALIDATES_REFUTATION",
+      "CANNOT_CHECK"
+    ],
+    "failure_detection_status": [
+      "IMMEDIATE_NATIVE_VERIFIER",
+      "OBSERVED_BUT_NOT_RECOGNIZED_MATERIAL",
+      "REPLICATION_REQUIRED",
+      "ADVERSARIAL_OR_INDEPENDENT_CHECK_REQUIRED",
+      "POST_HOC_ANALYSIS_REQUIRED",
+      "FORMAL_COUNTEREXAMPLE_DIRECT",
+      "CANNOT_INFER"
+    ],
+    "materiality_class": [
+      "SCIENTIFIC_CLAIM_FAILURE",
+      "METHOD_OR_INTERVENTION_FAILURE",
+      "MEASUREMENT_OR_INTERFACE_FAILURE",
+      "PROOF_OR_INFERENCE_FAILURE",
+      "SYSTEM_OR_SAFETY_FAILURE",
+      "PROCESS_EVALUATION_FAILURE",
+      "NONIDENTIFYING_NEGATIVE",
+      "CONTESTED_OR_UNRESOLVED"
+    ],
+    "responsibility_resolution_class": [
+      "RESOLVED_SINGLE_DOMINANT",
+      "RESOLVED_MULTI_FACTOR",
+      "PLURAL_LIVE",
+      "UNRESOLVED"
+    ],
+    "recognition_delay_class": [
+      "IMMEDIATE",
+      "SHORT_REPLICATION_CYCLE",
+      "MONTHS_TO_YEARS",
+      "MULTI_YEAR",
+      "CANNOT_INFER"
+    ],
+    "response_type_ids": [
+      "RETRACT_OR_WITHDRAW_CLAIM",
+      "STOP_INTERVENTION_OR_OPERATION",
+      "REPEAT_OR_REPLICATE",
+      "REDESIGN_MEASUREMENT",
+      "REDESIGN_INTERFACE_OR_SYSTEM",
+      "NARROW_CLAIM_OR_DOMAIN",
+      "CHANGE_MODEL_OR_REPRESENTATION",
+      "PRESERVE_PARTIAL_RESULT",
+      "OPEN_SUCCESSOR_SEARCH",
+      "NO_STABLE_RESPONSE_RECORDED"
+    ],
+    "misstep_class_ids": [
+      "GLOBALIZED_NEGATIVE",
+      "SURROGATE_ENDPOINT_CONFUSION",
+      "PREMATURE_PROMOTION",
+      "RETRY_WITHOUT_CONTEXT_CHANGE",
+      "SIGNAL_DISMISSED_OR_UNDERWEIGHTED",
+      "PATCH_WITHOUT_RESPONSIBILITY_RESOLUTION",
+      "CONTEXT_TRANSPORT_ASSUMED",
+      "SINGLE_ROOT_CAUSE_OVERSIMPLIFICATION",
+      "SUCCESSOR_HINDSIGHT_LEAK",
+      "NONE_REGISTERED"
+    ],
+    "successor_transition_class": [
+      "LOCAL_REPAIR_SUFFICIENT",
+      "PARAMETER_OR_METHOD_UPDATE",
+      "MEASUREMENT_REDESIGN",
+      "MODEL_CLASS_EXPANSION",
+      "REPRESENTATION_JUMP",
+      "OPERATOR_JUMP",
+      "QUESTION_OR_GOAL_CHANGE",
+      "AUTHORITY_OR_VALIDATION_REPAIR",
+      "ABANDONED_WITHOUT_SUCCESSOR",
+      "STILL_CONTESTED",
+      "NO_SUCCESSOR_REQUIRED",
+      "CANNOT_INFER"
+    ],
+    "visibility_status": [
+      "PUBLISHED_NEGATIVE",
+      "PUBLISHED_NULL",
+      "PUBLISHED_CORRECTION_OR_RETRACTION",
+      "OFFICIAL_INCIDENT_OR_INQUIRY",
+      "VISIBLE_ONLY_AFTER_REPLICATION",
+      "DISPUTED_PUBLIC_RECORD",
+      "FILE_DRAWER_OR_UNPUBLISHED",
+      "UNKNOWN"
+    ],
+    "independent_domain_expert_review_status": [
+      "NOT_OBTAINED",
+      "OBTAINED_AGREEMENT",
+      "OBTAINED_DISAGREEMENT"
+    ]
+  },
+  "hard_rules": [
+    "Every episode has at least two non-empty source records and at least one PRE_OR_AT_CUTOFF source supporting first negative evidence or a formal counterexample.",
+    "POST_CUTOFF sources may support evaluator-side successor/history only and may never support candidate-visible pre-cutoff replay.",
+    "Every episode has at least two alternative interpretations unless the exact formal counterexample relation makes historical causal interpretation irrelevant; even then interpretation alternatives must cover scope/preservation.",
+    "private_cognition is always CANNOT_INFER.",
+    "historical_use is always MECHANISM_EXTRACTION_ONLY and protected_confirmatory_gold is always false.",
+    "DECISIVE_FOR_REGISTERED_CLAIM must name non-empty excluded_scope_ids and may not imply a broader global prohibition.",
+    "NONDECISIVE, RESPONSIBILITY_UNRESOLVED and EXECUTION_OR_MEASUREMENT_INVALIDATES_REFUTATION may not manufacture excluded_scope_ids beyond a registered method/interface/measurement defect.",
+    "Every episode names still-live alternatives or explicitly records NONE_AFTER_EXACT_FORMAL_REFUTATION for the exact quantified claim.",
+    "Preserved successes must remain explicit when a proof, model, method, interface or theory survives in a narrower domain.",
+    "A changed-context retry is not a contradiction of prior negative knowledge; changes_context is stored on each patch/replication record.",
+    "Same-symptom paired cases may share outcome class but must be allowed different responsibility hypotheses/resolution classes.",
+    "No row may set independent_domain_expert_review_status to OBTAINED_AGREEMENT without an attached external review record.",
+    "The corpus-ready terminal is forbidden while independent expert agreement is absent."
+  ],
+  "failure_episode_v1_alignment": {
+    "episode_id": "episode_id",
+    "domain_bucket": "domain",
+    "knowledge_cutoff_date": "cutoff",
+    "incumbent_target_id": "target_contract_ids",
+    "incumbent_regime_id": "incumbent_regime_id",
+    "source_records": "sources",
+    "attempt_summary": "attempted_trace_ids",
+    "first_negative_evidence_summary": "visible_negative_evidence_ids",
+    "responsibility_hypothesis_ids": "contemporaneous_responsibility_hypothesis_ids",
+    "patch_or_replication_records": "retry_patch_replication_ids",
+    "visibility_status": "visibility",
+    "successor_state_id": "successor_state_id",
+    "historical_use": "use_mode"
+  },
+  "authority": {
+    "grants_scientific_refutation": false,
+    "grants_global_prohibition": false,
+    "grants_historical_causal_truth": false,
+    "grants_corpus_ready_authority": false,
+    "grants_issue_closure_authority": false
+  }
+}

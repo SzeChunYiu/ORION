@@ -1,0 +1,472 @@
+"""First-wave ScientificStructureAssimilationReceipt.v1 packet for #454.
+
+The packet is deliberately non-authorizing.  It records the structural content
+that has to be understood *before* atomic mechanism absorption under #318.
+Primary-source access is part of the scientific state: MDA remains
+ABSTRACT_ONLY/CANNOT_CHECK because its full body could not be source-grounded in
+this pass.  No downstream code is allowed to convert that into an admitted
+receipt merely because the abstract is detailed.
+"""
+
+from __future__ import annotations
+
+from orion.knowledge.scientific_structure_assimilation import (
+    REQUIRED_COORDINATES,
+    CoordinateAssessment,
+    StructuralAssumptionProfile,
+    StructuralAssimilationDraft,
+    StructuralAuthority,
+    StructuralCoordinate,
+    StructuralDisposition,
+    StructuralDonorIdentity,
+    StructuralSourceAccess,
+    StructuralSourceKind,
+    build_structural_assimilation_closure,
+    seal_structural_assimilation,
+)
+
+
+def _profile(
+    coupling: str,
+    state: str,
+    stochasticity: str,
+    followups: str,
+    memory: str,
+    compute: str,
+    interface: str,
+    baseline: str,
+) -> StructuralAssumptionProfile:
+    return StructuralAssumptionProfile(
+        agent_world_coupling_assumption=coupling,
+        common_state_sufficiency_assumption=state,
+        exogenous_stochasticity_semantics=stochasticity,
+        strategic_link_required_followups=followups,
+        working_memory_vs_audit_history=memory,
+        computation_is_action_wait_semantics=compute,
+        interface_components_joint_or_independent=interface,
+        simple_baseline_that_could_make_donor_unnecessary=baseline,
+    )
+
+
+def _assessments(
+    donor_ref: str,
+    evidence_ref: str,
+    commitments: dict[StructuralCoordinate, tuple[str, StructuralDisposition, str]],
+) -> tuple[CoordinateAssessment, ...]:
+    return tuple(
+        CoordinateAssessment(
+            coordinate=coordinate,
+            commitment=commitments[coordinate][0],
+            disposition=commitments[coordinate][1],
+            donor_owner_refs=(donor_ref,) if commitments[coordinate][1] not in {
+                StructuralDisposition.ORTHOGONAL,
+                StructuralDisposition.DEFER_CANNOT_CHECK,
+            } else (),
+            orion_consequence=commitments[coordinate][2],
+            evidence_refs=(evidence_ref,),
+        )
+        for coordinate in REQUIRED_COORDINATES
+    )
+
+
+def _draft(
+    *,
+    receipt_id: str,
+    donor_id: str,
+    title: str,
+    source_uri: str,
+    access: StructuralSourceAccess,
+    scope: str,
+    commitments: dict[StructuralCoordinate, tuple[str, StructuralDisposition, str]],
+    profile: StructuralAssumptionProfile,
+    authority: StructuralAuthority,
+    representation_boundary: str,
+    preservation_rule: str,
+    downstream_children: tuple[str, ...],
+    llm_involved: bool = False,
+    explicit_non_llm_machinery: tuple[str, ...] = (),
+    llm_marginal_role_checked: bool = False,
+    donor_has_relevant_negative_result: bool = False,
+    negative_results: tuple[str, ...] = (),
+    conflict_tests: tuple[str, ...] = (),
+) -> StructuralAssimilationDraft:
+    return StructuralAssimilationDraft(
+        receipt_id=receipt_id,
+        donor=StructuralDonorIdentity(
+            donor_id=donor_id,
+            title=title,
+            source_uri=source_uri,
+            source_kind=StructuralSourceKind.PRIMARY_PAPER,
+            access=access,
+            source_scope=scope,
+        ),
+        assessments=_assessments(donor_id, source_uri, commitments),
+        assumption_profile=profile,
+        donor_authority=authority,
+        claimed_authority=authority,
+        representation_boundary=representation_boundary,
+        preservation_rule=preservation_rule,
+        llm_involved=llm_involved,
+        explicit_non_llm_machinery=explicit_non_llm_machinery,
+        llm_marginal_role_checked=llm_marginal_role_checked,
+        donor_has_relevant_negative_result=donor_has_relevant_negative_result,
+        negative_results=negative_results,
+        conflict_tests=conflict_tests,
+        downstream_children=downstream_children,
+        structural_receipt_id_for_mechanics=receipt_id,
+    )
+
+
+def _c(
+    a: tuple[str, StructuralDisposition, str],
+    b: tuple[str, StructuralDisposition, str],
+    c: tuple[str, StructuralDisposition, str],
+    d: tuple[str, StructuralDisposition, str],
+    e: tuple[str, StructuralDisposition, str],
+    f: tuple[str, StructuralDisposition, str],
+    g: tuple[str, StructuralDisposition, str],
+) -> dict[StructuralCoordinate, tuple[str, StructuralDisposition, str]]:
+    return dict(zip(REQUIRED_COORDINATES, (a, b, c, d, e, f, g), strict=True))
+
+
+DRAFTS = (
+    _draft(
+        receipt_id="ssa:v1:mwm-2607.12474v2",
+        donor_id="arxiv:2607.12474v2",
+        title="From Observation to Insight: Mechanistic World Models and the Quest for Autonomous Discovery",
+        source_uri="https://arxiv.org/abs/2607.12474v2",
+        access=StructuralSourceAccess.FULL_TEXT,
+        scope="conceptual mechanism-centric AI-for-science framework",
+        authority=StructuralAuthority.DESCRIPTIVE,
+        commitments=_c(
+            ("Reusable mechanisms, not observations alone, are central scientific objects; variables and mechanisms may be discovered jointly.", StructuralDisposition.ADOPT_STRUCTURE, "Credit generic mechanism-centric representation to MWM; P3/P6/P7 retain only typed ORION-specific boundaries."),
+            ("Prediction is not explanation; explanatory knowledge emphasizes reusable/invariant mechanisms and hierarchical composition.", StructuralDisposition.ADOPT_STRUCTURE, "Remove generic prediction-versus-explanation and reusable-mechanism language from ORION novelty."),
+            ("Failure should be localizable to implicated mechanisms rather than forcing whole-model replacement.", StructuralDisposition.ADAPT_STRUCTURE, "Use as a parent for localized failure/revision, while #459/P5 retain explicit responsibility and CANNOT_CHECK semantics."),
+            ("Mechanism-centric representations support localized update and recomposition; open representation requires an explicit boundary beyond this blueprint.", StructuralDisposition.ADAPT_STRUCTURE, "Route representation-changing consequences to P3/P7 instead of treating mechanism update as universal regime revision."),
+            ("Active inquiry is part of the discovery blueprint but remains less developed than the representation thesis.", StructuralDisposition.ADAPT_STRUCTURE, "P2 owns operational inquiry/search protocols and must not claim MWM's generic need for active inquiry."),
+            ("The paper is a conceptual framework, not a scientific authorization protocol.", StructuralDisposition.ORTHOGONAL, "P4/P8 authority remains independent; MWM predictive/explanatory adequacy cannot authorize adoption."),
+            ("MWM owns the broad mechanism-centric scientific-computation framing.", StructuralDisposition.ADOPT_STRUCTURE, "#318 may absorb atomic mechanics only after this structural receipt; generic framework novelty is struck."),
+        ),
+        profile=_profile(
+            "Agent–world coupling matters through intervention and mechanism discovery, but the paper is primarily a representation blueprint.",
+            "A single fixed observational state is not assumed sufficient; variables and mechanisms may be discovered jointly.",
+            "Mechanism inadequacy is not automatically attributable to one component; localization is an explicit desideratum.",
+            "Active experiments are a discovery requirement where observations do not discriminate mechanisms.",
+            "Knowledge organization should preserve reusable mechanism identity rather than collapse history into a monolithic predictor.",
+            "NOT_MATERIAL: the paper does not make waiting/computation timing a distinct scientific action coordinate.",
+            "Representation, mechanism and intervention interfaces interact and should not be silently treated as independent.",
+            "A strong predictive/model-based learner without a mechanism-centric representation is the mandatory simpler parent for claimed explanatory gains.",
+        ),
+        representation_boundary="Mechanism/variable structure can be revised; ORION must separately test when this amounts to representation/regime change rather than local mechanism update.",
+        preservation_rule="Reused mechanisms retain identity/provenance; claims touched by changed mechanisms require revalidation rather than silent transport.",
+        downstream_children=("#318", "#459", "P3", "P6", "P7"),
+    ),
+    _draft(
+        receipt_id="ssa:v1:mda-2608.09696",
+        donor_id="arxiv:2608.09696",
+        title="Model Discovery Agent",
+        source_uri="https://arxiv.org/abs/2608.09696",
+        access=StructuralSourceAccess.ABSTRACT_ONLY,
+        scope="abstract-visible bounded mechanistic discovery benchmarks",
+        authority=StructuralAuthority.BOUNDED,
+        commitments=_c(*(
+            ("ABSTRACT_ONLY: donor appears to combine mechanistic models, M-open hypothesis-class expansion and active experiment design; full structural commitments are not source-grounded.", StructuralDisposition.DEFER_CANNOT_CHECK, "Keep MDA as a mandatory baseline lead but do not bind a full structural interpretation or scientific result."),
+        ) * 7),
+        profile=_profile(
+            "CANNOT_CHECK: full agent–world coupling assumptions not source-grounded.",
+            "CANNOT_CHECK: abstract indicates M-open class expansion but does not settle open-variable/representation sufficiency.",
+            "CANNOT_CHECK: predictive inadequacy is visible in the abstract, but causal attribution semantics require the full body.",
+            "CANNOT_CHECK: abstract mentions active experiment design; exact strategic followup semantics require the full body.",
+            "CANNOT_CHECK: persistence/provenance semantics require the full body.",
+            "NOT_MATERIAL_AT_ABSTRACT_LEVEL: no separate wait/compute ontology is established.",
+            "CANNOT_CHECK: exact observation/intervention/representation interface coupling requires the full body.",
+            "Visible mandatory parent is fixed-class SMC/SBI plus active design; exact matched controls require full-text confirmation.",
+        ),
+        representation_boundary="CANNOT_CHECK: abstract-visible M-open expansion is not enough to decide whether variables/representation themselves are revisable.",
+        preservation_rule="CANNOT_CHECK: full evidence/claim preservation semantics are unavailable in the source-grounded body.",
+        downstream_children=("#318", "#403", "P5"),
+    ),
+    _draft(
+        receipt_id="ssa:v1:self-revising-2606.01444v1",
+        donor_id="arxiv:2606.01444v1",
+        title="Self-Revising Discovery Systems for Science: A Categorical Framework for Agentic Artificial Intelligence",
+        source_uri="https://arxiv.org/abs/2606.01444v1",
+        access=StructuralSourceAccess.FULL_TEXT,
+        scope="categorical self-revising discovery framework with materials-science systems",
+        authority=StructuralAuthority.BOUNDED,
+        commitments=_c(
+            ("Scientific state is typed by a representational regime; artifacts, operations and verifiers live inside that regime.", StructuralDisposition.ADOPT_STRUCTURE, "Credit typed regime ontology to the donor; P3/P7 residuals must be narrower than generic regime representation."),
+            ("Discovery is a verified regime transition, not merely answer generation or retrieval.", StructuralDisposition.ADOPT_STRUCTURE, "Strike generic 'discovery as representation revision' novelty from ORION."),
+            ("Rejected alternatives, stress tests and residual content after transport are first-class evidence of model/regime inadequacy.", StructuralDisposition.ADAPT_STRUCTURE, "P5 may add scoped reusable failure knowledge but not re-own the donor's negative-evidence principle."),
+            ("Old artifacts are transported across a regime transition and residual content is separated from functorial transport.", StructuralDisposition.ADOPT_STRUCTURE, "P3/P7 must compare against this preservation/transport parent for representation revision."),
+            ("Builder/Breaker and proof-carrying workflow mutation use gates and stress tests to drive revision.", StructuralDisposition.ADAPT_STRUCTURE, "P2/P5 may operationalize inquiry but generic gate-driven revision is donor-owned."),
+            ("Typed gates/verifiers constrain acceptance; the framework does not transfer ORION scientific authority merely by being adopted.", StructuralDisposition.ADAPT_STRUCTURE, "P4/P8 retain independent protected authority and anti-laundering requirements."),
+            ("The donor is a strongest parent for verified representational-regime revision and preservation.", StructuralDisposition.ADOPT_STRUCTURE, "Bind as P5/P7 comparator and remove broad regime-revision novelty."),
+        ),
+        profile=_profile(
+            "Discovery acts on a typed scientific regime and evidence produced by interventions/workflows, not only an internal predictor.",
+            "Common-state sufficiency is explicitly rejected across regime transitions; source and target schemas can differ.",
+            "Anomaly/failed fit is represented through rejected alternatives, stress tests and residual content rather than assumed agent error.",
+            "Regime changes require gates/stress tests and explicit transport/revalidation obligations.",
+            "Old evidential records are preserved even when symbolic model terms retract or are superseded.",
+            "NOT_MATERIAL: no separate wait/computation-as-action ontology is load-bearing to the structural result.",
+            "Schema/artifact/verifier types are coupled; transport is explicit rather than assumed componentwise independent.",
+            "Fixed-regime refinement with provenance preservation is the mandatory simpler parent before a regime transition is credited.",
+        ),
+        representation_boundary="Fixed-regime refinement and schema-changing regime transition are distinct operations.",
+        preservation_rule="Old artifacts/evidence persist and are transported; residual content and affected claims are explicitly revalidated.",
+        downstream_children=("#318", "#403", "P3", "P4", "P5", "P7"),
+    ),
+    _draft(
+        receipt_id="ssa:v1:awm-2604.22748v3",
+        donor_id="arxiv:2604.22748v3",
+        title="Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond",
+        source_uri="https://arxiv.org/abs/2604.22748v3",
+        access=StructuralSourceAccess.FULL_TEXT,
+        scope="survey/taxonomy of world-model capabilities and governing-law regimes",
+        authority=StructuralAuthority.DESCRIPTIVE,
+        commitments=_c(
+            ("World models span L1 prediction, L2 action-conditioned simulation and L3 persistent evidence-driven evolution across physical/digital/social/scientific regimes.", StructuralDisposition.ADOPT_STRUCTURE, "Use the levels×laws taxonomy as a parent map; do not claim generic adaptive-world-model levels as ORION novelty."),
+            ("Model adequacy is decision- and regime-dependent rather than reducible to one prediction metric.", StructuralDisposition.ADAPT_STRUCTURE, "P3/P5/P7 keep only typed ORION-specific preservation/authority residuals."),
+            ("Compounding error, state aliasing/drift, controllability, exploitability and calibration-under-shift are distinct failure modes.", StructuralDisposition.ADOPT_STRUCTURE, "#459/P5 must compare against this existing diagnostic taxonomy."),
+            ("L3 Evolver persistently revises a model when predictions fail against new evidence; L2 remains fixed simulation.", StructuralDisposition.ADOPT_STRUCTURE, "Credit generic discrepancy-driven persistent world-model revision to AWM."),
+            ("Targeted interaction/evaluation is required to expose and validate world-model failures.", StructuralDisposition.ADAPT_STRUCTURE, "P2/#459 own stronger frozen inquiry protocols only where they exceed this survey-level parent."),
+            ("Decision-centric evaluation and minimal reproducible packages are evidence discipline, not scientific permission.", StructuralDisposition.ORTHOGONAL, "P4/P8 retain protected authority semantics."),
+            ("AWM owns a broad capability/failure/evaluation taxonomy for evolving world models.", StructuralDisposition.ADOPT_STRUCTURE, "Bind AWM to #403/P5 and strike generic L1/L2/L3 adaptation language."),
+        ),
+        profile=_profile(
+            "Action-conditioned environment interaction is central at L2/L3 rather than passive observation alone.",
+            "State sufficiency is regime-specific; aliasing/drift is an explicit failure mode.",
+            "Failures can arise from stochastic/representation/control/calibration interactions and are not automatically assigned to policy competence.",
+            "L3 revision follows discrepancy/new evidence and needs persistent regression validation.",
+            "Persistent model revision must remain auditable rather than overwriting the evidence that triggered it.",
+            "NOT_MATERIAL: computation/wait timing is not the survey's principal structural coordinate.",
+            "State, dynamics, actions, regime laws and evaluation interact; isolated scalar evaluation is insufficient.",
+            "A fixed L2 simulator is the mandatory parent before crediting L3 self-evolution.",
+        ),
+        representation_boundary="L2 holds the model fixed for simulation; L3 permits persistent evidence-driven model revision, while ORION must separately discriminate model revision from representation/objective/evaluator revision.",
+        preservation_rule="Persistent L3 updates require regression validation against prior capability/evidence rather than untracked overwrite.",
+        downstream_children=("#318", "#459", "#403", "P5", "P7"),
+    ),
+    _draft(
+        receipt_id="ssa:v1:worldevolver-2606.30639v1",
+        donor_id="arxiv:2606.30639v1",
+        title="Self-Evolving World Models for LLM Agent Planning",
+        source_uri="https://arxiv.org/abs/2606.30639v1",
+        access=StructuralSourceAccess.FULL_TEXT,
+        scope="ALFWorld/ScienceWorld test-time memory revision with frozen model parameters",
+        authority=StructuralAuthority.BOUNDED,
+        commitments=_c(
+            ("The underlying agent and world-model parameters remain frozen; mutable epistemic state lives in episodic/semantic deployment memory.", StructuralDisposition.ADOPT_STRUCTURE, "Use as a strong parent for P5 memory revision; do not mislabel memory evolution as model-weight/regime evolution."),
+            ("Foresight quality improves by conditioning on retrieved transitions and persistent mismatch-derived rules.", StructuralDisposition.ADOPT_STRUCTURE, "Credit deployment-time memory-conditioned foresight to WorldEvolver."),
+            ("Prediction–observation mismatches become inspectable semantic rules with support/contradiction evidence.", StructuralDisposition.ADOPT_STRUCTURE, "P5 residual must be scoped causal/reusable FailureKnowledge beyond generic mismatch memory."),
+            ("Revision changes deployment context/memory while model parameters remain fixed.", StructuralDisposition.ADAPT_STRUCTURE, "Use as a negative control against reflexively escalating every failure to representation/regime change."),
+            ("Real action transitions provide episodic evidence; selective foresight filters low-confidence predictions.", StructuralDisposition.ADAPT_STRUCTURE, "P2/P5 may add targeted inquiry but not re-own mismatch-driven memory accumulation."),
+            ("Confidence filtering controls use of predictions but does not authorize scientific claims.", StructuralDisposition.ORTHOGONAL, "P4/P8 authority remains separate."),
+            ("WorldEvolver is a mandatory strong baseline for persistent failure/memory adaptation.", StructuralDisposition.ADOPT_STRUCTURE, "Bind P5 structural baseline to this receipt."),
+        ),
+        profile=_profile(
+            "Memory updates are grounded in executed agent–environment transitions.",
+            "The model/interface state is held fixed enough for memory conditioning; the paper does not establish open representation sufficiency.",
+            "Mismatch is evidence about prediction/context, not automatic evidence that model parameters must change.",
+            "New transitions/rules become followups for subsequent retrieval and foresight.",
+            "Mutable episodic/semantic working memory is distinct from the frozen underlying model and preserved interaction evidence.",
+            "NOT_MATERIAL: no separate wait action is needed for the claimed memory mechanism.",
+            "Prediction, retrieved memory and confidence filter compose at inference time; they are not independent claims.",
+            "Frozen world model plus retrieval-only episodic memory is the mandatory simpler parent before semantic memory gains are credited.",
+        ),
+        representation_boundary="Only deployment context/memory evolves; world-model parameters and downstream agent remain frozen.",
+        preservation_rule="Observed transitions persist as episodic evidence; semantic rules accumulate support/contradiction rather than silently erasing history.",
+        downstream_children=("P5", "#318", "#403"),
+    ),
+    _draft(
+        receipt_id="ssa:v1:harness-2604.07236v4",
+        donor_id="arxiv:2604.07236v4",
+        title="How Much Heavy Lifting Can an Agent Harness Do?: Measuring the LLM's Residual Role in a Planning Agent",
+        source_uri="https://arxiv.org/abs/2604.07236v4",
+        access=StructuralSourceAccess.FULL_TEXT,
+        scope="54-game Collaborative Battleship layered planning-harness study",
+        authority=StructuralAuthority.BOUNDED,
+        commitments=_c(
+            ("Agent competence is decomposed into explicit harness layers plus a residual LLM-backed revision gate.", StructuralDisposition.ADOPT_STRUCTURE, "Require explicit non-LLM machinery before crediting an LLM component."),
+            ("Contribution attribution is layer-specific and pre-registered rather than assigned to the language model by default.", StructuralDisposition.ADOPT_STRUCTURE, "Use as anti-mystification parent for Self-ORION/P10."),
+            ("Layer effects can be real yet calibration-sensitive or cancel in aggregate.", StructuralDisposition.ADAPT_STRUCTURE, "Preserve signed/null layer results rather than collapsing them into a global success story."),
+            ("The study does not establish open representation revision; its LLM role is a bounded revision gate inside a fixed harness.", StructuralDisposition.ORTHOGONAL, "Do not use this donor as evidence for generic regime invention."),
+            ("Belief tracking, planning, symbolic reflection and revision are experimentally separable harness operations.", StructuralDisposition.ADOPT_STRUCTURE, "Use matched ablations as baseline discipline."),
+            ("Win rate/F1 and layer ablations measure contribution; they do not grant scientific adoption authority.", StructuralDisposition.ORTHOGONAL, "P4/P8 remain independent."),
+            ("The donor owns the general 'measure the LLM residual after explicit harness layers' methodology.", StructuralDisposition.ADOPT_STRUCTURE, "Strike generic LLM-heavy-lifting claims unless the residual survives these controls."),
+        ),
+        profile=_profile(
+            "Harness state mediates agent–environment interaction and determines what the LLM sees.",
+            "The bounded Battleship state/interface is fixed; open representation is not claimed.",
+            "Performance variation can come from explicit harness layers/calibration rather than LLM reasoning.",
+            "Revision calls are gated and rare rather than unconditional followups.",
+            "Stateful harness memory is explicit and separately measurable from the LLM.",
+            "The experiment measures runtime LLM calls; compute is a resource/attribution variable, not a scientific authority signal.",
+            "Belief, planning, reflection and revision layers interact but are ablated separately under one runtime.",
+            "The strongest no-LLM layered harness is mandatory before attributing gains to LLM revision.",
+        ),
+        representation_boundary="Fixed task/harness representation; only bounded harness-layer state/revision is studied.",
+        preservation_rule="Layer-wise outcomes and signed/null effects remain in the evidence record; aggregate performance cannot erase them.",
+        downstream_children=("#318", "#403", "P5", "P10"),
+        llm_involved=True,
+        explicit_non_llm_machinery=("posterior belief tracking", "declarative planning", "symbolic reflection"),
+        llm_marginal_role_checked=True,
+        donor_has_relevant_negative_result=True,
+        negative_results=("LLM-backed revision activates on only a small fraction of turns and has bounded non-monotonic effect.",),
+    ),
+    _draft(
+        receipt_id="ssa:v1:saga-2512.21782v2",
+        donor_id="arxiv:2512.21782v2",
+        title="Accelerating Scientific Discovery with Autonomous Goal-evolving Agents",
+        source_uri="https://arxiv.org/abs/2512.21782v2",
+        access=StructuralSourceAccess.FULL_TEXT,
+        scope="multi-domain scientific design with bi-level autonomous objective evolution",
+        authority=StructuralAuthority.BOUNDED,
+        commitments=_c(
+            ("Scientific search state includes a revisable objective/scoring function, not only candidate solutions.", StructuralDisposition.ADOPT_STRUCTURE, "Credit generic objective evolution to SAGA; #288 residual must be narrower."),
+            ("Optimization outcomes can reveal that current objective proxies are scientifically inadequate.", StructuralDisposition.ADOPT_STRUCTURE, "Separate objective adequacy from model/representation adequacy."),
+            ("Failure includes objective/proxy mismatch, not only poor optimization under a correct objective.", StructuralDisposition.ADOPT_STRUCTURE, "Route objective-specific failures to #288 rather than P5 model-cause claims."),
+            ("Outer-loop agents propose new computable objectives while an inner loop optimizes current objectives.", StructuralDisposition.ADOPT_STRUCTURE, "Use as strongest parent for bi-level objective revision."),
+            ("Outcome analysis drives subsequent objective proposals and experiments/design rounds.", StructuralDisposition.ADAPT_STRUCTURE, "P2 owns open-world route/authority discipline, not the generic goal-evolution loop."),
+            ("Objective scores and experimental successes are bounded evidence, not universal authorization to rewrite scientific goals.", StructuralDisposition.ADAPT_STRUCTURE, "P4/P8 must govern adoption/authority separately."),
+            ("SAGA owns broad autonomous objective-evolution mechanics and validated multi-domain examples.", StructuralDisposition.ADOPT_STRUCTURE, "#288 must retain SAGA as mandatory strongest baseline."),
+        ),
+        profile=_profile(
+            "Agent-generated objective changes alter subsequent interaction/design choices.",
+            "Candidate-state representation can remain fixed while the objective changes; the paper does not imply representation revision.",
+            "Poor outcomes can be caused by proxy/objective inadequacy rather than model or agent failure.",
+            "Outer-loop objective proposals are required followups when current outcome/objective tradeoffs reveal inadequacy.",
+            "Objective history and outcomes must remain auditable so later goals do not rewrite why earlier goals failed.",
+            "NOT_MATERIAL: wait/computation timing is not the claimed structural contribution.",
+            "Objective and evaluator/scoring interfaces are coupled; changing one changes what the inner loop optimizes.",
+            "Fixed human-specified objectives with the same inner optimizer are the mandatory simpler parent.",
+        ),
+        representation_boundary="Objective revision is distinct from model/representation revision; no cross-coordinate escalation is implied.",
+        preservation_rule="Prior objective definitions, outcomes and experimental evidence remain provenance-bound when the objective changes.",
+        downstream_children=("#288", "#318", "#403", "P4"),
+        llm_involved=True,
+        explicit_non_llm_machinery=("inner optimization loop", "computable scoring functions", "experimental validation"),
+        llm_marginal_role_checked=True,
+    ),
+    _draft(
+        receipt_id="ssa:v1:autodiscovery-2507.00310v3",
+        donor_id="arxiv:2507.00310v3",
+        title="AutoDiscovery: Open-ended Scientific Discovery via Bayesian Surprise",
+        source_uri="https://arxiv.org/abs/2507.00310v3",
+        access=StructuralSourceAccess.FULL_TEXT,
+        scope="open-ended data-driven discovery ranked by Bayesian surprise",
+        authority=StructuralAuthority.BOUNDED,
+        commitments=_c(
+            ("Open-ended discovery searches a hypothesis/program space rather than optimizing one fixed externally supplied answer.", StructuralDisposition.ADOPT_STRUCTURE, "Credit generic surprise-driven open-ended hypothesis search to AutoDiscovery."),
+            ("Bayesian belief shift/surprise supplies a quantitative notion of discovery value.", StructuralDisposition.ADOPT_STRUCTURE, "P2/P10 may add protected validity but not re-own surprise as discovery utility."),
+            ("Low belief shift or failed verification is a negative result, not evidence for forced invention.", StructuralDisposition.ADAPT_STRUCTURE, "Feed null hypotheses into failure history rather than escalating automatically."),
+            ("The work searches/revises hypotheses/programs but does not by itself establish open representation/regime revision.", StructuralDisposition.ORTHOGONAL, "Keep #500/P7 representation invention separate."),
+            ("Programmatic search and hypothesis verification operationalize an inquiry loop.", StructuralDisposition.ADOPT_STRUCTURE, "Use deterministic programmatic search as a mandatory simple parent."),
+            ("Surprise/reward correlates with discovery value but cannot self-authorize scientific truth or novelty.", StructuralDisposition.ADAPT_STRUCTURE, "P4 and protected domain validation remain required."),
+            ("AutoDiscovery owns Bayesian-surprise open-ended DDD and a non-LLM programmatic search baseline.", StructuralDisposition.ADOPT_STRUCTURE, "Strike generic open-ended surprise search novelty from ORION."),
+        ),
+        profile=_profile(
+            "Candidate programs/hypotheses select queries against data rather than remaining passive summaries.",
+            "The data interface is treated as given; representation sufficiency beyond that interface is not established.",
+            "Surprise reflects belief shift under evidence, not automatic causal attribution of failure.",
+            "High-value hypotheses trigger verification/followup; failed hypotheses can terminate without invention.",
+            "Search history and evaluated hypotheses must remain inspectable to distinguish rediscovery from new search.",
+            "NOT_MATERIAL: computation/wait timing is not a separate scientific object in the claimed result.",
+            "Hypothesis language, data access and verification jointly define the discovery space.",
+            "The deterministic non-LLM programmatic search baseline is mandatory before crediting language-model search.",
+        ),
+        representation_boundary="Hypothesis/program search occurs within a declared language/data interface; no generic representation-regime revision is inferred.",
+        preservation_rule="Evaluated hypotheses and verification outcomes remain in the search/evidence history; later candidates do not erase nulls.",
+        downstream_children=("P2", "#318", "#403", "P10"),
+        llm_involved=True,
+        explicit_non_llm_machinery=("Bayesian surprise", "programmatic search", "hypothesis verification"),
+        llm_marginal_role_checked=True,
+    ),
+    _draft(
+        receipt_id="ssa:v1:upc-2503.18261v2",
+        donor_id="arxiv:2503.18261v2",
+        title="Bayesian model criticism using uniform parametrization checks",
+        source_uri="https://arxiv.org/abs/2503.18261v2",
+        access=StructuralSourceAccess.FULL_TEXT,
+        scope="Bayesian model criticism via uniform parametrization checks",
+        authority=StructuralAuthority.BOUNDED,
+        commitments=_c(
+            ("A probabilistic model can be criticized through its random elements after uniform reparametrization.", StructuralDisposition.ADOPT_STRUCTURE, "Use UPC as an existing diagnostic parent, not a new ORION atom."),
+            ("Model criticism asks which aspects of a model are wrong, not merely whether global fit is poor.", StructuralDisposition.ADOPT_STRUCTURE, "#459 generic aspect-localization claims are donor-owned."),
+            ("Subset-level classical tests over u-values localize misspecification and expose limitations of ordinary PPC p-values.", StructuralDisposition.ADOPT_STRUCTURE, "Use as strongest standard diagnostic control in anomaly studies."),
+            ("Criticism identifies misspecification but does not itself prescribe model/representation revision.", StructuralDisposition.ADAPT_STRUCTURE, "Preserve diagnosis-versus-prescription distinction for P5/#459."),
+            ("Posterior/generative checks are evidence-generating diagnostics, not an autonomous intervention policy.", StructuralDisposition.ORTHOGONAL, "P2 inquiry design remains separate."),
+            ("A diagnostic p-value/check is evidence about fit, never scientific permission to mutate a model.", StructuralDisposition.ADOPT_STRUCTURE, "P4/P8 authority must remain non-compensatory."),
+            ("UPC is a strong standard parent for scoped Bayesian model criticism.", StructuralDisposition.ADOPT_STRUCTURE, "Use as a no-new-operator baseline for #459/P5."),
+        ),
+        profile=_profile(
+            "Primarily passive model criticism; intervention coupling is NOT_MATERIAL to the method's core claim.",
+            "The model's declared random elements/state are the tested object; unmodeled representation error can remain outside the diagnostic.",
+            "Misfit is localized statistically; it is not automatically assigned to agent policy or a single causal source.",
+            "A failed subset check motivates diagnosis/followup but does not specify the repair action.",
+            "Diagnostic outputs should remain linked to the exact model/data state that produced them.",
+            "NOT_MATERIAL: compute/wait timing is not a scientific coordinate of UPC.",
+            "Generative model components and tested subsets define the diagnostic interface jointly.",
+            "Standard posterior predictive checks/classical tests are mandatory simpler parents before adding bespoke ORION diagnostics.",
+        ),
+        representation_boundary="UPC diagnoses within the declared probabilistic representation; representation change is a separate downstream hypothesis.",
+        preservation_rule="Failed/passed checks remain model- and data-version-bound evidence and cannot be overwritten by a later repair.",
+        downstream_children=("#459", "P5", "#318"),
+    ),
+    _draft(
+        receipt_id="ssa:v1:llm-bo-2509.21403v1",
+        donor_id="arxiv:2509.21403v1",
+        title="LLMs for Bayesian Optimization in Scientific Domains: Are We There Yet?",
+        source_uri="https://arxiv.org/abs/2509.21403v1",
+        access=StructuralSourceAccess.FULL_TEXT,
+        scope="gene/molecule sequential scientific optimization benchmarks",
+        authority=StructuralAuthority.BOUNDED,
+        commitments=_c(
+            ("Sequential experiment design should be evaluated against explicit statistical BO structure, not treated as an LLM-native capability.", StructuralDisposition.ADOPT_STRUCTURE, "Credit classical BO/structured priors as mandatory parents before LLM inquiry claims."),
+            ("Useful adaptation requires demonstrable use of sequential feedback rather than plausible language alone.", StructuralDisposition.ADOPT_STRUCTURE, "Make feedback sensitivity an explicit discriminator in ORION LLM studies."),
+            ("Randomizing candidate/outcome correspondence tests whether performance actually depends on feedback.", StructuralDisposition.ADOPT_STRUCTURE, "Preserve anti-hype randomization as a hostile control."),
+            ("The study does not support representation/regime revision; it is an evaluation critique inside a fixed optimization interface.", StructuralDisposition.ORTHOGONAL, "Do not generalize its negative result into claims about all scientific revision."),
+            ("Linear UCB/GP and randomized-feedback variants are direct experimental-design comparators.", StructuralDisposition.ADOPT_STRUCTURE, "Require fair knowledge/resource access when comparing LLM and statistical methods."),
+            ("Benchmark performance does not imply scientific reasoning/authority; attribution requires mechanism-isolation controls.", StructuralDisposition.ADOPT_STRUCTURE, "P4/P8 authority remains separate and LLM claims stay bounded."),
+            ("The donor owns the feedback-randomization anti-hype test in these scientific BO domains.", StructuralDisposition.ADOPT_STRUCTURE, "Use as mandatory baseline/hostile control in #454/#403/P10."),
+        ),
+        profile=_profile(
+            "Sequential proposals change which outcome the agent observes next.",
+            "Candidate/outcome interface is fixed in the studied BO domains; open representation is not tested.",
+            "Outcome noise/performance must be separated from actual feedback use by randomized-feedback controls.",
+            "Future proposals should depend measurably on prior outcomes; otherwise the claimed adaptation mechanism fails.",
+            "Sequential outcome history is the evidence needed to test whether feedback is being used.",
+            "Compute/resource parity is a baseline condition; it is not scientific authority.",
+            "Candidate representation, prior knowledge and feedback access must be matched across LLM/statistical baselines.",
+            "Linear UCB/GP with fair knowledge access and feedback randomization are mandatory simpler parents.",
+        ),
+        representation_boundary="Fixed BO candidate/feedback interface; no inference to open scientific representation revision.",
+        preservation_rule="Randomized-feedback and classical-baseline negatives remain first-class evidence against a generic LLM-adaptation story.",
+        downstream_children=("#318", "#403", "P10"),
+        llm_involved=True,
+        explicit_non_llm_machinery=("Linear UCB", "Gaussian process BO", "feedback randomization"),
+        llm_marginal_role_checked=True,
+        donor_has_relevant_negative_result=True,
+        negative_results=("Principled statistical approaches outperform the tested LLM-based design agent on most evaluated datasets; randomized feedback probes feedback dependence.",),
+    ),
+)
+
+RECEIPTS = tuple(seal_structural_assimilation(draft) for draft in DRAFTS)
+CLOSURE = build_structural_assimilation_closure(RECEIPTS, no_material_change_rounds=2)
+
+EXPECTED_ADMITTED = 9
+EXPECTED_CANNOT_CHECK = 1
+EXPECTED_BLOCKED = 0
+EXPECTED_TERMINAL = "CANNOT_CHECK"
+EXPECTED_METHOD_DISPOSITION = "CANNOT_CHECK"
+
+# This is a close-set programme terminal, not a claim of universal literature
+# completeness.  The exact unresolved key donor is deliberately named so a later
+# primary full-text retrieval can reopen only that receipt rather than silently
+# converting a missing source into evidence.
+UNRESOLVED_KEY_DONORS = ("arxiv:2608.09696",)
+NO_MATERIAL_CHANGE_ROUNDS = (
+    "NMC_A: all full-text first-wave donors map to existing representation, objective, failure, inquiry, memory, mechanism or authority owners; no new ORION architecture coordinate is required.",
+    "NMC_B: strongest-parent re-read leaves only ownership/baseline/discipline changes; MDA remains source-blocked and contributes no full-structure claim weight.",
+)

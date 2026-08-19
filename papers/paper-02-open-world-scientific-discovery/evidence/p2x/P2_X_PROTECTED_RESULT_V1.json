@@ -1,0 +1,70 @@
+{
+  "schema_version": "P2_X_PROTECTED_RESULT_V1",
+  "date": "2026-08-19",
+  "outcome_access_receipt_commit": "b7067829183d85bab3c7d777caa915677d9858fb",
+  "n": 400,
+  "protected_identity_pairs_sha256": "48ceb3b97d3db97f7a75557e6cf10f723bbae86f53baab0dd43d6121855b1901",
+  "protected_bundle_sha256": "4cc4a65091b5ec7b5022027bf8c344b5c1518665a2f0b7e7924966147f901d30",
+  "canonical_rows_sha256": "6a10cbbb71413e8017e440c1c9e0baac83f64a87a6ccf1ff45aef098549d36aa",
+  "bootstrap": {"seed": 20260819, "reps": 20000},
+  "arm_escd": {
+    "P2X_FAIL_CLOSED_ROUTE_AUTHORITY": {"correct": 400, "rate": 1.0},
+    "B1_DONOR_COMPLETE_AVAILABLE_ROUTE_PRODUCT": {"correct": 250, "rate": 0.625},
+    "B2_GLOBAL_SUFFICIENCY_AGGREGATOR": {"correct": 100, "rate": 0.25},
+    "B3_IDEAL_TYPED_ROUTE_PRODUCT": {"correct": 400, "rate": 1.0}
+  },
+  "primary": {
+    "comparison": "P2X_FAIL_CLOSED_ROUTE_AUTHORITY - B1_DONOR_COMPLETE_AVAILABLE_ROUTE_PRODUCT",
+    "difference": 0.375,
+    "practical_margin": 0.10,
+    "bootstrap_95ci": [0.3275, 0.4225],
+    "mcnemar": {
+      "b_p2x_only_correct": 150,
+      "c_b1_only_correct": 0,
+      "two_sided_p": 1.401298464324817e-45
+    },
+    "pass": true
+  },
+  "secondary": {
+    "P2X_vs_B2_mcnemar": {
+      "b_p2x_only_correct": 300,
+      "c_b2_only_correct": 0,
+      "two_sided_p": 9.818186930595453e-91
+    },
+    "holm_adjusted_p": {
+      "P2X_vs_B1": 1.401298464324817e-45,
+      "P2X_vs_B2": 1.9636373861190906e-90
+    }
+  },
+  "per_domain": {
+    "SCIENTIFIC_LITERATURE": {"n": 80, "p2x_escd": 1.0, "b1_escd": 0.625, "difference": 0.375},
+    "WEB_API_EVIDENCE": {"n": 80, "p2x_escd": 1.0, "b1_escd": 0.625, "difference": 0.375},
+    "DATASET_REGISTRY": {"n": 80, "p2x_escd": 1.0, "b1_escd": 0.625, "difference": 0.375},
+    "CODE_ARTIFACT_REPOSITORY": {"n": 80, "p2x_escd": 1.0, "b1_escd": 0.625, "difference": 0.375},
+    "EXPERIMENT_MEASUREMENT_ROUTE": {"n": 80, "p2x_escd": 1.0, "b1_escd": 0.625, "difference": 0.375}
+  },
+  "non_regression": {
+    "clean_task_stop_p2x": 1.0,
+    "clean_task_stop_b1": 1.0,
+    "clean_task_stop_difference": 0.0,
+    "clean_task_stop_margin": -0.02,
+    "clean_task_stop_pass": true,
+    "p2x_false_task_closures": 0,
+    "false_task_closure_target": 0,
+    "false_task_closure_pass": true,
+    "p2x_unnecessary_cannot_check_clean": 0,
+    "unnecessary_cannot_check_pass": true,
+    "per_domain_floor": -0.05,
+    "per_domain_pass": true,
+    "all_pass": true
+  },
+  "false_task_closures": {
+    "P2X_FAIL_CLOSED_ROUTE_AUTHORITY": 0,
+    "B1_DONOR_COMPLETE_AVAILABLE_ROUTE_PRODUCT": 150,
+    "B2_GLOBAL_SUFFICIENCY_AGGREGATOR": 300,
+    "B3_IDEAL_TYPED_ROUTE_PRODUCT": 0
+  },
+  "b3_equivalence": {"decision_mismatches": 0, "pass": true},
+  "holdout_nonmaterial_decoy": {"variants": [9,10], "cases": 80, "included_in_all_statistics": true, "p2x_materiality_errors": 0},
+  "terminal": "P2_X_BOUNDED_ROUTE_AUTHORITY_RESULT_SUPPORTED"
+}

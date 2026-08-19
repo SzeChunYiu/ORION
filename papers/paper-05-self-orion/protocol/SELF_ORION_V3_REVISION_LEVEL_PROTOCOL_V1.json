@@ -119,9 +119,10 @@
   },
   "structural_binding_status": {
     "programme_receipt_owner": "#454",
-    "programme_receipt_frozen": false,
+    "programme_receipt_frozen": true,
     "current_disposition": "CANNOT_CHECK",
-    "rule": "T8 may implement mechanism comparators but confirmatory READY requires explicit bound structural identities; no comparator may be labelled official reproduction without an official-reproduction binding."
+    "current_blocker": "MDA_PRIMARY_FULL_TEXT_NOT_SOURCE_GROUNDED_2026-08-19",
+    "rule": "The #454 receipt schema/packet is frozen but its programme disposition remains CANNOT_CHECK while MDA lacks a full structural source. T8 confirmatory READY still requires every required comparator to have an explicit bound structural identity; no comparator may be labelled official reproduction without an official-reproduction binding."
   },
   "possible_scientific_terminals_after_real_execution": [
     "REVISION_LEVEL_DISCRIMINATION_SUPPORTED",

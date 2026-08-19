@@ -1,0 +1,81 @@
+{
+  "version": "DiscoveryMorphologySaturation.v1",
+  "basis_version": "DiscoveryMorphologyBasis.v1",
+  "basis_frozen_before_rounds": true,
+  "rounds": [
+    {
+      "round_id": "POST_BASIS_ROUND_1",
+      "challenge_neighborhood": "measurement-reconstruction + abstract mathematics + everyday fastening + computational algorithm",
+      "primary_sources": [
+        {
+          "source_id": "HOUNSFIELD_1973_CT",
+          "locator": "G. N. Hounsfield, Computerized transverse axial scanning (tomography): Part 1. Description of system, British Journal of Radiology 46(552), 1016–1022 (1973), DOI 10.1259/0007-1285-46-552-1016",
+          "public_artifact_pressure": "Multi-angle X-ray transmission measurements are computationally reconstructed into cross-sectional images.",
+          "mapped_dimensions": ["INTERFACE_MEASUREMENT_REDESIGN", "REPRESENTATION_CHANGE", "NEW_OPERATOR_PROCEDURE"]
+        },
+        {
+          "source_id": "EILENBERG_MACLANE_1945",
+          "locator": "Samuel Eilenberg and Saunders Mac Lane, General Theory of Natural Equivalences, Transactions of the AMS 58(2), 231–294 (1945)",
+          "public_artifact_pressure": "Category, functor and natural-transformation structure organizes relations among mathematical constructions.",
+          "mapped_dimensions": ["ABSTRACTION_EQUIVALENCE_STRUCTURE", "BRIDGE_CORRESPONDENCE", "REPRESENTATION_CHANGE"]
+        },
+        {
+          "source_id": "DE_MESTRAL_US3009235",
+          "locator": "US3009235A, Separable Fastening Device, George de Mestral, filed 1958 / published 1961",
+          "public_artifact_pressure": "Two hook-bearing fabric elements form a reusable separable fastening function through their composed interface.",
+          "mapped_dimensions": ["FUNCTION_AFFORDANCE_INVENTION", "SYSTEM_COMPOSITION_ARCHITECTURE"]
+        },
+        {
+          "source_id": "COOLEY_TUKEY_1965",
+          "locator": "James W. Cooley and John W. Tukey, An Algorithm for the Machine Calculation of Complex Fourier Series, Mathematics of Computation 19(90), 297–301 (1965)",
+          "public_artifact_pressure": "A reusable decomposition algorithm changes the computational procedure for evaluating complex Fourier series.",
+          "mapped_dimensions": ["NEW_OPERATOR_PROCEDURE", "ABSTRACTION_EQUIVALENCE_STRUCTURE"]
+        }
+      ],
+      "new_dimension_ids": [],
+      "material_change": false,
+      "result": "NO_MATERIAL_CHANGE"
+    },
+    {
+      "round_id": "POST_BASIS_ROUND_2",
+      "challenge_neighborhood": "physics formulation + biotechnology construction + propulsion architecture + web-scale information retrieval",
+      "primary_sources": [
+        {
+          "source_id": "FEYNMAN_1949_SPACETIME_QED",
+          "locator": "R. P. Feynman, Space-Time Approach to Quantum Electrodynamics, Physical Review 76, 769–789 (1949), DOI 10.1103/PhysRev.76.769",
+          "public_artifact_pressure": "The published formulation provides a space-time method for writing/evaluating matrix elements and discusses a modified interaction at short distances.",
+          "mapped_dimensions": ["REPRESENTATION_CHANGE", "NEW_OPERATOR_PROCEDURE", "NEW_LAW_CONSTRAINT_OR_INVARIANT"]
+        },
+        {
+          "source_id": "COHEN_CHANG_BOYER_HELLING_1973",
+          "locator": "S. N. Cohen, A. C. Y. Chang, H. W. Boyer, R. B. Helling, Construction of biologically functional bacterial plasmids in vitro, PNAS 70(11), 3240–3244 (1973), DOI 10.1073/pnas.70.11.3240",
+          "public_artifact_pressure": "Restriction-generated DNA fragments from distinct plasmids are joined and transformed into bacteria as functional recombinant replicons.",
+          "mapped_dimensions": ["NEW_OPERATOR_PROCEDURE", "SYSTEM_COMPOSITION_ARCHITECTURE", "FUNCTION_AFFORDANCE_INVENTION"]
+        },
+        {
+          "source_id": "WHITTLE_GB347206A",
+          "locator": "GB347206A, Improvements relating to the propulsion of aircraft and other vehicles, Frank Whittle, filed 1930",
+          "public_artifact_pressure": "A compressor, combustion/heating stage, turbine and propelling nozzle are composed into a gas-turbine jet-propulsion architecture.",
+          "mapped_dimensions": ["SYSTEM_COMPOSITION_ARCHITECTURE", "FUNCTION_AFFORDANCE_INVENTION", "NEW_OPERATOR_PROCEDURE"]
+        },
+        {
+          "source_id": "BRIN_PAGE_1998",
+          "locator": "Sergey Brin and Lawrence Page, The Anatomy of a Large-Scale Hypertextual Web Search Engine, Computer Networks 30, 107–117 (1998), DOI 10.1016/S0169-7552(98)00110-X",
+          "public_artifact_pressure": "A large-scale search architecture exploits hyperlink structure together with crawling, indexing and ranking procedures.",
+          "mapped_dimensions": ["SYSTEM_COMPOSITION_ARCHITECTURE", "NEW_OPERATOR_PROCEDURE", "REPRESENTATION_CHANGE"]
+        }
+      ],
+      "new_dimension_ids": [],
+      "material_change": false,
+      "result": "NO_MATERIAL_CHANGE"
+    }
+  ],
+  "reopen_rule": "Any later primary-source artifact that requires a reusable public structural relation outside DiscoveryMorphologyBasis.v1 reopens the basis and resets both no-material-change rounds.",
+  "authority": {
+    "grants_historical_cognition_authority": false,
+    "grants_atom_independence_authority": false,
+    "grants_jump_authority": false,
+    "grants_novelty_authority": false,
+    "grants_issue_closure_authority": false
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "version": "FailureAtlasCorrections.v2",
+  "supersedes_operational_use_of": "FailureAtlasPilot.v1",
+  "date": "2026-08-19",
+  "reason": "PR #546 review found one un-enforced AI preserved-success obligation and one misclassified Michelson-Morley pair relation.",
+  "outcome_accessed": false,
+  "episode_field_replacements": {
+    "F001": {
+      "paired_case_ids": [],
+      "pair_relation_ids": []
+    },
+    "F002": {
+      "paired_case_ids": ["F003", "F008"]
+    },
+    "F003": {
+      "paired_case_ids": ["F002", "F008"]
+    }
+  },
+  "pair_family_rule_aliases": {},
+  "expected_corrections": {
+    "episode_rows_touched": 3,
+    "pair_rule_aliases": 0
+  },
+  "authority": {
+    "changes_scientific_terminal": false,
+    "grants_corpus_ready_authority": false,
+    "grants_issue_closure_authority": false
+  }
+}

@@ -48,7 +48,7 @@ def _load_preflight():
         )
         for item in raw_bindings["records"]
     )
-    return protocol, assess_confirmatory_preflight(
+    return protocol, baselines, assess_confirmatory_preflight(
         execution,
         baselines,
         required_baseline_ids=tuple(protocol["confirmatory_required_baseline_bindings"]),
@@ -56,7 +56,7 @@ def _load_preflight():
 
 
 def test_current_v3_protocol_is_implemented_but_confirmatory_cannot_check() -> None:
-    protocol, report = _load_preflight()
+    protocol, baselines, report = _load_preflight()
     assert protocol["protocol_status"] == "PROSPECTIVE_IMPLEMENTED_NOT_CONFIRMATORY_FROZEN"
     assert protocol["outcome_accessed"] is False
     assert protocol["grants_scientific_authority"] is False
@@ -64,17 +64,29 @@ def test_current_v3_protocol_is_implemented_but_confirmatory_cannot_check() -> N
     assert report.status is ConfirmatoryPreflightStatus.CANNOT_CHECK
     assert any("subject_revision" in blocker for blocker in report.blockers)
     assert any("m_open_only" in blocker for blocker in report.blockers)
-    assert any("world_model_revision" in blocker for blocker in report.blockers)
-    assert any("representation_regime_revision" in blocker for blocker in report.blockers)
+    assert not any("world_model_revision" in blocker for blocker in report.blockers)
+    assert not any("representation_regime_revision" in blocker for blocker in report.blockers)
+
+    by_id = {binding.baseline_id: binding for binding in baselines}
+    assert by_id["m_open_only"].disposition is BaselineBindingDisposition.CANNOT_CHECK
+    assert by_id["world_model_revision"].disposition is BaselineBindingDisposition.MECHANISM_COMPARATOR_BOUND
+    assert by_id["representation_regime_revision"].disposition is BaselineBindingDisposition.MECHANISM_COMPARATOR_BOUND
+    assert by_id["world_model_revision"].structural_binding_id == "ssa:v1:worldevolver-2606.30639v1"
+    assert by_id["representation_regime_revision"].structural_binding_id == "ssa:v1:self-revising-2606.01444v1"
 
 
-def test_protocol_does_not_freeze_452_taxonomy_or_claim_official_donor_reproduction() -> None:
+def test_protocol_freezes_454_receipt_programme_without_claiming_official_reproduction() -> None:
     protocol = json.loads(PROTOCOL.read_text(encoding="utf-8"))
     assert protocol["explicitly_not_frozen_as_universal_taxonomy"] is True
     for policy in protocol["policy_families"]:
         if "donor" in policy:
             assert policy.get("official_reproduction") is False
-    assert protocol["structural_binding_status"]["programme_receipt_frozen"] is False
+
+    structural = protocol["structural_binding_status"]
+    assert structural["programme_receipt_owner"] == "#454"
+    assert structural["programme_receipt_frozen"] is True
+    assert structural["current_disposition"] == "CANNOT_CHECK"
+    assert structural["current_blocker"] == "MDA_PRIMARY_FULL_TEXT_NOT_SOURCE_GROUNDED_2026-08-19"
 
 
 def test_development_fixture_cannot_close_p5_or_issue_455() -> None:

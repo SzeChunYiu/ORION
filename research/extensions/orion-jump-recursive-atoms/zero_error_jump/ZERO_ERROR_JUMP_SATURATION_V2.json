@@ -1,0 +1,67 @@
+{
+  "version": "ZeroErrorJumpSaturation.v2",
+  "protocol_version": "ZeroErrorJumpProtocol.v2",
+  "protocol_and_v2_expected_frozen_before_rounds": true,
+  "rounds": [
+    {
+      "round_id": "V2_POST_FREEZE_ROUND_1",
+      "challenge_neighborhood": "benchmark contamination + search-time leakage",
+      "primary_sources": [
+        {
+          "source_id": "AL_LAWATI_ET_AL_2605_19999",
+          "locator": "Al-Lawati, Lucas, Lee & Wang, LLM Benchmark Datasets Should Be Contamination-Resistant, arXiv:2605.19999",
+          "pressure": "Public benchmark contamination can invalidate apparent generalization; supports opaque/inference-requiring invented cases and explicit non-cryptographic scope.",
+          "mapped_protocol_gate": "OPAQUE_CLASS_BALANCED_PUBLIC_PROJECTION"
+        },
+        {
+          "source_id": "WANG_ET_AL_2606_05241",
+          "locator": "Wang et al., Search-Time Contamination in Deep Research Agents: Measuring Performance Inflation in Public Benchmark Evaluation, arXiv:2606.05241",
+          "pressure": "Agents with retrieval can recover benchmark metadata/context/answers at inference time; strengthens controlled-access/public-projection and no-historical-answer rules.",
+          "mapped_protocol_gate": "NO_PRE_EXPERIMENT_PROTECTED_CLASS_METADATA"
+        }
+      ],
+      "new_public_field_required": false,
+      "new_protected_field_required": false,
+      "new_success_gate_required": false,
+      "material_change": false,
+      "result": "NO_MATERIAL_CHANGE"
+    },
+    {
+      "round_id": "V2_POST_FREEZE_ROUND_2",
+      "challenge_neighborhood": "mechanistic + M-open + verified regime revision + representation-grounded abduction",
+      "primary_sources": [
+        {
+          "source_id": "POSNER_LEI_SCHOELKOPF_2607_12474",
+          "locator": "Posner, Lei & Schölkopf, From Observation to Insight: Mechanistic World Models and the Quest for Autonomous Discovery, arXiv:2607.12474",
+          "pressure": "Mechanism-centric representation is a strong parent but does not supersede a fully resourced verified regime-transition comparator.",
+          "mapped_comparator": "FIXED_REP_WORLD_MODEL"
+        },
+        {
+          "source_id": "MURPHY_2608_09696",
+          "locator": "Murphy, Model Discovery Agent: LLM-assisted Bayesian experiment design for data-efficient discovery of mechanistic world models, arXiv:2608.09696",
+          "pressure": "M-open candidate expansion with Bayesian experiment design is a strong same-representation/model-class parent and is preserved as such.",
+          "mapped_comparator": "M_OPEN_SAME_REPRESENTATION"
+        },
+        {
+          "source_id": "WANG_BUEHLER_2606_01444",
+          "locator": "Wang & Buehler, Self-Revising Discovery Systems for Science: A Categorical Framework for Agentic Artificial Intelligence, arXiv:2606.01444",
+          "pressure": "Verified representational-regime transitions with typed transport/preservation remain the strongest matched parent and continue to receive the same resources as ORION.",
+          "mapped_comparator": "VERIFIED_REGIME_REVISION_PARENT"
+        },
+        {
+          "source_id": "FARMER_2608_02505",
+          "locator": "Farmer, Abduction Without a Body? Representational Grounding and the Abduction Loop for Scientific Hypothesis Generation, arXiv:2608.02505",
+          "pressure": "Representation-grounded identity abduction supplies a strong bridge/correspondence proposal mechanism with adversarial verification and abstention; it remains donor-owned inside the strong parent boundary.",
+          "mapped_comparator": "VERIFIED_REGIME_REVISION_PARENT"
+        }
+      ],
+      "new_comparator_required": false,
+      "strong_parent_changed": false,
+      "new_success_gate_required": false,
+      "material_change": false,
+      "result": "NO_MATERIAL_CHANGE"
+    }
+  ],
+  "reopen_rule": "Any later contamination result exposing a deterministic V2 pre-experiment class side channel, or any later discovery system requiring a stronger matched representation-revision comparator than the registered fully resourced parent, reopens #501 and resets saturation.",
+  "authority": {"grants_novelty_authority":false,"grants_scientific_adoption":false,"grants_issue_closure_authority":false}
+}

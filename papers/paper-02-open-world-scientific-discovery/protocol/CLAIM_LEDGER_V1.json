@@ -41,7 +41,10 @@
     "openaire_identity_probe": "evidence/external_results/P2_OPENAIRE_IDENTITY_PROBE_V1.json",
     "openaire_matched_result": "evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V1.json",
     "openaire_matched_receipt": "evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RUN_RECEIPT_V1.json",
-    "openaire_matched_freeze": "protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V1.json"
+    "openaire_matched_freeze": "protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V1.json",
+    "p2x_result": "evidence/p2x/P2_X_PROTECTED_RESULT_V1.json",
+    "p2x_verification": "evidence/p2x/P2_X_INDEPENDENT_VERIFICATION_V1.json",
+    "p2x_claim_values": "evidence/p2x/P2_X_CLAIM_VALUES_V1.json"
   },
   "macro_sources": [
     "generated/suite_facts.tex"
@@ -1636,6 +1639,279 @@
         }
       ],
       "note": "The zero paired effect is a consequence of the invalid capture and may not be interpreted as a valid null result."
+    },
+    {
+      "claim_id": "P2-X20",
+      "region": "abstract",
+      "manuscript_status": "ASSERTED",
+      "sentence": "A separate post-saturation exact successor isolates unresolved-route authority after strong stopping mechanisms are granted: on 400 protected heterogeneous acquisition contracts, P2-X attains 400/400 exact scientific closure decisions versus 250/400 for a donor-complete available-route product (paired difference 0.375, 95% CI [0.3275,0.4225]), with zero false task closures; an ideal product supplied identical route-authority semantics ties 400/400.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [
+        {
+          "artifact": "p2x_claim_values",
+          "key": "n"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "p2x_correct"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "n"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "b1_correct"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "n"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "difference"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "ci_percent"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "ci_low"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "ci_high"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "b3_correct"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "n"
+        }
+      ],
+      "support_artifacts": [
+        {
+          "artifact": "p2x_result",
+          "key": "terminal"
+        },
+        {
+          "artifact": "p2x_verification",
+          "key": "ok"
+        }
+      ],
+      "note": "P2-X abstract headline; bounded exact heterogeneous-acquisition contract only."
+    },
+    {
+      "claim_id": "P2-X21",
+      "region": "conclusion",
+      "manuscript_status": "ASSERTED",
+      "sentence": "After donor-complete evidence coverage, decision/utility stopping, finite route certificates, deduplication and question-processing state are granted, P2-X obtains 400/400 exact closure decisions versus 250/400 for an available-route donor product, a paired advantage of 0.375 with 95% CI [0.3275,0.4225], while preserving zero false task closures and perfect clean closure.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [
+        {
+          "artifact": "p2x_claim_values",
+          "key": "p2x_correct"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "n"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "b1_correct"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "n"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "difference"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "ci_percent"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "ci_low"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "ci_high"
+        }
+      ],
+      "support_artifacts": [
+        {
+          "artifact": "p2x_result",
+          "key": "terminal"
+        },
+        {
+          "artifact": "p2x_verification",
+          "key": "ok"
+        }
+      ],
+      "note": "P2-X conclusion headline; does not imply deployed retriever/provider generality."
+    },
+    {
+      "claim_id": "P2-X22",
+      "region": "conclusion",
+      "manuscript_status": "ASSERTED",
+      "sentence": "The effect is the unresolved-route authority rule: all 150 B1 errors are material unavailable/censored/provider-invalid routes that B1 excludes from the closure denominator.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [
+        {
+          "artifact": "p2x_claim_values",
+          "key": "b1_errors"
+        }
+      ],
+      "support_artifacts": [
+        {
+          "artifact": "p2x_result",
+          "key": "terminal"
+        },
+        {
+          "artifact": "p2x_verification",
+          "key": "ok"
+        }
+      ],
+      "note": "Failure localization from the protected P2-X result."
+    },
+    {
+      "claim_id": "P2-X23",
+      "region": "conclusion",
+      "manuscript_status": "ASSERTED",
+      "sentence": "An ideal typed product supplied the same semantics ties 400/400.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [
+        {
+          "artifact": "p2x_claim_values",
+          "key": "b3_correct"
+        },
+        {
+          "artifact": "p2x_claim_values",
+          "key": "n"
+        }
+      ],
+      "support_artifacts": [
+        {
+          "artifact": "p2x_result",
+          "key": "terminal"
+        },
+        {
+          "artifact": "p2x_verification",
+          "key": "ok"
+        }
+      ],
+      "note": "Ideal-product non-expressivity boundary."
+    },
+    {
+      "claim_id": "P2-X24",
+      "region": "conclusion",
+      "manuscript_status": "ASSERTED",
+      "sentence": "Thus the contribution is not generic stopping, generic closure certificates, or inherent expressivity; it is bounded evidence that route-local acquisition stop and task-global scientific closure are distinct authority relations when material routes remain unresolved.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [],
+      "support_artifacts": [
+        {
+          "artifact": "p2x_result",
+          "key": "terminal"
+        },
+        {
+          "artifact": "p2x_verification",
+          "key": "ok"
+        }
+      ],
+      "note": "Bounded A2 architecture-principle statement; novelty remains donor-subtracted."
+    },
+    {
+      "claim_id": "P2-X25",
+      "region": "conclusion",
+      "manuscript_status": "ASSERTED",
+      "sentence": "Deployed multi-provider/retrieval-engine generality remains CANNOT_CHECK.",
+      "support_type": "NONE_YET",
+      "strength": "CANNOT_CHECK",
+      "numeric_bindings": [],
+      "support_artifacts": [],
+      "note": "A3 remains explicitly unpromoted."
+    },
+    {
+      "claim_id": "P2-X26",
+      "region": "limitations",
+      "manuscript_status": "ASSERTED",
+      "sentence": "Its 400-case exact battery spans five acquisition settings and includes seed-permuted route order plus non-material unavailable decoys, but route state, route materiality and question-processing state are explicitly supplied rather than inferred from noisy web behavior.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [
+        {
+          "artifact": "p2x_claim_values",
+          "key": "n"
+        }
+      ],
+      "support_artifacts": [
+        {
+          "artifact": "p2x_result",
+          "key": "terminal"
+        },
+        {
+          "artifact": "p2x_verification",
+          "key": "ok"
+        }
+      ],
+      "note": "Exact-benchmark scope limitation."
+    },
+    {
+      "claim_id": "P2-X27",
+      "region": "limitations",
+      "manuscript_status": "ASSERTED",
+      "sentence": "The 1.000 P2-X ESCD ceiling therefore supports the fail-closed authority rule only on the registered exact contracts.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [
+        {
+          "artifact": "p2x_claim_values",
+          "key": "p2x_rate"
+        }
+      ],
+      "support_artifacts": [
+        {
+          "artifact": "p2x_result",
+          "key": "terminal"
+        },
+        {
+          "artifact": "p2x_verification",
+          "key": "ok"
+        }
+      ],
+      "note": "Exact-contract-only scope boundary."
+    },
+    {
+      "claim_id": "P2-X28",
+      "region": "limitations",
+      "manuscript_status": "ASSERTED",
+      "sentence": "No independently implemented lexical/dense/reasoning retrievers or new live provider campaign were used to establish retrieval-engine generality, and B3 shows that an ideal product given identical unresolved-route semantics is extensionally equivalent.",
+      "support_type": "OFFLINE_MECHANISM",
+      "strength": "DESCRIPTIVE",
+      "numeric_bindings": [],
+      "support_artifacts": [
+        {
+          "artifact": "p2x_result",
+          "key": "terminal"
+        },
+        {
+          "artifact": "p2x_verification",
+          "key": "ok"
+        }
+      ],
+      "note": "No deployed/retrieval-engine generality and no inherent-expressivity claim."
     }
   ],
   "non_claim_sentences": [

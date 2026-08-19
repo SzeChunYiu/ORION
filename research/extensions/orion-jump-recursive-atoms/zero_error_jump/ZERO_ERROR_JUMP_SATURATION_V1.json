@@ -1,0 +1,69 @@
+{
+  "version": "ZeroErrorJumpSaturation.v1",
+  "protocol_version": "ZeroErrorJumpProtocol.v1",
+  "protocol_and_expected_metrics_frozen_before_rounds": true,
+  "rounds": [
+    {
+      "round_id": "POST_FREEZE_ROUND_1",
+      "challenge_neighborhood": "mechanistic world models + M-open discovery + verified representation revision",
+      "primary_sources": [
+        {
+          "source_id": "POSNER_LEI_SCHOELKOPF_2607_12474",
+          "locator": "Posner, Lei & Schölkopf, Mechanistic World Models and the Quest for Autonomous Discovery, arXiv:2607.12474",
+          "pressure": "Mechanistic prediction/search is not identical to discovery; representation/mechanism structure is a direct parent and motivates a fixed-representation world-model comparator.",
+          "mapped_comparator": "FIXED_REP_WORLD_MODEL"
+        },
+        {
+          "source_id": "MURPHY_2608_09696",
+          "locator": "Murphy, Model Discovery Agent, arXiv:2608.09696",
+          "pressure": "M-open proposal plus Bayesian inference/value-of-information can expand model structure without necessarily changing representation type; it remains a same-representation strong parent family.",
+          "mapped_comparator": "M_OPEN_SAME_REPRESENTATION"
+        },
+        {
+          "source_id": "WANG_BUEHLER_2606_01444",
+          "locator": "Wang & Buehler, Self-Revising Discovery Systems for Science, arXiv:2606.01444",
+          "pressure": "Verified representational-regime revision with provenance/preservation is the strongest structural parent and must receive the same move and verification budget as ORION.",
+          "mapped_comparator": "VERIFIED_REGIME_REVISION_PARENT"
+        }
+      ],
+      "new_comparator_required": false,
+      "new_success_gate_required": false,
+      "material_change": false,
+      "result": "NO_MATERIAL_CHANGE"
+    },
+    {
+      "round_id": "POST_FREEZE_ROUND_2",
+      "challenge_neighborhood": "analogy + scientific divergence/negation + fixed-regime discovery control",
+      "primary_sources": [
+        {
+          "source_id": "SHEN_DRUCKMANN_ZOU_2605_11258",
+          "locator": "Shen, Druckmann & Zou, Unlocking LLM Creativity in Science through Analogical Reasoning, arXiv:2605.11258",
+          "pressure": "Cross-domain analogical generation is a direct bridge/correspondence proposal parent but does not replace correspondence/protected validation gates.",
+          "mapped_comparator": "VERIFIED_REGIME_REVISION_PARENT"
+        },
+        {
+          "source_id": "BAO_ET_AL_2606_08251",
+          "locator": "Bao et al., Contemporary AI lacks the imagination to diverge or negate in science, arXiv:2606.08251",
+          "pressure": "Open-ended idea generation and automated interestingness/evaluation remain weak evidence for validated regime invention; protected structural verification remains necessary.",
+          "mapped_comparator": "DIRECT_LLM_HYPOTHESIS_GENERATION"
+        },
+        {
+          "source_id": "OTA_OSA_HARADA_2606_28747",
+          "locator": "Ota, Osa & Harada, Self-Supervised Theorem Discovery in a Formal Axiomatic System, arXiv:2606.28747",
+          "pressure": "Important new results can be discovered inside a fixed axiom/operator regime, reinforcing the SEARCH_HARD_BUT_EXPRESSIBLE no-Jump control.",
+          "mapped_comparator": "OLD_DSL_EXHAUSTIVE"
+        }
+      ],
+      "new_comparator_required": false,
+      "new_success_gate_required": false,
+      "material_change": false,
+      "result": "NO_MATERIAL_CHANGE"
+    }
+  ],
+  "reopen_rule": "A later donor that changes the strongest matched comparator, finite old-language insufficiency discriminator, representation move budget, correspondence requirement, or protected validation gate reopens the protocol and invalidates both saturation rounds.",
+  "authority": {
+    "grants_novelty_authority": false,
+    "grants_scientific_adoption": false,
+    "grants_issue_closure_authority": false
+  }
+}

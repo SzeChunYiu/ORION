@@ -1,0 +1,75 @@
+{
+  "version": "ZeroErrorJumpBaselineRegistry.v1",
+  "frozen_before_runner": true,
+  "comparators": [
+    {
+      "id": "DIRECT_LLM_HYPOTHESIS_GENERATION",
+      "status": "MECHANISM_COMPARATOR_ONLY",
+      "reason": "No credential/model-version-stable execution is bound for this finite repository study; qualitative idea generation is not allowed to become the strong parent.",
+      "structural_parent": "open-ended LLM scientific hypothesis generation"
+    },
+    {
+      "id": "RETRIEVAL_AUGMENTED_LLM",
+      "status": "MECHANISM_COMPARATOR_ONLY",
+      "reason": "Historical/famous retrieval is deliberately excluded from invented-world gold and no stable external retrieval service is part of the frozen campaign.",
+      "structural_parent": "retrieval-augmented hypothesis generation"
+    },
+    {
+      "id": "OLD_DSL_EXHAUSTIVE",
+      "status": "EXECUTABLE_PRIMARY",
+      "reason": "Exact finite old-language enumeration provides the non-strawman SEARCH_HARD versus UNREPRESENTABLE discriminator.",
+      "structural_parent": "program/symbolic search in a fixed hypothesis language"
+    },
+    {
+      "id": "M_OPEN_SAME_REPRESENTATION",
+      "status": "EXECUTABLE_PRIMARY",
+      "reason": "May expand structure/model class but may not introduce a new representation type.",
+      "structural_parent": "M-open model-class expansion including Model Discovery Agent-style proposal/update"
+    },
+    {
+      "id": "ACTIVE_BAYESIAN_DESIGN_FIXED_MODEL_CLASS",
+      "status": "MECHANISM_COMPARATOR_ONLY",
+      "reason": "Experiment design is absorbed into the thought-experiment interface; by definition it cannot overcome a proven representation ceiling without a model-class/regime change.",
+      "structural_parent": "Bayesian experimental design / value of information"
+    },
+    {
+      "id": "FIXED_REP_WORLD_MODEL",
+      "status": "EXECUTABLE_PRIMARY",
+      "reason": "Mechanism search is allowed inside the frozen representation type but not across representation types.",
+      "structural_parent": "mechanistic world-model search under fixed representational schema"
+    },
+    {
+      "id": "VERIFIED_REGIME_REVISION_PARENT",
+      "status": "EXECUTABLE_STRONG_PARENT",
+      "reason": "Receives the same representation move library, thought-experiment budget, correspondence obligations and validation interfaces as ORION. This absorbs the strongest verified regime-transition structure rather than weakening it.",
+      "structural_parent": "verified self-revising scientific representation/regime transition with preservation/transport"
+    },
+    {
+      "id": "THOUGHT_EXPERIMENT_PLUS_FIXED_LANGUAGE",
+      "status": "MECHANISM_COMPARATOR_ONLY",
+      "reason": "The thought-experiment output is available to executable fixed-representation arms; without representation change the positive full contract remains formally unreachable.",
+      "structural_parent": "counterfactual/imaginary experience generation"
+    },
+    {
+      "id": "REPRESENTATION_PROPOSER_WITHOUT_PROTECTED_VALIDATION",
+      "status": "MECHANISM_COMPARATOR_ONLY",
+      "reason": "A proposal without correspondence/protected consequence cannot pass the non-compensatory Jump success contract.",
+      "structural_parent": "representation/concept proposal without independent scientific validation"
+    },
+    {
+      "id": "ORION_JUMP",
+      "status": "EXECUTABLE_CANDIDATE",
+      "reason": "Typed composition of opportunity/experiment/representation/correspondence/verification interfaces; receives no resource unavailable to the strong parent.",
+      "structural_parent": "candidate under study"
+    },
+    {
+      "id": "ORACLE",
+      "status": "EVALUATOR_ONLY_CEILING",
+      "reason": "Reads protected structural gold and is excluded from superiority claims.",
+      "structural_parent": "analysis ceiling"
+    }
+  ],
+  "strongest_executable_parent_id": "VERIFIED_REGIME_REVISION_PARENT",
+  "fairness_rule": "The strong parent and ORION receive identical PublicJumpCase.v1 bytes, experiment count, representation move library, proposal count, correspondence obligations and verification interfaces.",
+  "novelty_rule": "Donor-owned representation revision, analogy, experiment design, mechanistic world modeling, correspondence and validation remain donor-owned even when composed inside ORION."
+}
