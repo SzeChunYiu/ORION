@@ -1,0 +1,89 @@
+{
+  "schema": "P9.S3ProtectedResultProtocol.v1",
+  "date": "2026-08-19",
+  "parent_issue": 589,
+  "freeze_issue": 593,
+  "preprotected_subject_sha": "2223bba790a3e631d3f40f20bb46b156bce19b72",
+  "parent_d1_scientific_head": "af218de0416c90cdf6e0221098c97e181e29a6e0",
+  "parent_d1_result_digest": "sha256:34003fb8ffcecec6ed01654e40c644ff05b7640be56b398a45efc1e52a30141a",
+  "parent_d1_dataset_manifest_digest": "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c",
+  "parent_d1_verification_state": "BOUNDED_VERIFIED",
+  "parent_d1_outcome_accessed": true,
+  "s3_protected_outcome_accessed": false,
+  "scientific_question": "On the unchanged frozen D1 split, does generic paired-coordinate comparison access over the existing typed serialization recover the historical typed-relational held-out transfer result?",
+  "frozen_data": {
+    "generator": "orion.study.p9.d1.generate_d1_dataset",
+    "seed": "p9-d1-method-transfer-v1",
+    "train_instances_per_base_pair": 48,
+    "dev_instances_per_base_pair": 16,
+    "test_instances_per_base_pair": 32,
+    "train_domains": ["numerical_methods", "graph_algorithms"],
+    "test_domain": "transactional_workflows",
+    "no_new_examples": true,
+    "no_changed_labels": true,
+    "no_changed_split": true
+  },
+  "historical_controls": {
+    "TYPED_SERIALIZED_BAG_accuracy": 0.5,
+    "TYPED_RELATIONAL_accuracy": 1.0,
+    "TYPED_RELATIONAL_double_corruption_accuracy": 1.0,
+    "TYPED_RELATIONAL_unresolved_accuracy": 1.0
+  },
+  "new_arms": {
+    "F1_SERIALIZED_GENERIC_BINDING": {
+      "features": "serialized_generic_binding_features(sequence)",
+      "learner_grid": "exact D1 model_specs() grid",
+      "selection": "train fit -> dev accuracy; tie by lower complexity_rank then config_id; one protected test evaluation",
+      "test_access": "only after this protocol and expectation receipt are committed"
+    },
+    "F2_SERIALIZED_EXACT_GENERIC_COMPARATOR": {
+      "predictor": "serialized_exact_generic_comparator(sequence)",
+      "role": "deterministic diagnostic ceiling for serialized information plus generic comparison access"
+    }
+  },
+  "primary_endpoints": [
+    "F1 protected accuracy",
+    "F1 macro_f1",
+    "F1 double_corruption_accuracy",
+    "F1 unresolved_accuracy",
+    "F2 protected accuracy",
+    "F2 double_corruption_accuracy",
+    "F2 unresolved_accuracy",
+    "F1_minus_historical_serialized_bag",
+    "historical_typed_relational_minus_F1"
+  ],
+  "terminal_rules": {
+    "EXPLICIT_RELATION_BINDING_SUFFICIENT": "F2_accuracy == 1.0 AND F1_accuracy >= 0.99 AND F1_unresolved_accuracy == 1.0 AND F1_double_corruption_accuracy >= 0.99 AND all frozen hostile checks true",
+    "LOSSLESS_SERIALIZATION_PLUS_GENERIC_COMPARISON_SUFFICIENT": "F2_accuracy == 1.0 AND F1_accuracy < 0.99 AND all frozen hostile checks true",
+    "D1_SERIALIZATION_NOT_RECOVERABLE_BY_GENERIC_BINDING": "F2_accuracy < 1.0 despite frozen preprotected equivalence checks",
+    "CANNOT_CHECK": "integrity/protocol/runtime failure or parent digest mismatch"
+  },
+  "result_schema": {
+    "required": [
+      "schema",
+      "protocol",
+      "preprotected_subject_sha",
+      "parent_d1_result_digest",
+      "dataset_manifest_digest",
+      "selected_F1_model",
+      "F1_test",
+      "F2_test",
+      "historical_controls",
+      "gap_recovered",
+      "residual_to_typed_relational",
+      "hostile_checks",
+      "terminal",
+      "result_digest"
+    ],
+    "raw_predictions_required": true
+  },
+  "nonclaims": [
+    "not graph-architecture novelty",
+    "not equality/comparison novelty",
+    "not proof that serialization is information-theoretically insufficient",
+    "not general LLM reasoning improvement",
+    "not a change to the frozen parent D1 result"
+  ],
+  "post_result_policy": "Any result that changes the interpretation of D1 must be independently replayed before the paper/claim ledger is edited.",
+  "authority": "PROSPECTIVE_CORRECTIVE_PROTOCOL_NO_RESULT_AUTHORITY"
+}
