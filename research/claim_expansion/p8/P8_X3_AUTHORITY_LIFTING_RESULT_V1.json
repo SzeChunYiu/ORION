@@ -1,0 +1,28 @@
+{
+  "schema": "P8.X3.AuthorityLiftingResult.v1",
+  "donor_families": ["FAVA_PERMISSION", "PCAA_ACTION_CERT", "HDP_DELEGATION", "SENTINEL_DCC", "APC_BOUNDED_AGENTS", "ECA_TYPED_EVIDENCE", "COGEEG_SCIENTIFIC_HARNESS", "SCIENTISTONE_CHAIN_OF_EVIDENCE", "XCIENTIST_RESEARCH_HARNESS", "STATEFUL_DISCOVERY_ADJUDICATION"],
+  "scientific_type_coordinates": ["domain", "kind", "scope", "content", "epoch"],
+  "state_evaluations": 30720,
+  "terminal_counts": {
+    "NO_DONOR_AUTHORITY": 15360,
+    "BLOCK": 11810,
+    "CANNOT_CHECK": 2560,
+    "DISCHARGE": 990
+  },
+  "donor_conservativity_violations": 0,
+  "type_separation_witnesses": 50,
+  "protected_coercion_successes": 50,
+  "unprotected_coercion_countermodels": 50,
+  "blocker_refuted_successes": 10,
+  "blocker_undetermined_cannot_check": 10,
+  "blocker_established_blocks": 10,
+  "single_support_revocation_survivals": 20,
+  "all_support_revoked_blocks": 10,
+  "heterogeneous_chain_successes": 100,
+  "heterogeneous_chain_widening_countermodels": 100,
+  "action_or_release_denied_independent_support_examples": 10,
+  "ideal_product_mismatches": 0,
+  "canonical_rows_sha256": "79bbad137a6d8eaf4756375df239bc24164e076065929f86ff2af70b10453c3a",
+  "interpretation": "The final P8 donor product combines modern security/delegation authority with domain scientific claim/release authority. Native donor verdicts remain intact. Scientific discharge flows across heterogeneous chains only through compatible/protectedly coerced scientific type, non-widening authority, fail-closed blockers and at least one surviving complete support family. An equally typed decentralized product ties exactly.",
+  "claim_ceiling": "BOUNDED_FORMAL_CROSS_DOMAIN_SCIENTIFIC_AUTHORITY_LIFTING; no deployed-agent or inherent-centralization claim"
+}
