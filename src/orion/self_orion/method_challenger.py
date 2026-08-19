@@ -10,7 +10,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
-from typing import Iterable
+from typing import TYPE_CHECKING, Iterable
+
+if TYPE_CHECKING:
+    from orion.self_orion.evolution_archive import EvolutionArchive
 
 
 SCHEMA_VERSION = "orion.p5.method-challenger.v1"
@@ -40,6 +43,7 @@ class HostDisposition(str, Enum):
     REJECT = "REJECT"
     BLOCK = "CANNOT_CHECK/BLOCK"
     CANDIDATE_ONLY = "CANDIDATE_ONLY"
+    HARMFUL = "HARMFUL"
 
 
 @dataclass(frozen=True)
@@ -76,6 +80,7 @@ class MethodChallenger:
     discriminator_prediction: str
     stages: tuple[MethodStageEvidence, ...]
     negative_history_ids: tuple[str, ...]
+    method_class: str = ""
     host_disposition: HostDisposition = HostDisposition.CANDIDATE_ONLY
     adoption_authority: str = "EXTERNAL_HOST"
     schema_version: str = SCHEMA_VERSION
@@ -162,6 +167,38 @@ def validate_method_challenger(challenger: MethodChallenger) -> None:
         raise ValueError("method challenger is not admissible: " + "; ".join(reasons))
 
 
+def pre_assess_known_harmful_class(
+    challenger: MethodChallenger,
+    archive: EvolutionArchive,
+) -> tuple[HostDisposition, tuple[str, ...]]:
+    """Return HARMFUL with a recurrence reason if the challenger's method class has
+    already been associated with a harmful disposition in the evolution archive.
+
+    This is a pre-assessment check: it is evaluated before the candidate's own
+    evidence ladder, so a known harmful method class is never re-admitted on a
+    fresh evidence record.  The recurrence finding is explicit about the prior
+    challengers that established the class as harmful.
+    """
+    if not challenger.method_class:
+        return HostDisposition.CANDIDATE_ONLY, ()
+    # Lazy import: evolution_archive imports this module, so a module-level
+    # import here would be circular.  At call time both modules are loaded.
+    from orion.self_orion.evolution_archive import (
+        get_harmful_challengers_for_class,
+        is_known_harmful_class,
+    )
+    if not is_known_harmful_class(archive, challenger.method_class):
+        return HostDisposition.CANDIDATE_ONLY, ()
+    prior = get_harmful_challengers_for_class(archive, challenger.method_class)
+    return (
+        HostDisposition.HARMFUL,
+        (
+            "known_harmful_method_class_recurrence:" + challenger.method_class
+            + (":" + ",".join(prior) if prior else ""),
+        ),
+    )
+
+
 __all__ = [
     "HostDisposition",
     "MethodChallenger",
@@ -170,5 +207,6 @@ __all__ = [
     "MethodStageEvidence",
     "SCHEMA_VERSION",
     "assess_method_challenger",
+    "pre_assess_known_harmful_class",
     "validate_method_challenger",
 ]

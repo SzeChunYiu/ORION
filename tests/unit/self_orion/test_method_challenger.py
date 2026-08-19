@@ -7,7 +7,11 @@ from orion.self_orion.evolution_archive import (
     OrionVariant,
     VariantStatus,
     changelog_recorded,
+    evolution_archive_from_json,
+    evolution_archive_stats,
+    evolution_archive_to_json,
     initialize_evolution_archive,
+    is_known_harmful_class,
     register_challenger,
     register_method_challenger,
     record_method_challenger_disposition,
@@ -19,6 +23,7 @@ from orion.self_orion.method_challenger import (
     MethodEvolutionStage,
     MethodStageEvidence,
     assess_method_challenger,
+    pre_assess_known_harmful_class,
     validate_method_challenger,
 )
 
@@ -183,3 +188,151 @@ def test_record_method_challenger_disposition_duplicate_rejected() -> None:
     archive = record_method_challenger_disposition(archive, "challenger:1", HostDisposition.REJECT)
     with pytest.raises(ValueError, match="already recorded"):
         record_method_challenger_disposition(archive, "challenger:1", HostDisposition.RECOMMEND)
+
+
+def test_pre_assess_known_harmful_class_returns_harmful_on_recurrence() -> None:
+    """A challenger whose method class was previously harmful is pre-assessed
+    as HARMFUL with a recurrence reason, before the evidence ladder is evaluated."""
+    candidate = _challenger(method_class="operator_replacement")
+    prior = _challenger(challenger_id="challenger:harmful:prior", method_class="operator_replacement")
+    incumbent = OrionVariant(
+        variant_id="incumbent:1",
+        revision_hash=SHA,
+        parent_ids=(),
+        capability_tags=("base",),
+        resource_profile=(("cpu", 1.0),),
+        created_by_episode_ids=(),
+        status=VariantStatus.INCUMBENT,
+    )
+    archive = initialize_evolution_archive(incumbent)
+    archive = register_method_challenger(archive, prior)
+    archive = record_method_challenger_disposition(archive, "challenger:harmful:prior", HostDisposition.HARMFUL)
+
+    disposition, reasons = pre_assess_known_harmful_class(candidate, archive)
+    assert disposition is HostDisposition.HARMFUL
+    assert any("known_harmful_method_class_recurrence" in r for r in reasons)
+
+
+def test_pre_assess_known_harmful_class_returns_candidate_only_for_unknown_class() -> None:
+    """A challenger with a method class not previously associated with harm
+    is not pre-assessed as harmful."""
+    candidate = _challenger(method_class="novel_mechanism")
+    incumbent = OrionVariant(
+        variant_id="incumbent:1",
+        revision_hash=SHA,
+        parent_ids=(),
+        capability_tags=("base",),
+        resource_profile=(("cpu", 1.0),),
+        created_by_episode_ids=(),
+        status=VariantStatus.INCUMBENT,
+    )
+    archive = initialize_evolution_archive(incumbent)
+    disposition, reasons = pre_assess_known_harmful_class(candidate, archive)
+    assert disposition is HostDisposition.CANDIDATE_ONLY
+    assert not reasons
+
+
+def test_pre_assess_known_harmful_class_skips_empty_method_class() -> None:
+    """A challenger with no method class is not pre-assessed."""
+    candidate = _challenger()
+    incumbent = OrionVariant(
+        variant_id="incumbent:1",
+        revision_hash=SHA,
+        parent_ids=(),
+        capability_tags=("base",),
+        resource_profile=(("cpu", 1.0),),
+        created_by_episode_ids=(),
+        status=VariantStatus.INCUMBENT,
+    )
+    archive = initialize_evolution_archive(incumbent)
+    disposition, reasons = pre_assess_known_harmful_class(candidate, archive)
+    assert disposition is HostDisposition.CANDIDATE_ONLY
+    assert not reasons
+
+
+def test_archive_retains_rejected_challengers() -> None:
+    """Rejected challengers are retained in the archive after recording dispositions."""
+    candidate = _challenger()
+    incumbent = OrionVariant(
+        variant_id="incumbent:1",
+        revision_hash=SHA,
+        parent_ids=(),
+        capability_tags=("base",),
+        resource_profile=(("cpu", 1.0),),
+        created_by_episode_ids=(),
+        status=VariantStatus.INCUMBENT,
+    )
+    archive = initialize_evolution_archive(incumbent)
+    archive = register_method_challenger(archive, candidate)
+    # Reject it
+    archive = record_method_challenger_disposition(archive, "challenger:1", HostDisposition.REJECT)
+    # The challenger must still be in archive.challengers
+    assert any(c.challenger_id == "challenger:1" for c in archive.challengers)
+    # The disposition must be recorded
+    assert any(rid == "challenger:1" and disp is HostDisposition.REJECT for rid, disp in archive.challenger_dispositions)
+
+
+def test_archive_retains_harmful_challengers() -> None:
+    """Harmful-disposition challengers are retained in the archive."""
+    candidate = _challenger(method_class="operator_replacement")
+    incumbent = OrionVariant(
+        variant_id="incumbent:1",
+        revision_hash=SHA,
+        parent_ids=(),
+        capability_tags=("base",),
+        resource_profile=(("cpu", 1.0),),
+        created_by_episode_ids=(),
+        status=VariantStatus.INCUMBENT,
+    )
+    archive = initialize_evolution_archive(incumbent)
+    archive = register_method_challenger(archive, candidate)
+    archive = record_method_challenger_disposition(archive, "challenger:1", HostDisposition.HARMFUL)
+    # The challenger must still be in archive.challengers
+    assert any(c.challenger_id == "challenger:1" for c in archive.challengers)
+    # The harmful method class must be indexed
+    assert is_known_harmful_class(archive, "operator_replacement")
+
+
+def test_evolution_archive_stats() -> None:
+    """evolution_archive_stats returns correct summary counts."""
+    candidate = _challenger()
+    incumbent = OrionVariant(
+        variant_id="incumbent:1",
+        revision_hash=SHA,
+        parent_ids=(),
+        capability_tags=("base",),
+        resource_profile=(("cpu", 1.0),),
+        created_by_episode_ids=(),
+        status=VariantStatus.INCUMBENT,
+    )
+    archive = initialize_evolution_archive(incumbent)
+    archive = register_method_challenger(archive, candidate)
+    archive = record_method_challenger_disposition(archive, "challenger:1", HostDisposition.RECOMMEND)
+    stats = evolution_archive_stats(archive)
+    assert stats["variant_count"] == 1
+    assert stats["challenger_count"] == 1
+    assert stats["disposition_count"] == 1
+    assert stats["trial_count"] == 0
+
+
+def test_evolution_archive_round_trip_json() -> None:
+    """EvolutionArchive serializes to JSON and deserializes identically."""
+    candidate = _challenger()
+    incumbent = OrionVariant(
+        variant_id="incumbent:1",
+        revision_hash=SHA,
+        parent_ids=(),
+        capability_tags=("base",),
+        resource_profile=(("cpu", 1.0),),
+        created_by_episode_ids=(),
+        status=VariantStatus.INCUMBENT,
+    )
+    archive = initialize_evolution_archive(incumbent)
+    archive = register_method_challenger(archive, candidate)
+    archive = record_method_challenger_disposition(archive, "challenger:1", HostDisposition.RECOMMEND)
+    json_str = evolution_archive_to_json(archive)
+    restored = evolution_archive_from_json(json_str)
+    assert restored.variants == archive.variants
+    assert restored.challengers == archive.challengers
+    assert restored.challenger_dispositions == archive.challenger_dispositions
+    assert restored.incumbent_id == archive.incumbent_id

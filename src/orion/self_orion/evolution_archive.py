@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass, replace
 from enum import Enum
 
@@ -59,6 +60,7 @@ class EvolutionArchive:
     incumbent_id: str = ""
     challengers: tuple[MethodChallenger, ...] = ()
     challenger_dispositions: tuple[tuple[str, HostDisposition], ...] = ()
+    harmful_method_classes: tuple[tuple[str, tuple[str, ...]], ...] = ()
 
 
 def changelog_recorded(archive: EvolutionArchive, challenger_id: str) -> bool:
@@ -79,7 +81,7 @@ class HostPromotionRecommendation:
 
 def initialize_evolution_archive(incumbent: OrionVariant) -> EvolutionArchive:
     normalized = incumbent if incumbent.status is VariantStatus.INCUMBENT else replace(incumbent, status=VariantStatus.INCUMBENT)
-    return EvolutionArchive((normalized,), (), normalized.variant_id)
+    return EvolutionArchive((normalized,), (), normalized.variant_id, harmful_method_classes=())
 
 
 def register_challenger(archive: EvolutionArchive, challenger: OrionVariant) -> EvolutionArchive:
@@ -94,6 +96,7 @@ def register_challenger(archive: EvolutionArchive, challenger: OrionVariant) -> 
         archive.incumbent_id,
         archive.challengers,
         archive.challenger_dispositions,
+        archive.harmful_method_classes,
     )
 
 
@@ -112,6 +115,7 @@ def register_method_challenger(archive: EvolutionArchive, challenger: MethodChal
         archive.incumbent_id,
         archive.challengers + (challenger,),
         archive.challenger_dispositions,
+        archive.harmful_method_classes,
     )
 
 
@@ -125,13 +129,219 @@ def record_method_challenger_disposition(
         raise ValueError("challenger not registered")
     if changelog_recorded(archive, challenger_id):
         raise ValueError("challenger disposition already recorded")
+
+    # Index the method class if the disposition is harmful
+    updated_harmful_classes = archive.harmful_method_classes
+    if disposition is HostDisposition.HARMFUL:
+        challenger = next(item for item in archive.challengers if item.challenger_id == challenger_id)
+        if challenger.method_class:
+            existing = dict(archive.harmful_method_classes)
+            existing_ids = existing.get(challenger.method_class, ())
+            if challenger_id not in existing_ids:
+                updated_harmful_classes = tuple(
+                    (mc, ids + (challenger_id,) if mc == challenger.method_class else ids)
+                    for mc, ids in archive.harmful_method_classes
+                )
+                if challenger.method_class not in dict(archive.harmful_method_classes):
+                    updated_harmful_classes = archive.harmful_method_classes + ((challenger.method_class, (challenger_id,)),)
+
     return EvolutionArchive(
         archive.variants,
         archive.trials,
         archive.incumbent_id,
         archive.challengers,
         archive.challenger_dispositions + ((challenger_id, disposition),),
+        updated_harmful_classes,
     )
+
+
+def is_known_harmful_class(archive: EvolutionArchive, method_class: str) -> bool:
+    """Return True if the given method class has been associated with a harmful disposition."""
+    return method_class in dict(archive.harmful_method_classes)
+
+
+def get_harmful_challengers_for_class(archive: EvolutionArchive, method_class: str) -> tuple[str, ...]:
+    """Return challenger IDs that recorded a harmful disposition for the given method class."""
+    return dict(archive.harmful_method_classes).get(method_class, ())
+
+
+def evolution_archive_stats(archive: EvolutionArchive) -> dict[str, int]:
+    """Return summary statistics about the evolution archive."""
+    disposition_counts: dict[str, int] = {}
+    for _, disp in archive.challenger_dispositions:
+        disposition_counts[disp.value] = disposition_counts.get(disp.value, 0) + 1
+    return {
+        "variant_count": len(archive.variants),
+        "trial_count": len(archive.trials),
+        "challenger_count": len(archive.challengers),
+        "disposition_count": len(archive.challenger_dispositions),
+        "harmful_class_count": len(archive.harmful_method_classes),
+        **disposition_counts,
+    }
+
+
+def _archive_to_dict(archive: EvolutionArchive) -> dict:
+    """Serialize an EvolutionArchive to a JSON-compatible dict."""
+    return {
+        "variants": [
+            {
+                "variant_id": v.variant_id,
+                "revision_hash": v.revision_hash,
+                "parent_ids": list(v.parent_ids),
+                "capability_tags": list(v.capability_tags),
+                "resource_profile": [[n, v] for n, v in v.resource_profile],
+                "created_by_episode_ids": list(v.created_by_episode_ids),
+                "status": v.status.value,
+                "notes": list(v.notes),
+            }
+            for v in archive.variants
+        ],
+        "trials": [
+            {
+                "trial_id": t.trial_id,
+                "parent_id": t.parent_id,
+                "child_id": t.child_id,
+                "proposal_id": t.proposal_id,
+                "verdict": t.verdict.value,
+                "development_delta": t.development_delta,
+                "fresh_assurance_delta": t.fresh_assurance_delta,
+                "reasons": list(t.reasons),
+            }
+            for t in archive.trials
+        ],
+        "incumbent_id": archive.incumbent_id,
+        "challengers": [
+            {
+                "challenger_id": c.challenger_id,
+                "subject_revision": c.subject_revision,
+                "generating_failure_ids": list(c.generating_failure_ids),
+                "ordinary_causes_challenged": list(c.ordinary_causes_challenged),
+                "known_method_routes": list(c.known_method_routes),
+                "route_inadequacy_reasons": list(c.route_inadequacy_reasons),
+                "assimilated_donor_mechanisms": list(c.assimilated_donor_mechanisms),
+                "structural_edit": c.structural_edit,
+                "discriminator_prediction": c.discriminator_prediction,
+                "stages": [
+                    {
+                        "stage": s.stage.value,
+                        "evidence_id": s.evidence_id,
+                        "status": s.status.value,
+                        "split_id": s.split_id,
+                        "evaluator_id": s.evaluator_id,
+                        "result_hash": s.result_hash,
+                    }
+                    for s in c.stages
+                ],
+                "negative_history_ids": list(c.negative_history_ids),
+                "method_class": c.method_class,
+                "host_disposition": c.host_disposition.value,
+                "adoption_authority": c.adoption_authority,
+                "schema_version": c.schema_version,
+                "candidate_controls_authority": c.candidate_controls_authority,
+            }
+            for c in archive.challengers
+        ],
+        "challenger_dispositions": [
+            [cid, disp.value] for cid, disp in archive.challenger_dispositions
+        ],
+        "harmful_method_classes": [
+            [mc, list(ids)] for mc, ids in archive.harmful_method_classes
+        ],
+    }
+
+
+def _dict_to_archive(d: dict) -> EvolutionArchive:
+    """Deserialize a dict back to an EvolutionArchive."""
+    from orion.self_orion.method_challenger import (
+        HostDisposition,
+        MethodChallenger,
+        MethodEvidenceStatus,
+        MethodEvolutionStage,
+        MethodStageEvidence,
+    )
+    from orion.self_orion.change_control import ChangeControlVerdict
+
+    variants = tuple(
+        OrionVariant(
+            variant_id=v["variant_id"],
+            revision_hash=v["revision_hash"],
+            parent_ids=tuple(v["parent_ids"]),
+            capability_tags=tuple(v["capability_tags"]),
+            resource_profile=tuple((n, vv) for n, vv in v["resource_profile"]),
+            created_by_episode_ids=tuple(v["created_by_episode_ids"]),
+            status=VariantStatus(v["status"]),
+            notes=tuple(v["notes"]),
+        )
+        for v in d["variants"]
+    )
+    trials = tuple(
+        EvolutionTrialRecord(
+            trial_id=t["trial_id"],
+            parent_id=t["parent_id"],
+            child_id=t["child_id"],
+            proposal_id=t["proposal_id"],
+            verdict=ChangeControlVerdict(t["verdict"]),
+            development_delta=t["development_delta"],
+            fresh_assurance_delta=t["fresh_assurance_delta"],
+            reasons=tuple(t["reasons"]),
+        )
+        for t in d["trials"]
+    )
+    challengers = tuple(
+        MethodChallenger(
+            challenger_id=c["challenger_id"],
+            subject_revision=c["subject_revision"],
+            generating_failure_ids=tuple(c["generating_failure_ids"]),
+            ordinary_causes_challenged=tuple(c["ordinary_causes_challenged"]),
+            known_method_routes=tuple(c["known_method_routes"]),
+            route_inadequacy_reasons=tuple(c["route_inadequacy_reasons"]),
+            assimilated_donor_mechanisms=tuple(c["assimilated_donor_mechanisms"]),
+            structural_edit=c["structural_edit"],
+            discriminator_prediction=c["discriminator_prediction"],
+            stages=tuple(
+                MethodStageEvidence(
+                    stage=MethodEvolutionStage(s["stage"]),
+                    evidence_id=s["evidence_id"],
+                    status=MethodEvidenceStatus(s["status"]),
+                    split_id=s["split_id"],
+                    evaluator_id=s["evaluator_id"],
+                    result_hash=s["result_hash"],
+                )
+                for s in c["stages"]
+            ),
+            negative_history_ids=tuple(c["negative_history_ids"]),
+            method_class=c["method_class"],
+            host_disposition=HostDisposition(c["host_disposition"]),
+            adoption_authority=c["adoption_authority"],
+            schema_version=c["schema_version"],
+            candidate_controls_authority=c["candidate_controls_authority"],
+        )
+        for c in d["challengers"]
+    )
+    challenger_dispositions = tuple(
+        (cid, HostDisposition(disp)) for cid, disp in d["challenger_dispositions"]
+    )
+    harmful_method_classes = tuple(
+        (mc, tuple(ids)) for mc, ids in d["harmful_method_classes"]
+    )
+    return EvolutionArchive(
+        variants=variants,
+        trials=trials,
+        incumbent_id=d["incumbent_id"],
+        challengers=challengers,
+        challenger_dispositions=challenger_dispositions,
+        harmful_method_classes=harmful_method_classes,
+    )
+
+
+def evolution_archive_to_json(archive: EvolutionArchive) -> str:
+    """Serialize an EvolutionArchive to a JSON string."""
+    return json.dumps(_archive_to_dict(archive), indent=2, sort_keys=True)
+
+
+def evolution_archive_from_json(data: str) -> EvolutionArchive:
+    """Deserialize an EvolutionArchive from a JSON string."""
+    return _dict_to_archive(json.loads(data))
 
 
 def record_change_control_result(
@@ -178,7 +388,7 @@ def record_change_control_result(
         fresh_assurance_delta=result.assurance.fresh_assurance_delta,
         reasons=result.reasons,
     )
-    return EvolutionArchive(variants, archive.trials + (trial,), archive.incumbent_id, archive.challengers, archive.challenger_dispositions)
+    return EvolutionArchive(variants, archive.trials + (trial,), archive.incumbent_id, archive.challengers, archive.challenger_dispositions, archive.harmful_method_classes)
 
 
 def recommend_host_promotion(archive: EvolutionArchive, variant_id: str) -> HostPromotionRecommendation:
@@ -212,7 +422,12 @@ __all__ = [
     "OrionVariant",
     "VariantStatus",
     "changelog_recorded",
+    "evolution_archive_from_json",
+    "evolution_archive_stats",
+    "evolution_archive_to_json",
+    "get_harmful_challengers_for_class",
     "initialize_evolution_archive",
+    "is_known_harmful_class",
     "recommend_host_promotion",
     "record_change_control_result",
     "record_method_challenger_disposition",
