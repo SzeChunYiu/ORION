@@ -1,7 +1,7 @@
 # P1 saturation — PR ancestry audit
 
 Audit date: 2026-08-19  
-Final integration cutoff: `main@b7abcc6ad76d2a985ea938fcbd070a6097b0fe99`  
+Final integration cutoff: `main@627ac5cb2cc0aba0fd2b3912c40a06227849167a`  
 Parent audit: #499  
 Saturation issue: #489
 
@@ -38,4 +38,10 @@ Current `main` is authoritative. Historical/open execution PRs remain lineage/hi
 - [x] P9 structural-learning outputs are not P1 efficacy/novelty evidence;
 - [x] no successor object retroactively becomes a parent in the frozen experiment.
 
-Status: `ANCESTRY_AUDIT_COMPLETE_AT_b7abcc6__P1_SATURATION_CONVERGED__AWAIT_PACKAGE_AND_FINAL_CI`.
+## Final main-delta recheck
+- [x] compared `d73e65c10f4f3b7ae773cea667f6dccd1507e8f0..627ac5cb2cc0aba0fd2b3912c40a06227849167a`;
+- [x] all 42 intervening commits/files in that comparison are P9 research/workflow/test additions or P9 package records;
+- [x] no P1 manuscript, evidence, frozen protocol/result, journal package, or P1 scientific-authority file changed;
+- [x] the P9 A5/D0 result is bounded/non-authorizing and cannot retroactively support or falsify P1.
+
+Status: `ANCESTRY_AUDIT_COMPLETE_AT_627ac5c__P1_SATURATION_CONVERGED__AWAIT_PACKAGE_AND_FINAL_CI`.
