@@ -1,7 +1,7 @@
 # P2 saturation — PR ancestry audit
 
 Audit date: 2026-08-19  
-Final integration cutoff: `main@b7abcc6ad76d2a985ea938fcbd070a6097b0fe99`  
+Final integration cutoff: `main@627ac5cb2cc0aba0fd2b3912c40a06227849167a`  
 Parent audit: #499  
 Saturation issue: #490
 
@@ -44,4 +44,10 @@ Current `main` is authoritative. Open/stale provider/layout PRs do not override 
 - [x] structural-discovery/P9/P10 work cannot retroactively authorize task completeness, retrieval superiority or novelty;
 - [x] no provider campaign is called completed/scientifically valid without a current-main receipt and validity authority.
 
-Status: `ANCESTRY_AUDIT_COMPLETE_AT_b7abcc6__P2_SATURATION_CONVERGED__AWAIT_FINAL_CI`.
+## Final main-delta recheck
+- [x] compared `d73e65c10f4f3b7ae773cea667f6dccd1507e8f0..627ac5cb2cc0aba0fd2b3912c40a06227849167a`;
+- [x] the 42-commit delta is confined to P9 research/workflow/test material;
+- [x] no P2 manuscript, claim ledger, provider result, journal package, or P2 authority object changed;
+- [x] P9 bounded inference results do not promote or falsify P2 search/stopping claims.
+
+Status: `ANCESTRY_AUDIT_COMPLETE_AT_627ac5c__P2_SATURATION_CONVERGED__AWAIT_FINAL_CI`.
