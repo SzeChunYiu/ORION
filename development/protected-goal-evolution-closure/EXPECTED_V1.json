@@ -1,0 +1,17 @@
+{
+  "schema_version": "ProtectedGoalEvolutionClosureExpected.v1",
+  "frozen_before_runner": true,
+  "v1_protocol_mutated": false,
+  "outcome_accessed": false,
+  "case_count": 32,
+  "family_count": 8,
+  "expected_metrics": {
+    "FIXED_ORIGINAL_OBJECTIVE": {"correct_next_action": 16, "false_objective_revision": 0, "missed_objective_revision": 16, "protected_constraint_violations": 0, "protected_intent_regressions": 16, "worst_family_correct": 0},
+    "UNCONSTRAINED_SAGA_LIKE": {"correct_next_action": 20, "false_objective_revision": 12, "missed_objective_revision": 0, "protected_constraint_violations": 8, "protected_intent_regressions": 12, "worst_family_correct": 0},
+    "LLM_REWRITE_AFTER_POOR_PERFORMANCE": {"correct_next_action": 20, "false_objective_revision": 12, "missed_objective_revision": 0, "protected_constraint_violations": 8, "protected_intent_regressions": 12, "worst_family_correct": 0},
+    "FIXED_MULTI_OBJECTIVE_PARETO_PROTECTED": {"correct_next_action": 32, "false_objective_revision": 0, "missed_objective_revision": 0, "protected_constraint_violations": 0, "protected_intent_regressions": 0, "worst_family_correct": 4},
+    "ORION_PROTECTED_GOAL_EVOLUTION": {"correct_next_action": 32, "false_objective_revision": 0, "missed_objective_revision": 0, "protected_constraint_violations": 0, "protected_intent_regressions": 0, "worst_family_correct": 4},
+    "HUMAN_ORACLE": {"correct_next_action": 32, "false_objective_revision": 0, "missed_objective_revision": 0, "protected_constraint_violations": 0, "protected_intent_regressions": 0, "worst_family_correct": 4}
+  },
+  "expected_terminal_if_reconstructed": "REFUTED"
+}

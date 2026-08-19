@@ -1,0 +1,35 @@
+{
+  "schema_version": "ProtectedGoalEvolutionClosureResult.v1",
+  "date": "2026-08-19",
+  "v1_protocol": "research/goal-evolution/PROTOCOL_V1.json",
+  "v1_protocol_mutated": false,
+  "current_main_freeze_commit": "d64e4714e4d86415345c5ac9ed35c122ff7abbae",
+  "case_count": 32,
+  "family_count": 8,
+  "metrics": {
+    "FIXED_ORIGINAL_OBJECTIVE": {"correct_next_action": 16, "false_objective_revision": 0, "missed_objective_revision": 16, "protected_constraint_violations": 0, "protected_intent_regressions": 16, "worst_family_correct": 0},
+    "UNCONSTRAINED_SAGA_LIKE": {"correct_next_action": 20, "false_objective_revision": 12, "missed_objective_revision": 0, "protected_constraint_violations": 8, "protected_intent_regressions": 12, "worst_family_correct": 0},
+    "LLM_REWRITE_AFTER_POOR_PERFORMANCE": {"correct_next_action": 20, "false_objective_revision": 12, "missed_objective_revision": 0, "protected_constraint_violations": 8, "protected_intent_regressions": 12, "worst_family_correct": 0},
+    "FIXED_MULTI_OBJECTIVE_PARETO_PROTECTED": {"correct_next_action": 32, "false_objective_revision": 0, "missed_objective_revision": 0, "protected_constraint_violations": 0, "protected_intent_regressions": 0, "worst_family_correct": 4},
+    "ORION_PROTECTED_GOAL_EVOLUTION": {"correct_next_action": 32, "false_objective_revision": 0, "missed_objective_revision": 0, "protected_constraint_violations": 0, "protected_intent_regressions": 0, "worst_family_correct": 4},
+    "HUMAN_ORACLE": {"correct_next_action": 32, "false_objective_revision": 0, "missed_objective_revision": 0, "protected_constraint_violations": 0, "protected_intent_regressions": 0, "worst_family_correct": 4}
+  },
+  "load_bearing_comparison": {
+    "strong_parent": "FIXED_MULTI_OBJECTIVE_PARETO_PROTECTED",
+    "orion_arm": "ORION_PROTECTED_GOAL_EVOLUTION",
+    "relation": "EXACT_TIE",
+    "incremental_goal_generation_value": 0
+  },
+  "independent_reconstruction": {
+    "implementation": "src/orion/study/goal_evolution_closure_independent.py",
+    "expected_metrics": {"correct_next_action": 32, "false_objective_revision": 0, "missed_objective_revision": 0, "protected_constraint_violations": 0, "protected_intent_regressions": 0, "worst_family_correct": 4},
+    "state_if_tests_green": "PASS"
+  },
+  "candidate_terminal": "REFUTED",
+  "interpretation": "On the frozen eight-family hidden-intent panel, protected diagnostics and host-side admission are necessary to avoid proxy gaming and wrong-layer rewrites, but generating/evolving new objective content adds no decision or protected-intent value beyond a fixed multi-objective/Pareto candidate portfolio under the same protected admission boundary.",
+  "kept_orion_boundary": "hidden scientific intent remains protected and candidate objective changes cannot mutate their evaluator or protected constraints",
+  "struck_claim": "incremental scientific value of an ORION-specific objective-generation/evolution mechanism on this bounded panel",
+  "grants_scientific_authority": false,
+  "grants_goal_mutation_authority": false,
+  "grants_issue_closure_authority": false
+}
