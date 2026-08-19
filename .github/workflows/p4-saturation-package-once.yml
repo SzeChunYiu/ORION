@@ -17,6 +17,11 @@ jobs:
         with:
           ref: saturation/p4-nature-skills-round-a-2026-08-19
           fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION
+        run: python -m pip install -e '.[dev,candidates]'
       - name: Insert closest provenance-authorization donor
         run: |
           python - <<'PY'
