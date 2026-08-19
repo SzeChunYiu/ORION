@@ -1,37 +1,55 @@
 # P6 candidate — Formal Epistemic Structures and Mechanics
 
-**Current science:** `SCIENCE_CLOSED_V3`; PDF/typesetting refresh deferred.  
-**Current science manuscript:** `manuscript/FINAL_V3.md`.  
-**Historical peer-review-ready base:** `manuscript/FINAL_V2_1.md` and `submission/AIJ_MANUSCRIPT.tex` remain byte-preserved until the later PDF/render pass.
+**Current science:** `SCIENCE_CLOSED_V4`; PDF/typesetting refresh deferred.  
+**Current science manuscript:** `manuscript/FINAL_V4.md`.  
+**Historical bases:** V2.1 and V3 remain preserved as prior scientific versions; the old rendered submission bytes are not relabelled V4.
 
 **Parent:** #332. Theory #333. Literature #334. Evaluation #335. Anti-overlap #343. Claim-expansion successor #533.
 
-## Research question
+## Current research question
 
-Can the structural ideas already present in ORION—typed epistemic state, mechanic cells, obligations, authority bounds, dependencies, recursive audit, and selective reopening—be given a compact formal semantics that yields nontrivial properties beyond P1's application-specific reconstruction paper, and can that semantics be widened after mature donor mechanisms are fully credited?
+How can autonomous science reuse the strongest existing execution, workflow, provenance, dependency, effect and attestation certificates across scientific change without either discarding valid lower-level proof or laundering lower-level validity into unchanged scientific standing?
 
-## Current scoped contribution
+## Current V4 contribution
 
-V2.1 established a typed scientific-admissibility mechanic contract over donor-owned dependency maintenance, incremental computation, typed effects, authorization and provenance, including the safe-reopening/minimality distinction, preservation versus revalidation, footprint-faithful composition, hard-obligation persistence and a typed-erasure separation.
+P6 now treats modern proof/certificate systems as **donor infrastructure to absorb**. Runtime proof-of-execution, certified traces, portable action/approval receipts, workflow provenance/reproducibility signatures, executor-purity/attestation certificates, dependency maintenance, typed effects and authorization remain donor-owned lower-level objects.
 
-The V3 successor keeps that base intact and adds a bounded conservative-extension theorem family over three donor semantic embeddings. Scientific certification is modeled as an enrichment with explicit evidence-version, scientific-source-authority, claim-scope and verification-epoch obligations. A forgetful map preserves donor-native validity; if it erases a non-inert scientific coordinate, it need not reflect scientific admissibility. When all added obligations are discharged, donor-native validity is recovered exactly. An ideal information-equivalent donor product ties extensionally.
+The V4 successor contributes a bounded **scientific certificate-lifting semantics** above that donor stack. A lower-level certificate remains valid in its native theory. Preservation of scientific standing requires an explicit lift through registered claim-specific continuity coordinates. If a scientific coordinate changes, P6 keeps unaffected lower-level certificates and requires exact revalidation of the affected scientific bridge rather than rebuilding all provenance/execution evidence from scratch.
+
+This makes P6 constructive rather than merely subtractive: donor certificates are preserved and composed; their scientific boundary is strengthened.
+
+## Formal result
+
+Registered V4 lift coordinates: exact claim/content binding, measurement semantics, evidence semantics, inferential obligation and scientific epoch.
+
+Exhaustive bounded enumeration:
+- 320 certificate-extension states;
+- 0 donor-conservativity violations;
+- 25 minimal one-coordinate lift separations;
+- 31 certificate-product non-laundering countermodels;
+- 155 exact full-revalidation successes;
+- 1,055 proper-subset revalidation failures;
+- 0 ideal enriched-product mismatches;
+- canonical rows SHA-256 `e1e3c48bcefea3750d952c6b0ff37ac660a2e21f9823fdfdeb50bb62e819ff93`.
+
+A separate implementation independently reconstructs the enumeration.
+
+## Wider allowed claim
+
+> Strong execution, action, workflow and attestation certificates can be composed and preserved as lower-level objects in dynamic scientific computation, while preservation of scientific standing requires an explicit claim-specific lift and selective revalidation after scientifically material change.
 
 ## Donor boundary
 
-P6 does **not** claim novelty for belief revision, TMS/ATMS, incremental/self-adjusting computation, typed effects, continuing authorization/UCON, provenance, workflow reproducibility signatures, proof/certificate systems, execution attestation, residual obligations, or recursive reasoning individually.
+P6 does **not** claim proof of execution, certified traces, proof-carrying agent actions, workflow signatures, purity certificates, provenance, authorization, TMS/ATMS, incremental computation or typed effects as new. If a donor is enriched with the exact same scientific lift coordinates and rules, it ties P6 extensionally.
 
-Fresh successor pressure explicitly treats modern execution-attestation certificates and provenance-bound workflow reproducibility as donor territory. The current residual is the scientific-admissibility erasure/separation and conservative-extension/equivalence theorem family, not the existence of certificates.
+## Current source map
 
-## V3 evidence
-
-The frozen P6-X theorem protocol was enumerated over 1,536 states: zero donor-preservation violations, 96 typed-erasure separation witnesses, 96 conservative cases with zero violations, zero ideal-product mismatches, 96 certificate-revocation countermodels and 24 no-alarm cases. An independent implementation reproduces the theorem counts.
-
-See:
-- `manuscript/FINAL_V3.md`;
-- `CLAIM_LEDGER_V3.md`;
-- `submission/P6_X_SUCCESSOR_SECTION.tex`;
-- `research/claim_expansion/p6/P6_X_FINAL_SCIENTIFIC_TERMINAL_V1.md`.
+- `manuscript/FINAL_V4.md` — current science manuscript overlay;
+- `CLAIM_LEDGER_V4.md` — current claim authority;
+- `submission/P6_X2_CERTIFICATE_LIFTING_SECTION.tex` — render-ready successor section;
+- `research/claim_expansion/p6/P6_X2_DONOR_ENGULFMENT_V1.md` — donor extraction/improvement map;
+- `research/claim_expansion/p6/P6_X2_SCIENCE_TERMINAL_V1.md` — science terminal.
 
 ## Explicit nonclaims
 
-No deployed-agent superiority, universal scientific-semantics claim, unique necessity of the four chosen scientific coordinates, full mechanization of every donor theory, or inherent expressivity/centralization advantage is claimed. PDF/package generation for V3 is a later mechanical step and is not part of the science terminal.
+No deployed-agent superiority, universal minimality of the five registered lift coordinates, inherent centralization/expressivity advantage, or claim that current certificate systems fail their native goals. PDF/package generation for V4 is deferred.
