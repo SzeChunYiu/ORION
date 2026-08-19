@@ -1,0 +1,53 @@
+{
+  "schema_version": "P2_X_BASELINE_REGISTRY_V1",
+  "date": "2026-08-19",
+  "result_authority": "CANNOT_CHECK",
+  "shared_constraints": {
+    "same_candidate_visible_information": true,
+    "same_route_local_stopping_signals": true,
+    "same_route_status_and_materiality": true,
+    "same_content_identity_and_processing_state": true,
+    "same_query_tool_budget": true
+  },
+  "arms": [
+    {
+      "id": "B1_DONOR_COMPLETE_AVAILABLE_ROUTE_PRODUCT",
+      "role": "primary_strong_product_baseline",
+      "description": "Uses evidence coverage, decision sufficiency, utility stopping, finite obligation certificates and route-local states strongly, but computes task closure over available material routes and excludes unavailable/censored/provider-invalid routes from the global denominator."
+    },
+    {
+      "id": "B2_GLOBAL_SUFFICIENCY_AGGREGATOR",
+      "role": "global_sufficiency_ablation",
+      "description": "Allows aggregate evidence/decision sufficiency to authorize task stop even with unresolved hard route obligations."
+    },
+    {
+      "id": "B3_IDEAL_TYPED_ROUTE_PRODUCT",
+      "role": "equivalence_boundary",
+      "description": "Receives the exact P2-X material-route, unresolved-route and question-processing semantics and therefore should reproduce P2-X extensionally.",
+      "expected_relation_to_p2x": "EXTENSIONAL_TIE_IF_IDENTICAL_SEMANTICS",
+      "significance_test": false
+    },
+    {
+      "id": "P2X_FAIL_CLOSED_ROUTE_AUTHORITY",
+      "role": "candidate",
+      "result_authority": "CANNOT_CHECK"
+    }
+  ],
+  "primary_hypothesis": {
+    "comparison": "P2X_FAIL_CLOSED_ROUTE_AUTHORITY - B1_DONOR_COMPLETE_AVAILABLE_ROUTE_PRODUCT",
+    "minimum_absolute_escd_gain": 0.10,
+    "paired_bootstrap_95ci_lower_bound_requirement": 0.0
+  },
+  "non_regression": {
+    "clean_task_stop_margin": -0.02,
+    "false_task_closure_target": 0,
+    "unnecessary_cannot_check_clean_target": 0,
+    "minimum_per_domain_escd_difference": -0.05
+  },
+  "protected_scale": {
+    "domains": 5,
+    "archetypes_per_domain": 8,
+    "variants_per_archetype": 10,
+    "total_cases": 400
+  }
+}
