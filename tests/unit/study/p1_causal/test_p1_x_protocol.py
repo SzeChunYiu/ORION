@@ -146,5 +146,5 @@ def test_preoutcome_freeze_marker_cannot_disappear() -> None:
 def test_terminal_mapping_must_remain_explicit() -> None:
     protocol, schema, registry, ledger = _payloads()
     mutated = protocol.replace("return `REPAIR_LOCAL`", "emit local repair")
-    errors = checker.validate_protocol(protocol, schema, registry, ledger)
+    errors = checker.validate_protocol(mutated, schema, registry, ledger)
     assert "protocol_terminal_mapping_missing:return `REPAIR_LOCAL`" in errors
