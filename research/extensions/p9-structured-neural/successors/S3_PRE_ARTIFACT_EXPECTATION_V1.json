@@ -1,0 +1,36 @@
+{
+  "schema": "P9.S3PreArtifactExpectation.v1",
+  "date": "2026-08-19",
+  "protocol_commit_parent": "b3a1fe8633ebb062ed491096234ccc189edfaea8",
+  "preprotected_subject_sha": "2223bba790a3e631d3f40f20bb46b156bce19b72",
+  "s3_protected_outcome_accessed": false,
+  "expectations": {
+    "F2_SERIALIZED_EXACT_GENERIC_COMPARATOR": {
+      "protected_accuracy": 1.0,
+      "double_corruption_accuracy": 1.0,
+      "unresolved_accuracy": 1.0,
+      "basis": "Train+dev-only preprotected equivalence to the historical exact typed comparator plus source-level proof that F2 applies the same unknown-first / inequality-second decision over values recovered from the serialization. This is a strong structural expectation; a protected mismatch should be treated as parser/evaluator failure until explained."
+    },
+    "F1_SERIALIZED_GENERIC_BINDING": {
+      "protected_accuracy_expected": 1.0,
+      "double_corruption_accuracy_expected": 1.0,
+      "unresolved_accuracy_expected": 1.0,
+      "terminal_expected": "EXPLICIT_RELATION_BINDING_SUFFICIENT",
+      "basis": "The generic features expose the exact coordinate unknown/equality booleans. Train/dev include aligned, unresolved and every single-coordinate obstruction class, so the three-class rule is representable by the frozen classical model grid. This is an empirical prediction, not a theorem; model selection identity is deliberately not predicted."
+    }
+  },
+  "material_discrepancy_definition": [
+    "F2 protected accuracy below 1.0",
+    "F2 disagreement with parent exact comparator on any protected case",
+    "F1 protected accuracy below 0.99",
+    "F1 unresolved accuracy below 1.0",
+    "F1 double-corruption accuracy below 0.99",
+    "parent D1 result/dataset digest mismatch",
+    "any hostile/custody check false"
+  ],
+  "non_material_discrepancy_examples": [
+    "selected F1 model family/config differs from an informal expectation while all preregistered scientific endpoints and terminal agree",
+    "numerically equivalent serialization/parser implementation details that preserve all case-level decisions"
+  ],
+  "authority": "PRE_ARTIFACT_EXPECTATION_ONLY_NOT_RESULT_AUTHORITY"
+}
