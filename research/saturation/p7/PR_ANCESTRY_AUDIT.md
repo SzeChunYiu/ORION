@@ -1,7 +1,7 @@
 # P7 saturation — PR ancestry audit
 
 Audit date: 2026-08-19  
-Final integration cutoff: `main@b7abcc6ad76d2a985ea938fcbd070a6097b0fe99`  
+Final integration cutoff: `main@627ac5cb2cc0aba0fd2b3912c40a06227849167a`  
 Parent audit: #499  
 Saturation issue: #494
 
@@ -34,6 +34,12 @@ Saturation issue: #494
 - [x] AIJ/JAIR portability boundary documented;
 - [x] formal/citation/reproduction invariants audited;
 - [x] no manuscript claim broadening was required;
-- [x] final exact-current-main repository/candidate CI is required on this refreshed head before merge.
+- [ ] final exact-current-main repository CI must pass before merge; the unchanged frozen candidate/PDF package remains authoritative.
 
-Status: `ANCESTRY_AUDIT_COMPLETE_AT_b7abcc6__P7_SATURATION_CONVERGED__AWAIT_FINAL_CI`.
+## Final main-delta recheck
+- [x] compared `d73e65c10f4f3b7ae773cea667f6dccd1507e8f0..627ac5cb2cc0aba0fd2b3912c40a06227849167a`;
+- [x] the 42-commit delta is P9-only research/workflow/test material;
+- [x] no P7 manuscript, formal contracts, candidate content binding, AIJ submission package or P7 scientific-authority file changed;
+- [x] P9 may consume P7 charts but its bounded results are not evidence for P7 navigation efficacy/novelty.
+
+Status: `ANCESTRY_AUDIT_COMPLETE_AT_627ac5c__P7_SATURATION_CONVERGED__AWAIT_FINAL_CI`.
