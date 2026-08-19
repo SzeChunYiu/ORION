@@ -1,0 +1,17 @@
+{
+  "schema_version": "P4_X_INDEPENDENT_VERIFICATION_V1",
+  "subject_result": "P4_X_PROTECTED_RESULT_V1",
+  "verification_implementation_commit": "fde1078bb65651a52202bc15e062d2420b523abd",
+  "imports_original_execution_module": false,
+  "case_count": 400,
+  "canonical_rows_sha256": "8539ee33c0ae033951101cfe5982b38f8e6a2962d2cfd8c891f2973cafcc2b7b",
+  "counts_correct": {
+    "P4_X": 400,
+    "B1_GENERIC_AUTHORIZATION_PRODUCT": 250,
+    "B2_COMPENSATORY_PRODUCT": 50,
+    "B3_IDEAL_TYPED_PRODUCT": 400
+  },
+  "b3_p4x_decision_mismatches": 0,
+  "verification_state": "VERIFIED_BOUNDED_EXACT",
+  "authority_boundary": "Verification supports only the frozen exact-contract result; it does not establish deployed/verifier/provider generality."
+}
