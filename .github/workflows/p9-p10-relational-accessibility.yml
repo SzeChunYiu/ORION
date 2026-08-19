@@ -30,7 +30,7 @@ jobs:
         run: python research/extensions/p9-p10-structural-scaling/run_relational_accessibility_benchmark_v1_1.py
       - name: Require byte-identical replay
         run: cmp /tmp/result-first.json research/extensions/p9-p10-structural-scaling/results/RELATIONAL_ACCESSIBILITY_BENCHMARK_V1_1.json
-      - name: Require controlled primary terminal
+      - name: Print frozen outcome without relabeling
         run: |
           python - <<'PY'
           import json
@@ -42,12 +42,24 @@ jobs:
               'primary_at_n4096': d['primary_at_n4096'],
               'endpoint_checks': d['endpoint_checks'],
               'sample_thresholds': {k: v['sample_threshold_0_90'] for k, v in d['cells'].items()},
+              'controls_at_n4096': d['controls_at_n4096'],
           }, indent=2, sort_keys=True))
-          if d['terminal'] != 'RELATIONAL_ACCESSIBILITY_GAP_SUPPORTED_CONTROLLED_CLASS':
-              raise SystemExit(1)
           PY
-      - uses: actions/upload-artifact@v4
+      - name: Preserve frozen outcome artifact
+        uses: actions/upload-artifact@v4
         with:
           name: relational-accessibility-${{ github.sha }}
           path: research/extensions/p9-p10-structural-scaling/results/RELATIONAL_ACCESSIBILITY_BENCHMARK_V1_1.json
           if-no-files-found: error
+      - name: Enforce frozen positive terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('research/extensions/p9-p10-structural-scaling/results/RELATIONAL_ACCESSIBILITY_BENCHMARK_V1_1.json')
+          d = json.loads(p.read_text())
+          if d['terminal'] != 'RELATIONAL_ACCESSIBILITY_GAP_SUPPORTED_CONTROLLED_CLASS':
+              raise SystemExit(
+                  'frozen V1.1 terminal remains negative; preserve artifact and do not retune this protocol'
+              )
+          PY
