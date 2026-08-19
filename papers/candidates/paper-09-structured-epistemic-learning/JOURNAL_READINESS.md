@@ -2,7 +2,7 @@
 
 Target: **TMLR** after final result/novelty verification.
 
-Current terminal: `NOT_READY_PENDING_OFFICIAL_RECEIPTS`.
+Current terminal: `NOT_READY_PENDING_M1_A2_A4_AND_INTEGRATION`.
 
 A checked item requires an immutable repository artifact or a linked current external source. Manuscript prose does not satisfy a scientific gate by itself.
 
@@ -13,7 +13,7 @@ A checked item requires an immutable repository artifact or a linked current ext
 - [x] M0 architecture-neutral task/evaluator merged; pre-outcome leakage corrections preserved.
 - [x] A5 D0 explicit local-transport inference `BOUNDED_VERIFIED`; no neural escalation from that atom.
 - [ ] M1 official result merged and independently checked against pre-artifact verifier.
-- [ ] D1 official whole-domain transfer result merged and independently checked.
+- [ ] D1 official whole-domain transfer result **merged**; official workflow is already GREEN and coordinate-for-coordinate matched to the pre-artifact verifier with zero material discrepancies.
 - [ ] A2/A4 corrected executable hostile replay merged and independently checked.
 - [ ] no promoted result exceeds its exact information ceiling.
 - [ ] final result synthesis assigns every surviving residual to information, learning, computation, or transfer rather than generic `reasoning`.
@@ -24,13 +24,14 @@ A checked item requires an immutable repository artifact or a linked current ext
 - [x] A3 latent reasoning closed not-load-bearing for final P9.
 - [x] A5 explicit-inference D0 closed on bounded sufficiency.
 - [x] A6 data closed `EXACT_TRACE_DATA_ONLY`; no natural-paper pseudo-gold.
+- [x] A7 scaling/resource lane closed not-load-bearing because the bounded paper makes no asymptotic/sample/compute-scaling claim.
+- [x] A8 advanced training-law lane closed not-load-bearing because the bounded paper makes no RL/curriculum/meta-learning attribution claim.
 - [x] A9 binding deferred/not-load-bearing.
 - [x] A10 causal/interventional work deferred/not-load-bearing.
-- [ ] A1 representation receives final bounded disposition after M1/D1.
+- [x] application lane #536 closed `P9_APPLICATION_DESIGN_RULES_SUPPORTED`; real SRE/proof/workflow performance remains prospective and outside current results.
+- [ ] A1 representation receives final bounded disposition after M1/A2-A4 synthesis.
 - [ ] A2 mechanics receives final bounded disposition after corrected replay.
 - [ ] A4 failure/inquiry receives final bounded disposition after corrected replay.
-- [ ] A7 scaling/resource lane receives final bounded disposition from M1 data curves and explicit no-asymptotic claim.
-- [ ] A8 learning-law lane receives final scope disposition after M1 establishes whether a training-law residual exists.
 - [ ] #425 structural-learning parent closed on exact supported/narrowed claim.
 - [ ] #426 protocol parent closed on `P9.FinalScopeProtocol.v1` or successor.
 - [ ] #428 execution/model parent closed; if no neural model is justified, terminal states that explicitly rather than fabricating a checkpoint.
@@ -38,9 +39,11 @@ A checked item requires an immutable repository artifact or a linked current ext
 ## Verification/novelty gates
 
 - [x] pre-official independent verifier expectations frozen before M1/D1/A5/A2-A4 official artifacts.
-- [ ] official M1/D1/A2-A4 results compared to independent verifier; discrepancies resolved explicitly.
+- [x] D1 official result compared to independent verifier: zero material discrepancies; durable workflow receipt preserved pending merge authority.
+- [ ] official M1/A2-A4 results compared to independent verifier; discrepancies resolved explicitly.
 - [ ] P9-specific independent verification receipt added to shared #283.
-- [ ] fresh post-result primary-source novelty search completed.
+- [x] D1 post-result novelty pressure found serialization-friction prior work and struck the generic claim; two subsequent changed-vocabulary primary-source rounds produced no further material D1 claim/baseline change.
+- [ ] final exact-combination post-result novelty check after M1/A2-A4 terminals.
 - [ ] P9-specific bounded novelty disposition added to shared #287.
 - [ ] standalone-paper residual survives donor subtraction; otherwise convert this package to technical note/no-standalone terminal.
 
@@ -50,30 +53,32 @@ A checked item requires an immutable repository artifact or a linked current ext
 - [x] bounded claim ledger exists.
 - [x] result-independent manuscript core drafted.
 - [x] donor-subtraction bibliography started from primary sources.
-- [ ] every central prior-work claim cited in manuscript.
+- [x] explicit applications/negative-to-positive section distinguishes supported design implications from plausible applications and unrun pilots.
+- [x] post-D1 ownership map explicitly credits serialization friction and general relational/domain-generalization prior work.
+- [ ] every central prior-work claim cited in final manuscript body.
 - [ ] official result values inserted only from merged evidence summary.
 - [ ] no `PENDING_OFFICIAL_RECEIPT` markers remain.
 - [ ] abstract/introduction/results/conclusion agree on exact bounded claim.
-- [ ] historical P9 V1 evidence clearly separated.
-- [ ] explicit limitations include synthetic/procedural-only scope and deferred natural/causal/binding/LLM tasks.
-- [ ] all null/sufficiency/negative results retained prominently.
+- [x] historical P9 V1 evidence clearly separated by package identity/claim ledger.
+- [x] explicit limitations include synthetic/procedural-only scope and deferred natural/causal/binding/LLM tasks.
+- [x] all null/sufficiency/negative findings are retained as first-class design knowledge in the draft package.
 
 ## Reproducibility gates
 
 - [ ] fail-closed `build_evidence_summary.py` passes on final main.
 - [ ] exact source/result digests bound in evidence summary.
 - [ ] M1 selected configurations, corpus/split identities, seeds, feature versions and predictions archived.
-- [ ] D1 method/domain/split/corruption identities and predictions archived.
-- [ ] A2/A4/A5 exact source/hostile controls archived.
+- [x] D1 method/domain/split/corruption result identities and official workflow/artifact digests preserved in `evidence/D1_OFFICIAL_WORKFLOW_RECEIPT_V1.md`; merge binding still pending.
+- [ ] A2/A4 exact source/hostile controls archived; A5 already merged/verified.
 - [ ] one short command regenerates headline tables from immutable official artifacts.
 - [ ] dependency/environment statement frozen.
-- [ ] P10 contamination/exclusion statement frozen.
-- [ ] no neural checkpoint is claimed if no neural model is promoted.
+- [x] P10/P11 contamination/exclusion and P10 negative disposition frozen in `P10_P11_EXCLUSION_DISPOSITION_V1.md`.
+- [x] no neural checkpoint is claimed; the final scope explicitly allows neural escalation to terminate as unjustified.
 
 ## TMLR submission gates
 
-- [ ] current TMLR author/template instructions rechecked immediately before package freeze.
-- [ ] official TMLR LaTeX style applied.
+- [x] current TMLR author/template instructions checked on 2026-08-19 and frozen in `TMLR_VENUE_AUDIT_V1.md`; recheck again at final package freeze.
+- [ ] official TMLR LaTeX style applied after result text stabilizes.
 - [ ] anonymous/double-blind PDF audit passes.
 - [ ] code/data/reproducibility statement matches actual accessible artifacts.
 - [ ] bibliography metadata/DOIs verified.
@@ -87,7 +92,7 @@ A checked item requires an immutable repository artifact or a linked current ext
 
 - [ ] #391 reaches `P9_BOUNDED_STRUCTURAL_LEARNING_PEER_REVIEW_READY` or an explicit honest narrower/no-standalone terminal.
 - [ ] #393 P1-P11 dashboard updated with final P9 disposition.
-- [ ] P10 receives frozen P9 handoff without reopening P9 claims.
+- [x] refounded P10 structured reasoning closed negative independently; P9 no longer owes a neural checkpoint/protected P10 handoff. Historical content-bound evaluation remains P11.
 
 ## Terminal rule
 
