@@ -122,17 +122,21 @@
       "claim_id": "P2-C03",
       "region": "abstract",
       "manuscript_status": "ASSERTED",
-      "sentence": "A matched external ORION-vs-baseline Wide/Deep result is not archived in this revision, so the paper-level real-world superiority claim remains CANNOT_CHECK.",
-      "support_type": "NONE_YET",
+      "sentence": "A later matched OpenAIRE/Crossref Wide campaign failed its predeclared transport-validity gate; its observed zero paired difference is therefore CANNOT_CHECK, not a valid null or negative result.",
+      "support_type": "EXTERNAL_OFFICIAL",
       "strength": "CANNOT_CHECK",
       "numeric_bindings": [],
       "support_artifacts": [
         {
-          "artifact": "external_access_audit",
-          "key": "schema_version"
+          "artifact": "openaire_matched_result",
+          "key": "terminal"
+        },
+        {
+          "artifact": "openaire_matched_result",
+          "key": "validity.logical_provider_ok"
         }
       ],
-      "note": "Negative external status. No archived Wide/Deep system outcome exists."
+      "note": "Abstract-level status of the archived transport-invalid Wide campaign; its zero effect is not scientific evidence."
     },
     {
       "claim_id": "P2-C04",
@@ -154,17 +158,21 @@
       "claim_id": "P2-C05",
       "region": "conclusion",
       "manuscript_status": "ASSERTED",
-      "sentence": "The controlled evidence remains descriptive and synthetic, and the paper's matched external discovery/stopping claim remains open until denominator-valid Wide/Deep or other admissible external results are archived.",
-      "support_type": "NONE_YET",
+      "sentence": "The matched external superiority claim remains unpromoted: the archived OpenAIRE/Crossref Wide campaign failed its prospectively frozen provider-validity gate, so its observed zero paired difference remains CANNOT_CHECK rather than a valid null.",
+      "support_type": "EXTERNAL_OFFICIAL",
       "strength": "CANNOT_CHECK",
       "numeric_bindings": [],
       "support_artifacts": [
         {
-          "artifact": "external_access_audit",
-          "key": "schema_version"
+          "artifact": "openaire_matched_result",
+          "key": "terminal"
+        },
+        {
+          "artifact": "openaire_matched_result",
+          "key": "validity.logical_provider_ok"
         }
       ],
-      "note": "Conclusion holds the external claim open."
+      "note": "Conclusion preserves the external superiority claim as unpromoted after the invalid Wide campaign."
     },
     {
       "claim_id": "P2-C06",
@@ -1449,6 +1457,30 @@
       "note": "Limitations-region status sentence for the executed official Deep judge probe; execution and control outcome archived, matched comparison still unexecuted. No numeric slots in prose."
     },
     {
+      "claim_id": "P2-C15",
+      "region": "limitations",
+      "manuscript_status": "ASSERTED",
+      "sentence": "The separately archived OpenAIRE/Crossref Wide campaign failed its prospectively frozen provider-validity gate and remains CANNOT_CHECK; its observed zero paired effect is not a valid null or negative result.",
+      "support_type": "EXTERNAL_OFFICIAL",
+      "strength": "CANNOT_CHECK",
+      "numeric_bindings": [],
+      "support_artifacts": [
+        {
+          "artifact": "openaire_matched_result",
+          "key": "terminal"
+        },
+        {
+          "artifact": "openaire_matched_result",
+          "key": "validity.logical_provider_ok"
+        },
+        {
+          "artifact": "openaire_matched_receipt",
+          "key": "observed_failure.candidate_files_identical"
+        }
+      ],
+      "note": "Limitations-region interpretation guard for the transport-invalid Wide campaign."
+    },
+    {
       "claim_id": "P2-R44",
       "region": "results",
       "manuscript_status": "ASSERTED",
@@ -1456,15 +1488,36 @@
       "support_type": "EXTERNAL_DECLARED_DEVIATION",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
-        {"artifact": "openaire_identity_probe", "key": "outcome.tasks_with_structured_arxiv_pid"},
-        {"artifact": "openaire_identity_probe", "key": "outcome.selected_tasks"},
-        {"artifact": "openaire_identity_probe", "key": "outcome.http_ok"},
-        {"artifact": "openaire_identity_probe", "key": "outcome.selected_tasks"}
+        {
+          "artifact": "openaire_identity_probe",
+          "key": "outcome.tasks_with_structured_arxiv_pid"
+        },
+        {
+          "artifact": "openaire_identity_probe",
+          "key": "outcome.selected_tasks"
+        },
+        {
+          "artifact": "openaire_identity_probe",
+          "key": "outcome.http_ok"
+        },
+        {
+          "artifact": "openaire_identity_probe",
+          "key": "outcome.selected_tasks"
+        }
       ],
       "support_artifacts": [
-        {"artifact": "openaire_identity_probe", "key": "authority"},
-        {"artifact": "openaire_identity_probe", "key": "promotion"},
-        {"artifact": "openaire_identity_probe", "key": "independent_archive_check.performed"}
+        {
+          "artifact": "openaire_identity_probe",
+          "key": "authority"
+        },
+        {
+          "artifact": "openaire_identity_probe",
+          "key": "promotion"
+        },
+        {
+          "artifact": "openaire_identity_probe",
+          "key": "independent_archive_check.performed"
+        }
       ],
       "note": "Gold-blind structured-identity availability discriminator only; its own receipt forbids scientific promotion."
     },
@@ -1476,12 +1529,24 @@
       "support_type": "EXTERNAL_OFFICIAL",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
-        {"artifact": "openaire_matched_result", "key": "validity.candidate_contracts.wide_dual_backend_balanced.rows"},
-        {"artifact": "openaire_matched_receipt", "key": "observed_failure.logical_provider_calls_planned"}
+        {
+          "artifact": "openaire_matched_result",
+          "key": "validity.candidate_contracts.wide_dual_backend_balanced.rows"
+        },
+        {
+          "artifact": "openaire_matched_receipt",
+          "key": "observed_failure.logical_provider_calls_planned"
+        }
       ],
       "support_artifacts": [
-        {"artifact": "openaire_matched_result", "key": "validity.same_acquisition_capture_for_all_systems"},
-        {"artifact": "openaire_matched_result", "key": "validity.logical_request_count_exact"}
+        {
+          "artifact": "openaire_matched_result",
+          "key": "validity.same_acquisition_capture_for_all_systems"
+        },
+        {
+          "artifact": "openaire_matched_result",
+          "key": "validity.logical_request_count_exact"
+        }
       ],
       "note": "Campaign-execution fact only; subsequent validity failure prevents a scientific comparison."
     },
@@ -1493,13 +1558,28 @@
       "support_type": "EXTERNAL_OFFICIAL",
       "strength": "DESCRIPTIVE",
       "numeric_bindings": [
-        {"artifact": "openaire_matched_receipt", "key": "observed_failure.crossref_discovery_calls_ok"},
-        {"artifact": "openaire_matched_receipt", "key": "observed_failure.openaire_direct_calls_ok"},
-        {"artifact": "openaire_matched_receipt", "key": "observed_failure.failed_route_calls"}
+        {
+          "artifact": "openaire_matched_receipt",
+          "key": "observed_failure.crossref_discovery_calls_ok"
+        },
+        {
+          "artifact": "openaire_matched_receipt",
+          "key": "observed_failure.openaire_direct_calls_ok"
+        },
+        {
+          "artifact": "openaire_matched_receipt",
+          "key": "observed_failure.failed_route_calls"
+        }
       ],
       "support_artifacts": [
-        {"artifact": "openaire_matched_receipt", "key": "observed_failure.failed_route"},
-        {"artifact": "openaire_matched_receipt", "key": "observed_failure.failed_route_status"}
+        {
+          "artifact": "openaire_matched_receipt",
+          "key": "observed_failure.failed_route"
+        },
+        {
+          "artifact": "openaire_matched_receipt",
+          "key": "observed_failure.failed_route_status"
+        }
       ],
       "note": "Typed transport failure preserved from the shared capture; not evidence of scientific absence."
     },
@@ -1511,12 +1591,24 @@
       "support_type": "EXTERNAL_OFFICIAL",
       "strength": "CANNOT_CHECK",
       "numeric_bindings": [
-        {"artifact": "openaire_matched_result", "key": "validity.logical_provider_ok_fraction"},
-        {"artifact": "openaire_matched_freeze", "key": "validity.minimum_logical_provider_ok_fraction"}
+        {
+          "artifact": "openaire_matched_result",
+          "key": "validity.logical_provider_ok_fraction"
+        },
+        {
+          "artifact": "openaire_matched_freeze",
+          "key": "validity.minimum_logical_provider_ok_fraction"
+        }
       ],
       "support_artifacts": [
-        {"artifact": "openaire_matched_result", "key": "validity.logical_provider_ok"},
-        {"artifact": "openaire_matched_result", "key": "terminal"}
+        {
+          "artifact": "openaire_matched_result",
+          "key": "validity.logical_provider_ok"
+        },
+        {
+          "artifact": "openaire_matched_result",
+          "key": "terminal"
+        }
       ],
       "note": "The predeclared validity condition fails; the campaign terminal is CANNOT_CHECK."
     },
@@ -1528,11 +1620,20 @@
       "support_type": "EXTERNAL_OFFICIAL",
       "strength": "CANNOT_CHECK",
       "numeric_bindings": [
-        {"artifact": "openaire_matched_result", "key": "paired_distinct_question_iou.n"}
+        {
+          "artifact": "openaire_matched_result",
+          "key": "paired_distinct_question_iou.n"
+        }
       ],
       "support_artifacts": [
-        {"artifact": "openaire_matched_receipt", "key": "observed_failure.candidate_files_identical"},
-        {"artifact": "openaire_matched_result", "key": "paired_distinct_question_iou.ties"}
+        {
+          "artifact": "openaire_matched_receipt",
+          "key": "observed_failure.candidate_files_identical"
+        },
+        {
+          "artifact": "openaire_matched_result",
+          "key": "paired_distinct_question_iou.ties"
+        }
       ],
       "note": "The zero paired effect is a consequence of the invalid capture and may not be interpreted as a valid null result."
     }
