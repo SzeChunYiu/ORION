@@ -1,0 +1,56 @@
+name: t8-regenerate-cannot-check-inventory
+
+on:
+  push:
+    branches:
+      - shadow/chatgpt-self-orion-v3-t8-2026-08-18
+    paths:
+      - research/development/t8-regenerate-inventory.trigger
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: shadow/chatgpt-self-orion-v3-t8-2026-08-18
+          fetch-depth: 0
+      - name: Regenerate derived inventory and exact classified-site sentinel
+        run: |
+          set -euo pipefail
+          python research/development/cannot_check_inventory.py --write
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          inventory = json.loads(Path('research/development/cannot_check_inventory.json').read_text())
+          classified = sum(v for k, v in inventory['classification'].items() if k != 'UNCLASSIFIED')
+          path = Path('tests/unit/development/test_cannot_check_inventory.py')
+          text = path.read_text()
+          old = 'assert sum(classified.values()) == 144, classified'
+          if old not in text:
+              raise SystemExit('expected classified-site sentinel not found')
+          text = text.replace(old, f'assert sum(classified.values()) == {classified}, classified')
+          text = text.replace(
+              'P4\'s new\n    method-authority layer adds three reviewed classified obligations (two custody,\n    one declaration), so the exact ratchet is now 144.',
+              'P4\'s method-authority layer and the T8 prospective preflight now add reviewed classified\n    obligations, so the exact ratchet is regenerated deliberately with the inventory.'
+          )
+          path.write_text(text)
+          print('classified_site_sentinel=', classified)
+          PY
+      - name: Verify inventory
+        run: |
+          python research/development/cannot_check_inventory.py --check
+          pytest -q tests/unit/development/test_cannot_check_inventory.py
+      - name: Commit derived files
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add research/development/cannot_check_inventory.json tests/unit/development/test_cannot_check_inventory.py
+          git diff --cached --quiet && exit 0
+          git commit -m 'chore: regenerate cannot-check inventory for T8'
+          git push origin HEAD:shadow/chatgpt-self-orion-v3-t8-2026-08-18
