@@ -58,12 +58,14 @@ def model_specs() -> tuple[D1ModelSpec, ...]:
 def _estimator(spec: D1ModelSpec) -> Pipeline:
     params = spec.as_dict()
     if spec.family == "logistic":
+        # Modern scikit-learn infers multiclass handling from the target.  Do not
+        # pin the removed `multi_class` constructor argument: that is environment
+        # plumbing, not part of the scientific protocol.
         model = LogisticRegression(
             C=float(params["C"]),
             max_iter=2000,
             random_state=2711,
             solver="liblinear",
-            multi_class="ovr",
         )
     elif spec.family == "tree":
         model = DecisionTreeClassifier(
