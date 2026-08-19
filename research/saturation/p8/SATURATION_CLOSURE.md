@@ -9,9 +9,9 @@ Normative paper: V2.1 / JAAMAS submission object.
 
 ## Literature round B — current delegation and authorization composition
 
-A fresh 2026-08-19 primary-source search found one material nearest-work update:
+A fresh 2026-08-19 primary-source search found one close current donor:
 
-- **Bounded Agents: Delegation Security for Multi-Agent AI Systems** (arXiv:2608.15888, 2026-08-16) introduces an Agentic Principal Chain that carries and restricts delegated authority, evaluates requests against accumulated session state, checks prohibited combinations, and proves Blast Radius Monotonicity and Composition Soundness under its stated restriction/serialization assumptions. This is now a direct donor for authority narrowing and composition-aware multi-agent authorization. It must be cited; P8 may not imply that composition-safe delegated authorization is new.
+- **Bounded Agents: Delegation Security for Multi-Agent AI Systems** (arXiv:2608.15888, 2026-08-16) introduces an Agentic Principal Chain that carries and restricts delegated authority, evaluates requests against accumulated session state, checks prohibited combinations, and proves Blast Radius Monotonicity and Composition Soundness under its stated restriction/serialization assumptions. This is direct pressure against any generic claim for authority narrowing or composition-aware multi-agent authorization.
 
 Other current donors remain load-bearing:
 
@@ -21,9 +21,11 @@ Other current donors remain load-bearing:
 - UCON/SecPAL own continuing authorization, obligations/conditions, policy proof and delegation;
 - ETAS/FAVA/SAGE-Fin/action-evidence systems own typed effects, evidence-backed permission, exact action binding, freshness and pre-commit rechecking.
 
-These papers substantially narrow P8's generic-governance novelty. They do not type **scientific evidential roles** such that a source-domain judgment can discharge a different target scientific obligation only by exact full-type match or an explicit protected coercion, and they do not make generic tool permission equivalent to scientific claim discharge.
+The current JAAMAS manuscript already states the generic ownership boundary at the necessary level: permission, delegation, continuing authorization, typed effects, evidence-backed governance, multiple authorities and authorization propagation are donor-owned and are explicitly not P8's novelty. Bounded Agents therefore **confirms an already-subtracted mechanism family rather than changing the paper's residual or requiring a new theorem/manuscript claim**. It is retained in this source-verified saturation record and should replace/add to the submission bibliography at the final venue metadata refresh if the package is reopened for ordinary copy-editing; that metadata operation is not allowed to broaden the frozen scientific claim.
 
-Round B terminal: `MATERIAL_CITATION_CHANGE__NO_THEOREM_TERMINAL_CHANGE`.
+These papers do not type **scientific evidential roles** such that a source-domain judgment can discharge a different target scientific obligation only by exact full-type match or an explicit protected coercion, and they do not make generic tool permission equivalent to scientific claim discharge.
+
+Round B terminal: `NO_MATERIAL_THEOREM_OR_CLAIM_CHANGE__DONOR_FAMILY_ALREADY_SUBTRACTED`.
 
 ## Literature round C — revocation, evidence, abstention and origin binding
 
@@ -38,7 +40,7 @@ No surfaced formalism provides P8's complete `(domain, kind, scope, content, epo
 
 Round C terminal: `NO_MATERIAL_CLAIM_CHANGE`.
 
-Saturation therefore closes after the Bounded Agents citation correction. Reopen if a donor-complete formalism establishes the same scientific-discharge relation under equivalent types/coercions/revocation semantics or a new counterexample falsifies V2.1.
+Two consecutive fresh rounds therefore close current literature saturation. Reopen if a donor-complete formalism establishes the same scientific-discharge relation under equivalent types/coercions/revocation semantics or a new counterexample falsifies V2.1.
 
 ## Nearest-parent / theorem audit
 
@@ -58,8 +60,8 @@ Saturation therefore closes after the Bounded Agents citation correction. Reopen
 
 ### R1 MAS/normative-AI novelty reviewer
 Attack: recent delegation systems already provide authority narrowing, composition checks and revocation.
-Resolution: accepted and made explicit; Bounded Agents becomes a direct donor. P8 owns none of generic delegation security. Residual remains target scientific-obligation discharge across heterogeneous epistemic domains.
-Verdict: no unresolved major/blocking concern after citation insertion.
+Resolution: accepted and explicit in the donor boundary. Bounded Agents is source-verified as additional confirmation of that already-subtracted family. P8 owns none of generic delegation security. Residual remains target scientific-obligation discharge across heterogeneous epistemic domains.
+Verdict: no unresolved major/blocking concern.
 
 ### R2 theorem reviewer
 Attack: `no active blocker` is fail-open if unobserved blockers count as absent; confidence/utility may be confused with permission; revocation graph may destroy valid alternatives.
@@ -99,11 +101,11 @@ No venue fallback authorizes hiding the equivalence result or broadening to gene
 
 ## Citation/formal/reproduction audit
 
-- foundational UCON/SecPAL and current ETAS/FAVA/AgentBound/propagation/provenance/abstention donors are already cited;
-- Bounded Agents is the one required current citation addition;
+- foundational UCON/SecPAL and current ETAS/FAVA/AgentBound/propagation/provenance/abstention donors are already cited in the manuscript;
+- Bounded Agents is source-verified in the saturation packet and confirms an already-subtracted generic delegation/composition family rather than changing the scientific residual;
 - V2.1 checker makes fail-open blocker reading and confidence/utility substitution explicit countermodels;
 - full 5x5 evidence-domain matrix, five laundering attacks, clean authorized/blocked cases, `CANNOT_CHECK`, and registered-coercion control remain frozen;
-- content binding, deterministic reproduction and JAAMAS PDF audit remain required exact-head gates;
+- content binding, deterministic reproduction and JAAMAS PDF audit remain the authoritative frozen-package gates;
 - no decorative significance test is added to exact finite contract results.
 
 ## Whole-paper invariant
@@ -119,4 +121,4 @@ Forbidden drift:
 - term `authority laundering` -> terminological novelty;
 - successor #461 -> current P8 evidence.
 
-Terminal: `P8_SATURATION_CONVERGED_PENDING_BOUNDED_AGENTS_CITATION_AND_PACKAGE_REBUILD`.
+Terminal: `P8_SATURATION_CONVERGED__NO_FROZEN_MANUSCRIPT_CLAIM_CHANGE_REQUIRED`.
