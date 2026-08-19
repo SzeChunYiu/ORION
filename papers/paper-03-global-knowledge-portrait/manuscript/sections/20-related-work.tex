@@ -85,6 +85,19 @@ attribution coordinates, and that a mapping system should preserve those
 reasons rather than convert every difference into one generic opposition or
 contradiction label.
 
+\subsection{Scientific-variable semantics}
+
+The I-ADOPT interoperability framework~\cite{iadopt2021} provides a
+community-developed semantic decomposition for machine-readable observable and
+scientific-variable descriptions. A current Semantic Web Journal benchmark
+builds an expert-annotated corpus of more than one hundred scientific variables
+and reports that large language models still struggle to construct those
+structured representations accurately~\cite{iadoptbench2026}. Scientific-
+variable semantics and variable-to-knowledge-graph construction are therefore
+explicit donor territory. P3 neither invents those components nor evaluates
+raw variable extraction; it consumes already-structured source-local
+projections and tests the downstream merge-versus-obstruction decision.
+
 \subsection{Measurement equivalence and construct validity}
 
 Measurement-equivalence and replication literatures have long established
@@ -138,6 +151,7 @@ scientific projections are already structured.
 \midrule
 Source-grounded structured KB & MUSE, Discovery Engine & Coordinate-governed mapping of source-local projections \\
 Expert scientific schemas & SciSchema.org & Mapping may remain obstructed rather than globally canonical \\
+Scientific-variable semantics & I-ADOPT & Downstream merge/obstruction after structured projection \\
 Schema induction/fusion & SCOPE/SCION & Conditional \textsc{glue} with explicit obstruction \\
 Provenance-aware integration & Executable Schema Contracts & Preserve non-preserved scientific coordinates \\
 Scientific IE & SciER & Mapping semantics downstream of extraction \\
