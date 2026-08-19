@@ -62,15 +62,68 @@ def _historical_bag_features(sequence: list[str]) -> dict[str, object]:
     return features
 
 
+def _path(token: str) -> str:
+    if ":LEN=" in token:
+        return token.split(":LEN=", 1)[0]
+    return token.split("=", 1)[0]
+
+
+def _block_key(token: str) -> str:
+    path = _path(token)
+    if path == "root.schema":
+        return "schema"
+    for side in ("left", "right"):
+        side_prefix = f"root.{side}."
+        if not path.startswith(side_prefix):
+            continue
+        remainder = path[len(side_prefix) :]
+        if remainder.startswith("unknown_coordinates"):
+            return f"{side}:unknown_coordinates"
+        for coordinate in COMPARISON_COORDINATES:
+            if remainder == coordinate or remainder.startswith(f"{coordinate}["):
+                return f"{side}:{coordinate}"
+    raise AssertionError(f"unclassified serialized token: {token}")
+
+
+def _reorder_whole_coordinate_blocks(sequence: list[str]) -> list[str]:
+    blocks: dict[str, list[str]] = {}
+    order: list[str] = []
+    for token in sequence:
+        key = _block_key(token)
+        if key not in blocks:
+            blocks[key] = []
+            order.append(key)
+        blocks[key].append(token)
+    out: list[str] = []
+    for key in reversed(order):
+        out.extend(blocks[key])
+    return out
+
+
 def test_adapter_core_accepts_only_serialized_sequence():
     signature = inspect.signature(serialized_generic_binding_features)
     assert tuple(signature.parameters) == ("sequence",)
 
 
-def test_token_order_permutation_does_not_change_binding_features():
+def test_whole_coordinate_block_reordering_does_not_change_binding_features():
     dataset = generate_d1_dataset(train_instances_per_base_pair=2, dev_instances_per_base_pair=1, test_instances_per_base_pair=1)
     sequence = _sequence(dataset.train[1])
-    assert serialized_generic_binding_features(sequence) == serialized_generic_binding_features(list(reversed(sequence)))
+    reordered = _reorder_whole_coordinate_blocks(sequence)
+
+    assert reordered != sequence
+    assert serialized_generic_binding_features(sequence) == serialized_generic_binding_features(reordered)
+
+
+def test_directed_dependency_child_order_is_semantic_and_changes_equality():
+    dataset = generate_d1_dataset(train_instances_per_base_pair=16, dev_instances_per_base_pair=1, test_instances_per_base_pair=1)
+    dependency_mutation = next(
+        row for row in dataset.train if row.mutation_coordinates == ("dependencies",)
+    )
+    features = serialized_generic_binding_features(_sequence(dependency_mutation))
+
+    assert features["dependencies:unknown"] is False
+    assert features["dependencies:equal"] is False
+    assert serialized_exact_generic_comparator(_sequence(dependency_mutation)) == D1Label.OBSTRUCTION.value
 
 
 def test_consistent_semantic_value_reminting_preserves_generic_equality_features():
@@ -140,12 +193,7 @@ def test_binding_features_do_not_depend_on_instance_label_or_mutation_metadata()
 
 
 def test_generic_comparison_is_value_remint_invariant_while_historical_bag_is_not():
-    """V1.1 replacement for the false information-collision requirement.
-
-    The historical bag retains exact domain-specific token identities, whereas
-    F1 compares paired values generically.  This tests inductive/access bias, not
-    a claim that the serialization has lost semantic information.
-    """
+    """V1.1 correction: diagnose inductive/access bias, not information loss."""
 
     dataset = generate_d1_dataset(train_instances_per_base_pair=2, dev_instances_per_base_pair=2, test_instances_per_base_pair=1)
     aligned = next(row for row in dataset.dev if row.label is D1Label.ALIGNED)
