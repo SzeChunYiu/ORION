@@ -1,0 +1,47 @@
+name: repository-convergence-repair
+
+on:
+  push:
+    branches:
+      - repair/p2x-claim-literature-integrity-20260819
+    paths:
+      - '.github/workflows/repository-convergence-repair.yml'
+      - 'papers/candidates/**'
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate-candidate-bindings:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install candidate dependencies
+        run: python -m pip install -e '.[dev,candidates]'
+      - name: Regenerate P6-P8 content bindings from current branch bytes
+        run: python papers/candidates/checkers/check_content_binding_v1.py --write
+      - name: Verify regenerated bindings
+        run: python papers/candidates/checkers/check_content_binding_v1.py --check
+      - name: Commit only derived binding artifacts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json \
+            papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/SHA256SUMS \
+            papers/candidates/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json \
+            papers/candidates/paper-07-epistemic-navigation-open-worlds/SHA256SUMS \
+            papers/candidates/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json \
+            papers/candidates/paper-08-epistemic-authority-autonomous-science/SHA256SUMS
+          if git diff --cached --quiet; then
+            echo 'Bindings already current.'
+            exit 0
+          fi
+          git commit -m 'chore(candidates): regenerate P6-P8 content bindings'
+          git push origin HEAD:repair/p2x-claim-literature-integrity-20260819
