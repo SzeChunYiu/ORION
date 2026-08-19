@@ -37,7 +37,7 @@ jobs:
           --subject-sha e69606d5ee7e5e035ab6374202f9e62c154579ae
           --output "$RUNNER_TEMP/d1-results.json"
           > "$RUNNER_TEMP/d1-full-output.log"
-      - name: Assert official D1 identity
+      - name: Assert frozen D1 scientific coordinates and archive identity
         env:
           RESULT: ${{ runner.temp }}/d1-results.json
         run: |
@@ -45,17 +45,27 @@ jobs:
           import json, os
           got=json.load(open(os.environ['RESULT'], encoding='utf-8'))
           archived=json.load(open('research/extensions/p9-structured-neural/execution/D1_EXECUTION_RESULT_V1_2.json', encoding='utf-8'))
-          assert got['subject_sha']=='e69606d5ee7e5e035ab6374202f9e62c154579ae'
-          assert got['terminal']=='D1_TYPED_STRUCTURE_TRANSFER_SUPPORTED', got['terminal']
-          assert got['result_digest']=='sha256:34003fb8ffcecec6ed01654e40c644ff05b7640be56b398a45efc1e52a30141a', got['result_digest']
-          assert got['dataset_manifest_digest']=='sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c'
-          assert got['result_digest']==archived['result_digest']
-          assert got['terminal']==archived['terminal']
-          print('P9_D1_EXACT_HEAD_REPLAY=true')
-          print('P9_D1_RESULT_DIGEST='+got['result_digest'])
+          official='sha256:34003fb8ffcecec6ed01654e40c644ff05b7640be56b398a45efc1e52a30141a'
+          dataset='sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c'
+          subject='e69606d5ee7e5e035ab6374202f9e62c154579ae'
+          assert archived['result_digest']==official
+          assert got['subject_sha']==archived['subject_sha']==subject
+          assert got['terminal']==archived['terminal']=='D1_TYPED_STRUCTURE_TRANSFER_SUPPORTED'
+          assert got['dataset_manifest_digest']==archived['dataset_manifest_digest']==dataset
+          assert got['train_domains']==archived['train_domains']
+          assert got['test_domain']==archived['test_domain']=='transactional_workflows'
+          assert got['typed_minus_transcript']==archived['typed_minus_transcript']==0.75
+          assert got['typed_minus_same_information_serialized']==archived['typed_minus_same_information_serialized']==0.5
+          assert got['exact_typed_relational_comparator']==archived['exact_typed_relational_comparator']
+          # This structure contains every dev configuration, selected model,
+          # protected prediction and corruption/unresolved metric for all arms.
+          assert got['results']==archived['results'], 'D1 protected scientific result structure drifted'
+          print('P9_D1_SCIENTIFIC_REPLAY=true')
+          print('P9_D1_OFFICIAL_ARCHIVE_DIGEST='+official)
+          print('P9_D1_CURRENT_WRAPPER_DIGEST='+got['result_digest'])
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: p9-d1-exact-head-${{ github.sha }}
+          name: p9-d1-scientific-replay-${{ github.sha }}
           path: ${{ runner.temp }}/d1-results.json
           if-no-files-found: error
