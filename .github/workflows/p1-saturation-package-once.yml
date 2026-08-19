@@ -1,0 +1,74 @@
+name: p1-saturation-package-once
+
+on:
+  push:
+    branches: [saturation/p1-nature-skills-round-a-2026-08-19]
+    paths: ['.github/workflows/p1-saturation-package-once.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: saturation/p1-nature-skills-round-a-2026-08-19
+          fetch-depth: 0
+      - name: Run P1 claim/result guards
+        run: |
+          python papers/paper-01-recursive-epistemic-reconstruction/scripts/check_manuscript_results.py
+          python papers/paper-01-recursive-epistemic-reconstruction/scripts/make_mechanical_arm_case_table.py --check
+      - name: Install TeX/PDF tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-pictures poppler-utils
+      - name: Compile exact saturation manuscript
+        working-directory: papers/paper-01-recursive-epistemic-reconstruction/manuscript
+        run: |
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          if grep -Eqi 'undefined citations|undefined references|Citation .* undefined|Reference .* undefined|There were undefined' main.log; then exit 1; fi
+          pdfinfo main.pdf > P1_SATURATION_PDFINFO.txt
+      - name: Rebind journal package and validate
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          cp papers/paper-01-recursive-epistemic-reconstruction/manuscript/main.pdf papers/paper-01-recursive-epistemic-reconstruction/journal_package/manuscript.pdf
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          root=Path('papers/paper-01-recursive-epistemic-reconstruction')
+          p=root/'journal_package/MANIFEST.json'; m=json.loads(p.read_text())
+          m['audit_subject_revision']=os.environ['SOURCE_SHA']; m['audit_date']='2026-08-19'
+          p.write_text(json.dumps(m,indent=2)+'\n')
+          (root/'journal_package/CLAIM_PDF_AUDIT.md').write_text(f'''# ORION-P1 saturation claim / PDF audit\n\nAudit source: `{os.environ['SOURCE_SHA']}`.\n\n- Powered primary and disjoint replication claim bindings passed before compilation.\n- The canonical manuscript was rebuilt after the 2026-08-19 literature/ownership saturation edits.\n- Citations and cross-references converged without unresolved-warning gate failure.\n- Historical V1 remains NOT_SUPPORTED/UNDERPOWERED and is not pooled with v2.2.4.\n- The manuscript remains bounded to the credential-free mechanical mutation-necessity family; no model-general/open-ended superiority is asserted.\n- Full rendered-page visual inspection is recorded in the saturation audit before issue closure.\n''')
+          PY
+          python - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0,'research/paper-programme-v1/journal_package')
+          import check_journal_package as c
+          root=Path('papers/paper-01-recursive-epistemic-reconstruction')
+          m=c.load_manifest(root/'journal_package')
+          c.write_sha256sums(root,c.hashed_paths(m))
+          PY
+          python research/paper-programme-v1/journal_package/check_journal_package.py --root .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p1-saturation-review-${{ github.sha }}
+          path: |
+            papers/paper-01-recursive-epistemic-reconstruction/manuscript/main.pdf
+            papers/paper-01-recursive-epistemic-reconstruction/manuscript/main.log
+            papers/paper-01-recursive-epistemic-reconstruction/manuscript/P1_SATURATION_PDFINFO.txt
+            papers/paper-01-recursive-epistemic-reconstruction/journal_package/manuscript.pdf
+          if-no-files-found: error
+      - name: Commit rebuilt package
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add papers/paper-01-recursive-epistemic-reconstruction/journal_package/MANIFEST.json papers/paper-01-recursive-epistemic-reconstruction/journal_package/CLAIM_PDF_AUDIT.md papers/paper-01-recursive-epistemic-reconstruction/journal_package/manuscript.pdf papers/paper-01-recursive-epistemic-reconstruction/journal_package/SHA256SUMS
+          git diff --cached --quiet && exit 0
+          git commit -m 'papers(p1): rebind saturation manuscript package'
+          git push origin HEAD:saturation/p1-nature-skills-round-a-2026-08-19
