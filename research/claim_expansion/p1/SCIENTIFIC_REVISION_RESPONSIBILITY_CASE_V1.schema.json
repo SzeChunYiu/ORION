@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion://claim-expansion/p1/ScientificRevisionResponsibilityCase.v1",
+  "title": "ScientificRevisionResponsibilityCase.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "domain",
+    "archetype",
+    "candidate_visible",
+    "protected_gold",
+    "revision_classes",
+    "invasiveness_edges",
+    "registered_narrower_alternatives",
+    "protected_invariants",
+    "dependency_edges",
+    "budget"
+  ],
+  "properties": {
+    "case_id": {"type": "string", "minLength": 1},
+    "domain": {
+      "enum": [
+        "SOFTWARE_DEBUGGING",
+        "SCIENTIFIC_RETRIEVAL",
+        "SEMANTIC_INTEGRATION",
+        "EVIDENCE_VERIFICATION",
+        "MODEL_EXPERIMENT_DESIGN"
+      ]
+    },
+    "archetype": {
+      "enum": [
+        "NARROW_REPAIR_SUFFICIENT",
+        "HIGH_LEVEL_REVISION_NECESSARY",
+        "INCOMPARABLE_MINIMA",
+        "DIAGNOSIS_NOT_PRESCRIPTION",
+        "EXTERNAL_EVALUATOR_MEASUREMENT_RESPONSIBILITY",
+        "LOCAL_SUCCESS_PRESERVATION_FAILURE",
+        "REOPEN_SCOPE_MISMATCH",
+        "CLEAN_OR_INSUFFICIENT_EVIDENCE_CONTROL"
+      ]
+    },
+    "generator_id": {"type": "string"},
+    "seed_commitment": {"type": "string"},
+    "candidate_visible": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "anomaly",
+        "evidence",
+        "unknown_or_unavailable",
+        "candidate_revisions",
+        "revision_proposals",
+        "discriminator_status"
+      ],
+      "properties": {
+        "anomaly": {"type": "string"},
+        "trajectory": {"type": "array", "items": {"type": "string"}},
+        "evidence": {"type": "array", "items": {"type": "string"}},
+        "unknown_or_unavailable": {"type": "array", "items": {"type": "string"}},
+        "candidate_revisions": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "discriminator_status": {"enum": ["NOT_NEEDED", "AVAILABLE", "UNAVAILABLE"]},
+        "revision_proposals": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "revision_id",
+              "candidate_class",
+              "proposed_reopen_set",
+              "declared_protected_invariants"
+            ],
+            "properties": {
+              "revision_id": {"type": "string", "minLength": 1},
+              "candidate_class": {"type": "string", "minLength": 1},
+              "proposed_reopen_set": {"type": "array", "items": {"type": "string"}},
+              "declared_protected_invariants": {"type": "array", "items": {"type": "string"}}
+            }
+          }
+        }
+      }
+    },
+    "protected_gold": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "causal_responsibility_set",
+        "best_intervention_set",
+        "scientifically_justified_revision_set",
+        "revision_evaluations",
+        "ambiguity_state",
+        "correct_terminal",
+        "exact_reopen_set",
+        "provenance_commitment"
+      ],
+      "properties": {
+        "causal_responsibility_set": {"type": "array", "items": {"type": "string"}},
+        "best_intervention_set": {"type": "array", "items": {"type": "string"}},
+        "scientifically_justified_revision_set": {"type": "array", "items": {"type": "string"}},
+        "revision_evaluations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "revision_id",
+              "candidate_class",
+              "restores_target",
+              "preserves_invariants",
+              "observed_reopen_set",
+              "authorized"
+            ],
+            "properties": {
+              "revision_id": {"type": "string", "minLength": 1},
+              "candidate_class": {"type": "string", "minLength": 1},
+              "restores_target": {"type": "boolean"},
+              "preserves_invariants": {"type": "boolean"},
+              "observed_reopen_set": {"type": "array", "items": {"type": "string"}},
+              "authorized": {"type": "boolean"}
+            }
+          }
+        },
+        "ambiguity_state": {"enum": ["UNIQUE_MINIMUM", "INCOMPARABLE_MINIMA", "INSUFFICIENT_EVIDENCE", "NO_REVISION_NEEDED"]},
+        "correct_terminal": {"enum": ["REPAIR_LOCAL", "REVISE_HIGH_LEVEL", "REQUEST_DISCRIMINATOR", "UNRESOLVED", "CANNOT_CHECK", "NO_CHANGE"]},
+        "exact_reopen_set": {"type": "array", "items": {"type": "string"}},
+        "provenance_commitment": {"type": "string", "minLength": 1}
+      }
+    },
+    "revision_classes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "EVIDENCE_REVISION",
+          "EXPERIMENT_MEASUREMENT_REVISION",
+          "PARAMETER_REVISION",
+          "MODEL_SELECTION_REVISION",
+          "MODEL_CLASS_EXPANSION",
+          "REPRESENTATION_REGIME_REVISION",
+          "QUESTION_OBJECTIVE_REVISION",
+          "METHOD_BASIS_REVISION",
+          "EXECUTION_ENVIRONMENT_REVISION",
+          "EVALUATOR_AUTHORITY_REVISION"
+        ]
+      }
+    },
+    "invasiveness_edges": {
+      "description": "Strict claim-relative less-invasive edges [narrower, broader]. The relation need not be total.",
+      "type": "array",
+      "items": {
+        "type": "array",
+        "prefixItems": [{"type": "string"}, {"type": "string"}],
+        "minItems": 2,
+        "maxItems": 2
+      }
+    },
+    "registered_narrower_alternatives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["revision_id", "candidate_class", "counterfactual_test_id", "candidate_visible_status"],
+        "properties": {
+          "revision_id": {"type": "string"},
+          "candidate_class": {"type": "string"},
+          "counterfactual_test_id": {"type": "string"},
+          "candidate_visible_status": {"enum": ["UNTESTED", "FAILED", "SUCCEEDED", "CANNOT_CHECK"]}
+        }
+      }
+    },
+    "protected_invariants": {"type": "array", "items": {"type": "string"}},
+    "dependency_edges": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "prefixItems": [{"type": "string"}, {"type": "string"}],
+        "minItems": 2,
+        "maxItems": 2
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_interventions", "max_tool_calls"],
+      "properties": {
+        "max_interventions": {"type": "integer", "minimum": 0},
+        "max_tool_calls": {"type": "integer", "minimum": 0},
+        "notes": {"type": "string"}
+      }
+    }
+  }
+}
