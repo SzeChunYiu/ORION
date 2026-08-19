@@ -144,12 +144,16 @@ def assert_certificate_current_after_assimilation(
     certificate: ScientificNoveltyCertificate,
     assimilation: MechanismAssimilationReceipt,
 ) -> AssimilationNoveltyImpactReceipt:
-    """Return the impact receipt or fail when the certificate is no longer current."""
+    """Return the impact receipt or fail whenever effective novelty is no longer current."""
 
     receipt = assess_assimilation_novelty_impact(certificate, assimilation)
     if receipt.state is AssimilationNoveltyImpactState.REASSESS_REQUIRED:
         raise ValueError(
             "material donor absorption invalidated the current novelty certificate; re-assessment required"
+        )
+    if receipt.state is AssimilationNoveltyImpactState.CANNOT_CHECK:
+        raise ValueError(
+            "donor assimilation is unsettled; current novelty certificate cannot be relied on"
         )
     return receipt
 
