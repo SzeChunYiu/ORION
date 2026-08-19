@@ -33,7 +33,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   manuscript:
@@ -41,8 +41,6 @@ jobs:
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - uses: actions/setup-python@v5
         with:
@@ -180,34 +178,6 @@ jobs:
             exit 1
           fi
           pdfinfo main.pdf | tee /tmp/p3-pdfinfo.txt
-
-      - name: Refresh tracked P3 PDF package and restore audit workflow
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        env:
-          HEAD_BRANCH: ${{ github.head_ref }}
-        run: |
-          set -euo pipefail
-          paper='papers/paper-03-global-knowledge-portrait'
-          cp "$paper/manuscript/main.pdf" "$paper/journal_package/manuscript.pdf"
-          python - <<'PY'
-          from hashlib import sha256
-          from pathlib import Path
-          paper = Path('papers/paper-03-global-knowledge-portrait')
-          target = paper / 'journal_package' / 'manuscript.pdf'
-          digest = sha256(target.read_bytes()).hexdigest()
-          sums = paper / 'journal_package' / 'SHA256SUMS'
-          lines = sums.read_text(encoding='utf-8').splitlines()
-          suffix = '  journal_package/manuscript.pdf'
-          lines = [f'{digest}{suffix}' if line.endswith(suffix) else line for line in lines]
-          sums.write_text('\n'.join(lines) + '\n', encoding='utf-8')
-          print('P3_TRACKED_PDF_SHA256=' + digest)
-          PY
-          git checkout 5d84e4dc9a28719764b160e65cdc29ca92ab8386 -- .github/workflows/p3-manuscript-audit.yml
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add "$paper/journal_package/manuscript.pdf" "$paper/journal_package/SHA256SUMS" .github/workflows/p3-manuscript-audit.yml
-          git commit -m 'papers: sync P3 journal PDF to refined manuscript'
-          git push origin "HEAD:${HEAD_BRANCH}"
 
       - name: Verify tracked PDF matches rebuilt manuscript content
         run: |
