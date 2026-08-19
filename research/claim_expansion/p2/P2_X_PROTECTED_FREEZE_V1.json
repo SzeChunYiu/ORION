@@ -1,0 +1,46 @@
+{
+  "schema_version": "P2_X_PROTECTED_FREEZE_V1",
+  "date": "2026-08-19",
+  "base_protocol_merge": "9c43639fba5c845010f573aaec3a31e9d6d55062",
+  "namespace": "P2_X_PROTECTED_V1_2026-08-19",
+  "result_authority": "CANNOT_CHECK",
+  "outcome_access_authorized": false,
+  "identity_generation": {
+    "domain_order": [
+      "SCIENTIFIC_LITERATURE",
+      "WEB_API_EVIDENCE",
+      "DATASET_REGISTRY",
+      "CODE_ARTIFACT_REPOSITORY",
+      "EXPERIMENT_MEASUREMENT_ROUTE"
+    ],
+    "archetype_order": [
+      "ALL_OBLIGATIONS_DISCHARGED",
+      "AVAILABLE_ROUTE_STOPS_OTHER_OPEN",
+      "MATERIAL_ROUTE_UNAVAILABLE",
+      "MATERIAL_ROUTE_CENSORED",
+      "PROVIDER_INVALID",
+      "DUPLICATE_ROUTE_COVERAGE",
+      "ACQUIRED_NOT_QUESTION_PROCESSED",
+      "LOW_UTILITY_HARD_ROUTE_OPEN"
+    ],
+    "variant_range_inclusive": [1, 10],
+    "case_id_format": "P2X-PROTECTED-{DOMAIN}-{ARCHETYPE}-V{VARIANT:02d}",
+    "seed_formula": "sha256(namespace + ':' + case_id)",
+    "pair_canonicalization": "domain_order then archetype_order then ascending variant; each line case_id|seed_commitment",
+    "all_400_pairs_sha256": "48ceb3b97d3db97f7a75557e6cf10f723bbae86f53baab0dd43d6121855b1901",
+    "first_case_id": "P2X-PROTECTED-SCIENTIFIC_LITERATURE-ALL_OBLIGATIONS_DISCHARGED-V01",
+    "first_seed_commitment": "13afcc29c1ccd9ba1486c20bbdf5135a4da68a89aa96a87e06c640c3efc5512b",
+    "last_case_id": "P2X-PROTECTED-EXPERIMENT_MEASUREMENT_ROUTE-LOW_UTILITY_HARD_ROUTE_OPEN-V10",
+    "last_seed_commitment": "e9afd4624354eb1d03f0e4126c20101becacf4035957826c6a4550dfb7eb1030"
+  },
+  "protected_scale": {"domains": 5, "archetypes_per_domain": 8, "variants_per_archetype": 10, "total_cases": 400},
+  "rules": {
+    "dev_ids_disjoint": true,
+    "all_400_reported": true,
+    "no_posthoc_case_deletion": true,
+    "route_order_seed_permuted": true,
+    "problematic_route_position_not_fixed": true,
+    "controller_margin_analysis_changes_after_access_forbidden": true,
+    "existing_p2_external_wide_outcomes_not_used_to_generate_cases": true
+  }
+}
