@@ -1,0 +1,57 @@
+name: p3-saturation-rebind-once
+on:
+  push:
+    branches: [saturation/p3-nature-skills-round-a-2026-08-19]
+    paths: ['.github/workflows/p3-saturation-rebind-once.yml']
+permissions: {contents: write}
+jobs:
+  rebind:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: saturation/p3-nature-skills-round-a-2026-08-19, fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install -e '.[dev,candidates]'
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-pictures texlive-fonts-recommended poppler-utils
+      - name: Compile final P3 source
+        working-directory: papers/paper-03-global-knowledge-portrait/manuscript
+        run: |
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          ! grep -E 'LaTeX Warning: (Citation|Reference).*(undefined)|There were undefined references|undefined citations|multiply defined' main.log
+          ! grep -E 'Overfull \\[hv]box' main.log
+          pdfinfo main.pdf > P3_SATURATION_PDFINFO.txt
+      - name: Rebind tracked journal package
+        env: {SOURCE_SHA: '${{ github.sha }}'}
+        run: |
+          cp papers/paper-03-global-knowledge-portrait/manuscript/main.pdf papers/paper-03-global-knowledge-portrait/journal_package/manuscript.pdf
+          python - <<'PY'
+          import json, os, sys
+          from pathlib import Path
+          root=Path('papers/paper-03-global-knowledge-portrait')
+          p=root/'journal_package/MANIFEST.json'; m=json.loads(p.read_text())
+          m['audit_subject_revision']=os.environ['SOURCE_SHA']; m['audit_date']='2026-08-19'
+          p.write_text(json.dumps(m,indent=2)+'\n')
+          audit=root/'journal_package/CLAIM_PDF_AUDIT.md'
+          audit.write_text(f'''# ORION-P3 saturation claim / PDF audit\n\nAudit source: `{os.environ['SOURCE_SHA']}`.\n\n- Scoped P3.C5/P3.C9 confirmatory claim remains unchanged.\n- I-ADOPT scientific-variable semantics are donor-credited; P3 does not claim generic variable-description semantics as new.\n- Raw-text extraction superiority, expert-atlas adequacy, universal coordinate necessity and downstream answer-quality remain unexecuted/follow-up.\n- Simulated historical kappa is not used as real inter-annotator agreement.\n- The saturated manuscript compiles with no unresolved/duplicate references or overfull boxes.\n''')
+          sys.path.insert(0,'research/paper-programme-v1/journal_package')
+          import check_journal_package as c
+          m=c.load_manifest(root/'journal_package'); c.write_sha256sums(root,c.hashed_paths(m))
+          PY
+          python research/paper-programme-v1/journal_package/check_journal_package.py --root .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p3-saturation-final-${{ github.sha }}
+          path: |
+            papers/paper-03-global-knowledge-portrait/manuscript/main.pdf
+            papers/paper-03-global-knowledge-portrait/manuscript/main.log
+            papers/paper-03-global-knowledge-portrait/manuscript/P3_SATURATION_PDFINFO.txt
+            papers/paper-03-global-knowledge-portrait/journal_package/manuscript.pdf
+      - name: Commit package and self-remove
+        run: |
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/p3-saturation-rebind-once.yml
+          git add papers/paper-03-global-knowledge-portrait/journal_package/MANIFEST.json papers/paper-03-global-knowledge-portrait/journal_package/CLAIM_PDF_AUDIT.md papers/paper-03-global-knowledge-portrait/journal_package/manuscript.pdf papers/paper-03-global-knowledge-portrait/journal_package/SHA256SUMS
+          git commit -m 'papers(p3): rebind saturated scoped review package'
+          git push origin HEAD:saturation/p3-nature-skills-round-a-2026-08-19
