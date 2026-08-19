@@ -39,8 +39,13 @@ def test_relation_selector_does_not_read_gold():
     task = build_task(world, mode=ViewMode.TYPED, order_seed="o")
     assert isinstance(task, MechanicRankingTask)
     expected = predict_relation_explicit(task)
-    other = next(m.mechanic_id for m in world.mechanics if m.mechanic_id != world.gold.value)
-    changed_world = replace(world, gold=GoldTarget(GoldKind.MECHANIC_SELECTION, other))
+    other = next(
+        m.mechanic_id for m in world.mechanics if m.mechanic_id != world.gold.value
+    )
+    changed_world = replace(
+        world,
+        gold=GoldTarget(GoldKind.MECHANIC_SELECTION, other),
+    )
     changed_world.verify()
     changed = build_task(changed_world, mode=ViewMode.TYPED, order_seed="o")
     assert isinstance(changed, MechanicRankingTask)
@@ -63,7 +68,9 @@ def test_history_selector_uses_admitted_failure_only_when_visible():
     assert isinstance(clean_current, MechanicRankingTask)
     assert isinstance(negative_current, MechanicRankingTask)
     assert clean_current.model_payload() == negative_current.model_payload()
-    assert predict_history_explicit(clean_current) == predict_history_explicit(negative_current)
+    assert predict_history_explicit(clean_current) == predict_history_explicit(
+        negative_current
+    )
 
 
 def test_history_selector_is_candidate_order_invariant_at_semantic():
@@ -75,14 +82,30 @@ def test_history_selector_is_candidate_order_invariant_at_semantic():
     assert predict_history_explicit(first) == predict_history_explicit(second) == world.gold.value
 
 
-def test_full_a2_a4_small_run_is_deterministic_and_bounded():
-    first = run_a2_a4_explicit(seed="a2-a4-smoke", relation_pairs=24, history_pairs=24, subject_sha="smoke")
-    replay = run_a2_a4_explicit(seed="a2-a4-smoke", relation_pairs=24, history_pairs=24, subject_sha="smoke")
+def test_full_a2_a4_small_run_is_deterministic_bounded_and_measures_hostiles():
+    first = run_a2_a4_explicit(
+        seed="a2-a4-smoke",
+        relation_pairs=24,
+        history_pairs=24,
+        subject_sha="smoke",
+    )
+    replay = run_a2_a4_explicit(
+        seed="a2-a4-smoke",
+        relation_pairs=24,
+        history_pairs=24,
+        subject_sha="smoke",
+    )
     assert first == replay
     assert first["terminal"] == "A2_A4_D0_EXPLICIT_INFERENCE_SUFFICIENT"
     assert first["relation_views"]["SURFACE"]["coverage"] == pytest.approx(0.0)
     assert first["relation_views"]["TYPED"]["full_task_accuracy"] == pytest.approx(1.0)
     assert first["history_views"]["SEMANTIC"]["full_task_accuracy"] == pytest.approx(1.0)
     assert first["history_views"]["CURRENT"]["hidden_view_pair_prediction_equal"] is True
+    assert first["hostile_checks"] == {
+        "candidate_order_invariance": True,
+        "gold_falsification_invariance": True,
+        "weak_relation_views_do_not_invent_typed_semantics": True,
+        "hidden_history_views_do_not_distinguish_the_hostile_pair": True,
+    }
     assert first["scientific_authority"] == "NONE_DIAGNOSTIC_ONLY"
     assert first["grants_neural_escalation"] is False
