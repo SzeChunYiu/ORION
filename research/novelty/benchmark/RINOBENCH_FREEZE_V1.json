@@ -1,0 +1,48 @@
+{
+  "schema_id": "orion.novelty-benchmark-freeze.v1",
+  "benchmark_id": "RINoBench",
+  "official_repository": "TimSchopf/RINoBench",
+  "official_commit": "d94cd7b3ae8b336cd97e6ae274b3120268dbea82",
+  "artifacts": {
+    "train": {
+      "path": "data/final_benchmark_dataset/train.json",
+      "blob_sha": "f58e7677de7eadacaf8cd8b9128b65a22c7438ae"
+    },
+    "test": {
+      "path": "data/final_benchmark_dataset/test.json",
+      "blob_sha": "9e2c335974047475781a8bc0d57299565d658779"
+    },
+    "labels": {
+      "path": "data/final_benchmark_dataset/label_descriptions.json",
+      "blob_sha": "4f978793db7b04c9e2cbc8305c9e98f43d502bd3"
+    }
+  },
+  "split_policy": {
+    "preserve_official_train_test_split": true,
+    "test_labels_used_for_tuning": false,
+    "outcomes_accessed_before_freeze": false
+  },
+  "evaluator_protocol": {
+    "novelty_supported_compatible_labels": [4, 5],
+    "already_solved_compatible_labels": [1, 2],
+    "novelty_narrowed_primary_label": 3,
+    "cannot_check_is_abstention": true,
+    "primary_metrics": [
+      "coverage",
+      "selective_accuracy",
+      "false_positive_novelty_rate_on_labels_1_2",
+      "abstention_rate",
+      "accuracy_by_human_label"
+    ],
+    "forbidden": [
+      "mapping_CANNOT_CHECK_to_a_positive_novelty_label",
+      "tuning_thresholds_on_official_test_labels",
+      "letting_an_LLM_score_set_certificate_final_state"
+    ]
+  },
+  "authority": {
+    "grants_novelty_authority": false,
+    "benchmark_execution_required_for_scientific_terminal": true,
+    "independent_283_verification_required_for_positive_terminal": true
+  }
+}
