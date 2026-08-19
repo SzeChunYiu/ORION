@@ -1,0 +1,118 @@
+{
+  "schema": "P9.M1Protocol.v1",
+  "protocol_id": "p9-m1-classical-v1",
+  "frozen_at_subject_base": "b7abcc6ad76d2a985ea938fcbd070a6097b0fe99",
+  "outcome_accessed": false,
+  "purpose": "diagnose exact-world residuals before neural architecture escalation",
+  "dependencies": {
+    "m0_merge": "077ecdc4e7905f5d9791cb9a57825417acddf4f4",
+    "corpus_merge": "e5504065dcf1f71b371a611b5d5ad8db7f4a8ce0",
+    "research_programme_merge": "b7abcc6ad76d2a985ea938fcbd070a6097b0fe99"
+  },
+  "corpus": {
+    "seed": "p9-m1-classical-v1",
+    "train_pairs_per_family": 64,
+    "dev_pairs_per_family": 24,
+    "test_pairs_per_family": 48,
+    "train_size_pairs_per_family": [4, 8, 16, 32, 64]
+  },
+  "candidate_order": {
+    "train": "p9-m1-order-train-v1",
+    "dev": "p9-m1-order-dev-v1",
+    "test": "p9-m1-order-test-v1",
+    "test_permutation_check": "p9-m1-order-test-alt-v1"
+  },
+  "views": ["SURFACE", "TOPOLOGY", "TYPED", "CURRENT", "SEMANTIC"],
+  "feature_families": {
+    "F0_FIELD_BAG": {
+      "raw_opaque_identity_values": false,
+      "categorical_structural_values": true,
+      "numeric_scalars": true,
+      "shape_counts": true,
+      "context_candidate_crosses": false,
+      "candidate_identity_equality": false,
+      "transport_cycle_numeric_sequence": false
+    },
+    "F1_PAIRWISE": {
+      "base": "F0_FIELD_BAG",
+      "context_candidate_crosses": true,
+      "candidate_identity_equality": true,
+      "read_write_overlap_counts": true,
+      "transport_cycle_numeric_sequence": false
+    },
+    "F2_CYCLE_NUMERIC": {
+      "task": "GLUING",
+      "base": "F0_FIELD_BAG",
+      "minimum_view": "CURRENT",
+      "canonical_visible_cycle_numeric_sequence": true,
+      "affine_composition_feature": false,
+      "identity_residual_feature": false
+    }
+  },
+  "models": {
+    "logistic": [
+      {"C": 0.1, "max_iter": 2000, "random_state": 1701},
+      {"C": 1.0, "max_iter": 2000, "random_state": 1701},
+      {"C": 10.0, "max_iter": 2000, "random_state": 1701}
+    ],
+    "decision_tree": [
+      {"max_depth": 3, "min_samples_leaf": 2, "random_state": 1702},
+      {"max_depth": 6, "min_samples_leaf": 2, "random_state": 1702},
+      {"max_depth": null, "min_samples_leaf": 2, "random_state": 1702}
+    ],
+    "random_forest": [
+      {"n_estimators": 200, "max_depth": 4, "min_samples_leaf": 2, "random_state": 1703, "n_jobs": 1},
+      {"n_estimators": 200, "max_depth": 8, "min_samples_leaf": 2, "random_state": 1703, "n_jobs": 1},
+      {"n_estimators": 300, "max_depth": null, "min_samples_leaf": 2, "random_state": 1703, "n_jobs": 1}
+    ],
+    "knn": [
+      {"n_neighbors": 3, "weights": "uniform"},
+      {"n_neighbors": 7, "weights": "distance"},
+      {"n_neighbors": 15, "weights": "distance"}
+    ]
+  },
+  "selection": {
+    "tune_on": "TRAIN_TO_DEV_ONLY",
+    "primary_metric": "accuracy",
+    "tie_break": ["lower_complexity_rank", "config_id_lexical"],
+    "test_passes_per_selected_configuration": 1,
+    "test_feature_or_hyperparameter_changes_after_access": "FORBIDDEN_NEW_PROTOCOL_REQUIRED"
+  },
+  "metrics": [
+    "accuracy",
+    "correct_count",
+    "sample_count",
+    "invalid_prediction_count",
+    "exact_view_deterministic_accuracy_ceiling",
+    "ceiling_gap",
+    "ceiling_violation",
+    "per_task_accuracy",
+    "per_family_accuracy",
+    "candidate_order_invariance",
+    "train_size_curve"
+  ],
+  "sentinels": [
+    "candidate_position_only",
+    "opaque_identity_only",
+    "row_index_only",
+    "family_prior_only",
+    "surface_only",
+    "train_label_shuffle",
+    "test_row_permutation",
+    "test_candidate_order_permutation"
+  ],
+  "diagnostic_terminals": [
+    "M1_SIMPLE_MODELS_SUFFICIENT_FOR_CURRENT_EXACT_WORLDS",
+    "M1_NONLINEAR_RELATIONAL_RESIDUAL",
+    "M1_GLOBAL_COMPOSITION_RESIDUAL",
+    "M1_HISTORY_OR_BINDING_RESIDUAL",
+    "M1_SAMPLE_EFFICIENCY_RESIDUAL",
+    "M1_LEAKAGE_OR_EVALUATOR_FAILURE",
+    "CANNOT_CHECK"
+  ],
+  "authority": {
+    "scientific_authority": false,
+    "model_promotion_authority": false,
+    "paper_readiness_authority": false
+  }
+}
