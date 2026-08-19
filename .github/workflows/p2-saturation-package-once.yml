@@ -1,0 +1,168 @@
+name: p2-saturation-package-once
+
+on:
+  push:
+    branches:
+      - saturation/p2-nature-skills-round-a-2026-08-19
+    paths:
+      - '.github/workflows/p2-saturation-package-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: saturation/p2-nature-skills-round-a-2026-08-19
+          fetch-depth: 0
+      - name: Patch saturation prose and claim ledger by claim id
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('papers/paper-02-open-world-scientific-discovery')
+          manuscript = root / 'manuscript/main.tex'
+          text = manuscript.read_text()
+
+          replacements = {
+              r'A later prospectively frozen 400-row OpenAIRE/Crossref Wide comparison reached the official scorer but failed its predeclared transport-validity gate because one third of the logical provider requests failed; all three system projections were byte-identical and the observed zero paired difference is therefore \texttt{CANNOT\_CHECK}, not a valid null or negative result.':
+              r'A later matched OpenAIRE/Crossref Wide campaign failed its predeclared transport-validity gate; its observed zero paired difference is therefore \texttt{CANNOT\_CHECK}, not a valid null or negative result.',
+              r'AutoResearchBench Deep official scoring has executed for the bounded keyless probe, with the judge control passing in full, but the matched multi-provider Deep comparison remains unexecuted.':
+              r'AutoResearchBench Deep official scoring has now executed through a local OpenAI-compatible adapter for the bounded keyless probe, with the judge control passing in full, but the matched multi-provider Deep comparison remains unexecuted.',
+              r'The later 400-row OpenAIRE/Crossref Wide campaign is retained separately: all 400 predeclared OpenAIRE DOI-crosswalk requests returned HTTP 400, so the provider-success fraction was 0.666667 and failed the frozen 0.90 validity gate. All three system candidate projections were byte-identical. The resulting zero paired effect is therefore invalid for scientific comparison and the terminal is \texttt{P2\_WIDE\_EXTERNAL\_CANNOT\_CHECK}, not \texttt{NOT\_SUPPORTED}. Provider or credential unavailability is likewise retained as \texttt{CANNOT\_CHECK}, never converted into evidence of absence or a flattering zero-cost result.':
+              r'The separately archived OpenAIRE/Crossref Wide campaign failed its prospectively frozen provider-validity gate and remains \texttt{CANNOT\_CHECK}; its observed zero paired effect is not a valid null or negative result. Provider or credential unavailability is likewise retained as \texttt{CANNOT\_CHECK}, never converted into evidence of absence or a flattering zero-cost result.',
+              r'Rows without an archived supporting result remain \texttt{CANNOT\_CHECK}; an access audit, implementation test, credential preflight or invalid transport campaign cannot substitute for a system outcome.':
+              r'Rows without an archived supporting result remain \texttt{CANNOT\_CHECK}; an access audit, implementation test, or credential preflight cannot substitute for a system outcome.',
+              r'A later matched OpenAIRE/Crossref Wide campaign reached scoring but failed its prospectively frozen provider-validity gate, so its observed zero paired difference remains \texttt{CANNOT\_CHECK}; the matched external superiority claim therefore remains explicitly unpromoted rather than unfinished evidence silently treated as a null.':
+              r"The matched external superiority claim remains unpromoted: the archived OpenAIRE/Crossref Wide campaign failed its prospectively frozen provider-validity gate, so its observed zero paired difference remains \texttt{CANNOT\_CHECK} rather than a valid null."
+          }
+          for old, new in replacements.items():
+              if old not in text:
+                  raise SystemExit(f'missing manuscript replacement target: {old[:90]}')
+              text = text.replace(old, new)
+          manuscript.write_text(text)
+
+          ledger_path = root / 'protocol/CLAIM_LEDGER_V1.json'
+          ledger = json.loads(ledger_path.read_text())
+          claims = {c['claim_id']: c for c in ledger['claims']}
+
+          claims['P2-C03'].update({
+              'sentence': 'A later matched OpenAIRE/Crossref Wide campaign failed its predeclared transport-validity gate; its observed zero paired difference is therefore CANNOT_CHECK, not a valid null or negative result.',
+              'support_type': 'EXTERNAL_OFFICIAL',
+              'strength': 'CANNOT_CHECK',
+              'numeric_bindings': [],
+              'support_artifacts': [
+                  {'artifact': 'openaire_matched_result', 'key': 'terminal'},
+                  {'artifact': 'openaire_matched_result', 'key': 'validity.logical_provider_ok'},
+              ],
+              'note': 'Abstract-level status of the archived transport-invalid Wide campaign; its zero effect is not scientific evidence.'
+          })
+          claims['P2-C05'].update({
+              'sentence': 'The matched external superiority claim remains unpromoted: the archived OpenAIRE/Crossref Wide campaign failed its prospectively frozen provider-validity gate, so its observed zero paired difference remains CANNOT_CHECK rather than a valid null.',
+              'support_type': 'EXTERNAL_OFFICIAL',
+              'strength': 'CANNOT_CHECK',
+              'numeric_bindings': [],
+              'support_artifacts': [
+                  {'artifact': 'openaire_matched_result', 'key': 'terminal'},
+                  {'artifact': 'openaire_matched_result', 'key': 'validity.logical_provider_ok'},
+              ],
+              'note': 'Conclusion preserves the external superiority claim as unpromoted after the invalid Wide campaign.'
+          })
+
+          if 'P2-C15' not in claims:
+              insert_at = next(i for i,c in enumerate(ledger['claims']) if c['claim_id'] == 'P2-C14') + 1
+              ledger['claims'].insert(insert_at, {
+                  'claim_id': 'P2-C15',
+                  'region': 'limitations',
+                  'manuscript_status': 'ASSERTED',
+                  'sentence': 'The separately archived OpenAIRE/Crossref Wide campaign failed its prospectively frozen provider-validity gate and remains CANNOT_CHECK; its observed zero paired effect is not a valid null or negative result.',
+                  'support_type': 'EXTERNAL_OFFICIAL',
+                  'strength': 'CANNOT_CHECK',
+                  'numeric_bindings': [],
+                  'support_artifacts': [
+                      {'artifact': 'openaire_matched_result', 'key': 'terminal'},
+                      {'artifact': 'openaire_matched_result', 'key': 'validity.logical_provider_ok'},
+                      {'artifact': 'openaire_matched_receipt', 'key': 'observed_failure.candidate_files_identical'},
+                  ],
+                  'note': 'Limitations-region interpretation guard for the transport-invalid Wide campaign.'
+              })
+
+          ledger_path.write_text(json.dumps(ledger, indent=2, sort_keys=False) + '\n')
+          PY
+      - name: Validate claim and V2 contracts
+        run: |
+          python papers/paper-02-open-world-scientific-discovery/scripts/check_claim_ledger.py --check
+          python papers/paper-02-open-world-scientific-discovery/scripts/check_p2_v2.py
+          python -m unittest discover -s papers/paper-02-open-world-scientific-discovery/tests -p 'test_p2_v2.py'
+      - name: Install TeX and PDF tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-pictures poppler-utils
+      - name: Compile exact manuscript
+        working-directory: papers/paper-02-open-world-scientific-discovery/manuscript
+        run: |
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          if grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log; then
+            grep -Ei 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log >&2 || true
+            exit 1
+          fi
+          pdfinfo main.pdf > P2_SATURATION_PDFINFO.txt
+      - name: Rebind journal package
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          cp papers/paper-02-open-world-scientific-discovery/manuscript/main.pdf papers/paper-02-open-world-scientific-discovery/journal_package/manuscript.pdf
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          root=Path('papers/paper-02-open-world-scientific-discovery')
+          manifest_path=root/'journal_package/MANIFEST.json'
+          manifest=json.loads(manifest_path.read_text())
+          manifest['audit_subject_revision']=os.environ['SOURCE_SHA']
+          manifest['audit_date']='2026-08-19'
+          manifest_path.write_text(json.dumps(manifest, indent=2)+'\n')
+          audit=root/'journal_package/CLAIM_PDF_AUDIT.md'
+          audit.write_text('''# ORION-P2 saturation claim / PDF audit\n\nAudit source: `{}`.\n\n- Claim ledger and V2 widening contract passed before compilation.\n- The canonical manuscript was rebuilt with `latexmk` after the 2026-08-19 saturation consistency repair.\n- Citations and cross-references converged with no unresolved-warning gate failure.\n- The 400-row OpenAIRE/Crossref campaign is stated as `CANNOT_CHECK` because its frozen provider-validity gate failed; the zero paired effect is not treated as a valid null.\n- External ORION-vs-baseline superiority remains unpromoted; the package claim stays narrowed to methods / critical system design.\n- Full rendered-page visual inspection is recorded separately in the saturation audit before issue closure.\n'''.format(os.environ['SOURCE_SHA']))
+          PY
+          python - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, 'research/paper-programme-v1/journal_package')
+          import check_journal_package as c
+          root=Path('papers/paper-02-open-world-scientific-discovery')
+          manifest=c.load_manifest(root/'journal_package')
+          c.write_sha256sums(root, c.hashed_paths(manifest))
+          PY
+          python research/paper-programme-v1/journal_package/check_journal_package.py --root .
+      - name: Upload saturation review bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-saturation-review-${{ github.sha }}
+          path: |
+            papers/paper-02-open-world-scientific-discovery/manuscript/main.pdf
+            papers/paper-02-open-world-scientific-discovery/manuscript/main.log
+            papers/paper-02-open-world-scientific-discovery/manuscript/P2_SATURATION_PDFINFO.txt
+            papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json
+            papers/paper-02-open-world-scientific-discovery/journal_package/manuscript.pdf
+            papers/paper-02-open-world-scientific-discovery/journal_package/SHA256SUMS
+            papers/paper-02-open-world-scientific-discovery/journal_package/CLAIM_PDF_AUDIT.md
+          if-no-files-found: error
+      - name: Commit rebuilt package
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            papers/paper-02-open-world-scientific-discovery/manuscript/main.tex \
+            papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json \
+            papers/paper-02-open-world-scientific-discovery/journal_package/MANIFEST.json \
+            papers/paper-02-open-world-scientific-discovery/journal_package/CLAIM_PDF_AUDIT.md \
+            papers/paper-02-open-world-scientific-discovery/journal_package/manuscript.pdf \
+            papers/paper-02-open-world-scientific-discovery/journal_package/SHA256SUMS
+          git diff --cached --quiet && exit 0
+          git commit -m 'papers(p2): rebind saturation manuscript package'
+          git push origin HEAD:saturation/p2-nature-skills-round-a-2026-08-19
