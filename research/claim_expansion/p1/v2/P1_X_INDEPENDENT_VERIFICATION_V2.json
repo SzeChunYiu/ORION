@@ -1,0 +1,27 @@
+{
+  "schema_version": "P1_X_INDEPENDENT_VERIFICATION_V2",
+  "date": "2026-08-19",
+  "verifier_commit": "7ba75fd04f2a3c00e830635c983d766c6341a925",
+  "independent_of_execution_module": true,
+  "case_count": 400,
+  "arm_correct": {
+    "P1X_MINIMAL_SCIENTIFIC_ESCALATION": 400,
+    "B1_DONOR_COMPLETE_GREEDY": 275,
+    "B2_SUCCESS_AUTHORIZES_REFRAME": 200,
+    "B3_IDEAL_TYPED_PRODUCT": 400
+  },
+  "identity_pair_digest": "cf5e2ca83bb369c004e4bba28dcba144d0d545c18664999bb64b910d0d392d27",
+  "bundle_digest": "acdcb8ba1516b5ec5b6d6e8d9fdaca7fe402f23e0314a8a02edd356a1d623632",
+  "row_digest": "29dd4c82392b4e554f5636eca448eab9d7d3eda84d0e32ed53eb32a798f600f7",
+  "b3_decision_mismatches": 0,
+  "checks": {
+    "case_count": true,
+    "identity_pair_digest": true,
+    "bundle_digest": true,
+    "row_digest": true,
+    "headline_counts": true,
+    "b3_decision_mismatches_zero": true
+  },
+  "ok": true,
+  "terminal": "P1_X_V2_INDEPENDENT_VERIFICATION_PASS"
+}
