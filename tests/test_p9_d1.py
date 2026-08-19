@@ -13,7 +13,7 @@ from orion.study.p9.d1 import (
     classify_methods,
     generate_d1_dataset,
 )
-from orion.study.p9.d1_experiment import (
+from orion.study.p9.d1_runtime import (
     D1FeatureFamily,
     exact_relational_comparator,
     features,
