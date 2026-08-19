@@ -39,12 +39,13 @@ Purpose: bind every broad design idea the manuscript discusses to a donor family
 - **Mechanistic World Models** — Posner, Lei, Schölkopf, arXiv:2607.12474: prediction is weaker than explanatory mechanism recovery; reusable mechanisms should organize scientific representation/computation/learning. P9 cannot claim `mechanism-centric scientific AI` broadly.
 - P9 A10 causal/interventional work is deferred and cannot appear as experimental evidence.
 
-## Compositional-generalization pressure
+## Compositional-generalization and serialization pressure
 
 - **Lippl & Stachenfeld, ICLR 2025** — *When does compositional structure yield compositional generalization? A kernel theory.*: a structured representation alone is not sufficient; training-data statistics can induce memorization leak and shortcut bias. This directly limits any P9 inference from `typed structure exists` to `generalization follows`.
 - **Uselis, Dittadi, Oh, ICLR 2026 submission** — *Necessary Conditions for Compositional Generalization in Visual Models*: representation factorization/geometry conditions for compositional generalization. Useful theoretical pressure, not P9 novelty.
 - **PARSE**, arXiv:2605.06043: explicit relational composition for visual domain generalization. P9 cannot claim relational structure improves domain generalization broadly.
 - **Graph-KV**, arXiv:2506.07334: structural attention masks can outperform flat sequence encoding on graph-structured text/RAG. P9 D1 therefore requires a same-information serialization control rather than merely `structure > flat sequence` rhetoric.
+- **Lo et al., 2026 — *When 2D Tasks Meet 1D Serialization: On Serialization Friction in Structured Tasks*, arXiv:2604.27272**: explicitly studies a representational mismatch where the same underlying task entries remain present but load-bearing native relations become implicit under 1D serialization. This directly owns the general principle that preserving content does not imply preserving an equally usable representation. P9 may therefore not claim discovery of `same information, worse serialization`; its D1 residual is only the exact method-coordinate/whole-domain discriminator and its protected controls.
 
 ## Residual P9 candidate claim after subtraction
 
