@@ -48,10 +48,8 @@ projections and tests the downstream merge-versus-obstruction decision.
 '''
           if 'iadopt2021' not in text:
               if marker not in text: raise SystemExit('related-work insertion marker missing')
-              text=text.replace(marker, insert+marker)
-              related.write_text(text)
-          bib=root/'bibliography.bib'
-          b=bib.read_text()
+              related.write_text(text.replace(marker, insert+marker))
+          bib=root/'bibliography.bib'; b=bib.read_text()
           if 'iadopt2021' not in b:
               b += r'''
 
@@ -85,9 +83,8 @@ projections and tests the downstream merge-versus-obstruction decision.
         working-directory: papers/paper-03-global-knowledge-portrait/manuscript
         run: |
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
-          if grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations|multiply defined' main.log; then
-            exit 1
-          fi
+          if grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations|multiply defined' main.log; then exit 1; fi
+          if grep -Eq 'Overfull \\hbox|Overfull \\vbox' main.log; then echo 'Overfull box in P3 saturation PDF' >&2; grep -E 'Overfull \\hbox|Overfull \\vbox' main.log >&2; exit 1; fi
           pdfinfo main.pdf > P3_SATURATION_PDFINFO.txt
       - name: Rebind journal package
         env:
@@ -101,7 +98,7 @@ projections and tests the downstream merge-versus-obstruction decision.
           p=root/'journal_package/MANIFEST.json'; m=json.loads(p.read_text())
           m['audit_subject_revision']=os.environ['SOURCE_SHA']; m['audit_date']='2026-08-19'
           p.write_text(json.dumps(m,indent=2)+'\n')
-          (root/'journal_package/CLAIM_PDF_AUDIT.md').write_text(f'''# ORION-P3 saturation claim / PDF audit\n\nAudit source: `{os.environ['SOURCE_SHA']}`.\n\n- Scoped P3.C5/P3.C9 scientific authority is unchanged.\n- I-ADOPT is now explicitly credited as donor ownership for scientific-variable semantics and variable-to-KG construction.\n- The canonical manuscript rebuilt with converged citations/references after the 2026-08-19 semantic-web saturation pass.\n- Raw-text extraction, universal coordinate necessity, expert-atlas adequacy and downstream answer-quality improvement remain outside the scoped claim / `CANNOT_CHECK`.\n- Full rendered-page visual inspection is recorded in the saturation audit before issue closure.\n''')
+          (root/'journal_package/CLAIM_PDF_AUDIT.md').write_text(f'''# ORION-P3 saturation claim / PDF audit\n\nAudit source: `{os.environ['SOURCE_SHA']}`.\n\n- Scoped P3.C5/P3.C9 scientific authority is unchanged.\n- I-ADOPT is explicitly credited as donor ownership for scientific-variable semantics and variable-to-KG construction.\n- The canonical manuscript rebuilt with converged citations/references after the 2026-08-19 semantic-web saturation pass.\n- Raw-text extraction, universal coordinate necessity, expert-atlas adequacy and downstream answer-quality improvement remain outside the scoped claim / `CANNOT_CHECK`.\n- The zero-overfull-box and unresolved-reference gates passed.\n''')
           PY
           python - <<'PY'
           import sys
@@ -122,11 +119,11 @@ projections and tests the downstream merge-versus-obstruction decision.
             papers/paper-03-global-knowledge-portrait/manuscript/P3_SATURATION_PDFINFO.txt
             papers/paper-03-global-knowledge-portrait/journal_package/manuscript.pdf
           if-no-files-found: error
-      - name: Commit rebuilt package
+      - name: Commit rebuilt package and remove one-shot workflow
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/p3-saturation-package-once.yml
           git add papers/paper-03-global-knowledge-portrait/manuscript/sections/20-related-work.tex papers/paper-03-global-knowledge-portrait/manuscript/bibliography.bib papers/paper-03-global-knowledge-portrait/journal_package/MANIFEST.json papers/paper-03-global-knowledge-portrait/journal_package/CLAIM_PDF_AUDIT.md papers/paper-03-global-knowledge-portrait/journal_package/manuscript.pdf papers/paper-03-global-knowledge-portrait/journal_package/SHA256SUMS
-          git diff --cached --quiet && exit 0
           git commit -m 'papers(p3): rebind SWJ saturation package'
           git push origin HEAD:saturation/p3-nature-skills-round-a-2026-08-19
