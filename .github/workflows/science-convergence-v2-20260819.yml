@@ -72,6 +72,32 @@ jobs:
           set -euo pipefail
           python papers/candidates/checkers/check_content_binding_v1.py --write
           python research/development/cannot_check_inventory.py --write
+      - name: Advance exact classified-site ratchet for #522
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tests/unit/development/test_cannot_check_inventory.py')
+          text = p.read_text()
+          old = '''    three reviewed classified obligations, and T8's prospective preflight adds
+    two identity-bound obligations. The exact ratchet is therefore 146. Future
+    additions must update this sentinel deliberately rather than weakening it to
+    a lower-bound check.
+'''
+          new = '''    three reviewed classified obligations, T8's prospective preflight adds
+    two identity-bound obligations, and #522's formal-closure path adds one reviewed
+    missing-declaration obligation. The exact ratchet is therefore 147. Future
+    additions must update this sentinel deliberately rather than weakening it to
+    a lower-bound check.
+'''
+          if text.count(old) != 1 or text.count('assert sum(classified.values()) == 146, classified') != 1:
+              raise SystemExit('cannot-check ratchet fixture drifted; refusing broad replacement')
+          text = text.replace(old, new).replace(
+              'assert sum(classified.values()) == 146, classified',
+              'assert sum(classified.values()) == 147, classified',
+          )
+          p.write_text(text)
+          PY
       - name: Verify science closure and governance
         run: |
           set -euo pipefail
@@ -97,6 +123,7 @@ jobs:
             tests/unit/transfer/test_higher_order_formal_closure.py \
             tests/unit/transfer/test_higher_order_formal_closure_expected.py \
             tests/unit/transfer/test_higher_order_foundation_dispositions.py \
+            tests/unit/development/test_cannot_check_inventory.py \
             research/claim_expansion/p1 \
             research/claim_expansion/p2 \
             research/development/cannot_check_inventory.json \
