@@ -1,0 +1,41 @@
+{
+  "schema_version": "P2_X_CLAIM_BINDINGS_V1",
+  "date": "2026-08-19",
+  "purpose": "Derived manuscript-ledger binding only; grants no scientific authority beyond the source receipts. Operative claim checks resolve only inside this paper tree so copied-fixture verification remains reproducible.",
+  "source_records": {
+    "protected_result": {
+      "path": "../../research/claim_expansion/p2/P2_X_PROTECTED_RESULT_V1.json",
+      "git_blob_sha": "653fb66a24895918c100cc8c9af554c904355c73"
+    },
+    "independent_verification": {
+      "path": "../../research/claim_expansion/p2/P2_X_INDEPENDENT_VERIFICATION_V1.json",
+      "git_blob_sha": "ff7ce4248392c45bd0029aeed18d715c0de21e0e"
+    }
+  },
+  "scientific_terminal": "P2_X_BOUNDED_ROUTE_AUTHORITY_RESULT_SUPPORTED",
+  "case_count": 400,
+  "domain_count": 5,
+  "p2x_correct": 400,
+  "p2x_rate": 1.0,
+  "b1_correct": 250,
+  "b1_rate": 0.625,
+  "b1_errors": 150,
+  "b2_correct": 100,
+  "b2_rate": 0.25,
+  "b3_correct": 400,
+  "b3_rate": 1.0,
+  "b3_decision_mismatches": 0,
+  "b3_equivalence_pass": true,
+  "paired_difference": 0.375,
+  "confidence_level_percent": 95,
+  "ci_lower": 0.3275,
+  "ci_upper": 0.4225,
+  "primary_pass": true,
+  "p2x_false_task_closures": 0,
+  "clean_task_stop_rate": 1.0,
+  "clean_task_stop_pass": true,
+  "nonmaterial_decoy_cases": 80,
+  "independent_verification_case_count": 400,
+  "independent_verification_ok": true,
+  "external_retrieval_generality": "CANNOT_CHECK"
+}

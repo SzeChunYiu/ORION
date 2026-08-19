@@ -38,6 +38,36 @@ ENTRIES: dict[str, tuple[str, str, str, str]] = {
         "Adaptive Stopping for Multi-Turn LLM Reasoning",
         "derived_from_this_fetch",
     ),
+    # Added by the post-P2-X manuscript promotion.  These titles were already
+    # present in the promoted bibliography before this registry repair, so the
+    # fetch remains an independent title check.  In particular, KNOWPLAN keeps
+    # its original wrong title here so re-fetching reproduces the preserved
+    # MISMATCH recorded in knowplan2026.json rather than erasing audit history.
+    "knowplan2026": (
+        "arxiv", "2608.06530",
+        "KNOWPLAN: An Information-Efficient Neuro-Symbolic Architecture for Zero-Retraining Data Engineering",
+        "pre_existing_independent_claim",
+    ),
+    "donotstopearly2026": (
+        "arxiv", "2604.24978",
+        "Don't Stop Early: Scalable Enterprise Deep Research with Controlled Information Flow and Evidence-Aware Termination",
+        "pre_existing_independent_claim",
+    ),
+    "confidencebasedstop2026": (
+        "arxiv", "2606.15380",
+        "Confidence-Based Stopping Methods for Systematic Reviews",
+        "pre_existing_independent_claim",
+    ),
+    "icore2026": (
+        "arxiv", "2607.27429",
+        "Auditing Emergent LLM-Agent Collaboration through Cooperation-Obligation Coupling",
+        "pre_existing_independent_claim",
+    ),
+    "scienceintent2026": (
+        "arxiv", "2604.25000",
+        "Toward a Science of Intent: Closure Gaps and Delegation Envelopes for Open-World AI Agents",
+        "pre_existing_independent_claim",
+    ),
     # Added by the 2026-08-17 narrowing audit into manuscript/recent_work.bib
     # and cited by main.tex, but with no evidence record until now. The titles
     # below are copied from that bib, not from the fetch, so each verdict is a
