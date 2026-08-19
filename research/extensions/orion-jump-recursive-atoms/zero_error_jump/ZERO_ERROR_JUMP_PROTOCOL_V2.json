@@ -1,0 +1,55 @@
+{
+  "version": "ZeroErrorJumpProtocol.v2",
+  "supersedes": "ZeroErrorJumpProtocol.v1",
+  "reopen_reason": "V1 public_tension_kind, case-dependent menu kinds, P/C case IDs, and differing public list cardinalities leaked protected family/positive-control information before the registered experiment outcome.",
+  "review_thread": "PR558 Cursor Bugbot public-view leakage finding plus pre-implementation V2 side-channel audit",
+  "date_frozen": "2026-08-19",
+  "cases_frozen_before_v2_runner": true,
+  "outcome_accessed": false,
+  "candidate_terminal": "REPRESENTATION_INVENTION_NO_INCREMENTAL_VALUE",
+  "seeds": {"primary":202608190501,"replication":202608190502},
+  "split_counts": {"positive_families":6,"positive_variants_per_family":4,"positive_cases":24,"control_families":6,"control_variants_per_family":3,"control_cases":18,"cases_per_split":42,"total_cases":84},
+  "representation_move_library": ["NO_REPRESENTATION_CHANGE","BRIDGE_CORRESPONDENCE","FRAME_COORDINATE","INVARIANT_ORBIT","RELATIONAL_LIFT","CAUSAL_SPLIT","BRIDGE_LAW"],
+  "budgets": {"thought_experiments_per_case":1,"representation_proposals_per_case":1,"old_dsl_candidates_per_case":8,"same_representation_expansion_slots":1},
+  "public_projection": {
+    "candidate_public_fields": [
+      "case_id",
+      "opaque_object_ids",
+      "opaque_relation_ids",
+      "public_observations",
+      "incumbent_public_predictions",
+      "old_language_public_signatures",
+      "open_discriminator_ids",
+      "thought_experiment_menu",
+      "selected_thought_experiment_outcome",
+      "representation_move_library",
+      "correspondence_obligation_ids",
+      "public_validation_interface_ids"
+    ],
+    "forbidden_public_fields": ["family_id","is_jump_case","public_tension_kind","gold_representation_move","protected_full_contract_signature","protected_novel_consequence_token","gold_old_solution_id"],
+    "opaque_case_id_rule": "case_id is a seed-derived opaque token and contains no P/C, family index, or protected class marker",
+    "uniform_public_cardinalities": {"opaque_object_ids":3,"opaque_relation_ids":2,"public_observations":4,"old_language_public_signatures":8,"open_discriminator_ids":2,"thought_experiment_menu":2,"correspondence_obligation_ids":2,"public_validation_interface_ids":2},
+    "thought_experiment_option_fields": ["experiment_id","operation_kind","cost","covered_discriminator_ids"],
+    "uniform_operation_kind": "REGISTERED_PROBE",
+    "experiment_selection_rule": "Select the registered probe maximizing overlap between opaque covered_discriminator_ids and opaque open_discriminator_ids; ties fail closed.",
+    "menu_shape_rule": "Every positive and control world exposes exactly two REGISTERED_PROBE options with equal cost; one covers all open discriminator IDs and one covers zero.",
+    "pre_experiment_family_decodability_by_declared_fields": false,
+    "pre_experiment_jump_control_decodability_by_menu_kind_or_length": false
+  },
+  "post_experiment_evidence": {
+    "positive_outcome_semantics": "The selected probe returns a structural evidence code supporting one registered representation move; this evidence is allowed to alter the proposal after experiment execution.",
+    "control_outcome_semantics": "The selected probe returns opaque OLD_SUFFICIENT evidence without embedding the control family identity.",
+    "control_outcome_must_not_embed_control_family_id": true
+  },
+  "protected_fields": ["family_id","is_jump_case","gold_representation_move","protected_full_contract_signatures","protected_novel_consequence_token","old_language_full_contract_solution_ids","scientific_terminal"],
+  "banned_public_or_gold_terms": ["relativity","ether","dna","quantum","newton","einstein","mendeleev","noether","turing","darwin","maxwell"],
+  "structural_success_gates": {
+    "positive": ["old_regime_insufficient_exact","jump_requested","representation_move_structurally_correct","informative_thought_experiment","correspondence_complete","protected_consequence_correct","no_authority_violation"],
+    "control": ["old_regime_sufficient_exact","no_jump_requested","registered_old_regime_solution_used","no_authority_violation"]
+  },
+  "primary_executable_arms": ["OLD_DSL_EXHAUSTIVE","M_OPEN_SAME_REPRESENTATION","FIXED_REP_WORLD_MODEL","VERIFIED_REGIME_REVISION_PARENT","ORION_JUMP","ORION_NO_CORRESPONDENCE","OVERJUMP_ALWAYS","ORACLE"],
+  "strong_parent": "VERIFIED_REGIME_REVISION_PARENT",
+  "independent_verifier": {"required":true,"must_not_import_main_score_function":true},
+  "reopen_rule": "Any candidate-visible field value, identifier pattern, operation kind, or public collection cardinality that deterministically reveals protected family/positive-control identity before the registered experiment outcome is a material leakage failure and invalidates the terminal.",
+  "authority": {"grants_scientific_adoption":false,"grants_open_ended_creativity":false,"grants_novelty_authority":false,"grants_issue_closure_authority":false}
+}
