@@ -31,14 +31,14 @@ jobs:
       - run: python -m pip install -e '.[dev,candidates]'
       - name: Apply deterministic static P2-X promotion repair
         run: python papers/paper-02-open-world-scientific-discovery/scripts/repair_p2x_promotion_integrity.py
-      - name: Bind fetch registry to the exact titles already promoted in the bibliography
+      - name: Bind fetch registry to exact promoted primary-source titles
         run: |
           python - <<'PY'
           from pathlib import Path
           path = Path('papers/paper-02-open-world-scientific-discovery/evidence/literature/fetch_literature_evidence.py')
           text = path.read_text(encoding='utf-8')
           replacements = {
-              'KnowPlan: An Actionable Knowledge Graph for Planning-grounded Retrieval-Augmented Generation': 'KNOWPLAN: An Information-Efficient Neuro-Symbolic Architecture for Zero-Retraining Data Engineering',
+              'KnowPlan: An Actionable Knowledge Graph for Planning-grounded Retrieval-Augmented Generation': 'KNOWPLAN: Knowledge-Driven AI Agents for Smart Degree Pathway Planning',
               'Do Not Stop Too Early: An Information-Looking Framework for Adaptive Reliability in Deep Research': "Don't Stop Early: Scalable Enterprise Deep Research with Controlled Information Flow and Evidence-Aware Termination",
               'Confidence Based Stopping Criteria for Reinforcement Learning': 'Confidence-Based Stopping Methods for Systematic Reviews',
               'iCORE: A Cost Reduction Engine for Computer Use Agents via Internalized Execution': 'Auditing Emergent LLM-Agent Collaboration through Cooperation-Obligation Coupling',
@@ -48,6 +48,31 @@ jobs:
               if old not in text and new not in text:
                   raise SystemExit(f'P2-X fetcher title not found for replacement: {old}')
               text = text.replace(old, new)
+          path.write_text(text, encoding='utf-8')
+          PY
+      - name: Update stale hostile-test targets without weakening the checker
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('tests/unit/p2/test_p2_claim_ledger.py')
+          text = path.read_text(encoding='utf-8')
+          old_target = 'claim(ledger, "P2-C03")["strength"] = "DESCRIPTIVE"'
+          new_target = 'claim(ledger, "P2-X25")["strength"] = "DESCRIPTIVE"'
+          if old_target in text:
+              text = text.replace(old_target, new_target, 1)
+          elif new_target not in text:
+              raise SystemExit('current NONE_YET/CANNOT_CHECK hostile-test target not found')
+          text = text.replace(
+              '"""support_type NONE_YET must stay at CANNOT_CHECK, not become DESCRIPTIVE."""',
+              '"""The current asserted NONE_YET claim must stay CANNOT_CHECK, not DESCRIPTIVE."""',
+              1,
+          )
+          old_injection = 'marker + "\\nThe system achieves a recall of 0.93 on the open web.\\n"'
+          new_injection = '"\\nThe system achieves a recall of 0.93 on the open web.\\n" + marker'
+          if old_injection in text:
+              text = text.replace(old_injection, new_injection, 1)
+          elif new_injection not in text:
+              raise SystemExit('conclusion hostile-test insertion expression not found')
           path.write_text(text, encoding='utf-8')
           PY
       - name: Fetch live evidence for newly promoted P2-X bibliography entries
