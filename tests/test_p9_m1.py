@@ -7,7 +7,7 @@ import pytest
 
 from orion.study.p9.generated_worlds import HostileFamily, generate_corpus, generate_pair
 from orion.study.p9.m0_tasks import GluingTask, MechanicRankingTask, build_task
-from orion.study.p9.m1 import frozen_model_specs, run_m1
+from orion.study.p9.m1_runtime import frozen_model_specs, run_m1
 from orion.study.p9.m1_features import (
     FeatureFamily,
     gluing_features,
@@ -19,16 +19,22 @@ from orion.study.p9.structural_world import ViewMode
 
 
 PROTOCOL = Path("research/extensions/p9-structured-neural/M1_PROTOCOL_V1.json")
+PROTOCOL_V11 = Path("research/extensions/p9-structured-neural/M1_PROTOCOL_V1_1.json")
 
 
 def test_m1_protocol_is_pre_outcome_and_binds_current_m0():
     protocol = json.loads(PROTOCOL.read_text())
+    amendment = json.loads(PROTOCOL_V11.read_text())
     assert protocol["schema"] == "P9.M1Protocol.v1"
     assert protocol["outcome_accessed"] is False
     assert protocol["dependencies"]["m0_merge"] == "077ecdc4e7905f5d9791cb9a57825417acddf4f4"
     assert protocol["corpus"]["test_pairs_per_family"] == 48
     assert protocol["selection"]["test_passes_per_selected_configuration"] == 1
     assert protocol["authority"]["model_promotion_authority"] is False
+    assert amendment["schema"] == "P9.M1Protocol.v1.1"
+    assert amendment["outcome_accessed"] is False
+    assert amendment["supersedes_for_execution"] == "P9.M1Protocol.v1"
+    assert amendment["diagnostic_curve_rule"]["protected_test_effect"] == "NONE"
 
 
 def test_frozen_model_grid_matches_protocol_count_and_is_deterministic():
@@ -45,9 +51,9 @@ def test_generic_features_never_emit_raw_opaque_identity_in_feature_name():
         assert isinstance(task, MechanicRankingTask)
         for candidate in task.candidates:
             for family in (FeatureFamily.F0_FIELD_BAG, FeatureFamily.F1_PAIRWISE):
-                features = mechanic_features(task, candidate, family)
-                assert opaque_feature_names(features) == ()
-                assert not any(candidate.candidate_id in name for name in features)
+                row = mechanic_features(task, candidate, family)
+                assert opaque_feature_names(row) == ()
+                assert not any(candidate.candidate_id in name for name in row)
 
 
 def test_pairwise_history_equality_uses_relation_not_raw_id():
@@ -70,16 +76,16 @@ def test_weaker_history_view_has_no_candidate_history_equality_signal():
     task = build_task(world, mode=ViewMode.CURRENT, order_seed="order")
     assert isinstance(task, MechanicRankingTask)
     for candidate in task.candidates:
-        features = mechanic_features(task, candidate, FeatureFamily.F1_PAIRWISE)
-        assert features["eq:candidate_id_occurs_in_context"] == 0.0
+        row = mechanic_features(task, candidate, FeatureFamily.F1_PAIRWISE)
+        assert row["eq:candidate_id_occurs_in_context"] == 0.0
 
 
 def test_cycle_features_expose_raw_visible_values_not_hand_composed_residual():
     world = generate_pair(HostileFamily.TRANSPORT_GLUING, "m1-cycle").worlds[0]
     task = build_task(world, mode=ViewMode.CURRENT, order_seed="ignored")
     assert isinstance(task, GluingTask)
-    features = gluing_features(task, FeatureFamily.F2_CYCLE_NUMERIC)
-    cycle_names = sorted(name for name in features if name.startswith("cycle:"))
+    row = gluing_features(task, FeatureFamily.F2_CYCLE_NUMERIC)
+    cycle_names = sorted(name for name in row if name.startswith("cycle:"))
     assert cycle_names == [
         "cycle:0:offset",
         "cycle:0:scale",
@@ -89,7 +95,7 @@ def test_cycle_features_expose_raw_visible_values_not_hand_composed_residual():
         "cycle:2:scale",
     ]
     forbidden = ("residual", "product", "composed", "identity_error")
-    assert not any(any(word in name for word in forbidden) for name in features)
+    assert not any(any(word in name for word in forbidden) for name in row)
 
 
 def test_cycle_feature_rejected_before_transport_values_are_visible():
@@ -130,6 +136,9 @@ def test_m1_small_smoke_is_deterministic_non_authorizing_and_ceiling_safe():
         assert view["test_overall"]["ceiling_violation"] is False
         for task in view["tasks"].values():
             assert task["test_row_permutation_invariance"]["invariant"] is True
+            curve = task["train_size_curve_dev"]
+            assert curve
+            assert all(point["status"] in {"EVALUATED", "CONFIG_NOT_FIT_AT_SIZE"} for point in curve)
             if "candidate_order_invariance_test" in task:
                 assert task["candidate_order_invariance_test"]["invariant"] is True
 
