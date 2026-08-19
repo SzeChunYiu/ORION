@@ -1,0 +1,41 @@
+{
+  "schema": "P9.A5D0ExplicitInferenceResultArchive.v1",
+  "protocol": "P9.A5D0ExplicitInferenceProtocol.v1",
+  "execution_channel": "INDEPENDENT_PROTOCOL_REPLAY",
+  "verification_reference": "P9.IndependentReplayExpectations.v1",
+  "seed": "p9-a5-d0-explicit-v1",
+  "transport_pairs": 256,
+  "views": {
+    "TYPED": {
+      "sample_count": 512,
+      "accuracy": 0.0,
+      "unknown_rate": 1.0,
+      "interpretation": "transport endpoints visible but affine values absent; explicit inference fails closed"
+    },
+    "CURRENT": {
+      "sample_count": 512,
+      "accuracy": 1.0,
+      "unknown_rate": 0.0,
+      "interpretation": "all visible affine cycles independently recomposed exactly"
+    },
+    "SEMANTIC": {
+      "sample_count": 512,
+      "accuracy": 1.0,
+      "unknown_rate": 0.0,
+      "interpretation": "additional history semantics are unnecessary for the transport atom"
+    }
+  },
+  "hostile_checks": {
+    "gold_falsification_invariance": true,
+    "transport_order_invariance": true,
+    "missing_or_duplicate_map_returns_unknown": true,
+    "broken_cycle_returns_unknown": true,
+    "inverse_cycle_glues": true,
+    "perturbed_cycle_obstructs": true
+  },
+  "terminal": "A5_D0_EXPLICIT_INFERENCE_SUFFICIENT",
+  "verification_state": "BOUNDED_VERIFIED",
+  "claim_ceiling": "one-dimensional affine D0 local-transport gluing only",
+  "grants_neural_escalation": false,
+  "scientific_authority": "BOUNDED_VERIFICATION_EVIDENCE_ONLY"
+}
