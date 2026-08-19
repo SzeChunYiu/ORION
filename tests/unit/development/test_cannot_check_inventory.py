@@ -200,10 +200,11 @@ def test_the_precision_fix_lost_no_classification() -> None:
     """Filtering noise must not remove signal.
 
     Every classification in the inventory was driven by a genuine reason. The
-    original precision-fix inventory contained 141 classified sites; P4's new
-    method-authority layer adds three reviewed classified obligations (two custody,
-    one declaration), so the exact ratchet is now 144. Future additions must update
-    this sentinel deliberately rather than weakening it to a lower-bound check.
+    original precision-fix inventory contained 141 classified sites; P4 added
+    three reviewed classified obligations, and T8's prospective preflight adds
+    two identity-bound obligations. The exact ratchet is therefore 146. Future
+    additions must update this sentinel deliberately rather than weakening it to
+    a lower-bound check.
     """
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
