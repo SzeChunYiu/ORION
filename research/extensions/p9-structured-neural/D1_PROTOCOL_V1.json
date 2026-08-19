@@ -1,0 +1,85 @@
+{
+  "schema": "P9.D1MethodTransferProtocol.v1",
+  "protocol_id": "p9-d1-method-transfer-v1",
+  "outcome_accessed": false,
+  "upstream_protocol": "ORION.P1P3.StructurePilot.v1",
+  "upstream_subject": "a13c8eefe5022ef820ff96bad568c2fc1754cad0",
+  "claim_ceiling": "Exact authored/procedural method-structure transfer across three bounded domains; not natural-science extraction or general scientific reasoning.",
+  "domains": {
+    "train": ["numerical_methods", "graph_algorithms"],
+    "primary_test_holdout": ["transactional_workflows"]
+  },
+  "seed": "p9-d1-method-transfer-v1",
+  "instances_per_base_pair": {
+    "train": 48,
+    "dev": 16,
+    "test": 32
+  },
+  "labels": ["ALIGNED", "OBSTRUCTION", "UNRESOLVED"],
+  "views": ["TRANSCRIPT", "UNTYPED", "TYPED", "TYPED_SERIALIZED"],
+  "comparison_coordinates": [
+    "preconditions",
+    "invariants",
+    "effects",
+    "progress_measure",
+    "terminal_condition",
+    "reconstruction_map",
+    "failure_modes",
+    "dependencies"
+  ],
+  "single_corruptions_train": [
+    "preconditions",
+    "invariants",
+    "effects",
+    "progress_measure",
+    "terminal_condition",
+    "reconstruction_map",
+    "failure_modes",
+    "dependencies"
+  ],
+  "combinatorial_holdout": {
+    "enabled": true,
+    "test_only_double_corruptions": [
+      ["preconditions", "invariants"],
+      ["effects", "reconstruction_map"],
+      ["dependencies", "failure_modes"]
+    ]
+  },
+  "unknown_holdout": {
+    "coordinate": "reconstruction_map",
+    "label": "UNRESOLVED",
+    "force_unknown_not_fabricated": true
+  },
+  "surface_remint": {
+    "method_ids": true,
+    "mechanic_action_names": true,
+    "surface_role_names": true,
+    "preserve_typed_semantics": true
+  },
+  "forbidden_model_metadata": [
+    "domain",
+    "base_method_id",
+    "mutation_name",
+    "generator_seed",
+    "split",
+    "gold"
+  ],
+  "primary_metrics": [
+    "accuracy",
+    "macro_f1",
+    "per_label_accuracy",
+    "whole_domain_holdout_accuracy",
+    "double_corruption_accuracy",
+    "unresolved_accuracy",
+    "surface_remint_invariance"
+  ],
+  "primary_question": "Does typed structure transfer across a held-out exact procedural domain beyond transcript/untyped representations?",
+  "stop_rules": [
+    "typed_equals_same_information_serialized_means_no_encoding_architecture_claim",
+    "transcript_above_information_ceiling_means_leakage",
+    "simple_comparator_sufficient_blocks_neural_escalation_for_D1",
+    "domain_specific_semantics_force_narrowing"
+  ],
+  "p10_p11_exclusion": "No formal-math reserve, frontier problem, P10 historical cutoff material, or P11 protected evaluation target may enter D1 V1.",
+  "authority": "NO_SCIENTIFIC_AUTHORITY_PROTOCOL_ONLY"
+}
