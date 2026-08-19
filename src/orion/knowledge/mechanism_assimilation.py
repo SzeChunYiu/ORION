@@ -5,9 +5,14 @@ A disposition says *what we decided about a work*. An assimilation receipt says
 silently drop*. `research/novelty/self-application/` already records the former;
 this records the latter, which is what #318 asks for.
 
-An assimilation ledger without hostile checks is a bibliography with verbs. Four
+An assimilation ledger without hostile checks is a bibliography with verbs. Five
 failure modes make absorption look like invention, and each is checked here
 rather than left to review:
+
+**Missing upstream structure** — a material conceptual donor is decomposed into
+mechanics before its ontology/explanation/failure/revision/authority commitments
+are frozen. Caught by requiring a `ScientificStructureAssimilationReceipt.v1`
+identity for donors marked `material_structural_donor`.
 
 **Rebranding** — a donor mechanism renamed and claimed. Caught by requiring a
 stated delta whenever ORION's name differs from the donor's.
@@ -91,6 +96,7 @@ def authority_rank(authority: AssimilationAuthority) -> int:
 
 
 class HostileFindingKind(str, Enum):
+    MISSING_STRUCTURAL_RECEIPT = "MISSING_STRUCTURAL_RECEIPT"
     REBRANDING = "REBRANDING"
     LOST_ASSUMPTIONS = "LOST_ASSUMPTIONS"
     AUTHORITY_ESCALATION = "AUTHORITY_ESCALATION"
@@ -195,6 +201,8 @@ class AssimilationDraft:
     claim: AssimilationClaim
     not_taken: tuple[str, ...] = ()
     evidence_refs: tuple[str, ...] = ()
+    material_structural_donor: bool = False
+    structural_receipt_id: str = ""
 
     def __post_init__(self) -> None:
         if not self.receipt_id.strip():
@@ -212,6 +220,8 @@ class MechanismAssimilationReceipt:
     claim: AssimilationClaim
     not_taken: tuple[str, ...]
     evidence_refs: tuple[str, ...]
+    material_structural_donor: bool
+    structural_receipt_id: str
     hostile_findings: tuple[HostileFinding, ...]
     verdict: AssimilationVerdict
     verdict_reasons: tuple[str, ...]
@@ -226,6 +236,19 @@ class MechanismAssimilationReceipt:
     @property
     def self_authorizing(self) -> bool:
         return False
+
+
+def _missing_structural_receipt(draft: AssimilationDraft) -> HostileFinding | None:
+    """Conceptual donors must be structurally assimilated before mechanic pickup."""
+
+    if not draft.material_structural_donor:
+        return None
+    if draft.structural_receipt_id.strip():
+        return None
+    return HostileFinding(
+        HostileFindingKind.MISSING_STRUCTURAL_RECEIPT,
+        "material structural donor has no upstream ScientificStructureAssimilationReceipt.v1 identity",
+    )
 
 
 def _rebranding(draft: AssimilationDraft) -> HostileFinding | None:
@@ -296,6 +319,7 @@ def _ungrounded_source(draft: AssimilationDraft) -> HostileFinding | None:
 
 HOSTILE_CHECKS = (
     _ungrounded_source,
+    _missing_structural_receipt,
     _rebranding,
     _lost_assumptions,
     _authority_escalation,
@@ -361,6 +385,8 @@ def seal_assimilation(draft: AssimilationDraft) -> MechanismAssimilationReceipt:
         claim=draft.claim,
         not_taken=draft.not_taken,
         evidence_refs=draft.evidence_refs,
+        material_structural_donor=draft.material_structural_donor,
+        structural_receipt_id=draft.structural_receipt_id,
         hostile_findings=findings,
         verdict=verdict,
         verdict_reasons=tuple(reasons),
