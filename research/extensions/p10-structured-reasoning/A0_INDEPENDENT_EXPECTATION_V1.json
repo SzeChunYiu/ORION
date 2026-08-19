@@ -1,0 +1,55 @@
+{
+  "schema": "P10.A0IndependentExpectation.v1",
+  "status": "PRE_OFFICIAL_ARTIFACT_EXPECTATION_ONLY",
+  "created_before_official_workflow_outcome": true,
+  "basis": "independent algebra over the frozen five equally weighted responsibility families and written controller semantics",
+  "cases_per_family": 128,
+  "expected_terminal": "P10_EXISTING_STRUCTURED_CONTROL_SUFFICIENT",
+  "expected_arms": {
+    "SERIALIZED_STATE_RULE": {
+      "accuracy": 0.4,
+      "false_closure_rate": 0.0,
+      "unnecessary_reframe_rate": 0.0,
+      "unresolved_accuracy": 1.0,
+      "mean_decision_cost_units": 0.2
+    },
+    "DEPENDENCY_SUPPORT_CONTROL": {
+      "accuracy": 0.6,
+      "false_closure_rate": 0.4,
+      "unnecessary_reframe_rate": 0.0,
+      "unresolved_accuracy": 1.0,
+      "mean_decision_cost_units": 1.0
+    },
+    "SYMBOLIC_FEASIBILITY_CONTROL": {
+      "accuracy": 0.8,
+      "false_closure_rate": 0.0,
+      "unnecessary_reframe_rate": 0.0,
+      "unresolved_accuracy": 1.0,
+      "mean_decision_cost_units": 1.4
+    },
+    "STRUCTURED_HISTORY_CONTROL": {
+      "accuracy": 0.4,
+      "false_closure_rate": 0.0,
+      "unnecessary_reframe_rate": 0.0,
+      "unresolved_accuracy": 1.0,
+      "mean_decision_cost_units": 0.2
+    },
+    "DONOR_COMPOSED_CONTROL": {
+      "accuracy": 1.0,
+      "false_closure_rate": 0.0,
+      "unnecessary_reframe_rate": 0.0,
+      "unresolved_accuracy": 1.0,
+      "mean_decision_cost_units": 1.8
+    },
+    "ORION_RESPONSIBILITY_CONTROL": {
+      "accuracy": 1.0,
+      "false_closure_rate": 0.0,
+      "unnecessary_reframe_rate": 0.0,
+      "unresolved_accuracy": 1.0,
+      "mean_decision_cost_units": 1.8
+    }
+  },
+  "interpretation_if_matched": "the proposed responsibility controller is exactly reproduced by composing donor-owned support sufficiency with symbolic feasibility/minimal repair on this finite A0 scope; no live-LLM escalation is scientifically licensed by A0",
+  "scientific_authority": "NONE_EXPECTATION_ONLY",
+  "verification_rule": "any material official-result disagreement remains visible and blocks closure until adjudicated"
+}
