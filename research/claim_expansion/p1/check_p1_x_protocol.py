@@ -82,6 +82,9 @@ def validate_protocol(
 ) -> tuple[str, ...]:
     errors: list[str] = []
 
+    # The protocol and registry are immutable pre-outcome design records.  Their
+    # CANNOT_CHECK authority must remain frozen even after a separate result
+    # ledger earns a bounded post-outcome disposition.
     if "PROTOCOL_FROZEN__NO_PROTECTED_OUTCOMES_ACCESSED" not in protocol_text:
         errors.append("protocol_missing_preoutcome_freeze_terminal")
     if "Current result state: `CANNOT_CHECK`." not in protocol_text:
@@ -230,14 +233,24 @@ def validate_protocol(
     if narrower_status != {"UNTESTED", "FAILED", "SUCCEEDED", "CANNOT_CHECK"}:
         errors.append("counterfactual_status_enum_drift")
 
+    # The result ledger is post-outcome and is allowed to advance independently
+    # of the immutable protocol/registry.  A1/A2 are now bounded-supported by the
+    # protected V2 result and independent reconstruction; A3 must remain unearned.
     a1 = _section(ledger_text, "### A1", "### A2")
     a2 = _section(ledger_text, "### A2", "### A3")
     a3 = _section(ledger_text, "### A3", "## Explicit nonclaims")
-    for label, section in (("A1", a1), ("A2", a2), ("A3", a3)):
-        if not section:
-            errors.append(f"ledger_missing_section:{label}")
-        elif "State: `CANNOT_CHECK`." not in section:
-            errors.append(f"ledger_successor_authority_not_cannot_check:{label}")
+    if not a1:
+        errors.append("ledger_missing_section:A1")
+    elif "State: `SUPPORTED_BOUNDED_" not in a1:
+        errors.append("ledger_a1_not_bounded_supported")
+    if not a2:
+        errors.append("ledger_missing_section:A2")
+    elif "State: `SUPPORTED_BOUNDED_" not in a2:
+        errors.append("ledger_a2_not_bounded_supported")
+    if not a3:
+        errors.append("ledger_missing_section:A3")
+    elif "State: `CANNOT_CHECK`." not in a3:
+        errors.append("ledger_a3_authority_not_cannot_check")
     if "no claim of inherent expressivity" not in ledger_text:
         errors.append("ledger_missing_ideal_product_boundary")
 
