@@ -4,7 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
-from orion.study.p9.s3_experiment import run_s3_access_attribution
+from orion.study.p9.s3_runtime import run_s3_access_attribution
 
 
 def main() -> int:
