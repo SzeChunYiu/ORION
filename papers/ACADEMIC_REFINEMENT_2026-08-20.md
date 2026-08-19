@@ -106,3 +106,15 @@ This is the strongest coherent programme story because it survives donor engulfm
 ## Remaining editorial rule
 
 Future refinements should expand claims only when a new result, theorem, or literature closure increases authority. Do not expand by adjective. The intended reader reaction should come from the magnitude and cleanliness of the protected effects, the strength of the donor baselines, the exactness of the formal enumerations, and the shared non-laundering invariant across the paper programme.
+
+## Validation closure
+
+The refinement is released only on a head where:
+
+- P2 immutable claim bindings, widening checks, and the review PDF compile pass;
+- P4 protected lifecycle, result regeneration, and TMLR audit pass;
+- P6–P8 theory, content-binding, submission, and PDF gates pass;
+- P1–P4 journal-package hashes and P6–P8 candidate manifests are regenerated from the final refined bytes;
+- broad repository CI is green on the same exact head.
+
+P3 remains represented in the cross-paper research/positioning synthesis, but this refinement branch intentionally leaves its manuscript and tracked publication package at the already-audited base state rather than expanding scope into an unrelated bibliography/PDF rebuild.
