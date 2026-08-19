@@ -1,0 +1,23 @@
+{
+  "schema": "P9.S3AccessAttributionProtocol.v1.1",
+  "date": "2026-08-19",
+  "parent_protocol": "S3_ACCESS_ATTRIBUTION_PROTOCOL_V1.json",
+  "parent_issue": 589,
+  "freeze_issue": 593,
+  "parent_d1_subject_sha": "af218de0416c90cdf6e0221098c97e181e29a6e0",
+  "parent_d1_outcome_accessed": true,
+  "s3_outcome_accessed": false,
+  "amendment_reason": "Pre-execution hostile review found that dropping left/right side binding does not necessarily make the serialized fact multiset information-theoretically non-identifying: value multiplicities can in principle reveal equality. The historical serialized-bag arm is therefore diagnosed as lacking a value-independent comparison/counting inductive bias for unseen held-out-domain values, not as provably losing semantic information.",
+  "scientific_change": "Interpret S3 as an access/inductive-bias attribution study, not an information-loss proof. All D1 data, labels, splits, historical arms, model grid, F1/F2 adapter definitions, primary thresholds, and protected test remain unchanged.",
+  "removed_hostile_requirement": "dropping side binding breaks at least one dev decision / creates a dev label collision",
+  "replacement_hostile_requirement": "On train/dev-derived serialized examples, consistent reminting of semantic values changes the historical bag-of-token feature identities while leaving F1 generic equality/unknown features invariant. This demonstrates a value-independent comparison inductive bias without asserting that the serialization is information-losing.",
+  "clarifications": [
+    "F1 adds an operation/access bias: group by side and coordinate path, then compare canonical token multisets.",
+    "F1 does not add evaluator labels or domain-specific semantic values.",
+    "F2 remains a diagnostic exact comparator over F1 features, not a learned-model novelty claim.",
+    "The pre-protected train+dev equivalence requirement between F2 and the historical exact typed comparator remains mandatory.",
+    "A positive S3 result may establish that explicit generic comparison access is sufficient; it may not establish that raw serialization is information-theoretically insufficient."
+  ],
+  "outcome_policy": "No S3 protected test access before V1.1 hostile tests and implementation are committed and train+dev-only equivalence is green.",
+  "authority": "PROTOCOL_AMENDMENT_ONLY_NO_RESULT_AUTHORITY"
+}
