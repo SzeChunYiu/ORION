@@ -3,9 +3,11 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from orion.knowledge.nearest_work import NoveltyVerdict
 from orion.transfer.scientific.closure import (
     TransferArm,
     build_assimilation_demo,
+    build_assimilation_novelty_assessment,
     build_closure_report,
     build_protected_panel,
 )
@@ -46,6 +48,7 @@ def test_main_report_matches_pre_run_expected_table_exactly() -> None:
     assert report.issue_286_terminal == expected["expected_issue_286_terminal_if_reconstructed"]
     assert report.issue_318_terminal == expected["expected_issue_318_terminal_if_reconstructed"]
     assert report.parent_ties_contract is True
+    assert report.assimilation_novelty_verdict == "SUBSUMED"
     assert report.grants_scientific_authority is False
     assert report.grants_novelty_authority is False
     assert report.grants_issue_closure_authority is False
@@ -78,3 +81,10 @@ def test_assimilation_demo_has_clean_adopt_adapt_compose_paths() -> None:
         ("ADAPT-1", "ADMITTED"),
         ("COMPOSE-1", "ADMITTED"),
     )
+
+
+def test_absorbed_generic_transfer_claim_is_removed_from_novelty_state() -> None:
+    assessment = build_assimilation_novelty_assessment()
+    assert assessment.verdict is NoveltyVerdict.SUBSUMED
+    assert assessment.candidate_delta_ids == ()
+    assert assessment.publication_novelty_authorized is False
