@@ -1,0 +1,39 @@
+# P4 claim ledger V3
+
+**Current science manuscript:** `manuscript/FINAL_V3.md`  
+**Historical rendered source:** `manuscript/main.tex`  
+**Successor science:** `research/claim_expansion/p4/`  
+**Science state:** `SCIENCE_CLOSED_V3`
+
+This ledger supersedes the scientific claim ceiling of the historical V2 manuscript while preserving every V2 result and limitation. It does not claim that the historical PDF contains V3.
+
+| ID | Permitted claim | Authority | Forbidden upgrade |
+|---|---|---|---|
+| P4.V3.1 | In protected V2, ORION made 0/360 false promotions versus 180/360 for the strongest frozen mechanism proxy, while both promoted 60/60 clean positives. | PROTECTED_V2 EMPIRICAL RESULT | Superiority to the original external systems represented by the proxies. |
+| P4.V3.2 | V2 H2 is a clean-coverage non-inferiority guard, not a clean-coverage superiority result. | V2 DESIGN / RESULT BOUNDARY | Claim that P4 improves benign recall/coverage. |
+| P4.V3.3 | V2 H3 is not supported / non-discriminating because all systems saturated the eligible `CANNOT_CHECK` family. | V2 NEGATIVE RESULT | General abstention superiority or equality. |
+| P4.V3.4 | P4-X is a separate prospectively frozen 400-case exact-contract successor and is not pooled with V2. | SUCCESSOR PROTOCOL FACT | Retroactive presentation of P4-X as part of V2. |
+| P4.V3.5 | P4-X selected the correct scientific-promotion terminal on 400/400 cases versus 250/400 for the strong donor-complete generic-authorization product and 50/400 for the compensatory product. | PROTECTED P4-X RESULT | Deployed-agent/verifier/provider superiority. |
+| P4.V3.6 | P4-X minus the strong donor product is +0.375 with domain-stratified bootstrap 95% CI [0.3275, 0.4225], with zero P4-X false promotions, clean promotion 1.0, and positive direction in every exact domain. | PROTECTED P4-X RESULT | Population-wide inference beyond the registered exact-contract design. |
+| P4.V3.7 | After donor-complete provenance, verification, artifact/version binding, evaluator custody, epoch handling and generic authorization are granted, scientific claim promotion remains a distinct non-compensatory relation in the tested exact contracts. | P4-X ARCHITECTURE RESULT | Generic evidence-versus-authorization novelty across all domains. |
+| P4.V3.8 | Missing claim scope, evidence-independence or unresolved scientific-authority obligations cannot be compensated by confidence/success elsewhere under the registered P4-X promotion relation. | P4-X FORMAL/EMPIRICAL CONTRACT | Universal necessity of exactly these coordinates in every scientific domain. |
+| P4.V3.9 | An ideal typed donor product given the same scientific coordinates and promotion predicate ties P4-X exactly at 400/400. | IDEAL-PRODUCT EQUIVALENCE | Inherent expressivity or centralization advantage. |
+| P4.V3.10 | Provenance, claim verification, evaluator auditing/custody, contamination defense, abstention, assurance cases and generic authorization remain donor-owned components. | NOVELTY BOUNDARY | P4 invented those mechanisms. |
+| P4.V3.11 | Current deployed/verifier/provider generality remains `CANNOT_CHECK`. | CLAIM CEILING | Verifier-agnostic or universal scientific-authority superiority. |
+
+## Allowed headline
+
+> Paper IV integrates strong donor-owned provenance, verification, custody and generic authorization mechanisms under a distinct non-compensatory scientific-promotion relation. In a separate 400-case protected successor, that relation prevents scope, evidence-dependence and unresolved-authority false promotions relative to a donor-complete product while preserving clean promotion; an information-equivalent typed product ties exactly.
+
+## Prohibited headlines
+
+- “P4 invents provenance-aware verification or evidence-backed authorization.”
+- “P4 proves all scientific promotion must use this exact gate set.”
+- “P4 is more expressive because its authority gates are centralized.”
+- “P4 demonstrates general abstention superiority.”
+- “P4 beats the original ProvenAI / ProvenanceGuard / FIRE / other external systems.”
+- “P4-X establishes live verifier/provider or open-ended research-agent superiority.”
+
+## PDF boundary
+
+PDF/package generation is deferred. Until a later render integrates the V3 source specification, pre-V3 PDFs remain historical V2 artifacts and must not be described as containing P4-X.
