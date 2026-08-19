@@ -1,0 +1,68 @@
+{
+  "version": "FailureEpistemologySaturation.v1",
+  "design_and_expected_frozen_before_rounds": true,
+  "rounds": [
+    {
+      "round_id": "POST_DESIGN_ROUND_1",
+      "challenge_neighborhood": "continual memory + selective transfer + metareasoning",
+      "primary_sources": [
+        {
+          "source_id": "MENG_ET_AL_2607_15587",
+          "locator": "Meng et al., Rethinking Transfer in Continual Learning: A Replay-Based Realisation, arXiv:2607.15587",
+          "pressure": "Transfer-Selective Replay makes compatibility of prior tasks a first-class condition for replay benefit, reinforcing the need to gate negative history by compatibility rather than replay indiscriminately.",
+          "mapped_parent_coordinates": ["SELECTIVE_REPLAY_COMPATIBILITY","NEGATIVE_TRANSFER_CONTROL"]
+        },
+        {
+          "source_id": "DOROVATAS_ET_AL_2603_01761",
+          "locator": "Dorovatas et al., Modular Memory is the Key to Continual Learning Agents, arXiv:2603.01761",
+          "pressure": "Modular memory is an established parent direction for experience accumulation and adaptation; storing negative history is not by itself a new ORION primitive.",
+          "mapped_parent_coordinates": ["MODULAR_MEMORY","EXPERIENCE_ACCUMULATION"]
+        },
+        {
+          "source_id": "DE_SABBATA_ET_AL_2410_05563",
+          "locator": "De Sabbata, Sumers and Griffiths, Rational Metareasoning for Large Language Models, arXiv:2410.05563",
+          "pressure": "Value-of-computation already formalizes selecting extra reasoning/computation when its expected decision value justifies cost, reinforcing #477 as the parent for decision-relevant query choice.",
+          "mapped_parent_coordinates": ["VALUE_OF_COMPUTATION","DECISION_RELEVANT_INQUIRY"]
+        }
+      ],
+      "new_residual_coordinate_ids": [],
+      "material_change": false,
+      "result": "NO_MATERIAL_CHANGE"
+    },
+    {
+      "round_id": "POST_DESIGN_ROUND_2",
+      "challenge_neighborhood": "failure-driven agent improvement + trace diagnosis + safety-scoped repair",
+      "primary_sources": [
+        {
+          "source_id": "SUN_ET_AL_2606_31270",
+          "locator": "Sun et al., Learning from Failure: Inference-Time Self-Improvement for Computer-Use Agents, arXiv:2606.31270",
+          "pressure": "Failed trajectories can materially improve later agent behavior, reinforcing the usefulness of failure history but not supplying scientific scope/transport/refutation authority.",
+          "mapped_parent_coordinates": ["FAILURE_HISTORY_USEFULNESS","FAILURE_TO_REPAIR"]
+        },
+        {
+          "source_id": "CHEN_ET_AL_2606_06324",
+          "locator": "Chen et al., From Failed Trajectories to Reliable LLM Agents: Diagnosing and Repairing Harness Flaws, arXiv:2606.06324",
+          "pressure": "Trace-aware responsibility localization and scoped repair of harness layers are strong parents for turning failure evidence into bounded repair actions rather than broad global changes.",
+          "mapped_parent_coordinates": ["RESPONSIBILITY_LOCALIZATION","SCOPED_REPAIR","PROVENANCE"]
+        },
+        {
+          "source_id": "YIN_LI_WANG_2605_11882",
+          "locator": "Yin, Li and Wang, On-Policy Self-Evolution via Failure Trajectories for Agentic Safety Alignment, arXiv:2605.11882",
+          "pressure": "Verifier-scored failure trajectories can drive corrective supervision while preserving multiple safety/utility objectives, reinforcing failure-data usefulness under external verification rather than a new failure ontology.",
+          "mapped_parent_coordinates": ["FAILURE_DRIVEN_SUPERVISION","EXTERNAL_VERIFICATION","NONCOMPENSATORY_SAFETY"]
+        }
+      ],
+      "new_residual_coordinate_ids": [],
+      "material_change": false,
+      "result": "NO_MATERIAL_CHANGE"
+    }
+  ],
+  "interpretation": "The refresh strengthens the parent decomposition: selective replay owns compatibility, modular memory owns experience storage, metareasoning owns decision-relevant compute/query value, trace diagnosis owns scoped responsibility/repair, and failure-driven self-improvement establishes that failures can be useful. None adds a new coordinate that defeats the frozen STANDARD_PARENT composition or creates an ORION-specific general failure-learning primitive.",
+  "reopen_rule": "A later primary source that demonstrates a reusable scientific failure-learning capability not representable by scoped nogood/responsibility + semantic transport + decision-relevant inquiry under matched information/resources reopens the candidate terminal and resets both rounds.",
+  "authority": {
+    "grants_scientific_refutation": false,
+    "grants_novelty_authority": false,
+    "grants_real_world_generalization": false,
+    "grants_issue_closure_authority": false
+  }
+}

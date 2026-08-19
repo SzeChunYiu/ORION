@@ -1,0 +1,141 @@
+{
+  "version": "FailureEpistemologyCases.v1",
+  "outcome_accessed": false,
+  "cases_frozen_before_runner": true,
+  "variants_per_family": ["01","02","03","04"],
+  "common": {
+    "failed_method_id": "method-a",
+    "alternative_method_id": "method-b",
+    "actions": [
+      {"action_id":"method-a","cost":1},
+      {"action_id":"method-b","cost":2}
+    ],
+    "prior_context": {
+      "regime":"regime-old",
+      "representation":"repr-old",
+      "measurement":"measure-old",
+      "objective":"objective-common",
+      "evaluator":"evaluator-old"
+    },
+    "authority_owner_id": "external-scientific-authority"
+  },
+  "family_templates": [
+    {
+      "family_id":"E1_COMPATIBLE_RECURRENCE",
+      "case_id_prefix":"E1",
+      "current_context":{"regime":"regime-old","representation":"repr-old","measurement":"measure-old","objective":"objective-common","evaluator":"evaluator-old"},
+      "responsibility_state":"RESOLVED_SCIENTIFIC",
+      "transport_witness_kind":"IDENTITY",
+      "prior_failure_present":true,
+      "required_same_coordinates":["regime","objective"],
+      "reopen_on_change_coordinates":["representation","measurement","evaluator"],
+      "live_responsibility_hypotheses":[],
+      "queries":[],
+      "archive_manifest":null,
+      "gold_decision":{"kind":"SELECT_ACTION","target_id":"method-b"}
+    },
+    {
+      "family_id":"E2_REPAIRED_MEASUREMENT_OR_EVALUATOR",
+      "case_id_prefix":"E2",
+      "current_context":{"regime":"regime-old","representation":"repr-old","measurement":"measure-repaired","objective":"objective-common","evaluator":"evaluator-old"},
+      "responsibility_state":"RESOLVED_MEASUREMENT",
+      "transport_witness_kind":"VERIFIED_SEMANTIC_CHANGE",
+      "prior_failure_present":true,
+      "required_same_coordinates":["regime","objective"],
+      "reopen_on_change_coordinates":["representation","measurement","evaluator"],
+      "live_responsibility_hypotheses":[],
+      "queries":[],
+      "archive_manifest":null,
+      "gold_decision":{"kind":"SELECT_ACTION","target_id":"method-a"}
+    },
+    {
+      "family_id":"E3_SEMANTIC_PRESERVING_NONIDENTITY",
+      "case_id_prefix":"E3",
+      "current_context":{"regime":"regime-old","representation":"repr-renamed","measurement":"measure-old","objective":"objective-common","evaluator":"evaluator-old"},
+      "responsibility_state":"RESOLVED_SCIENTIFIC",
+      "transport_witness_kind":"COMPLETE",
+      "prior_failure_present":true,
+      "required_same_coordinates":["regime","objective"],
+      "reopen_on_change_coordinates":["representation","measurement","evaluator"],
+      "live_responsibility_hypotheses":[],
+      "queries":[],
+      "archive_manifest":null,
+      "gold_decision":{"kind":"SELECT_ACTION","target_id":"method-b"}
+    },
+    {
+      "family_id":"E4_INVALID_EXECUTION_OR_MEASUREMENT_AUTHORITY",
+      "case_id_prefix":"E4",
+      "current_context":{"regime":"regime-old","representation":"repr-old","measurement":"measure-old","objective":"objective-common","evaluator":"evaluator-old"},
+      "responsibility_state":"RESOLVED_EXECUTION",
+      "transport_witness_kind":"IDENTITY",
+      "prior_failure_present":true,
+      "required_same_coordinates":["regime","objective"],
+      "reopen_on_change_coordinates":["representation","measurement","evaluator"],
+      "live_responsibility_hypotheses":[],
+      "queries":[],
+      "archive_manifest":null,
+      "gold_decision":{"kind":"SELECT_ACTION","target_id":"method-a"}
+    },
+    {
+      "family_id":"E5_PLURAL_RESPONSIBILITY_DISCRIMINATING_QUERY",
+      "case_id_prefix":"E5",
+      "current_context":{"regime":"regime-old","representation":"repr-old","measurement":"measure-old","objective":"objective-common","evaluator":"evaluator-old"},
+      "responsibility_state":"PLURAL",
+      "transport_witness_kind":"IDENTITY",
+      "prior_failure_present":true,
+      "required_same_coordinates":["regime","objective"],
+      "reopen_on_change_coordinates":["representation","measurement","evaluator"],
+      "live_responsibility_hypotheses":["scientific-method-failure","execution-failure"],
+      "queries":[
+        {"query_id":"query-decisive","cost":1,"outcome_partition":[["scientific-method-failure"],["execution-failure"]]},
+        {"query_id":"query-irrelevant","cost":1,"outcome_partition":[["scientific-method-failure","execution-failure"]]}
+      ],
+      "archive_manifest":null,
+      "gold_decision":{"kind":"QUERY","target_id":"query-decisive"}
+    },
+    {
+      "family_id":"E6_NO_ADMISSIBLE_DISCRIMINATOR",
+      "case_id_prefix":"E6",
+      "current_context":{"regime":"regime-old","representation":"repr-old","measurement":"measure-old","objective":"objective-common","evaluator":"evaluator-old"},
+      "responsibility_state":"PLURAL",
+      "transport_witness_kind":"INCOMPLETE_TARGET_AMBIGUOUS",
+      "prior_failure_present":true,
+      "required_same_coordinates":["regime","objective"],
+      "reopen_on_change_coordinates":["representation","measurement","evaluator"],
+      "live_responsibility_hypotheses":["scientific-method-failure","execution-failure"],
+      "queries":[
+        {"query_id":"query-nondiscriminating","cost":1,"outcome_partition":[["scientific-method-failure","execution-failure"]]}
+      ],
+      "archive_manifest":null,
+      "gold_decision":{"kind":"UNRESOLVED","target_id":null}
+    },
+    {
+      "family_id":"E7_BROKEN_SHUT_NEGATIVE_TRANSFER",
+      "case_id_prefix":"E7",
+      "current_context":{"regime":"regime-new","representation":"repr-new","measurement":"measure-new","objective":"objective-common","evaluator":"evaluator-new"},
+      "responsibility_state":"RESOLVED_SCIENTIFIC",
+      "transport_witness_kind":"VERIFIED_SEMANTIC_CHANGE",
+      "prior_failure_present":true,
+      "required_same_coordinates":["regime","objective"],
+      "reopen_on_change_coordinates":["representation","measurement","evaluator"],
+      "live_responsibility_hypotheses":[],
+      "queries":[],
+      "archive_manifest":null,
+      "gold_decision":{"kind":"SELECT_ACTION","target_id":"method-a"}
+    },
+    {
+      "family_id":"E8_NEGATIVE_RESULTS_VISIBILITY_DISTORTION",
+      "case_id_prefix":"E8",
+      "current_context":{"regime":"regime-literature","representation":"repr-publication-corpus","measurement":"archive-search","objective":"global-efficacy-inference","evaluator":"meta-science-audit"},
+      "responsibility_state":"NONIDENTIFYING",
+      "transport_witness_kind":"INCOMPLETE_TARGET_AMBIGUOUS",
+      "prior_failure_present":false,
+      "required_same_coordinates":[],
+      "reopen_on_change_coordinates":[],
+      "live_responsibility_hypotheses":[],
+      "queries":[],
+      "archive_manifest":{"registered_study_count":12,"visible_success_count":8,"visible_negative_or_null_count":0,"outcome_missing_count":4,"selection_complete":false},
+      "gold_decision":{"kind":"DISTORTION_SUSPECTED","target_id":null}
+    }
+  ]
+}
