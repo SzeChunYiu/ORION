@@ -1,0 +1,49 @@
+{
+  "schema_version": "P4_X_PROTECTED_RESULT_V1",
+  "protocol_merge": "21a75166d9fadbbdbc9b0181dfe5abca52219373",
+  "outcome_access_receipt_commit": "0ca45b5729eece52600d1346ff4a546c8da735b6",
+  "case_count": 400,
+  "counts_correct": {
+    "P4_X": 400,
+    "B1_GENERIC_AUTHORIZATION_PRODUCT": 250,
+    "B2_COMPENSATORY_PRODUCT": 50,
+    "B3_IDEAL_TYPED_PRODUCT": 400
+  },
+  "accuracy": {
+    "P4_X": 1.0,
+    "B1_GENERIC_AUTHORIZATION_PRODUCT": 0.625,
+    "B2_COMPENSATORY_PRODUCT": 0.125,
+    "B3_IDEAL_TYPED_PRODUCT": 1.0
+  },
+  "p4x_minus_b1": 0.375,
+  "bootstrap_95_ci": [0.3275, 0.4225],
+  "bootstrap_replicates": 20000,
+  "bootstrap_seed": 44017,
+  "mcnemar_b_p4_only_correct": 150,
+  "mcnemar_c_b1_only_correct": 0,
+  "false_promotions": {
+    "P4_X": 0,
+    "B1_GENERIC_AUTHORIZATION_PRODUCT": 150,
+    "B2_COMPENSATORY_PRODUCT": 350,
+    "B3_IDEAL_TYPED_PRODUCT": 0
+  },
+  "p4x_clean_promote_rate": 1.0,
+  "per_domain_p4x_minus_b1": {
+    "LITERATURE_CLAIM": 0.375,
+    "COMPUTATIONAL_RESULT": 0.375,
+    "STATISTICAL_INFERENCE": 0.375,
+    "FORMAL_VERIFICATION": 0.375,
+    "MEASUREMENT_DATASET_CLAIM": 0.375
+  },
+  "b3_p4x_decision_mismatches": 0,
+  "canonical_rows_sha256": "8539ee33c0ae033951101cfe5982b38f8e6a2962d2cfd8c891f2973cafcc2b7b",
+  "decision": {
+    "margin_pass": true,
+    "zero_p4x_false_promotion": true,
+    "clean_promotion_pass": true,
+    "all_domain_direction_positive": true,
+    "b3_equivalence_pass": true
+  },
+  "primary_pass": true,
+  "claim_ceiling": "BOUNDED_EXACT_HETEROGENEOUS_SCIENTIFIC_PROMOTION_CONTRACTS"
+}
