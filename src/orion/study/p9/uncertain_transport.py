@@ -2,13 +2,13 @@
 
 This module is a model-independent successor to the closed P9 D0 transport atom.
 The previous result showed that once affine transport parameters are visible,
-exact composition is sufficient.  S1 asks an upstream question instead: whether
+exact composition is sufficient. S1 asks an upstream question instead: whether
 a local transform is currently licensed for composition, requires more
 measurement, has become stale relative to an admitted historical estimate, or
 cannot be identified using the declared probes.
 
-V1 is deliberately exact/noiseless.  It contains no neural model, no training
-loop, and no scientific/adoption authority.  Evaluator-only truth and gold are
+V1 is deliberately exact/noiseless. It contains no neural model, no training
+loop, and no scientific/adoption authority. Evaluator-only truth and gold are
 kept in separate case objects and are excluded from candidate fingerprints.
 """
 
@@ -18,7 +18,7 @@ from dataclasses import dataclass
 from enum import Enum
 from itertools import combinations
 import math
-from typing import Iterable
+from typing import Iterable, Sequence
 
 from orion.transfer.v2.canonical import content_digest
 
@@ -83,7 +83,7 @@ class AffineEstimate:
 
 @dataclass(frozen=True)
 class HiddenAffineMap:
-    """Evaluator-only true local map.  Never appears in a candidate payload."""
+    """Evaluator-only true local map. Never appears in a candidate payload."""
 
     scale: float
     offset: float
@@ -96,6 +96,10 @@ class HiddenAffineMap:
         self.verify()
         _finite(x, what="hidden affine input")
         return self.scale * x + self.offset
+
+    def as_estimate(self) -> AffineEstimate:
+        self.verify()
+        return AffineEstimate(scale=self.scale, offset=self.offset)
 
 
 @dataclass(frozen=True)
@@ -118,7 +122,7 @@ class ObservedAffineTransform:
     """Candidate-visible local transform state.
 
     `historical_estimate`, when present, is treated as a previously admitted
-    estimate.  Its continued validity is tested only against current visible
+    estimate. Its continued validity is tested only against current visible
     observations; no hidden change bit exists in this object.
     """
 
@@ -148,7 +152,7 @@ class ObservedAffineTransform:
             self.historical_estimate.verify()
 
     def candidate_payload(self) -> dict[str, object]:
-        """Canonical model-visible payload; order is not information."""
+        """Canonical model-visible payload; tuple order is not information."""
 
         self.verify()
         observations = sorted((item.x, item.y) for item in self.observations)
@@ -168,9 +172,7 @@ class ObservedAffineTransform:
             "source_chart_id": self.source_chart_id,
             "target_chart_id": self.target_chart_id,
             "observations": [[x, y] for x, y in observations],
-            "candidate_probes": [
-                [probe_id, x, cost] for probe_id, x, cost in probes
-            ],
+            "candidate_probes": [[probe_id, x, cost] for probe_id, x, cost in probes],
             "historical_estimate": historical,
         }
 
@@ -193,8 +195,6 @@ class LocalTransformCase:
         self.observed.verify()
         self.truth.verify()
         for observation in self.observed.observations:
-            # A changed historical estimate may be stale, but observations are
-            # still generated from the evaluator's current true map.
             if not _close(self.truth.apply(observation.x), observation.y):
                 raise ValueError("observation is incompatible with evaluator true map")
         derived = classify_transform_responsibility(self.observed)
@@ -239,7 +239,7 @@ class TransformCycleCase:
         return tuple(charts)
 
     def verify(self) -> None:
-        self.verify_visible_cycle()
+        chart_cycle = self.verify_visible_cycle()
         if self.gold_if_fully_known not in {
             GluingVerdict.GLUE,
             GluingVerdict.OBSTRUCTION,
@@ -250,6 +250,24 @@ class TransformCycleCase:
             raise ValueError("hidden truth must be empty or align one-to-one with cycle edges")
         for truth in self.hidden_truth:
             truth.verify()
+
+        if self.hidden_truth:
+            for edge, truth in zip(self.edges, self.hidden_truth, strict=True):
+                for observation in edge.observations:
+                    if not _close(truth.apply(observation.x), observation.y):
+                        raise ValueError(
+                            "hidden truth is incompatible with a visible observation"
+                        )
+            hidden_verdict = _classify_cycle_from_estimates(
+                self.edges,
+                tuple(truth.as_estimate() for truth in self.hidden_truth),
+                chart_cycle,
+            )
+            if hidden_verdict is not self.gold_if_fully_known:
+                raise ValueError(
+                    "fully-known gold disagrees with exact composition of hidden truth: "
+                    f"computed={hidden_verdict.value} gold={self.gold_if_fully_known.value}"
+                )
 
     def candidate_payload(self) -> dict[str, object]:
         self.verify_visible_cycle()
@@ -263,8 +281,7 @@ class TransformCycleCase:
 
 
 def _distinct_x(observations: Iterable[AffineObservation]) -> tuple[float, ...]:
-    values = sorted({float(item.x) for item in observations})
-    return tuple(values)
+    return tuple(sorted({float(item.x) for item in observations}))
 
 
 def infer_exact_affine(
@@ -281,7 +298,6 @@ def infer_exact_affine(
         item.verify()
     distinct = _distinct_x(items)
     if len(distinct) < 2:
-        # Repeated measurements at one x must still agree with one y.
         for x in distinct:
             ys = [item.y for item in items if _close(item.x, x)]
             if ys and any(not _close(value, ys[0]) for value in ys[1:]):
@@ -318,7 +334,7 @@ def minimal_identifying_probe_ids(edge: ObservedAffineTransform) -> tuple[str, .
     """Minimum-cost declared probe subset that would make an affine map identifiable.
 
     Probe outputs are not known yet; only distinct input x-values matter for exact
-    affine identifiability.  Ties are broken lexicographically by probe id tuple.
+    affine identifiability. Ties are broken lexicographically by probe id tuple.
     """
 
     edge.verify()
@@ -336,8 +352,7 @@ def minimal_identifying_probe_ids(edge: ObservedAffineTransform) -> tuple[str, .
             if len(combined_x) < 2:
                 continue
             ids = tuple(sorted(probe.probe_id for probe in subset))
-            cost = sum(probe.cost for probe in subset)
-            candidates.append((cost, ids))
+            candidates.append((sum(probe.cost for probe in subset), ids))
     if not candidates:
         return ()
     candidates.sort(key=lambda item: (item[0], item[1]))
@@ -371,14 +386,15 @@ def admitted_estimate(edge: ObservedAffineTransform) -> AffineEstimate | None:
     return infer_exact_affine(edge.observations)
 
 
-def resolve_visible_cycle(case: TransformCycleCase) -> GluingVerdict:
-    """Resolve a cycle only when every local operand is currently admitted."""
+def _classify_cycle_from_estimates(
+    edges: Sequence[ObservedAffineTransform],
+    estimates: Sequence[AffineEstimate],
+    chart_cycle: Sequence[str],
+) -> GluingVerdict:
+    """Use the original P9 exact affine-cycle evaluator without consulting case gold."""
 
-    chart_cycle = case.verify_visible_cycle()
-    estimates = tuple(admitted_estimate(edge) for edge in case.edges)
-    if any(estimate is None for estimate in estimates):
-        return GluingVerdict.UNKNOWN
-
+    if len(edges) != len(estimates):
+        raise ValueError("cycle edge/estimate lengths differ")
     chart_ids = tuple(dict.fromkeys(chart_cycle[:-1]))
     atoms = tuple(Atom(chart_id, AtomType.REPRESENTATION, chart_id) for chart_id in chart_ids)
     transports = tuple(
@@ -389,16 +405,28 @@ def resolve_visible_cycle(case: TransformCycleCase) -> GluingVerdict:
             scale=estimate.scale,
             offset=estimate.offset,
         )
-        for edge, estimate in zip(case.edges, estimates, strict=True)
-        if estimate is not None
+        for edge, estimate in zip(edges, estimates, strict=True)
     )
     world = P9StructuralWorld(
-        world_id="p9-s1-visible-cycle",
+        world_id="p9-s1-cycle-evaluator",
         atoms=atoms,
         relations=(),
         transports=transports,
         mechanics=(),
         history=(),
-        gold=GoldTarget(GoldKind.GLUING, case.gold_if_fully_known.value),
+        # Gold is structurally required by P9StructuralWorld but is deliberately
+        # constant here; classify_cycle_gluing does not consult it.
+        gold=GoldTarget(GoldKind.GLUING, GluingVerdict.UNKNOWN.value),
     )
     return classify_cycle_gluing(world, chart_cycle)
+
+
+def resolve_visible_cycle(case: TransformCycleCase) -> GluingVerdict:
+    """Resolve a cycle only when every local operand is currently admitted."""
+
+    chart_cycle = case.verify_visible_cycle()
+    estimates = tuple(admitted_estimate(edge) for edge in case.edges)
+    if any(estimate is None for estimate in estimates):
+        return GluingVerdict.UNKNOWN
+    admitted = tuple(estimate for estimate in estimates if estimate is not None)
+    return _classify_cycle_from_estimates(case.edges, admitted, chart_cycle)
