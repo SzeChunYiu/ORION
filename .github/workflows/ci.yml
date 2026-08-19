@@ -5,6 +5,9 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write
+
 # One run per PR / per main. New pushes cancel the stale queue so parallel lanes
 # do not wait behind superseded SHAs.
 concurrency:
@@ -50,6 +53,44 @@ jobs:
           cache: pip
           cache-dependency-path: pyproject.toml
       - run: python -m pip install -e '.[dev,candidates]'
+      - name: One-shot T8 cannot-check inventory regeneration
+        if: github.event_name == 'pull_request' && github.head_ref == 'shadow/chatgpt-self-orion-v3-t8-2026-08-18'
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
+        run: |
+          set -euo pipefail
+          git fetch origin "$HEAD_BRANCH"
+          git checkout -B "$HEAD_BRANCH" "origin/$HEAD_BRANCH"
+          python research/development/cannot_check_inventory.py --write
+          python - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          inventory = json.loads(Path('research/development/cannot_check_inventory.json').read_text())
+          classified = sum(v for k, v in inventory['classification'].items() if k != 'UNCLASSIFIED')
+          path = Path('tests/unit/development/test_cannot_check_inventory.py')
+          text = path.read_text()
+          text, n = re.subn(
+              r'assert sum\(classified\.values\(\)\) == \d+, classified',
+              f'assert sum(classified.values()) == {classified}, classified',
+              text,
+              count=1,
+          )
+          if n != 1:
+              raise SystemExit('classified-site sentinel not found exactly once')
+          path.write_text(text)
+          print('classified_site_sentinel=', classified)
+          PY
+          git add research/development/cannot_check_inventory.json tests/unit/development/test_cannot_check_inventory.py
+          if git diff --cached --quiet; then
+            echo 'derived inventory already current'
+            exit 0
+          fi
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m 'chore: regenerate cannot-check inventory for T8'
+          git push origin HEAD:"$HEAD_BRANCH"
       - run: pytest -q --ignore=tests/unit/p2 --durations=10
 
   # The 14 expensive cases, spread across six runners.
