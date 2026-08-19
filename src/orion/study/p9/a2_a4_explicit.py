@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from collections import Counter, defaultdict
-from typing import Mapping
+from collections import Counter
+from dataclasses import replace
 
 from orion.transfer.v2.canonical import content_digest
 
 from .generated_worlds import HostileFamily, generate_pair
 from .m0_tasks import MechanicRankingTask, build_task
-from .structural_world import ViewMode
+from .structural_world import GoldKind, GoldTarget, ViewMode
 
 
 AMBIGUOUS = "AMBIGUOUS"
@@ -68,7 +68,11 @@ def predict_history_explicit(task: MechanicRankingTask) -> str:
     current_ids = {candidate.candidate_id for candidate in task.candidates}
     failed &= current_ids
     if failed:
-        remaining = [candidate.candidate_id for candidate in task.candidates if candidate.candidate_id not in failed]
+        remaining = [
+            candidate.candidate_id
+            for candidate in task.candidates
+            if candidate.candidate_id not in failed
+        ]
         return remaining[0] if len(remaining) == 1 else AMBIGUOUS
 
     cost_rows: list[tuple[float, str]] = []
@@ -93,10 +97,66 @@ def _metrics(rows: list[dict[str, object]]) -> dict[str, object]:
         "sample_count": total,
         "coverage": len(covered) / total if total else None,
         "full_task_accuracy": full_correct / total if total else None,
-        "accuracy_on_non_ambiguous_predictions": covered_correct / len(covered) if covered else None,
+        "accuracy_on_non_ambiguous_predictions": (
+            covered_correct / len(covered) if covered else None
+        ),
         "prediction_counts": dict(Counter(str(row["prediction"]) for row in rows)),
         "predictions_digest": content_digest(rows),
     }
+
+
+def _alternate_gold_world(world):
+    """Return a valid world with evaluator gold changed to the other current candidate."""
+
+    if world.gold.kind is not GoldKind.MECHANIC_SELECTION:
+        raise ValueError("A2/A4 hostile gold falsification expects mechanic-selection gold")
+    alternatives = [
+        mechanic.mechanic_id
+        for mechanic in world.mechanics
+        if mechanic.mechanic_id != world.gold.value
+    ]
+    if len(alternatives) != 1:
+        raise ValueError("A2/A4 D0 hostile worlds require exactly two candidate mechanics")
+    changed = replace(
+        world,
+        gold=GoldTarget(GoldKind.MECHANIC_SELECTION, alternatives[0]),
+    )
+    changed.verify()
+    return changed
+
+
+def _measure_invariance(
+    *,
+    world,
+    mode: ViewMode,
+    primary_order_seed: str,
+    alternate_order_seed: str,
+    predictor,
+) -> tuple[bool, bool]:
+    """Measure candidate-order and evaluator-gold invariance from executable inputs."""
+
+    primary = build_task(world, mode=mode, order_seed=primary_order_seed)
+    alternate_order = build_task(world, mode=mode, order_seed=alternate_order_seed)
+    if not isinstance(primary, MechanicRankingTask) or not isinstance(
+        alternate_order, MechanicRankingTask
+    ):
+        raise TypeError("A2/A4 family produced non-ranking task")
+    primary_prediction = predictor(primary)
+    order_prediction = predictor(alternate_order)
+
+    changed_world = _alternate_gold_world(world)
+    changed_task = build_task(
+        changed_world,
+        mode=mode,
+        order_seed=primary_order_seed,
+    )
+    if not isinstance(changed_task, MechanicRankingTask):
+        raise TypeError("A2/A4 falsified world produced non-ranking task")
+    changed_prediction = predictor(changed_task)
+    return (
+        primary_prediction == order_prediction,
+        primary_prediction == changed_prediction,
+    )
 
 
 def run_a2_a4_explicit(
@@ -111,11 +171,16 @@ def run_a2_a4_explicit(
 
     relation_views: dict[str, object] = {}
     history_views: dict[str, object] = {}
+    candidate_order_checks: list[bool] = []
+    gold_falsification_checks: list[bool] = []
 
     for mode in ViewMode:
         relation_rows: list[dict[str, object]] = []
         for index in range(relation_pairs):
-            pair = generate_pair(HostileFamily.RELATION_SEMANTICS, f"{seed}|rel|{index}")
+            pair = generate_pair(
+                HostileFamily.RELATION_SEMANTICS,
+                f"{seed}|rel|{index}",
+            )
             for world in pair.worlds:
                 task = build_task(world, mode=mode, order_seed="explicit-rel")
                 if not isinstance(task, MechanicRankingTask):
@@ -129,12 +194,24 @@ def run_a2_a4_explicit(
                         "correct": prediction == task.target_candidate_id,
                     }
                 )
+                order_ok, gold_ok = _measure_invariance(
+                    world=world,
+                    mode=mode,
+                    primary_order_seed="explicit-rel",
+                    alternate_order_seed="explicit-rel-alt",
+                    predictor=predict_relation_explicit,
+                )
+                candidate_order_checks.append(order_ok)
+                gold_falsification_checks.append(gold_ok)
         relation_views[mode.value] = _metrics(relation_rows)
 
         history_rows: list[dict[str, object]] = []
         pair_consistency: list[bool] = []
         for index in range(history_pairs):
-            pair = generate_pair(HostileFamily.FAILURE_HISTORY, f"{seed}|hist|{index}")
+            pair = generate_pair(
+                HostileFamily.FAILURE_HISTORY,
+                f"{seed}|hist|{index}",
+            )
             pair_predictions: list[str] = []
             for world in pair.worlds:
                 task = build_task(world, mode=mode, order_seed="explicit-hist")
@@ -150,6 +227,15 @@ def run_a2_a4_explicit(
                         "correct": prediction == task.target_candidate_id,
                     }
                 )
+                order_ok, gold_ok = _measure_invariance(
+                    world=world,
+                    mode=mode,
+                    primary_order_seed="explicit-hist",
+                    alternate_order_seed="explicit-hist-alt",
+                    predictor=predict_history_explicit,
+                )
+                candidate_order_checks.append(order_ok)
+                gold_falsification_checks.append(gold_ok)
             if mode is not ViewMode.SEMANTIC:
                 pair_consistency.append(len(set(pair_predictions)) == 1)
         metrics = _metrics(history_rows)
@@ -166,14 +252,28 @@ def run_a2_a4_explicit(
         relation_views[mode.value]["coverage"] == 0.0
         for mode in (ViewMode.SURFACE, ViewMode.TOPOLOGY)
     )
-    history_semantic_ok = history_views[ViewMode.SEMANTIC.value]["full_task_accuracy"] == 1.0
+    history_semantic_ok = (
+        history_views[ViewMode.SEMANTIC.value]["full_task_accuracy"] == 1.0
+    )
     history_hidden_equal = all(
         history_views[mode.value]["hidden_view_pair_prediction_equal"] is True
-        for mode in (ViewMode.SURFACE, ViewMode.TOPOLOGY, ViewMode.TYPED, ViewMode.CURRENT)
+        for mode in (
+            ViewMode.SURFACE,
+            ViewMode.TOPOLOGY,
+            ViewMode.TYPED,
+            ViewMode.CURRENT,
+        )
     )
+    hostile_checks = {
+        "candidate_order_invariance": all(candidate_order_checks),
+        "gold_falsification_invariance": all(gold_falsification_checks),
+        "weak_relation_views_do_not_invent_typed_semantics": relation_weak_ambiguous,
+        "hidden_history_views_do_not_distinguish_the_hostile_pair": history_hidden_equal,
+    }
+    hostile_ok = all(hostile_checks.values())
     terminal = (
         "A2_A4_D0_EXPLICIT_INFERENCE_SUFFICIENT"
-        if relation_ok and relation_weak_ambiguous and history_semantic_ok and history_hidden_equal
+        if relation_ok and history_semantic_ok and hostile_ok
         else "A2_A4_D0_EXPLICIT_INFERENCE_NARROW_OR_FAIL"
     )
 
@@ -184,8 +284,11 @@ def run_a2_a4_explicit(
         "seed_digest": content_digest(seed),
         "relation_views": relation_views,
         "history_views": history_views,
+        "hostile_checks": hostile_checks,
         "terminal": terminal,
-        "claim_ceiling": "D0 relation-semantics and admitted-failure-history mechanic selection only",
+        "claim_ceiling": (
+            "D0 relation-semantics and admitted-failure-history mechanic selection only"
+        ),
         "scientific_authority": "NONE_DIAGNOSTIC_ONLY",
         "grants_neural_escalation": False,
     }
