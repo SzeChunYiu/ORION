@@ -1,0 +1,22 @@
+{
+  "schema_version": "P4_X_DEV_PREFLIGHT_V1",
+  "authority": "NON_AUTHORIZING_DEV",
+  "case_count": 200,
+  "design": "5 domains x 8 archetypes x 5 variants",
+  "exact_scientific_promotion_decisions_correct": {
+    "P4_X": 200,
+    "B1_GENERIC_AUTHORIZATION_PRODUCT": 125,
+    "B2_COMPENSATORY_PRODUCT": 25,
+    "B3_IDEAL_TYPED_PRODUCT": 200
+  },
+  "b1_failure_archetypes_only": [
+    "CLAIM_SCOPE_OVERREACH",
+    "CORRELATED_EVIDENCE_DOUBLE_COUNT",
+    "ACTION_AUTHORIZED_SCIENTIFIC_PROMOTION_UNRESOLVED"
+  ],
+  "b3_p4x_decision_mismatches": 0,
+  "latency_decoy_changes_p4x_decision": 0,
+  "protected_identities_generated": false,
+  "protected_outcomes_accessed": false,
+  "claim_authority": "NONE"
+}
