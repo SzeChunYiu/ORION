@@ -1,0 +1,139 @@
+{
+  "version": "FailureEpistemologyProspectiveExpected.v1",
+  "candidate_terminal": "FAILURE_MEMORY_USEFUL_BUT_STANDARD_METHODS_SUFFICIENT",
+  "benchmark": {
+    "families": 8,
+    "cases_per_family": 4,
+    "cases": 32,
+    "family_ids": [
+      "E1_COMPATIBLE_RECURRENCE",
+      "E2_REPAIRED_MEASUREMENT_OR_EVALUATOR",
+      "E3_SEMANTIC_PRESERVING_NONIDENTITY",
+      "E4_INVALID_EXECUTION_OR_MEASUREMENT_AUTHORITY",
+      "E5_PLURAL_RESPONSIBILITY_DISCRIMINATING_QUERY",
+      "E6_NO_ADMISSIBLE_DISCRIMINATOR",
+      "E7_BROKEN_SHUT_NEGATIVE_TRANSFER",
+      "E8_NEGATIVE_RESULTS_VISIBILITY_DISTORTION"
+    ]
+  },
+  "arms": [
+    "NO_FAILURE_HISTORY",
+    "GLOBAL_FAILURE_BAN",
+    "RAW_SUMMARY_NEAREST",
+    "EXACT_CONTEXT_MEMORY",
+    "SELECTIVE_REPLAY_COMPATIBILITY",
+    "STANDARD_PARENT",
+    "ORION_SCOPED_FAILURE",
+    "ORACLE"
+  ],
+  "protected_expected": {
+    "NO_FAILURE_HISTORY": {
+      "decision_accuracy_count": 12,
+      "repeat_dead_end_count": 8,
+      "false_exclusion_count": 0,
+      "false_reopen_count": 0,
+      "correct_unresolved_count": 0,
+      "correct_query_count": 0,
+      "scientific_authority_violation_count": 0,
+      "corpus_distortion_false_closure_count": 4,
+      "query_cost": 0
+    },
+    "GLOBAL_FAILURE_BAN": {
+      "decision_accuracy_count": 8,
+      "repeat_dead_end_count": 0,
+      "false_exclusion_count": 12,
+      "false_reopen_count": 0,
+      "correct_unresolved_count": 0,
+      "correct_query_count": 0,
+      "scientific_authority_violation_count": 4,
+      "corpus_distortion_false_closure_count": 4,
+      "query_cost": 0
+    },
+    "RAW_SUMMARY_NEAREST": {
+      "decision_accuracy_count": 8,
+      "repeat_dead_end_count": 0,
+      "false_exclusion_count": 12,
+      "false_reopen_count": 0,
+      "correct_unresolved_count": 0,
+      "correct_query_count": 0,
+      "scientific_authority_violation_count": 4,
+      "corpus_distortion_false_closure_count": 4,
+      "query_cost": 0
+    },
+    "EXACT_CONTEXT_MEMORY": {
+      "decision_accuracy_count": 12,
+      "repeat_dead_end_count": 4,
+      "false_exclusion_count": 4,
+      "false_reopen_count": 4,
+      "correct_unresolved_count": 0,
+      "correct_query_count": 0,
+      "scientific_authority_violation_count": 4,
+      "corpus_distortion_false_closure_count": 4,
+      "query_cost": 0
+    },
+    "SELECTIVE_REPLAY_COMPATIBILITY": {
+      "decision_accuracy_count": 16,
+      "repeat_dead_end_count": 4,
+      "false_exclusion_count": 4,
+      "false_reopen_count": 4,
+      "correct_unresolved_count": 4,
+      "correct_query_count": 0,
+      "scientific_authority_violation_count": 4,
+      "corpus_distortion_false_closure_count": 4,
+      "query_cost": 0
+    },
+    "STANDARD_PARENT": {
+      "decision_accuracy_count": 32,
+      "repeat_dead_end_count": 0,
+      "false_exclusion_count": 0,
+      "false_reopen_count": 0,
+      "correct_unresolved_count": 4,
+      "correct_query_count": 4,
+      "scientific_authority_violation_count": 0,
+      "corpus_distortion_false_closure_count": 0,
+      "query_cost": 4
+    },
+    "ORION_SCOPED_FAILURE": {
+      "decision_accuracy_count": 32,
+      "repeat_dead_end_count": 0,
+      "false_exclusion_count": 0,
+      "false_reopen_count": 0,
+      "correct_unresolved_count": 4,
+      "correct_query_count": 4,
+      "scientific_authority_violation_count": 0,
+      "corpus_distortion_false_closure_count": 0,
+      "query_cost": 4
+    },
+    "ORACLE": {
+      "decision_accuracy_count": 32,
+      "repeat_dead_end_count": 0,
+      "false_exclusion_count": 0,
+      "false_reopen_count": 0,
+      "correct_unresolved_count": 4,
+      "correct_query_count": 4,
+      "scientific_authority_violation_count": 0,
+      "corpus_distortion_false_closure_count": 0,
+      "query_cost": 4
+    }
+  },
+  "noncompensatory": {
+    "standard_parent_equals_orion_all_case_decisions": true,
+    "standard_parent_equals_orion_all_metrics": true,
+    "orion_scoped_failure_scientific_authority_violations": 0,
+    "orion_scoped_failure_false_exclusions": 0,
+    "orion_scoped_failure_false_reopens": 0,
+    "orion_scoped_failure_repeat_dead_ends": 0,
+    "orion_scoped_failure_corpus_distortion_false_closures": 0,
+    "strictly_better_than_no_history_on_E1": true,
+    "strictly_better_than_global_ban_on_E2_E4_E7": true,
+    "strictly_better_than_exact_context_on_E3": true,
+    "strong_parent_incremental_gap": 0
+  },
+  "authority": {
+    "grants_scientific_refutation": false,
+    "grants_global_prohibition": false,
+    "grants_novelty_authority": false,
+    "grants_real_world_generalization": false,
+    "grants_issue_closure_authority": false
+  }
+}
