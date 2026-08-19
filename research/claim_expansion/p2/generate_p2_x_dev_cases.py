@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import sys
+from copy import deepcopy
 from typing import Any
 
 DOMAINS = (
@@ -29,7 +30,15 @@ def _sha(text: str) -> str:
     return hashlib.sha256(text.encode()).hexdigest()
 
 
-def _route(route_id: str, *, state: str = "AVAILABLE", complete: bool = True, utility: bool = True, processed: bool = True, material: bool = True) -> dict[str, Any]:
+def _route(
+    route_id: str,
+    *,
+    state: str = "AVAILABLE",
+    complete: bool = True,
+    utility: bool = True,
+    processed: bool = True,
+    material: bool = True,
+) -> dict[str, Any]:
     return {
         "route_id": route_id,
         "material": material,
@@ -45,7 +54,11 @@ def _route(route_id: str, *, state: str = "AVAILABLE", complete: bool = True, ut
 def _route_decision(route: dict[str, Any]) -> str:
     if route["state"] != "AVAILABLE":
         return "ROUTE_CANNOT_CHECK"
-    if route["evidence_coverage_complete"] and route["decision_sufficient"] and route["finite_certificate_complete"]:
+    if (
+        route["evidence_coverage_complete"]
+        and route["decision_sufficient"]
+        and route["finite_certificate_complete"]
+    ):
         return "ROUTE_STOP"
     return "ROUTE_CONTINUE"
 
@@ -54,7 +67,7 @@ def build_case(domain: str, archetype: str, variant: int) -> dict[str, Any]:
     if domain not in DOMAINS or archetype not in ARCHETYPES or variant not in range(1, 6):
         raise ValueError((domain, archetype, variant))
     case_id = f"P2X-DEV-{domain}-{archetype}-V{variant:02d}"
-    r1, r2, r3 = (f"{case_id}:R{i}" for i in (1,2,3))
+    r1, r2, r3 = (f"{case_id}:R{i}" for i in (1, 2, 3))
     routes = [_route(r1), _route(r2), _route(r3)]
     global_sufficiency = True
 
@@ -70,9 +83,10 @@ def build_case(domain: str, archetype: str, variant: int) -> dict[str, Any]:
     elif archetype == "PROVIDER_INVALID":
         routes[2] = _route(r3, state="PROVIDER_INVALID")
     elif archetype == "DUPLICATE_ROUTE_COVERAGE":
-        # R1/R2 are redundant complete routes; independent material R3 is still open.
+        # R1/R2 return exactly the same content identity; R3 is the independent
+        # material route still open. Duplicate observations cannot create closure.
         routes[2] = _route(r3, complete=False, utility=False)
-        routes[1]["content_items"] = deepcopy_content(routes[0]["content_items"], r2)
+        routes[1]["content_items"] = deepcopy(routes[0]["content_items"])
         global_sufficiency = True
     elif archetype == "ACQUIRED_NOT_QUESTION_PROCESSED":
         routes[1] = _route(r2, complete=True, processed=False)
@@ -84,7 +98,8 @@ def build_case(domain: str, archetype: str, variant: int) -> dict[str, Any]:
     any_unavailable = any(decision == "ROUTE_CANNOT_CHECK" for decision in material_decisions)
     any_open = any(decision == "ROUTE_CONTINUE" for decision in material_decisions)
     processing_open = any(
-        route["material"] and any(not item["question_processed"] for item in route["content_items"])
+        route["material"]
+        and any(not item["question_processed"] for item in route["content_items"])
         for route in routes
     )
     if any_unavailable:
@@ -100,28 +115,43 @@ def build_case(domain: str, archetype: str, variant: int) -> dict[str, Any]:
         "archetype": archetype,
         "generator_id": GENERATOR_ID,
         "seed_commitment": _sha(f"{case_id}:NON_AUTHORIZING_DEV"),
-        "candidate_visible": {"routes": routes, "global_evidence_sufficiency": global_sufficiency},
+        "candidate_visible": {
+            "routes": routes,
+            "global_evidence_sufficiency": global_sufficiency,
+        },
         "protected_gold": {
             "route_decisions": route_decisions,
             "task_terminal": terminal,
-            "unresolved_route_decision_changing": archetype in {"MATERIAL_ROUTE_UNAVAILABLE","MATERIAL_ROUTE_CENSORED","PROVIDER_INVALID"},
+            "unresolved_route_decision_changing": archetype
+            in {"MATERIAL_ROUTE_UNAVAILABLE", "MATERIAL_ROUTE_CENSORED", "PROVIDER_INVALID"},
             "provenance_commitment": _sha(f"{case_id}:DEV_GOLD"),
         },
         "budget": {"max_route_checks": 3, "max_tool_calls": 8},
     }
 
 
-def deepcopy_content(items: list[dict[str, Any]], new_route_id: str) -> list[dict[str, Any]]:
-    return [{"content_id": item["content_id"].replace(":R1", ":R2"), "question_processed": item["question_processed"]} for item in items]
-
-
 def generate_cases() -> list[dict[str, Any]]:
-    return [build_case(domain, archetype, variant) for domain in DOMAINS for archetype in ARCHETYPES for variant in range(1,6)]
+    return [
+        build_case(domain, archetype, variant)
+        for domain in DOMAINS
+        for archetype in ARCHETYPES
+        for variant in range(1, 6)
+    ]
 
 
 def main() -> int:
     cases = generate_cases()
-    json.dump({"schema_version":"P2_X_DEV_CASES_V1","authority":"NON_AUTHORIZING_DEV","case_count":len(cases),"cases":cases}, sys.stdout, sort_keys=True, indent=2)
+    json.dump(
+        {
+            "schema_version": "P2_X_DEV_CASES_V1",
+            "authority": "NON_AUTHORIZING_DEV",
+            "case_count": len(cases),
+            "cases": cases,
+        },
+        sys.stdout,
+        sort_keys=True,
+        indent=2,
+    )
     sys.stdout.write("\n")
     return 0
 
