@@ -116,7 +116,7 @@ def test_opaque_identity_detector_matches_generated_ids_but_not_structural_vocab
 def test_m1_small_smoke_is_deterministic_non_authorizing_and_ceiling_safe():
     kwargs = dict(
         corpus_seed="p9-m1-smoke",
-        train_pairs_per_family=6,
+        train_pairs_per_family=8,
         dev_pairs_per_family=3,
         test_pairs_per_family=4,
         train_size_pairs_per_family=(2, 4, 6),
