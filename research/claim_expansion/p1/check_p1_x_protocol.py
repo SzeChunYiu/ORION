@@ -59,6 +59,13 @@ EXPECTED_REVISION_EVALUATION_FIELDS = {
     "authorized",
 }
 
+EXPECTED_REVISION_PROPOSAL_FIELDS = {
+    "revision_id",
+    "candidate_class",
+    "proposed_reopen_set",
+    "declared_protected_invariants",
+}
+
 
 def _section(text: str, heading: str, next_heading: str | None = None) -> str:
     start = text.find(heading)
@@ -160,6 +167,24 @@ def validate_protocol(
     leaked = sorted(candidate_fields & PROTECTED_GOLD_FIELDS)
     for name in leaked:
         errors.append(f"protected_gold_leaked_to_candidate_visible:{name}")
+
+    candidate_required = set(candidate.get("required", []))
+    if "revision_proposals" not in candidate_required:
+        errors.append("candidate_visible_missing_revision_proposals")
+    proposal = candidate.get("properties", {}).get("revision_proposals", {})
+    if proposal.get("type") != "array" or proposal.get("minItems") != 1:
+        errors.append("revision_proposals_not_required_nonempty_array")
+    proposal_item = proposal.get("items", {})
+    if proposal_item.get("additionalProperties") is not False:
+        errors.append("revision_proposal_item_not_closed")
+    proposal_required = set(proposal_item.get("required", []))
+    if proposal_required != EXPECTED_REVISION_PROPOSAL_FIELDS:
+        errors.append("revision_proposal_required_fields_drift")
+    proposal_props = proposal_item.get("properties", {})
+    if proposal_props.get("proposed_reopen_set", {}).get("type") != "array":
+        errors.append("revision_proposal_reopen_set_not_array")
+    if proposal_props.get("declared_protected_invariants", {}).get("type") != "array":
+        errors.append("revision_proposal_invariants_not_array")
 
     protected_required = set(protected.get("required", []))
     missing_protected = sorted(PROTECTED_GOLD_FIELDS - protected_required)
