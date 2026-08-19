@@ -29,6 +29,31 @@ ATOM = {"a": "http://www.w3.org/2005/Atom", "arxiv": "http://arxiv.org/schemas/a
 #   derived_from_this_fetch -> new entry; the claim was written FROM the fetch,
 #     so the record is provenance, not an independent test.
 ENTRIES: dict[str, tuple[str, str, str, str]] = {
+    "knowplan2026": (
+        "arxiv", "2608.06530",
+        "KNOWPLAN: Knowledge-Driven AI Agents for Smart Degree Pathway Planning",
+        "pre_existing_independent_claim",
+    ),
+    "donotstopearly2026": (
+        "arxiv", "2604.24978",
+        "Don't Stop Early: Scalable Enterprise Deep Research with Controlled Information Flow and Evidence-Aware Termination",
+        "pre_existing_independent_claim",
+    ),
+    "confidencebasedstop2026": (
+        "arxiv", "2606.15380",
+        "Confidence-Based Stopping Methods for Systematic Reviews",
+        "pre_existing_independent_claim",
+    ),
+    "icore2026": (
+        "arxiv", "2607.27429",
+        "Auditing Emergent LLM-Agent Collaboration through Cooperation-Obligation Coupling",
+        "pre_existing_independent_claim",
+    ),
+    "scienceintent2026": (
+        "arxiv", "2604.25000",
+        "Toward a Science of Intent: Closure Gaps and Delegation Envelopes for Open-World AI Agents",
+        "pre_existing_independent_claim",
+    ),
     # Added by 73e9505 ("P2 V2: widen architecture and close external acquisition
     # campaign"), which cited it from main.tex and put it in both bib files but
     # registered no evidence record, turning main red. The title here is taken from
