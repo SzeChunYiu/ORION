@@ -1,37 +1,74 @@
 # Paper 04 — Verified Scientific Discovery
 
 **Stable ID:** ORION-P4  
-**Status:** STRUCTURED WORKING MANUSCRIPT / LOCAL AUTHORITY-LAUNDERING FALSIFIER V1 PASSED / LIVE SCIENTIFIC VALIDATION `CANNOT_CHECK`
+**Current science:** `SCIENCE_CLOSED_V3`; PDF/typesetting refresh deferred.  
+**Current science manuscript:** `manuscript/FINAL_V3.md`.  
+**Historical rendered base:** `manuscript/main.tex` and the existing V2 PDF/package remain byte-preserved until the later render pass.
 
-## Scoped claim
+## Current research question
 
-The candidate contribution is not citation-aware generation, source-aware factuality, semantic provenance, claim-level auditability, contamination detection or evaluator locking. ORION proposes a non-escalating authority pipeline: evidence references bind exact content/provenance; claims are checked for source ownership and support; candidate checks must satisfy independent/hostile admissibility conditions; evaluator/benchmark identity is protected; unresolved evidence/independence/contamination yields `BLOCK/CANNOT_CHECK` rather than scientific authority.
+After strong provenance, claim verification, artifact/version binding, checker/evaluator custody, contamination defense and generic authorization mechanisms are absorbed into the comparison product, is a separate **non-compensatory scientific claim-promotion relation** still needed to prevent authority laundering?
 
-## Nearest-work boundary
+## Historical protected V2 result
 
-The programme now explicitly absorbs mechanisms from ProvenanceGuard, AttributionBench, claim-level auditability/AAR, ProvenAI, FIRE, CLAIM-BENCH/SciClaimHunt, RewardHackingAgents and search-time contamination evaluation.
+The publication-authorizing V2 campaign remains immutable:
 
-See `research/paper-programme-v1/PAPER_04_VERIFIED_DISCOVERY.md`, `NEAREST_WORK_ATLAS.md`, `JOURNAL_READINESS_AUDIT_2026-08-16.md`, and this directory's `JOURNAL_READINESS.md`.
+- 420 exact mechanical-gold cases: 60 clean positives + 360 hostile/insufficient-evidence opportunities;
+- ORION false promotions: 0/360;
+- strongest frozen mechanism proxy: 180/360;
+- paired effect: -0.50, 95% CI [-0.553,-0.447];
+- clean promotion: 60/60 for both systems;
+- every registered ORION ablation increased false promotion while preserving clean coverage;
+- H2 is a non-inferiority guard, not a coverage-superiority result;
+- H3 remains **not supported / non-discriminating** because the original `CANNOT_CHECK` family was saturated by construction.
 
-## Falsifier V1
+## P4-X post-saturation successor
 
-The local authority-laundering suite exercises exact evidence-content binding, evidence-ID substitution, content-vs-provenance identity, weak/non-discriminating checkers, independent specific checkers, same-lane verification and post-hoc checker chronology through the actual answer/check kernel.
+P4-X raises the comparator standard by granting the strong donor product ordinary provenance, verification, artifact/version, evaluator-custody, epoch and generic-authorization information before testing the scientific-promotion relation.
 
-Evidence: `evidence/FALSIFIER_V1.md`, issue #59, and `research/paper-programme-v1/FLAGSHIP_FALSIFIER_RESULTS_V1.md`.
+Exact protected successor:
 
-## External evidence still required
+- 5 heterogeneous scientific artifact domains × 8 archetypes × 10 protected variants = 400 cases;
+- P4-X: **400/400** correct promotion terminals;
+- strong donor-complete B1: **250/400**;
+- compensatory B2: **50/400**;
+- ideal fully typed B3: **400/400**, zero mismatches to P4-X;
+- P4-X minus B1: **+0.375**, domain-stratified bootstrap 95% CI **[0.3275,0.4225]**;
+- false P4-X promotions: **0**;
+- clean P4-X promotion rate: **1.0**;
+- positive P4-X–B1 direction in every exact domain;
+- independent implementation reproduces the protected row digest and arm counts.
 
-- source-aware claim/attribution benchmarks and nearest-work baselines;
-- cited-but-non-influential evidence cases;
-- evaluator tampering and held-out leakage;
-- search-time benchmark contamination;
-- false scientific-authority promotion as primary outcome plus legitimate authority coverage;
-- correct `CANNOT_CHECK` under insufficient evidence;
-- evaluator/holdout access telemetry frozen prospectively;
-- independent hostile case generation/custody.
+## Donor-engulfment boundary
 
-Current evidence binding, answer/check gates, protected-evaluator mechanics and local hostile suite are implementation evidence only.
+P4 does **not** claim provenance tracking, source-aware factuality, claim/evidence verification, citation fidelity, evidence influence, evaluator auditing, contamination detection, abstention, assurance cases, evidence-backed permission graphs or generic authorization as atomic novelty. Those are reusable donor mechanisms.
 
-## Manuscript
+The V3 contribution is the coupling above them:
 
-`manuscript/main.tex` is now the canonical structured Paper-IV working manuscript. Issue #59 remains the external empirical gate; no live authority result is claimed in the manuscript.
+> **Scientific claim promotion is a distinct target-bound authority relation. Successful local evidence, verification and generic authorization cannot compensate for a missing hard scientific-promotion obligation such as claim scope, evidence independence or unresolved scientific authority.**
+
+An information-equivalent typed product with the same scientific coordinates and promotion predicate ties exactly, so P4 makes no inherent expressivity or centralization claim.
+
+## Current claim ceiling
+
+Supported only on the registered heterogeneous exact contracts:
+
+`P4_WIDER_SCIENTIFIC_PROMOTION_AUTHORITY_SUPPORTED__BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS__A3_CANNOT_CHECK`
+
+Still not claimed:
+
+- deployed/verifier/provider generality;
+- universal scientific-authority superiority;
+- general abstention superiority;
+- universal necessity of the exact registered coordinates;
+- superiority to the original external systems represented by mechanism proxies.
+
+## Current source map
+
+- current V3 science specification: `manuscript/FINAL_V3.md`;
+- V3 claim authority: `CLAIM_LEDGER_V3.md`;
+- later render-ready successor section: `submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex`;
+- historical TMLR V2 source: `manuscript/main.tex`;
+- exact successor science/verification artifacts: `research/claim_expansion/p4/`.
+
+PDF generation is intentionally deferred. The existing PDF remains a historical V2 artifact until a later render integrates the V3 source.
