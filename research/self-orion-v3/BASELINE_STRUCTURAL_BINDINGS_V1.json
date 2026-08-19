@@ -2,7 +2,7 @@
   "schema_version": "orion.p5.self-orion-v3-baseline-bindings.v1",
   "protocol_id": "P5.self-orion-v3.revision-level.v1",
   "owner_issue": 454,
-  "programme_receipt_frozen": false,
+  "programme_receipt_frozen": true,
   "authority_scope": "T8_PREFLIGHT_ONLY",
   "records": [
     {
@@ -12,27 +12,37 @@
       "disposition": "CANNOT_CHECK",
       "structural_binding_id": "",
       "official_reproduction": false,
-      "notes": ["Mechanism comparator implemented; #454 programme-wide structural receipt not frozen, so confirmatory donor-equivalence binding is not yet available."]
+      "notes": [
+        "The #454 receipt schema and first-wave packet are frozen, but MDA remains ABSTRACT_ONLY in the source-grounded pass; no full structural donor interpretation or donor-equivalence binding is permitted.",
+        "Exact blocker: MDA_PRIMARY_FULL_TEXT_NOT_SOURCE_GROUNDED_2026-08-19."
+      ]
     },
     {
       "baseline_id": "world_model_revision",
-      "donor_id": "arxiv:2606.30639",
+      "donor_id": "arxiv:2606.30639v1",
       "source_identity": "world-model:self-revision-mechanism",
-      "disposition": "CANNOT_CHECK",
-      "structural_binding_id": "",
+      "disposition": "MECHANISM_COMPARATOR_BOUND",
+      "structural_binding_id": "ssa:v1:worldevolver-2606.30639v1",
       "official_reproduction": false,
-      "notes": ["Mechanism comparator implemented; not labelled an official reproduction and not confirmatory-bound before #454 structural assimilation is frozen."]
+      "notes": [
+        "Bound to the source-grounded #454 structural receipt as a mechanism comparator only; this is not an official reproduction or donor-equivalence claim.",
+        "WorldEvolver revises deployment memory/context while model parameters and the downstream agent remain frozen, so it is a strong bounded memory-revision parent rather than generic representation-regime revision."
+      ]
     },
     {
       "baseline_id": "representation_regime_revision",
-      "donor_id": "arxiv:2606.01444",
+      "donor_id": "arxiv:2606.01444v1",
       "source_identity": "representation-regime:transition-mechanism",
-      "disposition": "CANNOT_CHECK",
-      "structural_binding_id": "",
+      "disposition": "MECHANISM_COMPARATOR_BOUND",
+      "structural_binding_id": "ssa:v1:self-revising-2606.01444v1",
       "official_reproduction": false,
-      "notes": ["Mechanism comparator implemented; no official-reproduction claim and no final structural binding yet."]
+      "notes": [
+        "Bound to the source-grounded #454 structural receipt as a mechanism comparator only; no official-reproduction or donor-equivalence claim is made.",
+        "Self-Revising Discovery Systems is the strong parent for verified representation-regime transition with explicit preservation/transport obligations."
+      ]
     }
   ],
   "confirmatory_rule": "Every required baseline must move to MECHANISM_COMPARATOR_BOUND or OFFICIAL_REPRODUCTION_BOUND with a nonempty structural binding identity before READY_TO_FREEZE_CONFIRMATORY.",
-  "current_terminal": "CANNOT_CHECK"
+  "current_terminal": "CANNOT_CHECK",
+  "current_blocker": "MDA_PRIMARY_FULL_TEXT_NOT_SOURCE_GROUNDED_2026-08-19"
 }
