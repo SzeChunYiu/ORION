@@ -180,7 +180,7 @@ The practical implication is architectural: an autonomous research system should
 
 The framework also clarifies why repair systems can be both computationally conservative and scientifically unsafe. Preserving an unaffected computational node is desirable; preserving a scientific certificate attached to that node additionally requires that its scientific premises remain valid. Conversely, a conservative dependency graph may reopen too much, motivating protected preservation proofs rather than weakening the safety contract.
 
-\section{Scope and falsifiers}
+\section{Limitations}
 The framework assumes that scientific obligation schemas, trusted roots, and preservation\slash revalidation rules are correctly specified. The bounded checkers establish the theorem premises on exhaustive finite families rather than claiming completeness for arbitrary infinite state spaces. A graph can be support-sound yet highly conservative, which is exactly why affected realizability is stated as an explicit modeling premise rather than smuggled into soundness. The paper establishes formal separation, safety, minimality conditions, and composition laws; deployed-agent performance is an empirical extension rather than a prerequisite for those theorem-level results. A donor-complete formalism proving the same scientific-admissibility interface under equivalent semantics would establish an alternative implementation of the same contract, not invalidate the mathematical separation proved here.
 
 \section{Conclusion}
