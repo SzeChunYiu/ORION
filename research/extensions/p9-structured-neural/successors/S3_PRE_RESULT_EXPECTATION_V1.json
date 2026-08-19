@@ -1,0 +1,23 @@
+{
+  "schema": "P9.S3PreResultExpectation.v1",
+  "date": "2026-08-19",
+  "subject_pre_result_head": "2223bba790a3e631d3f40f20bb46b156bce19b72",
+  "parent_d1_outcome_known": true,
+  "s3_protected_outcome_accessed": false,
+  "expectations": {
+    "F2_serialized_exact_generic_comparator": {
+      "expected_accuracy": 1.0,
+      "basis": "V1.2 train+dev exact equivalence plus unchanged deterministic serializer/comparator; a protected failure is an adapter/serialization integrity discrepancy, not evidence against learning"
+    },
+    "F1_serialized_generic_binding_learner": {
+      "expected_terminal": "UNPREDICTED",
+      "basis": "protected learned performance is intentionally not predicted; the registered 0.99 threshold remains authoritative"
+    }
+  },
+  "adjudication": {
+    "F2_below_1": "S3_EVALUATOR_OR_SERIALIZATION_DISCREPANCY",
+    "F2_1_and_F1_ge_0_99_with_hostiles_green": "EXPLICIT_RELATION_BINDING_SUFFICIENT",
+    "F2_1_and_F1_below_0_99": "LOSSLESS_SERIALIZATION_PLUS_GENERIC_COMPARISON_SUFFICIENT"
+  },
+  "authority": "PRE_RESULT_EXPECTATION_ONLY_NO_SCIENTIFIC_AUTHORITY"
+}
