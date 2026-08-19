@@ -1,0 +1,72 @@
+{
+  "schema_version": "P1_X_PROTECTED_RESULT_V1",
+  "date": "2026-08-19",
+  "outcome_access_receipt_commit": "3805823aff202bda6014af578d68b3329f0f5e2a",
+  "protected_case_count": 400,
+  "protected_identity_pairs_sha256": "7e6c316cf38718911ae6fceee62b16169d44d832c98548eb5126600d8d4f7707",
+  "protected_bundle_sha256": "741d48f8db345b402b0e0d7b2ce806741cfac1d41efd24c14e407060f0c21b7f",
+  "canonical_rows_sha256": "7930a648172a02a669a1cf81bfebaa56a1f18240c7a11b700299baef4aed7485",
+  "bootstrap": {"seed": 20260819, "reps": 20000},
+  "arm_esrd": {
+    "P1X_MINIMAL_SCIENTIFIC_ESCALATION": {"correct": 400, "rate": 1.0},
+    "B1_DONOR_COMPLETE_GREEDY": {"correct": 255, "rate": 0.6375},
+    "B2_SUCCESS_AUTHORIZES_REFRAME": {"correct": 175, "rate": 0.4375},
+    "B3_IDEAL_TYPED_PRODUCT": {"correct": 400, "rate": 1.0}
+  },
+  "primary": {
+    "comparison": "P1X_MINIMAL_SCIENTIFIC_ESCALATION - B1_DONOR_COMPLETE_GREEDY",
+    "difference": 0.3625,
+    "practical_margin": 0.10,
+    "bootstrap_95ci": [0.315, 0.410],
+    "mcnemar": {
+      "b_p1x_only_correct": 145,
+      "c_b1_only_correct": 0,
+      "two_sided_p": 4.484155085839415e-44
+    },
+    "protocol_statistical_pass": true
+  },
+  "secondary": {
+    "P1X_vs_B2_mcnemar": {
+      "b_p1x_only_correct": 225,
+      "c_b2_only_correct": 0,
+      "two_sided_p": 3.7092061506874214e-68
+    },
+    "holm_adjusted_p": {
+      "P1X_vs_B1": 4.484155085839415e-44,
+      "P1X_vs_B2": 7.418412301374843e-68
+    }
+  },
+  "per_domain": {
+    "SOFTWARE_DEBUGGING": {"n": 80, "p1x_esrd": 1.0, "b1_esrd": 0.6375, "difference": 0.3625},
+    "SCIENTIFIC_RETRIEVAL": {"n": 80, "p1x_esrd": 1.0, "b1_esrd": 0.6375, "difference": 0.3625},
+    "SEMANTIC_INTEGRATION": {"n": 80, "p1x_esrd": 1.0, "b1_esrd": 0.6375, "difference": 0.3625},
+    "EVIDENCE_VERIFICATION": {"n": 80, "p1x_esrd": 1.0, "b1_esrd": 0.6375, "difference": 0.3625},
+    "MODEL_EXPERIMENT_DESIGN": {"n": 80, "p1x_esrd": 1.0, "b1_esrd": 0.6375, "difference": 0.3625}
+  },
+  "non_regression": {
+    "lower_level_repair_p1x": 1.0,
+    "lower_level_repair_b1": 0.8,
+    "lower_level_repair_difference": 0.2,
+    "lower_level_margin": -0.02,
+    "lower_level_pass": true,
+    "false_high_level_reframes": {"P1X": 0, "B1": 26, "B2": 103, "B3": 0},
+    "false_reframe_rate_difference_p1x_minus_b1": -0.065,
+    "false_reframe_margin": 0.02,
+    "false_reframe_pass": true,
+    "p1x_invariant_violations": 0,
+    "invariant_pass": true,
+    "per_domain_floor": -0.05,
+    "per_domain_pass": true,
+    "all_pass": true
+  },
+  "b3_equivalence": {"decision_mismatches": 0, "pass": true},
+  "holdout_template": {"variants": [9, 10], "cases": 80, "included_in_all_statistics": true},
+  "post_access_discrepancy": {
+    "id": "P1X-V1-D001",
+    "severity": "MATERIAL_COMPARATOR_IMPLEMENTATION_BUG",
+    "description": "B1/B2 NO_CHANGE checks iterate status-map keys rather than values, causing 25 clean-control misses in each comparator. Frozen V1 is not patched after outcome access.",
+    "v1_primary_usable_as_final_fair_comparator_evidence": false,
+    "required_action": "DISJOINT_V2_REPLICATION_WITH_PREOUTCOME_COMPARATOR_FIX"
+  },
+  "terminal": "P1_X_V1_PROTOCOL_POSITIVE__COMPARATOR_FAIRNESS_REOPENED"
+}
