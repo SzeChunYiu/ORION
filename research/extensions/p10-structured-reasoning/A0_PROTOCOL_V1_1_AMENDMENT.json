@@ -1,0 +1,22 @@
+{
+  "schema": "P10.A0ProtocolAmendment.v1.1",
+  "supersedes_execution_protocol": "P10.A0ResponsibilityControlProtocol.v1",
+  "outcome_accessed": false,
+  "trigger": "HOSTILE_REVIEW_FOUND_SAME_SURFACE_DIFFERENT_RESPONSIBILITY_WAS_DECLARED_BUT_NOT_INSTANTIATED",
+  "observed_failure": {
+    "stage": "PRE_OFFICIAL_A0_EXECUTION",
+    "protected_experiment_executed": false,
+    "problem": "the initial generator reminted surface independently for each responsibility family, so the registered same-surface hostile control was only prose"
+  },
+  "amendment": {
+    "case_families_changed": false,
+    "candidate_kinds_changed": false,
+    "arm_information_changed": false,
+    "terminal_thresholds_changed": false,
+    "surface_rule": "for each protected index, all five responsibility families share one opaque surface token",
+    "candidate_order_rule": "candidate kind presentation order is keyed only by the shared surface token plus independent order seed, so same-surface hostile cases have identical presentation order",
+    "identity_rule": "evaluator world identity remains distinct but is removed from model_payload"
+  },
+  "execution_protocol": "P10.A0ResponsibilityControlProtocol.v1.1",
+  "authority": "NONE_PRE_OUTCOME_HOSTILE_REPAIR"
+}
