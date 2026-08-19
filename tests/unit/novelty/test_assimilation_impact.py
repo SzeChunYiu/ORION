@@ -93,3 +93,14 @@ def test_currentness_guard_rejects_stale_certificate():
             _certificate("mechanic.transfer.contract"),
             _assimilation("mechanic.transfer.contract"),
         )
+
+
+def test_currentness_guard_rejects_unsettled_assimilation():
+    with pytest.raises(ValueError, match="assimilation is unsettled"):
+        assert_certificate_current_after_assimilation(
+            _certificate("mechanic.transfer.contract"),
+            _assimilation(
+                "mechanic.transfer.contract",
+                verdict=AssimilationVerdict.CANNOT_CHECK,
+            ),
+        )
