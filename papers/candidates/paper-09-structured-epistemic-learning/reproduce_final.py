@@ -13,8 +13,11 @@ def run(script: str) -> None:
 
 def main() -> None:
     run("build_evidence_summary.py")
+    run("build_result_macros.py")
     run("build_headline_tables.py")
-    print("P9 final evidence summary and headline tables regenerated successfully")
+    print(
+        "P9 final evidence summary, LaTeX result macros and headline tables regenerated successfully"
+    )
 
 
 if __name__ == "__main__":
