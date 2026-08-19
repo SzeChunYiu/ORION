@@ -1,0 +1,91 @@
+name: p4-saturation-package-once
+
+on:
+  push:
+    branches: [saturation/p4-nature-skills-round-a-2026-08-19]
+    paths: ['.github/workflows/p4-saturation-package-once.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: saturation/p4-nature-skills-round-a-2026-08-19
+          fetch-depth: 0
+      - name: Insert closest provenance-authorization donor
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          root=Path('papers/paper-04-verified-scientific-discovery/manuscript')
+          p=root/'main.tex'; s=p.read_text()
+          marker=r'''\paragraph{Auditability, citation fidelity, and influence.}'''
+          para=r'''\paragraph{Provenance-sensitive authorization.}
+A current controlled audit makes the authorization distinction especially direct: evidence can be relevant to an agent decision without being authorized to determine that decision, and target-specific tests can hold the task and proposition fixed while varying only source authority~\citep{provsen2026}. P4 therefore does not claim the relevance-versus-authorized-evidence distinction as new. Its empirical residual is the protected, non-compensatory conjunction of content, ownership, support, checker, influence, evaluator, access and contamination prerequisites.
+
+'''
+          if 'provsen2026' not in s:
+              if marker not in s: raise SystemExit('P4 insertion marker missing')
+              s=s.replace(marker,para+marker)
+              p.write_text(s)
+          bib=root/'bibliography.bib'; b=bib.read_text()
+          if 'provsen2026' not in b:
+              b += r'''
+
+@article{provsen2026,
+  author={Liao, Junchi},
+  title={Auditing Provenance Sensitivity in LLM Agent Action Selection},
+  journal={arXiv preprint arXiv:2607.20827},
+  year={2026}
+}
+'''
+              bib.write_text(b)
+          PY
+      - name: Run P4 result and headroom guards
+        run: |
+          pytest -q tests/unit/p4/test_p4_metric_headroom.py tests/unit/p4/test_p4_publication_v2.py
+      - name: Install TeX/render tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra librsvg2-bin poppler-utils
+      - name: Regenerate immutable-result tables/figures and compile
+        working-directory: papers/paper-04-verified-scientific-discovery
+        run: |
+          python figures/generate_figures.py
+          for stem in p4_2_false_promotion p4_3_coverage_frontier p4_4_detection_heatmap p4_5_attribution_vs_support p4_6_cost_tradeoff; do rsvg-convert -w 1440 figures/${stem}.svg -o figures/${stem}.png; done
+          cd manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          if grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log; then exit 1; fi
+          pdfinfo main.pdf > P4_SATURATION_PDFINFO.txt
+      - name: Refresh P4 package hashes and validate
+        run: |
+          python - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0,'research/paper-programme-v1/journal_package')
+          import check_journal_package as c
+          root=Path('papers/paper-04-verified-scientific-discovery')
+          m=c.load_manifest(root/'journal_package')
+          c.write_sha256sums(root,c.hashed_paths(m))
+          PY
+          python research/paper-programme-v1/journal_package/check_journal_package.py --root .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p4-saturation-review-${{ github.sha }}
+          path: |
+            papers/paper-04-verified-scientific-discovery/manuscript/main.pdf
+            papers/paper-04-verified-scientific-discovery/manuscript/main.log
+            papers/paper-04-verified-scientific-discovery/manuscript/P4_SATURATION_PDFINFO.txt
+          if-no-files-found: error
+      - name: Commit citation and package binding
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add papers/paper-04-verified-scientific-discovery/manuscript/main.tex papers/paper-04-verified-scientific-discovery/manuscript/bibliography.bib papers/paper-04-verified-scientific-discovery/journal_package/SHA256SUMS
+          git diff --cached --quiet && exit 0
+          git commit -m 'papers(p4): cite provenance-sensitive authorization donor'
+          git push origin HEAD:saturation/p4-nature-skills-round-a-2026-08-19
