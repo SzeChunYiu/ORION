@@ -1,0 +1,26 @@
+{
+  "schema_version": "CrossDomainTransferClosureExpected.v1",
+  "frozen_before_runner": true,
+  "outcome_accessed": false,
+  "case_count": 40,
+  "domains": ["software", "retrieval", "semantics", "authority", "measurement"],
+  "case_type_counts": {
+    "positive": 15,
+    "near_miss": 10,
+    "negative": 10,
+    "partial": 5
+  },
+  "expected_metrics": {
+    "NO_TRANSFER": {"correct": 10, "negative_transfer": 0, "positive_full_correct": 0, "partial_correct": 0, "worst_domain_correct": 2},
+    "RAW_TRAJECTORY": {"correct": 20, "negative_transfer": 15, "positive_full_correct": 15, "partial_correct": 0, "worst_domain_correct": 4},
+    "SUMMARY_MEMORY": {"correct": 25, "negative_transfer": 10, "positive_full_correct": 15, "partial_correct": 0, "worst_domain_correct": 5},
+    "ABSTRACT_INSIGHT": {"correct": 25, "negative_transfer": 10, "positive_full_correct": 15, "partial_correct": 0, "worst_domain_correct": 5},
+    "SKILL_INSTRUCTION": {"correct": 25, "negative_transfer": 10, "positive_full_correct": 15, "partial_correct": 0, "worst_domain_correct": 5},
+    "SURFACE_SIMILARITY": {"correct": 20, "negative_transfer": 15, "positive_full_correct": 15, "partial_correct": 0, "worst_domain_correct": 4},
+    "ABSTRACT_INSIGHT_SIGNATURE": {"correct": 40, "negative_transfer": 0, "positive_full_correct": 15, "partial_correct": 5, "worst_domain_correct": 8},
+    "MECHANIC_CONTRACT_RECEIPT": {"correct": 40, "negative_transfer": 0, "positive_full_correct": 15, "partial_correct": 5, "worst_domain_correct": 8},
+    "ORACLE": {"correct": 40, "negative_transfer": 0, "positive_full_correct": 15, "partial_correct": 5, "worst_domain_correct": 8}
+  },
+  "expected_issue_286_terminal_if_reconstructed": "ABSTRACTION_ONLY",
+  "expected_issue_318_terminal_if_reconstructed": "PROCESS_USEFUL_NOT_NOVEL"
+}
