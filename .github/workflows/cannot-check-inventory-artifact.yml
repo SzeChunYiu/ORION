@@ -5,13 +5,15 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   derive:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -23,3 +25,15 @@ jobs:
           name: cannot-check-inventory-derived
           path: research/development/cannot_check_inventory.json
           if-no-files-found: error
+      - name: Commit exact derived inventory
+        shell: bash
+        run: |
+          if git diff --quiet -- research/development/cannot_check_inventory.json; then
+            echo "inventory already exact"
+            exit 0
+          fi
+          git config user.name "orion-shadow-inventory-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/development/cannot_check_inventory.json
+          git commit -m "Regenerate CANNOT_CHECK inventory for issue coordination"
+          git push origin HEAD:${{ github.event.pull_request.head.ref || github.ref_name }}
