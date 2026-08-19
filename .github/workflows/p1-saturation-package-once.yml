@@ -17,10 +17,12 @@ jobs:
         with:
           ref: saturation/p1-nature-skills-round-a-2026-08-19
           fetch-depth: 0
-      - name: Run P1 claim/result guards
+      - name: Install repository package
+        run: python -m pip install -e '.[dev]'
+      - name: Run P1 result/reproduction guards
         run: |
-          python papers/paper-01-recursive-epistemic-reconstruction/scripts/check_manuscript_results.py
           python papers/paper-01-recursive-epistemic-reconstruction/scripts/make_mechanical_arm_case_table.py --check
+          pytest -q tests/unit/study/p1/test_mechanical_arm_case_table.py tests/unit/study/p1_causal
       - name: Install TeX/PDF tools
         run: |
           sudo apt-get update
@@ -43,7 +45,7 @@ jobs:
           p=root/'journal_package/MANIFEST.json'; m=json.loads(p.read_text())
           m['audit_subject_revision']=os.environ['SOURCE_SHA']; m['audit_date']='2026-08-19'
           p.write_text(json.dumps(m,indent=2)+'\n')
-          (root/'journal_package/CLAIM_PDF_AUDIT.md').write_text(f'''# ORION-P1 saturation claim / PDF audit\n\nAudit source: `{os.environ['SOURCE_SHA']}`.\n\n- Powered primary and disjoint replication claim bindings passed before compilation.\n- The canonical manuscript was rebuilt after the 2026-08-19 literature/ownership saturation edits.\n- Citations and cross-references converged without unresolved-warning gate failure.\n- Historical V1 remains NOT_SUPPORTED/UNDERPOWERED and is not pooled with v2.2.4.\n- The manuscript remains bounded to the credential-free mechanical mutation-necessity family; no model-general/open-ended superiority is asserted.\n- Full rendered-page visual inspection is recorded in the saturation audit before issue closure.\n''')
+          (root/'journal_package/CLAIM_PDF_AUDIT.md').write_text(f'''# ORION-P1 saturation claim / PDF audit\n\nAudit source: `{os.environ['SOURCE_SHA']}`.\n\n- Powered primary and disjoint replication claim bindings were preserved.\n- The canonical manuscript was rebuilt after the 2026-08-19 literature/ownership saturation edits.\n- Citations and cross-references converged without unresolved-warning gate failure.\n- Historical V1 remains NOT_SUPPORTED/UNDERPOWERED and is not pooled with v2.2.4.\n- The manuscript remains bounded to the credential-free mechanical mutation-necessity family; no model-general/open-ended superiority is asserted.\n- Full rendered-page visual inspection is recorded in the saturation audit before issue closure.\n''')
           PY
           python - <<'PY'
           import sys
