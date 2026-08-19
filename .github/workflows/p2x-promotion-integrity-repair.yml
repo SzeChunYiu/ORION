@@ -60,7 +60,8 @@ jobs:
           import json
           from pathlib import Path
 
-          root = Path('papers/paper-02-open-world-scientific-discovery/evidence/literature')
+          evidence = Path('papers/paper-02-open-world-scientific-discovery/evidence/literature')
+          audit = Path('papers/paper-02-open-world-scientific-discovery/notes/NEAREST_WORK_AUDIT_2026-08.md')
           keys = [
               'knowplan2026',
               'donotstopearly2026',
@@ -70,17 +71,16 @@ jobs:
           ]
           bad = []
           for key in keys:
-              record = json.loads((root / f'{key}.json').read_text(encoding='utf-8'))
+              record = json.loads((evidence / f'{key}.json').read_text(encoding='utf-8'))
               verdict = record.get('verdict')
               if verdict in {'MISMATCH', 'CANNOT_CHECK'}:
                   bad.append((key, verdict, record.get('verdict_reason', '')))
           if bad:
-              audit = root / 'LITERATURE_EVIDENCE_AUDIT_V1.md'
               text = audit.read_text(encoding='utf-8')
               summary = '; '.join(f'{k}={v}' for k, v, _ in bad)
-              line = f'\nP2-X promotion live-fetch disclosure: {summary}. See evidence records for exact reasons.\n'
-              if line.strip() not in text:
-                  audit.write_text(text.rstrip() + '\n' + line, encoding='utf-8')
+              line = f'P2-X promotion live-fetch disclosure: {summary}. See evidence/literature records for exact reasons.'
+              if line not in text:
+                  audit.write_text(text.rstrip() + '\n\n' + line + '\n', encoding='utf-8')
               print('P2_X_LITERATURE_NONVERIFIED=' + summary)
           else:
               print('P2_X_LITERATURE_ALL_VERIFIED=true')
