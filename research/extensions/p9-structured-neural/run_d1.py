@@ -8,7 +8,7 @@ import json
 import os
 from pathlib import Path
 
-from orion.study.p9.d1_experiment import run_d1
+from orion.study.p9.d1_runtime import run_d1
 
 
 def main() -> int:
