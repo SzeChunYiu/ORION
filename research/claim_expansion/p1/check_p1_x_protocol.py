@@ -43,10 +43,20 @@ PROTECTED_GOLD_FIELDS = {
     "causal_responsibility_set",
     "best_intervention_set",
     "scientifically_justified_revision_set",
+    "revision_evaluations",
     "ambiguity_state",
     "correct_terminal",
     "exact_reopen_set",
     "provenance_commitment",
+}
+
+EXPECTED_REVISION_EVALUATION_FIELDS = {
+    "revision_id",
+    "candidate_class",
+    "restores_target",
+    "preserves_invariants",
+    "observed_reopen_set",
+    "authorized",
 }
 
 
@@ -125,7 +135,8 @@ def validate_protocol(
     archetypes = scale.get("archetypes_per_domain")
     variants = scale.get("variants_per_archetype")
     total = scale.get("total_cases")
-    if not all(isinstance(x, int) and not isinstance(x, bool) for x in (domains, archetypes, variants, total)):
+    numeric_scale = (domains, archetypes, variants, total)
+    if not all(isinstance(x, int) and not isinstance(x, bool) for x in numeric_scale):
         errors.append("protected_scale_not_integer")
     elif domains * archetypes * variants != total or total != 400:
         errors.append("protected_scale_drift")
@@ -154,6 +165,22 @@ def validate_protocol(
     missing_protected = sorted(PROTECTED_GOLD_FIELDS - protected_required)
     for name in missing_protected:
         errors.append(f"protected_gold_missing_required:{name}")
+
+    revision_eval = protected.get("properties", {}).get("revision_evaluations", {})
+    if revision_eval.get("type") != "array" or revision_eval.get("minItems") != 1:
+        errors.append("revision_evaluations_not_required_nonempty_array")
+    revision_eval_item = revision_eval.get("items", {})
+    if revision_eval_item.get("additionalProperties") is not False:
+        errors.append("revision_evaluation_item_not_closed")
+    revision_eval_required = set(revision_eval_item.get("required", []))
+    if revision_eval_required != EXPECTED_REVISION_EVALUATION_FIELDS:
+        errors.append("revision_evaluation_required_fields_drift")
+    revision_eval_props = revision_eval_item.get("properties", {})
+    for boolean_field in ("restores_target", "preserves_invariants", "authorized"):
+        if revision_eval_props.get(boolean_field, {}).get("type") != "boolean":
+            errors.append(f"revision_evaluation_not_boolean:{boolean_field}")
+    if revision_eval_props.get("observed_reopen_set", {}).get("type") != "array":
+        errors.append("revision_evaluation_reopen_set_not_array")
 
     terminals = set(
         protected.get("properties", {}).get("correct_terminal", {}).get("enum", [])
