@@ -1,0 +1,25 @@
+{
+  "schema_version": "P1_X_DEV_PREFLIGHT_V1",
+  "date": "2026-08-19",
+  "authority": "NON_AUTHORIZING_DEV",
+  "protected_outcomes_accessed": false,
+  "frozen_execution_commit": "0953e0d17f610aceb4d9fc885eb792d0d231b813",
+  "frozen_protected_generator_commit": "2c2cb761fc8e321e1af3e8bfec8b7130c6e4d727",
+  "frozen_analysis_commit": "60938ac18e0070f1d673b000d0a51ce9c342dea7",
+  "n": 200,
+  "esrd": {
+    "P1X_MINIMAL_SCIENTIFIC_ESCALATION": {"correct": 200, "rate": 1.0},
+    "B1_DONOR_COMPLETE_GREEDY": {"correct": 140, "rate": 0.7},
+    "B2_SUCCESS_AUTHORIZES_REFRAME": {"correct": 90, "rate": 0.45},
+    "B3_IDEAL_TYPED_PRODUCT": {"correct": 200, "rate": 1.0}
+  },
+  "checks": {
+    "b3_exact_decision_mismatches": 0,
+    "p1x_budget_violations": 0,
+    "model_experiment_required_four_way_coverage": true,
+    "request_discriminator_and_unresolved_both_exercised": true,
+    "diagnosis_not_prescription_exercised": true,
+    "reopen_scope_mismatch_exercised": true
+  },
+  "terminal": "DEV_PREFLIGHT_GREEN__NO_RESULT_AUTHORITY"
+}
