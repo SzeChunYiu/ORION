@@ -1,0 +1,19 @@
+name: p1-saturation-sha-once
+
+on:
+  push:
+    branches:
+      - saturation/p1-nature-skills-round-a-2026-08-19
+    paths:
+      - .github/workflows/p1-saturation-sha-once.yml
+
+permissions:
+  contents: read
+
+jobs:
+  checksum:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Report P1 bibliography SHA256
+        run: sha256sum papers/paper-01-recursive-epistemic-reconstruction/manuscript/bibliography.bib
