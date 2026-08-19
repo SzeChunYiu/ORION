@@ -22,25 +22,25 @@ from orion.knowledge.scientific_structure_assimilation import (
 )
 
 DONOR = StructuralDonorIdentity(
-    donor_id="arxiv:2608.09696",
-    title="Model Discovery Agent",
-    source_uri="https://arxiv.org/abs/2608.09696",
+    donor_id="fixture:full-text-structural-donor",
+    title="Synthetic Full-Text Structural Donor",
+    source_uri="test://full-text-structural-donor",
     source_kind=StructuralSourceKind.PRIMARY_PAPER,
     access=StructuralSourceAccess.FULL_TEXT,
-    source_scope="three bounded mechanistic discovery benchmarks",
+    source_scope="synthetic bounded test regime",
 )
 
 
 def _profile(**overrides) -> StructuralAssumptionProfile:
     base = dict(
-        agent_world_coupling_assumption="active inquiry couples proposer actions to observed evidence",
-        common_state_sufficiency_assumption="M-open changes hypotheses inside a declared evidence/interface state; open-variable sufficiency is not established",
-        exogenous_stochasticity_semantics="predictive discrepancy is evidence of inadequacy, not automatic attribution to the proposed model",
-        strategic_link_required_followups="experiment choice is evaluated through expected information value under the current candidate family",
-        working_memory_vs_audit_history="candidate belief state is mutable while source/evidence provenance remains auditable",
-        computation_is_action_wait_semantics="NOT_MATERIAL: paper does not claim a separate wait/compute action ontology",
-        interface_components_joint_or_independent="observation/intervention interface is treated as part of the experiment design; representation sufficiency remains separately testable",
-        simple_baseline_that_could_make_donor_unnecessary="strong fixed-class SMC/SBI plus active design is the required no-expansion parent",
+        agent_world_coupling_assumption="fixture explicitly couples inquiry actions to observations",
+        common_state_sufficiency_assumption="fixture declares its state sufficient only inside the bounded test regime",
+        exogenous_stochasticity_semantics="fixture separates exogenous noise from model inadequacy",
+        strategic_link_required_followups="fixture requires information-seeking followups when the discriminator is unresolved",
+        working_memory_vs_audit_history="fixture separates mutable working state from immutable audit history",
+        computation_is_action_wait_semantics="NOT_MATERIAL: fixture has no separate wait/compute action ontology",
+        interface_components_joint_or_independent="fixture declares observation and intervention components jointly scoped",
+        simple_baseline_that_could_make_donor_unnecessary="fixture requires a fixed-structure parent before structural expansion",
     )
     base.update(overrides)
     return StructuralAssumptionProfile(**base)
@@ -50,15 +50,15 @@ def _assessments() -> tuple[CoordinateAssessment, ...]:
     return tuple(
         CoordinateAssessment(
             coordinate=coordinate,
-            commitment=f"source-grounded commitment for {coordinate.value}",
+            commitment=f"fixture commitment for {coordinate.value}",
             disposition=(
                 StructuralDisposition.ADAPT_STRUCTURE
                 if coordinate in {StructuralCoordinate.C_FAILURE_ANOMALY, StructuralCoordinate.D_REVISION}
                 else StructuralDisposition.ADOPT_STRUCTURE
             ),
-            donor_owner_refs=("arxiv:2608.09696",),
-            orion_consequence=f"route {coordinate.value} consequence to its existing owner",
-            evidence_refs=("https://arxiv.org/abs/2608.09696",),
+            donor_owner_refs=("fixture:full-text-structural-donor",),
+            orion_consequence=f"route {coordinate.value} fixture consequence to its existing owner",
+            evidence_refs=("test://full-text-structural-donor",),
         )
         for coordinate in REQUIRED_COORDINATES
     )
@@ -66,23 +66,23 @@ def _assessments() -> tuple[CoordinateAssessment, ...]:
 
 def _draft(**overrides) -> StructuralAssimilationDraft:
     base = dict(
-        receipt_id="ssa:v1:mda",
+        receipt_id="ssa:v1:fixture",
         donor=DONOR,
         assessments=_assessments(),
         assumption_profile=_profile(),
         donor_authority=StructuralAuthority.BOUNDED,
         claimed_authority=StructuralAuthority.BOUNDED,
-        representation_boundary="M-open expands a model/hypothesis class; open variables/measurement require separate ORION owners",
-        preservation_rule="prior evidence is retained with provenance and affected claims are revalidated after class expansion",
+        representation_boundary="fixture separates fixed representation from explicitly licensed structural revision",
+        preservation_rule="fixture retains prior evidence and revalidates affected claims after structural revision",
         llm_involved=True,
-        explicit_non_llm_machinery=("SMC", "SBI", "VoI", "predictive check"),
+        explicit_non_llm_machinery=("fixture posterior", "fixture discriminator", "fixture gate"),
         llm_marginal_role_checked=True,
         donor_has_relevant_negative_result=True,
-        negative_results=("LLM feedback-sensitive experimental design requires a separate anti-hype control",),
-        conflict_tests=("fixed-model-class vs representation-change discriminator",),
-        downstream_children=("#318", "#403", "P5"),
-        mechanism_receipt_ids=("mechanism:mda:voi",),
-        structural_receipt_id_for_mechanics="ssa:v1:mda",
+        negative_results=("fixture negative/control result retained",),
+        conflict_tests=("fixture fixed-vs-revised discriminator",),
+        downstream_children=("#318", "P5"),
+        mechanism_receipt_ids=("mechanism:fixture",),
+        structural_receipt_id_for_mechanics="ssa:v1:fixture",
     )
     base.update(overrides)
     return StructuralAssimilationDraft(**base)
