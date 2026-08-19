@@ -5,29 +5,19 @@
   "verification_reference": "P9.IndependentReplayExpectations.v1",
   "seed": "p9-a2-a4-d0-explicit-v1",
   "pairs_per_family": 256,
-  "relation_views": {
-    "SURFACE": {"sample_count": 512, "coverage": 0.0, "full_task_accuracy": 0.0},
-    "TOPOLOGY": {"sample_count": 512, "coverage": 0.0, "full_task_accuracy": 0.0},
-    "TYPED": {"sample_count": 512, "coverage": 1.0, "full_task_accuracy": 1.0},
-    "CURRENT": {"sample_count": 512, "coverage": 1.0, "full_task_accuracy": 1.0},
-    "SEMANTIC": {"sample_count": 512, "coverage": 1.0, "full_task_accuracy": 1.0}
-  },
-  "history_views": {
-    "SURFACE": {"sample_count": 512, "coverage": 0.0, "full_task_accuracy": 0.0, "hidden_view_pair_prediction_equal": true},
-    "TOPOLOGY": {"sample_count": 512, "coverage": 0.0, "full_task_accuracy": 0.0, "hidden_view_pair_prediction_equal": true},
-    "TYPED": {"sample_count": 512, "coverage": 1.0, "full_task_accuracy": 0.5, "hidden_view_pair_prediction_equal": true},
-    "CURRENT": {"sample_count": 512, "coverage": 1.0, "full_task_accuracy": 0.5, "hidden_view_pair_prediction_equal": true},
-    "SEMANTIC": {"sample_count": 512, "coverage": 1.0, "full_task_accuracy": 1.0}
-  },
+  "status": "INVALIDATED_PENDING_EXECUTABLE_HOSTILE_REPLAY",
+  "reason": "A prior archive attested candidate-order and evaluator-gold invariance without those checks being measured by the bulk executable runner. The runner now measures both over the frozen corpus; this archive must not carry a sufficient terminal until the corrected exact-head replay completes.",
+  "relation_views": null,
+  "history_views": null,
   "hostile_checks": {
-    "candidate_order_invariance": true,
-    "gold_falsification_invariance": true,
-    "weak_relation_views_do_not_invent_typed_semantics": true,
-    "hidden_history_views_do_not_distinguish_the_hostile_pair": true
+    "candidate_order_invariance": null,
+    "gold_falsification_invariance": null,
+    "weak_relation_views_do_not_invent_typed_semantics": null,
+    "hidden_history_views_do_not_distinguish_the_hostile_pair": null
   },
-  "terminal": "A2_A4_D0_EXPLICIT_INFERENCE_SUFFICIENT",
-  "verification_state": "BOUNDED_VERIFIED",
+  "terminal": "CANNOT_CHECK_PENDING_REEXECUTION",
+  "verification_state": "INVALIDATED_PREVIOUS_ATTESTATION",
   "claim_ceiling": "D0 relation-semantics and admitted-failure-history mechanic selection only",
   "grants_neural_escalation": false,
-  "scientific_authority": "BOUNDED_VERIFICATION_EVIDENCE_ONLY"
+  "scientific_authority": "NONE_PENDING_CORRECTED_REPLAY"
 }
