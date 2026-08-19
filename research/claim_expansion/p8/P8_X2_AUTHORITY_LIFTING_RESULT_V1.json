@@ -1,0 +1,28 @@
+{
+  "schema": "P8.X2.AuthorityLiftingResult.v1",
+  "donor_families": ["FAVA_PERMISSION", "PCAA_ACTION_CERT", "HDP_DELEGATION", "SENTINEL_DCC", "APC_BOUNDED_AGENTS", "ECA_TYPED_EVIDENCE"],
+  "scientific_type_coordinates": ["domain", "kind", "scope", "content", "epoch"],
+  "state_evaluations": 18432,
+  "terminal_counts": {
+    "NO_DONOR_AUTHORITY": 9216,
+    "BLOCK": 7086,
+    "CANNOT_CHECK": 1536,
+    "DISCHARGE": 594
+  },
+  "donor_conservativity_violations": 0,
+  "type_separation_witnesses": 30,
+  "protected_coercion_successes": 30,
+  "unprotected_coercion_countermodels": 30,
+  "blocker_refuted_successes": 6,
+  "blocker_undetermined_cannot_check": 6,
+  "blocker_established_blocks": 6,
+  "single_support_revocation_survivals": 12,
+  "all_support_revoked_blocks": 6,
+  "chain_narrowing_successes": 36,
+  "chain_widening_countermodels": 36,
+  "action_denied_independent_support_examples": 6,
+  "ideal_product_mismatches": 0,
+  "canonical_rows_sha256": "f69a60c890b6f9f3636864c639769bc5a145f7224dccd16390cad8d01e92f096",
+  "interpretation": "Modern action/delegation/evidence authority systems are absorbed as native lower-level authority certificates. Scientific discharge is a separate lifted relation requiring compatible or protectedly coerced scientific type, non-widening delegation, fail-closed blocker state and at least one surviving complete support family. Action authority can survive when scientific discharge fails, and scientific support can exist independently of a denied action. An equally typed decentralized product ties exactly.",
+  "claim_ceiling": "BOUNDED_FORMAL_SCIENTIFIC_AUTHORITY_LIFTING; no deployed-agent or inherent-centralization claim"
+}
