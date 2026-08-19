@@ -13,6 +13,25 @@ from .epistemic_tension import (
     assess_tensions,
     build_tension_candidate,
 )
+from .episodes import (
+    AssertionConfidence,
+    AssertionRole,
+    DiscoveryEpisode,
+    EpisodeAssertion,
+    EpisodeSource,
+    FailureEpisode,
+    FailureStage,
+    FailureVisibility,
+    HistoricalUseMode,
+    PreCutoffCandidatePacket,
+    SourceKind,
+    SourceTemporalRelation,
+    build_discovery_episode,
+    build_episode_assertion,
+    build_episode_source,
+    build_failure_episode,
+    project_pre_cutoff_candidate_packet,
+)
 from .thought_experiment import (
     ExecutionMode,
     ProspectiveDiscriminationReport,
