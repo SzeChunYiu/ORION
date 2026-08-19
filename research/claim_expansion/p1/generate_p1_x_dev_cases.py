@@ -37,7 +37,7 @@ DOMAINS: dict[str, dict[str, str]] = {
     "MODEL_EXPERIMENT_DESIGN": {
         "local": "PARAMETER_REVISION",
         "high": "MODEL_CLASS_EXPANSION",
-        "alt": "EXPERIMENT_MEASUREMENT_REVISION",
+        "alt": "REPRESENTATION_REGIME_REVISION",
         "external": "EXPERIMENT_MEASUREMENT_REVISION",
     },
 }
@@ -77,6 +77,10 @@ def _default_scope(case_id: str, candidate_class: str) -> list[str]:
     if candidate_class in EPISTEMIC_HIGH_LEVEL:
         return [f"{case_id}:root", f"{case_id}:dependent"]
     return []
+
+
+def _terminal_for_unique(candidate_class: str) -> str:
+    return "REVISE_HIGH_LEVEL" if candidate_class in EPISTEMIC_HIGH_LEVEL else "REPAIR_LOCAL"
 
 
 def build_dev_case(domain: str, archetype: str, variant: int) -> dict[str, Any]:
@@ -150,11 +154,13 @@ def build_dev_case(domain: str, archetype: str, variant: int) -> dict[str, Any]:
     justified: list[str] = []
     ambiguity = "UNIQUE_MINIMUM"
     terminal = "REPAIR_LOCAL"
+    discriminator_status = "NOT_NEEDED"
 
     if archetype == "NARROW_REPAIR_SUFFICIENT":
         causal = [local]
         best = [local]
         justified = [local]
+        terminal = _terminal_for_unique(local)
         add_alternative(local, "SUCCEEDED")
         add_alternative(high, "SUCCEEDED")
         evaluations[local]["restores_target"] = True
@@ -164,7 +170,7 @@ def build_dev_case(domain: str, archetype: str, variant: int) -> dict[str, Any]:
         causal = [high]
         best = [high]
         justified = [high]
-        terminal = "REVISE_HIGH_LEVEL"
+        terminal = _terminal_for_unique(high)
         add_alternative(local, "FAILED")
         add_alternative(high, "SUCCEEDED")
         evaluations[high]["restores_target"] = True
@@ -174,7 +180,8 @@ def build_dev_case(domain: str, archetype: str, variant: int) -> dict[str, Any]:
         best = _unique((local, alt))
         justified = _unique((local, alt))
         ambiguity = "INCOMPARABLE_MINIMA"
-        terminal = "REQUEST_DISCRIMINATOR"
+        discriminator_status = "AVAILABLE" if variant % 2 else "UNAVAILABLE"
+        terminal = "REQUEST_DISCRIMINATOR" if discriminator_status == "AVAILABLE" else "UNRESOLVED"
         add_alternative(local, "CANNOT_CHECK")
         add_alternative(alt, "CANNOT_CHECK")
         evaluations[local]["restores_target"] = True
@@ -184,6 +191,7 @@ def build_dev_case(domain: str, archetype: str, variant: int) -> dict[str, Any]:
         causal = [high]
         best = [local]
         justified = [local]
+        terminal = _terminal_for_unique(local)
         add_alternative(high, "SUCCEEDED")
         add_alternative(local, "SUCCEEDED")
         evaluations[high]["restores_target"] = True
@@ -193,27 +201,26 @@ def build_dev_case(domain: str, archetype: str, variant: int) -> dict[str, Any]:
         causal = [external]
         best = [external]
         justified = [external]
+        terminal = _terminal_for_unique(external)
         add_alternative(external, "SUCCEEDED")
         evaluations[external]["restores_target"] = True
-        # This archetype must not force mutation of scientific content merely to improve a score.
-        terminal = "REPAIR_LOCAL"
 
     elif archetype == "LOCAL_SUCCESS_PRESERVATION_FAILURE":
         causal = [high]
         best = [alt]
         justified = [alt]
+        terminal = _terminal_for_unique(alt)
         add_alternative(high, "SUCCEEDED")
         add_alternative(alt, "SUCCEEDED")
         evaluations[high]["restores_target"] = True
         evaluations[high]["preserves_invariants"] = False
         evaluations[alt]["restores_target"] = True
-        terminal = "REVISE_HIGH_LEVEL" if alt in EPISTEMIC_HIGH_LEVEL else "REPAIR_LOCAL"
 
     elif archetype == "REOPEN_SCOPE_MISMATCH":
         causal = [high]
         best = [high]
         justified = [high]
-        terminal = "REVISE_HIGH_LEVEL"
+        terminal = _terminal_for_unique(high)
         add_alternative(local, "FAILED")
         add_alternative(high, "SUCCEEDED")
         evaluations[high]["restores_target"] = True
@@ -232,14 +239,13 @@ def build_dev_case(domain: str, archetype: str, variant: int) -> dict[str, Any]:
             add_alternative(local, "CANNOT_CHECK")
             add_alternative(high, "CANNOT_CHECK")
 
-    if terminal == "REVISE_HIGH_LEVEL":
-        exact_reopen_set = exact_high_scope
-    else:
-        exact_reopen_set = []
+    exact_reopen_set = exact_high_scope if terminal == "REVISE_HIGH_LEVEL" else []
 
     unknowns = []
-    if terminal in {"CANNOT_CHECK", "REQUEST_DISCRIMINATOR"}:
-        unknowns = [f"{case_id}:missing_discriminator"]
+    if terminal == "CANNOT_CHECK":
+        unknowns = [f"{case_id}:missing_required_evidence"]
+    elif terminal == "UNRESOLVED":
+        unknowns = [f"{case_id}:required_discriminator_unavailable"]
 
     return {
         "case_id": case_id,
@@ -256,6 +262,7 @@ def build_dev_case(domain: str, archetype: str, variant: int) -> dict[str, Any]:
                 _revision_id(case_id, candidate_class) for candidate_class in revision_classes
             ],
             "revision_proposals": proposals,
+            "discriminator_status": discriminator_status,
         },
         "protected_gold": {
             "causal_responsibility_set": causal,
