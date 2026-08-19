@@ -1,0 +1,116 @@
+{
+  "version": "DiscoveryMorphologyBasis.v1",
+  "issue": 506,
+  "status": "PRE_VALIDATION_FREEZE",
+  "interpretation": "Descriptive public-artifact morphology only; dimensions are not asserted to be cognitively atomic, historically exhaustive, novel, or causally necessary.",
+  "dimensions": [
+    {
+      "id": "REPRESENTATION_CHANGE",
+      "definition": "A material change in coordinates, descriptive objects, organization, or representation used to state or derive the public contract.",
+      "explicit_nondefinition": "Not lexical renaming, stylistic reframing, or evidence that private cognition changed representation.",
+      "strong_parent_owners": ["representation/abstraction learning", "P3/P7 representation and transport", "scientific representation theory"],
+      "frozen_episode_support": 12,
+      "frozen_domain_buckets": ["ENGINEERING_DESIGN", "MATHEMATICS_FORMAL", "SCIENCE"]
+    },
+    {
+      "id": "NEW_OBJECT_OR_STATE_VARIABLE",
+      "definition": "A new load-bearing public object, state variable, latent entity, or explicitly modeled component is introduced into the artifact.",
+      "explicit_nondefinition": "Not a new name for an existing object and not a claim that ORION invented theoretical terms as a historical novelty.",
+      "strong_parent_owners": ["BACON/GLAUBER", "AM/EURISKO", "latent-variable and representation learning"],
+      "frozen_episode_support": 10,
+      "frozen_domain_buckets": ["ENGINEERING_DESIGN", "MATHEMATICS_FORMAL", "SCIENCE"]
+    },
+    {
+      "id": "ABSTRACTION_EQUIVALENCE_STRUCTURE",
+      "definition": "An abstraction, equivalence, quotient, coding, diagonalization, or comparable structural identification changes the public derivational/reasoning space.",
+      "explicit_nondefinition": "Not every mathematical definition and not evidence of a universal abstraction atom.",
+      "strong_parent_owners": ["mathematical abstraction/equivalence theory", "representation learning", "program abstraction/library learning"],
+      "frozen_episode_support": 5,
+      "frozen_domain_buckets": ["MATHEMATICS_FORMAL", "SCIENCE"]
+    },
+    {
+      "id": "NEW_LAW_CONSTRAINT_OR_INVARIANT",
+      "definition": "A load-bearing law, formal constraint, invariant, conservation/symmetry relation, or comparable public regularity is introduced or established.",
+      "explicit_nondefinition": "Not every fitted equation and not a claim that invariant discovery is ORION-specific.",
+      "strong_parent_owners": ["symbolic/equation discovery", "symmetry/invariance methods", "formal theorem discovery"],
+      "frozen_episode_support": 10,
+      "frozen_domain_buckets": ["MATHEMATICS_FORMAL", "SCIENCE"]
+    },
+    {
+      "id": "BRIDGE_CORRESPONDENCE",
+      "definition": "Previously separate descriptions, domains, representations, or theories are connected by an explicit public correspondence that enables transport or composition.",
+      "explicit_nondefinition": "Not surface analogy or semantic similarity without a load-bearing structural relation.",
+      "strong_parent_owners": ["P3/P7", "identity abduction", "design-by-analogy and relational transfer"],
+      "frozen_episode_support": 6,
+      "frozen_domain_buckets": ["ENGINEERING_DESIGN", "MATHEMATICS_FORMAL", "SCIENCE"]
+    },
+    {
+      "id": "NEW_OPERATOR_PROCEDURE",
+      "definition": "A reusable algorithm, proof/search/construction operator, experimental/manufacturing procedure, or other public action schema is introduced.",
+      "explicit_nondefinition": "Not any implementation detail and not evidence that procedure invention requires a new representational regime.",
+      "strong_parent_owners": ["AM/EURISKO", "program synthesis", "DreamCoder/Stitch/LILO-style library learning", "experiment/procedure design"],
+      "frozen_episode_support": 18,
+      "frozen_domain_buckets": ["ENGINEERING_DESIGN", "EVERYDAY_PRACTICAL", "MATHEMATICS_FORMAL", "SCIENCE"]
+    },
+    {
+      "id": "SYSTEM_COMPOSITION_ARCHITECTURE",
+      "definition": "Components, interfaces, or subprocedures are reorganized into a new public architecture whose composition is load-bearing for function or inference.",
+      "explicit_nondefinition": "Not any multi-component artifact and not a claim that composition itself is a novel ORION mechanic.",
+      "strong_parent_owners": ["systems/architecture design", "C-K/design prototype theory", "program and mechanism composition"],
+      "frozen_episode_support": 13,
+      "frozen_domain_buckets": ["ENGINEERING_DESIGN", "EVERYDAY_PRACTICAL", "MATHEMATICS_FORMAL"]
+    },
+    {
+      "id": "INTERFACE_MEASUREMENT_REDESIGN",
+      "definition": "A material change to observation, intervention, manipulation, measurement, experimental, or human-machine interface through which evidence or function is obtained.",
+      "explicit_nondefinition": "Not every use of an instrument and not scientific authority merely because measurement changed.",
+      "strong_parent_owners": ["experiment and measurement design", "#459 interface adequacy", "instrumentation and interaction design"],
+      "frozen_episode_support": 8,
+      "frozen_domain_buckets": ["ENGINEERING_DESIGN", "EVERYDAY_PRACTICAL", "SCIENCE"]
+    },
+    {
+      "id": "FUNCTION_AFFORDANCE_INVENTION",
+      "definition": "A new useful public function or affordance is established under engineering/practical constraints, including repurposing or newly executable capability.",
+      "explicit_nondefinition": "Not novelty, usefulness by assertion, or a truth-valued scientific hypothesis.",
+      "strong_parent_owners": ["C-K/design theory", "affordance/tool innovation", "engineering function/prototype validation"],
+      "frozen_episode_support": 16,
+      "frozen_domain_buckets": ["ENGINEERING_DESIGN", "EVERYDAY_PRACTICAL", "SCIENCE"]
+    },
+    {
+      "id": "FIXED_REGIME_SEARCH_CONTROL",
+      "definition": "An important new result is obtained inside a registered language/operator/evaluator or observational regime and is retained as an explicit non-Jump comparison.",
+      "explicit_nondefinition": "Not a claim that the discovery is trivial; it only blocks inference from importance/novelty to regime invention.",
+      "strong_parent_owners": ["fixed-DSL/program search", "formal theorem discovery", "standard model-based observation and inference"],
+      "frozen_episode_support": 5,
+      "frozen_domain_buckets": ["MATHEMATICS_FORMAL", "SCIENCE"]
+    }
+  ],
+  "frozen_atlas_expectations": {
+    "episodes": 51,
+    "domain_counts": {
+      "MATHEMATICS_FORMAL": 16,
+      "SCIENCE": 15,
+      "ENGINEERING_DESIGN": 12,
+      "EVERYDAY_PRACTICAL": 8
+    },
+    "no_jump_controls": 5,
+    "dimensions": 10,
+    "minimum_episode_support_per_dimension": 5,
+    "minimum_domain_support_per_dimension": 2,
+    "minimum_dimensions_spanning_all_four_domains": 1,
+    "all_private_cognition": "CANNOT_INFER",
+    "all_morphology_roles": "STRUCTURAL_INTERPRETATION",
+    "all_historical_use": "MECHANISM_EXTRACTION_ONLY",
+    "protected_confirmatory_gold_allowed": false,
+    "minimum_competing_interpretations_per_episode": 2
+  },
+  "candidate_terminal": "USEFUL_MORPHOLOGY_BASIS_FOUND",
+  "authority": {
+    "grants_historical_cognition_authority": false,
+    "grants_atom_independence_authority": false,
+    "grants_jump_authority": false,
+    "grants_novelty_authority": false,
+    "grants_protected_benchmark_authority": false,
+    "grants_issue_closure_authority": false
+  }
+}
