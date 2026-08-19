@@ -1,0 +1,1 @@
+S3 branch is based on frozen D1 scientific head `af218de0416c90cdf6e0221098c97e181e29a6e0`. As of this receipt, no S3 protected outcome has been executed or inspected. The branch contains only protocol/amendment, hostile tests, generic serialized-binding implementation, and pre-protected gate markers.
