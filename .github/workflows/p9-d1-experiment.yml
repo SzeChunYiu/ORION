@@ -3,16 +3,14 @@ name: p9-d1-method-transfer
 on:
   pull_request:
     paths:
-      - 'src/orion/study/p9/d1*.py'
-      - 'research/extensions/p9-structured-neural/D1_*'
-      - 'research/extensions/p9-structured-neural/run_d1.py'
-      - 'development/p9-d1-method-transfer/**'
-      - 'tests/test_p9_d1.py'
       - '.github/workflows/p9-d1-experiment.yml'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 concurrency:
-  group: p9-d1-${{ github.event.pull_request.number || github.ref }}
+  group: p9-d1-archive-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -21,44 +19,73 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: execution/p9-d1-archive-20260819
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
           cache: pip
           cache-dependency-path: pyproject.toml
+      - name: Bind unchanged scientific subject
+        run: |
+          echo 'P9_D1_SCIENTIFIC_SUBJECT=b82451da53bebd095b5a5b225781cef209c8339b'
+          echo 'P9_D1_EXECUTION_BASE=a5ade88d691b661a9e446337671ebf5ad90dd4e8'
+          CHANGED="$(git diff --name-only a5ade88d691b661a9e446337671ebf5ad90dd4e8..HEAD)"
+          printf '%s\n' "$CHANGED"
+          test "$CHANGED" = '.github/workflows/p9-d1-experiment.yml'
+          test "$(git diff --name-only b82451da53bebd095b5a5b225781cef209c8339b..a5ade88d691b661a9e446337671ebf5ad90dd4e8)" = '.github/workflows/ci.yml'
       - run: python -m pip install -e '.[dev,candidates]'
       - name: D1 focused tests
         run: pytest -q tests/test_p9_d1.py
-      - name: Execute frozen D1 protocol
+      - name: Regenerate frozen D1 protocol result
         run: >-
           python research/extensions/p9-structured-neural/run_d1.py
           --output "$RUNNER_TEMP/d1-results.json"
           > "$RUNNER_TEMP/d1-full-output.log"
-      - name: Print compact D1 result
+      - name: Assert exact official result identity
         env:
           RESULT: ${{ runner.temp }}/d1-results.json
         run: |
           python - <<'PY'
           import json, os
-          result = json.load(open(os.environ['RESULT'], encoding='utf-8'))
-          print('P9_D1_TERMINAL=' + result['terminal'])
-          print('P9_D1_RESULT_DIGEST=' + result['result_digest'])
-          print('P9_D1_DATASET_DIGEST=' + result['dataset_manifest_digest'])
-          print('P9_D1_TYPED_MINUS_TRANSCRIPT=' + str(result['typed_minus_transcript']))
-          print('P9_D1_TYPED_MINUS_SERIALIZED=' + str(result['typed_minus_same_information_serialized']))
-          for name, arm in result['results'].items():
-              print(
-                  'P9_D1_ARM '
-                  f"arm={name} model={arm['selected']['config_id']} "
-                  f"accuracy={arm['test']['accuracy']:.6f} "
-                  f"macro_f1={arm['test']['macro_f1']:.6f} "
-                  f"double={arm['test']['double_corruption_accuracy']} "
-                  f"unresolved={arm['test']['unresolved_accuracy']}"
-              )
+          result=json.load(open(os.environ['RESULT'], encoding='utf-8'))
+          assert result['terminal']=='D1_TYPED_STRUCTURE_TRANSFER_SUPPORTED', result['terminal']
+          assert result['result_digest']=='sha256:34003fb8ffcecec6ed01654e40c644ff05b7640be56b398a45efc1e52a30141a', result['result_digest']
+          assert result['dataset_manifest_digest']=='sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c'
+          print('P9_D1_ARCHIVE_REPLAY_EXACT_MATCH=true')
+          print('P9_D1_RESULT_DIGEST='+result['result_digest'])
           PY
-      - name: Upload D1 result
-        uses: actions/upload-artifact@v4
+      - name: Persist D1 raw result on execution branch
+        env:
+          RESULT: ${{ runner.temp }}/d1-results.json
+        run: |
+          mkdir -p research/extensions/p9-structured-neural/execution
+          cp "$RESULT" research/extensions/p9-structured-neural/execution/D1_EXECUTION_RESULT_V1_2.json
+          python - <<'PY'
+          import json, os, pathlib, subprocess
+          result=json.loads(pathlib.Path(os.environ['RESULT']).read_text())
+          receipt={
+              'schema':'P9.D1ExecutionArchiveReceipt.v1.2',
+              'scientific_subject':'b82451da53bebd095b5a5b225781cef209c8339b',
+              'execution_base':'a5ade88d691b661a9e446337671ebf5ad90dd4e8',
+              'execution_branch_head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+              'github_event_sha':os.environ['GITHUB_SHA'],
+              'result_digest':result['result_digest'],
+              'dataset_manifest_digest':result['dataset_manifest_digest'],
+              'terminal':result['terminal'],
+              'matches_original_official_run_32235110762':True,
+              'authority':'ARCHIVAL_REPLAY_ONLY_ORIGINAL_OFFICIAL_RESULT_ALREADY_VERIFIED'
+          }
+          pathlib.Path('research/extensions/p9-structured-neural/execution/D1_EXECUTION_RECEIPT_V1_2.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/extensions/p9-structured-neural/execution/D1_EXECUTION_RESULT_V1_2.json research/extensions/p9-structured-neural/execution/D1_EXECUTION_RECEIPT_V1_2.json
+          git commit -m 'P9 D1: persist exact verified result archive'
+          git push origin HEAD:execution/p9-d1-archive-20260819
+      - uses: actions/upload-artifact@v4
         with:
-          name: p9-d1-results-${{ github.sha }}
+          name: p9-d1-archive-${{ github.sha }}
           path: ${{ runner.temp }}/d1-results.json
           if-no-files-found: error
