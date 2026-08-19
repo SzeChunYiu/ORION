@@ -117,32 +117,37 @@ def write_p2x_evidence() -> None:
         raise RuntimeError(f"unexpected P2-X result terminal: {result['terminal']}")
     if not verification.get("ok") or verification.get("terminal") != "P2_X_INDEPENDENT_VERIFICATION_PASS":
         raise RuntimeError(f"P2-X independent verification not green: {verification}")
-    if verification["arm_correct"] != {
+    expected_counts = {
         "P2X_FAIL_CLOSED_ROUTE_AUTHORITY": 400,
         "B1_DONOR_COMPLETE_AVAILABLE_ROUTE_PRODUCT": 250,
         "B2_GLOBAL_SUFFICIENCY_AGGREGATOR": 100,
         "B3_IDEAL_TYPED_ROUTE_PRODUCT": 400,
-    }:
+    }
+    if verification["arm_correct"] != expected_counts:
         raise RuntimeError("P2-X verification headline counts changed")
+    if {
+        key: result["arm_escd"][key]["correct"] for key in expected_counts
+    } != expected_counts:
+        raise RuntimeError("P2-X protected result and independent headline counts disagree")
     claim_values = {
         "schema": "P2_X_CLAIM_VALUES_V1",
-        "source_result": RESULT_SRC.as_posix().split("/ORION/")[-1],
-        "source_verification": VERIFY_SRC.as_posix().split("/ORION/")[-1],
+        "source_result": str(RESULT_SRC.relative_to(ROOT)),
+        "source_verification": str(VERIFY_SRC.relative_to(ROOT)),
         "n": result["n"],
-        "p2x_correct": result["arms"]["P2X_FAIL_CLOSED_ROUTE_AUTHORITY"]["correct"],
-        "b1_correct": result["arms"]["B1_DONOR_COMPLETE_AVAILABLE_ROUTE_PRODUCT"]["correct"],
-        "b2_correct": result["arms"]["B2_GLOBAL_SUFFICIENCY_AGGREGATOR"]["correct"],
-        "b3_correct": result["arms"]["B3_IDEAL_TYPED_ROUTE_PRODUCT"]["correct"],
-        "p2x_rate": result["arms"]["P2X_FAIL_CLOSED_ROUTE_AUTHORITY"]["rate"],
-        "b1_rate": result["arms"]["B1_DONOR_COMPLETE_AVAILABLE_ROUTE_PRODUCT"]["rate"],
+        "p2x_correct": result["arm_escd"]["P2X_FAIL_CLOSED_ROUTE_AUTHORITY"]["correct"],
+        "b1_correct": result["arm_escd"]["B1_DONOR_COMPLETE_AVAILABLE_ROUTE_PRODUCT"]["correct"],
+        "b2_correct": result["arm_escd"]["B2_GLOBAL_SUFFICIENCY_AGGREGATOR"]["correct"],
+        "b3_correct": result["arm_escd"]["B3_IDEAL_TYPED_ROUTE_PRODUCT"]["correct"],
+        "p2x_rate": result["arm_escd"]["P2X_FAIL_CLOSED_ROUTE_AUTHORITY"]["rate"],
+        "b1_rate": result["arm_escd"]["B1_DONOR_COMPLETE_AVAILABLE_ROUTE_PRODUCT"]["rate"],
         "difference": result["primary"]["difference"],
         "ci_percent": 95,
-        "ci_low": result["primary"]["bootstrap_ci95"][0],
-        "ci_high": result["primary"]["bootstrap_ci95"][1],
-        "b1_errors": result["n"] - result["arms"]["B1_DONOR_COMPLETE_AVAILABLE_ROUTE_PRODUCT"]["correct"],
-        "b3_mismatches": result["secondary"]["b3_decision_mismatches"],
-        "decoy_cases": result["secondary"]["decoy_cases"],
-        "materiality_errors": result["secondary"]["materiality_errors"],
+        "ci_low": result["primary"]["bootstrap_95ci"][0],
+        "ci_high": result["primary"]["bootstrap_95ci"][1],
+        "b1_errors": result["primary"]["mcnemar"]["b_p2x_only_correct"],
+        "b3_mismatches": result["b3_equivalence"]["decision_mismatches"],
+        "decoy_cases": result["holdout_nonmaterial_decoy"]["cases"],
+        "materiality_errors": result["holdout_nonmaterial_decoy"]["p2x_materiality_errors"],
         "authority": "DERIVED_FROM_VERIFIED_P2_X_PROTECTED_RESULT_FOR_CLAIM_BINDING_ONLY",
     }
     (P2X_DIR / "P2_X_CLAIM_VALUES_V1.json").write_text(
