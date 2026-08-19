@@ -61,6 +61,7 @@
         "causal_responsibility_set",
         "best_intervention_set",
         "scientifically_justified_revision_set",
+        "revision_evaluations",
         "ambiguity_state",
         "correct_terminal",
         "exact_reopen_set",
@@ -70,6 +71,30 @@
         "causal_responsibility_set": {"type": "array", "items": {"type": "string"}},
         "best_intervention_set": {"type": "array", "items": {"type": "string"}},
         "scientifically_justified_revision_set": {"type": "array", "items": {"type": "string"}},
+        "revision_evaluations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "revision_id",
+              "candidate_class",
+              "restores_target",
+              "preserves_invariants",
+              "observed_reopen_set",
+              "authorized"
+            ],
+            "properties": {
+              "revision_id": {"type": "string", "minLength": 1},
+              "candidate_class": {"type": "string", "minLength": 1},
+              "restores_target": {"type": "boolean"},
+              "preserves_invariants": {"type": "boolean"},
+              "observed_reopen_set": {"type": "array", "items": {"type": "string"}},
+              "authorized": {"type": "boolean"}
+            }
+          }
+        },
         "ambiguity_state": {"enum": ["UNIQUE_MINIMUM", "INCOMPARABLE_MINIMA", "INSUFFICIENT_EVIDENCE", "NO_REVISION_NEEDED"]},
         "correct_terminal": {"enum": ["REPAIR_LOCAL", "REVISE_HIGH_LEVEL", "REQUEST_DISCRIMINATOR", "UNRESOLVED", "CANNOT_CHECK", "NO_CHANGE"]},
         "exact_reopen_set": {"type": "array", "items": {"type": "string"}},
