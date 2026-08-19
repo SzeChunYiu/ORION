@@ -153,6 +153,9 @@ jobs:
       - name: Compile P5 source
         run: |
           set -euo pipefail
+          rsvg-convert -f pdf \
+            -o papers/paper-05-self-orion/figures/p5_1_governed_development_loop.pdf \
+            papers/paper-05-self-orion/figures/p5_1_governed_development_loop.svg
           cd papers/paper-05-self-orion/manuscript
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
           ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
