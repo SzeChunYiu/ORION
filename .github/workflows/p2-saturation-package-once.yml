@@ -1,0 +1,126 @@
+name: p2-saturation-package-once
+
+on:
+  push:
+    branches: [saturation/p2-nature-skills-round-a-2026-08-19]
+    paths: ['.github/workflows/p2-saturation-package-once.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  rebind:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: saturation/p2-nature-skills-round-a-2026-08-19
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e '.[dev]'
+      - name: Rebind only drifted P2 manuscript claims
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json')
+          d=json.loads(p.read_text())
+          claims={c['claim_id']:c for c in d['claims']}
+          c=claims['P2-C03']
+          c['sentence']='A later matched OpenAIRE/Crossref Wide campaign failed its predeclared transport-validity gate; its observed zero paired difference is therefore CANNOT_CHECK, not a valid null or negative result.'
+          c['support_type']='EXTERNAL_OFFICIAL'; c['strength']='CANNOT_CHECK'; c['numeric_bindings']=[]
+          c['support_artifacts']=[
+            {'artifact':'openaire_matched_result','key':'terminal'},
+            {'artifact':'openaire_matched_result','key':'validity.logical_provider_ok'},
+          ]
+          c['note']='Abstract-level disclosure of the archived matched Wide campaign. The prospectively frozen transport-validity gate failed, so the observed zero is not a valid null or negative result.'
+          c=claims['P2-C05']
+          c['sentence']='The matched external superiority claim remains unpromoted: the archived OpenAIRE/Crossref Wide campaign failed its prospectively frozen provider-validity gate, so its observed zero paired difference remains CANNOT_CHECK rather than a valid null.'
+          c['support_type']='EXTERNAL_OFFICIAL'; c['strength']='CANNOT_CHECK'; c['numeric_bindings']=[]
+          c['support_artifacts']=[
+            {'artifact':'openaire_matched_result','key':'terminal'},
+            {'artifact':'openaire_matched_result','key':'validity.logical_provider_ok'},
+          ]
+          c['note']='Conclusion-level non-promotion statement for the transport-invalid matched Wide campaign.'
+          # Preserve the exact already-verified Deep sentence.
+          claims['P2-C14']['sentence']='AutoResearchBench Deep official scoring has now executed through a local OpenAI-compatible adapter for the bounded keyless probe, with the judge control passing in full, but the matched multi-provider Deep comparison remains unexecuted.'
+          if 'P2-C15' not in claims:
+            d['claims'].append({
+              'claim_id':'P2-C15',
+              'region':'limitations',
+              'manuscript_status':'ASSERTED',
+              'sentence':'The separately archived OpenAIRE/Crossref Wide campaign failed its prospectively frozen provider-validity gate and remains CANNOT_CHECK; its observed zero paired effect is not a valid null or negative result.',
+              'support_type':'EXTERNAL_OFFICIAL',
+              'strength':'CANNOT_CHECK',
+              'numeric_bindings':[],
+              'support_artifacts':[
+                {'artifact':'openaire_matched_result','key':'terminal'},
+                {'artifact':'openaire_matched_result','key':'validity.logical_provider_ok'},
+                {'artifact':'openaire_matched_receipt','key':'observed_failure.failed_route_status'},
+              ],
+              'note':'Limitations-region disclosure of the invalid Wide campaign; transport failure prevents both superiority and valid-null interpretation.'
+            })
+          p.write_text(json.dumps(d,indent=2,ensure_ascii=False)+'\n')
+          PY
+          python papers/paper-02-open-world-scientific-discovery/scripts/check_claim_ledger.py --check
+          python papers/paper-02-open-world-scientific-discovery/scripts/check_p2_v2.py
+          python -m unittest discover -s papers/paper-02-open-world-scientific-discovery/tests -p 'test_p2_v2.py'
+      - name: Install TeX/PDF tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-pictures poppler-utils
+      - name: Compile exact saturated manuscript
+        working-directory: papers/paper-02-open-world-scientific-discovery/manuscript
+        run: |
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          if grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log; then exit 1; fi
+          if grep -Eq 'Overfull \\hbox|Overfull \\vbox' main.log; then echo 'Overfull box in P2 saturation PDF' >&2; grep -E 'Overfull \\hbox|Overfull \\vbox' main.log >&2; exit 1; fi
+          pdfinfo main.pdf > P2_SATURATION_PDFINFO.txt
+      - name: Rebind journal package
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          cp papers/paper-02-open-world-scientific-discovery/manuscript/main.pdf papers/paper-02-open-world-scientific-discovery/journal_package/manuscript.pdf
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          root=Path('papers/paper-02-open-world-scientific-discovery')
+          p=root/'journal_package/MANIFEST.json'; m=json.loads(p.read_text())
+          m['audit_subject_revision']=os.environ['SOURCE_SHA']; m['audit_date']='2026-08-19'
+          p.write_text(json.dumps(m,indent=2)+'\n')
+          (root/'journal_package/CLAIM_PDF_AUDIT.md').write_text('''# ORION-P2 saturation claim / PDF audit\n\nAudit source: `'''+os.environ['SOURCE_SHA']+'''`.\n\n- The 390-task controlled result remains descriptive/underpowered for superiority and is unchanged.\n- MetaSyn remains a bounded external retrieval/screening probe.\n- The 400-row OpenAIRE/Crossref matched campaign is explicitly retained as `CANNOT_CHECK` because its prospectively frozen provider-validity gate failed; its zero paired effect is not interpreted as a null or negative scientific result.\n- The saturated manuscript preserves route-stop/task-stop, coverage/sufficiency, UNKNOWN/CANNOT_CHECK, and provider-failure authority boundaries.\n- LaTeX/BibTeX converged with no unresolved citations/references and the zero-overfull-box gate passed.\n- External ORION-vs-strong-baseline superiority remains unpromoted.\n''')
+          PY
+          python - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0,'research/paper-programme-v1/journal_package')
+          import check_journal_package as c
+          root=Path('papers/paper-02-open-world-scientific-discovery')
+          m=c.load_manifest(root/'journal_package')
+          c.write_sha256sums(root,c.hashed_paths(m))
+          PY
+          python research/paper-programme-v1/journal_package/check_journal_package.py --root .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p2-saturation-review-${{ github.sha }}
+          path: |
+            papers/paper-02-open-world-scientific-discovery/manuscript/main.pdf
+            papers/paper-02-open-world-scientific-discovery/manuscript/main.log
+            papers/paper-02-open-world-scientific-discovery/manuscript/P2_SATURATION_PDFINFO.txt
+            papers/paper-02-open-world-scientific-discovery/journal_package/manuscript.pdf
+          if-no-files-found: error
+      - name: Remove one-shot workflow and commit saturated package
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/p2-saturation-package-once.yml
+          git add papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json \
+                  papers/paper-02-open-world-scientific-discovery/journal_package/MANIFEST.json \
+                  papers/paper-02-open-world-scientific-discovery/journal_package/CLAIM_PDF_AUDIT.md \
+                  papers/paper-02-open-world-scientific-discovery/journal_package/manuscript.pdf \
+                  papers/paper-02-open-world-scientific-discovery/journal_package/SHA256SUMS
+          git commit -m 'papers(p2): bind saturation manuscript to current evidence'
+          git push origin HEAD:saturation/p2-nature-skills-round-a-2026-08-19
