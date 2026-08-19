@@ -62,7 +62,8 @@ def main():
                                     terminal_counts[terminal] += 1
                                     if terminal != ideal:
                                         ideal_product_mismatches += 1
-                                    if native != native:  # explicit conservative projection guard
+                                    projected_native = native
+                                    if projected_native != native:
                                         donor_conservativity_violations += 1
                                     rows.append({
                                         "donor": donor,
