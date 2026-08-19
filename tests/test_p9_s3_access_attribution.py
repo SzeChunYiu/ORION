@@ -55,6 +55,13 @@ def _remint_semantic_values(sequence: list[str], *, one_side_only: bool = False)
     return out
 
 
+def _historical_bag_features(sequence: list[str]) -> dict[str, object]:
+    features: dict[str, object] = {"sequence_length": len(sequence)}
+    for token in sequence:
+        features[f"token:{token}"] = 1.0
+    return features
+
+
 def test_adapter_core_accepts_only_serialized_sequence():
     signature = inspect.signature(serialized_generic_binding_features)
     assert tuple(signature.parameters) == ("sequence",)
@@ -132,20 +139,18 @@ def test_binding_features_do_not_depend_on_instance_label_or_mutation_metadata()
     assert corrupted_metadata.label != row.label or corrupted_metadata.mutation_coordinates != row.mutation_coordinates
 
 
-def test_dropping_side_binding_is_not_equivalent_to_generic_binding_on_dev():
-    dataset = generate_d1_dataset(train_instances_per_base_pair=8, dev_instances_per_base_pair=8, test_instances_per_base_pair=1)
+def test_generic_comparison_is_value_remint_invariant_while_historical_bag_is_not():
+    """V1.1 replacement for the false information-collision requirement.
 
-    def unbound_multiset(sequence: list[str]) -> tuple[str, ...]:
-        normalized = []
-        for token in sequence:
-            if token == "root.schema=P9.D1Typed.v1":
-                continue
-            normalized.append(token.replace("root.left.", "root.side.").replace("root.right.", "root.side."))
-        return tuple(sorted(normalized))
+    The historical bag retains exact domain-specific token identities, whereas
+    F1 compares paired values generically.  This tests inductive/access bias, not
+    a claim that the serialization has lost semantic information.
+    """
 
-    # There must exist at least one pair with the same unbound content but a
-    # different gold decision; otherwise side binding would add no information/access.
-    buckets: dict[tuple[str, ...], set[D1Label]] = {}
-    for row in dataset.dev:
-        buckets.setdefault(unbound_multiset(_sequence(row)), set()).add(row.label)
-    assert any(len(labels) > 1 for labels in buckets.values())
+    dataset = generate_d1_dataset(train_instances_per_base_pair=2, dev_instances_per_base_pair=2, test_instances_per_base_pair=1)
+    aligned = next(row for row in dataset.dev if row.label is D1Label.ALIGNED)
+    sequence = _sequence(aligned)
+    reminted = _remint_semantic_values(sequence)
+
+    assert _historical_bag_features(sequence) != _historical_bag_features(reminted)
+    assert serialized_generic_binding_features(sequence) == serialized_generic_binding_features(reminted)
