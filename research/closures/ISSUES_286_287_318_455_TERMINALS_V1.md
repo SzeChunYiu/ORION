@@ -106,4 +106,4 @@ Reopen when MDA's primary full text is source-grounded **or** the protocol is pr
 
 ## Closure rule
 
-These terminals are only earned if the branch CI verifies the new executable artifacts. If CI finds a defect, the affected terminal is automatically reopened until the defect is corrected. None of these records authorizes publication novelty, mechanism adoption, objective revision, or protected self-modification.
+These terminals are only earned if the final branch head passes the repository's full CI after all implementation and governance artifacts are present. If CI finds a defect, the affected terminal is automatically reopened until the defect is corrected. None of these records authorizes publication novelty, mechanism adoption, objective revision, or protected self-modification.
