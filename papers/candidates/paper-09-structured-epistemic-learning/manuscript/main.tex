@@ -1,0 +1,210 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\newcommand{\pending}{\texttt{PENDING\_OFFICIAL\_RECEIPT}}
+\newcommand{\pNine}{P9}
+
+\title{When Structure Is the Model: Exact Epistemic Coordinates, Cross-Domain Transfer, and the Limits of Neural Escalation}
+\author{Anonymous Authors}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Machine-learning systems can fail on reasoning tasks for at least three different reasons: the model-visible representation omits information needed to identify the answer; the information is present but the learner fails to exploit it; or the answer requires a computation that is not expressed by the chosen predictor. These explanations are often conflated when increasingly powerful architectures are compared on a single benchmark. We study a narrower alternative: make load-bearing problem structure explicit, construct paired tasks whose information sufficiency is known exactly, and escalate model complexity only when simpler learners or explicit inference leave a protected residual. Our benchmark represents claims, relations, local representation maps, candidate mechanics, and admitted failure history through progressively richer views. The resulting hostile pairs provide exact deterministic accuracy ceilings for weaker views. We then test whether generic classical learners reach those ceilings and whether exact inference closes residual computations. Finally, we evaluate typed method-coordinate transfer under a protected whole-domain holdout with reminted surface vocabulary, explicit unresolved cases, and unseen combinations of structural corruptions. The final numerical claims in this manuscript are populated only from independently verified, merged result receipts; this draft intentionally leaves still-running values as \pending. Our contribution is not a new graph, sheaf, latent, modular, or causal neural architecture. It is an evidence-bound study of when explicit epistemic structure carries necessary information, when that structure transfers, and when additional learned complexity is or is not scientifically justified.
+\end{abstract}
+
+\section{Introduction}
+
+A poor result from a reasoning model does not uniquely diagnose a poor model. The target may be impossible to identify from the representation the model receives. Conversely, a rich representation can contain the answer while a learner still fails because it lacks the required composition, search, or inference operation. Treating all such failures as invitations to add parameters, message-passing layers, recurrent depth, tool calls, or latent computation makes architecture comparisons difficult to interpret.
+
+This paper studies a deliberately bounded question: \emph{what can be learned, transferred, or inferred once the information carried by the problem representation is controlled explicitly?} We operationalize this question with typed structural objects derived from the ORION research programme, but the experiments are designed so that their interpretation does not depend on accepting ORION as a general theory of reasoning. The benchmark records only externally specified objects and transitions; it does not use hidden chain-of-thought as supervision and does not grant scientific or execution authority to model outputs.
+
+Our methodology separates four quantities that are usually entangled:
+\begin{enumerate}[label=(\roman*)]
+  \item \textbf{information sufficiency}: whether the model-visible representation can identify the protected target at all;
+  \item \textbf{learning sufficiency}: whether a generic learner can recover the target from an information-sufficient view;
+  \item \textbf{computational sufficiency}: whether an explicit, non-learned inference procedure closes a residual when the needed coordinates are already visible;
+  \item \textbf{transfer}: whether a representation learned or scored on some procedural domains remains useful on a whole held-out domain with reminted surface vocabulary and protected corruptions.
+\end{enumerate}
+
+The study follows a strict complexity-escalation discipline. Simple feature and classical-learning baselines receive first right of refusal. A richer neural architecture is justified only by a frozen residual that the strongest applicable simpler or donor-complete alternative cannot close. This discipline matters because much of the attractive design space is established prior work: graph and heterogeneous attention, local/sheaf representations, neural algorithmic reasoning, reusable modules and program libraries, continuous latent reasoning, rule/entity binding, causal/mechanistic world models, active counterexample acquisition, and value-of-computation are all treated as donor territory rather than renamed novelty.
+
+The paper makes three bounded contributions, conditional on the final result receipts. First, we construct exact hostile pairs and an information lattice whose deterministic accuracy ceilings change only when specified load-bearing coordinates become visible. Second, we evaluate generic learned baselines and explicit inference separately, allowing a failure below an information ceiling to be distinguished from a representation deficit. Third, we test exact typed method coordinates under a protected whole-domain transfer protocol rather than relying only on synthetic state worlds. The current claim ledger is reproduced in the supplementary package and prevents post-outcome expansion into causal discovery, natural-science understanding, LLM improvement, method invention, or universal neural superiority.
+
+\section{Related work and donor subtraction}
+
+Our study is intentionally donor-complete rather than novelty-by-avoidance. Graph-aware Transformers and heterogeneous relation-aware attention already establish that typed graph structure can be injected into attention. GraphGPS-style models combine local message passing and global attention. Sheaf and higher-order neural models provide local vector spaces, transport/restriction maps, and consistency operations. Neural algorithmic reasoning studies processors that execute or generalize algorithmic transitions. DreamCoder, Stitch, LILO, neural modules, and later reusable-reasoning-module work establish program/module discovery and reuse. Continuous latent and recurrent reasoning show that language tokens need not be the inner computational substrate. Neural Production Systems and related work factor reusable rules from entity bindings, while later analyses show that Transformers themselves can learn systematic variable binding. Mechanistic and causal world-model work argues that reusable explanatory mechanisms, invariance, and sparse mechanism shifts are central to scientific representations. Selective prediction, counterexample-guided synthesis, active learning, and rational metareasoning already provide mature approaches to uncertainty, counterexamples, and computation selection.
+
+We therefore do not claim any of those ingredients as new. The residual studied here is narrower: a prospectively controlled hierarchy of explicit epistemic/mechanic coordinates, exact hostile pairs that make missing information mechanically visible, recoverable method-coordinate comparisons with explicit \textsc{unresolved} states, and an escalation protocol that asks whether additional learned complexity is necessary after information and explicit inference are accounted for.
+
+This distinction also separates the present paper from earlier ORION work. P1 owns reconstruction of method realizations; P3 owns source-local method projections and plural alignment; P6 owns bounded structural reduction, method-fibre and composition formalisms; P8 owns scientific authority. P9 consumes these objects as candidate learning/evaluation representations but does not re-own their definitions or turn prediction confidence into scientific authority.
+
+\section{Problem formulation}
+
+\subsection{Structured worlds and restricted views}
+
+A benchmark world contains typed atoms, typed relations, optional affine local representation transports, candidate mechanics, admitted failure history, and an evaluator-only target. The target is never included in a model-visible fingerprint. We expose five nested views:
+\begin{align*}
+V_{\mathrm{surface}} &\subset V_{\mathrm{topology}} \subset V_{\mathrm{typed}} \\
+&\subset V_{\mathrm{current}} \subset V_{\mathrm{semantic}}.
+\end{align*}
+The exact contents are fixed in the released schema. Informally, the surface view contains reminted labels plus incidence; topology removes surface labels while retaining connectivity; typed adds semantic atom/relation/mechanic coordinates; current adds local transport values; semantic additionally admits failure history.
+
+For a finite protected world set $\mathcal{D}$ and view $V$, define the model-visible fingerprint $f_V(x)$. If two worlds have the same fingerprint but different evaluator targets, no deterministic predictor restricted to $V$ can classify both correctly. Grouping worlds by fingerprint yields an exact empirical deterministic accuracy ceiling
+\[
+C_V = \frac{1}{|\mathcal{D}|}\sum_{g}\max_y |\{x\in g : y(x)=y\}|.
+\]
+This is an information bound on the frozen sample, not a new theorem about Bayes error and not a claim about a particular architecture.
+
+\subsection{Candidate-relative mechanic selection}
+
+Mechanic identities are reminted across examples and splits; prediction therefore cannot be a classifier over a global mechanic vocabulary. Given a context $E$ and current candidate mechanic $m_i$, a learner produces a score
+\[
+s(E,m_i)\in\mathbb{R},
+\]
+and selects the candidate with maximal score. Candidate order is derived only from the declared model-visible view and an independent order seed. This rule was introduced after a pre-outcome hostile review detected that using a richer hidden fingerprint for candidate ordering would leak semantics through presentation order.
+
+\subsection{Gluing and obstruction}
+
+The D0 transport family uses exact one-dimensional affine maps between local representation charts. A complete directed cycle composes to
+\[
+x \mapsto ax+b.
+\]
+The target is \textsc{glue} when $(a,b)=(1,0)$ within the frozen tolerance, \textsc{obstruction} when the complete composition differs, and \textsc{unknown} when the visible representation lacks a unique complete map. This family is intentionally tiny: it creates an exact global-composition discriminator without pretending to model arbitrary sheaf cohomology or scientific representation transport.
+
+\section{Experimental design}
+
+\subsection{Tranche 0: hostile information pairs}
+
+Three D0 families isolate different load-bearing coordinates while holding weaker views fixed.
+
+\paragraph{Relation semantics.} Two worlds share surface/topological structure but differ in whether an evidence relation supports or defeats a claim; the productive candidate mechanic changes accordingly.
+
+\paragraph{Local transport.} Two worlds share the same typed graph and transport endpoints but differ in affine transport values, producing \textsc{glue} versus \textsc{obstruction}. A missing or ambiguous map yields \textsc{unknown}.
+
+\paragraph{Admitted failure history.} Two worlds have the same current typed state and candidate mechanics but different admitted negative histories; the productive candidate differs only when history is visible.
+
+The six hand-authored fixtures were subsequently generalized into deterministic paired corpora with opaque content-derived identities, split-disjoint namespaces, evaluator/model metadata separation, and exact manifest digests. The generation process creates balanced train/dev/test data while preserving the view-collision contract.
+
+\subsection{M0 evaluator hardening}
+
+Before any learned model was executed, M0 froze a common task interface, null predictors, an exact semantic oracle, and leakage sentinels. Two pre-outcome defects were preserved and corrected: hidden semantic state initially influenced candidate presentation order; and a first task adapter accidentally removed incidence information promised by the surface view. Neither defect was retained in the result-bearing protocol. The exact oracle reconstructs outputs from world semantics and is tested against falsified evaluator gold; it is a harness ceiling rather than a model baseline.
+
+\subsection{M1: simple-model first right of refusal}
+
+M1 evaluates generic classical models before any neural escalation. Mechanic ranking uses field/value and context--candidate interaction features without hard-coded domain rules. Gluing uses generic field features and, where transport values are visible, a canonical numeric cycle sequence without directly computing the affine composition residual. Model families are logistic regression, decision trees, random forests, and nearest neighbours. Hyperparameters are chosen using train $\rightarrow$ dev only; a selected configuration receives one protected test evaluation. Row-order, candidate-order, label-shuffle, and view-ceiling sentinels are mandatory.
+
+The official M1 terminal and numerical results are currently \pending. Independent pre-artifact expectations are not treated as results.
+
+\subsection{Explicit inference first right of refusal}
+
+When the residual is algorithmically transparent, we test an explicit payload-only engine before escalating to a richer learned architecture. For D0 affine gluing, the engine reconstructs the visible representation cycle and composes unique affine maps. The merged bounded-verified result establishes that typed endpoints without transport values correctly remain unresolved, while current/semantic views are exactly decidable for this D0 family. This closes the local D0 computation without claiming that explicit inference dominates probabilistic, logical, energy-based, or open-world reasoning in general.
+
+Parallel payload-only tests for D0 relation semantics and admitted failure history are being corrected so their result archive measures, rather than merely attests, candidate-order and evaluator-gold invariance. Their final result remains \pending.
+
+\subsection{D1: whole-domain method-structure transfer}
+
+D1 moves beyond generated state worlds into exact authored/procedural method structures inherited from the P1/P3 reconstruction corpus. Training domains are numerical methods and graph algorithms; the protected whole-domain test is transactional workflows. Surface action names are reminted and domain-disjoint. The benchmark includes aligned pairs, single-coordinate obstructions, explicit source-insufficient unresolved cases, and protected test combinations containing multiple corruptions whose individual coordinates were seen separately during training.
+
+Four views are compared:
+\begin{enumerate}[label=(\alph*)]
+  \item reminted transcript/action bag;
+  \item untyped pair/topology features;
+  \item typed relational comparison features;
+  \item a same-information typed canonical serialization without explicit relational comparison.
+\end{enumerate}
+The final contrast between (c) and (d) is important: it asks whether the relational inductive representation matters beyond merely exposing the same semantic fields. The D1 protocol was amended before outcomes to compare dependency topology through method-local role indices rather than literal action names and to ensure dependency corruptions actually reverse a present edge rather than silently no-op.
+
+Official D1 values are \pending.
+
+\section{Results}
+
+\subsection{Exact information ceilings}
+
+The exact D0 information lattice is already merged and verified. On the balanced generated corpus, the deterministic accuracy ceilings are:
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+View & Exact deterministic ceiling \\
+\midrule
+Surface & $1/2$ \\
+Topology & $1/2$ \\
+Typed & $2/3$ \\
+Current & $5/6$ \\
+Semantic & $1$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+These ceilings should not be interpreted as model scores. They are the best deterministic accuracies possible on the frozen paired sample using only the corresponding fingerprints.
+
+\subsection{M1 classical learning}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+View / task & Selected model & Test accuracy & Ceiling gap \\
+\midrule
+All official rows & \pending & \pending & \pending \\
+\bottomrule
+\end{tabular}
+\end{center}
+The final text will distinguish information non-identifiability from learning or computation failure and will report all protected family-level scores and train-size curves. No value from the independent expectation file will be inserted here.
+
+\subsection{D0 explicit inference}
+
+For affine local-transport gluing, the bounded verified A5 result used 256 paired cases (512 worlds per view). When transport values were absent from the typed view, the explicit engine returned \textsc{unknown} for every case, giving zero full-task accuracy and unit unknown rate. Once transport values were visible in current and semantic views, exact cycle composition achieved unit accuracy and zero unknown rate on the frozen family. Gold-falsification, transport-order, missing/duplicate-map, broken-cycle, inverse-cycle, and perturbation hostile controls passed. The result is restricted to the D0 affine family.
+
+The corrected A2/A4 relation/history result will be inserted only after its full executable hostile replay completes: \pending.
+
+\subsection{Whole-domain transfer}
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+Representation arm & Dev accuracy & Held-out-domain test accuracy & Macro F1 \\
+\midrule
+Transcript bag & \pending & \pending & \pending \\
+Untyped pair & \pending & \pending & \pending \\
+Typed relational & \pending & \pending & \pending \\
+Same-information typed serialization & \pending & \pending & \pending \\
+\bottomrule
+\end{tabular}
+\end{center}
+The final analysis will additionally report protected double-corruption and explicit-unresolved performance. The key comparison is not merely typed versus text, but typed relational structure versus a same-information serialization control.
+
+\section{What the experiments can diagnose}
+
+The experimental ladder supports different conclusions depending on where a failure appears. A model below a ceiling on an information-identifying view leaves a learning or computational residual. A model at the exact ceiling on a non-identifying view cannot be improved without additional information, randomized prediction, or a changed task. If an explicit engine closes the residual exactly, increasing neural complexity is not justified for that atom. If a simple learned representation transfers across a whole held-out domain while a same-information serialization does not, the result supports a bounded inductive-representation claim rather than a claim that the underlying coordinates were unavailable to the baseline.
+
+This decomposition is also a falsifier for P9 itself. If simple models and explicit inference exhaust all protected tasks, the appropriate scientific conclusion is that no new neural architecture is needed. If typed relational structure does not transfer after surface reminting and same-information controls, the intended standalone representation claim fails. The programme therefore allows a benchmark note or no-standalone terminal rather than requiring a paper-positive outcome.
+
+\section{Limitations}
+
+The current evidence is intentionally narrow. D0 worlds are exact synthetic countermodels, not natural scientific environments. D1 uses exact authored/procedural method structures rather than a large corpus of independently annotated natural-science papers. Human inter-annotator agreement for broad scientific method extraction is therefore not claimed. The natural-paper data lane remains separate and may terminate as exact-trace-only if independent annotation cannot reach a defensible quality threshold.
+
+We do not test causal/interventional mechanic discovery, learned variable-role binding, recurrent latent reasoning, advanced RL or curriculum learning, LLM integration, theorem-proving improvement, or method invention in this paper unless a final surviving residual prospectively reopens those lanes. Donor analyses for those topics are retained because they constrain novelty, not because they provide P9 empirical evidence.
+
+The exact deterministic ceilings are sample-specific information statements, not asymptotic Bayes-error theorems. The D0 explicit inference engine is deliberately specialized to the frozen affine task. D1 evaluates a small number of procedural domains and a particular structural coordinate schema inherited from earlier ORION papers. Any broader claim requires fresh data and protocol freeze.
+
+Finally, prediction never grants scientific authority. A model or explicit engine may propose a mechanic, alignment, or structural relation; correctness, novelty, transfer authority, and adoption remain separate verification/governance problems outside P9.
+
+\section{Reproducibility and verification}
+
+All result-bearing experiments use versioned protocols committed before protected outcomes, content-bound corpus/split identities, deterministic seeds, exact-head CI, raw or archived JSON results, and hostile leakage tests. A separate verifier was frozen before official M1, D1, A5, and A2/A4 result artifacts were read. Its expectation file carries no scientific authority; its role is to make later disagreement visible. Final manuscript numbers require agreement or an explicitly adjudicated discrepancy between official artifacts and independent replay.
+
+The submission supplement will contain the exact protocol lineage, amendments, result digests, per-example predictions where applicable, reproduction commands, dependency environment, and P10 contamination-exclusion manifest. The historical P9 V1 Learning Machine package remains separate and is not relabelled as evidence for this paper.
+
+\section{Conclusion}
+
+This work asks a modest but consequential question: before designing a more powerful reasoning architecture, have we established what information the model can see, whether a simple learner can use it, and whether the remaining computation actually requires learning? Exact hostile pairs make representation insufficiency explicit; a common task interface makes model comparisons harder to game; explicit inference provides a first right of refusal for algorithmically transparent residuals; and a protected whole-domain transfer study tests whether typed method structure generalizes beyond surface vocabulary.
+
+The final conclusion depends on the official M1, D1, and corrected A2/A4 receipts. Regardless of their sign, the paper does not claim a new universal neural reasoner. Its intended scientific contribution is a bounded account of what explicit epistemic structure buys, what it does not buy, and how to decide when architectural escalation is justified.
+
+\end{document}
