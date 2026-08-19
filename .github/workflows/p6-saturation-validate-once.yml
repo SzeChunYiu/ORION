@@ -6,12 +6,12 @@ on:
     paths: ['.github/workflows/p6-saturation-validate-once.yml']
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   validate:
     runs-on: ubuntu-24.04
-    timeout-minutes: 35
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,3 +40,10 @@ jobs:
           name: p6-saturation-validation-${{ github.sha }}
           path: /tmp/p6p8-saturation
           if-no-files-found: error
+      - name: Remove one-shot validator after all gates pass
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/p6-saturation-validate-once.yml
+          git commit -m 'chore(p6): retire one-shot saturation validator'
+          git push origin HEAD:saturation/p6-nature-skills-round-a-2026-08-19
