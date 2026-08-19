@@ -1,0 +1,22 @@
+{
+  "schema": "P9.S3IndependentVerifierProtocol.v1.1",
+  "date": "2026-08-19",
+  "parent": "S3_INDEPENDENT_VERIFIER_PROTOCOL_V1.json",
+  "official_result_now_available": true,
+  "official_run_id": 32302725927,
+  "official_artifact_id": 9383620501,
+  "amendments": [
+    "execution only: force DictVectorizer dense output because scikit-learn 1.9 rejects the frozen sparse matrix index dtype; feature dictionaries, model hyperparameters, dev selection and protected test are unchanged",
+    "schema projection only: map official nested F1/F2 fields into the flat names expected by the frozen verifier",
+    "F2 case-level predictions were not explicitly archived by the official result schema; because official F2 correct_count equals sample_count (128/128), the adapter may reconstruct the implied all-correct case-level list from the immutable D1 test labels, but must disclose this as an evidence-schema limitation"
+  ],
+  "forbidden": [
+    "changing independent serialized parser",
+    "changing model grid or tie-break",
+    "changing D1 dataset/split",
+    "changing S3 terminal thresholds",
+    "editing official result values"
+  ],
+  "verification_ceiling": "BOUNDED_VERIFIED_WITH_F2_CASE_LEVEL_SCHEMA_LIMITATION if no material discrepancy remains",
+  "authority": "EXECUTION_AND_SCHEMA_ADAPTER_ONLY"
+}
