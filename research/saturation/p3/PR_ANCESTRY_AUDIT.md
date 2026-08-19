@@ -1,7 +1,7 @@
 # P3 saturation — PR ancestry audit
 
 Audit date: 2026-08-19  
-Final integration cutoff: `main@b7abcc6ad76d2a985ea938fcbd070a6097b0fe99`  
+Final integration cutoff: `main@627ac5cb2cc0aba0fd2b3912c40a06227849167a`  
 Parent audit: #499  
 Saturation issue: #491
 
@@ -31,12 +31,18 @@ Current `main` and final scoped publication path #460 are authoritative. Earlier
 - [x] two blind review rounds resolved novelty/benchmark/validity/reproducibility concerns without broadening the scoped claim;
 - [x] SWJ primary + JWS fallback style/portability boundaries documented;
 - [x] citation/statistics/terminology/data-code consistency audit completed;
-- [x] saturated manuscript/package was rebuilt by the one-shot and its workflow self-removed;
-- [ ] final exact-current-main repository CI + `p3-manuscript-audit` must pass before merge.
+- [x] I-ADOPT scientific-variable semantics / variable-to-KG construction are explicitly donor-owned in the manuscript;
+- [ ] final saturated PDF/package must be rebound to the edited manuscript and exact-current-main repository CI + `p3-manuscript-audit` must pass before merge.
 
 ## Successor exclusions
 - [x] P9 structural learning may use P3 projections but is not P3 raw-text/generalization evidence;
 - [x] later fibre/method-space work remains versioned successor structure;
 - [x] no historical expert-atlas proposal becomes evidence through downstream reuse.
 
-Status: `ANCESTRY_AUDIT_COMPLETE_AT_b7abcc6__P3_SATURATION_CONVERGED__AWAIT_FINAL_CI`.
+## Final main-delta recheck
+- [x] compared `d73e65c10f4f3b7ae773cea667f6dccd1507e8f0..627ac5cb2cc0aba0fd2b3912c40a06227849167a`;
+- [x] the 42-commit delta is confined to P9 research/workflow/test material;
+- [x] no P3 manuscript, scoped confirmatory evidence, journal package, mapping result or P3 claim-authority file changed;
+- [x] P9 may consume structured P3 objects but its bounded results cannot promote or falsify P3.
+
+Status: `ANCESTRY_AUDIT_COMPLETE_AT_627ac5c__P3_SATURATION_CONVERGED__AWAIT_PACKAGE_AND_FINAL_CI`.
