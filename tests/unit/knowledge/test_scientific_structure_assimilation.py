@@ -2,10 +2,12 @@ from __future__ import annotations
 
 from dataclasses import replace
 
+import pytest
+
 from orion.knowledge.scientific_structure_assimilation import (
     REQUIRED_COORDINATES,
     CoordinateAssessment,
-    ScientificStructureAssimilationReceipt,
+    StructuralAssumptionProfile,
     StructuralAssimilationDraft,
     StructuralAssimilationVerdict,
     StructuralAuthority,
@@ -27,6 +29,21 @@ DONOR = StructuralDonorIdentity(
     access=StructuralSourceAccess.FULL_TEXT,
     source_scope="three bounded mechanistic discovery benchmarks",
 )
+
+
+def _profile(**overrides) -> StructuralAssumptionProfile:
+    base = dict(
+        agent_world_coupling_assumption="active inquiry couples proposer actions to observed evidence",
+        common_state_sufficiency_assumption="M-open changes hypotheses inside a declared evidence/interface state; open-variable sufficiency is not established",
+        exogenous_stochasticity_semantics="predictive discrepancy is evidence of inadequacy, not automatic attribution to the proposed model",
+        strategic_link_required_followups="experiment choice is evaluated through expected information value under the current candidate family",
+        working_memory_vs_audit_history="candidate belief state is mutable while source/evidence provenance remains auditable",
+        computation_is_action_wait_semantics="NOT_MATERIAL: paper does not claim a separate wait/compute action ontology",
+        interface_components_joint_or_independent="observation/intervention interface is treated as part of the experiment design; representation sufficiency remains separately testable",
+        simple_baseline_that_could_make_donor_unnecessary="strong fixed-class SMC/SBI plus active design is the required no-expansion parent",
+    )
+    base.update(overrides)
+    return StructuralAssumptionProfile(**base)
 
 
 def _assessments() -> tuple[CoordinateAssessment, ...]:
@@ -52,6 +69,7 @@ def _draft(**overrides) -> StructuralAssimilationDraft:
         receipt_id="ssa:v1:mda",
         donor=DONOR,
         assessments=_assessments(),
+        assumption_profile=_profile(),
         donor_authority=StructuralAuthority.BOUNDED,
         claimed_authority=StructuralAuthority.BOUNDED,
         representation_boundary="M-open expands a model/hypothesis class; open variables/measurement require separate ORION owners",
@@ -83,6 +101,19 @@ def test_clean_receipt_is_admitted_but_grants_nothing() -> None:
     assert receipt.grants_novelty is False
     assert receipt.grants_donor_equivalence is False
     assert receipt.self_authorizing is False
+    assert receipt.assumption_profile == _profile()
+
+
+def test_every_schema_pressure_assumption_must_be_explicit() -> None:
+    with pytest.raises(ValueError, match="agent_world_coupling_assumption"):
+        _profile(agent_world_coupling_assumption="")
+    with pytest.raises(ValueError, match="simple_baseline_that_could_make_donor_unnecessary"):
+        _profile(simple_baseline_that_could_make_donor_unnecessary="")
+
+
+def test_explicit_not_material_is_allowed_but_blank_is_not() -> None:
+    profile = _profile(computation_is_action_wait_semantics="NOT_MATERIAL: no separate wait action in donor")
+    assert profile.computation_is_action_wait_semantics.startswith("NOT_MATERIAL:")
 
 
 def test_algorithm_only_absorption_is_rejected() -> None:
