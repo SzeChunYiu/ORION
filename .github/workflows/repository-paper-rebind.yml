@@ -1,6 +1,7 @@
 name: repository-paper-rebind
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - repair/p2x-claim-literature-integrity-20260819
