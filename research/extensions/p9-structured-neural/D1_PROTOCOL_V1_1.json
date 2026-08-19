@@ -1,0 +1,40 @@
+{
+  "schema": "P9.D1MethodTransferProtocol.v1.1",
+  "supersedes_for_execution": "P9.D1MethodTransferProtocol.v1",
+  "reason": "Pre-outcome hostile review found that literal dependency-edge action names would falsely classify different-surface analogues as structural obstructions. D1 therefore compares dependency topology over local action-role indices, while TRANSCRIPT retains reminted action labels.",
+  "outcome_accessed": false,
+  "unchanged_from_v1": [
+    "domains",
+    "seed",
+    "instance_counts",
+    "labels",
+    "views",
+    "single_corruptions",
+    "double_corruption_holdout",
+    "unknown_holdout",
+    "surface_remint",
+    "forbidden_metadata",
+    "metrics",
+    "primary_question",
+    "stop_rules",
+    "P10/P11 exclusion"
+  ],
+  "coordinate_semantics": {
+    "preconditions": "exact sorted semantic values",
+    "invariants": "exact sorted semantic values",
+    "effects": "exact sorted semantic values",
+    "progress_measure": "exact semantic value or explicit UNKNOWN",
+    "terminal_condition": "exact semantic value or explicit UNKNOWN",
+    "reconstruction_map": "exact semantic value or explicit UNKNOWN",
+    "failure_modes": "exact sorted semantic values",
+    "dependencies": "directed dependency graph over method-local mechanic role indices after deterministic local mechanic ordering; surface mechanic/action names are not compared as semantic identity"
+  },
+  "dependency_topology_example": {
+    "left_actions": ["measure_midpoint", "discard_inconsistent_half"],
+    "right_actions": ["sample_candidate", "discard_inconsistent_region"],
+    "left_edge": [0, 1],
+    "right_edge": [0, 1],
+    "comparison": "SUPPORTED"
+  },
+  "authority": "NO_SCIENTIFIC_AUTHORITY_PROTOCOL_AMENDMENT_ONLY"
+}
