@@ -1,0 +1,53 @@
+name: p9-p10-relational-accessibility
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/p9-p10-structural-scaling/**'
+      - '.github/workflows/p9-p10-relational-accessibility.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install frozen benchmark dependencies
+        run: python -m pip install -e '.[dev,candidates]'
+      - name: Execute frozen benchmark first pass
+        run: python research/extensions/p9-p10-structural-scaling/run_relational_accessibility_benchmark_v1_1.py
+      - name: Preserve first output
+        run: cp research/extensions/p9-p10-structural-scaling/results/RELATIONAL_ACCESSIBILITY_BENCHMARK_V1_1.json /tmp/result-first.json
+      - name: Execute frozen benchmark deterministic replay
+        run: python research/extensions/p9-p10-structural-scaling/run_relational_accessibility_benchmark_v1_1.py
+      - name: Require byte-identical replay
+        run: cmp /tmp/result-first.json research/extensions/p9-p10-structural-scaling/results/RELATIONAL_ACCESSIBILITY_BENCHMARK_V1_1.json
+      - name: Require controlled primary terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('research/extensions/p9-p10-structural-scaling/results/RELATIONAL_ACCESSIBILITY_BENCHMARK_V1_1.json')
+          d = json.loads(p.read_text())
+          print(json.dumps({
+              'terminal': d['terminal'],
+              'primary_at_n4096': d['primary_at_n4096'],
+              'endpoint_checks': d['endpoint_checks'],
+              'sample_thresholds': {k: v['sample_threshold_0_90'] for k, v in d['cells'].items()},
+          }, indent=2, sort_keys=True))
+          if d['terminal'] != 'RELATIONAL_ACCESSIBILITY_GAP_SUPPORTED_CONTROLLED_CLASS':
+              raise SystemExit(1)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: relational-accessibility-${{ github.sha }}
+          path: research/extensions/p9-p10-structural-scaling/results/RELATIONAL_ACCESSIBILITY_BENCHMARK_V1_1.json
+          if-no-files-found: error
