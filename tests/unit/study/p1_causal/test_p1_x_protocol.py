@@ -63,9 +63,7 @@ def test_ideal_product_boundary_cannot_be_removed() -> None:
 def test_protected_gold_cannot_leak_into_candidate_visible_schema() -> None:
     protocol, schema, registry, ledger = _payloads()
     mutated = copy.deepcopy(schema)
-    mutated["properties"]["candidate_visible"]["properties"]["causal_responsibility_set"] = {
-        "type": "array"
-    }
+    mutated["properties"]["candidate_visible"]["properties"]["causal_responsibility_set"] = {"type": "array"}
     errors = checker.validate_protocol(protocol, mutated, registry, ledger)
     assert "protected_gold_leaked_to_candidate_visible:causal_responsibility_set" in errors
 
@@ -77,6 +75,16 @@ def test_unresolved_terminal_cannot_be_deleted() -> None:
     terminals.remove("UNRESOLVED")
     errors = checker.validate_protocol(protocol, mutated, registry, ledger)
     assert "terminal_enum_drift" in errors
+
+
+def test_discriminator_status_cannot_disappear_or_collapse() -> None:
+    protocol, schema, registry, ledger = _payloads()
+    mutated = copy.deepcopy(schema)
+    mutated["properties"]["candidate_visible"]["required"].remove("discriminator_status")
+    mutated["properties"]["candidate_visible"]["properties"]["discriminator_status"]["enum"] = ["AVAILABLE"]
+    errors = checker.validate_protocol(protocol, mutated, registry, ledger)
+    assert "candidate_visible_missing_discriminator_status" in errors
+    assert "discriminator_status_enum_drift" in errors
 
 
 def test_revision_responsibility_class_cannot_disappear() -> None:
@@ -104,13 +112,19 @@ def test_protected_case_count_cannot_drift() -> None:
     assert "protected_scale_drift" in errors
 
 
+def test_protected_factorization_cannot_change_while_total_stays_400() -> None:
+    protocol, schema, registry, ledger = _payloads()
+    mutated = copy.deepcopy(registry)
+    mutated["protected_scale"].update(
+        {"domains": 4, "archetypes_per_domain": 10, "variants_per_archetype": 10, "total_cases": 400}
+    )
+    errors = checker.validate_protocol(protocol, schema, mutated, ledger)
+    assert "protected_scale_drift" in errors
+
+
 def test_successor_claim_cannot_be_promoted_in_ledger() -> None:
     protocol, schema, registry, ledger = _payloads()
-    mutated = ledger.replace(
-        "State: `CANNOT_CHECK`.",
-        "State: `SUPPORTED`.",
-        1,
-    )
+    mutated = ledger.replace("State: `CANNOT_CHECK`.", "State: `SUPPORTED`.", 1)
     errors = checker.validate_protocol(protocol, schema, registry, mutated)
     assert "ledger_successor_authority_not_cannot_check:A1" in errors
 
@@ -123,3 +137,10 @@ def test_preoutcome_freeze_marker_cannot_disappear() -> None:
     )
     errors = checker.validate_protocol(mutated, schema, registry, ledger)
     assert "protocol_missing_preoutcome_freeze_terminal" in errors
+
+
+def test_terminal_mapping_must_remain_explicit() -> None:
+    protocol, schema, registry, ledger = _payloads()
+    mutated = protocol.replace("return `REPAIR_LOCAL`", "emit local repair")
+    errors = checker.validate_protocol(mutated, schema, registry, ledger)
+    assert "protocol_terminal_mapping_missing:return `REPAIR_LOCAL`" in errors
