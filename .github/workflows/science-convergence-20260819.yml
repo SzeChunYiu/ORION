@@ -1,0 +1,93 @@
+name: science-convergence-20260819
+
+on:
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  normalize-science-governance:
+    if: github.head_ref == 'science/foundations-jump-convergence-20260819' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install repository
+        run: python -m pip install -e '.[dev,candidates]'
+      - name: Import only science/governance repairs already reviewed in PR 584
+        run: |
+          set -euo pipefail
+          git fetch origin repair/p2x-claim-literature-integrity-20260819
+          src=origin/repair/p2x-claim-literature-integrity-20260819
+          git checkout "$src" -- \
+            research/claim_expansion/p1/check_p1_x_protocol.py \
+            research/claim_expansion/p1/v2/verify_p1_x_v2_independent.py \
+            research/claim_expansion/p2/verify_p2_x_independent.py \
+            tests/unit/study/p1_causal/test_p1_x_protocol.py \
+            tests/unit/p2/test_p2_claim_ledger.py \
+            papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/06-related-work-boundary.tex \
+            papers/paper-02-open-world-scientific-discovery/JOURNAL_READINESS.md \
+            papers/paper-02-open-world-scientific-discovery/evidence/CLAIM_LEDGER_V1.md \
+            papers/paper-02-open-world-scientific-discovery/evidence/literature/confidencebasedstop2026.json \
+            papers/paper-02-open-world-scientific-discovery/evidence/literature/donotstopearly2026.json \
+            papers/paper-02-open-world-scientific-discovery/evidence/literature/fetch_literature_evidence.py \
+            papers/paper-02-open-world-scientific-discovery/evidence/literature/icore2026.json \
+            papers/paper-02-open-world-scientific-discovery/evidence/literature/knowplan2026.json \
+            papers/paper-02-open-world-scientific-discovery/evidence/literature/scienceintent2026.json \
+            papers/paper-02-open-world-scientific-discovery/evidence/p2x/P2_X_CLAIM_VALUES_V1.json \
+            papers/paper-02-open-world-scientific-discovery/evidence/p2x/P2_X_INDEPENDENT_VERIFICATION_V1.json \
+            papers/paper-02-open-world-scientific-discovery/evidence/p2x/P2_X_PROTECTED_RESULT_V1.json \
+            papers/paper-02-open-world-scientific-discovery/manuscript/novelty_refresh_2026.bib \
+            papers/paper-02-open-world-scientific-discovery/notes/P2_X_KNOWPLAN_METADATA_CORRECTION_V1.md \
+            papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json
+      - name: Regenerate non-authorizing derived governance artifacts
+        run: |
+          set -euo pipefail
+          python papers/candidates/checkers/check_content_binding_v1.py --write
+          python research/development/cannot_check_inventory.py --write
+      - name: Run science/governance regression set
+        run: |
+          set -euo pipefail
+          pytest -q \
+            tests/unit/candidates/test_candidate_content_binding.py \
+            tests/unit/development/test_cannot_check_inventory.py \
+            tests/unit/study/p1_causal/test_p1_x_protocol.py \
+            tests/unit/study/p1_causal/test_p1_x_v2_independent.py \
+            tests/unit/study/p2_open_world/test_p2_x_protected_results.py \
+            tests/unit/p2/test_p2_claim_ledger.py
+      - name: Commit normalization
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            research/claim_expansion/p1 \
+            research/claim_expansion/p2 \
+            research/development/cannot_check_inventory.json \
+            tests/unit/study/p1_causal/test_p1_x_protocol.py \
+            tests/unit/p2/test_p2_claim_ledger.py \
+            papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json \
+            papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/SHA256SUMS \
+            papers/candidates/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json \
+            papers/candidates/paper-07-epistemic-navigation-open-worlds/SHA256SUMS \
+            papers/candidates/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json \
+            papers/candidates/paper-08-epistemic-authority-autonomous-science/SHA256SUMS \
+            papers/paper-01-recursive-epistemic-reconstruction/manuscript/sections/06-related-work-boundary.tex \
+            papers/paper-02-open-world-scientific-discovery/JOURNAL_READINESS.md \
+            papers/paper-02-open-world-scientific-discovery/evidence \
+            papers/paper-02-open-world-scientific-discovery/manuscript/novelty_refresh_2026.bib \
+            papers/paper-02-open-world-scientific-discovery/notes/P2_X_KNOWPLAN_METADATA_CORRECTION_V1.md \
+            papers/paper-02-open-world-scientific-discovery/protocol/CLAIM_LEDGER_V1.json
+          if git diff --cached --quiet; then
+            echo 'Science/governance artifacts already normalized.'
+            exit 0
+          fi
+          git commit -m 'fix(science): normalize claim authority and derived governance'
+          git push origin HEAD:science/foundations-jump-convergence-20260819
