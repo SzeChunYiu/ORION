@@ -39,6 +39,25 @@ def compare(path: str, actual: Any, expected: Any, mismatches: list[dict[str, An
         mismatches.append({"path": path, "expected": expected, "actual": actual})
 
 
+def selected_dev(arm: dict[str, Any]) -> dict[str, Any]:
+    """Return the dev metrics for the frozen selected D1 config.
+
+    The durable D1 archive stores selected model identity separately from the
+    full dev-configuration rows.  Binding them by config_id is part of the
+    verifier adapter; it does not re-select a model or inspect test outcomes.
+    """
+
+    selected = arm.get("selected")
+    configurations = arm.get("dev_configurations")
+    if not isinstance(selected, dict) or not isinstance(configurations, list):
+        raise SystemExit("D1 arm lacks selected/dev_configurations structure")
+    config_id = selected.get("config_id")
+    matches = [row for row in configurations if isinstance(row, dict) and row.get("config_id") == config_id]
+    if len(matches) != 1 or not isinstance(matches[0].get("dev"), dict):
+        raise SystemExit(f"D1 selected config {config_id!r} does not bind exactly one dev row")
+    return matches[0]["dev"]
+
+
 def verify_a5(actual: dict[str, Any], expected: dict[str, Any], mismatches: list[dict[str, Any]]) -> None:
     compare("A5.terminal", actual.get("terminal"), expected["expected_terminal"], mismatches)
     views = actual.get("views", {})
@@ -46,7 +65,8 @@ def verify_a5(actual: dict[str, Any], expected: dict[str, Any], mismatches: list
         got = views.get(mode, {})
         exp = expected[mode]
         compare(f"A5.{mode}.sample_count", got.get("sample_count"), exp["sample_count"], mismatches)
-        compare(f"A5.{mode}.accuracy", got.get("full_task_accuracy"), exp["accuracy"], mismatches)
+        # The independently replayed A5 archive uses the exact key `accuracy`.
+        compare(f"A5.{mode}.accuracy", got.get("accuracy"), exp["accuracy"], mismatches)
         compare(f"A5.{mode}.unknown_rate", got.get("unknown_rate"), exp["unknown_rate"], mismatches)
 
 
@@ -76,13 +96,14 @@ def verify_d1(actual: dict[str, Any], expected: dict[str, Any], mismatches: list
     for arm, exp in expected["arms"].items():
         got = results.get(arm, {})
         selected = got.get("selected", {})
+        dev = selected_dev(got)
         test = got.get("test", {})
         compare(f"D1.{arm}.selected_model", selected.get("config_id"), exp["selected_model"], mismatches)
         compare(f"D1.{arm}.test_accuracy", test.get("accuracy"), exp["test_accuracy"], mismatches)
         compare(f"D1.{arm}.macro_f1", test.get("macro_f1"), exp["macro_f1"], mismatches)
         compare(f"D1.{arm}.double_corruption_accuracy", test.get("double_corruption_accuracy"), exp["double_corruption_accuracy"], mismatches)
         compare(f"D1.{arm}.unresolved_accuracy", test.get("unresolved_accuracy"), exp["unresolved_accuracy"], mismatches)
-        compare(f"D1.{arm}.dev_accuracy", selected.get("dev", {}).get("accuracy"), exp["dev_accuracy"], mismatches)
+        compare(f"D1.{arm}.dev_accuracy", dev.get("accuracy"), exp["dev_accuracy"], mismatches)
     compare("D1.typed_minus_transcript", actual.get("typed_minus_transcript"), expected["typed_minus_transcript"], mismatches)
     compare("D1.typed_minus_same_information_serialized", actual.get("typed_minus_same_information_serialized"), expected["typed_minus_same_information_serialized"], mismatches)
     compare("D1.exact_typed_relational_comparator_accuracy", actual.get("exact_typed_relational_comparator", {}).get("accuracy"), expected["exact_typed_relational_comparator_accuracy"], mismatches)
@@ -114,7 +135,7 @@ def main() -> None:
     verify_a2_a4(actuals["A2_A4_D0"], expectations["A2_A4_D0"], mismatches)
     verify_d1(actuals["D1"], expectations["D1"], mismatches)
     receipt = {
-        "schema": "P9.FinalOfficialVsIndependentReceipt.v1.1",
+        "schema": "P9.FinalOfficialVsIndependentReceipt.v1.2",
         "expectation_path": str(EXPECTATION_PATH.relative_to(ROOT)),
         "official_paths": {name: str(path.relative_to(ROOT)) for name, path in OFFICIAL_PATHS.items()},
         "mismatch_count": len(mismatches),
