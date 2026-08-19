@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "orion://claim-expansion/p2/P2XCase.v1",
+  "title": "P2XCase.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["case_id","domain","archetype","candidate_visible","protected_gold","budget"],
+  "properties": {
+    "case_id": {"type":"string","minLength":1},
+    "domain": {"enum":["SCIENTIFIC_LITERATURE","WEB_API_EVIDENCE","DATASET_REGISTRY","CODE_ARTIFACT_REPOSITORY","EXPERIMENT_MEASUREMENT_ROUTE"]},
+    "archetype": {"enum":["ALL_OBLIGATIONS_DISCHARGED","AVAILABLE_ROUTE_STOPS_OTHER_OPEN","MATERIAL_ROUTE_UNAVAILABLE","MATERIAL_ROUTE_CENSORED","PROVIDER_INVALID","DUPLICATE_ROUTE_COVERAGE","ACQUIRED_NOT_QUESTION_PROCESSED","LOW_UTILITY_HARD_ROUTE_OPEN"]},
+    "generator_id": {"type":"string"},
+    "seed_commitment": {"type":"string"},
+    "candidate_visible": {
+      "type":"object",
+      "additionalProperties": false,
+      "required":["routes","global_evidence_sufficiency"],
+      "properties": {
+        "global_evidence_sufficiency":{"type":"boolean"},
+        "routes": {
+          "type":"array","minItems":2,
+          "items": {
+            "type":"object","additionalProperties":false,
+            "required":["route_id","material","state","evidence_coverage_complete","decision_sufficient","utility_stop","finite_certificate_complete","content_items"],
+            "properties": {
+              "route_id":{"type":"string"},
+              "material":{"type":"boolean"},
+              "state":{"enum":["AVAILABLE","UNAVAILABLE","CENSORED","PROVIDER_INVALID"]},
+              "evidence_coverage_complete":{"type":"boolean"},
+              "decision_sufficient":{"type":"boolean"},
+              "utility_stop":{"type":"boolean"},
+              "finite_certificate_complete":{"type":"boolean"},
+              "content_items": {
+                "type":"array",
+                "items": {
+                  "type":"object","additionalProperties":false,
+                  "required":["content_id","question_processed"],
+                  "properties":{"content_id":{"type":"string"},"question_processed":{"type":"boolean"}}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "protected_gold": {
+      "type":"object","additionalProperties":false,
+      "required":["route_decisions","task_terminal","unresolved_route_decision_changing","provenance_commitment"],
+      "properties": {
+        "route_decisions": {
+          "type":"object",
+          "additionalProperties":{"enum":["ROUTE_STOP","ROUTE_CONTINUE","ROUTE_CANNOT_CHECK"]}
+        },
+        "task_terminal":{"enum":["TASK_STOP","CONTINUE","CANNOT_CHECK"]},
+        "unresolved_route_decision_changing":{"type":"boolean"},
+        "provenance_commitment":{"type":"string","minLength":1}
+      }
+    },
+    "budget": {
+      "type":"object","additionalProperties":false,
+      "required":["max_route_checks","max_tool_calls"],
+      "properties":{"max_route_checks":{"type":"integer","minimum":0},"max_tool_calls":{"type":"integer","minimum":0}}
+    }
+  }
+}

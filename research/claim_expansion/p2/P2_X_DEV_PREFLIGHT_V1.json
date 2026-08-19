@@ -1,0 +1,26 @@
+{
+  "schema_version": "P2_X_DEV_PREFLIGHT_V1",
+  "date": "2026-08-19",
+  "authority": "NON_AUTHORIZING_DEV",
+  "protected_outcomes_accessed": false,
+  "n": 200,
+  "escd": {
+    "P2X_FAIL_CLOSED_ROUTE_AUTHORITY": {"correct": 200, "rate": 1.0},
+    "B1_DONOR_COMPLETE_AVAILABLE_ROUTE_PRODUCT": {"correct": 125, "rate": 0.625},
+    "B2_GLOBAL_SUFFICIENCY_AGGREGATOR": {"correct": 50, "rate": 0.25},
+    "B3_IDEAL_TYPED_ROUTE_PRODUCT": {"correct": 200, "rate": 1.0}
+  },
+  "b1_failed_archetypes": [
+    "MATERIAL_ROUTE_UNAVAILABLE",
+    "MATERIAL_ROUTE_CENSORED",
+    "PROVIDER_INVALID"
+  ],
+  "checks": {
+    "all_40_domain_archetype_cells_have_5_variants": true,
+    "duplicate_route_content_identity_is_exactly_shared": true,
+    "question_processing_can_block_task_after_all_routes_locally_stop": true,
+    "unavailable_censored_provider_invalid_are_route_cannot_check": true,
+    "b3_exact_decision_equality": true
+  },
+  "terminal": "P2_X_DEV_PREFLIGHT_GREEN__NO_RESULT_AUTHORITY"
+}
