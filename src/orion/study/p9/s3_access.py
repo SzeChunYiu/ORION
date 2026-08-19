@@ -10,6 +10,11 @@ This module deliberately accepts only the serialized token sequence.  It does
 not import or inspect D1Instance semantic objects, evaluator labels, mutation
 metadata, domain/split identities, or the historical typed-relational feature
 extractor.
+
+D1's serializer does not place list indices in token paths, so list/tuple order
+is carried by the order of tokens inside a coordinate block.  F1 therefore
+preserves within-coordinate token order while ignoring where complete coordinate
+blocks occur globally.
 """
 
 from __future__ import annotations
@@ -73,9 +78,11 @@ def serialized_generic_binding_features(sequence: list[str]) -> dict[str, object
     """Expose value-independent paired-coordinate comparison from D1 serialization.
 
     The input is exactly the token sequence emitted by
-    ``D1View.TYPED_SERIALIZED``.  Semantic values remain opaque; equality is
-    computed only by comparing the canonical token multisets for the same
-    coordinate after stripping ``left``/``right`` from the path.
+    ``D1View.TYPED_SERIALIZED``.  Semantic values remain opaque.  Equality is
+    computed by comparing the ordered, side-normalized token subsequences for
+    the same coordinate.  Global coordinate-block position is irrelevant, but
+    order *inside* a list-valued coordinate remains semantic because the source
+    serialization carries list position through token order rather than indices.
     """
 
     tokens = tuple(map(str, sequence))
@@ -101,8 +108,8 @@ def serialized_generic_binding_features(sequence: list[str]) -> dict[str, object
 
     features: dict[str, object] = {}
     for coordinate in COMPARISON_COORDINATES:
-        left_tokens = tuple(sorted(grouped.get(("left", coordinate), ())))
-        right_tokens = tuple(sorted(grouped.get(("right", coordinate), ())))
+        left_tokens = tuple(grouped.get(("left", coordinate), ()))
+        right_tokens = tuple(grouped.get(("right", coordinate), ()))
         if not left_tokens or not right_tokens:
             raise ValueError(f"serialized coordinate is not recoverable on both sides: {coordinate}")
         unknown = coordinate in left_unknown or coordinate in right_unknown
