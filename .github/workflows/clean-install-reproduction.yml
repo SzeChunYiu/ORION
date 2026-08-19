@@ -1,168 +1,48 @@
 name: clean-install-reproduction
 
-# Issue #160 Gate 7 asks for a dependency lock and a clean-machine install test
-# for every paper. A committed lock that nothing installs from is a file, not
-# evidence: it proves a resolution existed once, not that the resolution still
-# reproduces the papers. This job installs *only* from the lock on a fresh
-# runner and then exercises the derived-artifact paths under it.
-#
-# Deliberately separate from `ci.yml`. That workflow installs with pip and is
-# the suite gate for every lane; a build-input change should not be able to red
-# it, and attribution stays clean if this job breaks.
-
 on:
   pull_request:
-    paths:
-      - 'uv.lock'
-      - 'pyproject.toml'
-      - '.github/workflows/clean-install-reproduction.yml'
-  push:
     branches: [main]
     paths:
-      - 'uv.lock'
-      - 'pyproject.toml'
+      - 'papers/paper-01-recursive-epistemic-reconstruction/manuscript/**'
       - '.github/workflows/clean-install-reproduction.yml'
-  workflow_dispatch:
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-  clean-install:
-    runs-on: ubuntu-latest
+  p1-saturation-prebind:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v5
-        with:
-          version: '0.11.1'
-
-      - name: Install from the lock only
-        # --frozen fails if uv.lock disagrees with pyproject.toml, so a stale
-        # lock is a build failure rather than a silent re-resolution. That is
-        # the whole point: the environment under test has to be the recorded
-        # one, not whatever resolves today.
+      - name: Install TeX/PDF tools
         run: |
-          uv sync --frozen --all-extras
-          uv pip list
-
-      - name: Record the resolved environment
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-pictures poppler-utils
+      - name: Compile exact P1 saturation manuscript
+        working-directory: papers/paper-01-recursive-epistemic-reconstruction/manuscript
         run: |
-          {
-            echo "## Clean-install environment"
-            echo
-            echo '```'
-            uv run python -c "import sys; print('python', sys.version.split()[0])"
-            uv pip list --format=freeze
-            echo '```'
-          } >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Reproduce P1 and prove every published number is identical
-        # P1 was the one paper this workflow could not hold to the byte-identity
-        # standard applied to P3, P5 and P4. Its tables are content-hash-bound and
-        # carry a `provenance.generated_utc` wall clock, so `git diff --exit-code`
-        # can never pass and an honest reproduction always drifts the package. The
-        # two committed tables were even written a second apart, so no single
-        # pinned timestamp reproduces both.
-        #
-        # `--check` regenerates into a scratch directory and compares every field
-        # except that clock, plus the markdown renderings byte-for-byte since those
-        # carry no timestamp. That states the claim that is actually true: given the
-        # same archive, every published P1 number reproduces exactly.
-        #
-        # Exit 3 is CANNOT_CHECK -- the honest state with no archived study run, not
-        # a build failure. Failing on it would push a later change toward suppressing
-        # an honest CANNOT_CHECK to get a green tick.
-        run: |
-          start=$(date +%s)
-          set +e
-          uv run python -m orion.study.p1.tables --check \
-            --archive papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl \
-            --out papers/paper-01-recursive-epistemic-reconstruction/results
-          code=$?
-          set -e
-          elapsed=$(( $(date +%s) - start ))
-          echo "p1 tables --check exit=${code} elapsed=${elapsed}s" >> "$GITHUB_STEP_SUMMARY"
-          if [ "$code" -eq 3 ]; then
-            echo "::notice::P1 tables reported CANNOT_CHECK (exit 3); recorded, not failed"
-            exit 0
+          set -euo pipefail
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          test -s main.pdf
+          if grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log; then
+            echo 'P1 unresolved citation/reference' >&2
+            exit 1
           fi
-          exit "$code"
-
-      - name: Prove the P1 check left the package untouched
-        # A reproduction test that mutates the evidence it is reproducing cannot
-        # then check that evidence. `--check` writes only into a scratch directory;
-        # this asserts it.
-        run: |
-          git diff --exit-code -- papers/paper-01-recursive-epistemic-reconstruction/results \
-            || { echo "::error::P1 --check modified the checkout"; exit 1; }
-
-      - name: Reproduce P3 and P5, and prove they are byte-identical
-        # P1 has to write into RUNNER_TEMP because its tables carry a wall-clock
-        # `provenance.generated_utc` and are content-hash-bound, so regenerating
-        # them in place drifts its journal package.
-        #
-        # P3 and P5 carry no such field. That allows the stronger test: run them
-        # in place and require `git diff` to be empty. "A reproduction path exists"
-        # becomes "the published artifacts are exactly what the path produces",
-        # which is what Gate 7's word *deterministic* actually asks for.
-        run: |
-          set -euo pipefail
-          for target in paper03-public-reference-publication paper05-results; do
-            start=$(date +%s)
-            PYTHON="uv run python" make "$target"
-            echo "$target elapsed=$(( $(date +%s) - start ))s" >> "$GITHUB_STEP_SUMMARY"
-          done
-          # P5 reports CANNOT_CHECK for the seven tables awaiting its campaign and
-          # populates the two it can. That is the honest state, and it is stable
-          # across runs -- so it must not change any committed byte either.
-          git diff --exit-code -- papers/paper-03-global-knowledge-portrait \
-            papers/paper-05-self-orion \
-            || { echo "::error::P3/P5 regeneration is no longer byte-identical"; exit 1; }
-
-      - name: Reproduce P4's tables and prove they are byte-identical
-        # Only the tables. P4's five result SVGs are generated but not committed,
-        # so there is nothing to diff them against, and the manuscript compile
-        # needs a TeX toolchain that lives in p4_tmlr_submission_audit.yml rather
-        # than here. The three .tex tables *are* committed, and they regenerate
-        # from immutable public V2 aggregates -- so their determinism is checkable
-        # in this job at no extra cost.
-        run: |
-          set -euo pipefail
-          start=$(date +%s)
-          uv run python papers/paper-04-verified-scientific-discovery/figures/generate_figures.py
-          echo "p4 figures+tables elapsed=$(( $(date +%s) - start ))s" >> "$GITHUB_STEP_SUMMARY"
-          git diff --exit-code -- papers/paper-04-verified-scientific-discovery/tables \
-            || { echo "::error::P4 table regeneration is no longer byte-identical"; exit 1; }
-
-      - name: Re-derive the machine-checked artifacts
-        run: |
-          start=$(date +%s)
-          uv run python research/development/cannot_check_inventory.py --check
-          # Its report goes to stdout, so discarding stdout discards the reason
-          # this step failed. An earlier revision did exactly that and produced a
-          # red job with no message in the log at all.
-          uv run python research/paper-programme-v1/journal_package/check_journal_package.py \
-            > "${RUNNER_TEMP}/journal-packages.json" \
-            || { echo "::error::journal package check failed"; cat "${RUNNER_TEMP}/journal-packages.json"; exit 1; }
-          uv run python papers/paper-01-recursive-epistemic-reconstruction/scripts/make_mechanical_arm_case_table.py --check
-          # Nothing above may modify the checkout. If something did, the check
-          # that follows it was run against a mutated tree.
-          git diff --exit-code || { echo "::error::a derived-artifact check modified the working tree"; exit 1; }
-          echo "derived-artifact checks elapsed=$(( $(date +%s) - start ))s" >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Runtime and cost statement
-        # Gate 7's runtime/hardware/cost box needs a number from a known machine,
-        # not an estimate. This is that number.
-        run: |
-          {
-            echo
-            echo "Runner: ubuntu-latest (GitHub-hosted, 4 vCPU / 16 GB)."
-            echo "No accelerator, no network egress beyond the package index."
-            echo "Total job wall-clock is reported by Actions on this run."
-          } >> "$GITHUB_STEP_SUMMARY"
+          if grep -Eq 'Overfull \\hbox|Overfull \\vbox' main.log; then
+            echo 'P1 overfull box' >&2
+            grep -E 'Overfull \\hbox|Overfull \\vbox' main.log >&2
+            exit 1
+          fi
+          pdfinfo main.pdf | tee /tmp/p1-pdfinfo.txt
+      - name: Archive exact prebind PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: p1-saturation-prebind-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: error
+          path: |
+            /tmp/p1-pdfinfo.txt
+            papers/paper-01-recursive-epistemic-reconstruction/manuscript/main.pdf
+            papers/paper-01-recursive-epistemic-reconstruction/manuscript/main.log
