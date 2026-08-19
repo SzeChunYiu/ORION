@@ -2,7 +2,7 @@
 
 The pre-outcome panel and exact expectations live under
 ``development/cross-domain-transfer-closure`` and were committed before this
-module.  Candidate policies operate on ``PublicTransferCase`` only; protected
+module. Candidate policies operate on ``PublicTransferCase`` only; protected
 case type and gold action are kept in ``ProtectedTransferCase`` and enter only
 at scoring time.
 """
@@ -26,7 +26,14 @@ from orion.knowledge.mechanism_assimilation import (
     DonorSourceKind,
     seal_assimilation,
 )
-from orion.knowledge.nearest_work import AbsorptionDisposition
+from orion.knowledge.nearest_work import (
+    AbsorptionDisposition,
+    NearestWorkComparison,
+    NoveltyCase,
+    NoveltyVerdict,
+    WorkRelation,
+    assess_novelty_case,
+)
 
 DOMAINS = ("software", "retrieval", "semantics", "authority", "measurement")
 FAMILIES = (
@@ -101,6 +108,7 @@ class TransferClosureReport:
     issue_286_terminal: str
     issue_318_terminal: str
     parent_ties_contract: bool
+    assimilation_novelty_verdict: str
     grants_scientific_authority: bool = False
     grants_novelty_authority: bool = False
     grants_issue_closure_authority: bool = False
@@ -119,10 +127,7 @@ def build_protected_panel() -> tuple[ProtectedTransferCase, ...]:
             surface = case_type in {"positive", "near_miss"} or (
                 case_type == "negative" and case_index == 5
             )
-            if case_type == "negative":
-                requested_family = f"unrelated-{family}"
-            else:
-                requested_family = family
+            requested_family = f"unrelated-{family}" if case_type == "negative" else family
             source_assumption = "stable"
             target_assumption = "changed" if case_type == "near_miss" else "stable"
             full_ok = case_type == "positive"
@@ -291,6 +296,27 @@ def build_assimilation_demo() -> tuple[tuple[str, str], ...]:
     return tuple((draft.receipt_id, seal_assimilation(draft).verdict.value) for draft in demos)
 
 
+def build_assimilation_novelty_assessment():
+    """Route the absorbed generic transfer mechanism through the existing #287 logic."""
+
+    case = NoveltyCase(
+        paper_id="ORION-PROGRAMME",
+        target_claim="signature-gated cross-domain transfer is an ORION invention",
+        comparisons=(
+            NearestWorkComparison(
+                work_id="transfer-parent-product",
+                relation=WorkRelation.SUBSUMES_CANDIDATE,
+                absorbed_mechanism_ids=("signature-gated-transfer", "abstract-insight-transfer"),
+                residual_delta_ids=(),
+                note="the frozen abstract-insight+signature arm matches the richer contract arm",
+            ),
+        ),
+        candidate_delta_ids=(),
+        falsifier_ids=("cross-domain-transfer-closure-v1",),
+    )
+    return assess_novelty_case(case)
+
+
 def build_closure_report() -> TransferClosureReport:
     cases = build_protected_panel()
     metrics = tuple((arm.value, score_arm(arm, cases)) for arm in TransferArm)
@@ -300,7 +326,8 @@ def build_closure_report() -> TransferClosureReport:
     ]
     issue_286_terminal = "ABSTRACTION_ONLY" if parent_ties else "CANNOT_CHECK"
     demos = build_assimilation_demo()
-    process_green = all(verdict == "ADMITTED" for _, verdict in demos)
+    novelty = build_assimilation_novelty_assessment()
+    process_green = all(verdict == "ADMITTED" for _, verdict in demos) and novelty.verdict is NoveltyVerdict.SUBSUMED
     issue_318_terminal = "PROCESS_USEFUL_NOT_NOVEL" if parent_ties and process_green else "CANNOT_CHECK"
     return TransferClosureReport(
         case_count=len(cases),
@@ -308,4 +335,5 @@ def build_closure_report() -> TransferClosureReport:
         issue_286_terminal=issue_286_terminal,
         issue_318_terminal=issue_318_terminal,
         parent_ties_contract=parent_ties,
+        assimilation_novelty_verdict=novelty.verdict.value,
     )
