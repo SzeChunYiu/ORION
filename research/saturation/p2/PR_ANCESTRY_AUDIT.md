@@ -1,50 +1,47 @@
 # P2 saturation — PR ancestry audit
 
 Audit date: 2026-08-19  
-Repository cutoff: `main@d73e65c10f4f3b7ae773cea667f6dccd1507e8f0`  
+Final integration cutoff: `main@b7abcc6ad76d2a985ea938fcbd070a6097b0fe99`  
 Parent audit: #499  
 Saturation issue: #490
 
 ## Rule
-Current `main` is authoritative. Open PRs #394/#396/#397 are not missing paper authority merely because they remain open; their content/outcomes must be compared with the current bounded paper package.
+Current `main` is authoritative. Open/stale provider/layout PRs do not override the current bounded paper package; invalid or unavailable external evidence remains `CANNOT_CHECK`.
 
-## Current-main material/boundary that must be in the review packet
-
+## Current-main material/boundary
 - [x] #330 narrowed methods / critical-system-design publication claim;
-- [x] #351 V2 acquisition widening ended `P2_V2_ACQUISITION_NOT_PROMOTED`; burned-development result cannot be retuned;
+- [x] #351 V2 acquisition widening ended `P2_V2_ACQUISITION_NOT_PROMOTED`; burned development cannot be retuned;
 - [x] #384 MiCP evidence/BibTeX synchronization;
-- [x] #433 `StructuralDiscoveryRoute.v1` + curated historical pilot, terminal `P2_STRUCTURAL_DISCOVERY_NARROWED`; additive candidate discovery only;
-- [x] #385 figure provenance / P2 package and CI hardening;
-- [x] #402/#431 readiness/parser/package reconciliation where applicable;
-- [x] current main contains the OpenAIRE/Crossref 400-row campaign result and receipt, terminal `P2_WIDE_EXTERNAL_CANNOT_CHECK` because provider validity failed;
-- [x] current canonical PDF audit reports no clipping/overlap/unreadable labels and preserves the Wide campaign as `CANNOT_CHECK`;
-- [x] #472 is present in main but unrelated to P2 scientific content.
+- [x] #433 structural-discovery successor remains bounded/candidate-only;
+- [x] #385/#402 publication and readiness guards retained;
+- [x] OpenAIRE/Crossref 400-row campaign is archived at `P2_WIDE_EXTERNAL_CANNOT_CHECK` because its provider-validity gate failed;
+- [x] #472 is unrelated to P2 science;
+- [x] #487/current P9 V3 research-map merge is documentation-only and non-authorizing; it does not broaden or falsify P2.
 
-## Open/stale PR disposition
+## Open/stale disposition
+- [x] #394 = superseded layout lead; saturated package is rebuilt from current manuscript;
+- [x] #396/#397 = superseded execution wrappers; their relevant result/receipt is already archived and remains `CANNOT_CHECK`;
+- [x] none authorize external superiority.
 
-- [x] #394 — `SUPERSEDED_STALE_LAYOUT_LEAD`: draft layout-only repair; current checksummed 21-page PDF has a later clean visual audit, so do not cherry-pick the stale branch;
-- [x] #396 — `SUPERSEDED_EXECUTION_WRAPPER`: identity-bridge development branch; the relevant OpenAIRE machinery/result is already on current main;
-- [x] #397 — `SUPERSEDED_EXECUTION_WRAPPER`: matched Wide branch; current main already contains its frozen result/receipt and the final `P2_WIDE_EXTERNAL_CANNOT_CHECK` disposition;
-- [x] none of #394/#396/#397 authorize external superiority.
+## Negative/history preservation
+- [x] controlled 390-task recall difference remains descriptive/underpowered for superiority;
+- [x] official Deep 0/600 is a bounded negative diagnostic only;
+- [x] provider-invalid Wide zero difference is not a valid null/negative scientific comparison;
+- [x] unavailable/invalid routes remain `CANNOT_CHECK`.
 
-## Historical/negative evidence retained
-
-- [x] 390-task controlled result remains bounded/underpowered for inferential superiority despite descriptive recall gap;
-- [x] official Deep 600-task hit rate 0.000 remains a bounded negative diagnostic, not evidence of ORION failure/success globally;
-- [x] external Wide provider-invalid zero difference is not a valid negative scientific comparison;
-- [x] unavailable/invalid routes stay `CANNOT_CHECK`, never flattering zeroes.
-
-## Active saturation lane
-
-- [x] #497 Round A starts from current-main lineage containing #472;
-- [x] Round A adds canon/literature/style/citation-role artifacts only so far;
-- [ ] future manuscript edits must absorb current stopping/search literature and keep external-superiority exclusions explicit;
-- [ ] every final saturation merge-head must run current P2 manuscript/package + repository CI.
+## Saturation completion
+- [x] fresh IR/deep-research/systematic-review literature pressure absorbed;
+- [x] coverage-aware, sufficiency-aware, utility/conformal/learned stopping remain donor territory;
+- [x] two fresh literature rounds returned no material residual change after narrowing;
+- [x] two adversarial reviewer rounds returned no unresolved major/blocking concern;
+- [x] IP&M primary + JASIST conditional portability documented;
+- [x] manuscript wording now matches the archived invalid Wide terminal rather than calling it an unarchived future result;
+- [x] immutable machine claim ledger is rebound to the existing Wide result/receipt;
+- [x] saturated PDF/package and checksums were rebuilt;
+- [ ] final exact-current-main P2 manuscript/package + repository CI must pass before merge.
 
 ## Successor exclusions
+- [x] structural-discovery/P9/P10 work cannot retroactively authorize task completeness, retrieval superiority or novelty;
+- [x] no provider campaign is called completed/scientifically valid without a current-main receipt and validity authority.
 
-- [x] #433 structural discovery is additive and does not upgrade the submission paper to broad structural-retrieval superiority;
-- [x] P9/P10 method-space/learning work cannot retroactively authorize P2 search completeness or novelty;
-- [x] no open external campaign may be described as completed unless its current-main receipt exists and is valid.
-
-Status: `ANCESTRY_AUDIT_COMPLETE_AT_d73e65c__REOPEN_IF_MAIN_MOVES_OR_NEW_RELEVANT_PR_LANDS`.
+Status: `ANCESTRY_AUDIT_COMPLETE_AT_b7abcc6__P2_SATURATION_CONVERGED__AWAIT_FINAL_CI`.
