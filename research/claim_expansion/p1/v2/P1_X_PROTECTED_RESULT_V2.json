@@ -1,0 +1,64 @@
+{
+  "schema_version": "P1_X_PROTECTED_RESULT_V2",
+  "date": "2026-08-19",
+  "outcome_access_receipt_commit": "7df55bcaadd3436ff82f7b2c86dbcdc9825f967e",
+  "protected_identity_pairs_sha256": "cf5e2ca83bb369c004e4bba28dcba144d0d545c18664999bb64b910d0d392d27",
+  "protected_bundle_sha256": "acdcb8ba1516b5ec5b6d6e8d9fdaca7fe402f23e0314a8a02edd356a1d623632",
+  "canonical_rows_sha256": "29dd4c82392b4e554f5636eca448eab9d7d3eda84d0e32ed53eb32a798f600f7",
+  "n": 400,
+  "bootstrap": {"seed": 20260819, "reps": 20000},
+  "arm_esrd": {
+    "P1X_MINIMAL_SCIENTIFIC_ESCALATION": {"correct": 400, "rate": 1.0},
+    "B1_DONOR_COMPLETE_GREEDY": {"correct": 275, "rate": 0.6875},
+    "B2_SUCCESS_AUTHORIZES_REFRAME": {"correct": 200, "rate": 0.5},
+    "B3_IDEAL_TYPED_PRODUCT": {"correct": 400, "rate": 1.0}
+  },
+  "primary": {
+    "comparison": "P1X_MINIMAL_SCIENTIFIC_ESCALATION - B1_DONOR_COMPLETE_GREEDY",
+    "difference": 0.3125,
+    "practical_margin": 0.10,
+    "bootstrap_95ci": [0.2675, 0.3575],
+    "mcnemar": {
+      "b_p1x_only_correct": 125,
+      "c_b1_only_correct": 0,
+      "two_sided_p": 4.70197740328915e-38
+    },
+    "pass": true
+  },
+  "secondary": {
+    "P1X_vs_B2_mcnemar": {
+      "b_p1x_only_correct": 200,
+      "c_b2_only_correct": 0,
+      "two_sided_p": 1.2446030555722283e-60
+    },
+    "holm_adjusted_p": {
+      "P1X_vs_B1": 4.70197740328915e-38,
+      "P1X_vs_B2": 2.4892061111444567e-60
+    }
+  },
+  "per_domain": {
+    "SOFTWARE_DEBUGGING": {"n": 80, "p1x_esrd": 1.0, "b1_esrd": 0.7, "difference": 0.3},
+    "SCIENTIFIC_RETRIEVAL": {"n": 80, "p1x_esrd": 1.0, "b1_esrd": 0.6875, "difference": 0.3125},
+    "SEMANTIC_INTEGRATION": {"n": 80, "p1x_esrd": 1.0, "b1_esrd": 0.6875, "difference": 0.3125},
+    "EVIDENCE_VERIFICATION": {"n": 80, "p1x_esrd": 1.0, "b1_esrd": 0.7, "difference": 0.3},
+    "MODEL_EXPERIMENT_DESIGN": {"n": 80, "p1x_esrd": 1.0, "b1_esrd": 0.6625, "difference": 0.3375}
+  },
+  "non_regression": {
+    "lower_level_repair_difference": 0.3,
+    "lower_level_margin": -0.02,
+    "lower_level_pass": true,
+    "false_high_level_reframes": {"P1X": 0, "B1": 40, "B2": 109, "B3": 0},
+    "false_reframe_rate_difference_p1x_minus_b1": -0.1,
+    "false_reframe_margin": 0.02,
+    "false_reframe_pass": true,
+    "p1x_invariant_violations": 0,
+    "invariant_pass": true,
+    "per_domain_floor": -0.05,
+    "per_domain_pass": true,
+    "all_pass": true
+  },
+  "b3_equivalence": {"decision_mismatches": 0, "pass": true},
+  "v1_comparator_bug_fixed": true,
+  "v1_controller_changes_other_than_bug_fix": false,
+  "terminal": "P1_X_V2_BOUNDED_ARCHITECTURE_RESULT_SUPPORTED"
+}
