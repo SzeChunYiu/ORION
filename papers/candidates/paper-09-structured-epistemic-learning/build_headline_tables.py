@@ -9,6 +9,7 @@ SUMMARY = HERE / "evidence" / "OFFICIAL_EVIDENCE_SUMMARY_V1.json"
 OUT_JSON = HERE / "evidence" / "HEADLINE_TABLES_V1.json"
 OUT_MD = HERE / "evidence" / "HEADLINE_TABLES_V1.md"
 OUT_TEX = HERE / "manuscript" / "generated_headline_tables.tex"
+LATEX_ROW_BREAK = "\\\\"
 
 
 def _load_summary() -> dict[str, Any]:
@@ -189,12 +190,13 @@ def render_latex(tables: dict[str, Any]) -> str:
         r"\label{tab:m1-ceilings}",
         r"\begin{tabular}{lrrr}",
         r"\toprule",
-        r"View & Accuracy & Ceiling & Gap \\",
+        f"View & Accuracy & Ceiling & Gap {LATEX_ROW_BREAK}",
         r"\midrule",
     ]
     for row in tables["m1_view_ceiling_table"]:
         lines.append(
-            f"{_latex_escape(row['view'])} & {_fmt(row['accuracy'])} & {_fmt(row['ceiling'])} & {_fmt(row['gap_to_ceiling'])} \\\\"
+            f"{_latex_escape(row['view'])} & {_fmt(row['accuracy'])} & {_fmt(row['ceiling'])} & "
+            f"{_fmt(row['gap_to_ceiling'])} {LATEX_ROW_BREAK}"
         )
     lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table}", ""])
 
@@ -206,7 +208,7 @@ def render_latex(tables: dict[str, Any]) -> str:
             r"\label{tab:d1-transfer}",
             r"\begin{tabular}{llrrrr}",
             r"\toprule",
-            r"Arm & Selected model & Accuracy & Macro-F1 & Double corruption & UNRESOLVED \\",
+            f"Arm & Selected model & Accuracy & Macro-F1 & Double corruption & UNRESOLVED {LATEX_ROW_BREAK}",
             r"\midrule",
         ]
     )
@@ -214,7 +216,8 @@ def render_latex(tables: dict[str, Any]) -> str:
         lines.append(
             f"{_latex_escape(row['arm'])} & {_latex_escape(row['selected_model'])} & "
             f"{_fmt(row['test_accuracy'])} & {_fmt(row['macro_f1'])} & "
-            f"{_fmt(row['double_corruption_accuracy'])} & {_fmt(row['unresolved_accuracy'])} \\\\"
+            f"{_fmt(row['double_corruption_accuracy'])} & {_fmt(row['unresolved_accuracy'])} "
+            f"{LATEX_ROW_BREAK}"
         )
     lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""])
     return "\n".join(lines) + "\n"
