@@ -1,0 +1,97 @@
+{
+  "schema": "P9.M0TaskHarnessProtocol.v0.1",
+  "protocol_status": "DESIGN_FROZEN_AMENDMENT",
+  "supersedes_for_execution": "P9.M0TaskHarnessProtocol.v0",
+  "amendment_reason": "Pre-execution hostile review found that ordering candidates with the full SEMANTIC fingerprint leaks hidden coordinates into weaker SURFACE/TOPOLOGY/TYPED/CURRENT task presentations when hostile worlds intentionally share the selected view but differ semantically.",
+  "outcome_accessed": false,
+  "paper_id": "P9",
+  "source_subject": {
+    "base_commit": "e5504065dcf1f71b371a611b5d5ad8db7f4a8ce0",
+    "generated_corpus_schema": "P9.GeneratedCorpus.v0"
+  },
+  "corpus": {
+    "seed": "p9-m0-task-harness-v0",
+    "train_pairs_per_family": 32,
+    "dev_pairs_per_family": 8,
+    "test_pairs_per_family": 16
+  },
+  "candidate_order": {
+    "old_rejected_rule": "ascending sha256(order_seed | SEMANTIC fingerprint | candidate_id)",
+    "frozen_rule": "ascending sha256(order_seed | selected model-visible view fingerprint | candidate_id)",
+    "why": "candidate presentation may depend only on information available in the declared model view; hostile worlds that collide under that view must receive the same candidate order when their candidate sets are identical",
+    "order_seeds": [
+      "p9-m0-order-a",
+      "p9-m0-order-b"
+    ],
+    "target_identity_not_index": true,
+    "hidden_semantic_order_side_channel_forbidden": true
+  },
+  "tasks": {
+    "MECHANIC_RANKING": {
+      "input": "context projection plus current-example candidate mechanic projections",
+      "output": "one supplied candidate mechanic id",
+      "global_mechanic_class_vocabulary": false
+    },
+    "GLUING": {
+      "input": "context projection",
+      "output_vocabulary": [
+        "GLUE",
+        "OBSTRUCTION",
+        "UNKNOWN"
+      ]
+    }
+  },
+  "view_modes": [
+    "SURFACE",
+    "TOPOLOGY",
+    "TYPED",
+    "CURRENT",
+    "SEMANTIC"
+  ],
+  "null_baselines": [
+    "FIRST_CANDIDATE",
+    "LAST_CANDIDATE",
+    "LEXICOGRAPHIC_ID",
+    "HASH_PARITY",
+    "ALWAYS_GLUE",
+    "ALWAYS_OBSTRUCTION",
+    "ALWAYS_UNKNOWN"
+  ],
+  "oracle": {
+    "name": "EXACT_SEMANTIC_ORACLE",
+    "may_read_world_gold": false,
+    "relation_rules": {
+      "SUPPORTS": "candidate effect ASSIMILATE_EVIDENCE",
+      "DEFEATS": "candidate effect REOPEN_CLAIM"
+    },
+    "failure_history_rule": "choose lowest-cost candidate not named by admitted matching failure history; if none failed choose lowest-cost candidate",
+    "gluing_rule": "exact classify_cycle_gluing over representation cycle"
+  },
+  "metrics": [
+    "accuracy_by_task",
+    "accuracy_by_hostile_family",
+    "candidate_order_consistency",
+    "invalid_prediction_count",
+    "view_deterministic_accuracy_ceiling",
+    "ceiling_violation_flag"
+  ],
+  "additional_hostile_test": "for every hostile pair whose selected view fingerprints collide and whose candidate sets match, candidate presentation order must also collide under the same order seed",
+  "leakage_exclusions": [
+    "row_index",
+    "pair_orientation",
+    "pair_id",
+    "hostile_family_id",
+    "raw_generator_seed",
+    "split_namespace",
+    "evaluator_gold",
+    "hidden_semantic_candidate_order"
+  ],
+  "authority": {
+    "scientific_authority": false,
+    "novelty_authority": false,
+    "paper_readiness_authority": false,
+    "model_promotion_authority": false
+  },
+  "terminal": "M0_TASK_HARNESS_VALIDATED_ONLY",
+  "claim_boundary": "M0 validates task/evaluator plumbing only; no learned P9 capability claim is authorized"
+}
