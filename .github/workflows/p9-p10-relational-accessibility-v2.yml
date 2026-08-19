@@ -1,0 +1,55 @@
+name: p9-p10-relational-accessibility-v2
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/p9-p10-structural-scaling/RELATIONAL_ACCESSIBILITY_REPLICATION_PROTOCOL_V2.md'
+      - 'research/extensions/p9-p10-structural-scaling/run_relational_accessibility_replication_v2.py'
+      - '.github/workflows/p9-p10-relational-accessibility-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  replicate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install -e '.[dev,candidates]'
+      - name: Execute V2 fresh-seed replication
+        run: python research/extensions/p9-p10-structural-scaling/run_relational_accessibility_replication_v2.py
+      - name: Preserve first output
+        run: cp research/extensions/p9-p10-structural-scaling/results/RELATIONAL_ACCESSIBILITY_REPLICATION_V2.json /tmp/v2-first.json
+      - name: Deterministic replay
+        run: python research/extensions/p9-p10-structural-scaling/run_relational_accessibility_replication_v2.py
+      - name: Require byte identity
+        run: cmp /tmp/v2-first.json research/extensions/p9-p10-structural-scaling/results/RELATIONAL_ACCESSIBILITY_REPLICATION_V2.json
+      - name: Print summary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('research/extensions/p9-p10-structural-scaling/results/RELATIONAL_ACCESSIBILITY_REPLICATION_V2.json')
+          d=json.loads(p.read_text())
+          print(json.dumps({'terminal':d['terminal'],'aggregate':d['aggregate'],'cells':[{'d':c['dimension'],'r':c['replication'],'flat':c['flat_accuracy'],'rel':c['relational_accuracy'],'delta':c['absolute_accuracy_delta'],'null_max':c['label_shuffle_null']['maximum'],'p':c['label_shuffle_null']['empirical_one_sided_p'],'pass':c['cell_pass']} for c in d['cells']]},indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: relational-accessibility-v2-${{ github.sha }}
+          path: research/extensions/p9-p10-structural-scaling/results/RELATIONAL_ACCESSIBILITY_REPLICATION_V2.json
+          if-no-files-found: error
+      - name: Enforce frozen V2 terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('research/extensions/p9-p10-structural-scaling/results/RELATIONAL_ACCESSIBILITY_REPLICATION_V2.json').read_text())
+          if d['terminal'] != 'RELATIONAL_ACCESSIBILITY_REPLICATED_CONTROLLED_CLASS':
+              raise SystemExit('V2 frozen replication gate not met; preserve artifact without retuning')
+          PY
