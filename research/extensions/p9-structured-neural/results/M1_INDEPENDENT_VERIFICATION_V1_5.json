@@ -1,0 +1,86 @@
+{
+  "schema": "P9.M1IndependentVerification.v1.5",
+  "status": "BOUNDED_VERIFIED_WITH_ADJUDICATED_NON_MATERIAL_DISCREPANCY",
+  "scientific_subject": "46735ef63f534e58987c6564a8bcbb9779290b23",
+  "integrated_result_commit": "7c39329d20a6427a128d5f1f7d1fd5acc943fc23",
+  "scientific_protocol": "P9.M1Protocol.v1.3",
+  "execution_routing": "P9.M1ExecutionRouting.v1.4",
+  "smoke_fixture_amendment": "P9.M1SmokeFixtureAmendment.v1.5",
+  "official_workflow_run": 32263768718,
+  "official_job": 96103106194,
+  "official_result_digest": "sha256:01e1b62da27b424d453c63b798a5cbb13a915a4546b8ced68fcf84c32d04d97e",
+  "official_corpus_digest": "sha256:01ae54ca4d8cf423b0ac20bf0e085f1ecdf6cec7a1f142cc09b5df0a90d9cc3a",
+  "official_terminal": "M1_GLOBAL_COMPOSITION_RESIDUAL",
+  "pre_official_expectation": {
+    "source_pr": 525,
+    "source_path": "research/extensions/p9-structured-neural/verification/INDEPENDENT_REPLAY_EXPECTATIONS_V1.json",
+    "expected_terminal_family": "M1_GLOBAL_COMPOSITION_RESIDUAL",
+    "expected_transport_test_accuracy_approx": 0.5,
+    "expected_transport_information_ceiling": 1.0,
+    "expected_selected_dev_model_description": "random-forest-class family",
+    "expected_interpretation": "global affine-composition computation residual, not missing information"
+  },
+  "official_decisive_results": {
+    "SURFACE": {"overall_accuracy": 0.5, "overall_ceiling": 0.5, "ceiling_violation": false},
+    "TOPOLOGY": {"overall_accuracy": 0.5, "overall_ceiling": 0.5, "ceiling_violation": false},
+    "TYPED": {"overall_accuracy": 0.6666666666666666, "overall_ceiling": 0.6666666666666666, "ceiling_violation": false},
+    "CURRENT": {
+      "overall_accuracy": 0.6701388888888888,
+      "overall_ceiling": 0.8333333333333334,
+      "ceiling_violation": false,
+      "gluing_selected_feature": "F2_CYCLE_NUMERIC",
+      "gluing_selected_model": "knn-k3-uniform",
+      "gluing_dev_accuracy": 0.6041666666666666,
+      "gluing_test_accuracy": 0.5104166666666666,
+      "gluing_exact_information_ceiling": 1.0,
+      "mechanic_ranking_test_accuracy": 0.75
+    },
+    "SEMANTIC": {
+      "overall_accuracy": 0.8368055555555556,
+      "overall_ceiling": 1.0,
+      "ceiling_violation": false,
+      "gluing_selected_feature": "F2_CYCLE_NUMERIC",
+      "gluing_selected_model": "knn-k3-uniform",
+      "gluing_dev_accuracy": 0.6041666666666666,
+      "gluing_test_accuracy": 0.5104166666666666,
+      "gluing_exact_information_ceiling": 1.0,
+      "mechanic_ranking_test_accuracy": 1.0
+    }
+  },
+  "discrepancies": [
+    {
+      "id": "M1-D1-SELECTED-MODEL-FAMILY",
+      "expected": "random-forest-class family",
+      "official": "knn-k3-uniform",
+      "severity": "NON_MATERIAL",
+      "adjudication": {
+        "official_dev_knn_k3_accuracy": 0.6041666666666666,
+        "official_dev_rf_n300_depth_none_accuracy": 0.6041666666666666,
+        "tie": true,
+        "frozen_selection_rule": "sort by descending dev accuracy, then ascending complexity_rank, feature_family, config_id",
+        "knn_complexity_rank": 20,
+        "rf_complexity_rank": 32,
+        "reason": "The independent reimplementation identified the tied random-forest optimum family but did not preserve the official lower-complexity tie-break. The official selector correctly chooses kNN under the pre-outcome frozen rule.",
+        "changes_protected_result": false,
+        "changes_terminal": false,
+        "changes_information_ceiling": false,
+        "changes_scientific_interpretation": false
+      }
+    }
+  ],
+  "discrepancy_counts": {
+    "total": 1,
+    "material": 0,
+    "non_material": 1
+  },
+  "verification_conclusion": {
+    "terminal_matches": true,
+    "transport_accuracy_matches_approximate_expectation": true,
+    "transport_information_ceiling_matches": true,
+    "global_composition_residual_confirmed": true,
+    "leakage_or_ceiling_violation_detected": false,
+    "promotion_blocked_by_verifier_discrepancy": false
+  },
+  "scientific_interpretation": "The semantic/current representation contains enough information to identify transport gluing, but the frozen generic classical learner grid remains near chance on protected transport cases. This is a computation residual, not missing information. Separate A5 exact inference closes the same D0 affine-composition operation, so M1 does not by itself justify neural graph/sheaf/NAR/latent escalation.",
+  "authority": "BOUNDED_P9_DIAGNOSTIC_ONLY_NO_SCIENTIFIC_OR_EXECUTION_AUTHORITY"
+}
