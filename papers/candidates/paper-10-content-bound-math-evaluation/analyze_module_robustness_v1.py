@@ -37,16 +37,23 @@ def main() -> None:
     data = json.loads(SOURCE.read_text(encoding="utf-8"))
     module = data["leave_top_module_out"]
     per_block = module["per_block"]
-    if len(per_block) != 31:
-        raise SystemExit(f"expected 31 held-out top modules, got {len(per_block)}")
+    if not isinstance(per_block, list) or not per_block:
+        raise SystemExit("V2.1 result has no held-out-module block receipts")
 
+    # The corpus has 31 active top-level labels, but the frozen result emits
+    # block receipts only for labels with evaluable recognized transitions.
+    # The current immutable artifact has 28 such receipts.  Robustness is
+    # therefore defined on the exact emitted/evaluable block population rather
+    # than silently manufacturing zero-transition blocks for the other labels.
     rows: list[dict[str, Any]] = []
+    skipped_zero_transition_blocks: list[str] = []
     for item in per_block:
         transitions = int(item["transitions"])
+        if transitions <= 0:
+            skipped_zero_transition_blocks.append(str(item["held_out"]))
+            continue
         markov_correct = int(item["markov_correct"])
         unigram_correct = int(item["unigram_correct"])
-        if transitions <= 0:
-            continue
         rows.append(
             {
                 "held_out": item["held_out"],
@@ -60,6 +67,8 @@ def main() -> None:
                 "trigram_coverage": item["coverage"]["3"]["coverage"],
             }
         )
+    if not rows:
+        raise SystemExit("V2.1 result has no positive-transition held-out-module blocks")
 
     deltas = [float(row["markov_minus_unigram"]) for row in rows]
     positive = sum(delta > 0 for delta in deltas)
@@ -79,6 +88,8 @@ def main() -> None:
     for row in rows:
         remaining_transitions = total_transitions - int(row["transitions"])
         remaining_improvement = total_improvement - int(row["improvement_correct_count"])
+        if remaining_transitions <= 0:
+            raise SystemExit("single module unexpectedly contains all transitions")
         leave_one_out.append(
             {
                 "removed_module": row["held_out"],
@@ -99,10 +110,12 @@ def main() -> None:
     )
 
     artifact = {
-        "schema": "P10.MathlibTransferModuleRobustness.v1",
+        "schema": "P10.MathlibTransferModuleRobustness.v1.1",
         "analysis_status": "POST_HOC_DERIVED_FROM_FROZEN_V2_1_BLOCK_RECEIPTS",
         "source": str(SOURCE.relative_to(HERE)),
-        "held_out_modules": len(rows),
+        "emitted_block_receipts": len(per_block),
+        "evaluable_held_out_modules": len(rows),
+        "skipped_zero_transition_blocks": skipped_zero_transition_blocks,
         "total_transitions": total_transitions,
         "pooled_markov_minus_unigram": pooled_delta,
         "module_delta_distribution": {
@@ -137,7 +150,9 @@ def main() -> None:
         "per_module": rows,
         "claim_boundary": (
             "Derived robustness analysis of the already-frozen source-projection result. "
-            "It does not add native proof-state semantics, prover utility, or standalone tactic-mining novelty."
+            "The source corpus has more active labels than emitted evaluable transition blocks; "
+            "breadth statistics apply only to the exact emitted positive-transition blocks. "
+            "This does not add native proof-state semantics, prover utility, or standalone tactic-mining novelty."
         ),
     }
     OUT.write_text(json.dumps(artifact, indent=2, sort_keys=True) + "\n", encoding="utf-8")
