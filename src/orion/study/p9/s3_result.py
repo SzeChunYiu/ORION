@@ -1,13 +1,13 @@
 """Protected P9 S3 corrective attribution experiment.
 
-The parent D1 result is immutable and already known.  S3 does not alter D1; it
+The parent D1 result is immutable and already known. S3 does not alter D1; it
 adds one prospectively frozen feature/access arm over the existing typed
 serialization and asks how much of the historical held-out-domain gap it
 recovers.
 
 This module may access the frozen D1 protected test split only because
 S3_RESULT_PROTOCOL_V1.json and S3_PRE_ARTIFACT_EXPECTATION_V1.json were
-committed first.  It fails closed if the inherited D1 result or dataset digest
+committed first. It fails closed if the inherited D1 result or dataset digest
 differs from the registered parent.
 """
 
@@ -22,6 +22,10 @@ from sklearn.metrics import f1_score
 
 from orion.transfer.v2.canonical import content_digest
 
+# Import the already-frozen parent D1 v1.2 runtime semantics before binding the
+# generator/estimator names below. This changes no D1 science: it is exactly the
+# execution path that produced the verified parent result.
+from . import d1_runtime as _d1_runtime  # noqa: F401
 from .d1 import D1Instance, D1Label, D1View, generate_d1_dataset
 from .d1_experiment import _estimator, exact_relational_comparator, model_specs
 from .s3_access import (
@@ -171,7 +175,7 @@ def run_s3(*, subject_sha: str | None = None) -> dict[str, object]:
         raise RuntimeError("regenerated D1 dataset does not match frozen parent digest")
 
     # Re-run the already-frozen preprotected equivalence check on train/dev before
-    # any protected prediction.  The comparator on the right is the independent
+    # any protected prediction. The comparator on the right is the independent
     # historical D1 exact relational comparator, not a re-expression of F2.
     preprotected_equivalence = all(
         serialized_exact_generic_comparator(_sequence(row))
@@ -226,7 +230,7 @@ def run_s3(*, subject_sha: str | None = None) -> dict[str, object]:
 
     result: dict[str, object] = {
         "schema": "P9.S3AccessAttributionResult.v1",
-        "protocol": "P9.S3ProtectedResultProtocol.v1",
+        "protocol": "P9.S3ProtectedResultProtocol.v1.1",
         "subject_sha": subject_sha,
         "preprotected_subject_sha": _PREPROTECTED_SUBJECT,
         "parent_d1_result_digest": _PARENT_RESULT_DIGEST,
