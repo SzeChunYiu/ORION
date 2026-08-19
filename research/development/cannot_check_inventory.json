@@ -1,13 +1,13 @@
 {
-  "blocker_sites": 433,
+  "blocker_sites": 439,
   "classification": {
     "INSUFFICIENT_EVIDENCE": 8,
     "MISSING_ACCESS": 5,
     "MISSING_CUSTODY": 28,
     "MISSING_DECLARATION": 64,
-    "MISSING_IDENTITY": 27,
+    "MISSING_IDENTITY": 29,
     "UNAVAILABLE_PROVIDER": 12,
-    "UNCLASSIFIED": 289
+    "UNCLASSIFIED": 293
   },
   "closes_gate": null,
   "grants_authority": "NONE",
@@ -6488,6 +6488,97 @@
       "unmet_precondition": null
     },
     {
+      "category": "MISSING_IDENTITY",
+      "context": "_blocked_preflight",
+      "file": "study/p5/revision_level_v3_development.py",
+      "has_reason": true,
+      "kind": "ASSIGN",
+      "lineno": 137,
+      "missing_obligation": null,
+      "reasons": [
+        "#454 programme-wide structural receipt not frozen; T8 implementation may not call this official reproduction",
+        "m_open_only",
+        "arxiv:2608.09696",
+        "MDA:mechanism-class-expansion",
+        "world_model_revision",
+        "arxiv:2606.30639",
+        "world-model:self-revision-mechanism",
+        "representation_regime_revision",
+        "arxiv:2606.01444",
+        "representation-regime:transition-mechanism"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "derive_development_summary",
+      "file": "study/p5/revision_level_v3_development.py",
+      "has_reason": true,
+      "kind": "ASSIGN",
+      "lineno": 186,
+      "missing_obligation": null,
+      "reasons": [
+        "grants_scientific_authority",
+        "grants_p5_peer_review_ready"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_IDENTITY",
+      "context": "",
+      "file": "study/p5/revision_level_v3_preflight.py",
+      "has_reason": true,
+      "kind": "ASSIGN",
+      "lineno": 18,
+      "missing_obligation": null,
+      "reasons": [
+        "UNBOUND",
+        "UNKNOWN",
+        "TBD",
+        "TODO"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "BaselineBindingDisposition",
+      "file": "study/p5/revision_level_v3_preflight.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 24,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "ConfirmatoryPreflightStatus",
+      "file": "study/p5/revision_level_v3_preflight.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 147,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "assess_confirmatory_preflight",
+      "file": "study/p5/revision_level_v3_preflight.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 242,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
       "category": "UNCLASSIFIED",
       "context": "",
       "file": "study/p5/tables.py",
@@ -7077,9 +7168,9 @@
     }
   ],
   "source_root": "src/orion",
-"subject_commit": "a9c36fc84d371b293345c3d56c9320badd09fcf0",
-  "total_sites": 479,
+  "subject_commit": "14c061c4afe7f422b07c4fa9ec0ef86fb661e31c",
+  "total_sites": 485,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_derived_obligation": 78,
-  "with_reason": 203
+  "with_reason": 206
 }

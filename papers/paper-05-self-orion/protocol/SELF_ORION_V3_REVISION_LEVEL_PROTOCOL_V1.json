@@ -1,0 +1,137 @@
+{
+  "schema_version": "orion.p5.self-orion-v3-revision-level-protocol.v1",
+  "paper_id": "P5",
+  "protocol_id": "P5.self-orion-v3.revision-level.v1",
+  "protocol_status": "PROSPECTIVE_IMPLEMENTED_NOT_CONFIRMATORY_FROZEN",
+  "base_subject": "6cc9e0b5171459443b810c4fbc93072082829e47",
+  "outcome_accessed": false,
+  "authority_scope": "PROSPECTIVE_PROTOCOL_ONLY",
+  "grants_scientific_authority": false,
+  "grants_peer_review_ready": false,
+  "closes_issue_455": false,
+  "relationship_to_existing_p5": {
+    "protocol_v1": "UNCHANGED",
+    "historical_hidden_cause_result": "21/24 accuracy; standard macro-F1 0.8726190476190476; descriptive only",
+    "h1_h4": "CANNOT_CHECK",
+    "v3_role": "prospective additive revision-level discrimination study"
+  },
+  "research_question": "When the same visible development failure is compatible with different responsible epistemic layers, does responsibility/interface/minimal-revision control reduce wrong or over-broad revision while preserving fresh-transfer performance relative to matched strong mechanism comparators?",
+  "confirmatory_hypothesis_status": "NOT_FROZEN_PENDING_STRUCTURAL_BINDINGS_AND_PROSPECTIVE_PILOT",
+  "benchmark_local_revision_classes": [
+    "EVIDENCE_REPAIR",
+    "MEASUREMENT_REPAIR",
+    "WITHIN_CLASS_MODEL_REPAIR",
+    "MODEL_CLASS_EXPANSION",
+    "REPRESENTATION_REGIME_REPAIR",
+    "EXECUTION_REPAIR",
+    "EVALUATOR_REPAIR",
+    "UNRESOLVED"
+  ],
+  "explicitly_not_frozen_as_universal_taxonomy": true,
+  "protected_follow_up_classes": [
+    "OBJECTIVE_REVISION",
+    "METHOD_BASIS_REVISION"
+  ],
+  "same_symptom_requirement": "Each scored cause-confusable family must contain at least two cases with materially similar candidate-visible symptoms but different protected gold responsibility/revision labels, or an explicit UNRESOLVED gold case.",
+  "candidate_access": {
+    "visible": [
+      "case_id",
+      "symptom_family",
+      "visible_symptom",
+      "candidate_visible_context",
+      "competing_revision_classes",
+      "hypothesis discriminator predictions",
+      "allowed diagnostics and costs",
+      "diagnostic budget",
+      "revision invasiveness map",
+      "preservation obligations",
+      "allowed change surface",
+      "fresh-transfer family identity"
+    ],
+    "protected": [
+      "actual diagnostic outcomes",
+      "gold revision responsibility",
+      "protected evaluator internals",
+      "fresh-transfer labels/results before final decision",
+      "confirmatory split allocation"
+    ]
+  },
+  "policy_families": [
+    {"id": "no_revision", "implementation": "NO_REVISION", "role": "fixed/no-revision control"},
+    {"id": "direct_self_edit", "implementation": "DIRECT_SELF_EDIT", "role": "broad self-edit control"},
+    {"id": "m_open_only", "implementation": "M_OPEN_ONLY", "role": "M-open model-class-expansion mechanism comparator", "donor": "arxiv:2608.09696", "official_reproduction": false},
+    {"id": "world_model_revision", "implementation": "WORLD_MODEL_REVISION", "role": "world-model update mechanism comparator", "donor": "arxiv:2606.30639", "official_reproduction": false},
+    {"id": "representation_regime_revision", "implementation": "REPRESENTATION_REGIME_ONLY", "role": "representation-regime revision mechanism comparator", "donor": "arxiv:2606.01444", "official_reproduction": false},
+    {"id": "generic_causal_diagnosis", "implementation": "GENERIC_CAUSAL_DIAGNOSIS", "role": "multi-hypothesis diagnosis parent"},
+    {"id": "full_t7", "implementation": "FULL_T7", "role": "responsibility-gated Self-ORION V3 candidate"},
+    {"id": "random_diagnostic", "implementation": "RANDOM_DIAGNOSTIC", "role": "diagnostic-choice control"},
+    {"id": "always_unresolved", "implementation": "ALWAYS_UNRESOLVED", "role": "broken-shut/overconservative control"},
+    {"id": "oracle_ceiling", "implementation": "ORACLE_CEILING", "role": "analysis-only protected ceiling", "excluded_from_superiority_claim": true}
+  ],
+  "feedback_intervention_controls": [
+    "NORMAL",
+    "PERMUTED",
+    "NONE",
+    "CONTRADICTORY",
+    "RANDOM"
+  ],
+  "primary_endpoint_candidates_not_yet_confirmatory_frozen": [
+    "revision_label_accuracy",
+    "false_broad_revision_rate",
+    "harmful_regression_rate",
+    "protected_fresh_transfer_success_rate"
+  ],
+  "mandatory_secondary_endpoints": [
+    "correct_unresolved_rate",
+    "preservation_violation_rate",
+    "evaluator_or_authority_violation_rate",
+    "diagnostic_action_count",
+    "diagnostic_cost",
+    "feedback_permutation_sensitivity",
+    "no_feedback_sensitivity"
+  ],
+  "no_scalar_science_score": true,
+  "development_instrumentation": {
+    "suite": "research/self-orion-v3/development/PROTECTED_DEVELOPMENT_SUITE_V1.json",
+    "development_only": true,
+    "may_support_scientific_claim": false,
+    "may_close_issue_455": false,
+    "expected_implementation_terminal": "T8_PROSPECTIVE_EXPERIMENT_IMPLEMENTED_CANNOT_CHECK_OUTCOME"
+  },
+  "confirmatory_required_baseline_bindings": [
+    "m_open_only",
+    "world_model_revision",
+    "representation_regime_revision"
+  ],
+  "confirmatory_execution_bindings": {
+    "subject_revision": "UNBOUND",
+    "protected_suite_commitment": "UNBOUND",
+    "candidate_packet_sha256": "UNBOUND",
+    "final_split_sha256": "UNBOUND",
+    "evaluator_sha256": "UNBOUND",
+    "evaluation_epoch": "UNBOUND",
+    "baseline_config_sha256": "UNBOUND",
+    "fresh_transfer_evaluator_sha256": "UNBOUND",
+    "result_verifier_owner": "#283",
+    "candidate_policy_owner": "SelfOrionV3Policy",
+    "protected_evaluator_owner": "ExternalProtectedEvaluator",
+    "outcome_accessed": false
+  },
+  "structural_binding_status": {
+    "programme_receipt_owner": "#454",
+    "programme_receipt_frozen": false,
+    "current_disposition": "CANNOT_CHECK",
+    "rule": "T8 may implement mechanism comparators but confirmatory READY requires explicit bound structural identities; no comparator may be labelled official reproduction without an official-reproduction binding."
+  },
+  "possible_scientific_terminals_after_real_execution": [
+    "REVISION_LEVEL_DISCRIMINATION_SUPPORTED",
+    "M_OPEN_SUFFICIENT",
+    "DIAGNOSIS_ONLY",
+    "OVERCONSERVATIVE",
+    "NO_INCREMENTAL_VALUE",
+    "HARMFUL_REFUTED",
+    "CANNOT_CHECK"
+  ],
+  "negative_result_policy": "Null, harmful, M-open-sufficient, diagnosis-only and overconservative outcomes are retained as valid terminals and may not be retuned into a positive claim.",
+  "publication_rule": "No development or preflight terminal supports H1-H4, peer-review readiness, or novelty. Any result-bearing update requires exact final bindings, protected execution, independent #283 verification, and #287 nearest-work/novelty authority."
+}
