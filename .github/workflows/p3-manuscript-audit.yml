@@ -179,6 +179,14 @@ jobs:
           fi
           pdfinfo main.pdf | tee /tmp/p3-pdfinfo.txt
 
+      - name: Expose rebuilt PDF for package refresh
+        uses: actions/upload-artifact@v4
+        with:
+          name: p3-rebuilt-pdf-${{ github.sha }}
+          retention-days: 3
+          if-no-files-found: error
+          path: papers/paper-03-global-knowledge-portrait/manuscript/main.pdf
+
       - name: Verify tracked PDF matches rebuilt manuscript content
         run: |
           set -euo pipefail
