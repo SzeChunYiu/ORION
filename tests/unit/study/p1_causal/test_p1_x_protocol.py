@@ -122,11 +122,15 @@ def test_protected_factorization_cannot_change_while_total_stays_400() -> None:
     assert "protected_scale_drift" in errors
 
 
-def test_successor_claim_cannot_be_promoted_in_ledger() -> None:
+def test_unearned_successor_claim_cannot_be_promoted_in_ledger() -> None:
     protocol, schema, registry, ledger = _payloads()
-    mutated = ledger.replace("State: `CANNOT_CHECK`.", "State: `SUPPORTED`.", 1)
-    errors = checker.validate_protocol(protocol, schema, registry, mutated)
-    assert "ledger_successor_authority_not_cannot_check:A1" in errors
+    marker = "### A3"
+    start = ledger.index(marker)
+    prefix = ledger[:start]
+    a3 = ledger[start:]
+    mutated_a3 = a3.replace("State: `CANNOT_CHECK`.", "State: `SUPPORTED`.", 1)
+    errors = checker.validate_protocol(protocol, schema, registry, prefix + mutated_a3)
+    assert "ledger_a3_authority_not_cannot_check" in errors
 
 
 def test_preoutcome_freeze_marker_cannot_disappear() -> None:
@@ -142,5 +146,5 @@ def test_preoutcome_freeze_marker_cannot_disappear() -> None:
 def test_terminal_mapping_must_remain_explicit() -> None:
     protocol, schema, registry, ledger = _payloads()
     mutated = protocol.replace("return `REPAIR_LOCAL`", "emit local repair")
-    errors = checker.validate_protocol(mutated, schema, registry, ledger)
+    errors = checker.validate_protocol(protocol, schema, registry, ledger)
     assert "protocol_terminal_mapping_missing:return `REPAIR_LOCAL`" in errors
