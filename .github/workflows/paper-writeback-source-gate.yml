@@ -28,6 +28,19 @@ jobs:
             latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra \
             texlive-pictures texlive-fonts-recommended lmodern poppler-utils librsvg2-bin
 
+      - name: Repair known P1 TeX issue references
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('papers/paper-01-recursive-epistemic-reconstruction/manuscript/tables/P1-T1_nearest_work.tex')
+          text = p.read_text()
+          count = text.count('#489')
+          if count != 2:
+              raise SystemExit(f'expected exactly two unescaped #489 references, found {count}')
+          p.write_text(text.replace('#489', r'\#489'))
+          PY
+
       - name: Materialize P4 V3 science into TeX source
         run: |
           set -euo pipefail
@@ -44,7 +57,13 @@ jobs:
           A separate post-saturation successor, P4-X, grants donor-complete provenance, claim verification, artifact/version binding, evaluator custody, epoch handling and generic authorization to the comparison product. Across 400 prospectively frozen exact scientific-promotion contracts, P4-X selected the correct promotion terminal on 400/400 cases, versus 250/400 for the strong donor-complete generic-authorization product and 50/400 for a compensatory product. The paired P4-X minus strong-product effect was $+0.375$ with a domain-stratified bootstrap 95\% CI $[0.3275,0.4225]$; P4-X made zero false promotions and preserved clean promotion at 1.0. An ideal typed product receiving the same scientific-promotion coordinates tied 400/400. Later discovery/failure/representation-transition studies reinforce the authority boundary without adding a P4 performance claim: stable atlases, structural receipts, atom studies and transition witnesses remain proposal/evidence objects, and a strongest-parent tie is subsumption rather than self-promotion. Deployed verifier/provider generality and universal scientific-authority superiority remain \cannot.
           \end{abstract}'''
 
-          text, n = re.subn(r'\\begin\{abstract\}.*?\\end\{abstract\}', abstract, text, count=1, flags=re.S)
+          text, n = re.subn(
+              r'\\begin\{abstract\}.*?\\end\{abstract\}',
+              lambda _m: abstract,
+              text,
+              count=1,
+              flags=re.S,
+          )
           if n != 1:
               raise SystemExit(f'P4 abstract replacement count={n}')
 
@@ -70,7 +89,7 @@ jobs:
           '''
           text, n = re.subn(
               r'\\section\{Conclusion\}.*?(?=\\bibliographystyle\{tmlr\})',
-              conclusion + '\n',
+              lambda _m: conclusion + '\n',
               text,
               count=1,
               flags=re.S,
@@ -129,7 +148,7 @@ jobs:
           pdftotext main.pdf /tmp/p4-source.txt
           grep -q '400/400' /tmp/p4-source.txt
           grep -q '250/400' /tmp/p4-source.txt
-          grep -q 'REPRESENTATION' /tmp/p4-source.txt || grep -qi 'representation' /tmp/p4-source.txt
+          grep -qi 'representation' /tmp/p4-source.txt
 
       - name: Compile P5 source
         run: |
@@ -138,12 +157,14 @@ jobs:
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
           ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
 
-      - name: Commit validated P4 source and remove one-shot gate
+      - name: Commit validated manuscript source and remove one-shot gate
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add papers/paper-04-verified-scientific-discovery/manuscript/main.tex
+          git add \
+            papers/paper-01-recursive-epistemic-reconstruction/manuscript/tables/P1-T1_nearest_work.tex \
+            papers/paper-04-verified-scientific-discovery/manuscript/main.tex
           git rm .github/workflows/paper-writeback-source-gate.yml
-          git commit -m 'papers(p4): materialize validated V3 manuscript source'
+          git commit -m 'papers: validate P1 source and materialize P4 V3 TeX'
           git push origin HEAD:paper/jump-failure-writeback-final-20260819
