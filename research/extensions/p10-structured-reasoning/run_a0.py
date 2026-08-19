@@ -4,7 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
-from orion.study.p10.a0_control import run_a0
+from orion.study.p10.a0_runtime import run_a0
 
 
 def main() -> None:
