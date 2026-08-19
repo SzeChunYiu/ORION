@@ -4,14 +4,16 @@ on:
   pull_request:
     paths:
       - '.github/workflows/p9-m1-experiment.yml'
+      - 'development/p9-m1-classical/**'
+      - 'research/extensions/p9-structured-neural/M1_*'
+      - 'research/extensions/p9-structured-neural/execution/M1_*'
+      - 'research/extensions/p9-structured-neural/run_m1.py'
+      - 'src/orion/study/p9/m1*.py'
+      - 'tests/test_p9_m1*.py'
   workflow_dispatch:
 
 permissions:
-  contents: write
-
-concurrency:
-  group: p9-m1-v15-focused-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  contents: read
 
 jobs:
   m1:
@@ -20,94 +22,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: execution3/p9-m1-v15-20260819
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
           cache: pip
           cache-dependency-path: pyproject.toml
-      - name: Bind unchanged scientific subject
-        run: |
-          echo 'P9_M1_SCIENTIFIC_SUBJECT=46735ef63f534e58987c6564a8bcbb9779290b23'
-          echo 'P9_M1_EXECUTION_BASE=db2f9320982bff29e2a0cb96048ca2c51b623875'
-          echo "P9_M1_EXECUTION_BRANCH_HEAD=$(git rev-parse HEAD)"
-          echo "P9_M1_GITHUB_EVENT_SHA=${GITHUB_SHA}"
-          CHANGED="$(git diff --name-only db2f9320982bff29e2a0cb96048ca2c51b623875..HEAD)"
-          printf '%s\n' "$CHANGED"
-          test "$CHANGED" = '.github/workflows/p9-m1-experiment.yml'
-          test "$(git diff --name-only 46735ef63f534e58987c6564a8bcbb9779290b23..db2f9320982bff29e2a0cb96048ca2c51b623875)" = '.github/workflows/ci.yml'
       - run: python -m pip install -e '.[dev,candidates]'
-      - name: M1 focused tests after v1.5 smoke-fixture repair
-        run: pytest -q tests/test_p9_m1.py
-      - name: Execute frozen M1 v1.3 scientific protocol
-        run: >-
-          python research/extensions/p9-structured-neural/run_m1.py
-          --output "$RUNNER_TEMP/m1-results.json"
-          > "$RUNNER_TEMP/m1-full-output.log"
-      - name: Print compact M1 result
+      - name: M1 focused tests
+        run: pytest -q tests/test_p9_m1.py tests/test_p9_m1_v12.py
+      - name: Replay frozen M1 on this exact PR head
+        run: python research/extensions/p9-structured-neural/run_m1.py --output "$RUNNER_TEMP/m1-results.json" > "$RUNNER_TEMP/m1-full-output.log"
+      - name: Assert official M1 identity
         env:
           RESULT: ${{ runner.temp }}/m1-results.json
         run: |
           python - <<'PY'
-          import json, os
-          result = json.load(open(os.environ['RESULT'], encoding='utf-8'))
-          print('P9_M1_TERMINAL=' + result['terminal'])
-          print('P9_M1_RESULT_DIGEST=' + result['result_digest'])
-          print('P9_M1_CORPUS_DIGEST=' + result['corpus_manifest_digest'])
-          for view_name, view in result['views'].items():
-              overall = view['test_overall']
-              print(
-                  'P9_M1_VIEW '
-                  f"view={view_name} accuracy={overall['accuracy']:.6f} "
-                  f"ceiling={overall['exact_view_deterministic_accuracy_ceiling']:.6f} "
-                  f"gap={overall['ceiling_gap']:.6f} "
-                  f"violation={overall['ceiling_violation']}"
-              )
-              for task_name, task in view['tasks'].items():
-                  selected = task['selected']
-                  print(
-                      'P9_M1_SELECTED '
-                      f"view={view_name} task={task_name} "
-                      f"feature={selected['feature_family']} "
-                      f"model={selected['config_id']} "
-                      f"dev={selected['dev']['accuracy']:.6f} "
-                      f"test={task['test']['accuracy']:.6f}"
-                  )
+          import json, os, pathlib
+          got=json.load(open(os.environ['RESULT'], encoding='utf-8'))
+          archived=json.load(open('research/extensions/p9-structured-neural/execution/M1_EXECUTION_RESULT_V1_5.json', encoding='utf-8'))
+          assert got['terminal']=='M1_GLOBAL_COMPOSITION_RESIDUAL', got['terminal']
+          assert got['result_digest']=='sha256:01e1b62da27b424d453c63b798a5cbb13a915a4546b8ced68fcf84c32d04d97e', got['result_digest']
+          assert got['corpus_manifest_digest']=='sha256:01ae54ca4d8cf423b0ac20bf0e085f1ecdf6cec7a1f142cc09b5df0a90d9cc3a'
+          assert got['result_digest']==archived['result_digest']
+          assert got['terminal']==archived['terminal']
+          print('P9_M1_EXACT_HEAD_REPLAY=true')
+          print('P9_M1_RESULT_DIGEST='+got['result_digest'])
           PY
-      - name: Persist M1 result on execution branch
-        env:
-          RESULT: ${{ runner.temp }}/m1-results.json
-        run: |
-          mkdir -p research/extensions/p9-structured-neural/execution
-          cp "$RESULT" research/extensions/p9-structured-neural/execution/M1_EXECUTION_RESULT_V1_5.json
-          python - <<'PY'
-          import json, os, pathlib, subprocess
-          result=json.loads(pathlib.Path(os.environ['RESULT']).read_text())
-          receipt={
-              'schema':'P9.M1ExecutionReceipt.v1.5',
-              'scientific_subject':'46735ef63f534e58987c6564a8bcbb9779290b23',
-              'scientific_protocol':'P9.M1Protocol.v1.3',
-              'execution_routing':'P9.M1ExecutionRouting.v1.4',
-              'smoke_fixture_amendment':'P9.M1SmokeFixtureAmendment.v1.5',
-              'execution_base':'db2f9320982bff29e2a0cb96048ca2c51b623875',
-              'execution_branch_head':subprocess.check_output(['git','rev-parse','HEAD'], text=True).strip(),
-              'github_event_sha':os.environ['GITHUB_SHA'],
-              'result_digest':result['result_digest'],
-              'corpus_manifest_digest':result['corpus_manifest_digest'],
-              'terminal':result['terminal'],
-              'authority':'OFFICIAL_FOCUSED_EXECUTION_PENDING_SCIENTIFIC_PR_INTEGRATION'
-          }
-          pathlib.Path('research/extensions/p9-structured-neural/execution/M1_EXECUTION_RECEIPT_V1_5.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
-          PY
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add research/extensions/p9-structured-neural/execution/M1_EXECUTION_RESULT_V1_5.json research/extensions/p9-structured-neural/execution/M1_EXECUTION_RECEIPT_V1_5.json
-          git commit -m 'P9 M1 v1.5: persist focused protected result'
-          git push origin HEAD:execution3/p9-m1-v15-20260819
-      - name: Upload M1 result
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
-          name: p9-m1-results-v15-${{ github.sha }}
+          name: p9-m1-exact-head-${{ github.sha }}
           path: ${{ runner.temp }}/m1-results.json
           if-no-files-found: error
