@@ -1,0 +1,40 @@
+name: p9-s3-access-result
+
+on:
+  pull_request:
+    paths:
+      - 'src/orion/study/p9/s3_access.py'
+      - 'src/orion/study/p9/s3_experiment.py'
+      - 'tests/test_p9_s3_access_attribution.py'
+      - 'research/extensions/p9-structured-neural/successors/S3_ACCESS_ATTRIBUTION_PROTOCOL_V1*.json'
+      - 'research/extensions/p9-structured-neural/successors/S3_PRE_RESULT_EXPECTATION_V1.json'
+      - 'research/extensions/p9-structured-neural/run_s3_access.py'
+      - '.github/workflows/p9-s3-access-result.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  protected-s3:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install -e '.[dev,candidates]'
+      - name: Re-run pre-protected S3 hostile gate
+        run: pytest -q tests/test_p9_s3_access_attribution.py tests/test_p9_d1.py
+      - name: Execute frozen protected S3 corrective attribution
+        run: >-
+          python research/extensions/p9-structured-neural/run_s3_access.py
+          --out research/extensions/p9-structured-neural/results/s3-access-attribution-result.json
+          --subject-sha "$GITHUB_SHA"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p9-s3-access-result
+          path: research/extensions/p9-structured-neural/results/s3-access-attribution-result.json
+          if-no-files-found: error
