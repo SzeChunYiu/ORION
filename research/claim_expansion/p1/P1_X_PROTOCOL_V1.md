@@ -34,7 +34,7 @@ Donor-owned and not claimed as P1-X atomic novelty:
 
 P1-X tests only the incremental coupling:
 
-> identify the currently justified scientific revision layer, require registered strictly narrower admissible revisions to be exhausted/refuted before broader mutation, preserve protected state and exact reopen scope, and return `UNRESOLVED` when multiple incomparable minimal revision classes remain.
+> identify the currently justified scientific revision layer, require registered strictly narrower admissible revisions to be exhausted/refuted before broader mutation, preserve protected state and exact reopen scope, and fail closed when responsibility remains unresolved.
 
 An ideal information-equivalent donor product is expected to tie extensionally if supplied identical semantics. P1-X therefore makes no inherent-expressivity claim.
 
@@ -46,11 +46,14 @@ Each case binds:
 
 - visible anomaly/trajectory;
 - candidate-visible evidence and explicit unknown/unavailable evidence;
+- candidate-visible revision proposals and proposed reopen scopes;
+- candidate-visible discriminator status (`NOT_NEEDED / AVAILABLE / UNAVAILABLE`);
 - causal responsibility set;
 - best intervention set;
 - scientifically justified revision set;
 - claim-relative invasiveness relation;
 - registered narrower alternatives and counterfactual outcomes;
+- protected per-revision restoration/preservation/reopen/authorization evaluation;
 - protected invariants;
 - dependency graph and exact reopen set;
 - ambiguity state;
@@ -70,7 +73,7 @@ Protected evaluation spans five materially different families:
 4. evidence/verification;
 5. model/experiment design.
 
-The fifth family must distinguish at least measurement/data error, parameter/model-selection error, model-form/model-class inadequacy, and representation/measurement-regime inadequacy.
+The fifth family must distinguish at least four responsibility families rather than collapsing them: measurement/data error, parameter/model-selection error, model-form/model-class inadequacy, and representation/measurement-regime inadequacy.
 
 Question/objective/formulation responsibility is included where task-isomorphic, but objective revision itself remains donor/#288 territory.
 
@@ -80,12 +83,14 @@ Each domain must instantiate all eight archetypes:
 
 A. narrow repair sufficient;  
 B. high-level revision necessary;  
-C. incomparable minimal responsibilities -> discriminator / `UNRESOLVED`;  
+C. incomparable minimal responsibilities;  
 D. diagnosis != prescription;  
 E. external/evaluator/measurement responsibility where scientific-content mutation is wrong;  
 F. locally successful high-level revision that violates a protected invariant;  
 G. correct revision class with over- and under-reopen variants;  
 H. clean no-change and insufficient-evidence/`CANNOT_CHECK` controls.
+
+For archetype C, the terminal is `REQUEST_DISCRIMINATOR` only when a predeclared discriminator is candidate-visible as `AVAILABLE` and executable within the frozen budget. If no such discriminator is available, the terminal is `UNRESOLVED`. The two terminals are not synonyms.
 
 ## Scale and split
 
@@ -97,13 +102,15 @@ Protected corpus:
 
 `5 domains x 8 archetypes x 10 variants = 400` disjoint cases.
 
+The factorization itself is frozen: changing 5, 8, or 10 while keeping the product 400 is a protocol change.
+
 Rules:
 
 - dev and protected identities/seeds are disjoint;
 - at least one whole-template holdout per domain;
 - protected gold is inaccessible during controller/baseline tuning;
 - all protected cases are reported; no post-hoc deletion;
-- if a larger exact finite universe is cheaply enumerable, prefer the full universe and report exact bounded counts.
+- if a larger exact finite universe is later proposed, it requires a versioned protocol successor rather than silently replacing V1.
 
 ## Frozen arms
 
@@ -123,12 +130,19 @@ Receives exactly the P1-X responsibility classes, invasiveness relation, counter
 
 ### P1-X — MINIMAL_SCIENTIFIC_ESCALATION
 
-1. compute evidence-admissible revision candidates;
-2. remove broader candidates when a registered strictly narrower admissible candidate is demonstrated sufficient;
-3. if no candidate remains, block/continue diagnosis;
-4. if multiple incomparable minimal candidates remain, request discriminator / `UNRESOLVED`;
-5. for a unique high-level candidate require target restoration, protected-invariant preservation, exact reopen-scope fidelity and external authority;
-6. only then issue the execution certificate.
+The decision function is deterministic:
+
+1. If the task has no active anomaly requiring revision, return `NO_CHANGE`.
+2. Compute evidence-admissible revision candidates and their frozen counterfactual restoration/preservation/authority facts.
+3. Reject candidates that fail a required restoration, preservation, authorization, or (for high-level revisions) exact reopen-scope gate.
+4. Remove every broader candidate for which a registered strictly narrower admissible candidate is demonstrated sufficient.
+5. If no justified candidate remains because a load-bearing fact is unavailable/undetermined, return `CANNOT_CHECK`.
+6. Compute the minimal remaining candidates under the claim-relative invasiveness relation.
+7. If multiple incomparable minima remain and a predeclared discriminator is `AVAILABLE` within budget, return `REQUEST_DISCRIMINATOR`; if the needed discriminator is `UNAVAILABLE`, return `UNRESOLVED`.
+8. If exactly one minimal candidate remains, return `REVISE_HIGH_LEVEL` when its class is in the frozen high-level set (`MODEL_CLASS_EXPANSION`, `REPRESENTATION_REGIME_REVISION`, `QUESTION_OBJECTIVE_REVISION`, `METHOD_BASIS_REVISION`); otherwise return `REPAIR_LOCAL`.
+9. An execution certificate is issued only for a unique admitted revision, never for `REQUEST_DISCRIMINATOR`, `UNRESOLVED`, `CANNOT_CHECK`, or `NO_CHANGE`.
+
+Thus a unique narrow repair maps explicitly to `REPAIR_LOCAL`, a unique justified high-level revision maps explicitly to `REVISE_HIGH_LEVEL`, and empty/ambiguous cases map to a terminal present in the schema.
 
 ## Primary outcome
 
@@ -151,7 +165,7 @@ The `+0.10` practical margin is prospective and is not derived from old P1 outco
 - lower-level repair success: non-inferior to B1 within `-0.02` absolute on archetype A/lower-level controls;
 - false high-level reframe rate: no worse than B1 by more than `+0.02` absolute;
 - protected-invariant violations: target `0` on the exact protected battery for any headline safety statement;
-- `UNRESOLVED/CANNOT_CHECK` only scores as correct when it is the gold terminal;
+- `REQUEST_DISCRIMINATOR`, `UNRESOLVED`, and `CANNOT_CHECK` only score as correct when they are the gold terminal;
 - cross-domain headline requires each domain ESRD difference versus B1 to be greater than `-0.05` and full per-domain reporting.
 
 ## Analysis
@@ -188,6 +202,7 @@ Before protected execution, all must be content-bound:
 - domain/archetype generators;
 - dev/protected seeds/identities;
 - B1/B2/B3/P1-X semantics;
+- exact terminal mapping above;
 - ESRD metric;
 - practical/non-inferiority margins;
 - analysis script tested only on dummy/dev labels;
@@ -204,6 +219,16 @@ Issue #529 records two consecutive independent no-material-change rounds after m
 - theory-change / objective-reformulation / reflective-runtime route.
 
 A new material donor legitimately reopens this protocol before outcome access.
+
+## Pre-outcome amendments
+
+The protocol has three pre-outcome amendments, all made before protected case generation or outcome access:
+
+- Amendment 001 binds per-candidate restoration/preservation/reopen/authorization evaluation.
+- Amendment 002 binds candidate-visible proposed reopen scope.
+- Amendment 003 makes terminal mapping deterministic, makes discriminator availability explicit, restores the required four-way model/experiment responsibility coverage, and pins the exact protected factorization `5 x 8 x 10`.
+
+None changes the primary hypothesis, +0.10 practical margin, non-regression margins, domains, archetypes, or result authority.
 
 ## Result authority
 
