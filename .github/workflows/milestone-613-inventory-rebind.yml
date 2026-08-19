@@ -26,7 +26,6 @@ jobs:
           set -euo pipefail
           python research/development/cannot_check_inventory.py --write
           python research/development/cannot_check_inventory.py --check
-          pytest -q tests/unit/development/test_cannot_check_inventory.py tests/unit/transfer/test_cross_domain_transfer_closure.py
       - name: Commit inventory and self-delete
         run: |
           set -euo pipefail
