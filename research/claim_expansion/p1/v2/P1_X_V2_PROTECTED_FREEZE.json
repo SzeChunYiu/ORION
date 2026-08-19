@@ -1,0 +1,43 @@
+{
+  "schema_version": "P1_X_V2_PROTECTED_FREEZE",
+  "date": "2026-08-19",
+  "namespace": "P1_X_PROTECTED_V2_REPLICATION_2026-08-19",
+  "predecessor_v1_terminal": "P1_X_V1_PROTOCOL_POSITIVE__COMPARATOR_FAIRNESS_REOPENED",
+  "v2_outcome_access_authorized": false,
+  "identity_generation": {
+    "domain_order": [
+      "SOFTWARE_DEBUGGING",
+      "SCIENTIFIC_RETRIEVAL",
+      "SEMANTIC_INTEGRATION",
+      "EVIDENCE_VERIFICATION",
+      "MODEL_EXPERIMENT_DESIGN"
+    ],
+    "archetype_order": [
+      "NARROW_REPAIR_SUFFICIENT",
+      "HIGH_LEVEL_REVISION_NECESSARY",
+      "INCOMPARABLE_MINIMA",
+      "DIAGNOSIS_NOT_PRESCRIPTION",
+      "EXTERNAL_EVALUATOR_MEASUREMENT_RESPONSIBILITY",
+      "LOCAL_SUCCESS_PRESERVATION_FAILURE",
+      "REOPEN_SCOPE_MISMATCH",
+      "CLEAN_OR_INSUFFICIENT_EVIDENCE_CONTROL"
+    ],
+    "replicate_range_inclusive": [1, 10],
+    "case_id_format": "P1X-V2-PROTECTED-{DOMAIN}-{ARCHETYPE}-R{REPLICATE:02d}",
+    "seed_formula": "sha256(namespace + ':' + case_id)",
+    "pair_canonicalization": "domain_order then archetype_order then ascending replicate; each line case_id|seed_commitment",
+    "all_400_pairs_sha256": "cf5e2ca83bb369c004e4bba28dcba144d0d545c18664999bb64b910d0d392d27",
+    "first_case_id": "P1X-V2-PROTECTED-SOFTWARE_DEBUGGING-NARROW_REPAIR_SUFFICIENT-R01",
+    "first_seed_commitment": "6c7e427af4a0cade30ef1aa4b61e4f42d355e706ceea9b4dbccef2f989d7fde0",
+    "last_case_id": "P1X-V2-PROTECTED-MODEL_EXPERIMENT_DESIGN-CLEAN_OR_INSUFFICIENT_EVIDENCE_CONTROL-R10",
+    "last_seed_commitment": "a074af47b48929897e1e9b26da68bd117e7bc56c183abd356f77bc6e2b4ccdc1"
+  },
+  "scale": {"domains": 5, "archetypes_per_domain": 8, "replicates_per_archetype": 10, "total_cases": 400},
+  "rules": {
+    "v1_case_ids_reused": false,
+    "v1_seed_commitments_reused": false,
+    "proposal_order_seed_permuted": true,
+    "controller_changes_after_v2_access_forbidden": true,
+    "all_400_reported": true
+  }
+}

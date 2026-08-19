@@ -1,0 +1,50 @@
+{
+  "schema_version": "P1_X_ARCHITECTURE_INDEPENDENCE_RESULT_V1",
+  "date": "2026-08-19",
+  "outcome_access_receipt_commit": "f12ba2c47d45731685f0c2dae04cc1e11cc3ab50",
+  "case_count": 200,
+  "combination_count": 4,
+  "total_arm_case_evaluations": 3200,
+  "identity_pairs_sha256": "a6b4ec82984cc208cf0d03c7bb4e64127e3ffea7592e70a90d2a6291305739e9",
+  "combinations": {
+    "D_FORWARD_R_FORWARD": {
+      "arm_correct": {"P1X_MINIMAL_SCIENTIFIC_ESCALATION": 200, "B1_DONOR_COMPLETE_GREEDY": 138, "B2_SUCCESS_AUTHORIZES_REFRAME": 100, "B3_IDEAL_TYPED_PRODUCT": 200},
+      "b3_mismatches": 0,
+      "p1x_false_high_level_reframes": 0,
+      "p1x_invariant_violations": 0,
+      "budget_violations": 0,
+      "per_domain_p1x_minus_b1": {"SOFTWARE_DEBUGGING": 0.3, "SCIENTIFIC_RETRIEVAL": 0.3, "SEMANTIC_INTEGRATION": 0.325, "EVIDENCE_VERIFICATION": 0.275, "MODEL_EXPERIMENT_DESIGN": 0.35},
+      "pass": true
+    },
+    "D_FORWARD_R_REVERSE": {
+      "arm_correct": {"P1X_MINIMAL_SCIENTIFIC_ESCALATION": 200, "B1_DONOR_COMPLETE_GREEDY": 112, "B2_SUCCESS_AUTHORIZES_REFRAME": 100, "B3_IDEAL_TYPED_PRODUCT": 200},
+      "b3_mismatches": 0,
+      "p1x_false_high_level_reframes": 0,
+      "p1x_invariant_violations": 0,
+      "budget_violations": 0,
+      "per_domain_p1x_minus_b1": {"SOFTWARE_DEBUGGING": 0.45, "SCIENTIFIC_RETRIEVAL": 0.45, "SEMANTIC_INTEGRATION": 0.425, "EVIDENCE_VERIFICATION": 0.475, "MODEL_EXPERIMENT_DESIGN": 0.4},
+      "pass": true
+    },
+    "D_REVERSE_R_FORWARD": {
+      "arm_correct": {"P1X_MINIMAL_SCIENTIFIC_ESCALATION": 200, "B1_DONOR_COMPLETE_GREEDY": 138, "B2_SUCCESS_AUTHORIZES_REFRAME": 100, "B3_IDEAL_TYPED_PRODUCT": 200},
+      "b3_mismatches": 0,
+      "p1x_false_high_level_reframes": 0,
+      "p1x_invariant_violations": 0,
+      "budget_violations": 0,
+      "per_domain_p1x_minus_b1": {"SOFTWARE_DEBUGGING": 0.3, "SCIENTIFIC_RETRIEVAL": 0.3, "SEMANTIC_INTEGRATION": 0.325, "EVIDENCE_VERIFICATION": 0.275, "MODEL_EXPERIMENT_DESIGN": 0.35},
+      "pass": true
+    },
+    "D_REVERSE_R_REVERSE": {
+      "arm_correct": {"P1X_MINIMAL_SCIENTIFIC_ESCALATION": 200, "B1_DONOR_COMPLETE_GREEDY": 112, "B2_SUCCESS_AUTHORIZES_REFRAME": 100, "B3_IDEAL_TYPED_PRODUCT": 200},
+      "b3_mismatches": 0,
+      "p1x_false_high_level_reframes": 0,
+      "p1x_invariant_violations": 0,
+      "budget_violations": 0,
+      "per_domain_p1x_minus_b1": {"SOFTWARE_DEBUGGING": 0.45, "SCIENTIFIC_RETRIEVAL": 0.45, "SEMANTIC_INTEGRATION": 0.425, "EVIDENCE_VERIFICATION": 0.475, "MODEL_EXPERIMENT_DESIGN": 0.4},
+      "pass": true
+    }
+  },
+  "pass": true,
+  "claim_scope": "interface/policy ordering invariance under matched information on exact heterogeneous contract cases; not deployed-engine generality",
+  "terminal": "P1_X_ARCH_INTERFACE_INDEPENDENCE_SUPPORTED"
+}
