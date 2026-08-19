@@ -1,0 +1,23 @@
+{
+  "version": "FailureAtlasNormalization.v1",
+  "schema_version": "FailureAtlasSchema.v1",
+  "purpose": "Canonicalize pilot-specific wording to the pre-frozen common vocabulary without adding a new failure coordinate.",
+  "material_schema_change": false,
+  "aliases": {
+    "response_type_ids": {
+      "AUTHORITY_OR_VALIDATION_REPAIR": "REDESIGN_INTERFACE_OR_SYSTEM"
+    },
+    "successor_transition_class": {
+      "NARROW_CLAIM_OR_DOMAIN": "PARAMETER_OR_METHOD_UPDATE",
+      "OPEN_SUCCESSOR_SEARCH": "CANNOT_INFER",
+      "REDESIGN_INTERFACE_OR_SYSTEM": "MODEL_CLASS_EXPANSION"
+    }
+  },
+  "rationale": {
+    "AUTHORITY_OR_VALIDATION_REPAIR": "The common response enum stores the concrete redesign/validation action; authority repair remains available as a successor-transition value.",
+    "NARROW_CLAIM_OR_DOMAIN": "A narrowed formal/scientific target is represented as a method/parameter-level successor rather than a new schema coordinate.",
+    "OPEN_SUCCESSOR_SEARCH": "An open search does not yet identify the successor transition and is therefore fail-closed to CANNOT_INFER.",
+    "REDESIGN_INTERFACE_OR_SYSTEM": "A system redesign is represented at the successor layer as a model/architecture expansion."
+  },
+  "reopen_rule": "Any pilot value that cannot map to an existing FailureAtlasSchema.v1 coordinate without loss of the registered scientific distinction is a material schema change and resets saturation."
+}
