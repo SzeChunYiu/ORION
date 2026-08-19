@@ -10,6 +10,8 @@ from __future__ import annotations
 
 from typing import Sequence
 
+from orion.transfer.v2.canonical import content_digest
+
 from . import m1 as _base
 from .m0_tasks import TaskKind
 from .m1 import ModelFamily, ModelSpec, PredictionRecord, frozen_model_specs
@@ -18,6 +20,7 @@ from .structural_world import ViewMode
 
 
 _ORIGINAL_CURVE = _base._train_size_curve
+_ORIGINAL_RUN = _base.run_m1
 
 
 def _safe_train_size_curve(
@@ -61,7 +64,14 @@ def _safe_train_size_curve(
 
 
 _base._train_size_curve = _safe_train_size_curve
-run_m1 = _base.run_m1
+
+
+def run_m1(**kwargs):
+    result = _ORIGINAL_RUN(**kwargs)
+    result["protocol"] = "P9.M1Protocol.v1.1"
+    result.pop("result_digest", None)
+    result["result_digest"] = content_digest(result)
+    return result
 
 
 __all__ = [
