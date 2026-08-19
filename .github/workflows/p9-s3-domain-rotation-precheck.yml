@@ -1,0 +1,27 @@
+name: p9-s3-domain-rotation-precheck
+
+on:
+  pull_request:
+    paths:
+      - 'src/orion/study/p9/s3_rotation.py'
+      - 'tests/test_p9_s3_domain_rotations.py'
+      - 'research/extensions/p9-structured-neural/successors/S3_DOMAIN_ROTATION_PROTOCOL_V1.json'
+      - '.github/workflows/p9-s3-domain-rotation-precheck.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  preprotected:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install -e '.[dev,candidates]'
+      - name: Run S3R pre-protected hostile checks
+        run: pytest -q tests/test_p9_s3_domain_rotations.py tests/test_p9_s3_access_attribution.py tests/test_p9_d1.py
