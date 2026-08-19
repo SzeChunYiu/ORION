@@ -1,22 +1,29 @@
 """Runtime compatibility adapter for the frozen P9 D1 experiment.
 
-The original D1 implementation used a logistic constructor form that is not
-accepted by current scikit-learn.  This adapter preserves the frozen model grid
-and all scientific logic, replacing only logistic solver plumbing with a current
-three-class-capable solver.  The original file remains in history as the
-pre-execution implementation failure record.
+Execution protocol v1.2 composes two pre-outcome implementation corrections:
+
+1. dependency mutations reverse the existing stored dependency edges and fail
+   closed if topology is unchanged (`d1_data_runtime`);
+2. current scikit-learn logistic plumbing uses a three-class-capable solver.
+
+Data, features, model grid, train->dev selection, protected test, metrics and
+scientific terminal rules remain frozen.
 """
 
 from __future__ import annotations
 
+from orion.transfer.v2.canonical import content_digest
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 
+# Import for side effect before d1_experiment binds/uses the generator functions.
+from . import d1_data_runtime as _data_runtime  # noqa: F401
 from . import d1_experiment as _base
 from .d1_experiment import D1FeatureFamily, D1ModelSpec, exact_relational_comparator, features, model_specs
 
 
 _ORIGINAL_ESTIMATOR = _base._estimator
+_ORIGINAL_RUN = _base.run_d1
 
 
 def _compatible_estimator(spec: D1ModelSpec) -> Pipeline:
@@ -32,11 +39,15 @@ def _compatible_estimator(spec: D1ModelSpec) -> Pipeline:
     return Pipeline([("vectorizer", _base.DictVectorizer(sparse=True)), ("model", model)])
 
 
-# Patch only the module-local estimator factory used by the already frozen run_d1
-# function. Nothing about data, features, model grid, selection, metrics, or test
-# access changes.
 _base._estimator = _compatible_estimator
-run_d1 = _base.run_d1
+
+
+def run_d1(**kwargs):
+    result = _ORIGINAL_RUN(**kwargs)
+    result["protocol"] = "P9.D1MethodTransferProtocol.v1.2"
+    result.pop("result_digest", None)
+    result["result_digest"] = content_digest(result)
+    return result
 
 
 __all__ = [
