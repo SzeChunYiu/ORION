@@ -1,64 +1,73 @@
 # P8 candidate — A Theory of Epistemic Authority for Autonomous Science
 
-**Status:** `SUBMISSION_CONTENT_COMPLETE`; exact-head CI determines
-`PEER_REVIEW_READY` as specified in `JOURNAL_READINESS_V2_1.md`.
+**Current science:** `SCIENCE_CLOSED_V3`; PDF/typesetting refresh deferred.  
+**Current science manuscript:** `manuscript/FINAL_V3.md`.  
+**Historical V2/V2.1 formal core and JAAMAS submission/PDF bytes:** preserved and not relabelled V3.
 
-**Normative formal core:** `manuscript/FORMAL_CORE_V2.md` together with its
-superseding primitive-closure addendum `manuscript/FORMAL_CORE_V2_1.md`.
+**Parent:** #332. Theory #339. Literature #340. Evaluation #341. Anti-overlap #343. Claim-expansion successor #535.
 
-**Parent:** #332. Theory #339. Literature #340. Evaluation #341. Anti-overlap #343.
+## Current research question
 
-## Research question
+How can modern local authority mechanisms—action permission, delegation provenance, authorization receipts, typed evidence, scientific release gates, claim-evidence verification and claim adjudication—be composed without laundering their local authority into an unsupported scientific conclusion of a different type or scope?
 
-Can ORION's recurring distinction between **capability** and **authorization** be formalized once across heterogeneous epistemic actions—reframing, stopping, mapping, asserting, and self-modifying—without collapsing into P4's scientific-authority mechanism?
+## Current V3 contribution
 
-## Scoped contribution
+P8 now treats the strongest adjacent authority systems as **donor objects to absorb** rather than mechanisms to avoid.
 
-The candidate calculus separates:
+The final thirteen-donor envelope spans:
 
-- evidence/support and defeaters;
-- open obligations;
-- capability to perform an action;
-- proposed epistemic action;
-- authority to perform that action;
-- abstention / `CANNOT_CHECK`;
-- revocation/demotion after new defeaters;
-- protected/external custody where required;
-- non-compensatory obligations that cannot be offset by confidence or utility elsewhere.
+- evidence-backed permission graphs and runtime authorizers;
+- proof-carrying action certificates;
+- cryptographic delegation provenance;
+- authority narrowing/cascade containment;
+- principal-chain authorization;
+- typed verifier certificates;
+- heterogeneous authorization-evidence chains;
+- generic cross-domain authority relations;
+- domain scientific release harnesses;
+- chain-of-evidence claim verification;
+- contract-governed research artifacts;
+- evidence-calibrated claim adjudication;
+- evidence-ledger review.
 
-Potential action domains are typed: `REFRAME`, `SEARCH/STOP`, `MAP/MERGE`, `ASSERT`, and `SELF_MODIFY`.
+P8 preserves every donor-native verdict. It adds a bounded **scientific-authority lifting and composition calculus** governing when those local authority objects may discharge a target scientific obligation typed by `(domain, kind, scope, content, epoch)`.
+
+Scientific authority may be preserved or narrowed through heterogeneous chains. A widening hop requires an explicit complete protected coercion. Blocker state remains three-valued (`REFUTED / UNDETERMINED / ESTABLISHED`), with `UNDETERMINED -> CANNOT_CHECK`. Alternative complete support families make revocation exact rather than all-or-nothing. Action/release permission and scientific proposition support are explicitly non-inverse relations.
+
+## Exact V3 support
+
+Final X4 enumeration:
+- **39,936** exact authority states;
+- terminal counts: 19,968 `NO_DONOR_AUTHORITY`, 15,353 `BLOCK`, 3,328 `CANNOT_CHECK`, 1,287 `DISCHARGE`;
+- **0** donor-conservativity violations;
+- **65** minimal scientific-type separations;
+- **65** protected-coercion successes + **65** matched unprotected countermodels;
+- blocker law over all 13 donors;
+- **26** one-support-family revocation survivals + **13** all-support-family blocks;
+- **169** valid heterogeneous ordered-chain compositions + **169** matched scientific-authority-widening countermodels;
+- **0** ideal decentralized-product mismatches;
+- canonical rows SHA-256 `ed186b824692fd5b3ab31be718c75b84e2126b577ce921ca5cc01b2d08ae19e6`.
+
+A separate implementation independently reconstructs the final enumeration.
+
+## Wider allowed claim
+
+> P8 composes modern action authorization, delegation provenance, heterogeneous authorization receipts, cross-domain authority relations, typed verifier certificates, scientific release gates, claim-evidence chains, research harnesses and evidence-ledger adjudication into a common scientific-discharge calculus. Local donor authority remains intact, while authority to establish a scientific conclusion propagates only through typed non-widening chains or protected coercions, fail-closed blocker semantics and surviving complete support families.
 
 ## Ownership boundary
 
-P4 already owns the empirically validated non-compensatory, non-escalating scientific-authority transition under protected custody. P8 is publishable only if #343 and #340 show that a cross-capability authorization calculus is a distinct scientific object with its own theorem/benchmark value, rather than a general-language restatement of P4.
+P4 retains within-domain empirical scientific-promotion evidence. P5/host retains self-change adoption/promotion authority. P8 does **not** claim novelty for generic permission, delegation, provenance, authority narrowing, heterogeneous receipt composition, cross-domain generic authority, typed evidence, domain scientific-release gating, claim-evidence verification or local scientific adjudication. An ideal decentralized product carrying the exact same scientific type/support/blocker/coercion/composition rules ties P8 extensionally.
 
-### Explicit nonclaims
+## Current source map
 
-P8 does not currently claim novelty for abstention, provenance, verification, deontic logic, belief revision, safety constraints, protected evaluation, or governance individually.
+- `manuscript/FINAL_V3.md` — current science manuscript overlay;
+- `CLAIM_LEDGER_V3.md` — current claim authority;
+- `submission/P8_X4_AUTHORITY_COMPOSITION_SECTION.tex` — render-ready successor section;
+- `submission/P8_X4_DONOR_REFERENCES.md` — donor identity/ownership ledger for later bibliography audit;
+- `research/claim_expansion/p8/P8_X4_FINAL_DONOR_ENGULFMENT_V1.md` — final donor extraction/improvement map;
+- `research/claim_expansion/p8/P8_X4_LITERATURE_FIXED_POINT_V1.md` — bounded literature fixed point;
+- `research/claim_expansion/p8/P8_X4_SCIENCE_TERMINAL_V1.md` — science terminal.
 
-## Constructive nearest-work result
+## Explicit nonclaims
 
-The first pass surfaced AgentAbstain, ProvenanceGuard, the 2026 execution-provenance survey, dynamic epistemic/belief-change logic, and P4's already extensive verification/integrity nearest-work set.
-
-The hostile novelty question is:
-
-> Is there already a formal or operational framework that types heterogeneous epistemic actions and prevents authority from being laundered across modules, while using non-compensatory obligations and explicit revocation/CANNOT_CHECK states?
-
-Two dated, no-material-change closure rounds absorb authorization, usage-control,
-typed-effect, evidence-bound governance, provenance, abstention and current
-agent-governance donors. Broad authorization novelty is rejected. The surviving
-submission claim is the narrower target scientific-obligation discharge
-interface, full-type coercion composition, support-family revocation, and the
-shared-calculus/ideal-product equivalence negative theorem.
-
-## Evidence
-
-The frozen 17-case manifest contains five clean native-domain cases, paired
-blockers, five cross-domain laundering attacks, `CANNOT_CHECK`, and a positive
-registered coercion. The checker also covers the ideal typed-product comparator;
-P8 makes no empirical superiority claim.
-
-## Reviewer artifacts
-
-See `submission/JAAMAS_MANUSCRIPT.tex`, `CLAIM_LEDGER_V2.md`,
-`REPRODUCE_V2_1.md`, and `JOURNAL_READINESS_V2_1.md`.
+No deployed-agent superiority, public full-manuscript release result, universal minimality of the five type coordinates, global/exhaustive literature saturation, native-action-denial-as-scientific-refutation, or inherent centralization/expressivity advantage. PDF/package generation is deferred.
