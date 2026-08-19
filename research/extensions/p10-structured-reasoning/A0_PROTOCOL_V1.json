@@ -1,0 +1,78 @@
+{
+  "schema": "P10.A0ResponsibilityControlProtocol.v1",
+  "protocol_id": "p10-a0-responsibility-control-v1",
+  "status": "DESIGN_FROZEN_OUTCOME_UNACCESSED",
+  "outcome_accessed": false,
+  "subject_base": "f2d6b8b3f58da3e3577975ac5215c7439a9ffc5f",
+  "scientific_question": "holding proposal generation fixed, does responsibility-aware structured control add verified decision value beyond donor-complete serialized, dependency, feasibility, and history controls?",
+  "responsibility_classes": [
+    "LOCAL_ACTION",
+    "NEED_EVIDENCE",
+    "LOCAL_REPAIR",
+    "REFRAME_REPRESENTATION",
+    "UNRESOLVED"
+  ],
+  "proposal_kinds": [
+    "ACT",
+    "ACQUIRE_EVIDENCE",
+    "LOCAL_REPAIR",
+    "REFRAME_REPRESENTATION",
+    "UNRESOLVED"
+  ],
+  "candidate_packet_rule": "every case exposes exactly one candidate of every proposal kind; identities and order are reminted independently of gold",
+  "information_rule": "all non-null controller arms receive the same underlying typed evidence; representation/algorithm differs, not answer information",
+  "case_families": {
+    "LOCAL_ACTION": "current evidence is sufficient, local action preconditions hold, interface and representation are adequate",
+    "NEED_EVIDENCE": "local closure is not identifiable from current evidence; an admitted observation can discriminate the live alternatives",
+    "LOCAL_REPAIR": "task/method is adequate but an interface or evidence-binding defect blocks local execution and has a registered narrow repair",
+    "REFRAME_REPRESENTATION": "evidence is adequate but the current representation makes all local actions inadmissible; a registered representation transform restores a valid route",
+    "UNRESOLVED": "current state is non-identifying and no admitted observation, narrow repair, or representation transform resolves it under the registered bound"
+  },
+  "protected_holdouts": [
+    "surface reminting",
+    "same-surface different-responsibility hostile pairs",
+    "overreach controls where reframe would work only by changing unnecessary structure",
+    "missing-evidence controls where forced action is false closure",
+    "no-discriminator controls where query must not be invented"
+  ],
+  "arms": [
+    "FIRST_CANDIDATE_NULL",
+    "SERIALIZED_STATE_RULE",
+    "DEPENDENCY_SUPPORT_CONTROL",
+    "SYMBOLIC_FEASIBILITY_CONTROL",
+    "STRUCTURED_HISTORY_CONTROL",
+    "DONOR_COMPOSED_CONTROL",
+    "ORION_RESPONSIBILITY_CONTROL"
+  ],
+  "donor_mapping": {
+    "DEPENDENCY_SUPPORT_CONTROL": "Grounded Continuation style support/retraction graph",
+    "SYMBOLIC_FEASIBILITY_CONTROL": "SymPlanner/TAPE style explicit state feasibility/search",
+    "STRUCTURED_HISTORY_CONTROL": "structured trajectory/subtask memory family",
+    "DONOR_COMPOSED_CONTROL": "union of admitted donor-native signals without ORION-specific responsibility vocabulary"
+  },
+  "primary_metric": "verified responsibility-action accuracy",
+  "secondary_metrics": [
+    "unnecessary_reframe_rate",
+    "false_closure_rate",
+    "unresolved_accuracy",
+    "invalid_action_rate",
+    "decision_cost_units"
+  ],
+  "terminal_rules": {
+    "P10_RESPONSIBILITY_CONTROL_INCREMENTAL_VALUE": "ORION is perfect on protected cases and exceeds donor-composed control by >=0.10 absolute without worse false-closure or unnecessary-reframe rate",
+    "P10_EXISTING_STRUCTURED_CONTROL_SUFFICIENT": "donor-composed control matches ORION within 0.02 absolute and all safety diagnostics",
+    "P10_GRAPH_OR_SYMBOLIC_CONTROL_SUFFICIENT": "one dependency or feasibility donor control matches ORION within 0.02 absolute and all safety diagnostics",
+    "P10_STATE_MEMORY_ONLY_VALUE": "history control uniquely closes the residual and ORION adds <0.02",
+    "P10_NO_CONTROL_RESIDUAL": "simple serialized rule reaches the protected ceiling",
+    "CANNOT_CHECK": "benchmark or custody invariants fail"
+  },
+  "authority": "NO_SCIENTIFIC_AUTHORITY_PROTOCOL_ONLY",
+  "forbidden_post_outcome_changes": [
+    "responsibility classes",
+    "proposal packet",
+    "arm information",
+    "primary metric",
+    "terminal thresholds",
+    "protected case family proportions"
+  ]
+}
