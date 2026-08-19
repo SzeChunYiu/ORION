@@ -109,17 +109,20 @@ def reveal_diagnostics(
     """Reveal only observations licensed by the case budget.
 
     ``permutation`` supports the fake-adaptivity control: the prompt/case is fixed while
-    outcome identities are swapped.  A genuinely evidence-responsive policy should
-    change decisions on at least some cases under a non-trivial permutation.
+    outcome identities are swapped. A permutation is applied only when the target class
+    is a valid outcome of that same diagnostic; unrelated families remain unchanged.
+    This preserves the diagnostic's support instead of fabricating an impossible outcome.
     """
     observations: dict[str, str] = {}
     spent = 0
-    observed_class = case.gold_class
-    if permutation is not None:
-        observed_class = permutation.get(case.gold_class, case.gold_class)
     for diagnostic in case.diagnostics:
         if spent + diagnostic.cost > case.budget:
             continue
+        observed_class = case.gold_class
+        if permutation is not None:
+            candidate = permutation.get(case.gold_class, case.gold_class)
+            if candidate in diagnostic.observation_by_class:
+                observed_class = candidate
         observations[diagnostic.diagnostic_id] = diagnostic.observation_by_class[observed_class]
         spent += diagnostic.cost
     return observations
