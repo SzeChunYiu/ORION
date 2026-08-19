@@ -31,6 +31,25 @@ jobs:
       - run: python -m pip install -e '.[dev,candidates]'
       - name: Apply deterministic static P2-X promotion repair
         run: python papers/paper-02-open-world-scientific-discovery/scripts/repair_p2x_promotion_integrity.py
+      - name: Bind fetch registry to the exact titles already promoted in the bibliography
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('papers/paper-02-open-world-scientific-discovery/evidence/literature/fetch_literature_evidence.py')
+          text = path.read_text(encoding='utf-8')
+          replacements = {
+              'KnowPlan: An Actionable Knowledge Graph for Planning-grounded Retrieval-Augmented Generation': 'KNOWPLAN: An Information-Efficient Neuro-Symbolic Architecture for Zero-Retraining Data Engineering',
+              'Do Not Stop Too Early: An Information-Looking Framework for Adaptive Reliability in Deep Research': "Don't Stop Early: Scalable Enterprise Deep Research with Controlled Information Flow and Evidence-Aware Termination",
+              'Confidence Based Stopping Criteria for Reinforcement Learning': 'Confidence-Based Stopping Methods for Systematic Reviews',
+              'iCORE: A Cost Reduction Engine for Computer Use Agents via Internalized Execution': 'Auditing Emergent LLM-Agent Collaboration through Cooperation-Obligation Coupling',
+              'Intent Modeling for Customer Support with Scientific Computing and NLP': 'Toward a Science of Intent: Closure Gaps and Delegation Envelopes for Open-World AI Agents',
+          }
+          for old, new in replacements.items():
+              if old not in text and new not in text:
+                  raise SystemExit(f'P2-X fetcher title not found for replacement: {old}')
+              text = text.replace(old, new)
+          path.write_text(text, encoding='utf-8')
+          PY
       - name: Fetch live evidence for newly promoted P2-X bibliography entries
         run: >-
           python papers/paper-02-open-world-scientific-discovery/evidence/literature/fetch_literature_evidence.py
@@ -52,8 +71,9 @@ jobs:
           bad = []
           for key in keys:
               record = json.loads((root / f'{key}.json').read_text(encoding='utf-8'))
-              if record.get('verdict') in {'MISMATCH', 'CANNOT_CHECK'}:
-                  bad.append((key, record.get('verdict'), record.get('reason', '')))
+              verdict = record.get('verdict')
+              if verdict in {'MISMATCH', 'CANNOT_CHECK'}:
+                  bad.append((key, verdict, record.get('verdict_reason', '')))
           if bad:
               audit = root / 'LITERATURE_EVIDENCE_AUDIT_V1.md'
               text = audit.read_text(encoding='utf-8')
