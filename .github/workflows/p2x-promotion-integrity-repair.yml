@@ -1,0 +1,89 @@
+name: p2x-promotion-integrity-repair
+
+on:
+  pull_request:
+    paths:
+      - 'papers/paper-02-open-world-scientific-discovery/scripts/repair_p2x_promotion_integrity.py'
+      - '.github/workflows/p2x-promotion-integrity-repair.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p2x-integrity-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  repair:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: repair/p2x-claim-literature-integrity-20260819
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install -e '.[dev,candidates]'
+      - name: Apply deterministic static P2-X promotion repair
+        run: python papers/paper-02-open-world-scientific-discovery/scripts/repair_p2x_promotion_integrity.py
+      - name: Fetch live evidence for newly promoted P2-X bibliography entries
+        run: >-
+          python papers/paper-02-open-world-scientific-discovery/evidence/literature/fetch_literature_evidence.py
+          knowplan2026 donotstopearly2026 confidencebasedstop2026 icore2026 scienceintent2026
+      - name: Disclose any live-fetch mismatch or CANNOT_CHECK without laundering it
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('papers/paper-02-open-world-scientific-discovery/evidence/literature')
+          keys = [
+              'knowplan2026',
+              'donotstopearly2026',
+              'confidencebasedstop2026',
+              'icore2026',
+              'scienceintent2026',
+          ]
+          bad = []
+          for key in keys:
+              record = json.loads((root / f'{key}.json').read_text(encoding='utf-8'))
+              if record.get('verdict') in {'MISMATCH', 'CANNOT_CHECK'}:
+                  bad.append((key, record.get('verdict'), record.get('reason', '')))
+          if bad:
+              audit = root / 'LITERATURE_EVIDENCE_AUDIT_V1.md'
+              text = audit.read_text(encoding='utf-8')
+              summary = '; '.join(f'{k}={v}' for k, v, _ in bad)
+              line = f'\nP2-X promotion live-fetch disclosure: {summary}. See evidence records for exact reasons.\n'
+              if line.strip() not in text:
+                  audit.write_text(text.rstrip() + '\n' + line, encoding='utf-8')
+              print('P2_X_LITERATURE_NONVERIFIED=' + summary)
+          else:
+              print('P2_X_LITERATURE_ALL_VERIFIED=true')
+          PY
+      - name: Verify claim ledger fail-closed
+        run: python papers/paper-02-open-world-scientific-discovery/scripts/check_claim_ledger.py --check
+      - name: Run focused P2 integrity and P2-X result tests
+        run: >-
+          pytest -q
+          tests/unit/p2/test_p2_claim_ledger.py
+          tests/unit/p2/test_p2_literature_closure.py
+          tests/unit/study/p2_open_world/test_p2_x_protected_results.py
+      - name: Refresh journal-package hashes after bounded bookkeeping changes
+        run: python research/paper-programme-v1/journal_package/check_journal_package.py --write-hashes
+      - name: Recheck journal packages
+        run: python research/paper-programme-v1/journal_package/check_journal_package.py
+      - name: Commit verified P2 integrity repair to repair branch
+        run: |
+          git status --short
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            papers/paper-02-open-world-scientific-discovery \
+            tests/unit/p2/test_p2_claim_ledger.py
+          git commit -m 'P2: synchronize P2-X claim and literature evidence' || true
+          git push origin HEAD:repair/p2x-claim-literature-integrity-20260819
