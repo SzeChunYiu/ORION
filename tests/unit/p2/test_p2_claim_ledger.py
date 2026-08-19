@@ -229,9 +229,9 @@ def test_confirmatory_claim_without_support_is_caught(paper: Path) -> None:
 
 
 def test_unsupported_claim_may_not_be_downgraded_to_descriptive(paper: Path) -> None:
-    """support_type NONE_YET must stay at CANNOT_CHECK, not become DESCRIPTIVE."""
+    """The current asserted NONE_YET claim must stay CANNOT_CHECK, not DESCRIPTIVE."""
     ledger = load_ledger(paper)
-    claim(ledger, "P2-C03")["strength"] = "DESCRIPTIVE"
+    claim(ledger, "P2-X25")["strength"] = "DESCRIPTIVE"
     save_ledger(paper, ledger)
 
     proc = run(paper)
@@ -276,12 +276,12 @@ def test_new_unledgered_abstract_claim_is_caught(paper: Path) -> None:
 def test_new_unledgered_conclusion_claim_is_caught(paper: Path) -> None:
     main = paper / "manuscript" / "main.tex"
     source = main.read_text(encoding="utf-8")
-    marker = "rather than promoted.\n"
+    marker = "\n\\bibliographystyle{plain}\n"
     assert marker in source
     main.write_text(
         source.replace(
             marker,
-            marker + "\nThe system achieves a recall of 0.93 on the open web.\n",
+            "\nThe system achieves a recall of 0.93 on the open web.\n" + marker,
             1,
         ),
         encoding="utf-8",

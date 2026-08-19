@@ -1,0 +1,23 @@
+{
+  "bib_key": "icore2026",
+  "claimed_title": "Auditing Emergent LLM-Agent Collaboration through Cooperation-Obligation Coupling",
+  "claim_provenance": "pre_existing_independent_claim",
+  "fetch_url": "https://export.arxiv.org/api/query?id_list=2607.27429",
+  "fetched_utc": "2026-08-19T15:52:39Z",
+  "verdict": "VERIFIED",
+  "verdict_reason": "claimed title matches fetched title exactly (normalised)",
+  "fetched_title": "Auditing Emergent LLM-Agent Collaboration through Cooperation-Obligation Coupling",
+  "fetched_authors": [
+    "Zuyuan Zhang",
+    "Hanqing Yang",
+    "Carlee Joe-Wong",
+    "Tian Lan"
+  ],
+  "fetched_year": 2026,
+  "fetched_venue": "arXiv preprint",
+  "arxiv_id": "2607.27429v1",
+  "doi": null,
+  "published": "2026-07-29T19:56:38Z",
+  "updated": "2026-07-29T19:56:38Z",
+  "abstract": "LLM-agent systems can solve complex tasks through dynamic self-organization and emergent cooperation. Auditing this process is essential because plausible intermediate or final outputs can conceal incomplete or unsupported work and poorly allocated responsibility, ultimately compromising response quality. While existing approaches may record messages, tool calls, provenance, or task dependencies, an auditability gap exists as they do not jointly represent what work remains, who is responsible for it, and what evidence justifies each work-state transition. We address this auditability gap by proposing \\emph{Integrated Cooperation-Obligation REpresentation} (iCORE). It creates a unified encoding $X=(G,Q,Π)$ integrating observable interactions as a cooperation graph $G$, evolving work and assignments as an obligation graph $Q$, and the audit map $Π$ linking them with verifiable properties and evidence. This iCORE representation enables the auditor to certify two complementary properties: {Work soundness}, where every active decision-relevant work assertion must have a finite justification through $G$ and $Π$; and {Agent-assignment stability}, which requires that no feasible alternative agent improve the declared contribution value for an evaluated obligation by more than $ε$. We establish local-to-global soundness and assignment-regret guarantees and a performance bound under stated conditions. iCORE is an instrumentation layer over workflows. Numerical results show that the full coupled state exactly reconstructs soundness and assignment defects in two execution modes and that, relative to passive full-state observation, iCORE-Audit yields absolute trajectory-quality improvements of $11.5\\%$ and $26.4\\%$ in controlled and real-LLM execution, respectively, with corresponding absolute terminal-performance improvements of $15.1\\%$ and $31.0\\%$."
+}

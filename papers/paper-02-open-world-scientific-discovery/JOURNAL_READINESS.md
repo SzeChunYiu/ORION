@@ -44,6 +44,7 @@ Not claimed:
 - [x] AutoResearchBench Deep bounded official-judge probe retained at 0/600 with judge control 9/9; not relabelled positive.
 - [x] AutoResearchBench Wide bounded credential-free official probe retained as a weak/null stress test; not relabelled matched superiority.
 - [x] OpenAIRE structured-identity discriminator and subsequent 400-row matched campaign retained; the latter remains `P2_WIDE_EXTERNAL_CANNOT_CHECK` after 400 DOI-crosswalk HTTP 400 failures, with all Actions artifacts mirrored before expiry.
+- [x] P2-X post-saturation exact successor retained as bounded A1/A2 evidence: 400/400 P2-X versus 250/400 donor-complete available-route product on 400 exact heterogeneous acquisition contracts; independent verification passes, B3 ideal typed product ties 400/400, and deployed/retrieval-engine generality remains `CANNOT_CHECK`.
 - [x] Claim ledger binds all result-bearing abstract/results/limitations/conclusion sentences to immutable artifacts.
 
 ## 3. External gates — preserved, no longer blocking the narrowed paper
