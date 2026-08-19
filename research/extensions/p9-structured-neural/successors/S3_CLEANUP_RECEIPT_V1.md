@@ -1,0 +1,1 @@
+A temporary tooling/bookkeeping mistake created several redundant one-line marker files on this branch. They were deleted before opening the scientific draft PR. No protocol, hostile test, implementation, D1 data, label, split, or result was changed by the cleanup.
