@@ -11,8 +11,8 @@ from orion.study.p9.d1 import (
     D1Label,
     D1View,
     classify_methods,
-    generate_d1_dataset,
 )
+from orion.study.p9.d1_data_runtime import generate_d1_dataset, mutate_method
 from orion.study.p9.d1_runtime import (
     D1FeatureFamily,
     exact_relational_comparator,
@@ -23,15 +23,20 @@ from orion.study.p9.d1_runtime import (
 
 PROTOCOL_V1 = Path("research/extensions/p9-structured-neural/D1_PROTOCOL_V1.json")
 PROTOCOL_V11 = Path("research/extensions/p9-structured-neural/D1_PROTOCOL_V1_1.json")
+PROTOCOL_V12 = Path("research/extensions/p9-structured-neural/D1_PROTOCOL_V1_2.json")
 
 
-def test_d1_protocol_and_amendment_are_pre_outcome():
+def test_d1_protocol_and_amendments_are_pre_outcome():
     v1 = json.loads(PROTOCOL_V1.read_text())
     v11 = json.loads(PROTOCOL_V11.read_text())
+    v12 = json.loads(PROTOCOL_V12.read_text())
     assert v1["outcome_accessed"] is False
     assert v11["outcome_accessed"] is False
     assert v11["supersedes_for_execution"] == "P9.D1MethodTransferProtocol.v1"
     assert "dependency topology" in v11["reason"]
+    assert v12["outcome_accessed"] is False
+    assert v12["supersedes_for_execution"] == "P9.D1MethodTransferProtocol.v1.1"
+    assert "no semantic mutation" in v12["review_finding"]
 
 
 def test_d1_dataset_is_deterministic_domain_held_out_and_split_disjoint():
@@ -68,6 +73,24 @@ def test_d1_train_has_single_corruptions_test_has_protected_double_corruptions()
     )
     assert all(len(row.mutation_coordinates) <= 1 for row in (*dataset.train, *dataset.dev))
     assert any(len(row.mutation_coordinates) == 2 for row in dataset.test)
+
+
+def test_dependency_mutation_is_never_a_semantic_noop():
+    dataset = generate_d1_dataset(
+        seed="d1-dependency",
+        train_instances_per_base_pair=16,
+        dev_instances_per_base_pair=2,
+        test_instances_per_base_pair=2,
+    )
+    dependency_rows = [
+        row for row in dataset.train if row.mutation_coordinates == ("dependencies",)
+    ]
+    assert dependency_rows
+    for row in dependency_rows:
+        assert row.label is D1Label.OBSTRUCTION
+        left_topology = row.model_payload(D1View.TYPED)["left"]["dependencies"]
+        right_topology = row.model_payload(D1View.TYPED)["right"]["dependencies"]
+        assert left_topology != right_topology
 
 
 def test_d1_exact_labels_include_aligned_obstruction_and_unresolved():
@@ -181,6 +204,7 @@ def test_d1_small_smoke_is_deterministic_and_non_authorizing():
     replay = run_d1(**kwargs)
     assert first == replay
     assert first["schema"] == "P9.D1MethodTransferResult.v1"
+    assert first["protocol"] == "P9.D1MethodTransferProtocol.v1.2"
     assert first["exact_typed_relational_comparator"]["accuracy"] == pytest.approx(1.0)
     assert first["scientific_authority"] == "NONE_UNTIL_INDEPENDENT_VERIFICATION"
     assert first["grants_paper_readiness"] is False
