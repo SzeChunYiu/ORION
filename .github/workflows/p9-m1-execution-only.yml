@@ -8,7 +8,7 @@ on:
       - '.github/workflows/p9-m1-execution-only.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   m1:
@@ -16,6 +16,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -64,6 +66,33 @@ jobs:
                       f"test={task['test']['accuracy']:.6f}"
                   )
           PY
+      - name: Persist execution result to isolated branch
+        env:
+          RESULT: ${{ runner.temp }}/m1-results.json
+        run: |
+          mkdir -p research/extensions/p9-structured-neural/execution
+          cp "$RESULT" research/extensions/p9-structured-neural/execution/M1_EXECUTION_RESULT_V1_4.json
+          python - <<'PY'
+          import json, os, pathlib
+          p = pathlib.Path('research/extensions/p9-structured-neural/execution/M1_EXECUTION_RESULT_V1_4.json')
+          result = json.loads(p.read_text())
+          receipt = {
+              'schema': 'P9.M1ExecutionReceipt.v1.4',
+              'scientific_subject': 'ad4a5a0a722c0612222d10aa9cc9dd1ad49b1898',
+              'execution_commit': os.environ['GITHUB_SHA'],
+              'protocol': result['protocol'],
+              'result_digest': result['result_digest'],
+              'corpus_manifest_digest': result['corpus_manifest_digest'],
+              'terminal': result['terminal'],
+              'authority': 'OFFICIAL_EXECUTION_ONLY_PENDING_PR_INTEGRATION'
+          }
+          pathlib.Path('research/extensions/p9-structured-neural/execution/M1_EXECUTION_RECEIPT_V1_4.json').write_text(json.dumps(receipt, indent=2, sort_keys=True)+'\n')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/extensions/p9-structured-neural/execution/M1_EXECUTION_RESULT_V1_4.json research/extensions/p9-structured-neural/execution/M1_EXECUTION_RECEIPT_V1_4.json
+          git commit -m 'P9 M1 v1.4: persist isolated execution result'
+          git push origin HEAD:execution/p9-m1-v14-20260819
       - uses: actions/upload-artifact@v4
         with:
           name: p9-m1-results-execution-${{ github.sha }}
