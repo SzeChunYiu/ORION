@@ -273,7 +273,7 @@ def compare(official: dict[str, object], reproduced: dict[str, object]) -> dict[
     material = sum(1 for item in discrepancies if item["material"])
     return {
         "schema": "P9.S3IndependentVerification.v1",
-        "preartifact_verifier": true,
+        "preartifact_verifier": True,
         "parent_d1_result_digest": PARENT_RESULT_DIGEST,
         "discrepancies": discrepancies,
         "discrepancy_counts": {
