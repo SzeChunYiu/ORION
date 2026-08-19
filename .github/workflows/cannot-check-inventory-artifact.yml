@@ -1,0 +1,25 @@
+name: cannot-check-inventory-artifact
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  derive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Derive inventory
+        run: python research/development/cannot_check_inventory.py --write
+      - name: Upload derived inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: cannot-check-inventory-derived
+          path: research/development/cannot_check_inventory.json
+          if-no-files-found: error
