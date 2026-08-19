@@ -1,5 +1,5 @@
 {
-  "blocker_sites": 469,
+  "blocker_sites": 474,
   "classification": {
     "INSUFFICIENT_EVIDENCE": 10,
     "MISSING_ACCESS": 5,
@@ -7,7 +7,7 @@
     "MISSING_DECLARATION": 67,
     "MISSING_IDENTITY": 29,
     "UNAVAILABLE_PROVIDER": 12,
-    "UNCLASSIFIED": 318
+    "UNCLASSIFIED": 323
   },
   "closes_gate": null,
   "grants_authority": "NONE",
@@ -2652,7 +2652,7 @@
       "file": "knowledge/mechanism_assimilation.py",
       "has_reason": false,
       "kind": "ASSIGN",
-      "lineno": 104,
+      "lineno": 110,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -2664,7 +2664,7 @@
       "file": "knowledge/mechanism_assimilation.py",
       "has_reason": false,
       "kind": "ASSIGN",
-      "lineno": 343,
+      "lineno": 367,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -2676,7 +2676,7 @@
       "file": "knowledge/mechanism_assimilation.py",
       "has_reason": false,
       "kind": "ASSIGN",
-      "lineno": 346,
+      "lineno": 370,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -3038,6 +3038,72 @@
       "missing_obligation": null,
       "reasons": [
         "prediction_chronology_unknown"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "StructuralAssimilationVerdict",
+      "file": "knowledge/scientific_structure_assimilation.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 93,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "seal_structural_assimilation",
+      "file": "knowledge/scientific_structure_assimilation.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 343,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "build_structural_assimilation_closure",
+      "file": "knowledge/scientific_structure_assimilation.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 379,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "build_structural_assimilation_closure",
+      "file": "knowledge/scientific_structure_assimilation.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 388,
+      "missing_obligation": null,
+      "reasons": [
+        "STRUCTURAL_ASSIMILATION_SATURATED",
+        "USEFUL_PROCESS_NOT_NOVEL"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "build_structural_assimilation_closure",
+      "file": "knowledge/scientific_structure_assimilation.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 389,
+      "missing_obligation": null,
+      "reasons": [
+        "STRUCTURAL_ASSIMILATION_SATURATED",
+        "USEFUL_PROCESS_NOT_NOVEL"
       ],
       "role": "EMITS",
       "unmet_precondition": null
@@ -7530,9 +7596,9 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "be41cdf5c91b92a6ba722a991720c1640b2f4783",
-  "total_sites": 515,
+  "subject_commit": "c06e01ebc45858cf272d8cab10cdab2ad6de7c91",
+  "total_sites": 520,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_derived_obligation": 81,
-  "with_reason": 207
+  "with_reason": 209
 }
