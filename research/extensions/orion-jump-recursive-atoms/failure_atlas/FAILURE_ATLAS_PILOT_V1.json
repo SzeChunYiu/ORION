@@ -1,0 +1,88 @@
+{
+  "version": "FailureAtlasPilot.v1",
+  "issue": 509,
+  "schema": "../FAILURE_ATLAS_SCHEMA_V1.json",
+  "shards": [
+    "FAILURE_ATLAS_PILOT_V1_A.json",
+    "FAILURE_ATLAS_PILOT_V1_B.json",
+    "FAILURE_ATLAS_PILOT_V1_C.json"
+  ],
+  "frozen_counts": {
+    "episodes": 30,
+    "domains": {
+      "SCIENCE_MEASUREMENT": 8,
+      "CLINICAL_BIOMEDICAL": 6,
+      "MATHEMATICS_FORMAL": 6,
+      "ENGINEERING_SAFETY": 6,
+      "AI_AUTONOMOUS_SCIENCE": 4
+    },
+    "minimum_source_records_per_episode": 2,
+    "minimum_alternative_interpretations_per_episode": 2,
+    "independent_domain_expert_agreements": 0,
+    "independent_domain_expert_not_obtained": 30
+  },
+  "required_pair_families": [
+    {
+      "pair_relation_id": "UNEXPECTED_PHYSICAL_SIGNAL_DIFFERENT_RESPONSIBILITY",
+      "required_episode_ids": ["F002","F003","F008"],
+      "require_distinct_responsibility_signatures": true
+    },
+    {
+      "pair_relation_id": "FAVORABLE_SURROGATE_HARMFUL_CLINICAL_ENDPOINT",
+      "required_episode_ids": ["F009","F011"],
+      "require_preserved_success": true
+    },
+    {
+      "pair_relation_id": "CLINICAL_NEGATIVE_ENDPOINT_DIFFERENT_INFERENCE_SCOPE",
+      "required_episode_ids": ["F010","F012","F013","F014"],
+      "require_nonempty_still_live_alternatives": true
+    },
+    {
+      "pair_relation_id": "EXACT_FORMAL_REFUTATION_VS_FAILED_PROOF",
+      "required_episode_ids": ["F015","F016","F017","F018","F019","F020"],
+      "formal_counterexample_ids": ["F015","F016","F017","F018","F019"],
+      "failed_proof_ids": ["F020"],
+      "require_preserved_success_on_failed_proof": true
+    },
+    {
+      "pair_relation_id": "ENGINEERING_FAILURE_DISTINCT_CAUSAL_CHAIN",
+      "required_episode_ids": ["F022","F023","F024","F025","F026"],
+      "require_distinct_responsibility_signatures": true
+    },
+    {
+      "pair_relation_id": "REPLICATION_FAILURE_DIFFERENT_RESPONSIBILITY",
+      "required_episode_ids": ["F004","F005","F006","F007"],
+      "require_distinct_responsibility_signatures": true
+    },
+    {
+      "pair_relation_id": "PRECURSOR_OBSERVED_NOT_CONVERTED_TO_BLOCKING_KNOWLEDGE",
+      "required_episode_ids": ["F021","F023","F026"],
+      "require_failure_detection_status": "OBSERVED_BUT_NOT_RECOGNIZED_MATERIAL"
+    },
+    {
+      "pair_relation_id": "AI_FINAL_OR_PROGRAM_SUCCESS_NOT_SCIENTIFIC_VALIDITY",
+      "required_episode_ids": ["F027","F028","F029","F030"],
+      "require_preserved_success": true
+    }
+  ],
+  "formal_scope_rule": {
+    "counterexample_episode_ids": ["F015","F016","F017","F018","F019"],
+    "required_decisive_status": "DECISIVE_FOR_REGISTERED_CLAIM",
+    "failed_proof_episode_id": "F020",
+    "failed_proof_required_outcome": "PROOF_GAP_OR_INVALID_INFERENCE",
+    "forbid_theorem_false_inference_from_failed_proof": true
+  },
+  "hindsight_boundary": {
+    "all_private_cognition": "CANNOT_INFER",
+    "all_historical_use": "MECHANISM_EXTRACTION_ONLY",
+    "protected_confirmatory_gold_allowed": false,
+    "post_cutoff_source_ids_must_be_absent_from_pre_cutoff_candidate_packet": true
+  },
+  "external_review_gate": {
+    "required_for_corpus_ready": true,
+    "status_in_this_pilot": "NOT_OBTAINED",
+    "schema_stable_terminal_allowed_without_external_agreement": true,
+    "corpus_ready_terminal_allowed_without_external_agreement": false
+  },
+  "candidate_terminal": "FAILURE_ATLAS_SCHEMA_STABLE"
+}
