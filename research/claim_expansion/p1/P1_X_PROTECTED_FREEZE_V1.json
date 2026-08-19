@@ -1,0 +1,51 @@
+{
+  "schema_version": "P1_X_PROTECTED_FREEZE_V1",
+  "date": "2026-08-19",
+  "base_main": "ae6ee89faa4ba5de8d03509753b406ef32eb5c7d",
+  "protocol_merge": "40efb8478ffc164ef844fd5c3f17e8d2ed8f49aa",
+  "namespace": "P1_X_PROTECTED_V1_2026-08-19",
+  "result_authority": "CANNOT_CHECK",
+  "outcome_access_authorized": false,
+  "identity_generation": {
+    "domain_order": [
+      "SOFTWARE_DEBUGGING",
+      "SCIENTIFIC_RETRIEVAL",
+      "SEMANTIC_INTEGRATION",
+      "EVIDENCE_VERIFICATION",
+      "MODEL_EXPERIMENT_DESIGN"
+    ],
+    "archetype_order": [
+      "NARROW_REPAIR_SUFFICIENT",
+      "HIGH_LEVEL_REVISION_NECESSARY",
+      "INCOMPARABLE_MINIMA",
+      "DIAGNOSIS_NOT_PRESCRIPTION",
+      "EXTERNAL_EVALUATOR_MEASUREMENT_RESPONSIBILITY",
+      "LOCAL_SUCCESS_PRESERVATION_FAILURE",
+      "REOPEN_SCOPE_MISMATCH",
+      "CLEAN_OR_INSUFFICIENT_EVIDENCE_CONTROL"
+    ],
+    "variant_range_inclusive": [1, 10],
+    "case_id_format": "P1X-PROTECTED-{DOMAIN}-{ARCHETYPE}-V{VARIANT:02d}",
+    "seed_formula": "sha256(namespace + ':' + case_id)",
+    "pair_canonicalization": "domain_order then archetype_order then ascending variant; each line case_id|seed_commitment",
+    "all_400_pairs_sha256": "7e6c316cf38718911ae6fceee62b16169d44d832c98548eb5126600d8d4f7707",
+    "first_case_id": "P1X-PROTECTED-SOFTWARE_DEBUGGING-NARROW_REPAIR_SUFFICIENT-V01",
+    "first_seed_commitment": "28c16382e6117a037c1b7ce4c8e28c5aaf8141360a1c12c07bafca45a50d92fc",
+    "last_case_id": "P1X-PROTECTED-MODEL_EXPERIMENT_DESIGN-CLEAN_OR_INSUFFICIENT_EVIDENCE_CONTROL-V10",
+    "last_seed_commitment": "4cb776260a55fe60533dedfb872e282f896f7e6634bc7148678adfd7659b65bc"
+  },
+  "protected_scale": {
+    "domains": 5,
+    "archetypes_per_domain": 8,
+    "variants_per_archetype": 10,
+    "total_cases": 400
+  },
+  "rules": {
+    "dev_ids_disjoint": true,
+    "protected_gold_not_candidate_visible": true,
+    "all_400_reported": true,
+    "no_posthoc_case_deletion": true,
+    "no_controller_or_margin_changes_after_outcome_access": true,
+    "old_p1_v2_2_4_outcomes_not_used_to_generate_cases": true
+  }
+}
