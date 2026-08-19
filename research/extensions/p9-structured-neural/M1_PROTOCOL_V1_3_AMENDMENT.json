@@ -1,0 +1,22 @@
+{
+  "schema": "P9.M1ProtocolAmendment.v1.3",
+  "supersedes_execution_protocol": "P9.M1Protocol.v1.2",
+  "outcome_accessed": false,
+  "trigger": "SCIKIT_LEARN_1_9_REJECTS_INT64_CSR_INDEX_METADATA_BEFORE_RESULT_EXECUTION",
+  "observed_failure": {
+    "stage": "M1_FOCUSED_SMOKE_TEST_BEFORE_FROZEN_PROTOCOL_EXECUTION",
+    "exception": "ValueError",
+    "message_class": "ONLY_32_BIT_SPARSE_MATRIX_INDICES_ACCEPTED",
+    "protected_experiment_executed": false
+  },
+  "amendment": {
+    "feature_semantics_changed": false,
+    "corpus_or_split_changed": false,
+    "model_grid_changed": false,
+    "selection_rule_changed": false,
+    "protected_test_rule_changed": false,
+    "runtime_only": "DictVectorizer emits dense numeric arrays instead of CSR sparse arrays so sparse index dtype is not part of estimator compatibility"
+  },
+  "execution_protocol": "P9.M1Protocol.v1.3",
+  "authority": "NONE_PROTOCOL_COMPATIBILITY_ONLY"
+}
