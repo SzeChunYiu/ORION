@@ -2,7 +2,7 @@
 
 Scientific scope:
 - verifies the frozen equal-size majorization theorem by exhaustive enumeration on
-  small cases;
+  small cases, including the hostile coefficient families frozen in the protocol;
 - evaluates the theorem-optimal split on immutable public LiH coefficients copied
   from SNIPRS/hamiltonian simulation-LiH.ipynb;
 - evaluates uniform and disordered Heisenberg coefficient controls.
@@ -19,6 +19,7 @@ import random
 from statistics import mean, median
 
 SEED = 20260820
+TOL = 1e-11
 
 # Public LiH non-identity coefficients printed by
 # https://github.com/SNIPRS/hamiltonian/blob/master/simulation-LiH.ipynb
@@ -69,32 +70,118 @@ def partitions_fixed_size(indices: tuple[int, ...], m: int):
             yield (group,) + tail
 
 
+def exhaustive_case(coeffs: list[float], m: int) -> dict:
+    sorted_value = split_lambda(coeffs, sorted_contiguous_groups(coeffs, m))
+    optimum = math.inf
+    evaluations = 0
+    for partition in partitions_fixed_size(tuple(range(len(coeffs))), m):
+        evaluations += 1
+        optimum = min(optimum, split_lambda(coeffs, list(partition)))
+    gap = sorted_value - optimum
+    return {
+        "L": len(coeffs),
+        "m": m,
+        "partition_evaluations": evaluations,
+        "sorted_value": sorted_value,
+        "brute_optimum": optimum,
+        "gap": gap,
+        "pass": gap <= TOL,
+    }
+
+
+def _special_coefficients(n: int) -> dict[str, list[float]]:
+    repeated = [float(1 + (i // 2) % 3) for i in range(n)]
+    zeros = [0.0 if i < n // 2 else float(i - n // 2 + 1) for i in range(n)]
+    return {
+        "all_equal": [1.0] * n,
+        "repeated_magnitudes": repeated,
+        "zeros": zeros,
+        "one_dominant": [1.0e9] + [1.0] * (n - 1),
+    }
+
+
 def exhaustive_theorem_checks() -> dict:
     configs = [(6, 3, 30), (8, 4, 30), (8, 2, 30), (9, 3, 15)]
+    random_ranges = [(-3.0, 2.0), (-9.0, 1.0), (-1.0, 1.0)]
     out = {}
+    total_failures = 0
+    total_evaluations = 0
+
     for n, m, trials in configs:
         rng = random.Random(SEED + n * 100 + m)
         failures = 0
         evaluations = 0
         max_abs_gap = 0.0
-        for _ in range(trials):
-            coeffs = [10 ** rng.uniform(-3.0, 2.0) for _ in range(n)]
-            sorted_value = split_lambda(coeffs, sorted_contiguous_groups(coeffs, m))
-            optimum = math.inf
-            for partition in partitions_fixed_size(tuple(range(n)), m):
-                evaluations += 1
-                optimum = min(optimum, split_lambda(coeffs, list(partition)))
-            gap = sorted_value - optimum
-            max_abs_gap = max(max_abs_gap, abs(gap))
-            if gap > 1e-11:
+        random_cases = []
+        for trial in range(trials):
+            lo, hi = random_ranges[trial % len(random_ranges)]
+            coeffs = [10 ** rng.uniform(lo, hi) for _ in range(n)]
+            check = exhaustive_case(coeffs, m)
+            evaluations += check["partition_evaluations"]
+            max_abs_gap = max(max_abs_gap, abs(check["gap"]))
+            if not check["pass"]:
                 failures += 1
+            random_cases.append({
+                "dynamic_range_log10": [lo, hi],
+                "gap": check["gap"],
+                "pass": check["pass"],
+            })
+
+        hostile = {}
+        for name, coeffs in _special_coefficients(n).items():
+            check = exhaustive_case(coeffs, m)
+            evaluations += check["partition_evaluations"]
+            max_abs_gap = max(max_abs_gap, abs(check["gap"]))
+            if not check["pass"]:
+                failures += 1
+            hostile[name] = check
+
+        # Identity remint/permutation hostile: the objective and optimum must be
+        # invariant to coefficient index identity. Use a deterministic nontrivial
+        # permutation of the repeated/zero-rich case so ties are exercised too.
+        remint_source = _special_coefficients(n)["zeros"]
+        permutation = list(range(n))
+        rng.shuffle(permutation)
+        reminted = [remint_source[i] for i in permutation]
+        original = exhaustive_case(remint_source, m)
+        remint = exhaustive_case(reminted, m)
+        evaluations += original["partition_evaluations"] + remint["partition_evaluations"]
+        remint_pass = (
+            original["pass"]
+            and remint["pass"]
+            and abs(original["sorted_value"] - remint["sorted_value"]) <= TOL
+            and abs(original["brute_optimum"] - remint["brute_optimum"]) <= TOL
+        )
+        if not remint_pass:
+            failures += 1
+        hostile["identity_remint"] = {
+            "permutation": permutation,
+            "original_sorted_value": original["sorted_value"],
+            "reminted_sorted_value": remint["sorted_value"],
+            "original_brute_optimum": original["brute_optimum"],
+            "reminted_brute_optimum": remint["brute_optimum"],
+            "pass": remint_pass,
+        }
+
         out[f"L{n}_m{m}"] = {
             "trials": trials,
+            "random_dynamic_ranges_log10": [list(x) for x in random_ranges],
             "partition_evaluations": evaluations,
             "failures": failures,
             "max_abs_gap": max_abs_gap,
+            "random_cases": random_cases,
+            "hostile_cases": hostile,
         }
-    return out
+        total_failures += failures
+        total_evaluations += evaluations
+
+    return {
+        "configs": out,
+        "total_partition_evaluations": total_evaluations,
+        "total_failures": total_failures,
+        "all_hostile_and_random_checks_pass": total_failures == 0,
+        "tolerance": TOL,
+    }
 
 
 def random_split_distribution(coeffs: list[float], m: int, draws: int, seed: int) -> list[float]:
@@ -187,20 +274,30 @@ def disordered_heisenberg_panel() -> dict:
     }
 
 
-def main() -> None:
+def main() -> dict:
+    exhaustive = exhaustive_theorem_checks()
+    theorem_gate_pass = exhaustive["all_hostile_and_random_checks_pass"]
     result = {
         "schema": "ORIONQ.MAXR4BTARESplitMajorizationResult.v1",
         "seed": SEED,
         "theorem": "equal-size sorted-contiguous coefficient partition minimizes split-TARE outer-LCU subnormalization",
-        "exhaustive_checks": exhaustive_theorem_checks(),
+        "exhaustive_checks": exhaustive,
         "lih_public_subject": lih_result(),
         "uniform_heisenberg_control": uniform_heisenberg_control(),
         "disordered_heisenberg_panel": disordered_heisenberg_panel(),
-        "terminal": "R4B_TARE_SPLIT_MAJORISATION_THEOREM_SUPPORTED__COEFFICIENT_COORDINATE_ONLY",
+        "theorem_gate_pass": theorem_gate_pass,
+        "terminal": (
+            "R4B_TARE_SPLIT_MAJORISATION_THEOREM_SUPPORTED__COEFFICIENT_COORDINATE_ONLY"
+            if theorem_gate_pass
+            else "R4B_TARE_SPLIT_MAJORISATION_HOSTILE_CHECK_FAILED__THEOREM_NOT_PROMOTED"
+        ),
         "authority": "proof_plus_deterministic_check; not compiled-resource or novelty authority",
         "hard_boundary": "Pauli/Restore structure can trade circuit cost against the coefficient-optimal Lambda; theorem does not claim total-resource optimality.",
     }
     print(json.dumps(result, indent=2, sort_keys=True))
+    if not theorem_gate_pass:
+        raise SystemExit(1)
+    return result
 
 
 if __name__ == "__main__":
