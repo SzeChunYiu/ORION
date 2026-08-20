@@ -33,6 +33,7 @@ def _handoff_prompt(workspace: ResearchWorkspace) -> str:
         f"Workspace: {workspace.root}",
         f"Project root: {workspace.project_root}",
         f"Session: {workspace.session_id}",
+        f"Local process tools enabled: {workspace.allow_process_tools}",
         "",
         "You are the external host worker for canonical ORION. Do not bypass ORION's verification, responsibility, authority, or saturation rules.",
         "",
@@ -46,7 +47,8 @@ def _handoff_prompt(workspace: ResearchWorkspace) -> str:
         "- LLM_COMPLETE: return {content, model_id?, response_id?}; content must obey the requested schema.",
         "- WEB_SEARCH: use current web search and source inspection; return {items:[{content,source_uri,item_id?,domain_ids?}]}.",
         "- VERIFY_EVIDENCE: independently verify support; return {passed,certificate_ids,reason}; fail closed.",
-        "- FILE_READ/FILE_WRITE/FILE_LIST/SHELL/PYTHON: can be serviced locally with `service-local` when appropriate.",
+        "- FILE_READ/FILE_WRITE/FILE_LIST can be serviced locally with `service-local`.",
+        "- SHELL/PYTHON require explicit workspace opt-in and are not OS-sandboxed; use only when the host has accepted that risk.",
         "- GITHUB or other custom capabilities: use the corresponding host tool and return structured JSON.",
         "",
         "Never fabricate a source, certificate, command result, or tool output. Preserve negative/CANNOT_CHECK results.",
@@ -65,6 +67,11 @@ def build_parser() -> argparse.ArgumentParser:
     init = sub.add_parser("init")
     init.add_argument("workspace")
     init.add_argument("--project-root")
+    init.add_argument(
+        "--allow-process-tools",
+        action="store_true",
+        help="opt in to local SHELL/PYTHON execution; subprocesses are not OS-sandboxed",
+    )
 
     add = sub.add_parser("problem-add")
     add.add_argument("workspace")
@@ -127,6 +134,7 @@ def main(argv: list[str] | None = None) -> int:
         workspace = ResearchWorkspace.initialize(
             args.workspace,
             project_root=args.project_root,
+            allow_process_tools=args.allow_process_tools,
         )
         _print(
             {
@@ -134,6 +142,7 @@ def main(argv: list[str] | None = None) -> int:
                 "workspace": str(workspace.root),
                 "project_root": str(workspace.project_root),
                 "session_id": workspace.session_id,
+                "allow_process_tools": workspace.allow_process_tools,
             }
         )
         return 0
