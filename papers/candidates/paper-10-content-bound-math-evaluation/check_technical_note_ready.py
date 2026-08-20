@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""Fail-closed structural and numerical gate for the merged P10 note."""
+"""Fail-closed structural and numerical gate for the P10 bounded review note."""
 
 from __future__ import annotations
 
 import json
 from pathlib import Path
-
 
 ROOT = Path(__file__).resolve().parent
 
@@ -31,6 +30,8 @@ def main() -> None:
         "results/PARSER_CONTAMINATION_AUDIT_V2.json",
         "results/MATHLIB_TRANSFER_V2_1.json",
         "results/MATHLIB_NATIVE_RECEIPTS_V1.json",
+        "results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS_RECEIPT_V1.json",
+        "analyze_module_robustness_v1.py",
     ]
     missing = [relative for relative in required if not (ROOT / relative).is_file()]
     if missing:
@@ -52,13 +53,21 @@ def main() -> None:
     assert result["standalone_gate"]["numerical_conditions_pass"] is True
     assert result["standalone_gate"]["passes"] is False
 
+    robustness = load("results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS_RECEIPT_V1.json")
+    assert robustness["source_result"] == "results/MATHLIB_TRANSFER_V2_1.json"
+    assert robustness["emitted_block_receipts"] == 28
+    assert robustness["evaluable_positive_transition_modules"] == 26
+    assert robustness["module_delta_distribution"]["positive_modules"] == 24
+    assert robustness["module_delta_distribution"]["negative_modules"] == 2
+    assert robustness["module_delta_distribution"]["exact_two_sided_sign_test_p"] < 0.001
+    assert robustness["leave_one_module_out"]["all_pooled_deltas_positive"] is True
+    assert robustness["leave_one_module_out"]["minimum"] > 0.10
+
     receipts = load("results/MATHLIB_NATIVE_RECEIPTS_V1.json")
     assert receipts["passes"] is True
     assert receipts["mathlib_commit"] == "e72c1e277f31441626621f7d0c7207862fc25569"
     assert receipts["lean_toolchain"] == "leanprover/lean4:v4.34.0-rc1"
-    assert receipts["version_preflight"]["stdout_utf8"].startswith(
-        "Lean (version 4.34.0-rc1,"
-    )
+    assert receipts["version_preflight"]["stdout_utf8"].startswith("Lean (version 4.34.0-rc1,")
     assert len(receipts["receipts"]) == 8
     assert len({item["top_module"] for item in receipts["receipts"]}) == 8
     assert all(item["verdict"] == "SUCCESS" for item in receipts["receipts"])
@@ -73,12 +82,14 @@ def main() -> None:
     assert "TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME" in ledger
 
     claims = (ROOT / "CLAIM_LEDGER.md").read_text()
+    assert "P10-C3R" in claims and "SUPPORTED_POST_HOC" in claims
     assert "PENDING_NATIVE_RECEIPTS" not in claims
     assert "Forbidden promotions" in claims
     note = (ROOT / "TECHNICAL_NOTE.md").read_text()
+    assert "24/26" in note
     assert "No theorem correctness" in note
     assert "TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME" in note
-    print("P10 merged technical-note readiness: PASS")
+    print("P10 bounded technical-note readiness: PASS")
 
 
 if __name__ == "__main__":
