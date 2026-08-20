@@ -28,6 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -55,5 +57,5 @@ jobs:
           python papers/candidates/paper-10-content-bound-math-evaluation/benchmark/check_mathlib_corpus_v2.py
           pytest -q papers/candidates/paper-10-content-bound-math-evaluation/benchmark/test_mathlib_transfer_v2_1.py
           python papers/candidates/paper-10-content-bound-math-evaluation/check_technical_note_ready.py
-      - name: Current bounded publication manifest
-        run: papers/candidates/orion-learning-machine/VERIFY_LOCAL_CLOSURE.sh
+      - name: Current bounded publication manifest plus P10 review overlay
+        run: bash papers/candidates/orion-learning-machine/VERIFY_LOCAL_CLOSURE_V2.sh
