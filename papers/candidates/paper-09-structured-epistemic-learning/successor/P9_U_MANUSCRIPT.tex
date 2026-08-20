@@ -1,0 +1,154 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\setlength{\emergencystretch}{2em}
+
+\title{Representation Accessibility Changes the Compute Frontier:\\
+Toward General Scaling Laws for Structured Scientific Reasoning}
+\author{ORION Paper IX Ultimate-Successor Working Manuscript}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A model can receive the same semantic information through representations that differ dramatically in how easily the task-relevant relations can be accessed. ORION Paper IX targets the strongest upward claim: across task families, relational complexities, model families, sample sizes, and inference budgets, exposing the right task coordinates changes the model-capacity, data, and test-time-compute frontier required to reach a fixed verified quality target. Existing P9 evidence of information-equivalent relational-versus-flat separation, interaction-order effects, fresh controlled replication, capacity/sample substitution, semantic-orbit stability, access-degree recovery, inductive-bias substitution, and bounded held-out-domain transfer is preserved as the starting foundation. P9-U does not stop at another representation benchmark. It prospectively freezes a factorial law over relational complexity $k$, representation $R$, model scale $S$, sample budget $N$, and inference budget $C$, and estimates critical frontiers $S^*(k,q)$, $N^*(k,q)$, and $C^*(k,q)$ for verified quality $q$. Strong baselines include equal-token flat representations, classical/exact query interfaces, adaptive-compute-only policies, architecture priors, graph/relational models, and donor-complete representation systems. The intended terminal is a replicated cross-family scaling law showing that representation accessibility changes the growth rate or crossing point of required capacity/compute, not merely the mean score, on at least two open-weight model families and heterogeneous formal/procedural domains. Historical negative P9/P10 results remain immutable; the existing negative-to-positive successor programme is used to discover more general access coordinates and operator-learning mechanisms when a scale cell fails.
+\end{abstract}
+
+\section{Largest scientific question}
+For task complexity $k$, representation $R$, model family $F$, model scale $S$, sample budget $N$, inference budget $C$, and quality target $q$, define the verified performance function
+\[
+Q(k,R,F,S,N,C).
+\]
+P9-U asks whether the representation changes the resource frontier itself:
+\[
+S^*(k,q\mid R),\quad N^*(k,q\mid R),\quad C^*(k,q\mid R),
+\]
+not just a single fixed-budget accuracy point.
+
+The strongest claim is that information-equivalent representations can induce systematically different accessibility scaling laws, and that exposing the correct task coordinates can let materially smaller/cheaper systems reach targets that larger flat systems cannot reach at the same budget.
+
+\section{Upward-generalization principle}
+Graph neural networks, relational inductive bias, query interfaces, structured state, architecture priors, test-time scaling, and exact symbolic computation are donor mechanisms. P9-U admits all of them to the comparator. ORION earns superiority only by a general cross-regime law that predicts when representation changes the resource frontier and survives stronger models, more compute, multiple domains, and multiple model families.
+
+The intended terminal is \textbf{GENERAL_REPRESENTATION_ACCESSIBILITY_SCALING_LAW}.
+
+\section{Immutable predecessor evidence}
+The current bounded P9 paper and successor studies remain immutable, including positive information-equivalent relational-access results and any negative/donor-subsumed cells. The direct Qwen scaling run under the active successor programme is new evidence only; it cannot retroactively rewrite the earlier paper.
+
+Negative P9/P10 results are routed through the existing ORION negative-to-positive programme \#586. In particular, known-operator composition, failure-applicability, serialization/access geometry, and hypothesis-class inadequacy remain distinct failure classes rather than being pooled.
+
+\section{Factorial scaling protocol}
+Freeze a prospective design over:
+\begin{enumerate}
+    \item relational/task complexity $k$;
+    \item representation family $R$;
+    \item model family $F$;
+    \item model scale $S$;
+    \item training/sample budget $N$;
+    \item inference/search budget $C$;
+    \item verified quality target $q$.
+\end{enumerate}
+
+The primary analysis estimates on-grid threshold/crossover quantities rather than fitting a post-hoc power law. A scaling exponent is reported only if its functional form is frozen before protected outcomes and diagnostics support it.
+
+\section{Representation families}
+At minimum include:
+\begin{enumerate}
+    \item information-equivalent flat/text serialization;
+    \item reversible indexed serialization;
+    \item typed relation tuples/set representation;
+    \item native typed graph/relational state;
+    \item task-sufficient query-matched interface;
+    \item architecture-prior baseline that receives structure through the model rather than the input;
+    \item adaptive-compute-only arm;
+    \item representation-plus-adaptive-compute arm.
+\end{enumerate}
+
+Equal-token/length controls, symbol/order reminting, semantic-orbit controls, and exact round-trip information checks are mandatory.
+
+\section{Task families}
+The study spans at least:
+\begin{enumerate}
+    \item formal or mathematical relational reasoning;
+    \item algorithmic/program/procedural reasoning;
+    \item graph or dependency reasoning;
+    \item a non-formal procedural/scientific workflow domain;
+    \item optional later scientific episodes only after exact/controlled mechanisms are stable.
+\end{enumerate}
+At least one domain is held out entirely from representation/mechanism tuning.
+
+\section{Strong baselines}
+The comparator set includes:
+\begin{enumerate}
+    \item larger flat/text model;
+    \item equal-parameter structured model;
+    \item graph/relational architecture;
+    \item exact/classical task-sufficient query engine where applicable;
+    \item adaptive inference/test-time compute;
+    \item representation compiler whose preprocessing cost is fully charged;
+    \item donor-complete system combining structure, architecture prior, and adaptive compute;
+    \item second open-weight model family for replication.
+\end{enumerate}
+
+\section{Primary hypotheses}
+\paragraph{H1, scale-frontier shift.}
+For increasing relational complexity, the critical model scale required to reach quality $q$ grows more slowly under the task-accessible representation than under information-equivalent flat representation.
+
+\paragraph{H2, inference-frontier shift.}
+At matched model scale, the critical inference budget required to reach $q$ is lower under the task-accessible representation.
+
+\paragraph{H3, data-frontier shift.}
+At matched model and inference budget, the sample threshold required to reach $q$ is lower under the accessible representation.
+
+\paragraph{H4, non-format explanation.}
+The effect survives equal-length/token, reminting, semantic-orbit, and stronger-model attacks and is not explained by preprocessing computing the answer.
+
+\paragraph{H5, cross-family replication.}
+The frontier shift replicates prospectively on a second open-weight model family and at least two heterogeneous task domains.
+
+\paragraph{H6, access-mechanic expansion.}
+At least one negative/tied scale regime yields a newly learned access coordinate, local operator, or query interface that expands protected reach beyond the pre-freeze representation basis and transfers to fresh tasks.
+
+\section{Primary outcomes}
+Report:
+\begin{enumerate}
+    \item critical model scale $S^*(k,q)$;
+    \item critical sample budget $N^*(k,q)$;
+    \item critical inference budget $C^*(k,q)$;
+    \item verified task quality at matched resources;
+    \item representation/token/memory cost;
+    \item compiler/preprocessing cost;
+    \item robustness to reminting/permutation/orbit controls;
+    \item cross-domain and cross-model-family effect;
+    \item failure cells and no-crossing cells.
+\end{enumerate}
+
+\section{Adversarial controls}
+Mandatory attacks include:
+\begin{enumerate}
+    \item structure only shortens the prompt;
+    \item larger models become invariant and erase the gap;
+    \item extra preprocessing computes the target;
+    \item test-time compute alone closes the gap;
+    \item architecture prior substitutes fully for representation;
+    \item representation effect disappears after exact query matching;
+    \item formatting priors explain the result;
+    \item train/test templates leak relational structure;
+    \item post-hoc chosen scale grid manufactures a crossing.
+\end{enumerate}
+
+\section{Negative-result recursion as upward access search}
+Every failed scale cell is preserved. The programme distinguishes representation insufficiency, access-operator absence, architecture limitation, model-family prior, resource regime, task non-identifiability, and donor-complete exact solution. It then searches materially different successor mechanisms rather than tuning the same representation.
+
+The existing #586 programme already owns this doctrine. Known-operator negatives may escalate to learned local operators; access-geometry failures may escalate to query-matched or representation-compilation studies; hypothesis-class failures may escalate only after lower-level access causes are ruled out. A new child issue is opened only for a materially distinct access/mechanism family.
+
+\section{Claim ladder and current status}
+The intended progression is: direct open-weight scaling result; second-family replication; frozen multi-factor frontier; cross-domain transfer; hostile explanation controls; \textbf{GENERAL_REPRESENTATION_ACCESSIBILITY_SCALING_LAW} with H6 access-mechanic expansion.
+
+This TeX file is prospective and does not claim the scaling law before the frozen real-system study executes.
+
+\end{document}
