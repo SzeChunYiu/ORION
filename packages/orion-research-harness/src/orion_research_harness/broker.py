@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import dataclasses
-import hashlib
 from enum import Enum
 from typing import Any, Mapping
 
@@ -9,7 +8,7 @@ from orion.core.search import RetrievedItem, SearchQuery
 from orion.providers.llm.base import LLMRequest, LLMResponse
 from orion.providers.verification.base import VerificationResult
 
-from .protocol import CapabilityRequest, content_digest
+from .protocol import CapabilityRequest, CapabilityResult, content_digest
 from .workspace import ResearchWorkspace
 
 
@@ -28,15 +27,23 @@ def _jsonable(value: Any) -> Any:
 
 
 class HostCapabilityRequired(BaseException):
-    """Control signal for orchestration capability, not scientific failure evidence."""
+    """Control signal for missing orchestration capability, not scientific evidence."""
 
     def __init__(self, request: CapabilityRequest) -> None:
         self.request = request
         super().__init__(f"host capability required: {request.capability} ({request.request_id})")
 
 
-class HostCapabilityFailed(RuntimeError):
-    pass
+class HostCapabilityFailed(BaseException):
+    """Control signal for host execution failure, never scientific operator evidence."""
+
+    def __init__(self, request: CapabilityRequest, result: CapabilityResult) -> None:
+        self.request = request
+        self.result = result
+        detail = result.error or "unspecified error"
+        super().__init__(
+            f"host capability failed: {request.capability} via {result.executor}: {detail}"
+        )
 
 
 class CapabilityBroker:
@@ -52,9 +59,7 @@ class CapabilityBroker:
         if result is None:
             raise HostCapabilityRequired(request)
         if not result.success:
-            raise HostCapabilityFailed(
-                f"{capability} failed via {result.executor}: {result.error or 'unspecified error'}"
-            )
+            raise HostCapabilityFailed(request, result)
         return result.output
 
 
