@@ -1,152 +1,75 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}
-\usepackage{booktabs}
-\usepackage{tabularx}
 \usepackage{hyperref}
 \newtheorem{theorem}{Theorem}
 \newtheorem{definition}{Definition}
-\setlength{\emergencystretch}{2em}
 
 \title{A General Calculus of Closure-Preserving Scientific Transformations}
 \author{ORION Paper VII Ultimate-Successor Working Manuscript}
 \date{August 2026}
-
-\begin{document}
-\maketitle
+\begin{document}\maketitle
 
 \begin{abstract}
-Modern scientific workflows transform evidence repeatedly through retrieval, filtering, extraction, normalization, mapping, compilation, aggregation, simulation, statistical analysis, and synthesis. Local correctness of every step does not imply that the final scientific conclusion remains closed. ORION Paper VII targets the strongest general claim: can a typed compositional calculus predict exactly which scientific closure obligations are preserved, weakened, invalidated, or require an explicit bridge under arbitrary admissible transformation chains, and can that calculus reduce false global closure more effectively than provenance-only, workflow, schema/type, and generic transformation systems without excessive recomputation? Existing P7 finite evidence of 155 restorations, 1,055 strict-subset failures, 25 successful heterogeneous compositions, and 25 matched missing-bridge cases is preserved as finite instance evidence. P7-U defines primitive transformation and responsibility semantics, seeks machine-checked composition laws, and adds state compilation, responsibility projection, caching/materialization, representation transport, stochastic transforms, lossy transforms, and cyclic workflows as first-class cases. The intended terminal is a general closure-preserving transformation calculus whose finite predecessor results follow as instances and whose prospective predictions outperform donor-complete workflow baselines on naturalistic multi-stage scientific pipelines. Every counterexample triggers upward expansion of the transform/bridge semantics rather than a local exception.
+Bidirectional transformations, lenses, provenance, workflow contracts, compiler correctness and data-validation systems already formalize many local transformation guarantees. ORION Paper VII therefore asks a stronger question: across heterogeneous chains of retrieval, filtering, extraction, normalization, mapping, compilation, caching, analysis, simulation and synthesis, can a typed calculus predict which scientific responsibilities remain discharged, which are weakened or invalidated, and what bridge is minimally required for task-global closure? Existing 155/1,055 restoration evidence and the 25/25 bridge panel remain finite witnesses. P7-U seeks machine-checked responsibility-relative composition laws for lossy, stochastic, cyclic and representation-changing workflows, plus naturalistic evidence that the calculus reduces false global closure without recompute-everything conservatism. Every counterexample drives \textbf{Obligation Transport Synthesis (OTS)} toward a sharper bridge law or non-composability boundary. The intended terminal is \textbf{GENERAL\_CLOSURE\_PRESERVING\_SCIENTIFIC\_TRANSFORMATION\_CALCULUS}.
 \end{abstract}
 
-\section{Largest scientific question}
-Given a workflow
+\section{Donor boundary}
+Bidirectional-transformation theory already studies consistency relations, correctness, hippocraticness/round-trip laws, least change and edit propagation \cite{bx2018}. Provenance systems track lineage through transformation pipelines, and current data-space work combines semantic transformation with explicit provenance \cite{fair2026}. Generic type/schema/data contracts, workflow engines and proof/certificate transport are donor-owned.
+
+P7's residual is therefore not local transform correctness. It is whether the output of a heterogeneous chain remains sufficient for a particular scientific responsibility and whether closure obligations compose globally.
+
+\section{Scientific transform contract}
+For transform $T:X\rightarrow Y$, define a contract
 \[
-X_0 \xrightarrow{T_1} X_1 \xrightarrow{T_2} \cdots \xrightarrow{T_n} X_n,
+\Gamma(T)=(I,O,P,W,L,U,B),
 \]
-can ORION predict, before or during execution, which scientific responsibilities remain discharged at $X_n$, which have been weakened or invalidated, and where an additional evidence-bearing bridge is necessary?
+where $I/O$ are typed interfaces, $P$ preserved responsibilities, $W$ weakened responsibilities, $L$ intentionally lost information, $U$ uncertainty/stochasticity obligations and $B$ required semantic bridges.
 
-The strongest target is not one navigation benchmark. It is a general scientific transformation calculus spanning data, representations, analyses, state compilation, and agentic workflow steps.
+A transform is locally valid when its own contract holds. Global scientific closure additionally requires every load-bearing responsibility of the terminal claim to have a valid support path through the composed contracts.
 
-\section{Upward-generalization principle}
-Provenance systems, workflow engines, schema/type systems, data-transformation calculi, proof/certificate transport, and state-compilation mechanisms are donor components. P7-U gives them to the strongest comparator. ORION earns superiority only by a higher-order composition law that generalizes over heterogeneous scientific transforms and predicts closure failures donor-complete systems miss.
-
-The intended terminal is \textbf{GENERAL_CLOSURE_PRESERVING_SCIENTIFIC_TRANSFORMATION_CALCULUS}.
-
-\section{Primitive transform semantics}
-\begin{definition}[Scientific transform]
-A transform $T$ maps an input scientific state to an output state while declaring its input contract, output contract, preserved responsibilities, weakened responsibilities, lost information, stochasticity, and required bridges.
-\end{definition}
-
-The transform vocabulary includes at least:
+\section{Target laws}
+P7-U seeks machine-checked conditions for:
 \begin{enumerate}
-    \item \textsc{Retrieve};
-    \item \textsc{Filter};
-    \item \textsc{Extract};
-    \item \textsc{Normalize};
-    \item \textsc{Map/Align};
-    \item \textsc{Aggregate};
-    \item \textsc{Analyze};
-    \item \textsc{Simulate};
-    \item \textsc{Synthesize};
-    \item \textsc{CompileState};
-    \item \textsc{ProjectForResponsibility};
-    \item \textsc{Cache/Materialize};
-    \item \textsc{TransportVersion/Representation}.
+    \item identity and semantics-preserving transforms preserving declared responsibilities;
+    \item associativity of contract composition when intermediate responsibility interfaces are compatible;
+    \item transitive preservation only when every load-bearing bridge composes;
+    \item lossy transforms preserving responsibility only under an explicit sufficiency contract;
+    \item stochastic transforms transporting uncertainty obligations rather than deterministic closure;
+    \item cyclic workflows reaching a justified fixed point or remaining unresolved;
+    \item representation/version changes requiring explicit correspondence transport;
+    \item cache/compiled-state chains preserving current responsibility while exposing lost future optionality;
+    \item missing intermediate bridges invalidating global closure even when all local transforms pass.
 \end{enumerate}
 
-\section{Target composition laws}
-P7-U seeks machine-checked results characterizing when:
-\begin{enumerate}
-    \item identity transforms preserve all declared responsibilities;
-    \item sequential composition is associative at the scientific-contract level;
-    \item local guarantees compose transitively;
-    \item lossy transforms preserve a responsibility only relative to an explicit sufficiency contract;
-    \item stochastic transforms require probabilistic/uncertainty obligations rather than deterministic closure;
-    \item cycles admit a safe fixed point or must remain unresolved;
-    \item representation changes require an explicit correspondence bridge;
-    \item compilation/cache chains preserve current responsibility but may lose future optionality;
-    \item a missing intermediate bridge invalidates global closure even when every local transform is technically valid.
-\end{enumerate}
+No theorem asserts arbitrary associativity or preservation without these compatibility conditions.
 
-\section{State compilation as a scientific transformation}
-A compiled state may intentionally omit information. P7-U distinguishes semantic preservation of the raw object from sufficiency of the compiled interface for a downstream responsibility. A chain
-\[
-\text{raw}\to\text{compiled}\to\text{cached/materialized}\to\text{transported/versioned}
-\]
-may be valid for \textsc{Predict} yet invalid for \textsc{Verify}, \textsc{Promote}, or \textsc{Repair}. Reuse for an unproven responsibility must produce \textsc{CannotCheck} or reopen the required state.
+\section{Obligation Transport Synthesis}
+The ChatGPT-led negative-to-positive programme is \textbf{Obligation Transport Synthesis (OTS)}. A retained failure is classified as missing transform semantics, missing bridge, responsibility mismatch, lossy optionality, stochasticity, cycle/fixed-point failure, representation transport, hidden dependency or genuine non-composability.
 
-\section{Finite predecessor as instance}
-The current 155/1,055 restoration law and 25/25 bridge-composition panel must be re-derived from the general transform semantics. They remain immutable. The new calculus may not define its primitives solely to restate those finite cases.
+OTS freezes the counterexample and searches for the minimal bridge/contract obligation whose addition restores closure without changing unrelated stages. The proposed obligation must transfer to fresh transformation families and reduce false closure without collapsing to raw-state retention or full recomputation. If no bridge can make a law general, OTS seeks the sharp necessary/sufficient non-composability condition.
 
-\section{Naturalistic workflow benchmark}
-Prospective pipelines include:
-\begin{enumerate}
-    \item literature retrieval $\to$ filtering $\to$ extraction $\to$ synthesis;
-    \item dataset normalization $\to$ model fit $\to$ statistical analysis $\to$ claim;
-    \item simulation $\to$ surrogate model $\to$ uncertainty aggregation $\to$ decision;
-    \item multi-source schema mapping $\to$ entity integration $\to$ scientific QA;
-    \item raw evidence $\to$ compiled state $\to$ cached state $\to$ later repair;
-    \item representation/version migration with preserved and invalidated certificates;
-    \item stochastic/partial transforms with explicit unresolved states;
-    \item cyclic workflows with iterative evidence/model updates.
-\end{enumerate}
-Each pipeline includes matched cases where every component is locally valid but global closure fails.
+\section{Finite predecessor and naturalistic workflows}
+The existing 155 successful restorations, 1,055 strict-subset failures, 25 successful heterogeneous compositions and 25 matched missing-bridge cases remain immutable and must be derived as instances rather than encoded into definitions.
 
-\section{Strong baselines}
-Compare against:
-\begin{enumerate}
-    \item provenance-only lineage tracking;
-    \item workflow engine with local validation;
-    \item generic type/schema checking;
-    \item data-contract systems;
-    \item proof/certificate transport where applicable;
-    \item representation/state-compilation system;
-    \item donor-complete product combining all preceding mechanisms;
-    \item oracle composition checker for exact synthetic worlds only.
-\end{enumerate}
+Prospective workflows include literature search-to-synthesis, normalization-to-model-to-statistics-to-claim, simulation-to-surrogate-to-decision, multi-source schema integration-to-QA, raw-to-compiled-to-cache-to-repair, representation migration and cyclic model/evidence update loops. Each contains locally-valid/global-invalid matched controls.
+
+\section{Donor-complete baselines}
+Compare provenance-only lineage, workflow-local validation, type/schema/data contracts, bidirectional/lens-style consistency, proof/certificate transport, representation/state compilation, and a donor-complete union. The oracle receives full semantic contracts only as an analysis ceiling.
 
 \section{Primary hypotheses}
-\paragraph{H1, false-closure superiority.}
-ORION reduces false global scientific closure versus the strongest donor-complete comparator by a prospectively frozen margin.
+H1: lower false global closure than donor-complete baselines. H2: fewer unnecessary bridges/recomputations at equal closure safety. H3: the same calculus transfers across transform families/domains/lengths. H4: responsibility-correct handling of lossy compiled state. H5: at least one counterexample yields a new transferable bridge/transform law.
 
-\paragraph{H2, recomputation efficiency.}
-ORION reduces unnecessary bridge construction/recomputation while preserving closure safety.
+False closure, missed bridge, unnecessary recomputation, correct unresolved/\textsc{CannotCheck}, valid closure coverage, resource cost and family-level transfer are reported separately. Workflow/pipeline is the scientific independent unit; repeated executions are technical repeats.
 
-\paragraph{H3, transform-family generality.}
-The same calculus predicts closure behavior across multiple transform families, domains, and workflow lengths.
+\section{Framework correspondence}
+Current registered substrate includes \texttt{GeneratorTransport.rakl-v1}, \texttt{MeasurementRelation.rakl-v1}, \texttt{EpistemicContextCompiler.rakl-v1}, scientific meaning projection, K/W/M state and REFRAME/REOPEN semantics. These provide correspondence and responsibility-aware research primitives but no universal arbitrary-workflow composition theorem. OTS and the general calculus remain prospective and are not described as registered runtime authority.
 
-\paragraph{H4, compiled-state responsibility.}
-ORION correctly distinguishes when lossy compilation preserves a requested responsibility and when reopening is required.
+\section{Claim ladder}
+Primitive contracts $\rightarrow$ machine-checked conditional composition laws $\rightarrow$ finite predecessors as instances $\rightarrow$ naturalistic false-closure superiority $\rightarrow$ cross-family replication $\rightarrow$ \textbf{GENERAL\_CLOSURE\_PRESERVING\_SCIENTIFIC\_TRANSFORMATION\_CALCULUS} with OTS expansion. All counterexamples remain visible.
 
-\paragraph{H5, calculus expansion.}
-At least one prospective counterexample reveals a new transform class, bridge obligation, or composition law whose addition expands protected reach and transfers beyond the originating workflow.
-
-\section{Outcomes}
-Report false closure, missed bridge, unnecessary recomputation, correct unresolved/\textsc{CannotCheck}, valid closure coverage, resource cost, composition-prediction accuracy, and transfer by transform family. A single aggregate cannot compensate a false scientific closure with cost savings.
-
-\section{Adversarial controls}
-Mandatory attacks include:
-\begin{enumerate}
-    \item all local checks pass but a global intermediate contract is missing;
-    \item pairwise mapping passes while a longer cycle fails;
-    \item lossy compilation reused for an unsupported responsibility;
-    \item cache/materialization becomes stale after representation/objective change;
-    \item hidden stochasticity invalidates deterministic closure;
-    \item provenance preserved but semantic correspondence fails;
-    \item generic type compatibility without scientific target compatibility;
-    \item overconservative bridge policy that recomputes everything;
-    \item donor-complete dynamic routing among all registered transform/bridge mechanisms.
-\end{enumerate}
-
-\section{Negative-result recursion as upward calculus search}
-Every composition failure is preserved and classified as missing transform semantics, missing bridge semantics, responsibility mismatch, stochasticity, cycle/fixed-point failure, representation transport failure, hidden dependency, or genuine non-composability. The response is to seek the more general law explaining the failure, then test it on fresh workflow families.
-
-If a counterexample proves that a proposed associativity or preservation law cannot hold generally, P7-U seeks the sharpest necessary and sufficient conditions rather than hiding the failure. A materially new transform/bridge family may open a child issue under \#655.
-
-\section{Claim ladder and current status}
-The intended progression is: primitive transform semantics frozen; machine-checked composition rules; finite P7 results recovered as instances; prospective naturalistic superiority; cross-domain/transform-family replication; \textbf{GENERAL_CLOSURE_PRESERVING_SCIENTIFIC_TRANSFORMATION_CALCULUS} with H5 expansion.
-
-This TeX file is prospective and does not alter existing P7 evidence.
-
+\begin{thebibliography}{4}
+\bibitem{bx2018} J. Gibbons and P. Stevens, eds., \emph{Bidirectional Transformations}, LNCS 9715, Springer, 2018, doi:10.1007/978-3-319-79108-1.
+\bibitem{fair2026} G. M. Santipantakis, C. Doulkeridis, and P. Brimos, ``Semantic data transformation, FAIRification and provenance for data spaces,'' \emph{Data in Brief}, vol. 66, 112675, 2026, doi:10.1016/j.dib.2026.112675.
+\end{thebibliography}
 \end{document}
