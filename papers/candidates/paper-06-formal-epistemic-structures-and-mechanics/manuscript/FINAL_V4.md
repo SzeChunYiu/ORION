@@ -14,9 +14,9 @@ Autonomous scientific systems increasingly operate inside mature certification m
 
 P6 introduces a conservative **scientific certificate-lifting semantics**. Donor certificates retain their native validity. Scientific standing is a separate lifted judgment over claim/content binding, measurement semantics, evidence semantics, inferential obligations, and scientific epoch. A material change does not force the system to discard the whole certificate stack: unchanged operational certificates remain reusable, while exactly the affected scientific lift coordinates are revalidated. Conversely, accumulating valid execution, replay, provenance, workflow, and attestation certificates cannot manufacture a missing claim-specific scientific continuity premise without an explicit bridge.
 
-The registered formal envelope is exhaustive. Across 320 donor-certificate/scientific-extension states, P6 has **zero donor-conservativity violations** and **zero mismatches with an equally informed ideal donor product**. The model contains 25 one-coordinate lifting separations, 31 certificate-product non-laundering separation witnesses, 155 exact full-revalidation restorations, and **1,055 proper-subset necessity witnesses**. An independent implementation reproduces the canonical enumeration and digest.
+The registered formal envelope is exhaustive. Across 320 donor-certificate/scientific-extension states, P6 has **zero donor-conservativity violations** and **zero mismatches with an equally informed ideal donor product**. The model contains 25 one-coordinate lifting separations and 31 certificate-product non-laundering witnesses. More importantly, it contains **155 complete-revalidation restorations** and **1,055 strict-subset countermodels**. The two directions jointly establish the registered repair law: when donor validity and unchanged coordinates remain valid, revalidating the complete affected scientific bridge is **necessary and sufficient** for restoration of scientific standing. An independent implementation reproduces the canonical enumeration and digest.
 
-The resulting contribution is positive and reusable: P6 supplies a scientific lifting layer that composes with strong certificate systems, preserves their valid lower-level assurances, and performs exact selective revalidation after scientifically material change. The zero-mismatch ideal-product result establishes implementation portability: the semantics can live in ORION or in a correctly enriched donor product without changing the scientific judgment.
+The resulting contribution is positive and reusable: P6 supplies a scientific lifting layer that composes with strong certificate systems, preserves their valid lower-level assurances, and gives an exact repair criterion after scientifically material change—retain unaffected valid assurance and revalidate the complete affected claim-specific bridge, neither more nor less. The zero-mismatch ideal-product result establishes implementation portability: the semantics can live in ORION or in a correctly enriched donor product without changing the scientific judgment.
 
 ## Donor-engulfment architecture
 
@@ -55,10 +55,10 @@ A product of native-valid donor certificates cannot infer an absent scientific l
 
 This is a composition theorem about scientific meaning, not a rejection of certificate accumulation.
 
-### Theorem V4.4 — exact selective revalidation
-Suppose a transition changes a nonempty set `S` of load-bearing scientific lift coordinates while the donor certificates remain valid. Revalidating every coordinate in `S` restores lifting when unchanged coordinates remain valid; every tested proper subset of `S` remains insufficient in the registered theorem instance.
+### Theorem V4.4 — necessary-and-sufficient selective revalidation
+Suppose a transition changes a nonempty set `S` of load-bearing scientific lift coordinates while the donor certificates remain valid. Revalidating every coordinate in `S` restores lifting when unchanged coordinates remain valid; revalidating any proper subset of `S` does not.
 
-The exhaustive model supplies 155 exact restorations and 1,055 proper-subset necessity witnesses. The constructive rule is therefore simple: **retain every unaffected valid certificate and revalidate the complete affected scientific bridge**.
+The exhaustive model supplies **155 restoration cases proving sufficiency** and **1,055 strict-subset countermodels proving necessity**. Therefore, within the registered theorem instance, complete affected-coordinate revalidation is necessary and sufficient for restoration of scientific standing. The constructive rule is exact: **retain every unaffected valid certificate and revalidate the complete affected scientific bridge**.
 
 ### Theorem V4.5 — portability across implementations
 An information-equivalent donor product carrying the same scientific coordinates and lift predicate agrees extensionally with P6 on every registered state.
@@ -76,8 +76,8 @@ Exact enumeration:
 - donor-conservativity violations: **0**;
 - one-coordinate scientific-lifting separations: **25**;
 - certificate-product non-laundering separation witnesses: **31**;
-- exact full-revalidation restorations: **155**;
-- proper-subset revalidation necessity witnesses: **1,055**;
+- complete-revalidation sufficiency witnesses: **155**;
+- strict-subset necessity countermodels: **1,055**;
 - ideal enriched-product mismatches: **0**;
 - canonical row SHA-256: `e1e3c48bcefea3750d952c6b0ff37ac660a2e21f9823fdfdeb50bb62e819ff93`.
 
@@ -85,20 +85,20 @@ A second implementation reconstructs the enumeration without importing the prima
 
 ## Strongest supported claim
 
-> Strong execution, action, workflow, provenance, and attestation certificates can remain reusable across dynamic scientific change. Preservation of scientific standing is obtained by an explicit claim-specific lift, and scientifically material changes require exact revalidation of the affected lift coordinates rather than wholesale destruction of unrelated valid assurance.
+> Strong execution, action, workflow, provenance, and attestation certificates can remain reusable across dynamic scientific change. In the registered finite lifting model, preservation of scientific standing obeys an exact necessary-and-sufficient repair law: retain unaffected native-valid assurance and revalidate the complete affected claim-specific bridge; every strict subset remains insufficient.
 
-This is stronger and more useful than an erasure-only separation statement because it specifies how mature certificate systems are absorbed, preserved, composed, and selectively upgraded into scientific standing.
+This is stronger and more useful than an erasure-only separation statement because it specifies how mature certificate systems are absorbed, preserved, composed, and selectively upgraded into scientific standing, and exactly characterizes the repair condition in the registered model.
 
 ## Transfer scope
 
-The theorem establishes the registered five-coordinate lifting contract and its exact finite enumeration. Deployed-agent utility, broader domain ontologies, and any additional lift coordinates are empirical or formal extensions to be tested separately. Donor-owned certificate mechanisms remain credited to their source theories; this ownership does not reduce the proved lifting and selective-revalidation result.
+The theorem establishes the registered five-coordinate lifting contract and its exact finite enumeration. Deployed-agent utility, broader domain ontologies, and any additional lift coordinates are empirical or formal extensions to be tested separately. Donor-owned certificate mechanisms remain credited to their source theories; this ownership does not reduce the proved lifting, conservativity, representation-independence, or necessary-and-sufficient repair result.
 
 ## Conclusion
 
 P6 establishes a scientific certificate-lifting architecture for dynamic scientific computation. Mature proof-of-execution systems, certified traces, portable action receipts, workflow signatures, provenance, dependency/effect semantics, and execution attestation remain valuable after scientifically material change; they need not be discarded simply because the scientific interpretation moved.
 
-The scientific problem is narrower and more actionable: determine which claim-specific continuity coordinates changed, retain every valid lower-level certificate whose subject remained intact, and revalidate the complete affected lift. The exhaustive model gives 155 exact restoration cases and 1,055 matched necessity witnesses while preserving donor verdicts perfectly. The equally typed ideal donor product matches all 320 states, showing that the semantics are portable across implementations.
+The scientific problem is narrower and more actionable: determine which claim-specific continuity coordinates changed, retain every valid lower-level certificate whose subject remained intact, and revalidate the complete affected lift. The exhaustive model gives 155 restoration cases and 1,055 strict-subset countermodels, establishing necessity and sufficiency of complete affected-coordinate repair within the registered finite model while preserving donor verdicts perfectly. The equally typed ideal donor product matches all 320 states, showing that the semantics are portable across implementations.
 
-The strongest conclusion is therefore constructive: **scientific standing can be maintained through change by lifting strong operational certificates through explicit scientific obligations and selectively revalidating only the affected bridge**.
+The strongest conclusion is therefore constructive and exact: **scientific standing can be maintained through change by lifting strong operational certificates through explicit scientific obligations, with complete affected-bridge revalidation serving as the necessary-and-sufficient restoration rule in the registered model**.
 
 **Current science terminal:** `P6_CERTIFICATE_LIFTING_SEMANTICS_SUPPORTED__BOUNDED_FORMAL_DONOR_STACK__IDEAL_PRODUCT_EQUIVALENT`.
