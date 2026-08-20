@@ -43,13 +43,16 @@ FORBIDDEN_OVERCLAIM_PHRASES = {
     "we introduce a new neuro-symbolic architecture",
 }
 
-REQUIRED_BOUNDARY_PHRASES = {
-    "not a new theorem",
-    "not a new graph",
-    "whole held-out domain",
-    "same-information",
-    "no neural architecture",
-}
+# Each tuple is a semantic alternative set: at least one phrase must be present.
+# This avoids a brittle lexical failure when the manuscript says, for example,
+# "we do not introduce a new graph" instead of the shorter "not a new graph".
+REQUIRED_BOUNDARY_ALTERNATIVES = (
+    ("not a new theorem", "is not a new theorem"),
+    ("not a new graph", "do not introduce a new graph", "does not introduce a new graph"),
+    ("whole held-out domain",),
+    ("same-information",),
+    ("no neural architecture", "do not introduce a new neural architecture"),
+)
 
 
 def _fail(message: str) -> None:
@@ -71,19 +74,15 @@ def main() -> None:
         if phrase in lower:
             _fail(f"final manuscript contains prohibited overclaim phrase: {phrase!r}")
 
-    for phrase in sorted(REQUIRED_BOUNDARY_PHRASES):
-        if phrase.lower() not in lower:
-            _fail(f"final manuscript lacks required bounded-scope phrase: {phrase!r}")
+    for alternatives in REQUIRED_BOUNDARY_ALTERNATIVES:
+        if not any(phrase.lower() in lower for phrase in alternatives):
+            _fail(f"final manuscript lacks required bounded-scope meaning: one of {alternatives!r}")
 
     missing_bib = sorted(key for key in REQUIRED_CITATION_KEYS if f"{{{key}," not in bib)
     if missing_bib:
         _fail(f"bibliography lacks required donor keys: {missing_bib!r}")
 
-    missing_cites = sorted(
-        key
-        for key in REQUIRED_CITATION_KEYS
-        if key not in text
-    )
+    missing_cites = sorted(key for key in REQUIRED_CITATION_KEYS if key not in text)
     if missing_cites:
         _fail(f"manuscript body does not cite required donor keys: {missing_cites!r}")
 
