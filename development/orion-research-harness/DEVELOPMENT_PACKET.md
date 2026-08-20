@@ -21,7 +21,7 @@ The harness:
 - deterministically replays completed capability calls;
 - persists problems, completed ORION results, full final-state/trace snapshots and experience records;
 - provides a CLI and ChatGPT/Claude handoff protocol;
-- provides project-root-confined local file/Python/subprocess tools.
+- provides project-root-confined file operations plus explicitly opt-in local Python/subprocess execution.
 
 ## Why the BaseException control signal is necessary
 
@@ -36,8 +36,10 @@ This mechanism grants no scientific authority and is not registered as an ORION 
 - Host output is provider input, not authority.
 - Verification remains a separate broker capability.
 - Passing `VerificationResult` still requires certificate IDs.
-- Local filesystem/process actions are explicit host capabilities and confined to configured project root.
-- Shell commands use argv and never `shell=True`.
+- Local file operations resolve under the configured project root and reject escapes.
+- `SHELL` / `PYTHON` are disabled by default and require explicit workspace opt-in.
+- Process tools are **not an OS sandbox** and may access anything available to the current OS user; receipts state `sandboxed: false`.
+- Shell commands use argv and never `shell=True`; timeouts are capped.
 - Host-tool failures remain host receipts; they are not silently converted into scientific facts.
 - No credential storage or vendor SDK dependency is added.
 
