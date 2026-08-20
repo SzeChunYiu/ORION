@@ -11,81 +11,33 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
+# Measured, not guessed. A profiling run (store-durations.yml) recorded all 3077
+# tests at 1878s total, and the distribution is extremely lopsided:
+#
+#   test_p2_offline_systems.py, 14 parametrised cases   ~107s each  ~1500s
+#   the rest of tests/unit/p2                                        ~315s
+#   everything else (2490 tests)                                      ~63s
+#
+# The single largest test is 113s, well under any per-shard target, so the split
+# is bound by shard count rather than by granularity -- adding shards keeps
+# paying. What it is *not* bound by is anything pytest-split can work out on its
+# own: with no .test_durations it chunks the collected list by count, and the 14
+# heavy cases are adjacent, so they land in one shard and that shard alone runs
+# 20+ minutes. An earlier attempt split the whole suite six ways by count and
+# produced five 43s shards and one 20-minute shard for exactly this reason.
+#
+# So the heavy file is split on its own axis, which spreads those 14 cases
+# deterministically without needing a durations file: at 6 groups they land
+# 3/4/4/3/0/0, capping the worst shard at 4 heavy cases.
+#
+# xdist (-n auto) is applied to the p2 jobs only. Checked file by file: every
+# write under tests/unit/p2 is tmp_path-scoped, which xdist isolates per worker,
+# and the dominant file writes nothing to disk at all. The fast job stays serial
+# because that is where the 58 files that write outside tmp_path live -- 63s of
+# tests, no speed to win, a real race surface to avoid. Note these runners are
+# 2-core, so -n auto buys ~2x, not the ~3.5x a 4-core laptop shows.
+
 jobs:
-  binding-refresh:
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 0
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - run: python -m pip install -e '.[dev,candidates]'
-      - name: Generate exact widened-claim bindings
-        run: |
-          set -euo pipefail
-          python - <<'PY'
-          from hashlib import sha256
-          from pathlib import Path
-
-          p4 = Path('papers/paper-04-verified-scientific-discovery/manuscript/main.tex')
-          text = p4.read_text(encoding='utf-8')
-          replacements = [
-              (
-                  "A separate audit shows that the original \\cannot comparison is saturated by an evidence-list shortcut and therefore cannot discriminate systems; rather than interpreting that equality as a scientific finding, we identify the construction defect and prospectively specify a harder evidential family.",
-                  "A separate construction audit proves that the registered \\cannot comparison is non-identifying for abstention competence: evidence-list emptiness alone perfectly predicts the label across the frozen battery, so the score cannot distinguish evidential judgment from a trivial shortcut. The unsupported H3 superiority hypothesis therefore yields an exact benchmark-validity result rather than a comparative abstention claim."
-              ),
-              (
-                  "(iv) a post-run measurement audit identifies the original \\cannot family as non-discriminating by construction and converts that issue into a prospectively specified harder test rather than a spurious equality claim.",
-                  "(iv) a post-run construction audit proves that the original \\cannot family is non-identifying for abstention competence because a trivial evidence-list shortcut perfectly predicts the registered label, so H3 becomes an exact benchmark-validity result rather than a spurious equality claim."
-              ),
-          ]
-          for old, new in replacements:
-              if old in text:
-                  text = text.replace(old, new)
-          old = """Every one of the eleven panel members, ORION included, correctly selected \\cannot on all 30 insufficient-evidence cases. The equality is exact, but the post-run construction audit shows why it cannot support a comparative abstention conclusion. In this battery the insufficient-evidence family has an \\emph{empty} evidence list, while every other family carries exactly one evidence object. The shortcut ``predict \\cannot\\ if and only if the evidence list is empty'' therefore classifies all 420 cases correctly. The axis saturates by construction and has no resolving power.
-
-H3 was not supported; the construction audit shows that the registered abstention axis was saturated by an empty-evidence shortcut and therefore could not resolve comparative abstention ability. This audit converts an apparently neutral result into a concrete measurement finding: the original H3 family does not test evidential judgement. We therefore do not interpret the equality as evidence of equivalent abstention ability. Instead, the prospective repair changes what must be reasoned about while preserving the authority distinction. New cases present evidence that is read but fails to establish the claim, either because no supporting record exists or because an apparently supporting record lacks verifiable provenance. Under that repaired construction no evidence-free rule tested on the design reaches perfect classification; the best shortcut falls from $1.00$ to $0.96$. The repaired battery has not yet been executed, so it is a future discriminator rather than a retroactive result. Table~\\ref{tab:p4_t3} retains the V2 abstention and false-negative counts exactly."""
-          new = """Every one of the eleven panel members, ORION included, correctly selected \\cannot on all 30 insufficient-evidence cases. The equality is exact, but the post-run construction audit proves why it cannot support a comparative abstention conclusion. In this battery the insufficient-evidence family has an \\emph{empty} evidence list, while every other family carries exactly one evidence object. The shortcut ``predict \\cannot\\ if and only if the evidence list is empty'' therefore classifies all 420 cases correctly. The axis saturates by construction and has no resolving power for the intended competence.
-
-\\paragraph{Exact benchmark non-identifiability result.} H3 remains unsupported as a superiority hypothesis. The positive result is instead construction-level: because the observed label is perfectly recoverable from a trivial observable feature that does not require evidential judgment, the registered H3 score is non-identifying for abstention competence. The same 30/30 score is compatible with genuine evidence-sufficiency reasoning or with shortcut detection, so this benchmark slice cannot authorize a comparative abstention inference. In ORION terms, the evaluator output is locally valid but lacks authority for the broader scientific claim.
-
-The prospective repair changes what must be reasoned about while preserving the authority distinction. New cases present evidence that is read but fails to establish the claim, either because no supporting record exists or because an apparently supporting record lacks verifiable provenance. Under that repaired construction no evidence-free rule tested on the design reaches perfect classification; the best shortcut falls from $1.00$ to $0.96$. The repaired battery has not yet been executed, so it is a future discriminator rather than a retroactive result. Table~\\ref{tab:p4_t3} retains the V2 abstention and false-negative counts exactly."""
-          if old in text:
-              text = text.replace(old, new)
-          if 'non-identifying for abstention competence' not in text or 'saturates' not in text:
-              raise SystemExit('P4 promotion audit text did not land')
-          p4.write_text(text, encoding='utf-8')
-
-          sums = Path('papers/paper-04-verified-scientific-discovery/journal_package/SHA256SUMS')
-          lines = sums.read_text(encoding='utf-8').splitlines()
-          digest = sha256(p4.read_bytes()).hexdigest()
-          suffix = '  manuscript/main.tex'
-          lines = [f'{digest}{suffix}' if line.endswith(suffix) else line for line in lines]
-          sums.write_text('\n'.join(lines) + '\n', encoding='utf-8')
-          PY
-          python papers/candidates/checkers/check_content_binding_v1.py --write
-          python papers/candidates/checkers/check_content_binding_v1.py --check
-          pytest -q tests/unit/candidates/test_candidate_content_binding.py tests/unit/p4/test_p4_metric_headroom.py
-          mkdir -p widened-binding-artifact/p4 widened-binding-artifact/p6 widened-binding-artifact/p7 widened-binding-artifact/p8
-          cp papers/paper-04-verified-scientific-discovery/manuscript/main.tex widened-binding-artifact/p4/main.tex
-          cp papers/paper-04-verified-scientific-discovery/journal_package/SHA256SUMS widened-binding-artifact/p4/SHA256SUMS
-          cp papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json widened-binding-artifact/p6/CONTENT_MANIFEST_V1.json
-          cp papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/SHA256SUMS widened-binding-artifact/p6/SHA256SUMS
-          cp papers/candidates/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json widened-binding-artifact/p7/CONTENT_MANIFEST_V1.json
-          cp papers/candidates/paper-07-epistemic-navigation-open-worlds/SHA256SUMS widened-binding-artifact/p7/SHA256SUMS
-          cp papers/candidates/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json widened-binding-artifact/p8/CONTENT_MANIFEST_V1.json
-          cp papers/candidates/paper-08-epistemic-authority-autonomous-science/SHA256SUMS widened-binding-artifact/p8/SHA256SUMS
-      - uses: actions/upload-artifact@v4
-        with:
-          name: widened-claim-bindings-${{ github.event.pull_request.head.sha }}
-          path: widened-binding-artifact
-          if-no-files-found: error
-          retention-days: 3
-
   fast:
     name: fast (all but p2)
     runs-on: ubuntu-latest
@@ -100,6 +52,7 @@ The prospective repair changes what must be reasoned about while preserving the 
       - run: python -m pip install -e '.[dev,candidates]'
       - run: pytest -q --ignore=tests/unit/p2 --durations=10
 
+  # The 14 expensive cases, spread across six runners.
   p2-heavy:
     name: p2 heavy ${{ matrix.group }}/6
     runs-on: ubuntu-latest
@@ -120,6 +73,7 @@ The prospective repair changes what must be reasoned about while preserving the 
           pytest -q tests/unit/p2/test_p2_offline_systems.py
           --splits 6 --group ${{ matrix.group }} -n auto --durations=10
 
+  # Everything else in p2: the frozen-snapshot regenerations, ~315s together.
   p2-rest:
     name: p2 rest
     runs-on: ubuntu-latest
@@ -137,6 +91,12 @@ The prospective repair changes what must be reasoned about while preserving the 
           --ignore=tests/unit/p2/test_p2_offline_systems.py
           -n auto --durations=10
 
+  # Aggregate gate. One stable check name, and it fails on anything that is not
+  # success. That distinction is load-bearing here twice over: the concurrency
+  # group makes `cancelled` routine, and GitHub also reports a *timeout* as
+  # `cancelled` rather than `failure` -- a 20-minute bound on the old unbalanced
+  # shard fired exactly that way and would have read as green to a gate that
+  # only tested for failure.
   test:
     if: always()
     needs: [fast, p2-heavy, p2-rest]
