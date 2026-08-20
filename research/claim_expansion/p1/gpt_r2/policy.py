@@ -15,6 +15,9 @@ BUDGET = int(PROTOCOL["budget"])
 THRESHOLD = float(PROTOCOL["posterior_terminal_threshold"])
 LOW_GATE = float(PROTOCOL["orion_lower_level_mass_gate"])
 BOUNDARY_GATE = float(PROTOCOL["orion_boundary_lower_plus_objective_mass_gate"])
+LOW_PROBE_PRIORITY = float(PROTOCOL["orion_lower_level_probe_priority_mass"])
+NO_HIGH_MAX_HIGH_MASS = float(PROTOCOL["orion_no_high_level_max_high_mass"])
+NO_HIGH_MIN_REFUTATIONS = int(PROTOCOL["orion_no_high_min_refutations"])
 
 LOW_LEVEL = {
     "SEARCH_OR_EVIDENCE",
@@ -195,6 +198,12 @@ def always_escalate_policy(case: Mapping[str, object]) -> dict[str, object]:
 
 
 def _orion_terminal(posterior: Mapping[str, float], trace: Sequence[Mapping[str, object]]) -> str | None:
+    refutations = sum(1 for t in trace if t["observation"] == "REFUTE")
+    supports = sum(1 for t in trace if t["observation"] == "SUPPORT")
+    high_mass = sum(posterior[c] for c in HIGH_LEVEL)
+    if refutations >= NO_HIGH_MIN_REFUTATIONS and supports == 0 and high_mass <= NO_HIGH_MAX_HIGH_MASS:
+        return "NO_HIGH_LEVEL_REFORMULATION"
+
     top_class, top_prob = max(posterior.items(), key=lambda kv: (kv[1], kv[0]))
     if top_prob < THRESHOLD:
         return None
@@ -215,7 +224,7 @@ def _orion_probe(posterior: Mapping[str, float], unprobed: Sequence[str]) -> str
     if not unprobed:
         return None
     lower_mass = sum(posterior[c] for c in LOW_LEVEL)
-    if lower_mass > 0.35:
+    if lower_mass > LOW_PROBE_PRIORITY:
         candidates = [p for p in unprobed if PROBE_TO_CLASS[p] in LOW_LEVEL]
         if candidates:
             return max(candidates, key=lambda p: (posterior[PROBE_TO_CLASS[p]], -PROBES.index(p)))
