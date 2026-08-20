@@ -12,6 +12,13 @@ OUT_MD = HERE / "evidence" / "HEADLINE_TABLES_V1.md"
 OUT_TEX = HERE / "manuscript" / "generated_headline_tables.tex"
 LATEX_ROW_BREAK = "\\\\"
 
+ARM_DISPLAY = {
+    "TRANSCRIPT_BAG": "Transcript bag",
+    "UNTYPED_PAIR": "Untyped pair",
+    "TYPED_RELATIONAL": "Typed relational",
+    "TYPED_SERIALIZED_BAG": "Typed serialization",
+}
+
 
 def _load_summary() -> dict[str, Any]:
     if not SUMMARY.is_file():
@@ -88,6 +95,7 @@ def build_tables(summary: dict[str, Any]) -> dict[str, Any]:
         d1_rows.append(
             {
                 "arm": arm,
+                "display_arm": ARM_DISPLAY[arm],
                 "selected_model": row["selected_model"],
                 "test_accuracy": row["test_accuracy"],
                 "macro_f1": row["macro_f1"],
@@ -257,36 +265,43 @@ def render_latex(tables: dict[str, Any]) -> str:
         )
     lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table}", ""])
 
+    # Keep publication tables within the official TMLR text width.  Exact
+    # selected-model identifiers remain in the machine-readable evidence and
+    # Markdown table; they are intentionally omitted from the typeset headline
+    # table because they are provenance, not a scientific endpoint.
     lines.extend(
         [
             r"\begin{table*}[t]",
             r"\centering",
-            r"\caption{D1 protected whole-domain transfer to transactional workflows. The typed serialized bag exposes the same typed semantic fields as the relational arm but removes the explicit relational comparison.}",
+            r"\small",
+            r"\setlength{\tabcolsep}{4pt}",
+            r"\caption{D1 protected whole-domain transfer to transactional workflows. The typed serialization exposes the same typed semantic fields as the relational arm but removes the explicit relational comparison. Exact selected-model identifiers remain in the evidence archive.}",
             r"\label{tab:d1-transfer}",
-            r"\begin{tabular}{llrrrr}",
+            r"\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}Xrrrr}",
             r"\toprule",
-            f"Arm & Selected model & Accuracy & Macro-F1 & Double corruption & UNRESOLVED {LATEX_ROW_BREAK}",
+            f"Arm & Acc. & Macro-F1 & Double corrupt. & UNRESOLVED {LATEX_ROW_BREAK}",
             r"\midrule",
         ]
     )
     for row in tables["d1_transfer_table"]:
         lines.append(
-            f"{_latex_escape(row['arm'])} & {_latex_escape(row['selected_model'])} & "
-            f"{_fmt(row['test_accuracy'])} & {_fmt(row['macro_f1'])} & "
-            f"{_fmt(row['double_corruption_accuracy'])} & {_fmt(row['unresolved_accuracy'])} "
-            f"{LATEX_ROW_BREAK}"
+            f"{_latex_escape(row['display_arm'])} & {_fmt(row['test_accuracy'])} & "
+            f"{_fmt(row['macro_f1'])} & {_fmt(row['double_corruption_accuracy'])} & "
+            f"{_fmt(row['unresolved_accuracy'])} {LATEX_ROW_BREAK}"
         )
-    lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""])
+    lines.extend([r"\bottomrule", r"\end{tabularx}", r"\end{table*}", ""])
 
     lines.extend(
         [
             r"\begin{table*}[t]",
             r"\centering",
-            r"\caption{Post-hoc paired uncertainty analysis of the frozen 128 protected D1 predictions. The analysis quantifies the existing endpoint; it is not a new preregistered endpoint.}",
+            r"\small",
+            r"\setlength{\tabcolsep}{4pt}",
+            r"\caption{Post-hoc paired uncertainty analysis of the frozen 128 protected D1 predictions. This quantifies the existing endpoint; it is not a new preregistered endpoint.}",
             r"\label{tab:d1-paired}",
-            r"\begin{tabular}{lrrrr}",
+            r"\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}Xrrrr}",
             r"\toprule",
-            f"Comparator & Accuracy delta & Paired 95\\% CI & Discordant wins--losses & Exact McNemar $p$ {LATEX_ROW_BREAK}",
+            f"Comparator & Delta & Paired 95\\% CI & Wins--losses & McNemar $p$ {LATEX_ROW_BREAK}",
             r"\midrule",
         ]
     )
@@ -297,7 +312,7 @@ def render_latex(tables: dict[str, Any]) -> str:
             f"{row['typed_wins']}--{row['typed_losses']} & {_fmt_p_latex(float(row['mcnemar_p']))} "
             f"{LATEX_ROW_BREAK}"
         )
-    lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table*}", ""])
+    lines.extend([r"\bottomrule", r"\end{tabularx}", r"\end{table*}", ""])
     return "\n".join(lines) + "\n"
 
 
