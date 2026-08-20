@@ -320,6 +320,87 @@ def rule_policy(case: PublicCase) -> PolicyOutput:
     return PolicyOutput(case.task_answer, tuple(migrations))
 
 
+def semantic_change_parent(case: PublicCase) -> PolicyOutput:
+    relations = {(a, b): rel for a, b, rel in case.delta.semantic_relations}
+    migrations = []
+    for obj in case.objects:
+        changed = any(
+            a == obj.semantic_view_id and rel == "LOAD_BEARING_DIFFERENCE"
+            for (a, _b), rel in relations.items()
+        )
+        migrations.append(
+            Migration(
+                obj.object_id,
+                obj.standing,
+                Standing.REOPENED if changed else obj.standing,
+                Disposition.REOPEN if changed else Disposition.PRESERVE,
+            )
+        )
+    return PolicyOutput(case.task_answer, tuple(migrations))
+
+
+def negative_applicability_parent(case: PublicCase) -> PolicyOutput:
+    added_ops = set(case.delta.added_operators)
+    migrations = []
+    for obj in case.objects:
+        reopened = (
+            obj.object_kind == "NEGATIVE_KNOWLEDGE"
+            and obj.failure_cause.startswith("MISSING_OPERATOR:")
+            and obj.failure_cause.split(":", 1)[1] in added_ops
+        )
+        migrations.append(
+            Migration(
+                obj.object_id,
+                obj.standing,
+                Standing.REOPENED if reopened else obj.standing,
+                Disposition.REOPEN if reopened else Disposition.PRESERVE,
+            )
+        )
+    return PolicyOutput(case.task_answer, tuple(migrations))
+
+
+def authority_drift_parent(case: PublicCase) -> PolicyOutput:
+    stale = set(case.delta.stale_authority_receipts)
+    migrations = []
+    for obj in case.objects:
+        reopened = bool(set(obj.authority_receipt_ids) & stale)
+        migrations.append(
+            Migration(
+                obj.object_id,
+                obj.standing,
+                Standing.REOPENED if reopened else obj.standing,
+                Disposition.REOPEN if reopened else Disposition.PRESERVE,
+            )
+        )
+    return PolicyOutput(case.task_answer, tuple(migrations))
+
+
+def donor_union_policy(case: PublicCase) -> PolicyOutput:
+    """Strongest simple donor product for the V0 pilot.
+
+    Reopens an object if *any* current parent detects its own invalidation.
+    This intentionally shows that the first pilot families do not establish an
+    ORION-specific interaction residual.
+    """
+    parent_outputs = (
+        semantic_change_parent(case),
+        negative_applicability_parent(case),
+        authority_drift_parent(case),
+    )
+    by_parent = [
+        {m.object_id: m for m in output.migrations}
+        for output in parent_outputs
+    ]
+    migrations = []
+    for obj in case.objects:
+        candidates = [mapping[obj.object_id] for mapping in by_parent]
+        if any(m.disposition is Disposition.REOPEN for m in candidates):
+            migrations.append(Migration(obj.object_id, obj.standing, Standing.REOPENED, Disposition.REOPEN))
+        else:
+            migrations.append(Migration(obj.object_id, obj.standing, obj.standing, Disposition.PRESERVE))
+    return PolicyOutput(case.task_answer, tuple(migrations))
+
+
 def always_preserve(case: PublicCase) -> PolicyOutput:
     return PolicyOutput(
         case.task_answer,
