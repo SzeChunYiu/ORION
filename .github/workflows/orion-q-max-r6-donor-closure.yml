@@ -22,3 +22,8 @@ jobs:
           cd research/extensions/orion-q
           python max_r6_donor_closure_h4_fast.py | tee /tmp/r6-donor-closure.txt
           grep '^ORIONQ_MAX_R6_DONOR_CLOSURE=' /tmp/r6-donor-closure.txt
+      - name: Execute interface envelope selected by native Self-ORION N1
+        run: |
+          cd research/extensions/orion-q
+          python max_r6_foqcs_interface_envelope.py | tee /tmp/r6-interface.txt
+          grep '^ORIONQ_MAX_R6_FOQCS_INTERFACE=' /tmp/r6-interface.txt
