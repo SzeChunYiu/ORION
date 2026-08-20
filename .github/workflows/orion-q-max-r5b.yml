@@ -27,3 +27,8 @@ jobs:
           cd research/extensions/orion-q
           python max_r5b_n2_independent_replay.py | tee /tmp/r5b-independent.txt
           grep '^ORIONQ_MAX_R5B_INDEPENDENT=' /tmp/r5b-independent.txt
+      - name: Run controlled-SELECT-aware N2 development successor
+        run: |
+          cd research/extensions/orion-q
+          python max_r5c_n2_controlled_cost_development.py | tee /tmp/r5c-dev.txt
+          grep '^ORIONQ_MAX_R5C_DEV=' /tmp/r5c-dev.txt
