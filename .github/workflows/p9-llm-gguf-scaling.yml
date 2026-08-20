@@ -1,0 +1,73 @@
+name: p9-llm-gguf-scaling
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/p9-p10-structural-scaling/P9_LLM_GGUF_EXECUTION_AMENDMENT_V1.md'
+      - 'research/extensions/p9-p10-structural-scaling/run_p9_llm_gguf_v1_fixed.py'
+      - 'research/extensions/p9-p10-structural-scaling/analyze_p9_llm_gguf_v1.py'
+      - '.github/workflows/p9-llm-gguf-scaling.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    strategy:
+      fail-fast: false
+      matrix:
+        scale: ['0.5B','1.5B','3B']
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION runtime
+        run: python -m pip install -e .
+      - name: Build pinned llama.cpp
+        run: |
+          git clone --depth 1 --branch b6635 https://github.com/ggml-org/llama.cpp.git /tmp/llama.cpp
+          cmake -S /tmp/llama.cpp -B /tmp/llama.cpp/build -DLLAMA_CURL=OFF -DCMAKE_BUILD_TYPE=Release
+          cmake --build /tmp/llama.cpp/build -j2 --target llama-cli
+          /tmp/llama.cpp/build/bin/llama-cli --version | tee /tmp/llama-version.txt
+      - name: Execute frozen model cell
+        run: |
+          mkdir -p /tmp/models out
+          python research/extensions/p9-p10-structural-scaling/run_p9_llm_gguf_v1_fixed.py \
+            --llama-cli /tmp/llama.cpp/build/bin/llama-cli \
+            --model-dir /tmp/models \
+            --model-scale '${{ matrix.scale }}' \
+            --output "out/p9-llm-${{ matrix.scale }}.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p9-llm-${{ matrix.scale }}-${{ github.sha }}
+          path: |
+            out/p9-llm-${{ matrix.scale }}.json
+            /tmp/llama-version.txt
+          if-no-files-found: error
+
+  analyze:
+    needs: evaluate
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: p9-llm-*-${{ github.sha }}
+          path: inputs
+          merge-multiple: true
+      - name: Analyze frozen scaling gate
+        run: |
+          python research/extensions/p9-p10-structural-scaling/analyze_p9_llm_gguf_v1.py \
+            --inputs inputs/p9-llm-0.5B.json inputs/p9-llm-1.5B.json inputs/p9-llm-3B.json \
+            --output P9_LLM_GGUF_SCALING_ANALYSIS_V1.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p9-llm-analysis-${{ github.sha }}
+          path: P9_LLM_GGUF_SCALING_ANALYSIS_V1.json
+          if-no-files-found: error
