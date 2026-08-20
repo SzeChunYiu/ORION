@@ -1,11 +1,11 @@
-"""Deterministic hostile pairs for the ORION-Q QC-2A exact substrate.
+"""Deterministic hostile pairs for the ORION-Q QC-2 exact substrate.
 
 These pairs mirror P9's information-lattice discipline: restricted views collide
 while evaluator gold differs, so their deterministic information ceiling is 1/2.
 The semantic view exposes the small quantum state payload required by the exact
 invariant witness and separates the pair.
 
-This v0 generator is evaluator bootstrap only.  It is not yet a protected learned
+The generator is evaluator bootstrap only. It is not yet a protected learned
 benchmark and grants no scientific, novelty, adoption, or execution authority.
 """
 
@@ -32,6 +32,7 @@ from .quantum_obstruction import (
 class QuantumHostileFamily(str, Enum):
     ENTANGLEMENT = "ENTANGLEMENT"
     COMPLEX_PHASE = "COMPLEX_PHASE"
+    CLIFFORD_MAGIC = "CLIFFORD_MAGIC"
 
 
 class QuantumViewMode(str, Enum):
@@ -57,6 +58,13 @@ def _phase(seed: str, slot: str) -> complex:
     bucket = 1 + int(digest[:4], 16) % 7
     angle = bucket * math.pi / 16.0
     return complex(math.cos(angle), math.sin(angle))
+
+
+def _bounded_index(seed: str, slot: str, upper_exclusive: int) -> int:
+    if upper_exclusive <= 0:
+        raise ValueError("upper_exclusive must be positive")
+    digest = sha256(f"{seed}|index|{slot}".encode("utf-8")).hexdigest()
+    return int(digest[:8], 16) % upper_exclusive
 
 
 @dataclass(frozen=True)
@@ -229,6 +237,59 @@ def _complex_phase_pair(seed: str) -> GeneratedQuantumPair:
     return pair
 
 
+def _clifford_magic_pair(seed: str) -> GeneratedQuantumPair:
+    material = content_digest({"schema": "ORIONQ.CliffordMagicSeed.v0", "seed": seed})
+    half = 1.0 / math.sqrt(2.0)
+    sign = _sign(material, "magic-sign")
+    phase = _phase(material, "magic-phase")
+    initial = PureState(_token(material, "state", "initial", prefix="q"), (1, 0))
+
+    obstruction_target = PureState(
+        _token(material, "state", "target-obstruction", prefix="q"),
+        (half, sign * phase * half),
+    )
+
+    stabilizer_candidates = (
+        (1, 0),
+        (0, 1),
+        (half, half),
+        (half, -half),
+        (half, 1j * half),
+        (half, -1j * half),
+    )
+    compatible_amplitudes = stabilizer_candidates[
+        _bounded_index(material, "stabilizer-target", len(stabilizer_candidates))
+    ]
+    compatible_target = PureState(
+        _token(material, "state", "target-compatible", prefix="q"),
+        compatible_amplitudes,
+    )
+
+    capability = QuantumLanguageCapability.CLIFFORD_ONLY
+    obstruction = QuantumObstructionCase(
+        case_id=_token(material, "case", "0", prefix="c"),
+        capability=capability,
+        initial=initial,
+        target=obstruction_target,
+        gold=classify_quantum_obstruction(capability, initial, obstruction_target),
+    )
+    compatible = QuantumObstructionCase(
+        case_id=_token(material, "case", "1", prefix="c"),
+        capability=capability,
+        initial=initial,
+        target=compatible_target,
+        gold=classify_quantum_obstruction(capability, initial, compatible_target),
+    )
+    pair = GeneratedQuantumPair(
+        family=QuantumHostileFamily.CLIFFORD_MAGIC,
+        pair_id=_token(material, "pair", "0", prefix="p"),
+        surface_token=_token(material, "surface", "0", prefix="s"),
+        cases=(obstruction, compatible),
+    )
+    pair.verify()
+    return pair
+
+
 def generate_quantum_hostile_pair(
     family: QuantumHostileFamily,
     *,
@@ -240,6 +301,8 @@ def generate_quantum_hostile_pair(
         return _entanglement_pair(seed)
     if family is QuantumHostileFamily.COMPLEX_PHASE:
         return _complex_phase_pair(seed)
+    if family is QuantumHostileFamily.CLIFFORD_MAGIC:
+        return _clifford_magic_pair(seed)
     raise ValueError(f"unsupported quantum hostile family: {family}")
 
 
