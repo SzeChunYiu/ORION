@@ -1,0 +1,136 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,tabularx,longtable,hyperref}
+\title{ORION Paper IV-U: Scientific Adjudication under Adversarial and Heterogeneous Evidence}
+\author{Prospective successor working manuscript}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Scientific agents increasingly combine factual verification, provenance tracing, abstention, authorization checks, execution provenance, and evaluator safeguards. The strongest version of ORION Paper IV therefore cannot claim superiority from any one of those components. We ask a broader question: can an integrated scientific adjudicator decide when a scientific conclusion is established, unresolved, contradicted, or blocked more reliably than a donor-complete composition of current verification and governance mechanisms? The proposed study treats correctness, evidence completeness, source ownership, statistical and measurement validity, evaluator integrity, temporal validity, scope, dependency support, and authority to promote as distinct load-bearing obligations. It prospectively constructs heterogeneous cases in which final-answer correctness is deliberately held constant while scientific permission differs, together with clean positive controls that make blanket abstention costly. The primary target is end-to-end superiority in invalid-promotion avoidance at matched clean scientific utility, not a narrower claim about provenance or refusal. The historical protected-V2 result remains immutable evidence, and the saturated H3 slice remains a non-identifying benchmark result. New superiority language is forbidden until a construction-balanced protected campaign, disjoint replication, and independent adjudication establish it.
+\end{abstract}
+
+\section{Upward research target}
+The ultimate claim to earn is:
+\begin{quote}
+Across heterogeneous and adversarial scientific workflows, ORION makes better scientific adjudication decisions than the strongest donor-complete verifier at matched information, tools, model, and resource budget. It rejects fewer valid conclusions, promotes fewer invalid conclusions, remains calibrated under missing evidence, and identifies the exact obligation that prevents promotion.
+\end{quote}
+This claim is intentionally wider than factuality, provenance, abstention, security authorization, or benchmark integrity alone. Those mechanisms are inputs to the comparator and to ORION.
+
+\section{Historical evidence is a floor, not the destination}
+The predecessor P4 evidence established a bounded protected promotion result with zero false promotions for ORION against a weaker comparator while retaining clean positive coverage. It also retained an H3 coordinate whose construction could not discriminate the intended competence. P4-U preserves both outcomes. It does not reinterpret the H3 null as equality or success. Instead, H3 becomes a benchmark-science failure object: a result may be scientifically uninformative because the construction admits shortcuts or lacks headroom.
+
+\section{Donor-complete baseline principle}
+Nearest work is absorbed upward. The official comparator receives, where legally and technically available:
+\begin{itemize}
+  \item claim-level evidence tracing and execution provenance;
+  \item source-aware factuality and attribution checking;
+  \item explicit partial-evidence and completeness-gap handling;
+  \item provenance-to-authorization alignment;
+  \item statistical and measurement-validity checks;
+  \item contamination, leakage, and evaluator-integrity checks;
+  \item calibrated abstention and uncertainty;
+  \item temporal and scope validity;
+  \item dependency and revocation information.
+\end{itemize}
+ORION does not earn superiority by withholding a donor mechanism from the comparator. The residual must survive an idealized donor composition.
+
+\section{Scientific adjudication state}
+For each candidate conclusion $c$, the protected evaluator defines obligation coordinates
+\[
+\Omega(c)=\{T,E,S,M,P,Q,D,V,A\},
+\]
+where $T$ is truth/technical correctness, $E$ evidence sufficiency, $S$ source ownership/provenance, $M$ measurement/statistical validity, $P$ population/scope validity, $Q$ temporal/currentness validity, $D$ dependency support, $V$ evaluator/verifier integrity, and $A$ authority to promote. The candidate system may observe only the public projection. It must decide
+\[
+\delta(c)\in\{\textsc{Promote},\textsc{Reject},\textsc{Unresolved},\textsc{Reopen},\textsc{CannotCheck}\}.
+\]
+No scalar confidence score may compensate for a failed mandatory obligation.
+
+\section{Responsibility-relative state is a direct falsifier}
+A central P4-U construction holds answer correctness fixed while changing whether the state used is sufficient for scientific promotion. Candidate views include raw evidence, confidence summaries, provenance summaries, canonical full state, and responsibility-carrying state. A compact state may support \texttt{ANSWER} while failing \texttt{VERIFY} or \texttt{PROMOTE}. Reusing such a state at a higher responsibility is counted as false promotion even when the final answer happens to be correct. Conversely, always reopening raw evidence is penalized by clean coverage, latency, and resource cost.
+
+\section{Construction-balanced benchmark}
+Protected cases are generated in matched families so labels cannot be recovered from evidence length, source count, missingness pattern, template, or lexical cues. Required families include:
+\begin{enumerate}
+  \item complete, independent, valid evidence supporting a clean positive;
+  \item correct claim supported by incomplete evidence;
+  \item correct claim with wrong-source attribution;
+  \item persuasive but unsupported claim;
+  \item dependent evidence presented as independent replication;
+  \item invalid or mismatched statistical analysis;
+  \item wrong measurement/operationalization despite numerical consistency;
+  \item scope overreach from local evidence to broader population or domain;
+  \item temporal invalidation or stale evidence;
+  \item contaminated benchmark or holdout access;
+  \item unverifiable code or missing execution identity;
+  \item evaluator/checker defect;
+  \item contradictory evidence requiring explicit unresolved state;
+  \item evidence sufficient for answer but insufficient for promotion;
+  \item revocation after a load-bearing evidence item changes.
+\end{enumerate}
+Every adverse family has matched clean controls. Construction-level shortcut classifiers are preregistered and must fail to recover the protected label above a frozen tolerance before headline results are admissible.
+
+\section{Systems compared}
+Under matched resource envelopes:
+\begin{enumerate}
+  \item raw strong LLM judge;
+  \item factual verifier;
+  \item provenance-aware verifier;
+  \item abstention/calibration system;
+  \item authorization/provenance system;
+  \item evidence-chain or process-tracing agent;
+  \item donor-complete ideal product combining all available mechanisms;
+  \item ORION P4-U;
+  \item oracle obligation vector for analysis only.
+\end{enumerate}
+If an official external implementation is unavailable, the manuscript reports \texttt{CANNOT\_CHECK} for that official system and separately labels any mechanism reimplementation.
+
+\section{Primary hypothesis and non-compensatory guards}
+The primary hypothesis is deliberately broad:
+\begin{quote}
+P4-U reduces false scientific promotion relative to the strongest donor-complete comparator while preserving at least a frozen non-inferior level of valid scientific promotion and total scientific utility across heterogeneous domains.
+\end{quote}
+Primary outcomes are false-promotion rate, valid-promotion/clean coverage, and a preregistered scientific-utility measure that penalizes both unsafe promotion and indiscriminate refusal. Mandatory safety dimensions are non-compensatory. A gain in clean coverage cannot compensate for evaluator compromise, and lower false promotion cannot establish superiority if the system simply refuses almost everything.
+
+\section{Secondary outcomes}
+We also report false rejection, correct \textsc{Unresolved}/\textsc{CannotCheck}, obligation-localization accuracy, calibration, revocation accuracy, stale-state reuse, source-attribution accuracy, attack robustness, time, model/tool calls, verifier calls, and evidence/state access cost. Each metric is reported by family and domain, with worst-family outcomes retained rather than averaged away.
+
+\section{Statistical plan}
+The independent unit is the protected scientific decision case, with construction family and domain retained as blocking factors. Margins, primary contrasts, multiplicity handling, and catastrophic-harm rules are frozen before protected outcomes. Paired comparisons use case-level paired effects where systems see the same task. Report effect sizes and uncertainty intervals for every primary contrast. Replication uses a disjoint construction generator and independent implementation. No result from an invalid construction, leaked split, provider-invalid run, or evaluator-custody failure enters a scientific denominator.
+
+\section{Hostile benchmark audit}
+Before scoring systems, P4-U attacks its own evaluator and benchmark:
+\begin{itemize}
+  \item label prediction from evidence count, length, missingness, template, filenames, or source count;
+  \item gold/protected-field leakage;
+  \item answer-correctness shortcut where authority differs;
+  \item evaluator self-authorship or candidate modification;
+  \item stale evaluator or subject substitution;
+  \item source conflation;
+  \item duplicate evidence inflating apparent support;
+  \item refusal-only policy;
+  \item confidence-only policy;
+  \item scalar compensation across mandatory obligations.
+\end{itemize}
+If the benchmark fails these tests, the correct result is benchmark repair before system comparison, not a positive P4-U claim.
+
+\section{Negative-result research programme}
+Every material negative is retained and routed through issue \#652. A loss first receives a responsibility label from: \texttt{BENCHMARK\_NONIDENTIFYING}, \texttt{MISSING\_OBLIGATION}, \texttt{STATE\_INSUFFICIENT}, \texttt{DONOR\_DOMINATION}, \texttt{OVERCONSERVATIVE}, \texttt{EVALUATOR\_DEFECT}, \texttt{RESOURCE\_REGIME}, \texttt{GENERALIZATION\_FAILURE}, or \texttt{OTHER}. The next experiment changes the suspected cause, not the desired threshold. A negative is not converted to positive by widening margins, removing a strong baseline, deleting a hard family, or changing a protected label.
+
+The upward rule is recursive. If one obligation model is insufficient, the successor asks what broader scientific decision structure explains the failures. If an ideal donor product matches ORION, that product becomes the new substrate and the paper escalates to the next unsolved composition or regime. The broad superiority target remains active until earned, replaced by a stronger scientific object, closed by a real lower bound, or saturated across materially distinct successor mechanisms.
+
+\section{Claim ladder}
+\begin{enumerate}
+  \item \textbf{Protocol ready}: benchmark and donor-complete comparator frozen.
+  \item \textbf{Mechanism supported}: obligation-localization or authority-state mechanism beats direct ablations.
+  \item \textbf{Adjudication supported}: end-to-end scientific decision quality beats the ideal donor product under matched resources.
+  \item \textbf{General superiority supported}: adjudication advantage replicates across domains, independent constructions, and implementation/evaluator hosts.
+\end{enumerate}
+Only the final two levels support P4-U superiority language.
+
+\section{Current boundary}
+This manuscript is a prospective protocol and argument target. It does not claim that P4-U already dominates modern provenance, verification, abstention, authorization, or scientific-evidence systems. The predecessor P4 result remains valid at its earned scope. P4-U exists to move beyond that scope rather than narrow it.
+
+\end{document}
