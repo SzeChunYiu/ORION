@@ -89,6 +89,7 @@ def run_problem(
             "problem_id": problem.problem_id,
             "request": failed.request.as_dict(),
             "result": failed.result.as_dict(),
+            "error": failed.detail,
         }
 
     run_id = "run:" + uuid4().hex

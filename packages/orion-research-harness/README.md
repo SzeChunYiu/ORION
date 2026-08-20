@@ -16,12 +16,12 @@ Problem
   -> provider needs host capability
   -> deterministic capability request + receipt file
   -> external ChatGPT / Claude / Codex / local tool services request
-  -> signed result receipt
+  -> digest-bound result receipt
   -> deterministic replay
   -> next capability request OR complete ORION result
 ```
 
-A missing host capability is deliberately raised outside ORION's normal `Exception -> scientific failure evidence` path. Missing web/API access is an orchestration condition, not evidence that SEARCH or another scientific mechanic failed.
+A missing, failed, or malformed host capability is deliberately raised outside ORION's normal `Exception -> scientific failure evidence` path. Missing web/API access, a failed external command, or an invalid host response is an orchestration condition, not evidence that SEARCH, ABSORB, verification, or another scientific mechanic failed.
 
 ## Install from the ORION checkout
 
@@ -64,6 +64,8 @@ orion-harness pending .research
 orion-harness show-request .research hostreq:...
 ```
 
+`orion-harness solve` returns exit code `2` for `PENDING_CAPABILITY` and exit code `3` for `HOST_CAPABILITY_FAILED`. Completed ORION terminals, including legitimate `BLOCKED` or `CANNOT_CHECK` scientific outcomes, return exit code `0` because the orchestration itself completed correctly.
+
 ## Service with another ChatGPT / Claude session
 
 Generate a handoff prompt:
@@ -86,7 +88,7 @@ Result shape:
 }
 ```
 
-`content` must itself follow the JSON schema requested by ORION.
+`content` must be a string and must itself follow the JSON schema requested by ORION. A malformed successful receipt is surfaced as `HOST_CAPABILITY_FAILED`; it is never converted into scientific failure evidence.
 
 ### `WEB_SEARCH`
 
@@ -113,6 +115,8 @@ orion-harness ingest .research hostreq:... \
   --json '{"items":[...]}'
 ```
 
+Web items require non-empty string content/source identities and array-valued domain IDs. Invalid host shapes fail at the host boundary rather than inside the scientific solver.
+
 ### `VERIFY_EVIDENCE`
 
 Verification is independent and fail-closed:
@@ -125,7 +129,7 @@ Verification is independent and fail-closed:
 }
 ```
 
-A passing verification requires at least one certificate ID because canonical ORION requires certificate-producing evidence for verified authority.
+`passed` must be a JSON boolean. A passing verification requires at least one non-empty certificate ID because canonical ORION requires certificate-producing evidence for verified authority. A string such as `"false"` is rejected rather than coerced to a truthy value.
 
 After ingestion, rerun the exact same solve command. Existing request/result receipts are replayed, so execution advances to the next missing capability without changing earlier answers.
 
@@ -139,7 +143,7 @@ The harness can directly service:
 - `SHELL`
 - `PYTHON`
 
-File operations resolve paths under the workspace's configured `project_root` and reject paths that escape it.
+File operations resolve paths under the workspace's configured `project_root` and reject paths that escape it. `FILE_READ` reads only the requested bounded prefix (maximum 1,000,000 characters). `FILE_LIST` fails closed when a directory exceeds 10,000 entries rather than materializing an unbounded listing.
 
 `SHELL` and `PYTHON` are different: a normal subprocess is **not an OS sandbox** and can access anything available to the current OS user. They are disabled by default. To opt in explicitly:
 
@@ -147,7 +151,7 @@ File operations resolve paths under the workspace's configured `project_root` an
 orion-harness init .research --project-root . --allow-process-tools
 ```
 
-`SHELL` uses an argv list and never `shell=True`; process timeouts are capped at 120 seconds. The returned receipt explicitly records `sandboxed: false`.
+`SHELL` uses an argv list and never `shell=True`; process timeouts are capped at 120 seconds. On POSIX, the harness starts a separate process session and kills that process group on timeout. Stdout and stderr are continuously drained while retaining at most 100,000 bytes of each in memory, so large output or descendant-held pipes cannot turn the harness into an unbounded buffer. The returned receipt explicitly records `sandboxed: false`.
 
 Create a local request:
 
@@ -156,6 +160,8 @@ orion-harness request-tool .research PYTHON \
   --json '{"code":"print(2+2)","cwd":"."}'
 orion-harness service-local .research
 ```
+
+`service-local` returns exit code `3` if any serviced local request records failure.
 
 Web, GitHub and model calls remain external-host capabilities so this package does not pretend it possesses credentials or network tools that only the surrounding agent/session has.
 
@@ -173,7 +179,11 @@ The workspace records:
   notes/
 ```
 
-Capability request IDs are deterministic for `(session, capability, payload)`. Request and result files carry SHA-256 content digests. A result is bound to the exact request digest. Tampered or mismatched receipts fail validation.
+Capability request IDs are deterministic for `(session, capability, payload)`. Request and result files carry SHA-256 content digests. A result is bound to the exact request digest. These digests are tamper-evidence/content binding; they are **not cryptographic signatures or proof of host identity**.
+
+Immutable JSON records are fully written and fsynced to a same-directory temporary file before an atomic create-if-absent publication. Concurrent hosts therefore cannot replace an already published deterministic request/result identity or expose a partially written receipt. Re-ingesting the exact same result from the same executor is idempotent; different content, success/error state, or executor identity is rejected.
+
+Receipt deserialization is strict and non-coercing. Boolean, string, object and digest fields must have their declared types; malformed receipt types fail validation rather than being silently converted.
 
 Completed ORION runs persist the problem, solution, final K/W/M state snapshot, trace, operator sequence, root/mechanic experience IDs and recorded experience episodes.
 

@@ -5,6 +5,7 @@ from .broker import (
     BrokerRetrievalProvider,
     BrokerVerificationProvider,
     CapabilityBroker,
+    HostCapabilityFailed,
     HostCapabilityRequired,
 )
 from .protocol import CapabilityRequest, CapabilityResult
@@ -18,6 +19,7 @@ __all__ = [
     "CapabilityBroker",
     "CapabilityRequest",
     "CapabilityResult",
+    "HostCapabilityFailed",
     "HostCapabilityRequired",
     "ResearchWorkspace",
     "run_problem",

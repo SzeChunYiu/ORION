@@ -172,7 +172,11 @@ def main(argv: list[str] | None = None) -> int:
             require_verified_answer=not args.allow_provisional,
         )
         _print(outcome)
-        return 2 if outcome["status"] == "PENDING_CAPABILITY" else 0
+        if outcome["status"] == "PENDING_CAPABILITY":
+            return 2
+        if outcome["status"] == "HOST_CAPABILITY_FAILED":
+            return 3
+        return 0
 
     if args.command == "pending":
         _print({"pending": [item.as_dict() for item in workspace.pending_requests()]})
@@ -216,9 +220,9 @@ def main(argv: list[str] | None = None) -> int:
                 result = service_local_request(workspace, request_id)
             except KeyError:
                 continue
-            results.append(result.as_dict())
-        _print({"serviced": results})
-        return 0
+            results.append(result)
+        _print({"serviced": [item.as_dict() for item in results]})
+        return 3 if any(not item.success for item in results) else 0
 
     if args.command == "runs":
         _print({"runs": list(workspace.run_ids())})
