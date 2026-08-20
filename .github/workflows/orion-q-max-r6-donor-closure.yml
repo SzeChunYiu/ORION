@@ -20,5 +20,5 @@ jobs:
       - name: Execute donor-closure packet selected by native Self-ORION N0
         run: |
           cd research/extensions/orion-q
-          python max_r6_donor_closure_h4.py | tee /tmp/r6-donor-closure.txt
+          python max_r6_donor_closure_h4_fast.py | tee /tmp/r6-donor-closure.txt
           grep '^ORIONQ_MAX_R6_DONOR_CLOSURE=' /tmp/r6-donor-closure.txt
