@@ -44,10 +44,8 @@ FORBIDDEN_OVERCLAIM_PHRASES = {
 }
 
 # Each tuple is a semantic alternative set: at least one phrase must be present.
-# This avoids a brittle lexical failure when the manuscript says, for example,
-# "we do not introduce a new graph" instead of the shorter "not a new graph".
 REQUIRED_BOUNDARY_ALTERNATIVES = (
-    ("not a new theorem", "is not a new theorem"),
+    ("not a new theorem", "is not a new theorem", "the collision-derived ceiling below is not a new theorem"),
     ("not a new graph", "do not introduce a new graph", "does not introduce a new graph"),
     ("whole held-out domain",),
     ("same-information",),
@@ -86,10 +84,7 @@ def main() -> None:
     if missing_cites:
         _fail(f"manuscript body does not cite required donor keys: {missing_cites!r}")
 
-    required_inputs = {
-        r"\input{generated_result_macros.tex}",
-        r"\input{generated_headline_tables.tex}",
-    }
+    required_inputs = {r"\input{generated_result_macros.tex}", r"\input{generated_headline_tables.tex}"}
     missing_inputs = sorted(item for item in required_inputs if item not in text)
     if missing_inputs:
         _fail(f"final manuscript does not consume generated evidence artifacts: {missing_inputs!r}")
