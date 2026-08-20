@@ -22,3 +22,8 @@ jobs:
           cd research/extensions/orion-q
           python max_r4d_h2o_ducc_confirmation_strict.py | tee /tmp/r4d-result.txt
           grep '^ORIONQ_MAX_R4D_RESULT=' /tmp/r4d-result.txt
+      - name: Run H2O full m=2 TARE gate-accounting development only
+        run: |
+          cd research/extensions/orion-q
+          python max_r5_h2o_full_pair_gate_development.py | tee /tmp/r5-dev.txt
+          grep '^ORIONQ_MAX_R5_DEV=' /tmp/r5-dev.txt
