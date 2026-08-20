@@ -176,6 +176,8 @@ class CapabilityResult:
             raise TypeError("success must be a boolean")
         if not isinstance(error, str):
             raise TypeError("error must be a string")
+        if success and error:
+            raise ValueError("successful result cannot carry an error")
         if not isinstance(executor, str) or not executor.strip():
             raise ValueError("executor must be a non-empty string")
         completed_at = utc_now()
@@ -244,6 +246,8 @@ class CapabilityResult:
             raise ValueError("unsupported host capability result schema")
         if not isinstance(self.success, bool):
             raise TypeError("success must be a boolean")
+        if self.success and self.error:
+            raise ValueError("successful result cannot carry an error")
         if not self.executor.strip():
             raise ValueError("executor must be non-empty")
         _validate_digest(self.request_digest, name="request_digest")
