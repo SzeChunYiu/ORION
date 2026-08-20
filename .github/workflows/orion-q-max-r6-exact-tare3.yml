@@ -14,6 +14,10 @@ on:
       - 'development/orion-q-max-r0/MAX_R6_EXACT_TARE3_DP_ERRATUM_3.md'
       - '.github/workflows/orion-q-max-r6-exact-tare3.yml'
 
+concurrency:
+  group: orion-q-max-r6-exact-tare3-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   exact-tare3-open-subject-development:
     runs-on: ubuntu-latest
