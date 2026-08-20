@@ -1,0 +1,43 @@
+name: p9-p10-controlled-novelty-ready-v1
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/p9-p10-structural-scaling/**'
+      - '.github/workflows/p9-p10-controlled-novelty-ready-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  review-package:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check controlled novelty evidence and claim boundaries
+        run: python research/extensions/p9-p10-structural-scaling/check_controlled_novelty_ready_v1.py
+      - name: Check runtime-gated lanes remain fail closed without inputs
+        run: python research/extensions/p9-p10-structural-scaling/analyze_runtime_gated_novelty_v1.py
+      - name: Require no accidental promotion from missing runtime inputs
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('research/extensions/p9-p10-structural-scaling/results/RUNTIME_GATED_NOVELTY_ANALYSIS_V1.json')
+          d=json.loads(p.read_text())
+          expected={
+            'L_llm_structure_scaling':'CANNOT_CHECK_LLM_RUNTIME',
+            'N_p10_native_state':'CANNOT_CHECK_NATIVE_STATE_EXECUTION',
+            'A_p10_action_abstraction':'CANNOT_CHECK_NATIVE_RAW_TRACE_CORPUS',
+            'F_p10_lean_feedback':'CANNOT_CHECK_LEAN_REPAIR_RUNTIME',
+            'G_p10_cross_revision':'CANNOT_CHECK_SECOND_FROZEN_MATHLIB_REVISION',
+          }
+          got={k:v['terminal'] for k,v in d['lanes'].items()}
+          if got != expected:
+              raise SystemExit(f'runtime-gated disposition drifted: {got}')
+          print('P9_P10_RUNTIME_GATES_FAIL_CLOSED=true')
+          PY
