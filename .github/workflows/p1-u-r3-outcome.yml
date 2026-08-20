@@ -1,0 +1,33 @@
+name: p1-u-r3-outcome
+
+on:
+  pull_request:
+    paths:
+      - 'research/claim_expansion/p1/gpt_r3/heldout/**'
+      - 'research/claim_expansion/p1/gpt_r3/run_frozen_acquisition.py'
+      - '.github/workflows/p1-u-r3-outcome.yml'
+  workflow_dispatch:
+
+jobs:
+  frozen-acquisition-terminal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run frozen acquisition gate
+        run: python research/claim_expansion/p1/gpt_r3/run_frozen_acquisition.py
+      - name: Verify fail-closed terminal before policy outcomes
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('research/claim_expansion/p1/gpt_r3/RESULT_V1.json')
+          r = json.loads(p.read_text())
+          assert r['terminal'] == 'P1_R3_CANNOT_CHECK_SOURCE_UNIVERSE', r
+          assert r['policy_outcomes_generated'] is False, r
+          assert r['acquisition']['n_cases'] == 37, r
+          assert r['acquisition']['class_counts']['NO_HIGH_LEVEL_REFORMULATION'] == 3, r
+          assert r['acquisition']['checks']['minimum_per_gold_class'] is False, r
+          PY

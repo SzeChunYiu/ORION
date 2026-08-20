@@ -1,0 +1,25 @@
+name: p1-u-r3-source-universe
+
+on:
+  pull_request:
+    paths:
+      - 'development/p1-u-gpt-r3-source-universe/**'
+      - 'research/claim_expansion/p1/gpt_r3/**'
+      - 'research/claim_expansion/p1/gpt_r2/policy.py'
+      - 'research/claim_expansion/p1/gpt_r2/PROTOCOL_V1.json'
+      - 'tests/unit/p1/test_p1_u_r3_source_universe.py'
+      - '.github/workflows/p1-u-r3-source-universe.yml'
+  workflow_dispatch:
+
+jobs:
+  frozen-source-universe-evaluator:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Verify frozen P1-U R3 evaluator
+        run: pytest -q tests/unit/p1/test_p1_u_r3_source_universe.py
