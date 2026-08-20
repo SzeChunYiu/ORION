@@ -30,5 +30,5 @@ jobs:
       - name: Run mixed-cardinality donor-composed development
         run: |
           cd research/extensions/orion-q
-          python max_r5h_mixed_cardinality_development.py | tee /tmp/r5h.txt
+          python max_r5h_mixed_cardinality_development_fast.py | tee /tmp/r5h.txt
           grep '^ORIONQ_MAX_R5H_DEV=' /tmp/r5h.txt
