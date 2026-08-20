@@ -13,6 +13,7 @@ from orion_research_harness.campaign_runner import (
     run_campaign,
 )
 from orion_research_harness.domains.orion_q import MAX_R6_CAMPAIGN_MANIFEST
+from orion_research_harness.local_tools import service_local_request
 from orion_research_harness.workspace import ResearchWorkspace
 
 
@@ -88,7 +89,9 @@ def _toy_manifest():
 
 
 def test_generic_campaign_runs_through_shared_local_receipts(tmp_path):
-    workspace = ResearchWorkspace.initialize(tmp_path / "ws", project_root=tmp_path)
+    workspace = ResearchWorkspace.initialize(
+        tmp_path / "ws", project_root=tmp_path, allow_process_tools=True
+    )
     manifest = _toy_manifest()
     state = initialize_campaign(workspace, manifest)
     decision = decide_campaign(state, manifest)
@@ -102,6 +105,36 @@ def test_generic_campaign_runs_through_shared_local_receipts(tmp_path):
     assert final.observation_map["DONE"] == "YES"
     assert final.cycle_index == 1
     assert len(workspace.pending_requests()) == 0
+
+
+def test_failed_local_process_is_failed_receipt_and_does_not_advance_campaign(tmp_path):
+    workspace = ResearchWorkspace.initialize(
+        tmp_path / "ws", project_root=tmp_path, allow_process_tools=True
+    )
+    manifest = _toy_manifest()
+    manifest["capabilities"]["toy.compute"]["payload"]["code"] = (
+        "import sys; print('partial-evidence'); sys.exit(7)"
+    )
+    initial = initialize_campaign(workspace, manifest)
+
+    outcome = run_campaign(workspace, manifest, max_cycles=1, auto_service_local=True)
+    assert outcome["status"] == "CAPABILITY_FAILED"
+    result = workspace.load_result(outcome["request"]["request_id"])
+    assert result is not None
+    assert result.success is False
+    assert result.output["returncode"] == 7
+    assert "partial-evidence" in result.output["stdout"]
+    assert result.error == "local process exited with status 7"
+
+    after = CampaignState.from_dict(workspace.load_latest_campaign_state("toy:campaign"))
+    assert after.state_digest == initial.state_digest
+    assert after.phase_id == "N0"
+    assert after.cycle_index == 0
+
+    # Re-servicing cannot launder the immutable failed result into success.
+    replay = service_local_request(workspace, result.request_id)
+    assert replay.result_digest == result.result_digest
+    assert replay.success is False
 
 
 def test_campaign_manifest_is_immutable_after_state_freeze(tmp_path):
