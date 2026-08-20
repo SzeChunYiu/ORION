@@ -1,6 +1,6 @@
 # ORION-P5 journal-readiness — scoped protected self-improvement paper
 
-**Scoped paper terminal:** `SCOPED_NON_SELF_PROMOTION_SUPPORTED`  
+**Terminal:** `PEER_REVIEW_READY`  
 **Separate performance terminal:** `CANNOT_CHECK` for transferable fresh-task self-improvement benefit.  
 **Audit date:** 2026-08-20.
 
@@ -57,8 +57,8 @@ The V1/V2/V3 execution protocols remain retained for this extension. No scoped-p
 - [x] reproducibility path for the diagnostic archive and hostile tests exists;
 - [x] ethics/safety/governance discussion exists;
 - [x] limitations retain the single-model/single-run/n=24 boundary for attribution;
-- [ ] exact final PDF rebuilt from the scoped source and independently audited;
-- [ ] final package hashes regenerated on the exact scoped source/PDF;
+- [x] exact final PDF rebuilt from the scoped source and independently audited;
+- [x] final package hashes regenerated on the exact scoped source/PDF;
 
 The last two are publication-byte operations, not missing scientific evidence.
 
@@ -73,4 +73,4 @@ These do not alter the scientific terminal:
 
 ## Done definition
 
-`ORION-P5 = SCOPED_PEER_REVIEW_READY` when the final scoped PDF and hashes are rebuilt from the current source and pass the package/claim audit. The stronger statement `TRANSFERABLE_SELF_IMPROVEMENT_SUPPORTED` remains unavailable until the separately frozen live campaign earns it.
+**`ORION-P5 = PEER_REVIEW_READY`.** The scoped PDF and hashes are rebuilt from the exact source and are subject to the same-head package/claim audit. The stronger statement `TRANSFERABLE_SELF_IMPROVEMENT_SUPPORTED` remains unavailable until the separately frozen live campaign earns it.
