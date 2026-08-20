@@ -2,8 +2,9 @@
 """Structurally independent replay for the frozen exact-TARE3 R6 prospect.
 
 The primary performs the gated protected-source read. This verifier consumes its
-serialized proof-carrying receipt, reconstructs every selected Pauli triple, and
-recomputes the exact joint optimum and both frozen comparator optima with a
+serialized proof-carrying receipt, independently re-fetches/re-hashes the released
+source, reconstructs every selected Pauli triple, re-derives the matched resources,
+and recomputes the exact joint optimum and both frozen comparator optima with a
 separately coded implementation. It never calls the primary solver for an
 optimality decision.
 """
@@ -12,6 +13,7 @@ from __future__ import annotations
 import hashlib
 import itertools
 import json
+import math
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -22,11 +24,13 @@ import max_r6_exact_tare3_prospective_primary as primary
 
 ROOT = Path(__file__).resolve().parents[3]
 PRIMARY_PATH = "research/extensions/orion-q/max_r6_exact_tare3_prospective_primary.py"
-PRIMARY_BLOB = "06151630efc66f73f2e0013f82a9b0bc92171c78"
+PRIMARY_BLOB = "dd4ace05baa92ac365592bef3d18433b772914c1"
 NOVELTY_PATH = "development/orion-q-max-r0/MAX_R6_EXACT_TARE3_FINAL_HOSTILE_NOVELTY_FREEZE.md"
 NOVELTY_BLOB = "93e6daa21083890e8474eab4ef737c5805a9b8b8"
 PROSPECTIVE_PROTOCOL_PATH = "development/orion-q-max-r0/MAX_R6_EXACT_TARE3_PROSPECTIVE_PROTOCOL.md"
 PROSPECTIVE_PROTOCOL_BLOB = "b9c11f683ccf5246b1e9a601ca717dd88cd4821f"
+PROSPECTIVE_ERRATUM_PATH = "development/orion-q-max-r0/MAX_R6_EXACT_TARE3_PROSPECTIVE_ERRATUM_1.md"
+PROSPECTIVE_ERRATUM_BLOB = "58947a7aa61f4fc25b82746ee23a4c1a9cc8c0a7"
 
 INF = 10**12
 PARITY_STATES = 512
@@ -249,7 +253,58 @@ def independent_frame_only_cost(targets: tuple[tuple[int, int], ...], n: int) ->
     return int(best)
 
 
-def reconstruct_and_check_witness(row: dict[str, Any], n: int) -> tuple[tuple[tuple[int, int], ...], dict[str, bool]]:
+def _source_terms_from_text(text: str):
+    one, two = primary.p10.h.parse_ducc(text)
+    paulis, max_imag = primary.p10.h.jordan_wigner_paulis(one, two)
+    paulis.pop((0, 0), None)
+    terms = sorted(paulis.items(), key=lambda kv: (-abs(kv[1]), kv[0][0], kv[0][1]))
+    return terms, max_imag
+
+
+def reconstruct_targets(witness: dict[str, Any]) -> tuple[tuple[int, int], ...]:
+    rs = tuple((int(x), int(z)) for x, z in witness["R"])
+    restores = tuple((int(x), int(z)) for x, z in witness["T"])
+    permutation = tuple(int(x) for x in witness["target_permutation"])
+    if len(rs) != 3 or len(restores) != 3 or sorted(permutation) != [0, 1, 2]:
+        raise AssertionError("malformed representation witness in replay")
+    permuted_targets = tuple(mul(restores[k], rs[k]) for k in range(3))
+    original: list[tuple[int, int] | None] = [None, None, None]
+    for k, source_index in enumerate(permutation):
+        original[source_index] = permuted_targets[k]
+    if any(item is None for item in original):
+        raise AssertionError("representation witness did not reconstruct all targets")
+    return tuple(item for item in original if item is not None)
+
+
+def witness_labels(witness: dict[str, Any]) -> tuple[int, ...]:
+    raw = witness.get("labels", witness.get("control_labels"))
+    if not isinstance(raw, list):
+        raise AssertionError("representation witness is missing control labels")
+    return tuple(int(value) for value in raw)
+
+
+def independent_resources(
+    witness: dict[str, Any],
+    coefficient_vector: tuple[float, float, float],
+) -> dict[str, Any]:
+    targets = reconstruct_targets(witness)
+    labels = witness_labels(witness)
+    cardinality = len(witness["R"])
+    lam = math.sqrt(3.0) * math.sqrt(sum(value * value for value in coefficient_vector))
+    return {
+        "targets": [list(target) for target in targets],
+        "coefficient_vector": list(coefficient_vector),
+        "Lambda_TARE3_recomputed": float(lam),
+        "block_cardinality": int(cardinality),
+        "Uanti_rotation_count": int(2 * cardinality - 1),
+        "control_labels": list(labels),
+        "control_register_width": int(max(1, max(labels, default=0).bit_length())),
+        "labels_distinct": len(labels) == cardinality and len(set(labels)) == len(labels),
+        "labels_in_two_bit_space": all(0 <= label < 4 for label in labels),
+    }
+
+
+def reconstruct_and_check_joint_witness(row: dict[str, Any], n: int) -> tuple[tuple[tuple[int, int], ...], dict[str, bool]]:
     joint = row["joint"]
     rs = tuple((int(x), int(z)) for x, z in joint["R"])
     ss = tuple((int(x), int(z)) for x, z in joint["S"])
@@ -257,14 +312,8 @@ def reconstruct_and_check_witness(row: dict[str, Any], n: int) -> tuple[tuple[tu
     permutation = tuple(int(x) for x in joint["target_permutation"])
     central = int(joint["central"])
 
-    permuted_targets = tuple(mul(restores[k], rs[k]) for k in range(3))
-    original: list[tuple[int, int] | None] = [None, None, None]
-    for k, source_index in enumerate(permutation):
-        original[source_index] = permuted_targets[k]
-    if any(item is None for item in original):
-        raise AssertionError("invalid target permutation in primary witness")
-    targets = tuple(item for item in original if item is not None)
-
+    targets = reconstruct_targets(joint)
+    permuted_targets = tuple(targets[permutation[k]] for k in range(3))
     labels = tuple(2 * symp(ss[0], r) + symp(ss[1], r) for r in rs)
     dependent = mul(mul(rs[0], rs[1]), rs[2]) == (0, 0)
     recomputed_uanti = uanti_support(rs, central)
@@ -286,17 +335,109 @@ def reconstruct_and_check_witness(row: dict[str, Any], n: int) -> tuple[tuple[tu
     return targets, checks
 
 
-def replay_row(row: dict[str, Any], n: int) -> dict[str, Any]:
-    targets, witness_checks = reconstruct_and_check_witness(row, n)
+def replay_row(row: dict[str, Any], n: int, source_terms) -> dict[str, Any]:
+    indices = tuple(int(i) for i in row["term_indices"])
+    source_targets = tuple(source_terms[i][0] for i in indices)
+    coefficient_vector = tuple(float(source_terms[i][1]) for i in indices)
+    source_targets_json = [list(target) for target in source_targets]
+    source_lambda = math.sqrt(3.0) * math.sqrt(sum(value * value for value in coefficient_vector))
+
+    targets, witness_checks = reconstruct_and_check_joint_witness(row, n)
+    canonical_witness = row["B_CANONICAL_STRONG"]["witness"]
+    frame_witness = row["B_FRAME_ONLY_STRONG"]
+    candidate_resources = independent_resources(row["joint"], coefficient_vector)
+    canonical_resources = independent_resources(canonical_witness, coefficient_vector)
+    frame_resources = independent_resources(frame_witness, coefficient_vector)
+    representations = {
+        "candidate_exact_joint": candidate_resources,
+        "B_CANONICAL_STRONG": canonical_resources,
+        "B_FRAME_ONLY_STRONG": frame_resources,
+    }
+
+    matched_checks = {
+        "candidate_targets_match_source": candidate_resources["targets"] == source_targets_json,
+        "canonical_targets_match_source": canonical_resources["targets"] == source_targets_json,
+        "frame_only_targets_match_source": frame_resources["targets"] == source_targets_json,
+        "primary_source_targets_match_replay_source": row.get("source_targets") == source_targets_json,
+        "primary_source_coefficients_match_replay_source": row.get("source_coefficient_vector") == list(coefficient_vector),
+        "source_lambda_matches_selected_row": math.isclose(
+            source_lambda, float(row["Lambda_TARE3"]), rel_tol=1e-12, abs_tol=1e-12
+        ),
+        "primary_source_lambda_matches_replay": math.isclose(
+            source_lambda,
+            float(row.get("source_Lambda_TARE3_recomputed", float("nan"))),
+            rel_tol=1e-12,
+            abs_tol=1e-12,
+        ),
+        "all_block_cardinality_three": all(
+            item["block_cardinality"] == 3 for item in representations.values()
+        ),
+        "all_uanti_rotation_counts_five": all(
+            item["Uanti_rotation_count"] == 5 for item in representations.values()
+        ),
+        "all_control_widths_two": all(
+            item["control_register_width"] == 2 for item in representations.values()
+        ),
+        "all_label_sets_well_formed": all(
+            item["labels_distinct"] and item["labels_in_two_bit_space"]
+            for item in representations.values()
+        ),
+        "all_coefficient_vectors_identical": all(
+            item["coefficient_vector"] == list(coefficient_vector)
+            for item in representations.values()
+        ),
+        "all_recomputed_lambdas_identical": all(
+            math.isclose(item["Lambda_TARE3_recomputed"], source_lambda, rel_tol=0.0, abs_tol=0.0)
+            for item in representations.values()
+        ),
+    }
+
+    primary_derived = row.get("derived_matched_resources", {})
+    primary_resource_match = set(primary_derived) == set(representations)
+    if primary_resource_match:
+        for name, replayed in representations.items():
+            supplied = primary_derived[name]
+            primary_resource_match = primary_resource_match and (
+                supplied.get("targets") == replayed["targets"]
+                and supplied.get("coefficient_vector") == replayed["coefficient_vector"]
+                and supplied.get("block_cardinality") == replayed["block_cardinality"]
+                and supplied.get("Uanti_rotation_count") == replayed["Uanti_rotation_count"]
+                and supplied.get("control_labels") == replayed["control_labels"]
+                and supplied.get("control_register_width") == replayed["control_register_width"]
+                and supplied.get("labels_distinct") is replayed["labels_distinct"]
+                and supplied.get("labels_in_two_bit_space") is replayed["labels_in_two_bit_space"]
+                and math.isclose(
+                    float(supplied.get("Lambda_TARE3_recomputed", float("nan"))),
+                    replayed["Lambda_TARE3_recomputed"],
+                    rel_tol=1e-12,
+                    abs_tol=1e-12,
+                )
+            )
+    primary_checks = row.get("matched_resource_checks", {})
+    primary_checks_match = (
+        isinstance(primary_checks, dict)
+        and set(primary_checks) == set(matched_checks)
+        and all(primary_checks.get(key) is value for key, value in matched_checks.items())
+        and row.get("matched_resources_verified") is all(matched_checks.values())
+    )
+
     joint_cost = independent_joint_cost(targets, n)
     canonical_cost = independent_canonical_cost(targets, n)
     frame_only_cost = independent_frame_only_cost(targets, n)
     strongest = min(canonical_cost, frame_only_cost)
     independent_strict = joint_cost < strongest
     return {
-        "term_indices": list(row["term_indices"]),
-        "targets_reconstructed_from_primary_witness": [list(t) for t in targets],
+        "term_indices": list(indices),
+        "source_targets_reconstructed_from_replay_fetch": source_targets_json,
+        "source_coefficient_vector_replayed": list(coefficient_vector),
+        "source_Lambda_TARE3_replayed": float(source_lambda),
+        "targets_reconstructed_from_primary_joint_witness": [list(t) for t in targets],
         "witness_checks": witness_checks,
+        "independent_derived_matched_resources": representations,
+        "independent_matched_resource_checks": matched_checks,
+        "independent_matched_resources_verified": all(matched_checks.values()),
+        "primary_derived_resources_match_replay": bool(primary_resource_match),
+        "primary_matched_resource_predicates_match_replay": bool(primary_checks_match),
         "independent_joint_C_joint": joint_cost,
         "primary_joint_C_joint": int(row["joint"]["C_joint"]),
         "independent_canonical_C_joint": canonical_cost,
@@ -319,19 +460,28 @@ def main() -> dict[str, Any]:
     prospective_protocol_blob_ok = (
         git_blob_sha((ROOT / PROSPECTIVE_PROTOCOL_PATH).read_bytes()) == PROSPECTIVE_PROTOCOL_BLOB
     )
-    if not (primary_blob_ok and novelty_blob_ok and prospective_protocol_blob_ok):
-        raise RuntimeError("pre-outcome primary/protocol/novelty freeze drift")
+    prospective_erratum_blob_ok = (
+        git_blob_sha((ROOT / PROSPECTIVE_ERRATUM_PATH).read_bytes()) == PROSPECTIVE_ERRATUM_BLOB
+    )
+    if not (
+        primary_blob_ok
+        and novelty_blob_ok
+        and prospective_protocol_blob_ok
+        and prospective_erratum_blob_ok
+    ):
+        raise RuntimeError("pre-outcome primary/protocol/erratum/novelty freeze drift")
 
     primary_result = primary.main()
     fresh = primary_result.get("fresh_subject")
     if not isinstance(fresh, dict):
         result = {
-            "schema": "ORIONQ.MAXR6.ExactTARE3ProspectiveReplay.v1",
+            "schema": "ORIONQ.MAXR6.ExactTARE3ProspectiveReplay.v2",
             "authority": "MAX_R6_NOT_EARNED__PROTECTED_SUBJECT_NOT_OPENED",
             "primary_authority": primary_result.get("authority"),
             "primary_blob_ok": primary_blob_ok,
             "novelty_blob_ok": novelty_blob_ok,
             "prospective_protocol_blob_ok": prospective_protocol_blob_ok,
+            "prospective_erratum_blob_ok": prospective_erratum_blob_ok,
             "primary_pre_access_ready": primary_result.get("pre_access_ready") is True,
             "protected_stretched_n2_accessed": primary_result.get("protected_stretched_n2_accessed") is True,
             "replay_rows": [],
@@ -341,9 +491,16 @@ def main() -> dict[str, Any]:
         print("ORIONQ_MAX_R6_EXACT_TARE3_PROSPECTIVE_REPLAY=" + json.dumps(result, sort_keys=True))
         return result
 
+    # The primary has already opened the protected source under the frozen gate.
+    # Replay the source identity and term extraction independently of its receipt fields.
+    primary.p10.base.configure_subject(primary.FRESH_CFG)
+    replay_text = primary.p10.h.fetch_source()
+    replay_observed_source_blob = git_blob_sha(replay_text.encode("utf-8"))
+    replay_source_terms, replay_max_imag = _source_terms_from_text(replay_text)
+
     triples = fresh.get("triples", [])
     n = int(fresh["n_qubits"])
-    replay_rows = [replay_row(row, n) for row in triples]
+    replay_rows = [replay_row(row, n, replay_source_terms) for row in triples]
     selected_indices = [list(row["term_indices"]) for row in triples]
     top8 = [list(row) for row in fresh.get("p10_top8_term_indices", [])]
 
@@ -351,14 +508,26 @@ def main() -> dict[str, Any]:
     all_witnesses = bool(replay_rows) and all(
         all(row["witness_checks"].values()) for row in replay_rows
     )
+    all_matched_resources = bool(replay_rows) and all(
+        row["independent_matched_resources_verified"]
+        and row["primary_derived_resources_match_replay"]
+        and row["primary_matched_resource_predicates_match_replay"]
+        for row in replay_rows
+    )
     all_joint_exact = bool(replay_rows) and all(row["joint_exact_match"] for row in replay_rows)
     all_canonical_exact = bool(replay_rows) and all(row["canonical_exact_match"] for row in replay_rows)
     all_frame_only_exact = bool(replay_rows) and all(row["frame_only_exact_match"] for row in replay_rows)
     all_predicates_match = bool(replay_rows) and all(row["strict_predicate_match"] for row in replay_rows)
+    source_identity_replayed = (
+        replay_observed_source_blob == primary.FRESH_CFG["blob"]
+        and fresh.get("observed_source_blob") == replay_observed_source_blob
+    )
     replay_prospective_supported = (
         len(replay_rows) == 4
         and panel_selection_consistent
+        and source_identity_replayed
         and all_witnesses
+        and all_matched_resources
         and all_joint_exact
         and all_canonical_exact
         and all_frame_only_exact
@@ -370,17 +539,28 @@ def main() -> dict[str, Any]:
     frozen_novelty_bound = (
         primary_result.get("frozen_blobs", {}).get(NOVELTY_PATH) == NOVELTY_BLOB
     )
+    frozen_erratum_bound = (
+        primary_result.get("frozen_blobs", {}).get(PROSPECTIVE_ERRATUM_PATH)
+        == PROSPECTIVE_ERRATUM_BLOB
+    )
     final_gates = {
         "primary_blob_frozen": primary_blob_ok,
         "prospective_protocol_frozen": prospective_protocol_blob_ok,
+        "prospective_integrity_erratum_frozen_and_bound": (
+            prospective_erratum_blob_ok and frozen_erratum_bound
+        ),
         "hostile_novelty_freeze_bound": novelty_blob_ok and frozen_novelty_bound,
         "primary_pre_access_ready": primary_result.get("pre_access_ready") is True,
         "primary_prospective_supported": primary_result.get("prospective_supported") is True,
         "fresh_subject_receipt_digest_matches": fresh_digest_match,
-        "fresh_source_blob_matches_frozen": fresh.get("source_blob") == primary.FRESH_CFG["blob"],
+        "replay_observed_source_blob_matches_frozen": (
+            replay_observed_source_blob == primary.FRESH_CFG["blob"]
+        ),
+        "primary_and_replay_observed_source_identity_agree": source_identity_replayed,
         "exactly_four_frozen_panel_rows": len(replay_rows) == 4,
         "panel_selection_consistent": panel_selection_consistent,
         "all_independent_witness_checks": all_witnesses,
+        "all_independent_matched_resources_verified": all_matched_resources,
         "all_independent_joint_optima_match": all_joint_exact,
         "all_independent_canonical_optima_match": all_canonical_exact,
         "all_independent_frame_only_optima_match": all_frame_only_exact,
@@ -392,7 +572,7 @@ def main() -> dict[str, Any]:
     }
     r6_earned = all(final_gates.values())
     result = {
-        "schema": "ORIONQ.MAXR6.ExactTARE3ProspectiveReplay.v1",
+        "schema": "ORIONQ.MAXR6.ExactTARE3ProspectiveReplay.v2",
         "authority": (
             "MAX_R6_EARNED__EXACT_TARE3_FIXED_BLOCK_PROSPECTIVE_REPLAYED"
             if r6_earned
@@ -405,6 +585,8 @@ def main() -> dict[str, Any]:
         ),
         "primary_authority": primary_result.get("authority"),
         "primary_fresh_subject_digest": primary_result.get("fresh_subject_digest"),
+        "replay_observed_source_blob": replay_observed_source_blob,
+        "replay_source_max_imag": float(replay_max_imag),
         "protected_stretched_n2_accessed": primary_result.get("protected_stretched_n2_accessed") is True,
         "replay_rows": replay_rows,
         "final_gates": final_gates,
