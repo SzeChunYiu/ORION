@@ -16,5 +16,7 @@ class MethodState:
     atomization_digest: str = ""
     donor_registry_id: str = ""
     donor_registry_digest: str = ""
+    donor_composition_graph_id: str = ""
+    donor_composition_graph_digest: str = ""
     active_fibre_ids: tuple[str, ...] = ()
     deferred_donor_obligation_ids: tuple[str, ...] = ()
