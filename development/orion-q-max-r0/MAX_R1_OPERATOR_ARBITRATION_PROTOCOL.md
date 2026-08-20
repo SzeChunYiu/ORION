@@ -32,15 +32,15 @@ Domain identity is evaluator metadata only and is excluded from generic model-vi
 
 ## Common semantic coordinates
 
-`QuantumResearchDecisionState.v1` contains only bounded categorical/binary facts:
+`QuantumResearchDecisionState.v1` contains bounded categorical/binary facts.
+
+### Base typed coordinates
 
 - `search_exhausted`;
 - `evidence_sufficient`;
 - `verifier_available`;
 - `verifier_budget_available`;
 - `previous_failure`;
-- `failure_required_same_representation`;
-- `failure_required_same_access`;
 - `representation_changed`;
 - `access_changed`;
 - `representation_obstruction_witness`;
@@ -48,6 +48,11 @@ Domain identity is evaluator metadata only and is excluded from generic model-vi
 - `language_obstruction_witness`;
 - `alternate_representation_available`;
 - `interface_constructible`.
+
+### Scoped failure bindings
+
+- `failure_required_same_representation`;
+- `failure_required_same_access`.
 
 No operator/gate/paper/task-family names enter the state.
 
@@ -72,18 +77,18 @@ Obstruction labels are evaluator facts derived from exact synthetic witnesses, n
 Opaque problem token only.
 
 ### V1 `UNTYPED_BAG`
-All model-visible Boolean/categorical values from the typed state are present, but role names and binding are removed. The bag is deterministically canonicalized as a multiset.
+All model-visible Boolean values from the strongest view, including scoped-failure bits, are present but role names and binding are removed. The bag is deterministically canonicalized as a multiset.
 
 This is the key same-information control: information quantity is retained; semantic coordinate binding is removed.
 
 ### V2 `RAW_HISTORY`
-Adds whether a prior failure exists, but not the failure's `required_same` bindings or which coordinate changed.
+The base coordinates are exposed only through a canonical untyped multiset plus the explicit fact that a prior failure exists or does not exist. It omits which coordinate changed and all `required_same` bindings.
 
 ### V3 `TYPED_STATE`
-Full typed coordinates above, but no evaluator gold/domain identity.
+All **base typed coordinates** are exposed with semantic role names, but the two scoped-failure bindings are withheld.
 
 ### V4 `TYPED_STATE_PLUS_SCOPED_FAILURE`
-V3 plus explicit `required_same` bindings on the failure receipt. This is the strongest P9 view.
+V3 plus explicit `failure_required_same_representation` and `failure_required_same_access`. This is the strongest P9 view.
 
 ## Hostile-pair requirement
 
@@ -107,12 +112,14 @@ Before fitting any learner, compute the maximum deterministic classification acc
 
 If V1 or V2 has ceiling 1.0, the benchmark fails to establish a typed-state information residual and must be redesigned before model fitting.
 
+V3 is expected to solve non-history role-binding pairs while remaining unable to distinguish a deliberately paired stale-vs-still-applicable failure case. V4 must separate that pair.
+
 ## Baselines
 
 - majority/frequency;
 - V1 exact deterministic ceiling;
 - V2 exact deterministic ceiling;
-- simple decision rule on V3 without scoped failure bindings;
+- exact frozen rule on V3 without scoped failure bindings;
 - exact frozen rule on V4;
 - optional learned classical model only after ceilings are computed.
 
@@ -126,17 +133,18 @@ The exact rule is domain-neutral. Generated identities and carrier-specific toke
 
 1. exact deterministic ceiling gap: `ceiling(V4) - ceiling(V1)`;
 2. exact deterministic ceiling gap: `ceiling(V4) - ceiling(V2)`;
-3. false escalation rate;
-4. correct `CANNOT_CHECK` rate;
-5. per-domain action accuracy under the same rule;
-6. remint/order invariance.
+3. exact deterministic ceiling gap: `ceiling(V4) - ceiling(V3)` on scoped-history pairs;
+4. false escalation rate;
+5. correct `CANNOT_CHECK` rate;
+6. per-domain action accuracy under the same rule;
+7. remint/order invariance.
 
 ## Falsifiers
 
 - untyped bag reaches 1.0 ceiling;
 - domain identity leaks gold;
 - a unique specialist/tool availability pattern identifies the action;
-- V4 includes evaluator obstruction class directly instead of evidence coordinates;
+- V4 includes evaluator action/gold directly instead of evidence coordinates;
 - role names encode the answer lexically;
 - generated pairs differ in information quantity rather than binding;
 - the exact rule requires domain-specific conditionals;
