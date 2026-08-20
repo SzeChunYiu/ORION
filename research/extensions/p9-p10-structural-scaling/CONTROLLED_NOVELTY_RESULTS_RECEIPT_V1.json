@@ -78,12 +78,7 @@
       "workflow_run_id": 32334603320,
       "artifact_id": 9394180680,
       "artifact_zip_sha256": "ff7ca4e3f766f617d4a85817c18b8c7a3eef9e2816708fc700d06f0406a5e714",
-      "feature_dimensions_by_degree": {
-        "1": 13,
-        "2": 91,
-        "3": 377,
-        "4": 1092
-      },
+      "feature_dimensions_by_degree": {"1": 13, "2": 91, "3": 377, "4": 1092},
       "mean_accuracy": {
         "block_1": [1.0, 0.8183186848958334, 0.9817097981770834, 0.93084716796875],
         "block_2": [0.7739461263020834, 1.0, 0.9552001953125, 0.9997151692708334],
@@ -91,39 +86,36 @@
         "block_8": [0.6138102213541666, 0.67498779296875, 0.7288004557291666, 0.7745157877604166],
         "block_13": [0.59814453125, 0.6220296223958334, 0.64068603515625, 0.6527303059895834]
       },
-      "minimum_tested_degree_reaching_0_90": {
-        "block_1": 1,
-        "block_2": 2,
-        "block_4": 4,
-        "block_8": null,
-        "block_13": null
-      },
+      "minimum_tested_degree_reaching_0_90": {"block_1": 1, "block_2": 2, "block_4": 4, "block_8": null, "block_13": null},
       "decode_failure_count": 0
     },
     "N7_predictive_state_compression": {
       "terminal": "PREDICTIVE_STATE_COMPRESSION_ADVANTAGE_SUPPORTED",
       "workflow_run_id": 32334603344,
+      "workflow_head_sha": "835d4d1803a3feb8d48ecd576ceda040708fb9fd",
       "artifact_id": 9394184994,
       "artifact_zip_sha256": "531f5418c864763504c06e857fb1a48ecc71cbccb5ea8e4adbc17b682ef80d43",
       "same_information_claim": false,
       "exact_target_sufficient_statistic": "r=x*c",
       "k_grid": [17, 33, 65],
       "sample_threshold_0_90": {
-        "minimal": [64, 128, 256],
-        "full": [128, 256, 512],
-        "padded": [256, 512, 1024]
+        "minimal": [64, 128, 512],
+        "full": [128, 256, 1024],
+        "padded": [512, 1024, 2048]
       },
       "full_to_minimal_threshold_ratios": [2.0, 2.0, 2.0],
-      "padded_to_minimal_threshold_ratios": [4.0, 4.0, 4.0],
-      "maximum_abs_nuisance_label_correlation": 0.03437932795741075,
+      "median_full_to_minimal_threshold_ratio": 2.0,
+      "padded_to_minimal_threshold_ratios": [8.0, 8.0, 4.0],
+      "median_padded_to_minimal_threshold_ratio": 8.0,
+      "maximum_abs_nuisance_label_correlation": 0.028611823521837474,
       "frozen_nuisance_correlation_sentinel": 0.04,
       "k65_at_4096": {
-        "minimal_accuracy": 0.9999796549479166,
-        "minimal_log_loss": 0.01399695,
-        "full_accuracy": 0.9983927408854166,
-        "full_log_loss": 0.02648106,
-        "padded_accuracy": 0.9782307942708334,
-        "padded_log_loss": 0.09492763
+        "minimal_accuracy": 1.0,
+        "minimal_log_loss": 0.03267176230898219,
+        "full_accuracy": 0.999755859375,
+        "full_log_loss": 0.03638179138153578,
+        "padded_accuracy": 0.9709065755208334,
+        "padded_log_loss": 0.07269767211825176
       }
     }
   },
