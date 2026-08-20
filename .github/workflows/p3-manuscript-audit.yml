@@ -31,10 +31,19 @@ jobs:
       - name: Install Python dependencies
         run: python -m pip install -e '.[dev,candidates]'
 
-      - name: Install TeX/PDF toolchain
+      - name: Install TeX/PDF/SVG toolchain
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-pictures texlive-fonts-recommended poppler-utils
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-pictures texlive-fonts-recommended poppler-utils librsvg2-bin
+
+      - name: Render tracked P5 SVG to publication PDF asset
+        run: |
+          set -euo pipefail
+          rsvg-convert -f pdf \
+            -o papers/paper-05-self-orion/figures/p5_1_governed_development_loop.pdf \
+            papers/paper-05-self-orion/figures/p5_1_governed_development_loop.svg
+          test -s papers/paper-05-self-orion/figures/p5_1_governed_development_loop.pdf
+          pdfinfo papers/paper-05-self-orion/figures/p5_1_governed_development_loop.pdf | tee /tmp/p5-figure-pdfinfo.txt
 
       - name: Audit P3 scoped claim wiring and manuscript inputs
         run: |
@@ -259,6 +268,7 @@ jobs:
             papers/paper-04-verified-scientific-discovery/journal_package/SHA256SUMS \
             papers/paper-05-self-orion/README.md \
             papers/paper-05-self-orion/JOURNAL_READINESS.md \
+            papers/paper-05-self-orion/figures/p5_1_governed_development_loop.pdf \
             papers/paper-05-self-orion/journal_package/MANIFEST.json \
             papers/paper-05-self-orion/journal_package/CLAIM_PDF_AUDIT.md \
             papers/paper-05-self-orion/journal_package/SHA256SUMS \
@@ -281,5 +291,7 @@ jobs:
             /tmp/p3-manuscript-audit.json
             /tmp/p3-pdfinfo.txt
             /tmp/p5-pdfinfo.txt
+            /tmp/p5-figure-pdfinfo.txt
             papers/paper-03-global-knowledge-portrait/journal_package/manuscript.pdf
+            papers/paper-05-self-orion/figures/p5_1_governed_development_loop.pdf
             papers/paper-05-self-orion/journal_package/manuscript.pdf
