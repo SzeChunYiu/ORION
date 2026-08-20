@@ -16,6 +16,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install native ORION runtime dependencies
+        run: python -m pip install -e .
       - name: Run blinded native Self-ORION N0 controller
         env:
           PYTHONPATH: src
