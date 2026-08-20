@@ -1,6 +1,7 @@
 \documentclass[10pt]{article}
 \usepackage{tmlr}
 \usepackage{booktabs}
+\usepackage{tabularx}
 \usepackage{amsmath,amssymb}
 \usepackage{hyperref}
 \usepackage{url}
@@ -156,55 +157,44 @@ A2 and A4 show a complementary pattern. Topology alone gives \ATwoTopologyAccura
 
 \subsection{Typed relational structure transfers across a whole held-out domain}
 
-D1 provides the positive transfer result. On transactional workflows held out as an entire procedural domain, the typed relational arm reaches \DOneTypedAccuracy{}, versus \DOneUntypedAccuracy{} for untyped pair structure, \DOneSerializedAccuracy{} for the same-information typed serialization, and \DOneTranscriptAccuracy{} for reminted transcript features. The typed relational gain is \DOneTypedMinusTranscript{} over transcript and \DOneTypedMinusSerialized{} over the same-information serialized control. It also retains \DOneTypedDoubleAccuracy{} accuracy on protected multi-coordinate corruptions and \DOneTypedUnresolvedAccuracy{} on explicit \textsc{unresolved} cases.
+D1 supplies the external procedural-transfer test. The typed relational arm reaches \DOneTypedAccuracy{} protected accuracy on transactional workflows, compared with \DOneUntypedAccuracy{} for untyped pair structure, \DOneSerializedAccuracy{} for the same-information typed serialization, and \DOneTranscriptAccuracy{} for the reminted transcript bag. The corresponding improvements are \DOneTypedMinusTranscript{} over transcript and \DOneTypedMinusSerialized{} over the same-information serialization. The typed relational arm also preserves \DOneTypedDoubleAccuracy{} accuracy on double corruptions and \DOneTypedUnresolvedAccuracy{} on source-insufficient \textsc{unresolved} cases.
 
-The typed-versus-serialized result must be interpreted carefully. It does not establish the novel principle that serialization can obscure native structure; that principle is directly studied elsewhere \citep{lo2026serialization}. It shows that, on this exact method-coordinate protocol, explicit relational comparison remains load-bearing after semantic-field information is matched and surface identities are reminted.
+The same-information contrast is the important one for interpretation. The serialized arm contains the same typed semantic fields, so the \DOneTypedMinusSerialized{} difference cannot be described as simple information addition. It instead shows that explicit relational comparison makes those fields more useful to the selected classical learner on this held-out-domain protocol. Because the general fact that serialization can affect reasoning is established prior work \citep{lo2026serialization}, we do not claim a universal representation theorem from D1.
 
-\section{Discussion}
+As a post-hoc robustness analysis of the already-frozen D1 endpoint, we compared the selected typed relational arm to each comparator on the identical 128 protected cases. Against transcript, the accuracy difference is \DOneTypedMinusTranscript{} with paired bootstrap 95\% interval [\DOneTranscriptPairedCILow, \DOneTranscriptPairedCIHigh]; all \DOneTranscriptDiscordantWins{} discordant cases favor typed relational and none favor transcript (exact McNemar $p=\DOneTranscriptMcNemarP$). Against the same-information typed serialization, the difference is \DOneTypedMinusSerialized{} with paired interval [\DOneSerializedPairedCILow, \DOneSerializedPairedCIHigh] and discordance \DOneSerializedDiscordantWins{}--\DOneSerializedDiscordantLosses{} ($p=\DOneSerializedMcNemarP$). Against the untyped pair arm, the paired interval is [\DOneUntypedPairedCILow, \DOneUntypedPairedCIHigh] with discordance \DOneUntypedDiscordantWins{}--\DOneUntypedDiscordantLosses{} ($p=\DOneUntypedMcNemarP$). These intervals and exact tests were not preregistered primary endpoints; they quantify the frozen case-level predictions without changing the terminal.
 
-\subsection{A diagnostic ladder before architecture escalation}
+\section{What the result does and does not establish}
 
-The results motivate a practical order of operations for structured learning experiments. First ask whether the representation identifies the target on a frozen diagnostic set. If it does not, capacity comparisons are uninterpretable as tests of reasoning. If it does, give a simple learner first right of refusal. If a residual remains, test whether an exact or otherwise appropriate explicit computation closes it. Only a residual that survives those steps licenses a more complex learned architecture within the scope of the study.
+The evidence supports a bounded staged diagnosis:
+\begin{enumerate}
+    \item some weak views are non-identifying on exact hostile pairs;
+    \item typed relation and admitted-history coordinates remove those particular collisions;
+    \item simple learned models can exploit some of the exposed structure, especially candidate mechanic choice;
+    \item one remaining D0 residual is global affine composition and closes under a frozen exact procedure;
+    \item typed relational method coordinates transfer to a held-out procedural domain better than transcript, untyped, and same-information serialized comparators on D1.
+\end{enumerate}
 
-This doctrine is deliberately non-universal. Deterministic or symbolic controls are not appropriate for every open-world task, and a finite collision analysis is not an asymptotic learning theorem. The broader ideas of oracle decomposition, missing-information recognition, and representation diagnosis are already present in prior work \citep{anonymous2026chokepoints,liem2026temporal,li2025questbench}. P9 contributes a concrete, reproducible instantiation in which all three diagnostics materially change the interpretation of the same programme of experiments.
+The evidence does \emph{not} establish a universal sufficient representation for reasoning, a new neural architecture, a general graph or sheaf learner, a causal-discovery system, a reusable tactic library, or a proof that simple models dominate neural systems. The whole-domain transfer set contains only 128 protected cases and three method families. The exact worlds are intentionally synthetic and small. D1 broadens the domain boundary but remains exact, authored method structure rather than open-world scientific text.
 
-\subsection{Why no neural P9 model is promoted}
-
-The original design space included graph, sheaf, neural-algorithmic, recurrent-latent, binding, causal, and advanced-training branches. The final evidence does not justify promoting them. Relation semantics and failure history are closed by explicit selectors; affine transport is closed by exact composition; and the positive D1 transfer result is already achieved with a classical logistic model over the typed relational representation. A new neural reasoner would therefore answer a different, prospectively reopened question rather than complete the present one.
-
-This is not evidence that richer models are generally useless. It is a scope-specific stop decision: no frozen residual remains in the final P9 claim that requires a neural architecture.
-
-\subsection{Design implications and prospective applications}
-
-The bounded results support four design implications. First, expose a semantic coordinate only when it is externally grounded, because topology can be non-identifying. Second, preserve scoped negative history where the current state alone aliases distinct decisions, but do not globally poison a mechanic after one failure. Third, use exact computation for known invariants when the necessary operands are visible rather than relearning deterministic algebra. Fourth, retain explicit unresolved states when the source does not identify a target.
-
-Software incident diagnosis, proof planning, process/workflow diagnosis, and robotics are plausible structure-native application domains, but no application-success number is claimed here. A separate prospective pilot is required before these design implications become application-performance claims.
-
-\section{Limitations}
-
-The evidence is intentionally narrow. D0 consists of exact synthetic hostile worlds. D1 consists of exact authored/procedural method structures in three computational domains, not independently annotated natural-science papers. The study therefore provides no estimate of annotation reliability or ecological validity for broad scientific-method extraction.
-
-The empirical ceilings are finite-sample statements over exact model-visible equivalence classes. They do not establish Bayes-optimal error, asymptotic sample complexity, or universal representation sufficiency. The M1 model family is deliberately classical and bounded; the absence of a justified neural escalation in this study is not a claim that neural methods cannot help on a future discriminator.
-
-D1 is one whole-domain transfer study. Although its surface identities are reminted and the protected test contains multi-coordinate corruptions and unresolved cases, it does not establish universal cross-domain compositional generalization. The same-information serialization contrast is likewise application-specific and should be read against the broader serialization-friction literature \citep{lo2026serialization}.
-
-We do not test causal discovery, dedicated variable binding, recurrent latent reasoning, LLM integration, theorem-proving improvement, method invention, or scientific authority. Those topics remain outside the final claim rather than being silently scored as negative.
+The model-escalation conclusion is procedural, not architectural: the frozen evidence never produces a residual that requires a richer learned model after information and explicit-computation controls. Consequently the terminal is `P9_NEURAL_ESCALATION_NOT_JUSTIFIED`, not `NEURAL_MODELS_FAIL`.
 
 \section{Reproducibility}
 
-The repository preserves every protocol amendment, raw result, execution receipt, and independent verification record. M1, D1, A2/A4, and A5 are content-bound by result/manifests; the full D1 raw prediction archive was replayed under its original official provenance identity to reproduce its exact original digest. The final publication package regenerates a fail-closed evidence summary, LaTeX result macros, and headline tables from merged official artifacts. It refuses unsupported terminals, digest mismatches, non-verified results, or material verification discrepancies.
+The repository contains the exact generated corpora, protocols, run scripts, selected configurations, protected predictions, result digests, independent expectations, comparison receipts, claim ledgers, and the TMLR package. A fail-closed summary builder refuses to produce publication metrics if any required official result, terminal, digest, verification receipt, hostile check, or current integration-authority receipt is absent. Tables and manuscript macros are generated only from that summary. From a clean checkout, the reproduction path is:
 
-The official result environment used Python 3.12 on Ubuntu 24.04 with the repository's candidate dependency closure; the successful result lanes included scikit-learn 1.9.0 and NumPy 2.5.2. Historical pre-outcome compatibility repairs are preserved rather than rewritten. No neural checkpoint is released because no neural model is promoted.
+\begin{verbatim}
+python papers/candidates/paper-09-structured-epistemic-learning/reproduce_final.py
+\end{verbatim}
 
-The TMLR build fetches the official unmodified style and bibliography files from a pinned `JmlrOrg/tmlr-style-file` commit and verifies their Git blob identities before compilation. Final result prose and tables consume generated evidence artifacts rather than hand-entered numbers.
+The script regenerates the post-hoc paired D1 analysis, independently compares the integrated official result archives to the frozen expectation table, rebuilds the fail-closed evidence summary, result macros and headline tables, and runs the manuscript audit. Runtime dependencies are pinned in the repository environment; the raw M1 and D1 protected archives are committed rather than reconstructed from manuscript numbers.
+
+This paper is intentionally conservative about authority. Execution receipts prove that named computations occurred and matched bounded expectations. They do not grant scientific truth or adoption authority. Historical donor receipts that referred to superseded pull requests remain provenance, while the current integration receipt separately authorizes rendering of the exact grafted artifacts on this review branch.
 
 \section{Conclusion}
 
-P9 began as a question about how much learned structure an autonomous research system might need. The bounded evidence yields a smaller and more diagnostic conclusion. Some structural coordinates are necessary information: removing relation semantics, local transport values, or admitted failure history can make paired targets non-identifying. Once those coordinates are visible, simple learning is sufficient for several tasks, while the one clear classical-learning residual is a global affine composition that exact inference already closes. On an exact whole held-out domain, typed relational method comparison nevertheless produces a strong protected transfer result beyond weaker and same-information controls.
+P9 asks whether richer learning machinery is needed after controlling what information a model can see. On exact hostile pairs, weaker views impose observable collisions; typed relation and admitted-history coordinates remove the targeted ambiguities. On M1, generic classical learning then succeeds on mechanic selection but leaves a global affine-composition residual. A separately frozen exact procedure closes that residual from visible local maps. Finally, typed relational method coordinates transfer across a whole held-out procedural domain and outperform transcript, untyped, and same-information serialized controls. The resulting conclusion is narrower than an architecture proposal but stronger than a benchmark score: before escalating model complexity, identify whether the failure is informational, statistical, computational, or transfer-related.
 
-The resulting contribution is not a new graph, a new theorem, or a new general-purpose reasoner. It is an evidence-bound methodology for deciding what a failed structured learner is actually missing before escalating model complexity, together with a controlled cross-domain result showing that the organization of typed method coordinates can matter on a protected procedural task.
-
-\bibliographystyle{tmlr}
+\bibliographystyle{plainnat}
 \bibliography{references}
 
 \end{document}
