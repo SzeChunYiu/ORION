@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 import subprocess
 import sys
-import tempfile
+import threading
 from pathlib import Path
 from typing import Any, BinaryIO, Mapping
 
@@ -46,12 +46,28 @@ def _read_text_bounded(path: Path, max_chars: int) -> str:
     return value[:max_chars] + "\n...[truncated additional file content]"
 
 
-def _read_process_output(handle: BinaryIO, max_bytes: int = _MAX_PROCESS_OUTPUT_BYTES) -> str:
-    handle.seek(0, os.SEEK_END)
-    total = handle.tell()
-    handle.seek(0)
-    data = handle.read(max_bytes)
-    text = data.decode("utf-8", errors="replace")
+def _drain_pipe(
+    pipe: BinaryIO,
+    output: bytearray,
+    total: list[int],
+    *,
+    max_bytes: int = _MAX_PROCESS_OUTPUT_BYTES,
+) -> None:
+    try:
+        while True:
+            chunk = pipe.read(64 * 1024)
+            if not chunk:
+                return
+            total[0] += len(chunk)
+            remaining = max_bytes - len(output)
+            if remaining > 0:
+                output.extend(chunk[:remaining])
+    finally:
+        pipe.close()
+
+
+def _render_process_output(data: bytearray, total: int, max_bytes: int) -> str:
+    text = bytes(data).decode("utf-8", errors="replace")
     if total > max_bytes:
         text += f"\n...[truncated {total - max_bytes} bytes]"
     return text
@@ -111,29 +127,52 @@ def execute_local(
                 raise ValueError("SHELL requires non-empty argv list; shell=True is never used")
             argv = [str(value) for value in raw_argv]
 
-        with tempfile.TemporaryFile() as stdout_file, tempfile.TemporaryFile() as stderr_file:
-            process = subprocess.Popen(
-                argv,
-                cwd=cwd,
-                stdout=stdout_file,
-                stderr=stderr_file,
-                stdin=subprocess.DEVNULL,
-            )
-            try:
-                returncode = process.wait(timeout=timeout)
-            except subprocess.TimeoutExpired:
-                process.kill()
-                process.wait()
-                raise
-            stdout = _read_process_output(stdout_file)
-            stderr = _read_process_output(stderr_file)
+        process = subprocess.Popen(
+            argv,
+            cwd=cwd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            stdin=subprocess.DEVNULL,
+        )
+        assert process.stdout is not None
+        assert process.stderr is not None
+        stdout_buffer = bytearray()
+        stderr_buffer = bytearray()
+        stdout_total = [0]
+        stderr_total = [0]
+        stdout_thread = threading.Thread(
+            target=_drain_pipe,
+            args=(process.stdout, stdout_buffer, stdout_total),
+            daemon=True,
+        )
+        stderr_thread = threading.Thread(
+            target=_drain_pipe,
+            args=(process.stderr, stderr_buffer, stderr_total),
+            daemon=True,
+        )
+        stdout_thread.start()
+        stderr_thread.start()
+        try:
+            returncode = process.wait(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            process.kill()
+            process.wait()
+            stdout_thread.join()
+            stderr_thread.join()
+            raise
+        stdout_thread.join()
+        stderr_thread.join()
 
         return {
             "argv": argv,
             "cwd": str(cwd),
             "returncode": returncode,
-            "stdout": stdout,
-            "stderr": stderr,
+            "stdout": _render_process_output(
+                stdout_buffer, stdout_total[0], _MAX_PROCESS_OUTPUT_BYTES
+            ),
+            "stderr": _render_process_output(
+                stderr_buffer, stderr_total[0], _MAX_PROCESS_OUTPUT_BYTES
+            ),
             "sandboxed": False,
         }
 
