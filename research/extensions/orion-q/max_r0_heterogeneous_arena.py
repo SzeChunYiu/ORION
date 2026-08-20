@@ -1,7 +1,7 @@
 """Deterministic ORION-Q MAX-R0 heterogeneous research-state diagnostic.
 
 This diagnostic asks whether one domain-neutral scoped failure/reopening contract
-retains value across four synthetic quantum research regimes.  It is not a
+retains value across four synthetic quantum research regimes. It is not a
 protected confirmatory experiment and grants no P10, novelty, or real-quantum
 authority.
 
@@ -12,12 +12,12 @@ Run:
 from __future__ import annotations
 
 import json
+import math
 import random
 from statistics import fmean
 
 SEED = 20260820
 EPISODES_PER_DOMAIN = 20_000
-BOOTSTRAP_REPEATS = 2_000
 
 DOMAINS = {
     "SYNTHESIS": {
@@ -101,13 +101,16 @@ def choose(policy: str, episode: dict[str, object]) -> str:
     raise ValueError(f"unknown policy: {policy}")
 
 
-def percentile(values: list[float], q: float) -> float:
-    ordered = sorted(values)
-    pos = (len(ordered) - 1) * q
-    low = int(pos)
-    high = min(low + 1, len(ordered) - 1)
-    weight = pos - low
-    return ordered[low] * (1.0 - weight) + ordered[high] * weight
+def normal_mean_ci(values: list[float]) -> list[float]:
+    """Return a lightweight paired normal 95% CI for a diagnostic mean."""
+
+    n = len(values)
+    if n < 2:
+        raise ValueError("mean CI requires at least two observations")
+    mean = fmean(values)
+    variance = sum((value - mean) ** 2 for value in values) / (n - 1)
+    half_width = 1.96 * math.sqrt(variance / n)
+    return [mean - half_width, mean + half_width]
 
 
 def main() -> None:
@@ -167,15 +170,6 @@ def main() -> None:
     success_deltas = [scoped - raw for raw, scoped, _, _ in all_pairs]
     cost_deltas = [scoped - raw for _, _, raw, scoped in all_pairs]
 
-    boot_rng = random.Random(SEED + 1)
-    n = len(all_pairs)
-    boot_success: list[float] = []
-    boot_cost: list[float] = []
-    for _ in range(BOOTSTRAP_REPEATS):
-        sampled = [boot_rng.randrange(n) for _ in range(n)]
-        boot_success.append(fmean(success_deltas[i] for i in sampled))
-        boot_cost.append(fmean(cost_deltas[i] for i in sampled))
-
     result = {
         "schema": "ORIONQ.MAXR0HeterogeneousArenaResult.v1",
         "seed": SEED,
@@ -183,15 +177,9 @@ def main() -> None:
         "domains": domain_results,
         "aggregate": {
             "scoped_minus_raw_success_rate": fmean(success_deltas),
-            "scoped_minus_raw_success_rate_bootstrap_95": [
-                percentile(boot_success, 0.025),
-                percentile(boot_success, 0.975),
-            ],
+            "scoped_minus_raw_success_rate_normal_95": normal_mean_ci(success_deltas),
             "scoped_minus_raw_mean_cost": fmean(cost_deltas),
-            "scoped_minus_raw_mean_cost_bootstrap_95": [
-                percentile(boot_cost, 0.025),
-                percentile(boot_cost, 0.975),
-            ],
+            "scoped_minus_raw_mean_cost_normal_95": normal_mean_ci(cost_deltas),
         },
         "interpretation": {
             "milestone": "MAX_R1_GENERAL_SCOPED_FAILURE_STATE_VALUE__SYNTHETIC",
