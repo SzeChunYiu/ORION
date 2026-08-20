@@ -22,3 +22,8 @@ jobs:
           cd research/extensions/orion-q
           python max_r5b_n2_proof_outer_replay.py | tee /tmp/r5b.txt
           grep '^ORIONQ_MAX_R5B_PROOF_OUTER=' /tmp/r5b.txt
+      - name: Run independent N2 proof replay
+        run: |
+          cd research/extensions/orion-q
+          python max_r5b_n2_independent_replay.py | tee /tmp/r5b-independent.txt
+          grep '^ORIONQ_MAX_R5B_INDEPENDENT=' /tmp/r5b-independent.txt
