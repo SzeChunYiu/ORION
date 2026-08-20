@@ -3,6 +3,9 @@ from .registry import (
     DonorDisposition,
     DonorExecutionMode,
     DonorRegistry,
+)
+from .full_registry import (
+    engineering_donor_capabilities,
     normal_orion_donor_registry,
     orion_q_donor_registry,
 )
@@ -12,6 +15,7 @@ __all__ = [
     "DonorDisposition",
     "DonorExecutionMode",
     "DonorRegistry",
+    "engineering_donor_capabilities",
     "normal_orion_donor_registry",
     "orion_q_donor_registry",
 ]
