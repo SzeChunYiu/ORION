@@ -122,7 +122,7 @@ class FrozenNativeProviderHost:
                                 "text": self.probe_query_text,
                                 "route_id": "p1-r6-native-probe-route",
                                 "route_kind": "CURRENT_VOCABULARY",
-                                "domain_hint": None,
+                                "domain_hint": "p1-r6-protected-discriminator",
                             }
                         ]
                     }
