@@ -58,7 +58,7 @@ def make_complete(e):
     return cases, dispositions
 
 
-def test_r3_acquisition_accepts_only_complete_frozen_universe():
+def test_r3_acquisition_accepts_complete_universe_and_one_no_source_when_quotas_hold():
     e = load_evaluator()
     cases, dispositions = make_complete(e)
     result = e.validate_acquisition(cases, dispositions)
@@ -67,10 +67,7 @@ def test_r3_acquisition_accepts_only_complete_frozen_universe():
     assert result["n_domains"] == 5
     assert all(v >= 5 for v in result["class_counts"].values())
 
-
-def test_r3_incomplete_acquisition_cannot_generate_policy_outcomes():
-    e = load_evaluator()
-    cases, dispositions = make_complete(e)
+    # A query may legitimately have no qualifying source if all frozen corpus quotas still hold.
     cases.pop()
     dispositions[-1] = {
         "query_id": dispositions[-1]["query_id"],
@@ -79,9 +76,32 @@ def test_r3_incomplete_acquisition_cannot_generate_policy_outcomes():
         "results_scanned": 8,
         "skipped": [{"rank": 1, "reason": "nonqualifying"}],
     }
+    result = e.validate_acquisition(cases, dispositions)
+    assert result["complete"] is True
+    assert result["n_cases"] == 39
+
+
+def test_r3_class_quota_failure_cannot_generate_policy_outcomes():
+    e = load_evaluator()
+    cases, dispositions = make_complete(e)
+
+    # Remove two UNRESOLVED cases so that class falls from five to three, below the frozen minimum four.
+    removed_qids = {e.PLAN["queries"][-1]["id"], e.PLAN["queries"][-2]["id"]}
+    cases = [c for c in cases if c["query_id"] not in removed_qids]
+    for i, row in enumerate(dispositions):
+        if row["query_id"] in removed_qids:
+            dispositions[i] = {
+                "query_id": row["query_id"],
+                "status": "NO_QUALIFYING_SOURCE",
+                "results_returned": 8,
+                "results_scanned": 8,
+                "skipped": [{"rank": 1, "reason": "nonqualifying"}],
+            }
+
     result = e.evaluate(cases, dispositions)
     assert result["terminal"] == "P1_R3_CANNOT_CHECK_SOURCE_UNIVERSE"
     assert result["policy_outcomes_generated"] is False
+    assert result["acquisition"]["checks"]["minimum_per_gold_class"] is False
 
 
 def test_r3_rejects_wrong_year_duplicate_sources_and_bad_linkage():
