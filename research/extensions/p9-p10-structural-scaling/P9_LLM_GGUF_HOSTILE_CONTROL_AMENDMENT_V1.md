@@ -49,9 +49,12 @@ A hash-selected 48-item control set contains the 16 lexicographically smallest i
 
 At budget 32, for every model size:
 
-- R1 fact lines are deterministically reversed;
-- R2 mapping/list presentation order is deterministically reversed without changing key/value membership;
+- R1 is reordered only at the **whole-coordinate-group** level. Every line belonging to one coordinate stays in its original internal order, so dependency-edge endpoint direction and other sequence semantics are unchanged;
+- R2 mapping-key insertion order is deterministically reversed, but all sequence/list values are kept in their original internal order;
+- the implementation checks that the R1 serialized fact multiset is identical and the reordered R2 Python semantic object compares equal to the original typed object before inference;
 - R2 is again padded if needed so it is not shorter than its paired R1 control prompt.
+
+A pre-outcome hostile implementation review caught and rejected the simpler idea of reversing every R1 line / every R2 list, because that would reverse dependency-edge endpoints and therefore change the task. No model outcome existed when this semantics-preserving correction was frozen.
 
 Order control passes for a model if the R2-R1 accuracy difference remains non-negative. The primary claim additionally requires all three model-size order controls to pass. Raw control accuracies are reported regardless of sign.
 
