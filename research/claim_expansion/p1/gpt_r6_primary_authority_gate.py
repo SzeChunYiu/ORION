@@ -5,6 +5,32 @@ import json
 from pathlib import Path
 
 
+def _candidate_rows(result: dict[str, object]) -> list[dict[str, object]]:
+    rows = [
+        member
+        for pair in result.get("pair_rows", [])
+        for member in pair["outcomes"].values()
+    ]
+    rows.extend(row["outcome"] for row in result.get("unresolved_rows", []))
+    return rows
+
+
+def _assessment_receipts_fail_closed(result: dict[str, object]) -> bool:
+    for row in _candidate_rows(result):
+        for arm_key in ("base_native", "ard_native"):
+            arm = row[arm_key]
+            status = str(arm["responsibility_status"])
+            assessments = tuple(str(value) for value in arm["assessment_statuses"])
+            if not assessments:
+                return False
+            if status == "IDENTIFIED":
+                if any(value != "ADMISSIBLE" for value in assessments):
+                    return False
+            elif any(value == "ADMISSIBLE" for value in assessments):
+                return False
+    return True
+
+
 def apply_authority_gate(result: dict[str, object]) -> dict[str, object]:
     if not result.get("policy_outcomes_generated"):
         return result
@@ -14,7 +40,9 @@ def apply_authority_gate(result: dict[str, object]) -> dict[str, object]:
         str(key): float(value)
         for key, value in dict(result["substantive_class_pair_differences"]).items()
     }
-    checks["pair_class_noninferiority"] = all(value >= -0.10 for value in pair_class.values())
+    checks["pair_class_noninferiority"] = all(
+        value >= -0.10 for value in pair_class.values()
+    )
     checks["minimum_three_nonnegative_pair_classes"] = sum(
         value >= 0.0 for value in pair_class.values()
     ) >= 3
@@ -22,6 +50,9 @@ def apply_authority_gate(result: dict[str, object]) -> dict[str, object]:
         int(result.get("n_episodes", -1)) == 48
         and int(result.get("native_invalid_rows", -1)) == 0
         and int(result.get("candidate_metadata_leakage_rows", -1)) == 0
+    )
+    checks["mechanic_assessment_receipts_fail_closed"] = _assessment_receipts_fail_closed(
+        result
     )
     result["checks"] = checks
     result["terminal"] = (
@@ -34,6 +65,7 @@ def apply_authority_gate(result: dict[str, object]) -> dict[str, object]:
         "frozen_before_primary_outcome": True,
         "pair_class_floor": -0.10,
         "minimum_nonnegative_pair_classes": 3,
+        "requires_fail_closed_mechanic_assessments": True,
         "promotion_authorized": False,
         "merge_authorized": False,
         "replication_required_for_positive_primary": True,
