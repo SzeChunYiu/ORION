@@ -1,0 +1,63 @@
+name: orion-q-max-r6-exact-tare3
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-q/max_r6_exact_tare3_joint_frame_dp.py'
+      - 'research/extensions/orion-q/max_r6_p10_candidate_blind_frame_optimizer.py'
+      - 'research/extensions/orion-q/max_r5h_mixed_cardinality_development.py'
+      - 'research/extensions/orion-q/max_r4d_h2o_ducc_confirmation.py'
+      - 'development/orion-q-max-r0/MAX_R6_EXACT_TARE3_JOINT_FRAME_DP_PROTOCOL.md'
+      - 'development/orion-q-max-r0/MAX_R6_EXACT_TARE3_DP_ERRATUM_1.md'
+      - 'development/orion-q-max-r0/MAX_R6_EXACT_TARE3_DP_ERRATUM_2.md'
+      - '.github/workflows/orion-q-max-r6-exact-tare3.yml'
+
+jobs:
+  exact-tare3-open-subject-development:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy
+      - name: Run frozen exact joint TARE-3 development
+        run: |
+          cd research/extensions/orion-q
+          python max_r6_exact_tare3_joint_frame_dp.py | tee /tmp/exact-tare3.txt
+          grep '^ORIONQ_MAX_R6_EXACT_TARE3=' /tmp/exact-tare3.txt
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          prefix = 'ORIONQ_MAX_R6_EXACT_TARE3='
+          lines = [
+              line for line in Path('/tmp/exact-tare3.txt').read_text().splitlines()
+              if line.startswith(prefix)
+          ]
+          if len(lines) != 1:
+              raise SystemExit(f'expected exactly one exact-TARE3 receipt, got {len(lines)}')
+          payload = json.loads(lines[0][len(prefix):])
+          if payload.get('reserved_stretched_n2_accessed') is not False:
+              raise SystemExit('protected stretched-N2 access was not proven absent')
+          hostile = payload.get('hostile', {})
+          if hostile.get('all_exact') is not True:
+              raise SystemExit('hostile exactness did not pass')
+          gates = payload.get('gates', {})
+          supported = payload.get('development_supported') is True
+          expected = (
+              'MAX_R6_EXACT_TARE3_JOINT_DP_SUPPORTED'
+              if supported
+              else 'MAX_R6_EXACT_TARE3_JOINT_DP_NEGATIVE'
+          )
+          if payload.get('authority') != expected:
+              raise SystemExit('authority/gate mismatch')
+          if supported != all(gates.values()):
+              raise SystemExit('development_supported does not equal conjunction of frozen gates')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-q-max-r6-exact-tare3-receipt
+          path: /tmp/exact-tare3.txt
+          if-no-files-found: error
