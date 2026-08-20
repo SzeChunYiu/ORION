@@ -48,18 +48,22 @@ jobs:
       - name: Preserve frozen outcome artifact
         uses: actions/upload-artifact@v4
         with:
-          name: relational-accessibility-${{ github.sha }}
+          name: relational-accessibility-v1-1-negative-${{ github.sha }}
           path: research/extensions/p9-p10-structural-scaling/results/RELATIONAL_ACCESSIBILITY_BENCHMARK_V1_1.json
           if-no-files-found: error
-      - name: Enforce frozen positive terminal
+      - name: Enforce the known frozen negative terminal
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
           p = Path('research/extensions/p9-p10-structural-scaling/results/RELATIONAL_ACCESSIBILITY_BENCHMARK_V1_1.json')
           d = json.loads(p.read_text())
-          if d['terminal'] != 'RELATIONAL_ACCESSIBILITY_GAP_SUPPORTED_CONTROLLED_CLASS':
+          expected = 'RELATIONAL_ACCESSIBILITY_PRIMARY_GATE_NOT_MET'
+          if d['terminal'] != expected:
               raise SystemExit(
-                  'frozen V1.1 terminal remains negative; preserve artifact and do not retune this protocol'
+                  f'V1.1 historical disposition drifted: expected {expected}, got {d["terminal"]}'
               )
+          if d['endpoint_checks'].get('label_shuffle_lt_0_65_all_dimensions') is not False:
+              raise SystemExit('V1.1 must retain its failed frozen shuffled-label hostile gate')
+          print('P9_P10_V1_1_EXPECTED_NEGATIVE_REPRODUCED=true')
           PY
