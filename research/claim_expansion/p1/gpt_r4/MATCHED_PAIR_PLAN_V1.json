@@ -1,0 +1,94 @@
+{
+  "schema": "P1U.MatchedPairSourceUniverse.v1",
+  "campaign_issue": 719,
+  "base_commit": "2d6065755084588737274102aa7c140f2f1d8b7c",
+  "created_before_any_2020_query_execution": true,
+  "primary_year": 2020,
+  "replication_year": 2019,
+  "search_engine": "web_fast",
+  "max_rank_scanned_per_query": 50,
+  "source_priority": ["primary_paper", "publisher_record", "official_artifact_repository"],
+  "pair_source_rule": "for substantive queries admit only the first unique nonexcluded 2020 source that contains both a source-grounded adverse condition for the query class and a matched same-study control condition where no objective/model-class or problem-boundary reformulation is required",
+  "unresolved_source_rule": "for unresolved queries admit only the first unique nonexcluded 2020 source establishing genuine non-identifiability under available evidence",
+  "excluded_sources": [
+    "all sources opened, admitted, or used during P1-U R1, R2, or R3"
+  ],
+  "pair_matching": {
+    "same_source_required": true,
+    "same_scientific_objective_or_task_required": true,
+    "same_study_or_artifact_family_required": true,
+    "match_domain": true,
+    "match_measurement_system_when_possible": true,
+    "match_implementation_family_when_possible": true,
+    "match_population_material_or_system_when_possible": true,
+    "control_gold_class": "NO_HIGH_LEVEL_REFORMULATION",
+    "control_may_require_lower_level_action": true,
+    "control_must_not_require_objective_or_boundary_reformulation": true,
+    "source_with_only_adverse_condition_is_ineligible": true
+  },
+  "case_schema": {
+    "pair_required": ["pair_id", "query_id", "adverse_class", "actual_domain", "source_id", "source_url", "source_year", "source_rank", "adverse", "control", "pair_evidence"],
+    "episode_required": ["id", "dossier", "probes", "gold_class"],
+    "unresolved_required": ["id", "query_id", "actual_domain", "source_id", "source_url", "source_year", "source_rank", "dossier", "probes", "gold_class", "admission_evidence"],
+    "dossier_max_words": 90,
+    "probe_names": ["P_SEARCH_COVERAGE", "P_REPRESENTATION_ROUNDTRIP", "P_ENVIRONMENT_REPLAY", "P_MEASUREMENT_CROSSCHECK", "P_OBJECTIVE_PREDICTIVE_CHECK", "P_BOUNDARY_COUNTERFACTUAL"],
+    "probe_values": ["SUPPORT", "REFUTE", "INCONCLUSIVE"]
+  },
+  "queries": [
+    {"id":"SEARCH-P1","class":"SEARCH_OR_EVIDENCE","q":"2020 scientific study reduced data versus sufficient data comparison inference primary"},
+    {"id":"SEARCH-P2","class":"SEARCH_OR_EVIDENCE","q":"2020 additional observations improve scientific inference compared limited observations primary study"},
+    {"id":"SEARCH-P3","class":"SEARCH_OR_EVIDENCE","q":"2020 low sample versus high sample scientific model performance comparison primary research"},
+    {"id":"SEARCH-P4","class":"SEARCH_OR_EVIDENCE","q":"2020 missing data versus complete data scientific analysis comparison primary paper"},
+
+    {"id":"REP-P1","class":"REPRESENTATION_OR_INTERFACE","q":"2020 scientific representation encoding comparison original transformed data primary study"},
+    {"id":"REP-P2","class":"REPRESENTATION_OR_INTERFACE","q":"2020 coordinate system transformation comparison scientific model primary research"},
+    {"id":"REP-P3","class":"REPRESENTATION_OR_INTERFACE","q":"2020 raw versus transformed representation scientific prediction comparison primary study"},
+    {"id":"REP-P4","class":"REPRESENTATION_OR_INTERFACE","q":"2020 schema mapping harmonization comparison scientific data integration primary paper"},
+
+    {"id":"IMPL-P1","class":"IMPLEMENTATION_OR_ENVIRONMENT","q":"2020 software bug corrected version comparison scientific result primary study"},
+    {"id":"IMPL-P2","class":"IMPLEMENTATION_OR_ENVIRONMENT","q":"2020 low precision versus high precision scientific simulation comparison primary research"},
+    {"id":"IMPL-P3","class":"IMPLEMENTATION_OR_ENVIRONMENT","q":"2020 dependency version comparison reproducibility scientific software primary study"},
+    {"id":"IMPL-P4","class":"IMPLEMENTATION_OR_ENVIRONMENT","q":"2020 configuration error corrected configuration scientific pipeline comparison primary paper"},
+
+    {"id":"MEAS-P1","class":"MEASUREMENT_OR_EVALUATOR","q":"2020 calibrated versus uncalibrated instrument comparison scientific measurement primary study"},
+    {"id":"MEAS-P2","class":"MEASUREMENT_OR_EVALUATOR","q":"2020 self report versus reference standard measurement bias comparison primary research"},
+    {"id":"MEAS-P3","class":"MEASUREMENT_OR_EVALUATOR","q":"2020 corrected versus uncorrected sensor bias comparison primary study"},
+    {"id":"MEAS-P4","class":"MEASUREMENT_OR_EVALUATOR","q":"2020 benchmark metric alternative metric comparison scientific evaluation primary paper"},
+
+    {"id":"OBJ-P1","class":"OBJECTIVE_OR_MODEL_CLASS","q":"2020 misspecified versus correctly specified model comparison scientific primary study"},
+    {"id":"OBJ-P2","class":"OBJECTIVE_OR_MODEL_CLASS","q":"2020 inadequate versus adequate model class scientific prediction comparison primary research"},
+    {"id":"OBJ-P3","class":"OBJECTIVE_OR_MODEL_CLASS","q":"2020 loss function objective comparison scientific machine learning primary study"},
+    {"id":"OBJ-P4","class":"OBJECTIVE_OR_MODEL_CLASS","q":"2020 omitted mechanism versus full mechanism model comparison scientific primary paper"},
+
+    {"id":"BOUND-P1","class":"PROBLEM_BOUNDARY","q":"2020 truncated versus full domain boundary scientific model comparison primary study"},
+    {"id":"BOUND-P2","class":"PROBLEM_BOUNDARY","q":"2020 narrow versus broad population scope scientific inference comparison primary research"},
+    {"id":"BOUND-P3","class":"PROBLEM_BOUNDARY","q":"2020 closed versus open system boundary scientific model comparison primary study"},
+    {"id":"BOUND-P4","class":"PROBLEM_BOUNDARY","q":"2020 partial versus full lifecycle system boundary assessment comparison primary paper"},
+
+    {"id":"UNRES-P1","class":"UNRESOLVED","q":"2020 competing scientific models indistinguishable available data identifiability primary study"},
+    {"id":"UNRES-P2","class":"UNRESOLVED","q":"2020 nonidentifiable parameters multiple mechanisms same observations primary research"},
+    {"id":"UNRES-P3","class":"UNRESOLVED","q":"2020 equifinality scientific models observationally equivalent primary paper"},
+    {"id":"UNRES-P4","class":"UNRESOLVED","q":"2020 insufficient evidence distinguish competing scientific hypotheses primary study"}
+  ],
+  "corpus_requirements": {
+    "required_pair_sources": 24,
+    "required_pairs_per_substantive_class": 4,
+    "required_unresolved_sources": 4,
+    "required_total_sources": 28,
+    "required_total_episodes": 52,
+    "minimum_actual_domains": 5,
+    "all_queries_must_admit": true,
+    "source_disjointness_required": true
+  },
+  "decision_rule": {
+    "reuse_r2_episode_gates": true,
+    "pair_selective_margin": 0.10,
+    "pair_bootstrap_replicates": 20000,
+    "pair_bootstrap_seed": 20260820,
+    "pair_stability_interval": 0.95,
+    "zero_harmful_high_escalation_on_controls": true,
+    "minimum_nonnegative_substantive_classes": 3,
+    "substantive_class_floor": -0.10
+  },
+  "no_post_acquisition_mutation": true
+}
