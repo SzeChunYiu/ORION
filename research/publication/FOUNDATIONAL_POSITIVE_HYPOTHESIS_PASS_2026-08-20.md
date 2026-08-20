@@ -2,7 +2,7 @@
 
 ## Objective
 
-Run one more hostile, evidence-first pass over every failed, tied, saturated, blocked, or `CANNOT_CHECK` hypothesis in Papers 1–4 and 6–8 and the adjacent P1 programme closures. The aim is not to rename a failed hypothesis after outcome access. Frozen hypotheses keep their original terminal. The aim is to retire weak/failed publication targets and replace them with **positive successor hypotheses** whose truth status is stated separately.
+Run one more hostile, evidence-first pass over every failed, tied, saturated, blocked, or `CANNOT_CHECK` hypothesis in Papers 1–8 and the adjacent P1 programme closures. The aim is not to rename a failed hypothesis after outcome access. Frozen hypotheses keep their original terminal. The aim is to retire weak/failed publication targets and replace them with **positive successor hypotheses** whose truth status is stated separately.
 
 This pass asks a harder question than “can the negative be framed positively?”:
 
@@ -11,6 +11,7 @@ This pass asks a harder question than “can the negative be framed positively?�
 A successor is admitted only if it is one of:
 
 - `SUPPORTED_BOUNDED` — already supported by frozen evidence/theorem instances;
+- `SUPPORTED_BOUNDED_FORMAL` — supported by an exact registered formal model and its witness/countermodel suite;
 - `THEOREM_SCHEMA_SUPPORTED_BY_INSTANTIATIONS` — a programme-level schema with multiple exact paper-local instantiations but not yet a universal theorem;
 - `PROSPECTIVE` — scientifically promising but requiring a new frozen test.
 
@@ -24,7 +25,7 @@ Let a local scientific artifact or judgment `a` have:
 - a scientific authority/discharge signature `sigma(a)` describing the object, domain, scope, content identity, epoch, and obligations for which the artifact is valid;
 - a set `D(a)` of scientific obligations it is currently entitled to discharge.
 
-Let `F` be a transformation, composition, repetition, aggregation, optimization, verification, mapping, or workflow operation that introduces **no new authorized evidence and no new validated bridge/inference rule**.
+Let `F` be a transformation, composition, repetition, aggregation, optimization, verification, mapping, recommendation, self-modification proposal, or workflow operation that introduces **no new authorized evidence and no new validated bridge/inference rule**.
 
 The proposed **Scientific Discharge Sufficiency Principle (SDSP)** is:
 
@@ -34,18 +35,19 @@ A compact schema is
 
 `D(F(a)) subseteq Closure_R(D(a))`,
 
-where `R` contains only registered sound discharge/transport/inference rules. If `F` is information-equivalent for the target decisions and `R` is unchanged, exact equality is expected. A legitimate scientific inference can absolutely create a new conclusion, but the inference rule and its premises are the authority-bearing bridge; mere local success, repetition, aggregation, or format conversion is not.
+where `R` contains only registered sound discharge/transport/inference rules. If `F` is information-equivalent for the target decisions and `R` is unchanged, exact equality is expected. A legitimate scientific inference can absolutely create a new conclusion, but the inference rule and its premises are the authority-bearing bridge; mere local success, repetition, aggregation, recommendation, or format conversion is not.
 
 ### Current status
 
 `THEOREM_SCHEMA_SUPPORTED_BY_INSTANTIATIONS`, **not yet a universal theorem**.
 
-The programme already supplies distinct instantiations:
+The programme now supplies eight distinct lifecycle instantiations:
 
 - P1: local failure/performance does not discharge high-level reformulation authority;
 - P2: route-local stop does not discharge task-global closure; invalid transport does not discharge an external comparison;
 - P3: representational compatibility does not discharge scientific-identity authority;
 - P4: verification/generic permission does not discharge claim-promotion authority; a non-identifying benchmark score does not discharge a competence claim;
+- P5: an internally generated diagnosis, revision candidate, or composed recommendation does not discharge authority to adopt, promote, merge, or globally close that change;
 - P6: native operational certificates do not by themselves discharge preservation of scientific standing after material change;
 - P7: donor-valid navigation transforms do not by themselves discharge inheritance of task-global closure;
 - P8: native local authority does not discharge a broader cross-domain scientific target without compatible/narrowed type or a protected bridge.
@@ -124,7 +126,7 @@ Positive successor:
 
 > **Scientific Identity Sufficiency.** For the registered structured mapping/integration contracts, representational compatibility becomes safe scientific integration only when claim-relative identity authority is explicit; an information-equivalent implementation carrying the same identity relation reproduces the same decisions.
 
-Status: `SUPPORTED_BOUNDED` by the confirmatory mapping result and P3-X programme evidence; raw-text and downstream utility remain prospective transfer tests.
+Status: `SUPPORTED_BOUNDED` by the confirmatory mapping result and P3-X protected result: P3-X succeeds 400/400, the strong semantic-product control 250/400, the canonical-matching control 50/400, and the information-equivalent typed product 400/400 with zero mismatches. Raw-text and downstream utility remain prospective transfer tests.
 
 ### P4 — Promotion Sufficiency plus Evaluator Identifiability
 
@@ -136,6 +138,18 @@ Positive successors:
 2. **Evaluator Identifiability Hypothesis.** A benchmark metric can authorize a competence claim only if the registered score is not perfectly recoverable from a construction feature that bypasses the intended competence.
 
 Status: first `SUPPORTED_BOUNDED` by protected V2/P4-X; second `SUPPORTED_BOUNDED` as an exact construction audit for the frozen H3 family.
+
+### P5 — Adoption-Authority Separation and Fallible-Diagnosis Containment
+
+Retire as headline: the unexecuted broad claim that Self-ORION already yields greater fresh-task improvement than strong self-evolving systems.
+
+Positive successor:
+
+> **Bounded Non-Self-Promotion.** In the registered Self-ORION control architecture, diagnosis, revision proposal, computation selection, containment judgment, social-evidence report, and T7 composed recommendation are non-authorizing scientific objects: they may guide investigation but cannot grant revision, adoption, promotion, merge, or global-stop authority. Therefore a fallible internal diagnosis does not become a self-issued method-adoption certificate.
+
+Status: `SUPPORTED_BOUNDED` by the registered authority graph and hostile control tests, with a non-vacuous diagnostic condition supplied by the retained GLM-5.2 hidden-cause archive: 21/24 correct (0.875), macro-F1 0.8726, three retained attribution errors. The three errors are evidence for the condition under which the authority separation matters; they are not relabelled as diagnostic successes.
+
+The mature 2026 self-evolving-agent literature already owns self-editing, failure-driven improvement, verifier gates, anytime-valid acceptance, retained-experience evaluation, and benchmark-transfer diagnostics. P5's residual is consequently **scientific adoption authority**, not “self-improvement exists.” Its separate prospective performance campaign may later add evidence that the protected architecture also improves fresh outcomes; that extension is not required for the bounded non-self-promotion theorem.
 
 ### P6 — Exact Scientific Restoration
 
@@ -170,6 +184,7 @@ The third pass explicitly grants the following parent theories:
 - **Object-capability / authorization theory:** no-authority-amplification and delegated-scope narrowing are established security ideas. Recent `Bounded Agents` (arXiv:2608.15888) proves Blast Radius Monotonicity and Composition Soundness for agent delegation; ORION must not claim generic authority attenuation.
 - **Agent evidence composition:** EP-AEC Internet-Drafts (2026) compose heterogeneous identity/delegation/policy/approval/execution evidence against a relying-party requirement. P8 must therefore claim the scientific target-discharge layer above action authorization evidence, not heterogeneous receipts themselves.
 - **Proof-carrying execution/action:** `Proof-Carrying Agent Actions` (arXiv:2606.04104) and related 2026 work make action certificates and runtime governance donor infrastructure. P6 must claim scientific lifting after meaning-changing scientific transitions, not execution certification.
+- **Recursive self-improvement / self-evolving agents:** 2026 work already covers self-editing, frozen-base verifier gates, anytime-valid acceptance, persistent experience, failure-driven repairs, pathway-sensitive evaluation, and cross-benchmark specialization. P5 must therefore claim the separation between internally generated scientific advice and adoption authority, not generic self-modification or “learning from failure.”
 - **Statistical sufficiency / Blackwell comparison:** Blackwell sufficiency already formalizes when one experiment contains all decision-relevant information of another. ORION must not claim the general idea of sufficient representations; OBS/ASDS are bounded scientific-agent instantiations and motivate a sharper discharge notion.
 - **Causal transportability:** Pearl/Bareinboim and current 2026 methodological work formalize when evidence can transport across populations/settings. P2 must not claim generic transportability; its residual is authority over unresolved acquisition/processing routes and validity of the evaluation transport itself.
 - **General proof theory:** proof theory already asks what makes an inference valid and grants a proof epistemic force. ORION's residual must concern typed scientific workflow objects and the obligations that permit one local scientific success to change another object's standing.
@@ -177,21 +192,21 @@ The third pass explicitly grants the following parent theories:
 
 ## What would make the programme genuinely foundational
 
-A “Nobel-level” aspiration cannot be created by wording. The programme would need a result that changes how autonomous science is formally understood and is independently useful beyond ORION. The strongest concrete route is:
+A breakthrough aspiration cannot be created by wording. The programme would need a result that changes how autonomous science is formally understood and is independently useful beyond ORION. The strongest concrete route is:
 
-1. **General discharge calculus.** Define scientific objects, obligations, authority types, evidence, bridge/inference rules, revocation, uncertainty, and epochs in one formal system that subsumes P1–P4 and P6–P8 as typed instances.
+1. **General discharge calculus.** Define scientific objects, obligations, authority types, evidence, bridge/inference rules, revocation, uncertainty, epochs, and adoption transitions in one formal system that subsumes P1–P8 as typed instances.
 2. **Soundness theorem.** Prove that every admitted discharge is justified by a chain of native-valid premises plus explicit authorized bridges; no local-success laundering is possible.
 3. **Non-amplification theorem for scientific standing.** Under transformations introducing no new evidence or bridge, prove that discharge authority cannot widen beyond the authorized closure of the inputs.
 4. **Completeness / recoverability result.** Characterize conditions under which an information-equivalent implementation recovers every ORION discharge judgment, converting repeated ideal-product ties into one representation theorem.
 5. **Minimal-sufficient bridge theorem.** For selected families, prove which coordinates are necessary and sufficient—not merely by finite enumeration, but as a general theorem class.
-6. **Cross-domain external validation.** Freeze independent real scientific tasks in multiple disciplines and show that one generic discharge calculus predicts reformulation, closure, identity, promotion, revalidation, and cross-domain authority decisions without paper-specific rules.
+6. **Cross-domain external validation.** Freeze independent real scientific tasks in multiple disciplines and show that one generic discharge calculus predicts reformulation, closure, identity, promotion, adoption, revalidation, closure transport, and cross-domain authority decisions without paper-specific rules.
 7. **Prospective novel predictions.** Use the calculus to predict previously undocumented failure modes or benchmark defects before outcomes are observed, then confirm them independently.
 
 Until those steps exist, `Scientific Discharge Sufficiency` is a strong **programme theorem target**, not a universal law.
 
 ## Maximum defensible programme headline now
 
-> **ORION is converging on a theory of scientific discharge: the problem of autonomous science is not only whether a local computation, retrieval, mapping, verification, certificate, or authorization is valid, but whether that locally valid object is sufficient and entitled to change the standing of a different scientific obligation. Across seven paper families, the strongest results identify exact sufficiency, necessity, portability, non-identifiability, and non-widening conditions for those transitions.**
+> **ORION is converging on a theory of scientific discharge: the problem of autonomous science is not only whether a local computation, retrieval, mapping, verification, diagnosis, certificate, recommendation, or authorization is valid, but whether that locally valid object is sufficient and entitled to change the standing of a different scientific obligation. Across eight paper families, the strongest results identify exact sufficiency, necessity, portability, non-identifiability, non-self-promotion, restoration, composition, and non-widening conditions for those transitions.**
 
 ## Candidate synthesis-paper title
 
