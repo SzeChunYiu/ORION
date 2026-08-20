@@ -9,7 +9,13 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping
 from uuid import uuid4
 
-from .protocol import CapabilityRequest, CapabilityResult, content_digest, utc_now
+from .protocol import (
+    CapabilityRequest,
+    CapabilityResult,
+    canonical_json,
+    content_digest,
+    utc_now,
+)
 
 _META = ".orion-harness"
 _SESSION_SCHEMA_V1 = "ORION.ResearchHarnessSession.v1"
@@ -169,8 +175,14 @@ class ResearchWorkspace:
         session_id = "session:" + uuid4().hex
         created_at = utc_now()
         for child in (
-            "requests", "results", "problems", "runs", "notes",
-            "campaigns", "campaign-states", "campaign-cycles",
+            "requests",
+            "results",
+            "problems",
+            "runs",
+            "notes",
+            "campaigns",
+            "campaign-states",
+            "campaign-cycles",
         ):
             (meta / child).mkdir(parents=True, exist_ok=True)
         payload = _session_payload(
@@ -221,17 +233,26 @@ class ResearchWorkspace:
         _validate_id(request_id, name="request_id")
         return self.results_dir / _disk_name(request_id)
 
-    def _validated_existing_request(self, path: Path, candidate: CapabilityRequest) -> CapabilityRequest:
+    def _validated_existing_request(
+        self, path: Path, candidate: CapabilityRequest
+    ) -> CapabilityRequest:
         existing = CapabilityRequest.from_dict(_read_json(path))
         if existing.session_id != self.session_id:
             raise ValueError("request belongs to another harness session")
-        if existing.capability != candidate.capability or existing.payload != candidate.payload:
+        if (
+            existing.capability != candidate.capability
+            or canonical_json(existing.payload) != canonical_json(candidate.payload)
+        ):
             raise ValueError("deterministic request identity collision")
         return existing
 
-    def get_or_create_request(self, *, capability: str, payload: Mapping[str, Any]) -> CapabilityRequest:
+    def get_or_create_request(
+        self, *, capability: str, payload: Mapping[str, Any]
+    ) -> CapabilityRequest:
         candidate = CapabilityRequest.create(
-            session_id=self.session_id, capability=str(capability), payload=dict(payload)
+            session_id=self.session_id,
+            capability=str(capability),
+            payload=dict(payload),
         )
         path = self._request_path(candidate.request_id)
         if path.exists():
@@ -257,13 +278,15 @@ class ResearchWorkspace:
 
     @staticmethod
     def _validated_existing_result(
-        path: Path, request: CapabilityRequest, candidate: CapabilityResult
+        path: Path,
+        request: CapabilityRequest,
+        candidate: CapabilityResult,
     ) -> CapabilityResult:
         existing = CapabilityResult.from_dict(_read_json(path))
         existing.validate(request)
         if (
             existing.success != candidate.success
-            or existing.output != candidate.output
+            or canonical_json(existing.output) != canonical_json(candidate.output)
             or existing.error != candidate.error
             or existing.executor != candidate.executor
         ):
@@ -281,7 +304,11 @@ class ResearchWorkspace:
     ) -> CapabilityResult:
         request = self.load_request(request_id)
         candidate = CapabilityResult.create(
-            request, success=success, output=output, error=error, executor=executor
+            request,
+            success=success,
+            output=output,
+            error=error,
+            executor=executor,
         )
         path = self._result_path(request_id)
         if path.exists():
@@ -347,7 +374,10 @@ class ResearchWorkspace:
     def problem_ids(self) -> tuple[str, ...]:
         if not self.problems_dir.exists():
             return ()
-        return tuple(str(_read_json(path)["problem_id"]) for path in sorted(self.problems_dir.glob("*.json")))
+        return tuple(
+            str(_read_json(path)["problem_id"])
+            for path in sorted(self.problems_dir.glob("*.json"))
+        )
 
     def save_run(self, run_id: str, record: Mapping[str, Any]) -> Path:
         run_id = _validate_id(run_id, name="run_id")
@@ -362,7 +392,10 @@ class ResearchWorkspace:
     def run_ids(self) -> tuple[str, ...]:
         if not self.runs_dir.exists():
             return ()
-        return tuple(str(_read_json(path)["run_id"]) for path in sorted(self.runs_dir.glob("*.json")))
+        return tuple(
+            str(_read_json(path)["run_id"])
+            for path in sorted(self.runs_dir.glob("*.json"))
+        )
 
     def load_run(self, run_id: str) -> dict[str, Any]:
         run_id = _validate_id(run_id, name="run_id")
@@ -381,7 +414,9 @@ class ResearchWorkspace:
                 handle.write("\n")
         return path
 
-    def save_campaign_manifest(self, campaign_id: str, manifest: Mapping[str, Any]) -> Path:
+    def save_campaign_manifest(
+        self, campaign_id: str, manifest: Mapping[str, Any]
+    ) -> Path:
         campaign_id = _validate_id(campaign_id, name="campaign_id")
         payload = dict(manifest)
         if payload.get("campaign_id") != campaign_id:
@@ -389,13 +424,13 @@ class ResearchWorkspace:
         path = self.campaigns_dir / _disk_name(campaign_id)
         if path.exists():
             existing = _read_json(path)
-            if existing != payload:
+            if canonical_json(existing) != canonical_json(payload):
                 raise ValueError("campaign manifest already frozen with different content")
             return path
         if _write_json_create(path, payload):
             return path
         existing = _read_json(path)
-        if existing != payload:
+        if canonical_json(existing) != canonical_json(payload):
             raise ValueError("campaign manifest already frozen with different content")
         return path
 
@@ -409,11 +444,16 @@ class ResearchWorkspace:
     def campaign_ids(self) -> tuple[str, ...]:
         if not self.campaigns_dir.exists():
             return ()
-        return tuple(str(_read_json(path)["campaign_id"]) for path in sorted(self.campaigns_dir.glob("*.json")))
+        return tuple(
+            str(_read_json(path)["campaign_id"])
+            for path in sorted(self.campaigns_dir.glob("*.json"))
+        )
 
     def _campaign_state_root(self, campaign_id: str) -> Path:
         campaign_id = _validate_id(campaign_id, name="campaign_id")
-        return self.campaign_states_dir / hashlib.sha256(campaign_id.encode("utf-8")).hexdigest()
+        return self.campaign_states_dir / hashlib.sha256(
+            campaign_id.encode("utf-8")
+        ).hexdigest()
 
     def save_campaign_state(self, campaign_id: str, state: Mapping[str, Any]) -> Path:
         campaign_id = _validate_id(campaign_id, name="campaign_id")
@@ -424,13 +464,13 @@ class ResearchWorkspace:
         path = self._campaign_state_root(campaign_id) / f"{cycle_index:08d}.json"
         if path.exists():
             existing = _read_json(path)
-            if existing != payload:
+            if canonical_json(existing) != canonical_json(payload):
                 raise ValueError("campaign cycle state already exists with different content")
             return path
         if _write_json_create(path, payload):
             return path
         existing = _read_json(path)
-        if existing != payload:
+        if canonical_json(existing) != canonical_json(payload):
             raise ValueError("campaign cycle state already exists with different content")
         return path
 
@@ -445,22 +485,26 @@ class ResearchWorkspace:
         _strict_cycle_index(data.get("cycle_index"))
         return data
 
-    def save_campaign_cycle(self, campaign_id: str, transition: Mapping[str, Any]) -> Path:
+    def save_campaign_cycle(
+        self, campaign_id: str, transition: Mapping[str, Any]
+    ) -> Path:
         campaign_id = _validate_id(campaign_id, name="campaign_id")
         payload = dict(transition)
         if payload.get("campaign_id") != campaign_id:
             raise ValueError("campaign transition identity mismatch")
         cycle_index = _strict_cycle_index(payload.get("cycle_index"))
-        root = self.campaign_cycles_dir / hashlib.sha256(campaign_id.encode("utf-8")).hexdigest()
+        root = self.campaign_cycles_dir / hashlib.sha256(
+            campaign_id.encode("utf-8")
+        ).hexdigest()
         path = root / f"{cycle_index:08d}-{content_digest(payload)[:16]}.json"
         if path.exists():
             existing = _read_json(path)
-            if existing != payload:
+            if canonical_json(existing) != canonical_json(payload):
                 raise ValueError("campaign transition already exists with different content")
             return path
         if _write_json_create(path, payload):
             return path
         existing = _read_json(path)
-        if existing != payload:
+        if canonical_json(existing) != canonical_json(payload):
             raise ValueError("campaign transition already exists with different content")
         return path
