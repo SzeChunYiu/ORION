@@ -47,6 +47,24 @@ def test_r6_fixed_corpus_fails_closed_on_source_or_class_mutation():
     assert any("class mismatch" in error for error in result["errors"])
 
 
+def test_candidate_visible_dossiers_have_no_literal_evaluator_metadata_leakage():
+    e = load_eval()
+    pairs, unresolved = e.fixed_corpus()
+    literal_classes = set(e.SUBSTANTIVE) | {e.CONTROL, e.UNRESOLVED}
+    for pair in pairs:
+        for member in ("adverse", "control"):
+            dossier = str(pair[member]["dossier"])
+            assert str(pair["query_id"]) not in dossier
+            assert str(pair["source_id"]) not in dossier
+            assert "pair_role" not in dossier.lower()
+            assert not any(label in dossier for label in literal_classes)
+    for ep in unresolved:
+        dossier = str(ep["dossier"])
+        assert str(ep["query_id"]) not in dossier
+        assert str(ep["source_id"]) not in dossier
+        assert not any(label in dossier for label in literal_classes)
+
+
 def test_b3_comparator_is_budget_gated_and_cannot_enumerate_hidden_probes():
     e = load_eval()
     pairs, _ = e.fixed_corpus()
