@@ -1,0 +1,55 @@
+{
+  "schema": "ORIONQ.MAXR4AGroupedSparseQSVTConfirmatoryResult.v1",
+  "protocol": "development/orion-q-max-r0/MAX_R4A_CONFIRMATORY_PROTOCOL.md",
+  "fresh_seed_ranges": {"F1":"51000..51049","F2":"52000..52049","F3":"53000..53049"},
+  "subjects_per_family": 50,
+  "subject_count": 150,
+  "grid_cells_per_family": 60,
+  "semantic_failure_count": 0,
+  "semantic_max_errors": {
+    "unitarity_spectral_norm": 6.94e-16,
+    "hermiticity_spectral_norm": 0.0,
+    "reconstruction_spectral_norm": 1.68e-16
+  },
+  "primary_low_overhead_regime": {"k0":1.0,"k1":0.25,"degrees":[4,8,16,32]},
+  "primary": {
+    "F1": {
+      "d4":{"improve_fraction":0.96,"geomean_B6_over_B4":0.7095108563},
+      "d8":{"improve_fraction":0.98,"geomean_B6_over_B4":0.6118006783},
+      "d16":{"improve_fraction":1.0,"geomean_B6_over_B4":0.5247591108},
+      "d32":{"improve_fraction":1.0,"geomean_B6_over_B4":0.4940359716},
+      "overall_geomean_B6_over_B4":0.5791911132
+    },
+    "F2": {
+      "d4":{"improve_fraction":1.0,"geomean_B6_over_B4":0.4819266311},
+      "d8":{"improve_fraction":1.0,"geomean_B6_over_B4":0.3949862182},
+      "d16":{"improve_fraction":1.0,"geomean_B6_over_B4":0.4309812870},
+      "d32":{"improve_fraction":1.0,"geomean_B6_over_B4":0.5660365035},
+      "overall_geomean_B6_over_B4":0.4642120722
+    },
+    "F3": {
+      "d4":{"improve_fraction":0.82,"geomean_B6_over_B4":0.8021095101},
+      "d8":{"improve_fraction":0.92,"geomean_B6_over_B4":0.6670677399},
+      "d16":{"improve_fraction":0.98,"geomean_B6_over_B4":0.5801175190},
+      "d32":{"improve_fraction":1.0,"geomean_B6_over_B4":0.5262207057},
+      "overall_geomean_B6_over_B4":0.6357287896
+    }
+  },
+  "primary_all_family_degree_subject_improvement_fraction":0.9716666667,
+  "primary_all_family_degree_geomean_B6_over_B4":0.5549707148,
+  "group_normalization_mean_LambdaG": {"F1":0.6003078028,"F2":0.5133632163,"F3":0.6567130481},
+  "high_overhead_control": {
+    "k0":4.0,"k1":4.0,
+    "B6_majority_win_cells":0,
+    "cell_count":12,
+    "improve_fraction_each_cell":0.0,
+    "geomean_ratio_range":[2.7305283960,6.3678374412]
+  },
+  "primary_gate_pass": true,
+  "terminal": "R4A_REPRESENTATION_COMPOSITION_HAS_ROBUST_PROXY_REGIME",
+  "authority": "prospectively_frozen_exact_semantic_diagnostic_proxy_only",
+  "compiled_pareto_gain_authorized": false,
+  "real_hamiltonian_gain_authorized": false,
+  "novelty_authorized": false,
+  "post_result_responsibility": "A development circuit-count check using the standard ordered sequence-of-rotations unitary-partitioning implementation erased the proxy gain. This localizes the next bottleneck to grouped-unitary implementation cost. TARE v4 is absorbed as a stronger current structure-aware deterministic baseline before R4B."
+}
