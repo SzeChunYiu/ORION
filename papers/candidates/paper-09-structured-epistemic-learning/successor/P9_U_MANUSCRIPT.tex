@@ -1,154 +1,68 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath,amssymb}
 \usepackage[margin=1in]{geometry}
-\usepackage{booktabs}
-\usepackage{tabularx}
 \usepackage{hyperref}
-\setlength{\emergencystretch}{2em}
 
 \title{Representation Accessibility Changes the Compute Frontier:\\
 Toward General Scaling Laws for Structured Scientific Reasoning}
 \author{ORION Paper IX Ultimate-Successor Working Manuscript}
 \date{August 2026}
-
-\begin{document}
-\maketitle
+\begin{document}\maketitle
 
 \begin{abstract}
-A model can receive the same semantic information through representations that differ dramatically in how easily the task-relevant relations can be accessed. ORION Paper IX targets the strongest upward claim: across task families, relational complexities, model families, sample sizes, and inference budgets, exposing the right task coordinates changes the model-capacity, data, and test-time-compute frontier required to reach a fixed verified quality target. Existing P9 evidence of information-equivalent relational-versus-flat separation, interaction-order effects, fresh controlled replication, capacity/sample substitution, semantic-orbit stability, access-degree recovery, inductive-bias substitution, and bounded held-out-domain transfer is preserved as the starting foundation. P9-U does not stop at another representation benchmark. It prospectively freezes a factorial law over relational complexity $k$, representation $R$, model scale $S$, sample budget $N$, and inference budget $C$, and estimates critical frontiers $S^*(k,q)$, $N^*(k,q)$, and $C^*(k,q)$ for verified quality $q$. Strong baselines include equal-token flat representations, classical/exact query interfaces, adaptive-compute-only policies, architecture priors, graph/relational models, and donor-complete representation systems. The intended terminal is a replicated cross-family scaling law showing that representation accessibility changes the growth rate or crossing point of required capacity/compute, not merely the mean score, on at least two open-weight model families and heterogeneous formal/procedural domains. Historical negative P9/P10 results remain immutable; the existing negative-to-positive successor programme is used to discover more general access coordinates and operator-learning mechanisms when a scale cell fails.
+Graph-structured reasoning, structured prompting, relational architectures, context compression, query interfaces and test-time scaling already show that presentation and access geometry can materially change reasoning performance. ORION Paper IX therefore targets a stronger claim: under matched semantic information and fully charged preprocessing, can one predict how representation changes the model scale, sample budget and inference compute required to reach a fixed verified quality target across task and model families? P9-U prospectively freezes the performance surface $Q(k,R,F,S,N,C)$ and critical frontiers $S^*,N^*,C^*$ rather than selecting one favorable benchmark point. Historical positive, tied and negative P9/P10 cells remain immutable. Every failed frontier cell enters \textbf{Adaptive Access Geometry Discovery (AAGD)}, which first rules out information leakage, answer-computing preprocessing, length, architecture and extra-compute explanations before proposing a new access coordinate, query interface or local operator. The intended terminal is \textbf{GENERAL\_REPRESENTATION\_ACCESSIBILITY\_SCALING\_LAW}, replicated across at least two open-weight model families and heterogeneous held-out domains.
 \end{abstract}
 
-\section{Largest scientific question}
-For task complexity $k$, representation $R$, model family $F$, model scale $S$, sample budget $N$, inference budget $C$, and quality target $q$, define the verified performance function
+\section{Donor boundary}
+Structured reasoning is not the novelty claim. Graph Reasoning Paradigm uses graph-structured symbolic reasoning and structured evaluation for mathematical and code tasks \cite{grp2026}; StrucSum injects graph structure into long-document reasoning \cite{strucsum2026}; BRIEF-Pro supplies a strong context-compression route for multi-hop reasoning \cite{brief2026}. Graph/relational architectures, structured prompting, exact query engines, compression, representation compilers and adaptive test-time compute are all donor-owned.
+
+P9's residual is the resource-frontier law: for complexity $k$, representation $R$, model family $F$, scale $S$, sample budget $N$, inference budget $C$ and verified target $q$,
 \[
-Q(k,R,F,S,N,C).
+Q(k,R,F,S,N,C),\qquad S^*(k,q\mid R),\ N^*(k,q\mid R),\ C^*(k,q\mid R).
 \]
-P9-U asks whether the representation changes the resource frontier itself:
-\[
-S^*(k,q\mid R),\quad N^*(k,q\mid R),\quad C^*(k,q\mid R),
-\]
-not just a single fixed-budget accuracy point.
+The paper asks when information-equivalent access geometry changes these frontiers and when stronger models, architecture priors or more compute erase the effect.
 
-The strongest claim is that information-equivalent representations can induce systematically different accessibility scaling laws, and that exposing the correct task coordinates can let materially smaller/cheaper systems reach targets that larger flat systems cannot reach at the same budget.
+\section{Matched-information requirement}
+A structured arm is comparable to a flat arm only when semantic information equivalence is independently established by reversible round-trip or a frozen formal correspondence. Additional task labels, hidden intermediate answers or oracle-derived coordinates invalidate the frontier comparison.
 
-\section{Upward-generalization principle}
-Graph neural networks, relational inductive bias, query interfaces, structured state, architecture priors, test-time scaling, and exact symbolic computation are donor mechanisms. P9-U admits all of them to the comparator. ORION earns superiority only by a general cross-regime law that predicts when representation changes the resource frontier and survives stronger models, more compute, multiple domains, and multiple model families.
+Representation construction is never free. Tokenization, indexing, retrieval, graph construction, compilation, memory, storage and query generation are charged to the same total resource accounting. A preprocessing system that effectively solves the task is an oracle/donor computation, not evidence that a downstream model gained accessibility.
 
-The intended terminal is \textbf{GENERAL_REPRESENTATION_ACCESSIBILITY_SCALING_LAW}.
+\section{Frozen factorial design}
+The prospective grid varies relational/task complexity $k$, representation family $R$, model family $F$, model scale $S$, sample budget $N$, inference/search budget $C$ and verified target $q$. Primary analysis estimates predeclared threshold and crossover frontiers on the frozen grid. A power-law exponent is secondary unless its functional form and diagnostics are frozen before protected outcomes.
 
-\section{Immutable predecessor evidence}
-The current bounded P9 paper and successor studies remain immutable, including positive information-equivalent relational-access results and any negative/donor-subsumed cells. The direct Qwen scaling run under the active successor programme is new evidence only; it cannot retroactively rewrite the earlier paper.
+Representation families include flat/text serialization, reversible indexing, typed tuples/sets, typed graph state, query-matched interfaces, architecture-prior controls, adaptive-compute-only arms and representation-plus-adaptive-compute arms. Equal-token/length controls, order/symbol reminting, semantic-orbit controls and exact information checks are mandatory.
 
-Negative P9/P10 results are routed through the existing ORION negative-to-positive programme \#586. In particular, known-operator composition, failure-applicability, serialization/access geometry, and hypothesis-class inadequacy remain distinct failure classes rather than being pooled.
+Task families span formal/mathematical relational reasoning, algorithmic/procedural reasoning, graph/dependency reasoning and at least one non-formal scientific/procedural domain. One domain is held out entirely from access-mechanic tuning.
 
-\section{Factorial scaling protocol}
-Freeze a prospective design over:
-\begin{enumerate}
-    \item relational/task complexity $k$;
-    \item representation family $R$;
-    \item model family $F$;
-    \item model scale $S$;
-    \item training/sample budget $N$;
-    \item inference/search budget $C$;
-    \item verified quality target $q$.
-\end{enumerate}
+\section{Adaptive Access Geometry Discovery}
+AAGD is the ChatGPT-led negative-to-positive programme for failed/tied scale cells. It uses the existing ORION #586 causal classes: unknown operator/transformation, unknown failure applicability, wrong access geometry/serialization and wrong hypothesis/model class.
 
-The primary analysis estimates on-grid threshold/crossover quantities rather than fitting a post-hoc power law. A scaling exponent is reported only if its functional form is frozen before protected outcomes and diagnostics support it.
+For each negative, the programme freezes a discriminator and tests, in order, whether the cause is information mismatch/leakage, token/length confound, preprocessing answer computation, architecture substitution, insufficient compute, exact donor solution, absent local operator, access geometry or hypothesis-class inadequacy. A new representation/query/operator is proposed only after lower-level explanations are excluded.
 
-\section{Representation families}
-At minimum include:
-\begin{enumerate}
-    \item information-equivalent flat/text serialization;
-    \item reversible indexed serialization;
-    \item typed relation tuples/set representation;
-    \item native typed graph/relational state;
-    \item task-sufficient query-matched interface;
-    \item architecture-prior baseline that receives structure through the model rather than the input;
-    \item adaptive-compute-only arm;
-    \item representation-plus-adaptive-compute arm.
-\end{enumerate}
+A proposed mechanic is positive P9 evidence only if it prospectively shifts a frozen frontier, transfers to fresh tasks or a second model-family cell, and remains beneficial after representation-construction cost is charged. A no-crossing cell remains a scientific result rather than being removed.
 
-Equal-token/length controls, symbol/order reminting, semantic-orbit controls, and exact round-trip information checks are mandatory.
-
-\section{Task families}
-The study spans at least:
-\begin{enumerate}
-    \item formal or mathematical relational reasoning;
-    \item algorithmic/program/procedural reasoning;
-    \item graph or dependency reasoning;
-    \item a non-formal procedural/scientific workflow domain;
-    \item optional later scientific episodes only after exact/controlled mechanisms are stable.
-\end{enumerate}
-At least one domain is held out entirely from representation/mechanism tuning.
-
-\section{Strong baselines}
-The comparator set includes:
-\begin{enumerate}
-    \item larger flat/text model;
-    \item equal-parameter structured model;
-    \item graph/relational architecture;
-    \item exact/classical task-sufficient query engine where applicable;
-    \item adaptive inference/test-time compute;
-    \item representation compiler whose preprocessing cost is fully charged;
-    \item donor-complete system combining structure, architecture prior, and adaptive compute;
-    \item second open-weight model family for replication.
-\end{enumerate}
+\section{Donor-complete baselines}
+Required comparators include larger flat/text models, equal-parameter structured models, Graph Reasoning Paradigm-style structured reasoning \cite{grp2026}, graph/relational architectures, StrucSum-style graph prompting \cite{strucsum2026}, BRIEF-Pro-style compression \cite{brief2026}, exact task-sufficient query engines, adaptive inference/test-time compute, charged representation compilers, and a donor-complete system combining structure, architecture prior and adaptive compute. A second open-weight model family is mandatory for replication.
 
 \section{Primary hypotheses}
-\paragraph{H1, scale-frontier shift.}
-For increasing relational complexity, the critical model scale required to reach quality $q$ grows more slowly under the task-accessible representation than under information-equivalent flat representation.
+H1: the critical model-scale frontier grows more slowly or crosses earlier under task-accessible representation. H2: matched-scale inference frontier is lower. H3: matched-scale/compute sample frontier is lower. H4: the effect survives information/length/reminting/orbit, architecture, preprocessing and stronger-model attacks. H5: the frontier shift replicates on a second open-weight model family and heterogeneous domains. H6: at least one retained negative yields a newly learned access coordinate/operator/query interface that transfers beyond the originating scale cell.
 
-\paragraph{H2, inference-frontier shift.}
-At matched model scale, the critical inference budget required to reach $q$ is lower under the task-accessible representation.
+\section{Statistics and reporting}
+The task instance or prospectively declared task cluster is the scientific independent unit. Repeated decodes, remints, scale checkpoints and seeds are technical repeats. Freeze task sampling, grid, threshold estimator, interval method, multiplicity, no-crossing handling and resource accounting before protected outcomes.
 
-\paragraph{H3, data-frontier shift.}
-At matched model and inference budget, the sample threshold required to reach $q$ is lower under the accessible representation.
+Report $S^*,N^*,C^*$, verified quality at matched resources, representation/token/memory/compile cost, robustness controls, cross-model/domain effects and every failure/no-crossing cell. The paper does not promote a frontier by selecting only cells where a crossing occurs.
 
-\paragraph{H4, non-format explanation.}
-The effect survives equal-length/token, reminting, semantic-orbit, and stronger-model attacks and is not explained by preprocessing computing the answer.
+\section{Framework correspondence}
+Current ORION already provides representation/access substrate through \texttt{EpistemicContextCompiler.rakl-v1}, \texttt{SimilarityWitness.rakl-v1}, \texttt{MeasurementRelation.rakl-v1}, \texttt{GeneratorTransport.rakl-v1}, retrieval/multiseed benchmarks and RAKL transfer profiles. These support correspondence and access experiments but do not assert a universal accessibility frontier or optimal learned representation.
 
-\paragraph{H5, cross-family replication.}
-The frontier shift replicates prospectively on a second open-weight model family and at least two heterogeneous task domains.
+P11/P12 own state-construction economics and dynamic state-versus-reasoning allocation; P9 may use those mechanisms as donors/controls but retains the scientific boundary of accessibility scaling. AAGD and the headline law remain prospective.
 
-\paragraph{H6, access-mechanic expansion.}
-At least one negative/tied scale regime yields a newly learned access coordinate, local operator, or query interface that expands protected reach beyond the pre-freeze representation basis and transfers to fresh tasks.
+\section{Claim ladder}
+Frozen open-weight scaling $\rightarrow$ second-family replication $\rightarrow$ multi-factor frontier $\rightarrow$ held-out-domain transfer $\rightarrow$ hostile explanation controls $\rightarrow$ \textbf{GENERAL\_REPRESENTATION\_ACCESSIBILITY\_SCALING\_LAW} with AAGD mechanism expansion. Historical negatives remain immutable throughout.
 
-\section{Primary outcomes}
-Report:
-\begin{enumerate}
-    \item critical model scale $S^*(k,q)$;
-    \item critical sample budget $N^*(k,q)$;
-    \item critical inference budget $C^*(k,q)$;
-    \item verified task quality at matched resources;
-    \item representation/token/memory cost;
-    \item compiler/preprocessing cost;
-    \item robustness to reminting/permutation/orbit controls;
-    \item cross-domain and cross-model-family effect;
-    \item failure cells and no-crossing cells.
-\end{enumerate}
-
-\section{Adversarial controls}
-Mandatory attacks include:
-\begin{enumerate}
-    \item structure only shortens the prompt;
-    \item larger models become invariant and erase the gap;
-    \item extra preprocessing computes the target;
-    \item test-time compute alone closes the gap;
-    \item architecture prior substitutes fully for representation;
-    \item representation effect disappears after exact query matching;
-    \item formatting priors explain the result;
-    \item train/test templates leak relational structure;
-    \item post-hoc chosen scale grid manufactures a crossing.
-\end{enumerate}
-
-\section{Negative-result recursion as upward access search}
-Every failed scale cell is preserved. The programme distinguishes representation insufficiency, access-operator absence, architecture limitation, model-family prior, resource regime, task non-identifiability, and donor-complete exact solution. It then searches materially different successor mechanisms rather than tuning the same representation.
-
-The existing #586 programme already owns this doctrine. Known-operator negatives may escalate to learned local operators; access-geometry failures may escalate to query-matched or representation-compilation studies; hypothesis-class failures may escalate only after lower-level access causes are ruled out. A new child issue is opened only for a materially distinct access/mechanism family.
-
-\section{Claim ladder and current status}
-The intended progression is: direct open-weight scaling result; second-family replication; frozen multi-factor frontier; cross-domain transfer; hostile explanation controls; \textbf{GENERAL_REPRESENTATION_ACCESSIBILITY_SCALING_LAW} with H6 access-mechanic expansion.
-
-This TeX file is prospective and does not claim the scaling law before the frozen real-system study executes.
-
+\begin{thebibliography}{6}
+\bibitem{grp2026} R. Liu et al., ``Graph Reasoning Paradigm: Structured and Symbolic Reasoning with Topology-Aware Reinforcement Learning for Large Language Models,'' ACL 2026, pp. 35859--35881, doi:10.18653/v1/2026.acl-long.1660.
+\bibitem{strucsum2026} H. Yuan, S. Hong, and H. Zhang, ``StrucSum: Graph-Structured Reasoning for Long Document Extractive Summarization with LLMs,'' Findings of EACL 2026, pp. 3708--3721, doi:10.18653/v1/2026.findings-eacl.192.
+\bibitem{brief2026} J.-C. Gu et al., ``BRIEF-Pro: Universal Context Compression with Short-to-Long Synthesis for Fast and Accurate Multi-Hop Reasoning,'' Findings of ACL 2026, pp. 14221--14241, doi:10.18653/v1/2026.findings-acl.696.
+\end{thebibliography}
 \end{document}
