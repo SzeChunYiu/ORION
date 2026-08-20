@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import sys
 from pathlib import Path
 
 
@@ -14,6 +15,10 @@ def _load_module():
     spec = importlib.util.spec_from_file_location("p1_u_ard_exact_pilot", SCRIPT)
     assert spec is not None and spec.loader is not None
     module = importlib.util.module_from_spec(spec)
+    # Python 3.12 dataclasses resolve postponed string annotations through
+    # sys.modules while a class is being decorated.  Register the module before
+    # executing it, exactly as the normal import machinery does.
+    sys.modules[spec.name] = module
     spec.loader.exec_module(module)
     return module
 
