@@ -53,3 +53,17 @@ def test_same_answer_can_have_different_scientific_standing():
     ]
     assert {answer for answer, _ in outputs} == {"SAME"}
     assert {standing for _, standing in outputs} == {"AUTHORIZED", "REOPENED"}
+
+
+def test_donor_union_closes_current_pilot():
+    cases = rssi.generate_pilot(seed=19, per_family=7)
+    result = rssi.evaluate(cases, rssi.donor_union_policy)
+    assert result["all_gates_pass"]
+    assert result["migration_exact"] == result["n"]
+
+
+def test_individual_parents_do_not_solve_all_families():
+    cases = rssi.generate_pilot(seed=23, per_family=5)
+    assert not rssi.evaluate(cases, rssi.semantic_change_parent)["all_gates_pass"]
+    assert not rssi.evaluate(cases, rssi.negative_applicability_parent)["all_gates_pass"]
+    assert not rssi.evaluate(cases, rssi.authority_drift_parent)["all_gates_pass"]
