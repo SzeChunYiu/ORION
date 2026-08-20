@@ -163,7 +163,8 @@ def canonical_best(targets, n):
 # Local exact table for one native anchor A=P0. The free variables are B and two
 # Tag generators. The 5-bit delta tracks the global anticommutation/dual-basis
 # constraints. The table depends only on the three local target codes and central.
-LOCAL = np.full((4, 4, 4, 3, 32), INF, dtype=np.int16)
+# int32 is required because INF=1e9 is intentionally outside int16 range.
+LOCAL = np.full((4, 4, 4, 3, 32), INF, dtype=np.int32)
 LOCAL_CHOICE = np.full((4, 4, 4, 3, 32, 3), -1, dtype=np.int8)
 for a in range(4):
     for pb in range(4):
