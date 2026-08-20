@@ -173,3 +173,24 @@ def test_quantum_case_verifies_gold_only_against_exact_witness():
     correct.verify()
     with pytest.raises(ValueError, match="gold disagrees"):
         wrong.verify()
+
+
+def test_malformed_capability_contract_fails_closed_before_model_projection():
+    initial = _state("initial", 1, 0)
+    target = _state("target", 1, 0)
+    malformed = QuantumObstructionCase(
+        case_id="malformed",
+        capability="REAL_UNITARY_ONLY",  # type: ignore[arg-type]
+        initial=initial,
+        target=target,
+        gold=QuantumObstructionVerdict.INVARIANT_COMPATIBLE,
+    )
+
+    with pytest.raises(ValueError, match="unsupported quantum capability contract"):
+        malformed.model_payload()
+    with pytest.raises(ValueError, match="unsupported quantum capability contract"):
+        classify_quantum_obstruction(
+            "REAL_UNITARY_ONLY",  # type: ignore[arg-type]
+            initial,
+            target,
+        )
