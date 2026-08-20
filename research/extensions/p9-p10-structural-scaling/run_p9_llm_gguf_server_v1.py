@@ -55,12 +55,7 @@ def sha(data: bytes) -> str:
 
 
 def cjson(value: Any, *, sort_keys: bool = True) -> str:
-    return json.dumps(
-        value,
-        sort_keys=sort_keys,
-        separators=(",", ":"),
-        ensure_ascii=False,
-    )
+    return json.dumps(value, sort_keys=sort_keys, separators=(",", ":"), ensure_ascii=False)
 
 
 def prompt(user: str) -> str:
@@ -104,12 +99,44 @@ def parse_label(text: str) -> str | None:
     return found[0] if len(found) == 1 else None
 
 
-def reverse_structure(value: Any) -> Any:
+def reorder_structure_keys(value: Any) -> Any:
+    """Change mapping presentation order without changing sequence semantics."""
     if isinstance(value, dict):
-        return {key: reverse_structure(value[key]) for key in reversed(list(value.keys()))}
+        return {key: reorder_structure_keys(value[key]) for key in reversed(list(value.keys()))}
     if isinstance(value, list):
-        return [reverse_structure(child) for child in reversed(value)]
+        # Sequence order is semantic for dependency endpoints and can be semantic
+        # elsewhere; keep every list exactly intact while recursively copying it.
+        return [reorder_structure_keys(child) for child in value]
     return value
+
+
+def serialized_group_key(line: str) -> str:
+    """Return the coordinate-level path so groups can move without internal reorder."""
+    path = line.split("=", 1)[0].split(":", 1)[0]
+    parts = path.split(".")
+    # root.left.<coordinate> / root.right.<coordinate> / root.schema
+    return ".".join(parts[:3]) if len(parts) >= 3 else path
+
+
+def reorder_same_info_groups(lines: list[str]) -> list[str]:
+    groups: list[tuple[str, list[str]]] = []
+    current_key: str | None = None
+    current: list[str] = []
+    for line in lines:
+        key = serialized_group_key(line)
+        if current_key is None or key == current_key:
+            current_key = key
+            current.append(line)
+            continue
+        groups.append((current_key, current))
+        current_key = key
+        current = [line]
+    if current_key is not None:
+        groups.append((current_key, current))
+    reordered = [line for _, group in reversed(groups) for line in group]
+    if sorted(reordered) != sorted(lines):
+        raise RuntimeError("order control changed serialized fact multiset")
+    return reordered
 
 
 def opaque_symbol(value: str, item_id: str) -> str:
@@ -118,10 +145,7 @@ def opaque_symbol(value: str, item_id: str) -> str:
 
 def rename_symbols(value: Any, item_id: str, *, parent_key: str | None = None) -> Any:
     if isinstance(value, dict):
-        return {
-            key: rename_symbols(child, item_id, parent_key=key)
-            for key, child in value.items()
-        }
+        return {key: rename_symbols(child, item_id, parent_key=key) for key, child in value.items()}
     if isinstance(value, list):
         if parent_key == "unknown_coordinates":
             return list(value)
@@ -218,13 +242,7 @@ def completion(base: str, user: str, budget: int) -> dict[str, Any]:
     value = post_json(
         base,
         "/completion",
-        {
-            "prompt": prompt(user),
-            "n_predict": budget,
-            "temperature": 0.0,
-            "seed": 914101,
-            "cache_prompt": True,
-        },
+        {"prompt": prompt(user), "n_predict": budget, "temperature": 0.0, "seed": 914101, "cache_prompt": True},
     )
     elapsed = time.time() - started
     raw = value.get("content")
@@ -318,9 +336,14 @@ def main() -> None:
         if row["item_id"] not in selected_controls:
             continue
 
-        # Order hostile control.
-        order_r1 = "\n".join(reversed(row["same_info_lines"]))
-        order_r2 = cjson(reverse_structure(typed), sort_keys=False)
+        # Semantics-preserving order hostile control. Reorder coordinate groups
+        # but never reorder values within a coordinate or dependency endpoints.
+        order_lines = reorder_same_info_groups(row["same_info_lines"])
+        order_r1 = "\n".join(order_lines)
+        order_structured = reorder_structure_keys(typed)
+        if order_structured != typed:
+            raise RuntimeError("order control changed structured semantic object")
+        order_r2 = cjson(order_structured, sort_keys=False)
         order_controlled = length_control(args.server_url, order_r1, order_r2)
         for representation, user, input_tokens in (
             ("R1_SAME_INFO", order_controlled["R1_user"], order_controlled["R1_input_tokens"]),
@@ -346,8 +369,6 @@ def main() -> None:
         symbol_lines = d1_base._serialize_typed(renamed)
         symbol_r1 = "\n".join(symbol_lines)
         symbol_r2 = cjson(renamed, sort_keys=True)
-        if sorted(symbol_lines) != sorted(d1_base._serialize_typed(renamed)):
-            raise RuntimeError("symbol control equivalence failure")
         symbol_controlled = length_control(args.server_url, symbol_r1, symbol_r2)
         for representation, user, input_tokens in (
             ("R1_SAME_INFO", symbol_controlled["R1_user"], symbol_controlled["R1_input_tokens"]),
@@ -368,11 +389,7 @@ def main() -> None:
                 }
             )
 
-    if leak_failures:
-        terminal = "INVALID_RENDERER_LEAKAGE"
-    else:
-        terminal = "RUN_COMPLETE_PENDING_CROSS_SIZE_ANALYSIS"
-
+    terminal = "INVALID_RENDERER_LEAKAGE" if leak_failures else "RUN_COMPLETE_PENDING_CROSS_SIZE_ANALYSIS"
     manifest = [
         {
             "item_id": row["item_id"],
@@ -405,10 +422,7 @@ def main() -> None:
         "control_records": control_records,
         "terminal": terminal,
     }
-    Path(args.output).write_text(
-        json.dumps(output, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
-    )
+    Path(args.output).write_text(json.dumps(output, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(
         json.dumps(
             {
