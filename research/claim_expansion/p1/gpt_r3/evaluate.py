@@ -244,7 +244,7 @@ def evaluate(cases: list[Mapping[str, object]], dispositions: list[Mapping[str, 
             "schema": "P1U.SourceUniverse.Result.v1",
             "acquisition": acquisition,
             "terminal": "P1_R3_CANNOT_CHECK_SOURCE_UNIVERSE",
-            "policy_outcomes_generated": false,
+            "policy_outcomes_generated": False,
         }
 
     policy_names = [
@@ -304,7 +304,7 @@ def evaluate(cases: list[Mapping[str, object]], dispositions: list[Mapping[str, 
     return {
         "schema": "P1U.SourceUniverse.Result.v1",
         "acquisition": acquisition,
-        "policy_outcomes_generated": true,
+        "policy_outcomes_generated": True,
         "n_independent_cases": len(cases),
         "summary": summary,
         "paired_orion_minus_b3_grs": mean_diff,
