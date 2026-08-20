@@ -5,7 +5,9 @@ on:
     paths:
       - 'development/p1-u-gpt-r6-native-runtime/**'
       - 'research/claim_expansion/p1/gpt_r6/**'
+      - 'research/claim_expansion/p1/gpt_r5/**'
       - 'tests/unit/p1/test_p1_u_r6_native_runtime.py'
+      - 'tests/unit/p1/test_p1_u_r6_native_evaluator.py'
       - '.github/workflows/p1-u-r6-native-runtime.yml'
       - 'src/orion/**'
   workflow_dispatch:
@@ -20,5 +22,8 @@ jobs:
           python-version: '3.12'
       - name: Install test dependency
         run: python -m pip install pytest
-      - name: Verify native ORION architecture gate
-        run: pytest -q tests/unit/p1/test_p1_u_r6_native_runtime.py
+      - name: Verify native ORION architecture and evaluator gates
+        run: >-
+          pytest -q
+          tests/unit/p1/test_p1_u_r6_native_runtime.py
+          tests/unit/p1/test_p1_u_r6_native_evaluator.py
