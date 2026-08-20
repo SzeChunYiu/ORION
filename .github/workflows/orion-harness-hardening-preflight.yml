@@ -1,0 +1,96 @@
+name: orion-harness-hardening-preflight
+
+on:
+  push:
+    branches:
+      - 'shadow/orion-web-research-harness-hardening-20260820'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: orion-harness-hardening-preflight-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  preflight:
+    if: ${{ !contains(github.event.head_commit.message, '[harness-preflight]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install canonical ORION and harness
+        run: |
+          python -m pip install -e '.[dev]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Compile harness package
+        run: python -m compileall -q packages/orion-research-harness/src packages/orion-research-harness/tests
+      - name: Exercise CLI entry point
+        run: python -m orion_research_harness --help >/dev/null
+      - name: Run hostile harness and focused core integration tests
+        run: >-
+          pytest -q
+          packages/orion-research-harness/tests
+          tests/unit/runtime/test_experience_recording.py
+          tests/unit/engine/test_trace_receipts.py
+      - name: Publish passing preflight receipt
+        env:
+          TESTED_SHA: ${{ github.sha }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          mkdir -p development/orion-research-harness-hardening
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          Path('development/orion-research-harness-hardening/PREFLIGHT_RESULT.json').write_text(
+              json.dumps({
+                  'schema': 'ORION.ResearchHarnessHardeningPreflight.v1',
+                  'status': 'PASS',
+                  'tested_sha': os.environ['TESTED_SHA'],
+                  'run_id': int(os.environ['RUN_ID']),
+                  'checks': [
+                      'editable-install',
+                      'compileall',
+                      'cli-entry-point',
+                      'all-harness-tests',
+                      'runtime-experience-recording',
+                      'engine-trace-receipts',
+                  ],
+              }, indent=2, sort_keys=True) + '\n'
+          )
+          PY
+          git config user.name 'ORION Harness Preflight'
+          git config user.email 'actions@users.noreply.github.com'
+          git add development/orion-research-harness-hardening/PREFLIGHT_RESULT.json
+          git commit -m '[harness-preflight] record passing hardening preflight'
+          git push origin HEAD:${GITHUB_REF_NAME}
+      - name: Publish failing preflight receipt
+        if: ${{ failure() }}
+        env:
+          TESTED_SHA: ${{ github.sha }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          mkdir -p development/orion-research-harness-hardening
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          Path('development/orion-research-harness-hardening/PREFLIGHT_RESULT.json').write_text(
+              json.dumps({
+                  'schema': 'ORION.ResearchHarnessHardeningPreflight.v1',
+                  'status': 'FAIL',
+                  'tested_sha': os.environ['TESTED_SHA'],
+                  'run_id': int(os.environ['RUN_ID']),
+              }, indent=2, sort_keys=True) + '\n'
+          )
+          PY
+          git config user.name 'ORION Harness Preflight'
+          git config user.email 'actions@users.noreply.github.com'
+          git add development/orion-research-harness-hardening/PREFLIGHT_RESULT.json
+          git commit -m '[harness-preflight] record failing hardening preflight'
+          git push origin HEAD:${GITHUB_REF_NAME}
