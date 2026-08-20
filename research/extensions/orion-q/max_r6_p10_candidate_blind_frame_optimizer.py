@@ -81,11 +81,13 @@ def uanti_support(rs, central):
 
 def tag_min_weight(rs, syndrome: int, n: int):
     rc = [codes(r, n) for r in rs]
-    dp = np.full(8, INF, dtype=np.int32)
+    # int64 is deliberate: unreachable INF entries are added once per qubit,
+    # so cumulative DP sentinels can exceed int32 even though valid costs are small.
+    dp = np.full(8, INF, dtype=np.int64)
     dp[0] = 0
     parents = []
     for q in range(n):
-        local = np.full(8, INF, dtype=np.int32)
+        local = np.full(8, INF, dtype=np.int64)
         choice = np.full(8, -1, dtype=np.int8)
         for s in range(4):
             d = 0
@@ -163,8 +165,9 @@ def canonical_best(targets, n):
 # Local exact table for one native anchor A=P0. The free variables are B and two
 # Tag generators. The 5-bit delta tracks the global anticommutation/dual-basis
 # constraints. The table depends only on the three local target codes and central.
-# int32 is required because INF=1e9 is intentionally outside int16 range.
-LOCAL = np.full((4, 4, 4, 3, 32), INF, dtype=np.int32)
+# int64 is required because the qubit-wise recurrence can add multiple INF
+# sentinels before minimization; n*INF exceeds int32 on the n=8/12 subjects.
+LOCAL = np.full((4, 4, 4, 3, 32), INF, dtype=np.int64)
 LOCAL_CHOICE = np.full((4, 4, 4, 3, 32, 3), -1, dtype=np.int8)
 for a in range(4):
     for pb in range(4):
@@ -201,11 +204,11 @@ for a in range(4):
 
 def one_anchor_dp(pa, pb, pc, central, n):
     ac, bc, cc = codes(pa, n), codes(pb, n), codes(pc, n)
-    dp = np.full(32, INF, dtype=np.int32)
+    dp = np.full(32, INF, dtype=np.int64)
     dp[0] = 0
     parents = []
     for q in range(n):
-        local = LOCAL[ac[q], bc[q], cc[q], central].astype(np.int32)
+        local = LOCAL[ac[q], bc[q], cc[q], central].astype(np.int64)
         mat = dp[:, None] + local[XOR32]
         prev = np.argmin(mat, axis=0)
         ndp = mat[prev, np.arange(32)]
