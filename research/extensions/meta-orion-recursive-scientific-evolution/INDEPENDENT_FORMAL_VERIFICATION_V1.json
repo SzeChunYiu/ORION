@@ -1,0 +1,46 @@
+{
+  "schema_version": "ORION.RSE.independent-formal-verification-receipt.v1",
+  "date": "2026-08-20",
+  "verifier_path": "research/extensions/meta-orion-recursive-scientific-evolution/independent_formal_verifier.py",
+  "verifier_source_commit_sha": "d71d53af4a9830d2df520797708377f543dee4fe",
+  "verifier_git_blob_sha1": "d8fdd7d5d2eeb26580ca343b10c17bcdc6bd5f74",
+  "verifier_sha256": "2422cd61289a4c5829dc6221bfbbdbb198de61572e57630eaaf1fe79b4db11e6",
+  "canonical_result_sha256": "724e91995c3fbfca9ff04974188fcd9c19a1536284c0a82eb477cab9433d1ad7",
+  "execution": {
+    "network_access": false,
+    "imports_orion_research_modules": false,
+    "method": "execute exact committed verifier source in isolated Python interpreter after independently confirming its Git blob identity"
+  },
+  "result": {
+    "schema_version": "ORION.RSE.independent-formal-verifier.v1",
+    "checks": {
+      "RSE.T1": true,
+      "RSE.T2": true,
+      "RSE.T3": true,
+      "RSE.T4": true,
+      "RSE.T5": true
+    },
+    "terminal": "RSE_INDEPENDENT_FORMAL_RECONSTRUCTION_PASS",
+    "interpretation": {
+      "RSE.T1": "finite countermodel verified",
+      "RSE.T2": "finite 1/2 information ceiling verified",
+      "RSE.T3": "delayed D4 harm construction verified",
+      "RSE.T4": "CEGAR application pattern verified; CEGAR remains donor-owned",
+      "RSE.T5": "generic justification donor sufficiency verified on registered four-family abstraction"
+    },
+    "nonclaims": [
+      "universal scientific-state ontology",
+      "novel CEGAR theorem",
+      "novel belief-revision theorem",
+      "real-world recursive scientific superiority"
+    ]
+  },
+  "github_actions_state_at_host_verification": {
+    "branch_rse_formal_run_id": 32353860983,
+    "branch_rse_formal_status": "queued",
+    "main_ci_run_id": 32346610492,
+    "main_ci_status": "queued",
+    "interpretation": "repository GitHub Actions runner availability is externally blocked; queued state is not treated as PASS or FAIL"
+  },
+  "authority_boundary": "This receipt verifies the registered finite formal contracts independently. It does not establish that the branch implementation test suite has executed in GitHub Actions, and it grants no real-world recursive-evolution superiority or external novelty authority."
+}

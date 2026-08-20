@@ -42,4 +42,16 @@ The stronger external gates for **all five papers remain `CANNOT_CHECK`** until 
 
 See `research/paper-programme-v1/FLAGSHIP_FALSIFIER_RESULTS_V1.md` and each paper's `evidence/FALSIFIER_V1.md`.
 
+## Verified RSE successor synchronization — 2026-08-20
+
+The paper programme now also consumes the bounded recursive-scientific-evolution falsifier as **successor research only**. The exact suite verifies task/standing separability, finite successor-state non-identifiability, delayed later-generation scientific errors from lost lineage, and a CEGAR refinement demonstration. Its strongest registered state-schema result is deliberately subtractive: a fixed generic justification condition language closes DPAIR-1..4 and therefore strikes bespoke projection-schema superiority on that scope.
+
+No flagship headline claim is widened by this result. `JReach_B(F,x,C|kappa)`, mutable-framework/protected-constitution separation and reconstructive-lineage + task-relative-working-projection remain framework definitions/design principles, not newly proved universal theorems.
+
+Canonical synchronization files:
+
+- `RSE_VERIFIED_SUCCESSOR_HANDOFF_V1.md` — paper-tree boundary;
+- `research/paper-programme-v1/RSE_P1_P10_HANDOFF_2026-08-20.md` — P1–P10 ownership map;
+- `research/extensions/meta-orion-recursive-scientific-evolution/FORMAL_VERIFICATION_CLOSURE_V1.md` — executable theorem/definition disposition after final CI binding.
+
 RAKL papers remain immutable provenance and are selectively remapped in `legacy-rakl-map.md`.
