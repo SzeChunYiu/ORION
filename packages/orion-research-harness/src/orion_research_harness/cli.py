@@ -6,6 +6,9 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from .campaign_protocol import CampaignState
+from .campaign_runner import initialize_campaign, run_campaign
+from .domains.registry import builtin_campaign_ids, load_builtin_campaign
 from .local_tools import service_local_request
 from .runner import run_problem
 from .workspace import ResearchWorkspace
@@ -40,7 +43,7 @@ def _handoff_prompt(workspace: ResearchWorkspace) -> str:
         "1. Run `orion-harness pending <workspace>`.",
         "2. Service each capability using tools actually available in this session.",
         "3. Ingest the exact result with `orion-harness ingest ...`.",
-        "4. Re-run `orion-harness solve <workspace> <problem-id>` until COMPLETE.",
+        "4. Re-run the exact `solve` or `campaign-run` command until COMPLETE/TERMINAL/BLOCKED.",
         "",
         "Capability contracts:",
         "- LLM_COMPLETE: return {content, model_id?, response_id?}; content must obey the requested schema.",
@@ -117,11 +120,35 @@ def build_parser() -> argparse.ArgumentParser:
     handoff = sub.add_parser("handoff")
     handoff.add_argument("workspace")
 
+    builtins = sub.add_parser("campaign-builtins")
+    builtins.add_argument("workspace", nargs="?")
+
+    start = sub.add_parser("campaign-start")
+    start.add_argument("workspace")
+    start.add_argument("campaign_id")
+
+    campaigns = sub.add_parser("campaigns")
+    campaigns.add_argument("workspace")
+
+    campaign_state = sub.add_parser("campaign-state")
+    campaign_state.add_argument("workspace")
+    campaign_state.add_argument("campaign_id")
+
+    campaign_run = sub.add_parser("campaign-run")
+    campaign_run.add_argument("workspace")
+    campaign_run.add_argument("campaign_id")
+    campaign_run.add_argument("--max-cycles", type=int, default=32)
+    campaign_run.add_argument("--no-auto-local", action="store_true")
+
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+
+    if args.command == "campaign-builtins":
+        _print({"campaigns": list(builtin_campaign_ids())})
+        return 0
 
     if args.command == "init":
         workspace = ResearchWorkspace.initialize(
@@ -222,6 +249,41 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "handoff":
         print(_handoff_prompt(workspace))
         return 0
+
+    if args.command == "campaign-start":
+        manifest = load_builtin_campaign(args.campaign_id)
+        state = initialize_campaign(workspace, manifest)
+        _print({"status": "CAMPAIGN_READY", "state": state.as_dict()})
+        return 0
+
+    if args.command == "campaigns":
+        _print({"campaigns": list(workspace.campaign_ids())})
+        return 0
+
+    if args.command == "campaign-state":
+        raw = workspace.load_latest_campaign_state(args.campaign_id)
+        if raw is None:
+            raise SystemExit(f"campaign has no state: {args.campaign_id}")
+        state = CampaignState.from_dict(raw)
+        _print(state.as_dict())
+        return 0
+
+    if args.command == "campaign-run":
+        manifest = workspace.load_campaign_manifest(args.campaign_id)
+        outcome = run_campaign(
+            workspace,
+            manifest,
+            max_cycles=args.max_cycles,
+            auto_service_local=not args.no_auto_local,
+        )
+        _print(outcome)
+        status = outcome["status"]
+        return 2 if status == "PENDING_CAPABILITY" else 1 if status in {
+            "CAPABILITY_FAILED",
+            "CAPABILITY_UNREGISTERED",
+            "NO_SELECTED_ACTION",
+            "MAX_CYCLES_REACHED",
+        } else 0
 
     raise AssertionError(args.command)
 
