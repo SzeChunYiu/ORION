@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Fail-closed verifier for the frozen MAX-R6 exact TARE-3 development lane.
 
-This verifier is deliberately separate from the scientific solver.  It binds the
+This verifier is deliberately separate from the scientific solver. It binds the
 post-freeze gate-enforcement errata and rejects any positive development receipt
-whose open-subject panel is incomplete.  It never reads the protected stretched
+whose open-subject panel is incomplete. It never reads the protected stretched
 N2 subject.
 """
 from __future__ import annotations
@@ -42,6 +42,18 @@ def verify_result(result: dict[str, Any]) -> dict[str, Any]:
         errors.append("missing_or_invalid_p10_replay")
     elif p10_replay.get("reserved_stretched_n2_accessed") is not False:
         errors.append("p10_protected_stretched_n2_access_not_false")
+
+    protocol_errata_raw = result.get("protocol_errata")
+    if not isinstance(protocol_errata_raw, (list, tuple)) or any(
+        not isinstance(item, str) for item in protocol_errata_raw
+    ):
+        protocol_errata: list[str] = []
+        errors.append("missing_or_invalid_protocol_errata")
+    else:
+        protocol_errata = list(protocol_errata_raw)
+    missing_errata = [item for item in BOUND_ERRATA if item not in protocol_errata]
+    if missing_errata:
+        errors.append("underlying_receipt_missing_bound_errata:" + ",".join(missing_errata))
 
     underlying_supported = result.get("development_supported") is True
     underlying_conjunction = _truth_conjunction(gates)
@@ -100,7 +112,13 @@ def verify_result(result: dict[str, Any]) -> dict[str, Any]:
         if complete and subject.get("all_witnesses_valid") is not True:
             errors.append(f"{name}_complete_panel_without_valid_witnesses")
 
-    # Erratum 3 is a controlling frozen gate.  A positive underlying receipt with
+    declared_panel_gate = gates.get("top_four_panel_complete")
+    if not isinstance(declared_panel_gate, bool):
+        errors.append("missing_or_invalid_declared_top_four_panel_gate")
+    elif declared_panel_gate is not panel_complete:
+        errors.append("declared_top_four_panel_gate_disagrees_with_recomputed_panel")
+
+    # Erratum 3 is a controlling frozen gate. A positive underlying receipt with
     # a short panel is therefore a fail-open scientific-integrity error, not a
     # legitimate negative experimental outcome.
     if underlying_supported and not panel_complete:
@@ -111,7 +129,7 @@ def verify_result(result: dict[str, Any]) -> dict[str, Any]:
     strict_supported = _truth_conjunction(strict_gates)
 
     # If P10 did not generate a candidate, absence of panels is a legitimate
-    # negative path.  It is not a software-integrity error, but it cannot be
+    # negative path. It is not a software-integrity error, but it cannot be
     # pre-prospective-ready.
     if not p10_generated:
         strict_supported = False
@@ -128,10 +146,9 @@ def verify_result(result: dict[str, Any]) -> dict[str, Any]:
         ),
         "scope": "OPEN_H4_EQ_N2_VERIFICATION_ONLY__NOT_R6",
         "bound_errata": list(BOUND_ERRATA),
-        "underlying_protocol_errata": list(result.get("protocol_errata", [])),
+        "underlying_protocol_errata": protocol_errata,
         "underlying_erratum3_listed": (
-            "MAX_R6_EXACT_TARE3_DP_ERRATUM_3"
-            in result.get("protocol_errata", [])
+            "MAX_R6_EXACT_TARE3_DP_ERRATUM_3" in protocol_errata
         ),
         "required_subjects": list(REQUIRED_SUBJECTS),
         "required_top_k": TOP_K,
