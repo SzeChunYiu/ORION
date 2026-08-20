@@ -91,7 +91,11 @@ def main(argv: list[str] | None = None) -> int:
         path=workspace.save_problem(problem_id=args.problem_id,question=args.question,scope=args.scope,initial_domain_ids=args.domain,success_criteria=args.criterion); _print({"status":"SAVED","path":str(path),"problem_id":args.problem_id}); return 0
     if args.command == "problems": _print({"problems":list(workspace.problem_ids())}); return 0
     if args.command == "solve":
-        outcome=run_problem(workspace,workspace.load_problem(args.problem_id),max_iterations=args.max_iterations,require_verified_answer=not args.allow_provisional); _print(outcome); return 2 if outcome["status"]=="PENDING_CAPABILITY" else 0
+        outcome=run_problem(workspace,workspace.load_problem(args.problem_id),max_iterations=args.max_iterations,require_verified_answer=not args.allow_provisional)
+        _print(outcome)
+        if outcome["status"] == "PENDING_CAPABILITY": return 2
+        if outcome["status"] == "HOST_CAPABILITY_FAILED": return 3
+        return 0
     if args.command == "pending": _print({"pending":[item.as_dict() for item in workspace.pending_requests()]}); return 0
     if args.command == "show-request": _print(workspace.load_request(args.request_id).as_dict()); return 0
     if args.command == "ingest":
@@ -105,8 +109,9 @@ def main(argv: list[str] | None = None) -> int:
         for request_id in ids:
             try: result=service_local_request(workspace,request_id)
             except KeyError: continue
-            results.append(result.as_dict())
-        _print({"serviced":results}); return 0
+            results.append(result)
+        _print({"serviced":[item.as_dict() for item in results]})
+        return 3 if any(not item.success for item in results) else 0
     if args.command == "runs": _print({"runs":list(workspace.run_ids())}); return 0
     if args.command == "show-run": _print(workspace.load_run(args.run_id)); return 0
     if args.command == "handoff": print(_handoff_prompt(workspace)); return 0
