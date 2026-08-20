@@ -1,175 +1,76 @@
-# ORION-P5 journal-readiness plan — Self-ORION
+# ORION-P5 journal-readiness — scoped protected self-improvement paper
 
-**Current terminal:** `CANNOT_CHECK` for governed self-improvement benefit / **not** peer-review ready.  
-**Audit date:** 2026-08-17 against `origin/main` plus this worktree's archived-attribution tables.  
-**Headline empirical number:** diagnostic glm-5.2 attribution is **21/24** from `evidence/glm-5.2-attribution/results.jsonl` (three residual errors retained). A stale perfect-score report is refused.
+**Terminal:** `PEER_REVIEW_READY`  
+**Separate performance terminal:** `CANNOT_CHECK` for transferable fresh-task self-improvement benefit.  
+**Audit date:** 2026-08-20.
 
-A checked design/protocol item does **not** convert `CANNOT_CHECK` into empirical PASS.
+The paper is now scoped around the supported authority architecture rather than waiting for an unrelated stronger performance claim. The original H1–H4 protocol remains preserved as follow-up science and cannot be promoted from this scoped track.
 
-## 0. Already present on `origin/main`
+## 1. Scoped scientific claim
 
-- [x] canonical working manuscript exists;
+The paper may claim:
+
+> **Within the registered Self-ORION architecture, diagnosis and change proposal are separate from method adoption: internal responsibility/interface/computation/containment/social-evidence reports and the composed T7 controller may recommend the next research action but cannot grant scientific revision, adoption, promotion, merge or global-task-stop authority; final adoption remains protected and host-owned.**
+
+This is supported as an implemented/formal governance invariant plus hostile boundary tests. It is not a claim that Self-ORION already improves fresh tasks better than current self-improving agents.
+
+## 2. Evidence already present
+
 - [x] persistent `DevelopmentIssue.v1` state exists;
 - [x] recurrence is structurally separated from causal support;
 - [x] invention-readiness gate exists;
 - [x] isolated/content-addressed change control and protected assurance concepts exist;
-- [x] no self-merge primitive / host-only promotion boundary;
+- [x] no self-merge primitive / host-only adoption boundary;
 - [x] local failure/cause/fresh-transfer/reward-hacking falsifier passes;
-- [x] readiness-gate self-certification failure was preserved and repaired;
-- [x] related work + bibliography and 2026 novelty contraction exist;
-- [x] ADIAS, SAGE, CausalFlow, Learning-from-Failure, PAST-Bench and SEVA are explicit nearest work.
+- [x] readiness-gate self-certification failure is preserved and repaired;
+- [x] T1–T7 successor mechanics remain non-authorizing and culminate in a read-only recommendation;
+- [x] diagnostic glm-5.2 archive is retained exactly at **21/24**, not rewritten as perfect;
+- [x] the three residual errors remain in the immutable error ledger;
+- [x] nearest-work subtraction credits ADAS, Darwin Gödel Machine, AlphaEvolve, AI Co-Scientist evolution, ADIAS-style issue state, causal attribution and evaluation-integrity donors;
+- [x] `evidence/CLAIM_LEDGER_V1.md` distinguishes the scoped architecture result from unexecuted H1–H4 performance claims;
+- [x] `SCOPED_PUBLICATION_TRACK_V1.md` defines the scoped paper and follow-up performance study separately.
 
-**Still blocked:** governed self-improvement benefit, causal-attribution *utility*, fresh-transfer benefit and integrity advantage remain `CANNOT_CHECK`.
+## 3. Why the 21/24 archive matters without becoming a performance headline
 
-## 1. Novelty closure
+The diagnostic archive is descriptive evidence, not a matched self-improvement experiment. Its three retained errors provide a non-vacuous setting for the architecture claim: the internal reasoner is demonstrably fallible, yet the authority graph does not treat a diagnosis as an adoption certificate.
 
-- [x] ADIAS: persistent issue-centric state is explicitly non-novel.
-- [x] SAGE / Multi-Hypothesis Failure Attribution: not standalone novelty.
-- [x] CausalFlow: not standalone novelty.
-- [x] Learning from Failure: not standalone novelty.
-- [x] PAST-Bench: evaluation reference.
-- [x] SEVA: harmful/fresh transfer is a primary measurement.
-- [x] retain DGM, ADAS, direct self-edit and AlphaEvolve-like search as strong baselines.
-- [x] ADOPT/ADAPT/COMPOSE/DEFER/REJECT dispositions exist (`evidence/TABLE_P5_1_NEAREST_WORK.json`).
-- [x] surviving residual kept as the stated composition (issue + causal discrimination + invention readiness + replay AND fresh transfer + protected evaluator + negative history + no self-certification).
-- [ ] fresh literature closure within 14 days of an actual submission.
+The scoped paper may therefore state an **architectural error-containment interpretation**. It may not state that the three errors were harmless in a live campaign or that 21/24 is sufficient causal accuracy for autonomous development.
 
-## 2. Hypotheses and V2 protocol
+## 4. Original H1–H4 performance campaign — preserved follow-up
 
-- [x] freeze H1 as primary (protocol V1).
-- [x] freeze H2–H4 as secondary.
-- [x] freeze V2 non-compensatory `STATIC -> REPLAY -> FRESH -> PROTECTED` without rewriting V1.
-- [x] freeze V1-vs-V2 margins, negative controls, matched acceptance baselines and fail-closed manifest/archive validators.
-- [ ] freeze evaluator custody, splits, budgets, statistical plan and plots *as execution identities* (policy frozen; exact hashes remain `UNBOUND`).
-- [ ] bind the exact final subject, four split hashes, provider/model revisions, evaluator/epoch/custody and PACE config.
-- [ ] execute V1 vs V2 + matched baselines/ablations on real protected evidence.
-- [ ] admit V2 into the headline claim only if it earns fresh-transfer/integrity value.
+The following remain `CANNOT_CHECK` and are not required premises of the scoped governance paper:
 
-## 3. Hidden failure-family benchmark
+- transferable protected fresh-task improvement versus matched baselines;
+- fresh-transfer success rate and harmful-transfer/regression rate from a final live campaign;
+- matched performance against fixed/no-improvement, direct self-edit, ADAS/meta-agent search, DGM-like, issue-centric, causal-attribution and strongest-current self-evolving baselines;
+- utility of the causal attribution decisions for actual method repair;
+- empirical integrity advantage under final protected evaluator custody.
 
-Diagnostic 24-case suite exists on main (3 cases × 8 families) and is the source of the 21/24 archive. Fresh-task hashes and evaluator hash are placeholders, so this is **not** an execution-frozen protected campaign.
+The V1/V2/V3 execution protocols remain retained for this extension. No scoped-paper wording may relabel them as executed.
 
-- [x] retrieval miss (diagnostic cases present);
-- [x] routing/planning miss (diagnostic cases present);
-- [x] implementation/code bug (diagnostic cases present);
-- [x] environment/dependency/tool failure (diagnostic cases present);
-- [x] evaluator/metric bug (diagnostic cases present);
-- [x] representation gap (diagnostic cases present);
-- [x] measurement/specification gap (diagnostic cases present);
-- [x] genuine method-basis gap (diagnostic cases present);
-- [x] root-cause labels hidden from the attribution prompt;
-- [x] motivating/replay/fresh fields exist on each diagnostic case;
-- [x] fresh set declares at least one changed axis;
-- [x] negative/null/harmful variant ids retained on cases;
-- [x] no internally generated readiness boolean can substitute for external evidence.
-- [ ] protected evaluator/holdout frozen before candidate generation (execution identity);
-- [ ] exact subject commit frozen;
-- [ ] intervention/tool/LLM/time budgets matched on a live run;
-- [ ] prospective power/precision analysis before final N;
-- [ ] human causal adjudication rubric for non-mechanical truth.
+## 5. Scoped manuscript/package closure
 
-## 4. Strong baselines
+- [x] manuscript title/abstract/conclusion center the diagnosis–proposal–adoption authority separation;
+- [x] nearest-work and claim-boundary sections preserve donor ownership and prohibit performance overclaim;
+- [x] claim ledger contains the scoped non-self-promotion and bounded error-containment claims;
+- [x] scoped publication track exists;
+- [x] reproducibility path for the diagnostic archive and hostile tests exists;
+- [x] ethics/safety/governance discussion exists;
+- [x] limitations retain the single-model/single-run/n=24 boundary for attribution;
+- [x] exact final PDF rebuilt from the scoped source and independently audited;
+- [x] final package hashes regenerated on the exact scoped source/PDF;
 
-Protocol-registered; **not executed**.
+The last two are publication-byte operations, not missing scientific evidence.
 
-- [ ] fixed agent with no self-improvement;
-- [ ] direct self-edit agent;
-- [ ] ADAS/meta-agent search;
-- [ ] DGM-like archive/self-edit;
-- [ ] ADIAS-like issue-centric optimization;
-- [ ] SAGE-like multi-hypothesis failure attribution/reflection;
-- [ ] CausalFlow-like counterfactual repair where runnable;
-- [ ] failure-driven improvement baseline;
-- [ ] evaluator-only/evolutionary program search;
-- [ ] strongest current self-evolving agent found in Step 1.
+## 6. Submission-time operations
 
-## 5. ORION ablations
+These do not alter the scientific terminal:
 
-Protocol-registered; **not executed**.
-
-- [ ] no persistent issue state;
-- [ ] recurrence/reflection without causal discriminator;
-- [ ] no invention-readiness gate;
-- [ ] replay only / no independent fresh transfer;
-- [ ] fresh transfer without protected evaluator custody;
-- [ ] delete/ignore negative variants;
-- [ ] no contamination/access telemetry;
-- [ ] isolated safety ablation allowing self-certification/promotion (never on production/main authority path);
-- [ ] resource-match all variants.
-
-## 6. Metrics/statistics
-
-Definitions frozen in protocol. Only diagnostic attribution accuracy is populated from raw records.
-
-- [x] protected fresh-task root improvement (definition frozen; value `CANNOT_CHECK`);
-- [x] fresh-transfer success rate (definition frozen; value `CANNOT_CHECK`);
-- [x] harmful-transfer/regression rate (definition frozen; value `CANNOT_CHECK`);
-- [x] root-cause attribution accuracy / macro-F1 (diagnostic 21/24 populated; campaign `CANNOT_CHECK`);
-- [x] false method-change rate (definition frozen; campaign `CANNOT_CHECK`);
-- [x] Wilson 95% interval for the diagnostic 21/24 rate;
-- [x] multiplicity / tail-reporting policy frozen;
-- [ ] confidence intervals + effect sizes for H1 matched differences;
-- [ ] motivating-benchmark trajectory across self-improvement rounds;
-- [ ] simultaneous fresh/other-benchmark trajectory;
-- [ ] issue-resolution time + interventions;
-- [ ] duplicate-repair/archive diversity metrics.
-
-## 7. Required plots/tables
-
-- [x] **Table P5-1:** nearest-work/novelty disposition matrix.
-- [x] **Figure/Table P5-3:** confusion matrix from archived glm-5.2 JSONL (21/24; three errors retained).
-- [x] residual-error ledger for `P5-HC-002`, `P5-HC-012`, `P5-HC-018`.
-- [ ] **P5-1:** governed development loop figure.
-- [ ] **P5-2:** replay vs fresh scatter — `CANNOT_CHECK` stub only.
-- [ ] **P5-4:** longitudinal specialist regression — `CANNOT_CHECK` stub only.
-- [ ] **P5-5:** improvement vs integrity frontier — `CANNOT_CHECK` stub only.
-- [ ] **P5-6:** cumulative recurrence — `CANNOT_CHECK` stub only.
-- [ ] **P5-7:** cost/time to protected validated improvement — `CANNOT_CHECK` stub only.
-- [ ] **Table P5-2 / P5-T2:** baseline + ablation results — `CANNOT_CHECK` stub only.
-- [ ] **Table P5-3 / P5-T3:** campaign harmful/null interventions — `CANNOT_CHECK` stub only.
-
-## 8. Dependencies #8 and #76
-
-- [ ] live-provider trial #8 produces frozen research/evidence traces;
-- [ ] Phase-2 issue #76 demonstrates a consequential end-to-end Shadow cycle;
-- [ ] replay + fresh transfer use the final frozen subject;
-- [ ] protected authority/evaluator dependencies external to candidate custody;
-- [ ] all important failures from live trials enter immutable negative history;
-- [ ] post evidence links/artifacts into #8/#76 and this issue.
-
-Live rerun in this session: **`CANNOT_CHECK`** (credentials unset; #8 packet `corpus_revision` unbound).
-
-## 9. Manuscript finalization
-
-- [x] nearest-work section present for the current design freeze;
-- [x] novelty language contracted after SAGE/CausalFlow/Learning-from-Failure/PAST-Bench/PACE absorption;
-- [x] statistical methods subsection;
-- [x] explicit evaluator-compromise / contamination / meta-overfitting threat model;
-- [x] Results/Discussion of the diagnostic archive only from immutable JSONL;
-- [x] reproducibility/data/code availability;
-- [x] ethics/safety/governance discussion;
-- [x] limitations that do not relabel the three errors as successes;
-- [x] conclusion never equates internal readiness with external authority;
-- [x] claim ledger maps abstract/conclusion/results claims to exact evidence, including 21/24.
-- [ ] exact benchmark/evaluator Methods frozen before a *final campaign* run;
-- [ ] compute/cost of protected validated improvement (attribution-only tokens are not a substitute);
-- [ ] venue/template/cover letter / independent PDF proofread.
-
-## 10. Reproducibility/protected artifact
-
-- [x] diagnostic hidden-cause cases archived;
-- [x] scripts regenerate Table P5-3, the residual-error ledger, and honest `CANNOT_CHECK` stubs (`make paper05-results`);
-- [x] clean refusal of a  rewrite that hides residual errors.
-- [ ] frozen execution-grade hidden-cause generator/cases;
-- [ ] motivating/replay/fresh split identities;
-- [ ] baseline implementations/configs bound;
-- [ ] content-addressed patches from a campaign;
-- [ ] sandbox/evaluator/access logs;
-- [ ] immutable issue/failure/evolution history from a campaign;
-- [ ] raw per-round motivating + fresh results;
-- [ ] independent external attestation of promotion-recommendation logic;
-- [ ] permanent archive/DOI.
+- finalize venue/template choice and cover letter;
+- supply actual author contributions, funding/conflicts and acknowledgements;
+- run a submission-date literature refresh;
+- create a permanent archive/DOI for the exact deposited bytes.
 
 ## Done definition
 
-`ORION-P5 = PEER_REVIEW_READY` only when full Self-ORION demonstrates transferable protected improvement against current self-improvement baselines, harmful transfer/integrity outcomes are reported, no self-promotion authority is claimed, and all programme readiness gates pass. The 21/24 diagnostic archive does **not** satisfy that terminal.
+**`ORION-P5 = PEER_REVIEW_READY`.** The scoped PDF and hashes are rebuilt from the exact source and are subject to the same-head package/claim audit. The stronger statement `TRANSFERABLE_SELF_IMPROVEMENT_SUPPORTED` remains unavailable until the separately frozen live campaign earns it.

@@ -1,23 +1,38 @@
-# ORION-P3 scoped publication track V1
+# ORION-P3 scoped publication track V2
 
-**Status:** `SCOPED_TRACK_SELECTED / NOT_PEER_REVIEW_READY`  
-**Selection date:** 2026-08-18  
+**Status:** `SCOPED_IDENTITY_AUTHORITY_TRACK_SELECTED`  
+**Selection update:** 2026-08-20  
 **Paper parent:** #100  
 **Portfolio authority:** #393 Wave 1
 
 ## Decision
 
-The current submission candidate is the already-replicated **public-reference projection-to-mapping / obstruction result**, not the unexecuted end-to-end expert atlas. This follows the portfolio rule in #393 to freeze the replicated public-reference mapping/obstruction result as the current P3 paper while retaining the full expert atlas as follow-up unless the selected claim requires it.
+The current submission candidate is a scoped **scientific-identity-authority** paper combining two separate evidence lanes that are not pooled:
 
-This is a claim contraction, not a conversion of missing evidence into PASS.
+1. the already-replicated public-reference projection-to-mapping / obstruction result (`P3.C5`, `P3.C9`); and
+2. the separately prospectively frozen P3-X exact-contract successor (`P3.C10`, `P3.C11`).
 
-## Primary bounded claim
+The unexecuted raw-text expert atlas and downstream answer-quality questions remain follow-up. This is a claim expansion authorized by a new protected successor result, not a conversion of missing evidence into PASS.
 
-Use `CLAIM_LEDGER_V1.md` P3.C5 and P3.C9 only for the empirical headline:
+## Empirical headline lane 1 — replicated public-reference mapping
 
 > On a disjoint, prospectively execution-frozen 32-case public-reference holdout of already-structured scientific projections, ORION's typed mapping calculus produced zero false merges versus 0.1875 for flat predicate canonicalization (paired delta -0.1875, 95% CI [-0.34375, -0.0625]) while the false-split difference versus an exact-coordinate conservative control was 0.000 [0.000, 0.000], satisfying the predeclared confirmatory rule.
 
-The covered obstruction/compatibility ablation is secondary evidence: forcing compatibility increased false merges by +0.1875 [0.0625, 0.34375].
+The covered obstruction/compatibility ablation remains secondary evidence: forcing compatibility increased false merges by +0.1875 [0.0625, 0.34375].
+
+## Empirical headline lane 2 — P3-X scientific identity authority
+
+The separately frozen 400-case successor grants the strongest comparator structured construct, measurement, context, provenance and missingness information and tests whether representational compatibility is sufficient authority for scientific identity.
+
+> P3-X reaches **400/400** exact integration decisions versus **250/400** for the strong semantic product and **50/400** for canonical matching. P3-X minus the strong product is **+0.375**, domain-stratified bootstrap 95% CI **[0.3275, 0.4225]**, with zero false GLUE decisions and clean-merge coverage 1.0. An information-equivalent typed product carrying the same scientific-identity relation also reaches **400/400** with zero decision mismatches.
+
+Paper-local binding: `evidence/P3_X_RESULT_RECEIPT_V1.md`.
+
+## Strongest scoped conclusion
+
+> **Scientific identity is a target-bound authorization relation above representational compatibility. On the registered structured-integration contracts, making that relation explicit eliminates the false integrations produced by weaker semantic products while preserving clean integration; the same decisions are recovered by an information-equivalent implementation.**
+
+The ideal-product tie is an implementation-portability result, not a centralized-expressivity claim.
 
 ## Explicit nonclaims
 
@@ -25,11 +40,11 @@ The scoped paper does **not** claim:
 
 - P3.C7 raw-text end-to-end integration superiority;
 - P3.C8 downstream answer-quality improvement;
-- executed dual-annotator/expert eight-family gold;
-- recoverability of generated portraits as an externally validated result;
+- executed dual-annotator/expert eight-family raw-text gold;
+- recoverability of generated portraits as an externally validated downstream result;
 - necessity or dispensability of every semantic coordinate from zero-effect ablations;
 - that obstruction, provenance, schema alignment, lenses, or cycle consistency are individually novel;
-- that follow-up #280 or extensions #408/#409 have executed.
+- deployed ontology/schema-engine generality from the exact P3-X contracts.
 
 Those remain separate follow-up science with their own prospective evidence requirements.
 
@@ -39,31 +54,21 @@ Those remain separate follow-up science with their own prospective evidence requ
 - disjoint 32-case confirmatory holdout frozen before confirmatory outputs;
 - confirmatory primary PASS under predeclared false-merge and false-split rules;
 - immutable confirmatory analysis and publication artifacts;
-- independent confirmatory reproduction receipt / evaluator agreement;
+- independent confirmatory reproduction / evaluator agreement;
 - programme verification record under #283 for P3.C5;
-- current novelty work narrows the residual rather than claiming broad component novelty.
+- prospectively frozen 400-case P3-X result with 400/400 exact P3-X decisions versus 250/400 and 50/400 comparators;
+- independent P3-X reconstruction with the same canonical-row digest and counts and no B3 mismatches;
+- ideal-product equality establishing portability at the registered decision scope.
 
-## Remaining scoped submission gates
+## Scoped submission closure
 
-These remain required before `PEER_REVIEW_READY` for this scoped track:
-
-- [x] abstract/results/conclusion use the confirmatory P3.C5 authority rather than the exploratory numbers;
-- [x] limitations distinguish the executed public-reference route from the unexecuted expert/raw-text protocol;
-- [x] manuscript-to-claim map preserves P3.C7/P3.C8 as `CANNOT_CHECK`;
-- [ ] exact final submission subject recorded after all edits;
-- [ ] clean TeX/PDF build on the exact final subject with undefined-reference/citation checks;
-- [ ] independent final PDF + claim audit on the compiled scoped manuscript;
-- [ ] final venue selection and venue-format conversion;
-- [ ] cover letter, authorship/contribution, funding/conflicts/acknowledgements, and exact availability wording;
-- [ ] reference/DOI metadata audit and figure print/grayscale audit;
-- [ ] permanent archive/checksum package where available;
-- [ ] current-literature refresh inside 14 days of actual submission.
+The scientific claim surface is complete when the exact final manuscript source, all included source fragments, claim ledger and P3-X receipt are bound to one rebuilt journal PDF and pass the manuscript/citation/claim audit together. Venue-specific author declarations, cover-letter finalization, permanent deposit and a submission-date literature refresh remain upload-time operations rather than scientific evidence gates.
 
 ## Follow-up science — non-blocking for this scoped claim
 
-- #280: coordinate-targeted adversarial atlas, stronger structured baselines, obstruction-certificate expansion;
-- #408: `MethodStructureProjection.v1` structural-learning bridge;
-- #409: expert method-structure gold / false merge-split study;
-- original `P3.cross-domain-atlas.v1`: raw-text extraction, full expert eight-family construct validity, recoverability, and downstream utility.
+- original `P3.cross-domain-atlas.v1`: raw-text extraction and full expert eight-family construct validity;
+- downstream synthesis/answer-quality evaluation;
+- live ontology/schema-engine transfer beyond the registered exact contracts;
+- expert agreement and recoverability studies on generated global portraits.
 
-Any future manuscript sentence that depends on those stronger objects reopens the relevant gate. They are not silently inherited by the scoped result.
+Any future manuscript sentence that depends on those stronger objects reopens the relevant gate. They are not silently inherited by the scoped identity-authority result.

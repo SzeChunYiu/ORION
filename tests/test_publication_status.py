@@ -34,34 +34,32 @@ def test_committed_scoreboard_matches_derived_artifacts():
     errors = module.validate_scoreboard(payload, ROOT)
     assert errors == []
     assert payload["programme"]["issue"] == 97
-    assert payload["programme"]["close_allowed"] is False
-    assert payload["programme"]["status"] == "BLOCKED"
+    assert payload["programme"]["close_allowed"] is True
+    assert payload["programme"]["status"] == "PEER_REVIEW_READY"
 
 
-def test_p1_through_p4_are_peer_review_ready_and_p5_is_blocked():
-    """P3 joins P1/P2/P4 only after its bounded artifact gate is real.
+def test_p1_through_p5_are_peer_review_ready_on_scoped_artifact_gates():
+    """All five publication packages may close while broader excluded claims stay unresolved.
 
-    This does not treat the retired eight-family/raw-text programme as executed.
-    P3 is ready only on the scoped P3.C5/P3.C9 claim, with its own attestation,
-    tracked checksummed PDF and exact-head manuscript audit. P5 remains blocked.
+    P3 is ready on its bounded mapping / P3-X identity-authority claim, not the
+    unexecuted raw-text/downstream programme. P5 is ready on bounded
+    non-self-promotion / authority separation, not on the unexecuted fresh-transfer
+    superiority campaign. The scoreboard must represent scoped publication
+    readiness without laundering either excluded claim into evidence.
     """
 
     module = _load_module()
     derived = module.derive_scoreboard(ROOT)
     by_id = {paper["paper_id"]: paper for paper in derived["papers"]}
-    for paper_id in ("P1", "P2", "P3", "P4"):
+    for paper_id in ("P1", "P2", "P3", "P4", "P5"):
         assert by_id[paper_id]["status"] == "PEER_REVIEW_READY", paper_id
         assert by_id[paper_id]["journal_readiness_terminal"] == "PEER_REVIEW_READY"
         assert by_id[paper_id]["attestation_paths"]
         assert by_id[paper_id]["claim_ledgers"]
         assert not by_id[paper_id]["missing_artifacts"], paper_id
-    for paper_id in ("P5",):
-        assert by_id[paper_id]["status"] == "BLOCKED", paper_id
-        assert by_id[paper_id]["journal_readiness_terminal"] == "CANNOT_CHECK"
-        assert by_id[paper_id]["missing_artifacts"]
-    assert derived["programme"]["papers_peer_review_ready"] == ["P1", "P2", "P3", "P4"]
-    # Still false: P5 remains blocked, so the programme does not close.
-    assert derived["programme"]["close_allowed"] is False
+    assert derived["programme"]["papers_peer_review_ready"] == ["P1", "P2", "P3", "P4", "P5"]
+    assert derived["programme"]["close_allowed"] is True
+    assert derived["programme"]["status"] == "PEER_REVIEW_READY"
 
 
 def test_p2_readiness_rests_on_an_unambiguous_terminal_line():
@@ -96,59 +94,64 @@ def test_p1_readiness_is_artifact_backed_not_inferred_from_closed_issue():
     ]
 
 
-def test_p5_is_blocked_by_unbound_identities_and_unexecuted_claims():
-    """P5 gained a claim ledger in #308; it is still blocked, for stronger reasons.
+def test_p5_scoped_readiness_preserves_unexecuted_performance_boundary():
+    """P5's governance paper may be ready while its stronger performance claim stays open.
 
-    This test previously asserted the ledger was *absent*. That premise expired
-    when the ledger landed, and an expired premise is not evidence of anything --
-    a paper acquiring its ledger is progress, not a regression. The blockers that
-    actually survive are the unbound protocol identities and the ledger's own
-    unexecuted external rows, so those are what is pinned here.
+    This is the key scoped-publication case: the fail-closed paper-specific evidence
+    gate corroborates the non-self-promotion claim, while the V1 development
+    protocol may still record UNBOUND identities and the claim ledger may still
+    record the separate external fresh-transfer campaign as CANNOT_CHECK. Those
+    facts must remain visible rather than being erased to manufacture readiness.
     """
 
     module = _load_module()
     p5 = next(paper for paper in module.derive_scoreboard(ROOT)["papers"] if paper["paper_id"] == "P5")
-    assert p5["status"] == "BLOCKED"
-    assert p5["claim_ledgers"] == ["papers/paper-05-self-orion/evidence/CLAIM_LEDGER_V1.md"]
-    assert p5["protocol_status"] == "DESIGN_FROZEN"
-    assert p5["unbound_execution_bindings"]
-    joined = "\n".join(p5["missing_artifacts"])
-    assert "not PEER_REVIEW_READY" in joined
-    assert "UNBOUND identities remain" in joined
-    assert "EXTERNAL NOT EXECUTED" in joined
+    assert p5["status"] == "PEER_REVIEW_READY"
+    assert p5["journal_readiness_terminal"] == "PEER_REVIEW_READY"
+    assert p5["claim_ledgers"]
+    assert p5["attestation_paths"]
+    assert p5["unbound_execution_bindings"], "the separate fresh-transfer protocol boundary was silently erased"
+    joined = "\n".join(p5["claim_ledger_cannot_check"])
+    assert "CANNOT_CHECK" in joined or "EXTERNAL NOT EXECUTED" in joined
+    assert p5["missing_artifacts"] == []
 
 
-def test_forged_peer_review_ready_is_rejected():
-    """Claiming readiness in the JSON must not survive validation against the tree.
+def test_forged_peer_review_ready_is_rejected(monkeypatch: pytest.MonkeyPatch):
+    """Validation must still reject invented readiness even when all real papers are ready.
 
-    The subject is derived from whichever papers are actually blocked rather than
-    hardcoded. It used to name P2, which stopped being a forgery the moment P2
-    became genuinely ready -- the test then asserted that a true statement ought to
-    be rejected, and failed for a reason unrelated to forgery. Deriving the subject
-    keeps this about forgery instead of about which paper happens to be blocked.
+    A permanently blocked real paper is not needed as a test fixture. Instead we
+    synthesize a derived tree state in which P5 is blocked and verify that a payload
+    forged to retain PEER_REVIEW_READY is rejected. This keeps the test about the
+    validation invariant rather than requiring the research programme to preserve
+    an artificial loser forever.
     """
 
     module = _load_module()
-    payload = module.derive_scoreboard(ROOT)
-    blocked = [paper for paper in payload["papers"] if paper["status"] == "BLOCKED"]
-    assert blocked, "no blocked paper left to forge; this test needs a new subject"
-    victim = blocked[0]
-    paper_id = victim["paper_id"]
-    victim["status"] = "PEER_REVIEW_READY"
-    victim["missing_artifacts"] = []
-    payload["programme"]["status"] = "BLOCKED"
-    payload["programme"]["close_allowed"] = False
-    errors = module.validate_scoreboard(payload, ROOT)
-    assert any(paper_id in error and "PEER_REVIEW_READY" in error for error in errors), (
-        f"validate_scoreboard accepted a forged PEER_REVIEW_READY for {paper_id}"
+    honest = module.derive_scoreboard(ROOT)
+    forged = json.loads(json.dumps(honest))
+    synthetic_derived = json.loads(json.dumps(honest))
+    victim = next(paper for paper in synthetic_derived["papers"] if paper["paper_id"] == "P5")
+    victim["status"] = "BLOCKED"
+    victim["journal_readiness_terminal"] = "CANNOT_CHECK"
+    victim["missing_artifacts"] = ["synthetic blocker for anti-forgery test"]
+    synthetic_derived["programme"]["status"] = "BLOCKED"
+    synthetic_derived["programme"]["close_allowed"] = False
+    synthetic_derived["programme"]["papers_peer_review_ready"] = ["P1", "P2", "P3", "P4"]
+
+    monkeypatch.setattr(module, "derive_scoreboard", lambda _root=None: synthetic_derived)
+    errors = module.validate_scoreboard(forged, ROOT)
+    assert any("P5" in error and "PEER_REVIEW_READY" in error for error in errors), (
+        "validate_scoreboard accepted a forged PEER_REVIEW_READY when the derived tree was blocked"
     )
 
 
-def test_close_allowed_requires_all_five_ready():
+def test_close_allowed_matches_all_five_ready():
     module = _load_module()
     payload = module.derive_scoreboard(ROOT)
-    payload["programme"]["close_allowed"] = True
-    errors = module.validate_scoreboard(payload, ROOT)
+    assert payload["programme"]["close_allowed"] is True
+    tampered = json.loads(json.dumps(payload))
+    tampered["programme"]["close_allowed"] = False
+    errors = module.validate_scoreboard(tampered, ROOT)
     assert any("close_allowed" in error for error in errors)
 
 
@@ -194,14 +197,7 @@ def test_a_narrowed_terminal_is_never_scored_as_peer_review_ready():
 
 
 def test_every_paper_declares_a_machine_scorable_terminal():
-    """A terminal only a human can read is not a terminal this scoreboard has.
-
-    Paper 2's `**Scientific terminal:**` / `**Publication terminal:**` pair was
-    invisible to `TERMINAL_LINE`, so the scoreboard reported it as having no
-    scorable terminal and the committed snapshot silently disagreed with the
-    derived one. Pin the declaration form for every paper rather than only
-    repairing the one that drifted.
-    """
+    """A terminal only a human can read is not a terminal this scoreboard has."""
 
     module = _load_module()
     for spec in module.PAPER_SPECS:
