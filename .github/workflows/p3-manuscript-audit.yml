@@ -12,6 +12,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: p3-p5-publication-byte-sync-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   sync:
     runs-on: ubuntu-24.04
@@ -249,7 +253,7 @@ jobs:
           python research/publication/scoreboard.py --check
           pytest -q tests/test_publication_status.py tests/unit/publication/test_journal_package.py
 
-      - name: Commit generated publication bytes
+      - name: Commit generated publication bytes and retire one-shot sync
         if: github.event_name == 'pull_request'
         env:
           BRANCH: ${{ github.event.pull_request.head.ref }}
@@ -274,10 +278,7 @@ jobs:
             papers/paper-05-self-orion/journal_package/SHA256SUMS \
             papers/paper-05-self-orion/journal_package/manuscript.pdf \
             research/publication/publication_status.json
-          if git diff --cached --quiet; then
-            echo 'No publication-byte changes to commit.'
-            exit 0
-          fi
+          git rm .github/workflows/p3-manuscript-audit.yml
           git commit -m 'papers: seal final P3 identity and scoped P5 governance packages'
           git push origin "HEAD:${BRANCH}"
 
