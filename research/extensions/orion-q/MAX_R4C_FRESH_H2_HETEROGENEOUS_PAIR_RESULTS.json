@@ -1,0 +1,38 @@
+{
+  "schema": "ORIONQ.MAXR4CFreshH2HeterogeneousPairResult.v1",
+  "protocol": "development/orion-q-max-r0/MAX_R4C_HETEROGENEOUS_PAIR_COMPILER_CONFIRMATORY_PROTOCOL.md",
+  "source": {
+    "repository": "SNIPRS/hamiltonian",
+    "commit": "c628c05430e9409f3c637f2f65f05c40438d1c29",
+    "file": "simulation-H2.ipynb",
+    "non_identity_terms": 14
+  },
+  "pauli_l1": 1.5750276663646434,
+  "pair_blocks": 7,
+  "frontier": [
+    {"required_direct_pairs": 0, "lambda": 1.575097140091084, "actual_direct_pairs": 0, "mip_gap": 0.0},
+    {"required_direct_pairs": 1, "lambda": 1.603950150924784, "actual_direct_pairs": 1, "mip_gap": 0.0},
+    {"required_direct_pairs": 2, "lambda": 1.610081570923393, "actual_direct_pairs": 2, "mip_gap": 0.0},
+    {"required_direct_pairs": 3, "lambda": 1.6418912571812618, "actual_direct_pairs": 3, "mip_gap": 0.0},
+    {"required_direct_pairs": 4, "lambda": 1.6495183382144316, "actual_direct_pairs": 4, "mip_gap": 0.0},
+    {"required_direct_pairs": 5, "lambda": null, "actual_direct_pairs": null, "infeasible": true},
+    {"required_direct_pairs": 6, "lambda": null, "actual_direct_pairs": null, "infeasible": true},
+    {"required_direct_pairs": 7, "lambda": null, "actual_direct_pairs": null, "infeasible": true}
+  ],
+  "lambda0_overhead_vs_pauli_l1": 0.00004410952767641696,
+  "normalization_overhead_vs_lambda0": {
+    "K1": 0.018318242157452813,
+    "K2": 0.022210967147261895,
+    "K3": 0.042406347767424135,
+    "K4": 0.04724864024516218
+  },
+  "primary_gate": {
+    "max_normalization_slack": 0.01,
+    "required_direct_unitary_fraction": 0.5,
+    "observed_direct_unitary_fraction_within_slack": 0.0,
+    "pass": false
+  },
+  "terminal": "R4C_REGIME_LIMITED_H2_NEGATIVE",
+  "interpretation": "Fresh H2 falsifies the 1%-slack direct-unitary coverage hypothesis. This does not close the heterogeneous compiler: normalization-only slack is not an end-to-end resource objective. Next stage must charge actual TARE Restore/outer-SELECT resources and compare Pareto vectors rather than impose a fixed normalization threshold.",
+  "novelty_authorized": false
+}
