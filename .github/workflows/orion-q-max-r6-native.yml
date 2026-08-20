@@ -37,5 +37,5 @@ jobs:
           PYTHONPATH: src
         run: |
           cd research/extensions/orion-q
-          python max_r6_native_self_orion_n2.py | tee /tmp/r6-native-n2.txt
+          python max_r6_native_self_orion_n2_atomic.py | tee /tmp/r6-native-n2.txt
           grep '^ORIONQ_MAX_R6_NATIVE_N2=' /tmp/r6-native-n2.txt
