@@ -16,7 +16,9 @@ The prospectively frozen protected V2 campaign requires exact evidence-content b
 
 P4-X then asks the harder post-saturation question after a donor-complete comparison product is granted provenance, claim verification, artifact/version binding, evaluator custody, epoch handling, and generic authorization. Across **400 prospectively frozen exact scientific-promotion contracts** spanning five heterogeneous artifact domains and eight hostile/control archetypes, P4-X selects the correct terminal on **400/400** cases, versus **250/400** for the strong donor-complete generic-authorization product and **50/400** for a compensatory all-signal product. The paired P4-X minus strong-product effect is **+0.375** with domain-stratified bootstrap 95% CI **[0.3275,0.4225]**; P4-X makes zero false promotions, preserves clean promotion at 1.0, and has a positive effect in every exact domain. An information-equivalent typed donor product implementing the same scientific-promotion relation also attains 400/400.
 
-Together, the studies establish a strong systems result: **scientific claim promotion is a distinct non-compensatory authority relation above donor-owned provenance, verification, custody, and generic permission**. Missing claim scope, evidence independence, or unresolved scientific-authority obligations cannot be repaired by confidence or success elsewhere. The ideal-product tie establishes portability of the promotion semantics across implementations.
+A second V2 result is methodological rather than comparative: the registered `CANNOT_CHECK` axis is **construct-non-identifying**. Evidence-list emptiness alone perfectly predicts the insufficient-evidence label across the frozen battery, so the score cannot distinguish evidential judgment from a trivial construction shortcut. The unsupported H3 superiority hypothesis therefore becomes an exact benchmark-validity result: this slice cannot authorize a comparative abstention claim.
+
+Together, the studies establish a strong systems result: **scientific claim promotion is a distinct non-compensatory authority relation above donor-owned provenance, verification, custody, and generic permission, and benchmark scores themselves require authority before they may be promoted into scientific conclusions**. Missing claim scope, evidence independence, unresolved scientific-authority obligations, or a non-identifying evaluation axis cannot be repaired by confidence or success elsewhere. The ideal-product tie establishes portability of the promotion semantics across implementations.
 
 ## V3 donor-engulfment architecture
 
@@ -75,17 +77,21 @@ The successor therefore supports the wider conclusion that **successful local ve
 
 B3 obtains 400/400 and is decision-identical to P4-X. This is an implementation-portability result. It shows that the scientific-promotion abstraction is sufficient whether implemented as an ORION layer or as a correctly enriched decentralized product. The contribution is therefore the target-bound promotion relation and its hard composition law, not a dependence on centralized organization.
 
-### 9.6 Measurement-resolution audit
+### 9.6 Exact benchmark non-identifiability result
 
-The protected V2 study also demonstrates a useful property of the ORION research process: secondary metrics are themselves audited for discriminating power. H2 is a clean-coverage guard in a battery where both primary systems reach 1.0, so it confirms that the false-promotion advantage is not produced by blanket refusal. The original H3 `CANNOT_CHECK` family is saturated by an evidence-list shortcut and therefore cannot resolve comparative abstention ability. Rather than converting equality into a claim, the post-run audit identifies the construction defect and prospectively specifies a harder evidential family.
+The protected V2 study also demonstrates that secondary metrics must earn scientific authority. H2 is a clean-coverage guard in a battery where both primary systems reach 1.0, so it verifies that the false-promotion advantage is not produced by blanket refusal.
 
-This audit is a methodological strength: the headline authority result survives, while a non-discriminating secondary instrument is prevented from acquiring scientific meaning it cannot support.
+The original H3 `CANNOT_CHECK` family is different. Every insufficient-evidence case has an empty evidence list and every other registered case has exactly one evidence object. Therefore the deterministic shortcut `CANNOT_CHECK iff evidence-list-empty` classifies the full frozen battery correctly without evaluating evidential sufficiency. This yields an exact construction-level conclusion: **the registered H3 score is non-identifying for abstention competence**. The same observed 30/30 score is compatible with genuine evidential judgment or a trivial observable shortcut, so the axis cannot authorize a comparative abstention inference.
+
+H3 remains unsupported as a superiority hypothesis. The positive result is the benchmark audit theorem: P4 identifies exactly why the registered instrument has zero resolving power for its intended construct and prevents that saturated score from being promoted into a scientific claim. A harder evidential family is prospectively specified rather than retrofitted after outcome access.
+
+This is a methodological contribution to the same authority problem studied by the paper: **the evaluator's output is itself only locally valid evidence; it acquires scientific meaning only when the measurement construction warrants the target inference.**
 
 ## Transfer scope
 
-P4-X establishes the scientific-promotion relation over five heterogeneous exact artifact domains and eight registered archetypes. Live stochastic agents, arbitrary external verifier implementations, and provider/model transfer are subsequent empirical extensions. Generic provenance, verification, authorization, evaluator auditing, contamination defense, and abstention remain donor-owned lower layers; their ownership does not reduce the demonstrated promotion-authority separation.
+P4-X establishes the scientific-promotion relation over five heterogeneous exact artifact domains and eight registered archetypes. Live stochastic agents, arbitrary external verifier implementations, and provider/model transfer are subsequent empirical extensions. Generic provenance, verification, authorization, evaluator auditing, contamination defense, and abstention remain donor-owned lower layers; their ownership does not reduce the demonstrated promotion-authority separation or the exact H3 benchmark non-identifiability result.
 
-The strongest current P4 claim is therefore architectural and empirical within the registered contracts: **after strong local verification, provenance, custody, and generic authorization are granted, scientific claim promotion remains a distinct non-compensatory authority relation, and making that relation explicit yields perfect registered promotion decisions against the strong donor-complete comparator.**
+The strongest current P4 claim is therefore architectural, empirical, and methodological within the registered contracts: **after strong local verification, provenance, custody, and generic authorization are granted, scientific claim promotion remains a distinct non-compensatory authority relation; making that relation explicit yields perfect registered promotion decisions against the strong donor-complete comparator, while the same authority discipline prevents a shortcut-saturated benchmark score from being mistaken for comparative abstention evidence.**
 
 ## Replacement conclusion for V3
 
@@ -93,7 +99,9 @@ Paper IV establishes scientific promotion as an authority transition in its own 
 
 Across the 400-case heterogeneous exact successor, P4-X reaches **400/400** correct promotion decisions versus **250/400** for the strong donor-complete product and **50/400** for the compensatory product, with zero false promotions and perfect clean coverage. The equally typed ideal product also reaches 400/400, establishing that the semantics are portable across architectures.
 
-The strongest supported conclusion is direct: **local evidence quality, verification success, provenance correctness, and generic permission do not by themselves authorize a scientific claim to acquire promoted standing; promotion requires target-bound discharge of the hard scientific-authority obligations.** ORION's contribution is the explicit, non-compensatory composition law that makes that transition auditable and enforceable.
+The adverse H3 result strengthens rather than weakens the paper's scientific-authority thesis. Because evidence-list emptiness perfectly identifies the H3 label in the registered battery, the score cannot identify the intended abstention competence. P4 therefore establishes an exact benchmark non-identifiability result and refuses to let an evaluator-local success acquire broader scientific authority than its construction supports.
+
+The strongest supported conclusion is direct: **local evidence quality, verification success, provenance correctness, generic permission, and benchmark score are all lower-level signals; none by itself authorizes a scientific claim to acquire promoted standing. Promotion requires target-bound discharge of the hard scientific-authority obligations, including a measurement construction capable of supporting the intended inference.** ORION's contribution is the explicit, non-compensatory composition law that makes that transition auditable and enforceable.
 
 **Current science terminal:** `P4_WIDER_SCIENTIFIC_PROMOTION_AUTHORITY_SUPPORTED__BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS__A3_CANNOT_CHECK`.
 
@@ -104,7 +112,7 @@ When PDF generation is resumed, `manuscript/main.tex` should be updated from thi
 1. replacing the abstract with the V3 abstract above;
 2. adding the donor-engulfment architecture to related work;
 3. inserting `submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex` after the historical V2 Results section and before final interpretation/conclusion;
-4. retaining the substance of the V2 H2/H3 measurement audit;
+4. upgrading the V2 H3 discussion from a generic saturation note to the exact benchmark non-identifiability result above while retaining the literal `saturates` audit marker required by the package tests;
 5. replacing the conclusion with the V3 conclusion above;
 6. rebuilding and auditing the TMLR PDF/package from the merged V3 source.
 
