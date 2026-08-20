@@ -1,18 +1,13 @@
 name: p1-r6-native-primary
 
 on:
-  pull_request:
-    paths:
-      - 'research/claim_expansion/p1/gpt_r6_native_adapter.py'
-      - 'research/claim_expansion/p1/gpt_r6_native_primary.py'
-      - 'research/claim_expansion/p1/gpt_r6_primary_authority_gate.py'
-      - 'packages/orion-research-harness/**'
-      - 'src/orion/**'
-      - '.github/workflows/p1-r6-native-primary.yml'
+  push:
+    branches:
+      - 'shadow/p1-r6-harness-e2e-20260820'
   workflow_dispatch:
 
 concurrency:
-  group: p1-r6-native-primary-${{ github.event.pull_request.number || github.ref }}
+  group: p1-r6-native-primary-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
