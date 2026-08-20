@@ -2,9 +2,10 @@
   "schema_version": "orion.journal-package.v1",
   "paper_id": "P5",
   "package_status": "SCAFFOLDING",
-  "declared_paper_terminal": "CANNOT_CHECK",
+  "declared_paper_terminal": "SCOPED_NON_SELF_PROMOTION_SUPPORTED__FRESH_IMPROVEMENT_CANNOT_CHECK",
+  "claim_boundary": "SCOPED_SELF_IMPROVEMENT_AUTHORITY_SEPARATION__NO_TRANSFERABLE_IMPROVEMENT_SUPERIORITY",
   "audit_subject_revision": "b7cfaecfb55d9ad6c12fb59374935769ed8d8787",
-  "audit_date": "2026-08-17",
+  "audit_date": "2026-08-20",
   "issue": 160,
   "required_files": [
     {
@@ -37,7 +38,7 @@
       "path": "journal_package/manuscript.pdf",
       "role": "compiled-pdf",
       "status": "CANNOT_CHECK",
-      "reason": "Working draft only. This package does not fabricate a PDF."
+      "reason": "The newly scoped governance manuscript has not yet been rebuilt and independently proofread as the final journal PDF."
     },
     {
       "path": "journal_package/DOI.txt",
@@ -49,16 +50,34 @@
       "path": "evidence/fresh-transfer/RESULT_ARCHIVE_V1.json",
       "role": "fresh-transfer-result",
       "status": "CANNOT_CHECK",
-      "reason": "Protected fresh-transfer / self-improvement campaign has not been archived."
+      "reason": "Protected fresh-transfer / self-improvement performance campaign has not been archived; this is an extension claim, not evidence required for the scoped non-self-promotion result."
     },
     {
       "path": "journal_package/cover_letter.md",
       "role": "journal-cover-letter",
       "status": "CANNOT_CHECK",
-      "reason": "No cover letter; paper is not PEER_REVIEW_READY."
+      "reason": "Venue-specific cover letter remains a submission operation after the scoped manuscript and PDF are frozen."
     }
   ],
   "claims": [
+    {
+      "id": "P5.AUTHORITY_SEPARATION",
+      "text": "Within the registered Self-ORION architecture, internal diagnosis, revision responsibility, candidate mechanics and the composed T7 controller can recommend next research actions but cannot grant scientific revision, adoption, promotion, merge or global-task-stop authority; final adoption remains protected and host-owned.",
+      "artifacts": [
+        "evidence/CLAIM_LEDGER_V1.md",
+        "evidence/FALSIFIER_V1.md"
+      ],
+      "status": "SUPPORTED"
+    },
+    {
+      "id": "P5.ERROR_CONTAINMENT",
+      "text": "The retained 21/24 hidden-cause attribution archive contains three real errors, while the registered authority structure prevents an attribution result by itself from constituting an adoption certificate; this supports a bounded architectural error-containment interpretation, not an empirical self-improvement benefit claim.",
+      "artifacts": [
+        "evidence/glm-5.2-attribution/report.json",
+        "evidence/CLAIM_LEDGER_V1.md"
+      ],
+      "status": "BOUNDED"
+    },
     {
       "id": "P5.FALSIFIER",
       "text": "Local hostile suite exercises recurrence-not-cause, negative-history, replay/fresh separation, invention readiness and protected-path attacks.",
@@ -85,7 +104,7 @@
     },
     {
       "id": "P5.PDF",
-      "text": "Independent final PDF proofread of a journal-formatted manuscript.",
+      "text": "Independent final PDF proofread of the scoped journal-formatted manuscript.",
       "artifacts": [],
       "status": "OPEN"
     }
