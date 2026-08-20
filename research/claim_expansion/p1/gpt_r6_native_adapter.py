@@ -39,7 +39,6 @@ HIGH = {"OBJECTIVE_OR_MODEL_CLASS", "PROBLEM_BOUNDARY"}
 LOW = set(SUBSTANTIVE) - HIGH
 CONTROL = "NO_HIGH_LEVEL_REFORMULATION"
 UNRESOLVED = "UNRESOLVED"
-ALL_OBSERVATIONS = ("SUPPORT", "REFUTE", "INCONCLUSIVE")
 
 CLASS_TO_NATIVE = {
     "SEARCH_OR_EVIDENCE": "SEARCH",
@@ -49,7 +48,6 @@ CLASS_TO_NATIVE = {
     "OBJECTIVE_OR_MODEL_CLASS": "METHOD",
     "PROBLEM_BOUNDARY": "QUESTION",
 }
-NATIVE_TO_CLASS = {value: key for key, value in CLASS_TO_NATIVE.items()}
 
 CLASS_TO_MECHANIC = {
     "SEARCH_OR_EVIDENCE": "p1:repair-evidence",
@@ -232,7 +230,9 @@ class HarnessHost:
             return
 
         if request.capability == "VERIFY_EVIDENCE":
-            certificate = "certificate:p1-r6:" + _digest(self.source_uri + "|" + self.dossier)[:24]
+            certificate = "certificate:p1-r6:" + _digest(
+                self.source_uri + "|" + self.dossier
+            )[:24]
             workspace.ingest_result(
                 request.request_id,
                 success=True,
@@ -356,17 +356,31 @@ def _bindings_for_class(cls: str) -> tuple[str, ...]:
     raise KeyError(cls)
 
 
-def _assess_all(mechanics):
+def _assess_all(mechanics, *, responsibility_identified: bool):
     states = {
-        "RESPONSIBILITY_IDENTIFIED": ObligationState.SATISFIED,
+        "RESPONSIBILITY_IDENTIFIED": (
+            ObligationState.SATISFIED
+            if responsibility_identified
+            else ObligationState.UNRESOLVED
+        ),
         "INTERFACE_CHECKED": ObligationState.SATISFIED,
     }
     assessments = tuple(
         assess_mechanic(mechanic, obligation_states=states)
         for mechanic in mechanics.values()
     )
-    if not all(item.status is AssessmentStatus.ADMISSIBLE for item in assessments):
-        raise AssertionError("frozen candidate mechanics must be formally admissible for nomination")
+    if responsibility_identified and not all(
+        item.status is AssessmentStatus.ADMISSIBLE for item in assessments
+    ):
+        raise AssertionError(
+            "identified-responsibility candidate mechanics must be formally admissible for nomination"
+        )
+    if not responsibility_identified and any(
+        item.status is AssessmentStatus.ADMISSIBLE for item in assessments
+    ):
+        raise AssertionError(
+            "unidentified responsibility cannot produce admissible mechanic assessments"
+        )
     return assessments
 
 
@@ -473,7 +487,11 @@ def _ard_responsibility(
         ),
     )
     report = assess_responsibility(hypotheses, observed_outcomes=observations)
-    classes = {ids["first"]: first_cls, ids["second"]: second_cls, ids["control"]: CONTROL}
+    classes = {
+        ids["first"]: first_cls,
+        ids["second"]: second_cls,
+        ids["control"]: CONTROL,
+    }
     return report, classes
 
 
@@ -484,7 +502,10 @@ def _gate_choice(
     interface: InterfaceAdequacyReport,
 ):
     mechanics = _mechanics(claim_id)
-    assessments = _assess_all(mechanics)
+    assessments = _assess_all(
+        mechanics,
+        responsibility_identified=(responsibility.status is ResponsibilityStatus.IDENTIFIED),
+    )
     bindings = {
         hypothesis_id: _bindings_for_class(cls)
         for hypothesis_id, cls in responsibility_classes.items()
@@ -627,7 +648,9 @@ def run_native_episode(
         if len(receipt_ids) != len(set(receipt_ids)):
             raise AssertionError("runtime receipt identities are not unique")
         for event in events:
-            if not _hex64(str(event["pre_state_hash"])) or not _hex64(str(event["post_state_hash"])):
+            if not _hex64(str(event["pre_state_hash"])) or not _hex64(
+                str(event["post_state_hash"])
+            ):
                 raise AssertionError("runtime state endpoint is not SHA-256 bound")
         final_state_digest = _digest(
             json.dumps(run_record["final_state"], sort_keys=True, separators=(",", ":"))
@@ -646,7 +669,11 @@ def run_native_episode(
             raise AssertionError("ARD trace does not match hidden-probe accesses")
 
         for gate in (base_gate, ard_gate):
-            if gate.grants_adoption_authority or gate.grants_promotion_authority or gate.grants_merge_authority:
+            if (
+                gate.grants_adoption_authority
+                or gate.grants_promotion_authority
+                or gate.grants_merge_authority
+            ):
                 raise AssertionError("native revision gate leaked authority")
 
         return {
@@ -671,6 +698,7 @@ def run_native_episode(
                 "revision_gate_status": base_gate.status.value,
                 "revision_gate_digest": base_gate.digest,
                 "mechanic_digests": sorted(item.digest for item in base_mechanics.values()),
+                "assessment_statuses": sorted(item.status.value for item in base_assess),
                 "assessment_digests": sorted(item.digest for item in base_assess),
             },
             "ard": {
@@ -684,6 +712,7 @@ def run_native_episode(
                 "revision_gate_status": ard_gate.status.value,
                 "revision_gate_digest": ard_gate.digest,
                 "mechanic_digests": sorted(item.digest for item in ard_mechanics.values()),
+                "assessment_statuses": sorted(item.status.value for item in ard_assess),
                 "assessment_digests": sorted(item.digest for item in ard_assess),
             },
             "request_payloads": host.request_payloads,
