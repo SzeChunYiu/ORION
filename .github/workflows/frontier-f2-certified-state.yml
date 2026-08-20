@@ -1,0 +1,70 @@
+name: frontier-f2-certified-state
+
+on:
+  pull_request:
+    paths:
+      - 'research/frontier-support-state-v1/F2_CERTIFIED_STATE_COMPACTION_PROTOCOL_V1.md'
+      - 'research/frontier-support-state-v1/run_f2_certified_state_compaction_v1.py'
+      - 'research/frontier-support-state-v1/results/F2_CERTIFICATE_RECEIPT_V1.json'
+      - '.github/workflows/frontier-f2-certified-state.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  certified-state:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact benchmark dependencies
+        run: python -m pip install 'numpy>=2,<3' 'scikit-learn>=1.5,<2'
+      - name: Reproduce exact certificate before learning
+        run: |
+          python research/frontier-support-state-v1/run_f2_certified_state_compaction_v1.py \
+            --certificate-only \
+            --output /tmp/f2-certificate.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          got=json.loads(Path('/tmp/f2-certificate.json').read_text())['certificate']
+          receipt=json.loads(Path('research/frontier-support-state-v1/results/F2_CERTIFICATE_RECEIPT_V1.json').read_text())
+          assert got['states_checked'] == receipt['states_checked'] == 1024
+          assert got['queries_checked_per_state'] == receipt['future_queries_checked_per_state'] == 343
+          assert got['certified_groups'] == receipt['certified_groups'] == 32
+          assert got['certified_violations'] == receipt['certified_groups_with_multiple_future_signatures'] == 0
+          assert got['invalid_groups_with_counterexamples'] == receipt['invalid_groups_with_counterexamples'] == 16
+          assert got['certified_terminal'] == 'CERTIFIED_STATE_EXACT_FUTURE_EQUIVALENCE'
+          assert got['invalid_terminal'] == 'INVALID_QUOTIENT_COUNTEREXAMPLE_FOUND'
+          print('F2 exact certificate receipt: PASS')
+          PY
+      - name: Execute frozen learner benchmark
+        run: |
+          python research/frontier-support-state-v1/run_f2_certified_state_compaction_v1.py \
+            --output research/frontier-support-state-v1/results/F2_RESULT_V1.json
+      - name: Check result schema and terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('research/frontier-support-state-v1/results/F2_RESULT_V1.json')
+          r=json.loads(p.read_text())
+          assert r['schema'] == 'ORION.FrontierF2.Result.v1'
+          assert r['certificate']['certified_violations'] == 0
+          assert r['certificate']['invalid_groups_with_counterexamples'] > 0
+          assert r['terminal'] in {
+              'CERTIFIED_STATE_COMPACTION_ACCESSIBILITY_SUPPORTED',
+              'CERTIFIED_STATE_EXISTS_BUT_ACCESSIBILITY_GATE_NOT_MET',
+          }
+          print(json.dumps({'terminal':r['terminal'],'checks':r['checks']}, indent=2, sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frontier-f2-certified-state-${{ github.sha }}
+          path: |
+            research/frontier-support-state-v1/results/F2_RESULT_V1.json
+            /tmp/f2-certificate.json
