@@ -1,6 +1,6 @@
 # ORION foundational scientific-status programme
 
-This directory is the canonical home for the third-pass foundational research programme. It separates established bounded paper results, the scientific-discharge calculus, the nearest-prior-art subtraction, the surviving foundational conjecture, and the prospective external validation required for a field-level claim.
+This directory is the canonical home for the third-pass foundational research programme. It separates established bounded paper results, the scientific-discharge calculus, nearest-prior-art subtraction, the surviving factorization conjecture, the non-tautological normal-form theorem target, and the prospective external validation required for a field-level claim.
 
 ## Canonical concepts
 
@@ -65,11 +65,21 @@ Current status:
 
 `HOSTILE_PRIOR_ART_PASS_COMPLETE__FOUNDATIONAL_RESIDUAL_NARROWED`
 
-### 4. Cross-domain causal test
+### 4. Scientific-status normal-form theorem target
+
+- `NORMAL_FORM_THEOREM_TARGET_V1.md`
+
+This file prevents SSTF from becoming a tautological definition. It starts from primitive workflow events and asks whether every semantically admissible transition has a four-part certificate `Pi_o = (pi_V, pi_S, pi_E, pi_B)` and whether every valid certificate is sound. It also defines factor-independence, representation-invariance, compositionality, and minimal-certificate research targets.
+
+Current terminal:
+
+`SCIENTIFIC_STATUS_NORMAL_FORM__PROSPECTIVE_THEOREM_TARGET__UNPROVED`
+
+### 5. Cross-domain causal test
 
 - `GRAND_CHALLENGE_V1.md`
 
-This file defines the prospective multi-domain campaign required to test SSTF and the embedded SDSP laws beyond retrospective synthesis and exact invented contracts. It specifies independent domains, donor-complete and factorized-discharge arms, protected custody, primary and clean endpoints, novel predictions, falsifiers, human-benefit measures, and a five-level success ladder.
+This file defines the prospective multi-domain campaign required to test SSTF, the normal-form predictions, and embedded SDSP laws beyond retrospective synthesis and exact invented contracts. It specifies independent domains, donor-complete and factorized-status arms, protected custody, primary and clean endpoints, novel predictions, falsifiers, human-benefit measures, and a five-level success ladder.
 
 Current status:
 
@@ -79,19 +89,21 @@ Current status:
 
 The publication sequence is:
 
-`original hypothesis and terminal -> positive successor hypothesis and authority label -> cross-paper conjecture -> prospective independent prediction and confirmation`
+`original hypothesis and terminal -> positive successor hypothesis and authority label -> cross-paper conjecture -> non-tautological theorem target -> prospective independent prediction and confirmation`
 
-Retrospective compatibility with known paper outcomes is useful for theory construction but is not new confirmation. A universal or foundational claim requires the hidden falsifier suite and cross-domain Grand Challenge to be frozen and executed without outcome-conditioned changes.
+Retrospective compatibility with known paper outcomes is useful for theory construction but is not new confirmation. A universal or foundational claim requires the normal-form theorem, hidden falsifier suite, and cross-domain Grand Challenge to survive without outcome-conditioned changes.
 
 ## Breakthrough rule
 
 The programme does not claim prize status, universal validity, or broad benefit by rhetoric. The strongest route is:
 
-1. one generic calculus encodes all registered paper decisions without paper-specific algorithms;
-2. SSTF or one of its factors makes novel predictions before outcome access;
-3. interventions on `V`, `S`, `E`, or `B` produce the predicted selective status-transition changes;
-4. a factorized discharge layer reduces unauthorized target transitions without clean-utility loss;
-5. independent institutions and information-equivalent implementations reproduce the result on naturalistic artifacts and held-out domains;
-6. the intervention measurably improves consequential scientific or human decisions.
+1. define a primitive scientific-workflow semantics rather than defining admissibility by the desired factors;
+2. prove normal-form completeness and certificate soundness for a nontrivial workflow class;
+3. establish factor non-substitutability, representation invariance, and composition;
+4. encode all registered paper decisions without paper-specific algorithms;
+5. make new factor-specific predictions before outcome access;
+6. causally reduce unauthorized target transitions without clean-utility loss;
+7. obtain independent institutional and implementation replication on naturalistic artifacts and held-out domains;
+8. demonstrate measurable improvement in consequential scientific or human decisions.
 
 Only evidence can move the programme up this ladder.
