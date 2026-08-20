@@ -6,8 +6,8 @@
 \usepackage{hyperref}
 \setlength{\emergencystretch}{2em}
 
-\title{Discovering What Matters Without Stopping Too Early:\\
-A Protected Test of Open-World Scientific Search and Global Closure}
+\title{General Open-World Scientific Discovery Superiority:\\
+Discover More, Preserve Search Optionality, and Know When the Science Is Closed}
 \author{ORION Paper II Ultimate-Successor Working Manuscript}
 \date{August 2026}
 
@@ -15,17 +15,28 @@ A Protected Test of Open-World Scientific Search and Global Closure}
 \maketitle
 
 \begin{abstract}
-Deep-research agents increasingly combine iterative retrieval, planning, citation, and evidence-aware termination. The ORION Paper II successor therefore does not claim novelty for multi-hop search or stopping rules. It asks a stricter question: under matched models, tools, information access, and total resources, can an agent discover more decision-relevant scientific evidence while making fewer false task-global closure decisions than strong deep-research and evidence-aware stopping systems? The protocol separates six obligations that prior adverse ORION probes showed can fail independently: route generation, retrieval, inclusion, processing, state representation, and task-global closure. Protected tasks contain hidden distributed evidence, contradictory and duplicated sources, provider-invalid routes, retrieved-but-unprocessed evidence, apparently saturated routes, and evidence whose future relevance is destroyed by over-aggressive state compression. Candidate systems must emit route-level and task-level receipts with an explicit unresolved state. State compilation, caching, and summarization are charged against the same total resource budget as retrieval and reasoning. Primary outcomes include decision-relevant recall, precision, false closure, unresolved calibration, final scientific utility, optionality loss, and time/cost to valid closure. Strong comparators receive modern deep-research retrieval, evidence-aware termination, coverage estimation, and state-management mechanics. A superiority claim is authorized only if scientific utility or decision-relevant recall improves prospectively while false closure satisfies a non-inferiority or superiority guard, and the effect replicates across domains, a systematic-review-like setting, a disjoint hidden split, and an independent route-accounting implementation. Existing negative and \textsc{CannotCheck} results remain intact and seed responsibility-specific successor experiments rather than post-hoc score repair.
+Deep-research agents increasingly combine iterative retrieval, planning, citation, coverage estimation, state management, and evidence-aware termination. ORION Paper II therefore targets the strongest upward claim suggested by this ecosystem: across heterogeneous scientific domains, route structures, evidence regimes, and changing questions, can ORION outperform a donor-complete deep-research system at discovering decision-relevant evidence, preserving future search optionality, synthesizing contradictions, and issuing globally calibrated scientific closure under matched total resources? Existing P2 adverse and provider-invalid probes are treated as causal maps of where open-world research can fail, not as reasons to retreat to a local stopping-rule claim. The successor separates route generation, retrieval, inclusion, processing, state representation, optionality, provider validity, and task-global closure, while allowing the strongest comparator to contain modern retrieval, evidence-aware stopping, coverage estimation, contradiction handling, caching, and query-conditioned state compilation. Protected tasks hide distributed evidence and future route changes, so success requires both finding what matters now and retaining enough state to discover what matters later. Primary outcomes include decision-relevant recall and precision, final scientific utility, false closure, clean closure, unresolved calibration, optionality loss, cross-domain transfer, and total cost. The intended terminal is replicated open-world discovery and closure superiority over the strongest donor-complete system, ideally including at least one new exploration or closure mechanic discovered from a prior loss/tie that expands protected reach. Existing negative and \textsc{CannotCheck} results remain immutable and drive upward successor search rather than default claim contraction.
 \end{abstract}
 
-\section{Residual after donor subtraction}
-DeepResearch Bench evaluates research-report quality and retrieval/citation behavior on expert-authored tasks \cite{deepresearchbench2026}. Evidence-aware termination has also been proposed explicitly to reduce premature stopping in deep research \cite{dontstopearly2026}. SAGE shows that reasoning-intensive scientific retrieval remains difficult for current deep-research agents and that stronger-looking learned retrievers do not automatically dominate classical retrieval in this setting \cite{sage2026}. These are donor-owned capabilities and findings.
+\section{Largest scientific question}
+The target is not a narrow residual after modern deep-research systems. It is:
+\begin{quote}
+At matched model, tool, information, and total resource budgets, can ORION become a generally superior open-world scientific discovery process by finding more of the evidence that matters, preserving the ability to discover later-relevant evidence, and closing only when the task-level scientific obligations are actually discharged?
+\end{quote}
 
-P2-U therefore targets the residual relation
-\[
-\text{search coverage} + \text{processing state} + \text{preserved optionality} \Longrightarrow \text{valid global closure authority}.
-\]
-A system can retrieve a relevant source and still fail to process it; it can process many sources while missing a material route; and it can answer the current question while compressing away evidence needed to detect that a future route remains open. No one stage is allowed to stand in for the others.
+DeepResearch Bench evaluates research-report quality and retrieval/citation behavior on expert-authored tasks \cite{deepresearchbench2026}. Evidence-aware termination has been proposed explicitly to reduce premature stopping \cite{dontstopearly2026}. SAGE shows that reasoning-intensive scientific retrieval remains difficult and can invert expectations about which retrievers are strongest \cite{sage2026}. These works raise the baseline. P2-U absorbs their mechanisms into the donor-complete comparator and moves upward to a stronger question: whether ORION can coordinate retrieval, processing, state construction, exploration, and closure better across regimes than any fixed composition of those donor mechanics.
+
+\section{Upward-generalization principle}
+Any donor mechanism that solves a P2-U subclass is added to the comparator. ORION earns superiority only at the broader level, through one or more of:
+\begin{enumerate}
+    \item higher decision-relevant discovery under matched total resources;
+    \item lower false global closure at equal or higher scientific utility;
+    \item better adaptation to heterogeneous route/evidence regimes;
+    \item preserved optionality under changing questions and evidence horizons;
+    \item a learned or invented exploration/closure mechanic that expands protected reach beyond the frozen donor-complete basis;
+    \item cross-domain transfer of the same governing search-and-closure policy.
+\end{enumerate}
+The intended terminal is \textbf{GENERAL_OPEN_WORLD_DISCOVERY_SUPERIORITY}. Narrower stage-local results are fallback scientific outcomes, not the default research objective.
 
 \section{Immutable adverse evidence}
 The predecessor P2 external probes include non-positive outcomes and provider-invalid cases. They are retained as stage-localizing evidence, not rewritten as performance wins or losses. The successor preserves these distinctions:
@@ -37,7 +48,7 @@ The predecessor P2 external probes include non-positive outcomes and provider-in
     \item provider/tool output invalid or unavailable;
     \item local route closure incorrectly promoted to task-global closure.
 \end{enumerate}
-A provider-invalid run is \textsc{CannotCheck}. It is never scored as a comparator failure.
+A provider-invalid run is \textsc{CannotCheck}. It is never scored as a comparator failure. These failures define dimensions over which the larger search policy must generalize.
 
 \section{Task model}
 Each protected task contains a hidden evidence universe partitioned into material routes $r\in R$. A route may contain supportive, contradictory, redundant, superseded, or non-decision-relevant evidence. Candidate systems do not receive $R$ or the gold materiality labels.
@@ -81,7 +92,7 @@ Clean closure & all obligations truly discharged & excessive abstention penalty 
 \caption{Mandatory P2-U stage-identifying families.}
 \end{table}
 
-Naturalistic tasks must span several scientific domains and at least one systematic-review-like setting with independently curated evidence relevance.
+The final study must scale beyond these authored mechanisms to naturalistic scientific tasks spanning multiple domains, source ecosystems, query shifts, contradiction structures, and at least one systematic-review-like setting with independently curated evidence relevance. At least one evaluation block changes both domain and evidence-route geometry.
 
 \section{State optionality as a charged resource}
 P2-U compares four evidence-state policies under matched total cost:
@@ -102,27 +113,30 @@ Comparators receive equivalent model/tool access and total resource budgets. The
     \item iterative deep-research agent;
     \item evidence-aware termination system in the style of modern EDR \cite{dontstopearly2026};
     \item strong retrieval-focused deep-research system evaluated on scientific retrieval, informed by SAGE \cite{sage2026};
-    \item coverage estimator / capture-recapture augmented system, treated as donor mechanics;
-    \item donor-complete product with route tracking, evidence sufficiency, contradiction handling, and state compilation but without ORION task-global discharge semantics;
+    \item coverage estimator / capture-recapture augmented system;
+    \item contradiction-aware evidence synthesis;
+    \item query-conditioned state compilation/cache management;
+    \item donor-complete product containing all preceding mechanisms and allowed to route among them;
+    \item strongest current deep-research/scientific-search agent available at freeze time;
     \item an oracle route ceiling used only for analysis.
 \end{enumerate}
 Official unavailable systems are not fabricated. Mechanism-matched reimplementations are labelled as such.
 
 \section{Primary hypotheses}
-\paragraph{H1, discovery utility.}
-At matched total resources, ORION improves decision-relevant evidence recall or protected final scientific utility over the strongest runnable donor-complete comparator by a prospectively frozen margin.
+\paragraph{H1, generalized discovery superiority.}
+Across the heterogeneous benchmark, ORION improves protected final scientific utility and decision-relevant evidence recall over the strongest runnable donor-complete comparator by prospectively frozen margins.
 
-\paragraph{H2, closure safety.}
-ORION is non-inferior or superior on false task-global closure, with the margin frozen before protected outcomes.
+\paragraph{H2, closure superiority.}
+ORION reduces false task-global closure while preserving non-inferior or superior clean closure.
 
-\paragraph{H3, non-vacuous clean coverage.}
-Any reduction in false closure must not be purchased by excessive abstention on truly closed tasks.
+\paragraph{H3, optionality superiority.}
+ORION preserves future evidence/search optionality better under changing questions at matched total cost.
 
-\paragraph{H4, optionality preservation.}
-State compilation reduces repeated work or cost without increasing false closure or destroying the frozen future-route evidence coordinate.
+\paragraph{H4, cross-regime transfer.}
+The H1--H3 advantage survives held-out domains, source ecosystems, route geometries, and query shifts under independent route accounting.
 
-\paragraph{H5, transfer.}
-The H1--H4 pattern replicates on disjoint hidden tasks, across domains, and under an independent route-accounting implementation.
+\paragraph{H5, mechanism expansion.}
+At least one negative/tied family yields a new exploration, state, or closure mechanic that expands protected reach beyond the pre-freeze donor-complete basis and transfers to fresh tasks.
 
 \section{Outcomes and statistical plan}
 Every task is an independent experimental unit unless a hierarchy is explicitly frozen. Repeated model samples within one task are technical repeats and are not counted as independent $n$.
@@ -130,12 +144,13 @@ Every task is an independent experimental unit unless a hierarchy is explicitly 
 Primary outcomes are:
 \begin{enumerate}
     \item decision-relevant evidence recall and precision;
+    \item protected final answer/scientific utility;
     \item false closure rate;
     \item true clean-closure coverage;
     \item calibrated \textsc{Unresolved} decisions;
-    \item protected final answer/scientific utility;
     \item route-level missed-obligation count;
     \item optionality loss under frozen future queries;
+    \item cross-domain/source/route transfer;
     \item tokens, retrieval calls, state-compilation cost, wall time, and time-to-valid-closure.
 \end{enumerate}
 
@@ -156,29 +171,30 @@ Mandatory attacks include:
     \item an unavailable provider that would otherwise contain material evidence;
     \item a clean closed case to defeat deny-all/never-stop policies;
     \item evidence-label or route-name leakage into candidate-visible metadata;
-    \item a deeper-search arm showing whether extra retrieval alone closes the apparent ORION advantage.
+    \item a deeper-search arm showing whether extra retrieval alone closes the apparent ORION advantage;
+    \item a donor-complete arm that dynamically selects among retrieval, stopping, contradiction, and state-management mechanisms.
 \end{enumerate}
 
-\section{Negative-result research recursion}
+\section{Negative-result recursion as upward search}
 Every false closure, missed material source, harmful state compilation, and tied/negative family is retained. Each is assigned one primary causal responsibility from
 \[
 \{\text{route generation},\text{retrieval},\text{inclusion},\text{processing},\text{state optionality},\text{stopping},\text{provider},\text{global authority},\text{benchmark}\}.
 \]
-The recovery programme freezes a one-factor discriminator before rerunning. For example, a retrieval failure may justify a new route generator; a processing failure does not. A state-optionality failure requires a compile/cache policy test, not a larger retrieval budget by default. A provider failure remains \textsc{CannotCheck} unless authority is restored.
+The recovery programme does not stop at one-factor repair. It first freezes a discriminator to localize the failure, then searches materially different successor mechanisms and parent disciplines for a rule that generalizes beyond the originating case. A retrieval miss can trigger a new route-generation family; a state-optionality loss can trigger a compile/cache/recover policy; recurrent failures across both may justify a higher-order budget-allocation or search-state mechanic. Provider failure remains \textsc{CannotCheck} unless authority is restored.
 
-ORION issue \#650 is the authority-bearing P2-U research programme. A child issue is warranted only for a newly observed causal stage/mechanic that requires its own frozen discriminator. Outcome deletion, margin relaxation, baseline weakening, or scoring provider failures as comparator losses are prohibited.
+ORION issue \#650 is the authority-bearing P2-U research programme. A child issue is warranted only for a newly observed causal stage or materially new mechanism family. Outcome deletion, margin relaxation, baseline weakening, or scoring provider failures as comparator losses are prohibited.
 
 \section{Claim ladder}
 \begin{enumerate}
     \item \textbf{Protocol frozen}: no performance claim.
-    \item \textbf{Stage-identification supported}: failures can be causally localized under the benchmark.
-    \item \textbf{Protected search/closure superiority supported}: H1 and H2 pass with H3 safety.
-    \item \textbf{Replicated open-world superiority}: H1--H5 pass across domains and independent route accounting.
-    \item \textbf{Bounded terminal}: final claims are rewritten to the strongest state actually earned; negative, tied, and \textsc{CannotCheck} families remain visible.
+    \item \textbf{Protected open-world superiority}: H1 and H2 pass with clean-closure safety.
+    \item \textbf{Cross-regime discovery superiority}: H1--H4 pass across held-out domains/source/route regimes.
+    \item \textbf{General open-world discovery superiority}: cross-regime superiority plus H5 demonstrates expansion of the search/closure mechanism basis from failures.
 \end{enumerate}
+A narrower terminal is an honest fallback only if the largest claim is not earned.
 
 \section{Current status}
-This is a prospective TeX successor. It does not modify the predecessor P2 results and does not assert end-to-end open-world superiority before the frozen protected campaign is executed.
+This is a prospective TeX successor. It does not modify predecessor P2 results and does not assert generalized open-world superiority before the frozen protected campaign is executed.
 
 \begin{thebibliography}{9}
 \bibitem{deepresearchbench2026}
