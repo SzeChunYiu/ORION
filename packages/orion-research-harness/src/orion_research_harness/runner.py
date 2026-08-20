@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import dataclasses
+import hashlib
 from enum import Enum
 from typing import Any, Mapping
 from uuid import uuid4
@@ -35,6 +36,10 @@ def _jsonable(value: Any) -> Any:
     return repr(value)
 
 
+def _sha256_label(label: str) -> str:
+    return hashlib.sha256(label.encode("utf-8")).hexdigest()
+
+
 def run_problem(
     workspace: ResearchWorkspace,
     problem_data: Mapping[str, Any],
@@ -53,8 +58,8 @@ def run_problem(
             max_iterations=int(max_iterations),
             require_verified_answer=bool(require_verified_answer),
         ),
-        producer_process_lineage_hash="orion-research-harness-v1",
-        evaluator_artifact_hash="external-host-capability-receipts-v1",
+        producer_process_lineage_hash=_sha256_label("orion-research-harness-v1"),
+        evaluator_artifact_hash=_sha256_label("external-host-capability-receipts-v1"),
     )
     problem = Problem(
         problem_id=str(problem_data["problem_id"]),
