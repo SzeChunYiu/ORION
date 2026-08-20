@@ -5,6 +5,7 @@ on:
     paths:
       - 'research/claim_expansion/p1/gpt_r6_native_adapter.py'
       - 'research/claim_expansion/p1/gpt_r6_native_primary.py'
+      - 'research/claim_expansion/p1/gpt_r6_primary_authority_gate.py'
       - 'packages/orion-research-harness/**'
       - 'src/orion/**'
       - '.github/workflows/p1-r6-native-primary.yml'
@@ -33,7 +34,8 @@ jobs:
         run: |
           python -m py_compile \
             research/claim_expansion/p1/gpt_r6_native_adapter.py \
-            research/claim_expansion/p1/gpt_r6_native_primary.py
+            research/claim_expansion/p1/gpt_r6_native_primary.py \
+            research/claim_expansion/p1/gpt_r6_primary_authority_gate.py
       - name: Re-run merged harness conformance suite
         run: pytest -q packages/orion-research-harness/tests
       - name: Recover immutable pre-outcome 2020 source encoding
@@ -46,6 +48,9 @@ jobs:
           python research/claim_expansion/p1/gpt_r6_native_primary.py \
             --builder /tmp/p1-r5-frozen/research/claim_expansion/p1/gpt_r5/build_fixed_corpus.py \
             --fixed /tmp/p1-r5-frozen/research/claim_expansion/p1/gpt_r5/FIXED_SOURCE_SET_V1.json \
+            --out /tmp/p1-r6-primary.raw.json
+          python research/claim_expansion/p1/gpt_r6_primary_authority_gate.py \
+            /tmp/p1-r6-primary.raw.json \
             --out /tmp/p1-r6-primary.json
       - name: Enforce engineering acceptance independently of scientific outcome
         run: |
@@ -62,6 +67,8 @@ jobs:
           rows += [r['outcome'] for r in result['unresolved_rows']]
           assert len(rows) == 48
           assert all(r['native_row_valid'] and r['leakage_free'] for r in rows)
+          assert result['authority_gate']['promotion_authorized'] is False
+          assert result['authority_gate']['merge_authorized'] is False
           print('P1_R6_HARNESS_ENGINEERING=PASS')
           print('P1_R6_SCIENTIFIC_TERMINAL=' + result['terminal'])
           print('P1_R6_SCIENTIFIC_CHECKS=' + json.dumps(result['checks'], sort_keys=True))
