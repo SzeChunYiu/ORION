@@ -15,11 +15,35 @@ _META = ".orion-harness"
 _SAFE_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$")
 
 
-def _write_json_atomic(path: Path, value: Mapping[str, Any]) -> None:
+def _serialized_json(value: Mapping[str, Any]) -> str:
+    return json.dumps(value, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
+
+
+def _write_json_create(path: Path, value: Mapping[str, Any]) -> bool:
+    """Publish one immutable JSON object without ever replacing an existing object.
+
+    The payload is fully written and fsynced to a same-directory temporary file before
+    `os.link` atomically publishes the destination name.  Competing publishers therefore
+    cannot overwrite a deterministic request/result identity or observe a partial JSON file.
+    """
+
     path.parent.mkdir(parents=True, exist_ok=True)
     temp = path.with_name(path.name + f".tmp-{uuid4().hex}")
-    temp.write_text(json.dumps(value, indent=2, sort_keys=True, ensure_ascii=False) + "\n")
-    os.replace(temp, path)
+    try:
+        with temp.open("x", encoding="utf-8") as handle:
+            handle.write(_serialized_json(value))
+            handle.flush()
+            os.fsync(handle.fileno())
+        try:
+            os.link(temp, path)
+        except FileExistsError:
+            return False
+        return True
+    finally:
+        try:
+            temp.unlink()
+        except FileNotFoundError:
+            pass
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -82,22 +106,22 @@ class ResearchWorkspace:
         root_path = Path(root).expanduser().resolve()
         project_path = Path(project_root or Path.cwd()).expanduser().resolve()
         meta = root_path / _META
-        if (meta / "session.json").exists():
+        session_path = meta / "session.json"
+        if session_path.exists():
             return cls.load(root_path)
         session_id = "session:" + uuid4().hex
         created_at = utc_now()
         for child in ("requests", "results", "problems", "runs", "notes"):
             (meta / child).mkdir(parents=True, exist_ok=True)
-        _write_json_atomic(
-            meta / "session.json",
-            {
-                "schema": "ORION.ResearchHarnessSession.v1",
-                "session_id": session_id,
-                "project_root": str(project_path),
-                "created_at": created_at,
-                "allow_process_tools": bool(allow_process_tools),
-            },
-        )
+        payload = {
+            "schema": "ORION.ResearchHarnessSession.v1",
+            "session_id": session_id,
+            "project_root": str(project_path),
+            "created_at": created_at,
+            "allow_process_tools": bool(allow_process_tools),
+        }
+        if not _write_json_create(session_path, payload):
+            return cls.load(root_path)
         return cls(root_path, session_id, project_path, created_at, bool(allow_process_tools))
 
     @classmethod
@@ -106,10 +130,13 @@ class ResearchWorkspace:
         data = _read_json(root_path / _META / "session.json")
         if data.get("schema") != "ORION.ResearchHarnessSession.v1":
             raise ValueError("unsupported ORION research harness workspace")
+        session_id = str(data["session_id"])
+        _validate_id(session_id, name="session_id")
+        project_root = Path(str(data["project_root"])).expanduser().resolve()
         return cls(
             root=root_path,
-            session_id=str(data["session_id"]),
-            project_root=Path(str(data["project_root"])).expanduser().resolve(),
+            session_id=session_id,
+            project_root=project_root,
             created_at=str(data["created_at"]),
             allow_process_tools=bool(data.get("allow_process_tools", False)),
         )
@@ -130,17 +157,18 @@ class ResearchWorkspace:
     ) -> CapabilityRequest:
         candidate = CapabilityRequest.create(
             session_id=self.session_id,
-            capability=capability,
-            payload=payload,
+            capability=str(capability),
+            payload=dict(payload),
         )
         path = self._request_path(candidate.request_id)
-        if path.exists():
-            existing = CapabilityRequest.from_dict(_read_json(path))
-            if existing.session_id != self.session_id:
-                raise ValueError("request belongs to another harness session")
-            return existing
-        _write_json_atomic(path, candidate.as_dict())
-        return candidate
+        if _write_json_create(path, candidate.as_dict()):
+            return candidate
+        existing = CapabilityRequest.from_dict(_read_json(path))
+        if existing.session_id != self.session_id:
+            raise ValueError("request belongs to another harness session")
+        if existing.capability != candidate.capability or existing.payload != candidate.payload:
+            raise ValueError("deterministic request identity collision")
+        return existing
 
     def load_request(self, request_id: str) -> CapabilityRequest:
         return CapabilityRequest.from_dict(_read_json(self._request_path(request_id)))
@@ -172,14 +200,18 @@ class ResearchWorkspace:
             executor=executor,
         )
         path = self._result_path(request_id)
-        if path.exists():
-            existing = CapabilityResult.from_dict(_read_json(path))
-            existing.validate(request)
-            if existing.success != result.success or existing.output != result.output or existing.error != result.error:
-                raise ValueError("result already exists with different content")
-            return existing
-        _write_json_atomic(path, result.as_dict())
-        return result
+        if _write_json_create(path, result.as_dict()):
+            return result
+        existing = CapabilityResult.from_dict(_read_json(path))
+        existing.validate(request)
+        if (
+            existing.success != result.success
+            or existing.output != result.output
+            or existing.error != result.error
+            or existing.executor != result.executor
+        ):
+            raise ValueError("result already exists with different content or executor")
+        return existing
 
     def pending_requests(self) -> tuple[CapabilityRequest, ...]:
         pending: list[CapabilityRequest] = []
@@ -187,6 +219,8 @@ class ResearchWorkspace:
             return ()
         for path in sorted(self.requests_dir.glob("*.json")):
             request = CapabilityRequest.from_dict(_read_json(path))
+            if request.session_id != self.session_id:
+                raise ValueError("request belongs to another harness session")
             if self.load_result(request.request_id) is None:
                 pending.append(request)
         return tuple(pending)
@@ -212,12 +246,11 @@ class ResearchWorkspace:
             "initial_domain_ids": list(initial_domain_ids),
             "success_criteria": list(success_criteria),
         }
-        if path.exists():
-            existing = _read_json(path)
-            if existing != payload:
-                raise ValueError("problem already exists with different content")
+        if _write_json_create(path, payload):
             return path
-        _write_json_atomic(path, payload)
+        existing = _read_json(path)
+        if existing != payload:
+            raise ValueError("problem already exists with different content")
         return path
 
     def load_problem(self, problem_id: str) -> dict[str, Any]:
@@ -225,6 +258,8 @@ class ResearchWorkspace:
         data = _read_json(self.problems_dir / _disk_name(problem_id))
         if data.get("schema") != "ORION.HarnessProblem.v1":
             raise ValueError("unsupported harness problem schema")
+        if str(data.get("problem_id", "")) != problem_id:
+            raise ValueError("harness problem identity mismatch")
         return data
 
     def problem_ids(self) -> tuple[str, ...]:
@@ -235,9 +270,11 @@ class ResearchWorkspace:
     def save_run(self, run_id: str, record: Mapping[str, Any]) -> Path:
         run_id = _validate_id(run_id, name="run_id")
         path = self.runs_dir / _disk_name(run_id)
-        if path.exists():
+        payload = dict(record)
+        if str(payload.get("run_id", run_id)) != run_id:
+            raise ValueError("run record identity mismatch")
+        if not _write_json_create(path, payload):
             raise ValueError(f"run already exists: {run_id}")
-        _write_json_atomic(path, dict(record))
         return path
 
     def run_ids(self) -> tuple[str, ...]:
@@ -247,7 +284,10 @@ class ResearchWorkspace:
 
     def load_run(self, run_id: str) -> dict[str, Any]:
         run_id = _validate_id(run_id, name="run_id")
-        return _read_json(self.runs_dir / _disk_name(run_id))
+        data = _read_json(self.runs_dir / _disk_name(run_id))
+        if str(data.get("run_id", "")) != run_id:
+            raise ValueError("run record identity mismatch")
+        return data
 
     def append_note(self, name: str, text: str) -> Path:
         name = _validate_id(name, name="note name")
