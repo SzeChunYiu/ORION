@@ -37,35 +37,49 @@ jobs:
           --subject-sha e69606d5ee7e5e035ab6374202f9e62c154579ae
           --output "$RUNNER_TEMP/d1-results.json"
           > "$RUNNER_TEMP/d1-full-output.log"
-      - name: Assert frozen D1 scientific coordinates and archive identity
+      - name: Preserve regenerated replay before comparison
+        uses: actions/upload-artifact@v4
+        with:
+          name: p9-d1-scientific-replay-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/d1-results.json
+            ${{ runner.temp }}/d1-full-output.log
+          if-no-files-found: error
+      - name: Assert frozen D1 scientific coordinates and report exact drift
         env:
           RESULT: ${{ runner.temp }}/d1-results.json
         run: |
           python - <<'PY'
-          import json, os
+          import json, math, os
           got=json.load(open(os.environ['RESULT'], encoding='utf-8'))
           archived=json.load(open('research/extensions/p9-structured-neural/execution/D1_EXECUTION_RESULT_V1_2.json', encoding='utf-8'))
           official='sha256:34003fb8ffcecec6ed01654e40c644ff05b7640be56b398a45efc1e52a30141a'
           dataset='sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c'
           subject='e69606d5ee7e5e035ab6374202f9e62c154579ae'
-          assert archived['result_digest']==official
-          assert got['subject_sha']==archived['subject_sha']==subject
-          assert got['terminal']==archived['terminal']=='D1_TYPED_STRUCTURE_TRANSFER_SUPPORTED'
-          assert got['dataset_manifest_digest']==archived['dataset_manifest_digest']==dataset
-          assert got['train_domains']==archived['train_domains']
-          assert got['test_domain']==archived['test_domain']=='transactional_workflows'
-          assert got['typed_minus_transcript']==archived['typed_minus_transcript']==0.75
-          assert got['typed_minus_same_information_serialized']==archived['typed_minus_same_information_serialized']==0.5
-          assert got['exact_typed_relational_comparator']==archived['exact_typed_relational_comparator']
-          # This structure contains every dev configuration, selected model,
-          # protected prediction and corruption/unresolved metric for all arms.
-          assert got['results']==archived['results'], 'D1 protected scientific result structure drifted'
+
+          def eq(a,b):
+              if isinstance(a,(int,float)) and isinstance(b,(int,float)) and not isinstance(a,bool) and not isinstance(b,bool):
+                  return math.isclose(float(a),float(b),abs_tol=1e-12,rel_tol=0.0)
+              return a==b
+
+          checks = {
+              'archive_result_digest': archived.get('result_digest')==official,
+              'subject_sha': got.get('subject_sha')==archived.get('subject_sha')==subject,
+              'terminal': got.get('terminal')==archived.get('terminal')=='D1_TYPED_STRUCTURE_TRANSFER_SUPPORTED',
+              'dataset_manifest_digest': got.get('dataset_manifest_digest')==archived.get('dataset_manifest_digest')==dataset,
+              'train_domains': got.get('train_domains')==archived.get('train_domains'),
+              'test_domain': got.get('test_domain')==archived.get('test_domain')=='transactional_workflows',
+              'typed_minus_transcript': eq(got.get('typed_minus_transcript'), archived.get('typed_minus_transcript')) and eq(got.get('typed_minus_transcript'),0.75),
+              'typed_minus_same_information_serialized': eq(got.get('typed_minus_same_information_serialized'), archived.get('typed_minus_same_information_serialized')) and eq(got.get('typed_minus_same_information_serialized'),0.5),
+              'exact_typed_relational_comparator': got.get('exact_typed_relational_comparator')==archived.get('exact_typed_relational_comparator'),
+              'results': got.get('results')==archived.get('results'),
+          }
+          print(json.dumps({'checks':checks,'current_result_digest':got.get('result_digest'),'official_result_digest':official},indent=2,sort_keys=True))
+          failed=[k for k,v in checks.items() if not v]
+          if failed:
+              for key in failed:
+                  if key in got or key in archived:
+                      print('DRIFT',key,'got=',json.dumps(got.get(key),sort_keys=True)[:4000],'archived=',json.dumps(archived.get(key),sort_keys=True)[:4000])
+              raise SystemExit('D1 scientific replay drift: '+', '.join(failed))
           print('P9_D1_SCIENTIFIC_REPLAY=true')
-          print('P9_D1_OFFICIAL_ARCHIVE_DIGEST='+official)
-          print('P9_D1_CURRENT_WRAPPER_DIGEST='+got['result_digest'])
           PY
-      - uses: actions/upload-artifact@v4
-        with:
-          name: p9-d1-scientific-replay-${{ github.sha }}
-          path: ${{ runner.temp }}/d1-results.json
-          if-no-files-found: error
