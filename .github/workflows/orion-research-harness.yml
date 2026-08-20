@@ -7,6 +7,9 @@ on:
       - 'development/orion-research-harness/**'
       - 'development/orion-q-max-r0/**'
       - 'research/extensions/orion-q/**'
+      - 'research/extensions/orion-jump-recursive-atoms/**'
+      - 'research/extensions/p6-method-fibres/**'
+      - 'provenance/rakl/**'
       - '.github/workflows/orion-research-harness.yml'
       - 'src/orion/**'
   workflow_dispatch:
@@ -31,6 +34,49 @@ jobs:
           python -m pip install -e 'packages/orion-research-harness[dev]'
       - name: Run shared harness hostile tests
         run: python -m pytest packages/orion-research-harness/tests -q
+      - name: Gate canonical paper-to-harness mechanics coverage
+        run: |
+          orion-harness mechanics-coverage | tee /tmp/orion-mechanics-coverage.json
+          orion-harness navigate 'fibre problem solver' | tee /tmp/orion-fibre-nav.json
+          orion-harness navigate 'atomization of a problem' | tee /tmp/orion-atom-nav.json
+          orion-harness navigate 'saturation of knowledge' | tee /tmp/orion-saturation-nav.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          coverage = json.loads(Path('/tmp/orion-mechanics-coverage.json').read_text())
+          if coverage.get('mechanic_cell_count') != 59:
+              raise SystemExit(f"canonical mechanic count drifted: {coverage.get('mechanic_cell_count')!r}")
+          if coverage.get('structurally_discoverable') is not True:
+              raise SystemExit(f"mechanic surface is incomplete: {coverage}")
+          if coverage.get('missing_anchor_ids') != []:
+              raise SystemExit(f"paper mechanics missing from harness: {coverage.get('missing_anchor_ids')}")
+          if coverage.get('missing_runtime_cells') != []:
+              raise SystemExit(f"runtime mechanics missing from catalog: {coverage.get('missing_runtime_cells')}")
+
+          def ids(path):
+              payload = json.loads(Path(path).read_text())
+              return {row['surface_id'] for row in payload.get('matches', [])}
+
+          fibre = ids('/tmp/orion-fibre-nav.json')
+          if not {'SELF_ORION.DEVELOPMENT_FIBRE.v1', 'REOPEN.FIBRE.v0', 'FRAME.DECOMPOSE.v0'} <= fibre:
+              raise SystemExit(f'fibre navigation incomplete: {sorted(fibre)}')
+          atom = ids('/tmp/orion-atom-nav.json')
+          if not {'FRAME.DECOMPOSE.v0', 'DISCOVERY.RECURSIVE_ATOM_CALCULUS.v1'} <= atom:
+              raise SystemExit(f'atomization navigation incomplete: {sorted(atom)}')
+          saturation = ids('/tmp/orion-saturation-nav.json')
+          if not {'SATURATE.KNOWLEDGE_FLATNESS.v0', 'SELF_ORION.DEVELOPMENT_SATURATION.v1', 'SATURATE.STOP.v0'} <= saturation:
+              raise SystemExit(f'saturation navigation incomplete: {sorted(saturation)}')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-research-harness-mechanics-coverage
+          path: |
+            /tmp/orion-mechanics-coverage.json
+            /tmp/orion-fibre-nav.json
+            /tmp/orion-atom-nav.json
+            /tmp/orion-saturation-nav.json
+          if-no-files-found: error
 
   orion-q-live-campaign-smoke:
     needs: shared-harness-tests
