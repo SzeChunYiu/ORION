@@ -16,6 +16,7 @@ from .broker import (
     BrokerRetrievalProvider,
     BrokerVerificationProvider,
     CapabilityBroker,
+    HostCapabilityFailed,
     HostCapabilityRequired,
 )
 from .protocol import utc_now
@@ -80,6 +81,14 @@ def run_problem(
             "status": "PENDING_CAPABILITY",
             "problem_id": problem.problem_id,
             "request": pending.request.as_dict(),
+        }
+    except HostCapabilityFailed as failed:
+        return {
+            "schema": "ORION.HarnessSolveOutcome.v1",
+            "status": "HOST_CAPABILITY_FAILED",
+            "problem_id": problem.problem_id,
+            "request": failed.request.as_dict(),
+            "result": failed.result.as_dict(),
         }
 
     run_id = "run:" + uuid4().hex
