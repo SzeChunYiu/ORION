@@ -35,6 +35,7 @@ def _positive_result(*, h4_count: int = 4, n2_count: int = 4) -> dict:
     gates = {
         "p10_candidate_generated": True,
         "hostile_exact": True,
+        "top_four_panel_complete": True,
         "both_open_subjects_joint_beat_canonical": True,
         "joint_beats_frame_only_strong_on_at_least_one_subject": True,
         "proof_carrying_witnesses": True,
@@ -46,6 +47,7 @@ def _positive_result(*, h4_count: int = 4, n2_count: int = 4) -> dict:
         "protocol_errata": [
             "MAX_R6_EXACT_TARE3_DP_ERRATUM_1",
             "MAX_R6_EXACT_TARE3_DP_ERRATUM_2",
+            "MAX_R6_EXACT_TARE3_DP_ERRATUM_3",
         ],
         "reserved_stretched_n2_accessed": False,
         "p10_replay": {
@@ -68,6 +70,7 @@ def test_complete_positive_panel_is_pre_prospective_ready():
     assert receipt["strict_supported"] is True
     assert receipt["pre_prospective_ready"] is True
     assert receipt["reserved_stretched_n2_accessed"] is False
+    assert receipt["underlying_erratum3_listed"] is True
     assert "MAX_R6_EXACT_TARE3_DP_ERRATUM_3" in receipt["bound_errata"]
 
 
@@ -78,7 +81,34 @@ def test_short_panel_cannot_escape_as_positive():
     assert receipt["top_four_panel_complete"] is False
     assert receipt["strict_supported"] is False
     assert receipt["pre_prospective_ready"] is False
+    assert "declared_top_four_panel_gate_disagrees_with_recomputed_panel" in receipt["errors"]
     assert "positive_underlying_receipt_with_incomplete_top_four_panel" in receipt["errors"]
+
+
+def test_missing_erratum3_binding_is_integrity_failure():
+    verifier = _load_verifier()
+    result = _positive_result()
+    result["protocol_errata"] = result["protocol_errata"][:-1]
+    receipt = verifier.verify_result(result)
+    assert receipt["software_integrity_pass"] is False
+    assert receipt["pre_prospective_ready"] is False
+    assert receipt["underlying_erratum3_listed"] is False
+    assert any(
+        error.startswith("underlying_receipt_missing_bound_errata:")
+        for error in receipt["errors"]
+    )
+
+
+def test_declared_top_four_gate_must_match_recomputed_panel():
+    verifier = _load_verifier()
+    result = _positive_result()
+    result["gates"]["top_four_panel_complete"] = False
+    result["development_supported"] = False
+    result["authority"] = "MAX_R6_EXACT_TARE3_JOINT_DP_NEGATIVE"
+    receipt = verifier.verify_result(result)
+    assert receipt["software_integrity_pass"] is False
+    assert receipt["top_four_panel_complete"] is True
+    assert "declared_top_four_panel_gate_disagrees_with_recomputed_panel" in receipt["errors"]
 
 
 def test_candidate_negative_path_is_integrity_valid_but_not_ready():
@@ -86,6 +116,7 @@ def test_candidate_negative_path_is_integrity_valid_but_not_ready():
     gates = {
         "p10_candidate_generated": False,
         "hostile_exact": True,
+        "top_four_panel_complete": False,
         "both_open_subjects_joint_beat_canonical": False,
         "joint_beats_frame_only_strong_on_at_least_one_subject": False,
         "proof_carrying_witnesses": False,
@@ -94,7 +125,11 @@ def test_candidate_negative_path_is_integrity_valid_but_not_ready():
     result = {
         "authority": "MAX_R6_EXACT_TARE3_JOINT_DP_NEGATIVE",
         "development_supported": False,
-        "protocol_errata": [],
+        "protocol_errata": [
+            "MAX_R6_EXACT_TARE3_DP_ERRATUM_1",
+            "MAX_R6_EXACT_TARE3_DP_ERRATUM_2",
+            "MAX_R6_EXACT_TARE3_DP_ERRATUM_3",
+        ],
         "reserved_stretched_n2_accessed": False,
         "p10_replay": {
             "candidate_generated": False,
