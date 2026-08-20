@@ -45,6 +45,7 @@ class ResearchWorkspace:
     session_id: str
     project_root: Path
     created_at: str
+    allow_process_tools: bool = False
 
     @property
     def meta_root(self) -> Path:
@@ -76,6 +77,7 @@ class ResearchWorkspace:
         root: str | Path,
         *,
         project_root: str | Path | None = None,
+        allow_process_tools: bool = False,
     ) -> "ResearchWorkspace":
         root_path = Path(root).expanduser().resolve()
         project_path = Path(project_root or Path.cwd()).expanduser().resolve()
@@ -93,9 +95,10 @@ class ResearchWorkspace:
                 "session_id": session_id,
                 "project_root": str(project_path),
                 "created_at": created_at,
+                "allow_process_tools": bool(allow_process_tools),
             },
         )
-        return cls(root_path, session_id, project_path, created_at)
+        return cls(root_path, session_id, project_path, created_at, bool(allow_process_tools))
 
     @classmethod
     def load(cls, root: str | Path) -> "ResearchWorkspace":
@@ -108,6 +111,7 @@ class ResearchWorkspace:
             session_id=str(data["session_id"]),
             project_root=Path(str(data["project_root"])).expanduser().resolve(),
             created_at=str(data["created_at"]),
+            allow_process_tools=bool(data.get("allow_process_tools", False)),
         )
 
     def _request_path(self, request_id: str) -> Path:
