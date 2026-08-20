@@ -5,6 +5,7 @@ Frozen by:
 - MAX_R6_EXACT_TARE3_JOINT_FRAME_DP_PROTOCOL.md
 - MAX_R6_EXACT_TARE3_DP_ERRATUM_1.md
 - MAX_R6_EXACT_TARE3_DP_ERRATUM_2.md
+- MAX_R6_EXACT_TARE3_DP_ERRATUM_3.md
 
 This development script uses only already-open H4/equilibrium-N2 subjects through
 the candidate-blind P10 loader. It must never read the protected stretched-N2
@@ -661,6 +662,14 @@ def main() -> dict:
     gates = {
         "p10_candidate_generated": p10_replay["candidate_generated"],
         "hostile_exact": hostile["all_exact"],
+        "top_four_panel_complete": (
+            bool(subjects)
+            and set(subjects) == set(p10.base.SUBJECTS)
+            and all(
+                subject["selected_count"] == TOP_K
+                for subject in subjects.values()
+            )
+        ),
         "both_open_subjects_joint_beat_canonical": (
             bool(subjects)
             and all(
@@ -682,7 +691,7 @@ def main() -> dict:
                 for subject in subjects.values()
             )
         ),
-        "fresh_subject_unread": True,
+        "fresh_subject_unread": not p10_replay["reserved_stretched_n2_accessed"],
     }
     supported = all(gates.values())
 
@@ -697,6 +706,7 @@ def main() -> dict:
         "protocol_errata": [
             "MAX_R6_EXACT_TARE3_DP_ERRATUM_1",
             "MAX_R6_EXACT_TARE3_DP_ERRATUM_2",
+            "MAX_R6_EXACT_TARE3_DP_ERRATUM_3",
         ],
         "state_count": FULL_STATES,
         "top_k_expensive_verifier": TOP_K,
