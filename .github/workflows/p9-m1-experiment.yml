@@ -1,0 +1,62 @@
+name: p9-m1-experiment
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/p9-m1-experiment.yml'
+      - 'development/p9-m1-classical/**'
+      - 'research/extensions/p9-structured-neural/M1_*'
+      - 'research/extensions/p9-structured-neural/execution/M1_*'
+      - 'research/extensions/p9-structured-neural/run_m1.py'
+      - 'src/orion/study/p9/m1*.py'
+      - 'tests/test_p9_m1*.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  m1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install -e '.[dev,candidates]'
+      - name: M1 focused tests
+        run: pytest -q tests/test_p9_m1.py tests/test_p9_m1_v12.py
+      - name: Replay frozen M1 science on current review code
+        run: python research/extensions/p9-structured-neural/run_m1.py --output "$RUNNER_TEMP/m1-results.json" > "$RUNNER_TEMP/m1-full-output.log"
+      - name: Assert frozen M1 scientific coordinates and archive identity
+        env:
+          RESULT: ${{ runner.temp }}/m1-results.json
+        run: |
+          python - <<'PY'
+          import json, os
+          got=json.load(open(os.environ['RESULT'], encoding='utf-8'))
+          archived=json.load(open('research/extensions/p9-structured-neural/execution/M1_EXECUTION_RESULT_V1_5.json', encoding='utf-8'))
+          official='sha256:01e1b62da27b424d453c63b798a5cbb13a915a4546b8ced68fcf84c32d04d97e'
+          corpus='sha256:01ae54ca4d8cf423b0ac20bf0e085f1ecdf6cec7a1f142cc09b5df0a90d9cc3a'
+          assert archived['result_digest']==official
+          assert archived['subject_sha']=='2d81d154ab39eae3a430b0464299082b49d03a34'
+          assert got['terminal']==archived['terminal']=='M1_GLOBAL_COMPOSITION_RESIDUAL'
+          assert got['protocol']==archived['protocol']=='P9.M1Protocol.v1.3'
+          assert got['corpus_manifest_digest']==archived['corpus_manifest_digest']==corpus
+          # The complete scientific view object includes selected configurations,
+          # test predictions/metrics, invariance sentinels and exact ceilings.
+          assert got['views']==archived['views'], 'M1 protected scientific view structure drifted'
+          print('P9_M1_SCIENTIFIC_REPLAY=true')
+          print('P9_M1_OFFICIAL_ARCHIVE_DIGEST='+official)
+          print('P9_M1_CURRENT_WRAPPER_DIGEST='+got['result_digest'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p9-m1-scientific-replay-${{ github.sha }}
+          path: ${{ runner.temp }}/m1-results.json
+          if-no-files-found: error

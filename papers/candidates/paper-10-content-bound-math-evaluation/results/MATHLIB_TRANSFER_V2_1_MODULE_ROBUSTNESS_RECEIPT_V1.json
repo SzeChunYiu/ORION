@@ -1,0 +1,54 @@
+{
+  "schema": "P10.MathlibTransferModuleRobustnessReceipt.v1",
+  "analysis_status": "POST_HOC_DERIVED_FROM_FROZEN_V2_1_BLOCK_RECEIPTS",
+  "source_result": "results/MATHLIB_TRANSFER_V2_1.json",
+  "generator": "analyze_module_robustness_v1.py",
+  "workflow": {
+    "name": "p10-robustness-analysis",
+    "run_id": 32313520527,
+    "job_id": 96261118837,
+    "artifact_id": 9387270316,
+    "artifact_zip_sha256": "4bddc4df78ce0816c0687946ccfacd2e5048529cfbee4c419b21df7fbba42045"
+  },
+  "emitted_block_receipts": 28,
+  "zero_transition_blocks": ["Tactic", "Util"],
+  "evaluable_positive_transition_modules": 26,
+  "total_transitions": 11842,
+  "pooled_markov_minus_unigram": 0.10462759668974836,
+  "module_delta_distribution": {
+    "positive_modules": 24,
+    "negative_modules": 2,
+    "positive_fraction": 0.9230769230769231,
+    "exact_two_sided_sign_test_p": 0.00001049041748046875,
+    "unweighted_mean": 0.09818939194009647,
+    "median": 0.10479562415196744,
+    "q25": 0.06481880931837791,
+    "q75": 0.13493147091163762,
+    "minimum": -0.03333333333333333,
+    "maximum": 0.22406639004149378
+  },
+  "leave_one_module_out": {
+    "all_pooled_deltas_positive": true,
+    "minimum": 0.10051076249543962,
+    "minimum_when_removed": "Probability",
+    "maximum": 0.10917721518987342,
+    "maximum_when_removed": "Computability"
+  },
+  "improvement_concentration": {
+    "positive_improvement_correct_count": 1242,
+    "top_20pct_module_count": 6,
+    "top_20pct_share_of_positive_improvement": 0.46296296296296297
+  },
+  "worst_modules": [
+    ["Control", -0.03333333333333333],
+    ["CategoryTheory", -0.005780346820809248]
+  ],
+  "best_modules": [
+    ["InformationTheory", 0.22406639004149378],
+    ["Logic", 0.16049382716049382],
+    ["Probability", 0.1560379918588874],
+    ["LinearAlgebra", 0.1559633027522936],
+    ["Combinatorics", 0.14563106796116504]
+  ],
+  "claim_boundary": "Post-hoc breadth/sensitivity analysis of the frozen source-projection result only; not a new preregistered endpoint and not proof-state, tactic-library, or prover-utility evidence."
+}
