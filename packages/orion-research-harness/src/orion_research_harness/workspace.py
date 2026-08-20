@@ -9,7 +9,13 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping
 from uuid import uuid4
 
-from .protocol import CapabilityRequest, CapabilityResult, content_digest, utc_now
+from .protocol import (
+    CapabilityRequest,
+    CapabilityResult,
+    canonical_json,
+    content_digest,
+    utc_now,
+)
 
 _META = ".orion-harness"
 _SESSION_SCHEMA_V1 = "ORION.ResearchHarnessSession.v1"
@@ -220,7 +226,10 @@ class ResearchWorkspace:
         existing = CapabilityRequest.from_dict(_read_json(path))
         if existing.session_id != self.session_id:
             raise ValueError("request belongs to another harness session")
-        if existing.capability != candidate.capability or existing.payload != candidate.payload:
+        if (
+            existing.capability != candidate.capability
+            or canonical_json(existing.payload) != canonical_json(candidate.payload)
+        ):
             raise ValueError("deterministic request identity collision")
         return existing
 
@@ -267,7 +276,7 @@ class ResearchWorkspace:
         existing.validate(request)
         if (
             existing.success != candidate.success
-            or existing.output != candidate.output
+            or canonical_json(existing.output) != canonical_json(candidate.output)
             or existing.error != candidate.error
             or existing.executor != candidate.executor
         ):
