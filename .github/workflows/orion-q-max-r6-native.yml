@@ -1,0 +1,24 @@
+name: orion-q-max-r6-native
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-q/**'
+      - 'development/orion-q-max-r0/**'
+      - '.github/workflows/orion-q-max-r6-native.yml'
+
+jobs:
+  native-self-orion-n0:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run blinded native Self-ORION N0 controller
+        env:
+          PYTHONPATH: src
+        run: |
+          python research/extensions/orion-q/max_r6_native_self_orion_n0.py | tee /tmp/r6-native-n0.txt
+          grep '^ORIONQ_MAX_R6_NATIVE_N0=' /tmp/r6-native-n0.txt
