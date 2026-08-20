@@ -4,9 +4,9 @@ ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT"
 
 # First require the historical closure verifier and its historical manifest to
-# remain byte-for-byte valid.  The V2 overlay is checked separately so the
+# remain byte-for-byte valid. The V2 overlay is checked separately so the
 # verifier never needs to validate its own superseded hash.
-./VERIFY_LOCAL_CLOSURE.sh
+bash ./VERIFY_LOCAL_CLOSURE.sh
 
 python - <<'PY'
 import json
@@ -22,8 +22,7 @@ for relative, blob_sha in sorted(expected.items()):
     path = root.parent / relative if relative.startswith('paper-') else root / relative
     if not path.is_file():
         raise AssertionError(f'overlay path missing: {relative}')
-    # Git blob identity is content-addressed as sha1("blob <len>\\0" + bytes).
-    actual = subprocess.check_output(['git','hash-object',str(path)], text=True).strip()
+    actual = subprocess.check_output(['git', 'hash-object', str(path)], text=True).strip()
     if actual != blob_sha:
         raise AssertionError(f'P10 overlay drift: {relative}: {actual} != {blob_sha}')
 print(f'P10 publication overlay V2: PASS ({len(expected)} files)')
