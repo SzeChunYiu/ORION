@@ -1,162 +1,89 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}
-\usepackage{booktabs}
-\usepackage{tabularx}
 \usepackage{hyperref}
 \newtheorem{theorem}{Theorem}
 \newtheorem{definition}{Definition}
-\setlength{\emergencystretch}{2em}
+\newtheorem{proposition}{Proposition}
 
 \title{A General Theory of Minimal Scientific Revalidation after Change}
 \author{ORION Paper VI Ultimate-Successor Working Manuscript}
 \date{August 2026}
-
-\begin{document}
-\maketitle
+\begin{document}\maketitle
 
 \begin{abstract}
-Scientific conclusions increasingly depend on long computational, experimental, representational, and agentic pipelines. When any component changes, the common safe response is to revalidate everything, while the common efficient response risks missing a hidden dependency. ORION Paper VI targets the strongest general claim: for a broad class of typed scientific workflows, can ORION compute the exact minimal set of evidence, certificates, compiled states, analyses, and downstream claims that must be reopened, recomputed, or revalidated after an arbitrary admissible change, with machine-checked soundness and necessity and substantial real-world cost savings? Existing finite ORION evidence of 155 complete restorations and 1,055 strict-subset failures is preserved as a finite instance, not the final authority. P6-U defines primitive support, dependency, responsibility, representation, change-impact, revocation, and recovery semantics independently of the desired theorem, then seeks a general minimality theorem whose finite results follow as corollaries. The theory is stress-tested on source revisions, code patches, dataset updates, model changes, statistical-analysis changes, instrument/calibration changes, manuscript-claim changes, and representation/compiler changes that invalidate only selected responsibility certificates. Strong baselines include revalidate-everything, dependency-graph-only approaches, generic incremental build/proof/certificate systems, and donor-complete change-impact analysis. The intended terminal is a mechanized general theorem plus prospective multi-domain systems evidence that minimal revalidation saves substantial work with no increase in false scientific validity. Every theorem counterexample is treated as evidence of a missing primitive and launches upward formal generalization rather than ad hoc exception handling.
+Change-impact analysis, incremental build systems and regression proof selection already compute affected dependency regions efficiently, including formally verified variants. ORION Paper VI therefore targets a stronger theorem: for typed scientific workflows whose nodes carry semantic support and responsibility contracts, can one compute the minimal equivalence class of revalidation actions necessary and sufficient to restore post-change scientific standing while preserving every genuinely unaffected certificate? Existing 155 complete restorations and 1,055 strict-subset failures remain finite witnesses. P6-U seeks machine-checked restoration soundness, minimality, unaffected conservativity, revocation and compiled-state results that explicitly handle alternative support, cycles, responsibility changes and incomplete support knowledge. Every countermodel is retained and drives \textbf{Minimal Revalidation Closure (MRC)}: either the missing primitive yields a stronger theorem or the counterexample yields a sharp impossibility/lower-bound result. The intended terminal is \textbf{GENERAL\_MINIMAL\_SCIENTIFIC\_REVALIDATION\_THEOREM} plus multi-domain cost savings with no false-validity increase.
 \end{abstract}
 
-\section{Largest theorem target}
-Let a scientific workflow be a typed dependency structure $G=(V,E)$ whose nodes include evidence, data, code, models, representations, analyses, claims, compiled states, and certificates. Each node carries a responsibility set, support footprint, and validity predicate. A change event $\Delta$ may alter one or more nodes or the semantics by which they are interpreted.
+\section{Donor boundary}
+Verified change-impact analysis already formalizes dependency-graph impact in Coq and integrates it into regression proof selection and build systems \cite{chip2020}; iCoq/piCoq demonstrate fine-grained dependency-aware regression proof checking \cite{icoq2018}. P6 therefore does not claim novelty for dependency reachability or selective reruns. The residual is a scientific semantics in which graph edges are only candidates for support: exact revalidation depends on the responsibility-specific semantic property transmitted by an edge, alternative supports, representation state, recovery and revocation.
 
-P6-U seeks the strongest useful theorem:
-\begin{quote}
-Given complete support semantics and a complete admissible change-impact relation, ORION computes the unique or equivalence-class minimal affected revalidation set whose successful discharge restores scientific standing, while every valid unaffected certificate remains valid.
-\end{quote}
+\section{Semantic model}
+Let $G=(V,E)$ be a typed scientific workflow. Each node may be raw evidence, data, code, model, representation, analysis, claim, compiled state, evaluator or certificate. A responsibility $r$ has a validity predicate $V_r$ and a set of support obligations.
 
-Where exact minimality is impossible because support is incomplete or affected realizability fails, the theorem must characterize the strongest safe over-approximation and the information required to recover exactness.
-
-\section{Upward-generalization principle}
-Classical incremental computation, dependency tracking, proof maintenance, build systems, provenance, change-impact analysis, and certificate revocation are treated as donor mechanisms. P6-U does not carve out a tiny novel subset. The comparator is allowed to combine these mechanisms. ORION must generalize over them by providing a single scientific semantics that covers heterogeneous scientific objects, typed responsibilities, certificate preservation, representation/compiler changes, and revocation/recovery.
-
-The intended terminal is \textbf{GENERAL_MINIMAL_SCIENTIFIC_REVALIDATION_THEOREM}, backed by real-system savings.
-
-\section{Primitive semantics}
-\begin{definition}[Support]
-A node $u$ supports responsibility $r$ of node $v$ when validity of $v$ for $r$ depends on a declared semantic property of $u$, not merely on graph reachability.
+\begin{definition}[Semantic support]
+$u\leadsto_r v$ iff validity of $v$ for responsibility $r$ depends on a declared semantic property of $u$. Mere graph reachability is neither necessary nor sufficient.
 \end{definition}
 
-\begin{definition}[Affected support]
-For a change $\Delta$, an edge is affected when the semantic property transmitted through that support edge may differ after $\Delta$.
-\end{definition}
-
-\begin{definition}[Native validity]
-A certificate is natively unaffected when all load-bearing support required for its declared responsibility remains invariant under $\Delta$.
+\begin{definition}[Affected obligation]
+For change $\Delta$, support obligation $o$ is affected iff at least one admissible post-change world consistent with observed information changes the property of $o$ relevant to $V_r$.
 \end{definition}
 
 \begin{definition}[Revalidation action]
-A revalidation action may reopen raw evidence, recompute a compiled state, rerun an analysis, recheck a proof/certificate, regenerate a representation bridge, or reassess a scientific claim.
+An action may reopen evidence, recompute state, rerun analysis, recheck proof/certificate, regenerate a bridge, re-evaluate an evaluator or reassess a claim. Actions are equivalent when they discharge the same affected obligations with the same postconditions.
 \end{definition}
 
 \section{Target theorem family}
-P6-U seeks machine-checked versions of the following statements.
-
 \begin{theorem}[Restoration soundness]
-If every affected load-bearing support obligation for a target certificate is revalidated successfully, the target's declared scientific standing is restored under the post-change semantics.
+Under sound support semantics, if a selected action set discharges every affected load-bearing obligation for target responsibility $r$, successful actions restore $V_r$.
 \end{theorem}
 
-\begin{theorem}[Minimality]
-Under support completeness and affected-realizability, removing any necessary action from the computed affected set leaves at least one admissible post-change world in which the target is falsely treated as valid.
+\begin{theorem}[Equivalence-class minimality]
+Under support completeness, action completeness and affected-realizability, MRC returns a minimal equivalence class of action sets: removing any obligation-discharge capability leaves an admissible post-change world with false validity.
 \end{theorem}
 
 \begin{theorem}[Unaffected conservativity]
-Certificates whose declared responsibility support is unchanged by $\Delta$ remain valid without revalidation.
+A certificate whose complete responsibility support remains invariant under $\Delta$ remains valid without revalidation.
 \end{theorem}
 
-\begin{theorem}[Revocation propagation]
-If a load-bearing support becomes invalid and no valid alternative support discharges the obligation, revocation propagates exactly to certificates that depend on that support responsibility.
+\begin{theorem}[Exact revocation]
+If all admissible supports for an obligation fail and no alternative support discharges it, revocation propagates exactly to dependent responsibility certificates, not to unrelated graph descendants.
 \end{theorem}
 
-\begin{theorem}[Compiled-state revalidation]
-For support-sound responsibility-carrying compiled states, a representation/compiler change reopens exactly the compiled interfaces and certificates whose declared support is affected; underlying scientific evidence need not be revalidated when its native validity and recoverability remain unchanged.
+\begin{theorem}[Compiled-state separation]
+A compiler/representation change that affects only interface semantics reopens the affected compiled interfaces/certificates; it need not invalidate native evidence whose scientific validity and recoverability remain unchanged.
 \end{theorem}
+
+\begin{proposition}[Incomplete-support limit]
+Without an observable complete support relation, exact minimality cannot in general be guaranteed: two post-change worlds may be observationally identical while differing in a hidden load-bearing support. Any sound method must over-approximate or acquire additional support information.
+\end{proposition}
+
+This proposition is a positive boundary result: exactness is recovered only after stating the minimum information assumption instead of hiding the counterexample.
 
 \section{Finite predecessor as corollary}
-The existing complete finite restoration result must be derived as an instance of the general semantics. The 155 successful complete restorations become soundness witnesses; the 1,055 strict-subset failures become necessity witnesses for that registered finite class. The new theorem is not allowed to define primitives merely so those counts become tautological.
+The registered 155 complete restorations become soundness instances and the 1,055 strict-subset failures necessity witnesses for their finite universe. The general primitives are defined independently of those counts; a proof that merely encodes the old table is invalid for P6-U.
 
-\section{Naturalistic change families}
-Prospective evaluation spans at least:
-\begin{enumerate}
-    \item code patch with localized and hidden downstream effects;
-    \item dataset revision or corrected labels;
-    \item model/checkpoint update;
-    \item statistical-analysis or multiplicity-policy change;
-    \item instrument/calibration update;
-    \item manuscript claim/scope revision;
-    \item scientific representation/schema change;
-    \item state compiler or cache/materialization change;
-    \item evaluator or verification-tool revision;
-    \item objective/responsibility change that invalidates some prior certificates but not others.
-\end{enumerate}
+\section{Minimal Revalidation Closure}
+MRC is the ChatGPT-led negative-to-positive formal programme. Countermodels are partitioned into hidden support, spurious support, alternative support, action-equivalence ambiguity, cycles/fixed points, representation-only invalidation, responsibility change, evaluator-semantic change and non-realizability. Each countermodel is frozen before theorem repair.
 
-\section{Responsibility-carrying state stress test}
-Every compact/compiled state declares supported responsibilities, omitted coordinates, recoverability, and load-bearing support. P6-U compares revalidation from full raw dependency graphs against responsibility-carrying state. Hidden-dependency attacks include an omitted coordinate that appears irrelevant for prediction but is load-bearing for verification or repair.
+For each class MRC either (i) identifies a necessary semantic primitive/assumption and re-proves the theorem, or (ii) proves a sharp impossibility/lower bound and the minimal additional information required for exactness. Ad hoc exception lists and deletion of hostile countermodels are prohibited.
 
-The system must distinguish:
-\begin{enumerate}
-    \item compiler/interface invalidation only;
-    \item responsibility-certificate invalidation;
-    \item underlying evidence invalidation;
-    \item combinations requiring raw recovery and recompilation.
-\end{enumerate}
+\section{Naturalistic evaluation}
+Prospective workflows span code patches, dataset corrections, model/checkpoint changes, statistical-analysis or multiplicity changes, calibration/instrument changes, manuscript-scope revisions, schema/compiler changes, evaluator revisions and responsibility/objective changes.
 
-\section{Strong baselines}
-Compare against:
-\begin{enumerate}
-    \item revalidate everything;
-    \item graph-reachability revalidation;
-    \item generic incremental build/change-impact analysis;
-    \item provenance-only invalidation;
-    \item proof/certificate dependency maintenance;
-    \item responsibility-carrying state without P6 minimality;
-    \item donor-complete product combining the strongest available mechanisms;
-    \item oracle minimal set for synthetic/exact worlds only.
-\end{enumerate}
+Baselines include revalidate-everything, graph reachability, verified change-impact analysis, regression proof selection, provenance-only invalidation, certificate dependency maintenance and a donor-complete union. Evaluation reports false-validity rate, unaffected-certificate preservation, revalidation actions, wall time/evaluator calls and hidden-dependency misses.
 
 \section{Empirical hypotheses}
-\paragraph{H1, no false validity.}
-ORION's computed revalidation set yields no higher false-validity rate than revalidate-everything on the registered class.
+H1: no false-validity increase versus revalidate-everything. H2: lower revalidation work at restored standing. H3: fewer hidden semantic-dependency misses than graph/provenance baselines. H4: more unaffected-certificate preservation without false validity. H5: the same formal rule transfers across multiple workflow types and independent implementations.
 
-\paragraph{H2, cost superiority.}
-ORION saves substantial revalidation work, time, or evaluator calls versus revalidate-everything and conservative donor baselines at matched restored standing.
+\section{Framework correspondence}
+Current ORION provides dependency, reopen, responsibility and protected-step-verification substrate, plus the finite P6 evidence. Core \texttt{REOPEN.v1} and higher-order mechanic footprints are compatible with the theorem's direction. No canonical registry object currently certifies universal exact-minimal revalidation; MRC and the general theorem therefore remain prospective rather than being described as existing runtime capability.
 
-\paragraph{H3, hidden-dependency superiority.}
-ORION misses fewer load-bearing hidden dependencies than graph-only or provenance-only baselines.
+\section{Claim ladder}
+Primitive semantics $\rightarrow$ machine-checked soundness $\rightarrow$ minimality/conservativity/revocation $\rightarrow$ finite predecessor corollary $\rightarrow$ naturalistic multi-domain savings $\rightarrow$ \textbf{GENERAL\_MINIMAL\_SCIENTIFIC\_REVALIDATION\_THEOREM}. Countermodels and impossibility results remain first-class evidence throughout.
 
-\paragraph{H4, certificate preservation.}
-ORION preserves more valid unaffected certificates than overconservative baselines without increasing false validity.
-
-\paragraph{H5, cross-domain transfer.}
-The same formal rule applies across multiple naturalistic scientific workflow types and independent implementations.
-
-\section{Adversarial theorem attacks}
-Mandatory countermodels include:
-\begin{enumerate}
-    \item spurious graph edge that is not semantically load-bearing;
-    \item hidden semantic dependency absent from the graph;
-    \item two alternative supports where one remains valid;
-    \item cyclic dependency;
-    \item compiled state that hides a verification-critical coordinate;
-    \item stale but recoverable raw evidence;
-    \item representation transport that preserves prediction but not repair responsibility;
-    \item overconservative certificate that forces unnecessary reopening;
-    \item change in responsibility/objective with unchanged underlying evidence;
-    \item invalidation of evaluator semantics rather than candidate science.
-\end{enumerate}
-
-\section{Negative-result recursion as formal upward search}
-Every theorem counterexample is classified as a candidate missing primitive, missing assumption, incomplete support relation, non-realizable affected set, or genuine impossibility. The response is not an exception list. The programme searches for the more general semantic object that explains the counterexample and re-proves the theorem under explicit necessary assumptions.
-
-A negative empirical family similarly triggers a new change class or support primitive and a fresh prospective test. If exact minimality cannot be achieved in a class, P6-U seeks the sharpest impossibility/lower-bound characterization and the minimal additional information needed to recover it.
-
-ORION issue \#654 is the authority-bearing programme. New child issues are opened only for distinct theorem counterexample classes or new scientific change regimes.
-
-\section{Claim ladder and current status}
-The intended progression is: primitive semantics frozen; machine-checked soundness; machine-checked minimality/conservativity/revocation; finite predecessor recovered as corollary; naturalistic multi-domain cost superiority; \textbf{GENERAL_MINIMAL_SCIENTIFIC_REVALIDATION_THEOREM}. Narrower theorem classes remain fallback results only if the strongest theorem cannot be proved.
-
-This TeX file is prospective and does not alter existing P6 finite evidence.
-
+\begin{thebibliography}{4}
+\bibitem{chip2020} K. Palmskog, A. Celik, and M. Gligoric, ``Practical Machine-Checked Formalization of Change Impact Analysis,'' TACAS 2020, pp. 137--157, doi:10.1007/978-3-030-45237-7\_9.
+\bibitem{icoq2018} A. Celik, K. Palmskog, and M. Gligoric, ``A Regression Proof Selection Tool for Coq,'' ICSE Companion 2018, doi:10.1145/3183440.3183493.
+\end{thebibliography}
 \end{document}
