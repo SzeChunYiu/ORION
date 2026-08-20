@@ -67,6 +67,11 @@ def execute_local(
         return {"path": str(path), "entries": entries}
 
     if capability in {"SHELL", "PYTHON"}:
+        if not workspace.allow_process_tools:
+            raise PermissionError(
+                "SHELL/PYTHON local execution is disabled for this workspace; "
+                "reinitialize with --allow-process-tools to opt in"
+            )
         timeout = min(max(int(payload.get("timeout", 60)), 1), 120)
         cwd = _confined(root, str(payload.get("cwd", ".")))
         if capability == "PYTHON":
@@ -90,6 +95,7 @@ def execute_local(
             "returncode": completed.returncode,
             "stdout": _bounded_text(completed.stdout),
             "stderr": _bounded_text(completed.stderr),
+            "sandboxed": False,
         }
 
     raise AssertionError(capability)
