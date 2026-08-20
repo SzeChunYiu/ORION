@@ -56,3 +56,15 @@ def test_result_creation_requires_real_boolean_and_executor_identity():
         CapabilityResult.create(request, success=1, executor="host")
     with pytest.raises(ValueError, match="executor must be a non-empty string"):
         CapabilityResult.create(request, success=True, executor="")
+
+
+def test_successful_result_cannot_carry_error_text():
+    request = _request()
+    with pytest.raises(ValueError, match="successful result cannot carry an error"):
+        CapabilityResult.create(
+            request,
+            success=True,
+            output={"ok": True},
+            error="contradictory",
+            executor="host",
+        )
