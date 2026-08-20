@@ -1,0 +1,124 @@
+name: p10-native-trace-state-v1
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/p9-p10-structural-scaling/P10_NATIVE_STATE_INCREMENTAL_VALUE_PROTOCOL_V1.md'
+      - 'research/extensions/p9-p10-structural-scaling/P10_NATIVE_TRACE_STATE_EXTRACTOR_AMENDMENT_V1.md'
+      - 'research/extensions/p9-p10-structural-scaling/P10_B1_MARKOV_PROBABILITY_AMENDMENT_V1.md'
+      - 'research/extensions/p9-p10-structural-scaling/P10_NATIVE_FEATURE_ENCODING_V1.md'
+      - 'research/extensions/p9-p10-structural-scaling/P10_NATIVE_FEATURE_CORRECTION_V1.md'
+      - 'research/extensions/p9-p10-structural-scaling/extract_p10_native_trace_state_v1.py'
+      - 'research/extensions/p9-p10-structural-scaling/fit_p10_native_state_v1.py'
+      - 'research/extensions/p9-p10-structural-scaling/analyze_runtime_gated_novelty_v1.py'
+      - '.github/workflows/p10-native-trace-state-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trace:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0,1,2,3,4,5,6,7]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION analysis dependencies
+        run: python -m pip install -e '.[candidates]'
+      - name: Install elan
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Checkout exact Mathlib revision and precompiled cache
+        run: |
+          git init /tmp/mathlib
+          git -C /tmp/mathlib remote add origin https://github.com/leanprover-community/mathlib4.git
+          git -C /tmp/mathlib fetch --depth 1 origin e72c1e277f31441626621f7d0c7207862fc25569
+          git -C /tmp/mathlib checkout --detach FETCH_HEAD
+          test "$(git -C /tmp/mathlib rev-parse HEAD)" = e72c1e277f31441626621f7d0c7207862fc25569
+          test "$(cat /tmp/mathlib/lean-toolchain)" = leanprover/lean4:v4.34.0-rc1
+          cd /tmp/mathlib
+          lake --version
+          lake exe cache get
+      - name: Extract native pre-tactic states
+        run: |
+          mkdir -p out
+          python research/extensions/p9-p10-structural-scaling/extract_p10_native_trace_state_v1.py \
+            --mathlib-checkout /tmp/mathlib \
+            --shard-index '${{ matrix.shard }}' \
+            --shard-count 8 \
+            --file-timeout 240 \
+            --output 'out/p10-native-shard-${{ matrix.shard }}.json'
+      - name: Show shard coverage
+        run: |
+          python - <<'PY'
+          import json,glob
+          p=glob.glob('out/p10-native-shard-*.json')[0]
+          d=json.load(open(p))
+          print(json.dumps({k:d[k] for k in ('shard_index','selected_files','transition_denominator','eligible_transitions')},indent=2))
+          from collections import Counter
+          print('statuses',Counter(x['status'] for x in d['files']))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p10-native-shard-${{ matrix.shard }}-${{ github.sha }}
+          path: out/p10-native-shard-${{ matrix.shard }}.json
+          if-no-files-found: error
+
+  fit-and-analyze:
+    needs: trace
+    runs-on: ubuntu-24.04
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install frozen fitting dependencies
+        run: python -m pip install numpy==2.5.2 scikit-learn==1.9.0
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: p10-native-shard-*-${{ github.sha }}
+          path: native-shards
+          merge-multiple: true
+      - name: Fit B1-B4 under frozen nested held-module protocol
+        run: |
+          python research/extensions/p9-p10-structural-scaling/fit_p10_native_state_v1.py \
+            --shards native-shards/p10-native-shard-0.json native-shards/p10-native-shard-1.json native-shards/p10-native-shard-2.json native-shards/p10-native-shard-3.json native-shards/p10-native-shard-4.json native-shards/p10-native-shard-5.json native-shards/p10-native-shard-6.json native-shards/p10-native-shard-7.json \
+            --output P10_NATIVE_STATE_PREDICTIONS_V1.json
+      - name: Run frozen native-state claim analyzer when coverage permits
+        run: |
+          python - <<'PY'
+          import json, pathlib, subprocess, sys
+          d=json.load(open('P10_NATIVE_STATE_PREDICTIONS_V1.json'))
+          print(json.dumps({k:d.get(k) for k in ('terminal','eligibility_coverage','transition_denominator','eligible_transitions','controls','shuffle_control','near_duplicate_control','secondary_accuracy')},indent=2,sort_keys=True))
+          if d['terminal']=='CANNOT_CHECK_NATIVE_STATE_COVERAGE':
+              pathlib.Path('P10_NATIVE_STATE_ANALYSIS_V1.json').write_text(json.dumps({'native':{'terminal':'CANNOT_CHECK_NATIVE_STATE_COVERAGE','coverage':d['eligibility_coverage']}},indent=2)+'\n')
+              raise SystemExit(0)
+          inputs=pathlib.Path('research/extensions/p9-p10-structural-scaling/inputs')
+          inputs.mkdir(exist_ok=True)
+          target=inputs/'P10_NATIVE_STATE_PREDICTIONS_V1.json'
+          target.write_text(json.dumps(d,indent=2,sort_keys=True)+'\n')
+          subprocess.run([sys.executable,'research/extensions/p9-p10-structural-scaling/analyze_runtime_gated_novelty_v1.py'],check=True)
+          source=pathlib.Path('research/extensions/p9-p10-structural-scaling/results/RUNTIME_GATED_NOVELTY_ANALYSIS_V1.json')
+          result=json.loads(source.read_text())
+          pathlib.Path('P10_NATIVE_STATE_ANALYSIS_V1.json').write_text(json.dumps({'native':result.get('native')},indent=2,sort_keys=True)+'\n')
+          print(json.dumps(result.get('native'),indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p10-native-analysis-${{ github.sha }}
+          path: |
+            P10_NATIVE_STATE_PREDICTIONS_V1.json
+            P10_NATIVE_STATE_ANALYSIS_V1.json
+          if-no-files-found: error
