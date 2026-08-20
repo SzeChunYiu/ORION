@@ -131,7 +131,7 @@ After ingestion, rerun the exact same solve command. Existing request/result rec
 
 ## Local capabilities
 
-The harness can directly service a deliberately small local set:
+The harness can directly service:
 
 - `FILE_READ`
 - `FILE_WRITE`
@@ -139,7 +139,15 @@ The harness can directly service a deliberately small local set:
 - `SHELL`
 - `PYTHON`
 
-They are confined to the workspace's configured `project_root`. `SHELL` uses an argv list and never `shell=True`; subprocess/Python timeouts are capped at 120 seconds.
+File operations resolve paths under the workspace's configured `project_root` and reject paths that escape it.
+
+`SHELL` and `PYTHON` are different: a normal subprocess is **not an OS sandbox** and can access anything available to the current OS user. They are disabled by default. To opt in explicitly:
+
+```bash
+orion-harness init .research --project-root . --allow-process-tools
+```
+
+`SHELL` uses an argv list and never `shell=True`; process timeouts are capped at 120 seconds. The returned receipt explicitly records `sandboxed: false`.
 
 Create a local request:
 
