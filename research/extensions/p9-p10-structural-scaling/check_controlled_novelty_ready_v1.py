@@ -16,6 +16,8 @@ REQUIRED = [
     "NOVELTY_EXPANSION_PROTOCOL_V3.md",
     "RELATIONAL_COMPLEXITY_THEOREM_V1.md",
     "INVERTIBLE_OBFUSCATION_THEOREM_V1.md",
+    "STRUCTURAL_ACCESSIBILITY_THEORY_V2.md",
+    "verify_structural_accessibility_theory_v2.py",
     "RELATIONAL_ACCESSIBILITY_V1_1_OUTCOME_DISPOSITION.md",
     "RELATIONAL_ACCESSIBILITY_REPLICATION_PROTOCOL_V2.md",
     "SEMANTIC_ORBIT_CONTROLLED_PROTOCOL_V1.md",
@@ -23,6 +25,7 @@ REQUIRED = [
     "PREDICTIVE_STATE_COMPRESSION_PROTOCOL_V1.md",
     "RUNTIME_GATED_ANALYSIS_CONTRACT_V1.md",
     "analyze_runtime_gated_novelty_v1.py",
+    "analyze_runtime_gated_extensions_v1.py",
 ]
 
 
@@ -107,6 +110,18 @@ def main() -> None:
     assert blocked["P10_same_information_Lean_feedback"].startswith("CANNOT_CHECK_")
     assert blocked["P10_cross_revision"].startswith("CANNOT_CHECK_")
     assert blocked["cross_domain_structural_accessibility_law"].startswith("BLOCKED_")
+
+    theory = (HERE / "STRUCTURAL_ACCESSIBILITY_THEORY_V2.md").read_text(encoding="utf-8")
+    for token in (
+        "I(Y;F)=I(Y;R)=H(Y)=1 bit",
+        "E[Z x_i]=0",
+        "E[Z c_i]=0",
+        "E[Z r_i] = E[|S_k|]/k",
+        "sqrt(B/k)",
+        "I(Y;W|r)=0",
+    ):
+        if token not in theory:
+            raise SystemExit(f"theory V2 missing exact identity: {token}")
 
     ledger = LEDGER.read_text(encoding="utf-8")
     for token in (
