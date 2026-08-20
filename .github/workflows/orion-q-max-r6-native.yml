@@ -1,6 +1,6 @@
 name: orion-q-max-r6-native
 
-# Native Self-ORION confirmation lane; workflow-only edits intentionally isolate this check.
+# Native Self-ORION confirmation lane.
 on:
   pull_request:
     paths:
@@ -9,7 +9,7 @@ on:
       - '.github/workflows/orion-q-max-r6-native.yml'
 
 jobs:
-  native-self-orion-n0:
+  native-self-orion-control:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -32,3 +32,10 @@ jobs:
           cd research/extensions/orion-q
           python max_r6_native_self_orion_n1.py | tee /tmp/r6-native-n1.txt
           grep '^ORIONQ_MAX_R6_NATIVE_N1=' /tmp/r6-native-n1.txt
+      - name: Run post-interface N2 native Self-ORION controller
+        env:
+          PYTHONPATH: src
+        run: |
+          cd research/extensions/orion-q
+          python max_r6_native_self_orion_n2.py | tee /tmp/r6-native-n2.txt
+          grep '^ORIONQ_MAX_R6_NATIVE_N2=' /tmp/r6-native-n2.txt
