@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from .local_tools import service_local_request
+from .research_lane import run_research_lane
 from .runner import run_problem
 from .workspace import ResearchWorkspace
 
@@ -35,15 +36,16 @@ def _handoff_prompt(workspace: ResearchWorkspace) -> str:
         f"Session: {workspace.session_id}",
         f"Local process tools enabled: {workspace.allow_process_tools}",
         "",
-        "You are the external host worker for canonical ORION. Do not bypass ORION's verification, responsibility, authority, or saturation rules.",
+        "You are the external host worker for canonical ORION. Do not bypass ORION's atom/fibre navigation, donor, verification, responsibility, authority, or saturation rules.",
         "",
         "Workflow:",
         "1. Run `orion-harness pending <workspace>`.",
         "2. Service each capability using tools actually available in this session.",
         "3. Ingest the exact result with `orion-harness ingest ...`.",
-        "4. Re-run `orion-harness solve <workspace> <problem-id>` until COMPLETE.",
+        "4. Re-run `orion-harness research <workspace> <problem-id>` until the donor stage and root ORION complete.",
         "",
         "Capability contracts:",
+        "- DONOR_EXECUTE: faithfully execute the registered strongest-incumbent donor; return capability_id, status, candidate_summary, verifier_status, resource_summary. Donor output grants no ORION/scientific authority.",
         "- LLM_COMPLETE: return {content, model_id?, response_id?}; content must obey the requested schema.",
         "- WEB_SEARCH: use current web search and source inspection; return {items:[{content,source_uri,item_id?,domain_ids?}]}.",
         "- VERIFY_EVIDENCE: independently verify support; return {passed,certificate_ids,reason}; fail closed.",
@@ -51,13 +53,19 @@ def _handoff_prompt(workspace: ResearchWorkspace) -> str:
         "- SHELL/PYTHON require explicit workspace opt-in and are not OS-sandboxed; use only when the host has accepted that risk.",
         "- GITHUB or other custom capabilities: use the corresponding host tool and return structured JSON.",
         "",
-        "Never fabricate a source, certificate, command result, or tool output. Preserve negative/CANNOT_CHECK results.",
+        "Never fabricate a source, certificate, donor result, command result, or tool output. Preserve negative/CANNOT_CHECK results.",
         "",
         f"Pending requests: {len(pending)}",
     ]
     for request in pending:
         lines.append(f"- {request.request_id} :: {request.capability}")
     return "\n".join(lines)
+
+
+def _profile(value: str) -> str:
+    if value not in {"orion", "orion-q"}:
+        raise argparse.ArgumentTypeError("profile must be 'orion' or 'orion-q'")
+    return value
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -87,8 +95,17 @@ def build_parser() -> argparse.ArgumentParser:
     solve = sub.add_parser("solve")
     solve.add_argument("workspace")
     solve.add_argument("problem_id")
+    solve.add_argument("--profile", type=_profile, default="orion")
     solve.add_argument("--max-iterations", type=int, default=3)
     solve.add_argument("--allow-provisional", action="store_true")
+
+    research = sub.add_parser("research")
+    research.add_argument("workspace")
+    research.add_argument("problem_id")
+    research.add_argument("--profile", type=_profile, default="orion")
+    research.add_argument("--max-iterations", type=int, default=3)
+    research.add_argument("--max-campaign-cycles", type=int, default=64)
+    research.add_argument("--allow-provisional", action="store_true")
 
     pending = sub.add_parser("pending")
     pending.add_argument("workspace")
@@ -125,6 +142,12 @@ def build_parser() -> argparse.ArgumentParser:
     handoff.add_argument("workspace")
 
     return parser
+
+
+def _problem_with_profile(workspace: ResearchWorkspace, problem_id: str, profile: str) -> dict[str, Any]:
+    problem = workspace.load_problem(problem_id)
+    problem["navigation_profile"] = profile
+    return problem
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -167,7 +190,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "solve":
         outcome = run_problem(
             workspace,
-            workspace.load_problem(args.problem_id),
+            _problem_with_profile(workspace, args.problem_id, args.profile),
             max_iterations=args.max_iterations,
             require_verified_answer=not args.allow_provisional,
         )
@@ -175,6 +198,21 @@ def main(argv: list[str] | None = None) -> int:
         if outcome["status"] == "PENDING_CAPABILITY":
             return 2
         if outcome["status"] == "HOST_CAPABILITY_FAILED":
+            return 3
+        return 0
+
+    if args.command == "research":
+        outcome = run_research_lane(
+            workspace,
+            _problem_with_profile(workspace, args.problem_id, args.profile),
+            max_iterations=args.max_iterations,
+            require_verified_answer=not args.allow_provisional,
+            max_campaign_cycles=args.max_campaign_cycles,
+        )
+        _print(outcome)
+        if outcome["status"] in {"DONOR_STAGE_PENDING_CAPABILITY", "ROOT_PENDING_CAPABILITY"}:
+            return 2
+        if outcome["status"] in {"DONOR_STAGE_CAPABILITY_FAILED", "ROOT_HOST_CAPABILITY_FAILED"}:
             return 3
         return 0
 
