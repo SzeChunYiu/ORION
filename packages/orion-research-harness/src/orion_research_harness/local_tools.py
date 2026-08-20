@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import signal
 import subprocess
 import sys
 import threading
@@ -17,7 +18,9 @@ _LOCAL_CAPABILITIES = {
     "PYTHON",
 }
 _MAX_TEXT_CHARS = 1_000_000
+_MAX_LIST_ENTRIES = 10_000
 _MAX_PROCESS_OUTPUT_BYTES = 100_000
+_DRAIN_JOIN_SECONDS = 1.0
 
 
 def _confined(project_root: Path, raw: str | Path) -> Path:
@@ -62,8 +65,13 @@ def _drain_pipe(
             remaining = max_bytes - len(output)
             if remaining > 0:
                 output.extend(chunk[:remaining])
+    except (OSError, ValueError):
+        return
     finally:
-        pipe.close()
+        try:
+            pipe.close()
+        except (OSError, ValueError):
+            pass
 
 
 def _render_process_output(data: bytearray, total: int, max_bytes: int) -> str:
@@ -71,6 +79,35 @@ def _render_process_output(data: bytearray, total: int, max_bytes: int) -> str:
     if total > max_bytes:
         text += f"\n...[truncated {total - max_bytes} bytes]"
     return text
+
+
+def _terminate_process_tree(process: subprocess.Popen[bytes]) -> None:
+    if os.name == "posix":
+        try:
+            os.killpg(process.pid, signal.SIGKILL)
+            return
+        except ProcessLookupError:
+            return
+    if process.poll() is None:
+        process.kill()
+
+
+def _finish_drainers(
+    process: subprocess.Popen[bytes],
+    threads: tuple[threading.Thread, threading.Thread],
+) -> None:
+    for thread in threads:
+        thread.join(timeout=_DRAIN_JOIN_SECONDS)
+    if any(thread.is_alive() for thread in threads):
+        _terminate_process_tree(process)
+        for pipe in (process.stdout, process.stderr):
+            if pipe is not None:
+                try:
+                    pipe.close()
+                except (OSError, ValueError):
+                    pass
+        for thread in threads:
+            thread.join(timeout=0.1)
 
 
 def execute_local(
@@ -106,7 +143,15 @@ def execute_local(
         path = _confined(root, str(payload.get("path", ".")))
         if not path.is_dir():
             raise NotADirectoryError(path)
-        entries = sorted(child.name for child in path.iterdir())
+        entries: list[str] = []
+        with os.scandir(path) as iterator:
+            for entry in iterator:
+                if len(entries) >= _MAX_LIST_ENTRIES:
+                    raise OverflowError(
+                        f"directory exceeds {_MAX_LIST_ENTRIES} entries; narrow the listing scope"
+                    )
+                entries.append(entry.name)
+        entries.sort()
         return {"path": str(path), "entries": entries}
 
     if capability in {"SHELL", "PYTHON"}:
@@ -133,6 +178,7 @@ def execute_local(
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             stdin=subprocess.DEVNULL,
+            start_new_session=(os.name == "posix"),
         )
         assert process.stdout is not None
         assert process.stderr is not None
@@ -150,18 +196,21 @@ def execute_local(
             args=(process.stderr, stderr_buffer, stderr_total),
             daemon=True,
         )
-        stdout_thread.start()
-        stderr_thread.start()
+        threads = (stdout_thread, stderr_thread)
+        for thread in threads:
+            thread.start()
         try:
             returncode = process.wait(timeout=timeout)
         except subprocess.TimeoutExpired:
-            process.kill()
-            process.wait()
-            stdout_thread.join()
-            stderr_thread.join()
+            _terminate_process_tree(process)
+            try:
+                process.wait(timeout=1)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait()
+            _finish_drainers(process, threads)
             raise
-        stdout_thread.join()
-        stderr_thread.join()
+        _finish_drainers(process, threads)
 
         return {
             "argv": argv,
