@@ -67,3 +67,18 @@ def test_individual_parents_do_not_solve_all_families():
     assert not rssi.evaluate(cases, rssi.semantic_change_parent)["all_gates_pass"]
     assert not rssi.evaluate(cases, rssi.negative_applicability_parent)["all_gates_pass"]
     assert not rssi.evaluate(cases, rssi.authority_drift_parent)["all_gates_pass"]
+
+
+def test_naive_donor_union_fails_interaction_pilot():
+    cases = rssi.generate_interaction_pilot(seed=29, per_family=5)
+    result = rssi.evaluate(cases, rssi.donor_union_policy)
+    assert not result["all_gates_pass"]
+    assert result["task_correct"] == result["n"]
+    assert result["migration_exact"] < result["n"]
+
+
+def test_coordinated_interaction_policy_passes_interaction_pilot():
+    cases = rssi.generate_interaction_pilot(seed=31, per_family=6)
+    result = rssi.evaluate(cases, rssi.interaction_policy)
+    assert result["all_gates_pass"]
+    assert result["migration_exact"] == result["n"]
