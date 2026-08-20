@@ -48,6 +48,9 @@ def run_problem(
     max_iterations: int = 3,
     require_verified_answer: bool = True,
 ) -> dict[str, Any]:
+    navigation_profile = str(problem_data.get("navigation_profile", "orion"))
+    if navigation_profile not in {"orion", "orion-q"}:
+        raise ValueError("navigation_profile must be 'orion' or 'orion-q'")
     broker = CapabilityBroker(workspace)
     experiences = InMemoryExperienceStore()
     runtime = OrionRuntime.from_providers(
@@ -61,6 +64,7 @@ def run_problem(
         ),
         producer_process_lineage_hash=_sha256_label("orion-research-harness-v1"),
         evaluator_artifact_hash=_sha256_label("external-host-capability-receipts-v1"),
+        navigation_profile=navigation_profile,
     )
     problem = Problem(
         problem_id=str(problem_data["problem_id"]),
@@ -80,6 +84,7 @@ def run_problem(
             "schema": "ORION.HarnessSolveOutcome.v1",
             "status": "PENDING_CAPABILITY",
             "problem_id": problem.problem_id,
+            "navigation_profile": navigation_profile,
             "request": pending.request.as_dict(),
         }
     except HostCapabilityFailed as failed:
@@ -87,11 +92,13 @@ def run_problem(
             "schema": "ORION.HarnessSolveOutcome.v1",
             "status": "HOST_CAPABILITY_FAILED",
             "problem_id": problem.problem_id,
+            "navigation_profile": navigation_profile,
             "request": failed.request.as_dict(),
             "result": failed.result.as_dict(),
             "error": failed.detail,
         }
 
+    navigation = runtime.navigation_plan
     run_id = "run:" + uuid4().hex
     record = {
         "schema": "ORION.HarnessRun.v1",
@@ -99,6 +106,8 @@ def run_problem(
         "session_id": workspace.session_id,
         "created_at": utc_now(),
         "problem": _jsonable(problem),
+        "navigation_profile": navigation_profile,
+        "navigation_plan": None if navigation is None else navigation.as_dict(),
         "solution": _jsonable(result.solution),
         "final_state": _jsonable(result.final_state),
         "trace": _jsonable(result.trace),
@@ -111,6 +120,12 @@ def run_problem(
         "schema": "ORION.HarnessSolveOutcome.v1",
         "status": "COMPLETE",
         "problem_id": problem.problem_id,
+        "navigation_profile": navigation_profile,
+        "navigation_plan_digest": None if navigation is None else navigation.plan_digest,
+        "atomization_digest": None if navigation is None else navigation.atomization_digest,
+        "donor_registry_digest": None if navigation is None else navigation.donor_registry_digest,
+        "active_fibre_ids": [] if navigation is None else list(navigation.active_fibre_ids),
+        "deferred_donor_obligation_ids": [] if navigation is None else list(navigation.deferred_donor_obligation_ids),
         "run_id": run_id,
         "solution_status": result.solution.status.value,
         "answer": result.solution.answer,
