@@ -1,6 +1,6 @@
 # ORION Frontier Support/State Claim Ledger V1
 
-Status: **FROZEN CLAIM LADDER — NO PROGRAMME-LEVEL POSITIVE CLAIM YET**
+Status: **CONTROLLED RESULTS ONLY — NO PROGRAMME-LEVEL REAL-DOMAIN CLAIM YET**
 
 ## Current evidence
 
@@ -25,6 +25,23 @@ Not supported yet:
 - LLM utility;
 - state minimality;
 - open-world losslessness.
+
+### E2 — F6 controlled persistence/replay tax
+Status: `SUPPORTED_CONTROLLED__CI_REPLAY_PENDING`.
+
+Receipt: `results/F6_RESULT_RECEIPT_V1.json`.
+
+Frozen-protocol deterministic execution across `L={8,16,32,64}` and `b={2,4,8,16}` found:
+- zero full-state persistence mismatches against transcript replay;
+- zero certified five-bit persistence mismatches against transcript replay;
+- 110,656 branch-outcome mismatches for the deliberately lossy last-four-actions control;
+- exact operation ReplayTax rises monotonically with branch count and, for `b>=4`, history length;
+- exact ReplayTax at `L=64,b=16` is `1072/112 = 9.571428571428571`;
+- certified state stores 5 task-relevant bits versus 10 bits for full state.
+
+Terminal: `PERSISTENT_SUFFICIENT_STATE_REDUCES_REPLAY_SCALING`.
+
+Boundary: finite deterministic controlled environment only. This is not a Lean snapshotting result, LLM result, universal replay-tax law, or claim of first persistence/caching.
 
 ## Frontier claims
 
@@ -53,7 +70,10 @@ Current: `PROSPECTIVE_NOT_CLAIMED`.
 
 ### C6 — Persistence reduces replay scaling
 Required: F6 controlled positive with exact branch correctness.
-Current: `PROSPECTIVE_NOT_CLAIMED`.
+Current: `SUPPORTED_CONTROLLED`.
+
+Allowed claim:
+> In the frozen finite branch-search environment, persisting a task-sufficient state eliminates repeated prefix reconstruction without changing branch outcomes, producing an exact replay-operation tax that grows with history length and branch count and reaches 9.57x at the largest preregistered cell.
 
 ### C7 — Cross-domain structural support frontier
 Required:
@@ -82,6 +102,7 @@ Current: `NOT_AUTHORIZED`.
 - `Retrieval cost is caused by bad representation.`
 - `Lean proof search benefits from ORION native state.`
 - `The frontier is universal or conserved.`
+- `ORION invented proof-state snapshotting.`
 
 ## Promotion rule
 
