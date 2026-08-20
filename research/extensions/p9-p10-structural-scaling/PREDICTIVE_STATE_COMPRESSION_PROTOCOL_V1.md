@@ -78,7 +78,9 @@ whenever both thresholds exist.
 4. median `n*_FULL/n*_MINIMAL >=1.5` across comparable k;
 5. median `n*_PADDED/n*_MINIMAL >=2.0` across comparable k;
 6. at the smallest shared n=32, S0 mean log loss is no worse than S1 and S2 for at least two of three k;
-7. nuisance-generation correlation with y has absolute empirical Pearson correlation `<0.03` for every generated nuisance coordinate on the protected test sets, or the experiment is invalid and must be reissued prospectively.
+7. nuisance-generation correlation with y has absolute empirical Pearson correlation `<0.04` for every generated nuisance coordinate on the protected test sets, or the experiment is invalid and must be reissued prospectively.
+
+The `0.04` independence sentinel was calibrated **before execution** to be conservative under the planned family of roughly 2,300 nuisance-coordinate checks: a normal/Bonferroni 5% family-wise reference at `n=16384` is approximately `0.0332`. The sentinel is not a scientific endpoint and cannot be relaxed after outcomes.
 
 ## Claim if positive
 
