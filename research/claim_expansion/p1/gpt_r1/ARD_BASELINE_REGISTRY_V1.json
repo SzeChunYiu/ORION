@@ -1,0 +1,68 @@
+{
+  "version": "P1_U_ARD_BASELINE_REGISTRY_V1",
+  "issue": 696,
+  "framework_base": "83abfc5c3a98606d9339b88024f83d1d4ab313e7",
+  "budget": 2,
+  "action_cost_weight": 0.05,
+  "false_high_level_penalty": 1.0,
+  "systems": [
+    {
+      "id": "B0_STATIC_NO_PROBE",
+      "kind": "runnable_baseline",
+      "objective": "bayes_scientific_decision_from_initial_prior",
+      "lookahead": 0
+    },
+    {
+      "id": "B1_GREEDY_RESTORATION",
+      "kind": "runnable_baseline",
+      "objective": "immediate_restoration_probability_minus_cost",
+      "lookahead": 1
+    },
+    {
+      "id": "B2_ONE_STEP_LABEL_VOI",
+      "kind": "runnable_baseline",
+      "objective": "one_step_hidden_hypothesis_accuracy_minus_cost",
+      "lookahead": 1
+    },
+    {
+      "id": "B3_ONE_STEP_DECISION_VOI",
+      "kind": "primary_runnable_baseline",
+      "objective": "one_step_scientific_decision_accuracy_minus_cost",
+      "lookahead": 1
+    },
+    {
+      "id": "B4_TWO_STEP_LABEL_PLANNER",
+      "kind": "runnable_baseline",
+      "objective": "two_step_hidden_hypothesis_accuracy_minus_cost",
+      "lookahead": 2
+    },
+    {
+      "id": "P1_ARD_HORIZON2_SCIENTIFIC_RESPONSIBILITY",
+      "kind": "candidate",
+      "objective": "two_step_noncompensatory_scientific_decision_utility_minus_cost",
+      "lookahead": 2
+    },
+    {
+      "id": "CEILING_HORIZON2_FULL_SCIENTIFIC_ORACLE",
+      "kind": "analysis_ceiling",
+      "objective": "optimal_two_step_noncompensatory_scientific_decision_utility_minus_cost",
+      "lookahead": 2,
+      "receives_hidden_cause": false
+    }
+  ],
+  "positive_terminal": {
+    "id": "ARD_EXACT_MECHANISM_POSITIVE",
+    "minimum_grs_difference_vs_b3": 0.10,
+    "require_zero_protected_high_level_harm": true,
+    "require_all_non_identifiable_correct": true,
+    "require_exact_ceiling_match": true,
+    "require_all_remints_invariant": true,
+    "require_nonnegative_domain_effect_all": true,
+    "require_strictly_positive_domains": 3
+  },
+  "authority": {
+    "grants_general_p1_u_superiority": false,
+    "grants_runtime_registration": false,
+    "grants_adoption_or_merge": false
+  }
+}
