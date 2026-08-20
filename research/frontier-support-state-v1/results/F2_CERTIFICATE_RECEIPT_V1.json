@@ -1,0 +1,19 @@
+{
+  "schema": "ORION.FrontierF2.CertificateReceipt.v1",
+  "protocol": "F2_CERTIFIED_STATE_COMPACTION_PROTOCOL_V1.md",
+  "runner": "run_f2_certified_state_compaction_v1.py",
+  "status": "CERTIFICATE_ONLY__NO_LEARNER_OUTCOME",
+  "frozen_before_outcome": true,
+  "states_checked": 1024,
+  "future_queries_checked_per_state": 343,
+  "state_query_pairs_checked": 351232,
+  "certified_state_coordinates": 5,
+  "certified_groups": 32,
+  "certified_groups_with_multiple_future_signatures": 0,
+  "certified_terminal": "CERTIFIED_STATE_EXACT_FUTURE_EQUIVALENCE",
+  "invalid_quotient_coordinates": 4,
+  "invalid_groups": 16,
+  "invalid_groups_with_counterexamples": 16,
+  "invalid_terminal": "INVALID_QUOTIENT_COUNTEREXAMPLE_FOUND",
+  "claim_boundary": "This receipt establishes only the exact bounded future-equivalence certificate and hostile invalid-quotient counterexample. It does not establish learner accuracy, sample efficiency, LLM utility, minimality, or open-world losslessness."
+}
