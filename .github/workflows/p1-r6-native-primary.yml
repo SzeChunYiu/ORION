@@ -25,6 +25,13 @@ jobs:
         run: |
           python -m pip install -e '.[dev]'
           python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Compile frozen R6 adapter and evaluator
+        run: |
+          python -m py_compile \
+            research/claim_expansion/p1/gpt_r6_native_adapter.py \
+            research/claim_expansion/p1/gpt_r6_native_primary.py
+      - name: Re-run merged harness conformance suite
+        run: pytest -q packages/orion-research-harness/tests
       - name: Recover immutable pre-outcome 2020 source encoding
         run: |
           git fetch origin ab5a1d4937c884a975c90f90fc619964cd740582
