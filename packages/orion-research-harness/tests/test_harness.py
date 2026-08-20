@@ -145,6 +145,33 @@ def _service_smoke_llm(workspace: ResearchWorkspace, request: CapabilityRequest)
     )
 
 
+def test_host_execution_failure_is_not_scientific_failure_evidence(tmp_path: Path):
+    workspace = ResearchWorkspace.initialize(tmp_path / "ws", project_root=tmp_path)
+    problem = {
+        "problem_id": "host-failure",
+        "question": "What can be concluded?",
+        "scope": "Host execution may fail.",
+        "initial_domain_ids": ["science"],
+        "success_criteria": ["Do not convert orchestration failure into scientific evidence."],
+    }
+
+    pending = run_problem(workspace, problem, max_iterations=1)
+    assert pending["status"] == "PENDING_CAPABILITY"
+    request = CapabilityRequest.from_dict(pending["request"])
+    workspace.ingest_result(
+        request.request_id,
+        success=False,
+        error="external host unavailable",
+        executor="test-host",
+    )
+
+    outcome = run_problem(workspace, problem, max_iterations=1)
+    assert outcome["status"] == "HOST_CAPABILITY_FAILED"
+    assert outcome["request"]["request_id"] == request.request_id
+    assert outcome["result"]["success"] is False
+    assert not workspace.run_ids()
+
+
 def test_canonical_orion_runtime_can_be_replayed_across_pending_host_requests(tmp_path: Path):
     workspace = ResearchWorkspace.initialize(tmp_path / "ws", project_root=tmp_path)
     problem = {
