@@ -36,15 +36,24 @@ jobs:
             texlive-bibtex-extra lmodern poppler-utils
       - name: Build fail-closed TMLR PDF
         run: bash papers/candidates/paper-09-structured-epistemic-learning/build_tmlr_pdf.sh
-      - name: PDF structural smoke
+      - name: PDF structural and anonymity smoke
         run: |
           PDF=papers/candidates/paper-09-structured-epistemic-learning/manuscript/main.pdf
           test -s "$PDF"
           pdfinfo "$PDF" | tee /tmp/p9-pdfinfo.txt
           pdftotext "$PDF" /tmp/p9-paper.txt
           grep -F 'When Structure Is the Model' /tmp/p9-paper.txt
-          grep -F 'Anonymous Authors' /tmp/p9-paper.txt
           ! grep -F 'PENDING_OFFICIAL_RECEIPT' /tmp/p9-paper.txt
+          # TMLR can suppress the literal author line in anonymous review mode.
+          # The source audit already requires \author{Anonymous Authors}; here
+          # additionally require that the rendered PDF carries no author metadata.
+          python - <<'PY'
+          from pathlib import Path
+          lines=Path('/tmp/p9-pdfinfo.txt').read_text().splitlines()
+          author=[line.split(':',1)[1].strip() for line in lines if line.startswith('Author:')]
+          if author != ['']:
+              raise SystemExit(f'non-empty PDF Author metadata: {author!r}')
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: p9-tmlr-pdf-${{ github.sha }}
