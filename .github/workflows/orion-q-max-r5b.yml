@@ -32,8 +32,13 @@ jobs:
           cd research/extensions/orion-q
           python max_r5c_n2_controlled_cost_development.py | tee /tmp/r5c-dev.txt
           grep '^ORIONQ_MAX_R5C_DEV=' /tmp/r5c-dev.txt
-      - name: Run exact 10-term controlled multiwindow N2 development
+      - name: Run exact 10-term controlled multiwindow N2 development diagnostic
         run: |
           cd research/extensions/orion-q
           python max_r5d_n2_controlled_multiwindow_development.py | tee /tmp/r5d-dev.txt
           grep '^ORIONQ_MAX_R5D_DEV=' /tmp/r5d-dev.txt
+      - name: Run true-incumbent exact 12-term N2 development
+        run: |
+          cd research/extensions/orion-q
+          python max_r5e_n2_true_incumbent_12term_development.py | tee /tmp/r5e-dev.txt
+          grep '^ORIONQ_MAX_R5E_DEV=' /tmp/r5e-dev.txt
