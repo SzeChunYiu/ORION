@@ -1,8 +1,8 @@
 # ORION-P3 independent claim / PDF audit
 
-Build subject before generated-package commit: `409ae91e60eb018fcb2576d1b0bc385fa2996424`.
+Build subject before generated-package commit: `f05086cd0352979d4f6dd91cd6be0b77dd149ff7`.
 Tracked PDF: `journal_package/manuscript.pdf`.
-PDF SHA256: `a61bae196eb4623d27858d2423f3d03b475c1c25d02a65f9b2e9f14773a4170a`.
+PDF SHA256: `badd279427cddba34bdf9ce9654642f21399a5a2b6368bf63fd6c5850a05e452`.
 Pages: `20`; bytes: `245216`.
 
 | ID | Claim | Artifact | Status |
