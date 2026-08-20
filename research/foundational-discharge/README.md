@@ -1,6 +1,6 @@
 # ORION foundational scientific-status programme
 
-This directory is the canonical home for the third-pass foundational research programme. It separates established bounded paper results, the scientific-discharge calculus, nearest-prior-art subtraction, the surviving factorization conjecture, the non-tautological normal-form theorem target, and the prospective external validation required for a field-level claim.
+This directory is the canonical home for the third-pass foundational research programme. It separates established bounded paper results, the scientific-discharge calculus, nearest-prior-art subtraction, the surviving factorization conjecture, the non-tautological normal-form theorem target, the current all-eight status-transition synthesis, and the prospective external validation required for a field-level claim.
 
 ## Canonical concepts
 
@@ -34,7 +34,7 @@ Do not use SDSP and SSTF as competing names for one object. SDSP is a theorem fa
 
 - `../publication/FOUNDATIONAL_POSITIVE_HYPOTHESIS_PASS_2026-08-20.md`
 
-P1–P4 and P6–P8 retain their original frozen hypotheses, protocols, outcomes, and claim ledgers. Their strongest positive successors are labelled separately.
+P1–P8 retain their original frozen hypotheses, protocols, outcomes, and claim ledgers. Their strongest positive successors are labelled separately.
 
 Allowed statuses include:
 
@@ -45,7 +45,23 @@ Allowed statuses include:
 
 A failed original hypothesis is never rewritten as though it predicted the observed result.
 
-### 2. Scientific-discharge theorem protocol
+### 2. Current all-eight status-transition synthesis
+
+- `ALL_EIGHT_STATUS_TRANSITION_THEOREM_V2.md`
+
+This is the current programme-level synthesis. It adds the P5 adoption-authority coordinate to the prior seven-paper sequence and treats the eight scientific transitions as
+
+`(R, K, I, V, A, C, T, U)`
+
+for reformulation, closure, identity, promotion, adoption, post-change certificate standing, closure transport, and cross-domain authority composition.
+
+Current terminal:
+
+`ALL_EIGHT_STATUS_TRANSITION_SCHEMA__SUPPORTED_BY_BOUNDED_INSTANTIATIONS__UNIVERSAL_THEOREM_NOT_YET_CLAIMED`
+
+Earlier V1 seven-paper artifacts remain historical records; they are not retroactively edited to imply P5 had already been closed.
+
+### 3. Scientific-discharge theorem protocol
 
 - `PROTOCOL_V1.md`
 
@@ -55,7 +71,7 @@ Current terminal:
 
 `SCIENTIFIC_DISCHARGE_CALCULUS__FOUNDATIONAL_THEOREM_TARGET__NOT_YET_UNIVERSAL`
 
-### 3. Nearest-prior-art subtraction and surviving residual
+### 4. Nearest-prior-art subtraction and surviving residual
 
 - `NEAREST_PRIOR_ART_AND_RESIDUAL_V1.md`
 
@@ -65,7 +81,7 @@ Current status:
 
 `HOSTILE_PRIOR_ART_PASS_COMPLETE__FOUNDATIONAL_RESIDUAL_NARROWED`
 
-### 4. Scientific-status normal-form theorem target
+### 5. Scientific-status normal-form theorem target
 
 - `NORMAL_FORM_THEOREM_TARGET_V1.md`
 
@@ -75,7 +91,7 @@ Current terminal:
 
 `SCIENTIFIC_STATUS_NORMAL_FORM__PROSPECTIVE_THEOREM_TARGET__UNPROVED`
 
-### 5. Cross-domain causal test
+### 6. Cross-domain causal test
 
 - `GRAND_CHALLENGE_V1.md`
 
@@ -89,7 +105,7 @@ Current status:
 
 The publication sequence is:
 
-`original hypothesis and terminal -> positive successor hypothesis and authority label -> cross-paper conjecture -> non-tautological theorem target -> prospective independent prediction and confirmation`
+`original hypothesis and terminal -> positive successor hypothesis and authority label -> all-eight bounded synthesis -> cross-paper conjecture -> non-tautological theorem target -> prospective independent prediction and confirmation`
 
 Retrospective compatibility with known paper outcomes is useful for theory construction but is not new confirmation. A universal or foundational claim requires the normal-form theorem, hidden falsifier suite, and cross-domain Grand Challenge to survive without outcome-conditioned changes.
 
@@ -100,7 +116,7 @@ The programme does not claim prize status, universal validity, or broad benefit 
 1. define a primitive scientific-workflow semantics rather than defining admissibility by the desired factors;
 2. prove normal-form completeness and certificate soundness for a nontrivial workflow class;
 3. establish factor non-substitutability, representation invariance, and composition;
-4. encode all registered paper decisions without paper-specific algorithms;
+4. encode all registered P1–P8 decisions without paper-specific algorithms;
 5. make new factor-specific predictions before outcome access;
 6. causally reduce unauthorized target transitions without clean-utility loss;
 7. obtain independent institutional and implementation replication on naturalistic artifacts and held-out domains;
