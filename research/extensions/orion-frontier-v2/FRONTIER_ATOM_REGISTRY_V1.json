@@ -1,0 +1,2038 @@
+{
+  "allowed_statuses": [
+    "ROOT",
+    "CONTROLLED_POSITIVE",
+    "PROTOCOL_FROZEN",
+    "OPEN",
+    "DONOR_SUBTRACTION",
+    "RUNTIME_GATED",
+    "BLOCKED",
+    "STOPPED"
+  ],
+  "base_main": "6460410595a14cf9894c9acd450ab2b649a3b858",
+  "frozen_at": "2026-08-20",
+  "governance": {
+    "novelty_authority": false,
+    "programme": "research/extensions/orion-frontier-v2/RECURSIVE_FRONTIER_RESEARCH_PROGRAMME_V1.md",
+    "recursive_calculus_terminal": "RECURSIVE_ATOM_STUDY_CALCULUS_FROZEN",
+    "scientific_authority": false,
+    "study_surface": "BoundedEpistemicAtomStudy.v2"
+  },
+  "nodes": [
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "procedural-reasoning",
+        "formal-math",
+        "agentic-systems",
+        "scientific-discovery"
+      ],
+      "donor_or_owner_ids": [
+        "P9",
+        "P10",
+        "predictive-v-information",
+        "knowledge-compilation",
+        "partial-evaluation",
+        "rational-metareasoning"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0",
+      "parent_id": "",
+      "priority": 100,
+      "protected_discriminator": "Cross-domain Pareto improvement under matched total resource accounting.",
+      "protocol_or_study_path": "research/extensions/orion-frontier-v2/RECURSIVE_FRONTIER_RESEARCH_PROGRAMME_V1.md",
+      "question": "Can state construction be treated as an allocatable computational resource jointly with model/inference/search/verification?",
+      "resource_axes": [
+        "compile",
+        "memory",
+        "model",
+        "inference",
+        "search",
+        "tools",
+        "verification",
+        "latency"
+      ],
+      "runtime_blocker": null,
+      "status": "ROOT",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "ATOM_INCREMENTAL_VALUE",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "procedural-reasoning",
+        "LLM",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "partial-evaluation",
+        "knowledge-compilation",
+        "QUMem",
+        "P9"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [
+        "research/extensions/orion-frontier-v2/P11_CONFIRMATORY_RESULT_RECEIPT_V1.md"
+      ],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P11",
+      "parent_id": "F0",
+      "priority": 95,
+      "protected_discriminator": "Fresh-query controlled worlds; fixed universal bank versus query-conditioned compilation with identical latent source.",
+      "protocol_or_study_path": "research/extensions/orion-frontier-v2/P11_QUERY_CONDITIONED_COMPILER_PROTOCOL_V1.md",
+      "question": "When the current query participates in state construction, what fixed-representation dimension/sample burden can be avoided?",
+      "resource_axes": [
+        "compile",
+        "state_dimension",
+        "sample",
+        "decoder_capacity"
+      ],
+      "runtime_blocker": null,
+      "status": "CONTROLLED_POSITIVE",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "ATOM_INCREMENTAL_VALUE",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "procedural-reasoning",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "partial-evaluation",
+        "task-oriented-feature-selection"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [
+        "research/extensions/orion-frontier-v2/P11B_CONFIRMATORY_RESULT_RECEIPT_V1.md"
+      ],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P11.B",
+      "parent_id": "F0.P11",
+      "priority": 100,
+      "protected_discriminator": "Final label is a learned majority of 5\u20137 exposed latent components; no component may equal/negate label.",
+      "protocol_or_study_path": "research/extensions/orion-frontier-v2/P11B_NO_ANSWER_LAUNDERING_PROTOCOL_V1.md",
+      "question": "Does query-conditioned compilation survive when the compiler is forbidden to output the answer or its negation?",
+      "resource_axes": [
+        "compile",
+        "state_dimension",
+        "sample",
+        "decoder_capacity"
+      ],
+      "runtime_blocker": null,
+      "status": "CONTROLLED_POSITIVE",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "database-workload",
+        "LLM-memory",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "knowledge-compilation",
+        "materialized-views",
+        "multi-query-optimization"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P11.MULTIQUERY",
+      "parent_id": "F0.P11",
+      "priority": 90,
+      "protected_discriminator": "Freeze query batch before compilation; compare union-rank state to universal state and per-query recompilation.",
+      "protocol_or_study_path": null,
+      "question": "For a batch of related queries, how does the rank/union of required state coordinates determine compiled state size and sample burden?",
+      "resource_axes": [
+        "compile",
+        "state_dimension",
+        "sample",
+        "cache"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "agent-memory",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "rational-inattention",
+        "rate-distortion",
+        "goal-conditioned-abstraction"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P11.UNCERTAIN_QUERY",
+      "parent_id": "F0.P11",
+      "priority": 98,
+      "protected_discriminator": "True query revealed only after state budget is spent; no post-reveal feature acquisition in primary arm.",
+      "protocol_or_study_path": null,
+      "question": "If the exact future query is unknown but a distribution/top-k set is known, what representation minimizes current cost plus expected future deficiency?",
+      "resource_axes": [
+        "compile",
+        "state_dimension",
+        "future_error",
+        "optionality"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "feature-acquisition",
+        "robust-optimization"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P11.MISSPEC",
+      "parent_id": "F0.P11",
+      "priority": 85,
+      "protected_discriminator": "Prospectively inject controlled missing/incorrect feature rates and measure graceful degradation/recovery.",
+      "protocol_or_study_path": null,
+      "question": "How robust is compiled state to compiler feature omissions or wrong query models?",
+      "resource_axes": [
+        "compile",
+        "state_dimension",
+        "error",
+        "recovery"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "representation-learning",
+        "feature-selection",
+        "context-compression"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P11.LEARNED",
+      "parent_id": "F0.P11",
+      "priority": 92,
+      "protected_discriminator": "Compiler trained without protected test answers; compare to oracle compiler and universal state on fresh tasks.",
+      "protocol_or_study_path": null,
+      "question": "Can a learned state compiler recover task-relevant coordinates without laundering protected labels?",
+      "resource_axes": [
+        "training",
+        "compile",
+        "state_dimension",
+        "sample",
+        "inference"
+      ],
+      "runtime_blocker": "Requires model runtime and contamination-safe train/test generator.",
+      "status": "RUNTIME_GATED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM"
+      ],
+      "donor_or_owner_ids": [
+        "predictive-v-information",
+        "kernel-methods",
+        "neural-representation-learning"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P11.NONLINEAR",
+      "parent_id": "F0.P11",
+      "priority": 90,
+      "protected_discriminator": "Same source and compiler menu; sweep decoder capacity under matched total compute.",
+      "protocol_or_study_path": null,
+      "question": "Do compilation gains survive stronger nonlinear downstream decoders, or are they a restricted-linear artifact?",
+      "resource_axes": [
+        "compile",
+        "decoder_capacity",
+        "sample",
+        "inference"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "procedural-reasoning",
+        "formal-math",
+        "LLM"
+      ],
+      "donor_or_owner_ids": [
+        "predictive-v-information",
+        "rational-metareasoning",
+        "rational-inattention"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P12",
+      "parent_id": "F0",
+      "priority": 99,
+      "protected_discriminator": "Match target quality while separately charging compilation, memory, model, inference/search, tools and verification.",
+      "protocol_or_study_path": "research/extensions/orion-frontier-v2/P12_ACCESSIBILITY_WORK_FRONTIER_PROTOCOL_V1.md",
+      "question": "What is the Pareto frontier for creating usable information once compiler cost is charged explicitly?",
+      "resource_axes": [
+        "compile",
+        "memory",
+        "model",
+        "inference",
+        "search",
+        "tools",
+        "verification",
+        "latency"
+      ],
+      "runtime_blocker": null,
+      "status": "PROTOCOL_FROZEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "rational-metareasoning",
+        "cost-sensitive-learning"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P12.COMPILE_COST",
+      "parent_id": "F0.P12",
+      "priority": 100,
+      "protected_discriminator": "Matched quality with one resource axis varied prospectively.",
+      "protocol_or_study_path": null,
+      "question": "How should state-construction operations be counted without hiding target computation inside preprocessing?",
+      "resource_axes": [
+        "compile_cost",
+        "quality"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "rational-metareasoning",
+        "cost-sensitive-learning"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P12.MEMORY",
+      "parent_id": "F0.P12",
+      "priority": 82,
+      "protected_discriminator": "Matched quality with one resource axis varied prospectively.",
+      "protocol_or_study_path": null,
+      "question": "When does smaller state memory compensate for extra compile work?",
+      "resource_axes": [
+        "memory",
+        "quality"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "rational-metareasoning",
+        "cost-sensitive-learning"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P12.MODEL",
+      "parent_id": "F0.P12",
+      "priority": 97,
+      "protected_discriminator": "Matched quality with one resource axis varied prospectively.",
+      "protocol_or_study_path": null,
+      "question": "When can representation compilation substitute for model parameters or interaction order?",
+      "resource_axes": [
+        "model",
+        "quality"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "rational-metareasoning",
+        "cost-sensitive-learning"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P12.INFERENCE",
+      "parent_id": "F0.P12",
+      "priority": 99,
+      "protected_discriminator": "Matched quality with one resource axis varied prospectively.",
+      "protocol_or_study_path": null,
+      "question": "When can representation compilation substitute for test-time tokens/iterations?",
+      "resource_axes": [
+        "inference",
+        "quality"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "rational-metareasoning",
+        "cost-sensitive-learning"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P12.SEARCH",
+      "parent_id": "F0.P12",
+      "priority": 95,
+      "protected_discriminator": "Matched quality with one resource axis varied prospectively.",
+      "protocol_or_study_path": null,
+      "question": "When can representation compilation substitute for search branching/depth?",
+      "resource_axes": [
+        "search",
+        "quality"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "rational-metareasoning",
+        "cost-sensitive-learning"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P12.VERIFY",
+      "parent_id": "F0.P12",
+      "priority": 95,
+      "protected_discriminator": "Matched quality with one resource axis varied prospectively.",
+      "protocol_or_study_path": null,
+      "question": "When can representation compilation reduce verifier/tool calls without reducing validity?",
+      "resource_axes": [
+        "verify",
+        "quality"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "rational-metareasoning",
+        "cost-sensitive-learning"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P12.ENERGY",
+      "parent_id": "F0.P12",
+      "priority": 75,
+      "protected_discriminator": "Matched quality with one resource axis varied prospectively.",
+      "protocol_or_study_path": null,
+      "question": "Do representation choices change measured energy/wall cost after controlling hardware/runtime?",
+      "resource_axes": [
+        "energy",
+        "quality"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "adaptive-test-time-compute",
+        "rational-metareasoning",
+        "context-engineering"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P13",
+      "parent_id": "F0",
+      "priority": 100,
+      "protected_discriminator": "Same total budget; fixed/fixed, compute-only, representation-only, joint, and oracle arms.",
+      "protocol_or_study_path": "research/extensions/orion-frontier-v2/P13_DUAL_SCALING_PROTOCOL_V1.md",
+      "question": "Can an agent jointly allocate state-compilation and reasoning/search compute better than allocating either alone?",
+      "resource_axes": [
+        "compile",
+        "inference",
+        "search",
+        "quality"
+      ],
+      "runtime_blocker": null,
+      "status": "PROTOCOL_FROZEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "adaptive-compute",
+        "metareasoning"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P13.POLICY",
+      "parent_id": "F0.P13",
+      "priority": 95,
+      "protected_discriminator": "Pre-frozen budget and held-out difficulty/domain blocks.",
+      "protocol_or_study_path": null,
+      "question": "Can a learned allocator predict whether to compile state or think/search longer on a per-instance basis?",
+      "resource_axes": [
+        "compile",
+        "inference",
+        "quality"
+      ],
+      "runtime_blocker": "Requires real LLM or native-search runtime.",
+      "status": "RUNTIME_GATED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "adaptive-compute",
+        "metareasoning"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P13.SHIFT",
+      "parent_id": "F0.P13",
+      "priority": 88,
+      "protected_discriminator": "Pre-frozen budget and held-out difficulty/domain blocks.",
+      "protocol_or_study_path": null,
+      "question": "Does the joint allocation policy survive distribution shift in task difficulty/query type?",
+      "resource_axes": [
+        "compile",
+        "inference",
+        "quality"
+      ],
+      "runtime_blocker": "Requires real LLM or native-search runtime.",
+      "status": "RUNTIME_GATED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "adaptive-compute",
+        "metareasoning"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P13.ANYTIME",
+      "parent_id": "F0.P13",
+      "priority": 88,
+      "protected_discriminator": "Pre-frozen budget and held-out difficulty/domain blocks.",
+      "protocol_or_study_path": null,
+      "question": "Does state compilation alter time-to-first-correct and anytime accuracy curves?",
+      "resource_axes": [
+        "compile",
+        "inference",
+        "quality"
+      ],
+      "runtime_blocker": "Requires real LLM or native-search runtime.",
+      "status": "RUNTIME_GATED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "adaptive-compute",
+        "metareasoning"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P13.COMPLEMENT",
+      "parent_id": "F0.P13",
+      "priority": 88,
+      "protected_discriminator": "Pre-frozen budget and held-out difficulty/domain blocks.",
+      "protocol_or_study_path": null,
+      "question": "Where are compilation and reasoning complementary rather than substitutable?",
+      "resource_axes": [
+        "compile",
+        "inference",
+        "quality"
+      ],
+      "runtime_blocker": "Requires real LLM or native-search runtime.",
+      "status": "RUNTIME_GATED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "procedural-reasoning",
+        "formal-math",
+        "agents"
+      ],
+      "donor_or_owner_ids": [
+        "Blackwell-sufficiency",
+        "causal-state-abstraction",
+        "rate-distortion-RL"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P14",
+      "parent_id": "F0",
+      "priority": 98,
+      "protected_discriminator": "Lower-rung performance matched before evaluating blinded higher-rung task.",
+      "protocol_or_study_path": "research/extensions/orion-frontier-v2/P14_SUFFICIENCY_LADDER_PROTOCOL_V1.md",
+      "question": "How does a state sufficient for one responsibility fail when reused for prediction, decision, intervention, verification, or repair?",
+      "resource_axes": [
+        "state_dimension",
+        "compile",
+        "higher_rung_error",
+        "recovery"
+      ],
+      "runtime_blocker": null,
+      "status": "PROTOCOL_FROZEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "formal-math",
+        "agents"
+      ],
+      "donor_or_owner_ids": [
+        "causal-abstraction",
+        "control-sufficiency",
+        "debugging"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P14.PREDICT_DECIDE",
+      "parent_id": "F0.P14",
+      "priority": 88,
+      "protected_discriminator": "Matched lower-rung outcome with protected higher-rung divergence.",
+      "protocol_or_study_path": null,
+      "question": "Can two states match predictive accuracy but differ in decision/control value?",
+      "resource_axes": [
+        "state_dimension",
+        "higher_rung_error",
+        "recovery"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "formal-math",
+        "agents"
+      ],
+      "donor_or_owner_ids": [
+        "causal-abstraction",
+        "control-sufficiency",
+        "debugging"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P14.DECIDE_INTERVENE",
+      "parent_id": "F0.P14",
+      "priority": 88,
+      "protected_discriminator": "Matched lower-rung outcome with protected higher-rung divergence.",
+      "protocol_or_study_path": null,
+      "question": "Can two states support the same action choice yet differ under interventions/counterfactuals?",
+      "resource_axes": [
+        "state_dimension",
+        "higher_rung_error",
+        "recovery"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "formal-math",
+        "agents"
+      ],
+      "donor_or_owner_ids": [
+        "causal-abstraction",
+        "control-sufficiency",
+        "debugging"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P14.INTERVENE_VERIFY",
+      "parent_id": "F0.P14",
+      "priority": 88,
+      "protected_discriminator": "Matched lower-rung outcome with protected higher-rung divergence.",
+      "protocol_or_study_path": null,
+      "question": "Can intervention-sufficient state omit evidence needed for verification?",
+      "resource_axes": [
+        "state_dimension",
+        "higher_rung_error",
+        "recovery"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "formal-math",
+        "agents"
+      ],
+      "donor_or_owner_ids": [
+        "causal-abstraction",
+        "control-sufficiency",
+        "debugging"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P14.VERIFY_REPAIR",
+      "parent_id": "F0.P14",
+      "priority": 95,
+      "protected_discriminator": "Matched lower-rung outcome with protected higher-rung divergence.",
+      "protocol_or_study_path": null,
+      "question": "Can verification-sufficient state omit causal/localization information needed for repair?",
+      "resource_axes": [
+        "state_dimension",
+        "higher_rung_error",
+        "recovery"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "formal-math",
+        "agents"
+      ],
+      "donor_or_owner_ids": [
+        "causal-abstraction",
+        "control-sufficiency",
+        "debugging"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P14.DEBT",
+      "parent_id": "F0.P14",
+      "priority": 95,
+      "protected_discriminator": "Matched lower-rung outcome with protected higher-rung divergence.",
+      "protocol_or_study_path": null,
+      "question": "Can sufficiency debt predict when an aggressively compressed state must be reopened to raw evidence?",
+      "resource_axes": [
+        "state_dimension",
+        "higher_rung_error",
+        "recovery"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "ATOM_INCREMENTAL_VALUE",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "agent-memory",
+        "databases",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "knowledge-compilation",
+        "materialized-views",
+        "caching",
+        "context-compression"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [
+        "research/extensions/orion-frontier-v2/P15_STATE_OPTIONALITY_RESULT_RECEIPT_V1.md"
+      ],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P15",
+      "parent_id": "F0",
+      "priority": 94,
+      "protected_discriminator": "Workload frozen before policy evaluation; compare future-query coverage/cost under identical source.",
+      "protocol_or_study_path": "research/extensions/orion-frontier-v2/P15_STATE_OPTIONALITY_PHASE_DIAGRAM_PROTOCOL_V1.md",
+      "question": "When should an agent compile on demand, cache compiled state, retain raw evidence, or materialize a universal state?",
+      "resource_axes": [
+        "compile",
+        "cache",
+        "memory",
+        "future_queries",
+        "latency"
+      ],
+      "runtime_blocker": null,
+      "status": "CONTROLLED_POSITIVE",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "agent-memory",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "caching",
+        "materialized-views",
+        "online-algorithms"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P15.EVICT",
+      "parent_id": "F0.P15",
+      "priority": 88,
+      "protected_discriminator": "Prospectively generated workload with held-out future query sequence.",
+      "protocol_or_study_path": null,
+      "question": "What cache-eviction policy minimizes recompilation under nonstationary query streams?",
+      "resource_axes": [
+        "compile",
+        "cache",
+        "memory",
+        "future_coverage"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "agent-memory",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "caching",
+        "materialized-views",
+        "online-algorithms"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P15.HORIZON",
+      "parent_id": "F0.P15",
+      "priority": 88,
+      "protected_discriminator": "Prospectively generated workload with held-out future query sequence.",
+      "protocol_or_study_path": null,
+      "question": "How should a state policy behave when future query horizon is unknown?",
+      "resource_axes": [
+        "compile",
+        "cache",
+        "memory",
+        "future_coverage"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "agent-memory",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "caching",
+        "materialized-views",
+        "online-algorithms"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P15.ENTROPY",
+      "parent_id": "F0.P15",
+      "priority": 88,
+      "protected_discriminator": "Prospectively generated workload with held-out future query sequence.",
+      "protocol_or_study_path": null,
+      "question": "Is workload entropy/diversity a sufficient predictor of materialize-versus-compile crossover?",
+      "resource_axes": [
+        "compile",
+        "cache",
+        "memory",
+        "future_coverage"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "agent-memory",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "caching",
+        "materialized-views",
+        "online-algorithms"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P15.RAW_RETENTION",
+      "parent_id": "F0.P15",
+      "priority": 88,
+      "protected_discriminator": "Prospectively generated workload with held-out future query sequence.",
+      "protocol_or_study_path": null,
+      "question": "When is retaining lossless raw state worth memory cost for future recoverability?",
+      "resource_axes": [
+        "compile",
+        "cache",
+        "memory",
+        "future_coverage"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "agent-memory",
+        "formal-math"
+      ],
+      "donor_or_owner_ids": [
+        "caching",
+        "materialized-views",
+        "online-algorithms"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P15.SHARED",
+      "parent_id": "F0.P15",
+      "priority": 88,
+      "protected_discriminator": "Prospectively generated workload with held-out future query sequence.",
+      "protocol_or_study_path": null,
+      "question": "How should overlapping compiled features be shared across related query families?",
+      "resource_axes": [
+        "compile",
+        "cache",
+        "memory",
+        "future_coverage"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "controlled-decision",
+        "LLM"
+      ],
+      "donor_or_owner_ids": [
+        "Blackwell",
+        "Le-Cam-deficiency",
+        "predictive-v-information",
+        "rational-metareasoning",
+        "cost-of-information"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P16",
+      "parent_id": "F0",
+      "priority": 100,
+      "protected_discriminator": "Find pair of interfaces whose classical informativeness relation differs from compile-decide resource preference without hiding utility in compiler.",
+      "protocol_or_study_path": null,
+      "question": "Can information structures be ordered when agents may first buy a state-compilation action and then act with a bounded decoder under a joint budget?",
+      "resource_axes": [
+        "compile",
+        "decoder",
+        "decision_loss",
+        "budget"
+      ],
+      "runtime_blocker": null,
+      "status": "DONOR_SUBTRACTION",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "controlled-decision"
+      ],
+      "donor_or_owner_ids": [
+        "Blackwell",
+        "resource-theory"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P16.PREORDER",
+      "parent_id": "F0.P16",
+      "priority": 97,
+      "protected_discriminator": "Exact finite decision problem with explicit compiler/decoder costs and no label leakage.",
+      "protocol_or_study_path": null,
+      "question": "Does a dynamic compile-decide dominance relation satisfy reflexivity/transitivity under explicit compiler composition cost?",
+      "resource_axes": [
+        "compile",
+        "decoder",
+        "decision_loss"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "controlled-decision"
+      ],
+      "donor_or_owner_ids": [
+        "Le-Cam-deficiency",
+        "Blackwell"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P16.DEFICIENCY",
+      "parent_id": "F0.P16",
+      "priority": 90,
+      "protected_discriminator": "Exact finite decision problem with explicit compiler/decoder costs and no label leakage.",
+      "protocol_or_study_path": null,
+      "question": "Can a resource-bounded deficiency measure quantify extra compile/decoder work needed to simulate one state interface with another?",
+      "resource_axes": [
+        "compile",
+        "decoder",
+        "decision_loss"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "controlled-decision"
+      ],
+      "donor_or_owner_ids": [
+        "Blackwell",
+        "predictive-v-information"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P16.REVERSAL",
+      "parent_id": "F0.P16",
+      "priority": 97,
+      "protected_discriminator": "Exact finite decision problem with explicit compiler/decoder costs and no label leakage.",
+      "protocol_or_study_path": null,
+      "question": "Can classical Blackwell-dominant raw evidence be resource-inferior to a compiled garbling for every policy in a bounded decoder family?",
+      "resource_axes": [
+        "compile",
+        "decoder",
+        "decision_loss"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "controlled-decision"
+      ],
+      "donor_or_owner_ids": [
+        "rational-metareasoning",
+        "costly-information"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.P16.MENU",
+      "parent_id": "F0.P16",
+      "priority": 90,
+      "protected_discriminator": "Exact finite decision problem with explicit compiler/decoder costs and no label leakage.",
+      "protocol_or_study_path": null,
+      "question": "How does allowing a menu of compiler actions change informativeness and value-of-computation ordering?",
+      "resource_axes": [
+        "compile",
+        "decoder",
+        "decision_loss"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "Lean"
+      ],
+      "donor_or_owner_ids": [
+        "Lean-proof-state-search",
+        "TacMiner",
+        "P10",
+        "#618-native-state"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.FORMAL",
+      "parent_id": "F0",
+      "priority": 99,
+      "protected_discriminator": "Native-state incremental value must first pass; compare full vs compiled state under matched Lean verifier budget.",
+      "protocol_or_study_path": null,
+      "question": "Can goal/action/repair-conditioned compilation of native proof state reduce model/search/verifier cost beyond full proof state?",
+      "resource_axes": [
+        "compile",
+        "state_tokens",
+        "model",
+        "search",
+        "verifier_calls"
+      ],
+      "runtime_blocker": "Blocked on #618 P10 native-state outcome.",
+      "status": "RUNTIME_GATED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "Lean"
+      ],
+      "donor_or_owner_ids": [
+        "P10",
+        "#618",
+        "Lean"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.FORMAL.GOAL",
+      "parent_id": "F0.FORMAL",
+      "priority": 94,
+      "protected_discriminator": "Exact native Lean receipt with held-out modules/theorems.",
+      "protocol_or_study_path": null,
+      "question": "Compile state conditioned on current theorem goal.",
+      "resource_axes": [
+        "compile",
+        "state",
+        "search",
+        "verifier_calls"
+      ],
+      "runtime_blocker": "Requires native-state prerequisite.",
+      "status": "BLOCKED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "Lean"
+      ],
+      "donor_or_owner_ids": [
+        "P10",
+        "#618",
+        "Lean"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.FORMAL.ACTION",
+      "parent_id": "F0.FORMAL",
+      "priority": 94,
+      "protected_discriminator": "Exact native Lean receipt with held-out modules/theorems.",
+      "protocol_or_study_path": null,
+      "question": "Compile state conditioned on candidate action family.",
+      "resource_axes": [
+        "compile",
+        "state",
+        "search",
+        "verifier_calls"
+      ],
+      "runtime_blocker": "Requires native-state prerequisite.",
+      "status": "BLOCKED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "Lean"
+      ],
+      "donor_or_owner_ids": [
+        "P10",
+        "#618",
+        "Lean"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.FORMAL.REPAIR",
+      "parent_id": "F0.FORMAL",
+      "priority": 94,
+      "protected_discriminator": "Exact native Lean receipt with held-out modules/theorems.",
+      "protocol_or_study_path": null,
+      "question": "Compile failed proof state conditioned on verifier repair query.",
+      "resource_axes": [
+        "compile",
+        "state",
+        "search",
+        "verifier_calls"
+      ],
+      "runtime_blocker": "Requires native-state prerequisite.",
+      "status": "BLOCKED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "Lean"
+      ],
+      "donor_or_owner_ids": [
+        "P10",
+        "#618",
+        "Lean"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.FORMAL.ABSTRACTION",
+      "parent_id": "F0.FORMAL",
+      "priority": 94,
+      "protected_discriminator": "Exact native Lean receipt with held-out modules/theorems.",
+      "protocol_or_study_path": null,
+      "question": "Jointly choose proof-action granularity and state granularity.",
+      "resource_axes": [
+        "compile",
+        "state",
+        "search",
+        "verifier_calls"
+      ],
+      "runtime_blocker": "Requires native-state prerequisite.",
+      "status": "BLOCKED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "Lean"
+      ],
+      "donor_or_owner_ids": [
+        "P10",
+        "#618",
+        "Lean"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.FORMAL.SEARCH",
+      "parent_id": "F0.FORMAL",
+      "priority": 94,
+      "protected_discriminator": "Exact native Lean receipt with held-out modules/theorems.",
+      "protocol_or_study_path": null,
+      "question": "Allocate compilation versus proof search expansions under one budget.",
+      "resource_axes": [
+        "compile",
+        "state",
+        "search",
+        "verifier_calls"
+      ],
+      "runtime_blocker": "Requires native-state prerequisite.",
+      "status": "BLOCKED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM"
+      ],
+      "donor_or_owner_ids": [
+        "State-Design-Matters",
+        "ACON",
+        "ACE",
+        "QUMem",
+        "#618-LLM"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.LLM",
+      "parent_id": "F0",
+      "priority": 100,
+      "protected_discriminator": "Real open-weight model family, matched source information and total budget, hostile token/ordering/symbol controls.",
+      "protocol_or_study_path": null,
+      "question": "Do active state-compilation policies improve real LLM reasoning/agents under matched total tokens/compute?",
+      "resource_axes": [
+        "compile",
+        "input_tokens",
+        "output_tokens",
+        "model_size",
+        "latency"
+      ],
+      "runtime_blocker": "Await #618 Qwen scaling outcomes.",
+      "status": "RUNTIME_GATED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM"
+      ],
+      "donor_or_owner_ids": [
+        "agent-context",
+        "adaptive-compute",
+        "#618"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.LLM.MULTITURN",
+      "parent_id": "F0.LLM",
+      "priority": 88,
+      "protected_discriminator": "Matched real-model runtime with exact tokenizer/resource receipts.",
+      "protocol_or_study_path": null,
+      "question": "Does active compilation improve long-horizon state maintenance across turns?",
+      "resource_axes": [
+        "compile",
+        "tokens",
+        "model_size",
+        "latency"
+      ],
+      "runtime_blocker": "Requires real-model baseline outcome.",
+      "status": "BLOCKED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM"
+      ],
+      "donor_or_owner_ids": [
+        "agent-context",
+        "adaptive-compute",
+        "#618"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.LLM.TOOLS",
+      "parent_id": "F0.LLM",
+      "priority": 88,
+      "protected_discriminator": "Matched real-model runtime with exact tokenizer/resource receipts.",
+      "protocol_or_study_path": null,
+      "question": "Can tool-output state compilation reduce context without hiding tool-compute or answer cues?",
+      "resource_axes": [
+        "compile",
+        "tokens",
+        "model_size",
+        "latency"
+      ],
+      "runtime_blocker": "Requires real-model baseline outcome.",
+      "status": "BLOCKED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM"
+      ],
+      "donor_or_owner_ids": [
+        "agent-context",
+        "adaptive-compute",
+        "#618"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.LLM.MEMORY",
+      "parent_id": "F0.LLM",
+      "priority": 88,
+      "protected_discriminator": "Matched real-model runtime with exact tokenizer/resource receipts.",
+      "protocol_or_study_path": null,
+      "question": "Can compile/cache/raw-retain policy improve agent memory under future query uncertainty?",
+      "resource_axes": [
+        "compile",
+        "tokens",
+        "model_size",
+        "latency"
+      ],
+      "runtime_blocker": "Requires real-model baseline outcome.",
+      "status": "BLOCKED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM"
+      ],
+      "donor_or_owner_ids": [
+        "agent-context",
+        "adaptive-compute",
+        "#618"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.LLM.SCALE",
+      "parent_id": "F0.LLM",
+      "priority": 96,
+      "protected_discriminator": "Matched real-model runtime with exact tokenizer/resource receipts.",
+      "protocol_or_study_path": null,
+      "question": "Does state compilation substitute for model size across a real open-weight family?",
+      "resource_axes": [
+        "compile",
+        "tokens",
+        "model_size",
+        "latency"
+      ],
+      "runtime_blocker": "Requires real-model baseline outcome.",
+      "status": "BLOCKED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "LLM"
+      ],
+      "donor_or_owner_ids": [
+        "agent-context",
+        "adaptive-compute",
+        "#618"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.LLM.TTC",
+      "parent_id": "F0.LLM",
+      "priority": 96,
+      "protected_discriminator": "Matched real-model runtime with exact tokenizer/resource receipts.",
+      "protocol_or_study_path": null,
+      "question": "Does state compilation substitute for test-time reasoning tokens?",
+      "resource_axes": [
+        "compile",
+        "tokens",
+        "model_size",
+        "latency"
+      ],
+      "runtime_blocker": "Requires real-model baseline outcome.",
+      "status": "BLOCKED",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "scientific-discovery"
+      ],
+      "donor_or_owner_ids": [
+        "AI-Scientist",
+        "SciResearcher",
+        "ORION-recursive-atoms",
+        "P4/P8"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.SCI",
+      "parent_id": "F0",
+      "priority": 93,
+      "protected_discriminator": "Hidden held-out scientific/discovery contracts with external verifier and no protected-answer access.",
+      "protocol_or_study_path": null,
+      "question": "Can scientific agents compile task-specific epistemic state that improves discovery/verification without discarding future scientific optionality?",
+      "resource_axes": [
+        "compile",
+        "literature",
+        "experiments",
+        "reasoning",
+        "verification"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "scientific-discovery"
+      ],
+      "donor_or_owner_ids": [
+        "automated-science",
+        "ORION-failure-atoms",
+        "ORION-Jump"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.SCI.LITERATURE",
+      "parent_id": "F0.SCI",
+      "priority": 86,
+      "protected_discriminator": "External/protected scientific verifier; matched baseline research budget.",
+      "protocol_or_study_path": null,
+      "question": "Compile literature into claim-relative state while preserving citation/provenance and future question optionality.",
+      "resource_axes": [
+        "compile",
+        "research_tokens",
+        "tool_calls",
+        "verification"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "scientific-discovery"
+      ],
+      "donor_or_owner_ids": [
+        "automated-science",
+        "ORION-failure-atoms",
+        "ORION-Jump"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.SCI.HYPOTHESIS",
+      "parent_id": "F0.SCI",
+      "priority": 86,
+      "protected_discriminator": "External/protected scientific verifier; matched baseline research budget.",
+      "protocol_or_study_path": null,
+      "question": "Compile evidence state conditioned on one hypothesis without erasing viable alternatives.",
+      "resource_axes": [
+        "compile",
+        "research_tokens",
+        "tool_calls",
+        "verification"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "scientific-discovery"
+      ],
+      "donor_or_owner_ids": [
+        "automated-science",
+        "ORION-failure-atoms",
+        "ORION-Jump"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.SCI.EXPERIMENT",
+      "parent_id": "F0.SCI",
+      "priority": 86,
+      "protected_discriminator": "External/protected scientific verifier; matched baseline research budget.",
+      "protocol_or_study_path": null,
+      "question": "Compile experiment state conditioned on a discriminator under matched lab/tool budget.",
+      "resource_axes": [
+        "compile",
+        "research_tokens",
+        "tool_calls",
+        "verification"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "scientific-discovery"
+      ],
+      "donor_or_owner_ids": [
+        "automated-science",
+        "ORION-failure-atoms",
+        "ORION-Jump"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.SCI.FAILURE",
+      "parent_id": "F0.SCI",
+      "priority": 86,
+      "protected_discriminator": "External/protected scientific verifier; matched baseline research budget.",
+      "protocol_or_study_path": null,
+      "question": "Compile scoped negative knowledge to prevent repeated dead ends without harmful transfer.",
+      "resource_axes": [
+        "compile",
+        "research_tokens",
+        "tool_calls",
+        "verification"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "scientific-discovery"
+      ],
+      "donor_or_owner_ids": [
+        "automated-science",
+        "ORION-failure-atoms",
+        "ORION-Jump"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.SCI.CONCEPT",
+      "parent_id": "F0.SCI",
+      "priority": 86,
+      "protected_discriminator": "External/protected scientific verifier; matched baseline research budget.",
+      "protocol_or_study_path": null,
+      "question": "Compile/transform representation to expose a novel concept while preserving correspondence and external authority.",
+      "resource_axes": [
+        "compile",
+        "research_tokens",
+        "tool_calls",
+        "verification"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "meta-science"
+      ],
+      "donor_or_owner_ids": [
+        "AM",
+        "EURISKO",
+        "AI-Scientist",
+        "recursive-meta-discovery",
+        "ORION-#507"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.META",
+      "parent_id": "F0",
+      "priority": 97,
+      "protected_discriminator": "Hidden benchmark of donor-owned/subsumed/interaction-only/novel-residual atoms; matched token/search/tool budget.",
+      "protocol_or_study_path": "research/extensions/orion-frontier-v2/RECURSIVE_FRONTIER_RESEARCH_PROGRAMME_V1.md",
+      "question": "Does recursive atom governance improve research quality versus flat search/brainstorming under a matched research budget?",
+      "resource_axes": [
+        "research_tokens",
+        "web_queries",
+        "tool_calls",
+        "time",
+        "false_novelty",
+        "discovery_quality"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "meta-science"
+      ],
+      "donor_or_owner_ids": [
+        "ORION-#507",
+        "rational-metareasoning",
+        "AI-scientist"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.META.DONOR",
+      "parent_id": "F0.META",
+      "priority": 91,
+      "protected_discriminator": "Contamination-safe hidden atom tasks with external scoring.",
+      "protocol_or_study_path": null,
+      "question": "Does recursion find stronger prior ownership and reduce false novelty?",
+      "resource_axes": [
+        "research_budget",
+        "false_novelty",
+        "true_residual",
+        "negative_reuse"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "meta-science"
+      ],
+      "donor_or_owner_ids": [
+        "ORION-#507",
+        "rational-metareasoning",
+        "AI-scientist"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.META.DECOMP",
+      "parent_id": "F0.META",
+      "priority": 91,
+      "protected_discriminator": "Contamination-safe hidden atom tasks with external scoring.",
+      "protocol_or_study_path": null,
+      "question": "Does recursion decompose monolithic candidate atoms into better protected discriminators?",
+      "resource_axes": [
+        "research_budget",
+        "false_novelty",
+        "true_residual",
+        "negative_reuse"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "meta-science"
+      ],
+      "donor_or_owner_ids": [
+        "ORION-#507",
+        "rational-metareasoning",
+        "AI-scientist"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.META.NEGATIVE",
+      "parent_id": "F0.META",
+      "priority": 91,
+      "protected_discriminator": "Contamination-safe hidden atom tasks with external scoring.",
+      "protocol_or_study_path": null,
+      "question": "Does negative-history reuse reduce repeated dead ends without suppressing reopened opportunities?",
+      "resource_axes": [
+        "research_budget",
+        "false_novelty",
+        "true_residual",
+        "negative_reuse"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "meta-science"
+      ],
+      "donor_or_owner_ids": [
+        "ORION-#507",
+        "rational-metareasoning",
+        "AI-scientist"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.META.BUDGET",
+      "parent_id": "F0.META",
+      "priority": 91,
+      "protected_discriminator": "Contamination-safe hidden atom tasks with external scoring.",
+      "protocol_or_study_path": null,
+      "question": "Can a metareasoner allocate research budget among theory, experiments, literature, and replication better than a fixed schedule?",
+      "resource_axes": [
+        "research_budget",
+        "false_novelty",
+        "true_residual",
+        "negative_reuse"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    },
+    {
+      "authority_owner_id": "external-novelty-and-scientific-authority",
+      "candidate_disposition": "CANNOT_CHECK",
+      "children_expected": true,
+      "cross_domain_targets": [
+        "meta-science"
+      ],
+      "donor_or_owner_ids": [
+        "ORION-#507",
+        "rational-metareasoning",
+        "AI-scientist"
+      ],
+      "evaluator_id": "orion-frontier-independent-evaluator-v1",
+      "evidence_receipt_paths": [],
+      "grants_novelty_authority": false,
+      "grants_scientific_authority": false,
+      "id": "F0.META.STOP",
+      "parent_id": "F0.META",
+      "priority": 91,
+      "protected_discriminator": "Contamination-safe hidden atom tasks with external scoring.",
+      "protocol_or_study_path": null,
+      "question": "Do formal recursion-stop rules prevent unproductive over-decomposition without missing real residuals?",
+      "resource_axes": [
+        "research_budget",
+        "false_novelty",
+        "true_residual",
+        "negative_reuse"
+      ],
+      "runtime_blocker": null,
+      "status": "OPEN",
+      "stop_reason": null
+    }
+  ],
+  "schema": "ORION.FrontierAtomRegistry.v1"
+}
