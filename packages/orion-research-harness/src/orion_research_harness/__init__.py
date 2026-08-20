@@ -5,6 +5,7 @@ from .broker import (
     BrokerRetrievalProvider,
     BrokerVerificationProvider,
     CapabilityBroker,
+    HostCapabilityFailed,
     HostCapabilityRequired,
 )
 from .campaign_control import decide_campaign, validate_manifest
@@ -24,6 +25,7 @@ __all__ = [
     "CapabilityBroker",
     "CapabilityRequest",
     "CapabilityResult",
+    "HostCapabilityFailed",
     "HostCapabilityRequired",
     "ProtectedReference",
     "ResearchWorkspace",
