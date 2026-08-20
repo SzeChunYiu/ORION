@@ -1,0 +1,37 @@
+name: p3-hash-refresh
+
+on:
+  push:
+    branches:
+      - shadow/papers-p1-p10-binding-sync-20260820
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: shadow/papers-p1-p10-binding-sync-20260820
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regenerate journal-package hashes
+        run: python research/paper-programme-v1/journal_package/check_journal_package.py --write-hashes
+      - name: Verify journal packages
+        run: python research/paper-programme-v1/journal_package/check_journal_package.py
+      - name: Commit generated hashes
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo 'No journal hash drift.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add papers/paper-*/journal_package/SHA256SUMS
+          git commit -m 'Refresh journal package hashes after P3 reference repair'
+          git push origin HEAD:shadow/papers-p1-p10-binding-sync-20260820
