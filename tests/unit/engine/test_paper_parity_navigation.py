@@ -19,21 +19,26 @@ CORE = {
 }
 
 
-def test_normal_orion_registry_retains_every_phase1_donor_family():
+def test_normal_orion_registry_retains_all_public_and_engineering_donors():
     registry = normal_orion_donor_registry()
-    assert len(registry.capabilities) == 24
+    assert len(registry.capabilities) == 44  # 24 public families + E1-E20
+    assert registry.registry_id == "orion:donors:normal:v2"
     assert registry.digest
     assert all(item.can_carry_scientific_authority is False for item in registry.capabilities)
     deferred = registry.deferred_reopen_obligations()
     assert deferred
     assert all(item.reopen_trigger for item in deferred)
-    assert any(item.capability_id == "rakl:context_compiler" for item in registry.capabilities)
-    assert any(item.capability_id == "rakl:route_family_health" for item in registry.capabilities)
+    ids = {item.capability_id for item in registry.capabilities}
+    assert "rakl:context_compiler" in ids
+    assert "rakl:route_family_health" in ids
+    assert {f"rakl-engineering:E{i}" for i in range(1, 21)} <= ids
 
 
-def test_orion_q_inherits_normal_donors_and_all_quantum_specialists():
+def test_orion_q_inherits_all_normal_donors_and_all_quantum_specialists():
     normal = normal_orion_donor_registry()
     quantum = orion_q_donor_registry()
+    assert len(quantum.capabilities) == 57
+    assert quantum.registry_id == "orion:donors:orion-q:v2"
     assert len(quantum.capabilities) == len(normal.capabilities) + 13
     normal_ids = {item.capability_id for item in normal.capabilities}
     quantum_ids = {item.capability_id for item in quantum.capabilities}
@@ -58,7 +63,7 @@ def test_normal_navigation_retains_complete_atom_graph_and_active_core():
     assert len(plan.atoms) >= 59
     assert CORE <= set(plan.active_fibre_ids)
     assert plan.profile == "orion"
-    assert plan.donor_registry_id == "orion:donors:normal:v1"
+    assert plan.donor_registry_id == "orion:donors:normal:v2"
     assert plan.plan_digest
     assert plan.atomization_digest
     assert plan.donor_registry_digest
@@ -78,7 +83,7 @@ def test_quantum_navigation_uses_quantum_supersystem_without_dropping_core():
     plan.validate()
     assert CORE <= set(plan.active_fibre_ids)
     assert plan.profile == "orion-q"
-    assert plan.donor_registry_id == "orion:donors:orion-q:v1"
+    assert plan.donor_registry_id == "orion:donors:orion-q:v2"
     donor_ids = {
         donor_id
         for route in plan.fibre_routes
