@@ -64,6 +64,34 @@ orion-harness pending .research
 orion-harness show-request .research hostreq:...
 ```
 
+## Persistent scientific campaigns
+
+Long-lived research programmes use the **same package and receipt boundary**. A campaign is a frozen manifest containing phase-local responsibility hypotheses, interface checks, revision mechanics, computation actions, native selected-id → capability bindings, protected references and evidence-admission rules.
+
+The shared campaign engine performs:
+
+```text
+CampaignState
+  -> production Self-ORION responsibility/interface/revision/computation control
+  -> selected action/revision id
+  -> frozen capability registry
+  -> ordinary HostCapabilityRequest / HostCapabilityResult
+  -> declared evidence extraction only
+  -> next immutable CampaignState
+  -> replayable transition receipt
+```
+
+Domain-specific semantics live under `orion_research_harness.domains`; they do not replace the generic broker/workspace/runner. ORION-Q is the first integrated live campaign.
+
+```bash
+orion-harness campaign-builtins
+orion-harness campaign-start .research orion-q:max-r6-live
+orion-harness campaign-run .research orion-q:max-r6-live
+orion-harness campaign-state .research orion-q:max-r6-live
+```
+
+Safe local FILE/SHELL/PYTHON capability requests can be auto-serviced. Web/GitHub/model/independent-verification requests remain pending for a real external host. Unreleased protected references are checked before a registered capability may run. A capability result that attempts to grant scientific/novelty/promotion/merge/global-stop authority is rejected.
+
 ## Service with another ChatGPT / Claude session
 
 Generate a handoff prompt:
@@ -127,7 +155,7 @@ Verification is independent and fail-closed:
 
 A passing verification requires at least one certificate ID because canonical ORION requires certificate-producing evidence for verified authority.
 
-After ingestion, rerun the exact same solve command. Existing request/result receipts are replayed, so execution advances to the next missing capability without changing earlier answers.
+After ingestion, rerun the exact same solve/campaign command. Existing request/result receipts are replayed, so execution advances to the next missing capability without changing earlier answers.
 
 ## Local capabilities
 
@@ -163,11 +191,14 @@ The workspace records:
   results/
   runs/
   notes/
+  campaigns/
+  campaign-states/
+  campaign-cycles/
 ```
 
 Capability request IDs are deterministic for `(session, capability, payload)`. Request and result files carry SHA-256 content digests. A result is bound to the exact request digest. Tampered or mismatched receipts fail validation.
 
-Completed ORION runs persist the problem, solution, final K/W/M state snapshot, trace, operator sequence, root/mechanic experience IDs and recorded experience episodes.
+Completed ORION runs persist the problem, solution, final K/W/M state snapshot, trace, operator sequence, root/mechanic experience IDs and recorded experience episodes. Campaigns additionally persist every immutable state and transition so negative outcomes and harness defects can be replayed without changing the scientific freeze.
 
 ## Research-program use
 
@@ -184,4 +215,4 @@ This creates a useful feedback loop: **study the P1–P10 science with ORION whi
 
 ## Current claim boundary
 
-This is an engineering integration package. Its existence does not prove autonomous-research superiority, P1–P10 closure, or Self-ORION readiness. Host tools remain externally controlled, and ORION's scientific authority rules remain in force.
+This is an engineering integration package. Its existence does not prove autonomous-research superiority, P1–P10 closure, ORION-Q R6, or Self-ORION readiness. Host tools remain externally controlled, and ORION's scientific authority rules remain in force.
