@@ -35,14 +35,20 @@ class HostCapabilityRequired(BaseException):
 
 
 class HostCapabilityFailed(BaseException):
-    """Control signal for host execution failure, never scientific operator evidence."""
+    """Control signal for host execution/contract failure, never scientific evidence."""
 
-    def __init__(self, request: CapabilityRequest, result: CapabilityResult) -> None:
+    def __init__(
+        self,
+        request: CapabilityRequest,
+        result: CapabilityResult,
+        *,
+        detail: str | None = None,
+    ) -> None:
         self.request = request
         self.result = result
-        detail = result.error or "unspecified error"
+        self.detail = detail or result.error or "unspecified error"
         super().__init__(
-            f"host capability failed: {request.capability} via {result.executor}: {detail}"
+            f"host capability failed: {request.capability} via {result.executor}: {self.detail}"
         )
 
 
@@ -50,7 +56,9 @@ class CapabilityBroker:
     def __init__(self, workspace: ResearchWorkspace) -> None:
         self.workspace = workspace
 
-    def require(self, capability: str, payload: Mapping[str, Any]) -> Any:
+    def require_result(
+        self, capability: str, payload: Mapping[str, Any]
+    ) -> tuple[CapabilityRequest, CapabilityResult]:
         request = self.workspace.get_or_create_request(
             capability=str(capability),
             payload=_jsonable(payload),
@@ -60,7 +68,23 @@ class CapabilityBroker:
             raise HostCapabilityRequired(request)
         if not result.success:
             raise HostCapabilityFailed(request, result)
+        return request, result
+
+    def require(self, capability: str, payload: Mapping[str, Any]) -> Any:
+        _, result = self.require_result(capability, payload)
         return result.output
+
+    @staticmethod
+    def invalid_result(
+        request: CapabilityRequest,
+        result: CapabilityResult,
+        exc: Exception,
+    ) -> HostCapabilityFailed:
+        return HostCapabilityFailed(
+            request,
+            result,
+            detail=f"invalid host result: {type(exc).__name__}: {exc}",
+        )
 
 
 class BrokerLLMProvider:
@@ -68,7 +92,7 @@ class BrokerLLMProvider:
         self._broker = broker
 
     def complete(self, request: LLMRequest) -> LLMResponse:
-        output = self._broker.require(
+        capability_request, result = self._broker.require_result(
             "LLM_COMPLETE",
             {
                 "task": request.task,
@@ -81,15 +105,24 @@ class BrokerLLMProvider:
                 ),
             },
         )
-        if isinstance(output, str):
-            return LLMResponse(content=output, model_id="external-host")
-        if not isinstance(output, Mapping):
-            raise TypeError("LLM_COMPLETE output must be a string or object")
-        return LLMResponse(
-            content=str(output["content"]),
-            model_id=(str(output["model_id"]) if output.get("model_id") else None),
-            response_id=(str(output["response_id"]) if output.get("response_id") else None),
-        )
+        try:
+            output = result.output
+            if isinstance(output, str):
+                return LLMResponse(content=output, model_id="external-host")
+            if not isinstance(output, Mapping):
+                raise TypeError("LLM_COMPLETE output must be a string or object")
+            if "content" not in output or not isinstance(output["content"], str):
+                raise TypeError("LLM_COMPLETE.content must be a string")
+            for optional in ("model_id", "response_id"):
+                if output.get(optional) is not None and not isinstance(output[optional], str):
+                    raise TypeError(f"LLM_COMPLETE.{optional} must be a string when provided")
+            return LLMResponse(
+                content=output["content"],
+                model_id=output.get("model_id"),
+                response_id=output.get("response_id"),
+            )
+        except Exception as exc:
+            raise self._broker.invalid_result(capability_request, result, exc) from exc
 
 
 class BrokerRetrievalProvider:
@@ -97,7 +130,7 @@ class BrokerRetrievalProvider:
         self._broker = broker
 
     def search(self, query: SearchQuery, *, limit: int) -> tuple[RetrievedItem, ...]:
-        output = self._broker.require(
+        capability_request, result = self._broker.require_result(
             "WEB_SEARCH",
             {
                 "query": _jsonable(query),
@@ -109,26 +142,45 @@ class BrokerRetrievalProvider:
                 ),
             },
         )
-        if not isinstance(output, Mapping) or not isinstance(output.get("items"), list):
-            raise TypeError("WEB_SEARCH output must be an object containing an items list")
-        items: list[RetrievedItem] = []
-        for index, raw in enumerate(output["items"][:limit]):
-            if not isinstance(raw, Mapping):
-                raise TypeError("WEB_SEARCH item must be an object")
-            source_uri = str(raw["source_uri"])
-            content = str(raw["content"])
-            stable_id = content_digest({"source_uri": source_uri, "content": content})[:24]
-            item_id = str(raw.get("item_id") or f"host-web:{query.query_id}:{index}:{stable_id}")
-            domain_ids = tuple(str(item) for item in raw.get("domain_ids", ()))
-            items.append(
-                RetrievedItem(
-                    item_id=item_id,
-                    content=content,
-                    source_uri=source_uri,
-                    domain_ids=domain_ids,
+        try:
+            output = result.output
+            if not isinstance(output, Mapping) or not isinstance(output.get("items"), list):
+                raise TypeError("WEB_SEARCH output must be an object containing an items list")
+            if limit < 0:
+                raise ValueError("WEB_SEARCH limit must be non-negative")
+            items: list[RetrievedItem] = []
+            for index, raw in enumerate(output["items"][:limit]):
+                if not isinstance(raw, Mapping):
+                    raise TypeError("WEB_SEARCH item must be an object")
+                source_uri = raw.get("source_uri")
+                content = raw.get("content")
+                if not isinstance(source_uri, str) or not source_uri.strip():
+                    raise TypeError("WEB_SEARCH item.source_uri must be a non-empty string")
+                if not isinstance(content, str) or not content.strip():
+                    raise TypeError("WEB_SEARCH item.content must be a non-empty string")
+                raw_item_id = raw.get("item_id")
+                if raw_item_id is not None and (
+                    not isinstance(raw_item_id, str) or not raw_item_id.strip()
+                ):
+                    raise TypeError("WEB_SEARCH item.item_id must be a non-empty string when provided")
+                raw_domains = raw.get("domain_ids", ())
+                if isinstance(raw_domains, (str, bytes)) or not isinstance(raw_domains, (tuple, list)):
+                    raise TypeError("WEB_SEARCH item.domain_ids must be an array")
+                if any(not isinstance(item, str) or not item.strip() for item in raw_domains):
+                    raise TypeError("WEB_SEARCH item.domain_ids entries must be non-empty strings")
+                stable_id = content_digest({"source_uri": source_uri, "content": content})[:24]
+                item_id = raw_item_id or f"host-web:{query.query_id}:{index}:{stable_id}"
+                items.append(
+                    RetrievedItem(
+                        item_id=item_id,
+                        content=content,
+                        source_uri=source_uri,
+                        domain_ids=tuple(raw_domains),
+                    )
                 )
-            )
-        return tuple(items)
+            return tuple(items)
+        except Exception as exc:
+            raise self._broker.invalid_result(capability_request, result, exc) from exc
 
 
 class BrokerVerificationProvider:
@@ -136,7 +188,7 @@ class BrokerVerificationProvider:
         self._broker = broker
 
     def verify(self, contribution, item: RetrievedItem) -> VerificationResult:
-        output = self._broker.require(
+        capability_request, result = self._broker.require_result(
             "VERIFY_EVIDENCE",
             {
                 "contribution": _jsonable(contribution),
@@ -148,13 +200,32 @@ class BrokerVerificationProvider:
                 ),
             },
         )
-        if not isinstance(output, Mapping):
-            raise TypeError("VERIFY_EVIDENCE output must be an object")
-        passed = bool(output.get("passed", False))
-        certificates = tuple(str(item) for item in output.get("certificate_ids", ()))
-        reason = str(output.get("reason", ""))
-        return VerificationResult(
-            passed=passed,
-            certificate_ids=certificates,
-            reason=reason,
-        )
+        try:
+            output = result.output
+            if not isinstance(output, Mapping):
+                raise TypeError("VERIFY_EVIDENCE output must be an object")
+            passed = output.get("passed", False)
+            if not isinstance(passed, bool):
+                raise TypeError("VERIFY_EVIDENCE.passed must be a boolean")
+            raw_certificates = output.get("certificate_ids", ())
+            if isinstance(raw_certificates, (str, bytes)) or not isinstance(
+                raw_certificates, (tuple, list)
+            ):
+                raise TypeError("VERIFY_EVIDENCE.certificate_ids must be an array")
+            certificates = tuple(raw_certificates)
+            if any(not isinstance(value, str) or not value.strip() for value in certificates):
+                raise TypeError(
+                    "VERIFY_EVIDENCE.certificate_ids entries must be non-empty strings"
+                )
+            if passed and not certificates:
+                raise ValueError("passing VERIFY_EVIDENCE result requires a certificate_id")
+            reason = output.get("reason", "")
+            if not isinstance(reason, str):
+                raise TypeError("VERIFY_EVIDENCE.reason must be a string")
+            return VerificationResult(
+                passed=passed,
+                certificate_ids=certificates,
+                reason=reason,
+            )
+        except Exception as exc:
+            raise self._broker.invalid_result(capability_request, result, exc) from exc
