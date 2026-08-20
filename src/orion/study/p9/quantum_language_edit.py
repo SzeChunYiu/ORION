@@ -159,21 +159,22 @@ class QuantumInvariantBreakWitness:
         return self.operator.apply(self.probe, atol=atol)
 
     def verdict(self, *, atol: float = DEFAULT_ATOL) -> InvariantBreakVerdict:
-        """Execute the candidate and verify an invariant-preserving -> violating transition."""
+        """Validate the probe first, then execute and check whether the invariant breaks."""
 
         self.verify_model_input(atol=atol)
-        output = self.evaluator_output(atol=atol)
 
         if self.capability is QuantumLanguageCapability.LOCAL_PRODUCT_ONLY:
             if len(self.probe.amplitudes) != 4:
                 raise ValueError("local-product witness currently requires two qubits")
             if not is_two_qubit_product_state(self.probe, atol=atol):
                 raise ValueError("local-product witness requires a product probe")
+            output = self.operator.apply(self.probe, atol=atol)
             broken = not is_two_qubit_product_state(output, atol=atol)
 
         elif self.capability is QuantumLanguageCapability.REAL_UNITARY_ONLY:
             if not is_real_up_to_global_phase(self.probe, atol=atol):
                 raise ValueError("real-unitary witness requires a real-up-to-phase probe")
+            output = self.operator.apply(self.probe, atol=atol)
             broken = not is_real_up_to_global_phase(output, atol=atol)
 
         elif self.capability is QuantumLanguageCapability.CLIFFORD_ONLY:
@@ -181,6 +182,7 @@ class QuantumInvariantBreakWitness:
                 raise ValueError("Clifford witness currently requires exactly one qubit")
             if not is_one_qubit_stabilizer_state(self.probe, atol=atol):
                 raise ValueError("Clifford witness requires a stabilizer probe")
+            output = self.operator.apply(self.probe, atol=atol)
             broken = not is_one_qubit_stabilizer_state(output, atol=atol)
 
         else:  # pragma: no cover - enum extension guard
