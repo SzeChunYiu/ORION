@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.util
 import json
 import random
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Mapping
@@ -20,7 +21,12 @@ def _load(path: Path, name: str):
     spec = importlib.util.spec_from_file_location(name, path)
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    sys.modules[name] = module
+    try:
+        spec.loader.exec_module(module)
+    except Exception:
+        sys.modules.pop(name, None)
+        raise
     return module
 
 
