@@ -6,14 +6,18 @@ on:
       - 'shadow/p1-r6-harness-e2e-20260820'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 concurrency:
   group: p1-r6-native-primary-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   engineering-conformance:
+    if: ${{ !contains(github.event.head_commit.message, '[p1-r6-result]') }}
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
@@ -68,7 +72,15 @@ jobs:
           print('P1_R6_SCIENTIFIC_TERMINAL=' + result['terminal'])
           print('P1_R6_SCIENTIFIC_CHECKS=' + json.dumps(result['checks'], sort_keys=True))
           PY
-      - name: Preserve exact acceptance result
+      - name: Preserve exact acceptance result as immutable branch evidence
+        run: |
+          cp /tmp/p1-r6-primary.json research/claim_expansion/p1/P1_R6_NATIVE_PRIMARY_RESULT_V1.json
+          git config user.name 'ORION R6 Evidence Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add research/claim_expansion/p1/P1_R6_NATIVE_PRIMARY_RESULT_V1.json
+          git commit -m '[p1-r6-result] freeze exact native harness primary result'
+          git push origin HEAD:${GITHUB_REF_NAME}
+      - name: Preserve exact acceptance result as workflow artifact
         uses: actions/upload-artifact@v4
         with:
           name: p1-r6-native-primary
