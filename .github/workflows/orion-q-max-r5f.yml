@@ -10,7 +10,7 @@ on:
 jobs:
   h4-controlled-confirmation:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -27,3 +27,8 @@ jobs:
           cd research/extensions/orion-q
           python max_r5g_h4_independent_replay.py | tee /tmp/r5g-h4.txt
           grep '^ORIONQ_MAX_R5G_H4_INDEPENDENT=' /tmp/r5g-h4.txt
+      - name: Run mixed-cardinality donor-composed development
+        run: |
+          cd research/extensions/orion-q
+          python max_r5h_mixed_cardinality_development.py | tee /tmp/r5h.txt
+          grep '^ORIONQ_MAX_R5H_DEV=' /tmp/r5h.txt
