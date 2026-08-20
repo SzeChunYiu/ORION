@@ -57,16 +57,20 @@ class PublicDelta:
     from_framework: str
     to_framework: str
     semantic_relations: tuple[tuple[str, str, str], ...] = ()
+    semantic_transport_witnesses: tuple[tuple[str, str, str], ...] = ()
     added_operators: tuple[str, ...] = ()
     stale_authority_receipts: tuple[str, ...] = ()
+    fresh_authority_object_ids: tuple[str, ...] = ()
 
     def payload(self) -> dict:
         return {
             "from_framework": self.from_framework,
             "to_framework": self.to_framework,
             "semantic_relations": [list(x) for x in self.semantic_relations],
+            "semantic_transport_witnesses": [list(x) for x in self.semantic_transport_witnesses],
             "added_operators": list(self.added_operators),
             "stale_authority_receipts": list(self.stale_authority_receipts),
+            "fresh_authority_object_ids": list(self.fresh_authority_object_ids),
         }
 
 
@@ -245,6 +249,45 @@ def _same_answer_standing_pair(seed: int, index: int, stale: bool) -> PilotCase:
     return PilotCase(public, ProtectedGold(cid, "SAME", (obj,), (migration,)))
 
 
+def _transported_semantic_authority(seed: int, index: int) -> PilotCase:
+    """Semantic change with explicit full transport and fresh authority.
+
+    A warning-union policy reopens because it sees a load-bearing semantic change.
+    The protected gold instead requires TRANSPORT: correspondence/obligation
+    transport is explicit and authority is freshly re-established for the object.
+    """
+    cid = _case_id(seed, "transported-authority", index)
+    obj = f"obj-{_opaque(seed + index, 'transport-object')}"
+    receipt = f"rec-{_opaque(seed + index, 'old-authority')}"
+    s0 = f"sv-{_opaque(seed + index, 'transport-s0')}"
+    s1 = f"sv-{_opaque(seed + index, 'transport-s1')}"
+    witness = f"tw-{_opaque(seed + index, 'transport-witness')}"
+    public = PublicCase(
+        case_id=cid,
+        family_id="semantic_transport_with_fresh_authority",
+        task_answer="T",
+        objects=(PublicObject(obj, "CLAIM", Standing.AUTHORIZED, s0, ("e-transport",), (receipt,)),),
+        delta=PublicDelta(
+            from_framework="F0",
+            to_framework="F1",
+            semantic_relations=((s0, s1, "LOAD_BEARING_DIFFERENCE"),),
+            semantic_transport_witnesses=((s0, s1, witness),),
+            fresh_authority_object_ids=(obj,),
+        ),
+    )
+    migration = Migration(obj, Standing.AUTHORIZED, Standing.AUTHORIZED, Disposition.TRANSPORT)
+    return PilotCase(public, ProtectedGold(cid, "T", (obj,), (migration,)))
+
+
+def generate_interaction_pilot(seed: int = 20260820, per_family: int = 4) -> tuple[PilotCase, ...]:
+    cases = list(generate_pilot(seed=seed, per_family=per_family))
+    for i in range(per_family):
+        cases.append(_transported_semantic_authority(seed, i))
+    rng = random.Random(seed ^ 0x5A17)
+    rng.shuffle(cases)
+    return tuple(cases)
+
+
 def generate_pilot(seed: int = 20260820, per_family: int = 4) -> tuple[PilotCase, ...]:
     rng = random.Random(seed)
     offsets = list(range(per_family))
@@ -317,6 +360,44 @@ def rule_policy(case: PublicCase) -> PolicyOutput:
             migrations.append(Migration(obj.object_id, obj.standing, Standing.REOPENED, Disposition.REOPEN))
         else:
             migrations.append(Migration(obj.object_id, obj.standing, obj.standing, Disposition.PRESERVE))
+    return PolicyOutput(case.task_answer, tuple(migrations))
+
+
+def interaction_policy(case: PublicCase) -> PolicyOutput:
+    """Coordinated standing migration for the pilot interaction contract."""
+    relations = {(a, b): rel for a, b, rel in case.delta.semantic_relations}
+    transport_pairs = {(a, b) for a, b, _w in case.delta.semantic_transport_witnesses}
+    migrations: list[Migration] = []
+    stale_receipts = set(case.delta.stale_authority_receipts)
+    added_ops = set(case.delta.added_operators)
+    fresh_authority = set(case.delta.fresh_authority_object_ids)
+    for obj in case.objects:
+        changed_targets = [
+            b for (a, b), rel in relations.items()
+            if a == obj.semantic_view_id and rel == "LOAD_BEARING_DIFFERENCE"
+        ]
+        has_full_transport = any(
+            (obj.semantic_view_id, target) in transport_pairs
+            for target in changed_targets
+        )
+        negative_reopened = (
+            obj.object_kind == "NEGATIVE_KNOWLEDGE"
+            and obj.failure_cause.startswith("MISSING_OPERATOR:")
+            and obj.failure_cause.split(":", 1)[1] in added_ops
+        )
+        authority_stale = bool(set(obj.authority_receipt_ids) & stale_receipts)
+        if changed_targets and has_full_transport and obj.object_id in fresh_authority and not authority_stale:
+            migrations.append(
+                Migration(obj.object_id, obj.standing, obj.standing, Disposition.TRANSPORT)
+            )
+        elif changed_targets or negative_reopened or authority_stale:
+            migrations.append(
+                Migration(obj.object_id, obj.standing, Standing.REOPENED, Disposition.REOPEN)
+            )
+        else:
+            migrations.append(
+                Migration(obj.object_id, obj.standing, obj.standing, Disposition.PRESERVE)
+            )
     return PolicyOutput(case.task_answer, tuple(migrations))
 
 
