@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -11,10 +12,16 @@ REGISTRY_PATH = ROOT / "src" / "orion" / "registry.py"
 
 
 def load_native():
-    spec = importlib.util.spec_from_file_location("p1_u_r6_native_orion", NATIVE_PATH)
+    name = "p1_u_r6_native_orion"
+    spec = importlib.util.spec_from_file_location(name, NATIVE_PATH)
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    sys.modules[name] = module
+    try:
+        spec.loader.exec_module(module)
+    except Exception:
+        sys.modules.pop(name, None)
+        raise
     return module
 
 
