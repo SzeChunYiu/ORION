@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orion.local/schemas/P5_CANDIDATE_TOURNAMENT_SCHEMA_V1.json",
+  "title": "P5 Candidate Tournament Record V1",
+  "description": "Prospective record format for the shared-candidate Self-ORION acceptance tournament. The same content-addressed candidate may be judged by multiple acceptance policies, allowing governance/selection effects to be separated from candidate generation quality. Protected outcome fields are populated only by the external evaluator after policy decisions are sealed.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "campaign_id",
+    "episode_id",
+    "host_family",
+    "cause_family",
+    "candidate",
+    "policy_decisions",
+    "protected_outcome",
+    "resource_accounting",
+    "lineage"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "P5_CANDIDATE_TOURNAMENT_V1"
+    },
+    "campaign_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "episode_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "host_family": {
+      "type": "string",
+      "enum": [
+        "REPOSITORY_DEVELOPMENT",
+        "TOOL_RESEARCH_WORKFLOW",
+        "FORMAL_EXACT_TASK",
+        "OTHER_FROZEN"
+      ]
+    },
+    "cause_family": {
+      "type": "string",
+      "enum": [
+        "RETRIEVAL_MISS",
+        "ROUTING_PLANNING_MISS",
+        "IMPLEMENTATION_BUG",
+        "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+        "EVALUATOR_METRIC_BUG",
+        "REPRESENTATION_GAP",
+        "MEASUREMENT_SPECIFICATION_GAP",
+        "METHOD_BASIS_GAP",
+        "OTHER_FROZEN"
+      ]
+    },
+    "protected_revision_responsibility": {
+      "description": "Gold/protected label. Must never be exposed to candidate generators or acceptance policies before decisions are sealed.",
+      "type": ["string", "null"],
+      "enum": [
+        "EVIDENCE_ACQUISITION_RECHECK",
+        "MEASUREMENT_EXPERIMENT_REDESIGN",
+        "PARAMETER_UPDATE",
+        "WITHIN_CLASS_MODEL_SELECTION",
+        "M_OPEN_MODEL_CLASS_EXPANSION",
+        "REPRESENTATION_REGIME_REVISION",
+        "QUESTION_OBJECTIVE_REVISION",
+        "METHOD_BASIS_REVISION",
+        "EXECUTION_ENVIRONMENT_REPAIR",
+        "EVALUATOR_AUTHORITY_REPAIR",
+        "UNRESOLVED",
+        null
+      ]
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "generator_family",
+        "artifact_sha256",
+        "generation_config_digest",
+        "generated_before_protected_outcome"
+      ],
+      "properties": {
+        "candidate_id": {"type": "string", "minLength": 1},
+        "generator_family": {
+          "type": "string",
+          "enum": [
+            "DIRECT_SELF_EDIT",
+            "DGM_HYPERAGENT_STYLE",
+            "ADIAS_ISSUE_CENTRIC",
+            "SAGE_MHFA_STYLE",
+            "CAUSALFLOW_STYLE",
+            "RATCHET_STYLE",
+            "SELF_ORION",
+            "HOSTILE_CONTROL",
+            "OTHER_FROZEN"
+          ]
+        },
+        "artifact_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "generation_config_digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "generated_before_protected_outcome": {"const": true},
+        "proposal_revision_class": {"type": ["string", "null"]},
+        "proposal_summary": {"type": ["string", "null"]},
+        "hostile_control_type": {
+          "type": ["string", "null"],
+          "enum": [
+            "EVALUATOR_TAMPER",
+            "HOLDOUT_LEAKAGE",
+            "REPLAY_ONLY_OVERFIT",
+            "NEGATIVE_HISTORY_DELETION",
+            "SCORE_REPORT_TAMPER",
+            "BENCHMARK_SPECIAL_CASE",
+            "MISSING_STAGE_LAUNDERING",
+            "SELF_PROMOTION",
+            "VISIBLE_GAIN_WITH_TAIL_HARM",
+            "OTHER_FROZEN",
+            null
+          ]
+        }
+      }
+    },
+    "policy_decisions": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "policy_id",
+          "decision",
+          "decision_digest",
+          "sealed_before_protected_outcome",
+          "stages",
+          "selected_revision_class",
+          "resource_cost"
+        ],
+        "properties": {
+          "policy_id": {
+            "type": "string",
+            "enum": [
+              "MOTIVATING_GREEDY",
+              "REPLAY_ONLY",
+              "FRESH_UNPROTECTED",
+              "PACE",
+              "RATCHET_LIFECYCLE",
+              "P5_V1",
+              "P5_V2",
+              "P5_V3_RESPONSIBILITY_GATED",
+              "ORACLE_ANALYSIS_ONLY",
+              "RANDOM_MATCHED",
+              "OTHER_FROZEN"
+            ]
+          },
+          "decision": {
+            "type": "string",
+            "enum": ["ACCEPT", "REJECT", "BLOCK", "CANNOT_CHECK"]
+          },
+          "decision_digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "sealed_before_protected_outcome": {"const": true},
+          "selected_revision_class": {"type": ["string", "null"]},
+          "confidence": {"type": ["number", "null"], "minimum": 0.0, "maximum": 1.0},
+          "stages": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "static": {"$ref": "#/$defs/stage"},
+              "replay": {"$ref": "#/$defs/stage"},
+              "fresh": {"$ref": "#/$defs/stage"},
+              "protected": {"$ref": "#/$defs/stage"}
+            }
+          },
+          "resource_cost": {"$ref": "#/$defs/resourceCost"}
+        }
+      }
+    },
+    "protected_outcome": {
+      "description": "External-evaluator fields. These are unavailable to candidate generation and policy selection until all decisions are sealed.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evaluator_digest",
+        "fresh_split_digest",
+        "baseline_score",
+        "candidate_score",
+        "protected_improvement",
+        "harmful_regression",
+        "integrity_violation",
+        "valid_protected_improvement"
+      ],
+      "properties": {
+        "evaluator_digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "fresh_split_digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "baseline_score": {"type": ["number", "null"]},
+        "candidate_score": {"type": ["number", "null"]},
+        "protected_improvement": {"type": ["number", "null"]},
+        "harmful_regression": {"type": "boolean"},
+        "integrity_violation": {"type": "boolean"},
+        "integrity_violation_types": {
+          "type": "array",
+          "items": {"type": "string"},
+          "uniqueItems": true
+        },
+        "valid_protected_improvement": {"type": "boolean"},
+        "cannot_check_reason": {"type": ["string", "null"]}
+      }
+    },
+    "resource_accounting": {
+      "$ref": "#/$defs/resourceCost"
+    },
+    "lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject_commit",
+        "case_digest",
+        "candidate_pool_manifest_digest",
+        "policy_registry_digest"
+      ],
+      "properties": {
+        "subject_commit": {"type": "string", "minLength": 7},
+        "case_digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "candidate_pool_manifest_digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "policy_registry_digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "model_provider_manifest_digest": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+      }
+    }
+  },
+  "$defs": {
+    "stage": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["PASS", "FAIL", "BLOCK", "CANNOT_CHECK", "NOT_RUN"]
+        },
+        "score_delta": {"type": ["number", "null"]},
+        "evidence_digest": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "notes": {"type": ["string", "null"]}
+      }
+    },
+    "resourceCost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["wall_seconds", "model_calls", "tool_calls"],
+      "properties": {
+        "wall_seconds": {"type": "number", "minimum": 0},
+        "model_calls": {"type": "integer", "minimum": 0},
+        "tool_calls": {"type": "integer", "minimum": 0},
+        "input_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "output_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "estimated_cost_usd": {"type": ["number", "null"], "minimum": 0}
+      }
+    }
+  }
+}
