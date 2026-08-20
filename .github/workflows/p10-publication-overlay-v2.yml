@@ -25,4 +25,4 @@ jobs:
       - name: Install bounded closure dependencies
         run: python -m pip install pytest==9.1.1 numpy==2.4.4 scipy==1.18.0 scikit-learn==1.8.0 sympy==1.14.0
       - name: Verify legacy closure and exact P10 overlay
-        run: papers/candidates/orion-learning-machine/VERIFY_LOCAL_CLOSURE_V2.sh
+        run: bash papers/candidates/orion-learning-machine/VERIFY_LOCAL_CLOSURE_V2.sh
