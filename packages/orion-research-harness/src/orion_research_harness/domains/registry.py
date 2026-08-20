@@ -1,0 +1,20 @@
+from __future__ import annotations
+
+from typing import Any, Mapping
+
+from .orion_q import MAX_R6_CAMPAIGN_MANIFEST
+
+_BUILTINS = {
+    str(MAX_R6_CAMPAIGN_MANIFEST["campaign_id"]): MAX_R6_CAMPAIGN_MANIFEST,
+}
+
+
+def builtin_campaign_ids() -> tuple[str, ...]:
+    return tuple(sorted(_BUILTINS))
+
+
+def load_builtin_campaign(campaign_id: str) -> Mapping[str, Any]:
+    try:
+        return _BUILTINS[str(campaign_id)]
+    except KeyError as exc:
+        raise KeyError(f"unknown built-in research campaign: {campaign_id}") from exc
