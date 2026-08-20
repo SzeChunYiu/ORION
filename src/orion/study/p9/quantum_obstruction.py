@@ -151,6 +151,8 @@ def classify_quantum_obstruction(
     claim that an arbitrary concrete gate library or bounded search will reach it.
     """
 
+    if not isinstance(capability, QuantumLanguageCapability):
+        raise ValueError("unsupported quantum capability contract")
     initial.verify(atol=atol)
     target.verify(atol=atol)
     if len(initial.amplitudes) != len(target.amplitudes):
@@ -172,7 +174,7 @@ def classify_quantum_obstruction(
             return QuantumObstructionVerdict.INVARIANT_COMPATIBLE
         return QuantumObstructionVerdict.EXPRESSIVITY_OBSTRUCTION
 
-    raise ValueError(f"unsupported quantum capability: {capability}")
+    raise ValueError("unsupported quantum capability contract")
 
 
 @dataclass(frozen=True)
@@ -188,6 +190,8 @@ class QuantumObstructionCase:
     def verify_model_input(self, *, atol: float = DEFAULT_ATOL) -> None:
         if not self.case_id:
             raise ValueError("case id is required")
+        if not isinstance(self.capability, QuantumLanguageCapability):
+            raise ValueError("unsupported quantum capability contract")
         self.initial.verify(atol=atol)
         self.target.verify(atol=atol)
         if len(self.initial.amplitudes) != len(self.target.amplitudes):
@@ -195,6 +199,8 @@ class QuantumObstructionCase:
 
     def verify(self, *, atol: float = DEFAULT_ATOL) -> None:
         self.verify_model_input(atol=atol)
+        if not isinstance(self.gold, QuantumObstructionVerdict):
+            raise ValueError("invalid quantum obstruction gold")
         derived = classify_quantum_obstruction(
             self.capability,
             self.initial,
