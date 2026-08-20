@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import re
-import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -106,7 +105,11 @@ def main() -> None:
     if unresolved:
         fail("unresolved manuscript citations: " + ", ".join(unresolved))
 
-    if "P11_REOPEN_PROTOCOL_V3.md" not in manuscript:
+    future_work_markers = (
+        "P11_REOPEN_PROTOCOL_V3.md",
+        r"P11\_REOPEN\_PROTOCOL\_V3.md",
+    )
+    if not any(marker in manuscript for marker in future_work_markers):
         fail("manuscript does not identify prospective V3 as future work")
 
     print("P11_PEER_REVIEW_READY: PASS")
