@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import math
 from pathlib import Path
-from typing import Dict, Iterable, Mapping, Sequence
+from typing import Iterable, Mapping, Sequence
 
 ROOT = Path(__file__).resolve().parent
 PROTOCOL = json.loads((ROOT / "PROTOCOL_V1.json").read_text())
@@ -25,11 +25,18 @@ LOW_LEVEL = {
 HIGH_LEVEL = {"OBJECTIVE_OR_MODEL_CLASS", "PROBLEM_BOUNDARY"}
 
 
-def _norm(m: Mapping[str, float]) -> dict[str, float]:
-    total = sum(max(0.0, float(v)) for v in m.values())
+def _normalize(m: Mapping[str, float]) -> dict[str, float]:
+    clean = {str(k): max(0.0, float(v)) for k, v in m.items()}
+    total = sum(clean.values())
     if total <= 0:
-        return {c: 1.0 / len(CLASSES) for c in CLASSES}
-    return {c: max(0.0, float(m.get(c, 0.0))) / total for c in CLASSES}
+        if not clean:
+            raise ValueError("cannot normalize an empty mapping")
+        return {k: 1.0 / len(clean) for k in clean}
+    return {k: v / total for k, v in clean.items()}
+
+
+def _class_norm(m: Mapping[str, float]) -> dict[str, float]:
+    return _normalize({c: float(m.get(c, 0.0)) for c in CLASSES})
 
 
 def surface_prior(dossier: str) -> dict[str, float]:
@@ -42,7 +49,7 @@ def surface_prior(dossier: str) -> dict[str, float]:
     for cls in CLASSES:
         hits = sum(1 for kw in cfg["keywords"][cls] if kw.lower() in text)
         masses[cls] = base + weight * min(hits, cap)
-    return _norm(masses)
+    return _class_norm(masses)
 
 
 def likelihood(true_class: str, probe: str, observation: str) -> float:
@@ -57,7 +64,7 @@ def likelihood(true_class: str, probe: str, observation: str) -> float:
 
 
 def update(posterior: Mapping[str, float], probe: str, observation: str) -> dict[str, float]:
-    return _norm({c: posterior[c] * likelihood(c, probe, observation) for c in CLASSES})
+    return _class_norm({c: posterior[c] * likelihood(c, probe, observation) for c in CLASSES})
 
 
 def observation_distribution(posterior: Mapping[str, float], probe: str) -> dict[str, float]:
@@ -65,7 +72,7 @@ def observation_distribution(posterior: Mapping[str, float], probe: str) -> dict
     for c, p in posterior.items():
         for obs in out:
             out[obs] += p * likelihood(c, probe, obs)
-    return _norm(out)
+    return _normalize(out)
 
 
 def entropy(posterior: Mapping[str, float]) -> float:
@@ -112,8 +119,7 @@ def _expected_plan_value(
     for probe in unprobed:
         dist = observation_distribution(posterior, probe)
         next_unprobed = tuple(p for p in unprobed if p != probe)
-        value = -0.05
-        value += sum(
+        value = -0.05 + sum(
             prob * _expected_plan_value(update(posterior, probe, obs), next_unprobed, depth - 1, allowed_terminal)
             for obs, prob in dist.items()
         )
