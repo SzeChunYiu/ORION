@@ -1,0 +1,52 @@
+name: orion-research-harness
+
+on:
+  pull_request:
+    paths:
+      - 'packages/orion-research-harness/**'
+      - 'research/extensions/orion-q/max_r6_donor_closure_h4.py'
+      - 'research/extensions/orion-q/max_r6_donor_closure_h4_fast.py'
+      - 'research/extensions/orion-q/max_r6_foqcs_interface_envelope.py'
+      - 'research/extensions/orion-q/max_r6_p10_candidate_blind_frame_optimizer.py'
+      - '.github/workflows/orion-research-harness.yml'
+
+jobs:
+  shared-harness-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and shared harness
+        run: |
+          python -m pip install -e '.[dev]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Run shared harness hostile tests
+        run: python -m pytest packages/orion-research-harness/tests -q
+
+  orion-q-live-campaign-smoke:
+    needs: shared-harness-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION, numpy and shared harness
+        run: |
+          python -m pip install -e .
+          python -m pip install numpy
+          python -m pip install -e packages/orion-research-harness
+      - name: Initialize shared ORION-Q MAX-R6 campaign
+        run: |
+          orion-harness init /tmp/orion-q-r6 --project-root .
+          orion-harness campaign-start /tmp/orion-q-r6 orion-q:max-r6-live
+      - name: Drive live campaign through current P10 boundary
+        run: |
+          orion-harness campaign-run /tmp/orion-q-r6 orion-q:max-r6-live --max-cycles 4 | tee /tmp/orion-q-r6-run.json
+          grep 'P10_FRAME_RESULT_READY__R6_STILL_CLOSED' /tmp/orion-q-r6-run.json
+          orion-harness campaign-state /tmp/orion-q-r6 orion-q:max-r6-live | tee /tmp/orion-q-r6-state.json
+          grep 'P10_FRAME_GENERATION_TERMINAL' /tmp/orion-q-r6-state.json
