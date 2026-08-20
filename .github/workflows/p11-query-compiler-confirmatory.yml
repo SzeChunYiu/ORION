@@ -1,0 +1,49 @@
+name: p11-query-compiler-confirmatory
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-frontier-v2/**'
+      - '.github/workflows/p11-query-compiler-confirmatory.yml'
+  workflow_dispatch:
+
+jobs:
+  confirmatory-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install exact analysis dependencies
+        run: python -m pip install 'numpy>=2,<3' 'scikit-learn>=1.5,<2'
+      - name: Run confirmatory replay 1
+        run: |
+          python research/extensions/orion-frontier-v2/run_p11_query_compiler_confirmatory_v1.py
+          cp research/extensions/orion-frontier-v2/results/P11_QUERY_COMPILER_CONFIRMATORY_V1.json /tmp/p11-run1.json
+      - name: Run confirmatory replay 2
+        run: |
+          python research/extensions/orion-frontier-v2/run_p11_query_compiler_confirmatory_v1.py
+          cp research/extensions/orion-frontier-v2/results/P11_QUERY_COMPILER_CONFIRMATORY_V1.json /tmp/p11-run2.json
+      - name: Require byte-identical scientific replay and protected terminal
+        run: |
+          cmp /tmp/p11-run1.json /tmp/p11-run2.json
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          p=Path('/tmp/p11-run1.json')
+          data=json.loads(p.read_text())
+          assert data['terminal'] == 'P11_QUERY_CONDITIONED_COMPILATION_GAP_SUPPORTED'
+          assert all(data['gates'].values())
+          assert data['cells'][1]['dimension_ratio'] == 1820
+          assert data['cells'][1]['curves']['UNIVERSAL_BANK']['1024'] == 0.8454996744791666
+          assert data['cells'][1]['curves']['QUERY_COMPILED']['1024'] == 1.0
+          print('sha256:'+hashlib.sha256(p.read_bytes()).hexdigest())
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p11-query-compiler-confirmatory-${{ github.sha }}
+          path: |
+            /tmp/p11-run1.json
+            research/extensions/orion-frontier-v2/results/P11_QUERY_COMPILER_TIMING_NONAUTHORITATIVE_V1.json
