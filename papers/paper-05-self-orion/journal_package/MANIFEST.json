@@ -23,6 +23,7 @@
     {"path": "manuscript/sections/10-limitations.tex", "role": "limitations"},
     {"path": "manuscript/sections/11-ethics-reproducibility.tex", "role": "ethics-and-reproducibility"},
     {"path": "manuscript/sections/08-claim-boundary.tex", "role": "claim-boundary-and-conclusion"},
+    {"path": "figures/p5_1_governed_development_loop.pdf", "role": "rendered-governance-loop-figure"},
     {"path": "evidence/FALSIFIER_V1.md", "role": "local-hostile-governance-falsifier"},
     {"path": "evidence/glm-5.2-attribution/report.json", "role": "bounded-diagnostic-attribution-report"},
     {"path": "evidence/CLAIM_LEDGER_V1.md", "role": "claim-ledger"},
@@ -42,42 +43,12 @@
     {"id": "P5.H1-H4", "status": "CANNOT_CHECK", "reason": "The protected fresh-transfer/self-improvement performance campaign remains a separate empirical extension and is not a premise of the scoped governance paper."}
   ],
   "claims": [
-    {
-      "id": "P5.AUTHORITY_SEPARATION",
-      "text": "Within the registered Self-ORION architecture, internal diagnosis, revision responsibility, candidate mechanics and the composed T7 controller can recommend next research actions but cannot grant scientific revision, adoption, promotion, merge or global-task-stop authority; final adoption remains protected and host-owned.",
-      "artifacts": ["evidence/CLAIM_LEDGER_V1.md", "evidence/FALSIFIER_V1.md"],
-      "status": "SUPPORTED"
-    },
-    {
-      "id": "P5.ERROR_CONTAINMENT",
-      "text": "The retained 21/24 hidden-cause attribution archive contains three real errors, while the registered authority structure prevents an attribution result by itself from constituting an adoption certificate; this supports a bounded architectural error-containment interpretation, not an empirical self-improvement benefit claim.",
-      "artifacts": ["evidence/glm-5.2-attribution/report.json", "evidence/CLAIM_LEDGER_V1.md"],
-      "status": "BOUNDED"
-    },
-    {
-      "id": "P5.FALSIFIER",
-      "text": "Local hostile suite exercises recurrence-not-cause, negative-history, replay/fresh separation, invention readiness and protected-path attacks.",
-      "artifacts": ["evidence/FALSIFIER_V1.md"],
-      "status": "SUPPORTED"
-    },
-    {
-      "id": "P5.ATTR",
-      "text": "GLM-5.2 hidden-cause attribution: 21/24 = 0.875, macro-F1 0.8726, three immutable errors.",
-      "artifacts": ["evidence/glm-5.2-attribution/report.json"],
-      "status": "BOUNDED"
-    },
-    {
-      "id": "P5.H1",
-      "text": "Full Self-ORION produces more fresh-transfer improvement and less harmful transfer than matched self-edit/self-evolution baselines.",
-      "artifacts": ["JOURNAL_READINESS.md"],
-      "status": "CANNOT_CHECK"
-    },
-    {
-      "id": "P5.PDF",
-      "text": "The tracked scoped non-self-promotion PDF is built from the canonical final source and passes the package and claim audit.",
-      "artifacts": ["journal_package/manuscript.pdf", "journal_package/CLAIM_PDF_AUDIT.md"],
-      "status": "SUPPORTED"
-    }
+    {"id": "P5.AUTHORITY_SEPARATION", "text": "Within the registered Self-ORION architecture, internal diagnosis, revision responsibility, candidate mechanics and the composed T7 controller can recommend next research actions but cannot grant scientific revision, adoption, promotion, merge or global-task-stop authority; final adoption remains protected and host-owned.", "artifacts": ["evidence/CLAIM_LEDGER_V1.md", "evidence/FALSIFIER_V1.md"], "status": "SUPPORTED"},
+    {"id": "P5.ERROR_CONTAINMENT", "text": "The retained 21/24 hidden-cause attribution archive contains three real errors, while the registered authority structure prevents an attribution result by itself from constituting an adoption certificate; this supports a bounded architectural error-containment interpretation, not an empirical self-improvement benefit claim.", "artifacts": ["evidence/glm-5.2-attribution/report.json", "evidence/CLAIM_LEDGER_V1.md"], "status": "BOUNDED"},
+    {"id": "P5.FALSIFIER", "text": "Local hostile suite exercises recurrence-not-cause, negative-history, replay/fresh separation, invention readiness and protected-path attacks.", "artifacts": ["evidence/FALSIFIER_V1.md"], "status": "SUPPORTED"},
+    {"id": "P5.ATTR", "text": "GLM-5.2 hidden-cause attribution: 21/24 = 0.875, macro-F1 0.8726, three immutable errors.", "artifacts": ["evidence/glm-5.2-attribution/report.json"], "status": "BOUNDED"},
+    {"id": "P5.H1", "text": "Full Self-ORION produces more fresh-transfer improvement and less harmful transfer than matched self-edit/self-evolution baselines.", "artifacts": ["JOURNAL_READINESS.md"], "status": "CANNOT_CHECK"},
+    {"id": "P5.PDF", "text": "The tracked scoped non-self-promotion PDF is built from the canonical final source and passes the package and claim audit.", "artifacts": ["journal_package/manuscript.pdf", "journal_package/CLAIM_PDF_AUDIT.md"], "status": "SUPPORTED"}
   ],
   "scientific_result_verification": {
     "owner_issue": 283,
