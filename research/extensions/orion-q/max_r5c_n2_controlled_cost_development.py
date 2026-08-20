@@ -100,7 +100,9 @@ def compile_controlled(terms,frac):
     q=[]
     for s in range(0,len(terms),4):
         opts=[]
-        for oi,ps in enumerate(pats(list(range(s,min(s+4,len(terms))))): opts.append((oi,ps,metrics(terms,ps)))
+        idx=list(range(s,min(s+4,len(terms))))
+        for oi,ps in enumerate(pats(idx)):
+            opts.append((oi,ps,metrics(terms,ps)))
         # Absorb outer-control knowledge into the incumbent's deterministic tie-break.
         opts.sort(key=lambda x:(x[2]["Lambda"],x[2]["T"],x[2]["CNOT"],x[0])); q.append(opts)
     choice={qi:opts[0][0] for qi,opts in enumerate(q)}
