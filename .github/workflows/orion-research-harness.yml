@@ -56,3 +56,35 @@ jobs:
           grep 'P10_FRAME_RESULT_READY__R6_STILL_CLOSED' /tmp/orion-q-r6-run.json
           orion-harness campaign-state /tmp/orion-q-r6 orion-q:max-r6-live | tee /tmp/orion-q-r6-state.json
           grep 'P10_FRAME_GENERATION_TERMINAL' /tmp/orion-q-r6-state.json
+      - name: Fail closed if protected R6 discriminator was released
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          state = json.loads(Path('/tmp/orion-q-r6-state.json').read_text())
+          if state.get('phase_id') != 'P10_RESULT':
+              raise SystemExit(f"unexpected campaign phase: {state.get('phase_id')!r}")
+          if state.get('authority_ceiling') != 'BELOW_R6_UNTIL_PROTECTED_PROMOTION':
+              raise SystemExit('campaign authority ceiling changed')
+          protected = state.get('protected_refs')
+          if not isinstance(protected, list) or len(protected) != 1:
+              raise SystemExit('expected exactly one protected R6 reference')
+          ref = protected[0]
+          if ref.get('ref_id') != 'FRESH:R6:STRETCHED_N2_DUCC2':
+              raise SystemExit(f"unexpected protected reference: {ref.get('ref_id')!r}")
+          if ref.get('released') is not False:
+              raise SystemExit('protected stretched-N2 discriminator was released before promotion freeze')
+          if ref.get('blob') != '6ab53f2a83c1f8ab5cc3bf4309525fb1ec7421dd':
+              raise SystemExit('protected stretched-N2 blob identity drifted')
+          PY
+      - name: Upload immutable campaign receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-q-max-r6-live-campaign-receipts
+          path: |
+            /tmp/orion-q-r6-run.json
+            /tmp/orion-q-r6-state.json
+          if-no-files-found: error
+          retention-days: 14
