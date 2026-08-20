@@ -1,0 +1,270 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orion.local/schemas/CONTENT_BOUND_PROOF_TASK_V3_SCHEMA.json",
+  "title": "ContentBoundProofTask.v3",
+  "description": "Revision-bound Lean proof-evaluation record for longitudinal task comparability, native trace binding and downstream prover receipts. Logical lineage identity is explicitly separate from exact revision-specific execution identity.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "logical_task_lineage_id",
+    "snapshot",
+    "statement",
+    "environment",
+    "evaluation_policy",
+    "attempt",
+    "receipt",
+    "longitudinal_comparability"
+  ],
+  "properties": {
+    "schema_version": {"const": "CONTENT_BOUND_PROOF_TASK_V3"},
+    "logical_task_lineage_id": {"type": "string", "minLength": 1},
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_url",
+        "repository_revision",
+        "source_path",
+        "source_sha256",
+        "snapshot_label"
+      ],
+      "properties": {
+        "repository_url": {"type": "string", "format": "uri"},
+        "branch_or_tag": {"type": ["string", "null"]},
+        "repository_revision": {"type": "string", "minLength": 7},
+        "source_path": {"type": "string", "minLength": 1},
+        "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "snapshot_label": {"type": "string", "pattern": "^R[0-9]+$"},
+        "selection_manifest_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "statement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "declaration_name",
+        "statement_text_sha256",
+        "statement_span",
+        "normalized_statement_sha256"
+      ],
+      "properties": {
+        "declaration_name": {"type": "string", "minLength": 1},
+        "statement_text_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "normalized_statement_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "statement_span": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["start_line", "end_line"],
+          "properties": {
+            "start_line": {"type": "integer", "minimum": 1},
+            "end_line": {"type": "integer", "minimum": 1}
+          }
+        },
+        "informal_source_digest": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lean_toolchain",
+        "lean_version_digest",
+        "dependency_manifest_sha256",
+        "import_closure_sha256",
+        "environment_sha256"
+      ],
+      "properties": {
+        "lean_toolchain": {"type": "string", "minLength": 1},
+        "lean_version_digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "dependency_manifest_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "import_closure_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "environment_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "native_trace_extractor_id": {"type": ["string", "null"]},
+        "native_trace_extractor_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "native_trace": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": [
+        "trace_sha256",
+        "proof_state_count",
+        "tactic_count",
+        "premise_count",
+        "extraction_status"
+      ],
+      "properties": {
+        "trace_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "proof_state_count": {"type": "integer", "minimum": 0},
+        "tactic_count": {"type": "integer", "minimum": 0},
+        "premise_count": {"type": "integer", "minimum": 0},
+        "dependency_edge_count": {"type": ["integer", "null"], "minimum": 0},
+        "extraction_status": {
+          "type": "string",
+          "enum": ["COMPLETE", "PARTIAL", "FAILED", "CANNOT_CHECK"]
+        },
+        "unknown_reason": {"type": ["string", "null"]}
+      }
+    },
+    "evaluation_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prover_id",
+        "prover_config_sha256",
+        "search_budget",
+        "allowed_tools_sha256",
+        "policy_sha256"
+      ],
+      "properties": {
+        "prover_id": {"type": "string", "minLength": 1},
+        "prover_config_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "search_budget": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "wall_seconds": {"type": ["number", "null"], "minimum": 0},
+            "max_model_calls": {"type": ["integer", "null"], "minimum": 0},
+            "max_search_nodes": {"type": ["integer", "null"], "minimum": 0},
+            "max_tactic_attempts": {"type": ["integer", "null"], "minimum": 0}
+          }
+        },
+        "allowed_tools_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "policy_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "mechanism_library_snapshot_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "mechanism_training_revision": {"type": ["string", "null"]},
+        "later_revision_outcome_seen_during_training": {"const": false}
+      }
+    },
+    "attempt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attempt_id",
+        "attempt_sha256",
+        "candidate_proof_sha256",
+        "start_time_utc"
+      ],
+      "properties": {
+        "attempt_id": {"type": "string", "minLength": 1},
+        "attempt_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "candidate_proof_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "start_time_utc": {"type": "string", "format": "date-time"},
+        "model_calls": {"type": ["integer", "null"], "minimum": 0},
+        "search_nodes": {"type": ["integer", "null"], "minimum": 0},
+        "tactic_attempts": {"type": ["integer", "null"], "minimum": 0},
+        "wall_seconds": {"type": ["number", "null"], "minimum": 0},
+        "proof_length_tokens": {"type": ["integer", "null"], "minimum": 0}
+      }
+    },
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verifier_command_sha256",
+        "runtime_sha256",
+        "exit_status",
+        "stdout_sha256",
+        "stderr_sha256",
+        "native_acceptance",
+        "receipt_sha256"
+      ],
+      "properties": {
+        "verifier_command_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "runtime_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "exit_status": {"type": "integer"},
+        "stdout_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "stderr_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "native_acceptance": {"type": "boolean"},
+        "receipt_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "replay_receipt_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "replay_byte_identical": {"type": ["boolean", "null"]}
+      }
+    },
+    "statement_faithfulness": {
+      "description": "Separate authority coordinate. Native acceptance must not populate this automatically.",
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["SUPPORTED", "REFUTED", "UNRESOLVED", "NOT_APPLICABLE", "NOT_CHECKED"]
+        },
+        "authority": {"type": ["string", "null"]},
+        "evidence_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "longitudinal_comparability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "comparison_revision",
+        "comparison_task_digest",
+        "status",
+        "supported_for_direct_score_pairing"
+      ],
+      "properties": {
+        "comparison_revision": {"type": ["string", "null"]},
+        "comparison_task_digest": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "status": {
+          "type": "string",
+          "enum": [
+            "BASELINE_R0",
+            "EXACT_SAME_STATEMENT_ENV_COMPATIBLE",
+            "STATEMENT_EQUIVALENT_ENV_CHANGED",
+            "STATEMENT_CHANGED_EQUIVALENCE_SUPPORTED",
+            "STATEMENT_CHANGED_EQUIVALENCE_UNRESOLVED",
+            "DEPENDENCY_API_DRIFT",
+            "TOOLCHAIN_HARNESS_DRIFT",
+            "REMOVED_OR_SPLIT",
+            "NEW_TASK",
+            "NOT_COMPARABLE"
+          ]
+        },
+        "supported_for_direct_score_pairing": {"type": "boolean"},
+        "equivalence_witness_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "drift_reason": {"type": ["string", "null"]},
+        "authority": {"type": ["string", "null"]}
+      }
+    },
+    "mechanism_outcome": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "mechanism_family": {
+          "type": ["string", "null"],
+          "enum": [
+            "SOURCE_MARKOV",
+            "SOURCE_SEQUENCE",
+            "PROOF_STATE_NEXT_ACTION",
+            "DEPENDENCY_GRAPH",
+            "TACMINER_CLASS",
+            "PREMISE_RETRIEVAL",
+            "REUSABLE_MACRO_LIBRARY",
+            "P11_NATIVE_MECHANISM",
+            "OTHER_FROZEN",
+            null
+          ]
+        },
+        "mechanism_id": {"type": ["string", "null"]},
+        "mechanism_applied": {"type": ["boolean", "null"]},
+        "mechanism_useful": {"type": ["boolean", "null"]},
+        "mechanism_failure_reason": {
+          "type": ["string", "null"],
+          "enum": [
+            "PREMISE_MOVED_OR_RENAMED",
+            "PRECONDITION_STATE_SHAPE_CHANGED",
+            "DEPENDENCY_API_DRIFT",
+            "TOOLCHAIN_ELABORATION_DRIFT",
+            "NONTRANSFERABLE_LOGIC",
+            "SEARCH_FAILURE",
+            "UNRESOLVED",
+            "OTHER_FROZEN",
+            null
+          ]
+        }
+      }
+    }
+  }
+}
