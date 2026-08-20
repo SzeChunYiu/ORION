@@ -1,0 +1,31 @@
+name: p1-u-r2-naturalistic
+
+on:
+  push:
+    branches:
+      - shadow/p1-u-gpt-r2-naturalistic-v2-20260820
+  pull_request:
+    paths:
+      - 'development/p1-u-gpt-r2-naturalistic/**'
+      - 'research/claim_expansion/p1/gpt_r2/**'
+      - 'tests/unit/p1/test_p1_u_r2_*'
+      - '.github/workflows/p1-u-r2-naturalistic.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  frozen-policy-evaluator:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Verify frozen P1-U R2 policy and evaluator
+        run: >-
+          python -m pytest -q
+          tests/unit/p1/test_p1_u_r2_naturalistic_policy.py
+          tests/unit/p1/test_p1_u_r2_evaluator.py

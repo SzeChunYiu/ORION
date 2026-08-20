@@ -1,0 +1,83 @@
+{
+  "schema": "P1U.NaturalisticARD.v1",
+  "frozen_before_holdout_acquisition": true,
+  "policy_base": "ea7543fc5b6ad14f151215d87dc7ed81253a8269",
+  "issue": 711,
+  "independent_unit": "distinct_source_grounded_episode",
+  "budget": 2,
+  "probe_cost": 1,
+  "classes": [
+    "SEARCH_OR_EVIDENCE",
+    "REPRESENTATION_OR_INTERFACE",
+    "IMPLEMENTATION_OR_ENVIRONMENT",
+    "MEASUREMENT_OR_EVALUATOR",
+    "OBJECTIVE_OR_MODEL_CLASS",
+    "PROBLEM_BOUNDARY",
+    "NO_HIGH_LEVEL_REFORMULATION"
+  ],
+  "unresolved_label": "UNRESOLVED",
+  "probes": {
+    "P_SEARCH_COVERAGE": "SEARCH_OR_EVIDENCE",
+    "P_REPRESENTATION_ROUNDTRIP": "REPRESENTATION_OR_INTERFACE",
+    "P_ENVIRONMENT_REPLAY": "IMPLEMENTATION_OR_ENVIRONMENT",
+    "P_MEASUREMENT_CROSSCHECK": "MEASUREMENT_OR_EVALUATOR",
+    "P_OBJECTIVE_PREDICTIVE_CHECK": "OBJECTIVE_OR_MODEL_CLASS",
+    "P_BOUNDARY_COUNTERFACTUAL": "PROBLEM_BOUNDARY"
+  },
+  "probe_observations": ["SUPPORT", "REFUTE", "INCONCLUSIVE"],
+  "likelihoods": {
+    "target_probe": {"SUPPORT": 0.80, "REFUTE": 0.10, "INCONCLUSIVE": 0.10},
+    "nontarget_probe": {"SUPPORT": 0.10, "REFUTE": 0.75, "INCONCLUSIVE": 0.15},
+    "no_high_level_target_probe": {"SUPPORT": 0.05, "REFUTE": 0.80, "INCONCLUSIVE": 0.15}
+  },
+  "surface_prior": {
+    "base_mass": 1.0,
+    "keyword_weight": 0.35,
+    "max_keyword_hits_per_class": 4,
+    "keywords": {
+      "SEARCH_OR_EVIDENCE": ["missing evidence", "coverage", "retrieval", "search", "unobserved", "insufficient data", "additional data", "sample size"],
+      "REPRESENTATION_OR_INTERFACE": ["representation", "encoding", "schema", "coordinate", "interface", "serialization", "mapping", "access model"],
+      "IMPLEMENTATION_OR_ENVIRONMENT": ["bug", "software", "dependency", "environment", "version", "implementation", "configuration", "pipeline"],
+      "MEASUREMENT_OR_EVALUATOR": ["measurement", "metric", "evaluator", "calibration", "benchmark", "instrument", "proxy", "scoring"],
+      "OBJECTIVE_OR_MODEL_CLASS": ["hypothesis", "model class", "misspecified", "residual", "mechanism", "objective", "loss function", "theory"],
+      "PROBLEM_BOUNDARY": ["boundary", "scope", "system boundary", "omitted process", "outside scope", "open system", "context", "population"],
+      "NO_HIGH_LEVEL_REFORMULATION": ["adequate model", "sufficient", "reproduced", "fixed by", "control", "no change", "stable", "same objective"]
+    }
+  },
+  "posterior_terminal_threshold": 0.55,
+  "orion_lower_level_mass_gate": 0.20,
+  "orion_boundary_lower_plus_objective_mass_gate": 0.20,
+  "orion_direct_high_level_support_required": true,
+  "orion_lower_level_probe_priority_mass": 0.60,
+  "orion_no_high_level_max_high_mass": 0.25,
+  "orion_no_high_min_refutations": 2,
+  "primary_comparator": "B3_HORIZON2_DONOR_COMPLETE",
+  "decision_rule": {
+    "paired_grs_margin": 0.10,
+    "paired_bootstrap_replicates": 20000,
+    "paired_bootstrap_seed": 20260820,
+    "stability_interval": 0.95,
+    "domain_noninferiority_floor": -0.10,
+    "max_orion_false_unnecessary_high_level_rate": 0.05,
+    "harmful_lower_level_skip_tolerance": 0,
+    "false_resolution_of_unresolved_tolerance": 0,
+    "leakage_tolerance": 0
+  },
+  "replication": {
+    "required_if_primary_passes": true,
+    "disjoint_sources": true,
+    "independent_scorer": true,
+    "independent_policy_reconstruction": true,
+    "changed_axis_required": true,
+    "same_decision_rule": true
+  },
+  "excluded_pre_freeze_sources": [
+    "arXiv:2608.09696",
+    "murphyk/neuronbench",
+    "arXiv:2606.01444",
+    "arXiv:2607.03863",
+    "doi:10.1038/s41586-026-10652-y",
+    "edgedelta/root-cause-bench",
+    "doi:10.1007/s11334-026-00642-8"
+  ]
+}
