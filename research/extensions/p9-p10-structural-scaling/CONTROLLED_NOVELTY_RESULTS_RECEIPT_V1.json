@@ -117,6 +117,39 @@
         "padded_accuracy": 0.9709065755208334,
         "padded_log_loss": 0.07269767211825176
       }
+    },
+    "N8_inductive_bias_substitution": {
+      "terminal": "STRUCTURAL_PRIOR_SUBSTITUTION_SUPPORTED_CONTROLLED_CLASS",
+      "sparsity_secondary_terminal": "SPARSITY_PRIOR_RECOVERY_GATE_NOT_MET",
+      "workflow_run_id": 32335536328,
+      "workflow_head_sha": "f70bb67c38727b073c82b3abb4d25ac62c85e6a9",
+      "artifact_id": 9394522424,
+      "artifact_zip_sha256": "5235d016252c762e4bb0a3a7e266fb94f7f199e291f25d5686ea5739c633776e",
+      "k_grid": [9, 17, 33],
+      "sample_threshold_0_90": {
+        "M0_flat_linear": [null, null, null],
+        "M1_generic_bilinear_l2": [512, 1024, null],
+        "M2_generic_bilinear_l1": [128, 256, 512],
+        "M3_diagonal_architecture": [64, 256, 512],
+        "M4_explicit_relation": [64, 256, 512]
+      },
+      "M1_to_M4_threshold_ratios_where_both_reach": [8.0, 4.0],
+      "median_M1_to_M4_threshold_ratio": 6.0,
+      "M3_M4_prediction_and_parameter_identity_all_cells": true,
+      "feature_dimensions": {
+        "k9_generic_bilinear": 81,
+        "k9_diagonal_or_relation": 9,
+        "k17_generic_bilinear": 289,
+        "k17_diagonal_or_relation": 17,
+        "k33_generic_bilinear": 1089,
+        "k33_diagonal_or_relation": 33
+      },
+      "l1_support_at_4096": {
+        "k9": {"diagonal_fraction_retained": 1.0, "off_diagonal_fraction_selected": 0.9861111111111112},
+        "k17": {"diagonal_fraction_retained": 1.0, "off_diagonal_fraction_selected": 0.9852941176470589},
+        "k33": {"diagonal_fraction_retained": 1.0, "off_diagonal_fraction_selected": 0.9128787878787878}
+      },
+      "claim_boundary": "Explicit relation features and an exactly matched diagonal interaction architecture are identical controls; generic bilinear capacity incurs a measured discovery/sample cost. The frozen L1 sparsity-prior terminal failed because off-diagonal support remained dense and is not promoted."
     }
   },
   "runtime_gated_claims": {
@@ -127,5 +160,5 @@
     "P10_cross_revision": "CANNOT_CHECK_SECOND_FROZEN_MATHLIB_REVISION",
     "cross_domain_structural_accessibility_law": "BLOCKED_PENDING_SECOND_DOMAIN_SAME_INFORMATION_RESULT"
   },
-  "strongest_supported_statement": "For the frozen controlled generated-world families and restricted hypothesis classes, explicit relation coordinates can reduce interaction order, shift observed sample/capacity thresholds, improve stability across exact semantic symmetries, and avoid accessibility losses induced by higher-degree invertible coordinate maps. Separately, an exact target-sufficient compressed state reduces nuisance-induced sample burden. These results do not establish an LLM scaling law, native Lean proof-state utility, or a universal computational law."
+  "strongest_supported_statement": "For the frozen controlled generated-world families and restricted hypothesis classes, explicit relation coordinates can reduce interaction order, shift observed sample/capacity thresholds, improve stability across exact semantic symmetries, and avoid accessibility losses induced by higher-degree invertible coordinate maps. Increasing matching model interaction order can recover accessibility. The correct relational computation can be supplied equivalently as representation or as an exact architectural prior, while a generic bilinear model incurs a measurable discovery cost. Separately, an exact target-sufficient compressed state reduces nuisance-induced sample burden. These results do not establish an LLM scaling law, native Lean proof-state utility, or a universal computational law."
 }
