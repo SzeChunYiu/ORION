@@ -1,0 +1,80 @@
+{
+  "schema": "P1U.HeldoutAcquisition.v1",
+  "campaign_issue": 711,
+  "policy_subject_commit": "2e26d691939049643c85bb65d446d54974b43475",
+  "created_before_any_query_execution": true,
+  "publication_window": ["2024-01-01", "2026-08-20"],
+  "search_engine": "web_fast",
+  "results_scanned_per_query": 8,
+  "source_priority": ["primary_paper", "publisher_record", "official_artifact_repository"],
+  "excluded_source_ids": [
+    "arXiv:2608.09696",
+    "murphyk/neuronbench",
+    "arXiv:2606.01444",
+    "arXiv:2607.03863",
+    "doi:10.1038/s41586-026-10652-y",
+    "edgedelta/root-cause-bench",
+    "doi:10.1007/s11334-026-00642-8"
+  ],
+  "qualification": {
+    "must_be_distinct_episode": true,
+    "must_have_public_case_visible_failure_or_tension": true,
+    "must_have_public_source_evidence_for_at_least_one_probe_outcome": true,
+    "must_have_public_source_evidence_for_corrective_or_diagnostic_disposition": true,
+    "must_not_require_private_author_intent_as_gold": true,
+    "must_not_be_selected_or_removed_using_policy_performance": true,
+    "selection_rule": "first qualifying nonexcluded source in frozen ranked snapshot; if first result is review/news/commentary, continue downward without reordering"
+  },
+  "evaluator_rubric": {
+    "SUPPORT": "primary/official source reports that the targeted check or intervention materially identifies, explains, corrects, or changes the failure in the direction of that responsibility",
+    "REFUTE": "primary/official source reports the targeted check is adequate/replicates/does not explain the failure, or a controlled comparison explicitly rules that responsibility out",
+    "INCONCLUSIVE": "source does not establish either support or refutation for that probe within the case-visible evidence boundary",
+    "gold_class": "assign a substantive responsibility only when source evidence plus corrective/diagnostic disposition supports it and makes the registered intervention appropriate; assign NO_HIGH_LEVEL_REFORMULATION only for explicit robustness/replication controls where high-level objective/boundary change is not warranted; assign UNRESOLVED when the frozen two-probe-visible evidence cannot identify a safe class without using hidden/retrospective facts",
+    "dossier_rule": "write a <=90-word paraphrase of only case-visible facts available before the corrective disposition; do not include the gold class name, corrective conclusion, post-resolution outcome, source title if it directly reveals the failure class, or query text",
+    "probe_encoding_rule": "encode all six generic probes for every case. Availability is constant. Do not encode a class by omitting probes."
+  },
+  "queries": [
+    {"id":"CBIO-1","domain":"computational_biology","q":"2025 2026 computational biology model misspecification mechanism experiment residual correction"},
+    {"id":"CBIO-2","domain":"computational_biology","q":"2025 2026 bioinformatics pipeline bug reproducibility scientific result correction"},
+    {"id":"CBIO-3","domain":"computational_biology","q":"2025 2026 biological measurement calibration proxy benchmark failure correction"},
+    {"id":"CBIO-4","domain":"computational_biology","q":"2025 2026 biology representation encoding schema interface scientific model revision"},
+
+    {"id":"PHYSCHEM-1","domain":"physics_chemistry","q":"2025 2026 physics chemistry model misspecification residual new mechanism experiment correction"},
+    {"id":"PHYSCHEM-2","domain":"physics_chemistry","q":"2025 2026 chemistry measurement calibration instrument systematic error corrected result"},
+    {"id":"PHYSCHEM-3","domain":"physics_chemistry","q":"2025 2026 physics scientific software simulation bug corrected result"},
+    {"id":"PHYSCHEM-4","domain":"physics_chemistry","q":"2025 2026 physics representation change coordinate basis access model scientific discovery"},
+
+    {"id":"MLDATA-1","domain":"ml_data_analysis","q":"2025 2026 machine learning benchmark metric evaluation flaw corrected result"},
+    {"id":"MLDATA-2","domain":"ml_data_analysis","q":"2025 2026 data analysis pipeline configuration bug scientific reproducibility correction"},
+    {"id":"MLDATA-3","domain":"ml_data_analysis","q":"2025 2026 dataset proxy measurement mismatch scientific prediction evaluation"},
+    {"id":"MLDATA-4","domain":"ml_data_analysis","q":"2025 2026 objective misspecification loss function scientific machine learning correction"},
+
+    {"id":"SCSW-1","domain":"scientific_software","q":"2025 2026 numerical bug scientific software corrected scientific conclusion"},
+    {"id":"SCSW-2","domain":"scientific_software","q":"2025 2026 dependency version reproducibility scientific software result correction"},
+    {"id":"SCSW-3","domain":"scientific_software","q":"2025 2026 simulation harness bug scientific computing result"},
+    {"id":"SCSW-4","domain":"scientific_software","q":"2025 2026 numerical precision boundary condition model failure scientific computing"},
+
+    {"id":"MEAS-1","domain":"experimental_measurement","q":"2025 2026 observational calibration error corrected scientific conclusion instrument"},
+    {"id":"MEAS-2","domain":"experimental_measurement","q":"2025 2026 proxy measurement construct validity scientific study correction"},
+    {"id":"MEAS-3","domain":"experimental_measurement","q":"2025 2026 instrument systematic bias correction scientific measurement result"},
+    {"id":"MEAS-4","domain":"experimental_measurement","q":"2025 2026 evaluator benchmark measurement defect scientific experiment correction"},
+
+    {"id":"XSCI-1","domain":"cross_domain_scientific_workflow","q":"2025 2026 scientific workflow objective reformulation failed hypothesis discovery"},
+    {"id":"XSCI-2","domain":"cross_domain_scientific_workflow","q":"2025 2026 scientific problem boundary omitted process corrected model discovery"},
+    {"id":"XSCI-3","domain":"cross_domain_scientific_workflow","q":"2025 2026 scientific representation interface reformulation discovery workflow"},
+    {"id":"XSCI-4","domain":"cross_domain_scientific_workflow","q":"2025 2026 scientific agent failure diagnosis measurement representation objective workflow"},
+
+    {"id":"CTRL-1","domain":"control","q":"2025 2026 replication confirms scientific result robust multiple measurements same model"},
+    {"id":"CTRL-2","domain":"control","q":"2025 2026 independent reproduction confirms scientific result stable calibration software"},
+    {"id":"UNRES-1","domain":"unresolved","q":"2025 2026 scientific mechanism underdetermined competing models insufficient evidence nonidentifiable"},
+    {"id":"UNRES-2","domain":"unresolved","q":"2025 2026 multiple scientific explanations cannot distinguish with available data identifiability"}
+  ],
+  "corpus_target": {
+    "primary_queries": 24,
+    "control_queries": 2,
+    "unresolved_queries": 2,
+    "minimum_distinct_domains": 5,
+    "no_postoutcome_query_changes": true,
+    "no_postoutcome_case_deletion": true
+  }
+}
