@@ -1,0 +1,53 @@
+{
+  "schema": "ORIONQ.MAXR4D.H2ODUCCConfirmationStrict.v1",
+  "source": {
+    "repo": "npbauman/DUCC-Hamiltonian-Library",
+    "commit": "be306f5830549304176365750d712093950bbdde",
+    "blob": "5f157e7bd05aac26b30b10dcea44b7650b7f8648",
+    "path": "H2O/Eq/H2O.cc-pvtz_files/restricted/ducc/H2O.cc-pvtz.ducc.results.txt"
+  },
+  "workflow": {
+    "run_id": 32375154050,
+    "job_id": 96444651337,
+    "head_sha": "2a82329e7aa71389cd9d860739f17cd589c2e483",
+    "conclusion": "success"
+  },
+  "mapping": "repository_extractor_semantics_then_Jordan_Wigner_no_tapering",
+  "n_spatial_orbitals": 10,
+  "n_qubits": 20,
+  "two_body_sparse_entries": 3592,
+  "pauli_terms_including_identity": 8083,
+  "nonidentity_pauli_terms": 8082,
+  "identity_coefficient_without_nuclear_shift": -56.19776511084997,
+  "max_pauli_imaginary_residual": 5.551115123125783e-17,
+  "odd_singleton": null,
+  "coefficient_optimum": {
+    "Lambda": 82.26717010799322,
+    "C": 8078,
+    "E_support": 12117,
+    "direct_pairs": 2
+  },
+  "greedy_1pct": {
+    "Lambda": 82.26791770059741,
+    "C": 4972,
+    "E_support": 7458,
+    "direct_pairs": 1555
+  },
+  "greedy_5pct": {
+    "Lambda": 82.26791770059741,
+    "C": 4972,
+    "E_support": 7458,
+    "direct_pairs": 1555
+  },
+  "greedy_1pct_normalization_overhead": 9.087374747362986e-06,
+  "greedy_5pct_normalization_overhead": 9.087374747362986e-06,
+  "greedy_1pct_C_reduction": 0.38450111413716265,
+  "greedy_5pct_C_reduction": 0.38450111413716265,
+  "E_support_status": "diagnostic_independent_minimum_not_jointly_authorizing",
+  "gate_1pct_5pct_C_reduction": true,
+  "gate_5pct_strict_C_pareto": true,
+  "r4d_protocol_pass": true,
+  "terminal": "R4D_IMPLEMENTATION_AWARE_SPLIT_TARE_COMPILER_SUPPORTED__REAL_PUBLIC_HAMILTONIAN",
+  "authority": "fresh_public_hamiltonian_confirmation_only__not_novelty_authority",
+  "nonclaim": "Direct anticommuting pairs avoid TARE Tag/Restore but still have nonzero implementation cost. This receipt does not authorize full-circuit or R5/R6 claims."
+}
