@@ -114,6 +114,26 @@ def service_local_request(workspace: ResearchWorkspace, request_id: str):
             error=f"{type(exc).__name__}: {exc}",
             executor="orion-harness-local",
         )
+
+    if request.capability in {"SHELL", "PYTHON"}:
+        returncode = output.get("returncode") if isinstance(output, Mapping) else None
+        if not isinstance(returncode, int):
+            return workspace.ingest_result(
+                request_id,
+                success=False,
+                output=output,
+                error="local process result is missing an integer returncode",
+                executor="orion-harness-local",
+            )
+        if returncode != 0:
+            return workspace.ingest_result(
+                request_id,
+                success=False,
+                output=output,
+                error=f"local process exited with status {returncode}",
+                executor="orion-harness-local",
+            )
+
     return workspace.ingest_result(
         request_id,
         success=True,
