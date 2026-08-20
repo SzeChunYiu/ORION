@@ -1,0 +1,56 @@
+name: papers-binding-sync
+
+on:
+  push:
+    branches:
+      - shadow/papers-p1-p10-binding-sync-20260820
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: shadow/papers-p1-p10-binding-sync-20260820
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regenerate P6-P8 candidate byte bindings
+        run: python papers/candidates/checkers/check_content_binding_v1.py --write
+      - name: Regenerate P1-P5 journal-package hashes
+        run: python research/paper-programme-v1/journal_package/check_journal_package.py --write-hashes
+      - name: Regenerate P9-P10 bounded publication manifest
+        run: python papers/candidates/orion-learning-machine/generate_publication_manifest.py
+      - name: Verify regenerated P6-P8 bindings
+        run: python papers/candidates/checkers/check_content_binding_v1.py --check
+      - name: Verify P1-P5 journal packages
+        run: python research/paper-programme-v1/journal_package/check_journal_package.py
+      - name: Commit generated binding artifacts
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo 'No binding drift remains.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json \
+            papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/SHA256SUMS \
+            papers/candidates/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json \
+            papers/candidates/paper-07-epistemic-navigation-open-worlds/SHA256SUMS \
+            papers/candidates/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json \
+            papers/candidates/paper-08-epistemic-authority-autonomous-science/SHA256SUMS \
+            papers/paper-01-recursive-epistemic-reconstruction/journal_package/SHA256SUMS \
+            papers/paper-02-open-world-scientific-discovery/journal_package/SHA256SUMS \
+            papers/paper-03-global-knowledge-portrait/journal_package/SHA256SUMS \
+            papers/paper-04-verified-scientific-discovery/journal_package/SHA256SUMS \
+            papers/paper-05-self-orion/journal_package/SHA256SUMS \
+            papers/candidates/orion-learning-machine/PUBLICATION_MANIFEST_SHA256.txt
+          git commit -m 'Sync paper content-binding manifests after P1-P10 refinement'
+          git push origin HEAD:shadow/papers-p1-p10-binding-sync-20260820
