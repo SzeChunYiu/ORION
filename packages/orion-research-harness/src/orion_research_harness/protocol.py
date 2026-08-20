@@ -8,6 +8,7 @@ from typing import Any, Mapping
 
 REQUEST_SCHEMA = "ORION.HostCapabilityRequest.v1"
 RESULT_SCHEMA = "ORION.HostCapabilityResult.v1"
+_HEX = set("0123456789abcdef")
 
 
 def utc_now() -> str:
@@ -22,10 +23,30 @@ def content_digest(value: Any) -> str:
     return hashlib.sha256(canonical_json(value).encode("utf-8")).hexdigest()
 
 
+def _require_string(raw: Mapping[str, Any], key: str, *, nonempty: bool = True) -> str:
+    value = raw.get(key)
+    if not isinstance(value, str):
+        raise TypeError(f"{key} must be a string")
+    if nonempty and not value.strip():
+        raise ValueError(f"{key} must be non-empty")
+    return value
+
+
+def _validate_digest(value: str, *, name: str) -> None:
+    if len(value) != 64 or any(character not in _HEX for character in value):
+        raise ValueError(f"{name} must be a lowercase SHA-256 digest")
+
+
 def request_id_for(session_id: str, capability: str, payload: Mapping[str, Any]) -> str:
+    if not isinstance(session_id, str) or not session_id.strip():
+        raise ValueError("session_id must be a non-empty string")
+    if not isinstance(capability, str) or not capability.strip():
+        raise ValueError("capability must be a non-empty string")
+    if not isinstance(payload, Mapping):
+        raise TypeError("payload must be an object")
     stable = {
-        "session_id": str(session_id),
-        "capability": str(capability),
+        "session_id": session_id,
+        "capability": capability,
         "payload": dict(payload),
     }
     return "hostreq:" + content_digest(stable)
@@ -49,25 +70,33 @@ class CapabilityRequest:
         capability: str,
         payload: Mapping[str, Any],
     ) -> "CapabilityRequest":
+        if not isinstance(session_id, str) or not session_id.strip():
+            raise ValueError("session_id must be a non-empty string")
+        if not isinstance(capability, str) or not capability.strip():
+            raise ValueError("capability must be a non-empty string")
+        if not isinstance(payload, Mapping):
+            raise TypeError("payload must be an object")
         clean_payload = dict(payload)
         request_id = request_id_for(session_id, capability, clean_payload)
         created_at = utc_now()
         base = {
             "schema": REQUEST_SCHEMA,
             "request_id": request_id,
-            "session_id": str(session_id),
-            "capability": str(capability),
+            "session_id": session_id,
+            "capability": capability,
             "payload": clean_payload,
             "created_at": created_at,
         }
-        return cls(
+        obj = cls(
             request_id=request_id,
-            session_id=str(session_id),
-            capability=str(capability),
+            session_id=session_id,
+            capability=capability,
             payload=clean_payload,
             created_at=created_at,
             request_digest=content_digest(base),
         )
+        obj.validate()
+        return obj
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -82,14 +111,19 @@ class CapabilityRequest:
 
     @classmethod
     def from_dict(cls, raw: Mapping[str, Any]) -> "CapabilityRequest":
+        if not isinstance(raw, Mapping):
+            raise TypeError("host capability request must be an object")
+        payload = raw.get("payload")
+        if not isinstance(payload, Mapping):
+            raise TypeError("payload must be an object")
         obj = cls(
-            schema=str(raw.get("schema", "")),
-            request_id=str(raw["request_id"]),
-            session_id=str(raw["session_id"]),
-            capability=str(raw["capability"]),
-            payload=dict(raw["payload"]),
-            created_at=str(raw["created_at"]),
-            request_digest=str(raw["request_digest"]),
+            schema=_require_string(raw, "schema"),
+            request_id=_require_string(raw, "request_id"),
+            session_id=_require_string(raw, "session_id"),
+            capability=_require_string(raw, "capability"),
+            payload=dict(payload),
+            created_at=_require_string(raw, "created_at"),
+            request_digest=_require_string(raw, "request_digest"),
         )
         obj.validate()
         return obj
@@ -97,6 +131,9 @@ class CapabilityRequest:
     def validate(self) -> None:
         if self.schema != REQUEST_SCHEMA:
             raise ValueError("unsupported host capability request schema")
+        if not self.session_id.strip() or not self.capability.strip():
+            raise ValueError("request session and capability are required")
+        _validate_digest(self.request_digest, name="request_digest")
         expected_id = request_id_for(self.session_id, self.capability, self.payload)
         if self.request_id != expected_id:
             raise ValueError("host capability request id mismatch")
@@ -134,27 +171,36 @@ class CapabilityResult:
         error: str = "",
         executor: str = "external-host",
     ) -> "CapabilityResult":
+        request.validate()
+        if not isinstance(success, bool):
+            raise TypeError("success must be a boolean")
+        if not isinstance(error, str):
+            raise TypeError("error must be a string")
+        if not isinstance(executor, str) or not executor.strip():
+            raise ValueError("executor must be a non-empty string")
         completed_at = utc_now()
         base = {
             "schema": RESULT_SCHEMA,
             "request_id": request.request_id,
             "request_digest": request.request_digest,
-            "success": bool(success),
+            "success": success,
             "output": output,
-            "error": str(error),
-            "executor": str(executor),
+            "error": error,
+            "executor": executor,
             "completed_at": completed_at,
         }
-        return cls(
+        obj = cls(
             request_id=request.request_id,
             request_digest=request.request_digest,
-            success=bool(success),
+            success=success,
             output=output,
-            error=str(error),
-            executor=str(executor),
+            error=error,
+            executor=executor,
             completed_at=completed_at,
             result_digest=content_digest(base),
         )
+        obj.validate(request)
+        return obj
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -171,16 +217,24 @@ class CapabilityResult:
 
     @classmethod
     def from_dict(cls, raw: Mapping[str, Any]) -> "CapabilityResult":
+        if not isinstance(raw, Mapping):
+            raise TypeError("host capability result must be an object")
+        success = raw.get("success")
+        if not isinstance(success, bool):
+            raise TypeError("success must be a boolean")
+        error = raw.get("error", "")
+        if not isinstance(error, str):
+            raise TypeError("error must be a string")
         obj = cls(
-            schema=str(raw.get("schema", "")),
-            request_id=str(raw["request_id"]),
-            request_digest=str(raw["request_digest"]),
-            success=bool(raw["success"]),
+            schema=_require_string(raw, "schema"),
+            request_id=_require_string(raw, "request_id"),
+            request_digest=_require_string(raw, "request_digest"),
+            success=success,
             output=raw.get("output"),
-            error=str(raw.get("error", "")),
-            executor=str(raw.get("executor", "")),
-            completed_at=str(raw["completed_at"]),
-            result_digest=str(raw["result_digest"]),
+            error=error,
+            executor=_require_string(raw, "executor"),
+            completed_at=_require_string(raw, "completed_at"),
+            result_digest=_require_string(raw, "result_digest"),
         )
         obj.validate()
         return obj
@@ -188,6 +242,12 @@ class CapabilityResult:
     def validate(self, request: CapabilityRequest | None = None) -> None:
         if self.schema != RESULT_SCHEMA:
             raise ValueError("unsupported host capability result schema")
+        if not isinstance(self.success, bool):
+            raise TypeError("success must be a boolean")
+        if not self.executor.strip():
+            raise ValueError("executor must be non-empty")
+        _validate_digest(self.request_digest, name="request_digest")
+        _validate_digest(self.result_digest, name="result_digest")
         base = {
             "schema": self.schema,
             "request_id": self.request_id,
