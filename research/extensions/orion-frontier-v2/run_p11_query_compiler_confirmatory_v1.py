@@ -15,6 +15,7 @@ TRAIN_SIZES = (32, 64, 128, 256, 512, 1024)
 N_TEST = 8192
 N_QUERIES = 12
 OUT = Path(__file__).with_name("results") / "P11_QUERY_COMPILER_CONFIRMATORY_V1.json"
+TIMING_OUT = Path(__file__).with_name("results") / "P11_QUERY_COMPILER_TIMING_NONAUTHORITATIVE_V1.json"
 
 
 def parity_bank(x: np.ndarray, subsets: list[tuple[int, ...]]) -> np.ndarray:
@@ -67,6 +68,7 @@ def main() -> None:
     rng = np.random.default_rng(SEED)
     theory = exhaustive_theory_sanity()
     cell_results: list[dict[str, object]] = []
+    timing_rows: list[dict[str, object]] = []
 
     for d, s in CELLS:
         subsets = list(itertools.combinations(range(d), s))
@@ -96,12 +98,13 @@ def main() -> None:
                     )
                 )
             elapsed = time.perf_counter() - started
-            row = {"n_train": n, "fit_wall_seconds": elapsed, "mean_accuracy": {}}
+            row = {"n_train": n, "mean_accuracy": {}}
             for arm in curves:
                 value = float(np.mean(scores[arm]))
                 curves[arm][n] = value
                 row["mean_accuracy"][arm] = value
             per_size.append(row)
+            timing_rows.append({"d": d, "s": s, "n_train": n, "fit_wall_seconds": elapsed})
 
         thresholds = {arm: threshold(curves[arm]) for arm in curves}
         compiled_threshold = thresholds["QUERY_COMPILED"]
@@ -154,8 +157,9 @@ def main() -> None:
         else "P11_QUERY_CONDITIONED_COMPILATION_CONFIRMATORY_GATE_NOT_MET"
     )
     payload = {
-        "schema": "ORION.P11.QueryConditionedCompilerConfirmatory.v1",
+        "schema": "ORION.P11.QueryConditionedCompilerConfirmatory.v1.1",
         "protocol": "P11_QUERY_CONDITIONED_COMPILER_PROTOCOL_V1.md",
+        "reproducibility_amendment": "P11_CONFIRMATORY_REPRODUCIBILITY_AMENDMENT_V1_1.md",
         "theorem": "THEOREM_QUERY_CONDITIONED_COMPILATION_GAP_V1.md",
         "master_seed": SEED,
         "train_sizes": list(TRAIN_SIZES),
@@ -168,6 +172,19 @@ def main() -> None:
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    TIMING_OUT.write_text(
+        json.dumps(
+            {
+                "schema": "ORION.P11.NonAuthoritativeTiming.v1",
+                "scientific_authority": False,
+                "rows": timing_rows,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     print(json.dumps({"terminal": terminal, "gates": gates, "cells": [
         {
             "d": r["d"], "s": r["s"], "dimension_ratio": r["dimension_ratio"],
