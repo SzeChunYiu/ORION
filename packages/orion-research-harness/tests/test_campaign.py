@@ -119,7 +119,10 @@ def test_failed_local_process_is_failed_receipt_and_does_not_advance_campaign(tm
 
     outcome = run_campaign(workspace, manifest, max_cycles=1, auto_service_local=True)
     assert outcome["status"] == "CAPABILITY_FAILED"
-    result = workspace.load_result(outcome["request"]["request_id"])
+    assert len(outcome["cycles"]) == 1
+    failed_cycle = outcome["cycles"][0]
+    assert failed_cycle["status"] == "CAPABILITY_FAILED"
+    result = workspace.load_result(failed_cycle["request"]["request_id"])
     assert result is not None
     assert result.success is False
     assert result.output["returncode"] == 7
