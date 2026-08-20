@@ -1,0 +1,102 @@
+name: negative-result-promotion-refresh
+
+on:
+  push:
+    branches:
+      - codex/papers-1-8-academic-refine
+    paths:
+      - '.github/workflows/negative-result-promotion-refresh.yml'
+      - 'papers/**'
+      - 'research/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/papers-1-8-academic-refine
+          fetch-depth: 0
+
+      - name: Promote P4 saturation result to benchmark non-identifiability
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('papers/paper-04-verified-scientific-discovery/manuscript/main.tex')
+          text = path.read_text(encoding='utf-8')
+
+          replacements = [
+              (
+                  "A separate audit shows that the original \\cannot comparison is saturated by an evidence-list shortcut and therefore cannot discriminate systems; rather than interpreting that equality as a scientific finding, we identify the construction defect and prospectively specify a harder evidential family.",
+                  "A separate construction audit proves that the registered \\cannot comparison is non-identifying for abstention competence: evidence-list emptiness alone perfectly predicts the label across the frozen battery, so the score cannot distinguish evidential judgment from a trivial shortcut. The unsupported H3 superiority hypothesis therefore yields an exact benchmark-validity result rather than a comparative abstention claim."
+              ),
+              (
+                  "(iv) a post-run measurement audit identifies the original \\cannot family as non-discriminating by construction and converts that issue into a prospectively specified harder test rather than a spurious equality claim.",
+                  "(iv) a post-run construction audit proves that the original \\cannot family is non-identifying for abstention competence because a trivial evidence-list shortcut perfectly predicts the registered label, so H3 becomes an exact benchmark-validity result rather than a spurious equality claim."
+              ),
+          ]
+          for old, new in replacements:
+              if old not in text:
+                  raise SystemExit('expected P4 text not found: ' + old[:80])
+              text = text.replace(old, new)
+
+          old = """Every one of the eleven panel members, ORION included, correctly selected \\cannot on all 30 insufficient-evidence cases. The equality is exact, but the post-run construction audit shows why it cannot support a comparative abstention conclusion. In this battery the insufficient-evidence family has an \\emph{empty} evidence list, while every other family carries exactly one evidence object. The shortcut ``predict \\cannot\\ if and only if the evidence list is empty'' therefore classifies all 420 cases correctly. The axis saturates by construction and has no resolving power.
+
+H3 was not supported; the construction audit shows that the registered abstention axis was saturated by an empty-evidence shortcut and therefore could not resolve comparative abstention ability. This audit converts an apparently neutral result into a concrete measurement finding: the original H3 family does not test evidential judgement. We therefore do not interpret the equality as evidence of equivalent abstention ability. Instead, the prospective repair changes what must be reasoned about while preserving the authority distinction. New cases present evidence that is read but fails to establish the claim, either because no supporting record exists or because an apparently supporting record lacks verifiable provenance. Under that repaired construction no evidence-free rule tested on the design reaches perfect classification; the best shortcut falls from $1.00$ to $0.96$. The repaired battery has not yet been executed, so it is a future discriminator rather than a retroactive result. Table~\\ref{tab:p4_t3} retains the V2 abstention and false-negative counts exactly."""
+          new = """Every one of the eleven panel members, ORION included, correctly selected \\cannot on all 30 insufficient-evidence cases. The equality is exact, but the post-run construction audit proves why it cannot support a comparative abstention conclusion. In this battery the insufficient-evidence family has an \\emph{empty} evidence list, while every other family carries exactly one evidence object. The shortcut ``predict \\cannot\\ if and only if the evidence list is empty'' therefore classifies all 420 cases correctly. The axis saturates by construction and has no resolving power for the intended competence.
+
+\\paragraph{Exact benchmark non-identifiability result.} H3 remains unsupported as a superiority hypothesis. The positive result is instead construction-level: because the observed label is perfectly recoverable from a trivial observable feature that does not require evidential judgment, the registered H3 score is non-identifying for abstention competence. The same 30/30 score is compatible with genuine evidence-sufficiency reasoning or with shortcut detection, so this benchmark slice cannot authorize a comparative abstention inference. In ORION terms, the evaluator output is locally valid but lacks authority for the broader scientific claim.
+
+The prospective repair changes what must be reasoned about while preserving the authority distinction. New cases present evidence that is read but fails to establish the claim, either because no supporting record exists or because an apparently supporting record lacks verifiable provenance. Under that repaired construction no evidence-free rule tested on the design reaches perfect classification; the best shortcut falls from $1.00$ to $0.96$. The repaired battery has not yet been executed, so it is a future discriminator rather than a retroactive result. Table~\\ref{tab:p4_t3} retains the V2 abstention and false-negative counts exactly."""
+          if old not in text:
+              raise SystemExit('expected P4 H3 block not found')
+          path.write_text(text.replace(old, new), encoding='utf-8')
+          PY
+
+      - name: Regenerate P6-P8 candidate content bindings
+        run: python papers/candidates/checkers/check_content_binding_v1.py --write
+
+      - name: Regenerate journal package hashes and keep untouched P3/P5 packages out of scope
+        run: |
+          python research/paper-programme-v1/journal_package/check_journal_package.py --root . --write-hashes
+          git checkout origin/main -- \
+            papers/paper-03-global-knowledge-portrait/journal_package/SHA256SUMS \
+            papers/paper-05-self-orion/journal_package/SHA256SUMS
+
+      - name: Verify promoted claim bindings
+        run: |
+          python papers/candidates/checkers/check_content_binding_v1.py --check
+          python research/paper-programme-v1/journal_package/check_journal_package.py --root .
+          pytest -q \
+            tests/unit/candidates/test_candidate_content_binding.py \
+            tests/unit/p4/test_p4_metric_headroom.py \
+            tests/unit/publication/test_journal_package.py
+
+      - name: Commit synchronized manuscript and binding metadata
+        env:
+          BRANCH: codex/papers-1-8-academic-refine
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            papers/paper-04-verified-scientific-discovery/manuscript/main.tex \
+            papers/paper-01-recursive-epistemic-reconstruction/journal_package/SHA256SUMS \
+            papers/paper-02-open-world-scientific-discovery/journal_package/SHA256SUMS \
+            papers/paper-04-verified-scientific-discovery/journal_package/SHA256SUMS \
+            papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json \
+            papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/SHA256SUMS \
+            papers/candidates/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json \
+            papers/candidates/paper-07-epistemic-navigation-open-worlds/SHA256SUMS \
+            papers/candidates/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json \
+            papers/candidates/paper-08-epistemic-authority-autonomous-science/SHA256SUMS
+          if git diff --cached --quiet; then
+            echo 'No synchronization changes to commit.'
+            exit 0
+          fi
+          git commit -m 'papers: synchronize widened positive-claim bindings'
+          git push origin "HEAD:${BRANCH}"
