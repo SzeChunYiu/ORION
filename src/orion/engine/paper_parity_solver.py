@@ -2,9 +2,9 @@ from __future__ import annotations
 
 from dataclasses import replace
 
-from orion.core.method import MethodState
 from orion.core.problem import Problem
 from orion.core.state import OrionState
+from orion.donors.composition import normal_orion_donor_graph, orion_q_donor_graph
 from orion.engine.navigation import PaperParityNavigator, ProblemNavigationPlan
 from orion.engine.solver import OrionSolver
 
@@ -14,8 +14,8 @@ class PaperParityOrionSolver(OrionSolver):
 
     The existing operator kernel still performs FRAME/SEARCH/ABSORB/RECONSTRUCT/
     DETECT/DIAGNOSE/REFRAME/REOPEN/SATURATE. This wrapper makes recursive atomization,
-    fibre navigation, capability modality and donor-incumbent identity part of the
-    state that those operators transform and whose endpoints the trace binds.
+    fibre navigation, capability modality, strongest-incumbent donors and their
+    composition graph part of the state whose endpoints the trace binds.
     """
 
     def __init__(self, *args, navigator: PaperParityNavigator | None = None, **kwargs) -> None:
@@ -33,11 +33,20 @@ class PaperParityOrionSolver(OrionSolver):
         state: OrionState,
     ) -> tuple[OrionState, ProblemNavigationPlan]:
         plan = self._paper_navigator.plan(problem)
+        graph = orion_q_donor_graph() if plan.profile == "orion-q" else normal_orion_donor_graph()
+        graph.validate(self._paper_navigator.donor_registry)
         method = state.method
         if method.navigation_plan_digest and method.navigation_plan_digest != plan.plan_digest:
             raise ValueError(
                 "initial ORION state is bound to a stale/different navigation plan; "
                 "reopen or reconstruct the state before replay"
+            )
+        if (
+            method.donor_composition_graph_digest
+            and method.donor_composition_graph_digest != graph.graph_digest
+        ):
+            raise ValueError(
+                "initial ORION state is bound to a stale/different donor composition graph"
             )
         bound_method = replace(
             method,
@@ -46,6 +55,8 @@ class PaperParityOrionSolver(OrionSolver):
             atomization_digest=plan.atomization_digest,
             donor_registry_id=plan.donor_registry_id,
             donor_registry_digest=plan.donor_registry_digest,
+            donor_composition_graph_id=graph.graph_id,
+            donor_composition_graph_digest=graph.graph_digest,
             active_fibre_ids=plan.active_fibre_ids,
             deferred_donor_obligation_ids=plan.deferred_donor_obligation_ids,
         )
@@ -55,6 +66,7 @@ class PaperParityOrionSolver(OrionSolver):
                 "navigation_plan_digest": plan.plan_digest,
                 "atomization_digest": plan.atomization_digest,
                 "donor_registry_digest": plan.donor_registry_digest,
+                "donor_composition_graph_digest": graph.graph_digest,
                 "navigation_profile": plan.profile,
             }
         )
