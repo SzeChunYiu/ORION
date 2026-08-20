@@ -1,0 +1,25 @@
+name: p1-u-r4-matched-pairs
+
+on:
+  pull_request:
+    paths:
+      - 'development/p1-u-gpt-r4-matched-pairs/**'
+      - 'research/claim_expansion/p1/gpt_r4/**'
+      - 'research/claim_expansion/p1/gpt_r2/policy.py'
+      - 'research/claim_expansion/p1/gpt_r2/PROTOCOL_V1.json'
+      - 'tests/unit/p1/test_p1_u_r4_matched_pairs.py'
+      - '.github/workflows/p1-u-r4-matched-pairs.yml'
+  workflow_dispatch:
+
+jobs:
+  frozen-matched-pair-evaluator:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Verify frozen P1-U R4 matched-pair evaluator
+        run: pytest -q tests/unit/p1/test_p1_u_r4_matched_pairs.py
