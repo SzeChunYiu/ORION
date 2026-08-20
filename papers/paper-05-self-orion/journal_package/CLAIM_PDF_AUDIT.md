@@ -1,8 +1,8 @@
 # ORION-P5 independent claim / PDF audit
 
-Build subject before generated-package commit: `f8674764fbef3e224e4a284cf83724773e72dee2`.
+Build subject before generated-package commit: `409ae91e60eb018fcb2576d1b0bc385fa2996424`.
 Tracked PDF: `journal_package/manuscript.pdf`.
-PDF SHA256: `d78908a3e9f8eae39467f72a33f4ff0d2e5603c73ccb99dc7d5197f8911d8b8c`.
+PDF SHA256: `822a72b4fa5f34b04168aeb0eba2f82cee74f6dbefbf582a75e306c72d58940b`.
 Pages: `17`; bytes: `327034`.
 
 | ID | Claim | Artifact | Status |
