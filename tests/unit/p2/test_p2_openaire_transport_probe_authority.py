@@ -72,6 +72,7 @@ def test_transport_probe_binds_request_and_authority(tmp_path: Path) -> None:
         ("result_count", -1),
         ("matched_dois", []),
         ("matched_dois", ["10.9999/not-requested"]),
+        ("matched_dois", [good["matched_dois"][0].upper()]),
         ("benchmark_gold_accessed", True),
         ("promotion_authorized", True),
     )
@@ -81,6 +82,13 @@ def test_transport_probe_binds_request_and_authority(tmp_path: Path) -> None:
         path.write_text(json.dumps(bad), encoding="utf-8")
         with pytest.raises(ValueError):
             runner.validate_transport_probe(path, _freeze())
+
+    dois = _freeze()["transport_repair_evidence"]["probe_dois"]
+    reversed_matches = dict(good)
+    reversed_matches["matched_dois"] = [dois[1], dois[0]]
+    path.write_text(json.dumps(reversed_matches), encoding="utf-8")
+    with pytest.raises(ValueError):
+        runner.validate_transport_probe(path, _freeze())
 
 
 def test_transport_probe_refuses_weakened_freeze(tmp_path: Path) -> None:
