@@ -64,3 +64,46 @@ def test_shell_uses_argv_without_shell_interpolation(tmp_path: Path):
     )
     assert result["returncode"] == 0
     assert result["stdout"].strip() == "$(echo injected)"
+
+
+def test_process_timeout_clamp_admits_long_research_runs(tmp_path: Path):
+    """The process timeout clamp is a resource guard, not an evidence gate.
+
+    Lanes legitimately request runs far longer than a minute (the QG-3 stage-1
+    scan is ~20 minutes). The clamp silently rewrites an over-long request
+    rather than refusing it, so a lane that asks for more than the cap gets a
+    shorter run than it believes it asked for. Pin the bound so it cannot drift
+    back below what real lanes need without a failing test.
+    """
+    assert local_tools._MAX_PROCESS_TIMEOUT_SECONDS >= 1_500
+
+    project = tmp_path / "project"
+    project.mkdir()
+    workspace = ResearchWorkspace.initialize(
+        project / "ws",
+        project_root=project,
+        allow_process_tools=True,
+    )
+    observed: list[float | None] = []
+    real_popen = local_tools.subprocess.Popen
+
+    class _Recording(real_popen):  # type: ignore[misc, valid-type]
+        def wait(self, timeout=None):  # type: ignore[override]
+            observed.append(timeout)
+            return super().wait(timeout=timeout)
+
+    local_tools.subprocess.Popen = _Recording
+    try:
+        result = local_tools.execute_local(
+            workspace,
+            "PYTHON",
+            {"code": "print('ok')", "timeout": 1_500},
+        )
+    finally:
+        local_tools.subprocess.Popen = real_popen
+
+    assert result["returncode"] == 0
+    assert observed and observed[0] == 1_500, (
+        "a 1500s request must reach process.wait intact; a lower clamp would "
+        f"silently truncate long lane runs (saw {observed})"
+    )

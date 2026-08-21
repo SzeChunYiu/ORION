@@ -20,6 +20,7 @@ _LOCAL_CAPABILITIES = {
 _MAX_TEXT_CHARS = 1_000_000
 _MAX_LIST_ENTRIES = 10_000
 _MAX_PROCESS_OUTPUT_BYTES = 100_000
+_MAX_PROCESS_TIMEOUT_SECONDS = 1_800
 _DRAIN_JOIN_SECONDS = 1.0
 
 
@@ -160,7 +161,7 @@ def execute_local(
                 "SHELL/PYTHON local execution is disabled for this workspace; "
                 "reinitialize with --allow-process-tools to opt in"
             )
-        timeout = min(max(int(payload.get("timeout", 60)), 1), 120)
+        timeout = min(max(int(payload.get("timeout", 60)), 1), _MAX_PROCESS_TIMEOUT_SECONDS)
         cwd = _confined(root, str(payload.get("cwd", ".")))
         if not cwd.is_dir():
             raise NotADirectoryError(cwd)
