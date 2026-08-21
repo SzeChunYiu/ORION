@@ -123,7 +123,30 @@ VERIFIED_DOMAINS__NOT_R6`, all 12 gates true, byte-identical double run):
   dominance inequality composes across qubits to exclude support-≥3 frames analytically);
   chemistry closure rests on the exact containment pinch DP ≤ D++ ≤ D+ ≤ R6L rather than
   a direct sweep.
-- [SLOT] R6Q regime predicate: outcome pending.
+**R6Q executed — exact regime predicate; two-trade completeness identity.**
+`MAX_R6Q_REGIME_PREDICATE_RESULTS.json`
+(`MAX_R6Q_REGIME_PREDICATE_EXACT__TWO_TRADE_CHARACTERIZATION_ON_VERIFIED_DOMAINS__NOT_R6`,
+all gates true, byte-identical double run):
+
+- The predicate P(targets) — donor-exact iff neither trade is profitable, decided by
+  closed-form family minima with **no DP call**: (1) no split gain, C_R6L == C_D+;
+  (2) no borrow gain, f_B ≥ C_R6L over the algebraically forced borrow family (weight-2
+  frame on the central branch purchasing a weight-one Tag). **Zero classification errors
+  on 9,741 instances**: exhaustive structured n=2 (9,261), the R6O held-out panel (240,
+  bound row-by-row), a fresh-seed panel generated after P was fixed (240), and all 30
+  chemistry matchings. An independent 3-literal exhaustive induction converged to the
+  same two clauses.
+- **Completeness identity (theorem candidate):** C_DP == min(C_R6L, C_D+, f_B) on all
+  9,741 instances — the two discovered trades are jointly complete for the DP's advantage
+  over the donor family on every verified domain, and the remaining proof obligation is
+  sharply localized (rewrite any weight-≥2 witness into one of the three families without
+  cost increase; the protocol's forced-form derivation already covers the single-borrow
+  shape).
+- Chemistry explained structurally: the recorded DUCC batches are pure-Z with heavily
+  overlapping supports, so the shared anchor realizes all alignment and neither trade can
+  pay its +2 surcharge (Gsplit = 0 on all 30 matchings; f_B strictly above C_R6L).
+- [SLOT] R6R prospective fresh-subject test: outcome pending.
+- [SLOT] R6S all-n composition attempt: outcome pending.
 
 ### 2.5 N-lane recoveries (issues #674–#677) — ALL EXECUTED 2026-08-21
 

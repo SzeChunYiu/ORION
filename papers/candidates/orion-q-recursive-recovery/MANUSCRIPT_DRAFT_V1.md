@@ -13,13 +13,18 @@ bounded positive, a donor absorption, an explanatory closure, or a receipted sat
 report the complete execution of this programme on quantum-computing method questions: a
 donor-composed incumbent (the donor supersystem), a typed research-state ladder (MAX R0–R5),
 a native controller-driven R6 campaign executed end-to-end inside a replayable
-host-capability harness, the exact saturation of an entire representation-grammar family
-(R6B..R6M) by proof-carrying dynamic programs, [BIND: an explanatory support-dominance lemma
-converting that empirical saturation into an analytic family closure], and the recursive
-recovery of four classically closed negatives (N1–N4) under partial knowledge, where typed
-epistemic state strictly beats matched-information baselines in five of five interface-graph
-families. All negative outcomes are preserved as first-class receipted results; no claim in
-this paper exceeds its receipt's frozen scope.
+host-capability harness, and the exact saturation of an entire representation-grammar family
+(R6B..R6M) by proof-carrying dynamic programs — which the discipline then converted into
+understanding rather than a dead end: a machine-verified support-dominance lemma, two
+refutations landing precisely on pre-declared gaps (each yielding a minimally witnessed new
+regime), closure restored at frame support two, and an exact regime-membership predicate.
+We further report the recursive recovery of four classically closed negatives (N1–N4) under
+partial knowledge, where typed epistemic state beats matched-information baselines in six of
+six interface-graph families, and a dual-instrument agreement benchmark in which an
+LLM-host-driven research loop and a typed non-LLM controller independently selected the same
+next move on a live frontier question — a selection the subsequent mathematics rewarded. All
+negative outcomes are preserved as first-class receipted results; no claim in this paper
+exceeds its receipt's frozen scope.
 
 ## 1. The methodology is the contribution
 
@@ -149,14 +154,33 @@ frontier is thereby relocated twice over: the newly characterized trade-off regi
 themselves the open scientific object, and the framework states this with receipts instead
 of intuition.
 
-## 5. Claim boundary
+## 5. The dual-instrument agreement measurement
+
+The discipline's machinery permits a measurement unavailable to single-instrument
+pipelines: the same live frontier question — *which layer is responsible for the remaining
+gap, and what is the correct next move?* — was posed, under a protocol frozen before either
+outcome existed, to two architecturally disjoint instruments: the LLM-host-driven generic
+harness (13 digest-bound capability receipts, evidence restricted to committed receipts)
+and the ORION-Q campaign controller (one native cycle through the production typed
+epistemic modules, no LLM in the decision). Both independently diagnosed the
+representation-regime-characterization layer and selected the regime-characterization
+move; the typed controller's revision gate additionally *withheld* the representation-split
+revision because its predicate obligation was unresolved — deriving from obligation
+structure what the host lane reached through evidence. The subsequently executed
+mathematics rewarded the shared selection: the characterization lane produced an exact
+regime-membership predicate, and the complementary closure lane restored family closure at
+support two. Divergence would have been equally reportable; agreement is the observed
+result of this first benchmark instance
+(`development/orion-q-max-r0/dual-harness-benchmark-v0/`).
+
+## 6. Claim boundary
 
 Exact-synthetic and frozen-open-subject scopes throughout; no real-hardware, no
 journal-external authority; the protected stretched-N2 discriminator remains sealed for a
 future pre-frozen prospective run. Negative and mixed outcomes are load-bearing results of
 this paper, not omissions.
 
-## 6. Artifact availability
+## 7. Artifact availability
 
 All protocols, scripts, receipts, and the harness are in the SzeChunYiu/ORION repository;
 every receipt in this draft replays deterministically from its committed script.
