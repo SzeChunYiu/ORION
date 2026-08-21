@@ -8,17 +8,17 @@ from typing import Any, Mapping
 from uuid import uuid4
 
 from orion import Problem
-from orion.core.problem_tree import ResidualAtom
+from orion.core.problem_tree import ProblemAtom, ResidualAtom
 from orion.core.residuals import Residual
-from orion.core.solution import SolutionStatus
 from orion.core.state import OrionState
 from orion.engine.residual_recursion import (
+    ProblemRecursionPlanner,
     ResidualRecursionPlanner,
     ResidualRecursionPolicy,
 )
 from orion.engine.solver import OrionSolver, SolverConfig
 from orion.providers.experience import InMemoryExperienceStore
-from orion.providers.reasoner.llm import LLMResearchReasoner
+from orion.providers.reasoner.recursive_llm import RecursiveLLMResearchReasoner
 from orion.runtime import OrionRuntime, RuntimeResult
 
 from .broker import (
@@ -70,7 +70,7 @@ def _semantic_state_hash(state: OrionState) -> str:
 
 
 def _without_problem_local_residuals(state: OrionState) -> OrionState:
-    """Carry knowledge forward while preventing a parent's residual object from leaking into a child."""
+    """Carry knowledge forward without leaking one problem's residual objects into a child."""
 
     if not state.knowledge.residuals:
         return state
@@ -96,12 +96,14 @@ class RecursiveRunLimits:
     max_depth: int = 5
     max_nodes: int = 32
     max_children_per_residual: int = 12
+    max_children_per_problem: int = 12
 
     def __post_init__(self) -> None:
         for name, value in (
             ("max_depth", self.max_depth),
             ("max_nodes", self.max_nodes),
             ("max_children_per_residual", self.max_children_per_residual),
+            ("max_children_per_problem", self.max_children_per_problem),
         ):
             if isinstance(value, bool) or not isinstance(value, int):
                 raise TypeError(f"{name} must be an integer")
@@ -114,12 +116,14 @@ class _RecursiveSession:
         self,
         *,
         runtime: OrionRuntime,
-        planner: ResidualRecursionPlanner,
+        residual_planner: ResidualRecursionPlanner,
+        problem_planner: ProblemRecursionPlanner,
         limits: RecursiveRunLimits,
         evaluation_epoch_id: str,
     ) -> None:
         self.runtime = runtime
-        self.planner = planner
+        self.residual_planner = residual_planner
+        self.problem_planner = problem_planner
         self.limits = limits
         self.evaluation_epoch_id = evaluation_epoch_id
         self.nodes: list[dict[str, Any]] = []
@@ -140,6 +144,9 @@ class _RecursiveSession:
         result: RuntimeResult,
         role: str,
         before_hash: str,
+        recursion_depth: int,
+        parent_problem_id: str | None,
+        parent_residual_id: str | None,
     ) -> None:
         after_hash = _semantic_state_hash(result.final_state)
         self.nodes.append(
@@ -147,6 +154,9 @@ class _RecursiveSession:
                 "node_index": len(self.nodes),
                 "role": role,
                 "problem": _jsonable(problem),
+                "recursion_depth": recursion_depth,
+                "parent_problem_id": parent_problem_id,
+                "parent_residual_id": parent_residual_id,
                 "semantic_state_before": before_hash,
                 "semantic_state_after": after_hash,
                 "semantic_progress": before_hash != after_hash,
@@ -161,7 +171,7 @@ class _RecursiveSession:
                 ),
             }
         )
-        self.max_depth_reached = max(self.max_depth_reached, problem.recursion_depth)
+        self.max_depth_reached = max(self.max_depth_reached, recursion_depth)
 
     def _single_solve(
         self,
@@ -169,6 +179,9 @@ class _RecursiveSession:
         problem: Problem,
         state: OrionState,
         role: str,
+        recursion_depth: int,
+        parent_problem_id: str | None = None,
+        parent_residual_id: str | None = None,
     ) -> RuntimeResult:
         self._consume_node()
         before_hash = _semantic_state_hash(state)
@@ -180,9 +193,11 @@ class _RecursiveSession:
             problem,
             initial_state=state,
             variation_signature=(
-                "recursive-residual-solver-v1",
-                f"depth:{problem.recursion_depth}",
+                "recursive-problem-residual-solver-v2",
+                f"depth:{recursion_depth}",
                 f"role:{role}",
+                f"parent_problem:{parent_problem_id or '-'}",
+                f"parent_residual:{parent_residual_id or '-'}",
             ),
             evaluation_epoch_id=self.evaluation_epoch_id,
             split_id="recursive-research",
@@ -192,46 +207,161 @@ class _RecursiveSession:
             result=result,
             role=role,
             before_hash=before_hash,
+            recursion_depth=recursion_depth,
+            parent_problem_id=parent_problem_id,
+            parent_residual_id=parent_residual_id,
         )
         return result
 
-    def _record_plan(
+    def _record_problem_plan(
         self,
         *,
         problem: Problem,
-        residual: Residual,
-        atoms: tuple[ResidualAtom, ...],
+        recursion_depth: int,
+        atoms: tuple[ProblemAtom, ...],
         decomposition,
     ) -> None:
         self.plans.append(
             {
                 "plan_index": len(self.plans),
+                "plan_kind": "PROBLEM_DECOMPOSITION",
                 "parent_problem_id": problem.problem_id,
-                "parent_residual_id": residual.residual_id,
-                "recursion_depth": problem.recursion_depth,
+                "parent_residual_id": None,
+                "recursion_depth": recursion_depth,
                 "rationale": decomposition.rationale,
                 "stop_reason": (
                     None
                     if decomposition.stop_reason is None
                     else decomposition.stop_reason.value
                 ),
-                "ordered_atoms": [
-                    {
-                        "atom_id": atom.atom_id,
-                        "question": atom.question,
-                        "responsibility": atom.responsibility.value,
-                        "discriminator_id": atom.discriminator.discriminator_id,
-                        "discriminator_kind": atom.discriminator.kind.value,
-                        "expected_cost_units": atom.discriminator.expected_cost_units,
-                        "success_criterion": atom.discriminator.success_criterion,
-                    }
-                    for atom in atoms
-                ],
+                "ordered_atoms": [_jsonable_atom(atom) for atom in atoms],
                 "grants_scientific_authority": False,
                 "grants_novelty_authority": False,
                 "grants_promotion_authority": False,
             }
         )
+
+    def _record_residual_plan(
+        self,
+        *,
+        problem: Problem,
+        residual: Residual,
+        recursion_depth: int,
+        atoms: tuple[ResidualAtom, ...],
+        decomposition,
+    ) -> None:
+        self.plans.append(
+            {
+                "plan_index": len(self.plans),
+                "plan_kind": "RESIDUAL_DECOMPOSITION",
+                "parent_problem_id": problem.problem_id,
+                "parent_residual_id": residual.residual_id,
+                "recursion_depth": recursion_depth,
+                "rationale": decomposition.rationale,
+                "stop_reason": (
+                    None
+                    if decomposition.stop_reason is None
+                    else decomposition.stop_reason.value
+                ),
+                "ordered_atoms": [_jsonable_atom(atom) for atom in atoms],
+                "grants_scientific_authority": False,
+                "grants_novelty_authority": False,
+                "grants_promotion_authority": False,
+            }
+        )
+
+    def solve_root(
+        self,
+        *,
+        problem: Problem,
+        state: OrionState,
+    ) -> tuple[RuntimeResult, OrionState]:
+        """Decompose the root problem before expensive work, then adapt after evidence."""
+
+        working_state = state
+        while True:
+            decomposition = self.problem_planner.decompose(
+                problem=problem,
+                state=working_state,
+                recursion_depth=0,
+            )
+            ordered_atoms = self.problem_planner.order_atoms(decomposition.atoms)
+            self._record_problem_plan(
+                problem=problem,
+                recursion_depth=0,
+                atoms=ordered_atoms,
+                decomposition=decomposition,
+            )
+            if not ordered_atoms:
+                if decomposition.stop_reason is not None:
+                    self.stop_records.append(
+                        {
+                            "problem_id": problem.problem_id,
+                            "residual_id": "",
+                            "stop_reason": decomposition.stop_reason.value,
+                        }
+                    )
+                return self.solve_problem(
+                    problem=problem,
+                    state=working_state,
+                    role="root",
+                    recursion_depth=0,
+                )
+
+            replanned = False
+            for atom_index, atom in enumerate(ordered_atoms):
+                child = atom.as_problem(parent_problem=problem)
+                before_child_hash = _semantic_state_hash(working_state)
+                _child_result, child_state = self.solve_problem(
+                    problem=child,
+                    state=working_state,
+                    role=f"problem-atom:{atom.discriminator.kind.value}",
+                    recursion_depth=1,
+                    parent_problem_id=problem.problem_id,
+                )
+                after_child_hash = _semantic_state_hash(child_state)
+                working_state = child_state
+                if before_child_hash == after_child_hash:
+                    continue
+
+                refreshed, refreshed_state = self.solve_problem(
+                    problem=problem,
+                    state=working_state,
+                    role="root-refresh",
+                    recursion_depth=0,
+                )
+                working_state = refreshed_state
+                if not _material_residuals(refreshed):
+                    for remaining in ordered_atoms[atom_index + 1 :]:
+                        self.pruned_atoms.append(
+                            {
+                                "parent_problem_id": problem.problem_id,
+                                "parent_residual_id": "",
+                                "atom_id": remaining.atom_id,
+                                "reason": "ROOT_PROBLEM_CLOSED_AFTER_CHEAPER_DISCRIMINATOR",
+                            }
+                        )
+                    return refreshed, working_state
+
+                replanned = True
+                break
+
+            if replanned:
+                continue
+
+            self.stop_records.append(
+                {
+                    "problem_id": problem.problem_id,
+                    "residual_id": "",
+                    "stop_reason": "NO_PROBLEM_ATOM_PRODUCED_SEMANTIC_PROGRESS",
+                }
+            )
+            return self.solve_problem(
+                problem=problem,
+                state=working_state,
+                role="root-after-null-decomposition",
+                recursion_depth=0,
+            )
 
     def solve_problem(
         self,
@@ -239,14 +369,24 @@ class _RecursiveSession:
         problem: Problem,
         state: OrionState,
         role: str,
+        recursion_depth: int,
+        parent_problem_id: str | None = None,
+        parent_residual_id: str | None = None,
     ) -> tuple[RuntimeResult, OrionState]:
-        result = self._single_solve(problem=problem, state=state, role=role)
+        result = self._single_solve(
+            problem=problem,
+            state=state,
+            role=role,
+            recursion_depth=recursion_depth,
+            parent_problem_id=parent_problem_id,
+            parent_residual_id=parent_residual_id,
+        )
         working_state = _without_problem_local_residuals(result.final_state)
         residuals = _material_residuals(result)
         if not residuals:
             return result, working_state
 
-        if problem.recursion_depth >= self.limits.max_depth:
+        if recursion_depth >= self.limits.max_depth:
             for residual in residuals:
                 self.stop_records.append(
                     {
@@ -257,18 +397,24 @@ class _RecursiveSession:
                 )
             return result, working_state
 
-        for residual in residuals:
-            current_residual = residual
+        for original_residual in residuals:
+            current_residual = _find_material_residual(
+                result, original_residual.residual_id
+            )
+            if current_residual is None:
+                continue
             while current_residual is not None:
-                decomposition = self.planner.decompose(
+                decomposition = self.residual_planner.decompose(
                     residual=current_residual,
                     problem=problem,
                     state=result.final_state,
+                    recursion_depth=recursion_depth,
                 )
-                ordered_atoms = self.planner.order_atoms(decomposition.atoms)
-                self._record_plan(
+                ordered_atoms = self.residual_planner.order_atoms(decomposition.atoms)
+                self._record_residual_plan(
                     problem=problem,
                     residual=current_residual,
+                    recursion_depth=recursion_depth,
                     atoms=ordered_atoms,
                     decomposition=decomposition,
                 )
@@ -297,19 +443,18 @@ class _RecursiveSession:
                     child = atom.as_problem(
                         parent_problem=problem,
                         parent_residual=current_residual,
-                        recursion_depth=problem.recursion_depth + 1,
                     )
                     before_child_hash = _semantic_state_hash(working_state)
-                    child_result, child_state = self.solve_problem(
+                    _child_result, child_state = self.solve_problem(
                         problem=child,
                         state=working_state,
-                        role=f"child:{atom.discriminator.kind.value}",
+                        role=f"residual-atom:{atom.discriminator.kind.value}",
+                        recursion_depth=recursion_depth + 1,
+                        parent_problem_id=problem.problem_id,
+                        parent_residual_id=current_residual.residual_id,
                     )
                     after_child_hash = _semantic_state_hash(child_state)
                     working_state = child_state
-
-                    # A child that cannot change semantic research state cannot
-                    # justify repeating the parent. Move to the next discriminator.
                     if before_child_hash == after_child_hash:
                         continue
 
@@ -327,6 +472,9 @@ class _RecursiveSession:
                         problem=problem,
                         state=working_state,
                         role="parent-refresh",
+                        recursion_depth=recursion_depth,
+                        parent_problem_id=parent_problem_id,
+                        parent_residual_id=parent_residual_id,
                     )
                     working_state = _without_problem_local_residuals(
                         refreshed.final_state
@@ -349,8 +497,6 @@ class _RecursiveSession:
                         replanned = True
                         break
 
-                    # New evidence may change the decomposition. Replan instead
-                    # of blindly running stale siblings.
                     current_residual = refreshed_residual
                     replanned = True
                     break
@@ -360,8 +506,6 @@ class _RecursiveSession:
                 if replanned:
                     continue
 
-                # Every child was attempted without semantic progress. Preserve
-                # the residual as open rather than looping or rounding up.
                 self.stop_records.append(
                     {
                         "problem_id": problem.problem_id,
@@ -374,6 +518,19 @@ class _RecursiveSession:
         return result, working_state
 
 
+def _jsonable_atom(atom: ProblemAtom | ResidualAtom) -> dict[str, Any]:
+    return {
+        "atom_id": atom.atom_id,
+        "question": atom.question,
+        "responsibility": atom.responsibility.value,
+        "discriminator_id": atom.discriminator.discriminator_id,
+        "discriminator_kind": atom.discriminator.kind.value,
+        "expected_cost_units": atom.discriminator.expected_cost_units,
+        "success_criterion": atom.discriminator.success_criterion,
+        "metadata": dict(atom.metadata),
+    }
+
+
 def run_problem_recursive(
     workspace: ResearchWorkspace,
     problem_data: Mapping[str, Any],
@@ -382,17 +539,18 @@ def run_problem_recursive(
     require_verified_answer: bool = True,
     limits: RecursiveRunLimits | None = None,
 ) -> dict[str, Any]:
-    """Run canonical ORION with recursive residual-as-problem control.
+    """Run canonical ORION with recursive problem/residual control.
 
-    Host capability interruptions remain replayable: the workspace's immutable
-    request/result receipts cause a repeated invocation to replay completed work
-    and stop at the first still-missing capability.
+    Root problems are decomposed before expensive solving. Material residuals are
+    then recursively treated as child problems. Host capability interruptions stay
+    replayable because immutable request/result receipts are reused on the next
+    invocation. Recursive planning is proposal-only and cannot mint authority.
     """
 
     limits = limits or RecursiveRunLimits()
     broker = CapabilityBroker(workspace)
     llm = BrokerLLMProvider(broker)
-    reasoner = LLMResearchReasoner(llm)
+    reasoner = RecursiveLLMResearchReasoner(llm)
     experiences = InMemoryExperienceStore()
     solver = OrionSolver(
         reasoner=reasoner,
@@ -407,22 +565,23 @@ def run_problem_recursive(
         solver,
         experience_store=experiences,
         producer_process_lineage_hash=_sha256_label(
-            "orion-research-harness-recursive-v1"
+            "orion-research-harness-recursive-v2"
         ),
         evaluator_artifact_hash=_sha256_label(
-            "external-host-capability-receipts-recursive-v1"
+            "external-host-capability-receipts-recursive-v2"
         ),
     )
-    planner = ResidualRecursionPlanner(
-        reasoner,
-        policy=ResidualRecursionPolicy(
-            max_depth=limits.max_depth,
-            max_children_per_residual=limits.max_children_per_residual,
-        ),
+    policy = ResidualRecursionPolicy(
+        max_depth=limits.max_depth,
+        max_children_per_residual=limits.max_children_per_residual,
+        max_children_per_problem=limits.max_children_per_problem,
     )
+    residual_planner = ResidualRecursionPlanner(reasoner, policy=policy)
+    problem_planner = ProblemRecursionPlanner(reasoner, policy=policy)
     session = _RecursiveSession(
         runtime=runtime,
-        planner=planner,
+        residual_planner=residual_planner,
+        problem_planner=problem_planner,
         limits=limits,
         evaluation_epoch_id=f"harness-recursive:{workspace.session_id}",
     )
@@ -439,14 +598,13 @@ def run_problem_recursive(
     )
     initial_state = solver.initial_state(problem)
     try:
-        result, _working_state = session.solve_problem(
+        result, _working_state = session.solve_root(
             problem=problem,
             state=initial_state,
-            role="root",
         )
     except HostCapabilityRequired as pending:
         return {
-            "schema": "ORION.HarnessRecursiveSolveOutcome.v1",
+            "schema": "ORION.HarnessRecursiveSolveOutcome.v2",
             "status": "PENDING_CAPABILITY",
             "problem_id": problem.problem_id,
             "request": pending.request.as_dict(),
@@ -458,7 +616,7 @@ def run_problem_recursive(
         }
     except HostCapabilityFailed as failed:
         return {
-            "schema": "ORION.HarnessRecursiveSolveOutcome.v1",
+            "schema": "ORION.HarnessRecursiveSolveOutcome.v2",
             "status": "HOST_CAPABILITY_FAILED",
             "problem_id": problem.problem_id,
             "request": failed.request.as_dict(),
@@ -483,7 +641,7 @@ def run_problem_recursive(
 
     run_id = "recursive-run:" + uuid4().hex
     record = {
-        "schema": "ORION.HarnessRecursiveRun.v1",
+        "schema": "ORION.HarnessRecursiveRun.v2",
         "run_id": run_id,
         "session_id": workspace.session_id,
         "created_at": utc_now(),
@@ -507,7 +665,7 @@ def run_problem_recursive(
 
     if result is None:
         return {
-            "schema": "ORION.HarnessRecursiveSolveOutcome.v1",
+            "schema": "ORION.HarnessRecursiveSolveOutcome.v2",
             "status": "CANNOT_CHECK_RESOURCE_BOUND",
             "problem_id": problem.problem_id,
             "run_id": run_id,
@@ -518,13 +676,9 @@ def run_problem_recursive(
         }
 
     material = _material_residuals(result)
-    recursive_status = (
-        "RESIDUALS_OPEN"
-        if material
-        else "RESIDUAL_TREE_CLOSED"
-    )
+    recursive_status = "RESIDUALS_OPEN" if material else "RESIDUAL_TREE_CLOSED"
     return {
-        "schema": "ORION.HarnessRecursiveSolveOutcome.v1",
+        "schema": "ORION.HarnessRecursiveSolveOutcome.v2",
         "status": "COMPLETE",
         "problem_id": problem.problem_id,
         "run_id": run_id,
