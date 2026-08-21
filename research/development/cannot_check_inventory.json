@@ -1,10 +1,10 @@
 {
-  "blocker_sites": 496,
+  "blocker_sites": 497,
   "classification": {
     "INSUFFICIENT_EVIDENCE": 11,
     "MISSING_ACCESS": 5,
     "MISSING_CUSTODY": 28,
-    "MISSING_DECLARATION": 69,
+    "MISSING_DECLARATION": 70,
     "MISSING_IDENTITY": 29,
     "UNAVAILABLE_PROVIDER": 12,
     "UNCLASSIFIED": 342
@@ -3843,7 +3843,7 @@
       "file": "programme/checks_superiority.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 201,
+      "lineno": 202,
       "missing_obligation": null,
       "reasons": [
         "a campaign that terminated before producing an outcome is recorded as evidence for a terminal; preserving a CANNOT_CHECK campaign is right, counting it is not"
@@ -4043,7 +4043,7 @@
       "file": "programme/superiority.py",
       "has_reason": false,
       "kind": "ASSIGN",
-      "lineno": 104,
+      "lineno": 127,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -4055,7 +4055,7 @@
       "file": "programme/superiority.py",
       "has_reason": false,
       "kind": "ASSIGN",
-      "lineno": 138,
+      "lineno": 161,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -4067,7 +4067,7 @@
       "file": "programme/superiority.py",
       "has_reason": false,
       "kind": "ASSIGN",
-      "lineno": 190,
+      "lineno": 219,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -4079,7 +4079,7 @@
       "file": "programme/superiority.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 464,
+      "lineno": 493,
       "missing_obligation": "declared_scope must be present at this guard",
       "reasons": [
         "the paper's declared claim scope is not recorded, so it cannot be compared against the strongest grade in the ledger"
@@ -4093,7 +4093,7 @@
       "file": "programme/superiority.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 504,
+      "lineno": 533,
       "missing_obligation": null,
       "reasons": [
         "this terminal asks for a claim wider than the registered families; the paper currently declares",
@@ -4108,7 +4108,7 @@
       "file": "programme/superiority.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 542,
+      "lineno": 571,
       "missing_obligation": "evidence must be present at this guard",
       "reasons": [
         "no evidence is recorded against this terminal"
@@ -4122,7 +4122,7 @@
       "file": "programme/superiority.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 546,
+      "lineno": 575,
       "missing_obligation": null,
       "reasons": [
         "evidence is recorded against a different gate id"
@@ -4136,7 +4136,7 @@
       "file": "programme/superiority.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 550,
+      "lineno": 579,
       "missing_obligation": null,
       "reasons": [
         "no artifact is recorded against this terminal"
@@ -4145,12 +4145,26 @@
       "unmet_precondition": null
     },
     {
+      "category": "MISSING_DECLARATION",
+      "context": "adjudicate",
+      "file": "programme/superiority.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 599,
+      "missing_obligation": "evidence.independent_implementation must be present at this guard",
+      "reasons": [
+        "independence of the reviewer is not recorded"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": "evidence.independent_implementation"
+    },
+    {
       "category": "UNCLASSIFIED",
       "context": "adjudicate",
       "file": "programme/superiority.py",
       "has_reason": false,
       "kind": "RETURN",
-      "lineno": 570,
+      "lineno": 619,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -4162,7 +4176,7 @@
       "file": "programme/superiority.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 588,
+      "lineno": 637,
       "missing_obligation": "evidence.independent_implementation must be present at this guard",
       "reasons": [
         "independent implementation is not recorded"
@@ -4176,7 +4190,7 @@
       "file": "programme/superiority.py",
       "has_reason": false,
       "kind": "ASSIGN",
-      "lineno": 629,
+      "lineno": 678,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -4188,7 +4202,7 @@
       "file": "programme/superiority.py",
       "has_reason": false,
       "kind": "BRANCH",
-      "lineno": 736,
+      "lineno": 785,
       "missing_obligation": null,
       "reasons": [],
       "role": "OBSERVES",
@@ -4200,7 +4214,7 @@
       "file": "programme/superiority.py",
       "has_reason": false,
       "kind": "RETURN",
-      "lineno": 737,
+      "lineno": 786,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -7923,9 +7937,9 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "4212d4feb4798bcf49f1edd7a4e3cf62a8a6462b",
-  "total_sites": 545,
+  "subject_commit": "9296c0788d3d2ef39dd9c98b0d22aa86bcc60141",
+  "total_sites": 546,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
-  "with_derived_obligation": 84,
-  "with_reason": 222
+  "with_derived_obligation": 85,
+  "with_reason": 223
 }

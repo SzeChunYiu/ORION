@@ -301,7 +301,7 @@ P6_U_GATES: tuple[TerminalGate, ...] = (
         gate_id="P6-U-T4",
         paper_id="P6",
         issue_number=P6_U_ISSUE,
-        kind=TerminalKind.REPLICATION,
+        kind=TerminalKind.INDEPENDENT_REVIEW,
         statement="Independent proof/checker review.",
     ),
     TerminalGate(
@@ -352,7 +352,7 @@ P7_U_GATES: tuple[TerminalGate, ...] = (
         gate_id="P7-U-T5",
         paper_id="P7",
         issue_number=P7_U_ISSUE,
-        kind=TerminalKind.REPLICATION,
+        kind=TerminalKind.INDEPENDENT_REVIEW,
         statement="Independent formal/empirical reproduction.",
     ),
 )
@@ -394,7 +394,7 @@ P8_U_GATES: tuple[TerminalGate, ...] = (
         gate_id="P8-U-T5",
         paper_id="P8",
         issue_number=P8_U_ISSUE,
-        kind=TerminalKind.REPLICATION,
+        kind=TerminalKind.INDEPENDENT_REVIEW,
         statement="Independent formal and systems reproduction.",
     ),
 )

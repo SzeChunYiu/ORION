@@ -74,6 +74,29 @@ class TerminalKind(str, Enum):
     SUCCESSOR_MECHANIC = "SUCCESSOR_MECHANIC"
     """A negative or tied family converted into a prospectively validated mechanic."""
 
+    INDEPENDENT_REVIEW = "INDEPENDENT_REVIEW"
+    """Someone outside the producing lane checked the artifact.
+
+    Distinct from ``REPLICATION``, which asks whether an *effect* survives a
+    disjoint domain and a second implementation. An independent proof or checker
+    review asks whether a *formal artifact* holds up under outside scrutiny: it
+    has no domains to be disjoint across, and its natural evidence is a
+    mechanized theorem plus a reviewer's report.
+
+    Typing these as ``REPLICATION`` made three terminals unpassable via their own
+    documented unblock path --- #654's "Independent proof/checker review", #655's
+    "Independent formal/empirical reproduction" and #656's "Independent formal and
+    systems reproduction" all sat behind an admissible set of
+    ``{PROSPECTIVE_PROTECTED}`` while their blockers said to mechanize a proof and
+    have it reviewed. Caught by review on PR #739.
+
+    Note the conjunction in #655 and #656: both name a formal *and* an empirical
+    review. One grade cannot represent both, so this kind admits either and the
+    requirement that both be produced lives in those gates' blocker text, which
+    states it explicitly. A single evidence entry claiming only one half will pass
+    this kind and should not be recorded until both exist.
+    """
+
     SCOPE_DISCIPLINE = "SCOPE_DISCIPLINE"
     """The advertised claim does not exceed the strongest grade actually earned."""
 
@@ -153,6 +176,12 @@ ADMISSIBLE_GRADES: dict[TerminalKind, frozenset[EvidenceGrade]] = {
         {EvidenceGrade.BOUNDED_PROTECTED, EvidenceGrade.PROSPECTIVE_PROTECTED}
     ),
     TerminalKind.REPLICATION: frozenset({EvidenceGrade.PROSPECTIVE_PROTECTED}),
+    # Either an independently checked formal artifact or an independent
+    # empirical reproduction. Which one depends on what the paper's terminal
+    # is about, and both are genuinely 'someone outside checked this'.
+    TerminalKind.INDEPENDENT_REVIEW: frozenset(
+        {EvidenceGrade.MECHANIZED_THEOREM, EvidenceGrade.PROSPECTIVE_PROTECTED}
+    ),
     TerminalKind.FORMAL_GENERALIZATION: frozenset({EvidenceGrade.MECHANIZED_THEOREM}),
     TerminalKind.SUCCESSOR_MECHANIC: frozenset({EvidenceGrade.PROSPECTIVE_PROTECTED}),
     # Scope discipline is the one kind decided by comparing a declaration to the
@@ -562,6 +591,26 @@ def adjudicate(
             Outcome.PASS,
             f"mechanized theorem recorded: {', '.join(evidence.artifact_refs)}",
         )
+
+    if gate.kind is TerminalKind.INDEPENDENT_REVIEW:
+        if evidence.independent_implementation is None:
+            return _status(
+                gate,
+                Outcome.CANNOT_CHECK,
+                "independence of the reviewer is not recorded",
+            )
+        if not evidence.independent_implementation:
+            return _status(
+                gate, Outcome.FAIL, "the review was not carried out independently"
+            )
+        if evidence.grade is EvidenceGrade.MECHANIZED_THEOREM:
+            # Same category point as above: a proof review has no evaluator
+            # custody and no outcome to have been frozen before.
+            return _status(
+                gate,
+                Outcome.PASS,
+                f"independent formal review recorded: {', '.join(evidence.artifact_refs)}",
+            )
 
     unrecorded, violated = _protected_preconditions(gate, evidence)
     if violated:

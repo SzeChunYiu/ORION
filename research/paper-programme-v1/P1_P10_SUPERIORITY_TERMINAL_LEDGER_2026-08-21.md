@@ -60,9 +60,19 @@ Three-valued and non-compensatory, matching `orion.programme.hostile`:
 | `HARM_GUARD` | `BOUNDED_PROTECTED` or `PROSPECTIVE_PROTECTED` |
 | `REPLICATION` | `PROSPECTIVE_PROTECTED`, ≥2 distinct domains, independent implementation |
 | `FORMAL_GENERALIZATION` | `MECHANIZED_THEOREM` |
+| `INDEPENDENT_REVIEW` | `MECHANIZED_THEOREM` or `PROSPECTIVE_PROTECTED`, reviewed independently |
 | `SUCCESSOR_MECHANIC` | `PROSPECTIVE_PROTECTED` |
 | `SCOPE_DISCIPLINE` | advertised claim ≤ what the strongest grade licenses |
 | `SCOPE_EXPANSION` | advertised claim reaches `GENERAL_PROSPECTIVE`, and is licensed there |
+
+`INDEPENDENT_REVIEW` is separate from `REPLICATION` because the two ask
+different questions. Replication asks whether an *effect* survives a disjoint
+domain and a second implementation; an independent proof or checker review asks
+whether a *formal artifact* holds up under outside scrutiny, and has no domains
+to be disjoint across. Typing #654's, #655's and #656's review bullets as
+`REPLICATION` made them unpassable via their own documented unblock path — caught
+by review on PR #739, and now guarded by a test asserting every gate is reachable
+by the strongest evidence its own type admits.
 
 `SCOPE_EXPANSION` exists for exactly one bullet. #649's fourth `Done when` asks
 for the claim to be *wider* than the registered families; typing it as discipline

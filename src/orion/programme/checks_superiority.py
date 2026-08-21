@@ -112,6 +112,7 @@ _OUTCOME_KINDS = frozenset(
         TerminalKind.HARM_GUARD,
         TerminalKind.REPLICATION,
         TerminalKind.SUCCESSOR_MECHANIC,
+        TerminalKind.INDEPENDENT_REVIEW,
     }
 )
 
@@ -343,6 +344,10 @@ def _check_post_hoc_freeze(ledger: SuperiorityLedger) -> CheckResult:
             if kinds.get(item.gate_id) not in _OUTCOME_KINDS:
                 continue
             if item.grade is EvidenceGrade.ABSENT:
+                continue
+            if item.grade is EvidenceGrade.MECHANIZED_THEOREM:
+                # A theorem has no outcome access, so there is no "before" for a
+                # protocol to have been frozen relative to.
                 continue
             if item.protocol_frozen_before_outcome is False:
                 violated.append(

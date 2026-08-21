@@ -42,6 +42,7 @@ from orion.programme.identity import verify_seal
 from orion.programme.programme_state import CANDIDATE_CUSTODY, EXTERNAL_CUSTODY
 from orion.programme.records import Outcome
 from orion.programme.superiority import (
+    ADMISSIBLE_GRADES,
     SUPERIORITY_LEDGER_SCHEMA,
     Actionability,
     ClaimScope,
@@ -95,6 +96,13 @@ def _discharging_evidence(gate) -> GateEvidence:
             gate_id=gate.gate_id,
             grade=EvidenceGrade.MECHANIZED_THEOREM,
             artifact_refs=(f"proofs/{gate.gate_id}.v",),
+        )
+    if gate.kind is TerminalKind.INDEPENDENT_REVIEW:
+        return GateEvidence(
+            gate_id=gate.gate_id,
+            grade=EvidenceGrade.MECHANIZED_THEOREM,
+            artifact_refs=(f"proofs/{gate.gate_id}.v", f"reviews/{gate.gate_id}.md"),
+            independent_implementation=True,
         )
     if gate.kind in (TerminalKind.SCOPE_DISCIPLINE, TerminalKind.SCOPE_EXPANSION):
         return GateEvidence(
@@ -1038,3 +1046,83 @@ def test_retired_numbering_records_what_absorbed_each_track() -> None:
     # Nothing in P1-P10 was absorbed: #670 states "P1-U-P8-U remain #649-#656",
     # and P9/P10 keep their own successor issues.
     assert not any(target in PAPER_GATES for _, _, target in RETIRED_PAPER_NUMBERING)
+
+
+# --- every terminal must be reachable ----------------------------------------
+
+
+def _natural_grades_for(kind: TerminalKind) -> tuple[EvidenceGrade, ...]:
+    """The grades a reader of the issue would expect to satisfy this kind."""
+
+    return tuple(sorted(ADMISSIBLE_GRADES[kind], key=lambda grade: grade.rank))
+
+
+def test_every_gate_is_reachable_by_its_own_admissible_grades() -> None:
+    """No terminal may be unpassable however good the evidence gets.
+
+    This is the general form of a defect found by review on PR #739: three gates
+    asking for an independent proof review were typed ``REPLICATION``, whose only
+    admissible grade is ``PROSPECTIVE_PROTECTED``, so mechanizing the proof and
+    having it reviewed --- their own documented unblock path --- still could not
+    discharge them.
+
+    Pinning the three instances would not have caught the class. This constructs
+    the strongest evidence each gate's own type admits and asserts it passes, so
+    any future mistyping that makes a terminal unreachable fails here.
+    """
+
+    unreachable: list[str] = []
+    for paper_id, gates in PAPER_GATES.items():
+        record = PaperSuperiorityRecord(
+            paper_id=paper_id,
+            issue_number=PAPER_ISSUES[paper_id],
+            gates=gates,
+            evidence=tuple(_discharging_evidence(gate) for gate in gates),
+            declared_claim_scope=ClaimScope.GENERAL_PROSPECTIVE,
+        )
+        for status in record.statuses():
+            if status.outcome is not Outcome.PASS:
+                unreachable.append(f"{status.gate_id} ({status.kind.value}): {status.reason}")
+    assert unreachable == []
+
+
+def test_an_independent_review_gate_accepts_a_mechanized_proof() -> None:
+    """The exact defect PR #739 review caught, pinned at the instance too."""
+
+    for gate_id, paper_id in (("P6-U-T4", "P6"), ("P7-U-T5", "P7"), ("P8-U-T5", "P8")):
+        gate = next(g for g in PAPER_GATES[paper_id] if g.gate_id == gate_id)
+        assert gate.kind is TerminalKind.INDEPENDENT_REVIEW, gate_id
+        assert EvidenceGrade.MECHANIZED_THEOREM in gate.admissible_grades
+
+
+def test_an_independent_review_must_actually_be_independent() -> None:
+    gate = next(g for g in PAPER_GATES["P6"] if g.gate_id == "P6-U-T4")
+    proof = GateEvidence(
+        gate_id="P6-U-T4",
+        grade=EvidenceGrade.MECHANIZED_THEOREM,
+        artifact_refs=("proofs/p6.v",),
+    )
+    assert adjudicate(gate, proof).outcome is Outcome.CANNOT_CHECK
+    assert (
+        adjudicate(gate, replace(proof, independent_implementation=False)).outcome
+        is Outcome.FAIL
+    )
+    assert (
+        adjudicate(gate, replace(proof, independent_implementation=True)).outcome
+        is Outcome.PASS
+    )
+
+
+def test_a_manuscript_still_cannot_discharge_an_independent_review() -> None:
+    gate = next(g for g in PAPER_GATES["P6"] if g.gate_id == "P6-U-T4")
+    manuscript = GateEvidence(
+        gate_id="P6-U-T4",
+        grade=EvidenceGrade.MANUSCRIPT_COMPLETION,
+        artifact_refs=("papers/p6/manuscript.tex",),
+        independent_implementation=True,
+    )
+    assert adjudicate(gate, manuscript).outcome is Outcome.FAIL
+    assert _natural_grades_for(TerminalKind.INDEPENDENT_REVIEW) == (
+        EvidenceGrade.MECHANIZED_THEOREM,
+        EvidenceGrade.PROSPECTIVE_PROTECTED,
+    )
