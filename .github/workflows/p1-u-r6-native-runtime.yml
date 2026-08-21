@@ -9,6 +9,7 @@ on:
       - 'research/claim_expansion/p1/gpt_r5/build_fixed_corpus.py'
       - 'tests/unit/p1/test_p1_u_r6_native_runtime.py'
       - 'tests/unit/p1/test_p1_u_r6_native_evaluator.py'
+      - 'tests/unit/p1/test_p1_u_r6_primary_authority.py'
       - '.github/workflows/p1-u-r6-native-runtime.yml'
       - 'src/orion/**'
   workflow_dispatch:
@@ -32,11 +33,12 @@ jobs:
           python-version: '3.12'
       - name: Install ORION and test dependencies
         run: python -m pip install -e '.[dev]'
-      - name: Verify native ORION architecture and evaluator gates
+      - name: Verify native ORION architecture, evaluator gates, and authority boundary
         run: >-
           pytest -q
           tests/unit/p1/test_p1_u_r6_native_runtime.py
           tests/unit/p1/test_p1_u_r6_native_evaluator.py
+          tests/unit/p1/test_p1_u_r6_primary_authority.py
 
   native-primary-2020:
     needs: native-runtime-architecture
@@ -50,7 +52,7 @@ jobs:
           python-version: '3.12'
       - name: Install frozen evaluator runtime
         run: python -m pip install -e '.[dev]'
-      - name: Bind exact protected subject before outcome
+      - name: Bind exact protected scientific subject before outcome
         shell: bash
         run: |
           set -euo pipefail
@@ -96,7 +98,32 @@ jobs:
               'P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION',
               'P1_R6_NATIVE_PRIMARY_NOT_SUPPORTED',
           }
-          print('P1_R6_NATIVE_PRIMARY_TERMINAL=' + result['terminal'])
+          print('P1_R6_NATIVE_PRIMARY_SCIENTIFIC_TERMINAL=' + result['terminal'])
+          PY
+      - name: Record post-outcome ablation diagnostics without minting authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          python research/claim_expansion/p1/gpt_r6/primary_authority.py \
+            --result /tmp/p1-r6-primary/RESULT_V1.json \
+            --out /tmp/p1-r6-primary/AUTHORITY_V1.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path('/tmp/p1-r6-primary/RESULT_V1.json').read_text())
+          authority = json.loads(Path('/tmp/p1-r6-primary/AUTHORITY_V1.json').read_text())
+          assert authority['scientific_terminal_preserved'] == result['terminal']
+          assert authority['authority_verifier_bound_before_scientific_outcome'] is False
+          assert authority['grants_primary_mechanism_identification_authority'] is False
+          assert authority['grants_issue_649_closure_authority'] is False
+          assert authority['grants_replication_closure_authority'] is False
+          assert authority['grants_registry_promotion_authority'] is False
+          assert authority['grants_merge_authority'] is False
+          if result['terminal'] == 'P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION':
+              assert authority['authority_terminal'] == 'P1_R6_NATIVE_PRIMARY_CANNOT_CHECK_ABLATION_AUTHORITY_UNBOUND'
+          else:
+              assert authority['authority_terminal'] == 'P1_R6_NATIVE_PRIMARY_NOT_SUPPORTED'
+          print('P1_R6_NATIVE_PRIMARY_AUTHORITY_TERMINAL=' + authority['authority_terminal'])
           PY
       - name: Upload protected primary evidence
         uses: actions/upload-artifact@v4
