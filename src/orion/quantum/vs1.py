@@ -1,0 +1,158 @@
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+from pathlib import Path
+from statistics import mean
+from typing import Any
+
+from .contracts import (
+    QAccessMatch,
+    QAdvantageReceipt,
+    QResourceSummary,
+    QuantumAdvantageTerminal,
+    QuantumEvidenceMode,
+    validate_advantage_receipt,
+)
+from .simulator import execute_s1a_case, frozen_s1a_marked_positions
+from .verification import reconstruct_s1a_campaign
+
+
+_PROTOCOL_PATH = Path(
+    "research/extensions/orion-qn/VS1_P6_P2_P4_LOCAL_SIMULATION_PROTOCOL_V1.md"
+)
+_IMPLEMENTATION_PACKET_PATH = Path("development/orion-qn-q2/S1A_IMPLEMENTATION_PACKET_V1.md")
+
+
+def _sha256_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _size_terminal(cases: list[dict[str, Any]]) -> QuantumAdvantageTerminal:
+    semantic_green = all(
+        item["returned_candidate"] == item["marked_index"]
+        and abs(
+            float(item["simulated_marked_probability"])
+            - float(item["analytic_marked_probability"])
+        )
+        <= 1e-10
+        and float(item["normalization_error"]) <= 1e-10
+        for item in cases
+    )
+    if not semantic_green:
+        return QuantumAdvantageTerminal.INVALID_COMPARISON
+
+    mean_quantum = mean(int(item["oracle_calls"]) for item in cases)
+    mean_ordered = mean(int(item["classical_ordered_calls"]) for item in cases)
+    mean_random = mean(int(item["classical_random_calls"]) for item in cases)
+    if mean_quantum < mean_ordered and mean_quantum < mean_random:
+        return QuantumAdvantageTerminal.QUANTUM_QUERY_ADVANTAGE_ONLY
+    return QuantumAdvantageTerminal.QUANTUM_FEASIBLE_NO_ADVANTAGE
+
+
+def _summary_for_size(n_qubits: int, cases: list[dict[str, Any]]) -> dict[str, Any]:
+    terminal = _size_terminal(cases)
+    receipt = QAdvantageReceipt(
+        receipt_id=f"vs1-s1a-n{n_qubits}",
+        evidence_mode=QuantumEvidenceMode.LOCAL_SIMULATION,
+        terminal=terminal,
+        access_match=QAccessMatch(
+            same_problem=True,
+            same_information=True,
+            same_tolerance=True,
+        ),
+        resources=QResourceSummary(
+            unresolved_end_to_end_coordinates=(
+                "coherent_oracle_construction",
+                "fault_tolerant_logical_resources",
+                "physical_qubits",
+                "ft_runtime",
+            )
+        ),
+        query_claim_bounded=(
+            terminal is QuantumAdvantageTerminal.QUANTUM_QUERY_ADVANTAGE_ONLY
+        ),
+    )
+    validate_advantage_receipt(receipt)
+    return {
+        "n_qubits": n_qubits,
+        "search_size": 1 << n_qubits,
+        "case_count": len(cases),
+        "terminal": terminal.value,
+        "mean_quantum_oracle_calls": mean(int(item["oracle_calls"]) for item in cases),
+        "mean_classical_ordered_calls": mean(
+            int(item["classical_ordered_calls"]) for item in cases
+        ),
+        "mean_classical_random_calls": mean(
+            int(item["classical_random_calls"]) for item in cases
+        ),
+        "max_simulation_probability_error": max(
+            abs(
+                float(item["simulated_marked_probability"])
+                - float(item["analytic_marked_probability"])
+            )
+            for item in cases
+        ),
+        "max_normalization_error": max(float(item["normalization_error"]) for item in cases),
+        "all_candidates_verified_by_executor_predicate": all(
+            item["returned_candidate"] == item["marked_index"] for item in cases
+        ),
+        "evidence_mode": QuantumEvidenceMode.LOCAL_SIMULATION.value,
+        "query_claim_bounded": terminal
+        is QuantumAdvantageTerminal.QUANTUM_QUERY_ADVANTAGE_ONLY,
+        "unresolved_end_to_end_coordinates": list(
+            receipt.resources.unresolved_end_to_end_coordinates
+        ),
+    }
+
+
+def run_s1a_campaign() -> dict[str, Any]:
+    """Execute the prospectively frozen S1A campaign and reconstruct it independently."""
+
+    cases: list[dict[str, Any]] = []
+    size_summaries: list[dict[str, Any]] = []
+    for n_qubits in range(3, 11):
+        size_cases: list[dict[str, Any]] = []
+        for case_index, marked_index in enumerate(frozen_s1a_marked_positions(n_qubits)):
+            record = execute_s1a_case(n_qubits, case_index, marked_index).as_dict()
+            cases.append(record)
+            size_cases.append(record)
+        size_summaries.append(_summary_for_size(n_qubits, size_cases))
+
+    report: dict[str, Any] = {
+        "schema": "ORION.QN.VS1.S1A.Campaign.v1",
+        "programme_issue": "SzeChunYiu/ORION#734",
+        "evidence_mode": QuantumEvidenceMode.LOCAL_SIMULATION.value,
+        "subject_commit": os.environ.get("GITHUB_SHA", "LOCAL_UNBOUND"),
+        "protocol_path": str(_PROTOCOL_PATH),
+        "protocol_sha256": _sha256_file(_PROTOCOL_PATH),
+        "implementation_packet_path": str(_IMPLEMENTATION_PACKET_PATH),
+        "implementation_packet_sha256": _sha256_file(_IMPLEMENTATION_PACKET_PATH),
+        "physical_quantum_speedup_claim_permitted": False,
+        "cases": cases,
+        "size_summaries": size_summaries,
+        "literature_boundary": [
+            {
+                "source": "Quantum 10, 1975 (2026)",
+                "role": "structured-problem/resource hostile donor",
+                "disposition": "S1A query result cannot generalize to structured/end-to-end advantage",
+            },
+            {
+                "source": "arXiv:2605.21380",
+                "role": "quantum-oracle resource modelling donor",
+                "disposition": "oracle construction remains explicit S3 coordinate",
+            },
+            {
+                "source": "arXiv:2402.13895",
+                "role": "concrete Grover-oracle resource-accounting donor",
+                "disposition": "generic query reduction is separate from implementation cost",
+            },
+        ],
+    }
+    report["p4_reconstruction"] = reconstruct_s1a_campaign(report)
+    return report
+
+
+def run_s1a_campaign_json() -> str:
+    return json.dumps(run_s1a_campaign(), sort_keys=True, separators=(",", ":"))
