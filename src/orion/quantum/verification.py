@@ -9,6 +9,7 @@ from .contracts import (
     QAccessMatch,
     QAdvantageReceipt,
     QResourceSummary,
+    QuantumAccessMode,
     QuantumAdvantageTerminal,
     QuantumContractError,
     QuantumEvidenceMode,
@@ -90,8 +91,6 @@ def reconstruct_s1a_case(record: Mapping[str, Any]) -> dict[str, Any]:
 
     expected_case_id = f"S1A-n{n_qubits}-case{case_index}-marked{marked_index}"
 
-    # Validate all coordinates needed by later arithmetic before shifting, taking square
-    # roots, indexing the frozen subject set, or reconstructing randomized baselines.
     if n_qubits < 3 or n_qubits > 10:
         errors.append("n_qubits outside frozen S1A ladder")
         return _invalid_case(errors, case_id=expected_case_id)
@@ -222,16 +221,47 @@ def _terminal_for_size(
     return QuantumAdvantageTerminal.QUANTUM_FEASIBLE_NO_ADVANTAGE
 
 
+def _validate_top_level_access_interpretations(report: Mapping[str, Any], errors: list[str]) -> None:
+    interpretations = report.get("access_interpretations")
+    if not isinstance(interpretations, Mapping):
+        errors.append("campaign access_interpretations missing or malformed")
+        return
+    query_model = interpretations.get("query_model")
+    ordinary = interpretations.get("ordinary_classical_input")
+    if not isinstance(query_model, Mapping):
+        errors.append("query-model access interpretation missing")
+    else:
+        if query_model.get("quantum_access_mode") != QuantumAccessMode.NATIVE_COHERENT_ORACLE.value:
+            errors.append("query-model access is not explicitly native coherent oracle")
+        if query_model.get("oracle_construction_status") != "QUERY_MODEL_ASSUMPTION":
+            errors.append("query-model oracle construction status drift")
+        if query_model.get("maximum_terminal") != QuantumAdvantageTerminal.QUANTUM_QUERY_ADVANTAGE_ONLY.value:
+            errors.append("query-model maximum terminal exceeds or differs from frozen ceiling")
+    if not isinstance(ordinary, Mapping):
+        errors.append("ordinary classical-input access interpretation missing")
+    else:
+        if ordinary.get("quantum_access_mode") != QuantumAccessMode.CLASSICAL_PREDICATE_ONLY.value:
+            errors.append("ordinary input does not preserve classical-predicate-only access")
+        if ordinary.get("coherent_oracle_derivation_resolved") is not False:
+            errors.append("ordinary input falsely resolves coherent-oracle derivation")
+        if ordinary.get("terminal") != QuantumAdvantageTerminal.CANNOT_CHECK_ACCESS_MODEL.value:
+            errors.append("ordinary input must remain CANNOT_CHECK_ACCESS_MODEL")
+
+
 def reconstruct_s1a_campaign(report: Mapping[str, Any]) -> dict[str, Any]:
     """Recompute campaign terminals and Q1 claim ceilings from raw case records."""
 
     errors: list[str] = []
+    if report.get("schema") != "ORION.QN.VS1.S1A.Campaign.v2":
+        errors.append("campaign schema is not access-hardened v2")
+    _validate_top_level_access_interpretations(report, errors)
+
     raw_cases = report.get("cases")
     if not isinstance(raw_cases, list):
         return {
-            "schema": "ORION.QN.S1ACampaignReconstruction.v1",
+            "schema": "ORION.QN.S1ACampaignReconstruction.v2",
             "valid": False,
-            "errors": ["campaign cases missing or malformed"],
+            "errors": [*errors, "campaign cases missing or malformed"],
             "case_reconstructions": [],
             "size_summaries": [],
         }
@@ -270,19 +300,25 @@ def reconstruct_s1a_campaign(report: Mapping[str, Any]) -> dict[str, Any]:
             continue
         case_records = [raw for raw, _ in pairs]
         reconstructions = [item for _, item in pairs]
-        terminal = _terminal_for_size(case_records, reconstructions)
+        query_terminal = _terminal_for_size(case_records, reconstructions)
+        ordinary_terminal = (
+            QuantumAdvantageTerminal.INVALID_COMPARISON
+            if query_terminal is QuantumAdvantageTerminal.INVALID_COMPARISON
+            else QuantumAdvantageTerminal.CANNOT_CHECK_ACCESS_MODEL
+        )
         mean_quantum = mean(int(item["oracle_calls"]) for item in case_records)
         mean_ordered = mean(int(item["classical_ordered_calls"]) for item in case_records)
         mean_random = mean(int(item["classical_random_calls"]) for item in case_records)
 
-        receipt = QAdvantageReceipt(
-            receipt_id=f"vs1-s1a-n{n_qubits}",
+        query_receipt = QAdvantageReceipt(
+            receipt_id=f"vs1-s1a-query-model-n{n_qubits}",
             evidence_mode=QuantumEvidenceMode.LOCAL_SIMULATION,
-            terminal=terminal,
+            terminal=query_terminal,
             access_match=QAccessMatch(
                 same_problem=True,
                 same_information=True,
                 same_tolerance=True,
+                quantum_access_mode=QuantumAccessMode.NATIVE_COHERENT_ORACLE,
             ),
             resources=QResourceSummary(
                 unresolved_end_to_end_coordinates=(
@@ -293,20 +329,53 @@ def reconstruct_s1a_campaign(report: Mapping[str, Any]) -> dict[str, Any]:
                 )
             ),
             query_claim_bounded=(
-                terminal is QuantumAdvantageTerminal.QUANTUM_QUERY_ADVANTAGE_ONLY
+                query_terminal is QuantumAdvantageTerminal.QUANTUM_QUERY_ADVANTAGE_ONLY
             ),
         )
-        try:
-            validate_advantage_receipt(receipt)
-        except QuantumContractError as exc:
-            errors.append(f"n={n_qubits} reconstructed terminal violates Q1: {exc}")
+        ordinary_receipt = QAdvantageReceipt(
+            receipt_id=f"vs1-s1a-classical-input-n{n_qubits}",
+            evidence_mode=QuantumEvidenceMode.LOCAL_SIMULATION,
+            terminal=ordinary_terminal,
+            access_match=QAccessMatch(
+                same_problem=True,
+                same_information=True,
+                same_tolerance=True,
+                stronger_quantum_interface_unresolved=True,
+                quantum_access_mode=QuantumAccessMode.CLASSICAL_PREDICATE_ONLY,
+                coherent_oracle_derivation_resolved=False,
+            ),
+            resources=query_receipt.resources,
+        )
+        for label, receipt in (("query", query_receipt), ("ordinary", ordinary_receipt)):
+            try:
+                validate_advantage_receipt(receipt)
+            except QuantumContractError as exc:
+                errors.append(f"n={n_qubits} reconstructed {label} terminal violates Q1: {exc}")
 
         recorded = recorded_by_n.get(n_qubits)
         if recorded is None:
             errors.append(f"n={n_qubits} recorded size summary missing")
         else:
-            if recorded.get("terminal") != terminal.value:
+            if recorded.get("terminal") != query_terminal.value:
                 errors.append(f"n={n_qubits} terminal does not reconstruct")
+            if recorded.get("query_model_terminal") != query_terminal.value:
+                errors.append(f"n={n_qubits} query-model terminal does not reconstruct")
+            if recorded.get("quantum_access_mode") != QuantumAccessMode.NATIVE_COHERENT_ORACLE.value:
+                errors.append(f"n={n_qubits} positive/query summary lacks native coherent access")
+            if recorded.get("oracle_construction_status") != "QUERY_MODEL_ASSUMPTION":
+                errors.append(f"n={n_qubits} query oracle construction status drift")
+            if recorded.get("ordinary_input_terminal") != ordinary_terminal.value:
+                errors.append(f"n={n_qubits} ordinary-input terminal does not reconstruct")
+            if (
+                recorded.get("ordinary_input_quantum_access_mode")
+                != QuantumAccessMode.CLASSICAL_PREDICATE_ONLY.value
+            ):
+                errors.append(f"n={n_qubits} ordinary-input access mode does not reconstruct")
+            if recorded.get("ordinary_input_coherent_oracle_derivation_resolved") is not False:
+                errors.append(f"n={n_qubits} ordinary input falsely resolves coherent oracle")
+            unresolved = recorded.get("unresolved_end_to_end_coordinates")
+            if not isinstance(unresolved, list) or "coherent_oracle_construction" not in unresolved:
+                errors.append(f"n={n_qubits} coherent oracle construction vanished from resource unknowns")
             for key, expected in (
                 ("mean_quantum_oracle_calls", mean_quantum),
                 ("mean_classical_ordered_calls", mean_ordered),
@@ -324,7 +393,10 @@ def reconstruct_s1a_campaign(report: Mapping[str, Any]) -> dict[str, Any]:
             {
                 "n_qubits": n_qubits,
                 "search_size": 1 << n_qubits,
-                "terminal": terminal.value,
+                "query_model_terminal": query_terminal.value,
+                "quantum_access_mode": QuantumAccessMode.NATIVE_COHERENT_ORACLE.value,
+                "ordinary_input_terminal": ordinary_terminal.value,
+                "ordinary_input_quantum_access_mode": QuantumAccessMode.CLASSICAL_PREDICATE_ONLY.value,
                 "mean_quantum_oracle_calls": mean_quantum,
                 "mean_classical_ordered_calls": mean_ordered,
                 "mean_classical_random_calls": mean_random,
@@ -336,7 +408,7 @@ def reconstruct_s1a_campaign(report: Mapping[str, Any]) -> dict[str, Any]:
         )
 
     return {
-        "schema": "ORION.QN.S1ACampaignReconstruction.v1",
+        "schema": "ORION.QN.S1ACampaignReconstruction.v2",
         "valid": not errors and all(item["valid_record"] for item in case_reconstructions),
         "errors": errors,
         "case_reconstructions": case_reconstructions,
