@@ -1,0 +1,48 @@
+name: p11b-no-answer-laundering
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-frontier-v2/**'
+      - '.github/workflows/p11b-no-answer-laundering.yml'
+  workflow_dispatch:
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install 'numpy>=2,<3' 'scikit-learn>=1.5,<2'
+      - name: Replay 1
+        run: |
+          python research/extensions/orion-frontier-v2/run_p11b_no_answer_laundering_v1.py
+          cp research/extensions/orion-frontier-v2/results/P11B_NO_ANSWER_LAUNDERING_V1.json /tmp/p11b-1.json
+      - name: Replay 2
+        run: |
+          python research/extensions/orion-frontier-v2/run_p11b_no_answer_laundering_v1.py
+          cp research/extensions/orion-frontier-v2/results/P11B_NO_ANSWER_LAUNDERING_V1.json /tmp/p11b-2.json
+      - name: Require deterministic positive terminal
+        run: |
+          cmp /tmp/p11b-1.json /tmp/p11b-2.json
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          p=Path('/tmp/p11b-1.json')
+          d=json.loads(p.read_text())
+          assert d['terminal']=='P11B_QUERY_COMPONENT_COMPILATION_SUPPORTED'
+          assert all(d['gates'].values())
+          assert d['laundering_failures']==[]
+          cell=next(c for c in d['cells'] if c['universal_dimension']==2380)
+          assert cell['compiled_dimension']==5
+          assert cell['curves']['UNIVERSAL_BANK']['2048']==0.76220703125
+          assert cell['curves']['QUERY_COMPILED_COMPONENTS']['2048']==1.0
+          print('sha256:'+hashlib.sha256(p.read_bytes()).hexdigest())
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p11b-no-answer-laundering-${{ github.sha }}
+          path: /tmp/p11b-1.json
