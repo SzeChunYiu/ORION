@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 from statistics import mean
@@ -16,7 +17,12 @@ from .contracts import (
     QuantumEvidenceMode,
     validate_advantage_receipt,
 )
-from .simulator import execute_s1a_case, frozen_s1a_marked_positions
+from .simulator import (
+    analytic_grover_probability,
+    execute_s1a_case,
+    frozen_s1a_marked_positions,
+    optimal_single_marked_iterations,
+)
 from .verification import reconstruct_s1a_campaign
 
 
@@ -25,14 +31,42 @@ _PROTOCOL_PATH = Path(
 )
 _IMPLEMENTATION_PACKET_PATH = Path("development/orion-qn-q2/S1A_IMPLEMENTATION_PACKET_V1.md")
 _ACCESS_AMENDMENT_PATH = Path("research/extensions/orion-qn/S1A_ACCESS_MODEL_AMENDMENT_V1.md")
+_BENCHMARK_AMENDMENT_PATH = Path(
+    "research/extensions/orion-qn/S1A_BENCHMARK_DEPENDENCE_AMENDMENT_V1.md"
+)
 
 
 def _sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def _size_terminal(cases: list[dict[str, Any]]) -> QuantumAdvantageTerminal:
-    semantic_green = all(
+def query_model_comparison(n_qubits: int) -> dict[str, Any]:
+    """Return the hidden-uniform single-mark query comparator independent of fixtures."""
+
+    if n_qubits < 3 or n_qubits > 10:
+        raise ValueError("S1A v1/v3 query model requires 3 <= n_qubits <= 10")
+    search_size = 1 << n_qubits
+    iterations = optimal_single_marked_iterations(search_size)
+    success_probability = analytic_grover_probability(search_size, iterations)
+    classical_budget = min(search_size, math.ceil(success_probability * search_size))
+    classical_expected = classical_budget - (
+        classical_budget * (classical_budget - 1) / (2 * search_size)
+    )
+    return {
+        "model": "HIDDEN_UNIFORM_SINGLE_MARK_QUERY_MODEL",
+        "fixture_cases_used_for_advantage": False,
+        "success_probability_source": "ANALYTIC_GROVER_AMPLITUDE",
+        "quantum_single_run_success_probability": success_probability,
+        "quantum_query_budget": iterations,
+        "classical_matching_query_budget": classical_budget,
+        "classical_matching_expected_queries": classical_expected,
+        "classical_output_must_be_predicate_verified": True,
+        "benchmark_correlated_side_information_admitted": False,
+    }
+
+
+def _semantic_green(cases: list[dict[str, Any]]) -> bool:
+    return all(
         item["returned_candidate"] == item["marked_index"]
         and abs(
             float(item["simulated_marked_probability"])
@@ -42,19 +76,23 @@ def _size_terminal(cases: list[dict[str, Any]]) -> QuantumAdvantageTerminal:
         and float(item["normalization_error"]) <= 1e-10
         for item in cases
     )
-    if not semantic_green:
-        return QuantumAdvantageTerminal.INVALID_COMPARISON
 
-    mean_quantum = mean(int(item["oracle_calls"]) for item in cases)
-    mean_ordered = mean(int(item["classical_ordered_calls"]) for item in cases)
-    mean_random = mean(int(item["classical_random_calls"]) for item in cases)
-    if mean_quantum < mean_ordered and mean_quantum < mean_random:
+
+def _size_terminal(n_qubits: int, cases: list[dict[str, Any]]) -> QuantumAdvantageTerminal:
+    if not _semantic_green(cases):
+        return QuantumAdvantageTerminal.INVALID_COMPARISON
+    comparison = query_model_comparison(n_qubits)
+    quantum_queries = int(comparison["quantum_query_budget"])
+    classical_budget = int(comparison["classical_matching_query_budget"])
+    classical_expected = float(comparison["classical_matching_expected_queries"])
+    if quantum_queries < classical_budget and quantum_queries < classical_expected:
         return QuantumAdvantageTerminal.QUANTUM_QUERY_ADVANTAGE_ONLY
     return QuantumAdvantageTerminal.QUANTUM_FEASIBLE_NO_ADVANTAGE
 
 
 def _summary_for_size(n_qubits: int, cases: list[dict[str, Any]]) -> dict[str, Any]:
-    query_terminal = _size_terminal(cases)
+    query_comparison = query_model_comparison(n_qubits)
+    query_terminal = _size_terminal(n_qubits, cases)
     query_receipt = QAdvantageReceipt(
         receipt_id=f"vs1-s1a-query-model-n{n_qubits}",
         evidence_mode=QuantumEvidenceMode.LOCAL_SIMULATION,
@@ -105,7 +143,6 @@ def _summary_for_size(n_qubits: int, cases: list[dict[str, Any]]) -> dict[str, A
         "n_qubits": n_qubits,
         "search_size": 1 << n_qubits,
         "case_count": len(cases),
-        # `terminal` remains a compatibility alias for the explicitly named query-model terminal.
         "terminal": query_terminal.value,
         "query_model_terminal": query_terminal.value,
         "quantum_access_mode": QuantumAccessMode.NATIVE_COHERENT_ORACLE.value,
@@ -113,11 +150,15 @@ def _summary_for_size(n_qubits: int, cases: list[dict[str, Any]]) -> dict[str, A
         "ordinary_input_terminal": ordinary_terminal.value,
         "ordinary_input_quantum_access_mode": QuantumAccessMode.CLASSICAL_PREDICATE_ONLY.value,
         "ordinary_input_coherent_oracle_derivation_resolved": False,
-        "mean_quantum_oracle_calls": mean(int(item["oracle_calls"]) for item in cases),
-        "mean_classical_ordered_calls": mean(
+        "advantage_adjudication_source": "HIDDEN_UNIFORM_ANALYTIC_QUERY_MODEL",
+        **query_comparison,
+        # Retained from the original packet as non-authorizing execution diagnostics only.
+        "fixture_classical_diagnostic_only": True,
+        "mean_fixture_quantum_oracle_calls": mean(int(item["oracle_calls"]) for item in cases),
+        "mean_fixture_classical_ordered_calls": mean(
             int(item["classical_ordered_calls"]) for item in cases
         ),
-        "mean_classical_random_calls": mean(
+        "mean_fixture_classical_random_calls": mean(
             int(item["classical_random_calls"]) for item in cases
         ),
         "max_simulation_probability_error": max(
@@ -141,7 +182,7 @@ def _summary_for_size(n_qubits: int, cases: list[dict[str, Any]]) -> dict[str, A
 
 
 def run_s1a_campaign() -> dict[str, Any]:
-    """Execute the prospectively frozen S1A campaign and reconstruct it independently."""
+    """Execute semantic fixtures and separately adjudicate the frozen query model."""
 
     cases: list[dict[str, Any]] = []
     size_summaries: list[dict[str, Any]] = []
@@ -154,7 +195,7 @@ def run_s1a_campaign() -> dict[str, Any]:
         size_summaries.append(_summary_for_size(n_qubits, size_cases))
 
     report: dict[str, Any] = {
-        "schema": "ORION.QN.VS1.S1A.Campaign.v2",
+        "schema": "ORION.QN.VS1.S1A.Campaign.v3",
         "programme_issue": "SzeChunYiu/ORION#734",
         "evidence_mode": QuantumEvidenceMode.LOCAL_SIMULATION.value,
         "subject_commit": os.environ.get("GITHUB_SHA", "LOCAL_UNBOUND"),
@@ -164,7 +205,11 @@ def run_s1a_campaign() -> dict[str, Any]:
         "implementation_packet_sha256": _sha256_file(_IMPLEMENTATION_PACKET_PATH),
         "access_amendment_path": str(_ACCESS_AMENDMENT_PATH),
         "access_amendment_sha256": _sha256_file(_ACCESS_AMENDMENT_PATH),
+        "benchmark_amendment_path": str(_BENCHMARK_AMENDMENT_PATH),
+        "benchmark_amendment_sha256": _sha256_file(_BENCHMARK_AMENDMENT_PATH),
         "physical_quantum_speedup_claim_permitted": False,
+        "fixture_cases_used_for_advantage": False,
+        "advantage_adjudication_source": "HIDDEN_UNIFORM_ANALYTIC_QUERY_MODEL",
         "access_interpretations": {
             "query_model": {
                 "quantum_access_mode": QuantumAccessMode.NATIVE_COHERENT_ORACLE.value,
@@ -186,6 +231,14 @@ def run_s1a_campaign() -> dict[str, Any]:
                 "disposition": (
                     "query-count evidence is valid only when native coherent oracle access is "
                     "explicitly registered"
+                ),
+            },
+            {
+                "source": "arXiv:2607.13090",
+                "role": "benchmark-dependence / side-information hostile donor",
+                "disposition": (
+                    "public known-answer fixture support is semantic-only and cannot authorize "
+                    "the query-advantage comparator"
                 ),
             },
             {
