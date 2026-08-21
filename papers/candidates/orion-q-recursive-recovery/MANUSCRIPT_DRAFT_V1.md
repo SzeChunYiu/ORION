@@ -66,6 +66,17 @@ this paper exceeds its receipt's frozen scope.
   happen to avoid. The collapse explanation is therefore "support dominance plus
   subject-specific Tag-anchor alignment", and the counterexample defines the enlarged
   donor family tested next.
+- **R6O enlarged-Tag donor closure — doubly refuted, converse regime found**: the enlarged
+  family D+ repairs the R6N gap exactly (the refuting instance ties the DP) and strictly
+  improves on the old donor (34/240 random instances), with the containment sandwich
+  DP ≤ D+ ≤ R6L machine-verified everywhere and full DP == D+ closure on all 4,096 n=1
+  instances — yet 486/9,261 structured and 73/240 random instances expose the *converse*
+  trade: the DP spends a weight-2 frame Pauli to compress the shared Tag to weight one,
+  netting below every weight-one-frame family. Chemistry is untouched (DP == D+ == R6L on
+  all 30 matchings). The pair of refutations yields a two-sided expressivity
+  characterization of the grammar family — Tag-for-anchor and frame-for-Tag trades — with
+  minimal serialized counterexamples for both, and leaves the exact DP as the only family
+  member known optimal in general.
 
 ## 3. Recursive recovery of the N-lane negatives
 
@@ -113,10 +124,12 @@ methods". The dominance audit then did what saturation alone cannot: it turned t
 collapse into understanding (frame support provably never pays) while *refuting* the naive
 closure story at its declared gap, producing a minimal counterexample regime (split-anchor
 weight-one frames with a weight-2 shared Tag) that the donor grammar cannot express and
-the chemistry subjects happen to avoid. [BIND: R6O tests whether the enlarged donor family
-restores exact closure.] The honest frontier is thereby relocated twice over: progress
-requires either the newly characterized Tag-anchor regime or a move outside the family
-entirely, and the framework states this with receipts instead of intuition.
+the chemistry subjects happen to avoid. R6O then repaired that gap and was refuted in turn by the
+converse regime — frames purchased to compress Tags — leaving a two-sided, minimally
+witnessed expressivity map of the family in place of a closure conjecture. The honest
+frontier is thereby relocated twice over: the newly characterized trade-off regimes are
+themselves the open scientific object, and the framework states this with receipts instead
+of intuition.
 
 ## 5. Claim boundary
 

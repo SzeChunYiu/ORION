@@ -82,8 +82,26 @@ before outcome with the Tag-repair coupling explicitly declared as the analytic 
   frozen chemistry subjects happen to avoid. The post-gate diagnostic shows the enlarged
   family (weight-one frames + unrestricted minimal Tag) recovers the DP optimum there.
 - Authority: `MAX_R6N_SUPPORT_DOMINANCE_REFUTED__NEW_REGIME_FOUND__NOT_R6`.
-- [SLOT] R6O enlarged-Tag donor closure: does the enlarged donor family D+ restore exact
-  family closure on all domains? Outcome to be bound verbatim.
+
+**R6O executed — closure doubly refuted; converse regime characterized.**
+`MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json`
+(`MAX_R6O_ENLARGED_TAG_DONOR_CLOSURE_REFUTED__SECOND_NEW_REGIME_FOUND__NOT_R6`):
+
+- D+ (weight-one frames, arbitrary anchors, minimal unrestricted Tag) **repairs the R6N
+  gap** — the refuting instance `n2_b` now ties the DP at 8 — and D+ strictly beats the old
+  R6L donor on 34/240 random instances; the containment sandwich DP ≤ D+ ≤ R6L held on
+  every computed instance, and DP == D+ closes exhaustively on all 4,096 n=1 instances.
+- But a **second, converse regime** exists: on 486/9,261 exhaustive structured-n2 and
+  73/240 random instances the DP strictly beats D+ by spending a weight-2 frame Pauli at
+  the central multiplier to compress the shared Tag to weight one and improve
+  Restore-factor alignment (smallest counterexample serialized: DP 5 < D+ 6). R6N traded
+  Tag weight for frame anchors; R6O's regime trades frame weight for Tag compression —
+  inexpressible in any weight-one-frame family.
+- Chemistry is unchanged: DP == D+ == R6L on all 30 recorded matchings, so weight-one
+  donors remain exactly optimal on the frozen subjects.
+- Honest position: exact family closure is doubly refuted; only the exact DP is known
+  optimal in general. Open: an analytic bound on the frame-for-Tag trade, and whether
+  weight-≤2 frames with minimal Tags close the grammar exactly.
 
 ### 2.5 N-lane recoveries (issues #674–#677) — ALL EXECUTED 2026-08-21
 
