@@ -849,6 +849,26 @@ def run_problem_recursive(
                 "resource_bound_hit": session.resource_bound_hit,
             },
         }
+    except (ValueError, TypeError, KeyError) as exc:
+        # A successful host receipt whose content violates the task schema
+        # (bad JSON, wrong field type, invalid enum value) surfaces here from
+        # the reasoner's strict parsing. That is an orchestration condition of
+        # the host boundary, never scientific failure evidence, so it maps to
+        # the documented HOST_CAPABILITY_FAILED contract instead of a raw
+        # traceback. The receipt itself stays immutable; recovery goes through
+        # `retry-failed --invalid-content`.
+        return {
+            "schema": "ORION.HarnessRecursiveSolveOutcome.v3",
+            "status": "HOST_CAPABILITY_FAILED",
+            "problem_id": problem.problem_id,
+            "error": f"reasoner content invalid: {exc}",
+            "recursive_progress": {
+                "completed_nodes": len(session.nodes),
+                "completed_plans": len(session.plans),
+                "max_depth_reached": session.max_depth_reached,
+                "resource_bound_hit": session.resource_bound_hit,
+            },
+        }
     except RuntimeError as exc:
         if str(exc) not in {
             "RECURSIVE_NODE_BUDGET_EXHAUSTED",

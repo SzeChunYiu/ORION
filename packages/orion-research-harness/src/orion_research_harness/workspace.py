@@ -357,6 +357,44 @@ class ResearchWorkspace:
                 return target
             attempt += 1
 
+    def archive_invalid_result(self, request_id: str, *, reason: str) -> Path:
+        """Free an identity pinned by a successful receipt with invalid content.
+
+        A successful receipt is normally immutable. When its content violates
+        the task schema the deterministic identity would replay the malformed
+        answer forever, so this explicit, reason-carrying override moves the
+        receipt (bytes unchanged) to `results/archived/<request>.invalid-<n>.json`
+        with a sidecar recording the caller's stated reason. The audit trail is
+        preserved; the request becomes pending and can be serviced with a
+        corrected result.
+        """
+
+        cleaned = reason.strip()
+        if not cleaned:
+            raise ValueError("archiving a successful result requires a non-empty reason")
+        result = self.load_result(request_id)
+        if result is None:
+            raise FileNotFoundError(f"no result recorded for request {request_id}")
+        source = self._result_path(request_id)
+        archive_dir = self.results_dir / "archived"
+        archive_dir.mkdir(parents=True, exist_ok=True)
+        stem = _disk_name(request_id)[: -len(".json")]
+        attempt = 1
+        while True:
+            target = archive_dir / f"{stem}.invalid-{attempt}.json"
+            if not target.exists():
+                try:
+                    os.link(source, target)
+                except FileExistsError:
+                    attempt += 1
+                    continue
+                target.with_suffix(".reason.txt").write_text(
+                    cleaned + "\n", encoding="utf-8"
+                )
+                os.unlink(source)
+                return target
+            attempt += 1
+
     def pending_requests(self) -> tuple[CapabilityRequest, ...]:
         pending: list[CapabilityRequest] = []
         if not self.requests_dir.exists():

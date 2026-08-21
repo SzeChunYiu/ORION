@@ -157,6 +157,16 @@ def build_parser() -> argparse.ArgumentParser:
     retry = sub.add_parser("retry-failed")
     retry.add_argument("workspace")
     retry.add_argument("request_id", nargs="?")
+    retry.add_argument(
+        "--invalid-content",
+        action="store_true",
+        help="archive a SUCCESSFUL receipt whose content violates the task schema",
+    )
+    retry.add_argument(
+        "--reason",
+        default="",
+        help="required with --invalid-content: why the successful receipt is invalid",
+    )
 
     local = sub.add_parser("service-local")
     local.add_argument("workspace")
@@ -336,6 +346,26 @@ def main(argv: list[str] | None = None) -> int:
         _print(request.as_dict())
         return 0
     if args.command == "retry-failed":
+        if args.invalid_content:
+            if not args.request_id:
+                raise SystemExit("--invalid-content requires an explicit request_id")
+            archived_to = workspace.archive_invalid_result(
+                args.request_id, reason=args.reason
+            )
+            _print(
+                {
+                    "schema": "ORION.ResearchHarnessRetryFailed.v1",
+                    "archived": [
+                        {
+                            "request_id": args.request_id,
+                            "archived_to": str(archived_to),
+                            "invalid_content": True,
+                            "reason": args.reason.strip(),
+                        }
+                    ],
+                }
+            )
+            return 0
         ids = (
             [args.request_id]
             if args.request_id

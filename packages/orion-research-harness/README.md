@@ -114,6 +114,8 @@ orion-harness retry-failed .research hostreq:...   # archive one failed result
 
 Only **failed** results can be archived; successful receipts stay immutable. The failed receipt moves, bytes unchanged, to `results/archived/<request>.failed-<n>.json`, the request becomes pending again, and the same deterministic request can then be serviced after the host repairs the environment.
 
+One narrow exception exists for a *successful* receipt whose content violates the task schema (which the recursive solver surfaces as `HOST_CAPABILITY_FAILED` rather than a traceback): `retry-failed <ws> <request_id> --invalid-content --reason "..."` archives it to `results/archived/<request>.invalid-<n>.json` with a sidecar recording the stated reason, freeing the identity for a corrected receipt. The reason is mandatory and the original bytes are preserved.
+
 ## Persistent scientific campaigns
 
 Campaigns add a reusable multi-cycle layer above the same workspace and host-receipt protocol:
