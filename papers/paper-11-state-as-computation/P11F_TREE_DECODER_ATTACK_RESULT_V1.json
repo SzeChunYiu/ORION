@@ -1,0 +1,40 @@
+{
+  "cells": [
+    {
+      "cell": [17, 4, 5],
+      "compiled_dimension": 5,
+      "compiled_minus_tree_at_64": 0.44596354166666663,
+      "curves": {
+        "COMPILED_L2": {"1024": 1.0, "128": 1.0, "256": 1.0, "512": 1.0, "64": 1.0},
+        "UNIVERSAL_EXTRA_TREES": {"1024": 0.8194173177083334, "128": 0.5904134114583334, "256": 0.6683756510416666, "512": 0.7474772135416666, "64": 0.5540364583333334}
+      },
+      "threshold_0_95": {"COMPILED_L2": 64, "UNIVERSAL_EXTRA_TREES": null},
+      "universal_dimension": 2380
+    },
+    {
+      "cell": [19, 3, 7],
+      "compiled_dimension": 7,
+      "compiled_minus_tree_at_64": 0.40291341145833326,
+      "curves": {
+        "COMPILED_L2": {"1024": 1.0, "128": 1.0, "256": 1.0, "512": 1.0, "64": 0.9698893229166666},
+        "UNIVERSAL_EXTRA_TREES": {"1024": 0.770263671875, "128": 0.6175130208333334, "256": 0.687255859375, "512": 0.7364095052083334, "64": 0.5669759114583334}
+      },
+      "threshold_0_95": {"COMPILED_L2": 64, "UNIVERSAL_EXTRA_TREES": null},
+      "universal_dimension": 969
+    }
+  ],
+  "gates": {
+    "compiled_by_64": true,
+    "delta64_ge_0_20": true,
+    "no_answer_laundering": true,
+    "tree_threshold_ge_256": true,
+    "two_execution_hash_match": true
+  },
+  "laundering_failures": [],
+  "n_trees": 96,
+  "protocol": "P11F_TRACTABLE_TREE_DECODER_ATTACK_PROTOCOL_V1.md",
+  "schema": "ORION.P11F.TractableTreeDecoderAttack.v1",
+  "seed": 2026082118,
+  "canonical_sha256": "aedb2aa0cc31ddb1b5395dfebc439bc26288b455deab8c4abb12a18ff9fd7dee",
+  "terminal": "P11F_TREE_DECODER_GAP_SUPPORTED"
+}

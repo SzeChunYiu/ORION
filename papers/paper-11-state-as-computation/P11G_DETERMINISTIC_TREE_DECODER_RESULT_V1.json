@@ -1,0 +1,57 @@
+{
+  "gates": {
+    "compiled_by_64": true,
+    "delta64_ge_0_20": true,
+    "no_answer_laundering": true,
+    "subprocesses_successful": true,
+    "tree_threshold_ge_256": true,
+    "two_fresh_subprocess_payloads_byte_identical": true
+  },
+  "protocol": "P11G_DETERMINISTIC_TREE_DECODER_PROTOCOL_V1.md",
+  "replay": {
+    "byte_identical": true,
+    "first_sha256": "a2b0c33ce3c39e54ca1aa400a2b7d52d019fc4503f6cd5eb726c7b8bbe79a7cc",
+    "fresh_python_subprocesses": 2,
+    "second_sha256": "a2b0c33ce3c39e54ca1aa400a2b7d52d019fc4503f6cd5eb726c7b8bbe79a7cc"
+  },
+  "schema": "ORION.P11G.DeterministicTreeDecoder.v1",
+  "scientific_payload": {
+    "cells": [
+      {
+        "cell": [17, 4, 5],
+        "compiled_dimension": 5,
+        "compiled_minus_tree_at_64": 0.46240234375,
+        "curves": {
+          "COMPILED_L2": {"1024": 1.0, "128": 1.0, "256": 1.0, "512": 1.0, "64": 1.0},
+          "UNIVERSAL_EXTRA_TREES": {"1024": 0.8247884114583334, "128": 0.5874837239583334, "256": 0.6552734375, "512": 0.7373860677083334, "64": 0.53759765625}
+        },
+        "threshold_0_95": {"COMPILED_L2": 64, "UNIVERSAL_EXTRA_TREES": null},
+        "universal_dimension": 2380
+      },
+      {
+        "cell": [19, 3, 7],
+        "compiled_dimension": 7,
+        "compiled_minus_tree_at_64": 0.39420572916666674,
+        "curves": {
+          "COMPILED_L2": {"1024": 1.0, "128": 1.0, "256": 1.0, "512": 1.0, "64": 0.9868977864583334},
+          "UNIVERSAL_EXTRA_TREES": {"1024": 0.7827962239583334, "128": 0.6017252604166666, "256": 0.673095703125, "512": 0.7207845052083334, "64": 0.5926920572916666}
+        },
+        "threshold_0_95": {"COMPILED_L2": 64, "UNIVERSAL_EXTRA_TREES": null},
+        "universal_dimension": 969
+      }
+    ],
+    "laundering_failures": [],
+    "n_jobs": 1,
+    "n_trees": 96,
+    "protocol": "P11G_DETERMINISTIC_TREE_DECODER_PROTOCOL_V1.md",
+    "schema": "ORION.P11G.DeterministicTreeDecoder.ScientificPayload.v1",
+    "scientific_gates": {
+      "compiled_by_64": true,
+      "delta64_ge_0_20": true,
+      "no_answer_laundering": true,
+      "tree_threshold_ge_256": true
+    },
+    "seed": 2026082120
+  },
+  "terminal": "P11G_DETERMINISTIC_TREE_DECODER_GAP_SUPPORTED"
+}
