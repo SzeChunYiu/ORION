@@ -63,14 +63,42 @@ CONFIRMED__NOT_R6`).
   each time with C_DP == C_D++ intact — the discovery ladder climbs *inside* the
   support-2 world exactly as R6S guarantees.
 
+## QG-7b — HYBRID FAMILY B″ CLOSES ON VERIFIED DOMAINS (the ladder rests at four configurations)
+
+`QG7B_HYBRID_FAMILY_RESULTS.json` (protocol frozen pre-outcome at `17191922`, sha256
+`f45767bf…97fe6ac`; double-run canonical stdout and RESULTS-minus-timing byte-identical
+per lane receipts, result digest `abc66e26…95cc41`; generic verifier — pure-primitive
+rebuild, no analyzer imports — ACCEPT, independently re-run by the orchestrator against
+the committed receipt; authority
+`ORIONQG_QG7B_HYBRID_FAMILY_CLOSES_ON_VERIFIED_DOMAINS__WEIGHT2_TAG_PHANTOM_BORROW_
+BSECOND__NOT_R6`).
+
+- **B″ frozen before outcome**: weight-2 Tag over the union-support pool, ≥1 phantom
+  block with off-tag home borrowing at a tag qubit; proof-carrying witness verifier ran
+  on 100% of exact rows (205, 0 failures).
+- **Completeness on 10,481 instances, zero gap**: all 64 QG-7 fourth-regime witnesses
+  covered with f_B″ == C_DP; the full QG-7 H-panels (740) re-bound exactly; the QG-5b
+  slices (9,261 + 240) unbroken; and the NEW anti-B″ adversarial Panel X (176
+  instances: weight-3 Tags, non-tag chain borrows, tag-supported phantoms,
+  double-borrow phantoms) produced 52 fourth-regime rows — **all covered by B″, zero
+  fifth-configuration candidates**.
+- **Q3 delimits the endgame (QG-7c)**: L1/L2 receipt values bound exactly; the two
+  remaining obligations between "closes on verified domains" and the all-n identity
+  are **L4b** (consolidate the still-open feasible weight-≤2-Tag shapes into
+  D+ ∪ B′ ∪ B″: tag-supported phantoms, double-borrow phantoms, cyclic borrows,
+  l1-phantom-at-home) and **L4c** (bound the Tag weight: L4a prunes only tag letters
+  outside the union frame support, so weight-≥3 Tags with frame-supported letters owe
+  an exchange lemma or a B‴). If both close, L5 inherits and
+  `C_DP == min(C_D+, f_B′, f_B″)` becomes an all-n theorem.
+
 ## Registered successor (requires its own pre-outcome freeze)
 
-- **QG-7b — hybrid-family closed form.** Freeze an enlarged family `B″` admitting
-  weight-2 Tags with phantom borrows (guided by QG-7's L4a non-consolidatability
-  classification, which delimits the shape), and test
-  `C_DP == min(C_D+, f_B′, f_B″)` on the QG-7 witness set, the QG-5b panels, and fresh
-  frozen panels — or find a fifth configuration. The charter rule stands: no silent
-  post-hoc enlargement; B″ must be frozen before its outcome.
+- **QG-7c — the classification endgame.** Close L4b and L4c per the QG-7b Q3
+  delimitation, turning the four-configuration trade basis into a provably exhaustive
+  all-n classification theorem — or discover the configuration that extends it. This is
+  the keystone lane: with it, unit-cost TARE has a complete finite trade basis, an all-n
+  support bound (R6S), an all-n cost envelope, an exact predicate, and a certified
+  forecaster — the field's first fully closed regime-geometry object.
 
 ## Stop rules
 
