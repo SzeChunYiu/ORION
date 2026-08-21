@@ -1,0 +1,2490 @@
+{
+  "any_cell_truncated": true,
+  "authority": "ORION_QG15B_PREDICATE_LANGUAGE_QG15B_PARTIAL__Q1_UNDECIDED__STABPREP_BOUNDARY_PREDICATE_COMPLEXITY_ON_VERIFIED_DOMAINS__NOT_R6",
+  "bindings": {
+    "qg15": {
+      "n1_donor_exact": 5,
+      "n2_donor_exact": 28,
+      "n3_donor_exact": 189,
+      "p1_p2_zero_fp_all_stored_panels": true,
+      "witnesses_spot_recomputed": 8
+    },
+    "qg4": {
+      "n2_P0_confusion": [
+        1,
+        0,
+        0,
+        38759
+      ],
+      "n2_positives": 1
+    }
+  },
+  "caps_disclosed": [
+    "runtime cap < 25 min per run",
+    "node budget 8000000 DFS expansions per lattice cell",
+    "lattice frozen at K<=3, D<=6 (K=4 excluded by runtime arithmetic)",
+    "mixed cells serialized verbatim capped at 20 (counts exact)",
+    "verifier sub-lattice scope: K=1 row and D=1 column (per protocol s.8)"
+  ],
+  "checkout_revision": "e221190f08e233d373641e4164b0561aa613e9e1",
+  "chemistry_sources_read": false,
+  "claim_boundary": "All measurements are over the frozen finite training domains and the frozen language L1 only: StabPrep exhaustive n<=3 (1146 instances) with one seeded n=4 panel; SixLCU exhaustive n=2 (38760) with the n=1 cross-check. Predicate-complexity numbers are properties of the frozen vocabularies, grids, and budget lattice; nothing is a theorem for all n, for other feature sets, or for other families. The mixed-cell certificate, where present, binds every predicate over the frozen vocabulary on the training domain, at any budget. Ground-truth machinery is the committed QG-15/QG-4 machinery, imported unmodified, and earns no new credit. NOT_R6. No new subject data; the protected stretched-N2 subject is untouched.",
+  "gates": {
+    "G1_qg15_binding": true,
+    "G2_qg4_binding": true,
+    "G3_search_completeness_accounting": true,
+    "G4_surface_monotonicity": true,
+    "G5_floor_consistency_and_witness_reeval": true,
+    "G6_heldout_discipline_stamp_first": true,
+    "G7_confusion_completeness": true,
+    "G8_determinism_no_wallclock_in_digest": true,
+    "G9_no_new_subject_data_no_network": true
+  },
+  "heldout": {
+    "labeled_after_stage_digest": true,
+    "panel": "QG-15 seeded n=4 panel (seed 20260821, 120 states, regenerated)",
+    "panel_positives": 32
+  },
+  "language": {
+    "lattice": {
+      "D": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "K": [
+        1,
+        2,
+        3
+      ],
+      "K4_excluded_frozen_runtime_truncation": true
+    },
+    "literal_form": "[feature op threshold], op in {==,<=,>=}, closed under negation",
+    "member": "disjunction of <= D conjunctions of <= K literals; constants included",
+    "q1_budget": {
+      "D": 3,
+      "K": 3
+    },
+    "sixlcu_features": [
+      "maxg2",
+      "best2",
+      "best3",
+      "maxg3",
+      "maxg4",
+      "maxg5",
+      "g6",
+      "W",
+      "wF6",
+      "maxwt",
+      "maxpair"
+    ],
+    "stabprep_features": [
+      "nCZ",
+      "nY",
+      "nSignX",
+      "nSignZ",
+      "nCN",
+      "C_D",
+      "r_X",
+      "c",
+      "LB",
+      "C_D-LB",
+      "n-c",
+      "nCN-(n-1)",
+      "C_D-2n"
+    ],
+    "threshold_grid": "attained values on the arm's training domain (frozen rule; complete over integer thresholds on train)"
+  },
+  "network_access": false,
+  "node_budget_per_cell": 8000000,
+  "novelty_credit": false,
+  "programme": "ORION-QG lane QG-15b (PROGRAMME_CHARTER_V1.md, issue #740); registered successor of QG-15 (QG_WAVE2_RECORD.md)",
+  "protocol": "development/orion-qg-regime-geometry/QG15B_PREDICATE_LANGUAGE_PROTOCOL_V1.md",
+  "protocol_sha256": "8d2c52fc9cc60bb5ce38730584dec49c5ec1d4a66847c50893160c7f49c944a5",
+  "q1": {
+    "heldout_verdict": null,
+    "minerr_at_K3_D3": 59,
+    "minerr_at_K3_D3_is_upper_bound_due_to_cap": true,
+    "minerr_bracket_certified": [
+      43,
+      59
+    ],
+    "note": "E_floor > 0 certifies (independently of search completeness) that no member of L1 at any budget is exact on the training domain; the cap leaves open only the exact minimum inside the bracket",
+    "terminal": "L1_UNDECIDED_CAP"
+  },
+  "q2": {
+    "E_floor": 43,
+    "floor_attainment_cells": {
+      "achieving_cells": [],
+      "any_cell_truncated": true,
+      "headline_cell": null,
+      "minimal_cells": [],
+      "minimality_compromised_by_truncation": true
+    },
+    "grid_independent_certificate": "a mixed cell (identical frozen feature vector, both labels present) defeats every predicate over this vocabulary at every budget",
+    "mixed_cell_count": 12,
+    "terminal": "ZERO_UNACHIEVABLE_ANY_BUDGET",
+    "zero_error_cells": {
+      "achieving_cells": [],
+      "any_cell_truncated": true,
+      "headline_cell": null,
+      "minimal_cells": [],
+      "minimality_compromised_by_truncation": true
+    }
+  },
+  "q3": {
+    "E_floor": 0,
+    "calibration_pair": {
+      "SixLCU": "zero_error_at_K1_D1",
+      "StabPrep": "zero_unachievable__floor_43_unattained_on_lattice_capped_search"
+    },
+    "zero_error_cells": {
+      "achieving_cells": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          6
+        ]
+      ],
+      "any_cell_truncated": false,
+      "headline_cell": [
+        1,
+        1
+      ],
+      "minimal_cells": [
+        [
+          1,
+          1
+        ]
+      ],
+      "minimality_compromised_by_truncation": false
+    },
+    "zero_terminal": "ZERO_ACHIEVABLE_AT"
+  },
+  "qg15_results_sha256": "30011c45adc85918ce535f71c87ba7a1dbbea7ee87dc209810d65a1f22066e51",
+  "qg4_results_sha256": "c4cda99626d5c72d69dcfa715eb27dc40afa9389bb459283a2ca076aeba60275",
+  "r6_authority": false,
+  "reserved_stretched_n2_accessed": false,
+  "responsibility": "qg15b lane, ORION-QG programme, 2026-08-21",
+  "result_digest": "3a4e9e5848d4e8e370d704ee4df8784d7456b93b125ccfd59c1f319676a1021b",
+  "schema": "orion-qg.qg15b_predicate_language.v1",
+  "selected_predicates_sha256": "466a042e3f454f58a56f4254a512b5eb36bd489644eff7e158182f81bd959b37",
+  "sixlcu": {
+    "cell_table": {
+      "E_floor": 0,
+      "N_total": 38759,
+      "P_total": 1,
+      "cells": 310,
+      "mixed_cells": 0,
+      "mixed_cells_verbatim_capped": []
+    },
+    "conjunction_stats": {
+      "K1": {
+        "R3_duplicate_vectors_dropped": 0,
+        "R4_empty_dropped": 0,
+        "R5_pot_nonneg_dropped": 150,
+        "R6_relevant_restriction_dropped": 0,
+        "distinct_vectors": 300,
+        "pool_size": 150,
+        "raw_conjunctions": 300
+      },
+      "K2": {
+        "R3_duplicate_vectors_dropped": 21014,
+        "R4_empty_dropped": 6848,
+        "R5_pot_nonneg_dropped": 9865,
+        "R6_relevant_restriction_dropped": 0,
+        "distinct_vectors": 17288,
+        "pool_size": 7423,
+        "raw_conjunctions": 45150
+      },
+      "K3": {
+        "R3_duplicate_vectors_dropped": 2406708,
+        "R4_empty_dropped": 1579886,
+        "R5_pot_nonneg_dropped": 309610,
+        "R6_relevant_restriction_dropped": 0,
+        "distinct_vectors": 513656,
+        "pool_size": 204046,
+        "raw_conjunctions": 4500250
+      }
+    },
+    "family_choice_note": "TARE R6Q/QG-2 slice declared not cheaply importable (heavy orion-q DP import chain); lane-brief fallback SixLCU n=2 via committed QG-4 machinery taken (recorded pre-outcome in the frozen protocol)",
+    "floor_attainment": {
+      "achieving_cells": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          6
+        ]
+      ],
+      "any_cell_truncated": false,
+      "headline_cell": [
+        1,
+        1
+      ],
+      "minimal_cells": [
+        [
+          1,
+          1
+        ]
+      ],
+      "minimality_compromised_by_truncation": false
+    },
+    "grids": {
+      "W": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "best2": [
+        -3,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "best3": [
+        -4,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14
+      ],
+      "g6": [
+        -23,
+        -21,
+        -19,
+        -17,
+        -15,
+        -13,
+        -11,
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        23
+      ],
+      "maxg2": [
+        -2,
+        0,
+        1,
+        2,
+        4
+      ],
+      "maxg3": [
+        -13,
+        -11,
+        -9,
+        -7,
+        -3,
+        -1,
+        1,
+        3,
+        7
+      ],
+      "maxg4": [
+        -17,
+        -15,
+        -13,
+        -11,
+        -9,
+        -3,
+        -1,
+        1,
+        3,
+        5,
+        11
+      ],
+      "maxg5": [
+        -33,
+        -30,
+        -27,
+        -24,
+        -21,
+        -18,
+        -10,
+        -7,
+        -4,
+        -1,
+        2,
+        5,
+        13
+      ],
+      "maxpair": [
+        0,
+        1,
+        2
+      ],
+      "maxwt": [
+        1,
+        2
+      ],
+      "wF6": [
+        0,
+        1,
+        2
+      ]
+    },
+    "literal_stats": {
+      "R1_constants_dropped": 44,
+      "R2_duplicates_dropped": 226,
+      "pool_literals": 300,
+      "raw_literals": 570
+    },
+    "minerr_surface": {
+      "K1_D1": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 150,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K1_D2": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 150,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K1_D3": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 150,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K1_D4": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 150,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K1_D5": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 150,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K1_D6": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 150,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D1": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 7423,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D2": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 7423,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D3": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 7423,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D4": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 7423,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D5": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 7423,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D6": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 7423,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K3_D1": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 204046,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K3_D2": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 204046,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K3_D3": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 204046,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K3_D4": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 204046,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K3_D5": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 204046,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K3_D6": {
+        "dfs_nodes": 0,
+        "minerr": 0,
+        "pool_size": 204046,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "reported_confusions": {
+      "K1_D1": {
+        "confusions": {
+          "n1_crosscheck": {
+            "FN": 0,
+            "FP": 0,
+            "TN": 729,
+            "TP": 0,
+            "errors": 0
+          },
+          "n2_fit": {
+            "FN": 0,
+            "FP": 0,
+            "TN": 38759,
+            "TP": 1,
+            "errors": 0
+          }
+        },
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      },
+      "K3_D3": {
+        "confusions": {
+          "n1_crosscheck": {
+            "FN": 0,
+            "FP": 0,
+            "TN": 729,
+            "TP": 0,
+            "errors": 0
+          },
+          "n2_fit": {
+            "FN": 0,
+            "FP": 0,
+            "TN": 38759,
+            "TP": 1,
+            "errors": 0
+          }
+        },
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "maxg2",
+                "negated": false,
+                "op": "==",
+                "threshold": -2
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "target_label": "incumbent_exact := (C_F == C_inc)",
+    "training_domain": "QG-4 exhaustive n=2 (38760 instances)",
+    "zero_error": {
+      "achieving_cells": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          6
+        ]
+      ],
+      "any_cell_truncated": false,
+      "headline_cell": [
+        1,
+        1
+      ],
+      "minimal_cells": [
+        [
+          1,
+          1
+        ]
+      ],
+      "minimality_compromised_by_truncation": false
+    }
+  },
+  "stabprep": {
+    "cell_table": {
+      "E_floor": 43,
+      "N_total": 924,
+      "P_total": 222,
+      "cells": 243,
+      "mixed_cells": 12,
+      "mixed_cells_verbatim_capped": [
+        {
+          "feature_vector": {
+            "C_D": 10,
+            "C_D-2n": 4,
+            "C_D-LB": 6,
+            "LB": 4,
+            "c": 2,
+            "n-c": 1,
+            "nCN": 1,
+            "nCN-(n-1)": -1,
+            "nCZ": 0,
+            "nSignX": 1,
+            "nSignZ": 1,
+            "nY": 0,
+            "r_X": 1
+          },
+          "neg": 3,
+          "pos": 3
+        },
+        {
+          "feature_vector": {
+            "C_D": 11,
+            "C_D-2n": 5,
+            "C_D-LB": 6,
+            "LB": 5,
+            "c": 2,
+            "n-c": 1,
+            "nCN": 1,
+            "nCN-(n-1)": -1,
+            "nCZ": 0,
+            "nSignX": 1,
+            "nSignZ": 1,
+            "nY": 0,
+            "r_X": 2
+          },
+          "neg": 3,
+          "pos": 3
+        },
+        {
+          "feature_vector": {
+            "C_D": 9,
+            "C_D-2n": 3,
+            "C_D-LB": 5,
+            "LB": 4,
+            "c": 2,
+            "n-c": 1,
+            "nCN": 1,
+            "nCN-(n-1)": -1,
+            "nCZ": 0,
+            "nSignX": 0,
+            "nSignZ": 1,
+            "nY": 1,
+            "r_X": 1
+          },
+          "neg": 3,
+          "pos": 3
+        },
+        {
+          "feature_vector": {
+            "C_D": 10,
+            "C_D-2n": 4,
+            "C_D-LB": 5,
+            "LB": 5,
+            "c": 2,
+            "n-c": 1,
+            "nCN": 1,
+            "nCN-(n-1)": -1,
+            "nCZ": 0,
+            "nSignX": 0,
+            "nSignZ": 1,
+            "nY": 1,
+            "r_X": 2
+          },
+          "neg": 3,
+          "pos": 3
+        },
+        {
+          "feature_vector": {
+            "C_D": 5,
+            "C_D-2n": 1,
+            "C_D-LB": 3,
+            "LB": 2,
+            "c": 2,
+            "n-c": 0,
+            "nCN": 0,
+            "nCN-(n-1)": -1,
+            "nCZ": 0,
+            "nSignX": 1,
+            "nSignZ": 0,
+            "nY": 1,
+            "r_X": 2
+          },
+          "neg": 2,
+          "pos": 2
+        },
+        {
+          "feature_vector": {
+            "C_D": 5,
+            "C_D-2n": -1,
+            "C_D-LB": 3,
+            "LB": 2,
+            "c": 3,
+            "n-c": 0,
+            "nCN": 0,
+            "nCN-(n-1)": -2,
+            "nCZ": 0,
+            "nSignX": 1,
+            "nSignZ": 0,
+            "nY": 1,
+            "r_X": 2
+          },
+          "neg": 6,
+          "pos": 6
+        },
+        {
+          "feature_vector": {
+            "C_D": 6,
+            "C_D-2n": 0,
+            "C_D-LB": 3,
+            "LB": 3,
+            "c": 3,
+            "n-c": 0,
+            "nCN": 0,
+            "nCN-(n-1)": -2,
+            "nCZ": 0,
+            "nSignX": 1,
+            "nSignZ": 0,
+            "nY": 1,
+            "r_X": 3
+          },
+          "neg": 3,
+          "pos": 6
+        },
+        {
+          "feature_vector": {
+            "C_D": 8,
+            "C_D-2n": 2,
+            "C_D-LB": 3,
+            "LB": 5,
+            "c": 2,
+            "n-c": 1,
+            "nCN": 1,
+            "nCN-(n-1)": -1,
+            "nCZ": 0,
+            "nSignX": 1,
+            "nSignZ": 0,
+            "nY": 1,
+            "r_X": 2
+          },
+          "neg": 6,
+          "pos": 6
+        },
+        {
+          "feature_vector": {
+            "C_D": 11,
+            "C_D-2n": 5,
+            "C_D-LB": 3,
+            "LB": 8,
+            "c": 1,
+            "n-c": 2,
+            "nCN": 2,
+            "nCN-(n-1)": 0,
+            "nCZ": 0,
+            "nSignX": 1,
+            "nSignZ": 0,
+            "nY": 1,
+            "r_X": 2
+          },
+          "neg": 2,
+          "pos": 4
+        },
+        {
+          "feature_vector": {
+            "C_D": 9,
+            "C_D-2n": 3,
+            "C_D-LB": 7,
+            "LB": 2,
+            "c": 3,
+            "n-c": 0,
+            "nCN": 0,
+            "nCN-(n-1)": -2,
+            "nCZ": 0,
+            "nSignX": 1,
+            "nSignZ": 1,
+            "nY": 1,
+            "r_X": 2
+          },
+          "neg": 6,
+          "pos": 6
+        },
+        {
+          "feature_vector": {
+            "C_D": 8,
+            "C_D-2n": 2,
+            "C_D-LB": 5,
+            "LB": 3,
+            "c": 3,
+            "n-c": 0,
+            "nCN": 0,
+            "nCN-(n-1)": -2,
+            "nCZ": 0,
+            "nSignX": 2,
+            "nSignZ": 0,
+            "nY": 1,
+            "r_X": 3
+          },
+          "neg": 6,
+          "pos": 3
+        },
+        {
+          "feature_vector": {
+            "C_D": 7,
+            "C_D-2n": 1,
+            "C_D-LB": 4,
+            "LB": 3,
+            "c": 3,
+            "n-c": 0,
+            "nCN": 0,
+            "nCN-(n-1)": -2,
+            "nCZ": 0,
+            "nSignX": 1,
+            "nSignZ": 0,
+            "nY": 2,
+            "r_X": 3
+          },
+          "neg": 6,
+          "pos": 3
+        }
+      ]
+    },
+    "conjunction_stats": {
+      "K1": {
+        "R3_duplicate_vectors_dropped": 0,
+        "R4_empty_dropped": 0,
+        "R5_pot_nonneg_dropped": 53,
+        "R6_relevant_restriction_dropped": 0,
+        "distinct_vectors": 306,
+        "pool_size": 253,
+        "raw_conjunctions": 306
+      },
+      "K2": {
+        "R3_duplicate_vectors_dropped": 20150,
+        "R4_empty_dropped": 7459,
+        "R5_pot_nonneg_dropped": 2818,
+        "R6_relevant_restriction_dropped": 36,
+        "distinct_vectors": 19362,
+        "pool_size": 16508,
+        "raw_conjunctions": 46971
+      },
+      "K3": {
+        "R3_duplicate_vectors_dropped": 2456136,
+        "R4_empty_dropped": 1721569,
+        "R5_pot_nonneg_dropped": 58658,
+        "R6_relevant_restriction_dropped": 1911,
+        "distinct_vectors": 597986,
+        "pool_size": 537417,
+        "raw_conjunctions": 4775691
+      }
+    },
+    "floor_attainment": {
+      "achieving_cells": [],
+      "any_cell_truncated": true,
+      "headline_cell": null,
+      "minimal_cells": [],
+      "minimality_compromised_by_truncation": true
+    },
+    "grids": {
+      "C_D": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "C_D-2n": [
+        -6,
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "C_D-LB": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "LB": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "c": [
+        1,
+        2,
+        3
+      ],
+      "n-c": [
+        0,
+        1,
+        2
+      ],
+      "nCN": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "nCN-(n-1)": [
+        -2,
+        -1,
+        0,
+        1
+      ],
+      "nCZ": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "nSignX": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "nSignZ": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "nY": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "r_X": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "literal_stats": {
+      "R1_constants_dropped": 52,
+      "R2_duplicates_dropped": 356,
+      "pool_literals": 306,
+      "raw_literals": 714
+    },
+    "minerr_surface": {
+      "K1_D1": {
+        "dfs_nodes": 148,
+        "minerr": 119,
+        "pool_size": 253,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "C_D",
+                "negated": false,
+                "op": "<=",
+                "threshold": 7
+              }
+            ]
+          ]
+        }
+      },
+      "K1_D2": {
+        "dfs_nodes": 1448,
+        "minerr": 114,
+        "pool_size": 253,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "C_D",
+                "negated": false,
+                "op": "<=",
+                "threshold": 7
+              }
+            ],
+            [
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 2
+              }
+            ]
+          ]
+        }
+      },
+      "K1_D3": {
+        "dfs_nodes": 12765,
+        "minerr": 112,
+        "pool_size": 253,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "C_D-2n",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ],
+            [
+              {
+                "feature": "C_D",
+                "negated": false,
+                "op": "<=",
+                "threshold": 6
+              }
+            ],
+            [
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ]
+          ]
+        }
+      },
+      "K1_D4": {
+        "dfs_nodes": 98907,
+        "minerr": 112,
+        "pool_size": 253,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "C_D-2n",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ],
+            [
+              {
+                "feature": "C_D",
+                "negated": false,
+                "op": "<=",
+                "threshold": 6
+              }
+            ],
+            [
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ]
+          ]
+        }
+      },
+      "K1_D5": {
+        "dfs_nodes": 689915,
+        "minerr": 112,
+        "pool_size": 253,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "C_D-2n",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ],
+            [
+              {
+                "feature": "C_D",
+                "negated": false,
+                "op": "<=",
+                "threshold": 6
+              }
+            ],
+            [
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ]
+          ]
+        }
+      },
+      "K1_D6": {
+        "dfs_nodes": 4093739,
+        "minerr": 112,
+        "pool_size": 253,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "C_D-2n",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ],
+            [
+              {
+                "feature": "C_D",
+                "negated": false,
+                "op": "<=",
+                "threshold": 6
+              }
+            ],
+            [
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D1": {
+        "dfs_nodes": 7747,
+        "minerr": 113,
+        "pool_size": 16508,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D2": {
+        "dfs_nodes": 2801345,
+        "minerr": 74,
+        "pool_size": 16508,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 2
+              }
+            ],
+            [
+              {
+                "feature": "nSignZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 1
+              },
+              {
+                "feature": "C_D-2n",
+                "negated": false,
+                "op": "<=",
+                "threshold": 3
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D3": {
+        "dfs_nodes": 8000001,
+        "minerr": 74,
+        "pool_size": 16508,
+        "truncated": true,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 2
+              }
+            ],
+            [
+              {
+                "feature": "nSignZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 1
+              },
+              {
+                "feature": "C_D-2n",
+                "negated": false,
+                "op": "<=",
+                "threshold": 3
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D4": {
+        "dfs_nodes": 8000001,
+        "minerr": 74,
+        "pool_size": 16508,
+        "truncated": true,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 2
+              }
+            ],
+            [
+              {
+                "feature": "nSignZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 1
+              },
+              {
+                "feature": "C_D-2n",
+                "negated": false,
+                "op": "<=",
+                "threshold": 3
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D5": {
+        "dfs_nodes": 8000001,
+        "minerr": 74,
+        "pool_size": 16508,
+        "truncated": true,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 2
+              }
+            ],
+            [
+              {
+                "feature": "nSignZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 1
+              },
+              {
+                "feature": "C_D-2n",
+                "negated": false,
+                "op": "<=",
+                "threshold": 3
+              }
+            ]
+          ]
+        }
+      },
+      "K2_D6": {
+        "dfs_nodes": 8000001,
+        "minerr": 74,
+        "pool_size": 16508,
+        "truncated": true,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 2
+              }
+            ],
+            [
+              {
+                "feature": "nSignZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 1
+              },
+              {
+                "feature": "C_D-2n",
+                "negated": false,
+                "op": "<=",
+                "threshold": 3
+              }
+            ]
+          ]
+        }
+      },
+      "K3_D1": {
+        "dfs_nodes": 190584,
+        "minerr": 103,
+        "pool_size": 537417,
+        "truncated": false,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "nY",
+                "negated": true,
+                "op": "==",
+                "threshold": 2
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ]
+          ]
+        }
+      },
+      "K3_D2": {
+        "dfs_nodes": 8000001,
+        "minerr": 72,
+        "pool_size": 537417,
+        "truncated": true,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "nY",
+                "negated": true,
+                "op": "==",
+                "threshold": 2
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ],
+            [
+              {
+                "feature": "nSignZ",
+                "negated": true,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 6
+              },
+              {
+                "feature": "C_D-2n",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ]
+          ]
+        }
+      },
+      "K3_D3": {
+        "dfs_nodes": 8000001,
+        "minerr": 59,
+        "pool_size": 537417,
+        "truncated": true,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "nY",
+                "negated": true,
+                "op": "==",
+                "threshold": 2
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ],
+            [
+              {
+                "feature": "nSignZ",
+                "negated": true,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 6
+              },
+              {
+                "feature": "C_D-2n",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ],
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "nSignX",
+                "negated": true,
+                "op": "==",
+                "threshold": 1
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ]
+          ]
+        }
+      },
+      "K3_D4": {
+        "dfs_nodes": 8000001,
+        "minerr": 55,
+        "pool_size": 537417,
+        "truncated": true,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "nY",
+                "negated": true,
+                "op": "==",
+                "threshold": 2
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ],
+            [
+              {
+                "feature": "nSignZ",
+                "negated": true,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 6
+              },
+              {
+                "feature": "C_D-2n",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ],
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "nSignX",
+                "negated": true,
+                "op": "==",
+                "threshold": 1
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ],
+            [
+              {
+                "feature": "nY",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "nSignZ",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              },
+              {
+                "feature": "nCN",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              }
+            ]
+          ]
+        }
+      },
+      "K3_D5": {
+        "dfs_nodes": 8000001,
+        "minerr": 55,
+        "pool_size": 537417,
+        "truncated": true,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "nY",
+                "negated": true,
+                "op": "==",
+                "threshold": 2
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ],
+            [
+              {
+                "feature": "nSignZ",
+                "negated": true,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 6
+              },
+              {
+                "feature": "C_D-2n",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ],
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "nSignX",
+                "negated": true,
+                "op": "==",
+                "threshold": 1
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ],
+            [
+              {
+                "feature": "nY",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "nSignZ",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              },
+              {
+                "feature": "nCN",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              }
+            ]
+          ]
+        }
+      },
+      "K3_D6": {
+        "dfs_nodes": 8000001,
+        "minerr": 55,
+        "pool_size": 537417,
+        "truncated": true,
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "nY",
+                "negated": true,
+                "op": "==",
+                "threshold": 2
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ],
+            [
+              {
+                "feature": "nSignZ",
+                "negated": true,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 6
+              },
+              {
+                "feature": "C_D-2n",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ],
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "nSignX",
+                "negated": true,
+                "op": "==",
+                "threshold": 1
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ],
+            [
+              {
+                "feature": "nY",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "nSignZ",
+                "negated": false,
+                "op": "<=",
+                "threshold": 1
+              },
+              {
+                "feature": "nCN",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "qg15_baseline_confusions": {
+      "QG15_P0": {
+        "n1": {
+          "FN": 0,
+          "FP": 1,
+          "TN": 0,
+          "TP": 5,
+          "errors": 1
+        },
+        "n2": {
+          "FN": 0,
+          "FP": 16,
+          "TN": 16,
+          "TP": 28,
+          "errors": 16
+        },
+        "n3": {
+          "FN": 0,
+          "FP": 251,
+          "TN": 640,
+          "TP": 189,
+          "errors": 251
+        },
+        "n4_panel_heldout": {
+          "FN": 0,
+          "FP": 31,
+          "TN": 57,
+          "TP": 32,
+          "errors": 31
+        },
+        "train_union": {
+          "FN": 0,
+          "FP": 268,
+          "TN": 656,
+          "TP": 222,
+          "errors": 268
+        }
+      },
+      "QG15_P1": {
+        "n1": {
+          "FN": 2,
+          "FP": 0,
+          "TN": 1,
+          "TP": 3,
+          "errors": 2
+        },
+        "n2": {
+          "FN": 17,
+          "FP": 0,
+          "TN": 32,
+          "TP": 11,
+          "errors": 17
+        },
+        "n3": {
+          "FN": 134,
+          "FP": 0,
+          "TN": 891,
+          "TP": 55,
+          "errors": 134
+        },
+        "n4_panel_heldout": {
+          "FN": 12,
+          "FP": 0,
+          "TN": 88,
+          "TP": 20,
+          "errors": 12
+        },
+        "train_union": {
+          "FN": 153,
+          "FP": 0,
+          "TN": 924,
+          "TP": 69,
+          "errors": 153
+        }
+      },
+      "QG15_P2": {
+        "n1": {
+          "FN": 3,
+          "FP": 0,
+          "TN": 1,
+          "TP": 2,
+          "errors": 3
+        },
+        "n2": {
+          "FN": 23,
+          "FP": 0,
+          "TN": 32,
+          "TP": 5,
+          "errors": 23
+        },
+        "n3": {
+          "FN": 173,
+          "FP": 0,
+          "TN": 891,
+          "TP": 16,
+          "errors": 173
+        },
+        "n4_panel_heldout": {
+          "FN": 23,
+          "FP": 0,
+          "TN": 88,
+          "TP": 9,
+          "errors": 23
+        },
+        "train_union": {
+          "FN": 199,
+          "FP": 0,
+          "TN": 924,
+          "TP": 23,
+          "errors": 199
+        }
+      },
+      "QG15_selected": {
+        "n1": {
+          "FN": 2,
+          "FP": 0,
+          "TN": 1,
+          "TP": 3,
+          "errors": 2
+        },
+        "n2": {
+          "FN": 12,
+          "FP": 2,
+          "TN": 30,
+          "TP": 16,
+          "errors": 14
+        },
+        "n3": {
+          "FN": 99,
+          "FP": 18,
+          "TN": 873,
+          "TP": 90,
+          "errors": 117
+        },
+        "n4_panel_heldout": {
+          "FN": 4,
+          "FP": 16,
+          "TN": 72,
+          "TP": 28,
+          "errors": 20
+        },
+        "train_union": {
+          "FN": 113,
+          "FP": 20,
+          "TN": 904,
+          "TP": 109,
+          "errors": 133
+        }
+      }
+    },
+    "reported_confusions": {
+      "K3_D3": {
+        "confusions": {
+          "n1": {
+            "FN": 0,
+            "FP": 1,
+            "TN": 0,
+            "TP": 5,
+            "errors": 1
+          },
+          "n2": {
+            "FN": 0,
+            "FP": 5,
+            "TN": 27,
+            "TP": 28,
+            "errors": 5
+          },
+          "n3": {
+            "FN": 19,
+            "FP": 34,
+            "TN": 857,
+            "TP": 170,
+            "errors": 53
+          },
+          "n4_panel_heldout": {
+            "FN": 4,
+            "FP": 11,
+            "TN": 77,
+            "TP": 28,
+            "errors": 15
+          },
+          "train_union": {
+            "FN": 19,
+            "FP": 40,
+            "TN": 884,
+            "TP": 203,
+            "errors": 59
+          }
+        },
+        "witness": {
+          "conjunctions": [
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "nY",
+                "negated": true,
+                "op": "==",
+                "threshold": 2
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ],
+            [
+              {
+                "feature": "nSignZ",
+                "negated": true,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 6
+              },
+              {
+                "feature": "C_D-2n",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ],
+            [
+              {
+                "feature": "nCZ",
+                "negated": false,
+                "op": "==",
+                "threshold": 0
+              },
+              {
+                "feature": "nSignX",
+                "negated": true,
+                "op": "==",
+                "threshold": 1
+              },
+              {
+                "feature": "C_D-LB",
+                "negated": false,
+                "op": "<=",
+                "threshold": 4
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "target_label": "donor_exact := (C_opt == C_D)",
+    "training_domain": "QG-15 exhaustive n=1..3 union (1146 instances)",
+    "zero_error": {
+      "achieving_cells": [],
+      "any_cell_truncated": true,
+      "headline_cell": null,
+      "minimal_cells": [],
+      "minimality_compromised_by_truncation": true
+    }
+  },
+  "terminal": "QG15B_PARTIAL__Q1_UNDECIDED",
+  "timing": {
+    "A_stabprep_truth": 0.213,
+    "B_sixlcu_truth": 6.284,
+    "C_stabprep_search": 181.966,
+    "D_sixlcu_search": 2.568,
+    "E_stage_digest": 0.176,
+    "F_heldout": 7.136
+  }
+}
