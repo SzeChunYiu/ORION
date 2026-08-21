@@ -1,18 +1,23 @@
 #!/usr/bin/env python3
 """Fail-closed checks for the ORION-Q / ORION-QG publication-synthesis branch.
 
-This checker grants no scientific or submission authority.  It protects the publication
-cut from accidental science mutation and checks a small set of publication invariants.
+This checker grants no scientific or submission authority. It protects the frozen
+publication evidence cut from mutation *owned by the publication branch* and checks a
+small set of publication invariants. On pull_request events GitHub checks out a synthetic
+merge commit, so branch-owned changes must be measured against the PR head ref rather than
+against the merge ref (which legitimately contains newer science from current main).
 """
 
 from __future__ import annotations
 
+import os
 import pathlib
 import subprocess
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 EVIDENCE_CUT = "ca7df1055a43f97eaf8d142a62011c4c261af368"
+Q3_BLOCKED_TERMINAL = "SCIENTIFIC_SERIES_INCOMPLETE__CANNOT_CHECK_PEER_REVIEW_READY"
 
 REQUIRED = [
     "papers/Q_QG_NATURE_SKILLS_PUBLICATION_CLOSURE_V1.md",
@@ -73,22 +78,39 @@ def fail(msg: str, errors: list[str]) -> None:
     errors.append(msg)
 
 
-def git_changed_from_cut() -> list[str]:
+def publication_head() -> str:
+    """Return the actual publication branch ref, not GitHub's synthetic PR merge ref."""
+    head_ref = os.environ.get("GITHUB_HEAD_REF", "").strip()
+    if head_ref:
+        candidate = f"origin/{head_ref}"
+        subprocess.run(
+            ["git", "rev-parse", "--verify", candidate],
+            cwd=ROOT,
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+        return candidate
+    return "HEAD"
+
+
+def git_changed_from_cut() -> tuple[str, list[str]]:
+    target = publication_head()
     proc = subprocess.run(
-        ["git", "diff", "--name-only", f"{EVIDENCE_CUT}..HEAD"],
+        ["git", "diff", "--name-only", f"{EVIDENCE_CUT}..{target}"],
         cwd=ROOT,
         check=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,
     )
-    return [line.strip() for line in proc.stdout.splitlines() if line.strip()]
+    return target, [line.strip() for line in proc.stdout.splitlines() if line.strip()]
 
 
 def main() -> int:
     errors: list[str] = []
 
-    # Existence gates.
     for rel in REQUIRED:
         if not (ROOT / rel).is_file():
             fail(f"MISSING_REQUIRED_FILE: {rel}", errors)
@@ -98,18 +120,19 @@ def main() -> int:
             print(err)
         return 1
 
-    # Publication branch may add publication artifacts, but it may not rewrite the
-    # frozen science whose outcomes it is synthesizing.
+    # Only changes owned by the publication head are judged here. Current-main science
+    # that postdates the frozen cut can exist on the PR merge ref without being imported
+    # into the manuscripts; a separate publication-cut freshness audit decides whether a
+    # future manuscript should reopen to absorb such work.
     try:
-        changed = git_changed_from_cut()
+        target, changed = git_changed_from_cut()
     except Exception as exc:  # pragma: no cover - fail closed in CI
         fail(f"CANNOT_CHECK_GIT_DIFF: {exc}", errors)
-        changed = []
+        target, changed = "UNRESOLVED", []
     for rel in changed:
         if rel.startswith(SCIENCE_PREFIXES):
-            fail(f"SCIENCE_MUTATED_AFTER_PUBLICATION_CUT: {rel}", errors)
+            fail(f"SCIENCE_MUTATED_BY_PUBLICATION_BRANCH: {rel}", errors)
 
-    # Every V2 manuscript must visibly carry limitations/reproducibility and the cut.
     for rel in PAPER_V2:
         body = text(rel)
         if EVIDENCE_CUT not in body:
@@ -119,7 +142,6 @@ def main() -> int:
         if "Reproduc" not in body and "reproduc" not in body:
             fail(f"MISSING_REPRODUCIBILITY_SECTION: {rel}", errors)
 
-    # Q1 stale-state guard: the old ledger called R6S/R6R open.  V2 must not.
     q1_ledger = text("papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V2.md")
     required_q1_tokens = [
         "PROVEN-ALL-N",
@@ -148,14 +170,14 @@ def main() -> int:
     q3_protocol = text(
         "papers/Q-paper-03-dual-instrument/Q3_ADDITIONAL_PROSPECTIVE_INSTANCES_PROTOCOL_V1.md"
     )
-    if "Q3" not in readiness or "BLOCK" not in readiness.upper():
-        fail("Q3_FAIL_CLOSED_STATUS_NOT_VISIBLE", errors)
+    if Q3_BLOCKED_TERMINAL not in readiness:
+        fail("Q3_FAIL_CLOSED_TERMINAL_NOT_VISIBLE", errors)
     if "QG-7d" not in q3_protocol or "QG-15c" not in q3_protocol:
         fail("Q3_PROSPECTIVE_INSTANCE_FREEZE_INCOMPLETE", errors)
 
-    # Licence wording guard. A root licence did not exist at the publication cut, so
-    # publication artifacts must not call ORION open-source until that changes through
-    # an explicit owner decision and this checker is deliberately updated.
+    # A root licence did not exist at the publication cut. Until an authorized owner
+    # chooses one, publication text may describe source as publicly inspectable but may
+    # not grant or imply open-source reuse rights.
     publication_files = [p for p in changed if p.startswith("papers/")]
     for rel in publication_files:
         path = ROOT / rel
@@ -166,13 +188,11 @@ def main() -> int:
             if forbidden in body:
                 fail(f"UNLICENSED_OPEN_SOURCE_WORDING: {rel}: {forbidden}", errors)
 
-    # Cross-paper ownership markers must remain in the programme contracts.
     closure = text("papers/Q_QG_NATURE_SKILLS_PUBLICATION_CLOSURE_V1.md")
     for token in ("Q1", "Q2", "Q3", "Q4", "QG1", "QG2", "authority"):
         if token.lower() not in closure.lower():
             fail(f"PORTFOLIO_CONTRACT_MISSING: {token}", errors)
 
-    # Reference/data/figure/statistics contracts are mandatory once added.
     for rel in (
         "papers/Q_QG_DATA_CODE_AVAILABILITY_V1.md",
         "papers/Q_QG_REFERENCE_CANON_V1.md",
@@ -191,9 +211,10 @@ def main() -> int:
 
     print("Q_QG_PUBLICATION_CHECK=PASS")
     print(f"EVIDENCE_CUT={EVIDENCE_CUT}")
-    print(f"CHANGED_FILES_FROM_CUT={len(changed)}")
-    print("SCIENTIFIC_RECEIPT_MUTATIONS=0")
-    print("Q3_PUBLICATION_AUTHORITY=BLOCKED_PENDING_PROSPECTIVE_OUTCOMES")
+    print(f"PUBLICATION_HEAD={target}")
+    print(f"PUBLICATION_BRANCH_CHANGED_FILES={len(changed)}")
+    print("SCIENTIFIC_RECEIPT_MUTATIONS_BY_PUBLICATION_BRANCH=0")
+    print(f"Q3_PUBLICATION_AUTHORITY={Q3_BLOCKED_TERMINAL}")
     print("SUBMISSION_AUTHORITY=NOT_GRANTED_BY_THIS_CHECK")
     return 0
 
