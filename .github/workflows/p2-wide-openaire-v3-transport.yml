@@ -1,0 +1,48 @@
+name: p2-wide-openaire-v3-transport
+
+# Execution-lineage note: PR #775 is retargeted to current main at
+# 3202e52371d018b5f6547ed44490f089400d8485. This comment changes no
+# scientific degree of freedom; it forces exact-current-main workflow evidence.
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/p2-wide-openaire-v3-transport.yml'
+      - 'papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V3.json'
+      - 'papers/paper-02-open-world-scientific-discovery/scripts/probe_openaire_v4_doi_filter_transport.py'
+      - 'tests/unit/p2/test_p2_openaire_v3_v4_transport.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  v3-transport-prerequisite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test environment
+        run: python -m pip install -e '.[dev]'
+      - name: Prove frozen V3 transport and hostile custody cases before network outcome
+        run: |
+          python -m py_compile papers/paper-02-open-world-scientific-discovery/scripts/probe_openaire_v4_doi_filter_transport.py
+          pytest -q tests/unit/p2/test_p2_openaire_v3_v4_transport.py
+      - name: Execute gold-blind V4 DOI-filter transport prerequisite
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/p2-wide-v3-transport
+          python papers/paper-02-open-world-scientific-discovery/scripts/probe_openaire_v4_doi_filter_transport.py \
+            --freeze papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V3.json \
+            --out-dir /tmp/p2-wide-v3-transport
+      - name: Upload raw-first V3 transport evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p2-wide-v3-transport-${{ github.sha }}
+          path: /tmp/p2-wide-v3-transport/**
+          if-no-files-found: warn
+          retention-days: 30
