@@ -1,0 +1,38 @@
+{
+  "schema": "ORION.QG.ProtectedRunReceipt.v1",
+  "issue": "SzeChunYiu/ORION#795",
+  "pr": "SzeChunYiu/ORION#796",
+  "workflow": {
+    "name": "orion-qg-qg9-support2-tightness",
+    "run_id": 32495511188
+  },
+  "artifact": {
+    "id": 9451522682,
+    "name": "orion-qg-qg9-tight-29fc6d2ef873156bba8c216a4704aad896563744",
+    "digest": "sha256:71a78166487a5eb0bb658efba7050e9133dcc19c02dee43955f86c9985b53f85"
+  },
+  "head_sha": "29fc6d2ef873156bba8c216a4704aad896563744",
+  "parent_sha": "a80dbd57d9124f058de7465a13de8c69416c368b",
+  "terminal": "QG9_NO_SUPPORT2_TIGHT_WITNESS_IN_FROZEN_INVERSE_PANEL",
+  "source_result_digest": "937fb3f7d963f3747d70c24434d13ea379268e2dee49e661f78c76b9e2673202",
+  "candidate_generator_digest_before_scoring": "bb07c127d037f68e2a1f6ca6b5defee0fbadcebdb3ae23aedd4e7266f184a4fa",
+  "candidates_tested": 211248,
+  "selected_witness": null,
+  "generic_lane": {
+    "decision": "NEGATIVE_PANEL_NOT_INDEPENDENTLY_REPLAYED",
+    "no_selected_witness": true,
+    "tightness_authority_false": true
+  },
+  "native_lane": {
+    "decision": "RECORD_NEGATIVE_PANEL",
+    "support1_authority": false,
+    "tightness_authority": false
+  },
+  "both_accept": true,
+  "deterministic_replay": true,
+  "support1_authority": false,
+  "tightness_authority": false,
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "successor_permission": "SUPPORT1_WHOLE_SYSTEM_NORMALIZATION_MAY_OPEN_ONLY_AS_NEW_PROSPECTIVE_PACKET"
+}
