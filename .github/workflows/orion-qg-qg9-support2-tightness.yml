@@ -43,8 +43,11 @@ jobs:
             development/orion-qg-regime-geometry/run_qg9_support2_tightness_dual_harness.py
       - name: Execute prospective tightness hunt through both ORION instruments
         run: |
+          set -o pipefail
           mkdir -p artifacts
           python development/orion-qg-regime-geometry/run_qg9_support2_tightness_dual_harness.py | tee artifacts/orion-qg-qg9-tight-summary.json
+          test -s artifacts/orion-qg-qg9-support2-tightness.json
+          test -s artifacts/orion-qg-qg9-support2-tightness-dual-harness.json
       - name: Deterministic selector replay
         run: |
           python research/extensions/orion-qg/qg9_support2_tightness.py --output artifacts/orion-qg-qg9-tight-replay.json > artifacts/orion-qg-qg9-tight-replay.log
@@ -63,9 +66,11 @@ jobs:
           assert d['terminal'] in {pos,neg,'QG9_GENERIC_NATIVE_DISAGREEMENT'}
           assert d['support1_authority'] is False and d['novelty_authority'] is False
           assert a['qg1_pairtables_binding']['all_pass'] is True
+          assert a['exact_acceleration']['canonical_bind_all_pass'] is True
           if d['terminal']==pos:
               assert a['selected'] is not None
               assert a['selected']['C_cap2'] < a['selected']['C_cap1']
+              assert a['selected']['canonical_caps_confirmed'] is True
               assert a['production_referee']['C_shared']==a['selected']['C_cap2']
               assert all(a['production_referee']['checks'].values())
               assert max(a['production_referee']['independent_generator_supports'])==2
