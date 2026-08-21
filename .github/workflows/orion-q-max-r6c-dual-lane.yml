@@ -96,8 +96,12 @@ jobs:
               raise SystemExit('R6B accessed protected stretched N2')
           if r6b.get('novelty_credit') is not False:
               raise SystemExit('R6B donor reuse received novelty credit')
+          if r6c.get('canonical_runtime_and_mechanics_executed') is not True:
+              raise SystemExit(f'embedded canonical runtime/mechanics were not executed: {r6c}')
           if r6c.get('normalized_residual_agreement') is not True:
               raise SystemExit(f'dual lanes disagree without preserved match: {r6c}')
+          if r6c.get('new_method_protocol_eligible') is not True:
+              raise SystemExit(f'new method protocol not eligible: {r6c}')
           if r6c.get('reserved_stretched_n2_accessed') is not False:
               raise SystemExit('R6C reports protected access')
           if r6c.get('r6_earned') is not False:
@@ -109,6 +113,14 @@ jobs:
               raise SystemExit(f'canonical residual drift: {canonical}')
           if q.get('normalized_next_residual') != expected:
               raise SystemExit(f'ORION-Q residual drift: {q}')
+          runtime_probe=canonical.get('runtime_probe',{})
+          if runtime_probe.get('executed') is not True:
+              raise SystemExit(f'canonical production runtime was not executed: {runtime_probe}')
+          if runtime_probe.get('scientific_authority_from_probe') is not False:
+              raise SystemExit('canonical runtime probe attempted scientific authority')
+          embedded=canonical.get('mechanics_probe',{})
+          if embedded.get('passed') is not True:
+              raise SystemExit(f'embedded canonical mechanics probe failed: {embedded}')
 
           solve=json.loads(Path('/tmp/canonical-solve.json').read_text())
           if solve.get('status') not in {'COMPLETE','PENDING_CAPABILITY','BLOCKED'}:
