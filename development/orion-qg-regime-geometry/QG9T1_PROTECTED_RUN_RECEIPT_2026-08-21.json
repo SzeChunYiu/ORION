@@ -1,0 +1,17 @@
+{
+  "schema":"ORION.QG.ProtectedRunReceipt.v1",
+  "issue":"SzeChunYiu/ORION#793",
+  "pr":"SzeChunYiu/ORION#797",
+  "workflow":{"name":"orion-qg-qg9-t1-tightness","run_id":32495383202},
+  "artifact":{"id":9451434846,"name":"orion-qg-qg9t1-904f0422b2c90fd17c6ec2f5c525cd015ec703df","digest":"sha256:ca60edab90793c9c04cd5656f75f15d708d862552fadb5e686c4956e07899676"},
+  "head_sha":"904f0422b2c90fd17c6ec2f5c525cd015ec703df",
+  "source_result_digest":"fbc0163f9c7df8392afc7cb18bf3e42dbd8c905a09db6d195725bb9bd1c467d8",
+  "terminal":"QG9T1_NO_SUPPORT4_TIGHT_WITNESS_IN_FROZEN_PANEL",
+  "generic_lane":{"decision":"ACCEPT","replayed_exact_rejection_milps":36,"errors":0},
+  "native_lane":{"decision":"ACCEPT_BOUNDED_NO_WITNESS","final_phase":"NEGATIVE_RECORDED"},
+  "both_accept":true,
+  "engineering_history":{"first_run_id":32494677146,"first_run_scientific_terminal":null,"correction_commit":"904f0422b2c90fd17c6ec2f5c525cd015ec703df","correction":"apply already-frozen production-valid candidate filter; 72 remains maximum rather than required exact count"},
+  "support3_theorem_authority":false,
+  "novelty_authority":false,
+  "physical_quantum_advantage_claim":false
+}
