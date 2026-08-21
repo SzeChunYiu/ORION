@@ -47,6 +47,7 @@ def _freeze() -> dict:
             "pre_benchmark_probe_required": True,
             "probe_gold_access": "NONE",
             "probe_dois": ["10.5281/zenodo.8217359", "10.1038/s41586-023-06221-2"],
+            "probe_min_result_count": 1,
         }
     }
 
@@ -77,6 +78,7 @@ def test_transport_probe_is_bound_and_fail_closed(tmp_path: Path) -> None:
         ("http_status", 400),
         ("encoding", "legacy_expression"),
         ("response_sha256", ""),
+        ("result_count", 0),
     ):
         bad = dict(good)
         bad[key] = bad_value
