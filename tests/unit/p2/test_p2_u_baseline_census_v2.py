@@ -42,7 +42,8 @@ def test_added_systems_cannot_replace_matched_donor_complete_comparator():
     systems = {row["name"]: row for row in v2["added_contemporaneous_system_census"]}
 
     assert set(systems) == {"S1-DeepResearch-32B", "TrialMind"}
-    assert systems["S1-DeepResearch-32B"]["exact_model_revision_for_execution"].startswith("MUST_BE_BOUND")
+    assert systems["S1-DeepResearch-32B"]["model_repository_revision_at_census"] == "784b5ef0104400d23206a752843f695ca4bf9530"
+    assert "never float main" in systems["S1-DeepResearch-32B"]["execution_revision_rule"]
     assert systems["TrialMind"]["repository_revision"] == "235426b072747e9f6586020c2632b1e8a657ad10"
     assert all("SYSTEM_LEVEL_ONLY" in row["causal_status"] for row in systems.values())
     assert any("Neither added system replaces" in row for row in v2["execution_manifest_requirements_added_by_v2"])
