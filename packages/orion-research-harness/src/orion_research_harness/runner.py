@@ -19,6 +19,7 @@ from .broker import (
     HostCapabilityFailed,
     HostCapabilityRequired,
 )
+from .operator_coverage import run_operator_coverage
 from .protocol import utc_now
 from .workspace import ResearchWorkspace
 
@@ -118,4 +119,10 @@ def run_problem(
         "residual_ids": list(result.solution.residual_ids),
         "trace_id": result.trace.trace_id,
         "operator_sequence": [item.value for item in result.trace.operator_sequence],
+        # Which cycle operators this run actually reached. Static execution
+        # coverage says a mechanic *has* an owner; this says whether the run got
+        # there. See operator_coverage for why the difference cost a campaign.
+        "operator_coverage": run_operator_coverage(
+            [item.value for item in result.trace.operator_sequence]
+        ),
     }
