@@ -1,0 +1,43 @@
+{
+  "artifact": {
+    "digest": "sha256:b07fbb403f25bacadf70143f576f06fc8624ad89e9d8d1f553852214779d58cf",
+    "id": 9448597677,
+    "name": "orion-qg-qg13-a8dd70174b6ad2363c22ff3212ee7e38bad83da5"
+  },
+  "both_accept": true,
+  "generic_lane": {
+    "check_count": 14,
+    "checks_all": true,
+    "decision": "ACCEPT"
+  },
+  "head_sha": "a8dd70174b6ad2363c22ff3212ee7e38bad83da5",
+  "issue": "SzeChunYiu/ORION#767",
+  "native_lane": {
+    "campaign_status": null,
+    "decision": "ACCEPT",
+    "final_phase": null
+  },
+  "new_theorem_authority": false,
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "pr": "SzeChunYiu/ORION#776",
+  "recovered": {
+    "r6i_dimension": 5,
+    "r6i_max_local_cost_delta": -4,
+    "r6i_support_bound": 5,
+    "r6m_dimension": 2,
+    "r6m_objective_cone": [
+      "t_c >= 2*t_r",
+      "t_nc >= 2*t_r"
+    ],
+    "r6m_support_bound": 2
+  },
+  "schema": "ORION.QG.ProtectedRunReceipt.v1",
+  "source_result_digest": "a79ab50ddf62d0763bb793d3ec4845b9d9fc3b44781afc2b95d7959fb3de83c9",
+  "terminal": "QG13_AUTOMATIC_THEOREM_MINER_RECOVERS_R6M_AND_R6I_PARENT_THEOREMS",
+  "v2_permission": "NEW_EDIT_TEMPLATE_MAY_BE_FROZEN_ONLY_AS_NEW_PROSPECTIVE_PACKET",
+  "workflow": {
+    "name": "orion-qg-qg13-theorem-miner",
+    "run_id": 32487960762
+  }
+}
