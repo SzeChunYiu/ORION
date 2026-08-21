@@ -32,6 +32,18 @@ v1 = _load_module("orion_p2_wide_openaire_analysis_v1_for_v2", V1_PATH)
 v2_runner = _load_module("orion_p2_wide_openaire_runner_v2_for_analysis", V2_RUNNER_PATH)
 
 
+def _invalid_transport_evidence(error: str, manifest: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "valid": False,
+        "manifest_metadata_valid": False,
+        "receipt_valid": False,
+        "manifest_probe_sha256": str(manifest.get("transport_probe_sha256") or ""),
+        "actual_probe_sha256": None,
+        "probe_hash_matches_manifest": False,
+        "validation_error": error,
+    }
+
+
 def transport_evidence_validity(
     freeze_actual: dict[str, Any], manifest: dict[str, Any], transport_probe_path: Path
 ) -> dict[str, Any]:
@@ -91,11 +103,31 @@ def discover_transport_probe(manifest_path: Path) -> Path:
     raise ValueError("archived transport probe not found near capture manifest")
 
 
+def resolve_transport_evidence(
+    freeze_actual: dict[str, Any],
+    manifest: dict[str, Any],
+    manifest_path: Path,
+    probe_arg: object,
+) -> dict[str, Any]:
+    """Resolve score-time custody without allowing absent evidence to crash authority.
+
+    Missing or ambiguous archived probe bytes are an invalid transport prerequisite,
+    not an evaluator infrastructure exception.  Preserve the scientific output and
+    force the frozen CANNOT_CHECK terminal through the normal validity path.
+    """
+    if probe_arg is not None:
+        return transport_evidence_validity(freeze_actual, manifest, Path(probe_arg))
+    try:
+        path = discover_transport_probe(manifest_path)
+    except (OSError, ValueError, TypeError) as exc:
+        return _invalid_transport_evidence(f"{type(exc).__name__}: {exc}", manifest)
+    return transport_evidence_validity(freeze_actual, manifest, path)
+
+
 def analyze_v2(**kwargs: Any) -> dict[str, Any]:
     freeze_path = Path(kwargs["freeze_path"])
     manifest_path = Path(kwargs["manifest_path"])
     probe_arg = kwargs.pop("transport_probe_path", None)
-    transport_probe_path = Path(probe_arg) if probe_arg is not None else discover_transport_probe(manifest_path)
     output_path = Path(kwargs["output_path"])
     freeze_actual = json.loads(freeze_path.read_text(encoding="utf-8"))
     if freeze_actual.get("schema_version") != V2_SCHEMA:
@@ -117,7 +149,9 @@ def analyze_v2(**kwargs: Any) -> dict[str, Any]:
         v1.load_json = original_load_json
 
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    transport = transport_evidence_validity(freeze_actual, manifest, transport_probe_path)
+    transport = resolve_transport_evidence(
+        freeze_actual, manifest, manifest_path, probe_arg
+    )
     transport_valid = bool(transport["valid"])
     result["schema_version"] = "orion.p2.wide-openaire-matched-result.v2"
     result["campaign_version"] = 2
