@@ -176,16 +176,29 @@ def test_the_independent_verifier_diverges_on_no_point() -> None:
     assert not divergence.applied
 
 
-def test_the_finite_model_terminal_rests_on_three_unsatisfiable_counters() -> None:
-    """``"terminal": "PASS"`` is ``not (t1 or t3 or t4)`` and t1/t4 read nothing."""
+def test_the_finite_model_terminal_no_longer_spends_an_unchecked_counter() -> None:
+    """The repaired terminal reports T4 as unchecked instead of counting it as clean.
+
+    This test previously pinned the defect: ``terminal`` was ``PASS`` and
+    ``t4_violations`` was ``0`` even though ``ideal_product`` is the same
+    expression as ``scientific_admissible``, so that counter could not have been
+    anything else. The checker now detects the shared definition, publishes
+    ``t4_violations: null`` with a stated reason, and derives a three-valued
+    terminal --- so P6-U-T1's cited evidence is ``CANNOT_CHECK`` rather than a
+    pass it never earned. The claim got narrower, which is the point.
+
+    ``t1`` is deliberately still asserted at 0 and still has no refutation
+    capacity below: repairing it needs FORMAL_CORE's construction of the
+    product, which is the theory lane's call, so its weakness stays visible
+    rather than being quietly fixed here.
+    """
 
     published = json.loads(X_RESULT.read_text())
-    assert published["terminal"] == "PASS"
-    assert (published["t1_violations"], published["t3_violations"], published["t4_violations"]) == (
-        0,
-        0,
-        0,
-    )
+    assert published["terminal"] == "CANNOT_CHECK"
+    assert published["t4_status"] == "CANNOT_CHECK"
+    assert published["t4_violations"] is None
+    assert "same expression" in published["t4_cannot_check_reason"]
+    assert (published["t1_violations"], published["t3_violations"]) == (0, 0)
 
     capacities = _by_id(_finite_capacity(check) for check in finite.SHIPPED_CHECKS)
     for check_id in ("t1_violations", "t4_violations", "t5_countermodels"):
