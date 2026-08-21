@@ -486,7 +486,7 @@
             "research/claim_expansion/p7/P7_X2_CLOSURE_CARRYING_RESULT_V1.json"
           ],
           "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "There is no general compositional calculus or checker; the 25 successful compositions against 25 matched missing-bridge cases are a registered navigation model, not a calculus over arbitrary transformation chains.",
+          "statement": "A general compositional calculus now exists and is machine-checked over uninterpreted sorts, so identity, associativity and intermediate-contract composition hold for any number of transformations, contracts, coordinates and obligations and for every donor-native predicate (P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21). The side conditions are named rather than assumed: identity needs the contract test to be reflexive, the strict equational laws need extensionality, and obligation-totality composition needs containment of demanded obligations rather than a registered match. Two things remain. The five donor families are not shown to be interpretations of these primitives -- Native is uninterpreted -- which is the same open step P8 carries. And the lift subtracts rather than adds: P7's composition rule is provably incomplete against its own obligation semantics, refusing composites whose contracts demand exactly the same obligations when no bridge is registered.",
           "unblock": "Define primitive transformation and obligation semantics, then prove or explicitly characterize identity, associativity and intermediate-contract composition."
         },
         {
@@ -496,8 +496,8 @@
             "#655"
           ],
           "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "Current P7 results cannot be instances of a calculus that does not exist.",
-          "unblock": "Derive the finite results as instances once the calculus is mechanized."
+          "statement": "The composition half is now derived rather than standing beside the theorem: all 25 bridged and 25 unbridged committed rows are discharged as ground instances, the unit rule as the closure lift on all 320 rows, and all seven published counts recompute. What this exposes is how little that target contains. Instrumenting the shipped runner shows it evaluates compose at 2 of its 8 possible argument triples -- (True, True, False) and (True, True, True) -- so both legs are constant and the 25 successes and 25 countermodels are two values of bridge_match counted 25 times each by a 5x5 donor loop in which the donor never enters the function. Deriving 50 instances of two evaluations is not deriving 50 facts.",
+          "unblock": "Give the finite result something to be an instance of. That means varying the arguments the shipped loop holds constant -- a composition row where a leg does not carry is not currently evaluated at all -- and interpreting the five donor families as models of the proved primitives so the donor loop stops being a multiplier. Until then this terminal can only be discharged against a target of two evaluations."
         },
         {
           "actionability": "BLOCKED_ON_NEW_ARENA",
@@ -539,6 +539,12 @@
           "grade": "MECHANISM_NON_VACUITY",
           "note": "Closure-carrying transforms over a bounded donor stack; 25 successful compositions against 25 matched missing-bridge cases.",
           "terminal": "P7_CLOSURE_CARRYING_NAVIGATION_SUPPORTED__BOUNDED_FORMAL_DONOR_STACK__IDEAL_PRODUCT_EQUIVALENT"
+        },
+        {
+          "artifact_ref": "papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json",
+          "grade": "MECHANIZED_THEOREM",
+          "note": "Eighteen theorems over uninterpreted sorts for transformations, contracts, closure coordinates and obligations, plus a chain ladder to depth 8: identity, associativity and intermediate-contract composition, each with its side condition named and its countermodel exhibited. Unlike the P6 and P8 lifts, this one proves about exactly the model its terminal cites -- P7_X2_CLOSURE_CARRYING_RESULT_V1 -- and instantiates all 50 committed composition rows and all 320 lift rows, recomputing all seven published counts. It is still a predecessor, and it carries a subtraction: the composition rule is sound but incomplete against P7's own obligation semantics. Match is sufficient and not necessary; the exact condition is containment of demanded obligations, and the witness has both contracts demanding exactly the same obligations and being refused anyway because no bridge is registered. The rule characterises registered composability, not composability.",
+          "terminal": "COMPOSITION_CALCULUS_DISCHARGED__RULE_PROVED_INCOMPLETE"
         }
       ]
     },

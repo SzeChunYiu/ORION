@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "e103f4485f5bb6e068989fc6edb06b316faf7f5443f22d43664f96084d787d17",
+  "content_digest": "8f2febcd15f95322cddffeeeb7a0f04b0f249f92d2d01dd8d3b7726b1dad620c",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -858,9 +858,14 @@
           "artifact_ref": "research/claim_expansion/p7/P7_X2_SCIENCE_TERMINAL_V1.md",
           "grade": "MECHANISM_NON_VACUITY",
           "terminal": "P7_CLOSURE_CARRYING_NAVIGATION_SUPPORTED__BOUNDED_FORMAL_DONOR_STACK__IDEAL_PRODUCT_EQUIVALENT"
+        },
+        {
+          "artifact_ref": "papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json",
+          "grade": "MECHANIZED_THEOREM",
+          "terminal": "COMPOSITION_CALCULUS_DISCHARGED__RULE_PROVED_INCOMPLETE"
         }
       ],
-      "strongest_grade": "MECHANISM_NON_VACUITY",
+      "strongest_grade": "MECHANIZED_THEOREM",
       "terminal": "CANNOT_CHECK",
       "unclassified_blocked_gate_ids": [],
       "work_queue": [
@@ -892,7 +897,7 @@
             "research/claim_expansion/p7/P7_X2_CLOSURE_CARRYING_RESULT_V1.json"
           ],
           "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "There is no general compositional calculus or checker; the 25 successful compositions against 25 matched missing-bridge cases are a registered navigation model, not a calculus over arbitrary transformation chains.",
+          "statement": "A general compositional calculus now exists and is machine-checked over uninterpreted sorts, so identity, associativity and intermediate-contract composition hold for any number of transformations, contracts, coordinates and obligations and for every donor-native predicate (P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21). The side conditions are named rather than assumed: identity needs the contract test to be reflexive, the strict equational laws need extensionality, and obligation-totality composition needs containment of demanded obligations rather than a registered match. Two things remain. The five donor families are not shown to be interpretations of these primitives -- Native is uninterpreted -- which is the same open step P8 carries. And the lift subtracts rather than adds: P7's composition rule is provably incomplete against its own obligation semantics, refusing composites whose contracts demand exactly the same obligations when no bridge is registered.",
           "unblock": "Define primitive transformation and obligation semantics, then prove or explicitly characterize identity, associativity and intermediate-contract composition."
         },
         {
@@ -902,8 +907,8 @@
             "#655"
           ],
           "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "Current P7 results cannot be instances of a calculus that does not exist.",
-          "unblock": "Derive the finite results as instances once the calculus is mechanized."
+          "statement": "The composition half is now derived rather than standing beside the theorem: all 25 bridged and 25 unbridged committed rows are discharged as ground instances, the unit rule as the closure lift on all 320 rows, and all seven published counts recompute. What this exposes is how little that target contains. Instrumenting the shipped runner shows it evaluates compose at 2 of its 8 possible argument triples -- (True, True, False) and (True, True, True) -- so both legs are constant and the 25 successes and 25 countermodels are two values of bridge_match counted 25 times each by a 5x5 donor loop in which the donor never enters the function. Deriving 50 instances of two evaluations is not deriving 50 facts.",
+          "unblock": "Give the finite result something to be an instance of. That means varying the arguments the shipped loop holds constant -- a composition row where a leg does not carry is not currently evaluated at all -- and interpreting the five donor families as models of the proved primitives so the donor loop stops being a multiplier. Until then this terminal can only be discharged against a target of two evaluations."
         },
         {
           "actionability": "BLOCKED_ON_PROOF",
@@ -1808,7 +1813,7 @@
         "research/claim_expansion/p7/P7_X2_CLOSURE_CARRYING_RESULT_V1.json"
       ],
       "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "There is no general compositional calculus or checker; the 25 successful compositions against 25 matched missing-bridge cases are a registered navigation model, not a calculus over arbitrary transformation chains.",
+      "statement": "A general compositional calculus now exists and is machine-checked over uninterpreted sorts, so identity, associativity and intermediate-contract composition hold for any number of transformations, contracts, coordinates and obligations and for every donor-native predicate (P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21). The side conditions are named rather than assumed: identity needs the contract test to be reflexive, the strict equational laws need extensionality, and obligation-totality composition needs containment of demanded obligations rather than a registered match. Two things remain. The five donor families are not shown to be interpretations of these primitives -- Native is uninterpreted -- which is the same open step P8 carries. And the lift subtracts rather than adds: P7's composition rule is provably incomplete against its own obligation semantics, refusing composites whose contracts demand exactly the same obligations when no bridge is registered.",
       "unblock": "Define primitive transformation and obligation semantics, then prove or explicitly characterize identity, associativity and intermediate-contract composition."
     },
     {
@@ -1820,8 +1825,8 @@
         "#655"
       ],
       "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "Current P7 results cannot be instances of a calculus that does not exist.",
-      "unblock": "Derive the finite results as instances once the calculus is mechanized."
+      "statement": "The composition half is now derived rather than standing beside the theorem: all 25 bridged and 25 unbridged committed rows are discharged as ground instances, the unit rule as the closure lift on all 320 rows, and all seven published counts recompute. What this exposes is how little that target contains. Instrumenting the shipped runner shows it evaluates compose at 2 of its 8 possible argument triples -- (True, True, False) and (True, True, True) -- so both legs are constant and the 25 successes and 25 countermodels are two values of bridge_match counted 25 times each by a 5x5 donor loop in which the donor never enters the function. Deriving 50 instances of two evaluations is not deriving 50 facts.",
+      "unblock": "Give the finite result something to be an instance of. That means varying the arguments the shipped loop holds constant -- a composition row where a leg does not carry is not currently evaluated at all -- and interpreting the five donor families as models of the proved primitives so the donor loop stops being a multiplier. Until then this terminal can only be discharged against a target of two evaluations."
     },
     {
       "actionability": "BLOCKED_ON_PROOF",

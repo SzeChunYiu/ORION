@@ -1,0 +1,275 @@
+{
+  "all_discharged": true,
+  "axioms_are_definitional": "the closure lift, the coordinate transport rule, the identity clauses and the obligation-totality clause are stated as axioms and are not derived from anything more primitive. They are transcriptions of P7_X2_CLOSURE_CARRYING_THEOREMS_V1.md, and composition soundness is derived from them rather than assumed. Extensionality and bridge soundness are declared separately because they are the two conditions the results depend on, and both are pinned",
+  "bridge_match_is_no_longer_a_supplied_premise": "research/failures/2026-08-supplied-premise-unbuilt-decision/ records that the committed model's bridge_match is a caller-typed literal and leaves an open item for the theory lane: make it computed from the two transforms. In this calculus it is. Match(Tgt(t), Src(u)) is a function of the two transformations and of the registered bridge relation, so there is no argument left to supply. The committed artifact's counts still come from an expression in which no transform, contract or bridge appears; what is claimed here is only that this calculus does not have that hole",
+  "bridge_soundness_axiom_pin": {
+    "axiom_is_load_bearing": true,
+    "reading": "with the axiom, no counterexample to TOTALITY_COMPOSES_UNDER_MATCH exists in the finite obligation model (COUNTEREXAMPLE here means the search for one came back unsat); without it, one does",
+    "with_axiom": {
+      "detail": "no counterexample exists in this structure",
+      "name": "BRIDGE_SOUNDNESS_PIN__WITH_AXIOM",
+      "outcome": "COUNTEREXAMPLE",
+      "statement": "a counterexample to totality-composes-under-match exists in the finite obligation model, with bridge soundness asserted",
+      "why_it_matters": "with the axiom this must be unsatisfiable and without it satisfiable, or the axiom is decoration"
+    },
+    "without_axiom": {
+      "detail": "a model satisfying the axioms and the stated situation exists",
+      "name": "BRIDGE_SOUNDNESS_PIN__WITHOUT_AXIOM",
+      "outcome": "PROVED",
+      "statement": "a counterexample to totality-composes-under-match exists in the finite obligation model, with bridge soundness removed",
+      "why_it_matters": "with the axiom this must be unsatisfiable and without it satisfiable, or the axiom is decoration"
+    }
+  },
+  "chain_ladder": {
+    "bound": 8,
+    "results": [
+      {
+        "detail": "both implications are discharged separately; the biconditional is their propositional conjunction",
+        "name": "CHAIN_STEP_LEMMA",
+        "outcome": "PROVED",
+        "statement": "the one-step lemma the ladder runs under: a composite carries closure exactly when both legs do and the intermediate contract matches",
+        "why_it_matters": "the ladder uses this as a hypothesis, so it is re-discharged from the axioms alone here rather than assumed alongside them"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "CHAIN_CARRIES_2",
+        "outcome": "PROVED",
+        "statement": "a chain of 2 transformations carries closure exactly when every leg carries closure and every adjacent intermediate contract matches",
+        "why_it_matters": "the expanded form of the induction the intermediate-contract theorem supports; a calculus over arbitrary transformation chains is what P7-U-T1 asks for and a pair is not a chain"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "CHAIN_CARRIES_3",
+        "outcome": "PROVED",
+        "statement": "a chain of 3 transformations carries closure exactly when every leg carries closure and every adjacent intermediate contract matches",
+        "why_it_matters": "the expanded form of the induction the intermediate-contract theorem supports; a calculus over arbitrary transformation chains is what P7-U-T1 asks for and a pair is not a chain"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "CHAIN_CARRIES_4",
+        "outcome": "PROVED",
+        "statement": "a chain of 4 transformations carries closure exactly when every leg carries closure and every adjacent intermediate contract matches",
+        "why_it_matters": "the expanded form of the induction the intermediate-contract theorem supports; a calculus over arbitrary transformation chains is what P7-U-T1 asks for and a pair is not a chain"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "CHAIN_CARRIES_5",
+        "outcome": "PROVED",
+        "statement": "a chain of 5 transformations carries closure exactly when every leg carries closure and every adjacent intermediate contract matches",
+        "why_it_matters": "the expanded form of the induction the intermediate-contract theorem supports; a calculus over arbitrary transformation chains is what P7-U-T1 asks for and a pair is not a chain"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "CHAIN_CARRIES_6",
+        "outcome": "PROVED",
+        "statement": "a chain of 6 transformations carries closure exactly when every leg carries closure and every adjacent intermediate contract matches",
+        "why_it_matters": "the expanded form of the induction the intermediate-contract theorem supports; a calculus over arbitrary transformation chains is what P7-U-T1 asks for and a pair is not a chain"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "CHAIN_CARRIES_7",
+        "outcome": "PROVED",
+        "statement": "a chain of 7 transformations carries closure exactly when every leg carries closure and every adjacent intermediate contract matches",
+        "why_it_matters": "the expanded form of the induction the intermediate-contract theorem supports; a calculus over arbitrary transformation chains is what P7-U-T1 asks for and a pair is not a chain"
+      },
+      {
+        "detail": "negation is unsatisfiable under the axioms",
+        "name": "CHAIN_CARRIES_8",
+        "outcome": "PROVED",
+        "statement": "a chain of 8 transformations carries closure exactly when every leg carries closure and every adjacent intermediate contract matches",
+        "why_it_matters": "the expanded form of the induction the intermediate-contract theorem supports; a calculus over arbitrary transformation chains is what P7-U-T1 asks for and a pair is not a chain"
+      }
+    ]
+  },
+  "differential_against_executable_model": {
+    "agreed": true,
+    "agreements": 192,
+    "disagreements": [],
+    "exercised_both_verdicts": true,
+    "informative": true,
+    "positive_trials": 22,
+    "trials": 192
+  },
+  "executable_model": "research/claim_expansion/p7/check_p7_x2_closure_carrying.py",
+  "how_a_false_claim_would_report": "over the uninterpreted signature a false claim comes back UNKNOWN, not COUNTEREXAMPLE: refuting it means building a model and the quantified axioms defeat model-based instantiation. No PROVED line is weakened by that -- unsat is sound and a false claim cannot produce one -- but the failure to watch for in the validity half is a theorem that is not discharged rather than a printed countermodel. In the finite structures, which are decidable, countermodels are produced normally",
+  "induction_is_meta": "the chain theorem holds at unbounded length by induction on chain length over INTERMEDIATE_CONTRACT_COMPOSITION and the endpoint axioms. The step is machine-checked; the induction schema is standard and is the single hand step in this development, corroborated by the expanded ladder",
+  "instantiation_of_the_committed_result": {
+    "closure_lift_rows": {
+      "agreed": true,
+      "agreements": 320,
+      "disagreements": [],
+      "exercised_both_verdicts": true,
+      "informative": true,
+      "positive_trials": 5,
+      "trials": 320
+    },
+    "composition_instances_attempted": 50,
+    "composition_instances_discharged": 50,
+    "composition_instances_undischarged": [],
+    "counts_mismatched": {},
+    "instances_are_thin": "neither donor is read by the committed composition loop and both legs are the same constant True, so the fifty instances above are fifty copies of two facts. They are genuine instances of the general theorem; the general theorem is what covers arbitrary chains",
+    "published_counts": {
+      "composition_bridge_countermodels": 25,
+      "composition_successes": 25,
+      "donor_product_nonclosure_countermodels": 31,
+      "full_closure_refinement_successes": 155,
+      "partial_closure_refinement_failures": 1055,
+      "single_coordinate_separation_witnesses": 25,
+      "state_evaluations": 320
+    },
+    "recomputed_counts": {
+      "composition_bridge_countermodels": 25,
+      "composition_successes": 25,
+      "donor_product_nonclosure_countermodels": 31,
+      "full_closure_refinement_successes": 155,
+      "partial_closure_refinement_failures": 1055,
+      "single_coordinate_separation_witnesses": 25,
+      "state_evaluations": 320
+    }
+  },
+  "not_licensed": [
+    "any claim that the committed 25 successes and 25 matched missing-bridge cases were more than they are; neither donor is read by that loop and both legs are the same constant, so deriving them as instances of this calculus makes them instances of a general theorem without making them 25 facts",
+    "any claim that P7's other formal core -- the 64-state support-transport theorem in check_theory_closure_v2.py -- is lifted here; it is a different model and is untouched",
+    "any claim of independent formal review; these proofs have been checked by a solver, not reviewed by a person outside this lane",
+    "any empirical, pipeline or deployed-agent claim whatsoever"
+  ],
+  "one_hinge_and_its_corollaries": "INTERMEDIATE_CONTRACT_COMPOSITION is discharged from the axioms alone and is then used as a hypothesis for ASSOCIATIVITY_CARRIES, UNMATCHED_INTERMEDIATE_CONTRACT_BLOCKS, COMPOSITION_NON_AMPLIFICATION and every chain-ladder length, because those are corollaries of it and because asking the solver to re-derive it inside each of them is what it cannot do reliably: ASSOCIATIVITY_CARRIES from the axioms alone was PROVED twice and UNKNOWN twice over four runs in a fresh process, and closes in 0.01s under the hinge every time. The gate is that the hinge must come back PROVED before it is used; otherwise the corollaries run against the axioms alone and report whatever the solver says",
+  "record": "P7_COMPOSITION_CALCULUS_MECHANIZED",
+  "schema_version": "orion.p7.composition-calculus-smt.v1",
+  "side_conditions": {
+    "associativity": "holds observationally with no condition on the bridge relation at all -- no reflexivity, symmetry or transitivity. As an equation between transformations it needs extensionality, and STRICT_LAWS_NEED_EXTENSIONALITY exhibits the model where the observables agree and the equation fails",
+    "identity": "the unit laws need the intermediate-contract test to be reflexive. It is, because P7's own T5 reads 'exactly the same contract, or a registered bridge', and the first disjunct gives reflexivity. With the raw registered relation in its place identity fails: IDENTITY_NEEDS_A_REFLEXIVE_CONTRACT_TEST exhibits the model",
+    "intermediate_contract_composition": "matching intermediate contracts are sufficient and are NOT necessary. The exact condition is containment: every obligation the second leg's source demands is demanded by the first leg's target. P7's rule is therefore sound but incomplete with respect to its own obligation semantics -- fail-closed, refusing composites that are in fact total. MATCH_IS_NOT_NECESSARY locates the gap precisely: two contracts can demand exactly the same obligations and still be refused, because the test asks whether a bridge was registered rather than whether the obligations agree"
+  },
+  "solver": "5.1.0",
+  "theorems": [
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "IDENTITY_CARRIES",
+      "outcome": "PROVED",
+      "statement": "the identity transformation on any contract carries closure",
+      "why_it_matters": "a calculus needs an object that composes with everything and changes nothing; if the identity itself failed the closure lift there would be no unit to state a unit law about"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "LEFT_IDENTITY",
+      "outcome": "PROVED",
+      "statement": "composing the identity on a transformation's source before it preserves its endpoints and its closure-carrying verdict exactly",
+      "why_it_matters": "the left unit law, with no condition on the registered bridge relation; the finite model has no identity element at all, so this is not a generalisation of anything it checked"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "RIGHT_IDENTITY",
+      "outcome": "PROVED",
+      "statement": "composing a transformation with the identity on its target preserves its endpoints and its closure-carrying verdict exactly",
+      "why_it_matters": "the right unit law; stated separately because composition is not symmetric"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "IDENTITY_STRICT",
+      "outcome": "PROVED",
+      "statement": "under extensionality the unit laws are equations: composing with the identity on either side returns the same transformation",
+      "why_it_matters": "the difference between 'agrees on every observable' and 'is equal' is the difference between a report and a calculus; this says which one extensionality buys and STRICT_LAWS_NEED_EXTENSIONALITY says what it costs"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "ASSOCIATIVITY_OBSERVABLE",
+      "outcome": "PROVED",
+      "statement": "the two bracketings of a three-transformation chain agree on source, target, donor-native validity and every closure coordinate, for any registered bridge relation",
+      "why_it_matters": "associativity is what makes a chain a chain rather than a tree, and it is proved here with no reflexivity, symmetry or transitivity assumed of the bridge relation --- which is the non-obvious part, since bridges are registered one at a time and compose in no way at all"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "ASSOCIATIVITY_CARRIES",
+      "outcome": "PROVED",
+      "statement": "the two bracketings of a three-transformation chain carry closure together or not at all",
+      "why_it_matters": "the verdict-level consequence, stated on its own because it is the one a checker would rely on when it evaluates a chain in some order of its choosing"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "ASSOCIATIVITY_STRICT",
+      "outcome": "PROVED",
+      "statement": "under extensionality the two bracketings are the same transformation",
+      "why_it_matters": "associativity as an equation, which is what the word means in a calculus"
+    },
+    {
+      "detail": "both implications are discharged separately; the biconditional is their propositional conjunction",
+      "name": "INTERMEDIATE_CONTRACT_COMPOSITION",
+      "outcome": "PROVED",
+      "statement": "a composite carries closure if and only if both legs carry it and the contract the first leg emits matches the contract the second consumes --- either identically or through a registered bridge",
+      "why_it_matters": "this is the general form of P7's `compose`, and it is derived from coordinate transport rather than assumed. It holds for any number of closure coordinates over any transformation sort, which is what the committed 25 pairs -- five donor names crossed with themselves, neither read -- did not establish"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "UNMATCHED_INTERMEDIATE_CONTRACT_BLOCKS",
+      "outcome": "PROVED",
+      "statement": "if the intermediate contract neither matches exactly nor is bridged, no composite carries closure, however good both legs are",
+      "why_it_matters": "the general form of the 25 matched missing-bridge cases: donor-visible composability is insufficient, and it is insufficient for every pair of transformations rather than for five names crossed with themselves"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "COMPOSITION_NON_AMPLIFICATION",
+      "outcome": "PROVED",
+      "statement": "a composite that carries closure has legs that both carry closure",
+      "why_it_matters": "composition must not manufacture closure out of legs that lack it, or chaining would be a laundering operation on scientific closure"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "SINGLE_COORDINATE_SEPARATION",
+      "outcome": "PROVED",
+      "statement": "one failing closure coordinate, or a failing donor-native verdict, is enough to refuse: closure carrying is non-compensatory",
+      "why_it_matters": "the general form of the 25 single-coordinate separation witnesses and the 31 product countermodels; those enumerate five coordinates, this holds for a coordinate sort of any size"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "DONOR_CONSERVATIVITY",
+      "outcome": "PROVED",
+      "statement": "the donor-native verdict of a composite depends only on the legs' native verdicts --- no closure coordinate, contract or bridge changes it",
+      "why_it_matters": "P7's T1: adding the closure carrier must never alter the donor's own preservation/refinement/round-trip answer, or the claim to absorb mature donor machinery unchanged is false"
+    },
+    {
+      "detail": "a model satisfying the axioms and the stated situation exists",
+      "name": "IDENTITY_NEEDS_A_REFLEXIVE_CONTRACT_TEST",
+      "outcome": "PROVED",
+      "statement": "the unit law is not a free consequence of composition: with the raw registered bridge relation in place of the reflexive match test there is a model in which a carrying transformation composed with the identity on its own source does not carry",
+      "why_it_matters": "names the exact side condition identity rests on. P7's T5 says 'exactly the same contract, or a registered bridge'; this shows the first disjunct is doing work rather than being a convenience, because without it every identity would need a bridge registered from a contract to itself"
+    },
+    {
+      "detail": "a model satisfying the axioms and the stated situation exists",
+      "name": "STRICT_LAWS_NEED_EXTENSIONALITY",
+      "outcome": "PROVED",
+      "statement": "there is a model of the checked calculus in which the two bracketings of a chain agree on every observable and are not equal, so the strict laws genuinely rest on extensionality and not on the transport axioms",
+      "why_it_matters": "keeps ASSOCIATIVITY_STRICT honest. A law proved under an axiom that was not needed is a law proved about something else, and here the axiom is needed --- the model tags each composite with a bit the observables cannot see, and the bracketings differ in it"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "TOTALITY_COMPOSES_UNDER_MATCH",
+      "outcome": "PROVED",
+      "statement": "in the obligation semantics, if both legs account for every obligation their targets demand and the intermediate contract matches, so does the composite",
+      "why_it_matters": "this is what justifies the checked calculus's intermediate-contract test instead of leaving it as a stipulation; the test is sound with respect to an obligation semantics defined without reference to it"
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "CONTAINMENT_IS_THE_EXACT_CONDITION",
+      "outcome": "PROVED",
+      "statement": "the weaker hypothesis suffices: if every obligation the second leg's source demands is demanded by the first leg's target, totality composes --- contract equality and registered bridges are two ways of getting this and not the only ones",
+      "why_it_matters": "the explicit characterisation the unblock asks for where the property does not hold unconditionally. Containment is the side condition; match implies it, which is why match works"
+    },
+    {
+      "detail": "a model satisfying the axioms and the stated situation exists",
+      "name": "MATCH_IS_NOT_NECESSARY",
+      "outcome": "PROVED",
+      "statement": "there is a model in which both legs are total, the composite is total and demands something, the emitted and consumed contracts demand exactly the same obligations, and the intermediate contract test still fails because the two contracts are distinct and no bridge was registered between them",
+      "why_it_matters": "the checked rule is sound but incomplete with respect to the semantics, and the witness says exactly where the gap is: two contracts can be obligation-equivalent and still be refused, because the test asks whether someone registered a bridge and not whether the obligations agree. Fail-closed is the paper's declared stance, so this is a cost rather than a defect --- but it is a cost, and it is named here rather than left for a reader to find"
+    },
+    {
+      "detail": "a model satisfying the axioms and the stated situation exists",
+      "name": "CONTAINMENT_FAILURE_ADMITS_A_COUNTERMODEL",
+      "outcome": "PROVED",
+      "statement": "drop containment and totality genuinely stops composing: there is a model with both legs total and the composite not total",
+      "why_it_matters": "the converse half of the characterisation. A sufficient condition offered without a witness that it is needed is a condition nobody tested"
+    }
+  ],
+  "undischarged": [],
+  "what_this_establishes": "identity, associativity and intermediate-contract composition hold for transformation chains of any length over uninterpreted sorts of transformations, contracts, closure coordinates and obligations, with the donor-native validity predicate left uninterpreted; the exact side conditions are named and each is pinned by a countermodel; the proved formula agrees with P7's committed carries/compose on a corpus exercising both verdicts; and the committed composition rows are discharged one at a time as ground instances of the general theorem"
+}
