@@ -67,8 +67,29 @@ def _expected_random_calls(search_size: int, marked_index: int, seed: int) -> in
     return order.index(marked_index) + 1
 
 
+def _query_model_comparison(n_qubits: int) -> dict[str, Any]:
+    search_size = 1 << n_qubits
+    iterations = _expected_iterations(search_size)
+    success_probability = _analytic_probability(search_size, iterations)
+    classical_budget = min(search_size, math.ceil(success_probability * search_size))
+    classical_expected = classical_budget - (
+        classical_budget * (classical_budget - 1) / (2 * search_size)
+    )
+    return {
+        "model": "HIDDEN_UNIFORM_SINGLE_MARK_QUERY_MODEL",
+        "fixture_cases_used_for_advantage": False,
+        "success_probability_source": "ANALYTIC_GROVER_AMPLITUDE",
+        "quantum_single_run_success_probability": success_probability,
+        "quantum_query_budget": iterations,
+        "classical_matching_query_budget": classical_budget,
+        "classical_matching_expected_queries": classical_expected,
+        "classical_output_must_be_predicate_verified": True,
+        "benchmark_correlated_side_information_admitted": False,
+    }
+
+
 def reconstruct_s1a_case(record: Mapping[str, Any]) -> dict[str, Any]:
-    """Independently reconstruct one S1A result without consuming executor PASS state."""
+    """Independently reconstruct one S1A fixture without consuming executor PASS state."""
 
     errors: list[str] = []
     try:
@@ -90,28 +111,22 @@ def reconstruct_s1a_case(record: Mapping[str, Any]) -> dict[str, Any]:
         return _invalid_case([f"malformed case record: {type(exc).__name__}: {exc}"])
 
     expected_case_id = f"S1A-n{n_qubits}-case{case_index}-marked{marked_index}"
-
     if n_qubits < 3 or n_qubits > 10:
-        errors.append("n_qubits outside frozen S1A ladder")
-        return _invalid_case(errors, case_id=expected_case_id)
+        return _invalid_case(["n_qubits outside frozen S1A ladder"], case_id=expected_case_id)
 
     expected_search_size = 1 << n_qubits
     if search_size != expected_search_size:
-        errors.append("search_size does not equal 2^n")
-        return _invalid_case(errors, case_id=expected_case_id)
+        return _invalid_case(["search_size does not equal 2^n"], case_id=expected_case_id)
 
     positions = _expected_positions(n_qubits)
     if case_index < 0 or case_index >= len(positions):
-        errors.append("case_index outside frozen subject set")
-        return _invalid_case(errors, case_id=expected_case_id)
-
+        return _invalid_case(["case_index outside frozen subject set"], case_id=expected_case_id)
     if marked_index < 0 or marked_index >= search_size:
-        errors.append("marked_index outside frozen search space")
-        return _invalid_case(errors, case_id=expected_case_id)
-
+        return _invalid_case(["marked_index outside frozen search space"], case_id=expected_case_id)
     if positions[case_index] != marked_index:
-        errors.append("marked_index does not match frozen subject generator")
-        return _invalid_case(errors, case_id=expected_case_id)
+        return _invalid_case(
+            ["marked_index does not match frozen subject generator"], case_id=expected_case_id
+        )
 
     if record.get("case_id") != expected_case_id:
         errors.append("case_id does not bind the case coordinates")
@@ -206,22 +221,29 @@ def reconstruct_s1a_case(record: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def _terminal_for_size(
-    case_records: list[Mapping[str, Any]], reconstructions: list[dict[str, Any]]
+    n_qubits: int, reconstructions: list[dict[str, Any]]
 ) -> QuantumAdvantageTerminal:
-    all_valid = all(item["valid_record"] for item in reconstructions)
-    all_candidates = all(item["candidate_verified"] for item in reconstructions)
-    if not all_valid or not all_candidates:
+    if not all(item["valid_record"] for item in reconstructions):
         return QuantumAdvantageTerminal.INVALID_COMPARISON
-
-    mean_quantum = mean(int(item["oracle_calls"]) for item in case_records)
-    mean_ordered = mean(int(item["classical_ordered_calls"]) for item in case_records)
-    mean_random = mean(int(item["classical_random_calls"]) for item in case_records)
-    if mean_quantum < mean_ordered and mean_quantum < mean_random:
+    if not all(item["candidate_verified"] for item in reconstructions):
+        return QuantumAdvantageTerminal.INVALID_COMPARISON
+    comparison = _query_model_comparison(n_qubits)
+    quantum_queries = int(comparison["quantum_query_budget"])
+    classical_budget = int(comparison["classical_matching_query_budget"])
+    classical_expected = float(comparison["classical_matching_expected_queries"])
+    if quantum_queries < classical_budget and quantum_queries < classical_expected:
         return QuantumAdvantageTerminal.QUANTUM_QUERY_ADVANTAGE_ONLY
     return QuantumAdvantageTerminal.QUANTUM_FEASIBLE_NO_ADVANTAGE
 
 
-def _validate_top_level_access_interpretations(report: Mapping[str, Any], errors: list[str]) -> None:
+def _validate_top_level_contracts(report: Mapping[str, Any], errors: list[str]) -> None:
+    if report.get("schema") != "ORION.QN.VS1.S1A.Campaign.v3":
+        errors.append("campaign schema is not access/benchmark-hardened v3")
+    if report.get("fixture_cases_used_for_advantage") is not False:
+        errors.append("public fixture cases are being used to authorize advantage")
+    if report.get("advantage_adjudication_source") != "HIDDEN_UNIFORM_ANALYTIC_QUERY_MODEL":
+        errors.append("advantage adjudication source is not the frozen hidden-uniform model")
+
     interpretations = report.get("access_interpretations")
     if not isinstance(interpretations, Mapping):
         errors.append("campaign access_interpretations missing or malformed")
@@ -249,17 +271,15 @@ def _validate_top_level_access_interpretations(report: Mapping[str, Any], errors
 
 
 def reconstruct_s1a_campaign(report: Mapping[str, Any]) -> dict[str, Any]:
-    """Recompute campaign terminals and Q1 claim ceilings from raw case records."""
+    """Recompute semantic fixtures and query-model terminals from serialized evidence."""
 
     errors: list[str] = []
-    if report.get("schema") != "ORION.QN.VS1.S1A.Campaign.v2":
-        errors.append("campaign schema is not access-hardened v2")
-    _validate_top_level_access_interpretations(report, errors)
+    _validate_top_level_contracts(report, errors)
 
     raw_cases = report.get("cases")
     if not isinstance(raw_cases, list):
         return {
-            "schema": "ORION.QN.S1ACampaignReconstruction.v2",
+            "schema": "ORION.QN.S1ACampaignReconstruction.v3",
             "valid": False,
             "errors": [*errors, "campaign cases missing or malformed"],
             "case_reconstructions": [],
@@ -296,19 +316,17 @@ def reconstruct_s1a_campaign(report: Mapping[str, Any]) -> dict[str, Any]:
     for n_qubits in expected_sizes:
         pairs = grouped.get(n_qubits, [])
         if len(pairs) != 8:
-            errors.append(f"n={n_qubits} does not contain exactly eight frozen cases")
+            errors.append(f"n={n_qubits} does not contain exactly eight frozen fixtures")
             continue
         case_records = [raw for raw, _ in pairs]
         reconstructions = [item for _, item in pairs]
-        query_terminal = _terminal_for_size(case_records, reconstructions)
+        comparison = _query_model_comparison(n_qubits)
+        query_terminal = _terminal_for_size(n_qubits, reconstructions)
         ordinary_terminal = (
             QuantumAdvantageTerminal.INVALID_COMPARISON
             if query_terminal is QuantumAdvantageTerminal.INVALID_COMPARISON
             else QuantumAdvantageTerminal.CANNOT_CHECK_ACCESS_MODEL
         )
-        mean_quantum = mean(int(item["oracle_calls"]) for item in case_records)
-        mean_ordered = mean(int(item["classical_ordered_calls"]) for item in case_records)
-        mean_random = mean(int(item["classical_random_calls"]) for item in case_records)
 
         query_receipt = QAdvantageReceipt(
             receipt_id=f"vs1-s1a-query-model-n{n_qubits}",
@@ -352,35 +370,48 @@ def reconstruct_s1a_campaign(report: Mapping[str, Any]) -> dict[str, Any]:
             except QuantumContractError as exc:
                 errors.append(f"n={n_qubits} reconstructed {label} terminal violates Q1: {exc}")
 
+        fixture_mean_quantum = mean(int(item["oracle_calls"]) for item in case_records)
+        fixture_mean_ordered = mean(int(item["classical_ordered_calls"]) for item in case_records)
+        fixture_mean_random = mean(int(item["classical_random_calls"]) for item in case_records)
+
         recorded = recorded_by_n.get(n_qubits)
         if recorded is None:
             errors.append(f"n={n_qubits} recorded size summary missing")
         else:
-            if recorded.get("terminal") != query_terminal.value:
-                errors.append(f"n={n_qubits} terminal does not reconstruct")
-            if recorded.get("query_model_terminal") != query_terminal.value:
-                errors.append(f"n={n_qubits} query-model terminal does not reconstruct")
-            if recorded.get("quantum_access_mode") != QuantumAccessMode.NATIVE_COHERENT_ORACLE.value:
-                errors.append(f"n={n_qubits} positive/query summary lacks native coherent access")
-            if recorded.get("oracle_construction_status") != "QUERY_MODEL_ASSUMPTION":
-                errors.append(f"n={n_qubits} query oracle construction status drift")
-            if recorded.get("ordinary_input_terminal") != ordinary_terminal.value:
-                errors.append(f"n={n_qubits} ordinary-input terminal does not reconstruct")
-            if (
-                recorded.get("ordinary_input_quantum_access_mode")
-                != QuantumAccessMode.CLASSICAL_PREDICATE_ONLY.value
-            ):
-                errors.append(f"n={n_qubits} ordinary-input access mode does not reconstruct")
-            if recorded.get("ordinary_input_coherent_oracle_derivation_resolved") is not False:
-                errors.append(f"n={n_qubits} ordinary input falsely resolves coherent oracle")
-            unresolved = recorded.get("unresolved_end_to_end_coordinates")
-            if not isinstance(unresolved, list) or "coherent_oracle_construction" not in unresolved:
-                errors.append(f"n={n_qubits} coherent oracle construction vanished from resource unknowns")
-            for key, expected in (
-                ("mean_quantum_oracle_calls", mean_quantum),
-                ("mean_classical_ordered_calls", mean_ordered),
-                ("mean_classical_random_calls", mean_random),
-            ):
+            exact_fields = {
+                "terminal": query_terminal.value,
+                "query_model_terminal": query_terminal.value,
+                "quantum_access_mode": QuantumAccessMode.NATIVE_COHERENT_ORACLE.value,
+                "oracle_construction_status": "QUERY_MODEL_ASSUMPTION",
+                "ordinary_input_terminal": ordinary_terminal.value,
+                "ordinary_input_quantum_access_mode": QuantumAccessMode.CLASSICAL_PREDICATE_ONLY.value,
+                "ordinary_input_coherent_oracle_derivation_resolved": False,
+                "advantage_adjudication_source": "HIDDEN_UNIFORM_ANALYTIC_QUERY_MODEL",
+                "model": comparison["model"],
+                "fixture_cases_used_for_advantage": False,
+                "success_probability_source": comparison["success_probability_source"],
+                "quantum_query_budget": comparison["quantum_query_budget"],
+                "classical_matching_query_budget": comparison["classical_matching_query_budget"],
+                "classical_output_must_be_predicate_verified": True,
+                "benchmark_correlated_side_information_admitted": False,
+                "fixture_classical_diagnostic_only": True,
+            }
+            for key, expected in exact_fields.items():
+                if recorded.get(key) != expected:
+                    errors.append(f"n={n_qubits} summary field {key} does not reconstruct")
+
+            float_fields = {
+                "quantum_single_run_success_probability": comparison[
+                    "quantum_single_run_success_probability"
+                ],
+                "classical_matching_expected_queries": comparison[
+                    "classical_matching_expected_queries"
+                ],
+                "mean_fixture_quantum_oracle_calls": fixture_mean_quantum,
+                "mean_fixture_classical_ordered_calls": fixture_mean_ordered,
+                "mean_fixture_classical_random_calls": fixture_mean_random,
+            }
+            for key, expected in float_fields.items():
                 try:
                     observed = float(recorded[key])
                 except (KeyError, TypeError, ValueError):
@@ -388,6 +419,10 @@ def reconstruct_s1a_campaign(report: Mapping[str, Any]) -> dict[str, Any]:
                     continue
                 if not math.isclose(observed, float(expected), rel_tol=0.0, abs_tol=1e-12):
                     errors.append(f"n={n_qubits} summary field {key} does not reconstruct")
+
+            unresolved = recorded.get("unresolved_end_to_end_coordinates")
+            if not isinstance(unresolved, list) or "coherent_oracle_construction" not in unresolved:
+                errors.append(f"n={n_qubits} coherent oracle construction vanished from unknowns")
 
         recomputed_summaries.append(
             {
@@ -397,9 +432,7 @@ def reconstruct_s1a_campaign(report: Mapping[str, Any]) -> dict[str, Any]:
                 "quantum_access_mode": QuantumAccessMode.NATIVE_COHERENT_ORACLE.value,
                 "ordinary_input_terminal": ordinary_terminal.value,
                 "ordinary_input_quantum_access_mode": QuantumAccessMode.CLASSICAL_PREDICATE_ONLY.value,
-                "mean_quantum_oracle_calls": mean_quantum,
-                "mean_classical_ordered_calls": mean_ordered,
-                "mean_classical_random_calls": mean_random,
+                **comparison,
                 "all_case_records_valid": all(item["valid_record"] for item in reconstructions),
                 "all_candidates_verified": all(
                     item["candidate_verified"] for item in reconstructions
@@ -408,7 +441,7 @@ def reconstruct_s1a_campaign(report: Mapping[str, Any]) -> dict[str, Any]:
         )
 
     return {
-        "schema": "ORION.QN.S1ACampaignReconstruction.v2",
+        "schema": "ORION.QN.S1ACampaignReconstruction.v3",
         "valid": not errors and all(item["valid_record"] for item in case_reconstructions),
         "errors": errors,
         "case_reconstructions": case_reconstructions,
