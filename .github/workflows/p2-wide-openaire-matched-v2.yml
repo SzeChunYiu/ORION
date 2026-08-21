@@ -8,6 +8,8 @@ on:
       - 'papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json'
       - 'papers/paper-02-open-world-scientific-discovery/evidence/external_results/P2_OPENAIRE_IDENTITY_PROBE_V1.json'
       - 'tests/unit/p2/test_p2_openaire_matched_v2.py'
+      - 'tests/unit/p2/test_p2_openaire_transport_probe_authority.py'
+      - 'tests/unit/p2/test_p2_openaire_analysis_v2_transport_authority.py'
       - '.github/workflows/p2-wide-openaire-matched-v2.yml'
   workflow_dispatch:
 
@@ -97,6 +99,8 @@ jobs:
           pytest -q tests/unit/p2/test_p2_openaire_identity_probe.py
           pytest -q tests/unit/p2/test_p2_openaire_matched.py
           pytest -q tests/unit/p2/test_p2_openaire_matched_v2.py
+          pytest -q tests/unit/p2/test_p2_openaire_transport_probe_authority.py
+          pytest -q tests/unit/p2/test_p2_openaire_analysis_v2_transport_authority.py
 
       - name: Validate documented repeated-pid transport without benchmark gold
         shell: bash
