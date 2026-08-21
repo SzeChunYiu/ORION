@@ -38,6 +38,7 @@ from .mechanics_bridge import (
 )
 from .protocol import CapabilityRequest, CapabilityResult
 from .recursive_runner import RecursiveRunLimits, run_problem_recursive
+from .recursive_budget_hardening import install_recursive_budget_hardening
 from .runner import run_problem
 from .workspace import ResearchWorkspace
 
@@ -64,6 +65,7 @@ __all__ = [
     "decide_campaign",
     "execution_coverage",
     "initialize_campaign",
+    "install_recursive_budget_hardening",
     "mechanic_catalog",
     "mechanic_detail",
     "mechanics_coverage",
