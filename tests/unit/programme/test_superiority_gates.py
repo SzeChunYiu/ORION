@@ -29,12 +29,14 @@ from orion.programme.checks_superiority import (
     POST_HOC_FREEZE,
     PREDECESSOR_REUSE,
     SELF_CERTIFICATION,
+    SPLIT_PAPER_IDENTITY,
     STALE_PAPER_IDENTITY,
     SUPERIORITY_CHECKS,
     TERMINAL_COVERAGE,
     THIN_REPLICATION,
     UNCLASSIFIED_BLOCKER,
     paper_identity_findings,
+    split_identity_findings,
     run_superiority_checks,
     validate_superiority_catalogue,
 )
@@ -78,6 +80,7 @@ from orion.programme.superiority_terminals import (
     PAPER_ISSUES,
     REGISTERED_PAPER_DIRECTORIES,
     RETIRED_PAPER_NUMBERING,
+    SHARED_LANES,
     validate_registry,
 )
 
@@ -1272,3 +1275,88 @@ def test_future_identities_are_registered_under_both_layouts() -> None:
         assert directory in REGISTERED_PAPER_DIRECTORIES
         legacy = directory.replace("papers/", "papers/candidates/", 1)
         assert legacy in REGISTERED_PAPER_DIRECTORIES
+
+
+# --- P11-P14 folders, shared lanes, split identity ----------------------------
+
+
+def test_p11_to_p14_directories_exist_with_a_readme() -> None:
+    """The four identities #670 assigns now have a home under papers/."""
+
+    for paper_id, directory in FUTURE_PAPER_DIRECTORIES.items():
+        path = REPO_ROOT / directory
+        assert path.is_dir(), f"{paper_id} has no directory at {directory}"
+        readme = path / "README.md"
+        assert readme.is_file(), f"{paper_id} has no README"
+        text = readme.read_text(encoding="utf-8")
+        assert f"ORION-{paper_id}" in text
+        assert "NO_PROTECTED_RESULT" in text, f"{paper_id} must not imply a result"
+
+
+def test_p11_to_p14_add_no_manuscript_that_would_collide_with_pr_715() -> None:
+    """PR #715 owns MANUSCRIPT.md; opening the folder must not pre-empt it."""
+
+    for directory in FUTURE_PAPER_DIRECTORIES.values():
+        assert not (REPO_ROOT / directory / "MANUSCRIPT.md").exists()
+
+
+def test_shared_lanes_are_not_paper_identities() -> None:
+    """`orion-learning-machine` is code and results, not a paper."""
+
+    assert list(SHARED_LANES) == ["papers/orion-learning-machine"]
+    for lane, reason in SHARED_LANES.items():
+        assert (REPO_ROOT / lane).is_dir(), lane
+        assert reason.strip()
+        assert lane not in REGISTERED_PAPER_DIRECTORIES
+        # The README that was missing is what made it read as a paper.
+        assert (REPO_ROOT / lane / "README.md").is_file(), f"{lane} needs a README"
+
+
+def test_split_paper_identity_fails(tmp_path: Path) -> None:
+    """One identity, two live locations, nothing saying which carries it.
+
+    The live risk: PR #715 was authored pre-refactor and still targets
+    `papers/candidates/`. Registering both spellings stops that reading as
+    identity *rot*; this stops it being silent if both ever hold content.
+    """
+
+    (tmp_path / "papers" / "candidates").mkdir(parents=True)
+    for entry in PAPER_DIRECTORIES:
+        (tmp_path / entry.active).mkdir(parents=True, exist_ok=True)
+        for directory, _ in entry.retired:
+            (tmp_path / directory).mkdir(parents=True, exist_ok=True)
+
+    slug = "paper-11-state-as-computation"
+    new = tmp_path / "papers" / slug
+    new.mkdir()
+    (new / "README.md").write_text("here", encoding="utf-8")
+    assert split_identity_findings(tmp_path) == ()
+
+    old = tmp_path / "papers" / "candidates" / slug
+    old.mkdir()
+    (old / "MANUSCRIPT.md").write_text("also here", encoding="utf-8")
+    findings = split_identity_findings(tmp_path)
+    assert len(findings) == 1
+    assert slug in findings[0]
+    assert "papers/candidates/" in findings[0] and "and" in findings[0]
+
+
+def test_split_identity_ignores_empty_and_residue_directories(tmp_path: Path) -> None:
+    (tmp_path / "papers" / "candidates").mkdir(parents=True)
+    slug = "paper-11-state-as-computation"
+    live = tmp_path / "papers" / slug
+    live.mkdir()
+    (live / "README.md").write_text("here", encoding="utf-8")
+    residue = tmp_path / "papers" / "candidates" / slug / "__pycache__"
+    residue.mkdir(parents=True)
+    (residue / "x.cpython-311.pyc").write_bytes(b"\x00")
+    assert split_identity_findings(tmp_path) == ()
+
+
+def test_the_repository_has_no_split_paper_identity() -> None:
+    assert split_identity_findings(REPO_ROOT) == ()
+    result = _result(
+        SuperiorityLedger(ledger_id="x", frozen_at="2026-08-21", papers=()),
+        SPLIT_PAPER_IDENTITY,
+    )
+    assert result.outcome is Outcome.PASS
