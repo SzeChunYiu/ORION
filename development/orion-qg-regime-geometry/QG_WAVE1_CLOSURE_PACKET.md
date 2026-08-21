@@ -39,8 +39,18 @@ Authority: development record only; no lane receipt grants scientific/novelty au
   at-characterizable-column → trade-currency → closed-form-predicate motif now has two
   independent instances; "boundary-is-low-order" is a candidate transferable principle;
   the field's visible frontier is families without exact finite referees.
-- [SLOT] **QG-5 certified forecast** (`QG5_CERTIFIED_FORECAST_RESULTS.json`): zero-error
-  verification against the DP, speedup distribution, library forecast table.
+- **QG-5 certified forecast — IDENTITY REFUTED ON A NEW INSTANCE** (a discovery;
+  `QG5_CERTIFIED_FORECAST_RESULTS.json`,
+  `QG5_FORECAST_IDENTITY_REFUTED__BOUNDARY_INSTANCES_REPORTED_VERBATIM__NOT_R6`):
+  the three-family forecast min(C_R6L, C_D+, f_B) matched the unrestricted DP on
+  9,261/9,261 exhaustive structured-n2 instances, all receipted chemistry rows, and
+  239/240 of a fresh seeded panel — but one n=3 instance (serialized verbatim) has
+  C_DP = 10 < 11 = all three family values. Localization: the frozen borrow-family
+  closed form f_B under-parametrizes the weight-2 trade at n=3; the two-trade
+  *characterization* stands on the exhaustive n≤2 domains, while its closed-form
+  completeness fails at higher n. Repair path known by theorem: R6S guarantees
+  DP == D++ for all n, so a forecaster minimizing over the full support-≤2 family is
+  provably exact — registered as the wave-2 lead lane (QG-5b).
 
 ## Closure decision (bound slot)
 
