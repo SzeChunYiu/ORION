@@ -39,8 +39,8 @@
             "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
           ],
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
-          "statement": "Two frozen guards do not test what they are named. Class noninferiority files both members of every pair under adverse_class, so the NO_HIGH_LEVEL_REFORMULATION control class — the entire point of the matched control — is never evaluated. Domain noninferiority has 26 strata of 1-2 episodes, so the -0.10 margin is really a hard 'ARD may never lose a single episode' rule. The leakage guard is fail-open on a missing key and omits pair role as a token.",
-          "unblock": "Accumulate each pair member under its own gold class; widen the domain stratifier or restate the margin as the zero-loss rule it actually is; add pair role to the forbidden token set and make _leakage_free fail closed. These are pre-outcome protocol repairs under the R4 PRE_OUTCOME_PROTOCOL_REPAIR precedent and must land before the outcome is read."
+          "statement": "The three specification defects this terminal named are closed, and closing them made the result worse rather than better. Class noninferiority filed 0 of 48 episodes under their own gold class and now accumulates each episode under its own, as a conjunction with the original check retained bit-for-bit so the repair cannot loosen anything; the control stratum comes out at +0.364 over 22 episodes. The domain margin was never a margin -- 26 strata of one or two episodes, where clearing -0.10 needs at least ten -- and is renamed domain_zero_loss for the rule it arithmetically is, with the evaluator raising if the two predicates ever disagree; it holds under all four readings. The leakage guard was fail-open on a missing key and blind to pair role, and is now three-valued with a __bool__ that raises rather than picking a polarity.",
+          "unblock": "Nothing further is owed against T3 itself. What the repair exposed is a new and separate blocker, and it is the one that now holds P1-U-T1: the frozen core builds problem_id as p1-r6-root:{episode_id}, and episode ids are R5-<QUERY>-A/-C/-U, so the pair role crosses the provider boundary on all 48 episodes and both arms. Mint a role-free root problem id under its own pre-outcome freeze. It was not done here because it changes every runtime digest including the committed DR1 receipt, which is a re-run and not a repair. Recorded and deliberately not repaired: the same margin-over-tiny-strata shape exists in the R2, R3 and R4 evaluators, which T3 does not name."
         },
         {
           "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -95,6 +95,12 @@
           "grade": "CANNOT_CHECK",
           "note": "R4: matched within-source adverse/control campaign; same acquisition terminal.",
           "terminal": ""
+        },
+        {
+          "artifact_ref": "research/claim_expansion/p1/claude_t3/REPAIRED_GUARD_RUN_V1.json",
+          "grade": "CANNOT_CHECK",
+          "note": "The R6 guards repaired under a pre-outcome freeze, then re-run. The repaired evaluator does not pass its own guards: the terminal moves from PASS_PENDING_2019_REPLICATION to NOT_SUPPORTED. Fourteen checks hold; no_candidate_metadata_leakage fails on 96 of 96 episode-arms, because the frozen core builds problem_id as p1-r6-root:{episode_id} and episode ids carry the pair role, so -C is a perfect gold predictor for all 22 controls. Severity is bounded and measured rather than assumed: anonymising the id changes 0 of 44 ARD choices under the frozen deterministic host, so the leak is available and unexploited by this host -- and #723's own next step is a changed semantic host, where that bound does not carry.",
+          "terminal": "P1_R6_NATIVE_PRIMARY_NOT_SUPPORTED"
         }
       ]
     },
