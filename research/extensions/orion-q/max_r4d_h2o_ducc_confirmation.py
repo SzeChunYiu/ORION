@@ -13,6 +13,8 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import time
+import urllib.error
 import urllib.request
 from collections import defaultdict
 from functools import lru_cache
@@ -38,9 +40,37 @@ def git_blob_sha(data: bytes) -> str:
     return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
 
 
+#: Transport-only resilience. Long library scans issue many large reads and a single
+#: transient gateway hiccup used to abort the whole run. Retries are bounded, apply
+#: only to transient transport failures, and never to an authorization/policy denial
+#: (401/403/407) which must be reported rather than retried. The blob-SHA-1 check
+#: below is unchanged and still decides what the bytes are allowed to be, so a retry
+#: can never alter the scientific content of a fetch.
+_FETCH_ATTEMPTS = 4
+_FETCH_BACKOFF_SECONDS = 3.0
+_FETCH_NO_RETRY_STATUS = frozenset({401, 403, 407})
+
+
+def _read_source_bytes(url: str) -> bytes:
+    last_exc: Exception | None = None
+    for attempt in range(_FETCH_ATTEMPTS):
+        try:
+            with urllib.request.urlopen(url, timeout=30) as r:
+                return r.read()
+        except urllib.error.HTTPError as exc:
+            if exc.code in _FETCH_NO_RETRY_STATUS or exc.code < 500:
+                raise
+            last_exc = exc
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as exc:
+            last_exc = exc
+        if attempt + 1 < _FETCH_ATTEMPTS:
+            time.sleep(_FETCH_BACKOFF_SECONDS * (attempt + 1))
+    assert last_exc is not None
+    raise last_exc
+
+
 def fetch_source() -> str:
-    with urllib.request.urlopen(SOURCE_URL, timeout=30) as r:
-        raw = r.read()
+    raw = _read_source_bytes(SOURCE_URL)
     got = git_blob_sha(raw)
     if got != SOURCE_BLOB:
         raise RuntimeError(f"external source blob mismatch: {got} != {SOURCE_BLOB}")
