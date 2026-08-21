@@ -609,6 +609,28 @@ FUTURE_PAPER_DIRECTORIES: dict[str, str] = {
     "P14": "papers/paper-14-orion-rse",
 }
 
+#: Directories under ``papers/`` that are **not** paper identities.
+#:
+#: ``orion-learning-machine/`` is the shared code, experiments and committed
+#: results that two paper directories cite. It sits beside a row of ``paper-NN-*``
+#: directories and carried no README for a long time, which made it read as a
+#: fourteenth paper. It is recorded here so that "is this a paper?" has a
+#: machine-checkable answer, and so nothing tries to register it as one.
+#:
+#: The subtlety worth keeping: its own ``REPRODUCE.md`` names
+#: ``paper-09-executable-research-core`` and ``paper-10-content-bound-math-evaluation``
+#: --- the two *retired predecessors*, not the active P9 and P10. That is exactly
+#: why both predecessors are retained rather than deleted.
+SHARED_LANES: dict[str, str] = {
+    "papers/orion-learning-machine": (
+        "Shared P9/P10 reproduction lane: framework, experiments and committed "
+        "results cited by paper-09-executable-research-core and "
+        "paper-10-content-bound-math-evaluation. Authority is "
+        "LOCAL_REPRODUCIBLE_CORE_ONLY. Not a publication identity."
+    ),
+}
+
+
 #: Research tracks whose **standalone paper numbering was retired** by #670, and
 #: the identity that absorbed each.
 #:
@@ -696,6 +718,9 @@ def validate_registry() -> tuple[str, ...]:
         if directory in seen_directories:
             errors.append(f"directory {directory} is registered to more than one paper")
         seen_directories.add(directory)
+    for lane in SHARED_LANES:
+        if lane in seen_directories:
+            errors.append(f"shared lane {lane} is also registered as a paper identity")
     for issue, _, absorbed_into in RETIRED_PAPER_NUMBERING:
         if absorbed_into not in FUTURE_PAPER_DIRECTORIES and absorbed_into not in PAPER_GATES:
             errors.append(f"issue #{issue} is absorbed into unregistered identity {absorbed_into}")
@@ -713,6 +738,7 @@ __all__ = [
     "PAPER_ISSUES",
     "REGISTERED_PAPER_DIRECTORIES",
     "RETIRED_PAPER_NUMBERING",
+    "SHARED_LANES",
     "PaperDirectories",
     "P1_U_GATES",
     "P2_U_GATES",

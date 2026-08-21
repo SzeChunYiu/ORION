@@ -103,6 +103,7 @@ CLAIM_WIDER_THAN_EVIDENCE = "HC-SUP-CLAIM-WIDER-THAN-EVIDENCE"
 PREDECESSOR_REUSE = "HC-SUP-PREDECESSOR-REUSE"
 UNCLASSIFIED_BLOCKER = "HC-SUP-UNCLASSIFIED-BLOCKER"
 STALE_PAPER_IDENTITY = "HC-SUP-STALE-PAPER-IDENTITY"
+SPLIT_PAPER_IDENTITY = "HC-SUP-SPLIT-PAPER-IDENTITY"
 
 # Kinds that ask for an empirical outcome. The two scope kinds are excluded
 # throughout: a scope gate's artifact legitimately *is* a manuscript, because
@@ -562,6 +563,68 @@ def paper_identity_findings(repo_root: Path) -> tuple[str, ...] | None:
     return tuple(found)
 
 
+def split_identity_findings(repo_root: Path) -> tuple[str, ...] | None:
+    """Registered directory *names* that hold content in more than one location.
+
+    Distinct from an unregistered directory, and distinct from P9/P10's two
+    directories: those are two different slugs, one active and one a recorded
+    predecessor. This is the *same* slug living under two parents at once ---
+    ``papers/paper-11-state-as-computation`` beside
+    ``papers/candidates/paper-11-state-as-computation`` --- which is one identity
+    split across layouts rather than two identities.
+
+    It is a live risk rather than a hypothetical: PR #715 was authored against the
+    pre-refactor tree and still targets ``papers/candidates/``. Registering both
+    spellings is what stops that landing from reading as identity *rot*; this is
+    what stops it from being silent if both ever hold content at once.
+    """
+
+    papers = repo_root / "papers"
+    if not papers.is_dir():
+        return None
+    locations: dict[str, list[str]] = {}
+    for parent in (papers, papers / "candidates"):
+        if not parent.is_dir():
+            continue
+        for child in sorted(parent.iterdir()):
+            if not child.is_dir() or not _PAPER_DIR_PATTERN.match(child.name):
+                continue
+            if child.name.startswith(_OUT_OF_SCOPE_PREFIXES):
+                continue
+            if not _holds_content(child):
+                continue
+            locations.setdefault(child.name, []).append(
+                child.relative_to(repo_root).as_posix()
+            )
+    return tuple(
+        f"{name} holds content in {' and '.join(paths)}"
+        for name, paths in sorted(locations.items())
+        if len(paths) > 1
+    )
+
+
+def _check_split_paper_identity(ledger: SuperiorityLedger) -> CheckResult:
+    """One paper identity must live in one place."""
+
+    findings = split_identity_findings(Path(__file__).resolve().parents[3])
+    if findings is None:
+        return cannot_check(
+            SPLIT_PAPER_IDENTITY,
+            "no papers/ tree is visible from this checkout, so paper identity "
+            "cannot be resolved",
+        )
+    if findings:
+        return failed(
+            SPLIT_PAPER_IDENTITY,
+            "a paper identity holds content in two locations at once, so nothing "
+            "says which one carries it",
+            findings,
+        )
+    return passed(
+        SPLIT_PAPER_IDENTITY, "every paper identity holds content in exactly one location"
+    )
+
+
 def _check_stale_paper_identity(ledger: SuperiorityLedger) -> CheckResult:
     """A paper number carried by an unregistered directory is an identity ambiguity.
 
@@ -669,6 +732,13 @@ SUPERIORITY_CHECKS: tuple[SuperiorityCheck, ...] = (
         evaluate=_check_stale_paper_identity,
     ),
     SuperiorityCheck(
+        check_id=SPLIT_PAPER_IDENTITY,
+        title="One paper identity lives in one place",
+        failure_class="SPLIT_PAPER_IDENTITY",
+        negative_fixture_id="tests/unit/programme/test_superiority_gates.py::test_split_paper_identity_fails",
+        evaluate=_check_split_paper_identity,
+    ),
+    SuperiorityCheck(
         check_id=UNCLASSIFIED_BLOCKER,
         title="A blocked terminal says why, and what would move it",
         failure_class="UNCLASSIFIED_BLOCKER",
@@ -734,8 +804,10 @@ __all__ = [
     "POST_HOC_FREEZE",
     "PREDECESSOR_REUSE",
     "SELF_CERTIFICATION",
+    "SPLIT_PAPER_IDENTITY",
     "STALE_PAPER_IDENTITY",
     "paper_identity_findings",
+    "split_identity_findings",
     "SUPERIORITY_CHECKS",
     "SuperiorityCheck",
     "run_superiority_checks",

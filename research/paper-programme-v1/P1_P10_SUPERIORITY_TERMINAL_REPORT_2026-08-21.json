@@ -1,7 +1,7 @@
 {
   "battery": {
     "blocked": false,
-    "content_digest": "ff3c850019cffd8128d598dec914dc2690b512f0601a8ad9d43e27096d555889",
+    "content_digest": "e8c78bd52da4586eba41f36d607ec1654ca507e4754098bc9dc47ca997e6dd4d",
     "expected_check_ids": [
       "HC-SUP-TERMINAL-COVERAGE",
       "HC-SUP-MANUSCRIPT-SUBSTITUTION",
@@ -13,6 +13,7 @@
       "HC-SUP-POST-HOC-FREEZE",
       "HC-SUP-SELF-CERTIFICATION",
       "HC-SUP-STALE-PAPER-IDENTITY",
+      "HC-SUP-SPLIT-PAPER-IDENTITY",
       "HC-SUP-UNCLASSIFIED-BLOCKER",
       "HC-SUP-PREDECESSOR-REUSE",
       "HC-SUP-CLAIM-WIDER-THAN-EVIDENCE"
@@ -81,6 +82,12 @@
         "reason": "every paper-numbered directory is registered: 10 active identities and 2 recorded predecessor(s)"
       },
       {
+        "check_id": "HC-SUP-SPLIT-PAPER-IDENTITY",
+        "findings": [],
+        "outcome": "PASS",
+        "reason": "every paper identity holds content in exactly one location"
+      },
+      {
         "check_id": "HC-SUP-UNCLASSIFIED-BLOCKER",
         "findings": [],
         "outcome": "PASS",
@@ -101,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "12c9a54f66d820dea00bebabec038530d9696764fe968362c5f5c93aaf9fc4f9",
+  "content_digest": "4284101bd9aaf2489bdcf2638a34eae4c8a8cb64349e6c1153f656f81b11dec7",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
