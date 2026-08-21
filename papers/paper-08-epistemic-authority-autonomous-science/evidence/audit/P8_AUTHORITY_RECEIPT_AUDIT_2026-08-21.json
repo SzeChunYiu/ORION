@@ -1,0 +1,99 @@
+{
+  "ceiling": {
+    "emitted": "This suite establishes real method validity, novelty, utility and adoption.",
+    "field": "declared_claim_ceiling_from_input",
+    "injected": "This suite establishes real method validity, novelty, utility and adoption.",
+    "label": "P8.P9P10AntiLaundering.v1/declared_claim_ceiling_from_input",
+    "outcome": "FAIL",
+    "subject_controlled": true
+  },
+  "date": "2026-08-21",
+  "declared_gold": {
+    "applied": false,
+    "divergence_rate": 0.0,
+    "points": 15,
+    "points_changed": 0,
+    "theory_id": "P8.P9P10AntiLaundering.v1/declared-gold"
+  },
+  "donor_axis": {
+    "axis": "donor",
+    "comparable_pairs": 239616,
+    "inert": true,
+    "multiplier": 13,
+    "values": 13,
+    "varied": true,
+    "verdict_changing_pairs": 0
+  },
+  "gold_outcome": "FAIL",
+  "outcome": "FAIL",
+  "produced_by": "python -m orion.study.p8.terminal_audit",
+  "reading": "Three findings, all the same shape: apparatus that looks like an independent check and cannot disagree. The declared claim ceiling is emitted back verbatim from what was injected, so it bounds nothing. The declared gold departs from the graded tables at 0 of 15 points, so the panel cannot contradict the mechanism it grades. And the donor axis is inert: over 239,616 sibling pairs differing only in donor family, zero change the verdict, so the 39,936-state figure is 3,072 distinct states replicated thirteen times.",
+  "record": "P8_AUTHORITY_RECEIPT_AUDIT",
+  "responsiveness": {
+    "assessment": {
+      "detail": "declared-withholding-cases: 0 violations in 3 opportunities (registered inputs that must not earn 'P8_P9_P10_ANTI_LAUNDERING_CLEAR' and that move at least one of 4 traced quantities of the 'terminal' receipt)",
+      "exercises": [
+        {
+          "arm_id": "declared-withholding-cases",
+          "exercised": true,
+          "guard_id": "P8.P9P10AntiLaundering.v1/terminal",
+          "opportunities": 3,
+          "opportunity_definition": "registered inputs that must not earn 'P8_P9_P10_ANTI_LAUNDERING_CLEAR' and that move at least one of 4 traced quantities of the 'terminal' receipt",
+          "resolution": 0.3333333333333333,
+          "violation_rate": 0.0,
+          "violations": 0
+        }
+      ],
+      "guard_id": "P8.P9P10AntiLaundering.v1/terminal",
+      "outcome": "PASS",
+      "reason": "HELD_UNDER_EXERCISE"
+    },
+    "baseline_verdict": "P8_P9_P10_ANTI_LAUNDERING_CLEAR",
+    "contradicted": [],
+    "inert_cases": [],
+    "label": "P8.P9P10AntiLaundering.v1/terminal",
+    "responses": [
+      {
+        "case_id": "every-expectation-inverted",
+        "contradicted": false,
+        "evidence_moved": [
+          "contract_accuracy",
+          "illicit_coercion_block_rate",
+          "clean_legal_coverage",
+          "revocation_accuracy"
+        ],
+        "inert": false,
+        "verdict": "P8_P9_P10_ANTI_LAUNDERING_VIOLATED",
+        "verdict_moved": true
+      },
+      {
+        "case_id": "authority-table-launders-everything",
+        "contradicted": false,
+        "evidence_moved": [
+          "contract_accuracy",
+          "illicit_coercion_block_rate"
+        ],
+        "inert": false,
+        "verdict": "P8_P9_P10_ANTI_LAUNDERING_VIOLATED",
+        "verdict_moved": true
+      },
+      {
+        "case_id": "defeaters-propagate-nowhere",
+        "contradicted": false,
+        "evidence_moved": [
+          "contract_accuracy",
+          "revocation_accuracy"
+        ],
+        "inert": false,
+        "verdict": "P8_P9_P10_ANTI_LAUNDERING_VIOLATED",
+        "verdict_moved": true
+      }
+    ],
+    "unmoved": [],
+    "verdict_field": "terminal",
+    "verdicts_observed": [
+      "P8_P9_P10_ANTI_LAUNDERING_CLEAR",
+      "P8_P9_P10_ANTI_LAUNDERING_VIOLATED"
+    ]
+  }
+}

@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "2b82dc5663b4e83635f5eb0e73444f4aaf03a9ffc9803460cae527ebfdf8f763",
+  "content_digest": "ac496192b755e3985d58439c62ff1ef6d44248b1e916b31ad4cf149b0a76eca6",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -968,6 +968,11 @@
           "artifact_ref": "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21.json",
           "grade": "MECHANIZED_THEOREM",
           "terminal": "GENERAL_THEOREMS_DISCHARGED_FOR_THE_FORMAL_CORE_ONLY"
+        },
+        {
+          "artifact_ref": "papers/paper-08-epistemic-authority-autonomous-science/evidence/audit/P8_AUTHORITY_RECEIPT_AUDIT_2026-08-21.json",
+          "grade": "CANNOT_CHECK",
+          "terminal": "P8_AUTHORITY_RECEIPT_AUDIT__FAIL"
         }
       ],
       "strongest_grade": "MECHANIZED_THEOREM",
@@ -1002,7 +1007,7 @@
             "research/claim_expansion/p8/P8_X4_AUTHORITY_LIFTING_RESULT_V1.json"
           ],
           "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "A general composition and revocation theorem now exists for P8's formal core and is machine-checked over uninterpreted sorts, so it is not a finite instance (P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21). What is still absent is the link from that core to the 13-donor composition model whose 169/169 valid chains this terminal names: the theorems govern the authorisation rule, not the donor-type semantics, and no proof connects the two.",
+          "statement": "A general composition and revocation theorem now exists for P8's formal core and is machine-checked over uninterpreted sorts, so it is not a finite instance (P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21). Two things still stand between that and this terminal, and the second was not previously recorded here. No proof connects the core to the 13-donor composition model whose 169/169 valid chains this terminal names. And P8's own receipt audit stands at FAIL: the declared claim ceiling is emitted back verbatim from what is injected into it, the declared gold departs from the tables it grades at 0 of 15 points, and the donor axis is inert over 239,616 sibling pairs -- so '39,936 states across 13 donors' is 3,072 distinct states replicated thirteen times, and the donor breadth is not a dimension of the result.",
           "unblock": "Two steps remain, both formal. Define the 13 donor types as an interpretation of the proved primitives -- each donor's discharge semantics as a conversion relation and an obligation set over the same signature -- and prove that interpretation sound, so the donor model becomes a model of the calculus rather than a parallel construction. Then P8-U-T2's instance derivation follows from the same interpretation. Two known limits travel with the artifact and should not be lost: reachability is axiomatised as a reflexive-transitive closure with a well-founded rank because transitive closure is not first-order definable, and the chain theorem's induction schema is the single hand step, with the step itself machine-checked and the expanded form discharged separately at every length up to eight."
         },
         {
@@ -1012,8 +1017,8 @@
             "#656"
           ],
           "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "The 39,936-state result cannot follow as an instance while no general theorem exists.",
-          "unblock": "Derive it as a finite instance once the composition and revocation theorem is mechanized."
+          "statement": "Current P8 results cannot be instances of a calculus that does not exist -- and the calculus now exists for the formal core, so what blocks this is the interpretation rather than the theorem. One correction travels with it: the instance to be derived is 3,072 distinct states, not 39,936. The thirteen donor families multiply the enumeration and change no verdict, measured over 239,616 sibling pairs, so deriving 39,936 states as instances would be deriving the same 3,072 thirteen times.",
+          "unblock": "Interpret the donor model in the proved primitives -- each donor's discharge semantics as a conversion relation and an obligation set over the same signature -- and prove that interpretation sound; the finite results then follow as instances. Report the instance count as 3,072 rather than 39,936, or make the donor axis load-bearing so that thirteen is a real dimension. Reporting an inert multiplier as breadth is the defect P8's own audit already flags."
         },
         {
           "actionability": "BLOCKED_ON_PROOF",
@@ -1830,7 +1835,7 @@
         "research/claim_expansion/p8/P8_X4_AUTHORITY_LIFTING_RESULT_V1.json"
       ],
       "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "A general composition and revocation theorem now exists for P8's formal core and is machine-checked over uninterpreted sorts, so it is not a finite instance (P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21). What is still absent is the link from that core to the 13-donor composition model whose 169/169 valid chains this terminal names: the theorems govern the authorisation rule, not the donor-type semantics, and no proof connects the two.",
+      "statement": "A general composition and revocation theorem now exists for P8's formal core and is machine-checked over uninterpreted sorts, so it is not a finite instance (P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21). Two things still stand between that and this terminal, and the second was not previously recorded here. No proof connects the core to the 13-donor composition model whose 169/169 valid chains this terminal names. And P8's own receipt audit stands at FAIL: the declared claim ceiling is emitted back verbatim from what is injected into it, the declared gold departs from the tables it grades at 0 of 15 points, and the donor axis is inert over 239,616 sibling pairs -- so '39,936 states across 13 donors' is 3,072 distinct states replicated thirteen times, and the donor breadth is not a dimension of the result.",
       "unblock": "Two steps remain, both formal. Define the 13 donor types as an interpretation of the proved primitives -- each donor's discharge semantics as a conversion relation and an obligation set over the same signature -- and prove that interpretation sound, so the donor model becomes a model of the calculus rather than a parallel construction. Then P8-U-T2's instance derivation follows from the same interpretation. Two known limits travel with the artifact and should not be lost: reachability is axiomatised as a reflexive-transitive closure with a well-founded rank because transitive closure is not first-order definable, and the chain theorem's induction schema is the single hand step, with the step itself machine-checked and the expanded form discharged separately at every length up to eight."
     },
     {
@@ -1842,8 +1847,8 @@
         "#656"
       ],
       "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "The 39,936-state result cannot follow as an instance while no general theorem exists.",
-      "unblock": "Derive it as a finite instance once the composition and revocation theorem is mechanized."
+      "statement": "Current P8 results cannot be instances of a calculus that does not exist -- and the calculus now exists for the formal core, so what blocks this is the interpretation rather than the theorem. One correction travels with it: the instance to be derived is 3,072 distinct states, not 39,936. The thirteen donor families multiply the enumeration and change no verdict, measured over 239,616 sibling pairs, so deriving 39,936 states as instances would be deriving the same 3,072 thirteen times.",
+      "unblock": "Interpret the donor model in the proved primitives -- each donor's discharge semantics as a conversion relation and an obligation set over the same signature -- and prove that interpretation sound; the finite results then follow as instances. Report the instance count as 3,072 rather than 39,936, or make the donor axis load-bearing so that thirteen is a real dimension. Reporting an inert multiplier as breadth is the defect P8's own audit already flags."
     },
     {
       "actionability": "BLOCKED_ON_PROOF",
