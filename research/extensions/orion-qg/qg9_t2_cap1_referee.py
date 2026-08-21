@@ -32,8 +32,7 @@ def tag_min(pair_a,pair_b):
       for s1 in all_keys():
         la=labels(s0,s1,a0,a1);lb=labels(s0,s1,b0,b1)
         if la!=lb or la[0] not in (1,2,3) or la[1] not in (1,2,3) or la[0]==la[1]:continue
-        c=2*(wt(s0)+wt(s1))
-        row=(c,s0,s1,la)
+        c=2*(wt(s0)+wt(s1));row=(c,s0,s1,la)
         if witness is None or row<witness:witness=row;best=c
     return best,witness
 
@@ -41,33 +40,22 @@ def block_cost(pair,targets,allow_perm):
     a,b=pair;rs=(a,b,p10.mul(a,b));best=None
     perms=itertools.permutations(range(3)) if allow_perm else ((0,1,2),)
     for perm in perms:
-      t=tuple(targets[perm[k]] for k in range(3))
-      rest=sum(wt(p10.mul(t[k],rs[k])) for k in range(3))
+      t=tuple(targets[perm[k]] for k in range(3));rest=sum(wt(p10.mul(t[k],rs[k])) for k in range(3))
       for c in range(3):
         val=p10.uanti_support(rs,c)+rest;row=(val,tuple(perm),c,rs)
         if best is None or row<best:best=row
     return best
 
 def cap1_exact(targets_a,targets_b):
-    pairs=cap1_pairs();bc_a=[block_cost(p,targets_a,False) for p in pairs];bc_b=[block_cost(p,targets_b,True) for p in pairs]
-    best=None
+    pairs=cap1_pairs();bc_a=[block_cost(p,targets_a,False) for p in pairs];bc_b=[block_cost(p,targets_b,True) for p in pairs];best=None
     for i,pa in enumerate(pairs):
       for j,pb in enumerate(pairs):
         tc,tw=tag_min(pa,pb)
         if tc>=INF:continue
-        total=bc_a[i][0]+bc_b[j][0]+tc
-        row=(total,i,j,bc_a[i],bc_b[j],tw)
+        total=bc_a[i][0]+bc_b[j][0]+tc;row=(total,i,j,bc_a[i],bc_b[j],tw)
         if best is None or row<best:best=row
     if best is None:raise AssertionError('cap1 no feasible configuration')
-    return {
-      'C_cap1':int(best[0]),'pair_A_index':best[1],'pair_B_index':best[2],
-      'pair_A':[list(x) for x in pairs[best[1]]],'pair_B':[list(x) for x in pairs[best[2]]],
-      'block_A':{'cost':int(best[3][0]),'permutation':list(best[3][1]),'central':int(best[3][2])},
-      'block_B':{'cost':int(best[4][0]),'permutation':list(best[4][1]),'central':int(best[4][2])},
-      'tag':{'cost':int(best[5][0]),'S0':list(best[5][1]),'S1':list(best[5][2]),'labels':list(best[5][3])},
-      'cap1_pair_count':len(pairs),
-    }
-
+    return {'C_cap1':int(best[0]),'pair_A_index':best[1],'pair_B_index':best[2],'pair_A':[list(x) for x in pairs[best[1]]],'pair_B':[list(x) for x in pairs[best[2]]],'block_A':{'cost':int(best[3][0]),'permutation':list(best[3][1]),'central':int(best[3][2])},'block_B':{'cost':int(best[4][0]),'permutation':list(best[4][1]),'central':int(best[4][2])},'tag':{'cost':int(best[5][0]),'S0':list(best[5][1]),'S1':list(best[5][2]),'labels':list(best[5][3])},'cap1_pair_count':len(pairs)}
 def recompute_production_witness(w):
     checks=w.get('checks',{});return bool(checks) and all(bool(v) for v in checks.values()) and int(w['C_shared'])>=0
 
@@ -79,15 +67,15 @@ def main():
     results=[];positive=None
     for cand in s1['candidates']:
       ta=tuple(key(x) for x in cand['targets_A']);tb=tuple(key(x) for x in cand['targets_B']);cap=cap1_exact(ta,tb)
-      row={'candidate_index':cand['candidate_index'],'U2':int(cand['U2']),'C_cap1':int(cap['C_cap1']),'strict_gap':int(cand['U2'])<int(cap['C_cap1']),'cap1':cap}
-      results.append(row)
+      row={'candidate_index':cand['candidate_index'],'U2':int(cand['U2']),'C_cap1':int(cap['C_cap1']),'strict_gap':int(cand['U2'])<int(cap['C_cap1']),'cap1':cap};results.append(row)
       if row['strict_gap']:
         dp=r6i.shared_tag_exact(ta,tb,2)
         if not (int(dp['C_shared'])<=int(cand['U2'])<int(cap['C_cap1'])):raise AssertionError({'strict_gap_not_confirmed':[dp['C_shared'],cand['U2'],cap['C_cap1']]})
         if not recompute_production_witness(dp):raise AssertionError('production witness checks failed')
-        positive={'candidate':cand,'cap1':cap,'C_DP':int(dp['C_shared']),'production_witness':dp,'gap_cap1_minus_dp':int(cap['C_cap1'])-int(dp['C_shared']),'gap_cap1_minus_U2':int(cap['C_cap1'])-int(cand['U2'])}
-        break
+        positive={'candidate':cand,'cap1':cap,'C_DP':int(dp['C_shared']),'production_witness':dp,'gap_cap1_minus_dp':int(cap['C_cap1'])-int(dp['C_shared']),'gap_cap1_minus_U2':int(cap['C_cap1'])-int(cand['U2'])};break
     terminal='QG9_SUPPORT2_TIGHT_WITNESS_FOUND__CAP1_STRICT_GAP' if positive else 'QG9_T2_NO_TIGHT_WITNESS_IN_FROZEN_INVERSE_DESIGN_DOMAIN'
     out={'schema':'ORION.QG.QG9.T2.Cap1Referee.v1','issue':ISSUE,'stage1_result_digest':s1['result_digest'],'candidate_digest':s1['candidate_digest'],'canonical_candidate_count':s1['canonical_candidate_count'],'candidates_evaluated':len(results),'rows':results,'positive_witness':positive,'terminal':terminal,'cap1_opened':True,'unrestricted_dp_opened':positive is not None,'support2_tightness_claim':positive is not None,'support1_authority':False,'novelty_authority':False,'physical_quantum_advantage_claim':False,'network_access':False,'chemistry_sources_read':False,'protected_subject_read':False}
-    out['result_digest']=hashlib.sha256(canonical(out).encode()).hexdigest();p=Path(ns.output);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(out,indent=2,sort_keys=True)+'\n');print(TOKEN+canonical(out));return 0
+    out['result_digest']=hashlib.sha256(canonical(out).encode()).hexdigest();p=Path(ns.output);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(out,indent=2,sort_keys=True)+'\n')
+    summary={'schema':out['schema'],'terminal':terminal,'result_digest':out['result_digest'],'candidate_digest':out['candidate_digest'],'candidates_evaluated':len(results),'positive':positive is not None,'C_DP':None if positive is None else positive['C_DP'],'C_cap1':None if positive is None else positive['cap1']['C_cap1']}
+    print(TOKEN+canonical(summary));return 0
 if __name__=='__main__':raise SystemExit(main())
