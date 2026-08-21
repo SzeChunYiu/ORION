@@ -46,14 +46,31 @@ jobs:
           python development/orion-qn-q2/verify_s1a_harness_artifact.py \
             artifacts/orion-qn-vs1-s1a-harness.json \
             artifacts/orion-qn-vs1-s1a-verification.json
-      - name: Enforce bounded campaign, access, benchmark, and classical-ceiling shape
+      - name: Enforce bounded campaign, access, benchmark, classical ceiling, and file binding
         run: |
           python - <<'PY'
+          import hashlib
           import json
           from pathlib import Path
 
-          envelope = json.loads(Path('artifacts/orion-qn-vs1-s1a-harness.json').read_text())
-          campaign = envelope['campaign']
+          envelope_path = Path('artifacts/orion-qn-vs1-s1a-harness.json')
+          campaign_path = Path('artifacts/orion-qn-vs1-s1a-campaign.json')
+          verification_path = Path('artifacts/orion-qn-vs1-s1a-verification.json')
+          envelope = json.loads(envelope_path.read_text())
+          campaign = json.loads(campaign_path.read_text())
+          verification = json.loads(verification_path.read_text())
+
+          assert envelope['schema'] == 'ORION.QN.VS1.S1A.HarnessEnvelope.v2'
+          assert verification['schema'] == 'ORION.QN.VS1.S1A.HarnessVerification.v2'
+          assert verification['valid'] is True
+          assert envelope['campaign'] == campaign
+          campaign_bytes = campaign_path.read_bytes()
+          assert envelope['campaign_artifact'] == {
+              'path': str(campaign_path),
+              'sha256': hashlib.sha256(campaign_bytes).hexdigest(),
+              'bytes': len(campaign_bytes),
+          }
+
           assert campaign['schema'] == 'ORION.QN.VS1.S1A.Campaign.v4'
           assert campaign['physical_quantum_speedup_claim_permitted'] is False
           assert campaign['evidence_mode'] == 'LOCAL_SIMULATION'
@@ -63,6 +80,8 @@ jobs:
           assert len(campaign['size_summaries']) == 8
           assert campaign['p4_reconstruction']['schema'] == 'ORION.QN.S1ACampaignReconstruction.v4'
           assert campaign['p4_reconstruction']['valid'] is True
+          assert verification['campaign_reconstruction']['schema'] == 'ORION.QN.S1ACampaignReconstruction.v4'
+          assert verification['campaign_reconstruction']['valid'] is True
 
           query_access = campaign['access_interpretations']['query_model']
           ordinary_access = campaign['access_interpretations']['ordinary_classical_input']
@@ -107,6 +126,7 @@ jobs:
         with:
           name: orion-qn-vs1-s1a-${{ github.sha }}
           path: |
+            artifacts/orion-qn-vs1-s1a-campaign.json
             artifacts/orion-qn-vs1-s1a-harness.json
             artifacts/orion-qn-vs1-s1a-verification.json
             artifacts/orion-qn-vs1-s1a-summary.json
