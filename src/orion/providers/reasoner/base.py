@@ -5,7 +5,6 @@ from typing import Protocol
 
 from orion.core.contributions import KnowledgeContribution
 from orion.core.problem import Problem
-from orion.core.problem_tree import ResidualDecomposition
 from orion.core.residuals import Residual, Responsibility
 from orion.core.search import RetrievedItem, SearchQuery
 from orion.core.state import OrionState
@@ -25,12 +24,7 @@ class ReframeProposal:
 
 
 class ResearchReasoner(Protocol):
-    """Semantic/cognitive functions ORION may delegate to an LLM or other reasoner.
-
-    Decomposition is proposal-only.  A reasoner may propose child problems and
-    discriminators, but the recursive controller validates/bounds them and the
-    ordinary ORION verification/authority path remains authoritative.
-    """
+    """Semantic/cognitive functions ORION may delegate to an LLM or other reasoner."""
 
     def plan_search(self, problem: Problem, state: OrionState) -> tuple[SearchQuery, ...]:
         ...
@@ -42,14 +36,6 @@ class ResearchReasoner(Protocol):
         ...
 
     def diagnose(self, residual: Residual, problem: Problem, state: OrionState) -> Diagnosis:
-        ...
-
-    def decompose_residual(
-        self,
-        residual: Residual,
-        problem: Problem,
-        state: OrionState,
-    ) -> ResidualDecomposition:
         ...
 
     def propose_reframe(
