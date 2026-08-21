@@ -39,6 +39,7 @@ from orion.programme.superiority import (
     MIN_REPLICATION_DOMAINS,
     EvidenceGrade,
     TerminalKind,
+    on_bounded_disjunct,
 )
 from orion.programme.superiority_ledger import SuperiorityLedger
 from orion.programme.superiority_terminals import (
@@ -306,10 +307,16 @@ def _check_thin_replication(ledger: SuperiorityLedger) -> CheckResult:
     findings: list[str] = []
     for paper in ledger.papers:
         kinds = _gate_kinds(paper.paper_id)
+        gates = {gate.gate_id: gate for gate in PAPER_GATES[paper.paper_id]}
         for item in paper.evidence:
             if kinds.get(item.gate_id) is not TerminalKind.REPLICATION:
                 continue
             if item.grade is EvidenceGrade.ABSENT:
+                continue
+            if on_bounded_disjunct(gates[item.gate_id], item):
+                # The narrower disjunct the issue itself offers is bounded to one
+                # family by definition. Holding it to the domain floor would fail
+                # the exact shape #662 and #663 explicitly admit.
                 continue
             distinct = len(set(item.domains))
             if distinct < MIN_REPLICATION_DOMAINS:

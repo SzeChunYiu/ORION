@@ -338,6 +338,16 @@ class TerminalGate:
     as a negative". Both are discharged by a protected bounded result that says
     so explicitly, and the flag exists so that fidelity to the issue text does
     not require weakening :data:`ADMISSIBLE_GRADES` for every other gate.
+
+    It does two things, and the second was missing at first --- caught by review
+    on PR #739. Widening the admissible grades is not enough: a ``REPLICATION``
+    gate also demands :data:`MIN_REPLICATION_DOMAINS` distinct domains and an
+    independent implementation, and the bounded disjunct exists *precisely
+    because those cannot be met*. A family-bounded terminal is bounded to one
+    family; a negative retained as a negative was never reproduced. Demanding two
+    domains of either is self-contradictory, so on this path those two
+    requirements are lifted. Everything else still holds: the outcome must be
+    protected, pre-frozen and under external custody.
     """
 
     def __post_init__(self) -> None:
@@ -482,6 +492,21 @@ def _protected_preconditions(
     return tuple(dedup(unrecorded)), tuple(dedup(violated))
 
 
+def on_bounded_disjunct(gate: TerminalGate, evidence: GateEvidence) -> bool:
+    """True when this evidence takes the narrower path the issue itself offers.
+
+    See :attr:`TerminalGate.bounded_terminal_admissible`. Kept as one predicate so
+    that :mod:`orion.programme.checks_superiority` decides identically --- the
+    first version of this had ``adjudicate`` and ``HC-SUP-THIN-REPLICATION``
+    disagreeing about the same row.
+    """
+
+    return (
+        gate.bounded_terminal_admissible
+        and evidence.grade is EvidenceGrade.BOUNDED_PROTECTED
+    )
+
+
 def _adjudicate_scope(
     gate: TerminalGate,
     declared_scope: ClaimScope | None,
@@ -617,6 +642,14 @@ def adjudicate(
         return _status(gate, Outcome.FAIL, violated[0], tuple(violated))
     if unrecorded:
         return _status(gate, Outcome.CANNOT_CHECK, unrecorded[0], tuple(unrecorded))
+
+    if gate.kind is TerminalKind.REPLICATION and on_bounded_disjunct(gate, evidence):
+        return _status(
+            gate,
+            Outcome.PASS,
+            "discharged on the narrower disjunct this terminal offers, at grade "
+            f"{evidence.grade.value}: {', '.join(evidence.artifact_refs)}",
+        )
 
     if gate.kind is TerminalKind.REPLICATION:
         replication_findings: list[str] = []
@@ -807,4 +840,5 @@ __all__ = [
     "TerminalGate",
     "TerminalKind",
     "adjudicate",
+    "on_bounded_disjunct",
 ]

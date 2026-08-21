@@ -1062,15 +1062,11 @@ def _natural_grades_for(kind: TerminalKind) -> tuple[EvidenceGrade, ...]:
 def test_every_gate_is_reachable_by_its_own_admissible_grades() -> None:
     """No terminal may be unpassable however good the evidence gets.
 
-    This is the general form of a defect found by review on PR #739: three gates
-    asking for an independent proof review were typed ``REPLICATION``, whose only
+    The general form of a defect found by review on PR #739: three gates asking
+    for an independent proof review were typed ``REPLICATION``, whose only
     admissible grade is ``PROSPECTIVE_PROTECTED``, so mechanizing the proof and
     having it reviewed --- their own documented unblock path --- still could not
-    discharge them.
-
-    Pinning the three instances would not have caught the class. This constructs
-    the strongest evidence each gate's own type admits and asserts it passes, so
-    any future mistyping that makes a terminal unreachable fails here.
+    discharge them. Pinning those three would not have caught the class.
     """
 
     unreachable: list[str] = []
@@ -1086,6 +1082,103 @@ def test_every_gate_is_reachable_by_its_own_admissible_grades() -> None:
             if status.outcome is not Outcome.PASS:
                 unreachable.append(f"{status.gate_id} ({status.kind.value}): {status.reason}")
     assert unreachable == []
+
+
+def test_every_disjunct_a_terminal_offers_is_reachable() -> None:
+    """Reachable by *some* path is not enough; each documented path must work.
+
+    The test above passed while ``P9-U-T2`` and ``P10-U-T1`` were still broken,
+    because its fixture always supplied two domains and so only ever walked the
+    full replication path. The bounded disjunct --- #662's "explicit
+    family-bounded terminal", #663's "retained as a negative" --- was never
+    exercised, and both were unpassable: bounded to one family by definition, yet
+    held to a two-domain floor. Second finding of the same class on PR #739, which
+    is what a gap in a class-level test looks like from outside.
+    """
+
+    for paper_id, gates in PAPER_GATES.items():
+        for gate in gates:
+            if not gate.bounded_terminal_admissible:
+                continue
+            bounded = GateEvidence(
+                gate_id=gate.gate_id,
+                grade=EvidenceGrade.BOUNDED_PROTECTED,
+                artifact_refs=(f"results/{gate.gate_id}-bounded.json",),
+                protocol_frozen_before_outcome=True,
+                comparator_donor_complete=True,
+                evaluator_custody=EXTERNAL_CUSTODY,
+                domains=("the one family it is bounded to",),
+            )
+            status = adjudicate(gate, bounded)
+            assert status.outcome is Outcome.PASS, (
+                f"{paper_id}/{gate.gate_id} declares a narrower disjunct that "
+                f"cannot pass: {status.reason}"
+            )
+
+    # Exactly the two the issues offer, so a third cannot appear unnoticed.
+    offered = [g.gate_id for gates in PAPER_GATES.values() for g in gates
+               if g.bounded_terminal_admissible]
+    assert offered == ["P9-U-T2", "P10-U-T1"]
+
+
+def test_the_bounded_disjunct_still_requires_a_protected_outcome() -> None:
+    """The narrower path drops the domain floor, not the protection."""
+
+    gate = next(g for g in PAPER_GATES["P9"] if g.gate_id == "P9-U-T2")
+    base = GateEvidence(
+        gate_id="P9-U-T2",
+        grade=EvidenceGrade.BOUNDED_PROTECTED,
+        artifact_refs=("results/family_bounded.json",),
+        protocol_frozen_before_outcome=True,
+        comparator_donor_complete=True,
+        evaluator_custody=EXTERNAL_CUSTODY,
+        domains=("qwen2.5",),
+    )
+    assert adjudicate(gate, base).outcome is Outcome.PASS
+    assert (
+        adjudicate(gate, replace(base, protocol_frozen_before_outcome=False)).outcome
+        is Outcome.FAIL
+    )
+    assert (
+        adjudicate(gate, replace(base, evaluator_custody=CANDIDATE_CUSTODY)).outcome
+        is Outcome.FAIL
+    )
+    # A mechanism result still cannot take the narrower path.
+    assert (
+        adjudicate(gate, replace(base, grade=EvidenceGrade.MECHANISM_NON_VACUITY)).outcome
+        is Outcome.FAIL
+    )
+
+
+def test_thin_replication_does_not_fire_on_a_bounded_disjunct(
+    clean_ledger: SuperiorityLedger,
+) -> None:
+    """adjudicate and the battery must agree about the same row."""
+
+    bounded = GateEvidence(
+        gate_id="P9-U-T2",
+        grade=EvidenceGrade.BOUNDED_PROTECTED,
+        artifact_refs=("results/family_bounded.json",),
+        protocol_frozen_before_outcome=True,
+        comparator_donor_complete=True,
+        evaluator_custody=EXTERNAL_CUSTODY,
+        domains=("qwen2.5",),
+    )
+    paper = clean_ledger.paper("P9")
+    assert paper is not None
+    evidence = tuple(
+        bounded if item.gate_id == "P9-U-T2" else item for item in paper.evidence
+    )
+    ledger = _mutate(clean_ledger, "P9", evidence=evidence)
+    assert _result(ledger, THIN_REPLICATION).outcome is Outcome.PASS
+    # ...and a genuinely thin *full* replication still fails.
+    thin = replace(bounded, grade=EvidenceGrade.PROSPECTIVE_PROTECTED)
+    ledger2 = _mutate(
+        clean_ledger,
+        "P9",
+        evidence=tuple(thin if i.gate_id == "P9-U-T2" else i for i in paper.evidence),
+    )
+    assert _result(ledger2, THIN_REPLICATION).outcome is Outcome.FAIL
 
 
 def test_an_independent_review_gate_accepts_a_mechanized_proof() -> None:
