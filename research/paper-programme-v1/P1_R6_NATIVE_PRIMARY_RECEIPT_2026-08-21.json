@@ -1,0 +1,186 @@
+{
+  "authority": {
+    "issue_649_closure_authorized": false,
+    "issue_723_closure_authorized": false,
+    "p1_superiority_claim_authorized": false,
+    "primary_supported": true,
+    "registry_mutation_authorized": false,
+    "required_next_evidence": "source-disjoint 2019 replication using native runtime, the same frozen superiority/no-regression margins, an independently implemented scorer or direct raw-to-manifest reconstruction, and a changed provider/host axis"
+  },
+  "campaign_issue": 723,
+  "correction": {
+    "claim_authority_increased": false,
+    "reason": "The first committed receipt summarized an unrelated 80-episode artifact shape and contained file hashes that do not match the archived R6 artifact named in that receipt. The protected R6 artifact itself was not changed. This replacement binds only to bytes downloaded from the named GitHub Actions artifact and preserves the mismatch as an authority defect.",
+    "scientific_protocol_changed": false,
+    "scientific_result_changed": false,
+    "supersedes_unbound_summary_in_commit": "e3e0de735dd54ec8f9ee9759a636b497209c6370"
+  },
+  "date": "2026-08-21",
+  "parent_issue": 649,
+  "pre_outcome_binding": {
+    "evaluator_sha256": "b41b45a503cc4ff8227229718f2837d88b18ce7fd429e1fe9fbb3c58b21a598c",
+    "file_sha256": "dfbe1caea9468bd8a2fedc10f40099cb3337d01ab7aae36450a41ac06dbace04",
+    "head_sha": "487fb90d867dc214c73a4c143bd1b94f469ed501",
+    "native_adapter_sha256": "686842bc970aa1aca80c1e6456e124a6a7340d62e1154e9237d387db1ad415e1",
+    "native_core_sha256": "dab34f068b59ea3f89fc90e9dafd62b01b428198c1db785c4d717c4e6c38e14a",
+    "outcome_seen": false,
+    "promotion_authorized": false,
+    "protocol_sha256": "82054f266a31f83cccf23ed555dee55630a43230d435ac8396b872f21d426b82"
+  },
+  "pull_request": 750,
+  "replay_check": {
+    "artifact_archive_sha256": "1d4c026b1bbc72dd557f7619fa3d2dc553cd295b8d370fb258825af457ecbd94",
+    "artifact_id": 9447193913,
+    "artifact_name": "p1-r6-native-primary-e3e0de735dd54ec8f9ee9759a636b497209c6370",
+    "note": "Run-local trace and receipt identifiers make the full JSON byte-nondeterministic. After removing those identifiers and decision digests that bind them, all remaining result fields are identical.",
+    "pre_outcome_binding_file_sha256": "6c46a0e70329cffb2f6536e4f1e577aebfc4ee5475f1165648a1c56151c64e6e",
+    "rerun_head_sha": "e3e0de735dd54ec8f9ee9759a636b497209c6370",
+    "result_file_sha256": "2fcf4d6a92d5d705bc949c82c33f9ff3de066f58fcc7068d426a90e422a5aefc",
+    "same_scientific_fields_after_removing_run_local_trace_ids_receipt_ids_and_decision_digests": true,
+    "same_terminal": true,
+    "workflow_run_id": 32484083034
+  },
+  "result": {
+    "actual_domain_count": 26,
+    "adverse_family_ard_vs_base": {
+      "IMPLEMENTATION_OR_ENVIRONMENT": {
+        "adverse_choice_differences": 4,
+        "adverse_native_ard_grs": 1.0,
+        "adverse_native_base_grs": 0.0,
+        "n": 4
+      },
+      "MEASUREMENT_OR_EVALUATOR": {
+        "adverse_choice_differences": 3,
+        "adverse_native_ard_grs": 1.0,
+        "adverse_native_base_grs": 0.0,
+        "n": 3
+      },
+      "OBJECTIVE_OR_MODEL_CLASS": {
+        "adverse_choice_differences": 4,
+        "adverse_native_ard_grs": 0.75,
+        "adverse_native_base_grs": 0.0,
+        "n": 4
+      },
+      "PROBLEM_BOUNDARY": {
+        "adverse_choice_differences": 3,
+        "adverse_native_ard_grs": 0.6666666666666666,
+        "adverse_native_base_grs": 0.0,
+        "n": 3
+      },
+      "REPRESENTATION_OR_INTERFACE": {
+        "adverse_choice_differences": 4,
+        "adverse_native_ard_grs": 1.0,
+        "adverse_native_base_grs": 0.0,
+        "n": 4
+      },
+      "SEARCH_OR_EVIDENCE": {
+        "adverse_choice_differences": 1,
+        "adverse_native_ard_grs": 1.0,
+        "adverse_native_base_grs": 0.75,
+        "n": 4
+      }
+    },
+    "all_frozen_primary_gates_pass": true,
+    "b3_false_high_level_rate": 0.0,
+    "class_counts": {
+      "IMPLEMENTATION_OR_ENVIRONMENT": 4,
+      "MEASUREMENT_OR_EVALUATOR": 3,
+      "OBJECTIVE_OR_MODEL_CLASS": 4,
+      "PROBLEM_BOUNDARY": 3,
+      "REPRESENTATION_OR_INTERFACE": 4,
+      "SEARCH_OR_EVIDENCE": 4
+    },
+    "data_complete": true,
+    "domain_episode_differences": {
+      "behavioral_modeling": 1.0,
+      "biostatistics_transformations": 0.5,
+      "causal_epidemiology": 1.0,
+      "causal_modeling": 0.0,
+      "climate_modeling": 0.0,
+      "climate_numerics": 0.5,
+      "clinical_generalizability": 0.5,
+      "cognitive_development": 0.0,
+      "environmental_lca": 0.5,
+      "epidemiology_missing_data": 1.0,
+      "genetic_biophysics": 0.0,
+      "geodesy": 0.0,
+      "knowledge_graphs": 0.5,
+      "machine_learning": 1.0,
+      "meta_analysis": 1.0,
+      "microbiology_measurement": 0.0,
+      "neuroimaging_measurement": 0.5,
+      "neuroimaging_ml": 0.5,
+      "pharmacometrics": 0.5,
+      "scientometrics": 0.0,
+      "single_cell_genomics": 0.5,
+      "software_engineering": 0.0,
+      "statistical_physics": 0.5,
+      "structural_biology_data_integration": 0.0,
+      "systems_biology": 0.0,
+      "wildlife_ecology": 1.0
+    },
+    "episode_count": 48,
+    "episode_grs": {
+      "baseline_b3": 0.20833333333333334,
+      "bootstrap_95_ci": [
+        0.3125,
+        0.6041666666666666
+      ],
+      "native_ard": 0.6666666666666666,
+      "native_ard_minus_b3": 0.4583333333333333,
+      "native_base": 0.14583333333333334
+    },
+    "file_sha256": "c2d8b2a4158a521cd9875e2e562ee5267d41987cf3aadc47e2a6793f8086fb60",
+    "frozen_gate_vector": {
+      "at_least_three_nonnegative_classes": true,
+      "class_noninferiority": true,
+      "domain_noninferiority": true,
+      "episode_margin": true,
+      "episode_stability_lower_positive": true,
+      "false_high_level_guard": true,
+      "native_ard_materially_differs_from_base": true,
+      "pair_macro_margin": true,
+      "pair_macro_stability_lower_positive": true,
+      "pair_micro_margin": true,
+      "pair_micro_stability_lower_positive": true,
+      "zero_control_high_level_harm": true,
+      "zero_false_unresolved_resolution": true,
+      "zero_lower_level_skip": true
+    },
+    "native_base_choice_differences": 27,
+    "native_false_high_level_rate": 0.0,
+    "pair_selectivity": {
+      "baseline_b3": 0.0,
+      "class_differences": {
+        "IMPLEMENTATION_OR_ENVIRONMENT": 0.0,
+        "MEASUREMENT_OR_EVALUATOR": 0.0,
+        "OBJECTIVE_OR_MODEL_CLASS": 0.75,
+        "PROBLEM_BOUNDARY": 0.0,
+        "REPRESENTATION_OR_INTERFACE": 0.0,
+        "SEARCH_OR_EVIDENCE": 0.75
+      },
+      "macro_bootstrap_95_ci": [
+        0.16666666666666666,
+        0.3333333333333333
+      ],
+      "micro_bootstrap_95_ci": [
+        0.09090909090909091,
+        0.45454545454545453
+      ],
+      "native_ard": 0.2727272727272727,
+      "native_ard_minus_b3_equal_class_macro": 0.25,
+      "native_ard_minus_b3_micro": 0.2727272727272727
+    },
+    "pair_source_count": 22,
+    "terminal": "P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION",
+    "unresolved_source_count": 4
+  },
+  "schema": "P1U.NativePrimaryReceipt.v1",
+  "scientific_subject": {
+    "artifact_archive_sha256": "84124f431b4e65480e6cedcc8a22708c9933172ef4dbfbedfd39e7827a796b1d",
+    "artifact_id": 9446967549,
+    "artifact_name": "p1-r6-native-primary-487fb90d867dc214c73a4c143bd1b94f469ed501",
+    "exact_head_sha": "487fb90d867dc214c73a4c143bd1b94f469ed501",
+    "workflow_run_id": 32482591743
+  }
+}

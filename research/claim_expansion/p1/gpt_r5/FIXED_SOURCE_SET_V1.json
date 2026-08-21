@@ -1,0 +1,49 @@
+{
+  "schema": "P1U.R5FixedR4Sources.v1",
+  "campaign_issue": 721,
+  "source_selection_complete_before_policy_outcomes": true,
+  "source_selection_origin": "P1-U R4 frozen acquisition terminal merged in PR #720",
+  "primary_year": 2020,
+  "pair_sources": [
+    {"query_id":"SEARCH-P1","class":"SEARCH_OR_EVIDENCE","source_id":"doi:10.1111/biom.13238"},
+    {"query_id":"SEARCH-P2","class":"SEARCH_OR_EVIDENCE","source_id":"doi:10.1002/ecy.3030"},
+    {"query_id":"SEARCH-P3","class":"SEARCH_OR_EVIDENCE","source_id":"doi:10.1038/s41467-020-18037-z"},
+    {"query_id":"SEARCH-P4","class":"SEARCH_OR_EVIDENCE","source_id":"doi:10.1093/aje/kwaa124"},
+
+    {"query_id":"REP-P1","class":"REPRESENTATION_OR_INTERFACE","source_id":"doi:10.1002/sim.8425"},
+    {"query_id":"REP-P2","class":"REPRESENTATION_OR_INTERFACE","source_id":"doi:10.2478/bgeo-2020-0008"},
+    {"query_id":"REP-P3","class":"REPRESENTATION_OR_INTERFACE","source_id":"doi:10.1155/2020/4741963"},
+    {"query_id":"REP-P4","class":"REPRESENTATION_OR_INTERFACE","source_id":"doi:10.1109/TCBB.2019.2913368"},
+
+    {"query_id":"IMPL-P1","class":"IMPLEMENTATION_OR_ENVIRONMENT","source_id":"doi:10.1007/s10664-020-09888-7"},
+    {"query_id":"IMPL-P2","class":"IMPLEMENTATION_OR_ENVIRONMENT","source_id":"doi:10.1029/2020MS002246"},
+    {"query_id":"IMPL-P3","class":"IMPLEMENTATION_OR_ENVIRONMENT","source_id":"doi:10.5194/gmd-13-139-2020"},
+    {"query_id":"IMPL-P4","class":"IMPLEMENTATION_OR_ENVIRONMENT","source_id":"doi:10.1038/s41467-020-17800-6"},
+
+    {"query_id":"MEAS-P1","class":"MEASUREMENT_OR_EVALUATOR","source_id":"doi:10.1038/s42003-020-01127-5"},
+    {"query_id":"MEAS-P3","class":"MEASUREMENT_OR_EVALUATOR","source_id":"doi:10.1117/1.NPh.7.3.035009"},
+    {"query_id":"MEAS-P4","class":"MEASUREMENT_OR_EVALUATOR","source_id":"doi:10.1016/j.joi.2019.101005"},
+
+    {"query_id":"OBJ-P1","class":"OBJECTIVE_OR_MODEL_CLASS","source_id":"doi:10.1016/j.jbusres.2020.03.019"},
+    {"query_id":"OBJ-P2","class":"OBJECTIVE_OR_MODEL_CLASS","source_id":"doi:10.1007/s10928-020-09684-2"},
+    {"query_id":"OBJ-P3","class":"OBJECTIVE_OR_MODEL_CLASS","source_id":"pmlr:119:ma20c"},
+    {"query_id":"OBJ-P4","class":"OBJECTIVE_OR_MODEL_CLASS","source_id":"doi:10.1002/sim.8708"},
+
+    {"query_id":"BOUND-P2","class":"PROBLEM_BOUNDARY","source_id":"doi:10.1038/s41746-020-0277-8"},
+    {"query_id":"BOUND-P3","class":"PROBLEM_BOUNDARY","source_id":"arxiv:2005.07481"},
+    {"query_id":"BOUND-P4","class":"PROBLEM_BOUNDARY","source_id":"doi:10.3389/fenrg.2020.00015"}
+  ],
+  "unresolved_sources": [
+    {"query_id":"UNRES-P1","class":"UNRESOLVED","source_id":"doi:10.1371/journal.pcbi.1008248"},
+    {"query_id":"UNRES-P2","class":"UNRESOLVED","source_id":"doi:10.1038/s41467-020-18694-0"},
+    {"query_id":"UNRES-P3","class":"UNRESOLVED","source_id":"arxiv:2012.05603"},
+    {"query_id":"UNRES-P4","class":"UNRESOLVED","source_id":"doi:10.1016/j.jecp.2020.105080"}
+  ],
+  "failed_r4_queries_retained": ["MEAS-P2", "BOUND-P1"],
+  "expected_pair_source_count": 22,
+  "expected_unresolved_source_count": 4,
+  "expected_episode_count": 48,
+  "minimum_pair_sources_per_substantive_class": 3,
+  "minimum_actual_domains": 5,
+  "no_source_mutation_after_freeze": true
+}
