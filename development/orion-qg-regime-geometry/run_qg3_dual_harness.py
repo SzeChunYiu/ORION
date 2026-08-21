@@ -65,7 +65,7 @@ def main() -> int:
         "import runpy; runpy.run_path('research/extensions/orion-qg/qg3_stage1_select.py', "
         "run_name='__main__')"
     )
-    stage1_request, stage1_result = _run_local(generic_ws, stage1_code, timeout=1500)
+    stage1_request, stage1_result = _run_local(generic_ws, stage1_code, timeout=7200)
     stage1_stdout = str(stage1_result.output.get("stdout", ""))
     stage1_summary = _token(stage1_stdout, STAGE1_PREFIX)
     if not STAGE1_PATH.is_file():

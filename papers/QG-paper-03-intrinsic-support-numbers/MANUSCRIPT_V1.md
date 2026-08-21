@@ -518,7 +518,7 @@ separating what the automatic pipeline certifies from what is true.
 | R6I (rank-2 dependent-triple, shared 2-bit Tag) | frozen unit R6I objective | **1** | **κ = 1 exactly** (upper bound by V6; lower bound by support-0 infeasibility) | `QG9_V6_SUPPORT1_NORMALIZATION_RESULTS.json` |
 | R6I | any θ in the four-facet QG-16 cone | 1 | κ(θ) = 1 inside the cone; outside, no claim | `QG16_R6I_SUPPORT1_PHASE_RESULTS.json` |
 | R6I | frozen unit objective, via the QG-1 proof system | 5 | superseded upper bound (loose by 4) | `QG1_RANK2_ALL_N_RESULTS.json` |
-| R6M / TARE (three-block, shared 1-bit Tag) | frozen unit-cost support objective | **2** | **κ_TARE ≤ 2**; exact value **OPEN** | `MAX_R6S_ALL_N_COMPOSITION_RESULTS.json` |
+| R6M / TARE (three-block, shared 1-bit Tag) | frozen unit-cost support objective | **2** | **κ_TARE = 2 exactly** (upper R6S; lower QG-18 necessity witness) | `MAX_R6S_ALL_N_COMPOSITION_RESULTS.json`; `QG18_TARE_KAPPA_RESULTS.json` |
 | R6M / TARE | any θ with t_c ≥ 2·t_r ∧ t_nc ≥ 2·t_r | 2 | κ(θ) ≤ 2 inside the cone; outside, no claim | `QG8_OBJECTIVE_SUPPORT_PHASE_RESULTS.json` |
 | R6M / TARE | O1 (t_c = 1, t_nc = 7, t_r = 3, t_tag = 4) | — | **κ ≥ 3** by exact witness (C_DP = 11 < C_Dxx = 13) | `QG2_OBJECTIVE_ROBUSTNESS_RESULTS.json` |
 
@@ -529,17 +529,55 @@ R6M's support-2 bound. Structural richness bought R6I *more* normalization
 freedom, not less: the extra Tag bits are what the whole-system relocation
 spends.
 
-**κ_TARE is genuinely unresolved.** R6S gives support ≤ 2 for all n, and its
-claim boundary records that the exchange "fails exactly at w = 2 with class
-pattern {(1,\*),(0,1)} … the R6O weight-2 trade, realized by 559 recorded DP
-optima" (`MAX_R6S_ALL_N_COMPOSITION_RESULTS.json`,
-`claim_boundary.support_2_boundary`) — a *certificate* boundary plus realized
-weight-2 optima, not a proof that no support-1 optimum of equal cost exists. The
-honest entry is κ_TARE ∈ {1, 2} with 2 as the proved upper bound, and R6I's
-history is the standing warning against assuming the upper bound is the answer.
-What varies between the families is therefore not the phenomenon (both admit an
-all-n normal form on an exact polyhedral cone with the unit objective on a facet)
-but which edit class reaches the intrinsic value.
+**κ_TARE = 2 exactly, settled two-sidedly.** R6S supplies the upper bound
+(support ≤ 2 for all n), and its claim boundary records that the exchange "fails
+exactly at w = 2 with class pattern {(1,\*),(0,1)} … the R6O weight-2 trade,
+realized by 559 recorded DP optima" (`MAX_R6S_ALL_N_COMPOSITION_RESULTS.json`,
+`claim_boundary.support_2_boundary`) — a *certificate* boundary, not by itself a
+proof that no support-1 optimum of equal cost exists. QG-18 supplies the missing
+lower bound with an exact necessity witness
+(`research/extensions/orion-qg/QG18_TARE_KAPPA_RESULTS.json`, terminal
+`QG18_TARE_KAPPA_IS_2__SUPPORT2_NECESSITY_WITNESS`, `kappa_interval: [2,2]`):
+at n = 2 with targets A=(Z₀,Z₀), B=(Z₀,Z₀), C=(Z₁,X₁),
+
+    C_DP = C_Dxx = 5 < 6 = C_cap1,
+
+with `C_DP` recomputed four independent ways and `C_cap1` six, including a
+from-primitives brute force over all 7⁶ frame six-tuples × all Tags. The
+optimum-attaining configuration is serialized verbatim; its single support-2
+Pauli is X₀X₁ in block C. The gap is not exotic: it occurs on 1,836 of the
+46,656 instances of the complete structured n = 2 slice (3.93%), always by
+exactly 1, and never at n = 1 (where support ≤ 1 is vacuous — the completeness
+control).
+
+**Why the R6I proof cannot be borrowed, and the principle that generalizes.**
+QG-18 also ran the V6 lemma chain against TARE on complete domains, and it dies
+at the first obligation. R6I's rank-2 dependent triple (R₂ = R₀R₁) makes each
+local frame column carry three multiplied slots, so deleting a non-core column
+refunds at least 4 (10 when anticommuting) against a Restore penalty of at most
+3 — leaving budget to pay alignment and rebuild the Tag. R6M's objective instead
+carries the all-three-blocks factor rule F3, which discounts a branch qubit by
+exactly 2 when the three Restore letters coincide; a frame letter can be
+*earning* that discount, so its deletion refund is exactly cancelled and TARE's
+credit floor is **0** (2,304 zero-credit rows of 221,184). There is no budget,
+and the chain ends before the Tag is touched. Stated generally:
+
+> Whole-system Tag relocation is available to a family exactly when its
+> per-column frame refund **strictly** exceeds the maximum Restore penalty of
+> deleting that column.
+
+That margin is 4 for R6I and 0 for TARE — and the zero is the same fact QG-8
+records geometrically, with the unit objective O0 sitting *on* the central
+hyperplane t_c = 2·t_r at margin 0
+(`QG8_OBJECTIVE_SUPPORT_PHASE_RESULTS.json`, `CENTRAL_HYPERPLANE_EXACT`). The
+proof-theoretic obstruction and the polyhedral boundary are one measurement seen
+twice. This makes the margin of a family's exchange inequality a cheap a-priori
+test of whether its support bound is likely to equal its intrinsic support
+number, before any descent ladder is attempted.
+
+So the two families differ in their intrinsic values, not merely in which edit
+class reaches them: **κ_R6I = 1 < 2 = κ_TARE**, with the structurally *richer*
+family carrying the *smaller* κ.
 
 ## 8. Method: the provable limits of per-block, syndrome-preserving grammars
 
@@ -592,7 +630,7 @@ n): the V6 stress panel (60 rows at n = 2..6, seed 20260821, 0 failures); QG-6's
 R6I local-cost corroboration (46,080 cases), which its own receipt pins at
 `PENDING_QG1_INDEPENDENT_DUAL_HARNESS`; and V5's negative panel (211,248
 candidates, no witness), evidence about a frozen panel and nothing more. OPEN:
-the exact value of κ_TARE (proved ≤ 2, not proved ≥ 2); global sharpness of both
+global sharpness of both
 cones; and κ for every objective outside the certified cones.
 
 **The two mandatory non-inferences.** First,

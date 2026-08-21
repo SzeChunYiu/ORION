@@ -4934,8 +4934,54 @@
     "verbatim_rows": 40,
     "worst_delta": 2
   },
+  "p2_state_level_dispatch": {
+    "census_matches_committed": true,
+    "closed_by_attack": "A2_domination_with_A1_joint_exchange_and_MG_mirror",
+    "derived_census": {
+      "PA_ja0_delta1": 97072,
+      "PA_ja0_delta2": 2376,
+      "PA_ja1_delta1": 3600,
+      "PP_ja0_delta1": 30500,
+      "PP_ja0_delta2": 440,
+      "PP_ja1_delta1": 1616
+    },
+    "derived_failures_total": 135604,
+    "dispatch_sums_to_census": true,
+    "holds": true,
+    "open_rows_verbatim": [],
+    "patterns_dispatched_closed": 135604,
+    "patterns_open": 0,
+    "per_key_dispatch": {
+      "PA_ja0_delta1": {
+        "closed": 97072,
+        "open": 0
+      },
+      "PA_ja0_delta2": {
+        "closed": 2376,
+        "open": 0
+      },
+      "PA_ja1_delta1": {
+        "closed": 3600,
+        "open": 0
+      },
+      "PP_ja0_delta1": {
+        "closed": 30500,
+        "open": 0
+      },
+      "PP_ja0_delta2": {
+        "closed": 440,
+        "open": 0
+      },
+      "PP_ja1_delta1": {
+        "closed": 1616,
+        "open": 0
+      }
+    },
+    "residue_serialization_complete": true,
+    "third_block_roles_scanned": 27
+  },
   "p2_verbatim_dispatch": {
-    "all_dispatched": false,
+    "all_dispatched": true,
     "rows": [
       {
         "census_row": {
@@ -4950,26 +4996,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 0,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -4984,26 +5015,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 1,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5018,26 +5034,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 2,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5052,26 +5053,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 3,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5086,26 +5072,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 4,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5120,26 +5091,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 5,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5154,26 +5110,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 6,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5188,26 +5129,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 7,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5222,26 +5148,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 8,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5256,26 +5167,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 9,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5290,26 +5186,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 10,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5324,26 +5205,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 11,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5358,26 +5224,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 12,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5392,26 +5243,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 13,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5426,26 +5262,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 14,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5460,26 +5281,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 15,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5494,26 +5300,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 16,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5528,26 +5319,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 17,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5562,26 +5338,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 18,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5596,26 +5357,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 19,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5630,26 +5376,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 20,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5664,26 +5395,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 21,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5698,26 +5414,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 22,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5732,26 +5433,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 23,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5766,26 +5452,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 24,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5800,26 +5471,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 25,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5834,26 +5490,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 26,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5868,26 +5509,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 27,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5902,26 +5528,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 28,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5936,26 +5547,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 29,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -5970,26 +5566,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 30,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -6004,26 +5585,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 31,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -6038,26 +5604,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 32,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -6072,26 +5623,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 33,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -6106,26 +5642,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 34,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -6140,26 +5661,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 35,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -6174,26 +5680,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 36,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -6208,26 +5699,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 37,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -6242,26 +5718,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 38,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       },
       {
         "census_row": {
@@ -6276,26 +5737,11 @@
           "ja": 0,
           "p": 1
         },
+        "closed_by_p1": true,
         "index": 39,
-        "p1_classes_all_closed": false,
-        "p1_geometry_classes": [
-          "ANCH_A_1+ANCH_B_1",
-          "ANCH_A_1+ANCH_B_2",
-          "ANCH_A_2+ANCH_B_1",
-          "ANCH_A_2+ANCH_B_2",
-          "ANCH_B_1+BORROW_A_1",
-          "ANCH_B_1+BORROW_A_2",
-          "ANCH_B_1+CS2_A_ANTIA_1",
-          "ANCH_B_1+CS2_A_ANTIA_2",
-          "ANCH_B_1+CS2_A_ANTIOUT_1",
-          "ANCH_B_1+CS2_A_ANTIOUT_2",
-          "ANCH_B_2+BORROW_A_1",
-          "ANCH_B_2+BORROW_A_2",
-          "ANCH_B_2+CS2_A_ANTIA_1",
-          "ANCH_B_2+CS2_A_ANTIA_2",
-          "ANCH_B_2+CS2_A_ANTIOUT_1",
-          "ANCH_B_2+CS2_A_ANTIOUT_2"
-        ]
+        "p1_geometries_scanned": 27,
+        "p1_pinner_role": "ANCH_B_1",
+        "p1_residue_hits": []
       }
     ],
     "rows_checked": 40,
@@ -7465,7 +6911,7 @@
   },
   "reserved_stretched_n2_accessed": false,
   "responsibility": "RESP:P1_RESIDUE_SERIALIZED_VERBATIM__CENSUS_DISPATCH_PARTIAL",
-  "result_digest": "8f7cf34cca0b62e65189e1ecbfd851d1d82860fce835c0fa0de0ae1ed7d58f51",
+  "result_digest": "cdca51a19c2f764f5e71c408abe0f08e3929eb878c90c17e02bd0f1b0ff9650c",
   "schema": "ORIONQG.QG7D.LastLink.v1",
   "scope": "COMM_S2_PINNED_SECTOR_CLOSURE__COMPLETE_LOCAL_DOMAIN_DOMINATION__UNIT_SUPPORT_COUNT_OBJECTIVE_ONLY__NOT_R6",
   "tables": {
@@ -7485,23 +6931,24 @@
   "timing": {
     "convention": "R6P: timing fields excluded from the canonical stdout line and the result digest; present only in this file section and on stderr",
     "runtime_cap_seconds": 1500,
-    "runtime_seconds": 318.804,
+    "runtime_seconds": 327.897,
     "runtime_under_cap": true,
     "section_seconds": {
-      "g2_mirror": 0.377,
-      "g3_gauge": 0.257,
+      "g2_mirror": 0.379,
+      "g3_gauge": 0.262,
       "m1": 0.048,
-      "p1": 74.595,
+      "p1": 76.026,
       "p2": 0.0,
-      "p2_verbatim": 0.0,
-      "p3": 238.232,
+      "p2_state_dispatch": 4.601,
+      "p2_verbatim": 0.003,
+      "p3": 241.14,
       "receipts": 0.004,
       "t1": 0.006,
-      "t3": 0.952,
-      "t4a": 0.916,
-      "t4b": 3.378,
+      "t3": 0.992,
+      "t4a": 1.096,
+      "t4b": 3.288,
       "t5": 0.003,
-      "tables": 0.032
+      "tables": 0.046
     }
   }
 }
