@@ -1,0 +1,80 @@
+name: orion-qg-programme-scientific-closure
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG_PROGRAMME_*'
+      - 'development/orion-qg-regime-geometry/qg_programme_*'
+      - 'development/orion-qg-regime-geometry/run_qg_programme_closure_dual_harness.py'
+      - 'research/extensions/orion-qg/qg_programme_*'
+      - '.github/workflows/orion-qg-programme-scientific-closure.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-programme-closure-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  closure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      CLOSURE_BASE: c5ba39fef4f25c46de5fb69bf07f50530f4693ca
+    steps:
+      - name: Checkout exact closure head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert frozen main ancestry
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          test "$(git merge-base HEAD "${CLOSURE_BASE}")" = "${CLOSURE_BASE}"
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install ORION and both harness layers
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Syntax gate
+        run: python -m py_compile research/extensions/orion-qg/qg_programme_scientific_closure.py development/orion-qg-regime-geometry/qg_programme_closure_generic_verify.py development/orion-qg-regime-geometry/qg_programme_closure_native_verify.py development/orion-qg-regime-geometry/run_qg_programme_closure_dual_harness.py
+      - name: Adjudicate whole programme through both ORION instruments
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg_programme_closure_dual_harness.py | tee artifacts/orion-qg-programme-closure-summary.json
+      - name: Deterministic adjudicator replay
+        run: |
+          set -euo pipefail
+          python research/extensions/orion-qg/qg_programme_scientific_closure.py --output artifacts/orion-qg-programme-scientific-closure-replay.json > artifacts/orion-qg-programme-closure-replay.log
+          cmp artifacts/orion-qg-programme-scientific-closure.json artifacts/orion-qg-programme-scientific-closure-replay.json
+      - name: Enforce scientific terminal and anti-overclaim ceilings
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-programme-scientific-closure.json').read_text()); g=json.loads(Path('artifacts/orion-qg-programme-closure-generic.json').read_text()); n=json.loads(Path('artifacts/orion-qg-programme-closure-native.json').read_text()); d=json.loads(Path('artifacts/orion-qg-programme-closure-dual.json').read_text())
+          t='ORION_QG_PROGRAMME_SCIENTIFICALLY_CLOSED__THEOREMS_REFUTATIONS_AND_BOUNDED_CANNOT_CHECKS_RECEIPTED__NOT_NOVELTY_AUTHORITY'
+          assert a['terminal']==t and a['scientifically_closed'] is True and a['all_gates'] is True
+          assert set(a['bounded_cannot_checks'])=={'qg7d','qg11'}
+          assert any('TARE all-n' in x for x in a['unproved_not_promoted'])
+          assert a['novelty_authority'] is False and a['r6_authority'] is False and a['physical_quantum_advantage_claim'] is False and a['publication_acceptance_authority'] is False
+          assert g['decision']=='ACCEPT_PROGRAMME_SCIENTIFIC_CLOSURE' and g['all_checks'] is True
+          assert n['decision']=='ACCEPT_PROGRAMME_SCIENTIFIC_CLOSURE' and n['all_checks'] is True
+          assert d['terminal']==t and d['both_accept'] is True and d['scientifically_closed'] is True
+          PY
+      - name: Upload final programme closure receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-programme-closure-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-programme-scientific-closure.json
+            artifacts/orion-qg-programme-scientific-closure-replay.json
+            artifacts/orion-qg-programme-closure-generic.json
+            artifacts/orion-qg-programme-closure-native.json
+            artifacts/orion-qg-programme-closure-dual.json
+            artifacts/orion-qg-programme-closure-summary.json
+            artifacts/orion-qg-programme-closure-replay.log
+            .orion-qg-programme-closure-generic/.orion-harness/**
+            .orion-qg-programme-closure-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error
