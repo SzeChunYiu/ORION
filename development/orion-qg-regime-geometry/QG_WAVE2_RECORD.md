@@ -228,9 +228,50 @@ census equality — ACCEPT, independently re-run by the orchestrator; terminal
   The single remaining link to the all-n theorem `C_DP == min(C_D+, f_B′, f_B″)` is
   the comm-s2 pinned sector.
 
+## QG-7d — THE LAST LINK: 12 STATES FROM THE ALL-N THEOREM
+
+`QG7D_LAST_LINK_RESULTS.json` (protocol frozen pre-outcome, sha256 `e9ebe4e6…3c65bd0e`;
+double-run canonical stdout and RESULTS-minus-timing byte-identical, digest
+`cdca51a1…0ff9650c`; independent pure-primitive generic verifier ACCEPT 9/9, re-deriving
+the residue row-for-row; all 10 gates true; terminal `QG7D_PARTIAL__P1_RESIDUE_OPEN`,
+authority `ORIONQG_QG7D_PARTIAL__P1_RESIDUE_OPEN__NOT_R6`).
+
+- **A2 (domination) was the winning attack**, as the hostile evidence predicted. Its
+  decisive ingredient is not a bigger move menu but the **MG mirror** of the whole
+  configuration combined with the per-block **target permutation** — a configuration
+  degree of freedom of the committed `r6p.dxx_search` that T4b's per-block menu never
+  exploited. A1's joint exchange and A3's chain induction fold in as special cases and
+  covered geometries (double pinner 136, comm-s2 chain 323 — both of QG-7c's
+  declared-open sub-cases are now covered domains).
+- **P1 domain: 6,341,787,648 states** (27 roles → 378 geometries × 16,777,216), no
+  sampling. **373/378 geometries closed; residue 12 states** (worst local deficit +1)
+  in 5 geometries, serialized verbatim. P1 also **supersedes T4a** as an independent
+  cross-check — and a mid-run discrepancy against T4a is what exposed a real
+  menu-reduction bug (see `RECEIPT_CHURN_HAZARD_2026-08-21.md`).
+- **Census dispatch**: T4b independently re-derived, reproducing the committed
+  536,870,912-domain / 135,604-failure / worst-+2 values verbatim; **all 135,604
+  patterns dispatched CLOSED, 0 open**. The 12 residual states lie *outside* the T4b
+  census entirely — they are a newly located obstruction, not the old one.
+- **Hostile arm**: 229 instances (census realizations, frozen random controls, and
+  P1-residue-extremal instances at n = 2/3/4) → **0 gap rows**, full referee coverage,
+  0 sandwich failures. Every realized residue state shows gap 0. No fifth configuration.
+- **Chain status**: steps 1–6 and 8–11 of the assembled `proof_audit` carry
+  (R6S → MG/G2 → G3 gauge → L1/L2/Lemma-E/L4a → M1 → T1/T2 → P1 → induction → T3 → T5 →
+  sandwich). Step 7 is closed on 6,341,787,636 of 6,341,787,648 states. **The TARE all-n
+  classification theorem is twelve states from complete.**
+- **Why those twelve resist**: at each, the Δ ≤ 0 optimum is itself comm-s2 on a
+  *different* block, so the comm-s2 count does not strictly decrease — the frozen A3
+  induction cannot apply. The honest successor is a composition/fixpoint argument, which
+  is exactly the FAILED_DECOMPOSITION move the reopen adjudication independently derived
+  for this negative.
+
 ## Registered successor (requires its own pre-outcome freeze)
 
-- **QG-7d — the last link.** Close the comm-s2 pinned sector: a sharper exchange
+- **QG-7e — the twelve states.** A composition/fixpoint argument over the residue, where
+  strict descent fails because the replacement optimum is comm-s2 on another block. The
+  reopen adjudication classifies this negative FAILED_DECOMPOSITION and predicts it
+  converts (`reopen-adjudication/REOPEN_TERMINAL.json`).
+- ~~QG-7d~~ **EXECUTED — see above.** Close the comm-s2 pinned sector: a sharper exchange
   (the T4b failure census delimits exactly which 135,604 patterns need it, worst
   residue +2) or a new composition argument for the two declared-open sub-cases
   (double pinners; comm-s2 chains). The hostile evidence says the identity holds

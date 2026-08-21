@@ -37,6 +37,44 @@ as the two harness defects found today (silent timeout truncation; silently igno
 payload keys): **an artifact quietly ceasing to mean what it says, while still looking
 valid.**
 
+## The deeper finding: digest custody verifies integrity, not correctness
+
+The lane has since reported what those three digests actually were, and it changes the
+lesson:
+
+- `f80deba7…` was a **defective run**. A menu-reduction bug let a later tag choice
+  clobber a cheaper configuration; it contradicted the receipt-bound T4a lemma on the
+  unpinned sector and reported a residue of **6,481**.
+- `8f7cf34c…` is the bug-fixed lemma (residue **12**) with class-level census dispatch.
+- `cdca51a1…` is the same lemma outcome plus the protocol-required *per-pattern,
+  state-level* census dispatch (5,216 → 135,604 dispatched closed). Terminal and residue
+  are identical to the previous version; only dispatch granularity changed.
+
+So the churn was not sloppiness — each rewrite was a genuine correction. But note what
+this means for the custody runner built earlier the same day
+(`run_qg7_family_dual_harness.py`): **Lane A re-derived `f80deba7…` from the file,
+matched it, and recorded ACCEPT_PARTIAL_CHAIN; Lane B agreed; the verdict was AGREE — on
+a scientifically defective receipt.**
+
+That is not a bug in the runner. It is the exact scope of what digest custody can do:
+
+> Re-deriving a receipt's declared digest proves the artifact is **intact and
+> self-consistent**. It proves nothing about whether the computation inside was
+> **correct**. A buggy analyzer produces a receipt that is perfectly digest-valid.
+
+Only two mechanisms caught the defect, and neither was custody: the lane's own
+cross-check against the receipt-bound T4a lemma (an internal consistency obligation
+between independent results), and the independent generic verifier that re-derives the
+science from primitives rather than re-reading the receipt. Both survive the bug; digest
+custody does not.
+
+Consequence for how the programme should read its own custody artifacts: an AGREE verdict
+from the dual-harness runner is evidence of **provenance**, not of **truth**, and must
+never be cited as scientific corroboration. Where corroboration is claimed, the citation
+must be to a from-primitives verifier or to a cross-lemma consistency check. Nothing here
+is retracted — the defective artifact was gitignored and never entered the permanent
+record — but the wording of custody claims must not overreach.
+
 ## Rule adopted
 
 1. A receipt file is **frozen once any other artifact binds its digest**. Re-runs that
