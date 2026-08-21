@@ -4,7 +4,11 @@ from dataclasses import dataclass, field
 
 from orion.core.contributions import KnowledgeContribution
 from orion.core.problem import Problem
-from orion.core.problem_tree import RecursiveProblemStopReason, ResidualDecomposition
+from orion.core.problem_tree import (
+    ProblemDecomposition,
+    RecursiveProblemStopReason,
+    ResidualDecomposition,
+)
 from orion.core.residuals import Residual, ResidualKind, Responsibility
 from orion.core.search import RetrievedItem, SearchQuery
 from orion.core.state import OrionState
@@ -22,6 +26,9 @@ class ScriptedReasoner:
     reconstruction_summaries: list[str] = field(default_factory=list)
     answer_text: str = ""
     decompositions_by_kind: dict[ResidualKind, ResidualDecomposition] = field(
+        default_factory=dict
+    )
+    problem_decompositions_by_id: dict[str, ProblemDecomposition] = field(
         default_factory=dict
     )
     _search_index: int = 0
@@ -49,6 +56,21 @@ class ScriptedReasoner:
             residual.kind,
             Diagnosis((Responsibility.EVIDENCE,), "default scripted diagnosis"),
         )
+
+    def decompose_problem(
+        self,
+        problem: Problem,
+        state: OrionState,
+    ) -> ProblemDecomposition:
+        decomposition = self.problem_decompositions_by_id.get(problem.problem_id)
+        if decomposition is None:
+            decomposition = ProblemDecomposition(
+                parent_problem_id=problem.problem_id,
+                stop_reason=RecursiveProblemStopReason.NO_DECISION_SEPARATING_DECOMPOSITION,
+                rationale="no scripted broader-problem decomposition",
+            )
+        decomposition.verify(problem)
+        return decomposition
 
     def decompose_residual(
         self,
