@@ -1,7 +1,7 @@
 # Reproduce the bounded P9/P10 closure
 
-**Papers:** `../paper-09-executable-research-core/` and
-`../paper-10-content-bound-math-evaluation/`
+**Papers:** `../paper-xx-executable-research-core/` and
+`../paper-xx-content-bound-math-evaluation/`
 
 **Authority:** `LOCAL_REPRODUCIBLE_CORE_ONLY`. Identity, deterministic outputs
 and local hostile gates are in scope. External novelty, theorem-statement
@@ -45,9 +45,9 @@ removed from the P10 technical note and retained only as a triggered follow-up.
 ## Public P9 discriminator
 
 ```bash
-python ../paper-09-executable-research-core/benchmark/test_aslib_v1.py
-python ../paper-09-executable-research-core/benchmark/run_aslib_v1.py
-python ../paper-09-executable-research-core/check_merged_ready.py
+python ../paper-xx-executable-research-core/benchmark/test_aslib_v1.py
+python ../paper-xx-executable-research-core/benchmark/run_aslib_v1.py
+python ../paper-xx-executable-research-core/check_merged_ready.py
 ```
 
 The source-pinned `SAT11-HAND-ALGO` output is deterministic. P9 closes as a
@@ -56,9 +56,9 @@ merged P8/programme evidence object, not a standalone routing novelty claim.
 ## Programme-scale P10 study
 
 ```bash
-python ../paper-10-content-bound-math-evaluation/benchmark/check_mathlib_corpus_v2.py
-python ../paper-10-content-bound-math-evaluation/benchmark/test_mathlib_transfer_v2_1.py
-python ../paper-10-content-bound-math-evaluation/check_technical_note_ready.py
+python ../paper-xx-content-bound-math-evaluation/benchmark/check_mathlib_corpus_v2.py
+python ../paper-xx-content-bound-math-evaluation/benchmark/test_mathlib_transfer_v2_1.py
+python ../paper-xx-content-bound-math-evaluation/check_technical_note_ready.py
 ```
 
 The native replay requires the exact Mathlib commit and Lean 4.34.0-rc1; its

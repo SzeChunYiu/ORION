@@ -532,6 +532,10 @@ class PaperDirectories:
     ``papers/PAPER_ALIASES.md`` is the repository's "single place for historical
     ORION paper-directory aliases", and it covers only P1-P5.
 
+    Every paper now carries exactly one directory. The two that used to sit beside
+    P9 and P10 were never papers and now carry the ``paper-xx-`` prefix --- see
+    :data:`VACATED_PAPER_NUMBERS`.
+
     Paths follow the 2026-08-21 refactor that lifted P6-P10 out of
     ``papers/candidates/`` into ``papers/`` alongside the flagship five. So for P6-P10 there
     was nowhere recording succession, and two retired candidates sat beside two
@@ -562,34 +566,41 @@ PAPER_DIRECTORIES: tuple[PaperDirectories, ...] = (
     ),
     PaperDirectories("P7", "papers/paper-07-epistemic-navigation-open-worlds"),
     PaperDirectories("P8", "papers/paper-08-epistemic-authority-autonomous-science"),
-    PaperDirectories(
-        "P9",
-        "papers/paper-09-structured-epistemic-learning",
-        (
-            (
-                "papers/paper-09-executable-research-core",
-                "Self-declares MERGED INTO P8/PROGRAMME with no standalone manuscript. "
-                "Retained: cited by tests/unit/candidates/test_p9_p10_learning_machine.py, "
-                "by P8's benchmark companion, and by the orion-learning-machine lane.",
-            ),
-        ),
+    PaperDirectories("P9", "papers/paper-09-structured-epistemic-learning"),
+    PaperDirectories("P10", "papers/paper-10-structured-problem-solving"),
+)
+
+
+#: Former paper candidates whose number has been vacated.
+#:
+#: Both were routed into other papers by a dated terminal decision, so neither was
+#: available for renumbering into P11-P14: re-absorbing them would contradict a
+#: recorded terminal *and* move them away from the papers that own their subjects.
+#: ``content-bound-math-evaluation`` is not even dormant --- its ``FOLLOW_UPS.md``
+#: carries active reopen triggers, and trigger 5 routes any surviving positive
+#: through P4 and P8.
+#:
+#: The ``paper-xx-`` prefix is deliberate: it vacates the number while preserving
+#: that these were paper candidates, and it does not match ``_PAPER_DIR_PATTERN``,
+#: so the identity checks correctly stop treating them as paper identities.
+VACATED_PAPER_NUMBERS: tuple[tuple[str, str, str], ...] = (
+    (
+        "papers/paper-xx-executable-research-core",
+        "was P9",
+        "MERGED INTO P8/PROGRAMME; no standalone manuscript. Its contribution is "
+        "LearningMachine in the shared orion-learning-machine lane, and the live "
+        "P9 manuscript does not cite it.",
     ),
-    PaperDirectories(
-        "P10",
-        "papers/paper-10-structured-problem-solving",
-        (
-            (
-                "papers/paper-10-content-bound-math-evaluation",
-                "Terminal TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME; deliberately not a "
-                "standalone paper. Retained: it is P10's predecessor evidence in the "
-                "superiority ledger, and is cited by a live test and the RSE wave-closure "
-                "manifest.",
-            ),
-        ),
+    (
+        "papers/paper-xx-content-bound-math-evaluation",
+        "was P10",
+        "TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME, decided 2026-08-18. Reopen "
+        "triggers remain active; a surviving positive routes through P4 and P8.",
     ),
 )
 
-#: Paper identities registered by the P11-P14 programme issue (#670) whose
+#: Paper identities registered but **not adjudicated** by this module: #670's
+#: P11-P14, plus P15 which has no issue yet. Originally just the P11-P14 set whose
 #: directories arrive with PR #715 (which targets ``papers/candidates/``; after
 #: the 2026-08-21 refactor they are expected directly under ``papers/``, and
 #: both spellings are registered so the merge order does not matter). They are *registered but not adjudicated*: this
@@ -607,6 +618,10 @@ FUTURE_PAPER_DIRECTORIES: dict[str, str] = {
     "P12": "papers/paper-12-adaptive-state-reasoning",
     "P13": "papers/paper-13-responsibility-carrying-state",
     "P14": "papers/paper-14-orion-rse",
+    # No issue yet. Opened as a systems paper introducing the ORION research
+    # harness and the ORION-Q dual harness; registered here so the identity
+    # checks do not read a deliberately-opened folder as identity rot.
+    "P15": "papers/paper-15-orion-research-harness",
 }
 
 #: Directories under ``papers/`` that are **not** paper identities.
@@ -618,14 +633,14 @@ FUTURE_PAPER_DIRECTORIES: dict[str, str] = {
 #: machine-checkable answer, and so nothing tries to register it as one.
 #:
 #: The subtlety worth keeping: its own ``REPRODUCE.md`` names
-#: ``paper-09-executable-research-core`` and ``paper-10-content-bound-math-evaluation``
+#: ``paper-xx-executable-research-core`` and ``paper-xx-content-bound-math-evaluation``
 #: --- the two *retired predecessors*, not the active P9 and P10. That is exactly
 #: why both predecessors are retained rather than deleted.
 SHARED_LANES: dict[str, str] = {
     "papers/orion-learning-machine": (
         "Shared P9/P10 reproduction lane: framework, experiments and committed "
-        "results cited by paper-09-executable-research-core and "
-        "paper-10-content-bound-math-evaluation. Authority is "
+        "results cited by paper-xx-executable-research-core and "
+        "paper-xx-content-bound-math-evaluation. Authority is "
         "LOCAL_REPRODUCIBLE_CORE_ONLY. Not a publication identity."
     ),
 }
@@ -739,6 +754,7 @@ __all__ = [
     "REGISTERED_PAPER_DIRECTORIES",
     "RETIRED_PAPER_NUMBERING",
     "SHARED_LANES",
+    "VACATED_PAPER_NUMBERS",
     "PaperDirectories",
     "P1_U_GATES",
     "P2_U_GATES",

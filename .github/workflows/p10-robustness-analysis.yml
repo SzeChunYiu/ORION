@@ -3,7 +3,7 @@ name: p10-robustness-analysis
 on:
   pull_request:
     paths:
-      - 'papers/paper-10-content-bound-math-evaluation/**'
+      - 'papers/paper-xx-content-bound-math-evaluation/**'
       - 'research/extensions/p10-structured-reasoning/**'
       - '.github/workflows/p10-robustness-analysis.yml'
   workflow_dispatch:
@@ -20,15 +20,15 @@ jobs:
         with:
           python-version: '3.12'
       - name: Check existing technical-note package
-        run: python papers/paper-10-content-bound-math-evaluation/check_technical_note_ready.py
+        run: python papers/paper-xx-content-bound-math-evaluation/check_technical_note_ready.py
       - name: Derive held-out-module robustness
-        run: python papers/paper-10-content-bound-math-evaluation/analyze_module_robustness_v1.py
+        run: python papers/paper-xx-content-bound-math-evaluation/analyze_module_robustness_v1.py
       - name: Print headline robustness numbers
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-          p = Path('papers/paper-10-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS.json')
+          p = Path('papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS.json')
           d = json.loads(p.read_text())
           print(json.dumps({
               'pooled_delta': d['pooled_markov_minus_unigram'],
@@ -43,5 +43,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: p10-module-robustness-${{ github.sha }}
-          path: papers/paper-10-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS.json
+          path: papers/paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS.json
           if-no-files-found: error
