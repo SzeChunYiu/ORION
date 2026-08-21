@@ -68,6 +68,7 @@ PERMS = tuple(itertools.permutations(range(3)))
 
 
 def cap1_exact(ta, tb, th):
+    """Independent exact cap1 solver with deterministic tie identity."""
     best = None
     for i, pa in enumerate(PAIRS):
         rsa = frame(*pa)
@@ -88,12 +89,28 @@ def cap1_exact(ta, tb, th):
             if tag_best is None:
                 continue
             cost = th["t_r"] * (ra + rb) + th["t_tag"] * tag_best[0]
-            row = (cost, i, j, tag_best[0], ra + rb, s0, s1)
+            row = (
+                cost,
+                i,
+                j,
+                tag_best[0],
+                ra + rb,
+                tag_best[1],
+                tag_best[2],
+                tag_best[3],
+            )
             if best is None or row < best:
                 best = row
     if best is None:
         raise AssertionError("no cap1")
-    return {"cost": best[0], "resource": (0, 0, best[3], best[4]), "pair_indices": (best[1], best[2])}
+    return {
+        "cost": best[0],
+        "resource": (0, 0, best[3], best[4]),
+        "pair_indices": (best[1], best[2]),
+        "S0": best[5],
+        "S1": best[6],
+        "labels": best[7],
+    }
 
 
 def support2_exact(rec, th):
@@ -155,11 +172,10 @@ def verify_rec(rec):
     ta, tb = s2["targets"]
     c1 = cap1_exact(ta, tb, th)
     diff = tuple(s2["resource"][k] - c1["resource"][k] for k in range(4))
-    strict = s2["cost"] < c1["cost"]
     stored_diff = tuple(rec["difference_vector_t_c_t_nc_t_tag_t_r"])
     stored_gap = fraction(rec["gap_cap1_minus_support2"])
     return {
-        "strict": strict,
+        "strict": s2["cost"] < c1["cost"],
         "cost_gap": c1["cost"] - s2["cost"],
         "stored_gap_match": stored_gap == c1["cost"] - s2["cost"],
         "resource_support2_match": tuple(rec["support2"]["resource"]) == s2["resource"],
@@ -172,7 +188,8 @@ def verify_rec(rec):
 
 def main() -> int:
     a = json.loads(RESULT.read_text())
-    u = dict(a); obs = u.pop("result_digest", None)
+    u = dict(a)
+    obs = u.pop("result_digest", None)
     selected = []
     for name in a.get("outside_objectives_with_strict_witness", []):
         st = a["objectives"][name]
@@ -183,9 +200,9 @@ def main() -> int:
     ver = []
     all_selected = True
     for name, role, rec in selected:
-        checks = verify_rec(rec)
-        ver.append({"objective": name, "role": role, "checks": checks})
-        all_selected &= all(checks.values())
+        selected_checks = verify_rec(rec)
+        ver.append({"objective": name, "role": role, "checks": selected_checks})
+        all_selected &= all(selected_checks.values())
 
     v5 = json.loads(V5.read_text())
     q16 = json.loads(QG16.read_text())
@@ -205,7 +222,7 @@ def main() -> int:
     }
     decision = "ACCEPT_SUPPORT2_PHASE_WITNESS" if positive and all(checks.values()) else ("ACCEPT_BOUNDED_NEGATIVE" if (not positive) and all(checks.values()) else "REJECT")
     out = {
-        "schema": "ORION.QG.QG17.GenericVerification.v1",
+        "schema": "ORION.QG.QG17.GenericVerification.v2",
         "issue": "SzeChunYiu/ORION#814",
         "decision": decision,
         "checks": checks,
@@ -214,7 +231,8 @@ def main() -> int:
         "terminal": a.get("terminal"),
         "novelty_authority": False,
     }
-    OUT.parent.mkdir(parents=True, exist_ok=True); OUT.write_text(json.dumps(out, indent=2, sort_keys=True) + "\n")
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(json.dumps(out, indent=2, sort_keys=True) + "\n")
     print(TOKEN + canonical(out))
     return 0
 
