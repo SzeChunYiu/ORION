@@ -3,7 +3,7 @@
   "date": "2026-08-21",
   "parent_issue": 650,
   "base_commit": "f9aa4f1f8c0f356c72ad8d991de3c545736950c7",
-  "purpose": "Freeze the remaining task-selection, protected-manifest, execution-binding, and capture requirements for the future P2-U naturalistic hidden-route primary before any protected P2-U naturalistic system output. This contract does not choose tasks, run systems, change scientific gates, or grant superiority authority.",
+  "purpose": "Freeze the remaining task-selection, protected-manifest, execution-binding, temporal-pairing, and capture requirements for the future P2-U naturalistic hidden-route primary before any protected P2-U naturalistic system output. This contract does not choose tasks, run systems, change scientific gates, or grant superiority authority.",
   "bound_pre_outcome_contracts": {
     "baseline_census": {
       "path": "research/claim_expansion/p2/P2_U_BASELINE_CENSUS_V1.json",
@@ -86,7 +86,7 @@
   "task_selection": {
     "selection_authority": "A task curator that does not run or tune either primary arm after protected outputs are opened.",
     "eligibility_rules_must_be_written_before_source_search_or_finalization": true,
-    "all_considered_candidates_and_exclusion_reasons_logged": true,
+    "all_considered_candidates_and_exclusion_reasons_logged_in_evaluator_custody": true,
     "first_eligible_or_other_deterministic_selection_rule_must_be_declared_per_stratum": true,
     "manual_discretion_after_any_primary_arm_output": false,
     "domain_strata_must_be_declared_before_final_task_selection": true,
@@ -100,7 +100,7 @@
   },
   "power_and_sample_size_binding": {
     "scientific_source": "P2_U_SCIENTIFIC_PROTOCOL_V1.json power_gate_before_execution",
-    "power_calculation_uses_only_finalized_manifest_design_and non_protected_public_or_pilot_inputs": true,
+    "power_calculation_uses_only_finalized_manifest_design_and_nonprotected_public_or_pilot_inputs": true,
     "target_power_at_least": 0.8,
     "target_route_use_recall_effect": 0.05,
     "power_receipt_digest_must_be_sealed_before_execution": true,
@@ -114,14 +114,15 @@
       "all donor mechanics required by P2_U_BASELINE_CENSUS_V1.json or an explicit pre-outcome unavailability limitation",
       "host/model/checkpoint revision or API snapshot identity and request parameters",
       "retriever/search implementation revisions and endpoint classes",
-      "source-access snapshot or immutable source-universe identity",
+      "source-access policy plus immutable source snapshot identity where the interface permits snapshots",
       "identical primary-arm task budget vector and enforcement policy",
       "retry count, timeout, backoff, charging, and terminal error mapping",
       "provider/tool common-world health sentinel and machine-checkable invalidity rule",
       "COMPLETE/CLOSED equivalent emitted by each primary arm",
       "common p_task_incomplete output field",
       "capture schema version",
-      "independent evaluator specification digest"
+      "independent evaluator specification digest",
+      "arm scheduling and temporal-pairing policy"
     ],
     "same_host_primary_causal_comparison": true,
     "same_model_or_backbone_primary_causal_comparison": true,
@@ -134,10 +135,20 @@
     "system_level_stress_baselines": "Run where prospectively bound and feasible, but they do not substitute for the matched donor-complete primary comparator.",
     "post_outcome_model_provider_baseline_or_budget_switching_forbidden": true
   },
+  "temporal_pairing": {
+    "purpose": "Prevent live provider, search-index, or source-world drift from becoming an unmeasured arm difference.",
+    "arm_order_or_parallelization_policy_must_be_frozen": true,
+    "if_sequential_arm_order_is_used": "Randomize or deterministically counterbalance arm order with a pre-outcome seed and bind the schedule before execution.",
+    "maximum_allowed_wall_clock_separation_per_paired_task_must_be_prefrozen": true,
+    "common_world_health_sentinel_required_for_each_paired_execution_window": true,
+    "provider_or_index_drift_beyond_prefrozen_tolerance": "P2_U_PRIMARY_CANNOT_CHECK for the affected paired unit under the V1 validity-floor rules; do not relabel as arm performance unless the frozen sentinel says the common world was healthy.",
+    "one_arm_may_not_be_rerun_alone_after_other_arm_outcome_is_opened": true,
+    "rerun_after_common_world_invalidity": "Only a whole paired task unit may be rerun under the exact prefrozen retry/recovery rule before any protected score is opened. Otherwise retire that campaign unit under the frozen invalidity rule."
+  },
   "provider_snapshot_rules": {
     "open_weight_model": "Bind repository/model revision SHA, tokenizer/config identities, inference-library versions, generation parameters, and executable environment digest before protected execution.",
     "remote_api_model": "Bind provider, endpoint/model identifier, request schema, fixed decoding/tool parameters, execution date window, retry/timeout policy, and common-world health sentinel. If the provider cannot supply immutable weights, this limitation is explicit rather than disguised as byte identity.",
-    "retrieval_or_search_api": "Bind endpoint class, query schema, result cap/order semantics where controlled, retry/timeout policy, and source-access scope. Provider drift that violates the prefrozen common-world health rule maps to CANNOT_CHECK; arm-specific query/parsing/control failures remain performance.",
+    "retrieval_or_search_api": "Bind endpoint class, query schema, result cap/order semantics where controlled, retry/timeout policy, source-access scope, and paired execution window. Provider drift that violates the prefrozen common-world health rule maps to CANNOT_CHECK; arm-specific query/parsing/control failures remain performance.",
     "silent_provider_fallback_forbidden": true
   },
   "capture_schema_minimum": {
@@ -145,6 +156,7 @@
       "task_id and task_cluster_id_or_null",
       "arm_id and exact implementation digest",
       "pre-gold start and end timestamps",
+      "paired execution window id and arm-order position",
       "raw query or tool-call trace with deterministic redaction policy if required",
       "retrieval response identities or content hashes",
       "unique evidence identity declarations visible to the arm",
@@ -167,7 +179,7 @@
     "guard_exercise_counts_reconstructed_from_pre_gold_closure_claims": true,
     "independent_reproducer_reconstructs_denominators_routes_false_closures_and_primary_metrics_without_importing_original_terminal_function": true,
     "original_task_curator_cannot_be_sole_independent_reproducer": true,
-    "disagreement_is_fail_closed_until_adjudicated_without changing_frozen_scores": true
+    "disagreement_is_fail_closed_until_adjudicated_without_changing_frozen_scores": true
   },
   "terminal_authority": {
     "this_contract_terminal": "P2_U_TASK_EXECUTION_CONTRACT_FROZEN_NO_OUTCOME",
@@ -193,9 +205,10 @@
     "Do not silently substitute a weaker comparator, a different host, more source access, a different budget, or an easier provider-invalidity mapping after execution begins.",
     "Do not count retries, routes, documents, or repeated traces as independent task n.",
     "Do not allow evaluator-only work to leak into candidate decisions or candidate-side work to disappear from resource accounting.",
+    "Do not let live-provider timing or search-index drift become a systematic arm-order advantage.",
     "Do not treat a public benchmark, narrow P2 Wide result, or protocol-only freeze as P2-U superiority evidence."
   ],
-  "scientific_effect": "PRE_OUTCOME_TASK_SELECTION_EXECUTION_AND_CAPTURE_BINDING_ONLY",
+  "scientific_effect": "PRE_OUTCOME_TASK_SELECTION_EXECUTION_TEMPORAL_PAIRING_AND_CAPTURE_BINDING_ONLY",
   "promotion_authorized": false,
   "issue_650_closure_authorized": false,
   "authority": "PRE_OUTCOME_P2_U_TASK_EXECUTION_CONTRACT_NO_RESULT_NO_SUPERIORITY_NO_PROMOTION"
