@@ -24,6 +24,7 @@ from .governance_runtime import (
     request_independent_review,
     select_context,
 )
+from .governance_hardening import install_governance_hardening
 from .mechanics_bridge import (
     atom_calculus_surface,
     compile_workspace_development_fibre,
@@ -71,6 +72,7 @@ __all__ = [
     "decide_campaign",
     "execution_coverage",
     "initialize_campaign",
+    "install_governance_hardening",
     "install_recursive_budget_hardening",
     "install_recursive_cost_hardening",
     "install_workspace_recursive_reasoner",
