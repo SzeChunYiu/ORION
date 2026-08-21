@@ -1,0 +1,81 @@
+name: orion-qg-qg17r-corrected-execution
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG17R_*'
+      - '.github/workflows/orion-qg-qg17r-corrected-execution.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg17r-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  qg17r:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      QG17R_BASE: c5ba39fef4f25c46de5fb69bf07f50530f4693ca
+    steps:
+      - name: Checkout exact protected head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert frozen lineage
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          test "$(git merge-base HEAD "${QG17R_BASE}")" = "${QG17R_BASE}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Assert corrected cap1 semantics before outcome
+        run: |
+          python - <<'PY'
+          import importlib.util, pathlib, sys
+          p=pathlib.Path('research/extensions/orion-qg/qg17_r6i_phase_sharpness.py').resolve()
+          spec=importlib.util.spec_from_file_location('qg17r_scanner',p); m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+          assert len(m.PAIRS)==12
+          assert 0 < m.TAG_FEASIBLE_CELLS < 144
+          assert all(x>0 for x in m.TAG_FEASIBLE_PER_A)
+          assert [x[0] for x in m.OBJECTIVES]==['O0','O_tag_out','O_restore_out','O_nc_out']
+          print({'feasible_cells':m.TAG_FEASIBLE_CELLS,'per_A':m.TAG_FEASIBLE_PER_A})
+          PY
+      - name: Execute unchanged QG-17 scanner through both ORION instruments
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg17_dual_harness.py | tee artifacts/orion-qg-qg17r-summary.json
+      - name: Deterministic scanner replay
+        run: |
+          set -euo pipefail
+          python research/extensions/orion-qg/qg17_r6i_phase_sharpness.py --output artifacts/orion-qg-qg17-r6i-phase-sharpness-replay.json > artifacts/orion-qg-qg17r-replay.log
+          cmp artifacts/orion-qg-qg17-r6i-phase-sharpness.json artifacts/orion-qg-qg17-r6i-phase-sharpness-replay.json
+      - name: Enforce bounded terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg17-r6i-phase-sharpness.json').read_text()); g=json.loads(Path('artifacts/orion-qg-qg17-generic-verification.json').read_text()); n=json.loads(Path('artifacts/orion-qg-qg17-native-verification.json').read_text()); d=json.loads(Path('artifacts/orion-qg-qg17-dual-harness.json').read_text())
+          pos='QG17_SUPPORT2_PHASE_WITNESS_FOUND_AT_FROZEN_OUTSIDE_OBJECTIVE'; neg='QG17_NO_SUPPORT2_WITNESS_IN_FROZEN_V5_DOMAIN'; assert a['terminal'] in {pos,neg}; assert a['candidates_tested']==211248; assert a['objectives']['O0']['strict_count']==0; exp='ACCEPT_SUPPORT2_PHASE_WITNESS' if a['terminal']==pos else 'ACCEPT_BOUNDED_NEGATIVE'; assert g['decision']==exp and g['all_checks'] is True; assert n['decision']==exp and n['all_checks'] is True; assert d['terminal']==a['terminal'] and d['both_accept'] is True; assert a['global_phase_boundary_complete'] is False; assert a['novelty_authority'] is False and a['physical_quantum_advantage_claim'] is False
+          PY
+      - name: Upload QG-17R receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg17r-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg17-r6i-phase-sharpness.json
+            artifacts/orion-qg-qg17-r6i-phase-sharpness-replay.json
+            artifacts/orion-qg-qg17-generic-verification.json
+            artifacts/orion-qg-qg17-native-verification.json
+            artifacts/orion-qg-qg17-dual-harness.json
+            artifacts/orion-qg-qg17r-summary.json
+            artifacts/orion-qg-qg17r-replay.log
+            .orion-qg-qg17-generic/.orion-harness/**
+            .orion-qg-qg17-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error
