@@ -106,12 +106,14 @@ jobs:
           for name in ('transformers', 'huggingface_hub', 'safetensors', 'sentencepiece', 'torch'):
               packages[name] = importlib.metadata.version(name)
 
+          tokenizer_identity = f'{tokenizer.__class__.__module__}.{tokenizer.__class__.__qualname__}'
           receipt = {
               'schema_version': 'orion.p1.r6.changed-host-custody.v1',
               'authority': 'HOST_CUSTODY_ONLY_NO_SCIENTIFIC_OUTCOME',
               'model_id': model_id,
               'resolved_revision_sha': revision,
               'config_sha256': sha256(config_path),
+              'tokenizer_identity': tokenizer_identity,
               'tokenizer_class': tokenizer.__class__.__name__,
               'model_class': model.__class__.__name__,
               'generation_parameters': {
@@ -125,10 +127,21 @@ jobs:
               'custody_probe_prompt_sha256': hashlib.sha256(prompt.encode()).hexdigest(),
               'custody_probe_output_sha256': hashlib.sha256(decoded.encode()).hexdigest(),
               'custody_probe_nonempty': True,
+              'no_gold_access': True,
               'replication_source_or_gold_accessed': False,
               'p1_2020_primary_outcome_accessed': False,
               'promotion_authorized': False,
           }
+          required = protocol['changed_host']['host_receipt_required_fields']
+          missing = sorted(key for key in required if key not in receipt)
+          assert not missing, f'host custody receipt missing frozen required fields: {missing}'
+          assert receipt['no_gold_access'] is True
+          assert receipt['replication_source_or_gold_accessed'] is False
+          assert receipt['p1_2020_primary_outcome_accessed'] is False
+          assert receipt['no_gold_access'] is (
+              not receipt['replication_source_or_gold_accessed']
+              and not receipt['p1_2020_primary_outcome_accessed']
+          )
           out = Path('/tmp/p1-r6-host/P1_R6_2019_HOST_CUSTODY_V1.json')
           out.write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n')
           print('P1_R6_2019_HOST_CUSTODY=' + json.dumps(receipt, sort_keys=True))
