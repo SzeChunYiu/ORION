@@ -90,9 +90,10 @@ def test_hard_root_node_budget_returns_root_cannot_check_with_checkpoint() -> No
     assert session.resource_bound_hit is True
     assert result.solution.problem_id == "root"
     assert result.solution.status is SolutionStatus.CANNOT_CHECK
-    assert "node budget exhausted" in result.solution.answer.lower()
+    assert "resource bound" in result.solution.answer.lower()
     assert dict(result.final_state.metadata)["checkpoint"] == "preserved"
     assert dict(working.metadata)["checkpoint"] == "preserved"
+    assert result.trace.trace_id.startswith("recursive-resource-bound:")
     assert any(
         row.get("stop_reason") == "CANNOT_CHECK_RESOURCE_BOUND"
         for row in session.stop_records
