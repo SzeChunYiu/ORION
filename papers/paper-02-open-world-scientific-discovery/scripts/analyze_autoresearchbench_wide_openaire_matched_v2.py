@@ -37,70 +37,112 @@ def _invalid_transport_evidence(error: str, manifest: dict[str, Any]) -> dict[st
         "valid": False,
         "manifest_metadata_valid": False,
         "receipt_valid": False,
+        "response_valid": False,
         "manifest_probe_sha256": str(manifest.get("transport_probe_sha256") or ""),
         "actual_probe_sha256": None,
         "probe_hash_matches_manifest": False,
+        "manifest_response_sha256": str(manifest.get("transport_probe_response_sha256") or ""),
+        "actual_response_sha256": None,
+        "response_hash_matches_manifest": False,
         "validation_error": error,
     }
 
 
 def transport_evidence_validity(
-    freeze_actual: dict[str, Any], manifest: dict[str, Any], transport_probe_path: Path
+    freeze_actual: dict[str, Any],
+    manifest: dict[str, Any],
+    transport_probe_path: Path,
+    transport_response_path: Path,
 ) -> dict[str, Any]:
-    """Revalidate the actual pre-benchmark transport receipt at score time.
+    """Revalidate exact pre-benchmark transport receipt and raw response at score time.
 
     Acquisition must not be the sole authority for the transport prerequisite: the
-    evaluator independently checks the archived receipt bytes, their manifest hash,
+    evaluator independently checks the archived receipt bytes, archived provider
+    response bytes, both manifest hashes, requested structured DOI identity matches,
     and the frozen request/no-gold/non-promotion contract. Invalid evidence remains a
     scientific CANNOT_CHECK input rather than being converted into a zero outcome.
     """
-    expected_sha = str(manifest.get("transport_probe_sha256") or "")
-    actual_sha: str | None = None
+    expected_probe_sha = str(manifest.get("transport_probe_sha256") or "")
+    expected_response_sha = str(manifest.get("transport_probe_response_sha256") or "")
+    actual_probe_sha: str | None = None
+    actual_response_sha: str | None = None
     receipt_valid = False
-    validation_error: str | None = None
+    response_valid = False
+    validation_errors: list[str] = []
+    probe: dict[str, Any] | None = None
     try:
-        actual_sha = v2_runner.sha256_file(transport_probe_path)
-        v2_runner.validate_transport_probe(transport_probe_path, freeze_actual)
+        actual_probe_sha = v2_runner.sha256_file(transport_probe_path)
+        probe = v2_runner.validate_transport_probe(transport_probe_path, freeze_actual)
         receipt_valid = True
     except (OSError, ValueError, TypeError, KeyError, json.JSONDecodeError) as exc:
-        validation_error = f"{type(exc).__name__}: {exc}"
+        validation_errors.append(f"receipt:{type(exc).__name__}: {exc}")
+    if probe is not None:
+        try:
+            actual_response_sha = v2_runner.sha256_file(transport_response_path)
+            v2_runner.validate_transport_response(transport_response_path, probe, freeze_actual)
+            response_valid = True
+        except (OSError, ValueError, TypeError, KeyError, json.JSONDecodeError) as exc:
+            validation_errors.append(f"response:{type(exc).__name__}: {exc}")
 
-    hash_matches = bool(expected_sha and actual_sha and expected_sha == actual_sha)
+    probe_hash_matches = bool(
+        expected_probe_sha and actual_probe_sha and expected_probe_sha == actual_probe_sha
+    )
+    response_hash_matches = bool(
+        expected_response_sha
+        and actual_response_sha
+        and expected_response_sha == actual_response_sha
+        and probe is not None
+        and probe.get("response_sha256") == actual_response_sha
+    )
     metadata_valid = (
         int(manifest.get("campaign_version", 0)) == 2
         and manifest.get("transport_encoding") == "repeated_pid_parameters"
         and manifest.get("transport_probe_terminal") == PROBE_TERMINAL
+        and bool(expected_response_sha)
     )
     return {
-        "valid": bool(metadata_valid and receipt_valid and hash_matches),
+        "valid": bool(
+            metadata_valid
+            and receipt_valid
+            and response_valid
+            and probe_hash_matches
+            and response_hash_matches
+        ),
         "manifest_metadata_valid": metadata_valid,
         "receipt_valid": receipt_valid,
-        "manifest_probe_sha256": expected_sha,
-        "actual_probe_sha256": actual_sha,
-        "probe_hash_matches_manifest": hash_matches,
-        "validation_error": validation_error,
+        "response_valid": response_valid,
+        "manifest_probe_sha256": expected_probe_sha,
+        "actual_probe_sha256": actual_probe_sha,
+        "probe_hash_matches_manifest": probe_hash_matches,
+        "manifest_response_sha256": expected_response_sha,
+        "actual_response_sha256": actual_response_sha,
+        "response_hash_matches_manifest": response_hash_matches,
+        "validation_error": "; ".join(validation_errors) if validation_errors else None,
     }
 
 
-def discover_transport_probe(manifest_path: Path) -> Path:
-    """Find the one archived probe near the downloaded capture manifest.
-
-    actions/upload-artifact may preserve different leading directory components for
-    multiple absolute upload roots. Search only the manifest's nearby ancestors and
-    fail if custody is ambiguous instead of choosing a receipt by filename order.
-    """
+def discover_transport_probe_bundle(manifest_path: Path) -> tuple[Path, Path]:
+    """Find the one archived receipt/raw-response pair near the capture manifest."""
     checked: set[Path] = set()
     for root in (manifest_path.parent, *list(manifest_path.parents)[:5]):
         root = root.resolve()
         if root in checked or not root.exists():
             continue
         checked.add(root)
-        matches = sorted(path for path in root.rglob("transport_probe.json") if path.is_file())
-        if len(matches) == 1:
-            return matches[0]
-        if len(matches) > 1:
-            raise ValueError(f"ambiguous archived transport probes under {root}: {len(matches)}")
-    raise ValueError("archived transport probe not found near capture manifest")
+        probes = sorted(path for path in root.rglob("transport_probe.json") if path.is_file())
+        responses = sorted(
+            path for path in root.rglob("transport_probe_response.json") if path.is_file()
+        )
+        if len(probes) > 1 or len(responses) > 1:
+            raise ValueError(
+                f"ambiguous archived transport bundle under {root}: "
+                f"receipts={len(probes)} responses={len(responses)}"
+            )
+        if len(probes) == 1 and len(responses) == 1:
+            if probes[0].parent != responses[0].parent:
+                raise ValueError("archived transport receipt and response are not co-located")
+            return probes[0], responses[0]
+    raise ValueError("archived transport receipt/response bundle not found near capture manifest")
 
 
 def resolve_transport_evidence(
@@ -108,26 +150,33 @@ def resolve_transport_evidence(
     manifest: dict[str, Any],
     manifest_path: Path,
     probe_arg: object,
+    response_arg: object = None,
 ) -> dict[str, Any]:
-    """Resolve score-time custody without allowing absent evidence to crash authority.
-
-    Missing or ambiguous archived probe bytes are an invalid transport prerequisite,
-    not an evaluator infrastructure exception.  Preserve the scientific output and
-    force the frozen CANNOT_CHECK terminal through the normal validity path.
-    """
+    """Resolve score-time custody without allowing absent evidence to crash authority."""
     if probe_arg is not None:
-        return transport_evidence_validity(freeze_actual, manifest, Path(probe_arg))
+        probe_path = Path(probe_arg)
+        response_path = (
+            Path(response_arg)
+            if response_arg is not None
+            else probe_path.with_name("transport_probe_response.json")
+        )
+        return transport_evidence_validity(
+            freeze_actual, manifest, probe_path, response_path
+        )
     try:
-        path = discover_transport_probe(manifest_path)
+        probe_path, response_path = discover_transport_probe_bundle(manifest_path)
     except (OSError, ValueError, TypeError) as exc:
         return _invalid_transport_evidence(f"{type(exc).__name__}: {exc}", manifest)
-    return transport_evidence_validity(freeze_actual, manifest, path)
+    return transport_evidence_validity(
+        freeze_actual, manifest, probe_path, response_path
+    )
 
 
 def analyze_v2(**kwargs: Any) -> dict[str, Any]:
     freeze_path = Path(kwargs["freeze_path"])
     manifest_path = Path(kwargs["manifest_path"])
     probe_arg = kwargs.pop("transport_probe_path", None)
+    response_arg = kwargs.pop("transport_probe_response_path", None)
     output_path = Path(kwargs["output_path"])
     freeze_actual = json.loads(freeze_path.read_text(encoding="utf-8"))
     if freeze_actual.get("schema_version") != V2_SCHEMA:
@@ -150,7 +199,7 @@ def analyze_v2(**kwargs: Any) -> dict[str, Any]:
 
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     transport = resolve_transport_evidence(
-        freeze_actual, manifest, manifest_path, probe_arg
+        freeze_actual, manifest, manifest_path, probe_arg, response_arg
     )
     transport_valid = bool(transport["valid"])
     result["schema_version"] = "orion.p2.wide-openaire-matched-result.v2"
@@ -164,6 +213,16 @@ def analyze_v2(**kwargs: Any) -> dict[str, Any]:
         "probe_hash_matches_manifest"
     ]
     result["validity"]["v2_transport_probe_receipt_valid"] = transport["receipt_valid"]
+    result["validity"]["v2_transport_probe_response_sha256"] = manifest.get(
+        "transport_probe_response_sha256"
+    )
+    result["validity"]["v2_transport_probe_response_actual_sha256"] = transport[
+        "actual_response_sha256"
+    ]
+    result["validity"]["v2_transport_probe_response_hash_matches_manifest"] = transport[
+        "response_hash_matches_manifest"
+    ]
+    result["validity"]["v2_transport_probe_response_valid"] = transport["response_valid"]
     result["validity"]["v2_transport_probe_validation_error"] = transport["validation_error"]
     result["all_validity_conditions"] = bool(result["all_validity_conditions"] and transport_valid)
     if not result["all_validity_conditions"]:
@@ -183,6 +242,7 @@ def main() -> int:
     parser.add_argument("--freeze", required=True, type=Path)
     parser.add_argument("--manifest", required=True, type=Path)
     parser.add_argument("--transport-probe", type=Path)
+    parser.add_argument("--transport-probe-response", type=Path)
     parser.add_argument("--baseline-eval", required=True, type=Path)
     parser.add_argument("--orion-eval", required=True, type=Path)
     parser.add_argument("--diagnostic-eval", required=True, type=Path)
@@ -195,6 +255,7 @@ def main() -> int:
         freeze_path=args.freeze,
         manifest_path=args.manifest,
         transport_probe_path=args.transport_probe,
+        transport_probe_response_path=args.transport_probe_response,
         baseline_eval_path=args.baseline_eval,
         orion_eval_path=args.orion_eval,
         diagnostic_eval_path=args.diagnostic_eval,
