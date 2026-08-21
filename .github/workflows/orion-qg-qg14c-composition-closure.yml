@@ -1,0 +1,65 @@
+name: orion-qg-qg14c-composition-closure
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG14C_*'
+      - 'development/orion-qg-regime-geometry/qg14c_*'
+      - 'development/orion-qg-regime-geometry/run_qg14c_dual_harness.py'
+      - 'research/extensions/orion-qg/qg14c_*'
+      - '.github/workflows/orion-qg-qg14c-composition-closure.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg14c-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  qg14c:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      QG14C_BASE: c5ba39fef4f25c46de5fb69bf07f50530f4693ca
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert lineage
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          test "$(git merge-base HEAD "${QG14C_BASE}")" = "${QG14C_BASE}"
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Syntax
+        run: python -m py_compile research/extensions/orion-qg/qg14c_composition_closure.py development/orion-qg-regime-geometry/qg14c_generic_verify.py development/orion-qg-regime-geometry/qg14c_native_verify.py development/orion-qg-regime-geometry/run_qg14c_dual_harness.py
+      - name: Execute
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg14c_dual_harness.py | tee artifacts/orion-qg-qg14c-summary.json
+      - name: Replay
+        run: |
+          set -euo pipefail
+          python research/extensions/orion-qg/qg14c_composition_closure.py --output artifacts/orion-qg-qg14c-composition-replay.json > artifacts/orion-qg-qg14c-replay.log
+          cmp artifacts/orion-qg-qg14c-composition.json artifacts/orion-qg-qg14c-composition-replay.json
+      - name: Gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg14c-composition.json').read_text()); g=json.loads(Path('artifacts/orion-qg-qg14c-generic.json').read_text()); n=json.loads(Path('artifacts/orion-qg-qg14c-native.json').read_text()); d=json.loads(Path('artifacts/orion-qg-qg14c-dual.json').read_text()); t='QG14_SEPARABLE_COMPOSITION_PROVED__HIDDEN_COUPLING_REFUTES_LOCAL_SELECTION__COUPLING_AWARE_SUMMARY_RECOVERS_CONTROL'; assert a['terminal']==t and a['all_gates'] is True; assert g['decision']=='ACCEPT_MIXED_CLOSURE' and g['all_checks'] is True; assert n['decision']=='ACCEPT_MIXED_CLOSURE' and n['all_checks'] is True; assert d['terminal']==t and d['both_accept'] is True
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg14c-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg14c-*.json
+            artifacts/orion-qg-qg14c-*.log
+            .orion-qg-qg14c-generic/.orion-harness/**
+            .orion-qg-qg14c-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error
