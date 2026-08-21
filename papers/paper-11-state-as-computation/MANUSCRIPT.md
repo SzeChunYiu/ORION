@@ -6,32 +6,32 @@
 
 ## Abstract
 
-Reasoning systems are usually compared as if the state presented to the downstream learner were fixed. We study a different resource boundary: **constructing task-relevant state is itself computation**, and that computation can substitute for search performed by the downstream access mechanism. For a query family `F`, we first show that any fixed representation supporting exact linear readout of every query requires dimension at least `rank(F)`. For all size-`s` parity queries on `d` Boolean variables this becomes `binom(d,s)` accessible coordinates, whereas a query-conditioned compiler needs only the coordinates selected by the current query. Frozen controlled experiments produce universal/compiled representation ratios of 91×–1820× and dense-decoder sample-threshold reductions from 4× to more than 32×. A no-answer-laundering construction exposes 5–7 latent components rather than the final label and retains large gains. We then attack the mechanism rather than protect it. A preregistered sparse universal decoder **falsifies** the stronger claim that compilation retains at least a 4× threshold advantage in both hostile cells, recovering part of the search burden and leaving 2× and 4× residual gaps. A fresh deterministically seeded replication reproduces those 2×/4× gaps with +0.291/+0.331 accuracy advantages at `n=64`. A separately frozen nonlinear ExtraTrees attack does not reach 0.95 accuracy through `n=1024` in either cell, while compiled state reaches the target by `n=64`; low-sample gaps are +0.446 and +0.403. Finally, exact workload laws quantify the option debt created when specialized state is retained without raw recoverability. The resulting claim is not that compilation universally dominates representation or inference. It is that **state design determines where structural-search computation is paid**, and this placement can be measured jointly through accessible rank, decoder/sample burden, construction cost, and future optionality.
+Reasoning systems are commonly compared as if the state presented to the downstream learner were a fixed observation. We study a different resource boundary: **constructing task-relevant state is itself computation**, and this computation can substitute for structural search performed downstream. For a query family `F`, any fixed representation supporting exact linear readout of every query requires dimension at least `rank(F)`. For all size-`s` parity queries on `d` Boolean variables this becomes `binom(d,s)` accessible coordinates, whereas a query-conditioned construction needs only the coordinates selected by the current query. Frozen controlled studies produce universal/compiled representation ratios of 91×–1820× and dense-decoder sample-threshold reductions from 4× to more than 32×. A no-answer-laundering construction exposes 5–7 latent components rather than the final label and retains large gains. We then attack the mechanism. A preregistered sparse universal decoder **falsifies** the stronger claim that compilation retains at least a 4× threshold advantage in both hostile cells, recovering part of the search burden and leaving 2× and 4× residual gaps. A fresh deterministically seeded replication reproduces those 2×/4× gaps with +0.291/+0.331 accuracy advantages at `n=64`. An initial nonlinear successor is retained as non-authoritative after review found a protocol mismatch. A separately frozen deterministic single-thread ExtraTrees successor puts replay in the terminal decision path and again fails to reach 0.95 accuracy through `n=1024` in either universal-state cell, while compiled state reaches the target by `n=64`; low-sample gaps are +0.462 and +0.394. Finally, exact workload laws quantify the option debt created when specialized state is retained without raw recoverability. The result is not that compilation universally dominates inference. It is that **state construction determines where structural-search computation is paid**, and this placement can be measured jointly through accessible rank, downstream burden, construction cost, and future optionality.
 
 ## 1. Introduction
 
-A system can possess all information required for a task and still make that information difficult for a bounded learner to use. Computationally usable information formalizes one version of this idea; partial evaluation and knowledge compilation move work upstream; materialized views trade preprocessing and storage for later query cost; current agent systems retrieve, compress, summarize, or restructure context before generation. Recent LLM evidence also shows that state design itself can materially change dynamic reasoning, even when model parameters are fixed.
+A system can possess all information required for a task and still make that information expensive for a bounded learner or reasoner to use. Computationally usable information formalizes one version of this observation. Partial evaluation and knowledge compilation move work upstream. Materialized views trade preprocessing and storage for later query cost. Current agent systems retrieve, compress, summarize, or restructure context before generation. Recent LLM evidence also shows that state design itself can materially change dynamic reasoning while model parameters remain fixed.
 
-Those results make a weak novelty claim untenable. P11 does **not** claim that representation matters, that computation can create usable information, that query-conditioned memory is new, or that compression can reduce downstream cost. The unresolved question is a resource-placement question:
+Those results make several weak novelty claims untenable. P11 does **not** claim that representation matters, that computation can create usable information, that query-conditioned memory is new, or that compression can reduce downstream cost. The unresolved systems question is instead a resource-placement question:
 
-> **When a task-relevant structure can be discovered either while constructing state or later by the decoder/search process, where is the computation paid, how much downstream burden can be removed, and what future optionality is lost by specialization?**
+> **When task-relevant structure can be discovered either while constructing state or later by a decoder/search process, where is the computation paid, how much downstream burden can be removed, and what future optionality is lost by specialization?**
 
-We call this view *state as computation*. A compiler `C(R,q)` receives raw state `R` and a current query `q`, constructs a task-facing state, and hands that state to a bounded downstream mechanism. Compilation is never free: compiler operations, state bytes, training cost, cache/recovery cost, downstream samples or search, verifier/tool calls, latency and—when reproducibly measurable—energy belong to one resource receipt.
+We call this view *state as computation*. A compiler `C(R,q)` receives raw state `R` and the current query `q`, constructs a task-facing state, and hands it to a bounded downstream access mechanism. Compilation is never free: compiler operations, state bytes, training cost, cache/recovery cost, downstream samples or search, verifier/tool calls, latency and—where reproducibly measurable—energy belong to one resource receipt.
 
 The paper makes four contributions.
 
-1. **Accessible-rank theory.** For a fixed linear-access class, query-family rank gives an exact lower bound on the dimension required to support every query. This separates information presence from accessibility under a declared decoder class.
-2. **Controlled compilation gaps.** Frozen parity-query studies show large accessible-dimension and sample-threshold differences, including a construction that forbids the compiler from outputting the final answer.
-3. **Hostile decoder substitution.** A sparse universal decoder recovers part of the compilation advantage, falsifying an intentionally stronger gate; a fresh deterministic replication retains a smaller 2×/4× residual, and a prospectively bounded nonlinear tree ensemble leaves a larger low-sample residual. This identifies decoder inductive bias as a substitute for upstream compilation rather than an inconvenient alternative explanation.
+1. **Accessible-rank theory.** For a fixed linear-access class, query-family rank gives an exact lower bound on the dimension required to support every query. This separates information presence from accessibility under a declared decoder family.
+2. **Controlled compilation gaps.** Frozen parity-query studies show large accessible-dimension and sample-threshold differences, including a construction that prevents the compiler from outputting the final answer.
+3. **Hostile decoder substitution.** A sparse universal decoder recovers part of the compilation advantage and falsifies an intentionally stronger gate. A fresh deterministic replication retains a smaller 2×/4× residual. A separately frozen, replay-gated deterministic tree ensemble retains a larger low-sample residual. These attacks identify decoder inductive bias as a substitute for upstream compilation rather than an inconvenient alternative explanation.
 4. **Future-optionality law.** Exact workload equations show when specialization creates future-query debt and when caching, raw recovery, or universal materialization becomes preferable.
 
-The strongest conclusion is therefore mechanistic rather than universal: **representation construction and downstream access are two loci at which the same structural-search burden can be paid**.
+The strongest conclusion is mechanistic rather than universal: **representation construction and downstream access are two loci at which structural-search work can be paid**.
 
 ## 2. Donor boundary and novelty residual
 
 ### 2.1 Prior-owned primitives
 
-Predictive `V`-information already establishes that computational constraints change what information is usable and that computation can create usable information. Classical partial evaluation specializes programs to known inputs. Knowledge compilation and database materialization move computation upstream for later reuse. Feature selection and sparse models search for relevant coordinates inside a larger representation. Query-conditioned memory and retrieval systems condition state on the current task. Long-horizon context-compression systems explicitly optimize the memory/performance trade-off. Wong et al. show directly that state representation and the act of construction can change LLM reasoning.
+Predictive `V`-information already establishes that computational constraints change what information is usable and that computation can transform unusable information into usable information. Classical partial evaluation specializes programs to known inputs. Knowledge compilation and database materialization move computation upstream for later reuse. Feature selection and sparse models search for relevant coordinates inside a larger representation. Query-conditioned memory and retrieval systems condition state on the current task. Long-horizon context-compression systems explicitly optimize memory/performance trade-offs. Wong et al. provide direct current evidence that state representation and the act of construction can change LLM reasoning.
 
 P11 therefore subtracts all of those primitives from its novelty claim.
 
@@ -41,7 +41,7 @@ The residual is a **joint placement account**:
 
 `raw state -> construction work -> task-facing state -> decoder/search work -> verified outcome`
 
-with future reuse appended as a second horizon:
+with a future horizon:
 
 `task-facing state + raw/cache policy -> future query service or option debt`.
 
@@ -55,41 +55,37 @@ Let `X` be a domain with distribution `mu`, and let `F={f_1,...,f_N}` be query f
 
 almost surely.
 
-A query-conditioned compiler instead sees `(x,q)` and emits `C(x,q)` before a downstream mechanism acts. The scientific comparison is meaningful only under an explicit access class and resource boundary.
+A query-conditioned compiler instead sees `(x,q)` and emits `C(x,q)` before a downstream mechanism acts. The comparison is meaningful only under an explicit access class and resource boundary.
 
-### Theorem 1 — query-family accessible-rank bound
+### 3.1 Theorem 1 — query-family accessible-rank bound
 
 If `span(F)` has dimension `r`, every fixed representation supporting exact linear readout of all queries has `m >= r`.
 
 **Proof.** Every `f_q` lies in the span of the `m` coordinate functions of `phi`. That span has dimension at most `m` and must contain the `r`-dimensional span of `F`; hence `m>=r`. □
 
-The theorem is elementary linear algebra. The contribution is its role as a resource boundary, not mathematical novelty.
+The theorem is elementary linear algebra. The contribution is its role as a systems resource boundary, not mathematical novelty.
 
-### Approximate orthonormal frontier
+### 3.2 Approximate orthonormal frontier
 
 For orthonormal `f_1,...,f_N` and any `m`-dimensional linearly accessible subspace `U`, Bessel's inequality gives
 
 `(1/N) sum_q ||f_q - P_U f_q||_2^2 >= 1 - m/N`.
 
-This is an access-class statement; it is not a lower bound on an unrestricted nonlinear decoder.
+This is an access-class statement. It is not a lower bound on an unrestricted nonlinear decoder.
 
-### Parity corollary
+### 3.3 Parity corollary
 
 For `X={-1,+1}^d` under the uniform measure and all size-`s` subsets `S`, define
 
 `f_S(x)=product_{i in S} x_i`.
 
-Distinct parity characters are orthogonal. A fixed exact linear-accessible representation supporting all size-`s` queries therefore requires at least
+Distinct parity characters are orthogonal. A fixed exact linear-accessible representation supporting all size-`s` queries therefore requires at least `binom(d,s)` coordinates. A query-conditioned construction need expose only the selected query structure. This establishes an exact **accessible-representation** gap, not a total-time lower bound.
 
-`binom(d,s)`
+## 4. Dense controlled studies
 
-coordinates. A query-conditioned construction need expose only the selected query structure. This establishes an exact **accessible-representation** gap, not a total-time lower bound.
+### 4.1 P11 confirmatory study
 
-## 4. Controlled studies
-
-### 4.1 P11 dense universal-state study
-
-The confirmatory study compares raw linear input, a fixed universal parity bank, and query-conditioned compiled state over a frozen train-size grid. The registered cells give:
+The confirmatory experiment compares raw linear input, a fixed universal parity bank, and query-conditioned compiled state over a frozen train-size grid.
 
 | `d` | `s` | universal dims | compiled dims | universal/compiled | compiled `n` at 0.90 | universal `n` at 0.90 |
 |---:|---:|---:|---:|---:|---:|---:|
@@ -117,9 +113,9 @@ No compiled component equals or negates the final label. The high-dimensional ce
 
 ## 5. Hostile decoder substitution
 
-The central alternative explanation is straightforward: perhaps the universal representation is penalized only because the downstream decoder has the wrong inductive bias. If so, stronger decoder-side search should buy back the compilation advantage. P11 treats that prediction as a mechanism test.
+The central alternative explanation is direct: perhaps the universal representation is penalized only because the downstream decoder has the wrong inductive bias. If so, stronger decoder-side search should buy back the compilation advantage. P11 treats that prediction as a mechanism test.
 
-### 5.1 P11D sparse decoder — a permanent negative
+### 5.1 P11D sparse decoder — permanent negative
 
 P11D preregistered a strong hostile gate: an L1 sparse universal decoder should still leave at least a 4× sample-threshold advantage for compiled state in **both** high-dimensional cells. It did not.
 
@@ -128,7 +124,7 @@ P11D preregistered a strong hostile gate: an L1 sparse universal decoder should 
 | (17,4,5) | 2380 | 5 | 128 | 64 | 2× | +0.2903 |
 | (19,3,7) | 969 | 7 | 256 | 64 | 4× | +0.3840 |
 
-The preregistered terminal is therefore `P11D_SPARSE_DECODER_GAP_NOT_MET` and remains permanently negative. This result matters scientifically: sparse decoder-side feature discovery is a **substitute** for upstream state construction.
+The preregistered terminal is `P11D_SPARSE_DECODER_GAP_NOT_MET` and remains permanently negative. This result matters scientifically: sparse decoder-side feature discovery is a **substitute** for upstream state construction.
 
 P11D also revealed a reproducibility defect. The scientific summary repeated, but the full JSON hashes differed because the sparse `liblinear` solver lacked an explicit random seed. That defect is not hidden or retrospectively edited.
 
@@ -149,31 +145,38 @@ Two fresh executions produce the same canonical SHA-256:
 
 P11E does not relabel P11D. It establishes that the smaller residual exposed by the failed hostile gate independently replicates.
 
-### 5.3 P11F tractable nonlinear tree attack
+### 5.3 P11C and P11F — non-authoritative nonlinear history
 
-The original P11C ExtraTrees attack was too large for the available execution window and emitted no authoritative terminal. It remains `CANNOT_CHECK`. P11F is a new prospectively bounded successor: 96 ExtraTrees estimators with frozen seeds, three queries per cell, train sizes through 1024, and the same no-answer-laundering construction.
+The original P11C ExtraTrees attack was too large for the available execution window and emitted no authoritative terminal; it remains `CANNOT_CHECK`.
 
-| cell | tree universal `n` at 0.95 | compiled `n` at 0.95 | tree accuracy at `n=1024` | compiled - tree at `n=64` |
+P11F then froze a tractable 96-tree successor and produced a positive numerical separation, but hostile PR review found a protocol-conformance defect: the runner set `n_jobs=-1` although the written protocol specified the registered configuration with otherwise sklearn defaults. Parallel execution did not change the two observed bytes in that run, but exact protocol conformance is a prerequisite for claim authority. P11F is therefore retained as diagnostic history and is **not** used as the primary nonlinear result.
+
+### 5.4 P11G — replay-gated deterministic nonlinear successor
+
+P11G was frozen after the P11F review finding on a fresh seed (`2026082120`). It retains the 96-tree ExtraTrees resource envelope but explicitly sets `n_jobs=1`, pins every estimator random state, and makes replay part of the terminal itself: the authoritative executable launches two fresh Python subprocesses, re-runs the complete scientific pipeline twice, compares the canonical scientific bytes, and refuses a positive terminal unless both executions match and all scientific gates pass.
+
+| cell | deterministic tree universal `n` at 0.95 | compiled `n` at 0.95 | tree accuracy at `n=1024` | compiled - tree at `n=64` |
 |---|---:|---:|---:|---:|
-| (17,4,5) | `NOT_REACHED` | 64 | 0.8194 | +0.4460 |
-| (19,3,7) | `NOT_REACHED` | 64 | 0.7703 | +0.4029 |
+| (17,4,5) | `NOT_REACHED` | 64 | 0.8248 | +0.4624 |
+| (19,3,7) | `NOT_REACHED` | 64 | 0.7828 | +0.3942 |
 
-The terminal is `P11F_TREE_DECODER_GAP_SUPPORTED`. Two executions are byte-identical with canonical SHA-256
+The terminal is `P11G_DETERMINISTIC_TREE_DECODER_GAP_SUPPORTED`. Both fresh-subprocess scientific payloads have SHA-256
 
-`aedb2aa0cc31ddb1b5395dfebc439bc26288b455deab8c4abb12a18ff9fd7dee`.
+`a2b0c33ce3c39e54ca1aa400a2b7d52d019fc4503f6cd5eb726c7b8bbe79a7cc`.
 
-This is not a nonlinear lower bound. It is a hostile finite-system result showing that one frozen nonlinear universal-state decoder still pays substantial discovery cost under the registered resource envelope.
+This is still not a nonlinear lower bound. It is a hostile finite-system result showing that one deterministic nonlinear universal-state decoder continues to pay substantial discovery cost under the registered resource envelope.
 
 ## 6. What the decoder attacks identify
 
-The three decoder regimes reveal a pattern that a dense-only experiment could not establish.
+The decoder sequence reveals a pattern that a dense-only comparison could not establish.
 
 - Dense universal access pays the largest discovery cost.
 - Sparse universal access recovers part of that cost and falsifies an intentionally stronger residual claim.
 - Fresh deterministic sparse replication retains a smaller 2×/4× threshold separation.
-- A separately bounded nonlinear tree ensemble does not close the high-dimensional low-sample gap.
+- A deterministic nonlinear tree ensemble does not close the high-dimensional low-sample gap under its frozen envelope.
+- Protocol mismatches are not treated as scientific victories: P11F is demoted and P11G is independently frozen.
 
-This supports the interpretation that **compilation and decoder inductive bias are alternative locations for structural search**. If the downstream mechanism already knows how to identify the relevant coordinates cheaply, upstream compilation should matter less. If it does not, state construction can externalize that work.
+This supports the interpretation that **compilation and decoder inductive bias are alternative locations for structural search**. If the downstream mechanism already identifies relevant coordinates cheaply, upstream compilation should matter less. If it does not, state construction can externalize that work.
 
 ## 7. Future optionality
 
@@ -217,51 +220,61 @@ Any comparison that treats representation construction as free is invalid. The P
 
 Learned-compiler training cost must be reported separately and amortized only under a prospectively stated reuse horizon. Unless a real application supplies exchange rates, results should be presented as Pareto surfaces rather than collapsed into a post-hoc scalar cost.
 
-## 9. Related work
+## 9. Methods and reproducibility
 
-Predictive `V`-information provides the closest information-theoretic parent by making usable information relative to a computational family. Partial evaluation and knowledge compilation provide the closest upstream-computation parents. Materialized views and multi-query optimization provide the clearest reuse/crossover analogues. Modern query-conditioned memory, retrieval and context-compression systems demonstrate practical task-conditioned state construction. Wong et al. provide direct current evidence that state design changes dynamic LLM reasoning. P11's residual is not any of these primitives in isolation; it is the experimentally attacked relation between **where structure is exposed, how much discovery work remains downstream, what that exposure costs, and what future options it destroys or preserves**.
+The paper's controlled experiments use prospectively frozen seeds, cell grids, train-size grids, thresholds and hostile checks. Thresholds are observed first grid points and are never extrapolated beyond the registered maximum; `NOT_REACHED` is retained literally. The exact theorems and workload equations require no statistical inference.
 
-## 10. Limitations and falsifiers
+The evidence history is intentionally append-only in scientific meaning:
+
+1. P11/P11B establish dense and no-answer-laundering controlled gaps.
+2. P11D fails its stronger sparse-decoder gate.
+3. P11E independently reproduces the surviving sparse residual with deterministic estimator seeds.
+4. P11C remains `CANNOT_CHECK` after non-termination.
+5. P11F produces diagnostic nonlinear evidence but loses authority after a protocol-conformance review finding.
+6. P11G is frozen independently and makes two-fresh-subprocess replay a hard terminal gate.
+
+The authoritative P11E payload SHA is `1097d94bef1132d4dfa5d01176a9fcfcfebc46de8113e7cb2e57da1e579a4536`. The authoritative P11G scientific replay SHA is `a2b0c33ce3c39e54ca1aa400a2b7d52d019fc4503f6cd5eb726c7b8bbe79a7cc`.
+
+## 10. Related work
+
+Predictive `V`-information provides the closest information-theoretic parent by making usable information relative to a computational family. Partial evaluation and knowledge compilation provide the closest upstream-computation parents. Materialized views and multi-query optimization provide clear reuse/crossover analogues. Modern query-conditioned memory, retrieval and context-compression systems demonstrate practical task-conditioned state construction. Wong et al. provide direct current evidence that state design changes dynamic LLM reasoning. Sparse estimators and nonlinear ensembles provide natural downstream substitutes by searching over universal features.
+
+P11's residual is not any of those primitives in isolation. It is the experimentally attacked relation between **where structure is exposed, how much discovery work remains downstream, what that exposure costs, and what future options it destroys or preserves**.
+
+## 11. Limitations and falsifiers
 
 1. The exact theorem is restricted to a declared linear-access class; it is not an unrestricted representation or time lower bound.
 2. Parity families are deliberately controlled and expose exact rank. They are not evidence that the same numerical separations hold in language-model state.
 3. P11D proves that stronger decoder bias can materially reduce the compilation advantage. Any general theory must predict this substitution rather than ignore it.
-4. P11F tests one finite nonlinear ensemble under a frozen resource envelope; other nonlinear decoders may behave differently.
+4. P11G tests one finite nonlinear ensemble under a frozen resource envelope; other nonlinear decoders may behave differently.
 5. The current compiler is oracle/query-structured rather than a learned non-oracle compiler.
 6. Controlled operation counts do not substitute for end-to-end compiler/model latency, memory traffic, training cost or energy in real systems.
 7. Future-query option laws assume the declared workload model. Drift, semantic invalidation and correlated responsibilities require separate modelling.
-8. A broad real-system superiority claim requires at least one matched same-information LLM/procedural setting and one formal/search or long-horizon memory setting.
+8. A broad real-system superiority claim requires matched same-information experiments in at least one LLM/procedural setting and one formal/search or long-horizon memory setting.
 
 These are promotion gates, not reasons to weaken the controlled claim already established.
 
-## 11. Reproducibility
-
-The paper package retains the full sequence rather than only successful endpoints:
-
-- P11/P11B frozen dense and no-answer-laundering protocols and receipts;
-- P11C non-terminating nonlinear attack as `CANNOT_CHECK`;
-- P11D permanent sparse-decoder negative and its unseeded-solver root cause;
-- P11E fresh seeded sparse replication and canonical hash;
-- P11F fresh bounded nonlinear attack and canonical hash;
-- exact optionality theorem and deterministic workload receipt.
-
-The authoritative P11E canonical hash is `1097d94bef1132d4dfa5d01176a9fcfcfebc46de8113e7cb2e57da1e579a4536`. The authoritative P11F canonical hash is `aedb2aa0cc31ddb1b5395dfebc439bc26288b455deab8c4abb12a18ff9fd7dee`.
-
 ## 12. Discussion
 
-The experiments change the interpretation of task-conditioned state construction. The strongest story is not that a compiler creates magic information or universally beats a universal representation. The decisive variable is **who performs structural search**.
+The experiments change the interpretation of task-conditioned state construction. The strongest story is not that a compiler creates information or universally beats a universal representation. The decisive variable is **who performs structural search**.
 
-A query-conditioned compiler performs some search before the downstream learner sees the state. A dense decoder leaves almost all of that burden downstream; a sparse decoder has a mechanism for finding relevant coordinates and therefore reduces the gap; a finite nonlinear tree ensemble provides another search mechanism but remains inefficient in the registered high-dimensional low-sample regime. The adverse sparse result is therefore part of the causal evidence: it identifies an axis along which the state advantage should shrink.
+A query-conditioned compiler performs some search before the downstream learner sees the state. A dense decoder leaves almost all of that burden downstream; a sparse decoder has a mechanism for finding relevant coordinates and therefore reduces the gap; a deterministic finite tree ensemble provides another search mechanism but remains inefficient in the registered high-dimensional low-sample regime. The adverse sparse result is therefore part of the causal evidence: it identifies an axis along which the state advantage should shrink.
 
 This view also connects current accuracy to future flexibility. Aggressive specialization can make one task cheap while destroying immediate support for future tasks. Retaining raw state, caching compilations, or materializing a wider state are not afterthoughts; they are different allocations of computation and memory across time.
 
+The protocol-correction history matters for the same reason. A research programme about computational placement should not treat its own verification work as free or optional. P11F's numerical result is scientifically interesting but does not carry claim authority because the implementation missed a frozen execution detail. P11G shows that the residual survives when the implementation and replay contract are made exact.
+
 ## 13. Conclusion
 
-P11 establishes a controlled theory/systems result about computational placement. Fixed linear-accessible state must scale with query-family rank; task-conditioned construction can expose a much smaller task-facing state; dense-decoder experiments show large sample gains; a hostile sparse decoder buys part of the gain back but leaves a reproducible 2×/4× residual; and a frozen nonlinear tree ensemble does not close the high-dimensional gap under its registered budget. Exact workload laws quantify the future-query cost of specialization.
+P11 establishes a controlled theory/systems result about computational placement. Fixed linear-accessible state must scale with query-family rank; task-conditioned construction can expose a much smaller task-facing state; dense-decoder experiments show large sample gains; a hostile sparse decoder buys part of the gain back but leaves a reproducible 2×/4× residual; and a replay-gated deterministic nonlinear tree ensemble does not close the high-dimensional gap under its registered budget. Exact workload laws quantify the future-query cost of specialization.
 
-The resulting principle is deliberately stronger than “representation matters” and more precise than “compression helps”:
+The resulting principle is stronger than “representation matters” and more precise than “compression helps”:
 
-> **State construction, decoder search, and future recoverability are coupled resource choices. Moving structure into state can reduce downstream discovery work, but the benefit shrinks as the downstream access mechanism becomes better at discovering that structure, and the specialization creates option debt unless recoverability is retained.**
+> **State construction, decoder search, and future recoverability are coupled resource choices. Moving structure into state can reduce downstream discovery work, but the benefit shrinks as the downstream access mechanism becomes better at discovering that structure, and specialization creates option debt unless recoverability is retained.**
+
+## Data and code availability
+
+All protocols, runners, result receipts, negative dispositions, correction artifacts and claim ledgers used for the controlled result are versioned in `papers/paper-11-state-as-computation/` and the linked ORION frontier evidence tree. The paper intentionally retains failed and non-authoritative runs alongside authoritative successors.
 
 ## References
 
@@ -274,4 +287,4 @@ The resulting principle is deliberately stronger than “representation matters�
 
 ## Claim boundary
 
-This manuscript supports a controlled theory/systems superiority result over the registered dense, sparse and nonlinear decoder baselines. It does not claim a universal nonlinear lower bound, a transformer scaling law, free preprocessing, or real-agent superiority. Those stronger claims remain prospective and must be earned under matched end-to-end resource accounting.
+This manuscript supports a controlled theory/systems superiority result over the registered dense, sparse and deterministic nonlinear decoder baselines. It does not claim a universal nonlinear lower bound, a transformer scaling law, free preprocessing, or real-agent superiority. Those stronger claims remain prospective and must be earned under matched end-to-end resource accounting.
