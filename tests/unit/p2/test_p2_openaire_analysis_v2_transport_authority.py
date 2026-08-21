@@ -31,6 +31,7 @@ def _freeze() -> dict:
             "pre_benchmark_probe_required": True,
             "probe_gold_access": "NONE",
             "probe_dois": ["10.5281/zenodo.8217359", "10.1038/s41586-023-06221-2"],
+            "probe_min_result_count": 1,
         }
     }
 
@@ -92,6 +93,19 @@ def test_score_time_transport_evidence_refuses_manifest_only_authority(tmp_path:
     assert validity["valid"] is False
     assert validity["receipt_valid"] is True
     assert validity["probe_hash_matches_manifest"] is False
+
+
+def test_zero_yield_probe_is_invalid_at_score_time(tmp_path: Path) -> None:
+    path = tmp_path / "transport_probe.json"
+    _write_probe(path)
+    receipt = json.loads(path.read_text())
+    receipt["result_count"] = 0
+    path.write_text(json.dumps(receipt, sort_keys=True) + "\n", encoding="utf-8")
+    manifest = _manifest(path)
+    validity = analyzer.transport_evidence_validity(_freeze(), manifest, path)
+    assert validity["valid"] is False
+    assert validity["receipt_valid"] is False
+    assert "minimum identity yield" in str(validity["validation_error"])
 
 
 def test_missing_archived_probe_is_invalid_evidence_not_exception(tmp_path: Path) -> None:
