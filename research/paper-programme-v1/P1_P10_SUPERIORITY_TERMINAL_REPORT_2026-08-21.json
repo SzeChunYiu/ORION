@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "1c5861127b1446e8eb27d092eca424e96efa082d8d44711981380762100cc75e",
+  "content_digest": "3f623d83004e939b09be27fabfc8fe84c3609824174f86f221400384e563a3f9",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -938,9 +938,14 @@
           "artifact_ref": "research/claim_expansion/p8/P8_X4_SCIENCE_TERMINAL_V1.md",
           "grade": "MECHANISM_NON_VACUITY",
           "terminal": "P8_CROSS_DOMAIN_SCIENTIFIC_AUTHORITY_COMPOSITION_SUPPORTED__13_DONOR_FORMAL_ENVELOPE__IDEAL_PRODUCT_EQUIVALENT"
+        },
+        {
+          "artifact_ref": "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21.json",
+          "grade": "MECHANIZED_THEOREM",
+          "terminal": "GENERAL_THEOREMS_DISCHARGED_FOR_THE_FORMAL_CORE_ONLY"
         }
       ],
-      "strongest_grade": "MECHANISM_NON_VACUITY",
+      "strongest_grade": "MECHANIZED_THEOREM",
       "terminal": "CANNOT_CHECK",
       "unclassified_blocked_gate_ids": [],
       "work_queue": [
@@ -972,8 +977,8 @@
             "research/claim_expansion/p8/P8_X4_AUTHORITY_LIFTING_RESULT_V1.json"
           ],
           "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "The 169/169 valid compositions with 169 matched unbridged-widening failures are a finite instance over 13 donor types, not a theorem over arbitrary delegation graphs.",
-          "unblock": "Define primitive scientific authority and discharge semantics independent of the 13 donor types, then prove non-amplification for arbitrary acyclic graphs and characterize cycles."
+          "statement": "A general composition and revocation theorem now exists for P8's formal core and is machine-checked over uninterpreted sorts, so it is not a finite instance (P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21). What is still absent is the link from that core to the 13-donor composition model whose 169/169 valid chains this terminal names: the theorems govern the authorisation rule, not the donor-type semantics, and no proof connects the two.",
+          "unblock": "Two steps remain, both formal. Define the 13 donor types as an interpretation of the proved primitives -- each donor's discharge semantics as a conversion relation and an obligation set over the same signature -- and prove that interpretation sound, so the donor model becomes a model of the calculus rather than a parallel construction. Then P8-U-T2's instance derivation follows from the same interpretation. Two known limits travel with the artifact and should not be lost: reachability is axiomatised as a reflexive-transitive closure with a well-founded rank because transitive closure is not first-order definable, and the chain theorem's induction schema is the single hand step, with the step itself machine-checked and the expanded form discharged separately at every length up to eight."
         },
         {
           "actionability": "BLOCKED_ON_PROOF",
@@ -1800,8 +1805,8 @@
         "research/claim_expansion/p8/P8_X4_AUTHORITY_LIFTING_RESULT_V1.json"
       ],
       "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "The 169/169 valid compositions with 169 matched unbridged-widening failures are a finite instance over 13 donor types, not a theorem over arbitrary delegation graphs.",
-      "unblock": "Define primitive scientific authority and discharge semantics independent of the 13 donor types, then prove non-amplification for arbitrary acyclic graphs and characterize cycles."
+      "statement": "A general composition and revocation theorem now exists for P8's formal core and is machine-checked over uninterpreted sorts, so it is not a finite instance (P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21). What is still absent is the link from that core to the 13-donor composition model whose 169/169 valid chains this terminal names: the theorems govern the authorisation rule, not the donor-type semantics, and no proof connects the two.",
+      "unblock": "Two steps remain, both formal. Define the 13 donor types as an interpretation of the proved primitives -- each donor's discharge semantics as a conversion relation and an obligation set over the same signature -- and prove that interpretation sound, so the donor model becomes a model of the calculus rather than a parallel construction. Then P8-U-T2's instance derivation follows from the same interpretation. Two known limits travel with the artifact and should not be lost: reachability is axiomatised as a reflexive-transitive closure with a well-founded rank because transitive closure is not first-order definable, and the chain theorem's induction schema is the single hand step, with the step itself machine-checked and the expanded form discharged separately at every length up to eight."
     },
     {
       "actionability": "BLOCKED_ON_PROOF",
