@@ -21,8 +21,24 @@ Authority: development record only; no lane receipt grants scientific/novelty au
   n=3 DP == brute == cap-2 == cap-1 (no trade realized — the objective lacks a factor
   rule, evidence that factoring powers the compression trade); 120/120 descents with
   exact predicted-vs-observed deltas. Open: tightness of 5.
-- [SLOT] **QG-2 objective robustness** (`QG2_OBJECTIVE_ROBUSTNESS_RESULTS.json`): per
-  objective — trades alive/dead/new, chemistry verdicts, predicate transfer.
+- **QG-2 objective robustness — MIXED: THE GEOMETRY IS A PROPERTY OF THE
+  (FAMILY, OBJECTIVE) PAIR** (`QG2_OBJECTIVE_ROBUSTNESS_RESULTS.json`;
+  `ORIONQ_QG2_OBJECTIVE_ROBUSTNESS_MIXED__FROZEN_REWEIGHTED_OBJECTIVES__NOT_R6`; the O0
+  baseline control reproduces the R6Q counts and all hostile gates pass). Under the
+  frozen coefficient-weighted objective O1 (t_c=1, t_nc=7, t_r=3, t_Tag=4): chemistry
+  loses donor-exactness entirely (0/30), the two-trade completeness identity fails on
+  4,484 structured instances, 7,752 membership transitions are witnessed verbatim
+  (6,014 DONOR_EXACT→BORROW, 1,738 SPLIT→BORROW), and two new trade classes appear —
+  including NEW_SUPPORT3, where a support-3 factorization strictly beats every
+  support-≤2 one (C_DP=11 < C_D++=13 < C_D+=23; 53 support-2 closure failures), so the
+  R6S sufficiency bound is *objective-scoped*, not universal. No predicate in the frozen
+  literal family is exact under O1 (baseline P1: 327 errors, all false-positive; best
+  re-induced form still 273 false negatives) — predicate verdict OBJECTIVE_SPECIFIC.
+  Under the rotation-count-coupled O2 (ρ=5): exactly invariant within the family by a
+  machine-checked constant-shift lemma (every member carries exactly 9 rotations, so O2
+  = O0 + 45), and the cross-family comparator re-pricing changes zero H4/N2 deltas —
+  GEOMETRY_ROBUST. Field reading: regime maps must be indexed by objective; the
+  support-2 world is the unit-cost objective's.
 - **QG-3 boundary prospective — POSITIVE_REGIME_PREDICTIONS_CONFIRMED**
   (`QG3_BOUNDARY_PROSPECTIVE_RESULTS.json`;
   `ORIONQG_QG3_BOUNDARY_PROSPECTIVE_POSITIVE_REGIME_PREDICTIONS_CONFIRMED__SPLIT_AND_
@@ -47,13 +63,18 @@ Authority: development record only; no lane receipt grants scientific/novelty au
   independent instances; "boundary-is-low-order" is a candidate transferable principle;
   the field's visible frontier is families without exact finite referees.
 - **QG-5 certified forecast — IDENTITY REFUTED ON A NEW INSTANCE** (a discovery;
-  `QG5_CERTIFIED_FORECAST_RESULTS.json`,
+  `QG5_CERTIFIED_FORECAST_RESULTS.json`, replay-verified: double-run canonical stdout
+  byte-identical, receipt identical minus the non-canonical timing section;
   `QG5_FORECAST_IDENTITY_REFUTED__BOUNDARY_INSTANCES_REPORTED_VERBATIM__NOT_R6`):
   the three-family forecast min(C_R6L, C_D+, f_B) matched the unrestricted DP on
   9,261/9,261 exhaustive structured-n2 instances, all receipted chemistry rows, and
   239/240 of a fresh seeded panel — but one n=3 instance (serialized verbatim) has
-  C_DP = 10 < 11 = all three family values. Localization: the frozen borrow-family
-  closed form f_B under-parametrizes the weight-2 trade at n=3; the two-trade
+  C_DP = 10 < 11 = all three family values. Localization (independently confirmed by the
+  witnessed exact referee): the optimum uses a support-2 frame whose borrow home qubit
+  lies *outside* the block's own target support — precisely the restriction the frozen
+  B(t) family imposed — so this is a third elementary trade configuration, and
+  simultaneously the first false positive for the R6Q predicate P1. The frozen
+  borrow-family closed form f_B under-parametrizes the weight-2 trade at n=3; the two-trade
   *characterization* stands on the exhaustive n≤2 domains, while its closed-form
   completeness fails at higher n. Repair path known by theorem: R6S guarantees
   DP == D++ for all n, so a forecaster minimizing over the full support-≤2 family is
