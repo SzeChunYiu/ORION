@@ -23,7 +23,9 @@ PAPER = HERE.parent
 DEFAULT_FREEZE = PAPER / "protocol" / "P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json"
 DEFAULT_IDENTITY_RECEIPT = PAPER / "evidence" / "external_results" / "P2_OPENAIRE_IDENTITY_PROBE_V1.json"
 EXPECTED_SCHEMA = "orion.p2.wide-openaire-matched-freeze.v2"
+PROBE_SCHEMA = "orion.p2.openaire-repeated-pid-transport-probe.v1"
 PROBE_TERMINAL = "OPENAIRE_REPEATED_PID_TRANSPORT_VALID"
+TRANSPORT_PROBE_PAGE_SIZE = 10
 
 
 def _load_module(name: str, path: Path):
@@ -47,6 +49,16 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _is_sha256_hex(value: Any) -> bool:
+    if not isinstance(value, str) or len(value) != 64:
+        return False
+    try:
+        int(value, 16)
+    except ValueError:
+        return False
+    return value == value.lower()
+
+
 def build_openaire_crosswalk_url(dois: Iterable[str], *, page_size: int) -> str:
     """Encode OR semantics as repeated pid parameters, not an expression parser input."""
     normalized = [v1.normalize_doi(doi) for doi in dois]
@@ -60,17 +72,35 @@ def build_openaire_crosswalk_url(dois: Iterable[str], *, page_size: int) -> str:
 
 def validate_transport_probe(path: Path, freeze: dict[str, Any]) -> dict[str, Any]:
     probe = json.loads(path.read_text(encoding="utf-8"))
+    transport = freeze["transport_repair_evidence"]
+    if transport.get("pre_benchmark_probe_required") is not True:
+        raise ValueError("V2 freeze does not require a pre-benchmark transport probe")
+    if transport.get("probe_gold_access") != "NONE":
+        raise ValueError("V2 freeze does not forbid benchmark-gold access in the transport probe")
+    if probe.get("schema_version") != PROBE_SCHEMA:
+        raise ValueError("V2 transport probe schema mismatch")
     if probe.get("terminal") != PROBE_TERMINAL:
         raise ValueError("V2 transport probe did not reach the required terminal")
     if int(probe.get("http_status", 0)) != 200:
         raise ValueError("V2 transport probe did not return HTTP 200")
     if probe.get("encoding") != "repeated_pid_parameters":
         raise ValueError("V2 transport probe encoding mismatch")
-    expected = list(freeze["transport_repair_evidence"]["probe_dois"])
+    expected = list(transport["probe_dois"])
     if list(probe.get("dois", [])) != expected:
         raise ValueError("V2 transport probe DOI set drifted from freeze")
-    if not probe.get("response_sha256"):
-        raise ValueError("V2 transport probe missing response hash")
+    expected_url = build_openaire_crosswalk_url(expected, page_size=TRANSPORT_PROBE_PAGE_SIZE)
+    expected_url_sha256 = hashlib.sha256(expected_url.encode()).hexdigest()
+    if probe.get("url_sha256") != expected_url_sha256:
+        raise ValueError("V2 transport probe URL digest does not bind the canonical repeated-pid request")
+    if not _is_sha256_hex(probe.get("response_sha256")):
+        raise ValueError("V2 transport probe response hash is not canonical SHA-256 hex")
+    if probe.get("benchmark_gold_accessed") is not False:
+        raise ValueError("V2 transport probe must explicitly attest that benchmark gold was not accessed")
+    if probe.get("promotion_authorized") is not False:
+        raise ValueError("V2 transport probe cannot grant scientific promotion authority")
+    result_count = probe.get("result_count")
+    if type(result_count) is not int or result_count < 0:
+        raise ValueError("V2 transport probe result count is invalid")
     return probe
 
 
