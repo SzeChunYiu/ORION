@@ -36,10 +36,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install ORION and research harness
+      - name: Install ORION, production R6I dependencies, and research harness
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -e '.[dev]'
+          python -m pip install -e '.[dev,candidates]'
           python -m pip install -e 'packages/orion-research-harness[dev]'
       - name: Validate native QG-1 admission controller
         run: |
@@ -76,6 +76,10 @@ jobs:
               'QG1_MACHINE_THEOREM_REJECTED',
           }
           assert dual['terminal'] in allowed_dual
+          assert theorem['schema'] == 'ORION.QG.QG1.Support5Theorem.v2'
+          assert theorem['production_algebra_binding']['exact'] is True
+          assert theorem['production_algebra_binding']['mismatches'] == []
+          assert theorem['production_algebra_binding']['subject_loaders_called'] is False
           assert theorem['chemistry_sources_read'] is False
           assert dual['chemistry_sources_read'] is False
           assert theorem['novelty_authority'] is False
