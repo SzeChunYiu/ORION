@@ -1,0 +1,75 @@
+name: orion-qg-qg7d-padding-ablation
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG7D_PADDING_*'
+      - 'development/orion-qg-regime-geometry/qg7d_padding_*'
+      - 'development/orion-qg-regime-geometry/run_qg7d_padding_dual_harness.py'
+      - 'research/extensions/orion-qg/qg7d_padding_*'
+      - '.github/workflows/orion-qg-qg7d-padding-ablation.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg7d-pad-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  qg7d-padding:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      QG7D_BASE: c5ba39fef4f25c46de5fb69bf07f50530f4693ca
+    steps:
+      - name: Checkout exact head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert lineage
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG7D_BASE}^{commit}"
+          test "$(git merge-base HEAD "${QG7D_BASE}")" = "${QG7D_BASE}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Syntax
+        run: python -m py_compile research/extensions/orion-qg/qg7d_padding_ablation.py development/orion-qg-regime-geometry/qg7d_padding_generic_verify.py development/orion-qg-regime-geometry/qg7d_padding_native_verify.py development/orion-qg-regime-geometry/run_qg7d_padding_dual_harness.py
+      - name: Execute both ORION instruments
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg7d_padding_dual_harness.py | tee artifacts/orion-qg-qg7d-padding-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          set -euo pipefail
+          python research/extensions/orion-qg/qg7d_padding_ablation.py --output artifacts/orion-qg-qg7d-padding-ablation-replay.json > artifacts/orion-qg-qg7d-padding-replay.log
+          cmp artifacts/orion-qg-qg7d-padding-ablation.json artifacts/orion-qg-qg7d-padding-ablation-replay.json
+      - name: Enforce honest terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg7d-padding-ablation.json').read_text()); g=json.loads(Path('artifacts/orion-qg-qg7d-padding-generic.json').read_text()); n=json.loads(Path('artifacts/orion-qg-qg7d-padding-native.json').read_text()); d=json.loads(Path('artifacts/orion-qg-qg7d-padding-dual.json').read_text())
+          pos='QG7D_BTRIPLEPRIME_REGIME_FOUND__PADDING_ABLATION_EXACT_WITNESS'; neg='QG7D_PADDING_ABLATION_NO_BTRIPLEPRIME_IN_FROZEN_ROWS__J5_REQUIRED'; assert a['terminal'] in {pos,neg}; assert a['all_gates'] is True; exp='ACCEPT_BTRIPLEPRIME_WITNESS' if a['terminal']==pos else 'ACCEPT_BOUNDED_NEGATIVE'; assert g['decision']==exp and g['all_checks'] is True; assert n['decision']==exp and n['all_checks'] is True; assert d['terminal']==a['terminal'] and d['both_accept'] is True; assert a['all_n_theorem_authority'] is False
+          PY
+      - name: Upload receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg7d-pad-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg7d-padding-ablation.json
+            artifacts/orion-qg-qg7d-padding-ablation-replay.json
+            artifacts/orion-qg-qg7d-padding-generic.json
+            artifacts/orion-qg-qg7d-padding-native.json
+            artifacts/orion-qg-qg7d-padding-dual.json
+            artifacts/orion-qg-qg7d-padding-summary.json
+            artifacts/orion-qg-qg7d-padding-replay.log
+            .orion-qg-qg7d-pad-generic/.orion-harness/**
+            .orion-qg-qg7d-pad-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error
