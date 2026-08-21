@@ -77,20 +77,42 @@ Decomposition of the negative, from the frozen receipts:
 This is a **frozen scientific negative**, not an orchestration failure. Per
 `MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_PROTOCOL.md`, no gate may be lowered post-outcome.
 
-## 5. What R6 still requires (open work, in lane order)
+## 5. R6I/R6K/R6L/R6M execution (added later on 2026-08-21)
 
-1. Implement the frozen-but-unimplemented donor/DP lanes: R6I (exact rank-2 shared-Tag DP),
-   R6K (shared-Tag Restore-factor DP), R6L (three-TARE2 shared-factor donor, with Erratum 1),
-   R6M (exact three-TARE2 shared-factor joint DP). Only protocol freezes exist at the tip;
-   `research/extensions/orion-q/` has no `max_r6i/k/l/m` scripts yet.
-2. A two-subject-strict R6M positive would make the coupled three-M2 compiler eligible for
-   circuit-resource instantiation, donor/literature closure and novelty subtraction — each behind
-   its own pre-outcome freeze.
-3. Only then may a **new** stretched-N2 prospective protocol be frozen and executed
-   (primary + structurally independent replay). R6 promotion stays a protected evaluator;
-   no harness receipt can set it, by design.
+All four frozen successor lanes were implemented exactly to their protocols and executed the
+same day (receipts in `research/extensions/orion-q/MAX_R6{I,K,L,M}_*_RESULTS.json`; each script
+re-run independently with a bit-identical receipt):
 
-## 6. Claim boundary
+- **R6L** (`MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_POSITIVE__ABSORB__NOT_R6`): donor-lane
+  positive, all 17 gates true. Establishes the Erratum-1 conservative donor floors (H4 = 12,
+  N2 = 12) and post-absorption donor floors (H4 = 8, N2 = 9), rotation coordinate 9.
+- **R6I** (`MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_NEGATIVE__NOT_R6`): the exact rank-2 shared-Tag
+  optimum ties the absorbed weight-one R6H donor envelope on all 10 partitions of both
+  subjects (delta 0, strict 0/10). All hostile DP-vs-brute panels exact.
+- **R6K** (`MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_NEGATIVE__NOT_R6`): the joint
+  rank-2 shared-Tag + factored-Restore optimum collapses onto the R6J donor values on every
+  partition of both subjects (0 strict points). Per-configuration DP-vs-brute equality
+  verified on 4 panels × 54 configurations.
+- **R6M** (`MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_NEGATIVE__NOT_R6`): the exact 9-bit
+  joint DP over three arbitrary anticommuting M2 frames collapses onto the weight-one R6L
+  donor on all 30 chemistry matchings (C_R6M = C_R6L exactly; H4 best 8, N2 best 9; strict
+  0/15 on both subjects; rotation 9 never worse than incumbent).
+
+Scientific reading: within the frozen open subjects, every registered residual coupled
+representation optimization beyond the absorbed donors has **provably zero value** — the exact
+DPs saturate onto the donor envelopes. The protected stretched-N2 subject was never opened by
+any lane.
+
+## 6. What R6 still requires after this saturation
+
+R6M's development conjunction is negative, so per its own protocol the coupled three-M2
+compiler is **not** eligible for circuit-resource instantiation or a new stretched-N2
+prospective freeze. Reaching R6 now requires a materially different method-language or
+representation move (a new frozen protocol beyond the R6B..R6M grammar family), not more
+optimization inside it. R6 promotion stays a protected evaluator; no harness receipt can set
+it, by design.
+
+## 7. Claim boundary
 
 This record verifies orchestration and repairs infrastructure. It creates no scientific authority,
 no novelty credit, and does not alter any frozen protocol or blob-pinned artifact.
