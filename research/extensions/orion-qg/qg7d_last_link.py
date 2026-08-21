@@ -330,7 +330,13 @@ def menu_pairs(blocks, orient):
             nconf += flb.size
             idx = flb * 4096 + fla
             order = np.argsort(-base, kind="stable")
-            P[idx[order]] = base[order].astype(np.int8)
+            i_s = idx[order]
+            b_s = base[order].astype(np.int8)
+            # read-before-write min: duplicates inside this batch are resolved
+            # by the descending order, and the batch never raises a value
+            # already recorded by an earlier tag choice
+            np.minimum(b_s, P[i_s], out=b_s)
+            P[i_s] = b_s
     nz = np.nonzero(P < 127)[0]
     return nz // 4096, nz % 4096, P[nz].astype(np.int16), nconf
 
