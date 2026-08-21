@@ -125,12 +125,32 @@ stabilizer-state graphs (6/60/1080/36,720 states at n=1..4), frozen greedy-echel
   StabPrep's global schedule residue), and whether a negation-admitting predicate
   language recovers exactness (registered as QG-15b, pre-outcome freeze required).
 
-## Registered successor (requires its own pre-outcome freeze)
+## QG-15b — PREDICATE COMPLEXITY MEASURED: THE BOUNDARY-IS-LOW-ORDER GAP IS INFORMATION-THEORETIC
 
-- **QG-15b — predicate-language boundary.** Freeze an enlarged predicate language
-  (negations, bounded disjunctions) for the StabPrep donor-exact boundary and test
-  whether exactness is recoverable, or prove a lower bound on predicate complexity —
-  either localizes what "low-order boundary" actually requires of a family.
+`QG15B_PREDICATE_LANGUAGE_RESULTS.json` (protocol frozen pre-outcome, sha256
+`8d2c52fc…c944a5`; double-run byte-identical; generic verifier — independent
+ground-truth rebuilds for BOTH families plus reduction-free brute-force re-proof of the
+sub-lattice minima — ACCEPT 28/28, independently re-run by the orchestrator; terminal
+`QG15B_PARTIAL__Q1_UNDECIDED`, authority `…__NOT_R6`). The two calibration numbers:
+
+- **SixLCU incumbent-exact boundary: exact at (K=1, D=1)** — the single literal
+  `maxg2 == -2` is a zero-error predicate on all 38,760 n=2 instances and the n=1
+  cross-check. The published low-order boundary is literally one literal.
+- **StabPrep donor-exact boundary: zero error UNACHIEVABLE at ANY (K, D)** — 12 mixed
+  cells (identical 13-feature vectors carrying both labels, serialized verbatim) give a
+  budget- and grid-independent irreducible floor of 43/1146. The failure is not a
+  complexity gap in the language: the frozen structural vocabulary cannot separate the
+  boundary at all — the gap is information-theoretic.
+- The honestly-capped cell (3,3) carries a certified bracket minerr ∈ [43, 59] with the
+  cap disclosed (`L1_UNDECIDED_CAP`); untruncated surface values receipted
+  (e.g. K1_D1 = 119, K2_D2 = 74).
+- **Field reading**: "boundary-is-low-order" is not about predicate budget — it is
+  about whether the family's natural structural features *determine* regime membership
+  at all. TARE and SixLCU boundaries are feature-determined (one to two literals);
+  StabPrep's is not feature-determined in its own natural vocabulary. The successor
+  question is which *enlarged vocabulary* (path/schedule-aware features) restores
+  determination, and whether feature-determination itself is the transferable property
+  — registered as QG-15c (pre-outcome freeze required).
 - **QG-7c — the classification endgame.** Close L4b and L4c per the QG-7b Q3
   delimitation, turning the four-configuration trade basis into a provably exhaustive
   all-n classification theorem — or discover the configuration that extends it. This is
