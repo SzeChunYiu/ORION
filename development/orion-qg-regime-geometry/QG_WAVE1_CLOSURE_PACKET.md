@@ -102,10 +102,25 @@ Authority: development record only; no lane receipt grants scientific/novelty au
 
 ## Wave-2 residual ledger (inherited, receipt-localized)
 
-- **R1 (lead) — QG-5b exact forecaster.** Minimize over the full support-≤2 family
-  (provably exact by R6S: DP == D++ all n) and enlarge B(t) with out-of-support borrow
-  homes — repairs both the QG-5 counterexample and P1's first false positive.
-  (`QG5_CERTIFIED_FORECAST_RESULTS.json`)
+- **R1 (lead) — QG-5b exact forecaster: DISCHARGED, FULL POSITIVE BRANCH**
+  (`QG5B_EXACT_FORECASTER_RESULTS.json`, replay-verified: double-run canonical stdout
+  byte-identical, receipt identical minus non-canonical timing;
+  `ORIONQG_QG5B_EXACT_FORECASTER_THEOREM_BACKED_ZERO_ERROR__DPP_FAMILY_MIN__ENLARGED_
+  BORROW_CLOSES__NOT_R6`; protocol frozen pre-outcome at `ad792082`). Q1: the
+  theorem-backed forecaster F2(t) = full support-≤2-family minimum (no unrestricted DP
+  call) is exact on all 9,547 DP-compared instances — the QG-5 refuting instance
+  (F2 = 10 = C_DP), structured n=2 9,261/9,261, fresh panel 240/240, and all 45
+  receipted chemistry rows by exact containment pinch. Q2: the single enlargement of
+  the borrow family (phantom homes over the union target support) closes the
+  closed-form identity — min(C_R6L, C_D+, f_B′) == C_DP everywhere, the refuting
+  instance's B′ witness carries its phantom home outside the block's own support
+  exactly as QG-5 localized, the F2-based donor predicate is exact (repairing P1's
+  false positive), and **no fourth configuration exists on the verified domains**
+  (residual gap 0). Q3: exact forecasting at median 16.4× DP speed (n=2: 45.4×). All
+  14 hostile gates true (658 D++ + 611 B′ witnesses referee-verified, 0 failures).
+  The two-trade taxonomy survives with the borrow family properly parametrized; the
+  closed-form regime map is restored to exactness, now theorem-backed end to end on
+  the unit-cost objective (QG-2's objective-indexing caveat stands).
 - **R2 — objective-indexed sufficiency bounds.** Under O1 support-3 pays (C_DP 11 <
   C_D++ 13; 53 criticals): re-prove R6S-style bounds per objective.
   (`QG2_OBJECTIVE_ROBUSTNESS_RESULTS.json`)
