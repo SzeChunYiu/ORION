@@ -11,6 +11,7 @@ from pathlib import Path
 from orion.programme.superiority_terminals import FUTURE_PAPER_DIRECTORIES
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
+PAPER_IDS = ("P11", "P12", "P13", "P14")
 
 EXPECTED_READY_DECISIONS = {
     "P11": "READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_THEORY/SYSTEMS_SUPERIORITY_RESULT",
@@ -21,7 +22,8 @@ EXPECTED_READY_DECISIONS = {
 
 
 def test_p11_to_p14_are_either_honest_placeholders_or_complete_canonical_packages() -> None:
-    for paper_id, directory in FUTURE_PAPER_DIRECTORIES.items():
+    for paper_id in PAPER_IDS:
+        directory = FUTURE_PAPER_DIRECTORIES[paper_id]
         root = REPO_ROOT / directory
         assert root.is_dir(), f"{paper_id} has no directory at {directory}"
 
@@ -60,12 +62,10 @@ def test_p11_to_p14_are_either_honest_placeholders_or_complete_canonical_package
 
 def test_draft_715_no_longer_has_exclusive_manuscript_ownership_after_canonical_transition() -> None:
     transitioned = []
-    for paper_id, directory in FUTURE_PAPER_DIRECTORIES.items():
-        root = REPO_ROOT / directory
+    for paper_id in PAPER_IDS:
+        root = REPO_ROOT / FUTURE_PAPER_DIRECTORIES[paper_id]
         if (root / "MANUSCRIPT.md").is_file():
             transitioned.append(paper_id)
             assert "NO_PROTECTED_RESULT" not in (root / "README.md").read_text(encoding="utf-8")
 
-    # On a canonical paper PR at least that paper must have transitioned. On the
-    # eventual merged programme all four will satisfy the same invariant.
-    assert transitioned, "publication-transition guard installed without any canonical paper"
+    assert transitioned, "publication-transition guard installed without any canonical P11-P14 paper"
