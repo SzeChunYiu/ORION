@@ -70,10 +70,32 @@ def transport_evidence_validity(
     }
 
 
+def discover_transport_probe(manifest_path: Path) -> Path:
+    """Find the one archived probe near the downloaded capture manifest.
+
+    actions/upload-artifact may preserve different leading directory components for
+    multiple absolute upload roots. Search only the manifest's nearby ancestors and
+    fail if custody is ambiguous instead of choosing a receipt by filename order.
+    """
+    checked: set[Path] = set()
+    for root in (manifest_path.parent, *list(manifest_path.parents)[:5]):
+        root = root.resolve()
+        if root in checked or not root.exists():
+            continue
+        checked.add(root)
+        matches = sorted(path for path in root.rglob("transport_probe.json") if path.is_file())
+        if len(matches) == 1:
+            return matches[0]
+        if len(matches) > 1:
+            raise ValueError(f"ambiguous archived transport probes under {root}: {len(matches)}")
+    raise ValueError("archived transport probe not found near capture manifest")
+
+
 def analyze_v2(**kwargs: Any) -> dict[str, Any]:
     freeze_path = Path(kwargs["freeze_path"])
     manifest_path = Path(kwargs["manifest_path"])
-    transport_probe_path = Path(kwargs.pop("transport_probe_path"))
+    probe_arg = kwargs.pop("transport_probe_path", None)
+    transport_probe_path = Path(probe_arg) if probe_arg is not None else discover_transport_probe(manifest_path)
     output_path = Path(kwargs["output_path"])
     freeze_actual = json.loads(freeze_path.read_text(encoding="utf-8"))
     if freeze_actual.get("schema_version") != V2_SCHEMA:
@@ -126,7 +148,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--freeze", required=True, type=Path)
     parser.add_argument("--manifest", required=True, type=Path)
-    parser.add_argument("--transport-probe", required=True, type=Path)
+    parser.add_argument("--transport-probe", type=Path)
     parser.add_argument("--baseline-eval", required=True, type=Path)
     parser.add_argument("--orion-eval", required=True, type=Path)
     parser.add_argument("--diagnostic-eval", required=True, type=Path)
