@@ -17,7 +17,7 @@ EXPECTED_SCIENTIFIC_TERMINAL = "P14C_SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMA
 NEGATIVE_TERMINAL = "P14C_SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMANCE_GATE_NOT_MET"
 
 
-def execute_once(root: Path) -> tuple[bytes, dict[str, object], int, str]:
+def execute_once(root: Path) -> tuple[bytes, dict[str, object], int]:
     root.mkdir(parents=True, exist_ok=True)
     runner = root / RUNNER.name
     cases = root / CASES.name
@@ -32,7 +32,7 @@ def execute_once(root: Path) -> tuple[bytes, dict[str, object], int, str]:
         payload = json.loads(raw.decode("utf-8"))
     except Exception as exc:
         raise RuntimeError("frozen runner emitted an unreadable result artifact") from exc
-    return raw, payload, proc.returncode, proc.stdout + proc.stderr
+    return raw, payload, proc.returncode
 
 
 def exit_matches_terminal(returncode: int, terminal: object) -> bool:
@@ -46,8 +46,8 @@ def exit_matches_terminal(returncode: int, terminal: object) -> bool:
 def main() -> None:
     with tempfile.TemporaryDirectory(prefix="p14c-adjudication-") as td:
         root = Path(td)
-        raw_a, a, rc_a, log_a = execute_once(root / "a")
-        raw_b, b, rc_b, log_b = execute_once(root / "b")
+        raw_a, a, rc_a = execute_once(root / "a")
+        raw_b, b, rc_b = execute_once(root / "b")
 
     sha_a = hashlib.sha256(raw_a).hexdigest()
     sha_b = hashlib.sha256(raw_b).hexdigest()
@@ -73,11 +73,7 @@ def main() -> None:
         "two_fresh_subprocess_payloads_byte_identical": replay_match,
         "canonical_hash_matches_committed_receipt": canonical_hash_match,
     }
-    authoritative_terminal = (
-        EXPECTED_SCIENTIFIC_TERMINAL
-        if all(gates.values())
-        else NEGATIVE_TERMINAL
-    )
+    authoritative_terminal = EXPECTED_SCIENTIFIC_TERMINAL if all(gates.values()) else NEGATIVE_TERMINAL
     result = {
         "schema": "ORION.P14C.ProtocolAdjudication.v2",
         "protocol": "P14C_SPECIFICATION_SEPARATED_GOVERNANCE_PROTOCOL_V1.md",
@@ -89,7 +85,6 @@ def main() -> None:
         ),
         "v1_runner_terminal_authority": "NON_AUTHORITATIVE_ALONE__REPLAY_GATE_OMITTED",
         "runner_returncodes": [rc_a, rc_b],
-        "runner_logs": [log_a, log_b],
         "scientific_payload_sha256_run_a": sha_a,
         "scientific_payload_sha256_run_b": sha_b,
         "strongest_non_orion_baseline": a["strongest_non_orion_baseline"],
