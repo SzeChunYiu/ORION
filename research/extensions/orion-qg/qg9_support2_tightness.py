@@ -11,6 +11,8 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
+import numpy as np
+
 ROOT=Path(__file__).resolve().parents[3]
 ORION_Q=ROOT/'research/extensions/orion-q'
 ORION_QG=ROOT/'research/extensions/orion-qg'
@@ -29,6 +31,7 @@ PARENT_RECEIPT=ROOT/'development/orion-qg-regime-geometry/QG9_SUPPORT2_PROTECTED
 DEFAULT=ROOT/'artifacts/orion-qg-qg9-support2-tightness.json'
 TOKEN='ORIONQG_QG9_TIGHTNESS='
 N=2
+FAST_BIND_SAMPLE=16
 
 def canonical(v:Any)->str:return json.dumps(v,sort_keys=True,separators=(',',':'),allow_nan=False)
 def sha(p:Path)->str:return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -99,6 +102,31 @@ def pairtables_binding(tables):
         c=tables.capped_costs(tuple(ta),tuple(tb),(2,))[2];dp=int(r6i.shared_tag_exact(ta,tb,2)['C_shared']);rows[name]={'cap2':int(c),'production_dp':dp,'pass':int(c)==dp}
     return {'rows':rows,'all_pass':bool(rows) and all(x['pass'] for x in rows.values())}
 
+class FastCaps:
+    """Exact cached min-plus evaluation over canonical QG-1 PairTables data."""
+    def __init__(self,tables):
+        self.t=tables
+        self.idx={cap:np.flatnonzero(tables.pair_max_wt<=cap) for cap in (1,2)}
+        self.tag={cap:tables.best_tag[np.ix_(self.idx[cap],self.idx[cap])] for cap in (1,2)}
+        self.a_cache={};self.b_cache={}
+    @staticmethod
+    def _key(ts):return tuple((int(t[0]),int(t[1])) for t in ts)
+    def _a(self,ts,cap):
+        k=(cap,self._key(ts))
+        if k not in self.a_cache:
+            rest=np.array([sum(p10.wt(p10.mul(ts[i],rs[i])) for i in range(3)) for rs in self.t.rs],dtype=np.int64)
+            self.a_cache[k]=(self.t.uanti_min+rest)[self.idx[cap]]
+        return self.a_cache[k]
+    def _bh(self,ts,cap):
+        k=(cap,self._key(ts))
+        if k not in self.b_cache:
+            rest=np.array([min(sum(p10.wt(p10.mul(ts[perm[i]],rs[i])) for i in range(3)) for perm in qg1.PERMS) for rs in self.t.rs],dtype=np.int64)
+            b=(self.t.uanti_min+rest)[self.idx[cap]]
+            self.b_cache[k]=(self.tag[cap]+b[None,:]).min(axis=1)
+        return self.b_cache[k]
+    def caps(self,ta,tb):
+        return {cap:int((self._a(ta,cap)+self._bh(tb,cap)).min()) for cap in (1,2)}
+
 def main():
     parent=json.loads(PARENT_RESULT.read_text());receipt=json.loads(PARENT_RECEIPT.read_text())
     if parent.get('terminal')!='QG9_RANK2_ALL_N_SUPPORT2_SUFFICIENCY_MACHINE_CHECKED' or receipt.get('terminal')!=parent.get('terminal') or receipt.get('both_accept') is not True:raise AssertionError('parent support2 theorem not protected')
@@ -107,14 +135,20 @@ def main():
     generator_digest=hashlib.sha256(canonical(generator).encode()).hexdigest()
     tables=qg1.PairTables(2);binding=pairtables_binding(tables)
     if not binding['all_pass']:raise AssertionError({'qg1_pairtables_binding_failed':binding})
+    fast=FastCaps(tables);fast_bind_rows=[]
     tested=0;selected=None;family_counts={}
     for family in generator['template_families']:
         fc=0
         for i,j,kind in pairs:
             for ta,tb,tmeta in template_instances(blocks[i],blocks[j],family):
-                tested+=1;fc+=1;caps=tables.capped_costs(ta,tb,(1,2));c1=int(caps[1]);c2=int(caps[2])
+                tested+=1;fc+=1;caps=fast.caps(ta,tb);c1=int(caps[1]);c2=int(caps[2])
+                if len(fast_bind_rows)<FAST_BIND_SAMPLE:
+                    ref=tables.capped_costs(ta,tb,(1,2));row={'candidate_index':tested,'fast':[c1,c2],'canonical':[int(ref[1]),int(ref[2])],'pass':c1==int(ref[1]) and c2==int(ref[2])};fast_bind_rows.append(row)
+                    if not row['pass']:raise AssertionError({'fast_cap_binding_failed':row})
                 if c2<c1:
-                    selected={'block_indices':[i,j],'pair_kind':kind,'block_A':blocks[i],'block_B':blocks[j],'targets_A':serialize_targets(ta),'targets_B':serialize_targets(tb),'template':tmeta,'C_cap1':c1,'C_cap2':c2,'gap':c1-c2};break
+                    ref=tables.capped_costs(ta,tb,(1,2))
+                    if c1!=int(ref[1]) or c2!=int(ref[2]):raise AssertionError({'selected_fast_cap_binding_failed':[c1,c2,int(ref[1]),int(ref[2])]})
+                    selected={'block_indices':[i,j],'pair_kind':kind,'block_A':blocks[i],'block_B':blocks[j],'targets_A':serialize_targets(ta),'targets_B':serialize_targets(tb),'template':tmeta,'C_cap1':c1,'C_cap2':c2,'gap':c1-c2,'canonical_caps_confirmed':True};break
             if selected:break
         family_counts[family]=fc
         if selected:break
@@ -124,6 +158,7 @@ def main():
         production={'C_shared':int(w['C_shared']),'relative_B_permutation':w['relative_B_permutation'],'central_A':w['central_A'],'central_B':w['central_B'],'RA':w['RA'],'RB':w['RB'],'S0':w['S0'],'S1':w['S1'],'labels':w['labels'],'checks':w['checks'],'independent_generator_supports':[p10.wt(tuple(w['RA'][0])),p10.wt(tuple(w['RA'][1])),p10.wt(tuple(w['RB'][0])),p10.wt(tuple(w['RB'][1]))]}
     positive=selected is not None and production is not None and production['C_shared']==selected['C_cap2'] and all(production['checks'].values()) and selected['C_cap2']<selected['C_cap1']
     terminal='QG9_SUPPORT2_TIGHT_WITNESS_MACHINE_VERIFIED' if positive else 'QG9_NO_SUPPORT2_TIGHT_WITNESS_IN_FROZEN_INVERSE_PANEL'
-    result={'schema':'ORION.QG.QG9.Support2Tightness.v1','issue':'SzeChunYiu/ORION#795','base_revision':BASE,'protocol_sha256':sha(PROTOCOL),'parent_result_sha256':sha(PARENT_RESULT),'parent_receipt_sha256':sha(PARENT_RECEIPT),'candidate_generator_digest_before_scoring':generator_digest,'candidate_generator_summary':{'block_metadata':bmeta,'unique_blocks':len(blocks),'pair_count':len(pairs),'template_families':generator['template_families']},'qg1_pairtables_binding':binding,'candidates_tested':tested,'family_candidates_tested':family_counts,'selected':selected,'production_referee':production,'terminal':terminal,'tightness_authority':bool(positive),'support1_authority':False,'novelty_authority':False,'physical_quantum_advantage_claim':False}
+    acceleration={'method':'EXACT_MIN_PLUS_CACHE_OVER_QG1_PAIRTABLES','canonical_bind_sample':fast_bind_rows,'canonical_bind_all_pass':all(r['pass'] for r in fast_bind_rows),'a_cache_entries':len(fast.a_cache),'b_cache_entries':len(fast.b_cache),'scientific_order_unchanged':True}
+    result={'schema':'ORION.QG.QG9.Support2Tightness.v1','issue':'SzeChunYiu/ORION#795','base_revision':BASE,'protocol_sha256':sha(PROTOCOL),'parent_result_sha256':sha(PARENT_RESULT),'parent_receipt_sha256':sha(PARENT_RECEIPT),'candidate_generator_digest_before_scoring':generator_digest,'candidate_generator_summary':{'block_metadata':bmeta,'unique_blocks':len(blocks),'pair_count':len(pairs),'template_families':generator['template_families']},'qg1_pairtables_binding':binding,'exact_acceleration':acceleration,'candidates_tested':tested,'family_candidates_tested':family_counts,'selected':selected,'production_referee':production,'terminal':terminal,'tightness_authority':bool(positive),'support1_authority':False,'novelty_authority':False,'physical_quantum_advantage_claim':False}
     result['result_digest']=hashlib.sha256(canonical(result).encode()).hexdigest();ap=argparse.ArgumentParser();ap.add_argument('--output',default=str(DEFAULT));ns=ap.parse_args();p=Path(ns.output);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(result,indent=2,sort_keys=True)+'\n');print(TOKEN+canonical(result));return 0
 if __name__=='__main__':raise SystemExit(main())
