@@ -1,0 +1,9 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+import hashlib,json,math
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2]; RESULT=ROOT/'artifacts/orion-qg-qg11c-ft-lift.json'; PROTOCOL=ROOT/'development/orion-qg-regime-geometry/QG11C_FT_LIFT_CLOSURE_PROTOCOL_V1.md'; OUT=ROOT/'artifacts/orion-qg-qg11c-generic.json'; TOKEN='ORIONQG_QG11C_GENERIC='
+def canonical(v): return json.dumps(v,sort_keys=True,separators=(',',':'),allow_nan=False)
+def main():
+ a=json.loads(RESULT.read_text()); u=dict(a); obs=u.pop('result_digest',None); pa=10*math.ceil(9/8)+0; pb=10*math.ceil(8/8)+2; nonaff=(10*math.ceil(1/8)+10*math.ceil(9/8)) != 2*(10*math.ceil(5/8)); checks={'schema':a.get('schema')=='ORION.QG.QG11C.FTLiftClosure.v1','digest':obs==hashlib.sha256(canonical(u).encode()).hexdigest(),'protocol':a.get('protocol_sha256')==hashlib.sha256(PROTOCOL.read_bytes()).hexdigest(),'affine_zero_failures':a['affine_pullback']['failures']==0 and a['affine_pullback']['holds'] is True,'route_reversal':9<10 and pb<pa and a['nonlinear_factory_counterexample']['physical_prefers_B'] is True,'nonaffinity':nonaff and a['nonlinear_factory_counterexample']['midpoint_nonaffinity'] is True,'real_boundary':a['real_ft_estimator_status']=='CANNOT_CHECK_REAL_ESTIMATOR','no_overclaim':a.get('novelty_authority') is False and a.get('physical_quantum_advantage_claim') is False}; decision='ACCEPT_MIXED_CLOSURE' if all(checks.values()) and a.get('terminal')=='QG11_AFFINE_FT_PHASE_PULLBACK_PROVED__NONLINEAR_FACTORY_COUNTEREXAMPLE__REAL_ESTIMATOR_CANNOT_CHECK' else 'REJECT'; out={'schema':'ORION.QG.QG11C.Generic.v1','issue':'SzeChunYiu/ORION#843','decision':decision,'checks':checks,'all_checks':all(checks.values()),'terminal':a.get('terminal'),'novelty_authority':False}; OUT.parent.mkdir(parents=True,exist_ok=True); OUT.write_text(json.dumps(out,indent=2,sort_keys=True)+'\n'); print(TOKEN+canonical(out)); return 0
+if __name__=='__main__': raise SystemExit(main())
