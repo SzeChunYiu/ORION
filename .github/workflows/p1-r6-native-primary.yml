@@ -52,6 +52,54 @@ jobs:
           python research/claim_expansion/p1/gpt_r6_primary_authority_gate.py \
             /tmp/p1-r6-primary.raw.json \
             --out /tmp/p1-r6-primary.json
+      - name: Diagnose engineering acceptance without changing gates
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path('/tmp/p1-r6-primary.json')
+          if not path.exists():
+              print('P1_R6_ENGINEERING_DIAGNOSTIC={"result_file_present":false}')
+              raise SystemExit(0)
+          result = json.loads(path.read_text())
+          data = result.get('data') or {}
+          summary = {
+              'result_file_present': True,
+              'data_complete': data.get('complete'),
+              'policy_outcomes_generated': result.get('policy_outcomes_generated'),
+              'n_episodes': result.get('n_episodes'),
+              'native_invalid_rows': result.get('native_invalid_rows'),
+              'candidate_metadata_leakage_rows': result.get('candidate_metadata_leakage_rows'),
+              'terminal': result.get('terminal'),
+              'checks': result.get('checks'),
+              'authority_gate': result.get('authority_gate'),
+          }
+          print('P1_R6_ENGINEERING_DIAGNOSTIC=' + json.dumps(summary, sort_keys=True))
+          bad = []
+          for pair in result.get('pair_rows') or []:
+              for policy, row in (pair.get('outcomes') or {}).items():
+                  if not row.get('native_row_valid') or not row.get('leakage_free'):
+                      bad.append({
+                          'kind': 'pair',
+                          'pair_id': pair.get('pair_id'),
+                          'policy': policy,
+                          'episode_id': row.get('episode_id'),
+                          'native_row_valid': row.get('native_row_valid'),
+                          'leakage_free': row.get('leakage_free'),
+                      })
+          for unresolved in result.get('unresolved_rows') or []:
+              row = unresolved.get('outcome') or {}
+              if not row.get('native_row_valid') or not row.get('leakage_free'):
+                  bad.append({
+                      'kind': 'unresolved',
+                      'pair_id': unresolved.get('pair_id'),
+                      'episode_id': row.get('episode_id'),
+                      'native_row_valid': row.get('native_row_valid'),
+                      'leakage_free': row.get('leakage_free'),
+                  })
+          print('P1_R6_BAD_ROWS=' + json.dumps(bad, sort_keys=True))
+          PY
       - name: Enforce engineering acceptance independently of scientific outcome
         run: |
           python - <<'PY'
@@ -74,8 +122,9 @@ jobs:
           print('P1_R6_SCIENTIFIC_CHECKS=' + json.dumps(result['checks'], sort_keys=True))
           PY
       - name: Preserve exact acceptance result
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: p1-r6-native-primary
           path: /tmp/p1-r6-primary.json
-          if-no-files-found: error
+          if-no-files-found: warn
