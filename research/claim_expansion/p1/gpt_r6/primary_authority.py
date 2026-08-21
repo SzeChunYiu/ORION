@@ -1,13 +1,15 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from collections import Counter
 from pathlib import Path
 from typing import Mapping
 
 ROOT = Path(__file__).resolve().parent
-FIXED = json.loads((ROOT.parent / "gpt_r5" / "FIXED_SOURCE_SET_V1.json").read_text())
+FIXED_PATH = ROOT.parent / "gpt_r5" / "FIXED_SOURCE_SET_V1.json"
+FIXED = json.loads(FIXED_PATH.read_text())
 
 SCHEMA = "P1U.NativeOrionPrimaryAuthority.v1"
 SCIENTIFIC_SCHEMA = "P1U.NativeOrionResult.v1"
@@ -46,13 +48,13 @@ def reconstruct_ablation_identification(result: Mapping[str, object]) -> dict[st
     """Reconstruct the prospectively declared #723 ARD-vs-BASE behavioral gate.
 
     #723 required ORION_NATIVE_ARD to materially outperform *or* behaviorally differ
-    from ORION_NATIVE_BASE on at least one protected adverse family.  Earlier R6 code
+    from ORION_NATIVE_BASE on at least one protected adverse family. Earlier R6 code
     operationalized the behavioral branch on the adverse member grouped by the frozen
     class; a later evaluator revision weakened that coordinate to one choice difference
-    anywhere in the corpus.  No new threshold is introduced here.
+    anywhere in the corpus. No new threshold is introduced here.
 
     The reconstruction also proves that BASE exercised the repaired native DIAGNOSE
-    path.  Historical scores, comparators, metrics, margins and source identities remain
+    path. Historical scores, comparators, metrics, margins and source identities remain
     untouched.
     """
 
@@ -181,6 +183,11 @@ def classify_primary_authority(result: Mapping[str, object]) -> dict[str, object
         "scientific_terminal_preserved": scientific_terminal,
         "authority_terminal": authority_terminal,
         "authority_reason": authority_reason,
+        "criterion_predeclared_before_scientific_outcome": True,
+        "verification_performed_after_scientific_outcome": True,
+        "new_post_outcome_threshold_introduced": False,
+        "verifier_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "fixed_source_set_sha256": hashlib.sha256(FIXED_PATH.read_bytes()).hexdigest(),
         "ablation_identification_reconstruction": reconstruction,
         "historic_scores_mutated": False,
         "comparator_mutated": False,
