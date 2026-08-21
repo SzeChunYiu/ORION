@@ -304,9 +304,16 @@ def test_the_shipped_script_reproduces_its_headline_under_a_donor_irrelevant_the
     """Executed against the published file, not against this module's transcription.
 
     ``science_lifts_without_donor`` denies P6.V4.1 outright, and the shipped
-    checker runs to completion and prints the same 320 / 25 / 31 / 155 / 1,055
-    and the same zero donor-conservativity violations. Only the row digest moves,
-    and the primary checker prints it rather than asserting it.
+    checker runs to completion and prints the same 320 / 25 / 31 / 155 / 1,055.
+    Only the row digest moves, and the primary checker prints it rather than
+    asserting it.
+
+    Before the checker was repaired this test also pinned ``0 ==
+    donor_conservativity_violations`` across both runs, which was the defect
+    stated as a passing assertion: the counter compared ``projected_native``
+    with ``native_valid`` one line after assigning one from the other, so it read
+    0 whatever rule was substituted. Both structural counters now report
+    ``None``, and ``None == None`` is the same agreement for an honest reason.
     """
 
     source = (
@@ -334,7 +341,77 @@ def test_the_shipped_script_reproduces_its_headline_under_a_donor_irrelevant_the
         "certificate_product_countermodels",
         "full_revalidation_successes",
         "partial_revalidation_failures",
-        "donor_conservativity_violations",
     ):
         assert donor_irrelevant[key] == shipped[key], key
     assert donor_irrelevant["canonical_rows_sha256"] != shipped["canonical_rows_sha256"]
+
+    for run_result in (shipped, donor_irrelevant):
+        assert run_result["donor_conservativity_violations"] is None
+        assert run_result["terminal"] == "CANNOT_CHECK"
+
+
+def test_the_lifting_terminal_no_longer_spends_two_unchecked_counters() -> None:
+    """The repaired checker reports both structural counters as unchecked.
+
+    This test pins what ``P6_X2_CERTIFICATE_LIFTING_RESULT_V1.json`` published
+    before the repair: ``donor_conservativity_violations: 0`` and
+    ``ideal_product_mismatches: 0``, with no terminal at all. Neither zero was a
+    measurement. ``donor_conservativity_violations`` incremented on
+    ``projected_native != native_valid`` one line after ``projected_native =
+    native_valid`` --- ``x != x``, zero under every theory of lifting.
+    ``ideal_product_mismatches`` compared ``liftable(...)`` against an inline copy
+    of ``liftable``'s own body, so under a consistently applied theory it was
+    ``x == x`` and only ever moved when one of the two copies was edited alone:
+    a copy-drift detector, not the P6.V4.5 equivalence theorem it was cited as.
+
+    Both now publish ``null`` beside a stated reason, and the terminal is
+    three-valued so an unchecked counter blocks exactly as a violation would ---
+    a two-valued ``not (a or b)`` would have read ``None`` as clean. P6.V4.6's
+    cited evidence is ``CANNOT_CHECK`` rather than a pass it never earned.
+
+    Giving either side an independent definition needs FORMAL_CORE's
+    construction of the donor product and of the projection map, so that stays
+    the theory lane's call and the weakness stays visible here rather than being
+    quietly fixed. The five measured quantities are untouched, and the row digest
+    is byte-for-byte the shipped one.
+    """
+
+    published = json.loads(X2_RESULT.read_text())
+
+    assert published["terminal"] == "CANNOT_CHECK"
+    assert published["donor_conservativity_violations"] is None
+    assert published["donor_conservativity_status"] == "CANNOT_CHECK"
+    assert published["ideal_product_mismatches"] is None
+    assert published["ideal_product_status"] == "CANNOT_CHECK"
+    assert published["canonical_rows_sha256"] == lifting.SHIPPED_ROWS_SHA256
+    assert (
+        published["state_evaluations"],
+        published["single_coordinate_separation_witnesses"],
+        published["certificate_product_countermodels"],
+        published["full_revalidation_successes"],
+        published["partial_revalidation_failures"],
+    ) == (320, 25, 31, 155, 1055)
+
+
+def test_the_published_result_names_the_half_of_the_space_no_assertion_visits() -> None:
+    """Defect 3 is reported as a number instead of being left to the reader.
+
+    Every assertion in the shipped checker evaluates the rule at
+    ``native_valid=True``. The published artifact said nothing about that, so a
+    theory ignoring ``native_valid`` passed the whole panel silently --- which is
+    exactly what :data:`lifting.SCIENCE_LIFTS_WITHOUT_DONOR` demonstrates above.
+    The count is now published, and it blocks the terminal.
+
+    No assertion was added: one that fires here would newly fail the artifact,
+    and closing the hole is :data:`lifting.DONOR_REQUIREMENT_CHECK`'s job in the
+    theory lane. Naming the hole is not.
+    """
+
+    published = json.loads(X2_RESULT.read_text())
+
+    assert published["assertion_state_space"] == 64
+    assert published["assertion_covered_states"] == 32
+    assert published["assertion_covered_states_native_invalid"] == 0
+    assert published["assertion_uncovered_states"] == 32
+    assert published["assertion_coverage_status"] == "PARTIAL"
+    assert any("native_valid=False" in reason for reason in published["cannot_check_reasons"])
