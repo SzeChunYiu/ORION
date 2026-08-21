@@ -3,9 +3,9 @@
 Run from repository root:
 
 ```bash
-PYTHONPATH=src python papers/candidates/paper-08-epistemic-authority-autonomous-science/formal/check_theory_closure_v2.py
-PYTHONPATH=src python papers/candidates/paper-08-epistemic-authority-autonomous-science/formal/check_theory_closure_v2_1.py
-PYTHONPATH=src python papers/candidates/paper-08-epistemic-authority-autonomous-science/formal/check_contract_manifest_v2.py
+PYTHONPATH=src python papers/paper-08-epistemic-authority-autonomous-science/formal/check_theory_closure_v2.py
+PYTHONPATH=src python papers/paper-08-epistemic-authority-autonomous-science/formal/check_theory_closure_v2_1.py
+PYTHONPATH=src python papers/paper-08-epistemic-authority-autonomous-science/formal/check_contract_manifest_v2.py
 ```
 
 Expected sentinels:

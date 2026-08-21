@@ -3,8 +3,8 @@
 Run from repository root:
 
 ```bash
-PYTHONPATH=src python papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2_1.py
-PYTHONPATH=src python papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2.py
+PYTHONPATH=src python papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2_1.py
+PYTHONPATH=src python papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2.py
 ```
 
 Normative sentinel:

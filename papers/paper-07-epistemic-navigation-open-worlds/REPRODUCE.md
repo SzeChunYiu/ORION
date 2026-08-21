@@ -40,7 +40,7 @@ uname -a
 From repository root:
 
 ```bash
-python papers/candidates/paper-07-epistemic-navigation-open-worlds/formal/check_countermodels.py
+python papers/paper-07-epistemic-navigation-open-worlds/formal/check_countermodels.py
 ```
 
 Expected V2 semantic signature:
@@ -72,7 +72,7 @@ This smaller script makes the theorem-boundary cases easy to inspect, including 
 
 ```bash
 mkdir -p /tmp/orion-p7-repro
-python papers/candidates/paper-07-epistemic-navigation-open-worlds/formal/check_countermodels.py \
+python papers/paper-07-epistemic-navigation-open-worlds/formal/check_countermodels.py \
   | tee /tmp/orion-p7-repro/check_countermodels.stdout.txt
 python papers/candidates/checkers/p7_finite_falsifiers_v1.py \
   | tee /tmp/orion-p7-repro/p7_finite_falsifiers_v1.stdout.txt

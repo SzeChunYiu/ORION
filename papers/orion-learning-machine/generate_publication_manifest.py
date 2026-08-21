@@ -9,7 +9,10 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent
-CANDIDATES = ROOT.parent
+#: The lane and its sibling paper packages were promoted from papers/candidates/
+#: into papers/; the shared cross-paper apparatus stayed behind in candidates/.
+PAPERS = ROOT.parent
+CANDIDATES = PAPERS / "candidates"
 OUTPUT = ROOT / "PUBLICATION_MANIFEST_SHA256.txt"
 
 
@@ -17,8 +20,8 @@ def included_files() -> list[Path]:
     roots = [
         ROOT / "framework",
         ROOT / "results",
-        CANDIDATES / "paper-09-executable-research-core",
-        CANDIDATES / "paper-10-content-bound-math-evaluation",
+        PAPERS / "paper-09-executable-research-core",
+        PAPERS / "paper-10-content-bound-math-evaluation",
     ]
     suffixes = {".arff", ".bib", ".json", ".lean", ".md", ".py", ".sh", ".txt"}
     files = [
@@ -37,7 +40,7 @@ def included_files() -> list[Path]:
             ROOT / "SCRIPT_MANIFEST_SHA256.txt",
             ROOT / "VERIFY_LOCAL_CLOSURE.sh",
             ROOT / "generate_publication_manifest.py",
-            CANDIDATES
+            PAPERS
             / "paper-08-epistemic-authority-autonomous-science"
             / "benchmark"
             / "P9_GOVERNED_CAPABILITY_COMPANION.md",
@@ -50,7 +53,7 @@ def included_files() -> list[Path]:
 def main() -> None:
     lines = [
         "# ORION P9/P10 bounded publication manifest — generated 2026-08-18",
-        "# Paths are relative to papers/candidates/orion-learning-machine.",
+        "# Paths are relative to papers/orion-learning-machine.",
     ]
     for path in included_files():
         relative = Path(os.path.relpath(path, ROOT)).as_posix()

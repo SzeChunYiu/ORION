@@ -250,9 +250,13 @@ def build_receipt() -> dict[str, Any]:
         total_checks += len(named_checks)
         total_cases += len(cases)
 
+    # Repo-relative keys: the inputs now straddle papers/ (the promoted paper
+    # packages) and papers/candidates/ (this runner), so no single one of those
+    # directories can anchor every hash entry.
+    repo_root = ROOT.parent.parent
     file_hashes = {
-        str(path.relative_to(ROOT)): sha256_file(path)
-        for path in sorted(set(input_paths), key=lambda item: str(item.relative_to(ROOT)))
+        str(path.relative_to(repo_root)): sha256_file(path)
+        for path in sorted(set(input_paths), key=lambda item: str(item.relative_to(repo_root)))
     }
     aggregate_material = "".join(f"{path}\0{digest}\n" for path, digest in sorted(file_hashes.items()))
     aggregate_hash = hashlib.sha256(aggregate_material.encode("utf-8")).hexdigest()

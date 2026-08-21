@@ -14,7 +14,22 @@ ORION has **exactly five numbered flagship papers**. A paper identity is determi
 | ORION-P4 | Verified Scientific Discovery | `paper-04-verified-scientific-discovery/` |
 | ORION-P5 | Self-ORION | `paper-05-self-orion/` |
 
-The active `papers/` tree now contains only those five paper directories plus publication synchronization/alias files. Historical redirect directories and the former `shadow-mechanics-v1/` paper-like path have been removed. Their mappings are recorded in `PAPER_ALIASES.md` and remain recoverable from Git history.
+The active `papers/` tree contains those five flagship paper directories, publication synchronization/alias files, and the candidate paper packages listed below. Historical redirect directories and the former `shadow-mechanics-v1/` paper-like path have been removed. Their mappings are recorded in `PAPER_ALIASES.md` and remain recoverable from Git history.
+
+## Candidate paper packages
+
+The candidate paper packages live directly under `papers/`:
+
+- `paper-06-formal-epistemic-structures-and-mechanics/`
+- `paper-07-epistemic-navigation-open-worlds/`
+- `paper-08-epistemic-authority-autonomous-science/`
+- `paper-09-executable-research-core/`
+- `paper-09-structured-epistemic-learning/`
+- `paper-10-content-bound-math-evaluation/`
+- `paper-10-structured-problem-solving/`
+- `orion-learning-machine/` (shared P9/P10 lane)
+
+This placement is a directory layout, not a publication identity: these packages remain **candidates** governed by the programme rules in `papers/candidates/README.md`, and nothing about the move changes the five-flagship identity rule above. The shared cross-paper apparatus (checkers, review/adjudication records, submission gate, q-lane candidates) remains under `papers/candidates/`.
 
 The former Shadow mechanics material is preserved as a **non-paper technical companion** at `research/technical-companions/mechanics-of-mechanics-v1/`. Its mechanic-cell/recursive-audit theory is owned by Paper I; its failure-learning and protected self-development theory is owned by Paper V. Discovery/stopping and authority interfaces remain owned by Papers II and IV respectively.
 

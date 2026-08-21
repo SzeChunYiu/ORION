@@ -3,7 +3,7 @@
 Run from repository root on the theory-closure branch or any descendant containing V2.
 
 ```bash
-PYTHONPATH=src python papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2.py
+PYTHONPATH=src python papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2.py
 ```
 
 Expected sentinel:

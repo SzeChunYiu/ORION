@@ -3,8 +3,8 @@
 Run from repository root:
 
 ```bash
-PYTHONPATH=src python papers/candidates/paper-07-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py
-PYTHONPATH=src python papers/candidates/paper-07-epistemic-navigation-open-worlds/formal/check_contract_manifest_v2.py
+PYTHONPATH=src python papers/paper-07-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py
+PYTHONPATH=src python papers/paper-07-epistemic-navigation-open-worlds/formal/check_contract_manifest_v2.py
 ```
 
 Expected sentinels:

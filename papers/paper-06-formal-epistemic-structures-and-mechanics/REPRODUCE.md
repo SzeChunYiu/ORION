@@ -46,7 +46,7 @@ export PYTHONHASHSEED=0
 From repository root:
 
 ```bash
-python papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py
+python papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py
 ```
 
 Expected V2 structural signature:
@@ -79,7 +79,7 @@ Suggested current capture procedure:
 
 ```bash
 mkdir -p /tmp/orion-p6-repro
-python papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py \
+python papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py \
   | tee /tmp/orion-p6-repro/check_finite_models.stdout.txt
 python papers/candidates/checkers/p6_finite_falsifiers_v1.py \
   | tee /tmp/orion-p6-repro/p6_finite_falsifiers_v1.stdout.txt

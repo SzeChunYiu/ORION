@@ -40,7 +40,7 @@ uname -a
 From repository root:
 
 ```bash
-python papers/candidates/paper-08-epistemic-authority-autonomous-science/formal/check_authority_calculus.py
+python papers/paper-08-epistemic-authority-autonomous-science/formal/check_authority_calculus.py
 ```
 
 Expected V2 semantic signature:
@@ -72,7 +72,7 @@ The smaller checker supplies an independently readable toy version of anti-laund
 
 ```bash
 mkdir -p /tmp/orion-p8-repro
-python papers/candidates/paper-08-epistemic-authority-autonomous-science/formal/check_authority_calculus.py \
+python papers/paper-08-epistemic-authority-autonomous-science/formal/check_authority_calculus.py \
   | tee /tmp/orion-p8-repro/check_authority_calculus.stdout.txt
 python papers/candidates/checkers/p8_finite_falsifiers_v1.py \
   | tee /tmp/orion-p8-repro/p8_finite_falsifiers_v1.stdout.txt
