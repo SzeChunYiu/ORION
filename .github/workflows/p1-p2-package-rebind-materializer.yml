@@ -1,0 +1,174 @@
+name: p1-p2-package-rebind-materializer
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  materialize:
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.head_ref == 'codex/p1-p2-final-package-rebind-v3-20260821'
+    runs-on: ubuntu-24.04
+    env:
+      EXPECTED_BASE: ca7df1055a43f97eaf8d142a62011c4c261af368
+      EXPECTED_RENDER_SUBJECT: 060ed7e6528a592cd3bef3db149b93e94652b2ec
+      EXPECTED_ARTIFACT_ID: '9456829355'
+      EXPECTED_ARTIFACT_DIGEST: sha256:f4d213ab9d84bb4e5bf60099e63e765221d0f25f45449933436276526f69bd51
+      EXPECTED_P1_PDF: 06a60f0f6ec69bc142952b4fc9dc1030fcd0f80de41f941958debe375e6ea99e
+      EXPECTED_P2_PDF: 90e424cff27f1a1cde8c37d774c3bcf17b7c1d98c0905c2f53e22b8753790fb3
+      EXPECTED_P1_CLOSURE: 3bb45ad8961a53d555a7e6592c359e9b0cf080fe00cf7a5e8c2fbff2915cebf2
+      EXPECTED_P2_CLOSURE: 91454e207b00a1de774264f0501e2032b7e3efdafebd58ba80040ec1b27d3ea9
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout exact PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - name: Fail closed on subject drift
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ github.event.pull_request.base.sha }}" = "$EXPECTED_BASE"
+          test "${{ github.event.pull_request.head.ref }}" = "codex/p1-p2-final-package-rebind-v3-20260821"
+          test "${{ github.event.pull_request.head.repo.full_name }}" = "$GITHUB_REPOSITORY"
+          git diff --quiet "$EXPECTED_BASE" -- \
+            papers/paper-01-recursive-epistemic-reconstruction/manuscript \
+            papers/paper-02-open-world-scientific-discovery/manuscript
+      - name: Download exact protected render artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/$EXPECTED_ARTIFACT_ID" \
+            -o /tmp/artifact-meta.json
+          python - <<'PY'
+          import json, os
+          meta = json.load(open('/tmp/artifact-meta.json'))
+          assert str(meta['id']) == os.environ['EXPECTED_ARTIFACT_ID']
+          assert meta.get('expired') is False
+          assert meta.get('digest') == os.environ['EXPECTED_ARTIFACT_DIGEST'], meta.get('digest')
+          PY
+          curl --fail --silent --show-error --location \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/$EXPECTED_ARTIFACT_ID/zip" \
+            -o /tmp/exact-render.zip
+          rm -rf /tmp/exact-render
+          mkdir -p /tmp/exact-render
+          unzip -q /tmp/exact-render.zip -d /tmp/exact-render
+      - name: Revalidate V3 receipt and complete tracked input closure
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json, os, subprocess
+          from pathlib import Path
+
+          art = Path('/tmp/exact-render')
+          receipt = json.loads((art / 'EXACT_RENDER_RECEIPT.json').read_text())
+          assert receipt['schema'] == 'P1P2.ExactRenderReceipt.v3'
+          assert receipt['subject_revision'] == os.environ['EXPECTED_RENDER_SUBJECT']
+          assert receipt['pdf_byte_reproducibility_checked'] is True
+          assert receipt['package_rebind_complete'] is False
+          assert receipt['submission_authority'] is False
+          assert receipt['p1_pdf_sha256'] == os.environ['EXPECTED_P1_PDF']
+          assert receipt['p2_pdf_sha256'] == os.environ['EXPECTED_P2_PDF']
+          assert receipt['p1_repository_input_closure_sha256'] == os.environ['EXPECTED_P1_CLOSURE']
+          assert receipt['p2_repository_input_closure_sha256'] == os.environ['EXPECTED_P2_CLOSURE']
+
+          def h(data):
+              return hashlib.sha256(data).hexdigest()
+
+          def verify(kind, expected, root):
+              closure_path = art / kind / 'repository-input-closure.json'
+              closure = json.loads(closure_path.read_text())
+              assert closure['subject_revision'] == os.environ['EXPECTED_RENDER_SUBJECT']
+              assert closure['repository_input_closure_sha256'] == expected
+              assert closure['repository_input_count'] == 31
+              files = closure['files']
+              listed = {entry['path'] for entry in files}
+              tracked = set(
+                  subprocess.check_output(['git', 'ls-files', '-z', root])
+                  .decode().split('\0')
+              )
+              tracked.discard('')
+              inside = {path for path in listed if path.startswith(root.rstrip('/') + '/')}
+              assert tracked == inside, (sorted(tracked - inside), sorted(inside - tracked))
+              digest = hashlib.sha256()
+              for entry in sorted(files, key=lambda item: item['path']):
+                  path = entry['path']
+                  data = Path(path).read_bytes()
+                  assert len(data) == entry['bytes']
+                  assert h(data) == entry['sha256']
+                  digest.update(path.encode('utf-8'))
+                  digest.update(b'\0')
+                  digest.update(str(len(data)).encode('ascii'))
+                  digest.update(b'\0')
+                  digest.update(data)
+              assert digest.hexdigest() == expected
+              return closure_path
+
+          p1c = verify(
+              'p1', os.environ['EXPECTED_P1_CLOSURE'],
+              'papers/paper-01-recursive-epistemic-reconstruction/manuscript'
+          )
+          p2c = verify(
+              'p2', os.environ['EXPECTED_P2_CLOSURE'],
+              'papers/paper-02-open-world-scientific-discovery/manuscript'
+          )
+          assert h((art / 'p1/manuscript.pdf').read_bytes()) == os.environ['EXPECTED_P1_PDF']
+          assert h((art / 'p2/manuscript.pdf').read_bytes()) == os.environ['EXPECTED_P2_PDF']
+          PY
+      - name: Materialize inspected bytes and regenerate exact package hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          p1='papers/paper-01-recursive-epistemic-reconstruction'
+          p2='papers/paper-02-open-world-scientific-discovery'
+          cp /tmp/exact-render/p1/manuscript.pdf "$p1/journal_package/manuscript.pdf"
+          cp /tmp/exact-render/p1/repository-input-closure.json "$p1/journal_package/RENDER_INPUT_CLOSURE.json"
+          cp /tmp/exact-render/p2/manuscript.pdf "$p2/journal_package/manuscript.pdf"
+          cp /tmp/exact-render/p2/repository-input-closure.json "$p2/journal_package/RENDER_INPUT_CLOSURE.json"
+          python - <<'PY'
+          import importlib.util
+          from pathlib import Path
+          path = Path('research/paper-programme-v1/journal_package/check_journal_package.py')
+          spec = importlib.util.spec_from_file_location('journal_check', path)
+          mod = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(mod)
+          for rel in [
+              Path('papers/paper-01-recursive-epistemic-reconstruction'),
+              Path('papers/paper-02-open-world-scientific-discovery'),
+          ]:
+              manifest = mod.load_manifest(rel / 'journal_package')
+              mod.write_sha256sums(rel, mod.hashed_paths(manifest))
+          PY
+          python research/paper-programme-v1/journal_package/check_journal_package.py --root .
+          sha256sum "$p1/journal_package/manuscript.pdf" "$p2/journal_package/manuscript.pdf"
+      - name: Commit exact inspected package bytes to this PR branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            papers/paper-01-recursive-epistemic-reconstruction/journal_package/manuscript.pdf \
+            papers/paper-01-recursive-epistemic-reconstruction/journal_package/RENDER_INPUT_CLOSURE.json \
+            papers/paper-01-recursive-epistemic-reconstruction/journal_package/SHA256SUMS \
+            papers/paper-02-open-world-scientific-discovery/journal_package/manuscript.pdf \
+            papers/paper-02-open-world-scientific-discovery/journal_package/RENDER_INPUT_CLOSURE.json \
+            papers/paper-02-open-world-scientific-discovery/journal_package/SHA256SUMS
+          if git diff --cached --quiet; then
+            echo 'Exact package bytes already materialized and checksummed.'
+            exit 0
+          fi
+          git commit -m 'Publication: materialize inspected P1/P2 PDF bytes'
+          git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
