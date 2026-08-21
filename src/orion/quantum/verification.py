@@ -68,10 +68,15 @@ def _expected_random_calls(search_size: int, marked_index: int, seed: int) -> in
 
 
 def _query_model_comparison(n_qubits: int) -> dict[str, Any]:
+    """Independent hidden-uniform comparator using the strongest free-final-guess ceiling."""
+
     search_size = 1 << n_qubits
     iterations = _expected_iterations(search_size)
     success_probability = _analytic_probability(search_size, iterations)
-    classical_budget = min(search_size, math.ceil(success_probability * search_size))
+    classical_budget = min(
+        search_size - 1,
+        max(0, math.ceil(success_probability * search_size) - 1),
+    )
     classical_expected = classical_budget - (
         classical_budget * (classical_budget - 1) / (2 * search_size)
     )
@@ -83,7 +88,8 @@ def _query_model_comparison(n_qubits: int) -> dict[str, Any]:
         "quantum_query_budget": iterations,
         "classical_matching_query_budget": classical_budget,
         "classical_matching_expected_queries": classical_expected,
-        "classical_output_must_be_predicate_verified": True,
+        "classical_free_final_guess_allowed": True,
+        "external_output_verification_is_separate_resource": True,
         "benchmark_correlated_side_information_admitted": False,
     }
 
@@ -237,8 +243,8 @@ def _terminal_for_size(
 
 
 def _validate_top_level_contracts(report: Mapping[str, Any], errors: list[str]) -> None:
-    if report.get("schema") != "ORION.QN.VS1.S1A.Campaign.v3":
-        errors.append("campaign schema is not access/benchmark-hardened v3")
+    if report.get("schema") != "ORION.QN.VS1.S1A.Campaign.v4":
+        errors.append("campaign schema is not strongest-classical/access/benchmark-hardened v4")
     if report.get("fixture_cases_used_for_advantage") is not False:
         errors.append("public fixture cases are being used to authorize advantage")
     if report.get("advantage_adjudication_source") != "HIDDEN_UNIFORM_ANALYTIC_QUERY_MODEL":
@@ -271,7 +277,7 @@ def _validate_top_level_contracts(report: Mapping[str, Any], errors: list[str]) 
 
 
 def reconstruct_s1a_campaign(report: Mapping[str, Any]) -> dict[str, Any]:
-    """Recompute semantic fixtures and query-model terminals from serialized evidence."""
+    """Recompute semantic fixtures and strongest hidden-uniform query terminals."""
 
     errors: list[str] = []
     _validate_top_level_contracts(report, errors)
@@ -279,7 +285,7 @@ def reconstruct_s1a_campaign(report: Mapping[str, Any]) -> dict[str, Any]:
     raw_cases = report.get("cases")
     if not isinstance(raw_cases, list):
         return {
-            "schema": "ORION.QN.S1ACampaignReconstruction.v3",
+            "schema": "ORION.QN.S1ACampaignReconstruction.v4",
             "valid": False,
             "errors": [*errors, "campaign cases missing or malformed"],
             "case_reconstructions": [],
@@ -392,7 +398,8 @@ def reconstruct_s1a_campaign(report: Mapping[str, Any]) -> dict[str, Any]:
                 "success_probability_source": comparison["success_probability_source"],
                 "quantum_query_budget": comparison["quantum_query_budget"],
                 "classical_matching_query_budget": comparison["classical_matching_query_budget"],
-                "classical_output_must_be_predicate_verified": True,
+                "classical_free_final_guess_allowed": True,
+                "external_output_verification_is_separate_resource": True,
                 "benchmark_correlated_side_information_admitted": False,
                 "fixture_classical_diagnostic_only": True,
             }
@@ -441,7 +448,7 @@ def reconstruct_s1a_campaign(report: Mapping[str, Any]) -> dict[str, Any]:
         )
 
     return {
-        "schema": "ORION.QN.S1ACampaignReconstruction.v3",
+        "schema": "ORION.QN.S1ACampaignReconstruction.v4",
         "valid": not errors and all(item["valid_record"] for item in case_reconstructions),
         "errors": errors,
         "case_reconstructions": case_reconstructions,
