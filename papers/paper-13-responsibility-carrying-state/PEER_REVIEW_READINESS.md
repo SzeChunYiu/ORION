@@ -14,7 +14,7 @@
 
 ### Statistics / reproducibility
 
-**Pass.** Exact support is deterministic. The protected safety–cost benchmark replays byte-identically. No post-hoc repair of the old finite-sanity threshold occurs.
+**Pass after explicit correction.** Exact support is deterministic. Hostile PR review found that the V1 efficacy runner omitted the protocol's byte-replay gate from the runner terminal. The V1 terminal is now non-authoritative alone. `verify_p13a_protocol_adjudication_v2.py` re-executes the exact frozen runner twice in fresh subprocess directories and requires all original scientific gates plus byte identity. Both payload SHA-256 values are `ea4006981e0c5027a56789014dd723059420f603e071e81990a903986f6e8d1f`. No post-hoc repair of the historical P14A finite-sanity threshold occurs.
 
 ### Novelty / donor
 
@@ -22,7 +22,7 @@
 
 ### Referee / reporting
 
-**Pass for controlled scope.** The abstract reports the old negative and the new positive together. `CANNOT_CHECK` is treated as a valid outcome. Authority separation prevents the state container from self-certifying scientific novelty/safety.
+**Pass for controlled scope.** The abstract reports the old negative and the new positive together. `CANNOT_CHECK` is treated as a valid outcome. Authority separation prevents the state container from self-certifying scientific novelty/safety. The replay adjudication correction is visible in the evidence chain.
 
 ## Checklist
 
@@ -37,7 +37,9 @@
 - [x] utility/correctness constraint
 - [x] resource cost and unnecessary reopen
 - [x] exact CANNOT_CHECK accounting
-- [x] deterministic two-run replay
+- [x] V1 replay-gate omission disclosed
+- [x] exact runner replayed in two fresh subprocesses
+- [x] authoritative V2 replay adjudication
 - [x] claim/evidence ledger
 - [x] donor subtraction
 - [ ] verifier-backed real-system responsibility shift
@@ -46,4 +48,4 @@
 
 ## Referee-facing headline
 
-> **Sufficiency is responsibility-scoped authority.** A compact state can be current, provenanced and high-confidence while still lacking distinctions needed for a new responsibility. An explicit support/recovery contract eliminates such unsafe reuse in the protected benchmark without paying the cost of always reopening raw state.
+> **Sufficiency is responsibility-scoped authority.** A compact state can be current, provenanced and high-confidence while still lacking distinctions needed for a new responsibility. An explicit support/recovery contract eliminates such unsafe reuse in the protected benchmark without paying the cost of always reopening raw state, and the result survives the protocol's replay requirement under an explicit independent adjudicator.
