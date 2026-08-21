@@ -10,10 +10,10 @@
    paper's bytes without regenerating its manifest fails a check.
 
 The second is what makes a content change visible, and it is currently declared
-by three of the twenty-two directories under ``papers/``. P6, P7 and P8 carry a
+by three of the twenty-four directories under ``papers/``. P6, P7 and P8 carry a
 ``CONTENT_MANIFEST_V1.json`` and a ``SHA256SUMS``; P1-P5, P9-P15, the Q and QG
 series and the two vacated ``paper-xx-`` directories carry neither. Measured on
-this tree: **115 files bound, 1 562 unbound**.
+this tree by the survey below: **161 files bound, 1 351 unbound, 0 drifted**.
 
 The defect this module exists to prevent is not that the unbound papers are
 wrong. It is that they are *silent*. Ask "how many files drifted?" and an
@@ -43,6 +43,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections.abc import Sequence
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
@@ -404,8 +405,16 @@ def require_binding_coverage(bindings: tuple[PaperBinding, ...]) -> None:
         )
 
 
-def main(argv: list[str] | None = None) -> int:
-    """Report the survey. Exit 0 earned, 1 real drift, 3 CANNOT_CHECK."""
+def main(argv: Sequence[str]) -> int:
+    """Report the survey. Exit 0 earned, 1 real drift, 3 CANNOT_CHECK.
+
+    ``argv`` is required rather than defaulting to ``sys.argv[1:]``. A zero-
+    argument callable in this package is walked and invoked by
+    ``tests/unit/programme/test_constitutional_boundary.py``; one that reads
+    global state would parse the *test runner's* arguments and exit the
+    interpreter, and ``SystemExit`` is not an ``Exception``, so it escapes that
+    walker's guard. Taking the input explicitly is the better shape regardless.
+    """
 
     import argparse
 
@@ -457,4 +466,6 @@ __all__ = [
 
 
 if __name__ == "__main__":  # pragma: no cover
-    raise SystemExit(main())
+    import sys
+
+    raise SystemExit(main(sys.argv[1:]))
