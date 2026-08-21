@@ -1,0 +1,76 @@
+name: orion-qn-vs1
+
+on:
+  pull_request:
+    paths:
+      - 'src/orion/quantum/**'
+      - 'tests/quantum/**'
+      - 'research/extensions/orion-qn/**'
+      - 'development/orion-qn-q2/**'
+      - '.github/workflows/orion-qn-vs1.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qn-vs1-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  s1a-local-simulation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION, research harness, and frozen simulator
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+          python -m pip install 'qiskit==2.5.1' 'qiskit-aer==0.17.2'
+      - name: Run Q1 and S1A hostile/conformance tests
+        run: |
+          pytest -q \
+            tests/quantum/test_contracts.py \
+            tests/quantum/test_vs1_verification.py \
+            tests/quantum/test_vs1_s1a_qiskit.py
+      - name: Execute frozen S1A campaign through ORION research harness
+        run: |
+          mkdir -p artifacts
+          python development/orion-qn-q2/run_s1a_harness.py | tee artifacts/orion-qn-vs1-s1a-summary.json
+      - name: Independently reconstruct harness artifact
+        run: |
+          python development/orion-qn-q2/verify_s1a_harness_artifact.py \
+            artifacts/orion-qn-vs1-s1a-harness.json \
+            artifacts/orion-qn-vs1-s1a-verification.json
+      - name: Enforce bounded campaign shape
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          envelope = json.loads(Path('artifacts/orion-qn-vs1-s1a-harness.json').read_text())
+          campaign = envelope['campaign']
+          assert campaign['physical_quantum_speedup_claim_permitted'] is False
+          assert campaign['evidence_mode'] == 'LOCAL_SIMULATION'
+          assert len(campaign['cases']) == 64
+          assert len(campaign['size_summaries']) == 8
+          assert campaign['p4_reconstruction']['valid'] is True
+          terminals = {item['terminal'] for item in campaign['size_summaries']}
+          assert terminals <= {
+              'QUANTUM_QUERY_ADVANTAGE_ONLY',
+              'QUANTUM_FEASIBLE_NO_ADVANTAGE',
+              'INVALID_COMPARISON',
+          }
+          PY
+      - name: Upload result-bearing harness receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qn-vs1-s1a-${{ github.sha }}
+          path: |
+            artifacts/orion-qn-vs1-s1a-harness.json
+            artifacts/orion-qn-vs1-s1a-verification.json
+            artifacts/orion-qn-vs1-s1a-summary.json
+            .orion-qn-vs1-s1a/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error
