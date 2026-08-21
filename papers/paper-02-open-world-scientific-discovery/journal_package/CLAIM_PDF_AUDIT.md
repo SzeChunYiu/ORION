@@ -3,7 +3,7 @@
 Date: 2026-08-21  
 Source manuscript change: `714a7e771961c8ace08bb38d7dab6e2ba45b8ff7`  
 Inspected render subject: `1d69fc230a358ded93699fdbe03b6ff2299cccf8`  
-Current comparison head: `0164deb570e0daee2912e354cdb6d2df20896dc7`  
+Repository comparison anchor: `d1f58d4fd5581c1977bcd89acd12f80edbb47287`  
 Package status: `SCAFFOLDING`  
 PDF authority: `OPEN`
 
@@ -16,14 +16,18 @@ The exact-render workflow rebuilt from clean state twice and required identical 
 
 All 24 pages were independently inspected. No clipping, overlap, black-square/glyph
 corruption, unreadable figure/table placement, or page-edge contact was observed.
-The durable page-audit record is `evidence/FINAL_SATURATION_AUDIT.md` (SHA-256 `637e99b108c67025e71e3eaaa1ce1fb859dca2adc5b34534a7c6c8d0fab7fb78`).
+The durable page-audit record is `evidence/FINAL_SATURATION_AUDIT.md` (SHA-256 `5b1375c06b926fb6da4f5e77789a616a400089cd87ba802b4086bf7f1b03f922`).
 
-A repository compare from the inspected render subject through `0164deb5...` shows
-no paper-01 or paper-02 file changes, so no manuscript-byte drift was found after
-the inspected render. This completes the visual-inspection gate for the exact PDF
-hash above, but it does **not** complete package authority: `journal_package/manuscript.pdf`
-is still absent, the package checksum inventory therefore does not bind the PDF, and
-final P2 manuscript/repository/package CI has not yet passed.
+A repository compare from the inspected render subject through the comparison anchor
+shows no paper-01 or paper-02 file changes, so no manuscript-byte drift was found after
+the inspected render. A later `main` advance may reuse this visual evidence only when
+the exact-main renderer independently reproduces the identical PDF SHA-256; changed PDF
+bytes require renewed page inspection.
+
+This completes the visual-inspection gate for the exact PDF hash above, but it does
+**not** complete package authority: `journal_package/manuscript.pdf` is still absent,
+the package checksum inventory therefore does not bind the PDF, and final P2
+manuscript/repository/package CI has not yet passed.
 
 The scientific ceiling remains `P2_NARROWED`. External ORION-vs-baseline superiority
 remains `CANNOT_CHECK`; the provider-invalid OpenAIRE/Crossref campaign is retained
