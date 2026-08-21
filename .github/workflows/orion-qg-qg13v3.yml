@@ -1,0 +1,81 @@
+name: orion-qg-qg13v3-three-column
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG13V3_*'
+      - 'development/orion-qg-regime-geometry/qg13_v3_*'
+      - 'development/orion-qg-regime-geometry/run_qg13_v3_dual_harness.py'
+      - 'research/extensions/orion-qg/qg13_v3_three_column.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/domains/orion_qg/**'
+      - 'packages/orion-research-harness/tests/test_qg13_v3_three_column.py'
+      - '.github/workflows/orion-qg-qg13v3.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg13v3-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  qg13v3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      QG13V3_BASE: cad8b1b4d3be3668449658d10ef718eb1682d1c9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert frozen lineage
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG13V3_BASE}^{commit}"
+          test "$(git merge-base HEAD "${QG13V3_BASE}")" = "${QG13V3_BASE}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Validate native control
+        run: pytest -q packages/orion-research-harness/tests/test_qg13_v3_three_column.py
+      - name: Run both harnesses
+        run: |
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg13_v3_dual_harness.py | tee artifacts/orion-qg-qg13v3-summary.json
+      - name: Deterministic replay
+        run: |
+          python research/extensions/orion-qg/qg13_v3_three_column.py --output artifacts/orion-qg-qg13v3-three-column-replay.json | tee artifacts/orion-qg-qg13v3-replay.log
+          cmp artifacts/orion-qg-qg13v3-three-column.json artifacts/orion-qg-qg13v3-three-column-replay.json
+      - name: Enforce frozen outcome space
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg13v3-three-column.json').read_text());g=json.loads(Path('artifacts/orion-qg-qg13v3-generic-verification.json').read_text());d=json.loads(Path('artifacts/orion-qg-qg13v3-dual-harness.json').read_text())
+          allowed={'QG13V3_SUPPORT4_CANDIDATE','QG13V3_V2_OBSTRUCTIONS_CLOSED_BUT_NEW_OBSTRUCTION_REMAINS','QG13V3_MINIMAL_THREE_COLUMN_OBSTRUCTION','QG13V3_RESOURCE_BOUNDARY'}
+          assert d['terminal'] in allowed and d['both_accept'] is True
+          assert g['decision']=='ACCEPT' and all(g['checks'].values())
+          assert a['production_binding']['all_exact'] is True
+          assert a['v2_result_file_opened_during_synthesis'] is False
+          assert a['new_theorem_authority'] is False and a['novelty_authority'] is False and a['physical_quantum_advantage_claim'] is False
+          assert a['network_access'] is False and a['chemistry_sources_read'] is False and a['protected_subject_read'] is False
+          if d['terminal']=='QG13V3_SUPPORT4_CANDIDATE': assert a['census']['e3_uncovered']==0
+          elif d['terminal']=='QG13V3_V2_OBSTRUCTIONS_CLOSED_BUT_NEW_OBSTRUCTION_REMAINS': assert a['census']['v2_survive_v3']==0 and a['census']['e3_uncovered']>0
+          elif d['terminal']=='QG13V3_MINIMAL_THREE_COLUMN_OBSTRUCTION': assert a['census']['v2_survive_v3']>0
+          else: assert a['triple_safety']['safe']==0
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg13v3-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg13v3-three-column.json
+            artifacts/orion-qg-qg13v3-three-column-replay.json
+            artifacts/orion-qg-qg13v3-generic-verification.json
+            artifacts/orion-qg-qg13v3-dual-harness.json
+            artifacts/orion-qg-qg13v3-summary.json
+            artifacts/orion-qg-qg13v3-replay.log
+            .orion-qg-qg13v3-generic/.orion-harness/**
+            .orion-qg-qg13v3-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error
