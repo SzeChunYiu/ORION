@@ -650,23 +650,30 @@ def synthetic_panels() -> dict[str, Any]:
     instances += [(name, 2, pairs) for name, pairs in sorted(r6m._HOSTILE_N2_PANELS.items())]
     for name, n, target_pairs in instances:
         terms = r6m._synthetic_terms(target_pairs)
-        unrestricted = int(
-            r6m.exact_r6m_matching(terms, r6m._SYNTHETIC_MATCHING, n, list(range(6)))["C_R6M"]
-        )
+        witness = r6m.exact_r6m_matching(terms, r6m._SYNTHETIC_MATCHING, n, list(range(6)))
+        unrestricted = int(witness["C_R6M"])
         restricted = int(
             r6m.donor_r6l_matching(terms, r6m._SYNTHETIC_MATCHING, n, list(range(6)))["C_R6L"]
         )
         if restricted < unrestricted:
             raise AssertionError({"r6n_synthetic_restricted_below_dp": name})
-        r6m_rows.append(
-            {
-                "panel": name,
-                "n": n,
-                "C_unrestricted_dp": unrestricted,
-                "C_weight_one_restricted": restricted,
-                "equal": restricted == unrestricted,
-            }
+        dp_max_frame_weight = max(
+            p10.wt(tuple(r)) for block in "ABC" for r in witness["R"][block]
         )
+        row = {
+            "panel": name,
+            "n": n,
+            "C_unrestricted_dp": unrestricted,
+            "C_weight_one_restricted": restricted,
+            "equal": restricted == unrestricted,
+            "dp_witness_max_frame_weight": int(dp_max_frame_weight),
+            "dp_witness_tag_weight": int(p10.wt(tuple(witness["S"]))),
+        }
+        if not row["equal"]:
+            # Post-gate diagnostic only (not a frozen gate): locate the gap.
+            diag = r6m_weight_one_frames_any_tag(terms, r6m._SYNTHETIC_MATCHING, n)
+            row["C_weight_one_frames_any_tag_diagnostic"] = diag
+        r6m_rows.append(row)
     return {
         "r6i": r6i_rows,
         "r6m": r6m_rows,
@@ -758,6 +765,9 @@ def main() -> dict[str, Any]:
     else:
         authority = "MAX_R6N_SUPPORT_DOMINANCE_REFUTED__NEW_REGIME_FOUND__NOT_R6"
         responsibility = "RESP:SPREAD_SUPPORT_REGIME_DISCOVERED__REPORT_VERBATIM_AND_RE_FREEZE"
+        gap_frames_all_weight_one = all(
+            row.get("dp_witness_max_frame_weight", 1) == 1 for row in joint_gaps
+        )
         discovery = {
             "local_violation_count": violations,
             "violating_local_configs": (
@@ -766,6 +776,25 @@ def main() -> dict[str, Any]:
                 + r6i_primary["violating_configs_verbatim"]
             ),
             "joint_gaps_unrestricted_beats_weight_one": joint_gaps,
+            "characterization": {
+                "frame_support_dominance_violated": violations > 0
+                or not gap_frames_all_weight_one,
+                "donor_family_tag_anchor_coupling_violated": bool(joint_gaps)
+                and gap_frames_all_weight_one,
+                "note": (
+                    "Every joint-gap DP witness with dp_witness_max_frame_weight == 1 uses "
+                    "weight-one frames outside the donor family: blocks anchored at "
+                    "different qubits with a spread (weight >= 2) shared Tag, which the "
+                    "R6L common-weight-one-Tag donor grammar cannot express. In that case "
+                    "the per-unit frame support-dominance component of the lemma survives "
+                    "all checks and the refuted component is exactly the declared "
+                    "Tag-anchor coupling gap. The diagnostic "
+                    "C_weight_one_frames_any_tag_diagnostic column locates the gap: "
+                    "equality with C_unrestricted_dp confirms Tag-anchor coupling as the "
+                    "sole broken mechanism. This characterization is post-gate diagnosis, "
+                    "not a frozen gate; the frozen outcome mapping stands."
+                ),
+            },
         }
 
     total_checked = (
