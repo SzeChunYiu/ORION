@@ -65,10 +65,25 @@ declared scope (most terminals are exact-synthetic or frozen-open-subject scope)
   representation optimization beyond the absorbed donors has zero exact value — the DPs
   saturate onto the donor envelopes.
 
-### 2.4 Explanatory closure (bound slot — R6N)
-- [SLOT] Support-dominance lemma audit: `MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json` — machine
-  verification of the local exchange inequality intended to explain the R6I/K/M collapses
-  analytically. Outcome to be bound verbatim, positive or refuted.
+### 2.4 Explanatory closure — R6N executed: half theorem, half discovery
+
+`MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json` (replay-verified bit-identical; protocol frozen
+before outcome with the Tag-repair coupling explicitly declared as the analytic gap):
+
+- **Theorem-grade half.** Frame-support dominance is machine-verified with **zero
+  violations over 688,041,472 local configurations** across the R6I and R6M grammars
+  (max savings/cost ratio 1.0, ties only), and the weight-one equality holds on **all 50
+  recorded chemistry optima**. The R6I/R6K/R6M collapses are thereby *explained*: no exact
+  DP could ever profit from spread frame support.
+- **Discovery half.** The full donor-family closure is **refuted exactly at the declared
+  gap**: synthetic R6M instance `n2_b` has unrestricted DP = 8 < weight-one-Tag donor
+  family = 9, witnessed by weight-one frames anchored at *different* qubits with a
+  **weight-2 shared Tag (Y⊗Y)** — a regime the R6L donor grammar cannot express, which both
+  frozen chemistry subjects happen to avoid. The post-gate diagnostic shows the enlarged
+  family (weight-one frames + unrestricted minimal Tag) recovers the DP optimum there.
+- Authority: `MAX_R6N_SUPPORT_DOMINANCE_REFUTED__NEW_REGIME_FOUND__NOT_R6`.
+- [SLOT] R6O enlarged-Tag donor closure: does the enlarged donor family D+ restore exact
+  family closure on all domains? Outcome to be bound verbatim.
 
 ### 2.5 N-lane recoveries (issues #674–#677) — ALL EXECUTED 2026-08-21
 

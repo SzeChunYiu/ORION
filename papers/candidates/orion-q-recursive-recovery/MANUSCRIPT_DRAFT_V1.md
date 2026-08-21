@@ -57,9 +57,15 @@ this paper exceeds its receipt's frozen scope.
   N2=12; post-absorption 8/9); R6I, R6K, R6M exact negatives — every optimum collapses onto
   the weight-one donor envelope (strict points: 0/10, 0/10·2, 0/15·2 respectively). All
   receipts replay bit-identically.
-- **[BIND] R6N support-dominance lemma**: local exchange inequality machine-verified over
-  the full finite local domains → analytic explanation of the collapse, or a refuting
-  configuration → a newly discovered regime. Outcome bound verbatim from the receipt.
+- **R6N support-dominance audit — half theorem, half discovery**: frame-support dominance
+  machine-verified with zero violations over 688,041,472 local configurations (ties at
+  ratio 1.0 only), explaining every R6I/K/M collapse; and the full donor-family closure
+  refuted precisely at the protocol's pre-declared Tag-repair gap by a minimal serialized
+  counterexample — weight-one frames on split anchors with a weight-2 shared Tag (Y⊗Y)
+  beat the weight-one-Tag donor 8 < 9 on a synthetic instance both chemistry subjects
+  happen to avoid. The collapse explanation is therefore "support dominance plus
+  subject-specific Tag-anchor alignment", and the counterexample defines the enlarged
+  donor family tested next.
 
 ## 3. Recursive recovery of the N-lane negatives
 
@@ -103,10 +109,14 @@ The R6 story is a controlled demonstration of the framework's central discipline
 plausible new formalisms (rank-2 shared Tags, factored Restores, three-frame joint
 optimization) were each frozen, implemented exactly, and shown to add zero value beyond
 absorbed donors — where a less disciplined pipeline would have published four "novel
-methods". [BIND: with the dominance lemma, this becomes an analytic theorem about the
-grammar family rather than an empirical observation.] The honest frontier is thereby
-relocated: progress requires a move outside the R6B..R6M family, and the framework now
-states this with receipts instead of intuition.
+methods". The dominance audit then did what saturation alone cannot: it turned the
+collapse into understanding (frame support provably never pays) while *refuting* the naive
+closure story at its declared gap, producing a minimal counterexample regime (split-anchor
+weight-one frames with a weight-2 shared Tag) that the donor grammar cannot express and
+the chemistry subjects happen to avoid. [BIND: R6O tests whether the enlarged donor family
+restores exact closure.] The honest frontier is thereby relocated twice over: progress
+requires either the newly characterized Tag-anchor regime or a move outside the family
+entirely, and the framework states this with receipts instead of intuition.
 
 ## 5. Claim boundary
 
