@@ -1,0 +1,143 @@
+name: p1-r6-replication-host-custody
+
+on:
+  pull_request:
+    paths:
+      - 'research/claim_expansion/p1/gpt_r6/REPLICATION_2019_PROTOCOL_V1.json'
+      - '.github/workflows/p1-r6-replication-host-custody.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  freeze-open-weight-host:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate replication protocol is pre-outcome and non-authorizing
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('research/claim_expansion/p1/gpt_r6/REPLICATION_2019_PROTOCOL_V1.json').read_text())
+          assert p['schema_version'] == 'orion.p1.r6.replication-2019-protocol.v1'
+          assert p['frozen_before_r6_2020_primary_terminal'] is True
+          assert p['source_custody']['replication_year'] == 2019
+          assert p['corpus_requirements']['required_total_sources'] == 28
+          assert p['corpus_requirements']['required_total_episodes'] == 52
+          assert p['changed_host']['required'] is True
+          assert p['changed_host']['fallback_to_deterministic_2020_provider'] is False
+          assert p['independent_evaluator']['must_not_import_2020_primary_scoring_or_terminal_functions'] is True
+          assert p['terminal_rule']['positive_requires_2020_primary_positive'] is True
+          assert p['terminal_rule']['positive_does_not_self_authorize_registry_promotion'] is True
+          assert len(p['queries']) == 28
+          assert len({q['id'] for q in p['queries']}) == 28
+          assert all('2019' in q['q'] for q in p['queries'])
+          print('P1_R6_2019_REPLICATION_PROTOCOL=PASS')
+          PY
+
+      - name: Install open-weight host runtime
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install transformers huggingface_hub safetensors sentencepiece torch
+
+      - name: Resolve exact no-gold host revision and execute custody probe
+        shell: bash
+        env:
+          HF_HUB_DISABLE_TELEMETRY: '1'
+          TOKENIZERS_PARALLELISM: 'false'
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p1-r6-host
+          python - <<'PY'
+          import hashlib
+          import importlib.metadata
+          import json
+          import platform
+          from pathlib import Path
+
+          import huggingface_hub
+          import torch
+          import transformers
+          from huggingface_hub import HfApi, hf_hub_download
+          from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+
+          protocol_path = Path('research/claim_expansion/p1/gpt_r6/REPLICATION_2019_PROTOCOL_V1.json')
+          protocol = json.loads(protocol_path.read_text())
+          model_id = protocol['changed_host']['model_id']
+          api = HfApi()
+          info = api.model_info(model_id)
+          revision = str(info.sha)
+          assert len(revision) == 40 and all(ch in '0123456789abcdef' for ch in revision.lower())
+
+          config_path = Path(hf_hub_download(model_id, 'config.json', revision=revision))
+          tokenizer = AutoTokenizer.from_pretrained(model_id, revision=revision)
+          model = AutoModelForSeq2SeqLM.from_pretrained(model_id, revision=revision)
+          model.eval()
+
+          prompt = 'Classify the statement as SUPPORT, REFUTE, or INCONCLUSIVE: repeated measurements agree within stated uncertainty.'
+          encoded = tokenizer(prompt, return_tensors='pt')
+          with torch.no_grad():
+              output = model.generate(
+                  **encoded,
+                  do_sample=False,
+                  max_new_tokens=int(protocol['changed_host']['generation']['max_new_tokens']),
+              )
+          decoded = tokenizer.decode(output[0], skip_special_tokens=True)
+          assert isinstance(decoded, str) and decoded.strip()
+
+          def sha256(path: Path) -> str:
+              h = hashlib.sha256()
+              with path.open('rb') as f:
+                  for block in iter(lambda: f.read(1024 * 1024), b''):
+                      h.update(block)
+              return h.hexdigest()
+
+          packages = {}
+          for name in ('transformers', 'huggingface_hub', 'safetensors', 'sentencepiece', 'torch'):
+              packages[name] = importlib.metadata.version(name)
+
+          receipt = {
+              'schema_version': 'orion.p1.r6.changed-host-custody.v1',
+              'authority': 'HOST_CUSTODY_ONLY_NO_SCIENTIFIC_OUTCOME',
+              'model_id': model_id,
+              'resolved_revision_sha': revision,
+              'config_sha256': sha256(config_path),
+              'tokenizer_class': tokenizer.__class__.__name__,
+              'model_class': model.__class__.__name__,
+              'generation_parameters': {
+                  'do_sample': False,
+                  'temperature_semantics': 'not_applicable_when_do_sample_false',
+                  'max_new_tokens': int(protocol['changed_host']['generation']['max_new_tokens']),
+              },
+              'runtime_versions': packages,
+              'python': platform.python_version(),
+              'torch_device': 'cpu',
+              'custody_probe_prompt_sha256': hashlib.sha256(prompt.encode()).hexdigest(),
+              'custody_probe_output_sha256': hashlib.sha256(decoded.encode()).hexdigest(),
+              'custody_probe_nonempty': True,
+              'replication_source_or_gold_accessed': False,
+              'p1_2020_primary_outcome_accessed': False,
+              'promotion_authorized': False,
+          }
+          out = Path('/tmp/p1-r6-host/P1_R6_2019_HOST_CUSTODY_V1.json')
+          out.write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n')
+          print('P1_R6_2019_HOST_CUSTODY=' + json.dumps(receipt, sort_keys=True))
+          PY
+
+      - name: Upload exact changed-host custody receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: p1-r6-2019-host-custody-${{ github.sha }}
+          path: /tmp/p1-r6-host/P1_R6_2019_HOST_CUSTODY_V1.json
+          if-no-files-found: error
+          retention-days: 30
