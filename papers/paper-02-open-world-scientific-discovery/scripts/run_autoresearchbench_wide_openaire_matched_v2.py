@@ -98,9 +98,12 @@ def validate_transport_probe(path: Path, freeze: dict[str, Any]) -> dict[str, An
         raise ValueError("V2 transport probe must explicitly attest that benchmark gold was not accessed")
     if probe.get("promotion_authorized") is not False:
         raise ValueError("V2 transport probe cannot grant scientific promotion authority")
+    minimum_result_count = transport.get("probe_min_result_count")
+    if type(minimum_result_count) is not int or minimum_result_count < 1:
+        raise ValueError("V2 freeze does not require a positive transport-probe identity yield")
     result_count = probe.get("result_count")
-    if type(result_count) is not int or result_count < 0:
-        raise ValueError("V2 transport probe result count is invalid")
+    if type(result_count) is not int or result_count < minimum_result_count:
+        raise ValueError("V2 transport probe did not return the frozen minimum identity yield")
     return probe
 
 
