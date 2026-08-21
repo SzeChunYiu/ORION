@@ -1,0 +1,35 @@
+{
+  "capability": "VERIFY_EVIDENCE",
+  "created_at": "2026-08-21T06:18:27.283010+00:00",
+  "payload": {
+    "contribution": {
+      "assimilation": "COMPLEMENTARY_FACET",
+      "assumption_ids": [],
+      "context_ids": [],
+      "contradicts_claim_ids": [],
+      "contribution_id": "contrib:cap-test-coverage",
+      "discovered_domain_ids": [],
+      "evidence_ids": [
+        "cap-test-coverage"
+      ],
+      "referent_bindings": [],
+      "related_claim_ids": [],
+      "representation_ids": [],
+      "representation_mappings": [],
+      "text": "Every implemented capability kind is exercised by at least one test: WEB_SEARCH (test_harness.py:25-29, test_hardening.py:55), LLM_COMPLETE (test_harness.py:190, test_hardening.py:159), VERIFY_EVIDENCE (test_hardening.py:197-217), FILE_WRITE (test_harness.py:61), FILE_READ (test_harness.py:65-69, test_hardening.py:249-255,310), FILE_LIST (test_local_limits.py:24), PYTHON (test_hardening.py:258-287, test_local_limits.py:43), SHELL (test_local_limits.py:62). The suite passes 30/30 on Python 3.11."
+    },
+    "instruction": "Independently check whether the contribution is supported by the retrieved source item. Fail closed when support cannot be established. A passing result must include at least one externally meaningful certificate_id.",
+    "retrieved_item": {
+      "content": "Test coverage per capability kind, verified by grep of packages/orion-research-harness/tests/: WEB_SEARCH in test_harness.py lines 25-29 and test_hardening.py line 55; LLM_COMPLETE in test_harness.py line 190 and test_hardening.py line 159; VERIFY_EVIDENCE in test_hardening.py test_verification_pass_requires_real_certificate_and_boolean lines 197-217; FILE_WRITE test_harness.py line 61; FILE_READ test_harness.py lines 65-69 and test_hardening.py lines 249-255 and 310; FILE_LIST test_local_limits.py line 24; PYTHON test_hardening.py lines 258-287 and test_local_limits.py line 43; SHELL test_local_limits.py line 62. The suite passes 30/30 under pytest on Python 3.11.",
+      "domain_ids": [
+        "software-verification"
+      ],
+      "item_id": "cap-test-coverage",
+      "source_uri": "repo:packages/orion-research-harness/tests/"
+    }
+  },
+  "request_digest": "14e76d4a3aa58fc26ca4aff5e3587c0a02bd8abd4f4ddb62d14b866ad3ff9be7",
+  "request_id": "hostreq:f19b32a6ca9173fe313e96f39b03cff0e611e49fdbdb911ec4f525ab04adc4b8",
+  "schema": "ORION.HostCapabilityRequest.v1",
+  "session_id": "session:7b2d750debcd46c4b7c723ed7be6bf42"
+}

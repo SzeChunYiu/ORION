@@ -1,0 +1,59 @@
+{
+  "schema": "ORIONQ.MAXR6.DonorClosureH4.v1",
+  "authority": "NATIVE_SELECTED_DONOR_CLOSURE_EVIDENCE_ONLY__NOT_R6",
+  "trigger": {
+    "native_N0_action": "COMPUTE:DONOR_CLOSURE_PACKET",
+    "native_N0_status": "COMPUTATION_REQUIRED"
+  },
+  "subject": {
+    "name": "H4",
+    "source_repo": "npbauman/DUCC-Hamiltonian-Library",
+    "source_commit": "be306f5830549304176365750d712093950bbdde",
+    "source_blob": "b98792b1055dbac0ebf2a7576f72412e3e4ac6c5",
+    "nonidentity_pauli_terms": 268,
+    "n_qubits": 8
+  },
+  "GENERAL_M_DONOR_OUTCOME": "NONDOMINATING_OR_CLOSED",
+  "general_m_optimistic_relaxation": {
+    "target": {
+      "Lambda": 4.862157873932594,
+      "CNOT": 1428,
+      "T": 5568,
+      "blocks": 246,
+      "ancilla": 0,
+      "reference_total_T": 31028,
+      "partition_sha256": "ead1365263ba4ba0e288be7f3715125f4d0a4fb5a14b7979f97c7237792ad1fc"
+    },
+    "relaxation": {
+      "m_min": 3,
+      "m_max": 12,
+      "Lambda": "sqrt(m)*l2",
+      "CNOT": 0,
+      "T": "96*(2m-1)",
+      "ancilla": 0,
+      "block_count": 1,
+      "tag_restore_cost": 0,
+      "achievable_claim": false
+    },
+    "exact_target_resource_state_reproduced": true,
+    "exact_target_partition_hash_reproduced": true,
+    "final_bounded_exact_state_count": 1,
+    "final_bounded_relaxed_state_count": 1,
+    "final_relaxed_states_using_m_ge_3_hyperblock": 0,
+    "result": "No complete optimistic-general-m-TARE-containing partition weakly dominates the frozen H4 direct-clique donor point on Lambda/CNOT/T/blocks/ancilla/reference-total-T.",
+    "independent_pre_CI_check": "GREEN"
+  },
+  "FOQCS_GENERIC_PREP_OUTCOME": "GENERIC_MATCHED_ROUTE_AVAILABLE",
+  "foqcs": {
+    "paper": "arXiv:2507.20887",
+    "qrisp_repo": "eclipse-qrisp/Qrisp",
+    "qrisp_commit": "044979610a91a872fb087f539a5d78a66ee9cebe",
+    "qrisp_path": "src/qrisp/block_encodings/constructors/foqcs_lcu/from_foqcs_lcu_prep.py",
+    "route": "BlockEncoding.from_foqcs_lcu_prep with caller-supplied PREP_R and PREP_L",
+    "minimum_activation_ancillas": "2L",
+    "prep_resource_status": "UNRESOLVED_USER_SUPPLIED_PREP__NOT_ZERO_COST",
+    "automatic_operator_route_scope": "built-in Heisenberg / same-axis spin-glass families; unsupported operators require custom PREP"
+  },
+  "fresh_r6_subject_coefficients_accessed": false,
+  "r6_authority": false
+}

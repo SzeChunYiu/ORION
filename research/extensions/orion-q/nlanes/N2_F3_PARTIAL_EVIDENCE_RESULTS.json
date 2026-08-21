@@ -1,0 +1,99 @@
+{
+  "arms_adversarial": {
+    "b1_scalarized_midpoint": {
+      "abstain_rate": 0.0,
+      "max_loss": 0.0,
+      "mean_loss": 0.0,
+      "query_rate": 0.0
+    },
+    "b2_minimax_always_answer": {
+      "abstain_rate": 0.0,
+      "max_loss": 0.0,
+      "mean_loss": 0.0,
+      "query_rate": 0.0
+    },
+    "b3_always_query_scalarize": {
+      "abstain_rate": 0.0,
+      "max_loss": 0.02,
+      "mean_loss": 0.019999999999999997,
+      "query_rate": 1.0
+    },
+    "lazy_abstainer": {
+      "abstain_rate": 1.0,
+      "max_loss": 1.3330094420067466,
+      "mean_loss": 0.8637448728623695,
+      "query_rate": 0.0
+    },
+    "oracle": {
+      "abstain_rate": 0.0,
+      "max_loss": 0.0,
+      "mean_loss": 0.0,
+      "query_rate": 0.0
+    },
+    "orion_typed": {
+      "abstain_rate": 0.0,
+      "max_loss": 0.0,
+      "mean_loss": 0.0,
+      "query_rate": 0.0
+    }
+  },
+  "arms_primary": {
+    "b1_scalarized_midpoint": {
+      "abstain_rate": 0.0,
+      "max_loss": 0.5009144033307251,
+      "mean_loss": 0.01662637572745266,
+      "query_rate": 0.0
+    },
+    "b2_minimax_always_answer": {
+      "abstain_rate": 0.0,
+      "max_loss": 0.7025139716237621,
+      "mean_loss": 0.04346377133870722,
+      "query_rate": 0.0
+    },
+    "b3_always_query_scalarize": {
+      "abstain_rate": 0.0,
+      "max_loss": 0.5209144033307251,
+      "mean_loss": 0.03212216789953444,
+      "query_rate": 1.0
+    },
+    "lazy_abstainer": {
+      "abstain_rate": 1.0,
+      "max_loss": 0.9791781546694243,
+      "mean_loss": 0.273775068057875,
+      "query_rate": 0.0
+    },
+    "oracle": {
+      "abstain_rate": 0.0,
+      "max_loss": 0.0,
+      "mean_loss": 0.0,
+      "query_rate": 0.0
+    },
+    "orion_typed": {
+      "abstain_rate": 0.435,
+      "max_loss": 0.5088243588394274,
+      "mean_loss": 0.06633484407910473,
+      "query_rate": 0.2575
+    }
+  },
+  "authority": "exact_synthetic_frozen_world_only; not compiled-resource, hardware, or novelty authority",
+  "best_baseline_primary_mean_loss": 0.01662637572745266,
+  "claim_boundary": "Residual (or its absence) holds only for the frozen stripped route proxies, interval evidence model, weight polytope W and scoring of N2_F3_PROTOCOL.md; no LOWER_BOUND claim.",
+  "family": "successor_family_3_partial_evidence",
+  "gates": {
+    "F3_G1_determinism": true,
+    "F3_G2_hostile_decidable": true,
+    "F3_G3_lazy_punished": true,
+    "F3_G4_oracle_bound": true,
+    "F3_G5_residual": false
+  },
+  "issue": "SzeChunYiu/ORION#675",
+  "n_adversarial": 100,
+  "n_primary": 400,
+  "orion_primary_mean_loss": 0.06633484407910473,
+  "orion_vs_best_baseline_ratio": 3.989735656555377,
+  "protocol": "development/orion-q-nlane-closure/N2_F3_PROTOCOL.md",
+  "query_price": 0.02,
+  "schema": "ORIONQ.N2F3PartialEvidenceResult.v1",
+  "seed": 20260821,
+  "terminal": "N2_F3_PARTIAL_EVIDENCE_NO_RESIDUAL__EXACT_SYNTHETIC_ONLY"
+}

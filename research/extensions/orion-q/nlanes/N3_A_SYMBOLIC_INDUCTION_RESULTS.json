@@ -1,0 +1,180 @@
+{
+  "authority": "exact_synthetic_bounded__no_real_quantum_no_novelty_no_p10_authority",
+  "budgets": {
+    "donor_bfs_budget_per_heldout_n": 200000,
+    "train_bfs_budget": 1000000
+  },
+  "claim_boundary": "exact-synthetic CNOT/GF(2) worlds only; symbolic-family induction above a supplied concrete grammar; supplied-parametric donor holds first right of refusal; no claim about real quantum synthesis, QSynth-class tools, or novelty",
+  "determinism": {
+    "identical": true,
+    "run1_sha256": "8b4dda76610be815c0153ea69edb09b16c87fa8a075eeaf287252e58907ab788",
+    "run2_sha256": "8b4dda76610be815c0153ea69edb09b16c87fa8a075eeaf287252e58907ab788"
+  },
+  "family": "A_finite_optimum_symbolic_family_induction",
+  "gates": {
+    "GA0_budget_sanity": true,
+    "GA1_residual_value": true,
+    "GA2_donor_first_refusal": true,
+    "GA3_hostile_catch": true,
+    "GA4_determinism": true
+  },
+  "issue": 676,
+  "novelty_authorized": false,
+  "p10_authorized": false,
+  "protocol": "development/orion-q-nlane-closure/N3_A_SYMBOLIC_INDUCTION_PROTOCOL.md",
+  "schema": "ORIONQ.N3A.SymbolicFamilyInduction.v1",
+  "seed": 20260821,
+  "study": {
+    "candidate_constructed_programs": 6710,
+    "induced_schema_tuple": [
+      1,
+      0,
+      1,
+      1,
+      1,
+      -1
+    ],
+    "train": {
+      "2": {
+        "bfs_expansions": 1,
+        "min_length": 1,
+        "program": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "3": {
+        "bfs_expansions": 10,
+        "min_length": 2,
+        "program": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "4": {
+        "bfs_expansions": 201,
+        "min_length": 3,
+        "program": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "5": {
+        "bfs_expansions": 6996,
+        "min_length": 4,
+        "program": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      }
+    },
+    "world_A1": {
+      "family_claim": true,
+      "heldout": {
+        "10": {
+          "candidate_exact_verified": true,
+          "candidate_program_length": 9,
+          "donor_expansions": 200000,
+          "donor_found": false,
+          "donor_max_depth_reached": 3,
+          "trivial_baseline_verified": false
+        },
+        "12": {
+          "candidate_exact_verified": true,
+          "candidate_program_length": 11,
+          "donor_expansions": 200000,
+          "donor_found": false,
+          "donor_max_depth_reached": 3,
+          "trivial_baseline_verified": false
+        },
+        "8": {
+          "candidate_exact_verified": true,
+          "candidate_program_length": 7,
+          "donor_expansions": 200000,
+          "donor_found": false,
+          "donor_max_depth_reached": 4,
+          "trivial_baseline_verified": false
+        }
+      }
+    },
+    "world_A2": {
+      "candidate_residual_claim": false,
+      "heldout": {
+        "10": {
+          "macro_matches": {
+            "CHAIN": true,
+            "FAN": false,
+            "REV_CHAIN": false
+          },
+          "parametric_donor_matched": true
+        },
+        "12": {
+          "macro_matches": {
+            "CHAIN": true,
+            "FAN": false,
+            "REV_CHAIN": false
+          },
+          "parametric_donor_matched": true
+        },
+        "8": {
+          "macro_matches": {
+            "CHAIN": true,
+            "FAN": false,
+            "REV_CHAIN": false
+          },
+          "parametric_donor_matched": true
+        }
+      },
+      "parent_sufficient": true
+    },
+    "world_A3": {
+      "family_claim": false,
+      "heldout": {
+        "10": {
+          "candidate_exact_verified": false
+        },
+        "6": {
+          "candidate_exact_verified": false
+        },
+        "8": {
+          "candidate_exact_verified": false
+        }
+      },
+      "schema_fit_train": true,
+      "verifier_rejected": true
+    }
+  },
+  "terminal": "N3A_RESIDUAL_CONFIRMED_EXACT_SYNTHETIC"
+}

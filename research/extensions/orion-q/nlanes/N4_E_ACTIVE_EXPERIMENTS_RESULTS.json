@@ -1,0 +1,95 @@
+{
+  "arms": {
+    "CHEAPEST_FIRST": {
+      "commit_accuracy": 1.0,
+      "commit_rate": 0.7425,
+      "decoy_probe_fraction": 0.27553837658752073,
+      "mean_probe_count": 4.5275,
+      "mean_probe_spend": 3.411206576442292,
+      "mean_regret_vs_oracle": 3.9792825587980314,
+      "mean_utility": 8.074966764938761
+    },
+    "INFOGAIN": {
+      "commit_accuracy": 1.0,
+      "commit_rate": 0.75,
+      "decoy_probe_fraction": 0.36587677725118484,
+      "mean_probe_count": 5.275,
+      "mean_probe_spend": 4.4791792018122,
+      "mean_regret_vs_oracle": 4.933487292972975,
+      "mean_utility": 7.120762030763817
+    },
+    "LLM_PROXY_HEURISTIC": {
+      "commit_accuracy": 1.0,
+      "commit_rate": 0.75,
+      "decoy_probe_fraction": 0.0,
+      "mean_probe_count": 3.185,
+      "mean_probe_spend": 2.668350925982511,
+      "mean_regret_vs_oracle": 3.064947966649271,
+      "mean_utility": 8.989301357087522
+    },
+    "ORACLE": {
+      "commit_accuracy": 1.0,
+      "commit_rate": 0.775,
+      "decoy_probe_fraction": 0.0,
+      "mean_probe_count": 0.0,
+      "mean_probe_spend": 0.0,
+      "mean_regret_vs_oracle": 0.0,
+      "mean_utility": 12.054249323736792
+    },
+    "ORION_DECISION_VOI": {
+      "commit_accuracy": 1.0,
+      "commit_rate": 0.7425,
+      "decoy_probe_fraction": 0.0,
+      "mean_probe_count": 2.7075,
+      "mean_probe_spend": 2.180050527766684,
+      "mean_regret_vs_oracle": 2.787981991289765,
+      "mean_utility": 9.266267332447027
+    },
+    "RANDOM_ORDER": {
+      "commit_accuracy": 1.0,
+      "commit_rate": 0.745,
+      "decoy_probe_fraction": 0.2779552715654952,
+      "mean_probe_count": 4.695,
+      "mean_probe_spend": 3.9908078022956412,
+      "mean_regret_vs_oracle": 4.486317250827231,
+      "mean_utility": 7.567932072909562
+    }
+  },
+  "episodes": 400,
+  "family": "6_active_discriminating_experiment_selection",
+  "gates": {
+    "G1_oracle_upper_bound": true,
+    "G2_orion_beats_infogain": true,
+    "G3_orion_beats_order_controls": true,
+    "G4_orion_beats_llm_proxy": true,
+    "G5_decoy_control_valid": true
+  },
+  "interpretation": {
+    "authority": "exact-synthetic-bounded; no real-quantum, no P10, no novelty, no LLM-capability claims; LLM_PROXY is a fixed heuristic, not an LLM measurement",
+    "claim_boundary": "Isolates next-experiment SELECTION quality under a shared stopping rule on the frozen clause world; not a general active-learning theorem.",
+    "novelty_authorized": false,
+    "p10_authorized": false
+  },
+  "issue": 677,
+  "protocol": "development/orion-q-nlane-closure/N4_E_ACTIVE_EXPERIMENTS_PROTOCOL.md",
+  "schema": "ORIONQ.N4E.ActiveInterfaceExperimentSelection.v1",
+  "seed": 20260821,
+  "terminal": "N4_E_DECISION_COUPLED_SELECTION_SUPPORTED__EXACT_SYNTHETIC",
+  "world": {
+    "decoy_facts": [
+      4,
+      5
+    ],
+    "fail_penalty": 8.0,
+    "load_bearing_facts": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "n_facts": 6,
+    "n_plans": 8,
+    "reward": 20.0,
+    "shared_stopping_rule": "stop when no unknown fact has positive myopic net VOI; identical for all probing arms"
+  }
+}

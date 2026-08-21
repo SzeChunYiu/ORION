@@ -1,0 +1,372 @@
+{
+  "authority": "exact_synthetic_bounded__no_real_quantum_no_novelty_no_p10_authority",
+  "budgets": {
+    "candidate_size_bound": 7,
+    "donor_eval_budget": 2000000
+  },
+  "claim_boundary": "finite Z16 expression world only; bounded-exhaustive inexpressibility proofs at explicit size bounds, never absolute; minimal grammar expansion above a supplied grammar with donor first right of refusal; no claim about CEGIS/abstraction-refinement tooling or novelty",
+  "determinism": {
+    "identical": true,
+    "run1_sha256": "350852f44541c3fd167953332045fc4d6e3ab32dd5be3975961e8c1e465d288c",
+    "run2_sha256": "350852f44541c3fd167953332045fc4d6e3ab32dd5be3975961e8c1e465d288c"
+  },
+  "family": "B_proof_obligation_driven_grammar_expansion",
+  "gates": {
+    "GB0_budget_sanity": true,
+    "GB1_residual_value": true,
+    "GB2_donor_first_refusal": true,
+    "GB3_hostile_catch": true,
+    "GB4_determinism": true
+  },
+  "issue": 676,
+  "novelty_authorized": false,
+  "p10_authorized": false,
+  "protocol": "development/orion-q-nlane-closure/N3_B_OBLIGATION_EXPANSION_PROTOCOL.md",
+  "schema": "ORIONQ.N3B.ObligationGrammarExpansion.v1",
+  "seed": 20260821,
+  "study": {
+    "arms": {
+      "B1": {
+        "bloat_baseline": {
+          "cost": 4,
+          "evals": 45647,
+          "found": true,
+          "size_if_found": 4
+        },
+        "candidate": {
+          "cheaper_subsets_all_failed": true,
+          "expansion_cost": 2,
+          "expansion_proposed": [
+            "SHR1",
+            "XOR"
+          ],
+          "g0_obligation_bound": 7,
+          "g0_sufficient": false,
+          "obligation_unresolved": false,
+          "parent_sufficient": false,
+          "subset_trace": [
+            {
+              "cost": 1,
+              "found": false,
+              "subset": [
+                "MOD2"
+              ]
+            },
+            {
+              "cost": 1,
+              "found": false,
+              "subset": [
+                "NOT16"
+              ]
+            },
+            {
+              "cost": 1,
+              "found": false,
+              "subset": [
+                "SHR1"
+              ]
+            },
+            {
+              "cost": 1,
+              "found": false,
+              "subset": [
+                "XOR"
+              ]
+            },
+            {
+              "cost": 2,
+              "found": false,
+              "subset": [
+                "MOD2",
+                "NOT16"
+              ]
+            },
+            {
+              "cost": 2,
+              "found": false,
+              "subset": [
+                "MOD2",
+                "SHR1"
+              ]
+            },
+            {
+              "cost": 2,
+              "found": false,
+              "subset": [
+                "MOD2",
+                "XOR"
+              ]
+            },
+            {
+              "cost": 2,
+              "found": false,
+              "subset": [
+                "NOT16",
+                "SHR1"
+              ]
+            },
+            {
+              "cost": 2,
+              "found": false,
+              "subset": [
+                "NOT16",
+                "XOR"
+              ]
+            },
+            {
+              "cost": 2,
+              "found": true,
+              "subset": [
+                "SHR1",
+                "XOR"
+              ]
+            }
+          ],
+          "subsets_tried": 10,
+          "synthesized_size": 4
+        },
+        "donor_g0": {
+          "budget_hit": true,
+          "distinct_tables": 506937,
+          "evals": 2000000,
+          "found": false,
+          "largest_fully_exhausted_size": 12,
+          "size_if_found": null
+        },
+        "spec": [
+          0,
+          1,
+          3,
+          2,
+          6,
+          7,
+          5,
+          4,
+          12,
+          13,
+          15,
+          14,
+          10,
+          11,
+          9,
+          8
+        ]
+      },
+      "B2": {
+        "bloat_baseline": {
+          "cost": 4,
+          "evals": 45647,
+          "found": true,
+          "size_if_found": 5
+        },
+        "candidate": {
+          "cheaper_subsets_all_failed": null,
+          "expansion_cost": 0,
+          "expansion_proposed": [],
+          "g0_sufficient": true,
+          "obligation_unresolved": false,
+          "parent_sufficient": true,
+          "subsets_tried": 0,
+          "synthesized_size": 5
+        },
+        "donor_g0": {
+          "budget_hit": true,
+          "distinct_tables": 506937,
+          "evals": 2000000,
+          "found": true,
+          "largest_fully_exhausted_size": 12,
+          "size_if_found": 5
+        },
+        "spec": [
+          3,
+          5,
+          7,
+          9,
+          11,
+          13,
+          15,
+          1,
+          3,
+          5,
+          7,
+          9,
+          11,
+          13,
+          15,
+          1
+        ]
+      },
+      "B3": {
+        "bloat_baseline": {
+          "cost": 4,
+          "evals": 45647,
+          "found": false,
+          "size_if_found": null
+        },
+        "candidate": {
+          "cheaper_subsets_all_failed": null,
+          "expansion_cost": null,
+          "expansion_proposed": null,
+          "g0_obligation_bound": 7,
+          "g0_sufficient": false,
+          "obligation_unresolved": true,
+          "parent_sufficient": false,
+          "subset_trace": [
+            {
+              "cost": 1,
+              "found": false,
+              "subset": [
+                "MOD2"
+              ]
+            },
+            {
+              "cost": 1,
+              "found": false,
+              "subset": [
+                "NOT16"
+              ]
+            },
+            {
+              "cost": 1,
+              "found": false,
+              "subset": [
+                "SHR1"
+              ]
+            },
+            {
+              "cost": 1,
+              "found": false,
+              "subset": [
+                "XOR"
+              ]
+            },
+            {
+              "cost": 2,
+              "found": false,
+              "subset": [
+                "MOD2",
+                "NOT16"
+              ]
+            },
+            {
+              "cost": 2,
+              "found": false,
+              "subset": [
+                "MOD2",
+                "SHR1"
+              ]
+            },
+            {
+              "cost": 2,
+              "found": false,
+              "subset": [
+                "MOD2",
+                "XOR"
+              ]
+            },
+            {
+              "cost": 2,
+              "found": false,
+              "subset": [
+                "NOT16",
+                "SHR1"
+              ]
+            },
+            {
+              "cost": 2,
+              "found": false,
+              "subset": [
+                "NOT16",
+                "XOR"
+              ]
+            },
+            {
+              "cost": 2,
+              "found": false,
+              "subset": [
+                "SHR1",
+                "XOR"
+              ]
+            },
+            {
+              "cost": 3,
+              "found": false,
+              "subset": [
+                "MOD2",
+                "NOT16",
+                "SHR1"
+              ]
+            },
+            {
+              "cost": 3,
+              "found": false,
+              "subset": [
+                "MOD2",
+                "NOT16",
+                "XOR"
+              ]
+            },
+            {
+              "cost": 3,
+              "found": false,
+              "subset": [
+                "MOD2",
+                "SHR1",
+                "XOR"
+              ]
+            },
+            {
+              "cost": 3,
+              "found": false,
+              "subset": [
+                "NOT16",
+                "SHR1",
+                "XOR"
+              ]
+            },
+            {
+              "cost": 4,
+              "found": false,
+              "subset": [
+                "MOD2",
+                "NOT16",
+                "SHR1",
+                "XOR"
+              ]
+            }
+          ],
+          "subsets_tried": 15,
+          "synthesized_size": null
+        },
+        "donor_g0": {
+          "budget_hit": true,
+          "distinct_tables": 506937,
+          "evals": 2000000,
+          "found": false,
+          "largest_fully_exhausted_size": 12,
+          "size_if_found": null
+        },
+        "spec": [
+          7,
+          12,
+          1,
+          14,
+          9,
+          0,
+          5,
+          11,
+          3,
+          15,
+          6,
+          2,
+          13,
+          8,
+          10,
+          4
+        ]
+      }
+    },
+    "candidate_total_evals": 482766
+  },
+  "terminal": "N3B_RESIDUAL_CONFIRMED_EXACT_SYNTHETIC"
+}

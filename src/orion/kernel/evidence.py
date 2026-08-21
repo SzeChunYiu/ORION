@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import errno
+import functools
 import hashlib
 import os
 import selectors
@@ -1360,6 +1361,24 @@ def _config_declares_include(payload: bytes) -> bool:
     return False
 
 
+def _config_declares_lazy_object_source(payload: bytes) -> bool:
+    """Whether the local configuration can make object reads fetch remotely.
+
+    Lazy fetch only happens in promisor/partial-clone repositories. When the
+    host Git predates the ``--no-lazy-fetch`` guard, such repositories must be
+    rejected outright so a capture can never trigger a network fetch.
+    """
+
+    for raw_line in payload.splitlines():
+        line = raw_line.split(b"#", 1)[0].split(b";", 1)[0].strip().lower()
+        if b"=" not in line:
+            continue
+        key = line.split(b"=", 1)[0].strip()
+        if key in {b"promisor", b"partialclonefilter", b"partialclone"}:
+            return True
+    return False
+
+
 def _protected_git_layout_issue(git_directory_fd: int) -> str:
     for parts, label in (
         (("objects", "info", "alternates"), "object alternates"),
@@ -1376,6 +1395,15 @@ def _protected_git_layout_issue(git_directory_fd: int) -> str:
         return note or "protected Git V1 cannot bind the local configuration"
     if config_bytes is not None and _config_declares_include(config_bytes):
         return "protected Git V1 rejects local config includes"
+    if (
+        config_bytes is not None
+        and not _git_supports_no_lazy_fetch()
+        and _config_declares_lazy_object_source(config_bytes)
+    ):
+        return (
+            "protected Git V1 rejects promisor/partial-clone repositories on a "
+            "Git without --no-lazy-fetch"
+        )
     return ""
 
 
@@ -1702,6 +1730,29 @@ class _GitRevisionResolution:
 _GIT_EXECUTABLE = shutil.which("git", path=os.defpath)
 if _GIT_EXECUTABLE is not None:
     _GIT_EXECUTABLE = os.path.realpath(_GIT_EXECUTABLE)
+
+
+@functools.lru_cache(maxsize=1)
+def _git_supports_no_lazy_fetch() -> bool:
+    """Whether the frozen Git binary accepts the global ``--no-lazy-fetch``.
+
+    The guard exists since Git 2.45. On an older Git the option is instead
+    enforced by rejecting promisor/partial-clone repositories in the layout
+    check, so a capture can never lazily fetch either way.
+    """
+
+    if _GIT_EXECUTABLE is None:
+        return False
+    try:
+        probe = subprocess.run(  # noqa: S603 - absolute host-frozen executable
+            [_GIT_EXECUTABLE, "--no-lazy-fetch", "--version"],
+            stdin=subprocess.DEVNULL,
+            capture_output=True,
+            timeout=10,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return False
+    return probe.returncode == 0
 _GIT_FD_HELPER_EXECUTABLE = os.path.realpath(sys.executable)
 _GIT_FD_EXEC_HELPER = """
 import os
@@ -1798,6 +1849,7 @@ def _run_protected_git(
         "GIT_CONFIG_NOSYSTEM": "1",
         "GIT_CONFIG_SYSTEM": os.devnull,
         "GIT_LITERAL_PATHSPECS": "1",
+        "GIT_NO_LAZY_FETCH": "1",
         "GIT_OPTIONAL_LOCKS": "0",
         "GIT_TERMINAL_PROMPT": "0",
         "GIT_DIR": ".",
@@ -1850,7 +1902,11 @@ def _run_protected_git(
                 str(opened_root.git_source_inode),
                 _GIT_EXECUTABLE,
                 "--no-replace-objects",
-                "--no-lazy-fetch",
+                *(
+                    ("--no-lazy-fetch",)
+                    if _git_supports_no_lazy_fetch()
+                    else ()
+                ),
                 "--no-optional-locks",
                 "--git-dir=.",
                 *arguments,

@@ -1,0 +1,1236 @@
+{
+  "authority": "MAX_R6N_SUPPORT_DOMINANCE_REFUTED__NEW_REGIME_FOUND__NOT_R6",
+  "chemistry_sources_read": false,
+  "claim_boundary": {
+    "covers": "Frozen R6I two-block rank-2 dependent TARE-3 shared-two-bit-Tag grammar with plain Restore support, and frozen R6L/R6M three-block TARE-M2 shared-one-bit-Tag grammar with the donor-owned all-three Restore common-factor rule, under the frozen raw support-count objectives (4 non-central / 2 central multiplicities, frozen constants).",
+    "does_not_cover": "Other objectives (coefficient-weighted or non-support cost models), rotation-count trade-offs beyond the frozen fixed counts, larger Tag ranks, grammars outside the frozen families, or qubit counts beyond the finite equality domains: the local inequalities hold per qubit for every n, but the joint Tag-coupling closure is verified only on the recorded instances (30 matchings, 20 partitions, 12 synthetic panels). No novelty credit, no donor credit, no R6 authority.",
+    "explains": "The empirical collapses of the R6I, R6K and R6M exact DP optima onto the weight-one R6H/R6J/R6L donor families on both frozen open subjects; R6K combines the two verified mechanisms (rank-2 frame costs as in Lemma N-I, common-factor savings bounded as in Lemma N-M') although its specific local table is not separately enumerated here."
+  },
+  "discovery": {
+    "characterization": {
+      "donor_family_tag_anchor_coupling_violated": true,
+      "frame_support_dominance_violated": false,
+      "note": "Every joint-gap DP witness with dp_witness_max_frame_weight == 1 uses weight-one frames outside the donor family: blocks anchored at different qubits with a spread (weight >= 2) shared Tag, which the R6L common-weight-one-Tag donor grammar cannot express. In that case the per-unit frame support-dominance component of the lemma survives all checks and the refuted component is exactly the declared Tag-anchor coupling gap. The diagnostic C_weight_one_frames_any_tag_diagnostic column locates the gap: equality with C_unrestricted_dp confirms Tag-anchor coupling as the sole broken mechanism. This characterization is post-gate diagnosis, not a frozen gate; the frozen outcome mapping stands."
+    },
+    "joint_gaps_unrestricted_beats_weight_one": [
+      {
+        "C_unrestricted_dp": 8,
+        "C_weight_one_frames_any_tag_diagnostic": 8,
+        "C_weight_one_restricted": 9,
+        "dp_witness_max_frame_weight": 1,
+        "dp_witness_tag_weight": 2,
+        "equal": false,
+        "n": 2,
+        "panel": "n2_b"
+      }
+    ],
+    "local_violation_count": 0,
+    "violating_local_configs": []
+  },
+  "donor_novelty_credit": false,
+  "frozen_subject_equality": {
+    "r6i": {
+      "all_equal": true,
+      "cross_receipt_target_consistency": true,
+      "partitions_checked": 20,
+      "receipt_authority": "MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_NEGATIVE__NOT_R6",
+      "rows": [
+        {
+          "C_shared": 16,
+          "C_weight_one_restricted": 16,
+          "equal": true,
+          "partition": [
+            [
+              12,
+              18,
+              22
+            ],
+            [
+              25,
+              27,
+              31
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_shared": 15,
+          "C_weight_one_restricted": 15,
+          "equal": true,
+          "partition": [
+            [
+              12,
+              18,
+              25
+            ],
+            [
+              22,
+              27,
+              31
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_shared": 15,
+          "C_weight_one_restricted": 15,
+          "equal": true,
+          "partition": [
+            [
+              12,
+              18,
+              27
+            ],
+            [
+              22,
+              25,
+              31
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_shared": 15,
+          "C_weight_one_restricted": 15,
+          "equal": true,
+          "partition": [
+            [
+              12,
+              18,
+              31
+            ],
+            [
+              22,
+              25,
+              27
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_shared": 15,
+          "C_weight_one_restricted": 15,
+          "equal": true,
+          "partition": [
+            [
+              12,
+              22,
+              25
+            ],
+            [
+              18,
+              27,
+              31
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_shared": 15,
+          "C_weight_one_restricted": 15,
+          "equal": true,
+          "partition": [
+            [
+              12,
+              22,
+              27
+            ],
+            [
+              18,
+              25,
+              31
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_shared": 15,
+          "C_weight_one_restricted": 15,
+          "equal": true,
+          "partition": [
+            [
+              12,
+              22,
+              31
+            ],
+            [
+              18,
+              25,
+              27
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_shared": 15,
+          "C_weight_one_restricted": 15,
+          "equal": true,
+          "partition": [
+            [
+              12,
+              25,
+              27
+            ],
+            [
+              18,
+              22,
+              31
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_shared": 15,
+          "C_weight_one_restricted": 15,
+          "equal": true,
+          "partition": [
+            [
+              12,
+              25,
+              31
+            ],
+            [
+              18,
+              22,
+              27
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_shared": 15,
+          "C_weight_one_restricted": 15,
+          "equal": true,
+          "partition": [
+            [
+              12,
+              27,
+              31
+            ],
+            [
+              18,
+              22,
+              25
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_shared": 15,
+          "C_weight_one_restricted": 15,
+          "equal": true,
+          "partition": [
+            [
+              0,
+              7,
+              11
+            ],
+            [
+              24,
+              31,
+              32
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_shared": 14,
+          "C_weight_one_restricted": 14,
+          "equal": true,
+          "partition": [
+            [
+              0,
+              7,
+              24
+            ],
+            [
+              11,
+              31,
+              32
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_shared": 14,
+          "C_weight_one_restricted": 14,
+          "equal": true,
+          "partition": [
+            [
+              0,
+              7,
+              31
+            ],
+            [
+              11,
+              24,
+              32
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_shared": 14,
+          "C_weight_one_restricted": 14,
+          "equal": true,
+          "partition": [
+            [
+              0,
+              7,
+              32
+            ],
+            [
+              11,
+              24,
+              31
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_shared": 14,
+          "C_weight_one_restricted": 14,
+          "equal": true,
+          "partition": [
+            [
+              0,
+              11,
+              24
+            ],
+            [
+              7,
+              31,
+              32
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_shared": 14,
+          "C_weight_one_restricted": 14,
+          "equal": true,
+          "partition": [
+            [
+              0,
+              11,
+              31
+            ],
+            [
+              7,
+              24,
+              32
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_shared": 14,
+          "C_weight_one_restricted": 14,
+          "equal": true,
+          "partition": [
+            [
+              0,
+              11,
+              32
+            ],
+            [
+              7,
+              24,
+              31
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_shared": 14,
+          "C_weight_one_restricted": 14,
+          "equal": true,
+          "partition": [
+            [
+              0,
+              24,
+              31
+            ],
+            [
+              7,
+              11,
+              32
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_shared": 14,
+          "C_weight_one_restricted": 14,
+          "equal": true,
+          "partition": [
+            [
+              0,
+              24,
+              32
+            ],
+            [
+              7,
+              11,
+              31
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_shared": 14,
+          "C_weight_one_restricted": 14,
+          "equal": true,
+          "partition": [
+            [
+              0,
+              31,
+              32
+            ],
+            [
+              7,
+              11,
+              24
+            ]
+          ],
+          "subject": "N2"
+        }
+      ]
+    },
+    "r6m": {
+      "all_equal": true,
+      "matchings_checked": 30,
+      "receipt_authority": "MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_NEGATIVE__NOT_R6",
+      "rows": [
+        {
+          "C_R6L_receipt": 11,
+          "C_R6L_recomputed": 11,
+          "C_R6M": 11,
+          "equal": true,
+          "matching": [
+            [
+              12,
+              18
+            ],
+            [
+              22,
+              25
+            ],
+            [
+              27,
+              31
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_R6L_receipt": 11,
+          "C_R6L_recomputed": 11,
+          "C_R6M": 11,
+          "equal": true,
+          "matching": [
+            [
+              12,
+              18
+            ],
+            [
+              22,
+              27
+            ],
+            [
+              25,
+              31
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_R6L_receipt": 11,
+          "C_R6L_recomputed": 11,
+          "C_R6M": 11,
+          "equal": true,
+          "matching": [
+            [
+              12,
+              18
+            ],
+            [
+              22,
+              31
+            ],
+            [
+              25,
+              27
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_R6L_receipt": 11,
+          "C_R6L_recomputed": 11,
+          "C_R6M": 11,
+          "equal": true,
+          "matching": [
+            [
+              12,
+              22
+            ],
+            [
+              18,
+              25
+            ],
+            [
+              27,
+              31
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_R6L_receipt": 11,
+          "C_R6L_recomputed": 11,
+          "C_R6M": 11,
+          "equal": true,
+          "matching": [
+            [
+              12,
+              22
+            ],
+            [
+              18,
+              27
+            ],
+            [
+              25,
+              31
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_R6L_receipt": 11,
+          "C_R6L_recomputed": 11,
+          "C_R6M": 11,
+          "equal": true,
+          "matching": [
+            [
+              12,
+              22
+            ],
+            [
+              18,
+              31
+            ],
+            [
+              25,
+              27
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_R6L_receipt": 11,
+          "C_R6L_recomputed": 11,
+          "C_R6M": 11,
+          "equal": true,
+          "matching": [
+            [
+              12,
+              25
+            ],
+            [
+              18,
+              22
+            ],
+            [
+              27,
+              31
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_R6L_receipt": 8,
+          "C_R6L_recomputed": 8,
+          "C_R6M": 8,
+          "equal": true,
+          "matching": [
+            [
+              12,
+              25
+            ],
+            [
+              18,
+              27
+            ],
+            [
+              22,
+              31
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_R6L_receipt": 8,
+          "C_R6L_recomputed": 8,
+          "C_R6M": 8,
+          "equal": true,
+          "matching": [
+            [
+              12,
+              25
+            ],
+            [
+              18,
+              31
+            ],
+            [
+              22,
+              27
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_R6L_receipt": 11,
+          "C_R6L_recomputed": 11,
+          "C_R6M": 11,
+          "equal": true,
+          "matching": [
+            [
+              12,
+              27
+            ],
+            [
+              18,
+              22
+            ],
+            [
+              25,
+              31
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_R6L_receipt": 8,
+          "C_R6L_recomputed": 8,
+          "C_R6M": 8,
+          "equal": true,
+          "matching": [
+            [
+              12,
+              27
+            ],
+            [
+              18,
+              25
+            ],
+            [
+              22,
+              31
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_R6L_receipt": 8,
+          "C_R6L_recomputed": 8,
+          "C_R6M": 8,
+          "equal": true,
+          "matching": [
+            [
+              12,
+              27
+            ],
+            [
+              18,
+              31
+            ],
+            [
+              22,
+              25
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_R6L_receipt": 11,
+          "C_R6L_recomputed": 11,
+          "C_R6M": 11,
+          "equal": true,
+          "matching": [
+            [
+              12,
+              31
+            ],
+            [
+              18,
+              22
+            ],
+            [
+              25,
+              27
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_R6L_receipt": 8,
+          "C_R6L_recomputed": 8,
+          "C_R6M": 8,
+          "equal": true,
+          "matching": [
+            [
+              12,
+              31
+            ],
+            [
+              18,
+              25
+            ],
+            [
+              22,
+              27
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_R6L_receipt": 8,
+          "C_R6L_recomputed": 8,
+          "C_R6M": 8,
+          "equal": true,
+          "matching": [
+            [
+              12,
+              31
+            ],
+            [
+              18,
+              27
+            ],
+            [
+              22,
+              25
+            ]
+          ],
+          "subject": "H4"
+        },
+        {
+          "C_R6L_receipt": 10,
+          "C_R6L_recomputed": 10,
+          "C_R6M": 10,
+          "equal": true,
+          "matching": [
+            [
+              0,
+              7
+            ],
+            [
+              11,
+              24
+            ],
+            [
+              31,
+              32
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_R6L_receipt": 10,
+          "C_R6L_recomputed": 10,
+          "C_R6M": 10,
+          "equal": true,
+          "matching": [
+            [
+              0,
+              7
+            ],
+            [
+              11,
+              31
+            ],
+            [
+              24,
+              32
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_R6L_receipt": 10,
+          "C_R6L_recomputed": 10,
+          "C_R6M": 10,
+          "equal": true,
+          "matching": [
+            [
+              0,
+              7
+            ],
+            [
+              11,
+              32
+            ],
+            [
+              24,
+              31
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_R6L_receipt": 10,
+          "C_R6L_recomputed": 10,
+          "C_R6M": 10,
+          "equal": true,
+          "matching": [
+            [
+              0,
+              11
+            ],
+            [
+              7,
+              24
+            ],
+            [
+              31,
+              32
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_R6L_receipt": 10,
+          "C_R6L_recomputed": 10,
+          "C_R6M": 10,
+          "equal": true,
+          "matching": [
+            [
+              0,
+              11
+            ],
+            [
+              7,
+              31
+            ],
+            [
+              24,
+              32
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_R6L_receipt": 10,
+          "C_R6L_recomputed": 10,
+          "C_R6M": 10,
+          "equal": true,
+          "matching": [
+            [
+              0,
+              11
+            ],
+            [
+              7,
+              32
+            ],
+            [
+              24,
+              31
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_R6L_receipt": 10,
+          "C_R6L_recomputed": 10,
+          "C_R6M": 10,
+          "equal": true,
+          "matching": [
+            [
+              0,
+              24
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              31,
+              32
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_R6L_receipt": 9,
+          "C_R6L_recomputed": 9,
+          "C_R6M": 9,
+          "equal": true,
+          "matching": [
+            [
+              0,
+              24
+            ],
+            [
+              7,
+              31
+            ],
+            [
+              11,
+              32
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_R6L_receipt": 9,
+          "C_R6L_recomputed": 9,
+          "C_R6M": 9,
+          "equal": true,
+          "matching": [
+            [
+              0,
+              24
+            ],
+            [
+              7,
+              32
+            ],
+            [
+              11,
+              31
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_R6L_receipt": 10,
+          "C_R6L_recomputed": 10,
+          "C_R6M": 10,
+          "equal": true,
+          "matching": [
+            [
+              0,
+              31
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              24,
+              32
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_R6L_receipt": 9,
+          "C_R6L_recomputed": 9,
+          "C_R6M": 9,
+          "equal": true,
+          "matching": [
+            [
+              0,
+              31
+            ],
+            [
+              7,
+              24
+            ],
+            [
+              11,
+              32
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_R6L_receipt": 9,
+          "C_R6L_recomputed": 9,
+          "C_R6M": 9,
+          "equal": true,
+          "matching": [
+            [
+              0,
+              31
+            ],
+            [
+              7,
+              32
+            ],
+            [
+              11,
+              24
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_R6L_receipt": 10,
+          "C_R6L_recomputed": 10,
+          "C_R6M": 10,
+          "equal": true,
+          "matching": [
+            [
+              0,
+              32
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              24,
+              31
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_R6L_receipt": 9,
+          "C_R6L_recomputed": 9,
+          "C_R6M": 9,
+          "equal": true,
+          "matching": [
+            [
+              0,
+              32
+            ],
+            [
+              7,
+              24
+            ],
+            [
+              11,
+              31
+            ]
+          ],
+          "subject": "N2"
+        },
+        {
+          "C_R6L_receipt": 9,
+          "C_R6L_recomputed": 9,
+          "C_R6M": 9,
+          "equal": true,
+          "matching": [
+            [
+              0,
+              32
+            ],
+            [
+              7,
+              31
+            ],
+            [
+              11,
+              24
+            ]
+          ],
+          "subject": "N2"
+        }
+      ]
+    }
+  },
+  "gates": {
+    "cross_receipt_target_consistency": true,
+    "frozen_table_binding_exact": true,
+    "no_new_subject_data": true,
+    "r6i_local_inequality_holds": true,
+    "r6i_weight_one_equality_on_frozen_subjects": true,
+    "r6m_letterwise_monotonicity_holds": true,
+    "r6m_local_inequality_holds": true,
+    "r6m_weight_one_equality_on_frozen_subjects": true,
+    "synthetic_joint_equality": false
+  },
+  "heavy_subject_dp_rerun": false,
+  "implementation_binding": {
+    "all_exact": true,
+    "f3_table_exact": true,
+    "r6i_sampled_cost_tables_exact": true,
+    "r6i_sampled_keys": 64,
+    "r6m_frame_cost_tables_exact": true,
+    "r6m_sampled_cost_arrays_exact": true,
+    "r6m_sampled_keys": 64,
+    "r6m_tag_cost_exact": true
+  },
+  "lemma": {
+    "N_I": "R6I per-qubit TotalSavings <= FrameCost over 4^4 x 16 x 9 x 4^6 configs",
+    "N_M": "R6M per-qubit TotalSavings(F,T) <= FrameCost_c(F) over 4^6 x 4 x 8 x 4^6 configs",
+    "N_M_prime": "R6M letterwise exchange monotonicity over 343 x 64 x 8 configs",
+    "declared_gap": "Tag-repair coupling after frame truncation is not bounded by the local inequalities; it is closed on finite domains by the joint equality checks (frozen subjects and synthetic n=1/n=2 panels) only.",
+    "statement": "Within the frozen TARE frame-grammar families and support-count objectives, each unit of frame support costs >=2 (central) or 4 (non-central) in the raw Uanti term while its maximum achievable Restore/factor savings is <=2 per unit; hence exact optima are attained by minimal-support (weight-one) frames and the weight-one donor family is optimal within the full grammar."
+  },
+  "local_verification": {
+    "r6i_primary": {
+      "domain_size": 150994944,
+      "holds": true,
+      "max_ratio_config": {
+        "block_A": {
+          "frame_pair": "II",
+          "targets": "III"
+        },
+        "block_B": {
+          "frame_pair": "XI",
+          "targets": "XIX"
+        },
+        "centrals": [
+          0,
+          0
+        ],
+        "frame_cost": 6,
+        "savings": 2
+      },
+      "max_savings_over_cost_ratio": 0.3333333333333333,
+      "violating_configs_verbatim": [],
+      "violations": 0
+    },
+    "r6m_letterwise_monotone": {
+      "domain_size": 175616,
+      "holds": true,
+      "letterwise_pairs": 343,
+      "violating_configs_verbatim": [],
+      "violations": 0
+    },
+    "r6m_primary": {
+      "domain_size": 536870912,
+      "holds": true,
+      "max_ratio_config": {
+        "branch0": {
+          "frames_ABC": "IIX",
+          "targets_ABC": "YYZ"
+        },
+        "branch1": {
+          "frames_ABC": "III",
+          "targets_ABC": "III"
+        },
+        "centrals": [
+          0,
+          0,
+          0
+        ],
+        "frame_cost": 2,
+        "savings": 2
+      },
+      "max_savings_over_cost_ratio": 1.0,
+      "violating_configs_verbatim": [],
+      "violations": 0
+    },
+    "total_local_configurations_checked": 688041472
+  },
+  "novelty_credit": false,
+  "protocol": "MAX_R6N_SUPPORT_DOMINANCE_PROTOCOL",
+  "r6_authority": false,
+  "reserved_stretched_n2_accessed": false,
+  "responsibility": "RESP:SPREAD_SUPPORT_REGIME_DISCOVERED__REPORT_VERBATIM_AND_RE_FREEZE",
+  "runtime_seconds": 5.565,
+  "schema": "ORIONQ.MAXR6N.SupportDominanceAudit.v1",
+  "scope": "SUPPORT_DOMINANCE_LEMMA_AUDIT_OVER_FROZEN_R6I_R6M_GRAMMARS_AND_RECEIPTS__EXPLANATORY_FAMILY_CLOSURE__NOT_R6",
+  "synthetic_panels": {
+    "all_equal": false,
+    "all_sound": true,
+    "instances": 12,
+    "r6i": [
+      {
+        "C_unrestricted_dp": 6,
+        "C_weight_one_restricted": 6,
+        "equal": true,
+        "n": 1,
+        "panel": "n1_mixed"
+      },
+      {
+        "C_unrestricted_dp": 4,
+        "C_weight_one_restricted": 4,
+        "equal": true,
+        "n": 1,
+        "panel": "n1_permuted_blocks"
+      },
+      {
+        "C_unrestricted_dp": 4,
+        "C_weight_one_restricted": 4,
+        "equal": true,
+        "n": 1,
+        "panel": "n1_same_blocks"
+      },
+      {
+        "C_unrestricted_dp": 10,
+        "C_weight_one_restricted": 10,
+        "equal": true,
+        "n": 2,
+        "panel": "n2_a"
+      },
+      {
+        "C_unrestricted_dp": 10,
+        "C_weight_one_restricted": 10,
+        "equal": true,
+        "n": 2,
+        "panel": "n2_b"
+      },
+      {
+        "C_unrestricted_dp": 10,
+        "C_weight_one_restricted": 10,
+        "equal": true,
+        "n": 2,
+        "panel": "n2_permuted_blocks"
+      },
+      {
+        "C_unrestricted_dp": 4,
+        "C_weight_one_restricted": 4,
+        "equal": true,
+        "n": 2,
+        "panel": "n2_tie"
+      }
+    ],
+    "r6m": [
+      {
+        "C_unrestricted_dp": 2,
+        "C_weight_one_restricted": 2,
+        "dp_witness_max_frame_weight": 1,
+        "dp_witness_tag_weight": 1,
+        "equal": true,
+        "n": 1,
+        "panel": "n1_identical"
+      },
+      {
+        "C_unrestricted_dp": 3,
+        "C_weight_one_restricted": 3,
+        "dp_witness_max_frame_weight": 1,
+        "dp_witness_tag_weight": 1,
+        "equal": true,
+        "n": 1,
+        "panel": "n1_mixed"
+      },
+      {
+        "C_unrestricted_dp": 2,
+        "C_weight_one_restricted": 2,
+        "dp_witness_max_frame_weight": 1,
+        "dp_witness_tag_weight": 1,
+        "equal": true,
+        "n": 1,
+        "panel": "n1_swapped"
+      },
+      {
+        "C_unrestricted_dp": 6,
+        "C_weight_one_restricted": 6,
+        "dp_witness_max_frame_weight": 1,
+        "dp_witness_tag_weight": 1,
+        "equal": true,
+        "n": 2,
+        "panel": "n2_a"
+      },
+      {
+        "C_unrestricted_dp": 8,
+        "C_weight_one_frames_any_tag_diagnostic": 8,
+        "C_weight_one_restricted": 9,
+        "dp_witness_max_frame_weight": 1,
+        "dp_witness_tag_weight": 2,
+        "equal": false,
+        "n": 2,
+        "panel": "n2_b"
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "completed_at": "2026-08-21T06:20:00.217321+00:00",
+  "error": "",
+  "executor": "claude-code-session",
+  "output": {
+    "content": "{\"summary\": \"Final reconstruction: the orion-research-harness exposes exactly eight implemented capability kinds to an external host. Broker-mediated (broker.py): LLM_COMPLETE (line 96), WEB_SEARCH (line 134), VERIFY_EVIDENCE (line 192, certificate-required pass). Local (local_tools.py lines 12-18): FILE_READ, FILE_WRITE, FILE_LIST, SHELL, PYTHON. Each kind is exercised by at least one test (test_harness.py, test_hardening.py, test_local_limits.py; suite passes 30/30). GITHUB appears only as documentation in the cli.py handoff text and is not an implemented capability. Recent history through PR #728 changed replay/receipt hardening only, so this set is current.\"}",
+    "model_id": "claude-code-host"
+  },
+  "request_digest": "290bcad12ec86fba74c3953f4e23e29e53f6fc16a05a12b9b7151e845ffc0d10",
+  "request_id": "hostreq:3c468d8d494a1a35c6bdf599660801143e2db9877f1c31dc5e1aab65239011d0",
+  "result_digest": "786f040332d9e1864360c5088ce884b85d170eb857504381ce69d220df4e194a",
+  "schema": "ORION.HostCapabilityResult.v1",
+  "success": true
+}

@@ -1,0 +1,15 @@
+{
+  "capability": "LLM_COMPLETE",
+  "created_at": "2026-08-21T06:18:36.186281+00:00",
+  "payload": {
+    "instruction": "Return an object with `content` containing the model response text. For ORION semantic tasks, content itself must be JSON matching response_schema.",
+    "response_schema": "{\"contribution_id\":\"...\",\"text\":\"...\",\"assimilation\":\"COMPLEMENTARY_FACET\",\"discovered_domain_ids\":[],\"representation_ids\":[],\"contradicts_claim_ids\":[],\"related_claim_ids\":[],\"context_ids\":[],\"referent_bindings\":[{\"mention\":\"...\",\"resolution\":\"RESOLVED\",\"referent_id\":\"...\",\"context_id\":\"...\"}],\"representation_mappings\":[{\"mapping_id\":\"...\",\"source_representation_id\":\"...\",\"target_representation_id\":\"orion:...\",\"relation\":\"EQUIVALENT\",\"evidence_ids\":[\"...\"],\"recoverable\":true}],\"assumption_ids\":[]}",
+    "system": "You are a semantic reasoning component inside ORION.\nYou may propose interpretations, queries, diagnoses and prose, but you do not create scientific authority.\nReturn only JSON matching the requested schema. Preserve uncertainty and do not invent source evidence.\nFor search planning, do not remain inside the current vocabulary: deliberately use independent route families such as function-only, parent-discipline, adversarial-omission and freshness searches when they remain uncovered.",
+    "task": "interpret",
+    "user": "{\"active_domains\": [\"software-verification\"], \"known_claims\": [], \"known_representation_mappings\": [], \"known_source_projections\": [], \"problem\": {\"initial_domain_ids\": [\"software-verification\"], \"problem_id\": \"harness-e2e-1\", \"question\": \"Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?\", \"scope\": \"Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.\", \"success_criteria\": [\"Every capability kind named in the answer is backed by a cited file path.\"]}, \"retrieved_item\": {\"content\": \"Adversarial omission check: the CLI handoff text (packages/orion-research-harness/src/orion_research_harness/cli.py line 52) mentions GITHUB or other custom capabilities as host-serviced kinds, but no GITHUB capability is requested by any provider in broker.py, serviced by local_tools.py, or exercised by any test under packages/orion-research-harness/tests/. GITHUB is documentation-only surface, not an implemented capability kind. All eight implemented kinds (LLM_COMPLETE, WEB_SEARCH, VERIFY_EVIDENCE, FILE_READ, FILE_WRITE, FILE_LIST, SHELL, PYTHON) have at least one test.\", \"domain_ids\": [\"software-verification\"], \"item_id\": \"cap-omission-github\", \"source_uri\": \"repo:packages/orion-research-harness/src/orion_research_harness/cli.py\"}}"
+  },
+  "request_digest": "59f667fe0a0b635cee40f66166dde00dd7604a1293f82e2bd3fbd06226593aff",
+  "request_id": "hostreq:ffc2b923fac3e38bc63c39d14f3e98dd26c3d7b87dfa06cec534aebd757d6b01",
+  "schema": "ORION.HostCapabilityRequest.v1",
+  "session_id": "session:7b2d750debcd46c4b7c723ed7be6bf42"
+}

@@ -1,0 +1,14 @@
+{
+  "completed_at": "2026-08-21T06:18:26.954994+00:00",
+  "error": "",
+  "executor": "claude-code-session",
+  "output": {
+    "content": "{\"contribution_id\": \"contrib:cap-test-coverage\", \"text\": \"Every implemented capability kind is exercised by at least one test: WEB_SEARCH (test_harness.py:25-29, test_hardening.py:55), LLM_COMPLETE (test_harness.py:190, test_hardening.py:159), VERIFY_EVIDENCE (test_hardening.py:197-217), FILE_WRITE (test_harness.py:61), FILE_READ (test_harness.py:65-69, test_hardening.py:249-255,310), FILE_LIST (test_local_limits.py:24), PYTHON (test_hardening.py:258-287, test_local_limits.py:43), SHELL (test_local_limits.py:62). The suite passes 30/30 on Python 3.11.\", \"assimilation\": \"COMPLEMENTARY_FACET\", \"discovered_domain_ids\": [], \"representation_ids\": [], \"contradicts_claim_ids\": [], \"related_claim_ids\": [], \"context_ids\": [], \"referent_bindings\": [], \"representation_mappings\": [], \"assumption_ids\": []}",
+    "model_id": "claude-code-host"
+  },
+  "request_digest": "1ac3c2da1190769b87508629507e6db88042e552d0f7d06d6a56151b980703b3",
+  "request_id": "hostreq:67b1f143fbbfbae6fffbd201aa1ffbdb24389df5ed197cfe3ad29bc41b51f00d",
+  "result_digest": "ef6fdc86ae0c98c4549835ae1203f490c1a7904de7e656fb20193d8c223925fa",
+  "schema": "ORION.HostCapabilityResult.v1",
+  "success": true
+}

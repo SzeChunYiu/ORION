@@ -1,0 +1,30 @@
+{
+  "version": "ORIONQ.MAXR6.NativeControlState.v1",
+  "stage": "N0",
+  "frozen_before_native_decision": true,
+  "operator_proposed_quantum_candidate_hidden": true,
+  "visible_evidence": {
+    "R5H_CURRENT_ALPHABET_EXACT": "YES",
+    "R5H_H4_DONOR_BALANCED": {
+      "Lambda": 4.862157873932594,
+      "CNOT": 1428,
+      "T": 5568,
+      "blocks": 246,
+      "ancilla": 0,
+      "reference_total_T": 31028
+    },
+    "R5H_H4_MIXED_BALANCED_IDENTICAL_TO_DONOR": true,
+    "R5H_H4_MIXED_BALANCED_USES_TARE": false
+  },
+  "unresolved_donor_obligations": [
+    "DONOR_GENERAL_M_TARE_CLOSURE",
+    "DONOR_FOQCS_GENERIC_PREP_CLOSURE"
+  ],
+  "current_method_language": [
+    "PAULI_SINGLETON",
+    "DIRECT_ANTICOMMUTING_CLIQUE",
+    "EXACT_CONTROLLED_TARE_M2"
+  ],
+  "authority": "BELOW_R6",
+  "fresh_r6_subject_coefficients_accessed": false
+}

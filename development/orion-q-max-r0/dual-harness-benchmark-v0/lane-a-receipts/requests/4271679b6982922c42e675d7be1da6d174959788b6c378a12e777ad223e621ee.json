@@ -1,0 +1,19 @@
+{
+  "capability": "WEB_SEARCH",
+  "created_at": "2026-08-21T09:03:50.220173+00:00",
+  "payload": {
+    "instruction": "Use current web search. Open/inspect relevant primary or authoritative sources when useful. Return `items`, each with content, source_uri, optional item_id, and optional domain_ids. Do not fabricate sources.",
+    "limit": 8,
+    "query": {
+      "domain_hint": "quantum-methods",
+      "query_id": "q3",
+      "route_id": "route:adversarial-omission:already-characterized",
+      "route_kind": "ADVERSARIAL_OMISSION",
+      "text": "adversarial omission: any receipt or frozen protocol that already characterizes the regime structure or tests weight-2 closure, which would make a new characterization move redundant"
+    }
+  },
+  "request_digest": "a965b9d97d63e2ec3375dbef219f4891f053dcbdb8d1a0598fafd096fc24d64a",
+  "request_id": "hostreq:518c65f97bee3e307331b5f49419b6d80f5cdc59a41156c3d0186a2aaeecad52",
+  "schema": "ORION.HostCapabilityRequest.v1",
+  "session_id": "session:8c4f13a92b154c7db2c0cc328cf9fe7a"
+}

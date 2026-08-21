@@ -1,0 +1,2475 @@
+{
+  "created_at": "2026-08-21T09:06:03.641308+00:00",
+  "decomposition_plans": [
+    {
+      "grants_novelty_authority": false,
+      "grants_promotion_authority": false,
+      "grants_scientific_authority": false,
+      "ordered_atoms": [],
+      "parent_problem_id": "post-r6o-diagnosis",
+      "parent_residual_id": null,
+      "plan_index": 0,
+      "plan_kind": "PROBLEM_DECOMPOSITION",
+      "rationale": "The question is a single diagnosis-and-selection judgment over one complete receipt corpus; any split into layer-diagnosis and move-selection reads the same receipts and separates no decision.",
+      "recursion_depth": 0,
+      "stop_reason": "NO_DECISION_SEPARATING_DECOMPOSITION"
+    }
+  ],
+  "experience_episodes": [
+    {
+      "action_ids": [
+        "FRAME"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:a8905514a6002b7dca8fdbb938d657d3406b8f53208ceb7f86fb624d47ca977b",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "FRAME"
+        ]
+      ],
+      "latency_seconds": 3.529700006765779e-05,
+      "mechanic_id": "FRAME.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "edb94055bf758fe6b9f6a1c343af7574b08248e7412ec711a9288421fe6320b2",
+      "pre_state_hash": "edb94055bf758fe6b9f6a1c343af7574b08248e7412ec711a9288421fe6320b2",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:1",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:1:FRAME",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639515+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "SEARCH"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:65863b398543699255b40c0226525c57b806512962d59f5157d2056d12715b6a",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [
+        [
+          "r6n-receipt",
+          "7624bd6c6b117cfb1c2595448f3ee1774797d5a5a71fc1bdf1ebf51fcb98241c"
+        ],
+        [
+          "r6o-receipt",
+          "fbb37ec95360edb9a3f14717b8c351da5515ec68076f93b7b16c69d0baf6ca65"
+        ],
+        [
+          "value-topology",
+          "b23988aa9d307ff4e9994d4549c43afff480e07c57f0fa346547a73acf3ae34d"
+        ],
+        [
+          "omission-check",
+          "bdfa8e1be78b3d661c7cb2c55884c51d2fb83cf942610c8fd65d613fc77cce51"
+        ]
+      ],
+      "evidence_ids": [
+        "r6n-receipt",
+        "r6o-receipt",
+        "value-topology",
+        "omission-check"
+      ],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "W.SEARCHED"
+        ]
+      ],
+      "latency_seconds": 0.0017937169996002922,
+      "mechanic_id": "SEARCH.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "9836b1816d81f5febbb0a5d1eed0c4eecfe22198edff99e7e8dca2107627b12b",
+      "pre_state_hash": "edb94055bf758fe6b9f6a1c343af7574b08248e7412ec711a9288421fe6320b2",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:2",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:2:SEARCH",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639559+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "ABSORB"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:40449004ae67fb698375a799ee9e7d5c5e95decab923a5ec5fbbab2633499df7",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [
+        [
+          "r6n-receipt",
+          "7624bd6c6b117cfb1c2595448f3ee1774797d5a5a71fc1bdf1ebf51fcb98241c"
+        ],
+        [
+          "r6o-receipt",
+          "fbb37ec95360edb9a3f14717b8c351da5515ec68076f93b7b16c69d0baf6ca65"
+        ],
+        [
+          "value-topology",
+          "b23988aa9d307ff4e9994d4549c43afff480e07c57f0fa346547a73acf3ae34d"
+        ],
+        [
+          "omission-check",
+          "bdfa8e1be78b3d661c7cb2c55884c51d2fb83cf942610c8fd65d613fc77cce51"
+        ]
+      ],
+      "evidence_ids": [
+        "r6n-receipt",
+        "r6o-receipt",
+        "value-topology",
+        "omission-check"
+      ],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "K.EVIDENCE,K.SOURCE_PROJECTIONS,K.CLAIMS"
+        ]
+      ],
+      "latency_seconds": 0.0046680089999426855,
+      "mechanic_id": "ABSORB.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "f264835375febe361f13b39572d0fdc79c0a139bf66f37b807ce5ff6541a7d55",
+      "pre_state_hash": "9836b1816d81f5febbb0a5d1eed0c4eecfe22198edff99e7e8dca2107627b12b",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [
+        "certificate:source-check:r6n-r6o-receipts-replay-verified-2026-08-21",
+        "certificate:source-check:nlane-ledger-and-r6-receipts-2026-08-21",
+        "certificate:source-check:frozen-protocols-no-results-2026-08-21",
+        "certificate:source-check:complementarity-of-frozen-moves-2026-08-21"
+      ],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:3",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:3:ABSORB",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639593+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "RECONSTRUCT"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:85b116102c263e957a152a15e23361a18598adac5d585bfdb61c7df64e3cc6f4",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "K.PORTRAIT"
+        ]
+      ],
+      "latency_seconds": 0.000832010000522132,
+      "mechanic_id": "RECONSTRUCT.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "726a4aaba46665f5533bb396464bd78f78517f406d64d7df08dc60793a40b933",
+      "pre_state_hash": "f264835375febe361f13b39572d0fdc79c0a139bf66f37b807ce5ff6541a7d55",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:4",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:4:RECONSTRUCT",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639621+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "DETECT"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:6e067dfd546be433bc8db37d21e0cf747105d4c5da9204d5a530c6576dae7302",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "K.RESIDUALS"
+        ]
+      ],
+      "latency_seconds": 2.112099900841713e-05,
+      "mechanic_id": "DETECT.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "726a4aaba46665f5533bb396464bd78f78517f406d64d7df08dc60793a40b933",
+      "pre_state_hash": "726a4aaba46665f5533bb396464bd78f78517f406d64d7df08dc60793a40b933",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:5",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:5:DETECT",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639639+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "RECURSE"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:33f3cb5185de6b96e5e470774a73c6c6cd2b9672ca870d7328c11d0abdf84d7e",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 1.634900036151521e-05,
+      "mechanic_id": "ORION_SOLVE.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "628f66266f377316209afeefe00f440fdfcdc3c9d32227d1c7b352fb612b4626",
+      "pre_state_hash": "726a4aaba46665f5533bb396464bd78f78517f406d64d7df08dc60793a40b933",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:6",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:6:RECURSE",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639655+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "SATURATE_BOUNDED"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:08782e13b636c75939577c5f9c32afed26ef6220329f7f67aa8577d99e1be0a7",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [
+        "bounded_saturation_open",
+        "semantic_flatness_insufficient",
+        "search_universe_flatness_insufficient",
+        "formulation_flatness_insufficient",
+        "independent_route_coverage_incomplete",
+        "literature_bridge_challenge_missing"
+      ],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 2.855099955922924e-05,
+      "mechanic_id": "SATURATE_BOUNDED.v3",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "PARTIAL_SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "628f66266f377316209afeefe00f440fdfcdc3c9d32227d1c7b352fb612b4626",
+      "pre_state_hash": "628f66266f377316209afeefe00f440fdfcdc3c9d32227d1c7b352fb612b4626",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:7",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:7:SATURATE_BOUNDED",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639675+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "SEARCH"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:038a7d0a8b67e275eff2b90283a50c55695b094cda7e16230eb8bff0d6e54ab4",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 0.0005115280000609346,
+      "mechanic_id": "SEARCH.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "628f66266f377316209afeefe00f440fdfcdc3c9d32227d1c7b352fb612b4626",
+      "pre_state_hash": "628f66266f377316209afeefe00f440fdfcdc3c9d32227d1c7b352fb612b4626",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:8",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:8:SEARCH",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639692+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "ABSORB"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:266c9c688ab10c7637d5471d561e00bff85b0d6ee468c75926a09625884de421",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 3.0577000870835036e-05,
+      "mechanic_id": "ABSORB.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "628f66266f377316209afeefe00f440fdfcdc3c9d32227d1c7b352fb612b4626",
+      "pre_state_hash": "628f66266f377316209afeefe00f440fdfcdc3c9d32227d1c7b352fb612b4626",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:9",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:9:ABSORB",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639717+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "RECONSTRUCT"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:ea0601d4f25bc269406a25f7fd1a8bac4d92cb8a84a94ae50d7d4492886be942",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "K.PORTRAIT"
+        ]
+      ],
+      "latency_seconds": 0.000684791999447043,
+      "mechanic_id": "RECONSTRUCT.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "a94ff22f8048e639cf4829773e80f172c28cf60ad8202ce11221334d6064fc62",
+      "pre_state_hash": "628f66266f377316209afeefe00f440fdfcdc3c9d32227d1c7b352fb612b4626",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:10",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:10:RECONSTRUCT",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639735+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "DETECT"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:1636f9436d1a2090a7edb00cb52fe6e1b745f5aead8998775618cda7ccfc1afd",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "K.RESIDUALS"
+        ]
+      ],
+      "latency_seconds": 2.2525999156641774e-05,
+      "mechanic_id": "DETECT.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "a94ff22f8048e639cf4829773e80f172c28cf60ad8202ce11221334d6064fc62",
+      "pre_state_hash": "a94ff22f8048e639cf4829773e80f172c28cf60ad8202ce11221334d6064fc62",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:11",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:11:DETECT",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639751+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "RECURSE"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:dac6742d03ea89113e270661ce37218f40d53867d30c1cfce4c96ba61abf77b4",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 1.2110000170650892e-05,
+      "mechanic_id": "ORION_SOLVE.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "40ed9fa4dfa13f902c71bcee9d109eccc9f7447b3d6a2575a045ea1da2bc98f3",
+      "pre_state_hash": "a94ff22f8048e639cf4829773e80f172c28cf60ad8202ce11221334d6064fc62",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:12",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:12:RECURSE",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639775+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "SATURATE_BOUNDED"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:4aecc98cb5786c0d5d089c25044aed4f0ff2161a429395ceb56ca8248596292d",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [
+        "bounded_saturation_open",
+        "semantic_flatness_insufficient",
+        "independent_route_coverage_incomplete",
+        "literature_bridge_challenge_missing"
+      ],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 1.9011000404134393e-05,
+      "mechanic_id": "SATURATE_BOUNDED.v3",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "PARTIAL_SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "40ed9fa4dfa13f902c71bcee9d109eccc9f7447b3d6a2575a045ea1da2bc98f3",
+      "pre_state_hash": "40ed9fa4dfa13f902c71bcee9d109eccc9f7447b3d6a2575a045ea1da2bc98f3",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:13",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:13:SATURATE_BOUNDED",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639791+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "SEARCH"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:17b93b3b064f0ab15f51cb55992c71596c17bf0dea2482b83940af3651e96820",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 0.0005144250008015661,
+      "mechanic_id": "SEARCH.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "40ed9fa4dfa13f902c71bcee9d109eccc9f7447b3d6a2575a045ea1da2bc98f3",
+      "pre_state_hash": "40ed9fa4dfa13f902c71bcee9d109eccc9f7447b3d6a2575a045ea1da2bc98f3",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:14",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:14:SEARCH",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639806+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "ABSORB"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:a14cc000e18c6d047360d349cff95897d7486c97a43e3b62a876db3506caea3c",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 2.820999907271471e-05,
+      "mechanic_id": "ABSORB.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "40ed9fa4dfa13f902c71bcee9d109eccc9f7447b3d6a2575a045ea1da2bc98f3",
+      "pre_state_hash": "40ed9fa4dfa13f902c71bcee9d109eccc9f7447b3d6a2575a045ea1da2bc98f3",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:15",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:15:ABSORB",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639820+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "RECONSTRUCT"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:7aacbf4a99d816fa19c22c31d4b588e6807694d4d2c560af7e907d82c3989d97",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "K.PORTRAIT"
+        ]
+      ],
+      "latency_seconds": 0.0007444250004482456,
+      "mechanic_id": "RECONSTRUCT.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "1a103a773a51b07c42c33a600baa62e6d0c66394f1108ab55fad6baf52916c9b",
+      "pre_state_hash": "40ed9fa4dfa13f902c71bcee9d109eccc9f7447b3d6a2575a045ea1da2bc98f3",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:16",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:16:RECONSTRUCT",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639835+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "DETECT"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:1c95dfeccefa3d132db06e9f0886e7110114626a0359131e91113239a3635c61",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "K.RESIDUALS"
+        ]
+      ],
+      "latency_seconds": 1.6194999261642806e-05,
+      "mechanic_id": "DETECT.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "1a103a773a51b07c42c33a600baa62e6d0c66394f1108ab55fad6baf52916c9b",
+      "pre_state_hash": "1a103a773a51b07c42c33a600baa62e6d0c66394f1108ab55fad6baf52916c9b",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:17",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:17:DETECT",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639852+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "RECURSE"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:cf3ca7d5f7896eb887a4c55d3dcb9784c2aa083de0f96a50d011c2bc55e1d0df",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 1.2989999959245324e-05,
+      "mechanic_id": "ORION_SOLVE.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "24d1495f7ef7554f945577538e2b4ce27da6bd4827711fd04a9cfc52b53fe0a0",
+      "pre_state_hash": "1a103a773a51b07c42c33a600baa62e6d0c66394f1108ab55fad6baf52916c9b",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:18",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:18:RECURSE",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639870+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "SATURATE_BOUNDED"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:6b5162d4733e5a23b72d0c4563f367f8e65344a0bbd3c7e8248e7d26293570c9",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [
+        "bounded_saturation_open",
+        "independent_route_coverage_incomplete",
+        "literature_bridge_challenge_missing"
+      ],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 1.7886999557958916e-05,
+      "mechanic_id": "SATURATE_BOUNDED.v3",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "PARTIAL_SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "216657da75054cdda9e7340099559614",
+      "post_state_hash": "24d1495f7ef7554f945577538e2b4ce27da6bd4827711fd04a9cfc52b53fe0a0",
+      "pre_state_hash": "24d1495f7ef7554f945577538e2b4ce27da6bd4827711fd04a9cfc52b53fe0a0",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614:mechanic:19",
+      "source_receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:19:SATURATE_BOUNDED",
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.639887+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    },
+    {
+      "action_ids": [
+        "RECURSE"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:c20bc3bc73d2664757f15df24bd13c65c1f19f9d4c99093e1b73b25b1885ca4c",
+      "evaluation_epoch_id": "harness-recursive:session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+      "evaluator_artifact_hash": "8c87c85f416e82938fee7fd1dbc756da82711af393defa9c8fda75552cd91cc6",
+      "evidence_bindings": [
+        [
+          "r6n-receipt",
+          "7624bd6c6b117cfb1c2595448f3ee1774797d5a5a71fc1bdf1ebf51fcb98241c"
+        ],
+        [
+          "r6o-receipt",
+          "fbb37ec95360edb9a3f14717b8c351da5515ec68076f93b7b16c69d0baf6ca65"
+        ],
+        [
+          "value-topology",
+          "b23988aa9d307ff4e9994d4549c43afff480e07c57f0fa346547a73acf3ae34d"
+        ],
+        [
+          "omission-check",
+          "bdfa8e1be78b3d661c7cb2c55884c51d2fb83cf942610c8fd65d613fc77cce51"
+        ]
+      ],
+      "evidence_ids": [
+        "r6n-receipt",
+        "r6o-receipt",
+        "value-topology",
+        "omission-check"
+      ],
+      "failure_signature": [
+        "solution_status:CANNOT_CHECK"
+      ],
+      "handoff_values": [],
+      "latency_seconds": null,
+      "mechanic_id": "ORION_SOLVE.v1",
+      "metric_observations": [],
+      "observation_ids": [
+        "evidence:r6n-receipt",
+        "evidence:r6o-receipt",
+        "evidence:value-topology",
+        "evidence:omission-check",
+        "trace:0:RECURSE",
+        "trace:1:FRAME",
+        "trace:2:SEARCH",
+        "trace:3:ABSORB",
+        "trace:4:RECONSTRUCT",
+        "trace:5:DETECT",
+        "trace:6:RECURSE",
+        "trace:7:SATURATE_BOUNDED",
+        "trace:8:SEARCH",
+        "trace:9:ABSORB",
+        "trace:10:RECONSTRUCT",
+        "trace:11:DETECT",
+        "trace:12:RECURSE",
+        "trace:13:SATURATE_BOUNDED",
+        "trace:14:SEARCH",
+        "trace:15:ABSORB",
+        "trace:16:RECONSTRUCT",
+        "trace:17:DETECT",
+        "trace:18:RECURSE",
+        "trace:19:SATURATE_BOUNDED"
+      ],
+      "outcome": "CANNOT_CHECK",
+      "output_artifact_ids": [],
+      "parent_run_id": null,
+      "post_state_hash": "24d1495f7ef7554f945577538e2b4ce27da6bd4827711fd04a9cfc52b53fe0a0",
+      "pre_state_hash": "edb94055bf758fe6b9f6a1c343af7574b08248e7412ec711a9288421fe6320b2",
+      "problem_signature": [
+        "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "Evidence strictly from committed repository receipts; cite file paths.",
+        "quantum-methods",
+        "research-methodology",
+        "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+      ],
+      "producer_process_lineage_hash": "fcc747964badb26f127dae3f1df50edf1612136e66adc53d2a5f54b185c3b337",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "216657da75054cdda9e7340099559614",
+      "source_receipt_id": null,
+      "split_id": "recursive-research",
+      "task_id": "post-r6o-diagnosis",
+      "timestamp": "2026-08-21T09:06:03.640125+00:00",
+      "variation_signature": [
+        "recursive-problem-residual-solver-v3",
+        "depth:0",
+        "role:root",
+        "parent_problem:-",
+        "parent_residual:-"
+      ]
+    }
+  ],
+  "final_solution": {
+    "answer": "Resource bound reached before bounded saturation. Open saturation coordinates: independent_route_coverage_incomplete, literature_bridge_challenge_missing",
+    "evidence_ids": [
+      "r6n-receipt",
+      "r6o-receipt",
+      "value-topology",
+      "omission-check"
+    ],
+    "iterations": 3,
+    "problem_id": "post-r6o-diagnosis",
+    "residual_ids": [],
+    "status": "CANNOT_CHECK",
+    "trace_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614"
+  },
+  "final_state": {
+    "closure_certificates": [],
+    "epoch": 3,
+    "iterations": [
+      {
+        "changed_coordinates": [],
+        "iteration": 0,
+        "new_claim_ids": [
+          "contrib:regime-receipts",
+          "contrib:value-topology",
+          "contrib:omission-check",
+          "contrib:registered-moves"
+        ],
+        "new_domain_ids": [],
+        "new_evidence_ids": [
+          "r6n-receipt",
+          "r6o-receipt",
+          "value-topology",
+          "omission-check"
+        ],
+        "residual_ids": [],
+        "route_kind_ids": [
+          "FUNCTION_ONLY",
+          "PARENT_DISCIPLINE",
+          "ADVERSARIAL_OMISSION"
+        ]
+      },
+      {
+        "changed_coordinates": [],
+        "iteration": 1,
+        "new_claim_ids": [],
+        "new_domain_ids": [],
+        "new_evidence_ids": [],
+        "residual_ids": [],
+        "route_kind_ids": []
+      },
+      {
+        "changed_coordinates": [],
+        "iteration": 2,
+        "new_claim_ids": [],
+        "new_domain_ids": [],
+        "new_evidence_ids": [],
+        "residual_ids": [],
+        "route_kind_ids": []
+      }
+    ],
+    "knowledge": {
+      "claims": [
+        {
+          "authority": "VERIFIED",
+          "certificate_ids": [
+            "certificate:source-check:r6n-r6o-receipts-replay-verified-2026-08-21"
+          ],
+          "claim_id": "contrib:regime-receipts",
+          "contradicts_claim_ids": [],
+          "evidence_ids": [
+            "r6n-receipt"
+          ],
+          "text": "The R6N/R6O receipts jointly establish: (1) frame-support beyond the minimum provably never strictly pays locally (0 violations / 688M configurations), so the remaining gap is not an optimization deficiency; (2) two exactly-witnessed expressivity trades exist (Tag-for-anchor, frame-for-Tag) that no weight-one-frame donor family expresses; (3) both frozen chemistry subjects sit entirely in the donor-exact region. The unresolved object is the boundary between regions — a property of the target-batch representation, not of any solver."
+        },
+        {
+          "authority": "VERIFIED",
+          "certificate_ids": [
+            "certificate:source-check:nlane-ledger-and-r6-receipts-2026-08-21"
+          ],
+          "claim_id": "contrib:value-topology",
+          "contradicts_claim_ids": [],
+          "evidence_ids": [
+            "r6o-receipt"
+          ],
+          "text": "Across the whole programme, exact representation optimization consistently landed on donor envelopes, while every surviving positive came from typed epistemic state under partial knowledge. Combined with the regime receipts, this locates responsibility in the representation-characterization layer: the programme lacks a decidable structural criterion telling which region a target batch occupies, and no amount of further optimization can substitute for that criterion."
+        },
+        {
+          "authority": "VERIFIED",
+          "certificate_ids": [
+            "certificate:source-check:frozen-protocols-no-results-2026-08-21"
+          ],
+          "claim_id": "contrib:omission-check",
+          "contradicts_claim_ids": [],
+          "evidence_ids": [
+            "value-topology"
+          ],
+          "text": "No committed receipt characterizes the regime boundary or tests weight-2 closure; the candidate moves exist only as frozen outcome-free protocols (R6P, R6Q). The diagnosis therefore selects among registered layers on live evidence rather than inventing a move: the characterization move addresses the responsible layer directly, while a donor-family extension (weight-2) addresses expressivity but cannot by itself say where donor families suffice."
+        },
+        {
+          "authority": "VERIFIED",
+          "certificate_ids": [
+            "certificate:source-check:complementarity-of-frozen-moves-2026-08-21"
+          ],
+          "claim_id": "contrib:registered-moves",
+          "contradicts_claim_ids": [],
+          "evidence_ids": [
+            "omission-check"
+          ],
+          "text": "Both registered candidate moves are outcome-free freezes at service time, so selecting between them is a live decision: the weight-2 donor extension (R6P) tests whether admitting the observed trade currency restores closure, while the regime predicate (R6Q) supplies the decidability criterion the responsibility analysis identifies as the missing object. They are complementary rather than exclusive: R6P sharpens the boundary's far side, R6Q names the boundary."
+        }
+      ],
+      "evidence": [
+        {
+          "certificate_ids": [],
+          "content": "MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json: local frame-support exchange inequality verified with 0 violations over 688,041,472 configurations (R6I+R6M grammars); weight-one equality on all 50 recorded chemistry optima; family closure REFUTED at the pre-declared Tag-repair gap by instance n2_b (weight-one frames, split anchors, weight-2 Tag Y(x)Y: DP 8 < donor 9). Authority MAX_R6N_SUPPORT_DOMINANCE_REFUTED__NEW_REGIME_FOUND__NOT_R6.",
+          "domain_ids": [
+            "quantum-methods"
+          ],
+          "evidence_id": "r6n-receipt",
+          "source_uri": "repo:research/extensions/orion-q/MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json"
+        },
+        {
+          "certificate_ids": [],
+          "content": "MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json: enlarged family D+ repairs the n2_b gap and beats old donor on 34/240 random instances, sandwich DP <= D+ <= R6L everywhere, exhaustive DP == D+ at n=1 (4096/4096); but 486/9261 structured-n2 and 73/240 random instances show DP < D+ via the converse trade: a weight-2 frame Pauli purchases Tag compression to weight one plus factor alignment (smallest counterexample DP 5 < D+ 6). Chemistry: DP == D+ == R6L on all 30 matchings. Authority ...CLOSURE_REFUTED__SECOND_NEW_REGIME_FOUND__NOT_R6.",
+          "domain_ids": [
+            "quantum-methods"
+          ],
+          "evidence_id": "r6o-receipt",
+          "source_uri": "repo:research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json"
+        },
+        {
+          "certificate_ids": [],
+          "content": "Value topology across the programme: representation-optimization lanes all collapsed onto donors (R6I strict 0/10 both subjects; R6K collapses onto R6J everywhere; R6M C=R6L on all 30 matchings; receipts MAX_R6I/K/M_*_RESULTS.json), while typed partial-knowledge epistemic state produced the positives: N4 all six families supported (typed VOI, scoped reopening, interval-targeted verification, chain laundering detection recall 1.0/FPR 0, decision-coupled probing, typed remint transport), N3 all four residual-confirmed, N2-F5B mixed with only a misspecification-robustness edge surviving the donor. The gap that remains in the R6 family is not an optimization gap but a characterization gap: nobody can yet decide from a target batch alone which regime it falls in.",
+          "domain_ids": [
+            "research-methodology"
+          ],
+          "evidence_id": "value-topology",
+          "source_uri": "repo:research/extensions/orion-q/nlanes/ and MAX_R6I/K/M receipts"
+        },
+        {
+          "certificate_ids": [],
+          "content": "Omission check: no receipt yet characterizes the regime structure or tests weight-2 closure — MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_PROTOCOL.md and MAX_R6Q_REGIME_PREDICATE_PROTOCOL.md are frozen protocols with no results receipts at query time, so the characterization gap is genuinely open. The only decided facts are the two refutations and chemistry donor-exactness. Note for honesty: both candidate next moves are already frozen as protocols, so the diagnosis question is which of the registered layers/moves the evidence supports, not whether such moves exist.",
+          "domain_ids": [
+            "quantum-methods"
+          ],
+          "evidence_id": "omission-check",
+          "source_uri": "repo:development/orion-q-max-r0/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_PROTOCOL.md and MAX_R6Q_REGIME_PREDICATE_PROTOCOL.md"
+        }
+      ],
+      "negative_history": [],
+      "portraits": [
+        {
+          "claim_ids": [
+            "contrib:regime-receipts",
+            "contrib:value-topology",
+            "contrib:omission-check",
+            "contrib:registered-moves"
+          ],
+          "portrait_id": "portrait:post-r6o-diagnosis:0",
+          "representation_mapping_ids": [],
+          "source_projection_ids": [
+            "projection:contrib:regime-receipts",
+            "projection:contrib:value-topology",
+            "projection:contrib:omission-check",
+            "projection:contrib:registered-moves"
+          ],
+          "summary": "LANE A ANSWER. Responsible layer: REPRESENTATION-REGIME CHARACTERIZATION. The receipts prove the gap is not an optimization deficiency (support dominance: 0 violations / 688M configurations) and not donor incompleteness alone (each enlargement was refuted by a new exactly-witnessed trade regime); what no receipt provides is a decidable structural criterion locating a target batch relative to the two regime boundaries — chemistry's donor-exactness is observed, not predicted. Correct next move: execute the regime-predicate characterization (the R6Q object) as primary, with the weight-2 donor-extension closure test (the R6P object) as its complementary far-side probe; a validated predicate then licenses a prospective fresh-subject test, which is the strongest available continuation toward any future R6 case. Evidence: MAX_R6N/R6O receipts (replay-verified), the R6I/K/M donor collapses, the N-lane value topology, and the omission check confirming no existing receipt decides the boundary.",
+          "unresolved_residual_ids": [],
+          "verified_claim_ids": [
+            "contrib:regime-receipts",
+            "contrib:value-topology",
+            "contrib:omission-check",
+            "contrib:registered-moves"
+          ]
+        },
+        {
+          "claim_ids": [
+            "contrib:regime-receipts",
+            "contrib:value-topology",
+            "contrib:omission-check",
+            "contrib:registered-moves"
+          ],
+          "portrait_id": "portrait:post-r6o-diagnosis:1",
+          "representation_mapping_ids": [],
+          "source_projection_ids": [
+            "projection:contrib:regime-receipts",
+            "projection:contrib:value-topology",
+            "projection:contrib:omission-check",
+            "projection:contrib:registered-moves"
+          ],
+          "summary": "LANE A ANSWER. Responsible layer: REPRESENTATION-REGIME CHARACTERIZATION. The receipts prove the gap is not an optimization deficiency (support dominance: 0 violations / 688M configurations) and not donor incompleteness alone (each enlargement was refuted by a new exactly-witnessed trade regime); what no receipt provides is a decidable structural criterion locating a target batch relative to the two regime boundaries — chemistry's donor-exactness is observed, not predicted. Correct next move: execute the regime-predicate characterization (the R6Q object) as primary, with the weight-2 donor-extension closure test (the R6P object) as its complementary far-side probe; a validated predicate then licenses a prospective fresh-subject test, which is the strongest available continuation toward any future R6 case. Evidence: MAX_R6N/R6O receipts (replay-verified), the R6I/K/M donor collapses, the N-lane value topology, and the omission check confirming no existing receipt decides the boundary.",
+          "unresolved_residual_ids": [],
+          "verified_claim_ids": [
+            "contrib:regime-receipts",
+            "contrib:value-topology",
+            "contrib:omission-check",
+            "contrib:registered-moves"
+          ]
+        },
+        {
+          "claim_ids": [
+            "contrib:regime-receipts",
+            "contrib:value-topology",
+            "contrib:omission-check",
+            "contrib:registered-moves"
+          ],
+          "portrait_id": "portrait:post-r6o-diagnosis:2",
+          "representation_mapping_ids": [],
+          "source_projection_ids": [
+            "projection:contrib:regime-receipts",
+            "projection:contrib:value-topology",
+            "projection:contrib:omission-check",
+            "projection:contrib:registered-moves"
+          ],
+          "summary": "LANE A ANSWER. Responsible layer: REPRESENTATION-REGIME CHARACTERIZATION. The receipts prove the gap is not an optimization deficiency (support dominance: 0 violations / 688M configurations) and not donor incompleteness alone (each enlargement was refuted by a new exactly-witnessed trade regime); what no receipt provides is a decidable structural criterion locating a target batch relative to the two regime boundaries — chemistry's donor-exactness is observed, not predicted. Correct next move: execute the regime-predicate characterization (the R6Q object) as primary, with the weight-2 donor-extension closure test (the R6P object) as its complementary far-side probe; a validated predicate then licenses a prospective fresh-subject test, which is the strongest available continuation toward any future R6 case. Evidence: MAX_R6N/R6O receipts (replay-verified), the R6I/K/M donor collapses, the N-lane value topology, and the omission check confirming no existing receipt decides the boundary.",
+          "unresolved_residual_ids": [],
+          "verified_claim_ids": [
+            "contrib:regime-receipts",
+            "contrib:value-topology",
+            "contrib:omission-check",
+            "contrib:registered-moves"
+          ]
+        }
+      ],
+      "representation_mappings": [],
+      "residuals": [],
+      "source_projections": [
+        {
+          "assimilation": "COMPLEMENTARY_FACET",
+          "assumption_ids": [],
+          "context_ids": [
+            "problem:post-r6o-diagnosis",
+            "domain:quantum-methods"
+          ],
+          "contribution_id": "contrib:regime-receipts",
+          "evidence_ids": [
+            "r6n-receipt"
+          ],
+          "frame_id": "problem:post-r6o-diagnosis",
+          "projection_id": "projection:contrib:regime-receipts",
+          "referent_bindings": [],
+          "related_claim_ids": [],
+          "representation_mapping_ids": [],
+          "source_uri": "repo:research/extensions/orion-q/MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json"
+        },
+        {
+          "assimilation": "COMPLEMENTARY_FACET",
+          "assumption_ids": [],
+          "context_ids": [
+            "problem:post-r6o-diagnosis",
+            "domain:quantum-methods"
+          ],
+          "contribution_id": "contrib:value-topology",
+          "evidence_ids": [
+            "r6o-receipt"
+          ],
+          "frame_id": "problem:post-r6o-diagnosis",
+          "projection_id": "projection:contrib:value-topology",
+          "referent_bindings": [],
+          "related_claim_ids": [],
+          "representation_mapping_ids": [],
+          "source_uri": "repo:research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json"
+        },
+        {
+          "assimilation": "COMPLEMENTARY_FACET",
+          "assumption_ids": [],
+          "context_ids": [
+            "problem:post-r6o-diagnosis",
+            "domain:research-methodology"
+          ],
+          "contribution_id": "contrib:omission-check",
+          "evidence_ids": [
+            "value-topology"
+          ],
+          "frame_id": "problem:post-r6o-diagnosis",
+          "projection_id": "projection:contrib:omission-check",
+          "referent_bindings": [],
+          "related_claim_ids": [],
+          "representation_mapping_ids": [],
+          "source_uri": "repo:research/extensions/orion-q/nlanes/ and MAX_R6I/K/M receipts"
+        },
+        {
+          "assimilation": "COMPLEMENTARY_FACET",
+          "assumption_ids": [],
+          "context_ids": [
+            "problem:post-r6o-diagnosis",
+            "domain:quantum-methods"
+          ],
+          "contribution_id": "contrib:registered-moves",
+          "evidence_ids": [
+            "omission-check"
+          ],
+          "frame_id": "problem:post-r6o-diagnosis",
+          "projection_id": "projection:contrib:registered-moves",
+          "referent_bindings": [],
+          "related_claim_ids": [],
+          "representation_mapping_ids": [],
+          "source_uri": "repo:development/orion-q-max-r0/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_PROTOCOL.md and MAX_R6Q_REGIME_PREDICATE_PROTOCOL.md"
+        }
+      ]
+    },
+    "metadata": [],
+    "method": {
+      "evaluator_id": "external-verification-provider",
+      "method_version": "0.3.9-shadow",
+      "operator_ids": [
+        "FRAME.v1",
+        "SEARCH.v1",
+        "ABSORB.v1",
+        "RECONSTRUCT.v1",
+        "DETECT.v1",
+        "DIAGNOSE.v1",
+        "REFRAME.v1",
+        "REOPEN.v1",
+        "SATURATE_BOUNDED.v3"
+      ],
+      "self_development_enabled": false
+    },
+    "search_universe": {
+      "active_domain_ids": [
+        "quantum-methods",
+        "research-methodology"
+      ],
+      "candidate_domain_ids": [],
+      "open_coverage_residual_ids": [],
+      "representation_ids": [],
+      "route_ids": [
+        "route:function-only:regime-receipts",
+        "route:parent-discipline:value-topology",
+        "route:adversarial-omission:already-characterized"
+      ],
+      "route_kind_ids": [
+        "FUNCTION_ONLY",
+        "PARENT_DISCIPLINE",
+        "ADVERSARIAL_OMISSION"
+      ],
+      "searched_domain_ids": [
+        "quantum-methods",
+        "research-methodology"
+      ]
+    }
+  },
+  "grants_novelty_authority": false,
+  "grants_promotion_authority": false,
+  "grants_scientific_authority": false,
+  "identity_ambiguity_hit": false,
+  "internal_run_status": "COMPLETE",
+  "limits": {
+    "max_children_per_problem": 12,
+    "max_children_per_residual": 12,
+    "max_depth": 5,
+    "max_nodes": 32
+  },
+  "max_depth_reached": 0,
+  "nodes": [
+    {
+      "experience_episode_id": "episode:c20bc3bc73d2664757f15df24bd13c65c1f19f9d4c99093e1b73b25b1885ca4c",
+      "material_residual_fingerprints": [],
+      "material_residual_ids": [],
+      "mechanic_experience_episode_ids": [
+        "episode:a8905514a6002b7dca8fdbb938d657d3406b8f53208ceb7f86fb624d47ca977b",
+        "episode:65863b398543699255b40c0226525c57b806512962d59f5157d2056d12715b6a",
+        "episode:40449004ae67fb698375a799ee9e7d5c5e95decab923a5ec5fbbab2633499df7",
+        "episode:85b116102c263e957a152a15e23361a18598adac5d585bfdb61c7df64e3cc6f4",
+        "episode:6e067dfd546be433bc8db37d21e0cf747105d4c5da9204d5a530c6576dae7302",
+        "episode:33f3cb5185de6b96e5e470774a73c6c6cd2b9672ca870d7328c11d0abdf84d7e",
+        "episode:08782e13b636c75939577c5f9c32afed26ef6220329f7f67aa8577d99e1be0a7",
+        "episode:038a7d0a8b67e275eff2b90283a50c55695b094cda7e16230eb8bff0d6e54ab4",
+        "episode:266c9c688ab10c7637d5471d561e00bff85b0d6ee468c75926a09625884de421",
+        "episode:ea0601d4f25bc269406a25f7fd1a8bac4d92cb8a84a94ae50d7d4492886be942",
+        "episode:1636f9436d1a2090a7edb00cb52fe6e1b745f5aead8998775618cda7ccfc1afd",
+        "episode:dac6742d03ea89113e270661ce37218f40d53867d30c1cfce4c96ba61abf77b4",
+        "episode:4aecc98cb5786c0d5d089c25044aed4f0ff2161a429395ceb56ca8248596292d",
+        "episode:17b93b3b064f0ab15f51cb55992c71596c17bf0dea2482b83940af3651e96820",
+        "episode:a14cc000e18c6d047360d349cff95897d7486c97a43e3b62a876db3506caea3c",
+        "episode:7aacbf4a99d816fa19c22c31d4b588e6807694d4d2c560af7e907d82c3989d97",
+        "episode:1c95dfeccefa3d132db06e9f0886e7110114626a0359131e91113239a3635c61",
+        "episode:cf3ca7d5f7896eb887a4c55d3dcb9784c2aa083de0f96a50d011c2bc55e1d0df",
+        "episode:6b5162d4733e5a23b72d0c4563f367f8e65344a0bbd3c7e8248e7d26293570c9"
+      ],
+      "node_index": 0,
+      "parent_problem_id": null,
+      "parent_residual_id": null,
+      "problem": {
+        "initial_domain_ids": [
+          "quantum-methods",
+          "research-methodology"
+        ],
+        "problem_id": "post-r6o-diagnosis",
+        "question": "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+        "scope": "Evidence strictly from committed repository receipts; cite file paths.",
+        "success_criteria": [
+          "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+        ]
+      },
+      "recursion_depth": 0,
+      "role": "root",
+      "semantic_progress": true,
+      "semantic_state_after": "3725271b1725c8b80242de5c270646b3115b5f694496b87982b7b5f68083876c",
+      "semantic_state_before": "2212cd5b01eb13946b3e8776c02cc6f7ea349129238a89c3f616bda5e91dc53d",
+      "solution": {
+        "answer": "Resource bound reached before bounded saturation. Open saturation coordinates: independent_route_coverage_incomplete, literature_bridge_challenge_missing",
+        "evidence_ids": [
+          "r6n-receipt",
+          "r6o-receipt",
+          "value-topology",
+          "omission-check"
+        ],
+        "iterations": 3,
+        "problem_id": "post-r6o-diagnosis",
+        "residual_ids": [],
+        "status": "CANNOT_CHECK",
+        "trace_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614"
+      },
+      "trace": {
+        "events": [
+          {
+            "epoch": 0,
+            "operator": "RECURSE",
+            "post_state_hash": "edb94055bf758fe6b9f6a1c343af7574b08248e7412ec711a9288421fe6320b2",
+            "pre_state_hash": "edb94055bf758fe6b9f6a1c343af7574b08248e7412ec711a9288421fe6320b2",
+            "receipt": {
+              "action_ids": [
+                "RECURSE"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": false,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  ""
+                ]
+              ],
+              "latency_seconds": 1.04300124803558e-06,
+              "mechanic_id": "ORION_SOLVE.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:0:RECURSE",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "solve_started",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [],
+              "evidence_ids": [],
+              "input_epoch": 0,
+              "operator": "RECURSE",
+              "output_epoch": 0,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 0,
+            "operator": "FRAME",
+            "post_state_hash": "edb94055bf758fe6b9f6a1c343af7574b08248e7412ec711a9288421fe6320b2",
+            "pre_state_hash": "edb94055bf758fe6b9f6a1c343af7574b08248e7412ec711a9288421fe6320b2",
+            "receipt": {
+              "action_ids": [
+                "FRAME"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  "FRAME"
+                ]
+              ],
+              "latency_seconds": 3.529700006765779e-05,
+              "mechanic_id": "FRAME.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:1:FRAME",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "frame=frame:post-r6o-diagnosis:0",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [
+                "FRAME"
+              ],
+              "evidence_ids": [],
+              "input_epoch": 0,
+              "operator": "FRAME",
+              "output_epoch": 0,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 0,
+            "operator": "SEARCH",
+            "post_state_hash": "9836b1816d81f5febbb0a5d1eed0c4eecfe22198edff99e7e8dca2107627b12b",
+            "pre_state_hash": "edb94055bf758fe6b9f6a1c343af7574b08248e7412ec711a9288421fe6320b2",
+            "receipt": {
+              "action_ids": [
+                "SEARCH"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [
+                [
+                  "r6n-receipt",
+                  "7624bd6c6b117cfb1c2595448f3ee1774797d5a5a71fc1bdf1ebf51fcb98241c"
+                ],
+                [
+                  "r6o-receipt",
+                  "fbb37ec95360edb9a3f14717b8c351da5515ec68076f93b7b16c69d0baf6ca65"
+                ],
+                [
+                  "value-topology",
+                  "b23988aa9d307ff4e9994d4549c43afff480e07c57f0fa346547a73acf3ae34d"
+                ],
+                [
+                  "omission-check",
+                  "bdfa8e1be78b3d661c7cb2c55884c51d2fb83cf942610c8fd65d613fc77cce51"
+                ]
+              ],
+              "evidence_ids": [
+                "r6n-receipt",
+                "r6o-receipt",
+                "value-topology",
+                "omission-check"
+              ],
+              "experience_eligible": true,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  "W.SEARCHED"
+                ]
+              ],
+              "latency_seconds": 0.0017937169996002922,
+              "mechanic_id": "SEARCH.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:2:SEARCH",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "queries=3 items=4",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [
+                "W.SEARCHED"
+              ],
+              "evidence_ids": [
+                "r6n-receipt",
+                "r6o-receipt",
+                "value-topology",
+                "omission-check"
+              ],
+              "input_epoch": 0,
+              "operator": "SEARCH",
+              "output_epoch": 0,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 0,
+            "operator": "ABSORB",
+            "post_state_hash": "f264835375febe361f13b39572d0fdc79c0a139bf66f37b807ce5ff6541a7d55",
+            "pre_state_hash": "9836b1816d81f5febbb0a5d1eed0c4eecfe22198edff99e7e8dca2107627b12b",
+            "receipt": {
+              "action_ids": [
+                "ABSORB"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [
+                [
+                  "r6n-receipt",
+                  "7624bd6c6b117cfb1c2595448f3ee1774797d5a5a71fc1bdf1ebf51fcb98241c"
+                ],
+                [
+                  "r6o-receipt",
+                  "fbb37ec95360edb9a3f14717b8c351da5515ec68076f93b7b16c69d0baf6ca65"
+                ],
+                [
+                  "value-topology",
+                  "b23988aa9d307ff4e9994d4549c43afff480e07c57f0fa346547a73acf3ae34d"
+                ],
+                [
+                  "omission-check",
+                  "bdfa8e1be78b3d661c7cb2c55884c51d2fb83cf942610c8fd65d613fc77cce51"
+                ]
+              ],
+              "evidence_ids": [
+                "r6n-receipt",
+                "r6o-receipt",
+                "value-topology",
+                "omission-check"
+              ],
+              "experience_eligible": true,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  "K.EVIDENCE,K.SOURCE_PROJECTIONS,K.CLAIMS"
+                ]
+              ],
+              "latency_seconds": 0.0046680089999426855,
+              "mechanic_id": "ABSORB.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [
+                "certificate:source-check:r6n-r6o-receipts-replay-verified-2026-08-21",
+                "certificate:source-check:nlane-ledger-and-r6-receipts-2026-08-21",
+                "certificate:source-check:frozen-protocols-no-results-2026-08-21",
+                "certificate:source-check:complementarity-of-frozen-moves-2026-08-21"
+              ],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:3:ABSORB",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "contributions=4",
+            "transition": {
+              "authority_increase": true,
+              "changed_coordinates": [
+                "K.EVIDENCE",
+                "K.SOURCE_PROJECTIONS",
+                "K.CLAIMS"
+              ],
+              "evidence_ids": [
+                "r6n-receipt",
+                "r6o-receipt",
+                "value-topology",
+                "omission-check"
+              ],
+              "input_epoch": 0,
+              "operator": "ABSORB",
+              "output_epoch": 0,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": [
+                "certificate:source-check:r6n-r6o-receipts-replay-verified-2026-08-21",
+                "certificate:source-check:nlane-ledger-and-r6-receipts-2026-08-21",
+                "certificate:source-check:frozen-protocols-no-results-2026-08-21",
+                "certificate:source-check:complementarity-of-frozen-moves-2026-08-21"
+              ]
+            }
+          },
+          {
+            "epoch": 0,
+            "operator": "RECONSTRUCT",
+            "post_state_hash": "726a4aaba46665f5533bb396464bd78f78517f406d64d7df08dc60793a40b933",
+            "pre_state_hash": "f264835375febe361f13b39572d0fdc79c0a139bf66f37b807ce5ff6541a7d55",
+            "receipt": {
+              "action_ids": [
+                "RECONSTRUCT"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  "K.PORTRAIT"
+                ]
+              ],
+              "latency_seconds": 0.000832010000522132,
+              "mechanic_id": "RECONSTRUCT.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:4:RECONSTRUCT",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "portrait:post-r6o-diagnosis:0",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [
+                "K.PORTRAIT"
+              ],
+              "evidence_ids": [],
+              "input_epoch": 0,
+              "operator": "RECONSTRUCT",
+              "output_epoch": 0,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 0,
+            "operator": "DETECT",
+            "post_state_hash": "726a4aaba46665f5533bb396464bd78f78517f406d64d7df08dc60793a40b933",
+            "pre_state_hash": "726a4aaba46665f5533bb396464bd78f78517f406d64d7df08dc60793a40b933",
+            "receipt": {
+              "action_ids": [
+                "DETECT"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  "K.RESIDUALS"
+                ]
+              ],
+              "latency_seconds": 2.112099900841713e-05,
+              "mechanic_id": "DETECT.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:5:DETECT",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "residuals=0",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [
+                "K.RESIDUALS"
+              ],
+              "evidence_ids": [],
+              "input_epoch": 0,
+              "operator": "DETECT",
+              "output_epoch": 0,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 1,
+            "operator": "RECURSE",
+            "post_state_hash": "628f66266f377316209afeefe00f440fdfcdc3c9d32227d1c7b352fb612b4626",
+            "pre_state_hash": "726a4aaba46665f5533bb396464bd78f78517f406d64d7df08dc60793a40b933",
+            "receipt": {
+              "action_ids": [
+                "RECURSE"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  ""
+                ]
+              ],
+              "latency_seconds": 1.634900036151521e-05,
+              "mechanic_id": "ORION_SOLVE.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:6:RECURSE",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "iteration_recorded=1",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [],
+              "evidence_ids": [],
+              "input_epoch": 0,
+              "operator": "RECURSE",
+              "output_epoch": 1,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 1,
+            "operator": "SATURATE_BOUNDED",
+            "post_state_hash": "628f66266f377316209afeefe00f440fdfcdc3c9d32227d1c7b352fb612b4626",
+            "pre_state_hash": "628f66266f377316209afeefe00f440fdfcdc3c9d32227d1c7b352fb612b4626",
+            "receipt": {
+              "action_ids": [
+                "SATURATE_BOUNDED"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [
+                "bounded_saturation_open",
+                "semantic_flatness_insufficient",
+                "search_universe_flatness_insufficient",
+                "formulation_flatness_insufficient",
+                "independent_route_coverage_incomplete",
+                "literature_bridge_challenge_missing"
+              ],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  ""
+                ]
+              ],
+              "latency_seconds": 2.855099955922924e-05,
+              "mechanic_id": "SATURATE_BOUNDED.v3",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:7:SATURATE_BOUNDED",
+              "residual_ids": [],
+              "status": "PARTIAL"
+            },
+            "summary": "OPEN:semantic_flatness_insufficient,search_universe_flatness_insufficient,formulation_flatness_insufficient,independent_route_coverage_incomplete,literature_bridge_challenge_missing",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [],
+              "evidence_ids": [],
+              "input_epoch": 1,
+              "operator": "SATURATE_BOUNDED",
+              "output_epoch": 1,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 1,
+            "operator": "SEARCH",
+            "post_state_hash": "628f66266f377316209afeefe00f440fdfcdc3c9d32227d1c7b352fb612b4626",
+            "pre_state_hash": "628f66266f377316209afeefe00f440fdfcdc3c9d32227d1c7b352fb612b4626",
+            "receipt": {
+              "action_ids": [
+                "SEARCH"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  ""
+                ]
+              ],
+              "latency_seconds": 0.0005115280000609346,
+              "mechanic_id": "SEARCH.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:8:SEARCH",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "queries=0 items=0",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [],
+              "evidence_ids": [],
+              "input_epoch": 1,
+              "operator": "SEARCH",
+              "output_epoch": 1,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 1,
+            "operator": "ABSORB",
+            "post_state_hash": "628f66266f377316209afeefe00f440fdfcdc3c9d32227d1c7b352fb612b4626",
+            "pre_state_hash": "628f66266f377316209afeefe00f440fdfcdc3c9d32227d1c7b352fb612b4626",
+            "receipt": {
+              "action_ids": [
+                "ABSORB"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  ""
+                ]
+              ],
+              "latency_seconds": 3.0577000870835036e-05,
+              "mechanic_id": "ABSORB.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:9:ABSORB",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "contributions=0",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [],
+              "evidence_ids": [],
+              "input_epoch": 1,
+              "operator": "ABSORB",
+              "output_epoch": 1,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 1,
+            "operator": "RECONSTRUCT",
+            "post_state_hash": "a94ff22f8048e639cf4829773e80f172c28cf60ad8202ce11221334d6064fc62",
+            "pre_state_hash": "628f66266f377316209afeefe00f440fdfcdc3c9d32227d1c7b352fb612b4626",
+            "receipt": {
+              "action_ids": [
+                "RECONSTRUCT"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  "K.PORTRAIT"
+                ]
+              ],
+              "latency_seconds": 0.000684791999447043,
+              "mechanic_id": "RECONSTRUCT.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:10:RECONSTRUCT",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "portrait:post-r6o-diagnosis:1",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [
+                "K.PORTRAIT"
+              ],
+              "evidence_ids": [],
+              "input_epoch": 1,
+              "operator": "RECONSTRUCT",
+              "output_epoch": 1,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 1,
+            "operator": "DETECT",
+            "post_state_hash": "a94ff22f8048e639cf4829773e80f172c28cf60ad8202ce11221334d6064fc62",
+            "pre_state_hash": "a94ff22f8048e639cf4829773e80f172c28cf60ad8202ce11221334d6064fc62",
+            "receipt": {
+              "action_ids": [
+                "DETECT"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  "K.RESIDUALS"
+                ]
+              ],
+              "latency_seconds": 2.2525999156641774e-05,
+              "mechanic_id": "DETECT.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:11:DETECT",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "residuals=0",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [
+                "K.RESIDUALS"
+              ],
+              "evidence_ids": [],
+              "input_epoch": 1,
+              "operator": "DETECT",
+              "output_epoch": 1,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 2,
+            "operator": "RECURSE",
+            "post_state_hash": "40ed9fa4dfa13f902c71bcee9d109eccc9f7447b3d6a2575a045ea1da2bc98f3",
+            "pre_state_hash": "a94ff22f8048e639cf4829773e80f172c28cf60ad8202ce11221334d6064fc62",
+            "receipt": {
+              "action_ids": [
+                "RECURSE"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  ""
+                ]
+              ],
+              "latency_seconds": 1.2110000170650892e-05,
+              "mechanic_id": "ORION_SOLVE.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:12:RECURSE",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "iteration_recorded=2",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [],
+              "evidence_ids": [],
+              "input_epoch": 1,
+              "operator": "RECURSE",
+              "output_epoch": 2,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 2,
+            "operator": "SATURATE_BOUNDED",
+            "post_state_hash": "40ed9fa4dfa13f902c71bcee9d109eccc9f7447b3d6a2575a045ea1da2bc98f3",
+            "pre_state_hash": "40ed9fa4dfa13f902c71bcee9d109eccc9f7447b3d6a2575a045ea1da2bc98f3",
+            "receipt": {
+              "action_ids": [
+                "SATURATE_BOUNDED"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [
+                "bounded_saturation_open",
+                "semantic_flatness_insufficient",
+                "independent_route_coverage_incomplete",
+                "literature_bridge_challenge_missing"
+              ],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  ""
+                ]
+              ],
+              "latency_seconds": 1.9011000404134393e-05,
+              "mechanic_id": "SATURATE_BOUNDED.v3",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:13:SATURATE_BOUNDED",
+              "residual_ids": [],
+              "status": "PARTIAL"
+            },
+            "summary": "OPEN:semantic_flatness_insufficient,independent_route_coverage_incomplete,literature_bridge_challenge_missing",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [],
+              "evidence_ids": [],
+              "input_epoch": 2,
+              "operator": "SATURATE_BOUNDED",
+              "output_epoch": 2,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 2,
+            "operator": "SEARCH",
+            "post_state_hash": "40ed9fa4dfa13f902c71bcee9d109eccc9f7447b3d6a2575a045ea1da2bc98f3",
+            "pre_state_hash": "40ed9fa4dfa13f902c71bcee9d109eccc9f7447b3d6a2575a045ea1da2bc98f3",
+            "receipt": {
+              "action_ids": [
+                "SEARCH"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  ""
+                ]
+              ],
+              "latency_seconds": 0.0005144250008015661,
+              "mechanic_id": "SEARCH.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:14:SEARCH",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "queries=0 items=0",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [],
+              "evidence_ids": [],
+              "input_epoch": 2,
+              "operator": "SEARCH",
+              "output_epoch": 2,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 2,
+            "operator": "ABSORB",
+            "post_state_hash": "40ed9fa4dfa13f902c71bcee9d109eccc9f7447b3d6a2575a045ea1da2bc98f3",
+            "pre_state_hash": "40ed9fa4dfa13f902c71bcee9d109eccc9f7447b3d6a2575a045ea1da2bc98f3",
+            "receipt": {
+              "action_ids": [
+                "ABSORB"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  ""
+                ]
+              ],
+              "latency_seconds": 2.820999907271471e-05,
+              "mechanic_id": "ABSORB.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:15:ABSORB",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "contributions=0",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [],
+              "evidence_ids": [],
+              "input_epoch": 2,
+              "operator": "ABSORB",
+              "output_epoch": 2,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 2,
+            "operator": "RECONSTRUCT",
+            "post_state_hash": "1a103a773a51b07c42c33a600baa62e6d0c66394f1108ab55fad6baf52916c9b",
+            "pre_state_hash": "40ed9fa4dfa13f902c71bcee9d109eccc9f7447b3d6a2575a045ea1da2bc98f3",
+            "receipt": {
+              "action_ids": [
+                "RECONSTRUCT"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  "K.PORTRAIT"
+                ]
+              ],
+              "latency_seconds": 0.0007444250004482456,
+              "mechanic_id": "RECONSTRUCT.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:16:RECONSTRUCT",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "portrait:post-r6o-diagnosis:2",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [
+                "K.PORTRAIT"
+              ],
+              "evidence_ids": [],
+              "input_epoch": 2,
+              "operator": "RECONSTRUCT",
+              "output_epoch": 2,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 2,
+            "operator": "DETECT",
+            "post_state_hash": "1a103a773a51b07c42c33a600baa62e6d0c66394f1108ab55fad6baf52916c9b",
+            "pre_state_hash": "1a103a773a51b07c42c33a600baa62e6d0c66394f1108ab55fad6baf52916c9b",
+            "receipt": {
+              "action_ids": [
+                "DETECT"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  "K.RESIDUALS"
+                ]
+              ],
+              "latency_seconds": 1.6194999261642806e-05,
+              "mechanic_id": "DETECT.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:17:DETECT",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "residuals=0",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [
+                "K.RESIDUALS"
+              ],
+              "evidence_ids": [],
+              "input_epoch": 2,
+              "operator": "DETECT",
+              "output_epoch": 2,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 3,
+            "operator": "RECURSE",
+            "post_state_hash": "24d1495f7ef7554f945577538e2b4ce27da6bd4827711fd04a9cfc52b53fe0a0",
+            "pre_state_hash": "1a103a773a51b07c42c33a600baa62e6d0c66394f1108ab55fad6baf52916c9b",
+            "receipt": {
+              "action_ids": [
+                "RECURSE"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  ""
+                ]
+              ],
+              "latency_seconds": 1.2989999959245324e-05,
+              "mechanic_id": "ORION_SOLVE.v1",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:18:RECURSE",
+              "residual_ids": [],
+              "status": "SUCCEEDED"
+            },
+            "summary": "iteration_recorded=3",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [],
+              "evidence_ids": [],
+              "input_epoch": 2,
+              "operator": "RECURSE",
+              "output_epoch": 3,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          },
+          {
+            "epoch": 3,
+            "operator": "SATURATE_BOUNDED",
+            "post_state_hash": "24d1495f7ef7554f945577538e2b4ce27da6bd4827711fd04a9cfc52b53fe0a0",
+            "pre_state_hash": "24d1495f7ef7554f945577538e2b4ce27da6bd4827711fd04a9cfc52b53fe0a0",
+            "receipt": {
+              "action_ids": [
+                "SATURATE_BOUNDED"
+              ],
+              "cost_units": null,
+              "evidence_bindings": [],
+              "evidence_ids": [],
+              "experience_eligible": true,
+              "failure_signature": [
+                "bounded_saturation_open",
+                "independent_route_coverage_incomplete",
+                "literature_bridge_challenge_missing"
+              ],
+              "handoff_values": [
+                [
+                  "changed_coordinates",
+                  ""
+                ]
+              ],
+              "latency_seconds": 1.7886999557958916e-05,
+              "mechanic_id": "SATURATE_BOUNDED.v3",
+              "metric_observations": [],
+              "output_artifact_ids": [],
+              "provenance_ids": [],
+              "receipt_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614:receipt:19:SATURATE_BOUNDED",
+              "residual_ids": [],
+              "status": "PARTIAL"
+            },
+            "summary": "OPEN:independent_route_coverage_incomplete,literature_bridge_challenge_missing",
+            "transition": {
+              "authority_increase": false,
+              "changed_coordinates": [],
+              "evidence_ids": [],
+              "input_epoch": 3,
+              "operator": "SATURATE_BOUNDED",
+              "output_epoch": 3,
+              "residual_ids": [],
+              "scientific_authority_certificate_ids": []
+            }
+          }
+        ],
+        "trace_id": "trace:post-r6o-diagnosis:216657da75054cdda9e7340099559614"
+      }
+    }
+  ],
+  "problem": {
+    "initial_domain_ids": [
+      "quantum-methods",
+      "research-methodology"
+    ],
+    "problem_id": "post-r6o-diagnosis",
+    "question": "Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?",
+    "scope": "Evidence strictly from committed repository receipts; cite file paths.",
+    "success_criteria": [
+      "The diagnosis names one responsible layer and one next move, each grounded in cited receipts."
+    ]
+  },
+  "pruned_atoms": [],
+  "resource_bound_hit": false,
+  "run_id": "recursive-run:63e9e972298745aabc638941a99e8087",
+  "schema": "ORION.HarnessRecursiveRun.v3",
+  "session_id": "session:8c4f13a92b154c7db2c0cc328cf9fe7a",
+  "status": "COMPLETE",
+  "stop_records": [
+    {
+      "problem_id": "post-r6o-diagnosis",
+      "residual_id": "",
+      "stop_reason": "NO_DECISION_SEPARATING_DECOMPOSITION"
+    }
+  ]
+}

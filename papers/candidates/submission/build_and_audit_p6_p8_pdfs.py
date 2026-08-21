@@ -21,7 +21,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-CAND = ROOT / "papers" / "candidates"
+PAPERS = ROOT / "papers"
 
 
 @dataclass(frozen=True)
@@ -33,21 +33,21 @@ class Manuscript:
 MANUSCRIPTS = (
     Manuscript(
         "P6",
-        CAND
+        PAPERS
         / "paper-06-formal-epistemic-structures-and-mechanics"
         / "submission"
         / "AIJ_MANUSCRIPT.tex",
     ),
     Manuscript(
         "P7",
-        CAND
+        PAPERS
         / "paper-07-epistemic-navigation-open-worlds"
         / "submission"
         / "AIJ_MANUSCRIPT.tex",
     ),
     Manuscript(
         "P8",
-        CAND
+        PAPERS
         / "paper-08-epistemic-authority-autonomous-science"
         / "submission"
         / "JAAMAS_MANUSCRIPT.tex",

@@ -11,6 +11,7 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+orion-q = ["numpy>=1.26"]
 
 [project.scripts]
 orion-harness = "orion_research_harness.cli:main"

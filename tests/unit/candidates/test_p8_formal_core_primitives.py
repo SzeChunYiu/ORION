@@ -18,7 +18,7 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[3]
-MANUSCRIPT = ROOT / "papers" / "candidates" / "paper-08-epistemic-authority-autonomous-science" / "manuscript"
+MANUSCRIPT = ROOT / "papers" / "paper-08-epistemic-authority-autonomous-science" / "manuscript"
 V2 = MANUSCRIPT / "FORMAL_CORE_V2.md"
 V2_1 = MANUSCRIPT / "FORMAL_CORE_V2_1.md"
 

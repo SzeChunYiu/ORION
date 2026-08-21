@@ -1,205 +1,154 @@
 # ORION Research Harness
 
-`orion-research-harness` makes the **canonical ORION runtime** usable from a local research folder while a tool-capable host (ChatGPT, Codex, Claude Code, an API agent, or a human operator) supplies capabilities that ORION core intentionally does not own.
+`orion-research-harness` makes the **canonical ORION runtime and mechanics programme** usable from a local research folder while a tool-capable host supplies capabilities that ORION core intentionally does not own. `OrionRuntime` remains the scientific control kernel; the harness adds replayable, digest-bound host capability receipts plus discoverable bridges to ORION's canonical mechanics, fibres, saturation, and Self-ORION research surfaces.
 
-The harness does **not** replace ORION with a prompt or doctrine. `OrionRuntime` remains the scientific control kernel. The harness adds a replayable host-capability boundary around it.
+The package on `main` is the canonical base. ORION-Q and other long-running programmes extend it through domain-neutral campaigns rather than separate harness engines.
 
-## Why this exists
-
-ORION core already has provider-neutral LLM, retrieval and verification ports, recursive state/reasoning mechanics, evidence authority, residual diagnosis, reframing and bounded saturation. A web ChatGPT session may additionally have current web search, GitHub access, Python and file/shell tools. Those host abilities should be integrated as explicit, auditable capabilities rather than smuggled through free-form model text.
-
-The harness therefore uses this loop:
-
-```text
-Problem
-  -> canonical OrionRuntime
-  -> provider needs host capability
-  -> deterministic capability request + receipt file
-  -> external ChatGPT / Claude / Codex / local tool services request
-  -> digest-bound result receipt
-  -> deterministic replay
-  -> next capability request OR complete ORION result
-```
-
-A missing, failed, or malformed host capability is deliberately raised outside ORION's normal `Exception -> scientific failure evidence` path. Missing web/API access, a failed external command, or an invalid host response is an orchestration condition, not evidence that SEARCH, ABSORB, verification, or another scientific mechanic failed.
-
-## Install from the ORION checkout
+## Install
 
 ```bash
-git clone https://github.com/SzeChunYiu/ORION.git
-cd ORION
 python -m pip install -e '.[dev]'
 python -m pip install -e 'packages/orion-research-harness[dev]'
 ```
 
-No OpenAI, Anthropic, search, GitHub, or other credentials are embedded.
-
-## Start a research workspace
+## Ordinary research problems
 
 ```bash
 orion-harness init .research --project-root .
-orion-harness problem-add .research p1 \
-  "Determine the strongest defensible P1 reformulation-superiority result" \
-  --scope "Use the registered P1 scientific programme and preserve all historical negatives." \
-  --domain scientific-methodology \
-  --criterion "Do not weaken frozen baselines or superiority margins."
-```
-
-Then:
-
-```bash
+orion-harness problem-add .research p1 "Research question" --criterion "Preserve frozen gates."
 orion-harness solve .research p1
 ```
 
-If ORION needs a capability that the process cannot supply, it returns `PENDING_CAPABILITY` and writes a request under:
-
-```text
-.research/.orion-harness/requests/
-```
-
-Inspect it:
+The ordinary solve path invokes canonical `OrionRuntime` / `OrionSolver`, whose governed root cycle is `ORION_SOLVE -> FRAME -> SEARCH -> ABSORB -> RECONSTRUCT -> DETECT -> DIAGNOSE -> REFRAME -> REOPEN -> SATURATE_BOUNDED` as applicable. The saved run includes the immutable mechanic receipts and can be inspected with:
 
 ```bash
-orion-harness pending .research
-orion-harness show-request .research hostreq:...
+orion-harness runs .research
+orion-harness run-mechanics .research <run-id>
 ```
 
-`orion-harness solve` returns exit code `2` for `PENDING_CAPABILITY` and exit code `3` for `HOST_CAPABILITY_FAILED`. Completed ORION terminals, including legitimate `BLOCKED` or `CANNOT_CHECK` scientific outcomes, return exit code `0` because the orchestration itself completed correctly.
+Host requests are deterministic and persisted under `.orion-harness/requests`; ingested results are digest-bound to the exact request. Web/GitHub/model capabilities are supplied by the surrounding host rather than pretended by the package.
 
-## Service with another ChatGPT / Claude session
+## Find the mechanic instead of knowing its module
 
-Generate a handoff prompt:
+ORION's paper/runtime surface is larger than the root solve loop. The canonical mechanics programme contains a recursively audited **59-cell graph** including decomposition, search/absorption/reconstruction, diagnosis/reframing, fibre reopening, bounded saturation, authority, experience, review, benchmarking, experiment selection, execution, and context policy. The harness reads that graph from canonical ORION; it does not maintain a second hand-written mechanics ontology.
 
 ```bash
-orion-harness handoff .research
+orion-harness mechanics-coverage
+orion-harness mechanics
+orion-harness navigate 'fibre problem solver'
+orion-harness navigate 'atomization of a problem'
+orion-harness navigate 'saturation of knowledge'
+orion-harness mechanic FRAME.DECOMPOSE.v0
+orion-harness mechanic REOPEN.FIBRE.v0
 ```
 
-Give that output and the repository/workspace to another tool-capable session. The host services the pending request using its real capabilities and ingests a structured result.
+`mechanics-coverage` is a release/integration check: it requires the canonical 59-cell graph, the runtime root mechanics, and key paper-bound anchors such as `FRAME.DECOMPOSE`, `REOPEN.FIBRE`, and the bounded-saturation children. It establishes **structural discoverability only**. It does not manufacture empirical validity or scientific authority for a mechanic.
 
-### `LLM_COMPLETE`
+### Problem atomization and recursive atoms
 
-Result shape:
+Problem decomposition is represented by `FRAME.DECOMPOSE.v0`, with supported decomposition changes routed through `REFRAME.DECOMPOSITION.v0` and affected fibres reopened by `REOPEN.FIBRE.v0`. The model-free `MechanicalControlRuntime` / `MechanicalFirstPlanner` is also exposed by navigation as `RUNTIME.MECHANICAL_CONTROL.v1`; it generates required evidence, parent-discipline, search-coverage, failure-diagnosis, verification, and saturation-challenge questions from typed problem state.
 
-```json
-{
-  "content": "{\"queries\":[]}",
-  "model_id": "gpt-or-claude-model",
-  "response_id": "optional"
-}
-```
-
-`content` must be a string and must itself follow the JSON schema requested by ORION. A malformed successful receipt is surfaced as `HOST_CAPABILITY_FAILED`; it is never converted into scientific failure evidence.
-
-### `WEB_SEARCH`
-
-The host should use current web search and inspect authoritative/primary sources as needed.
-
-```json
-{
-  "items": [
-    {
-      "content": "Source-grounded text useful to ORION.",
-      "source_uri": "https://example.org/source",
-      "item_id": "optional-stable-id",
-      "domain_ids": ["optional-domain"]
-    }
-  ]
-}
-```
-
-Ingest:
+The separate recursive atom calculus is a **study/governance calculus**, not a magic atomizer or novelty oracle. Inspect its exact dispositions, recursion-stop reasons, negative-history categories, and post-map challenge surface with:
 
 ```bash
-orion-harness ingest .research hostreq:... \
-  --executor "chatgpt-web" \
-  --json '{"items":[...]}'
+orion-harness atom-calculus
 ```
 
-Web items require non-empty string content/source identities and array-valued domain IDs. Invalid host shapes fail at the host boundary rather than inside the scientific solver.
+It may support decisions such as decompose, subsume, interaction-only, no incremental value, non-identifiable, or cannot-check. It grants no novelty or self-promotion authority.
 
-### `VERIFY_EVIDENCE`
+### Development fibre versus method fibre
 
-Verification is independent and fail-closed:
+ORION has two different fibre concepts and the harness keeps them separate.
 
-```json
-{
-  "passed": true,
-  "certificate_ids": ["certificate:source-check:..."],
-  "reason": "The retrieved item directly supports the contribution."
-}
+A **Self-ORION `DevelopmentFibre`** is the canonical successor of RAKL `ProblemFibre`: a target-conditioned working view for one mechanic containing its cell, open questions, empirical frontier, related/failure episodes, transfer receipt, warnings, and snapshot identity. Compile or rank them directly from a workspace:
+
+```bash
+orion-harness fibre .research FRAME.DECOMPOSE.v0
+orion-harness fibres .research --limit 12
 ```
 
-`passed` must be a JSON boolean. A passing verification requires at least one non-empty certificate ID because canonical ORION requires certificate-producing evidence for verified authority. A string such as `"false"` is rejected rather than coerced to a truthy value.
+A **P6 `MethodFibre`** is claim-relative formal structure: structural reduction/signature, evidence-bound membership, substitution/composition, and lineage preservation. It is not the same as a research problem fibre and cannot authorize scientific transfer merely from structural equivalence:
 
-After ingestion, rerun the exact same solve command. Existing request/result receipts are replayed, so execution advances to the next missing capability without changing earlier answers.
+```bash
+orion-harness method-fibre-surface
+orion-harness navigate 'method fibre'
+```
 
-## Local capabilities
+### Knowledge and development saturation
 
-The harness can directly service:
+The runtime solver uses bounded saturation under a frozen basis. Flatness is not universal completeness, and resource exhaustion does not become closure. The broader Self-ORION development surface is non-compensatory across knowledge, search universe, formulation, operator, experience pattern, obstruction, relation, path, and meta-method axes.
 
-- `FILE_READ`
-- `FILE_WRITE`
-- `FILE_LIST`
-- `SHELL`
-- `PYTHON`
+```bash
+orion-harness saturation-surface
+orion-harness navigate 'knowledge saturation'
+```
 
-File operations resolve paths under the workspace's configured `project_root` and reject paths that escape it. `FILE_READ` reads only the requested bounded prefix (maximum 1,000,000 characters). `FILE_LIST` fails closed when a directory exceeds 10,000 entries rather than materializing an unbounded listing.
+The harness exposes both surfaces and their source modules. It does not collapse route stopping into task saturation or claim recall from repeated flatness.
 
-`SHELL` and `PYTHON` are different: a normal subprocess is **not an OS sandbox** and can access anything available to the current OS user. They are disabled by default. To opt in explicitly:
+## Paper mechanics versus proposed research gaps
+
+The repository's executable-embedding audits distinguish mechanics that are already live, mechanics whose semantics are distributed/partial, and research objects that remain proposed. The harness follows the same rule:
+
+- implemented canonical mechanics are discoverable and, where there is a canonical runtime/control API, routed to that implementation;
+- distributed mechanics expose their actual owning modules/contracts rather than a fabricated unified implementation;
+- paper-only or proposed gaps remain visibly proposed/open and must not be represented as executable authority.
+
+This is intentional. “All mechanics are in the harness” means no implemented canonical mechanic is silently hidden or bypassed; it does **not** mean prose proposals are falsely promoted to runtime capability.
+
+## Local capabilities and process safety
+
+`FILE_READ`, `FILE_WRITE`, and `FILE_LIST` are confined to `project_root`. `SHELL` and `PYTHON` are normal subprocesses, **not an OS sandbox**, and remain disabled by default. Enable them only for a workspace whose host accepts that risk:
 
 ```bash
 orion-harness init .research --project-root . --allow-process-tools
 ```
 
-`SHELL` uses an argv list and never `shell=True`; process timeouts are capped at 120 seconds. On POSIX, the harness starts a separate process session and kills that process group on timeout. Stdout and stderr are continuously drained while retaining at most 100,000 bytes of each in memory, so large output or descendant-held pipes cannot turn the harness into an unbounded buffer. The returned receipt explicitly records `sandboxed: false`.
+`SHELL` never uses `shell=True`, process output is bounded and drained continuously, POSIX process groups are killed on timeout, and nonzero process exits are persisted as failed capability receipts rather than successful scientific evidence.
 
-Create a local request:
+A failed receipt binds to its deterministic request identity, so an orchestration failure (missing interpreter, absent module, dead network) would otherwise pin the workspace to that failure forever. `retry-failed` frees the identity without erasing history:
 
 ```bash
-orion-harness request-tool .research PYTHON \
-  --json '{"code":"print(2+2)","cwd":"."}'
-orion-harness service-local .research
+orion-harness retry-failed .research               # archive every failed result
+orion-harness retry-failed .research hostreq:...   # archive one failed result
 ```
 
-`service-local` returns exit code `3` if any serviced local request records failure.
+Only **failed** results can be archived; successful receipts stay immutable. The failed receipt moves, bytes unchanged, to `results/archived/<request>.failed-<n>.json`, the request becomes pending again, and the same deterministic request can then be serviced after the host repairs the environment.
 
-Web, GitHub and model calls remain external-host capabilities so this package does not pretend it possesses credentials or network tools that only the surrounding agent/session has.
+One narrow exception exists for a *successful* receipt whose content violates the task schema (which the recursive solver surfaces as `HOST_CAPABILITY_FAILED` rather than a traceback): `retry-failed <ws> <request_id> --invalid-content --reason "..."` archives it to `results/archived/<request>.invalid-<n>.json` with a sidecar recording the stated reason, freeing the identity for a corrected receipt. The reason is mandatory and the original bytes are preserved.
 
-## Persistence and receipts
+## Persistent scientific campaigns
 
-The workspace records:
+Campaigns add a reusable multi-cycle layer above the same workspace and host-receipt protocol:
 
 ```text
-.orion-harness/
-  session.json
-  problems/
-  requests/
-  results/
-  runs/
-  notes/
+frozen campaign state
+  -> production Self-ORION responsibility/revision/computation control
+  -> selected registered capability
+  -> digest-bound host/local result
+  -> strict result-contract validation
+  -> evidence admission + protected-custody checks
+  -> immutable next state / cycle receipt
+  -> repeat
 ```
 
-Capability request IDs are deterministic for `(session, capability, payload)`. Request and result files carry SHA-256 content digests. A result is bound to the exact request digest. These digests are tamper-evidence/content binding; they are **not cryptographic signatures or proof of host identity**.
+Campaign code is domain-neutral. Domain-specific semantics live under `orion_research_harness/domains/`.
 
-Immutable JSON records are fully written and fsynced to a same-directory temporary file before an atomic create-if-absent publication. Concurrent hosts therefore cannot replace an already published deterministic request/result identity or expose a partially written receipt. Re-ingesting the exact same result from the same executor is idempotent; different content, success/error state, or executor identity is rejected.
+List built-ins and run one:
 
-Receipt deserialization is strict and non-coercing. Boolean, string, object and digest fields must have their declared types; malformed receipt types fail validation rather than being silently converted.
+```bash
+orion-harness campaign-builtins
+orion-harness init .research --project-root . --allow-process-tools
+orion-harness campaign-start .research orion-q:max-r6-live
+orion-harness campaign-run .research orion-q:max-r6-live
+orion-harness campaign-state .research orion-q:max-r6-live
+```
 
-Completed ORION runs persist the problem, solution, final K/W/M state snapshot, trace, operator sequence, root/mechanic experience IDs and recorded experience episodes.
+The ORION-Q MAX-R6 adapter binds the existing N0 donor-closure, N1 interface, N2 method-language, and P10 candidate-generation stages as capabilities. The reserved stretched-N2 subject stays a protected reference until a later frozen R6 gate explicitly releases it.
 
-## Research-program use
+Campaign state and contracts are strict and non-coercing. A malformed `success=true` result is `CAPABILITY_CONTRACT_FAILED` and cannot change scientific observations or advance the campaign. Protected-reference `released` is a real boolean; a string such as `"false"` is rejected rather than truthily interpreted.
 
-This package is intended to become the common local instrument for P1–P10 and ORION-Q work:
+## Authority boundary
 
-1. run research through canonical ORION;
-2. let the surrounding agent supply web/GitHub/code capabilities through receipts;
-3. preserve negative results and unresolved residuals;
-4. diagnose whether failures belong to search, representation, execution, measurement, evaluator, method, question/boundary or evidence;
-5. improve the harness/framework on separate protected branches;
-6. rerun prospectively frozen scientific campaigns without post-outcome weakening.
+A host result, mechanic navigation result, fibre working view, atom-calculus disposition, saturation report, or campaign capability never grants scientific, revision, novelty, adoption, promotion, merge, or global-stop authority by itself. The campaign layer rejects authority-bearing capability output before evidence admission and reuses production ORION control modules for decisions.
 
-This creates a useful feedback loop: **study the P1–P10 science with ORION while the same instrumented work exposes what ORION itself still lacks.**
-
-## Current claim boundary
-
-This is an engineering integration package. Its existence does not prove autonomous-research superiority, P1–P10 closure, or Self-ORION readiness. Host tools remain externally controlled, and ORION's scientific authority rules remain in force.
+Negative, null, blocked, and `CANNOT_CHECK` outcomes are first-class. If a campaign exposes a harness defect, repair the harness under the development protocol and replay the unchanged scientific gate; do not weaken the scientific success criterion.

@@ -1,0 +1,35 @@
+{
+  "capability": "VERIFY_EVIDENCE",
+  "created_at": "2026-08-21T09:04:22.859547+00:00",
+  "payload": {
+    "contribution": {
+      "assimilation": "COMPLEMENTARY_FACET",
+      "assumption_ids": [],
+      "context_ids": [],
+      "contradicts_claim_ids": [],
+      "contribution_id": "contrib:regime-receipts",
+      "discovered_domain_ids": [],
+      "evidence_ids": [
+        "r6n-receipt"
+      ],
+      "referent_bindings": [],
+      "related_claim_ids": [],
+      "representation_ids": [],
+      "representation_mappings": [],
+      "text": "The R6N/R6O receipts jointly establish: (1) frame-support beyond the minimum provably never strictly pays locally (0 violations / 688M configurations), so the remaining gap is not an optimization deficiency; (2) two exactly-witnessed expressivity trades exist (Tag-for-anchor, frame-for-Tag) that no weight-one-frame donor family expresses; (3) both frozen chemistry subjects sit entirely in the donor-exact region. The unresolved object is the boundary between regions — a property of the target-batch representation, not of any solver."
+    },
+    "instruction": "Independently check whether the contribution is supported by the retrieved source item. Fail closed when support cannot be established. A passing result must include at least one externally meaningful certificate_id.",
+    "retrieved_item": {
+      "content": "MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json: local frame-support exchange inequality verified with 0 violations over 688,041,472 configurations (R6I+R6M grammars); weight-one equality on all 50 recorded chemistry optima; family closure REFUTED at the pre-declared Tag-repair gap by instance n2_b (weight-one frames, split anchors, weight-2 Tag Y(x)Y: DP 8 < donor 9). Authority MAX_R6N_SUPPORT_DOMINANCE_REFUTED__NEW_REGIME_FOUND__NOT_R6.",
+      "domain_ids": [
+        "quantum-methods"
+      ],
+      "item_id": "r6n-receipt",
+      "source_uri": "repo:research/extensions/orion-q/MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json"
+    }
+  },
+  "request_digest": "42908a6559e389e7f4765dd3846baa8ee4f79091ede684ca73ad719add026c95",
+  "request_id": "hostreq:247b1629b4f8f6d7f09e836b4254a41b9aadd4e1f645144da257f9028b392e58",
+  "schema": "ORION.HostCapabilityRequest.v1",
+  "session_id": "session:8c4f13a92b154c7db2c0cc328cf9fe7a"
+}

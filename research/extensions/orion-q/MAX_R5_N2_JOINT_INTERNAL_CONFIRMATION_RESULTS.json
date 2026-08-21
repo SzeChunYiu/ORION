@@ -1,0 +1,93 @@
+{
+  "schema": "ORIONQ.MAXR5.N2JointInternalConfirmationReceipt.v1",
+  "authority": "MAX_R5_N2_JOINT_INTERNAL_RESOURCE_CONFIRMATION_SUPPORTED",
+  "scope": "fresh_public_N2_internal_pair_block_resource_only__not_outer_SELECT_or_R6_authority",
+  "protocol": "development/orion-q-max-r0/MAX_R5_N2_JOINT_INTERNAL_RESOURCE_PROTOCOL.md",
+  "source": {
+    "repo": "npbauman/DUCC-Hamiltonian-Library",
+    "commit": "be306f5830549304176365750d712093950bbdde",
+    "blob": "15369e8e886efbb3d32f3b2dfe2cfbb96ddebeba",
+    "path": "N2/cc-pVTZ/6Elec_6Orbs/1.0_Eq-2.0680au/DUCC2/N2.cc-pvtz.ducc.results.txt"
+  },
+  "mapping": "repository_extractor_semantics_then_Jordan_Wigner_no_tapering",
+  "workflow": {
+    "name": "orion-q-max-r5",
+    "run_id": 32377688518,
+    "job_id": 96452948142,
+    "conclusion": "success",
+    "tested_pr_merge_head": "662f08d77009abd6dbe896434d9b539d61d9bc2a",
+    "branch_head_that_triggered_run": "1d474ac8b77657a559ace6b08d555b37cef52890"
+  },
+  "semantic_receipt": {
+    "n_spatial_orbitals": 6,
+    "n_qubits": 12,
+    "two_body_sparse_entries": 264,
+    "pauli_terms_including_identity": 615,
+    "nonidentity_pauli_terms": 614,
+    "identity_coefficient_without_nuclear_shift": -9.225329350949982,
+    "max_pauli_imaginary_residual": 9.75781955236954e-19,
+    "hostile_dp_exhaustive_2q_cases": 256
+  },
+  "pure_tare_adjacent_theorem_reference": {
+    "Lambda_joint": 11.288283567685324,
+    "G_internal_2q": 3611,
+    "pair_count": 307,
+    "coefficient_rotation_count": 921,
+    "direct_unitary_blocks": 0,
+    "tare_blocks": 307
+  },
+  "donor_composed_bounded_incumbent": {
+    "Lambda_joint": 11.154919014188868,
+    "G_internal_2q": 5467,
+    "pair_count": 307,
+    "outer_block_count": 307,
+    "coefficient_rotation_count": 921,
+    "allocated_local_ancilla_per_pair": 1,
+    "direct_unitary_blocks": 104,
+    "tare_blocks": 203,
+    "pair_lambda_sha256": "486ed330c7ff85794d0a12fce48382f7f06d6134726edf1f025dd338d974fb58",
+    "pair_G_sha256": "7da27492b691295d3e6ff4ce98ae4035f69190dbbf2a4345c172265cda08ae20"
+  },
+  "one_pct_successor": {
+    "Lambda_joint": 11.26466961794862,
+    "G_internal_2q": 3646,
+    "pair_count": 307,
+    "outer_block_count": 307,
+    "coefficient_rotation_count": 921,
+    "allocated_local_ancilla_per_pair": 1,
+    "direct_unitary_blocks": 3,
+    "tare_blocks": 304,
+    "moved_quartets": 53,
+    "normalization_budget_fraction": 0.01,
+    "normalization_budget_used": 0.1097506037597473,
+    "pair_lambda_sha256": "2eac3f607577038a92f0fd5741a9864131b2fc60186349645faab5a72777f11a",
+    "pair_G_sha256": "ec37835c9eff382bdeba0023c897a224efef6e2af80a5da8a091e97d780b9c20"
+  },
+  "primary_effects": {
+    "one_pct_normalization_overhead": 0.009838762936795087,
+    "one_pct_G_reduction": 0.3330894457655021,
+    "non_authorizing_lambda_times_G_ratio": 0.6734721290776577
+  },
+  "outer_composition_report": {
+    "outer_blocks": 307,
+    "outer_address_qubits": 9,
+    "reference_prepare_model": "dense_binary_amplitude_tree",
+    "reference_prepare_rotation_count": 511,
+    "shared_local_block_ancilla_capacity": 1,
+    "serial_local_ancilla_reuse_allowed": true,
+    "controlled_block_SELECT_synthesized": false,
+    "controlled_outer_SELECT_cost_status": "NOT_SYNTHESIZED__R5_CLOSURE_REQUIRED"
+  },
+  "gates": {
+    "semantic": true,
+    "joint_realizability": true,
+    "matched_counts_and_ancilla": true,
+    "normalization_le_1pct": true,
+    "G_reduction_ge_0p10pct": true,
+    "no_stronger_oracle": true,
+    "outer_cost_separated": true
+  },
+  "r5_n2_internal_protocol_pass": true,
+  "r5_full_closure": false,
+  "r6": false
+}

@@ -1,0 +1,35 @@
+{
+  "capability": "VERIFY_EVIDENCE",
+  "created_at": "2026-08-21T06:18:45.938065+00:00",
+  "payload": {
+    "contribution": {
+      "assimilation": "COMPLEMENTARY_FACET",
+      "assumption_ids": [],
+      "context_ids": [],
+      "contradicts_claim_ids": [],
+      "contribution_id": "contrib:cap-omission-github",
+      "discovered_domain_ids": [],
+      "evidence_ids": [
+        "cap-omission-github"
+      ],
+      "referent_bindings": [],
+      "related_claim_ids": [],
+      "representation_ids": [],
+      "representation_mappings": [],
+      "text": "The handoff text in cli.py line 52 names GITHUB or other custom capabilities, but no provider requests a GITHUB capability, local_tools.py does not service it, and no test exercises it. GITHUB is documentation-only surface, not an implemented capability kind; the implemented and tested set is exactly the eight kinds."
+    },
+    "instruction": "Independently check whether the contribution is supported by the retrieved source item. Fail closed when support cannot be established. A passing result must include at least one externally meaningful certificate_id.",
+    "retrieved_item": {
+      "content": "Adversarial omission check: the CLI handoff text (packages/orion-research-harness/src/orion_research_harness/cli.py line 52) mentions GITHUB or other custom capabilities as host-serviced kinds, but no GITHUB capability is requested by any provider in broker.py, serviced by local_tools.py, or exercised by any test under packages/orion-research-harness/tests/. GITHUB is documentation-only surface, not an implemented capability kind. All eight implemented kinds (LLM_COMPLETE, WEB_SEARCH, VERIFY_EVIDENCE, FILE_READ, FILE_WRITE, FILE_LIST, SHELL, PYTHON) have at least one test.",
+      "domain_ids": [
+        "software-verification"
+      ],
+      "item_id": "cap-omission-github",
+      "source_uri": "repo:packages/orion-research-harness/src/orion_research_harness/cli.py"
+    }
+  },
+  "request_digest": "2415abe73f75947cc7c2e30618fef3d815c13d0e7e76d5d8b0a7807f481889d5",
+  "request_id": "hostreq:87b2043044acc3e38260e9052d0ad28771661fafbdd167bdedcb64563a920933",
+  "schema": "ORION.HostCapabilityRequest.v1",
+  "session_id": "session:7b2d750debcd46c4b7c723ed7be6bf42"
+}

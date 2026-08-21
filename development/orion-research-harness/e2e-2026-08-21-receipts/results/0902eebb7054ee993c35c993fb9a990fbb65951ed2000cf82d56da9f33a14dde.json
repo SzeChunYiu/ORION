@@ -1,0 +1,17 @@
+{
+  "completed_at": "2026-08-21T06:18:54.415232+00:00",
+  "error": "",
+  "executor": "claude-code-session",
+  "output": {
+    "certificate_ids": [
+      "certificate:source-check:grep-github-absent-from-broker-localtools-tests-2026-08-21"
+    ],
+    "passed": true,
+    "reason": "Independently grepped GITHUB across the harness package: it appears only in cli.py handoff text (line 52) and README/HOST_PROTOCOL documentation, never in broker.py, local_tools.py, runner.py, workspace.py, or any test file. The omission claim is supported."
+  },
+  "request_digest": "2415abe73f75947cc7c2e30618fef3d815c13d0e7e76d5d8b0a7807f481889d5",
+  "request_id": "hostreq:87b2043044acc3e38260e9052d0ad28771661fafbdd167bdedcb64563a920933",
+  "result_digest": "ab8a411bc3e16f5235fa73bc95285e059e5bef89f1ae7e0de883bac040bf0064",
+  "schema": "ORION.HostCapabilityResult.v1",
+  "success": true
+}

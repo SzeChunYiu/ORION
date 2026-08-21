@@ -1,0 +1,17 @@
+{
+  "completed_at": "2026-08-21T06:19:48.960198+00:00",
+  "error": "",
+  "executor": "claude-code-session",
+  "output": {
+    "certificate_ids": [
+      "certificate:source-check:git-log-d7312bc-harness-history-2026-08-21"
+    ],
+    "passed": true,
+    "reason": "Independently ran git log on packages/orion-research-harness at head d7312bc: commits 0dc487e0, 09581ee4, 60ffab2c concern replay/receipt hardening only. Diffed none introduces or removes a capability string; the freshness claim is supported."
+  },
+  "request_digest": "e45cb7ea1a7da9c25411eba28bc0bfbecd5b7af4f3fac908220574b1d417b9d5",
+  "request_id": "hostreq:cd4d3699fe7e6b947d8f6a2011b6b44b326262dbf56fc8b3f3c2e754e834c1e9",
+  "result_digest": "515478b5d7db3d27375d96d9fbaf48497fbcaa2e54f1d5afbf6f2936c09fc1a1",
+  "schema": "ORION.HostCapabilityResult.v1",
+  "success": true
+}

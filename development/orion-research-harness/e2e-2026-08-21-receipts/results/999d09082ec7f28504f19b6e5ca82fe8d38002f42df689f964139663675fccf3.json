@@ -1,0 +1,17 @@
+{
+  "completed_at": "2026-08-21T06:18:35.873250+00:00",
+  "error": "",
+  "executor": "claude-code-session",
+  "output": {
+    "certificate_ids": [
+      "certificate:source-check:pytest-30-passed-and-grep-test-files-2026-08-21"
+    ],
+    "passed": true,
+    "reason": "Independently ran the suite (30 passed in 3.78s) and grepped each capability string across packages/orion-research-harness/tests/: all eight kinds appear in at least one test at the cited lines. VERIFY_EVIDENCE is covered by test_verification_pass_requires_real_certificate_and_boolean at test_hardening.py:197."
+  },
+  "request_digest": "14e76d4a3aa58fc26ca4aff5e3587c0a02bd8abd4f4ddb62d14b866ad3ff9be7",
+  "request_id": "hostreq:f19b32a6ca9173fe313e96f39b03cff0e611e49fdbdb911ec4f525ab04adc4b8",
+  "result_digest": "c886ed66b58a8a8126a85c2b132652168f4d52d54d450967137b3e31e4622b0a",
+  "schema": "ORION.HostCapabilityResult.v1",
+  "success": true
+}

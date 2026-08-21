@@ -1,6 +1,10 @@
 # ORION candidate-paper programme
 
-This directory contains **prospective paper candidates**, not current flagship identities.
+This directory governs **prospective paper candidates**, not current flagship identities.
+
+## Layout note (2026-08-21)
+
+The candidate paper packages themselves — `paper-06-formal-epistemic-structures-and-mechanics/`, `paper-07-epistemic-navigation-open-worlds/`, `paper-08-epistemic-authority-autonomous-science/`, `paper-09-executable-research-core/`, `paper-09-structured-epistemic-learning/`, `paper-10-content-bound-math-evaluation/`, `paper-10-structured-problem-solving/`, and the shared P9/P10 lane `orion-learning-machine/` — now live directly under `papers/`. That is a directory move only: it does not promote any candidate to flagship identity, and every programme gate below still applies. This directory retains the shared cross-paper apparatus: the checkers (`checkers/`), the hostile review suite (`hostile_review_v1/`), the submission gate (`submission/`), the assumption-regression runner, the review/adjudication records, and the in-progress q-lane candidates (`paper-q1-tare-expressivity/`, `paper-q3-dual-instrument/`, `paper-q4-typed-state/`, `orion-q-recursive-recovery/`).
 
 As of 2026-08-17, `papers/README.md` on `main` defines exactly five flagship papers. Nothing under `papers/candidates/` changes that publication identity rule. Promotion requires an explicit programme decision, novelty closure, prospective evidence, claim-ledger closure, and an integration PR that updates the canonical paper registry.
 
