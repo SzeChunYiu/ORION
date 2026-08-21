@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "3f623d83004e939b09be27fabfc8fe84c3609824174f86f221400384e563a3f9",
+  "content_digest": "efebf2ddb8aea690047a46d4414215da9d5988fddb4bd90a81c52d4667398e0c",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -728,9 +728,14 @@
           "artifact_ref": "research/claim_expansion/p6/P6_X_FINITE_MODEL_RESULT_V1.json",
           "grade": "MECHANISM_NON_VACUITY",
           "terminal": ""
+        },
+        {
+          "artifact_ref": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21.json",
+          "grade": "MECHANIZED_THEOREM",
+          "terminal": "SEPARATION_THEOREMS_DISCHARGED__REOPENING_NOT_LIFTED"
         }
       ],
-      "strongest_grade": "MECHANISM_NON_VACUITY",
+      "strongest_grade": "MECHANIZED_THEOREM",
       "terminal": "CANNOT_CHECK",
       "unclassified_blocked_gate_ids": [],
       "work_queue": [
@@ -752,8 +757,8 @@
             "research/claim_expansion/p6/P6_X_FINITE_MODEL_RESULT_V1.json"
           ],
           "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "The current authority is exhaustive enumeration over a finite authored state space (155 restorations, 1,055 strict-subset failures). #654 asks for that to stop being the primary authority.",
-          "unblock": "Define primitive evidence/dependency/change semantics independently of the desired theorem, then prove soundness, minimality and conservativity from them."
+          "statement": "Part of the primitive semantics is now defined independently of the theorem and machine-checked: local mechanics, their declared frames, and the separation result hold for any number of coordinates over any value domain and for every transformer obeying its frame, with the converse proved so separation is the boundary rather than one sufficient condition among others (P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21). The committed mechanic obeys its frame, so the bounded enumeration is an instance of that result. What remains unlifted is the other half: the reopening and restoration semantics behind the 155 restorations and 1,055 strict-subset failures are still exhaustive enumeration over a four-node authored space.",
+          "unblock": "Lift reopening the same way. Dependency reachability over a DAG is the same shape as the conversion closure already mechanized for P8, including the well-founded rank that makes the closure least -- without that rank a first-order axiomatisation admits reach facts that justify each other in a cycle, which is a defect that cost a real countermodel to find. Then state minimality as the claim that the reopened set is the least set closed under dependency containing the changed nodes, and conservativity as the claim that reopening nothing changes nothing, and discharge both against the same primitives."
         },
         {
           "actionability": "BLOCKED_ON_PROOF",
@@ -1719,8 +1724,8 @@
         "research/claim_expansion/p6/P6_X_FINITE_MODEL_RESULT_V1.json"
       ],
       "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "The current authority is exhaustive enumeration over a finite authored state space (155 restorations, 1,055 strict-subset failures). #654 asks for that to stop being the primary authority.",
-      "unblock": "Define primitive evidence/dependency/change semantics independently of the desired theorem, then prove soundness, minimality and conservativity from them."
+      "statement": "Part of the primitive semantics is now defined independently of the theorem and machine-checked: local mechanics, their declared frames, and the separation result hold for any number of coordinates over any value domain and for every transformer obeying its frame, with the converse proved so separation is the boundary rather than one sufficient condition among others (P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21). The committed mechanic obeys its frame, so the bounded enumeration is an instance of that result. What remains unlifted is the other half: the reopening and restoration semantics behind the 155 restorations and 1,055 strict-subset failures are still exhaustive enumeration over a four-node authored space.",
+      "unblock": "Lift reopening the same way. Dependency reachability over a DAG is the same shape as the conversion closure already mechanized for P8, including the well-founded rank that makes the closure least -- without that rank a first-order axiomatisation admits reach facts that justify each other in a cycle, which is a defect that cost a real countermodel to find. Then state minimality as the claim that the reopened set is the least set closed under dependency containing the changed nodes, and conservativity as the claim that reopening nothing changes nothing, and discharge both against the same primitives."
     },
     {
       "actionability": "BLOCKED_ON_PROOF",

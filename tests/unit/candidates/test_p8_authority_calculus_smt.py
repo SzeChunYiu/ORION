@@ -55,7 +55,7 @@ class TestTheApparatusCanFail:
         d1, d2 = z3.Consts("d1 d2", sig.Domain)
         # Plainly false: unrelated domains need not reach each other.
         false_claim = sig.Reach(d1, d2)
-        result = calc._discharge(
+        result = calc.discharge(
             calc.Theorem(name="FALSE", statement="s", why_it_matters="w"),
             axioms,
             false_claim,
@@ -81,13 +81,13 @@ class TestTheApparatusCanFail:
         no_conversions = z3.ForAll([left, right], z3.Not(sig.Conv(left, right)))
         claim = z3.Implies(sig.Reach(d1, d2), d1 == d2)
 
-        with_axiom = calc._discharge(
+        with_axiom = calc.discharge(
             calc.Theorem(name="WITH", statement="s", why_it_matters="w"),
             [*full, no_conversions],
             claim,
             timeout_ms=10000,
         )
-        without_axiom = calc._discharge(
+        without_axiom = calc.discharge(
             calc.Theorem(name="WITHOUT", statement="s", why_it_matters="w"),
             [*without_justification, no_conversions],
             claim,
@@ -113,11 +113,11 @@ class TestAgainstTheExecutableModel:
 
         report = calc.differential_check(REPO_ROOT, trials=120)
         assert report.exercised_both_verdicts, report.as_json()
-        assert report.authorised_trials >= 5
+        assert report.positive_trials >= 5
 
     def test_a_report_that_disagrees_is_not_reported_as_agreed(self) -> None:
         fabricated = calc.DifferentialReport(
-            trials=10, agreements=9, disagreements=("trial 3",), authorised_trials=4
+            trials=10, agreements=9, disagreements=("trial 3",), positive_trials=4
         )
         assert not fabricated.agreed
 

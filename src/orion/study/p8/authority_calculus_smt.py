@@ -64,17 +64,19 @@ loophole.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from enum import Enum
 from typing import Any
 
-try:  # pragma: no cover - exercised by the import guard test
-    import z3
-except ImportError as _error:  # pragma: no cover
-    z3 = None  # type: ignore[assignment]
-    _IMPORT_ERROR: ImportError | None = _error
-else:
-    _IMPORT_ERROR = None
-
+from orion.programme.mechanized import (
+    DifferentialReport,
+    ProofOutcome,
+    ProofResult,
+    Theorem,
+    Z3Unavailable,
+    discharge,
+    load_executable_model as _load_model,
+    require_z3,
+)
+from orion.programme.mechanized import z3
 
 SCHEMA_VERSION = "orion.p8.authority-calculus-smt.v1"
 
@@ -83,76 +85,26 @@ SCHEMA_VERSION = "orion.p8.authority-calculus-smt.v1"
 #: bound is declared rather than left to whatever the caller passes.
 CHAIN_LADDER_BOUND = 8
 
-
-class ProofOutcome(str, Enum):
-    """Three-valued, because a solver that gave up is not a solver that agreed.
-
-    ``UNKNOWN`` is the case that a two-valued reading destroys: Z3 returning
-    ``unknown`` on the negation means the theorem was *not* discharged, and
-    reporting that as ``PROVED`` would be the vacuous-guard failure with a proof
-    obligation in place of a test.
-    """
-
-    PROVED = "PROVED"
-    COUNTEREXAMPLE = "COUNTEREXAMPLE"
-    UNKNOWN = "UNKNOWN"
-
-
-class Z3Unavailable(RuntimeError):
-    """Raised when a proof is requested without the solver installed.
-
-    Raised rather than returned, for the reason the rest of this programme
-    raises on an absent measurement: a ``False`` from a checker that could not
-    run is indistinguishable from a checker that ran and disagreed.
-    """
-
-
-@dataclass(frozen=True)
-class Theorem:
-    """One claim, with the sentence it is a claim about kept beside it."""
-
-    name: str
-    statement: str
-    why_it_matters: str
-
-    def __post_init__(self) -> None:
-        for field in ("name", "statement", "why_it_matters"):
-            if not str(getattr(self, field)).strip():
-                raise ValueError(f"a theorem requires a non-blank {field}")
-
-
-@dataclass(frozen=True)
-class ProofResult:
-    theorem: Theorem
-    outcome: ProofOutcome
-    detail: str
-
-    @property
-    def discharged(self) -> bool:
-        return self.outcome is ProofOutcome.PROVED
-
-    def as_json(self) -> dict[str, object]:
-        return {
-            "name": self.theorem.name,
-            "statement": self.theorem.statement,
-            "why_it_matters": self.theorem.why_it_matters,
-            "outcome": self.outcome.value,
-            "detail": self.detail,
-        }
+__all__ = [
+    "CHAIN_LADDER_BOUND",
+    "DifferentialReport",
+    "ProofOutcome",
+    "ProofResult",
+    "SCHEMA_VERSION",
+    "THEOREMS",
+    "Theorem",
+    "Z3Unavailable",
+    "build_report",
+    "differential_check",
+    "main",
+    "prove_all",
+    "prove_chain_ladder",
+]
 
 
 # ---------------------------------------------------------------------------
 # Primitive semantics. Nothing below names a domain, an issuer or an object.
 # ---------------------------------------------------------------------------
-
-
-def _require_z3() -> Any:
-    if z3 is None:  # pragma: no cover - exercised by the import guard test
-        raise Z3Unavailable(
-            "the authority calculus needs the z3-solver package; without it no "
-            f"theorem here has been checked, which is not the same as passing ({_IMPORT_ERROR})"
-        )
-    return z3
 
 
 @dataclass(frozen=True)
@@ -177,7 +129,7 @@ def signature() -> Signature:
     number of domains, including infinitely many.
     """
 
-    solver = _require_z3()
+    solver = require_z3()
     Domain = solver.DeclareSort("Domain")
     Obj = solver.DeclareSort("Obj")
     Issuer = solver.DeclareSort("Issuer")
@@ -227,7 +179,7 @@ def closure_axioms(sig: Signature) -> list[Any]:
        non-negative integers cannot close.
     """
 
-    solver = _require_z3()
+    solver = require_z3()
     a, b, c = solver.Consts("a b c", sig.Domain)
     return [
         solver.ForAll([a], sig.Reach(a, a)),
@@ -282,7 +234,7 @@ def authorize(
     what :data:`NON_COMPENSATORY` turns into a theorem.
     """
 
-    solver = _require_z3()
+    solver = require_z3()
     return solver.And(
         valid,
         sig.Trusted(issuer),
@@ -431,42 +383,10 @@ THEOREMS: tuple[Theorem, ...] = (
 # ---------------------------------------------------------------------------
 
 
-def _discharge(theorem: Theorem, axioms: list[Any], claim: Any, *, timeout_ms: int) -> ProofResult:
-    """Prove ``claim`` by refuting its negation under ``axioms``.
-
-    ``unsat`` on the negation is the proof. ``sat`` is a counterexample and is
-    reported as one --- a countermodel to a claim this paper makes is a finding,
-    not an error to be retried with different settings. ``unknown`` is reported
-    as ``unknown``; the solver gave up, and calling that a proof is the failure
-    this module's three-valued outcome exists to prevent.
-    """
-
-    solver_module = _require_z3()
-    solver = solver_module.Solver()
-    solver.set("timeout", timeout_ms)
-    for axiom in axioms:
-        solver.add(axiom)
-    solver.add(solver_module.Not(claim))
-    verdict = solver.check()
-    if verdict == solver_module.unsat:
-        return ProofResult(theorem, ProofOutcome.PROVED, "negation is unsatisfiable under the axioms")
-    if verdict == solver_module.sat:
-        return ProofResult(
-            theorem,
-            ProofOutcome.COUNTEREXAMPLE,
-            f"the negation is satisfiable; countermodel: {solver.model()}",
-        )
-    return ProofResult(
-        theorem,
-        ProofOutcome.UNKNOWN,
-        f"solver returned unknown ({solver.reason_unknown()}); the theorem is NOT discharged",
-    )
-
-
 def _free_case(sig: Signature, tag: str) -> dict[str, Any]:
     """One judgment/action pair with every field a free variable."""
 
-    solver = _require_z3()
+    solver = require_z3()
     return {
         "valid": solver.Bool(f"valid_{tag}"),
         "issuer": solver.Const(f"issuer_{tag}", sig.Issuer),
@@ -484,7 +404,7 @@ def _free_case(sig: Signature, tag: str) -> dict[str, Any]:
 def prove_all(*, timeout_ms: int = 20000) -> tuple[ProofResult, ...]:
     """Discharge every theorem in :data:`THEOREMS`, in order."""
 
-    solver = _require_z3()
+    solver = require_z3()
     sig = signature()
     axioms = closure_axioms(sig)
     case = _free_case(sig, "0")
@@ -492,7 +412,7 @@ def prove_all(*, timeout_ms: int = 20000) -> tuple[ProofResult, ...]:
     results: list[ProofResult] = []
 
     results.append(
-        _discharge(
+        discharge(
             SCOPE_NON_AMPLIFICATION,
             axioms,
             solver.Implies(authorized, solver.IsSubset(case["action_scope"], case["judgment_scope"])),
@@ -500,7 +420,7 @@ def prove_all(*, timeout_ms: int = 20000) -> tuple[ProofResult, ...]:
         )
     )
     results.append(
-        _discharge(
+        discharge(
             DOMAIN_CONFINEMENT,
             axioms,
             solver.Implies(authorized, sig.Reach(case["judgment_domain"], case["action_domain"])),
@@ -513,7 +433,7 @@ def prove_all(*, timeout_ms: int = 20000) -> tuple[ProofResult, ...]:
     d1, d2 = solver.Consts("d1 d2", sig.Domain)
     no_conversions = solver.ForAll([d1, d2], solver.Not(sig.Conv(d1, d2)))
     results.append(
-        _discharge(
+        discharge(
             NO_LAUNDERING_GENERAL,
             [*axioms, no_conversions],
             solver.Implies(authorized, case["judgment_domain"] == case["action_domain"]),
@@ -521,7 +441,7 @@ def prove_all(*, timeout_ms: int = 20000) -> tuple[ProofResult, ...]:
         )
     )
     results.append(
-        _discharge(
+        discharge(
             NON_COMPENSATORY,
             axioms,
             solver.Implies(solver.Not(case["obligations_all_sat"]), solver.Not(authorized)),
@@ -529,7 +449,7 @@ def prove_all(*, timeout_ms: int = 20000) -> tuple[ProofResult, ...]:
         )
     )
     results.append(
-        _discharge(
+        discharge(
             DEFEATER_MONOTONICITY,
             axioms,
             solver.Implies(case["defeater_active"], solver.Not(authorized)),
@@ -537,21 +457,21 @@ def prove_all(*, timeout_ms: int = 20000) -> tuple[ProofResult, ...]:
         )
     )
     results.append(
-        _discharge(
+        discharge(
             EPOCH_ISOLATION,
             axioms,
             solver.Implies(authorized, case["judgment_epoch"] == case["action_epoch"]),
             timeout_ms=timeout_ms,
         )
     )
-    results.append(_discharge(ONE_STEP_LEMMA, axioms, _one_step_claim(sig), timeout_ms=timeout_ms))
+    results.append(discharge(ONE_STEP_LEMMA, axioms, _one_step_claim(sig), timeout_ms=timeout_ms))
 
     # Cycles. Two domains that convert to each other reach exactly the same set.
     # Free variables are already universally quantified for a validity check, so
     # claims are stated without a nested ForAll: a quantifier under an
     # implication is materially harder for the solver and buys nothing here.
     results.append(
-        _discharge(
+        discharge(
             CONV_IMPLIES_REACH,
             axioms,
             solver.Implies(sig.Conv(d1, d2), sig.Reach(d1, d2)),
@@ -568,7 +488,7 @@ def prove_all(*, timeout_ms: int = 20000) -> tuple[ProofResult, ...]:
     x = solver.Const("x", sig.Domain)
     mutually_reachable = solver.And(sig.Reach(d1, d2), sig.Reach(d2, d1))
     results.append(
-        _discharge(
+        discharge(
             CYCLE_COLLAPSE,
             axioms,
             solver.Implies(mutually_reachable, sig.Reach(d1, x) == sig.Reach(d2, x)),
@@ -583,7 +503,7 @@ def prove_all(*, timeout_ms: int = 20000) -> tuple[ProofResult, ...]:
     )
     e1, e2 = solver.Consts("e1 e2", sig.Domain)
     results.append(
-        _discharge(
+        discharge(
             ACYCLIC_STRICTNESS,
             [*axioms, antisymmetric],
             solver.Implies(
@@ -606,7 +526,7 @@ def _one_step_claim(sig: Signature) -> Any:
     link.
     """
 
-    solver = _require_z3()
+    solver = require_z3()
     issuer1 = solver.Const("issuer1", sig.Issuer)
     dom1, dom2, adom = solver.Consts("dom1 dom2 adom", sig.Domain)
     scope1, scope2, ascope = solver.Consts("scope1 scope2 ascope", sig.Scope)
@@ -653,59 +573,9 @@ EXECUTABLE_MODEL = (
 def load_executable_model(repo_root: Any) -> Any:
     """Load P8's committed Python model without importing it as a package."""
 
-    import importlib.util
     from pathlib import Path
 
-    path = Path(repo_root) / EXECUTABLE_MODEL
-    if not path.is_file():
-        raise FileNotFoundError(f"the executable model is not at {path}")
-    spec = importlib.util.spec_from_file_location("p8_check_authority_calculus", path)
-    if spec is None or spec.loader is None:  # pragma: no cover - defensive
-        raise ImportError(f"could not load {path}")
-    module = importlib.util.module_from_spec(spec)
-    # Registered before execution: `@dataclass` resolves annotations through
-    # `sys.modules[cls.__module__]`, which is None for a module that is still
-    # being executed and not yet registered.
-    import sys
-
-    sys.modules[spec.name] = module
-    spec.loader.exec_module(module)
-    return module
-
-
-@dataclass(frozen=True)
-class DifferentialReport:
-    """Agreement between the executable model and the proved formula."""
-
-    trials: int
-    agreements: int
-    disagreements: tuple[str, ...]
-    authorised_trials: int
-
-    @property
-    def agreed(self) -> bool:
-        return not self.disagreements and self.trials > 0
-
-    @property
-    def exercised_both_verdicts(self) -> bool:
-        """A corpus that never authorises anything agrees for the wrong reason.
-
-        If every trial is a refusal, "the formula and the code agree" is a claim
-        about the constant ``False``. The differential is only informative when
-        both verdicts actually occur.
-        """
-
-        return 0 < self.authorised_trials < self.trials
-
-    def as_json(self) -> dict[str, object]:
-        return {
-            "trials": self.trials,
-            "agreements": self.agreements,
-            "authorised_trials": self.authorised_trials,
-            "disagreements": list(self.disagreements),
-            "agreed": self.agreed,
-            "exercised_both_verdicts": self.exercised_both_verdicts,
-        }
+    return _load_model(Path(repo_root) / EXECUTABLE_MODEL, "p8_check_authority_calculus")
 
 
 def differential_check(repo_root: Any, *, trials: int = 400, seed: int = 20260821) -> DifferentialReport:
@@ -720,7 +590,7 @@ def differential_check(repo_root: Any, *, trials: int = 400, seed: int = 2026082
 
     import random
 
-    solver_module = _require_z3()
+    solver_module = require_z3()
     model = load_executable_model(repo_root)
     rng = random.Random(seed)
 
@@ -858,7 +728,7 @@ def differential_check(repo_root: Any, *, trials: int = 400, seed: int = 2026082
         )
 
         claim = ground if expected else solver_module.Not(ground)
-        outcome = _discharge(
+        outcome = discharge(
             Theorem(
                 name=f"DIFFERENTIAL_{trial}",
                 statement="the formula agrees with the executable model on this world",
@@ -881,14 +751,14 @@ def differential_check(repo_root: Any, *, trials: int = 400, seed: int = 2026082
         trials=trials,
         agreements=agreements,
         disagreements=tuple(disagreements),
-        authorised_trials=authorised_trials,
+        positive_trials=authorised_trials,
     )
 
 
 def _scope_term(sig: Signature, members: Any, object_consts: dict[str, Any]) -> Any:
     """Build a ground set term for a concrete scope."""
 
-    solver = _require_z3()
+    solver = require_z3()
     term = solver.EmptySet(sig.Obj)
     for name in sorted(members):
         term = solver.SetAdd(term, object_consts[name])
@@ -912,7 +782,7 @@ def prove_chain_ladder(*, bound: int = CHAIN_LADDER_BOUND, timeout_ms: int = 200
     here rather than in a reader's trust.
     """
 
-    solver = _require_z3()
+    solver = require_z3()
     sig = signature()
     axioms = closure_axioms(sig)
     results: list[ProofResult] = []
@@ -939,7 +809,7 @@ def prove_chain_ladder(*, bound: int = CHAIN_LADDER_BOUND, timeout_ms: int = 200
             ),
         )
         results.append(
-            _discharge(
+            discharge(
                 Theorem(
                     name=f"CHAIN_NON_AMPLIFICATION_{length}",
                     statement=(
@@ -1032,7 +902,7 @@ def main(argv: list[str]) -> int:
     diff = report["differential_against_executable_model"]
     print(
         f"  differential: {diff['agreements']}/{diff['trials']} agree, "
-        f"{diff['authorised_trials']} authorised"
+        f"{diff['positive_trials']} authorised"
     )
     if not report["all_discharged"]:
         print(f"UNDISCHARGED: {report['undischarged']}")

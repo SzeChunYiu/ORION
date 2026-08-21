@@ -384,8 +384,8 @@
             "research/claim_expansion/p6/P6_X_FINITE_MODEL_RESULT_V1.json"
           ],
           "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "The current authority is exhaustive enumeration over a finite authored state space (155 restorations, 1,055 strict-subset failures). #654 asks for that to stop being the primary authority.",
-          "unblock": "Define primitive evidence/dependency/change semantics independently of the desired theorem, then prove soundness, minimality and conservativity from them."
+          "statement": "Part of the primitive semantics is now defined independently of the theorem and machine-checked: local mechanics, their declared frames, and the separation result hold for any number of coordinates over any value domain and for every transformer obeying its frame, with the converse proved so separation is the boundary rather than one sufficient condition among others (P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21). The committed mechanic obeys its frame, so the bounded enumeration is an instance of that result. What remains unlifted is the other half: the reopening and restoration semantics behind the 155 restorations and 1,055 strict-subset failures are still exhaustive enumeration over a four-node authored space.",
+          "unblock": "Lift reopening the same way. Dependency reachability over a DAG is the same shape as the conversion closure already mechanized for P8, including the well-founded rank that makes the closure least -- without that rank a first-order axiomatisation admits reach facts that justify each other in a cycle, which is a defect that cost a real countermodel to find. Then state minimality as the claim that the reopened set is the least set closed under dependency containing the changed nodes, and conservativity as the claim that reopening nothing changes nothing, and discharge both against the same primitives."
         },
         {
           "actionability": "BLOCKED_ON_PROOF",
@@ -443,6 +443,12 @@
           "grade": "MECHANISM_NON_VACUITY",
           "note": "Finite enumeration (155 full restorations, 1,055 strict-subset failures). #654 asks for this to become a corollary of a proved primitive semantics; the checker is exhaustive enumeration, not a proof assistant.",
           "terminal": ""
+        },
+        {
+          "artifact_ref": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21.json",
+          "grade": "MECHANIZED_THEOREM",
+          "note": "Five theorems about P6's local-mechanic semantics, discharged by Z3 over uninterpreted coordinate and value sorts with the transformer left as an uninterpreted function under a frame condition: separated commutation, the converse that separation is necessary, write locality, frame determinacy and fixpoint conservativity. Because the transformer is arbitrary, commutation is a property of separation rather than of the modular arithmetic the finite check instantiated. P6's committed apply_local_mechanic is shown to obey its declared frame on all 5,280 exhaustive perturbations, so the bounded enumeration is an instance. A predecessor and not evidence for P6-U-T1: the reopening and restoration theorems behind the 155/1,055 result are not lifted, and soundness and minimality are proved for the mechanic semantics rather than for the evidence and change semantics the terminal names in full.",
+          "terminal": "SEPARATION_THEOREMS_DISCHARGED__REOPENING_NOT_LIFTED"
         }
       ]
     },
