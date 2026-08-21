@@ -40,6 +40,45 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 #: guessed at, so a silent fallback cannot render the wrong file.
 _MANUSCRIPT_NAMES = ("MANUSCRIPT.md", "PAPER.md", "README.md")
 
+#: Papers whose manuscript is a versioned file under ``manuscript/`` rather than
+#: one of the names above. P6 keeps ``manuscript/FINAL_V4.md``; asked for a PDF
+#: of P6, the resolver fell through to the paper's ``README.md`` and produced a
+#: perfectly valid PDF of the wrong document, announcing only the filename it
+#: used. A fallback that yields a plausible artifact without saying it fell back
+#: is the same shape as a guard that reports "nothing failed" for "nothing ran".
+_VERSIONED_MANUSCRIPT_GLOB = "FINAL_V*.md"
+_VERSIONED_MANUSCRIPT_FALLBACK = "FINAL.md"
+
+
+def find_versioned_manuscript(paper_dir: Path) -> Path | None:
+    """The highest-numbered ``manuscript/FINAL_V*.md``, or ``FINAL.md``.
+
+    Sorted by the integer in the name rather than lexically, so ``FINAL_V10``
+    would beat ``FINAL_V9`` instead of losing to it.
+    """
+
+    manuscript_dir = paper_dir / "manuscript"
+    if not manuscript_dir.is_dir():
+        return None
+
+    def version_of(path: Path) -> tuple[int, ...]:
+        """Version as a tuple, so V2_1 sorts below V4 rather than above it.
+
+        Concatenating the digits reads ``FINAL_V2_1`` as twenty-one and picks it
+        over ``FINAL_V4``, which is how the first version of this chose the wrong
+        manuscript. A dotted version is a tuple, not an integer.
+        """
+
+        tail = path.stem.rsplit("_V", 1)[-1]
+        parts = [chunk for chunk in tail.replace(".", "_").split("_") if chunk.isdigit()]
+        return tuple(int(chunk) for chunk in parts) if parts else (-1,)
+
+    versioned = sorted(manuscript_dir.glob(_VERSIONED_MANUSCRIPT_GLOB), key=version_of)
+    if versioned:
+        return versioned[-1]
+    plain = manuscript_dir / _VERSIONED_MANUSCRIPT_FALLBACK
+    return plain if plain.is_file() else None
+
 _CSS = """
 @page { size: A4; margin: 22mm 20mm; @bottom-center { content: counter(page);
   font-family: 'DejaVu Serif', Georgia, serif; font-size: 9pt; color: #555; } }
@@ -231,7 +270,17 @@ def main(argv: Sequence[str]) -> int:
             return 0
         print(f"latexmk unavailable; falling back to Markdown for {paper_dir.name}", file=sys.stderr)
 
-    source = resolve_paper(arguments.paper) if arguments.paper else resolve_source(arguments.source)
+    source = find_versioned_manuscript(paper_dir)
+    if source is None:
+        source = (
+            resolve_paper(arguments.paper) if arguments.paper else resolve_source(arguments.source)
+        )
+        if source.name == "README.md":
+            print(
+                f"note: {paper_dir.name} has no LaTeX tree and no manuscript/FINAL*.md; "
+                "rendering its README, which is probably not the manuscript",
+                file=sys.stderr,
+            )
     output = arguments.out or source.parent / f"{source.stem}.pdf"
     written = render(source, output)
     size = written.stat().st_size
