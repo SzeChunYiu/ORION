@@ -23,8 +23,15 @@ Authority: development record only; no lane receipt grants scientific/novelty au
   exact predicted-vs-observed deltas. Open: tightness of 5.
 - [SLOT] **QG-2 objective robustness** (`QG2_OBJECTIVE_ROBUSTNESS_RESULTS.json`): per
   objective — trades alive/dead/new, chemistry verdicts, predicate transfer.
-- [SLOT] **QG-3 boundary prospective** (`QG3_BOUNDARY_PROSPECTIVE_RESULTS.json`): library
-  regime census + staged positive-regime predictions vs DP ground truth.
+- **QG-3 boundary prospective — POSITIVE_REGIME_PREDICTIONS_CONFIRMED**
+  (`QG3_BOUNDARY_PROSPECTIVE_RESULTS.json`;
+  `ORIONQG_QG3_BOUNDARY_PROSPECTIVE_POSITIVE_REGIME_PREDICTIONS_CONFIRMED__SPLIT_AND_
+  BORROW_PREDICTED_BEFORE_DP__NOT_R6`, all boolean gates true): the R6R escalation is
+  done — Track B staged 12 engineered instances under the frozen generator (quota met:
+  4 predicted-split, 4 predicted-borrow, 4 donor-exact), predictions digest-stamped
+  before any DP, and the DP confirmed the regimes and costs; Track A admitted 6 fresh
+  real library batches. The predicate now carries confirmed prospective forecasts on
+  all three branches of the regime map, not just the donor-exact exclusion branch.
 - **QG-4 second family — TEMPLATE_TRANSFERRED** (`QG4_SECOND_FAMILY_RESULTS.json`,
   replay-verified bit-identical;
   `ORION_QG4_SECOND_FAMILY_TEMPLATE_TRANSFERRED__SIXLCU_PREP_SELECT_REGIME_GEOMETRY_ON_
