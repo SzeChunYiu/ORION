@@ -1,0 +1,88 @@
+{
+  "cap1_family_definition": {
+    "all_pairs_nonzero_anticommuting_support1": true,
+    "expected_pair_count": 18,
+    "pair_count": 18
+  },
+  "chemistry_sources_read": false,
+  "gates": {
+    "cap1_definition_complete": true,
+    "production_cap1_is_8": true,
+    "production_cap1_witness_verifies": true,
+    "production_cap2_is_7": true,
+    "production_cap2_witness_verifies": true,
+    "protocol_bound": true,
+    "qg7_first_row_replay_confirmed": true,
+    "qg7_recorded_7_7_8": true,
+    "r6s_all_n_bound": true,
+    "strict_support_gap": true,
+    "unrestricted_dp_checks": true,
+    "unrestricted_dp_is_7": true
+  },
+  "issue": "SzeChunYiu/ORION#838",
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "proof": {
+    "intrinsic_support_number": 2,
+    "lower_bound_witness": "selected admitted instance has C_DP=7 < C_cap1=8",
+    "upper_bound": "R6S proves every instance has an optimum with frame support <=2"
+  },
+  "protected_stretched_n2_read": false,
+  "protocol_sha256": "0ba0f279a9cb7af52d06f7f909e329a6616043415742fe33291a139f3dd7579e",
+  "qg7_result_sha256": "7341f9630c2ca32b8a6cc601e9c1201db68f21212e04eb3b2e36bca63f214159",
+  "r6_authority": false,
+  "r6s_result_sha256": "b6d72913c3bd42d9c822eace19563378c046e620d7b9641ec7d818fbcc6b9875",
+  "result_digest": "c975a71a49e812af441c7f34796731e04c16838f0481c0a9355e89f9c8ee2c17",
+  "schema": "ORION.QG.QG18.TAREKappa.v1",
+  "selected_witness": {
+    "cap1": {
+      "C_Dxx": 8,
+      "witness": {
+        "C_Dxx": 8,
+        "S": [3, 0],
+        "blocks": [
+          {"R0": [2, 0], "R1": [2, 2], "block": "A", "central": 0, "support": [1, 1], "target_permutation": 0, "uanti": 0},
+          {"R0": [2, 0], "R1": [2, 2], "block": "B", "central": 0, "support": [1, 1], "target_permutation": 0, "uanti": 0},
+          {"R0": [1, 0], "R1": [1, 1], "block": "C", "central": 0, "support": [1, 1], "target_permutation": 0, "uanti": 0}
+        ],
+        "labels": [0, 1],
+        "max_frame_support": 1,
+        "tag_weight": 2
+      }
+    },
+    "cap2": {
+      "C_Dxx": 7,
+      "witness": {
+        "C_Dxx": 7,
+        "S": [3, 0],
+        "blocks": [
+          {"R0": [2, 0], "R1": [2, 2], "block": "A", "central": 0, "support": [1, 1], "target_permutation": 0, "uanti": 0},
+          {"R0": [4, 0], "R1": [6, 6], "block": "B", "central": 1, "support": [1, 2], "target_permutation": 0, "uanti": 2},
+          {"R0": [1, 0], "R1": [1, 1], "block": "C", "central": 0, "support": [1, 1], "target_permutation": 0, "uanti": 0}
+        ],
+        "labels": [0, 1],
+        "max_frame_support": 2,
+        "tag_weight": 2
+      }
+    },
+    "local_index": 2,
+    "n": 3,
+    "panel": "H1_n3",
+    "recorded": [7, 7, 8],
+    "target_pairs": [[[2, 0], [3, 2]], [[4, 0], [6, 6]], [[1, 0], [1, 1]]],
+    "unrestricted_dp": 7,
+    "unrestricted_witness_checks": {
+      "anticommuting_frames": true,
+      "common_labels_all_blocks": true,
+      "cost_recomputed": true,
+      "distinct_branch_labels": true,
+      "factor_checks": true,
+      "restore_identities": true,
+      "restore_phases": true,
+      "rotation_count_nine": true,
+      "six_term_conservation": true,
+      "state_matches_labels": true
+    }
+  },
+  "terminal": "QG18_TARE_KAPPA_IS_2__SUPPORT2_NECESSITY_WITNESS_MACHINE_VERIFIED"
+}
