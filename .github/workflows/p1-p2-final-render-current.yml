@@ -40,7 +40,7 @@ jobs:
           grep -q '0.3575' /tmp/p1.txt
           grep -qi 'ideal' /tmp/p1.txt
           grep -qi 'open-ended' /tmp/p1.txt
-          out="../../../../research/saturation/_p1_final_render_current"
+          out="$GITHUB_WORKSPACE/research/saturation/_p1_final_render_current"
           mkdir -p "$out/pages"
           pdfinfo main.pdf > "$out/pdfinfo.txt"
           sha256sum main.pdf > "$out/sha256.txt"
@@ -62,7 +62,7 @@ jobs:
           grep -q '0.4225' /tmp/p2.txt
           grep -q 'CANNOT_CHECK' /tmp/p2.txt
           grep -qi 'ideal' /tmp/p2.txt
-          out="../../../../research/saturation/_p2_final_render_current"
+          out="$GITHUB_WORKSPACE/research/saturation/_p2_final_render_current"
           mkdir -p "$out/pages"
           pdfinfo main.pdf > "$out/pdfinfo.txt"
           sha256sum main.pdf > "$out/sha256.txt"
@@ -81,5 +81,5 @@ jobs:
           path: |
             research/saturation/_p1_final_render_current/
             research/saturation/_p2_final_render_current/
-          if-no-files-found: warn
+          if-no-files-found: error
           retention-days: 90
