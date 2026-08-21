@@ -199,6 +199,94 @@ MAX_SCOPE_FOR_GRADE: dict[EvidenceGrade, ClaimScope] = {
 MIN_REPLICATION_DOMAINS = 2
 
 
+class ResponsibilityClass(str, Enum):
+    """Why a terminal is blocked, in P1's own frozen vocabulary.
+
+    Transcribed from ``development/p1-u-gpt-r2-naturalistic/DEVELOPMENT_PACKET.md``
+    rather than invented here. Reusing it is deliberate: P1's scientific claim is
+    that a system should identify which of these classes is load-bearing *before*
+    escalating, and a ledger that records blockers in some other vocabulary could
+    not be read against that claim.
+
+    ``NO_HIGH_LEVEL_REFORMULATION`` and ``UNRESOLVED`` are in the packet's list
+    and are omitted here: the first is a control label for an episode, not a
+    reason a programme is stuck, and the second is what this field exists to stop
+    a blocked gate from silently being.
+    """
+
+    SEARCH_OR_EVIDENCE = "SEARCH_OR_EVIDENCE"
+    REPRESENTATION_OR_INTERFACE = "REPRESENTATION_OR_INTERFACE"
+    IMPLEMENTATION_OR_ENVIRONMENT = "IMPLEMENTATION_OR_ENVIRONMENT"
+    MEASUREMENT_OR_EVALUATOR = "MEASUREMENT_OR_EVALUATOR"
+    OBJECTIVE_OR_MODEL_CLASS = "OBJECTIVE_OR_MODEL_CLASS"
+    PROBLEM_BOUNDARY = "PROBLEM_BOUNDARY"
+
+
+class Actionability(str, Enum):
+    """What it would take to move a blocked terminal, ordered by nearness.
+
+    This is the field that makes the report a work queue rather than a status
+    board. ``CANNOT_CHECK`` was covering three unrelated situations --- a
+    one-file defect, an evaluation arena that does not exist, and a theorem
+    nobody has proved --- under one word, which is precisely the collapse the
+    three-valued outcome exists to prevent one level up.
+    """
+
+    ACTIONABLE_NOW = "ACTIONABLE_NOW"
+    """A defined change to code or artifacts already in this repository."""
+
+    BLOCKED_ON_UPSTREAM = "BLOCKED_ON_UPSTREAM"
+    """Another lane's in-flight work. Nameable by issue or PR."""
+
+    BLOCKED_ON_CAMPAIGN = "BLOCKED_ON_CAMPAIGN"
+    """The arena and comparator exist; a protected run has not been scored."""
+
+    BLOCKED_ON_NEW_ARENA = "BLOCKED_ON_NEW_ARENA"
+    """The evaluation object itself does not exist yet and must be built."""
+
+    BLOCKED_ON_PROOF = "BLOCKED_ON_PROOF"
+    """Needs a mechanized theorem from primitive semantics."""
+
+    @property
+    def queue_rank(self) -> int:
+        return _ACTIONABILITY_RANK[self]
+
+
+_ACTIONABILITY_RANK: dict[Actionability, int] = {
+    Actionability.ACTIONABLE_NOW: 0,
+    Actionability.BLOCKED_ON_UPSTREAM: 1,
+    Actionability.BLOCKED_ON_CAMPAIGN: 2,
+    Actionability.BLOCKED_ON_NEW_ARENA: 3,
+    Actionability.BLOCKED_ON_PROOF: 4,
+}
+
+
+@dataclass(frozen=True)
+class GateBlocker:
+    """Why one terminal is blocked, and what would unblock it.
+
+    A blocked gate without one of these is an unanswered question wearing the
+    costume of a status. ``HC-SUP-UNCLASSIFIED-BLOCKER`` refuses that.
+    """
+
+    gate_id: str
+    responsibility: ResponsibilityClass
+    actionability: Actionability
+    statement: str
+    """What is actually blocking, in one sentence."""
+
+    unblock: str
+    """What would move it. Concrete enough to be picked up."""
+
+    refs: tuple[str, ...] = ()
+    """Issues, PRs, files or failure records that evidence the diagnosis."""
+
+    def __post_init__(self) -> None:
+        for name in ("gate_id", "statement", "unblock"):
+            if not str(getattr(self, name)).strip():
+                raise ValueError(f"gate blocker {name} is required")
+
+
 @dataclass(frozen=True)
 class TerminalGate:
     """One ``Done when`` bullet, transcribed and typed.
@@ -550,6 +638,7 @@ class PaperSuperiorityRecord:
     gates: tuple[TerminalGate, ...]
     evidence: tuple[GateEvidence, ...] = ()
     predecessor_artifacts: tuple[PredecessorArtifact, ...] = ()
+    blockers: tuple[GateBlocker, ...] = ()
     declared_claim_scope: ClaimScope | None = None
     """How wide this paper currently advertises its claim, ``None`` if unrecorded.
 
@@ -568,6 +657,36 @@ class PaperSuperiorityRecord:
     @property
     def evidence_by_gate(self) -> dict[str, GateEvidence]:
         return {item.gate_id: item for item in self.evidence}
+
+    @property
+    def blockers_by_gate(self) -> dict[str, GateBlocker]:
+        return {item.gate_id: item for item in self.blockers}
+
+    def unclassified_blocked_gate_ids(self) -> tuple[str, ...]:
+        """Blocked gates with no recorded reason, in registry order."""
+
+        recorded = self.blockers_by_gate
+        return tuple(
+            status.gate_id
+            for status in self.statuses()
+            if status.blocks and status.gate_id not in recorded
+        )
+
+    def work_queue(self) -> tuple[GateBlocker, ...]:
+        """This paper's blockers, nearest-to-actionable first.
+
+        Ties break on gate id so the queue is stable across runs; a queue that
+        reorders itself on every regeneration cannot be diffed.
+        """
+
+        recorded = self.blockers_by_gate
+        blocked = [status.gate_id for status in self.statuses() if status.blocks]
+        return tuple(
+            sorted(
+                (recorded[gate_id] for gate_id in blocked if gate_id in recorded),
+                key=lambda item: (item.actionability.queue_rank, item.gate_id),
+            )
+        )
 
     @property
     def strongest_grade(self) -> EvidenceGrade:
@@ -631,8 +750,11 @@ __all__ = [
     "GateEvidence",
     "GateStatus",
     "PaperSuperiorityRecord",
+    "Actionability",
+    "GateBlocker",
     "PaperTerminalStatus",
     "PredecessorArtifact",
+    "ResponsibilityClass",
     "TerminalGate",
     "TerminalKind",
     "adjudicate",

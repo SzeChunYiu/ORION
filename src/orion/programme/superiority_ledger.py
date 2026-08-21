@@ -23,12 +23,15 @@ from typing import Any
 
 from orion.programme.superiority import (
     SUPERIORITY_LEDGER_SCHEMA,
+    Actionability,
     ClaimScope,
     EvidenceGrade,
+    GateBlocker,
     GateEvidence,
     PaperSuperiorityRecord,
     PaperTerminalStatus,
     PredecessorArtifact,
+    ResponsibilityClass,
 )
 from orion.programme.superiority_terminals import PAPER_GATES, PAPER_ISSUES
 
@@ -224,6 +227,47 @@ def ledger_from_payload(payload: Mapping[str, Any]) -> SuperiorityLedger:
             except ValueError as error:
                 raise LedgerBindingError(str(error)) from error
 
+        raw_blockers = entry.get("blockers")
+        if raw_blockers is None:
+            raw_blockers = []
+        if not isinstance(raw_blockers, Sequence) or isinstance(raw_blockers, (str, bytes)):
+            raise LedgerBindingError(f"paper {paper_id} blockers must be a list")
+        blockers: list[GateBlocker] = []
+        seen_blocker_ids: set[str] = set()
+        for item in raw_blockers:
+            item = _require_mapping(item, f"{paper_id} blocker entry")
+            blocker_gate_id = item.get("gate_id")
+            if not isinstance(blocker_gate_id, str) or blocker_gate_id not in known_gate_ids:
+                raise LedgerBindingError(
+                    f"blocker names unknown gate id {blocker_gate_id!r}"
+                )
+            if blocker_gate_id in seen_blocker_ids:
+                raise LedgerBindingError(
+                    f"paper {paper_id} records two blockers for {blocker_gate_id}"
+                )
+            seen_blocker_ids.add(blocker_gate_id)
+            try:
+                responsibility = ResponsibilityClass(item.get("responsibility"))
+                actionability = Actionability(item.get("actionability"))
+            except ValueError as error:
+                raise LedgerBindingError(
+                    f"blocker {blocker_gate_id} has an unknown responsibility "
+                    f"or actionability: {error}"
+                ) from error
+            try:
+                blockers.append(
+                    GateBlocker(
+                        gate_id=blocker_gate_id,
+                        responsibility=responsibility,
+                        actionability=actionability,
+                        statement=item.get("statement", ""),
+                        unblock=item.get("unblock", ""),
+                        refs=_string_tuple(item.get("refs"), f"{blocker_gate_id}.refs"),
+                    )
+                )
+            except ValueError as error:
+                raise LedgerBindingError(str(error)) from error
+
         raw_scope = entry.get("declared_claim_scope")
         if raw_scope is None:
             declared_claim_scope = None
@@ -242,6 +286,7 @@ def ledger_from_payload(payload: Mapping[str, Any]) -> SuperiorityLedger:
                 gates=gates,
                 evidence=evidence,
                 predecessor_artifacts=tuple(predecessors),
+                blockers=tuple(blockers),
                 declared_claim_scope=declared_claim_scope,
             )
         )
@@ -283,6 +328,17 @@ def ledger_to_payload(ledger: SuperiorityLedger) -> dict[str, Any]:
                         "note": item.note,
                     }
                     for item in paper.predecessor_artifacts
+                ],
+                "blockers": [
+                    {
+                        "gate_id": item.gate_id,
+                        "responsibility": item.responsibility.value,
+                        "actionability": item.actionability.value,
+                        "statement": item.statement,
+                        "unblock": item.unblock,
+                        "refs": list(item.refs),
+                    }
+                    for item in paper.blockers
                 ],
                 "evidence": [
                     {

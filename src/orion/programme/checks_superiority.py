@@ -94,6 +94,7 @@ POST_HOC_FREEZE = "HC-SUP-POST-HOC-FREEZE"
 SELF_CERTIFICATION = "HC-SUP-SELF-CERTIFICATION"
 CLAIM_WIDER_THAN_EVIDENCE = "HC-SUP-CLAIM-WIDER-THAN-EVIDENCE"
 PREDECESSOR_REUSE = "HC-SUP-PREDECESSOR-REUSE"
+UNCLASSIFIED_BLOCKER = "HC-SUP-UNCLASSIFIED-BLOCKER"
 
 # Kinds that ask for an empirical outcome. The two scope kinds are excluded
 # throughout: a scope gate's artifact legitimately *is* a manuscript, because
@@ -444,6 +445,48 @@ def _check_predecessor_reuse(ledger: SuperiorityLedger) -> CheckResult:
     )
 
 
+def _check_unclassified_blocker(ledger: SuperiorityLedger) -> CheckResult:
+    """Every blocked terminal states why it is blocked and what would move it.
+
+    Without this, ``CANNOT_CHECK`` is one word covering a one-file defect, an
+    evaluation arena nobody has built, and a theorem nobody has proved. Those are
+    not the same status and cannot be worked from the same queue. A blocked gate
+    with no recorded blocker is an unanswered question wearing the costume of a
+    status, so this fails rather than merely declining to check: the answer to
+    "is every blocked terminal accounted for?" is a definite no.
+
+    Note this is a *ledger hygiene* failure, not a scientific one, and
+    ``build_report`` keeps the two apart when it sets ``overall_terminal``.
+    """
+
+    findings: list[str] = []
+    classified = 0
+    for paper in ledger.papers:
+        unclassified = paper.unclassified_blocked_gate_ids()
+        classified += len(paper.work_queue())
+        if unclassified:
+            findings.append(
+                f"{paper.paper_id} leaves {', '.join(unclassified)} blocked with no "
+                "recorded responsibility class or unblock action"
+            )
+    if findings:
+        return failed(
+            UNCLASSIFIED_BLOCKER,
+            "a terminal is blocked with no stated cause, so it cannot be worked",
+            tuple(findings),
+        )
+    if not classified:
+        return passed(
+            UNCLASSIFIED_BLOCKER,
+            "no terminal is blocked, so there is nothing to classify",
+        )
+    return passed(
+        UNCLASSIFIED_BLOCKER,
+        f"all {classified} blocked terminal(s) carry a responsibility class and an "
+        "unblock action",
+    )
+
+
 SUPERIORITY_CHECKS: tuple[SuperiorityCheck, ...] = (
     SuperiorityCheck(
         check_id=TERMINAL_COVERAGE,
@@ -509,6 +552,13 @@ SUPERIORITY_CHECKS: tuple[SuperiorityCheck, ...] = (
         evaluate=_check_self_certification,
     ),
     SuperiorityCheck(
+        check_id=UNCLASSIFIED_BLOCKER,
+        title="A blocked terminal says why, and what would move it",
+        failure_class="UNCLASSIFIED_BLOCKER",
+        negative_fixture_id="tests/unit/programme/test_superiority_gates.py::test_unclassified_blocker_fails",
+        evaluate=_check_unclassified_blocker,
+    ),
+    SuperiorityCheck(
         check_id=PREDECESSOR_REUSE,
         title="A predecessor result cannot discharge the terminal that supersedes it",
         failure_class="PREDECESSOR_REUSED_AS_DISCHARGE",
@@ -572,6 +622,7 @@ __all__ = [
     "run_superiority_checks",
     "SUPERIORITY_CHECK_IDS",
     "TERMINAL_COVERAGE",
+    "UNCLASSIFIED_BLOCKER",
     "THIN_REPLICATION",
     "validate_superiority_catalogue",
 ]

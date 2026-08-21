@@ -41,6 +41,7 @@ from orion.programme.identity import seal
 from orion.programme.records import Outcome
 from orion.programme.superiority import (
     SUPERIORITY_REPORT_SCHEMA,
+    Actionability,
     PaperTerminalStatus,
 )
 from orion.programme.superiority_ledger import (
@@ -93,6 +94,18 @@ def build_report(ledger: SuperiorityLedger) -> dict[str, Any]:
                     }
                     for status in statuses
                 ],
+                "work_queue": [
+                    {
+                        "gate_id": item.gate_id,
+                        "responsibility": item.responsibility.value,
+                        "actionability": item.actionability.value,
+                        "statement": item.statement,
+                        "unblock": item.unblock,
+                        "refs": list(item.refs),
+                    }
+                    for item in paper.work_queue()
+                ],
+                "unclassified_blocked_gate_ids": list(paper.unclassified_blocked_gate_ids()),
             }
         )
 
@@ -100,6 +113,29 @@ def build_report(ledger: SuperiorityLedger) -> dict[str, Any]:
     battery_failed = any(
         result.outcome is Outcome.FAIL for result in battery.results
     )
+
+    # The queue across all papers, nearest-to-actionable first. This is the
+    # deliverable for a reader asking "what can be done about P1 today?", which a
+    # per-paper status cannot answer.
+    queue = sorted(
+        (
+            {**item, "paper_id": paper["paper_id"], "issue": paper["issue"]}
+            for paper in papers
+            for item in paper["work_queue"]
+        ),
+        key=lambda item: (
+            Actionability(item["actionability"]).queue_rank,
+            item["paper_id"],
+            item["gate_id"],
+        ),
+    )
+    by_actionability: dict[str, int] = {}
+    by_responsibility: dict[str, int] = {}
+    for item in queue:
+        by_actionability[item["actionability"]] = by_actionability.get(item["actionability"], 0) + 1
+        by_responsibility[item["responsibility"]] = (
+            by_responsibility.get(item["responsibility"], 0) + 1
+        )
 
     if PaperTerminalStatus.NOT_EARNED.value in terminals or battery_failed:
         overall = PaperTerminalStatus.NOT_EARNED.value
@@ -125,6 +161,9 @@ def build_report(ledger: SuperiorityLedger) -> dict[str, Any]:
             "registered_paper_count": len(PAPER_GATES),
             "missing_paper_ids": list(ledger.missing_paper_ids),
             "battery": battery.to_payload(),
+            "work_queue": queue,
+            "work_queue_by_actionability": by_actionability,
+            "work_queue_by_responsibility": by_responsibility,
             "papers": papers,
         }
     )
@@ -159,6 +198,21 @@ def _render_text(report: dict[str, Any]) -> str:
     lines.append("battery:")
     for result in report["battery"]["results"]:
         lines.append(f"  {result['outcome']:<12} {result['check_id']}: {result['reason']}")
+
+    queue = report["work_queue"]
+    if queue:
+        lines.append("")
+        lines.append(f"work queue ({len(queue)} blocked terminals, nearest first):")
+        current = None
+        for item in queue:
+            if item["actionability"] != current:
+                current = item["actionability"]
+                lines.append(f"  [{current}]")
+            lines.append(
+                f"    {item['paper_id']:>3} {item['gate_id']:<10} "
+                f"{item['responsibility']:<29} {item['statement']}"
+            )
+            lines.append(f"        -> {item['unblock']}")
     return "\n".join(lines)
 
 

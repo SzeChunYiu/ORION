@@ -1,7 +1,7 @@
 {
   "battery": {
     "blocked": false,
-    "content_digest": "de952de14b6d25c67e8d72f5f45bc858e0238ae602f1096915931d16b81f7cc4",
+    "content_digest": "954ec26f8b66ff257662b15ede4a9902df39fab9aad267bc6864bd3508c8b94e",
     "expected_check_ids": [
       "HC-SUP-TERMINAL-COVERAGE",
       "HC-SUP-MANUSCRIPT-SUBSTITUTION",
@@ -12,6 +12,7 @@
       "HC-SUP-THIN-REPLICATION",
       "HC-SUP-POST-HOC-FREEZE",
       "HC-SUP-SELF-CERTIFICATION",
+      "HC-SUP-UNCLASSIFIED-BLOCKER",
       "HC-SUP-PREDECESSOR-REUSE",
       "HC-SUP-CLAIM-WIDER-THAN-EVIDENCE"
     ],
@@ -73,6 +74,12 @@
         "reason": "no terminal is discharged under candidate custody"
       },
       {
+        "check_id": "HC-SUP-UNCLASSIFIED-BLOCKER",
+        "findings": [],
+        "outcome": "PASS",
+        "reason": "all 49 blocked terminal(s) carry a responsibility class and an unblock action"
+      },
+      {
         "check_id": "HC-SUP-PREDECESSOR-REUSE",
         "findings": [],
         "outcome": "PASS",
@@ -87,7 +94,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "f5d74cc4665f8c793b8811af67fc1f69926d49ef8e66ca704c877f262bf4f8fb",
+  "content_digest": "5b5c2fdf9e2f743eea48211167f0e472dc6aa45134aba3c434aa4ee48967c8e6",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -158,7 +165,73 @@
         }
       ],
       "strongest_grade": "MECHANISM_NON_VACUITY",
-      "terminal": "CANNOT_CHECK"
+      "terminal": "CANNOT_CHECK",
+      "unclassified_blocked_gate_ids": [],
+      "work_queue": [
+        {
+          "actionability": "BLOCKED_ON_UPSTREAM",
+          "gate_id": "P1-U-T1",
+          "refs": [
+            "#723",
+            "#730",
+            "#732",
+            "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md",
+            "research/failures/2026-08-digest-representation-boundary-mixup/README.md",
+            "src/orion/core/digests.py"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "The digest defect that rejected 100% of native rows is solved: with the repair installed the frozen 2020 primary runs to a scored result (48/48 rows bound, ARD 0.708 vs B3 0.208). But the result is not attributable. ORION_NATIVE_BASE returns UNRESOLVED on 48/48 episodes because the solver never reaches DIAGNOSE, so the ablation arm #723 added to prove the gain comes from the ARD addition rather than from runtime wrapping is inert, and all six families 'differ from BASE' trivially. 'Materially outperform BASE' is not computed anywhere.",
+          "unblock": "Give the BASE arm a reachable DIAGNOSE path and compute a per-family ARD-vs-BASE margin with a frozen threshold and a stability bound, then rerun. Also make the digest repair durable inside _native_row_valid rather than as a sibling monkey-patch: the primary run directly still returns 48/48 invalid, silently, and the wrapper is non-idempotent so a double install reverts to 100% rejection without an exception."
+        },
+        {
+          "actionability": "BLOCKED_ON_UPSTREAM",
+          "gate_id": "P1-U-T3",
+          "refs": [
+            "#723",
+            "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "Two frozen guards do not test what they are named. Class noninferiority files both members of every pair under adverse_class, so the NO_HIGH_LEVEL_REFORMULATION control class — the entire point of the matched control — is never evaluated. Domain noninferiority has 26 strata of 1-2 episodes, so the -0.10 margin is really a hard 'ARD may never lose a single episode' rule. The leakage guard is fail-open on a missing key and omits pair role as a token.",
+          "unblock": "Accumulate each pair member under its own gold class; widen the domain stratifier or restate the margin as the zero-loss rule it actually is; add pair role to the forbidden token set and make _leakage_free fail closed. These are pre-outcome protocol repairs under the R4 PRE_OUTCOME_PROTOCOL_REPAIR precedent and must land before the outcome is read."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P1-U-T2",
+          "refs": [
+            "#723",
+            "#735",
+            "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
+          ],
+          "responsibility": "IMPLEMENTATION_OR_ENVIRONMENT",
+          "statement": "The 2019 replication cannot run through this evaluator at all. source_year == 2020, the exact retained-failure list ['MEAS-P2','BOUND-P1'] and n_episodes == 48 are hard-wired; a 2019 corpus identical in every other respect returns P1_R6_CANNOT_CHECK_FIXED_DATA with zero episodes executed and no exception raised. No 2019 corpus, builder or protocol exists on the branch, and #723 additionally requires an independent scorer and a changed provider/host axis.",
+          "unblock": "Read year, retained-route list and expected episode count from the fixed-source JSON, which already carries expected_episode_count, rather than from literals. Then build the 2019 corpus and run it with an independent scorer on a live/open-weight host."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P1-U-T4",
+          "refs": [
+            "#649",
+            "research/claim_expansion/p1/P1_X_FINAL_SCIENTIFIC_TERMINAL_V2.md",
+            "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "P1 correctly advertises BOUNDED_EXACT, which is what its A3_CANNOT_CHECK predecessor licenses. This terminal asks for a claim wider than the registered families, and while a scored 2020 primary now exists it is neither attributable (P1-U-T1) nor replicated (P1-U-T2).",
+          "unblock": "Widening becomes admissible only once P1-U-T1 and P1-U-T2 both hold. Until then the correct action is to keep the claim where it is."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P1-U-T5",
+          "refs": [
+            "#649",
+            "research/failures/2026-08-digest-representation-boundary-mixup/README.md",
+            "src/orion/core/digests.py",
+            "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "Three failure regimes are now explicit rather than hidden: the R2-R4 acquisition regime, converted into R6's fixed source universe; the digest-representation regime, converted into a typed boundary and a failure record; and the inert-ablation regime found by cross-agent verification. None has been prospectively validated, and the second and third are engineering mechanics rather than scientific ones.",
+          "unblock": "Carry the acquisition-regime conversion through an attributable scored run so it is prospectively validated rather than merely designed. The engineering conversions should not be counted toward this terminal."
+        }
+      ]
     },
     {
       "declared_claim_scope": "BOUNDED_EXACT",
@@ -209,7 +282,62 @@
         }
       ],
       "strongest_grade": "MECHANISM_NON_VACUITY",
-      "terminal": "CANNOT_CHECK"
+      "terminal": "CANNOT_CHECK",
+      "unclassified_blocked_gate_ids": [],
+      "work_queue": [
+        {
+          "actionability": "BLOCKED_ON_UPSTREAM",
+          "gate_id": "P2-U-T1",
+          "refs": [
+            "#650",
+            "#733"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "No naturalistic open-world arena with hidden distributed evidence and multiple material routes exists; the P2-X predecessor scored exact acquisition contracts, which is a different object.",
+          "unblock": "PR #733 reopens the external Wide campaign with a transport-valid OpenAIRE V2 source. Land it, then build the adversarial route families #650 enumerates (missing-route, retrieved-but-unprocessed, duplicated, contradictory, provider-invalid, apparently-saturated)."
+        },
+        {
+          "actionability": "BLOCKED_ON_UPSTREAM",
+          "gate_id": "P2-U-T2",
+          "refs": [
+            "#650",
+            "#733"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "False-closure non-inferiority cannot be measured without route-level and task-level closure receipts over a naturalistic arena.",
+          "unblock": "Require closure receipts per route and per task in the Wide campaign schema before outcomes are accessed."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P2-U-T3",
+          "refs": [
+            "#650"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "No deep-research or evidence-aware-stopping comparator has been stood up at matched retrieval APIs, models, token/time budget and source access.",
+          "unblock": "Select and freeze the strongest available deep-research agent at freeze time, and bind it to the same retrieval/model/budget envelope as the candidate."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P2-U-T5",
+          "refs": [
+            "#650"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "No negative or tied family has yet produced a validated stronger successor search mechanic.",
+          "unblock": "Mine each false closure and missed-evidence event from the first scored campaign for a candidate mechanic, then validate it prospectively on a held-out route family."
+        },
+        {
+          "actionability": "BLOCKED_ON_NEW_ARENA",
+          "gate_id": "P2-U-T4",
+          "refs": [
+            "#650"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "Cross-domain replication needs a second scientific domain plus one systematic-review-like setting; neither exists.",
+          "unblock": "Build the second domain and the systematic-review setting alongside the primary arena so replication is not a retrofit."
+        }
+      ]
     },
     {
       "declared_claim_scope": "BOUNDED_EXACT",
@@ -260,7 +388,61 @@
         }
       ],
       "strongest_grade": "MECHANISM_NON_VACUITY",
-      "terminal": "CANNOT_CHECK"
+      "terminal": "CANNOT_CHECK",
+      "unclassified_blocked_gate_ids": [],
+      "work_queue": [
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P3-U-T5",
+          "refs": [
+            "#651"
+          ],
+          "responsibility": "REPRESENTATION_OR_INTERFACE",
+          "statement": "No new identity coordinate has been discovered from failure and prospectively validated.",
+          "unblock": "Mine each false merge and false split for a candidate discriminating coordinate, then validate it on held-out cases or prove the coordinate unnecessary."
+        },
+        {
+          "actionability": "BLOCKED_ON_NEW_ARENA",
+          "gate_id": "P3-U-T1",
+          "refs": [
+            "#651",
+            "research/claim_expansion/p3/P3_X_FINAL_SCIENTIFIC_TERMINAL_V1.md"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "The multi-domain raw-literature corpus with construct drift, measurement mismatch and one-to-many mappings does not exist. P3-X scored already-structured mapping contracts and explicitly does not authorize raw-text claims.",
+          "unblock": "Build the corpus with double annotation and adjudication, including the hard false-merge and false-split controls where lexical similarity misleads."
+        },
+        {
+          "actionability": "BLOCKED_ON_NEW_ARENA",
+          "gate_id": "P3-U-T2",
+          "refs": [
+            "#651"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "The false-split and plurality-preservation ceiling cannot be measured without the annotated corpus and its plurality/unresolved labels.",
+          "unblock": "Same corpus; the annotation schema must record legitimate plurality and unresolved states as first-class labels rather than as annotation failures."
+        },
+        {
+          "actionability": "BLOCKED_ON_NEW_ARENA",
+          "gate_id": "P3-U-T3",
+          "refs": [
+            "#651"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "No downstream synthesis or QA task is wired to the identity decisions, so a benefit cannot be demonstrated.",
+          "unblock": "Attach a downstream QA/synthesis evaluation to the same corpus so identity quality and task utility are measured on one object."
+        },
+        {
+          "actionability": "BLOCKED_ON_NEW_ARENA",
+          "gate_id": "P3-U-T4",
+          "refs": [
+            "#651"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "Cross-domain and independent-expert replication requires a second domain and a second annotator pool.",
+          "unblock": "Recruit an independent expert pool and report inter-annotator agreement before outcomes are accessed."
+        }
+      ]
     },
     {
       "declared_claim_scope": "BOUNDED_EXACT",
@@ -311,7 +493,60 @@
         }
       ],
       "strongest_grade": "MECHANISM_NON_VACUITY",
-      "terminal": "CANNOT_CHECK"
+      "terminal": "CANNOT_CHECK",
+      "unclassified_blocked_gate_ids": [],
+      "work_queue": [
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P4-U-T4",
+          "refs": [
+            "#652"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "No donor-complete comparator carrying provenance, verification, evaluator-custody and generic-authorization mechanics has been run against the residual promotion relation.",
+          "unblock": "Assemble the donor-complete comparator before outcome access and bind it to the same evidence and budget."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P4-U-T5",
+          "refs": [
+            "#652"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "No old null or saturated family has yielded a prospectively successful new evaluation mechanic.",
+          "unblock": "Treat the H3 saturation itself as the seed: derive a benchmark-audit mechanic from why it was non-identifying, then validate that mechanic prospectively on the new construction."
+        },
+        {
+          "actionability": "BLOCKED_ON_NEW_ARENA",
+          "gate_id": "P4-U-T1",
+          "refs": [
+            "#652"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "The construction-balanced benchmark does not exist. The old H3 slice saturated because it was non-identifying — labels were recoverable from trivial cues — so it cannot discriminate promotion competence.",
+          "unblock": "Build the benchmark with labels provably unrecoverable from evidence-list length, missingness pattern, template or source count, and with enough clean positives to make excessive abstention costly."
+        },
+        {
+          "actionability": "BLOCKED_ON_NEW_ARENA",
+          "gate_id": "P4-U-T2",
+          "refs": [
+            "#652"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "There is no identifiability audit, and without one no score from this benchmark can be used at all — that is what H3 taught.",
+          "unblock": "Make the identifiability audit a precondition gate that runs before any score is read, not a post-hoc report."
+        },
+        {
+          "actionability": "BLOCKED_ON_NEW_ARENA",
+          "gate_id": "P4-U-T3",
+          "refs": [
+            "#652"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "Surviving multiple constructions requires more than one independently generated benchmark construction; only one family has ever existed.",
+          "unblock": "Generate a second construction independently of the first, and reproduce the result under an independent implementation."
+        }
+      ]
     },
     {
       "declared_claim_scope": "BOUNDED_PROTECTED",
@@ -367,7 +602,61 @@
         }
       ],
       "strongest_grade": "BOUNDED_PROTECTED",
-      "terminal": "CANNOT_CHECK"
+      "terminal": "CANNOT_CHECK",
+      "unclassified_blocked_gate_ids": [],
+      "work_queue": [
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P5-U-T1",
+          "refs": [
+            "#653",
+            "research/verification/records/P5.glm-5.2-attribution-21-24.json"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "No matched self-evolving comparator has ever been executed. The 21/24 attribution record's own baseline_pressure layer reads CANNOT_CHECK: no official ADAS/DGM/ADIAS baseline was run by the verifier.",
+          "unblock": "Stand up at least one strong self-evolving comparator at matched models, tools, compute and evaluation budget, and run it over protected fresh tasks under external evaluator custody."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P5-U-T2",
+          "refs": [
+            "#653"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "Harmful transfer and regression cannot be measured without multi-generation runs over protected fresh tasks.",
+          "unblock": "Instrument harmful transfer and regression per generation, with rollback and P6 revalidation after every adopted change."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P5-U-T3",
+          "refs": [
+            "#653"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "Matched budget and cost controls have never been applied because no comparator run exists to control.",
+          "unblock": "Record improvement cost per generation alongside the effect so the significance survives cost matching."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P5-U-T4",
+          "refs": [
+            "#653"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "No learned or invented mechanic — as opposed to a hand-written one — has been shown to cause a replicated gain.",
+          "unblock": "Require causal pathway evidence, not correlation, that a retained mechanic caused a later improvement, and replicate it."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P5-U-T5",
+          "refs": [
+            "#653"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "The meta-improvement signal needs a sequence of at least three generations; only single before/after comparisons exist.",
+          "unblock": "Run sequential generations under external custody with proposal and adoption authority kept apart, and measure whether later generations produce better improvements."
+        }
+      ]
     },
     {
       "declared_claim_scope": "BOUNDED_EXACT",
@@ -423,7 +712,61 @@
         }
       ],
       "strongest_grade": "MECHANISM_NON_VACUITY",
-      "terminal": "CANNOT_CHECK"
+      "terminal": "CANNOT_CHECK",
+      "unclassified_blocked_gate_ids": [],
+      "work_queue": [
+        {
+          "actionability": "BLOCKED_ON_NEW_ARENA",
+          "gate_id": "P6-U-T3",
+          "refs": [
+            "#654"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "No naturalistic multi-domain change corpus exists — code patch, dataset revision, model revision, analysis change, instrument recalibration, manuscript claim revision.",
+          "unblock": "Build the change corpus and measure revalidation cost saved against revalidate-everything and dependency-graph-only comparators."
+        },
+        {
+          "actionability": "BLOCKED_ON_PROOF",
+          "gate_id": "P6-U-T1",
+          "refs": [
+            "#654",
+            "research/claim_expansion/p6/P6_X_FINITE_MODEL_RESULT_V1.json"
+          ],
+          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
+          "statement": "The current authority is exhaustive enumeration over a finite authored state space (155 restorations, 1,055 strict-subset failures). #654 asks for that to stop being the primary authority.",
+          "unblock": "Define primitive evidence/dependency/change semantics independently of the desired theorem, then prove soundness, minimality and conservativity from them."
+        },
+        {
+          "actionability": "BLOCKED_ON_PROOF",
+          "gate_id": "P6-U-T2",
+          "refs": [
+            "#654"
+          ],
+          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
+          "statement": "The finite result cannot follow as a corollary while no general theorem exists to follow from.",
+          "unblock": "Derive the 320-state model as an instance once the primitive semantics is proved."
+        },
+        {
+          "actionability": "BLOCKED_ON_PROOF",
+          "gate_id": "P6-U-T4",
+          "refs": [
+            "#654"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "No independent proof or checker review has been arranged.",
+          "unblock": "Mechanize the core proofs in a proof assistant so an external reviewer can check them, then arrange the review."
+        },
+        {
+          "actionability": "BLOCKED_ON_PROOF",
+          "gate_id": "P6-U-T5",
+          "refs": [
+            "#654"
+          ],
+          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
+          "statement": "No discovered counterexample has yet caused a principled framework extension rather than an ad hoc exception.",
+          "unblock": "Treat each theorem counterexample as a candidate missing primitive and extend the semantics, not the exception list."
+        }
+      ]
     },
     {
       "declared_claim_scope": "BOUNDED_EXACT",
@@ -474,7 +817,61 @@
         }
       ],
       "strongest_grade": "MECHANISM_NON_VACUITY",
-      "terminal": "CANNOT_CHECK"
+      "terminal": "CANNOT_CHECK",
+      "unclassified_blocked_gate_ids": [],
+      "work_queue": [
+        {
+          "actionability": "BLOCKED_ON_NEW_ARENA",
+          "gate_id": "P7-U-T3",
+          "refs": [
+            "#655"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "No naturalistic multi-stage pipelines exist where every component is locally valid but global closure may fail.",
+          "unblock": "Build pipelines spanning retrieval, extraction, normalization, aggregation, analysis and synthesis, including cycles and lossy and stochastic transforms."
+        },
+        {
+          "actionability": "BLOCKED_ON_NEW_ARENA",
+          "gate_id": "P7-U-T4",
+          "refs": [
+            "#655"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "False closure and unnecessary recomputation cannot be traded off without the pipeline corpus and a cost model.",
+          "unblock": "Instrument both together so a false-closure reduction bought with runaway recomputation is visible as a failure."
+        },
+        {
+          "actionability": "BLOCKED_ON_PROOF",
+          "gate_id": "P7-U-T1",
+          "refs": [
+            "#655",
+            "research/claim_expansion/p7/P7_X2_CLOSURE_CARRYING_RESULT_V1.json"
+          ],
+          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
+          "statement": "There is no general compositional calculus or checker; the 25 successful compositions against 25 matched missing-bridge cases are a registered navigation model, not a calculus over arbitrary transformation chains.",
+          "unblock": "Define primitive transformation and obligation semantics, then prove or explicitly characterize identity, associativity and intermediate-contract composition."
+        },
+        {
+          "actionability": "BLOCKED_ON_PROOF",
+          "gate_id": "P7-U-T2",
+          "refs": [
+            "#655"
+          ],
+          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
+          "statement": "Current P7 results cannot be instances of a calculus that does not exist.",
+          "unblock": "Derive the finite results as instances once the calculus is mechanized."
+        },
+        {
+          "actionability": "BLOCKED_ON_PROOF",
+          "gate_id": "P7-U-T5",
+          "refs": [
+            "#655"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "No independent formal or empirical reproduction has been arranged.",
+          "unblock": "Mechanize the checker so the formal side is independently runnable, and hand the pipeline corpus to an independent implementation."
+        }
+      ]
     },
     {
       "declared_claim_scope": "BOUNDED_EXACT",
@@ -525,7 +922,61 @@
         }
       ],
       "strongest_grade": "MECHANISM_NON_VACUITY",
-      "terminal": "CANNOT_CHECK"
+      "terminal": "CANNOT_CHECK",
+      "unclassified_blocked_gate_ids": [],
+      "work_queue": [
+        {
+          "actionability": "BLOCKED_ON_NEW_ARENA",
+          "gate_id": "P8-U-T3",
+          "refs": [
+            "#656"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "No real multi-agent scientific workflows exist mixing retrieval, analysis, simulation, verification, human approval and cross-domain evidence.",
+          "unblock": "Build workflows containing cases where ordinary authorization passes but scientific target authority should fail — that gap is the whole claim."
+        },
+        {
+          "actionability": "BLOCKED_ON_NEW_ARENA",
+          "gate_id": "P8-U-T4",
+          "refs": [
+            "#656"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "Empirical utility versus over-blocking cannot be measured without those workflows.",
+          "unblock": "Measure invalid discharge, unnecessary blocking, revocation accuracy and workflow cost on one object."
+        },
+        {
+          "actionability": "BLOCKED_ON_PROOF",
+          "gate_id": "P8-U-T1",
+          "refs": [
+            "#656",
+            "research/claim_expansion/p8/P8_X4_AUTHORITY_LIFTING_RESULT_V1.json"
+          ],
+          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
+          "statement": "The 169/169 valid compositions with 169 matched unbridged-widening failures are a finite instance over 13 donor types, not a theorem over arbitrary delegation graphs.",
+          "unblock": "Define primitive scientific authority and discharge semantics independent of the 13 donor types, then prove non-amplification for arbitrary acyclic graphs and characterize cycles."
+        },
+        {
+          "actionability": "BLOCKED_ON_PROOF",
+          "gate_id": "P8-U-T2",
+          "refs": [
+            "#656"
+          ],
+          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
+          "statement": "The 39,936-state result cannot follow as an instance while no general theorem exists.",
+          "unblock": "Derive it as a finite instance once the composition and revocation theorem is mechanized."
+        },
+        {
+          "actionability": "BLOCKED_ON_PROOF",
+          "gate_id": "P8-U-T5",
+          "refs": [
+            "#656"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "No independent formal and systems reproduction has been arranged.",
+          "unblock": "Mechanize the theorem and checker, then arrange both an independent formal review and an independent systems reproduction."
+        }
+      ]
     },
     {
       "declared_claim_scope": "BOUNDED_PROTECTED",
@@ -583,7 +1034,62 @@
         }
       ],
       "strongest_grade": "BOUNDED_PROTECTED",
-      "terminal": "CANNOT_CHECK"
+      "terminal": "CANNOT_CHECK",
+      "unclassified_blocked_gate_ids": [],
+      "work_queue": [
+        {
+          "actionability": "BLOCKED_ON_UPSTREAM",
+          "gate_id": "P9-U-T1",
+          "refs": [
+            "#662",
+            "#618",
+            "#729"
+          ],
+          "responsibility": "IMPLEMENTATION_OR_ENVIRONMENT",
+          "statement": "The frozen Qwen2.5 0.5B/1.5B/3B same-information run on #618 is incomplete, and protected runtime evidence transport is currently under repair in PR #729.",
+          "unblock": "Land the runtime evidence transport repair, then complete the frozen direct-LLM run and score it against every frozen hostile gate."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P9-U-T2",
+          "refs": [
+            "#662"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "No second open-weight model family has been run, and no explicit family-bounded terminal has been declared in its place.",
+          "unblock": "Either replicate prospectively on a second family, or declare the family-bounded terminal explicitly — #662 admits both, and this gate accepts a bounded protected result."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P9-U-T3",
+          "refs": [
+            "#662"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "The critical scale S*(k,q) and critical inference budget C*(k,q) grid is not prospectively defined, so a crossing could not be shown to be on-grid rather than fitted.",
+          "unblock": "Freeze the relational-complexity x representation x model-scale x inference-budget grid before outcomes, and preserve any null cell rather than fitting an exponent post hoc."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P9-U-T4",
+          "refs": [
+            "#662"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "The representation-length and format-prior attacks are named as hostile alternatives but have not been run.",
+          "unblock": "Run equal-token/length controls, semantic-orbit controls, symbol and order reminting, and same-information round-trip validation as gates rather than as robustness appendices."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P9-U-T5",
+          "refs": [
+            "#662"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "Domain-block uncertainty needs at least one formal and one non-formal procedural domain; only bounded evidence exists.",
+          "unblock": "Include both domain blocks in the frozen factorial so the block uncertainty is estimable rather than assumed."
+        }
+      ]
     },
     {
       "declared_claim_scope": "BOUNDED_PROTECTED",
@@ -639,9 +1145,681 @@
         }
       ],
       "strongest_grade": "BOUNDED_PROTECTED",
-      "terminal": "CANNOT_CHECK"
+      "terminal": "CANNOT_CHECK",
+      "unclassified_blocked_gate_ids": [],
+      "work_queue": [
+        {
+          "actionability": "BLOCKED_ON_UPSTREAM",
+          "gate_id": "P10-U-T1",
+          "refs": [
+            "#663",
+            "#618",
+            "#729"
+          ],
+          "responsibility": "IMPLEMENTATION_OR_ENVIRONMENT",
+          "statement": "Native-Lean proof-state extraction on #618 is incomplete, and the protected runtime evidence transport it depends on is under repair in PR #729.",
+          "unblock": "Land the transport repair, complete the native-state extraction, then either reproduce the result independently or retain it explicitly as a negative — this gate accepts either."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P10-U-T2",
+          "refs": [
+            "#663"
+          ],
+          "responsibility": "SEARCH_OR_EVIDENCE",
+          "statement": "No verified problem-solving gain beyond representation-only metrics has been measured: solve rate, verifier calls, branching and repair success are not yet scored against strong provers.",
+          "unblock": "Run the matched Lean-call proof search with history-only, state, and state+dependency arms against a strong current prover baseline."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
+          "gate_id": "P10-U-T3",
+          "refs": [
+            "#663"
+          ],
+          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
+          "statement": "No closed-world method-expansion result exists, and the expansion gate in #663 requires an independently witnessed obstruction rather than one inferred from timeout.",
+          "unblock": "Freeze the method basis and closure, witness the obstruction independently, and only then admit a proposed minimal semantics-preserving edit — measuring false escalation on known-method controls."
+        },
+        {
+          "actionability": "BLOCKED_ON_NEW_ARENA",
+          "gate_id": "P10-U-T4",
+          "refs": [
+            "#663"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "No real-domain candidate exists, and #663 admits one only if external correctness and novelty review survives; no external reviewer is engaged.",
+          "unblock": "Reach a closed-world result first, then arrange external correctness and novelty review before any real-domain claim is made."
+        }
+      ]
     }
   ],
   "registered_paper_count": 10,
-  "schema_version": "orion.programme.superiority-report.v1"
+  "schema_version": "orion.programme.superiority-report.v1",
+  "work_queue": [
+    {
+      "actionability": "BLOCKED_ON_UPSTREAM",
+      "gate_id": "P1-U-T1",
+      "issue": 649,
+      "paper_id": "P1",
+      "refs": [
+        "#723",
+        "#730",
+        "#732",
+        "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md",
+        "research/failures/2026-08-digest-representation-boundary-mixup/README.md",
+        "src/orion/core/digests.py"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "The digest defect that rejected 100% of native rows is solved: with the repair installed the frozen 2020 primary runs to a scored result (48/48 rows bound, ARD 0.708 vs B3 0.208). But the result is not attributable. ORION_NATIVE_BASE returns UNRESOLVED on 48/48 episodes because the solver never reaches DIAGNOSE, so the ablation arm #723 added to prove the gain comes from the ARD addition rather than from runtime wrapping is inert, and all six families 'differ from BASE' trivially. 'Materially outperform BASE' is not computed anywhere.",
+      "unblock": "Give the BASE arm a reachable DIAGNOSE path and compute a per-family ARD-vs-BASE margin with a frozen threshold and a stability bound, then rerun. Also make the digest repair durable inside _native_row_valid rather than as a sibling monkey-patch: the primary run directly still returns 48/48 invalid, silently, and the wrapper is non-idempotent so a double install reverts to 100% rejection without an exception."
+    },
+    {
+      "actionability": "BLOCKED_ON_UPSTREAM",
+      "gate_id": "P1-U-T3",
+      "issue": 649,
+      "paper_id": "P1",
+      "refs": [
+        "#723",
+        "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "Two frozen guards do not test what they are named. Class noninferiority files both members of every pair under adverse_class, so the NO_HIGH_LEVEL_REFORMULATION control class — the entire point of the matched control — is never evaluated. Domain noninferiority has 26 strata of 1-2 episodes, so the -0.10 margin is really a hard 'ARD may never lose a single episode' rule. The leakage guard is fail-open on a missing key and omits pair role as a token.",
+      "unblock": "Accumulate each pair member under its own gold class; widen the domain stratifier or restate the margin as the zero-loss rule it actually is; add pair role to the forbidden token set and make _leakage_free fail closed. These are pre-outcome protocol repairs under the R4 PRE_OUTCOME_PROTOCOL_REPAIR precedent and must land before the outcome is read."
+    },
+    {
+      "actionability": "BLOCKED_ON_UPSTREAM",
+      "gate_id": "P10-U-T1",
+      "issue": 663,
+      "paper_id": "P10",
+      "refs": [
+        "#663",
+        "#618",
+        "#729"
+      ],
+      "responsibility": "IMPLEMENTATION_OR_ENVIRONMENT",
+      "statement": "Native-Lean proof-state extraction on #618 is incomplete, and the protected runtime evidence transport it depends on is under repair in PR #729.",
+      "unblock": "Land the transport repair, complete the native-state extraction, then either reproduce the result independently or retain it explicitly as a negative — this gate accepts either."
+    },
+    {
+      "actionability": "BLOCKED_ON_UPSTREAM",
+      "gate_id": "P2-U-T1",
+      "issue": 650,
+      "paper_id": "P2",
+      "refs": [
+        "#650",
+        "#733"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "No naturalistic open-world arena with hidden distributed evidence and multiple material routes exists; the P2-X predecessor scored exact acquisition contracts, which is a different object.",
+      "unblock": "PR #733 reopens the external Wide campaign with a transport-valid OpenAIRE V2 source. Land it, then build the adversarial route families #650 enumerates (missing-route, retrieved-but-unprocessed, duplicated, contradictory, provider-invalid, apparently-saturated)."
+    },
+    {
+      "actionability": "BLOCKED_ON_UPSTREAM",
+      "gate_id": "P2-U-T2",
+      "issue": 650,
+      "paper_id": "P2",
+      "refs": [
+        "#650",
+        "#733"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "False-closure non-inferiority cannot be measured without route-level and task-level closure receipts over a naturalistic arena.",
+      "unblock": "Require closure receipts per route and per task in the Wide campaign schema before outcomes are accessed."
+    },
+    {
+      "actionability": "BLOCKED_ON_UPSTREAM",
+      "gate_id": "P9-U-T1",
+      "issue": 662,
+      "paper_id": "P9",
+      "refs": [
+        "#662",
+        "#618",
+        "#729"
+      ],
+      "responsibility": "IMPLEMENTATION_OR_ENVIRONMENT",
+      "statement": "The frozen Qwen2.5 0.5B/1.5B/3B same-information run on #618 is incomplete, and protected runtime evidence transport is currently under repair in PR #729.",
+      "unblock": "Land the runtime evidence transport repair, then complete the frozen direct-LLM run and score it against every frozen hostile gate."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P1-U-T2",
+      "issue": 649,
+      "paper_id": "P1",
+      "refs": [
+        "#723",
+        "#735",
+        "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
+      ],
+      "responsibility": "IMPLEMENTATION_OR_ENVIRONMENT",
+      "statement": "The 2019 replication cannot run through this evaluator at all. source_year == 2020, the exact retained-failure list ['MEAS-P2','BOUND-P1'] and n_episodes == 48 are hard-wired; a 2019 corpus identical in every other respect returns P1_R6_CANNOT_CHECK_FIXED_DATA with zero episodes executed and no exception raised. No 2019 corpus, builder or protocol exists on the branch, and #723 additionally requires an independent scorer and a changed provider/host axis.",
+      "unblock": "Read year, retained-route list and expected episode count from the fixed-source JSON, which already carries expected_episode_count, rather than from literals. Then build the 2019 corpus and run it with an independent scorer on a live/open-weight host."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P1-U-T4",
+      "issue": 649,
+      "paper_id": "P1",
+      "refs": [
+        "#649",
+        "research/claim_expansion/p1/P1_X_FINAL_SCIENTIFIC_TERMINAL_V2.md",
+        "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "P1 correctly advertises BOUNDED_EXACT, which is what its A3_CANNOT_CHECK predecessor licenses. This terminal asks for a claim wider than the registered families, and while a scored 2020 primary now exists it is neither attributable (P1-U-T1) nor replicated (P1-U-T2).",
+      "unblock": "Widening becomes admissible only once P1-U-T1 and P1-U-T2 both hold. Until then the correct action is to keep the claim where it is."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P1-U-T5",
+      "issue": 649,
+      "paper_id": "P1",
+      "refs": [
+        "#649",
+        "research/failures/2026-08-digest-representation-boundary-mixup/README.md",
+        "src/orion/core/digests.py",
+        "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "Three failure regimes are now explicit rather than hidden: the R2-R4 acquisition regime, converted into R6's fixed source universe; the digest-representation regime, converted into a typed boundary and a failure record; and the inert-ablation regime found by cross-agent verification. None has been prospectively validated, and the second and third are engineering mechanics rather than scientific ones.",
+      "unblock": "Carry the acquisition-regime conversion through an attributable scored run so it is prospectively validated rather than merely designed. The engineering conversions should not be counted toward this terminal."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P10-U-T2",
+      "issue": 663,
+      "paper_id": "P10",
+      "refs": [
+        "#663"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "No verified problem-solving gain beyond representation-only metrics has been measured: solve rate, verifier calls, branching and repair success are not yet scored against strong provers.",
+      "unblock": "Run the matched Lean-call proof search with history-only, state, and state+dependency arms against a strong current prover baseline."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P10-U-T3",
+      "issue": 663,
+      "paper_id": "P10",
+      "refs": [
+        "#663"
+      ],
+      "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
+      "statement": "No closed-world method-expansion result exists, and the expansion gate in #663 requires an independently witnessed obstruction rather than one inferred from timeout.",
+      "unblock": "Freeze the method basis and closure, witness the obstruction independently, and only then admit a proposed minimal semantics-preserving edit — measuring false escalation on known-method controls."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P2-U-T3",
+      "issue": 650,
+      "paper_id": "P2",
+      "refs": [
+        "#650"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "No deep-research or evidence-aware-stopping comparator has been stood up at matched retrieval APIs, models, token/time budget and source access.",
+      "unblock": "Select and freeze the strongest available deep-research agent at freeze time, and bind it to the same retrieval/model/budget envelope as the candidate."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P2-U-T5",
+      "issue": 650,
+      "paper_id": "P2",
+      "refs": [
+        "#650"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "No negative or tied family has yet produced a validated stronger successor search mechanic.",
+      "unblock": "Mine each false closure and missed-evidence event from the first scored campaign for a candidate mechanic, then validate it prospectively on a held-out route family."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P3-U-T5",
+      "issue": 651,
+      "paper_id": "P3",
+      "refs": [
+        "#651"
+      ],
+      "responsibility": "REPRESENTATION_OR_INTERFACE",
+      "statement": "No new identity coordinate has been discovered from failure and prospectively validated.",
+      "unblock": "Mine each false merge and false split for a candidate discriminating coordinate, then validate it on held-out cases or prove the coordinate unnecessary."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P4-U-T4",
+      "issue": 652,
+      "paper_id": "P4",
+      "refs": [
+        "#652"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "No donor-complete comparator carrying provenance, verification, evaluator-custody and generic-authorization mechanics has been run against the residual promotion relation.",
+      "unblock": "Assemble the donor-complete comparator before outcome access and bind it to the same evidence and budget."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P4-U-T5",
+      "issue": 652,
+      "paper_id": "P4",
+      "refs": [
+        "#652"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "No old null or saturated family has yielded a prospectively successful new evaluation mechanic.",
+      "unblock": "Treat the H3 saturation itself as the seed: derive a benchmark-audit mechanic from why it was non-identifying, then validate that mechanic prospectively on the new construction."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P5-U-T1",
+      "issue": 653,
+      "paper_id": "P5",
+      "refs": [
+        "#653",
+        "research/verification/records/P5.glm-5.2-attribution-21-24.json"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "No matched self-evolving comparator has ever been executed. The 21/24 attribution record's own baseline_pressure layer reads CANNOT_CHECK: no official ADAS/DGM/ADIAS baseline was run by the verifier.",
+      "unblock": "Stand up at least one strong self-evolving comparator at matched models, tools, compute and evaluation budget, and run it over protected fresh tasks under external evaluator custody."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P5-U-T2",
+      "issue": 653,
+      "paper_id": "P5",
+      "refs": [
+        "#653"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "Harmful transfer and regression cannot be measured without multi-generation runs over protected fresh tasks.",
+      "unblock": "Instrument harmful transfer and regression per generation, with rollback and P6 revalidation after every adopted change."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P5-U-T3",
+      "issue": 653,
+      "paper_id": "P5",
+      "refs": [
+        "#653"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "Matched budget and cost controls have never been applied because no comparator run exists to control.",
+      "unblock": "Record improvement cost per generation alongside the effect so the significance survives cost matching."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P5-U-T4",
+      "issue": 653,
+      "paper_id": "P5",
+      "refs": [
+        "#653"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "No learned or invented mechanic — as opposed to a hand-written one — has been shown to cause a replicated gain.",
+      "unblock": "Require causal pathway evidence, not correlation, that a retained mechanic caused a later improvement, and replicate it."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P5-U-T5",
+      "issue": 653,
+      "paper_id": "P5",
+      "refs": [
+        "#653"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "The meta-improvement signal needs a sequence of at least three generations; only single before/after comparisons exist.",
+      "unblock": "Run sequential generations under external custody with proposal and adoption authority kept apart, and measure whether later generations produce better improvements."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P9-U-T2",
+      "issue": 662,
+      "paper_id": "P9",
+      "refs": [
+        "#662"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "No second open-weight model family has been run, and no explicit family-bounded terminal has been declared in its place.",
+      "unblock": "Either replicate prospectively on a second family, or declare the family-bounded terminal explicitly — #662 admits both, and this gate accepts a bounded protected result."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P9-U-T3",
+      "issue": 662,
+      "paper_id": "P9",
+      "refs": [
+        "#662"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "The critical scale S*(k,q) and critical inference budget C*(k,q) grid is not prospectively defined, so a crossing could not be shown to be on-grid rather than fitted.",
+      "unblock": "Freeze the relational-complexity x representation x model-scale x inference-budget grid before outcomes, and preserve any null cell rather than fitting an exponent post hoc."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P9-U-T4",
+      "issue": 662,
+      "paper_id": "P9",
+      "refs": [
+        "#662"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "The representation-length and format-prior attacks are named as hostile alternatives but have not been run.",
+      "unblock": "Run equal-token/length controls, semantic-orbit controls, symbol and order reminting, and same-information round-trip validation as gates rather than as robustness appendices."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P9-U-T5",
+      "issue": 662,
+      "paper_id": "P9",
+      "refs": [
+        "#662"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "Domain-block uncertainty needs at least one formal and one non-formal procedural domain; only bounded evidence exists.",
+      "unblock": "Include both domain blocks in the frozen factorial so the block uncertainty is estimable rather than assumed."
+    },
+    {
+      "actionability": "BLOCKED_ON_NEW_ARENA",
+      "gate_id": "P10-U-T4",
+      "issue": 663,
+      "paper_id": "P10",
+      "refs": [
+        "#663"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "No real-domain candidate exists, and #663 admits one only if external correctness and novelty review survives; no external reviewer is engaged.",
+      "unblock": "Reach a closed-world result first, then arrange external correctness and novelty review before any real-domain claim is made."
+    },
+    {
+      "actionability": "BLOCKED_ON_NEW_ARENA",
+      "gate_id": "P2-U-T4",
+      "issue": 650,
+      "paper_id": "P2",
+      "refs": [
+        "#650"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "Cross-domain replication needs a second scientific domain plus one systematic-review-like setting; neither exists.",
+      "unblock": "Build the second domain and the systematic-review setting alongside the primary arena so replication is not a retrofit."
+    },
+    {
+      "actionability": "BLOCKED_ON_NEW_ARENA",
+      "gate_id": "P3-U-T1",
+      "issue": 651,
+      "paper_id": "P3",
+      "refs": [
+        "#651",
+        "research/claim_expansion/p3/P3_X_FINAL_SCIENTIFIC_TERMINAL_V1.md"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "The multi-domain raw-literature corpus with construct drift, measurement mismatch and one-to-many mappings does not exist. P3-X scored already-structured mapping contracts and explicitly does not authorize raw-text claims.",
+      "unblock": "Build the corpus with double annotation and adjudication, including the hard false-merge and false-split controls where lexical similarity misleads."
+    },
+    {
+      "actionability": "BLOCKED_ON_NEW_ARENA",
+      "gate_id": "P3-U-T2",
+      "issue": 651,
+      "paper_id": "P3",
+      "refs": [
+        "#651"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "The false-split and plurality-preservation ceiling cannot be measured without the annotated corpus and its plurality/unresolved labels.",
+      "unblock": "Same corpus; the annotation schema must record legitimate plurality and unresolved states as first-class labels rather than as annotation failures."
+    },
+    {
+      "actionability": "BLOCKED_ON_NEW_ARENA",
+      "gate_id": "P3-U-T3",
+      "issue": 651,
+      "paper_id": "P3",
+      "refs": [
+        "#651"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "No downstream synthesis or QA task is wired to the identity decisions, so a benefit cannot be demonstrated.",
+      "unblock": "Attach a downstream QA/synthesis evaluation to the same corpus so identity quality and task utility are measured on one object."
+    },
+    {
+      "actionability": "BLOCKED_ON_NEW_ARENA",
+      "gate_id": "P3-U-T4",
+      "issue": 651,
+      "paper_id": "P3",
+      "refs": [
+        "#651"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "Cross-domain and independent-expert replication requires a second domain and a second annotator pool.",
+      "unblock": "Recruit an independent expert pool and report inter-annotator agreement before outcomes are accessed."
+    },
+    {
+      "actionability": "BLOCKED_ON_NEW_ARENA",
+      "gate_id": "P4-U-T1",
+      "issue": 652,
+      "paper_id": "P4",
+      "refs": [
+        "#652"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "The construction-balanced benchmark does not exist. The old H3 slice saturated because it was non-identifying — labels were recoverable from trivial cues — so it cannot discriminate promotion competence.",
+      "unblock": "Build the benchmark with labels provably unrecoverable from evidence-list length, missingness pattern, template or source count, and with enough clean positives to make excessive abstention costly."
+    },
+    {
+      "actionability": "BLOCKED_ON_NEW_ARENA",
+      "gate_id": "P4-U-T2",
+      "issue": 652,
+      "paper_id": "P4",
+      "refs": [
+        "#652"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "There is no identifiability audit, and without one no score from this benchmark can be used at all — that is what H3 taught.",
+      "unblock": "Make the identifiability audit a precondition gate that runs before any score is read, not a post-hoc report."
+    },
+    {
+      "actionability": "BLOCKED_ON_NEW_ARENA",
+      "gate_id": "P4-U-T3",
+      "issue": 652,
+      "paper_id": "P4",
+      "refs": [
+        "#652"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "Surviving multiple constructions requires more than one independently generated benchmark construction; only one family has ever existed.",
+      "unblock": "Generate a second construction independently of the first, and reproduce the result under an independent implementation."
+    },
+    {
+      "actionability": "BLOCKED_ON_NEW_ARENA",
+      "gate_id": "P6-U-T3",
+      "issue": 654,
+      "paper_id": "P6",
+      "refs": [
+        "#654"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "No naturalistic multi-domain change corpus exists — code patch, dataset revision, model revision, analysis change, instrument recalibration, manuscript claim revision.",
+      "unblock": "Build the change corpus and measure revalidation cost saved against revalidate-everything and dependency-graph-only comparators."
+    },
+    {
+      "actionability": "BLOCKED_ON_NEW_ARENA",
+      "gate_id": "P7-U-T3",
+      "issue": 655,
+      "paper_id": "P7",
+      "refs": [
+        "#655"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "No naturalistic multi-stage pipelines exist where every component is locally valid but global closure may fail.",
+      "unblock": "Build pipelines spanning retrieval, extraction, normalization, aggregation, analysis and synthesis, including cycles and lossy and stochastic transforms."
+    },
+    {
+      "actionability": "BLOCKED_ON_NEW_ARENA",
+      "gate_id": "P7-U-T4",
+      "issue": 655,
+      "paper_id": "P7",
+      "refs": [
+        "#655"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "False closure and unnecessary recomputation cannot be traded off without the pipeline corpus and a cost model.",
+      "unblock": "Instrument both together so a false-closure reduction bought with runaway recomputation is visible as a failure."
+    },
+    {
+      "actionability": "BLOCKED_ON_NEW_ARENA",
+      "gate_id": "P8-U-T3",
+      "issue": 656,
+      "paper_id": "P8",
+      "refs": [
+        "#656"
+      ],
+      "responsibility": "SEARCH_OR_EVIDENCE",
+      "statement": "No real multi-agent scientific workflows exist mixing retrieval, analysis, simulation, verification, human approval and cross-domain evidence.",
+      "unblock": "Build workflows containing cases where ordinary authorization passes but scientific target authority should fail — that gap is the whole claim."
+    },
+    {
+      "actionability": "BLOCKED_ON_NEW_ARENA",
+      "gate_id": "P8-U-T4",
+      "issue": 656,
+      "paper_id": "P8",
+      "refs": [
+        "#656"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "Empirical utility versus over-blocking cannot be measured without those workflows.",
+      "unblock": "Measure invalid discharge, unnecessary blocking, revocation accuracy and workflow cost on one object."
+    },
+    {
+      "actionability": "BLOCKED_ON_PROOF",
+      "gate_id": "P6-U-T1",
+      "issue": 654,
+      "paper_id": "P6",
+      "refs": [
+        "#654",
+        "research/claim_expansion/p6/P6_X_FINITE_MODEL_RESULT_V1.json"
+      ],
+      "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
+      "statement": "The current authority is exhaustive enumeration over a finite authored state space (155 restorations, 1,055 strict-subset failures). #654 asks for that to stop being the primary authority.",
+      "unblock": "Define primitive evidence/dependency/change semantics independently of the desired theorem, then prove soundness, minimality and conservativity from them."
+    },
+    {
+      "actionability": "BLOCKED_ON_PROOF",
+      "gate_id": "P6-U-T2",
+      "issue": 654,
+      "paper_id": "P6",
+      "refs": [
+        "#654"
+      ],
+      "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
+      "statement": "The finite result cannot follow as a corollary while no general theorem exists to follow from.",
+      "unblock": "Derive the 320-state model as an instance once the primitive semantics is proved."
+    },
+    {
+      "actionability": "BLOCKED_ON_PROOF",
+      "gate_id": "P6-U-T4",
+      "issue": 654,
+      "paper_id": "P6",
+      "refs": [
+        "#654"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "No independent proof or checker review has been arranged.",
+      "unblock": "Mechanize the core proofs in a proof assistant so an external reviewer can check them, then arrange the review."
+    },
+    {
+      "actionability": "BLOCKED_ON_PROOF",
+      "gate_id": "P6-U-T5",
+      "issue": 654,
+      "paper_id": "P6",
+      "refs": [
+        "#654"
+      ],
+      "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
+      "statement": "No discovered counterexample has yet caused a principled framework extension rather than an ad hoc exception.",
+      "unblock": "Treat each theorem counterexample as a candidate missing primitive and extend the semantics, not the exception list."
+    },
+    {
+      "actionability": "BLOCKED_ON_PROOF",
+      "gate_id": "P7-U-T1",
+      "issue": 655,
+      "paper_id": "P7",
+      "refs": [
+        "#655",
+        "research/claim_expansion/p7/P7_X2_CLOSURE_CARRYING_RESULT_V1.json"
+      ],
+      "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
+      "statement": "There is no general compositional calculus or checker; the 25 successful compositions against 25 matched missing-bridge cases are a registered navigation model, not a calculus over arbitrary transformation chains.",
+      "unblock": "Define primitive transformation and obligation semantics, then prove or explicitly characterize identity, associativity and intermediate-contract composition."
+    },
+    {
+      "actionability": "BLOCKED_ON_PROOF",
+      "gate_id": "P7-U-T2",
+      "issue": 655,
+      "paper_id": "P7",
+      "refs": [
+        "#655"
+      ],
+      "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
+      "statement": "Current P7 results cannot be instances of a calculus that does not exist.",
+      "unblock": "Derive the finite results as instances once the calculus is mechanized."
+    },
+    {
+      "actionability": "BLOCKED_ON_PROOF",
+      "gate_id": "P7-U-T5",
+      "issue": 655,
+      "paper_id": "P7",
+      "refs": [
+        "#655"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "No independent formal or empirical reproduction has been arranged.",
+      "unblock": "Mechanize the checker so the formal side is independently runnable, and hand the pipeline corpus to an independent implementation."
+    },
+    {
+      "actionability": "BLOCKED_ON_PROOF",
+      "gate_id": "P8-U-T1",
+      "issue": 656,
+      "paper_id": "P8",
+      "refs": [
+        "#656",
+        "research/claim_expansion/p8/P8_X4_AUTHORITY_LIFTING_RESULT_V1.json"
+      ],
+      "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
+      "statement": "The 169/169 valid compositions with 169 matched unbridged-widening failures are a finite instance over 13 donor types, not a theorem over arbitrary delegation graphs.",
+      "unblock": "Define primitive scientific authority and discharge semantics independent of the 13 donor types, then prove non-amplification for arbitrary acyclic graphs and characterize cycles."
+    },
+    {
+      "actionability": "BLOCKED_ON_PROOF",
+      "gate_id": "P8-U-T2",
+      "issue": 656,
+      "paper_id": "P8",
+      "refs": [
+        "#656"
+      ],
+      "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
+      "statement": "The 39,936-state result cannot follow as an instance while no general theorem exists.",
+      "unblock": "Derive it as a finite instance once the composition and revocation theorem is mechanized."
+    },
+    {
+      "actionability": "BLOCKED_ON_PROOF",
+      "gate_id": "P8-U-T5",
+      "issue": 656,
+      "paper_id": "P8",
+      "refs": [
+        "#656"
+      ],
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "No independent formal and systems reproduction has been arranged.",
+      "unblock": "Mechanize the theorem and checker, then arrange both an independent formal review and an independent systems reproduction."
+    }
+  ],
+  "work_queue_by_actionability": {
+    "BLOCKED_ON_CAMPAIGN": 19,
+    "BLOCKED_ON_NEW_ARENA": 14,
+    "BLOCKED_ON_PROOF": 10,
+    "BLOCKED_ON_UPSTREAM": 6
+  },
+  "work_queue_by_responsibility": {
+    "IMPLEMENTATION_OR_ENVIRONMENT": 3,
+    "MEASUREMENT_OR_EVALUATOR": 19,
+    "OBJECTIVE_OR_MODEL_CLASS": 8,
+    "REPRESENTATION_OR_INTERFACE": 1,
+    "SEARCH_OR_EVIDENCE": 18
+  }
 }

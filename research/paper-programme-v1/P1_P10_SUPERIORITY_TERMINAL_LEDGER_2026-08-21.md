@@ -106,17 +106,89 @@ result and is distinct from both a pass and a build failure.
 
 **2 of 51 gates pass.** Both are scope gates — `P9-U-T6` and `P10-U-T5` — and
 they pass because those two papers do keep their advertised claims inside what
-they earned. Nothing else is discharged, and the eleven-check battery is clean:
+they earned. Nothing else is discharged, and the twelve-check battery is clean:
 no substitution is currently being made anywhere in the ledger.
 
 The full battery is clean *and* the report still blocks. That combination is the
 object working as intended: "nobody is cheating" and "nothing is established" are
 different facts, and neither implies the other.
 
+## Why `CANNOT_CHECK` is not one status
+
+The first version of this ledger reported all ten programmes as `CANNOT_CHECK`
+and stopped there. That word was covering at least three unrelated situations —
+a one-file defect, an evaluation arena nobody has built, and a theorem nobody has
+proved — which is the same collapse the three-valued outcome exists to prevent
+one level up.
+
+Every blocked terminal now carries a **responsibility class**, taken from P1's
+own frozen taxonomy in
+`development/p1-u-gpt-r2-naturalistic/DEVELOPMENT_PACKET.md`, plus what would
+unblock it and how near that is. `HC-SUP-UNCLASSIFIED-BLOCKER` fails on a blocked
+gate with no recorded cause, so the ledger cannot quietly go back to one word.
+
+All 49 blocked terminals are classified. The queue, nearest first:
+
+| Actionability | Terminals | Meaning |
+| --- | --- | --- |
+| `BLOCKED_ON_UPSTREAM` | 6 | another lane's in-flight work, nameable by PR |
+| `BLOCKED_ON_CAMPAIGN` | 19 | arena and comparator exist; no protected run scored |
+| `BLOCKED_ON_NEW_ARENA` | 14 | the evaluation object itself does not exist yet |
+| `BLOCKED_ON_PROOF` | 10 | needs a mechanized theorem from primitive semantics |
+
+By responsibility class: `MEASUREMENT_OR_EVALUATOR` 19, `SEARCH_OR_EVIDENCE` 18,
+`OBJECTIVE_OR_MODEL_CLASS` 8, `IMPLEMENTATION_OR_ENVIRONMENT` 3,
+`REPRESENTATION_OR_INTERFACE` 1.
+
+These counts are pinned against the generated report by
+`test_ledger_document_counts_match_the_report`, because a hand-written table
+beside a generated one drifts on the first regeneration.
+
+Nothing is `ACTIONABLE_NOW`, and that is a real finding rather than a formality:
+after the P1 implementation defect below, the nearest work is other lanes'
+in-flight PRs, and everything past that needs a campaign, an arena or a proof.
+
+## P1: the defect is solved, and the result is not yet attributable
+
+This section was written when the P1 diagnosis was "an implementation defect stops
+the campaign producing rows". Cross-agent verification has since moved it, and the
+new position is better news and a harder problem.
+
+**The digest defect was the only thing between R6 and a scored primary.** With the
+repair installed, the frozen 2020 primary runs to completion: 48/48 rows bound,
+zero leakage rows, terminal `P1_R6_PRIMARY_PASS_PENDING_2019_REPLICATION`. Run
+unpatched, the same inputs give 48/48 invalid rows *with every other check already
+green underneath*. So P1 was never short of evidence — it was one representation
+mismatch away from a result, and that mismatch had survived four campaign rounds
+because a predicate answering `False` at a type boundary is indistinguishable from
+a check that ran and failed. Full record in
+`research/failures/2026-08-digest-representation-boundary-mixup/`; the two SHA-256
+representations are now named apart in `src/orion/core/digests.py`, which raises on
+a crossed boundary instead of returning `False`.
+
+**But the scored result cannot support a P1-U claim yet.** `ORION_NATIVE_BASE`
+returns `UNRESOLVED` on 48/48 episodes: the solver never reaches `DIAGNOSE`, so the
+ablation arm #723 added *precisely* to show the gain comes from the ARD addition
+rather than from runtime wrapping is inert, and all six families "differ from BASE"
+trivially. Two frozen guards also do not test what they are named — class
+noninferiority files both pair members under `adverse_class`, so the control class
+is never evaluated, and domain noninferiority has 26 strata of 1–2 episodes, making
+the −0.10 margin a hard zero-loss rule.
+
+That is why `P1-U-T1` is now `MEASUREMENT_OR_EVALUATOR`, not
+`IMPLEMENTATION_OR_ENVIRONMENT`. The blocker moved one layer up, from *can the
+campaign run* to *does the campaign measure what it claims*. Details and
+reproductions:
+`research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md`.
+
+Nothing from that verification is recorded as evidence against a P1-U gate. It is an
+observation about another lane's in-flight work; counting it would be the post-hoc
+promotion `HC-SUP-POST-HOC-FREEZE` exists to refuse.
+
 ### What each paper's terminal is currently waiting on
 
-- **P1 #649** — every gate. The `P1-X` exact result is `A3_CANNOT_CHECK` on the
-  axis the issue asks about, and R2/R3/R4 each terminated at acquisition.
+- **P1 #649** — see above. A scored 2020 primary now exists; what it lacks is
+  attribution (inert ablation arm) and replication (the 2019 evaluator cannot run).
 - **P2 #650** — a naturalistic open-world arena. `P2-X` scored exact acquisition
   contracts, which is a different object from deep-research recall.
 - **P3 #651** — raw heterogeneous literature with double annotation. The `P3-X`

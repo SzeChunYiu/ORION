@@ -32,6 +32,7 @@ from orion.programme.checks_superiority import (
     SUPERIORITY_CHECKS,
     TERMINAL_COVERAGE,
     THIN_REPLICATION,
+    UNCLASSIFIED_BLOCKER,
     run_superiority_checks,
     validate_superiority_catalogue,
 )
@@ -40,12 +41,15 @@ from orion.programme.programme_state import CANDIDATE_CUSTODY, EXTERNAL_CUSTODY
 from orion.programme.records import Outcome
 from orion.programme.superiority import (
     SUPERIORITY_LEDGER_SCHEMA,
+    Actionability,
     ClaimScope,
     EvidenceGrade,
+    GateBlocker,
     GateEvidence,
     PaperSuperiorityRecord,
     PaperTerminalStatus,
     PredecessorArtifact,
+    ResponsibilityClass,
     TerminalKind,
     adjudicate,
 )
@@ -698,3 +702,206 @@ def test_cli_reports_a_real_negative_distinctly(
     path = tmp_path / "ledger.json"
     path.write_text(json.dumps(ledger_to_payload(broken)), encoding="utf-8")
     assert main(["--ledger", str(path), "--quiet"]) == EXIT_NOT_EARNED
+
+
+# --- blockers: every CANNOT_CHECK is a classified task ------------------------
+
+
+def _blocker(gate_id: str, actionability: Actionability) -> GateBlocker:
+    return GateBlocker(
+        gate_id=gate_id,
+        responsibility=ResponsibilityClass.IMPLEMENTATION_OR_ENVIRONMENT,
+        actionability=actionability,
+        statement="something is blocking",
+        unblock="do the thing",
+    )
+
+
+def test_unclassified_blocker_fails() -> None:
+    """A blocked terminal with no stated cause cannot be worked."""
+
+    record = PaperSuperiorityRecord(
+        paper_id="P1",
+        issue_number=PAPER_ISSUES["P1"],
+        gates=PAPER_GATES["P1"],
+        declared_claim_scope=ClaimScope.BOUNDED_EXACT,
+    )
+    ledger = SuperiorityLedger(
+        ledger_id="x", frozen_at="2026-08-21", papers=(record,)
+    )
+    result = _result(ledger, UNCLASSIFIED_BLOCKER)
+    assert result.outcome is Outcome.FAIL
+    assert "P1-U-T1" in result.findings[0]
+
+
+def test_a_fully_classified_ledger_passes_the_blocker_check() -> None:
+    record = PaperSuperiorityRecord(
+        paper_id="P1",
+        issue_number=PAPER_ISSUES["P1"],
+        gates=PAPER_GATES["P1"],
+        declared_claim_scope=ClaimScope.BOUNDED_EXACT,
+        blockers=tuple(
+            _blocker(gate.gate_id, Actionability.BLOCKED_ON_CAMPAIGN)
+            for gate in PAPER_GATES["P1"]
+        ),
+    )
+    ledger = SuperiorityLedger(ledger_id="x", frozen_at="2026-08-21", papers=(record,))
+    assert _result(ledger, UNCLASSIFIED_BLOCKER).outcome is Outcome.PASS
+
+
+def test_an_unblocked_ledger_has_nothing_to_classify(
+    clean_ledger: SuperiorityLedger,
+) -> None:
+    result = _result(clean_ledger, UNCLASSIFIED_BLOCKER)
+    assert result.outcome is Outcome.PASS
+    assert "nothing to classify" in result.reason
+
+
+def test_work_queue_is_ordered_by_actionability_then_stable() -> None:
+    gates = PAPER_GATES["P1"]
+    record = PaperSuperiorityRecord(
+        paper_id="P1",
+        issue_number=PAPER_ISSUES["P1"],
+        gates=gates,
+        declared_claim_scope=ClaimScope.BOUNDED_EXACT,
+        blockers=(
+            _blocker(gates[0].gate_id, Actionability.BLOCKED_ON_PROOF),
+            _blocker(gates[1].gate_id, Actionability.ACTIONABLE_NOW),
+            _blocker(gates[2].gate_id, Actionability.BLOCKED_ON_CAMPAIGN),
+            _blocker(gates[3].gate_id, Actionability.ACTIONABLE_NOW),
+            _blocker(gates[4].gate_id, Actionability.BLOCKED_ON_UPSTREAM),
+        ),
+    )
+    queue = record.work_queue()
+    assert [item.actionability for item in queue] == [
+        Actionability.ACTIONABLE_NOW,
+        Actionability.ACTIONABLE_NOW,
+        Actionability.BLOCKED_ON_UPSTREAM,
+        Actionability.BLOCKED_ON_CAMPAIGN,
+        Actionability.BLOCKED_ON_PROOF,
+    ]
+    # Ties break on gate id, so a regenerated queue is diffable.
+    assert queue[0].gate_id < queue[1].gate_id
+    assert record.work_queue() == queue
+
+
+def test_a_blocker_on_a_passing_gate_is_not_queued(
+    clean_ledger: SuperiorityLedger,
+) -> None:
+    """The queue is what is blocked, not what someone wrote a note about."""
+
+    paper = clean_ledger.paper("P1")
+    assert paper is not None
+    with_note = replace(
+        paper, blockers=(_blocker("P1-U-T1", Actionability.ACTIONABLE_NOW),)
+    )
+    assert with_note.work_queue() == ()
+
+
+def test_ledger_refuses_an_unknown_responsibility_class() -> None:
+    payload = {
+        "schema_version": SUPERIORITY_LEDGER_SCHEMA,
+        "ledger_id": "x",
+        "frozen_at": "2026-08-21",
+        "papers": [
+            {
+                "paper_id": "P1",
+                "blockers": [
+                    {
+                        "gate_id": "P1-U-T1",
+                        "responsibility": "VIBES",
+                        "actionability": "ACTIONABLE_NOW",
+                        "statement": "s",
+                        "unblock": "u",
+                    }
+                ],
+            }
+        ],
+    }
+    with pytest.raises(LedgerBindingError, match="responsibility"):
+        ledger_from_payload(payload)
+
+
+def test_ledger_refuses_two_blockers_for_one_gate() -> None:
+    entry = {
+        "gate_id": "P1-U-T1",
+        "responsibility": "IMPLEMENTATION_OR_ENVIRONMENT",
+        "actionability": "ACTIONABLE_NOW",
+        "statement": "s",
+        "unblock": "u",
+    }
+    payload = {
+        "schema_version": SUPERIORITY_LEDGER_SCHEMA,
+        "ledger_id": "x",
+        "frozen_at": "2026-08-21",
+        "papers": [{"paper_id": "P1", "blockers": [entry, dict(entry)]}],
+    }
+    with pytest.raises(LedgerBindingError, match="two blockers"):
+        ledger_from_payload(payload)
+
+
+def test_committed_ledger_classifies_every_blocked_terminal() -> None:
+    ledger = ledger_from_payload(json.loads(LEDGER_PATH.read_text(encoding="utf-8")))
+    for paper in ledger.papers:
+        assert paper.unclassified_blocked_gate_ids() == (), paper.paper_id
+    total = sum(len(paper.work_queue()) for paper in ledger.papers)
+    assert total == 49, "49 of the 51 registered terminals are blocked"
+
+
+def test_committed_ledger_pins_the_p1_diagnosis() -> None:
+    """P1's terminal is blocked on attribution, not on evidence or implementation.
+
+    This pin has already earned itself once. It was written asserting
+    ``IMPLEMENTATION_OR_ENVIRONMENT`` — the digest defect that rejected 100% of
+    R6's native rows — and failed when cross-agent verification showed that defect
+    solved and the real blocker one layer up: ``ORION_NATIVE_BASE`` returns
+    UNRESOLVED on 48/48 episodes, so the ablation arm cannot attribute the gain to
+    the ARD mechanism. Reclassifying P1's headline blocker should always cost
+    someone a deliberate edit here.
+    """
+
+    ledger = ledger_from_payload(json.loads(LEDGER_PATH.read_text(encoding="utf-8")))
+    p1 = ledger.paper("P1")
+    assert p1 is not None
+
+    t1 = p1.blockers_by_gate["P1-U-T1"]
+    assert t1.responsibility is ResponsibilityClass.MEASUREMENT_OR_EVALUATOR
+    assert t1.actionability is Actionability.BLOCKED_ON_UPSTREAM
+    assert any("claude_r6_verification" in ref for ref in t1.refs)
+
+    # The replication gate is the one still held by an implementation literal:
+    # the evaluator hard-wires source_year == 2020.
+    t2 = p1.blockers_by_gate["P1-U-T2"]
+    assert t2.responsibility is ResponsibilityClass.IMPLEMENTATION_OR_ENVIRONMENT
+
+    # No verification finding may be recorded as evidence for a P1 gate.
+    assert p1.evidence == ()
+    assert p1.terminal() is PaperTerminalStatus.CANNOT_CHECK
+
+
+def test_report_emits_a_cross_paper_work_queue() -> None:
+    ledger = ledger_from_payload(json.loads(LEDGER_PATH.read_text(encoding="utf-8")))
+    report = build_report(ledger)
+    queue = report["work_queue"]
+    assert len(queue) == 49
+    ranks = [Actionability(item["actionability"]).queue_rank for item in queue]
+    assert ranks == sorted(ranks), "the queue must be ordered by actionability"
+    assert all({"paper_id", "gate_id", "responsibility", "unblock"} <= set(item) for item in queue)
+    assert sum(report["work_queue_by_actionability"].values()) == 49
+    assert sum(report["work_queue_by_responsibility"].values()) == 49
+
+
+def test_ledger_document_counts_match_the_report() -> None:
+    """The prose table and the generated report must not drift apart."""
+
+    document = (
+        REPO_ROOT
+        / "research/paper-programme-v1/P1_P10_SUPERIORITY_TERMINAL_LEDGER_2026-08-21.md"
+    ).read_text(encoding="utf-8")
+    ledger = ledger_from_payload(json.loads(LEDGER_PATH.read_text(encoding="utf-8")))
+    report = build_report(ledger)
+
+    for name, count in report["work_queue_by_actionability"].items():
+        assert f"| `{name}` | {count} |" in document, f"{name} count drifted"
+    for name, count in report["work_queue_by_responsibility"].items():
+        assert f"`{name}` {count}" in document, f"{name} count drifted"
