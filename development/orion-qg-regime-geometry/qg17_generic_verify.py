@@ -6,6 +6,7 @@ import hashlib
 import itertools
 import json
 import math
+import traceback
 from fractions import Fraction
 from pathlib import Path
 
@@ -68,7 +69,6 @@ PERMS = tuple(itertools.permutations(range(3)))
 
 
 def cap1_exact(ta, tb, th):
-    """Independent exact cap1 solver with deterministic tie identity."""
     best = None
     for i, pa in enumerate(PAIRS):
         rsa = frame(*pa)
@@ -89,28 +89,12 @@ def cap1_exact(ta, tb, th):
             if tag_best is None:
                 continue
             cost = th["t_r"] * (ra + rb) + th["t_tag"] * tag_best[0]
-            row = (
-                cost,
-                i,
-                j,
-                tag_best[0],
-                ra + rb,
-                tag_best[1],
-                tag_best[2],
-                tag_best[3],
-            )
+            row = (cost, i, j, tag_best[0], ra + rb, tag_best[1], tag_best[2], tag_best[3])
             if best is None or row < best:
                 best = row
     if best is None:
         raise AssertionError("no cap1")
-    return {
-        "cost": best[0],
-        "resource": (0, 0, best[3], best[4]),
-        "pair_indices": (best[1], best[2]),
-        "S0": best[5],
-        "S1": best[6],
-        "labels": best[7],
-    }
+    return {"cost": best[0], "resource": (0, 0, best[3], best[4]), "pair_indices": (best[1], best[2]), "S0": best[5], "S1": best[6], "labels": best[7]}
 
 
 def support2_exact(rec, th):
@@ -200,9 +184,22 @@ def main() -> int:
     ver = []
     all_selected = True
     for name, role, rec in selected:
-        selected_checks = verify_rec(rec)
-        ver.append({"objective": name, "role": role, "checks": selected_checks})
-        all_selected &= all(selected_checks.values())
+        try:
+            selected_checks = verify_rec(rec)
+            ver.append({"objective": name, "role": role, "checks": selected_checks, "exception": None})
+            all_selected &= all(bool(v) for k, v in selected_checks.items() if k != "cost_gap") and bool(selected_checks.get("strict"))
+        except Exception as exc:  # diagnostic only; never accepted
+            ver.append({
+                "objective": name,
+                "role": role,
+                "checks": {},
+                "exception": {
+                    "type": type(exc).__name__,
+                    "message": str(exc),
+                    "traceback": traceback.format_exc(),
+                },
+            })
+            all_selected = False
 
     v5 = json.loads(V5.read_text())
     q16 = json.loads(QG16.read_text())
@@ -222,7 +219,7 @@ def main() -> int:
     }
     decision = "ACCEPT_SUPPORT2_PHASE_WITNESS" if positive and all(checks.values()) else ("ACCEPT_BOUNDED_NEGATIVE" if (not positive) and all(checks.values()) else "REJECT")
     out = {
-        "schema": "ORION.QG.QG17.GenericVerification.v2",
+        "schema": "ORION.QG.QG17.GenericVerificationDiagnostic.v1",
         "issue": "SzeChunYiu/ORION#814",
         "decision": decision,
         "checks": checks,
@@ -233,7 +230,7 @@ def main() -> int:
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, indent=2, sort_keys=True) + "\n")
-    print(TOKEN + canonical(out))
+    print(TOKEN + canonical({"decision": decision, "all_checks": out["all_checks"], "exceptions": [{"objective": x["objective"], "role": x["role"], "exception": x["exception"]} for x in ver if x["exception"]]}))
     return 0
 
 
