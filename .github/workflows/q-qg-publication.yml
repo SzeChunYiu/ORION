@@ -12,6 +12,7 @@ on:
       - 'papers/literature_cards/**'
       - 'papers/Q_QG_**'
       - 'papers/check_q_qg_publication.py'
+      - 'papers/check_q_qg_science_manifests.py'
       - '.github/workflows/q-qg-publication.yml'
   push:
     branches:
@@ -26,6 +27,7 @@ on:
       - 'papers/literature_cards/**'
       - 'papers/Q_QG_**'
       - 'papers/check_q_qg_publication.py'
+      - 'papers/check_q_qg_science_manifests.py'
       - '.github/workflows/q-qg-publication.yml'
 
 permissions:
@@ -43,5 +45,7 @@ jobs:
           python-version: '3.12'
       - name: Run fail-closed Q/QG publication checker
         run: python papers/check_q_qg_publication.py
-      - name: Validate Q2 transition graph and frozen artifact bindings
+      - name: Validate Q2 transition graph and frozen denominator
         run: python papers/Q-paper-02-recursive-recovery/check_transition_graph.py
+      - name: Validate paper-specific science manifests against frozen cuts
+        run: python papers/check_q_qg_science_manifests.py
