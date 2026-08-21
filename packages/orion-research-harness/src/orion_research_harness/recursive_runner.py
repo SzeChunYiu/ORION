@@ -11,6 +11,7 @@ from uuid import uuid4
 from orion import Problem
 from orion.core.problem_tree import ProblemAtom, ResidualAtom
 from orion.core.residuals import Residual
+from orion.core.solution import Solution, SolutionStatus
 from orion.core.state import OrionState
 from orion.engine.residual_recursion import (
     ProblemRecursionPlanner,
@@ -18,6 +19,7 @@ from orion.engine.residual_recursion import (
     ResidualRecursionPolicy,
 )
 from orion.engine.solver import OrionSolver, SolverConfig
+from orion.engine.trace import SolveTrace
 from orion.providers.experience import InMemoryExperienceStore
 from orion.providers.reasoner.recursive_llm import RecursiveLLMResearchReasoner
 from orion.runtime import OrionRuntime, RuntimeResult
@@ -243,6 +245,33 @@ class _RecursiveSession:
             record["details"] = dict(details)
         self.stop_records.append(record)
 
+    def _resource_bound_snapshot(
+        self,
+        *,
+        problem: Problem,
+        state: OrionState,
+    ) -> RuntimeResult:
+        """Return a root-scoped CANNOT_CHECK snapshot without consuming a node."""
+
+        trace_id = "recursive-resource-bound:" + uuid4().hex
+        residual_ids = tuple(
+            item.residual_id for item in state.knowledge.residuals if item.material
+        )
+        return RuntimeResult(
+            solution=Solution(
+                problem_id=problem.problem_id,
+                status=SolutionStatus.CANNOT_CHECK,
+                answer=(
+                    "Recursive resource bound reached before the root problem "
+                    "could be fully checked."
+                ),
+                residual_ids=residual_ids,
+                trace_id=trace_id,
+            ),
+            final_state=state,
+            trace=SolveTrace(trace_id=trace_id, events=()),
+        )
+
     def _record_runtime(
         self,
         *,
@@ -425,12 +454,11 @@ class _RecursiveSession:
                         residual_id="",
                         stop_reason="CANNOT_CHECK_RESOURCE_BOUND",
                     )
-                    return self.solve_problem(
+                    snapshot = self._resource_bound_snapshot(
                         problem=problem,
                         state=working_state,
-                        role="root-resource-bound-snapshot",
-                        recursion_depth=0,
                     )
+                    return snapshot, working_state
                 child = atom.as_problem(parent_problem=problem)
                 before_child_hash = _semantic_state_hash(working_state)
                 _child_result, child_state = self.solve_problem(
