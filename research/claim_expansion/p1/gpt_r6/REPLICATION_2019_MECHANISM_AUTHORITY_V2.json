@@ -1,0 +1,119 @@
+{
+  "schema_version": "orion.p1.r6.replication-2019-mechanism-authority.v2",
+  "date_frozen": "2026-08-21",
+  "paper_id": "P1",
+  "parent_issue": 723,
+  "authority_parent": 649,
+  "base_commit": "68c257edf921cd263146c888f3f0972a0dcfad4a",
+  "purpose": "Prospectively remove the remaining mechanism-identification ambiguity from the still-unrun 2019 changed-host replication. This binding does not repair or reinterpret the 2020 primary, does not choose 2019 sources, does not inspect a 2019 policy outcome, and does not change any frozen superiority, safety, bootstrap, source-custody, host, comparator, or no-regression requirement.",
+  "chronology": {
+    "replication_2019_protocol_path": "research/claim_expansion/p1/gpt_r6/REPLICATION_2019_PROTOCOL_V1.json",
+    "replication_2019_protocol_git_blob_sha": "49a7114a1b12d7c4f3dbfa1b3be71c7ed5695aeb",
+    "primary_2020_authority_path": "research/claim_expansion/p1/gpt_r6/primary_authority.py",
+    "primary_2020_authority_git_blob_sha_at_base": "f5ce08753a7f1729077a19add8052ef01055f62b",
+    "replication_2019_source_acquisition_performed_by_this_change": false,
+    "replication_2019_policy_outcome_accessed_by_this_change": false,
+    "replication_2019_gold_accessed_by_this_change": false,
+    "primary_2020_outcome_is_already_historical": true,
+    "can_retroactively_grant_primary_2020_mechanism_authority": false
+  },
+  "pre_execution_order": {
+    "must_be_merged_before_2019_source_acquisition": true,
+    "must_be_merged_before_2019_corpus_seal": true,
+    "must_be_merged_before_any_2019_candidate_or_comparator_execution": true,
+    "must_be_merged_before_2019_independent_scoring": true,
+    "outcome_aware_operator_may_not_select_rank_or_replace_2019_sources": true,
+    "source_selection_authority_remains_REPLICATION_2019_PROTOCOL_V1": true,
+    "violation_terminal": "P1_R6_2019_REPLICATION_CANNOT_CHECK"
+  },
+  "inherited_replication_v1": {
+    "rule": "Every REPLICATION_2019_PROTOCOL_V1 field remains required and unchanged. This document only makes its already-required adverse-family ARD-versus-BASE mechanism coordinate machine-decidable before any 2019 policy outcome.",
+    "queries_changed": false,
+    "source_rules_changed": false,
+    "source_priority_changed": false,
+    "required_sources_changed": false,
+    "required_episodes_changed": false,
+    "comparator_changed": false,
+    "host_changed": false,
+    "generation_parameters_changed": false,
+    "metrics_changed": false,
+    "bootstrap_changed": false,
+    "margins_changed": false,
+    "safety_tolerances_changed": false,
+    "terminal_names_changed": false
+  },
+  "protected_adverse_families": [
+    "SEARCH_OR_EVIDENCE",
+    "REPRESENTATION_OR_INTERFACE",
+    "IMPLEMENTATION_OR_ENVIRONMENT",
+    "MEASUREMENT_OR_EVALUATOR",
+    "OBJECTIVE_OR_MODEL_CLASS",
+    "PROBLEM_BOUNDARY"
+  ],
+  "family_membership_rule": {
+    "authority_source": "The frozen query class in REPLICATION_2019_PROTOCOL_V1 for the admitted same-source pair.",
+    "adverse_member_only": true,
+    "control_members_do_not_count_toward_mechanism_identification": true,
+    "unresolved_cases_do_not_count_toward_mechanism_identification": true,
+    "family_relabeling_after_source_admission": false,
+    "family_deletion_after_any_arm_output": false
+  },
+  "behavioral_branch": {
+    "reason_for_using_only_this_disjunct": "Issue #723 prospectively allowed material outperformance OR behavioral difference on a protected adverse family. No prospective family-specific numerical materiality threshold was bound for the 2020 primary. For the still-unrun 2019 replication, the literal behavioral-difference disjunct can be frozen without inventing a magnitude threshold after seeing the 2020 outcome.",
+    "canonical_decision_coordinate": "The schema-validated final native decision choice emitted for the adverse episode by ORION_NATIVE_ARD and ORION_NATIVE_BASE under identical visible evidence and budget.",
+    "episode_behavioral_difference": "ORION_NATIVE_ARD.choice != ORION_NATIVE_BASE.choice on the same admitted adverse episode.",
+    "family_behavioral_difference": "At least one admitted adverse episode in that frozen family has episode_behavioral_difference=true.",
+    "mechanism_identified_for_2019_replication": "At least one of the six frozen protected adverse families has family_behavioral_difference=true.",
+    "minimum_different_adverse_episodes_per_passing_family": 1,
+    "new_effect_size_threshold_introduced": false,
+    "family_specific_performance_margin_introduced": false,
+    "controls_can_satisfy_gate": false,
+    "global_only_choice_difference_can_satisfy_gate": false
+  },
+  "material_outperformance_branch": {
+    "status": "UNBOUND_DO_NOT_USE_FOR_2019_AUTHORITY",
+    "reason": "No pre-outcome family-specific materiality statistic or magnitude threshold exists in the inherited protocol. Inventing one now could be tuned by historical 2020 behavior. The 2019 authority gate therefore relies only on the separately predeclared behavioral-difference disjunct and leaves material-outperformance unclaimed.",
+    "can_satisfy_mechanism_gate": false
+  },
+  "native_ablation_integrity": {
+    "orion_native_base_must_exercise_DIAGNOSE_v1_on_every_scored_episode": true,
+    "orion_native_ard_and_base_must_share_visible_evidence": true,
+    "orion_native_ard_and_base_must_share_action_budget": true,
+    "decision_rows_must_bind_native_runtime_trace_and_gate_digests": true,
+    "missing_or_malformed_native_lineage": "P1_R6_2019_REPLICATION_CANNOT_CHECK",
+    "inert_or_bypassed_base_diagnose": "P1_R6_2019_REPLICATION_CANNOT_CHECK"
+  },
+  "independent_evaluation": {
+    "must_reconstruct_behavioral_gate_directly_from_2019_episode_rows": true,
+    "must_not_import_2020_primary_terminal_function": true,
+    "must_not_import_primary_authority_classification_as_a_2019_score": true,
+    "must_report_adverse_episode_count_by_family": true,
+    "must_report_ard_vs_base_adverse_choice_difference_count_by_family": true,
+    "must_reconstruct_any_global_ard_vs_base_difference_count_reported_by_executor": true,
+    "must_verify_exact_six_family_set": true
+  },
+  "terminal_intersection": {
+    "all_REPLICATION_2019_PROTOCOL_V1_superiority_and_safety_requirements_still_apply": true,
+    "behavioral_mechanism_gate_required_for_positive_replication": true,
+    "valid_complete_replication_with_behavioral_gate_false": "P1_R6_2019_REPLICATION_NOT_SUPPORTED",
+    "invalid_or_incomplete_mechanism_evidence": "P1_R6_2019_REPLICATION_CANNOT_CHECK",
+    "positive_terminal_unchanged": "P1_R6_2019_REPLICATION_PASS",
+    "positive_replication_can_retroactively_relabel_primary_2020_authority": false,
+    "positive_replication_self_authorizes_registry_promotion": false,
+    "positive_replication_alone_authorizes_issue_649_closure": false
+  },
+  "anti_laundering": [
+    "Do not use a control-only ARD-versus-BASE difference to satisfy the protected adverse-family mechanism gate.",
+    "Do not pool unresolved cases into a substantive adverse family.",
+    "Do not invent a family-specific materiality threshold after 2019 policy outcomes exist.",
+    "Do not delete a family, query, admitted source, or adverse member because it makes the mechanism gate fail.",
+    "Do not treat this prospective 2019 binding as retroactive authority for the historical 2020 primary.",
+    "Do not weaken any inherited GRS, bootstrap, selectivity, domain/class noninferiority, safety, leakage, native-row, source-disjointness, changed-host, or independent-scoring gate.",
+    "Do not allow this contract to read, choose, rank, or replace 2019 sources; source acquisition remains under the outcome-blind first-eligible custody rule."
+  ],
+  "scientific_effect": "PRE_OUTCOME_2019_MECHANISM_IDENTIFICATION_OPERATIONALIZATION_ONLY",
+  "promotion_authorized": false,
+  "issue_723_closure_authorized": false,
+  "issue_649_closure_authorized": false,
+  "authority": "P1_R6_2019_MECHANISM_AUTHORITY_PROSPECTIVELY_BOUND_NO_RESULT_NO_RETROACTIVE_PRIMARY_AUTHORITY"
+}
