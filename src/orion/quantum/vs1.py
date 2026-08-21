@@ -34,6 +34,9 @@ _ACCESS_AMENDMENT_PATH = Path("research/extensions/orion-qn/S1A_ACCESS_MODEL_AME
 _BENCHMARK_AMENDMENT_PATH = Path(
     "research/extensions/orion-qn/S1A_BENCHMARK_DEPENDENCE_AMENDMENT_V1.md"
 )
+_CLASSICAL_CEILING_AMENDMENT_PATH = Path(
+    "research/extensions/orion-qn/S1A_CLASSICAL_QUERY_CEILING_AMENDMENT_V1.md"
+)
 
 
 def _sha256_file(path: Path) -> str:
@@ -44,11 +47,19 @@ def query_model_comparison(n_qubits: int) -> dict[str, Any]:
     """Return the hidden-uniform single-mark query comparator independent of fixtures."""
 
     if n_qubits < 3 or n_qubits > 10:
-        raise ValueError("S1A v1/v3 query model requires 3 <= n_qubits <= 10")
+        raise ValueError("S1A v4 query model requires 3 <= n_qubits <= 10")
     search_size = 1 << n_qubits
     iterations = optimal_single_marked_iterations(search_size)
     success_probability = analytic_grover_probability(search_size, iterations)
-    classical_budget = min(search_size, math.ceil(success_probability * search_size))
+
+    # A strongest no-side-information classical query strategy may make K distinct
+    # predicate queries and, if all fail, output one of the remaining positions as a
+    # free final guess. Its optimal success ceiling is (K+1)/N for K < N. External
+    # output verification is accounted separately for both routes.
+    classical_budget = min(
+        search_size - 1,
+        max(0, math.ceil(success_probability * search_size) - 1),
+    )
     classical_expected = classical_budget - (
         classical_budget * (classical_budget - 1) / (2 * search_size)
     )
@@ -60,7 +71,8 @@ def query_model_comparison(n_qubits: int) -> dict[str, Any]:
         "quantum_query_budget": iterations,
         "classical_matching_query_budget": classical_budget,
         "classical_matching_expected_queries": classical_expected,
-        "classical_output_must_be_predicate_verified": True,
+        "classical_free_final_guess_allowed": True,
+        "external_output_verification_is_separate_resource": True,
         "benchmark_correlated_side_information_admitted": False,
     }
 
@@ -195,7 +207,7 @@ def run_s1a_campaign() -> dict[str, Any]:
         size_summaries.append(_summary_for_size(n_qubits, size_cases))
 
     report: dict[str, Any] = {
-        "schema": "ORION.QN.VS1.S1A.Campaign.v3",
+        "schema": "ORION.QN.VS1.S1A.Campaign.v4",
         "programme_issue": "SzeChunYiu/ORION#734",
         "evidence_mode": QuantumEvidenceMode.LOCAL_SIMULATION.value,
         "subject_commit": os.environ.get("GITHUB_SHA", "LOCAL_UNBOUND"),
@@ -207,6 +219,8 @@ def run_s1a_campaign() -> dict[str, Any]:
         "access_amendment_sha256": _sha256_file(_ACCESS_AMENDMENT_PATH),
         "benchmark_amendment_path": str(_BENCHMARK_AMENDMENT_PATH),
         "benchmark_amendment_sha256": _sha256_file(_BENCHMARK_AMENDMENT_PATH),
+        "classical_ceiling_amendment_path": str(_CLASSICAL_CEILING_AMENDMENT_PATH),
+        "classical_ceiling_amendment_sha256": _sha256_file(_CLASSICAL_CEILING_AMENDMENT_PATH),
         "physical_quantum_speedup_claim_permitted": False,
         "fixture_cases_used_for_advantage": False,
         "advantage_adjudication_source": "HIDDEN_UNIFORM_ANALYTIC_QUERY_MODEL",
@@ -239,6 +253,14 @@ def run_s1a_campaign() -> dict[str, Any]:
                 "disposition": (
                     "public known-answer fixture support is semantic-only and cannot authorize "
                     "the query-advantage comparator"
+                ),
+            },
+            {
+                "source": "strongest hidden-uniform classical query ceiling",
+                "role": "classical free-final-guess correction",
+                "disposition": (
+                    "classical comparator may make K distinct queries and a free final guess; "
+                    "external verification is a separate resource for both routes"
                 ),
             },
             {
