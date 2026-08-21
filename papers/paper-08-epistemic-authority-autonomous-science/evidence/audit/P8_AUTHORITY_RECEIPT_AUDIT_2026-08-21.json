@@ -1,11 +1,11 @@
 {
   "ceiling": {
-    "emitted": "This suite establishes real method validity, novelty, utility and adoption.",
-    "field": "declared_claim_ceiling_from_input",
+    "emitted": "On this frozen panel of 15 cases, coercion was blocked and revocation propagated as the declared contracts specify. Bounded to those cases and that protocol: not evidence of method validity, novelty, utility or adoption, and no claim about any run outside the panel.",
+    "field": "claim_ceiling",
     "injected": "This suite establishes real method validity, novelty, utility and adoption.",
-    "label": "P8.P9P10AntiLaundering.v1/declared_claim_ceiling_from_input",
-    "outcome": "FAIL",
-    "subject_controlled": true
+    "label": "P8.P9P10AntiLaundering.v1/claim_ceiling",
+    "outcome": "PASS",
+    "subject_controlled": false
   },
   "date": "2026-08-21",
   "declared_gold": {
@@ -27,7 +27,7 @@
   "gold_outcome": "FAIL",
   "outcome": "FAIL",
   "produced_by": "python -m orion.study.p8.terminal_audit",
-  "reading": "Three findings, all the same shape: apparatus that looks like an independent check and cannot disagree. The declared claim ceiling is emitted back verbatim from what was injected, so it bounds nothing. The declared gold departs from the graded tables at 0 of 15 points, so the panel cannot contradict the mechanism it grades. And the donor axis is inert: over 239,616 sibling pairs differing only in donor family, zero change the verdict, so the 39,936-state figure is 3,072 distinct states replicated thirteen times.",
+  "reading": "Two of four legs now pass. The declared claim ceiling is derived from the terminal rather than echoed from the panel, so an injected overreaching bound no longer comes back: subject_controlled is False and the leg passes. What still blocks: the declared gold departs from the tables it grades at 0 of 15 points, so the panel cannot contradict the mechanism it grades; and the donor axis is inert over 239,616 sibling pairs, so the 39,936-state figure is 3,072 distinct states replicated thirteen times.",
   "record": "P8_AUTHORITY_RECEIPT_AUDIT",
   "responsiveness": {
     "assessment": {

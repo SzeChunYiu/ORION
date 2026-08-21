@@ -1,31 +1,122 @@
 {
+  "claim_ceiling": "On this frozen panel of 15 cases, coercion was blocked and revocation propagated as the declared contracts specify. Bounded to those cases and that protocol: not evidence of method validity, novelty, utility or adoption, and no claim about any run outside the panel.",
+  "claim_ceiling_note": "Derived from the terminal, which is derived from the graded assessments. The input panel own claim_ceiling is recorded only as a digest: reproducing its text would let any caller write this suite bound for it.",
   "clean_legal_coverage": 1.0,
   "contract_accuracy": 1.0,
-  "declared_claim_ceiling_from_input": "The suite tests bounded coercion/revocation semantics for P6/P7/P9/P10 capability outputs. It does not itself establish real method validity, novelty, usefulness or adoption.",
-  "declared_claim_ceiling_note": "Echoed verbatim from the input panel's claim_ceiling. It is a bound this suite was handed, not one it earned; no state of the run can widen, narrow or contradict it.",
   "illicit_coercion_block_rate": 1.0,
+  "input_claim_ceiling_digest": "sha256:c99cc65c056b5b7a247c295374c7c3eb78f95f52ad0d75b292061c50e0968541",
   "n_cases": 15,
   "panel_digest": "sha256:69a069fb02c1b3b8ac465845951128c901ad1e7a80b2afc3ffe592f455cdf62f",
   "protocol_id": "P8.P9P10AntiLaundering.v1",
-  "result_digest": "sha256:3103fcd0597a5c2773ce611cfd20a410f7b37adc7a93c20748c84e573dc410a6",
+  "result_digest": "sha256:f7544712668544528b4d6dfd69d070273fde9405d901b3f908df35a083ca0617",
   "result_version": "P8_P9_P10_ANTI_LAUNDERING_SUMMARY_V1",
   "revocation_accuracy": 1.0,
   "rows": [
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"p9_confidence_to_validity","kind":"coercion","pass":true},
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"p9_applicability_to_adoption","kind":"coercion","pass":true},
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"p10_generation_to_novelty","kind":"coercion","pass":true},
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"p7_library_stop_to_global_stop","kind":"coercion","pass":true},
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"p6_fibre_to_applicability","kind":"coercion","pass":true},
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"p4_validity_to_novelty","kind":"coercion","pass":true},
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"novelty_to_correctness","kind":"coercion","pass":true},
-    {"actual":"SUPPORTED","expected":"SUPPORTED","id":"clean_p4_validity","kind":"coercion","pass":true},
-    {"actual":"SUPPORTED","expected":"SUPPORTED","id":"clean_novelty_review","kind":"coercion","pass":true},
-    {"actual":"SUPPORTED","expected":"SUPPORTED","id":"clean_host_adoption","kind":"coercion","pass":true},
-    {"actual":"SUPPORTED","expected":"SUPPORTED","id":"clean_external_task_stop","kind":"coercion","pass":true},
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"prior_art_revokes_novelty","kind":"revocation","pass":true},
-    {"actual":"BLOCKED","expected":"BLOCKED","id":"counterexample_revokes_validity","kind":"revocation","pass":true},
-    {"actual":"CANNOT_CHECK","expected":"CANNOT_CHECK","id":"representation_reopens_applicability","kind":"revocation","pass":true},
-    {"actual":"CANNOT_CHECK","expected":"CANNOT_CHECK","id":"evaluator_change_reopens_validity","kind":"revocation","pass":true}
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "p9_confidence_to_validity",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "p9_applicability_to_adoption",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "p10_generation_to_novelty",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "p7_library_stop_to_global_stop",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "p6_fibre_to_applicability",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "p4_validity_to_novelty",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "novelty_to_correctness",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "SUPPORTED",
+      "expected": "SUPPORTED",
+      "id": "clean_p4_validity",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "SUPPORTED",
+      "expected": "SUPPORTED",
+      "id": "clean_novelty_review",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "SUPPORTED",
+      "expected": "SUPPORTED",
+      "id": "clean_host_adoption",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "SUPPORTED",
+      "expected": "SUPPORTED",
+      "id": "clean_external_task_stop",
+      "kind": "coercion",
+      "pass": true
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "prior_art_revokes_novelty",
+      "kind": "revocation",
+      "pass": true
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "id": "counterexample_revokes_validity",
+      "kind": "revocation",
+      "pass": true
+    },
+    {
+      "actual": "CANNOT_CHECK",
+      "expected": "CANNOT_CHECK",
+      "id": "representation_reopens_applicability",
+      "kind": "revocation",
+      "pass": true
+    },
+    {
+      "actual": "CANNOT_CHECK",
+      "expected": "CANNOT_CHECK",
+      "id": "evaluator_change_reopens_validity",
+      "kind": "revocation",
+      "pass": true
+    }
   ],
   "terminal": "P8_P9_P10_ANTI_LAUNDERING_CLEAR",
   "terminal_basis": [

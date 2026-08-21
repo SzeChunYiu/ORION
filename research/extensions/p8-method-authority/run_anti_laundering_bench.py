@@ -42,8 +42,26 @@ SLICES=(('contract_accuracy','p8_anti_laundering_contract','every frozen case in
         ('illicit_coercion_block_rate','p8_illicit_coercion_block','frozen coercion cases whose declared outcome is BLOCKED: the laundering attacks'),
         ('clean_legal_coverage','p8_clean_legal_coverage','frozen coercion cases whose declared outcome is SUPPORTED: the legal lanes that must not be broken shut'),
         ('revocation_accuracy','p8_revocation','frozen revocation cases: defeater propagation and reopening'))
-#: Emitted beside the echoed ceiling so no reader can mistake it for a measured bound.
-CEILING_NOTE='Echoed verbatim from the input panel\'s claim_ceiling. It is a bound this suite was handed, not one it earned; no state of the run can widen, narrow or contradict it.'
+#: One ceiling per terminal, derived from what the run actually established.
+#:
+#: The bench used to emit ``panel['claim_ceiling']`` back verbatim under the
+#: name ``declared_claim_ceiling_from_input``, with a note saying it was an
+#: echo. The note was honest and the field was still a laundering channel:
+#: P8's own receipt audit injects an overreaching sentence into the panel and
+#: got it back word for word, so the artifact carried a bound the run had no
+#: right to. A bound any input can set is not a bound.
+#:
+#: Keyed by the terminal, which is itself derived from the graded assessments,
+#: so no state of the input can widen the ceiling -- only the run's own
+#: outcomes move it, and each names the panel it is bounded to.
+CEILINGS={
+ 'P8_P9_P10_ANTI_LAUNDERING_CLEAR':'On this frozen panel of {n} cases, coercion was blocked and revocation propagated as the declared contracts specify. Bounded to those cases and that protocol: not evidence of method validity, novelty, utility or adoption, and no claim about any run outside the panel.',
+ 'P8_P9_P10_ANTI_LAUNDERING_VIOLATED':'At least one of this panel of {n} frozen cases failed its declared contract. This suite licenses no claim while that stands.',
+ 'P8_P9_P10_ANTI_LAUNDERING_CANNOT_CHECK':'At least one graded slice of this panel of {n} cases had no case in it, so that slice did not score. An unscored slice is not a passed one, and this suite licenses nothing.',
+}
+#: Emitted beside the derived ceiling so the input's bound stays auditable
+#: without being reproduced as a claim.
+CEILING_NOTE='Derived from the terminal, which is derived from the graded assessments. The input panel own claim_ceiling is recorded only as a digest: reproducing its text would let any caller write this suite bound for it.'
 def d(x):return content_digest({'x':x})
 def base_record():return authority_record(provenance(method_id='bench-method',provenance_class=ProvenanceClass.INVENTED_METHOD_CANDIDATE,subject_digest=d('subject'),source_ids=('donor',),generator_id='p10',generator_version='v1',evidence_digest=d('provenance')))
 def grant_for(record,coordinate):
@@ -77,7 +95,7 @@ def run(panel):
     terminal=TERMINALS[worst_outcome(tuple(assessment for _name,assessment in assessments))]
     basis=[{'rate_field':name,'guard_id':assessment.guard_id,'opportunity_definition':exercise.opportunity_definition,'opportunities':exercise.opportunities,'violations':exercise.violations,'rate':rate_of(slices[name]),'outcome':assessment.outcome.value,'reason':assessment.reason.value}
            for (name,exercise),(_name,assessment) in zip(exercises,assessments)]
-    out={'result_version':'P8_P9_P10_ANTI_LAUNDERING_SUMMARY_V1','protocol_id':panel['protocol_id'],'panel_digest':content_digest(panel),'n_cases':len(rows),'contract_accuracy':rate_of(rows),'illicit_coercion_block_rate':rate_of(attacks),'clean_legal_coverage':rate_of(clean),'revocation_accuracy':rate_of(rev),'rows':rows,'terminal':terminal,'terminal_basis':basis,'declared_claim_ceiling_from_input':panel['claim_ceiling'],'declared_claim_ceiling_note':CEILING_NOTE}
+    out={'result_version':'P8_P9_P10_ANTI_LAUNDERING_SUMMARY_V1','protocol_id':panel['protocol_id'],'panel_digest':content_digest(panel),'n_cases':len(rows),'contract_accuracy':rate_of(rows),'illicit_coercion_block_rate':rate_of(attacks),'clean_legal_coverage':rate_of(clean),'revocation_accuracy':rate_of(rev),'rows':rows,'terminal':terminal,'terminal_basis':basis,'claim_ceiling':CEILINGS[terminal].format(n=len(rows)),'input_claim_ceiling_digest':d(panel.get('claim_ceiling','')),'claim_ceiling_note':CEILING_NOTE}
     out['result_digest']=content_digest(out);return out
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--write',action='store_true');ap.add_argument('--check',action='store_true');a=ap.parse_args();out=run(json.loads(PANEL.read_text()));text=json.dumps(out,indent=2,sort_keys=True)+'\n'

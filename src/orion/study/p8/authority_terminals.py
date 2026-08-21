@@ -88,7 +88,7 @@ SHIPPED_TERMINAL = "P8_P9_P10_ANTI_LAUNDERING_CLEAR"
 #: reported below is about P8 and not about a fixture written to fail. Rotated
 #: from ``sha256:45f359f5...`` on 2026-08-21 when the terminal became derived and
 #: ``claim_ceiling`` was renamed to ``declared_claim_ceiling_from_input``.
-SHIPPED_RESULT_DIGEST = "sha256:3103fcd0597a5c2773ce611cfd20a410f7b37adc7a93c20748c84e573dc410a6"
+SHIPPED_RESULT_DIGEST = "sha256:f7544712668544528b4d6dfd69d070273fde9405d901b3f908df35a083ca0617"
 
 #: The four rates the bench computes. Traced as evidence rather than as verdicts:
 #: they are what separates "the emitter was never perturbed" from "the emitter
@@ -108,7 +108,7 @@ OVERREACHING_CEILING = "This suite establishes real method validity, novelty, ut
 #: ``claim_ceiling`` on 2026-08-21: the value is still whatever the panel says,
 #: so the receipt states in the field name where the bound came from rather than
 #: publishing it where a reader would take it for one the run established.
-DECLARED_CEILING_FIELD = "declared_claim_ceiling_from_input"
+DECLARED_CEILING_FIELD = "claim_ceiling"
 
 
 def _load(path: Path, module_name: str) -> ModuleType:
@@ -249,10 +249,15 @@ def bench_responsiveness() -> ReceiptResponsiveness:
 def bench_declared_ceiling() -> DeclaredBound:
     """Measure whether the bench's declared ceiling is one its input supplied.
 
-    Still ``FAIL``, and correctly so: renaming the field to
-    :data:`DECLARED_CEILING_FIELD` stops a reader mistaking the bound for a
-    measured one, but the run cannot set it and an injected overreaching ceiling
-    still comes back verbatim. Only deriving the bound would change this verdict.
+    The previous version of this docstring said "only deriving the bound would
+    change this verdict", and that is what happened. The bench now keys its
+    ceiling off the terminal --- which is itself derived from the graded
+    assessments --- and records the input's own ``claim_ceiling`` as a digest
+    rather than reproducing its text. An injected overreaching ceiling therefore
+    cannot come back, because nothing echoes it.
+
+    The measurement is unchanged: the same overreaching sentence is still
+    injected and the same field is still read. Only the bench moved.
     """
 
     panel = shipped_panel()

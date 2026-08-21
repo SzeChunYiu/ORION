@@ -87,12 +87,22 @@ def test_a_failing_case_outranks_a_missing_denominator():
     assert out['revocation_accuracy'] is None
     assert out['contract_accuracy']<1.0
     assert out['terminal']=='P8_P9_P10_ANTI_LAUNDERING_VIOLATED'
-def test_the_declared_ceiling_is_emitted_as_the_input_echo_it_is():
-    """It is still ``panel['claim_ceiling']``; what changed is that the field says so."""
+def test_the_declared_ceiling_is_derived_not_echoed():
+    """Repaired 2026-08-21. This test used to assert the echo.
+
+    Its old body checked that an injected sentence came back verbatim under
+    ``declared_claim_ceiling_from_input``, and that the note admitted the bound
+    was 'not one it earned'. Both were accurate, and pinning them made a
+    laundering channel a fixture. The ceiling is now keyed off the terminal, and
+    the input's own bound survives only as a digest.
+    """
     mod=_bench()
     panel=json.loads(PANEL.read_text())
-    out=mod.run(dict(panel,claim_ceiling='This suite establishes real method validity'))
-    assert 'claim_ceiling' not in out
-    assert out['declared_claim_ceiling_from_input']=='This suite establishes real method validity'
-    assert 'not one it earned' in out['declared_claim_ceiling_note']
+    injected='This suite establishes real method validity'
+    out=mod.run(dict(panel,claim_ceiling=injected))
+    assert out['claim_ceiling']!=injected
+    assert injected not in json.dumps(out)
+    assert '15 cases' in out['claim_ceiling']
+    assert out['input_claim_ceiling_digest'].startswith('sha256:')
+    assert 'derived from the graded assessments' in out['claim_ceiling_note'].lower()
     assert out['terminal']=='P8_P9_P10_ANTI_LAUNDERING_CLEAR'

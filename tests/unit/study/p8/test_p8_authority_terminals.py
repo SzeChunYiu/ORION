@@ -22,7 +22,6 @@ import pytest
 
 from orion.programme.records import Outcome
 from orion.programme.terminal_responsiveness import (
-    SelfIssuedAuthority,
     require_earned,
     require_responsive,
 )
@@ -61,7 +60,13 @@ def test_the_terminal_is_no_longer_a_literal_in_the_emitting_source():
     assert "'claim_ceiling':panel['claim_ceiling']" not in source
     assert "'terminal':terminal" in source
     assert "assess_guard" in source and "worst_outcome" in source
-    assert f"'{p8.DECLARED_CEILING_FIELD}':panel['claim_ceiling']" in source
+    # Until 2026-08-21 this asserted the ceiling *was* the panel echo, pinning the
+    # laundering channel as intended behaviour. The bench now keys the ceiling off
+    # the terminal and records the input's bound as a digest, so the assertion is
+    # inverted: the echo must be gone and the derivation must be present.
+    assert "'claim_ceiling':panel['claim_ceiling']" not in source
+    assert "'claim_ceiling':CEILINGS[terminal]" in source
+    assert "'input_claim_ceiling_digest':d(panel.get('claim_ceiling'" in source
 
 
 def test_the_terminal_moves_on_every_registered_withholding_case():
@@ -136,28 +141,36 @@ def test_overrides_do_not_leak_out_of_the_emitter():
     assert p8.bench_emitter(p8.BenchInput(panel=p8.shipped_panel())) == p8.shipped_summary()
 
 
-def test_the_declared_ceiling_is_still_whatever_the_panel_says_it_is():
-    """Unrepaired on purpose, and now emitted under a field name that admits it.
+def test_the_declared_ceiling_is_derived_and_no_longer_echoes_its_input():
+    """Repaired 2026-08-21. This test previously pinned the defect.
 
-    The value is still ``panel['claim_ceiling']``, so an injected ceiling the
-    suite has no right to still comes back verbatim and the bound still fails.
-    What the rename subtracts is the reader's inference that the run set it.
+    Its old name was ``..._is_still_whatever_the_panel_says_it_is`` and it
+    asserted that an injected ceiling the suite has no right to comes back
+    verbatim, that the bound is subject-controlled, and that it fails. All three
+    were true, and asserting them made the laundering channel a fixture.
+
+    The bench now keys its ceiling off the terminal --- itself derived from the
+    graded assessments --- so no state of the input can widen it, and the input's
+    own bound survives only as a digest. The overreaching sentence is still
+    injected by the same measurement; it simply no longer comes back.
     """
 
     bound = p8.bench_declared_ceiling()
     receipt = p8.bench_emitter(p8.BenchInput(panel=p8.shipped_panel()))
 
-    assert bound.field == p8.DECLARED_CEILING_FIELD == "declared_claim_ceiling_from_input"
-    assert bound.emitted == p8.OVERREACHING_CEILING
-    assert bound.subject_controlled
-    assert bound.outcome is Outcome.FAIL
-    with pytest.raises(SelfIssuedAuthority, match="chose its own ceiling"):
-        require_earned(bound)
+    assert bound.field == p8.DECLARED_CEILING_FIELD == "claim_ceiling"
+    assert bound.emitted != p8.OVERREACHING_CEILING
+    assert not bound.subject_controlled
+    assert bound.outcome is Outcome.PASS
+    require_earned(bound)
 
-    assert "claim_ceiling" not in receipt
-    assert receipt[p8.DECLARED_CEILING_FIELD] == p8.shipped_panel()["claim_ceiling"]
-    assert "not one it earned" in receipt["declared_claim_ceiling_note"]
-
+    # The derived ceiling names the panel it is bounded to and refuses the four
+    # things the injected sentence asserted.
+    assert "15 cases" in receipt["claim_ceiling"]
+    assert "not evidence of method validity" in receipt["claim_ceiling"]
+    # The input's bound is retained as provenance, not reproduced as a claim.
+    assert receipt["input_claim_ceiling_digest"].startswith("sha256:")
+    assert p8.OVERREACHING_CEILING not in json.dumps(receipt)
 
 def test_the_frozen_gold_is_the_graded_tables_transcribed():
     divergence = p8.panel_gold_divergence()
@@ -220,11 +233,15 @@ def test_the_two_x4_violation_counters_are_zero_for_any_rule():
 
 
 def test_the_audit_still_blocks_and_reports_every_registered_receipt():
-    """Before 2026-08-21 the responsiveness leg reported one distinct verdict and blocked.
+    """Two legs repaired now, and the audit still blocks on the rest.
 
-    It now passes. The audit still blocks --- on the input-supplied ceiling, on a
-    declared gold that is the graded tables transcribed, and on the inert donor
-    axis --- so the repair moved one leg and added nothing.
+    The responsiveness leg was repaired first; the input-supplied ceiling second,
+    by deriving the bound from the terminal instead of echoing the panel. What
+    still blocks is a declared gold that is the graded tables transcribed --- it
+    departs from them at 0 of 15 points --- and the inert donor axis, where
+    239,616 sibling pairs differing only in donor family change no verdict.
+
+    Non-compensatory, so two passing legs do not offset two failing ones.
     """
 
     report = audit_p8_authority_receipts()
@@ -236,7 +253,7 @@ def test_the_audit_still_blocks_and_reports_every_registered_receipt():
         "P8_P9_P10_ANTI_LAUNDERING_VIOLATED",
     ]
     assert payload["responsiveness"]["assessment"]["outcome"] == "PASS"
-    assert payload["ceiling"]["subject_controlled"] is True
+    assert payload["ceiling"]["subject_controlled"] is False
     assert payload["gold_outcome"] == "FAIL"
     assert payload["donor_axis"]["inert"] is True
     assert main(["--json"]) == 3
