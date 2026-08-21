@@ -5,11 +5,12 @@ from pathlib import Path
 from orion.programme.superiority_terminals import FUTURE_PAPER_DIRECTORIES
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
+PAPER_IDS = ("P11", "P12", "P13", "P14")
 
 
 def test_transitioned_papers_have_paired_markdown_and_latex_chapters() -> None:
-    for paper_id, directory in FUTURE_PAPER_DIRECTORIES.items():
-        root = REPO_ROOT / directory
+    for paper_id in PAPER_IDS:
+        root = REPO_ROOT / FUTURE_PAPER_DIRECTORIES[paper_id]
         readme = (root / "README.md").read_text(encoding="utf-8")
         if "NO_PROTECTED_RESULT" in readme:
             continue
