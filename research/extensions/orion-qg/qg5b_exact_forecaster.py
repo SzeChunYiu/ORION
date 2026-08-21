@@ -286,8 +286,7 @@ def _clear_instance_caches() -> None:
     _bprime_block_cache.clear()
 
 
-def evaluate(target_pairs, n: int, c_dp: int, where,
-             want_dxx_witness_always: bool = False):
+def evaluate(target_pairs, n: int, c_dp: int, where):
     """All QG-5b per-instance quantities + inline hard assertions."""
     tp = tuple((tuple(a), tuple(b)) for a, b in target_pairs)
     fc = qg5.forecast(tp, n)  # C_R6L, C_Dplus, f_B, regime, P1 -- verbatim QG-5
