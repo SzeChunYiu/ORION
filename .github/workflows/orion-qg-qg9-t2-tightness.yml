@@ -49,11 +49,13 @@ jobs:
             development/orion-qg-regime-geometry/run_qg9_t2_dual_harness.py
       - name: Execute stage1, cap1 referee, generic ORION, native ORION-Q
         run: |
+          set -o pipefail
           mkdir -p artifacts
           python development/orion-qg-regime-geometry/run_qg9_t2_dual_harness.py \
             | tee artifacts/orion-qg-qg9-t2-dual-summary.json
       - name: Deterministic stage1 and referee replay
         run: |
+          set -euo pipefail
           python research/extensions/orion-qg/qg9_t2_stage1_candidates.py \
             --output artifacts/orion-qg-qg9-t2-stage1-replay.json \
             > artifacts/orion-qg-qg9-t2-stage1-replay.log
