@@ -217,30 +217,32 @@ promotion `HC-SUP-POST-HOC-FREEZE` exists to refuse.
   gate already passes; the successor `.tex` is a manuscript and is listed as a
   predecessor precisely so it cannot be counted.
 
-## Paper identity: P9 and P10 each carry two directories
+## Paper identity — resolved 2026-08-21
 
-Found while auditing which artifacts the ledger should cite. `papers/candidates/`
-holds two `paper-09-*` and two `paper-10-*` directories; P1–P8 have exactly one
-each.
+When this ledger was first written, `papers/` held two `paper-09-*` and two
+`paper-10-*` directories where P1–P8 held one each. That is now resolved, and the
+resolution is worth recording because the first diagnosis was wrong.
 
-Neither extra directory is a stale duplicate to delete. Both self-declare as merged
-predecessors, and both are cited by live tests and by other papers — removing either
-would delete evidence and red the suite. `papers/PAPER_ALIASES.md` deleted the P1–P5
-retirements only because they "contained no independent manuscript content", and that
-test fails here.
+They were never second versions of P9 and P10. They were a **benchmark package**
+and a **benchmark corpus** wearing paper numbers — different *layers* of the same
+research stack, not competing *lineages*. The live P9 manuscript does not cite
+`executable-research-core` at all.
 
-What was actually stale was the *index*: `papers/candidates/README.md` still listed
-both retired titles as the current P9 and P10 candidates, with "no issue yet" against
-each, when #662 and #663 exist. `PAPER_ALIASES.md` — the repository's "single place
-for historical ORION paper-directory aliases" — covered only P1–P5, so nothing
-recorded the succession and a reader had to open each README to learn which directory
-carried the identity.
+Both were already routed elsewhere by dated terminal decisions — into P8 and
+P4/P8 respectively — so neither was available for renumbering into P11–P14 either:
+re-absorbing them would contradict a recorded terminal and move them away from the
+papers that own their subjects. Both now carry the `paper-xx-` prefix, which
+vacates the number without deleting content that live tests and other papers cite.
+See `VACATED_PAPER_NUMBERS` and `papers/PAPER_ALIASES.md`.
 
-Both files are now corrected, and `PAPER_DIRECTORIES` in
-`src/orion/programme/superiority_terminals.py` is the machine-readable form.
-`HC-SUP-STALE-PAPER-IDENTITY` fails on any paper-numbered directory that is neither a
-registered active identity nor a recorded predecessor, so a third directory cannot
-appear under a number without someone saying which one is which.
+`papers/` now holds exactly one directory per paper, `paper-01` through
+`paper-15`, plus `orion-learning-machine/` (the shared P9/P10 lane, not a paper,
+recorded in `SHARED_LANES`) and the two vacated candidates.
+
+Three checks hold that shape: `HC-SUP-STALE-PAPER-IDENTITY` on any paper-numbered
+directory nobody registered, `HC-SUP-SPLIT-PAPER-IDENTITY` on one identity holding
+content in two locations, and `validate_registry` on a directory registered to two
+papers.
 
 ## Boundary
 

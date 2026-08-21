@@ -18,18 +18,30 @@ The active `papers/` tree contains those five flagship paper directories, public
 
 ## Candidate paper packages
 
-The candidate paper packages live directly under `papers/`:
+The candidate paper packages live directly under `papers/`, **one directory per paper**:
 
-- `paper-06-formal-epistemic-structures-and-mechanics/`
-- `paper-07-epistemic-navigation-open-worlds/`
-- `paper-08-epistemic-authority-autonomous-science/`
-- `paper-xx-executable-research-core/`
-- `paper-09-structured-epistemic-learning/`
-- `paper-xx-content-bound-math-evaluation/`
-- `paper-10-structured-problem-solving/`
-- `orion-learning-machine/` (shared P9/P10 lane)
+| Identity | Directory | Issue |
+|---|---|---|
+| ORION-P6 | `paper-06-formal-epistemic-structures-and-mechanics/` | #654 |
+| ORION-P7 | `paper-07-epistemic-navigation-open-worlds/` | #655 |
+| ORION-P8 | `paper-08-epistemic-authority-autonomous-science/` | #656 |
+| ORION-P9 | `paper-09-structured-epistemic-learning/` | #662 |
+| ORION-P10 | `paper-10-structured-problem-solving/` | #663 |
+| ORION-P11 | `paper-11-state-as-computation/` | #471 |
+| ORION-P12 | `paper-12-adaptive-state-reasoning/` | #665 |
+| ORION-P13 | `paper-13-responsibility-carrying-state/` | #666 |
+| ORION-P14 | `paper-14-orion-rse/` | #669 |
+| ORION-P15 | `paper-15-orion-research-harness/` | none yet |
 
-This placement is a directory layout, not a publication identity: these packages remain **candidates** governed by the programme rules in `papers/candidates/README.md`, and nothing about the move changes the five-flagship identity rule above. The shared cross-paper apparatus (checkers, review/adjudication records, submission gate, q-lane candidates) remains under `papers/candidates/`.
+Three further directories under `papers/` are **not paper identities**:
+
+- `orion-learning-machine/` — the shared P9/P10 lane: framework, experiments and committed results that the two vacated candidates below cite. Authority `LOCAL_REPRODUCIBLE_CORE_ONLY`. Recorded in `SHARED_LANES`.
+- `paper-xx-executable-research-core/` — was P9; terminal `MERGED INTO P8/PROGRAMME`, no standalone manuscript.
+- `paper-xx-content-bound-math-evaluation/` — was P10; terminal `TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME`.
+
+The `paper-xx-` prefix vacates the number while keeping the record that each was a paper candidate. Neither is deleted: both hold results that live tests and other papers cite. See `PAPER_ALIASES.md` and `VACATED_PAPER_NUMBERS` in `src/orion/programme/superiority_terminals.py`.
+
+This placement is a directory layout, not a publication identity: these packages remain **candidates** governed by the programme rules in `papers/candidates/README.md`, and nothing about the move changes the five-flagship identity rule above. The shared cross-paper apparatus (checkers, review/adjudication records, submission gate) remains under `papers/candidates/`; the ORION-Q programme has its own top-level `Q-paper-NN-*` namespace.
 
 The former Shadow mechanics material is preserved as a **non-paper technical companion** at `research/technical-companions/mechanics-of-mechanics-v1/`. Its mechanic-cell/recursive-audit theory is owned by Paper I; its failure-learning and protected self-development theory is owned by Paper V. Discovery/stopping and authority interfaces remain owned by Papers II and IV respectively.
 
