@@ -20,6 +20,7 @@ This ledger supersedes the scientific claim ceiling of the historical V2 manuscr
 | P4.V3.9 | An ideal typed donor product given the same scientific coordinates and promotion predicate ties P4-X exactly at 400/400. | IDEAL-PRODUCT EQUIVALENCE | Inherent expressivity or centralization advantage. |
 | P4.V3.10 | Provenance, claim verification, evaluator auditing/custody, contamination defense, abstention, assurance cases and generic authorization remain donor-owned components. | NOVELTY BOUNDARY | P4 invented those mechanisms. |
 | P4.V3.11 | Current deployed/verifier/provider generality remains `CANNOT_CHECK`. | CLAIM CEILING | Verifier-agnostic or universal scientific-authority superiority. |
+| P4.V3.12 | Discovery/failure episodes, morphology/atlas records, structural-assimilation receipts, bounded atom studies, thought experiments, concept candidates and regime-transition witnesses remain proposal/evidence objects with no self-promotion authority. The zero-error ORION-JUMP tie to the verified representation-regime parent is strongest-parent subsumption, not authorization for a distinct representation-invention claim; the #454 MDA structural receipt remains `CANNOT_CHECK`. | MERGED SUCCESSOR GOVERNANCE / NEGATIVE OWNERSHIP BOUNDARY | Any claim that a successful proposal, stable atlas, mapping witness, internal Jump pipeline or receipt can authorize its own scientific standing. |
 
 ## Allowed headline
 
@@ -33,7 +34,8 @@ This ledger supersedes the scientific claim ceiling of the historical V2 manuscr
 - “P4 demonstrates general abstention superiority.”
 - “P4 beats the original ProvenAI / ProvenanceGuard / FIRE / other external systems.”
 - “P4-X establishes live verifier/provider or open-ended research-agent superiority.”
+- “A stable discovery/failure atlas, successful Jump pipeline, structural receipt or mapping witness can self-authorize scientific promotion.”
 
 ## PDF boundary
 
-PDF/package generation is deferred. Until a later render integrates the V3 source specification, pre-V3 PDFs remain historical V2 artifacts and must not be described as containing P4-X.
+PDF/package generation is deferred. Until a later render integrates the V3 source specification and the merged discovery/failure authority interface, pre-writeback PDFs remain historical artifacts and must not be described as containing this successor boundary.

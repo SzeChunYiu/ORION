@@ -1,0 +1,173 @@
+name: paper-writeback-source-gate
+
+on:
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  source-gate:
+    if: github.head_ref == 'paper/jump-failure-writeback-final-20260819' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install repository and TeX toolchains
+        run: |
+          set -euo pipefail
+          python -m pip install -e '.[dev,candidates]'
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-pictures texlive-fonts-recommended lmodern poppler-utils librsvg2-bin
+
+      - name: Repair known P1 TeX issue references
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('papers/paper-01-recursive-epistemic-reconstruction/manuscript/tables/P1-T1_nearest_work.tex')
+          text = p.read_text()
+          count = text.count('#489')
+          if count != 2:
+              raise SystemExit(f'expected exactly two unescaped #489 references, found {count}')
+          p.write_text(text.replace('#489', r'\#489'))
+          PY
+
+      - name: Materialize P4 V3 science into TeX source
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('papers/paper-04-verified-scientific-discovery/manuscript/main.tex')
+          text = p.read_text()
+
+          abstract = r'''\begin{abstract}
+          Scientific verification can establish plausibility, citation support, provenance, checker success or action permission without by itself establishing that a scientific claim is authorized for promotion. Paper IV studies this distinction as a non-compensatory scientific-authority transition. The historical protected V2 campaign required exact evidence-content binding, source ownership, semantic support, checker independence and hostile discrimination, evidence influence, evaluator/holdout integrity, and contamination clearance. In that prospectively frozen 420-case campaign, ORION produced 0 false promotions among 360 hostile opportunities versus 180/360 for the strongest frozen mechanism proxy, while both systems promoted 60/60 clean positives. H2 therefore served only as a non-inferiority guard, and H3 was not supported because all panel systems saturated the eligible \cannot cases.
+
+          A separate post-saturation successor, P4-X, grants donor-complete provenance, claim verification, artifact/version binding, evaluator custody, epoch handling and generic authorization to the comparison product. Across 400 prospectively frozen exact scientific-promotion contracts, P4-X selected the correct promotion terminal on 400/400 cases, versus 250/400 for the strong donor-complete generic-authorization product and 50/400 for a compensatory product. The paired P4-X minus strong-product effect was $+0.375$ with a domain-stratified bootstrap 95\% CI $[0.3275,0.4225]$; P4-X made zero false promotions and preserved clean promotion at 1.0. An ideal typed product receiving the same scientific-promotion coordinates tied 400/400. Later discovery/failure/representation-transition studies reinforce the authority boundary without adding a P4 performance claim: stable atlases, structural receipts, atom studies and transition witnesses remain proposal/evidence objects, and a strongest-parent tie is subsumption rather than self-promotion. Deployed verifier/provider generality and universal scientific-authority superiority remain \cannot.
+          \end{abstract}'''
+
+          text, n = re.subn(
+              r'\\begin\{abstract\}.*?\\end\{abstract\}',
+              lambda _m: abstract,
+              text,
+              count=1,
+              flags=re.S,
+          )
+          if n != 1:
+              raise SystemExit(f'P4 abstract replacement count={n}')
+
+          if r'\input{discovery_failure_authority_interface}' not in text:
+              marker = 'Comparator names therefore use ``-style'' or describe a mechanism. They are protocol-matched reimplementations under one candidate-visible packet and resource accounting, not executions of the external authors\' software. Our empirical claim is about the frozen mechanisms in this benchmark, not about published systems in their native environments.\n'
+              if marker not in text:
+                  raise SystemExit('P4 discovery/failure insertion marker missing')
+              text = text.replace(marker, marker + '\n\\input{discovery_failure_authority_interface}\n', 1)
+
+          if r'\input{../submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex}' not in text:
+              marker = '\\FloatBarrier\n\\section{Threat model, limitations, and interpretation}'
+              replacement = '\\FloatBarrier\n\\input{../submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex}\n\n\\section{Threat model, limitations, and interpretation}'
+              if marker not in text:
+                  raise SystemExit('P4 P4-X insertion marker missing')
+              text = text.replace(marker, replacement, 1)
+
+          conclusion = r'''\section{Conclusion}
+          Paper IV now has two complementary evidence layers. Protected V2 established that a non-escalating content/provenance/checker/evaluator authority pipeline can eliminate false promotion across its frozen hostile battery without blanket refusal, while its H2/H3 secondary axes remain saturated and must not be overinterpreted. P4-X asks the harder post-saturation question after strong ordinary provenance, verification, custody and generic authorization mechanisms are already inside the comparator.
+
+          Across 400 prospectively frozen heterogeneous exact contracts, the explicit non-compensatory promotion relation was correct on all cases while a strong donor-complete product was correct on 250/400 and a compensatory product on 50/400; the ideal information-equivalent typed product tied exactly. The result supports neither component invention nor centralization superiority. It supports the bounded interface claim that local evidence quality, local verification success and generic permission do not by themselves authorize a scientific claim to acquire promoted standing; promotion requires target-bound discharge of the hard scientific-authority obligations.
+
+          The merged discovery/failure programme exercises the same rule outside P4-X: stable morphology and failure atlases remain evidence rather than protected authority, an incomplete structural receipt remains \cannot, and a zero-error Jump that ties the strongest verified representation-regime parent is subsumed rather than promoted as a new operator. Live verifier/provider generality, universal scientific-authority superiority and general abstention superiority remain separate questions.
+          '''
+          text, n = re.subn(
+              r'\\section\{Conclusion\}.*?(?=\\bibliographystyle\{tmlr\})',
+              lambda _m: conclusion + '\n',
+              text,
+              count=1,
+              flags=re.S,
+          )
+          if n != 1:
+              raise SystemExit(f'P4 conclusion replacement count={n}')
+
+          p.write_text(text)
+          PY
+
+      - name: Run claim and governance source checks
+        run: |
+          set -euo pipefail
+          pytest -q \
+            tests/unit/study/p1_causal/test_p1_x_protocol.py \
+            tests/unit/p2/test_p2_claim_ledger.py \
+            tests/unit/p5/test_revision_level_v3_protocol.py \
+            tests/unit/p5/test_revision_level_v3_preflight.py \
+            tests/unit/development/test_cannot_check_inventory.py
+
+      - name: Compile P1 source
+        run: |
+          set -euo pipefail
+          cd papers/paper-01-recursive-epistemic-reconstruction/manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
+
+      - name: Compile P2 source
+        run: |
+          set -euo pipefail
+          cd papers/paper-02-open-world-scientific-discovery/manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
+
+      - name: Compile P3 source
+        run: |
+          set -euo pipefail
+          cd papers/paper-03-global-knowledge-portrait/manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          ! grep -E 'LaTeX Warning: (Citation|Reference).*(undefined)|There were undefined references|undefined citations|multiply defined' main.log
+
+      - name: Compile P4 V3 TeX source through pinned TMLR style
+        run: |
+          set -euo pipefail
+          python papers/paper-04-verified-scientific-discovery/figures/generate_figures.py
+          F=papers/paper-04-verified-scientific-discovery/figures
+          for stem in p4_2_false_promotion p4_3_coverage_frontier p4_4_detection_by_attack p4_5_attribution_vs_support p4_6_cost_false_promotion; do
+            rsvg-convert -w 1440 -o "$F/$stem.png" "$F/$stem.svg"
+          done
+          BASE=https://raw.githubusercontent.com/JmlrOrg/tmlr-style-file/7bf90efe3a0debbba703c05c43f3ff7e4d4a2992
+          curl -fsSL "$BASE/tmlr.sty" -o papers/paper-04-verified-scientific-discovery/manuscript/tmlr.sty
+          curl -fsSL "$BASE/tmlr.bst" -o papers/paper-04-verified-scientific-discovery/manuscript/tmlr.bst
+          cd papers/paper-04-verified-scientific-discovery/manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
+          pdftotext main.pdf /tmp/p4-source.txt
+          grep -q '400/400' /tmp/p4-source.txt
+          grep -q '250/400' /tmp/p4-source.txt
+          grep -qi 'representation' /tmp/p4-source.txt
+
+      - name: Compile P5 source
+        run: |
+          set -euo pipefail
+          rsvg-convert -f pdf \
+            -o papers/paper-05-self-orion/figures/p5_1_governed_development_loop.pdf \
+            papers/paper-05-self-orion/figures/p5_1_governed_development_loop.svg
+          cd papers/paper-05-self-orion/manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
+
+      - name: Commit validated manuscript source and remove one-shot gate
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            papers/paper-01-recursive-epistemic-reconstruction/manuscript/tables/P1-T1_nearest_work.tex \
+            papers/paper-04-verified-scientific-discovery/manuscript/main.tex
+          git rm .github/workflows/paper-writeback-source-gate.yml
+          git commit -m 'papers: validate P1 source and materialize P4 V3 TeX'
+          git push origin HEAD:paper/jump-failure-writeback-final-20260819
