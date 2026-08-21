@@ -62,7 +62,7 @@ No target, B permutation or central choice is changed by the construction.
 2. **Core alignment:** 6 old ordered anti bases x 6 new bases x 64 target triples x 3 centrals = 6,912 rows. Verify frame contribution invariant at 10 and max objective increase exactly `+3`.
 3. **Canonical dual Tag:** all 6 ordered anti bases. Construct `(1,2)` labels and require both dual letters nonidentity.
 4. **Same-qubit rigidity:** 6x6 ordered basis pairs x 16 local Tag-letter pairs = 576 rows. Every row with equal nonzero distinct labels must have identical ordered bases.
-5. **Distinct-qubit Tag:** 6x6 basis pairs x 256 choices for S0 x 256 for S1 is the brute domain conceptually; the checker may factor the two independent Tag strings but must prove the exact minimum shared-Tag cost is 8 for every 36 basis pair.
+5. **Distinct-qubit Tag:** 6x6 ordered basis pairs x 16 two-qubit choices for S0 x 16 two-qubit choices for S1 = 9,216 rows. The checker must prove the exact minimum shared-Tag cost is 8 for every one of the 36 basis pairs.
 6. **Feasible Tag lower bound:** enumerate all ordered distinct nonzero labels and verify each of the two Tag syndrome rows is nonzero; therefore each global Tag string must be nonzero and Tag cost >=4.
 7. Bind parent support<=2 protected receipt/result and parent V5 bounded-negative receipt without using the negative panel as proof.
 
