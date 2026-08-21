@@ -39,7 +39,11 @@ jobs:
           bibtex main
           pdflatex -interaction=nonstopmode -halt-on-error main.tex
           pdflatex -interaction=nonstopmode -halt-on-error main.tex
-          ! grep -E 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log
+          if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log; then
+            echo 'P1 exact render contains undefined citations or references' >&2
+            grep -E 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log >&2
+            exit 1
+          fi
           mkdir -p "$GITHUB_WORKSPACE/out/p1/pages"
           cp main.pdf "$GITHUB_WORKSPACE/out/p1/manuscript.pdf"
           cp main.log "$GITHUB_WORKSPACE/out/p1/main.log"
@@ -53,7 +57,11 @@ jobs:
           cd subject/papers/paper-02-open-world-scientific-discovery/manuscript
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
           python ../scripts/check_manuscript_typography.py --log main.log
-          ! grep -E 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log
+          if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log; then
+            echo 'P2 exact render contains undefined citations or references' >&2
+            grep -E 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log >&2
+            exit 1
+          fi
           mkdir -p "$GITHUB_WORKSPACE/out/p2/pages"
           cp main.pdf "$GITHUB_WORKSPACE/out/p2/manuscript.pdf"
           cp main.log "$GITHUB_WORKSPACE/out/p2/main.log"
