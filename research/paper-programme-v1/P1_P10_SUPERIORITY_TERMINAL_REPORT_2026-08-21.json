@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "836a9f8f0fd698ba695f4aa0631fdf592ec6cb9f1f0a285749a38dcfcfeb2d22",
+  "content_digest": "04b80fb80896fca2302b487fc05d4a30e0e24deb78c12aab3956119c005d6164",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -189,6 +189,17 @@
       "work_queue": [
         {
           "actionability": "BLOCKED_ON_UPSTREAM",
+          "gate_id": "P1-U-T3",
+          "refs": [
+            "#723",
+            "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
+          ],
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "The three specification defects this terminal named are closed, and closing them made the result worse rather than better. Class noninferiority filed 0 of 48 episodes under their own gold class and now accumulates each episode under its own, as a conjunction with the original check retained bit-for-bit so the repair cannot loosen anything; the control stratum comes out at +0.364 over 22 episodes. The domain margin was never a margin -- 26 strata of one or two episodes, where clearing -0.10 needs at least ten -- and is renamed domain_zero_loss for the rule it arithmetically is, with the evaluator raising if the two predicates ever disagree; it holds under all four readings. The leakage guard was fail-open on a missing key and blind to pair role, and is now three-valued with a __bool__ that raises rather than picking a polarity.",
+          "unblock": "Nothing further is owed against T3 itself. What the repair exposed is a new and separate blocker, and it is the one that now holds P1-U-T1: the frozen core builds problem_id as p1-r6-root:{episode_id}, and episode ids are R5-<QUERY>-A/-C/-U, so the pair role crosses the provider boundary on all 48 episodes and both arms. Mint a role-free root problem id under its own pre-outcome freeze. It was not done here because it changes every runtime digest including the committed DR1 receipt, which is a re-run and not a repair. Recorded and deliberately not repaired: the same margin-over-tiny-strata shape exists in the R2, R3 and R4 evaluators, which T3 does not name."
+        },
+        {
+          "actionability": "BLOCKED_ON_CAMPAIGN",
           "gate_id": "P1-U-T1",
           "refs": [
             "#723",
@@ -198,20 +209,9 @@
             "packages/orion-research-harness/src/orion_research_harness/operator_coverage.py",
             "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
           ],
-          "responsibility": "MEASUREMENT_OR_EVALUATOR",
-          "statement": "The scored 2020 primary is not attributable, and the cause is now exact rather than observed: ORION_NATIVE_BASE returns UNRESOLVED on 48/48 because DIAGNOSE is unreachable by construction. The solver reaches DIAGNOSE once per material residual; DetectOperator emits none because every episode enters DETECT with candidate=1 searched=1 unsearched=0 claims=1 verified=1, which satisfies no residual branch. The ablation arm #723 added to attribute the gain never ran the mechanism it ablates.",
-          "unblock": "Repair the episode encoding so the world presents what the dossier contains — an unsearched route, an unverified claim, or a contradiction — then guard the arm with require_operators_exercised(outcome, {'DIAGNOSE'}, label='ORION_NATIVE_BASE') before scoring. The harness now reports operator_coverage on every run, so 'could run' and 'did run' are separable without extra work."
-        },
-        {
-          "actionability": "BLOCKED_ON_UPSTREAM",
-          "gate_id": "P1-U-T3",
-          "refs": [
-            "#723",
-            "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
-          ],
-          "responsibility": "MEASUREMENT_OR_EVALUATOR",
-          "statement": "The three specification defects this terminal named are closed, and closing them made the result worse rather than better. Class noninferiority filed 0 of 48 episodes under their own gold class and now accumulates each episode under its own, as a conjunction with the original check retained bit-for-bit so the repair cannot loosen anything; the control stratum comes out at +0.364 over 22 episodes. The domain margin was never a margin -- 26 strata of one or two episodes, where clearing -0.10 needs at least ten -- and is renamed domain_zero_loss for the rule it arithmetically is, with the evaluator raising if the two predicates ever disagree; it holds under all four readings. The leakage guard was fail-open on a missing key and blind to pair role, and is now three-valued with a __bool__ that raises rather than picking a polarity.",
-          "unblock": "Nothing further is owed against T3 itself. What the repair exposed is a new and separate blocker, and it is the one that now holds P1-U-T1: the frozen core builds problem_id as p1-r6-root:{episode_id}, and episode ids are R5-<QUERY>-A/-C/-U, so the pair role crosses the provider boundary on all 48 episodes and both arms. Mint a role-free root problem id under its own pre-outcome freeze. It was not done here because it changes every runtime digest including the committed DR1 receipt, which is a re-run and not a repair. Recorded and deliberately not repaired: the same margin-over-tiny-strata shape exists in the R2, R3 and R4 evaluators, which T3 does not name."
+          "responsibility": "IMPLEMENTATION_OR_ENVIRONMENT",
+          "statement": "The cause this blocker named is fixed and a new one has taken its place. ORION_NATIVE_BASE returned UNRESOLVED on 48/48 because DIAGNOSE was unreachable by construction, so the ablation arm never ran the mechanism it ablates; the repaired encoding reaches DIAGNOSE on 48/48 and the re-run campaign scores +0.4583 primary with 95% CI [0.3125, 0.6042] and +0.5208 on attribution. That number does not survive its own guards. Repairing the three guards P1-U-T3 named moved the terminal from PASS_PENDING_2019_REPLICATION to NOT_SUPPORTED: the frozen core builds problem_id as p1-r6-root:{episode_id}, episode ids are R5-<QUERY>-A/-C/-U, and so the pair role reaches the candidate-visible payload on 96 of 96 episode-arms, where -C perfectly predicts gold for all 22 controls.",
+          "unblock": "Mint a role-free root problem id under its own pre-outcome freeze and re-run. This is a re-run rather than a repair, because it changes every runtime digest including the committed DR1 receipt, and it must not be folded into a guard repair. Two things should travel with that freeze. The leak's severity is currently bounded by measurement -- anonymising the id changes 0 of 44 ARD choices under the frozen deterministic host -- and that bound is a property of this host, not of the design, so it does not carry to the changed semantic host this line of work already commits to. And the 2019 replication P1-U-T2 needs is blocked separately on the evaluator hardcoding source_year == 2020, so a single re-run cannot discharge both."
         },
         {
           "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -1237,23 +1237,6 @@
   "work_queue": [
     {
       "actionability": "BLOCKED_ON_UPSTREAM",
-      "gate_id": "P1-U-T1",
-      "issue": 649,
-      "paper_id": "P1",
-      "refs": [
-        "#723",
-        "#730",
-        "#732",
-        "research/failures/2026-08-unreachable-operator-inert-ablation/README.md",
-        "packages/orion-research-harness/src/orion_research_harness/operator_coverage.py",
-        "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
-      ],
-      "responsibility": "MEASUREMENT_OR_EVALUATOR",
-      "statement": "The scored 2020 primary is not attributable, and the cause is now exact rather than observed: ORION_NATIVE_BASE returns UNRESOLVED on 48/48 because DIAGNOSE is unreachable by construction. The solver reaches DIAGNOSE once per material residual; DetectOperator emits none because every episode enters DETECT with candidate=1 searched=1 unsearched=0 claims=1 verified=1, which satisfies no residual branch. The ablation arm #723 added to attribute the gain never ran the mechanism it ablates.",
-      "unblock": "Repair the episode encoding so the world presents what the dossier contains — an unsearched route, an unverified claim, or a contradiction — then guard the arm with require_operators_exercised(outcome, {'DIAGNOSE'}, label='ORION_NATIVE_BASE') before scoring. The harness now reports operator_coverage on every run, so 'could run' and 'did run' are separable without extra work."
-    },
-    {
-      "actionability": "BLOCKED_ON_UPSTREAM",
       "gate_id": "P1-U-T3",
       "issue": 649,
       "paper_id": "P1",
@@ -1318,6 +1301,23 @@
       "responsibility": "IMPLEMENTATION_OR_ENVIRONMENT",
       "statement": "The frozen Qwen2.5 0.5B/1.5B/3B same-information run on #618 is incomplete, and protected runtime evidence transport is currently under repair in PR #729.",
       "unblock": "Land the runtime evidence transport repair, then complete the frozen direct-LLM run and score it against every frozen hostile gate."
+    },
+    {
+      "actionability": "BLOCKED_ON_CAMPAIGN",
+      "gate_id": "P1-U-T1",
+      "issue": 649,
+      "paper_id": "P1",
+      "refs": [
+        "#723",
+        "#730",
+        "#732",
+        "research/failures/2026-08-unreachable-operator-inert-ablation/README.md",
+        "packages/orion-research-harness/src/orion_research_harness/operator_coverage.py",
+        "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
+      ],
+      "responsibility": "IMPLEMENTATION_OR_ENVIRONMENT",
+      "statement": "The cause this blocker named is fixed and a new one has taken its place. ORION_NATIVE_BASE returned UNRESOLVED on 48/48 because DIAGNOSE was unreachable by construction, so the ablation arm never ran the mechanism it ablates; the repaired encoding reaches DIAGNOSE on 48/48 and the re-run campaign scores +0.4583 primary with 95% CI [0.3125, 0.6042] and +0.5208 on attribution. That number does not survive its own guards. Repairing the three guards P1-U-T3 named moved the terminal from PASS_PENDING_2019_REPLICATION to NOT_SUPPORTED: the frozen core builds problem_id as p1-r6-root:{episode_id}, episode ids are R5-<QUERY>-A/-C/-U, and so the pair role reaches the candidate-visible payload on 96 of 96 episode-arms, where -C perfectly predicts gold for all 22 controls.",
+      "unblock": "Mint a role-free root problem id under its own pre-outcome freeze and re-run. This is a re-run rather than a repair, because it changes every runtime digest including the committed DR1 receipt, and it must not be folded into a guard repair. Two things should travel with that freeze. The leak's severity is currently bounded by measurement -- anonymising the id changes 0 of 44 ARD choices under the frozen deterministic host -- and that bound is a property of this host, not of the design, so it does not carry to the changed semantic host this line of work already commits to. And the 2019 replication P1-U-T2 needs is blocked separately on the evaluator hardcoding source_year == 2020, so a single re-run cannot discharge both."
     },
     {
       "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -1849,14 +1849,14 @@
     }
   ],
   "work_queue_by_actionability": {
-    "BLOCKED_ON_CAMPAIGN": 19,
+    "BLOCKED_ON_CAMPAIGN": 20,
     "BLOCKED_ON_NEW_ARENA": 14,
     "BLOCKED_ON_PROOF": 10,
-    "BLOCKED_ON_UPSTREAM": 6
+    "BLOCKED_ON_UPSTREAM": 5
   },
   "work_queue_by_responsibility": {
-    "IMPLEMENTATION_OR_ENVIRONMENT": 3,
-    "MEASUREMENT_OR_EVALUATOR": 19,
+    "IMPLEMENTATION_OR_ENVIRONMENT": 4,
+    "MEASUREMENT_OR_EVALUATOR": 18,
     "OBJECTIVE_OR_MODEL_CLASS": 8,
     "REPRESENTATION_OR_INTERFACE": 1,
     "SEARCH_OR_EVIDENCE": 18

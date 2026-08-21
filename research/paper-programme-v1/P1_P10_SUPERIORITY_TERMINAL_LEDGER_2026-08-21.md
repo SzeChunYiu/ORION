@@ -141,13 +141,13 @@ All 49 blocked terminals are classified. The queue, nearest first:
 
 | Actionability | Terminals | Meaning |
 | --- | --- | --- |
-| `BLOCKED_ON_UPSTREAM` | 6 | another lane's in-flight work, nameable by PR |
-| `BLOCKED_ON_CAMPAIGN` | 19 | arena and comparator exist; no protected run scored |
+| `BLOCKED_ON_UPSTREAM` | 5 | another lane's in-flight work, nameable by PR |
+| `BLOCKED_ON_CAMPAIGN` | 20 | arena and comparator exist; no protected run scored |
 | `BLOCKED_ON_NEW_ARENA` | 14 | the evaluation object itself does not exist yet |
 | `BLOCKED_ON_PROOF` | 10 | needs a mechanized theorem from primitive semantics |
 
-By responsibility class: `MEASUREMENT_OR_EVALUATOR` 19, `SEARCH_OR_EVIDENCE` 18,
-`OBJECTIVE_OR_MODEL_CLASS` 8, `IMPLEMENTATION_OR_ENVIRONMENT` 3,
+By responsibility class: `MEASUREMENT_OR_EVALUATOR` 18, `SEARCH_OR_EVIDENCE` 18,
+`OBJECTIVE_OR_MODEL_CLASS` 8, `IMPLEMENTATION_OR_ENVIRONMENT` 4,
 `REPRESENTATION_OR_INTERFACE` 1.
 
 These counts are pinned against the generated report by
