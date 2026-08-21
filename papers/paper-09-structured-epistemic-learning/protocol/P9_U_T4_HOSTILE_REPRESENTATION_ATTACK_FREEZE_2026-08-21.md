@@ -267,3 +267,34 @@ verdict:
    moved, no arm is dropped, and no variant of an attack that the claim survives is searched for.
 4. No existing P9 result, receipt, protocol or evidence artifact is modified. Only new files are
    added.
+
+---
+
+## Appendix A — post-run disclosure (added after the run; §§1–10 are unchanged)
+
+This appendix exists so that one divergence between §8's wording and the runner is on the record
+rather than only in the code. It adds disclosure and changes no threshold, no arm, no verdict
+string and no parameter in the hashed block.
+
+**§8 says** the `FP-2`/`FP-3` denominator is "protected instances whose feature dict changed under
+the transform". **The runner is stricter**: when the transform also changed the arm's *training*
+input, it counts **every** protected case as an opportunity, because the fitted model itself then
+differs and a case whose own features are unchanged can still be answered differently. The
+`opportunity_definition` carried in each `GuardExercise` states which of the two readings applied.
+
+**It changes nothing in this run.** Measured per arm, the two readings coincide everywhere:
+
+| arm | train features changed | protected feature dicts changed | opportunities under either reading |
+|---|---|---|---|
+| `TYPED_SERIALIZED_BAG` | yes | 128 | 128 |
+| `SERIALIZED_INDEXED` | yes | 128 | 128 |
+| the other six arms | no | 0 | 0 |
+
+No component's outcome depends on which reading is used.
+
+**One observation the freeze did not anticipate, recorded here and not acted on.**
+`SERIALIZED_INDEXED` was expected to be untouched by the orbit. It is not: the per-instance index is
+assigned by sorted atom order, and a bijective rename permutes that order, so all 128 of its
+protected feature dicts change. That makes its `PASS` a measured one over a denominator of 128
+rather than a structural invariance — a stronger result than the freeze expected, obtained without
+changing anything. No threshold was moved and no arm was redefined in response to it.

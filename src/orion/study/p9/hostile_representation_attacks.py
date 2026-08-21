@@ -982,10 +982,10 @@ class AttackComponent:
     def __post_init__(self) -> None:
         if self.succeeded and self.outcome is not Outcome.FAIL:
             raise ValueError(
-                f"{self.component_id}: a successful attack is a FAIL for the gate it attacks"
+                f"{self.component_id}: a successful attack is a FAIL for the gate it attacks, "
+                f"not {self.outcome.value}; that substitution is how an attack that landed gets "
+                "recorded as one that was refuted"
             )
-        if self.outcome is Outcome.PASS and self.succeeded:
-            raise ValueError(f"{self.component_id}: PASS cannot carry a successful attack")
 
     def as_json(self) -> dict[str, Any]:
         return {
@@ -1260,6 +1260,20 @@ CONTRASTS: tuple[tuple[str, str], ...] = (
 )
 
 
+def eligible_contrasts(contrasts: Mapping[str, ContrastMargin]) -> tuple[str, ...]:
+    """The contrasts an attack can be run against at all.
+
+    A contrast whose comparator answered every protected case with one label was
+    never measured, so there is no effect for a hostile alternative to explain
+    and none for it to be refuted by. Admitting such a contrast would let an
+    attack be recorded as "failed" against a label prior.
+    """
+
+    return tuple(
+        label for label, margin in contrasts.items() if margin.outcome is Outcome.PASS
+    )
+
+
 def measure_contrasts(arms: Mapping[str, ArmRun]) -> dict[str, ContrastMargin]:
     treated = arms[ARM_TYPED].response()
     return {
@@ -1337,7 +1351,7 @@ def run_campaign(repo_root: Path) -> dict[str, Any]:
     base = runs[DATASET_BASE]
     contrasts = measure_contrasts(base)
     payload["contrasts"] = {label: margin.as_json() for label, margin in contrasts.items()}
-    eligible = [label for label, margin in contrasts.items() if margin.outcome is Outcome.PASS]
+    eligible = list(eligible_contrasts(contrasts))
     payload["contrast_eligibility"] = {
         "eligible_for_attack": eligible,
         "not_eligible": {
@@ -1523,6 +1537,7 @@ __all__ = [
     "build_orbit_map",
     "check_preconditions",
     "decode_typed_serialization",
+    "eligible_contrasts",
     "equal_length_component",
     "equal_length_mutated_value",
     "frozen_digest",

@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "ac496192b755e3985d58439c62ff1ef6d44248b1e916b31ad4cf149b0a76eca6",
+  "content_digest": "e103f4485f5bb6e068989fc6edb06b316faf7f5443f22d43664f96084d787d17",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -1085,6 +1085,16 @@
           "artifact_ref": "papers/paper-09-structured-epistemic-learning/P9_SCIENTIFIC_CLOSURE_RECEIPT_V1.md",
           "grade": "BOUNDED_PROTECTED",
           "terminal": "P9_BOUNDED_STRUCTURAL_LEARNING_SUPPORTED"
+        },
+        {
+          "artifact_ref": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json",
+          "grade": "CANNOT_CHECK",
+          "terminal": "T4_ATTACK_SUCCEEDED"
+        },
+        {
+          "artifact_ref": "papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_FRONTIER_GRID_STATUS_2026-08-21.json",
+          "grade": "ABSENT",
+          "terminal": "T3_GRID_DECLARED_NO_CELL_EXECUTED"
         }
       ],
       "strongest_grade": "BOUNDED_PROTECTED",
@@ -1120,8 +1130,8 @@
             "#662"
           ],
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
-          "statement": "The critical scale S*(k,q) and critical inference budget C*(k,q) grid is not prospectively defined, so a crossing could not be shown to be on-grid rather than fitted.",
-          "unblock": "Freeze the relational-complexity x representation x model-scale x inference-budget grid before outcomes, and preserve any null cell rather than fitting an exponent post hoc."
+          "statement": "The grid is now prospectively defined and it is empty. 1344 cells over k, representation family, model, inference budget and domain, read at three thresholds, with S* and C* defined as the first declared ladder point reaching q and RIGHT_CENSORED otherwise -- no interpolation, extrapolation or fitted exponent anywhere in the definition. Zero cells carry an outcome, so the denominator is 0 of 1344 and the status is CANNOT_CHECK. A crossing cannot be detected because nothing has been measured, which is now a stated denominator rather than an absent grid.",
+          "unblock": "Execute cells. The ladder needs real model scales, which this environment cannot provide -- and the freeze explicitly refuses a surrogate, because a classical-learner capacity ladder is not a model-scale ladder and substituting one would answer a different question. Any cell left unexecuted keeps the whole grid at CANNOT_CHECK by construction; a fully executed grid with no evaluable crossing test is also CANNOT_CHECK, not a pass."
         },
         {
           "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -1130,8 +1140,8 @@
             "#662"
           ],
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
-          "statement": "The representation-length and format-prior attacks are named as hostile alternatives but have not been run.",
-          "unblock": "Run equal-token/length controls, semantic-orbit controls, symbol and order reminting, and same-information round-trip validation as gates rather than as robustness appendices."
+          "statement": "The representation-length and format-prior attacks have now been run, and one of them succeeds. Length does not explain the typed arm; it explains most of the untyped comparator, which drops 0.906 to 0.609 under an equal-token control while typed holds 1.0. Format prior does succeed: TYPED_SERIALIZED_BAG moves 0.75 to 0.50 under a bijection on the value alphabet that preserves every gold label, so the published typed-minus-serialized margin measures which symbols were drawn rather than the information the representation carries. The surviving margin is the one the existing failure record already identified, TYPED_RELATIONAL minus UNTYPED_PAIR at +0.09375, whose both arms are orbit-invariant.",
+          "unblock": "The attacks now exist as runnable gates with stated denominators, so what is owed is not instrumentation. Two things. Withdraw or re-scope the typed-minus-serialized sentence in the manuscript, since its margin is alphabet-dependent. And run both attacks against the result they were written for -- the frozen Qwen2.5 successor run of #618, which has no outcome here and cannot be reached: this execution was against D1 v1.2, the only representation contrast P9 currently publishes, and that scope is stated in the artifact."
         },
         {
           "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -1543,8 +1553,8 @@
         "#662"
       ],
       "responsibility": "MEASUREMENT_OR_EVALUATOR",
-      "statement": "The critical scale S*(k,q) and critical inference budget C*(k,q) grid is not prospectively defined, so a crossing could not be shown to be on-grid rather than fitted.",
-      "unblock": "Freeze the relational-complexity x representation x model-scale x inference-budget grid before outcomes, and preserve any null cell rather than fitting an exponent post hoc."
+      "statement": "The grid is now prospectively defined and it is empty. 1344 cells over k, representation family, model, inference budget and domain, read at three thresholds, with S* and C* defined as the first declared ladder point reaching q and RIGHT_CENSORED otherwise -- no interpolation, extrapolation or fitted exponent anywhere in the definition. Zero cells carry an outcome, so the denominator is 0 of 1344 and the status is CANNOT_CHECK. A crossing cannot be detected because nothing has been measured, which is now a stated denominator rather than an absent grid.",
+      "unblock": "Execute cells. The ladder needs real model scales, which this environment cannot provide -- and the freeze explicitly refuses a surrogate, because a classical-learner capacity ladder is not a model-scale ladder and substituting one would answer a different question. Any cell left unexecuted keeps the whole grid at CANNOT_CHECK by construction; a fully executed grid with no evaluable crossing test is also CANNOT_CHECK, not a pass."
     },
     {
       "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -1555,8 +1565,8 @@
         "#662"
       ],
       "responsibility": "MEASUREMENT_OR_EVALUATOR",
-      "statement": "The representation-length and format-prior attacks are named as hostile alternatives but have not been run.",
-      "unblock": "Run equal-token/length controls, semantic-orbit controls, symbol and order reminting, and same-information round-trip validation as gates rather than as robustness appendices."
+      "statement": "The representation-length and format-prior attacks have now been run, and one of them succeeds. Length does not explain the typed arm; it explains most of the untyped comparator, which drops 0.906 to 0.609 under an equal-token control while typed holds 1.0. Format prior does succeed: TYPED_SERIALIZED_BAG moves 0.75 to 0.50 under a bijection on the value alphabet that preserves every gold label, so the published typed-minus-serialized margin measures which symbols were drawn rather than the information the representation carries. The surviving margin is the one the existing failure record already identified, TYPED_RELATIONAL minus UNTYPED_PAIR at +0.09375, whose both arms are orbit-invariant.",
+      "unblock": "The attacks now exist as runnable gates with stated denominators, so what is owed is not instrumentation. Two things. Withdraw or re-scope the typed-minus-serialized sentence in the manuscript, since its margin is alphabet-dependent. And run both attacks against the result they were written for -- the frozen Qwen2.5 successor run of #618, which has no outcome here and cannot be reached: this execution was against D1 v1.2, the only representation contrast P9 currently publishes, and that scope is stated in the artifact."
     },
     {
       "actionability": "BLOCKED_ON_CAMPAIGN",

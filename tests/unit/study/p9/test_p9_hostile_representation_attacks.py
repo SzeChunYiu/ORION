@@ -264,13 +264,14 @@ def test_the_typed_arm_still_scores_one_on_the_frozen_protected_split(datasets):
 _GOLD = ("A",) * 4 + ("B",) * 4
 
 
-def test_a_component_cannot_report_a_successful_attack_as_anything_but_fail():
+@pytest.mark.parametrize("outcome", [Outcome.PASS, Outcome.CANNOT_CHECK])
+def test_a_component_cannot_report_a_successful_attack_as_anything_but_fail(outcome):
     with pytest.raises(ValueError):
         attacks.AttackComponent(
             component_id="X",
             hypothesis="H_LEN",
             statement="s",
-            outcome=Outcome.PASS,
+            outcome=outcome,
             succeeded=True,
             denominator="8",
             detail="d",
@@ -302,6 +303,43 @@ def test_length_sufficiency_holds_when_length_falls_short():
     )
     assert component.succeeded is False
     assert component.outcome is Outcome.PASS
+
+
+def test_length_sufficiency_is_decided_at_one_case_not_at_a_wider_tolerance():
+    gold = ("A",) * 4 + ("B",) * 4
+    typed = _arm(attacks.ARM_TYPED, gold, gold)
+    near = _arm(attacks.ARM_LENGTH_ONLY, ("A",) * 5 + ("B",) * 3, gold)
+    component = attacks.sufficiency_component(
+        component_id="RL-1",
+        challenger=near,
+        typed=typed,
+        challenger_label=attacks.ARM_LENGTH_ONLY,
+    )
+    assert near.accuracy == 0.875
+    assert component.numbers["tolerance"] == attacks.CASE_RESOLUTION
+    assert component.succeeded is False
+    assert component.outcome is Outcome.PASS
+
+
+def test_a_contrast_whose_comparator_was_constant_is_not_eligible_to_be_attacked():
+    gold = ("A",) * 4 + ("B",) * 4
+    typed = _arm(attacks.ARM_TYPED, gold, gold)
+    constant = _arm(attacks.ARM_TRANSCRIPT, ("A",) * 8, gold)
+    responsive = _arm(attacks.ARM_UNTYPED, ("A", "A", "A", "B", "B", "B", "B", "A"), gold)
+    contrasts = {
+        "typed_minus_transcript": attacks.measure_contrast_margin(
+            "typed_minus_transcript",
+            treated=typed.response(),
+            comparator=constant.response(),
+        ),
+        "typed_minus_untyped": attacks.measure_contrast_margin(
+            "typed_minus_untyped",
+            treated=typed.response(),
+            comparator=responsive.response(),
+        ),
+    }
+    assert contrasts["typed_minus_transcript"].outcome is Outcome.CANNOT_CHECK
+    assert attacks.eligible_contrasts(contrasts) == ("typed_minus_untyped",)
 
 
 def test_the_equal_length_control_reports_all_three_of_its_values():

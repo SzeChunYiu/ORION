@@ -183,3 +183,81 @@ shipped `+0.50` headline sits on a symbol orbit whose other points are different
 - [ ] Tests for both instruments, mutation-checked.
 - [ ] Receipt MD under evidence/.
 - [ ] ruff.
+
+---
+
+## Milestone 3 (tests + mutation checks) — 2026-08-21
+
+- `tests/unit/study/p9/test_p9_frontier_grid.py` (17 tests)
+- `tests/unit/study/p9/test_p9_hostile_representation_attacks.py` (32 tests)
+- `ruff check` clean on all four touched files. 62 pass in 15 s; the wider P9 set
+  (`tests/test_p9_d1.py tests/unit/study/p9 tests/test_p9_m1.py tests/test_p9_m1_v12.py
+  tests/test_p9_identifiability.py`) is 91 pass in 89 s.
+- The runner replays byte-identically twice (105 s per run), including after the two refactors
+  below.
+
+### Mutation checks — each mutation applied, test run RED, mutation reverted, test run GREEN
+
+| # | mutation | test(s) driven red |
+|---|---|---|
+| M1 | equal-length control appends instead of replacing | `..._replaces_rather_than_appends`, `..._every_construction_precondition_holds...` |
+| M2 | `LENGTH_ONLY` smuggles in a cross-side equality feature | `..._carries_no_value_identity_and_no_comparison` |
+| M3 | `AttackComponent` lets a successful attack report a non-FAIL outcome | `..._cannot_report_a_successful_attack_as_anything_but_fail` |
+| M4 | round-trip decoder stops restoring dependency integers | `..._really_does_carry_the_typed_information`, preconditions |
+| M5 | orbit remint truncated to one hex digit (non-injective) | `..._every_construction_precondition_holds...` |
+| M6 | invariance component counts every case as an opportunity when nothing changed | `..._no_opportunity_is_cannot_check_not_a_pass`, `..._order_remint_component_is_cannot_check...` |
+| M7 | frontier extrapolates to the top of the ladder instead of censoring | `..._right_censored_rather_than_extrapolated`, `..._claimed_crossing_over_a_censored_frontier_fails` |
+| M8 | grid with no evaluable crossing test reported as PASS | `..._no_uncensored_frontier_is_cannot_check_not_pass` |
+| M9 | missing cell silently ignored | `..._blocks_rather_than_being_dropped` |
+| M10 | `NOT_RUN` cell allowed to carry a quality | `..._may_not_carry_a_quality` |
+| M11 | orbit salt drifts from the frozen record | twin digest test + artifact test |
+| M12 | length-sufficiency tolerance widened from 1/128 to 0.25 | `..._decided_at_one_case_not_at_a_wider_tolerance` |
+| M13 | constant reformatted arm scored instead of refused | `..._cannot_check_not_a_refuted_attack` |
+| M14 | contrast with a constant comparator admitted as attackable | `..._not_eligible_to_be_attacked` |
+
+Two mutations initially came back GREEN and each exposed a real weakness, both fixed:
+
+- **M3 first pass** stayed green because `AttackComponent.__post_init__` carried a second guard
+  (`outcome is PASS and succeeded`) strictly subsumed by the first. It was dead code. Removed, and
+  the test parametrised over `PASS` and `CANNOT_CHECK`.
+- **M12 / M14 first pass** stayed green because the only tests covering those code paths read the
+  already-written result artifact rather than exercising the code. An artifact-pinning test pins the
+  artifact, not the runner. Added two live tests, and extracted `eligible_contrasts()` out of
+  `run_campaign` so the eligibility rule is directly testable. Neither change alters
+  `FROZEN_PARAMETERS`; the digest is unchanged and the artifact replays byte-identically.
+
+## Milestone 4 — receipt
+
+`papers/paper-09-structured-epistemic-learning/evidence/P9_U_T3_T4_HOSTILE_ATTACK_RECEIPT_2026-08-21.md`
+
+## Not done, deliberately
+
+- The programme ledger (`research/paper-programme-v1/P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1.json`)
+  is **not** edited. Neither gate is discharged and the blockers stand; T4's blocker sentence
+  ("have not been run") is now false, but rewriting a frozen ledger is not this lane's to do.
+- No `research/failures/` record is created. The FP-2 result looks like a distinct class —
+  *an arm whose protected answers are a function of the symbol alphabet rather than of the
+  semantics*, i.e. a score that lives on a semantic orbit — and it is a candidate for whoever owns
+  that ledger. It is adjacent to but not the same as
+  `2026-08-unresponsive-comparator-prior-valued-margin` (that record is about a comparator that gave
+  one answer; this is about a comparator whose answer changes when nothing but the spelling does).
+
+## Milestone 5 — post-run disclosure appended to the T4 freeze (Appendix A)
+
+§8 of the freeze defined the FP-2/FP-3 denominator as "protected instances whose feature dict
+changed". The runner is stricter: when the *training* input also changed, every protected case counts
+as an opportunity, because the fitted model itself differs. Measured, the two readings coincide on
+every arm in this run (128/128 for the two serialized arms, 0/0 for the other six), so no outcome
+depends on it. Disclosed in Appendix A rather than silently, and §§1-10 are untouched.
+
+Also recorded there: `SERIALIZED_INDEXED` is *not* structurally orbit-invariant — the per-instance
+index follows sorted atom order and a rename permutes it, so all 128 of its protected feature dicts
+change and its `PASS` is a measured one over a denominator of 128, not a free one. That is stronger
+than the freeze expected and nothing was retuned to get it.
+
+## Final state
+
+| gate | verdict | outcome | denominator | disposition |
+|---|---|---|---|---|
+| P9-U-T4 | `T4_ATTACK_SUCCEEDED` | FAIL (exit 3) | 21 components, 7 with a live denominator, 14 CANNOT_CHECK | still BLOCKED |
+| P9-U-T3 | `T3_GRID_DECLARED_NO_CELL_EXECUTED` | CANNOT_CHECK (exit 4) | 0 of 1344 cells | still BLOCKED |
