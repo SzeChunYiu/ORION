@@ -1,0 +1,542 @@
+from __future__ import annotations
+
+import dataclasses
+import hashlib
+from dataclasses import dataclass, replace
+from enum import Enum
+from typing import Any, Mapping
+from uuid import uuid4
+
+from orion import Problem
+from orion.core.problem_tree import ResidualAtom
+from orion.core.residuals import Residual
+from orion.core.solution import SolutionStatus
+from orion.core.state import OrionState
+from orion.engine.residual_recursion import (
+    ResidualRecursionPlanner,
+    ResidualRecursionPolicy,
+)
+from orion.engine.solver import OrionSolver, SolverConfig
+from orion.providers.experience import InMemoryExperienceStore
+from orion.providers.reasoner.llm import LLMResearchReasoner
+from orion.runtime import OrionRuntime, RuntimeResult
+
+from .broker import (
+    BrokerLLMProvider,
+    BrokerRetrievalProvider,
+    BrokerVerificationProvider,
+    CapabilityBroker,
+    HostCapabilityFailed,
+    HostCapabilityRequired,
+)
+from .protocol import utc_now
+from .workspace import ResearchWorkspace
+
+
+def _jsonable(value: Any) -> Any:
+    if dataclasses.is_dataclass(value):
+        return {
+            field.name: _jsonable(getattr(value, field.name))
+            for field in dataclasses.fields(value)
+        }
+    if isinstance(value, Enum):
+        return value.value
+    if isinstance(value, Mapping):
+        return {str(key): _jsonable(item) for key, item in value.items()}
+    if isinstance(value, (tuple, list)):
+        return [_jsonable(item) for item in value]
+    if isinstance(value, (str, int, float, bool)) or value is None:
+        return value
+    return repr(value)
+
+
+def _sha256_label(label: str) -> str:
+    return hashlib.sha256(label.encode("utf-8")).hexdigest()
+
+
+def _semantic_state_hash(state: OrionState) -> str:
+    """Ignore epoch/iteration bookkeeping when deciding whether research progressed."""
+
+    payload = repr(
+        (
+            state.knowledge,
+            state.search_universe,
+            state.method,
+            state.closure_certificates,
+            state.metadata,
+        )
+    )
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def _without_problem_local_residuals(state: OrionState) -> OrionState:
+    """Carry knowledge forward while preventing a parent's residual object from leaking into a child."""
+
+    if not state.knowledge.residuals:
+        return state
+    knowledge = replace(state.knowledge, residuals=())
+    return replace(state, knowledge=knowledge)
+
+
+def _material_residuals(result: RuntimeResult) -> tuple[Residual, ...]:
+    return tuple(item for item in result.final_state.knowledge.residuals if item.material)
+
+
+def _find_material_residual(
+    result: RuntimeResult, residual_id: str
+) -> Residual | None:
+    for item in result.final_state.knowledge.residuals:
+        if item.residual_id == residual_id and item.material:
+            return item
+    return None
+
+
+@dataclass(frozen=True)
+class RecursiveRunLimits:
+    max_depth: int = 5
+    max_nodes: int = 32
+    max_children_per_residual: int = 12
+
+    def __post_init__(self) -> None:
+        for name, value in (
+            ("max_depth", self.max_depth),
+            ("max_nodes", self.max_nodes),
+            ("max_children_per_residual", self.max_children_per_residual),
+        ):
+            if isinstance(value, bool) or not isinstance(value, int):
+                raise TypeError(f"{name} must be an integer")
+            if value < 1:
+                raise ValueError(f"{name} must be positive")
+
+
+class _RecursiveSession:
+    def __init__(
+        self,
+        *,
+        runtime: OrionRuntime,
+        planner: ResidualRecursionPlanner,
+        limits: RecursiveRunLimits,
+        evaluation_epoch_id: str,
+    ) -> None:
+        self.runtime = runtime
+        self.planner = planner
+        self.limits = limits
+        self.evaluation_epoch_id = evaluation_epoch_id
+        self.nodes: list[dict[str, Any]] = []
+        self.plans: list[dict[str, Any]] = []
+        self.pruned_atoms: list[dict[str, str]] = []
+        self.stop_records: list[dict[str, str]] = []
+        self.visited: set[tuple[str, str]] = set()
+        self.max_depth_reached = 0
+
+    def _consume_node(self) -> None:
+        if len(self.nodes) >= self.limits.max_nodes:
+            raise RuntimeError("RECURSIVE_NODE_BUDGET_EXHAUSTED")
+
+    def _record_runtime(
+        self,
+        *,
+        problem: Problem,
+        result: RuntimeResult,
+        role: str,
+        before_hash: str,
+    ) -> None:
+        after_hash = _semantic_state_hash(result.final_state)
+        self.nodes.append(
+            {
+                "node_index": len(self.nodes),
+                "role": role,
+                "problem": _jsonable(problem),
+                "semantic_state_before": before_hash,
+                "semantic_state_after": after_hash,
+                "semantic_progress": before_hash != after_hash,
+                "solution": _jsonable(result.solution),
+                "trace": _jsonable(result.trace),
+                "material_residual_ids": [
+                    item.residual_id for item in _material_residuals(result)
+                ],
+                "experience_episode_id": result.experience_episode_id,
+                "mechanic_experience_episode_ids": list(
+                    result.mechanic_experience_episode_ids
+                ),
+            }
+        )
+        self.max_depth_reached = max(self.max_depth_reached, problem.recursion_depth)
+
+    def _single_solve(
+        self,
+        *,
+        problem: Problem,
+        state: OrionState,
+        role: str,
+    ) -> RuntimeResult:
+        self._consume_node()
+        before_hash = _semantic_state_hash(state)
+        visit = (problem.problem_id, before_hash)
+        if visit in self.visited:
+            raise RuntimeError("RECURSIVE_NO_PROGRESS_CYCLE")
+        self.visited.add(visit)
+        result = self.runtime.solve(
+            problem,
+            initial_state=state,
+            variation_signature=(
+                "recursive-residual-solver-v1",
+                f"depth:{problem.recursion_depth}",
+                f"role:{role}",
+            ),
+            evaluation_epoch_id=self.evaluation_epoch_id,
+            split_id="recursive-research",
+        )
+        self._record_runtime(
+            problem=problem,
+            result=result,
+            role=role,
+            before_hash=before_hash,
+        )
+        return result
+
+    def _record_plan(
+        self,
+        *,
+        problem: Problem,
+        residual: Residual,
+        atoms: tuple[ResidualAtom, ...],
+        decomposition,
+    ) -> None:
+        self.plans.append(
+            {
+                "plan_index": len(self.plans),
+                "parent_problem_id": problem.problem_id,
+                "parent_residual_id": residual.residual_id,
+                "recursion_depth": problem.recursion_depth,
+                "rationale": decomposition.rationale,
+                "stop_reason": (
+                    None
+                    if decomposition.stop_reason is None
+                    else decomposition.stop_reason.value
+                ),
+                "ordered_atoms": [
+                    {
+                        "atom_id": atom.atom_id,
+                        "question": atom.question,
+                        "responsibility": atom.responsibility.value,
+                        "discriminator_id": atom.discriminator.discriminator_id,
+                        "discriminator_kind": atom.discriminator.kind.value,
+                        "expected_cost_units": atom.discriminator.expected_cost_units,
+                        "success_criterion": atom.discriminator.success_criterion,
+                    }
+                    for atom in atoms
+                ],
+                "grants_scientific_authority": False,
+                "grants_novelty_authority": False,
+                "grants_promotion_authority": False,
+            }
+        )
+
+    def solve_problem(
+        self,
+        *,
+        problem: Problem,
+        state: OrionState,
+        role: str,
+    ) -> tuple[RuntimeResult, OrionState]:
+        result = self._single_solve(problem=problem, state=state, role=role)
+        working_state = _without_problem_local_residuals(result.final_state)
+        residuals = _material_residuals(result)
+        if not residuals:
+            return result, working_state
+
+        if problem.recursion_depth >= self.limits.max_depth:
+            for residual in residuals:
+                self.stop_records.append(
+                    {
+                        "problem_id": problem.problem_id,
+                        "residual_id": residual.residual_id,
+                        "stop_reason": "CANNOT_CHECK_RESOURCE_BOUND",
+                    }
+                )
+            return result, working_state
+
+        for residual in residuals:
+            current_residual = residual
+            while current_residual is not None:
+                decomposition = self.planner.decompose(
+                    residual=current_residual,
+                    problem=problem,
+                    state=result.final_state,
+                )
+                ordered_atoms = self.planner.order_atoms(decomposition.atoms)
+                self._record_plan(
+                    problem=problem,
+                    residual=current_residual,
+                    atoms=ordered_atoms,
+                    decomposition=decomposition,
+                )
+                if not ordered_atoms:
+                    assert decomposition.stop_reason is not None
+                    self.stop_records.append(
+                        {
+                            "problem_id": problem.problem_id,
+                            "residual_id": current_residual.residual_id,
+                            "stop_reason": decomposition.stop_reason.value,
+                        }
+                    )
+                    break
+
+                replanned = False
+                for atom_index, atom in enumerate(ordered_atoms):
+                    if len(self.nodes) >= self.limits.max_nodes:
+                        self.stop_records.append(
+                            {
+                                "problem_id": problem.problem_id,
+                                "residual_id": current_residual.residual_id,
+                                "stop_reason": "CANNOT_CHECK_RESOURCE_BOUND",
+                            }
+                        )
+                        return result, working_state
+                    child = atom.as_problem(
+                        parent_problem=problem,
+                        parent_residual=current_residual,
+                        recursion_depth=problem.recursion_depth + 1,
+                    )
+                    before_child_hash = _semantic_state_hash(working_state)
+                    child_result, child_state = self.solve_problem(
+                        problem=child,
+                        state=working_state,
+                        role=f"child:{atom.discriminator.kind.value}",
+                    )
+                    after_child_hash = _semantic_state_hash(child_state)
+                    working_state = child_state
+
+                    # A child that cannot change semantic research state cannot
+                    # justify repeating the parent. Move to the next discriminator.
+                    if before_child_hash == after_child_hash:
+                        continue
+
+                    if len(self.nodes) >= self.limits.max_nodes:
+                        self.stop_records.append(
+                            {
+                                "problem_id": problem.problem_id,
+                                "residual_id": current_residual.residual_id,
+                                "stop_reason": "CANNOT_CHECK_RESOURCE_BOUND",
+                            }
+                        )
+                        return result, working_state
+
+                    refreshed = self._single_solve(
+                        problem=problem,
+                        state=working_state,
+                        role="parent-refresh",
+                    )
+                    working_state = _without_problem_local_residuals(
+                        refreshed.final_state
+                    )
+                    refreshed_residual = _find_material_residual(
+                        refreshed, current_residual.residual_id
+                    )
+                    result = refreshed
+                    if refreshed_residual is None:
+                        for remaining in ordered_atoms[atom_index + 1 :]:
+                            self.pruned_atoms.append(
+                                {
+                                    "parent_problem_id": problem.problem_id,
+                                    "parent_residual_id": current_residual.residual_id,
+                                    "atom_id": remaining.atom_id,
+                                    "reason": "PARENT_RESIDUAL_CLOSED_AFTER_CHEAPER_DISCRIMINATOR",
+                                }
+                            )
+                        current_residual = None
+                        replanned = True
+                        break
+
+                    # New evidence may change the decomposition. Replan instead
+                    # of blindly running stale siblings.
+                    current_residual = refreshed_residual
+                    replanned = True
+                    break
+
+                if current_residual is None:
+                    break
+                if replanned:
+                    continue
+
+                # Every child was attempted without semantic progress. Preserve
+                # the residual as open rather than looping or rounding up.
+                self.stop_records.append(
+                    {
+                        "problem_id": problem.problem_id,
+                        "residual_id": current_residual.residual_id,
+                        "stop_reason": "NO_CHILD_PRODUCED_SEMANTIC_PROGRESS",
+                    }
+                )
+                break
+
+        return result, working_state
+
+
+def run_problem_recursive(
+    workspace: ResearchWorkspace,
+    problem_data: Mapping[str, Any],
+    *,
+    max_iterations: int = 3,
+    require_verified_answer: bool = True,
+    limits: RecursiveRunLimits | None = None,
+) -> dict[str, Any]:
+    """Run canonical ORION with recursive residual-as-problem control.
+
+    Host capability interruptions remain replayable: the workspace's immutable
+    request/result receipts cause a repeated invocation to replay completed work
+    and stop at the first still-missing capability.
+    """
+
+    limits = limits or RecursiveRunLimits()
+    broker = CapabilityBroker(workspace)
+    llm = BrokerLLMProvider(broker)
+    reasoner = LLMResearchReasoner(llm)
+    experiences = InMemoryExperienceStore()
+    solver = OrionSolver(
+        reasoner=reasoner,
+        retrieval=BrokerRetrievalProvider(broker),
+        verification=BrokerVerificationProvider(broker),
+        config=SolverConfig(
+            max_iterations=int(max_iterations),
+            require_verified_answer=bool(require_verified_answer),
+        ),
+    )
+    runtime = OrionRuntime(
+        solver,
+        experience_store=experiences,
+        producer_process_lineage_hash=_sha256_label(
+            "orion-research-harness-recursive-v1"
+        ),
+        evaluator_artifact_hash=_sha256_label(
+            "external-host-capability-receipts-recursive-v1"
+        ),
+    )
+    planner = ResidualRecursionPlanner(
+        reasoner,
+        policy=ResidualRecursionPolicy(
+            max_depth=limits.max_depth,
+            max_children_per_residual=limits.max_children_per_residual,
+        ),
+    )
+    session = _RecursiveSession(
+        runtime=runtime,
+        planner=planner,
+        limits=limits,
+        evaluation_epoch_id=f"harness-recursive:{workspace.session_id}",
+    )
+    problem = Problem(
+        problem_id=str(problem_data["problem_id"]),
+        question=str(problem_data["question"]),
+        scope=str(problem_data.get("scope", "")),
+        initial_domain_ids=tuple(
+            str(x) for x in problem_data.get("initial_domain_ids", ())
+        ),
+        success_criteria=tuple(
+            str(x) for x in problem_data.get("success_criteria", ())
+        ),
+    )
+    initial_state = solver.initial_state(problem)
+    try:
+        result, _working_state = session.solve_problem(
+            problem=problem,
+            state=initial_state,
+            role="root",
+        )
+    except HostCapabilityRequired as pending:
+        return {
+            "schema": "ORION.HarnessRecursiveSolveOutcome.v1",
+            "status": "PENDING_CAPABILITY",
+            "problem_id": problem.problem_id,
+            "request": pending.request.as_dict(),
+            "recursive_progress": {
+                "completed_nodes": len(session.nodes),
+                "completed_plans": len(session.plans),
+                "max_depth_reached": session.max_depth_reached,
+            },
+        }
+    except HostCapabilityFailed as failed:
+        return {
+            "schema": "ORION.HarnessRecursiveSolveOutcome.v1",
+            "status": "HOST_CAPABILITY_FAILED",
+            "problem_id": problem.problem_id,
+            "request": failed.request.as_dict(),
+            "result": failed.result.as_dict(),
+            "error": failed.detail,
+            "recursive_progress": {
+                "completed_nodes": len(session.nodes),
+                "completed_plans": len(session.plans),
+                "max_depth_reached": session.max_depth_reached,
+            },
+        }
+    except RuntimeError as exc:
+        if str(exc) not in {
+            "RECURSIVE_NODE_BUDGET_EXHAUSTED",
+            "RECURSIVE_NO_PROGRESS_CYCLE",
+        }:
+            raise
+        run_status = str(exc)
+        result = None
+    else:
+        run_status = "COMPLETE"
+
+    run_id = "recursive-run:" + uuid4().hex
+    record = {
+        "schema": "ORION.HarnessRecursiveRun.v1",
+        "run_id": run_id,
+        "session_id": workspace.session_id,
+        "created_at": utc_now(),
+        "problem": _jsonable(problem),
+        "limits": _jsonable(limits),
+        "status": run_status,
+        "nodes": session.nodes,
+        "decomposition_plans": session.plans,
+        "pruned_atoms": session.pruned_atoms,
+        "stop_records": session.stop_records,
+        "max_depth_reached": session.max_depth_reached,
+        "experience_episodes": [_jsonable(item) for item in experiences.episodes()],
+        "grants_scientific_authority": False,
+        "grants_novelty_authority": False,
+        "grants_promotion_authority": False,
+    }
+    if result is not None:
+        record["final_solution"] = _jsonable(result.solution)
+        record["final_state"] = _jsonable(result.final_state)
+    workspace.save_run(run_id, record)
+
+    if result is None:
+        return {
+            "schema": "ORION.HarnessRecursiveSolveOutcome.v1",
+            "status": "CANNOT_CHECK_RESOURCE_BOUND",
+            "problem_id": problem.problem_id,
+            "run_id": run_id,
+            "recursive_status": run_status,
+            "node_count": len(session.nodes),
+            "max_depth_reached": session.max_depth_reached,
+            "pruned_atom_count": len(session.pruned_atoms),
+        }
+
+    material = _material_residuals(result)
+    recursive_status = (
+        "RESIDUALS_OPEN"
+        if material
+        else "RESIDUAL_TREE_CLOSED"
+    )
+    return {
+        "schema": "ORION.HarnessRecursiveSolveOutcome.v1",
+        "status": "COMPLETE",
+        "problem_id": problem.problem_id,
+        "run_id": run_id,
+        "solution_status": result.solution.status.value,
+        "answer": result.solution.answer,
+        "evidence_ids": list(result.solution.evidence_ids),
+        "residual_ids": [item.residual_id for item in material],
+        "trace_id": result.trace.trace_id,
+        "recursive_status": recursive_status,
+        "node_count": len(session.nodes),
+        "plan_count": len(session.plans),
+        "max_depth_reached": session.max_depth_reached,
+        "pruned_atom_count": len(session.pruned_atoms),
+        "stop_records": session.stop_records,
+    }
