@@ -1,7 +1,7 @@
 # Dual-Instrument Research Control: Host-Capability Receipts, Typed Campaign Controllers, and a Controller–Host Agreement Benchmark
 
 **Manuscript V1 — 2026-08-21.** Candidate Paper Q3 per
-`papers/candidates/orion-q-recursive-recovery/PUBLICATION_PLAN.md`. Every factual
+`papers/Q-paper-02-recursive-recovery/PUBLICATION_PLAN.md`. Every factual
 statement in this manuscript is bound to a committed file in this repository; paths are
 cited inline. Claims are bounded by the accompanying `CLAIM_LEDGER.md`. Nothing in this
 paper grants scientific, novelty, promotion, or R6 authority.
@@ -427,7 +427,7 @@ not to weaken any contract post-hoc.
 AGREE. No agreement rate, no statistics, and no reliability claim for either instrument
 follow from it (`DUAL_HARNESS_AGREEMENT_BENCHMARK_V0_RESULTS.json`, `claim_boundary`). The
 publication plan gates submission on at least 2–3 further instances
-(`papers/candidates/orion-q-recursive-recovery/PUBLICATION_PLAN.md`, Paper Q3).
+(`papers/Q-paper-02-recursive-recovery/PUBLICATION_PLAN.md`, Paper Q3).
 
 **The Lane A host is an LLM session.** Lane A's independence from Lane B is architectural
 (different decision procedure, different failure modes), not total: the generic lane's
@@ -472,10 +472,10 @@ provenance/workflow-reproducibility systems, but couples provenance to **control
 deterministic request identity is what forces replay, immutability is what makes the
 record trustworthy, and the authority booleans make the record non-self-authorizing. The
 repository's own methodology paper (candidate Q2,
-`papers/candidates/orion-q-recursive-recovery/MANUSCRIPT_DRAFT_V1.md`) claims the
+`papers/Q-paper-02-recursive-recovery/MANUSCRIPT_DRAFT_V1.md`) claims the
 negative-recovery discipline; this paper claims only the instrument contract and the
 agreement-benchmark class, per the anti-overlap boundary fixed in
-`papers/candidates/orion-q-recursive-recovery/PUBLICATION_PLAN.md`. A fresh hostile
+`papers/Q-paper-02-recursive-recovery/PUBLICATION_PLAN.md`. A fresh hostile
 novelty search dated at submission is a standing gate for this paper (same plan,
 "Sequencing and shared obligations") and has not yet been run for Q3 specifically.
 
@@ -520,4 +520,4 @@ agreement; scientific, novelty, promotion, or R6 authority for any receipt discu
 `NOT_SELF_AUTHORIZING`); security properties beyond the documented process-safety scope;
 or a defect-free instrument — sections 6 (D2, D3) are open defects. The permitted claim
 set is enumerated row-by-row in
-`papers/candidates/paper-q3-dual-instrument/CLAIM_LEDGER.md`.
+`papers/Q-paper-03-dual-instrument/CLAIM_LEDGER.md`.

@@ -617,7 +617,7 @@ committed artifacts:
   before its outcome, each fixing gates, domains, seeds, tie-breaks and the
   honest outcome space including refutation.
 - **Receipt index**: the sha256-anchored provenance appendix at
-  `papers/candidates/orion-q-recursive-recovery/RECEIPT_INDEX.md` covers the
+  `papers/Q-paper-02-recursive-recovery/RECEIPT_INDEX.md` covers the
   chain through R6N (40 receipts); the R6O/R6P/R6Q rows are to be appended by the
   same generator at submission.
 
@@ -631,7 +631,7 @@ the receipts themselves; and cross-receipt bindings (R6P re-deriving R6O's
 critical set row-by-row, R6Q binding H1 to R6O's 240 recorded rows) make the
 chain mutually checking. Independent replay of all cited receipts was performed
 once this session per the publication plan
-(`papers/candidates/orion-q-recursive-recovery/PUBLICATION_PLAN.md`, Paper Q1
+(`papers/Q-paper-02-recursive-recovery/PUBLICATION_PLAN.md`, Paper Q1
 submission gates) and must be repeated at submission.
 
 ## 8. Claim boundary

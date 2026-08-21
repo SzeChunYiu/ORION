@@ -4,8 +4,8 @@ Manuscript V1 — 2026-08-21. Assembled on branch `claude/orion-harness-verifica
 Every number in this manuscript is traceable to a committed, deterministically replayable
 receipt file; every experimental design is traceable to a protocol document frozen before any
 outcome existed. Paper boundary fixed by
-`papers/candidates/orion-q-recursive-recovery/PUBLICATION_PLAN.md` (Paper Q4 section).
-Companion claim ledger: `papers/candidates/paper-q4-typed-state/CLAIM_LEDGER.md`.
+`papers/Q-paper-02-recursive-recovery/PUBLICATION_PLAN.md` (Paper Q4 section).
+Companion claim ledger: `papers/Q-paper-04-typed-state/CLAIM_LEDGER.md`.
 
 ## Abstract
 
@@ -460,4 +460,4 @@ migrations, or real adversaries; any LLM capability or incapability; any cryptog
 security; any lower bound or impossibility; any novelty beyond what the frozen hostile
 protocols themselves establish; any P10 or real-quantum authority. Per the frozen plan, this
 is a mechanism-isolation study, not a deployment claim
-(`papers/candidates/orion-q-recursive-recovery/PUBLICATION_PLAN.md`, Paper Q4).
+(`papers/Q-paper-02-recursive-recovery/PUBLICATION_PLAN.md`, Paper Q4).

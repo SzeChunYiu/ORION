@@ -1,6 +1,6 @@
 # Paper Q3 claim ledger V1
 
-**Manuscript:** `papers/candidates/paper-q3-dual-instrument/MANUSCRIPT_V1.md`
+**Manuscript:** `papers/Q-paper-03-dual-instrument/MANUSCRIPT_V1.md`
 **Branch:** `claude/orion-harness-verification-b17qdj`
 **Date:** 2026-08-21
 
@@ -33,7 +33,7 @@ novelty, promotion, or R6 authority.
 | Q3.19 | Deferred coordinate 4 is scored ALIGNED: both instruments' primary move was rewarded by R6Q's exact regime-membership predicate and Lane A's complementary move by R6P's support-two closure restoration; neither instrument selected the moves the outcomes did not reward. | RECEIPTED: `DUAL_HARNESS_AGREEMENT_BENCHMARK_V0_RESULTS.json` coordinate 4; `research/extensions/orion-q/MAX_R6P_*.json`, `MAX_R6Q_REGIME_PREDICATE_RESULTS.json` | Predictive-validity or forecasting-skill claims; ALIGNED is one deferred observation against the programme's own frozen gates, not ground truth. |
 | Q3.20 | Cost profile as recorded: Lane A consumed 13 host capability receipts (~10 min wall including host reasoning); Lane B one native cycle with a sub-second decision after manifest construction. | RECEIPTED: `DUAL_HARNESS_AGREEMENT_BENCHMARK_V0_RESULTS.json` coordinate 5 | Efficiency-superiority claims; manifest construction cost is excluded from Lane B's figure and said so. |
 | Q3.21 | The benchmark class measures inter-instrument epistemic agreement on live frontier questions with deferred receipt-bound scoring, a different quantity from task-success-vs-ground-truth agent benchmarks and from same-substrate consensus (self-consistency, LLM-as-judge, debate). | DEFINITIONAL: `DUAL_HARNESS_AGREEMENT_BENCHMARK_V0_PROTOCOL.md`; positioning per `PUBLICATION_PLAN.md` Paper Q3 | Novelty assertion at submission without the plan-mandated fresh hostile novelty search, which has not yet been run for Q3. |
-| Q3.22 | V0 is presented as a benchmark definition with a first measurement; submission is gated on 2–3 further question instances (and coordinate 4 is now scored, satisfying that gate). | PLAN: `papers/candidates/orion-q-recursive-recovery/PUBLICATION_PLAN.md` Paper Q3 submission gates | Presenting V0 as an evaluation study or the agreement series as existing. |
+| Q3.22 | V0 is presented as a benchmark definition with a first measurement; submission is gated on 2–3 further question instances (and coordinate 4 is now scored, satisfying that gate). | PLAN: `papers/Q-paper-02-recursive-recovery/PUBLICATION_PLAN.md` Paper Q3 submission gates | Presenting V0 as an evaluation study or the agreement series as existing. |
 
 ## Allowed headline
 
@@ -53,7 +53,7 @@ novelty, promotion, or R6 authority.
   construction and Lane A hosting are LLM/human-authored.)
 - "Instrument agreement confers scientific, novelty, or R6 authority on any result."
 - Any claim about the quantum-mechanical content of the R6 chain (owned by Papers Q1/Q2
-  per `papers/candidates/orion-q-recursive-recovery/PUBLICATION_PLAN.md`).
+  per `papers/Q-paper-02-recursive-recovery/PUBLICATION_PLAN.md`).
 
 ## Open obligations before submission
 
