@@ -91,8 +91,46 @@ BSECOND__NOT_R6`).
   an exchange lemma or a B‴). If both close, L5 inherits and
   `C_DP == min(C_D+, f_B′, f_B″)` becomes an all-n theorem.
 
+## QG-15 — THIRD FAMILY TRANSFERRED; BOUNDARY-IS-LOW-ORDER REFUTED AS A UNIVERSAL MOTIF
+
+`QG15_THIRD_FAMILY_RESULTS.json` (protocol frozen pre-outcome, sha256 `765dc86a…4b38b3f`;
+double-run byte-identical, result digest `04f19d33…f76ddc` — independently reproduced
+bit-identically by an orchestrator re-run; generic verifier — pure-primitive rebuild with
+deliberately different internals — ACCEPT 17/17; authority
+`ORION_QG15_THIRD_FAMILY_TEMPLATE_TRANSFERRED__STABPREP_CLIFFORD_SYNTHESIS_REGIME_
+GEOMETRY_ON_VERIFIED_DOMAINS__NOT_R6`). Family: StabPrep — stabilizer-state preparation
+under H/S/SDG (cost 1) + CNOT (cost 3), exact Dijkstra referee over the complete
+stabilizer-state graphs (6/60/1080/36,720 states at n=1..4), frozen greedy-echelon donor.
+
+- **All five template components instantiated** — the terminal is TEMPLATE_TRANSFERRED —
+  with two first-class refutations inside them: (1) regime map complete (donor-exact
+  region collapses 83% → 17.5% from n=1 to n=3); (2) four trade classes with serialized
+  minimal witnesses (ORDER/PIVOT/ROUTE/GLOBAL; the GLOBAL minimal witness is |+i⟩ at
+  n=1: donor 4 vs optimal 2); (3) NO_STRICT_SUBEXTENSION_CLOSES on the schedule axis
+  (639-instance irreducible global residue — unlike TARE's support-2 closure), but
+  uniform budget bounds h*(n)=n+1, c*(n)=n−1 (tight), s*(n)=2n, and a machine-checked
+  n=1 exchange/normal-form lemma; (4) **NO_CLEAN_PREDICATE** — the donor-exact boundary
+  is not expressible in the frozen positive-conjunction language (best form: 117/1080
+  errors), though P1/P2 are zero-false-positive certified sufficient conditions on every
+  panel; (5) **prospective forecast REFUTED** on the digest-stamped held-out n=4 panel
+  (regime 100/120, cost 67/120; stamp printed before any n=4 referee call, verifier
+  reconstructs it bit-exactly; 20 witnesses serialized).
+- **Cross-family verdict** (the field-defining evidence #740 asks a third instance for):
+  the trade-currency-from-characterizable-refutation motif transferred a third time;
+  **boundary-is-low-order FAILED for the first time** — TARE and SixLCU had exact
+  low-order predicates, StabPrep's boundary resists every frozen bounded form. The motif
+  is a property of those two families, not of the template. Successor questions: which
+  structural property separates predicate-admitting families from StabPrep (candidate:
+  the existence of an exact finite trade *currency* at a characterizable column vs
+  StabPrep's global schedule residue), and whether a negation-admitting predicate
+  language recovers exactness (registered as QG-15b, pre-outcome freeze required).
+
 ## Registered successor (requires its own pre-outcome freeze)
 
+- **QG-15b — predicate-language boundary.** Freeze an enlarged predicate language
+  (negations, bounded disjunctions) for the StabPrep donor-exact boundary and test
+  whether exactness is recoverable, or prove a lower bound on predicate complexity —
+  either localizes what "low-order boundary" actually requires of a family.
 - **QG-7c — the classification endgame.** Close L4b and L4c per the QG-7b Q3
   delimitation, turning the four-configuration trade basis into a provably exhaustive
   all-n classification theorem — or discover the configuration that extends it. This is
