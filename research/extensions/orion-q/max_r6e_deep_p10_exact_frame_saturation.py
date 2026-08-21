@@ -302,9 +302,26 @@ def main() -> dict[str, Any]:
         "schema": "ORIONQ.MAXR6E.DeepP10ExactFrameTable.v1",
         "subjects": tables,
     }
-    bundle_sha = digest(table_bundle)
+    serialized_bundle = canonical_json(table_bundle)
+    bundle_sha = hashlib.sha256(serialized_bundle.encode()).hexdigest()
+
+    # Verify the serialized object through an independent JSON parse rather than
+    # comparing a digest to the value just used to create it. When a table path
+    # is supplied (the CI path), also re-read and hash the persisted artifact.
+    roundtrip_bundle = json.loads(serialized_bundle)
+    roundtrip_digest_ok = digest(roundtrip_bundle) == bundle_sha
+    persisted_bundle = roundtrip_bundle
+    persisted_digest_ok = True
     if args.table_json is not None:
-        args.table_json.write_text(canonical_json(table_bundle) + "\n")
+        args.table_json.write_text(serialized_bundle + "\n")
+        persisted_bundle = json.loads(args.table_json.read_text())
+        persisted_digest_ok = digest(persisted_bundle) == bundle_sha
+
+    subject_table_digests_match = all(
+        digest(tables[name]) == summaries[name]["complete_table_sha256"]
+        and digest(persisted_bundle["subjects"][name]) == summaries[name]["complete_table_sha256"]
+        for name in ("H4", "N2")
+    )
 
     gates = {
         "exact_joint_hostile_pass": hostile["all_exact"],
@@ -319,7 +336,9 @@ def main() -> dict[str, Any]:
         "strict_witnesses_valid": all(
             summaries[name]["all_strict_witnesses_valid"] for name in ("H4", "N2")
         ),
-        "table_bundle_digest_recomputed": digest(table_bundle) == bundle_sha,
+        "serialized_table_bundle_roundtrip_digest_match": roundtrip_digest_ok,
+        "persisted_table_bundle_digest_match": persisted_digest_ok,
+        "subject_table_digests_match_summaries": subject_table_digests_match,
         "fresh_stretched_n2_unread": True,
     }
     if not all(gates.values()):
