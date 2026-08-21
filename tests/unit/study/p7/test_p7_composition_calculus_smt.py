@@ -409,3 +409,53 @@ class TestScope:
         text = str(report["bridge_match_is_no_longer_a_supplied_premise"])
         assert "no argument left to supply" in text
         assert "still come from an expression" in text
+
+
+class TestWhatTheShippedCompositionLoopCovers:
+    """The committed 25/25 is one configuration counted twenty-five times.
+
+    These pin the measurement, not the prose. If the shipped loop is ever
+    repaired to vary its legs, the first test fails and this framing must be
+    revisited -- which is the right way round.
+    """
+
+    def test_the_shipped_loop_reaches_two_of_eight_argument_triples(self) -> None:
+        report = calc.shipped_composition_coverage(REPO_ROOT)
+
+        assert report["argument_triples_possible"] == 8
+        assert report["argument_triples_reached"] == 2
+        assert report["reached"] == [(1, 1, 0), (1, 1, 1)]
+        assert len(report["unreached"]) == 6
+
+    def test_no_shipped_composition_ever_has_a_leg_that_fails_to_carry(self) -> None:
+        """Both legs are `carries(True, full)`, so the failing case is never built."""
+
+        report = calc.shipped_composition_coverage(REPO_ROOT)
+        assert report["either_leg_ever_fails_to_carry"] is False
+
+    def test_the_full_space_contains_exactly_one_successful_composition(self) -> None:
+        """2,048 rows, one positive -- against 25 reported successes."""
+
+        report = calc.exhaustive_composition_enumeration(REPO_ROOT)
+
+        assert report.trials == 2048
+        assert report.disagreements == ()
+        assert report.agreed
+        assert report.positive_trials == 1
+        assert report.exercised_both_verdicts
+
+    def test_the_enumeration_would_notice_a_broken_compose(self) -> None:
+        """Pin the detector: a compose that ignores the bridge must disagree."""
+
+        model = calc.load_executable_model(REPO_ROOT)
+        original = model.compose
+        try:
+            model.compose = lambda c1, c2, bridge_match: c1 and c2
+            # Handed in explicitly: the first version of this test let the
+            # enumeration load its own instance and so measured an unsabotaged
+            # module, passing for the wrong reason.
+            broken = calc.exhaustive_composition_enumeration(REPO_ROOT, model=model)
+            assert broken.disagreements != ()
+            assert not broken.agreed
+        finally:
+            model.compose = original

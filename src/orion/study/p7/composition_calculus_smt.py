@@ -2245,6 +2245,18 @@ def build_report(
             "machine-checked; the induction schema is standard and is the single hand "
             "step in this development, corroborated by the expanded ladder"
         ),
+        "shipped_composition_coverage": shipped_composition_coverage(repo_root),
+        "exhaustive_composition_enumeration": (
+            exhaustive_composition_enumeration(repo_root).as_json()
+        ),
+        "what_the_finite_target_contains": (
+            "The committed loop evaluates compose at 2 of its 8 argument triples and never "
+            "constructs a composition in which a leg fails to carry. Over the full space of "
+            "closure-vector pairs and bridge values -- 2,048 rows -- exactly one composes "
+            "successfully. The shipped result reports 25 composition successes, which is "
+            "that single configuration counted once per donor pair by a loop whose donors "
+            "are unused."
+        ),
         "not_licensed": [
             "any claim that the committed 25 successes and 25 matched missing-bridge "
             "cases were more than they are; neither donor is read by that loop and both "
@@ -2331,3 +2343,133 @@ if __name__ == "__main__":  # pragma: no cover
     import sys
 
     raise SystemExit(main(sys.argv[1:]))
+
+
+# ---------------------------------------------------------------------------
+# What the shipped composition loop actually covers
+# ---------------------------------------------------------------------------
+
+#: ``compose`` takes three booleans, so its whole input space is eight triples.
+_COMPOSE_ARITY = 3
+
+
+def shipped_composition_coverage(repo_root: Any) -> dict[str, Any]:
+    """Instrument the committed runner and record which ``compose`` inputs it reaches.
+
+    The shipped composition check reads::
+
+        for d1 in DONORS:
+            for d2 in DONORS:
+                c1 = carries(True, full)
+                c2 = carries(True, full)
+                assert compose(c1, c2, True)
+                assert not compose(c1, c2, False)
+
+    Neither donor appears on the right-hand side of anything, and both legs are
+    the same loop-invariant expression. So the 25 composition successes and 25
+    bridge countermodels are two assertions repeated twenty-five times by a 5x5
+    loop whose variables are unused.
+
+    This measures that rather than asserting it: ``compose`` is wrapped, the
+    committed runner is executed, and the distinct argument triples it evaluates
+    are collected. A count of rows is not a count of facts, and the difference
+    between them is exactly the ratio reported here.
+    """
+
+    from itertools import product
+
+    model = load_executable_model(repo_root)
+    seen: set[tuple[bool, ...]] = set()
+    original = model.compose
+
+    def spy(c1: bool, c2: bool, bridge_match: bool) -> bool:
+        seen.add((c1, c2, bridge_match))
+        return original(c1, c2, bridge_match)
+
+    model.compose = spy
+    # The runner prints its result JSON; this is a measurement of its behaviour,
+    # not a re-run of it, so its output is swallowed rather than interleaved.
+    import contextlib
+    import io
+
+    try:
+        with contextlib.redirect_stdout(io.StringIO()):
+            model.main()
+    except SystemExit:  # pragma: no cover - the runner may exit on success
+        pass
+    finally:
+        model.compose = original
+
+    possible = [tuple(item) for item in product((False, True), repeat=_COMPOSE_ARITY)]
+    unreached = [item for item in possible if item not in seen]
+    legs_varied = len({(c1, c2) for c1, c2, _ in seen}) > 1
+
+    return {
+        "argument_triples_possible": len(possible),
+        "argument_triples_reached": len(seen),
+        "reached": sorted(tuple(int(v) for v in item) for item in seen),
+        "unreached": sorted(tuple(int(v) for v in item) for item in unreached),
+        "either_leg_ever_fails_to_carry": legs_varied,
+        "reading": (
+            "The committed loop evaluates compose at "
+            f"{len(seen)} of {len(possible)} argument triples. Both legs are held "
+            "constant, so no composition in which a leg fails to carry is evaluated "
+            "anywhere in the shipped result. The donor loop multiplies the row count "
+            "and contributes no argument."
+        ),
+    }
+
+
+def exhaustive_composition_enumeration(
+    repo_root: Any, *, model: Any | None = None
+) -> DifferentialReport:
+    """Evaluate composition over every closure-vector pair, not a constant one.
+
+    The committed check fixes both legs at ``carries(True, full)``. This varies
+    them: every pair of closure-coordinate vectors over the five registered
+    coordinates, against both values of the bridge, and compares the committed
+    ``compose`` to the composition rule the calculus proves --- a leg carries iff
+    its native validity holds and every coordinate holds, and a composite carries
+    iff both legs carry and the contracts match.
+
+    ``positive_trials`` counts the rows that actually compose successfully. The
+    shipped loop's positives are 25 of 25, which is what a corpus looks like when
+    the failing case is never constructed.
+    """
+
+    from itertools import product
+
+    # Injectable so a caller can hand in a module it has perturbed. Loading a
+    # fresh instance here unconditionally would make any mutation test silently
+    # measure a different object than the one it sabotaged -- which is how the
+    # first version of the accompanying test passed against a broken compose.
+    if model is None:
+        model = load_executable_model(repo_root)
+    coordinates = len(model.COORDS)
+    vectors = [tuple(item) for item in product((False, True), repeat=coordinates)]
+
+    disagreements: list[str] = []
+    trials = 0
+    positives = 0
+    for left in vectors:
+        for right in vectors:
+            for bridge in (False, True):
+                c1 = model.carries(True, left)
+                c2 = model.carries(True, right)
+                actual = model.compose(c1, c2, bridge)
+                expected = bool(all(left) and all(right) and bridge)
+                trials += 1
+                if actual:
+                    positives += 1
+                if actual != expected and len(disagreements) < 20:
+                    disagreements.append(
+                        f"left={left} right={right} bridge={bridge}: "
+                        f"compose={actual} specification={expected}"
+                    )
+
+    return DifferentialReport(
+        trials=trials,
+        agreements=trials - len(disagreements),
+        disagreements=tuple(disagreements),
+        positive_trials=positives,
+    )
