@@ -23,6 +23,7 @@ from .mechanics_bridge import (
     saturation_surface,
     special_surface_catalog,
 )
+from .recursive_runner import RecursiveRunLimits, run_problem_recursive
 from .runner import run_problem
 from .workspace import ResearchWorkspace
 
@@ -51,13 +52,21 @@ def _handoff_prompt(workspace: ResearchWorkspace) -> str:
         f"Session: {workspace.session_id}",
         f"Local process tools enabled: {workspace.allow_process_tools}",
         "",
-        "You are the external host worker for canonical ORION. Do not bypass ORION's verification, responsibility, authority, saturation, fibre, or negative-history rules.",
+        "You are the external host worker for canonical ORION. Do not bypass ORION's verification, responsibility, authority, saturation, fibre, recursive-residual, or negative-history rules.",
         "",
         "Mechanic discovery:",
-        "- `orion-harness mechanics-coverage` verifies the canonical 59-cell mechanics surface is discoverable.",
-        "- `orion-harness navigate '<concept>'` finds the owning mechanics/surfaces (for example fibre, atomization, saturation).",
+        "- `orion-harness mechanics-coverage` verifies the canonical mechanics surface is discoverable.",
+        "- `orion-harness navigate '<concept>'` finds the owning mechanics/surfaces (for example fibre, atomization, recursive residuals, saturation).",
         "- `orion-harness fibre <workspace> <mechanic-id>` compiles the canonical Self-ORION DevelopmentFibre working view.",
-        "- `orion-harness run-mechanics <workspace> <run-id>` exposes the immutable root mechanic receipts, including bounded saturation.",
+        "- `orion-harness run-mechanics <workspace> <run-id>` exposes immutable mechanic receipts, including bounded saturation.",
+        "",
+        "Recursive solve semantics:",
+        "- `orion-harness solve` treats each material residual as a child problem by default.",
+        "- Broad residuals are recursively decomposed into decision-separating atoms with one discriminator each.",
+        "- Cheap valid dominance/formal/exact/donor discriminators are scheduled before more expensive experiments.",
+        "- After child evidence changes semantic state, the parent is re-solved; stale siblings are pruned only if the parent residual actually closes.",
+        "- Depth/node exhaustion is CANNOT_CHECK_RESOURCE_BOUND, never saturation or scientific refutation.",
+        "- Use `--single-pass` only when intentionally requesting the legacy one-problem execution primitive.",
         "",
         "Workflow:",
         "1. Run `orion-harness pending <workspace>`.",
@@ -73,7 +82,7 @@ def _handoff_prompt(workspace: ResearchWorkspace) -> str:
         "- SHELL/PYTHON require explicit workspace opt-in and are not OS-sandboxed; use only when the host has accepted that risk.",
         "- GITHUB or other custom capabilities: use the corresponding host tool and return structured JSON.",
         "",
-        "Never fabricate a source, certificate, command result, mechanic result, fibre membership, atom disposition, or tool output. Preserve negative/CANNOT_CHECK results.",
+        "Never fabricate a source, certificate, command result, mechanic result, fibre membership, atom disposition, residual decomposition, or tool output. Preserve negative/CANNOT_CHECK results.",
         "",
         f"Pending requests: {len(pending)}",
     ]
@@ -111,6 +120,14 @@ def build_parser() -> argparse.ArgumentParser:
     solve.add_argument("problem_id")
     solve.add_argument("--max-iterations", type=int, default=3)
     solve.add_argument("--allow-provisional", action="store_true")
+    solve.add_argument(
+        "--single-pass",
+        action="store_true",
+        help="disable residual-as-child-problem recursion for this invocation",
+    )
+    solve.add_argument("--max-recursion-depth", type=int, default=5)
+    solve.add_argument("--max-recursive-nodes", type=int, default=32)
+    solve.add_argument("--max-children-per-residual", type=int, default=12)
 
     pending = sub.add_parser("pending")
     pending.add_argument("workspace")
@@ -248,17 +265,32 @@ def main(argv: list[str] | None = None) -> int:
         _print({"problems": list(workspace.problem_ids())})
         return 0
     if args.command == "solve":
-        outcome = run_problem(
-            workspace,
-            workspace.load_problem(args.problem_id),
-            max_iterations=args.max_iterations,
-            require_verified_answer=not args.allow_provisional,
-        )
+        if args.single_pass:
+            outcome = run_problem(
+                workspace,
+                workspace.load_problem(args.problem_id),
+                max_iterations=args.max_iterations,
+                require_verified_answer=not args.allow_provisional,
+            )
+        else:
+            outcome = run_problem_recursive(
+                workspace,
+                workspace.load_problem(args.problem_id),
+                max_iterations=args.max_iterations,
+                require_verified_answer=not args.allow_provisional,
+                limits=RecursiveRunLimits(
+                    max_depth=args.max_recursion_depth,
+                    max_nodes=args.max_recursive_nodes,
+                    max_children_per_residual=args.max_children_per_residual,
+                ),
+            )
         _print(outcome)
         if outcome["status"] == "PENDING_CAPABILITY":
             return 2
         if outcome["status"] == "HOST_CAPABILITY_FAILED":
             return 3
+        if outcome["status"] == "CANNOT_CHECK_RESOURCE_BOUND":
+            return 4
         return 0
     if args.command == "pending":
         _print({"pending": [item.as_dict() for item in workspace.pending_requests()]})
