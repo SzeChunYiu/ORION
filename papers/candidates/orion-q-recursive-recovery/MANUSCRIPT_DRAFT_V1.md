@@ -1,0 +1,108 @@
+# Recursive Recovery of Negative Quantum Results: a Fully Receipted Saturation Study
+
+Draft V1 — 2026-08-21. Assembled from prospectively frozen protocols and machine receipts on
+branch `claude/orion-harness-verification-b17qdj`. Every number in this draft is traceable to
+a committed receipt file; slots marked [BIND] await a receipt landing in this session.
+
+## Abstract (draft)
+
+Negative results are usually the end of a research line. ORION-Q treats them as its primary
+input: each closed negative is recursively reopened under prospectively frozen protocols,
+with specialist donor systems given first right of refusal, until the lane either yields a
+bounded positive, a donor absorption, an explanatory closure, or a receipted saturation. We
+report the complete execution of this programme on quantum-computing method questions: a
+donor-composed incumbent (the donor supersystem), a typed research-state ladder (MAX R0–R5),
+a native controller-driven R6 campaign executed end-to-end inside a replayable
+host-capability harness, the exact saturation of an entire representation-grammar family
+(R6B..R6M) by proof-carrying dynamic programs, [BIND: an explanatory support-dominance lemma
+converting that empirical saturation into an analytic family closure], and the recursive
+recovery of four classically closed negatives (N1–N4) under partial knowledge, where typed
+epistemic state strictly beats matched-information baselines in five of five interface-graph
+families. All negative outcomes are preserved as first-class receipted results; no claim in
+this paper exceeds its receipt's frozen scope.
+
+## 1. The methodology is the contribution
+
+1. **Prospective freezing.** Every experiment's world, arms, baselines, gates and tie-breaks
+   are frozen in a protocol document before any outcome exists; post-outcome gate changes
+   are forbidden (errata are frozen separately and disclosed).
+2. **Donor first right of refusal.** A "new" mechanism earns credit only for value the
+   strongest faithfully composed existing systems (donors) cannot express; donor absorption
+   is a first-class positive terminal with zero novelty credit.
+3. **Proof-carrying exactness.** Optimization claims are exact (finite-state DP vs
+   brute-force equality gates), witnesses are serialized and independently reconstructed,
+   and receipts are digest-bound and replay-verified.
+4. **Typed failure and authority.** Failures are typed and scoped; no capability, candidate,
+   or controller can self-authorize scientific validity (`grants_*_authority: false`
+   throughout; the R6 promotion gate is a separate frozen evaluator).
+5. **Replayable orchestration.** The entire R6 chain runs inside `orion-research-harness`:
+   deterministic capability receipts, protected-subject custody (the stretched-N2
+   discriminator was never opened by any lane), and full campaign replay.
+
+## 2. The receipted ladder (summary; full paths in the closure packet)
+
+- **Infrastructure**: shared host-capability harness, 98/98 tests, live host-driven E2E and
+  a four-cycle campaign drive ending at `R6_VERDICT` with zero authority grants.
+- **R0–R3E**: heterogeneous arena, operator arbitration (supported, exact-synthetic),
+  known-operator transfer (negative: generic baseline sufficient), obligation transport
+  (donor absorption at the exact 1/2 composition ceiling vs 1.0 joint binding), protected
+  self-evolving skills (supported with all hard gates, 40,000 held-out tasks).
+- **R4–R5**: split-TARE majorization theorem (0/8,700 hostile failures), regime-limited H2
+  negative, H2O real-Hamiltonian positive on a blob-locked public source, R5 outer
+  accounting honest mixed (`FULL_R5_NOT_SUPPORTED`).
+- **R6**: native controller chain (donor closure → interface envelope → method-language
+  growth → P10 candidate) driven by the harness; frozen prospective gate returns
+  `R6_EARNED = NO` with the protected subject sealed.
+- **R6 grammar saturation** (this session): R6L donor positive (absorption; floors H4=12,
+  N2=12; post-absorption 8/9); R6I, R6K, R6M exact negatives — every optimum collapses onto
+  the weight-one donor envelope (strict points: 0/10, 0/10·2, 0/15·2 respectively). All
+  receipts replay bit-identically.
+- **[BIND] R6N support-dominance lemma**: local exchange inequality machine-verified over
+  the full finite local domains → analytic explanation of the collapse, or a refuting
+  configuration → a newly discovered regime. Outcome bound verbatim from the receipt.
+
+## 3. Recursive recovery of the N-lane negatives
+
+- **N1 (QC2 no-incremental-value)** [BIND: fresh receipted executions of families A–D and
+  the finite-candidate lower bound; expected shape per the historical record: parent-
+  sufficient collapses with one bounded typed-failure-state positive, class closed by the
+  lower bound].
+- **N2 (QSVT route-selection)**: families 1–2 absorbed by the MAX lane; F3 partial-evidence
+  honest negative (hedged set answers lose to the centroid point guess 0.0663 vs 0.0166);
+  F4 access-edit machinery negative on cost but perfect on safety (120/120 stronger-oracle
+  laundering rejections); F5 prospective crossover prediction **supported** (0.9948 vs
+  0.9271 strongest baseline, crossover location error ~9e-16, functional-form-shift hostile
+  control drops it to 0.4427 as required). Residual named and carried forward.
+- **N3 (parametric synthesis above supplied grammars)** [BIND: ≥3 families with donor first
+  right of refusal].
+- **N4 (interface graphs under partial knowledge)**: five materially different families all
+  **positive** within exact-synthetic scope — typed-prior VOI (71% of oracle utility),
+  scoped stale-receipt reopening (beats never/always/unscoped in a two-regime hostile
+  matrix), interval-dominance-targeted verification (2.3× over random at matched budget),
+  full-chain transport laundering detection (recall 1.000 incl. all deep splices, FPR 0.000),
+  and decision-coupled probe selection (max-entropy decoys trap the pure info-gain baseline
+  at 0.366 decoy fraction vs 0.000). **The classical full-knowledge negative does not
+  recursively extend to partial knowledge on these constructions.**
+
+## 4. What the saturation means
+
+The R6 story is a controlled demonstration of the framework's central discipline: four
+plausible new formalisms (rank-2 shared Tags, factored Restores, three-frame joint
+optimization) were each frozen, implemented exactly, and shown to add zero value beyond
+absorbed donors — where a less disciplined pipeline would have published four "novel
+methods". [BIND: with the dominance lemma, this becomes an analytic theorem about the
+grammar family rather than an empirical observation.] The honest frontier is thereby
+relocated: progress requires a move outside the R6B..R6M family, and the framework now
+states this with receipts instead of intuition.
+
+## 5. Claim boundary
+
+Exact-synthetic and frozen-open-subject scopes throughout; no real-hardware, no
+journal-external authority; the protected stretched-N2 discriminator remains sealed for a
+future pre-frozen prospective run. Negative and mixed outcomes are load-bearing results of
+this paper, not omissions.
+
+## 6. Artifact availability
+
+All protocols, scripts, receipts, and the harness are in the SzeChunYiu/ORION repository;
+every receipt in this draft replays deterministically from its committed script.
