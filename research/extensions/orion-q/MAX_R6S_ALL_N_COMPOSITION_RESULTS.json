@@ -1,0 +1,5428 @@
+{
+  "anticommuting_support2_pair_counts": {
+    "1": 6,
+    "2": 120,
+    "3": 666,
+    "4": 1968
+  },
+  "authority": "MAX_R6S_ALL_N_COMPOSITION_THEOREM_MACHINE_CHECKED__SUPPORT3_NEVER_PAYS__DXX_EQUALS_DP_ALL_N__NOT_R6",
+  "chemistry_sources_read": false,
+  "claim_boundary": {
+    "covers": "Frozen R6L/R6M three-block TARE-M2 shared-one-bit-Tag grammar with the donor-owned all-three Restore common-factor rule under the frozen raw support-count objective (multipliers 4 non-central / 2 central), for EVERY qubit count n, every target six-tuple, every matching, every relative permutation and every central choice: the unrestricted exact optimum is attained by frames of global support <= 2, hence C_DP == C_D++.",
+    "does_not_cover": "The R6I rank-2 dependent-triple grammar (zeroing one letter moves the dependent third letter between multiplier classes; no claim), coefficient-weighted or non-support objectives, rotation-count trade-offs beyond the frozen fixed counts, larger Tag ranks, or grammars outside the frozen family. The stress panel is corroboration, not the proof. No novelty credit, no donor credit, not R6.",
+    "proof_shape": "Qubit-local exchange with zero Tag repair: classes (alpha, beta) over the support of any support->=3 frame Pauli have odd alpha-sum; Lemma B (pigeonhole, written proof, machine-corroborated w<=8) yields a proper zero-sum subset of size <= 2; Lemma E (exhaustive, 18,432 cases) bounds the per-qubit F3 increase by the frame refund. Induction on (cost, total frame support). The only computational steps are the two lemma checks.",
+    "support_2_boundary": "The exchange fails exactly at w = 2 with class pattern {(1,*),(0,1)}: the locally-commuting qubit anticommutes with the Tag, so removal forces a Tag-syndrome flip -- the R6O weight-2 trade, realized by 559 recorded DP optima. At w >= 3 the pattern is unrealizable; the per-unit price of support is identical."
+  },
+  "discovery": null,
+  "donor_novelty_credit": false,
+  "exchange_construction": {
+    "classes": "class(q) = (local_symp(frame letter, partner letter), local_symp(tag letter, frame letter)) in F_2^2 for q in supp(R); the multiset has odd alpha-sum = symp(R, partner).",
+    "cost_bound": "Delta C = sum_{q in Q} [F3(new)-F3(old)-m] <= 0 by Lemma E; m in {2,4} is the zeroed Pauli's multiplier.",
+    "induction": "lexicographic (cost, total frame support) minimum admits no support->=3 frame; D++ equality follows via the frozen R6P Tag-relaxation identity.",
+    "subset_rule": "lowest class-(0,0) singleton, else lexicographically lowest equal-class pair; |Q| <= 2 < w, so R stays nonzero; even alpha-/beta-sums preserve the anticommutation bit and the Tag syndrome with ZERO Tag repair."
+  },
+  "expected_pair_count_injection": {
+    "key": 4,
+    "module": "max_r6p_weight2_frame_donor_closure",
+    "repository_files_modified": false,
+    "value": 1968
+  },
+  "gates": {
+    "bindings_exact": true,
+    "exchange_descents_all_verified": true,
+    "lemma_b_w2_boundary_exact": true,
+    "lemma_b_w3_to_w8_zero_failures": true,
+    "lemma_e_zero_violations": true,
+    "no_new_subject_data": true,
+    "stress_panel_equality": true
+  },
+  "lemma_b": {
+    "per_w": {
+      "2": {
+        "failure_examples": [],
+        "failures": 4,
+        "odd_alpha_tuples_checked": 8
+      },
+      "3": {
+        "failure_examples": [],
+        "failures": 0,
+        "odd_alpha_tuples_checked": 32
+      },
+      "4": {
+        "failure_examples": [],
+        "failures": 0,
+        "odd_alpha_tuples_checked": 128
+      },
+      "5": {
+        "failure_examples": [],
+        "failures": 0,
+        "odd_alpha_tuples_checked": 512
+      },
+      "6": {
+        "failure_examples": [],
+        "failures": 0,
+        "odd_alpha_tuples_checked": 2048
+      },
+      "7": {
+        "failure_examples": [],
+        "failures": 0,
+        "odd_alpha_tuples_checked": 8192
+      },
+      "8": {
+        "failure_examples": [],
+        "failures": 0,
+        "odd_alpha_tuples_checked": 32768
+      }
+    },
+    "total_odd_alpha_tuples_checked": 43688,
+    "w2_boundary_exact": true,
+    "w2_boundary_note": "Class code = 2*alpha + beta. The failing w=2 patterns are exactly the odd-alpha tuples whose alpha=0 qubit has beta=1: zeroing the locally-commuting qubit must flip the Tag syndrome -- the R6O weight-2 trade. At w >= 3 the pattern is unrealizable (Lemma B).",
+    "w2_failing_tuples_observed": [
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ]
+    ],
+    "w2_failing_tuples_predicted": [
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ]
+    ],
+    "w3_to_w8_all_admit_subset": true,
+    "w3_to_w8_failures": 0
+  },
+  "lemma_e": {
+    "class_tabulation_max_net": {
+      "class_00_max_net": 0,
+      "class_01_max_net": 0,
+      "class_10_max_net": 0,
+      "class_11_max_net": 0
+    },
+    "domain_size": 18432,
+    "holds": true,
+    "max_delta_f3": 2,
+    "max_savings_over_refund_ratio": 1.0,
+    "tie_count": 288,
+    "ties_only_at_central_multiplier": true,
+    "violating_cases_verbatim": [],
+    "violations": 0
+  },
+  "novelty_credit": false,
+  "outcome": "THEOREM_MACHINE_CHECKED",
+  "protocol": "MAX_R6S_ALL_N_COMPOSITION_PROTOCOL",
+  "r6_authority": false,
+  "reserved_stretched_n2_accessed": false,
+  "responsibility": "RESP:R6P_BOUNDED_EVIDENCE_CONVERTED_TO_ALL_N_THEOREM__EXCHANGE_WITH_ZERO_TAG_REPAIR_VIA_F2SQUARED_PIGEONHOLE",
+  "runtime_seconds": 52.677,
+  "schema": "ORIONQ.MAXR6S.AllNComposition.v1",
+  "scope": "ALL_N_SUPPORT3_EXCHANGE_THEOREM_OVER_FROZEN_R6M_GRAMMAR__EXPLANATORY_FAMILY_CLOSURE__NOT_R6",
+  "stress_panel": {
+    "all_equal": true,
+    "descents": {
+      "all_pass": true,
+      "count": 210,
+      "max_initial_support": 4,
+      "rows": [
+        {
+          "descent": 0,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 47,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 0,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 21,
+          "final_max_support": 2,
+          "initial_cost": 44,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 0,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 37,
+          "final_max_support": 2,
+          "initial_cost": 49,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 0,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 49,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 1,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 19,
+          "final_max_support": 2,
+          "initial_cost": 43,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 1,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 21,
+          "final_max_support": 2,
+          "initial_cost": 44,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 1,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 41,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 2,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 47,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 2,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 32,
+          "final_max_support": 2,
+          "initial_cost": 45,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 2,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 23,
+          "final_max_support": 2,
+          "initial_cost": 36,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 3,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 28,
+          "final_max_support": 2,
+          "initial_cost": 36,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 3,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 46,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 3,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 45,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 4,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 44,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 4,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 26,
+          "final_max_support": 2,
+          "initial_cost": 45,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 4,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 33,
+          "final_max_support": 2,
+          "initial_cost": 40,
+          "initial_max_support": 3,
+          "initial_total_support": 12,
+          "instance": 5,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 42,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 5,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 23,
+          "final_max_support": 2,
+          "initial_cost": 49,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 5,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 42,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 6,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 33,
+          "final_max_support": 2,
+          "initial_cost": 47,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 6,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 28,
+          "final_max_support": 2,
+          "initial_cost": 50,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 6,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 22,
+          "final_max_support": 2,
+          "initial_cost": 38,
+          "initial_max_support": 3,
+          "initial_total_support": 11,
+          "instance": 7,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 27,
+          "final_max_support": 2,
+          "initial_cost": 43,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 7,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 28,
+          "final_max_support": 2,
+          "initial_cost": 37,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 7,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 29,
+          "final_max_support": 2,
+          "initial_cost": 42,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 8,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 27,
+          "final_max_support": 2,
+          "initial_cost": 42,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 8,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 23,
+          "final_max_support": 2,
+          "initial_cost": 48,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 8,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 32,
+          "final_max_support": 2,
+          "initial_cost": 46,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 9,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 35,
+          "final_max_support": 2,
+          "initial_cost": 45,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 9,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 27,
+          "final_max_support": 2,
+          "initial_cost": 32,
+          "initial_max_support": 3,
+          "initial_total_support": 12,
+          "instance": 9,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 33,
+          "final_max_support": 2,
+          "initial_cost": 45,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 10,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 26,
+          "final_max_support": 2,
+          "initial_cost": 52,
+          "initial_max_support": 3,
+          "initial_total_support": 17,
+          "instance": 10,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 39,
+          "initial_max_support": 3,
+          "initial_total_support": 12,
+          "instance": 10,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 26,
+          "final_max_support": 2,
+          "initial_cost": 35,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 11,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 49,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 11,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 49,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 11,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 35,
+          "final_max_support": 2,
+          "initial_cost": 42,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 12,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 42,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 12,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 33,
+          "final_max_support": 2,
+          "initial_cost": 41,
+          "initial_max_support": 3,
+          "initial_total_support": 12,
+          "instance": 12,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 32,
+          "final_max_support": 2,
+          "initial_cost": 39,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 13,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 50,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 13,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 53,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 13,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 33,
+          "final_max_support": 2,
+          "initial_cost": 40,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 14,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 39,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 14,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 41,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 14,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 24,
+          "final_max_support": 2,
+          "initial_cost": 41,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 15,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 32,
+          "final_max_support": 2,
+          "initial_cost": 46,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 15,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 46,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 15,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 34,
+          "final_max_support": 2,
+          "initial_cost": 55,
+          "initial_max_support": 3,
+          "initial_total_support": 17,
+          "instance": 16,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 25,
+          "final_max_support": 2,
+          "initial_cost": 45,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 16,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 28,
+          "final_max_support": 2,
+          "initial_cost": 44,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 16,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 33,
+          "final_max_support": 2,
+          "initial_cost": 44,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 17,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 32,
+          "final_max_support": 2,
+          "initial_cost": 41,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 17,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 23,
+          "final_max_support": 2,
+          "initial_cost": 43,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 17,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 34,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 18,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 41,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 18,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 35,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 18,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 48,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 19,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 52,
+          "initial_max_support": 3,
+          "initial_total_support": 18,
+          "instance": 19,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 28,
+          "final_max_support": 2,
+          "initial_cost": 40,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 19,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 38,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 20,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 25,
+          "final_max_support": 2,
+          "initial_cost": 36,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 20,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 32,
+          "final_max_support": 2,
+          "initial_cost": 40,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 20,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 28,
+          "final_max_support": 2,
+          "initial_cost": 38,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 21,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 25,
+          "final_max_support": 2,
+          "initial_cost": 46,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 21,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 28,
+          "final_max_support": 2,
+          "initial_cost": 40,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 21,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 29,
+          "final_max_support": 2,
+          "initial_cost": 40,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 22,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 25,
+          "final_max_support": 2,
+          "initial_cost": 37,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 22,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 38,
+          "initial_max_support": 3,
+          "initial_total_support": 12,
+          "instance": 22,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 1,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 46,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 23,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 29,
+          "final_max_support": 2,
+          "initial_cost": 54,
+          "initial_max_support": 3,
+          "initial_total_support": 18,
+          "instance": 23,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 25,
+          "final_max_support": 2,
+          "initial_cost": 41,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 23,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 32,
+          "final_max_support": 2,
+          "initial_cost": 40,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 24,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 40,
+          "final_max_support": 2,
+          "initial_cost": 44,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 24,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 34,
+          "initial_max_support": 3,
+          "initial_total_support": 11,
+          "instance": 24,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 1,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 32,
+          "final_max_support": 2,
+          "initial_cost": 46,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 25,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 29,
+          "final_max_support": 2,
+          "initial_cost": 37,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 25,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 32,
+          "final_max_support": 2,
+          "initial_cost": 45,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 25,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 35,
+          "final_max_support": 2,
+          "initial_cost": 41,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 26,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 25,
+          "final_max_support": 2,
+          "initial_cost": 34,
+          "initial_max_support": 3,
+          "initial_total_support": 12,
+          "instance": 26,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 27,
+          "final_max_support": 2,
+          "initial_cost": 40,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 26,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 35,
+          "final_max_support": 2,
+          "initial_cost": 42,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 27,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 35,
+          "final_max_support": 2,
+          "initial_cost": 40,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 27,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 1,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 34,
+          "final_max_support": 2,
+          "initial_cost": 40,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 27,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 29,
+          "final_max_support": 2,
+          "initial_cost": 42,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 28,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 39,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 28,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 28,
+          "final_max_support": 2,
+          "initial_cost": 40,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 28,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 35,
+          "final_max_support": 2,
+          "initial_cost": 41,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 29,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 29,
+          "final_max_support": 2,
+          "initial_cost": 40,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 29,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 28,
+          "final_max_support": 2,
+          "initial_cost": 42,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 29,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 42,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 30,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 41,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 30,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 40,
+          "final_max_support": 2,
+          "initial_cost": 42,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 30,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 1
+        },
+        {
+          "descent": 0,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 47,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 31,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 26,
+          "final_max_support": 2,
+          "initial_cost": 50,
+          "initial_max_support": 3,
+          "initial_total_support": 17,
+          "instance": 31,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 26,
+          "final_max_support": 2,
+          "initial_cost": 54,
+          "initial_max_support": 3,
+          "initial_total_support": 18,
+          "instance": 31,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 40,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 32,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 53,
+          "initial_max_support": 3,
+          "initial_total_support": 17,
+          "instance": 32,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 27,
+          "final_max_support": 2,
+          "initial_cost": 50,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 32,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 27,
+          "final_max_support": 2,
+          "initial_cost": 40,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 33,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 35,
+          "final_max_support": 2,
+          "initial_cost": 47,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 33,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 42,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 33,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 1
+        },
+        {
+          "descent": 0,
+          "final_cost": 16,
+          "final_max_support": 1,
+          "initial_cost": 42,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 34,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 42,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 34,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 32,
+          "final_max_support": 2,
+          "initial_cost": 49,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 34,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 42,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 35,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 27,
+          "final_max_support": 2,
+          "initial_cost": 47,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 35,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 28,
+          "final_max_support": 2,
+          "initial_cost": 49,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 35,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 51,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 36,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 41,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 36,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 1,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 33,
+          "final_max_support": 2,
+          "initial_cost": 42,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 36,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 22,
+          "final_max_support": 2,
+          "initial_cost": 26,
+          "initial_max_support": 3,
+          "initial_total_support": 11,
+          "instance": 37,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 32,
+          "final_max_support": 2,
+          "initial_cost": 49,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 37,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 27,
+          "final_max_support": 2,
+          "initial_cost": 49,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 37,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 38,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 38,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 29,
+          "final_max_support": 2,
+          "initial_cost": 48,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 38,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 26,
+          "final_max_support": 2,
+          "initial_cost": 44,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 38,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 26,
+          "final_max_support": 2,
+          "initial_cost": 47,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 39,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 35,
+          "final_max_support": 2,
+          "initial_cost": 41,
+          "initial_max_support": 3,
+          "initial_total_support": 13,
+          "instance": 39,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 2,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 28,
+          "final_max_support": 2,
+          "initial_cost": 45,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 39,
+          "n": 3,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 45,
+          "final_max_support": 2,
+          "initial_cost": 59,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 0,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 35,
+          "final_max_support": 2,
+          "initial_cost": 71,
+          "initial_max_support": 4,
+          "initial_total_support": 22,
+          "instance": 0,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 33,
+          "final_max_support": 2,
+          "initial_cost": 59,
+          "initial_max_support": 4,
+          "initial_total_support": 17,
+          "instance": 0,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 39,
+          "final_max_support": 2,
+          "initial_cost": 58,
+          "initial_max_support": 4,
+          "initial_total_support": 17,
+          "instance": 1,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 34,
+          "final_max_support": 2,
+          "initial_cost": 55,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 1,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 43,
+          "final_max_support": 2,
+          "initial_cost": 69,
+          "initial_max_support": 4,
+          "initial_total_support": 22,
+          "instance": 1,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 35,
+          "final_max_support": 2,
+          "initial_cost": 62,
+          "initial_max_support": 4,
+          "initial_total_support": 19,
+          "instance": 2,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 29,
+          "final_max_support": 2,
+          "initial_cost": 60,
+          "initial_max_support": 4,
+          "initial_total_support": 17,
+          "instance": 2,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 33,
+          "final_max_support": 2,
+          "initial_cost": 62,
+          "initial_max_support": 4,
+          "initial_total_support": 20,
+          "instance": 2,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 40,
+          "final_max_support": 2,
+          "initial_cost": 73,
+          "initial_max_support": 4,
+          "initial_total_support": 21,
+          "instance": 3,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 8,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 39,
+          "final_max_support": 2,
+          "initial_cost": 58,
+          "initial_max_support": 4,
+          "initial_total_support": 17,
+          "instance": 3,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 54,
+          "initial_max_support": 4,
+          "initial_total_support": 17,
+          "instance": 3,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 54,
+          "initial_max_support": 4,
+          "initial_total_support": 16,
+          "instance": 4,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 56,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 4,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 37,
+          "final_max_support": 2,
+          "initial_cost": 50,
+          "initial_max_support": 4,
+          "initial_total_support": 17,
+          "instance": 4,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 1
+        },
+        {
+          "descent": 0,
+          "final_cost": 32,
+          "final_max_support": 2,
+          "initial_cost": 59,
+          "initial_max_support": 3,
+          "initial_total_support": 18,
+          "instance": 5,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 37,
+          "final_max_support": 2,
+          "initial_cost": 65,
+          "initial_max_support": 4,
+          "initial_total_support": 21,
+          "instance": 5,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 9,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 39,
+          "final_max_support": 2,
+          "initial_cost": 67,
+          "initial_max_support": 4,
+          "initial_total_support": 20,
+          "instance": 5,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 35,
+          "final_max_support": 2,
+          "initial_cost": 50,
+          "initial_max_support": 4,
+          "initial_total_support": 16,
+          "instance": 6,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 43,
+          "final_max_support": 2,
+          "initial_cost": 61,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 6,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 51,
+          "initial_max_support": 3,
+          "initial_total_support": 17,
+          "instance": 6,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 40,
+          "final_max_support": 2,
+          "initial_cost": 56,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 7,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 48,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 7,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 32,
+          "final_max_support": 2,
+          "initial_cost": 64,
+          "initial_max_support": 4,
+          "initial_total_support": 19,
+          "instance": 7,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 45,
+          "final_max_support": 2,
+          "initial_cost": 56,
+          "initial_max_support": 3,
+          "initial_total_support": 15,
+          "instance": 8,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 38,
+          "final_max_support": 2,
+          "initial_cost": 48,
+          "initial_max_support": 3,
+          "initial_total_support": 14,
+          "instance": 8,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 3,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 65,
+          "initial_max_support": 4,
+          "initial_total_support": 20,
+          "instance": 8,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 56,
+          "initial_max_support": 4,
+          "initial_total_support": 16,
+          "instance": 9,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 40,
+          "final_max_support": 2,
+          "initial_cost": 57,
+          "initial_max_support": 4,
+          "initial_total_support": 16,
+          "instance": 9,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 32,
+          "final_max_support": 2,
+          "initial_cost": 56,
+          "initial_max_support": 4,
+          "initial_total_support": 17,
+          "instance": 9,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 1
+        },
+        {
+          "descent": 0,
+          "final_cost": 35,
+          "final_max_support": 2,
+          "initial_cost": 49,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 10,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 57,
+          "initial_max_support": 3,
+          "initial_total_support": 18,
+          "instance": 10,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 34,
+          "final_max_support": 2,
+          "initial_cost": 52,
+          "initial_max_support": 4,
+          "initial_total_support": 17,
+          "instance": 10,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 27,
+          "final_max_support": 2,
+          "initial_cost": 59,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 11,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 34,
+          "final_max_support": 2,
+          "initial_cost": 59,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 11,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 38,
+          "final_max_support": 2,
+          "initial_cost": 62,
+          "initial_max_support": 4,
+          "initial_total_support": 19,
+          "instance": 11,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 39,
+          "final_max_support": 2,
+          "initial_cost": 66,
+          "initial_max_support": 4,
+          "initial_total_support": 20,
+          "instance": 12,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 61,
+          "initial_max_support": 4,
+          "initial_total_support": 20,
+          "instance": 12,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 8,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 34,
+          "final_max_support": 2,
+          "initial_cost": 69,
+          "initial_max_support": 4,
+          "initial_total_support": 20,
+          "instance": 12,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 57,
+          "initial_max_support": 3,
+          "initial_total_support": 17,
+          "instance": 13,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 32,
+          "final_max_support": 2,
+          "initial_cost": 53,
+          "initial_max_support": 4,
+          "initial_total_support": 16,
+          "instance": 13,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 40,
+          "final_max_support": 2,
+          "initial_cost": 75,
+          "initial_max_support": 4,
+          "initial_total_support": 23,
+          "instance": 13,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 55,
+          "initial_max_support": 4,
+          "initial_total_support": 17,
+          "instance": 14,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 42,
+          "final_max_support": 2,
+          "initial_cost": 55,
+          "initial_max_support": 4,
+          "initial_total_support": 17,
+          "instance": 14,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 35,
+          "final_max_support": 2,
+          "initial_cost": 58,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 14,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 40,
+          "final_max_support": 2,
+          "initial_cost": 73,
+          "initial_max_support": 4,
+          "initial_total_support": 21,
+          "instance": 15,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 38,
+          "final_max_support": 2,
+          "initial_cost": 66,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 15,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 43,
+          "final_max_support": 2,
+          "initial_cost": 63,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 15,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 33,
+          "final_max_support": 2,
+          "initial_cost": 54,
+          "initial_max_support": 4,
+          "initial_total_support": 16,
+          "instance": 16,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 41,
+          "final_max_support": 2,
+          "initial_cost": 57,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 16,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 41,
+          "final_max_support": 2,
+          "initial_cost": 66,
+          "initial_max_support": 4,
+          "initial_total_support": 19,
+          "instance": 16,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 58,
+          "initial_max_support": 4,
+          "initial_total_support": 17,
+          "instance": 17,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 38,
+          "final_max_support": 2,
+          "initial_cost": 64,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 17,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 43,
+          "final_max_support": 2,
+          "initial_cost": 63,
+          "initial_max_support": 4,
+          "initial_total_support": 17,
+          "instance": 17,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 60,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 18,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 34,
+          "final_max_support": 2,
+          "initial_cost": 56,
+          "initial_max_support": 4,
+          "initial_total_support": 19,
+          "instance": 18,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 33,
+          "final_max_support": 2,
+          "initial_cost": 62,
+          "initial_max_support": 4,
+          "initial_total_support": 19,
+          "instance": 18,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 42,
+          "final_max_support": 2,
+          "initial_cost": 58,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 19,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 34,
+          "final_max_support": 2,
+          "initial_cost": 60,
+          "initial_max_support": 4,
+          "initial_total_support": 17,
+          "instance": 19,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 41,
+          "final_max_support": 2,
+          "initial_cost": 51,
+          "initial_max_support": 4,
+          "initial_total_support": 17,
+          "instance": 19,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 1
+        },
+        {
+          "descent": 0,
+          "final_cost": 40,
+          "final_max_support": 2,
+          "initial_cost": 50,
+          "initial_max_support": 3,
+          "initial_total_support": 16,
+          "instance": 20,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 1
+        },
+        {
+          "descent": 1,
+          "final_cost": 34,
+          "final_max_support": 2,
+          "initial_cost": 69,
+          "initial_max_support": 4,
+          "initial_total_support": 21,
+          "instance": 20,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 8,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 29,
+          "final_max_support": 2,
+          "initial_cost": 72,
+          "initial_max_support": 4,
+          "initial_total_support": 21,
+          "instance": 20,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 9,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 30,
+          "final_max_support": 2,
+          "initial_cost": 58,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 21,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 41,
+          "final_max_support": 2,
+          "initial_cost": 66,
+          "initial_max_support": 4,
+          "initial_total_support": 19,
+          "instance": 21,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 65,
+          "initial_max_support": 4,
+          "initial_total_support": 19,
+          "instance": 21,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 37,
+          "final_max_support": 2,
+          "initial_cost": 63,
+          "initial_max_support": 4,
+          "initial_total_support": 20,
+          "instance": 22,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 8,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 42,
+          "final_max_support": 2,
+          "initial_cost": 63,
+          "initial_max_support": 4,
+          "initial_total_support": 20,
+          "instance": 22,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 28,
+          "final_max_support": 2,
+          "initial_cost": 53,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 22,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 58,
+          "initial_max_support": 4,
+          "initial_total_support": 16,
+          "instance": 23,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 55,
+          "initial_max_support": 4,
+          "initial_total_support": 19,
+          "instance": 23,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 41,
+          "final_max_support": 2,
+          "initial_cost": 58,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 23,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 42,
+          "final_max_support": 2,
+          "initial_cost": 63,
+          "initial_max_support": 4,
+          "initial_total_support": 19,
+          "instance": 24,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 33,
+          "final_max_support": 2,
+          "initial_cost": 62,
+          "initial_max_support": 4,
+          "initial_total_support": 19,
+          "instance": 24,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 38,
+          "final_max_support": 2,
+          "initial_cost": 59,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 24,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 35,
+          "final_max_support": 2,
+          "initial_cost": 64,
+          "initial_max_support": 4,
+          "initial_total_support": 19,
+          "instance": 25,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 32,
+          "final_max_support": 2,
+          "initial_cost": 66,
+          "initial_max_support": 4,
+          "initial_total_support": 19,
+          "instance": 25,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 55,
+          "initial_max_support": 4,
+          "initial_total_support": 17,
+          "instance": 25,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 4,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 34,
+          "final_max_support": 2,
+          "initial_cost": 67,
+          "initial_max_support": 4,
+          "initial_total_support": 21,
+          "instance": 26,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 8,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 59,
+          "initial_max_support": 4,
+          "initial_total_support": 19,
+          "instance": 26,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 35,
+          "final_max_support": 2,
+          "initial_cost": 65,
+          "initial_max_support": 4,
+          "initial_total_support": 20,
+          "instance": 26,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 62,
+          "initial_max_support": 4,
+          "initial_total_support": 19,
+          "instance": 27,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 1,
+          "final_cost": 39,
+          "final_max_support": 2,
+          "initial_cost": 60,
+          "initial_max_support": 4,
+          "initial_total_support": 18,
+          "instance": 27,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 5,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 36,
+          "final_max_support": 2,
+          "initial_cost": 62,
+          "initial_max_support": 4,
+          "initial_total_support": 20,
+          "instance": 27,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 29,
+          "final_max_support": 2,
+          "initial_cost": 65,
+          "initial_max_support": 4,
+          "initial_total_support": 20,
+          "instance": 28,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 8,
+          "tie_steps": 1
+        },
+        {
+          "descent": 1,
+          "final_cost": 31,
+          "final_max_support": 2,
+          "initial_cost": 71,
+          "initial_max_support": 4,
+          "initial_total_support": 22,
+          "instance": 28,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 8,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 34,
+          "final_max_support": 2,
+          "initial_cost": 59,
+          "initial_max_support": 4,
+          "initial_total_support": 17,
+          "instance": 28,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 6,
+          "tie_steps": 0
+        },
+        {
+          "descent": 0,
+          "final_cost": 44,
+          "final_max_support": 2,
+          "initial_cost": 64,
+          "initial_max_support": 4,
+          "initial_total_support": 20,
+          "instance": 29,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 1
+        },
+        {
+          "descent": 1,
+          "final_cost": 37,
+          "final_max_support": 2,
+          "initial_cost": 62,
+          "initial_max_support": 4,
+          "initial_total_support": 19,
+          "instance": 29,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        },
+        {
+          "descent": 2,
+          "final_cost": 37,
+          "final_max_support": 2,
+          "initial_cost": 64,
+          "initial_max_support": 4,
+          "initial_total_support": 20,
+          "instance": 29,
+          "n": 4,
+          "pass": true,
+          "problems": [],
+          "steps": 7,
+          "tie_steps": 0
+        }
+      ],
+      "total_steps": 899,
+      "total_tie_steps": 8
+    },
+    "equal_count": 70,
+    "instances": 70,
+    "plan": [
+      [
+        3,
+        40
+      ],
+      [
+        4,
+        30
+      ]
+    ],
+    "rows": [
+      {
+        "C_Dxx": 10,
+        "C_unrestricted_dp": 10,
+        "equal": true,
+        "index": 0,
+        "n": 3,
+        "targets": [
+          [
+            1,
+            4
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            5,
+            0
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 9,
+        "C_unrestricted_dp": 9,
+        "equal": true,
+        "index": 1,
+        "n": 3,
+        "targets": [
+          [
+            0,
+            2
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            5,
+            3
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 9,
+        "C_unrestricted_dp": 9,
+        "equal": true,
+        "index": 2,
+        "n": 3,
+        "targets": [
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 11,
+        "C_unrestricted_dp": 11,
+        "equal": true,
+        "index": 3,
+        "n": 3,
+        "targets": [
+          [
+            6,
+            0
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            5,
+            1
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 11,
+        "C_unrestricted_dp": 11,
+        "equal": true,
+        "index": 4,
+        "n": 3,
+        "targets": [
+          [
+            1,
+            7
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 10,
+        "C_unrestricted_dp": 10,
+        "equal": true,
+        "index": 5,
+        "n": 3,
+        "targets": [
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            2,
+            7
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 12,
+        "C_unrestricted_dp": 12,
+        "equal": true,
+        "index": 6,
+        "n": 3,
+        "targets": [
+          [
+            6,
+            3
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 11,
+        "C_unrestricted_dp": 11,
+        "equal": true,
+        "index": 7,
+        "n": 3,
+        "targets": [
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 9,
+        "C_unrestricted_dp": 9,
+        "equal": true,
+        "index": 8,
+        "n": 3,
+        "targets": [
+          [
+            0,
+            2
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            0,
+            5
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 11,
+        "C_unrestricted_dp": 11,
+        "equal": true,
+        "index": 9,
+        "n": 3,
+        "targets": [
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 11,
+        "C_unrestricted_dp": 11,
+        "equal": true,
+        "index": 10,
+        "n": 3,
+        "targets": [
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            0
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 10,
+        "C_unrestricted_dp": 10,
+        "equal": true,
+        "index": 11,
+        "n": 3,
+        "targets": [
+          [
+            7,
+            2
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            0,
+            4
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 9,
+        "C_unrestricted_dp": 9,
+        "equal": true,
+        "index": 12,
+        "n": 3,
+        "targets": [
+          [
+            1,
+            1
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            7,
+            5
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 9,
+        "C_unrestricted_dp": 9,
+        "equal": true,
+        "index": 13,
+        "n": 3,
+        "targets": [
+          [
+            3,
+            1
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            7,
+            3
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 12,
+        "C_unrestricted_dp": 12,
+        "equal": true,
+        "index": 14,
+        "n": 3,
+        "targets": [
+          [
+            7,
+            7
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 11,
+        "C_unrestricted_dp": 11,
+        "equal": true,
+        "index": 15,
+        "n": 3,
+        "targets": [
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            2,
+            7
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 13,
+        "C_unrestricted_dp": 13,
+        "equal": true,
+        "index": 16,
+        "n": 3,
+        "targets": [
+          [
+            5,
+            4
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            1,
+            7
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 10,
+        "C_unrestricted_dp": 10,
+        "equal": true,
+        "index": 17,
+        "n": 3,
+        "targets": [
+          [
+            0,
+            7
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 9,
+        "C_unrestricted_dp": 9,
+        "equal": true,
+        "index": 18,
+        "n": 3,
+        "targets": [
+          [
+            2,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            7
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 10,
+        "C_unrestricted_dp": 10,
+        "equal": true,
+        "index": 19,
+        "n": 3,
+        "targets": [
+          [
+            6,
+            3
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 9,
+        "C_unrestricted_dp": 9,
+        "equal": true,
+        "index": 20,
+        "n": 3,
+        "targets": [
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 11,
+        "C_unrestricted_dp": 11,
+        "equal": true,
+        "index": 21,
+        "n": 3,
+        "targets": [
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            5,
+            4
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 10,
+        "C_unrestricted_dp": 10,
+        "equal": true,
+        "index": 22,
+        "n": 3,
+        "targets": [
+          [
+            2,
+            6
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 14,
+        "C_unrestricted_dp": 14,
+        "equal": true,
+        "index": 23,
+        "n": 3,
+        "targets": [
+          [
+            4,
+            3
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 8,
+        "C_unrestricted_dp": 8,
+        "equal": true,
+        "index": 24,
+        "n": 3,
+        "targets": [
+          [
+            1,
+            5
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            1
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 10,
+        "C_unrestricted_dp": 10,
+        "equal": true,
+        "index": 25,
+        "n": 3,
+        "targets": [
+          [
+            6,
+            4
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            6,
+            7
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 9,
+        "C_unrestricted_dp": 9,
+        "equal": true,
+        "index": 26,
+        "n": 3,
+        "targets": [
+          [
+            7,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 11,
+        "C_unrestricted_dp": 11,
+        "equal": true,
+        "index": 27,
+        "n": 3,
+        "targets": [
+          [
+            2,
+            1
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            6,
+            2
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 13,
+        "C_unrestricted_dp": 13,
+        "equal": true,
+        "index": 28,
+        "n": 3,
+        "targets": [
+          [
+            7,
+            3
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 8,
+        "C_unrestricted_dp": 8,
+        "equal": true,
+        "index": 29,
+        "n": 3,
+        "targets": [
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            4,
+            4
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 9,
+        "C_unrestricted_dp": 9,
+        "equal": true,
+        "index": 30,
+        "n": 3,
+        "targets": [
+          [
+            3,
+            3
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 9,
+        "C_unrestricted_dp": 9,
+        "equal": true,
+        "index": 31,
+        "n": 3,
+        "targets": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 8,
+        "C_unrestricted_dp": 8,
+        "equal": true,
+        "index": 32,
+        "n": 3,
+        "targets": [
+          [
+            2,
+            6
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            2,
+            6
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 9,
+        "C_unrestricted_dp": 9,
+        "equal": true,
+        "index": 33,
+        "n": 3,
+        "targets": [
+          [
+            7,
+            2
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            4,
+            0
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 10,
+        "C_unrestricted_dp": 10,
+        "equal": true,
+        "index": 34,
+        "n": 3,
+        "targets": [
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 13,
+        "C_unrestricted_dp": 13,
+        "equal": true,
+        "index": 35,
+        "n": 3,
+        "targets": [
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            4,
+            6
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 9,
+        "C_unrestricted_dp": 9,
+        "equal": true,
+        "index": 36,
+        "n": 3,
+        "targets": [
+          [
+            4,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 9,
+        "C_unrestricted_dp": 9,
+        "equal": true,
+        "index": 37,
+        "n": 3,
+        "targets": [
+          [
+            7,
+            6
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 11,
+        "C_unrestricted_dp": 11,
+        "equal": true,
+        "index": 38,
+        "n": 3,
+        "targets": [
+          [
+            0,
+            3
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            6,
+            3
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 9,
+        "C_unrestricted_dp": 9,
+        "equal": true,
+        "index": 39,
+        "n": 3,
+        "targets": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            7,
+            7
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 14,
+        "C_unrestricted_dp": 14,
+        "equal": true,
+        "index": 0,
+        "n": 4,
+        "targets": [
+          [
+            10,
+            5
+          ],
+          [
+            2,
+            11
+          ],
+          [
+            7,
+            10
+          ],
+          [
+            11,
+            9
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            10,
+            0
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 14,
+        "C_unrestricted_dp": 14,
+        "equal": true,
+        "index": 1,
+        "n": 4,
+        "targets": [
+          [
+            11,
+            8
+          ],
+          [
+            3,
+            11
+          ],
+          [
+            14,
+            3
+          ],
+          [
+            9,
+            6
+          ],
+          [
+            6,
+            14
+          ],
+          [
+            7,
+            0
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 12,
+        "C_unrestricted_dp": 12,
+        "equal": true,
+        "index": 2,
+        "n": 4,
+        "targets": [
+          [
+            10,
+            4
+          ],
+          [
+            0,
+            15
+          ],
+          [
+            12,
+            10
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            4,
+            9
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 15,
+        "C_unrestricted_dp": 15,
+        "equal": true,
+        "index": 3,
+        "n": 4,
+        "targets": [
+          [
+            14,
+            13
+          ],
+          [
+            15,
+            1
+          ],
+          [
+            13,
+            0
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            7,
+            13
+          ],
+          [
+            8,
+            11
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 13,
+        "C_unrestricted_dp": 13,
+        "equal": true,
+        "index": 4,
+        "n": 4,
+        "targets": [
+          [
+            11,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            11,
+            10
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            8,
+            10
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 14,
+        "C_unrestricted_dp": 14,
+        "equal": true,
+        "index": 5,
+        "n": 4,
+        "targets": [
+          [
+            1,
+            6
+          ],
+          [
+            14,
+            1
+          ],
+          [
+            14,
+            7
+          ],
+          [
+            13,
+            5
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            8,
+            13
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 14,
+        "C_unrestricted_dp": 14,
+        "equal": true,
+        "index": 6,
+        "n": 4,
+        "targets": [
+          [
+            8,
+            0
+          ],
+          [
+            13,
+            1
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            10,
+            9
+          ],
+          [
+            13,
+            14
+          ],
+          [
+            7,
+            2
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 13,
+        "C_unrestricted_dp": 13,
+        "equal": true,
+        "index": 7,
+        "n": 4,
+        "targets": [
+          [
+            6,
+            2
+          ],
+          [
+            5,
+            13
+          ],
+          [
+            14,
+            8
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            4,
+            10
+          ],
+          [
+            6,
+            3
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 15,
+        "C_unrestricted_dp": 15,
+        "equal": true,
+        "index": 8,
+        "n": 4,
+        "targets": [
+          [
+            15,
+            2
+          ],
+          [
+            8,
+            15
+          ],
+          [
+            12,
+            2
+          ],
+          [
+            0,
+            11
+          ],
+          [
+            14,
+            0
+          ],
+          [
+            7,
+            12
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 12,
+        "C_unrestricted_dp": 12,
+        "equal": true,
+        "index": 9,
+        "n": 4,
+        "targets": [
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            10,
+            9
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            0,
+            10
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 13,
+        "C_unrestricted_dp": 13,
+        "equal": true,
+        "index": 10,
+        "n": 4,
+        "targets": [
+          [
+            11,
+            11
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            13,
+            9
+          ],
+          [
+            3,
+            0
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 14,
+        "C_unrestricted_dp": 14,
+        "equal": true,
+        "index": 11,
+        "n": 4,
+        "targets": [
+          [
+            8,
+            12
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            8,
+            7
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 13,
+        "C_unrestricted_dp": 13,
+        "equal": true,
+        "index": 12,
+        "n": 4,
+        "targets": [
+          [
+            0,
+            10
+          ],
+          [
+            4,
+            9
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            10,
+            6
+          ],
+          [
+            10,
+            9
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 12,
+        "C_unrestricted_dp": 12,
+        "equal": true,
+        "index": 13,
+        "n": 4,
+        "targets": [
+          [
+            1,
+            11
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            7,
+            0
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 15,
+        "C_unrestricted_dp": 15,
+        "equal": true,
+        "index": 14,
+        "n": 4,
+        "targets": [
+          [
+            1,
+            15
+          ],
+          [
+            12,
+            14
+          ],
+          [
+            7,
+            13
+          ],
+          [
+            10,
+            6
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            12,
+            7
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 12,
+        "C_unrestricted_dp": 12,
+        "equal": true,
+        "index": 15,
+        "n": 4,
+        "targets": [
+          [
+            7,
+            10
+          ],
+          [
+            14,
+            9
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            10,
+            10
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 13,
+        "C_unrestricted_dp": 13,
+        "equal": true,
+        "index": 16,
+        "n": 4,
+        "targets": [
+          [
+            9,
+            10
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            12,
+            3
+          ],
+          [
+            13,
+            9
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            12,
+            10
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 14,
+        "C_unrestricted_dp": 14,
+        "equal": true,
+        "index": 17,
+        "n": 4,
+        "targets": [
+          [
+            15,
+            13
+          ],
+          [
+            11,
+            8
+          ],
+          [
+            8,
+            15
+          ],
+          [
+            12,
+            6
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            10,
+            8
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 13,
+        "C_unrestricted_dp": 13,
+        "equal": true,
+        "index": 18,
+        "n": 4,
+        "targets": [
+          [
+            8,
+            2
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            9,
+            11
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            13,
+            10
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 13,
+        "C_unrestricted_dp": 13,
+        "equal": true,
+        "index": 19,
+        "n": 4,
+        "targets": [
+          [
+            14,
+            12
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            11,
+            2
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            3,
+            8
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 15,
+        "C_unrestricted_dp": 15,
+        "equal": true,
+        "index": 20,
+        "n": 4,
+        "targets": [
+          [
+            14,
+            7
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            0,
+            11
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            13,
+            0
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 16,
+        "C_unrestricted_dp": 16,
+        "equal": true,
+        "index": 21,
+        "n": 4,
+        "targets": [
+          [
+            9,
+            3
+          ],
+          [
+            13,
+            15
+          ],
+          [
+            9,
+            5
+          ],
+          [
+            9,
+            0
+          ],
+          [
+            7,
+            15
+          ],
+          [
+            7,
+            14
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 14,
+        "C_unrestricted_dp": 14,
+        "equal": true,
+        "index": 22,
+        "n": 4,
+        "targets": [
+          [
+            15,
+            7
+          ],
+          [
+            14,
+            4
+          ],
+          [
+            12,
+            8
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            15,
+            11
+          ],
+          [
+            6,
+            12
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 16,
+        "C_unrestricted_dp": 16,
+        "equal": true,
+        "index": 23,
+        "n": 4,
+        "targets": [
+          [
+            10,
+            3
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            6,
+            11
+          ],
+          [
+            12,
+            7
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            7,
+            5
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 15,
+        "C_unrestricted_dp": 15,
+        "equal": true,
+        "index": 24,
+        "n": 4,
+        "targets": [
+          [
+            15,
+            2
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            4,
+            11
+          ],
+          [
+            8,
+            15
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            12,
+            0
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 15,
+        "C_unrestricted_dp": 15,
+        "equal": true,
+        "index": 25,
+        "n": 4,
+        "targets": [
+          [
+            5,
+            14
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            13,
+            0
+          ],
+          [
+            14,
+            5
+          ],
+          [
+            15,
+            4
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 13,
+        "C_unrestricted_dp": 13,
+        "equal": true,
+        "index": 26,
+        "n": 4,
+        "targets": [
+          [
+            6,
+            12
+          ],
+          [
+            4,
+            11
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            14,
+            10
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            9,
+            8
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 14,
+        "C_unrestricted_dp": 14,
+        "equal": true,
+        "index": 27,
+        "n": 4,
+        "targets": [
+          [
+            8,
+            13
+          ],
+          [
+            11,
+            6
+          ],
+          [
+            14,
+            5
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            12,
+            4
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 12,
+        "C_unrestricted_dp": 12,
+        "equal": true,
+        "index": 28,
+        "n": 4,
+        "targets": [
+          [
+            9,
+            2
+          ],
+          [
+            2,
+            14
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            8,
+            11
+          ]
+        ]
+      },
+      {
+        "C_Dxx": 12,
+        "C_unrestricted_dp": 12,
+        "equal": true,
+        "index": 29,
+        "n": 4,
+        "targets": [
+          [
+            5,
+            1
+          ],
+          [
+            12,
+            2
+          ],
+          [
+            13,
+            7
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            13,
+            15
+          ],
+          [
+            6,
+            14
+          ]
+        ]
+      }
+    ],
+    "seed": 20260822,
+    "subsampling": "none -- full frozen plan executed",
+    "violating_instances_verbatim": [],
+    "weight1_binding_ok": true,
+    "weight1_binding_rows": 10,
+    "witness_all_ok": true,
+    "witness_verified_rows": 14
+  },
+  "theorem_statement": "For every n and every target configuration of the frozen R6M grammar (any matching, relative permutations and centrals), the unrestricted exact DP optimum equals the D++ optimum: frame Paulis of global support >= 3 never strictly pay."
+}
