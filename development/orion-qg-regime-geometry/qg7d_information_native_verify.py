@@ -1,0 +1,9 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+import json
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2]; RESULT=ROOT/'artifacts/orion-qg-qg7d-information-closure.json'; GENERIC=ROOT/'artifacts/orion-qg-qg7d-information-generic.json'; OUT=ROOT/'artifacts/orion-qg-qg7d-information-native.json'; TOKEN='ORIONQG_QG7D_INFO_NATIVE='
+def canonical(v): return json.dumps(v,sort_keys=True,separators=(',',':'),allow_nan=False)
+def main():
+ a=json.loads(RESULT.read_text()); g=json.loads(GENERIC.read_text()); checks={'analyzer':a.get('all_gates') is True,'generic':g.get('decision')=='ACCEPT_CANNOT_CHECK' and g.get('all_checks') is True,'terminal':a.get('terminal')=='QG7D_CANNOT_CHECK_ALL_N_PINNED_CLOSURE__PP_HIDDEN_HOME_ENVIRONMENT_NOT_IN_PARENT_STATE__PADDING_ABLATION_NEGATIVE','load_bearing_pp':a.get('pp_parent_failures')==32556,'hidden_range':a['hidden_home_test']['delta_min']==-4 and a['hidden_home_test']['delta_max']==4,'padding_negative':a['scientific_disposition']['btripleprime']=='UNFOUND_IN_FROZEN_PADDING_ABLATION','no_theorem':a.get('all_n_theorem_authority') is False,'no_overclaim':a.get('novelty_authority') is False and a.get('physical_quantum_advantage_claim') is False}; decision='ACCEPT_CANNOT_CHECK' if all(checks.values()) else 'REJECT'; out={'schema':'ORION.QG.QG7D.InformationNative.v1','issue':'SzeChunYiu/ORION#836','decision':decision,'responsibility':'CANNOT_CHECK_ALL_N_PINNED_CLOSURE__STATE_QUOTIENT_INSUFFICIENT' if decision.startswith('ACCEPT') else 'CANNOT_CHECK_UNRESOLVED','checks':checks,'all_checks':all(checks.values()),'terminal':a.get('terminal'),'scientifically_closed_under_stop_rules':decision.startswith('ACCEPT'),'all_n_theorem_authority':False,'novelty_authority':False}; OUT.parent.mkdir(parents=True,exist_ok=True); OUT.write_text(json.dumps(out,indent=2,sort_keys=True)+'\n'); print(TOKEN+canonical(out)); return 0
+if __name__=='__main__': raise SystemExit(main())
