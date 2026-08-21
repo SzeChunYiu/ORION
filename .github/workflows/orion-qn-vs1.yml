@@ -33,6 +33,7 @@ jobs:
           pytest -q \
             tests/quantum/test_contracts.py \
             tests/quantum/test_access_models.py \
+            tests/quantum/test_query_model_adjudication.py \
             tests/quantum/test_vs1_verification.py \
             tests/quantum/test_vs1_malformed_receipts.py \
             tests/quantum/test_vs1_s1a_qiskit.py
@@ -45,7 +46,7 @@ jobs:
           python development/orion-qn-q2/verify_s1a_harness_artifact.py \
             artifacts/orion-qn-vs1-s1a-harness.json \
             artifacts/orion-qn-vs1-s1a-verification.json
-      - name: Enforce bounded campaign and access-model shape
+      - name: Enforce bounded campaign, access, and benchmark shape
         run: |
           python - <<'PY'
           import json
@@ -53,9 +54,11 @@ jobs:
 
           envelope = json.loads(Path('artifacts/orion-qn-vs1-s1a-harness.json').read_text())
           campaign = envelope['campaign']
-          assert campaign['schema'] == 'ORION.QN.VS1.S1A.Campaign.v2'
+          assert campaign['schema'] == 'ORION.QN.VS1.S1A.Campaign.v3'
           assert campaign['physical_quantum_speedup_claim_permitted'] is False
           assert campaign['evidence_mode'] == 'LOCAL_SIMULATION'
+          assert campaign['fixture_cases_used_for_advantage'] is False
+          assert campaign['advantage_adjudication_source'] == 'HIDDEN_UNIFORM_ANALYTIC_QUERY_MODEL'
           assert len(campaign['cases']) == 64
           assert len(campaign['size_summaries']) == 8
           assert campaign['p4_reconstruction']['valid'] is True
@@ -81,6 +84,14 @@ jobs:
               assert item['terminal'] == item['query_model_terminal']
               assert item['quantum_access_mode'] == 'NATIVE_COHERENT_ORACLE'
               assert item['oracle_construction_status'] == 'QUERY_MODEL_ASSUMPTION'
+              assert item['advantage_adjudication_source'] == 'HIDDEN_UNIFORM_ANALYTIC_QUERY_MODEL'
+              assert item['model'] == 'HIDDEN_UNIFORM_SINGLE_MARK_QUERY_MODEL'
+              assert item['fixture_cases_used_for_advantage'] is False
+              assert item['fixture_classical_diagnostic_only'] is True
+              assert item['success_probability_source'] == 'ANALYTIC_GROVER_AMPLITUDE'
+              assert item['benchmark_correlated_side_information_admitted'] is False
+              assert item['quantum_query_budget'] < item['classical_matching_query_budget']
+              assert item['quantum_query_budget'] < item['classical_matching_expected_queries']
               if item['query_model_terminal'] != 'INVALID_COMPARISON':
                   assert item['ordinary_input_terminal'] == 'CANNOT_CHECK_ACCESS_MODEL'
               assert item['ordinary_input_quantum_access_mode'] == 'CLASSICAL_PREDICATE_ONLY'
