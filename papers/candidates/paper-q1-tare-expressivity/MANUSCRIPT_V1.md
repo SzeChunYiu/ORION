@@ -517,11 +517,18 @@ coordinate that the R4B/R4D compilation results optimize on real Hamiltonians.
   machine-evidenced to theorem-grade; no such receipt exists at this writing.)*
 - **Support-3 necessity**: no verified instance requires frame support ≥ 3; the
   existence of a third regime outside the verified domains is open.
-- **Prospective fresh-subject test**: the predicate has never been evaluated
-  prospectively on a third, blob-frozen public Hamiltonian with the prediction
-  committed before the DP is run. *(Forward slot: a MAX_R6R prospective
-  fresh-subject receipt would be this paper's strongest evidence and belongs at
-  the head of Section 3.6; no such receipt exists at this writing.)*
+- **Prospective fresh-subject test — EXECUTED, PREDICTION CONFIRMED**
+  (`research/extensions/orion-q/MAX_R6R_PROSPECTIVE_FRESH_SUBJECT_RESULTS.json`):
+  under a selection rule frozen before any fresh coefficient was read, the
+  first eligible subject — Benzene cc-pVDZ FrozenCoreCCSD 6Elec/6Orbs DUCC2
+  (12 qubits, 390 Pauli terms, blob `5c02c72b…`) — was admitted on the first
+  attempt; the predicate's stage-1 prediction (donor-exact on all 15 matchings,
+  exact costs 9×9 and 6×8) was digest-stamped (`898f49a4…`) before any DP ran,
+  and the unrestricted exact DP then confirmed cost and regime on **15/15
+  matchings**, with all 14 gates true and byte-identical double runs. Honest
+  bound: the fresh subject landed entirely donor-exact, so the split and borrow
+  branches were exercised as non-profitability exclusions, not positive regime
+  predictions; a boundary-region subject is the named escalation.
 - Other objectives (coefficient-weighted, rotation-count trade-offs beyond frozen
   counts), larger Tag ranks, and grammars outside the two frozen families are
   out of scope entirely, not open questions of this paper.
