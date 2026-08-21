@@ -1,0 +1,121 @@
+name: orion-qg-qg6-syndrome-compression
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG6_*'
+      - 'development/orion-qg-regime-geometry/qg6_*'
+      - 'development/orion-qg-regime-geometry/run_qg6_dual_harness.py'
+      - 'research/extensions/orion-qg/qg6_syndrome_rank.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/domains/orion_qg/**'
+      - 'packages/orion-research-harness/tests/test_qg6_syndrome_compression.py'
+      - '.github/workflows/orion-qg-qg6.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg-qg6-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qg6-syndrome-compression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      QG6_FROZEN_BASE: 164462bf7c7f3d3c2e559fa5aaf19726bb6ec388
+    steps:
+      - name: Checkout exact QG-6 head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert frozen lineage
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG6_FROZEN_BASE}^{commit}"
+          test "$(git merge-base HEAD "${QG6_FROZEN_BASE}")" = "${QG6_FROZEN_BASE}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and both harness layers
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Validate native QG-6 control
+        run: |
+          pytest -q packages/orion-research-harness/tests/test_qg6_syndrome_compression.py
+      - name: Run production analyzer through generic + native harnesses
+        run: |
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg6_dual_harness.py \
+            | tee artifacts/orion-qg-qg6-dual-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          python research/extensions/orion-qg/qg6_syndrome_rank.py \
+            --output artifacts/orion-qg-qg6-syndrome-rank-replay.json \
+            | tee artifacts/orion-qg-qg6-replay.log
+          cmp \
+            artifacts/orion-qg-qg6-syndrome-rank.json \
+            artifacts/orion-qg-qg6-syndrome-rank-replay.json
+      - name: Enforce bounded positive or honest negative
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          analyzer = json.loads(Path('artifacts/orion-qg-qg6-syndrome-rank.json').read_text())
+          generic = json.loads(Path('artifacts/orion-qg-qg6-generic-verification.json').read_text())
+          dual = json.loads(Path('artifacts/orion-qg-qg6-dual-harness.json').read_text())
+
+          positive = (
+              'QG6_PRODUCTION_SYNDROME_RANK_INFERENCE_VERIFIED__'
+              'R6M_D2_RECOVERS_SUPPORT2__R6I_D5_FOUND_THEOREM_PENDING_QG1'
+          )
+          allowed = {
+              positive,
+              'QG6_PRODUCTION_RANK_OR_BINDING_REFUTED',
+              'QG6_NATIVE_GENERIC_DISAGREEMENT',
+          }
+          assert dual['terminal'] in allowed
+          assert analyzer['chemistry_sources_read'] is False
+          assert analyzer['protected_subject_read'] is False
+          assert analyzer['novelty_authority'] is False
+          assert analyzer['physical_quantum_advantage_claim'] is False
+          assert dual['r6i_theorem_promotion'] == 'PENDING_QG1'
+          assert dual['novelty_authority'] is False
+
+          if dual['terminal'] == positive:
+              assert analyzer['terminal'] == positive
+              assert all(analyzer['gates'].values())
+              assert analyzer['r6m']['auto_dimension'] == 2
+              assert analyzer['r6i']['auto_dimension'] == 5
+              assert analyzer['r6m']['local_option_rows'] == 16384
+              assert analyzer['r6i']['local_option_rows'] == 4096
+              assert all(row['rank'] == 2 for row in analyzer['r6m']['slots'].values())
+              assert all(row['rank'] == 5 for row in analyzer['r6i']['blocks'].values())
+              assert analyzer['r6m']['support_theorem_status'] == 'RECOVERED_FROM_EXISTING_R6S_CERTIFICATE'
+              assert analyzer['r6i']['support_theorem_status'] == 'PENDING_QG1_INDEPENDENT_DUAL_HARNESS'
+              assert analyzer['r6i']['local_cost_corroboration']['case_count'] == 46080
+              assert analyzer['r6i']['local_cost_corroboration']['max_delta'] == -4
+              assert analyzer['r6i']['local_cost_corroboration']['violations'] == []
+              assert generic['decision'] == 'ACCEPT'
+              assert all(generic['checks'].values())
+              assert dual['both_accept'] is True
+              assert dual['generic_lane']['decision'] == 'ACCEPT'
+              assert dual['native_lane']['decision'] == 'ACCEPT'
+          PY
+      - name: Upload QG-6 receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg6-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg6-syndrome-rank.json
+            artifacts/orion-qg-qg6-syndrome-rank-replay.json
+            artifacts/orion-qg-qg6-generic-verification.json
+            artifacts/orion-qg-qg6-dual-harness.json
+            artifacts/orion-qg-qg6-dual-summary.json
+            artifacts/orion-qg-qg6-replay.log
+            .orion-qg-qg6-generic/.orion-harness/**
+            .orion-qg-qg6-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error
