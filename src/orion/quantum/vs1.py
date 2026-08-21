@@ -11,6 +11,7 @@ from .contracts import (
     QAccessMatch,
     QAdvantageReceipt,
     QResourceSummary,
+    QuantumAccessMode,
     QuantumAdvantageTerminal,
     QuantumEvidenceMode,
     validate_advantage_receipt,
@@ -23,6 +24,7 @@ _PROTOCOL_PATH = Path(
     "research/extensions/orion-qn/VS1_P6_P2_P4_LOCAL_SIMULATION_PROTOCOL_V1.md"
 )
 _IMPLEMENTATION_PACKET_PATH = Path("development/orion-qn-q2/S1A_IMPLEMENTATION_PACKET_V1.md")
+_ACCESS_AMENDMENT_PATH = Path("research/extensions/orion-qn/S1A_ACCESS_MODEL_AMENDMENT_V1.md")
 
 
 def _sha256_file(path: Path) -> str:
@@ -52,15 +54,16 @@ def _size_terminal(cases: list[dict[str, Any]]) -> QuantumAdvantageTerminal:
 
 
 def _summary_for_size(n_qubits: int, cases: list[dict[str, Any]]) -> dict[str, Any]:
-    terminal = _size_terminal(cases)
-    receipt = QAdvantageReceipt(
-        receipt_id=f"vs1-s1a-n{n_qubits}",
+    query_terminal = _size_terminal(cases)
+    query_receipt = QAdvantageReceipt(
+        receipt_id=f"vs1-s1a-query-model-n{n_qubits}",
         evidence_mode=QuantumEvidenceMode.LOCAL_SIMULATION,
-        terminal=terminal,
+        terminal=query_terminal,
         access_match=QAccessMatch(
             same_problem=True,
             same_information=True,
             same_tolerance=True,
+            quantum_access_mode=QuantumAccessMode.NATIVE_COHERENT_ORACLE,
         ),
         resources=QResourceSummary(
             unresolved_end_to_end_coordinates=(
@@ -71,15 +74,45 @@ def _summary_for_size(n_qubits: int, cases: list[dict[str, Any]]) -> dict[str, A
             )
         ),
         query_claim_bounded=(
-            terminal is QuantumAdvantageTerminal.QUANTUM_QUERY_ADVANTAGE_ONLY
+            query_terminal is QuantumAdvantageTerminal.QUANTUM_QUERY_ADVANTAGE_ONLY
         ),
     )
-    validate_advantage_receipt(receipt)
+    validate_advantage_receipt(query_receipt)
+
+    ordinary_terminal = (
+        QuantumAdvantageTerminal.INVALID_COMPARISON
+        if query_terminal is QuantumAdvantageTerminal.INVALID_COMPARISON
+        else QuantumAdvantageTerminal.CANNOT_CHECK_ACCESS_MODEL
+    )
+    ordinary_receipt = QAdvantageReceipt(
+        receipt_id=f"vs1-s1a-classical-input-n{n_qubits}",
+        evidence_mode=QuantumEvidenceMode.LOCAL_SIMULATION,
+        terminal=ordinary_terminal,
+        access_match=QAccessMatch(
+            same_problem=True,
+            same_information=True,
+            same_tolerance=True,
+            stronger_quantum_interface_unresolved=True,
+            quantum_access_mode=QuantumAccessMode.CLASSICAL_PREDICATE_ONLY,
+            coherent_oracle_derivation_resolved=False,
+        ),
+        resources=query_receipt.resources,
+        query_claim_bounded=False,
+    )
+    validate_advantage_receipt(ordinary_receipt)
+
     return {
         "n_qubits": n_qubits,
         "search_size": 1 << n_qubits,
         "case_count": len(cases),
-        "terminal": terminal.value,
+        # `terminal` remains a compatibility alias for the explicitly named query-model terminal.
+        "terminal": query_terminal.value,
+        "query_model_terminal": query_terminal.value,
+        "quantum_access_mode": QuantumAccessMode.NATIVE_COHERENT_ORACLE.value,
+        "oracle_construction_status": "QUERY_MODEL_ASSUMPTION",
+        "ordinary_input_terminal": ordinary_terminal.value,
+        "ordinary_input_quantum_access_mode": QuantumAccessMode.CLASSICAL_PREDICATE_ONLY.value,
+        "ordinary_input_coherent_oracle_derivation_resolved": False,
         "mean_quantum_oracle_calls": mean(int(item["oracle_calls"]) for item in cases),
         "mean_classical_ordered_calls": mean(
             int(item["classical_ordered_calls"]) for item in cases
@@ -99,10 +132,10 @@ def _summary_for_size(n_qubits: int, cases: list[dict[str, Any]]) -> dict[str, A
             item["returned_candidate"] == item["marked_index"] for item in cases
         ),
         "evidence_mode": QuantumEvidenceMode.LOCAL_SIMULATION.value,
-        "query_claim_bounded": terminal
+        "query_claim_bounded": query_terminal
         is QuantumAdvantageTerminal.QUANTUM_QUERY_ADVANTAGE_ONLY,
         "unresolved_end_to_end_coordinates": list(
-            receipt.resources.unresolved_end_to_end_coordinates
+            query_receipt.resources.unresolved_end_to_end_coordinates
         ),
     }
 
@@ -121,7 +154,7 @@ def run_s1a_campaign() -> dict[str, Any]:
         size_summaries.append(_summary_for_size(n_qubits, size_cases))
 
     report: dict[str, Any] = {
-        "schema": "ORION.QN.VS1.S1A.Campaign.v1",
+        "schema": "ORION.QN.VS1.S1A.Campaign.v2",
         "programme_issue": "SzeChunYiu/ORION#734",
         "evidence_mode": QuantumEvidenceMode.LOCAL_SIMULATION.value,
         "subject_commit": os.environ.get("GITHUB_SHA", "LOCAL_UNBOUND"),
@@ -129,10 +162,32 @@ def run_s1a_campaign() -> dict[str, Any]:
         "protocol_sha256": _sha256_file(_PROTOCOL_PATH),
         "implementation_packet_path": str(_IMPLEMENTATION_PACKET_PATH),
         "implementation_packet_sha256": _sha256_file(_IMPLEMENTATION_PACKET_PATH),
+        "access_amendment_path": str(_ACCESS_AMENDMENT_PATH),
+        "access_amendment_sha256": _sha256_file(_ACCESS_AMENDMENT_PATH),
         "physical_quantum_speedup_claim_permitted": False,
+        "access_interpretations": {
+            "query_model": {
+                "quantum_access_mode": QuantumAccessMode.NATIVE_COHERENT_ORACLE.value,
+                "oracle_construction_status": "QUERY_MODEL_ASSUMPTION",
+                "maximum_terminal": QuantumAdvantageTerminal.QUANTUM_QUERY_ADVANTAGE_ONLY.value,
+            },
+            "ordinary_classical_input": {
+                "quantum_access_mode": QuantumAccessMode.CLASSICAL_PREDICATE_ONLY.value,
+                "coherent_oracle_derivation_resolved": False,
+                "terminal": QuantumAdvantageTerminal.CANNOT_CHECK_ACCESS_MODEL.value,
+            },
+        },
         "cases": cases,
         "size_summaries": size_summaries,
         "literature_boundary": [
+            {
+                "source": "standard quantum query model",
+                "role": "coherent-oracle access boundary",
+                "disposition": (
+                    "query-count evidence is valid only when native coherent oracle access is "
+                    "explicitly registered"
+                ),
+            },
             {
                 "source": "Quantum 10, 1975 (2026)",
                 "role": "structured-problem/resource hostile donor",
