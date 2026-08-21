@@ -17,6 +17,15 @@
     "primary_2020_outcome_is_already_historical": true,
     "can_retroactively_grant_primary_2020_mechanism_authority": false
   },
+  "pre_execution_order": {
+    "must_be_merged_before_2019_source_acquisition": true,
+    "must_be_merged_before_2019_corpus_seal": true,
+    "must_be_merged_before_any_2019_candidate_or_comparator_execution": true,
+    "must_be_merged_before_2019_independent_scoring": true,
+    "outcome_aware_operator_may_not_select_rank_or_replace_2019_sources": true,
+    "source_selection_authority_remains_REPLICATION_2019_PROTOCOL_V1": true,
+    "violation_terminal": "P1_R6_2019_REPLICATION_CANNOT_CHECK"
+  },
   "inherited_replication_v1": {
     "rule": "Every REPLICATION_2019_PROTOCOL_V1 field remains required and unchanged. This document only makes its already-required adverse-family ARD-versus-BASE mechanism coordinate machine-decidable before any 2019 policy outcome.",
     "queries_changed": false,
