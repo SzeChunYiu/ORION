@@ -1,0 +1,87 @@
+name: orion-qg-qg18-tare-kappa2
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG18_*'
+      - 'development/orion-qg-regime-geometry/qg18_*'
+      - 'development/orion-qg-regime-geometry/run_qg18_dual_harness.py'
+      - 'research/extensions/orion-qg/qg18_*'
+      - '.github/workflows/orion-qg-qg18-tare-kappa2.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg18-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  qg18-kappa2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      QG18_BASE: c5ba39fef4f25c46de5fb69bf07f50530f4693ca
+    steps:
+      - name: Checkout exact protected head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert frozen lineage
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG18_BASE}^{commit}"
+          test "$(git merge-base HEAD "${QG18_BASE}")" = "${QG18_BASE}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Syntax gate
+        run: |
+          python -m py_compile research/extensions/orion-qg/qg18_tare_kappa2.py development/orion-qg-regime-geometry/qg18_generic_verify.py development/orion-qg-regime-geometry/qg18_native_verify.py development/orion-qg-regime-geometry/run_qg18_dual_harness.py
+      - name: Execute QG-18 through both ORION instruments
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg18_dual_harness.py | tee artifacts/orion-qg-qg18-dual-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          set -euo pipefail
+          python research/extensions/orion-qg/qg18_tare_kappa2.py --output artifacts/orion-qg-qg18-tare-kappa2-replay.json > artifacts/orion-qg-qg18-replay.log
+          cmp artifacts/orion-qg-qg18-tare-kappa2.json artifacts/orion-qg-qg18-tare-kappa2-replay.json
+      - name: Enforce exact support-number terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg18-tare-kappa2.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg18-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg18-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg18-dual-harness.json').read_text())
+          t='QG18_TARE_KAPPA_IS_2__SUPPORT2_NECESSITY_WITNESS_MACHINE_VERIFIED'
+          assert a['terminal']==t and all(a['gates'].values())
+          assert a['proof']['intrinsic_support_number']==2
+          assert a['selected_witness']['unrestricted_dp']==7
+          assert a['selected_witness']['cap1']['C_Dxx']==8
+          assert g['decision']=='ACCEPT_KAPPA2' and g['all_checks'] is True
+          assert n['decision']=='ACCEPT_KAPPA2' and n['all_checks'] is True
+          assert d['terminal']==t and d['both_accept'] is True and d['intrinsic_support_number']==2
+          assert a['novelty_authority'] is False and a['physical_quantum_advantage_claim'] is False
+          PY
+      - name: Upload QG-18 receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg18-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg18-tare-kappa2.json
+            artifacts/orion-qg-qg18-tare-kappa2-replay.json
+            artifacts/orion-qg-qg18-generic-verification.json
+            artifacts/orion-qg-qg18-native-verification.json
+            artifacts/orion-qg-qg18-dual-harness.json
+            artifacts/orion-qg-qg18-dual-summary.json
+            artifacts/orion-qg-qg18-replay.log
+            .orion-qg-qg18-generic/.orion-harness/**
+            .orion-qg-qg18-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error
