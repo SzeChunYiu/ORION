@@ -1,0 +1,78 @@
+name: orion-q-max-r6e-deep-p10
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-q-max-r0/MAX_R6E_DEEP_P10_EXACT_FRAME_SATURATION_PROTOCOL.md'
+      - 'research/extensions/orion-q/max_r6e_deep_p10_exact_frame_saturation.py'
+      - 'research/extensions/orion-q/max_r6_p10_candidate_blind_frame_optimizer.py'
+      - 'research/extensions/orion-q/max_r6_exact_tare3_joint_frame_dp.py'
+      - '.github/workflows/orion-q-max-r6e-deep-p10.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-q-max-r6e-deep-p10-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  exhaustive-deep-p10:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy
+      - name: Run frozen exhaustive deep-P10 exact-frame diagnostic
+        run: |
+          cd research/extensions/orion-q
+          python max_r6e_deep_p10_exact_frame_saturation.py \
+            --table-json /tmp/r6e-deep-p10-table.json \
+            | tee /tmp/r6e-deep-p10.txt
+          grep '^ORIONQ_MAX_R6E_DEEP_P10=' /tmp/r6e-deep-p10.txt
+      - name: Verify responsibility receipt and table digest
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          prefix='ORIONQ_MAX_R6E_DEEP_P10='
+          rows=[line for line in Path('/tmp/r6e-deep-p10.txt').read_text().splitlines() if line.startswith(prefix)]
+          if len(rows)!=1:
+              raise SystemExit(f'expected exactly one R6E receipt, got {len(rows)}')
+          p=json.loads(rows[0][len(prefix):])
+          if p.get('reserved_stretched_n2_accessed') is not False:
+              raise SystemExit('R6E accessed protected stretched N2')
+          if p.get('r6_authority') is not False or p.get('novelty_credit') is not False:
+              raise SystemExit('R6E diagnosis granted forbidden authority/novelty')
+          gates=p.get('gates')
+          if not isinstance(gates,dict) or not gates or not all(v is True for v in gates.values()):
+              raise SystemExit(f'R6E integrity gates failed: {gates}')
+          if p.get('complete_table_total_rows') != 1123:
+              raise SystemExit(f'unexpected R6E table row count: {p.get("complete_table_total_rows")}')
+          table=json.loads(Path('/tmp/r6e-deep-p10-table.json').read_text())
+          canonical=json.dumps(table,sort_keys=True,separators=(',',':'),allow_nan=False).encode()
+          got=hashlib.sha256(canonical).hexdigest()
+          if got != p.get('complete_table_bundle_sha256'):
+              raise SystemExit(f'R6E table digest mismatch: {got} != {p.get("complete_table_bundle_sha256")}')
+          authority=p.get('authority')
+          allowed={
+              'MAX_R6E_CURRENT_SEARCH_INCOMPLETE__NOT_R6',
+              'MAX_R6E_PARTIAL_SEARCH_REOPEN__NOT_R6',
+              'MAX_R6E_EXACT_FRAME_SATURATION_SUPPORTED__NOT_R6',
+          }
+          if authority not in allowed:
+              raise SystemExit(f'unrecognized R6E scientific sign: {authority}')
+          print('R6E_SCIENTIFIC_SIGN='+authority)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-q-max-r6e-deep-p10-receipts
+          path: |
+            /tmp/r6e-deep-p10.txt
+            /tmp/r6e-deep-p10-table.json
+          if-no-files-found: warn
+          retention-days: 30

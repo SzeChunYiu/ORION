@@ -1,0 +1,44 @@
+{
+  "schema": "ORIONQ.MAXR0HeterogeneousArenaResult.v1",
+  "seed": 20260820,
+  "episodes_per_domain": 20000,
+  "domains": {
+    "SYNTHESIS": {
+      "NO_HISTORY": {"success_rate": 0.6446, "mean_cost": 1.0, "repeated_dead_end_rate": 0.37545, "reopen_decision_accuracy": 0.42569789674952196},
+      "RAW_HISTORY": {"success_rate": 0.96435, "mean_cost": 2.96125, "repeated_dead_end_rate": 0.0, "reopen_decision_accuracy": 0.574302103250478},
+      "SCOPED_HISTORY": {"success_rate": 0.97225, "mean_cost": 2.12635, "repeated_dead_end_rate": 0.0, "reopen_decision_accuracy": 1.0},
+      "ORACLE": {"success_rate": 0.98265, "mean_cost": 2.01415, "repeated_dead_end_rate": 0.04635, "reopen_decision_accuracy": 0.92282982791587}
+    },
+    "ALGO_INTERFACE": {
+      "NO_HISTORY": {"success_rate": 0.6293, "mean_cost": 1.4000000000004535, "repeated_dead_end_rate": 0.3786, "reopen_decision_accuracy": 0.35530012771392083},
+      "RAW_HISTORY": {"success_rate": 0.95355, "mean_cost": 3.63154999999936, "repeated_dead_end_rate": 0.0, "reopen_decision_accuracy": 0.6446998722860792},
+      "SCOPED_HISTORY": {"success_rate": 0.96135, "mean_cost": 2.8386800000002386, "repeated_dead_end_rate": 0.0, "reopen_decision_accuracy": 1.0},
+      "ORACLE": {"success_rate": 0.97665, "mean_cost": 2.719930000000319, "repeated_dead_end_rate": 0.0452, "reopen_decision_accuracy": 0.9153682418050234}
+    },
+    "QEC_CODESIGN": {
+      "NO_HISTORY": {"success_rate": 0.64475, "mean_cost": 2.0, "repeated_dead_end_rate": 0.3747, "reopen_decision_accuracy": 0.4805572884175504},
+      "RAW_HISTORY": {"success_rate": 0.93265, "mean_cost": 5.967425, "repeated_dead_end_rate": 0.0, "reopen_decision_accuracy": 0.5194427115824496},
+      "SCOPED_HISTORY": {"success_rate": 0.9476, "mean_cost": 4.06085, "repeated_dead_end_rate": 0.0, "reopen_decision_accuracy": 1.0},
+      "ORACLE": {"success_rate": 0.97005, "mean_cost": 3.78915, "repeated_dead_end_rate": 0.0688, "reopen_decision_accuracy": 0.8906217508837596}
+    },
+    "FORMAL_REASONING": {
+      "NO_HISTORY": {"success_rate": 0.6068, "mean_cost": 0.7999999999997106, "repeated_dead_end_rate": 0.40545, "reopen_decision_accuracy": 0.33461885615820136},
+      "RAW_HISTORY": {"success_rate": 0.9728, "mean_cost": 2.3233750000005, "repeated_dead_end_rate": 0.0, "reopen_decision_accuracy": 0.6653811438417986},
+      "SCOPED_HISTORY": {"success_rate": 0.9776, "mean_cost": 1.8136249999998217, "repeated_dead_end_rate": 0.0, "reopen_decision_accuracy": 1.0},
+      "ORACLE": {"success_rate": 0.98425, "mean_cost": 1.743624999999693, "repeated_dead_end_rate": 0.034, "reopen_decision_accuracy": 0.941002707803397}
+    }
+  },
+  "aggregate": {
+    "scoped_minus_raw_success_rate": 0.0088625,
+    "scoped_minus_raw_success_rate_normal_95": [0.007904573310782006, 0.009820426689217995],
+    "scoped_minus_raw_mean_cost": -1.0110237499999999,
+    "scoped_minus_raw_mean_cost_normal_95": [-1.0236071333089178, -0.9984403666910818]
+  },
+  "interpretation": {
+    "milestone": "MAX_R1_GENERAL_SCOPED_FAILURE_STATE_VALUE__SYNTHETIC",
+    "authority": "diagnostic_synthetic_only",
+    "p10_authorized": false,
+    "novelty_authorized": false,
+    "note": "This diagnostic supports cross-domain value of scoped failure semantics only. It does not establish superiority over a donor-composed controller with identical typed facts."
+  }
+}

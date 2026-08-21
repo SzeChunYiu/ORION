@@ -1,0 +1,107 @@
+name: orion-q-max-r6-exact-tare3
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-q/max_r6_exact_tare3_joint_frame_dp.py'
+      - 'research/extensions/orion-q/max_r6_exact_tare3_end_to_end_verify.py'
+      - 'research/extensions/orion-q/max_r6_p10_candidate_blind_frame_optimizer.py'
+      - 'research/extensions/orion-q/max_r5h_mixed_cardinality_development.py'
+      - 'research/extensions/orion-q/max_r4d_h2o_ducc_confirmation.py'
+      - 'development/orion-q-max-r0/MAX_R6_EXACT_TARE3_JOINT_FRAME_DP_PROTOCOL.md'
+      - 'development/orion-q-max-r0/MAX_R6_EXACT_TARE3_DP_ERRATUM_1.md'
+      - 'development/orion-q-max-r0/MAX_R6_EXACT_TARE3_DP_ERRATUM_2.md'
+      - 'development/orion-q-max-r0/MAX_R6_EXACT_TARE3_DP_ERRATUM_3.md'
+      - 'packages/orion-research-harness/tests/test_orion_q_exact_tare3_e2e_verifier.py'
+      - '.github/workflows/orion-q-max-r6-exact-tare3.yml'
+
+concurrency:
+  group: orion-q-max-r6-exact-tare3-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  exact-tare3-open-subject-development:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy
+      - name: Run frozen exact joint TARE-3 development through fail-closed verifier
+        run: |
+          cd research/extensions/orion-q
+          python max_r6_exact_tare3_end_to_end_verify.py | tee /tmp/exact-tare3.txt
+          grep '^ORIONQ_MAX_R6_EXACT_TARE3=' /tmp/exact-tare3.txt
+          grep '^ORIONQ_MAX_R6_EXACT_TARE3_E2E_VERIFY=' /tmp/exact-tare3.txt
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          text = Path('/tmp/exact-tare3.txt').read_text().splitlines()
+          raw_prefix = 'ORIONQ_MAX_R6_EXACT_TARE3='
+          verify_prefix = 'ORIONQ_MAX_R6_EXACT_TARE3_E2E_VERIFY='
+          raw_lines = [line for line in text if line.startswith(raw_prefix)]
+          verify_lines = [line for line in text if line.startswith(verify_prefix)]
+          if len(raw_lines) != 1:
+              raise SystemExit(f'expected exactly one core exact-TARE3 receipt, got {len(raw_lines)}')
+          if len(verify_lines) != 1:
+              raise SystemExit(f'expected exactly one E2E verification receipt, got {len(verify_lines)}')
+
+          raw = json.loads(raw_lines[0][len(raw_prefix):])
+          payload = json.loads(verify_lines[0][len(verify_prefix):])
+          required_errata = {
+              'MAX_R6_EXACT_TARE3_DP_ERRATUM_1',
+              'MAX_R6_EXACT_TARE3_DP_ERRATUM_2',
+              'MAX_R6_EXACT_TARE3_DP_ERRATUM_3',
+          }
+
+          if raw.get('reserved_stretched_n2_accessed') is not False:
+              raise SystemExit('core receipt did not prove protected stretched-N2 remained unread')
+          raw_gates = raw.get('gates', {})
+          if not isinstance(raw_gates, dict) or 'top_four_panel_complete' not in raw_gates:
+              raise SystemExit('core receipt is missing the Erratum-3 top-four gate')
+          if not isinstance(raw_gates.get('top_four_panel_complete'), bool):
+              raise SystemExit('core top-four gate is not a boolean')
+          raw_supported = raw.get('development_supported') is True
+          raw_conjunction = bool(raw_gates) and all(value is True for value in raw_gates.values())
+          if raw_supported != raw_conjunction:
+              raise SystemExit('core development_supported does not equal its frozen gate conjunction')
+          if not required_errata.issubset(set(raw.get('protocol_errata', []))):
+              raise SystemExit('core receipt does not bind all three exact-TARE3 errata')
+          if raw_supported and raw_gates.get('top_four_panel_complete') is not True:
+              raise SystemExit('core positive receipt escaped the Erratum-3 top-four gate')
+
+          if payload.get('reserved_stretched_n2_accessed') is not False:
+              raise SystemExit('protected stretched-N2 access was not proven absent')
+          if payload.get('software_integrity_pass') is not True:
+              raise SystemExit(f"software integrity failed: {payload.get('errors')}")
+          if not required_errata.issubset(set(payload.get('bound_errata', []))):
+              raise SystemExit('verifier does not bind all three exact-TARE3 errata')
+          if payload.get('underlying_erratum3_listed') is not True:
+              raise SystemExit('verifier did not confirm core Erratum-3 binding')
+          strict_gates = payload.get('strict_gates', {})
+          strict_supported = payload.get('strict_supported') is True
+          if strict_supported != (
+              bool(strict_gates)
+              and all(value is True for value in strict_gates.values())
+          ):
+              raise SystemExit('strict_supported does not equal conjunction of strict frozen gates')
+          if payload.get('underlying_supported') is not raw_supported:
+              raise SystemExit('core/verifier support-state disagreement')
+          if payload.get('top_four_panel_complete') is not raw_gates.get('top_four_panel_complete'):
+              raise SystemExit('core/verifier top-four gate disagreement')
+          if payload.get('underlying_supported') is True and payload.get('top_four_panel_complete') is not True:
+              raise SystemExit('positive underlying receipt escaped the top-four completeness gate')
+          if payload.get('pre_prospective_ready') is True:
+              if payload.get('top_four_panel_complete') is not True:
+                  raise SystemExit('pre-prospective ready without complete top-four panels')
+              if strict_supported is not True:
+                  raise SystemExit('pre-prospective ready without strict support')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-q-max-r6-exact-tare3-receipt
+          path: /tmp/exact-tare3.txt
+          if-no-files-found: error

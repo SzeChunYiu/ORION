@@ -1,0 +1,51 @@
+{
+  "schema": "ORIONQ.MAXR6.NativeSelfOrionN0.v1",
+  "authority": "N0_NATIVE_SELF_ORION_CONTROL_GREEN__COMPUTATION_REQUIRED__NOT_R6",
+  "state_sha256": "ed5a9fe41ce5165ff0b33940d344c034446db134a38dfcf9d4be277f8189bbc2",
+  "responsibility": {
+    "status": "UNRESOLVED",
+    "defeated_hypotheses": ["RESP:CURRENT_SEARCH_INCOMPLETE"],
+    "surviving_hypotheses": [
+      "RESP:DONOR_CLOSURE_INCOMPLETE",
+      "RESP:INTERFACE_INADEQUATE",
+      "RESP:METHOD_LANGUAGE_INADEQUATE"
+    ],
+    "missing_discriminators": [
+      "FOQCS_GENERIC_PREP_OUTCOME",
+      "GENERAL_M_DONOR_OUTCOME"
+    ]
+  },
+  "revision_gate": {
+    "status": "UNRESOLVED",
+    "selected_mechanic_id": null
+  },
+  "computation_selection": {
+    "status": "SELECTED",
+    "selected_action_id": "COMPUTE:DONOR_CLOSURE_PACKET",
+    "reason": "HARD_OBLIGATION_PRECEDENCE"
+  },
+  "self_orion_control": {
+    "status": "COMPUTATION_REQUIRED",
+    "selected_computation_action_id": "COMPUTE:DONOR_CLOSURE_PACKET",
+    "selected_revision_mechanic_id": null
+  },
+  "shadow_p9_no_p10_control": {
+    "status": "COMPUTATION_REQUIRED",
+    "selected_computation_action_id": "COMPUTE:DONOR_CLOSURE_PACKET"
+  },
+  "gates": {
+    "state_blinded": true,
+    "fresh_subject_unopened": true,
+    "native_responsibility_unresolved_before_donor_closure": true,
+    "native_control_requires_computation": true,
+    "native_control_selects_donor_closure": true,
+    "no_revision_selected_before_donor_closure": true,
+    "shadow_same_hard_computation": true
+  },
+  "workflow": {
+    "run_id": 32392282484,
+    "job_id": 96500996565,
+    "conclusion": "success"
+  },
+  "r6_authority": false
+}

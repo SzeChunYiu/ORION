@@ -1,0 +1,24 @@
+{
+  "version": "ORIONQ.MAXR6.NativeControlState.v1",
+  "stage": "N1",
+  "frozen_after_selected_donor_closure": true,
+  "operator_proposed_quantum_candidate_hidden": true,
+  "visible_evidence": {
+    "R5H_CURRENT_ALPHABET_EXACT": "YES",
+    "GENERAL_M_DONOR_OUTCOME": "NONDOMINATING_OR_CLOSED",
+    "FOQCS_GENERIC_PREP_OUTCOME": "GENERIC_MATCHED_ROUTE_AVAILABLE"
+  },
+  "donor_evidence": {
+    "general_m_relaxation": "No optimistic m>=3 TARE hyperblock composition dominates the frozen H4 direct-clique point.",
+    "foqcs_route": "Current Qrisp FOQCS constructor accepts caller-supplied PREP_R/PREP_L beyond built-in structured operator families.",
+    "foqcs_prep_resource_status": "UNRESOLVED_USER_SUPPLIED_PREP__NOT_ZERO_COST"
+  },
+  "active_hard_obligations": [],
+  "current_method_language": [
+    "PAULI_SINGLETON",
+    "DIRECT_ANTICOMMUTING_CLIQUE",
+    "EXACT_CONTROLLED_TARE_M2"
+  ],
+  "authority": "BELOW_R6",
+  "fresh_r6_subject_coefficients_accessed": false
+}
