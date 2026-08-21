@@ -39,6 +39,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from orion_research_harness import corroboration
 from orion_research_harness.campaign_control import (
     decide_campaign,
     manifest_digest,
@@ -303,10 +304,22 @@ def main() -> int:
     verdict = agreement_verdict(lane_a["decision"], lane_b_decision)
 
     dual = {
-        "schema": "ORION.QG.QG7Family.DualAdmission.v1",
+        "schema": "ORION.QG.QG7Family.DualAdmission.v2",
         "programme": "ORION-QG (charter PROGRAMME_CHARTER_V1.md, issue #740)",
         "ladder": "QG-7 -> QG-7b -> QG-7c -> QG-7d (TARE support-<=2 classification)",
         "agreement": verdict,
+        # Both lanes here re-derive each receipt's DECLARED digest and compare
+        # terminals. That establishes the artifacts are intact and mutually
+        # consistent -- it cannot establish that the computations inside were
+        # correct. On 2026-08-21 this runner returned ACCEPT_PARTIAL_CHAIN /
+        # AGREE against QG-7d receipt f80deba7..., which a menu-reduction bug
+        # had made scientifically wrong; the run was deterministic,
+        # replay-identical and digest-valid throughout. The defect was caught by
+        # a cross-lemma check and a from-primitives verifier, neither of which
+        # is this runner. See RECEIPT_CHURN_HAZARD_2026-08-21.md.
+        "corroboration_kind": corroboration.PROVENANCE_ONLY,
+        "scientific_corroboration": False,
+        "corroboration_note": corroboration.describe(corroboration.PROVENANCE_ONLY),
         "generic_lane": {
             "instrument": "ORION research harness (ResearchWorkspace + service_local_request)",
             "capability": "PYTHON",
@@ -359,6 +372,8 @@ def main() -> int:
         "reserved_stretched_n2_accessed": False,
     }
     DUAL.write_text(json.dumps(dual, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+    corroboration.validate_corroboration(dual)
 
     summary = {
         "agreement": verdict,
