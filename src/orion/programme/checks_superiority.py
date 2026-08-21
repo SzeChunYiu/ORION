@@ -501,6 +501,32 @@ def _check_unclassified_blocker(ledger: SuperiorityLedger) -> CheckResult:
 
 _PAPER_DIR_PATTERN = re.compile(r"^paper-(\d{2})-")
 
+#: ``Q-paper-NN-*`` is the ORION-Q programme's own numbering namespace and is
+#: deliberately out of scope here: this module adjudicates the ``P<n>-U`` terminals
+#: of #649-#663, and ORION-Q has separate issues. The pattern above already
+#: excludes it by requiring ``paper-`` at position zero; this note exists so the
+#: exclusion reads as a decision rather than an accident of the regex.
+_OUT_OF_SCOPE_PREFIXES = ("Q-",)
+
+
+def _holds_content(directory: Path) -> bool:
+    """True if a directory holds anything but Python build artifacts.
+
+    Without this, stale ``__pycache__/`` left behind by a directory move reads as
+    a live paper identity: after P6-P10 moved out of ``papers/candidates/`` the
+    old paths still existed on disk holding nothing but ``.pyc`` files, and a
+    filesystem walk reported three unregistered papers that git had never heard
+    of. The check is about repository content, so residue must not speak for it.
+    """
+
+    for path in directory.rglob("*"):
+        if not path.is_file():
+            continue
+        if "__pycache__" in path.parts or path.suffix in (".pyc", ".pyo"):
+            continue
+        return True
+    return False
+
 
 def paper_identity_findings(repo_root: Path) -> tuple[str, ...] | None:
     """Unregistered paper-numbered directories, or ``None`` if the tree is absent.
@@ -518,9 +544,14 @@ def paper_identity_findings(repo_root: Path) -> tuple[str, ...] | None:
         for child in sorted(parent.iterdir()):
             if not child.is_dir() or not _PAPER_DIR_PATTERN.match(child.name):
                 continue
+            if child.name.startswith(_OUT_OF_SCOPE_PREFIXES):
+                continue
             relative = child.relative_to(repo_root).as_posix()
-            if relative not in REGISTERED_PAPER_DIRECTORIES:
-                found.append(relative)
+            if relative in REGISTERED_PAPER_DIRECTORIES:
+                continue
+            if not _holds_content(child):
+                continue
+            found.append(relative)
     return tuple(found)
 
 

@@ -530,7 +530,10 @@ class PaperDirectories:
     """Which directory currently carries a paper's identity, and what preceded it.
 
     ``papers/PAPER_ALIASES.md`` is the repository's "single place for historical
-    ORION paper-directory aliases", and it covers only P1-P5. So for P6-P10 there
+    ORION paper-directory aliases", and it covers only P1-P5.
+
+    Paths follow the 2026-08-21 refactor that lifted P6-P10 out of
+    ``papers/candidates/`` into ``papers/`` alongside the flagship five. So for P6-P10 there
     was nowhere recording succession, and two retired candidates sat beside two
     active ones under the same numbers, distinguishable only by opening each
     README. This is that record for the ten papers this module adjudicates.
@@ -555,16 +558,16 @@ PAPER_DIRECTORIES: tuple[PaperDirectories, ...] = (
     PaperDirectories("P4", "papers/paper-04-verified-scientific-discovery"),
     PaperDirectories("P5", "papers/paper-05-self-orion"),
     PaperDirectories(
-        "P6", "papers/candidates/paper-06-formal-epistemic-structures-and-mechanics"
+        "P6", "papers/paper-06-formal-epistemic-structures-and-mechanics"
     ),
-    PaperDirectories("P7", "papers/candidates/paper-07-epistemic-navigation-open-worlds"),
-    PaperDirectories("P8", "papers/candidates/paper-08-epistemic-authority-autonomous-science"),
+    PaperDirectories("P7", "papers/paper-07-epistemic-navigation-open-worlds"),
+    PaperDirectories("P8", "papers/paper-08-epistemic-authority-autonomous-science"),
     PaperDirectories(
         "P9",
-        "papers/candidates/paper-09-structured-epistemic-learning",
+        "papers/paper-09-structured-epistemic-learning",
         (
             (
-                "papers/candidates/paper-09-executable-research-core",
+                "papers/paper-09-executable-research-core",
                 "Self-declares MERGED INTO P8/PROGRAMME with no standalone manuscript. "
                 "Retained: cited by tests/unit/candidates/test_p9_p10_learning_machine.py, "
                 "by P8's benchmark companion, and by the orion-learning-machine lane.",
@@ -573,10 +576,10 @@ PAPER_DIRECTORIES: tuple[PaperDirectories, ...] = (
     ),
     PaperDirectories(
         "P10",
-        "papers/candidates/paper-10-structured-problem-solving",
+        "papers/paper-10-structured-problem-solving",
         (
             (
-                "papers/candidates/paper-10-content-bound-math-evaluation",
+                "papers/paper-10-content-bound-math-evaluation",
                 "Terminal TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME; deliberately not a "
                 "standalone paper. Retained: it is P10's predecessor evidence in the "
                 "superiority ledger, and is cited by a live test and the RSE wave-closure "
@@ -587,7 +590,9 @@ PAPER_DIRECTORIES: tuple[PaperDirectories, ...] = (
 )
 
 #: Paper identities registered by the P11-P14 programme issue (#670) whose
-#: directories arrive with PR #715. They are *registered but not adjudicated*: this
+#: directories arrive with PR #715 (which targets ``papers/candidates/``; after
+#: the 2026-08-21 refactor they are expected directly under ``papers/``, and
+#: both spellings are registered so the merge order does not matter). They are *registered but not adjudicated*: this
 #: module holds no ``Done when`` gates for them, because #670 is a programme issue
 #: rather than a per-paper superiority terminal.
 #:
@@ -598,10 +603,10 @@ PAPER_DIRECTORIES: tuple[PaperDirectories, ...] = (
 #: directories is the fix, and it is also the honest record: #670 assigned these
 #: numbers before any directory existed.
 FUTURE_PAPER_DIRECTORIES: dict[str, str] = {
-    "P11": "papers/candidates/paper-11-state-as-computation",
-    "P12": "papers/candidates/paper-12-adaptive-state-reasoning",
-    "P13": "papers/candidates/paper-13-responsibility-carrying-state",
-    "P14": "papers/candidates/paper-14-orion-rse",
+    "P11": "papers/paper-11-state-as-computation",
+    "P12": "papers/paper-12-adaptive-state-reasoning",
+    "P13": "papers/paper-13-responsibility-carrying-state",
+    "P14": "papers/paper-14-orion-rse",
 }
 
 #: Research tracks whose **standalone paper numbering was retired** by #670, and
@@ -632,6 +637,13 @@ REGISTERED_PAPER_DIRECTORIES: frozenset[str] = frozenset(
     [entry.active for entry in PAPER_DIRECTORIES]
     + [directory for entry in PAPER_DIRECTORIES for directory, _ in entry.retired]
     + list(FUTURE_PAPER_DIRECTORIES.values())
+    # PR #715 was authored against the pre-refactor layout. Registering the
+    # ``candidates/`` spelling too means whichever order the two land in, a
+    # legitimate new identity never reads as identity rot.
+    + [
+        directory.replace("papers/", "papers/candidates/", 1)
+        for directory in FUTURE_PAPER_DIRECTORIES.values()
+    ]
 )
 
 

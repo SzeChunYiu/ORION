@@ -1,0 +1,22 @@
+{
+  "completed_at": "2026-08-21T06:16:58.393377+00:00",
+  "error": "",
+  "executor": "claude-code-session",
+  "output": {
+    "items": [
+      {
+        "content": "The harness protocol has no CapabilityKind enum; capabilities are plain string kinds. Broker-mediated kinds are declared in packages/orion-research-harness/src/orion_research_harness/broker.py: LLM_COMPLETE (line 96, content must be a string, optional model_id/response_id), WEB_SEARCH (line 134, items with non-empty content and source_uri, array domain_ids), VERIFY_EVIDENCE (line 192, boolean passed, certificate_ids array, passing requires a certificate). Local kinds are declared in packages/orion-research-harness/src/orion_research_harness/local_tools.py lines 13-20: FILE_READ, FILE_WRITE, FILE_LIST, SHELL, PYTHON.",
+        "domain_ids": [
+          "software-verification"
+        ],
+        "item_id": "cap-kinds-source",
+        "source_uri": "repo:packages/orion-research-harness/src/orion_research_harness/broker.py"
+      }
+    ]
+  },
+  "request_digest": "967a2f74c316d8d11adf84cbb7e96bbe252ff19447eebb4a3dede5f7f0b04b28",
+  "request_id": "hostreq:f5c1cb94a9da79c058cbc640be83abff0207030072c6aa183f022a33578629f2",
+  "result_digest": "24cf8d040ce8014c0e0029bd8b6732f51ef01cf7800831de2ec1316c4940ba15",
+  "schema": "ORION.HostCapabilityResult.v1",
+  "success": true
+}

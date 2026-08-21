@@ -44,8 +44,8 @@ carried by more than one directory, so the succession is recorded here.
 
 | Stable ID | Active directory | Retired directory | Disposition |
 |---|---|---|---|
-| ORION-P9 | `candidates/paper-09-structured-epistemic-learning/` | `candidates/paper-09-executable-research-core/` | retained |
-| ORION-P10 | `candidates/paper-10-structured-problem-solving/` | `candidates/paper-10-content-bound-math-evaluation/` | retained |
+| ORION-P9 | `papers/paper-09-structured-epistemic-learning/` | `papers/paper-09-executable-research-core/` | retained |
+| ORION-P10 | `papers/paper-10-structured-problem-solving/` | `papers/paper-10-content-bound-math-evaluation/` | retained |
 
 **Retained, not removed.** The P1–P5 redirects above were deleted because they
 "contained no independent manuscript content". That test fails here: both retired
@@ -66,7 +66,7 @@ someone recording which one carries the identity.
 
 `#670` assigns four further identities — P11 State as Computation, P12 Adaptive
 State–Reasoning Co-Design, P13 Responsibility-Carrying State, P14 ORION-RSE — whose
-directories arrive with PR #715 as `candidates/paper-11-state-as-computation/`,
+directories arrive with PR #715 as `papers/paper-11-state-as-computation/`,
 `paper-12-adaptive-state-reasoning/`, `paper-13-responsibility-carrying-state/` and
 `paper-14-orion-rse/`. One directory per number; no aliases needed.
 

@@ -1,0 +1,44 @@
+name: orion-q-max-r5b
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-q/**'
+      - 'development/orion-q-max-r0/**'
+      - '.github/workflows/orion-q-max-r5b.yml'
+
+jobs:
+  n2-proof-carrying-outer-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy
+      - name: Run frozen N2 proof-carrying replay and outer accounting
+        run: |
+          cd research/extensions/orion-q
+          python max_r5b_n2_proof_outer_replay.py | tee /tmp/r5b.txt
+          grep '^ORIONQ_MAX_R5B_PROOF_OUTER=' /tmp/r5b.txt
+      - name: Run independent N2 proof replay
+        run: |
+          cd research/extensions/orion-q
+          python max_r5b_n2_independent_replay.py | tee /tmp/r5b-independent.txt
+          grep '^ORIONQ_MAX_R5B_INDEPENDENT=' /tmp/r5b-independent.txt
+      - name: Run controlled-SELECT-aware N2 development successor
+        run: |
+          cd research/extensions/orion-q
+          python max_r5c_n2_controlled_cost_development.py | tee /tmp/r5c-dev.txt
+          grep '^ORIONQ_MAX_R5C_DEV=' /tmp/r5c-dev.txt
+      - name: Run exact 10-term controlled multiwindow N2 development diagnostic
+        run: |
+          cd research/extensions/orion-q
+          python max_r5d_n2_controlled_multiwindow_development.py | tee /tmp/r5d-dev.txt
+          grep '^ORIONQ_MAX_R5D_DEV=' /tmp/r5d-dev.txt
+      - name: Run true-incumbent exact 12-term N2 development
+        run: |
+          cd research/extensions/orion-q
+          python max_r5e_n2_true_incumbent_12term_development.py | tee /tmp/r5e-dev.txt
+          grep '^ORIONQ_MAX_R5E_DEV=' /tmp/r5e-dev.txt

@@ -1,0 +1,79 @@
+name: orion-q-max-r6e-deep-p10-fast
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-q-max-r0/MAX_R6E_DEEP_P10_EXACT_FRAME_SATURATION_PROTOCOL.md'
+      - 'research/extensions/orion-q/max_r6e_deep_p10_exact_frame_saturation.py'
+      - 'research/extensions/orion-q/max_r6e_deep_p10_exact_frame_saturation_fast.py'
+      - 'research/extensions/orion-q/max_r6_p10_candidate_blind_frame_optimizer.py'
+      - 'research/extensions/orion-q/max_r6_exact_tare3_joint_frame_dp.py'
+      - '.github/workflows/orion-q-max-r6e-deep-p10-fast.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-q-max-r6e-deep-p10-fast-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  exhaustive-deep-p10-fast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy
+      - name: Run sparse exact executor for frozen R6E population
+        run: |
+          cd research/extensions/orion-q
+          python max_r6e_deep_p10_exact_frame_saturation_fast.py \
+            --table-json /tmp/r6e-fast-table.json \
+            | tee /tmp/r6e-fast.txt
+          grep '^ORIONQ_MAX_R6E_DEEP_P10=' /tmp/r6e-fast.txt
+      - name: Verify unchanged R6E responsibility gates
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          prefix='ORIONQ_MAX_R6E_DEEP_P10='
+          rows=[line for line in Path('/tmp/r6e-fast.txt').read_text().splitlines() if line.startswith(prefix)]
+          if len(rows)!=1:
+              raise SystemExit(f'expected exactly one fast R6E receipt, got {len(rows)}')
+          p=json.loads(rows[0][len(prefix):])
+          if p.get('implementation') != 'SPARSE_EXACT_COST_V1_WITH_ORIGINAL_STRICT_AND_BOUNDARY_REPLAY':
+              raise SystemExit(f'unexpected R6E implementation: {p.get("implementation")}')
+          if p.get('complete_table_total_rows') != 1123:
+              raise SystemExit(f'R6E table row-count drift: {p.get("complete_table_total_rows")}')
+          if p.get('reserved_stretched_n2_accessed') is not False:
+              raise SystemExit('fast R6E accessed protected stretched N2')
+          if p.get('r6_authority') is not False or p.get('novelty_credit') is not False:
+              raise SystemExit('fast R6E granted forbidden authority/novelty')
+          gates=p.get('gates')
+          if not isinstance(gates,dict) or not gates or not all(v is True for v in gates.values()):
+              raise SystemExit(f'fast R6E integrity gates failed: {gates}')
+          table=json.loads(Path('/tmp/r6e-fast-table.json').read_text())
+          got=hashlib.sha256(json.dumps(table,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
+          if got != p.get('complete_table_bundle_sha256'):
+              raise SystemExit(f'fast R6E table digest mismatch: {got} != {p.get("complete_table_bundle_sha256")}')
+          allowed={
+              'MAX_R6E_CURRENT_SEARCH_INCOMPLETE__NOT_R6',
+              'MAX_R6E_PARTIAL_SEARCH_REOPEN__NOT_R6',
+              'MAX_R6E_EXACT_FRAME_SATURATION_SUPPORTED__NOT_R6',
+          }
+          if p.get('authority') not in allowed:
+              raise SystemExit(f'unrecognized fast R6E sign: {p.get("authority")}')
+          print('R6E_FAST_SCIENTIFIC_SIGN='+p['authority'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-q-max-r6e-deep-p10-fast-receipts
+          path: |
+            /tmp/r6e-fast.txt
+            /tmp/r6e-fast-table.json
+          if-no-files-found: warn
+          retention-days: 30

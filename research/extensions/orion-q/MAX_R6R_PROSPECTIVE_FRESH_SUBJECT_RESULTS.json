@@ -1,0 +1,810 @@
+{
+  "admission_attempts": [
+    {
+      "admitted": true,
+      "blob": "5c02c72b88e12b391ea1d8f77eb6b3e04fc2a915",
+      "n_qubits": 12,
+      "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+      "reason": null
+    }
+  ],
+  "authority": "MAX_R6R_PROSPECTIVE_FRESH_SUBJECT_PREDICTION_CONFIRMED__TWO_TRADE_PREDICATE_HELD_ON_UNSEEN_SUBJECT__NOT_R6",
+  "claim_boundary": {
+    "covers": "One prospective test of the committed R6Q predicate P1 and the two-trade completeness identity C_DP == min(C_R6L, C_Dplus, f_B) on the 15 frozen-grammar matchings of the frozen R6B six-term batch of a single deterministically selected, never previously read subject from the pinned public DUCC Hamiltonian library, with the prediction recorded and digest-printed before the unrestricted R6M DP referee was run.",
+    "does_not_cover": "Other objectives, other grammars, rotation-count trade-offs, other batches or subjects, or any claim of donor or R6 novelty credit. A refutation claims exactly the mismatches reported verbatim.",
+    "machine_evidenced_only": "Any confirmation is machine-evidenced only on this one subject's 15 matchings, in addition to the domains already recorded in the R6Q receipt. It is NOT a theorem for all n or all targets; the D++ value is recorded only via the exact containment pinch where C_DP == C_Dplus, exactly as the committed R6P chemistry lane."
+  },
+  "donor_novelty_credit": false,
+  "dxx_direct_sweep_run": false,
+  "dxx_obtained_by_exact_containment_pinch_where_applicable": true,
+  "gates": {
+    "dp_witness_checks_all_matchings": true,
+    "f3_table_binding_exact": true,
+    "no_excluded_molecule_fetched": true,
+    "pinned_commit_and_blobs": true,
+    "prediction_matches_ground_truth_every_matching": true,
+    "protocol_frozen_and_hashed": true,
+    "reserved_stretched_n2_unread": true,
+    "sandwich_and_borrow_soundness_all_matchings": true,
+    "six_targets_pairwise_commuting": true,
+    "six_term_batch_rules_identical_to_r6b": true,
+    "stage1_digest_printed_before_ground_truth": true,
+    "subject_blob_not_any_committed_subject_blob": true,
+    "subject_blob_verified": true,
+    "subject_molecule_outside_exclusion_list": true
+  },
+  "library": {
+    "commit": "be306f5830549304176365750d712093950bbdde",
+    "ducc_listing_sha256": "6191553e1291d08655e4f16096e9f53a6652b416665fbe12b66a53e564a503bc",
+    "ducc_results_files_at_commit": 75,
+    "protected_stretched_n2_present_in_tree": true,
+    "repo": "npbauman/DUCC-Hamiltonian-Library"
+  },
+  "match_count": 15,
+  "matching_count": 15,
+  "matchings": [
+    {
+      "C_DP": 9,
+      "C_Dplus": 9,
+      "C_Dxx_pinched": 9,
+      "C_R6L": 9,
+      "Gsplit": 0,
+      "a2max": 1,
+      "a3": 0,
+      "cost_match": true,
+      "dp_witness_checks_pass": true,
+      "dxx_pinched_equal": true,
+      "f_B": 10,
+      "matching": [
+        [
+          4,
+          7
+        ],
+        [
+          9,
+          72
+        ],
+        [
+          73,
+          74
+        ]
+      ],
+      "predicate_P1": true,
+      "predicted_C_DP": 9,
+      "predicted_donor_exact": true,
+      "predicted_regime": "donor_exact",
+      "regime_match": true,
+      "s1": 0,
+      "s2": 1,
+      "s3": 0,
+      "truth_donor_exact": true,
+      "truth_regime": "donor_exact"
+    },
+    {
+      "C_DP": 9,
+      "C_Dplus": 9,
+      "C_Dxx_pinched": 9,
+      "C_R6L": 9,
+      "Gsplit": 0,
+      "a2max": 1,
+      "a3": 0,
+      "cost_match": true,
+      "dp_witness_checks_pass": true,
+      "dxx_pinched_equal": true,
+      "f_B": 10,
+      "matching": [
+        [
+          4,
+          7
+        ],
+        [
+          9,
+          73
+        ],
+        [
+          72,
+          74
+        ]
+      ],
+      "predicate_P1": true,
+      "predicted_C_DP": 9,
+      "predicted_donor_exact": true,
+      "predicted_regime": "donor_exact",
+      "regime_match": true,
+      "s1": 0,
+      "s2": 1,
+      "s3": 0,
+      "truth_donor_exact": true,
+      "truth_regime": "donor_exact"
+    },
+    {
+      "C_DP": 9,
+      "C_Dplus": 9,
+      "C_Dxx_pinched": 9,
+      "C_R6L": 9,
+      "Gsplit": 0,
+      "a2max": 1,
+      "a3": 0,
+      "cost_match": true,
+      "dp_witness_checks_pass": true,
+      "dxx_pinched_equal": true,
+      "f_B": 10,
+      "matching": [
+        [
+          4,
+          7
+        ],
+        [
+          9,
+          74
+        ],
+        [
+          72,
+          73
+        ]
+      ],
+      "predicate_P1": true,
+      "predicted_C_DP": 9,
+      "predicted_donor_exact": true,
+      "predicted_regime": "donor_exact",
+      "regime_match": true,
+      "s1": 0,
+      "s2": 1,
+      "s3": 0,
+      "truth_donor_exact": true,
+      "truth_regime": "donor_exact"
+    },
+    {
+      "C_DP": 9,
+      "C_Dplus": 9,
+      "C_Dxx_pinched": 9,
+      "C_R6L": 9,
+      "Gsplit": 0,
+      "a2max": 1,
+      "a3": 0,
+      "cost_match": true,
+      "dp_witness_checks_pass": true,
+      "dxx_pinched_equal": true,
+      "f_B": 10,
+      "matching": [
+        [
+          4,
+          9
+        ],
+        [
+          7,
+          72
+        ],
+        [
+          73,
+          74
+        ]
+      ],
+      "predicate_P1": true,
+      "predicted_C_DP": 9,
+      "predicted_donor_exact": true,
+      "predicted_regime": "donor_exact",
+      "regime_match": true,
+      "s1": 0,
+      "s2": 1,
+      "s3": 0,
+      "truth_donor_exact": true,
+      "truth_regime": "donor_exact"
+    },
+    {
+      "C_DP": 9,
+      "C_Dplus": 9,
+      "C_Dxx_pinched": 9,
+      "C_R6L": 9,
+      "Gsplit": 0,
+      "a2max": 1,
+      "a3": 0,
+      "cost_match": true,
+      "dp_witness_checks_pass": true,
+      "dxx_pinched_equal": true,
+      "f_B": 10,
+      "matching": [
+        [
+          4,
+          9
+        ],
+        [
+          7,
+          73
+        ],
+        [
+          72,
+          74
+        ]
+      ],
+      "predicate_P1": true,
+      "predicted_C_DP": 9,
+      "predicted_donor_exact": true,
+      "predicted_regime": "donor_exact",
+      "regime_match": true,
+      "s1": 0,
+      "s2": 1,
+      "s3": 0,
+      "truth_donor_exact": true,
+      "truth_regime": "donor_exact"
+    },
+    {
+      "C_DP": 9,
+      "C_Dplus": 9,
+      "C_Dxx_pinched": 9,
+      "C_R6L": 9,
+      "Gsplit": 0,
+      "a2max": 1,
+      "a3": 0,
+      "cost_match": true,
+      "dp_witness_checks_pass": true,
+      "dxx_pinched_equal": true,
+      "f_B": 10,
+      "matching": [
+        [
+          4,
+          9
+        ],
+        [
+          7,
+          74
+        ],
+        [
+          72,
+          73
+        ]
+      ],
+      "predicate_P1": true,
+      "predicted_C_DP": 9,
+      "predicted_donor_exact": true,
+      "predicted_regime": "donor_exact",
+      "regime_match": true,
+      "s1": 0,
+      "s2": 1,
+      "s3": 0,
+      "truth_donor_exact": true,
+      "truth_regime": "donor_exact"
+    },
+    {
+      "C_DP": 9,
+      "C_Dplus": 9,
+      "C_Dxx_pinched": 9,
+      "C_R6L": 9,
+      "Gsplit": 0,
+      "a2max": 1,
+      "a3": 0,
+      "cost_match": true,
+      "dp_witness_checks_pass": true,
+      "dxx_pinched_equal": true,
+      "f_B": 10,
+      "matching": [
+        [
+          4,
+          72
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          73,
+          74
+        ]
+      ],
+      "predicate_P1": true,
+      "predicted_C_DP": 9,
+      "predicted_donor_exact": true,
+      "predicted_regime": "donor_exact",
+      "regime_match": true,
+      "s1": 0,
+      "s2": 1,
+      "s3": 0,
+      "truth_donor_exact": true,
+      "truth_regime": "donor_exact"
+    },
+    {
+      "C_DP": 8,
+      "C_Dplus": 8,
+      "C_Dxx_pinched": 8,
+      "C_R6L": 8,
+      "Gsplit": 0,
+      "a2max": 1,
+      "a3": 1,
+      "cost_match": true,
+      "dp_witness_checks_pass": true,
+      "dxx_pinched_equal": true,
+      "f_B": 10,
+      "matching": [
+        [
+          4,
+          72
+        ],
+        [
+          7,
+          73
+        ],
+        [
+          9,
+          74
+        ]
+      ],
+      "predicate_P1": true,
+      "predicted_C_DP": 8,
+      "predicted_donor_exact": true,
+      "predicted_regime": "donor_exact",
+      "regime_match": true,
+      "s1": 1,
+      "s2": 0,
+      "s3": 0,
+      "truth_donor_exact": true,
+      "truth_regime": "donor_exact"
+    },
+    {
+      "C_DP": 8,
+      "C_Dplus": 8,
+      "C_Dxx_pinched": 8,
+      "C_R6L": 8,
+      "Gsplit": 0,
+      "a2max": 1,
+      "a3": 1,
+      "cost_match": true,
+      "dp_witness_checks_pass": true,
+      "dxx_pinched_equal": true,
+      "f_B": 10,
+      "matching": [
+        [
+          4,
+          72
+        ],
+        [
+          7,
+          74
+        ],
+        [
+          9,
+          73
+        ]
+      ],
+      "predicate_P1": true,
+      "predicted_C_DP": 8,
+      "predicted_donor_exact": true,
+      "predicted_regime": "donor_exact",
+      "regime_match": true,
+      "s1": 1,
+      "s2": 0,
+      "s3": 0,
+      "truth_donor_exact": true,
+      "truth_regime": "donor_exact"
+    },
+    {
+      "C_DP": 9,
+      "C_Dplus": 9,
+      "C_Dxx_pinched": 9,
+      "C_R6L": 9,
+      "Gsplit": 0,
+      "a2max": 1,
+      "a3": 0,
+      "cost_match": true,
+      "dp_witness_checks_pass": true,
+      "dxx_pinched_equal": true,
+      "f_B": 10,
+      "matching": [
+        [
+          4,
+          73
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          72,
+          74
+        ]
+      ],
+      "predicate_P1": true,
+      "predicted_C_DP": 9,
+      "predicted_donor_exact": true,
+      "predicted_regime": "donor_exact",
+      "regime_match": true,
+      "s1": 0,
+      "s2": 1,
+      "s3": 0,
+      "truth_donor_exact": true,
+      "truth_regime": "donor_exact"
+    },
+    {
+      "C_DP": 8,
+      "C_Dplus": 8,
+      "C_Dxx_pinched": 8,
+      "C_R6L": 8,
+      "Gsplit": 0,
+      "a2max": 1,
+      "a3": 1,
+      "cost_match": true,
+      "dp_witness_checks_pass": true,
+      "dxx_pinched_equal": true,
+      "f_B": 10,
+      "matching": [
+        [
+          4,
+          73
+        ],
+        [
+          7,
+          72
+        ],
+        [
+          9,
+          74
+        ]
+      ],
+      "predicate_P1": true,
+      "predicted_C_DP": 8,
+      "predicted_donor_exact": true,
+      "predicted_regime": "donor_exact",
+      "regime_match": true,
+      "s1": 1,
+      "s2": 0,
+      "s3": 0,
+      "truth_donor_exact": true,
+      "truth_regime": "donor_exact"
+    },
+    {
+      "C_DP": 8,
+      "C_Dplus": 8,
+      "C_Dxx_pinched": 8,
+      "C_R6L": 8,
+      "Gsplit": 0,
+      "a2max": 1,
+      "a3": 1,
+      "cost_match": true,
+      "dp_witness_checks_pass": true,
+      "dxx_pinched_equal": true,
+      "f_B": 10,
+      "matching": [
+        [
+          4,
+          73
+        ],
+        [
+          7,
+          74
+        ],
+        [
+          9,
+          72
+        ]
+      ],
+      "predicate_P1": true,
+      "predicted_C_DP": 8,
+      "predicted_donor_exact": true,
+      "predicted_regime": "donor_exact",
+      "regime_match": true,
+      "s1": 1,
+      "s2": 0,
+      "s3": 0,
+      "truth_donor_exact": true,
+      "truth_regime": "donor_exact"
+    },
+    {
+      "C_DP": 9,
+      "C_Dplus": 9,
+      "C_Dxx_pinched": 9,
+      "C_R6L": 9,
+      "Gsplit": 0,
+      "a2max": 1,
+      "a3": 0,
+      "cost_match": true,
+      "dp_witness_checks_pass": true,
+      "dxx_pinched_equal": true,
+      "f_B": 10,
+      "matching": [
+        [
+          4,
+          74
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          72,
+          73
+        ]
+      ],
+      "predicate_P1": true,
+      "predicted_C_DP": 9,
+      "predicted_donor_exact": true,
+      "predicted_regime": "donor_exact",
+      "regime_match": true,
+      "s1": 0,
+      "s2": 1,
+      "s3": 0,
+      "truth_donor_exact": true,
+      "truth_regime": "donor_exact"
+    },
+    {
+      "C_DP": 8,
+      "C_Dplus": 8,
+      "C_Dxx_pinched": 8,
+      "C_R6L": 8,
+      "Gsplit": 0,
+      "a2max": 1,
+      "a3": 1,
+      "cost_match": true,
+      "dp_witness_checks_pass": true,
+      "dxx_pinched_equal": true,
+      "f_B": 10,
+      "matching": [
+        [
+          4,
+          74
+        ],
+        [
+          7,
+          72
+        ],
+        [
+          9,
+          73
+        ]
+      ],
+      "predicate_P1": true,
+      "predicted_C_DP": 8,
+      "predicted_donor_exact": true,
+      "predicted_regime": "donor_exact",
+      "regime_match": true,
+      "s1": 1,
+      "s2": 0,
+      "s3": 0,
+      "truth_donor_exact": true,
+      "truth_regime": "donor_exact"
+    },
+    {
+      "C_DP": 8,
+      "C_Dplus": 8,
+      "C_Dxx_pinched": 8,
+      "C_R6L": 8,
+      "Gsplit": 0,
+      "a2max": 1,
+      "a3": 1,
+      "cost_match": true,
+      "dp_witness_checks_pass": true,
+      "dxx_pinched_equal": true,
+      "f_B": 10,
+      "matching": [
+        [
+          4,
+          74
+        ],
+        [
+          7,
+          73
+        ],
+        [
+          9,
+          72
+        ]
+      ],
+      "predicate_P1": true,
+      "predicted_C_DP": 8,
+      "predicted_donor_exact": true,
+      "predicted_regime": "donor_exact",
+      "regime_match": true,
+      "s1": 1,
+      "s2": 0,
+      "s3": 0,
+      "truth_donor_exact": true,
+      "truth_regime": "donor_exact"
+    }
+  ],
+  "mismatches_verbatim": [],
+  "novelty_credit": false,
+  "outcome": "PREDICTION_CONFIRMED",
+  "protocol": "MAX_R6R_PROSPECTIVE_FRESH_SUBJECT_PROTOCOL",
+  "protocol_sha256": "de24c4f96c6a394f1b025b1ce2caf8df3b60ad29dd59f3ad1d3abbbf066b6531",
+  "r6_authority": false,
+  "reserved_stretched_n2_accessed": false,
+  "responsibility": "RESP:REGIME_AND_EXACT_DP_COST_PREDICTED_BEFORE_COMPUTATION_ON_ALL_15_MATCHINGS_OF_A_FRESH_SUBJECT",
+  "schema": "ORIONQ.MAXR6R.ProspectiveFreshSubject.v1",
+  "scope": "PROSPECTIVE_FRESH_SUBJECT_PREDICTION_BEFORE_COMPUTATION_OVER_FROZEN_R6M_GRAMMAR__NOT_R6",
+  "selection_rule": {
+    "candidate_cap": 6,
+    "eligible_candidate_count": 31,
+    "eligible_candidates_in_order": [
+      {
+        "blob": "5c02c72b88e12b391ea1d8f77eb6b3e04fc2a915",
+        "n_qubits": 12,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "cd32e1e77cc349db71e2514a43b6e69279b20ef6",
+        "n_qubits": 12,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "2ef6e2f70eb1e87eeec7c98a971f14c88bb9130e",
+        "n_qubits": 12,
+        "path": "Benzene/cc-pVTZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC3/benzene.cc-pvtz_files/restricted/ducc/benzene.cc-pvtz.ducc.results.txt"
+      },
+      {
+        "blob": "a145697196680732dd69ba6cd85807a45372b869",
+        "n_qubits": 14,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "f33f944e126ff3a5414daf534c906161a0ffd4b1",
+        "n_qubits": 14,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "beea01778a28afb4a632f17565139940439a4107",
+        "n_qubits": 14,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_8Elec_7Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "06f6c5c0a6307e1370f40db1ff209fd83a0aa570",
+        "n_qubits": 14,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_8Elec_7Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "fa4854762c8d0920dadfa262c9ff01f163dc4dd4",
+        "n_qubits": 16,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_10Elec_8Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "8ff42c4186997673ce8b65758b0125f8a2d0dfd2",
+        "n_qubits": 16,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_10Elec_8Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "7199b23d86f1ecd6cba428d67ec6e846dd2d75cc",
+        "n_qubits": 16,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_8Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "5d1138ef5d0295f66d480b7a1a641865c5646e98",
+        "n_qubits": 16,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_8Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "01d03d43c77717b1e4ceb9538ab4437ebf5acdf7",
+        "n_qubits": 16,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_8Elec_8Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "6284d195488c047d939763e167c31e110efd3f7d",
+        "n_qubits": 16,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_8Elec_8Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "7ab2d35c78c0dac039fa6754a4ebcfd3d17be781",
+        "n_qubits": 18,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_10Elec_9Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "6679cce5b5b5f5fa57444d0bca869be28a667173",
+        "n_qubits": 18,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_10Elec_9Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "8af763941df692866a14d457837ee84f2309ac79",
+        "n_qubits": 18,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_12Elec_9Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "82ddb1e777079d7d67f117760619eb9228ed7008",
+        "n_qubits": 18,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_12Elec_9Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "2761aa3922f76db29d615576cdc8dea2617e6281",
+        "n_qubits": 18,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_9Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "8ecdd3e71fc31eacd3804ac5230897036d743016",
+        "n_qubits": 18,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_9Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "fd4bb424bf5668492e5da7049aa7d63407437119",
+        "n_qubits": 18,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_8Elec_9Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "ea44bebaae79ed9165c58b002aa8b15fa68632c3",
+        "n_qubits": 18,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_8Elec_9Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "bf983a3568b4aebabda67753f63b55c37e517699",
+        "n_qubits": 20,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_10Elec_10Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "0c57f889ff2fa895fd3442353cb9a07a62f1a086",
+        "n_qubits": 20,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_10Elec_10Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "f56352b116e34eba83102f5808a00b4d8866de68",
+        "n_qubits": 20,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_12Elec_10Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "30e8b88ab68d161fa80d63b06decc40fba28f82f",
+        "n_qubits": 20,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_12Elec_10Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "d143f4502aa3271b6aa88b0b2c71e640cfa1b411",
+        "n_qubits": 20,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_14Elec_10Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "b45eb7b26278d6f335b7c925e51cb2a16b71650b",
+        "n_qubits": 20,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_14Elec_10Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "f29759cb439bde0826be22f40fca765eaf25bd7b",
+        "n_qubits": 20,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_10Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "15c9240d251de8d9a210b7530287f1634bcc872c",
+        "n_qubits": 20,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_10Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "b48f0871d55fef6e3023da18c77fc360be9c330e",
+        "n_qubits": 20,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_8Elec_10Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      },
+      {
+        "blob": "e4a216105e76997672489189a53f2d2112c5728f",
+        "n_qubits": 20,
+        "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_8Elec_10Orbs/DUCC3/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt"
+      }
+    ],
+    "excluded_molecules": [
+      "H2",
+      "H2O",
+      "H4",
+      "LiH",
+      "N2"
+    ],
+    "order": "n_qubits_ascending_then_path_ascending",
+    "requires_ducc2_or_ducc3_segment": true,
+    "requires_explicit_active_space_segment": true
+  },
+  "stage1_digest": "898f49a4bc2721095b533dfbc0a96823a6d64e895f5e8a79b84aad9a054b600a",
+  "stage1_predicted_donor_exact_count": 15,
+  "subject": {
+    "blob": "5c02c72b88e12b391ea1d8f77eb6b3e04fc2a915",
+    "champion_windows": [
+      0,
+      72
+    ],
+    "commit": "be306f5830549304176365750d712093950bbdde",
+    "frozen_source_indices": [
+      4,
+      7,
+      9,
+      72,
+      73,
+      74
+    ],
+    "max_imag": 8.131516293641283e-19,
+    "n_occ": 3,
+    "n_orb": 6,
+    "n_qubits": 12,
+    "n_virt": 3,
+    "path": "Benzene/cc-pVDZ/FrozenCoreCCSD_6Elec_6Orbs/DUCC2/benzene.cc-pvdz_files/restricted/ducc/benzene.cc-pvdz.ducc.results.txt",
+    "terms": 390,
+    "window_champions_available": 2
+  },
+  "truth_donor_exact_count": 15
+}

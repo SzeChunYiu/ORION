@@ -1,0 +1,92 @@
+name: orion-harness-execution-coverage
+
+on:
+  pull_request:
+    paths:
+      - 'packages/orion-research-harness/**'
+      - 'src/orion/**'
+      - 'provenance/rakl/**'
+      - 'research/extensions/orion-jump-recursive-atoms/**'
+      - 'research/extensions/p6-method-fibres/**'
+      - '.github/workflows/orion-harness-execution-coverage.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-harness-execution-coverage-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  executable-mechanics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and research harness
+        run: |
+          python -m pip install -e '.[dev]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Run recursive and executable-owner hostile tests
+        run: |
+          python -m pytest \
+            packages/orion-research-harness/tests/test_recursive_residual_solver.py \
+            packages/orion-research-harness/tests/test_recursive_budget_hardening.py \
+            packages/orion-research-harness/tests/test_recursive_experience_binding.py \
+            packages/orion-research-harness/tests/test_recursive_cost_hardening.py \
+            packages/orion-research-harness/tests/test_governance_hardening.py \
+            packages/orion-research-harness/tests/test_execution_coverage.py \
+            -q
+      - name: Require structural and executable mechanics coverage
+        run: |
+          orion-harness mechanics-coverage | tee /tmp/orion-structural-coverage.json
+          orion-harness execution-coverage | tee /tmp/orion-execution-coverage.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          structural = json.loads(Path('/tmp/orion-structural-coverage.json').read_text())
+          executable = json.loads(Path('/tmp/orion-execution-coverage.json').read_text())
+
+          if structural.get('mechanic_cell_count') != 59:
+              raise SystemExit(f"expected 59 canonical mechanics, got {structural.get('mechanic_cell_count')!r}")
+          if structural.get('structurally_discoverable') is not True:
+              raise SystemExit('canonical mechanics graph is not structurally discoverable')
+          if executable.get('mechanic_count') != 59:
+              raise SystemExit(f"execution coverage did not classify all 59 mechanics: {executable.get('mechanic_count')!r}")
+          if executable.get('specification_only_ids') != []:
+              raise SystemExit('specification-only mechanics remain: ' + ','.join(executable['specification_only_ids']))
+          if executable.get('owner_resolution_failures') != []:
+              raise SystemExit('mechanic owners do not resolve: ' + ','.join(executable['owner_resolution_failures']))
+          if executable.get('automatic_missing_ids') != []:
+              raise SystemExit('required automatic mechanics missing: ' + ','.join(executable['automatic_missing_ids']))
+          if executable.get('automatic_not_ready_ids') != []:
+              raise SystemExit('required automatic mechanics not ready: ' + ','.join(executable['automatic_not_ready_ids']))
+          if executable.get('executable_owner_coverage_ready') is not True:
+              raise SystemExit('executable owner coverage is not release-ready')
+
+          rows = {row['mechanic_id']: row for row in executable['rows']}
+          required_modes = {
+              'FRAME.DECOMPOSE.v0': 'RECURSIVE_RUNTIME',
+              'DIAGNOSE.EXPERIENCE_RETRIEVAL.v0': 'RECURSIVE_RUNTIME',
+              'DIAGNOSE.DISCRIMINATOR.v0': 'RECURSIVE_RUNTIME',
+              'DIAGNOSE.ATTRIBUTION.v0': 'RECURSIVE_RUNTIME',
+              'REOPEN.FIBRE.v0': 'RECURSIVE_RUNTIME',
+              'REFRAME.METHOD.v0': 'DEVELOPMENT_GATED',
+              'CROSS.REVIEW.v0': 'EXTERNAL_GATED',
+              'CROSS.BENCHMARK.v0': 'EXTERNAL_GATED',
+          }
+          for mechanic_id, mode in required_modes.items():
+              if rows.get(mechanic_id, {}).get('execution_mode') != mode:
+                  raise SystemExit(f'{mechanic_id} execution mode drifted')
+          PY
+      - name: Upload structural and executable coverage receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-harness-execution-coverage
+          path: |
+            /tmp/orion-structural-coverage.json
+            /tmp/orion-execution-coverage.json
+          if-no-files-found: error
+          retention-days: 30

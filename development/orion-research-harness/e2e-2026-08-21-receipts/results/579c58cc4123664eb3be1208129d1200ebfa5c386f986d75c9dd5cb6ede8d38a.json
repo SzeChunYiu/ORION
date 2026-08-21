@@ -1,0 +1,22 @@
+{
+  "completed_at": "2026-08-21T06:17:21.838831+00:00",
+  "error": "",
+  "executor": "claude-code-session",
+  "output": {
+    "items": [
+      {
+        "content": "Test coverage per capability kind, verified by grep of packages/orion-research-harness/tests/: WEB_SEARCH in test_harness.py lines 25-29 and test_hardening.py line 55; LLM_COMPLETE in test_harness.py line 190 and test_hardening.py line 159; VERIFY_EVIDENCE in test_hardening.py test_verification_pass_requires_real_certificate_and_boolean lines 197-217; FILE_WRITE test_harness.py line 61; FILE_READ test_harness.py lines 65-69 and test_hardening.py lines 249-255 and 310; FILE_LIST test_local_limits.py line 24; PYTHON test_hardening.py lines 258-287 and test_local_limits.py line 43; SHELL test_local_limits.py line 62. The suite passes 30/30 under pytest on Python 3.11.",
+        "domain_ids": [
+          "software-verification"
+        ],
+        "item_id": "cap-test-coverage",
+        "source_uri": "repo:packages/orion-research-harness/tests/"
+      }
+    ]
+  },
+  "request_digest": "fb25feea27671b4075cd223ffbca2f79158502e2cb36286153ce940d8d224570",
+  "request_id": "hostreq:22ee02ba8bc4a7e2c86c425a8ec91faaa32f5a2cd3d08fd2ec1c8107f1359c96",
+  "result_digest": "006a7e4c8dc6d0e30affcc2024dfb01e08c2f5e73e4543dfd845e6876d6e51b2",
+  "schema": "ORION.HostCapabilityResult.v1",
+  "success": true
+}

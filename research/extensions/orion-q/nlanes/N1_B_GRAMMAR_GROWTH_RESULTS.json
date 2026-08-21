@@ -1,0 +1,116 @@
+{
+  "arms": {
+    "LIBRARY_LEARNING_PARENT": {
+      "held_out_solved_max": 12,
+      "variants": {
+        "P1_DL_ITERATIVE": {
+          "held_out_solved": 0,
+          "macros_primitive_words": {
+            "M1": "aba",
+            "M2": "abaca",
+            "M3": "ababc"
+          },
+          "search_expansions": 400000
+        },
+        "P2_TOP_4GRAM": {
+          "count": 6,
+          "held_out_solved": 12,
+          "macros_primitive_words": {
+            "M": "abac"
+          },
+          "search_expansions": 400000
+        },
+        "P3_TOP_DL_SINGLE": {
+          "held_out_solved": 2,
+          "macros_primitive_words": {
+            "M": "aba"
+          },
+          "search_expansions": 400000
+        }
+      }
+    },
+    "ORION_FAILURE_CONDITIONED_GROWTH": {
+      "distinct_quotients": 1,
+      "held_out_solved": 12,
+      "quotient_equals_gstar": true,
+      "quotient_primitive_word": "abac",
+      "search_expansions": 400000,
+      "usable_failed_pairs": [
+        [
+          4,
+          5,
+          "a"
+        ],
+        [
+          5,
+          6,
+          "a"
+        ],
+        [
+          4,
+          5,
+          "b"
+        ],
+        [
+          5,
+          6,
+          "b"
+        ],
+        [
+          5,
+          6,
+          "c"
+        ]
+      ]
+    },
+    "PRIMITIVE_ENUMERATION": {
+      "dev_failed": 8,
+      "dev_total": 9,
+      "held_out_solved": 0,
+      "origin_solved_of_12": 12,
+      "origin_trace_lengths": [
+        4,
+        5,
+        5,
+        5,
+        6,
+        6,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "search_expansions": 400000
+    },
+    "RANDOM_MACRO_CONTROL": {
+      "held_out_solved": 0
+    }
+  },
+  "authority": "N1B_DIAGNOSTIC__NO_P10_AUTHORITY__NO_NOVELTY_AUTHORITY__EXACT_SYNTHETIC_ONLY",
+  "claim_boundary": "Exact-synthetic group-word diagnostic only. Whatever the terminal, DreamCoder/Stitch/library-learning and gadget-learning remain acknowledged parents; inter-instance quotienting is adjacent to known abduction/CEGIS-style reasoning; no novelty, P10, or real-quantum authority is granted.",
+  "date": "2026-08-21",
+  "deterministic": true,
+  "execution_status": "FIRST_EXECUTION (no prior recorded outcome in issue #674 thread)",
+  "family": "N1-B",
+  "gates": {
+    "G1_WORLD_VALID": true,
+    "G2_RANDOM_MACRO_FAILS": true,
+    "G3_QUOTIENT_CERTIFIED": true,
+    "G4_ORION_MACRO_EQUALS_A_P1_COMPRESSION_MACRO": false,
+    "G5_PARENT_MAX_GEQ_ORION": true
+  },
+  "issue": 674,
+  "protocol": "development/orion-q-nlane-closure/N1_B_PROTOCOL.md",
+  "schema": "ORIONQ.N1B_FailureConditionedGrammarGrowth.v1",
+  "terminal": "N1B_LIBRARY_LEARNING_SUFFICIENT",
+  "world": {
+    "budget_expansions_per_library": 400000,
+    "carrier": "S_12 word world, primitives {a,b,c}, hidden gadget g*=eval('abac')",
+    "dev_tasks": 9,
+    "held_out_amendment": "aliased decorations {bb,cb,cc} removed pre-outcome; see protocol amendment note",
+    "held_out_tasks": 12,
+    "origin_tasks": 12
+  }
+}

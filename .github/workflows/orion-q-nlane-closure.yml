@@ -1,0 +1,260 @@
+name: orion-q-nlane-closure
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-q/nlanes/n1_lower_bound.py'
+      - 'research/extensions/orion-q/nlanes/n1a_parameterized_schema_invention.py'
+      - 'research/extensions/orion-q/nlanes/n1b_failure_conditioned_grammar_growth.py'
+      - 'research/extensions/orion-q/nlanes/n1c_costly_verification_voi.py'
+      - 'research/extensions/orion-q/nlanes/n1d_representation_frame_edit.py'
+      - 'research/extensions/orion-q/nlanes/n2_f3_partial_evidence.py'
+      - 'research/extensions/orion-q/nlanes/n2_f4_access_edits.py'
+      - 'research/extensions/orion-q/nlanes/n2_f5_crossover_prediction.py'
+      - 'research/extensions/orion-q/nlanes/n2_f5b_donor_comparison.py'
+      - 'research/extensions/orion-q/nlanes/n3_a_symbolic_induction.py'
+      - 'research/extensions/orion-q/nlanes/n3_b_obligation_expansion.py'
+      - 'research/extensions/orion-q/nlanes/n3_c_operator_induction.py'
+      - 'research/extensions/orion-q/nlanes/n3_d_representation_variables.py'
+      - 'research/extensions/orion-q/nlanes/n4_a_unknown_voi.py'
+      - 'research/extensions/orion-q/nlanes/n4_b_stale_receipt_reopening.py'
+      - 'research/extensions/orion-q/nlanes/n4_c_interval_pareto.py'
+      - 'research/extensions/orion-q/nlanes/n4_d_laundering_detection.py'
+      - 'research/extensions/orion-q/nlanes/n4_e_active_experiments.py'
+      - 'research/extensions/orion-q/nlanes/n4_f3_remint_transport.py'
+      - 'research/extensions/orion-q/nlanes/N1_A_PARAM_SCHEMA_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N1_B_GRAMMAR_GROWTH_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N1_C_COSTLY_VERIFICATION_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N1_D_REPRESENTATION_EDIT_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N1_LOWER_BOUND_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N2_F3_PARTIAL_EVIDENCE_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N2_F4_ACCESS_EDITS_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N2_F5B_DONOR_COMPARISON_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N2_F5_CROSSOVER_PREDICTION_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N3_A_SYMBOLIC_INDUCTION_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N3_B_OBLIGATION_EXPANSION_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N3_C_OPERATOR_INDUCTION_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N3_D_REPRESENTATION_VARIABLES_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N4_A_UNKNOWN_VOI_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N4_B_STALE_RECEIPT_REOPENING_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N4_C_INTERVAL_PARETO_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N4_D_LAUNDERING_DETECTION_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N4_E_ACTIVE_EXPERIMENTS_RESULTS.json'
+      - 'research/extensions/orion-q/nlanes/N4_F3_REMINT_TRANSPORT_RESULTS.json'
+      - 'development/orion-q-nlane-closure/N1_A_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N1_B_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N1_C_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N1_D_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N1_LOWER_BOUND_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N2_F3_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N2_F4_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N2_F5B_DONOR_COMPARISON_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N2_F5_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N2_STOP_RULE_ASSESSMENT.md'
+      - 'development/orion-q-nlane-closure/N3_A_SYMBOLIC_INDUCTION_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N3_B_OBLIGATION_EXPANSION_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N3_CLOSURE.md'
+      - 'development/orion-q-nlane-closure/N3_C_OPERATOR_INDUCTION_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N3_D_REPRESENTATION_VARIABLES_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N4_A_UNKNOWN_VOI_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N4_B_STALE_RECEIPT_REOPENING_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N4_CLOSURE_ASSESSMENT.md'
+      - 'development/orion-q-nlane-closure/N4_C_INTERVAL_PARETO_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N4_D_LAUNDERING_DETECTION_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N4_E_ACTIVE_EXPERIMENTS_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/N4_F3_REMINT_TRANSPORT_PROTOCOL.md'
+      - 'development/orion-q-nlane-closure/REPLAY_VERIFICATION_LEDGER.md'
+      - '.github/workflows/orion-q-nlane-closure.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-q-nlane-closure-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  frozen-nlane-closure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refuse N-lane frozen blob drift
+        run: |
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+
+          expected = {
+              'research/extensions/orion-q/nlanes/n1_lower_bound.py': 'df8ea34a40dcc0c699b308c06334890cbfe211f0',
+              'research/extensions/orion-q/nlanes/n1a_parameterized_schema_invention.py': 'f91586dc7e65716c98858ee4edecbf6ead4b52ce',
+              'research/extensions/orion-q/nlanes/n1b_failure_conditioned_grammar_growth.py': '134578498a31e18b75cc639ff57130ee810379cf',
+              'research/extensions/orion-q/nlanes/n1c_costly_verification_voi.py': '2697116505871f13d90ca3e0a9ae82315f9299e5',
+              'research/extensions/orion-q/nlanes/n1d_representation_frame_edit.py': 'a0e42118f175ba36b846dfcaf9fd8ff9f020b4e9',
+              'research/extensions/orion-q/nlanes/n2_f3_partial_evidence.py': 'fbce09a24d4e00816ec4cc68918788d461010e71',
+              'research/extensions/orion-q/nlanes/n2_f4_access_edits.py': '3e99583892cb4e2c273247b2d29f577db32d0085',
+              'research/extensions/orion-q/nlanes/n2_f5_crossover_prediction.py': '0c7435d23a1312df78fed7f4e48e87b56d3ae223',
+              'research/extensions/orion-q/nlanes/n2_f5b_donor_comparison.py': '0a07500b9db8853d3d1bbb00b9ceb76c4699e76a',
+              'research/extensions/orion-q/nlanes/n3_a_symbolic_induction.py': '2ee87427dd3278e41eb5502831f027c76b57df5a',
+              'research/extensions/orion-q/nlanes/n3_b_obligation_expansion.py': 'e2a4cdb31dc3579e9c87172b93690d968b164524',
+              'research/extensions/orion-q/nlanes/n3_c_operator_induction.py': '8f090f8be77d5bc2844059e09508e714c272ed7a',
+              'research/extensions/orion-q/nlanes/n3_d_representation_variables.py': 'e40ef3688dc5c82fa13bb2dceb1bf3b187abb77c',
+              'research/extensions/orion-q/nlanes/n4_a_unknown_voi.py': 'fbda85c9835d97be13ca8a254d1940fd08e4a981',
+              'research/extensions/orion-q/nlanes/n4_b_stale_receipt_reopening.py': 'a9f1e9368932fad02fdab261c153a790c413e26a',
+              'research/extensions/orion-q/nlanes/n4_c_interval_pareto.py': 'f0ebf6935074423c6fac8e658db1afc401ce4758',
+              'research/extensions/orion-q/nlanes/n4_d_laundering_detection.py': '0f26afb209d1958dc5d3355df88af2de1143fb7d',
+              'research/extensions/orion-q/nlanes/n4_e_active_experiments.py': '4536cecf67ad610559c48433014ecf715dc7cd52',
+              'research/extensions/orion-q/nlanes/n4_f3_remint_transport.py': 'f8bb2ba05a2f3452a4cfce3ed8c2d86d33afc49b',
+              'research/extensions/orion-q/nlanes/N1_A_PARAM_SCHEMA_RESULTS.json': 'bea4e29098c99adc2efa81a22d2840ff1f3ef0fc',
+              'research/extensions/orion-q/nlanes/N1_B_GRAMMAR_GROWTH_RESULTS.json': '556ff3076c0887b0058a52533e2a25836a40fda4',
+              'research/extensions/orion-q/nlanes/N1_C_COSTLY_VERIFICATION_RESULTS.json': '54031269a1a124b573a2bd1ad1d90a6eae22d5a7',
+              'research/extensions/orion-q/nlanes/N1_D_REPRESENTATION_EDIT_RESULTS.json': 'b57564e175235f2f243aeb2b4a11133cf14549cc',
+              'research/extensions/orion-q/nlanes/N1_LOWER_BOUND_RESULTS.json': '2d61d974f10f4fcf4fd1d05c22e330aa3204da2b',
+              'research/extensions/orion-q/nlanes/N2_F3_PARTIAL_EVIDENCE_RESULTS.json': '03c2a3ab92e6017409126e319b3ba30a2d661164',
+              'research/extensions/orion-q/nlanes/N2_F4_ACCESS_EDITS_RESULTS.json': 'd21374c17f772cc0aef086800566f77a350f70ac',
+              'research/extensions/orion-q/nlanes/N2_F5B_DONOR_COMPARISON_RESULTS.json': '0d87f7f6a5d027a5a95363884bb5580dbf184721',
+              'research/extensions/orion-q/nlanes/N2_F5_CROSSOVER_PREDICTION_RESULTS.json': '221d644db7c84e7300d07bab54db3a9c6c9e7f16',
+              'research/extensions/orion-q/nlanes/N3_A_SYMBOLIC_INDUCTION_RESULTS.json': 'cf945a10993ca16b86c85823a4ed692339a79f05',
+              'research/extensions/orion-q/nlanes/N3_B_OBLIGATION_EXPANSION_RESULTS.json': '04b3cb326b3f8c9a103dec09041149db76b69790',
+              'research/extensions/orion-q/nlanes/N3_C_OPERATOR_INDUCTION_RESULTS.json': '7345ac5d4685c9ade22b8a324020cf83287fd9ad',
+              'research/extensions/orion-q/nlanes/N3_D_REPRESENTATION_VARIABLES_RESULTS.json': 'ce10d73ff84079be1fe1c900e79357cac27ba81a',
+              'research/extensions/orion-q/nlanes/N4_A_UNKNOWN_VOI_RESULTS.json': '4431d1192b509cde8edc04588bfb7754046a48f8',
+              'research/extensions/orion-q/nlanes/N4_B_STALE_RECEIPT_REOPENING_RESULTS.json': 'a48bd8e9da3812aca40fc9c9320f0b9c97fc7f53',
+              'research/extensions/orion-q/nlanes/N4_C_INTERVAL_PARETO_RESULTS.json': '0fd57839735e8465c9bb0163e02b98712bfa02de',
+              'research/extensions/orion-q/nlanes/N4_D_LAUNDERING_DETECTION_RESULTS.json': 'b2b3e7f1c3fc7a9112b5f50719333c7f4adee02d',
+              'research/extensions/orion-q/nlanes/N4_E_ACTIVE_EXPERIMENTS_RESULTS.json': 'ceff3702ccf445ed5d422951a66054d90eedb71a',
+              'research/extensions/orion-q/nlanes/N4_F3_REMINT_TRANSPORT_RESULTS.json': 'bd26b547ff162100c6bd68d426f470489feb7e94',
+              'development/orion-q-nlane-closure/N1_A_PROTOCOL.md': 'e84b1674c2377106719687e329bdb3850897e840',
+              'development/orion-q-nlane-closure/N1_B_PROTOCOL.md': '97f33ea66c6933103335b80d6926c23929008b81',
+              'development/orion-q-nlane-closure/N1_C_PROTOCOL.md': 'ca4fd8e9bb3a62bb13cdba73201c74141eaca75e',
+              'development/orion-q-nlane-closure/N1_D_PROTOCOL.md': 'cd628fb5b1c648a2fcbabdb248636d9811347943',
+              'development/orion-q-nlane-closure/N1_LOWER_BOUND_PROTOCOL.md': 'cc1fa4340f05335784d60787cc6e641047c94652',
+              'development/orion-q-nlane-closure/N2_F3_PROTOCOL.md': 'a08112e1e49791d78ebba5bba8ba3270756c19ff',
+              'development/orion-q-nlane-closure/N2_F4_PROTOCOL.md': 'da0125f8fb1841293eb94eb3a249f97392bfafc3',
+              'development/orion-q-nlane-closure/N2_F5B_DONOR_COMPARISON_PROTOCOL.md': 'f90e1a46f681579b0b69a6f4bcf9e561ec735750',
+              'development/orion-q-nlane-closure/N2_F5_PROTOCOL.md': 'c9e092448704ab7872b64c25ba89f1b35825b50d',
+              'development/orion-q-nlane-closure/N2_STOP_RULE_ASSESSMENT.md': '1770baaa52095adf1db3a1e562b2b0eb1fc68280',
+              'development/orion-q-nlane-closure/N3_A_SYMBOLIC_INDUCTION_PROTOCOL.md': 'dbe2d6209d7d212f954b0d23ea96b8e1f7873d58',
+              'development/orion-q-nlane-closure/N3_B_OBLIGATION_EXPANSION_PROTOCOL.md': '7b9b60cd3327bdbe8557b8ce758e06dc301ff898',
+              'development/orion-q-nlane-closure/N3_CLOSURE.md': 'b7d8186035e3a61467632a726345cd5f87a95b8e',
+              'development/orion-q-nlane-closure/N3_C_OPERATOR_INDUCTION_PROTOCOL.md': '73fa01b9523888938bad8f65aa54588309a2718f',
+              'development/orion-q-nlane-closure/N3_D_REPRESENTATION_VARIABLES_PROTOCOL.md': 'd2fa2419c4b9ff194dcf145a119e6a615970b374',
+              'development/orion-q-nlane-closure/N4_A_UNKNOWN_VOI_PROTOCOL.md': 'dcfdad46ad0c4d1d554b3683ac59957a067369bc',
+              'development/orion-q-nlane-closure/N4_B_STALE_RECEIPT_REOPENING_PROTOCOL.md': 'e5bc184bed1a6ad88491236d7a259aacf3f0693a',
+              'development/orion-q-nlane-closure/N4_CLOSURE_ASSESSMENT.md': '1e30ecc3154df15f5876eae7996ba31211cb30a9',
+              'development/orion-q-nlane-closure/N4_C_INTERVAL_PARETO_PROTOCOL.md': '5b3c9a088c53626bac68afba1674aa1e57931c35',
+              'development/orion-q-nlane-closure/N4_D_LAUNDERING_DETECTION_PROTOCOL.md': 'f0f1550330bc91ea1569fb2d605f0dceb1e3df44',
+              'development/orion-q-nlane-closure/N4_E_ACTIVE_EXPERIMENTS_PROTOCOL.md': '278184c0085465aee56ee6af1c432ee31bd2679d',
+              'development/orion-q-nlane-closure/N4_F3_REMINT_TRANSPORT_PROTOCOL.md': '4b1e9ee55276a8d45dc04994640d225649c4df14',
+              'development/orion-q-nlane-closure/REPLAY_VERIFICATION_LEDGER.md': '094eb1df6f8908f0c18782a2ab706b4c72cc71ad',
+          }
+          for name, want in expected.items():
+              raw = Path(name).read_bytes()
+              got = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+              if got != want:
+                  raise SystemExit(f'N-lane frozen blob drift: {name}: {got} != {want}')
+          PY
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy
+      - name: Save committed N-lane receipts before re-execution
+        run: |
+          mkdir -p /tmp/nlane-committed
+          cp research/extensions/orion-q/nlanes/N*_RESULTS.json /tmp/nlane-committed/
+      - name: Re-run frozen N-lane closure studies
+        # All 19 studies are deterministic and fast (measured 0.04s-32s each);
+        # n2_f5b consumes the N2-F5 receipt so it runs after n2_f5, and every
+        # script rewrites its own RESULTS file in place before the equality gate.
+        run: |
+          cd research/extensions/orion-q/nlanes
+          {
+          python n1_lower_bound.py
+          python n1a_parameterized_schema_invention.py
+          python n1b_failure_conditioned_grammar_growth.py
+          python n1c_costly_verification_voi.py
+          python n1d_representation_frame_edit.py
+          python n2_f3_partial_evidence.py
+          python n2_f4_access_edits.py
+          python n2_f5_crossover_prediction.py
+          python n2_f5b_donor_comparison.py
+          python n3_a_symbolic_induction.py
+          python n3_b_obligation_expansion.py
+          python n3_c_operator_induction.py
+          python n3_d_representation_variables.py
+          python n4_a_unknown_voi.py
+          python n4_b_stale_receipt_reopening.py
+          python n4_c_interval_pareto.py
+          python n4_d_laundering_detection.py
+          python n4_e_active_experiments.py
+          python n4_f3_remint_transport.py
+          } | tee /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N1_LOWER_BOUND=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N1A_PARAM_SCHEMA=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N1B_GRAMMAR_GROWTH=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N1C_COSTLY_VERIFICATION=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N1D_REPRESENTATION_EDIT=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N2_F3_PARTIAL_EVIDENCE=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N2_F4_ACCESS_EDITS=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N2_F5_CROSSOVER_PREDICTION=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N2_F5B_DONOR_COMPARISON=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N3_A_SYMBOLIC_INDUCTION=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N3_B_OBLIGATION_EXPANSION=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N3_C_OPERATOR_INDUCTION=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N3_D_REPRESENTATION_VARIABLES=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N4_A_UNKNOWN_VOI=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N4_B_STALE_RECEIPT=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N4_C_INTERVAL_PARETO=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N4_D_LAUNDERING=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N4_E_ACTIVE_EXPERIMENTS=' /tmp/nlane-receipts.txt
+          grep -c '^ORIONQ_N4_F3_REMINT_TRANSPORT=' /tmp/nlane-receipts.txt
+      - name: Assert regenerated receipts equal committed receipts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          receipts = [
+              ('ORIONQ_N1_LOWER_BOUND', 'N1_LOWER_BOUND_RESULTS.json'),
+              ('ORIONQ_N1A_PARAM_SCHEMA', 'N1_A_PARAM_SCHEMA_RESULTS.json'),
+              ('ORIONQ_N1B_GRAMMAR_GROWTH', 'N1_B_GRAMMAR_GROWTH_RESULTS.json'),
+              ('ORIONQ_N1C_COSTLY_VERIFICATION', 'N1_C_COSTLY_VERIFICATION_RESULTS.json'),
+              ('ORIONQ_N1D_REPRESENTATION_EDIT', 'N1_D_REPRESENTATION_EDIT_RESULTS.json'),
+              ('ORIONQ_N2_F3_PARTIAL_EVIDENCE', 'N2_F3_PARTIAL_EVIDENCE_RESULTS.json'),
+              ('ORIONQ_N2_F4_ACCESS_EDITS', 'N2_F4_ACCESS_EDITS_RESULTS.json'),
+              ('ORIONQ_N2_F5_CROSSOVER_PREDICTION', 'N2_F5_CROSSOVER_PREDICTION_RESULTS.json'),
+              ('ORIONQ_N2_F5B_DONOR_COMPARISON', 'N2_F5B_DONOR_COMPARISON_RESULTS.json'),
+              ('ORIONQ_N3_A_SYMBOLIC_INDUCTION', 'N3_A_SYMBOLIC_INDUCTION_RESULTS.json'),
+              ('ORIONQ_N3_B_OBLIGATION_EXPANSION', 'N3_B_OBLIGATION_EXPANSION_RESULTS.json'),
+              ('ORIONQ_N3_C_OPERATOR_INDUCTION', 'N3_C_OPERATOR_INDUCTION_RESULTS.json'),
+              ('ORIONQ_N3_D_REPRESENTATION_VARIABLES', 'N3_D_REPRESENTATION_VARIABLES_RESULTS.json'),
+              ('ORIONQ_N4_A_UNKNOWN_VOI', 'N4_A_UNKNOWN_VOI_RESULTS.json'),
+              ('ORIONQ_N4_B_STALE_RECEIPT', 'N4_B_STALE_RECEIPT_REOPENING_RESULTS.json'),
+              ('ORIONQ_N4_C_INTERVAL_PARETO', 'N4_C_INTERVAL_PARETO_RESULTS.json'),
+              ('ORIONQ_N4_D_LAUNDERING', 'N4_D_LAUNDERING_DETECTION_RESULTS.json'),
+              ('ORIONQ_N4_E_ACTIVE_EXPERIMENTS', 'N4_E_ACTIVE_EXPERIMENTS_RESULTS.json'),
+              ('ORIONQ_N4_F3_REMINT_TRANSPORT', 'N4_F3_REMINT_TRANSPORT_RESULTS.json'),
+          ]
+          lines = Path('/tmp/nlane-receipts.txt').read_text().splitlines()
+
+          def canonical(obj):
+              return json.dumps(obj, sort_keys=True, separators=(',', ':'), allow_nan=False)
+
+          regenerated = Path('research/extensions/orion-q/nlanes')
+          committed = Path('/tmp/nlane-committed')
+          for prefix, results_name in receipts:
+              rows = [x for x in lines if x.startswith(prefix + '=')]
+              if len(rows) != 1:
+                  raise SystemExit(f'expected exactly one {prefix} receipt line, got {len(rows)}')
+              json.loads(rows[0][len(prefix) + 1:])  # receipt line must be valid JSON
+              new = json.loads((regenerated / results_name).read_text())
+              old = json.loads((committed / results_name).read_text())
+              if canonical(new) != canonical(old):
+                  raise SystemExit(f'N-lane receipt drift: regenerated {results_name} != committed receipt')
+              print(f'N_LANE_RECEIPT_MATCH={results_name}')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-q-nlane-closure-receipts
+          path: /tmp/nlane-receipts.txt
+          if-no-files-found: warn
+          retention-days: 30

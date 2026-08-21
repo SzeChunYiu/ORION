@@ -1,0 +1,171 @@
+{
+  "authority": "exact_synthetic_bounded__no_real_quantum_no_novelty_no_p10_authority",
+  "budgets": {
+    "donor_bfs_budget_per_heldout_n": 200000
+  },
+  "claim_boundary": "exact-synthetic CNOT/GF(2) program families only; higher-order composition law induced across donor-produced atoms; donor search and trivial replay hold first right of refusal on every held-out size; no claim about DreamCoder-class library learning, real quantum families, or novelty",
+  "determinism": {
+    "identical": true,
+    "run1_sha256": "6ebce427679747028fa63feaf4991267153614bcb3c05b3a9c328eb05461e181",
+    "run2_sha256": "6ebce427679747028fa63feaf4991267153614bcb3c05b3a9c328eb05461e181"
+  },
+  "family": "C_cross_family_operator_induction",
+  "gates": {
+    "GC0_budget_sanity": true,
+    "GC1_residual_transfer": true,
+    "GC2_donor_first_refusal": true,
+    "GC3_hostile_catch": true,
+    "GC4_determinism": true
+  },
+  "issue": 676,
+  "novelty_authorized": false,
+  "p10_authorized": false,
+  "protocol": "development/orion-q-nlane-closure/N3_C_OPERATOR_INDUCTION_PROTOCOL.md",
+  "schema": "ORIONQ.N3C.CrossFamilyOperatorInduction.v1",
+  "seed": 20260821,
+  "study": {
+    "candidate_constructed_programs": 16,
+    "heldout": {
+      "F4": {
+        "fold_fit_on_atoms": true,
+        "operator_value_claim": true,
+        "parent_sufficient": false,
+        "per_n": {
+          "10": {
+            "donor_expansions": 200000,
+            "donor_found": false,
+            "donor_max_depth_reached": 3,
+            "donor_via": "bfs",
+            "trivial_baseline_verified": false
+          },
+          "8": {
+            "donor_expansions": 200000,
+            "donor_found": false,
+            "donor_max_depth_reached": 4,
+            "donor_via": "bfs",
+            "trivial_baseline_verified": false
+          }
+        },
+        "transfer_claim": true,
+        "transfer_verified": {
+          "10": true,
+          "8": true
+        }
+      },
+      "F5": {
+        "fold_fit_on_atoms": false,
+        "operator_value_claim": false,
+        "parent_sufficient": true,
+        "per_n": {
+          "10": {
+            "donor_expansions": 0,
+            "donor_found": true,
+            "donor_max_depth_reached": null,
+            "donor_via": "trivial_replay",
+            "trivial_baseline_verified": true
+          },
+          "8": {
+            "donor_expansions": 0,
+            "donor_found": true,
+            "donor_max_depth_reached": null,
+            "donor_via": "trivial_replay",
+            "trivial_baseline_verified": true
+          }
+        },
+        "transfer_claim": false,
+        "transfer_verified": {
+          "10": false,
+          "8": false
+        }
+      },
+      "F6": {
+        "fold_fit_on_atoms": true,
+        "operator_value_claim": false,
+        "parent_sufficient": false,
+        "per_n": {
+          "10": {
+            "donor_expansions": 200000,
+            "donor_found": false,
+            "donor_max_depth_reached": 3,
+            "donor_via": "bfs",
+            "trivial_baseline_verified": false
+          },
+          "8": {
+            "donor_expansions": 200000,
+            "donor_found": false,
+            "donor_max_depth_reached": 4,
+            "donor_via": "bfs",
+            "trivial_baseline_verified": false
+          }
+        },
+        "transfer_claim": false,
+        "transfer_verified": {
+          "10": false,
+          "8": false
+        }
+      }
+    },
+    "operator_induced": true,
+    "train_fits": {
+      "F1": {
+        "block_size": 1,
+        "coeffs": [
+          [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        ],
+        "fits_fold_law": true
+      },
+      "F2": {
+        "block_size": 1,
+        "coeffs": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        ],
+        "fits_fold_law": true
+      },
+      "F3": {
+        "block_size": 2,
+        "coeffs": [
+          [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        ],
+        "fits_fold_law": true
+      }
+    }
+  },
+  "terminal": "N3C_RESIDUAL_CONFIRMED_EXACT_SYNTHETIC"
+}

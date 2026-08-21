@@ -958,7 +958,9 @@ def test_stale_paper_identity_fails(tmp_path: Path) -> None:
             (tmp_path / directory).mkdir(parents=True, exist_ok=True)
     assert paper_identity_findings(tmp_path) == ()
 
-    (tmp_path / "papers" / "candidates" / "paper-09-some-third-thing").mkdir()
+    third = tmp_path / "papers" / "candidates" / "paper-09-some-third-thing"
+    third.mkdir()
+    (third / "README.md").write_text("a third P9", encoding="utf-8")
     findings = paper_identity_findings(tmp_path)
     assert findings == ("papers/candidates/paper-09-some-third-thing",)
 
@@ -980,7 +982,7 @@ def test_p9_and_p10_keep_a_recorded_predecessor() -> None:
     ):
         entry = PAPER_DIRECTORIES_BY_ID[paper_id]
         assert retired_name not in entry.active
-        assert [d for d, _ in entry.retired] == [f"papers/candidates/{retired_name}"]
+        assert [d for d, _ in entry.retired] == [f"papers/{retired_name}"]
 
     # Every other paper carries exactly one directory.
     for entry in PAPER_DIRECTORIES:
@@ -1126,3 +1128,54 @@ def test_a_manuscript_still_cannot_discharge_an_independent_review() -> None:
         EvidenceGrade.MECHANIZED_THEOREM,
         EvidenceGrade.PROSPECTIVE_PROTECTED,
     )
+
+
+def test_build_residue_is_not_a_paper_identity(tmp_path: Path) -> None:
+    """Stale __pycache__ from a directory move must not read as a live paper.
+
+    This is what actually happened when P6-P10 moved out of ``papers/candidates/``
+    into ``papers/``: the old paths survived on disk holding nothing but ``.pyc``
+    files, and a filesystem walk reported three unregistered papers that git had
+    never heard of.
+    """
+
+    (tmp_path / "papers" / "candidates").mkdir(parents=True)
+    for entry in PAPER_DIRECTORIES:
+        (tmp_path / entry.active).mkdir(parents=True, exist_ok=True)
+        for directory, _ in entry.retired:
+            (tmp_path / directory).mkdir(parents=True, exist_ok=True)
+
+    residue = tmp_path / "papers" / "candidates" / "paper-06-formal-epistemic-structures-and-mechanics"
+    (residue / "formal" / "__pycache__").mkdir(parents=True)
+    (residue / "formal" / "__pycache__" / "check.cpython-311.pyc").write_bytes(b"\x00")
+    assert paper_identity_findings(tmp_path) == ()
+
+    # Real content in the same place is still a finding.
+    (residue / "README.md").write_text("a real paper", encoding="utf-8")
+    assert paper_identity_findings(tmp_path) == (
+        "papers/candidates/paper-06-formal-epistemic-structures-and-mechanics",
+    )
+
+
+def test_the_q_paper_namespace_is_out_of_scope(tmp_path: Path) -> None:
+    """ORION-Q has its own numbering and its own issues."""
+
+    (tmp_path / "papers").mkdir(parents=True)
+    for entry in PAPER_DIRECTORIES:
+        (tmp_path / entry.active).mkdir(parents=True, exist_ok=True)
+        for directory, _ in entry.retired:
+            (tmp_path / directory).mkdir(parents=True, exist_ok=True)
+    q = tmp_path / "papers" / "Q-paper-01-tare-expressivity"
+    q.mkdir()
+    (q / "CLAIM_LEDGER.md").write_text("q", encoding="utf-8")
+    assert paper_identity_findings(tmp_path) == ()
+
+
+def test_future_identities_are_registered_under_both_layouts() -> None:
+    """PR #715 was authored pre-refactor; either landing order must be clean."""
+
+    for directory in FUTURE_PAPER_DIRECTORIES.values():
+        assert directory.startswith("papers/paper-1")
+        assert directory in REGISTERED_PAPER_DIRECTORIES
+        legacy = directory.replace("papers/", "papers/candidates/", 1)
+        assert legacy in REGISTERED_PAPER_DIRECTORIES

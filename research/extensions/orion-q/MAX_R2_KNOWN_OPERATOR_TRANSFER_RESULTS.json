@@ -1,0 +1,13 @@
+{
+  "schema": "ORIONQ.MAXR2KnownOperatorTransferResult.v1",
+  "folds": {
+    "SYNTHESIS": {"test_examples": 800, "training_state_patterns": 8, "held_out_state_support_seen_fraction": 1.0, "generic_v4_table_accuracy": 1.0, "orion_v4_rule_accuracy": 1.0},
+    "ALGO_INTERFACE": {"test_examples": 800, "training_state_patterns": 8, "held_out_state_support_seen_fraction": 1.0, "generic_v4_table_accuracy": 1.0, "orion_v4_rule_accuracy": 1.0},
+    "QEC_CODESIGN": {"test_examples": 800, "training_state_patterns": 8, "held_out_state_support_seen_fraction": 1.0, "generic_v4_table_accuracy": 1.0, "orion_v4_rule_accuracy": 1.0},
+    "FORMAL_REASONING": {"test_examples": 800, "training_state_patterns": 8, "held_out_state_support_seen_fraction": 1.0, "generic_v4_table_accuracy": 1.0, "orion_v4_rule_accuracy": 1.0}
+  },
+  "terminal": "MAX_R2_KNOWN_OPERATOR_MAPPING_GENERIC_BASELINE_SUFFICIENT",
+  "interpretation": "With identical V4 typed state and complete structural support in the training domains, a generic donor-composed table/skill learner transfers perfectly. The frozen MAX-R1 arena cannot establish ORION-specific policy superiority. MAX-R3 must require an absent/new research operator or method-language edit rather than reuse of a known state-action mapping.",
+  "p10_next_stage_required": true,
+  "novelty_authorized": false
+}

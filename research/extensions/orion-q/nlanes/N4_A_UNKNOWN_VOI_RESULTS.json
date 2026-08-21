@@ -1,0 +1,86 @@
+{
+  "arms": {
+    "FULL_ORACLE": {
+      "abstain_rate": 0.3466666666666667,
+      "mean_probe_count": 0.0,
+      "mean_probe_spend": 0.0,
+      "mean_regret_vs_oracle": 0.0,
+      "mean_utility": 4.611617418553162,
+      "success_rate": 0.6533333333333333
+    },
+    "GREEDY_KNOWN_GRAPH": {
+      "abstain_rate": 0.9333333333333333,
+      "mean_probe_count": 0.0,
+      "mean_probe_spend": 0.0,
+      "mean_regret_vs_oracle": 4.253437708792656,
+      "mean_utility": 0.3581797097605061,
+      "success_rate": 0.06666666666666667
+    },
+    "LLM_PROXY_HEURISTIC": {
+      "abstain_rate": 0.04,
+      "mean_probe_count": 0.0,
+      "mean_probe_spend": 0.0,
+      "mean_regret_vs_oracle": 16.917873007757475,
+      "mean_utility": -12.306255589204312,
+      "success_rate": 0.23666666666666666
+    },
+    "OPTIMIST_COMMIT": {
+      "abstain_rate": 0.03666666666666667,
+      "mean_probe_count": 0.0,
+      "mean_probe_spend": 0.0,
+      "mean_regret_vs_oracle": 18.23061017960825,
+      "mean_utility": -13.618992761055088,
+      "success_rate": 0.19
+    },
+    "ORION_TYPED_VOI": {
+      "abstain_rate": 0.42333333333333334,
+      "mean_probe_count": 1.3933333333333333,
+      "mean_probe_spend": 0.5573333333333333,
+      "mean_regret_vs_oracle": 1.3205292889267062,
+      "mean_utility": 3.2910881296264556,
+      "success_rate": 0.5766666666666667
+    },
+    "PURE_VOI_UNIFORM": {
+      "abstain_rate": 0.6133333333333333,
+      "mean_probe_count": 0.78,
+      "mean_probe_spend": 0.31200000000000006,
+      "mean_regret_vs_oracle": 2.4319084877589066,
+      "mean_utility": 2.179708930794255,
+      "success_rate": 0.38666666666666666
+    }
+  },
+  "episodes": 300,
+  "family": "1_unknown_feasibility_voi",
+  "gates": {
+    "G1_oracle_upper_bound": true,
+    "G2_orion_beats_known_graph": true,
+    "G3_orion_beats_uniform_voi": true,
+    "G4_blind_commit_punished": true,
+    "G5_orion_beats_llm_proxy": true
+  },
+  "interpretation": {
+    "authority": "exact-synthetic-bounded; no real-quantum, no P10, no novelty, no LLM-capability claims; LLM_PROXY is a fixed heuristic, not an LLM measurement",
+    "claim_boundary": "Applies only to the frozen layered-DAG world with typed generator priors exposed as facts; does not close family 1 beyond this construction and grants no authority over real interface graphs.",
+    "novelty_authorized": false,
+    "p10_authorized": false
+  },
+  "issue": 677,
+  "protocol": "development/orion-q-nlane-closure/N4_A_UNKNOWN_VOI_PROTOCOL.md",
+  "schema": "ORIONQ.N4A.UnknownFeasibilityVOI.v1",
+  "seed": 20260821,
+  "terminal": "N4_A_TYPED_VOI_SUPPORTED__EXACT_SYNTHETIC",
+  "world": {
+    "fail_penalty": 8.0,
+    "layers": 4,
+    "p_feas_by_type": {
+      "T0": 0.9,
+      "T1": 0.5,
+      "T2": 0.15
+    },
+    "p_known": 0.55,
+    "paths": 81,
+    "probe_cost": 0.4,
+    "reward": 20.0,
+    "width": 3
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "completed_at": "2026-08-21T06:18:45.624974+00:00",
+  "error": "",
+  "executor": "claude-code-session",
+  "output": {
+    "content": "{\"contribution_id\": \"contrib:cap-omission-github\", \"text\": \"The handoff text in cli.py line 52 names GITHUB or other custom capabilities, but no provider requests a GITHUB capability, local_tools.py does not service it, and no test exercises it. GITHUB is documentation-only surface, not an implemented capability kind; the implemented and tested set is exactly the eight kinds.\", \"assimilation\": \"COMPLEMENTARY_FACET\", \"discovered_domain_ids\": [], \"representation_ids\": [], \"contradicts_claim_ids\": [], \"related_claim_ids\": [], \"context_ids\": [], \"referent_bindings\": [], \"representation_mappings\": [], \"assumption_ids\": []}",
+    "model_id": "claude-code-host"
+  },
+  "request_digest": "59f667fe0a0b635cee40f66166dde00dd7604a1293f82e2bd3fbd06226593aff",
+  "request_id": "hostreq:ffc2b923fac3e38bc63c39d14f3e98dd26c3d7b87dfa06cec534aebd757d6b01",
+  "result_digest": "551c0937a582fbd9b841b86360bb6ba1c32b48c7be4af0723346be40272dde86",
+  "schema": "ORION.HostCapabilityResult.v1",
+  "success": true
+}

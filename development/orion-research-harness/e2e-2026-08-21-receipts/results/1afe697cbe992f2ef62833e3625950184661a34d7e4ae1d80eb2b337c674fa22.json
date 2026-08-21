@@ -1,0 +1,17 @@
+{
+  "completed_at": "2026-08-21T06:18:14.627191+00:00",
+  "error": "",
+  "executor": "claude-code-session",
+  "output": {
+    "certificate_ids": [
+      "certificate:source-check:broker-py-L96-L192-local-tools-L12-L18-grep-2026-08-21"
+    ],
+    "passed": true,
+    "reason": "Independently re-read broker.py (LLM_COMPLETE at line 96, WEB_SEARCH at line 134, VERIFY_EVIDENCE at line 192 with certificate-required pass) and local_tools.py _LOCAL_CAPABILITIES set at lines 12-18 containing FILE_READ, FILE_WRITE, FILE_LIST, SHELL, PYTHON. The contribution matches the source item and the working tree; no CapabilityKind enum exists in protocol.py."
+  },
+  "request_digest": "12df068a07eb7bb1e371339d92a9af52963fa7c1f157ee0ab2798fe030b55212",
+  "request_id": "hostreq:862ea9383c8f58049ea8b15cda9922b594c4e7e36d4bcf07d55c9d56b5646db6",
+  "result_digest": "f4ce414ffb30e986cc0a69566ba24879d840a024539b71c8e328e152de2fd543",
+  "schema": "ORION.HostCapabilityResult.v1",
+  "success": true
+}
