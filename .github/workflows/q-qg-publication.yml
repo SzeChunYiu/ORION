@@ -9,6 +9,7 @@ on:
       - 'papers/Q-paper-04-typed-state/**'
       - 'papers/QG-paper-01-compilation-regime-geometry/**'
       - 'papers/QG-paper-02-certified-static-forecasting/**'
+      - 'papers/literature_cards/**'
       - 'papers/Q_QG_**'
       - 'papers/check_q_qg_publication.py'
       - '.github/workflows/q-qg-publication.yml'
@@ -22,6 +23,7 @@ on:
       - 'papers/Q-paper-04-typed-state/**'
       - 'papers/QG-paper-01-compilation-regime-geometry/**'
       - 'papers/QG-paper-02-certified-static-forecasting/**'
+      - 'papers/literature_cards/**'
       - 'papers/Q_QG_**'
       - 'papers/check_q_qg_publication.py'
       - '.github/workflows/q-qg-publication.yml'
@@ -41,3 +43,5 @@ jobs:
           python-version: '3.12'
       - name: Run fail-closed Q/QG publication checker
         run: python papers/check_q_qg_publication.py
+      - name: Validate Q2 transition graph and frozen artifact bindings
+        run: python papers/Q-paper-02-recursive-recovery/check_transition_graph.py
