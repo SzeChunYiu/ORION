@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Mapping
 from dataclasses import asdict
 
 from orion.core.contributions import (
@@ -13,13 +12,6 @@ from orion.core.contributions import (
     RepresentationMapping,
 )
 from orion.core.problem import Problem
-from orion.core.problem_tree import (
-    DiscriminatorKind,
-    DiscriminatorSpec,
-    RecursiveProblemStopReason,
-    ResidualAtom,
-    ResidualDecomposition,
-)
 from orion.core.residuals import Residual, Responsibility
 from orion.core.search import RetrievedItem, SearchQuery, SearchRouteKind
 from orion.core.state import OrionState
@@ -27,39 +19,9 @@ from orion.providers.llm.base import LLMProvider, LLMRequest
 from orion.providers.reasoner.base import Diagnosis, ReframeProposal
 
 _SYSTEM = """You are a semantic reasoning component inside ORION.
-You may propose interpretations, queries, diagnoses, decompositions and prose, but you do not create scientific authority.
+You may propose interpretations, queries, diagnoses and prose, but you do not create scientific authority.
 Return only JSON matching the requested schema. Preserve uncertainty and do not invent source evidence.
-For search planning, do not remain inside the current vocabulary: deliberately use independent route families such as function-only, parent-discipline, adversarial-omission and freshness searches when they remain uncovered.
-For residual decomposition, treat a material residual as a child research problem. Split broad residuals recursively until every child is decision-separating and has exactly one concrete discriminator. Prefer cheap obstruction, dominance, exact-computation or donor-subsumption tests before expensive experiments when those tests can settle the same child. Do not merely rename the parent residual. Preserve interaction-only possibilities and return an explicit stop reason when no valid finer decomposition is identifiable. Decomposition is proposal-only and never grants scientific, novelty, adoption, promotion, merge or global-stop authority."""
-
-
-def _nonempty_string(value: object, *, name: str) -> str:
-    if not isinstance(value, str) or not value.strip():
-        raise TypeError(f"{name} must be a non-empty string")
-    return value
-
-
-def _string_array(value: object, *, name: str) -> tuple[str, ...]:
-    if not isinstance(value, list):
-        raise TypeError(f"{name} must be an array")
-    result = tuple(_nonempty_string(item, name=f"{name} entry") for item in value)
-    return result
-
-
-def _string_metadata(value: object, *, name: str) -> tuple[tuple[str, str], ...]:
-    if value is None:
-        return ()
-    if not isinstance(value, Mapping):
-        raise TypeError(f"{name} must be an object")
-    rows: list[tuple[str, str]] = []
-    for key, item in value.items():
-        rows.append(
-            (
-                _nonempty_string(key, name=f"{name} key"),
-                _nonempty_string(item, name=f"{name}.{key}"),
-            )
-        )
-    return tuple(sorted(rows))
+For search planning, do not remain inside the current vocabulary: deliberately use independent route families such as function-only, parent-discipline, adversarial-omission and freshness searches when they remain uncovered."""
 
 
 class LLMResearchReasoner:
@@ -196,9 +158,6 @@ class LLMResearchReasoner:
                     "id": residual.residual_id,
                     "kind": residual.kind.value,
                     "description": residual.description,
-                    "candidate_responsibilities": [
-                        value.value for value in residual.candidate_responsibilities
-                    ],
                     "metadata": residual.metadata_dict(),
                 },
             },
@@ -206,150 +165,6 @@ class LLMResearchReasoner:
         )
         responsibilities = tuple(Responsibility(str(value)) for value in data.get("responsibilities", []))
         return Diagnosis(responsibilities=responsibilities, rationale=str(data.get("rationale", "")))
-
-    def decompose_residual(
-        self,
-        residual: Residual,
-        problem: Problem,
-        state: OrionState,
-    ) -> ResidualDecomposition:
-        data = self._call(
-            "decompose_residual",
-            {
-                "problem": asdict(problem),
-                "residual": {
-                    "id": residual.residual_id,
-                    "kind": residual.kind.value,
-                    "description": residual.description,
-                    "candidate_responsibilities": [
-                        value.value for value in residual.candidate_responsibilities
-                    ],
-                    "metadata": residual.metadata_dict(),
-                },
-                "known_evidence_ids": list(state.knowledge.evidence_ids),
-                "known_negative_history_ids": list(state.knowledge.negative_history_ids),
-                "active_domains": list(state.search_universe.active_domain_ids),
-                "representations": list(state.search_universe.representation_ids),
-                "instruction": (
-                    "Return a decision-separating recursive decomposition. Each atom must be "
-                    "strictly narrower than the parent residual and must have exactly one concrete "
-                    "discriminator. Prefer a lower-cost dominance/formal/exact/donor obstruction "
-                    "when it can settle the same atom. If no valid finer split is identifiable, "
-                    "return no atoms and an explicit stop_reason. Never claim authority."
-                ),
-            },
-            (
-                '{"atoms":[{"atom_id":"...","question":"...",'
-                '"responsibility":"METHOD","scope":"...","initial_domain_ids":[],'
-                '"metadata":{},"discriminator":{"discriminator_id":"...",'
-                '"kind":"DOMINANCE_PROOF","question":"...",'
-                '"success_criterion":"...","expected_cost_units":1.0,'
-                '"metadata":{}}}],"stop_reason":null,"rationale":"..."}'
-            ),
-        )
-        raw_atoms = data.get("atoms", [])
-        if not isinstance(raw_atoms, list):
-            raise TypeError("decompose_residual.atoms must be an array")
-        atoms: list[ResidualAtom] = []
-        for index, raw in enumerate(raw_atoms):
-            if not isinstance(raw, Mapping):
-                raise TypeError("decompose_residual atom must be an object")
-            raw_discriminator = raw.get("discriminator")
-            if not isinstance(raw_discriminator, Mapping):
-                raise TypeError("decompose_residual atom.discriminator must be an object")
-            raw_cost = raw_discriminator.get("expected_cost_units")
-            if isinstance(raw_cost, bool) or not isinstance(raw_cost, (int, float)):
-                raise TypeError(
-                    "decompose_residual discriminator.expected_cost_units must be numeric"
-                )
-            raw_domains = raw.get("initial_domain_ids", [])
-            domains = _string_array(
-                raw_domains, name=f"decompose_residual.atoms[{index}].initial_domain_ids"
-            )
-            scope = raw.get("scope", "")
-            if not isinstance(scope, str):
-                raise TypeError("decompose_residual atom.scope must be a string")
-            atoms.append(
-                ResidualAtom(
-                    atom_id=_nonempty_string(
-                        raw.get("atom_id"),
-                        name=f"decompose_residual.atoms[{index}].atom_id",
-                    ),
-                    question=_nonempty_string(
-                        raw.get("question"),
-                        name=f"decompose_residual.atoms[{index}].question",
-                    ),
-                    responsibility=Responsibility(
-                        _nonempty_string(
-                            raw.get("responsibility"),
-                            name=f"decompose_residual.atoms[{index}].responsibility",
-                        )
-                    ),
-                    scope=scope,
-                    initial_domain_ids=domains,
-                    metadata=_string_metadata(
-                        raw.get("metadata", {}),
-                        name=f"decompose_residual.atoms[{index}].metadata",
-                    ),
-                    discriminator=DiscriminatorSpec(
-                        discriminator_id=_nonempty_string(
-                            raw_discriminator.get("discriminator_id"),
-                            name=(
-                                f"decompose_residual.atoms[{index}]"
-                                ".discriminator.discriminator_id"
-                            ),
-                        ),
-                        kind=DiscriminatorKind(
-                            _nonempty_string(
-                                raw_discriminator.get("kind"),
-                                name=(
-                                    f"decompose_residual.atoms[{index}]"
-                                    ".discriminator.kind"
-                                ),
-                            )
-                        ),
-                        question=_nonempty_string(
-                            raw_discriminator.get("question"),
-                            name=(
-                                f"decompose_residual.atoms[{index}]"
-                                ".discriminator.question"
-                            ),
-                        ),
-                        success_criterion=_nonempty_string(
-                            raw_discriminator.get("success_criterion"),
-                            name=(
-                                f"decompose_residual.atoms[{index}]"
-                                ".discriminator.success_criterion"
-                            ),
-                        ),
-                        expected_cost_units=float(raw_cost),
-                        metadata=_string_metadata(
-                            raw_discriminator.get("metadata", {}),
-                            name=(
-                                f"decompose_residual.atoms[{index}]"
-                                ".discriminator.metadata"
-                            ),
-                        ),
-                    ),
-                )
-            )
-        raw_stop = data.get("stop_reason")
-        if raw_stop is not None and not isinstance(raw_stop, str):
-            raise TypeError("decompose_residual.stop_reason must be a string or null")
-        stop_reason = (
-            None if raw_stop is None else RecursiveProblemStopReason(raw_stop)
-        )
-        rationale = data.get("rationale", "")
-        if not isinstance(rationale, str):
-            raise TypeError("decompose_residual.rationale must be a string")
-        decomposition = ResidualDecomposition(
-            parent_residual_id=residual.residual_id,
-            atoms=tuple(atoms),
-            stop_reason=stop_reason,
-            rationale=rationale,
-        )
-        decomposition.verify(residual)
-        return decomposition
 
     def propose_reframe(
         self,
