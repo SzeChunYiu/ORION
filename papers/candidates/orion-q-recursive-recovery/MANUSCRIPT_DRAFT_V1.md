@@ -94,7 +94,12 @@ this paper exceeds its receipt's frozen scope.
   F4 access-edit machinery negative on cost but perfect on safety (120/120 stronger-oracle
   laundering rejections); F5 prospective crossover prediction **supported** (0.9948 vs
   0.9271 strongest baseline, crossover location error ~9e-16, functional-form-shift hostile
-  control drops it to 0.4427 as required). Residual named and carried forward.
+  control drops it to 0.4427 as required). The carried residual was then given its donor
+  comparison: a Predict-and-Conquer-style model-selection donor ties the candidate to the
+  last float on the original world (residual donor-absorbed exactly as the stop-rule
+  assessment predicted), while the candidate keeps a +0.031 edge only on a world
+  misspecified for both — so the surviving claim is a narrow misspecification-robustness
+  edge, not analytic-form extrapolation.
 - **N3 (parametric synthesis above supplied grammars)**: all four registered families
   residual-confirmed with every gate passing — symbolic-family induction (unique schema
   forced by BFS-proved optima, exact-verified at n=8..12 where the concrete donor's 200k
@@ -105,7 +110,12 @@ this paper exceeds its receipt's frozen scope.
   (hidden mul3 frame recovered at transport cost 1). Donors correctly won first refusal in
   every donor-sufficient world; the lane's registered blanket-donor terminal is unreachable
   per its own receipts.
-- **N4 (interface graphs under partial knowledge)**: five materially different families all
+- **N4 (interface graphs under partial knowledge)**: all six registered families
+  independently executed and positive — including the standalone family-3 closure (typed
+  remint/receipt-transport beats re-derive-from-scratch at zero committed failures in the
+  mixed regime, stale carry-forward punished at 99.5% failure rate, and an exact four-way
+  tie where remints are unnecessary, attributing the advantage to typed transport rather
+  than policy leakage). The original five:
   **positive** within exact-synthetic scope — typed-prior VOI (71% of oracle utility),
   scoped stale-receipt reopening (beats never/always/unscoped in a two-regime hostile
   matrix), interval-dominance-targeted verification (2.3× over random at matched budget),
