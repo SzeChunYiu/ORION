@@ -6,12 +6,11 @@ on:
       - '.github/workflows/p1-p2-exact-main-render.yml'
       - 'papers/paper-01-recursive-epistemic-reconstruction/manuscript/**'
       - 'papers/paper-02-open-world-scientific-discovery/manuscript/**'
+  # Publication authority is bound to an exact main SHA, not merely manuscript
+  # bytes. Run on every main advance so unrelated merges cannot silently make the
+  # latest exact-main render stale. PR renders remain path-filtered diagnostics.
   push:
     branches: [main]
-    paths:
-      - '.github/workflows/p1-p2-exact-main-render.yml'
-      - 'papers/paper-01-recursive-epistemic-reconstruction/manuscript/**'
-      - 'papers/paper-02-open-world-scientific-discovery/manuscript/**'
   workflow_dispatch:
 
 permissions:
