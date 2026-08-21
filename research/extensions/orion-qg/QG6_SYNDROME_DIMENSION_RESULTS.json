@@ -1,0 +1,354 @@
+{
+  "base_revision": "164462bf7c7f3d3c2e559fa5aaf19726bb6ec388",
+  "chemistry_sources_read": false,
+  "gates": {
+    "no_chemistry_or_protected_subject_read": true,
+    "production_algebra_exact": true,
+    "r6i_analytic_span_exact": true,
+    "r6i_auto_rank5": true,
+    "r6i_domain_exact": true,
+    "r6i_local_cost_candidate_pass": true,
+    "r6m_analytic_span_exact": true,
+    "r6m_auto_rank2": true,
+    "r6m_domain_exact": true,
+    "r6s_theorem_receipt_bound": true
+  },
+  "issue": "SzeChunYiu/ORION#756",
+  "meta_theorem": {
+    "conditions": [
+      "ACTIVE_COORDINATES_HAVE_D_DIMENSIONAL_ADDITIVE_SYNDROME",
+      "GLOBAL_REQUIRED_SYNDROME_IS_NONZERO",
+      "ZERO_SUM_PROPER_SUBSET_DELETION_PRESERVES_SEMANTICS",
+      "DELETION_DOES_NOT_INCREASE_COST",
+      "TIES_STRICTLY_DECREASE_WELL_FOUNDED_SUPPORT_MEASURE"
+    ],
+    "field": "F_2",
+    "novelty_credit": false,
+    "proof_steps": [
+      "MORE_THAN_D_ACTIVE_VECTORS_ARE_LINEarly_DEPENDENT",
+      "DEPENDENCE_GIVES_NONEMPTY_ZERO_SUM_SUBSET",
+      "NONZERO_TOTAL_SYNDROME_MAKES_SUBSET_PROPER",
+      "ADMITTED_DELETION_CONTRADICTS_SUPPORT_MINIMAL_OPTIMUM"
+    ],
+    "support_bound": "d"
+  },
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "production_algebra": {
+    "all_exact": true,
+    "multiplication_exact": true,
+    "symplectic_exact": true,
+    "weight_exact": true
+  },
+  "protected_subject_read": false,
+  "protocol_sha256": "fb8ef55c0a6b098cb9bb8a481f7e1e19ccc85d31010acbc6f767bf75af3893b0",
+  "r6i": {
+    "all_analytic_spans_exact": true,
+    "all_block_ranks_5": true,
+    "auto_dimension": 5,
+    "blocks": {
+      "A": {
+        "analytic_basis": [
+          1,
+          68,
+          136,
+          272,
+          544
+        ],
+        "analytic_basis_rank": 5,
+        "change_vectors": [
+          0,
+          1,
+          68,
+          69,
+          136,
+          137,
+          204,
+          205,
+          272,
+          273,
+          340,
+          341,
+          409,
+          477,
+          544,
+          545,
+          613,
+          680,
+          681,
+          749,
+          816,
+          817,
+          885,
+          953,
+          1020,
+          1021
+        ],
+        "changed_bit_union": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "contained_in_analytic_span": true,
+        "rank": 5,
+        "spans_analytic_space": true,
+      "unique_change_count": 26,
+      "width": 10
+      },
+      "B": {
+        "analytic_basis": [
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "analytic_basis_rank": 5,
+        "change_vectors": [
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20,
+          22,
+          26,
+          30,
+          32,
+          34,
+          38,
+          40,
+          42,
+          46,
+          48,
+          50,
+          54,
+          58,
+          60,
+          62
+        ],
+        "changed_bit_union": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "contained_in_analytic_span": true,
+        "rank": 5,
+        "spans_analytic_space": true,
+      "unique_change_count": 26,
+      "width": 10
+      }
+    },
+    "expected_local_option_rows": 4096,
+    "local_cost_corroboration": {
+      "candidate_cost_certificate_pass": true,
+      "case_count": 46080,
+      "delta_histogram": {
+        "-10": 6336,
+        "-11": 4320,
+        "-12": 1728,
+        "-13": 288,
+      "-4": 1152,
+      "-5": 4608,
+      "-6": 7488,
+      "-7": 7200,
+      "-8": 6336,
+      "-9": 6624
+      },
+      "expected_case_count": 46080,
+      "max_delta": -4,
+      "theorem_authority": "PENDING_QG1_INDEPENDENT_DUAL_HARNESS",
+      "violations": []
+    },
+    "local_option_rows": 4096,
+    "production_state_bits": 10,
+    "rewrite": "ZERO_BOTH_INDEPENDENT_GENERATORS_OF_ONE_BLOCK",
+    "support_theorem_status": "PENDING_QG1_INDEPENDENT_DUAL_HARNESS"
+  },
+  "r6m": {
+    "all_analytic_spans_exact": true,
+    "all_slot_ranks_2": true,
+    "auto_dimension": 2,
+    "expected_local_option_rows": 16384,
+    "local_option_rows": 16384,
+    "production_state_bits": 9,
+    "r6s_binding": {
+      "all_bound": true,
+      "authority": "MAX_R6S_ALL_N_COMPOSITION_THEOREM_MACHINE_CHECKED__SUPPORT3_NEVER_PAYS__DXX_EQUALS_DP_ALL_N__NOT_R6",
+      "checks": {
+        "authority_machine_checked": true,
+        "bindings_exact": true,
+        "lemma_b_w3_to_w8_zero_failures": true,
+        "lemma_e_zero_violations": true,
+        "no_new_subject_data": true,
+        "novelty_credit_false": true,
+        "outcome_theorem_machine_checked": true,
+        "r6_authority_false": true
+      },
+      "receipt_sha256": "b6d72913c3bd42d9c822eace19563378c046e620d7b9641ec7d818fbcc6b9875",
+      "reported_class_dimension": 2,
+      "reported_support_bound": 2,
+      "scope": "ALL_N_SUPPORT3_EXCHANGE_THEOREM_OVER_FROZEN_R6M_GRAMMAR__EXPLANATORY_FAMILY_CLOSURE__NOT_R6"
+    },
+    "rewrite": "ZERO_ONE_FRAME_LOCAL_LETTER",
+    "slots": {
+      "A0": {
+        "analytic_basis": [
+          1,
+          152
+        ],
+        "analytic_basis_rank": 2,
+        "change_vectors": [
+          0,
+          1,
+          152,
+          153
+        ],
+        "changed_bit_union": [
+          0,
+          3,
+          4,
+          7
+        ],
+        "contained_in_analytic_span": true,
+        "rank": 2,
+        "spans_analytic_space": true,
+      "unique_change_count": 4,
+        "width": 9
+      },
+      "A1": {
+        "analytic_basis": [
+          1,
+          352
+        ],
+        "analytic_basis_rank": 2,
+        "change_vectors": [
+          0,
+          1,
+          352,
+          353
+        ],
+        "changed_bit_union": [
+          0,
+          5,
+          6
+        ],
+        "contained_in_analytic_span": true,
+        "rank": 2,
+        "spans_analytic_space": true,
+        "unique_change_count": 4,
+        "width": 9
+      },
+      "B0": {
+        "analytic_basis": [
+          2,
+          8
+        ],
+        "analytic_basis_rank": 2,
+        "change_vectors": [
+          0,
+          2,
+          8,
+          10
+        ],
+        "changed_bit_union": [
+          1,
+          3
+        ],
+        "contained_in_analytic_span": true,
+        "rank": 2,
+        "spans_analytic_space": true,
+      "unique_change_count": 4,
+        "width": 9
+      },
+      "B1": {
+        "analytic_basis": [
+          2,
+          32
+        ],
+        "analytic_basis_rank": 2,
+        "change_vectors": [
+          0,
+          2,
+          32,
+          34
+        ],
+        "changed_bit_union": [
+          1,
+          5
+        ],
+        "contained_in_analytic_span": true,
+        "rank": 2,
+        "spans_analytic_space": true,
+        "unique_change_count": 4,
+        "width": 9
+      },
+      "C0": {
+        "analytic_basis": [
+          4,
+          16
+        ],
+        "analytic_basis_rank": 2,
+        "change_vectors": [
+          0,
+          4,
+          16,
+          20
+        ],
+        "changed_bit_union": [
+          2,
+          4
+        ],
+        "contained_in_analytic_span": true,
+        "rank": 2,
+        "spans_analytic_space": true,
+        "unique_change_count": 4,
+        "width": 9
+      },
+      "C1": {
+        "analytic_basis": [
+          4,
+          64
+        ],
+        "analytic_basis_rank": 2,
+        "change_vectors": [
+          0,
+          4,
+          64,
+          68
+        ],
+        "changed_bit_union": [
+          2,
+          6
+        ],
+        "contained_in_analytic_span": true,
+        "rank": 2,
+        "spans_analytic_space": true,
+        "unique_change_count": 4,
+        "width": 9
+      }
+    },
+    "support_theorem_status": "RECOVERED_FROM_EXISTING_R6S_CERTIFICATE"
+  },
+  "result_digest": "f065afc8c4f5673931570c5dca6c1f47eb6cb602dbb15c4a1625be0346b023eb",
+  "schema": "ORION.QG.QG6SyndromeRank.v1",
+  "search_complexity_corollary": {
+    "fixed_d_asymptotic": "O(n^d A^d)",
+    "formula": "sum_{k=0}^d binom(n,k) A^k",
+    "scope": "CERTIFIED_COMPONENT_ONLY"
+  },
+  "terminal": "QG6_PRODUCTION_SYNDROME_RANK_INFERENCE_VERIFIED__R6M_D2_RECOVERS_SUPPORT2__R6I_D5_FOUND_THEOREM_PENDING_QG1"
+}
