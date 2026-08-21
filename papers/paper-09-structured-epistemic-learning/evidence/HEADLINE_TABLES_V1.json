@@ -1,0 +1,164 @@
+{
+  "authority": "DERIVED_PUBLICATION_TABLES_ONLY_NO_SCIENTIFIC_AUTHORITY",
+  "d1_contrasts": {
+    "typed_minus_same_information_serialized": 0.5,
+    "typed_minus_transcript": 0.75
+  },
+  "d1_paired_effect_table": [
+    {
+      "ci_high": 0.8203125,
+      "ci_low": 0.671875,
+      "comparator": "TRANSCRIPT_BAG",
+      "delta": 0.75,
+      "label": "Transcript bag",
+      "mcnemar_p": 2.524354896707238e-29,
+      "n": 128,
+      "typed_losses": 0,
+      "typed_wins": 96
+    },
+    {
+      "ci_high": 0.1484375,
+      "ci_low": 0.046875,
+      "comparator": "UNTYPED_PAIR",
+      "delta": 0.09375,
+      "label": "Untyped pair",
+      "mcnemar_p": 0.00048828125,
+      "n": 128,
+      "typed_losses": 0,
+      "typed_wins": 12
+    },
+    {
+      "ci_high": 0.5859375,
+      "ci_low": 0.4140625,
+      "comparator": "TYPED_SERIALIZED_BAG",
+      "delta": 0.5,
+      "label": "Same-information typed serialization",
+      "mcnemar_p": 1.0842021724855044e-19,
+      "n": 128,
+      "typed_losses": 0,
+      "typed_wins": 64
+    }
+  ],
+  "d1_terminal": "D1_TYPED_STRUCTURE_TRANSFER_SUPPORTED",
+  "d1_transfer_table": [
+    {
+      "arm": "TRANSCRIPT_BAG",
+      "display_arm": "Transcript bag",
+      "double_corruption_accuracy": 0.0,
+      "macro_f1": 0.13333333333333333,
+      "selected_model": "logistic-C0.1",
+      "test_accuracy": 0.25,
+      "unresolved_accuracy": 0.0
+    },
+    {
+      "arm": "UNTYPED_PAIR",
+      "display_arm": "Untyped pair",
+      "double_corruption_accuracy": 1.0,
+      "macro_f1": 0.9128856624319419,
+      "selected_model": "logistic-C0.1",
+      "test_accuracy": 0.90625,
+      "unresolved_accuracy": 1.0
+    },
+    {
+      "arm": "TYPED_RELATIONAL",
+      "display_arm": "Typed relational",
+      "double_corruption_accuracy": 1.0,
+      "macro_f1": 1.0,
+      "selected_model": "logistic-C0.1",
+      "test_accuracy": 1.0,
+      "unresolved_accuracy": 1.0
+    },
+    {
+      "arm": "TYPED_SERIALIZED_BAG",
+      "display_arm": "Typed serialization",
+      "double_corruption_accuracy": 1.0,
+      "macro_f1": 0.2222222222222222,
+      "selected_model": "logistic-C1",
+      "test_accuracy": 0.5,
+      "unresolved_accuracy": 0.0
+    }
+  ],
+  "explicit_inference_table": [
+    {
+      "atom": "A2 relation semantics",
+      "interpretation": "typed relation semantics are load-bearing; explicit selection suffices",
+      "sufficient_accuracy": 1.0,
+      "sufficient_view": "TYPED",
+      "weaker_accuracy": 0.0,
+      "weaker_view": "TOPOLOGY"
+    },
+    {
+      "atom": "A4 failure history",
+      "interpretation": "admitted scoped failure history is load-bearing; explicit filtering suffices",
+      "sufficient_accuracy": 1.0,
+      "sufficient_view": "SEMANTIC",
+      "weaker_accuracy": 0.5,
+      "weaker_view": "CURRENT"
+    },
+    {
+      "atom": "A5 affine transport",
+      "interpretation": "visible local maps plus exact composition close the D0 computation",
+      "sufficient_accuracy": 1.0,
+      "sufficient_view": "CURRENT",
+      "weaker_accuracy": 0.0,
+      "weaker_view": "TYPED"
+    }
+  ],
+  "m1_decisive_computation": {
+    "current_gluing": {
+      "dev_accuracy": 0.6041666666666666,
+      "selected_feature": "F2_CYCLE_NUMERIC",
+      "selected_model": "knn-k3-uniform",
+      "task_information_ceiling": 1.0,
+      "test_accuracy": 0.5104166666666666
+    },
+    "semantic_gluing": {
+      "dev_accuracy": 0.6041666666666666,
+      "selected_feature": "F2_CYCLE_NUMERIC",
+      "selected_model": "knn-k3-uniform",
+      "task_information_ceiling": 1.0,
+      "test_accuracy": 0.5104166666666666
+    },
+    "semantic_mechanic_ranking_accuracy": 1.0
+  },
+  "m1_terminal": "M1_GLOBAL_COMPOSITION_RESIDUAL",
+  "m1_view_ceiling_table": [
+    {
+      "accuracy": 0.5,
+      "ceiling": 0.5,
+      "ceiling_violation": false,
+      "gap_to_ceiling": 0.0,
+      "view": "SURFACE"
+    },
+    {
+      "accuracy": 0.5,
+      "ceiling": 0.5,
+      "ceiling_violation": false,
+      "gap_to_ceiling": 0.0,
+      "view": "TOPOLOGY"
+    },
+    {
+      "accuracy": 0.6666666666666666,
+      "ceiling": 0.6666666666666666,
+      "ceiling_violation": false,
+      "gap_to_ceiling": 0.0,
+      "view": "TYPED"
+    },
+    {
+      "accuracy": 0.6701388888888888,
+      "ceiling": 0.8333333333333334,
+      "ceiling_violation": false,
+      "gap_to_ceiling": 0.16319444444444453,
+      "view": "CURRENT"
+    },
+    {
+      "accuracy": 0.8368055555555556,
+      "ceiling": 1.0,
+      "ceiling_violation": false,
+      "gap_to_ceiling": 0.16319444444444442,
+      "view": "SEMANTIC"
+    }
+  ],
+  "schema": "P9.HeadlineTables.v1.1",
+  "source_summary": "evidence/OFFICIAL_EVIDENCE_SUMMARY_V1.json"
+}
