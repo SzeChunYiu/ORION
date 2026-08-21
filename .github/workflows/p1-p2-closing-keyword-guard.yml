@@ -1,0 +1,39 @@
+name: p1-p2-closing-keyword-guard
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize, ready_for_review]
+
+permissions:
+  contents: read
+
+jobs:
+  protected-issue-closing-keywords:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Reject automatic closing references to protected P1/P2 issues
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import os, re, sys
+
+          protected = (489, 490, 649, 650, 723)
+          # GitHub interprets these keyword+issue-reference forms as closure
+          # directives even when ordinary prose tries to negate them.
+          keyword = r"(?:close(?:s|d)?|fix(?:es|ed)?|resolve(?:s|d)?)"
+          issue = r"(?:489|490|649|650|723)"
+          pattern = re.compile(rf"\b{keyword}\s*:?[ \t]*#{issue}\b", re.IGNORECASE)
+          text = f"{os.environ.get('PR_TITLE', '')}\n{os.environ.get('PR_BODY', '')}"
+          matches = sorted(set(m.group(0) for m in pattern.finditer(text)))
+          if matches:
+              print("Protected P1/P2 authority issues must be closed explicitly only after their acceptance criteria are verified.", file=sys.stderr)
+              print("Do not use GitHub automatic closing-keyword references in PR title/body.", file=sys.stderr)
+              print("Use non-triggering prose such as: 'does not authorize closure of issue #650'.", file=sys.stderr)
+              print("Rejected references: " + ", ".join(matches), file=sys.stderr)
+              sys.exit(1)
+          print("No automatic closing-keyword reference targets protected P1/P2 authority issues.")
+          PY
