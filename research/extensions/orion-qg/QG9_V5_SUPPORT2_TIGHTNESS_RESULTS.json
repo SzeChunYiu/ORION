@@ -1,0 +1,54 @@
+{
+  "schema": "ORION.QG.QG9.V5.CommittedResult.v1",
+  "issue": "SzeChunYiu/ORION#795",
+  "pr": "SzeChunYiu/ORION#796",
+  "execution_head": "29fc6d2ef873156bba8c216a4704aad896563744",
+  "parent_support2_receipt_commit": "a80dbd57d9124f058de7465a13de8c69416c368b",
+  "terminal": "QG9_NO_SUPPORT2_TIGHT_WITNESS_IN_FROZEN_INVERSE_PANEL",
+  "source_result_digest": "937fb3f7d963f3747d70c24434d13ea379268e2dee49e661f78c76b9e2673202",
+  "candidate_generator_digest_before_scoring": "bb07c127d037f68e2a1f6ca6b5defee0fbadcebdb3ae23aedd4e7266f184a4fa",
+  "candidate_generator": {
+    "accepted_unsafe_type_cases": 36,
+    "concrete_realizations_before_dedup": 1296,
+    "unique_blocks": 1296,
+    "compatible_block_pairs": 4104,
+    "template_families": ["IDENTITY_RESTORE", "ONE_DEFECT_A", "ONE_DEFECT_B", "MATCHED_DEFECT"]
+  },
+  "candidates_tested": 211248,
+  "family_candidates_tested": {
+    "IDENTITY_RESTORE": 4104,
+    "ONE_DEFECT_A": 69768,
+    "ONE_DEFECT_B": 69768,
+    "MATCHED_DEFECT": 67608
+  },
+  "selected_witness": null,
+  "production_dp_opened": false,
+  "qg1_pairtables_binding": {
+    "all_pass": true,
+    "hostile_n2_rows": 4
+  },
+  "exact_acceleration": {
+    "method": "EXACT_MIN_PLUS_CACHE_OVER_QG1_PAIRTABLES",
+    "a_cache_entries": 936,
+    "b_cache_entries": 936,
+    "canonical_bind_all_pass": true,
+    "scientific_order_unchanged": true
+  },
+  "generic_orion": {
+    "decision": "NEGATIVE_PANEL_NOT_INDEPENDENTLY_REPLAYED",
+    "no_selected_witness": true,
+    "tightness_authority_false": true
+  },
+  "native_orion_q": {
+    "decision": "RECORD_NEGATIVE_PANEL",
+    "parent_support2_protected": true,
+    "tightness_authority_false": true,
+    "support1_authority_false": true
+  },
+  "both_accept": true,
+  "interpretation": "The complete frozen V5 inverse-design ladder found no target-level support-2 necessity witness. Together with independent T2 #803, this motivates a new prospective support<=1 theorem/counterexample programme but grants no support1 authority.",
+  "support1_authority": false,
+  "tightness_authority": false,
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false
+}

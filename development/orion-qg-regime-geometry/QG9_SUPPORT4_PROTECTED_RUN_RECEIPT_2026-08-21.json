@@ -1,0 +1,41 @@
+{
+  "schema": "ORION.QG.ProtectedRunReceipt.v1",
+  "issue": "SzeChunYiu/ORION#762",
+  "workflow": {
+    "name": "orion-qg-qg9-support4",
+    "run_id": 32490719629
+  },
+  "head_sha": "58536ef2898bdd3f7a68e2bfde9b5aedef876a2e",
+  "artifact": {
+    "id": 9449659633,
+    "name": "orion-qg-qg9-support4-58536ef2898bdd3f7a68e2bfde9b5aedef876a2e",
+    "digest": "sha256:fdcf4dbec8390f5408f6f5c721f5e2a7f43519eef563c3c7000ba2a47a0a86d2"
+  },
+  "terminal": "QG9_RANK2_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED",
+  "source_result_digest": "1f67dd1d22e3bd3d32cc6f3d6b0f3452929548d3ca7095fedca5e7511a045b22",
+  "generic_lane": {
+    "decision": "ACCEPT",
+    "analyzer_request_digest": "0b731a50b452b56b87418b08fc99cb9016bcb30c5e61d0c7af5cae1d1a726804",
+    "analyzer_result_digest": "3954fb92e9a86a25ac12c6eb5697a835f50db3f5e84a53e0da1ec86a77e119c1",
+    "verifier_request_digest": "1d03b3978279395e891d737d2d1a7f4ffd6a79e1e401b3367bac1fcecfe85fbd",
+    "verifier_result_digest": "ff3f1788106d145e2b612576656bed76ef6c8332219b5481897db34fda158de1",
+    "independent_counts": {
+      "descriptor_count": 28,
+      "support5_retained": 324,
+      "support5_unsafe": 0,
+      "support4_retained": 432,
+      "support4_unsafe": 36
+    }
+  },
+  "native_lane": {
+    "decision": "ACCEPT_SUPPORT4",
+    "request_digest": "6a8233c883aa3bad066395e076812ff2284ba114bb933d8904d3126460ac8ef1",
+    "result_digest": "c5fb1b32a14ad0bbfaf63d7f8f27ab5ff8593b9db0ca06d8b878355b49941e7d",
+    "scope": "R6I_UNIT_OBJECTIVE_ONLY"
+  },
+  "both_accept": true,
+  "support3_authority": false,
+  "tightness_authority": false,
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false
+}
