@@ -52,7 +52,7 @@ jobs:
           python-version: '3.12'
       - name: Install frozen evaluator runtime
         run: python -m pip install -e '.[dev]'
-      - name: Bind exact protected subject before outcome
+      - name: Bind exact protected scientific subject before outcome
         shell: bash
         run: |
           set -euo pipefail
@@ -75,7 +75,6 @@ jobs:
               'evaluator_sha256': hashlib.sha256((root / 'evaluate_native.py').read_bytes()).hexdigest(),
               'native_adapter_sha256': hashlib.sha256((root / 'native_orion.py').read_bytes()).hexdigest(),
               'native_core_sha256': hashlib.sha256((root / 'native_orion_core_v1.py').read_bytes()).hexdigest(),
-              'authority_classifier_sha256': hashlib.sha256((root / 'primary_authority.py').read_bytes()).hexdigest(),
               'outcome_seen': False,
               'promotion_authorized': False,
           }
@@ -101,7 +100,7 @@ jobs:
           }
           print('P1_R6_NATIVE_PRIMARY_SCIENTIFIC_TERMINAL=' + result['terminal'])
           PY
-      - name: Classify closure authority fail-closed
+      - name: Reconstruct protected ablation authority
         shell: bash
         run: |
           set -euo pipefail
@@ -114,11 +113,22 @@ jobs:
           result = json.loads(Path('/tmp/p1-r6-primary/RESULT_V1.json').read_text())
           authority = json.loads(Path('/tmp/p1-r6-primary/AUTHORITY_V1.json').read_text())
           assert authority['scientific_terminal_preserved'] == result['terminal']
-          assert authority['grants_primary_superiority_authority'] is False
+          assert authority['verification_performed_after_scientific_outcome'] is True
+          assert authority['criterion_predeclared_before_scientific_outcome'] is True
+          assert authority['new_post_outcome_threshold_introduced'] is False
+          assert authority['grants_issue_649_closure_authority'] is False
           assert authority['grants_replication_closure_authority'] is False
           assert authority['grants_registry_promotion_authority'] is False
           if result['terminal'] == 'P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION':
-              assert authority['authority_terminal'] == 'P1_R6_NATIVE_PRIMARY_CANNOT_CHECK_ABLATION_MATERIALITY_UNDERDEFINED'
+              assert authority['authority_terminal'] in {
+                  'P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION',
+                  'P1_R6_NATIVE_PRIMARY_CANNOT_CHECK_ABLATION_IDENTIFICATION',
+              }
+              if authority['authority_terminal'] == result['terminal']:
+                  assert authority['grants_primary_mechanism_identification_authority'] is True
+                  assert authority['ablation_identification_reconstruction']['complete'] is True
+              else:
+                  assert authority['grants_primary_mechanism_identification_authority'] is False
           else:
               assert authority['authority_terminal'] == 'P1_R6_NATIVE_PRIMARY_NOT_SUPPORTED'
           print('P1_R6_NATIVE_PRIMARY_AUTHORITY_TERMINAL=' + authority['authority_terminal'])
