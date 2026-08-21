@@ -65,13 +65,27 @@ def main() -> int:
                 "request_digest": request.request_digest,
                 "result_digest": result.result_digest,
                 "case_count": len(campaign.get("cases", [])),
+                "fixture_cases_used_for_advantage": campaign.get(
+                    "fixture_cases_used_for_advantage"
+                ),
+                "advantage_adjudication_source": campaign.get(
+                    "advantage_adjudication_source"
+                ),
                 "size_terminals": [
                     {
                         "n": item["n_qubits"],
-                        "terminal": item["terminal"],
-                        "mean_q": item["mean_quantum_oracle_calls"],
-                        "mean_c1": item["mean_classical_ordered_calls"],
-                        "mean_c2": item["mean_classical_random_calls"],
+                        "query_model_terminal": item["query_model_terminal"],
+                        "ordinary_input_terminal": item["ordinary_input_terminal"],
+                        "q_budget": item["quantum_query_budget"],
+                        "classical_matching_budget": item[
+                            "classical_matching_query_budget"
+                        ],
+                        "classical_matching_expected": item[
+                            "classical_matching_expected_queries"
+                        ],
+                        "fixture_mean_q_diagnostic": item[
+                            "mean_fixture_quantum_oracle_calls"
+                        ],
                     }
                     for item in campaign.get("size_summaries", [])
                 ],
