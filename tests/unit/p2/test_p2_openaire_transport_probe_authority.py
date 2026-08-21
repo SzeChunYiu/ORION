@@ -32,6 +32,7 @@ def _freeze() -> dict:
             "pre_benchmark_probe_required": True,
             "probe_gold_access": "NONE",
             "probe_dois": ["10.5281/zenodo.8217359", "10.1038/s41586-023-06221-2"],
+            "probe_min_result_count": 1,
         }
     }
 
@@ -65,6 +66,7 @@ def test_transport_probe_binds_request_and_authority(tmp_path: Path) -> None:
         ("schema_version", "orion.p2.fake-probe.v1"),
         ("url_sha256", "0" * 64),
         ("response_sha256", "not-a-canonical-sha256"),
+        ("result_count", 0),
         ("result_count", -1),
         ("benchmark_gold_accessed", True),
         ("promotion_authorized", True),
@@ -88,5 +90,10 @@ def test_transport_probe_refuses_weakened_freeze(tmp_path: Path) -> None:
 
     freeze = _freeze()
     freeze["transport_repair_evidence"]["probe_gold_access"] = "ALLOWED"
+    with pytest.raises(ValueError):
+        runner.validate_transport_probe(path, freeze)
+
+    freeze = _freeze()
+    freeze["transport_repair_evidence"]["probe_min_result_count"] = 0
     with pytest.raises(ValueError):
         runner.validate_transport_probe(path, freeze)
