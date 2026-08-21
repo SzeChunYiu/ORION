@@ -120,6 +120,20 @@ Authority: development record only; no lane receipt grants scientific/novelty au
 - **R7 — frozen hunt for a real trade-regime chemistry batch** (QG-3: all 90 real
   library matchings donor-exact; positive trade confirmations are synthetic-only).
   (`QG3_BOUNDARY_PROSPECTIVE_RESULTS.json`)
+  **R7 is now instrumented by an independently authored lane** (issue #745, merged via
+  PR #746, `164462bf`): a positive-forecast experiment with dual-harness custody —
+  DP-forbidden stage-1 selector (scan cap 12 unread DUCC subjects), generic-harness +
+  native typed-campaign admission on one sealed stage-1 digest, exact double-run
+  referee gated on dual OPEN. Reconciliation notes: (a) that lane carries the label
+  "QG-3" from its own charter; in this packet's registry it is the R7 lane — wave-1's
+  QG-3 (boundary prospective, closed above) is a different, completed experiment.
+  (b) Six of its twelve scan candidates (Benzene DUCC3 pVDZ/pVTZ 12q; 6E7O and 8E7O
+  DUCC2/DUCC3 14q) already carry committed DP ground truth in
+  `QG3_BOUNDARY_PROSPECTIVE_RESULTS.json` — all donor-exact, so its positive selector
+  necessarily passes over them and can select only from the genuinely unread
+  candidates 7–12; its internal custody is unaffected, but any positive terminal's
+  "unseen subject" gate must be read against this packet's receipts, not only the
+  R6R-era blob list frozen in its selector.
 
 ## Stop rules
 
