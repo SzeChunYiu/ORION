@@ -52,6 +52,7 @@ def _write_probe(path: Path) -> None:
         "benchmark_gold_accessed": False,
         "promotion_authorized": False,
     }
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(receipt, sort_keys=True) + "\n", encoding="utf-8")
 
 
@@ -91,3 +92,99 @@ def test_score_time_transport_evidence_refuses_manifest_only_authority(tmp_path:
     assert validity["valid"] is False
     assert validity["receipt_valid"] is True
     assert validity["probe_hash_matches_manifest"] is False
+
+
+def test_missing_archived_probe_is_invalid_evidence_not_exception(tmp_path: Path) -> None:
+    manifest_path = tmp_path / "capture" / "SHARED_ACQUISITION_MANIFEST.json"
+    manifest_path.parent.mkdir(parents=True)
+    manifest = {
+        "campaign_version": 2,
+        "transport_encoding": "repeated_pid_parameters",
+        "transport_probe_terminal": runner.PROBE_TERMINAL,
+        "transport_probe_sha256": "a" * 64,
+    }
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    validity = analyzer.resolve_transport_evidence(
+        _freeze(), manifest, manifest_path, None
+    )
+    assert validity["valid"] is False
+    assert validity["receipt_valid"] is False
+    assert validity["probe_hash_matches_manifest"] is False
+    assert "not found" in str(validity["validation_error"])
+
+
+def test_ambiguous_archived_probes_are_invalid_evidence_not_exception(tmp_path: Path) -> None:
+    manifest_path = tmp_path / "capture" / "SHARED_ACQUISITION_MANIFEST.json"
+    manifest_path.parent.mkdir(parents=True)
+    manifest = {
+        "campaign_version": 2,
+        "transport_encoding": "repeated_pid_parameters",
+        "transport_probe_terminal": runner.PROBE_TERMINAL,
+        "transport_probe_sha256": "a" * 64,
+    }
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    _write_probe(manifest_path.parent / "a" / "transport_probe.json")
+    _write_probe(manifest_path.parent / "b" / "transport_probe.json")
+    validity = analyzer.resolve_transport_evidence(
+        _freeze(), manifest, manifest_path, None
+    )
+    assert validity["valid"] is False
+    assert validity["receipt_valid"] is False
+    assert "ambiguous" in str(validity["validation_error"])
+
+
+def test_missing_probe_forces_frozen_cannot_check_terminal(monkeypatch, tmp_path: Path) -> None:
+    freeze = _freeze()
+    freeze.update(
+        {
+            "schema_version": analyzer.V2_SCHEMA,
+            "terminal_rule": {
+                "invalid_or_transport_terminal": "P2_WIDE_EXTERNAL_V2_CANNOT_CHECK",
+                "positive_terminal": "P2_WIDE_EXTERNAL_V2_SUPPORTED",
+                "negative_valid_terminal": "P2_WIDE_EXTERNAL_V2_NOT_SUPPORTED",
+            },
+            "claim_boundary": "test-boundary",
+        }
+    )
+    freeze_path = tmp_path / "freeze.json"
+    freeze_path.write_text(json.dumps(freeze), encoding="utf-8")
+    manifest_path = tmp_path / "capture" / "SHARED_ACQUISITION_MANIFEST.json"
+    manifest_path.parent.mkdir(parents=True)
+    manifest = {
+        "campaign_version": 2,
+        "transport_encoding": "repeated_pid_parameters",
+        "transport_probe_terminal": runner.PROBE_TERMINAL,
+        "transport_probe_sha256": "a" * 64,
+    }
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    output_path = tmp_path / "result.json"
+
+    monkeypatch.setattr(
+        analyzer.v1,
+        "analyze",
+        lambda **kwargs: {
+            "schema_version": "orion.p2.wide-openaire-matched-result.v1",
+            "terminal": "P2_WIDE_EXTERNAL_V2_SUPPORTED",
+            "validity": {},
+            "all_validity_conditions": True,
+            "scientific_supported": True,
+            "scientific_rule": {},
+        },
+    )
+
+    result = analyzer.analyze_v2(
+        freeze_path=freeze_path,
+        manifest_path=manifest_path,
+        transport_probe_path=None,
+        baseline_eval_path=tmp_path / "baseline.json",
+        orion_eval_path=tmp_path / "orion.json",
+        diagnostic_eval_path=tmp_path / "diagnostic.json",
+        baseline_candidate_path=tmp_path / "baseline-candidate.jsonl",
+        orion_candidate_path=tmp_path / "orion-candidate.jsonl",
+        diagnostic_candidate_path=tmp_path / "diagnostic-candidate.jsonl",
+        output_path=output_path,
+    )
+    assert result["terminal"] == "P2_WIDE_EXTERNAL_V2_CANNOT_CHECK"
+    assert result["all_validity_conditions"] is False
+    assert result["validity"]["v2_transport_probe_receipt_valid"] is False
+    assert output_path.exists()
