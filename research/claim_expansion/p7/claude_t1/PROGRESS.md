@@ -94,3 +94,40 @@ LAYER A — obligation semantics (why Match is the right test, and where it isn'
 
 ## Next
 - Write src/orion/study/p7/composition_calculus_smt.py, prototype in scratchpad first.
+
+## Milestone 2 — SMT prototypes all pass (scratchpad)
+
+Validated in `/tmp/.../scratchpad/proto2,4,7,8.py`:
+
+Layer B over UNINTERPRETED sorts (validity / unsat-of-negation):
+  IDENTITY_CARRIES, COMPOSITION_SOUNDNESS, LEFT_IDENTITY_CARRIES,
+  RIGHT_IDENTITY_CARRIES, ASSOC_OBSERVABLE, ASSOC_CARRIES, UNMATCHED_FAILS,
+  NON_AMPLIFICATION  -> all PROVED.
+  IDENTITY_STRICT_LEFT/RIGHT, ASSOC_STRICT (under Skolemized extensionality) -> PROVED.
+
+Layer A over uninterpreted sorts:
+  TOTALITY_COMPOSES_UNDER_MATCH, CONTAINMENT_IS_THE_EXACT_CONDITION -> PROVED.
+
+TRAP FOUND (worth recording): satisfiability queries over uninterpreted sorts with
+quantified axioms come back UNKNOWN (timeout) every time -- MBQI will not build the
+model. Fix: every countermodel/independence result is checked in an explicitly
+constructed CLOSED FINITE structure (EnumSort carrier, function tables asserted as
+ground equations, axioms asserted over the finite carrier so z3 still verifies them).
+All four finite countermodels run in <0.2s:
+  IDENTITY_FAILS_WITHOUT_REFLEXIVE_MATCH        sat  (and unsat with reflexive Match)
+  ASSOC_STRICT_FAILS_WITHOUT_EXTENSIONALITY     sat  (tagged carrier: Comp(x,y) carries
+                                                      a tag flipped from x's, so the two
+                                                      bracketings differ while every
+                                                      observable agrees)
+  MATCH_IS_NOT_NECESSARY                        sat  (and MATCH_SUFFICES unsat)
+  CONTAINMENT_FAILURE_COUNTERMODEL              sat
+  WITHOUT_BRIDGE_SOUNDNESS_MATCH_FAILS          sat  (axiom pin)
+
+Second trap: `Carries` must be a DECLARED z3 function with a definitional axiom and an
+explicit e-matching pattern. Written as an inline macro `And(Native(t), ForAll([c],
+Holds(t,c)))` three of the eight Layer-B theorems time out to UNKNOWN. Same for
+Total/SameDemands. Recorded because it is the same shape as P8's rank trap: the
+formulation, not the claim, was what the solver could not do.
+
+## Next
+- Write the module + differential + result artifact + tests.

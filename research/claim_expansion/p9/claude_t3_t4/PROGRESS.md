@@ -95,3 +95,91 @@ Deliberate design points:
 - [ ] T4 instrument `src/orion/study/p9/hostile_representation_attacks.py`.
 - [ ] Mint T4 twin, run, write evidence.
 - [ ] Tests for both, mutation-checked.
+
+---
+
+## Milestone 2 (T4 run) — 2026-08-21
+
+Freeze: `papers/.../protocol/P9_U_T4_HOSTILE_REPRESENTATION_ATTACK_FREEZE_2026-08-21.md` + `.json`,
+`parameters_sha256 = sha256:3a4c8a1e4211e8032ab3bbee0f9bb16f0d1f626b42f9c96c6b40cf0f115e18eb`.
+Instrument: `src/orion/study/p9/hostile_representation_attacks.py`.
+Result: `papers/.../evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json`, exit code 3.
+
+### Verdict: `T4_ATTACK_SUCCEEDED` / **FAIL**. One component of the format-prior attack succeeded.
+
+Preconditions, all passed, all with real denominators:
+- PC-1 dataset fidelity: regenerated manifest == shipped `sha256:27752984…`.
+- PC-2 gold preservation: 512 instances x 3 variants, 0 labels changed.
+- PC-3 cardinality match: 192 corrupted instances, 1536 coordinate-side comparisons, 0 mismatches.
+- PC-4 orbit bijectivity: 220 atoms, 220 distinct images.
+- PC-5 index reversibility: 512/512 decode back byte for byte.
+- RT same-information round trip: 512/512 serialized token lists decode back to the typed payload.
+  (This is the first time P9's "same information" claim about TYPED vs TYPED_SERIALIZED has been
+  checked rather than asserted. It holds.)
+- PC-6 label variety: 128 protected cases, 3 distinct gold labels.
+
+### BASE arms (this environment)
+
+| arm | acc | distinct preds | informedness | departures |
+|---|---|---|---|---|
+| TYPED_RELATIONAL | 1.0 | 3 | 1.0 | 64 |
+| UNTYPED_PAIR | 0.90625 | 3 | 0.8958 | 76 |
+| LENGTH_RELATIONAL (new) | 0.875 | 3 | 0.8611 | 80 |
+| TYPED_SERIALIZED_BAG | **0.75** | 2 | 0.5 | 32 |
+| LENGTH_ONLY (new) | 0.75 | 2 | 0.5 | 32 |
+| SERIALIZED_INDEXED (new) | 0.75 | 2 | 0.5 | 32 |
+| SERIALIZED_PATHONLY (new) | 0.71875 | 3 | 0.4653 | 36 |
+| TRANSCRIPT_BAG | 0.25 | **1** | 0.0 | **0** |
+
+`TYPED_SERIALIZED_BAG` is 0.75 here, not the official 0.5 — the environment discrepancy already
+recorded in `research/failures/2026-08-unresponsive-comparator-prior-valued-margin/`. It follows that
+locally the serialized contrast is measurable (0.25) while officially it was CANNOT_CHECK.
+
+Contrasts (`measure_contrast_margin`): typed-minus-transcript **CANNOT_CHECK /
+COMPARATOR_CONSTANT**; typed-minus-serialized PASS (0.25 local); typed-minus-untyped PASS (0.09375).
+
+### Representation-length attack: **FAILED** (does not explain the effect)
+
+- RL-1 LENGTH_ONLY 0.75 vs typed 1.0, denominator 128. Reaches 2/3 of typed's above-floor margin.
+- RL-2 LENGTH_RELATIONAL 0.875 vs typed 1.0, denominator 128.
+- RL-3 equal-length control: typed stays **1.0** when corruption no longer changes any cardinality.
+  Same control drops UNTYPED_PAIR 0.90625 -> 0.609375 and LENGTH_RELATIONAL 0.875 -> 0.75, i.e. most
+  of the untyped comparator's score *was* length. Typed's was not.
+
+### Format-prior attack: **SUCCEEDED** against `TYPED_SERIALIZED_BAG`
+
+`FP-2_SEMANTIC_ORBIT_INVARIANCE::TYPED_SERIALIZED_BAG` = FAIL, 32 violations / 128 opportunities.
+Under a bijective renaming of every value atom (gold labels preserved 512/512, verified):
+
+    TYPED_SERIALIZED_BAG   0.75, 2 distinct predictions, informedness 0.5
+      -> orbit             0.50, **1** distinct prediction (OBSTRUCTION x128), informedness 0.0
+
+Separate diagnostic (scratch, not in the frozen artifact) makes it sharper: the orbit is an **exact
+renaming of that arm's feature keys**. Renaming BASE's keys by the orbit map reproduces the ORBIT
+feature rows exactly; both have 279 distinct keys, 150 train keys, 26 surviving in-vocabulary
+protected keys, and the same 7 distinct protected rows with the same multiplicities
+`[48,32,15,14,11,4,4]`. The design matrix is identical up to column *names*. The arm still changed
+32 of 128 protected answers. Its decision on a whole 32-case group is not determined by its input.
+
+Note this reproduces the official 0.5 constant-predictor result as one point of the orbit: the
+shipped `+0.50` headline sits on a symbol orbit whose other points are different numbers.
+
+- FP-1a/FP-1b reformat gap closure: **did not succeed** (0.25 -> 0.25 and -> 0.28125 against a
+  0.125 threshold). The reformat does not close the local gap.
+- FP-2 for TRANSCRIPT / UNTYPED / TYPED / LENGTH_ONLY / LENGTH_RELATIONAL / SERIALIZED_PATHONLY:
+  **CANNOT_CHECK, 0 of 128 feature dicts changed.** Those arms read equality, presence and
+  cardinality, never symbols, so the orbit cannot reach them. Structural invariance, reported as
+  CANNOT_CHECK not PASS, because a guard with no opportunity has not held.
+- FP-2 for SERIALIZED_INDEXED: **PASS**, 0 violations over 128 opportunities. The reversible-index
+  reformat removes the symbol dependence even though it does not close the accuracy gap.
+- FP-3 order remint: **CANNOT_CHECK for all 8 arms, 0 opportunities**, exactly as declared in
+  advance in §7.3 of the freeze. `build_method_realization` passes every sequence coordinate through
+  `tuple(sorted(set(...)))`, so the permuted dataset reproduces the base manifest digest
+  `sha256:27752984…` byte for byte. The order-reminting control named in the ledger unblock is
+  **vacuous by construction on D1** and cannot be reported as having been passed.
+
+## Next
+
+- [ ] Tests for both instruments, mutation-checked.
+- [ ] Receipt MD under evidence/.
+- [ ] ruff.
