@@ -123,13 +123,23 @@ All protocols under `development/orion-q-nlane-closure/`; scripts and receipts u
   F5 prospective crossover prediction **residual supported** (0.9948 vs 0.9271 best
   baseline; crossover-location error ~9e-16; functional-form-shift control bites at 0.4427).
   4-of-5 disposition with the F5 residual named for carry-forward
-  (`N2_STOP_RULE_ASSESSMENT.md`).
+  (`N2_STOP_RULE_ASSESSMENT.md`). The carried residual was then given its donor
+  comparison (F5B): **mixed** — the Predict-and-Conquer-style model-selection donor
+  absorbs the residual on the well-specified world, while the candidate stays ahead only
+  on the misspecified world
+  (`N2_F5B_MIXED__CANDIDATE_AHEAD_ON_MISSPECIFIED_ONLY__EXACT_SYNTHETIC_ONLY`), so F5's
+  surviving value is precisely robustness to functional-form misspecification.
 - **N3 (#676)**: all four registered families residual-confirmed
   (`N3{A,B,C,D}_RESIDUAL_CONFIRMED_EXACT_SYNTHETIC`) with donors correctly deferring in the
   donor-sufficient worlds and every hostile trap caught (spec mutation, unresolved
   obligations, correction-gate transfer, keyed permutation). The lane's registered
   `DONOR_OWNS_PARAMETRIC_SYNTHESIS` terminal is unreachable per its own receipts.
-- **N4 (#677)**: five materially different families all positive
+- **N4 (#677)**: all six registered families now independently executed and positive
+  (family 3, remint/receipt-transport, closed standalone:
+  `N4_F3_TYPED_REMINT_TRANSPORT_SUPPORTED__EXACT_SYNTHETIC` — typed transport beats
+  re-derive-from-scratch in the mixed regime at zero committed failures, stale
+  carry-forward punished at 99.5% failure rate in the hostile regime, and the re-derive
+  baseline ties exactly where remints are unnecessary). The original five:
   (typed-prior VOI 71% of oracle utility; scoped reopening beats never/always/unscoped in a
   two-regime hostile matrix; interval-dominance-targeted verification 2.3× over random;
   full-chain laundering detection recall 1.000 / FPR 0.000 incl. deep splices;
