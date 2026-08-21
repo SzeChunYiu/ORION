@@ -6,7 +6,7 @@ Target venue: **Transactions on Machine Learning Research (TMLR)**, subject to t
 
 ## Identity boundary
 
-This directory is additive. It does **not** replace or rewrite the historical P9 V1 / ORION Learning Machine package under `papers/candidates/orion-learning-machine/` or any earlier P9 candidate directory. Historical routing/competence evidence remains historical and is not evidence for this paper.
+This directory is additive. It does **not** replace or rewrite the historical P9 V1 / ORION Learning Machine package under `papers/orion-learning-machine/` or any earlier P9 candidate directory. Historical routing/competence evidence remains historical and is not evidence for this paper.
 
 ## Frozen paper thesis
 
