@@ -99,5 +99,7 @@ def main():
       "support1_authority":False,"novelty_authority":False,"physical_quantum_advantage_claim":False,
     }
     out["result_digest"]=hashlib.sha256(canonical(out).encode()).hexdigest()
-    ap=argparse.ArgumentParser();ap.add_argument("--output",default=str(DEFAULT));ns=ap.parse_args();p=Path(ns.output);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(out,indent=2,sort_keys=True)+"\n");print(TOKEN+canonical(out));return 0
+    ap=argparse.ArgumentParser();ap.add_argument("--output",default=str(DEFAULT));ns=ap.parse_args();p=Path(ns.output);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(out,indent=2,sort_keys=True)+"\n")
+    summary={"schema":out["schema"],"result_digest":out["result_digest"],"candidate_digest":candidate_digest,"canonical_candidate_count":len(rows),"cap1_opened":False,"unrestricted_dp_opened":False}
+    print(TOKEN+canonical(summary));return 0
 if __name__=="__main__":raise SystemExit(main())
