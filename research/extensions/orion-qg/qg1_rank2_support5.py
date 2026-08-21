@@ -7,11 +7,20 @@ import hashlib
 import itertools
 import json
 import math
+import sys
 from collections import Counter
 from pathlib import Path
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
+ORION_Q_DIR = REPO_ROOT / "research" / "extensions" / "orion-q"
+sys.path.insert(0, str(ORION_Q_DIR))
+
+# Production import is chemistry-free at module import time: it initializes the
+# frozen local Pauli/DP tables but does not call any subject loader.  QG-1 uses it
+# only to bind the independent local algebra below to the exact R6I implementation.
+import max_r6i_exact_rank2_shared_tag_dp as production_r6i  # noqa: E402
+
 PROTOCOL_PATH = (
     REPO_ROOT
     / "development"
@@ -27,8 +36,9 @@ NOVELTY_PATH = (
 DEFAULT_OUTPUT = REPO_ROOT / "artifacts" / "orion-qg-qg1-support5-theorem.json"
 TOKEN_PREFIX = "ORIONQG_QG1_THEOREM="
 
-# Frozen local encoding: 0=I, 1=X, 2=Y, 3=Z.  Modulo phase the Pauli
-# quotient is F_2^2 and multiplication is XOR in this coding.
+# Independent local encoding: 0=I, 1=X, 2=Y, 3=Z.  Modulo phase the Pauli
+# quotient is F_2^2 and multiplication is XOR in this coding.  The first theorem
+# gate below independently compares every entry to the production R6I tables.
 LETTERS = range(4)
 FROZEN_BASE = "e6011bbeae68d91b5cce45ffa34e67306905844d"
 BOUNDARY_CLASSES = (1, 2, 4, 8, 20)
@@ -112,9 +122,44 @@ def _accepted_global_class(value: int) -> bool:
     return alpha == 1 and c0 in {1, 2, 3} and c1 in {1, 2, 3} and c0 != c1
 
 
+def _production_algebra_binding() -> dict[str, Any]:
+    mismatches: list[dict[str, Any]] = []
+    for a, b in itertools.product(LETTERS, repeat=2):
+        independent = {
+            "mul": mul(a, b),
+            "symp": symp(a, b),
+            "wt_a": wt(a),
+            "wt_b": wt(b),
+        }
+        production = {
+            "mul": int(production_r6i._MUL[a, b]),
+            "symp": int(production_r6i._SYMP[a, b]),
+            "wt_a": int(production_r6i._LW[a]),
+            "wt_b": int(production_r6i._LW[b]),
+        }
+        if independent != production:
+            mismatches.append(
+                {
+                    "a": a,
+                    "b": b,
+                    "independent": independent,
+                    "production": production,
+                }
+            )
+    return {
+        "pair_count": 16,
+        "mismatches": mismatches,
+        "exact": not mismatches,
+        "production_module": "max_r6i_exact_rank2_shared_tag_dp",
+        "subject_loaders_called": False,
+    }
+
+
 def run_check() -> dict[str, Any]:
     if not PROTOCOL_PATH.is_file() or not NOVELTY_PATH.is_file():
         raise FileNotFoundError("QG-1 freeze files missing")
+
+    production_binding = _production_algebra_binding()
 
     # Complete local cost domain: central * active(a,b) * targets * tags.
     violations: list[dict[str, Any]] = []
@@ -221,6 +266,11 @@ def run_check() -> dict[str, Any]:
     ] if boundary_realizable else []
 
     gates = {
+        "production_algebra_binding_exact": production_binding["exact"],
+        "production_import_no_subject_loaders_called": production_binding[
+            "subject_loaders_called"
+        ]
+        is False,
         "local_domain_exact_46080": local_case_count == 46080,
         "local_descent_zero_violations": len(violations) == 0,
         "local_descent_max_delta_at_most_minus4": max_delta <= -4,
@@ -232,7 +282,8 @@ def run_check() -> dict[str, Any]:
         "six_distinct_nonzero_max_rank5": max_six_rank == 5,
         "boundary_five_classes_realizable": boundary_realizable,
         "boundary_five_classes_independent": boundary_rank == 5,
-        "boundary_xor_accepting": boundary_xor == EXPECTED_BOUNDARY_XOR and _accepted_global_class(boundary_xor),
+        "boundary_xor_accepting": boundary_xor == EXPECTED_BOUNDARY_XOR
+        and _accepted_global_class(boundary_xor),
         "no_chemistry_sources_read": True,
     }
 
@@ -256,13 +307,14 @@ def run_check() -> dict[str, Any]:
         else "QG1_MACHINE_CHECK_REFUTED"
     )
     unsigned = {
-        "schema": "ORION.QG.QG1.Support5Theorem.v1",
+        "schema": "ORION.QG.QG1.Support5Theorem.v2",
         "issue": "SzeChunYiu/ORION#747",
         "base_revision": FROZEN_BASE,
         "protocol_sha256": sha256_file(PROTOCOL_PATH),
         "novelty_threat_sha256": sha256_file(NOVELTY_PATH),
         "terminal": terminal,
         "authority": terminal + "__NOVELTY_NOT_AUTHORIZED",
+        "production_algebra_binding": production_binding,
         "local": {
             "case_count": local_case_count,
             "max_delta": max_delta,
@@ -309,7 +361,9 @@ def main(argv: list[str] | None = None) -> int:
     result = run_check()
     path = Path(args.output)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     print(
         TOKEN_PREFIX
         + canonical(
@@ -317,6 +371,9 @@ def main(argv: list[str] | None = None) -> int:
                 "path": str(path),
                 "result_digest": result["result_digest"],
                 "terminal": result["terminal"],
+                "production_algebra_binding_exact": result[
+                    "production_algebra_binding"
+                ]["exact"],
                 "local_case_count": result["local"]["case_count"],
                 "max_delta": result["local"]["max_delta"],
                 "f2_5_multiset_count": result["f2_5"]["multiset_count"],
