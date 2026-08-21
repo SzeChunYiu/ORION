@@ -33,6 +33,7 @@ jobs:
           pytest -q \
             tests/quantum/test_contracts.py \
             tests/quantum/test_vs1_verification.py \
+            tests/quantum/test_vs1_malformed_receipts.py \
             tests/quantum/test_vs1_s1a_qiskit.py
       - name: Execute frozen S1A campaign through ORION research harness
         run: |
