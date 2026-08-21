@@ -61,10 +61,11 @@ def _handoff_prompt(workspace: ResearchWorkspace) -> str:
         "- `orion-harness run-mechanics <workspace> <run-id>` exposes immutable mechanic receipts, including bounded saturation.",
         "",
         "Recursive solve semantics:",
-        "- `orion-harness solve` treats each material residual as a child problem by default.",
-        "- Broad residuals are recursively decomposed into decision-separating atoms with one discriminator each.",
+        "- `orion-harness solve` treats broad problems and each material residual as recursive child problems by default.",
+        "- Decomposition produces decision-separating atoms with one discriminator each.",
         "- Cheap valid dominance/formal/exact/donor discriminators are scheduled before more expensive experiments.",
-        "- After child evidence changes semantic state, the parent is re-solved; stale siblings are pruned only if the parent residual actually closes.",
+        "- After child evidence changes semantic state, the parent is re-solved; stale siblings are pruned only when closure is actually established.",
+        "- Residual identity is matched semantically across epoch-minted ids; ambiguous identity remains CANNOT_CHECK.",
         "- Depth/node exhaustion is CANNOT_CHECK_RESOURCE_BOUND, never saturation or scientific refutation.",
         "- Use `--single-pass` only when intentionally requesting the legacy one-problem execution primitive.",
         "",
@@ -123,11 +124,12 @@ def build_parser() -> argparse.ArgumentParser:
     solve.add_argument(
         "--single-pass",
         action="store_true",
-        help="disable residual-as-child-problem recursion for this invocation",
+        help="disable recursive problem/residual decomposition for this invocation",
     )
     solve.add_argument("--max-recursion-depth", type=int, default=5)
     solve.add_argument("--max-recursive-nodes", type=int, default=32)
     solve.add_argument("--max-children-per-residual", type=int, default=12)
+    solve.add_argument("--max-children-per-problem", type=int, default=12)
 
     pending = sub.add_parser("pending")
     pending.add_argument("workspace")
@@ -282,14 +284,16 @@ def main(argv: list[str] | None = None) -> int:
                     max_depth=args.max_recursion_depth,
                     max_nodes=args.max_recursive_nodes,
                     max_children_per_residual=args.max_children_per_residual,
+                    max_children_per_problem=args.max_children_per_problem,
                 ),
             )
         _print(outcome)
-        if outcome["status"] == "PENDING_CAPABILITY":
+        status = str(outcome["status"])
+        if status == "PENDING_CAPABILITY":
             return 2
-        if outcome["status"] == "HOST_CAPABILITY_FAILED":
+        if status == "HOST_CAPABILITY_FAILED":
             return 3
-        if outcome["status"] == "CANNOT_CHECK_RESOURCE_BOUND":
+        if status.startswith("CANNOT_CHECK"):
             return 4
         return 0
     if args.command == "pending":
