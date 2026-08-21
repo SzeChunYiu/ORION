@@ -1,0 +1,284 @@
+{
+  "chemistry_sources_read": false,
+  "composition_audit": {
+    "alignment_ceiling": 3,
+    "credit_strictly_exceeds_alignment": true,
+    "distinct_both_support1_case_closes": true,
+    "distinct_both_support1_old_tag_floor": 8,
+    "distinct_core_new_tag": 8,
+    "distinct_non_support_case_closes": true,
+    "extra_credit_floor": 4,
+    "old_tag_floor": 4,
+    "same_core_alignment_paid": true,
+    "same_core_new_tag": 4,
+    "same_core_support1_rigidity": true,
+    "same_core_tag_nonincrease": true,
+    "support0_infeasible": true
+  },
+  "core_alignment_lemma": {
+    "domain_size": 6912,
+    "expected_domain_6912": true,
+    "frame_contribution_always_10": true,
+    "max_is_3": true,
+    "max_restore_objective_increase": 3,
+    "max_triple_hamming": 3,
+    "witness": {
+      "central": 0,
+      "delta": 3,
+      "new": [
+        2,
+        3
+      ],
+      "old": [
+        1,
+        2
+      ],
+      "targets": [
+        1,
+        2,
+        3
+      ],
+      "triple_hamming": 3
+    }
+  },
+  "deletion_lemma": {
+    "anticommuting_max_minus7": true,
+    "commuting_max_minus4": true,
+    "counts": {
+      "anticommuting": 1152,
+      "commuting": 1728
+    },
+    "domain_size": 2880,
+    "expected_domain_2880": true,
+    "max_delta": {
+      "anticommuting": -7,
+      "commuting": -4
+    },
+    "max_witness": {
+      "anticommuting": {
+        "a": 1,
+        "b": 2,
+        "central": 0,
+        "delta": -7,
+        "targets": [
+          1,
+          2,
+          3
+        ]
+      },
+      "commuting": {
+        "a": 0,
+        "b": 1,
+        "central": 1,
+        "delta": -4,
+        "targets": [
+          0,
+          1,
+          1
+        ]
+      }
+    },
+    "min_delta": {
+      "anticommuting": -13,
+      "commuting": -10
+    }
+  },
+  "gates": {
+    "alignment_domain_6912": true,
+    "alignment_frame_invariant": true,
+    "alignment_max3": true,
+    "canonical_dual_tag": true,
+    "composition_all": true,
+    "deletion_anti_max_minus7": true,
+    "deletion_commuting_max_minus4": true,
+    "deletion_domain_2880": true,
+    "distinct_tag_domain_9216": true,
+    "distinct_tag_min8": true,
+    "old_tag_floor4": true,
+    "parent_support2": true,
+    "production_algebra_exact": true,
+    "protocol_present": true,
+    "same_qubit_domain_576": true,
+    "same_qubit_rigidity": true,
+    "stress_no_counterexample": true,
+    "v5_is_bounded_negative_only": true
+  },
+  "intrinsic_support_number": 1,
+  "issue": "SzeChunYiu/ORION#807",
+  "network_access": false,
+  "new_theorem_authority": false,
+  "novelty_authority": false,
+  "parent_binding": {
+    "support2_both_accept": true,
+    "support2_receipt_sha256": "984d6bd661eb8de5f1c3efe8454b557ce5b3922f8e25013e398d1a92a1b2ce9f",
+    "support2_result_bound": 2,
+    "support2_result_sha256": "6020dfe340b224a6fae22ef9d74be3bb381d091ee819bb39f44e416ba8a8bf44",
+    "support2_terminal": "QG9_RANK2_ALL_N_SUPPORT2_SUFFICIENCY_MACHINE_CHECKED",
+    "v5_receipt_sha256": "2ee5ba0e90ea2052a70ea78fd138003b3e2c2e5fb7f4ea15b50376527300602f",
+    "v5_support1_authority_false": true,
+    "v5_terminal": "QG9_NO_SUPPORT2_TIGHT_WITNESS_IN_FROZEN_INVERSE_PANEL"
+  },
+  "physical_quantum_advantage_claim": false,
+  "production_binding": {
+    "all_exact": true,
+    "mul_exact": true,
+    "symp_exact": true,
+    "weight_exact": true
+  },
+  "protected_subject_read": false,
+  "protocol_sha256": "927504ee04e4741a94e1e6889b01ea1a67aea7500b6cf8b62fe202cf2aabd448",
+  "result_digest": "587b4b803cfafa1b08a949b28ba8a626bd7bc405ca03a30ccd09e99651d31a4f",
+  "schema": "ORION.QG.QG9.V6.Support1Normalization.v1",
+  "stress": {
+    "all_pass": true,
+    "failures": [],
+    "max_delta": -7,
+    "min_delta": -33,
+    "n_values": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "rows": 60,
+    "seed": 20260821
+  },
+  "support0_infeasible": true,
+  "support_bound": 1,
+  "tag_lemmas": {
+    "canonical_dual": {
+      "(1, 2)": [
+        1,
+        2
+      ],
+      "(1, 3)": [
+        1,
+        3
+      ],
+      "(2, 1)": [
+        2,
+        1
+      ],
+      "(2, 3)": [
+        2,
+        3
+      ],
+      "(3, 1)": [
+        3,
+        1
+      ],
+      "(3, 2)": [
+        3,
+        2
+      ]
+    },
+    "canonical_dual_all_nonzero": true,
+    "distinct_qubit_tag": {
+      "all_minima_8": true,
+      "bad": [],
+      "basis_pair_count": 36,
+      "domain_size": 9216,
+      "expected_domain_9216": true
+    },
+    "feasible_label_rows": {
+      "both_tag_syndrome_rows_nonzero": true,
+      "ordered_distinct_nonzero_count": 6,
+      "original_tag_cost_floor": 4,
+      "rows": [
+        {
+          "S0_syndrome_row": [
+            0,
+            1
+          ],
+          "S1_syndrome_row": [
+            1,
+            0
+          ],
+          "labels": [
+            1,
+            2
+          ]
+        },
+        {
+          "S0_syndrome_row": [
+            0,
+            1
+          ],
+          "S1_syndrome_row": [
+            1,
+            1
+          ],
+          "labels": [
+            1,
+            3
+          ]
+        },
+        {
+          "S0_syndrome_row": [
+            1,
+            0
+          ],
+          "S1_syndrome_row": [
+            0,
+            1
+          ],
+          "labels": [
+            2,
+            1
+          ]
+        },
+        {
+          "S0_syndrome_row": [
+            1,
+            1
+          ],
+          "S1_syndrome_row": [
+            0,
+            1
+          ],
+          "labels": [
+            2,
+            3
+          ]
+        },
+        {
+          "S0_syndrome_row": [
+            1,
+            0
+          ],
+          "S1_syndrome_row": [
+            1,
+            1
+          ],
+          "labels": [
+            3,
+            1
+          ]
+        },
+        {
+          "S0_syndrome_row": [
+            1,
+            1
+          ],
+          "S1_syndrome_row": [
+            1,
+            0
+          ],
+          "labels": [
+            3,
+            2
+          ]
+        }
+      ]
+    },
+    "same_qubit_rigidity": {
+      "different_basis_counterexamples": [],
+      "domain_size": 576,
+      "expected_domain_576": true,
+      "feasible_rows": 36,
+      "holds": true
+    }
+  },
+  "terminal": "QG9_RANK2_ALL_N_SUPPORT1_SUFFICIENCY_MACHINE_CHECKED"
+}
