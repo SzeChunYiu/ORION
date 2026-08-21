@@ -882,6 +882,13 @@ def test_committed_ledger_pins_the_p1_diagnosis() -> None:
     ``p1-r6-root:{episode_id}`` and episode ids end in ``-A``/``-C``/``-U``, so the
     pair role reaches the candidate-visible payload on 96 of 96 episode-arms.
 
+    It has since earned itself a third time. The role leak was closed under its
+    own freeze, the primary survived it with every scored statistic bit-identical,
+    and the blocker moved back to ``MEASUREMENT_OR_EVALUATOR`` — because what now
+    holds the terminal is not an implementation defect at all but evaluator
+    custody: the evaluator is authored in the same lane as the candidate, and
+    ``PROTECTED_SUPERIORITY`` admits only ``PROSPECTIVE_PROTECTED`` evidence.
+
     Each reclassification cost a deliberate edit here, which is what this pin is
     for. Reclassifying P1's headline blocker should never be free.
     """
@@ -891,10 +898,11 @@ def test_committed_ledger_pins_the_p1_diagnosis() -> None:
     assert p1 is not None
 
     t1 = p1.blockers_by_gate["P1-U-T1"]
-    assert t1.responsibility is ResponsibilityClass.IMPLEMENTATION_OR_ENVIRONMENT
+    assert t1.responsibility is ResponsibilityClass.MEASUREMENT_OR_EVALUATOR
     assert t1.actionability is Actionability.BLOCKED_ON_CAMPAIGN
-    assert "problem_id" in t1.statement
-    assert "96 of 96" in t1.statement
+    # The leak is closed; what remains is custody and the semantic host.
+    assert "custody" in t1.statement
+    assert "bit-identical" in t1.statement
 
     # The replication gate is the one still held by an implementation literal:
     # the evaluator hard-wires source_year == 2020.

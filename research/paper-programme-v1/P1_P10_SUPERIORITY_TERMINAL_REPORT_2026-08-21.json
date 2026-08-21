@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "04b80fb80896fca2302b487fc05d4a30e0e24deb78c12aab3956119c005d6164",
+  "content_digest": "d5168e479e67cc766b5bfb324ae5c143e8e8428e2ac03860f2beb37ed106f159",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -181,6 +181,11 @@
           "artifact_ref": "research/claim_expansion/p1/claude_t3/REPAIRED_GUARD_RUN_V1.json",
           "grade": "CANNOT_CHECK",
           "terminal": "P1_R6_NATIVE_PRIMARY_NOT_SUPPORTED"
+        },
+        {
+          "artifact_ref": "research/claim_expansion/p1/claude_anon/ROLE_FREE_RERUN_V4.json",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION__FROZEN_DETERMINISTIC_HOST_ONLY"
         }
       ],
       "strongest_grade": "MECHANISM_NON_VACUITY",
@@ -209,9 +214,9 @@
             "packages/orion-research-harness/src/orion_research_harness/operator_coverage.py",
             "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
           ],
-          "responsibility": "IMPLEMENTATION_OR_ENVIRONMENT",
-          "statement": "The cause this blocker named is fixed and a new one has taken its place. ORION_NATIVE_BASE returned UNRESOLVED on 48/48 because DIAGNOSE was unreachable by construction, so the ablation arm never ran the mechanism it ablates; the repaired encoding reaches DIAGNOSE on 48/48 and the re-run campaign scores +0.4583 primary with 95% CI [0.3125, 0.6042] and +0.5208 on attribution. That number does not survive its own guards. Repairing the three guards P1-U-T3 named moved the terminal from PASS_PENDING_2019_REPLICATION to NOT_SUPPORTED: the frozen core builds problem_id as p1-r6-root:{episode_id}, episode ids are R5-<QUERY>-A/-C/-U, and so the pair role reaches the candidate-visible payload on 96 of 96 episode-arms, where -C perfectly predicts gold for all 22 controls.",
-          "unblock": "Mint a role-free root problem id under its own pre-outcome freeze and re-run. This is a re-run rather than a repair, because it changes every runtime digest including the committed DR1 receipt, and it must not be folded into a guard repair. Two things should travel with that freeze. The leak's severity is currently bounded by measurement -- anonymising the id changes 0 of 44 ARD choices under the frozen deterministic host -- and that bound is a property of this host, not of the design, so it does not carry to the changed semantic host this line of work already commits to. And the 2019 replication P1-U-T2 needs is blocked separately on the evaluator hardcoding source_year == 2020, so a single re-run cannot discharge both."
+          "responsibility": "MEASUREMENT_OR_EVALUATOR",
+          "statement": "The identifier leak that held this terminal is closed and the primary survives it. Episode identifiers crossing the provider boundary are now opaque handles, verified role-free against a 1000-permutation null on a role-stratified held-out split; the unchanged leakage audit passes on all 96 episode-arms where it previously failed on all 96, and every scored statistic is bit-identical to the identified run (ROLE_FREE_RERUN_V4, terminal P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION). Three things still stand between that and this terminal. The host is a frozen deterministic provider, which cannot exploit a leaked label, so identical scores there are close to true by construction rather than evidence about a semantic model. Evaluator custody is internal -- the evaluator is authored in the same lane as the candidate -- and PROTECTED_SUPERIORITY admits only PROSPECTIVE_PROTECTED evidence, which requires external custody. And the terminal the run reports is itself conditional on the 2019 replication that P1-U-T2 is blocked on.",
+          "unblock": "Three steps, in this order, none of which is the identifier work -- that is done. Re-run the now-clean boundary against a changed semantic host, where the identical-scores finding becomes a real result instead of a property of a provider that cannot read. Move evaluator custody outside the authoring lane, since no amount of internal re-running reaches PROSPECTIVE_PROTECTED. And unblock P1-U-T2 by removing the hardcoded source_year == 2020, because the terminal this run reports is pending that replication by its own name. One residual is recorded and deliberately not repaired: the words 'adverse' and 'control' occur in dossier text at in-sample informedness 0.000 and 0.072 over 5 of 88 payloads, which is incidental scientific vocabulary rather than an encoded label, and repairing corpus content during an identifier repair would change the arena mid-run."
         },
         {
           "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -1315,9 +1320,9 @@
         "packages/orion-research-harness/src/orion_research_harness/operator_coverage.py",
         "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
       ],
-      "responsibility": "IMPLEMENTATION_OR_ENVIRONMENT",
-      "statement": "The cause this blocker named is fixed and a new one has taken its place. ORION_NATIVE_BASE returned UNRESOLVED on 48/48 because DIAGNOSE was unreachable by construction, so the ablation arm never ran the mechanism it ablates; the repaired encoding reaches DIAGNOSE on 48/48 and the re-run campaign scores +0.4583 primary with 95% CI [0.3125, 0.6042] and +0.5208 on attribution. That number does not survive its own guards. Repairing the three guards P1-U-T3 named moved the terminal from PASS_PENDING_2019_REPLICATION to NOT_SUPPORTED: the frozen core builds problem_id as p1-r6-root:{episode_id}, episode ids are R5-<QUERY>-A/-C/-U, and so the pair role reaches the candidate-visible payload on 96 of 96 episode-arms, where -C perfectly predicts gold for all 22 controls.",
-      "unblock": "Mint a role-free root problem id under its own pre-outcome freeze and re-run. This is a re-run rather than a repair, because it changes every runtime digest including the committed DR1 receipt, and it must not be folded into a guard repair. Two things should travel with that freeze. The leak's severity is currently bounded by measurement -- anonymising the id changes 0 of 44 ARD choices under the frozen deterministic host -- and that bound is a property of this host, not of the design, so it does not carry to the changed semantic host this line of work already commits to. And the 2019 replication P1-U-T2 needs is blocked separately on the evaluator hardcoding source_year == 2020, so a single re-run cannot discharge both."
+      "responsibility": "MEASUREMENT_OR_EVALUATOR",
+      "statement": "The identifier leak that held this terminal is closed and the primary survives it. Episode identifiers crossing the provider boundary are now opaque handles, verified role-free against a 1000-permutation null on a role-stratified held-out split; the unchanged leakage audit passes on all 96 episode-arms where it previously failed on all 96, and every scored statistic is bit-identical to the identified run (ROLE_FREE_RERUN_V4, terminal P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION). Three things still stand between that and this terminal. The host is a frozen deterministic provider, which cannot exploit a leaked label, so identical scores there are close to true by construction rather than evidence about a semantic model. Evaluator custody is internal -- the evaluator is authored in the same lane as the candidate -- and PROTECTED_SUPERIORITY admits only PROSPECTIVE_PROTECTED evidence, which requires external custody. And the terminal the run reports is itself conditional on the 2019 replication that P1-U-T2 is blocked on.",
+      "unblock": "Three steps, in this order, none of which is the identifier work -- that is done. Re-run the now-clean boundary against a changed semantic host, where the identical-scores finding becomes a real result instead of a property of a provider that cannot read. Move evaluator custody outside the authoring lane, since no amount of internal re-running reaches PROSPECTIVE_PROTECTED. And unblock P1-U-T2 by removing the hardcoded source_year == 2020, because the terminal this run reports is pending that replication by its own name. One residual is recorded and deliberately not repaired: the words 'adverse' and 'control' occur in dossier text at in-sample informedness 0.000 and 0.072 over 5 of 88 payloads, which is incidental scientific vocabulary rather than an encoded label, and repairing corpus content during an identifier repair would change the arena mid-run."
     },
     {
       "actionability": "BLOCKED_ON_CAMPAIGN",
@@ -1855,8 +1860,8 @@
     "BLOCKED_ON_UPSTREAM": 5
   },
   "work_queue_by_responsibility": {
-    "IMPLEMENTATION_OR_ENVIRONMENT": 4,
-    "MEASUREMENT_OR_EVALUATOR": 18,
+    "IMPLEMENTATION_OR_ENVIRONMENT": 3,
+    "MEASUREMENT_OR_EVALUATOR": 19,
     "OBJECTIVE_OR_MODEL_CLASS": 8,
     "REPRESENTATION_OR_INTERFACE": 1,
     "SEARCH_OR_EVIDENCE": 18

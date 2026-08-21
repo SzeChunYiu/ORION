@@ -146,8 +146,8 @@ All 49 blocked terminals are classified. The queue, nearest first:
 | `BLOCKED_ON_NEW_ARENA` | 14 | the evaluation object itself does not exist yet |
 | `BLOCKED_ON_PROOF` | 10 | needs a mechanized theorem from primitive semantics |
 
-By responsibility class: `MEASUREMENT_OR_EVALUATOR` 18, `SEARCH_OR_EVIDENCE` 18,
-`OBJECTIVE_OR_MODEL_CLASS` 8, `IMPLEMENTATION_OR_ENVIRONMENT` 4,
+By responsibility class: `MEASUREMENT_OR_EVALUATOR` 19, `SEARCH_OR_EVIDENCE` 18,
+`OBJECTIVE_OR_MODEL_CLASS` 8, `IMPLEMENTATION_OR_ENVIRONMENT` 3,
 `REPRESENTATION_OR_INTERFACE` 1.
 
 These counts are pinned against the generated report by
