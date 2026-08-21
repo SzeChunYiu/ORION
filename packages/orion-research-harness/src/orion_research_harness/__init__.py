@@ -29,6 +29,7 @@ from .mechanics_bridge import (
     saturation_surface,
 )
 from .protocol import CapabilityRequest, CapabilityResult
+from .recursive_runner import RecursiveRunLimits, run_problem_recursive
 from .runner import run_problem
 from .workspace import ResearchWorkspace
 
@@ -45,6 +46,7 @@ __all__ = [
     "HostCapabilityFailed",
     "HostCapabilityRequired",
     "ProtectedReference",
+    "RecursiveRunLimits",
     "ResearchWorkspace",
     "atom_calculus_surface",
     "compile_workspace_development_fibre",
@@ -60,6 +62,7 @@ __all__ = [
     "run_campaign_cycle",
     "run_mechanic_receipts",
     "run_problem",
+    "run_problem_recursive",
     "saturation_surface",
     "validate_manifest",
 ]
