@@ -388,7 +388,13 @@ def evaluate_paper(paper_root: Path, readiness_text: str | None = None) -> Paper
 def evaluate_tree(papers_root: Path) -> tuple[PaperGate, ...]:
     reports: list[PaperGate] = []
     for readiness in sorted(papers_root.glob("*/JOURNAL_READINESS.md")):
-        reports.append(evaluate_paper(readiness.parent))
+        report = evaluate_paper(readiness.parent)
+        # This gate governs the flagship P<n> packages only. Candidate paper
+        # packages promoted alongside them into papers/ carry their own
+        # readiness CI (p6-p8-candidate-ci, the P9/P10 closure workflows) and
+        # identify by directory name rather than a canonical P<n> id.
+        if re.fullmatch(r"P\d+", report.paper_id):
+            reports.append(report)
     return tuple(reports)
 
 
