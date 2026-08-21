@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from dataclasses import asdict
+from typing import Any
 
 from orion.core.problem import Problem
 from orion.core.problem_tree import (
@@ -15,6 +16,10 @@ from orion.core.problem_tree import (
 )
 from orion.core.residuals import Residual, Responsibility
 from orion.core.state import OrionState
+from orion.engine.mechanical_questions import (
+    MechanicalProblemContext,
+    generate_problem_questions,
+)
 from orion.providers.reasoner.llm import LLMResearchReasoner
 
 
@@ -25,6 +30,8 @@ _DECOMPOSITION_INSTRUCTION = (
     "formal, exact-computation or donor-subsumption test over an expensive experiment "
     "when it can settle the same atom. Preserve interaction-only possibilities. If "
     "no finer identifiable split exists, return no atoms and an explicit stop_reason. "
+    "Use the model-free mechanical questions and DevelopmentFibre/experience context as "
+    "constraints and evidence about what remains open; do not merely echo them. "
     "Never grant scientific, novelty, adoption, promotion, merge or global-stop authority."
 )
 
@@ -85,8 +92,72 @@ def _stop_reason(value: object) -> RecursiveProblemStopReason | None:
     return RecursiveProblemStopReason(value)
 
 
+def _flat_rounds(state: OrionState) -> int:
+    count = 0
+    for record in reversed(state.iterations):
+        if (
+            bool(getattr(record, "semantic_flat", False))
+            and bool(getattr(record, "search_universe_flat", False))
+            and bool(getattr(record, "formulation_flat", False))
+        ):
+            count += 1
+        else:
+            break
+    return count
+
+
+def _mechanical_questions(problem: Problem, state: OrionState) -> list[dict[str, Any]]:
+    context = MechanicalProblemContext(
+        evidence_ids=state.knowledge.evidence_ids,
+        residual_ids=state.knowledge.residual_ids,
+        active_domain_ids=state.search_universe.active_domain_ids,
+        searched_domain_ids=state.search_universe.searched_domain_ids,
+        completed_route_kind_ids=state.search_universe.route_kind_ids,
+        recent_flat_rounds=_flat_rounds(state),
+        verified_target=any(
+            getattr(claim.authority, "value", "") == "VERIFIED"
+            for claim in state.knowledge.claims
+        ),
+    )
+    return [
+        {
+            "question_id": item.question_id,
+            "kind": item.kind.value,
+            "question": item.question,
+            "route_kind": None if item.route_kind is None else item.route_kind.value,
+            "action_hint": item.action_hint,
+            "blocking": item.blocking,
+        }
+        for item in generate_problem_questions(problem, context)
+    ]
+
+
 class RecursiveLLMResearchReasoner(LLMResearchReasoner):
-    """Canonical reasoner plus non-authorizing problem/residual decomposition."""
+    """Canonical reasoner plus non-authorizing problem/residual decomposition.
+
+    The semantic model does not own recursion control. Model-free mechanical questions,
+    DevelopmentFibre context, cost ordering and the recursive controller constrain the
+    decomposition. The model proposes child semantics only.
+    """
+
+    def __init__(self, provider) -> None:
+        super().__init__(provider)
+        self._development_fibre_context: tuple[Mapping[str, Any], ...] = ()
+
+    def set_development_fibre_context(
+        self, rows: Sequence[Mapping[str, Any]]
+    ) -> None:
+        if isinstance(rows, (str, bytes)) or not isinstance(rows, Sequence):
+            raise TypeError("development fibre context must be an array")
+        normalized: list[Mapping[str, Any]] = []
+        for row in rows:
+            if not isinstance(row, Mapping):
+                raise TypeError("development fibre context entries must be objects")
+            normalized.append(dict(row))
+        self._development_fibre_context = tuple(normalized)
+
+    def clear_development_fibre_context(self) -> None:
+        self._development_fibre_context = ()
 
     def decompose_problem(
         self, problem: Problem, state: OrionState
@@ -100,6 +171,7 @@ class RecursiveLLMResearchReasoner(LLMResearchReasoner):
                 "known_negative_history_ids": list(state.knowledge.negative_history_ids),
                 "active_domains": list(state.search_universe.active_domain_ids),
                 "representations": list(state.search_universe.representation_ids),
+                "mechanical_questions": _mechanical_questions(problem, state),
                 "instruction": _DECOMPOSITION_INSTRUCTION,
             },
             (
@@ -187,6 +259,10 @@ class RecursiveLLMResearchReasoner(LLMResearchReasoner):
                 "known_negative_history_ids": list(state.knowledge.negative_history_ids),
                 "active_domains": list(state.search_universe.active_domain_ids),
                 "representations": list(state.search_universe.representation_ids),
+                "mechanical_questions": _mechanical_questions(problem, state),
+                "development_fibre_context": [
+                    dict(item) for item in self._development_fibre_context
+                ],
                 "instruction": _DECOMPOSITION_INSTRUCTION,
             },
             (
