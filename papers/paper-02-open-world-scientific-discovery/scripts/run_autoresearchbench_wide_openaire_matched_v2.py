@@ -70,6 +70,35 @@ def build_openaire_crosswalk_url(dois: Iterable[str], *, page_size: int) -> str:
     return v1.OPENAIRE_ENDPOINT + "?" + urllib.parse.urlencode(params)
 
 
+def extract_requested_doi_matches(
+    payload: dict[str, Any], requested_dois: Iterable[str]
+) -> tuple[str, ...]:
+    """Return requested DOIs explicitly present in structured OpenAIRE PID objects."""
+    requested = [v1.normalize_doi(doi) for doi in requested_dois]
+    requested = list(dict.fromkeys(doi for doi in requested if doi))
+    expected = set(requested)
+    results = payload.get("results")
+    if not isinstance(results, list):
+        raise ValueError("OpenAIRE transport response missing results array")
+    matched: set[str] = set()
+    for product in results:
+        if not isinstance(product, dict):
+            raise ValueError("OpenAIRE transport result is not an object")
+        for field in ("pid", "pids"):
+            raw = product.get(field)
+            items = [raw] if isinstance(raw, dict) else raw if isinstance(raw, list) else []
+            for item in items:
+                if not isinstance(item, dict):
+                    continue
+                scheme = str(item.get("scheme") or "").strip().casefold()
+                if scheme not in {"doi", "digital object identifier"}:
+                    continue
+                doi = v1.normalize_doi(item.get("value"))
+                if doi in expected:
+                    matched.add(doi)
+    return tuple(doi for doi in requested if doi in matched)
+
+
 def validate_transport_probe(path: Path, freeze: dict[str, Any]) -> dict[str, Any]:
     probe = json.loads(path.read_text(encoding="utf-8"))
     transport = freeze["transport_repair_evidence"]
@@ -104,7 +133,51 @@ def validate_transport_probe(path: Path, freeze: dict[str, Any]) -> dict[str, An
     result_count = probe.get("result_count")
     if type(result_count) is not int or result_count < minimum_result_count:
         raise ValueError("V2 transport probe did not return the frozen minimum identity yield")
+    minimum_matched_doi_count = transport.get("probe_min_matched_doi_count")
+    if type(minimum_matched_doi_count) is not int or minimum_matched_doi_count < 1:
+        raise ValueError("V2 freeze does not require a requested DOI identity match")
+    matched_dois = probe.get("matched_dois")
+    if not isinstance(matched_dois, list):
+        raise ValueError("V2 transport probe does not bind matched DOI identities")
+    normalized_matched = [v1.normalize_doi(doi) for doi in matched_dois]
+    if any(not doi for doi in normalized_matched):
+        raise ValueError("V2 transport probe matched DOI list is malformed")
+    if len(normalized_matched) != len(set(normalized_matched)):
+        raise ValueError("V2 transport probe matched DOI list contains duplicates")
+    if any(doi not in set(expected) for doi in normalized_matched):
+        raise ValueError("V2 transport probe matched DOI is outside the frozen request")
+    if len(normalized_matched) < minimum_matched_doi_count:
+        raise ValueError("V2 transport probe did not match the frozen minimum requested DOI count")
     return probe
+
+
+def validate_transport_response(
+    path: Path, probe: dict[str, Any], freeze: dict[str, Any]
+) -> dict[str, Any]:
+    """Bind the archived raw OpenAIRE response to the receipt and requested DOI identities."""
+    body = path.read_bytes()
+    actual_sha = hashlib.sha256(body).hexdigest()
+    if actual_sha != probe.get("response_sha256"):
+        raise ValueError("V2 archived transport response hash does not match receipt")
+    payload = json.loads(body)
+    if not isinstance(payload, dict):
+        raise ValueError("V2 archived transport response root is not an object")
+    results = payload.get("results")
+    if not isinstance(results, list):
+        raise ValueError("V2 archived transport response missing results array")
+    if len(results) != probe.get("result_count"):
+        raise ValueError("V2 archived transport response count does not match receipt")
+    matched = list(
+        extract_requested_doi_matches(
+            payload, freeze["transport_repair_evidence"]["probe_dois"]
+        )
+    )
+    if matched != list(probe.get("matched_dois", [])):
+        raise ValueError("V2 archived transport response DOI matches do not match receipt")
+    minimum = freeze["transport_repair_evidence"].get("probe_min_matched_doi_count")
+    if type(minimum) is not int or minimum < 1 or len(matched) < minimum:
+        raise ValueError("V2 archived transport response does not prove a requested DOI match")
+    return payload
 
 
 def acquire_task_v2(*args: Any, **kwargs: Any) -> dict[str, Any]:
@@ -215,6 +288,7 @@ def run(
         "freeze_sha256": sha256_file(freeze_path),
         "identity_receipt_sha256": sha256_file(identity_receipt_path),
         "transport_probe_sha256": sha256_file(transport_probe_path),
+        "transport_probe_response_sha256": probe["response_sha256"],
         "transport_probe_terminal": probe["terminal"],
         "transport_encoding": "repeated_pid_parameters",
         "public_split_sha256": sha256_file(public_path),
