@@ -3,6 +3,9 @@
 
 Consumes one already-generated frozen R6B donor-reuse receipt. It does not run
 chemistry, read the protected stretched-N2 subject, or grant scientific authority.
+The canonical lane deliberately executes the production OrionRuntime/OrionSolver
+with deterministic local providers and verifies the shared 59-cell mechanics
+surface before emitting its responsibility receipt.
 """
 from __future__ import annotations
 
@@ -10,9 +13,21 @@ import argparse
 import json
 from pathlib import Path
 
+from orion.core.problem import Problem
+from orion.engine.solver import SolverConfig
+from orion.providers.llm import CallableLLMProvider
+from orion.providers.retrieval import InMemoryRetrievalProvider
+from orion.providers.verification import InMemoryVerificationProvider
+from orion.runtime import OrionRuntime
 from orion.transfer.v2.epistemic_responsibility import (
     assess_responsibility,
     build_responsibility_hypothesis,
+)
+from orion_research_harness.mechanics_bridge import (
+    mechanic_catalog,
+    mechanics_coverage,
+    navigate_mechanics,
+    special_surface_catalog,
 )
 
 PREFIX = "ORIONQ_MAX_R6B_TARE_REUSE="
@@ -46,6 +61,75 @@ def _hypothesis(hypothesis_id: str, expected: dict[str, list[str]]):
         expected_observations=expected,
         support_evidence_ids=("R6B_RECEIPT", "EXACT_TARE3_FRAME_ONLY_COLLAPSE"),
     )
+
+
+def canonical_runtime_probe(sign: str) -> dict:
+    """Exercise production OrionRuntime/OrionSolver without external authority."""
+    llm = CallableLLMProvider(lambda _request: '{"queries":[]}', model_id="r6c-deterministic")
+    runtime = OrionRuntime.from_providers(
+        llm=llm,
+        retrieval=InMemoryRetrievalProvider({}),
+        verification=InMemoryVerificationProvider(frozenset()),
+        config=SolverConfig(max_iterations=1),
+    )
+    result = runtime.solve(
+        Problem(
+            "orion-q:max-r6c-canonical-runtime-probe",
+            (
+                "Diagnose the post-exact-TARE3 residual after the verified R6B "
+                f"donor-reuse sign {sign}; preserve donor-first refusal and protected-subject closure."
+            ),
+        )
+    )
+    return {
+        "executed": True,
+        "problem_id": result.solution.problem_id,
+        "solution_status": result.solution.status.value,
+        "trace_id": result.trace.trace_id,
+        "operator_sequence": [item.value for item in result.trace.operator_sequence],
+        "evidence_ids": list(result.solution.evidence_ids),
+        "residual_ids": list(result.solution.residual_ids),
+        "scientific_authority_from_probe": False,
+    }
+
+
+def canonical_mechanics_probe() -> dict:
+    coverage = mechanics_coverage()
+    ids = {str(row["surface_id"]) for row in mechanic_catalog()}
+    ids.update(str(row["surface_id"]) for row in special_surface_catalog())
+    required = {
+        "FRAME.DECOMPOSE.v0",
+        "REFRAME.METHOD.v0",
+        "REOPEN.FIBRE.v0",
+        "SATURATE_BOUNDED.v3",
+        "SELF_ORION.DEVELOPMENT_FIBRE.v1",
+    }
+    missing = sorted(required - ids)
+    method_nav = navigate_mechanics("method fibre", limit=12)
+    fibre_nav = navigate_mechanics("fibre problem solver", limit=12)
+    passed = (
+        coverage.get("mechanic_cell_count") == 59
+        and coverage.get("structurally_discoverable") is True
+        and coverage.get("missing_anchor_ids") == []
+        and coverage.get("missing_runtime_cells") == []
+        and not missing
+    )
+    if not passed:
+        raise AssertionError(
+            {
+                "canonical_mechanics_probe_failed": True,
+                "coverage": coverage,
+                "missing_required_surfaces": missing,
+            }
+        )
+    return {
+        "passed": True,
+        "coverage": coverage,
+        "required_surface_ids": sorted(required),
+        "missing_required_surface_ids": missing,
+        "method_fibre_navigation": method_nav,
+        "development_fibre_navigation": fibre_nav,
+    }
 
 
 def canonical_diagnosis(sign: str) -> dict:
@@ -150,20 +234,31 @@ def main() -> dict:
     args = parser.parse_args()
     r6b = _load_receipt(args.receipt)
     sign = "POSITIVE" if r6b["development_supported"] is True else "NEGATIVE"
+
+    runtime_probe = canonical_runtime_probe(sign)
+    mechanics_probe = canonical_mechanics_probe()
     canonical = canonical_diagnosis(sign)
+    canonical["runtime_probe"] = runtime_probe
+    canonical["mechanics_probe"] = mechanics_probe
     specialized = orion_q_diagnosis(sign)
     agreement = (
         canonical["normalized_next_residual"]
         == specialized["normalized_next_residual"]
     )
+    implementation_ready = (
+        runtime_probe["executed"] is True
+        and runtime_probe["scientific_authority_from_probe"] is False
+        and mechanics_probe["passed"] is True
+    )
     result = {
-        "schema": "ORIONQ.MAXR6C.DualLaneResidualDiagnosis.v1",
+        "schema": "ORIONQ.MAXR6C.DualLaneResidualDiagnosis.v2",
         "authority": "RESIDUAL_DIAGNOSIS_ONLY__NOT_R6",
         "r6b_scientific_sign": sign,
         "canonical_orion": canonical,
         "orion_q": specialized,
+        "canonical_runtime_and_mechanics_executed": implementation_ready,
         "normalized_residual_agreement": agreement,
-        "new_method_protocol_eligible": agreement,
+        "new_method_protocol_eligible": agreement and implementation_ready,
         "reserved_stretched_n2_accessed": False,
         "r6_earned": False,
     }
