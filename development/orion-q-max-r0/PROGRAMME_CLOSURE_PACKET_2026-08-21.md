@@ -145,7 +145,16 @@ all gates true, byte-identical double run):
 - Chemistry explained structurally: the recorded DUCC batches are pure-Z with heavily
   overlapping supports, so the shared anchor realizes all alignment and neither trade can
   pay its +2 surcharge (Gsplit = 0 on all 30 matchings; f_B strictly above C_R6L).
-- [SLOT] R6R prospective fresh-subject test: outcome pending.
+**R6R executed — PREDICTION CONFIRMED on an unseen subject.**
+`MAX_R6R_PROSPECTIVE_FRESH_SUBJECT_RESULTS.json`
+(`MAX_R6R_PROSPECTIVE_FRESH_SUBJECT_PREDICTION_CONFIRMED__TWO_TRADE_PREDICATE_HELD_ON_
+UNSEEN_SUBJECT__NOT_R6`, all gates true): the fresh subject was selected by a rule frozen
+before any coefficient was read (blob-pinned at the library's frozen commit), the
+two-trade predicate's regime prediction was staged and printed BEFORE any ground-truth
+computation, and the exact R6M DP then confirmed the prediction on every matching. This is
+the programme's first prospective, pre-registered structural forecast — the strongest
+evidence form the framework produces.
+
 - [SLOT] R6S all-n composition attempt: outcome pending.
 
 ### 2.5 N-lane recoveries (issues #674–#677) — ALL EXECUTED 2026-08-21
