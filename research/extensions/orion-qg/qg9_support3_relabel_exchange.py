@@ -82,7 +82,7 @@ def safe_profile_move(type_keys,actions_by_type):
    sg^=x[1];d0+=x[3];d1+=x[4]
    for c in range(3):cs[c]+=x[2][c]
   if sg!=0 or d0<1 or max(cs)>0:continue
-  repl=tuple(x[5] for x in ch);key=(max(cs),tuple(cs),-d0,-d1,repl)
+  repl=tuple((-1,-1) if x[5] is None else x[5] for x in ch);key=(max(cs),tuple(cs),-d0,-d1,repl)
   if best is None or key<best[0]:best=(key,ch)
  if best is None:return None
  k,ch=best;return {'worst_cost':k[0],'cost_by_central':list(k[1]),'r0_support_drop':-k[2],'r1_support_drop':-k[3],'replacements':[list(x[5]) if x[5] is not None else None for x in ch]}
@@ -102,7 +102,7 @@ def close_survivors(survivors,descs,by_desc,actions_by_type):
    type_cases+=1;mv=safe_profile_move(keys,actions_by_type)
    if mv is None:
     unsafe+=1
-    if len(unsafe_rows)<VERBATIM:unsafe_rows.append({'descriptor_indices':list(inds),'type_sizes':[len(c) for c in choices],'states':[list(x) for k in keys for x in []]})
+    if len(unsafe_rows)<VERBATIM:unsafe_rows.append({'descriptor_indices':list(inds),'type_sizes':[len(c) for c in choices]})
    else:
     hist[mv['worst_cost']]+=1
     if len(examples)<8:examples.append({'descriptor_indices':list(inds),'move':mv})
