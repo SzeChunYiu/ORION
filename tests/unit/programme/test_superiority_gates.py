@@ -81,6 +81,7 @@ from orion.programme.superiority_terminals import (
     REGISTERED_PAPER_DIRECTORIES,
     RETIRED_PAPER_NUMBERING,
     SHARED_LANES,
+    VACATED_PAPER_NUMBERS,
     validate_registry,
 )
 
@@ -972,38 +973,60 @@ def test_paper_identity_cannot_check_without_a_papers_tree(tmp_path: Path) -> No
     assert paper_identity_findings(tmp_path) is None
 
 
-def test_p9_and_p10_keep_a_recorded_predecessor() -> None:
-    """Two directories under one number is legitimate only when recorded.
+def test_every_paper_carries_exactly_one_directory() -> None:
+    """P9 and P10 no longer sit beside a second paper-numbered directory."""
 
-    Both predecessors are cited by live tests and other papers, so the P1-P5
-    precedent of deleting a retired directory does not apply to them.
+    for entry in PAPER_DIRECTORIES:
+        assert entry.retired == (), entry.paper_id
+
+
+def test_vacated_numbers_are_recorded_and_are_not_identities() -> None:
+    """The two former candidates keep their content and lose their number.
+
+    Neither could be renumbered into P11-P14: both are already absorbed, into P8
+    and P4/P8, and re-absorbing them would contradict a recorded terminal while
+    moving them away from the papers that own their subjects.
     """
 
-    for paper_id, retired_name in (
-        ("P9", "paper-09-executable-research-core"),
-        ("P10", "paper-10-content-bound-math-evaluation"),
-    ):
-        entry = PAPER_DIRECTORIES_BY_ID[paper_id]
-        assert retired_name not in entry.active
-        assert [d for d, _ in entry.retired] == [f"papers/{retired_name}"]
+    assert len(VACATED_PAPER_NUMBERS) == 2
+    actives = {entry.active for entry in PAPER_DIRECTORIES}
+    for directory, was, reason in VACATED_PAPER_NUMBERS:
+        assert (REPO_ROOT / directory).is_dir(), directory
+        assert directory.startswith("papers/paper-xx-")
+        assert was in ("was P9", "was P10")
+        assert reason.strip()
+        # Vacated means vacated: not a registered identity, and invisible to the
+        # paper-number scan because `paper-xx-` carries no digits.
+        assert directory not in REGISTERED_PAPER_DIRECTORIES
+        assert directory not in actives
 
-    # Every other paper carries exactly one directory.
+
+def test_no_paper_declares_a_retired_directory() -> None:
     for entry in PAPER_DIRECTORIES:
         if entry.paper_id not in ("P9", "P10"):
             assert entry.retired == (), entry.paper_id
 
 
-def test_the_ledger_cites_only_registered_paper_directories() -> None:
-    """Predecessor evidence must point into a directory the registry knows."""
+def test_the_ledger_cites_only_known_paper_directories() -> None:
+    """Predecessor evidence must point somewhere the registry accounts for.
 
+    Three places are legitimate: a registered paper identity, a vacated former
+    candidate, or a shared lane. P10's predecessor evidence now sits in a vacated
+    directory --- it is still the evidence, it just no longer carries a number.
+    """
+
+    known = (
+        set(REGISTERED_PAPER_DIRECTORIES)
+        | {directory for directory, _, _ in VACATED_PAPER_NUMBERS}
+        | set(SHARED_LANES)
+    )
     ledger = ledger_from_payload(json.loads(LEDGER_PATH.read_text(encoding="utf-8")))
     for paper in ledger.papers:
         for item in paper.predecessor_artifacts:
             if not item.artifact_ref.startswith("papers/"):
                 continue
             assert any(
-                item.artifact_ref.startswith(f"{directory}/")
-                for directory in REGISTERED_PAPER_DIRECTORIES
+                item.artifact_ref.startswith(f"{directory}/") for directory in known
             ), item.artifact_ref
 
 
@@ -1016,7 +1039,7 @@ def test_future_identities_are_registered_before_their_directories_arrive() -> N
     expected on disk yet.
     """
 
-    assert set(FUTURE_PAPER_DIRECTORIES) == {"P11", "P12", "P13", "P14"}
+    assert set(FUTURE_PAPER_DIRECTORIES) == {"P11", "P12", "P13", "P14", "P15"}
     for paper_id, directory in FUTURE_PAPER_DIRECTORIES.items():
         assert directory in REGISTERED_PAPER_DIRECTORIES
         assert paper_id not in PAPER_DIRECTORIES_BY_ID, "not adjudicated by this module"

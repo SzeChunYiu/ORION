@@ -1,7 +1,7 @@
 {
   "battery": {
     "blocked": false,
-    "content_digest": "e8c78bd52da4586eba41f36d607ec1654ca507e4754098bc9dc47ca997e6dd4d",
+    "content_digest": "6a35690622db8b9eef795ddbb6c0922b715f41c23abcfbff1fd3a17800ac3b72",
     "expected_check_ids": [
       "HC-SUP-TERMINAL-COVERAGE",
       "HC-SUP-MANUSCRIPT-SUBSTITUTION",
@@ -79,7 +79,7 @@
         "check_id": "HC-SUP-STALE-PAPER-IDENTITY",
         "findings": [],
         "outcome": "PASS",
-        "reason": "every paper-numbered directory is registered: 10 active identities and 2 recorded predecessor(s)"
+        "reason": "every paper-numbered directory is registered: 10 active identities and 0 recorded predecessor(s)"
       },
       {
         "check_id": "HC-SUP-SPLIT-PAPER-IDENTITY",
@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "4284101bd9aaf2489bdcf2638a34eae4c8a8cb64349e6c1153f656f81b11dec7",
+  "content_digest": "66e914f839f588d35104b8cb8fddec8e47589ffa806c4b2e8f5ee34334fcc5ed",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -1148,7 +1148,7 @@
       "paper_id": "P10",
       "predecessor_artifacts": [
         {
-          "artifact_ref": "papers/paper-10-content-bound-math-evaluation/README.md",
+          "artifact_ref": "papers/paper-xx-content-bound-math-evaluation/README.md",
           "grade": "BOUNDED_PROTECTED",
           "terminal": "TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME"
         },

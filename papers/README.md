@@ -23,9 +23,9 @@ The candidate paper packages live directly under `papers/`:
 - `paper-06-formal-epistemic-structures-and-mechanics/`
 - `paper-07-epistemic-navigation-open-worlds/`
 - `paper-08-epistemic-authority-autonomous-science/`
-- `paper-09-executable-research-core/`
+- `paper-xx-executable-research-core/`
 - `paper-09-structured-epistemic-learning/`
-- `paper-10-content-bound-math-evaluation/`
+- `paper-xx-content-bound-math-evaluation/`
 - `paper-10-structured-problem-solving/`
 - `orion-learning-machine/` (shared P9/P10 lane)
 

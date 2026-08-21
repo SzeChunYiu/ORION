@@ -1,6 +1,6 @@
 # Paper Q4 (typed epistemic state) claim ledger
 
-Format per `papers/candidates/paper-10-content-bound-math-evaluation/CLAIM_LEDGER.md`.
+Format per `papers/candidates/paper-xx-content-bound-math-evaluation/CLAIM_LEDGER.md`.
 All receipts under `research/extensions/orion-q/nlanes/`; all protocols under
 `development/orion-q-nlane-closure/`. Every protocol was frozen before its result-bearing
 run; seed 20260821 throughout.
