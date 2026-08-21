@@ -1,0 +1,15 @@
+{
+  "capability": "LLM_COMPLETE",
+  "created_at": "2026-08-21T09:05:53.009226+00:00",
+  "payload": {
+    "instruction": "Return an object with `content` containing the model response text. For ORION semantic tasks, content itself must be JSON matching response_schema.",
+    "response_schema": "{\"queries\":[{\"query_id\":\"...\",\"text\":\"...\",\"route_id\":\"...\",\"route_kind\":\"PARENT_DISCIPLINE\",\"domain_hint\":null}]}",
+    "system": "You are a semantic reasoning component inside ORION.\nYou may propose interpretations, queries, diagnoses and prose, but you do not create scientific authority.\nReturn only JSON matching the requested schema. Preserve uncertainty and do not invent source evidence.\nFor search planning, do not remain inside the current vocabulary: deliberately use independent route families such as function-only, parent-discipline, adversarial-omission and freshness searches when they remain uncovered.",
+    "task": "plan_search",
+    "user": "{\"active_domains\": [\"quantum-methods\", \"research-methodology\"], \"candidate_domains\": [], \"covered_route_kinds\": [\"FUNCTION_ONLY\", \"PARENT_DISCIPLINE\", \"ADVERSARIAL_OMISSION\"], \"problem\": {\"initial_domain_ids\": [\"quantum-methods\", \"research-methodology\"], \"problem_id\": \"post-r6o-diagnosis\", \"question\": \"Given the committed R6 receipts through R6O (family saturation; support dominance verified with a refutation at the Tag-repair gap; enlarged-donor closure refuted by the converse frame-for-Tag regime; chemistry donor-exact on all recorded optima), which epistemic layer is responsible for the remaining gap, and what is the correct next research move for the ORION-Q MAX programme?\", \"scope\": \"Evidence strictly from committed repository receipts; cite file paths.\", \"success_criteria\": [\"The diagnosis names one responsible layer and one next move, each grounded in cited receipts.\"]}, \"representations\": [], \"searched_domains\": [\"quantum-methods\", \"research-methodology\"]}"
+  },
+  "request_digest": "1222b25e0837c47407326f077137530406bd519acd5a9c93ed3d205cda51aa4f",
+  "request_id": "hostreq:c07d329013336003db4c3bcdc41e1b2ba2450d871173f6712a1d8a3cb09db8de",
+  "schema": "ORION.HostCapabilityRequest.v1",
+  "session_id": "session:8c4f13a92b154c7db2c0cc328cf9fe7a"
+}
