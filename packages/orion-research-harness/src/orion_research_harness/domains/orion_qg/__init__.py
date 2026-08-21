@@ -1,0 +1,3 @@
+from .qg1_support5 import QG1_SUPPORT5_CAMPAIGN_MANIFEST
+
+__all__ = ["QG1_SUPPORT5_CAMPAIGN_MANIFEST"]

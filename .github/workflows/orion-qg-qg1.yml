@@ -1,0 +1,126 @@
+name: orion-qg-qg1-rank2-support5
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG1_*'
+      - 'development/orion-qg-regime-geometry/qg1_*'
+      - 'development/orion-qg-regime-geometry/run_qg1_dual_harness.py'
+      - 'research/extensions/orion-qg/qg1_rank2_support5.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/domains/orion_qg/**'
+      - 'packages/orion-research-harness/tests/test_qg1_support5.py'
+      - '.github/workflows/orion-qg-qg1.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg-qg1-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qg1-rank2-support5:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      QG1_FROZEN_BASE: e6011bbeae68d91b5cce45ffa34e67306905844d
+    steps:
+      - name: Checkout exact protected head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert frozen lineage before theorem execution
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG1_FROZEN_BASE}^{commit}"
+          test "$(git merge-base HEAD "${QG1_FROZEN_BASE}")" = "${QG1_FROZEN_BASE}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION, production R6I dependencies, and research harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Validate native QG-1 admission controller
+        run: |
+          pytest -q packages/orion-research-harness/tests/test_qg1_support5.py
+      - name: Execute theorem through generic + native harnesses
+        run: |
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg1_dual_harness.py \
+            | tee artifacts/orion-qg-qg1-dual-summary.json
+      - name: Independent deterministic replay of theorem checker
+        run: |
+          python research/extensions/orion-qg/qg1_rank2_support5.py \
+            --output artifacts/orion-qg-qg1-support5-theorem-replay.json \
+            | tee artifacts/orion-qg-qg1-replay.log
+          cmp \
+            artifacts/orion-qg-qg1-support5-theorem.json \
+            artifacts/orion-qg-qg1-support5-theorem-replay.json
+      - name: Enforce theorem or honest negative terminal
+        run: |
+          python - <<'PY'
+          import json
+          import math
+          from pathlib import Path
+
+          theorem = json.loads(Path('artifacts/orion-qg-qg1-support5-theorem.json').read_text())
+          generic = json.loads(Path('artifacts/orion-qg-qg1-generic-verification.json').read_text())
+          dual = json.loads(Path('artifacts/orion-qg-qg1-dual-harness.json').read_text())
+
+          positive = 'QG1_RANK2_ALL_N_SUPPORT5_SUFFICIENCY_MACHINE_VERIFIED'
+          allowed_dual = {
+              positive,
+              'QG1_CANNOT_CHECK',
+              'QG1_DUAL_HARNESS_DISAGREEMENT',
+              'QG1_MACHINE_THEOREM_REJECTED',
+          }
+          assert dual['terminal'] in allowed_dual
+          assert theorem['schema'] == 'ORION.QG.QG1.Support5Theorem.v2'
+          assert theorem['production_algebra_binding']['exact'] is True
+          assert theorem['production_algebra_binding']['mismatches'] == []
+          assert theorem['production_algebra_binding']['subject_loaders_called'] is False
+          assert theorem['chemistry_sources_read'] is False
+          assert dual['chemistry_sources_read'] is False
+          assert theorem['novelty_authority'] is False
+          assert dual['novelty_authority'] is False
+          assert theorem['physical_quantum_advantage_claim'] is False
+          assert dual['physical_quantum_advantage_claim'] is False
+
+          assert theorem['local']['case_count'] == 46080
+          assert theorem['constraints']['case_count'] == 240
+          assert theorem['f2_5']['multiset_count'] == math.comb(37, 6) == 2324784
+          assert theorem['f2_5']['distinct_nonzero_count'] == math.comb(31, 6) == 736281
+
+          if dual['terminal'] == positive:
+              assert theorem['terminal'] == positive
+              assert theorem['local']['max_delta'] == -4
+              assert theorem['local']['violations'] == []
+              assert theorem['constraints']['violations'] == []
+              assert theorem['constraints']['realizable_span_rank'] == 5
+              assert theorem['f2_5']['max_six_rank'] == 5
+              assert theorem['f2_5']['rank_violations'] == []
+              assert theorem['f2_5']['boundary_rank'] == 5
+              assert theorem['f2_5']['boundary_xor'] == 27
+              assert all(theorem['gates'].values())
+              assert all(theorem['proof_audit'].values())
+              assert generic['verification_pass'] is True
+              assert dual['both_accept'] is True
+              assert dual['generic_lane']['decision'] == 'ACCEPT'
+              assert dual['native_lane']['decision'] == 'ACCEPT'
+          PY
+      - name: Upload QG-1 theorem receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg1-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg1-support5-theorem.json
+            artifacts/orion-qg-qg1-support5-theorem-replay.json
+            artifacts/orion-qg-qg1-generic-verification.json
+            artifacts/orion-qg-qg1-dual-harness.json
+            artifacts/orion-qg-qg1-dual-summary.json
+            artifacts/orion-qg-qg1-replay.log
+            .orion-qg-qg1-generic/.orion-harness/**
+            .orion-qg-qg1-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error
