@@ -4,6 +4,7 @@ from dataclasses import dataclass, field
 
 from orion.core.contributions import KnowledgeContribution
 from orion.core.problem import Problem
+from orion.core.problem_tree import RecursiveProblemStopReason, ResidualDecomposition
 from orion.core.residuals import Residual, ResidualKind, Responsibility
 from orion.core.search import RetrievedItem, SearchQuery
 from orion.core.state import OrionState
@@ -20,6 +21,9 @@ class ScriptedReasoner:
     reframes_by_kind: dict[ResidualKind, ReframeProposal]
     reconstruction_summaries: list[str] = field(default_factory=list)
     answer_text: str = ""
+    decompositions_by_kind: dict[ResidualKind, ResidualDecomposition] = field(
+        default_factory=dict
+    )
     _search_index: int = 0
     _reconstruct_index: int = 0
 
@@ -45,6 +49,22 @@ class ScriptedReasoner:
             residual.kind,
             Diagnosis((Responsibility.EVIDENCE,), "default scripted diagnosis"),
         )
+
+    def decompose_residual(
+        self,
+        residual: Residual,
+        problem: Problem,
+        state: OrionState,
+    ) -> ResidualDecomposition:
+        decomposition = self.decompositions_by_kind.get(residual.kind)
+        if decomposition is None:
+            decomposition = ResidualDecomposition(
+                parent_residual_id=residual.residual_id,
+                stop_reason=RecursiveProblemStopReason.IRREDUCIBLE_AT_CURRENT_RESOLUTION,
+                rationale="no scripted finer decomposition",
+            )
+        decomposition.verify(residual)
+        return decomposition
 
     def propose_reframe(
         self,
