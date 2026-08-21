@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "d5168e479e67cc766b5bfb324ae5c143e8e8428e2ac03860f2beb37ed106f159",
+  "content_digest": "2b82dc5663b4e83635f5eb0e73444f4aaf03a9ffc9803460cae527ebfdf8f763",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -748,6 +748,11 @@
           "artifact_ref": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21.json",
           "grade": "MECHANIZED_THEOREM",
           "terminal": "SEPARATION_THEOREMS_DISCHARGED__REOPENING_NOT_LIFTED"
+        },
+        {
+          "artifact_ref": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_REOPENING_CALCULUS_MECHANIZED_2026-08-21.json",
+          "grade": "MECHANIZED_THEOREM",
+          "terminal": "REOPENING_THEOREMS_DISCHARGED__COMMITTED_IMPLEMENTATION_VERIFIED"
         }
       ],
       "strongest_grade": "MECHANIZED_THEOREM",
@@ -772,8 +777,8 @@
             "research/claim_expansion/p6/P6_X_FINITE_MODEL_RESULT_V1.json"
           ],
           "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "Part of the primitive semantics is now defined independently of the theorem and machine-checked: local mechanics, their declared frames, and the separation result hold for any number of coordinates over any value domain and for every transformer obeying its frame, with the converse proved so separation is the boundary rather than one sufficient condition among others (P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21). The committed mechanic obeys its frame, so the bounded enumeration is an instance of that result. What remains unlifted is the other half: the reopening and restoration semantics behind the 155 restorations and 1,055 strict-subset failures are still exhaustive enumeration over a four-node authored space.",
-          "unblock": "Lift reopening the same way. Dependency reachability over a DAG is the same shape as the conversion closure already mechanized for P8, including the well-founded rank that makes the closure least -- without that rank a first-order axiomatisation admits reach facts that justify each other in a cycle, which is a defect that cost a real countermodel to find. Then state minimality as the claim that the reopened set is the least set closed under dependency containing the changed nodes, and conservativity as the claim that reopening nothing changes nothing, and discharge both against the same primitives."
+          "statement": "Both halves of the primitive semantics are now defined independently of the theorems and machine-checked. Local mechanics, frames and separation were lifted first (P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21); reopening follows (P6_REOPENING_CALCULUS_MECHANIZED_2026-08-21) with soundness, completeness, minimality, conservativity, monotonicity and the cycle characterisation over graphs of any size. Both committed implementations are shown to be instances: the local mechanic obeys its declared frame on all 5,280 exhaustive perturbations, and descendants matches an independently written specification on 61,440 of 61,440 cases. What is still unlifted is the 320-state certificate model itself -- the 155 full-revalidation successes and 1,055 strict-subset failures are produced by a different artifact, and no proof yet connects it to these primitives. Found on the way: check_reopening asserts tautologies and passes with descendants replaced by a constant, so the reopening half of the finite core had never actually been checked.",
+          "unblock": "Interpret the 320-state certificate model in the proved primitives -- each certificate's support as a dependency edge set and each revalidation action as a mechanic with a declared frame -- and prove that interpretation sound. The 155 restorations then become soundness instances and the 1,055 strict-subset failures become necessity witnesses of the minimality theorem, which is the derivation P6-U-T2 asks for, rather than a second table standing beside a first. P6-U-T4's independent review remains separate and is not reachable from inside this lane."
         },
         {
           "actionability": "BLOCKED_ON_PROOF",
@@ -1739,8 +1744,8 @@
         "research/claim_expansion/p6/P6_X_FINITE_MODEL_RESULT_V1.json"
       ],
       "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "Part of the primitive semantics is now defined independently of the theorem and machine-checked: local mechanics, their declared frames, and the separation result hold for any number of coordinates over any value domain and for every transformer obeying its frame, with the converse proved so separation is the boundary rather than one sufficient condition among others (P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21). The committed mechanic obeys its frame, so the bounded enumeration is an instance of that result. What remains unlifted is the other half: the reopening and restoration semantics behind the 155 restorations and 1,055 strict-subset failures are still exhaustive enumeration over a four-node authored space.",
-      "unblock": "Lift reopening the same way. Dependency reachability over a DAG is the same shape as the conversion closure already mechanized for P8, including the well-founded rank that makes the closure least -- without that rank a first-order axiomatisation admits reach facts that justify each other in a cycle, which is a defect that cost a real countermodel to find. Then state minimality as the claim that the reopened set is the least set closed under dependency containing the changed nodes, and conservativity as the claim that reopening nothing changes nothing, and discharge both against the same primitives."
+      "statement": "Both halves of the primitive semantics are now defined independently of the theorems and machine-checked. Local mechanics, frames and separation were lifted first (P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21); reopening follows (P6_REOPENING_CALCULUS_MECHANIZED_2026-08-21) with soundness, completeness, minimality, conservativity, monotonicity and the cycle characterisation over graphs of any size. Both committed implementations are shown to be instances: the local mechanic obeys its declared frame on all 5,280 exhaustive perturbations, and descendants matches an independently written specification on 61,440 of 61,440 cases. What is still unlifted is the 320-state certificate model itself -- the 155 full-revalidation successes and 1,055 strict-subset failures are produced by a different artifact, and no proof yet connects it to these primitives. Found on the way: check_reopening asserts tautologies and passes with descendants replaced by a constant, so the reopening half of the finite core had never actually been checked.",
+      "unblock": "Interpret the 320-state certificate model in the proved primitives -- each certificate's support as a dependency edge set and each revalidation action as a mechanic with a declared frame -- and prove that interpretation sound. The 155 restorations then become soundness instances and the 1,055 strict-subset failures become necessity witnesses of the minimality theorem, which is the derivation P6-U-T2 asks for, rather than a second table standing beside a first. P6-U-T4's independent review remains separate and is not reachable from inside this lane."
     },
     {
       "actionability": "BLOCKED_ON_PROOF",
