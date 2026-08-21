@@ -32,6 +32,7 @@ jobs:
         run: |
           python -m pytest \
             packages/orion-research-harness/tests/test_recursive_residual_solver.py \
+            packages/orion-research-harness/tests/test_recursive_budget_hardening.py \
             packages/orion-research-harness/tests/test_execution_coverage.py \
             -q
       - name: Require structural and executable mechanics coverage
