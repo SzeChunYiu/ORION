@@ -1,10 +1,12 @@
-# ORION-P2 saturation claim / PDF audit
+# P2 claim/PDF audit — post-writeback rebind pending
 
-Audit source: `19992899077cefaebc46309c3f6ea992b9221b31`.
+Date: 2026-08-21  
+Source subject: `714a7e771961c8ace08bb38d7dab6e2ba45b8ff7`  
+Package status: `SCAFFOLDING`  
+PDF authority: `CANNOT_CHECK`
 
-- Claim ledger and V2 widening contract passed before compilation.
-- The canonical manuscript was rebuilt with `latexmk` after the 2026-08-19 saturation consistency repair.
-- Citations and cross-references converged with no unresolved-warning gate failure.
-- The 400-row OpenAIRE/Crossref campaign is stated as `CANNOT_CHECK` because its frozen provider-validity gate failed; the zero paired effect is not treated as a valid null.
-- External ORION-vs-baseline superiority remains unpromoted; the package claim stays narrowed to methods / critical system design.
-- Full rendered-page visual inspection is recorded separately in the saturation audit before issue closure.
+The structure-conditioned/source-grounded acquisition writeback changes canonical manuscript and claim-ledger bytes after the previously committed PDF was compiled and visually reviewed. That pre-writeback PDF is therefore deliberately removed from the package rather than relabeled as if it represented the new source.
+
+The scientific ceiling remains `P2_NARROWED`. The retained external OpenAIRE V1 campaign remains provider-invalid `P2_WIDE_EXTERNAL_CANNOT_CHECK`; no external ORION superiority is minted by this package transition.
+
+Before `P2.PDF` can return to `SUPPORTED`, the exact post-writeback source head must be compiled, every rendered page independently inspected for clipping, overlap, figure/table placement and legibility, the inspected PDF hash and subject revision recorded durably, and the complete journal-package checksum inventory regenerated. Until then, this audit grants no rendered-byte or submission-package authority.
