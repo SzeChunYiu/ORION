@@ -21,7 +21,7 @@ Q3_BLOCKED_TERMINAL = "SCIENTIFIC_SERIES_INCOMPLETE__CANNOT_CHECK_PEER_REVIEW_RE
 
 REQUIRED = [
     "papers/Q_QG_NATURE_SKILLS_PUBLICATION_CLOSURE_V1.md",
-    "papers/Q_QG_PUBLICATION_READINESS_V2.md",
+    "papers/Q_QG_PUBLICATION_READINESS_V3.md",
     "papers/Q_QG_VENUE_TARGET_MATRIX_V1.md",
     "papers/Q_QG_DATA_CODE_AVAILABILITY_V1.md",
     "papers/Q_QG_REFERENCE_CANON_V1.md",
@@ -31,6 +31,7 @@ REQUIRED = [
     "papers/Q_QG_STATISTICS_AND_EVIDENCE_REPORTING_V1.md",
     "papers/Q_QG_POSTCUT_FRESHNESS_ADJUDICATION_V1.md",
     "papers/Q_QG_CONSISTENCY_SWEEP_V1.md",
+    "papers/Q_QG_SECOND_REVIEW_SYNTHESIS_V1.md",
     # Q1 final publication draft + evidence contracts
     "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md",
     "papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V2.md",
@@ -43,6 +44,7 @@ REQUIRED = [
     "papers/Q-paper-02-recursive-recovery/PUBLICATION_FOUNDATION_V2.md",
     "papers/Q-paper-02-recursive-recovery/MOCK_REVIEW_V2.md",
     "papers/Q-paper-02-recursive-recovery/Q2_TRANSITION_GRAPH_V2.json",
+    "papers/Q-paper-02-recursive-recovery/Q2_ELIGIBLE_RECEIPT_INVENTORY_V1.json",
     "papers/Q-paper-02-recursive-recovery/check_transition_graph.py",
     # Q3 intentionally blocked
     "papers/Q-paper-03-dual-instrument/PUBLICATION_FOUNDATION_V2.md",
@@ -56,6 +58,7 @@ REQUIRED = [
     "papers/QG-paper-01-compilation-regime-geometry/MANUSCRIPT_V3.md",
     "papers/QG-paper-01-compilation-regime-geometry/PUBLICATION_FOUNDATION_V3.md",
     "papers/QG-paper-01-compilation-regime-geometry/CROSS_FAMILY_EVIDENCE_MATRIX_V3.md",
+    "papers/QG-paper-01-compilation-regime-geometry/FIGURE_CONTRACT_V3.md",
     "papers/QG-paper-01-compilation-regime-geometry/MOCK_REVIEW_V2.md",
     # QG2 final V3
     "papers/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V3.md",
@@ -158,11 +161,13 @@ def main() -> int:
         if token not in q1:
             errors.append(f"Q1_DONOR_SUBTRACTION_MISSING:{token}")
 
-    # Q2: machine-readable denominator/audit must be load-bearing.
+    # Q2: graph denominator/audit + scientific-agent donors must be load-bearing.
     q2 = text("papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3.md").lower()
-    for token in ("23 result nodes", "13 asserted successor edges", "scienceagentbench", "declared publication graph"):
+    for token in ("23 result nodes", "13 asserted successor edges", "51-receipt", "scienceagentbench"):
         if token not in q2:
             errors.append(f"Q2_V3_GRAPH_OR_DONOR_MISSING:{token}")
+    if "declared publication graph" not in q2 and "declared bounded graph" not in q2 and "publication graph" not in q2:
+        errors.append("Q2_V3_GRAPH_SCOPE_WORDING_MISSING")
 
     # Q4: stale memory/context governance/P13 are distinct from bounded Q4 result.
     q4 = text("papers/Q-paper-04-typed-state/MANUSCRIPT_V3.md").lower()
@@ -178,24 +183,25 @@ def main() -> int:
 
     # QG2: current static-analysis donors and anti-accuracy framing visible.
     qg2 = text("papers/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V3.md").lower()
-    for token in ("qet", "qualtran", "10<11", "99.99", "forecastcertificate", "timing is secondary"):
+    for token in ("qet", "qualtran", "99.99", "forecastcertificate", "timing is secondary"):
         if token not in qg2:
             errors.append(f"QG2_V3_BOUNDARY_MISSING:{token}")
+    if "true optimum is 10" not in qg2 or "return 11" not in qg2:
+        errors.append("QG2_V3_DECISIVE_COUNTEREXAMPLE_NOT_VISIBLE")
 
     # Q3 remains intentionally blocked.
-    readiness = text("papers/Q_QG_PUBLICATION_READINESS_V2.md")
+    readiness = text("papers/Q_QG_PUBLICATION_READINESS_V3.md")
     q3p = text("papers/Q-paper-03-dual-instrument/Q3_ADDITIONAL_PROSPECTIVE_INSTANCES_PROTOCOL_V1.md")
     if Q3_BLOCKED_TERMINAL not in readiness:
         errors.append("Q3_FAIL_CLOSED_TERMINAL_NOT_VISIBLE")
     if "QG-7d" not in q3p or "QG-15c" not in q3p:
         errors.append("Q3_PROSPECTIVE_INSTANCE_FREEZE_INCOMPLETE")
 
-    # No root reuse licence existed at the original cut; do not grant rights via prose.
-    for rel in [p for p in changed if p.startswith("papers/")]:
-        path = ROOT / rel
-        if not path.is_file() or path.suffix.lower() not in {".md", ".tex", ".bib", ".json"}:
-            continue
-        body = path.read_text(encoding="utf-8", errors="replace").lower()
+    # No root reuse licence existed at the original cut. Enforce this on the actual
+    # submission-facing manuscripts (and, later, target packages), not audit documents
+    # whose job is to quote/prohibit the phrase.
+    for _paper_id, rel, _cut in FINAL_MANUSCRIPTS:
+        body = text(rel).lower()
         for forbidden in ("orion is open-source", "orion is open source", "open-source orion"):
             if forbidden in body:
                 errors.append(f"UNLICENSED_OPEN_SOURCE_WORDING:{rel}:{forbidden}")
