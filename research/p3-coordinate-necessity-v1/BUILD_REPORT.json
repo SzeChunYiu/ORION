@@ -1,0 +1,185 @@
+{
+  "added_expected_relations": {
+    "COMPATIBLE": 16,
+    "CONTEXTUAL_DIFFERENCE": 4,
+    "DISTINCT_MEASUREMENT": 4
+  },
+  "added_shape_invariants": {
+    "authority_kind": [
+      "DERIVED_FROM_ALLOWED"
+    ],
+    "case_id_alpha_prefix": [
+      "coordinate-synth-"
+    ],
+    "case_id_hyphen_count": [
+      2
+    ],
+    "case_id_length": [
+      33
+    ],
+    "coordinate_arity": [
+      [
+        1,
+        1,
+        1,
+        1
+      ]
+    ],
+    "derivation_rule": [
+      "identity:frozen-coordinate-standard-distinctness"
+    ],
+    "evidence_count": [
+      2
+    ],
+    "projection_id_length": [
+      29
+    ],
+    "source_record_count": [
+      1
+    ],
+    "source_span_length": [
+      63
+    ]
+  },
+  "atlas_id": "coordinate-necessity-v1",
+  "blockers": [],
+  "built_n": 56,
+  "case_families": {
+    "different_name_same_referent": 13,
+    "polarity_modality_attribution_context": 13,
+    "same_construct_different_measurement": 12,
+    "same_entity_different_temporal_state": 12,
+    "valid_invalid_representation_mapping": 6
+  },
+  "cases_hash": "271ef70de685ab49a74b322dc6382f488e5f2cd9b1f82a946cf79e838ebb695c",
+  "coordinate_population_added": {
+    "construct_ids": 24,
+    "measurement_ids": 24,
+    "referent_ids": 24,
+    "temporal_context_ids": 24
+  },
+  "coordinate_population_merged": {
+    "construct_ids": 43,
+    "measurement_ids": 24,
+    "referent_ids": 56,
+    "temporal_context_ids": 24
+  },
+  "coordinate_population_parent": {
+    "construct_ids": 19,
+    "measurement_ids": 0,
+    "referent_ids": 32,
+    "temporal_context_ids": 0
+  },
+  "dependence_receipts": [
+    {
+      "ablated": "COMPATIBLE",
+      "ablation_changes_answer": true,
+      "arm": "remove_measurement",
+      "case_id": "coordinate-synth-5652301779107649",
+      "coordinate": "measurement_ids",
+      "full_system": "DISTINCT_MEASUREMENT",
+      "full_system_correct": true,
+      "gold": "DISTINCT_MEASUREMENT"
+    },
+    {
+      "ablated": "COMPATIBLE",
+      "ablation_changes_answer": true,
+      "arm": "remove_measurement",
+      "case_id": "coordinate-synth-5448346723906959",
+      "coordinate": "measurement_ids",
+      "full_system": "DISTINCT_MEASUREMENT",
+      "full_system_correct": true,
+      "gold": "DISTINCT_MEASUREMENT"
+    },
+    {
+      "ablated": "COMPATIBLE",
+      "ablation_changes_answer": true,
+      "arm": "remove_measurement",
+      "case_id": "coordinate-synth-5079634372462734",
+      "coordinate": "measurement_ids",
+      "full_system": "DISTINCT_MEASUREMENT",
+      "full_system_correct": true,
+      "gold": "DISTINCT_MEASUREMENT"
+    },
+    {
+      "ablated": "COMPATIBLE",
+      "ablation_changes_answer": true,
+      "arm": "remove_measurement",
+      "case_id": "coordinate-synth-4804629546359177",
+      "coordinate": "measurement_ids",
+      "full_system": "DISTINCT_MEASUREMENT",
+      "full_system_correct": true,
+      "gold": "DISTINCT_MEASUREMENT"
+    },
+    {
+      "ablated": "COMPATIBLE",
+      "ablation_changes_answer": true,
+      "arm": "remove_temporal_context",
+      "case_id": "coordinate-synth-1533854547027142",
+      "coordinate": "temporal_context_ids",
+      "full_system": "CONTEXTUAL_DIFFERENCE",
+      "full_system_correct": true,
+      "gold": "CONTEXTUAL_DIFFERENCE"
+    },
+    {
+      "ablated": "COMPATIBLE",
+      "ablation_changes_answer": true,
+      "arm": "remove_temporal_context",
+      "case_id": "coordinate-synth-5338943138487279",
+      "coordinate": "temporal_context_ids",
+      "full_system": "CONTEXTUAL_DIFFERENCE",
+      "full_system_correct": true,
+      "gold": "CONTEXTUAL_DIFFERENCE"
+    },
+    {
+      "ablated": "COMPATIBLE",
+      "ablation_changes_answer": true,
+      "arm": "remove_temporal_context",
+      "case_id": "coordinate-synth-5391281620499353",
+      "coordinate": "temporal_context_ids",
+      "full_system": "CONTEXTUAL_DIFFERENCE",
+      "full_system_correct": true,
+      "gold": "CONTEXTUAL_DIFFERENCE"
+    },
+    {
+      "ablated": "COMPATIBLE",
+      "ablation_changes_answer": true,
+      "arm": "remove_temporal_context",
+      "case_id": "coordinate-synth-9503053113963049",
+      "coordinate": "temporal_context_ids",
+      "full_system": "CONTEXTUAL_DIFFERENCE",
+      "full_system_correct": true,
+      "gold": "CONTEXTUAL_DIFFERENCE"
+    }
+  ],
+  "disciplines": {
+    "biology": 6,
+    "chemistry": 6,
+    "materials": 9,
+    "muse_cross_domain": 13,
+    "physics": 7,
+    "psychology": 2,
+    "scientific_claim_verification": 13
+  },
+  "expected_relations": {
+    "COMPATIBLE": 42,
+    "CONTEXTUAL_DIFFERENCE": 4,
+    "CONTRADICTORY": 6,
+    "DISTINCT_MEASUREMENT": 4
+  },
+  "external_validity": "The added cases are synthetic: gold follows from the emitted standard table by the rule identity:frozen-coordinate-standard-distinctness, not from an upstream expert corpus. This atlas can establish that a coordinate is load-bearing in the comparison rule; it cannot establish that such pairs are frequent in public scientific corpora, and it may not be substituted for the public-reference atlas in any external-validity claim.",
+  "freeze_document": "research/p3-coordinate-necessity-v1/FREEZE_2026-08-21.md",
+  "not_an_accuracy_benchmark": "The added cases are an ablation denominator, not an accuracy benchmark. Their gold is derived by a rule that coincides with what compare_meaning does with these two coordinates, so the full system answers all of them by construction. That is what an ablation arm needs --- its question is whether removing the coordinate moves the decision, a property of the system rather than of the gold --- and it is what an accuracy claim must not be built on. No accuracy, false-merge or superiority number over this atlas is evidence about ORION's competence on the added cases.",
+  "parent_atlas": {
+    "case_count": 32,
+    "note": "copied through unchanged; the frozen atlas is never edited",
+    "path": "papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+    "sha256": "13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b"
+  },
+  "protocol_id": "P3.coordinate-necessity-extension.v1",
+  "schema_version": "orion.p3.coordinate-necessity-build-report.v1",
+  "standard_document": "SYNTHETIC_COORDINATE_STANDARD.json",
+  "standard_sha256": "02b029bef419b0c5285c174b63a6ac671437b099d30d6e8fc29aa53cef1c5fcd",
+  "status": "READY",
+  "synthetic_case_count": 24
+}
