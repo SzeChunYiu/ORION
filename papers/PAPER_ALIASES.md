@@ -62,6 +62,62 @@ on any paper-numbered directory that is neither a registered active identity nor
 recorded predecessor, so a third directory cannot appear under a number without
 someone recording which one carries the identity.
 
+## P11–P14, and why absorption retires a number rather than renumbering a paper
+
+`#670` assigns four further identities — P11 State as Computation, P12 Adaptive
+State–Reasoning Co-Design, P13 Responsibility-Carrying State, P14 ORION-RSE — whose
+directories arrive with PR #715 as `candidates/paper-11-state-as-computation/`,
+`paper-12-adaptive-state-reasoning/`, `paper-13-responsibility-carrying-state/` and
+`paper-14-orion-rse/`. One directory per number; no aliases needed.
+
+The same issue fixes the rule for absorption:
+
+> Research decomposition is fine-grained; publication synthesis is coarse-grained.
+> A research atom does not automatically receive a paper number.
+
+Three research tracks were absorbed under that rule. Each **lost its standalone paper
+numbering** and became a child track; each issue stays open as a falsifiable research
+track:
+
+| Issue | Track | Absorbed into |
+|---|---|---|
+| #664 | accessibility work and representation–computation accounting | P11 |
+| #667 | state optionality: compile, cache, recover or materialize | P11 |
+| #668 | responsibility-carrying state interface and certified reuse | P13 |
+
+**Nothing in P1–P10 was absorbed or renumbered.** `#670` states plainly that
+"P1-U–P8-U remain #649–#656", and P9 and P10 keep their own successor issues #662 and
+#663.
+
+### Why a general renumber is not the way to resolve identity confusion
+
+Recorded here because the question recurs, and because the answer is not a matter of
+taste. As of 2026-08-21 the working tree contains:
+
+- **1,399** files mentioning a paper identity;
+- **374** files carrying a frozen `P<n>_…` terminal string;
+- **55** CI workflows keyed to a paper number;
+- **10** open pull requests from other lanes.
+
+The decisive item is the second. Terminal strings such as
+`P9_BOUNDED_STRUCTURAL_LEARNING_SUPPORTED` and
+`P1_WIDER_ARCHITECTURE_CLAIM_SUPPORTED__BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS__A3_CANNOT_CHECK`
+are frozen scientific identifiers embedded in evidence artifacts and receipts. A
+renumber leaves exactly two options, and both are bad: leave the terminals stale, so
+the number inside a terminal no longer names its paper; or rewrite frozen evidence,
+which the repository's immutability rules forbid.
+
+That is also the lesson this file already carries from the P1–P5 reindex: *never infer
+current ORION identity from the historical number alone.* The cost of the last
+renumber is why that sentence exists.
+
+So identity confusion is resolved by **making identity explicit**, not by moving
+numbers. The machine-readable registry is `PAPER_DIRECTORIES`,
+`FUTURE_PAPER_DIRECTORIES` and `RETIRED_PAPER_NUMBERING` in
+`src/orion/programme/superiority_terminals.py`, and `HC-SUP-STALE-PAPER-IDENTITY`
+fails on any paper-numbered directory that is neither a registered identity nor a
+recorded predecessor.
+
 ## Older RAKL numbering
 
 RAKL used multiple publication-numbering generations before ORION. A bare historical label such as “Paper III” is therefore not a stable identity across repositories or dates.

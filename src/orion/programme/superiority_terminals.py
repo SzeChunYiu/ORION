@@ -586,6 +586,44 @@ PAPER_DIRECTORIES: tuple[PaperDirectories, ...] = (
     ),
 )
 
+#: Paper identities registered by the P11-P14 programme issue (#670) whose
+#: directories arrive with PR #715. They are *registered but not adjudicated*: this
+#: module holds no ``Done when`` gates for them, because #670 is a programme issue
+#: rather than a per-paper superiority terminal.
+#:
+#: They are listed here for one concrete reason. ``HC-SUP-STALE-PAPER-IDENTITY``
+#: fails on a paper-numbered directory the registry has never heard of, so without
+#: this the check would red PR #715 the moment it merged --- a check for identity
+#: rot blocking a legitimate new identity. Registering the four names ahead of the
+#: directories is the fix, and it is also the honest record: #670 assigned these
+#: numbers before any directory existed.
+FUTURE_PAPER_DIRECTORIES: dict[str, str] = {
+    "P11": "papers/candidates/paper-11-state-as-computation",
+    "P12": "papers/candidates/paper-12-adaptive-state-reasoning",
+    "P13": "papers/candidates/paper-13-responsibility-carrying-state",
+    "P14": "papers/candidates/paper-14-orion-rse",
+}
+
+#: Research tracks whose **standalone paper numbering was retired** by #670, and
+#: the identity that absorbed each.
+#:
+#: This is the answer to "which of these became papers and which were absorbed?".
+#: #670's rule is that absorption happens by *retiring a number*, never by
+#: renumbering an existing paper:
+#:
+#:     Research decomposition is fine-grained; publication synthesis is
+#:     coarse-grained. A research atom does not automatically receive a paper
+#:     number.
+#:
+#: The issues stay open as falsifiable research tracks; only the publication
+#: identity was withdrawn. P1-P10 numbering is explicitly preserved by the same
+#: issue ("P1-U-P8-U remain #649-#656").
+RETIRED_PAPER_NUMBERING: tuple[tuple[int, str, str], ...] = (
+    (664, "accessibility work and representation-computation accounting", "P11"),
+    (667, "state optionality: compile, cache, recover or materialize", "P11"),
+    (668, "responsibility-carrying state interface and certified reuse", "P13"),
+)
+
 PAPER_DIRECTORIES_BY_ID: dict[str, PaperDirectories] = {
     entry.paper_id: entry for entry in PAPER_DIRECTORIES
 }
@@ -593,6 +631,7 @@ PAPER_DIRECTORIES_BY_ID: dict[str, PaperDirectories] = {
 REGISTERED_PAPER_DIRECTORIES: frozenset[str] = frozenset(
     [entry.active for entry in PAPER_DIRECTORIES]
     + [directory for entry in PAPER_DIRECTORIES for directory, _ in entry.retired]
+    + list(FUTURE_PAPER_DIRECTORIES.values())
 )
 
 
@@ -639,6 +678,15 @@ def validate_registry() -> tuple[str, ...]:
             if directory in seen_directories:
                 errors.append(f"directory {directory} is registered to more than one paper")
             seen_directories.add(directory)
+    for paper_id, directory in FUTURE_PAPER_DIRECTORIES.items():
+        if paper_id in PAPER_DIRECTORIES_BY_ID:
+            errors.append(f"paper {paper_id} is registered as both current and future")
+        if directory in seen_directories:
+            errors.append(f"directory {directory} is registered to more than one paper")
+        seen_directories.add(directory)
+    for issue, _, absorbed_into in RETIRED_PAPER_NUMBERING:
+        if absorbed_into not in FUTURE_PAPER_DIRECTORIES and absorbed_into not in PAPER_GATES:
+            errors.append(f"issue #{issue} is absorbed into unregistered identity {absorbed_into}")
 
     return tuple(dict.fromkeys(errors))
 
@@ -646,11 +694,13 @@ def validate_registry() -> tuple[str, ...]:
 __all__ = [
     "ALL_GATES",
     "ALL_GATE_IDS",
+    "FUTURE_PAPER_DIRECTORIES",
     "PAPER_DIRECTORIES",
     "PAPER_DIRECTORIES_BY_ID",
     "PAPER_GATES",
     "PAPER_ISSUES",
     "REGISTERED_PAPER_DIRECTORIES",
+    "RETIRED_PAPER_NUMBERING",
     "PaperDirectories",
     "P1_U_GATES",
     "P2_U_GATES",

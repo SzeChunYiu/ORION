@@ -70,11 +70,13 @@ from orion.programme.superiority_report import (
 )
 from orion.programme.superiority_terminals import (
     ALL_GATES,
+    FUTURE_PAPER_DIRECTORIES,
     PAPER_DIRECTORIES,
     PAPER_DIRECTORIES_BY_ID,
     PAPER_GATES,
     PAPER_ISSUES,
     REGISTERED_PAPER_DIRECTORIES,
+    RETIRED_PAPER_NUMBERING,
     validate_registry,
 )
 
@@ -916,7 +918,11 @@ def test_ledger_document_counts_match_the_report() -> None:
 
 
 def test_every_registered_paper_directory_exists() -> None:
-    """The registry names real directories, active and retired alike."""
+    """The registry names real directories, active and retired alike.
+
+    Only the ten adjudicated papers. ``FUTURE_PAPER_DIRECTORIES`` deliberately
+    names directories that do not exist yet.
+    """
 
     for entry in PAPER_DIRECTORIES:
         assert (REPO_ROOT / entry.active).is_dir(), entry.active
@@ -986,3 +992,49 @@ def test_the_ledger_cites_only_registered_paper_directories() -> None:
                 item.artifact_ref.startswith(f"{directory}/")
                 for directory in REGISTERED_PAPER_DIRECTORIES
             ), item.artifact_ref
+
+
+def test_future_identities_are_registered_before_their_directories_arrive() -> None:
+    """P11-P14 must not red the identity check the day PR #715 lands.
+
+    A check that fires on identity rot must not fire on a legitimate new identity.
+    Registering the four names ahead of the directories is what keeps those two
+    apart, so this asserts both halves: the names are known, and they are not
+    expected on disk yet.
+    """
+
+    assert set(FUTURE_PAPER_DIRECTORIES) == {"P11", "P12", "P13", "P14"}
+    for paper_id, directory in FUTURE_PAPER_DIRECTORIES.items():
+        assert directory in REGISTERED_PAPER_DIRECTORIES
+        assert paper_id not in PAPER_DIRECTORIES_BY_ID, "not adjudicated by this module"
+        assert paper_id not in PAPER_GATES, "no Done-when gates exist for P11-P14"
+
+
+def test_a_future_directory_appearing_does_not_fail_the_identity_check(
+    tmp_path: Path,
+) -> None:
+    (tmp_path / "papers" / "candidates").mkdir(parents=True)
+    for entry in PAPER_DIRECTORIES:
+        (tmp_path / entry.active).mkdir(parents=True, exist_ok=True)
+        for directory, _ in entry.retired:
+            (tmp_path / directory).mkdir(parents=True, exist_ok=True)
+    for directory in FUTURE_PAPER_DIRECTORIES.values():
+        (tmp_path / directory).mkdir(parents=True, exist_ok=True)
+    assert paper_identity_findings(tmp_path) == ()
+
+
+def test_retired_numbering_records_what_absorbed_each_track() -> None:
+    """#670 retires a number rather than renumbering a paper.
+
+    Three research tracks lost their standalone paper numbering and became child
+    tracks. The issues stay open; only the publication identity was withdrawn.
+    """
+
+    assert {issue for issue, _, _ in RETIRED_PAPER_NUMBERING} == {664, 667, 668}
+    for issue, description, absorbed_into in RETIRED_PAPER_NUMBERING:
+        assert description.strip(), issue
+        assert absorbed_into in FUTURE_PAPER_DIRECTORIES or absorbed_into in PAPER_GATES
+
+    # Nothing in P1-P10 was absorbed: #670 states "P1-U-P8-U remain #649-#656",
+    # and P9/P10 keep their own successor issues.
+    assert not any(target in PAPER_GATES for _, _, target in RETIRED_PAPER_NUMBERING)
