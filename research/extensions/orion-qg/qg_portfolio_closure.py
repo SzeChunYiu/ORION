@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+import argparse, hashlib, json
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[3]; QG=ROOT/'research/extensions/orion-qg'; DEV=ROOT/'development/orion-qg-regime-geometry'; OUT=ROOT/'artifacts/orion-qg-portfolio-closure.json'; PROTOCOL=DEV/'QG_PORTFOLIO_CLOSURE_PROTOCOL_V1.md'; TOKEN='ORIONQG_PORTFOLIO='
+FILES={'qg2':'QG2_OBJECTIVE_ROBUSTNESS_RESULTS.json','qg3':'QG3_BOUNDARY_PROSPECTIVE_RESULTS.json','qg4':'QG4_SECOND_FAMILY_RESULTS.json','qg5':'QG5_CERTIFIED_FORECAST_RESULTS.json','qg6':'QG6_SYNDROME_DIMENSION_RESULTS.json','qg8':'QG8_OBJECTIVE_SUPPORT_PHASE_RESULTS.json','qg12':'QG12_SIXLCU_P0_THEOREM_RESULTS.json','qg13':'QG13_THEOREM_MINER_RESULTS.json','qg15':'QG15_THIRD_FAMILY_RESULTS.json','qg15b':'QG15B_PREDICATE_LANGUAGE_RESULTS.json','qg9v6':'QG9_V6_SUPPORT1_NORMALIZATION_RESULTS.json'}
+def canonical(v): return json.dumps(v,sort_keys=True,separators=(',',':'),allow_nan=False)
+def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
+def load(k): return json.loads((QG/FILES[k]).read_text())
+def gates(d): return bool(d.get('gates')) and all(bool(v) for v in d['gates'].values())
+def has(d,s): return s in canonical(d)
+def main():
+ ap=argparse.ArgumentParser(); ap.add_argument('--output',type=Path,default=OUT); args=ap.parse_args(); d={k:load(k) for k in FILES}
+ lane={}
+ lane['qg2']={'issue':849,'closed':d['qg2'].get('authority')=='ORIONQ_QG2_OBJECTIVE_ROBUSTNESS_MIXED__FROZEN_REWEIGHTED_OBJECTIVES__NOT_R6' and gates(d['qg2']) and has(d['qg2'],'NEW_SUPPORT3') and has(d['qg2'],'O2'),'terminal':'QG2_OBJECTIVE_ROBUSTNESS_MIXED_CLOSED__O1_REFUTES_OBJECTIVE_INDEPENDENT_CLOSURE__O2_INVARIANT'}
+ lane['qg3']={'issue':850,'closed':d['qg3'].get('outcome')=='POSITIVE_REGIME_PREDICTIONS_CONFIRMED' and d['qg3'].get('match_count')==102 and d['qg3'].get('mismatches_verbatim')==[] and gates(d['qg3']),'terminal':'QG3_PROSPECTIVE_FORECASTING_CLOSED__102_OF_102_CONFIRMED_IN_FROZEN_SCOPE'}
+ lane['qg4_qg5']={'issue':851,'closed':str(d['qg4'].get('authority','')).startswith('ORION_QG4_SECOND_FAMILY_TEMPLATE_TRANSFERRED') and gates(d['qg4']) and d['qg5'].get('authority')=='QG5_FORECAST_IDENTITY_REFUTED__BOUNDARY_INSTANCES_REPORTED_VERBATIM__NOT_R6' and d['qg5'].get('benchmark',{}).get('nonzero_forecast_errors_total')==1 and has(d['qg5'],'"C_DP":10') and has(d['qg5'],'"predicted_C_DP":11'),'terminal':'QG4_QG5_MIXED_CLOSED__SIXLCU_TEMPLATE_TRANSFERRED__STATIC_FORECAST_UNIVERSALITY_REFUTED'}
+ lane['qg6']={'issue':848,'closed':d['qg6'].get('r6m',{}).get('auto_dimension')==2 and d['qg6'].get('r6i',{}).get('auto_dimension')==5 and gates(d['qg6']) and d['qg9v6'].get('intrinsic_support_number')==1 and d['qg9v6'].get('both_accept') is True,'terminal':'QG6_MIXED_CLOSED__PRODUCTION_SYNDROME_RANK_INFERENCE_VERIFIED__RANK_IS_LOOSE_EDIT_RELATIVE_UPPER_BOUND'}
+ lane['qg8']={'issue':847,'closed':gates(d['qg8']) and d['qg8'].get('proof_audit',{}).get('outside_cone_not_equated_with_support3_required') is True and d['qg8'].get('qg2_binding',{}).get('all_bound') is True and has(d['qg8'],'t_c - 2*t_r >= 0') and has(d['qg8'],'t_nc - 2*t_r >= 0'),'terminal':'QG8_MIXED_CLOSED__ALL_N_SUPPORT2_CONE_PROVED__OUTSIDE_SUPPORT3_CONTROL_BOUND__GLOBAL_DIAGRAM_UNCLAIMED'}
+ lane['qg12']={'issue':846,'closed':gates(d['qg12']) and d['qg12'].get('blind_complete_regression',{}).get('zero_mismatches') is True and d['qg12'].get('certificate_structure',{}).get('interaction_arity')==2 and gates(d['qg15b']) and has(d['qg15b'],'mixed') and has(d['qg15b'],'43'),'terminal':'QG12_MIXED_CLOSED__SIXLCU_PAIR_CERTIFICATE_ALL_INSTANCE_THEOREM__LOW_ORDER_BOUNDARY_NOT_UNIVERSAL'}
+ lane['qg13']={'issue':845,'closed':d['qg13'].get('terminal')=='QG13_AUTOMATIC_THEOREM_MINER_RECOVERS_R6M_AND_R6I_PARENT_THEOREMS' and gates(d['qg13']) and d['qg13'].get('new_theorem_authority') is False and d['qg9v6'].get('intrinsic_support_number')==1 and has(d['qg9v6'],'Whole-system Tag relocation'),'terminal':'QG13_MIXED_CLOSED__THEOREM_MINER_RECOVERY_SUPPORTED__FIXED_AUXILIARY_PROOF_SYSTEM_INCOMPLETE__AUXILIARY_RECONSTRUCTION_REQUIRED'}
+ all_closed=all(x['closed'] for x in lane.values())
+ for k,x in lane.items(): x['source_sha256']=[sha(QG/FILES[s]) for s in ({'qg4_qg5':['qg4','qg5'],'qg6':['qg6','qg9v6'],'qg12':['qg12','qg15b'],'qg13':['qg13','qg9v6']}.get(k,[k]))]
+ out={'schema':'ORION.QG.PortfolioClosure.v1','protocol_sha256':sha(PROTOCOL),'base_revision':'c5ba39fef4f25c46de5fb69bf07f50530f4693ca','lanes':lane,'all_closed':all_closed,'terminal':'ORION_QG_EARNED_PORTFOLIO_LANES_ADJUDICATED_CLOSED__MIXED_THEOREM_REFUTATION_BOUNDARIES_PRESERVED' if all_closed else 'ORION_QG_PORTFOLIO_ADJUDICATION_INCOMPLETE','novelty_authority':False,'r6_authority':False,'physical_quantum_advantage_claim':False}
+ u=dict(out); out['result_digest']=hashlib.sha256(canonical(u).encode()).hexdigest(); args.output.parent.mkdir(parents=True,exist_ok=True); args.output.write_text(json.dumps(out,indent=2,sort_keys=True)+'\n'); print(TOKEN+canonical({'terminal':out['terminal'],'all_closed':all_closed,'result_digest':out['result_digest'],'lanes':{k:v['closed'] for k,v in lane.items()}})); return 0
+if __name__=='__main__': raise SystemExit(main())
