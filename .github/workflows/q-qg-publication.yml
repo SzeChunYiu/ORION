@@ -13,6 +13,7 @@ on:
       - 'papers/Q_QG_**'
       - 'papers/check_q_qg_publication.py'
       - 'papers/check_q_qg_science_manifests.py'
+      - 'papers/build_q_qg_cited_masters.py'
       - '.github/workflows/q-qg-publication.yml'
   push:
     branches:
@@ -28,6 +29,7 @@ on:
       - 'papers/Q_QG_**'
       - 'papers/check_q_qg_publication.py'
       - 'papers/check_q_qg_science_manifests.py'
+      - 'papers/build_q_qg_cited_masters.py'
       - '.github/workflows/q-qg-publication.yml'
 
 permissions:
@@ -49,3 +51,12 @@ jobs:
         run: python papers/Q-paper-02-recursive-recovery/check_transition_graph.py
       - name: Validate paper-specific science manifests against frozen cuts
         run: python papers/check_q_qg_science_manifests.py
+      - name: Generate cited submission masters from final scientific text
+        run: python papers/build_q_qg_cited_masters.py --clean
+      - name: Archive cited masters and verified bibliography
+        uses: actions/upload-artifact@v4
+        with:
+          name: q-qg-cited-masters
+          path: build/q_qg_cited
+          if-no-files-found: error
+          retention-days: 30
