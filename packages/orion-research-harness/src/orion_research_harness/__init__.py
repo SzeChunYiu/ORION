@@ -39,6 +39,7 @@ from .mechanics_bridge import (
 from .protocol import CapabilityRequest, CapabilityResult
 from .recursive_runner import RecursiveRunLimits, run_problem_recursive
 from .recursive_budget_hardening import install_recursive_budget_hardening
+from .recursive_cost_hardening import install_recursive_cost_hardening
 from .recursive_experience_binding import (
     WorkspaceRecursiveLLMResearchReasoner,
     install_workspace_recursive_reasoner,
@@ -71,6 +72,7 @@ __all__ = [
     "execution_coverage",
     "initialize_campaign",
     "install_recursive_budget_hardening",
+    "install_recursive_cost_hardening",
     "install_workspace_recursive_reasoner",
     "mechanic_catalog",
     "mechanic_detail",
