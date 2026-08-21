@@ -20,8 +20,8 @@ def included_files() -> list[Path]:
     roots = [
         ROOT / "framework",
         ROOT / "results",
-        PAPERS / "paper-09-executable-research-core",
-        PAPERS / "paper-10-content-bound-math-evaluation",
+        PAPERS / "paper-xx-executable-research-core",
+        PAPERS / "paper-xx-content-bound-math-evaluation",
     ]
     suffixes = {".arff", ".bib", ".json", ".lean", ".md", ".py", ".sh", ".txt"}
     # The 2026-08-20 P10 publication overlay (PUBLICATION_MANIFEST_P10_V2.txt)
@@ -29,10 +29,10 @@ def included_files() -> list[Path]:
     # the overlay only and must stay absent from this SHA256 manifest, whose V2
     # closure check requires exactly the five superseded legacy P10 paths.
     v2_additive = {
-        "paper-10-content-bound-math-evaluation/P10_REVIEW_EXPANSION_BOUNDARY.md",
-        "paper-10-content-bound-math-evaluation/REVIEW_PACKAGE_STATUS_2026-08-20.md",
-        "paper-10-content-bound-math-evaluation/analyze_module_robustness_v1.py",
-        "paper-10-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS_RECEIPT_V1.json",
+        "paper-xx-content-bound-math-evaluation/P10_REVIEW_EXPANSION_BOUNDARY.md",
+        "paper-xx-content-bound-math-evaluation/REVIEW_PACKAGE_STATUS_2026-08-20.md",
+        "paper-xx-content-bound-math-evaluation/analyze_module_robustness_v1.py",
+        "paper-xx-content-bound-math-evaluation/results/MATHLIB_TRANSFER_V2_1_MODULE_ROBUSTNESS_RECEIPT_V1.json",
     }
     files = [
         path

@@ -155,14 +155,21 @@ def test_the_precision_fix_lost_no_classification() -> None:
     three reviewed classified obligations, T8's prospective preflight added two
     identity-bound obligations, and the integrated science-first closure stack
     adds five reviewed classified obligations: two INSUFFICIENT_EVIDENCE and
-    three MISSING_DECLARATION sites. The exact ratchet is therefore 151. Future
-    additions must update this sentinel deliberately rather than weakening it to
-    a lower-bound check.
+    three MISSING_DECLARATION sites. The P1-P10 superiority adjudicator
+    (``orion.programme.superiority``, issues #649-#663) adds four more reviewed
+    obligations: three MISSING_DECLARATION sites where a gate's evidence, its
+    artifact, or the independence of its reviewer is not recorded, and one
+    INSUFFICIENT_EVIDENCE site where a terminal demanding a claim wider than the
+    registered families has not yet been reached. The third MISSING_DECLARATION
+    site arrived with ``INDEPENDENT_REVIEW``, added after PR #739 review found
+    three review terminals unpassable via their own unblock path. The exact
+    ratchet is therefore 155. Future additions must update this sentinel
+    deliberately rather than weakening it to a lower-bound check.
     """
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
-    assert sum(classified.values()) == 151, classified
+    assert sum(classified.values()) == 155, classified
     assert committed["with_reason"] < committed["blocker_sites"]
     assert committed["with_reason"] >= sum(classified.values()), (
         "more sites are classified than carry a reason, so something is classifying on nothing"
