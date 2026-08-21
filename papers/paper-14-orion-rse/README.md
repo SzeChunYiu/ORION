@@ -10,42 +10,50 @@
 
 ## Status
 
-`PEER_REVIEW_PACKAGE_READY / CONTROLLED_GOVERNANCE_SUPERIORITY_SUPPORTED / REAL_AGENT_VALIDATION_OPEN`
+`PEER_REVIEW_PACKAGE_READY / SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMANCE_SUPPORTED / EXTERNAL_SCIENTIFIC_VALIDITY_OPEN`
 
 ### P14A — preserved negative
 
-The first mixed-distribution benchmark remains `P14A_CONTROLLED_GOVERNANCE_SUPERIORITY_GATE_NOT_MET`. Full ORION-RSE had zero false promotions and full useful-discovery recall, but the strongest comparator differed only on a history/reopen discriminator occupying 1.8375% of realized cases. The registered aggregate separation gates therefore failed. No P14A threshold was changed.
+`P14A_CONTROLLED_GOVERNANCE_SUPERIORITY_GATE_NOT_MET` remains permanent. The decisive negative-history discriminator occupied only 1.8375% of the realized mixed benchmark, so the registered aggregate separation gates failed. No threshold was changed.
 
-See `P14A_CONTROLLED_GOVERNANCE_RESULT_RECEIPT_V1.json` and `P14A_OUTCOME_ROOT_CAUSE_V1.md`.
+### P14B — balanced semantic test with circularity boundary
 
-### P14B — independent balanced successor
+Full ORION-RSE scored 0 false promotions / 1.0 disposition accuracy / 1.0 useful-discovery recall versus `MULTI_REVIEW` at 14.29% false promotion / 0.8571 accuracy over 6,720 balanced cases. However, the original full arm directly reused the gold decision function. P14B therefore remains useful as a semantic discriminator but is **not** treated as implementation-independent evidence.
 
-Across 6,720 balanced protected cases:
+### P14C — specification-separated successor
 
-- full ORION-RSE false promotion: **0**;
-- full disposition accuracy: **1.0000**;
-- full useful-discovery recall: **1.0000**;
-- strongest non-ORION `MULTI_REVIEW` false promotion: **0.142857**;
-- `MULTI_REVIEW` disposition accuracy: **0.857143**;
-- both correctly reopen genuinely material new evidence;
-- only full ORION-RSE correctly retains live negative history when no material new evidence exists;
-- every registered component ablation is worse;
-- two-run SHA-256: `784d57e694b9a96828e72bc5e80dfc9e533cf738b568e45a71ce9fd08d679e66`.
+Frozen after the circularity issue was identified:
 
-Terminal: `P14B_BALANCED_GOVERNANCE_SUPERIORITY_SUPPORTED`.
+- 28 explicit adjudication cases in a separate specification artifact;
+- four variants for each of seven scientific dispositions;
+- gold/rationale/id/stratum stripped before every policy call;
+- independently implemented full policy;
+- six component ablations.
+
+Result:
+
+- full ORION-RSE disposition accuracy: **1.0000**;
+- false promotion: **0**;
+- useful-discovery recall: **1.0000**;
+- strongest non-ORION `MULTI_REVIEW`: **0.857143** accuracy, **0.142857** false promotion;
+- all six ablations worse;
+- two-evaluation canonical SHA-256: `74032348de7e6508b6c1827aabcf1bf9d354d30b9c6f81c8259fdb3535f01a63`.
+
+Terminal: `P14C_SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMANCE_SUPPORTED`.
 
 ## Strongest paper claim
 
-> Under matched decision resources in a preregistered balanced hidden-gold benchmark, full ORION-RSE makes fewer scientific promotion/disposition errors than raw-positive, reflection/checklist, donor-aware and interaction-aware multi-review contracts while preserving every valid residual promotion. The decisive mechanism is retaining negative/subsumed history until genuinely material evidence justifies reopening.
+> Against a separately frozen adjudication specification whose gold labels are withheld from policy inputs, the full ORION-RSE implementation conforms strictly better than registered raw-positive, reflection/checklist, donor-aware and interaction-aware partial governance contracts without suppressing valid promotion.
 
 ## Artifacts
 
 - `MANUSCRIPT.md`
 - `CLAIM_EVIDENCE_LEDGER.md`
 - `PEER_REVIEW_READINESS.md`
-- P14A negative receipt/root-cause audit
-- P14B protocol, harness and result receipt
+- P14A negative protocol/receipt/root-cause audit
+- P14B balanced semantic protocol/harness/receipt
+- P14C specification-separated protocol, case table, harness and result receipt
 
 ## Boundary
 
-Broader claims about open-ended research-agent performance require blinded realistic research packets, matched agent workflows, independent adjudication and longitudinal useful-discovery testing.
+P14C removes direct implementation circularity but the adjudication specification is internally authored. Broader claims about scientific validity or research-agent superiority require blinded external adjudication, realistic multi-domain packets, matched agent workflows and longitudinal testing.

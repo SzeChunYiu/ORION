@@ -2,290 +2,243 @@
 
 **ORION-P14 · issue #669 · programme #670**  
 **Evidence freeze:** 2026-08-21  
-**Submission status:** peer-review package; controlled governance-contract superiority supported, real research-agent superiority open
+**Submission status:** peer-review package; controlled governance-conformance superiority supported, external research-agent validation open
 
 ## Abstract
 
-Research agents can generate hypotheses, retrieve literature, design experiments and draft interpretations faster than they can reliably determine what those outputs scientifically warrant. We present **ORION-RSE**, a fail-closed recursive scientific-governance contract that separates research generation from claim promotion. ORION-RSE decomposes claims into falsifiable atoms, subtracts nearest-donor ownership before novelty promotion, freezes protected discriminators before outcomes, preserves null/negative/subsumed histories, distinguishes standalone from interaction-only evidence, records `CANNOT_CHECK`, separates evaluators from scientific authority, stops recursion when no material discriminator remains and reopens prior decisions only after material evidence or regime change. We evaluate the governance layer itself rather than claiming a new autonomous scientist. A first preregistered mixed-distribution benchmark is retained as **negative**: ORION-RSE made zero false promotions and retained 100% valid discoveries, but the strongest non-ORION comparator differed only on negative-history semantics, which occupied 1.8375% of the realized benchmark, so the registered ≥5% false-promotion and ≥8-point accuracy-separation gates could not pass. Root-cause analysis identified underweighted discriminator prevalence rather than a prediction disagreement. A fresh, independently frozen balanced-stratum successor then gives equal protected weight to clean support, legitimate reopening, retained negative history, donor subsumption, interaction-only evidence, `CANNOT_CHECK` and negative evidence. Across **6,720 protected cases**, full ORION-RSE achieves **0 false promotions, 1.000 disposition accuracy and 1.000 useful-discovery recall**. The strongest non-ORION comparator, an interaction-aware multi-review workflow, has **14.29% false promotions and 0.8571 disposition accuracy** while retaining full valid-discovery recall; its failure is specifically premature re-promotion of live negative history. Every registered ORION-RSE component ablation worsens protected decisions. The result supports a controlled superiority claim for the **governance contract**, not for autonomous research-agent performance. Blinded realistic research packets, matched frontier-agent baselines and longitudinal useful-discovery testing remain required for that broader claim.
+Research agents can generate hypotheses, retrieve literature, design experiments and draft interpretations faster than they can reliably determine what those outputs scientifically warrant. We present **ORION-RSE**, a fail-closed recursive scientific-governance contract that separates research generation from claim promotion. ORION-RSE atomizes claims, subtracts nearest-donor ownership before novelty promotion, freezes protected discriminators before outcomes, retains null/negative/subsumed history, distinguishes standalone from interaction-only evidence, records `CANNOT_CHECK`, separates evaluator identity from scientific authority, stops recursion when no material discriminator remains and reopens prior decisions only after material evidence or regime change. We evaluate this governance layer rather than claiming a new autonomous scientist. A first preregistered mixed benchmark is retained as **negative**: full ORION-RSE made zero false promotions and retained every valid discovery, but the only residual discriminator against the strongest comparator occupied 1.8375% of the realized cases, so registered aggregate separation gates could not pass. A fresh balanced benchmark gives equal protected weight to seven scientific dispositions and yields 0 false promotions, 1.000 disposition accuracy and 1.000 useful-discovery recall for the full contract versus 14.29% false promotion and 0.8571 accuracy for the strongest interaction-aware multi-review baseline. That benchmark originally implemented the full policy through the same adjudication function used for gold, so we treat it as an internal semantic-discriminator result rather than independent validation. We therefore preregister a third **specification-separated** successor: 28 explicit gold cases are frozen in a separate adjudication artifact, the policy receives facts only, and the full implementation is independently coded. Full ORION-RSE is 28/28 correct with zero false promotions and full valid-discovery recall; `MULTI_REVIEW` is 24/28 with 14.29% false promotion, all six component ablations are worse, and two evaluations yield identical canonical SHA-256 `74032348…f01a63`. The resulting claim is strong but precise: **against the registered governance specification, the complete contract conforms strictly better than partial review contracts without suppressing valid promotion.** Whether the specification itself improves open-ended real science remains an external blinded-adjudication question.
 
 ## 1. Introduction
 
-Scientific research is not equivalent to generating a plausible hypothesis or a positive result. A claim must be interpreted relative to prior work, the exact question frozen before observation, negative/null evidence, alternative explanations, resource constraints and the authority of the evaluator. Research agents amplify both opportunity and failure: they can produce more candidate studies, but they can also produce more false novelty, widened claims, post-hoc endpoints, forgotten negatives, donor duplication and confident closure when the evidence is non-identifying.
+Scientific research is not equivalent to producing a plausible hypothesis or a positive result. A claim must be interpreted relative to prior work, the question frozen before observation, negative/null evidence, competing explanations, resource constraints and the authority of the evaluator. Research agents amplify both opportunity and failure: they can produce more candidate studies, but also more false novelty, widened claims, post-hoc endpoints, forgotten negatives, donor duplication and confident closure when evidence is non-identifying.
 
-Autonomous and semi-autonomous systems already search literature, generate hypotheses, run code, design experiments and revise research artifacts. Recent work has moved toward goal-evolving scientific agents and direct evaluation of how research agents explore the scientific landscape. ORION-RSE does not claim that recursive research, reflection, debate, literature retrieval or multi-agent review are new.
+Autonomous and semi-autonomous systems already search literature, generate hypotheses, run code, design experiments and revise research artifacts. Goal-evolving scientific agents make recursive discovery an explicit system objective. Recent work also asks how research agents change the breadth of scientific exploration. ORION-RSE therefore does not claim autonomous research, recursion, reflection, debate or retrieval as new primitives.
 
-Its question is narrower and experimentally sharper:
+Its question is narrower and more falsifiable:
 
-> **Can an explicit scientific-governance contract reduce false scientific promotion under matched information and decision resources without suppressing valid residual discoveries?**
+> **Can an explicit scientific-governance contract make better claim-promotion decisions than strong partial review contracts under matched information and decision resources, while preserving valid discoveries?**
 
-ORION-RSE separates two responsibilities:
+ORION-RSE separates candidate generation from scientific promotion. The candidate system may propose claims and evidence; it cannot grant itself novelty or scientific authority merely because its own checks pass.
 
-1. **candidate research generation** — propose claims, donors, experiments and interpretations;
-2. **scientific governance** — decide what the evidence is authorized to establish, what is already donor-owned, what remains negative or non-identifiable, when recursion should stop and when prior decisions may reopen.
+The paper contributes:
 
-The candidate system cannot grant itself novelty or scientific authority merely because its own checks pass.
-
-This paper contributes:
-
-- a falsifiable governance lifecycle for research decisions;
-- explicit scientific dispositions including `SUBSUMED`, `INTERACTION_ONLY`, `RETAIN_NEGATIVE` and `CANNOT_CHECK`;
-- a matched-resource benchmark design that penalizes blanket abstention through useful-discovery recall;
-- a preserved negative mixed-benchmark result and root-cause diagnosis;
-- an independently frozen balanced-discriminator benchmark in which ORION-RSE strictly outperforms strong rule-based review baselines without losing valid discoveries.
+1. a bounded research-governance lifecycle;
+2. explicit dispositions including `SUBSUMED`, `INTERACTION_ONLY`, `RETAIN_NEGATIVE` and `CANNOT_CHECK`;
+3. a matched-resource evaluation with useful-discovery recall so blanket abstention cannot win;
+4. a preserved negative mixed benchmark and its root-cause diagnosis;
+5. a balanced semantic-discriminator benchmark;
+6. a specification-separated successor that removes direct gold-function reuse and tests every core component through ablation.
 
 ## 2. Donor boundary and novelty
 
-### 2.1 Research agents are prior-owned
+Autonomous/goal-evolving research agents own recursive hypothesis, literature and experiment generation. Reflection, self-critique, reviewer agents and multi-agent debate own iterative review as a primitive. Preregistration/checklists own prospective endpoint discipline. Truth-maintenance systems own dependency-aware belief history; provenance owns evidence lineage; authorization systems own separation of actor permission from operation.
 
-Autonomous scientific agents already perform literature review, hypothesis generation, experiment design and iterative refinement. Goal-evolving systems such as SAGA explicitly pursue recursive scientific discovery. Work on research-agent exploration shows that agentic science should itself be evaluated for search behavior and concentration. The recent AI Scientist / co-scientist line likewise establishes that automated scientific workflows are a live systems area.
+ORION-RSE adopts these ideas. The live residual is the **scientific promotion contract plus its evaluation**:
 
-P14 therefore does not claim autonomous research or recursion as novelty.
+> Claim atomization, donor subtraction, protected freeze, negative/subsumed history, interaction/non-identifiability dispositions, authority separation, recursion stops and material-change reopening are composed into one fail-closed decision lifecycle and compared with partial governance contracts on false-promotion, disposition and useful-discovery endpoints.
 
-### 2.2 Reflection, debate and review are prior-owned
+The object of study is the promotion decision, not document quality or process verbosity.
 
-Self-critique, reflection, researcher–reviewer separation, multi-agent debate and checklist/preregistration practices all provide prior art for adding review structure to generation. A paper that merely adds another critic agent would have little residual novelty.
-
-### 2.3 Provenance, truth maintenance and authorization are prior-owned
-
-Truth-maintenance systems preserve dependency-aware belief history; provenance systems bind claims to evidence; authorization systems separate capabilities from policy. ORION-RSE adopts these principles rather than renaming them.
-
-### 2.4 Residual after subtraction
-
-The live contribution is the **scientific-decision contract plus its evaluation**:
-
-> Claim atomization, donor subtraction, protected freeze, explicit negative/subsumed history, non-identifiability, authority separation, recursion stops and material-change reopening are composed into a fail-closed research-governance lifecycle and evaluated on scientific disposition errors under matched information/decision budgets with useful-discovery noninferiority.
-
-The object of study is not document quality or process verbosity. It is whether a system makes the correct **scientific promotion decision**.
-
-## 3. ORION-RSE objects
+## 3. ORION-RSE contract
 
 ### 3.1 Research atom
 
-A research atom is a bounded claim/question carrying:
+A research atom carries a bounded claim/question, parent identity, nearest donors, protected discriminator, protocol identity, evidence/resource receipts, evaluator identity, authority owner, disposition and stop/reopen conditions. Atomization is an investigation unit, not automatic publication fragmentation.
 
-- parent claim identity;
-- nearest donors/owners;
-- protected discriminator;
-- protocol/study identity;
-- evidence receipts;
-- resource envelope;
-- evaluator identity;
-- scientific authority owner;
-- disposition;
-- recursion stop/reopen conditions.
+### 3.2 Dispositions
 
-Atomization is an investigation unit, not automatic publication fragmentation.
+The contract distinguishes:
 
-### 3.2 Scientific dispositions
-
-The contract distinguishes at least:
-
-- `SUPPORTED_RESIDUAL` — positive bounded residual not fully donor-owned;
-- `SUBSUMED` — positive observation but claimed novelty is already donor-owned;
-- `INTERACTION_ONLY` — evidence supports only a joint interaction, not a standalone atom;
+- `SUPPORTED_RESIDUAL` — bounded positive residual not fully donor-owned;
+- `SUBSUMED` — the apparent residual is donor-owned;
+- `INTERACTION_ONLY` — evidence supports only a joint effect, not a standalone atom;
 - `REDUNDANT_EQUIVALENT`;
 - `OVERREACH_HARMFUL`;
 - `NON_IDENTIFIABLE`;
 - `CANNOT_CHECK`;
-- negative/null terminal;
-- `RETAIN_NEGATIVE` when new material does not justify reopening;
-- reopen after a genuinely material evidence/regime change.
+- negative/null outcomes;
+- `RETAIN_NEGATIVE` when new material does not justify reopening.
 
-A positive observation is therefore neither necessary nor sufficient for positive scientific promotion.
+A positive observation is therefore not identical to positive scientific promotion.
 
 ### 3.3 Donor subtraction
 
-Before novelty promotion, the system records the closest prior mechanisms and determines whether the candidate residual is adopted, adapted, composed, deferred or subsumed. This makes “positive result” and “novel contribution” separate coordinates.
+Before novelty promotion, the nearest prior mechanisms are recorded and the candidate residual is classified as adopted, adapted, composed, deferred or subsumed. “Positive evidence” and “novel contribution” are separate coordinates.
 
-### 3.4 Protected discriminator and protocol freeze
+### 3.4 Protected freeze
 
-The claim is tested against an endpoint specified before protected outcomes. Material post-outcome changes require a new protocol identity. A negative result can motivate a new question, but cannot rewrite the old terminal.
+The discriminator and terminal rules are specified before protected outcomes. A material post-outcome change requires a new protocol identity. A negative result may motivate a successor but cannot be rewritten.
 
-### 3.5 Negative-history ledger
+### 3.5 Negative-history ledger and reopening
 
-Null, negative, donor-subsumed and failed-preregistered outcomes remain first-class evidence. Reopening requires material new evidence or a changed regime, not a same-evidence reinterpretation.
+Null, negative and donor-subsumed outcomes remain active evidence. Reopening requires material new evidence or a changed regime, not a same-evidence reinterpretation.
 
-### 3.6 Evaluator/authority separation
+### 3.6 Authority separation
 
-Candidate models, local tests and automated judges can evaluate evidence but do not automatically own scientific/novelty authority. The system records external ownership of the final promotion decision.
+Candidate models, tests and automated judges may evaluate evidence, but they do not automatically own scientific/novelty authority. Synthetic gold or blinded external adjudication owns the benchmark label; real publication claims remain externally governed.
 
 ## 4. Lifecycle
 
-The core lifecycle is
+The core lifecycle is:
 
-`question -> claim atoms -> donor subtraction -> protected discriminator -> protocol freeze -> execution/receipts -> scientific disposition -> recurse/stop -> later reopen if materially warranted`.
+`question -> atoms -> donor subtraction -> protected discriminator -> protocol freeze -> execution/receipts -> disposition -> recurse/stop -> later reopen if materially warranted`.
 
-At every transition the system should be able to answer:
+At each transition the system records what changed, what evidence supports it, which donor owns nearby territory, what was frozen before outcome, what negative/subsumed history remains active and what is not authorized.
 
-1. What changed?
-2. What evidence supports the change?
-3. Which prior work owns nearby territory?
-4. What discriminator was frozen before outcomes?
-5. What negative/subsumed evidence remains active?
-6. What is the system *not* authorized to claim?
+`CANNOT_CHECK` is a valid scientific disposition when evidence or authority is insufficient.
 
-The lifecycle is fail-closed: `CANNOT_CHECK` is a legitimate scientific decision when evidence or authority is insufficient.
+## 5. Evaluation contract
 
-## 5. Benchmark design
+All compared policies receive identical case facts and identical fixed decision-check budgets. Candidate facts include positive/null observation, evidence integrity, protocol freeze, identifiability, donor ownership, interaction-only status, live negative history and material new evidence.
 
-P14 isolates governance from open-ended research generation. Every candidate policy receives the same synthetic research facts and the same fixed seven-check decision receipt. Protected gold is generated by an adjudication function that is not exposed as a terminal label.
+Registered policies:
 
-Case facts cover:
+1. `RAW_POSITIVE` — promote any positive observation;
+2. `REFLECTION_CHECKLIST` — add evidence/freeze/identifiability checks;
+3. `DONOR_AWARE_REVIEW` — add donor subtraction;
+4. `MULTI_REVIEW` — add interaction-only handling;
+5. `ORION_RSE_FULL` — add negative-history/material-reopen semantics;
+6. component ablations.
 
-- positive versus null observation;
-- evidence integrity;
-- whether the endpoint/protocol was frozen;
-- identifiability;
-- nearest-donor ownership;
-- standalone versus interaction-only value;
-- live negative/subsumed history;
-- whether new evidence is materially independent/regime-changing.
+Primary safety endpoint: false scientific promotion. Productivity endpoint: useful-discovery recall among gold `SUPPORTED_RESIDUAL` cases. Secondary: full disposition accuracy and component-specific correctness. This prevents an always-abstain system from winning.
 
-### Compared policies
-
-1. `RAW_POSITIVE` — promote any positive observation.
-2. `REFLECTION_CHECKLIST` — additionally check evidence integrity, freeze and identifiability.
-3. `DONOR_AWARE_REVIEW` — additionally subtract donor-owned positives.
-4. `MULTI_REVIEW` — additionally detect interaction-only evidence.
-5. `ORION_RSE_FULL` — additionally enforce negative-history/reopen semantics.
-6. Component ablations: no donor subtraction, no freeze, no interaction handling, no negative history.
-
-The strongest non-ORION baseline is selected by preregistered disposition accuracy rather than a post-hoc metric favorable to ORION.
-
-Primary safety endpoint: **false scientific promotion**.  
-Productivity constraint: **useful-discovery recall among gold `SUPPORTED_RESIDUAL` cases**.  
-Secondary: full disposition accuracy and component-specific correctness.
-
-This dual endpoint prevents an always-abstain policy from winning.
-
-## 6. P14A: preserved negative mixed benchmark
+## 6. P14A — preserved negative mixed benchmark
 
 P14A used 20 held-out families × 400 cases with independently varied fact rates. Full ORION-RSE produced:
 
-- false promotion: **0.000000**;
-- useful-discovery recall: **1.000000**;
-- disposition accuracy: **1.000000**;
-- history/reopen accuracy: **1.000000**.
+- false promotion `0.000000`;
+- useful-discovery recall `1.000000`;
+- disposition accuracy `1.000000`;
+- history/reopen accuracy `1.000000`.
 
-However, the strongest comparator `MULTI_REVIEW` produced:
+The strongest comparator, `MULTI_REVIEW`, produced:
 
-- false promotion: `0.018375`;
-- useful-discovery recall: `1.000000`;
-- disposition accuracy: `0.981625`;
-- history/reopen accuracy: `0.505051`.
+- false promotion `0.018375`;
+- useful-discovery recall `1.000000`;
+- disposition accuracy `0.981625`;
+- history/reopen accuracy `0.505051`.
 
-The protocol required strongest-baseline false promotion ≥0.05 and ORION accuracy advantage ≥0.08. Both gates failed. Terminal:
+The protocol required strongest-baseline false promotion ≥0.05 and accuracy separation ≥0.08. Both gates failed. Terminal:
 
 `P14A_CONTROLLED_GOVERNANCE_SUPERIORITY_GATE_NOT_MET`.
 
-The result is permanently negative.
+This terminal is permanent.
 
 ### 6.1 Root cause
 
-`MULTI_REVIEW` already checks evidence validity, protocol freeze, identifiability, donor ownership and interaction-only effects. The only remaining distinction from full ORION-RSE is whether a live negative/subsumed history may be re-promoted without material new evidence.
+After validity, freeze, identifiability, donor and interaction checks, the only difference between `MULTI_REVIEW` and full ORION-RSE is live negative history without material new evidence. In the realized random mixture, that effective discriminator occupied only **1.8375%** of all cases. The maximum possible aggregate accuracy gap was therefore also 1.8375 points.
 
-In the realized independent mixture, that effective discriminator occupied only **1.8375%** of all protected cases after upstream filters. Consequently, the maximum aggregate accuracy separation available against `MULTI_REVIEW` was itself 1.8375 percentage points. P14A was therefore underpowered **by discriminator prevalence**, even though the systems made different decisions on nearly half of the relevant history cases.
+The result identifies a benchmark-design problem: natural/random mixtures may underweight the decision boundary being tested. P14A is not retuned; it motivates a new balanced question.
 
-The failure does not authorize changing P14A's ≥5% or ≥8-point thresholds. Instead it motivates a distinct benchmark question: when each scientific governance discriminator receives explicit protected weight, does the full contract outperform its nearest alternatives?
+## 7. P14B — balanced semantic discriminator
 
-## 7. P14B: independently frozen balanced-discriminator benchmark
+P14B uses a fresh seed and 12 held-out families with seven equal strata: clean support, legitimate material reopening, retained negative history, donor subsumption, interaction-only evidence, `CANNOT_CHECK` and negative evidence. There are 6,720 protected cases total, with the same seven-check decision receipt for every arm.
 
-P14B was frozen after P14A's negative was committed. Fresh seed: `2026082115`. It contains **12 held-out families**, each with **80 cases in seven prospectively balanced strata**, for **6,720 cases** total:
+Full ORION-RSE yields:
 
-1. `SUPPORTED_CLEAN`;
-2. `SUPPORTED_REOPEN` — live negative history plus genuinely material new evidence;
-3. `RETAIN_NEGATIVE` — same-evidence rereading of live negative history;
-4. `SUBSUMED`;
-5. `INTERACTION_ONLY`;
-6. `CANNOT_CHECK` — one validity/freeze/identifiability defect;
-7. `NEGATIVE`.
+- false promotion **0**;
+- disposition accuracy **1.0000**;
+- useful-discovery recall **1.0000**.
 
-Case order and nuisance details are reminted within each family. All policies receive identical records and the same seven-check decision budget.
+Strongest non-ORION `MULTI_REVIEW` yields:
 
-## 8. P14B results
+- false promotion **0.142857**;
+- disposition accuracy **0.857143**;
+- useful-discovery recall **1.0000**.
+
+Both systems correctly allow genuinely material reopening; only full ORION-RSE retains negative history when no material new evidence exists. Every registered component ablation is worse. Two runs match SHA-256 `784d57e694b9a96828e72bc5e80dfc9e533cf738b568e45a71ce9fd08d679e66`.
+
+### 7.1 Circularity disposition
+
+The original P14B harness defines `ORION_RSE_FULL` by directly invoking the same decision function used as protected gold. Therefore P14B demonstrates that the chosen semantics distinguish full from partial contracts, but it is too circular to serve as implementation-independent evidence of conformance. We preserve the result and lower its evidentiary role rather than hiding the objection.
+
+## 8. P14C — specification-separated conformance benchmark
+
+P14C was frozen after the circularity issue was identified. It does not alter P14A or P14B.
+
+### 8.1 Independent artifacts
+
+- `P14C_ADJUDICATION_CASES_V1.json` contains **28 explicit frozen cases** and expected dispositions: four variants for each of the seven semantic strata.
+- `run_p14c_specification_separated_governance_v1.py` implements every policy independently from the case table.
+- Before a policy call, the harness strips `gold_disposition`, `rationale`, `case_id` and `stratum`; the policy receives only factual booleans.
+- Precedence variants test donor-over-interaction/history, interaction-over-history, validity failure and negative evidence.
+- Six ablations separately remove evidence-integrity, freeze, identifiability, donor, interaction and negative-history checks.
+
+The explicit case specification is internal to the programme, not a human external-adjudication dataset. P14C therefore evaluates **conformance to a separately frozen specification**, not truth about open-ended science.
+
+### 8.2 Results
 
 Terminal:
 
-`P14B_BALANCED_GOVERNANCE_SUPERIORITY_SUPPORTED`.
+`P14C_SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMANCE_SUPPORTED`.
 
-| policy | false promotion | disposition accuracy | useful-discovery recall |
+| policy | disposition accuracy | false promotion | useful-discovery recall |
 |---|---:|---:|---:|
-| **ORION_RSE_FULL** | **0.0000** | **1.0000** | **1.0000** |
-| `MULTI_REVIEW` | 0.142857 | 0.857143 | 1.0000 |
-| `DONOR_AWARE_REVIEW` | 0.285714 | 0.714286 | 1.0000 |
-| `REFLECTION_CHECKLIST` | 0.428571 | 0.571429 | 1.0000 |
-| `RAW_POSITIVE` | 0.571429 | 0.428571 | 1.0000 |
+| **ORION_RSE_FULL** | **1.0000** | **0.0000** | **1.0000** |
+| `MULTI_REVIEW` | 0.857143 | 0.142857 | 1.0000 |
+| `DONOR_AWARE_REVIEW` | 0.714286 | 0.285714 | 1.0000 |
+| `REFLECTION_CHECKLIST` | 0.571429 | 0.428571 | 1.0000 |
+| `RAW_POSITIVE` | 0.428571 | 0.535714 | 1.0000 |
 
-The strongest non-ORION comparator is `MULTI_REVIEW`. ORION-RSE therefore improves disposition accuracy by **+0.142857** while reducing false promotion by **14.2857 percentage points**, with **no loss in useful-discovery recall**.
+Full ORION-RSE correctly handles all retained-negative and supported-reopen cases. All six component ablations lower disposition accuracy. The gold field is absent from every policy input. Two independent evaluations generate identical canonical SHA-256:
 
-The difference is scientifically interpretable. `MULTI_REVIEW` handles legitimate material reopening correctly but re-promotes all protected `RETAIN_NEGATIVE` cases; full ORION-RSE distinguishes the two. Its retained-negative accuracy is 1.0 versus 0 for the strongest comparator, while supported-reopen accuracy remains 1.0 for both.
+`74032348de7e6508b6c1827aabcf1bf9d354d30b9c6f81c8259fdb3535f01a63`.
 
-Every registered component ablation lowers disposition accuracy. Full ORION-RSE uses the same seven-check decision receipt as every comparator. Two executions are byte-identical with SHA-256:
+### 8.3 Strongest current claim
 
-`784d57e694b9a96828e72bc5e80dfc9e533cf738b568e45a71ce9fd08d679e66`.
+P14C closes the direct implementation-circularity objection. The strongest evidence-backed statement is:
 
-## 9. What the controlled superiority result means
+> **Against an explicit adjudication specification frozen separately from the policy implementation, the full ORION-RSE decision contract conforms to every registered governance case and strictly outperforms the registered partial-governance implementations without reducing valid promotion.**
 
-P14B does **not** show that ORION-RSE is a better scientist than a frontier research agent. It shows something more primitive and directly falsifiable:
+This is stronger than a self-call conformance test and weaker than external scientific validity. The distinction is essential.
 
-> Given the same research facts and the same decision-check budget, a governance contract that includes donor subtraction, protected freeze, interaction semantics and negative-history/reopen rules makes strictly fewer scientific disposition errors than strong partial-review contracts while preserving every valid positive promotion in the protected benchmark.
+## 9. Required external validation
 
-This is the causal substrate that a real-agent evaluation can build on. Without it, any open-ended “research agent superiority” result would be hard to attribute to governance rather than model quality, retrieval, extra compute or judge preference.
+A broad claim that ORION-RSE improves real research requires new evidence.
 
-## 10. Required real-agent evaluation
+### Tier A — blinded realistic research packets
 
-The broad paper programme requires three additional tiers before claiming superiority over research agents.
+Prospectively assemble packets across multiple domains, e.g. ML experiments, formal/software verification and computational science. Candidate workflows receive identical literature/source packets, tools and model budgets. Independent blinded adjudicators determine the maximum admissible claim, donor overlap, negative-evidence handling, `CANNOT_CHECK` and valid discoveries.
 
-### Tier A — fresh hidden-gold decision worlds
+Comparators should include a strong research agent, reflection/self-critique, researcher–reviewer multi-agent workflow, literature-RAG + experiment planning, preregistration/checklist control and ORION component ablations.
 
-P14B supplies a controlled version; future cases should add more semantic diversity, indirect donor conflicts and resource/tool failures without leaking ORION labels.
+### Tier B — longitudinal history
 
-### Tier B — blinded realistic research packets
+Round 1 creates positive, null, negative and subsumed history. Round 2 changes evidence, donor set or regime. Evaluation must catch both forgetting old negatives and over-transferring old negatives after genuine material change.
 
-Prospectively assemble research packets across multiple domains, e.g. ML experiments, formal/software verification and computational science. Candidate systems receive identical literature/source packets, tools and model budgets. Independent blinded reviewers adjudicate the maximum scientifically admissible claim, donor overlap, negative-evidence handling, `CANNOT_CHECK` and useful discoveries.
+Useful-discovery noninferiority remains co-primary so safety cannot be purchased by blanket abstention.
 
-Required comparators include a strong raw research agent, reflection/self-critique, researcher–reviewer multi-agent workflow, literature-RAG + experiment planning, preregistration/checklist control and ORION component ablations.
+## 10. Resource accounting
 
-### Tier C — longitudinal research
+Every workflow should report model/checkpoint, evidence access, web/literature access, tool access, generated tokens, experiment/search budget, reviewer/evaluator calls, number of research/reflection passes and end-to-end latency. ORION-RSE cannot hide extra compute as “governance.”
 
-Round 1 creates positive, null, negative and subsumed history. Round 2 changes evidence, donor set or regime. The evaluation must distinguish two symmetric errors:
+Final scientific authority remains external to candidate workflows.
 
-- **forgetting** old negative/subsumed evidence and repeating false work;
-- **over-transfer** of an old negative after a genuine material regime change.
+## 11. Relation to current research-agent work
 
-Useful-discovery noninferiority remains co-primary so safety cannot be purchased through blanket abstention.
+Goal-evolving and autonomous scientific systems establish open-ended generation as a donor-owned direction. Research on scientific-exploration behavior shows that evaluation should consider what agents choose to explore, not only whether they can produce plausible papers. ORION-RSE studies a complementary layer: **scientific admissibility governance**.
 
-## 11. Resource accounting and authority
+Its distinctive mechanism is active negative/subsumed history plus material-reopen semantics on top of validity, donor and interaction checks. That is exactly where the strongest partial comparator fails in both P14B and the specification-separated P14C cases.
 
-Every candidate workflow must report model/checkpoint, input evidence, web/literature access, tool access, generation tokens, search/experiment budget, reviewer/evaluator calls, number of research/reflection passes and end-to-end latency. ORION-RSE cannot hide extra compute as “governance.”
+## 12. Limitations
 
-Final scientific authority must remain external to the candidate research system. Exact synthetic gold or blinded independent review can own evaluation; a candidate model cannot certify its own novelty merely by invoking the ORION vocabulary.
-
-## 12. Relation to current research-agent work
-
-Goal-evolving and autonomous scientific systems demonstrate that agents can recursively generate and refine research. Recent work also reports that AI research agents may narrow scientific exploration, making evaluation of research *behavior* and not only output quality increasingly important. ORION-RSE attacks a complementary problem: **scientific admissibility governance**.
-
-Its novelty is not another research-agent architecture. It is the explicit separation of generation from promotion and the preservation of negative/donor-subsumed history as active constraints on future decisions. That distinction is empirically necessary in P14B: the strongest interaction-aware review baseline still fails the retained-negative discriminator while preserving valid reopening.
-
-## 13. Limitations
-
-1. P14B is a symbolic/controlled decision benchmark, not natural-language open-ended research.
-2. The full contract implements the same adjudication concepts used to construct protected gold; realistic evaluation must prevent vocabulary or rule leakage.
-3. Balanced strata are appropriate for testing component discrimination but do not estimate natural real-world prevalence. P14A is retained to show why prevalence and discriminability must be reported separately.
-4. Seven-check costs are matched by construction; real workflows have heterogeneous token, retrieval, experiment and reviewer costs.
-5. Human or independent model adjudicators may disagree on real novelty and scientific admissibility.
+1. P14A–C are controlled symbolic decision benchmarks, not natural-language open-ended science.
+2. P14C removes direct gold-function reuse but the adjudication specification is still internally authored; external validity remains open.
+3. Balanced strata test discrimination, not real-world prevalence; P14A shows why prevalence and discriminability must be reported separately.
+4. Decision costs are matched abstractly; real workflows have heterogeneous token, retrieval, experiment and reviewer costs.
+5. Human or independent-model adjudicators may disagree on novelty and admissibility.
 6. Longitudinal value of negative-history retention is not yet demonstrated on realistic scientific work.
-7. ORION-RSE may reduce productive risk-taking if its reopen/materiality criteria are poorly calibrated; useful-discovery noninferiority is therefore mandatory in real evaluation.
-8. No claim of autonomous-scientist superiority is authorized by the current controlled result.
+7. Poorly calibrated reopen/materiality criteria could suppress productive risk-taking; useful-discovery noninferiority is therefore mandatory.
+8. No claim of frontier autonomous-research superiority is authorized.
 
-## 14. Conclusion
+## 13. Conclusion
 
-ORION-RSE treats research governance as a decision system that can itself be falsified. The paper does not ask whether an agent can produce more research text; it asks whether a governance contract prevents scientifically invalid promotion without suppressing valid discoveries. A first mixed benchmark is preserved as negative because its decisive history discriminator was too rare for the registered aggregate gates. A separately frozen balanced benchmark then shows exact controlled superiority: zero false promotions and perfect valid-discovery recall versus a 14.29% false-promotion rate for the strongest partial-review comparator. The result identifies the key residual mechanism—**negative-history and material-reopen governance on top of validity, donor and interaction checks**—and establishes a concrete contract for the next step: matched, blinded evaluation against real research-agent workflows.
+ORION-RSE treats scientific governance as a decision system that can itself fail. The paper preserves two important boundaries: P14A fails because the decisive discriminator is too rare in its mixed benchmark, and P14B is semantically informative but directly reuses its adjudication function for the full policy. P14C then removes that implementation circularity with a separately frozen case specification and independent policy implementation. The complete contract conforms to all registered cases, makes zero false promotions and preserves every valid promotion, while the strongest partial review contract fails the retained-negative boundary. The next claim frontier is external rather than synthetic: **blinded realistic packets, independent adjudication and longitudinal research history under matched resources.**
 
 ## References
 
-- Du, Y. et al. *Accelerating Scientific Discovery with Autonomous Goal-evolving Agents (SAGA).* arXiv:2512.21782, 2025/2026 versions.
+- Du, Y. et al. *Accelerating Scientific Discovery with Autonomous Goal-evolving Agents (SAGA).* arXiv:2512.21782.
 - Tang, Y. & Yang, Y. *AI Research Agents Narrow Scientific Exploration.* arXiv:2605.27905, 2026.
-- Recent AI Scientist / AI co-scientist systems establish autonomous scientific workflow generation as a donor-owned research direction; final typesetting should normalize the exact primary publication records used by the target venue.
+- Autonomous AI Scientist / AI co-scientist systems are donor-owned background for scientific-workflow generation; final venue preparation should normalize exact primary publication metadata.
 - Doyle, J. *A Truth Maintenance System.* Artificial Intelligence 12(3):231–272, 1979.
 - de Kleer, J. *An Assumption-Based TMS.* Artificial Intelligence 28(2):127–162, 1986.
