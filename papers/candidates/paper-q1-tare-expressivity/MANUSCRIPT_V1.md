@@ -512,11 +512,20 @@ coordinate that the R4B/R4D compilation results optimize on real Hamiltonians.
   sufficiency) hold for every n and every instance of the frozen grammar? The
   per-qubit inequalities hold for every n; what is missing is an analytic bound
   on the Tag-repair coupling. This is the natural target for a composition
-  argument over qubits. *(Forward slot: a MAX_R6S all-n composition receipt, if
-  it lands, would upgrade Result 4 and the completeness identity from
-  machine-evidenced to theorem-grade; no such receipt exists at this writing.)*
-- **Support-3 necessity**: no verified instance requires frame support ≥ 3; the
-  existence of a third regime outside the verified domains is open.
+  argument over qubits. **EXECUTED — THEOREM MACHINE-CHECKED**
+  (`research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json`): for
+  every n and every target configuration of the frozen R6M grammar, frame
+  Paulis of support ≥ 3 never strictly pay, so D++ equals the unrestricted DP
+  unconditionally. The proof is an F₂²-pigeonhole zero-sum-subset exchange
+  that never needs Tag repair, reduced to one exhaustive 18,432-case local
+  inequality (0 violations) plus a three-line combinatorial lemma (43,688
+  class tuples); the lemma's only failing patterns are exactly the four w=2
+  configurations realizing the frame-for-Tag trade, so the weight-2 boundary
+  is delineated analytically. This upgrades Result 3 (support-two
+  sufficiency) to theorem-grade for all n in the R6M grammar. The three-family
+  completeness identity and the R6I rank-2 grammar remain domain-bounded.
+- **Support-3 necessity**: resolved by the theorem above — no instance at any n
+  requires frame support ≥ 3 in the R6M grammar; no third regime exists there.
 - **Prospective fresh-subject test — EXECUTED, PREDICTION CONFIRMED**
   (`research/extensions/orion-q/MAX_R6R_PROSPECTIVE_FRESH_SUBJECT_RESULTS.json`):
   under a selection rule frozen before any fresh coefficient was read, the

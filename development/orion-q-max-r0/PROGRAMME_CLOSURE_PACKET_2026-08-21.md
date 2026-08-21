@@ -155,7 +155,28 @@ computation, and the exact R6M DP then confirmed the prediction on every matchin
 the programme's first prospective, pre-registered structural forecast — the strongest
 evidence form the framework produces.
 
-- [SLOT] R6S all-n composition attempt: outcome pending.
+**R6S executed — ALL-N THEOREM MACHINE-CHECKED.**
+`MAX_R6S_ALL_N_COMPOSITION_RESULTS.json`
+(`MAX_R6S_ALL_N_COMPOSITION_THEOREM_MACHINE_CHECKED__SUPPORT3_NEVER_PAYS__DXX_EQUALS_DP_
+ALL_N__NOT_R6`, all gates true, byte-identical double run, 52.7s):
+
+- For every n, target configuration, matching, permutation and central choice of the
+  frozen R6M grammar, frame Paulis of support ≥ 3 never strictly pay, so **D++ equals the
+  unrestricted DP unconditionally**. The proof replaces Tag-repair bookkeeping with an
+  F₂²-pigeonhole zero-sum-subset exchange (repair never needed), reducing everything to
+  one 18,432-case exhaustive inequality (0 violations) plus a three-line combinatorial
+  lemma (43,688 class tuples checked; the only failing patterns are exactly the four
+  w=2 configurations that realize the R6O trade — the weight-2 boundary is now
+  *delineated*, not just observed).
+- Corroboration: 70/70 DP == D++ on fresh n=3/n=4 panels; 210 seeded exchange descents
+  with predicted-vs-observed ΔC equality on all 899 steps.
+- Scope limits preserved: the frozen R6M grammar and support-count objective only; the
+  R6I rank-2 grammar and the three-family completeness identity remain domain-bounded;
+  no novelty or R6 authority.
+
+The R6 lane's mathematical arc is complete: weight-1 collapse explained, the weight-2
+trade characterized and delineated, nothing beyond weight 2 for any n — a closed,
+receipted theory of the family.
 
 ### 2.5 N-lane recoveries (issues #674–#677) — ALL EXECUTED 2026-08-21
 
