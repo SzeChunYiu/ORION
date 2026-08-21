@@ -7,10 +7,18 @@
     "explains": "The empirical collapses of the R6I, R6K and R6M exact DP optima onto the weight-one R6H/R6J/R6L donor families on both frozen open subjects; R6K combines the two verified mechanisms (rank-2 frame costs as in Lemma N-I, common-factor savings bounded as in Lemma N-M') although its specific local table is not separately enumerated here."
   },
   "discovery": {
+    "characterization": {
+      "donor_family_tag_anchor_coupling_violated": true,
+      "frame_support_dominance_violated": false,
+      "note": "Every joint-gap DP witness with dp_witness_max_frame_weight == 1 uses weight-one frames outside the donor family: blocks anchored at different qubits with a spread (weight >= 2) shared Tag, which the R6L common-weight-one-Tag donor grammar cannot express. In that case the per-unit frame support-dominance component of the lemma survives all checks and the refuted component is exactly the declared Tag-anchor coupling gap. The diagnostic C_weight_one_frames_any_tag_diagnostic column locates the gap: equality with C_unrestricted_dp confirms Tag-anchor coupling as the sole broken mechanism. This characterization is post-gate diagnosis, not a frozen gate; the frozen outcome mapping stands."
+    },
     "joint_gaps_unrestricted_beats_weight_one": [
       {
         "C_unrestricted_dp": 8,
+        "C_weight_one_frames_any_tag_diagnostic": 8,
         "C_weight_one_restricted": 9,
+        "dp_witness_max_frame_weight": 1,
+        "dp_witness_tag_weight": 2,
         "equal": false,
         "n": 2,
         "panel": "n2_b"
@@ -1118,7 +1126,7 @@
   "r6_authority": false,
   "reserved_stretched_n2_accessed": false,
   "responsibility": "RESP:SPREAD_SUPPORT_REGIME_DISCOVERED__REPORT_VERBATIM_AND_RE_FREEZE",
-  "runtime_seconds": 5.515,
+  "runtime_seconds": 5.565,
   "schema": "ORIONQ.MAXR6N.SupportDominanceAudit.v1",
   "scope": "SUPPORT_DOMINANCE_LEMMA_AUDIT_OVER_FROZEN_R6I_R6M_GRAMMARS_AND_RECEIPTS__EXPLANATORY_FAMILY_CLOSURE__NOT_R6",
   "synthetic_panels": {
@@ -1180,6 +1188,8 @@
       {
         "C_unrestricted_dp": 2,
         "C_weight_one_restricted": 2,
+        "dp_witness_max_frame_weight": 1,
+        "dp_witness_tag_weight": 1,
         "equal": true,
         "n": 1,
         "panel": "n1_identical"
@@ -1187,6 +1197,8 @@
       {
         "C_unrestricted_dp": 3,
         "C_weight_one_restricted": 3,
+        "dp_witness_max_frame_weight": 1,
+        "dp_witness_tag_weight": 1,
         "equal": true,
         "n": 1,
         "panel": "n1_mixed"
@@ -1194,6 +1206,8 @@
       {
         "C_unrestricted_dp": 2,
         "C_weight_one_restricted": 2,
+        "dp_witness_max_frame_weight": 1,
+        "dp_witness_tag_weight": 1,
         "equal": true,
         "n": 1,
         "panel": "n1_swapped"
@@ -1201,13 +1215,18 @@
       {
         "C_unrestricted_dp": 6,
         "C_weight_one_restricted": 6,
+        "dp_witness_max_frame_weight": 1,
+        "dp_witness_tag_weight": 1,
         "equal": true,
         "n": 2,
         "panel": "n2_a"
       },
       {
         "C_unrestricted_dp": 8,
+        "C_weight_one_frames_any_tag_diagnostic": 8,
         "C_weight_one_restricted": 9,
+        "dp_witness_max_frame_weight": 1,
+        "dp_witness_tag_weight": 2,
         "equal": false,
         "n": 2,
         "panel": "n2_b"
