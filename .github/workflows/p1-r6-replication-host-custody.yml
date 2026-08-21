@@ -1,0 +1,196 @@
+name: p1-r6-replication-host-custody
+
+on:
+  pull_request:
+    paths:
+      - 'research/claim_expansion/p1/gpt_r6/REPLICATION_2019_PROTOCOL_V1.json'
+      - 'research/claim_expansion/p1/gpt_r6/P1_R6_2019_HOST_CUSTODY_V1.json'
+      - '.github/workflows/p1-r6-replication-host-custody.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  freeze-open-weight-host:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate replication protocol and pre-primary custody are non-authorizing
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          protocol_path = Path('research/claim_expansion/p1/gpt_r6/REPLICATION_2019_PROTOCOL_V1.json')
+          custody_path = Path('research/claim_expansion/p1/gpt_r6/P1_R6_2019_HOST_CUSTODY_V1.json')
+          p = json.loads(protocol_path.read_text())
+          c = json.loads(custody_path.read_text())
+          assert p['schema_version'] == 'orion.p1.r6.replication-2019-protocol.v1'
+          assert p['frozen_before_r6_2020_primary_terminal'] is True
+          assert p['source_custody']['replication_year'] == 2019
+          assert p['corpus_requirements']['required_pair_sources'] == 24
+          assert p['corpus_requirements']['required_pairs_per_substantive_class'] == 4
+          assert p['corpus_requirements']['required_unresolved_sources'] == 4
+          assert p['corpus_requirements']['required_total_sources'] == 28
+          assert p['corpus_requirements']['required_total_episodes'] == 52
+          assert p['corpus_requirements']['all_queries_must_admit'] is True
+          assert p['changed_host']['required'] is True
+          assert p['changed_host']['fallback_to_deterministic_2020_provider'] is False
+          assert p['independent_evaluator']['must_not_import_2020_primary_scoring_or_terminal_functions'] is True
+          assert p['terminal_rule']['positive_requires_2020_primary_positive'] is True
+          assert p['terminal_rule']['positive_does_not_self_authorize_registry_promotion'] is True
+          assert len(p['queries']) == 28
+          assert len({q['id'] for q in p['queries']}) == 28
+          assert all('2019' in q['q'] for q in p['queries'])
+          assert c['schema_version'] == 'orion.p1.r6.changed-host-custody.v1'
+          assert c['authority'] == 'HOST_CUSTODY_ONLY_NO_SCIENTIFIC_OUTCOME'
+          assert c['model_id'] == p['changed_host']['model_id'] == 'google/flan-t5-base'
+          assert len(c['resolved_revision_sha']) == 40
+          assert c['no_gold_access'] is True
+          assert c['replication_source_or_gold_accessed'] is False
+          assert c['p1_2020_primary_outcome_accessed'] is False
+          assert c['promotion_authorized'] is False
+          required = p['changed_host']['host_receipt_required_fields']
+          assert not [key for key in required if key not in c]
+          print('P1_R6_2019_REPLICATION_PROTOCOL=PASS')
+          print('P1_R6_2019_PREPRIMARY_HOST_RECEIPT_SHA256=' + hashlib.sha256(custody_path.read_bytes()).hexdigest())
+          PY
+
+      - name: Install exact pre-primary host runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python - <<'PY' > /tmp/p1-r6-host-requirements.txt
+          import json
+          from pathlib import Path
+          c = json.loads(Path('research/claim_expansion/p1/gpt_r6/P1_R6_2019_HOST_CUSTODY_V1.json').read_text())
+          for name in ('transformers', 'huggingface_hub', 'safetensors', 'sentencepiece', 'torch'):
+              print(f"{name}=={c['runtime_versions'][name]}")
+          # This is reconstructed from immutable pre-primary run 32468728488,
+          # job 96730816951: its install log resolved tokenizers-0.22.2 before
+          # custody artifact 9444406925 was emitted. The version is therefore
+          # historical environment evidence, not a post-outcome model choice.
+          print('tokenizers==0.22.2')
+          PY
+          python -m pip install -r /tmp/p1-r6-host-requirements.txt
+
+      - name: Replay exact pre-primary host custody without source or gold access
+        shell: bash
+        env:
+          HF_HUB_DISABLE_TELEMETRY: '1'
+          TOKENIZERS_PARALLELISM: 'false'
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p1-r6-host
+          python - <<'PY'
+          import hashlib
+          import importlib.metadata
+          import json
+          import platform
+          from pathlib import Path
+
+          import torch
+          from huggingface_hub import hf_hub_download
+          from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+
+          protocol_path = Path('research/claim_expansion/p1/gpt_r6/REPLICATION_2019_PROTOCOL_V1.json')
+          custody_path = Path('research/claim_expansion/p1/gpt_r6/P1_R6_2019_HOST_CUSTODY_V1.json')
+          protocol = json.loads(protocol_path.read_text())
+          frozen = json.loads(custody_path.read_text())
+          model_id = frozen['model_id']
+          revision = frozen['resolved_revision_sha']
+          assert model_id == protocol['changed_host']['model_id']
+          assert len(revision) == 40 and all(ch in '0123456789abcdef' for ch in revision.lower())
+
+          # Bind the actual replay call to the committed pre-primary generation
+          # receipt. Do not allow protocol defaults or hardcoded call arguments
+          # to drift away from the custody artifact.
+          protocol_generation = protocol['changed_host']['generation']
+          expected_generation = {
+              'do_sample': bool(protocol_generation['do_sample']),
+              'temperature_semantics': 'not_applicable_when_do_sample_false',
+              'max_new_tokens': int(protocol_generation['max_new_tokens']),
+          }
+          assert protocol_generation['do_sample'] is False
+          assert float(protocol_generation['temperature']) == 0.0
+          assert frozen['generation_parameters'] == expected_generation
+
+          # The original custody receipt omitted tokenizers from runtime_versions,
+          # but the immutable pre-primary job log records tokenizers-0.22.2 before
+          # artifact 9444406925 was created. Reconstruct that missing environment
+          # coordinate exactly rather than selecting a post-outcome compatible
+          # release.
+          historical_tokenizers_version = '0.22.2'
+          assert importlib.metadata.version('tokenizers') == historical_tokenizers_version
+
+          config_path = Path(hf_hub_download(model_id, 'config.json', revision=revision))
+          tokenizer = AutoTokenizer.from_pretrained(model_id, revision=revision)
+          model = AutoModelForSeq2SeqLM.from_pretrained(model_id, revision=revision)
+          model.eval()
+
+          prompt = 'Classify the statement as SUPPORT, REFUTE, or INCONCLUSIVE: repeated measurements agree within stated uncertainty.'
+          assert hashlib.sha256(prompt.encode()).hexdigest() == frozen['custody_probe_prompt_sha256']
+          encoded = tokenizer(prompt, return_tensors='pt')
+          with torch.no_grad():
+              output = model.generate(
+                  **encoded,
+                  do_sample=bool(frozen['generation_parameters']['do_sample']),
+                  max_new_tokens=int(frozen['generation_parameters']['max_new_tokens']),
+              )
+          decoded = tokenizer.decode(output[0], skip_special_tokens=True)
+          assert isinstance(decoded, str) and decoded.strip()
+
+          def sha256(path: Path) -> str:
+              h = hashlib.sha256()
+              with path.open('rb') as f:
+                  for block in iter(lambda: f.read(1024 * 1024), b''):
+                      h.update(block)
+              return h.hexdigest()
+
+          packages = {}
+          for name in ('transformers', 'huggingface_hub', 'safetensors', 'sentencepiece', 'torch'):
+              packages[name] = importlib.metadata.version(name)
+          assert packages == frozen['runtime_versions']
+          tokenizer_identity = f'{tokenizer.__class__.__module__}.{tokenizer.__class__.__qualname__}'
+          assert sha256(config_path) == frozen['config_sha256']
+          assert tokenizer_identity == frozen['tokenizer_identity']
+          assert tokenizer.__class__.__name__ == frozen['tokenizer_class']
+          assert model.__class__.__name__ == frozen['model_class']
+          assert hashlib.sha256(decoded.encode()).hexdigest() == frozen['custody_probe_output_sha256']
+
+          receipt = dict(frozen)
+          receipt['replayed_against_committed_preprimary_custody_receipt'] = True
+          receipt['committed_preprimary_custody_receipt_sha256'] = hashlib.sha256(custody_path.read_bytes()).hexdigest()
+          receipt['replay_python'] = platform.python_version()
+          receipt['reconstructed_preprimary_environment'] = {
+              'source_run_id': 32468728488,
+              'source_job_id': 96730816951,
+              'source_artifact_id': 9444406925,
+              'tokenizers': historical_tokenizers_version,
+              'authority': 'HISTORICAL_ENVIRONMENT_RECONSTRUCTION_ONLY',
+          }
+          receipt['promotion_authorized'] = False
+          assert receipt['no_gold_access'] is True
+          assert receipt['replication_source_or_gold_accessed'] is False
+          assert receipt['p1_2020_primary_outcome_accessed'] is False
+          out = Path('/tmp/p1-r6-host/P1_R6_2019_HOST_CUSTODY_REPLAY_V1.json')
+          out.write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n')
+          print('P1_R6_2019_HOST_CUSTODY_REPLAY=' + json.dumps(receipt, sort_keys=True))
+          PY
+
+      - name: Upload exact changed-host custody replay receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: p1-r6-2019-host-custody-${{ github.sha }}
+          path: /tmp/p1-r6-host/P1_R6_2019_HOST_CUSTODY_REPLAY_V1.json
+          if-no-files-found: error
+          retention-days: 30

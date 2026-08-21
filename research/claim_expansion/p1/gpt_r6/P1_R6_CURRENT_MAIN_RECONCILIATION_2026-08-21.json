@@ -1,0 +1,54 @@
+{
+  "schema_version": "orion.p1.r6.current-main-reconciliation.v1",
+  "date": "2026-08-21",
+  "parent_issue": 723,
+  "authority_parent": 649,
+  "pr": 788,
+  "previous_native_r6_head": "42b6c4a73886f73b39cc7ec66d1b81ef3b4b0eec",
+  "replication_head_before_this_receipt": "93a945661390e096d8b63ee59b8330e5b66975bd",
+  "current_main": "afe7994bd5e362b2e8d40482f2dde9689e6ef708",
+  "merge_base": "0fc0c62a1b6d0fce146f4450c1ea099c187fc5d0",
+  "comparison": {
+    "current_main_ahead_of_previous_native_r6_head": 19,
+    "current_main_behind_previous_native_r6_head": 4,
+    "native_r6_scientific_paths_touched_by_current_main_since_merge_base": false,
+    "native_r6_unit_tests_touched_by_current_main_since_merge_base": false,
+    "native_r6_workflow_touched_by_current_main_since_merge_base": false,
+    "native_orion_runtime_subject_touched_by_current_main_since_merge_base": false,
+    "only_src_orion_path_changed_on_current_main_relative_to_previous_native_r6_head": "src/orion/publication/peer_review_ready.py"
+  },
+  "ordinary_ci_failure_before_retarget": {
+    "run_id": 32491749336,
+    "failing_job_id": 96800781074,
+    "tests_passed": 3420,
+    "tests_skipped": 9,
+    "failures": 1,
+    "failure": "tests/unit/publication/test_peer_review_ready_gate.py::test_real_tree_p1_p2_and_p4_claim_ready_and_have_artifacts",
+    "cause": "stacked merge ref lacked current-main publication readiness filtering and enumerated later candidate paper directories",
+    "scientific_effect": "NONE"
+  },
+  "protected_science_unchanged": {
+    "source_universe": true,
+    "queries": true,
+    "comparator": true,
+    "candidate_native_adapter_and_core": true,
+    "provider_contract": true,
+    "metrics": true,
+    "bootstrap": true,
+    "thresholds": true,
+    "terminals": true,
+    "registry_promotion_authority": false
+  },
+  "replication_authority": {
+    "protocol_remains_pre_primary_frozen": true,
+    "required_2019_pair_sources": 24,
+    "required_2019_unresolved_sources": 4,
+    "required_total_episodes": 52,
+    "all_queries_must_admit": true,
+    "changed_host": "google/flan-t5-base@7bcac572ce56db69c1ea7c8af255c5d7c9672fc2",
+    "independent_evaluator_required": true,
+    "outcome_aware_manual_source_selection_allowed": false,
+    "cannot_check_if_blinded_source_acquisition_cannot_be_satisfied": true
+  },
+  "authority": "INTEGRATION_LINEAGE_ONLY_NO_NEW_SCIENTIFIC_OUTCOME_NO_PROMOTION"
+}

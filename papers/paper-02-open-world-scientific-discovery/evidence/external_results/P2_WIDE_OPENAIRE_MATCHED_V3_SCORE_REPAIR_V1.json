@@ -1,0 +1,92 @@
+{
+  "schema_version": "orion.p2.wide-openaire-v3-score-repair.v1",
+  "date": "2026-08-21",
+  "parent_issue": 650,
+  "pr": 775,
+  "scientific_campaign_version": 3,
+  "failed_execution": {
+    "workflow_run_id": 32488650612,
+    "evaluate_job_id": 96807484147,
+    "head_sha": "99f735c5e5597de28a99fb9367a31c970ad7614d",
+    "merge_ref_sha": "c060597543774a02f1de2ef99df6326c5b9dc183",
+    "failure_stage": "official_wide_scorer_import",
+    "failure_type": "ModuleNotFoundError",
+    "failure_detail": "Pinned AutoResearchBench scorer imports AsyncOpenAI through utils.py but evaluator environment omitted the upstream-declared openai package.",
+    "scientific_score_produced": false,
+    "paired_analysis_ran": false,
+    "scientific_terminal_produced": false
+  },
+  "frozen_capture": {
+    "workflow_run_id": 32488650612,
+    "artifact_id": 9450802473,
+    "artifact_name": "p2-wide-v3-capture-c060597543774a02f1de2ef99df6326c5b9dc183",
+    "artifact_sha256": "be3c42ce93e8c75bf9e97d59e533b62b29d50e4d29e564b26c30ed3352ca7d04",
+    "expires_at": "2026-09-20T14:45:07Z",
+    "candidate_hashes": {
+      "wide_dual_backend_balanced": "b1be6f245bf7724810b31b44da88474602787a759f81d3eaac1a6a6e9bc8a1b5",
+      "wide_dual_backend_governed": "ee687ccda83cf1331813e5733b11e4e29d1b3624ad3a01054e1331d4cede2bbf",
+      "wide_dual_backend_direct_first": "11c6bb03af16caf1a5342e2ec9e358320d08e1a70adcadd6e4b5e90bdb574f16"
+    },
+    "capture_manifest": {
+      "campaign_version": 3,
+      "freeze_sha256": "3560d4ae67de8d4e0743627b164bbbd1c5de0ca0c6032f684638cb937c8ca572",
+      "parent_v2_freeze_sha256": "b10ba777181c60eeb9ae93458b2d903a8b0c5b32e8397796da15185095163c1e",
+      "public_split_sha256": "af795b78a53a805e972d6574e441bfe9e80be4077cf6c95e73d9b2a0b43f43ae",
+      "shared_capture_sha256": "9595b894bf7e404f37cac0f03ee0a93d982723f63b3f14b04df3fda39f44ca5b",
+      "transport_probe_sha256": "f6391c0b2d6898bd41a5f15f983d46479b4c64aa62969ecf6899f6975f6efeec",
+      "transport_probe_response_sha256": "a90826dabe40f8ba142a1415fce9b4200330eb96a6766a281be4c97076b27758",
+      "logical_provider_calls_planned": 1200,
+      "logical_provider_calls_recorded": 1200,
+      "logical_provider_calls_ok": 859,
+      "logical_provider_ok_fraction": 0.715833,
+      "released_rows": 400,
+      "nonempty_rows": 400,
+      "tasks_with_open_obligations": 341,
+      "same_acquisition_capture_for_all_systems": true,
+      "candidate_cap": 20
+    }
+  },
+  "evaluator_subject": {
+    "upstream_repository": "CherYou/AutoResearchBench",
+    "upstream_commit": "a46c9bfb8968786f73f0a6a5b365b5384cd0f96d",
+    "decrypted_benchmark_sha256": "db1839438033a32dd7d76913575d4b76f144d5e442aaac29be4eda32326392c6",
+    "derived_gt_sha256": "fb95366de6ec2a614b498c2263c1ae6f5970b1cd316f2f606992d80a94c51a41",
+    "official_distinct_question_units": 399,
+    "scorer": "evaluate/evaluate_wide_search.py --no-jina",
+    "upstream_requirements_blob_sha": "cff3378365eb2b8034f8ce5bf1534d2e90d54b4d",
+    "upstream_requirements_declares_openai": true,
+    "repair_dependency": "openai==2.52.1",
+    "repair_dependency_release_date": "2026-08-03",
+    "dependency_role": "IMPORT_COMPATIBILITY_ONLY_NO_NETWORK_SCORING_CALL_REQUIRED_WITH_NO_JINA"
+  },
+  "orion_scoring_subject_git_blobs": {
+    "protocol_v2": "36c923a416389be831333e8a02f75736278c8b3f",
+    "protocol_v3": "25a55bcce02bc329b21af886a418beb30d99ebe2",
+    "compat_prepare": "bcaf9e07d3886dde5eb91aa6b81f6e161795cc22",
+    "v1_analyzer": "98e170d5eda6055bf8f5598e8e687835bf72df8d",
+    "v2_analyzer": "fb6f0a06d94ca4691c5ca9dd14e524c846149f34",
+    "v2_runner_imported_by_analyzer": "da3ba72d17dffe51c7642c1badbdc740b754c4d6",
+    "v3_analyzer": "9f18772bd1ea38022a3f3ef17eb52f3ca1ad9287",
+    "v4_transport_validator_imported_by_analyzer": "474516e7bfc8f4c6351a70a5588e803a3df1a26c"
+  },
+  "repair_rule": {
+    "reuse_exact_frozen_capture": true,
+    "rerun_acquisition": false,
+    "rerun_transport_probe": false,
+    "change_candidate_bytes": false,
+    "change_provider_or_source_access": false,
+    "change_comparator_or_candidate_projection": false,
+    "change_candidate_cap": false,
+    "change_benchmark_or_gold_mapping": false,
+    "change_official_scorer": false,
+    "change_metrics_or_bootstrap": false,
+    "change_thresholds_or_terminals": false,
+    "change_claim_boundary": false,
+    "allowed_change": "Install one upstream-declared Python dependency required for scorer module import, then score the already-frozen candidate bytes.",
+    "fail_closed_if_capture_or_scoring_subject_hash_mismatch": true
+  },
+  "scientific_effect": "NONE_EXECUTION_ONLY_DEPENDENCY_REPAIR_BEFORE_ANY_SCORE",
+  "promotion_authorized": false,
+  "issue_650_closure_authorized": false,
+  "authority": "SCORE_ONLY_REPAIR_PREBINDING_NO_SCIENTIFIC_OUTCOME"
+}

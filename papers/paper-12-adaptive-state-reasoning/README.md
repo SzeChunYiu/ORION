@@ -1,61 +1,47 @@
 # P12 — Adaptive State–Reasoning Co-Design
 
-**Stable ID:** ORION-P12
-**Paper issue:** #665
-**Programme:** #670 — P11–P14 portfolio (State as Computation, adaptive state–reasoning,
-responsibility-carrying state, ORION-RSE)
+**Stable ID:** ORION-P12  
+**Paper issue:** #665  
+**Shared accounting:** #664  
+**Programme:** #670
 
-## What this paper asks
+## Canonical manuscript
 
-At test time, how should a fixed budget be divided between:
-
-- constructing or restructuring state, and
-- reasoning/searching longer over the current state?
-
-The question is only meaningful under **matched total compute**, which is what
-distinguishes it from P11's static construction economics.
-
-## Evidence status as claimed on PR #715
-
-Reported by the authoring lane, not verified here: the paper is explicitly a
-theory/protocol manuscript at present. There is **no protected joint-allocation
-result**. A positive terminal requires matched total resources and a strict gain
-over both one-axis adaptive baselines, plus real-system validation.
+`MANUSCRIPT.md` is the current peer-review manuscript and supersedes the stale candidate path on draft PR #715.
 
 ## Status
 
-`DIRECTORY_OPENED / NO_PROTECTED_RESULT`
+`PEER_REVIEW_PACKAGE_READY / CONTROLLED_MATCHED_BUDGET_SUPERIORITY_SUPPORTED / REAL_SYSTEM_GATE_OPEN`
 
-This directory exists so the identity has a home under the post-2026-08-21 layout,
-where papers live directly under `papers/` rather than `papers/candidates/`. It
-carries no scientific result and grants no authority.
+P12 now has a protected empirical terminal rather than only a theory/protocol draft.
 
-The manuscript work is in flight on **PR #715**, which is a **draft** by its own
-decision — `CURRENT_EVIDENCE_DRAFT_COMPLETE / EXTERNAL_PROMOTION_BLOCKED` — and
-was authored against the pre-refactor tree, so its `MANUSCRIPT.md` currently
-targets `papers/candidates/paper-12-adaptive-state-reasoning/`. That file belongs here instead. Relocating it
-is the authoring lane's call; this README does not pre-empt it, and adds no
-`MANUSCRIPT.md` of its own so the two cannot collide.
+### Protected result
 
-## Programme rules that bind this paper
+Under the identical two-unit budget over 16 held-out families:
 
-From #670, verbatim in force:
+- joint state–reasoning allocator: **0.858154** mean verified success;
+- adaptive state only: `0.463135`;
+- adaptive reasoning only: `0.452759`;
+- fixed `(1,1)`: `0.515503`;
+- mean joint gain over the better one-axis adaptive policy: **+0.334717**;
+- family-block 95% CI: **[0.286008, 0.382693]**;
+- worst-family joint gain: **+0.158203**;
+- two-run replay SHA-256: `0194bc094f5696583533af5baae41e7c339902603d3706c8a1d2a78493f98947`.
 
-- a later paper may consume an earlier paper's interface/evidence **without
-  inheriting scientific authority**;
-- compiler/preprocessing work is never free; #664 owns the common accounting;
-- null, negative, donor-subsumed and interaction-only outcomes remain **first-class
-  results**;
-- **P12 cannot win by receiving more total compute.**
+Terminal: `P12A_JOINT_ALLOCATION_SUPERIORITY_SUPPORTED`.
 
-## Completion criteria
+## Strongest paper claim
 
-#670 requires each of P11–P14 to have its own claim ledger, protocol freeze, donor
-matrix, hostile controls, result receipts, reproduction route and publication
-decision. None of those exists here yet.
+> When held-out task families differ in whether marginal computation is valuable for state accessibility, downstream reasoning, both or neither, a frozen policy that can allocate one matched total budget across both loci strictly outperforms policies allowed to adapt only state or only reasoning.
 
-## Not authorized
+## Artifacts
 
-Any statement that this paper has a protected result, a comparative superiority
-claim, or a promotion decision. The programme hypothesis in #670 is explicitly
-"a programme hypothesis, not an earned unified claim".
+- `MANUSCRIPT.md`
+- `CLAIM_EVIDENCE_LEDGER.md`
+- `PEER_REVIEW_READINESS.md`
+- `P12A_MATCHED_BUDGET_RESULT_RECEIPT_V1.json`
+- protected protocol and executable harness
+
+## Boundary
+
+This is a controlled superiority result. Real LLM/prover/agent superiority remains open until state-construction work, model/search work, verifier/tool calls and latency are jointly receipted under matched end-to-end resources.
