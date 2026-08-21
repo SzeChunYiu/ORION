@@ -91,6 +91,50 @@ BSECOND__NOT_R6`).
   an exchange lemma or a B‴). If both close, L5 inherits and
   `C_DP == min(C_D+, f_B′, f_B″)` becomes an all-n theorem.
 
+## QG-9 ladder — R6I INTRINSIC SUPPORT NUMBER κ = 1 (all n), and QG-16's objective cone
+
+Merged `beea3034` (delivery PR #830 of the stacked lanes #786/#789/#792/#796/#809/#813/#815).
+Independently verified before merge: V6's analyzer re-run reproduced `result_digest`
+`587b4b80…d31a4f` bit-identically against its committed protected receipt and again on the
+merged tree; support-4/3/2 analyzers re-run with all gates true; `qg9_support2_generic_verify`
+ACCEPT and `qg16_generic_verify` ACCEPT_SUPPORT; harness suite 132 passed.
+
+| Rung | Terminal |
+|---|---|
+| QG-1 | support ≤ 5 all n |
+| V2 | `QG9_RANK2_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED` |
+| V3 | `QG9_RANK2_ALL_N_SUPPORT3_SUFFICIENCY_MACHINE_CHECKED` |
+| V4 | `QG9_RANK2_ALL_N_SUPPORT2_SUFFICIENCY_MACHINE_CHECKED` |
+| V5 | `QG9_NO_SUPPORT2_TIGHT_WITNESS_IN_FROZEN_INVERSE_PANEL` (honest negative; correctly granted no support-1 authority) |
+| **V6** | **`QG9_RANK2_ALL_N_SUPPORT1_SUFFICIENCY_MACHINE_CHECKED`** — `C_DP = C_cap1` all n; support-0 infeasible ⇒ **κ_R6I = 1 exactly** |
+| QG-16 | `QG16_R6I_OBJECTIVE_INDEXED_SUPPORT1_CONE_ALL_N_MACHINE_CHECKED`; `GLOBAL_PHASE_BOUNDARY_SHARPNESS = OPEN` preserved |
+
+**Method finding.** V1–V5 all stalled because their edit grammars were per-block and
+syndrome-preserving. V6 closed the ladder by *relocating* the shared Tag after localizing
+each rank-2 block to one anticommuting core — a whole-system rebuild. The five earlier
+rungs were not wasted: each obstruction census is what showed the residue was structural
+rather than local, motivating a change of proof system instead of a bigger move menu.
+This directly answers, for R6I, the question QG-7's ladder poses for TARE.
+
+**Consequence for the tightness hunts**: "is support-4 tight?" (#797) and "is support-2
+tight?" (#805) are both answered NO by V6 — the ladder settled them two rungs below.
+
+## QG-6 — production syndrome-rank inference, and a sound-but-loose bound
+
+Merged `c5ba39fe` (delivery PR #833 of #759); digest `f065afc8…b023eb` reproduced
+bit-identically, independent generic verifier (no `_DELTA` import) ACCEPT, 10/10 gates.
+Terminal: rank **2** for every R6M frame slot (recovering the earned support-2 theorem
+from production semantics alone), rank **5** for R6I block deletion.
+
+**Cross-lane finding (visible only once QG-6 and QG-9 V6 are both bound):** the
+syndrome-quotient rank for R6I is 5 while its true intrinsic support number is 1. The
+production-syndrome pipeline is therefore **sound but loose** — it certifies that *some*
+finite-support normal form exists, but the rank is not the intrinsic support number.
+Closing that gap needed exactly the whole-system Tag relocation of V6, which no
+per-block syndrome-preserving argument — including the rank argument itself — can
+express. This is the programme's sharpest statement about the reach of its own
+meta-method.
+
 ## QG-15 — THIRD FAMILY TRANSFERRED; BOUNDARY-IS-LOW-ORDER REFUTED AS A UNIVERSAL MOTIF
 
 `QG15_THIRD_FAMILY_RESULTS.json` (protocol frozen pre-outcome, sha256 `765dc86a…4b38b3f`;
