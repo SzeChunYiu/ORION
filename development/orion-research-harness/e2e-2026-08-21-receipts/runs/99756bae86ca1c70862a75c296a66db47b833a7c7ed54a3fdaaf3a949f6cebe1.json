@@ -1,0 +1,2279 @@
+{
+  "created_at": "2026-08-21T06:20:32.875054+00:00",
+  "experience_episode_id": "episode:30a1d8be6372505ce9fc364e540672ce25485d2324cc031982b164c346ec22a7",
+  "experience_episodes": [
+    {
+      "action_ids": [
+        "FRAME"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:332aa82bf4b46c24f69bbfb92490246e5f7c974d1f3ae3060971ecc271c8ee34",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "FRAME"
+        ]
+      ],
+      "latency_seconds": 5.4726000030314026e-05,
+      "mechanic_id": "FRAME.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "38f8c884c0a61ccf8db6ceaef893d026d5f9d11e62531d748f94f4c05376d1aa",
+      "pre_state_hash": "38f8c884c0a61ccf8db6ceaef893d026d5f9d11e62531d748f94f4c05376d1aa",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:1",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:1:FRAME",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874446+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "SEARCH"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:ca7196c1b0bd44ee905cc61a718ee6878f5f1fd4049cf838f75a465e24311947",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [
+        [
+          "cap-kinds-source",
+          "4f2b7cbc3ce14618430a142a47d06581e2e7283800a0df6e82d7eea34d69352c"
+        ],
+        [
+          "cap-test-coverage",
+          "82e56b6000a80ebf760136fe30f7cda02be9d4238fa4696d1584a16f4027bf1d"
+        ],
+        [
+          "cap-omission-github",
+          "06c977fe02e3d94ae4261c47a5a0e678730dbd43fcd5ac2e02f0cef996964422"
+        ]
+      ],
+      "evidence_ids": [
+        "cap-kinds-source",
+        "cap-test-coverage",
+        "cap-omission-github"
+      ],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "W.SEARCHED"
+        ]
+      ],
+      "latency_seconds": 0.0028871330000015405,
+      "mechanic_id": "SEARCH.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "daa8dba7b39301404b6b9a402271d42109e04b85a1818ed512510c5d0ecaa91e",
+      "pre_state_hash": "38f8c884c0a61ccf8db6ceaef893d026d5f9d11e62531d748f94f4c05376d1aa",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:2",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:2:SEARCH",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874502+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "ABSORB"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:45e5a58fbb86fa015ea4c412a0a88852980914cbd90e0701cdbf7c7f2eff727d",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [
+        [
+          "cap-kinds-source",
+          "4f2b7cbc3ce14618430a142a47d06581e2e7283800a0df6e82d7eea34d69352c"
+        ],
+        [
+          "cap-test-coverage",
+          "82e56b6000a80ebf760136fe30f7cda02be9d4238fa4696d1584a16f4027bf1d"
+        ],
+        [
+          "cap-omission-github",
+          "06c977fe02e3d94ae4261c47a5a0e678730dbd43fcd5ac2e02f0cef996964422"
+        ]
+      ],
+      "evidence_ids": [
+        "cap-kinds-source",
+        "cap-test-coverage",
+        "cap-omission-github"
+      ],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "K.EVIDENCE,K.SOURCE_PROJECTIONS,K.CLAIMS"
+        ]
+      ],
+      "latency_seconds": 0.005127245999972274,
+      "mechanic_id": "ABSORB.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "e1f3726d95316e0c792a003309cc208c00dad9c4017865643e8bf634ecd4124d",
+      "pre_state_hash": "daa8dba7b39301404b6b9a402271d42109e04b85a1818ed512510c5d0ecaa91e",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [
+        "certificate:source-check:broker-py-L96-L192-local-tools-L12-L18-grep-2026-08-21",
+        "certificate:source-check:pytest-30-passed-and-grep-test-files-2026-08-21",
+        "certificate:source-check:grep-github-absent-from-broker-localtools-tests-2026-08-21"
+      ],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:3",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:3:ABSORB",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874543+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "RECONSTRUCT"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:b591239a9b49bdd722124cd29a211973901956ad478be1bb13c4d1e3af9f85e6",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "K.PORTRAIT"
+        ]
+      ],
+      "latency_seconds": 0.0006093800000144256,
+      "mechanic_id": "RECONSTRUCT.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "7b193542aa3ce23a1ec5b5557cd43b331187255db3e1724999ffac5eb806897a",
+      "pre_state_hash": "e1f3726d95316e0c792a003309cc208c00dad9c4017865643e8bf634ecd4124d",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:4",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:4:RECONSTRUCT",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874572+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "DETECT"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:abf64693efdf3a6654c23eb3c413cc0967e42d2b27a38378e7dc7bf7a1cde2e1",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "K.RESIDUALS"
+        ]
+      ],
+      "latency_seconds": 2.0943000038187165e-05,
+      "mechanic_id": "DETECT.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "7b193542aa3ce23a1ec5b5557cd43b331187255db3e1724999ffac5eb806897a",
+      "pre_state_hash": "7b193542aa3ce23a1ec5b5557cd43b331187255db3e1724999ffac5eb806897a",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:5",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:5:DETECT",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874589+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "RECURSE"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:be142839200a715546514ac6a28eaae084e535eb606726c4d7178d1ddf68fc92",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 1.5043000018977182e-05,
+      "mechanic_id": "ORION_SOLVE.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "bfe1b055538dba064029952cb89b76d49262db903adb6fa52c4a3672ac439502",
+      "pre_state_hash": "7b193542aa3ce23a1ec5b5557cd43b331187255db3e1724999ffac5eb806897a",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:6",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:6:RECURSE",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874605+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "SATURATE_BOUNDED"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:9ec0d168ebfdb8a106d4081caa53622d9a01e2d070d3ab531cb1e58616d296d1",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [
+        "bounded_saturation_open",
+        "semantic_flatness_insufficient",
+        "search_universe_flatness_insufficient",
+        "formulation_flatness_insufficient",
+        "independent_route_coverage_incomplete",
+        "literature_bridge_challenge_missing"
+      ],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 2.483700001221223e-05,
+      "mechanic_id": "SATURATE_BOUNDED.v3",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "PARTIAL_SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "bfe1b055538dba064029952cb89b76d49262db903adb6fa52c4a3672ac439502",
+      "pre_state_hash": "bfe1b055538dba064029952cb89b76d49262db903adb6fa52c4a3672ac439502",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:7",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:7:SATURATE_BOUNDED",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874624+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "SEARCH"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:36d61c1aca1e2ddf9953973078b3cc4c6454a0d08aec4a541aa28bf64c17bfaf",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [
+        [
+          "cap-freshness-gitlog",
+          "49900c227ea8e2d0134c3790d3ae7f4a5b94c80cc3f9f0f93e7fe16ec674255f"
+        ]
+      ],
+      "evidence_ids": [
+        "cap-freshness-gitlog"
+      ],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "W.SEARCHED"
+        ]
+      ],
+      "latency_seconds": 0.0008250089999819465,
+      "mechanic_id": "SEARCH.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "0e14b0eafbea4d7ac7dc5ac5def8d370d4a31eec31d689f8912a7fc2d72cbe18",
+      "pre_state_hash": "bfe1b055538dba064029952cb89b76d49262db903adb6fa52c4a3672ac439502",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:8",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:8:SEARCH",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874641+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "ABSORB"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:737d4aff3ac61fa5aa913dd3036449ba1f566c47609ceef42ed70fd9dad639b5",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [
+        [
+          "cap-freshness-gitlog",
+          "49900c227ea8e2d0134c3790d3ae7f4a5b94c80cc3f9f0f93e7fe16ec674255f"
+        ]
+      ],
+      "evidence_ids": [
+        "cap-freshness-gitlog"
+      ],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "K.EVIDENCE,K.SOURCE_PROJECTIONS,K.CLAIMS"
+        ]
+      ],
+      "latency_seconds": 0.0013363509999635426,
+      "mechanic_id": "ABSORB.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "bfce048883ce8ea4a49f01f7fa16424cb44c5b26950bbfcdf1ea68ab3984a4ba",
+      "pre_state_hash": "0e14b0eafbea4d7ac7dc5ac5def8d370d4a31eec31d689f8912a7fc2d72cbe18",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [
+        "certificate:source-check:git-log-d7312bc-harness-history-2026-08-21"
+      ],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:9",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:9:ABSORB",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874669+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "RECONSTRUCT"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:dee76cfcc723f8252bfbef73235e4ff4af73aaa8f746abae20c225140ca14f4a",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "K.PORTRAIT"
+        ]
+      ],
+      "latency_seconds": 0.0006220409999855292,
+      "mechanic_id": "RECONSTRUCT.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "0d4f2f2eff41112b5ab8cf481ee23b4054faa6dd35d0cd0ce7a196302f224d4b",
+      "pre_state_hash": "bfce048883ce8ea4a49f01f7fa16424cb44c5b26950bbfcdf1ea68ab3984a4ba",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:10",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:10:RECONSTRUCT",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874697+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "DETECT"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:b30ddbbc495598a6e3fb9a29c83d7f6dcbd205d14b9a831ee935ffd58e69efd9",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "K.RESIDUALS"
+        ]
+      ],
+      "latency_seconds": 2.118999998401705e-05,
+      "mechanic_id": "DETECT.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "0d4f2f2eff41112b5ab8cf481ee23b4054faa6dd35d0cd0ce7a196302f224d4b",
+      "pre_state_hash": "0d4f2f2eff41112b5ab8cf481ee23b4054faa6dd35d0cd0ce7a196302f224d4b",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:11",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:11:DETECT",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874715+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "RECURSE"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:7143835fcaa7b1ac08a4c53c266dc2e7b12dca4db54c93df32a9255864eafd9f",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 1.3469999998960702e-05,
+      "mechanic_id": "ORION_SOLVE.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "0eeb5b7a43f775a39b62377cb87b1eb798a470a04a94d6ed520427dab5819408",
+      "pre_state_hash": "0d4f2f2eff41112b5ab8cf481ee23b4054faa6dd35d0cd0ce7a196302f224d4b",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:12",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:12:RECURSE",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874730+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "SATURATE_BOUNDED"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:b4ae92074e113f5f47a99f487239ab857fe31b96ec3f8b7ee93b9ad671dd56f6",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [
+        "bounded_saturation_open",
+        "semantic_flatness_insufficient",
+        "independent_route_coverage_incomplete",
+        "literature_bridge_challenge_missing"
+      ],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 2.1478999997270876e-05,
+      "mechanic_id": "SATURATE_BOUNDED.v3",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "PARTIAL_SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "0eeb5b7a43f775a39b62377cb87b1eb798a470a04a94d6ed520427dab5819408",
+      "pre_state_hash": "0eeb5b7a43f775a39b62377cb87b1eb798a470a04a94d6ed520427dab5819408",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:13",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:13:SATURATE_BOUNDED",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874744+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "SEARCH"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:37ed3bde351e6186fee05d5f1424b7af415e8e75a18524b7dfe12560d6cb2a7f",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 0.0004689250000069478,
+      "mechanic_id": "SEARCH.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "0eeb5b7a43f775a39b62377cb87b1eb798a470a04a94d6ed520427dab5819408",
+      "pre_state_hash": "0eeb5b7a43f775a39b62377cb87b1eb798a470a04a94d6ed520427dab5819408",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:14",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:14:SEARCH",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874758+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "ABSORB"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:4e5c718eb99bcb26df20692b07594323d6d02695c2013123314748cf6a02fd88",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 2.812999997559018e-05,
+      "mechanic_id": "ABSORB.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "0eeb5b7a43f775a39b62377cb87b1eb798a470a04a94d6ed520427dab5819408",
+      "pre_state_hash": "0eeb5b7a43f775a39b62377cb87b1eb798a470a04a94d6ed520427dab5819408",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:15",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:15:ABSORB",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874773+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "RECONSTRUCT"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:507922316303bf8036b29764b6d8e433cacc657bba65c9e8adc861b8ad5acf4e",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "K.PORTRAIT"
+        ]
+      ],
+      "latency_seconds": 0.0006869910000091295,
+      "mechanic_id": "RECONSTRUCT.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "a54ea2cf8357302a47b825b82e2acc78a4ba5174c852a03f44a467823e411b7b",
+      "pre_state_hash": "0eeb5b7a43f775a39b62377cb87b1eb798a470a04a94d6ed520427dab5819408",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:16",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:16:RECONSTRUCT",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874787+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "DETECT"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:a9a00c6ec9f644d17cd98ed7dbb8f64105d4bde0f0b76b23e0d29d5528fba7a3",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          "K.RESIDUALS"
+        ]
+      ],
+      "latency_seconds": 1.6255999980785418e-05,
+      "mechanic_id": "DETECT.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "a54ea2cf8357302a47b825b82e2acc78a4ba5174c852a03f44a467823e411b7b",
+      "pre_state_hash": "a54ea2cf8357302a47b825b82e2acc78a4ba5174c852a03f44a467823e411b7b",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:17",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:17:DETECT",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874807+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "RECURSE"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:3397c40e04ce4898286f03b12feeb2eeb1beb32004f144142edc98380ed54b43",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 1.1666999967019365e-05,
+      "mechanic_id": "ORION_SOLVE.v1",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "6e195a3e9b098a64eb05b8b9eb0e2638779cee3e0c1e1acaf2d0de7cc1a11a4e",
+      "pre_state_hash": "a54ea2cf8357302a47b825b82e2acc78a4ba5174c852a03f44a467823e411b7b",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:18",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:18:RECURSE",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874824+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "SATURATE_BOUNDED"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:3c5137f44e3b006ca7d6198c327087f0b739c61c8b017b44dd1ebfe9384912c4",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [],
+      "evidence_ids": [],
+      "failure_signature": [
+        "bounded_saturation_open",
+        "semantic_flatness_insufficient",
+        "independent_route_coverage_incomplete",
+        "literature_bridge_challenge_missing"
+      ],
+      "handoff_values": [
+        [
+          "changed_coordinates",
+          ""
+        ]
+      ],
+      "latency_seconds": 1.6489000017827493e-05,
+      "mechanic_id": "SATURATE_BOUNDED.v3",
+      "metric_observations": [],
+      "observation_ids": [],
+      "outcome": "PARTIAL_SUCCESS",
+      "output_artifact_ids": [],
+      "parent_run_id": "68ef78935ed945689dcd509e28a256c1",
+      "post_state_hash": "6e195a3e9b098a64eb05b8b9eb0e2638779cee3e0c1e1acaf2d0de7cc1a11a4e",
+      "pre_state_hash": "6e195a3e9b098a64eb05b8b9eb0e2638779cee3e0c1e1acaf2d0de7cc1a11a4e",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1:mechanic:19",
+      "source_receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:19:SATURATE_BOUNDED",
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.874837+00:00",
+      "variation_signature": []
+    },
+    {
+      "action_ids": [
+        "RECURSE"
+      ],
+      "cost_units": null,
+      "episode_id": "episode:30a1d8be6372505ce9fc364e540672ce25485d2324cc031982b164c346ec22a7",
+      "evaluation_epoch_id": "harness:session:7b2d750debcd46c4b7c723ed7be6bf42",
+      "evaluator_artifact_hash": "9d8fc28a296c10a0993b09447f0d72af0e6e8bd782099c807b224e5511f2781c",
+      "evidence_bindings": [
+        [
+          "cap-kinds-source",
+          "4f2b7cbc3ce14618430a142a47d06581e2e7283800a0df6e82d7eea34d69352c"
+        ],
+        [
+          "cap-test-coverage",
+          "82e56b6000a80ebf760136fe30f7cda02be9d4238fa4696d1584a16f4027bf1d"
+        ],
+        [
+          "cap-omission-github",
+          "06c977fe02e3d94ae4261c47a5a0e678730dbd43fcd5ac2e02f0cef996964422"
+        ],
+        [
+          "cap-freshness-gitlog",
+          "49900c227ea8e2d0134c3790d3ae7f4a5b94c80cc3f9f0f93e7fe16ec674255f"
+        ]
+      ],
+      "evidence_ids": [
+        "cap-kinds-source",
+        "cap-test-coverage",
+        "cap-omission-github",
+        "cap-freshness-gitlog"
+      ],
+      "failure_signature": [
+        "solution_status:CANNOT_CHECK"
+      ],
+      "handoff_values": [],
+      "latency_seconds": null,
+      "mechanic_id": "ORION_SOLVE.v1",
+      "metric_observations": [],
+      "observation_ids": [
+        "evidence:cap-kinds-source",
+        "evidence:cap-test-coverage",
+        "evidence:cap-omission-github",
+        "evidence:cap-freshness-gitlog",
+        "trace:0:RECURSE",
+        "trace:1:FRAME",
+        "trace:2:SEARCH",
+        "trace:3:ABSORB",
+        "trace:4:RECONSTRUCT",
+        "trace:5:DETECT",
+        "trace:6:RECURSE",
+        "trace:7:SATURATE_BOUNDED",
+        "trace:8:SEARCH",
+        "trace:9:ABSORB",
+        "trace:10:RECONSTRUCT",
+        "trace:11:DETECT",
+        "trace:12:RECURSE",
+        "trace:13:SATURATE_BOUNDED",
+        "trace:14:SEARCH",
+        "trace:15:ABSORB",
+        "trace:16:RECONSTRUCT",
+        "trace:17:DETECT",
+        "trace:18:RECURSE",
+        "trace:19:SATURATE_BOUNDED"
+      ],
+      "outcome": "CANNOT_CHECK",
+      "output_artifact_ids": [],
+      "parent_run_id": null,
+      "post_state_hash": "6e195a3e9b098a64eb05b8b9eb0e2638779cee3e0c1e1acaf2d0de7cc1a11a4e",
+      "pre_state_hash": "38f8c884c0a61ccf8db6ceaef893d026d5f9d11e62531d748f94f4c05376d1aa",
+      "problem_signature": [
+        "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+        "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+        "software-verification",
+        "Every capability kind named in the answer is backed by a cited file path."
+      ],
+      "producer_process_lineage_hash": "005e6538ad1304fb81dafff97f7c021c09ab6f09a5cbfd9b0c8d0e0bd0c8b0b5",
+      "provenance_ids": [],
+      "residual_ids": [],
+      "run_id": "68ef78935ed945689dcd509e28a256c1",
+      "source_receipt_id": null,
+      "split_id": "interactive-research",
+      "task_id": "harness-e2e-1",
+      "timestamp": "2026-08-21T06:20:32.875010+00:00",
+      "variation_signature": []
+    }
+  ],
+  "final_state": {
+    "closure_certificates": [],
+    "epoch": 3,
+    "iterations": [
+      {
+        "changed_coordinates": [],
+        "iteration": 0,
+        "new_claim_ids": [
+          "contrib:cap-kinds-source",
+          "contrib:cap-test-coverage",
+          "contrib:cap-omission-github"
+        ],
+        "new_domain_ids": [],
+        "new_evidence_ids": [
+          "cap-kinds-source",
+          "cap-test-coverage",
+          "cap-omission-github"
+        ],
+        "residual_ids": [],
+        "route_kind_ids": [
+          "FUNCTION_ONLY",
+          "PARENT_DISCIPLINE",
+          "ADVERSARIAL_OMISSION"
+        ]
+      },
+      {
+        "changed_coordinates": [],
+        "iteration": 1,
+        "new_claim_ids": [
+          "contrib:cap-freshness"
+        ],
+        "new_domain_ids": [],
+        "new_evidence_ids": [
+          "cap-freshness-gitlog"
+        ],
+        "residual_ids": [],
+        "route_kind_ids": [
+          "FRESHNESS"
+        ]
+      },
+      {
+        "changed_coordinates": [],
+        "iteration": 2,
+        "new_claim_ids": [],
+        "new_domain_ids": [],
+        "new_evidence_ids": [],
+        "residual_ids": [],
+        "route_kind_ids": []
+      }
+    ],
+    "knowledge": {
+      "claims": [
+        {
+          "authority": "VERIFIED",
+          "certificate_ids": [
+            "certificate:source-check:broker-py-L96-L192-local-tools-L12-L18-grep-2026-08-21"
+          ],
+          "claim_id": "contrib:cap-kinds-source",
+          "contradicts_claim_ids": [],
+          "evidence_ids": [
+            "cap-kinds-source"
+          ],
+          "text": "The orion-research-harness exposes eight implemented capability kinds. Three are broker-mediated host capabilities validated in broker.py: LLM_COMPLETE (string content, optional model_id/response_id), WEB_SEARCH (items with non-empty content and source_uri), VERIFY_EVIDENCE (boolean passed; a pass requires at least one certificate id). Five are local kinds in local_tools.py: FILE_READ, FILE_WRITE, FILE_LIST, SHELL, PYTHON. There is no CapabilityKind enum; kinds are strings."
+        },
+        {
+          "authority": "VERIFIED",
+          "certificate_ids": [
+            "certificate:source-check:pytest-30-passed-and-grep-test-files-2026-08-21"
+          ],
+          "claim_id": "contrib:cap-test-coverage",
+          "contradicts_claim_ids": [],
+          "evidence_ids": [
+            "cap-test-coverage"
+          ],
+          "text": "Every implemented capability kind is exercised by at least one test: WEB_SEARCH (test_harness.py:25-29, test_hardening.py:55), LLM_COMPLETE (test_harness.py:190, test_hardening.py:159), VERIFY_EVIDENCE (test_hardening.py:197-217), FILE_WRITE (test_harness.py:61), FILE_READ (test_harness.py:65-69, test_hardening.py:249-255,310), FILE_LIST (test_local_limits.py:24), PYTHON (test_hardening.py:258-287, test_local_limits.py:43), SHELL (test_local_limits.py:62). The suite passes 30/30 on Python 3.11."
+        },
+        {
+          "authority": "VERIFIED",
+          "certificate_ids": [
+            "certificate:source-check:grep-github-absent-from-broker-localtools-tests-2026-08-21"
+          ],
+          "claim_id": "contrib:cap-omission-github",
+          "contradicts_claim_ids": [],
+          "evidence_ids": [
+            "cap-omission-github"
+          ],
+          "text": "The handoff text in cli.py line 52 names GITHUB or other custom capabilities, but no provider requests a GITHUB capability, local_tools.py does not service it, and no test exercises it. GITHUB is documentation-only surface, not an implemented capability kind; the implemented and tested set is exactly the eight kinds."
+        },
+        {
+          "authority": "VERIFIED",
+          "certificate_ids": [
+            "certificate:source-check:git-log-d7312bc-harness-history-2026-08-21"
+          ],
+          "claim_id": "contrib:cap-freshness",
+          "contradicts_claim_ids": [],
+          "evidence_ids": [
+            "cap-freshness-gitlog"
+          ],
+          "text": "Recent history of packages/orion-research-harness (through PR #728 merge d7312bc) only hardened replay/receipt mechanics (canonical JSON replay equality, host capability failure control signal export); no capability kind was added or removed. The eight-kind capability set is current."
+        }
+      ],
+      "evidence": [
+        {
+          "certificate_ids": [],
+          "content": "The harness protocol has no CapabilityKind enum; capabilities are plain string kinds. Broker-mediated kinds are declared in packages/orion-research-harness/src/orion_research_harness/broker.py: LLM_COMPLETE (line 96, content must be a string, optional model_id/response_id), WEB_SEARCH (line 134, items with non-empty content and source_uri, array domain_ids), VERIFY_EVIDENCE (line 192, boolean passed, certificate_ids array, passing requires a certificate). Local kinds are declared in packages/orion-research-harness/src/orion_research_harness/local_tools.py lines 13-20: FILE_READ, FILE_WRITE, FILE_LIST, SHELL, PYTHON.",
+          "domain_ids": [
+            "software-verification"
+          ],
+          "evidence_id": "cap-kinds-source",
+          "source_uri": "repo:packages/orion-research-harness/src/orion_research_harness/broker.py"
+        },
+        {
+          "certificate_ids": [],
+          "content": "Test coverage per capability kind, verified by grep of packages/orion-research-harness/tests/: WEB_SEARCH in test_harness.py lines 25-29 and test_hardening.py line 55; LLM_COMPLETE in test_harness.py line 190 and test_hardening.py line 159; VERIFY_EVIDENCE in test_hardening.py test_verification_pass_requires_real_certificate_and_boolean lines 197-217; FILE_WRITE test_harness.py line 61; FILE_READ test_harness.py lines 65-69 and test_hardening.py lines 249-255 and 310; FILE_LIST test_local_limits.py line 24; PYTHON test_hardening.py lines 258-287 and test_local_limits.py line 43; SHELL test_local_limits.py line 62. The suite passes 30/30 under pytest on Python 3.11.",
+          "domain_ids": [
+            "software-verification"
+          ],
+          "evidence_id": "cap-test-coverage",
+          "source_uri": "repo:packages/orion-research-harness/tests/"
+        },
+        {
+          "certificate_ids": [],
+          "content": "Adversarial omission check: the CLI handoff text (packages/orion-research-harness/src/orion_research_harness/cli.py line 52) mentions GITHUB or other custom capabilities as host-serviced kinds, but no GITHUB capability is requested by any provider in broker.py, serviced by local_tools.py, or exercised by any test under packages/orion-research-harness/tests/. GITHUB is documentation-only surface, not an implemented capability kind. All eight implemented kinds (LLM_COMPLETE, WEB_SEARCH, VERIFY_EVIDENCE, FILE_READ, FILE_WRITE, FILE_LIST, SHELL, PYTHON) have at least one test.",
+          "domain_ids": [
+            "software-verification"
+          ],
+          "evidence_id": "cap-omission-github",
+          "source_uri": "repo:packages/orion-research-harness/src/orion_research_harness/cli.py"
+        },
+        {
+          "certificate_ids": [],
+          "content": "Freshness check via git log on packages/orion-research-harness at branch head d7312bc (merge of PR #728, harden ORION research harness): latest capability-surface commits are 0dc487e0 (regression tests for canonical JSON replay), 09581ee4 (canonical replay equality fix), 60ffab2c (export host capability failure control signal). None of these adds or removes a capability kind; the eight-kind set is current as of 2026-08-21.",
+          "domain_ids": [
+            "software-verification"
+          ],
+          "evidence_id": "cap-freshness-gitlog",
+          "source_uri": "repo:git-log:packages/orion-research-harness@d7312bc"
+        }
+      ],
+      "negative_history": [],
+      "portraits": [
+        {
+          "claim_ids": [
+            "contrib:cap-kinds-source",
+            "contrib:cap-test-coverage",
+            "contrib:cap-omission-github"
+          ],
+          "portrait_id": "portrait:harness-e2e-1:0",
+          "representation_mapping_ids": [],
+          "source_projection_ids": [
+            "projection:contrib:cap-kinds-source",
+            "projection:contrib:cap-test-coverage",
+            "projection:contrib:cap-omission-github"
+          ],
+          "summary": "The orion-research-harness exposes exactly eight implemented host capability kinds. Broker-mediated (broker.py): LLM_COMPLETE (line 96), WEB_SEARCH (line 134), VERIFY_EVIDENCE (line 192; a pass requires a certificate id). Locally serviced (local_tools.py lines 12-18): FILE_READ, FILE_WRITE, FILE_LIST, SHELL, PYTHON. Each of the eight kinds is exercised by at least one test in packages/orion-research-harness/tests/ (test_harness.py, test_hardening.py, test_local_limits.py), and the suite passes 30/30. A ninth documented name, GITHUB, is handoff-documentation only and is neither implemented nor tested.",
+          "unresolved_residual_ids": [],
+          "verified_claim_ids": [
+            "contrib:cap-kinds-source",
+            "contrib:cap-test-coverage",
+            "contrib:cap-omission-github"
+          ]
+        },
+        {
+          "claim_ids": [
+            "contrib:cap-kinds-source",
+            "contrib:cap-test-coverage",
+            "contrib:cap-omission-github",
+            "contrib:cap-freshness"
+          ],
+          "portrait_id": "portrait:harness-e2e-1:1",
+          "representation_mapping_ids": [],
+          "source_projection_ids": [
+            "projection:contrib:cap-kinds-source",
+            "projection:contrib:cap-test-coverage",
+            "projection:contrib:cap-omission-github",
+            "projection:contrib:cap-freshness"
+          ],
+          "summary": "Final reconstruction: the orion-research-harness exposes exactly eight implemented capability kinds to an external host. Broker-mediated (broker.py): LLM_COMPLETE (line 96), WEB_SEARCH (line 134), VERIFY_EVIDENCE (line 192, certificate-required pass). Local (local_tools.py lines 12-18): FILE_READ, FILE_WRITE, FILE_LIST, SHELL, PYTHON. Each kind is exercised by at least one test (test_harness.py, test_hardening.py, test_local_limits.py; suite passes 30/30). GITHUB appears only as documentation in the cli.py handoff text and is not an implemented capability. Recent history through PR #728 changed replay/receipt hardening only, so this set is current.",
+          "unresolved_residual_ids": [],
+          "verified_claim_ids": [
+            "contrib:cap-kinds-source",
+            "contrib:cap-test-coverage",
+            "contrib:cap-omission-github",
+            "contrib:cap-freshness"
+          ]
+        },
+        {
+          "claim_ids": [
+            "contrib:cap-kinds-source",
+            "contrib:cap-test-coverage",
+            "contrib:cap-omission-github",
+            "contrib:cap-freshness"
+          ],
+          "portrait_id": "portrait:harness-e2e-1:2",
+          "representation_mapping_ids": [],
+          "source_projection_ids": [
+            "projection:contrib:cap-kinds-source",
+            "projection:contrib:cap-test-coverage",
+            "projection:contrib:cap-omission-github",
+            "projection:contrib:cap-freshness"
+          ],
+          "summary": "Final reconstruction: the orion-research-harness exposes exactly eight implemented capability kinds to an external host. Broker-mediated (broker.py): LLM_COMPLETE (line 96), WEB_SEARCH (line 134), VERIFY_EVIDENCE (line 192, certificate-required pass). Local (local_tools.py lines 12-18): FILE_READ, FILE_WRITE, FILE_LIST, SHELL, PYTHON. Each kind is exercised by at least one test (test_harness.py, test_hardening.py, test_local_limits.py; suite passes 30/30). GITHUB appears only as documentation in the cli.py handoff text and is not an implemented capability. Recent history through PR #728 changed replay/receipt hardening only, so this set is current.",
+          "unresolved_residual_ids": [],
+          "verified_claim_ids": [
+            "contrib:cap-kinds-source",
+            "contrib:cap-test-coverage",
+            "contrib:cap-omission-github",
+            "contrib:cap-freshness"
+          ]
+        }
+      ],
+      "representation_mappings": [],
+      "residuals": [],
+      "source_projections": [
+        {
+          "assimilation": "COMPLEMENTARY_FACET",
+          "assumption_ids": [],
+          "context_ids": [
+            "problem:harness-e2e-1",
+            "domain:software-verification"
+          ],
+          "contribution_id": "contrib:cap-kinds-source",
+          "evidence_ids": [
+            "cap-kinds-source"
+          ],
+          "frame_id": "problem:harness-e2e-1",
+          "projection_id": "projection:contrib:cap-kinds-source",
+          "referent_bindings": [],
+          "related_claim_ids": [],
+          "representation_mapping_ids": [],
+          "source_uri": "repo:packages/orion-research-harness/src/orion_research_harness/broker.py"
+        },
+        {
+          "assimilation": "COMPLEMENTARY_FACET",
+          "assumption_ids": [],
+          "context_ids": [
+            "problem:harness-e2e-1",
+            "domain:software-verification"
+          ],
+          "contribution_id": "contrib:cap-test-coverage",
+          "evidence_ids": [
+            "cap-test-coverage"
+          ],
+          "frame_id": "problem:harness-e2e-1",
+          "projection_id": "projection:contrib:cap-test-coverage",
+          "referent_bindings": [],
+          "related_claim_ids": [],
+          "representation_mapping_ids": [],
+          "source_uri": "repo:packages/orion-research-harness/tests/"
+        },
+        {
+          "assimilation": "COMPLEMENTARY_FACET",
+          "assumption_ids": [],
+          "context_ids": [
+            "problem:harness-e2e-1",
+            "domain:software-verification"
+          ],
+          "contribution_id": "contrib:cap-omission-github",
+          "evidence_ids": [
+            "cap-omission-github"
+          ],
+          "frame_id": "problem:harness-e2e-1",
+          "projection_id": "projection:contrib:cap-omission-github",
+          "referent_bindings": [],
+          "related_claim_ids": [],
+          "representation_mapping_ids": [],
+          "source_uri": "repo:packages/orion-research-harness/src/orion_research_harness/cli.py"
+        },
+        {
+          "assimilation": "COMPLEMENTARY_FACET",
+          "assumption_ids": [],
+          "context_ids": [
+            "problem:harness-e2e-1",
+            "domain:software-verification"
+          ],
+          "contribution_id": "contrib:cap-freshness",
+          "evidence_ids": [
+            "cap-freshness-gitlog"
+          ],
+          "frame_id": "problem:harness-e2e-1",
+          "projection_id": "projection:contrib:cap-freshness",
+          "referent_bindings": [],
+          "related_claim_ids": [],
+          "representation_mapping_ids": [],
+          "source_uri": "repo:git-log:packages/orion-research-harness@d7312bc"
+        }
+      ]
+    },
+    "metadata": [],
+    "method": {
+      "evaluator_id": "external-verification-provider",
+      "method_version": "0.3.9-shadow",
+      "operator_ids": [
+        "FRAME.v1",
+        "SEARCH.v1",
+        "ABSORB.v1",
+        "RECONSTRUCT.v1",
+        "DETECT.v1",
+        "DIAGNOSE.v1",
+        "REFRAME.v1",
+        "REOPEN.v1",
+        "SATURATE_BOUNDED.v3"
+      ],
+      "self_development_enabled": false
+    },
+    "search_universe": {
+      "active_domain_ids": [
+        "software-verification"
+      ],
+      "candidate_domain_ids": [],
+      "open_coverage_residual_ids": [],
+      "representation_ids": [],
+      "route_ids": [
+        "route:function-only:capability-enum",
+        "route:parent-discipline:test-coverage",
+        "route:adversarial-omission:untested-capabilities",
+        "route:freshness:capability-surface-history"
+      ],
+      "route_kind_ids": [
+        "FUNCTION_ONLY",
+        "PARENT_DISCIPLINE",
+        "ADVERSARIAL_OMISSION",
+        "FRESHNESS"
+      ],
+      "searched_domain_ids": [
+        "software-verification"
+      ]
+    }
+  },
+  "mechanic_experience_episode_ids": [
+    "episode:332aa82bf4b46c24f69bbfb92490246e5f7c974d1f3ae3060971ecc271c8ee34",
+    "episode:ca7196c1b0bd44ee905cc61a718ee6878f5f1fd4049cf838f75a465e24311947",
+    "episode:45e5a58fbb86fa015ea4c412a0a88852980914cbd90e0701cdbf7c7f2eff727d",
+    "episode:b591239a9b49bdd722124cd29a211973901956ad478be1bb13c4d1e3af9f85e6",
+    "episode:abf64693efdf3a6654c23eb3c413cc0967e42d2b27a38378e7dc7bf7a1cde2e1",
+    "episode:be142839200a715546514ac6a28eaae084e535eb606726c4d7178d1ddf68fc92",
+    "episode:9ec0d168ebfdb8a106d4081caa53622d9a01e2d070d3ab531cb1e58616d296d1",
+    "episode:36d61c1aca1e2ddf9953973078b3cc4c6454a0d08aec4a541aa28bf64c17bfaf",
+    "episode:737d4aff3ac61fa5aa913dd3036449ba1f566c47609ceef42ed70fd9dad639b5",
+    "episode:dee76cfcc723f8252bfbef73235e4ff4af73aaa8f746abae20c225140ca14f4a",
+    "episode:b30ddbbc495598a6e3fb9a29c83d7f6dcbd205d14b9a831ee935ffd58e69efd9",
+    "episode:7143835fcaa7b1ac08a4c53c266dc2e7b12dca4db54c93df32a9255864eafd9f",
+    "episode:b4ae92074e113f5f47a99f487239ab857fe31b96ec3f8b7ee93b9ad671dd56f6",
+    "episode:37ed3bde351e6186fee05d5f1424b7af415e8e75a18524b7dfe12560d6cb2a7f",
+    "episode:4e5c718eb99bcb26df20692b07594323d6d02695c2013123314748cf6a02fd88",
+    "episode:507922316303bf8036b29764b6d8e433cacc657bba65c9e8adc861b8ad5acf4e",
+    "episode:a9a00c6ec9f644d17cd98ed7dbb8f64105d4bde0f0b76b23e0d29d5528fba7a3",
+    "episode:3397c40e04ce4898286f03b12feeb2eeb1beb32004f144142edc98380ed54b43",
+    "episode:3c5137f44e3b006ca7d6198c327087f0b739c61c8b017b44dd1ebfe9384912c4"
+  ],
+  "problem": {
+    "initial_domain_ids": [
+      "software-verification"
+    ],
+    "problem_id": "harness-e2e-1",
+    "question": "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+    "scope": "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+    "success_criteria": [
+      "Every capability kind named in the answer is backed by a cited file path."
+    ]
+  },
+  "run_id": "run:5a92f599271b4390938d8d51f142f081",
+  "schema": "ORION.HarnessRun.v1",
+  "session_id": "session:7b2d750debcd46c4b7c723ed7be6bf42",
+  "solution": {
+    "answer": "Resource bound reached before bounded saturation. Open saturation coordinates: semantic_flatness_insufficient, independent_route_coverage_incomplete, literature_bridge_challenge_missing",
+    "evidence_ids": [
+      "cap-kinds-source",
+      "cap-test-coverage",
+      "cap-omission-github",
+      "cap-freshness-gitlog"
+    ],
+    "iterations": 3,
+    "problem_id": "harness-e2e-1",
+    "residual_ids": [],
+    "status": "CANNOT_CHECK",
+    "trace_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1"
+  },
+  "trace": {
+    "events": [
+      {
+        "epoch": 0,
+        "operator": "RECURSE",
+        "post_state_hash": "38f8c884c0a61ccf8db6ceaef893d026d5f9d11e62531d748f94f4c05376d1aa",
+        "pre_state_hash": "38f8c884c0a61ccf8db6ceaef893d026d5f9d11e62531d748f94f4c05376d1aa",
+        "receipt": {
+          "action_ids": [
+            "RECURSE"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [],
+          "evidence_ids": [],
+          "experience_eligible": false,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              ""
+            ]
+          ],
+          "latency_seconds": 2.158000029339746e-06,
+          "mechanic_id": "ORION_SOLVE.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:0:RECURSE",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "solve_started",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [],
+          "evidence_ids": [],
+          "input_epoch": 0,
+          "operator": "RECURSE",
+          "output_epoch": 0,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 0,
+        "operator": "FRAME",
+        "post_state_hash": "38f8c884c0a61ccf8db6ceaef893d026d5f9d11e62531d748f94f4c05376d1aa",
+        "pre_state_hash": "38f8c884c0a61ccf8db6ceaef893d026d5f9d11e62531d748f94f4c05376d1aa",
+        "receipt": {
+          "action_ids": [
+            "FRAME"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [],
+          "evidence_ids": [],
+          "experience_eligible": true,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              "FRAME"
+            ]
+          ],
+          "latency_seconds": 5.4726000030314026e-05,
+          "mechanic_id": "FRAME.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:1:FRAME",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "frame=frame:harness-e2e-1:0",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [
+            "FRAME"
+          ],
+          "evidence_ids": [],
+          "input_epoch": 0,
+          "operator": "FRAME",
+          "output_epoch": 0,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 0,
+        "operator": "SEARCH",
+        "post_state_hash": "daa8dba7b39301404b6b9a402271d42109e04b85a1818ed512510c5d0ecaa91e",
+        "pre_state_hash": "38f8c884c0a61ccf8db6ceaef893d026d5f9d11e62531d748f94f4c05376d1aa",
+        "receipt": {
+          "action_ids": [
+            "SEARCH"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [
+            [
+              "cap-kinds-source",
+              "4f2b7cbc3ce14618430a142a47d06581e2e7283800a0df6e82d7eea34d69352c"
+            ],
+            [
+              "cap-test-coverage",
+              "82e56b6000a80ebf760136fe30f7cda02be9d4238fa4696d1584a16f4027bf1d"
+            ],
+            [
+              "cap-omission-github",
+              "06c977fe02e3d94ae4261c47a5a0e678730dbd43fcd5ac2e02f0cef996964422"
+            ]
+          ],
+          "evidence_ids": [
+            "cap-kinds-source",
+            "cap-test-coverage",
+            "cap-omission-github"
+          ],
+          "experience_eligible": true,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              "W.SEARCHED"
+            ]
+          ],
+          "latency_seconds": 0.0028871330000015405,
+          "mechanic_id": "SEARCH.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:2:SEARCH",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "queries=3 items=3",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [
+            "W.SEARCHED"
+          ],
+          "evidence_ids": [
+            "cap-kinds-source",
+            "cap-test-coverage",
+            "cap-omission-github"
+          ],
+          "input_epoch": 0,
+          "operator": "SEARCH",
+          "output_epoch": 0,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 0,
+        "operator": "ABSORB",
+        "post_state_hash": "e1f3726d95316e0c792a003309cc208c00dad9c4017865643e8bf634ecd4124d",
+        "pre_state_hash": "daa8dba7b39301404b6b9a402271d42109e04b85a1818ed512510c5d0ecaa91e",
+        "receipt": {
+          "action_ids": [
+            "ABSORB"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [
+            [
+              "cap-kinds-source",
+              "4f2b7cbc3ce14618430a142a47d06581e2e7283800a0df6e82d7eea34d69352c"
+            ],
+            [
+              "cap-test-coverage",
+              "82e56b6000a80ebf760136fe30f7cda02be9d4238fa4696d1584a16f4027bf1d"
+            ],
+            [
+              "cap-omission-github",
+              "06c977fe02e3d94ae4261c47a5a0e678730dbd43fcd5ac2e02f0cef996964422"
+            ]
+          ],
+          "evidence_ids": [
+            "cap-kinds-source",
+            "cap-test-coverage",
+            "cap-omission-github"
+          ],
+          "experience_eligible": true,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              "K.EVIDENCE,K.SOURCE_PROJECTIONS,K.CLAIMS"
+            ]
+          ],
+          "latency_seconds": 0.005127245999972274,
+          "mechanic_id": "ABSORB.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [
+            "certificate:source-check:broker-py-L96-L192-local-tools-L12-L18-grep-2026-08-21",
+            "certificate:source-check:pytest-30-passed-and-grep-test-files-2026-08-21",
+            "certificate:source-check:grep-github-absent-from-broker-localtools-tests-2026-08-21"
+          ],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:3:ABSORB",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "contributions=3",
+        "transition": {
+          "authority_increase": true,
+          "changed_coordinates": [
+            "K.EVIDENCE",
+            "K.SOURCE_PROJECTIONS",
+            "K.CLAIMS"
+          ],
+          "evidence_ids": [
+            "cap-kinds-source",
+            "cap-test-coverage",
+            "cap-omission-github"
+          ],
+          "input_epoch": 0,
+          "operator": "ABSORB",
+          "output_epoch": 0,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": [
+            "certificate:source-check:broker-py-L96-L192-local-tools-L12-L18-grep-2026-08-21",
+            "certificate:source-check:pytest-30-passed-and-grep-test-files-2026-08-21",
+            "certificate:source-check:grep-github-absent-from-broker-localtools-tests-2026-08-21"
+          ]
+        }
+      },
+      {
+        "epoch": 0,
+        "operator": "RECONSTRUCT",
+        "post_state_hash": "7b193542aa3ce23a1ec5b5557cd43b331187255db3e1724999ffac5eb806897a",
+        "pre_state_hash": "e1f3726d95316e0c792a003309cc208c00dad9c4017865643e8bf634ecd4124d",
+        "receipt": {
+          "action_ids": [
+            "RECONSTRUCT"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [],
+          "evidence_ids": [],
+          "experience_eligible": true,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              "K.PORTRAIT"
+            ]
+          ],
+          "latency_seconds": 0.0006093800000144256,
+          "mechanic_id": "RECONSTRUCT.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:4:RECONSTRUCT",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "portrait:harness-e2e-1:0",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [
+            "K.PORTRAIT"
+          ],
+          "evidence_ids": [],
+          "input_epoch": 0,
+          "operator": "RECONSTRUCT",
+          "output_epoch": 0,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 0,
+        "operator": "DETECT",
+        "post_state_hash": "7b193542aa3ce23a1ec5b5557cd43b331187255db3e1724999ffac5eb806897a",
+        "pre_state_hash": "7b193542aa3ce23a1ec5b5557cd43b331187255db3e1724999ffac5eb806897a",
+        "receipt": {
+          "action_ids": [
+            "DETECT"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [],
+          "evidence_ids": [],
+          "experience_eligible": true,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              "K.RESIDUALS"
+            ]
+          ],
+          "latency_seconds": 2.0943000038187165e-05,
+          "mechanic_id": "DETECT.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:5:DETECT",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "residuals=0",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [
+            "K.RESIDUALS"
+          ],
+          "evidence_ids": [],
+          "input_epoch": 0,
+          "operator": "DETECT",
+          "output_epoch": 0,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 1,
+        "operator": "RECURSE",
+        "post_state_hash": "bfe1b055538dba064029952cb89b76d49262db903adb6fa52c4a3672ac439502",
+        "pre_state_hash": "7b193542aa3ce23a1ec5b5557cd43b331187255db3e1724999ffac5eb806897a",
+        "receipt": {
+          "action_ids": [
+            "RECURSE"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [],
+          "evidence_ids": [],
+          "experience_eligible": true,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              ""
+            ]
+          ],
+          "latency_seconds": 1.5043000018977182e-05,
+          "mechanic_id": "ORION_SOLVE.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:6:RECURSE",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "iteration_recorded=1",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [],
+          "evidence_ids": [],
+          "input_epoch": 0,
+          "operator": "RECURSE",
+          "output_epoch": 1,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 1,
+        "operator": "SATURATE_BOUNDED",
+        "post_state_hash": "bfe1b055538dba064029952cb89b76d49262db903adb6fa52c4a3672ac439502",
+        "pre_state_hash": "bfe1b055538dba064029952cb89b76d49262db903adb6fa52c4a3672ac439502",
+        "receipt": {
+          "action_ids": [
+            "SATURATE_BOUNDED"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [],
+          "evidence_ids": [],
+          "experience_eligible": true,
+          "failure_signature": [
+            "bounded_saturation_open",
+            "semantic_flatness_insufficient",
+            "search_universe_flatness_insufficient",
+            "formulation_flatness_insufficient",
+            "independent_route_coverage_incomplete",
+            "literature_bridge_challenge_missing"
+          ],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              ""
+            ]
+          ],
+          "latency_seconds": 2.483700001221223e-05,
+          "mechanic_id": "SATURATE_BOUNDED.v3",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:7:SATURATE_BOUNDED",
+          "residual_ids": [],
+          "status": "PARTIAL"
+        },
+        "summary": "OPEN:semantic_flatness_insufficient,search_universe_flatness_insufficient,formulation_flatness_insufficient,independent_route_coverage_incomplete,literature_bridge_challenge_missing",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [],
+          "evidence_ids": [],
+          "input_epoch": 1,
+          "operator": "SATURATE_BOUNDED",
+          "output_epoch": 1,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 1,
+        "operator": "SEARCH",
+        "post_state_hash": "0e14b0eafbea4d7ac7dc5ac5def8d370d4a31eec31d689f8912a7fc2d72cbe18",
+        "pre_state_hash": "bfe1b055538dba064029952cb89b76d49262db903adb6fa52c4a3672ac439502",
+        "receipt": {
+          "action_ids": [
+            "SEARCH"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [
+            [
+              "cap-freshness-gitlog",
+              "49900c227ea8e2d0134c3790d3ae7f4a5b94c80cc3f9f0f93e7fe16ec674255f"
+            ]
+          ],
+          "evidence_ids": [
+            "cap-freshness-gitlog"
+          ],
+          "experience_eligible": true,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              "W.SEARCHED"
+            ]
+          ],
+          "latency_seconds": 0.0008250089999819465,
+          "mechanic_id": "SEARCH.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:8:SEARCH",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "queries=1 items=1",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [
+            "W.SEARCHED"
+          ],
+          "evidence_ids": [
+            "cap-freshness-gitlog"
+          ],
+          "input_epoch": 1,
+          "operator": "SEARCH",
+          "output_epoch": 1,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 1,
+        "operator": "ABSORB",
+        "post_state_hash": "bfce048883ce8ea4a49f01f7fa16424cb44c5b26950bbfcdf1ea68ab3984a4ba",
+        "pre_state_hash": "0e14b0eafbea4d7ac7dc5ac5def8d370d4a31eec31d689f8912a7fc2d72cbe18",
+        "receipt": {
+          "action_ids": [
+            "ABSORB"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [
+            [
+              "cap-freshness-gitlog",
+              "49900c227ea8e2d0134c3790d3ae7f4a5b94c80cc3f9f0f93e7fe16ec674255f"
+            ]
+          ],
+          "evidence_ids": [
+            "cap-freshness-gitlog"
+          ],
+          "experience_eligible": true,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              "K.EVIDENCE,K.SOURCE_PROJECTIONS,K.CLAIMS"
+            ]
+          ],
+          "latency_seconds": 0.0013363509999635426,
+          "mechanic_id": "ABSORB.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [
+            "certificate:source-check:git-log-d7312bc-harness-history-2026-08-21"
+          ],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:9:ABSORB",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "contributions=1",
+        "transition": {
+          "authority_increase": true,
+          "changed_coordinates": [
+            "K.EVIDENCE",
+            "K.SOURCE_PROJECTIONS",
+            "K.CLAIMS"
+          ],
+          "evidence_ids": [
+            "cap-freshness-gitlog"
+          ],
+          "input_epoch": 1,
+          "operator": "ABSORB",
+          "output_epoch": 1,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": [
+            "certificate:source-check:git-log-d7312bc-harness-history-2026-08-21"
+          ]
+        }
+      },
+      {
+        "epoch": 1,
+        "operator": "RECONSTRUCT",
+        "post_state_hash": "0d4f2f2eff41112b5ab8cf481ee23b4054faa6dd35d0cd0ce7a196302f224d4b",
+        "pre_state_hash": "bfce048883ce8ea4a49f01f7fa16424cb44c5b26950bbfcdf1ea68ab3984a4ba",
+        "receipt": {
+          "action_ids": [
+            "RECONSTRUCT"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [],
+          "evidence_ids": [],
+          "experience_eligible": true,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              "K.PORTRAIT"
+            ]
+          ],
+          "latency_seconds": 0.0006220409999855292,
+          "mechanic_id": "RECONSTRUCT.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:10:RECONSTRUCT",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "portrait:harness-e2e-1:1",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [
+            "K.PORTRAIT"
+          ],
+          "evidence_ids": [],
+          "input_epoch": 1,
+          "operator": "RECONSTRUCT",
+          "output_epoch": 1,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 1,
+        "operator": "DETECT",
+        "post_state_hash": "0d4f2f2eff41112b5ab8cf481ee23b4054faa6dd35d0cd0ce7a196302f224d4b",
+        "pre_state_hash": "0d4f2f2eff41112b5ab8cf481ee23b4054faa6dd35d0cd0ce7a196302f224d4b",
+        "receipt": {
+          "action_ids": [
+            "DETECT"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [],
+          "evidence_ids": [],
+          "experience_eligible": true,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              "K.RESIDUALS"
+            ]
+          ],
+          "latency_seconds": 2.118999998401705e-05,
+          "mechanic_id": "DETECT.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:11:DETECT",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "residuals=0",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [
+            "K.RESIDUALS"
+          ],
+          "evidence_ids": [],
+          "input_epoch": 1,
+          "operator": "DETECT",
+          "output_epoch": 1,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 2,
+        "operator": "RECURSE",
+        "post_state_hash": "0eeb5b7a43f775a39b62377cb87b1eb798a470a04a94d6ed520427dab5819408",
+        "pre_state_hash": "0d4f2f2eff41112b5ab8cf481ee23b4054faa6dd35d0cd0ce7a196302f224d4b",
+        "receipt": {
+          "action_ids": [
+            "RECURSE"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [],
+          "evidence_ids": [],
+          "experience_eligible": true,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              ""
+            ]
+          ],
+          "latency_seconds": 1.3469999998960702e-05,
+          "mechanic_id": "ORION_SOLVE.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:12:RECURSE",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "iteration_recorded=2",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [],
+          "evidence_ids": [],
+          "input_epoch": 1,
+          "operator": "RECURSE",
+          "output_epoch": 2,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 2,
+        "operator": "SATURATE_BOUNDED",
+        "post_state_hash": "0eeb5b7a43f775a39b62377cb87b1eb798a470a04a94d6ed520427dab5819408",
+        "pre_state_hash": "0eeb5b7a43f775a39b62377cb87b1eb798a470a04a94d6ed520427dab5819408",
+        "receipt": {
+          "action_ids": [
+            "SATURATE_BOUNDED"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [],
+          "evidence_ids": [],
+          "experience_eligible": true,
+          "failure_signature": [
+            "bounded_saturation_open",
+            "semantic_flatness_insufficient",
+            "independent_route_coverage_incomplete",
+            "literature_bridge_challenge_missing"
+          ],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              ""
+            ]
+          ],
+          "latency_seconds": 2.1478999997270876e-05,
+          "mechanic_id": "SATURATE_BOUNDED.v3",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:13:SATURATE_BOUNDED",
+          "residual_ids": [],
+          "status": "PARTIAL"
+        },
+        "summary": "OPEN:semantic_flatness_insufficient,independent_route_coverage_incomplete,literature_bridge_challenge_missing",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [],
+          "evidence_ids": [],
+          "input_epoch": 2,
+          "operator": "SATURATE_BOUNDED",
+          "output_epoch": 2,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 2,
+        "operator": "SEARCH",
+        "post_state_hash": "0eeb5b7a43f775a39b62377cb87b1eb798a470a04a94d6ed520427dab5819408",
+        "pre_state_hash": "0eeb5b7a43f775a39b62377cb87b1eb798a470a04a94d6ed520427dab5819408",
+        "receipt": {
+          "action_ids": [
+            "SEARCH"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [],
+          "evidence_ids": [],
+          "experience_eligible": true,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              ""
+            ]
+          ],
+          "latency_seconds": 0.0004689250000069478,
+          "mechanic_id": "SEARCH.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:14:SEARCH",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "queries=0 items=0",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [],
+          "evidence_ids": [],
+          "input_epoch": 2,
+          "operator": "SEARCH",
+          "output_epoch": 2,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 2,
+        "operator": "ABSORB",
+        "post_state_hash": "0eeb5b7a43f775a39b62377cb87b1eb798a470a04a94d6ed520427dab5819408",
+        "pre_state_hash": "0eeb5b7a43f775a39b62377cb87b1eb798a470a04a94d6ed520427dab5819408",
+        "receipt": {
+          "action_ids": [
+            "ABSORB"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [],
+          "evidence_ids": [],
+          "experience_eligible": true,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              ""
+            ]
+          ],
+          "latency_seconds": 2.812999997559018e-05,
+          "mechanic_id": "ABSORB.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:15:ABSORB",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "contributions=0",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [],
+          "evidence_ids": [],
+          "input_epoch": 2,
+          "operator": "ABSORB",
+          "output_epoch": 2,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 2,
+        "operator": "RECONSTRUCT",
+        "post_state_hash": "a54ea2cf8357302a47b825b82e2acc78a4ba5174c852a03f44a467823e411b7b",
+        "pre_state_hash": "0eeb5b7a43f775a39b62377cb87b1eb798a470a04a94d6ed520427dab5819408",
+        "receipt": {
+          "action_ids": [
+            "RECONSTRUCT"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [],
+          "evidence_ids": [],
+          "experience_eligible": true,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              "K.PORTRAIT"
+            ]
+          ],
+          "latency_seconds": 0.0006869910000091295,
+          "mechanic_id": "RECONSTRUCT.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:16:RECONSTRUCT",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "portrait:harness-e2e-1:2",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [
+            "K.PORTRAIT"
+          ],
+          "evidence_ids": [],
+          "input_epoch": 2,
+          "operator": "RECONSTRUCT",
+          "output_epoch": 2,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 2,
+        "operator": "DETECT",
+        "post_state_hash": "a54ea2cf8357302a47b825b82e2acc78a4ba5174c852a03f44a467823e411b7b",
+        "pre_state_hash": "a54ea2cf8357302a47b825b82e2acc78a4ba5174c852a03f44a467823e411b7b",
+        "receipt": {
+          "action_ids": [
+            "DETECT"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [],
+          "evidence_ids": [],
+          "experience_eligible": true,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              "K.RESIDUALS"
+            ]
+          ],
+          "latency_seconds": 1.6255999980785418e-05,
+          "mechanic_id": "DETECT.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:17:DETECT",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "residuals=0",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [
+            "K.RESIDUALS"
+          ],
+          "evidence_ids": [],
+          "input_epoch": 2,
+          "operator": "DETECT",
+          "output_epoch": 2,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 3,
+        "operator": "RECURSE",
+        "post_state_hash": "6e195a3e9b098a64eb05b8b9eb0e2638779cee3e0c1e1acaf2d0de7cc1a11a4e",
+        "pre_state_hash": "a54ea2cf8357302a47b825b82e2acc78a4ba5174c852a03f44a467823e411b7b",
+        "receipt": {
+          "action_ids": [
+            "RECURSE"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [],
+          "evidence_ids": [],
+          "experience_eligible": true,
+          "failure_signature": [],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              ""
+            ]
+          ],
+          "latency_seconds": 1.1666999967019365e-05,
+          "mechanic_id": "ORION_SOLVE.v1",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:18:RECURSE",
+          "residual_ids": [],
+          "status": "SUCCEEDED"
+        },
+        "summary": "iteration_recorded=3",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [],
+          "evidence_ids": [],
+          "input_epoch": 2,
+          "operator": "RECURSE",
+          "output_epoch": 3,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      },
+      {
+        "epoch": 3,
+        "operator": "SATURATE_BOUNDED",
+        "post_state_hash": "6e195a3e9b098a64eb05b8b9eb0e2638779cee3e0c1e1acaf2d0de7cc1a11a4e",
+        "pre_state_hash": "6e195a3e9b098a64eb05b8b9eb0e2638779cee3e0c1e1acaf2d0de7cc1a11a4e",
+        "receipt": {
+          "action_ids": [
+            "SATURATE_BOUNDED"
+          ],
+          "cost_units": null,
+          "evidence_bindings": [],
+          "evidence_ids": [],
+          "experience_eligible": true,
+          "failure_signature": [
+            "bounded_saturation_open",
+            "semantic_flatness_insufficient",
+            "independent_route_coverage_incomplete",
+            "literature_bridge_challenge_missing"
+          ],
+          "handoff_values": [
+            [
+              "changed_coordinates",
+              ""
+            ]
+          ],
+          "latency_seconds": 1.6489000017827493e-05,
+          "mechanic_id": "SATURATE_BOUNDED.v3",
+          "metric_observations": [],
+          "output_artifact_ids": [],
+          "provenance_ids": [],
+          "receipt_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1:receipt:19:SATURATE_BOUNDED",
+          "residual_ids": [],
+          "status": "PARTIAL"
+        },
+        "summary": "OPEN:semantic_flatness_insufficient,independent_route_coverage_incomplete,literature_bridge_challenge_missing",
+        "transition": {
+          "authority_increase": false,
+          "changed_coordinates": [],
+          "evidence_ids": [],
+          "input_epoch": 3,
+          "operator": "SATURATE_BOUNDED",
+          "output_epoch": 3,
+          "residual_ids": [],
+          "scientific_authority_certificate_ids": []
+        }
+      }
+    ],
+    "trace_id": "trace:harness-e2e-1:68ef78935ed945689dcd509e28a256c1"
+  }
+}

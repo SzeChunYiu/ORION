@@ -1,0 +1,15 @@
+{
+  "capability": "LLM_COMPLETE",
+  "created_at": "2026-08-21T06:17:32.482588+00:00",
+  "payload": {
+    "instruction": "Return an object with `content` containing the model response text. For ORION semantic tasks, content itself must be JSON matching response_schema.",
+    "response_schema": "{\"contribution_id\":\"...\",\"text\":\"...\",\"assimilation\":\"COMPLEMENTARY_FACET\",\"discovered_domain_ids\":[],\"representation_ids\":[],\"contradicts_claim_ids\":[],\"related_claim_ids\":[],\"context_ids\":[],\"referent_bindings\":[{\"mention\":\"...\",\"resolution\":\"RESOLVED\",\"referent_id\":\"...\",\"context_id\":\"...\"}],\"representation_mappings\":[{\"mapping_id\":\"...\",\"source_representation_id\":\"...\",\"target_representation_id\":\"orion:...\",\"relation\":\"EQUIVALENT\",\"evidence_ids\":[\"...\"],\"recoverable\":true}],\"assumption_ids\":[]}",
+    "system": "You are a semantic reasoning component inside ORION.\nYou may propose interpretations, queries, diagnoses and prose, but you do not create scientific authority.\nReturn only JSON matching the requested schema. Preserve uncertainty and do not invent source evidence.\nFor search planning, do not remain inside the current vocabulary: deliberately use independent route families such as function-only, parent-discipline, adversarial-omission and freshness searches when they remain uncovered.",
+    "task": "interpret",
+    "user": "{\"active_domains\": [\"software-verification\"], \"known_claims\": [], \"known_representation_mappings\": [], \"known_source_projections\": [], \"problem\": {\"initial_domain_ids\": [\"software-verification\"], \"problem_id\": \"harness-e2e-1\", \"question\": \"Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?\", \"scope\": \"Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.\", \"success_criteria\": [\"Every capability kind named in the answer is backed by a cited file path.\"]}, \"retrieved_item\": {\"content\": \"The harness protocol has no CapabilityKind enum; capabilities are plain string kinds. Broker-mediated kinds are declared in packages/orion-research-harness/src/orion_research_harness/broker.py: LLM_COMPLETE (line 96, content must be a string, optional model_id/response_id), WEB_SEARCH (line 134, items with non-empty content and source_uri, array domain_ids), VERIFY_EVIDENCE (line 192, boolean passed, certificate_ids array, passing requires a certificate). Local kinds are declared in packages/orion-research-harness/src/orion_research_harness/local_tools.py lines 13-20: FILE_READ, FILE_WRITE, FILE_LIST, SHELL, PYTHON.\", \"domain_ids\": [\"software-verification\"], \"item_id\": \"cap-kinds-source\", \"source_uri\": \"repo:packages/orion-research-harness/src/orion_research_harness/broker.py\"}}"
+  },
+  "request_digest": "74d6ed14f4419d25eb716d9bbe4fa4255786214df0b9352ec01bcb68243ccdeb",
+  "request_id": "hostreq:b8ba9b9501f0cae1d87492360dc8eb0eb9d22282f4a15c382cfcd627a768dea7",
+  "schema": "ORION.HostCapabilityRequest.v1",
+  "session_id": "session:7b2d750debcd46c4b7c723ed7be6bf42"
+}

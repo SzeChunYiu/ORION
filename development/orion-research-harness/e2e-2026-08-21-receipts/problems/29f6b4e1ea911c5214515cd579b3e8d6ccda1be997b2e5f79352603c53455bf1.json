@@ -1,0 +1,12 @@
+{
+  "initial_domain_ids": [
+    "software-verification"
+  ],
+  "problem_id": "harness-e2e-1",
+  "question": "Which capability kinds does the orion-research-harness expose to an external host, and is each one exercised by at least one test in its test suite?",
+  "schema": "ORION.HarnessProblem.v1",
+  "scope": "Answer strictly from the SzeChunYiu/ORION repository working tree; cite files.",
+  "success_criteria": [
+    "Every capability kind named in the answer is backed by a cited file path."
+  ]
+}
