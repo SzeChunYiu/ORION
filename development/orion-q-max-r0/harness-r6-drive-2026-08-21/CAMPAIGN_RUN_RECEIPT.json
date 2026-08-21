@@ -1,0 +1,1143 @@
+{
+  "campaign_id": "orion-q:max-r6-live",
+  "cycles": [
+    {
+      "campaign_id": "orion-q:max-r6-live",
+      "capability_id": "orion_q.donor_closure",
+      "decision": {
+        "computation": {
+          "action_digests": [
+            "sha256:6f1ffd8a5af1b1f87381585c78966b67f202e0fe710030240067040d1f6bf5c3",
+            "sha256:a9a3bb8a2cf82593b8967f420043e5725e2e90230487e342fd40cb9fbf11cca7"
+          ],
+          "active_hard_obligations": [
+            "DONOR_FOQCS_GENERIC_PREP_CLOSURE",
+            "DONOR_GENERAL_M_TARE_CLOSURE"
+          ],
+          "assessment_digests": [
+            "sha256:2f1a27181c85479e11137fdece3e6e07101fa833de373a2c2f0d7da62c92f20e",
+            "sha256:809c21aafd4460ae889026777bccb0ec550a3c7940de7f019c9a610b319fde06"
+          ],
+          "claim_id": "orion-q:max-r6-native-controller",
+          "grants_adoption_authority": false,
+          "grants_revision_authority": false,
+          "grants_scientific_authority": false,
+          "optimal_action_ids": [
+            "COMPUTE:DONOR_CLOSURE_PACKET"
+          ],
+          "reasons": [
+            "HARD_OBLIGATION_PRECEDENCE"
+          ],
+          "selected_action_digest": "sha256:6f1ffd8a5af1b1f87381585c78966b67f202e0fe710030240067040d1f6bf5c3",
+          "selected_action_id": "COMPUTE:DONOR_CLOSURE_PACKET",
+          "status": "SELECTED",
+          "version": "EpistemicComputationSelection.v1"
+        },
+        "control": {
+          "claim_id": "orion-q:max-r6-native-controller",
+          "computation_digest": "sha256:e5324b2d6d22520b8f032050c860fa62a0f1bb581212430866124a41a8d30096",
+          "containment_digest": null,
+          "grants_adoption_authority": false,
+          "grants_global_task_stop_authority": false,
+          "grants_merge_authority": false,
+          "grants_promotion_authority": false,
+          "grants_revision_authority": false,
+          "grants_scientific_authority": false,
+          "reasons": [
+            "HARD_COMPUTATION_OBLIGATION_PRECEDENCE"
+          ],
+          "revision_digest": "sha256:8d34275713a0acd18914ab029783b7fdc358215e75998e3de9777bf7ec90e275",
+          "selected_computation_action_digest": "sha256:6f1ffd8a5af1b1f87381585c78966b67f202e0fe710030240067040d1f6bf5c3",
+          "selected_computation_action_id": "COMPUTE:DONOR_CLOSURE_PACKET",
+          "selected_revision_mechanic_digest": null,
+          "selected_revision_mechanic_id": null,
+          "social_evidence_digests": [],
+          "status": "COMPUTATION_REQUIRED",
+          "version": "SelfOrionEpistemicControlDecision.v1"
+        },
+        "decision_digest": "fa7899526b05209d161a922e2564da2366ff0c717cd2181ca0e7cfdf1b1b1865",
+        "grants_adoption_authority": false,
+        "grants_global_task_stop_authority": false,
+        "grants_merge_authority": false,
+        "grants_novelty_authority": false,
+        "grants_promotion_authority": false,
+        "grants_scientific_authority": false,
+        "interface": {
+          "advisory_check_ids": [],
+          "check_digests": [
+            "sha256:cf4f1f704be9368b89779cf98a78e01dc250253bec45435d2beda3ee78262a71",
+            "sha256:de2e550fb7c540a965b2191cd555cb20e2f26170ada26facf715216d6da54e01"
+          ],
+          "failed_check_ids": [],
+          "failed_scopes": [],
+          "grants_scientific_authority": false,
+          "permits_broader_revision_consideration": true,
+          "reasons": [],
+          "status": "ADEQUATE",
+          "unresolved_check_ids": [],
+          "unresolved_scopes": [],
+          "version": "EpistemicInterfaceAdequacyReport.v1"
+        },
+        "phase_id": "N0",
+        "responsibility": {
+          "claim_id": "orion-q:max-r6-native-controller",
+          "defeated_hypothesis_ids": [
+            "RESP:CURRENT_SEARCH_INCOMPLETE"
+          ],
+          "grants_revision_authority": false,
+          "hypothesis_digests": [
+            "sha256:0cc04ac73af883e6b8918c30838abbcc21feadecbb5fedc93b0bbb5b4d46ac40",
+            "sha256:5fccd5fa139b6953d9e393f8f80efb575c61647a5f32f1be862fc5d4fcace2fd",
+            "sha256:b5805d43424eba9b94e6c7257e88ddc3a1de695140aefb3b6812b52714744d1e",
+            "sha256:f9af2f5c890ea9d336988d4f4cf7522d534d67513161283a1f24be5ffbc7d6a9"
+          ],
+          "identified_hypothesis_id": null,
+          "missing_discriminator_ids": [
+            "FOQCS_GENERIC_PREP_OUTCOME",
+            "GENERAL_M_DONOR_OUTCOME"
+          ],
+          "observed_outcomes": [
+            [
+              "R5H_CURRENT_ALPHABET_EXACT",
+              "YES"
+            ]
+          ],
+          "reasons": [
+            "REQUIRED_DISCRIMINATOR_OBSERVATION_MISSING"
+          ],
+          "status": "UNRESOLVED",
+          "surviving_hypothesis_ids": [
+            "RESP:DONOR_CLOSURE_INCOMPLETE",
+            "RESP:INTERFACE_INADEQUATE",
+            "RESP:METHOD_LANGUAGE_INADEQUATE"
+          ],
+          "unmodeled_discriminator_ids": [],
+          "version": "EpistemicRevisionResponsibilityReport.v1"
+        },
+        "revision": {
+          "candidate_mechanic_ids": [],
+          "claim_id": "orion-q:max-r6-native-controller",
+          "grants_adoption_authority": false,
+          "grants_merge_authority": false,
+          "grants_promotion_authority": false,
+          "interface_digest": "sha256:9a70424ecb90541e7a72f2f1c90017fb2ea9addc9580dda132571eb7d767cb3e",
+          "reasons": [
+            "RESPONSIBILITY_NOT_IDENTIFIED",
+            "UNRESOLVED"
+          ],
+          "responsibility_digest": "sha256:4cab9b72bb9f3804d29bb21ed9713dec364df2f30b6850ddafa45f588f0a86f2",
+          "selected_mechanic_digest": null,
+          "selected_mechanic_id": null,
+          "selection_digest": null,
+          "status": "UNRESOLVED",
+          "version": "SelfOrionRevisionGateReport.v1"
+        },
+        "schema": "ORION.ResearchCampaignDecision.v1",
+        "selected_id": "COMPUTE:DONOR_CLOSURE_PACKET",
+        "selected_kind": "COMPUTATION",
+        "shadow_control": {
+          "claim_id": "orion-q:max-r6-native-controller",
+          "computation_digest": "sha256:e5324b2d6d22520b8f032050c860fa62a0f1bb581212430866124a41a8d30096",
+          "containment_digest": null,
+          "grants_adoption_authority": false,
+          "grants_global_task_stop_authority": false,
+          "grants_merge_authority": false,
+          "grants_promotion_authority": false,
+          "grants_revision_authority": false,
+          "grants_scientific_authority": false,
+          "reasons": [
+            "HARD_COMPUTATION_OBLIGATION_PRECEDENCE"
+          ],
+          "revision_digest": "sha256:8d34275713a0acd18914ab029783b7fdc358215e75998e3de9777bf7ec90e275",
+          "selected_computation_action_digest": "sha256:6f1ffd8a5af1b1f87381585c78966b67f202e0fe710030240067040d1f6bf5c3",
+          "selected_computation_action_id": "COMPUTE:DONOR_CLOSURE_PACKET",
+          "selected_revision_mechanic_digest": null,
+          "selected_revision_mechanic_id": null,
+          "social_evidence_digests": [],
+          "status": "COMPUTATION_REQUIRED",
+          "version": "SelfOrionEpistemicControlDecision.v1"
+        }
+      },
+      "evidence_updates": {
+        "FOQCS_GENERIC_PREP_OUTCOME": "GENERIC_MATCHED_ROUTE_AVAILABLE",
+        "GENERAL_M_DONOR_OUTCOME": "NONDOMINATING_OR_CLOSED"
+      },
+      "phase_id": "N0",
+      "request": {
+        "capability": "SHELL",
+        "created_at": "2026-08-21T06:56:43.453536+00:00",
+        "payload": {
+          "argv": [
+            "python",
+            "max_r6_donor_closure_h4_fast.py"
+          ],
+          "campaign_id": "orion-q:max-r6-live",
+          "cwd": "research/extensions/orion-q",
+          "phase_id": "N0",
+          "selected_id": "COMPUTE:DONOR_CLOSURE_PACKET",
+          "selected_kind": "COMPUTATION",
+          "timeout": 120
+        },
+        "request_digest": "c24781eb3de09b63e0319143be2494f6b522350597cd33e222fad21892878565",
+        "request_id": "hostreq:509bf2ffcf8ba049faaf710c8c76dcbc841c9926e99208544a71142e4806264f",
+        "schema": "ORION.HostCapabilityRequest.v1",
+        "session_id": "session:07dec5252bd948b88993dbf0e72110e1"
+      },
+      "result_digest": "be46493a35fd41eab5ac1943f3fffa55686576942314a7f303d8e0db2b272c48",
+      "schema": "ORION.ResearchCampaignOutcome.v1",
+      "selected_id": "COMPUTE:DONOR_CLOSURE_PACKET",
+      "state": {
+        "active_hard_obligations": [],
+        "authority_ceiling": "BELOW_R6_UNTIL_PROTECTED_PROMOTION",
+        "campaign_id": "orion-q:max-r6-live",
+        "claim_id": "orion-q:max-r6-native-controller",
+        "cycle_index": 1,
+        "grants_adoption_authority": false,
+        "grants_global_task_stop_authority": false,
+        "grants_merge_authority": false,
+        "grants_novelty_authority": false,
+        "grants_promotion_authority": false,
+        "grants_scientific_authority": false,
+        "history_digests": [
+          "fa7899526b05209d161a922e2564da2366ff0c717cd2181ca0e7cfdf1b1b1865",
+          "c24781eb3de09b63e0319143be2494f6b522350597cd33e222fad21892878565",
+          "be46493a35fd41eab5ac1943f3fffa55686576942314a7f303d8e0db2b272c48",
+          "1d1fcd27ad9886262cb8b70597b42b4188e35113dc4fcc399203bb038c6d35f8"
+        ],
+        "manifest_digest": "7e47dffc6b80f2e5b879eb1d91adb3399c99e66e2b0cf0b7f377d36388b05191",
+        "observations": [
+          [
+            "FOQCS_GENERIC_PREP_OUTCOME",
+            "GENERIC_MATCHED_ROUTE_AVAILABLE"
+          ],
+          [
+            "GENERAL_M_DONOR_OUTCOME",
+            "NONDOMINATING_OR_CLOSED"
+          ],
+          [
+            "R5H_CURRENT_ALPHABET_EXACT",
+            "YES"
+          ]
+        ],
+        "phase_id": "N1",
+        "protected_refs": [
+          {
+            "blob": "6ab53f2a83c1f8ab5cc3bf4309525fb1ec7421dd",
+            "path": "N2/cc-pVTZ/6Elec_6Orbs/1.5_Eq-3.1020au/DUCC2/N2.cc-pvtz.ducc.results.txt",
+            "ref_id": "FRESH:R6:STRETCHED_N2_DUCC2",
+            "released": false
+          }
+        ],
+        "schema": "ORION.ResearchCampaignState.v1",
+        "state_digest": "3b79e3b9f2a0402fb4a43bfdc131900655056e0fae67bb99ad8d07786d646324"
+      },
+      "status": "ADVANCED",
+      "terminal": "CONTINUE",
+      "transition": {
+        "after_state_digest": "3b79e3b9f2a0402fb4a43bfdc131900655056e0fae67bb99ad8d07786d646324",
+        "before_state_digest": "218215bf0435b70b7633b77f5ea4479e38478e4f681e7ad2dc4ee2f82d444ba2",
+        "campaign_id": "orion-q:max-r6-live",
+        "capability_request_digest": "c24781eb3de09b63e0319143be2494f6b522350597cd33e222fad21892878565",
+        "capability_result_digest": "be46493a35fd41eab5ac1943f3fffa55686576942314a7f303d8e0db2b272c48",
+        "cycle_index": 0,
+        "decision_digest": "fa7899526b05209d161a922e2564da2366ff0c717cd2181ca0e7cfdf1b1b1865",
+        "grants_adoption_authority": false,
+        "grants_global_task_stop_authority": false,
+        "grants_merge_authority": false,
+        "grants_novelty_authority": false,
+        "grants_promotion_authority": false,
+        "grants_scientific_authority": false,
+        "schema": "ORION.ResearchCampaignTransition.v1",
+        "terminal": "CONTINUE",
+        "transition_digest": "9fb1abe6af1e88d10da1dd73114bba5c6d006ae3db081eaf80a6d89e5a9e983f"
+      }
+    },
+    {
+      "campaign_id": "orion-q:max-r6-live",
+      "capability_id": "orion_q.interface_envelope",
+      "decision": {
+        "computation": {
+          "action_digests": [
+            "sha256:4a69fbd53214039869212a3fcb99a164fd8b039bab9719b44c02e9becf7d0a14",
+            "sha256:a58b0316fe47069d645f2afbab2b93e6ce300b781032882fb3a0a3bdb0272c58"
+          ],
+          "active_hard_obligations": [],
+          "assessment_digests": [
+            "sha256:8c8d07ba9b6006d3ffd69c58b216c33e03358b119c7463a0fe93d1bc87d9a45d",
+            "sha256:95979eea6df877de5944e74d5afec797348d38e16559d8f3d506605bda26b69b"
+          ],
+          "claim_id": "orion-q:max-r6-native-controller",
+          "grants_adoption_authority": false,
+          "grants_revision_authority": false,
+          "grants_scientific_authority": false,
+          "optimal_action_ids": [
+            "COMPUTE:FOQCS_PREP_RESOURCE_PACKET"
+          ],
+          "reasons": [
+            "POSITIVE_NET_COMPUTATION_VALUE"
+          ],
+          "selected_action_digest": "sha256:4a69fbd53214039869212a3fcb99a164fd8b039bab9719b44c02e9becf7d0a14",
+          "selected_action_id": "COMPUTE:FOQCS_PREP_RESOURCE_PACKET",
+          "status": "SELECTED",
+          "version": "EpistemicComputationSelection.v1"
+        },
+        "control": {
+          "claim_id": "orion-q:max-r6-native-controller",
+          "computation_digest": "sha256:3bab92d1990124b4febdbfeb2fc601bbad159beac08eca8c5f637f52d0db3550",
+          "containment_digest": null,
+          "grants_adoption_authority": false,
+          "grants_global_task_stop_authority": false,
+          "grants_merge_authority": false,
+          "grants_promotion_authority": false,
+          "grants_revision_authority": false,
+          "grants_scientific_authority": false,
+          "reasons": [
+            "BOUNDED_REVISION_ALREADY_SELECTABLE"
+          ],
+          "revision_digest": "sha256:d0b1002b4ce8b64079c1a821ba832c4b161b7186b0ad9a8e8801d6eec22fca7a",
+          "selected_computation_action_digest": null,
+          "selected_computation_action_id": null,
+          "selected_revision_mechanic_digest": "sha256:c4bd861af2e7c8df3da33ed759bd951adafdbb8cb0874c7df4db7c8c74580c2d",
+          "selected_revision_mechanic_id": "REV:CHANGE_INTERFACE",
+          "social_evidence_digests": [],
+          "status": "REVISION_CANDIDATE",
+          "version": "SelfOrionEpistemicControlDecision.v1"
+        },
+        "decision_digest": "be6e746870f2686b27d108e0b392e16b671c9468dda5ebf5af6c89db6eee00b2",
+        "grants_adoption_authority": false,
+        "grants_global_task_stop_authority": false,
+        "grants_merge_authority": false,
+        "grants_novelty_authority": false,
+        "grants_promotion_authority": false,
+        "grants_scientific_authority": false,
+        "interface": {
+          "advisory_check_ids": [],
+          "check_digests": [
+            "sha256:cf4f1f704be9368b89779cf98a78e01dc250253bec45435d2beda3ee78262a71",
+            "sha256:de2e550fb7c540a965b2191cd555cb20e2f26170ada26facf715216d6da54e01"
+          ],
+          "failed_check_ids": [],
+          "failed_scopes": [],
+          "grants_scientific_authority": false,
+          "permits_broader_revision_consideration": true,
+          "reasons": [],
+          "status": "ADEQUATE",
+          "unresolved_check_ids": [],
+          "unresolved_scopes": [],
+          "version": "EpistemicInterfaceAdequacyReport.v1"
+        },
+        "phase_id": "N1",
+        "responsibility": {
+          "claim_id": "orion-q:max-r6-native-controller",
+          "defeated_hypothesis_ids": [
+            "RESP:CURRENT_SEARCH_INCOMPLETE",
+            "RESP:DONOR_CLOSURE_INCOMPLETE",
+            "RESP:METHOD_LANGUAGE_INADEQUATE"
+          ],
+          "grants_revision_authority": false,
+          "hypothesis_digests": [
+            "sha256:0cc04ac73af883e6b8918c30838abbcc21feadecbb5fedc93b0bbb5b4d46ac40",
+            "sha256:5fccd5fa139b6953d9e393f8f80efb575c61647a5f32f1be862fc5d4fcace2fd",
+            "sha256:b5805d43424eba9b94e6c7257e88ddc3a1de695140aefb3b6812b52714744d1e",
+            "sha256:f9af2f5c890ea9d336988d4f4cf7522d534d67513161283a1f24be5ffbc7d6a9"
+          ],
+          "identified_hypothesis_id": "RESP:INTERFACE_INADEQUATE",
+          "missing_discriminator_ids": [],
+          "observed_outcomes": [
+            [
+              "FOQCS_GENERIC_PREP_OUTCOME",
+              "GENERIC_MATCHED_ROUTE_AVAILABLE"
+            ],
+            [
+              "GENERAL_M_DONOR_OUTCOME",
+              "NONDOMINATING_OR_CLOSED"
+            ],
+            [
+              "R5H_CURRENT_ALPHABET_EXACT",
+              "YES"
+            ]
+          ],
+          "reasons": [],
+          "status": "IDENTIFIED",
+          "surviving_hypothesis_ids": [
+            "RESP:INTERFACE_INADEQUATE"
+          ],
+          "unmodeled_discriminator_ids": [],
+          "version": "EpistemicRevisionResponsibilityReport.v1"
+        },
+        "revision": {
+          "candidate_mechanic_ids": [
+            "REV:CHANGE_INTERFACE"
+          ],
+          "claim_id": "orion-q:max-r6-native-controller",
+          "grants_adoption_authority": false,
+          "grants_merge_authority": false,
+          "grants_promotion_authority": false,
+          "interface_digest": "sha256:9a70424ecb90541e7a72f2f1c90017fb2ea9addc9580dda132571eb7d767cb3e",
+          "reasons": [],
+          "responsibility_digest": "sha256:47d3846f4ea7d36b826e021ef3df98e0b57e3d16827142d70dc98c3f2b9a4146",
+          "selected_mechanic_digest": "sha256:c4bd861af2e7c8df3da33ed759bd951adafdbb8cb0874c7df4db7c8c74580c2d",
+          "selected_mechanic_id": "REV:CHANGE_INTERFACE",
+          "selection_digest": "sha256:6748563922be00532694a07426c651ddfdef3a2eee4d0a498f9dbf79dba5fbd8",
+          "status": "CANDIDATE_SELECTED",
+          "version": "SelfOrionRevisionGateReport.v1"
+        },
+        "schema": "ORION.ResearchCampaignDecision.v1",
+        "selected_id": "REV:CHANGE_INTERFACE",
+        "selected_kind": "REVISION",
+        "shadow_control": {
+          "claim_id": "orion-q:max-r6-native-controller",
+          "computation_digest": "sha256:3bab92d1990124b4febdbfeb2fc601bbad159beac08eca8c5f637f52d0db3550",
+          "containment_digest": null,
+          "grants_adoption_authority": false,
+          "grants_global_task_stop_authority": false,
+          "grants_merge_authority": false,
+          "grants_promotion_authority": false,
+          "grants_revision_authority": false,
+          "grants_scientific_authority": false,
+          "reasons": [
+            "REVISION_NOT_YET_SELECTABLE_OPTIONAL_COMPUTE_AVAILABLE"
+          ],
+          "revision_digest": "sha256:3dc89d2ba60d2f2da3d2369a3f5c16cfa2069082b4be49e0154fbaefb0578ecf",
+          "selected_computation_action_digest": "sha256:4a69fbd53214039869212a3fcb99a164fd8b039bab9719b44c02e9becf7d0a14",
+          "selected_computation_action_id": "COMPUTE:FOQCS_PREP_RESOURCE_PACKET",
+          "selected_revision_mechanic_digest": null,
+          "selected_revision_mechanic_id": null,
+          "social_evidence_digests": [],
+          "status": "COMPUTATION_RECOMMENDED",
+          "version": "SelfOrionEpistemicControlDecision.v1"
+        }
+      },
+      "evidence_updates": {
+        "CURRENT_METHOD_INCREMENTAL_VALUE_ON_H4": "NONE_OVER_DIRECT_CLIQUE_DONOR",
+        "FOQCS_INTERFACE_ENVELOPE": "OPTIMISTIC_BOUND_REGISTERED",
+        "FOQCS_OPTIMISTIC_DOMINATES_H4_DONOR": "NO"
+      },
+      "phase_id": "N1",
+      "request": {
+        "capability": "SHELL",
+        "created_at": "2026-08-21T06:57:24.139785+00:00",
+        "payload": {
+          "argv": [
+            "python",
+            "max_r6_foqcs_interface_envelope.py"
+          ],
+          "campaign_id": "orion-q:max-r6-live",
+          "cwd": "research/extensions/orion-q",
+          "phase_id": "N1",
+          "selected_id": "REV:CHANGE_INTERFACE",
+          "selected_kind": "REVISION",
+          "timeout": 120
+        },
+        "request_digest": "6f7ea3afc6ec287f94079a29e737f12e70e6d7dcb898504bb4730084b1fcc3f7",
+        "request_id": "hostreq:df8985f1b4977a51e7b5ba1ad4be7dc8679940dc0e7d49afa92c7b5bc9d03b61",
+        "schema": "ORION.HostCapabilityRequest.v1",
+        "session_id": "session:07dec5252bd948b88993dbf0e72110e1"
+      },
+      "result_digest": "3f91bd1373ad35ccefbe2975e04ea1e3638828fdedc84f5e3bf6d60283a38512",
+      "schema": "ORION.ResearchCampaignOutcome.v1",
+      "selected_id": "REV:CHANGE_INTERFACE",
+      "state": {
+        "active_hard_obligations": [],
+        "authority_ceiling": "BELOW_R6_UNTIL_PROTECTED_PROMOTION",
+        "campaign_id": "orion-q:max-r6-live",
+        "claim_id": "orion-q:max-r6-native-controller",
+        "cycle_index": 2,
+        "grants_adoption_authority": false,
+        "grants_global_task_stop_authority": false,
+        "grants_merge_authority": false,
+        "grants_novelty_authority": false,
+        "grants_promotion_authority": false,
+        "grants_scientific_authority": false,
+        "history_digests": [
+          "fa7899526b05209d161a922e2564da2366ff0c717cd2181ca0e7cfdf1b1b1865",
+          "c24781eb3de09b63e0319143be2494f6b522350597cd33e222fad21892878565",
+          "be46493a35fd41eab5ac1943f3fffa55686576942314a7f303d8e0db2b272c48",
+          "1d1fcd27ad9886262cb8b70597b42b4188e35113dc4fcc399203bb038c6d35f8",
+          "be6e746870f2686b27d108e0b392e16b671c9468dda5ebf5af6c89db6eee00b2",
+          "6f7ea3afc6ec287f94079a29e737f12e70e6d7dcb898504bb4730084b1fcc3f7",
+          "3f91bd1373ad35ccefbe2975e04ea1e3638828fdedc84f5e3bf6d60283a38512",
+          "e8975a07217f61be04d16af72d19bd42f0f47946c8b55e909ee6f3c30b474e14"
+        ],
+        "manifest_digest": "7e47dffc6b80f2e5b879eb1d91adb3399c99e66e2b0cf0b7f377d36388b05191",
+        "observations": [
+          [
+            "CURRENT_METHOD_INCREMENTAL_VALUE_ON_H4",
+            "NONE_OVER_DIRECT_CLIQUE_DONOR"
+          ],
+          [
+            "FOQCS_GENERIC_PREP_OUTCOME",
+            "GENERIC_MATCHED_ROUTE_AVAILABLE"
+          ],
+          [
+            "FOQCS_INTERFACE_ENVELOPE",
+            "OPTIMISTIC_BOUND_REGISTERED"
+          ],
+          [
+            "FOQCS_OPTIMISTIC_DOMINATES_H4_DONOR",
+            "NO"
+          ],
+          [
+            "GENERAL_M_DONOR_OUTCOME",
+            "NONDOMINATING_OR_CLOSED"
+          ],
+          [
+            "R5H_CURRENT_ALPHABET_EXACT",
+            "YES"
+          ]
+        ],
+        "phase_id": "N2",
+        "protected_refs": [
+          {
+            "blob": "6ab53f2a83c1f8ab5cc3bf4309525fb1ec7421dd",
+            "path": "N2/cc-pVTZ/6Elec_6Orbs/1.5_Eq-3.1020au/DUCC2/N2.cc-pvtz.ducc.results.txt",
+            "ref_id": "FRESH:R6:STRETCHED_N2_DUCC2",
+            "released": false
+          }
+        ],
+        "schema": "ORION.ResearchCampaignState.v1",
+        "state_digest": "954fe85b42f7b99920b836e850f4059d057833613561fbe5a553003075d3b3ac"
+      },
+      "status": "ADVANCED",
+      "terminal": "CONTINUE",
+      "transition": {
+        "after_state_digest": "954fe85b42f7b99920b836e850f4059d057833613561fbe5a553003075d3b3ac",
+        "before_state_digest": "3b79e3b9f2a0402fb4a43bfdc131900655056e0fae67bb99ad8d07786d646324",
+        "campaign_id": "orion-q:max-r6-live",
+        "capability_request_digest": "6f7ea3afc6ec287f94079a29e737f12e70e6d7dcb898504bb4730084b1fcc3f7",
+        "capability_result_digest": "3f91bd1373ad35ccefbe2975e04ea1e3638828fdedc84f5e3bf6d60283a38512",
+        "cycle_index": 1,
+        "decision_digest": "be6e746870f2686b27d108e0b392e16b671c9468dda5ebf5af6c89db6eee00b2",
+        "grants_adoption_authority": false,
+        "grants_global_task_stop_authority": false,
+        "grants_merge_authority": false,
+        "grants_novelty_authority": false,
+        "grants_promotion_authority": false,
+        "grants_scientific_authority": false,
+        "schema": "ORION.ResearchCampaignTransition.v1",
+        "terminal": "CONTINUE",
+        "transition_digest": "517ec72a4c58b20bf6011ec11c7c05c8f922a24b8f8805aefb0aae9beaaa57ba"
+      }
+    },
+    {
+      "campaign_id": "orion-q:max-r6-live",
+      "capability_id": "orion_q.p10_frame",
+      "decision": {
+        "computation": {
+          "action_digests": [
+            "sha256:a58b0316fe47069d645f2afbab2b93e6ce300b781032882fb3a0a3bdb0272c58",
+            "sha256:b0a6d9590658e1978f092b2a9634b16e93c999d2ce39a88444c05d2be3e85274"
+          ],
+          "active_hard_obligations": [],
+          "assessment_digests": [
+            "sha256:8c8d07ba9b6006d3ffd69c58b216c33e03358b119c7463a0fe93d1bc87d9a45d",
+            "sha256:ab16778f60d73c5ea1923888452a5e16a6561cf1020d3c877edf4f4753686497"
+          ],
+          "claim_id": "orion-q:max-r6-native-controller",
+          "grants_adoption_authority": false,
+          "grants_revision_authority": false,
+          "grants_scientific_authority": false,
+          "optimal_action_ids": [],
+          "reasons": [
+            "NO_POSITIVE_NET_COMPUTATION_VALUE"
+          ],
+          "selected_action_digest": null,
+          "selected_action_id": null,
+          "status": "LOCAL_COMPUTATION_STOP",
+          "version": "EpistemicComputationSelection.v1"
+        },
+        "control": {
+          "claim_id": "orion-q:max-r6-native-controller",
+          "computation_digest": "sha256:19731de17884ef8c66ec555915943e7f800ac0d648567e8717bc7aaa1f55612f",
+          "containment_digest": null,
+          "grants_adoption_authority": false,
+          "grants_global_task_stop_authority": false,
+          "grants_merge_authority": false,
+          "grants_promotion_authority": false,
+          "grants_revision_authority": false,
+          "grants_scientific_authority": false,
+          "reasons": [
+            "BOUNDED_REVISION_ALREADY_SELECTABLE"
+          ],
+          "revision_digest": "sha256:ea492fcf573d0843320d41fd445599e29c3ebd9aac40ae74a5e7d1581c9ddfaa",
+          "selected_computation_action_digest": null,
+          "selected_computation_action_id": null,
+          "selected_revision_mechanic_digest": "sha256:586258f8fa72f1a999ba9edbd88a1be5ae6a4799b81bfb0d54e8191dc5ce12ad",
+          "selected_revision_mechanic_id": "REV:GROW_METHOD_LANGUAGE",
+          "social_evidence_digests": [],
+          "status": "REVISION_CANDIDATE",
+          "version": "SelfOrionEpistemicControlDecision.v1"
+        },
+        "decision_digest": "1aa3b1655a9b67176a56c2d9fdbab8303b0b87a739e352cf3cf3a5fe068b3a90",
+        "grants_adoption_authority": false,
+        "grants_global_task_stop_authority": false,
+        "grants_merge_authority": false,
+        "grants_novelty_authority": false,
+        "grants_promotion_authority": false,
+        "grants_scientific_authority": false,
+        "interface": {
+          "advisory_check_ids": [],
+          "check_digests": [
+            "sha256:cf4f1f704be9368b89779cf98a78e01dc250253bec45435d2beda3ee78262a71",
+            "sha256:de2e550fb7c540a965b2191cd555cb20e2f26170ada26facf715216d6da54e01"
+          ],
+          "failed_check_ids": [],
+          "failed_scopes": [],
+          "grants_scientific_authority": false,
+          "permits_broader_revision_consideration": true,
+          "reasons": [],
+          "status": "ADEQUATE",
+          "unresolved_check_ids": [],
+          "unresolved_scopes": [],
+          "version": "EpistemicInterfaceAdequacyReport.v1"
+        },
+        "phase_id": "N2",
+        "responsibility": {
+          "claim_id": "orion-q:max-r6-native-controller",
+          "defeated_hypothesis_ids": [
+            "RESP:CURRENT_SEARCH_INCOMPLETE",
+            "RESP:DONOR_GENERAL_M_INCOMPLETE",
+            "RESP:DONOR_INTERFACE_UNRESOLVED",
+            "RESP:INTERFACE_INADEQUATE"
+          ],
+          "grants_revision_authority": false,
+          "hypothesis_digests": [
+            "sha256:03d5c62e59d72eef0b650265410b5ab14ccf0be64a0401c8cbc0fd00e5351551",
+            "sha256:14b5b508b098be63cd1dd3fd008c7511a2c11097ae1710a039a51e7f5d360a5a",
+            "sha256:5fccd5fa139b6953d9e393f8f80efb575c61647a5f32f1be862fc5d4fcace2fd",
+            "sha256:622feb23d2131873a628eced5e8b8d73199c271070d7c760c582c8d2c966c6c6",
+            "sha256:e44af00cb84e2eaf7a1fae3c14e9e9c1407275c6d578b485294f1139c9692561"
+          ],
+          "identified_hypothesis_id": "RESP:METHOD_LANGUAGE_INADEQUATE",
+          "missing_discriminator_ids": [],
+          "observed_outcomes": [
+            [
+              "CURRENT_METHOD_INCREMENTAL_VALUE_ON_H4",
+              "NONE_OVER_DIRECT_CLIQUE_DONOR"
+            ],
+            [
+              "FOQCS_GENERIC_PREP_OUTCOME",
+              "GENERIC_MATCHED_ROUTE_AVAILABLE"
+            ],
+            [
+              "FOQCS_INTERFACE_ENVELOPE",
+              "OPTIMISTIC_BOUND_REGISTERED"
+            ],
+            [
+              "FOQCS_OPTIMISTIC_DOMINATES_H4_DONOR",
+              "NO"
+            ],
+            [
+              "GENERAL_M_DONOR_OUTCOME",
+              "NONDOMINATING_OR_CLOSED"
+            ],
+            [
+              "R5H_CURRENT_ALPHABET_EXACT",
+              "YES"
+            ]
+          ],
+          "reasons": [],
+          "status": "IDENTIFIED",
+          "surviving_hypothesis_ids": [
+            "RESP:METHOD_LANGUAGE_INADEQUATE"
+          ],
+          "unmodeled_discriminator_ids": [
+            "FOQCS_GENERIC_PREP_OUTCOME"
+          ],
+          "version": "EpistemicRevisionResponsibilityReport.v1"
+        },
+        "revision": {
+          "candidate_mechanic_ids": [
+            "REV:GROW_METHOD_LANGUAGE"
+          ],
+          "claim_id": "orion-q:max-r6-native-controller",
+          "grants_adoption_authority": false,
+          "grants_merge_authority": false,
+          "grants_promotion_authority": false,
+          "interface_digest": "sha256:9a70424ecb90541e7a72f2f1c90017fb2ea9addc9580dda132571eb7d767cb3e",
+          "reasons": [],
+          "responsibility_digest": "sha256:5c35517208c736c2e05ade87f2123c2814c9f9bb04c69629d33529b769683498",
+          "selected_mechanic_digest": "sha256:586258f8fa72f1a999ba9edbd88a1be5ae6a4799b81bfb0d54e8191dc5ce12ad",
+          "selected_mechanic_id": "REV:GROW_METHOD_LANGUAGE",
+          "selection_digest": "sha256:f61ee223fe99e8d1efd9defa20eb45f371ca6feddc6013fe66d08d0e98f34d17",
+          "status": "CANDIDATE_SELECTED",
+          "version": "SelfOrionRevisionGateReport.v1"
+        },
+        "schema": "ORION.ResearchCampaignDecision.v1",
+        "selected_id": "REV:GROW_METHOD_LANGUAGE",
+        "selected_kind": "REVISION",
+        "shadow_control": {
+          "claim_id": "orion-q:max-r6-native-controller",
+          "computation_digest": "sha256:19731de17884ef8c66ec555915943e7f800ac0d648567e8717bc7aaa1f55612f",
+          "containment_digest": null,
+          "grants_adoption_authority": false,
+          "grants_global_task_stop_authority": false,
+          "grants_merge_authority": false,
+          "grants_promotion_authority": false,
+          "grants_revision_authority": false,
+          "grants_scientific_authority": false,
+          "reasons": [
+            "GLOBAL_TASK_REMAINS_OPEN",
+            "NO_POSITIVE_LOCAL_COMPUTATION_VALUE"
+          ],
+          "revision_digest": "sha256:f1640e3b63edf7c5cf7d97d9c4397287cddeb4bcf439c7fb04c79f81ee4069f7",
+          "selected_computation_action_digest": null,
+          "selected_computation_action_id": null,
+          "selected_revision_mechanic_digest": null,
+          "selected_revision_mechanic_id": null,
+          "social_evidence_digests": [],
+          "status": "LOCAL_COMPUTATION_STOP",
+          "version": "SelfOrionEpistemicControlDecision.v1"
+        }
+      },
+      "evidence_updates": {
+        "P10_FRAME_CANDIDATE_GENERATED": "YES",
+        "P10_FRAME_GENERATION_TERMINAL": "MAX_R6_P10_FRAME_CANDIDATE_GENERATED"
+      },
+      "phase_id": "N2",
+      "request": {
+        "capability": "SHELL",
+        "created_at": "2026-08-21T06:57:24.183333+00:00",
+        "payload": {
+          "argv": [
+            "python",
+            "max_r6_p10_candidate_blind_frame_optimizer.py"
+          ],
+          "campaign_id": "orion-q:max-r6-live",
+          "cwd": "research/extensions/orion-q",
+          "phase_id": "N2",
+          "selected_id": "REV:GROW_METHOD_LANGUAGE",
+          "selected_kind": "REVISION",
+          "timeout": 120
+        },
+        "request_digest": "2b7332eed69d58e392cb6e6829d75f7842e8aae329be0c40dd9b466fbe645f60",
+        "request_id": "hostreq:81072fe2ce790765f86bd11dd2bcff8a768d2af78da54709ea4312101ea91ab1",
+        "schema": "ORION.HostCapabilityRequest.v1",
+        "session_id": "session:07dec5252bd948b88993dbf0e72110e1"
+      },
+      "result_digest": "477a76c023e391c5ae9641f3d93d29adb191a4f4de7b4dd9432683710ea67eab",
+      "schema": "ORION.ResearchCampaignOutcome.v1",
+      "selected_id": "REV:GROW_METHOD_LANGUAGE",
+      "state": {
+        "active_hard_obligations": [
+          "R6_PROSPECTIVE_GATE_EVALUATION"
+        ],
+        "authority_ceiling": "BELOW_R6_UNTIL_PROTECTED_PROMOTION",
+        "campaign_id": "orion-q:max-r6-live",
+        "claim_id": "orion-q:max-r6-native-controller",
+        "cycle_index": 3,
+        "grants_adoption_authority": false,
+        "grants_global_task_stop_authority": false,
+        "grants_merge_authority": false,
+        "grants_novelty_authority": false,
+        "grants_promotion_authority": false,
+        "grants_scientific_authority": false,
+        "history_digests": [
+          "fa7899526b05209d161a922e2564da2366ff0c717cd2181ca0e7cfdf1b1b1865",
+          "c24781eb3de09b63e0319143be2494f6b522350597cd33e222fad21892878565",
+          "be46493a35fd41eab5ac1943f3fffa55686576942314a7f303d8e0db2b272c48",
+          "1d1fcd27ad9886262cb8b70597b42b4188e35113dc4fcc399203bb038c6d35f8",
+          "be6e746870f2686b27d108e0b392e16b671c9468dda5ebf5af6c89db6eee00b2",
+          "6f7ea3afc6ec287f94079a29e737f12e70e6d7dcb898504bb4730084b1fcc3f7",
+          "3f91bd1373ad35ccefbe2975e04ea1e3638828fdedc84f5e3bf6d60283a38512",
+          "e8975a07217f61be04d16af72d19bd42f0f47946c8b55e909ee6f3c30b474e14",
+          "1aa3b1655a9b67176a56c2d9fdbab8303b0b87a739e352cf3cf3a5fe068b3a90",
+          "2b7332eed69d58e392cb6e6829d75f7842e8aae329be0c40dd9b466fbe645f60",
+          "477a76c023e391c5ae9641f3d93d29adb191a4f4de7b4dd9432683710ea67eab",
+          "e389bf8df7136d5dd930430242609789109ed2053e4f0ae53cb4a50e322ca432"
+        ],
+        "manifest_digest": "7e47dffc6b80f2e5b879eb1d91adb3399c99e66e2b0cf0b7f377d36388b05191",
+        "observations": [
+          [
+            "CURRENT_METHOD_INCREMENTAL_VALUE_ON_H4",
+            "NONE_OVER_DIRECT_CLIQUE_DONOR"
+          ],
+          [
+            "FOQCS_GENERIC_PREP_OUTCOME",
+            "GENERIC_MATCHED_ROUTE_AVAILABLE"
+          ],
+          [
+            "FOQCS_INTERFACE_ENVELOPE",
+            "OPTIMISTIC_BOUND_REGISTERED"
+          ],
+          [
+            "FOQCS_OPTIMISTIC_DOMINATES_H4_DONOR",
+            "NO"
+          ],
+          [
+            "GENERAL_M_DONOR_OUTCOME",
+            "NONDOMINATING_OR_CLOSED"
+          ],
+          [
+            "P10_FRAME_CANDIDATE_GENERATED",
+            "YES"
+          ],
+          [
+            "P10_FRAME_GENERATION_TERMINAL",
+            "MAX_R6_P10_FRAME_CANDIDATE_GENERATED"
+          ],
+          [
+            "R5H_CURRENT_ALPHABET_EXACT",
+            "YES"
+          ]
+        ],
+        "phase_id": "P10_RESULT",
+        "protected_refs": [
+          {
+            "blob": "6ab53f2a83c1f8ab5cc3bf4309525fb1ec7421dd",
+            "path": "N2/cc-pVTZ/6Elec_6Orbs/1.5_Eq-3.1020au/DUCC2/N2.cc-pvtz.ducc.results.txt",
+            "ref_id": "FRESH:R6:STRETCHED_N2_DUCC2",
+            "released": false
+          }
+        ],
+        "schema": "ORION.ResearchCampaignState.v1",
+        "state_digest": "d04df415d821590878381ebc7b7a7b66c08ddd60e4f5306941aa163abc349753"
+      },
+      "status": "ADVANCED",
+      "terminal": "CONTINUE",
+      "transition": {
+        "after_state_digest": "d04df415d821590878381ebc7b7a7b66c08ddd60e4f5306941aa163abc349753",
+        "before_state_digest": "954fe85b42f7b99920b836e850f4059d057833613561fbe5a553003075d3b3ac",
+        "campaign_id": "orion-q:max-r6-live",
+        "capability_request_digest": "2b7332eed69d58e392cb6e6829d75f7842e8aae329be0c40dd9b466fbe645f60",
+        "capability_result_digest": "477a76c023e391c5ae9641f3d93d29adb191a4f4de7b4dd9432683710ea67eab",
+        "cycle_index": 2,
+        "decision_digest": "1aa3b1655a9b67176a56c2d9fdbab8303b0b87a739e352cf3cf3a5fe068b3a90",
+        "grants_adoption_authority": false,
+        "grants_global_task_stop_authority": false,
+        "grants_merge_authority": false,
+        "grants_novelty_authority": false,
+        "grants_promotion_authority": false,
+        "grants_scientific_authority": false,
+        "schema": "ORION.ResearchCampaignTransition.v1",
+        "terminal": "CONTINUE",
+        "transition_digest": "44419fc0c86ae60ce515bedd183f432de4d6c473df3a4f01be375eae8fb15ec9"
+      }
+    },
+    {
+      "campaign_id": "orion-q:max-r6-live",
+      "capability_id": "orion_q.r6_prospective_replay",
+      "decision": {
+        "computation": {
+          "action_digests": [
+            "sha256:a58b0316fe47069d645f2afbab2b93e6ce300b781032882fb3a0a3bdb0272c58",
+            "sha256:bb1a53559b6780282e8fb492e9e7083831077ef8207bbce21cbf8bb7d156d7b7"
+          ],
+          "active_hard_obligations": [
+            "R6_PROSPECTIVE_GATE_EVALUATION"
+          ],
+          "assessment_digests": [
+            "sha256:4d8a350acfe8efa6f2792818de683d32a1c8c3fa0ad749527dcc33d7d92fdb2d",
+            "sha256:8c8d07ba9b6006d3ffd69c58b216c33e03358b119c7463a0fe93d1bc87d9a45d"
+          ],
+          "claim_id": "orion-q:max-r6-native-controller",
+          "grants_adoption_authority": false,
+          "grants_revision_authority": false,
+          "grants_scientific_authority": false,
+          "optimal_action_ids": [
+            "COMPUTE:R6_PROSPECTIVE_REPLAY"
+          ],
+          "reasons": [
+            "HARD_OBLIGATION_PRECEDENCE"
+          ],
+          "selected_action_digest": "sha256:bb1a53559b6780282e8fb492e9e7083831077ef8207bbce21cbf8bb7d156d7b7",
+          "selected_action_id": "COMPUTE:R6_PROSPECTIVE_REPLAY",
+          "status": "SELECTED",
+          "version": "EpistemicComputationSelection.v1"
+        },
+        "control": {
+          "claim_id": "orion-q:max-r6-native-controller",
+          "computation_digest": "sha256:1b05dfa3fb3ad9d5f1cdb7f85cddd7c141643cdf369e9e9d472353540968ae68",
+          "containment_digest": null,
+          "grants_adoption_authority": false,
+          "grants_global_task_stop_authority": false,
+          "grants_merge_authority": false,
+          "grants_promotion_authority": false,
+          "grants_revision_authority": false,
+          "grants_scientific_authority": false,
+          "reasons": [
+            "HARD_COMPUTATION_OBLIGATION_PRECEDENCE"
+          ],
+          "revision_digest": "sha256:71abcb0602ceabbfd7dd246baf110cc98945e8ec10e6c9210fb97706990b4078",
+          "selected_computation_action_digest": "sha256:bb1a53559b6780282e8fb492e9e7083831077ef8207bbce21cbf8bb7d156d7b7",
+          "selected_computation_action_id": "COMPUTE:R6_PROSPECTIVE_REPLAY",
+          "selected_revision_mechanic_digest": null,
+          "selected_revision_mechanic_id": null,
+          "social_evidence_digests": [],
+          "status": "COMPUTATION_REQUIRED",
+          "version": "SelfOrionEpistemicControlDecision.v1"
+        },
+        "decision_digest": "ca1881c4e94c6d7da23413242504125ed3d42dea65f66ef3f5abeb8642bff75e",
+        "grants_adoption_authority": false,
+        "grants_global_task_stop_authority": false,
+        "grants_merge_authority": false,
+        "grants_novelty_authority": false,
+        "grants_promotion_authority": false,
+        "grants_scientific_authority": false,
+        "interface": {
+          "advisory_check_ids": [],
+          "check_digests": [
+            "sha256:cf4f1f704be9368b89779cf98a78e01dc250253bec45435d2beda3ee78262a71",
+            "sha256:de2e550fb7c540a965b2191cd555cb20e2f26170ada26facf715216d6da54e01"
+          ],
+          "failed_check_ids": [],
+          "failed_scopes": [],
+          "grants_scientific_authority": false,
+          "permits_broader_revision_consideration": true,
+          "reasons": [],
+          "status": "ADEQUATE",
+          "unresolved_check_ids": [],
+          "unresolved_scopes": [],
+          "version": "EpistemicInterfaceAdequacyReport.v1"
+        },
+        "phase_id": "P10_RESULT",
+        "responsibility": {
+          "claim_id": "orion-q:max-r6-native-controller",
+          "defeated_hypothesis_ids": [
+            "RESP:CURRENT_SEARCH_INCOMPLETE",
+            "RESP:DONOR_GENERAL_M_INCOMPLETE",
+            "RESP:DONOR_INTERFACE_UNRESOLVED",
+            "RESP:INTERFACE_INADEQUATE"
+          ],
+          "grants_revision_authority": false,
+          "hypothesis_digests": [
+            "sha256:03d5c62e59d72eef0b650265410b5ab14ccf0be64a0401c8cbc0fd00e5351551",
+            "sha256:14b5b508b098be63cd1dd3fd008c7511a2c11097ae1710a039a51e7f5d360a5a",
+            "sha256:5fccd5fa139b6953d9e393f8f80efb575c61647a5f32f1be862fc5d4fcace2fd",
+            "sha256:622feb23d2131873a628eced5e8b8d73199c271070d7c760c582c8d2c966c6c6",
+            "sha256:e44af00cb84e2eaf7a1fae3c14e9e9c1407275c6d578b485294f1139c9692561"
+          ],
+          "identified_hypothesis_id": "RESP:METHOD_LANGUAGE_INADEQUATE",
+          "missing_discriminator_ids": [],
+          "observed_outcomes": [
+            [
+              "CURRENT_METHOD_INCREMENTAL_VALUE_ON_H4",
+              "NONE_OVER_DIRECT_CLIQUE_DONOR"
+            ],
+            [
+              "FOQCS_GENERIC_PREP_OUTCOME",
+              "GENERIC_MATCHED_ROUTE_AVAILABLE"
+            ],
+            [
+              "FOQCS_INTERFACE_ENVELOPE",
+              "OPTIMISTIC_BOUND_REGISTERED"
+            ],
+            [
+              "FOQCS_OPTIMISTIC_DOMINATES_H4_DONOR",
+              "NO"
+            ],
+            [
+              "GENERAL_M_DONOR_OUTCOME",
+              "NONDOMINATING_OR_CLOSED"
+            ],
+            [
+              "P10_FRAME_CANDIDATE_GENERATED",
+              "YES"
+            ],
+            [
+              "P10_FRAME_GENERATION_TERMINAL",
+              "MAX_R6_P10_FRAME_CANDIDATE_GENERATED"
+            ],
+            [
+              "R5H_CURRENT_ALPHABET_EXACT",
+              "YES"
+            ]
+          ],
+          "reasons": [],
+          "status": "IDENTIFIED",
+          "surviving_hypothesis_ids": [
+            "RESP:METHOD_LANGUAGE_INADEQUATE"
+          ],
+          "unmodeled_discriminator_ids": [
+            "FOQCS_GENERIC_PREP_OUTCOME",
+            "P10_FRAME_CANDIDATE_GENERATED",
+            "P10_FRAME_GENERATION_TERMINAL"
+          ],
+          "version": "EpistemicRevisionResponsibilityReport.v1"
+        },
+        "revision": {
+          "candidate_mechanic_ids": [
+            "REV:GROW_METHOD_LANGUAGE"
+          ],
+          "claim_id": "orion-q:max-r6-native-controller",
+          "grants_adoption_authority": false,
+          "grants_merge_authority": false,
+          "grants_promotion_authority": false,
+          "interface_digest": "sha256:9a70424ecb90541e7a72f2f1c90017fb2ea9addc9580dda132571eb7d767cb3e",
+          "reasons": [],
+          "responsibility_digest": "sha256:21a9accbe3bd8434b96781fae820e3ddbb32d7abecc7ea4069dc5e6249350330",
+          "selected_mechanic_digest": "sha256:586258f8fa72f1a999ba9edbd88a1be5ae6a4799b81bfb0d54e8191dc5ce12ad",
+          "selected_mechanic_id": "REV:GROW_METHOD_LANGUAGE",
+          "selection_digest": "sha256:f61ee223fe99e8d1efd9defa20eb45f371ca6feddc6013fe66d08d0e98f34d17",
+          "status": "CANDIDATE_SELECTED",
+          "version": "SelfOrionRevisionGateReport.v1"
+        },
+        "schema": "ORION.ResearchCampaignDecision.v1",
+        "selected_id": "COMPUTE:R6_PROSPECTIVE_REPLAY",
+        "selected_kind": "COMPUTATION",
+        "shadow_control": {
+          "claim_id": "orion-q:max-r6-native-controller",
+          "computation_digest": "sha256:1b05dfa3fb3ad9d5f1cdb7f85cddd7c141643cdf369e9e9d472353540968ae68",
+          "containment_digest": null,
+          "grants_adoption_authority": false,
+          "grants_global_task_stop_authority": false,
+          "grants_merge_authority": false,
+          "grants_promotion_authority": false,
+          "grants_revision_authority": false,
+          "grants_scientific_authority": false,
+          "reasons": [
+            "HARD_COMPUTATION_OBLIGATION_PRECEDENCE"
+          ],
+          "revision_digest": "sha256:834b24d012c0115ce9a287730f2a8a787cb34f12de0857c5ded14cd49aeb5ead",
+          "selected_computation_action_digest": "sha256:bb1a53559b6780282e8fb492e9e7083831077ef8207bbce21cbf8bb7d156d7b7",
+          "selected_computation_action_id": "COMPUTE:R6_PROSPECTIVE_REPLAY",
+          "selected_revision_mechanic_digest": null,
+          "selected_revision_mechanic_id": null,
+          "social_evidence_digests": [],
+          "status": "COMPUTATION_REQUIRED",
+          "version": "SelfOrionEpistemicControlDecision.v1"
+        }
+      },
+      "evidence_updates": {
+        "R6_EARNED": "NO",
+        "R6_PROSPECTIVE_AUTHORITY": "MAX_R6_NOT_EARNED__PROTECTED_SUBJECT_NOT_OPENED",
+        "R6_PROTECTED_SUBJECT_ACCESSED": "NO"
+      },
+      "phase_id": "P10_RESULT",
+      "request": {
+        "capability": "SHELL",
+        "created_at": "2026-08-21T06:58:49.315549+00:00",
+        "payload": {
+          "argv": [
+            "python",
+            "max_r6_exact_tare3_prospective_replay.py"
+          ],
+          "campaign_id": "orion-q:max-r6-live",
+          "cwd": "research/extensions/orion-q",
+          "phase_id": "P10_RESULT",
+          "selected_id": "COMPUTE:R6_PROSPECTIVE_REPLAY",
+          "selected_kind": "COMPUTATION",
+          "timeout": 120
+        },
+        "request_digest": "9d2d1ce2ebd026016c8512f4e8e97bdeecaf528b27a2d28192c190edfb38a6d7",
+        "request_id": "hostreq:593408643363d770175441d8470f098287f73c0f5047a84b6d964507891e548c",
+        "schema": "ORION.HostCapabilityRequest.v1",
+        "session_id": "session:07dec5252bd948b88993dbf0e72110e1"
+      },
+      "result_digest": "d9cb94eb259aa12514a217996341e41e0d3e4517dee11d049cf5de0e24cc133e",
+      "schema": "ORION.ResearchCampaignOutcome.v1",
+      "selected_id": "COMPUTE:R6_PROSPECTIVE_REPLAY",
+      "state": {
+        "active_hard_obligations": [],
+        "authority_ceiling": "BELOW_R6_UNTIL_PROTECTED_PROMOTION",
+        "campaign_id": "orion-q:max-r6-live",
+        "claim_id": "orion-q:max-r6-native-controller",
+        "cycle_index": 4,
+        "grants_adoption_authority": false,
+        "grants_global_task_stop_authority": false,
+        "grants_merge_authority": false,
+        "grants_novelty_authority": false,
+        "grants_promotion_authority": false,
+        "grants_scientific_authority": false,
+        "history_digests": [
+          "fa7899526b05209d161a922e2564da2366ff0c717cd2181ca0e7cfdf1b1b1865",
+          "c24781eb3de09b63e0319143be2494f6b522350597cd33e222fad21892878565",
+          "be46493a35fd41eab5ac1943f3fffa55686576942314a7f303d8e0db2b272c48",
+          "1d1fcd27ad9886262cb8b70597b42b4188e35113dc4fcc399203bb038c6d35f8",
+          "be6e746870f2686b27d108e0b392e16b671c9468dda5ebf5af6c89db6eee00b2",
+          "6f7ea3afc6ec287f94079a29e737f12e70e6d7dcb898504bb4730084b1fcc3f7",
+          "3f91bd1373ad35ccefbe2975e04ea1e3638828fdedc84f5e3bf6d60283a38512",
+          "e8975a07217f61be04d16af72d19bd42f0f47946c8b55e909ee6f3c30b474e14",
+          "1aa3b1655a9b67176a56c2d9fdbab8303b0b87a739e352cf3cf3a5fe068b3a90",
+          "2b7332eed69d58e392cb6e6829d75f7842e8aae329be0c40dd9b466fbe645f60",
+          "477a76c023e391c5ae9641f3d93d29adb191a4f4de7b4dd9432683710ea67eab",
+          "e389bf8df7136d5dd930430242609789109ed2053e4f0ae53cb4a50e322ca432",
+          "ca1881c4e94c6d7da23413242504125ed3d42dea65f66ef3f5abeb8642bff75e",
+          "9d2d1ce2ebd026016c8512f4e8e97bdeecaf528b27a2d28192c190edfb38a6d7",
+          "d9cb94eb259aa12514a217996341e41e0d3e4517dee11d049cf5de0e24cc133e",
+          "9f491c65c5b8dbb2f30ec03e22c5cb9bc6559e83cc88d1f88487061b13bd381c"
+        ],
+        "manifest_digest": "7e47dffc6b80f2e5b879eb1d91adb3399c99e66e2b0cf0b7f377d36388b05191",
+        "observations": [
+          [
+            "CURRENT_METHOD_INCREMENTAL_VALUE_ON_H4",
+            "NONE_OVER_DIRECT_CLIQUE_DONOR"
+          ],
+          [
+            "FOQCS_GENERIC_PREP_OUTCOME",
+            "GENERIC_MATCHED_ROUTE_AVAILABLE"
+          ],
+          [
+            "FOQCS_INTERFACE_ENVELOPE",
+            "OPTIMISTIC_BOUND_REGISTERED"
+          ],
+          [
+            "FOQCS_OPTIMISTIC_DOMINATES_H4_DONOR",
+            "NO"
+          ],
+          [
+            "GENERAL_M_DONOR_OUTCOME",
+            "NONDOMINATING_OR_CLOSED"
+          ],
+          [
+            "P10_FRAME_CANDIDATE_GENERATED",
+            "YES"
+          ],
+          [
+            "P10_FRAME_GENERATION_TERMINAL",
+            "MAX_R6_P10_FRAME_CANDIDATE_GENERATED"
+          ],
+          [
+            "R5H_CURRENT_ALPHABET_EXACT",
+            "YES"
+          ],
+          [
+            "R6_EARNED",
+            "NO"
+          ],
+          [
+            "R6_PROSPECTIVE_AUTHORITY",
+            "MAX_R6_NOT_EARNED__PROTECTED_SUBJECT_NOT_OPENED"
+          ],
+          [
+            "R6_PROTECTED_SUBJECT_ACCESSED",
+            "NO"
+          ]
+        ],
+        "phase_id": "R6_VERDICT",
+        "protected_refs": [
+          {
+            "blob": "6ab53f2a83c1f8ab5cc3bf4309525fb1ec7421dd",
+            "path": "N2/cc-pVTZ/6Elec_6Orbs/1.5_Eq-3.1020au/DUCC2/N2.cc-pvtz.ducc.results.txt",
+            "ref_id": "FRESH:R6:STRETCHED_N2_DUCC2",
+            "released": false
+          }
+        ],
+        "schema": "ORION.ResearchCampaignState.v1",
+        "state_digest": "850e4fa5ac0cef93d7febd39dac9fcd9875f8d0476e3ae0d3837d34e3224b16c"
+      },
+      "status": "TERMINAL",
+      "terminal": "R6_PROSPECTIVE_VERDICT_RECORDED__NOT_SELF_AUTHORIZING",
+      "transition": {
+        "after_state_digest": "850e4fa5ac0cef93d7febd39dac9fcd9875f8d0476e3ae0d3837d34e3224b16c",
+        "before_state_digest": "d04df415d821590878381ebc7b7a7b66c08ddd60e4f5306941aa163abc349753",
+        "campaign_id": "orion-q:max-r6-live",
+        "capability_request_digest": "9d2d1ce2ebd026016c8512f4e8e97bdeecaf528b27a2d28192c190edfb38a6d7",
+        "capability_result_digest": "d9cb94eb259aa12514a217996341e41e0d3e4517dee11d049cf5de0e24cc133e",
+        "cycle_index": 3,
+        "decision_digest": "ca1881c4e94c6d7da23413242504125ed3d42dea65f66ef3f5abeb8642bff75e",
+        "grants_adoption_authority": false,
+        "grants_global_task_stop_authority": false,
+        "grants_merge_authority": false,
+        "grants_novelty_authority": false,
+        "grants_promotion_authority": false,
+        "grants_scientific_authority": false,
+        "schema": "ORION.ResearchCampaignTransition.v1",
+        "terminal": "R6_PROSPECTIVE_VERDICT_RECORDED__NOT_SELF_AUTHORIZING",
+        "transition_digest": "5db718223449f1c3d49d492ded585b1b26563c96cdce13a351f902bc99feab31"
+      }
+    }
+  ],
+  "schema": "ORION.ResearchCampaignRun.v1",
+  "status": "TERMINAL"
+}

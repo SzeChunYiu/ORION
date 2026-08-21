@@ -317,6 +317,46 @@ class ResearchWorkspace:
             return candidate
         return self._validated_existing_result(path, request, candidate)
 
+    def failed_results(self) -> tuple[CapabilityResult, ...]:
+        failed: list[CapabilityResult] = []
+        if not self.results_dir.exists():
+            return ()
+        for path in sorted(self.results_dir.glob("*.json")):
+            result = CapabilityResult.from_dict(_read_json(path))
+            if not result.success:
+                failed.append(result)
+        return tuple(failed)
+
+    def archive_failed_result(self, request_id: str) -> Path:
+        """Free a deterministic request identity by archiving its failed result.
+
+        Only failed results may be archived; successful receipts stay immutable.
+        The failed receipt is moved (bytes unchanged) under `results/archived/`
+        so the failure remains auditable while the request becomes pending and
+        can be serviced again after the orchestration condition is repaired.
+        """
+        result = self.load_result(request_id)
+        if result is None:
+            raise FileNotFoundError(f"no result recorded for request {request_id}")
+        if result.success:
+            raise ValueError("only failed results may be archived for retry")
+        source = self._result_path(request_id)
+        archive_dir = self.results_dir / "archived"
+        archive_dir.mkdir(parents=True, exist_ok=True)
+        stem = _disk_name(request_id)[: -len(".json")]
+        attempt = 1
+        while True:
+            target = archive_dir / f"{stem}.failed-{attempt}.json"
+            if not target.exists():
+                try:
+                    os.link(source, target)
+                except FileExistsError:
+                    attempt += 1
+                    continue
+                os.unlink(source)
+                return target
+            attempt += 1
+
     def pending_requests(self) -> tuple[CapabilityRequest, ...]:
         pending: list[CapabilityRequest] = []
         if not self.requests_dir.exists():

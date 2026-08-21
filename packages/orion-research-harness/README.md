@@ -105,6 +105,15 @@ orion-harness init .research --project-root . --allow-process-tools
 
 `SHELL` never uses `shell=True`, process output is bounded and drained continuously, POSIX process groups are killed on timeout, and nonzero process exits are persisted as failed capability receipts rather than successful scientific evidence.
 
+A failed receipt binds to its deterministic request identity, so an orchestration failure (missing interpreter, absent module, dead network) would otherwise pin the workspace to that failure forever. `retry-failed` frees the identity without erasing history:
+
+```bash
+orion-harness retry-failed .research               # archive every failed result
+orion-harness retry-failed .research hostreq:...   # archive one failed result
+```
+
+Only **failed** results can be archived; successful receipts stay immutable. The failed receipt moves, bytes unchanged, to `results/archived/<request>.failed-<n>.json`, the request becomes pending again, and the same deterministic request can then be serviced after the host repairs the environment.
+
 ## Persistent scientific campaigns
 
 Campaigns add a reusable multi-cycle layer above the same workspace and host-receipt protocol:

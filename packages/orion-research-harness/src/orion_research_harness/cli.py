@@ -154,6 +154,10 @@ def build_parser() -> argparse.ArgumentParser:
     tool_request.add_argument("capability")
     tool_request.add_argument("--json", required=True)
 
+    retry = sub.add_parser("retry-failed")
+    retry.add_argument("workspace")
+    retry.add_argument("request_id", nargs="?")
+
     local = sub.add_parser("service-local")
     local.add_argument("workspace")
     local.add_argument("request_id", nargs="?")
@@ -330,6 +334,22 @@ def main(argv: list[str] | None = None) -> int:
             capability=args.capability, payload=payload
         )
         _print(request.as_dict())
+        return 0
+    if args.command == "retry-failed":
+        ids = (
+            [args.request_id]
+            if args.request_id
+            else [item.request_id for item in workspace.failed_results()]
+        )
+        archived = []
+        for request_id in ids:
+            archived.append(
+                {
+                    "request_id": request_id,
+                    "archived_to": str(workspace.archive_failed_result(request_id)),
+                }
+            )
+        _print({"schema": "ORION.ResearchHarnessRetryFailed.v1", "archived": archived})
         return 0
     if args.command == "service-local":
         ids = (

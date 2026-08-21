@@ -295,10 +295,43 @@ def test_cli_returns_nonzero_for_host_and_local_capability_failures(
 ):
     workspace = ResearchWorkspace.initialize(tmp_path / "ws", project_root=tmp_path)
     workspace.save_problem(problem_id="p1", question="Test problem")
+
+    # Legacy single-pass flow: seed via run_problem, whose request identity the
+    # --single-pass CLI path replays.
     pending = run_problem(workspace, workspace.load_problem("p1"), max_iterations=1)
     request = CapabilityRequest.from_dict(pending["request"])
     workspace.ingest_result(
         request.request_id,
+        success=False,
+        error="host unavailable",
+        executor="host",
+    )
+    assert (
+        cli_main(
+            [
+                "solve",
+                str(workspace.root),
+                "p1",
+                "--max-iterations",
+                "1",
+                "--single-pass",
+            ]
+        )
+        == 3
+    )
+    capsys.readouterr()
+
+    # Default recursive flow: its first request identity differs from the
+    # single-pass one, so seed the failure through the CLI's own pending request.
+    assert cli_main(["solve", str(workspace.root), "p1", "--max-iterations", "1"]) == 2
+    capsys.readouterr()
+    recursive_request = next(
+        item
+        for item in workspace.pending_requests()
+        if item.request_id != request.request_id
+    )
+    workspace.ingest_result(
+        recursive_request.request_id,
         success=False,
         error="host unavailable",
         executor="host",

@@ -2,7 +2,11 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import numpy as np
+import pytest
+
+np = pytest.importorskip(
+    "numpy", reason="ORION-Q numeric regressions need the optional orion-q extra"
+)
 
 
 def test_p10_cost_table_and_accumulators_cover_full_subject_depth():

@@ -131,7 +131,10 @@ def test_external_governance_rejects_authority_escalation(tmp_path) -> None:
         },
         executor="hostile-reviewer",
     )
-    with pytest.raises(ValueError, match="authority escalation"):
+    with pytest.raises(
+        ValueError,
+        match="authority escalation|authority fields, when present, must be literal false",
+    ):
         request_independent_review(
             workspace,
             review_id="review:authority-hostile",

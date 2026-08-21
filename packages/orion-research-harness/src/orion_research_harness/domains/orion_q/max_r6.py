@@ -249,6 +249,48 @@ MAX_R6_CAMPAIGN_MANIFEST = {
             },
             "next_phase": "N2",
         },
+        "orion_q.r6_prospective_replay": {
+            "host_capability": "SHELL",
+            "payload": {
+                "argv": ["python", "max_r6_exact_tare3_prospective_replay.py"],
+                "cwd": "research/extensions/orion-q",
+                "timeout": 120,
+            },
+            "declared_read_paths": [
+                "research/extensions/orion-q/max_r6_exact_tare3_prospective_replay.py",
+                "research/extensions/orion-q/max_r6_exact_tare3_prospective_primary.py",
+                "research/extensions/orion-q/max_r6_exact_tare3_end_to_end_verify.py",
+                "research/extensions/orion-q/max_r6_exact_tare3_joint_frame_dp.py",
+                "research/extensions/orion-q/max_r6_p10_candidate_blind_frame_optimizer.py",
+                "research/extensions/orion-q/max_r5h_mixed_cardinality_development.py",
+                "research/extensions/orion-q/max_r4d_h2o_ducc_confirmation.py",
+            ],
+            "result_contract": {
+                "kind": "SHELL_JSON_TOKEN",
+                "prefix": "ORIONQ_MAX_R6_EXACT_TARE3_PROSPECTIVE_REPLAY=",
+                "required_payload_values": [
+                    {"path": ["novelty_blob_ok"], "equals": True},
+                ],
+                "evidence_rules": [
+                    {
+                        "evidence_key": "R6_EARNED",
+                        "path": ["r6_earned"],
+                        "transform": "BOOL_YES_NO",
+                    },
+                    {
+                        "evidence_key": "R6_PROSPECTIVE_AUTHORITY",
+                        "path": ["authority"],
+                        "transform": "STRING",
+                    },
+                    {
+                        "evidence_key": "R6_PROTECTED_SUBJECT_ACCESSED",
+                        "path": ["protected_stretched_n2_accessed"],
+                        "transform": "BOOL_YES_NO",
+                    },
+                ],
+            },
+            "next_phase": "R6_VERDICT",
+        },
         "orion_q.p10_frame": {
             "host_capability": "SHELL",
             "payload": {
@@ -377,8 +419,38 @@ MAX_R6_CAMPAIGN_MANIFEST = {
             },
         },
         "P10_RESULT": {
+            "active_hard_obligations": ["R6_PROSPECTIVE_GATE_EVALUATION"],
+            "responsibility_hypotheses": _N2_ATOMIC_HYPOTHESES,
+            "interface_checks": _interface_checks(),
+            "revision_mechanics": _revision_mechanics(),
+            "computation_actions": [
+                {
+                    "action_id": "COMPUTE:R6_PROSPECTIVE_REPLAY",
+                    "kind": "VERIFY_FROZEN_PROSPECTIVE_GATE",
+                    "expected_decision_value": 2.0,
+                    "cost": 1.0,
+                    "discharges_obligations": ["R6_PROSPECTIVE_GATE_EVALUATION"],
+                },
+                {
+                    "action_id": "COMPUTE:R5H_REPLAY",
+                    "kind": "REPLAY_CURRENT_LANGUAGE",
+                    "expected_decision_value": 0.1,
+                    "cost": 1.0,
+                },
+            ],
+            "responsibility_bindings": _bindings(),
+            "shadow_allowed_revision_ids": [
+                "REV:SEARCH_CURRENT_ALPHABET",
+                "REV:ABSORB_DONOR",
+                "REV:CHANGE_INTERFACE",
+            ],
+            "selected_capabilities": {
+                "COMPUTE:R6_PROSPECTIVE_REPLAY": "orion_q.r6_prospective_replay"
+            },
+        },
+        "R6_VERDICT": {
             "terminal": True,
-            "terminal_name": "P10_FRAME_RESULT_READY__R6_STILL_CLOSED",
+            "terminal_name": "R6_PROSPECTIVE_VERDICT_RECORDED__NOT_SELF_AUTHORIZING",
             "active_hard_obligations": [],
         },
     },
