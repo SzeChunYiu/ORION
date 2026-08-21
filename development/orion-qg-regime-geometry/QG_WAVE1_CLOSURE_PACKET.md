@@ -14,8 +14,20 @@ Authority: development record only; no lane receipt grants scientific/novelty au
   objective — trades alive/dead/new, chemistry verdicts, predicate transfer.
 - [SLOT] **QG-3 boundary prospective** (`QG3_BOUNDARY_PROSPECTIVE_RESULTS.json`): library
   regime census + staged positive-regime predictions vs DP ground truth.
-- [SLOT] **QG-4 second family** (`QG4_SECOND_FAMILY_RESULTS.json`): template transfer
-  verdict per stage on the LCU PREP/SELECT-style family.
+- **QG-4 second family — TEMPLATE_TRANSFERRED** (`QG4_SECOND_FAMILY_RESULTS.json`,
+  replay-verified bit-identical;
+  `ORION_QG4_SECOND_FAMILY_TEMPLATE_TRANSFERRED__SIXLCU_PREP_SELECT_REGIME_GEOMETRY_ON_
+  VERIFIED_DOMAINS__NOT_R6`): all four template stages instantiated on the frozen SixLCU
+  PREP/SELECT family. Differently shaped geometry than TARE — local dominance refuted
+  exactly at the 30 all-equal-column configurations (the family's trade currency);
+  38,759/38,760 exhaustive-n2 instances are trades with a unique incumbent-exact instance
+  ({XI,YI,ZI,IX,IY,IZ}); no strict sub-extension closes (both saturation axes must max
+  out); yet an **exact pairs-only membership predicate P0 has zero error** on fit,
+  held-out (two seeds incl. post-freeze 20260825) and exhaustive-n1 domains despite
+  optimal witnesses needing size-six blocks. Cross-family findings: the exchange-refuted-
+  at-characterizable-column → trade-currency → closed-form-predicate motif now has two
+  independent instances; "boundary-is-low-order" is a candidate transferable principle;
+  the field's visible frontier is families without exact finite referees.
 - [SLOT] **QG-5 certified forecast** (`QG5_CERTIFIED_FORECAST_RESULTS.json`): zero-error
   verification against the DP, speedup distribution, library forecast table.
 
