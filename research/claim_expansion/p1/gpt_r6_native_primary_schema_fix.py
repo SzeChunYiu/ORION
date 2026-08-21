@@ -6,6 +6,10 @@ from typing import Mapping
 
 import gpt_r6_native_primary as primary
 
+# Capture the immutable R6 v1 validator before main() installs the compatibility
+# adapter. Delegation must never resolve through the monkey-patched module slot.
+_ORIGINAL_NATIVE_ROW_VALID = primary._native_row_valid
+
 
 def _raw_sha256_from_content_digest(value: object) -> str | None:
     text = str(value)
@@ -50,12 +54,12 @@ def _native_row_valid_with_canonical_transfer_digests(native: Mapping[str, objec
                 arm[key] = normalized
     except (KeyError, TypeError):
         return False
-    return primary._native_row_valid(patched)
+    return _ORIGINAL_NATIVE_ROW_VALID(patched)
 
 
-def _self_test() -> None:
+def _valid_fixture() -> dict[str, object]:
     content = "sha256:" + "b" * 64
-    native = {
+    return {
         "runtime": {
             "trace_id": "trace",
             "receipt_ids": ["receipt"],
@@ -79,13 +83,31 @@ def _self_test() -> None:
             "assessment_digests": [content],
         },
     }
+
+
+def _self_test() -> None:
+    native = _valid_fixture()
     assert _native_row_valid_with_canonical_transfer_digests(native)
+
     bad_transfer = copy.deepcopy(native)
     bad_transfer["base"]["responsibility_digest"] = "b" * 64
     assert not _native_row_valid_with_canonical_transfer_digests(bad_transfer)
+
     bad_runtime = copy.deepcopy(native)
-    bad_runtime["runtime"]["pre_state_hash"] = content
+    bad_runtime["runtime"]["pre_state_hash"] = "sha256:" + "a" * 64
     assert not _native_row_valid_with_canonical_transfer_digests(bad_runtime)
+
+    # Exercise the exact production installation path. This catches accidental
+    # recursion through primary._native_row_valid after monkey-patching.
+    installed_before = primary._native_row_valid
+    try:
+        primary._native_row_valid = _native_row_valid_with_canonical_transfer_digests
+        assert primary._native_row_valid(native)
+        assert not primary._native_row_valid(bad_transfer)
+        assert not primary._native_row_valid(bad_runtime)
+    finally:
+        primary._native_row_valid = installed_before
+
     print("P1_R6_DIGEST_SCHEMA_FIX=PASS")
 
 
