@@ -3,7 +3,7 @@
 Date: 2026-08-21  
 Source manuscript change: `714a7e771961c8ace08bb38d7dab6e2ba45b8ff7`  
 Inspected render subject: `1d69fc230a358ded93699fdbe03b6ff2299cccf8`  
-Current comparison head: `6818dcf67d6ce7a7123c6c09c7f4251d5828461b`  
+Current comparison head: `0164deb570e0daee2912e354cdb6d2df20896dc7`  
 Package status: `SCAFFOLDING`  
 PDF authority: `OPEN`
 
@@ -17,9 +17,9 @@ The exact-render workflow rebuilt from clean state twice and required identical 
 All 33 pages were independently inspected, including full-resolution follow-up of
 the logged overfull-box pages 11, 20, and 21. No clipping, overlap, black-square/glyph
 corruption, unreadable figure/table placement, or page-edge contact was observed.
-The durable page-audit record is `evidence/FINAL_SATURATION_AUDIT.md` (SHA-256 `3ee57773043747dcf6e7a2863cd4eef0a1d33d32100fa74f43425784643d1435`).
+The durable page-audit record is `evidence/FINAL_SATURATION_AUDIT.md` (SHA-256 `b4d09dbdcc07fd0908813f7f9ec97b573edd5bd32ff0e42939276ff9bf821747`).
 
-A repository compare from the inspected render subject through `6818dcf...` shows
+A repository compare from the inspected render subject through `0164deb5...` shows
 no paper-01 or paper-02 file changes, so no manuscript-byte drift was found after
 the inspected render. This completes the visual-inspection gate for the exact PDF
 hash above, but it does **not** complete package authority: `journal_package/manuscript.pdf`
