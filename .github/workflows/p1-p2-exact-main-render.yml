@@ -4,24 +4,32 @@ on:
   pull_request:
     paths:
       - '.github/workflows/p1-p2-exact-main-render.yml'
+      - 'papers/paper-01-recursive-epistemic-reconstruction/manuscript/**'
+      - 'papers/paper-02-open-world-scientific-discovery/manuscript/**'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/p1-p2-exact-main-render.yml'
+      - 'papers/paper-01-recursive-epistemic-reconstruction/manuscript/**'
+      - 'papers/paper-02-open-world-scientific-discovery/manuscript/**'
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  render-exact-writeback-main:
+  render-subject:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out exact post-writeback main subject
+      - name: Check out exact event subject
         uses: actions/checkout@v4
         with:
-          ref: beac25450b5d95dd766345dcee872fed840f833b
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           path: subject
       - name: Install TeX and render dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra latexmk poppler-utils
+          sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra texlive-science latexmk poppler-utils
       - name: Compile P1 exact subject
         shell: bash
         run: |
@@ -57,13 +65,15 @@ jobs:
         run: |
           set -euo pipefail
           python - <<'PY'
-          import hashlib, json
+          import hashlib, json, subprocess
           from pathlib import Path
           subject = Path('subject')
           out = Path('out')
+          revision = subprocess.check_output(['git', '-C', str(subject), 'rev-parse', 'HEAD'], text=True).strip()
           receipt = {
-              'schema': 'P1P2.ExactMainRenderReceipt.v1',
-              'subject_revision': 'beac25450b5d95dd766345dcee872fed840f833b',
+              'schema': 'P1P2.ExactRenderReceipt.v1',
+              'subject_revision': revision,
+              'event_name': '${{ github.event_name }}',
               'p1_source_sha256': hashlib.sha256((subject / 'papers/paper-01-recursive-epistemic-reconstruction/manuscript/main.tex').read_bytes()).hexdigest(),
               'p2_source_sha256': hashlib.sha256((subject / 'papers/paper-02-open-world-scientific-discovery/manuscript/main.tex').read_bytes()).hexdigest(),
               'p1_pdf_sha256': hashlib.sha256((out / 'p1/manuscript.pdf').read_bytes()).hexdigest(),
@@ -72,12 +82,12 @@ jobs:
               'package_rebind_complete': False,
               'submission_authority': False,
           }
-          (out / 'EXACT_MAIN_RENDER_RECEIPT.json').write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n')
+          (out / 'EXACT_RENDER_RECEIPT.json').write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n')
           PY
-      - name: Upload exact-main render bundle
+      - name: Upload exact render bundle
         uses: actions/upload-artifact@v4
         with:
-          name: p1-p2-exact-main-render-beac25450b5d95dd766345dcee872fed840f833b
+          name: p1-p2-exact-render-${{ github.event.pull_request.head.sha || github.sha }}
           path: out/**
           if-no-files-found: error
           retention-days: 30
