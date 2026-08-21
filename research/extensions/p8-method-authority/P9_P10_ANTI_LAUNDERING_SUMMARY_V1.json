@@ -1,12 +1,13 @@
 {
-  "claim_ceiling": "The suite tests bounded coercion/revocation semantics for P6/P7/P9/P10 capability outputs. It does not itself establish real method validity, novelty, usefulness or adoption.",
   "clean_legal_coverage": 1.0,
   "contract_accuracy": 1.0,
+  "declared_claim_ceiling_from_input": "The suite tests bounded coercion/revocation semantics for P6/P7/P9/P10 capability outputs. It does not itself establish real method validity, novelty, usefulness or adoption.",
+  "declared_claim_ceiling_note": "Echoed verbatim from the input panel's claim_ceiling. It is a bound this suite was handed, not one it earned; no state of the run can widen, narrow or contradict it.",
   "illicit_coercion_block_rate": 1.0,
   "n_cases": 15,
   "panel_digest": "sha256:69a069fb02c1b3b8ac465845951128c901ad1e7a80b2afc3ffe592f455cdf62f",
   "protocol_id": "P8.P9P10AntiLaundering.v1",
-  "result_digest": "sha256:45f359f5eba694da844485e95691913a19ee08b402057cc8c9f86a2e5e65eeae",
+  "result_digest": "sha256:3103fcd0597a5c2773ce611cfd20a410f7b37adc7a93c20748c84e573dc410a6",
   "result_version": "P8_P9_P10_ANTI_LAUNDERING_SUMMARY_V1",
   "revocation_accuracy": 1.0,
   "rows": [
@@ -26,5 +27,47 @@
     {"actual":"CANNOT_CHECK","expected":"CANNOT_CHECK","id":"representation_reopens_applicability","kind":"revocation","pass":true},
     {"actual":"CANNOT_CHECK","expected":"CANNOT_CHECK","id":"evaluator_change_reopens_validity","kind":"revocation","pass":true}
   ],
-  "terminal": "P8_P9_P10_ANTI_LAUNDERING_CLEAR"
+  "terminal": "P8_P9_P10_ANTI_LAUNDERING_CLEAR",
+  "terminal_basis": [
+    {
+      "guard_id": "p8_anti_laundering_contract",
+      "opportunities": 15,
+      "opportunity_definition": "every frozen case in the panel, coercion and revocation alike",
+      "outcome": "PASS",
+      "rate": 1.0,
+      "rate_field": "contract_accuracy",
+      "reason": "HELD_UNDER_EXERCISE",
+      "violations": 0
+    },
+    {
+      "guard_id": "p8_illicit_coercion_block",
+      "opportunities": 7,
+      "opportunity_definition": "frozen coercion cases whose declared outcome is BLOCKED: the laundering attacks",
+      "outcome": "PASS",
+      "rate": 1.0,
+      "rate_field": "illicit_coercion_block_rate",
+      "reason": "HELD_UNDER_EXERCISE",
+      "violations": 0
+    },
+    {
+      "guard_id": "p8_clean_legal_coverage",
+      "opportunities": 4,
+      "opportunity_definition": "frozen coercion cases whose declared outcome is SUPPORTED: the legal lanes that must not be broken shut",
+      "outcome": "PASS",
+      "rate": 1.0,
+      "rate_field": "clean_legal_coverage",
+      "reason": "HELD_UNDER_EXERCISE",
+      "violations": 0
+    },
+    {
+      "guard_id": "p8_revocation",
+      "opportunities": 4,
+      "opportunity_definition": "frozen revocation cases: defeater propagation and reopening",
+      "outcome": "PASS",
+      "rate": 1.0,
+      "rate_field": "revocation_accuracy",
+      "reason": "HELD_UNDER_EXERCISE",
+      "violations": 0
+    }
+  ]
 }

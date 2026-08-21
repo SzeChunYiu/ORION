@@ -7,13 +7,20 @@ publishes.
 ``research/extensions/p8-method-authority/run_anti_laundering_bench.py`` is the
 primary. It scores fifteen frozen coercion and revocation cases against
 :mod:`orion.transfer.v2.p8_method_authority` and emits four rates, a
-``terminal`` and a ``claim_ceiling``. The rates are computed; the terminal is
-the string literal ``P8_P9_P10_ANTI_LAUNDERING_CLEAR`` written into the dict
-beside them, and the ceiling is ``panel['claim_ceiling']`` echoed back.
-:data:`WITHHOLDING_CASES` is the register of inputs under which that terminal
+``terminal`` and a declared ceiling. Until 2026-08-21 the rates were computed
+and the terminal was the string literal ``P8_P9_P10_ANTI_LAUNDERING_CLEAR``
+written into the dict beside them, with ``claim_ceiling`` being
+``panel['claim_ceiling']`` echoed back. The bench now derives its terminal from
+the four rates as ``worst_outcome`` over four
+:class:`~orion.programme.guard_exercise.GuardExercise` assessments, and names
+the echoed bound ``declared_claim_ceiling_from_input``.
+:func:`withholding_cases` is the register of inputs under which that terminal
 must not be ``CLEAR``: a panel with every expectation inverted, and --- the one
 that matters --- the untouched panel scored against an authority table that
-launders every capability output into every authority coordinate.
+launders every capability output into every authority coordinate. It is what
+turns "the terminal is derived" from a claim about the source text into a
+measurement, and the shipped verdict is unchanged because the shipped rates
+really are 1.0.
 
 The panel itself is the second artifact. Its fifteen ``expected`` labels are the
 shipped ``LEGAL`` and ``DEFEATER_COORDS`` tables read off, so
@@ -71,13 +78,17 @@ BENCH_SUMMARY = (
 )
 X4_CHECKER = REPO_ROOT / "research/claim_expansion/p8/check_p8_x4_authority_lifting.py"
 
-#: The terminal the shipped summary publishes, and the only one it can publish.
+#: The terminal the shipped summary publishes. It was once the only one the
+#: emitter could publish; it is now the ``PASS`` branch of a derived three-valued
+#: verdict, and :func:`withholding_cases` names inputs that reach the other two.
 SHIPPED_TERMINAL = "P8_P9_P10_ANTI_LAUNDERING_CLEAR"
 
 #: The shipped summary's own ``result_digest``. The fidelity anchor: the emitter
 #: registered here reproduces the committed receipt byte for byte, so a failure
-#: reported below is about P8 and not about a fixture written to fail.
-SHIPPED_RESULT_DIGEST = "sha256:45f359f5eba694da844485e95691913a19ee08b402057cc8c9f86a2e5e65eeae"
+#: reported below is about P8 and not about a fixture written to fail. Rotated
+#: from ``sha256:45f359f5...`` on 2026-08-21 when the terminal became derived and
+#: ``claim_ceiling`` was renamed to ``declared_claim_ceiling_from_input``.
+SHIPPED_RESULT_DIGEST = "sha256:3103fcd0597a5c2773ce611cfd20a410f7b37adc7a93c20748c84e573dc410a6"
 
 #: The four rates the bench computes. Traced as evidence rather than as verdicts:
 #: they are what separates "the emitter was never perturbed" from "the emitter
@@ -92,6 +103,12 @@ BENCH_RATES: tuple[str, ...] = (
 #: A ceiling no bounded synthetic contract suite could earn, for
 #: :func:`bench_declared_ceiling` to inject. Repeating it is unambiguous.
 OVERREACHING_CEILING = "This suite establishes real method validity, novelty, utility and adoption."
+
+#: The field the bench emits its input-supplied ceiling under. Renamed from
+#: ``claim_ceiling`` on 2026-08-21: the value is still whatever the panel says,
+#: so the receipt states in the field name where the bound came from rather than
+#: publishing it where a reader would take it for one the run established.
+DECLARED_CEILING_FIELD = "declared_claim_ceiling_from_input"
 
 
 def _load(path: Path, module_name: str) -> ModuleType:
@@ -230,14 +247,20 @@ def bench_responsiveness() -> ReceiptResponsiveness:
 
 
 def bench_declared_ceiling() -> DeclaredBound:
-    """Measure whether the bench's ``claim_ceiling`` is one its input supplied."""
+    """Measure whether the bench's declared ceiling is one its input supplied.
+
+    Still ``FAIL``, and correctly so: renaming the field to
+    :data:`DECLARED_CEILING_FIELD` stops a reader mistaking the bound for a
+    measured one, but the run cannot set it and an injected overreaching ceiling
+    still comes back verbatim. Only deriving the bound would change this verdict.
+    """
 
     panel = shipped_panel()
     panel["claim_ceiling"] = OVERREACHING_CEILING
     return measure_declared_bound(
         bench_emitter,
-        label="P8.P9P10AntiLaundering.v1/claim_ceiling",
-        field="claim_ceiling",
+        label=f"P8.P9P10AntiLaundering.v1/{DECLARED_CEILING_FIELD}",
+        field=DECLARED_CEILING_FIELD,
         overreaching_payload=BenchInput(panel=panel),
         overreaching_bound=OVERREACHING_CEILING,
     )
@@ -360,6 +383,7 @@ __all__ = [
     "BENCH_RATES",
     "BENCH_SCRIPT",
     "BENCH_SUMMARY",
+    "DECLARED_CEILING_FIELD",
     "OVERREACHING_CEILING",
     "REOPENING_DEFEATERS",
     "SHIPPED_RESULT_DIGEST",

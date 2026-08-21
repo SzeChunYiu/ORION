@@ -1,5 +1,11 @@
 """P8's shipped authority receipts, measured against inputs they should have refused.
 
+The bench's terminal was a string literal beside its four rates until 2026-08-21;
+the tests that pinned that state carry their before-values in their docstrings.
+It is now derived, and the three inputs registered as having to withhold it do.
+The ceiling, the transcribed gold and the inert X4 donor axis are unrepaired, and
+the audit still blocks on them.
+
 Every number pinned here was read off the shipped artifacts
 ``research/extensions/p8-method-authority/P9_P10_ANTI_LAUNDERING_SUMMARY_V1.json``
 and ``research/claim_expansion/p8/P8_X4_AUTHORITY_LIFTING_RESULT_V1.json``, or off
@@ -39,34 +45,57 @@ def test_emitter_reproduces_the_committed_summary_exactly():
     assert emitted["illicit_coercion_block_rate"] == 1.0
 
 
-def test_the_terminal_is_a_literal_in_the_emitting_source():
+def test_the_terminal_is_no_longer_a_literal_in_the_emitting_source():
+    """Before 2026-08-21 this asserted the two literals, which is what it found.
+
+    ``'terminal':'P8_P9_P10_ANTI_LAUNDERING_CLEAR'`` and
+    ``'claim_ceiling':panel['claim_ceiling']`` were both in the emitted dict
+    display. The source check is kept because it is cheap and reads the shipped
+    file; what it pins is the repair, and the measurement that the terminal now
+    *moves* is two tests below.
+    """
+
     source = p8.BENCH_SCRIPT.read_text()
 
-    assert f"'terminal':'{p8.SHIPPED_TERMINAL}'" in source
-    assert "'claim_ceiling':panel['claim_ceiling']" in source
+    assert f"'terminal':'{p8.SHIPPED_TERMINAL}'" not in source
+    assert "'claim_ceiling':panel['claim_ceiling']" not in source
+    assert "'terminal':terminal" in source
+    assert "assess_guard" in source and "worst_outcome" in source
+    assert f"'{p8.DECLARED_CEILING_FIELD}':panel['claim_ceiling']" in source
 
 
-def test_the_terminal_is_unmoved_by_every_registered_withholding_case():
+def test_the_terminal_moves_on_every_registered_withholding_case():
+    """Before 2026-08-21: ``violations == 3``, all three ``contradicted``, ``FAIL``.
+
+    The register is unchanged and so are the rates it drives to zero; what
+    changed is that the terminal is derived from them, so each case now reaches
+    a different word instead of leaving ``CLEAR`` standing.
+    """
+
     response = p8.bench_responsiveness()
 
     assert response.baseline_verdict == p8.SHIPPED_TERMINAL
-    assert response.verdicts_observed == (p8.SHIPPED_TERMINAL,)
-    assert response.exercise.opportunities == 3
-    assert response.exercise.violations == 3
-    assert response.inert_cases == ()
-    assert response.contradicted == (
-        "every-expectation-inverted",
-        "authority-table-launders-everything",
-        "defeaters-propagate-nowhere",
+    assert response.verdicts_observed == (
+        p8.SHIPPED_TERMINAL,
+        "P8_P9_P10_ANTI_LAUNDERING_VIOLATED",
     )
-    assert response.outcome is Outcome.FAIL
+    assert response.exercise.opportunities == 3
+    assert response.exercise.violations == 0
+    assert response.inert_cases == ()
+    assert response.unmoved == ()
+    assert response.contradicted == ()
+    assert response.outcome is Outcome.PASS
 
-    with pytest.raises(SelfIssuedAuthority, match="authority-table-launders-everything"):
-        require_responsive(response)
+    require_responsive(response)
 
 
-def test_laundering_every_capability_zeroes_the_block_rate_and_not_the_terminal():
-    """The measurement that names the failure: the mechanism is wrong, the panel is not."""
+def test_laundering_every_capability_zeroes_the_block_rate_and_the_terminal_with_it():
+    """The measurement that named the failure: the mechanism is wrong, the panel is not.
+
+    Before 2026-08-21 the last assertion here was
+    ``receipt["terminal"] == p8.SHIPPED_TERMINAL`` --- a block rate of 0.0 with
+    all seven named attacks succeeding, published as ``CLEAR``.
+    """
 
     launder = {
         kind: frozenset(authority.AuthorityCoordinate) for kind in authority.CapabilityKind
@@ -75,7 +104,7 @@ def test_laundering_every_capability_zeroes_the_block_rate_and_not_the_terminal(
 
     assert receipt["illicit_coercion_block_rate"] == 0.0
     assert receipt["contract_accuracy"] == pytest.approx(8 / 15)
-    assert receipt["terminal"] == p8.SHIPPED_TERMINAL
+    assert receipt["terminal"] == "P8_P9_P10_ANTI_LAUNDERING_VIOLATED"
     assert [row["id"] for row in receipt["rows"] if not row["pass"]] == [
         "p9_confidence_to_validity",
         "p9_applicability_to_adoption",
@@ -87,12 +116,14 @@ def test_laundering_every_capability_zeroes_the_block_rate_and_not_the_terminal(
     ]
 
 
-def test_removing_revocation_zeroes_its_accuracy_and_not_the_terminal():
+def test_removing_revocation_zeroes_its_accuracy_and_the_terminal_with_it():
+    """Before 2026-08-21 the terminal was ``CLEAR`` here too, at revocation accuracy 0.0."""
+
     inert = {defeater: () for defeater in authority.DefeaterKind}
     receipt = p8.bench_emitter(p8.BenchInput(panel=p8.shipped_panel(), defeater_coords=inert))
 
     assert receipt["revocation_accuracy"] == 0.0
-    assert receipt["terminal"] == p8.SHIPPED_TERMINAL
+    assert receipt["terminal"] == "P8_P9_P10_ANTI_LAUNDERING_VIOLATED"
 
 
 def test_overrides_do_not_leak_out_of_the_emitter():
@@ -105,14 +136,27 @@ def test_overrides_do_not_leak_out_of_the_emitter():
     assert p8.bench_emitter(p8.BenchInput(panel=p8.shipped_panel())) == p8.shipped_summary()
 
 
-def test_the_claim_ceiling_is_whatever_the_panel_says_it_is():
-    bound = p8.bench_declared_ceiling()
+def test_the_declared_ceiling_is_still_whatever_the_panel_says_it_is():
+    """Unrepaired on purpose, and now emitted under a field name that admits it.
 
+    The value is still ``panel['claim_ceiling']``, so an injected ceiling the
+    suite has no right to still comes back verbatim and the bound still fails.
+    What the rename subtracts is the reader's inference that the run set it.
+    """
+
+    bound = p8.bench_declared_ceiling()
+    receipt = p8.bench_emitter(p8.BenchInput(panel=p8.shipped_panel()))
+
+    assert bound.field == p8.DECLARED_CEILING_FIELD == "declared_claim_ceiling_from_input"
     assert bound.emitted == p8.OVERREACHING_CEILING
     assert bound.subject_controlled
     assert bound.outcome is Outcome.FAIL
     with pytest.raises(SelfIssuedAuthority, match="chose its own ceiling"):
         require_earned(bound)
+
+    assert "claim_ceiling" not in receipt
+    assert receipt[p8.DECLARED_CEILING_FIELD] == p8.shipped_panel()["claim_ceiling"]
+    assert "not one it earned" in receipt["declared_claim_ceiling_note"]
 
 
 def test_the_frozen_gold_is_the_graded_tables_transcribed():
@@ -175,12 +219,23 @@ def test_the_two_x4_violation_counters_are_zero_for_any_rule():
     assert "if projected_native != native:" in source
 
 
-def test_the_audit_blocks_and_reports_every_registered_receipt():
+def test_the_audit_still_blocks_and_reports_every_registered_receipt():
+    """Before 2026-08-21 the responsiveness leg reported one distinct verdict and blocked.
+
+    It now passes. The audit still blocks --- on the input-supplied ceiling, on a
+    declared gold that is the graded tables transcribed, and on the inert donor
+    axis --- so the repair moved one leg and added nothing.
+    """
+
     report = audit_p8_authority_receipts()
     payload = report_as_json(report)
 
     assert payload["outcome"] == "FAIL"
-    assert payload["responsiveness"]["verdicts_observed"] == [p8.SHIPPED_TERMINAL]
+    assert payload["responsiveness"]["verdicts_observed"] == [
+        p8.SHIPPED_TERMINAL,
+        "P8_P9_P10_ANTI_LAUNDERING_VIOLATED",
+    ]
+    assert payload["responsiveness"]["assessment"]["outcome"] == "PASS"
     assert payload["ceiling"]["subject_controlled"] is True
     assert payload["gold_outcome"] == "FAIL"
     assert payload["donor_axis"]["inert"] is True

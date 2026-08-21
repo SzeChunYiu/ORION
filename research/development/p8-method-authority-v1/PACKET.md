@@ -21,6 +21,6 @@ P8 owns the legal coercion matrix from capability outputs to scientific-authorit
 
 ## Terminal
 
-Bridge target: `P8_METHOD_AUTHORITY_BRIDGE_MERGED`. The closed synthetic coercion/revocation matrix may close #424 as `P8_P9_P10_ANTI_LAUNDERING_CLEAR` only for that bounded contract suite; no real method validity, novelty, utility or adoption is inferred.
+Bridge target: `P8_METHOD_AUTHORITY_BRIDGE_MERGED`. The closed synthetic coercion/revocation matrix may close #424 as `P8_P9_P10_ANTI_LAUNDERING_CLEAR` only for that bounded contract suite; no real method validity, novelty, utility or adoption is inferred. Since 2026-08-21 that terminal is derived from the suite's four rates rather than written beside them, so it is `…_VIOLATED` on any failing case and `…_CANNOT_CHECK` on any empty slice; the ceiling sentence is emitted as `declared_claim_ceiling_from_input` because the input panel supplies it. The receipt's `result_digest` moved to `sha256:3103fcd0…` with that change.
 
 Because this module emits genuine authority-layer `CANNOT_CHECK`, repository CI must regenerate and ratchet the canonical `research/development/cannot_check_inventory.json` rather than rename unresolved authority states away.
