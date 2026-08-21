@@ -199,13 +199,22 @@ def test_the_precision_fix_lost_no_classification() -> None:
     a distinction its state space cannot express. P6's and P8's mechanisms add
     none of their own --- they reach their blocked states through
     ``guard_exercise.assess_guard``, whose sites are already inventoried. The
-    exact ratchet is therefore 173. Future additions must update this sentinel
-    deliberately rather than weakening it to a lower-bound check.
+    The construction-decided-verdict batch (P9, P10, P12, P14) adds six: four
+    ``MISSING_CUSTODY`` in ``comparator_response.measure_contrast_margin``, where
+    the comparator's own execution record is absent so no contrast can be taken;
+    one ``MISSING_ACCESS`` in ``assess_attainable_margin`` for a margin whose
+    reachable support cannot be read; and one ``MISSING_DECLARATION`` in
+    ``TerminalReach.outcome`` for a terminal whose admissible worlds were never
+    declared. All six report that a verdict could not be computed, which is the
+    distinction this whole batch exists to make: a gate no world can clear is
+    ``CANNOT_CHECK``, not a negative result. The exact ratchet is therefore 179.
+    Future additions must update this sentinel deliberately rather than weakening
+    it to a lower-bound check.
     """
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
-    assert sum(classified.values()) == 173, classified
+    assert sum(classified.values()) == 179, classified
     assert committed["with_reason"] < committed["blocker_sites"]
     assert committed["with_reason"] >= sum(classified.values()), (
         "more sites are classified than carry a reason, so something is classifying on nothing"

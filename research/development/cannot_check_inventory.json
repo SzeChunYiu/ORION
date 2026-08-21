@@ -1,13 +1,13 @@
 {
-  "blocker_sites": 533,
+  "blocker_sites": 542,
   "classification": {
     "INSUFFICIENT_EVIDENCE": 14,
-    "MISSING_ACCESS": 5,
-    "MISSING_CUSTODY": 35,
-    "MISSING_DECLARATION": 78,
+    "MISSING_ACCESS": 6,
+    "MISSING_CUSTODY": 39,
+    "MISSING_DECLARATION": 79,
     "MISSING_IDENTITY": 29,
     "UNAVAILABLE_PROVIDER": 12,
-    "UNCLASSIFIED": 360
+    "UNCLASSIFIED": 363
   },
   "closes_gate": null,
   "grants_authority": "NONE",
@@ -3834,6 +3834,42 @@
       "unmet_precondition": null
     },
     {
+      "category": "UNCLASSIFIED",
+      "context": "assess_attainable_margin",
+      "file": "programme/attainable_margin.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 310,
+      "missing_obligation": null,
+      "reasons": [
+        "scored",
+        "against",
+        "; there is no margin to attribute to anything"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_ACCESS",
+      "context": "assess_attainable_margin",
+      "file": "programme/attainable_margin.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 321,
+      "missing_obligation": null,
+      "reasons": [
+        "tops out at",
+        "), below",
+        "'s achieved",
+        "of the",
+        "margin was unreachable before the run, so the comparison measures",
+        "'s capability (",
+        ") rather than the mechanism"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
       "category": "MISSING_DECLARATION",
       "context": "audit_label_identifiability",
       "file": "programme/benchmark_identifiability.py",
@@ -4065,6 +4101,87 @@
       "unmet_precondition": null
     },
     {
+      "category": "MISSING_CUSTODY",
+      "context": "measure_contrast_margin",
+      "file": "programme/comparator_response.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 435,
+      "missing_obligation": null,
+      "reasons": [
+        ": no protected case was scored, so the difference between the arms is a difference between two empty sets"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_CUSTODY",
+      "context": "measure_contrast_margin",
+      "file": "programme/comparator_response.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 449,
+      "missing_obligation": null,
+      "reasons": [
+        ": every protected case carries gold",
+        ", so answering",
+        "unconditionally scores 1.0 and no difference between arms is informative"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_CUSTODY",
+      "context": "measure_contrast_margin",
+      "file": "programme/comparator_response.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 463,
+      "missing_obligation": null,
+      "reasons": [
+        "answered",
+        "on all",
+        "protected cases, so its accuracy is identically prior(",
+        ") =",
+        "and the published margin is a statistic of the split's label distribution"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_CUSTODY",
+      "context": "measure_contrast_margin",
+      "file": "programme/comparator_response.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 479,
+      "missing_obligation": null,
+      "reasons": [
+        "answered",
+        "on all",
+        "protected cases; a candidate whose score is a label prior has not been measured either"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "measure_contrast_margin",
+      "file": "programme/comparator_response.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 496,
+      "missing_obligation": null,
+      "reasons": [
+        ": a claimed margin of",
+        "is finer than the",
+        "resolution of",
+        "cases; every observable difference either satisfies it trivially or overshoots it by a whole case"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
       "category": "UNCLASSIFIED",
       "context": "CycleReceipt",
       "file": "programme/cycle_protocol.py",
@@ -4155,6 +4272,30 @@
       "reasons": [],
       "role": "EMITS",
       "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "GateReach.outcome",
+      "file": "programme/gate_attainability.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 312,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_DECLARATION",
+      "context": "TerminalReach.outcome",
+      "file": "programme/gate_attainability.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 445,
+      "missing_obligation": "self.world_ids must be present at this guard",
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": "self.world_ids"
     },
     {
       "category": "MISSING_DECLARATION",
@@ -8514,9 +8655,9 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "9cad35367def8749f0118afa54dc44a3a3b12e60",
-  "total_sites": 586,
+  "subject_commit": "0b44694f124c46bca1290451bfd94f6554b988dc",
+  "total_sites": 595,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
-  "with_derived_obligation": 96,
-  "with_reason": 247
+  "with_derived_obligation": 97,
+  "with_reason": 254
 }
