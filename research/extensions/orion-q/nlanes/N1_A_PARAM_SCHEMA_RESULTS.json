@@ -1,0 +1,63 @@
+{
+  "arms": {
+    "FINITE_EDIT_ENUMERATION": {
+      "crz_max_phase_err": 0.17885788169872407,
+      "crz_solved_of_17": 0,
+      "test_max_phase_err": 0.17885788169872407,
+      "test_solved_of_17": 0,
+      "train_solved_of_13": 1
+    },
+    "LOOKUP_INTERPOLATION_CONTROL": {
+      "test_max_phase_err": 0.4488000000000003,
+      "test_solved_of_17": 0
+    },
+    "ORION_SCHEMA_INVENTION": {
+      "a": 0.6999999999999998,
+      "b": -0.39999999999999997,
+      "crz_max_phase_err": 0.0,
+      "crz_solved_of_17": 17,
+      "fitted_schema": "theta_hat(x) = a*x + b*x^3",
+      "test_max_phase_err": 0.0,
+      "test_solved_of_17": 17
+    },
+    "SYMBOLIC_SYNTHESIS_PARENT": {
+      "coefficients": [
+        0.6999999999999998,
+        -0.39999999999999997
+      ],
+      "crz_max_phase_err": 0.0,
+      "crz_solved_of_17": 17,
+      "selected_terms": [
+        "x",
+        "x3"
+      ],
+      "test_max_phase_err": 0.0,
+      "test_solved_of_17": 17,
+      "train_max_err": 1.1102230246251565e-16
+    }
+  },
+  "authority": "N1A_DIAGNOSTIC__NO_P10_AUTHORITY__NO_NOVELTY_AUTHORITY__EXACT_SYNTHETIC_ONLY",
+  "claim_boundary": "Exact-synthetic diagnostic only. A continuous parameterized schema genuinely escapes the finite edit list, but generic symbolic synthesis with the same evidence closes the task; no ORION-specific method-invention value, no novelty over CEGIS(T)/DreamCoder-family parents, and no real-quantum authority is claimed.",
+  "date": "2026-08-21",
+  "deterministic": true,
+  "family": "N1-A",
+  "gates": {
+    "G1_WORLD_VALID": true,
+    "G2_LOOKUP_FAILS": true,
+    "G3_ORION_EXACT": true,
+    "G4_PARENT_GEQ_ORION": true
+  },
+  "issue": 674,
+  "protocol": "development/orion-q-nlane-closure/N1_A_PROTOCOL.md",
+  "reexecution_of": "issue-674 comment 5355044616 (original run never committed)",
+  "schema": "ORIONQ.N1A_ParamSchemaInvention.v1",
+  "terminal": "N1A_SYMBOLIC_SYNTHESIS_PARENT_SUFFICIENT",
+  "world": {
+    "finite_library": "17 fixed angles k*pi/8, k=-8..8",
+    "held_out_family": "CRz(theta(x)) two-qubit, same 17 test coordinates",
+    "target": "U(x)=Rz(theta(x)), theta(x)=0.7x-0.4x^3 (hidden)",
+    "test_points": 17,
+    "tolerance": 1e-12,
+    "train_points": 13
+  }
+}

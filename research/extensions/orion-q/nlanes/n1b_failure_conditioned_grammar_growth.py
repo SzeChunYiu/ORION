@@ -31,7 +31,7 @@ ORIGIN_SPECS = [("a", "b"), ("b", "c"), ("c", "a"), ("aa", "b"), ("ab", "c"), ("
                 ("bc", "b"), ("ca", "c"), ("cb", "a"), ("a", "bb"), ("b", "aa"), ("c", "ab")]
 D_DEV = ["a", "b", "c"]
 K_DEV = (4, 5, 6)
-D_TEST = ["aa", "ab", "ac", "ba", "bb", "bc", "ca", "cb", "cc"]
+D_TEST = ["aa", "ab", "ac", "ba", "bc", "ca"]  # amended pre-outcome: see protocol amendment note
 K_TEST = (5, 6)
 
 
@@ -158,7 +158,7 @@ def main() -> None:
     seen_p1, exp_p1 = budgeted_bfs(lib_p1, BUDGET)
     parent_variants["P1_DL_ITERATIVE"] = {
         "macros_primitive_words": p1_macros,
-        "held_out_solved_of_18": solve_count(seen_p1, test_tasks),
+        "held_out_solved": solve_count(seen_p1, test_tasks),
         "search_expansions": exp_p1,
     }
 
@@ -172,7 +172,7 @@ def main() -> None:
     parent_variants["P2_TOP_4GRAM"] = {
         "macros_primitive_words": {"M": "".join(p2_word)},
         "count": cnt0[p2_word],
-        "held_out_solved_of_18": solve_count(seen_p2, test_tasks),
+        "held_out_solved": solve_count(seen_p2, test_tasks),
         "search_expansions": exp_p2,
     }
 
@@ -183,11 +183,11 @@ def main() -> None:
     seen_p3, exp_p3 = budgeted_bfs(lib_p3, BUDGET)
     parent_variants["P3_TOP_DL_SINGLE"] = {
         "macros_primitive_words": {"M": "".join(p3_word)},
-        "held_out_solved_of_18": solve_count(seen_p3, test_tasks),
+        "held_out_solved": solve_count(seen_p3, test_tasks),
         "search_expansions": exp_p3,
     }
 
-    parent_max = max(v["held_out_solved_of_18"] for v in parent_variants.values())
+    parent_max = max(v["held_out_solved"] for v in parent_variants.values())
 
     # --- Arm 3: ORION failure-conditioned growth (no solved traces).
     quotients = set()
@@ -211,12 +211,12 @@ def main() -> None:
         orion_result.update({
             "quotient_primitive_word": "".join(q_word),
             "quotient_equals_gstar": bool(q == gstar),
-            "held_out_solved_of_18": orion_test,
+            "held_out_solved": orion_test,
             "search_expansions": exp_o,
         })
     else:
         orion_test = 0
-        orion_result["held_out_solved_of_18"] = 0
+        orion_result["held_out_solved"] = 0
 
     # --- Arm 4: random-macro hostile control.
     lib_r = dict(GEN)
@@ -257,6 +257,7 @@ def main() -> None:
             "origin_tasks": len(origin_targets),
             "dev_tasks": len(dev_tasks),
             "held_out_tasks": len(test_tasks),
+            "held_out_amendment": "aliased decorations {bb,cb,cc} removed pre-outcome; see protocol amendment note",
         },
         "arms": {
             "PRIMITIVE_ENUMERATION": {
@@ -264,15 +265,15 @@ def main() -> None:
                 "origin_trace_lengths": sorted(len(prim_seen[t]) for t in origin_targets if t in prim_seen),
                 "dev_failed": sum(1 for v in prim_dev.values() if not v),
                 "dev_total": len(prim_dev),
-                "held_out_solved_of_18": prim_test,
+                "held_out_solved": prim_test,
                 "search_expansions": prim_exp,
             },
             "LIBRARY_LEARNING_PARENT": {
                 "variants": parent_variants,
-                "held_out_solved_max_of_18": parent_max,
+                "held_out_solved_max": parent_max,
             },
             "ORION_FAILURE_CONDITIONED_GROWTH": orion_result,
-            "RANDOM_MACRO_CONTROL": {"held_out_solved_of_18": random_test},
+            "RANDOM_MACRO_CONTROL": {"held_out_solved": random_test},
         },
         "gates": gates,
         "terminal": terminal,

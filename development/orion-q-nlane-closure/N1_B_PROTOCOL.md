@@ -35,9 +35,16 @@ before the receipt-bearing script was written and are not altered afterwards.
   - ORIGIN (12 tasks, solvable at primitive level): `t = w1 ∘ g* ∘ w2` for the fixed spec list
     `[(a,b),(b,c),(c,a),(aa,b),(ab,c),(ba,a),(bc,b),(ca,c),(cb,a),(a,bb),(b,aa),(c,ab)]`.
   - DEV / obstruction split (9 tasks): `t_{k,d} = g*^k ∘ d` for `k in {4,5,6}`, `d in {a,b,c}`.
-  - HELD-OUT protected family (18 tasks): `t_{k,d} = g*^k ∘ d` for `k in {5,6}`,
-    `d in {aa,ab,ac,ba,bb,bc,ca,cb,cc}`. Origin solutions/tasks never appear in held-out
+  - HELD-OUT protected family (12 tasks): `t_{k,d} = g*^k ∘ d` for `k in {5,6}`,
+    `d in {aa,ab,ac,ba,bc,ca}`. Origin solutions/tasks never appear in held-out
     (registered control: origin tasks removed before transfer; d-sets are disjoint by construction).
+
+  AMENDMENT (2026-08-21, pre-outcome): the originally frozen held-out decoration set
+  `{aa,ab,ac,ba,bb,bc,ca,cb,cc}` failed the protocol's own distinctness assertion at first
+  execution — `b` and `c` have disjoint supports, so `cb ≡ bc` and `cc ≡ bb ≡ identity` in `S_12`.
+  The run aborted on the validity assertion before any outcome was computed. The aliased
+  decorations `{bb,cb,cc}` are removed; held-out is therefore 12 tasks. No gate, arm, budget, or
+  terminal rule is altered; the amendment is also recorded in the receipt.
 
 ## Arms (all receive `L0`, the exact verifier, and the same 400,000-expansion budget per library)
 
