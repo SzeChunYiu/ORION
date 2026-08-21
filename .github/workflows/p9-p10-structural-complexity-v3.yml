@@ -1,0 +1,115 @@
+name: p9-p10-structural-complexity-v3
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/p9-p10-structural-scaling/NOVELTY_EXPANSION_PROTOCOL_V3.md'
+      - 'research/extensions/p9-p10-structural-scaling/INVERTIBLE_OBFUSCATION_THEOREM_V1.md'
+      - 'research/extensions/p9-p10-structural-scaling/run_relational_complexity_frontier_v1.py'
+      - 'research/extensions/p9-p10-structural-scaling/run_invertible_obfuscation_ladder_v1.py'
+      - 'research/extensions/p9-p10-structural-scaling/check_novelty_expansion_prerequisites_v3.py'
+      - '.github/workflows/p9-p10-structural-complexity-v3.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  relational-complexity-frontier:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install -e '.[dev,candidates]'
+      - name: Execute frozen frontier
+        run: python research/extensions/p9-p10-structural-scaling/run_relational_complexity_frontier_v1.py
+      - name: Preserve first output
+        run: cp research/extensions/p9-p10-structural-scaling/results/RELATIONAL_COMPLEXITY_FRONTIER_V1.json /tmp/frontier-first.json
+      - name: Deterministic replay
+        run: python research/extensions/p9-p10-structural-scaling/run_relational_complexity_frontier_v1.py
+      - name: Require byte identity
+        run: cmp /tmp/frontier-first.json research/extensions/p9-p10-structural-scaling/results/RELATIONAL_COMPLEXITY_FRONTIER_V1.json
+      - name: Print frontier summary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('research/extensions/p9-p10-structural-scaling/results/RELATIONAL_COMPLEXITY_FRONTIER_V1.json').read_text())
+          print(json.dumps({'terminal':d['terminal'],'aggregate':d['aggregate'],'cells':[{'k':c['k'],'dims':c['feature_dimensions'],'thresholds':c['sample_threshold_0_90'],'ratio':c['quadratic_to_relational_threshold_ratio'],'at4096':c['accuracy_curve'][-1]} for c in d['cells']]},indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: relational-complexity-frontier-${{ github.sha }}
+          path: research/extensions/p9-p10-structural-scaling/results/RELATIONAL_COMPLEXITY_FRONTIER_V1.json
+          if-no-files-found: error
+      - name: Enforce frozen frontier terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('research/extensions/p9-p10-structural-scaling/results/RELATIONAL_COMPLEXITY_FRONTIER_V1.json').read_text())
+          if d['terminal'] != 'RELATIONAL_CAPACITY_FRONTIER_SUPPORTED_CONTROLLED_CLASS':
+              raise SystemExit('frozen relational-complexity frontier gate not met; preserve artifact without retuning')
+          PY
+
+  invertible-obfuscation-ladder:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install -e '.[dev,candidates]'
+      - name: Execute frozen obfuscation ladder
+        run: python research/extensions/p9-p10-structural-scaling/run_invertible_obfuscation_ladder_v1.py
+      - name: Preserve first output
+        run: cp research/extensions/p9-p10-structural-scaling/results/INVERTIBLE_OBFUSCATION_LADDER_V1.json /tmp/obfuscation-first.json
+      - name: Deterministic replay
+        run: python research/extensions/p9-p10-structural-scaling/run_invertible_obfuscation_ladder_v1.py
+      - name: Require byte identity
+        run: cmp /tmp/obfuscation-first.json research/extensions/p9-p10-structural-scaling/results/INVERTIBLE_OBFUSCATION_LADDER_V1.json
+      - name: Print obfuscation summary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('research/extensions/p9-p10-structural-scaling/results/INVERTIBLE_OBFUSCATION_LADDER_V1.json').read_text())
+          print(json.dumps({'terminal':d['terminal'],'aggregate':d['aggregate']},indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: invertible-obfuscation-ladder-${{ github.sha }}
+          path: research/extensions/p9-p10-structural-scaling/results/INVERTIBLE_OBFUSCATION_LADDER_V1.json
+          if-no-files-found: error
+      - name: Enforce frozen obfuscation terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('research/extensions/p9-p10-structural-scaling/results/INVERTIBLE_OBFUSCATION_LADDER_V1.json').read_text())
+          if d['terminal'] != 'INVERTIBLE_OBFUSCATION_ACCESSIBILITY_TAX_SUPPORTED':
+              raise SystemExit('frozen invertible-obfuscation gate not met; preserve artifact without retuning')
+          PY
+
+  prerequisite-matrix:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Emit fail-closed novelty prerequisite matrix
+        run: python research/extensions/p9-p10-structural-scaling/check_novelty_expansion_prerequisites_v3.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: novelty-prerequisites-v3-${{ github.sha }}
+          path: research/extensions/p9-p10-structural-scaling/results/NOVELTY_EXPANSION_PREREQUISITES_V3.json
+          if-no-files-found: error

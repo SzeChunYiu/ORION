@@ -1,0 +1,66 @@
+name: p9-p10-inductive-bias-substitution-v1
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/p9-p10-structural-scaling/INDUCTIVE_BIAS_SUBSTITUTION_PROTOCOL_V1.md'
+      - 'research/extensions/p9-p10-structural-scaling/run_inductive_bias_substitution_v1.py'
+      - '.github/workflows/p9-p10-inductive-bias-substitution-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prior-substitution:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install -e '.[dev,candidates]'
+      - name: Execute frozen structural-prior substitution study
+        run: python research/extensions/p9-p10-structural-scaling/run_inductive_bias_substitution_v1.py
+      - name: Preserve first output
+        run: cp research/extensions/p9-p10-structural-scaling/results/INDUCTIVE_BIAS_SUBSTITUTION_V1.json /tmp/prior-first.json
+      - name: Deterministic replay
+        run: python research/extensions/p9-p10-structural-scaling/run_inductive_bias_substitution_v1.py
+      - name: Require byte identity
+        run: cmp /tmp/prior-first.json research/extensions/p9-p10-structural-scaling/results/INDUCTIVE_BIAS_SUBSTITUTION_V1.json
+      - name: Print bounded summary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('research/extensions/p9-p10-structural-scaling/results/INDUCTIVE_BIAS_SUBSTITUTION_V1.json').read_text())
+          print(json.dumps({
+            'primary':d['primary'],
+            'sparsity_secondary':d['sparsity_secondary'],
+            'cells':[{
+              'k':c['k'],
+              'dims':c['feature_dimensions'],
+              'thresholds':c['sample_threshold_0_90'],
+              'ratios':c['threshold_ratios'],
+              'M2_support_at_4096':c['mean_curve'][-1]['M2_support'],
+            } for c in d['cells']],
+          },indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: inductive-bias-substitution-v1-${{ github.sha }}
+          path: research/extensions/p9-p10-structural-scaling/results/INDUCTIVE_BIAS_SUBSTITUTION_V1.json
+          if-no-files-found: error
+      - name: Enforce frozen primary terminal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('research/extensions/p9-p10-structural-scaling/results/INDUCTIVE_BIAS_SUBSTITUTION_V1.json').read_text())
+          if d['primary']['terminal'] != 'STRUCTURAL_PRIOR_SUBSTITUTION_SUPPORTED_CONTROLLED_CLASS':
+              raise SystemExit('frozen primary structural-prior substitution gate not met; preserve artifact without retuning')
+          print('SPARSITY_SECONDARY='+d['sparsity_secondary']['terminal'])
+          PY

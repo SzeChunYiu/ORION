@@ -1,0 +1,47 @@
+name: p9-p10-runtime-gated-extensions-v1
+
+on:
+  pull_request:
+    paths:
+      - 'research/extensions/p9-p10-structural-scaling/analyze_runtime_gated_extensions_v1.py'
+      - 'research/extensions/p9-p10-structural-scaling/inputs/**'
+      - '.github/workflows/p9-p10-runtime-gated-extensions-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Execute frozen extension analyzers
+        run: python research/extensions/p9-p10-structural-scaling/analyze_runtime_gated_extensions_v1.py
+      - name: Require current missing-runtime dispositions
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('research/extensions/p9-p10-structural-scaling/results/RUNTIME_GATED_EXTENSION_ANALYSIS_V1.json').read_text())
+          expected={
+            'C_llm_semantic_orbit':'CANNOT_CHECK_LLM_SEMANTIC_ORBIT_RUNTIME',
+            'D_adaptive_compute':'CANNOT_CHECK_MULTI_BUDGET_MODEL_RUNTIME',
+            'H_cross_domain_composition':'BLOCKED_PENDING_SECOND_DOMAIN_SAME_INFORMATION_RESULT',
+          }
+          got={k:v['terminal'] for k,v in d['lanes'].items()}
+          if got != expected:
+              # Future PRs that add actual inputs must remove/replace this
+              # missing-input assertion only in the same commit that adds those
+              # inputs; the analyzer itself remains frozen.
+              raise SystemExit(f'current extension disposition drifted: {got}')
+          print(json.dumps(got,indent=2,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: runtime-gated-extension-analysis-${{ github.sha }}
+          path: research/extensions/p9-p10-structural-scaling/results/RUNTIME_GATED_EXTENSION_ANALYSIS_V1.json
+          if-no-files-found: error
