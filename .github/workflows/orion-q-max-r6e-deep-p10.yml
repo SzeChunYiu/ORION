@@ -12,7 +12,7 @@ on:
 
 concurrency:
   group: orion-q-max-r6e-deep-p10-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   exhaustive-deep-p10:
