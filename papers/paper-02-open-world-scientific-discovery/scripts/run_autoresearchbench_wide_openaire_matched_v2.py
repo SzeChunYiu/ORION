@@ -142,10 +142,19 @@ def validate_transport_probe(path: Path, freeze: dict[str, Any]) -> dict[str, An
     normalized_matched = [v1.normalize_doi(doi) for doi in matched_dois]
     if any(not doi for doi in normalized_matched):
         raise ValueError("V2 transport probe matched DOI list is malformed")
+    if matched_dois != normalized_matched:
+        raise ValueError("V2 transport probe matched DOI list is not canonical normalized DOI text")
     if len(normalized_matched) != len(set(normalized_matched)):
         raise ValueError("V2 transport probe matched DOI list contains duplicates")
-    if any(doi not in set(expected) for doi in normalized_matched):
+    normalized_expected = [v1.normalize_doi(doi) for doi in expected]
+    if any(not doi for doi in normalized_expected):
+        raise ValueError("V2 freeze transport probe DOI list is malformed")
+    expected_set = set(normalized_expected)
+    if any(doi not in expected_set for doi in normalized_matched):
         raise ValueError("V2 transport probe matched DOI is outside the frozen request")
+    canonical_order = [doi for doi in normalized_expected if doi in set(normalized_matched)]
+    if normalized_matched != canonical_order:
+        raise ValueError("V2 transport probe matched DOI list does not follow frozen request order")
     if len(normalized_matched) < minimum_matched_doi_count:
         raise ValueError("V2 transport probe did not match the frozen minimum requested DOI count")
     return probe
