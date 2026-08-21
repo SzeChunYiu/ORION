@@ -549,7 +549,6 @@ def process_domain(name, instances, binding_every, reorder_every, gates):
         if gap > 0:
             agg["trades"] += 1
             agg["gap_hist"][str(gap)] = agg["gap_hist"].get(str(gap), 0) + 1
-            sh = witness_record(codes, n, rec)["shape"] if False else None
             row_base = make_row()
             shape = row_base["witness"]["shape"]
             agg["witness_shapes"][shape] = agg["witness_shapes"].get(shape, 0) + 1
@@ -718,18 +717,6 @@ def p3_search(rows):
     }, best[1]
 
 
-def confusion_of(rows, pred_fn):
-    conf = [0, 0, 0, 0]
-    for row in rows:
-        pred = pred_fn(row)
-        lab = row["label"]
-        slot = 0 if (pred and lab) else 1 if (pred and not lab) else 2 if (
-            not pred and lab
-        ) else 3
-        conf[slot] += 1
-    return conf
-
-
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -885,9 +872,9 @@ def main():
         selected = "P1"
     elif train_err["P2"] == 0:
         selected = "P2"
-    else:  # unreachable given the P2 assertion; kept for protocol fidelity
-        p3_summary, combo = p3_search(rows_b)
-        selected = "P3"
+    else:  # unreachable: the per-instance P2 identity is hard-asserted
+        p3_summary, _combo = p3_search(rows_b)
+        raise AssertionError({"P3_reached_despite_P2_identity": p3_summary})
 
     # H2 generated only after selection (frozen order of operations)
     dom_h2, rows_h2 = process_domain(
