@@ -3,6 +3,21 @@
 
 Standard-library only. These finite witnesses support theorem boundaries; they
 are not empirical claims about real search agents.
+
+Checks report a terminal, and the terminal is three-valued. `PASS` is a check
+whose witnesses were decided by the model it enumerates; `CANNOT_CHECK` is a
+check whose claim turns on a premise this model cannot express, and it names
+that premise rather than reporting a case count. The distinction is load-bearing
+for `check_support_transport`: Theorem 6's terminal is a function of Definition
+14 target-ambiguity, `Transport` carries six boolean witness coordinates and no
+completion class, and a checker that takes such a premise as an argument and
+asserts the terminal the argument implies has restated its own terminal map. See
+that function's docstring for the body this replaced and what it measured.
+
+The `P7 THEORY CLOSURE V2: PASS` banner therefore reports assertion status only.
+`theory_closure_terminal`, printed beneath it, is the aggregate over the
+three-valued check terminals and is the line to read for what this file
+establishes.
 """
 from __future__ import annotations
 
@@ -125,6 +140,89 @@ def check_evidence_not_closure_transport() -> int:
     return 1
 
 
+#: The three terminals a check in this file may report. ``CANNOT_CHECK`` is not a
+#: pass and not a failure: it is this checker declining to report either, and it
+#: is a written-down name rather than a count so that nothing downstream can
+#: recover a verdict from truthiness. ``not 0`` and ``not None`` are both
+#: ``True``, so an integer case count cannot carry three values.
+CHECK_TERMINALS = ("PASS", "FAIL", "CANNOT_CHECK")
+
+
+@dataclass(frozen=True)
+class CheckTerminal:
+    """One check's three-valued terminal, with what it is entitled to report.
+
+    ``PASS`` has to be stated and cannot be inferred from a case count, and it
+    cannot be paired with a premise the check could not decide. ``CANNOT_CHECK``
+    has to name that premise and what the premise must be decided from, so that
+    "the checker could not decide this" is a readable fact rather than a missing
+    line.
+    """
+
+    terminal: str
+    checked: int
+    undecidable_premise: str | None = None
+    decided_from: str | None = None
+    detail: str = ""
+
+    def __post_init__(self) -> None:
+        if self.terminal not in CHECK_TERMINALS:
+            raise ValueError(f"unknown check terminal: {self.terminal!r}")
+        if self.terminal == "PASS" and self.undecidable_premise is not None:
+            raise ValueError("PASS cannot carry a premise the check did not decide")
+        if self.terminal == "CANNOT_CHECK" and not (
+            self.undecidable_premise and self.decided_from
+        ):
+            raise ValueError(
+                "CANNOT_CHECK must name the premise it could not decide and what that "
+                "premise is decided from; an unnamed one reads as a clean check"
+            )
+
+    def __str__(self) -> str:
+        if self.terminal == "PASS":
+            return f"PASS ({self.checked} checked)"
+        parts = [self.terminal]
+        if self.undecidable_premise:
+            parts.append(f"premise={self.undecidable_premise}")
+        if self.decided_from:
+            parts.append(f"decided_from={self.decided_from}")
+        head = " ".join(parts)
+        return f"{head} ({self.detail})" if self.detail else head
+
+
+def one_terminal(value: object) -> str:
+    """The terminal one check's return value is entitled to.
+
+    A :class:`CheckTerminal` carries its own. A positive ``int`` is a legacy
+    count, meaning the check ran that many witnesses to completion, so it earns
+    ``PASS``. Everything else --- zero, a negative, ``None``, some other type ---
+    earns ``CANNOT_CHECK`` rather than falling through to a pass. That fall-through
+    is the whole hazard: ``not 0`` and ``not None`` are both ``True``, so a check
+    that witnessed nothing is indistinguishable from a clean one under truthiness,
+    and the default here has to be the one that cannot overclaim.
+    """
+
+    if isinstance(value, CheckTerminal):
+        return value.terminal
+    if isinstance(value, int) and not isinstance(value, bool) and value > 0:
+        return "PASS"
+    return "CANNOT_CHECK"
+
+
+def aggregate_terminal(results: dict[str, object]) -> str:
+    """The worst terminal across the checks, reduced over the three names.
+
+    Over ``CHECK_TERMINALS``, never over truthiness. One ``CANNOT_CHECK`` carries
+    the whole file to ``CANNOT_CHECK``.
+    """
+
+    terminals = {one_terminal(value) for value in results.values()}
+    for terminal in ("FAIL", "CANNOT_CHECK"):
+        if terminal in terminals:
+            return terminal
+    return "PASS"
+
+
 @dataclass(frozen=True)
 class Transport:
     maps_support: bool
@@ -146,24 +244,102 @@ class Transport:
         ))
 
 
-def transfer_terminal(t: Transport, *, target_ambiguous_if_missing: bool) -> str:
+#: Definition 14's target-ambiguity premise, by the name Theorem 6's terminal map
+#: takes it under, and the class it must be decided from. ``Transport`` above has
+#: six boolean witness coordinates and no completions, so this name is not an axis
+#: of anything this file enumerates.
+TRANSPORT_PREMISE = "target_ambiguous_if_missing"
+TRANSPORT_PREMISE_DECIDED_FROM = "admissible_target_completions"
+
+
+def transfer_terminal(t: Transport, *, target_ambiguous_if_missing: bool | None) -> str:
+    """Theorem 6's terminal for one transport witness.
+
+    ``target_ambiguous_if_missing`` is Definition 14 --- whether the admissible
+    target completions contain one preserving the transported certificate
+    derivation and one invalidating it --- and it is three-valued here. ``None``
+    is "not decided" and returns ``PREMISE_UNDECIDED``; it does not fall through
+    to either branch. The theorem's own ``CANNOT_CHECK`` is a different fact (the
+    witness is incomplete and the target class is *decided* to be unambiguous),
+    so the two cannot share a name without the undecided case reading as the
+    boundary case the V2 core says it repaired.
+    """
+
     if t.complete:
         return "TRANSFER_CLOSURE"
+    if target_ambiguous_if_missing is None:
+        return "PREMISE_UNDECIDED"
     return "REOPEN" if target_ambiguous_if_missing else "CANNOT_CHECK"
 
 
-def check_support_transport() -> int:
-    count = 0
+def check_support_transport() -> CheckTerminal:
+    """Theorem 6 over all 64 transport witnesses, with its premise undecided.
+
+    Before this repair the body was::
+
+        count = 0
+        for bits in product((False, True), repeat=6):
+            t = Transport(*bits)
+            good = transfer_terminal(t, target_ambiguous_if_missing=True)
+            if t.complete:
+                assert good == "TRANSFER_CLOSURE"
+            else:
+                assert good == "REOPEN"
+                assert transfer_terminal(t, target_ambiguous_if_missing=False) == "CANNOT_CHECK"
+            count += 1
+        return count
+
+    and it returned ``64``, printed as ``support_transport: 64``. That body
+    supplied Definition 14's target-ambiguity as the literal ``True`` on all 64
+    states and again as ``False`` on each of the 63 incomplete ones, then asserted
+    the terminal each literal implies. The expected value moved with the input, so
+    the assertion restated ``transfer_terminal`` rather than constraining it: 0 of
+    the 64 states excluded either value of the premise, leaving all 2**64 ambiguity
+    predicates admissible --- including the constant-``False`` one, which is
+    "incompleteness never means ambiguity", the exact V1 error the Boundary
+    paragraph under Theorem 6 says deciding this premise repaired.
+
+    ``extension_ambiguous`` above is a real decider for exactly this predicate and
+    this theorem cannot call it. It needs a class of admissible completions to
+    compare pairwise; ``Transport`` carries six boolean witness coordinates and no
+    completions at all. So the premise here is not merely undecided, it is
+    inexpressible in this model, and no rule written against these 64 states could
+    decide it. Building one would mean inventing a completion class per witness
+    state, which is a theory change and not a checker repair.
+
+    What the six coordinates do decide is completeness, so that half is still
+    asserted on all 64 states. The other half is reported rather than asserted:
+    the terminal is ``CANNOT_CHECK``, naming the premise and what it is decided
+    from.
+    """
+
+    decided = 0
+    undecided = 0
     for bits in product((False, True), repeat=6):
         t = Transport(*bits)
-        good = transfer_terminal(t, target_ambiguous_if_missing=True)
+        terminal = transfer_terminal(t, target_ambiguous_if_missing=None)
         if t.complete:
-            assert good == "TRANSFER_CLOSURE"
+            # Completeness is a function of the enumerated coordinates alone, so
+            # this branch is decided by the model and stays asserted.
+            assert terminal == "TRANSFER_CLOSURE"
+            decided += 1
         else:
-            assert good == "REOPEN"
-            assert transfer_terminal(t, target_ambiguous_if_missing=False) == "CANNOT_CHECK"
-        count += 1
-    return count
+            assert terminal == "PREMISE_UNDECIDED"
+            undecided += 1
+    assert decided == 1
+    assert undecided == 63
+    return CheckTerminal(
+        "CANNOT_CHECK",
+        checked=decided,
+        undecidable_premise=TRANSPORT_PREMISE,
+        decided_from=TRANSPORT_PREMISE_DECIDED_FROM,
+        detail=(
+            f"{decided} of {decided + undecided} transport states decide their terminal "
+            "from the witness coordinates alone (complete -> TRANSFER_CLOSURE); the "
+            f"remaining {undecided} turn on Definition 14 target-ambiguity, which the "
+            "six-coordinate Transport model cannot express"
+        ),
+    )
 
 
 def task_terminal(
@@ -340,7 +516,13 @@ def main() -> int:
         "recovery_transitions": check_recovery_transitions(),
         "fixed_chart_special_case": check_fixed_chart_special_case(),
     }
+    # The banner reports assertion status only --- every finite witness in this
+    # file held --- and is not a verdict on the theorems those witnesses support.
+    # `theory_closure_terminal` is that verdict, and it is three-valued: a check
+    # that reports CANNOT_CHECK carries the aggregate to CANNOT_CHECK, so a
+    # premise this model cannot decide cannot be read off as a clean pass.
     print("P7 THEORY CLOSURE V2: PASS")
+    print(f"theory_closure_terminal: {aggregate_terminal(totals)}")
     for key, value in totals.items():
         print(f"{key}: {value}")
     return 0

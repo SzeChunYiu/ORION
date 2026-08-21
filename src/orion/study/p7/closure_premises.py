@@ -6,17 +6,17 @@ files on disk rather than against a fixture of this module's own.
 ``papers/paper-07-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py``
 is what ``REPRODUCE_V2_1.md`` names for "all 64 transport-coordinate
 combinations". Its transport theorem --- the paper's C4, and what
-``manuscript/FORMAL_CORE_V2.md`` calls closing "the V1 logical gap" --- is::
+``manuscript/FORMAL_CORE_V2.md`` calls closing "the V1 logical gap" --- was::
 
     def transfer_terminal(t: Transport, *, target_ambiguous_if_missing: bool) -> str:
         if t.complete:
             return "TRANSFER_CLOSURE"
         return "REOPEN" if target_ambiguous_if_missing else "CANNOT_CHECK"
 
-``check_support_transport`` calls it at ``True`` and again at ``False`` for every
-one of the 64 transport states, so ambiguity --- the entire content of C4 --- is
-a caller literal. The same file already defines ``extension_ambiguous``, a real
-decider used by two other checks, and the transport theorem never calls it.
+As audited, ``check_support_transport`` called it at ``True`` and again at
+``False`` on all 64 states, so ambiguity --- the content of C4 --- was a caller
+literal and the body returned ``64``. It has since been repaired to supply no
+value and report ``CANNOT_CHECK``; the measurement below is unchanged by that.
 
 ``research/claim_expansion/p7/check_p7_x2_closure_carrying.py`` is what the
 superiority ledger names for P7-U-T1. Its composition block is::
@@ -86,7 +86,7 @@ CLOSURE_CARRYING_RESULT_PATH = (
 #: ``canonical_rows_sha256`` as published in ``P7_X2_CLOSURE_CARRYING_RESULT_V1.json``.
 SHIPPED_ROWS_SHA256 = "25f40385714adb15bca298a8cfd2b7fe2b28c96bfe462f6b60583be8f735b95f"
 
-#: ``support_transport`` as printed by the shipped ``check_theory_closure_v2.py``.
+#: Transport states ``check_theory_closure_v2.py`` enumerates; once printed as 64.
 SHIPPED_TRANSPORT_CASES = 64
 
 #: The six transport-witness coordinates, in ``Transport``'s field order.
@@ -160,11 +160,11 @@ TARGET_AMBIGUITY = Premise(
 
 
 def transport_replay(module: ModuleType) -> AssertionReplay:
-    """Replay ``check_support_transport``'s assertions under a deciding rule.
+    """Replay the audited ``check_support_transport`` under a deciding rule.
 
-    The shipped loop evaluates both ambiguity literals on every state; a deciding
-    rule selects one, so this asserts exactly the branch that value picks. Nothing
-    else about the shipped body changes.
+    That body evaluated both ambiguity literals on every state; a deciding rule
+    selects one, so this asserts the branch it picks. It calls only
+    ``transfer_terminal``, whose branches the repair left unchanged.
     """
 
     transport_type = module.Transport
