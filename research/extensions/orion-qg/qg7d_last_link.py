@@ -362,26 +362,26 @@ def p1_geometry(role1, role2, want_delta=False):
     menu_pairs_total = 0
     for branch in (0, 1):
         bl = blocks if branch == 0 else [mirror_block(b) for b in blocks]
-        orient = (0, 1) if branch == 0 else (1, 0)
-        flb, fla, base, nconf = menu_pairs(bl, orient)
-        menu_configs += nconf
-        menu_pairs_total += int(flb.size)
-        # group by frame pattern at b (flb is sorted ascending)
-        bounds = np.searchsorted(flb, np.arange(4097))
-        streams.append((branch, flb, fla, base, bounds))
+        for orient in ((0, 1), (1, 0)):
+            flb, fla, base, nconf = menu_pairs(bl, orient)
+            menu_configs += nconf
+            menu_pairs_total += int(flb.size)
+            # group by frame pattern at b (flb is sorted ascending)
+            bounds = np.searchsorted(flb, np.arange(4097))
+            streams.append((branch, flb, fla, base, bounds))
 
     covered = np.zeros((4096, 512), dtype=np.uint8)
     processed = 0
     order_pairs = []
-    for branch, flb, fla, base, bounds in streams:
+    for si, (branch, flb, fla, base, bounds) in enumerate(streams):
         present = np.nonzero(bounds[1:] > bounds[:-1])[0]
         for f in present:
-            order_pairs.append((int(f), branch))
-    # frozen interleave: by frame-pattern index, mirror branch first on ties
+            order_pairs.append((int(f), si))
+    # frozen interleave: by frame-pattern index, later streams first on ties
     order_pairs.sort(key=lambda t: (t[0], -t[1]))
     done = False
-    for f, branch in order_pairs:
-        _, flb, fla, base, bounds = streams[branch]
+    for f, si in order_pairs:
+        branch, flb, fla, base, bounds = streams[si]
         s, e = int(bounds[f]), int(bounds[f + 1])
         V = (GP[fla[s:e]].astype(np.int16) + base[s:e, None]).min(axis=0)
         if branch == 0:
