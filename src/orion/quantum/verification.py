@@ -29,6 +29,16 @@ _EXPECTED_BACKEND = {
 }
 
 
+def _invalid_case(errors: list[str], *, case_id: str = "") -> dict[str, Any]:
+    return {
+        "schema": "ORION.QN.S1ACaseReconstruction.v1",
+        "case_id": case_id,
+        "valid_record": False,
+        "candidate_verified": False,
+        "errors": errors,
+    }
+
+
 def _expected_positions(n_qubits: int) -> tuple[int, ...]:
     search_size = 1 << n_qubits
     generator = random.Random(734000 + n_qubits)
@@ -76,30 +86,38 @@ def reconstruct_s1a_case(record: Mapping[str, Any]) -> dict[str, Any]:
         )
         measured_candidates = tuple(int(value) for value in record["measured_candidates"])
     except (KeyError, TypeError, ValueError) as exc:
-        return {
-            "schema": "ORION.QN.S1ACaseReconstruction.v1",
-            "valid_record": False,
-            "candidate_verified": False,
-            "errors": [f"malformed case record: {type(exc).__name__}: {exc}"],
-        }
-
-    if n_qubits < 3 or n_qubits > 10:
-        errors.append("n_qubits outside frozen S1A ladder")
-    if search_size != 1 << n_qubits:
-        errors.append("search_size does not equal 2^n")
-
-    if not errors:
-        positions = _expected_positions(n_qubits)
-        if case_index < 0 or case_index >= len(positions):
-            errors.append("case_index outside frozen subject set")
-        elif positions[case_index] != marked_index:
-            errors.append("marked_index does not match frozen subject generator")
+        return _invalid_case([f"malformed case record: {type(exc).__name__}: {exc}"])
 
     expected_case_id = f"S1A-n{n_qubits}-case{case_index}-marked{marked_index}"
+
+    # Validate all coordinates needed by later arithmetic before shifting, taking square
+    # roots, indexing the frozen subject set, or reconstructing randomized baselines.
+    if n_qubits < 3 or n_qubits > 10:
+        errors.append("n_qubits outside frozen S1A ladder")
+        return _invalid_case(errors, case_id=expected_case_id)
+
+    expected_search_size = 1 << n_qubits
+    if search_size != expected_search_size:
+        errors.append("search_size does not equal 2^n")
+        return _invalid_case(errors, case_id=expected_case_id)
+
+    positions = _expected_positions(n_qubits)
+    if case_index < 0 or case_index >= len(positions):
+        errors.append("case_index outside frozen subject set")
+        return _invalid_case(errors, case_id=expected_case_id)
+
+    if marked_index < 0 or marked_index >= search_size:
+        errors.append("marked_index outside frozen search space")
+        return _invalid_case(errors, case_id=expected_case_id)
+
+    if positions[case_index] != marked_index:
+        errors.append("marked_index does not match frozen subject generator")
+        return _invalid_case(errors, case_id=expected_case_id)
+
     if record.get("case_id") != expected_case_id:
         errors.append("case_id does not bind the case coordinates")
 
-    expected_iterations = _expected_iterations(search_size) if search_size > 1 else -1
+    expected_iterations = _expected_iterations(search_size)
     if iterations != expected_iterations:
         errors.append("Grover iteration count differs from frozen analytic rule")
 
@@ -143,9 +161,8 @@ def reconstruct_s1a_case(record: Mapping[str, Any]) -> dict[str, Any]:
             errors.append("returned candidate was not the final measured candidate")
         if returned_candidate != marked_index:
             errors.append("returned candidate fails the original predicate")
-    else:
-        if any(candidate == marked_index for candidate in measured_candidates):
-            errors.append("record drops a successful measured candidate")
+    elif any(candidate == marked_index for candidate in measured_candidates):
+        errors.append("record drops a successful measured candidate")
 
     expected_ordered = marked_index + 1
     try:
@@ -189,7 +206,9 @@ def reconstruct_s1a_case(record: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
-def _terminal_for_size(case_records: list[Mapping[str, Any]], reconstructions: list[dict[str, Any]]):
+def _terminal_for_size(
+    case_records: list[Mapping[str, Any]], reconstructions: list[dict[str, Any]]
+) -> QuantumAdvantageTerminal:
     all_valid = all(item["valid_record"] for item in reconstructions)
     all_candidates = all(item["candidate_verified"] for item in reconstructions)
     if not all_valid or not all_candidates:
