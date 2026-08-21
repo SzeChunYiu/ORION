@@ -274,13 +274,9 @@ def main() -> int:
         vals = [v for v in (fc["C_Dplus"], fc["f_Bprime"],
                             fc["f_Bsecond"]) if v is not None]
         base = fc["C_Dxx"] if fc["C_Dxx"] is not None else fc["C_DP"]
+        # a fifth configuration claim requires base < min of the family values
         if not vals or base >= min(vals):
-            pass  # a fifth needs base < min of the family values
-        else:
-            continue
-        if vals and base < min(vals):
-            continue
-        fail(f"V4: fifth candidate {k} numeric claim inconsistent")
+            fail(f"V4: fifth candidate {k} numeric claim inconsistent")
     if terminal == CLOSES_TERMINAL:
         if fifths or q2["uncovered_total"] != 0:
             fail("V4: closes terminal with fifths/uncovered present")
