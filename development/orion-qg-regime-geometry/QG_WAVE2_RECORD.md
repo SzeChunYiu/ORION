@@ -151,12 +151,46 @@ sub-lattice minima — ACCEPT 28/28, independently re-run by the orchestrator; t
   question is which *enlarged vocabulary* (path/schedule-aware features) restores
   determination, and whether feature-determination itself is the transferable property
   — registered as QG-15c (pre-outcome freeze required).
-- **QG-7c — the classification endgame.** Close L4b and L4c per the QG-7b Q3
-  delimitation, turning the four-configuration trade basis into a provably exhaustive
-  all-n classification theorem — or discover the configuration that extends it. This is
-  the keystone lane: with it, unit-cost TARE has a complete finite trade basis, an all-n
-  support bound (R6S), an all-n cost envelope, an exact predicate, and a certified
-  forecaster — the field's first fully closed regime-geometry object.
+- ~~QG-7c~~ **EXECUTED — see the QG-7c entry below.**
+
+## QG-7c — CLASSIFICATION CHAIN MACHINE-CHECKED TO ONE LINK (honest partial)
+
+`QG7C_CLASSIFICATION_RESULTS.json` (protocol frozen pre-outcome, sha256
+`14129aea…1592646`; double-run byte-identical, digest `0b127438…ded656b6`; generic
+verifier — pure-primitive full re-derivation of every lemma domain including exact
+census equality — ACCEPT, independently re-run by the orchestrator; terminal
+`QG7C_PARTIAL__L4B_OPEN`, authority
+`ORIONQG_QG7C_PARTIAL__L4B_COMM_S2_PINNED_SECTOR_OPEN__L4C_CLOSED_CONDITIONAL__NOT_R6`).
+
+- **L4c is closed (conditional on the comm-s2 sector)** — the hard rung: the T1 prune
+  (frame-supported tag letters, exact refund 2, beyond L4a's reach), the T2 occupancy
+  bound, and the T3 consolidation exchange on a complete 14,680,064-case domain with
+  **zero failures** reduce every weight-≥3-Tag configuration into B′/B″ shape at Δ ≤ 0,
+  all n. Weight-≥3 Tags never strictly pay.
+- **L4b: three of four shape classes closed all-n** by the new M1 irreducible-block
+  inventory lemma (262,144-case complete domain — the irreducible blocks are exactly
+  {anchored 288, phantom 864, comm-s2 864}): tag-supported phantoms and
+  l1-phantom-at-home are reducible or infeasible; cyclic borrows are structurally
+  impossible. The double-borrow residual is the **comm-s2 shape**; its unpinned sector
+  closes (T4a, 134,217,728 cases, worst Δ = 0) — the **pinned sector stays open**
+  (T4b: 536,870,912 cases, 135,604 lemma failures at worst Δ = +2, census serialized).
+- **The open link is lemma-open, not identity-open**: the hostile search realized the
+  worst T4b failing patterns as 50 deterministic instances (plus 150 frozen random
+  controls) and found **zero gap rows** — every realized pinned comm-s2 configuration
+  was strictly dominated by min(C_D+, f_B′, f_B″). No fifth configuration; the trade
+  basis is not extended.
+- The RESULTS carries a step-by-step `proof_audit`: R6S → MG gauge → L1/L2/Lemma-E/L4a
+  receipts → M1 → T1/T2 → T3 → T4a → T5 grammar pinch, each link naming its receipt.
+  The single remaining link to the all-n theorem `C_DP == min(C_D+, f_B′, f_B″)` is
+  the comm-s2 pinned sector.
+
+## Registered successor (requires its own pre-outcome freeze)
+
+- **QG-7d — the last link.** Close the comm-s2 pinned sector: a sharper exchange
+  (the T4b failure census delimits exactly which 135,604 patterns need it, worst
+  residue +2) or a new composition argument for the two declared-open sub-cases
+  (double pinners; comm-s2 chains). The hostile evidence says the identity holds
+  there — what is missing is the lemma, not the truth.
 
 ## Stop rules
 
