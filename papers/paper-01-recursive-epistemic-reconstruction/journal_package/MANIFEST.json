@@ -1,14 +1,13 @@
 {
   "schema_version": "orion.journal-package.v1",
   "paper_id": "P1",
-  "package_status": "SUBMISSION_READY",
+  "package_status": "SCAFFOLDING",
   "declared_paper_terminal": "PEER_REVIEW_READY",
   "claim_boundary": "CREDENTIAL_FREE_MECHANICAL_MUTATION_NECESSITY_ONLY__NO_MODEL_GENERAL_OR_OPEN_ENDED_SUPERIORITY",
-  "audit_subject_revision": "7fc78cbe0fba344de396dae00cac500e65ca1dfa",
-  "audit_date": "2026-08-18",
+  "audit_subject_revision": "714a7e771961c8ace08bb38d7dab6e2ba45b8ff7",
+  "audit_date": "2026-08-21",
   "issue": 393,
   "required_files": [
-    {"path": "journal_package/manuscript.pdf", "role": "compiled-and-visually-reviewed-manuscript"},
     {"path": "manuscript/main.tex", "role": "manuscript-source"},
     {"path": "manuscript/bibliography.bib", "role": "bibliography"},
     {"path": "evidence/CLAIM_LEDGER.md", "role": "current-claim-ledger"},
@@ -25,7 +24,14 @@
     {"path": "../../research/revival/p1/confirmatory/v2.2/replication/INDEPENDENT_VERIFICATION.json", "role": "replication-independent-verification"},
     {"path": "../../research/revival/p1/confirmatory/v2.2/PRIMARY_REPLICATION_CONCORDANCE.json", "role": "cross-run-concordance"}
   ],
-  "missing_artifacts": [],
+  "missing_artifacts": [
+    {
+      "path": "journal_package/manuscript.pdf",
+      "role": "compiled-and-visually-reviewed-manuscript",
+      "status": "CANNOT_CHECK",
+      "reason": "Unready after the successor writeback: the pre-writeback PDF was deliberately removed, and the exact-head manuscript has not yet completed independent page-by-page visual inspection and package rebinding."
+    }
+  ],
   "submission_operations": [
     {
       "path": "journal_package/DOI.txt",
@@ -80,9 +86,9 @@
     },
     {
       "id": "P1.PDF",
-      "text": "The compiled manuscript has complete references and was rendered and visually reviewed for clipping, overlap, figure placement, and table legibility.",
+      "text": "The post-writeback manuscript PDF and independent page-by-page visual audit have not yet been rebound to the exact current source bytes.",
       "artifacts": ["journal_package/manuscript.pdf", "journal_package/CLAIM_PDF_AUDIT.md"],
-      "status": "SUPPORTED"
+      "status": "CANNOT_CHECK"
     }
   ],
   "scientific_result_verification": {
