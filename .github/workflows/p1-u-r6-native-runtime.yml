@@ -100,7 +100,7 @@ jobs:
           }
           print('P1_R6_NATIVE_PRIMARY_SCIENTIFIC_TERMINAL=' + result['terminal'])
           PY
-      - name: Reconstruct protected ablation authority
+      - name: Record post-outcome ablation diagnostics without minting authority
         shell: bash
         run: |
           set -euo pipefail
@@ -113,22 +113,14 @@ jobs:
           result = json.loads(Path('/tmp/p1-r6-primary/RESULT_V1.json').read_text())
           authority = json.loads(Path('/tmp/p1-r6-primary/AUTHORITY_V1.json').read_text())
           assert authority['scientific_terminal_preserved'] == result['terminal']
-          assert authority['verification_performed_after_scientific_outcome'] is True
-          assert authority['criterion_predeclared_before_scientific_outcome'] is True
-          assert authority['new_post_outcome_threshold_introduced'] is False
+          assert authority['authority_verifier_bound_before_scientific_outcome'] is False
+          assert authority['grants_primary_mechanism_identification_authority'] is False
           assert authority['grants_issue_649_closure_authority'] is False
           assert authority['grants_replication_closure_authority'] is False
           assert authority['grants_registry_promotion_authority'] is False
+          assert authority['grants_merge_authority'] is False
           if result['terminal'] == 'P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION':
-              assert authority['authority_terminal'] in {
-                  'P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION',
-                  'P1_R6_NATIVE_PRIMARY_CANNOT_CHECK_ABLATION_IDENTIFICATION',
-              }
-              if authority['authority_terminal'] == result['terminal']:
-                  assert authority['grants_primary_mechanism_identification_authority'] is True
-                  assert authority['ablation_identification_reconstruction']['complete'] is True
-              else:
-                  assert authority['grants_primary_mechanism_identification_authority'] is False
+              assert authority['authority_terminal'] == 'P1_R6_NATIVE_PRIMARY_CANNOT_CHECK_ABLATION_AUTHORITY_UNBOUND'
           else:
               assert authority['authority_terminal'] == 'P1_R6_NATIVE_PRIMARY_NOT_SUPPORTED'
           print('P1_R6_NATIVE_PRIMARY_AUTHORITY_TERMINAL=' + authority['authority_terminal'])
