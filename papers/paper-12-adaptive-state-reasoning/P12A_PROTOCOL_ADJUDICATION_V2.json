@@ -1,0 +1,46 @@
+{
+  "authoritative_terminal": "P12A_JOINT_ALLOCATION_SUPERIORITY_SUPPORTED",
+  "correction": "The V1 runner evaluated the frozen scientific gates but omitted the protocol's byte-identical replay gate from its terminal decision path. V2 changes no outcome, threshold, policy, seed, metric, or comparator; it independently executes the frozen V1 runner twice, accepts both positive and negative runner exits when a valid result artifact exists, keeps replay identity separate from committed-hash identity, and makes protocol authority contingent on all registered gates.",
+  "gates": {
+    "all_frozen_scientific_gates_pass": true,
+    "canonical_hash_matches_committed_receipt": true,
+    "runner_exit_codes_match_reported_terminals": true,
+    "runner_scientific_terminal_passes_both_runs": true,
+    "two_fresh_subprocess_payloads_byte_identical": true
+  },
+  "protocol": "P12A_MATCHED_BUDGET_JOINT_ALLOCATION_PROTOCOL_V1.md",
+  "runner": "run_p12a_matched_budget_v1.py",
+  "runner_returncodes": [0, 0],
+  "schema": "ORION.P12A.ProtocolAdjudication.v2",
+  "scientific_gates_run_a": {
+    "budget_respected": true,
+    "family_bootstrap_lower_gt_0": true,
+    "mean_joint_gain_ge_0_15": true,
+    "mean_joint_minus_fixed_ge_0_10": true,
+    "oracle_ceiling_holds": true,
+    "signals_pre_outcome_by_construction": true,
+    "worst_family_joint_gain_ge_0_05": true
+  },
+  "scientific_gates_run_b": {
+    "budget_respected": true,
+    "family_bootstrap_lower_gt_0": true,
+    "mean_joint_gain_ge_0_15": true,
+    "mean_joint_minus_fixed_ge_0_10": true,
+    "oracle_ceiling_holds": true,
+    "signals_pre_outcome_by_construction": true,
+    "worst_family_joint_gain_ge_0_05": true
+  },
+  "scientific_payload_sha256_run_a": "0194bc094f5696583533af5baae41e7c339902603d3706c8a1d2a78493f98947",
+  "scientific_payload_sha256_run_b": "0194bc094f5696583533af5baae41e7c339902603d3706c8a1d2a78493f98947",
+  "scientific_summary": {
+    "family_bootstrap_95ci_joint_gain": [0.2860076904296875, 0.38269348144531223],
+    "mean_fixed_11_success": 0.5155029296875,
+    "mean_joint_gain_vs_best_one_axis": 0.334716796875,
+    "mean_joint_gain_vs_fixed_11": 0.3426513671875,
+    "mean_joint_success": 0.858154296875,
+    "mean_reason_only_success": 0.4527587890625,
+    "mean_state_only_success": 0.463134765625,
+    "worst_family_joint_gain": 0.158203125
+  },
+  "v1_runner_terminal_authority": "NON_AUTHORITATIVE_ALONE__REPLAY_GATE_OMITTED"
+}
