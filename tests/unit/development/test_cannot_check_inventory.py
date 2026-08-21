@@ -171,14 +171,23 @@ def test_the_precision_fix_lost_no_classification() -> None:
     ``INSUFFICIENT_EVIDENCE`` site where *neither* arm was exercised, which is
     not a missing declaration but an absence of evidence on both sides. These
     are the inventory working as designed: each is a checker that now reports
-    "no denominator" where the previous rate metric reported a pass. The exact
-    ratchet is therefore 159. Future additions must update this sentinel
-    deliberately rather than weakening it to a lower-bound check.
+    "no denominator" where the previous rate metric reported a pass.
+
+    The same wave adds six more of the same character. P3's coordinate-necessity
+    contrast (#651) adds one ``MISSING_DECLARATION`` where an ablation arm's
+    treatment was never applied. P4's identifiability audit (#652) adds four ---
+    two ``MISSING_DECLARATION`` where no probe is registered or no evaluation
+    split exists, and two ``INSUFFICIENT_EVIDENCE`` where a probe could not be
+    fitted or the audit's own evidence is too thin to license a verdict --- and
+    its promotion-cue adapter adds one ``MISSING_CUSTODY`` for a case whose
+    custody class declares no split. The exact ratchet is therefore 165. Future
+    additions must update this sentinel deliberately rather than weakening it to
+    a lower-bound check.
     """
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
-    assert sum(classified.values()) == 159, classified
+    assert sum(classified.values()) == 165, classified
     assert committed["with_reason"] < committed["blocker_sites"]
     assert committed["with_reason"] >= sum(classified.values()), (
         "more sites are classified than carry a reason, so something is classifying on nothing"
