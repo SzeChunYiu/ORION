@@ -3,7 +3,7 @@
 - Audit date: 2026-08-21
 - Manuscript source change: `714a7e771961c8ace08bb38d7dab6e2ba45b8ff7`
 - Inspected exact-render subject: `1d69fc230a358ded93699fdbe03b6ff2299cccf8`
-- Comparison head: `6818dcf67d6ce7a7123c6c09c7f4251d5828461b`
+- Comparison head: `0164deb570e0daee2912e354cdb6d2df20896dc7`
 - Exact-render artifact: `9455070902`
 - PDF SHA-256: `90e424cff27f1a1cde8c37d774c3bcf17b7c1d98c0905c2f53e22b8753790fb3`
 - Source SHA-256: `e25e8b4a18bec85d8031f67656977f94d42ea44d99862fb606e51aaebb41ccf3`
