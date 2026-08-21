@@ -48,6 +48,7 @@ def _freeze() -> dict:
             "probe_gold_access": "NONE",
             "probe_dois": ["10.5281/zenodo.8217359", "10.1038/s41586-023-06221-2"],
             "probe_min_result_count": 1,
+            "probe_min_matched_doi_count": 1,
         }
     }
 
@@ -67,6 +68,7 @@ def test_transport_probe_is_bound_and_fail_closed(tmp_path: Path) -> None:
         "url_sha256": hashlib.sha256(url.encode()).hexdigest(),
         "response_sha256": "a" * 64,
         "result_count": 2,
+        "matched_dois": [dois[1]],
         "benchmark_gold_accessed": False,
         "promotion_authorized": False,
     }
@@ -79,6 +81,7 @@ def test_transport_probe_is_bound_and_fail_closed(tmp_path: Path) -> None:
         ("encoding", "legacy_expression"),
         ("response_sha256", ""),
         ("result_count", 0),
+        ("matched_dois", []),
     ):
         bad = dict(good)
         bad[key] = bad_value
