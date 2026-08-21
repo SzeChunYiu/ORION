@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: orion-q-max-r6e-deep-p10-${{ github.event.pull_request.number || github.ref }}
+  group: orion-q-max-r6e-deep-p10-${{ github.sha }}
   cancel-in-progress: false
 
 jobs:
