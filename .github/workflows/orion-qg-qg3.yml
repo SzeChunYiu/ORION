@@ -18,8 +18,21 @@ jobs:
   qg3-positive-forecast:
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      QG3_FROZEN_BASE: 13a0fc6afb1d150a114ec318d72830e3c6722b03
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout exact protected head, never synthetic merge ref
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert frozen lineage before any subject access
+        run: |
+          echo "checked_out=$(git rev-parse HEAD)"
+          echo "event_head=${{ github.event.pull_request.head.sha || github.sha }}"
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG3_FROZEN_BASE}^{commit}"
+          test "$(git merge-base HEAD "${QG3_FROZEN_BASE}")" = "${QG3_FROZEN_BASE}"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -78,7 +91,8 @@ jobs:
           }
           assert result['terminal'] in allowed
           assert result['novelty_authority'] is False
-          assert result['physical_quantum_advantage_claim'] is False if 'physical_quantum_advantage_claim' in result else True
+          if 'physical_quantum_advantage_claim' in result:
+              assert result['physical_quantum_advantage_claim'] is False
 
           if result['terminal'] == 'QG3_PROSPECTIVE_POSITIVE_TRADE_FORECAST_CONFIRMED':
               assert stage1['positive_found'] is True
@@ -97,7 +111,7 @@ jobs:
       - name: Upload QG-3 receipts
         uses: actions/upload-artifact@v4
         with:
-          name: orion-qg-qg3-${{ github.sha }}
+          name: orion-qg-qg3-${{ github.event.pull_request.head.sha || github.sha }}
           path: |
             artifacts/orion-qg-qg3-stage1.json
             artifacts/orion-qg-qg3-dual-admission.json
