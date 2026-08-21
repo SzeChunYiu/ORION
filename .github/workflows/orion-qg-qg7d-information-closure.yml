@@ -1,0 +1,66 @@
+name: orion-qg-qg7d-information-closure
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG7D_INFORMATION_*'
+      - 'development/orion-qg-regime-geometry/qg7d_information_*'
+      - 'development/orion-qg-regime-geometry/run_qg7d_information_dual_harness.py'
+      - 'research/extensions/orion-qg/qg7d_information_*'
+      - '.github/workflows/orion-qg-qg7d-information-closure.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg7d-info-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  qg7d-info:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      QG7D_PARENT: 1fb8c2723f6c9431ab02b715139f233092dbd42c
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert lineage
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          test "$(git merge-base HEAD "${QG7D_PARENT}")" = "${QG7D_PARENT}"
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Syntax
+        run: python -m py_compile research/extensions/orion-qg/qg7d_information_closure.py development/orion-qg-regime-geometry/qg7d_information_generic_verify.py development/orion-qg-regime-geometry/qg7d_information_native_verify.py development/orion-qg-regime-geometry/run_qg7d_information_dual_harness.py
+      - name: Execute information-sufficiency closure
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg7d_information_dual_harness.py | tee artifacts/orion-qg-qg7d-info-summary.json
+      - name: Deterministic replay
+        run: |
+          set -euo pipefail
+          python research/extensions/orion-qg/qg7d_information_closure.py --output artifacts/orion-qg-qg7d-information-closure-replay.json > artifacts/orion-qg-qg7d-info-replay.log
+          cmp artifacts/orion-qg-qg7d-information-closure.json artifacts/orion-qg-qg7d-information-closure-replay.json
+      - name: Enforce CANNOT_CHECK closure
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg7d-information-closure.json').read_text()); g=json.loads(Path('artifacts/orion-qg-qg7d-information-generic.json').read_text()); n=json.loads(Path('artifacts/orion-qg-qg7d-information-native.json').read_text()); d=json.loads(Path('artifacts/orion-qg-qg7d-information-dual.json').read_text()); t='QG7D_CANNOT_CHECK_ALL_N_PINNED_CLOSURE__PP_HIDDEN_HOME_ENVIRONMENT_NOT_IN_PARENT_STATE__PADDING_ABLATION_NEGATIVE'; assert a['terminal']==t and a['all_gates'] is True; assert a['pp_parent_failures']==32556; assert a['hidden_home_test']['domain_size']==4096 and a['hidden_home_test']['delta_min']==-4 and a['hidden_home_test']['delta_max']==4; assert a['all_n_theorem_authority'] is False; assert g['decision']=='ACCEPT_CANNOT_CHECK' and g['all_checks'] is True; assert n['decision']=='ACCEPT_CANNOT_CHECK' and n['all_checks'] is True; assert d['terminal']==t and d['both_accept'] is True and d['scientifically_closed_under_stop_rules'] is True
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg7d-info-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg7d-information-*.json
+            artifacts/orion-qg-qg7d-info-*.log
+            artifacts/orion-qg-qg7d-info-summary.json
+            .orion-qg-qg7d-info-generic/.orion-harness/**
+            .orion-qg-qg7d-info-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error
