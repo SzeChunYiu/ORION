@@ -1,0 +1,105 @@
+{
+  "schema_version": "orion.p2_u.baseline-census.v2",
+  "date": "2026-08-21",
+  "parent_issue": 650,
+  "base_commit": "c5ba39fef4f25c46de5fb69bf07f50530f4693ca",
+  "extends": {
+    "path": "research/claim_expansion/p2/P2_U_BASELINE_CENSUS_V1.json",
+    "git_blob_sha": "bb1a7277ac8480d6d68b7936b7b747e91c7ac433",
+    "v1_remains_immutable": true
+  },
+  "purpose": "Add omitted contemporaneous public benchmark and runnable-system surfaces before any P2-U hidden-route naturalistic protected output. This successor does not replace the matched-host donor-complete primary comparator, change any scientific metric or threshold, choose hidden tasks, or import public benchmark scores as P2-U evidence.",
+  "protected_outcome_state": {
+    "p2_u_naturalistic_protected_outcome_seen": false,
+    "narrow_p2_wide_outcomes_are_separate": true,
+    "public_benchmark_or_model_card_scores_must_not_tune_hidden_trial": true
+  },
+  "literature_and_release_verification": {
+    "cutoff_date": "2026-08-21",
+    "sources_checked_without_accessing_p2_u_hidden_outcomes": [
+      "arXiv:2601.12369",
+      "KongLongGeFDU/TaxoBench@49a18698ff2d5efb696e0215642441ded668ae2f",
+      "arXiv:2606.15367",
+      "ScienceOne-AI/S1-DeepResearch-32B@784b5ef0104400d23206a752843f695ca4bf9530",
+      "DOI:10.1038/s41746-025-01840-7",
+      "RyanWangZf/TrialMind-SLR@235426b072747e9f6586020c2632b1e8a657ad10",
+      "zifeng-ai/TrialReviewBench"
+    ],
+    "claimed_external_scores_imported_as_orion_evidence": false
+  },
+  "added_public_benchmark_surfaces": [
+    {
+      "name": "TaxoBench",
+      "primary_source": "arXiv:2601.12369",
+      "official_repository": "KongLongGeFDU/TaxoBench",
+      "repository_revision": "49a18698ff2d5efb696e0215642441ded668ae2f",
+      "scope": "72 expert-authored computer-science survey topics with expert taxonomy trees and 3,815 categorized citations; Deep Research mode tests retrieval plus organization while Bottom-Up mode isolates organization given the papers.",
+      "allowed_role": [
+        "PUBLIC_PREFLIGHT",
+        "SCIENTIFIC_RETRIEVAL_AND_SYNTHESIS_STRESS_TEST",
+        "TRANSFER_SANITY_CHECK"
+      ],
+      "forbidden_role": "SOLE_PROTECTED_P2_U_SUPERIORITY_AUTHORITY",
+      "reason": "A public expert-taxonomy benchmark can expose retrieval and synthesis deficits but does not provide P2-U hidden route custody, task-global false-closure gold, matched access/budget causal attribution, or held-out naturalistic authority."
+    },
+    {
+      "name": "TrialReviewBench",
+      "primary_source": "DOI:10.1038/s41746-025-01840-7",
+      "dataset_identity": "zifeng-ai/TrialReviewBench",
+      "scope": "Clinical systematic-review study search, screening, and extraction benchmark derived from published reviews and clinical studies.",
+      "allowed_role": [
+        "PUBLIC_PREFLIGHT",
+        "SYSTEMATIC_REVIEW_LIKE_TRANSFER_SANITY_CHECK",
+        "SEARCH_SCREENING_EXTRACTION_DIAGNOSTIC"
+      ],
+      "forbidden_role": "SOLE_PROTECTED_P2_U_SUPERIORITY_OR_REPLICATION_AUTHORITY",
+      "reason": "The public dataset is directly relevant to systematic-review-like evidence synthesis but is not a hidden naturalistic route corpus and cannot substitute for issue #650's prospectively sealed cross-domain replication."
+    }
+  ],
+  "added_contemporaneous_system_census": [
+    {
+      "name": "S1-DeepResearch-32B",
+      "primary_source": "arXiv:2606.15367",
+      "model_repository": "ScienceOne-AI/S1-DeepResearch-32B",
+      "model_repository_revision_at_census": "784b5ef0104400d23206a752843f695ca4bf9530",
+      "availability_at_freeze": "PUBLIC_MODEL_AND_INFERENCE_MATERIAL",
+      "execution_revision_rule": "Use the census revision or a later revision separately re-frozen in the final execution manifest before any protected output; never float main during the campaign.",
+      "role": "STRONG_OPEN_LONG_HORIZON_RESEARCH_SYSTEM_BASELINE_WHEN_RUNNABLE",
+      "causal_status": "SYSTEM_LEVEL_ONLY_UNLESS_BACKBONE_TOOLS_SOURCE_ACCESS_AND_BUDGET_CAN_BE_MATCHED",
+      "integrity_note": "Model-card benchmark claims motivate inclusion only. P2-U must execute its own frozen tasks and must not import the released model's reported scores as ORION evidence."
+    },
+    {
+      "name": "TrialMind",
+      "primary_source": "DOI:10.1038/s41746-025-01840-7",
+      "official_repository": "RyanWangZf/TrialMind-SLR",
+      "repository_revision": "235426b072747e9f6586020c2632b1e8a657ad10",
+      "role": "DOMAIN_SPECIFIC_SYSTEMATIC_REVIEW_SYSTEM_BASELINE_WHEN_RUNNABLE",
+      "causal_status": "SYSTEM_LEVEL_ONLY_UNLESS_HOST_TOOLS_SOURCE_ACCESS_HUMAN_INTERVENTION_AND_BUDGET_CAN_BE_MATCHED",
+      "human_in_loop_boundary": "Published TrialMind includes human-AI collaboration surfaces; any P2-U use must predeclare which intervention rights are enabled and charge/match them rather than comparing an assisted system to an unassisted arm.",
+      "integrity_note": "Published and repository-reported performance is external context only, not P2-U evidence."
+    }
+  ],
+  "execution_manifest_requirements_added_by_v2": [
+    "The final pre-execution manifest must explicitly classify TaxoBench and TrialReviewBench as public preflight/transfer surfaces only; their outcomes cannot alter hidden-task eligibility, metrics, margins, stopping, or sample size.",
+    "If S1-DeepResearch-32B is runnable within the frozen resource envelope, bind the census revision or a later separately re-frozen immutable model/checkpoint revision and exact inference stack before protected output; otherwise record the pre-outcome unavailability reason rather than silently omitting it after results.",
+    "If TrialMind is used in the systematic-review-like stratum, bind its repository revision, enabled components, model/API dependencies, human-intervention rights, source access, and charged resource policy before protected output.",
+    "Neither added system replaces the V1 matched-host donor-complete controller for the primary causal comparison.",
+    "A public benchmark or released-system win, tie, or loss cannot satisfy the hidden-route naturalistic primary, cross-domain replication, independent-reconstruction, or failure-derived-successor gates of issue #650."
+  ],
+  "unchanged_scientific_authority": {
+    "primary_causal_comparator_changed": false,
+    "route_use_recall_effect_floor_changed": false,
+    "false_closure_noninferiority_changed": false,
+    "utility_noninferiority_changed": false,
+    "valid_closure_yield_noninferiority_changed": false,
+    "bootstrap_changed": false,
+    "power_gate_changed": false,
+    "validity_floors_changed": false,
+    "terminal_mapping_changed": false,
+    "hidden_task_selection_changed": false
+  },
+  "scientific_effect": "PRE_OUTCOME_BASELINE_AND_PUBLIC_BENCHMARK_CENSUS_EXTENSION_ONLY",
+  "promotion_authorized": false,
+  "issue_650_closure_authorized": false,
+  "authority": "P2_U_BASELINE_CENSUS_V2_FROZEN_NO_RESULT_NO_SUPERIORITY_NO_PROMOTION"
+}
