@@ -1,0 +1,1477 @@
+{
+  "amendments": {
+    "A1": "LA2 made never-no-op after first run exposed a defective control (first-run LA2 rejection rate 0.5 because the attempt deleted nothing on instances without |a|<0.05 terms; first-run terminal N2_F4_HOSTILE_CONTROL_FAILED__MECHANISM_NOT_PROMOTED). Mechanism, world, baselines, scoring, gate thresholds unchanged."
+  },
+  "authority": "exact_synthetic_frozen_accounting_only; not compiled-circuit, hardware, or novelty authority",
+  "claim_boundary": "Residual (or its absence) is accounting-level, contingent on the frozen counters/mu of N2_F4_PROTOCOL.md; the tested contribution is the typed edit-chain search with enforced NO_STRONGER_ORACLE/SAME_TARGET gates; no LOWER_BOUND claim.",
+  "degree": 32,
+  "family": "successor_family_4_representation_access_edits",
+  "gates": {
+    "F4_G1_determinism": true,
+    "F4_G2_laundering_caught": true,
+    "F4_G3_no_admissible_beats_spectral_bound": true,
+    "F4_G4_same_target": true,
+    "F4_G5_residual": false
+  },
+  "issue": "SzeChunYiu/ORION#675",
+  "mu": 0.001,
+  "per_instance": [
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 240.522912,
+      "b1_single_edit": [],
+      "b1_single_edit_cost": 240.522912,
+      "b2_retrain_cost": 241.546912,
+      "forbidden_spectral_bound_queries": 124.53074328704014,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 7.516341,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [],
+      "orion_preproc": 0.0,
+      "orion_queries": 240.522912,
+      "orion_scalar_cost": 240.522912
+    },
+    {
+      "L_raw": 32,
+      "b0_no_edit_cost": 470.718176,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 293.88054399999993,
+      "b2_retrain_cost": 294.87254399999995,
+      "forbidden_spectral_bound_queries": 136.77086789407178,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 9.182766999999998,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 32.0,
+      "orion_queries": 293.84854399999995,
+      "orion_scalar_cost": 293.88054399999993
+    },
+    {
+      "L_raw": 32,
+      "b0_no_edit_cost": 525.981856,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 453.9657279999999,
+      "b2_retrain_cost": 454.9577279999999,
+      "forbidden_spectral_bound_queries": 182.29217294133585,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 14.185428999999997,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 32.0,
+      "orion_queries": 453.9337279999999,
+      "orion_scalar_cost": 453.9657279999999
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 211.67420800000002,
+      "b1_single_edit": [],
+      "b1_single_edit_cost": 211.67420800000002,
+      "b2_retrain_cost": 212.69820800000002,
+      "forbidden_spectral_bound_queries": 112.9407060503541,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 6.614819000000001,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [],
+      "orion_preproc": 0.0,
+      "orion_queries": 211.67420800000002,
+      "orion_scalar_cost": 211.67420800000002
+    },
+    {
+      "L_raw": 32,
+      "b0_no_edit_cost": 480.0288,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 284.0843519999999,
+      "b2_retrain_cost": 285.07635199999993,
+      "forbidden_spectral_bound_queries": 114.17058946268634,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 8.876635999999998,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 32.0,
+      "orion_queries": 284.0523519999999,
+      "orion_scalar_cost": 284.0843519999999
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 245.744224,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 188.649664,
+      "b2_retrain_cost": 189.661664,
+      "forbidden_spectral_bound_queries": 123.89089348078056,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 5.894927,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 12.0,
+      "orion_queries": 188.637664,
+      "orion_scalar_cost": 188.649664
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 201.88236799999999,
+      "b1_single_edit": [],
+      "b1_single_edit_cost": 201.88236799999999,
+      "b2_retrain_cost": 202.90636800000001,
+      "forbidden_spectral_bound_queries": 114.08023000997564,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 6.3088239999999995,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [],
+      "orion_preproc": 0.0,
+      "orion_queries": 201.88236799999999,
+      "orion_scalar_cost": 201.88236799999999
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 201.641664,
+      "b1_single_edit": [],
+      "b1_single_edit_cost": 201.641664,
+      "b2_retrain_cost": 202.665664,
+      "forbidden_spectral_bound_queries": 109.89123099974691,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 6.301302,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [],
+      "orion_preproc": 0.0,
+      "orion_queries": 201.641664,
+      "orion_scalar_cost": 201.641664
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 226.0168,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 183.81331200000002,
+      "b2_retrain_cost": 184.82531200000003,
+      "forbidden_spectral_bound_queries": 105.81792004025185,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 5.743791000000001,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 12.0,
+      "orion_queries": 183.80131200000002,
+      "orion_scalar_cost": 183.81331200000002
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 323.39782400000007,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 314.810016,
+      "b2_retrain_cost": 315.81401600000004,
+      "forbidden_spectral_bound_queries": 153.3128607263805,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 9.837188000000001,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 20.0,
+      "orion_queries": 314.79001600000004,
+      "orion_scalar_cost": 314.810016
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 210.877888,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 176.529696,
+      "b2_retrain_cost": 177.541696,
+      "forbidden_spectral_bound_queries": 98.0935371950085,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 5.516178,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 12.0,
+      "orion_queries": 176.517696,
+      "orion_scalar_cost": 176.529696
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 169.926528,
+      "b1_single_edit": [],
+      "b1_single_edit_cost": 169.926528,
+      "b2_retrain_cost": 170.950528,
+      "forbidden_spectral_bound_queries": 90.01576372487382,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 5.310204,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [],
+      "orion_preproc": 0.0,
+      "orion_queries": 169.926528,
+      "orion_scalar_cost": 169.926528
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 270.937472,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 250.12988800000005,
+      "b2_retrain_cost": 251.13388800000004,
+      "forbidden_spectral_bound_queries": 133.3902222006322,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 7.815934000000001,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 20.0,
+      "orion_queries": 250.10988800000004,
+      "orion_scalar_cost": 250.12988800000005
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 291.040352,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 272.79436799999996,
+      "b2_retrain_cost": 273.798368,
+      "forbidden_spectral_bound_queries": 131.21192317166017,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 8.524199,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 20.0,
+      "orion_queries": 272.774368,
+      "orion_scalar_cost": 272.79436799999996
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 333.736576,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 218.320928,
+      "b2_retrain_cost": 219.324928,
+      "forbidden_spectral_bound_queries": 136.16895079370698,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 6.821904,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 20.0,
+      "orion_queries": 218.300928,
+      "orion_scalar_cost": 218.320928
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 188.140768,
+      "b1_single_edit": [],
+      "b1_single_edit_cost": 188.140768,
+      "b2_retrain_cost": 189.164768,
+      "forbidden_spectral_bound_queries": 118.25038324776123,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 5.879399,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [],
+      "orion_preproc": 0.0,
+      "orion_queries": 188.140768,
+      "orion_scalar_cost": 188.140768
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 252.67084800000003,
+      "b1_single_edit": [],
+      "b1_single_edit_cost": 252.67084800000003,
+      "b2_retrain_cost": 253.69484800000004,
+      "forbidden_spectral_bound_queries": 152.71166144819384,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 7.895964000000001,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [],
+      "orion_preproc": 0.0,
+      "orion_queries": 252.67084800000003,
+      "orion_scalar_cost": 252.67084800000003
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 232.136448,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 174.22864,
+      "b2_retrain_cost": 175.23264,
+      "forbidden_spectral_bound_queries": 102.94205134039848,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 5.44402,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 20.0,
+      "orion_queries": 174.20864,
+      "orion_scalar_cost": 174.22864
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 351.91535999999996,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 300.583168,
+      "b2_retrain_cost": 301.587168,
+      "forbidden_spectral_bound_queries": 143.93994493297703,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 9.392599,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 20.0,
+      "orion_queries": 300.563168,
+      "orion_scalar_cost": 300.583168
+    },
+    {
+      "L_raw": 32,
+      "b0_no_edit_cost": 482.41904,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 470.455904,
+      "b2_retrain_cost": 471.447904,
+      "forbidden_spectral_bound_queries": 195.93522242939656,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 14.700747,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 32.0,
+      "orion_queries": 470.423904,
+      "orion_scalar_cost": 470.455904
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 202.86492799999996,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 182.080896,
+      "b2_retrain_cost": 183.092896,
+      "forbidden_spectral_bound_queries": 103.98846210404541,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 5.689653,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 12.0,
+      "orion_queries": 182.068896,
+      "orion_scalar_cost": 182.080896
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 148.205792,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 135.235968,
+      "b2_retrain_cost": 136.24796800000001,
+      "forbidden_spectral_bound_queries": 74.06420965221896,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 4.225749,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 12.0,
+      "orion_queries": 135.223968,
+      "orion_scalar_cost": 135.235968
+    },
+    {
+      "L_raw": 32,
+      "b0_no_edit_cost": 427.90329600000007,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 386.067264,
+      "b2_retrain_cost": 387.05926400000004,
+      "forbidden_spectral_bound_queries": 186.82049490456995,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 12.063602000000001,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 32.0,
+      "orion_queries": 386.03526400000004,
+      "orion_scalar_cost": 386.067264
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 129.218688,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 122.87631999999999,
+      "b2_retrain_cost": 123.88832,
+      "forbidden_spectral_bound_queries": 66.51758351670377,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 3.8395099999999998,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 12.0,
+      "orion_queries": 122.86431999999999,
+      "orion_scalar_cost": 122.87631999999999
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 205.258208,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 146.345664,
+      "b2_retrain_cost": 147.357664,
+      "forbidden_spectral_bound_queries": 88.38060863550959,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 4.572927,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 12.0,
+      "orion_queries": 146.333664,
+      "orion_scalar_cost": 146.345664
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 332.12044799999995,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 311.6802239999999,
+      "b2_retrain_cost": 312.6842239999999,
+      "forbidden_spectral_bound_queries": 143.60528322084713,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 9.739381999999997,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 20.0,
+      "orion_queries": 311.6602239999999,
+      "orion_scalar_cost": 311.6802239999999
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 199.97270400000002,
+      "b1_single_edit": [],
+      "b1_single_edit_cost": 199.97270400000002,
+      "b2_retrain_cost": 200.99670400000002,
+      "forbidden_spectral_bound_queries": 115.21503043787934,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 6.249147000000001,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [],
+      "orion_preproc": 0.0,
+      "orion_queries": 199.97270400000002,
+      "orion_scalar_cost": 199.97270400000002
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 155.11248,
+      "b1_single_edit": [],
+      "b1_single_edit_cost": 155.11248,
+      "b2_retrain_cost": 156.13648,
+      "forbidden_spectral_bound_queries": 88.58309920163869,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 4.847265,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [],
+      "orion_preproc": 0.0,
+      "orion_queries": 155.11248,
+      "orion_scalar_cost": 155.11248
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 200.018848,
+      "b1_single_edit": [],
+      "b1_single_edit_cost": 200.018848,
+      "b2_retrain_cost": 201.04284800000002,
+      "forbidden_spectral_bound_queries": 141.90701777846039,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 6.250589,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [],
+      "orion_preproc": 0.0,
+      "orion_queries": 200.018848,
+      "orion_scalar_cost": 200.018848
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 272.741792,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 159.321536,
+      "b2_retrain_cost": 160.325536,
+      "forbidden_spectral_bound_queries": 105.4262919066235,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 4.978173,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 20.0,
+      "orion_queries": 159.301536,
+      "orion_scalar_cost": 159.321536
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 226.41270400000002,
+      "b1_single_edit": [],
+      "b1_single_edit_cost": 226.41270400000002,
+      "b2_retrain_cost": 227.43670400000002,
+      "forbidden_spectral_bound_queries": 124.41957731842949,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 7.075397000000001,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [],
+      "orion_preproc": 0.0,
+      "orion_queries": 226.41270400000002,
+      "orion_scalar_cost": 226.41270400000002
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 261.34384,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 229.590208,
+      "b2_retrain_cost": 230.59420799999998,
+      "forbidden_spectral_bound_queries": 114.23980859258471,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 7.174068999999999,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 20.0,
+      "orion_queries": 229.57020799999998,
+      "orion_scalar_cost": 229.590208
+    },
+    {
+      "L_raw": 32,
+      "b0_no_edit_cost": 553.67104,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 470.8961919999999,
+      "b2_retrain_cost": 471.88819199999995,
+      "forbidden_spectral_bound_queries": 201.83064173563676,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 14.714505999999998,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 32.0,
+      "orion_queries": 470.86419199999995,
+      "orion_scalar_cost": 470.8961919999999
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 178.6072,
+      "b1_single_edit": [],
+      "b1_single_edit_cost": 178.6072,
+      "b2_retrain_cost": 179.6312,
+      "forbidden_spectral_bound_queries": 115.26275118507647,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 5.581475,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [],
+      "orion_preproc": 0.0,
+      "orion_queries": 178.6072,
+      "orion_scalar_cost": 178.6072
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 176.32707200000002,
+      "b1_single_edit": [],
+      "b1_single_edit_cost": 176.32707200000002,
+      "b2_retrain_cost": 177.351072,
+      "forbidden_spectral_bound_queries": 104.27046373379065,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 5.5102210000000005,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [],
+      "orion_preproc": 0.0,
+      "orion_queries": 176.32707200000002,
+      "orion_scalar_cost": 176.32707200000002
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 254.586656,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 198.93260800000002,
+      "b2_retrain_cost": 199.94460800000002,
+      "forbidden_spectral_bound_queries": 106.14214601443936,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 6.2162690000000005,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 12.0,
+      "orion_queries": 198.92060800000002,
+      "orion_scalar_cost": 198.93260800000002
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 150.96937599999998,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 147.91468799999998,
+      "b2_retrain_cost": 148.92668799999998,
+      "forbidden_spectral_bound_queries": 92.18653759742075,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 4.6219589999999995,
+      "orion_ancillas": 3,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 12.0,
+      "orion_queries": 147.90268799999998,
+      "orion_scalar_cost": 147.91468799999998
+    },
+    {
+      "L_raw": 32,
+      "b0_no_edit_cost": 511.36867199999995,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 354.997984,
+      "b2_retrain_cost": 355.989984,
+      "forbidden_spectral_bound_queries": 157.08748845279413,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 11.092687,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 32.0,
+      "orion_queries": 354.965984,
+      "orion_scalar_cost": 354.997984
+    },
+    {
+      "L_raw": 32,
+      "b0_no_edit_cost": 449.42192000000006,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 382.67043199999995,
+      "b2_retrain_cost": 383.66243199999997,
+      "forbidden_spectral_bound_queries": 180.004322077043,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 11.957450999999999,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 32.0,
+      "orion_queries": 382.63843199999997,
+      "orion_scalar_cost": 382.67043199999995
+    },
+    {
+      "L_raw": 32,
+      "b0_no_edit_cost": 567.7422720000001,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 415.0866559999999,
+      "b2_retrain_cost": 416.0786559999999,
+      "forbidden_spectral_bound_queries": 187.1234166020214,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 12.970457999999997,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 32.0,
+      "orion_queries": 415.0546559999999,
+      "orion_scalar_cost": 415.0866559999999
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 361.25648,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 322.967232,
+      "b2_retrain_cost": 323.97123200000004,
+      "forbidden_spectral_bound_queries": 150.5552135556216,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 10.092101000000001,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 20.0,
+      "orion_queries": 322.94723200000004,
+      "orion_scalar_cost": 322.967232
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 288.186144,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 195.72544000000002,
+      "b2_retrain_cost": 196.72944,
+      "forbidden_spectral_bound_queries": 104.69653541596931,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 6.115795,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 20.0,
+      "orion_queries": 195.70544,
+      "orion_scalar_cost": 195.72544000000002
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 277.618176,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 268.911904,
+      "b2_retrain_cost": 269.915904,
+      "forbidden_spectral_bound_queries": 125.29367121612086,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 8.402872,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 20.0,
+      "orion_queries": 268.891904,
+      "orion_scalar_cost": 268.911904
+    },
+    {
+      "L_raw": 32,
+      "b0_no_edit_cost": 498.361472,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 332.05702399999996,
+      "b2_retrain_cost": 333.049024,
+      "forbidden_spectral_bound_queries": 160.9949537625965,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 10.375782,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 32.0,
+      "orion_queries": 332.025024,
+      "orion_scalar_cost": 332.05702399999996
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 362.76662400000004,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 317.85215999999997,
+      "b2_retrain_cost": 318.85616,
+      "forbidden_spectral_bound_queries": 153.30297501271474,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 9.932255,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 20.0,
+      "orion_queries": 317.83216,
+      "orion_scalar_cost": 317.85215999999997
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 283.58063999999996,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 255.85062399999998,
+      "b2_retrain_cost": 256.85462399999994,
+      "forbidden_spectral_bound_queries": 128.77162443766366,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 7.994706999999999,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 20.0,
+      "orion_queries": 255.83062399999997,
+      "orion_scalar_cost": 255.85062399999998
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 219.35472,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 213.02521600000003,
+      "b2_retrain_cost": 214.03721600000003,
+      "forbidden_spectral_bound_queries": 120.5999336630356,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 6.656663000000001,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 12.0,
+      "orion_queries": 213.01321600000003,
+      "orion_scalar_cost": 213.02521600000003
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 285.710304,
+      "b1_single_edit": [],
+      "b1_single_edit_cost": 285.710304,
+      "b2_retrain_cost": 286.73430400000007,
+      "forbidden_spectral_bound_queries": 145.46316286256672,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 8.928447,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [],
+      "orion_preproc": 0.0,
+      "orion_queries": 285.710304,
+      "orion_scalar_cost": 285.710304
+    },
+    {
+      "L_raw": 32,
+      "b0_no_edit_cost": 508.11686399999996,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 385.69312,
+      "b2_retrain_cost": 386.68512000000004,
+      "forbidden_spectral_bound_queries": 196.0404017428825,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 12.051910000000001,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 32.0,
+      "orion_queries": 385.66112000000004,
+      "orion_scalar_cost": 385.69312
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 236.63008000000002,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 214.617376,
+      "b2_retrain_cost": 215.629376,
+      "forbidden_spectral_bound_queries": 124.44921575857965,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 6.706418,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 12.0,
+      "orion_queries": 214.605376,
+      "orion_scalar_cost": 214.617376
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 160.310208,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 160.01615999999999,
+      "b2_retrain_cost": 161.02815999999999,
+      "forbidden_spectral_bound_queries": 90.88835759300161,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 5.0001299999999995,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 12.0,
+      "orion_queries": 160.00415999999998,
+      "orion_scalar_cost": 160.01615999999999
+    },
+    {
+      "L_raw": 32,
+      "b0_no_edit_cost": 463.338848,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 363.021728,
+      "b2_retrain_cost": 364.013728,
+      "forbidden_spectral_bound_queries": 152.89779892622815,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 11.343429,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 32.0,
+      "orion_queries": 362.989728,
+      "orion_scalar_cost": 363.021728
+    },
+    {
+      "L_raw": 32,
+      "b0_no_edit_cost": 514.7031039999999,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 340.189696,
+      "b2_retrain_cost": 341.18169600000004,
+      "forbidden_spectral_bound_queries": 153.9494169615438,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 10.629928000000001,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 32.0,
+      "orion_queries": 340.15769600000004,
+      "orion_scalar_cost": 340.189696
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 403.72623999999996,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 293.473344,
+      "b2_retrain_cost": 294.477344,
+      "forbidden_spectral_bound_queries": 143.85280136878393,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 9.170417,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 20.0,
+      "orion_queries": 293.453344,
+      "orion_scalar_cost": 293.473344
+    },
+    {
+      "L_raw": 32,
+      "b0_no_edit_cost": 399.0089600000001,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 329.991424,
+      "b2_retrain_cost": 330.983424,
+      "forbidden_spectral_bound_queries": 153.84452332449527,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 10.311232,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 32.0,
+      "orion_queries": 329.959424,
+      "orion_scalar_cost": 329.991424
+    },
+    {
+      "L_raw": 32,
+      "b0_no_edit_cost": 475.707296,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 351.715552,
+      "b2_retrain_cost": 352.707552,
+      "forbidden_spectral_bound_queries": 180.9284062743775,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 10.990111,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 32.0,
+      "orion_queries": 351.683552,
+      "orion_scalar_cost": 351.715552
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 170.717568,
+      "b1_single_edit": [],
+      "b1_single_edit_cost": 170.717568,
+      "b2_retrain_cost": 171.741568,
+      "forbidden_spectral_bound_queries": 102.34486517033277,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 5.334924,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [],
+      "orion_preproc": 0.0,
+      "orion_queries": 170.717568,
+      "orion_scalar_cost": 170.717568
+    },
+    {
+      "L_raw": 12,
+      "b0_no_edit_cost": 180.745568,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 171.8656,
+      "b2_retrain_cost": 172.8776,
+      "forbidden_spectral_bound_queries": 113.99711052545291,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 5.370425,
+      "orion_ancillas": 4,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 12.0,
+      "orion_queries": 171.8536,
+      "orion_scalar_cost": 171.8656
+    },
+    {
+      "L_raw": 20,
+      "b0_no_edit_cost": 354.19542400000006,
+      "b1_single_edit": [],
+      "b1_single_edit_cost": 354.19542400000006,
+      "b2_retrain_cost": 355.219424,
+      "forbidden_spectral_bound_queries": 206.52218564759355,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 11.068607000000002,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [],
+      "orion_preproc": 0.0,
+      "orion_queries": 354.19542400000006,
+      "orion_scalar_cost": 354.19542400000006
+    },
+    {
+      "L_raw": 32,
+      "b0_no_edit_cost": 477.38860799999986,
+      "b1_single_edit": [
+        "merge"
+      ],
+      "b1_single_edit_cost": 376.505472,
+      "b2_retrain_cost": 377.497472,
+      "forbidden_spectral_bound_queries": 161.4297778571338,
+      "laundering": {
+        "LA1_rejected": true,
+        "LA1_verdict": "NO_STRONGER_ORACLE:claimed_alpha_below_lawful_derivation",
+        "LA2_rejected": true,
+        "LA2_verdict": "TARGET_CHANGED"
+      },
+      "orion_alpha": 11.764796,
+      "orion_ancillas": 5,
+      "orion_beats_all_baselines": false,
+      "orion_chain": [
+        "merge"
+      ],
+      "orion_preproc": 32.0,
+      "orion_queries": 376.473472,
+      "orion_scalar_cost": 376.505472
+    }
+  ],
+  "protocol": "development/orion-q-nlane-closure/N2_F4_PROTOCOL.md",
+  "schema": "ORIONQ.N2F4AccessEditsResult.v1",
+  "seed": 20260821,
+  "summary": {
+    "distinct_orion_chains": [
+      [
+        "merge"
+      ],
+      []
+    ],
+    "la1_rejection_rate": 1.0,
+    "la2_rejection_rate": 1.0,
+    "mean_b0_cost": 307.27835626666666,
+    "mean_b1_cost": 258.882592,
+    "mean_b2_cost": 259.8904586666667,
+    "mean_forbidden_bound_queries": 132.47093401869432,
+    "mean_orion_scalar_cost": 258.882592,
+    "n_instances": 60,
+    "orion_win_fraction": 0.0
+  },
+  "terminal": "N2_F4_ACCESS_EDITS_NO_RESIDUAL__EXACT_SYNTHETIC_ONLY"
+}
