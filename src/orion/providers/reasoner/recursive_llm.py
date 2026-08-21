@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import dataclasses
 from collections.abc import Mapping, Sequence
 from dataclasses import asdict
+from enum import Enum
 from typing import Any
 
 from orion.core.problem import Problem
@@ -14,13 +16,15 @@ from orion.core.problem_tree import (
     ResidualAtom,
     ResidualDecomposition,
 )
-from orion.core.residuals import Residual, Responsibility
+from orion.core.residuals import Residual, ResidualKind, Responsibility
 from orion.core.state import OrionState
 from orion.engine.mechanical_questions import (
     MechanicalProblemContext,
     generate_problem_questions,
 )
 from orion.providers.reasoner.llm import LLMResearchReasoner
+from orion.self_orion.development_driver import SelfOrionDevelopmentDriver
+from orion.self_orion.development_fibre import compile_development_fibre
 
 
 _DECOMPOSITION_INSTRUCTION = (
@@ -30,10 +34,55 @@ _DECOMPOSITION_INSTRUCTION = (
     "formal, exact-computation or donor-subsumption test over an expensive experiment "
     "when it can settle the same atom. Preserve interaction-only possibilities. If "
     "no finer identifiable split exists, return no atoms and an explicit stop_reason. "
-    "Use the model-free mechanical questions and DevelopmentFibre/experience context as "
-    "constraints and evidence about what remains open; do not merely echo them. "
+    "Use the model-free mechanical questions, DevelopmentFibre context and negative "
+    "history as constraints/evidence about what remains open; do not merely echo them. "
     "Never grant scientific, novelty, adoption, promotion, merge or global-stop authority."
 )
+
+_RESPONSIBILITY_MECHANIC = {
+    Responsibility.QUESTION: "FRAME.QUESTION.v0",
+    Responsibility.REPRESENTATION: "REFRAME.REPRESENTATION.v0",
+    Responsibility.SEARCH: "SEARCH.ROUTE.v0",
+    Responsibility.ROUTING: "SEARCH.ROUTE.v0",
+    Responsibility.DECOMPOSITION: "REFRAME.DECOMPOSITION.v0",
+    Responsibility.INTERFACE: "REFRAME.REPRESENTATION.v0",
+    Responsibility.MEASUREMENT: "DIAGNOSE.DISCRIMINATOR.v0",
+    Responsibility.EVALUATOR: "CROSS.BENCHMARK.v0",
+    Responsibility.METHOD: "REFRAME.METHOD.v0",
+    Responsibility.EVIDENCE: "SEARCH.QUERY.v0",
+    Responsibility.EXECUTION: "CROSS.EXECUTION.v0",
+}
+
+_KIND_MECHANIC = {
+    ResidualKind.MISSING_EVIDENCE: "SEARCH.QUERY.v0",
+    ResidualKind.CONTRADICTION: "DETECT.CONTRADICTION.v0",
+    ResidualKind.CONTEXT_GAP: "FRAME.CONTEXT.v0",
+    ResidualKind.REPRESENTATION_FAILURE: "REFRAME.REPRESENTATION.v0",
+    ResidualKind.SEARCH_COVERAGE_FAILURE: "SEARCH.ROUTE.v0",
+    ResidualKind.DECOMPOSITION_FAILURE: "REFRAME.DECOMPOSITION.v0",
+    ResidualKind.INTERFACE_FAILURE: "REFRAME.REPRESENTATION.v0",
+    ResidualKind.MEASUREMENT_FAILURE: "DIAGNOSE.DISCRIMINATOR.v0",
+    ResidualKind.EVALUATOR_FAILURE: "CROSS.BENCHMARK.v0",
+    ResidualKind.METHOD_GAP: "REFRAME.METHOD.v0",
+    ResidualKind.UNCLASSIFIED: "DIAGNOSE.HYPOTHESES.v0",
+}
+
+
+def _jsonable(value: Any) -> Any:
+    if dataclasses.is_dataclass(value):
+        return {
+            field.name: _jsonable(getattr(value, field.name))
+            for field in dataclasses.fields(value)
+        }
+    if isinstance(value, Enum):
+        return value.value
+    if isinstance(value, Mapping):
+        return {str(key): _jsonable(item) for key, item in value.items()}
+    if isinstance(value, (tuple, list, set, frozenset)):
+        return [_jsonable(item) for item in value]
+    if isinstance(value, (str, int, float, bool)) or value is None:
+        return value
+    return repr(value)
 
 
 def _required_string(value: object, name: str) -> str:
@@ -132,12 +181,49 @@ def _mechanical_questions(problem: Problem, state: OrionState) -> list[dict[str,
     ]
 
 
+def _affected_mechanic_ids(residual: Residual) -> tuple[str, ...]:
+    ids: list[str] = [
+        "DIAGNOSE.HYPOTHESES.v0",
+        "DIAGNOSE.EXPERIENCE_RETRIEVAL.v0",
+        "DIAGNOSE.DISCRIMINATOR.v0",
+        "DIAGNOSE.ATTRIBUTION.v0",
+        "REOPEN.FIBRE.v0",
+    ]
+    for responsibility in residual.candidate_responsibilities:
+        owner = _RESPONSIBILITY_MECHANIC.get(responsibility)
+        if owner is not None:
+            ids.append(owner)
+    owner = _KIND_MECHANIC.get(residual.kind)
+    if owner is not None:
+        ids.append(owner)
+    return tuple(dict.fromkeys(ids))
+
+
+def _automatic_fibre_context(residual: Residual) -> list[dict[str, Any]]:
+    cells = SelfOrionDevelopmentDriver().local_transfer_cells()
+    known = {cell.mechanic_id for cell in cells}
+    rows: list[dict[str, Any]] = []
+    for mechanic_id in _affected_mechanic_ids(residual):
+        if mechanic_id not in known:
+            continue
+        fibre = compile_development_fibre(mechanic_id, cells, episodes=())
+        rows.append(
+            {
+                "source": "AUTOMATIC_REOPEN_FIBRE",
+                "mechanic_id": mechanic_id,
+                "fibre": _jsonable(fibre),
+                "authority": "DERIVED_WORKING_VIEW_ONLY",
+            }
+        )
+    return rows
+
+
 class RecursiveLLMResearchReasoner(LLMResearchReasoner):
     """Canonical reasoner plus non-authorizing problem/residual decomposition.
 
     The semantic model does not own recursion control. Model-free mechanical questions,
-    DevelopmentFibre context, cost ordering and the recursive controller constrain the
-    decomposition. The model proposes child semantics only.
+    automatically reopened DevelopmentFibres, negative history, cost ordering and the
+    recursive controller constrain the decomposition. The model proposes child semantics only.
     """
 
     def __init__(self, provider) -> None:
@@ -242,6 +328,8 @@ class RecursiveLLMResearchReasoner(LLMResearchReasoner):
         problem: Problem,
         state: OrionState,
     ) -> ResidualDecomposition:
+        automatic_fibres = _automatic_fibre_context(residual)
+        injected_fibres = [dict(item) for item in self._development_fibre_context]
         data = self._call(
             "decompose_residual",
             {
@@ -256,13 +344,11 @@ class RecursiveLLMResearchReasoner(LLMResearchReasoner):
                     "metadata": residual.metadata_dict(),
                 },
                 "known_evidence_ids": list(state.knowledge.evidence_ids),
-                "known_negative_history_ids": list(state.knowledge.negative_history_ids),
+                "negative_history": [_jsonable(item) for item in state.knowledge.negative_history],
                 "active_domains": list(state.search_universe.active_domain_ids),
                 "representations": list(state.search_universe.representation_ids),
                 "mechanical_questions": _mechanical_questions(problem, state),
-                "development_fibre_context": [
-                    dict(item) for item in self._development_fibre_context
-                ],
+                "development_fibre_context": automatic_fibres + injected_fibres,
                 "instruction": _DECOMPOSITION_INSTRUCTION,
             },
             (
