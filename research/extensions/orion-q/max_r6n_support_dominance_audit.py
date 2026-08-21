@@ -561,6 +561,67 @@ def audit_r6i_receipt(r6m_reconstructed: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+# ---- post-gate diagnostic: weight-one frames with unrestricted Tag ----------
+
+def r6m_weight_one_frames_any_tag(terms, pairs, n: int) -> int:
+    """Diagnostic optimum: weight-one M2 frames, Tag unrestricted (minimal).
+
+    Mirrors the frozen R6M grammar (block A target order canonical, B/C
+    permuted, both label orientations) but restricts every frame Pauli to a
+    single anchor letter; the shared Tag is the unique minimum-weight Pauli
+    forced at the anchor qubits (weight = number of distinct anchors). This is
+    NOT a frozen gate: it exists to characterize any G7 gap as Tag-anchor
+    coupling versus genuine spread-frame support.
+    """
+    targets = [
+        (tuple(terms[i][0]), tuple(terms[j][0])) for i, j in pairs
+    ]
+    best = None
+    for perm_b in (0, 1):
+        for perm_c in (0, 1):
+            ordered = [
+                targets[0],
+                targets[1] if perm_b == 0 else (targets[1][1], targets[1][0]),
+                targets[2] if perm_c == 0 else (targets[2][1], targets[2][0]),
+            ]
+            for labels in ((0, 1), (1, 0)):
+                for anchors in itertools.product(range(n), repeat=3):
+                    for lp in itertools.product(_ORDERED_PAIRS, repeat=3):
+                        # forced S letter per block: u0 for labels (0,1), u1 for (1,0)
+                        forced = {}
+                        ok = True
+                        for j in range(3):
+                            u = lp[j][0] if labels == (0, 1) else lp[j][1]
+                            if anchors[j] in forced and forced[anchors[j]] != u:
+                                ok = False
+                                break
+                            forced[anchors[j]] = u
+                        if not ok:
+                            continue
+                        tag = 2 * len(forced)
+                        restores = []
+                        for j in range(3):
+                            row = []
+                            for k in range(2):
+                                r = _lkey(lp[j][k], anchors[j])
+                                row.append(p10.mul(ordered[j][k], r))
+                            restores.append(row)
+                        factored = 0
+                        for k in range(2):
+                            ta, tb, tc = restores[0][k], restores[1][k], restores[2][k]
+                            for q in range(n):
+                                la = h.BITS_CODE[((ta[0] >> q) & 1, (ta[1] >> q) & 1)]
+                                lb = h.BITS_CODE[((tb[0] >> q) & 1, (tb[1] >> q) & 1)]
+                                lc = h.BITS_CODE[((tc[0] >> q) & 1, (tc[1] >> q) & 1)]
+                                factored += int(F3[la, lb, lc])
+                        cost = tag + factored
+                        if best is None or cost < best:
+                            best = cost
+    if best is None:
+        raise AssertionError("r6n weight-one-frames-any-tag family empty")
+    return int(best)
+
+
 # ---- deterministic synthetic joint panels -----------------------------------
 
 def synthetic_panels() -> dict[str, Any]:

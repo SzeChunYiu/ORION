@@ -119,4 +119,9 @@ pre-outcome freeze; or any N-lane receipt fails independent replay.
 ## 4. Bound suite state
 
 - Harness package: 98/98.
-- [SLOT] Full main suite on this branch: to be bound from the confirmation run.
+- Full main suite on this branch (confirmation run, 2026-08-21): **3,835 passed,
+  0 failures, 11 skipped** (3,846 collected; 35m21s; Python 3.11, git 2.43).
+  This run postdates and confirms the four failure-cluster repairs recorded in the
+  residual campaign: the p1 derived-floor boundary, the p2 3.12-only f-string, the
+  evidence-kernel `--no-lazy-fetch` version gap (20 tests), and the two derived-record
+  drifts (CANNOT_CHECK inventory, P9/P10 publication manifest).
