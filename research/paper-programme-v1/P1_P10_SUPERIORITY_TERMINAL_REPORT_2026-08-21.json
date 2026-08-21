@@ -1,0 +1,647 @@
+{
+  "battery": {
+    "blocked": false,
+    "content_digest": "de952de14b6d25c67e8d72f5f45bc858e0238ae602f1096915931d16b81f7cc4",
+    "expected_check_ids": [
+      "HC-SUP-TERMINAL-COVERAGE",
+      "HC-SUP-MANUSCRIPT-SUBSTITUTION",
+      "HC-SUP-MECHANISM-SUBSTITUTION",
+      "HC-SUP-CANNOT-CHECK-LAUNDERING",
+      "HC-SUP-DONOR-INCOMPLETE-COMPARATOR",
+      "HC-SUP-COMPENSATORY-SCORING",
+      "HC-SUP-THIN-REPLICATION",
+      "HC-SUP-POST-HOC-FREEZE",
+      "HC-SUP-SELF-CERTIFICATION",
+      "HC-SUP-PREDECESSOR-REUSE",
+      "HC-SUP-CLAIM-WIDER-THAN-EVIDENCE"
+    ],
+    "grants_phase4_closure": false,
+    "missing_check_ids": [],
+    "results": [
+      {
+        "check_id": "HC-SUP-TERMINAL-COVERAGE",
+        "findings": [],
+        "outcome": "PASS",
+        "reason": "all 10 registered papers are present with their frozen gate lists"
+      },
+      {
+        "check_id": "HC-SUP-MANUSCRIPT-SUBSTITUTION",
+        "findings": [],
+        "outcome": "PASS",
+        "reason": "no outcome terminal is fed by MANUSCRIPT_COMPLETION"
+      },
+      {
+        "check_id": "HC-SUP-MECHANISM-SUBSTITUTION",
+        "findings": [],
+        "outcome": "PASS",
+        "reason": "no outcome terminal is fed by MECHANISM_NON_VACUITY"
+      },
+      {
+        "check_id": "HC-SUP-CANNOT-CHECK-LAUNDERING",
+        "findings": [],
+        "outcome": "PASS",
+        "reason": "no outcome terminal is fed by CANNOT_CHECK"
+      },
+      {
+        "check_id": "HC-SUP-DONOR-INCOMPLETE-COMPARATOR",
+        "findings": [],
+        "outcome": "PASS",
+        "reason": "every recorded superiority claim names a donor-complete comparator"
+      },
+      {
+        "check_id": "HC-SUP-COMPENSATORY-SCORING",
+        "findings": [],
+        "outcome": "PASS",
+        "reason": "no superiority win currently stands anywhere in the ledger, so no guard is being compensated for"
+      },
+      {
+        "check_id": "HC-SUP-THIN-REPLICATION",
+        "findings": [],
+        "outcome": "PASS",
+        "reason": "no replication terminal is credited from fewer than 2 distinct domains"
+      },
+      {
+        "check_id": "HC-SUP-POST-HOC-FREEZE",
+        "findings": [],
+        "outcome": "PASS",
+        "reason": "every recorded outcome was scored under a pre-frozen protocol"
+      },
+      {
+        "check_id": "HC-SUP-SELF-CERTIFICATION",
+        "findings": [],
+        "outcome": "PASS",
+        "reason": "no terminal is discharged under candidate custody"
+      },
+      {
+        "check_id": "HC-SUP-PREDECESSOR-REUSE",
+        "findings": [],
+        "outcome": "PASS",
+        "reason": "no terminal is discharged by an artifact listed as a non-discharging predecessor"
+      },
+      {
+        "check_id": "HC-SUP-CLAIM-WIDER-THAN-EVIDENCE",
+        "findings": [],
+        "outcome": "PASS",
+        "reason": "every paper's advertised claim is within what its strongest grade licenses"
+      }
+    ],
+    "schema_version": "orion.programme.hostile-check-report.v1"
+  },
+  "content_digest": "f5d74cc4665f8c793b8811af67fc1f69926d49ef8e66ca704c877f262bf4f8fb",
+  "frozen_at": "2026-08-21",
+  "grants_issue_closure": false,
+  "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
+  "missing_paper_ids": [],
+  "overall_terminal": "CANNOT_CHECK",
+  "papers": [
+    {
+      "declared_claim_scope": "BOUNDED_EXACT",
+      "gates": [
+        {
+          "findings": [],
+          "gate_id": "P1-U-T1",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P1-U-T2",
+          "kind": "REPLICATION",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P1-U-T3",
+          "kind": "HARM_GUARD",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P1-U-T4",
+          "kind": "SCOPE_EXPANSION",
+          "outcome": "CANNOT_CHECK",
+          "reason": "this terminal asks for a claim wider than the registered families; the paper currently declares BOUNDED_EXACT, which is correctly bounded but has not yet reached the demanded width"
+        },
+        {
+          "findings": [],
+          "gate_id": "P1-U-T5",
+          "kind": "SUCCESSOR_MECHANIC",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        }
+      ],
+      "issue": 649,
+      "paper_id": "P1",
+      "predecessor_artifacts": [
+        {
+          "artifact_ref": "research/claim_expansion/p1/P1_X_FINAL_SCIENTIFIC_TERMINAL_V2.md",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "P1_WIDER_ARCHITECTURE_CLAIM_SUPPORTED__BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS__A3_CANNOT_CHECK"
+        },
+        {
+          "artifact_ref": "development/p1-u-gpt-r2-naturalistic/DEVELOPMENT_PACKET.md",
+          "grade": "CANNOT_CHECK",
+          "terminal": "CANNOT_CHECK_ACQUISITION_COVERAGE"
+        },
+        {
+          "artifact_ref": "development/p1-u-gpt-r3-source-universe/DEVELOPMENT_PACKET.md",
+          "grade": "CANNOT_CHECK",
+          "terminal": ""
+        },
+        {
+          "artifact_ref": "development/p1-u-gpt-r4-matched-pairs/DEVELOPMENT_PACKET.md",
+          "grade": "CANNOT_CHECK",
+          "terminal": ""
+        }
+      ],
+      "strongest_grade": "MECHANISM_NON_VACUITY",
+      "terminal": "CANNOT_CHECK"
+    },
+    {
+      "declared_claim_scope": "BOUNDED_EXACT",
+      "gates": [
+        {
+          "findings": [],
+          "gate_id": "P2-U-T1",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P2-U-T2",
+          "kind": "HARM_GUARD",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P2-U-T3",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P2-U-T4",
+          "kind": "REPLICATION",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P2-U-T5",
+          "kind": "SUCCESSOR_MECHANIC",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        }
+      ],
+      "issue": 650,
+      "paper_id": "P2",
+      "predecessor_artifacts": [
+        {
+          "artifact_ref": "research/claim_expansion/p2/P2_X_FINAL_SCIENTIFIC_TERMINAL_V1.md",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "P2_WIDER_ROUTE_AUTHORITY_CLAIM_SUPPORTED__BOUNDED_EXACT_HETEROGENEOUS_ACQUISITION_CONTRACTS__A3_CANNOT_CHECK"
+        }
+      ],
+      "strongest_grade": "MECHANISM_NON_VACUITY",
+      "terminal": "CANNOT_CHECK"
+    },
+    {
+      "declared_claim_scope": "BOUNDED_EXACT",
+      "gates": [
+        {
+          "findings": [],
+          "gate_id": "P3-U-T1",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P3-U-T2",
+          "kind": "HARM_GUARD",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P3-U-T3",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P3-U-T4",
+          "kind": "REPLICATION",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P3-U-T5",
+          "kind": "SUCCESSOR_MECHANIC",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        }
+      ],
+      "issue": 651,
+      "paper_id": "P3",
+      "predecessor_artifacts": [
+        {
+          "artifact_ref": "research/claim_expansion/p3/P3_X_FINAL_SCIENTIFIC_TERMINAL_V1.md",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "P3_WIDER_SCIENTIFIC_COMPATIBILITY_CLAIM_SUPPORTED__BOUNDED_EXACT_STRUCTURED_CONTRACTS__A3_CANNOT_CHECK"
+        }
+      ],
+      "strongest_grade": "MECHANISM_NON_VACUITY",
+      "terminal": "CANNOT_CHECK"
+    },
+    {
+      "declared_claim_scope": "BOUNDED_EXACT",
+      "gates": [
+        {
+          "findings": [],
+          "gate_id": "P4-U-T1",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P4-U-T2",
+          "kind": "HARM_GUARD",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P4-U-T3",
+          "kind": "REPLICATION",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P4-U-T4",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P4-U-T5",
+          "kind": "SUCCESSOR_MECHANIC",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        }
+      ],
+      "issue": 652,
+      "paper_id": "P4",
+      "predecessor_artifacts": [
+        {
+          "artifact_ref": "research/claim_expansion/p4/P4_X_FINAL_SCIENTIFIC_TERMINAL_V1.md",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "P4_WIDER_SCIENTIFIC_PROMOTION_AUTHORITY_SUPPORTED__BOUNDED_EXACT_HETEROGENEOUS_CONTRACTS__A3_CANNOT_CHECK"
+        }
+      ],
+      "strongest_grade": "MECHANISM_NON_VACUITY",
+      "terminal": "CANNOT_CHECK"
+    },
+    {
+      "declared_claim_scope": "BOUNDED_PROTECTED",
+      "gates": [
+        {
+          "findings": [],
+          "gate_id": "P5-U-T1",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P5-U-T2",
+          "kind": "HARM_GUARD",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P5-U-T3",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P5-U-T4",
+          "kind": "SUCCESSOR_MECHANIC",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P5-U-T5",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        }
+      ],
+      "issue": 653,
+      "paper_id": "P5",
+      "predecessor_artifacts": [
+        {
+          "artifact_ref": "research/verification/records/P5.glm-5.2-attribution-21-24.json",
+          "grade": "BOUNDED_PROTECTED",
+          "terminal": ""
+        },
+        {
+          "artifact_ref": "papers/paper-05-self-orion/JOURNAL_READINESS.md",
+          "grade": "CANNOT_CHECK",
+          "terminal": "CANNOT_CHECK"
+        }
+      ],
+      "strongest_grade": "BOUNDED_PROTECTED",
+      "terminal": "CANNOT_CHECK"
+    },
+    {
+      "declared_claim_scope": "BOUNDED_EXACT",
+      "gates": [
+        {
+          "findings": [],
+          "gate_id": "P6-U-T1",
+          "kind": "FORMAL_GENERALIZATION",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P6-U-T2",
+          "kind": "FORMAL_GENERALIZATION",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P6-U-T3",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P6-U-T4",
+          "kind": "REPLICATION",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P6-U-T5",
+          "kind": "SUCCESSOR_MECHANIC",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        }
+      ],
+      "issue": 654,
+      "paper_id": "P6",
+      "predecessor_artifacts": [
+        {
+          "artifact_ref": "research/claim_expansion/p6/P6_X2_SCIENCE_TERMINAL_V1.md",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "P6_CERTIFICATE_LIFTING_SEMANTICS_SUPPORTED__BOUNDED_FORMAL_DONOR_STACK__IDEAL_PRODUCT_EQUIVALENT"
+        },
+        {
+          "artifact_ref": "research/claim_expansion/p6/P6_X_FINITE_MODEL_RESULT_V1.json",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": ""
+        }
+      ],
+      "strongest_grade": "MECHANISM_NON_VACUITY",
+      "terminal": "CANNOT_CHECK"
+    },
+    {
+      "declared_claim_scope": "BOUNDED_EXACT",
+      "gates": [
+        {
+          "findings": [],
+          "gate_id": "P7-U-T1",
+          "kind": "FORMAL_GENERALIZATION",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P7-U-T2",
+          "kind": "FORMAL_GENERALIZATION",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P7-U-T3",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P7-U-T4",
+          "kind": "HARM_GUARD",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P7-U-T5",
+          "kind": "REPLICATION",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        }
+      ],
+      "issue": 655,
+      "paper_id": "P7",
+      "predecessor_artifacts": [
+        {
+          "artifact_ref": "research/claim_expansion/p7/P7_X2_SCIENCE_TERMINAL_V1.md",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "P7_CLOSURE_CARRYING_NAVIGATION_SUPPORTED__BOUNDED_FORMAL_DONOR_STACK__IDEAL_PRODUCT_EQUIVALENT"
+        }
+      ],
+      "strongest_grade": "MECHANISM_NON_VACUITY",
+      "terminal": "CANNOT_CHECK"
+    },
+    {
+      "declared_claim_scope": "BOUNDED_EXACT",
+      "gates": [
+        {
+          "findings": [],
+          "gate_id": "P8-U-T1",
+          "kind": "FORMAL_GENERALIZATION",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P8-U-T2",
+          "kind": "FORMAL_GENERALIZATION",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P8-U-T3",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P8-U-T4",
+          "kind": "HARM_GUARD",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P8-U-T5",
+          "kind": "REPLICATION",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        }
+      ],
+      "issue": 656,
+      "paper_id": "P8",
+      "predecessor_artifacts": [
+        {
+          "artifact_ref": "research/claim_expansion/p8/P8_X4_SCIENCE_TERMINAL_V1.md",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "P8_CROSS_DOMAIN_SCIENTIFIC_AUTHORITY_COMPOSITION_SUPPORTED__13_DONOR_FORMAL_ENVELOPE__IDEAL_PRODUCT_EQUIVALENT"
+        }
+      ],
+      "strongest_grade": "MECHANISM_NON_VACUITY",
+      "terminal": "CANNOT_CHECK"
+    },
+    {
+      "declared_claim_scope": "BOUNDED_PROTECTED",
+      "gates": [
+        {
+          "findings": [],
+          "gate_id": "P9-U-T1",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P9-U-T2",
+          "kind": "REPLICATION",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P9-U-T3",
+          "kind": "HARM_GUARD",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P9-U-T4",
+          "kind": "HARM_GUARD",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P9-U-T5",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P9-U-T6",
+          "kind": "SCOPE_DISCIPLINE",
+          "outcome": "PASS",
+          "reason": "declared claim scope BOUNDED_PROTECTED is within BOUNDED_PROTECTED, licensed by grade BOUNDED_PROTECTED"
+        }
+      ],
+      "issue": 662,
+      "paper_id": "P9",
+      "predecessor_artifacts": [
+        {
+          "artifact_ref": "papers/candidates/paper-09-structured-epistemic-learning/P9_SCIENTIFIC_CLOSURE_RECEIPT_V1.md",
+          "grade": "BOUNDED_PROTECTED",
+          "terminal": "P9_BOUNDED_STRUCTURAL_LEARNING_SUPPORTED"
+        }
+      ],
+      "strongest_grade": "BOUNDED_PROTECTED",
+      "terminal": "CANNOT_CHECK"
+    },
+    {
+      "declared_claim_scope": "BOUNDED_PROTECTED",
+      "gates": [
+        {
+          "findings": [],
+          "gate_id": "P10-U-T1",
+          "kind": "REPLICATION",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P10-U-T2",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P10-U-T3",
+          "kind": "SUCCESSOR_MECHANIC",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P10-U-T4",
+          "kind": "PROTECTED_SUPERIORITY",
+          "outcome": "CANNOT_CHECK",
+          "reason": "no evidence is recorded against this terminal"
+        },
+        {
+          "findings": [],
+          "gate_id": "P10-U-T5",
+          "kind": "SCOPE_DISCIPLINE",
+          "outcome": "PASS",
+          "reason": "declared claim scope BOUNDED_PROTECTED is within BOUNDED_PROTECTED, licensed by grade BOUNDED_PROTECTED"
+        }
+      ],
+      "issue": 663,
+      "paper_id": "P10",
+      "predecessor_artifacts": [
+        {
+          "artifact_ref": "papers/candidates/paper-10-content-bound-math-evaluation/README.md",
+          "grade": "BOUNDED_PROTECTED",
+          "terminal": "TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME"
+        },
+        {
+          "artifact_ref": "papers/candidates/paper-10-structured-problem-solving/successor/P10_U_MANUSCRIPT.tex",
+          "grade": "MANUSCRIPT_COMPLETION",
+          "terminal": ""
+        }
+      ],
+      "strongest_grade": "BOUNDED_PROTECTED",
+      "terminal": "CANNOT_CHECK"
+    }
+  ],
+  "registered_paper_count": 10,
+  "schema_version": "orion.programme.superiority-report.v1"
+}

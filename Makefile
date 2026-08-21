@@ -198,3 +198,43 @@ peer-review-ready-gate:
 .PHONY: peer-review-ready-gate-tests
 peer-review-ready-gate-tests:
 	PYTHONPATH=$(SRC) $(PYTHON) -m pytest -q tests/unit/publication/test_peer_review_ready_gate.py
+
+# --- P1-P10 superiority terminals (issues #649-#656, #662, #663) --------------
+#
+# Adjudicates every paper's frozen `Done when` list against the evidence ledger
+# and runs the eleven-check substitution battery. Additive: it rewrites no paper
+# terminal, promotes no claim and grants no issue closure.
+#
+# Exit codes of the underlying module (make itself reports 2 for any failing
+# recipe, as it already does for paper01-results):
+#   0  every registered terminal EARNED and the battery clean
+#   1  a real negative - some terminal NOT_EARNED, or a battery check FAILed
+#   2  the ledger could not be bound to the frozen registry (malformed input)
+#   3  CANNOT_CHECK - nothing failed and nothing was established. This is the
+#      expected result today: ten open programmes whose superiority terminals
+#      have not been attempted. Deliberately distinct from both 0 and 1.
+#
+# Run the module directly when the exact code matters:
+#   PYTHONPATH=src python3 -m orion.programme.superiority_report --ledger ...
+#
+# See research/paper-programme-v1/P1_P10_SUPERIORITY_TERMINAL_LEDGER_2026-08-21.md.
+
+SUPERIORITY_LEDGER ?= research/paper-programme-v1/P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1.json
+SUPERIORITY_REPORT ?= research/paper-programme-v1/P1_P10_SUPERIORITY_TERMINAL_REPORT_2026-08-21.json
+
+.PHONY: p1-p10-superiority-report
+p1-p10-superiority-report:
+	@PYTHONPATH=$(SRC) $(PYTHON) -m orion.programme.superiority_report \
+		--ledger $(SUPERIORITY_LEDGER) \
+		--out $(SUPERIORITY_REPORT) ; \
+	code=$$? ; \
+	if [ $$code -eq 3 ]; then \
+		echo "" >&2 ; \
+		echo "make: p1-p10-superiority-report -> CANNOT_CHECK (exit 3)." >&2 ; \
+		echo "      No P1-P10 superiority terminal is established and none is refuted." >&2 ; \
+	fi ; \
+	exit $$code
+
+.PHONY: p1-p10-superiority-tests
+p1-p10-superiority-tests:
+	PYTHONPATH=$(SRC) $(PYTHON) -m pytest -q tests/unit/programme/test_superiority_gates.py

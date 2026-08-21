@@ -1,0 +1,579 @@
+"""The frozen P1-P10 ``Done when`` registry (issues #649-#656, #662, #663).
+
+Each :class:`~orion.programme.superiority.TerminalGate` transcribes one bullet
+from one issue's ``Done when`` list verbatim into ``statement`` and types it into
+a :class:`~orion.programme.superiority.TerminalKind`. Nothing is paraphrased and
+nothing is merged: the count of gates for a paper equals the count of bullets in
+its issue, so a reader can diff this file against the issue and see a drift.
+
+Transcription rules
+-------------------
+- The statement is the bullet as written, minus its checkbox.
+- A bullet asking for a *win* is ``PROTECTED_SUPERIORITY``; a bullet asking for a
+  ceiling *to hold* is ``HARM_GUARD``. "Reduce false closure without excessive
+  recomputation" is a guard even though it mentions a reduction, because what it
+  forbids is the cost blow-up.
+- Two bullets carry an explicit narrower disjunct in the issue text
+  (``P9-U-T2``, ``P10-U-T1``) and set ``bounded_terminal_admissible``.
+- Amendments to an issue's ``Done when`` list are amendments to this file. A
+  comment on an issue that adds an obligation --- #649's P11/P12/P13 falsifier
+  amendment is the live example --- is *not* a ``Done when`` bullet and is not
+  transcribed here; it constrains how ``P1-U-T1`` may be run, and that constraint
+  belongs in the campaign packet, not in the terminal list.
+
+This module is data. It performs no adjudication and reads no evidence.
+"""
+
+from __future__ import annotations
+
+from orion.programme.superiority import TerminalGate, TerminalKind
+
+P1_U_ISSUE = 649
+P2_U_ISSUE = 650
+P3_U_ISSUE = 651
+P4_U_ISSUE = 652
+P5_U_ISSUE = 653
+P6_U_ISSUE = 654
+P7_U_ISSUE = 655
+P8_U_ISSUE = 656
+P9_U_ISSUE = 662
+P10_U_ISSUE = 663
+
+
+P1_U_GATES: tuple[TerminalGate, ...] = (
+    TerminalGate(
+        gate_id="P1-U-T1",
+        paper_id="P1",
+        issue_number=P1_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement="Protected superiority survives strongest donor-complete comparator.",
+    ),
+    TerminalGate(
+        gate_id="P1-U-T2",
+        paper_id="P1",
+        issue_number=P1_U_ISSUE,
+        kind=TerminalKind.REPLICATION,
+        statement="Positive effect replicates across domains and independent implementation.",
+    ),
+    TerminalGate(
+        gate_id="P1-U-T3",
+        paper_id="P1",
+        issue_number=P1_U_ISSUE,
+        kind=TerminalKind.HARM_GUARD,
+        statement="No-regression/no-unnecessary-reformulation guard passes.",
+    ),
+    TerminalGate(
+        gate_id="P1-U-T4",
+        paper_id="P1",
+        issue_number=P1_U_ISSUE,
+        kind=TerminalKind.SCOPE_EXPANSION,
+        statement=(
+            "Claim is wider than the current registered families because new "
+            "heterogeneous naturalistic tasks support it."
+        ),
+    ),
+    TerminalGate(
+        gate_id="P1-U-T5",
+        paper_id="P1",
+        issue_number=P1_U_ISSUE,
+        kind=TerminalKind.SUCCESSOR_MECHANIC,
+        statement=(
+            "Failure regimes are converted into explicit successor mechanics/theorems "
+            "rather than hidden."
+        ),
+    ),
+)
+
+
+P2_U_GATES: tuple[TerminalGate, ...] = (
+    TerminalGate(
+        gate_id="P2-U-T1",
+        paper_id="P2",
+        issue_number=P2_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement=(
+            "Statistically supported superiority on decision-relevant recall or final "
+            "scientific utility."
+        ),
+    ),
+    TerminalGate(
+        gate_id="P2-U-T2",
+        paper_id="P2",
+        issue_number=P2_U_ISSUE,
+        kind=TerminalKind.HARM_GUARD,
+        statement="Simultaneous non-inferiority/superiority on false closure.",
+    ),
+    TerminalGate(
+        gate_id="P2-U-T3",
+        paper_id="P2",
+        issue_number=P2_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement="Benefit holds under matched budgets and strong donor-complete baselines.",
+    ),
+    TerminalGate(
+        gate_id="P2-U-T4",
+        paper_id="P2",
+        issue_number=P2_U_ISSUE,
+        kind=TerminalKind.REPLICATION,
+        statement="Cross-domain replication.",
+    ),
+    TerminalGate(
+        gate_id="P2-U-T5",
+        paper_id="P2",
+        issue_number=P2_U_ISSUE,
+        kind=TerminalKind.SUCCESSOR_MECHANIC,
+        statement=(
+            "A negative/tied family has generated and validated at least one stronger "
+            "successor search mechanic."
+        ),
+    ),
+)
+
+
+P3_U_GATES: tuple[TerminalGate, ...] = (
+    TerminalGate(
+        gate_id="P3-U-T1",
+        paper_id="P3",
+        issue_number=P3_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement=(
+            "Significant reduction in false scientific merges versus strongest real competitor."
+        ),
+    ),
+    TerminalGate(
+        gate_id="P3-U-T2",
+        paper_id="P3",
+        issue_number=P3_U_ISSUE,
+        kind=TerminalKind.HARM_GUARD,
+        statement="No unacceptable false-split/plurality penalty.",
+    ),
+    TerminalGate(
+        gate_id="P3-U-T3",
+        paper_id="P3",
+        issue_number=P3_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement="Downstream scientific synthesis/QA benefit demonstrated.",
+    ),
+    TerminalGate(
+        gate_id="P3-U-T4",
+        paper_id="P3",
+        issue_number=P3_U_ISSUE,
+        kind=TerminalKind.REPLICATION,
+        statement="Cross-domain and independent-expert replication.",
+    ),
+    TerminalGate(
+        gate_id="P3-U-T5",
+        paper_id="P3",
+        issue_number=P3_U_ISSUE,
+        kind=TerminalKind.SUCCESSOR_MECHANIC,
+        statement=(
+            "At least one new identity mechanic/coordinate is discovered from failure and "
+            "prospectively validated."
+        ),
+    ),
+)
+
+
+P4_U_GATES: tuple[TerminalGate, ...] = (
+    TerminalGate(
+        gate_id="P4-U-T1",
+        paper_id="P4",
+        issue_number=P4_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement=(
+            "Strong superiority on false scientific promotion under matched clean coverage."
+        ),
+    ),
+    TerminalGate(
+        gate_id="P4-U-T2",
+        paper_id="P4",
+        issue_number=P4_U_ISSUE,
+        kind=TerminalKind.HARM_GUARD,
+        statement=(
+            "Identifiability audit shows the benchmark measures the intended competence."
+        ),
+    ),
+    TerminalGate(
+        gate_id="P4-U-T3",
+        paper_id="P4",
+        issue_number=P4_U_ISSUE,
+        kind=TerminalKind.REPLICATION,
+        statement=(
+            "Result survives multiple constructions/domains and independent implementation."
+        ),
+    ),
+    TerminalGate(
+        gate_id="P4-U-T4",
+        paper_id="P4",
+        issue_number=P4_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement=(
+            "Strong donor-complete comparator still loses on the residual "
+            "scientific-promotion relation."
+        ),
+    ),
+    TerminalGate(
+        gate_id="P4-U-T5",
+        paper_id="P4",
+        issue_number=P4_U_ISSUE,
+        kind=TerminalKind.SUCCESSOR_MECHANIC,
+        statement=(
+            "At least one old null/saturated family yields a prospectively successful new "
+            "evaluation mechanic."
+        ),
+    ),
+)
+
+
+P5_U_GATES: tuple[TerminalGate, ...] = (
+    TerminalGate(
+        gate_id="P5-U-T1",
+        paper_id="P5",
+        issue_number=P5_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement="Repeated fresh-task superiority over strongest self-evolving comparator.",
+    ),
+    TerminalGate(
+        gate_id="P5-U-T2",
+        paper_id="P5",
+        issue_number=P5_U_ISSUE,
+        kind=TerminalKind.HARM_GUARD,
+        statement="Harmful-transfer/regression guard passes.",
+    ),
+    TerminalGate(
+        gate_id="P5-U-T3",
+        paper_id="P5",
+        issue_number=P5_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement="Improvement remains significant after matched budget/cost controls.",
+    ),
+    TerminalGate(
+        gate_id="P5-U-T4",
+        paper_id="P5",
+        issue_number=P5_U_ISSUE,
+        kind=TerminalKind.SUCCESSOR_MECHANIC,
+        statement=(
+            "At least one learned or invented mechanic—not hand-written by us—causes "
+            "a replicated gain."
+        ),
+    ),
+    TerminalGate(
+        gate_id="P5-U-T5",
+        paper_id="P5",
+        issue_number=P5_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement=(
+            "Later ORION generation is measurably better at producing future improvements "
+            "(meta-improvement signal)."
+        ),
+    ),
+)
+
+
+P6_U_GATES: tuple[TerminalGate, ...] = (
+    TerminalGate(
+        gate_id="P6-U-T1",
+        paper_id="P6",
+        issue_number=P6_U_ISSUE,
+        kind=TerminalKind.FORMAL_GENERALIZATION,
+        statement="General theorem proved from primitive semantics.",
+    ),
+    TerminalGate(
+        gate_id="P6-U-T2",
+        paper_id="P6",
+        issue_number=P6_U_ISSUE,
+        kind=TerminalKind.FORMAL_GENERALIZATION,
+        statement="Existing finite result follows as corollary.",
+    ),
+    TerminalGate(
+        gate_id="P6-U-T3",
+        paper_id="P6",
+        issue_number=P6_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement=(
+            "Naturalistic multi-domain evaluation shows large cost reduction with no "
+            "validity loss."
+        ),
+    ),
+    TerminalGate(
+        gate_id="P6-U-T4",
+        paper_id="P6",
+        issue_number=P6_U_ISSUE,
+        kind=TerminalKind.REPLICATION,
+        statement="Independent proof/checker review.",
+    ),
+    TerminalGate(
+        gate_id="P6-U-T5",
+        paper_id="P6",
+        issue_number=P6_U_ISSUE,
+        kind=TerminalKind.SUCCESSOR_MECHANIC,
+        statement=(
+            "At least one discovered counterexample causes a principled framework extension "
+            "rather than an ad hoc exception."
+        ),
+    ),
+)
+
+
+P7_U_GATES: tuple[TerminalGate, ...] = (
+    TerminalGate(
+        gate_id="P7-U-T1",
+        paper_id="P7",
+        issue_number=P7_U_ISSUE,
+        kind=TerminalKind.FORMAL_GENERALIZATION,
+        statement="General compositional calculus/checker exists.",
+    ),
+    TerminalGate(
+        gate_id="P7-U-T2",
+        paper_id="P7",
+        issue_number=P7_U_ISSUE,
+        kind=TerminalKind.FORMAL_GENERALIZATION,
+        statement="Current P7 results are corollaries/instances.",
+    ),
+    TerminalGate(
+        gate_id="P7-U-T3",
+        paper_id="P7",
+        issue_number=P7_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement=(
+            "Prospective prediction of real pipeline closure failures beats strong comparators."
+        ),
+    ),
+    TerminalGate(
+        gate_id="P7-U-T4",
+        paper_id="P7",
+        issue_number=P7_U_ISSUE,
+        kind=TerminalKind.HARM_GUARD,
+        statement="Significant reduction in false closure without excessive recomputation.",
+    ),
+    TerminalGate(
+        gate_id="P7-U-T5",
+        paper_id="P7",
+        issue_number=P7_U_ISSUE,
+        kind=TerminalKind.REPLICATION,
+        statement="Independent formal/empirical reproduction.",
+    ),
+)
+
+
+P8_U_GATES: tuple[TerminalGate, ...] = (
+    TerminalGate(
+        gate_id="P8-U-T1",
+        paper_id="P8",
+        issue_number=P8_U_ISSUE,
+        kind=TerminalKind.FORMAL_GENERALIZATION,
+        statement="General composition/revocation theorem proved and mechanized.",
+    ),
+    TerminalGate(
+        gate_id="P8-U-T2",
+        paper_id="P8",
+        issue_number=P8_U_ISSUE,
+        kind=TerminalKind.FORMAL_GENERALIZATION,
+        statement="Current P8 exhaustive result follows as an instance.",
+    ),
+    TerminalGate(
+        gate_id="P8-U-T3",
+        paper_id="P8",
+        issue_number=P8_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement=(
+            "Prospective naturalistic evaluation shows failures generic "
+            "authorization/provenance systems miss."
+        ),
+    ),
+    TerminalGate(
+        gate_id="P8-U-T4",
+        paper_id="P8",
+        issue_number=P8_U_ISSUE,
+        kind=TerminalKind.HARM_GUARD,
+        statement="Strong empirical utility without excessive blocking.",
+    ),
+    TerminalGate(
+        gate_id="P8-U-T5",
+        paper_id="P8",
+        issue_number=P8_U_ISSUE,
+        kind=TerminalKind.REPLICATION,
+        statement="Independent formal and systems reproduction.",
+    ),
+)
+
+
+P9_U_GATES: tuple[TerminalGate, ...] = (
+    TerminalGate(
+        gate_id="P9-U-T1",
+        paper_id="P9",
+        issue_number=P9_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement="direct LLM result survives all frozen hostile gates",
+    ),
+    TerminalGate(
+        gate_id="P9-U-T2",
+        paper_id="P9",
+        issue_number=P9_U_ISSUE,
+        kind=TerminalKind.REPLICATION,
+        statement="second-family replication or explicit family-bounded terminal",
+        bounded_terminal_admissible=True,
+    ),
+    TerminalGate(
+        gate_id="P9-U-T3",
+        paper_id="P9",
+        issue_number=P9_U_ISSUE,
+        kind=TerminalKind.HARM_GUARD,
+        statement="scale/compute crossing is on-grid and prospectively defined",
+    ),
+    TerminalGate(
+        gate_id="P9-U-T4",
+        paper_id="P9",
+        issue_number=P9_U_ISSUE,
+        kind=TerminalKind.HARM_GUARD,
+        statement="representation-length and format-prior attacks fail",
+    ),
+    TerminalGate(
+        gate_id="P9-U-T5",
+        paper_id="P9",
+        issue_number=P9_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement="domain-block uncertainty is positive",
+    ),
+    TerminalGate(
+        gate_id="P9-U-T6",
+        paper_id="P9",
+        issue_number=P9_U_ISSUE,
+        kind=TerminalKind.SCOPE_DISCIPLINE,
+        statement=(
+            "claim is phrased as the strongest earned bounded law, not a universal statement"
+        ),
+    ),
+)
+
+
+P10_U_GATES: tuple[TerminalGate, ...] = (
+    TerminalGate(
+        gate_id="P10-U-T1",
+        paper_id="P10",
+        issue_number=P10_U_ISSUE,
+        kind=TerminalKind.REPLICATION,
+        statement="native-state/search result is independently reproduced or retained as a negative",
+        bounded_terminal_admissible=True,
+    ),
+    TerminalGate(
+        gate_id="P10-U-T2",
+        paper_id="P10",
+        issue_number=P10_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement="real verified problem-solving gain beyond representation-only metrics",
+    ),
+    TerminalGate(
+        gate_id="P10-U-T3",
+        paper_id="P10",
+        issue_number=P10_U_ISSUE,
+        kind=TerminalKind.SUCCESSOR_MECHANIC,
+        statement="at least one closed-world method-expansion result with low false escalation",
+    ),
+    TerminalGate(
+        gate_id="P10-U-T4",
+        paper_id="P10",
+        issue_number=P10_U_ISSUE,
+        kind=TerminalKind.PROTECTED_SUPERIORITY,
+        statement=(
+            "at least one real-domain candidate only if external correctness/novelty "
+            "review survives"
+        ),
+    ),
+    TerminalGate(
+        gate_id="P10-U-T5",
+        paper_id="P10",
+        issue_number=P10_U_ISSUE,
+        kind=TerminalKind.SCOPE_DISCIPLINE,
+        statement="P10 paper claim remains bounded to what is actually earned.",
+    ),
+)
+
+
+PAPER_GATES: dict[str, tuple[TerminalGate, ...]] = {
+    "P1": P1_U_GATES,
+    "P2": P2_U_GATES,
+    "P3": P3_U_GATES,
+    "P4": P4_U_GATES,
+    "P5": P5_U_GATES,
+    "P6": P6_U_GATES,
+    "P7": P7_U_GATES,
+    "P8": P8_U_GATES,
+    "P9": P9_U_GATES,
+    "P10": P10_U_GATES,
+}
+
+PAPER_ISSUES: dict[str, int] = {
+    "P1": P1_U_ISSUE,
+    "P2": P2_U_ISSUE,
+    "P3": P3_U_ISSUE,
+    "P4": P4_U_ISSUE,
+    "P5": P5_U_ISSUE,
+    "P6": P6_U_ISSUE,
+    "P7": P7_U_ISSUE,
+    "P8": P8_U_ISSUE,
+    "P9": P9_U_ISSUE,
+    "P10": P10_U_ISSUE,
+}
+
+ALL_GATES: tuple[TerminalGate, ...] = tuple(
+    gate for paper_id in PAPER_GATES for gate in PAPER_GATES[paper_id]
+)
+
+ALL_GATE_IDS: tuple[str, ...] = tuple(gate.gate_id for gate in ALL_GATES)
+
+
+def validate_registry() -> tuple[str, ...]:
+    """Return deduplicated structural errors in the registry. Empty means intact.
+
+    Called from the tests rather than at import time, matching
+    ``orion.programme.catalogue.validate_catalogue``: an import-time raise in a
+    data module makes every unrelated test in the package fail with one traceback.
+    """
+
+    errors: list[str] = []
+
+    seen: set[str] = set()
+    for gate in ALL_GATES:
+        if gate.gate_id in seen:
+            errors.append(f"duplicate gate id {gate.gate_id}")
+        seen.add(gate.gate_id)
+
+    for paper_id, gates in PAPER_GATES.items():
+        if paper_id not in PAPER_ISSUES:
+            errors.append(f"paper {paper_id} has gates but no registered issue")
+            continue
+        expected_issue = PAPER_ISSUES[paper_id]
+        for gate in gates:
+            if gate.paper_id != paper_id:
+                errors.append(f"gate {gate.gate_id} is filed under paper {paper_id}")
+            if gate.issue_number != expected_issue:
+                errors.append(
+                    f"gate {gate.gate_id} cites issue #{gate.issue_number}, "
+                    f"but paper {paper_id} is issue #{expected_issue}"
+                )
+
+    for paper_id in PAPER_ISSUES:
+        if paper_id not in PAPER_GATES:
+            errors.append(f"paper {paper_id} has an issue but no gates")
+
+    return tuple(dict.fromkeys(errors))
+
+
+__all__ = [
+    "ALL_GATES",
+    "ALL_GATE_IDS",
+    "PAPER_GATES",
+    "PAPER_ISSUES",
+    "P1_U_GATES",
+    "P2_U_GATES",
+    "P3_U_GATES",
+    "P4_U_GATES",
+    "P5_U_GATES",
+    "P6_U_GATES",
+    "P7_U_GATES",
+    "P8_U_GATES",
+    "P9_U_GATES",
+    "P10_U_GATES",
+    "validate_registry",
+]
