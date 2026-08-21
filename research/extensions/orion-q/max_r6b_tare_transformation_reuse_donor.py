@@ -29,15 +29,15 @@ _LOCAL_PHASE = {
     (0, 3): 0,
     (1, 0): 0,
     (1, 1): 0,
-    (1, 2): 1,   # X Y = i Z
-    (1, 3): 3,   # X Z = -i Y
+    (1, 2): 1,
+    (1, 3): 3,
     (2, 0): 0,
-    (2, 1): 3,   # Y X = -i Z
+    (2, 1): 3,
     (2, 2): 0,
-    (2, 3): 1,   # Y Z = i X
+    (2, 3): 1,
     (3, 0): 0,
-    (3, 1): 1,   # Z X = i Y
-    (3, 2): 3,   # Z Y = -i X
+    (3, 1): 1,
+    (3, 2): 3,
     (3, 3): 0,
 }
 
@@ -143,7 +143,7 @@ class ReuseSignature:
     s0: tuple[int, int]
     s1: tuple[int, int]
     labels: tuple[int, int, int]
-    corrections: tuple[tuple[int, tuple[int, int]], ...]  # (phase exponent, T)
+    corrections: tuple[tuple[int, tuple[int, int]], ...]
     provenance: tuple[Any, ...]
 
     def key(self):
@@ -291,7 +291,6 @@ def best_reuse(a: dict[str, Any], b: dict[str, Any], n: int):
 
 
 def hostile_validation() -> dict[str, Any]:
-    # Local signed Pauli multiplication table, including anti-commuting phases.
     single = {
         "I": (0, 0),
         "X": (1, 0),
@@ -337,10 +336,12 @@ def hostile_validation() -> dict[str, Any]:
         ((1, signature.corrections[0][1]), *signature.corrections[1:]),
         ("bad-phase",),
     )
+    # A permutation of (1,2,3) can be made valid by an allowed target permutation.
+    # Include label 0 so no permutation of this dependent-frame label set can match.
     bad_labels = ReuseSignature(
         signature.s0,
         signature.s1,
-        (1, 3, 2),
+        (0, 1, 2),
         signature.corrections,
         ("bad-labels",),
     )
