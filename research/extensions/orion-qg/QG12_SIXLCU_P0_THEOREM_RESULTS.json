@@ -1,0 +1,486 @@
+{
+  "base_revision": "318d1cbbec451170448bb8e126c7ab50801930ce",
+  "blind_complete_regression": {
+    "enumeration_result_sha256": "512efb3e0256001b196d4317b002ff57863e3e5f45fbaa013a6a46c6bd692b66",
+    "expected_n1": 729,
+    "expected_n2": 38760,
+    "mismatch_count_capped": 0,
+    "mismatches": [],
+    "n1_count": 729,
+    "n1_p0_true": 0,
+    "n2_count": 38760,
+    "n2_p0_true": 1,
+    "zero_mismatches": true
+  },
+  "certificate_structure": {
+    "interaction_arity": 2,
+    "interaction_language": "PAIR_DERIVED_GAINS",
+    "interpretation": "GLOBAL_OPTIMIZER_FAMILY_COMPLEXITY_EXCEEDS_BOUNDARY_INTERACTION_ARITY",
+    "maximum_clause_support_terms": 6,
+    "optimization_subextension_closure_on_qg4_verified_domains": "NO_STRICT_SUBEXTENSION_CLOSES",
+    "packing_clauses": [
+      "ONE_PAIR",
+      "TWO_DISJOINT_PAIRS",
+      "THREE_DISJOINT_PAIRS"
+    ]
+  },
+  "chemistry_sources_read": false,
+  "gates": {
+    "all_shapes_covered": true,
+    "blind_complete_zero_mismatches": true,
+    "block_inequality_algebra_exact": true,
+    "converse_partition_witnesses_exact": true,
+    "n1_complete": true,
+    "n2_complete": true,
+    "no_chemistry_network_or_protected_access": true,
+    "partition_count_203": true,
+    "production_block_coefficients_exact": true,
+    "production_shape_constants_exact": true,
+    "qg4_receipt_bound": true,
+    "shape_count_11": true
+  },
+  "issue": "SzeChunYiu/ORION#765",
+  "network_access": false,
+  "novelty_authority": false,
+  "novelty_threat_sha256": "d9ad76418374b90e98fd126f509a0207b9e8fc3d737155d4d4dcab0277492434",
+  "physical_quantum_advantage_claim": false,
+  "production_gain_decomposition": {
+    "all_coefficients_exact": true,
+    "all_shape_constants_exact": true,
+    "block_coefficients": {
+      "1": [
+        [
+          0,
+          0
+        ]
+      ],
+      "2": [
+        [
+          4,
+          -1
+        ]
+      ],
+      "3": [
+        [
+          10,
+          -2
+        ]
+      ],
+      "4": [
+        [
+          14,
+          -2
+        ]
+      ],
+      "5": [
+        [
+          23,
+          -3
+        ]
+      ]
+    },
+    "coefficient_checks": {
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true
+    },
+    "constant_checks": {
+      "1+1+1+1+1+1": true,
+      "2+1+1+1+1": true,
+      "2+2+1+1": true,
+      "2+2+2": true,
+      "3+1+1+1": true,
+      "3+2+1": true,
+      "3+3": true,
+      "4+1+1": true,
+      "4+2": true,
+      "5+1": true
+    },
+    "expected_block_coefficients": {
+      "1": [
+        0,
+        0
+      ],
+      "2": [
+        4,
+        -1
+      ],
+      "3": [
+        10,
+        -2
+      ],
+      "4": [
+        14,
+        -2
+      ],
+      "5": [
+        23,
+        -3
+      ]
+    },
+    "partition_count": 203,
+    "shape_count": 11,
+    "shapes": {
+      "1+1+1+1+1+1": {
+        "block_coefficient_patterns": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ]
+        ],
+        "constant_values": [
+          0
+        ],
+        "partition_count": 1
+      },
+      "2+1+1+1+1": {
+        "block_coefficient_patterns": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              4,
+              -1
+            ]
+          ]
+        ],
+        "constant_values": [
+          0
+        ],
+        "partition_count": 15
+      },
+      "2+2+1+1": {
+        "block_coefficient_patterns": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              4,
+              -1
+            ],
+            [
+              2,
+              4,
+              -1
+            ]
+          ]
+        ],
+        "constant_values": [
+          1
+        ],
+        "partition_count": 45
+      },
+      "2+2+2": {
+        "block_coefficient_patterns": [
+          [
+            [
+              2,
+              4,
+              -1
+            ],
+            [
+              2,
+              4,
+              -1
+            ],
+            [
+              2,
+              4,
+              -1
+            ]
+          ]
+        ],
+        "constant_values": [
+          2
+        ],
+        "partition_count": 15
+      },
+      "3+1+1+1": {
+        "block_coefficient_patterns": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              3,
+              10,
+              -2
+            ]
+          ]
+        ],
+        "constant_values": [
+          -1
+        ],
+        "partition_count": 20
+      },
+      "3+2+1": {
+        "block_coefficient_patterns": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              4,
+              -1
+            ],
+            [
+              3,
+              10,
+              -2
+            ]
+          ]
+        ],
+        "constant_values": [
+          0
+        ],
+        "partition_count": 60
+      },
+      "3+3": {
+        "block_coefficient_patterns": [
+          [
+            [
+              3,
+              10,
+              -2
+            ],
+            [
+              3,
+              10,
+              -2
+            ]
+          ]
+        ],
+        "constant_values": [
+          0
+        ],
+        "partition_count": 10
+      },
+      "4+1+1": {
+        "block_coefficient_patterns": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              4,
+              14,
+              -2
+            ]
+          ]
+        ],
+        "constant_values": [
+          -1
+        ],
+        "partition_count": 15
+      },
+      "4+2": {
+        "block_coefficient_patterns": [
+          [
+            [
+              2,
+              4,
+              -1
+            ],
+            [
+              4,
+              14,
+              -2
+            ]
+          ]
+        ],
+        "constant_values": [
+          0
+        ],
+        "partition_count": 15
+      },
+      "5+1": {
+        "block_coefficient_patterns": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              5,
+              23,
+              -3
+            ]
+          ]
+        ],
+        "constant_values": [
+          -3
+        ],
+        "partition_count": 6
+      },
+      "6": {
+        "partition_count": 1,
+        "prepw_values": [
+          14
+        ],
+        "special": "g6 = 23*wF - 2*W + 1"
+      }
+    }
+  },
+  "proof_ledger": {
+    "all_11_shapes_covered": true,
+    "all_block_inequalities_integer_valid": true,
+    "block_bounds": {
+      "m2": {
+        "coefficient_check": true,
+        "production_term": "T2=4*wF-sw=g2",
+        "source": "P0 pair clause",
+        "upper_bound": "0"
+      },
+      "m3": {
+        "derived": "sw>=6*wF",
+        "max_coefficient": -2,
+        "production_term": "T3=10*wF-2*sw",
+        "source": "sum all 3 pair clauses",
+        "upper_nonpositive": true
+      },
+      "m4": {
+        "derived": "sw>=8*wF",
+        "max_coefficient": -2,
+        "production_term": "T4=14*wF-2*sw",
+        "source": "any perfect matching of 2 pairs",
+        "upper_nonpositive": true
+      },
+      "m5": {
+        "derived": "sw>=10*wF",
+        "max_coefficient": -7,
+        "production_term": "T5=23*wF-3*sw",
+        "source": "sum a 5-cycle of pair clauses",
+        "upper_nonpositive": true
+      },
+      "m6": {
+        "bound": "g6<=-wF-3<0",
+        "coefficient_check": true,
+        "constant_check": true,
+        "derived": "W>=12*wF+2",
+        "production_term": "g6=23*wF-2*W+1",
+        "source": "P0 3-disjoint-pair bonus clause"
+      }
+    },
+    "converse": {
+      "pair_clause_failure": "shape 2+1+1+1+1 has gain g2>0",
+      "three_pair_clause_failure": "shape 2+2+2 has gain g2(a)+g2(b)+g2(c)+2>0",
+      "two_pair_clause_failure": "shape 2+2+1+1 has gain g2(a)+g2(b)+1>0"
+    },
+    "converse_explicit_partition_witnesses": true,
+    "shape_rules": {
+      "1+1+1+1+1+1": "gain=0",
+      "2+1+1+1+1": "T2<=0",
+      "2+2+1+1": "exactly P0 two-disjoint-pair gain <=0",
+      "2+2+2": "exactly P0 three-disjoint-pair gain <=0",
+      "3+1+1+1": "T3-1<=0",
+      "3+2+1": "T3+T2<=0",
+      "3+3": "T3+T3<=0",
+      "4+1+1": "T4-1<=0",
+      "4+2": "T4+T2<=0",
+      "5+1": "T5-3<=0",
+      "6": "g6<0"
+    },
+    "theorem": "C_F == C_U iff P0 for every admitted frozen SixLCU instance and every n"
+  },
+  "protected_subject_read": false,
+  "protocol_sha256": "7c499ccb534ae41001cf3fef1134e454d3b2ba1cd444532f730783d398fa5d3c",
+  "qg4_binding": {
+    "all_bound": true,
+    "checks": {
+      "authority": true,
+      "determinism": true,
+      "no_network": true,
+      "no_novelty_credit": true,
+      "no_protected": true,
+      "no_strict_subextension": true,
+      "p0_selected": true,
+      "template_transferred": true
+    },
+    "receipt_sha256": "c4cda99626d5c72d69dcfa715eb27dc40afa9389bb459283a2ca076aeba60275"
+  },
+  "result_digest": "3e6fe23ab095f89c60d96226d13baac4c4c6120dd1da782f871a35245303eef9",
+  "schema": "ORION.QG.QG12.SixLCUP0Theorem.v1",
+  "terminal": "QG12_SIXLCU_P0_ALL_INSTANCE_THEOREM_MACHINE_CHECKED",
+  "theorem": "For every admitted six-term Pauli batch at every n in frozen SixLCU: C_F == C_U iff P0"
+}
