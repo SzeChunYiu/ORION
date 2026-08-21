@@ -1,0 +1,99 @@
+name: orion-qg-qg9-support2-tightness
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG9_SUPPORT2_TIGHTNESS_*'
+      - 'development/orion-qg-regime-geometry/qg9_support2_tightness_*'
+      - 'development/orion-qg-regime-geometry/run_qg9_support2_tightness_dual_harness.py'
+      - 'research/extensions/orion-qg/qg9_support2_tightness.py'
+      - '.github/workflows/orion-qg-qg9-support2-tightness.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg9-tight-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  tightness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      QG9V5_FROZEN_PARENT: a80dbd57d9124f058de7465a13de8c69416c368b
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert exact head and frozen parent
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG9V5_FROZEN_PARENT}^{commit}"
+          test "$(git merge-base HEAD "${QG9V5_FROZEN_PARENT}")" = "${QG9V5_FROZEN_PARENT}"
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install ORION and harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Compile tightness instruments
+        run: |
+          python -m py_compile \
+            research/extensions/orion-qg/qg9_support2_tightness.py \
+            development/orion-qg-regime-geometry/qg9_support2_tightness_generic_verify.py \
+            development/orion-qg-regime-geometry/qg9_support2_tightness_native_verify.py \
+            development/orion-qg-regime-geometry/run_qg9_support2_tightness_dual_harness.py
+      - name: Execute prospective tightness hunt through both ORION instruments
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg9_support2_tightness_dual_harness.py | tee artifacts/orion-qg-qg9-tight-summary.json
+          test -s artifacts/orion-qg-qg9-support2-tightness.json
+          test -s artifacts/orion-qg-qg9-support2-tightness-dual-harness.json
+      - name: Deterministic selector replay
+        run: |
+          python research/extensions/orion-qg/qg9_support2_tightness.py --output artifacts/orion-qg-qg9-tight-replay.json > artifacts/orion-qg-qg9-tight-replay.log
+          cmp artifacts/orion-qg-qg9-support2-tightness.json artifacts/orion-qg-qg9-tight-replay.json
+      - name: Enforce tight witness or honest negative panel
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg9-support2-tightness.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg9-support2-tightness-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg9-support2-tightness-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg9-support2-tightness-dual-harness.json').read_text())
+          pos='QG9_SUPPORT2_TIGHT_WITNESS_MACHINE_VERIFIED'
+          neg='QG9_NO_SUPPORT2_TIGHT_WITNESS_IN_FROZEN_INVERSE_PANEL'
+          assert d['terminal'] in {pos,neg,'QG9_GENERIC_NATIVE_DISAGREEMENT'}
+          assert d['support1_authority'] is False and d['novelty_authority'] is False
+          assert a['qg1_pairtables_binding']['all_pass'] is True
+          assert a['exact_acceleration']['canonical_bind_all_pass'] is True
+          if d['terminal']==pos:
+              assert a['selected'] is not None
+              assert a['selected']['C_cap2'] < a['selected']['C_cap1']
+              assert a['selected']['canonical_caps_confirmed'] is True
+              assert a['production_referee']['C_shared']==a['selected']['C_cap2']
+              assert all(a['production_referee']['checks'].values())
+              assert max(a['production_referee']['independent_generator_supports'])==2
+              assert g['decision']=='ACCEPT_TIGHTNESS' and all(g['checks'].values())
+              assert n['decision']=='ACCEPT_TIGHTNESS' and all(n['checks'].values())
+              assert d['both_accept'] is True and d['tightness_authority'] is True
+          elif d['terminal']==neg:
+              assert a['selected'] is None and a['tightness_authority'] is False
+              assert n['decision']=='RECORD_NEGATIVE_PANEL'
+              assert d['tightness_authority'] is False
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg9-tight-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg9-support2-tightness.json
+            artifacts/orion-qg-qg9-support2-tightness-generic-verification.json
+            artifacts/orion-qg-qg9-support2-tightness-native-verification.json
+            artifacts/orion-qg-qg9-support2-tightness-dual-harness.json
+            artifacts/orion-qg-qg9-tight-summary.json
+            artifacts/orion-qg-qg9-tight-replay.json
+            artifacts/orion-qg-qg9-tight-replay.log
+            .orion-qg-qg9-tight-generic/.orion-harness/**
+            .orion-qg-qg9-tight-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error

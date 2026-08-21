@@ -1,0 +1,110 @@
+name: orion-qg-qg9-v6-support1
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG9_V6_*'
+      - 'development/orion-qg-regime-geometry/qg9_v6_*'
+      - 'development/orion-qg-regime-geometry/run_qg9_v6_dual_harness.py'
+      - 'research/extensions/orion-qg/qg9_v6_*'
+      - '.github/workflows/orion-qg-qg9-v6-support1.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg-qg9-v6-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qg9-v6-support1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      QG9_V6_PARENT: 49e21937f2bf28d8004b2eeb45a00da0d4efea30
+    steps:
+      - name: Checkout exact protected head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert frozen lineage
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG9_V6_PARENT}^{commit}"
+          test "$(git merge-base HEAD "${QG9_V6_PARENT}")" = "${QG9_V6_PARENT}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and research harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Syntax gate
+        run: |
+          python -m py_compile \
+            research/extensions/orion-qg/qg9_v6_support1_normalization.py \
+            development/orion-qg-regime-geometry/qg9_v6_generic_verify.py \
+            development/orion-qg-regime-geometry/qg9_v6_native_verify.py \
+            development/orion-qg-regime-geometry/run_qg9_v6_dual_harness.py
+      - name: Execute theorem through generic ORION and native ORION-Q
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg9_v6_dual_harness.py \
+            | tee artifacts/orion-qg-qg9-v6-dual-summary.json
+      - name: Deterministic theorem-checker replay
+        run: |
+          set -euo pipefail
+          python research/extensions/orion-qg/qg9_v6_support1_normalization.py \
+            --output artifacts/orion-qg-qg9-v6-support1-normalization-replay.json \
+            > artifacts/orion-qg-qg9-v6-replay.log
+          cmp \
+            artifacts/orion-qg-qg9-v6-support1-normalization.json \
+            artifacts/orion-qg-qg9-v6-support1-normalization-replay.json
+      - name: Enforce theorem and anti-overclaim gates
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg9-v6-support1-normalization.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg9-v6-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg9-v6-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg9-v6-dual-harness.json').read_text())
+          positive='QG9_RANK2_ALL_N_SUPPORT1_SUFFICIENCY_MACHINE_CHECKED'
+          assert a['terminal']==positive
+          assert all(a['gates'].values())
+          assert a['support_bound']==1
+          assert a['intrinsic_support_number']==1
+          assert a['support0_infeasible'] is True
+          assert a['deletion_lemma']['domain_size']==2880
+          assert a['deletion_lemma']['max_delta']=={'anticommuting':-7,'commuting':-4}
+          assert a['core_alignment_lemma']['domain_size']==6912
+          assert a['core_alignment_lemma']['max_restore_objective_increase']==3
+          assert a['tag_lemmas']['same_qubit_rigidity']['domain_size']==576
+          assert a['tag_lemmas']['distinct_qubit_tag']['domain_size']==9216
+          assert a['tag_lemmas']['distinct_qubit_tag']['all_minima_8'] is True
+          assert a['stress']['all_pass'] is True
+          assert g['decision']=='ACCEPT_SUPPORT1_THEOREM' and g['all_checks'] is True
+          assert n['decision']=='ACCEPT_SUPPORT1_THEOREM' and n['all_checks'] is True
+          assert d['terminal']==positive and d['both_accept'] is True
+          assert d['support1_authority'] is True
+          assert a['novelty_authority'] is False
+          assert a['physical_quantum_advantage_claim'] is False
+          PY
+      - name: Upload V6 proof receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg9-v6-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg9-v6-support1-normalization.json
+            artifacts/orion-qg-qg9-v6-support1-normalization-replay.json
+            artifacts/orion-qg-qg9-v6-generic-verification.json
+            artifacts/orion-qg-qg9-v6-native-verification.json
+            artifacts/orion-qg-qg9-v6-dual-harness.json
+            artifacts/orion-qg-qg9-v6-dual-summary.json
+            artifacts/orion-qg-qg9-v6-replay.log
+            .orion-qg-qg9-v6-generic/.orion-harness/**
+            .orion-qg-qg9-v6-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error

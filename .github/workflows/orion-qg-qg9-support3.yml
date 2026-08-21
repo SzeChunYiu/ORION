@@ -1,0 +1,89 @@
+name: orion-qg-qg9-support3
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG9_SUPPORT3_*'
+      - 'development/orion-qg-regime-geometry/qg9_support3_*'
+      - 'development/orion-qg-regime-geometry/run_qg9_support3_dual_harness.py'
+      - 'research/extensions/orion-qg/qg9_support3_relabel_exchange.py'
+      - '.github/workflows/orion-qg-qg9-support3.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg9-support3-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  support3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      QG9V3_FROZEN_PARENT: 51d81c448a67c7da8e89310c02ef890f5afd0f7b
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert exact head and frozen parent
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          git cat-file -e "${QG9V3_FROZEN_PARENT}^{commit}"
+          test "$(git merge-base HEAD "${QG9V3_FROZEN_PARENT}")" = "${QG9V3_FROZEN_PARENT}"
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install ORION and harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Compile theorem instruments
+        run: |
+          python -m py_compile \
+            research/extensions/orion-qg/qg9_support3_relabel_exchange.py \
+            development/orion-qg-regime-geometry/qg9_support3_generic_verify.py \
+            development/orion-qg-regime-geometry/qg9_support3_native_verify.py \
+            development/orion-qg-regime-geometry/run_qg9_support3_dual_harness.py
+      - name: Execute support-3 theorem through both ORION instruments
+        run: |
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg9_support3_dual_harness.py | tee artifacts/orion-qg-qg9-support3-summary.json
+      - name: Deterministic theorem replay
+        run: |
+          python research/extensions/orion-qg/qg9_support3_relabel_exchange.py --output artifacts/orion-qg-qg9-support3-replay.json > artifacts/orion-qg-qg9-support3-replay.log
+          cmp artifacts/orion-qg-qg9-support3-relabel-exchange.json artifacts/orion-qg-qg9-support3-replay.json
+      - name: Enforce theorem or honest counterexample
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg9-support3-relabel-exchange.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg9-support3-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg9-support3-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg9-support3-dual-harness.json').read_text())
+          pos='QG9_RANK2_ALL_N_SUPPORT3_SUFFICIENCY_MACHINE_CHECKED'
+          assert d['terminal'] in {pos,'QG9_SUPPORT4_RELABEL_EXCHANGE_COUNTEREXAMPLE_FOUND','QG9_GENERIC_NATIVE_DISAGREEMENT'}
+          assert a['support2_claim'] is False and a['tightness_claim'] is False
+          assert d['support2_authority'] is False and d['tightness_authority'] is False
+          if d['terminal']==pos:
+              assert all(a['gates'].values()) and all(a['proof_audit'].values())
+              assert a['support_bound']==3
+              assert a['support4_parent_survivors']['unsafe_type_cases']==0
+              assert a['support4_parent_survivors']['action_profile_type_cases']>0
+              assert a['support3_boundary_control']['unsafe_type_cases']>0
+              assert g['decision']=='ACCEPT' and all(g['checks'].values())
+              assert n['decision']=='ACCEPT_SUPPORT3' and all(n['checks'].values())
+              assert d['both_accept'] is True
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg9-support3-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg9-support3-relabel-exchange.json
+            artifacts/orion-qg-qg9-support3-generic-verification.json
+            artifacts/orion-qg-qg9-support3-native-verification.json
+            artifacts/orion-qg-qg9-support3-dual-harness.json
+            artifacts/orion-qg-qg9-support3-summary.json
+            artifacts/orion-qg-qg9-support3-replay.json
+            artifacts/orion-qg-qg9-support3-replay.log
+            .orion-qg-qg9-support3-generic/.orion-harness/**
+            .orion-qg-qg9-support3-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error

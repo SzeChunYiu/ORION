@@ -1,18 +1,18 @@
 {
-  "blocker_sites": 524,
+  "blocker_sites": 533,
   "classification": {
     "INSUFFICIENT_EVIDENCE": 14,
     "MISSING_ACCESS": 5,
     "MISSING_CUSTODY": 35,
-    "MISSING_DECLARATION": 76,
+    "MISSING_DECLARATION": 78,
     "MISSING_IDENTITY": 29,
     "UNAVAILABLE_PROVIDER": 12,
-    "UNCLASSIFIED": 353
+    "UNCLASSIFIED": 360
   },
   "closes_gate": null,
   "grants_authority": "NONE",
   "issue": 322,
-  "observing_sites": 52,
+  "observing_sites": 53,
   "schema_version": "orion.cannot-check-inventory.v2",
   "sites": [
     {
@@ -4092,6 +4092,72 @@
     },
     {
       "category": "MISSING_DECLARATION",
+      "context": "measure_decision_constraint",
+      "file": "programme/decided_premises.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 362,
+      "missing_obligation": "cases must be present at this guard",
+      "reasons": [
+        "enumerates no case, so",
+        "was neither decided nor supplied; there is nothing to read a verdict from"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": "cases"
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "measure_decision_constraint",
+      "file": "programme/decided_premises.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 383,
+      "missing_obligation": null,
+      "reasons": [
+        "rejects the baseline rule for",
+        ", which is the behaviour the shipped artifact ran; repair the replay before reading any verdict from it"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_DECLARATION",
+      "context": "measure_decision_constraint",
+      "file": "programme/decided_premises.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 422,
+      "missing_obligation": "modelled must be present at this guard",
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": "modelled"
+    },
+    {
+      "category": "NOT_A_BLOCKER",
+      "context": "decision_outcome",
+      "file": "programme/decided_premises.py",
+      "has_reason": false,
+      "kind": "BRANCH",
+      "lineno": 561,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "OBSERVES",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "decision_outcome",
+      "file": "programme/decided_premises.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 562,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_DECLARATION",
       "context": "assess_guard",
       "file": "programme/guard_exercise.py",
       "has_reason": true,
@@ -7783,6 +7849,90 @@
     },
     {
       "category": "UNCLASSIFIED",
+      "context": "transport_replay.replay",
+      "file": "study/p7/closure_premises.py",
+      "has_reason": false,
+      "kind": "OTHER_STATEMENT",
+      "lineno": 184,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "",
+      "file": "study/p7/closure_premises.py",
+      "has_reason": true,
+      "kind": "ASSIGN",
+      "lineno": 242,
+      "missing_obligation": null,
+      "reasons": [
+        "incomplete_always_reopens",
+        "C4's boundary: an incomplete but non-ambiguous witness is CANNOT_CHECK, not a refutation. This is the V1 error the V2 core says it repaired",
+        "incomplete_always_cannot_check",
+        "C4's ambiguous branch: an ambiguous incomplete witness must reopen",
+        "closure_always_transports",
+        "the support-transport criterion itself: closure would survive any reframe",
+        "five_of_six_coordinates_suffice",
+        "completeness of the witness: dropping excludes_new_defeater would let a reframe that admits a new defeater carry closure",
+        "TRANSFER_CLOSURE",
+        "REOPEN",
+        "target_ambiguous_if_missing"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "",
+      "file": "study/p7/closure_premises.py",
+      "has_reason": true,
+      "kind": "ASSIGN",
+      "lineno": 258,
+      "missing_obligation": null,
+      "reasons": [
+        "incomplete_always_reopens",
+        "C4's boundary: an incomplete but non-ambiguous witness is CANNOT_CHECK, not a refutation. This is the V1 error the V2 core says it repaired",
+        "incomplete_always_cannot_check",
+        "C4's ambiguous branch: an ambiguous incomplete witness must reopen",
+        "closure_always_transports",
+        "the support-transport criterion itself: closure would survive any reframe",
+        "five_of_six_coordinates_suffice",
+        "completeness of the witness: dropping excludes_new_defeater would let a reframe that admits a new defeater carry closure",
+        "TRANSFER_CLOSURE",
+        "REOPEN",
+        "target_ambiguous_if_missing"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "transport_check.accepts",
+      "file": "study/p7/closure_premises.py",
+      "has_reason": false,
+      "kind": "OTHER_STATEMENT",
+      "lineno": 275,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "mechanism_verdict",
+      "file": "study/p8/authority_terminals.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 273,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
       "context": "evaluate_incremental_decision",
       "file": "study/v2_adoption/validate.py",
       "has_reason": true,
@@ -8364,9 +8514,9 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "9e48fe8f0a42531e31b275612fa39efb6356cf67",
-  "total_sites": 576,
+  "subject_commit": "9cad35367def8749f0118afa54dc44a3a3b12e60",
+  "total_sites": 586,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
-  "with_derived_obligation": 94,
-  "with_reason": 243
+  "with_derived_obligation": 96,
+  "with_reason": 247
 }

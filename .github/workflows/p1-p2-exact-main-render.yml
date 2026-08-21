@@ -102,10 +102,10 @@ jobs:
           export SOURCE_DATE_EPOCH="$P1_SOURCE_DATE_EPOCH"
           export FORCE_SOURCE_DATE=1
           cd subject/papers/paper-01-recursive-epistemic-reconstruction/manuscript
-          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          pdflatex -recorder -interaction=nonstopmode -halt-on-error main.tex
           bibtex main
-          pdflatex -interaction=nonstopmode -halt-on-error main.tex
-          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          pdflatex -recorder -interaction=nonstopmode -halt-on-error main.tex
+          pdflatex -recorder -interaction=nonstopmode -halt-on-error main.tex
           if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log; then
             echo 'P1 exact render contains undefined citations or references' >&2
             grep -E 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log >&2
@@ -113,10 +113,10 @@ jobs:
           fi
           first_sha="$(sha256sum main.pdf | awk '{print $1}')"
           latexmk -C main.tex >/dev/null
-          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          pdflatex -recorder -interaction=nonstopmode -halt-on-error main.tex
           bibtex main
-          pdflatex -interaction=nonstopmode -halt-on-error main.tex
-          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          pdflatex -recorder -interaction=nonstopmode -halt-on-error main.tex
+          pdflatex -recorder -interaction=nonstopmode -halt-on-error main.tex
           if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log; then
             echo 'P1 reproducibility render contains undefined citations or references' >&2
             exit 1
@@ -129,6 +129,7 @@ jobs:
           mkdir -p "$GITHUB_WORKSPACE/out/p1/pages"
           cp main.pdf "$GITHUB_WORKSPACE/out/p1/manuscript.pdf"
           cp main.log "$GITHUB_WORKSPACE/out/p1/main.log"
+          cp main.fls "$GITHUB_WORKSPACE/out/p1/main.fls"
           pdfinfo main.pdf > "$GITHUB_WORKSPACE/out/p1/pdfinfo.txt"
           sha256sum main.pdf > "$GITHUB_WORKSPACE/out/p1/manuscript.pdf.sha256"
           printf '%s\n' "$SOURCE_DATE_EPOCH" > "$GITHUB_WORKSPACE/out/p1/source_date_epoch.txt"
@@ -140,7 +141,7 @@ jobs:
           export SOURCE_DATE_EPOCH="$P2_SOURCE_DATE_EPOCH"
           export FORCE_SOURCE_DATE=1
           cd subject/papers/paper-02-open-world-scientific-discovery/manuscript
-          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          latexmk -recorder -pdf -interaction=nonstopmode -halt-on-error main.tex
           python ../scripts/check_manuscript_typography.py --log main.log
           if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log; then
             echo 'P2 exact render contains undefined citations or references' >&2
@@ -149,7 +150,7 @@ jobs:
           fi
           first_sha="$(sha256sum main.pdf | awk '{print $1}')"
           latexmk -C main.tex >/dev/null
-          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          latexmk -recorder -pdf -interaction=nonstopmode -halt-on-error main.tex
           python ../scripts/check_manuscript_typography.py --log main.log
           if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log; then
             echo 'P2 reproducibility render contains undefined citations or references' >&2
@@ -163,28 +164,107 @@ jobs:
           mkdir -p "$GITHUB_WORKSPACE/out/p2/pages"
           cp main.pdf "$GITHUB_WORKSPACE/out/p2/manuscript.pdf"
           cp main.log "$GITHUB_WORKSPACE/out/p2/main.log"
+          cp main.fls "$GITHUB_WORKSPACE/out/p2/main.fls"
           pdfinfo main.pdf > "$GITHUB_WORKSPACE/out/p2/pdfinfo.txt"
           sha256sum main.pdf > "$GITHUB_WORKSPACE/out/p2/manuscript.pdf.sha256"
           printf '%s\n' "$SOURCE_DATE_EPOCH" > "$GITHUB_WORKSPACE/out/p2/source_date_epoch.txt"
           pdftoppm -png -r 180 main.pdf "$GITHUB_WORKSPACE/out/p2/pages/page" >/dev/null
-      - name: Bind render subject
+      - name: Bind render subject and tracked input closure
         shell: bash
         run: |
           set -euo pipefail
           python - <<'PY'
           import hashlib, json, subprocess
           from pathlib import Path
-          subject = Path('subject')
+
+          subject = Path('subject').resolve()
           out = Path('out')
-          revision = subprocess.check_output(['git', '-C', str(subject), 'rev-parse', 'HEAD'], text=True).strip()
+          revision = subprocess.check_output(
+              ['git', '-C', str(subject), 'rev-parse', 'HEAD'], text=True
+          ).strip()
+          tracked = set(
+              subprocess.check_output(['git', '-C', str(subject), 'ls-files', '-z'])
+              .decode('utf-8')
+              .split('\0')
+          )
+          tracked.discard('')
+
+          def committed_bytes(relpath: str) -> bytes:
+              return subprocess.check_output(
+                  ['git', '-C', str(subject), 'show', f'HEAD:{relpath}']
+              )
+
+          def bind_input_closure(manuscript_rel: str, fls_rel: str, output_rel: str):
+              # Conservatively include every tracked file in the manuscript subtree
+              # (covers bibliography and generated source inputs consumed before TeX)
+              # plus every additional tracked repository file that TeX records as an
+              # INPUT (covers figures or other dependencies outside that subtree).
+              prefix = manuscript_rel.rstrip('/') + '/'
+              selected = {p for p in tracked if p.startswith(prefix)}
+              workdir = subject / manuscript_rel
+              for line in (subject / fls_rel).read_text(errors='replace').splitlines():
+                  if not line.startswith('INPUT '):
+                      continue
+                  raw = line[6:].strip()
+                  candidate = Path(raw)
+                  resolved = candidate.resolve() if candidate.is_absolute() else (workdir / candidate).resolve()
+                  try:
+                      rel = resolved.relative_to(subject).as_posix()
+                  except ValueError:
+                      continue
+                  if rel in tracked:
+                      selected.add(rel)
+
+              digest = hashlib.sha256()
+              files = []
+              for rel in sorted(selected):
+                  data = committed_bytes(rel)
+                  file_sha = hashlib.sha256(data).hexdigest()
+                  # Canonical framing prevents path/content concatenation ambiguity.
+                  digest.update(rel.encode('utf-8'))
+                  digest.update(b'\0')
+                  digest.update(str(len(data)).encode('ascii'))
+                  digest.update(b'\0')
+                  digest.update(data)
+                  files.append({'path': rel, 'bytes': len(data), 'sha256': file_sha})
+              record = {
+                  'schema': 'P1P2.RepositoryRenderInputClosure.v1',
+                  'subject_revision': revision,
+                  'manuscript_root': manuscript_rel,
+                  'selection_policy': 'all tracked manuscript-subtree files union tracked TeX recorder INPUT files',
+                  'canonical_digest_policy': 'sha256(sorted(path_utf8 NUL decimal_byte_length NUL committed_blob_bytes))',
+                  'repository_input_closure_sha256': digest.hexdigest(),
+                  'repository_input_count': len(files),
+                  'files': files,
+              }
+              Path(output_rel).write_text(json.dumps(record, indent=2, sort_keys=True) + '\n')
+              return record
+
+          p1 = bind_input_closure(
+              'papers/paper-01-recursive-epistemic-reconstruction/manuscript',
+              'papers/paper-01-recursive-epistemic-reconstruction/manuscript/main.fls',
+              'out/p1/repository-input-closure.json',
+          )
+          p2 = bind_input_closure(
+              'papers/paper-02-open-world-scientific-discovery/manuscript',
+              'papers/paper-02-open-world-scientific-discovery/manuscript/main.fls',
+              'out/p2/repository-input-closure.json',
+          )
+
           receipt = {
-              'schema': 'P1P2.ExactRenderReceipt.v2',
+              'schema': 'P1P2.ExactRenderReceipt.v3',
               'subject_revision': revision,
               'event_name': '${{ github.event_name }}',
               'render_environment_policy': 'ubuntu-24.04 + exact known-green dpkg render-set from workflow run 32496130558',
               'render_toolchain_sha256': hashlib.sha256((out / 'render-toolchain.tsv').read_bytes()).hexdigest(),
-              'p1_source_sha256': hashlib.sha256((subject / 'papers/paper-01-recursive-epistemic-reconstruction/manuscript/main.tex').read_bytes()).hexdigest(),
-              'p2_source_sha256': hashlib.sha256((subject / 'papers/paper-02-open-world-scientific-discovery/manuscript/main.tex').read_bytes()).hexdigest(),
+              # Keep the historical entrypoint hashes, but name them precisely;
+              # authority-bearing source provenance is the repository input closure.
+              'p1_entrypoint_sha256': hashlib.sha256(committed_bytes('papers/paper-01-recursive-epistemic-reconstruction/manuscript/main.tex')).hexdigest(),
+              'p2_entrypoint_sha256': hashlib.sha256(committed_bytes('papers/paper-02-open-world-scientific-discovery/manuscript/main.tex')).hexdigest(),
+              'p1_repository_input_closure_sha256': p1['repository_input_closure_sha256'],
+              'p2_repository_input_closure_sha256': p2['repository_input_closure_sha256'],
+              'p1_repository_input_count': p1['repository_input_count'],
+              'p2_repository_input_count': p2['repository_input_count'],
               'p1_source_date_epoch': int((out / 'p1/source_date_epoch.txt').read_text().strip()),
               'p2_source_date_epoch': int((out / 'p2/source_date_epoch.txt').read_text().strip()),
               'p1_pdf_sha256': hashlib.sha256((out / 'p1/manuscript.pdf').read_bytes()).hexdigest(),
