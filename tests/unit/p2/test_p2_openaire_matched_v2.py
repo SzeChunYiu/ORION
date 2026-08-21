@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import importlib.util
 import json
 import sys
@@ -43,19 +44,30 @@ def test_crosswalk_v2_uses_repeated_pid_parameters() -> None:
 def _freeze() -> dict:
     return {
         "transport_repair_evidence": {
-            "probe_dois": ["10.5281/zenodo.8217359", "10.1038/s41586-023-06221-2"]
+            "pre_benchmark_probe_required": True,
+            "probe_gold_access": "NONE",
+            "probe_dois": ["10.5281/zenodo.8217359", "10.1038/s41586-023-06221-2"],
         }
     }
 
 
 def test_transport_probe_is_bound_and_fail_closed(tmp_path: Path) -> None:
     path = tmp_path / "probe.json"
+    dois = _freeze()["transport_repair_evidence"]["probe_dois"]
+    url = runner.build_openaire_crosswalk_url(
+        dois, page_size=runner.TRANSPORT_PROBE_PAGE_SIZE
+    )
     good = {
+        "schema_version": runner.PROBE_SCHEMA,
         "terminal": runner.PROBE_TERMINAL,
         "http_status": 200,
         "encoding": "repeated_pid_parameters",
-        "dois": _freeze()["transport_repair_evidence"]["probe_dois"],
+        "dois": dois,
+        "url_sha256": hashlib.sha256(url.encode()).hexdigest(),
         "response_sha256": "a" * 64,
+        "result_count": 2,
+        "benchmark_gold_accessed": False,
+        "promotion_authorized": False,
     }
     path.write_text(json.dumps(good), encoding="utf-8")
     assert runner.validate_transport_probe(path, _freeze())["terminal"] == runner.PROBE_TERMINAL
