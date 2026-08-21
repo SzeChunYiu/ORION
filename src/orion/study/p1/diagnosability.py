@@ -59,6 +59,7 @@ from __future__ import annotations
 
 import hashlib
 import math
+import sys
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from enum import Enum
@@ -84,6 +85,15 @@ PRECISION = 6
 # the model and it is the reason the decision rules below need no thresholds:
 # evidence must outweigh one unit of ignorance, and that unit is defined here.
 PRIOR_TOTAL_MASS = 1.0
+
+# The decisive boundary ``w = 1 - 2/n`` is generally not representable in
+# binary floating point, so a posterior computed exactly at the derived floor
+# can land a few ulp above one half. Confidence must come from evidence, not
+# from rounding error, so the majority comparison absorbs float representation
+# noise. The guard is orders of magnitude below any real evidence increment
+# (the smallest increment the algebra distinguishes at ``PRECISION`` moves the
+# posterior by roughly ``10**-PRECISION / 4``).
+_HALF_REPRESENTATION_GUARD = 64.0 * sys.float_info.epsilon
 
 # Canonical ordering for every serialisation and every summation. Declaration
 # order, not alphabetical, so the payload reads in the taxonomy's own order.
@@ -646,7 +656,7 @@ def assess_diagnosability(
     # The derived confidence rule: the diagnosed class must be more probable
     # than every alternative combined. No threshold is chosen; this is a
     # statement about the posterior.
-    if top_mass <= 0.5:
+    if top_mass <= 0.5 + _HALF_REPRESENTATION_GUARD:
         return DiagnosabilityReport(
             state=DiagnosabilityState.LOW_CONFIDENCE,
             posterior=posterior,
