@@ -45,7 +45,7 @@ STALE_TERMINAL = "**Current terminal:** `CANNOT_CHECK`"
 
 
 def _readiness_files(paper: str) -> list[Path]:
-    return sorted((CANDIDATES / PAPERS[paper]).glob("JOURNAL_READINESS*.md"))
+    return sorted((ROOT / "papers" / PAPERS[paper]).glob("JOURNAL_READINESS*.md"))
 
 
 @pytest.mark.parametrize("paper", sorted(PAPERS))

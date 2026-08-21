@@ -24,7 +24,7 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[3]
-LANE = ROOT / "papers" / "candidates" / "orion-learning-machine"
+LANE = ROOT / "papers" / "orion-learning-machine"
 MANIFEST = LANE / "PUBLICATION_MANIFEST_SHA256.txt"
 HISTORICAL_MANIFEST = LANE / "SCRIPT_MANIFEST_SHA256.txt"
 RESULTS = LANE / "results"
@@ -82,7 +82,7 @@ def test_phase1_false_commit_is_explicitly_not_measured() -> None:
     ).read_text(encoding="utf-8")
     result = PHASE1_V2.read_text(encoding="utf-8")
     readme = (
-        ROOT / "papers" / "candidates" / "paper-09-executable-research-core" / "README.md"
+        ROOT / "papers" / "paper-09-executable-research-core" / "README.md"
     ).read_text(encoding="utf-8")
 
     assert "'false_commit':0.0" in delivered, "delivered defect identity changed"
@@ -205,5 +205,5 @@ def test_current_closure_is_runnable_and_explicitly_bounded() -> None:
     ),
 )
 def test_both_candidates_state_their_limits(paper: str, must_contain: str) -> None:
-    readme = ROOT / "papers" / "candidates" / paper / "README.md"
+    readme = ROOT / "papers" / paper / "README.md"
     assert must_contain in readme.read_text(encoding="utf-8")

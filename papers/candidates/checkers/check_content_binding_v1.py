@@ -45,6 +45,7 @@ SCHEMA_VERSION = "orion.candidate-content-binding.v1"
 ISSUE = 347
 
 CANDIDATES_DIR = Path("papers/candidates")
+PAPERS_DIR = Path("papers")
 MANIFEST_NAME = "CONTENT_MANIFEST_V1.json"
 SUMS_NAME = "SHA256SUMS"
 
@@ -58,9 +59,9 @@ PACKAGE_DECLARATION = CANDIDATES_DIR / "CURRENT_PACKAGE_V2_1.md"
 #: Directory names are long enough that inlining them breaks the 100-column
 #: limit at almost every use site.
 CANDIDATE_DIRS = {
-    "P6": CANDIDATES_DIR / "paper-06-formal-epistemic-structures-and-mechanics",
-    "P7": CANDIDATES_DIR / "paper-07-epistemic-navigation-open-worlds",
-    "P8": CANDIDATES_DIR / "paper-08-epistemic-authority-autonomous-science",
+    "P6": PAPERS_DIR / "paper-06-formal-epistemic-structures-and-mechanics",
+    "P7": PAPERS_DIR / "paper-07-epistemic-navigation-open-worlds",
+    "P8": PAPERS_DIR / "paper-08-epistemic-authority-autonomous-science",
 }
 
 #: Reproduction-subject files that live outside the candidate directory. Every
@@ -274,13 +275,18 @@ def parse_package_declaration(repo_root: Path) -> dict[str, dict[str, str]]:
             continue
         relative = entry.group("path")
         # The document writes paths relative to papers/candidates/, except the CI
-        # wrappers under tests/. A path that resolves neither way is reported in
+        # wrappers under tests/. The paper packages themselves now live directly
+        # under papers/, so a declaration entry that no longer resolves under
+        # papers/candidates/ is retried there before falling back to the
+        # repo-relative form. A path that resolves no way at all is reported in
         # the declaration's own convention so the gap message names what a reader
         # would go looking for.
-        candidate = CANDIDATES_DIR / relative
-        resolved = candidate
-        if not (repo_root / candidate).is_file() and (repo_root / relative).is_file():
-            resolved = Path(relative)
+        resolved = CANDIDATES_DIR / relative
+        if not (repo_root / resolved).is_file():
+            for alternative in (PAPERS_DIR / relative, Path(relative)):
+                if (repo_root / alternative).is_file():
+                    resolved = alternative
+                    break
         roles[section][resolved.as_posix()] = entry.group("role").strip()
     return roles
 
