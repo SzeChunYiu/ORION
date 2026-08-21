@@ -562,31 +562,240 @@ def census_dispatch(t4b: dict[str, Any], p1: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def t4b_failing_cells() -> dict[str, Any]:
+    """Re-derive the QG-7c T4b failing cells (same frozen construction).
+
+    Returns the failing (core, env) coordinates per case so that every
+    censused pattern can be mapped into a P1 (geometry, state) and dispatched
+    individually.  The reproduced census is gated against the committed one.
+    """
+    LM = qg7c.MY_LM
+    F3E = qg7c.F3E
+    F3T = qg7c.F3T
+    t4 = np.arange(4, dtype=np.int64)
+    t0b = np.repeat(t4, 16)
+    t1b = np.tile(np.repeat(t4, 4), 4)
+    t21b = np.tile(t4, 16)
+    t0a, t1a, t21a = t0b, t1b, t21b
+    cells: dict[tuple, np.ndarray] = {}
+    census: dict[str, int] = {}
+    total = 0
+    for case2 in ("PA", "PP"):
+        for ja in (0, 1):
+            for R_b in (1, 2):
+                for R_a in (1, 2):
+                    w = lmul(R_a, Z)
+                    for pl in (1, 2):
+                        o0b = LM[t0b, R_b]
+                        o1b_pin = LM[t21b, pl]
+                        o0a = LM[t0a, R_a]
+                        o1a_our = LM[t1a, w]
+                        oldB = (F3E[o0b][:, :, None]
+                                + F3T[t1b, o1b_pin][:, None, :])
+                        oldA = (F3E[o0a][:, :, None]
+                                + F3T[o1a_our, t21a][:, None, :])
+                        best = np.full((64, 64, 64, 64), 99, dtype=np.int16)
+
+                        def group(bparts, aparts, struct):
+                            fb = np.stack([
+                                F3E[n0][:, :, None] + F3T[n1, n1p][:, None, :]
+                                - oldB for n0, n1, n1p in bparts]) \
+                                .min(axis=0).reshape(64, 64)
+                            fa = np.stack([
+                                F3E[n0][:, :, None] + F3T[n1, n1p][:, None, :]
+                                - oldA for n0, n1, n1p in aparts]) \
+                                .min(axis=0).reshape(64, 64)
+                            np.minimum(best,
+                                       fb[:, :, None, None]
+                                       + fa[None, None, :, :]
+                                       + np.int16(struct), out=best)
+
+                        for sw in (0, 1):
+                            s0b, s1b = (t0b, t1b) if sw == 0 else (t1b, t0b)
+                            s0a, s1a = (t0a, t1a) if sw == 0 else (t1a, t0a)
+                            group([(s0b, s1b, LM[t21b, pp]) for pp in (1, 2)],
+                                  [(LM[s0a, Z], LM[s1a, c], t21a)
+                                   for c in (1, 2)], -2)
+                            group([(LM[s0b, Z], LM[s1b, c], LM[t21b, pp])
+                                   for c in (1, 2) for pp in (1, 2)],
+                                  [(s0a, s1a, t21a)], -2 - 2 * ja)
+                            if ja:
+                                group([(s0b, LM[s1b, le], LM[t21b, pp])
+                                       for le in (1, 2) for pp in (1, 2)],
+                                      [(LM[s0a, m0], LM[s1a, m1], t21a)
+                                       for m0 in (1, 2, 3)
+                                       for m1 in (1, 2, 3) if m1 != m0], -2)
+                            if case2 == "PA":
+                                bparts = [(LM[s0b, m0], LM[s1b, m1],
+                                           LM[t21b, m12])
+                                          for m0 in (1, 2, 3)
+                                          for m1 in (1, 2, 3) if m1 != m0
+                                          for m12 in (1, 2)]
+                                struct = 0
+                            else:
+                                bparts = [(LM[s0b, m0], LM[s1b, m1], t21b)
+                                          for m0 in (1, 2, 3)
+                                          for m1 in (1, 2, 3) if m1 != m0]
+                                struct = -2
+                            group(bparts,
+                                  [(s0a, LM[s1a, le], LM[t21a, l2])
+                                   for le in (1, 2) for l2 in (1, 2)], struct)
+                        bad = np.argwhere(best > 0)
+                        if bad.size:
+                            d = best[bad[:, 0], bad[:, 1], bad[:, 2], bad[:, 3]]
+                            cells[(case2, ja, R_b, R_a, pl)] = np.concatenate(
+                                [bad, d[:, None].astype(np.int64)], axis=1)
+                            total += int(bad.shape[0])
+                            for dv in np.unique(d):
+                                k = f"{case2}_ja{ja}_delta{int(dv)}"
+                                census[k] = census.get(k, 0) + int(
+                                    (d == dv).sum())
+    return {"cells": cells, "census": census, "failures_total": total,
+            "census_matches_committed": census == COMMITTED_T4B_CENSUS
+            and total == 135604}
+
+
+def census_state_dispatch(p1: dict[str, Any]) -> dict[str, Any]:
+    """Map every censused T4b pattern to its P1 (geometry, state) and dispatch."""
+    derived = t4b_failing_cells()
+    residue_sets: dict[str, set] = {}
+    residue_complete = True
+    for g in p1["per_geometry"]:
+        if g["residue"]:
+            key = "+".join(sorted(g["geometry"]))
+            rows = g.get("residue_rows_verbatim", [])
+            if len(rows) < g["residue"]:
+                residue_complete = False
+            residue_sets[key] = {(r["state_b"], r["state_a"]) for r in rows}
+    roles = build_roles()
+    LM = qg7c.MY_LM
+    TAU = {1: np.array([0, 1, 2, 3], dtype=np.int64),
+           2: np.array([0, 2, 1, 3], dtype=np.int64)}
+    dispatched = 0
+    open_patterns = 0
+    open_rows: list[dict] = []
+    per_key: dict[str, dict[str, int]] = {}
+    for (case2, ja, R_b, R_a, pl), arr in sorted(derived["cells"].items()):
+        cb, eb, ca, ea, dv = (arr[:, k] for k in range(5))
+        t0b, t1b, t21b = cb // 16, (cb // 4) % 4, cb % 4
+        u0b, v0b, e1b = (eb // 4) // 4, (eb // 4) % 4, eb % 4
+        t0a, t1a, t21a = ca // 16, (ca // 4) % 4, ca % 4
+        u0a, v0a, e1a = (ea // 4) // 4, (ea // 4) % 4, ea % 4
+        tb, ta = TAU[R_b], TAU[R_a]
+        pin_raw_0b = LM[u0b, Z] if case2 == "PA" else u0b
+        pin_name = ("ANCH_B_%d" if case2 == "PA" else "BORROW_B_%d") % int(
+            tb[pl])
+        bad_mask = np.zeros(arr.shape[0], dtype=bool)
+        for role in roles:
+            l0b, l1b, l0a, l1a = role["loc"]
+            third_raw_0b = LM[v0b, l0b] if l0b else v0b
+            third_raw_1b = LM[e1b, l1b] if l1b else e1b
+            third_raw_0a = LM[v0a, l0a] if l0a else v0a
+            third_raw_1a = LM[e1a, l1a] if l1a else e1a
+            sb = (tb[t0b] << 10) | (tb[t1b] << 8) | (tb[pin_raw_0b] << 6) \
+                | (tb[t21b] << 4) | (tb[third_raw_0b] << 2) | tb[third_raw_1b]
+            sa = (ta[t0a] << 10) | (ta[t1a] << 8) | (ta[u0a] << 6) \
+                | (ta[t21a] << 4) | (ta[third_raw_0a] << 2) | ta[third_raw_1a]
+            key = "+".join(sorted((pin_name, role["name"])))
+            rset = residue_sets.get(key)
+            if not rset:
+                continue
+            for k in np.nonzero(~bad_mask)[0]:
+                if (int(sb[k]), int(sa[k])) in rset:
+                    bad_mask[k] = True
+                    if len(open_rows) < P1_RESIDUE_VERBATIM_CAP:
+                        open_rows.append({
+                            "case": case2, "ja": int(ja), "R_b": int(R_b),
+                            "R_a": int(R_a), "p": int(pl),
+                            "geometry": key, "state_b": int(sb[k]),
+                            "state_a": int(sa[k]), "t4b_delta": int(dv[k])})
+        nbad = int(bad_mask.sum())
+        dispatched += int(arr.shape[0]) - nbad
+        open_patterns += nbad
+        for d in (1, 2):
+            m = int(((dv == d) & ~bad_mask).sum())
+            if m:
+                kk = f"{case2}_ja{ja}_delta{d}"
+                per_key.setdefault(kk, {"closed": 0, "open": 0})
+                per_key[kk]["closed"] += m
+            mo = int(((dv == d) & bad_mask).sum())
+            if mo:
+                kk = f"{case2}_ja{ja}_delta{d}"
+                per_key.setdefault(kk, {"closed": 0, "open": 0})
+                per_key[kk]["open"] += mo
+    return {
+        "derived_census": derived["census"],
+        "derived_failures_total": derived["failures_total"],
+        "census_matches_committed": bool(derived["census_matches_committed"]),
+        "residue_serialization_complete": bool(residue_complete),
+        "third_block_roles_scanned": len(roles),
+        "per_key_dispatch": {k: v for k, v in sorted(per_key.items())},
+        "patterns_dispatched_closed": dispatched,
+        "patterns_open": open_patterns,
+        "open_rows_verbatim": open_rows,
+        "dispatch_sums_to_census": dispatched + open_patterns == 135604,
+        "closed_by_attack": "A2_domination_with_A1_joint_exchange_and_MG_mirror",
+        "holds": bool(derived["census_matches_committed"] and residue_complete
+                      and open_patterns == 0
+                      and dispatched + open_patterns == 135604),
+    }
+
+
 def explicit_verbatim_dispatch(t4b: dict[str, Any],
                                p1: dict[str, Any]) -> dict[str, Any]:
-    """Read P1's decision at the exact coordinates of every verbatim row."""
-    by_name = {"+".join(sorted(g["geometry"])): g for g in p1["per_geometry"]}
+    """State-level P1 verdict at the exact coordinates of every verbatim row."""
+    residue_sets: dict[str, set] = {}
+    for g in p1["per_geometry"]:
+        if g["residue"]:
+            residue_sets["+".join(sorted(g["geometry"]))] = {
+                (r["state_b"], r["state_a"])
+                for r in g.get("residue_rows_verbatim", [])}
+    roles = build_roles()
+    LM = qg7c.MY_LM
+    TAU = {1: (0, 1, 2, 3), 2: (0, 2, 1, 3)}
     rows = []
     worst = -99
     for i, row in enumerate(t4b["failing_verbatim_capped"]):
         case2, ja = row["case"], int(row["ja"])
-        classes = _pattern_geometry_class(case2, ja)
+        R_b, R_a, pl = int(row["R_b"]), int(row["R_a"]), int(row["p"])
+        cb, eb = int(row["coreB"]), int(row["envB"])
+        ca, ea = int(row["coreA"]), int(row["envA"])
+        t0b, t1b, t21b = cb // 16, (cb // 4) % 4, cb % 4
+        u0b, v0b, e1b = (eb // 4) // 4, (eb // 4) % 4, eb % 4
+        t0a, t1a, t21a = ca // 16, (ca // 4) % 4, ca % 4
+        u0a, v0a, e1a = (ea // 4) // 4, (ea // 4) % 4, ea % 4
+        tb, ta = TAU[R_b], TAU[R_a]
+        pin_raw_0b = int(LM[u0b, Z]) if case2 == "PA" else u0b
+        pin_name = ("ANCH_B_%d" if case2 == "PA" else "BORROW_B_%d") % tb[pl]
+        coords = []
         row_ok = True
-        for cls in classes:
-            g = by_name.get(cls)
-            if g is None or not g["closed"]:
+        for role in roles:
+            l0b, l1b, l0a, l1a = role["loc"]
+            sb = code6([tb[t0b], tb[t1b], tb[pin_raw_0b], tb[t21b],
+                        tb[int(LM[v0b, l0b]) if l0b else v0b],
+                        tb[int(LM[e1b, l1b]) if l1b else e1b]])
+            sa = code6([ta[t0a], ta[t1a], ta[u0a], ta[t21a],
+                        ta[int(LM[v0a, l0a]) if l0a else v0a],
+                        ta[int(LM[e1a, l1a]) if l1a else e1a]])
+            key = "+".join(sorted((pin_name, role["name"])))
+            hit = (sb, sa) in residue_sets.get(key, ())
+            if hit:
                 row_ok = False
+                coords.append({"geometry": key, "state_b": sb, "state_a": sa,
+                               "in_p1_residue": True})
         rows.append({
             "index": i,
             "census_row": row,
-            "p1_geometry_classes": classes,
-            "p1_classes_all_closed": bool(row_ok),
+            "p1_pinner_role": pin_name,
+            "p1_geometries_scanned": len(roles),
+            "p1_residue_hits": coords,
+            "closed_by_p1": bool(row_ok),
         })
         worst = max(worst, int(row["delta"]))
     return {
         "rows": rows,
         "rows_checked": len(rows),
-        "all_dispatched": all(r["p1_classes_all_closed"] for r in rows),
+        "all_dispatched": all(r["closed_by_p1"] for r in rows),
         "t4b_worst_delta_in_verbatim": worst,
     }
 
@@ -930,6 +1139,7 @@ def main() -> dict[str, Any]:
     p1 = clock("p1", p1_lemma)
     p2 = clock("p2", lambda: census_dispatch(t4b, p1))
     p2v = clock("p2_verbatim", lambda: explicit_verbatim_dispatch(t4b, p1))
+    p2s = clock("p2_state_dispatch", lambda: census_state_dispatch(p1))
     p3 = clock("p3", lambda: hostile_arm(t4b, p1))
 
     inherited = {
@@ -962,7 +1172,9 @@ def main() -> dict[str, Any]:
             all(g["state_domain"] == 16777216 for g in p1["per_geometry"])
             and p1["total_states"] == p1["geometry_count"] * 16777216),
         "G7_census_dispatch": bool(p2["census_reproduced_verbatim"]
-                                   and p2["dispatch_sums_to_census"]),
+                                   and p2["dispatch_sums_to_census"]
+                                   and p2s["census_matches_committed"]
+                                   and p2s["dispatch_sums_to_census"]),
         "G8_hostile_refereed": bool(
             not hostile["sandwich_failures"]
             and not hostile["dxx_witness_failures"]
@@ -988,7 +1200,7 @@ def main() -> dict[str, Any]:
         authority = AUTHORITY["CANNOT"]
         responsibility = ("RESP:REFEREE_OR_INTEGRITY_FAILURE__EVERYTHING_"
                           "SERIALIZED_VERBATIM")
-    elif p1["holds"] and p2["holds"] and p2v["all_dispatched"]:
+    elif p1["holds"] and p2s["holds"] and p2v["all_dispatched"]:
         terminal = "QG7D_ALL_N_CLASSIFICATION_THEOREM_COMPLETE"
         authority = AUTHORITY["THEOREM"]
         responsibility = ("RESP:COMM_S2_SECTOR_CLOSED_ON_COMPLETE_LOCAL_"
@@ -1110,6 +1322,7 @@ def main() -> dict[str, Any]:
         "inherited_lemmas": inherited,
         "p1_domination_lemma": p1,
         "p2_census_dispatch": p2,
+        "p2_state_level_dispatch": p2s,
         "p2_verbatim_dispatch": p2v,
         "p3_hostile_arm": p3,
         "proof_audit": proof_audit,
