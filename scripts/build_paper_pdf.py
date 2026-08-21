@@ -122,6 +122,10 @@ _TEX_ENTRY_POINTS = ("manuscript/main.tex", "paper/main.tex")
 #: one level down: a partial sweep reported as a sweep.
 _LATEXMK_RESIDUE = (".aux", ".bbl", ".blg", ".fdb_latexmk", ".fls", ".log", ".out", ".toc")
 
+#: The one latexmk failure this script retries. The LaTeX `markdown`
+#: package shells out; without -shell-escape it stops with exactly this.
+_NEEDS_SHELL_ESCAPE = "I can not access the shell"
+
 
 def find_tex_entry(paper_dir: Path) -> Path | None:
     """The paper's LaTeX entry point, or None if it has no tree."""
@@ -141,16 +145,39 @@ def build_with_latexmk(entry: Path) -> Path | None:
     rendering that hides the breakage.
     """
 
-    try:
-        result = subprocess.run(
-            ["latexmk", "-pdf", "-interaction=nonstopmode", "-halt-on-error", entry.name],
-            cwd=entry.parent,
-            capture_output=True,
-            text=True,
-            timeout=900,
+    def _run(shell_escape: bool) -> subprocess.CompletedProcess[str]:
+        command = ["latexmk", "-pdf", "-interaction=nonstopmode", "-halt-on-error"]
+        if shell_escape:
+            command.append("-shell-escape")
+        command.append(entry.name)
+        return subprocess.run(
+            command, cwd=entry.parent, capture_output=True, text=True, timeout=900
         )
+
+    try:
+        result = _run(shell_escape=False)
     except FileNotFoundError:
         return None
+
+    # P11-P14 use the LaTeX `markdown` package, which shells out and fails with
+    # "I can not access the shell" unless -shell-escape is given. That flag lets
+    # a document run arbitrary commands, so it is not on by default and is not
+    # applied to every paper: it is a retry, triggered only by that specific
+    # error, for documents already in this repository. A build that fails for any
+    # other reason is not retried and still raises.
+    # latexmk writes the package error to main.log rather than stdout, so the
+    # trigger reads both. Looking only at stdout meant the retry never fired.
+    log = entry.with_suffix(".log")
+    log_text = log.read_text(errors="replace") if log.is_file() else ""
+    if result.returncode != 0 and _NEEDS_SHELL_ESCAPE in (result.stdout + log_text):
+        # The failed first pass leaves a .fdb_latexmk recording the error, and
+        # latexmk then answers the retry with "All targets are up-to-date" and
+        # re-reports the previous failure. Its state has to go before the retry
+        # means anything.
+        for residue in _LATEXMK_RESIDUE:
+            entry.with_suffix(residue).unlink(missing_ok=True)
+        result = _run(shell_escape=True)
+
     if result.returncode != 0:
         tail = "\n".join(result.stdout.splitlines()[-25:])
         raise RuntimeError(f"latexmk failed for {entry}:\n{tail}")

@@ -3,6 +3,19 @@
 \usepackage{amsmath,amssymb,booktabs}
 \usepackage[hidelinks]{hyperref}
 \usepackage[pipeTables]{markdown}
+% The chapter Markdown uses mathematical Unicode that pdflatex has no default
+% mapping for, so the build stopped on the first one. Declared rather than
+% edited out of the text: the characters are the authors' and belong in the
+% prose, and rewriting a paper's content to suit a toolchain is the wrong way
+% round.
+\usepackage{newunicodechar}
+\newunicodechar{≤}{\ensuremath{\leq}}
+\newunicodechar{≥}{\ensuremath{\geq}}
+\newunicodechar{−}{\ensuremath{-}}
+\newunicodechar{×}{\ensuremath{\times}}
+\newunicodechar{→}{\ensuremath{\rightarrow}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≠}{\ensuremath{\neq}}
 \title{Responsibility-Carrying State: Auditable Sufficiency, Reopen Contracts, and Safe State Reuse}
 \author{ORION-P13}
 \date{21 August 2026}
