@@ -122,9 +122,15 @@ def transport_evidence_validity(
 
 
 def discover_transport_probe_bundle(manifest_path: Path) -> tuple[Path, Path]:
-    """Find the one archived receipt/raw-response pair near the capture manifest."""
+    """Find the one archived receipt/raw-response pair inside the capture boundary.
+
+    Artifact extraction may place the pair either beside the manifest or one directory
+    above its capture directory. Searching beyond that boundary risks importing a
+    sibling run/test bundle into score-time authority, so wider ancestor fallback is
+    deliberately forbidden.
+    """
     checked: set[Path] = set()
-    for root in (manifest_path.parent, *list(manifest_path.parents)[:5]):
+    for root in (manifest_path.parent, manifest_path.parent.parent):
         root = root.resolve()
         if root in checked or not root.exists():
             continue
