@@ -77,6 +77,14 @@ this paper exceeds its receipt's frozen scope.
   characterization of the grammar family — Tag-for-anchor and frame-for-Tag trades — with
   minimal serialized counterexamples for both, and leaves the exact DP as the only family
   member known optimal in general.
+- **R6P weight-2 closure — the map completes**: the support-≤2 donor family D++ equals the
+  unrestricted DP on every verified domain — exhaustive n=1, the full structured n=2 slice
+  (9,261 instances) including all 486 criticals, the 240-instance random panel including
+  all 73, and all 30 chemistry matchings (quadruple tie DP == D++ == D+ == R6L) — with
+  each of the 559 previously violating instances closed by a re-verified witness realizing
+  exactly the characterized weight-2-at-central trade. No third regime exists on any
+  verified domain: the two-mechanism account is sufficient there, and the remaining open
+  object is the all-n composition theorem, now precisely posed.
 
 ## 3. Recursive recovery of the N-lane negatives
 

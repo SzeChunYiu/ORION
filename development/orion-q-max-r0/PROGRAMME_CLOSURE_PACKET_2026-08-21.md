@@ -102,9 +102,28 @@ before outcome with the Tag-repair coupling explicitly declared as the analytic 
   inexpressible in any weight-one-frame family.
 - Chemistry is unchanged: DP == D+ == R6L on all 30 recorded matchings, so weight-one
   donors remain exactly optimal on the frozen subjects.
-- Honest position: exact family closure is doubly refuted; only the exact DP is known
-  optimal in general. Open: an analytic bound on the frame-for-Tag trade, and whether
-  weight-≤2 frames with minimal Tags close the grammar exactly.
+- Honest position after R6O: exact family closure doubly refuted; the two named questions
+  were then executed the same day.
+
+**R6P executed — closure restored at support two on all verified domains.**
+`MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_RESULTS.json`
+(`MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_VERIFIED__FAMILY_CLOSURE_RESTORED_AT_SUPPORT_TWO_ON_
+VERIFIED_DOMAINS__NOT_R6`, all 12 gates true, byte-identical double run):
+
+- D++ (frame Paulis of global support ≤ 2, minimal shared Tag) equals the unrestricted DP
+  on every verified domain: 5/5 R6N panels, exhaustive n=1 (4,096), the FULL exhaustive
+  structured n=2 slice (9,261), the 240-instance random panel, and all 30 chemistry
+  matchings (quadruple tie DP == D++ == D+ == R6L; H4 8/11, N2 9/10).
+- All 559 previously violating instances re-derived, cross-checked against the R6O
+  receipt row-by-row, and closed instance-by-instance with fully re-verified witnesses —
+  each gap explained by the single weight-2-at-central Tag/factor trade. **No third
+  regime exists on any verified domain.**
+- The two-mechanism account (R6N Tag-anchor coupling + R6O weight-2 frame-for-Tag trade)
+  is thereby sufficient on all checked domains. Open: the all-n theorem (whether the
+  dominance inequality composes across qubits to exclude support-≥3 frames analytically);
+  chemistry closure rests on the exact containment pinch DP ≤ D++ ≤ D+ ≤ R6L rather than
+  a direct sweep.
+- [SLOT] R6Q regime predicate: outcome pending.
 
 ### 2.5 N-lane recoveries (issues #674–#677) — ALL EXECUTED 2026-08-21
 
