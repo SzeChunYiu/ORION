@@ -25,6 +25,9 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           path: subject
+          # The reproducible-build epoch is the latest commit that actually
+          # touched each manuscript tree, so path history must not be shallow.
+          fetch-depth: 0
       - name: Freeze source-derived TeX epochs
         shell: bash
         run: |
