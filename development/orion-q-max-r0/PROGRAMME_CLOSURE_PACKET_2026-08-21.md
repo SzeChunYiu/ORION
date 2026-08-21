@@ -1,7 +1,10 @@
 # ORION-Q programme closure packet — 2026-08-21
 
-Status: DRAFT UNDER ASSEMBLY (this session); becomes the closure record when every bound slot
-below carries its receipt.
+Status: **CLOSED 2026-08-21** — every bound slot below carries its committed receipt, and
+every scientific receipt referenced here has been independently replay-verified
+bit-identical in this session (R6I/K/L/M/N/O; all N1–N4 lane receipts per
+`../orion-q-nlane-closure/REPLAY_VERIFICATION_LEDGER.md`; the campaign drive workspace;
+the full-suite JUnit report by digest). Reopen triggers in §3 remain in force.
 Branch: `claude/orion-harness-verification-b17qdj`
 Programme issues: #633 (reopened recovery programme), #679 (MAX), #698 (MAX-R4 endpoint),
 lane issues #674–#677, infrastructure #725, absorbed children #694/#695.
