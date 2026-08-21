@@ -83,7 +83,9 @@
         0,
         1
       ],
-      "task_score": "1 when the evaluator-frozen task is actually closable at the cutoff, the system declares COMPLETE/CLOSED, every required material route is discharged, and the final decision is valid under the frozen rubric; otherwise 0.",
+      "eligible_denominator": "Only evaluator-frozen tasks that are validly closable at the cutoff under the pre-frozen task rule.",
+      "task_score": "Within that closable-task denominator, 1 when the system declares COMPLETE/CLOSED, every required material route is discharged, and the final decision is valid under the frozen rubric; otherwise 0.",
+      "unclosable_tasks": "Retained for route-recall, false-closure, calibration, utility, validity, and audit reporting but do not enter the valid-closure-yield denominator.",
       "purpose": "Prevent a system from satisfying false-closure safety merely by refusing to close answerable tasks."
     },
     "resource_cost": {
@@ -103,6 +105,26 @@
     "time_to_valid_closure": {
       "role": "SECONDARY_REQUIRED_REPORTING",
       "definition": "Charged elapsed task time until the first state that the evaluator independently confirms as validly closed; tasks never validly closed are right-censored at the frozen task budget."
+    },
+    "decision_relevant_evidence_precision": {
+      "role": "SECONDARY_REQUIRED_REPORTING",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "task_score": "Number of unique evidence identities that the system marks or uses as decision-relevant and that the blinded evaluator maps to at least one frozen material route, divided by all unique evidence identities the system marks or uses as decision-relevant. Duplicate manifestations of one evidence identity count once.",
+      "zero_denominator_rule": "If a system uses no evidence as decision-relevant, precision is undefined for that task and must be reported as NA rather than 1.0; route-use recall and utility still score normally."
+    },
+    "unresolved_calibration": {
+      "role": "SECONDARY_REQUIRED_REPORTING",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "required_candidate_output": "p_task_incomplete in [0,1], emitted before evaluator gold by every primary arm through the same frozen output interface.",
+      "gold_target": "1 when the evaluator-frozen cutoff state requires OPEN/INCOMPLETE/CANNOT_CHECK because at least one material obligation remains; 0 when the task is validly closable.",
+      "score": "Brier score at task level; lower is better.",
+      "post_outcome_probability_remapping_forbidden": true
     }
   },
   "primary_effect_and_safety_gates": {
@@ -172,7 +194,7 @@
     "system_caused_request_or_budget_failure": "PERFORMANCE_OUTCOME, not provider invalidity.",
     "common_external_provider_or_tool_invalidity": "May be classified CANNOT_CHECK only by a pre-frozen machine-checkable health/transport rule that is independent of arm performance and applied symmetrically.",
     "minimum_valid_paired_task_fraction_overall": 0.95,
-    "minimum_valid_paired_task_fraction_per_frozen_domain": 0.90,
+    "minimum_valid_paired_task_fraction_per_frozen_domain": 0.9,
     "campaign_below_validity_floor": "P2_U_PRIMARY_CANNOT_CHECK",
     "invalid_task_scientific_scoring": "Do not coerce to miss, success, equality, or zero. Retain the task in the audit denominator and report the invalidity reason; the scientific paired estimand is computed only on task units valid under the pre-frozen rule, subject to the campaign validity floor.",
     "system_specific_provider_failure_rule": "If the provider/tool is healthy by the frozen common-world sentinel but one arm fails because of its own query, parsing, retry, budget, or control policy, score that event under the scientific/task rubric rather than deleting it as provider-invalid.",
@@ -180,7 +202,7 @@
     "post_outcome_invalidity_relabel_forbidden": true
   },
   "required_pre_execution_bindings": [
-    "Final naturalistic task/task-cluster identities, eligibility rules, domains, hidden route graph, source snapshots/evidence identities, and blinded utility rubric hash.",
+    "Final naturalistic task/task-cluster identities, eligibility rules, domains, hidden route graph, source snapshots/evidence identities, blinded utility rubric hash, closable-at-cutoff label rule, and the common output schema including p_task_incomplete.",
     "Prospective power calculation and exact inferential-unit count.",
     "Exact candidate and donor-complete implementations, host/model/checkpoint or API snapshot, retriever/search APIs, source access, retry policy, and total task budgets.",
     "Machine-checkable common provider/tool health and invalidity sentinel rules.",
