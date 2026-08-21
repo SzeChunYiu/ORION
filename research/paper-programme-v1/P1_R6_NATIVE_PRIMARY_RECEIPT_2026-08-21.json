@@ -1,0 +1,89 @@
+{
+  "schema": "P1U.NativePrimaryReceipt.v1",
+  "date": "2026-08-21",
+  "campaign_issue": 723,
+  "parent_issue": 649,
+  "pull_request": 750,
+  "scientific_subject": {
+    "exact_head_sha": "487fb90d867dc214c73a4c143bd1b94f469ed501",
+    "workflow_run_id": 32482591743,
+    "architecture_job_conclusion": "success",
+    "primary_job_id": 96773190673,
+    "primary_job_conclusion": "success",
+    "artifact_id": 9446967549,
+    "artifact_name": "p1-r6-native-primary-487fb90d867dc214c73a4c143bd1b94f469ed501"
+  },
+  "pre_outcome_binding": {
+    "file_sha256": "ab0d6ae753dffc55756919c7bdeda8015e512fb5db8ed5c0e8d6f20eeefc9f39",
+    "head_sha": "487fb90d867dc214c73a4c143bd1b94f469ed501",
+    "protocol_sha256": "68cf19e5fbdc0c03f31abab2bbe728c1ac8c58f3705783331504d43180edd791",
+    "evaluator_sha256": "9c9cf3f800826314352567a989338991efd59f578f4bacc272386def6ae5999a",
+    "native_adapter_sha256": "3333a79e71a80378fdbacd804313e885890d583821a8d9a623897612cdd83f60",
+    "native_core_sha256": "c663a691dac6060e5d54f34fe82aec180480462664316691194196521162c344e",
+    "outcome_seen": false,
+    "promotion_authorized": false
+  },
+  "result": {
+    "file_sha256": "27d9040f96a603fdfdba939d525916ae8da2a34f125855473c7ca3a9f03d2141",
+    "terminal": "P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION",
+    "data_complete": true,
+    "episode_count": 80,
+    "adverse_pair_count": 28,
+    "unresolved_count": 24,
+    "material_full_text_count": 80,
+    "proxy_from_abstract_count": 0,
+    "missing_material_count": 0,
+    "episode_grs": {
+      "native_ard": 0.9287432019680648,
+      "baseline_b3": 0.7303182289857664,
+      "delta": 0.19842497298229844,
+      "bootstrap_95_ci": [0.16276742311301998, 0.23412911906012568]
+    },
+    "pair_micro": {
+      "native_ard": 0.9298301411423134,
+      "baseline_b3": 0.697517636247165,
+      "delta": 0.23231250489514843,
+      "bootstrap_95_ci": [0.1823909205456017, 0.2805451168000102]
+    },
+    "pair_macro_equal_class": {
+      "native_ard": 0.9298301411423134,
+      "baseline_b3": 0.697517636247165,
+      "delta": 0.23231250489514843,
+      "bootstrap_95_ci": [0.18210465495668587, 0.2805451168000102]
+    },
+    "domain_min_delta": 0.1428571428571428,
+    "native_false_high_level_rate": 0.0,
+    "high_false_count": 0,
+    "domains_unique_count": 28,
+    "native_base_choice_differences": 27,
+    "all_frozen_primary_gates_pass": true
+  },
+  "independent_adverse_family_attribution": {
+    "temporal": {
+      "adverse_choice_differences": 10,
+      "control_choice_differences": 1,
+      "native_adverse_mean_grs": 0.9277007575757577,
+      "baseline_adverse_mean_grs": 0.6566666666666668
+    },
+    "entity": {
+      "adverse_choice_differences": 10,
+      "control_choice_differences": 1,
+      "native_adverse_mean_grs": 0.9375606060606063,
+      "baseline_adverse_mean_grs": 0.5033333333333334
+    },
+    "relation": {
+      "adverse_choice_differences": 5,
+      "control_choice_differences": 0,
+      "native_adverse_mean_grs": 0.9290151515151516,
+      "baseline_adverse_mean_grs": 0.6366666666666667
+    }
+  },
+  "authority": {
+    "primary_supported": true,
+    "p1_superiority_claim_authorized": false,
+    "registry_mutation_authorized": false,
+    "issue_723_closure_authorized": false,
+    "issue_649_closure_authorized": false,
+    "required_next_evidence": "source-disjoint 2019 replication with n>=20, same frozen gates, independently implemented scorer or direct raw-to-manifest reconstruction, and changed provider/host axis where feasible"
+  }
+}
