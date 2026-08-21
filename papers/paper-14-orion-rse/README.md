@@ -1,66 +1,51 @@
-# P14 — ORION-RSE: recursive scientific research governance
+# P14 — ORION-RSE
 
-**Stable ID:** ORION-P14
-**Paper issue:** #669
-**Programme:** #670 — P11–P14 portfolio (State as Computation, adaptive state–reasoning,
-responsibility-carrying state, ORION-RSE)
+**Stable ID:** ORION-P14  
+**Paper issue:** #669  
+**Programme:** #670
 
-## What this paper asks
+## Canonical manuscript
 
-Apply ORION's own machinery — recursive claim decomposition, donor subtraction,
-negative-history retention, protected freezes, authority separation and reopening
-— to the scientific research process itself, as an auditable research machine.
-
-## Sequencing constraint
-
-#670 places this last for a reason: the P14 research benchmark may be frozen only
-**after** P1–P13 episodes are partitioned into leakage-safe templates versus
-protected evaluation families. Freezing it earlier would train the governance layer
-on the episodes it is meant to judge.
-
-## Evidence status as claimed on PR #715
-
-Reported by the authoring lane, not verified here: ORION-RSE is written as a
-methods/evaluation-contract paper only. There is **no claimed comparative
-superiority** until fresh leakage-safe hidden-gold cases, matched strong
-research-agent baselines, ablations, blinded realistic review, useful-discovery
-noninferiority and longitudinal testing are executed.
+`MANUSCRIPT.md` is the current peer-review manuscript and supersedes the stale candidate path on draft PR #715.
 
 ## Status
 
-`DIRECTORY_OPENED / NO_PROTECTED_RESULT`
+`PEER_REVIEW_PACKAGE_READY / CONTROLLED_GOVERNANCE_SUPERIORITY_SUPPORTED / REAL_AGENT_VALIDATION_OPEN`
 
-This directory exists so the identity has a home under the post-2026-08-21 layout,
-where papers live directly under `papers/` rather than `papers/candidates/`. It
-carries no scientific result and grants no authority.
+### P14A — preserved negative
 
-The manuscript work is in flight on **PR #715**, which is a **draft** by its own
-decision — `CURRENT_EVIDENCE_DRAFT_COMPLETE / EXTERNAL_PROMOTION_BLOCKED` — and
-was authored against the pre-refactor tree, so its `MANUSCRIPT.md` currently
-targets `papers/candidates/paper-14-orion-rse/`. That file belongs here instead. Relocating it
-is the authoring lane's call; this README does not pre-empt it, and adds no
-`MANUSCRIPT.md` of its own so the two cannot collide.
+The first mixed-distribution benchmark remains `P14A_CONTROLLED_GOVERNANCE_SUPERIORITY_GATE_NOT_MET`. Full ORION-RSE had zero false promotions and full useful-discovery recall, but the strongest comparator differed only on a history/reopen discriminator occupying 1.8375% of realized cases. The registered aggregate separation gates therefore failed. No P14A threshold was changed.
 
-## Programme rules that bind this paper
+See `P14A_CONTROLLED_GOVERNANCE_RESULT_RECEIPT_V1.json` and `P14A_OUTCOME_ROOT_CAUSE_V1.md`.
 
-From #670, verbatim in force:
+### P14B — independent balanced successor
 
-- a later paper may consume an earlier paper's interface/evidence **without
-  inheriting scientific authority**;
-- compiler/preprocessing work is never free; #664 owns the common accounting;
-- null, negative, donor-subsumed and interaction-only outcomes remain **first-class
-  results**;
-- **P14 cannot train or evaluate on the same protected research episodes**, nor reward ORION-specific vocabulary.
-- if P14 governance reduces false claims only by suppressing useful discovery, no research-machine superiority may be claimed.
+Across 6,720 balanced protected cases:
 
-## Completion criteria
+- full ORION-RSE false promotion: **0**;
+- full disposition accuracy: **1.0000**;
+- full useful-discovery recall: **1.0000**;
+- strongest non-ORION `MULTI_REVIEW` false promotion: **0.142857**;
+- `MULTI_REVIEW` disposition accuracy: **0.857143**;
+- both correctly reopen genuinely material new evidence;
+- only full ORION-RSE correctly retains live negative history when no material new evidence exists;
+- every registered component ablation is worse;
+- two-run SHA-256: `784d57e694b9a96828e72bc5e80dfc9e533cf738b568e45a71ce9fd08d679e66`.
 
-#670 requires each of P11–P14 to have its own claim ledger, protocol freeze, donor
-matrix, hostile controls, result receipts, reproduction route and publication
-decision. None of those exists here yet.
+Terminal: `P14B_BALANCED_GOVERNANCE_SUPERIORITY_SUPPORTED`.
 
-## Not authorized
+## Strongest paper claim
 
-Any statement that this paper has a protected result, a comparative superiority
-claim, or a promotion decision. The programme hypothesis in #670 is explicitly
-"a programme hypothesis, not an earned unified claim".
+> Under matched decision resources in a preregistered balanced hidden-gold benchmark, full ORION-RSE makes fewer scientific promotion/disposition errors than raw-positive, reflection/checklist, donor-aware and interaction-aware multi-review contracts while preserving every valid residual promotion. The decisive mechanism is retaining negative/subsumed history until genuinely material evidence justifies reopening.
+
+## Artifacts
+
+- `MANUSCRIPT.md`
+- `CLAIM_EVIDENCE_LEDGER.md`
+- `PEER_REVIEW_READINESS.md`
+- P14A negative receipt/root-cause audit
+- P14B protocol, harness and result receipt
+
+## Boundary
+
+Broader claims about open-ended research-agent performance require blinded realistic research packets, matched agent workflows, independent adjudication and longitudinal useful-discovery testing.
