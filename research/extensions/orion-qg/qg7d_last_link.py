@@ -372,6 +372,8 @@ def p1_geometry(role1, role2, want_delta=False):
 
     covered = np.zeros((4096, 512), dtype=np.uint8)
     processed = 0
+    sparse_b = None
+    sparse_a = None
     order_pairs = []
     for si, (branch, flb, fla, base, bounds) in enumerate(streams):
         present = np.nonzero(bounds[1:] > bounds[:-1])[0]
@@ -379,26 +381,48 @@ def p1_geometry(role1, role2, want_delta=False):
             order_pairs.append((int(f), si))
     # frozen interleave: by frame-pattern index, later streams first on ties
     order_pairs.sort(key=lambda t: (t[0], -t[1]))
-    done = False
-    for f, si in order_pairs:
+    def _alpha_beta(f, si):
         branch, flb, fla, base, bounds = streams[si]
         s, e = int(bounds[f]), int(bounds[f + 1])
-        V = (GP[fla[s:e]].astype(np.int16) + base[s:e, None]).min(axis=0)
+        bs = base[s:e]
+        # exact prune: F3 totals lie in [0, 6], so a partner whose base
+        # exceeds the group minimum by more than 6 can never attain the min
+        keep = bs <= int(bs.min()) + 6
+        V = (GP[fla[s:e][keep]].astype(np.int16)
+             + bs[keep][:, None]).min(axis=0)
         if branch == 0:
-            alpha = GP[f].astype(np.int16) - XB
-            beta = XA - V + baseX
-        else:
-            alpha = GP[f][SWAP].astype(np.int16) - XB
-            beta = XA - V[SWAP] + baseX
+            return GP[f].astype(np.int16) - XB, XA - V + baseX
+        return GP[f][SWAP].astype(np.int16) - XB, XA - V[SWAP] + baseX
+
+    SPARSE_SWITCH = 50000
+    for pos, (f, si) in enumerate(order_pairs):
+        alpha, beta = _alpha_beta(f, si)
         covered |= _mask_rows(beta, alpha)
         processed += 1
-        if processed % 64 == 0 and bool((covered == 255).all()):
-            done = True
-            break
-    if not done:
-        done = bool((covered == 255).all())
-    uncovered = int(4096 * 4096
-                    - int(np.unpackbits(covered.reshape(-1)).sum()))
+        if processed % 128 == 0:
+            cnt = int(4096 * 4096
+                      - int(np.unpackbits(covered.reshape(-1)).sum()))
+            if cnt == 0:
+                break
+            if cnt <= SPARSE_SWITCH:
+                rows = np.argwhere(np.unpackbits(covered, axis=1) == 0)
+                sparse_b = rows[:, 0].astype(np.int64)
+                sparse_a = rows[:, 1].astype(np.int64)
+                for f2, si2 in order_pairs[pos + 1:]:
+                    if sparse_b.size == 0:
+                        break
+                    a2, b2 = _alpha_beta(f2, si2)
+                    alive = a2[sparse_b] > b2[sparse_a]
+                    processed += 1
+                    if not alive.all():
+                        sparse_b = sparse_b[alive]
+                        sparse_a = sparse_a[alive]
+                break
+    if sparse_b is None:
+        rows = np.argwhere(np.unpackbits(covered, axis=1) == 0)
+        sparse_b = rows[:, 0].astype(np.int64)
+        sparse_a = rows[:, 1].astype(np.int64)
+    uncovered = int(sparse_b.size)
     out = {
         "geometry": [role1["name"], role2["name"]],
         "state_domain": 4096 * 4096,
@@ -409,10 +433,9 @@ def p1_geometry(role1, role2, want_delta=False):
         "closed": uncovered == 0,
     }
     if want_delta or uncovered:
-        rows = np.argwhere(np.unpackbits(covered, axis=1) == 0)
         out["residue_rows_verbatim"] = [
-            {"state_b": int(r[0]), "state_a": int(r[1])}
-            for r in rows[:P1_RESIDUE_VERBATIM_CAP]]
+            {"state_b": int(sparse_b[k]), "state_a": int(sparse_a[k])}
+            for k in range(min(int(sparse_b.size), P1_RESIDUE_VERBATIM_CAP))]
         out["residue_verbatim_cap"] = P1_RESIDUE_VERBATIM_CAP
     return out, XB, XA, baseX
 
@@ -475,7 +498,8 @@ def _pattern_geometry_class(case2: str, ja: int) -> list[str]:
                        "CS2_A_ANTIA_1", "CS2_A_ANTIA_2"]
     else:
         third_roles = ["OUT_ANCH", "OUT_PHANTOM", "OUT_COMMS2"]
-    return sorted(f"{a}+{b}" for a in pinner for b in third_roles)
+    return sorted("+".join(sorted((a, b)))
+                  for a in pinner for b in third_roles)
 
 
 def census_dispatch(t4b: dict[str, Any], p1: dict[str, Any]) -> dict[str, Any]:
@@ -532,10 +556,10 @@ def census_dispatch(t4b: dict[str, Any], p1: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def explicit_verbatim_dispatch(t4b: dict[str, Any]) -> dict[str, Any]:
-    """Recompute P1's decision at the exact coordinates of every verbatim row."""
-    roles = {r["name"]: r for r in build_roles()}
-    cache: dict[tuple, dict] = {}
+def explicit_verbatim_dispatch(t4b: dict[str, Any],
+                               p1: dict[str, Any]) -> dict[str, Any]:
+    """Read P1's decision at the exact coordinates of every verbatim row."""
+    by_name = {"+".join(sorted(g["geometry"])): g for g in p1["per_geometry"]}
     rows = []
     worst = -99
     for i, row in enumerate(t4b["failing_verbatim_capped"]):
@@ -543,24 +567,20 @@ def explicit_verbatim_dispatch(t4b: dict[str, Any]) -> dict[str, Any]:
         classes = _pattern_geometry_class(case2, ja)
         row_ok = True
         for cls in classes:
-            n1, n2 = cls.split("+")
-            key = (n1, n2)
-            if key not in cache:
-                res, _, _, _ = p1_geometry(roles[n1], roles[n2])
-                cache[key] = res
-            if not cache[key]["closed"]:
+            g = by_name.get(cls)
+            if g is None or not g["closed"]:
                 row_ok = False
         rows.append({
             "index": i,
             "census_row": row,
             "p1_geometry_classes": classes,
-            "delta_le_zero_everywhere": bool(row_ok),
+            "p1_classes_all_closed": bool(row_ok),
         })
         worst = max(worst, int(row["delta"]))
     return {
         "rows": rows,
         "rows_checked": len(rows),
-        "all_dispatched": all(r["delta_le_zero_everywhere"] for r in rows),
+        "all_dispatched": all(r["p1_classes_all_closed"] for r in rows),
         "t4b_worst_delta_in_verbatim": worst,
     }
 
@@ -635,7 +655,7 @@ def _instance_from_state(state_b: int, state_a: int, n: int):
     return tuple((targets[2 * j], targets[2 * j + 1]) for j in range(3))
 
 
-def hostile_arm(t4b: dict[str, Any]) -> dict[str, Any]:
+def hostile_arm(t4b: dict[str, Any], p1: dict[str, Any]) -> dict[str, Any]:
     counters = {"rows": 0, "sandwich_failures": [], "dxx_witness_rows": 0,
                 "dxx_witness_failures": [], "replay_rows": 0,
                 "replay_failures": []}
@@ -682,36 +702,47 @@ def hostile_arm(t4b: dict[str, Any]) -> dict[str, Any]:
                 gaps += 1
         c2_summary[f"n{n}"] = {"instances": count, "seed": seed,
                                "gap_rows": gaps}
-    # C3: P1-extremal panel -- the states where our comm-s2 block is cheapest
+    # C3: P1-extremal panel -- the P1 states of smallest margin, i.e. the
+    # residue states first (frozen tie-break by geometry order then by state
+    # index); if P1 leaves no residue, the cheapest comm-s2 states instead
     roles = {r["name"]: r for r in build_roles()}
-    c3_geoms = [("ANCH_B_1", "ANCH_A_1"), ("ANCH_B_1", "BORROW_A_1"),
-                ("BORROW_B_1", "ANCH_A_1"), ("ANCH_B_1", "OUT_ANCH")]
+    extremal = []
+    for g in p1["per_geometry"]:
+        for row in g.get("residue_rows_verbatim", []):
+            extremal.append((g["geometry"], row["state_b"], row["state_a"],
+                             "P1_RESIDUE"))
+    fallback = False
+    if not extremal:
+        fallback = True
+        for names in (("ANCH_B_1", "ANCH_A_1"), ("BORROW_B_1", "ANCH_A_1")):
+            _, XB, XA, baseX = p1_geometry(roles[names[0]], roles[names[1]])
+            tot = XB[:, None].astype(np.int16) + XA[None, :] + np.int16(baseX)
+            idx = np.argwhere(tot == int(tot.min()))
+            for r in idx[:10]:
+                extremal.append((list(names), int(r[0]), int(r[1]),
+                                 "MIN_COMM_S2_COST"))
     c3_rows = []
     skipped = 0
-    for gi, (n1, n2) in enumerate(c3_geoms):
-        _, XB, XA, baseX = p1_geometry(roles[n1], roles[n2])
-        tot = XB[:, None].astype(np.int16) + XA[None, :] + np.int16(baseX)
-        lo = int(tot.min())
-        idx = np.argwhere(tot == lo)
-        for r in idx[:5]:
-            for n in (2, 3, 4):
-                if len(c3_rows) >= C3_CAP:
-                    break
-                tp = _instance_from_state(int(r[0]), int(r[1]), n)
-                if tp is None:
-                    skipped += 1
-                    continue
-                c_dxx, c_dplus, fbp, fbpp, gap = _eval_instance(
-                    tp, n, ["c3", gi, int(r[0]), int(r[1]), n],
-                    gap_rows, counters)
-                c3_rows.append({
-                    "geometry": [n1, n2], "state_b": int(r[0]),
-                    "state_a": int(r[1]), "n": n,
-                    "comm_s2_config_cost_local": int(lo),
-                    "C_Dxx": c_dxx, "C_Dplus": c_dplus,
-                    "f_Bprime": fbp if fbp < INF else None,
-                    "f_Bsecond": fbpp if fbpp < INF else None,
-                    "gap": int(gap)})
+    for gnames, sb_state, sa_state, kind in extremal:
+        for n in (2, 3, 4):
+            if len(c3_rows) >= C3_CAP:
+                break
+            tp = _instance_from_state(sb_state, sa_state, n)
+            if tp is None:
+                skipped += 1
+                continue
+            c_dxx, c_dplus, fbp, fbpp, gap = _eval_instance(
+                tp, n, ["c3", list(gnames), sb_state, sa_state, n],
+                gap_rows, counters)
+            c3_rows.append({
+                "geometry": list(gnames), "kind": kind,
+                "state_b": sb_state, "state_a": sa_state, "n": n,
+                "C_Dxx": c_dxx, "C_Dplus": c_dplus,
+                "f_Bprime": fbp if fbp < INF else None,
+                "f_Bsecond": fbpp if fbpp < INF else None,
+                "gap": int(gap)})
+        if len(c3_rows) >= C3_CAP:
+            break
     _clear_caches()
     return {
         "c1_census_realizations": {"rows": c1_rows, "n3_cap": C1_N3_CAP,
@@ -720,7 +751,9 @@ def hostile_arm(t4b: dict[str, Any]) -> dict[str, Any]:
         "c2_dense_random_control": c2_summary,
         "c3_p1_extremal_panel": {"rows": c3_rows, "cap": C3_CAP,
                                  "identity_target_states_skipped": skipped,
-                                 "geometries": [list(g) for g in c3_geoms]},
+                                 "selection": "P1_RESIDUE_FIRST" if not fallback
+                                 else "MIN_COMM_S2_COST_FALLBACK",
+                                 "candidate_states": len(extremal)},
         "instances_total": counters["rows"],
         "gap_rows_total": len(gap_rows),
         "gap_rows_verbatim": gap_rows,
@@ -890,8 +923,8 @@ def main() -> dict[str, Any]:
     t4b = clock("t4b", qg7c.t4b_pinned)
     p1 = clock("p1", p1_lemma)
     p2 = clock("p2", lambda: census_dispatch(t4b, p1))
-    p2v = clock("p2_verbatim", lambda: explicit_verbatim_dispatch(t4b))
-    p3 = clock("p3", lambda: hostile_arm(t4b))
+    p2v = clock("p2_verbatim", lambda: explicit_verbatim_dispatch(t4b, p1))
+    p3 = clock("p3", lambda: hostile_arm(t4b, p1))
 
     inherited = {
         "m1_inventory": m1, "t1_prune": t1, "t3_consolidation": t3,
