@@ -157,7 +157,18 @@ def _pareto(rows: list[dict[str, Any]], cost_key: str) -> list[dict[str, Any]]:
 
 def _evaluate_fixed_batch(terms, source_indices: tuple[int, ...], n: int) -> dict[str, Any]:
     if len(source_indices) != 6:
-        return {"eligible_partition_count": 0, "partitions": [], "strict_points": []}
+        # Fail closed with the same complete shape returned by the normal path.
+        # A short frozen batch is a scientific negative, not an implementation crash.
+        return {
+            "all_partitions": [],
+            "eligible_partition_count": 0,
+            "eligible_points": [],
+            "candidate_pareto": [],
+            "incumbent_pareto": [],
+            "strict_points": [],
+            "best_strict_improvement": None,
+            "all_witnesses_valid": False,
+        }
 
     triple_cache: dict[tuple[int, int, int], dict[str, Any]] = {}
     signature_cache: dict[tuple[int, int, int], dict[Any, Any]] = {}
