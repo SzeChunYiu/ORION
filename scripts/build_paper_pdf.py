@@ -76,6 +76,13 @@ def _git(*args: str) -> str:
 #: Where a paper's LaTeX entry point lives, in the two layouts the repo uses.
 _TEX_ENTRY_POINTS = ("manuscript/main.tex", "paper/main.tex")
 
+#: Build residue latexmk leaves beside the entry point. None of it is tracked by
+#: any paper in this repo, and none of it is in `.gitignore` either, so a build
+#: used to leave six untracked files behind and the next `git status` read as a
+#: dirty tree. Removing two of them and calling that cleanup is the same defect
+#: one level down: a partial sweep reported as a sweep.
+_LATEXMK_RESIDUE = (".aux", ".bbl", ".blg", ".fdb_latexmk", ".fls", ".log", ".out", ".toc")
+
 
 def find_tex_entry(paper_dir: Path) -> Path | None:
     """The paper's LaTeX entry point, or None if it has no tree."""
@@ -111,8 +118,7 @@ def build_with_latexmk(entry: Path) -> Path | None:
     produced = entry.with_suffix(".pdf")
     if not produced.is_file():
         raise RuntimeError(f"latexmk reported success but {produced} is missing")
-    # latexmk leaves recorder files that no paper wants committed.
-    for residue in (".fdb_latexmk", ".fls"):
+    for residue in _LATEXMK_RESIDUE:
         entry.with_suffix(residue).unlink(missing_ok=True)
     return produced
 
