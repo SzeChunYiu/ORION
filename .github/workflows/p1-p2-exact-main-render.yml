@@ -1,0 +1,93 @@
+name: p1-p2-exact-main-render
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/p1-p2-exact-main-render.yml'
+      - 'papers/paper-01-recursive-epistemic-reconstruction/manuscript/**'
+      - 'papers/paper-02-open-world-scientific-discovery/manuscript/**'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/p1-p2-exact-main-render.yml'
+      - 'papers/paper-01-recursive-epistemic-reconstruction/manuscript/**'
+      - 'papers/paper-02-open-world-scientific-discovery/manuscript/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render-subject:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact event subject
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: subject
+      - name: Install TeX and render dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra texlive-science latexmk poppler-utils
+      - name: Compile P1 exact subject
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd subject/papers/paper-01-recursive-epistemic-reconstruction/manuscript
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          bibtex main
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          ! grep -E 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log
+          mkdir -p "$GITHUB_WORKSPACE/out/p1/pages"
+          cp main.pdf "$GITHUB_WORKSPACE/out/p1/manuscript.pdf"
+          cp main.log "$GITHUB_WORKSPACE/out/p1/main.log"
+          pdfinfo main.pdf > "$GITHUB_WORKSPACE/out/p1/pdfinfo.txt"
+          sha256sum main.pdf > "$GITHUB_WORKSPACE/out/p1/manuscript.pdf.sha256"
+          pdftoppm -png -r 180 main.pdf "$GITHUB_WORKSPACE/out/p1/pages/page" >/dev/null
+      - name: Compile P2 exact subject
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd subject/papers/paper-02-open-world-scientific-discovery/manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          python ../scripts/check_manuscript_typography.py --log main.log
+          ! grep -E 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references' main.log
+          mkdir -p "$GITHUB_WORKSPACE/out/p2/pages"
+          cp main.pdf "$GITHUB_WORKSPACE/out/p2/manuscript.pdf"
+          cp main.log "$GITHUB_WORKSPACE/out/p2/main.log"
+          pdfinfo main.pdf > "$GITHUB_WORKSPACE/out/p2/pdfinfo.txt"
+          sha256sum main.pdf > "$GITHUB_WORKSPACE/out/p2/manuscript.pdf.sha256"
+          pdftoppm -png -r 180 main.pdf "$GITHUB_WORKSPACE/out/p2/pages/page" >/dev/null
+      - name: Bind render subject
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json, subprocess
+          from pathlib import Path
+          subject = Path('subject')
+          out = Path('out')
+          revision = subprocess.check_output(['git', '-C', str(subject), 'rev-parse', 'HEAD'], text=True).strip()
+          receipt = {
+              'schema': 'P1P2.ExactRenderReceipt.v1',
+              'subject_revision': revision,
+              'event_name': '${{ github.event_name }}',
+              'p1_source_sha256': hashlib.sha256((subject / 'papers/paper-01-recursive-epistemic-reconstruction/manuscript/main.tex').read_bytes()).hexdigest(),
+              'p2_source_sha256': hashlib.sha256((subject / 'papers/paper-02-open-world-scientific-discovery/manuscript/main.tex').read_bytes()).hexdigest(),
+              'p1_pdf_sha256': hashlib.sha256((out / 'p1/manuscript.pdf').read_bytes()).hexdigest(),
+              'p2_pdf_sha256': hashlib.sha256((out / 'p2/manuscript.pdf').read_bytes()).hexdigest(),
+              'visual_audit_complete': False,
+              'package_rebind_complete': False,
+              'submission_authority': False,
+          }
+          (out / 'EXACT_RENDER_RECEIPT.json').write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n')
+          PY
+      - name: Upload exact render bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: p1-p2-exact-render-${{ github.event.pull_request.head.sha || github.sha }}
+          path: out/**
+          if-no-files-found: error
+          retention-days: 30
