@@ -1,0 +1,210 @@
+{
+  "base_revision": "318d1cbbec451170448bb8e126c7ab50801930ce",
+  "chemistry_sources_read": false,
+  "gates": {
+    "central_equality_witness_present": true,
+    "central_max_df3_2": true,
+    "local_domain_exact_18432": true,
+    "no_new_chemistry_or_protected_access": true,
+    "noncentral_max_df3_2": true,
+    "novelty_freeze_present": true,
+    "production_tables_exact": true,
+    "protocol_present": true,
+    "qg2_controls_bound": true,
+    "r6s_receipt_bound": true
+  },
+  "issue": "SzeChunYiu/ORION#760",
+  "local_resource_domain": {
+    "all_tables_bound": true,
+    "central_equality_witness": {
+      "alpha": 0,
+      "below_boundary_example": {
+        "t_c": 1.9,
+        "t_r": 1.0,
+        "weighted_delta": 0.1
+      },
+      "beta": 0,
+      "delta_f3": 2,
+      "other_slots": [
+        3,
+        3
+      ],
+      "partner_letter": 0,
+      "slot": "A",
+      "tag_letter": 0,
+      "target_letter": 2,
+      "unit_objective_central_net": 0,
+      "zeroed_letter": 1
+    },
+    "class_max_delta_f3": {
+      "class_00_max_df3": 2,
+      "class_01_max_df3": 2,
+      "class_10_max_df3": 2,
+      "class_11_max_df3": 2
+    },
+    "derived_halfspaces": {
+      "central": {
+        "frame_refund_coordinate": "t_c",
+        "inequality": "t_c - 2*t_r >= 0",
+        "worst_f3_increase_units": 2
+      },
+      "noncentral": {
+        "frame_refund_coordinate": "t_nc",
+        "inequality": "t_nc - 2*t_r >= 0",
+        "worst_f3_increase_units": 2
+      }
+    },
+    "domain_per_resource_kind": 9216,
+    "domain_size": 18432,
+    "histograms": {
+      "central": {
+        "-1": 2304,
+        "-2": 288,
+        "0": 4032,
+        "1": 2304,
+        "2": 288
+      },
+      "noncentral": {
+        "-1": 2304,
+        "-2": 288,
+        "0": 4032,
+        "1": 2304,
+        "2": 288
+      }
+    },
+    "max_delta_f3": {
+      "central": 2,
+      "noncentral": 2
+    },
+    "production_table_binding": {
+      "F3": true,
+      "LM": true,
+      "LW": true,
+      "SY": true
+    }
+  },
+  "novelty_authority": false,
+  "novelty_threat_sha256": "c2ca719ad440cf4e89fc3790f4982644fb20718db178cd072a045eb383234600",
+  "physical_quantum_advantage_claim": false,
+  "proof_audit": {
+    "lexicographic_support_minimality_handles_boundary_ties": true,
+    "o1_global_witness_only_refutes_objective_independent_support2": true,
+    "outside_cone_not_equated_with_support3_required": true,
+    "r6s_zero_sum_subset_lemma_reused_without_objective_dependency": true,
+    "rotation_constant_within_r6m_family": true,
+    "tag_unchanged_on_zero_sum_exchange": true,
+    "weighted_local_nonincrease_follows_from_halfspaces": true
+  },
+  "protected_subject_read": false,
+  "protocol_sha256": "0a13eb89a5facd569c4c11a026535976d1f80bc943424677742862a538886148",
+  "qg2_binding": {
+    "all_bound": true,
+    "checks": {
+      "all_expected_objectives_found": true,
+      "authority": true,
+      "o0_central_boundary": true,
+      "o0_inside": true,
+      "o1_outside": true,
+      "o2_inside": true,
+      "receipt_hostile_all_pass": true,
+      "support3_global_witness_found": true
+    },
+    "objectives": {
+      "O0": {
+        "classification": {
+          "central_boundary": true,
+          "central_margin": 0.0,
+          "inside_support2_cone": true,
+          "noncentral_boundary": false,
+          "noncentral_margin": 2.0
+        },
+        "path": "baseline_control_O0",
+        "weights": {
+          "rho_per_rotation": 0,
+          "t_c": 2,
+          "t_nc": 4,
+          "t_r": 1,
+          "t_tag": 2
+        }
+      },
+      "O1": {
+        "classification": {
+          "central_boundary": false,
+          "central_margin": -5.0,
+          "inside_support2_cone": false,
+          "noncentral_boundary": false,
+          "noncentral_margin": 1.0
+        },
+        "path": "objectives/O1",
+        "weights": {
+          "rho_per_rotation": 0,
+          "t_c": 1,
+          "t_nc": 7,
+          "t_r": 3,
+          "t_tag": 4
+        }
+      },
+      "O2": {
+        "classification": {
+          "central_boundary": true,
+          "central_margin": 0.0,
+          "inside_support2_cone": true,
+          "noncentral_boundary": false,
+          "noncentral_margin": 2.0
+        },
+        "path": "objectives/O2",
+        "weights": {
+          "rho_per_rotation": 5,
+          "t_c": 2,
+          "t_nc": 4,
+          "t_r": 1,
+          "t_tag": 2
+        }
+      }
+    },
+    "receipt_sha256": "d9f38dab9bb159150070f8a2ac2fde5706ee79be66c25816597b2d2012f26150",
+    "support3_witnesses": [
+      {
+        "C_DP": 11,
+        "C_Dplus": 23,
+        "C_Dxx": 13,
+        "path": "objectives/O1/new_trade_witnesses/NEW_SUPPORT3/0",
+        "witness_present": true
+      },
+      {
+        "C_DP": 11,
+        "C_Dplus": 23,
+        "C_Dxx": 13,
+        "path": "objectives/O1/new_trade_witnesses/NEW_SUPPORT3/11",
+        "witness_present": true
+      }
+    ]
+  },
+  "r6s_binding": {
+    "all_bound": true,
+    "checks": {
+      "authority": true,
+      "bindings_exact": true,
+      "domain_18432": true,
+      "max_delta_f3_2": true,
+      "no_new_subject_data": true,
+      "w3plus_zero_sum": true,
+      "zero_violations": true
+    },
+    "receipt_sha256": "b6d72913c3bd42d9c822eace19563378c046e620d7b9641ec7d818fbcc6b9875"
+  },
+  "result_digest": "d41beb3f5c79851b6c51a7a8ef17b053ca8b2da4c75f997ccc72d229306095c1",
+  "schema": "ORION.QG.QG8.SupportPhase.v1",
+  "support2_cone": {
+    "all_n_support_bound": 2,
+    "certificate_boundary_sharpness": "CENTRAL_HYPERPLANE_EXACT",
+    "conditions": [
+      "t_c >= 2*t_r",
+      "t_nc >= 2*t_r"
+    ],
+    "global_boundary_sharpness": "OPEN",
+    "rotation_coefficient": "WITHIN_FAMILY_CONSTANT_DIRECTION",
+    "tag_coefficient": "UNCONSTRAINED_BY_EXCHANGE"
+  },
+  "terminal": "QG8_OBJECTIVE_INDEXED_SUPPORT2_CONE_ALL_N_MACHINE_CHECKED"
+}
