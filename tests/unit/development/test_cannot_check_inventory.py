@@ -207,14 +207,23 @@ def test_the_precision_fix_lost_no_classification() -> None:
     ``TerminalReach.outcome`` for a terminal whose admissible worlds were never
     declared. All six report that a verdict could not be computed, which is the
     distinction this whole batch exists to make: a gate no world can clear is
-    ``CANNOT_CHECK``, not a negative result. The exact ratchet is therefore 179.
+    ``CANNOT_CHECK``, not a negative result. That put the exact ratchet at 179.
+
+    The P3 coordinate-necessity build adds the 180th, a ``MISSING_IDENTITY`` in
+    ``p3_coordinate_necessity_build`` emitted when the built atlas cannot be
+    identified against its frozen declaration --- schema version, atlas id,
+    freeze document and parent atlas among them. A build whose subject cannot be
+    named has not produced a negative result about that subject; it has produced
+    no result. (P4's identifiability audit moved within its module in the same
+    batch, which changes a line number and not a count.)
+
     Future additions must update this sentinel deliberately rather than weakening
     it to a lower-bound check.
     """
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
-    assert sum(classified.values()) == 179, classified
+    assert sum(classified.values()) == 180, classified
     assert committed["with_reason"] < committed["blocker_sites"]
     assert committed["with_reason"] >= sum(classified.values()), (
         "more sites are classified than carry a reason, so something is classifying on nothing"
