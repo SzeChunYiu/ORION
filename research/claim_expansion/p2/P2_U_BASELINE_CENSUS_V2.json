@@ -20,7 +20,7 @@
       "arXiv:2601.12369",
       "KongLongGeFDU/TaxoBench@49a18698ff2d5efb696e0215642441ded668ae2f",
       "arXiv:2606.15367",
-      "ScienceOne-AI/S1-DeepResearch-32B",
+      "ScienceOne-AI/S1-DeepResearch-32B@784b5ef0104400d23206a752843f695ca4bf9530",
       "DOI:10.1038/s41746-025-01840-7",
       "RyanWangZf/TrialMind-SLR@235426b072747e9f6586020c2632b1e8a657ad10",
       "zifeng-ai/TrialReviewBench"
@@ -61,8 +61,9 @@
       "name": "S1-DeepResearch-32B",
       "primary_source": "arXiv:2606.15367",
       "model_repository": "ScienceOne-AI/S1-DeepResearch-32B",
+      "model_repository_revision_at_census": "784b5ef0104400d23206a752843f695ca4bf9530",
       "availability_at_freeze": "PUBLIC_MODEL_AND_INFERENCE_MATERIAL",
-      "exact_model_revision_for_execution": "MUST_BE_BOUND_IN_FUTURE_EXECUTION_MANIFEST_BEFORE_PROTECTED_OUTPUT",
+      "execution_revision_rule": "Use the census revision or a later revision separately re-frozen in the final execution manifest before any protected output; never float main during the campaign.",
       "role": "STRONG_OPEN_LONG_HORIZON_RESEARCH_SYSTEM_BASELINE_WHEN_RUNNABLE",
       "causal_status": "SYSTEM_LEVEL_ONLY_UNLESS_BACKBONE_TOOLS_SOURCE_ACCESS_AND_BUDGET_CAN_BE_MATCHED",
       "integrity_note": "Model-card benchmark claims motivate inclusion only. P2-U must execute its own frozen tasks and must not import the released model's reported scores as ORION evidence."
@@ -80,7 +81,7 @@
   ],
   "execution_manifest_requirements_added_by_v2": [
     "The final pre-execution manifest must explicitly classify TaxoBench and TrialReviewBench as public preflight/transfer surfaces only; their outcomes cannot alter hidden-task eligibility, metrics, margins, stopping, or sample size.",
-    "If S1-DeepResearch-32B is runnable within the frozen resource envelope, bind an immutable model/checkpoint revision and exact inference stack before protected output; otherwise record the pre-outcome unavailability reason rather than silently omitting it after results.",
+    "If S1-DeepResearch-32B is runnable within the frozen resource envelope, bind the census revision or a later separately re-frozen immutable model/checkpoint revision and exact inference stack before protected output; otherwise record the pre-outcome unavailability reason rather than silently omitting it after results.",
     "If TrialMind is used in the systematic-review-like stratum, bind its repository revision, enabled components, model/API dependencies, human-intervention rights, source access, and charged resource policy before protected output.",
     "Neither added system replaces the V1 matched-host donor-complete controller for the primary causal comparison.",
     "A public benchmark or released-system win, tie, or loss cannot satisfy the hidden-route naturalistic primary, cross-domain replication, independent-reconstruction, or failure-derived-successor gates of issue #650."
