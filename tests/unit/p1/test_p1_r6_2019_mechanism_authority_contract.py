@@ -64,6 +64,19 @@ def test_unbound_materiality_cannot_be_posthoc_authority():
     assert terminal["positive_terminal_unchanged"] == "P1_R6_2019_REPLICATION_PASS"
 
 
+def test_mechanism_authority_is_frozen_before_any_2019_result_bearing_step():
+    authority = _load(AUTHORITY_PATH)
+    order = authority["pre_execution_order"]
+
+    assert order["must_be_merged_before_2019_source_acquisition"] is True
+    assert order["must_be_merged_before_2019_corpus_seal"] is True
+    assert order["must_be_merged_before_any_2019_candidate_or_comparator_execution"] is True
+    assert order["must_be_merged_before_2019_independent_scoring"] is True
+    assert order["outcome_aware_operator_may_not_select_rank_or_replace_2019_sources"] is True
+    assert order["source_selection_authority_remains_REPLICATION_2019_PROTOCOL_V1"] is True
+    assert order["violation_terminal"] == "P1_R6_2019_REPLICATION_CANNOT_CHECK"
+
+
 def test_inherited_scientific_gates_and_host_are_not_relaxed():
     protocol = _load(PROTOCOL_PATH)
     authority = _load(AUTHORITY_PATH)
