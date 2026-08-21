@@ -16,6 +16,15 @@ class QuantumEvidenceMode(StrEnum):
     REAL_QPU = "REAL_QPU"
 
 
+class QuantumAccessMode(StrEnum):
+    """How the registered problem exposes the quantum oracle/interface."""
+
+    UNSPECIFIED = "UNSPECIFIED"
+    NATIVE_COHERENT_ORACLE = "NATIVE_COHERENT_ORACLE"
+    DERIVED_COHERENT_ORACLE = "DERIVED_COHERENT_ORACLE"
+    CLASSICAL_PREDICATE_ONLY = "CLASSICAL_PREDICATE_ONLY"
+
+
 class QuantumAdvantageTerminal(StrEnum):
     """Bounded scientific terminals for an ORION-QN comparison."""
 
@@ -48,12 +57,20 @@ _END_TO_END_RESOURCE_TERMINALS = frozenset(
 
 @dataclass(frozen=True)
 class QAccessMatch:
-    """Whether quantum and classical routes compare the same admitted problem."""
+    """Whether quantum and classical routes compare the same admitted problem.
+
+    `same_information` does not imply that coherent oracle access is free. Positive
+    quantum terminals additionally require an explicit quantum access mode. A native
+    coherent query oracle is an admitted model assumption; a derived coherent oracle
+    needs a separately resolved derivation obligation.
+    """
 
     same_problem: bool
     same_information: bool
     same_tolerance: bool
     stronger_quantum_interface_unresolved: bool = False
+    quantum_access_mode: QuantumAccessMode = QuantumAccessMode.UNSPECIFIED
+    coherent_oracle_derivation_resolved: bool = False
 
     @property
     def comparison_matched(self) -> bool:
@@ -114,11 +131,27 @@ def _validate_comparison_identity(receipt: QAdvantageReceipt) -> None:
 
 
 def _validate_access_model(receipt: QAdvantageReceipt) -> None:
-    if not receipt.access_match.stronger_quantum_interface_unresolved:
+    access = receipt.access_match
+    if receipt.terminal not in _POSITIVE_TERMINALS:
         return
-    if receipt.terminal in _POSITIVE_TERMINALS:
+    if access.stronger_quantum_interface_unresolved:
         raise QuantumContractError(
             "positive quantum advantage cannot use an unresolved stronger quantum interface"
+        )
+    if access.quantum_access_mode is QuantumAccessMode.UNSPECIFIED:
+        raise QuantumContractError(
+            "positive quantum advantage requires an explicit quantum access mode"
+        )
+    if access.quantum_access_mode is QuantumAccessMode.CLASSICAL_PREDICATE_ONLY:
+        raise QuantumContractError(
+            "classical-predicate-only access cannot support a positive quantum terminal"
+        )
+    if (
+        access.quantum_access_mode is QuantumAccessMode.DERIVED_COHERENT_ORACLE
+        and not access.coherent_oracle_derivation_resolved
+    ):
+        raise QuantumContractError(
+            "derived coherent oracle requires a resolved derivation before positive quantum claims"
         )
 
 
