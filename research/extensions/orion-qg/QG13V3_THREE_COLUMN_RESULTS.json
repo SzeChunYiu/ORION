@@ -1,0 +1,42 @@
+{
+  "schema": "ORION.QG.QG13V3.ProtectedScientificSummary.v1",
+  "issue": "SzeChunYiu/ORION#785",
+  "pr": "SzeChunYiu/ORION#787",
+  "frozen_base": "cad8b1b4d3be3668449658d10ef718eb1682d1c9",
+  "frozen_head": "87961e243b2446cf94142f3caa56bd47d9ead045",
+  "terminal": "QG13V3_V2_OBSTRUCTIONS_CLOSED_BUT_NEW_OBSTRUCTION_REMAINS",
+  "source_result_digest": "f3a81446e59d11dac7613dbb010d663b69512206b5c674e95b05658e2a97d9b2",
+  "production_binding": {"checked": 624, "failure_count": 0, "all_exact": true},
+  "action_resource_domain": {"enumerated_action_rows": 119808, "action_signature_classes": 42},
+  "three_column_safety": {"syndrome_cancelling_classes": 2496, "globally_safe_classes": 2116, "unsafe_classes": 380},
+  "census": {
+    "structural_type_count": 29,
+    "accepted_five_column_patterns": 44580,
+    "qg1_irreducible_patterns": 1662,
+    "support5_irreducible_patterns": 216,
+    "e2_covered": 132,
+    "e3_covered": 180,
+    "e3_uncovered": 36,
+    "v2_uncovered_recomputed": 84,
+    "v3_closes_v2": 84,
+    "v2_survive_v3": 0,
+    "cumulative_e2_e3_covered": 216,
+    "cumulative_uncovered": 0,
+    "first_e3_only_obstruction": {
+      "pattern_indices": [3,4,9,21,22],
+      "supports": [5,3],
+      "representatives": [[1,0,2,2],[1,1,2,2],[1,2,0,2],[1,0,0,2],[1,1,0,2]]
+    }
+  },
+  "generic_orion": {
+    "decision": "ACCEPT",
+    "all_checks": true,
+    "independent_counts": {"action_rows":119808,"action_classes":42,"triple_classes":2496,"safe_triple_classes":2116,"unsafe_triple_classes":380,"support5":216,"e2":132,"e3":180,"v2_uncovered":84,"v3_closes_v2":84,"cumulative":216}
+  },
+  "native_orion_q": {"decision":"ACCEPT_V2_CLOSED_NEW_REMAINS","final_phase":"CLOSEDNEW_RECORDED"},
+  "v2_result_file_opened_during_synthesis": false,
+  "new_theorem_authority": false,
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "interpretation": "Three-column edits strictly expand the safe rewrite basis and close every V2 obstruction, but E3 alone is not complete. The cumulative E2 union E3 grammar covers the entire frozen five-column support-five census. This cumulative signal is successor evidence only and has no theorem authority in V3."
+}
