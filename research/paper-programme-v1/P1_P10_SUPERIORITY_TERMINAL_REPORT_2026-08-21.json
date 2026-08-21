@@ -1,7 +1,7 @@
 {
   "battery": {
     "blocked": false,
-    "content_digest": "954ec26f8b66ff257662b15ede4a9902df39fab9aad267bc6864bd3508c8b94e",
+    "content_digest": "ff3c850019cffd8128d598dec914dc2690b512f0601a8ad9d43e27096d555889",
     "expected_check_ids": [
       "HC-SUP-TERMINAL-COVERAGE",
       "HC-SUP-MANUSCRIPT-SUBSTITUTION",
@@ -12,6 +12,7 @@
       "HC-SUP-THIN-REPLICATION",
       "HC-SUP-POST-HOC-FREEZE",
       "HC-SUP-SELF-CERTIFICATION",
+      "HC-SUP-STALE-PAPER-IDENTITY",
       "HC-SUP-UNCLASSIFIED-BLOCKER",
       "HC-SUP-PREDECESSOR-REUSE",
       "HC-SUP-CLAIM-WIDER-THAN-EVIDENCE"
@@ -74,6 +75,12 @@
         "reason": "no terminal is discharged under candidate custody"
       },
       {
+        "check_id": "HC-SUP-STALE-PAPER-IDENTITY",
+        "findings": [],
+        "outcome": "PASS",
+        "reason": "every paper-numbered directory is registered: 10 active identities and 2 recorded predecessor(s)"
+      },
+      {
         "check_id": "HC-SUP-UNCLASSIFIED-BLOCKER",
         "findings": [],
         "outcome": "PASS",
@@ -94,7 +101,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "5b5c2fdf9e2f743eea48211167f0e472dc6aa45134aba3c434aa4ee48967c8e6",
+  "content_digest": "16931c7aa9a82a45afeacb4a00761b493c97a4a3224c1b77bbce41c64264941f",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",

@@ -106,7 +106,7 @@ result and is distinct from both a pass and a build failure.
 
 **2 of 51 gates pass.** Both are scope gates — `P9-U-T6` and `P10-U-T5` — and
 they pass because those two papers do keep their advertised claims inside what
-they earned. Nothing else is discharged, and the twelve-check battery is clean:
+they earned. Nothing else is discharged, and the thirteen-check battery is clean:
 no substitution is currently being made anywhere in the ledger.
 
 The full battery is clean *and* the report still blocks. That combination is the
@@ -206,6 +206,31 @@ promotion `HC-SUP-POST-HOC-FREEZE` exists to refuse.
 - **P10 #663** — native-state extraction and verified solve benefit. The scope
   gate already passes; the successor `.tex` is a manuscript and is listed as a
   predecessor precisely so it cannot be counted.
+
+## Paper identity: P9 and P10 each carry two directories
+
+Found while auditing which artifacts the ledger should cite. `papers/candidates/`
+holds two `paper-09-*` and two `paper-10-*` directories; P1–P8 have exactly one
+each.
+
+Neither extra directory is a stale duplicate to delete. Both self-declare as merged
+predecessors, and both are cited by live tests and by other papers — removing either
+would delete evidence and red the suite. `papers/PAPER_ALIASES.md` deleted the P1–P5
+retirements only because they "contained no independent manuscript content", and that
+test fails here.
+
+What was actually stale was the *index*: `papers/candidates/README.md` still listed
+both retired titles as the current P9 and P10 candidates, with "no issue yet" against
+each, when #662 and #663 exist. `PAPER_ALIASES.md` — the repository's "single place
+for historical ORION paper-directory aliases" — covered only P1–P5, so nothing
+recorded the succession and a reader had to open each README to learn which directory
+carried the identity.
+
+Both files are now corrected, and `PAPER_DIRECTORIES` in
+`src/orion/programme/superiority_terminals.py` is the machine-readable form.
+`HC-SUP-STALE-PAPER-IDENTITY` fails on any paper-numbered directory that is neither a
+registered active identity nor a recorded predecessor, so a third directory cannot
+appear under a number without someone saying which one is which.
 
 ## Boundary
 

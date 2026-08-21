@@ -3815,7 +3815,7 @@
       "file": "programme/checks_superiority.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 74,
+      "lineno": 80,
       "missing_obligation": null,
       "reasons": [
         "check raised"
@@ -3829,7 +3829,7 @@
       "file": "programme/checks_superiority.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 80,
+      "lineno": 86,
       "missing_obligation": null,
       "reasons": [
         "check returned a result for a different check id"
@@ -3843,7 +3843,7 @@
       "file": "programme/checks_superiority.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 194,
+      "lineno": 201,
       "missing_obligation": null,
       "reasons": [
         "a campaign that terminated before producing an outcome is recorded as evidence for a terminal; preserving a CANNOT_CHECK campaign is right, counting it is not"
@@ -7923,7 +7923,7 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "85f67df12a7b30fbe8d1113e28c1b8a260af5abd",
+  "subject_commit": "a695cfe48d9706d105c2d585bad223d7cb374182",
   "total_sites": 545,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_derived_obligation": 84,

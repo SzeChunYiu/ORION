@@ -29,10 +29,12 @@ from orion.programme.checks_superiority import (
     POST_HOC_FREEZE,
     PREDECESSOR_REUSE,
     SELF_CERTIFICATION,
+    STALE_PAPER_IDENTITY,
     SUPERIORITY_CHECKS,
     TERMINAL_COVERAGE,
     THIN_REPLICATION,
     UNCLASSIFIED_BLOCKER,
+    paper_identity_findings,
     run_superiority_checks,
     validate_superiority_catalogue,
 )
@@ -68,8 +70,11 @@ from orion.programme.superiority_report import (
 )
 from orion.programme.superiority_terminals import (
     ALL_GATES,
+    PAPER_DIRECTORIES,
+    PAPER_DIRECTORIES_BY_ID,
     PAPER_GATES,
     PAPER_ISSUES,
+    REGISTERED_PAPER_DIRECTORIES,
     validate_registry,
 )
 
@@ -905,3 +910,79 @@ def test_ledger_document_counts_match_the_report() -> None:
         assert f"| `{name}` | {count} |" in document, f"{name} count drifted"
     for name, count in report["work_queue_by_responsibility"].items():
         assert f"`{name}` {count}" in document, f"{name} count drifted"
+
+
+# --- paper identity ----------------------------------------------------------
+
+
+def test_every_registered_paper_directory_exists() -> None:
+    """The registry names real directories, active and retired alike."""
+
+    for entry in PAPER_DIRECTORIES:
+        assert (REPO_ROOT / entry.active).is_dir(), entry.active
+        for directory, reason in entry.retired:
+            assert (REPO_ROOT / directory).is_dir(), directory
+            assert reason.strip(), f"{directory} must say why it is retained"
+
+
+def test_the_repository_has_no_unregistered_paper_directory() -> None:
+    assert paper_identity_findings(REPO_ROOT) == ()
+    result = _result(
+        SuperiorityLedger(ledger_id="x", frozen_at="2026-08-21", papers=()),
+        STALE_PAPER_IDENTITY,
+    )
+    assert result.outcome is Outcome.PASS
+
+
+def test_stale_paper_identity_fails(tmp_path: Path) -> None:
+    """A paper number carried by a directory nobody registered."""
+
+    (tmp_path / "papers" / "candidates").mkdir(parents=True)
+    for entry in PAPER_DIRECTORIES:
+        (tmp_path / entry.active).mkdir(parents=True, exist_ok=True)
+        for directory, _ in entry.retired:
+            (tmp_path / directory).mkdir(parents=True, exist_ok=True)
+    assert paper_identity_findings(tmp_path) == ()
+
+    (tmp_path / "papers" / "candidates" / "paper-09-some-third-thing").mkdir()
+    findings = paper_identity_findings(tmp_path)
+    assert findings == ("papers/candidates/paper-09-some-third-thing",)
+
+
+def test_paper_identity_cannot_check_without_a_papers_tree(tmp_path: Path) -> None:
+    assert paper_identity_findings(tmp_path) is None
+
+
+def test_p9_and_p10_keep_a_recorded_predecessor() -> None:
+    """Two directories under one number is legitimate only when recorded.
+
+    Both predecessors are cited by live tests and other papers, so the P1-P5
+    precedent of deleting a retired directory does not apply to them.
+    """
+
+    for paper_id, retired_name in (
+        ("P9", "paper-09-executable-research-core"),
+        ("P10", "paper-10-content-bound-math-evaluation"),
+    ):
+        entry = PAPER_DIRECTORIES_BY_ID[paper_id]
+        assert retired_name not in entry.active
+        assert [d for d, _ in entry.retired] == [f"papers/candidates/{retired_name}"]
+
+    # Every other paper carries exactly one directory.
+    for entry in PAPER_DIRECTORIES:
+        if entry.paper_id not in ("P9", "P10"):
+            assert entry.retired == (), entry.paper_id
+
+
+def test_the_ledger_cites_only_registered_paper_directories() -> None:
+    """Predecessor evidence must point into a directory the registry knows."""
+
+    ledger = ledger_from_payload(json.loads(LEDGER_PATH.read_text(encoding="utf-8")))
+    for paper in ledger.papers:
+        for item in paper.predecessor_artifacts:
+            if not item.artifact_ref.startswith("papers/"):
+                continue
+            assert any(
+                item.artifact_ref.startswith(f"{directory}/")
+                for directory in REGISTERED_PAPER_DIRECTORIES
+            ), item.artifact_ref

@@ -20,8 +20,10 @@ that shows it rejecting something.
 
 from __future__ import annotations
 
+import re
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
+from pathlib import Path
 
 from orion.programme.hostile import (
     CheckResult,
@@ -39,7 +41,11 @@ from orion.programme.superiority import (
     TerminalKind,
 )
 from orion.programme.superiority_ledger import SuperiorityLedger
-from orion.programme.superiority_terminals import PAPER_GATES
+from orion.programme.superiority_terminals import (
+    PAPER_DIRECTORIES,
+    PAPER_GATES,
+    REGISTERED_PAPER_DIRECTORIES,
+)
 
 
 @dataclass(frozen=True)
@@ -95,6 +101,7 @@ SELF_CERTIFICATION = "HC-SUP-SELF-CERTIFICATION"
 CLAIM_WIDER_THAN_EVIDENCE = "HC-SUP-CLAIM-WIDER-THAN-EVIDENCE"
 PREDECESSOR_REUSE = "HC-SUP-PREDECESSOR-REUSE"
 UNCLASSIFIED_BLOCKER = "HC-SUP-UNCLASSIFIED-BLOCKER"
+STALE_PAPER_IDENTITY = "HC-SUP-STALE-PAPER-IDENTITY"
 
 # Kinds that ask for an empirical outcome. The two scope kinds are excluded
 # throughout: a scope gate's artifact legitimately *is* a manuscript, because
@@ -487,6 +494,66 @@ def _check_unclassified_blocker(ledger: SuperiorityLedger) -> CheckResult:
     )
 
 
+_PAPER_DIR_PATTERN = re.compile(r"^paper-(\d{2})-")
+
+
+def paper_identity_findings(repo_root: Path) -> tuple[str, ...] | None:
+    """Unregistered paper-numbered directories, or ``None`` if the tree is absent.
+
+    Split out from the check so a caller can run it against any checkout.
+    """
+
+    papers = repo_root / "papers"
+    if not papers.is_dir():
+        return None
+    found: list[str] = []
+    for parent in (papers, papers / "candidates"):
+        if not parent.is_dir():
+            continue
+        for child in sorted(parent.iterdir()):
+            if not child.is_dir() or not _PAPER_DIR_PATTERN.match(child.name):
+                continue
+            relative = child.relative_to(repo_root).as_posix()
+            if relative not in REGISTERED_PAPER_DIRECTORIES:
+                found.append(relative)
+    return tuple(found)
+
+
+def _check_stale_paper_identity(ledger: SuperiorityLedger) -> CheckResult:
+    """A paper number carried by an unregistered directory is an identity ambiguity.
+
+    Two directories under one paper number is not, by itself, a defect --- P9 and
+    P10 each legitimately keep a merged predecessor beside the active identity,
+    because live tests and other papers cite them. What is a defect is a directory
+    the registry has never heard of, since then nothing says which one carries the
+    identity and a reader has to open each README to guess. That is exactly how
+    ``papers/candidates/README.md`` came to list two retired titles as the current
+    P9 and P10 candidates.
+    """
+
+    repo_root = Path(__file__).resolve().parents[3]
+    findings = paper_identity_findings(repo_root)
+    if findings is None:
+        return cannot_check(
+            STALE_PAPER_IDENTITY,
+            "no papers/ tree is visible from this checkout, so paper identity "
+            "cannot be resolved",
+        )
+    if findings:
+        return failed(
+            STALE_PAPER_IDENTITY,
+            "a paper-numbered directory is not registered as either the active "
+            "identity or a recorded predecessor",
+            tuple(f"{item} is unregistered" for item in findings),
+        )
+    retired = sum(len(entry.retired) for entry in PAPER_DIRECTORIES)
+    return passed(
+        STALE_PAPER_IDENTITY,
+        f"every paper-numbered directory is registered: {len(PAPER_DIRECTORIES)} active "
+        f"identities and {retired} recorded predecessor(s)",
+    )
+
+
 SUPERIORITY_CHECKS: tuple[SuperiorityCheck, ...] = (
     SuperiorityCheck(
         check_id=TERMINAL_COVERAGE,
@@ -550,6 +617,13 @@ SUPERIORITY_CHECKS: tuple[SuperiorityCheck, ...] = (
         failure_class="SELF_CERTIFICATION",
         negative_fixture_id="tests/unit/programme/test_superiority_gates.py::test_self_certification_fails",
         evaluate=_check_self_certification,
+    ),
+    SuperiorityCheck(
+        check_id=STALE_PAPER_IDENTITY,
+        title="Every paper number resolves to one registered identity",
+        failure_class="STALE_PAPER_IDENTITY",
+        negative_fixture_id="tests/unit/programme/test_superiority_gates.py::test_stale_paper_identity_fails",
+        evaluate=_check_stale_paper_identity,
     ),
     SuperiorityCheck(
         check_id=UNCLASSIFIED_BLOCKER,
@@ -617,6 +691,8 @@ __all__ = [
     "POST_HOC_FREEZE",
     "PREDECESSOR_REUSE",
     "SELF_CERTIFICATION",
+    "STALE_PAPER_IDENTITY",
+    "paper_identity_findings",
     "SUPERIORITY_CHECKS",
     "SuperiorityCheck",
     "run_superiority_checks",

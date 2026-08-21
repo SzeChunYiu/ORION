@@ -26,6 +26,8 @@ This module is data. It performs no adjudication and reads no evidence.
 
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 from orion.programme.superiority import TerminalGate, TerminalKind
 
 P1_U_ISSUE = 649
@@ -523,6 +525,77 @@ ALL_GATES: tuple[TerminalGate, ...] = tuple(
 ALL_GATE_IDS: tuple[str, ...] = tuple(gate.gate_id for gate in ALL_GATES)
 
 
+@dataclass(frozen=True)
+class PaperDirectories:
+    """Which directory currently carries a paper's identity, and what preceded it.
+
+    ``papers/PAPER_ALIASES.md`` is the repository's "single place for historical
+    ORION paper-directory aliases", and it covers only P1-P5. So for P6-P10 there
+    was nowhere recording succession, and two retired candidates sat beside two
+    active ones under the same numbers, distinguishable only by opening each
+    README. This is that record for the ten papers this module adjudicates.
+
+    ``retired`` directories are **kept**, not deleted, and the reason is recorded
+    per entry. The P1-P5 precedent in ``PAPER_ALIASES.md`` removed retired paths
+    only because "They contained no independent manuscript content"; that test
+    fails for both P9's and P10's predecessors, which hold results that live tests
+    and other papers cite.
+    """
+
+    paper_id: str
+    active: str
+    retired: tuple[tuple[str, str], ...] = ()
+    """``(directory, why it is retained)`` pairs."""
+
+
+PAPER_DIRECTORIES: tuple[PaperDirectories, ...] = (
+    PaperDirectories("P1", "papers/paper-01-recursive-epistemic-reconstruction"),
+    PaperDirectories("P2", "papers/paper-02-open-world-scientific-discovery"),
+    PaperDirectories("P3", "papers/paper-03-global-knowledge-portrait"),
+    PaperDirectories("P4", "papers/paper-04-verified-scientific-discovery"),
+    PaperDirectories("P5", "papers/paper-05-self-orion"),
+    PaperDirectories(
+        "P6", "papers/candidates/paper-06-formal-epistemic-structures-and-mechanics"
+    ),
+    PaperDirectories("P7", "papers/candidates/paper-07-epistemic-navigation-open-worlds"),
+    PaperDirectories("P8", "papers/candidates/paper-08-epistemic-authority-autonomous-science"),
+    PaperDirectories(
+        "P9",
+        "papers/candidates/paper-09-structured-epistemic-learning",
+        (
+            (
+                "papers/candidates/paper-09-executable-research-core",
+                "Self-declares MERGED INTO P8/PROGRAMME with no standalone manuscript. "
+                "Retained: cited by tests/unit/candidates/test_p9_p10_learning_machine.py, "
+                "by P8's benchmark companion, and by the orion-learning-machine lane.",
+            ),
+        ),
+    ),
+    PaperDirectories(
+        "P10",
+        "papers/candidates/paper-10-structured-problem-solving",
+        (
+            (
+                "papers/candidates/paper-10-content-bound-math-evaluation",
+                "Terminal TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME; deliberately not a "
+                "standalone paper. Retained: it is P10's predecessor evidence in the "
+                "superiority ledger, and is cited by a live test and the RSE wave-closure "
+                "manifest.",
+            ),
+        ),
+    ),
+)
+
+PAPER_DIRECTORIES_BY_ID: dict[str, PaperDirectories] = {
+    entry.paper_id: entry for entry in PAPER_DIRECTORIES
+}
+
+REGISTERED_PAPER_DIRECTORIES: frozenset[str] = frozenset(
+    [entry.active for entry in PAPER_DIRECTORIES]
+    + [directory for entry in PAPER_DIRECTORIES for directory, _ in entry.retired]
+)
+
+
 def validate_registry() -> tuple[str, ...]:
     """Return deduplicated structural errors in the registry. Empty means intact.
 
@@ -557,14 +630,28 @@ def validate_registry() -> tuple[str, ...]:
         if paper_id not in PAPER_GATES:
             errors.append(f"paper {paper_id} has an issue but no gates")
 
+    for paper_id in PAPER_GATES:
+        if paper_id not in PAPER_DIRECTORIES_BY_ID:
+            errors.append(f"paper {paper_id} has gates but no registered directory")
+    seen_directories: set[str] = set()
+    for entry in PAPER_DIRECTORIES:
+        for directory in (entry.active, *(item for item, _ in entry.retired)):
+            if directory in seen_directories:
+                errors.append(f"directory {directory} is registered to more than one paper")
+            seen_directories.add(directory)
+
     return tuple(dict.fromkeys(errors))
 
 
 __all__ = [
     "ALL_GATES",
     "ALL_GATE_IDS",
+    "PAPER_DIRECTORIES",
+    "PAPER_DIRECTORIES_BY_ID",
     "PAPER_GATES",
     "PAPER_ISSUES",
+    "REGISTERED_PAPER_DIRECTORIES",
+    "PaperDirectories",
     "P1_U_GATES",
     "P2_U_GATES",
     "P3_U_GATES",

@@ -36,6 +36,32 @@ The former `shadow-mechanics-v1/` directory was never assigned ORION-P1..P5 but 
 
 The archive preserves the original bytes and chronology but is not a publication identity.
 
+## P6–P10 candidate succession
+
+The sections above cover the five flagship identities. Candidate papers P6–P10 live
+under `candidates/` and are not flagship identities, but two of their numbers are
+carried by more than one directory, so the succession is recorded here.
+
+| Stable ID | Active directory | Retired directory | Disposition |
+|---|---|---|---|
+| ORION-P9 | `candidates/paper-09-structured-epistemic-learning/` | `candidates/paper-09-executable-research-core/` | retained |
+| ORION-P10 | `candidates/paper-10-structured-problem-solving/` | `candidates/paper-10-content-bound-math-evaluation/` | retained |
+
+**Retained, not removed.** The P1–P5 redirects above were deleted because they
+"contained no independent manuscript content". That test fails here: both retired
+directories hold results that live tests and other papers cite, and
+`paper-10-content-bound-math-evaluation/` is the predecessor evidence P10's own
+successor issue (#663) rests on. Deleting either would remove evidence and red the
+suite.
+
+P6, P7 and P8 each have exactly one directory and need no alias.
+
+The machine-readable registry is `PAPER_DIRECTORIES` in
+`src/orion/programme/superiority_terminals.py`. `HC-SUP-STALE-PAPER-IDENTITY` fails
+on any paper-numbered directory that is neither a registered active identity nor a
+recorded predecessor, so a third directory cannot appear under a number without
+someone recording which one carries the identity.
+
 ## Older RAKL numbering
 
 RAKL used multiple publication-numbering generations before ORION. A bare historical label such as “Paper III” is therefore not a stable identity across repositories or dates.
