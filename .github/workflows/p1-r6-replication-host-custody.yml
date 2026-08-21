@@ -75,6 +75,11 @@ jobs:
           c = json.loads(Path('research/claim_expansion/p1/gpt_r6/P1_R6_2019_HOST_CUSTODY_V1.json').read_text())
           for name in ('transformers', 'huggingface_hub', 'safetensors', 'sentencepiece', 'torch'):
               print(f"{name}=={c['runtime_versions'][name]}")
+          # This is reconstructed from immutable pre-primary run 32468728488,
+          # job 96730816951: its install log resolved tokenizers-0.22.2 before
+          # custody artifact 9444406925 was emitted. The version is therefore
+          # historical environment evidence, not a post-outcome model choice.
+          print('tokenizers==0.22.2')
           PY
           python -m pip install -r /tmp/p1-r6-host-requirements.txt
 
@@ -106,6 +111,27 @@ jobs:
           assert model_id == protocol['changed_host']['model_id']
           assert len(revision) == 40 and all(ch in '0123456789abcdef' for ch in revision.lower())
 
+          # Bind the actual replay call to the committed pre-primary generation
+          # receipt. Do not allow protocol defaults or hardcoded call arguments
+          # to drift away from the custody artifact.
+          protocol_generation = protocol['changed_host']['generation']
+          expected_generation = {
+              'do_sample': bool(protocol_generation['do_sample']),
+              'temperature_semantics': 'not_applicable_when_do_sample_false',
+              'max_new_tokens': int(protocol_generation['max_new_tokens']),
+          }
+          assert protocol_generation['do_sample'] is False
+          assert float(protocol_generation['temperature']) == 0.0
+          assert frozen['generation_parameters'] == expected_generation
+
+          # The original custody receipt omitted tokenizers from runtime_versions,
+          # but the immutable pre-primary job log records tokenizers-0.22.2 before
+          # artifact 9444406925 was created. Reconstruct that missing environment
+          # coordinate exactly rather than selecting a post-outcome compatible
+          # release.
+          historical_tokenizers_version = '0.22.2'
+          assert importlib.metadata.version('tokenizers') == historical_tokenizers_version
+
           config_path = Path(hf_hub_download(model_id, 'config.json', revision=revision))
           tokenizer = AutoTokenizer.from_pretrained(model_id, revision=revision)
           model = AutoModelForSeq2SeqLM.from_pretrained(model_id, revision=revision)
@@ -117,8 +143,8 @@ jobs:
           with torch.no_grad():
               output = model.generate(
                   **encoded,
-                  do_sample=False,
-                  max_new_tokens=int(protocol['changed_host']['generation']['max_new_tokens']),
+                  do_sample=bool(frozen['generation_parameters']['do_sample']),
+                  max_new_tokens=int(frozen['generation_parameters']['max_new_tokens']),
               )
           decoded = tokenizer.decode(output[0], skip_special_tokens=True)
           assert isinstance(decoded, str) and decoded.strip()
@@ -145,6 +171,13 @@ jobs:
           receipt['replayed_against_committed_preprimary_custody_receipt'] = True
           receipt['committed_preprimary_custody_receipt_sha256'] = hashlib.sha256(custody_path.read_bytes()).hexdigest()
           receipt['replay_python'] = platform.python_version()
+          receipt['reconstructed_preprimary_environment'] = {
+              'source_run_id': 32468728488,
+              'source_job_id': 96730816951,
+              'source_artifact_id': 9444406925,
+              'tokenizers': historical_tokenizers_version,
+              'authority': 'HISTORICAL_ENVIRONMENT_RECONSTRUCTION_ONLY',
+          }
           receipt['promotion_authorized'] = False
           assert receipt['no_gold_access'] is True
           assert receipt['replication_source_or_gold_accessed'] is False
