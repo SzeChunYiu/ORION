@@ -1,7 +1,7 @@
 # ORION-QG wave-1 closure packet
 
-Status: UNDER ASSEMBLY — becomes the wave-1 closure record when every slot carries its
-receipt and the harness-driven closure decision is recorded.
+Status: CLOSED — every lane slot carries its receipt and the harness-driven closure
+decision is recorded below (2026-08-21).
 Charter: `PROGRAMME_CHARTER_V1.md` (issue #740). Branch:
 `claude/orion-harness-verification-b17qdj` (from merged main `4cde8d48`).
 Authority: development record only; no lane receipt grants scientific/novelty authority.
@@ -80,12 +80,46 @@ Authority: development record only; no lane receipt grants scientific/novelty au
   DP == D++ for all n, so a forecaster minimizing over the full support-≤2 family is
   provably exact — registered as the wave-2 lead lane (QG-5b).
 
-## Closure decision (bound slot)
+## Closure decision (bound)
 
-- [SLOT] Harness-driven wave-1 closure adjudication: after all five lanes land, the
-  question "is QG wave 1 scientifically closed, and what does wave 2 inherit?" is posed
-  through the harness (dual-instrument where warranted), and the decision receipt is
-  recorded here with the residual ledger for wave 2.
+- **Harness-driven adjudication — SOLVED_VERIFIED: WAVE 1 SCIENTIFICALLY CLOSED**
+  (`closure-adjudication/ADJUDICATION_TERMINAL_V3.json` + full workspace receipts in
+  `closure-adjudication/adjudication-workspace-v3.tar.gz`; protocol frozen pre-run in
+  `QG_WAVE1_CLOSURE_ADJUDICATION_PROTOCOL.md`). The question was posed to the generic
+  ORION harness (host-driven recursive solve, this session servicing capabilities from
+  committed receipts only); the terminal answer, on 20 verified claims, holds all three
+  closure conjuncts: 5/5 lanes in charter closure modes with double-run replay-verified
+  receipts; only the adjudication slot itself unbound; no post-outcome gate weakening
+  (QG-5's `forecast_error_zero_everywhere=false` is the recorded refutation finding under
+  its pre-frozen branch, not a weakened gate). Instrument honesty preserved verbatim: two
+  earlier attempts terminated CANNOT_CHECK (V1 at insufficient resource bounds —
+  `ADJUDICATION_TERMINAL_V1_CANNOT_CHECK.json`; V2 with the CURRENT_VOCABULARY route
+  family uncovered) and are retained as negative records; the harness's fail-closed
+  verifier also rejected two host evidence items (a non-verbatim charter paraphrase and a
+  mis-sourced freshness item), which were excluded from claims. The verdict grants no
+  scientific or novelty authority; it authorizes this packet's CLOSED status and binds
+  the ledger below.
+
+## Wave-2 residual ledger (inherited, receipt-localized)
+
+- **R1 (lead) — QG-5b exact forecaster.** Minimize over the full support-≤2 family
+  (provably exact by R6S: DP == D++ all n) and enlarge B(t) with out-of-support borrow
+  homes — repairs both the QG-5 counterexample and P1's first false positive.
+  (`QG5_CERTIFIED_FORECAST_RESULTS.json`)
+- **R2 — objective-indexed sufficiency bounds.** Under O1 support-3 pays (C_DP 11 <
+  C_D++ 13; 53 criticals): re-prove R6S-style bounds per objective.
+  (`QG2_OBJECTIVE_ROBUSTNESS_RESULTS.json`)
+- **R3 — predicate-language enlargement.** No exact predicate exists in the frozen
+  literal family under O1 (best re-induction: 273 errors). (QG-2 receipt)
+- **R4 — feasible D++ chemistry referee under O1** at n = 8..12 (currently honestly
+  UNRESOLVED on all 30 rows). (QG-2 receipt)
+- **R5 — tightness witness for the QG-1 support-5 bound** (is 5 attained?).
+  (`QG1_RANK2_ALL_N_RESULTS.json`)
+- **R6 — third family without an exact finite referee**, plus formalization of the
+  boundary-is-low-order candidate principle. (`QG4_SECOND_FAMILY_RESULTS.json`)
+- **R7 — frozen hunt for a real trade-regime chemistry batch** (QG-3: all 90 real
+  library matchings donor-exact; positive trade confirmations are synthetic-only).
+  (`QG3_BOUNDARY_PROSPECTIVE_RESULTS.json`)
 
 ## Stop rules
 
