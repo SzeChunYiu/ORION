@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import dataclasses
 import hashlib
+import re
 from dataclasses import dataclass, replace
 from enum import Enum
 from typing import Any, Mapping
@@ -31,6 +32,21 @@ from .broker import (
 )
 from .protocol import utc_now
 from .workspace import ResearchWorkspace
+
+_VOLATILE_RESIDUAL_METADATA_KEYS = {
+    "epoch",
+    "state_epoch",
+    "iteration",
+    "iteration_index",
+    "cycle",
+    "cycle_index",
+    "timestamp",
+    "created_at",
+    "updated_at",
+    "trace_id",
+    "run_id",
+    "receipt_id",
+}
 
 
 def _jsonable(value: Any) -> Any:
@@ -82,13 +98,79 @@ def _material_residuals(result: RuntimeResult) -> tuple[Residual, ...]:
     return tuple(item for item in result.final_state.knowledge.residuals if item.material)
 
 
-def _find_material_residual(
-    result: RuntimeResult, residual_id: str
-) -> Residual | None:
-    for item in result.final_state.knowledge.residuals:
-        if item.residual_id == residual_id and item.material:
-            return item
-    return None
+def _normalize_text(value: str) -> str:
+    return " ".join(value.casefold().split())
+
+
+def _stable_metadata(residual: Residual) -> tuple[tuple[str, str], ...]:
+    """Remove execution-local coordinates while retaining scientific/context identity."""
+
+    rows: list[tuple[str, str]] = []
+    for key, value in residual.metadata:
+        normalized_key = key.casefold()
+        if normalized_key in _VOLATILE_RESIDUAL_METADATA_KEYS:
+            continue
+        if normalized_key.endswith("_epoch") or normalized_key.endswith("_timestamp"):
+            continue
+        rows.append((key, value))
+    return tuple(sorted(rows))
+
+
+def _logical_residual_fingerprint(residual: Residual) -> str:
+    """Stable logical identity independent of receipt/epoch minting.
+
+    The fingerprint deliberately excludes ``residual_id``. Detector-generated IDs
+    may change after every parent re-solve even when the same scientific failure is
+    still present. Ambiguous semantic matches are never guessed.
+    """
+
+    payload = repr(
+        (
+            residual.kind.value,
+            _normalize_text(residual.description),
+            tuple(item.value for item in residual.candidate_responsibilities),
+            _stable_metadata(residual),
+            bool(residual.material),
+        )
+    )
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+@dataclass(frozen=True)
+class _ResidualMatch:
+    status: str
+    residual: Residual | None
+    candidate_ids: tuple[str, ...] = ()
+
+
+def _match_material_residual(
+    result: RuntimeResult,
+    previous: Residual,
+) -> _ResidualMatch:
+    material = _material_residuals(result)
+    exact = tuple(item for item in material if item.residual_id == previous.residual_id)
+    if len(exact) == 1:
+        return _ResidualMatch("EXACT_ID", exact[0], (exact[0].residual_id,))
+    if len(exact) > 1:
+        return _ResidualMatch(
+            "AMBIGUOUS_EXACT_ID", None, tuple(item.residual_id for item in exact)
+        )
+
+    fingerprint = _logical_residual_fingerprint(previous)
+    logical = tuple(
+        item for item in material if _logical_residual_fingerprint(item) == fingerprint
+    )
+    if len(logical) == 1:
+        return _ResidualMatch(
+            "SEMANTIC_FINGERPRINT", logical[0], (logical[0].residual_id,)
+        )
+    if len(logical) > 1:
+        return _ResidualMatch(
+            "AMBIGUOUS_SEMANTIC_FINGERPRINT",
+            None,
+            tuple(item.residual_id for item in logical),
+        )
+    return _ResidualMatch("ABSENT", None, ())
 
 
 @dataclass(frozen=True)
@@ -129,13 +211,37 @@ class _RecursiveSession:
         self.nodes: list[dict[str, Any]] = []
         self.plans: list[dict[str, Any]] = []
         self.pruned_atoms: list[dict[str, str]] = []
-        self.stop_records: list[dict[str, str]] = []
+        self.stop_records: list[dict[str, Any]] = []
         self.visited: set[tuple[str, str]] = set()
         self.max_depth_reached = 0
+        self.resource_bound_hit = False
+        self.identity_ambiguity_hit = False
 
     def _consume_node(self) -> None:
         if len(self.nodes) >= self.limits.max_nodes:
+            self.resource_bound_hit = True
             raise RuntimeError("RECURSIVE_NODE_BUDGET_EXHAUSTED")
+
+    def _record_stop(
+        self,
+        *,
+        problem_id: str,
+        residual_id: str,
+        stop_reason: str,
+        details: Mapping[str, Any] | None = None,
+    ) -> None:
+        if stop_reason == "CANNOT_CHECK_RESOURCE_BOUND":
+            self.resource_bound_hit = True
+        if stop_reason == "CANNOT_CHECK_AMBIGUOUS_RESIDUAL_IDENTITY":
+            self.identity_ambiguity_hit = True
+        record: dict[str, Any] = {
+            "problem_id": problem_id,
+            "residual_id": residual_id,
+            "stop_reason": stop_reason,
+        }
+        if details:
+            record["details"] = dict(details)
+        self.stop_records.append(record)
 
     def _record_runtime(
         self,
@@ -165,6 +271,10 @@ class _RecursiveSession:
                 "material_residual_ids": [
                     item.residual_id for item in _material_residuals(result)
                 ],
+                "material_residual_fingerprints": [
+                    _logical_residual_fingerprint(item)
+                    for item in _material_residuals(result)
+                ],
                 "experience_episode_id": result.experience_episode_id,
                 "mechanic_experience_episode_ids": list(
                     result.mechanic_experience_episode_ids
@@ -193,7 +303,7 @@ class _RecursiveSession:
             problem,
             initial_state=state,
             variation_signature=(
-                "recursive-problem-residual-solver-v2",
+                "recursive-problem-residual-solver-v3",
                 f"depth:{recursion_depth}",
                 f"role:{role}",
                 f"parent_problem:{parent_problem_id or '-'}",
@@ -256,6 +366,7 @@ class _RecursiveSession:
                 "plan_kind": "RESIDUAL_DECOMPOSITION",
                 "parent_problem_id": problem.problem_id,
                 "parent_residual_id": residual.residual_id,
+                "parent_residual_fingerprint": _logical_residual_fingerprint(residual),
                 "recursion_depth": recursion_depth,
                 "rationale": decomposition.rationale,
                 "stop_reason": (
@@ -294,12 +405,10 @@ class _RecursiveSession:
             )
             if not ordered_atoms:
                 if decomposition.stop_reason is not None:
-                    self.stop_records.append(
-                        {
-                            "problem_id": problem.problem_id,
-                            "residual_id": "",
-                            "stop_reason": decomposition.stop_reason.value,
-                        }
+                    self._record_stop(
+                        problem_id=problem.problem_id,
+                        residual_id="",
+                        stop_reason=decomposition.stop_reason.value,
                     )
                 return self.solve_problem(
                     problem=problem,
@@ -310,6 +419,18 @@ class _RecursiveSession:
 
             replanned = False
             for atom_index, atom in enumerate(ordered_atoms):
+                if len(self.nodes) >= self.limits.max_nodes:
+                    self._record_stop(
+                        problem_id=problem.problem_id,
+                        residual_id="",
+                        stop_reason="CANNOT_CHECK_RESOURCE_BOUND",
+                    )
+                    return self.solve_problem(
+                        problem=problem,
+                        state=working_state,
+                        role="root-resource-bound-snapshot",
+                        recursion_depth=0,
+                    )
                 child = atom.as_problem(parent_problem=problem)
                 before_child_hash = _semantic_state_hash(working_state)
                 _child_result, child_state = self.solve_problem(
@@ -349,12 +470,10 @@ class _RecursiveSession:
             if replanned:
                 continue
 
-            self.stop_records.append(
-                {
-                    "problem_id": problem.problem_id,
-                    "residual_id": "",
-                    "stop_reason": "NO_PROBLEM_ATOM_PRODUCED_SEMANTIC_PROGRESS",
-                }
+            self._record_stop(
+                problem_id=problem.problem_id,
+                residual_id="",
+                stop_reason="NO_PROBLEM_ATOM_PRODUCED_SEMANTIC_PROGRESS",
             )
             return self.solve_problem(
                 problem=problem,
@@ -382,28 +501,31 @@ class _RecursiveSession:
             parent_residual_id=parent_residual_id,
         )
         working_state = _without_problem_local_residuals(result.final_state)
-        residuals = _material_residuals(result)
-        if not residuals:
+        if not _material_residuals(result):
             return result, working_state
 
         if recursion_depth >= self.limits.max_depth:
-            for residual in residuals:
-                self.stop_records.append(
-                    {
-                        "problem_id": problem.problem_id,
-                        "residual_id": residual.residual_id,
-                        "stop_reason": "CANNOT_CHECK_RESOURCE_BOUND",
-                    }
+            for residual in _material_residuals(result):
+                self._record_stop(
+                    problem_id=problem.problem_id,
+                    residual_id=residual.residual_id,
+                    stop_reason="CANNOT_CHECK_RESOURCE_BOUND",
                 )
             return result, working_state
 
-        for original_residual in residuals:
-            current_residual = _find_material_residual(
-                result, original_residual.residual_id
-            )
-            if current_residual is None:
+        # The queue is rebuilt after every parent refresh.  This prevents a new
+        # detector-minted residual id from escaping merely because the previous
+        # solve used another epoch-bound id.
+        pending: list[Residual] = list(_material_residuals(result))
+        processed_fingerprints: set[str] = set()
+
+        while pending:
+            current_residual = pending.pop(0)
+            current_fingerprint = _logical_residual_fingerprint(current_residual)
+            if current_fingerprint in processed_fingerprints:
                 continue
-            while current_residual is not None:
+
+            while True:
                 decomposition = self.residual_planner.decompose(
                     residual=current_residual,
                     problem=problem,
@@ -420,26 +542,25 @@ class _RecursiveSession:
                 )
                 if not ordered_atoms:
                     assert decomposition.stop_reason is not None
-                    self.stop_records.append(
-                        {
-                            "problem_id": problem.problem_id,
-                            "residual_id": current_residual.residual_id,
-                            "stop_reason": decomposition.stop_reason.value,
-                        }
+                    self._record_stop(
+                        problem_id=problem.problem_id,
+                        residual_id=current_residual.residual_id,
+                        stop_reason=decomposition.stop_reason.value,
                     )
+                    processed_fingerprints.add(current_fingerprint)
                     break
 
-                replanned = False
+                replanned_same_logical_residual = False
+                replaced_or_ambiguous = False
                 for atom_index, atom in enumerate(ordered_atoms):
                     if len(self.nodes) >= self.limits.max_nodes:
-                        self.stop_records.append(
-                            {
-                                "problem_id": problem.problem_id,
-                                "residual_id": current_residual.residual_id,
-                                "stop_reason": "CANNOT_CHECK_RESOURCE_BOUND",
-                            }
+                        self._record_stop(
+                            problem_id=problem.problem_id,
+                            residual_id=current_residual.residual_id,
+                            stop_reason="CANNOT_CHECK_RESOURCE_BOUND",
                         )
                         return result, working_state
+
                     child = atom.as_problem(
                         parent_problem=problem,
                         parent_residual=current_residual,
@@ -459,12 +580,10 @@ class _RecursiveSession:
                         continue
 
                     if len(self.nodes) >= self.limits.max_nodes:
-                        self.stop_records.append(
-                            {
-                                "problem_id": problem.problem_id,
-                                "residual_id": current_residual.residual_id,
-                                "stop_reason": "CANNOT_CHECK_RESOURCE_BOUND",
-                            }
+                        self._record_stop(
+                            problem_id=problem.problem_id,
+                            residual_id=current_residual.residual_id,
+                            stop_reason="CANNOT_CHECK_RESOURCE_BOUND",
                         )
                         return result, working_state
 
@@ -479,11 +598,50 @@ class _RecursiveSession:
                     working_state = _without_problem_local_residuals(
                         refreshed.final_state
                     )
-                    refreshed_residual = _find_material_residual(
-                        refreshed, current_residual.residual_id
-                    )
+                    match = _match_material_residual(refreshed, current_residual)
+                    refreshed_material = _material_residuals(refreshed)
                     result = refreshed
-                    if refreshed_residual is None:
+
+                    if match.status in {
+                        "AMBIGUOUS_EXACT_ID",
+                        "AMBIGUOUS_SEMANTIC_FINGERPRINT",
+                    }:
+                        self._record_stop(
+                            problem_id=problem.problem_id,
+                            residual_id=current_residual.residual_id,
+                            stop_reason="CANNOT_CHECK_AMBIGUOUS_RESIDUAL_IDENTITY",
+                            details={
+                                "match_status": match.status,
+                                "candidate_ids": list(match.candidate_ids),
+                                "logical_fingerprint": current_fingerprint,
+                            },
+                        )
+                        # Do not prune any sibling. Rebuild the queue from every
+                        # material residual in the refreshed parent state.
+                        pending = list(refreshed_material)
+                        processed_fingerprints.add(current_fingerprint)
+                        replaced_or_ambiguous = True
+                        break
+
+                    if match.residual is not None:
+                        # Same logical residual survived even if its concrete id
+                        # changed with the parent epoch. Replan against fresh evidence.
+                        current_residual = match.residual
+                        current_fingerprint = _logical_residual_fingerprint(
+                            current_residual
+                        )
+                        pending = [
+                            item
+                            for item in refreshed_material
+                            if _logical_residual_fingerprint(item)
+                            != current_fingerprint
+                        ] + pending
+                        replanned_same_logical_residual = True
+                        break
+
+                    if not refreshed_material:
+                        # Closure is safe only when the refreshed parent exposes no
+                        # material residual matching or replacing the branch.
                         for remaining in ordered_atoms[atom_index + 1 :]:
                             self.pruned_atoms.append(
                                 {
@@ -493,27 +651,60 @@ class _RecursiveSession:
                                     "reason": "PARENT_RESIDUAL_CLOSED_AFTER_CHEAPER_DISCRIMINATOR",
                                 }
                             )
-                        current_residual = None
-                        replanned = True
+                        processed_fingerprints.add(current_fingerprint)
+                        replaced_or_ambiguous = True
                         break
 
-                    current_residual = refreshed_residual
-                    replanned = True
+                    # The old logical fingerprint disappeared, but other material
+                    # residuals remain. That is a reclassification/replacement,
+                    # not proof that the scientific branch closed. Never prune the
+                    # stale siblings as a scientific shortcut; rebuild from the
+                    # fresh residual set instead.
+                    self._record_stop(
+                        problem_id=problem.problem_id,
+                        residual_id=current_residual.residual_id,
+                        stop_reason="RESIDUAL_RECLASSIFIED_AFTER_PARENT_REFRESH",
+                        details={
+                            "old_logical_fingerprint": current_fingerprint,
+                            "fresh_residual_ids": [
+                                item.residual_id for item in refreshed_material
+                            ],
+                        },
+                    )
+                    processed_fingerprints.add(current_fingerprint)
+                    pending = list(refreshed_material)
+                    replaced_or_ambiguous = True
                     break
 
-                if current_residual is None:
-                    break
-                if replanned:
+                if replanned_same_logical_residual:
                     continue
+                if replaced_or_ambiguous:
+                    break
 
-                self.stop_records.append(
-                    {
-                        "problem_id": problem.problem_id,
-                        "residual_id": current_residual.residual_id,
-                        "stop_reason": "NO_CHILD_PRODUCED_SEMANTIC_PROGRESS",
-                    }
+                # Every child was attempted without semantic progress. Preserve
+                # the residual as open rather than looping or rounding up.
+                self._record_stop(
+                    problem_id=problem.problem_id,
+                    residual_id=current_residual.residual_id,
+                    stop_reason="NO_CHILD_PRODUCED_SEMANTIC_PROGRESS",
                 )
+                processed_fingerprints.add(current_fingerprint)
                 break
+
+            # Refresh pending with any currently material logical residual not yet
+            # processed. This also catches residuals that were minted during a
+            # sibling's parent refresh.
+            known_pending = {
+                _logical_residual_fingerprint(item) for item in pending
+            }
+            for item in _material_residuals(result):
+                fingerprint = _logical_residual_fingerprint(item)
+                if (
+                    fingerprint not in processed_fingerprints
+                    and fingerprint not in known_pending
+                ):
+                    pending.append(item)
+                    known_pending.add(fingerprint)
 
         return result, working_state
 
@@ -565,10 +756,10 @@ def run_problem_recursive(
         solver,
         experience_store=experiences,
         producer_process_lineage_hash=_sha256_label(
-            "orion-research-harness-recursive-v2"
+            "orion-research-harness-recursive-v3"
         ),
         evaluator_artifact_hash=_sha256_label(
-            "external-host-capability-receipts-recursive-v2"
+            "external-host-capability-receipts-recursive-v3"
         ),
     )
     policy = ResidualRecursionPolicy(
@@ -604,7 +795,7 @@ def run_problem_recursive(
         )
     except HostCapabilityRequired as pending:
         return {
-            "schema": "ORION.HarnessRecursiveSolveOutcome.v2",
+            "schema": "ORION.HarnessRecursiveSolveOutcome.v3",
             "status": "PENDING_CAPABILITY",
             "problem_id": problem.problem_id,
             "request": pending.request.as_dict(),
@@ -612,11 +803,12 @@ def run_problem_recursive(
                 "completed_nodes": len(session.nodes),
                 "completed_plans": len(session.plans),
                 "max_depth_reached": session.max_depth_reached,
+                "resource_bound_hit": session.resource_bound_hit,
             },
         }
     except HostCapabilityFailed as failed:
         return {
-            "schema": "ORION.HarnessRecursiveSolveOutcome.v2",
+            "schema": "ORION.HarnessRecursiveSolveOutcome.v3",
             "status": "HOST_CAPABILITY_FAILED",
             "problem_id": problem.problem_id,
             "request": failed.request.as_dict(),
@@ -626,6 +818,7 @@ def run_problem_recursive(
                 "completed_nodes": len(session.nodes),
                 "completed_plans": len(session.plans),
                 "max_depth_reached": session.max_depth_reached,
+                "resource_bound_hit": session.resource_bound_hit,
             },
         }
     except RuntimeError as exc:
@@ -635,24 +828,38 @@ def run_problem_recursive(
         }:
             raise
         run_status = str(exc)
+        if run_status == "RECURSIVE_NODE_BUDGET_EXHAUSTED":
+            session.resource_bound_hit = True
         result = None
     else:
         run_status = "COMPLETE"
 
+    if session.resource_bound_hit:
+        public_status = "CANNOT_CHECK_RESOURCE_BOUND"
+    elif session.identity_ambiguity_hit:
+        public_status = "CANNOT_CHECK_RESIDUAL_IDENTITY"
+    elif result is None:
+        public_status = "CANNOT_CHECK"
+    else:
+        public_status = "COMPLETE"
+
     run_id = "recursive-run:" + uuid4().hex
     record = {
-        "schema": "ORION.HarnessRecursiveRun.v2",
+        "schema": "ORION.HarnessRecursiveRun.v3",
         "run_id": run_id,
         "session_id": workspace.session_id,
         "created_at": utc_now(),
         "problem": _jsonable(problem),
         "limits": _jsonable(limits),
-        "status": run_status,
+        "status": public_status,
+        "internal_run_status": run_status,
         "nodes": session.nodes,
         "decomposition_plans": session.plans,
         "pruned_atoms": session.pruned_atoms,
         "stop_records": session.stop_records,
         "max_depth_reached": session.max_depth_reached,
+        "resource_bound_hit": session.resource_bound_hit,
+        "identity_ambiguity_hit": session.identity_ambiguity_hit,
         "experience_episodes": [_jsonable(item) for item in experiences.episodes()],
         "grants_scientific_authority": False,
         "grants_novelty_authority": False,
@@ -663,22 +870,25 @@ def run_problem_recursive(
         record["final_state"] = _jsonable(result.final_state)
     workspace.save_run(run_id, record)
 
-    if result is None:
+    material = () if result is None else _material_residuals(result)
+    if public_status != "COMPLETE":
         return {
-            "schema": "ORION.HarnessRecursiveSolveOutcome.v2",
-            "status": "CANNOT_CHECK_RESOURCE_BOUND",
+            "schema": "ORION.HarnessRecursiveSolveOutcome.v3",
+            "status": public_status,
             "problem_id": problem.problem_id,
             "run_id": run_id,
             "recursive_status": run_status,
             "node_count": len(session.nodes),
             "max_depth_reached": session.max_depth_reached,
             "pruned_atom_count": len(session.pruned_atoms),
+            "residual_ids": [item.residual_id for item in material],
+            "stop_records": session.stop_records,
         }
 
-    material = _material_residuals(result)
+    assert result is not None
     recursive_status = "RESIDUALS_OPEN" if material else "RESIDUAL_TREE_CLOSED"
     return {
-        "schema": "ORION.HarnessRecursiveSolveOutcome.v2",
+        "schema": "ORION.HarnessRecursiveSolveOutcome.v3",
         "status": "COMPLETE",
         "problem_id": problem.problem_id,
         "run_id": run_id,
