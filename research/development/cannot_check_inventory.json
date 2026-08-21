@@ -1,5 +1,5 @@
 {
-  "blocker_sites": 523,
+  "blocker_sites": 524,
   "classification": {
     "INSUFFICIENT_EVIDENCE": 14,
     "MISSING_ACCESS": 5,
@@ -7,7 +7,7 @@
     "MISSING_DECLARATION": 76,
     "MISSING_IDENTITY": 29,
     "UNAVAILABLE_PROVIDER": 12,
-    "UNCLASSIFIED": 352
+    "UNCLASSIFIED": 353
   },
   "closes_gate": null,
   "grants_authority": "NONE",
@@ -4335,6 +4335,18 @@
     },
     {
       "category": "UNCLASSIFIED",
+      "context": "require_refutable",
+      "file": "programme/refutation_capacity.py",
+      "has_reason": false,
+      "kind": "ASSIGN",
+      "lineno": 560,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
       "context": "BlindSpotTest",
       "file": "programme/search_universe_knowledge.py",
       "has_reason": false,
@@ -8352,8 +8364,8 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "25d8eb72f8ea8e21b77fa15a7d6c33c09913c3a2",
-  "total_sites": 575,
+  "subject_commit": "9e48fe8f0a42531e31b275612fa39efb6356cf67",
+  "total_sites": 576,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_derived_obligation": 94,
   "with_reason": 243
