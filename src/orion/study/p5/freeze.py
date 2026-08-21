@@ -12,7 +12,6 @@ The commitment is not empirical evidence and cannot promote a P5 result.
 
 from __future__ import annotations
 
-import argparse
 import hashlib
 import json
 from pathlib import Path, PurePosixPath
@@ -92,10 +91,25 @@ def _require_sha256(value: Any, field: str) -> str:
     return digest
 
 
+#: A 256-bit nonce drawn from a CSPRNG lands below 2**64 with probability
+#: 2**-192. Anything that does is a counter, an ordinal or a small integer, and
+#: the commitment scheme's whole purpose is defeated by one: the shipped
+#: PROTECTED_SUITE_V1 used `int(nonce, 16)` values 1 through 24, which opened its
+#: 24 commitments in 108 SHA-256 evaluations. See
+#: research/failures/2026-08-invertible-commitment-vacuous-custody/.
+_MIN_NONCE_VALUE = 1 << 64
+
+
 def _require_nonce(value: Any, field: str) -> str:
     nonce = _require_sha256(value, field)
     if nonce == "0" * 64:
         raise ValueError(f"{field} must not be the all-zero nonce")
+    if int(nonce, 16) < _MIN_NONCE_VALUE:
+        raise ValueError(
+            f"{field} is below 2**64 and is therefore enumerable; the protected root "
+            "cause has only eight possible values, so a guessable nonce leaves the "
+            "commitment openable by brute force. Draw nonces from secrets.token_hex(32)."
+        )
     return nonce
 
 

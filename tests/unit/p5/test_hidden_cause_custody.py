@@ -133,10 +133,31 @@ class TestShippedSuiteDefect:
             range(1, len(shipped_cases) + 1)
         )
 
-    def test_the_validator_accepts_those_nonces(self, shipped_cases) -> None:
-        # validate_protected_suite rejects exactly one nonce value out of 2^256,
-        # which is why the leak survives nine fail-closed conditions.
+    def test_the_validator_now_refuses_those_nonces(self, shipped_cases) -> None:
+        """The gap that let the shipped suite through is closed.
+
+        This test previously asserted the opposite: `freeze_protected_suite`
+        accepted nonces `0...01` through `0...08` without complaint, because
+        `_require_nonce` rejected exactly one value out of 2^256 -- the all-zero
+        one. That is why the leak survived nine fail-closed conditions.
+
+        `validate_protected_suite` now rejects any nonce below 2**64. A CSPRNG
+        draw lands there with probability 2**-192, so the floor costs nothing
+        real and stops every counter, ordinal and small integer. The historical
+        21/24 result is untouched and keeps its recorded defect; what changes is
+        that the next freeze cannot repeat it.
+        """
+
         nonces = [f"{index:064x}" for index in range(1, 9)]
+        with pytest.raises(ValueError, match="below 2\\*\\*64"):
+            freeze_protected_suite(_freezable_suite(nonces, FAMILIES))
+
+    def test_a_full_width_nonce_still_freezes(self, shipped_cases) -> None:
+        """The floor rejects weakness, not the scheme: real nonces still pass."""
+
+        nonces = [
+            hashlib.sha256(f"p5-full-width-{index}".encode()).hexdigest() for index in range(1, 9)
+        ]
         freeze_protected_suite(_freezable_suite(nonces, FAMILIES))
 
     def test_the_gold_label_is_the_case_ordinal_divided_by_three(self, shipped_cases) -> None:

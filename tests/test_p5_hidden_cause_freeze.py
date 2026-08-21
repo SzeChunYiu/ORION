@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import hashlib
+
 import copy
 import json
 from pathlib import Path
@@ -7,6 +9,24 @@ from pathlib import Path
 import pytest
 
 from orion.study.p5.freeze import ROOT_CAUSES, freeze_protected_suite, main, sha256_json
+
+
+
+def _test_nonce(index: int) -> str:
+    """A deterministic nonce with real width, for fixtures only.
+
+    These fixtures used to be `f"{index:064x}"` -- the case ordinal -- which is
+    what the shipped PROTECTED_SUITE_V1 did, and why its 24 commitments opened in
+    108 SHA-256 evaluations. `validate_protected_suite` now rejects anything below
+    2**64, so the fixture has to carry a realistic value.
+
+    A digest of the index is fine *here* because a fixture protects nothing. A
+    real suite must use `secrets.token_hex(32)`: a nonce derived from a value the
+    candidate can see is guessable by anyone who knows the derivation, which is
+    the same failure one step removed.
+    """
+
+    return hashlib.sha256(f"p5-fixture-nonce-{index}".encode()).hexdigest()
 
 
 CAUSES = sorted(ROOT_CAUSES)
@@ -35,7 +55,7 @@ def _suite() -> dict:
                 "visible_symptom": "same visible symptom family",
                 "candidate_visible_context": {"public_marker": f"PUBLIC_{index}"},
                 "protected_root_cause": cause,
-                "root_cause_nonce": f"{index:064x}",
+                "root_cause_nonce": _test_nonce(index),
                 "competing_cause_set": [cause, CAUSES[index % len(CAUSES)]],
                 "motivating_tasks": [f"mot-{index}"],
                 "replay_tasks": [f"replay-{index}"],
