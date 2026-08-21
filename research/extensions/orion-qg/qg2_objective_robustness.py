@@ -1150,10 +1150,14 @@ def main() -> dict[str, Any]:
         tps = tuple((targets[2 * j], targets[2 * j + 1]) for j in range(3))
         return {"n": n, "index": i, "targets": [list(t) for t in targets]}, tps, n
 
+    _batch_cache: dict[str, Any] = {}
+
     def chem_meta(k):
         name, matching, n = chem["meta"][k]
         pairs = tuple(tuple(p) for p in matching)
-        terms, source_indices, _c, _m, _b = r6f._frozen_batch(p10.base.SUBJECTS[name])
+        if name not in _batch_cache:
+            _batch_cache[name] = r6f._frozen_batch(p10.base.SUBJECTS[name])[0]
+        terms = _batch_cache[name]
         tps = tuple((terms[i][0], terms[j][0]) for i, j in pairs)
         return {"subject": name, "matching": matching}, tps, n
 
