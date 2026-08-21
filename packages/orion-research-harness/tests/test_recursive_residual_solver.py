@@ -28,7 +28,12 @@ from orion.engine.trace import SolveTrace
 from orion.providers.reasoner.base import Diagnosis, ReframeProposal
 from orion.providers.reasoner.scripted import ScriptedReasoner
 from orion.runtime import RuntimeResult
-from orion_research_harness.recursive_runner import RecursiveRunLimits, _RecursiveSession
+from orion_research_harness.recursive_runner import (
+    RecursiveRunLimits,
+    _RecursiveSession,
+    _logical_residual_fingerprint,
+    _match_material_residual,
+)
 
 
 def _reasoner(
@@ -82,6 +87,17 @@ def _runtime_result(
         ),
         final_state=state,
         trace=SolveTrace(trace_id=f"trace:{problem.problem_id}", events=()),
+    )
+
+
+def _method_residual(residual_id: str, *, epoch: str = "") -> Residual:
+    metadata = () if not epoch else (("epoch", epoch),)
+    return Residual(
+        residual_id,
+        ResidualKind.METHOD_GAP,
+        "The same logical method failure remains open after parent refresh.",
+        candidate_responsibilities=(Responsibility.METHOD,),
+        metadata=metadata,
     )
 
 
@@ -214,6 +230,36 @@ def test_decomposition_cannot_merely_rename_parent() -> None:
         decomposition.verify(residual)
 
 
+def test_logical_residual_fingerprint_ignores_epoch_bound_identity() -> None:
+    before = _method_residual("method:epoch:1", epoch="1")
+    after = _method_residual("method:epoch:2", epoch="2")
+    assert before.residual_id != after.residual_id
+    assert _logical_residual_fingerprint(before) == _logical_residual_fingerprint(after)
+    result = _runtime_result(
+        Problem("root", "root question"),
+        _state(residuals=(after,)),
+        residual_ids=(after.residual_id,),
+    )
+    match = _match_material_residual(result, before)
+    assert match.status == "SEMANTIC_FINGERPRINT"
+    assert match.residual == after
+
+
+def test_ambiguous_logical_residual_identity_is_not_guessed() -> None:
+    before = _method_residual("method:epoch:1", epoch="1")
+    a = _method_residual("method:epoch:2:a", epoch="2")
+    b = _method_residual("method:epoch:2:b", epoch="2")
+    result = _runtime_result(
+        Problem("root", "root question"),
+        _state(residuals=(a, b)),
+        residual_ids=(a.residual_id, b.residual_id),
+    )
+    match = _match_material_residual(result, before)
+    assert match.status == "AMBIGUOUS_SEMANTIC_FINGERPRINT"
+    assert match.residual is None
+    assert set(match.candidate_ids) == {a.residual_id, b.residual_id}
+
+
 class _FakeResidualRuntime:
     def __init__(self, parent_residual: Residual) -> None:
         self.parent_residual = parent_residual
@@ -305,6 +351,102 @@ def test_cheaper_residual_child_closing_parent_prunes_expensive_sibling() -> Non
     ]
 
 
+class _DynamicResidualReasoner(ScriptedReasoner):
+    def __init__(self, atoms: tuple[ResidualAtom, ...]) -> None:
+        super().__init__(
+            search_plans=[],
+            contributions_by_item_id={},
+            diagnoses_by_kind={},
+            reframes_by_kind={},
+        )
+        self._atoms = atoms
+
+    def decompose_residual(self, residual, problem, state):
+        return ResidualDecomposition(
+            parent_residual_id=residual.residual_id,
+            atoms=self._atoms,
+            rationale="dynamic id-safe decomposition",
+        )
+
+
+class _FakeIdChurnRuntime:
+    def __init__(self) -> None:
+        self.calls: list[str] = []
+        self.root_calls = 0
+
+    def solve(self, problem: Problem, **_kwargs) -> RuntimeResult:
+        self.calls.append(problem.problem_id)
+        if problem.problem_id == "root":
+            self.root_calls += 1
+            if self.root_calls == 1:
+                r = _method_residual("method:epoch:1", epoch="1")
+                return _runtime_result(
+                    problem,
+                    _state(residuals=(r,)),
+                    residual_ids=(r.residual_id,),
+                )
+            if self.root_calls == 2:
+                r = _method_residual("method:epoch:2", epoch="2")
+                return _runtime_result(
+                    problem,
+                    _state(residuals=(r,), marker="cheap-seen"),
+                    residual_ids=(r.residual_id,),
+                )
+            return _runtime_result(problem, _state(marker="expensive-seen"))
+        if "cheap-dominance" in problem.problem_id:
+            return _runtime_result(problem, _state(marker="cheap-seen"))
+        if "fresh-experiment" in problem.problem_id:
+            return _runtime_result(problem, _state(marker="expensive-seen"))
+        raise AssertionError(problem.problem_id)
+
+
+def test_epoch_id_churn_keeps_logical_residual_open_and_does_not_false_prune() -> None:
+    cheap = ResidualAtom(
+        atom_id="cheap-dominance",
+        question="Can the existing envelope close this logical method residual?",
+        responsibility=Responsibility.METHOD,
+        discriminator=DiscriminatorSpec(
+            discriminator_id="disc:cheap-churn",
+            kind=DiscriminatorKind.DOMINANCE_PROOF,
+            question="Check the open-evidence dominance envelope.",
+            success_criterion="Return a witness or a surviving method residual.",
+            expected_cost_units=0.1,
+        ),
+    )
+    expensive = ResidualAtom(
+        atom_id="fresh-experiment",
+        question="If the logical residual survives, does the expensive discriminator close it?",
+        responsibility=Responsibility.METHOD,
+        discriminator=DiscriminatorSpec(
+            discriminator_id="disc:expensive-churn",
+            kind=DiscriminatorKind.EXPERIMENT,
+            question="Run the expensive discriminator only after the cheap one fails.",
+            success_criterion="Close or preserve the logical method residual.",
+            expected_cost_units=100.0,
+        ),
+    )
+    reasoner = _DynamicResidualReasoner((expensive, cheap))
+    runtime = _FakeIdChurnRuntime()
+    session = _RecursiveSession(
+        runtime=runtime,  # type: ignore[arg-type]
+        residual_planner=ResidualRecursionPlanner(reasoner),
+        problem_planner=ProblemRecursionPlanner(reasoner),
+        limits=RecursiveRunLimits(max_depth=3, max_nodes=12),
+        evaluation_epoch_id="test",
+    )
+    result, _ = session.solve_problem(
+        problem=Problem("root", "root question"),
+        state=_state(),
+        role="root",
+        recursion_depth=0,
+    )
+    assert result.solution.residual_ids == ()
+    assert any("fresh-experiment" in call for call in runtime.calls)
+    assert not any(
+        row["atom_id"] == "fresh-experiment" for row in session.pruned_atoms
+    )
+
+
 class _FakeRootRuntime:
     def __init__(self) -> None:
         self.calls: list[str] = []
@@ -371,3 +513,41 @@ def test_root_problem_is_atomized_and_cheap_closure_prunes_expensive_atom() -> N
             "reason": "ROOT_PROBLEM_CLOSED_AFTER_CHEAPER_DISCRIMINATOR",
         }
     ]
+
+
+class _FakeBoundRuntime:
+    def solve(self, problem: Problem, **_kwargs) -> RuntimeResult:
+        residual = Residual(
+            "residual:bound",
+            ResidualKind.METHOD_GAP,
+            "A material residual remains at the recursion depth bound.",
+            candidate_responsibilities=(Responsibility.METHOD,),
+        )
+        return _runtime_result(
+            problem,
+            _state(residuals=(residual,)),
+            residual_ids=(residual.residual_id,),
+        )
+
+
+def test_soft_depth_bound_sets_session_resource_failure_not_complete() -> None:
+    reasoner = _reasoner()
+    session = _RecursiveSession(
+        runtime=_FakeBoundRuntime(),  # type: ignore[arg-type]
+        residual_planner=ResidualRecursionPlanner(reasoner),
+        problem_planner=ProblemRecursionPlanner(reasoner),
+        limits=RecursiveRunLimits(max_depth=1, max_nodes=8),
+        evaluation_epoch_id="test",
+    )
+    result, _ = session.solve_problem(
+        problem=Problem("child", "child question"),
+        state=_state(),
+        role="child",
+        recursion_depth=1,
+    )
+    assert result.solution.residual_ids == ("residual:bound",)
+    assert session.resource_bound_hit is True
+    assert any(
+        row["stop_reason"] == "CANNOT_CHECK_RESOURCE_BOUND"
+        for row in session.stop_records
+    )
