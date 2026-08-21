@@ -91,7 +91,8 @@ jobs:
           assert a['novelty_authority'] is False
           assert a['physical_quantum_advantage_claim'] is False
           PY
-      - name: Upload QG-17 proof receipts
+      - name: Upload QG-17 proof receipts and diagnostics
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: orion-qg-qg17-${{ github.event.pull_request.head.sha || github.sha }}
@@ -106,4 +107,4 @@ jobs:
             .orion-qg-qg17-generic/.orion-harness/**
             .orion-qg-qg17-native/.orion-harness/**
           include-hidden-files: true
-          if-no-files-found: error
+          if-no-files-found: warn
