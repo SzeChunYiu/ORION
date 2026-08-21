@@ -1,0 +1,44 @@
+{
+  "schema": "ORION.P11D.SparseDecoderAttackReceipt.v1",
+  "protocol": "P11D_SPARSE_DECODER_ATTACK_PROTOCOL_V1.md",
+  "terminal": "P11D_SPARSE_DECODER_GAP_NOT_MET",
+  "disposition": "PERMANENT_NEGATIVE",
+  "first_full_result_sha256": "292494434dbb4bc9bb7a5598d19f82e1b0e015357c6b8c3ed6b138412a5b618e",
+  "second_full_result_sha256": "c6debddd1699e4c49af46fd733bd2e93495f0ac4b5da35598b01a737a48c563f",
+  "scientific_summary_replayed": true,
+  "byte_identical_replay": false,
+  "replay_root_cause": "UNSEEDED_LIBLINEAR_SPARSE_SOLVER",
+  "answer_laundering_failures": 0,
+  "cells": [
+    {
+      "d": 17,
+      "s": 4,
+      "r": 5,
+      "universal_dimension": 2380,
+      "compiled_dimension": 5,
+      "compiled_threshold_0_95": 64,
+      "sparse_universal_threshold_0_95": 128,
+      "threshold_ratio": 2.0,
+      "compiled_minus_sparse_accuracy_at_64": 0.2903076171875
+    },
+    {
+      "d": 19,
+      "s": 3,
+      "r": 7,
+      "universal_dimension": 969,
+      "compiled_dimension": 7,
+      "compiled_threshold_0_95": 64,
+      "sparse_universal_threshold_0_95": 256,
+      "threshold_ratio": 4.0,
+      "compiled_minus_sparse_accuracy_at_64": 0.384033203125
+    }
+  ],
+  "gates": {
+    "no_laundering": true,
+    "compiled_by_64": true,
+    "threshold_ratio_ge_4_both_cells": false,
+    "compiled_minus_sparse_at_64_ge_0_20": true,
+    "byte_identical_replay": false
+  },
+  "authorized_interpretation": "Sparse feature selection materially substitutes for state compilation but does not erase the registered low-sample accessibility advantage; the >=4x-in-both-cells hostile claim is false."
+}
