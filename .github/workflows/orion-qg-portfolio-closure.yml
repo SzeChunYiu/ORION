@@ -1,0 +1,78 @@
+name: orion-qg-portfolio-closure
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG_PORTFOLIO_*'
+      - 'development/orion-qg-regime-geometry/qg_portfolio_*'
+      - 'development/orion-qg-regime-geometry/run_qg_portfolio_dual_harness.py'
+      - 'research/extensions/orion-qg/qg_portfolio_*'
+      - '.github/workflows/orion-qg-portfolio-closure.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-portfolio-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  portfolio:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PORTFOLIO_BASE: c5ba39fef4f25c46de5fb69bf07f50530f4693ca
+    steps:
+      - name: Checkout exact head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Assert lineage
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha || github.sha }}"
+          test "$(git merge-base HEAD "${PORTFOLIO_BASE}")" = "${PORTFOLIO_BASE}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION and harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Syntax gate
+        run: python -m py_compile research/extensions/orion-qg/qg_portfolio_closure.py development/orion-qg-regime-geometry/qg_portfolio_generic_verify.py development/orion-qg-regime-geometry/qg_portfolio_native_verify.py development/orion-qg-regime-geometry/run_qg_portfolio_dual_harness.py
+      - name: Adjudicate earned lanes through both ORION instruments
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg_portfolio_dual_harness.py | tee artifacts/orion-qg-portfolio-summary.json
+      - name: Deterministic replay
+        run: |
+          set -euo pipefail
+          python research/extensions/orion-qg/qg_portfolio_closure.py --output artifacts/orion-qg-portfolio-closure-replay.json > artifacts/orion-qg-portfolio-replay.log
+          cmp artifacts/orion-qg-portfolio-closure.json artifacts/orion-qg-portfolio-closure-replay.json
+      - name: Enforce closure
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-portfolio-closure.json').read_text()); g=json.loads(Path('artifacts/orion-qg-portfolio-generic.json').read_text()); n=json.loads(Path('artifacts/orion-qg-portfolio-native.json').read_text()); d=json.loads(Path('artifacts/orion-qg-portfolio-dual.json').read_text())
+          assert a['all_closed'] is True
+          assert all(x['closed'] for x in a['lanes'].values())
+          assert g['decision']=='ACCEPT_PORTFOLIO_CLOSURE' and g['all_checks'] is True
+          assert n['decision']=='ACCEPT_PORTFOLIO_CLOSURE' and n['all_checks'] is True
+          assert d['both_accept'] is True and d['terminal']==a['terminal']
+          assert a['novelty_authority'] is False and a['r6_authority'] is False
+          PY
+      - name: Upload receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-portfolio-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-portfolio-closure.json
+            artifacts/orion-qg-portfolio-closure-replay.json
+            artifacts/orion-qg-portfolio-generic.json
+            artifacts/orion-qg-portfolio-native.json
+            artifacts/orion-qg-portfolio-dual.json
+            artifacts/orion-qg-portfolio-summary.json
+            .orion-qg-portfolio-generic/.orion-harness/**
+            .orion-qg-portfolio-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: error
