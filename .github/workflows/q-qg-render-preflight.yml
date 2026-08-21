@@ -44,7 +44,7 @@ jobs:
             pandoc texlive-xetex texlive-latex-extra texlive-fonts-recommended poppler-utils
       - name: Generate cited masters
         run: python papers/build_q_qg_cited_masters.py --clean
-      - name: Build generic audit PDFs
+      - name: Generate debuggable generic LaTeX
         shell: bash
         run: |
           set -euo pipefail
@@ -52,13 +52,27 @@ jobs:
           for p in Q1 Q2 Q4 QG1 QG2; do
             pandoc "build/q_qg_cited/${p}/MANUSCRIPT_CITED.md" \
               --from=markdown+citations \
+              --standalone \
               --citeproc \
               --bibliography="build/q_qg_cited/${p}/references.bib" \
-              --pdf-engine=xelatex \
+              --to=latex \
               -V geometry:margin=1in \
               -V fontsize=10pt \
               -V colorlinks=true \
-              -o "build/q_qg_pdf/${p}.pdf"
+              -V mainfont='Latin Modern Roman' \
+              -V mathfont='Latin Modern Math' \
+              -o "build/q_qg_pdf/${p}.tex"
+            grep -q '\\usepackage{unicode-math}' "build/q_qg_pdf/${p}.tex"
+          done
+      - name: Build generic audit PDFs with XeLaTeX
+        shell: bash
+        working-directory: build/q_qg_pdf
+        run: |
+          set -euo pipefail
+          for p in Q1 Q2 Q4 QG1 QG2; do
+            xelatex -interaction=nonstopmode -halt-on-error "${p}.tex"
+            xelatex -interaction=nonstopmode -halt-on-error "${p}.tex"
+            test -s "${p}.pdf"
           done
       - name: Validate PDFs and render every page
         shell: bash
