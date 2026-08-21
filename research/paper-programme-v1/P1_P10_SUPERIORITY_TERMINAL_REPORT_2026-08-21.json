@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "efebf2ddb8aea690047a46d4414215da9d5988fddb4bd90a81c52d4667398e0c",
+  "content_digest": "7c364f564926e79a99b4660b92d66843d0fb86ef0f177114967e4f597521ca89",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -404,6 +404,11 @@
           "artifact_ref": "research/claim_expansion/p3/P3_X_FINAL_SCIENTIFIC_TERMINAL_V1.md",
           "grade": "MECHANISM_NON_VACUITY",
           "terminal": "P3_WIDER_SCIENTIFIC_COMPATIBILITY_CLAIM_SUPPORTED__BOUNDED_EXACT_STRUCTURED_CONTRACTS__A3_CANNOT_CHECK"
+        },
+        {
+          "artifact_ref": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json",
+          "grade": "CANNOT_CHECK",
+          "terminal": "P3_PARTIAL_OBSERVATION_RESULT__NULL_FOR_T5__OVER_RESOLUTION_GUARD_NO_LONGER_VACUOUS"
         }
       ],
       "strongest_grade": "MECHANISM_NON_VACUITY",
@@ -417,8 +422,8 @@
             "#651"
           ],
           "responsibility": "REPRESENTATION_OR_INTERFACE",
-          "statement": "No new identity coordinate has been discovered from failure and prospectively validated.",
-          "unblock": "Mine each false merge and false split for a candidate discriminating coordinate, then validate it on held-out cases or prove the coordinate unnecessary."
+          "statement": "Still no new identity coordinate, but the reason has changed and the old one was wrong. The unblock assumed a mining input that does not exist: across all three atlases the current system produces zero false merges and zero false splits (0 of 4, 0 of 6, 0 of 42), so there is nothing to mine a coordinate from. The one candidate derivable from the corpus, a per-coordinate observation status, was frozen and tested and fails its novelty gate by construction -- it is constant across every fully observed pair, so it is a third value on the existing axes rather than a new axis (P3_PARTIAL_OBSERVATION_RESULT_2026-08-21, overall FAIL).",
+          "unblock": "The mining input has to be built before it can be mined. That means an adjudicated corpus containing cases the current coordinates actually get wrong, which is the same corpus P3-U-T1 and T2 are blocked on -- so this terminal is downstream of the arena, not independent of it. One thing the probe did establish is worth carrying into that corpus: it must contain partially observed pairs. Every existing atlas observes each coordinate on both sides or neither, which is why the over-resolution guard ran with a zero denominator, and a new corpus built the same way would inherit the same blind spot."
         },
         {
           "actionability": "BLOCKED_ON_NEW_ARENA",
@@ -1409,8 +1414,8 @@
         "#651"
       ],
       "responsibility": "REPRESENTATION_OR_INTERFACE",
-      "statement": "No new identity coordinate has been discovered from failure and prospectively validated.",
-      "unblock": "Mine each false merge and false split for a candidate discriminating coordinate, then validate it on held-out cases or prove the coordinate unnecessary."
+      "statement": "Still no new identity coordinate, but the reason has changed and the old one was wrong. The unblock assumed a mining input that does not exist: across all three atlases the current system produces zero false merges and zero false splits (0 of 4, 0 of 6, 0 of 42), so there is nothing to mine a coordinate from. The one candidate derivable from the corpus, a per-coordinate observation status, was frozen and tested and fails its novelty gate by construction -- it is constant across every fully observed pair, so it is a third value on the existing axes rather than a new axis (P3_PARTIAL_OBSERVATION_RESULT_2026-08-21, overall FAIL).",
+      "unblock": "The mining input has to be built before it can be mined. That means an adjudicated corpus containing cases the current coordinates actually get wrong, which is the same corpus P3-U-T1 and T2 are blocked on -- so this terminal is downstream of the arena, not independent of it. One thing the probe did establish is worth carrying into that corpus: it must contain partially observed pairs. Every existing atlas observes each coordinate on both sides or neither, which is why the over-resolution guard ran with a zero denominator, and a new corpus built the same way would inherit the same blind spot."
     },
     {
       "actionability": "BLOCKED_ON_CAMPAIGN",
