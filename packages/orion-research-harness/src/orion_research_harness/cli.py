@@ -9,9 +9,11 @@ from typing import Any
 from .campaign_protocol import CampaignState
 from .campaign_runner import initialize_campaign, run_campaign
 from .domains.registry import builtin_campaign_ids, load_builtin_campaign
+from .execution_coverage import execution_coverage
 from .local_tools import service_local_request
 from .mechanics_bridge import (
     atom_calculus_surface,
+    canonical_mechanic_cells,
     compile_workspace_development_fibre,
     mechanic_catalog,
     mechanic_detail,
@@ -55,7 +57,8 @@ def _handoff_prompt(workspace: ResearchWorkspace) -> str:
         "You are the external host worker for canonical ORION. Do not bypass ORION's verification, responsibility, authority, saturation, fibre, recursive-residual, or negative-history rules.",
         "",
         "Mechanic discovery:",
-        "- `orion-harness mechanics-coverage` verifies the canonical mechanics surface is discoverable.",
+        "- `orion-harness mechanics-coverage` verifies the canonical 59-cell mechanics graph is structurally discoverable.",
+        "- `orion-harness execution-coverage` separately verifies every mechanic has a resolvable executable or explicitly protected owner; specification-only cells fail the gate.",
         "- `orion-harness navigate '<concept>'` finds the owning mechanics/surfaces (for example fibre, atomization, recursive residuals, saturation).",
         "- `orion-harness fibre <workspace> <mechanic-id>` compiles the canonical Self-ORION DevelopmentFibre working view.",
         "- `orion-harness run-mechanics <workspace> <run-id>` exposes immutable mechanic receipts, including bounded saturation.",
@@ -79,6 +82,7 @@ def _handoff_prompt(workspace: ResearchWorkspace) -> str:
         "- LLM_COMPLETE: return {content, model_id?, response_id?}; content must obey the requested schema.",
         "- WEB_SEARCH: use current web search and source inspection; return {items:[{content,source_uri,item_id?,domain_ids?]}.",
         "- VERIFY_EVIDENCE: independently verify support; return {passed,certificate_ids,reason}; fail closed.",
+        "- INDEPENDENT_REVIEW and BENCHMARK_RUN are replayable non-authorizing governance capabilities; PASS requires evidence and FAIL/CANNOT_CHECK must be preserved.",
         "- FILE_READ/FILE_WRITE/FILE_LIST can be serviced locally with `service-local`.",
         "- SHELL/PYTHON require explicit workspace opt-in and are not OS-sandboxed; use only when the host has accepted that risk.",
         "- GITHUB or other custom capabilities: use the corresponding host tool and return structured JSON.",
@@ -164,6 +168,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     sub.add_parser("mechanics")
     sub.add_parser("mechanics-coverage")
+    sub.add_parser("execution-coverage")
     navigate = sub.add_parser("navigate")
     navigate.add_argument("query")
     navigate.add_argument("--limit", type=int, default=12)
@@ -217,6 +222,10 @@ def main(argv: list[str] | None = None) -> int:
         coverage = mechanics_coverage()
         _print(coverage)
         return 0 if coverage["structurally_discoverable"] else 4
+    if args.command == "execution-coverage":
+        coverage = execution_coverage(canonical_mechanic_cells())
+        _print(coverage)
+        return 0 if coverage["executable_owner_coverage_ready"] else 4
     if args.command == "navigate":
         _print(navigate_mechanics(args.query, limit=args.limit))
         return 0
