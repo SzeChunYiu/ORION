@@ -2339,10 +2339,6 @@ def main(argv: list[str]) -> int:
     return 0
 
 
-if __name__ == "__main__":  # pragma: no cover
-    import sys
-
-    raise SystemExit(main(sys.argv[1:]))
 
 
 # ---------------------------------------------------------------------------
@@ -2473,3 +2469,9 @@ def exhaustive_composition_enumeration(
         disagreements=tuple(disagreements),
         positive_trials=positives,
     )
+
+
+if __name__ == "__main__":  # pragma: no cover
+    import sys
+
+    raise SystemExit(main(sys.argv[1:]))

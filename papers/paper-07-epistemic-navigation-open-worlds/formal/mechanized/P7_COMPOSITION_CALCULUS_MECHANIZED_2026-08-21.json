@@ -91,6 +91,15 @@
     "trials": 192
   },
   "executable_model": "research/claim_expansion/p7/check_p7_x2_closure_carrying.py",
+  "exhaustive_composition_enumeration": {
+    "agreed": true,
+    "agreements": 2048,
+    "disagreements": [],
+    "exercised_both_verdicts": true,
+    "informative": true,
+    "positive_trials": 1,
+    "trials": 2048
+  },
   "how_a_false_claim_would_report": "over the uninterpreted signature a false claim comes back UNKNOWN, not COUNTEREXAMPLE: refuting it means building a model and the quantified axioms defeat model-based instantiation. No PROVED line is weakened by that -- unsat is sound and a false claim cannot produce one -- but the failure to watch for in the validity half is a theorem that is not discharged rather than a printed countermodel. In the finite structures, which are decidable, countermodels are produced normally",
   "induction_is_meta": "the chain theorem holds at unbounded length by induction on chain length over INTERMEDIATE_CONTRACT_COMPOSITION and the endpoint axioms. The step is machine-checked; the induction schema is standard and is the single hand step in this development, corroborated by the expanded ladder",
   "instantiation_of_the_committed_result": {
@@ -136,6 +145,56 @@
   "one_hinge_and_its_corollaries": "INTERMEDIATE_CONTRACT_COMPOSITION is discharged from the axioms alone and is then used as a hypothesis for ASSOCIATIVITY_CARRIES, UNMATCHED_INTERMEDIATE_CONTRACT_BLOCKS, COMPOSITION_NON_AMPLIFICATION and every chain-ladder length, because those are corollaries of it and because asking the solver to re-derive it inside each of them is what it cannot do reliably: ASSOCIATIVITY_CARRIES from the axioms alone was PROVED twice and UNKNOWN twice over four runs in a fresh process, and closes in 0.01s under the hinge every time. The gate is that the hinge must come back PROVED before it is used; otherwise the corollaries run against the axioms alone and report whatever the solver says",
   "record": "P7_COMPOSITION_CALCULUS_MECHANIZED",
   "schema_version": "orion.p7.composition-calculus-smt.v1",
+  "shipped_composition_coverage": {
+    "argument_triples_possible": 8,
+    "argument_triples_reached": 2,
+    "either_leg_ever_fails_to_carry": false,
+    "reached": [
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        1
+      ]
+    ],
+    "reading": "The committed loop evaluates compose at 2 of 8 argument triples. Both legs are held constant, so no composition in which a leg fails to carry is evaluated anywhere in the shipped result. The donor loop multiplies the row count and contributes no argument.",
+    "unreached": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        1
+      ]
+    ]
+  },
   "side_conditions": {
     "associativity": "holds observationally with no condition on the bridge relation at all -- no reflexivity, symmetry or transitivity. As an equation between transformations it needs extensionality, and STRICT_LAWS_NEED_EXTENSIONALITY exhibits the model where the observables agree and the equation fails",
     "identity": "the unit laws need the intermediate-contract test to be reflexive. It is, because P7's own T5 reads 'exactly the same contract, or a registered bridge', and the first disjunct gives reflexivity. With the raw registered relation in its place identity fails: IDENTITY_NEEDS_A_REFLEXIVE_CONTRACT_TEST exhibits the model",
@@ -271,5 +330,6 @@
     }
   ],
   "undischarged": [],
+  "what_the_finite_target_contains": "The committed loop evaluates compose at 2 of its 8 argument triples and never constructs a composition in which a leg fails to carry. Over the full space of closure-vector pairs and bridge values -- 2,048 rows -- exactly one composes successfully. The shipped result reports 25 composition successes, which is that single configuration counted once per donor pair by a loop whose donors are unused.",
   "what_this_establishes": "identity, associativity and intermediate-contract composition hold for transformation chains of any length over uninterpreted sorts of transformations, contracts, closure coordinates and obligations, with the donor-native validity predicate left uninterpreted; the exact side conditions are named and each is pinned by a countermodel; the proved formula agrees with P7's committed carries/compose on a corpus exercising both verdicts; and the committed composition rows are discharged one at a time as ground instances of the general theorem"
 }
