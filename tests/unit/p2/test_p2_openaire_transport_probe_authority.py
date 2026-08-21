@@ -33,6 +33,7 @@ def _freeze() -> dict:
             "probe_gold_access": "NONE",
             "probe_dois": ["10.5281/zenodo.8217359", "10.1038/s41586-023-06221-2"],
             "probe_min_result_count": 1,
+            "probe_min_matched_doi_count": 1,
         }
     }
 
@@ -51,6 +52,7 @@ def _good_probe() -> dict:
         "url_sha256": hashlib.sha256(url.encode()).hexdigest(),
         "response_sha256": "a" * 64,
         "result_count": 2,
+        "matched_dois": [dois[1]],
         "benchmark_gold_accessed": False,
         "promotion_authorized": False,
     }
@@ -68,6 +70,8 @@ def test_transport_probe_binds_request_and_authority(tmp_path: Path) -> None:
         ("response_sha256", "not-a-canonical-sha256"),
         ("result_count", 0),
         ("result_count", -1),
+        ("matched_dois", []),
+        ("matched_dois", ["10.9999/not-requested"]),
         ("benchmark_gold_accessed", True),
         ("promotion_authorized", True),
     )
@@ -97,3 +101,39 @@ def test_transport_probe_refuses_weakened_freeze(tmp_path: Path) -> None:
     freeze["transport_repair_evidence"]["probe_min_result_count"] = 0
     with pytest.raises(ValueError):
         runner.validate_transport_probe(path, freeze)
+
+    freeze = _freeze()
+    freeze["transport_repair_evidence"]["probe_min_matched_doi_count"] = 0
+    with pytest.raises(ValueError):
+        runner.validate_transport_probe(path, freeze)
+
+
+def test_transport_response_binds_raw_bytes_and_requested_identity(tmp_path: Path) -> None:
+    freeze = _freeze()
+    requested = freeze["transport_repair_evidence"]["probe_dois"]
+    response = {
+        "results": [
+            {
+                "pid": [
+                    {"scheme": "doi", "value": requested[1]},
+                    {"scheme": "arxiv", "value": "2306.11152"},
+                ]
+            }
+        ]
+    }
+    body = json.dumps(response, sort_keys=True).encode()
+    response_path = tmp_path / "transport_probe_response.json"
+    response_path.write_bytes(body)
+    probe = _good_probe()
+    probe["response_sha256"] = hashlib.sha256(body).hexdigest()
+    probe["result_count"] = 1
+    probe["matched_dois"] = [requested[1]]
+    assert runner.validate_transport_response(response_path, probe, freeze) == response
+
+    unrelated = {"results": [{"pid": [{"scheme": "doi", "value": "10.9999/unrelated"}]}]}
+    unrelated_body = json.dumps(unrelated, sort_keys=True).encode()
+    response_path.write_bytes(unrelated_body)
+    probe["response_sha256"] = hashlib.sha256(unrelated_body).hexdigest()
+    probe["result_count"] = 1
+    with pytest.raises(ValueError):
+        runner.validate_transport_response(response_path, probe, freeze)
