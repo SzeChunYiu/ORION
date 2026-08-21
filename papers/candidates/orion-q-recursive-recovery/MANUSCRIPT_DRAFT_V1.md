@@ -63,18 +63,31 @@ this paper exceeds its receipt's frozen scope.
 
 ## 3. Recursive recovery of the N-lane negatives
 
-- **N1 (QC2 no-incremental-value)** [BIND: fresh receipted executions of families A–D and
-  the finite-candidate lower bound; expected shape per the historical record: parent-
-  sufficient collapses with one bounded typed-failure-state positive, class closed by the
-  lower bound].
+- **N1 (QC2 no-incremental-value)**: families A/C/D re-executed with fresh receipts —
+  parent-sufficient collapses, with N1-C's bounded typed-failure-state positive intact
+  (typed−unscoped +0.0271, 95% CI [+0.0248, +0.0296], exact tie with the ideal VOI donor at
+  0.9866 solve rate); family B first-ever execution — ORION's trace-free
+  failure-conditioned growth reaches 12/12 held-out where primitive enumeration reaches 0/12,
+  but a length-prior library-learning variant reproduces the discovered macro, so the donor
+  closes the family; and the finite-candidate class is formally closed by a machine-checked
+  lower bound (53,248 exhaustive comparisons, 0 violations). The lane's stop rule is
+  satisfied on both admissible branches.
 - **N2 (QSVT route-selection)**: families 1–2 absorbed by the MAX lane; F3 partial-evidence
   honest negative (hedged set answers lose to the centroid point guess 0.0663 vs 0.0166);
   F4 access-edit machinery negative on cost but perfect on safety (120/120 stronger-oracle
   laundering rejections); F5 prospective crossover prediction **supported** (0.9948 vs
   0.9271 strongest baseline, crossover location error ~9e-16, functional-form-shift hostile
   control drops it to 0.4427 as required). Residual named and carried forward.
-- **N3 (parametric synthesis above supplied grammars)** [BIND: ≥3 families with donor first
-  right of refusal].
+- **N3 (parametric synthesis above supplied grammars)**: all four registered families
+  residual-confirmed with every gate passing — symbolic-family induction (unique schema
+  forced by BFS-proved optima, exact-verified at n=8..12 where the concrete donor's 200k
+  budget fails), proof-obligation-driven grammar expansion (bounded inexpressibility proof
+  through size 12, minimal {SHR1, XOR} extension with all cost-1 subsets proved
+  insufficient), cross-family operator induction (held-out family transfer with the
+  correction-gate hostile family verifier-rejected), and representation-variable synthesis
+  (hidden mul3 frame recovered at transport cost 1). Donors correctly won first refusal in
+  every donor-sufficient world; the lane's registered blanket-donor terminal is unreachable
+  per its own receipts.
 - **N4 (interface graphs under partial knowledge)**: five materially different families all
   **positive** within exact-synthetic scope — typed-prior VOI (71% of oracle utility),
   scoped stale-receipt reopening (beats never/always/unscoped in a two-regime hostile

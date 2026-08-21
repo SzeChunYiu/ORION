@@ -70,14 +70,43 @@ declared scope (most terminals are exact-synthetic or frozen-open-subject scope)
   verification of the local exchange inequality intended to explain the R6I/K/M collapses
   analytically. Outcome to be bound verbatim, positive or refuted.
 
-### 2.5 N-lane recoveries (issues #674–#677) (bound slots)
-- [SLOT] N1 (#674): fresh receipted executions of N1-A/B/C/D + finite-candidate lower
-  bound, under `development/orion-q-nlane-closure/` and
-  `research/extensions/orion-q/nlanes/`.
-- [SLOT] N2 (#675): families 3–5 (partial evidence QUERY/CANNOT_COMPARE, access edits
-  under NO_STRONGER_ORACLE, prospective crossover prediction).
-- [SLOT] N3 (#676): ≥3 of the four registered parametric-synthesis families.
-- [SLOT] N4 (#677): ≥3 of the registered partial-knowledge interface-graph families.
+### 2.5 N-lane recoveries (issues #674–#677) — ALL EXECUTED 2026-08-21
+
+All protocols under `development/orion-q-nlane-closure/`; scripts and receipts under
+`research/extensions/orion-q/nlanes/`; every receipt determinism-verified by re-run.
+
+- **N1 (#674)**: families A/C/D fresh re-executions — parent-sufficient negatives
+  (`N1A_SYMBOLIC_SYNTHESIS_PARENT_SUFFICIENT`, `N1C_TYPED_FAILURE_STATE_VALUE__VOI_POLICY_
+  PARENT_SUFFICIENT` with the bounded typed-failure-state positive intact: typed−unscoped
+  +0.0271 [+0.0248,+0.0296], exact tie with the ideal VOI donor at 0.9866,
+  `N1D_CANONICAL_TRANSFORM_PARENT_SUFFICIENT`); family B FIRST execution
+  (`N1B_LIBRARY_LEARNING_SUFFICIENT` — ORION's trace-free growth matches the parent's reach
+  but a length-prior compressor variant reproduces the macro, so the donor closes it); and
+  the machine-checked lower bound `LOWER_BOUND_CLOSED_FOR_FINITE_COMPLETE_CLASS`
+  (53,248 comparisons, 0 violations). **#674's stop rule is receipt-satisfied on both
+  branches** (saturated successor set AND formal class lower bound).
+- **N2 (#675)**: F3 partial-evidence honest negative (hedged set answers lose 0.0663 vs
+  0.0166); F4 access-edit cost negative with perfect laundering safety (120/120 rejections);
+  F5 prospective crossover prediction **residual supported** (0.9948 vs 0.9271 best
+  baseline; crossover-location error ~9e-16; functional-form-shift control bites at 0.4427).
+  4-of-5 disposition with the F5 residual named for carry-forward
+  (`N2_STOP_RULE_ASSESSMENT.md`).
+- **N3 (#676)**: all four registered families residual-confirmed
+  (`N3{A,B,C,D}_RESIDUAL_CONFIRMED_EXACT_SYNTHETIC`) with donors correctly deferring in the
+  donor-sufficient worlds and every hostile trap caught (spec mutation, unresolved
+  obligations, correction-gate transfer, keyed permutation). The lane's registered
+  `DONOR_OWNS_PARAMETRIC_SYNTHESIS` terminal is unreachable per its own receipts.
+- **N4 (#677)**: five materially different families all positive
+  (typed-prior VOI 71% of oracle utility; scoped reopening beats never/always/unscoped in a
+  two-regime hostile matrix; interval-dominance-targeted verification 2.3× over random;
+  full-chain laundering detection recall 1.000 / FPR 0.000 incl. deep splices;
+  decision-coupled probing with the info-gain baseline correctly decoy-trapped).
+  **The classical full-knowledge negative does not recursively extend to partial knowledge
+  on these constructions.**
+
+Cross-lane synthesis: donors own the representation/optimization questions (N1, R6 family);
+ORION's typed partial-knowledge state owns the epistemic-regime questions (N2-F5, N3, N4).
+This division emerged from receipts, not design.
 
 ## 3. Reopen triggers
 
