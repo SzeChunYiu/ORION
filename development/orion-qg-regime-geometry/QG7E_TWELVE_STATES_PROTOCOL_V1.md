@@ -4,7 +4,7 @@ Lane: ORION-QG QG-7e — **the twelve states**: close the residue left by QG-7d 
 `C_DP == min(C_D+, f_B′, f_B″)` becomes an all-n theorem for unit-cost TARE, or establish
 precisely why it cannot close. Successor registered in `QG_WAVE2_RECORD.md` under
 "Registered successor — QG-7e — the twelve states". Base revision `84f34f69`
-(branch `claude/orion-harness-verification-b17qdj`). Authority ceiling **NOT_R6**.
+(working branch as recorded by the orchestrator). Authority ceiling **NOT_R6**.
 No chemistry data is read; the protected stretched-N2 subject
 (`N2/cc-pVTZ/6Elec_6Orbs/1.5_Eq-3.1020au/DUCC2/...`) is never touched. No repository file
 is modified; every inherited lane script and receipt is read-only and every piece of
@@ -127,7 +127,9 @@ Two obligations attach to E2 and are gated separately:
   first principles — `base[k] = uanti[k] + wt(t0·R0_k) + wt(t1·R1_k)` and
   `base[P+k] = uanti[k] + wt(t1·R0_k) + wt(t0·R1_k)`, with the position codes rebuilt
   letter by letter — and compared elementwise against the committed arrays. Domain:
-  `6·9·2 + 120·225·2 + 666·3969·2 = 5,342,016` rows. **GATE: zero mismatches.**
+  `6·9·2 + 120·225·2 + 666·3969·2 = 108 + 54,000 + 5,286,708 = 5,340,816` rows.
+  **GATE: zero mismatches.** (Arithmetic of this declared constant corrected in place
+  before any run under this protocol produced any outcome; see the disclosure section.)
 
 ### E3 — direct exhaustive settlement at the twelve states
 
@@ -255,7 +257,10 @@ Unchanged from QG-7d and bound by G1/G2/G3 and by GP:
 - **G7** R1: the un-enlarged menu reproduces the 12 residual states row-for-row over the
   complete 83,886,080-state domain of the five residual geometries.
 - **G8** GP: the per-block target permutation binding is exact on its complete
-  5,342,016-row domain (zero mismatches).
+  5,340,816-row domain (zero mismatches), and the supplementary n=2 operational panel
+  against `r6p.dxx_search` (the 144 ordered pairs formed from the twelve residual
+  `state_b` and the twelve residual `state_a` values, identity-target instances skipped
+  and counted) shows zero disagreements.
 - **G9** P1E: every geometry's state domain exactly `16,777,216`, geometry count 378, total
   `6,341,787,648`, residue recorded; the theorem terminal requires residue 0.
 - **G10** census: T4b reproduces the committed values verbatim; per-pattern dispatch counts
@@ -295,6 +300,14 @@ third-qubit enlargement and found it closes most but not all of the c-data domai
 `r6p._block_arrays` and `dxx_search`. The frozen constructions, domains, gates and
 terminals above are final and no outcome under them has been computed at freeze time; the
 official runs compute every domain from scratch.
+
+**Pre-outcome corrections (recorded in full).** After the first freeze and *before any run
+under this protocol produced any outcome or any receipt existed*, two transcription errors
+in declared constants were corrected in place: (a) the GP domain size, mis-summed as
+`5,342,016`, is `6·9·2 + 120·225·2 + 666·3969·2 = 5,340,816`; (b) the G8 gate line was
+extended to name the supplementary n=2 operational panel that the lane also runs. Neither
+correction changes a gate's meaning, a domain's definition, a terminal, or an attack. No
+other change was made after the first freeze.
 
 ## Stop rules and scope
 

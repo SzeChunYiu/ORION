@@ -160,7 +160,7 @@ def gp_permutation_binding() -> dict[str, Any]:
         mismatches += n_bad
     return {
         "domain_rows": rows,
-        "expected_domain_rows": 5342016,
+        "expected_domain_rows": 5340816,
         "per_n": per_n,
         "letter_code_table_bound": lcode_ok,
         "block_array_shape_ok": bool(shape_ok),
@@ -171,7 +171,7 @@ def gp_permutation_binding() -> dict[str, Any]:
                   "dxx_search minimises over the concatenated arrays; the "
                   "per-block target permutation is therefore a configuration "
                   "degree of freedom of the committed D++ search"),
-        "holds": bool(mismatches == 0 and rows == 5342016 and lcode_ok
+        "holds": bool(mismatches == 0 and rows == 5340816 and lcode_ok
                       and shape_ok and PERM_BOUND),
     }
 
@@ -384,24 +384,30 @@ def p1e_lemma() -> dict[str, Any]:
 
 def r1_residue_reproduction(residue_rows) -> dict[str, Any]:
     roles = {r["name"]: r for r in qg7d.build_roles()}
-    want: dict[str, list] = {}
+    # key by the receipt's OWN role order: swapping role1/role2 relabels the
+    # block slots and therefore relabels the state codes.
+    want: dict[tuple, list] = {}
     for geom, sb, sa in residue_rows:
-        want.setdefault("+".join(sorted(geom)), []).append((sb, sa))
+        want.setdefault(tuple(geom), []).append((sb, sa))
     per_geometry = []
     mismatches = 0
     states = 0
-    for key in sorted(want):
-        names = key.split("+")
+    for names in sorted(want):
+        key = "+".join(sorted(names))
+        # perms=(0,) reproduces exactly QG-7d's menu: branch 0 reads the state
+        # through PERM[0] (identity) and branch 1 through PERM[0 ^ 7] = SWAP,
+        # i.e. p in {000, 111} across the two branches and nothing else.
         res = p1e_geometry(roles[names[0]], roles[names[1]],
-                           perms=(0, 7), want_rows=True)
+                           perms=(0,), want_rows=True)
         states += res["state_domain"]
         got = sorted((r["state_b"], r["state_a"])
                      for r in res.get("residue_rows_verbatim", []))
-        exp = sorted(want[key])
+        exp = sorted(want[names])
         ok = got == exp and res["residue"] == len(exp)
         mismatches += int(not ok)
         per_geometry.append({
             "geometry_key": key, "geometry": res["geometry"],
+            "geometry_order_from_receipt": list(names),
             "state_domain": res["state_domain"],
             "residue": res["residue"],
             "expected_residue": len(exp),
@@ -438,6 +444,16 @@ def _is_cs2_local(ext, sb, sa, orient, l0b, l1b, l0a, l1a) -> bool:
         sig = (sb, sa)
     return bool(fw0 == 2 and fw1 == 1 and e_sy == e_w
                 and all(lsy(sig[q], f0[q]) == 1 for q in range(2) if f0[q]))
+
+
+def _cs2_flags(ext, sb, sa, orient, bcodes, acodes) -> np.ndarray:
+    """Vectorised comm-s2 predicate over one block's option arrays."""
+    out = np.zeros(bcodes.shape[0], dtype=bool)
+    for i in range(bcodes.shape[0]):
+        bc, ac = int(bcodes[i]), int(acodes[i])
+        out[i] = _is_cs2_local(ext, sb, sa, orient, bc // 4, bc % 4,
+                               ac // 4, ac % 4)
+    return out
 
 
 def direct_local_optimum(blocks, sb_state, sa_state, allow, perms=range(8)):
@@ -562,7 +578,7 @@ def e1_replacement_orbit(residue_rows) -> dict[str, Any]:
                                                   for j in which],
                         })
         key = "+".join(sorted(geom))
-        if not images:
+        if images_total == 0:
             empty_replacement += 1
         else:
             with_image += 1
@@ -572,7 +588,7 @@ def e1_replacement_orbit(residue_rows) -> dict[str, Any]:
             "cost_original": oc,
             "delta_p1_menu": d_p1 - oc,
             "delta_widened_menu": d_w - oc,
-            "replacement_images": len(images),
+            "replacement_images": images_total,
             "images_verbatim": images,
             "image_cap": E1_IMAGE_CAP,
         })
@@ -941,7 +957,7 @@ def main() -> dict[str, Any]:
 
     gp = clock("gp_binding", gp_permutation_binding)
     gp_panel = clock("gp_panel", lambda: gp_operational_panel(
-        [(b, a) for _, b, a in residue_rows]))
+        [(b, a) for _, b, _ in residue_rows for _, _, a in residue_rows]))
     r1 = clock("r1_reproduction", lambda: r1_residue_reproduction(residue_rows))
     e1 = clock("e1_orbit", lambda: e1_replacement_orbit(residue_rows))
     p1e = clock("p1e", p1e_lemma)

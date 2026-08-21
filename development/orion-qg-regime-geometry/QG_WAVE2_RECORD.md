@@ -308,9 +308,60 @@ authority `ORIONQG_QG7D_PARTIAL__P1_RESIDUE_OPEN__NOT_R6`).
   is exactly the FAILED_DECOMPOSITION move the reopen adjudication independently derived
   for this negative.
 
+## QG-7e — THE TARE ALL-N CLASSIFICATION THEOREM IS COMPLETE
+
+`QG7E_TWELVE_STATES_RESULTS.json` (protocol frozen pre-outcome, sha256 `dee3ff16…fb62`,
+with two pre-outcome corrections disclosed inside it; double-run byte-identical, digest
+`099359e4…4eb3642`, 334.4 s / 331.7 s; **all 12 gates true**; independent pure-primitive
+verifier ACCEPT with `failed: []`, re-run by the orchestrator). Terminal
+`QG7E_ALL_N_CLASSIFICATION_THEOREM_COMPLETE`; authority
+`ORIONQG_QG7E_ALL_N_CLASSIFICATION_THEOREM_COMPLETE__COMM_S2_SECTOR_CLOSED_BY_PER_BLOCK_
+TARGET_PERMUTATION_DOMINATION__NOT_R6`.
+
+**`C_DP == min(C_D+, f_B′, f_B″)` now holds for all n.** With R6S (`C_DP == C_D++`, all n)
+and QG-18 (κ_TARE = 2, two-sided), unit-cost TARE becomes the field's first **fully
+closed regime-geometry object**: a provably exhaustive four-configuration trade basis, an
+all-n support bound, an exact intrinsic support number, an all-n cost envelope, an exact
+decidable predicate, and a certified forecaster — every link machine-checked and
+receipt-named in a 12-step `proof_audit`.
+
+**What actually closed it.** QG-7d's own protocol declares the **per-block target
+permutation** a configuration degree of freedom of `r6p.dxx_search`, and
+`r6p._block_arrays` enumerates it independently per block. QG-7d's implemented P1 menu
+realized only the **global MG mirror** — all three blocks swapped together, `p ∈ {000,
+111}` of the eight subsets. Admitting all eight closes the residue: **378/378 geometries,
+residue 0 over the complete 6,341,787,648-state domain**, covering both of QG-7c's
+declared-open sub-cases (double-pinner 136, comm-s2-chain 323).
+
+**The control that makes this credible** (gate G7): with the enlargement switched off,
+the menu reproduces QG-7d's 12 residual states **row-for-row over 83,886,080 states, 0
+mismatches** — so the *enlargement*, not an implementation difference between the two
+lanes, is what closed them. The orchestrator's independent verifier reproduces both
+sides: residue 0 enlarged, residue 12 un-enlarged. Gate G8 binds the permutation itself
+on 5,340,816 rows with 0 mismatches plus an operational n=2 panel against `dxx_search`.
+
+**E1 refuted its own premise, and this falsifies a programme prediction.** The frozen E1
+attack assumed a Δ ≤ 0 replacement always exists and merely relocates comm-s2 to another
+block. Exact enumeration shows **10 of the 12 states admit no Δ ≤ 0 alternative at all**
+(empty replacement set, empty orbit); only 2 have images, all re-entrant. So the residue
+was a **local-optimality failure, not a descent failure**, and no re-choice of descent
+measure could ever have repaired it.
+
+That matters beyond this lane. The reopen adjudication classified N1 as
+`FAILED_DECOMPOSITION` and predicted the fix would be to *change the decomposition, not
+enlarge the move menu* — explicitly citing the "enlarging move menus failed repeatedly;
+redefinition succeeded repeatedly" method finding. **The prediction was wrong.** What
+closed the residue was precisely a move-menu enlargement (admitting the full permutation
+subgroup), and the decomposition-change attack was refuted by exact enumeration. The
+method finding is therefore not a law: a negative *can* be an insufficient search, and
+here it was — specifically, a menu that failed to realize a degree of freedom its own
+protocol had already declared. Recorded as a falsified prediction rather than quietly
+dropped; the reopen adjudication's terminal stands as issued, with this outcome scored
+against it.
+
 ## Registered successor (requires its own pre-outcome freeze)
 
-- **QG-7e — the twelve states.** A composition/fixpoint argument over the residue, where
+- ~~QG-7e~~ **EXECUTED — theorem complete, see above.** A composition/fixpoint argument over the residue, where
   strict descent fails because the replacement optimum is comm-s2 on another block. The
   reopen adjudication classifies this negative FAILED_DECOMPOSITION and predicts it
   converts (`reopen-adjudication/REOPEN_TERMINAL.json`).
