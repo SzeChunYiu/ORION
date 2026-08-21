@@ -189,14 +189,23 @@ def test_the_precision_fix_lost_no_classification() -> None:
     that computed anything, a canary that did not demonstrate the scheme, and
     the rest. They are ``MISSING_CUSTODY`` rather than
     ``MISSING_DECLARATION`` because what is absent is the protected material's
-    custody itself, not a declaration about it. The exact ratchet is therefore
-    171. Future additions must update this sentinel deliberately rather than
-    weakening it to a lower-bound check.
+    custody itself, not a declaration about it.
+
+    P7's decided-premise measure (``orion.programme.decided_premises``, issue
+    #655) adds two ``MISSING_DECLARATION`` sites in
+    ``measure_decision_constraint``: a premise whose deciding inputs the model
+    does not carry, and one no enumerated case constrains. Both are
+    ``CANNOT_CHECK`` rather than ``FAIL`` because a checker cannot be blamed for
+    a distinction its state space cannot express. P6's and P8's mechanisms add
+    none of their own --- they reach their blocked states through
+    ``guard_exercise.assess_guard``, whose sites are already inventoried. The
+    exact ratchet is therefore 173. Future additions must update this sentinel
+    deliberately rather than weakening it to a lower-bound check.
     """
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
-    assert sum(classified.values()) == 171, classified
+    assert sum(classified.values()) == 173, classified
     assert committed["with_reason"] < committed["blocker_sites"]
     assert committed["with_reason"] >= sum(classified.values()), (
         "more sites are classified than carry a reason, so something is classifying on nothing"
