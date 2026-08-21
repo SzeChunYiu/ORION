@@ -32,15 +32,27 @@ def _freeze() -> dict:
             "probe_gold_access": "NONE",
             "probe_dois": ["10.5281/zenodo.8217359", "10.1038/s41586-023-06221-2"],
             "probe_min_result_count": 1,
+            "probe_min_matched_doi_count": 1,
         }
     }
 
 
-def _write_probe(path: Path) -> None:
+def _write_bundle(root: Path) -> tuple[Path, Path]:
+    root.mkdir(parents=True, exist_ok=True)
+    probe_path = root / "transport_probe.json"
+    response_path = root / "transport_probe_response.json"
     dois = _freeze()["transport_repair_evidence"]["probe_dois"]
     url = runner.build_openaire_crosswalk_url(
         dois, page_size=runner.TRANSPORT_PROBE_PAGE_SIZE
     )
+    response = {
+        "results": [
+            {"pid": [{"scheme": "doi", "value": dois[1]}]},
+            {"pid": [{"scheme": "arxiv", "value": "2306.11152"}]},
+        ]
+    }
+    body = json.dumps(response, sort_keys=True).encode()
+    response_path.write_bytes(body)
     receipt = {
         "schema_version": runner.PROBE_SCHEMA,
         "terminal": runner.PROBE_TERMINAL,
@@ -48,67 +60,101 @@ def _write_probe(path: Path) -> None:
         "encoding": "repeated_pid_parameters",
         "dois": dois,
         "url_sha256": hashlib.sha256(url.encode()).hexdigest(),
-        "response_sha256": "a" * 64,
+        "response_sha256": hashlib.sha256(body).hexdigest(),
         "result_count": 2,
+        "matched_dois": [dois[1]],
         "benchmark_gold_accessed": False,
         "promotion_authorized": False,
     }
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(receipt, sort_keys=True) + "\n", encoding="utf-8")
+    probe_path.write_text(json.dumps(receipt, sort_keys=True) + "\n", encoding="utf-8")
+    return probe_path, response_path
 
 
-def _manifest(path: Path) -> dict:
+def _manifest(probe_path: Path, response_path: Path) -> dict:
     return {
         "campaign_version": 2,
         "transport_encoding": "repeated_pid_parameters",
         "transport_probe_terminal": runner.PROBE_TERMINAL,
-        "transport_probe_sha256": runner.sha256_file(path),
+        "transport_probe_sha256": runner.sha256_file(probe_path),
+        "transport_probe_response_sha256": runner.sha256_file(response_path),
     }
 
 
 def test_score_time_transport_evidence_requires_exact_archived_bytes(tmp_path: Path) -> None:
-    path = tmp_path / "transport_probe.json"
-    _write_probe(path)
-    manifest = _manifest(path)
-    good = analyzer.transport_evidence_validity(_freeze(), manifest, path)
+    probe_path, response_path = _write_bundle(tmp_path)
+    manifest = _manifest(probe_path, response_path)
+    good = analyzer.transport_evidence_validity(
+        _freeze(), manifest, probe_path, response_path
+    )
     assert good["valid"] is True
     assert good["probe_hash_matches_manifest"] is True
+    assert good["response_hash_matches_manifest"] is True
     assert good["receipt_valid"] is True
+    assert good["response_valid"] is True
 
-    receipt = json.loads(path.read_text())
+    receipt = json.loads(probe_path.read_text())
     receipt["promotion_authorized"] = True
-    path.write_text(json.dumps(receipt, sort_keys=True) + "\n", encoding="utf-8")
-    forged = analyzer.transport_evidence_validity(_freeze(), manifest, path)
+    probe_path.write_text(json.dumps(receipt, sort_keys=True) + "\n", encoding="utf-8")
+    forged = analyzer.transport_evidence_validity(
+        _freeze(), manifest, probe_path, response_path
+    )
     assert forged["valid"] is False
     assert forged["probe_hash_matches_manifest"] is False
     assert forged["receipt_valid"] is False
 
 
-def test_score_time_transport_evidence_refuses_manifest_only_authority(tmp_path: Path) -> None:
-    path = tmp_path / "transport_probe.json"
-    _write_probe(path)
-    manifest = _manifest(path)
-    manifest["transport_probe_sha256"] = "0" * 64
-    validity = analyzer.transport_evidence_validity(_freeze(), manifest, path)
+def test_score_time_transport_evidence_refuses_raw_response_substitution(tmp_path: Path) -> None:
+    probe_path, response_path = _write_bundle(tmp_path)
+    manifest = _manifest(probe_path, response_path)
+    response_path.write_text(
+        json.dumps({"results": [{"pid": [{"scheme": "doi", "value": "10.9999/unrelated"}]}]}),
+        encoding="utf-8",
+    )
+    validity = analyzer.transport_evidence_validity(
+        _freeze(), manifest, probe_path, response_path
+    )
     assert validity["valid"] is False
     assert validity["receipt_valid"] is True
+    assert validity["response_valid"] is False
+    assert validity["response_hash_matches_manifest"] is False
+
+
+def test_score_time_transport_evidence_refuses_manifest_only_authority(tmp_path: Path) -> None:
+    probe_path, response_path = _write_bundle(tmp_path)
+    manifest = _manifest(probe_path, response_path)
+    manifest["transport_probe_sha256"] = "0" * 64
+    validity = analyzer.transport_evidence_validity(
+        _freeze(), manifest, probe_path, response_path
+    )
+    assert validity["valid"] is False
+    assert validity["receipt_valid"] is True
+    assert validity["response_valid"] is True
     assert validity["probe_hash_matches_manifest"] is False
+
+    manifest = _manifest(probe_path, response_path)
+    manifest["transport_probe_response_sha256"] = "0" * 64
+    validity = analyzer.transport_evidence_validity(
+        _freeze(), manifest, probe_path, response_path
+    )
+    assert validity["valid"] is False
+    assert validity["response_hash_matches_manifest"] is False
 
 
 def test_zero_yield_probe_is_invalid_at_score_time(tmp_path: Path) -> None:
-    path = tmp_path / "transport_probe.json"
-    _write_probe(path)
-    receipt = json.loads(path.read_text())
+    probe_path, response_path = _write_bundle(tmp_path)
+    receipt = json.loads(probe_path.read_text())
     receipt["result_count"] = 0
-    path.write_text(json.dumps(receipt, sort_keys=True) + "\n", encoding="utf-8")
-    manifest = _manifest(path)
-    validity = analyzer.transport_evidence_validity(_freeze(), manifest, path)
+    probe_path.write_text(json.dumps(receipt, sort_keys=True) + "\n", encoding="utf-8")
+    manifest = _manifest(probe_path, response_path)
+    validity = analyzer.transport_evidence_validity(
+        _freeze(), manifest, probe_path, response_path
+    )
     assert validity["valid"] is False
     assert validity["receipt_valid"] is False
     assert "minimum identity yield" in str(validity["validation_error"])
 
 
-def test_missing_archived_probe_is_invalid_evidence_not_exception(tmp_path: Path) -> None:
+def test_missing_archived_bundle_is_invalid_evidence_not_exception(tmp_path: Path) -> None:
     manifest_path = tmp_path / "capture" / "SHARED_ACQUISITION_MANIFEST.json"
     manifest_path.parent.mkdir(parents=True)
     manifest = {
@@ -116,6 +162,7 @@ def test_missing_archived_probe_is_invalid_evidence_not_exception(tmp_path: Path
         "transport_encoding": "repeated_pid_parameters",
         "transport_probe_terminal": runner.PROBE_TERMINAL,
         "transport_probe_sha256": "a" * 64,
+        "transport_probe_response_sha256": "b" * 64,
     }
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
     validity = analyzer.resolve_transport_evidence(
@@ -123,11 +170,32 @@ def test_missing_archived_probe_is_invalid_evidence_not_exception(tmp_path: Path
     )
     assert validity["valid"] is False
     assert validity["receipt_valid"] is False
-    assert validity["probe_hash_matches_manifest"] is False
+    assert validity["response_valid"] is False
     assert "not found" in str(validity["validation_error"])
 
 
-def test_ambiguous_archived_probes_are_invalid_evidence_not_exception(tmp_path: Path) -> None:
+def test_missing_raw_response_is_invalid_evidence_not_exception(tmp_path: Path) -> None:
+    manifest_path = tmp_path / "capture" / "SHARED_ACQUISITION_MANIFEST.json"
+    manifest_path.parent.mkdir(parents=True)
+    probe_path, response_path = _write_bundle(manifest_path.parent)
+    response_path.unlink()
+    manifest = {
+        "campaign_version": 2,
+        "transport_encoding": "repeated_pid_parameters",
+        "transport_probe_terminal": runner.PROBE_TERMINAL,
+        "transport_probe_sha256": runner.sha256_file(probe_path),
+        "transport_probe_response_sha256": "b" * 64,
+    }
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    validity = analyzer.resolve_transport_evidence(
+        _freeze(), manifest, manifest_path, None
+    )
+    assert validity["valid"] is False
+    assert validity["response_valid"] is False
+    assert "not found" in str(validity["validation_error"])
+
+
+def test_ambiguous_archived_bundles_are_invalid_evidence_not_exception(tmp_path: Path) -> None:
     manifest_path = tmp_path / "capture" / "SHARED_ACQUISITION_MANIFEST.json"
     manifest_path.parent.mkdir(parents=True)
     manifest = {
@@ -135,10 +203,11 @@ def test_ambiguous_archived_probes_are_invalid_evidence_not_exception(tmp_path: 
         "transport_encoding": "repeated_pid_parameters",
         "transport_probe_terminal": runner.PROBE_TERMINAL,
         "transport_probe_sha256": "a" * 64,
+        "transport_probe_response_sha256": "b" * 64,
     }
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
-    _write_probe(manifest_path.parent / "a" / "transport_probe.json")
-    _write_probe(manifest_path.parent / "b" / "transport_probe.json")
+    _write_bundle(manifest_path.parent / "a")
+    _write_bundle(manifest_path.parent / "b")
     validity = analyzer.resolve_transport_evidence(
         _freeze(), manifest, manifest_path, None
     )
@@ -147,7 +216,7 @@ def test_ambiguous_archived_probes_are_invalid_evidence_not_exception(tmp_path: 
     assert "ambiguous" in str(validity["validation_error"])
 
 
-def test_missing_probe_forces_frozen_cannot_check_terminal(monkeypatch, tmp_path: Path) -> None:
+def test_missing_bundle_forces_frozen_cannot_check_terminal(monkeypatch, tmp_path: Path) -> None:
     freeze = _freeze()
     freeze.update(
         {
@@ -169,6 +238,7 @@ def test_missing_probe_forces_frozen_cannot_check_terminal(monkeypatch, tmp_path
         "transport_encoding": "repeated_pid_parameters",
         "transport_probe_terminal": runner.PROBE_TERMINAL,
         "transport_probe_sha256": "a" * 64,
+        "transport_probe_response_sha256": "b" * 64,
     }
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
     output_path = tmp_path / "result.json"
@@ -190,6 +260,7 @@ def test_missing_probe_forces_frozen_cannot_check_terminal(monkeypatch, tmp_path
         freeze_path=freeze_path,
         manifest_path=manifest_path,
         transport_probe_path=None,
+        transport_probe_response_path=None,
         baseline_eval_path=tmp_path / "baseline.json",
         orion_eval_path=tmp_path / "orion.json",
         diagnostic_eval_path=tmp_path / "diagnostic.json",
@@ -201,4 +272,5 @@ def test_missing_probe_forces_frozen_cannot_check_terminal(monkeypatch, tmp_path
     assert result["terminal"] == "P2_WIDE_EXTERNAL_V2_CANNOT_CHECK"
     assert result["all_validity_conditions"] is False
     assert result["validity"]["v2_transport_probe_receipt_valid"] is False
+    assert result["validity"]["v2_transport_probe_response_valid"] is False
     assert output_path.exists()
