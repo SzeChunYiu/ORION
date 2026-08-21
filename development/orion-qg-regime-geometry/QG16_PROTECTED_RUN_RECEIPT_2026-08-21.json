@@ -1,0 +1,28 @@
+{
+  "schema": "ORION.QG.ProtectedRunReceipt.v1",
+  "issue": "SzeChunYiu/ORION#811",
+  "pr": "SzeChunYiu/ORION#813",
+  "workflow": {"name":"orion-qg-qg16-support1-phase","run_id":32502251939},
+  "artifact": {
+    "id": 9453949400,
+    "name": "orion-qg-qg16-d56892f1ce2cc807da53bd3be824d98957a27246",
+    "digest": "sha256:4b1d736236590bb4967721cc04f3dd97a88b389f11160e9507544315979b1101"
+  },
+  "head_sha": "d56892f1ce2cc807da53bd3be824d98957a27246",
+  "parent_v6_sha": "9397a6b671b3f568e635355e2dc01ed263ae1e13",
+  "terminal": "QG16_R6I_OBJECTIVE_INDEXED_SUPPORT1_CONE_ALL_N_MACHINE_CHECKED",
+  "source_result_digest": "415e5e45cfc85c5b2073bfe8220b7e4f832703b7d9072daa5e80c79ad5771f31",
+  "worst_resource_vectors": [[0,2,2],[1,1,2]],
+  "facet_count": 4,
+  "support_bound_inside_cone": 1,
+  "intrinsic_support_number_inside_cone": 1,
+  "generic_lane": {"decision":"ACCEPT_SUPPORT1_PHASE","all_checks":true},
+  "native_lane": {"decision":"ACCEPT_SUPPORT1_PHASE","all_checks":true,"support1_phase_authority":true},
+  "both_accept": true,
+  "deterministic_replay": true,
+  "global_phase_boundary_sharpness": "OPEN",
+  "outside_cone_semantics": "NOT_EQUAL_SUPPORT2_REQUIRED",
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "successor_permission": "PHASE_SHARPNESS_COUNTEREXAMPLE_OR_LARGER_CONE_MAY_OPEN_ONLY_AS_NEW_PROSPECTIVE_PACKET"
+}
