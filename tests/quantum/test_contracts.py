@@ -4,6 +4,7 @@ from orion.quantum import (
     QAccessMatch,
     QAdvantageReceipt,
     QResourceSummary,
+    QuantumAccessMode,
     QuantumAdvantageTerminal,
     QuantumContractError,
     QuantumEvidenceMode,
@@ -15,6 +16,7 @@ MATCHED = QAccessMatch(
     same_problem=True,
     same_information=True,
     same_tolerance=True,
+    quantum_access_mode=QuantumAccessMode.NATIVE_COHERENT_ORACLE,
 )
 
 
@@ -150,7 +152,13 @@ def test_unresolved_stronger_quantum_interface_rejects_query_advantage() -> None
     candidate = receipt(
         evidence_mode=QuantumEvidenceMode.LOCAL_SIMULATION,
         terminal=QuantumAdvantageTerminal.QUANTUM_QUERY_ADVANTAGE_ONLY,
-        access_match=QAccessMatch(True, True, True, True),
+        access_match=QAccessMatch(
+            True,
+            True,
+            True,
+            True,
+            QuantumAccessMode.NATIVE_COHERENT_ORACLE,
+        ),
         query_claim_bounded=True,
     )
 
