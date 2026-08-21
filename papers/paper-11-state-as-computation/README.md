@@ -11,7 +11,7 @@
 
 ## Current evidence status
 
-`PEER_REVIEW_PACKAGE_READY / CONTROLLED_AND_THEORY_CLAIMS_SUPPORTED / SPARSE_ATTACK_PARTIAL_NEGATIVE`
+`PEER_REVIEW_PACKAGE_READY / CONTROLLED_THEORY_SYSTEMS_SUPERIORITY_SUPPORTED`
 
 Earned evidence includes:
 
@@ -20,25 +20,23 @@ Earned evidence includes:
 - 4× to >32× dense-decoder sample-threshold gains;
 - no-answer-laundering P11B result;
 - exact compile/cache/recover/materialize optionality laws;
-- P11D hostile sparse-decoder result: **negative against the preregistered ≥4×-in-both-cells gate**, but with retained 2×/4× threshold residual and +0.2903/+0.3840 low-sample accuracy advantage.
+- P11D hostile sparse-decoder result: **permanently negative** against the preregistered ≥4×-in-both-cells gate, but retaining 2×/4× threshold gaps;
+- P11E fresh deterministic replication of the sparse residual: sparse/compiled thresholds `128/64` and `256/64`, with +0.2912/+0.3307 accuracy gaps at `n=64` and byte-identical two-run payload SHA `1097d94b…a4536`;
+- P11F prospectively bounded nonlinear ExtraTrees attack: universal state does not reach 0.95 through `n=1024` in either cell, while compiled state reaches it by `n=64`; low-sample gaps are +0.4460/+0.4029 and the two-run payload SHA is byte-identical (`aedb2aa0…7dee`).
 
-The P11D negative and its replay defect are first-class artifacts:
-
-- `P11D_NEGATIVE_ROOT_CAUSE_V1.md`
-- `P11D_SPARSE_DECODER_RESULT_RECEIPT_V1.json`
-
-P11C's stronger ExtraTrees attack remains `CANNOT_CHECK`: the frozen run emitted no authoritative terminal inside the available execution window, so the manuscript makes no claim from it.
+Historical failures remain first-class artifacts. P11D is never relabelled positive and P11C remains `CANNOT_CHECK` because its larger tree attack emitted no authoritative terminal. P11E and P11F are independent successor protocols, not edits to those outcomes.
 
 ## Strongest paper-level claim
 
-> Query-conditioned state construction can externalize structural search from a bounded downstream decoder. In controlled query families this yields exact accessible-rank savings and large finite-sample gains under weak access; a frozen sparse universal decoder buys part of the advantage back but leaves a 2×–4× threshold residual in the registered hostile cells. The architectural choice also incurs calculable future-query option debt unless raw, cached or universal state is retained.
+> **State is a computational placement decision.** In controlled query families, query-conditioned state construction externalizes structural search from a bounded downstream access mechanism. This yields exact accessible-rank savings and large dense-decoder sample gains; a sparse universal decoder recovers part of the advantage but leaves a fresh deterministic 2×–4× threshold residual, and a frozen nonlinear tree ensemble remains below the target through `n=1024` where compiled state succeeds at `n=64`. The same specialization incurs calculable future-query option debt unless raw, cached or universal state is retained.
 
 ## Peer-review artifacts
 
 - `MANUSCRIPT.md` — full paper
 - `CLAIM_EVIDENCE_LEDGER.md` — claim authority and donor subtraction
 - `PEER_REVIEW_READINESS.md` — five-lens hostile review/checklist
-- P11/P11B/P11C/P11D protocols and harnesses — reproducibility surface
+- P11/P11B/P11C/P11D/P11E/P11F protocols and harnesses — reproducibility surface
+- P11D/P11E/P11F result receipts — adverse, replicated sparse and nonlinear evidence
 
 ## Not authorized
 
