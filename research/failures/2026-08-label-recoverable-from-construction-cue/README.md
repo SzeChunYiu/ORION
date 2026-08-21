@@ -177,6 +177,46 @@ Two things let it survive, and both are worth naming.
    That is the campaign lane's call and is **not** done here. The diagnosis and
    the instrument are.
 
+## Repaired, 2026-08-21
+
+Item 7 was carried out the same day, under a protocol frozen before the repair
+and before any panel outcome was seen:
+`research/campaigns/2026-08-21-p4-battery-v3-identifiable/`.
+
+The generator now carries all three constructions behind `--construction` --- v1
+and v2 stay reproducible so the record of what they measured stays checkable ---
+and defaults to `v3`, in which every case is shape-identical and families differ
+only in the values of fields a hard gate is defined over. The register grew from
+three probes to fourteen first, so the repair was measured against the property
+rather than against the two cues named above. On the audit seed all fourteen
+probes report informedness 0.0 on all three terminals; on v2 five of them report
+1.0. The seed the panel actually ran on, `p4-v3-panel-20260821`, audits clean at
+the same strict ceiling on all three terminals, so the reported H3 rests on an
+audited battery.
+
+**The 13-seed sweep is not uniformly clean, and saying so matters.** Three of the
+thirteen fail the 0.0 ceiling: `v3-invariance-02` (`PROMOTE` 0.083, `BLOCK`
+0.050), `v3-invariance-03` (`PROMOTE` 0.017) and `v3-invariance-06` (`BLOCK`
+0.012). Every one is the `digest-prefix` probe, which the freeze registers as a
+*noise control on the instrument* rather than a probe of the construction: it
+buckets cases by the leading nibble of a SHA-256 over seed-derived content, so
+with sixteen buckets over 270 eval cases a strict 0.0 ceiling fails on any seed
+where a bucket happens to be dominated by a minority label. The sweep exists to
+expose exactly this, and a first draft of this record reported it as thirteen
+clean seeds, which it is not. What the sweep supports is the narrower statement
+that no *content-shape* probe recovers the label on any seed, and that the
+residual sensitivity is confined to the one probe that reads a digest.
+
+The frozen panel, re-run on the repaired battery, reports H3 supported at 1.0:
+ORION 30/30, `deepsciverify` 15/30, the other nine 0/30. The pre-registered
+reading of that number, fixed before it was produced, is that it measures
+terminal expressiveness under a non-compensatory gate lattice --- ten of the
+eleven panel systems have no `CANNOT_CHECK` path at all once the empty-evidence
+case is gone --- and not a finer-grained scientific judgement.
+
+None of this restates V2. `PUBLICATION_METRICS_V2.json` is untouched and its H3
+remains the correct record of what the v1 construction produced.
+
 ## General lesson candidate
 
 **A benchmark score is a claim about a competence only for as long as nothing

@@ -1,0 +1,2136 @@
+{
+  "audit_seed": "v3-audit-20260821",
+  "constructions": {
+    "v1": {
+      "case_count": 420,
+      "terminals": {
+        "BLOCK": {
+          "benchmark_id": "p4-protected-mechanical-gold",
+          "detail": "p4-protected-mechanical-gold/BLOCK: probe digest-prefix recovers the label at informedness 0.4190909090909092 (211/220 of the label, 27 false positives over 50) from cues that carry none of the competence",
+          "label": "BLOCK",
+          "outcome": "FAIL",
+          "reason": "LABEL_RECOVERED_BY_CUE",
+          "results": [
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 4,
+              "label": "BLOCK",
+              "probe_id": "evidence-object-count",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 2,
+              "label": "BLOCK",
+              "probe_id": "declared-hash-missingness",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 4,
+              "label": "BLOCK",
+              "probe_id": "evidence-content-length",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 5,
+              "label": "BLOCK",
+              "probe_id": "pool-content-length",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 3,
+              "label": "BLOCK",
+              "probe_id": "pool-hash-missingness",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 4,
+              "label": "BLOCK",
+              "probe_id": "request-and-trace-count",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 5,
+              "label": "BLOCK",
+              "probe_id": "container-length-profile",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 4,
+              "label": "BLOCK",
+              "probe_id": "key-shape",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 5,
+              "label": "BLOCK",
+              "probe_id": "content-character-profile",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 5,
+              "label": "BLOCK",
+              "probe_id": "content-template-identity",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 8,
+              "label": "BLOCK",
+              "probe_id": "string-length-profile",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 7,
+              "label": "BLOCK",
+              "probe_id": "identifier-shape",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 9,
+              "false_positive": 27,
+              "fitted_signatures": 17,
+              "label": "BLOCK",
+              "probe_id": "digest-prefix",
+              "recovery": 0.4190909090909092,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 23,
+              "true_positive": 211,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 3,
+              "label": "BLOCK",
+              "probe_id": "scalar-value-profile",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            }
+          ],
+          "worst_recovery": 0.4190909090909092
+        },
+        "CANNOT_CHECK": {
+          "benchmark_id": "p4-protected-mechanical-gold",
+          "detail": "p4-protected-mechanical-gold/CANNOT_CHECK: probe evidence-object-count recovers the label at informedness 1.0 (20/20 of the label, 0 false positives over 250) from cues that carry none of the competence",
+          "label": "CANNOT_CHECK",
+          "outcome": "FAIL",
+          "reason": "LABEL_RECOVERED_BY_CUE",
+          "results": [
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 4,
+              "label": "CANNOT_CHECK",
+              "probe_id": "evidence-object-count",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 2,
+              "label": "CANNOT_CHECK",
+              "probe_id": "declared-hash-missingness",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 4,
+              "label": "CANNOT_CHECK",
+              "probe_id": "evidence-content-length",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 5,
+              "label": "CANNOT_CHECK",
+              "probe_id": "pool-content-length",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "CANNOT_CHECK",
+              "probe_id": "pool-hash-missingness",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 4,
+              "label": "CANNOT_CHECK",
+              "probe_id": "request-and-trace-count",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 5,
+              "label": "CANNOT_CHECK",
+              "probe_id": "container-length-profile",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 4,
+              "label": "CANNOT_CHECK",
+              "probe_id": "key-shape",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 5,
+              "label": "CANNOT_CHECK",
+              "probe_id": "content-character-profile",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 5,
+              "label": "CANNOT_CHECK",
+              "probe_id": "content-template-identity",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 8,
+              "label": "CANNOT_CHECK",
+              "probe_id": "string-length-profile",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 7,
+              "label": "CANNOT_CHECK",
+              "probe_id": "identifier-shape",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 17,
+              "label": "CANNOT_CHECK",
+              "probe_id": "digest-prefix",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "CANNOT_CHECK",
+              "probe_id": "scalar-value-profile",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            }
+          ],
+          "worst_recovery": 1.0
+        },
+        "PROMOTE": {
+          "benchmark_id": "p4-protected-mechanical-gold",
+          "detail": "p4-protected-mechanical-gold/PROMOTE: probe digest-prefix recovers the label at informedness 0.0625 (3/30 of the label, 9 false positives over 240) from cues that carry none of the competence",
+          "label": "PROMOTE",
+          "outcome": "FAIL",
+          "reason": "LABEL_RECOVERED_BY_CUE",
+          "results": [
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 4,
+              "label": "PROMOTE",
+              "probe_id": "evidence-object-count",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 2,
+              "label": "PROMOTE",
+              "probe_id": "declared-hash-missingness",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 4,
+              "label": "PROMOTE",
+              "probe_id": "evidence-content-length",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 5,
+              "label": "PROMOTE",
+              "probe_id": "pool-content-length",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "PROMOTE",
+              "probe_id": "pool-hash-missingness",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 4,
+              "label": "PROMOTE",
+              "probe_id": "request-and-trace-count",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 5,
+              "label": "PROMOTE",
+              "probe_id": "container-length-profile",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 4,
+              "label": "PROMOTE",
+              "probe_id": "key-shape",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 5,
+              "label": "PROMOTE",
+              "probe_id": "content-character-profile",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 5,
+              "label": "PROMOTE",
+              "probe_id": "content-template-identity",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 8,
+              "label": "PROMOTE",
+              "probe_id": "string-length-profile",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 7,
+              "label": "PROMOTE",
+              "probe_id": "identifier-shape",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 27,
+              "false_positive": 9,
+              "fitted_signatures": 17,
+              "label": "PROMOTE",
+              "probe_id": "digest-prefix",
+              "recovery": 0.0625,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 231,
+              "true_positive": 3,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "PROMOTE",
+              "probe_id": "scalar-value-profile",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            }
+          ],
+          "worst_recovery": 0.0625
+        }
+      }
+    },
+    "v2": {
+      "case_count": 420,
+      "terminals": {
+        "BLOCK": {
+          "benchmark_id": "p4-protected-mechanical-gold",
+          "detail": "p4-protected-mechanical-gold/BLOCK: probe evidence-content-length recovers the label at informedness 0.3999999999999999 (220/220 of the label, 30 false positives over 50) from cues that carry none of the competence",
+          "label": "BLOCK",
+          "outcome": "FAIL",
+          "reason": "LABEL_RECOVERED_BY_CUE",
+          "results": [
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 3,
+              "label": "BLOCK",
+              "probe_id": "evidence-object-count",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 40,
+              "fitted_signatures": 2,
+              "label": "BLOCK",
+              "probe_id": "declared-hash-missingness",
+              "recovery": 0.19999999999999996,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 10,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 5,
+              "label": "BLOCK",
+              "probe_id": "evidence-content-length",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 6,
+              "label": "BLOCK",
+              "probe_id": "pool-content-length",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 40,
+              "fitted_signatures": 3,
+              "label": "BLOCK",
+              "probe_id": "pool-hash-missingness",
+              "recovery": 0.19999999999999996,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 10,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 3,
+              "label": "BLOCK",
+              "probe_id": "request-and-trace-count",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 4,
+              "label": "BLOCK",
+              "probe_id": "container-length-profile",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 3,
+              "label": "BLOCK",
+              "probe_id": "key-shape",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 6,
+              "label": "BLOCK",
+              "probe_id": "content-character-profile",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 6,
+              "label": "BLOCK",
+              "probe_id": "content-template-identity",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 30,
+              "fitted_signatures": 9,
+              "label": "BLOCK",
+              "probe_id": "string-length-profile",
+              "recovery": 0.3999999999999999,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 20,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 40,
+              "fitted_signatures": 7,
+              "label": "BLOCK",
+              "probe_id": "identifier-shape",
+              "recovery": 0.19999999999999996,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 10,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 9,
+              "false_positive": 44,
+              "fitted_signatures": 16,
+              "label": "BLOCK",
+              "probe_id": "digest-prefix",
+              "recovery": 0.0790909090909091,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 6,
+              "true_positive": 211,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 3,
+              "label": "BLOCK",
+              "probe_id": "scalar-value-profile",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            }
+          ],
+          "worst_recovery": 0.3999999999999999
+        },
+        "CANNOT_CHECK": {
+          "benchmark_id": "p4-protected-mechanical-gold",
+          "detail": "p4-protected-mechanical-gold/CANNOT_CHECK: probe evidence-content-length recovers the label at informedness 1.0 (20/20 of the label, 0 false positives over 250) from cues that carry none of the competence",
+          "label": "CANNOT_CHECK",
+          "outcome": "FAIL",
+          "reason": "LABEL_RECOVERED_BY_CUE",
+          "results": [
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "CANNOT_CHECK",
+              "probe_id": "evidence-object-count",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 10,
+              "false_positive": 0,
+              "fitted_signatures": 2,
+              "label": "CANNOT_CHECK",
+              "probe_id": "declared-hash-missingness",
+              "recovery": 0.5,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 10,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 5,
+              "label": "CANNOT_CHECK",
+              "probe_id": "evidence-content-length",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 6,
+              "label": "CANNOT_CHECK",
+              "probe_id": "pool-content-length",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 10,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "CANNOT_CHECK",
+              "probe_id": "pool-hash-missingness",
+              "recovery": 0.5,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 10,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "CANNOT_CHECK",
+              "probe_id": "request-and-trace-count",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 4,
+              "label": "CANNOT_CHECK",
+              "probe_id": "container-length-profile",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "CANNOT_CHECK",
+              "probe_id": "key-shape",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 6,
+              "label": "CANNOT_CHECK",
+              "probe_id": "content-character-profile",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 6,
+              "label": "CANNOT_CHECK",
+              "probe_id": "content-template-identity",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 0,
+              "fitted_signatures": 9,
+              "label": "CANNOT_CHECK",
+              "probe_id": "string-length-profile",
+              "recovery": 1.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 20,
+              "unscored": 0
+            },
+            {
+              "false_negative": 10,
+              "false_positive": 0,
+              "fitted_signatures": 7,
+              "label": "CANNOT_CHECK",
+              "probe_id": "identifier-shape",
+              "recovery": 0.5,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 10,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 16,
+              "label": "CANNOT_CHECK",
+              "probe_id": "digest-prefix",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "CANNOT_CHECK",
+              "probe_id": "scalar-value-profile",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            }
+          ],
+          "worst_recovery": 1.0
+        },
+        "PROMOTE": {
+          "benchmark_id": "p4-protected-mechanical-gold",
+          "detail": "p4-protected-mechanical-gold/PROMOTE: probe digest-prefix recovers the label at informedness 0.050000000000000044 (3/30 of the label, 12 false positives over 240) from cues that carry none of the competence",
+          "label": "PROMOTE",
+          "outcome": "FAIL",
+          "reason": "LABEL_RECOVERED_BY_CUE",
+          "results": [
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "PROMOTE",
+              "probe_id": "evidence-object-count",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 2,
+              "label": "PROMOTE",
+              "probe_id": "declared-hash-missingness",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 5,
+              "label": "PROMOTE",
+              "probe_id": "evidence-content-length",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 6,
+              "label": "PROMOTE",
+              "probe_id": "pool-content-length",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "PROMOTE",
+              "probe_id": "pool-hash-missingness",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "PROMOTE",
+              "probe_id": "request-and-trace-count",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 4,
+              "label": "PROMOTE",
+              "probe_id": "container-length-profile",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "PROMOTE",
+              "probe_id": "key-shape",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 6,
+              "label": "PROMOTE",
+              "probe_id": "content-character-profile",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 6,
+              "label": "PROMOTE",
+              "probe_id": "content-template-identity",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 9,
+              "label": "PROMOTE",
+              "probe_id": "string-length-profile",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 7,
+              "label": "PROMOTE",
+              "probe_id": "identifier-shape",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 27,
+              "false_positive": 12,
+              "fitted_signatures": 16,
+              "label": "PROMOTE",
+              "probe_id": "digest-prefix",
+              "recovery": 0.050000000000000044,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 228,
+              "true_positive": 3,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "PROMOTE",
+              "probe_id": "scalar-value-profile",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            }
+          ],
+          "worst_recovery": 0.050000000000000044
+        }
+      }
+    },
+    "v3": {
+      "case_count": 420,
+      "terminals": {
+        "BLOCK": {
+          "benchmark_id": "p4-protected-mechanical-gold",
+          "detail": "p4-protected-mechanical-gold/BLOCK: 14 probes scored on 270 eval cases; best informedness 0.0 is within the 0.0 ceiling",
+          "label": "BLOCK",
+          "outcome": "PASS",
+          "reason": "NO_CUE_RECOVERED_LABEL",
+          "results": [
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 1,
+              "label": "BLOCK",
+              "probe_id": "evidence-object-count",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 1,
+              "label": "BLOCK",
+              "probe_id": "declared-hash-missingness",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 1,
+              "label": "BLOCK",
+              "probe_id": "evidence-content-length",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 1,
+              "label": "BLOCK",
+              "probe_id": "pool-content-length",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 1,
+              "label": "BLOCK",
+              "probe_id": "pool-hash-missingness",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 1,
+              "label": "BLOCK",
+              "probe_id": "request-and-trace-count",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 1,
+              "label": "BLOCK",
+              "probe_id": "container-length-profile",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 1,
+              "label": "BLOCK",
+              "probe_id": "key-shape",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 1,
+              "label": "BLOCK",
+              "probe_id": "content-character-profile",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 1,
+              "label": "BLOCK",
+              "probe_id": "content-template-identity",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 3,
+              "label": "BLOCK",
+              "probe_id": "string-length-profile",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 4,
+              "label": "BLOCK",
+              "probe_id": "identifier-shape",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 16,
+              "label": "BLOCK",
+              "probe_id": "digest-prefix",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            },
+            {
+              "false_negative": 0,
+              "false_positive": 50,
+              "fitted_signatures": 3,
+              "label": "BLOCK",
+              "probe_id": "scalar-value-profile",
+              "recovery": 0.0,
+              "resolution": 0.004545454545454545,
+              "scored": 270,
+              "true_negative": 0,
+              "true_positive": 220,
+              "unscored": 0
+            }
+          ],
+          "worst_recovery": 0.0
+        },
+        "CANNOT_CHECK": {
+          "benchmark_id": "p4-protected-mechanical-gold",
+          "detail": "p4-protected-mechanical-gold/CANNOT_CHECK: 14 probes scored on 270 eval cases; best informedness 0.0 is within the 0.0 ceiling",
+          "label": "CANNOT_CHECK",
+          "outcome": "PASS",
+          "reason": "NO_CUE_RECOVERED_LABEL",
+          "results": [
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "CANNOT_CHECK",
+              "probe_id": "evidence-object-count",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "CANNOT_CHECK",
+              "probe_id": "declared-hash-missingness",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "CANNOT_CHECK",
+              "probe_id": "evidence-content-length",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "CANNOT_CHECK",
+              "probe_id": "pool-content-length",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "CANNOT_CHECK",
+              "probe_id": "pool-hash-missingness",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "CANNOT_CHECK",
+              "probe_id": "request-and-trace-count",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "CANNOT_CHECK",
+              "probe_id": "container-length-profile",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "CANNOT_CHECK",
+              "probe_id": "key-shape",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "CANNOT_CHECK",
+              "probe_id": "content-character-profile",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "CANNOT_CHECK",
+              "probe_id": "content-template-identity",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "CANNOT_CHECK",
+              "probe_id": "string-length-profile",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 4,
+              "label": "CANNOT_CHECK",
+              "probe_id": "identifier-shape",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 16,
+              "label": "CANNOT_CHECK",
+              "probe_id": "digest-prefix",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 20,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "CANNOT_CHECK",
+              "probe_id": "scalar-value-profile",
+              "recovery": 0.0,
+              "resolution": 0.004,
+              "scored": 270,
+              "true_negative": 250,
+              "true_positive": 0,
+              "unscored": 0
+            }
+          ],
+          "worst_recovery": 0.0
+        },
+        "PROMOTE": {
+          "benchmark_id": "p4-protected-mechanical-gold",
+          "detail": "p4-protected-mechanical-gold/PROMOTE: 14 probes scored on 270 eval cases; best informedness 0.0 is within the 0.0 ceiling",
+          "label": "PROMOTE",
+          "outcome": "PASS",
+          "reason": "NO_CUE_RECOVERED_LABEL",
+          "results": [
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "PROMOTE",
+              "probe_id": "evidence-object-count",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "PROMOTE",
+              "probe_id": "declared-hash-missingness",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "PROMOTE",
+              "probe_id": "evidence-content-length",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "PROMOTE",
+              "probe_id": "pool-content-length",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "PROMOTE",
+              "probe_id": "pool-hash-missingness",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "PROMOTE",
+              "probe_id": "request-and-trace-count",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "PROMOTE",
+              "probe_id": "container-length-profile",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "PROMOTE",
+              "probe_id": "key-shape",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "PROMOTE",
+              "probe_id": "content-character-profile",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 1,
+              "label": "PROMOTE",
+              "probe_id": "content-template-identity",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "PROMOTE",
+              "probe_id": "string-length-profile",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 4,
+              "label": "PROMOTE",
+              "probe_id": "identifier-shape",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 16,
+              "label": "PROMOTE",
+              "probe_id": "digest-prefix",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            },
+            {
+              "false_negative": 30,
+              "false_positive": 0,
+              "fitted_signatures": 3,
+              "label": "PROMOTE",
+              "probe_id": "scalar-value-profile",
+              "recovery": 0.0,
+              "resolution": 0.004166666666666667,
+              "scored": 270,
+              "true_negative": 240,
+              "true_positive": 0,
+              "unscored": 0
+            }
+          ],
+          "worst_recovery": 0.0
+        }
+      }
+    }
+  },
+  "freeze_document": "research/campaigns/2026-08-21-p4-battery-v3-identifiable/FREEZE.md",
+  "informedness_ceiling": 0.0,
+  "probe_count": 14,
+  "probes": [
+    {
+      "cue_names": [
+        "evidence_count",
+        "retrieval_pool_count",
+        "used_evidence_count"
+      ],
+      "kind": "COUNT",
+      "probe_id": "evidence-object-count",
+      "rationale": "How many evidence objects a case carries is fixed by the generator, not by any promotion obligation; the V1 INSUFFICIENT_EVIDENCE construction emitted an empty list and this probe is what recovered its label"
+    },
+    {
+      "cue_names": [
+        "declared_content_hash_missing",
+        "declared_provenance_hash_missing"
+      ],
+      "kind": "FIELD_MISSINGNESS",
+      "probe_id": "declared-hash-missingness",
+      "rationale": "Whether a declared hash field is null is a fact about which mutation built the case; verifying provenance means comparing a declared hash to an actual one, which this probe never does"
+    },
+    {
+      "cue_names": [
+        "evidence_content_lengths"
+      ],
+      "kind": "STRING_SHAPE",
+      "probe_id": "evidence-content-length",
+      "rationale": "A character count of the evidence body reads no word of it; the content templates are fixed strings, so their lengths encode the family that wrote them and are invariant under the host's secret seed"
+    },
+    {
+      "cue_names": [
+        "pool_content_lengths"
+      ],
+      "kind": "STRING_SHAPE",
+      "probe_id": "pool-content-length",
+      "rationale": "The V2 leak was measured on the evidence list only; the retrieval pool is the same bodies seen through a second field, and a character count of them reads no word either"
+    },
+    {
+      "cue_names": [
+        "pool_declared_content_hash_missing",
+        "pool_declared_provenance_hash_missing"
+      ],
+      "kind": "FIELD_MISSINGNESS",
+      "probe_id": "pool-hash-missingness",
+      "rationale": "Which declared hash is null anywhere in the pool is a fact about which mutation built the case; the probe never compares a declared hash to an actual one, which is what verifying provenance would require"
+    },
+    {
+      "cue_names": [
+        "access_request_count",
+        "search_trace_count",
+        "distinct_source_id_count"
+      ],
+      "kind": "COUNT",
+      "probe_id": "request-and-trace-count",
+      "rationale": "PROTECTED_ACCESS_CLEAR is defined over the scope and path of a request and SEARCH_CONTAMINATION_CLEAR over a flag on a query; how many requests, queries or distinct owners a case carries is a fact about the generator"
+    },
+    {
+      "cue_names": [
+        "container_length_profile"
+      ],
+      "kind": "COUNT",
+      "probe_id": "container-length-profile",
+      "rationale": "The length of every list in the view at once, so that a count cue moved to a container nobody thought to name is caught by the same probe as the ones that were named"
+    },
+    {
+      "cue_names": [
+        "key_shape_profile"
+      ],
+      "kind": "FIELD_MISSINGNESS",
+      "probe_id": "key-shape",
+      "rationale": "Which keys an object carries and in what order is a fact about how the generator wrote it; no promotion obligation is a statement about a key set, and the probe reads a fingerprint of the key names rather than any value"
+    },
+    {
+      "cue_names": [
+        "evidence_character_profile",
+        "pool_character_profile"
+      ],
+      "kind": "STRING_SHAPE",
+      "probe_id": "content-character-profile",
+      "rationale": "Length plus counts of whitespace, digits, uppercase and punctuation is the strongest description of a body that reads none of it; it catches a length cue disguised by padding, which a bare character count would miss"
+    },
+    {
+      "cue_names": [
+        "evidence_content_template",
+        "pool_content_template"
+      ],
+      "kind": "STRING_SHAPE",
+      "probe_id": "content-template-identity",
+      "rationale": "A fingerprint of the body with its opaque tokens masked out: it identifies which sentence the generator wrote and cannot read what was interpolated into it, so it can never compare a support token to a claim's token"
+    },
+    {
+      "cue_names": [
+        "string_length_profile"
+      ],
+      "kind": "STRING_SHAPE",
+      "probe_id": "string-length-profile",
+      "rationale": "The length of every string in the view at once, deliberately including obligation-bearing enums such as evaluator.integrity; over-inclusion can only make the audit stricter, and a length is not a value"
+    },
+    {
+      "cue_names": [
+        "non_content_string_shape"
+      ],
+      "kind": "IDENTIFIER_SHAPE",
+      "probe_id": "identifier-shape",
+      "rationale": "Length and masked template of every non-content string --- ids, urls, paths, enums --- so a family that betrayed itself through the shape of an identifier rather than of a body is caught"
+    },
+    {
+      "cue_names": [
+        "assigned_content_digest_nibble"
+      ],
+      "kind": "IDENTIFIER_SHAPE",
+      "probe_id": "digest-prefix",
+      "rationale": "The leading hex nibble of a SHA-256 over seed-derived content is noise; it is registered as a control on the instrument, because a non-zero informedness here would be the majority-vote rule fitting sampling noise rather than a property of the battery"
+    },
+    {
+      "cue_names": [
+        "scalar_value_profile"
+      ],
+      "kind": "ENUM_VALUE",
+      "probe_id": "scalar-value-profile",
+      "rationale": "Every integer and boolean in the view, again over-inclusively: it reads the round counters EVALUATOR_CHRONOLOGY_INTEGRITY is defined over, so a pass here is a stronger statement than the register strictly needs"
+    }
+  ],
+  "schema": "P4IdentifiabilityRegister.v1",
+  "seed_invariance": {
+    "v3-audit-20260821": {
+      "BLOCK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "CANNOT_CHECK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "PROMOTE": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      }
+    },
+    "v3-audit-alt-a": {
+      "BLOCK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "CANNOT_CHECK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "PROMOTE": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      }
+    },
+    "v3-audit-alt-b": {
+      "BLOCK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "CANNOT_CHECK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "PROMOTE": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      }
+    },
+    "v3-invariance-00": {
+      "BLOCK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "CANNOT_CHECK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "PROMOTE": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      }
+    },
+    "v3-invariance-01": {
+      "BLOCK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "CANNOT_CHECK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "PROMOTE": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      }
+    },
+    "v3-invariance-02": {
+      "BLOCK": {
+        "outcome": "FAIL",
+        "reason": "LABEL_RECOVERED_BY_CUE",
+        "worst_probe": "digest-prefix",
+        "worst_recovery": 0.050000000000000044
+      },
+      "CANNOT_CHECK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "PROMOTE": {
+        "outcome": "FAIL",
+        "reason": "LABEL_RECOVERED_BY_CUE",
+        "worst_probe": "digest-prefix",
+        "worst_recovery": 0.08333333333333326
+      }
+    },
+    "v3-invariance-03": {
+      "BLOCK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "CANNOT_CHECK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "PROMOTE": {
+        "outcome": "FAIL",
+        "reason": "LABEL_RECOVERED_BY_CUE",
+        "worst_probe": "digest-prefix",
+        "worst_recovery": 0.016666666666666607
+      }
+    },
+    "v3-invariance-04": {
+      "BLOCK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "CANNOT_CHECK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "PROMOTE": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      }
+    },
+    "v3-invariance-05": {
+      "BLOCK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "CANNOT_CHECK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "PROMOTE": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      }
+    },
+    "v3-invariance-06": {
+      "BLOCK": {
+        "outcome": "FAIL",
+        "reason": "LABEL_RECOVERED_BY_CUE",
+        "worst_probe": "digest-prefix",
+        "worst_recovery": 0.011818181818181728
+      },
+      "CANNOT_CHECK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "PROMOTE": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      }
+    },
+    "v3-invariance-07": {
+      "BLOCK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "CANNOT_CHECK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "PROMOTE": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      }
+    },
+    "v3-invariance-08": {
+      "BLOCK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "CANNOT_CHECK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "PROMOTE": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      }
+    },
+    "v3-invariance-09": {
+      "BLOCK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "CANNOT_CHECK": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      },
+      "PROMOTE": {
+        "outcome": "PASS",
+        "reason": "NO_CUE_RECOVERED_LABEL",
+        "worst_probe": "evidence-object-count",
+        "worst_recovery": 0.0
+      }
+    }
+  }
+}
