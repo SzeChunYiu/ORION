@@ -107,6 +107,12 @@ PERMS = tuple(itertools.permutations(range(3)))
 
 
 def build_tag_support_table():
+    """Exact shared-Tag support minima for each support1 frame-pair cell.
+
+    Not every A/B ordered support1 frame pair admits equal nonzero distinct
+    labels under a shared Tag.  Such Cartesian pair cells are infeasible and
+    are represented by None; exact cap1 minimizes over feasible cells only.
+    """
     table = []
     for pa in PAIRS:
         row = []
@@ -121,14 +127,16 @@ def build_tag_support_table():
                     cand = (p10.wt(s0) + p10.wt(s1), s0, s1, la)
                     if best is None or cand < best:
                         best = cand
-            if best is None:
-                raise AssertionError({"no_support1_tag": [pa, pb]})
             row.append(best)
         table.append(tuple(row))
     return tuple(table)
 
 
 TAG_TABLE = build_tag_support_table()
+TAG_FEASIBLE_CELLS = sum(int(TAG_TABLE[i][j] is not None) for i in range(12) for j in range(12))
+TAG_FEASIBLE_PER_A = tuple(sum(int(TAG_TABLE[i][j] is not None) for j in range(12)) for i in range(12))
+if TAG_FEASIBLE_CELLS <= 0 or any(x <= 0 for x in TAG_FEASIBLE_PER_A):
+    raise AssertionError({"support1_tag_feasibility_degenerate": [TAG_FEASIBLE_CELLS, TAG_FEASIBLE_PER_A]})
 
 
 class WeightedCap1:
@@ -162,26 +170,30 @@ class WeightedCap1:
         return self.b_cache[k]
 
     def bh(self, obj_name, coeffs, ts):
-        # For each A pair, best B-pair contribution including shared Tag.
+        # For each A pair, best feasible B-pair contribution including shared Tag.
         k = (obj_name, self.tkey(ts))
         if k not in self.bh_cache:
-            tnc, tc, ttag, tr = coeffs
+            _tnc, _tc, ttag, tr = coeffs
             rb = self.rest_b(ts)
             rows = []
             for i in range(12):
                 best = None
                 for j in range(12):
                     tag = TAG_TABLE[i][j]
+                    if tag is None:
+                        continue
                     score = tr * rb[j] + ttag * tag[0]
                     cand = (score, j, tag[0], rb[j], tag[1], tag[2], tag[3])
                     if best is None or cand < best:
                         best = cand
+                if best is None:
+                    raise AssertionError({"no_feasible_B_partner_for_A_pair": i})
                 rows.append(best)
             self.bh_cache[k] = tuple(rows)
         return self.bh_cache[k]
 
     def exact(self, obj_name, coeffs, scale, ta, tb):
-        tnc, tc, ttag, tr = coeffs
+        _tnc, _tc, _ttag, tr = coeffs
         ra = self.rest_a(ta)
         bh = self.bh(obj_name, coeffs, tb)
         best = None
@@ -279,8 +291,7 @@ def normalize_vector(v):
         g = math.gcd(g, abs(int(x)))
     if g:
         vals = [int(x) // g for x in vals]
-    # Orient so O0 difference is nonnegative; if exactly zero use first nonzero positive.
-    o0 = (2, 4, 2, 1)  # coefficient order (t_c,t_nc,t_tag,t_r)
+    o0 = (2, 4, 2, 1)
     dot = sum(vals[i] * o0[i] for i in range(4))
     if dot < 0 or (dot == 0 and next((x for x in vals if x), 1) < 0):
         vals = [-x for x in vals]
@@ -296,7 +307,7 @@ def facet_match(diff):
     return nd, matches
 
 
-def witness_record(candidate_index, family, pair_kind, i, j, tmeta, blocks, ta, tb, static, obj_name, coeffs, scale, c2, c1):
+def witness_record(candidate_index, family, pair_kind, i, j, tmeta, blocks, ta, tb, obj_name, coeffs, scale, c2, c1):
     diff = tuple(c2["resource"][k] - c1["resource"][k] for k in range(4))
     nd, matches = facet_match(diff)
     gap_scaled = c1["scaled_cost"] - c2["scaled_cost"]
@@ -345,14 +356,7 @@ def main() -> int:
 
     cap1 = WeightedCap1()
     stats = {
-        name: {
-            "objective": objective_json(coeffs, scale),
-            "strict_count": 0,
-            "first": None,
-            "max_gap": None,
-            "family_histogram": {},
-            "pair_kind_histogram": {},
-        }
+        name: {"objective": objective_json(coeffs, scale), "strict_count": 0, "first": None, "max_gap": None, "family_histogram": {}, "pair_kind_histogram": {}}
         for name, coeffs, scale in OBJECTIVES
     }
     family_counts = defaultdict(int)
@@ -368,7 +372,7 @@ def main() -> int:
                     c2 = support2_score(static, coeffs, scale)
                     c1 = cap1.exact(name, coeffs, scale, ta, tb)
                     if c2["scaled_cost"] < c1["scaled_cost"]:
-                        rec = witness_record(tested, family, pair_kind, i, j, tmeta, blocks, ta, tb, static, name, coeffs, scale, c2, c1)
+                        rec = witness_record(tested, family, pair_kind, i, j, tmeta, blocks, ta, tb, name, coeffs, scale, c2, c1)
                         st = stats[name]
                         st["strict_count"] += 1
                         st["family_histogram"][family] = st["family_histogram"].get(family, 0) + 1
@@ -379,9 +383,8 @@ def main() -> int:
                             st["max_gap"] = rec
                         else:
                             old = st["max_gap"]["gap_cap1_minus_support2"]
-                            old_num, old_den = old["numerator"], old["denominator"]
                             new = rec["gap_cap1_minus_support2"]
-                            if new["numerator"] * old_den > old_num * new["denominator"]:
+                            if new["numerator"] * old["denominator"] > old["numerator"] * new["denominator"]:
                                 st["max_gap"] = rec
 
     expected_family_counts = v5r.get("family_candidates_tested", {})
@@ -403,6 +406,8 @@ def main() -> int:
         "candidate_count_211248": tested == 211248,
         "family_counts_match_v5": dict(family_counts) == expected_family_counts,
         "support1_pair_count_12": len(PAIRS) == 12,
+        "support1_tag_feasible_cells_nonzero": TAG_FEASIBLE_CELLS > 0,
+        "every_A_pair_has_feasible_B_partner": all(x > 0 for x in TAG_FEASIBLE_PER_A),
         "O0_zero_strict": stats["O0"]["strict_count"] == 0,
     }
     positive = bool(outside_positive) and all(gates.values())
@@ -419,6 +424,7 @@ def main() -> int:
         "parent_checks": parent_checks,
         "candidate_generator_digest": generator_digest,
         "candidate_generator_summary": {"unique_blocks": len(blocks), "pair_count": len(pairs), "template_families": FAMILIES},
+        "support1_tag_table": {"total_pair_cells": 144, "feasible_pair_cells": TAG_FEASIBLE_CELLS, "feasible_B_partners_per_A_pair": list(TAG_FEASIBLE_PER_A)},
         "candidates_tested": tested,
         "family_candidates_tested": dict(family_counts),
         "objectives": stats,
@@ -438,7 +444,7 @@ def main() -> int:
     result["result_digest"] = hashlib.sha256(canonical(result).encode()).hexdigest()
     ap = argparse.ArgumentParser(); ap.add_argument("--output", default=str(DEFAULT_OUT)); ns = ap.parse_args()
     p = Path(ns.output); p.parent.mkdir(parents=True, exist_ok=True); p.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
-    print(TOKEN + canonical({"terminal": terminal, "annotation": annotation, "result_digest": result["result_digest"], "candidates_tested": tested, "strict_counts": {k: stats[k]["strict_count"] for k, *_ in OBJECTIVES}, "outside_positive": outside_positive, "facet_match_count": len(facet_matches)}))
+    print(TOKEN + canonical({"terminal": terminal, "annotation": annotation, "result_digest": result["result_digest"], "candidates_tested": tested, "tag_feasible_cells": TAG_FEASIBLE_CELLS, "strict_counts": {name: stats[name]["strict_count"] for name, _coeffs, _scale in OBJECTIVES}, "outside_positive": outside_positive, "facet_match_count": len(facet_matches)}))
     return 0
 
 
