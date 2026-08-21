@@ -28,8 +28,8 @@ multiplier purchases a weight-one Tag (cost ledger 0+0+2+2+1 = 5, versus 6 for t
 best weight-one family member). (iii) Support two suffices: the donor family
 enlarged to frames of global support at most 2 reproduces the unrestricted exact
 dynamic-programming optimum on every verified domain — exhaustively at n=1 (4096
-instances) and on the structured n=2 slice (9261 instances), on 480 seeded random
-instances at n=2–3, and on all 30 recorded chemistry matchings — closing all 559
+instances) and on the structured n=2 slice (9261 instances), on a 240-instance
+seeded random panel at n=2–3, and on all 30 recorded chemistry matchings — closing all 559
 previously critical instances witness-by-witness. (iv) A decidable structural
 predicate, computable from the six target Paulis with no DP call, classifies
 donor-exact instances with zero error on 9771 instances across four panels.
