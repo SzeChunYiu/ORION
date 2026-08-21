@@ -228,6 +228,49 @@ census equality — ACCEPT, independently re-run by the orchestrator; terminal
   The single remaining link to the all-n theorem `C_DP == min(C_D+, f_B′, f_B″)` is
   the comm-s2 pinned sector.
 
+## R7 — REAL-CHEMISTRY TRADE HUNT EXECUTED: HONEST NEGATIVE, CENSUS EXTENDED TO 16 QUBITS
+
+`QG_R7_REAL_TRADE_HUNT_RESULTS.json` + `QG_R7_EXECUTION_RECORD.md`. Terminal
+`QG3_NO_POSITIVE_PREDICTION_IN_FROZEN_SCAN`; authority
+`ORIONQG_R7_REAL_TRADE_HUNT_EXECUTED__…__NOVELTY_NOT_AUTHORIZED__NOT_R6`; stage-1
+digest `0a62b73a…c8a0f294`. The instrument (#745/#746) had been merged but **never
+run**; this is its first execution.
+
+- **Census: 12 candidates scanned, 12 admitted, 0 skipped; 180 matchings evaluated
+  structurally; `positive_matching_found: false` on every one.** No matching anywhere
+  had `predicted_C_DP < C_R6L`, so `positive_found: false` and `selected: null`.
+- **The result is a prospective confirmation, not merely an absence.** Candidates 1–6
+  are the batches already carrying committed DP ground truth in
+  `QG3_BOUNDARY_PROSPECTIVE_RESULTS.json` (recomputed structurally, same donor-exact
+  verdict). Candidates **7–12 are six genuinely unread 16-qubit batches** — outside the
+  boundary receipt, outside the R6R blob list, beyond wave-1's scan cap of 6. All six
+  admitted; all 90 of their matchings predicted donor-exact. The real-library
+  donor-exact census now spans **180 matchings at 12, 14 and 16 qubits**, with the 16q
+  tier added under DP-forbidden custody. Wave-1's census — that trade regimes require
+  weight-2 structure these DUCC batches do not produce — held prospectively on a qubit
+  tier it had never seen.
+- **Custody intact throughout**: `dp_call_count = 0`, ground truth never opened (with
+  no positive selected, the honest-terminal branch returns before the referee is
+  reached), protected stretched-N2 never a candidate and never read, both lanes
+  independently `NO_POSITIVE` on the same stage-1 digest (a concordant negative, not a
+  disagreement), stage-2 referee double-run byte-identical, and the workflow's own
+  gate-enforcement block re-run verbatim to `ALL_WORKFLOW_GATES_PASS`.
+- **Two plumbing fixes were required and are disclosed verbatim** in the receipt's
+  `execution_notes`, both wall-clock/transport only with no scientific parameter,
+  threshold, cap, gate, ordering, exclusion or predicate touched: the harness's 120 s
+  process clamp (a single 16q candidate measures 213 s, so twelve could never fit) and
+  a bounded retry for a transient 502 from the egress proxy, which never retries
+  401/403/407 and leaves the pinned blob-SHA gate deciding what bytes are admitted.
+  Four run attempts were needed; the artifacts bind the fourth (1,952 s).
+- **Disclosed limitation**: run locally rather than in CI, so the workflow's two
+  lineage assertions (exact protected-head checkout, merge-base against the frozen
+  base) were not re-implemented; the frozen base remains bound inside the stage-1
+  packet and is checked by both lanes.
+- Residual **W5 is discharged** as far as this instrument reaches. The open successor
+  is not "hunt harder" but QG-2's reading: a real trade-regime batch is far likelier
+  under a re-weighted objective (O1-style), where chemistry flips to borrow regime on
+  all 30 receipted rows.
+
 ## QG-7d — THE LAST LINK: 12 STATES FROM THE ALL-N THEOREM
 
 `QG7D_LAST_LINK_RESULTS.json` (protocol frozen pre-outcome, sha256 `e9ebe4e6…3c65bd0e`;
