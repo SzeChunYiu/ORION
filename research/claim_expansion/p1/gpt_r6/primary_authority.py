@@ -15,49 +15,29 @@ SCHEMA = "P1U.NativeOrionPrimaryAuthority.v1"
 SCIENTIFIC_SCHEMA = "P1U.NativeOrionResult.v1"
 PASS_TERMINAL = "P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION"
 NOT_SUPPORTED_TERMINAL = "P1_R6_NATIVE_PRIMARY_NOT_SUPPORTED"
-CANNOT_CHECK_TERMINAL = "P1_R6_NATIVE_PRIMARY_CANNOT_CHECK_ABLATION_IDENTIFICATION"
+CANNOT_CHECK_TERMINAL = "P1_R6_NATIVE_PRIMARY_CANNOT_CHECK_ABLATION_AUTHORITY_UNBOUND"
 DIAGNOSE = "DIAGNOSE.v1"
-PROTECTED_ADVERSE_FAMILIES = frozenset(str(row["class"]) for row in FIXED["pair_sources"])
+FROZEN_CLASSES = frozenset(str(row["class"]) for row in FIXED["pair_sources"])
 
 
-def _choice(arm: object) -> str:
+def _decision(arm: object) -> Mapping[str, object]:
     if not isinstance(arm, Mapping):
         raise ValueError("malformed arm result")
     decision = arm.get("result")
     if not isinstance(decision, Mapping):
         raise ValueError("malformed arm decision")
-    return str(decision.get("choice", ""))
+    return decision
 
 
-def _operator_ids(arm: object) -> set[str]:
-    if not isinstance(arm, Mapping):
-        raise ValueError("malformed arm result")
-    decision = arm.get("result")
-    if not isinstance(decision, Mapping):
-        raise ValueError("malformed arm decision")
-    root = decision.get("root")
-    if not isinstance(root, Mapping):
-        raise ValueError("missing native root lineage")
-    operator_ids = root.get("operator_ids")
-    if not isinstance(operator_ids, list):
-        raise ValueError("malformed native root operator lineage")
-    return set(map(str, operator_ids))
+def diagnostic_reconstruction(result: Mapping[str, object]) -> dict[str, object]:
+    """Reconstruct observed ARD/BASE behavior without granting scientific authority.
 
-
-def reconstruct_ablation_identification(result: Mapping[str, object]) -> dict[str, object]:
-    """Reconstruct the prospectively declared #723 ARD-vs-BASE behavioral gate.
-
-    #723 required ORION_NATIVE_ARD to materially outperform *or* behaviorally differ
-    from ORION_NATIVE_BASE on at least one protected adverse family. Earlier R6 code
-    operationalized the behavioral branch on the adverse member grouped by the frozen
-    class; a later evaluator revision weakened that coordinate to one choice difference
-    anywhere in the corpus. No new threshold is introduced here.
-
-    The reconstruction also proves that BASE exercised the repaired native DIAGNOSE
-    path. Historical scores, comparators, metrics, margins and source identities remain
-    untouched.
+    The frozen issue text asked for material outperformance *or* behavioral difference
+    on a protected adverse family, but the protected 2020 evaluator bound only a single
+    corpus-wide choice-difference count.  No pre-outcome authority receipt binds what a
+    "protected adverse family" is or how its behavioral/materiality branch is scored.
+    Therefore these diagnostics may localize the gap but must not repair it post hoc.
     """
-
     pair_rows = result.get("pair_rows")
     unresolved_rows = result.get("unresolved_rows")
     if not isinstance(pair_rows, list) or not isinstance(unresolved_rows, list):
@@ -65,7 +45,7 @@ def reconstruct_ablation_identification(result: Mapping[str, object]) -> dict[st
 
     adverse_differences: Counter[str] = Counter()
     adverse_counts: Counter[str] = Counter()
-    seen_families: set[str] = set()
+    seen_classes: set[str] = set()
     global_differences = 0
     base_episode_count = 0
     base_diagnose_count = 0
@@ -74,9 +54,9 @@ def reconstruct_ablation_identification(result: Mapping[str, object]) -> dict[st
         if not isinstance(row, Mapping):
             raise ValueError("malformed pair row")
         family = str(row.get("adverse_class", ""))
-        seen_families.add(family)
-        if family not in PROTECTED_ADVERSE_FAMILIES:
-            raise ValueError(f"unfrozen adverse family: {family}")
+        if family not in FROZEN_CLASSES:
+            raise ValueError(f"unfrozen adverse class: {family}")
+        seen_classes.add(family)
         members = row.get("members")
         if not isinstance(members, Mapping):
             raise ValueError("pair row missing members")
@@ -84,12 +64,18 @@ def reconstruct_ablation_identification(result: Mapping[str, object]) -> dict[st
             member = members.get(member_name)
             if not isinstance(member, Mapping):
                 raise ValueError(f"pair row missing {member_name} member")
-            native = member.get("native_ard")
-            base = member.get("native_base")
-            native_choice = _choice(native)
-            base_choice = _choice(base)
+            native = _decision(member.get("native_ard"))
+            base = _decision(member.get("native_base"))
+            native_choice = str(native.get("choice", ""))
+            base_choice = str(base.get("choice", ""))
             base_episode_count += 1
-            if DIAGNOSE in _operator_ids(base):
+            root = base.get("root")
+            if not isinstance(root, Mapping):
+                raise ValueError("missing BASE root lineage")
+            ops = root.get("operator_ids")
+            if not isinstance(ops, list):
+                raise ValueError("malformed BASE operator lineage")
+            if DIAGNOSE in set(map(str, ops)):
                 base_diagnose_count += 1
             if native_choice != base_choice:
                 global_differences += 1
@@ -101,41 +87,42 @@ def reconstruct_ablation_identification(result: Mapping[str, object]) -> dict[st
     for row in unresolved_rows:
         if not isinstance(row, Mapping):
             raise ValueError("malformed unresolved row")
-        native = row.get("native_ard")
-        base = row.get("native_base")
-        native_choice = _choice(native)
-        base_choice = _choice(base)
+        native = _decision(row.get("native_ard"))
+        base = _decision(row.get("native_base"))
         base_episode_count += 1
-        if DIAGNOSE in _operator_ids(base):
+        root = base.get("root")
+        if not isinstance(root, Mapping):
+            raise ValueError("missing BASE root lineage")
+        ops = root.get("operator_ids")
+        if not isinstance(ops, list):
+            raise ValueError("malformed BASE operator lineage")
+        if DIAGNOSE in set(map(str, ops)):
             base_diagnose_count += 1
-        if native_choice != base_choice:
+        if str(native.get("choice", "")) != str(base.get("choice", "")):
             global_differences += 1
 
-    reported_global = result.get("native_base_choice_differences")
-    if not isinstance(reported_global, int):
+    reported = result.get("native_base_choice_differences")
+    if not isinstance(reported, int):
         raise ValueError("R6 result lacks integer native_base_choice_differences")
 
     checks = {
-        "exact_frozen_protected_adverse_families": seen_families == PROTECTED_ADVERSE_FAMILIES,
+        "exact_frozen_adverse_classes_observed": seen_classes == FROZEN_CLASSES,
         "base_diagnose_exercised_on_every_episode": base_diagnose_count == base_episode_count,
-        "scientific_global_difference_count_reconstructs": global_differences == reported_global,
-        "behaviorally_differs_on_at_least_one_protected_adverse_family": any(
-            adverse_differences.get(family, 0) > 0 for family in PROTECTED_ADVERSE_FAMILIES
-        ),
+        "scientific_global_difference_count_reconstructs": global_differences == reported,
     }
     return {
+        "diagnostic_only_no_authority": True,
         "checks": checks,
         "complete": all(checks.values()),
-        "protected_adverse_families": sorted(PROTECTED_ADVERSE_FAMILIES),
-        "adverse_episode_counts_by_family": dict(sorted(adverse_counts.items())),
-        "ard_vs_base_adverse_choice_differences_by_family": {
-            family: adverse_differences.get(family, 0)
-            for family in sorted(PROTECTED_ADVERSE_FAMILIES)
+        "frozen_adverse_classes": sorted(FROZEN_CLASSES),
+        "adverse_episode_counts_by_class": dict(sorted(adverse_counts.items())),
+        "ard_vs_base_adverse_choice_differences_by_class": {
+            family: adverse_differences.get(family, 0) for family in sorted(FROZEN_CLASSES)
         },
         "base_episode_count": base_episode_count,
         "base_diagnose_count": base_diagnose_count,
         "global_choice_differences_reconstructed": global_differences,
-        "global_choice_differences_reported": reported_global,
+        "global_choice_differences_reported": reported,
     }
 
 
@@ -152,49 +139,36 @@ def classify_primary_authority(result: Mapping[str, object]) -> dict[str, object
     if scientific_terminal not in {PASS_TERMINAL, NOT_SUPPORTED_TERMINAL}:
         raise ValueError(f"unexpected R6 scientific terminal: {scientific_terminal}")
 
-    reconstruction = reconstruct_ablation_identification(result)
-    if scientific_terminal == PASS_TERMINAL and reconstruction["complete"] is True:
-        authority_terminal = PASS_TERMINAL
-        mechanism_identification = True
-        authority_reason = (
-            "The protected scientific primary passed, BASE exercised DIAGNOSE on every "
-            "episode, and independent reconstruction verifies ARD-vs-BASE behavioral "
-            "difference on prospectively frozen adverse families. The primary still cannot "
-            "close #649 without the required source-disjoint 2019 replication."
-        )
-    elif scientific_terminal == PASS_TERMINAL:
+    diagnostic = diagnostic_reconstruction(result)
+    if scientific_terminal == PASS_TERMINAL:
         authority_terminal = CANNOT_CHECK_TERMINAL
-        mechanism_identification = False
-        authority_reason = (
-            "The scientific score is preserved, but the predeclared ARD-vs-BASE behavioral "
-            "identification coordinate did not reconstruct fail-closed from protected rows."
+        reason = (
+            "The frozen scientific primary is preserved as a positive score, and post-outcome "
+            "diagnostics can reconstruct BASE lineage and class-bucketed behavior. However, "
+            "the protected 2020 evaluator did not prospectively bind the protected-family "
+            "identity/materiality operationalization required for mechanism attribution. "
+            "Post-outcome diagnostics cannot mint that missing authority."
         )
     else:
         authority_terminal = NOT_SUPPORTED_TERMINAL
-        mechanism_identification = False
-        authority_reason = (
-            "The frozen scientific evaluator did not satisfy its existing primary gates; "
-            "this authority classifier adds no positive interpretation."
-        )
+        reason = "The frozen scientific evaluator did not satisfy its existing primary gates."
 
     return {
         "schema": SCHEMA,
         "scientific_result_schema": SCIENTIFIC_SCHEMA,
         "scientific_terminal_preserved": scientific_terminal,
         "authority_terminal": authority_terminal,
-        "authority_reason": authority_reason,
-        "criterion_predeclared_before_scientific_outcome": True,
-        "verification_performed_after_scientific_outcome": True,
-        "new_post_outcome_threshold_introduced": False,
+        "authority_reason": reason,
+        "authority_verifier_bound_before_scientific_outcome": False,
+        "post_outcome_diagnostic_reconstruction": diagnostic,
         "verifier_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "fixed_source_set_sha256": hashlib.sha256(FIXED_PATH.read_bytes()).hexdigest(),
-        "ablation_identification_reconstruction": reconstruction,
         "historic_scores_mutated": False,
         "comparator_mutated": False,
         "metrics_mutated": False,
         "thresholds_mutated": False,
         "source_universe_mutated": False,
-        "grants_primary_mechanism_identification_authority": mechanism_identification,
+        "grants_primary_mechanism_identification_authority": False,
         "grants_issue_649_closure_authority": False,
         "grants_replication_closure_authority": False,
         "grants_registry_promotion_authority": False,
@@ -207,7 +181,6 @@ def main() -> None:
     parser.add_argument("--result", required=True, type=Path)
     parser.add_argument("--out", required=True, type=Path)
     args = parser.parse_args()
-
     result = json.loads(args.result.read_text())
     authority = classify_primary_authority(result)
     args.out.parent.mkdir(parents=True, exist_ok=True)
