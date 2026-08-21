@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import shutil
 from pathlib import Path
@@ -9,7 +10,12 @@ from orion_research_harness.workspace import ResearchWorkspace
 
 
 WORKSPACE = Path(".orion-qn-vs1-s1a")
+CAMPAIGN_ARTIFACT = Path("artifacts/orion-qn-vs1-s1a-campaign.json")
 ARTIFACT = Path("artifacts/orion-qn-vs1-s1a-harness.json")
+
+
+def _sha256(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
 
 
 def main() -> int:
@@ -20,10 +26,22 @@ def main() -> int:
         project_root=".",
         allow_process_tools=True,
     )
-    code = (
-        "from orion.quantum.vs1 import run_s1a_campaign_json; "
-        "print(run_s1a_campaign_json())"
-    )
+    code = """
+import hashlib
+import json
+from pathlib import Path
+from orion.quantum.vs1 import run_s1a_campaign_json
+
+path = Path('artifacts/orion-qn-vs1-s1a-campaign.json')
+path.parent.mkdir(parents=True, exist_ok=True)
+payload = run_s1a_campaign_json().encode('utf-8')
+path.write_bytes(payload)
+print(json.dumps({
+    'campaign_path': str(path),
+    'campaign_sha256': hashlib.sha256(payload).hexdigest(),
+    'campaign_bytes': len(payload),
+}, sort_keys=True))
+""".strip()
     request = workspace.get_or_create_request(
         capability="PYTHON",
         payload={"code": code, "cwd": ".", "timeout": 120},
@@ -39,17 +57,32 @@ def main() -> int:
         raise RuntimeError("harness process receipt must explicitly record sandboxed=false")
     stdout = result.output.get("stdout")
     if not isinstance(stdout, str) or not stdout.strip():
-        raise RuntimeError("harness process produced no campaign JSON")
-    campaign = json.loads(stdout)
+        raise RuntimeError("harness process produced no campaign binding metadata")
+    binding = json.loads(stdout)
+    if binding.get("campaign_path") != str(CAMPAIGN_ARTIFACT):
+        raise RuntimeError("harness campaign path differs from frozen artifact path")
+
+    campaign_bytes = CAMPAIGN_ARTIFACT.read_bytes()
+    actual_sha256 = _sha256(campaign_bytes)
+    if binding.get("campaign_sha256") != actual_sha256:
+        raise RuntimeError("harness-reported campaign hash does not match actual campaign bytes")
+    if binding.get("campaign_bytes") != len(campaign_bytes):
+        raise RuntimeError("harness-reported campaign size does not match actual campaign bytes")
+    campaign = json.loads(campaign_bytes)
 
     envelope = {
-        "schema": "ORION.QN.VS1.S1A.HarnessEnvelope.v1",
+        "schema": "ORION.QN.VS1.S1A.HarnessEnvelope.v2",
         "request": request.as_dict(),
         "result": result.as_dict(),
+        "campaign_artifact": {
+            "path": str(CAMPAIGN_ARTIFACT),
+            "sha256": actual_sha256,
+            "bytes": len(campaign_bytes),
+        },
         "campaign": campaign,
         "authority_note": (
-            "Harness digests bind request/result content but are not signatures or independent "
-            "scientific authority."
+            "Harness request/result digests and the independently recomputed campaign file hash "
+            "bind execution provenance; they are not signatures or independent scientific authority."
         ),
     }
     ARTIFACT.parent.mkdir(parents=True, exist_ok=True)
@@ -61,6 +94,9 @@ def main() -> int:
         json.dumps(
             {
                 "artifact": str(ARTIFACT),
+                "campaign_artifact": str(CAMPAIGN_ARTIFACT),
+                "campaign_sha256": actual_sha256,
+                "campaign_bytes": len(campaign_bytes),
                 "request_id": request.request_id,
                 "request_digest": request.request_digest,
                 "result_digest": result.result_digest,
