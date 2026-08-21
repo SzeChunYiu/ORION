@@ -1,18 +1,18 @@
 {
-  "blocker_sites": 499,
+  "blocker_sites": 505,
   "classification": {
-    "INSUFFICIENT_EVIDENCE": 11,
+    "INSUFFICIENT_EVIDENCE": 12,
     "MISSING_ACCESS": 5,
     "MISSING_CUSTODY": 28,
-    "MISSING_DECLARATION": 70,
+    "MISSING_DECLARATION": 73,
     "MISSING_IDENTITY": 29,
     "UNAVAILABLE_PROVIDER": 12,
-    "UNCLASSIFIED": 344
+    "UNCLASSIFIED": 346
   },
   "closes_gate": null,
   "grants_authority": "NONE",
   "issue": 322,
-  "observing_sites": 49,
+  "observing_sites": 50,
   "schema_version": "orion.cannot-check-inventory.v2",
   "sites": [
     {
@@ -3899,6 +3899,113 @@
         "a cycle that has not run must decide CANNOT_CHECK"
       ],
       "role": "OBSERVES",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_DECLARATION",
+      "context": "assess_guard",
+      "file": "programme/guard_exercise.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 206,
+      "missing_obligation": "exercise.exercised must be present at this guard",
+      "reasons": [
+        "had 0 opportunities to violate",
+        "); zero violations out of zero opportunities is an absent measurement, not a guard that held"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": "exercise.exercised"
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "assess_guard",
+      "file": "programme/guard_exercise.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 221,
+      "missing_obligation": null,
+      "reasons": [
+        ": a ceiling of",
+        "is finer than the",
+        "resolution of",
+        "opportunities; the instrument cannot distinguish satisfying it from observing zero"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "INSUFFICIENT_EVIDENCE",
+      "context": "assess_non_inferiority",
+      "file": "programme/guard_exercise.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 282,
+      "missing_obligation": null,
+      "reasons": [
+        "neither",
+        "nor",
+        "had an opportunity to violate",
+        "); both score zero and the comparison is between two empty sets"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_DECLARATION",
+      "context": "assess_non_inferiority",
+      "file": "programme/guard_exercise.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 294,
+      "missing_obligation": "candidate.exercised must be present at this guard",
+      "reasons": [
+        "had 0 opportunities to violate",
+        "while",
+        "had",
+        "; the candidate's zero is an absent measurement and cannot be credited as parity"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": "candidate.exercised"
+    },
+    {
+      "category": "MISSING_DECLARATION",
+      "context": "assess_non_inferiority",
+      "file": "programme/guard_exercise.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 306,
+      "missing_obligation": "comparator.exercised must be present at this guard",
+      "reasons": [
+        "had 0 opportunities to violate",
+        "while",
+        "had",
+        "; there is no comparator rate to be no worse than"
+      ],
+      "role": "EMITS",
+      "unmet_precondition": "comparator.exercised"
+    },
+    {
+      "category": "NOT_A_BLOCKER",
+      "context": "worst_outcome",
+      "file": "programme/guard_exercise.py",
+      "has_reason": false,
+      "kind": "BRANCH",
+      "lineno": 355,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "OBSERVES",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
+      "context": "worst_outcome",
+      "file": "programme/guard_exercise.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 356,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
       "unmet_precondition": null
     },
     {
@@ -7961,9 +8068,9 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "09f0666c43227a1e1a8bc9d66eae7195e35c6ea3",
-  "total_sites": 548,
+  "subject_commit": "9015daa39670e5d82a486fdb04398d5463e12edc",
+  "total_sites": 555,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
-  "with_derived_obligation": 85,
-  "with_reason": 223
+  "with_derived_obligation": 88,
+  "with_reason": 228
 }
