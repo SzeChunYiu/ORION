@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "66e914f839f588d35104b8cb8fddec8e47589ffa806c4b2e8f5ee34334fcc5ed",
+  "content_digest": "2aeaea6242baa5d8b23859145619f4d96e27e6e6c77a9a3f46ff89bf1a71b7f4",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -189,13 +189,13 @@
             "#723",
             "#730",
             "#732",
-            "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md",
-            "research/failures/2026-08-digest-representation-boundary-mixup/README.md",
-            "src/orion/core/digests.py"
+            "research/failures/2026-08-unreachable-operator-inert-ablation/README.md",
+            "packages/orion-research-harness/src/orion_research_harness/operator_coverage.py",
+            "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
           ],
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
-          "statement": "The digest defect that rejected 100% of native rows is solved: with the repair installed the frozen 2020 primary runs to a scored result (48/48 rows bound, ARD 0.708 vs B3 0.208). But the result is not attributable. ORION_NATIVE_BASE returns UNRESOLVED on 48/48 episodes because the solver never reaches DIAGNOSE, so the ablation arm #723 added to prove the gain comes from the ARD addition rather than from runtime wrapping is inert, and all six families 'differ from BASE' trivially. 'Materially outperform BASE' is not computed anywhere.",
-          "unblock": "Give the BASE arm a reachable DIAGNOSE path and compute a per-family ARD-vs-BASE margin with a frozen threshold and a stability bound, then rerun. Also make the digest repair durable inside _native_row_valid rather than as a sibling monkey-patch: the primary run directly still returns 48/48 invalid, silently, and the wrapper is non-idempotent so a double install reverts to 100% rejection without an exception."
+          "statement": "The scored 2020 primary is not attributable, and the cause is now exact rather than observed: ORION_NATIVE_BASE returns UNRESOLVED on 48/48 because DIAGNOSE is unreachable by construction. The solver reaches DIAGNOSE once per material residual; DetectOperator emits none because every episode enters DETECT with candidate=1 searched=1 unsearched=0 claims=1 verified=1, which satisfies no residual branch. The ablation arm #723 added to attribute the gain never ran the mechanism it ablates.",
+          "unblock": "Repair the episode encoding so the world presents what the dossier contains — an unsearched route, an unverified claim, or a contradiction — then guard the arm with require_operators_exercised(outcome, {'DIAGNOSE'}, label='ORION_NATIVE_BASE') before scoring. The harness now reports operator_coverage on every run, so 'could run' and 'did run' are separable without extra work."
         },
         {
           "actionability": "BLOCKED_ON_UPSTREAM",
@@ -237,12 +237,12 @@
           "gate_id": "P1-U-T5",
           "refs": [
             "#649",
-            "research/failures/2026-08-digest-representation-boundary-mixup/README.md",
-            "src/orion/core/digests.py",
-            "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
+            "research/failures/2026-08-unreachable-operator-inert-ablation/README.md",
+            "packages/orion-research-harness/src/orion_research_harness/operator_coverage.py",
+            "research/failures/2026-08-digest-representation-boundary-mixup/README.md"
           ],
           "responsibility": "SEARCH_OR_EVIDENCE",
-          "statement": "Three failure regimes are now explicit rather than hidden: the R2-R4 acquisition regime, converted into R6's fixed source universe; the digest-representation regime, converted into a typed boundary and a failure record; and the inert-ablation regime found by cross-agent verification. None has been prospectively validated, and the second and third are engineering mechanics rather than scientific ones.",
+          "statement": "Four failure regimes are now explicit rather than hidden: the R2-R4 acquisition regime, converted into R6's fixed source universe; the digest-representation regime, converted into a typed boundary; and the unreachable-operator regime, converted into run-level operator coverage that raises rather than returning False. None has been prospectively validated, and the engineering conversions are not scientific mechanics.",
           "unblock": "Carry the acquisition-regime conversion through an attributable scored run so it is prospectively validated rather than merely designed. The engineering conversions should not be counted toward this terminal."
         }
       ]
@@ -1219,13 +1219,13 @@
         "#723",
         "#730",
         "#732",
-        "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md",
-        "research/failures/2026-08-digest-representation-boundary-mixup/README.md",
-        "src/orion/core/digests.py"
+        "research/failures/2026-08-unreachable-operator-inert-ablation/README.md",
+        "packages/orion-research-harness/src/orion_research_harness/operator_coverage.py",
+        "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
       ],
       "responsibility": "MEASUREMENT_OR_EVALUATOR",
-      "statement": "The digest defect that rejected 100% of native rows is solved: with the repair installed the frozen 2020 primary runs to a scored result (48/48 rows bound, ARD 0.708 vs B3 0.208). But the result is not attributable. ORION_NATIVE_BASE returns UNRESOLVED on 48/48 episodes because the solver never reaches DIAGNOSE, so the ablation arm #723 added to prove the gain comes from the ARD addition rather than from runtime wrapping is inert, and all six families 'differ from BASE' trivially. 'Materially outperform BASE' is not computed anywhere.",
-      "unblock": "Give the BASE arm a reachable DIAGNOSE path and compute a per-family ARD-vs-BASE margin with a frozen threshold and a stability bound, then rerun. Also make the digest repair durable inside _native_row_valid rather than as a sibling monkey-patch: the primary run directly still returns 48/48 invalid, silently, and the wrapper is non-idempotent so a double install reverts to 100% rejection without an exception."
+      "statement": "The scored 2020 primary is not attributable, and the cause is now exact rather than observed: ORION_NATIVE_BASE returns UNRESOLVED on 48/48 because DIAGNOSE is unreachable by construction. The solver reaches DIAGNOSE once per material residual; DetectOperator emits none because every episode enters DETECT with candidate=1 searched=1 unsearched=0 claims=1 verified=1, which satisfies no residual branch. The ablation arm #723 added to attribute the gain never ran the mechanism it ablates.",
+      "unblock": "Repair the episode encoding so the world presents what the dossier contains — an unsearched route, an unverified claim, or a contradiction — then guard the arm with require_operators_exercised(outcome, {'DIAGNOSE'}, label='ORION_NATIVE_BASE') before scoring. The harness now reports operator_coverage on every run, so 'could run' and 'did run' are separable without extra work."
     },
     {
       "actionability": "BLOCKED_ON_UPSTREAM",
@@ -1329,12 +1329,12 @@
       "paper_id": "P1",
       "refs": [
         "#649",
-        "research/failures/2026-08-digest-representation-boundary-mixup/README.md",
-        "src/orion/core/digests.py",
-        "research/claim_expansion/p1/claude_r6_verification/CROSS_AGENT_VERIFICATION_2026-08-21.md"
+        "research/failures/2026-08-unreachable-operator-inert-ablation/README.md",
+        "packages/orion-research-harness/src/orion_research_harness/operator_coverage.py",
+        "research/failures/2026-08-digest-representation-boundary-mixup/README.md"
       ],
       "responsibility": "SEARCH_OR_EVIDENCE",
-      "statement": "Three failure regimes are now explicit rather than hidden: the R2-R4 acquisition regime, converted into R6's fixed source universe; the digest-representation regime, converted into a typed boundary and a failure record; and the inert-ablation regime found by cross-agent verification. None has been prospectively validated, and the second and third are engineering mechanics rather than scientific ones.",
+      "statement": "Four failure regimes are now explicit rather than hidden: the R2-R4 acquisition regime, converted into R6's fixed source universe; the digest-representation regime, converted into a typed boundary; and the unreachable-operator regime, converted into run-level operator coverage that raises rather than returning False. None has been prospectively validated, and the engineering conversions are not scientific mechanics.",
       "unblock": "Carry the acquisition-regime conversion through an attributable scored run so it is prospectively validated rather than merely designed. The engineering conversions should not be counted toward this terminal."
     },
     {

@@ -1,0 +1,8359 @@
+{
+  "authority": "ORION_QG4_SECOND_FAMILY_TEMPLATE_TRANSFERRED__SIXLCU_PREP_SELECT_REGIME_GEOMETRY_ON_VERIFIED_DOMAINS__NOT_R6",
+  "chemistry_sources_read": false,
+  "claim_boundary": "The claim covers exactly the frozen SixLCU family: six-term Pauli batches, the frozen hybrid one-hot/binary coefficient-register encodings indexed by set partitions of six, phi factoring bits, shared/dedicated index-ancilla assignments, and the frozen support/node-count objective with weights (1,1,1). All equalities and trade catalogues are machine-evidenced only on the stated finite domains (exhaustive at n=1 and n=2, seeded panels at n=2..3); nothing is a theorem for all n or for other weights, cost rules, term counts, or encodings (qubitization walk operators, coherent alias sampling, amplitude-dependent PREP costs are out of scope). Incumbents are donor-owned; identical-term collection is donor-owned preprocessing with refusal rights via C_inc+; the hybrid-grouping enlargement is bookkeeping and earns no novelty credit. The template itself is the object under test. Not R6. No new subject data; the protected stretched-N2 subject is untouched.",
+  "donor_novelty_credit": false,
+  "family": {
+    "cost_model": "C = SELECT + PREP + WIDTH, weights (1,1,1); controlled Pauli of support w under c controls costs (c+1)*w; PREP node cost 1 + #controls (unary cascade 2k-3; canonical balanced per-block tree (m-1)*(1+flag)+ds(m)); WIDTH = flags + index bits (sum if dedicated, max if shared)",
+    "donor_refusal": "trades reported both vs C_inc = min(C_U, C_B) and vs C_inc+ = min(C_inc, C_collect) where C_collect merges identical terms only (donor-owned Hamiltonian preprocessing)",
+    "encoding": "one-hot flag per block when k>=2 (none at k=1) + ceil(log2 m) binary index bits per block of size m (frozen hybrid rule)",
+    "incumbents": {
+      "binary_B": "one block of six, no factoring; C_B = 4W + 14",
+      "note": "C_U < C_B on every instance (W >= 6); asserted in-run",
+      "unary_U": "six singletons; C_U = 2W + 15"
+    },
+    "instance": "six non-identity Pauli terms on n qubits (formal batch, multiset)",
+    "member": "(set partition G of the six terms; per-block factoring bit phi; shared/dedicated index-ancilla assignment)",
+    "name": "SixLCU",
+    "partitions": 203
+  },
+  "gates": {
+    "G1_stage1_audit_complete": true,
+    "G2_binding_samples": 553,
+    "G2_referee_soundness_and_binding": true,
+    "G3_incumbent_formula_binding": true,
+    "G4_enumeration_sha256": {
+      "exhaustive_n1": "ba789dc577b870c78b0d45c5191351c48545955762ae8a749096d8bfea7fc02c",
+      "exhaustive_n2": "c752620d62e2b3ba3a6847bfb0f1ac3b2ad472385b3f99a780e69fed96d2c4bf"
+    },
+    "G4_exhaustive_domains_complete": true,
+    "G5_reorder_invariance_samples": 97,
+    "G6_ladder_nesting": true,
+    "G7_predicate_discipline": {
+      "gain_identity_samples": 76,
+      "h2_generated_after_selection": true,
+      "selection_rule": "first of P0, P1, P2 with zero training error"
+    },
+    "G8_determinism_no_wallclock_in_receipt": true,
+    "G9_no_new_subject_data_no_network": true
+  },
+  "network_access": false,
+  "novelty_credit": false,
+  "programme": "ORION-QG lane QG-4 (PROGRAMME_CHARTER_V1.md, issue #740)",
+  "protocol": "development/orion-qg-regime-geometry/QG4_SECOND_FAMILY_PROTOCOL.md",
+  "r6_authority": false,
+  "random_seeds": {
+    "heldout": 20260825,
+    "panel": 20260821
+  },
+  "reserved_stretched_n2_accessed": false,
+  "responsibility": "qg4 lane, ORION-QG programme, 2026-08-21",
+  "schema": "orion-qg.qg4_second_family.v1",
+  "stage1_dominance_audit": {
+    "auxiliary": {
+      "D_a_ancilla_share_dominance_verified_over_203_partitions": true,
+      "D_phi_factoring_dominance_closed_form_verified": true
+    },
+    "claim": "Claim D (index-control dominance, per column): the per-column SELECT saving of factoring never exceeds the index-control surcharge b(m) * #non-identity letters.",
+    "declared_gap": "Claim D bounds only the SELECT channel; PREP and WIDTH couplings are decided at Stage 2 on finite instance domains.",
+    "domain_size": 10912,
+    "max_save_over_surcharge": {
+      "den": 2,
+      "num": 4
+    },
+    "outcome": "LOCAL_DOMINANCE_REFUTED",
+    "per_m_f": [
+      {
+        "b": 1,
+        "configs": 16,
+        "f": 0,
+        "m": 2,
+        "ties": 1,
+        "violating_rows_verbatim_capped": [
+          {
+            "column": "XX",
+            "excess": 1,
+            "save": 3,
+            "surcharge": 2
+          },
+          {
+            "column": "YY",
+            "excess": 1,
+            "save": 3,
+            "surcharge": 2
+          },
+          {
+            "column": "ZZ",
+            "excess": 1,
+            "save": 3,
+            "surcharge": 2
+          }
+        ],
+        "violations": 3
+      },
+      {
+        "b": 1,
+        "configs": 16,
+        "f": 1,
+        "m": 2,
+        "ties": 1,
+        "violating_rows_verbatim_capped": [
+          {
+            "column": "XX",
+            "excess": 2,
+            "save": 4,
+            "surcharge": 2
+          },
+          {
+            "column": "YY",
+            "excess": 2,
+            "save": 4,
+            "surcharge": 2
+          },
+          {
+            "column": "ZZ",
+            "excess": 2,
+            "save": 4,
+            "surcharge": 2
+          }
+        ],
+        "violations": 3
+      },
+      {
+        "b": 2,
+        "configs": 64,
+        "f": 0,
+        "m": 3,
+        "ties": 1,
+        "violating_rows_verbatim_capped": [
+          {
+            "column": "XXX",
+            "excess": 2,
+            "save": 8,
+            "surcharge": 6
+          },
+          {
+            "column": "YYY",
+            "excess": 2,
+            "save": 8,
+            "surcharge": 6
+          },
+          {
+            "column": "ZZZ",
+            "excess": 2,
+            "save": 8,
+            "surcharge": 6
+          }
+        ],
+        "violations": 3
+      },
+      {
+        "b": 2,
+        "configs": 64,
+        "f": 1,
+        "m": 3,
+        "ties": 1,
+        "violating_rows_verbatim_capped": [
+          {
+            "column": "XXX",
+            "excess": 4,
+            "save": 10,
+            "surcharge": 6
+          },
+          {
+            "column": "YYY",
+            "excess": 4,
+            "save": 10,
+            "surcharge": 6
+          },
+          {
+            "column": "ZZZ",
+            "excess": 4,
+            "save": 10,
+            "surcharge": 6
+          }
+        ],
+        "violations": 3
+      },
+      {
+        "b": 2,
+        "configs": 256,
+        "f": 0,
+        "m": 4,
+        "ties": 1,
+        "violating_rows_verbatim_capped": [
+          {
+            "column": "XXXX",
+            "excess": 3,
+            "save": 11,
+            "surcharge": 8
+          },
+          {
+            "column": "YYYY",
+            "excess": 3,
+            "save": 11,
+            "surcharge": 8
+          },
+          {
+            "column": "ZZZZ",
+            "excess": 3,
+            "save": 11,
+            "surcharge": 8
+          }
+        ],
+        "violations": 3
+      },
+      {
+        "b": 2,
+        "configs": 256,
+        "f": 1,
+        "m": 4,
+        "ties": 1,
+        "violating_rows_verbatim_capped": [
+          {
+            "column": "XXXX",
+            "excess": 6,
+            "save": 14,
+            "surcharge": 8
+          },
+          {
+            "column": "YYYY",
+            "excess": 6,
+            "save": 14,
+            "surcharge": 8
+          },
+          {
+            "column": "ZZZZ",
+            "excess": 6,
+            "save": 14,
+            "surcharge": 8
+          }
+        ],
+        "violations": 3
+      },
+      {
+        "b": 3,
+        "configs": 1024,
+        "f": 0,
+        "m": 5,
+        "ties": 1,
+        "violating_rows_verbatim_capped": [
+          {
+            "column": "XXXXX",
+            "excess": 4,
+            "save": 19,
+            "surcharge": 15
+          },
+          {
+            "column": "YYYYY",
+            "excess": 4,
+            "save": 19,
+            "surcharge": 15
+          },
+          {
+            "column": "ZZZZZ",
+            "excess": 4,
+            "save": 19,
+            "surcharge": 15
+          }
+        ],
+        "violations": 3
+      },
+      {
+        "b": 3,
+        "configs": 1024,
+        "f": 1,
+        "m": 5,
+        "ties": 1,
+        "violating_rows_verbatim_capped": [
+          {
+            "column": "XXXXX",
+            "excess": 8,
+            "save": 23,
+            "surcharge": 15
+          },
+          {
+            "column": "YYYYY",
+            "excess": 8,
+            "save": 23,
+            "surcharge": 15
+          },
+          {
+            "column": "ZZZZZ",
+            "excess": 8,
+            "save": 23,
+            "surcharge": 15
+          }
+        ],
+        "violations": 3
+      },
+      {
+        "b": 3,
+        "configs": 4096,
+        "f": 0,
+        "m": 6,
+        "ties": 1,
+        "violating_rows_verbatim_capped": [
+          {
+            "column": "XXXXXX",
+            "excess": 5,
+            "save": 23,
+            "surcharge": 18
+          },
+          {
+            "column": "YYYYYY",
+            "excess": 5,
+            "save": 23,
+            "surcharge": 18
+          },
+          {
+            "column": "ZZZZZZ",
+            "excess": 5,
+            "save": 23,
+            "surcharge": 18
+          }
+        ],
+        "violations": 3
+      },
+      {
+        "b": 3,
+        "configs": 4096,
+        "f": 1,
+        "m": 6,
+        "ties": 1,
+        "violating_rows_verbatim_capped": [
+          {
+            "column": "XXXXXX",
+            "excess": 10,
+            "save": 28,
+            "surcharge": 18
+          },
+          {
+            "column": "YYYYYY",
+            "excess": 10,
+            "save": 28,
+            "surcharge": 18
+          },
+          {
+            "column": "ZZZZZZ",
+            "excess": 10,
+            "save": 28,
+            "surcharge": 18
+          }
+        ],
+        "violations": 3
+      }
+    ],
+    "violations": 30
+  },
+  "stage2_trade_search": {
+    "domains": {
+      "exhaustive_n1": {
+        "enumeration_sha256": "ba789dc577b870c78b0d45c5191351c48545955762ae8a749096d8bfea7fc02c",
+        "gap_hist": {
+          "12": 3,
+          "5": 90,
+          "6": 396,
+          "8": 240
+        },
+        "incumbent_exact": 0,
+        "instances": 729,
+        "max_gap_witness": {
+          "C_B": 38,
+          "C_F": 15,
+          "C_U": 27,
+          "C_collect": 15,
+          "codes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "gap": 12,
+          "index": 0,
+          "n": 1,
+          "structural_gap": 0,
+          "terms": [
+            "X",
+            "X",
+            "X",
+            "X",
+            "X",
+            "X"
+          ],
+          "witness": {
+            "ledger": {
+              "PREP": 11,
+              "SELECT": 1,
+              "WIDTH": 3
+            },
+            "nonsingleton_blocks": [
+              {
+                "block": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "wF": 1
+              }
+            ],
+            "partition": [
+              [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            ],
+            "shape": "6",
+            "unary_ledger": {
+              "PREP": 9,
+              "SELECT": 12,
+              "WIDTH": 6
+            }
+          }
+        },
+        "max_sgap_witness": null,
+        "min_gap_witness": {
+          "C_B": 38,
+          "C_F": 22,
+          "C_U": 27,
+          "C_collect": 22,
+          "codes": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            3
+          ],
+          "gap": 5,
+          "index": 5,
+          "n": 1,
+          "structural_gap": 0,
+          "terms": [
+            "X",
+            "X",
+            "X",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "witness": {
+            "ledger": {
+              "PREP": 11,
+              "SELECT": 6,
+              "WIDTH": 5
+            },
+            "nonsingleton_blocks": [
+              {
+                "block": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "wF": 1
+              }
+            ],
+            "partition": [
+              [
+                0,
+                1,
+                2,
+                3
+              ],
+              [
+                4
+              ],
+              [
+                5
+              ]
+            ],
+            "shape": "4",
+            "unary_ledger": {
+              "PREP": 9,
+              "SELECT": 12,
+              "WIDTH": 6
+            }
+          }
+        },
+        "min_sgap_witness": null,
+        "structural_gap_hist": {},
+        "structural_trades": 0,
+        "trades": 729,
+        "verbatim_structural": [],
+        "verbatim_trades": [
+          {
+            "C_B": 38,
+            "C_F": 15,
+            "C_U": 27,
+            "C_collect": 15,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "gap": 12,
+            "index": 0,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "X",
+              "X",
+              "X"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 1,
+                "WIDTH": 3
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              ],
+              "shape": "6",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 21,
+            "C_U": 27,
+            "C_collect": 21,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              2
+            ],
+            "gap": 6,
+            "index": 1,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "X",
+              "X",
+              "Y"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 21,
+            "C_U": 27,
+            "C_collect": 21,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              3
+            ],
+            "gap": 6,
+            "index": 2,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "X",
+              "X",
+              "Z"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 21,
+            "C_U": 27,
+            "C_collect": 21,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              2,
+              1
+            ],
+            "gap": 6,
+            "index": 3,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "X",
+              "Y",
+              "X"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  4
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 19,
+            "C_U": 27,
+            "C_collect": 19,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              2,
+              2
+            ],
+            "gap": 8,
+            "index": 4,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "X",
+              "Y",
+              "Y"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 4,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 22,
+            "C_U": 27,
+            "C_collect": 22,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              2,
+              3
+            ],
+            "gap": 5,
+            "index": 5,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "X",
+              "Y",
+              "Z"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "4",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 21,
+            "C_U": 27,
+            "C_collect": 21,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              3,
+              1
+            ],
+            "gap": 6,
+            "index": 6,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "X",
+              "Z",
+              "X"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  4
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 22,
+            "C_U": 27,
+            "C_collect": 22,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              3,
+              2
+            ],
+            "gap": 5,
+            "index": 7,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "X",
+              "Z",
+              "Y"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "4",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 19,
+            "C_U": 27,
+            "C_collect": 19,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              3,
+              3
+            ],
+            "gap": 8,
+            "index": 8,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "X",
+              "Z",
+              "Z"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 4,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 21,
+            "C_U": 27,
+            "C_collect": 21,
+            "codes": [
+              1,
+              1,
+              1,
+              2,
+              1,
+              1
+            ],
+            "gap": 6,
+            "index": 9,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "Y",
+              "X",
+              "X"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 19,
+            "C_U": 27,
+            "C_collect": 19,
+            "codes": [
+              1,
+              1,
+              1,
+              2,
+              1,
+              2
+            ],
+            "gap": 8,
+            "index": 10,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "Y",
+              "X",
+              "Y"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 4,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    4
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  4
+                ],
+                [
+                  3,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 22,
+            "C_U": 27,
+            "C_collect": 22,
+            "codes": [
+              1,
+              1,
+              1,
+              2,
+              1,
+              3
+            ],
+            "gap": 5,
+            "index": 11,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "Y",
+              "X",
+              "Z"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  4
+                ],
+                [
+                  3
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "4",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 19,
+            "C_U": 27,
+            "C_collect": 19,
+            "codes": [
+              1,
+              1,
+              1,
+              2,
+              2,
+              1
+            ],
+            "gap": 8,
+            "index": 12,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "Y",
+              "Y",
+              "X"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 4,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    5
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  5
+                ],
+                [
+                  3,
+                  4
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 19,
+            "C_U": 27,
+            "C_collect": 19,
+            "codes": [
+              1,
+              1,
+              1,
+              2,
+              2,
+              2
+            ],
+            "gap": 8,
+            "index": 13,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "Y",
+              "Y",
+              "Y"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 4,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4,
+                  5
+                ]
+              ],
+              "shape": "3+3",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 21,
+            "C_U": 27,
+            "C_collect": 21,
+            "codes": [
+              1,
+              1,
+              1,
+              2,
+              2,
+              3
+            ],
+            "gap": 6,
+            "index": 14,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "Y",
+              "Y",
+              "Z"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 22,
+            "C_U": 27,
+            "C_collect": 22,
+            "codes": [
+              1,
+              1,
+              1,
+              2,
+              3,
+              1
+            ],
+            "gap": 5,
+            "index": 15,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "Y",
+              "Z",
+              "X"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  5
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ]
+              ],
+              "shape": "4",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 21,
+            "C_U": 27,
+            "C_collect": 21,
+            "codes": [
+              1,
+              1,
+              1,
+              2,
+              3,
+              2
+            ],
+            "gap": 6,
+            "index": 16,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "Y",
+              "Z",
+              "Y"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  4
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 21,
+            "C_U": 27,
+            "C_collect": 21,
+            "codes": [
+              1,
+              1,
+              1,
+              2,
+              3,
+              3
+            ],
+            "gap": 6,
+            "index": 17,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "Y",
+              "Z",
+              "Z"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 21,
+            "C_U": 27,
+            "C_collect": 21,
+            "codes": [
+              1,
+              1,
+              1,
+              3,
+              1,
+              1
+            ],
+            "gap": 6,
+            "index": 18,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "Z",
+              "X",
+              "X"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 22,
+            "C_U": 27,
+            "C_collect": 22,
+            "codes": [
+              1,
+              1,
+              1,
+              3,
+              1,
+              2
+            ],
+            "gap": 5,
+            "index": 19,
+            "n": 1,
+            "structural_gap": 0,
+            "terms": [
+              "X",
+              "X",
+              "X",
+              "Z",
+              "X",
+              "Y"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  4
+                ],
+                [
+                  3
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "4",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          }
+        ],
+        "witness_shapes": {
+          "2+2+2": 90,
+          "3+2": 396,
+          "3+3": 60,
+          "4": 90,
+          "4+2": 90,
+          "6": 3
+        }
+      },
+      "exhaustive_n2": {
+        "enumeration_sha256": "c752620d62e2b3ba3a6847bfb0f1ac3b2ad472385b3f99a780e69fed96d2c4bf",
+        "gap_hist": {
+          "1": 189,
+          "10": 1287,
+          "11": 1053,
+          "12": 1338,
+          "13": 270,
+          "14": 138,
+          "16": 108,
+          "2": 1002,
+          "23": 9,
+          "3": 3711,
+          "4": 5511,
+          "5": 4914,
+          "6": 6348,
+          "7": 5436,
+          "8": 3125,
+          "9": 4320
+        },
+        "incumbent_exact": 1,
+        "instances": 38760,
+        "max_gap_witness": {
+          "C_B": 62,
+          "C_F": 16,
+          "C_U": 39,
+          "C_collect": 16,
+          "codes": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          "gap": 23,
+          "index": 30752,
+          "n": 2,
+          "structural_gap": 0,
+          "terms": [
+            "XX",
+            "XX",
+            "XX",
+            "XX",
+            "XX",
+            "XX"
+          ],
+          "witness": {
+            "ledger": {
+              "PREP": 11,
+              "SELECT": 2,
+              "WIDTH": 3
+            },
+            "nonsingleton_blocks": [
+              {
+                "block": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "wF": 2
+              }
+            ],
+            "partition": [
+              [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            ],
+            "shape": "6",
+            "unary_ledger": {
+              "PREP": 9,
+              "SELECT": 24,
+              "WIDTH": 6
+            }
+          }
+        },
+        "max_sgap_witness": {
+          "C_B": 50,
+          "C_F": 28,
+          "C_U": 33,
+          "C_collect": 33,
+          "codes": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7
+          ],
+          "gap": 5,
+          "index": 3801,
+          "n": 2,
+          "structural_gap": 5,
+          "terms": [
+            "XI",
+            "YI",
+            "ZI",
+            "XX",
+            "YX",
+            "ZX"
+          ],
+          "witness": {
+            "ledger": {
+              "PREP": 9,
+              "SELECT": 15,
+              "WIDTH": 4
+            },
+            "nonsingleton_blocks": [
+              {
+                "block": [
+                  0,
+                  3
+                ],
+                "wF": 1
+              },
+              {
+                "block": [
+                  1,
+                  4
+                ],
+                "wF": 1
+              },
+              {
+                "block": [
+                  2,
+                  5
+                ],
+                "wF": 1
+              }
+            ],
+            "partition": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                2,
+                5
+              ]
+            ],
+            "shape": "2+2+2",
+            "unary_ledger": {
+              "PREP": 9,
+              "SELECT": 18,
+              "WIDTH": 6
+            }
+          }
+        },
+        "min_gap_witness": {
+          "C_B": 42,
+          "C_F": 28,
+          "C_U": 29,
+          "C_collect": 29,
+          "codes": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            8
+          ],
+          "gap": 1,
+          "index": 3726,
+          "n": 2,
+          "structural_gap": 1,
+          "terms": [
+            "XI",
+            "YI",
+            "ZI",
+            "IX",
+            "XX",
+            "IY"
+          ],
+          "witness": {
+            "ledger": {
+              "PREP": 9,
+              "SELECT": 13,
+              "WIDTH": 6
+            },
+            "nonsingleton_blocks": [
+              {
+                "block": [
+                  0,
+                  4
+                ],
+                "wF": 1
+              }
+            ],
+            "partition": [
+              [
+                0,
+                4
+              ],
+              [
+                1
+              ],
+              [
+                2
+              ],
+              [
+                3
+              ],
+              [
+                5
+              ]
+            ],
+            "shape": "2",
+            "unary_ledger": {
+              "PREP": 9,
+              "SELECT": 14,
+              "WIDTH": 6
+            }
+          }
+        },
+        "min_sgap_witness": {
+          "C_B": 46,
+          "C_F": 25,
+          "C_U": 31,
+          "C_collect": 26,
+          "codes": [
+            1,
+            1,
+            1,
+            1,
+            5,
+            6
+          ],
+          "gap": 6,
+          "index": 55,
+          "n": 2,
+          "structural_gap": 1,
+          "terms": [
+            "XI",
+            "XI",
+            "XI",
+            "XI",
+            "XX",
+            "YX"
+          ],
+          "witness": {
+            "ledger": {
+              "PREP": 11,
+              "SELECT": 10,
+              "WIDTH": 4
+            },
+            "nonsingleton_blocks": [
+              {
+                "block": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "wF": 1
+              },
+              {
+                "block": [
+                  4,
+                  5
+                ],
+                "wF": 1
+              }
+            ],
+            "partition": [
+              [
+                0,
+                1,
+                2,
+                3
+              ],
+              [
+                4,
+                5
+              ]
+            ],
+            "shape": "4+2",
+            "unary_ledger": {
+              "PREP": 9,
+              "SELECT": 16,
+              "WIDTH": 6
+            }
+          }
+        },
+        "structural_gap_hist": {
+          "1": 5985,
+          "2": 12816,
+          "3": 5391,
+          "4": 2520,
+          "5": 432
+        },
+        "structural_trades": 27144,
+        "trades": 38759,
+        "verbatim_structural": [
+          {
+            "C_B": 42,
+            "C_F": 19,
+            "C_U": 29,
+            "C_collect": 23,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              5
+            ],
+            "gap": 10,
+            "index": 4,
+            "n": 2,
+            "structural_gap": 4,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 5,
+                "WIDTH": 3
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              ],
+              "shape": "6",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 19,
+            "C_U": 29,
+            "C_collect": 23,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              9
+            ],
+            "gap": 10,
+            "index": 8,
+            "n": 2,
+            "structural_gap": 4,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 5,
+                "WIDTH": 3
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              ],
+              "shape": "6",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 19,
+            "C_U": 29,
+            "C_collect": 23,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              13
+            ],
+            "gap": 10,
+            "index": 12,
+            "n": 2,
+            "structural_gap": 4,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 5,
+                "WIDTH": 3
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              ],
+              "shape": "6",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 22,
+            "C_U": 29,
+            "C_collect": 24,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              2,
+              6
+            ],
+            "gap": 7,
+            "index": 19,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "YI",
+              "YX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 7,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 22,
+            "C_U": 29,
+            "C_collect": 24,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              2,
+              10
+            ],
+            "gap": 7,
+            "index": 23,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "YI",
+              "YY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 7,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 22,
+            "C_U": 29,
+            "C_collect": 24,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              2,
+              14
+            ],
+            "gap": 7,
+            "index": 27,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "YI",
+              "YZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 7,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 22,
+            "C_U": 29,
+            "C_collect": 24,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              3,
+              7
+            ],
+            "gap": 7,
+            "index": 33,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "ZI",
+              "ZX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 7,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 22,
+            "C_U": 29,
+            "C_collect": 24,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              3,
+              11
+            ],
+            "gap": 7,
+            "index": 37,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "ZI",
+              "ZY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 7,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 22,
+            "C_U": 29,
+            "C_collect": 24,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              3,
+              15
+            ],
+            "gap": 7,
+            "index": 41,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "ZI",
+              "ZZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 7,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 22,
+            "C_U": 29,
+            "C_collect": 24,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              4,
+              5
+            ],
+            "gap": 7,
+            "index": 43,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "IX",
+              "XX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 7,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 22,
+            "C_U": 29,
+            "C_collect": 24,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              4,
+              6
+            ],
+            "gap": 7,
+            "index": 44,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "IX",
+              "YX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 7,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 22,
+            "C_U": 29,
+            "C_collect": 24,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              4,
+              7
+            ],
+            "gap": 7,
+            "index": 45,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "IX",
+              "ZX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 7,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 46,
+            "C_F": 25,
+            "C_U": 31,
+            "C_collect": 26,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              5,
+              6
+            ],
+            "gap": 6,
+            "index": 55,
+            "n": 2,
+            "structural_gap": 1,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XX",
+              "YX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 10,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 16,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 46,
+            "C_F": 25,
+            "C_U": 31,
+            "C_collect": 26,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              5,
+              7
+            ],
+            "gap": 6,
+            "index": 56,
+            "n": 2,
+            "structural_gap": 1,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XX",
+              "ZX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 10,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 16,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 46,
+            "C_F": 23,
+            "C_U": 31,
+            "C_collect": 26,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              5,
+              9
+            ],
+            "gap": 8,
+            "index": 58,
+            "n": 2,
+            "structural_gap": 3,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XX",
+              "XY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 9,
+                "WIDTH": 3
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              ],
+              "shape": "6",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 16,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 46,
+            "C_F": 23,
+            "C_U": 31,
+            "C_collect": 26,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              5,
+              13
+            ],
+            "gap": 8,
+            "index": 62,
+            "n": 2,
+            "structural_gap": 3,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XX",
+              "XZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 9,
+                "WIDTH": 3
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              ],
+              "shape": "6",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 16,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 46,
+            "C_F": 25,
+            "C_U": 31,
+            "C_collect": 26,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              6,
+              7
+            ],
+            "gap": 6,
+            "index": 66,
+            "n": 2,
+            "structural_gap": 1,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "YX",
+              "ZX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 10,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 16,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 46,
+            "C_F": 25,
+            "C_U": 31,
+            "C_collect": 26,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              6,
+              10
+            ],
+            "gap": 6,
+            "index": 69,
+            "n": 2,
+            "structural_gap": 1,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "YX",
+              "YY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 10,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 16,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 46,
+            "C_F": 25,
+            "C_U": 31,
+            "C_collect": 26,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              6,
+              14
+            ],
+            "gap": 6,
+            "index": 73,
+            "n": 2,
+            "structural_gap": 1,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "YX",
+              "YZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 10,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 16,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 46,
+            "C_F": 25,
+            "C_U": 31,
+            "C_collect": 26,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              7,
+              11
+            ],
+            "gap": 6,
+            "index": 79,
+            "n": 2,
+            "structural_gap": 1,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "ZX",
+              "ZY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 10,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 16,
+                "WIDTH": 6
+              }
+            }
+          }
+        ],
+        "verbatim_trades": [
+          {
+            "C_B": 38,
+            "C_F": 15,
+            "C_U": 27,
+            "C_collect": 15,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "gap": 12,
+            "index": 0,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 1,
+                "WIDTH": 3
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              ],
+              "shape": "6",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 21,
+            "C_U": 27,
+            "C_collect": 21,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              2
+            ],
+            "gap": 6,
+            "index": 1,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "YI"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 21,
+            "C_U": 27,
+            "C_collect": 21,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              3
+            ],
+            "gap": 6,
+            "index": 2,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "ZI"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 21,
+            "C_U": 27,
+            "C_collect": 21,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              4
+            ],
+            "gap": 6,
+            "index": 3,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "IX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 19,
+            "C_U": 29,
+            "C_collect": 23,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              5
+            ],
+            "gap": 10,
+            "index": 4,
+            "n": 2,
+            "structural_gap": 4,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 5,
+                "WIDTH": 3
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              ],
+              "shape": "6",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 23,
+            "C_U": 29,
+            "C_collect": 23,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              6
+            ],
+            "gap": 6,
+            "index": 5,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "YX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 8,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 23,
+            "C_U": 29,
+            "C_collect": 23,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              7
+            ],
+            "gap": 6,
+            "index": 6,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "ZX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 8,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 21,
+            "C_U": 27,
+            "C_collect": 21,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              8
+            ],
+            "gap": 6,
+            "index": 7,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "IY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 19,
+            "C_U": 29,
+            "C_collect": 23,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              9
+            ],
+            "gap": 10,
+            "index": 8,
+            "n": 2,
+            "structural_gap": 4,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 5,
+                "WIDTH": 3
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              ],
+              "shape": "6",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 23,
+            "C_U": 29,
+            "C_collect": 23,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              10
+            ],
+            "gap": 6,
+            "index": 9,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "YY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 8,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 23,
+            "C_U": 29,
+            "C_collect": 23,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              11
+            ],
+            "gap": 6,
+            "index": 10,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "ZY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 8,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 21,
+            "C_U": 27,
+            "C_collect": 21,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              12
+            ],
+            "gap": 6,
+            "index": 11,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "IZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 19,
+            "C_U": 29,
+            "C_collect": 23,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              13
+            ],
+            "gap": 10,
+            "index": 12,
+            "n": 2,
+            "structural_gap": 4,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 5,
+                "WIDTH": 3
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              ],
+              "shape": "6",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 23,
+            "C_U": 29,
+            "C_collect": 23,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              14
+            ],
+            "gap": 6,
+            "index": 13,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "YZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 8,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 23,
+            "C_U": 29,
+            "C_collect": 23,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              15
+            ],
+            "gap": 6,
+            "index": 14,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "ZZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 8,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 19,
+            "C_U": 27,
+            "C_collect": 19,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              2,
+              2
+            ],
+            "gap": 8,
+            "index": 15,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "YI",
+              "YI"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 4,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 22,
+            "C_U": 27,
+            "C_collect": 22,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              2,
+              3
+            ],
+            "gap": 5,
+            "index": 16,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "YI",
+              "ZI"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "4",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 38,
+            "C_F": 22,
+            "C_U": 27,
+            "C_collect": 22,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              2,
+              4
+            ],
+            "gap": 5,
+            "index": 17,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "YI",
+              "IX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 6,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "4",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 24,
+            "C_U": 29,
+            "C_collect": 24,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              2,
+              5
+            ],
+            "gap": 5,
+            "index": 18,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "YI",
+              "XX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 8,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "4",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 22,
+            "C_U": 29,
+            "C_collect": 24,
+            "codes": [
+              1,
+              1,
+              1,
+              1,
+              2,
+              6
+            ],
+            "gap": 7,
+            "index": 19,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "XI",
+              "XI",
+              "XI",
+              "XI",
+              "YI",
+              "YX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 11,
+                "SELECT": 7,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "4+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          }
+        ],
+        "witness_shapes": {
+          "2": 903,
+          "2+2": 17454,
+          "2+2+2": 11315,
+          "3": 1104,
+          "3+2": 5922,
+          "3+3": 321,
+          "4": 897,
+          "4+2": 678,
+          "5": 108,
+          "6": 57
+        }
+      },
+      "random_panel_seed20260821": {
+        "enumeration_sha256": "3b5c5bdde26d5bf500125dd9ff78acb6f8cb580fd1ae86f02cc5f5cab472dafe",
+        "gap_hist": {
+          "1": 10,
+          "10": 6,
+          "11": 1,
+          "12": 3,
+          "2": 17,
+          "3": 55,
+          "4": 45,
+          "5": 24,
+          "6": 27,
+          "7": 23,
+          "8": 14,
+          "9": 10
+        },
+        "incumbent_exact": 5,
+        "instances": 240,
+        "max_gap_witness": {
+          "C_B": 62,
+          "C_F": 27,
+          "C_U": 39,
+          "C_collect": 27,
+          "codes": [
+            13,
+            13,
+            15,
+            11,
+            11,
+            13
+          ],
+          "gap": 12,
+          "index": 14,
+          "n": 2,
+          "structural_gap": 0,
+          "terms": [
+            "XZ",
+            "XZ",
+            "ZZ",
+            "ZY",
+            "ZY",
+            "XZ"
+          ],
+          "witness": {
+            "ledger": {
+              "PREP": 10,
+              "SELECT": 12,
+              "WIDTH": 5
+            },
+            "nonsingleton_blocks": [
+              {
+                "block": [
+                  0,
+                  1,
+                  5
+                ],
+                "wF": 2
+              },
+              {
+                "block": [
+                  3,
+                  4
+                ],
+                "wF": 2
+              }
+            ],
+            "partition": [
+              [
+                0,
+                1,
+                5
+              ],
+              [
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "shape": "3+2",
+            "unary_ledger": {
+              "PREP": 9,
+              "SELECT": 24,
+              "WIDTH": 6
+            }
+          }
+        },
+        "max_sgap_witness": {
+          "C_B": 78,
+          "C_F": 37,
+          "C_U": 47,
+          "C_collect": 47,
+          "codes": [
+            21,
+            37,
+            62,
+            57,
+            50,
+            9
+          ],
+          "gap": 10,
+          "index": 193,
+          "n": 3,
+          "structural_gap": 10,
+          "terms": [
+            "XXX",
+            "XXY",
+            "YZZ",
+            "XYZ",
+            "YIZ",
+            "XYI"
+          ],
+          "witness": {
+            "ledger": {
+              "PREP": 9,
+              "SELECT": 24,
+              "WIDTH": 4
+            },
+            "nonsingleton_blocks": [
+              {
+                "block": [
+                  0,
+                  1
+                ],
+                "wF": 2
+              },
+              {
+                "block": [
+                  2,
+                  4
+                ],
+                "wF": 2
+              },
+              {
+                "block": [
+                  3,
+                  5
+                ],
+                "wF": 2
+              }
+            ],
+            "partition": [
+              [
+                0,
+                1
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                3,
+                5
+              ]
+            ],
+            "shape": "2+2+2",
+            "unary_ledger": {
+              "PREP": 9,
+              "SELECT": 32,
+              "WIDTH": 6
+            }
+          }
+        },
+        "min_gap_witness": {
+          "C_B": 70,
+          "C_F": 42,
+          "C_U": 43,
+          "C_collect": 43,
+          "codes": [
+            50,
+            6,
+            19,
+            41,
+            55,
+            11
+          ],
+          "gap": 1,
+          "index": 131,
+          "n": 3,
+          "structural_gap": 1,
+          "terms": [
+            "YIZ",
+            "YXI",
+            "ZIX",
+            "XYY",
+            "ZXZ",
+            "ZYI"
+          ],
+          "witness": {
+            "ledger": {
+              "PREP": 9,
+              "SELECT": 28,
+              "WIDTH": 5
+            },
+            "nonsingleton_blocks": [
+              {
+                "block": [
+                  0,
+                  1
+                ],
+                "wF": 1
+              },
+              {
+                "block": [
+                  2,
+                  5
+                ],
+                "wF": 1
+              }
+            ],
+            "partition": [
+              [
+                0,
+                1
+              ],
+              [
+                2,
+                5
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ]
+            ],
+            "shape": "2+2",
+            "unary_ledger": {
+              "PREP": 9,
+              "SELECT": 28,
+              "WIDTH": 6
+            }
+          }
+        },
+        "min_sgap_witness": {
+          "C_B": 58,
+          "C_F": 32,
+          "C_U": 37,
+          "C_collect": 33,
+          "codes": [
+            15,
+            11,
+            9,
+            13,
+            4,
+            9
+          ],
+          "gap": 5,
+          "index": 5,
+          "n": 2,
+          "structural_gap": 1,
+          "terms": [
+            "ZZ",
+            "ZY",
+            "XY",
+            "XZ",
+            "IX",
+            "XY"
+          ],
+          "witness": {
+            "ledger": {
+              "PREP": 9,
+              "SELECT": 18,
+              "WIDTH": 5
+            },
+            "nonsingleton_blocks": [
+              {
+                "block": [
+                  0,
+                  1
+                ],
+                "wF": 1
+              },
+              {
+                "block": [
+                  2,
+                  5
+                ],
+                "wF": 2
+              }
+            ],
+            "partition": [
+              [
+                0,
+                1
+              ],
+              [
+                2,
+                5
+              ],
+              [
+                3
+              ],
+              [
+                4
+              ]
+            ],
+            "shape": "2+2",
+            "unary_ledger": {
+              "PREP": 9,
+              "SELECT": 22,
+              "WIDTH": 6
+            }
+          }
+        },
+        "structural_gap_hist": {
+          "1": 37,
+          "10": 1,
+          "2": 57,
+          "3": 60,
+          "4": 36,
+          "5": 8,
+          "6": 5,
+          "7": 10,
+          "8": 1,
+          "9": 1
+        },
+        "structural_trades": 216,
+        "trades": 235,
+        "verbatim_structural": [
+          {
+            "C_B": 54,
+            "C_F": 31,
+            "C_U": 35,
+            "C_collect": 35,
+            "codes": [
+              6,
+              2,
+              5,
+              12,
+              14,
+              10
+            ],
+            "gap": 4,
+            "index": 0,
+            "n": 2,
+            "structural_gap": 4,
+            "terms": [
+              "YX",
+              "YI",
+              "XX",
+              "IZ",
+              "YZ",
+              "YY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 18,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    5
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  5
+                ],
+                [
+                  3,
+                  4
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 62,
+            "C_F": 37,
+            "C_U": 39,
+            "C_collect": 39,
+            "codes": [
+              7,
+              5,
+              11,
+              9,
+              14,
+              10
+            ],
+            "gap": 2,
+            "index": 1,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "ZX",
+              "XX",
+              "ZY",
+              "XY",
+              "YZ",
+              "YY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 24,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 24,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 54,
+            "C_F": 27,
+            "C_U": 35,
+            "C_collect": 31,
+            "codes": [
+              7,
+              15,
+              9,
+              4,
+              3,
+              9
+            ],
+            "gap": 8,
+            "index": 2,
+            "n": 2,
+            "structural_gap": 4,
+            "terms": [
+              "ZX",
+              "ZZ",
+              "XY",
+              "IX",
+              "ZI",
+              "XY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    4
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    5
+                  ],
+                  "wF": 2
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  4
+                ],
+                [
+                  2,
+                  5
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 54,
+            "C_F": 31,
+            "C_U": 35,
+            "C_collect": 35,
+            "codes": [
+              8,
+              5,
+              10,
+              11,
+              6,
+              2
+            ],
+            "gap": 4,
+            "index": 4,
+            "n": 2,
+            "structural_gap": 4,
+            "terms": [
+              "IY",
+              "XX",
+              "YY",
+              "ZY",
+              "YX",
+              "YI"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 18,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    4
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  4
+                ],
+                [
+                  2,
+                  5
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 58,
+            "C_F": 32,
+            "C_U": 37,
+            "C_collect": 33,
+            "codes": [
+              15,
+              11,
+              9,
+              13,
+              4,
+              9
+            ],
+            "gap": 5,
+            "index": 5,
+            "n": 2,
+            "structural_gap": 1,
+            "terms": [
+              "ZZ",
+              "ZY",
+              "XY",
+              "XZ",
+              "IX",
+              "XY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 18,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    5
+                  ],
+                  "wF": 2
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ]
+              ],
+              "shape": "2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 22,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 54,
+            "C_F": 29,
+            "C_U": 35,
+            "C_collect": 31,
+            "codes": [
+              3,
+              8,
+              13,
+              15,
+              13,
+              7
+            ],
+            "gap": 6,
+            "index": 6,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "ZI",
+              "IY",
+              "XZ",
+              "ZZ",
+              "XZ",
+              "ZX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 15,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    4
+                  ],
+                  "wF": 2
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1
+                ],
+                [
+                  2,
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 58,
+            "C_F": 34,
+            "C_U": 37,
+            "C_collect": 37,
+            "codes": [
+              10,
+              9,
+              5,
+              11,
+              1,
+              15
+            ],
+            "gap": 3,
+            "index": 7,
+            "n": 2,
+            "structural_gap": 3,
+            "terms": [
+              "YY",
+              "XY",
+              "XX",
+              "ZY",
+              "XI",
+              "ZZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 21,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    4
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  4
+                ],
+                [
+                  3,
+                  5
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 22,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 54,
+            "C_F": 31,
+            "C_U": 35,
+            "C_collect": 33,
+            "codes": [
+              10,
+              15,
+              14,
+              8,
+              8,
+              7
+            ],
+            "gap": 4,
+            "index": 8,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "YY",
+              "ZZ",
+              "YZ",
+              "IY",
+              "IY",
+              "ZX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 18,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    5
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  5
+                ],
+                [
+                  3,
+                  4
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 54,
+            "C_F": 27,
+            "C_U": 35,
+            "C_collect": 28,
+            "codes": [
+              14,
+              2,
+              6,
+              13,
+              13,
+              2
+            ],
+            "gap": 8,
+            "index": 9,
+            "n": 2,
+            "structural_gap": 1,
+            "terms": [
+              "YZ",
+              "YI",
+              "YX",
+              "XZ",
+              "XZ",
+              "YI"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    5
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 2
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  3,
+                  4
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 58,
+            "C_F": 30,
+            "C_U": 37,
+            "C_collect": 33,
+            "codes": [
+              10,
+              9,
+              5,
+              11,
+              9,
+              4
+            ],
+            "gap": 7,
+            "index": 10,
+            "n": 2,
+            "structural_gap": 3,
+            "terms": [
+              "YY",
+              "XY",
+              "XX",
+              "ZY",
+              "XY",
+              "IX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 17,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    4
+                  ],
+                  "wF": 2
+                },
+                {
+                  "block": [
+                    2,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  4
+                ],
+                [
+                  2,
+                  5
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 22,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 25,
+            "C_U": 29,
+            "C_collect": 27,
+            "codes": [
+              1,
+              3,
+              3,
+              4,
+              12,
+              15
+            ],
+            "gap": 4,
+            "index": 11,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "XI",
+              "ZI",
+              "ZI",
+              "IX",
+              "IZ",
+              "ZZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 11,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 50,
+            "C_F": 30,
+            "C_U": 33,
+            "C_collect": 33,
+            "codes": [
+              3,
+              8,
+              14,
+              1,
+              10,
+              11
+            ],
+            "gap": 3,
+            "index": 12,
+            "n": 2,
+            "structural_gap": 3,
+            "terms": [
+              "ZI",
+              "IY",
+              "YZ",
+              "XI",
+              "YY",
+              "ZY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 16,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    5
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  5
+                ],
+                [
+                  1,
+                  4
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ]
+              ],
+              "shape": "2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 18,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 54,
+            "C_F": 27,
+            "C_U": 35,
+            "C_collect": 28,
+            "codes": [
+              9,
+              9,
+              12,
+              12,
+              7,
+              11
+            ],
+            "gap": 8,
+            "index": 13,
+            "n": 2,
+            "structural_gap": 1,
+            "terms": [
+              "XY",
+              "XY",
+              "IZ",
+              "IZ",
+              "ZX",
+              "ZY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1
+                  ],
+                  "wF": 2
+                },
+                {
+                  "block": [
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 58,
+            "C_F": 32,
+            "C_U": 37,
+            "C_collect": 33,
+            "codes": [
+              13,
+              1,
+              7,
+              15,
+              13,
+              11
+            ],
+            "gap": 5,
+            "index": 15,
+            "n": 2,
+            "structural_gap": 1,
+            "terms": [
+              "XZ",
+              "XI",
+              "ZX",
+              "ZZ",
+              "XZ",
+              "ZY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 18,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    4
+                  ],
+                  "wF": 2
+                },
+                {
+                  "block": [
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  4
+                ],
+                [
+                  1
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 22,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 58,
+            "C_F": 34,
+            "C_U": 37,
+            "C_collect": 37,
+            "codes": [
+              4,
+              6,
+              14,
+              5,
+              7,
+              10
+            ],
+            "gap": 3,
+            "index": 16,
+            "n": 2,
+            "structural_gap": 3,
+            "terms": [
+              "IX",
+              "YX",
+              "YZ",
+              "XX",
+              "ZX",
+              "YY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 21,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    5
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  3,
+                  4
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 22,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 58,
+            "C_F": 30,
+            "C_U": 37,
+            "C_collect": 33,
+            "codes": [
+              10,
+              6,
+              5,
+              4,
+              5,
+              9
+            ],
+            "gap": 7,
+            "index": 17,
+            "n": 2,
+            "structural_gap": 3,
+            "terms": [
+              "YY",
+              "YX",
+              "XX",
+              "IX",
+              "XX",
+              "XY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 17,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    5
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    4
+                  ],
+                  "wF": 2
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  5
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  4
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 22,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 62,
+            "C_F": 34,
+            "C_U": 39,
+            "C_collect": 35,
+            "codes": [
+              13,
+              14,
+              15,
+              9,
+              6,
+              13
+            ],
+            "gap": 5,
+            "index": 18,
+            "n": 2,
+            "structural_gap": 1,
+            "terms": [
+              "XZ",
+              "YZ",
+              "ZZ",
+              "XY",
+              "YX",
+              "XZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    5
+                  ],
+                  "wF": 2
+                },
+                {
+                  "block": [
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  5
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ]
+              ],
+              "shape": "2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 24,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 50,
+            "C_F": 27,
+            "C_U": 33,
+            "C_collect": 29,
+            "codes": [
+              5,
+              10,
+              1,
+              12,
+              8,
+              10
+            ],
+            "gap": 6,
+            "index": 19,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "XX",
+              "YY",
+              "XI",
+              "IZ",
+              "IY",
+              "YY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 13,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    5
+                  ],
+                  "wF": 2
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  5
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ]
+              ],
+              "shape": "2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 18,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 50,
+            "C_F": 28,
+            "C_U": 33,
+            "C_collect": 33,
+            "codes": [
+              13,
+              8,
+              7,
+              4,
+              12,
+              9
+            ],
+            "gap": 5,
+            "index": 20,
+            "n": 2,
+            "structural_gap": 5,
+            "terms": [
+              "XZ",
+              "IY",
+              "ZX",
+              "IX",
+              "IZ",
+              "XY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 15,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    4
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    5
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  5
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 18,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 62,
+            "C_F": 33,
+            "C_U": 39,
+            "C_collect": 35,
+            "codes": [
+              5,
+              9,
+              15,
+              9,
+              13,
+              14
+            ],
+            "gap": 6,
+            "index": 21,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "XX",
+              "XY",
+              "ZZ",
+              "XY",
+              "XZ",
+              "YZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    4
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    3
+                  ],
+                  "wF": 2
+                },
+                {
+                  "block": [
+                    2,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  5
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 24,
+                "WIDTH": 6
+              }
+            }
+          }
+        ],
+        "verbatim_trades": [
+          {
+            "C_B": 54,
+            "C_F": 31,
+            "C_U": 35,
+            "C_collect": 35,
+            "codes": [
+              6,
+              2,
+              5,
+              12,
+              14,
+              10
+            ],
+            "gap": 4,
+            "index": 0,
+            "n": 2,
+            "structural_gap": 4,
+            "terms": [
+              "YX",
+              "YI",
+              "XX",
+              "IZ",
+              "YZ",
+              "YY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 18,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    5
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  5
+                ],
+                [
+                  3,
+                  4
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 62,
+            "C_F": 37,
+            "C_U": 39,
+            "C_collect": 39,
+            "codes": [
+              7,
+              5,
+              11,
+              9,
+              14,
+              10
+            ],
+            "gap": 2,
+            "index": 1,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "ZX",
+              "XX",
+              "ZY",
+              "XY",
+              "YZ",
+              "YY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 24,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 24,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 54,
+            "C_F": 27,
+            "C_U": 35,
+            "C_collect": 31,
+            "codes": [
+              7,
+              15,
+              9,
+              4,
+              3,
+              9
+            ],
+            "gap": 8,
+            "index": 2,
+            "n": 2,
+            "structural_gap": 4,
+            "terms": [
+              "ZX",
+              "ZZ",
+              "XY",
+              "IX",
+              "ZI",
+              "XY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    4
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    5
+                  ],
+                  "wF": 2
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  4
+                ],
+                [
+                  2,
+                  5
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 54,
+            "C_F": 26,
+            "C_U": 35,
+            "C_collect": 26,
+            "codes": [
+              3,
+              7,
+              10,
+              10,
+              7,
+              4
+            ],
+            "gap": 9,
+            "index": 3,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "ZI",
+              "ZX",
+              "YY",
+              "YY",
+              "ZX",
+              "IX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 12,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    1,
+                    4
+                  ],
+                  "wF": 2
+                },
+                {
+                  "block": [
+                    2,
+                    3
+                  ],
+                  "wF": 2
+                }
+              ],
+              "partition": [
+                [
+                  0
+                ],
+                [
+                  1,
+                  4
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 54,
+            "C_F": 31,
+            "C_U": 35,
+            "C_collect": 35,
+            "codes": [
+              8,
+              5,
+              10,
+              11,
+              6,
+              2
+            ],
+            "gap": 4,
+            "index": 4,
+            "n": 2,
+            "structural_gap": 4,
+            "terms": [
+              "IY",
+              "XX",
+              "YY",
+              "ZY",
+              "YX",
+              "YI"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 18,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    4
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  4
+                ],
+                [
+                  2,
+                  5
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 58,
+            "C_F": 32,
+            "C_U": 37,
+            "C_collect": 33,
+            "codes": [
+              15,
+              11,
+              9,
+              13,
+              4,
+              9
+            ],
+            "gap": 5,
+            "index": 5,
+            "n": 2,
+            "structural_gap": 1,
+            "terms": [
+              "ZZ",
+              "ZY",
+              "XY",
+              "XZ",
+              "IX",
+              "XY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 18,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    5
+                  ],
+                  "wF": 2
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ]
+              ],
+              "shape": "2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 22,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 54,
+            "C_F": 29,
+            "C_U": 35,
+            "C_collect": 31,
+            "codes": [
+              3,
+              8,
+              13,
+              15,
+              13,
+              7
+            ],
+            "gap": 6,
+            "index": 6,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "ZI",
+              "IY",
+              "XZ",
+              "ZZ",
+              "XZ",
+              "ZX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 15,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    4
+                  ],
+                  "wF": 2
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1
+                ],
+                [
+                  2,
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 58,
+            "C_F": 34,
+            "C_U": 37,
+            "C_collect": 37,
+            "codes": [
+              10,
+              9,
+              5,
+              11,
+              1,
+              15
+            ],
+            "gap": 3,
+            "index": 7,
+            "n": 2,
+            "structural_gap": 3,
+            "terms": [
+              "YY",
+              "XY",
+              "XX",
+              "ZY",
+              "XI",
+              "ZZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 21,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    4
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  4
+                ],
+                [
+                  3,
+                  5
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 22,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 54,
+            "C_F": 31,
+            "C_U": 35,
+            "C_collect": 33,
+            "codes": [
+              10,
+              15,
+              14,
+              8,
+              8,
+              7
+            ],
+            "gap": 4,
+            "index": 8,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "YY",
+              "ZZ",
+              "YZ",
+              "IY",
+              "IY",
+              "ZX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 18,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    5
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  5
+                ],
+                [
+                  3,
+                  4
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 54,
+            "C_F": 27,
+            "C_U": 35,
+            "C_collect": 28,
+            "codes": [
+              14,
+              2,
+              6,
+              13,
+              13,
+              2
+            ],
+            "gap": 8,
+            "index": 9,
+            "n": 2,
+            "structural_gap": 1,
+            "terms": [
+              "YZ",
+              "YI",
+              "YX",
+              "XZ",
+              "XZ",
+              "YI"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    5
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 2
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  3,
+                  4
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 58,
+            "C_F": 30,
+            "C_U": 37,
+            "C_collect": 33,
+            "codes": [
+              10,
+              9,
+              5,
+              11,
+              9,
+              4
+            ],
+            "gap": 7,
+            "index": 10,
+            "n": 2,
+            "structural_gap": 3,
+            "terms": [
+              "YY",
+              "XY",
+              "XX",
+              "ZY",
+              "XY",
+              "IX"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 17,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    4
+                  ],
+                  "wF": 2
+                },
+                {
+                  "block": [
+                    2,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  4
+                ],
+                [
+                  2,
+                  5
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 22,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 42,
+            "C_F": 25,
+            "C_U": 29,
+            "C_collect": 27,
+            "codes": [
+              1,
+              3,
+              3,
+              4,
+              12,
+              15
+            ],
+            "gap": 4,
+            "index": 11,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "XI",
+              "ZI",
+              "ZI",
+              "IX",
+              "IZ",
+              "ZZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 11,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 50,
+            "C_F": 30,
+            "C_U": 33,
+            "C_collect": 33,
+            "codes": [
+              3,
+              8,
+              14,
+              1,
+              10,
+              11
+            ],
+            "gap": 3,
+            "index": 12,
+            "n": 2,
+            "structural_gap": 3,
+            "terms": [
+              "ZI",
+              "IY",
+              "YZ",
+              "XI",
+              "YY",
+              "ZY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 16,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    5
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  5
+                ],
+                [
+                  1,
+                  4
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ]
+              ],
+              "shape": "2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 18,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 54,
+            "C_F": 27,
+            "C_U": 35,
+            "C_collect": 28,
+            "codes": [
+              9,
+              9,
+              12,
+              12,
+              7,
+              11
+            ],
+            "gap": 8,
+            "index": 13,
+            "n": 2,
+            "structural_gap": 1,
+            "terms": [
+              "XY",
+              "XY",
+              "IZ",
+              "IZ",
+              "ZX",
+              "ZY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 14,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1
+                  ],
+                  "wF": 2
+                },
+                {
+                  "block": [
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    4,
+                    5
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 62,
+            "C_F": 27,
+            "C_U": 39,
+            "C_collect": 27,
+            "codes": [
+              13,
+              13,
+              15,
+              11,
+              11,
+              13
+            ],
+            "gap": 12,
+            "index": 14,
+            "n": 2,
+            "structural_gap": 0,
+            "terms": [
+              "XZ",
+              "XZ",
+              "ZZ",
+              "ZY",
+              "ZY",
+              "XZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 10,
+                "SELECT": 12,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1,
+                    5
+                  ],
+                  "wF": 2
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 2
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1,
+                  5
+                ],
+                [
+                  2
+                ],
+                [
+                  3,
+                  4
+                ]
+              ],
+              "shape": "3+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 24,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 58,
+            "C_F": 32,
+            "C_U": 37,
+            "C_collect": 33,
+            "codes": [
+              13,
+              1,
+              7,
+              15,
+              13,
+              11
+            ],
+            "gap": 5,
+            "index": 15,
+            "n": 2,
+            "structural_gap": 1,
+            "terms": [
+              "XZ",
+              "XI",
+              "ZX",
+              "ZZ",
+              "XZ",
+              "ZY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 18,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    4
+                  ],
+                  "wF": 2
+                },
+                {
+                  "block": [
+                    2,
+                    3
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  4
+                ],
+                [
+                  1
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  5
+                ]
+              ],
+              "shape": "2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 22,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 58,
+            "C_F": 34,
+            "C_U": 37,
+            "C_collect": 37,
+            "codes": [
+              4,
+              6,
+              14,
+              5,
+              7,
+              10
+            ],
+            "gap": 3,
+            "index": 16,
+            "n": 2,
+            "structural_gap": 3,
+            "terms": [
+              "IX",
+              "YX",
+              "YZ",
+              "XX",
+              "ZX",
+              "YY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 21,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    1
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    5
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    3,
+                    4
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  3,
+                  4
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 22,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 58,
+            "C_F": 30,
+            "C_U": 37,
+            "C_collect": 33,
+            "codes": [
+              10,
+              6,
+              5,
+              4,
+              5,
+              9
+            ],
+            "gap": 7,
+            "index": 17,
+            "n": 2,
+            "structural_gap": 3,
+            "terms": [
+              "YY",
+              "YX",
+              "XX",
+              "IX",
+              "XX",
+              "XY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 17,
+                "WIDTH": 4
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    5
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    3
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    2,
+                    4
+                  ],
+                  "wF": 2
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  5
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  4
+                ]
+              ],
+              "shape": "2+2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 22,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 62,
+            "C_F": 34,
+            "C_U": 39,
+            "C_collect": 35,
+            "codes": [
+              13,
+              14,
+              15,
+              9,
+              6,
+              13
+            ],
+            "gap": 5,
+            "index": 18,
+            "n": 2,
+            "structural_gap": 1,
+            "terms": [
+              "XZ",
+              "YZ",
+              "ZZ",
+              "XY",
+              "YX",
+              "XZ"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 20,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    5
+                  ],
+                  "wF": 2
+                },
+                {
+                  "block": [
+                    1,
+                    2
+                  ],
+                  "wF": 1
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  5
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ]
+              ],
+              "shape": "2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 24,
+                "WIDTH": 6
+              }
+            }
+          },
+          {
+            "C_B": 50,
+            "C_F": 27,
+            "C_U": 33,
+            "C_collect": 29,
+            "codes": [
+              5,
+              10,
+              1,
+              12,
+              8,
+              10
+            ],
+            "gap": 6,
+            "index": 19,
+            "n": 2,
+            "structural_gap": 2,
+            "terms": [
+              "XX",
+              "YY",
+              "XI",
+              "IZ",
+              "IY",
+              "YY"
+            ],
+            "witness": {
+              "ledger": {
+                "PREP": 9,
+                "SELECT": 13,
+                "WIDTH": 5
+              },
+              "nonsingleton_blocks": [
+                {
+                  "block": [
+                    0,
+                    2
+                  ],
+                  "wF": 1
+                },
+                {
+                  "block": [
+                    1,
+                    5
+                  ],
+                  "wF": 2
+                }
+              ],
+              "partition": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  5
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ]
+              ],
+              "shape": "2+2",
+              "unary_ledger": {
+                "PREP": 9,
+                "SELECT": 18,
+                "WIDTH": 6
+              }
+            }
+          }
+        ],
+        "witness_shapes": {
+          "2": 5,
+          "2+2": 142,
+          "2+2+2": 78,
+          "3": 1,
+          "3+2": 9
+        }
+      }
+    },
+    "outcome": "TRADES_FOUND",
+    "total_structural_trades": 27360,
+    "total_trades": 39723
+  },
+  "stage3_sufficiency": {
+    "js_closure_matrix_residuals": {
+      "1,2": 38788,
+      "1,3": 37682,
+      "1,4": 36695,
+      "1,5": 36569,
+      "1,6": 36509,
+      "2,2": 20493,
+      "2,3": 12951,
+      "2,4": 11634,
+      "2,5": 11526,
+      "2,6": 11466,
+      "3,2": 8673,
+      "3,3": 1131,
+      "3,4": 168,
+      "3,5": 60,
+      "3,6": 0
+    },
+    "ladder": {
+      "E0_incumbents": 39723,
+      "E1_plus_factored_binary": 39663,
+      "E2_at_most_one_merged_group": 36509,
+      "E3_at_most_two_merged_groups": 11466,
+      "E4_full_family": 0
+    },
+    "max_block_size_axis_residuals": {
+      "2": 8673,
+      "3": 1131,
+      "4": 168,
+      "5": 60,
+      "6": 0
+    },
+    "minimal_closing_level_j": 4,
+    "minimal_closing_max_block_size_s": 6,
+    "outcome": "NO_STRICT_SUBEXTENSION_CLOSES",
+    "per_domain_ladder_residuals": {
+      "exhaustive_n1": [
+        729,
+        726,
+        636,
+        90,
+        0
+      ],
+      "exhaustive_n2": [
+        38759,
+        38702,
+        35672,
+        11315,
+        0
+      ],
+      "random_panel_seed20260821": [
+        235,
+        235,
+        201,
+        61,
+        0
+      ]
+    }
+  },
+  "stage4_predicate": {
+    "bounded_mechanism_completeness_counts": {
+      "H1_random_panel_seed20260821": 233,
+      "H2_fresh_panel_seed20260825": 231,
+      "exhaustive_n1": 273,
+      "fit_exhaustive_n2": 32391
+    },
+    "confusion_matrices_TP_FP_FN_TN": {
+      "H1_random_panel_seed20260821": {
+        "P0": [
+          5,
+          0,
+          0,
+          235
+        ],
+        "P1": [
+          5,
+          0,
+          0,
+          235
+        ],
+        "P2": [
+          5,
+          0,
+          0,
+          235
+        ]
+      },
+      "H2_fresh_panel_seed20260825": {
+        "P0": [
+          5,
+          0,
+          0,
+          235
+        ],
+        "P1": [
+          5,
+          0,
+          0,
+          235
+        ],
+        "P2": [
+          5,
+          0,
+          0,
+          235
+        ]
+      },
+      "exhaustive_n1": {
+        "P0": [
+          0,
+          0,
+          0,
+          729
+        ],
+        "P1": [
+          0,
+          0,
+          0,
+          729
+        ],
+        "P2": [
+          0,
+          0,
+          0,
+          729
+        ]
+      },
+      "fit_exhaustive_n2": {
+        "P0": [
+          1,
+          0,
+          0,
+          38759
+        ],
+        "P1": [
+          1,
+          0,
+          0,
+          38759
+        ],
+        "P2": [
+          1,
+          0,
+          0,
+          38759
+        ]
+      }
+    },
+    "coverage": {
+      "H1_random_panel_seed20260821": {
+        "donor_exact_instances": 5,
+        "recall_on_donor_exact": 1.0
+      },
+      "H2_fresh_panel_seed20260825": {
+        "donor_exact_instances": 5,
+        "recall_on_donor_exact": 1.0
+      },
+      "exhaustive_n1": {
+        "donor_exact_instances": 0,
+        "recall_on_donor_exact": null
+      },
+      "fit_exhaustive_n2": {
+        "donor_exact_instances": 1,
+        "recall_on_donor_exact": 1.0
+      }
+    },
+    "fit_domain": "exhaustive_n2 (38760 instances)",
+    "held_out_generated_after_selection": true,
+    "outcome": "EXACT_PREDICATE_FOUND_P0",
+    "selected": "P0",
+    "selected_definition": "max pair g2 <= 0 AND max two-disjoint-pair bonus <= 0 AND max three-pair bonus <= 0",
+    "selected_false_positives": 0,
+    "selected_total_error": 0,
+    "target_label": "incumbent_exact := (C_F == C_inc)",
+    "training_errors": {
+      "P0": 0,
+      "P1": 0,
+      "P2": 0
+    }
+  },
+  "stage_outcomes": {
+    "stage1": "LOCAL_DOMINANCE_REFUTED",
+    "stage2": "TRADES_FOUND",
+    "stage3": "NO_STRICT_SUBEXTENSION_CLOSES",
+    "stage4": "EXACT_PREDICATE_FOUND_P0"
+  },
+  "template_source": "TARE instance MAX_R6N/R6O/R6P/R6Q (committed receipts)",
+  "transfer_verdict": "TEMPLATE_TRANSFERRED"
+}
