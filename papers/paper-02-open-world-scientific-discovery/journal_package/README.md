@@ -1,13 +1,15 @@
 # ORION-P2 journal package
 
-**Status:** `SUBMISSION_READY`; bounded paper terminal `PEER_REVIEW_READY`.
+**Scientific status:** bounded terminal `PEER_REVIEW_READY`. **Rendered-package status:**
+`SCAFFOLDING` until the inspected PDF binary is rebound and final P2
+manuscript/repository/package CI passes.
 
-This package contains the canonical 21-page review PDF, exact source/evidence
-inventory, claim/PDF audit, reproduction route, submission-operation register,
-and SHA-256 bindings. External ORION-vs-baseline superiority remains
-`CANNOT_CHECK`; the failed OpenAIRE/Crossref campaign is retained rather than
-used as support.
+The exact post-writeback render is 24 pages. Those bytes have completed independent
+24/24-page inspection and are durably identified in `evidence/FINAL_SATURATION_AUDIT.md`, but
+`journal_package/manuscript.pdf` is still intentionally absent. The package therefore
+does not yet claim rendered-byte submission authority.
 
-Author metadata, the final venue wrapper, DOI minting, and a literature refresh
-after 2026-08-31 are filing operations. Issue #283 continues to own
-`ScientificResultVerification.v1`.
+External ORION-vs-baseline superiority remains `CANNOT_CHECK`; the provider-invalid
+OpenAIRE/Crossref campaign is retained rather than used as support. Author metadata,
+the final venue wrapper, DOI minting, and a literature refresh after 2026-08-31 are
+filing operations. Issue #283 continues to own `ScientificResultVerification.v1`.
