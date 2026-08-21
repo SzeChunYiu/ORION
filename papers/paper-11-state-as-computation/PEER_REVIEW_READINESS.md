@@ -11,11 +11,11 @@
 
 ### 2. Experimental-design lens
 
-**Pass.** P11/P11B are frozen controlled results with explicit no-answer-laundering checks. P11D is permanently negative against its preregistered ≥4×-in-both-cells sparse-decoder gate. Rather than removing that result, P11E independently tests the weaker residual it exposed on a fresh seed with deterministic solver seeds. P11F independently replaces the non-terminating P11C tree attack with a prospectively bounded nonlinear attack.
+**Pass after P11G correction.** P11/P11B are frozen controlled results with explicit no-answer-laundering checks. P11D is permanently negative against its preregistered ≥4×-in-both-cells sparse-decoder gate; P11E independently tests and reproduces the weaker residual on a fresh seed. P11C remains `CANNOT_CHECK`. P11F is retained as non-authoritative because hostile review found a protocol mismatch (`n_jobs=-1` versus the written otherwise-default configuration). P11G was frozen afterward with a fresh seed, explicit single-thread trees and replay enforcement inside the terminal path.
 
 ### 3. Statistics / reproducibility lens
 
-**Pass for the claimed result set.** Exact theorems and option laws need no inferential statistics. Empirical thresholds are registered grid thresholds and `NOT_REACHED` is never extrapolated. P11D's unseeded-liblinear byte-replay defect remains visible; P11E fixes that defect prospectively and produces two byte-identical canonical payloads (`1097d94b…a4536`). P11F also reproduces byte-identically (`aedb2aa0…7dee`).
+**Pass for the claimed result set.** Exact theorems and option laws need no inferential statistics. Empirical thresholds are registered grid thresholds and `NOT_REACHED` is never extrapolated. P11D's unseeded-liblinear byte-replay defect remains visible; P11E fixes that defect prospectively and produces byte-identical canonical payloads (`1097d94b…a4536`). P11G launches two fresh Python subprocesses, requires exact scientific byte identity before promotion, and obtains identical payload SHA-256 `a2b0c33c…79a7cc`.
 
 ### 4. Novelty / donor lens
 
@@ -23,7 +23,7 @@
 
 ### 5. Referee / reporting lens
 
-**Pass for controlled scope.** The package states the strongest adverse result in the main claim ledger, reports how a stronger decoder reduces the gain, and then shows the residual independently. The paper therefore makes a superiority claim over registered dense, sparse and nonlinear decoder baselines without pretending that compilation universally dominates all downstream access mechanisms.
+**Pass for controlled scope.** The package states both failed hostile claims and protocol defects rather than deleting them, then uses independent successors to test the surviving mechanism. The paper makes a superiority claim over registered dense, sparse and deterministic nonlinear decoder baselines without pretending that compilation universally dominates all downstream access mechanisms.
 
 ## Submission checklist
 
@@ -36,9 +36,12 @@
 - [x] P11D sparse-decoder negative preserved
 - [x] P11D root cause and replay defect documented
 - [x] fresh seeded sparse replication P11E
-- [x] P11E byte-identical two-run replay
-- [x] bounded nonlinear tree successor P11F
-- [x] P11F byte-identical two-run replay
+- [x] P11E byte-identical replay
+- [x] P11C non-terminating nonlinear attempt retained as CANNOT_CHECK
+- [x] P11F protocol mismatch disclosed and removed from claim authority
+- [x] P11G frozen after review finding
+- [x] P11G single-thread deterministic trees
+- [x] P11G terminal requires two fresh subprocess replay identity
 - [x] exact optionality equations separated from real-world generalization
 - [x] explicit resource-accounting contract
 - [x] claim/evidence ledger
@@ -49,6 +52,6 @@
 
 ## Referee-facing positioning
 
-> **A representation is a computational placement decision.** P11 derives and measures how structural-search work can be moved from a downstream access mechanism into state construction. Dense universal access shows the largest gains; a hostile sparse decoder buys part of that work back but leaves a fresh deterministic 2×/4× threshold residual; and a separately frozen nonlinear tree ensemble still fails to reach the registered target through `n=1024` where compiled state succeeds at `n=64`. Specialization also creates exact future-query option debt.
+> **A representation is a computational placement decision.** P11 derives and measures how structural-search work can be moved from a downstream access mechanism into state construction. Dense universal access shows the largest gains; a hostile sparse decoder buys part of that work back but leaves a fresh deterministic 2×/4× threshold residual; and a separately frozen deterministic nonlinear tree successor remains below the registered target through `n=1024` where compiled state succeeds at `n=64`. Specialization also creates exact future-query option debt.
 
-This framing uses the negative result as causal evidence about *where the computation moved*, rather than narrowing around it.
+This framing uses negative results and protocol failures as causal/audit evidence about *where the computation moved*, rather than narrowing around or hiding them.
