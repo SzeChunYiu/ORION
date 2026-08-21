@@ -1,0 +1,246 @@
+{
+  "schema": "ORIONQ.Q2PublicationTransitionGraph.v2",
+  "date": "2026-08-21",
+  "publication_cut": "ca7df1055a43f97eaf8d142a62011c4c261af368",
+  "purpose": "Machine-readable publication graph for Q2. It records only successor relations supportable from the programme closure packet and cited receipts; chronological adjacency alone is not treated as a causal successor edge.",
+  "authority": "PUBLICATION_REPRODUCIBILITY_ONLY__NO_SCIENTIFIC_OR_NOVELTY_PROMOTION",
+  "selection_rule": {
+    "eligible_edge": "Include an edge only when the closure/receipt lineage identifies the predecessor outcome as a reason for the successor question, donor test, explanatory closure, fresh validation, or stronger theorem. Do not infer edges merely because two receipts were executed consecutively.",
+    "main_text_rule": "Main text uses the complete central R6N->R6O->R6P->R6Q/R6R/R6S recovery chain plus at most one donor-absorption example and one non-R6 robustness/donor-first-refusal example. All other eligible edges remain in the supplement graph.",
+    "negative_visibility_rule": "Every NEGATIVE, DONOR_ABSORBED, CANNOT_CHECK, REFUTED or MIXED predecessor used by an edge remains a node with its original terminal; successors do not overwrite it."
+  },
+  "nodes": [
+    {
+      "id": "R2_KNOWN_OPERATOR_TRANSFER",
+      "artifact": "research/extensions/orion-q/MAX_R2_KNOWN_OPERATOR_TRANSFER_RESULTS.json",
+      "disposition": "NEGATIVE_PARENT_SUFFICIENT",
+      "publication_role": "supplement"
+    },
+    {
+      "id": "R3B_JOINT_OBLIGATION_BINDING",
+      "artifact": "research/extensions/orion-q/MAX_R3B_JOINT_OBLIGATION_BINDING_RESULTS.json",
+      "disposition": "DONOR_ABSORBED_P7_P4_JOINT_BINDING",
+      "publication_role": "main_donor_absorption_candidate"
+    },
+    {
+      "id": "R4C_H2_REGIME_LIMITED",
+      "artifact": "research/extensions/orion-q/MAX_R4C_FRESH_H2_HETEROGENEOUS_PAIR_RESULTS.json",
+      "disposition": "NEGATIVE_REGIME_LIMITED_H2",
+      "publication_role": "supplement"
+    },
+    {
+      "id": "R4D_H2O_PUBLIC_CONFIRMATION",
+      "artifact": "research/extensions/orion-q/MAX_R4D_H2O_DUCC_CONFIRMATION_RESULTS.json",
+      "disposition": "BOUNDED_PUBLIC_SUBJECT_POSITIVE",
+      "publication_role": "supplement"
+    },
+    {
+      "id": "R5B_PROOF_OUTER_REPLAY",
+      "artifact": "research/extensions/orion-q/MAX_R5B_N2_PROOF_OUTER_REPLAY_RESULTS.json",
+      "disposition": "MIXED_FULL_R5_NOT_SUPPORTED",
+      "publication_role": "supplement"
+    },
+    {
+      "id": "R6I_EXACT_RANK2",
+      "artifact": "research/extensions/orion-q/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json",
+      "disposition": "NEGATIVE_DONOR_TIE",
+      "publication_role": "supplement"
+    },
+    {
+      "id": "R6K_EXACT_RESTORE_FACTOR",
+      "artifact": "research/extensions/orion-q/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_RESULTS.json",
+      "disposition": "NEGATIVE_DONOR_COLLAPSE",
+      "publication_role": "supplement"
+    },
+    {
+      "id": "R6L_THREE_TARE_DONOR",
+      "artifact": "research/extensions/orion-q/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_RESULTS.json",
+      "disposition": "DONOR_ABSORPTION_POSITIVE",
+      "publication_role": "supplement"
+    },
+    {
+      "id": "R6M_EXACT_THREE_TARE",
+      "artifact": "research/extensions/orion-q/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_RESULTS.json",
+      "disposition": "NEGATIVE_COLLAPSES_TO_R6L_ON_RECORDED_CHEMISTRY",
+      "publication_role": "main_chain_context"
+    },
+    {
+      "id": "R6N_SUPPORT_DOMINANCE",
+      "artifact": "research/extensions/orion-q/MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json",
+      "disposition": "HALF_THEOREM_HALF_REFUTATION_NEW_SPLIT_REGIME",
+      "publication_role": "main_chain"
+    },
+    {
+      "id": "R6O_ENLARGED_TAG",
+      "artifact": "research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json",
+      "disposition": "REFUTED_DPLUS_CLOSURE_SECOND_BORROW_REGIME",
+      "publication_role": "main_chain"
+    },
+    {
+      "id": "R6P_SUPPORT2_FINITE_CLOSURE",
+      "artifact": "research/extensions/orion-q/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_RESULTS.json",
+      "disposition": "BOUNDED_FINITE_CLOSURE_SUPPORTED",
+      "publication_role": "main_chain"
+    },
+    {
+      "id": "R6Q_REGIME_PREDICATE",
+      "artifact": "research/extensions/orion-q/MAX_R6Q_REGIME_PREDICATE_RESULTS.json",
+      "disposition": "BOUNDED_FINITE_PREDICATE_SUPPORTED",
+      "publication_role": "main_chain"
+    },
+    {
+      "id": "R6R_FRESH_SUBJECT",
+      "artifact": "research/extensions/orion-q/MAX_R6R_PROSPECTIVE_FRESH_SUBJECT_RESULTS.json",
+      "disposition": "PROSPECTIVE_BOUNDED_CONFIRMATION",
+      "publication_role": "main_chain"
+    },
+    {
+      "id": "R6S_ALL_N_SUPPORT2",
+      "artifact": "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json",
+      "disposition": "PROVEN_ALL_N_SUPPORT2_R6M_RAW_SUPPORT",
+      "publication_role": "main_chain"
+    },
+    {
+      "id": "QG5_CLOSED_FORM_FORECAST",
+      "artifact": "research/extensions/orion-qg/QG5_CERTIFIED_FORECAST_RESULTS.json",
+      "disposition": "PROSPECTIVE_EXACT_REFUTATION_OF_BROADER_CLOSED_FORM",
+      "publication_role": "main_chain_boundary"
+    },
+    {
+      "id": "QG5B_BPRIME_REPAIR",
+      "artifact": "research/extensions/orion-qg/QG5B_EXACT_FORECASTER_RESULTS.json",
+      "disposition": "SEPARATELY_FROZEN_REPAIR_FINITE_PANELS_AND_THEOREM_BACKED_F2",
+      "publication_role": "main_chain_boundary"
+    },
+    {
+      "id": "QG7_FOURTH_REGIME",
+      "artifact": "research/extensions/orion-qg/QG7_BPRIME_COMPLETENESS_RESULTS.json",
+      "disposition": "EXACT_REFUTATION_FOURTH_SUPPORT2_REGIME",
+      "publication_role": "supplement_or_boundary"
+    },
+    {
+      "id": "QG7B_BSECOND",
+      "artifact": "research/extensions/orion-qg/QG7B_HYBRID_FAMILY_RESULTS.json",
+      "disposition": "SEPARATELY_FROZEN_FINITE_REPAIR",
+      "publication_role": "supplement_or_boundary"
+    },
+    {
+      "id": "QG7C_CLASSIFICATION_PARTIAL",
+      "artifact": "research/extensions/orion-qg/QG7C_CLASSIFICATION_RESULTS.json",
+      "disposition": "PARTIAL_ONE_PINNED_COMMS2_PROOF_LINK_OPEN",
+      "publication_role": "supplement_or_boundary"
+    },
+    {
+      "id": "N1C_TYPED_FAILURE_STATE",
+      "artifact": "research/extensions/orion-q/nlanes/N1_C_COSTLY_VERIFICATION_RESULTS.json",
+      "disposition": "BOUNDED_STATE_VALUE_POLICY_PARENT_SUFFICIENT",
+      "publication_role": "main_donor_absorption_candidate"
+    },
+    {
+      "id": "N2F5_CROSSOVER",
+      "artifact": "research/extensions/orion-q/nlanes/N2_F5_CROSSOVER_PREDICTION_RESULTS.json",
+      "disposition": "BOUNDED_RESIDUAL_SUPPORTED_BEFORE_DONOR_TEST",
+      "publication_role": "supplement"
+    },
+    {
+      "id": "N2F5B_DONOR_COMPARISON",
+      "artifact": "research/extensions/orion-q/nlanes/N2_F5B_DONOR_COMPARISON_RESULTS.json",
+      "disposition": "DONOR_ABSORBED_ORIGINAL_WORLD_MISSPECIFICATION_EDGE_ONLY",
+      "publication_role": "main_donor_absorption_candidate"
+    }
+  ],
+  "edges": [
+    {
+      "from": "R6M_EXACT_THREE_TARE",
+      "to": "R6N_SUPPORT_DOMINANCE",
+      "relation": "EXPLAINS_NEGATIVE_AND_TESTS_DECLARED_COUPLING_GAP",
+      "reason": "R6I/R6K/R6M donor collapses motivate explanatory support-dominance closure; R6N explicitly preserves a Tag-repair analytic gap."
+    },
+    {
+      "from": "R6N_SUPPORT_DOMINANCE",
+      "to": "R6O_ENLARGED_TAG",
+      "relation": "REFUTATION_TO_TARGETED_FAMILY_REPAIR",
+      "reason": "R6N exact split-anchor/weight-two-Tag counterexample refutes old donor closure and licenses D+ arbitrary-anchor/minimal-Tag successor."
+    },
+    {
+      "from": "R6O_ENLARGED_TAG",
+      "to": "R6P_SUPPORT2_FINITE_CLOSURE",
+      "relation": "SECOND_REFUTATION_TO_SUPPORT2_FAMILY",
+      "reason": "D+ is refuted by exact frame-for-Tag borrow witnesses; D++ freezes the implicated support-two mechanism."
+    },
+    {
+      "from": "R6P_SUPPORT2_FINITE_CLOSURE",
+      "to": "R6Q_REGIME_PREDICATE",
+      "relation": "FINITE_CLOSURE_TO_EXPLANATORY_CLASSIFIER",
+      "reason": "After D++ closes all then-registered gaps, R6Q freezes a no-DP structural predicate for donor/split/borrow regimes on frozen domains."
+    },
+    {
+      "from": "R6Q_REGIME_PREDICATE",
+      "to": "R6R_FRESH_SUBJECT",
+      "relation": "FINITE_PREDICATE_TO_PROSPECTIVE_EXTERNALIZED_TEST",
+      "reason": "R6R selects a fresh public subject and stages the R6Q prediction before exact ground truth."
+    },
+    {
+      "from": "R6P_SUPPORT2_FINITE_CLOSURE",
+      "to": "R6S_ALL_N_SUPPORT2",
+      "relation": "FINITE_POSITIVE_TO_STRONGER_THEOREM",
+      "reason": "R6P leaves the all-n support>=3 exclusion explicitly open; R6S closes exactly that proof obligation."
+    },
+    {
+      "from": "R6Q_REGIME_PREDICATE",
+      "to": "R6S_ALL_N_SUPPORT2",
+      "relation": "CLASSIFIER_DOES_NOT_SUBSTITUTE_FOR_SUPPORT_THEOREM",
+      "reason": "R6S closes the support-family theorem while preserving the three-family completeness identity as domain-bounded."
+    },
+    {
+      "from": "R6R_FRESH_SUBJECT",
+      "to": "QG5_CLOSED_FORM_FORECAST",
+      "relation": "BOUNDED_PROSPECTIVE_CONFIRMATION_TO_BROADER_FALSIFIER",
+      "reason": "The earlier 15/15 confirmation remains bounded; a later prospectively generated n=3 row tests and refutes the broader simple closed form."
+    },
+    {
+      "from": "QG5_CLOSED_FORM_FORECAST",
+      "to": "QG5B_BPRIME_REPAIR",
+      "relation": "EXACT_REFUTATION_TO_SEPARATELY_FROZEN_MECHANISM_REPAIR",
+      "reason": "The refuting witness localizes an out-of-own-target-support phantom borrow; B-prime freezes that enlargement separately."
+    },
+    {
+      "from": "QG5B_BPRIME_REPAIR",
+      "to": "QG7_FOURTH_REGIME",
+      "relation": "REPAIRED_FINITE_CLOSED_FORM_TO_HOSTILE_COMPLETENESS_TEST",
+      "reason": "QG7 freezes adversarial support-two shapes to test whether B-prime is all-n complete and finds exact fourth-regime witnesses."
+    },
+    {
+      "from": "QG7_FOURTH_REGIME",
+      "to": "QG7B_BSECOND",
+      "relation": "EXACT_REFUTATION_TO_SEPARATELY_FROZEN_BSECOND_REPAIR",
+      "reason": "B-second is frozen to represent the weight-two-Tag plus phantom-borrow hybrid exposed by QG7."
+    },
+    {
+      "from": "QG7B_BSECOND",
+      "to": "QG7C_CLASSIFICATION_PARTIAL",
+      "relation": "FINITE_CLOSURE_TO_ALL_N_CLASSIFICATION_ATTEMPT",
+      "reason": "QG7b explicitly leaves L4b/L4c all-n obligations; QG7c closes all but the pinned comm-s2 proof link."
+    },
+    {
+      "from": "N2F5_CROSSOVER",
+      "to": "N2F5B_DONOR_COMPARISON",
+      "relation": "BOUNDED_RESIDUAL_TO_DONOR_FIRST_RIGHT_OF_REFUSAL",
+      "reason": "The surviving F5 residual is explicitly carried forward to a stronger model-selection donor comparison, which absorbs it on the original world."
+    }
+  ],
+  "standalone_negative_or_absorbed_nodes_without_asserted_successor_edge": [
+    "R2_KNOWN_OPERATOR_TRANSFER",
+    "R3B_JOINT_OBLIGATION_BINDING",
+    "R4C_H2_REGIME_LIMITED",
+    "R5B_PROOF_OUTER_REPLAY",
+    "R6I_EXACT_RANK2",
+    "R6K_EXACT_RESTORE_FACTOR",
+    "N1C_TYPED_FAILURE_STATE"
+  ],
+  "notes": [
+    "Standalone nodes remain publication-eligible examples of negative/donor-first-refusal terminals, but this graph refuses to invent a causal successor relation unless the closure packet/receipt lineage supports one.",
+    "Q2 uses detailed quantum mathematics only to verify transition reality; Q1/QG companion papers own the mathematical headline claims.",
+    "A final publication validator should check referenced paths/digests against the exact submission cut and fail if any predecessor artifact was rewritten after its recorded successor."
+  ]
+}
