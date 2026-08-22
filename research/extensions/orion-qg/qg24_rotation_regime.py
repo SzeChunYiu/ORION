@@ -839,3 +839,170 @@ DONOR_RECORDS = [
                  "QG-19's mechanism."),
     },
 ]
+
+
+# ---------------------------------------------------------------------------
+# 7. Driver
+# ---------------------------------------------------------------------------
+N_VALUES = (1, 2, 4, 8, 12, 14)
+CAPS = {
+    "runtime_cap_minutes_per_run": 45,
+    "q1_sizes_enumerated": list(N_VALUES),
+    "q1_size_note": ("the enumeration is exact and complete at every n listed; "
+                     "n=8/12 are QG-21's D1 sizes and n=12/14 its D2 sizes, so "
+                     "the applied sizes are covered. No size was attempted and "
+                     "abandoned."),
+    "q2_panel": "all 90 receipted QG-21 rows, both intervener models",
+    "no_sampling_anywhere": True,
+}
+
+
+def main() -> int:
+    t0 = time.time()
+    from orion_research_harness.donor_search import (  # noqa: E402
+        QUERY_FAMILIES, describe, validate_donor_search)
+
+    checks: dict[str, Any] = {}
+    protocol_path = REPO / PROTOCOL
+    protocol_sha = sha256_file(protocol_path)
+
+    # --- G1: donor search first, and it fails closed -----------------------
+    for rec in DONOR_RECORDS:
+        validate_donor_search(rec)
+    donor_block = {
+        "validated_by": "orion_research_harness.donor_search.validate_donor_search",
+        "query_families_required": list(QUERY_FAMILIES),
+        "records": [dict(r, verdict_means=describe(r["verdict"])) for r in DONOR_RECORDS],
+        "log": "development/orion-qg-regime-geometry/QG24_DONOR_SEARCH.md",
+        "document_level_verification": False,
+        "retrieval_note": ("WebSearch returned snippet-level text; every direct "
+                           "document fetch (arxiv.org, cs.ox.ac.uk) was refused "
+                           "by the egress proxy with EGRESS_BLOCKED, so every "
+                           "verbatim passage below is snippet-level and is marked "
+                           "document_level_verification: false. The lane does not "
+                           "take the QG24_BLOCKED terminal because retrieval was "
+                           "available, only document fetch was not."),
+        "prior_expectation_recorded_before_searching": (
+            "protocol section 1: this lane EXPECTS to be subsumed; phase "
+            "polynomials, T-par, TODD, Gray-Synth and Pauli-rotation merging are "
+            "a heavily worked area. The expectation was met."),
+    }
+
+    # --- Lemma L1 -----------------------------------------------------------
+    lemma_n1 = lemma_l1_check_n1()
+    lemma_n2 = lemma_l1_check_n2_patterns()
+
+    # --- Q1: complete enumeration ------------------------------------------
+    counts = q1_exact_counts(list(N_VALUES), checks)
+    adm = admissible_count_dp(list(N_VALUES))
+    q1_rows = {}
+    sums_ok, brute_ok = True, True
+    for n in N_VALUES:
+        expect = 8 * adm[n] * (4 ** (4 * n))
+        entry = {"enumerated_domain_size_reduced": expect,
+                 "full_configuration_space_admissible": expect * (4 ** (2 * n)),
+                 "independent_admissible_frame_tag_count": adm[n],
+                 "per_model": {}}
+        for model in MODELS:
+            dist = {str(r): counts[n][model][r] for r in (7, 8, 9)}
+            tot = sum(counts[n][model][r] for r in (7, 8, 9))
+            if tot != expect:
+                sums_ok = False
+            entry["per_model"][model] = {
+                "distribution_reduced": dist,
+                "distribution_full": {k: v * (4 ** (2 * n)) for k, v in dist.items()},
+                "sums_to_domain": tot == expect,
+                "fraction_below_nine": (
+                    0.0 if tot == 0 else
+                    (counts[n][model][7] + counts[n][model][8]) / tot),
+            }
+        q1_rows[str(n)] = entry
+    for model in MODELS:
+        bf = lemma_n1["brute_force_distribution_n1_reduced"][model]
+        for r in (7, 8, 9):
+            if int(bf[str(r)]) != counts[1][model][r]:
+                brute_ok = False
+    variation_found = any(counts[n][m][r] > 0
+                          for n in N_VALUES for m in MODELS for r in (7, 8))
+    invariant_at_nine = not variation_found
+
+    # --- QG-21's own serialized witnesses, re-measured ----------------------
+    qg21 = json.loads(_real_open(QG21_RESULTS).read_text())
+    wit = {m: {} for m in MODELS}
+    wit_bad = []
+    for imp in qg21["improvements"]:
+        w = witness_rotation_count(imp["improved_compilation"], imp["target_pairs"],
+                                   int(imp["n_qubits"]))
+        if not all(w["grammar_checks"].values()):
+            wit_bad.append([imp["subject"], imp["objective"]])
+        for m in MODELS:
+            k = str(w[m]["rotations"])
+            wit[m][k] = wit[m].get(k, 0) + 1
+
+    # --- Stage 1: predictions staged and digested BEFORE any referee call ---
+    rows = qg21["rows"]
+    held_out = [r for r in rows if r["domain"] == "D2"]
+    staged = []
+    for r in held_out:
+        pred = merge_predicate_seven(r["target_pairs"], int(r["n_qubits"]))
+        staged.append({
+            "subject": r["subject"], "matching": r["matching"],
+            "n_qubits": int(r["n_qubits"]),
+            "predicted_min_rotations_factored": 7 if pred["seven_reachable_factored"] else 9,
+            "predicted_min_rotations_in_place": 7 if pred["seven_reachable_in_place"] else 9,
+            "predicted_clifford_price_nonnegative": True,
+        })
+    stage1 = {"lane": "QG-24", "panel": "D2 held-out rows",
+              "rule": ("the decidable predicate merge_predicate_seven, derived "
+                       "analytically from Lemma L1 and never fitted to any row"),
+              "predictions": staged}
+    stage1_digest = digest(stage1)
+    referee_calls_in_stage1 = _REFEREE_STATE["calls_in_stage1"]
+    _REFEREE_STATE["stage"] = "stage2"
+
+    # --- Stage 2: referee ---------------------------------------------------
+    panel = []
+    for r in rows:
+        n = int(r["n_qubits"])
+        pred = merge_predicate_seven(r["target_pairs"], n)
+        c_fac = constrained_clifford_min(r["target_pairs"], n, False)
+        c_inp = constrained_clifford_min(r["target_pairs"], n, True)
+        base = int(r["referee"]["theta_FT"]["C_DP"])
+        panel.append({
+            "subject": r["subject"], "domain": r["domain"], "n_qubits": n,
+            "matching": r["matching"],
+            "predicate": pred,
+            "r6m_theta_FT_optimum_clifford": base,
+            "seven_rotation_min_clifford_factored": c_fac,
+            "seven_rotation_min_clifford_in_place": c_inp,
+            "clifford_price_factored": None if c_fac is None else c_fac - base,
+            "clifford_price_in_place": None if c_inp is None else c_inp - base,
+            "min_rotations_factored": 7 if c_fac is not None else None,
+            "min_rotations_in_place": 7 if c_inp is not None else None,
+        })
+    by_key = {(p["subject"], json.dumps(p["matching"]), p["n_qubits"]): p
+              for p in panel}
+    forecast_hits, forecast_rows = 0, 0
+    for s in staged:
+        p = by_key[(s["subject"], json.dumps(s["matching"]), s["n_qubits"])]
+        forecast_rows += 1
+        ok = (s["predicted_min_rotations_factored"] == p["min_rotations_factored"]
+              and s["predicted_min_rotations_in_place"] == p["min_rotations_in_place"])
+        forecast_hits += 1 if ok else 0
+    prices_f = [p["clifford_price_factored"] for p in panel]
+    prices_i = [p["clifford_price_in_place"] for p in panel]
+
+    def _dist(vals):
+        v = sorted(x for x in vals if x is not None)
+        if not v:
+            return None
+        return {"min": v[0], "max": v[-1], "median": v[len(v) // 2],
+                "rows_free_or_better": sum(1 for x in v if x <= 0), "rows": len(v)}
+
+    runtime = round(time.time() - t0, 1)
+    print(json.dumps({"qg24_runtime_seconds": runtime}), file=sys.stderr)
+    return _emit(protocol_sha, checks, donor_block, lemma_n1, lemma_n2, q1_rows,
+                 counts, sums_ok, brute_ok, variation_found, invariant_at_nine,
+                 wit, wit_bad, stage1, stage1_digest, referee_calls_in_stage1,
+                 panel, forecast_hits, forecast_rows, _dist(prices_f),
+                 _dist(prices_i), qg21)
