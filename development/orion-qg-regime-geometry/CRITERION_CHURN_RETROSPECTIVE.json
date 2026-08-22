@@ -35,7 +35,13 @@
    "reported_verdict": "FAIL"
   }
  ],
- "finding": "The gate is silent on QG-23, correctly: that lane changed its criterion toward the harsher reading and reported a refutation, which is the opposite of the failure mode. It engages on QG-24, whose loosened rule carried a PASS the frozen rule would not have given -- and QG-24 clears it, because the lane had already exhibited that the loosened rule still rejects a stripped passage. So on this programme's own history the gate confirms rather than catches. What it changes is that the demonstration becomes a precondition instead of something an adjudicator happened to check by hand.",
+ "derivation_premises": {
+  "both_real_cases_clear": true,
+  "qg23_reported_a_negative_so_the_gate_does_not_engage": true,
+  "qg24_frozen_rule_would_have_failed": true,
+  "qg24_reported_a_pass_under_a_changed_rule_so_the_gate_engages": true
+ },
+ "finding": "The gate is silent on QG-23: that lane changed its criterion toward the harsher reading and reported FAIL, and a changed criterion yielding a negative is not the failure mode this module exists to catch. It engages on QG-24, whose loosened rule carried PASS where the frozen rule -- run, not assumed -- returns FAIL. Gate results: QG-23 CLEARS, QG-24 CLEARS. On this programme's own history the gate therefore confirms rather than catches. What it changes is that the demonstration becomes a precondition instead of something an adjudicator happened to check by hand.",
  "gate_is_not_vacuous": {
   "case": "QG-24 with exhibited_rejection_ref removed",
   "gate": "REFUSED",

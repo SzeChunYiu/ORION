@@ -182,17 +182,62 @@ def main() -> int:
             "gate_reason": str(exc),
         }
 
-    out["finding"] = (
-        "The gate is silent on QG-23, correctly: that lane changed its criterion "
-        "toward the harsher reading and reported a refutation, which is the "
-        "opposite of the failure mode. It engages on QG-24, whose loosened rule "
-        "carried a PASS the frozen rule would not have given -- and QG-24 clears "
-        "it, because the lane had already exhibited that the loosened rule still "
-        "rejects a stripped passage. So on this programme's own history the gate "
-        "confirms rather than catches. What it changes is that the demonstration "
-        "becomes a precondition instead of something an adjudicator happened to "
-        "check by hand."
+    # The finding is DERIVED from what the gate returned, not written ahead of it.
+    #
+    # The first draft of this script computed each gate result and then wrote a
+    # fixed narrative asserting that QG-23 was silent and QG-24 cleared. Had
+    # either come back REFUSED, the committed artifact would have kept saying
+    # they passed -- a conclusion independent of its own evidence, written into
+    # the retrospective for a module whose entire subject is conclusions that
+    # must depend on their criteria. Caught in review on PR #892.
+    gates = {c["lane"]: c["gate"] for c in out["cases"]}
+    qg23_was_gated = (
+        qg23["applied_criterion_digest"] != qg23["frozen_criterion_digest"]
+        and qg23["reported_verdict"] == PASS
     )
+    qg24_was_gated = (
+        qg24["applied_criterion_digest"] != qg24["frozen_criterion_digest"]
+        and qg24["reported_verdict"] == PASS
+    )
+
+    premises = {
+        "qg23_reported_a_negative_so_the_gate_does_not_engage": not qg23_was_gated,
+        "qg24_reported_a_pass_under_a_changed_rule_so_the_gate_engages": qg24_was_gated,
+        "qg24_frozen_rule_would_have_failed": frozen_verdict == FAIL,
+        "both_real_cases_clear": gates == {"QG-24": "CLEARS", "QG-23": "CLEARS"},
+    }
+    out["derivation_premises"] = premises
+
+    engaged = "engages on" if qg24_was_gated else "does not engage on"
+    silent = "silent on" if not qg23_was_gated else "engaged on"
+    out["finding"] = (
+        f"The gate is {silent} QG-23: that lane changed its criterion toward the "
+        f"harsher reading and reported {qg23['reported_verdict']}, and a changed "
+        "criterion yielding a negative is not the failure mode this module "
+        f"exists to catch. It {engaged} QG-24, whose loosened rule carried "
+        f"{qg24['reported_verdict']} where the frozen rule -- run, not assumed -- "
+        f"returns {frozen_verdict}. Gate results: "
+        + ", ".join(f"{lane} {verdict}" for lane, verdict in sorted(gates.items()))
+        + ". On this programme's own history the gate therefore "
+        + ("confirms rather than catches" if premises["both_real_cases_clear"]
+           else "REFUSES a case that was adjudicated sound by hand, and that "
+                "discrepancy is the result and must be investigated before this "
+                "artifact is cited")
+        + ". What it changes is that the demonstration becomes a precondition "
+        "instead of something an adjudicator happened to check by hand."
+    )
+
+    # Fail closed, exactly as the vacuity check below does: this script may not
+    # commit an artifact whose narrative rests on premises that did not hold.
+    broken = [name for name, held in premises.items() if not held]
+    if broken:
+        raise SystemExit(
+            "the retrospective's premises did not hold: "
+            + ", ".join(broken)
+            + ". The finding text is derived from these, so writing the artifact "
+            "would publish a narrative its own evidence contradicts. Investigate "
+            "the discrepancy rather than relaxing this check."
+        )
 
     dest = pathlib.Path(
         "development/orion-qg-regime-geometry/CRITERION_CHURN_RETROSPECTIVE.json"
