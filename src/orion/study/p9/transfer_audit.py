@@ -56,6 +56,7 @@ def audit_p9_transfer_margins() -> dict[str, Any]:
     margins = p9.d1_contrast_margins(result)
     sensitivity = p9.d1_composition_sensitivity(result)
     collapse = p9.d1_view_collapse_report()
+    reproduction = p9.d1_reproduction_report(result)
     oracle = p9.d1_oracle_identity()
 
     # Three verdicts that must stay separable, because they have three different
@@ -67,6 +68,7 @@ def audit_p9_transfer_margins() -> dict[str, Any]:
     others = (
         *(item.outcome for item in margins),
         *(item.outcome for item in collapse.values()),
+        *(item.outcome for item in reproduction.values()),
         oracle_outcome,
     )
     for other in others:
@@ -80,6 +82,7 @@ def audit_p9_transfer_margins() -> dict[str, Any]:
         "result_digest": result["result_digest"],
         "terminal": result["terminal"],
         "dataset_provenance": provenance,
+        "reproduction": reproduction,
         "margins": margins,
         "sensitivity": sensitivity,
         "view_collapse": collapse,
@@ -99,6 +102,10 @@ def report_as_json(report: dict[str, Any]) -> dict[str, Any]:
         },
         "view_collapse": {
             view: item.as_json() for view, item in sorted(report["view_collapse"].items())
+        },
+        "dataset_provenance": report["dataset_provenance"],
+        "reproduction": {
+            arm: item.as_json() for arm, item in sorted(report["reproduction"].items())
         },
         "oracle": report["oracle"].as_json(),
         "oracle_outcome": report["oracle_outcome"].value,
@@ -157,6 +164,15 @@ def _render(report: dict[str, Any]) -> str:
                 f"{item.restored_by_in_domain_refit} key(s) restored",
                 f"    outcome: {item.outcome.value} ({item.reason.value})",
                 f"    {item.mechanism}",
+            ]
+        )
+    lines.append("")
+    lines.append("  re-running the frozen protocol and comparing to the archive")
+    for arm, item in sorted(report["reproduction"].items()):
+        lines.extend(
+            [
+                f"    {arm}: {item.outcome.value} ({item.reason.value})",
+                f"      {item.detail}",
             ]
         )
     oracle = report["oracle"]

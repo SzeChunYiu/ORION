@@ -508,3 +508,123 @@ def test_the_remint_scope_control_changes_only_the_surface() -> None:
     ]
     assert [row.label for row in repaired.test] == [row.label for row in frozen.test]
     assert repaired.test[0].surface_left != frozen.test[0].surface_left
+
+
+# --- The archive's numbers, re-run rather than transcribed.
+
+
+@pytest.fixture(scope="module")
+def reproduction() -> dict:
+    return p9.d1_reproduction_report()
+
+
+def test_three_of_the_four_archived_arms_come_back(reproduction) -> None:
+    for arm in ("TRANSCRIPT_BAG", "TYPED_RELATIONAL", "UNTYPED_PAIR"):
+        item = reproduction[arm]
+        assert item.reason is p9.ArmReproductionReason.ARM_REPRODUCED, arm
+        assert item.outcome is Outcome.PASS, arm
+        assert item.archived_config_id == item.reproduced_config_id, arm
+        assert item.archived_accuracy == item.reproduced_accuracy, arm
+
+
+def test_the_serialized_bag_arm_does_not_come_back(reproduction) -> None:
+    """The one arm whose collapse drives a published CANNOT_CHECK.
+
+    Same dataset digest, same selected configuration, different protected
+    accuracy: 0.5 archived against 0.75 re-run. The audit measured that archived
+    0.5 as a constant comparator for as long as it existed and never asked
+    whether the 0.5 came back.
+    """
+
+    item = reproduction["TYPED_SERIALIZED_BAG"]
+
+    assert item.archived_config_id == item.reproduced_config_id == "logistic-C1"
+    assert item.archived_accuracy == 0.5
+    assert item.reproduced_accuracy == 0.75
+    assert item.reason is p9.ArmReproductionReason.SCORE_DIVERGED
+
+
+def test_the_reproduced_serialized_bag_arm_is_not_constant(reproduction) -> None:
+    """Why the divergence matters rather than being a rounding difference.
+
+    ``COMPARATOR_CONSTANT`` on the published margin against this arm is a fact
+    about the archived run. Re-run, the same configuration emits two labels, so
+    the comparator responds and the margin would be measurable.
+    """
+
+    item = reproduction["TYPED_SERIALIZED_BAG"]
+
+    assert item.archived_distinct_predictions == 1
+    assert item.reproduced_distinct_predictions == 2
+
+
+def test_a_divergence_off_the_recorded_environment_does_not_convict_the_archive(
+    reproduction,
+) -> None:
+    """Two things changed and only one was measured, so the verdict says so."""
+
+    item = reproduction["TYPED_SERIALIZED_BAG"]
+
+    assert item.environment_departures, "this environment is not the recorded one"
+    assert item.outcome is Outcome.CANNOT_CHECK
+    assert "does not convict the archive" in item.detail
+
+
+def test_the_same_divergence_under_the_recorded_environment_would_be_a_failure() -> None:
+    """The verdict is environment-conditional, and both branches are reachable."""
+
+    diverged = p9.ArmReproduction(
+        arm_id="TYPED_SERIALIZED_BAG",
+        archived_config_id="logistic-C1",
+        reproduced_config_id="logistic-C1",
+        archived_accuracy=0.5,
+        reproduced_accuracy=0.75,
+        archived_distinct_predictions=1,
+        reproduced_distinct_predictions=2,
+        environment_departures=(),
+    )
+
+    assert diverged.outcome is Outcome.FAIL
+    assert diverged.reason is p9.ArmReproductionReason.SCORE_DIVERGED
+
+
+def test_a_different_selection_is_reported_apart_from_a_different_score() -> None:
+    """Two divergences with two different repairs must not share one verdict."""
+
+    selection = p9.ArmReproduction(
+        arm_id="ANY",
+        archived_config_id="logistic-C1",
+        reproduced_config_id="tree-depth6",
+        archived_accuracy=0.5,
+        reproduced_accuracy=0.5,
+        archived_distinct_predictions=1,
+        reproduced_distinct_predictions=1,
+        environment_departures=(),
+    )
+
+    assert selection.reason is p9.ArmReproductionReason.SELECTION_DIVERGED
+    assert "selected tree-depth6" in selection.detail
+
+
+def test_the_recorded_environment_is_pinned_from_the_committed_record() -> None:
+    assert p9.D1_RECORDED_ENVIRONMENT == {
+        "python": "3.12.13",
+        "numpy": "2.5.2",
+        "scikit-learn": "1.9.0",
+        "scipy": "1.18.0",
+    }
+    assert set(p9.d1_observed_environment()) == set(p9.D1_RECORDED_ENVIRONMENT)
+
+
+def test_the_audit_carries_the_reproduction_and_it_reaches_the_rollup() -> None:
+    report = audit_p9_transfer_margins()
+
+    assert set(report["reproduction"]) == {
+        "TRANSCRIPT_BAG",
+        "TYPED_RELATIONAL",
+        "TYPED_SERIALIZED_BAG",
+        "UNTYPED_PAIR",
+    }
+    assert report["outcome"].blocks is True
+    encoded = report_as_json(report)
+    assert encoded["reproduction"]["TYPED_SERIALIZED_BAG"]["reason"] == "SCORE_DIVERGED"

@@ -43,6 +43,19 @@ The three keys that do survive are arity counts and take ``(2, 2, True)`` on all
 128 protected cases, so the denominator is one for a fourth and independent
 reason as well.
 
+The margins above are read off the archive rather than re-run, which raises the
+question of whether the archive comes back. :func:`d1_reproduction_report` calls
+the same entry point the official execution called and compares every arm. Three
+of the four return their selected configuration and their protected accuracy
+exactly. ``TYPED_SERIALIZED_BAG`` does not: same dataset digest, same selected
+``logistic-C1``, protected accuracy 0.75 against the archived 0.5 --- and where
+the archived arm emitted one label on all 128 protected cases, the re-run emits
+two. So ``COMPARATOR_CONSTANT`` on the published margin against that arm is a
+fact about the archived run rather than about the representation. The recorded
+execution environment is not this one, so the verdict is ``CANNOT_CHECK`` with
+the departures named; under the recorded environment the same divergence would
+be a ``FAIL``.
+
 Everything above is measured on a *regenerated* dataset, which raises the
 question of which dataset. Protocol v1.2's dependency-mutation correction is
 installed by importing :mod:`orion.study.p9.d1_data_runtime`, which rebinds
@@ -713,6 +726,204 @@ def d1_view_collapse() -> dict[str, dict[str, Any]]:
     """The view-collapse report as plain JSON-safe rows."""
 
     return {view: item.as_json() for view, item in d1_view_collapse_report().items()}
+
+
+#: The environment ``RESULT_EXECUTION_ENVIRONMENT_V1.md`` records for the official
+#: D1 execution lane. A reproduction that disagrees under a *different* environment
+#: has not shown the archive wrong; one that disagrees under this one has.
+D1_RECORDED_ENVIRONMENT: Mapping[str, str] = {
+    "python": "3.12.13",
+    "numpy": "2.5.2",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+}
+
+
+def d1_observed_environment() -> dict[str, str]:
+    """The versions this process is actually running."""
+
+    import platform
+
+    import numpy
+    import scipy
+    import sklearn
+
+    return {
+        "python": platform.python_version(),
+        "numpy": numpy.__version__,
+        "scikit-learn": sklearn.__version__,
+        "scipy": scipy.__version__,
+    }
+
+
+def d1_environment_departures() -> tuple[str, ...]:
+    """Which recorded dependency versions this process does not match."""
+
+    observed = d1_observed_environment()
+    return tuple(
+        f"{name}: recorded {recorded}, observed {observed.get(name, 'absent')}"
+        for name, recorded in sorted(D1_RECORDED_ENVIRONMENT.items())
+        if observed.get(name) != recorded
+    )
+
+
+class ArmReproductionReason(str, Enum):
+    """What re-running the frozen protocol said about one archived arm."""
+
+    ARM_REPRODUCED = "ARM_REPRODUCED"
+    #: The re-run's model selection picked a different configuration, so the two
+    #: accuracies are not comparable and the divergence is upstream of scoring.
+    SELECTION_DIVERGED = "SELECTION_DIVERGED"
+    #: Same configuration, same dataset digest, different protected accuracy.
+    SCORE_DIVERGED = "SCORE_DIVERGED"
+
+    @property
+    def blocks(self) -> bool:
+        return self is not ArmReproductionReason.ARM_REPRODUCED
+
+
+@dataclass(frozen=True)
+class ArmReproduction:
+    """One archived arm, re-run under the frozen protocol and compared.
+
+    The audit above measures whether each archived comparator *responded*. It
+    never asked whether the archived numbers come back, and three of P9's four
+    arms do while the fourth does not --- the fourth being the one whose collapse
+    drives a published ``CANNOT_CHECK``. Reading a margin off an archive without
+    that check is trusting a number because it is committed.
+
+    The verdict is not "the archive is wrong". A disagreement under an
+    environment that is not the recorded one is a ``CANNOT_CHECK`` with the
+    departures named, because two things changed and only one was measured.
+    """
+
+    arm_id: str
+    archived_config_id: str
+    reproduced_config_id: str
+    archived_accuracy: float
+    reproduced_accuracy: float
+    archived_distinct_predictions: int
+    reproduced_distinct_predictions: int
+    environment_departures: tuple[str, ...]
+
+    @property
+    def reason(self) -> ArmReproductionReason:
+        if self.archived_config_id != self.reproduced_config_id:
+            return ArmReproductionReason.SELECTION_DIVERGED
+        if self.archived_accuracy != self.reproduced_accuracy:
+            return ArmReproductionReason.SCORE_DIVERGED
+        return ArmReproductionReason.ARM_REPRODUCED
+
+    @property
+    def blocker(self) -> str | None:
+        """The named reason this arm's divergence cannot be scored, if it cannot."""
+
+        if self.reason.blocks and self.environment_departures:
+            return "environment_identity_is_not_the_recorded_one"
+        return None
+
+    @property
+    def outcome(self) -> Outcome:
+        if not self.reason.blocks:
+            return Outcome.PASS
+        # Agreement under a different environment is stronger evidence than
+        # agreement under the same one; disagreement under a different one is
+        # weaker, and is not licensed to convict the archive. The blocker is
+        # spelled at the site so the CANNOT_CHECK inventory can read it off here
+        # rather than recording an unexamined one.
+        return (
+            Outcome.CANNOT_CHECK
+            if self.blocker == "environment_identity_is_not_the_recorded_one"
+            else Outcome.FAIL
+        )
+
+    @property
+    def blocks(self) -> bool:
+        return self.outcome.blocks
+
+    @property
+    def detail(self) -> str:
+        if not self.reason.blocks:
+            return (
+                f"{self.archived_config_id} selected again and scored "
+                f"{self.reproduced_accuracy} again"
+            )
+        if self.reason is ArmReproductionReason.SELECTION_DIVERGED:
+            return (
+                f"the re-run selected {self.reproduced_config_id} where the archive "
+                f"selected {self.archived_config_id}"
+            )
+        parts = [
+            f"{self.archived_config_id} was selected again on the same dataset digest "
+            f"and scored {self.reproduced_accuracy} against the archived "
+            f"{self.archived_accuracy}",
+            f"distinct protected predictions {self.archived_distinct_predictions} "
+            f"archived, {self.reproduced_distinct_predictions} reproduced",
+        ]
+        if self.environment_departures:
+            parts.append(
+                "the recorded execution environment is not this one ("
+                + "; ".join(self.environment_departures)
+                + "), so this does not convict the archive"
+            )
+        return "; ".join(parts)
+
+    def as_json(self) -> dict[str, Any]:
+        return {
+            "arm_id": self.arm_id,
+            "archived_config_id": self.archived_config_id,
+            "reproduced_config_id": self.reproduced_config_id,
+            "archived_accuracy": self.archived_accuracy,
+            "reproduced_accuracy": self.reproduced_accuracy,
+            "archived_distinct_predictions": self.archived_distinct_predictions,
+            "reproduced_distinct_predictions": self.reproduced_distinct_predictions,
+            "environment_departures": list(self.environment_departures),
+            "blocker": self.blocker,
+            "reason": self.reason.value,
+            "outcome": self.outcome.value,
+            "detail": self.detail,
+        }
+
+
+def d1_reproduction_report(
+    result: Mapping[str, Any] | None = None,
+) -> dict[str, ArmReproduction]:
+    """Re-run the frozen D1 protocol and compare every arm to the archive.
+
+    Costs about eight seconds and one scikit-learn import, which is why it is a
+    function rather than module state. It regenerates nothing by hand: it calls
+    the same entry point the official execution called.
+    """
+
+    from .d1_runtime import run_d1
+
+    archived = result if result is not None else load_shipped_d1_result()
+    frozen_d1_dataset()  # digest guard before anything is fitted
+    fresh = run_d1(subject_sha="orion.study.p9.transfer_margins.d1_reproduction_report")
+    if fresh["dataset_manifest_digest"] != archived["dataset_manifest_digest"]:
+        raise D1DatasetProvenanceError(
+            "the re-run built a different dataset from the archived one: "
+            f"{fresh['dataset_manifest_digest']} != {archived['dataset_manifest_digest']}"
+        )
+    departures = d1_environment_departures()
+    report: dict[str, ArmReproduction] = {}
+    for arm in sorted(archived["results"]):
+        old, new = archived["results"][arm], fresh["results"][arm]
+        report[arm] = ArmReproduction(
+            arm_id=arm,
+            archived_config_id=str(old["selected"]["config_id"]),
+            reproduced_config_id=str(new["selected"]["config_id"]),
+            archived_accuracy=float(old["test"]["accuracy"]),
+            reproduced_accuracy=float(new["test"]["accuracy"]),
+            archived_distinct_predictions=len(
+                {str(row["prediction"]) for row in old["test_predictions"]}
+            ),
+            reproduced_distinct_predictions=len(
+                {str(row["prediction"]) for row in new["test_predictions"]}
+            ),
+            environment_departures=departures,
+        )
+    return report
 
 
 D1_ORACLE_THEORY_ID = "D1 exact typed relational comparator vs D1 evaluator gold"
