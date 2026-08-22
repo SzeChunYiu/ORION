@@ -40,6 +40,15 @@ VERIFIER = HERE / "qg24_generic_verify.py"
 RECEIPT = REPO / "research" / "extensions" / "orion-qg" / "QG24_ROTATION_REGIME_RESULTS.json"
 ARTIFACT = HERE / "QG24_GENERIC_VERIFICATION.json"
 
+HARNESS_SRC = REPO / "packages" / "orion-research-harness" / "src"
+sys.path.insert(0, str(HARNESS_SRC))
+
+from orion_research_harness.falsifiability import (  # noqa: E402
+    validate_determinism,
+    validate_falsifiability_demonstration,
+)
+
+
 
 def sha_file(path: pathlib.Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -181,24 +190,19 @@ def _enforce(art: dict) -> None:
     broken = []
     if art["verdict"] != "ACCEPT" or art["failed_checks"]:
         broken.append(f"clean receipt did not ACCEPT: {art['failed_checks']}")
-    if not fd["all_tampered_copies_rejected"]:
-        accepted = [c["case"] for c in fd["cases"] if c["verdict"] != "REJECT"]
-        broken.append(f"G7: tampered copies not rejected: {accepted}")
-    for case in fd["cases"]:
-        want = EXPECTED_CHECK.get(case["case"])
-        if want is None:
-            broken.append(f"G7: {case['case']} declares no expected check")
-        elif case["verdict"] == "REJECT" and want not in case["failed_checks"]:
-            broken.append(
-                f"G7: {case['case']} was rejected by {case['failed_checks']} but not "
-                f"by {want}, the check it exists to exercise -- that check is "
-                "therefore still untested"
-            )
-    if not fd["all_tampered_copies_internally_self_consistent"]:
-        broken.append("G7: some tampered copy was not resealed, so a hash mismatch "
-                      "was available and its rejection proves nothing")
-    if not art["determinism"]["stdout_identical"]:
-        broken.append("G8: double run was not byte-identical")
+    # G7 and G8 are delegated to the committed harness gate rather than
+    # reimplemented here. This runner is assembly tooling, not the independent
+    # verifier -- the verifier's own independence claim is unaffected -- and one
+    # enforcement point is the whole reason the module exists: the rule was
+    # written twice by hand before it was written once in the harness.
+    try:
+        validate_falsifiability_demonstration(fd, EXPECTED_CHECK)
+    except ValueError as exc:
+        broken.append(f"G7: {exc}")
+    try:
+        validate_determinism(art["determinism"])
+    except ValueError as exc:
+        broken.append(f"G8: {exc}")
     if broken:
         raise SystemExit(
             "refusing to write the verification artifact -- its own gates did not "

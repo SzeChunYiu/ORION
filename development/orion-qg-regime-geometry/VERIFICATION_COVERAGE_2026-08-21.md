@@ -124,6 +124,41 @@ rather than catches: silent on QG-23, which changed toward the harsher reading, 
 by QG-24, whose demonstration already existed. **W13 is registered as closed on arrival**,
 with the honest note that its value is prospective — it protects lanes not yet run.
 
+## A residual on falsifiability demonstrations, closed in code (W14)
+
+Every lane in this programme satisfies gate G7 by tampering with its own receipt and
+checking that all the copies are rejected. On 2026-08-22 that turned out to be the
+wrong question three times on one branch:
+
+* QG-24's `T6` mutated `stage1.referee_calls_during_stage1`; the verifier reads
+  `q2_regime.prospective_forecast.referee_calls_during_stage1`. **The copy was
+  ACCEPTed**, and the assembler wrote its artifact and exited 0 regardless.
+* The same suite's `T5` located its target by searching for any key containing
+  "hit". It found the right one by luck.
+* QG-26's first `T9` changed the applied criterion digest **and** flipped the verdict
+  to a negative — which is deliberately not gated — so an unrelated consistency check
+  produced the rejection and the churn gate it was named after went untested, while
+  the suite reported eleven for eleven.
+
+One shape: **a tamper rejected by the wrong check leaves the check it was meant to
+cover completely untested, while looking exactly like coverage.** The count rises,
+the artifact says "all rejected", and only reading every `failed_checks` list against
+every case name reveals the hole.
+
+`orion_research_harness.falsifiability` closes it. A demonstration binds, per case,
+the check expected to catch it; the gate refuses the demonstration when a case is
+caught by a different one, when a copy was not resealed (so its rejection is a hash
+mismatch rather than a re-derivation), when a case declares no expectation, or when
+the suite is empty. `validate_determinism` refuses a recorded-but-unmet G8. Both
+assemblers delegate to it rather than carrying the rule twice, and both historical
+defects are confirmed caught through it. Registered as **W14 — closed on arrival**,
+with the same honest note as W13: its value is prospective.
+
+The parent literature is named in the module and not claimed: this is mutation
+testing (DeMillo–Lipton–Sayward 1978; Hamlet 1977), where a surviving mutant means
+missing coverage and "killed by" names a specific test; fault injection in the
+dependability sense (Avizienis et al. 2004); and the vacuous pass (Beer et al. 2001).
+
 ## Rule adopted
 
 A lane result may be cited as corroborated only on Tier 1 or Tier 2 evidence. Replay
