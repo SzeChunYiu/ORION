@@ -187,6 +187,30 @@ def t_amendment_undisclosed(r):
         "added_after_the_protocol_was_frozen"] = False
 
 
+def t_dp_row_agree_flag(r):
+    r["dp_driven_search"]["rows"][0]["agree"] = False
+
+
+def t_dp_row_value(r):
+    r["dp_driven_search"]["rows"][1]["C_dp_driven"] += 1
+    r["dp_driven_search"]["rows"][1]["agree"] = True
+
+
+def t_dp_search_n1_only(r):
+    d = r["dp_driven_search"]
+    d["rows"] = [x for x in d["rows"] if int(x.get("n", 1)) == 1]
+    d["instances"] = len(d["rows"])
+    d["agree"] = sum(1 for x in d["rows"] if x["agree"])
+
+
+def t_dp_scope_removed(r):
+    r["dp_driven_search"]["declared_scope_and_obstacle"] = ""
+
+
+def t_section_33_deviation_hidden(r):
+    r["deviation_from_protocol_section_3_3"]["what_licenses_the_claim_anyway"] = ""
+
+
 def t_wall_clock_status(r):
     r["q3_cell_model"]["wall_clock_status"] = ""
 
@@ -233,6 +257,16 @@ TAMPERS: dict[str, tuple[Callable[[dict], None], str]] = {
         t_dp_ladder_row, "cell_model_rows_rederived"),
     "T19c_amendment_hidden": (
         t_amendment_undisclosed, "counting_rule_amendment_discloses_itself"),
+    "T18a_dp_row_marked_disagreeing_flag_left_true": (
+        t_dp_row_agree_flag, "dp_driven_search_flag_matches_its_rows"),
+    "T18b_dp_driven_value_altered": (
+        t_dp_row_value, "dp_driven_search_rows_recomputed"),
+    "T18c_dp_demonstration_reduced_to_n1": (
+        t_dp_search_n1_only, "dp_driven_search_is_not_n1_only"),
+    "T18d_dp_scope_statement_removed": (
+        t_dp_scope_removed, "dp_driven_search_declares_its_scope"),
+    "T18e_section_3_3_deviation_hidden": (
+        t_section_33_deviation_hidden, "section_3_3_deviation_disclosed"),
     "T19_wall_clock_caveat_removed": (
         t_wall_clock_status, "gate_g3_wall_clock_carries_no_argument"),
     "T20_instance_total_inflated": (
@@ -240,8 +274,23 @@ TAMPERS: dict[str, tuple[Callable[[dict], None], str]] = {
 }
 
 
+def _run_lane() -> tuple[str, dict[str, Any]]:
+    """Run the lane and return its stdout together with the receipt it wrote."""
+    proc = subprocess.run(
+        [sys.executable, str(LANE)], capture_output=True, text=True,
+        cwd=str(ROOT), check=False,
+    )
+    if proc.returncode != 0:
+        raise SystemExit(f"lane run failed: {proc.stderr[-2000:]}")
+    return proc.stdout, json.loads(RESULTS.read_text())
+
+
 def main() -> int:
-    base = json.loads(RESULTS.read_text())
+    # G8 wants a double run, so this script owns both of them. Reading a receipt
+    # somebody else left on disk and calling the re-run "the second" leaves the
+    # first run's stdout in nobody's hands, which is how `stdout_identical` came
+    # to be a hardcoded True in the version Cursor Bugbot reviewed.
+    stdout_a, base = _run_lane()
 
     live = gv.verify(RESULTS)
     if live["verdict"] != "ACCEPT":
@@ -284,18 +333,11 @@ def main() -> int:
         acknowledged_unexercised=sorted(UNEXERCISED),
     )
 
-    # G8 -- determinism, by running the lane a second time and comparing every
-    # field the digest covers. Timing fields are excluded by construction.
-    with tempfile.TemporaryDirectory() as tmp:
-        second = pathlib.Path(tmp) / "second.json"
-        proc = subprocess.run(
-            [sys.executable, str(LANE)], capture_output=True, text=True,
-            cwd=str(ROOT), check=False,
-        )
-        if proc.returncode != 0:
-            raise SystemExit(f"determinism re-run failed: {proc.stderr[-2000:]}")
-        again = json.loads(RESULTS.read_text())
-        second.write_text(json.dumps(again, indent=1, sort_keys=True) + "\n")
+    # G8 -- determinism. Both runs belong to this script, so `stdout_identical`
+    # is a measurement rather than a claim: the two stdouts are compared byte for
+    # byte. The lane prints no wall-clock, precisely so that this comparison is
+    # meaningful instead of guaranteed to fail.
+    stdout_b, again = _run_lane()
     stripped = [
         {k: v for k, v in r.items()
          if k not in ("timings_excluded_from_digest", "total_seconds")}
@@ -303,17 +345,24 @@ def main() -> int:
     ]
     determinism = {
         "double_run": True,
-        "stdout_identical": True,
+        "stdout_identical": stdout_a == stdout_b,
+        "stdout_bytes_compared": len(stdout_a.encode()),
         "content_digest_identical": base["content_digest"] == again["content_digest"],
         "all_digest_covered_fields_identical": stripped[0] == stripped[1],
         "excluded_fields": ["timings_excluded_from_digest", "total_seconds"],
+        "how_stdout_was_obtained": (
+            "both runs were launched by this script with captured stdout and "
+            "compared byte for byte; neither flag is asserted"
+        ),
     }
     if not (determinism["content_digest_identical"]
             and determinism["all_digest_covered_fields_identical"]):
         raise SystemExit(
             "the second run does not reproduce the first outside timing; G8 fails "
-            "and this record must not be written"
+            "and this record must not be written\n"
+            f"digest a={base['content_digest'][:12]} b={again['content_digest'][:12]}"
         )
+    # Raises when stdout_identical is False, which is now a thing that can happen.
     fals.validate_determinism(determinism)
 
     record = {

@@ -44,6 +44,8 @@ PROTOCOL = ROOT / "development/orion-qg-regime-geometry/QG28_SUPPORT_CAPPED_REAL
 #: because it is a sample and must not read as an enumeration.
 BRUTE_N1_INSTANCES = 12
 BRUTE_STRIDE = 337
+#: How many of the DP-driven search's n=1 rows are recomputed definitionally.
+DP_ROWS_RECHECKED = 6
 
 
 def sha(text: str) -> str:
@@ -304,6 +306,47 @@ def verify(path: pathlib.Path) -> dict[str, Any]:
         idx = (idx + BRUTE_STRIDE) % 4096
     checks["definitional_brute_force_agrees_on_declared_n1_sample"] = brute_ok
     notes["definitional_brute_force_rows"] = brute_rows
+
+    # 6b. the DP-driven search block: the thing that licenses "the 4^n Tag sweep
+    #     is removable". Its rows are recomputed by the verifier's own
+    #     definitional brute force, so the claim rests on a re-derivation.
+    dps = rec.get("dp_driven_search") or {}
+    rows = dps.get("rows") or []
+    checks["dp_driven_search_flag_matches_its_rows"] = bool(rows) and (
+        bool(dps.get("all_agree")) == all(bool(r.get("agree")) for r in rows)
+        and int(dps.get("agree", -1)) == sum(1 for r in rows if r.get("agree"))
+        and int(dps.get("instances", -1)) == len(rows)
+    )
+    checks["dp_driven_search_is_not_n1_only"] = any(
+        int(r.get("n", 1)) >= 2 for r in rows
+    )
+    checks["dp_driven_search_declares_its_scope"] = bool(
+        str(dps.get("declared_scope_and_obstacle", "")).strip()
+    )
+    dp_rows_ok = bool(rows)
+    checked = 0
+    for row in rows:
+        if int(row.get("n", 0)) != 1 or checked >= DP_ROWS_RECHECKED:
+            continue
+        idx = int(row["instance_index"])
+        p6 = tuple((idx >> (2 * (5 - t))) & 3 for t in range(6))
+        tps = tuple((letter_key(p6[2 * j], 0), letter_key(p6[2 * j + 1], 0))
+                    for j in range(3))
+        mine = brute_c_dxx(tps, 1)
+        if (int(row.get("C_dp_driven", -1)) != mine
+                or int(row.get("C_table_driven", -2)) != mine
+                or int(row.get("C_Dxx", -3)) != mine):
+            dp_rows_ok = False
+        checked += 1
+    checks["dp_driven_search_rows_recomputed"] = dp_rows_ok and checked > 0
+    notes["dp_driven_rows_recomputed"] = checked
+
+    dev = rec.get("deviation_from_protocol_section_3_3") or {}
+    checks["section_3_3_deviation_disclosed"] = bool(dev) and all(
+        bool(str(dev.get(k, "")).strip())
+        for k in ("section_says", "what_the_bulk_domains_actually_run", "why",
+                  "what_licenses_the_claim_anyway", "found_by")
+    )
 
     # 7. the hostile panels, recomputed row by row rather than read.
     panels = next(

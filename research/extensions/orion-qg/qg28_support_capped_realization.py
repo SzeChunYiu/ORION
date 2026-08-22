@@ -77,6 +77,9 @@ OUT = ROOT / "research/extensions/orion-qg/QG28_SUPPORT_CAPPED_REALIZATION_RESUL
 N3_SAMPLE = 6
 N3_SEED = 20260822
 TAG_DP_CHECKS = {1: 400, 2: 400, 3: 120}
+DP_SEARCH_N1_SAMPLE = 64
+DP_SEARCH_N2_SAMPLE = 2
+DP_SEARCH_N2_SEED = 771020
 TAG_DP_SEED = 4482
 MISMATCH_VERBATIM_CAP = 25
 
@@ -194,6 +197,50 @@ class CappedFamily:
                 code[pi, q] = h.BITS_CODE[((u0[0] >> q) & 1, (u0[1] >> q) & 1)]
                 code[pi, n + q] = h.BITS_CODE[((u1[0] >> q) & 1, (u1[1] >> q) & 1)]
         return base, code
+
+    def search_dp(self, target_pairs) -> int:
+        """The same certified enumeration, with the Tag from the O(n) DP and the
+        Tag table never consulted. This is protocol section 3.3 literally.
+
+        `search` below is the same objective reached through a target-free
+        allowed-Tag bitmask table, which is what every bulk domain runs. That
+        table is built by a 4^n sweep, so `search` does NOT by itself demonstrate
+        that the sweep is removable -- it demonstrates that a table equivalent to
+        it gives the right answer. Only this method removes the sweep from the
+        path that produces the number, and it is pure Python and O(P^3 n), so it
+        runs on a declared sample and the sample is the scope of the claim.
+        """
+        n, P = self.n, self.P
+        best = None
+        blocks = [[self._block(tp, perm) for perm in (0, 1)] for tp in target_pairs]
+        for l0, l1 in LABELS:
+            for i0 in range(P):
+                for i1 in range(P):
+                    for i2 in range(P):
+                        six = (
+                            self.pairs[i0][0], self.pairs[i0][1],
+                            self.pairs[i1][0], self.pairs[i1][1],
+                            self.pairs[i2][0], self.pairs[i2][1],
+                        )
+                        tw = self.tag_weight_dp(six, l0, l1)
+                        if tw >= 10 ** 9:
+                            continue
+                        idx = (i0, i1, i2)
+                        for perms in itertools.product((0, 1), repeat=3):
+                            bs = [blocks[j][perms[j]] for j in range(3)]
+                            codes = [bs[j][1][idx[j]] for j in range(3)]
+                            match = 0
+                            for pos in range(2 * n):
+                                a = codes[0][pos]
+                                if a and a == codes[1][pos] == codes[2][pos]:
+                                    match += 1
+                            val = (int(bs[0][0][idx[0]]) + int(bs[1][0][idx[1]])
+                                   + int(bs[2][0][idx[2]]) - 2 * match + 2 * tw)
+                            if best is None or val < best:
+                                best = val
+        if best is None:
+            raise AssertionError("DP-driven capped search found no feasible point")
+        return int(best)
 
     def search(self, target_pairs) -> int:
         """Exact C_D++ by certified enumeration of frame-pair triples.
@@ -428,6 +475,59 @@ def domain_d_n3_sample(cap: CappedFamily) -> dict[str, Any]:
     }
 
 
+def dp_driven_search_check(caps: dict[int, CappedFamily]) -> dict[str, Any]:
+    """Does removing the Tag table from the path change the answer?
+
+    Cursor Bugbot, reviewing f8ba5f23, pointed out that `search` never called
+    `tag_weight_dp`: the DP was exercised only against Tag *values* in a side
+    check, while every number that decided agreement came through the 4^n table.
+    The protocol's Q1 step 3 and the lane's own responsibility string both said
+    the sweep had been replaced. They were describing an algorithm the executed
+    code did not run. That is exactly the failure family this branch has spent
+    the day cataloguing, so the fix is to run it, not to reword it.
+    """
+    rows = []
+    for idx in range(0, 4096, 4096 // DP_SEARCH_N1_SAMPLE):
+        p6 = tuple((idx >> (2 * (5 - t))) & 3 for t in range(6))
+        tps = tuple(
+            (letter_key(p6[2 * j], 0), letter_key(p6[2 * j + 1], 0)) for j in range(3)
+        )
+        a = caps[1].search_dp(tps)
+        b = caps[1].search(tps)
+        c = int(r6p.dxx_search(tps, 1, max_weight=2)["C_Dxx"])
+        rows.append({"n": 1, "instance_index": idx, "C_dp_driven": a,
+                     "C_table_driven": b, "C_Dxx": c, "agree": a == b == c})
+    rng = np.random.default_rng(DP_SEARCH_N2_SEED)
+    w1 = [letter_key(c, q) for q in (0, 1) for c in (1, 2, 3)]
+    for _ in range(DP_SEARCH_N2_SAMPLE):
+        i = [int(v) for v in rng.integers(0, len(w1), 6)]
+        tps = tuple((w1[i[2 * j]], w1[i[2 * j + 1]]) for j in range(3))
+        a = caps[2].search_dp(tps)
+        b = caps[2].search(tps)
+        c = int(r6p.dxx_search(tps, 2, max_weight=2)["C_Dxx"])
+        rows.append({"n": 2, "target_indices": i, "C_dp_driven": a,
+                     "C_table_driven": b, "C_Dxx": c, "agree": a == b == c})
+    return {
+        "what_this_shows": (
+            "the O(n) syndrome DP standing in for the 4^n Tag table inside the "
+            "objective itself, not merely reproducing Tag values beside it"
+        ),
+        "instances": len(rows),
+        "agree": sum(r["agree"] for r in rows),
+        "all_agree": all(r["agree"] for r in rows),
+        "rows": rows,
+        "declared_scope_and_obstacle": (
+            f"{DP_SEARCH_N1_SAMPLE} n=1 instances on a fixed stride and "
+            f"{DP_SEARCH_N2_SAMPLE} seeded n=2 instances. The DP-driven search is "
+            "pure Python over P^3 triples with a 64-state DP per triple, so n=2 "
+            "costs minutes per instance and n=3 was not attempted. Every bulk "
+            "domain therefore runs the table-driven `search`; this block is what "
+            "licenses the claim that the table is removable, and its sample is "
+            "the scope of that claim."
+        ),
+    }
+
+
 def tag_dp_check(cap: CappedFamily) -> dict[str, Any]:
     """The O(n) DP against the 4^n sweep it is supposed to replace."""
     rng = np.random.default_rng(TAG_DP_SEED + cap.n)
@@ -495,6 +595,10 @@ def main() -> int:
     t = time.time()
     tag_checks = {n: tag_dp_check(caps[n]) for n in (1, 2, 3)}
     timings["tag_dp_check_seconds"] = round(time.time() - t, 3)
+
+    t = time.time()
+    dp_driven = dp_driven_search_check(caps)
+    timings["dp_driven_search_seconds"] = round(time.time() - t, 3)
 
     t = time.time()
     dom_a = domain_a_n1_exhaustive(caps[1])
@@ -632,6 +736,33 @@ def main() -> int:
         },
         "frame_pair_counts": {str(k): v for k, v in p_counts.items()},
         "tag_dp_vs_sweep": {str(k): v for k, v in tag_checks.items()},
+        "dp_driven_search": dp_driven,
+        "deviation_from_protocol_section_3_3": {
+            "section_says": (
+                "the shared Tag is obtained without the 4^n - 1 sweep, by an "
+                "exact per-qubit syndrome DP"
+            ),
+            "what_the_bulk_domains_actually_run": (
+                "the same enumeration with the Tag taken from a target-free "
+                "allowed-Tag bitmask table, which is built by a 4^n sweep once "
+                "per n and amortized over every instance"
+            ),
+            "why": (
+                "the DP-driven search is pure Python and costs minutes per "
+                "instance at n=2, so running it over 9,261 n=2 instances is not "
+                "available inside the declared runtime cap"
+            ),
+            "what_licenses_the_claim_anyway": (
+                "dp_driven_search above runs the section-3.3 algorithm literally "
+                "on a declared sample and gets the same C_D++ as both the "
+                "table-driven search and the committed dxx_search"
+            ),
+            "found_by": (
+                "Cursor Bugbot on commit f8ba5f23, which observed that search() "
+                "never called tag_weight_dp while the protocol and the "
+                "responsibility string both said the sweep had been replaced"
+            ),
+        },
         "domains": domains,
         "total_instances_compared": total_instances,
         "all_domains_agree": all_agree,
@@ -656,6 +787,9 @@ def main() -> int:
             "runtime cap < 45 minutes for the full run",
             f"domain D is a declared sample of {N3_SAMPLE} n=3 instances, seed {N3_SEED}",
             f"Tag DP cross-check counts {TAG_DP_CHECKS} triples, seed base {TAG_DP_SEED}",
+            f"DP-driven search run on {DP_SEARCH_N1_SAMPLE} n=1 and "
+            f"{DP_SEARCH_N2_SAMPLE} n=2 instances (seed {DP_SEARCH_N2_SEED}); "
+            "not attempted at n=3",
             f"mismatch verbatim cap {MISMATCH_VERBATIM_CAP} rows per domain",
             "the capped search is unpruned by design; no early exit was used",
             "n >= 4 not executed: the committed dxx_search guards max_weight=2 to n<=3",
@@ -671,7 +805,8 @@ def main() -> int:
         "responsibility": (
             "RESP:QG6_SUPPORT_CAPPED_COROLLARY_REALIZED_AS_A_CERTIFIED_SEARCH__"
             "AGREES_WITH_THE_COMMITTED_FAMILY_SEARCH_ON_EVERY_DECLARED_DOMAIN__"
-            "TAG_SWEEP_REPLACED_BY_AN_ON_SYNDROME_DP__W9_PROJECTION_EVALUATED"
+            "TAG_SWEEP_SHOWN_REPLACEABLE_BY_AN_ON_SYNDROME_DP_ON_A_DECLARED_"
+            "SAMPLE__W9_PROJECTION_EVALUATED"
         ),
     }
     body["content_digest"] = sha(canonical(body))
@@ -684,7 +819,6 @@ def main() -> int:
         "instances": total_instances,
         "all_agree": all_agree,
         "crossover_n": crossover,
-        "seconds": body["total_seconds"],
     }, indent=1))
     print("wrote", OUT.relative_to(ROOT))
     return 0
