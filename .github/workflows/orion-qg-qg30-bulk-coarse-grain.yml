@@ -1,0 +1,87 @@
+name: orion-qg-qg30-bulk-coarse-grain
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/QG30_*'
+      - 'development/orion-qg-regime-geometry/qg30_*'
+      - 'development/orion-qg-regime-geometry/run_qg30_dual_harness.py'
+      - 'research/extensions/orion-qg/qg30_*'
+      - '.github/workflows/orion-qg-qg30-bulk-coarse-grain.yml'
+  workflow_dispatch:
+concurrency:
+  group: orion-qg-qg30-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  bulk-coarse-grain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Execute dual harness
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/run_qg30_dual_harness.py | tee artifacts/orion-qg-qg30-summary.json
+      - name: Deterministic analyzer replay
+        run: |
+          python research/extensions/orion-qg/qg30_bulk_coarse_grain.py --output artifacts/orion-qg-qg30-replay.json > artifacts/orion-qg-qg30-replay.log
+          cmp artifacts/orion-qg-qg30-bulk-coarse-grain.json artifacts/orion-qg-qg30-replay.json
+      - name: Enforce bulk/defect authority boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('artifacts/orion-qg-qg30-bulk-coarse-grain.json').read_text())
+          g=json.loads(Path('artifacts/orion-qg-qg30-generic-verification.json').read_text())
+          n=json.loads(Path('artifacts/orion-qg-qg30-native-verification.json').read_text())
+          d=json.loads(Path('artifacts/orion-qg-qg30-dual-harness.json').read_text())
+          pos='QG30_TARE_BULK_GEOMETRY_COMPRESSES_EXACTLY_TO_45_SIGNATURE_COUNTS__DEFECT_INFORMATION_REMAINS'
+          assert a['issue']=='SzeChunYiu/ORION#893'
+          assert a['terminal']==pos
+          c=a['bulk_signature_census']
+          assert c['signature_count']==45 and c['orbit_total']==715 and c['raw_type_total']==4096
+          assert a['complete_one_active_profile_rows']==274560
+          assert c['information_loss_witness_found'] is True and c['information_loss_witness'] is not None
+          assert len(a['bulk_coefficient_rows_45']['rows'])==4 and all(len(r)==45 for r in a['bulk_coefficient_rows_45']['rows'])
+          assert len(a['pairwise_bulk_ties_45'])==6
+          assert g['decision']=='ACCEPT_BULK45_DEFECT_SEPARATION' and g['all_checks'] is True
+          assert g['independent_summary']['witness']==c['information_loss_witness']
+          assert n['decision']=='ACCEPT_BULK45_DEFECT_SEPARATION' and n['all_checks'] is True
+          assert n['responsibility']=='BULK45_ASYMPTOTIC_SUFFICIENCY__FINITE_DEFECT_INFORMATION_BARRIER'
+          assert d['terminal']==pos and d['both_accept'] is True
+          assert a.get('BULK_SIGNATURE_COUNT_45', a.get('BULK_SIGNATURE_COUNT'))==45
+          for x in (g,n,d):
+            assert x['BULK_SIGNATURE_COUNT_45']==45
+          for x in (a,g,n,d):
+            assert x['BULK_45_HISTOGRAM_SUFFICIENT_FOR_ASYMPTOTIC_DENSITY'] is True
+            assert x['ASYMPTOTIC_PHASE_GEOMETRY_DESCENDS_TO_45_COUNTS'] is True
+            assert x['BULK_DEFECT_SCALE_SEPARATION'] is True
+            assert x['BULK_SIGNATURE_SUFFICIENT_FOR_FULL_DEFECT'] is False
+            assert x['FULL_FINITE_N_OPTIMUM_FROM_45_COUNTS'] is False
+            assert x['PHYSICAL_RENORMALIZATION_GROUP'] is False
+            assert x['FINITE_N_GLOBAL_PHASE_BOUNDARY'] is False
+            assert x['CHAIN_ALL_N'] is False and x['CLOSED_FORM_BDOUBLEPRIME_COMPLETENESS'] is False
+            assert x['novelty_authority'] is False and x['r6_authority'] is False and x['physical_quantum_advantage_claim'] is False
+          PY
+      - name: Upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg30-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg30-*.json
+            artifacts/orion-qg-qg30-*.log
+            .orion-qg-qg30-generic/.orion-harness/**
+            .orion-qg-qg30-native/.orion-harness/**
+          include-hidden-files: true
+          if-no-files-found: warn
