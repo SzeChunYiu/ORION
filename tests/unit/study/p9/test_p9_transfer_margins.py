@@ -21,6 +21,7 @@ from orion.programme.comparator_response import (
     require_responsive_comparator,
 )
 from orion.programme.records import Outcome
+from orion.programme.refutation_capacity import divergence_of
 from orion.study.p9 import transfer_margins as p9
 from orion.study.p9.transfer_audit import audit_p9_transfer_margins, main, report_as_json
 
@@ -28,6 +29,16 @@ from orion.study.p9.transfer_audit import audit_p9_transfer_margins, main, repor
 @pytest.fixture(scope="module")
 def archive() -> dict:
     return p9.load_shipped_d1_result()
+
+
+@pytest.fixture(scope="module")
+def collapse() -> dict:
+    return p9.d1_view_collapse_report()
+
+
+@pytest.fixture(scope="module")
+def oracle():
+    return p9.d1_oracle_identity()
 
 
 def test_the_archive_reproduces_its_committed_digest(archive):
@@ -138,6 +149,97 @@ def test_no_model_in_the_frozen_grid_can_give_the_transcript_arm_a_second_answer
         assert len(set(predictions)) == 1, spec.config_id
 
 
+# --------------------------------------------------------------------------
+# The protected denominator: why it is one, and that saying so is a measurement
+# --------------------------------------------------------------------------
+
+
+def test_the_transcript_denominator_is_per_instance_minting_not_the_holdout(collapse):
+    """The finding, with the control that separates it from a fixable one.
+
+    ``512 of 515 keys are missing`` is the same sentence in two worlds. Refitting
+    the vocabulary on a same-size corpus the same generator draws from the
+    protected split's own domain restores every key the holdout hid, and none of
+    the keys that are minted per instance. Zero restored is the whole finding.
+    """
+
+    transcript = collapse["TRANSCRIPT_BAG"]
+
+    assert transcript.test_keys == 515
+    assert transcript.test_keys_in_train_vocabulary == 3
+    assert transcript.distinct_protected_rows == 1
+    # The control ran, on a corpus the same size as the frozen training split.
+    assert transcript.in_domain_train_rows == transcript.train_rows == 288
+    assert transcript.restored_by_in_domain_refit == 0
+    assert transcript.distinct_protected_rows_in_domain == 1
+    assert transcript.recoverable_by_refitting is False
+    assert transcript.reason is p9.ViewCollapseReason.PER_INSTANCE_KEY_SPACE
+    assert transcript.outcome is Outcome.CANNOT_CHECK
+    # Why no corpus could have carried them: every fitted key but the three
+    # arity counts occurs in exactly one training row.
+    assert transcript.train_keys_in_one_train_row == 1152
+    assert transcript.train_vocabulary == 1155
+    assert transcript.hapax_share == pytest.approx(1152 / 1155)
+    # And the second, independent reason the denominator is one.
+    assert transcript.constant_surviving_keys == 3
+    assert transcript.surviving_keys_all_constant is True
+
+
+def test_the_in_domain_control_can_restore_keys_when_the_holdout_is_the_cause(collapse):
+    """The control's positive case: without it, zero restored means nothing.
+
+    ``TYPED_SERIALIZED_BAG`` loses keys because its value alphabet is scoped to a
+    domain, and the same refit hands nineteen of them back and lifts the
+    denominator. A control that restored nothing everywhere would be broken
+    rather than informative, and this is the test that would notice.
+    """
+
+    serialized = collapse["TYPED_SERIALIZED_BAG"]
+
+    assert serialized.test_keys_in_train_vocabulary == 26
+    assert serialized.test_keys_in_in_domain_vocabulary == 45
+    assert serialized.restored_by_in_domain_refit == 19
+    assert serialized.distinct_protected_rows == 7
+    assert serialized.distinct_protected_rows_in_domain == 11
+    assert serialized.reason is p9.ViewCollapseReason.VIEW_RESPONDED
+
+
+def test_the_in_domain_control_is_a_different_sample_of_the_protected_domain():
+    """Guards the control against becoming the protected split under another name."""
+
+    from orion.study.p9.d1 import generate_d1_dataset
+
+    dataset = generate_d1_dataset(seed=p9.D1_SEED)
+    control = p9._in_domain_vocabulary_control(dataset)
+
+    assert {row.domain for row in control} == {row.domain for row in dataset.test}
+    assert {row.domain for row in control}.isdisjoint({row.domain for row in dataset.train})
+    protected_ids = {row.instance_id for row in dataset.test}
+    assert protected_ids.isdisjoint({row.instance_id for row in control})
+    assert len(control) == len(dataset.train)
+
+
+def test_every_view_that_responded_keeps_more_than_one_protected_row(collapse):
+    """Fails if any view's protected design matrix collapses to a single row."""
+
+    assert {view: item.distinct_protected_rows for view, item in collapse.items()} == {
+        "TRANSCRIPT_BAG": 1,
+        "TYPED_RELATIONAL": 13,
+        "TYPED_SERIALIZED_BAG": 7,
+        "UNTYPED_PAIR": 9,
+    }
+    blocked = {view for view, item in collapse.items() if item.blocks}
+    assert blocked == {"TRANSCRIPT_BAG"}
+    for view in ("TYPED_RELATIONAL", "TYPED_SERIALIZED_BAG", "UNTYPED_PAIR"):
+        assert collapse[view].outcome is Outcome.PASS
+        assert collapse[view].surviving_keys_all_constant is False
+
+
+# --------------------------------------------------------------------------
+# The evaluator branch: an identity, reported as one
+# --------------------------------------------------------------------------
+
+
 def test_the_evaluator_failure_branch_recomputes_the_gold_it_grades():
     """P6's question, answered with P6's instrument rather than a second one."""
 
@@ -146,6 +248,123 @@ def test_the_evaluator_failure_branch_recomputes_the_gold_it_grades():
     assert divergence.points == 512
     assert divergence.points_changed == 0
     assert divergence.applied is False
+
+
+def test_the_d1_comparator_is_an_identity_and_not_an_agreement(oracle):
+    """``0 divergent`` reported as what it is, on three spaces rather than one."""
+
+    assert oracle.frozen_space.points_changed == 0
+    assert oracle.protected_space.points == 128
+    assert oracle.protected_space.points_changed == 0
+    # Agreement on a corpus one generator built is not an identity; agreement on
+    # the pairs that generator never builds is what makes it one.
+    assert oracle.widened_space.points == 1280
+    assert oracle.widened_space.points_changed == 0
+    assert oracle.reads_every_compared_coordinate is True
+    assert set(oracle.comparator_read_coordinates) == set(oracle.compared_coordinates)
+    assert oracle.verdict is p9.OracleVerdict.IDENTITY_BY_CONSTRUCTION
+    assert oracle.branch_reachable is False
+    # CANNOT_CHECK, not FAIL: nothing could have differed, and it blocks anyway.
+    assert oracle.outcome is Outcome.CANNOT_CHECK
+    assert oracle.blocks is True
+
+
+def test_the_widened_space_carries_the_shapes_the_d1_generator_never_builds():
+    """Fails if the widening degenerates into more of the frozen corpus."""
+
+    from orion.study.p9.d1 import COMPARISON_COORDINATES, generate_d1_dataset
+
+    frozen = generate_d1_dataset(seed=p9.D1_SEED)
+    frozen_rows = (*frozen.train, *frozen.dev, *frozen.test)
+    widened = p9._widened_oracle_space()
+
+    def left_unknowns(rows):
+        return {tuple(row.left.unknown_coordinates) for row in rows}
+
+    def perturbed_widths(rows):
+        return {len(row.mutation_coordinates) for row in rows}
+
+    # The frozen corpus never marks the left method unknown, never marks a
+    # coordinate outside the compared set, and never perturbs more than two
+    # coordinates at once.
+    assert left_unknowns(frozen_rows) == {()}
+    assert left_unknowns(widened) - {()}
+    assert max(perturbed_widths(frozen_rows)) == 2
+    assert max(perturbed_widths(widened)) == len(COMPARISON_COORDINATES)
+    outside = {
+        coordinate
+        for row in widened
+        for coordinate in (*row.left.unknown_coordinates, *row.right.unknown_coordinates)
+        if coordinate not in COMPARISON_COORDINATES
+    }
+    assert outside == {"mechanics"}
+    # Sequence coordinates emptied outright, which the D1 mutation operator (which
+    # only ever appends a token or replaces a scalar) never produces.
+    assert any(row.right.invariants == () for row in widened)
+    assert all(row.right.invariants != () for row in frozen_rows)
+
+
+def test_gold_moves_across_the_widened_space(oracle):
+    """The widening is only evidence if the reference itself varies over it."""
+
+    assert dict(oracle.widened_gold_labels) == {
+        "ALIGNED": 2,
+        "OBSTRUCTION": 510,
+        "UNRESOLVED": 768,
+    }
+    assert oracle.widened_space_is_varied is True
+
+
+def test_a_comparator_that_can_disagree_does_disagree_on_the_same_space():
+    """The probe's positive control: the zero is about the comparator, not the space.
+
+    Every declared wrong comparator is run through the same instrument over the
+    same widened space. If the space or ``divergence_of`` could not register a
+    disagreement, these would be zero too and the identity finding would be an
+    artifact of the measurement.
+    """
+
+    widened = p9._widened_oracle_space()
+    for theory in p9.declared_false_comparators():
+        divergence = divergence_of(
+            theory.rule,
+            theory_id=theory.theory_id,
+            reference=p9._d1_evaluator_gold,
+            space=widened,
+        )
+        assert divergence.points_changed > 0, theory.theory_id
+
+
+def test_the_evaluator_branch_would_reject_every_declared_wrong_comparator(oracle):
+    """"The branch is vacuous" and "the branch was aimed at its own reference"
+    are different repairs, so both are measured."""
+
+    capacity = oracle.capacity
+
+    assert capacity.check_id == p9.D1_EVALUATOR_BRANCH
+    assert capacity.reference_id == p9.D1_EVALUATOR_GOLD_ID
+    assert set(capacity.refuted) == {
+        "always-aligned",
+        "cardinality-only",
+        "modal-label",
+        "obstruction-before-unresolved",
+        "preconditions-only",
+        "unknown-ignored",
+    }
+    assert capacity.survivors == ()
+    # No registered theory is the reference restated: an inert register is as
+    # vacuous as an empty one.
+    assert capacity.inert_theories == ()
+    assert capacity.outcome is Outcome.PASS
+
+
+def test_every_declared_false_comparator_states_what_it_breaks():
+    theories = p9.declared_false_comparators()
+
+    assert len(theories) == 6
+    assert len({theory.theory_id for theory in theories}) == 6
+    for theory in theories:
+        assert theory.breaks.strip()
 
 
 def test_the_audit_blocks_and_names_the_arms_that_never_answered(archive):

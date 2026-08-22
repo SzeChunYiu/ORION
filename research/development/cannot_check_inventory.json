@@ -1,13 +1,13 @@
 {
-  "blocker_sites": 578,
+  "blocker_sites": 580,
   "classification": {
     "INSUFFICIENT_EVIDENCE": 14,
     "MISSING_ACCESS": 6,
     "MISSING_CUSTODY": 43,
     "MISSING_DECLARATION": 90,
-    "MISSING_IDENTITY": 30,
+    "MISSING_IDENTITY": 31,
     "UNAVAILABLE_PROVIDER": 12,
-    "UNCLASSIFIED": 383
+    "UNCLASSIFIED": 384
   },
   "closes_gate": null,
   "grants_authority": "NONE",
@@ -8656,6 +8656,30 @@
     },
     {
       "category": "UNCLASSIFIED",
+      "context": "ViewCollapse.outcome",
+      "file": "study/p9/transfer_margins.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 355,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_IDENTITY",
+      "context": "OracleIdentity.outcome",
+      "file": "study/p9/transfer_margins.py",
+      "has_reason": false,
+      "kind": "RETURN",
+      "lineno": 659,
+      "missing_obligation": null,
+      "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "UNCLASSIFIED",
       "context": "evaluate_incremental_decision",
       "file": "study/v2_adoption/validate.py",
       "has_reason": true,
@@ -9237,8 +9261,8 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "096812253eace37c69806b0be97fdb2dd4cb4281",
-  "total_sites": 633,
+  "subject_commit": "00a750e5107c45f14eba88802c72e361dcf8132b",
+  "total_sites": 635,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_derived_obligation": 108,
   "with_reason": 275

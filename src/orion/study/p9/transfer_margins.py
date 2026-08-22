@@ -12,11 +12,40 @@ The view-collapse measurement below needs no fitted model and no scikit-learn. A
 see, so the number of *distinct in-vocabulary feature signatures* a split
 presents is an upper bound on how many different answers any estimator in the
 grid can give --- computable from the frozen dataset alone, before a single fit.
+
+That upper bound is one for ``TRANSCRIPT_BAG``, and the survival count alone
+does not say why, so it is reported with the control that decides. ``512 of 515
+protected keys are missing`` is consistent with two different worlds: the
+vocabulary was fitted on the wrong corpus, or the key space is minted per
+instance and no corpus could have contained it. :func:`d1_view_collapse_report`
+refits the vocabulary on a same-size corpus the same generator draws from the
+protected split's *own* domain and reports how many keys come back --- zero for
+``TRANSCRIPT_BAG``, because ``_surface_tokens`` seeds every action symbol on the
+instance that emitted it, so 1,152 of the 1,155 fitted keys occur in exactly one
+training row; nineteen for ``TYPED_SERIALIZED_BAG``, whose value alphabet really
+is domain-scoped. The three keys that do survive are arity counts and take
+``(2, 2, True)`` on all 128 protected cases, so the denominator is one for a
+second and independent reason as well.
+
+:func:`d1_oracle_identity` asks the other question a zero cannot answer on its
+own. ``0 divergent`` between the exact typed relational comparator and evaluator
+gold has three causes --- the comparator is gold, it reads gold, or it is asked
+where nothing could differ --- and only the third is repaired by widening the
+space. So the space is widened: the comparator is re-run on 1,280 method pairs
+the D1 generator never builds, and the branch is exercised against a register of
+comparators a reader can read and agree are wrong. Both answers come back at
+once: the branch rejects all six wrong comparators, and it still cannot fire,
+because the rule it grades is :func:`orion.study.p9.d1.classify_methods`
+re-expressed through the typed projection. That is an identity, and it is
+reported as one.
 """
 
 from __future__ import annotations
 
 import json
+from collections import Counter
+from dataclasses import dataclass
+from enum import Enum
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
@@ -28,7 +57,15 @@ from orion.programme.comparator_response import (
     measure_contrast_margin,
     score_comparator,
 )
-from orion.programme.refutation_capacity import TheoryDivergence, divergence_of
+from orion.programme.records import Outcome
+from orion.programme.refutation_capacity import (
+    FalseTheory,
+    MechanizedCheck,
+    RefutationCapacity,
+    TheoryDivergence,
+    divergence_of,
+    measure_refutation_capacity,
+)
 from orion.transfer.v2.canonical import content_digest
 
 _REPO_ROOT = Path(__file__).resolve().parents[4]
@@ -52,7 +89,8 @@ D1_COMPARATOR_ARMS = ("TRANSCRIPT_BAG", "UNTYPED_PAIR", "TYPED_SERIALIZED_BAG")
 
 _ARM_RESPONSE_DEFINITION: Mapping[str, str] = {
     "TRANSCRIPT_BAG": (
-        "reminted surface action tokens plus three arity counts, fitted on the numerical and "
+        "surface action tokens reminted per instance --- no token occurs in two instances "
+        "anywhere in the corpus --- plus three arity counts, fitted on the numerical and "
         "graph domains and scored on transactional workflows"
     ),
     "UNTYPED_PAIR": (
@@ -182,8 +220,261 @@ def d1_composition_sensitivity(
     return out
 
 
-def d1_view_collapse() -> dict[str, dict[str, int]]:
-    """How many protected cases each view can still tell apart after the vocabulary is fixed.
+D1_SEED = "p9-d1-method-transfer-v1"
+
+#: Suffix for the in-domain vocabulary control's generator seed.
+#:
+#: A different seed from the frozen dataset's, so the control corpus is a
+#: genuinely different sample of the *same* domain rather than the protected
+#: cases handed back to the vectoriser under another name.
+_IN_DOMAIN_CONTROL_SUFFIX = "in-domain-vocabulary-control"
+
+
+class ViewCollapseReason(str, Enum):
+    """Why a view can or cannot tell the protected cases apart.
+
+    The three failing members are the point: each names a *different* mechanism
+    behind the same "N of M keys survive" line, and they are not interchangeable
+    because only one of them is repairable by fitting on more or better data.
+    """
+
+    VIEW_RESPONDED = "VIEW_RESPONDED"
+    #: Keys are missing because the fitted corpus came from other domains, and
+    #: refitting on the protected split's own domain restores them.
+    HOLDOUT_SCOPED_KEY_SPACE = "HOLDOUT_SCOPED_KEY_SPACE"
+    #: Keys are missing because each one is minted per instance, so no corpus
+    #: --- including one drawn from the protected domain --- ever contained them.
+    PER_INSTANCE_KEY_SPACE = "PER_INSTANCE_KEY_SPACE"
+    #: The keys that do survive take one value on every protected case.
+    SURVIVING_KEYS_CONSTANT = "SURVIVING_KEYS_CONSTANT"
+
+    @property
+    def blocks(self) -> bool:
+        return self is not ViewCollapseReason.VIEW_RESPONDED
+
+
+@dataclass(frozen=True)
+class ViewCollapse:
+    """One representation family's protected denominator, and why it is that size.
+
+    ``distinct_protected_rows`` is the denominator: a ceiling on how many
+    different answers *any* estimator in the grid can give, computable from the
+    frozen dataset with no fit. One row is not a hard case, it is not a
+    measurement --- the arm's protected accuracy is then the prior of whichever
+    label the solver happened to emit.
+
+    ``restored_by_in_domain_refit`` is what separates the two ways a key goes
+    missing. The same generator mints a training corpus of the same size over the
+    protected split's *own* domain; keys the holdout hid come back, and keys that
+    are minted per instance do not. Without it, ``3 of 515 survive`` reads like a
+    holdout artifact that more training data would fix.
+    """
+
+    view: str
+    train_rows: int
+    train_vocabulary: int
+    train_keys_in_one_train_row: int
+    protected_rows: int
+    test_keys: int
+    test_keys_in_train_vocabulary: int
+    distinct_protected_rows: int
+    in_domain_train_rows: int
+    in_domain_train_vocabulary: int
+    test_keys_in_in_domain_vocabulary: int
+    distinct_protected_rows_in_domain: int
+    constant_surviving_keys: int
+
+    @property
+    def missing_keys(self) -> int:
+        return self.test_keys - self.test_keys_in_train_vocabulary
+
+    @property
+    def restored_by_in_domain_refit(self) -> int:
+        """Missing protected keys that a same-size in-domain corpus brings back."""
+
+        return max(
+            0, self.test_keys_in_in_domain_vocabulary - self.test_keys_in_train_vocabulary
+        )
+
+    @property
+    def hapax_share(self) -> float:
+        """Fraction of the fitted vocabulary that occurs in exactly one training row.
+
+        A key that never repeats cannot be a feature: it identifies its row and
+        nothing else. A view whose vocabulary is almost all hapax is a
+        memorisation channel, and it is empty the moment the rows change.
+        """
+
+        return (
+            self.train_keys_in_one_train_row / self.train_vocabulary
+            if self.train_vocabulary
+            else 0.0
+        )
+
+    @property
+    def recoverable_by_refitting(self) -> bool:
+        """Would a vocabulary fitted on the protected domain give this view a second row?
+
+        The question a reader actually has when they read ``3 of 515 survive``.
+        It is answered by refitting rather than by argument, because "the corpus
+        was wrong" and "no corpus would have helped" are the same sentence
+        otherwise.
+        """
+
+        return self.distinct_protected_rows_in_domain > 1
+
+    @property
+    def surviving_keys_all_constant(self) -> bool:
+        """The second, independent way a denominator reaches one.
+
+        Even a vocabulary that lost nothing leaves a single row when everything
+        it kept takes one value, so a view has to clear both this and
+        :attr:`recoverable_by_refitting` before its protected accuracy is a
+        measurement.
+        """
+
+        return (
+            self.test_keys_in_train_vocabulary > 0
+            and self.constant_surviving_keys == self.test_keys_in_train_vocabulary
+        )
+
+    @property
+    def reason(self) -> ViewCollapseReason:
+        if self.distinct_protected_rows > 1:
+            return ViewCollapseReason.VIEW_RESPONDED
+        if self.missing_keys and not self.restored_by_in_domain_refit:
+            return ViewCollapseReason.PER_INSTANCE_KEY_SPACE
+        if self.restored_by_in_domain_refit:
+            return ViewCollapseReason.HOLDOUT_SCOPED_KEY_SPACE
+        return ViewCollapseReason.SURVIVING_KEYS_CONSTANT
+
+    @property
+    def outcome(self) -> Outcome:
+        """``CANNOT_CHECK``: one protected row is an unmeasured arm, not a bad one."""
+
+        return Outcome.CANNOT_CHECK if self.reason.blocks else Outcome.PASS
+
+    @property
+    def blocks(self) -> bool:
+        return self.outcome.blocks
+
+    @property
+    def mechanism(self) -> str:
+        """The sentence a reader needs in order not to misread the survival count."""
+
+        if not self.reason.blocks:
+            return (
+                f"{self.test_keys_in_train_vocabulary} of {self.test_keys} protected keys "
+                f"survive the fitted vocabulary and present "
+                f"{self.distinct_protected_rows} distinct rows, so the arm's protected "
+                "answers are a function of the cases"
+            )
+        parts = [
+            f"{self.missing_keys} of {self.test_keys} protected feature keys are absent "
+            f"from the vocabulary fitted on {self.train_rows} training rows"
+        ]
+        if self.missing_keys:
+            parts.append(
+                f"refitting on {self.in_domain_train_rows} rows minted by the same "
+                f"generator over the protected split's own domain restores "
+                f"{self.restored_by_in_domain_refit} of them"
+                + (
+                    ", so the absence is the whole-domain holdout"
+                    if self.restored_by_in_domain_refit
+                    else ", so the absence is per-instance key minting and not the "
+                    "whole-domain holdout"
+                )
+            )
+            parts.append(
+                f"{self.train_keys_in_one_train_row} of {self.train_vocabulary} fitted "
+                f"keys occur in exactly one training row"
+            )
+        parts.append(
+            f"the {self.test_keys_in_train_vocabulary} key(s) that do survive take one "
+            f"value on all {self.protected_rows} protected cases"
+            if self.constant_surviving_keys == self.test_keys_in_train_vocabulary
+            else f"{self.constant_surviving_keys} of the "
+            f"{self.test_keys_in_train_vocabulary} surviving key(s) take one value on "
+            f"all {self.protected_rows} protected cases"
+        )
+        return "; ".join(parts)
+
+    def as_json(self) -> dict[str, Any]:
+        return {
+            "view": self.view,
+            "train_rows": self.train_rows,
+            "train_vocabulary": self.train_vocabulary,
+            "train_keys_in_one_train_row": self.train_keys_in_one_train_row,
+            "hapax_share": self.hapax_share,
+            "protected_rows": self.protected_rows,
+            "test_keys": self.test_keys,
+            "test_keys_in_train_vocabulary": self.test_keys_in_train_vocabulary,
+            "distinct_in_vocabulary_test_signatures": self.distinct_protected_rows,
+            "in_domain_train_rows": self.in_domain_train_rows,
+            "in_domain_train_vocabulary": self.in_domain_train_vocabulary,
+            "test_keys_in_in_domain_vocabulary": self.test_keys_in_in_domain_vocabulary,
+            "distinct_in_domain_test_signatures": self.distinct_protected_rows_in_domain,
+            "restored_by_in_domain_refit": self.restored_by_in_domain_refit,
+            "constant_surviving_keys": self.constant_surviving_keys,
+            "surviving_keys_all_constant": self.surviving_keys_all_constant,
+            "recoverable_by_refitting": self.recoverable_by_refitting,
+            "reason": self.reason.value,
+            "outcome": self.outcome.value,
+            "mechanism": self.mechanism,
+        }
+
+
+def _vocabulary(rows: Sequence[Mapping[str, Any]]) -> set[str]:
+    return set().union(*(set(row) for row in rows)) if rows else set()
+
+
+def _distinct_rows(rows: Sequence[Mapping[str, Any]], vocabulary: set[str]) -> int:
+    return len(
+        {
+            tuple(sorted((key, str(row[key])) for key in set(row) & vocabulary))
+            for row in rows
+        }
+    )
+
+
+def _keys_in_one_row(rows: Sequence[Mapping[str, Any]]) -> int:
+    counts: Counter[str] = Counter()
+    for row in rows:
+        counts.update(row.keys())
+    return sum(1 for occurrences in counts.values() if occurrences == 1)
+
+
+def _constant_keys(rows: Sequence[Mapping[str, Any]], keys: set[str]) -> int:
+    # A key missing from a row vectorises to 0, exactly as ``DictVectorizer``
+    # fills it, so absence is a value rather than a gap.
+    return sum(1 for key in keys if len({row.get(key, 0) for row in rows}) == 1)
+
+
+def _in_domain_vocabulary_control(dataset: Any) -> tuple[Any, ...]:
+    """A training corpus the same size as the frozen one, over the protected domain.
+
+    This is not a new case, a new representation or a new experiment: it is the
+    control that decides which of two sentences the survival count supports ---
+    "the vocabulary was fitted somewhere else" or "no vocabulary could have
+    contained these keys".
+    """
+
+    from .d1 import D1Split, _split_instances
+
+    domains = tuple(sorted({row.domain for row in dataset.test}, key=lambda item: item.value))
+    variants_per_index = 4  # aligned, single, unresolved, double
+    per_base_pair = max(1, len(dataset.train) // (variants_per_index * len(domains)))
+    return _split_instances(
+        seed=f"{dataset.seed}|{_IN_DOMAIN_CONTROL_SUFFIX}",
+        split=D1Split.TRAIN,
+        domains=domains,
+        instances_per_base_pair=per_base_pair,
+        include_double=True,
+    )
+
+
+def d1_view_collapse_report() -> dict[str, ViewCollapse]:
+    """How many protected cases each view can still tell apart, and why that number.
 
     A feature key absent from the training split is dropped at transform time, so
     a view whose surviving keys take one value across the protected split presents
@@ -197,24 +488,53 @@ def d1_view_collapse() -> dict[str, dict[str, int]]:
     from .d1 import generate_d1_dataset
     from .d1_experiment import D1FeatureFamily, features
 
-    dataset = generate_d1_dataset(seed="p9-d1-method-transfer-v1")
-    report: dict[str, dict[str, int]] = {}
+    dataset = generate_d1_dataset(seed=D1_SEED)
+    control = _in_domain_vocabulary_control(dataset)
+    report: dict[str, ViewCollapse] = {}
     for family in D1FeatureFamily:
         train = [features(row, family) for row in dataset.train]
         test = [features(row, family) for row in dataset.test]
-        vocabulary = set().union(*(set(row) for row in train))
-        signatures = {
-            tuple(sorted((key, str(row[key])) for key in set(row) & vocabulary)) for row in test
-        }
-        report[family.value] = {
-            "train_vocabulary": len(vocabulary),
-            "test_keys": len(set().union(*(set(row) for row in test))),
-            "test_keys_in_train_vocabulary": len(
-                set().union(*(set(row) for row in test)) & vocabulary
-            ),
-            "distinct_in_vocabulary_test_signatures": len(signatures),
-        }
+        in_domain = [features(row, family) for row in control]
+        vocabulary = _vocabulary(train)
+        in_domain_vocabulary = _vocabulary(in_domain)
+        test_keys = _vocabulary(test)
+        report[family.value] = ViewCollapse(
+            view=family.value,
+            train_rows=len(train),
+            train_vocabulary=len(vocabulary),
+            train_keys_in_one_train_row=_keys_in_one_row(train),
+            protected_rows=len(test),
+            test_keys=len(test_keys),
+            test_keys_in_train_vocabulary=len(test_keys & vocabulary),
+            distinct_protected_rows=_distinct_rows(test, vocabulary),
+            in_domain_train_rows=len(in_domain),
+            in_domain_train_vocabulary=len(in_domain_vocabulary),
+            test_keys_in_in_domain_vocabulary=len(test_keys & in_domain_vocabulary),
+            distinct_protected_rows_in_domain=_distinct_rows(test, in_domain_vocabulary),
+            constant_surviving_keys=_constant_keys(test, test_keys & vocabulary),
+        )
     return report
+
+
+def d1_view_collapse() -> dict[str, dict[str, Any]]:
+    """The view-collapse report as plain JSON-safe rows."""
+
+    return {view: item.as_json() for view, item in d1_view_collapse_report().items()}
+
+
+D1_ORACLE_THEORY_ID = "D1 exact typed relational comparator vs D1 evaluator gold"
+
+D1_EVALUATOR_GOLD_ID = "D1 evaluator gold (orion.study.p9.d1.classify_methods)"
+
+D1_EVALUATOR_BRANCH = "D1_EVALUATOR_FAILURE"
+
+
+def _d1_evaluator_gold(instance: Any) -> str:
+    """The rule the D1 evaluator labels with, read off the method pair itself."""
+
+    from .d1 import classify_methods
+
+    return classify_methods(instance.left, instance.right).value
 
 
 def d1_oracle_divergence() -> TheoryDivergence:
@@ -226,27 +546,435 @@ def d1_oracle_divergence() -> TheoryDivergence:
     answers it; it is measured here rather than re-implemented.
     """
 
-    from .d1 import classify_methods, generate_d1_dataset
+    from .d1 import generate_d1_dataset
     from .d1_experiment import exact_relational_comparator
 
-    dataset = generate_d1_dataset(seed="p9-d1-method-transfer-v1")
+    dataset = generate_d1_dataset(seed=D1_SEED)
     return divergence_of(
         exact_relational_comparator,
-        theory_id="D1 exact typed relational comparator vs D1 evaluator gold",
-        reference=lambda instance: classify_methods(instance.left, instance.right).value,
+        theory_id=D1_ORACLE_THEORY_ID,
+        reference=_d1_evaluator_gold,
         space=(*dataset.train, *dataset.dev, *dataset.test),
     )
 
 
+class OracleVerdict(str, Enum):
+    """What a zero-divergence count between comparator and gold actually says.
+
+    Three states, because "0 divergent" has three causes and only one of them is
+    a result. ``IDENTITY_BY_CONSTRUCTION`` is the one this audit found, and
+    printing it as an agreement measurement is the defect: an identity reported
+    as a comparison reads as corroboration that the evaluator was checked.
+    """
+
+    COMPARATOR_DIVERGED = "COMPARATOR_DIVERGED"
+    AGREEMENT_ONLY_ON_THE_FROZEN_SPACE = "AGREEMENT_ONLY_ON_THE_FROZEN_SPACE"
+    IDENTITY_BY_CONSTRUCTION = "IDENTITY_BY_CONSTRUCTION"
+
+
+@dataclass(frozen=True)
+class OracleIdentity:
+    """The ``D1_EVALUATOR_FAILURE`` branch, measured as an identity and as a check.
+
+    Two questions, deliberately separate, because they have opposite answers here
+    and reporting either one alone is misleading.
+
+    *Is this comparator capable of disagreeing with gold?*
+    ``frozen_space``/``protected_space``/``widened_space`` answer it. The last is
+    the one that matters: agreement on a corpus a single generator built is weak
+    evidence, so the comparator is re-run on method pairs that generator never
+    makes --- every subset of the eight compared coordinates perturbed at once,
+    values emptied and nulled rather than extended, and unknown markings on the
+    left method, on both methods, and on a coordinate the evaluator does not
+    compare at all. Zero divergence there too is an identity, not a coincidence
+    of the frozen split.
+
+    *Is the branch itself a real check?* ``capacity`` answers it with P6's
+    instrument: a register of comparators a reader can read and agree are wrong,
+    each of which the branch does reject. So the branch is well-formed, and it is
+    still unreachable --- because the rule it was pointed at is the rule it
+    grades against, re-expressed through the typed projection.
+    """
+
+    comparator_id: str
+    reference_id: str
+    branch: str
+    frozen_space: TheoryDivergence
+    protected_space: TheoryDivergence
+    widened_space: TheoryDivergence
+    compared_coordinates: tuple[str, ...]
+    comparator_read_coordinates: tuple[str, ...]
+    widened_gold_labels: tuple[tuple[str, int], ...]
+    capacity: RefutationCapacity
+
+    def __post_init__(self) -> None:
+        if len(self.widened_gold_labels) < 2:
+            raise ValueError(
+                f"{self.comparator_id}: the widened space carries "
+                f"{len(self.widened_gold_labels)} gold label(s); a space on which the "
+                "reference itself is constant cannot show a comparator disagreeing"
+            )
+
+    @property
+    def verdict(self) -> OracleVerdict:
+        if self.protected_space.applied or self.frozen_space.applied:
+            return OracleVerdict.COMPARATOR_DIVERGED
+        if self.widened_space.applied:
+            return OracleVerdict.AGREEMENT_ONLY_ON_THE_FROZEN_SPACE
+        return OracleVerdict.IDENTITY_BY_CONSTRUCTION
+
+    @property
+    def is_identity(self) -> bool:
+        return self.verdict is OracleVerdict.IDENTITY_BY_CONSTRUCTION
+
+    @property
+    def widened_space_is_varied(self) -> bool:
+        """The widening is only worth reporting if gold moves across it."""
+
+        return len(self.widened_gold_labels) > 1
+
+    @property
+    def reads_every_compared_coordinate(self) -> bool:
+        """The structural half of the identity: same inputs, not just same answers."""
+
+        return set(self.comparator_read_coordinates) == set(self.compared_coordinates)
+
+    @property
+    def branch_reachable(self) -> bool:
+        """Could ``D1_EVALUATOR_FAILURE`` have been emitted by the artifact as run?"""
+
+        return not self.is_identity
+
+    @property
+    def outcome(self) -> Outcome:
+        """``CANNOT_CHECK`` for an identity: nothing could have differed.
+
+        Not ``FAIL``. A comparator that *did* disagree with gold would refute the
+        archive's ``exact_typed_relational_comparator.accuracy == 1.0``, and that
+        is the only reading of this branch that deserves ``FAIL``. Both block.
+        """
+
+        if self.verdict is OracleVerdict.COMPARATOR_DIVERGED:
+            return Outcome.FAIL
+        return Outcome.CANNOT_CHECK
+
+    @property
+    def blocks(self) -> bool:
+        return self.outcome.blocks
+
+    def as_json(self) -> dict[str, Any]:
+        return {
+            "comparator_id": self.comparator_id,
+            "reference_id": self.reference_id,
+            "branch": self.branch,
+            "verdict": self.verdict.value,
+            "is_identity": self.is_identity,
+            "branch_reachable": self.branch_reachable,
+            "reads_every_compared_coordinate": self.reads_every_compared_coordinate,
+            "widened_gold_labels": [list(item) for item in self.widened_gold_labels],
+            "widened_space_is_varied": self.widened_space_is_varied,
+            "compared_coordinates": list(self.compared_coordinates),
+            "comparator_read_coordinates": list(self.comparator_read_coordinates),
+            "frozen_space": self.frozen_space.as_json(),
+            "protected_space": self.protected_space.as_json(),
+            "widened_space": self.widened_space.as_json(),
+            "capacity": self.capacity.as_json(),
+            "outcome": self.outcome.value,
+        }
+
+
+def _widened_oracle_space() -> tuple[Any, ...]:
+    """Method pairs the D1 generator never builds, for the comparator to differ on.
+
+    The frozen corpus perturbs one or two coordinates with a single mutation
+    operator that only ever *extends* a sequence or *replaces* a scalar, and it
+    marks a coordinate unknown on the right method only. A comparator that agreed
+    with gold there could be agreeing with the generator. These are that
+    generator's blind spots, enumerated rather than sampled: all 2**8 subsets of
+    the compared coordinates perturbed at once, crossed with five unknown
+    regimes, including one that marks a coordinate the evaluator does not compare.
+    """
+
+    from orion.transfer.v2.p1_method_realization import build_method_realization
+
+    from .d1 import (
+        COMPARISON_COORDINATES,
+        D1Domain,
+        D1Instance,
+        D1Split,
+        classify_methods,
+    )
+
+    shared: dict[str, Any] = {
+        "source_digest": content_digest({"p9-d1-widened-oracle-space": "v1"}),
+        "source_version": "p9-d1-widened-oracle-space-v1",
+        "authority_boundary": "REPRESENTATION_ONLY",
+        "target_role": "widened_probe",
+        "assumptions": ("a1",),
+        "resources": ("r1",),
+        "representation_in": "in",
+        "representation_out": "out",
+        "mechanics": ("alpha", "beta"),
+        "lineage": ("donor:widened",),
+    }
+    reference_values: dict[str, Any] = {
+        "preconditions": ("p1", "p2"),
+        "invariants": ("i1",),
+        "effects": ("e1",),
+        "progress_measure": "pm",
+        "terminal_condition": "tc",
+        "reconstruction_map": "rm",
+        "failure_modes": ("f1", "f2"),
+        "dependencies": (("alpha", "beta"),),
+    }
+    # Shapes the D1 mutation operator never produces: emptied sequences, nulled
+    # scalars, a dropped dependency edge, a shortened failure-mode list.
+    perturbed_values: dict[str, Any] = {
+        "preconditions": ("p1", "p3"),
+        "invariants": (),
+        "effects": ("e1", "e2"),
+        "progress_measure": None,
+        "terminal_condition": "tc2",
+        "reconstruction_map": None,
+        "failure_modes": ("f2",),
+        "dependencies": (),
+    }
+    unknown_regimes = (
+        ("none", (), ()),
+        # D1 only ever marks the right method unknown.
+        ("left-only", ("progress_measure",), ()),
+        ("right-only", (), ("terminal_condition",)),
+        ("both-sides", ("dependencies",), ("dependencies",)),
+        # ``mechanics`` is a realization coordinate the evaluator does not
+        # compare: gold must ignore it, and so must the typed projection.
+        ("outside-the-compared-set", (), ("mechanics",)),
+    )
+
+    space: list[Any] = []
+    for regime, left_unknown, right_unknown in unknown_regimes:
+        left = build_method_realization(
+            method_id=f"widened-left-{regime}",
+            unknown_coordinates=left_unknown,
+            **shared,
+            **reference_values,
+        )
+        for mask in range(1 << len(COMPARISON_COORDINATES)):
+            changed = tuple(
+                coordinate
+                for index, coordinate in enumerate(COMPARISON_COORDINATES)
+                if mask >> index & 1
+            )
+            values = dict(reference_values)
+            for coordinate in changed:
+                values[coordinate] = perturbed_values[coordinate]
+            right = build_method_realization(
+                method_id=f"widened-right-{regime}-{mask}",
+                unknown_coordinates=right_unknown,
+                **shared,
+                **values,
+            )
+            instance = D1Instance(
+                instance_id=f"widened-{regime}-{mask}",
+                domain=D1Domain.WORKFLOW,
+                split=D1Split.TEST,
+                left=left,
+                right=right,
+                label=classify_methods(left, right),
+                mutation_coordinates=changed,
+                surface_left=("widened-left-0", "widened-left-1"),
+                surface_right=("widened-right-0", "widened-right-1"),
+                surface_role_left="widened-left-role",
+                surface_role_right="widened-right-role",
+            )
+            instance.verify()
+            space.append(instance)
+    return tuple(space)
+
+
+def declared_false_comparators() -> tuple[FalseTheory, ...]:
+    """Comparator rules a reader can read and agree are wrong.
+
+    The register the ``D1_EVALUATOR_FAILURE`` branch is exercised against. Its
+    job is to keep "the branch never fired" from being read two ways at once: a
+    branch that rejects none of these is vacuous, and a branch that rejects all
+    of them is a real check that happened to be pointed at its own reference.
+    """
+
+    from .d1 import COMPARISON_COORDINATES, D1Label
+    from .d1_experiment import D1FeatureFamily, features
+
+    def row(instance: Any) -> Mapping[str, Any]:
+        return features(instance, D1FeatureFamily.TYPED_RELATIONAL)
+
+    def unknown_anywhere(cells: Mapping[str, Any]) -> bool:
+        return any(bool(cells[f"{name}:unknown"]) for name in COMPARISON_COORDINATES)
+
+    def unequal_anywhere(cells: Mapping[str, Any]) -> bool:
+        return any(not bool(cells[f"{name}:equal"]) for name in COMPARISON_COORDINATES)
+
+    def always_aligned(_instance: Any) -> str:
+        return D1Label.ALIGNED.value
+
+    def modal_label(_instance: Any) -> str:
+        return D1Label.OBSTRUCTION.value
+
+    def unknown_ignored(instance: Any) -> str:
+        cells = row(instance)
+        return (
+            D1Label.OBSTRUCTION.value if unequal_anywhere(cells) else D1Label.ALIGNED.value
+        )
+
+    def obstruction_before_unresolved(instance: Any) -> str:
+        cells = row(instance)
+        if unequal_anywhere(cells):
+            return D1Label.OBSTRUCTION.value
+        if unknown_anywhere(cells):
+            return D1Label.UNRESOLVED.value
+        return D1Label.ALIGNED.value
+
+    def preconditions_only(instance: Any) -> str:
+        cells = row(instance)
+        if unknown_anywhere(cells):
+            return D1Label.UNRESOLVED.value
+        if not bool(cells["preconditions:equal"]):
+            return D1Label.OBSTRUCTION.value
+        return D1Label.ALIGNED.value
+
+    def cardinality_only(instance: Any) -> str:
+        cells = row(instance)
+        if unknown_anywhere(cells):
+            return D1Label.UNRESOLVED.value
+        for name in COMPARISON_COORDINATES:
+            left = cells.get(f"{name}:left_length")
+            right = cells.get(f"{name}:right_length")
+            if left is not None and right is not None and left != right:
+                return D1Label.OBSTRUCTION.value
+        return D1Label.ALIGNED.value
+
+    return (
+        FalseTheory(
+            theory_id="always-aligned",
+            breaks="every method pair is substitutable: obstruction and source "
+            "insufficiency are never reported at all",
+            rule=always_aligned,
+        ),
+        FalseTheory(
+            theory_id="modal-label",
+            breaks="the comparator answers the protected split's most common label "
+            "instead of reading the pair",
+            rule=modal_label,
+        ),
+        FalseTheory(
+            theory_id="unknown-ignored",
+            breaks="a coordinate the source never stated is graded as though it had "
+            "been, so UNRESOLVED is never reported",
+            rule=unknown_ignored,
+        ),
+        FalseTheory(
+            theory_id="obstruction-before-unresolved",
+            breaks="a pair that is both source-insufficient and unequal is reported as "
+            "a decided obstruction rather than as unresolved",
+            rule=obstruction_before_unresolved,
+        ),
+        FalseTheory(
+            theory_id="preconditions-only",
+            breaks="seven of the eight compared coordinates are ignored, so a "
+            "corruption anywhere else reads as aligned",
+            rule=preconditions_only,
+        ),
+        FalseTheory(
+            theory_id="cardinality-only",
+            breaks="coordinates are graded by how many entries they have, so a "
+            "same-length rewrite and a scalar substitution read as aligned",
+            rule=cardinality_only,
+        ),
+    )
+
+
+def d1_oracle_identity() -> OracleIdentity:
+    """Decide which of the three causes of ``0 divergent`` this branch has.
+
+    A comparator can agree with gold everywhere because it *is* gold, because it
+    reads gold, or because it is being asked on a space where nothing could
+    differ. The three are told apart here by widening the space and by exercising
+    the branch against wrong comparators, not by reading the count.
+    """
+
+    from .d1 import COMPARISON_COORDINATES, generate_d1_dataset
+    from .d1_experiment import D1FeatureFamily, exact_relational_comparator, features
+
+    dataset = generate_d1_dataset(seed=D1_SEED)
+    protected = tuple(dataset.test)
+    widened = _widened_oracle_space()
+
+    read = {
+        key.split(":", 1)[0]
+        for key in features(protected[0], D1FeatureFamily.TYPED_RELATIONAL)
+        if key.endswith((":equal", ":unknown"))
+    }
+
+    check = MechanizedCheck(
+        check_id=D1_EVALUATOR_BRANCH,
+        asserts=(
+            "run_d1 emits D1_EVALUATOR_FAILURE unless the exact typed relational "
+            f"comparator reproduces evaluator gold on all {len(protected)} protected cases"
+        ),
+        accepts=lambda rule: all(rule(row) == _d1_evaluator_gold(row) for row in protected),
+    )
+
+    return OracleIdentity(
+        comparator_id=D1_ORACLE_THEORY_ID,
+        reference_id=D1_EVALUATOR_GOLD_ID,
+        branch=D1_EVALUATOR_BRANCH,
+        frozen_space=d1_oracle_divergence(),
+        protected_space=divergence_of(
+            exact_relational_comparator,
+            theory_id=f"{D1_ORACLE_THEORY_ID} (protected split only)",
+            reference=_d1_evaluator_gold,
+            space=protected,
+        ),
+        widened_space=divergence_of(
+            exact_relational_comparator,
+            theory_id=f"{D1_ORACLE_THEORY_ID} (pairs the D1 generator never builds)",
+            reference=_d1_evaluator_gold,
+            space=widened,
+        ),
+        compared_coordinates=tuple(COMPARISON_COORDINATES),
+        comparator_read_coordinates=tuple(sorted(read)),
+        widened_gold_labels=tuple(
+            sorted(Counter(_d1_evaluator_gold(row) for row in widened).items())
+        ),
+        capacity=measure_refutation_capacity(
+            check,
+            reference=_d1_evaluator_gold,
+            reference_id=D1_EVALUATOR_GOLD_ID,
+            theories=declared_false_comparators(),
+            space=protected,
+        ),
+    )
+
+
+
 __all__ = [
     "D1_COMPARATOR_ARMS",
+    "D1_EVALUATOR_BRANCH",
+    "D1_EVALUATOR_GOLD_ID",
+    "D1_ORACLE_THEORY_ID",
     "D1_RESULT_DIGEST",
     "D1_RESULT_PATH",
+    "D1_SEED",
     "D1_TREATED_ARM",
+    "OracleIdentity",
+    "OracleVerdict",
+    "ViewCollapse",
+    "ViewCollapseReason",
     "d1_arm_responses",
     "d1_composition_sensitivity",
     "d1_contrast_margins",
     "d1_oracle_divergence",
+    "d1_oracle_identity",
     "d1_view_collapse",
+    "d1_view_collapse_report",
+    "declared_false_comparators",
     "load_shipped_d1_result",
 ]

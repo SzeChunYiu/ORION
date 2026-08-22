@@ -5,6 +5,30 @@ frozen predictions on re-composed protected splits, measures how many protected
 cases each view can still tell apart once its vocabulary is fixed, and asks
 whether the ``D1_EVALUATOR_FAILURE`` branch could ever be taken.
 
+Two of those measurements report a *number that has more than one cause*, and
+this audit exists to say which cause, because the number alone reads as a result
+either way.
+
+``N of M protected feature keys survive the fitted vocabulary`` is the first. A
+key can be missing because the vocabulary was fitted on other domains --- which
+more or better training data fixes --- or because the key space is minted per
+instance, which no corpus could ever have covered. The two are told apart by
+refitting the vocabulary on a same-size corpus the same generator draws from the
+protected split's *own* domain, and the audit reports how many keys that
+restores rather than leaving the reader to guess.
+
+``points N, divergent 0`` between the exact typed relational comparator and
+evaluator gold is the second, and it has three causes: the comparator is gold,
+it reads gold, or it is being asked on a space where nothing could differ. It is
+the first. The comparator is
+:func:`orion.study.p9.d1.classify_methods` re-expressed through the typed
+projection --- same eight coordinates, same precedence --- so the audit reports
+it as an identity and reports ``D1_EVALUATOR_FAILURE`` as unreachable for the
+artifact as run, instead of printing an agreement it could not have failed to
+find. That the branch would still reject six declared-wrong comparators is
+reported beside it, because "the check is vacuous" and "the check was pointed at
+its own reference" are different repairs.
+
 Exits ``3`` when anything blocks, so it fails a pipeline rather than printing a
 table nobody reads::
 
@@ -28,15 +52,24 @@ def audit_p9_transfer_margins() -> dict[str, Any]:
     result = p9.load_shipped_d1_result()
     margins = p9.d1_contrast_margins(result)
     sensitivity = p9.d1_composition_sensitivity(result)
-    collapse = p9.d1_view_collapse()
-    oracle = p9.d1_oracle_divergence()
+    collapse = p9.d1_view_collapse_report()
+    oracle = p9.d1_oracle_identity()
 
-    # The oracle's outcome is not a margin verdict: a terminal branch whose
-    # trigger recomputes the gold it grades is the P6 failure, measured with P6's
-    # instrument and carried here so the two verdicts stay separable.
-    oracle_outcome = Outcome.PASS if oracle.applied else Outcome.FAIL
+    # Three verdicts that must stay separable, because they have three different
+    # repairs: a margin taken against an arm that never answered, a view whose
+    # protected design matrix has one row, and a terminal branch whose trigger
+    # recomputes the gold it grades.
+    oracle_outcome = oracle.outcome
     outcome = worst_outcome(tuple(item.assessment for item in margins))
-    for other in (*(item.outcome for item in margins), oracle_outcome):
+    others = (
+        *(item.outcome for item in margins),
+        *(item.outcome for item in collapse.values()),
+        oracle_outcome,
+    )
+    for other in others:
+        if other is Outcome.FAIL:
+            outcome = other
+            break
         if other.blocks and not outcome.blocks:
             outcome = other
 
@@ -60,7 +93,9 @@ def report_as_json(report: dict[str, Any]) -> dict[str, Any]:
         "sensitivity": {
             arm: item.as_json() for arm, item in sorted(report["sensitivity"].items())
         },
-        "view_collapse": report["view_collapse"],
+        "view_collapse": {
+            view: item.as_json() for view, item in sorted(report["view_collapse"].items())
+        },
         "oracle": report["oracle"].as_json(),
         "oracle_outcome": report["oracle_outcome"].value,
         "outcome": report["outcome"].value,
@@ -99,19 +134,41 @@ def _render(report: dict[str, Any]) -> str:
             f"{item.informedness_margin_high}]"
         )
     lines.append("")
-    for view, counts in sorted(report["view_collapse"].items()):
-        lines.append(
-            f"  {view}: {counts['test_keys_in_train_vocabulary']}/{counts['test_keys']} "
-            f"protected feature keys survive the fitted vocabulary, leaving "
-            f"{counts['distinct_in_vocabulary_test_signatures']} distinct protected row(s)"
+    for view, item in sorted(report["view_collapse"].items()):
+        lines.extend(
+            [
+                f"  {view}: {item.test_keys_in_train_vocabulary}/{item.test_keys} "
+                f"protected feature keys survive the fitted vocabulary, leaving "
+                f"{item.distinct_protected_rows} distinct protected row(s)",
+                f"    in-domain refit ({item.in_domain_train_rows} rows of the protected "
+                f"domain): {item.test_keys_in_in_domain_vocabulary}/{item.test_keys} keys, "
+                f"{item.distinct_protected_rows_in_domain} distinct row(s), "
+                f"{item.restored_by_in_domain_refit} key(s) restored",
+                f"    outcome: {item.outcome.value} ({item.reason.value})",
+                f"    {item.mechanism}",
+            ]
         )
     oracle = report["oracle"]
+    capacity = oracle.capacity
     lines.extend(
         [
             "",
-            f"  {oracle.theory_id}",
-            f"    points {oracle.points}, divergent {oracle.points_changed}",
-            f"    outcome: {report['oracle_outcome'].value}",
+            f"  {oracle.comparator_id}",
+            f"    frozen D1 space: {oracle.frozen_space.points} points, "
+            f"{oracle.frozen_space.points_changed} divergent",
+            f"    protected split: {oracle.protected_space.points} points, "
+            f"{oracle.protected_space.points_changed} divergent",
+            f"    pairs the D1 generator never builds: {oracle.widened_space.points} points "
+            f"over {len(oracle.widened_gold_labels)} gold labels, "
+            f"{oracle.widened_space.points_changed} divergent",
+            f"    reads {len(oracle.comparator_read_coordinates)} of "
+            f"{len(oracle.compared_coordinates)} coordinates the evaluator compares",
+            f"    {oracle.branch} would still reject {len(capacity.refuted)}/"
+            f"{len(capacity.refuted) + len(capacity.survivors)} declared wrong "
+            f"comparators ({capacity.outcome.value})",
+            f"    {oracle.branch} reachable for the artifact as run: "
+            f"{oracle.branch_reachable}",
+            f"    outcome: {report['oracle_outcome'].value} ({oracle.verdict.value})",
             "",
             f"  audit outcome: {report['outcome'].value}",
         ]

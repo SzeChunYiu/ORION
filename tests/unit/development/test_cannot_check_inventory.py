@@ -246,11 +246,22 @@ def test_the_precision_fix_lost_no_classification() -> None:
     is the distinction this whole batch exists to make. Future additions must
     update this sentinel deliberately rather than weakening it to a lower-bound
     check.
+
+    P9's transfer audit takes the ratchet from 195 to 196 with a single
+    ``MISSING_IDENTITY`` in ``OracleIdentity.outcome``. It is the right category
+    and the right terminal: the D1 exact typed-relational comparator agrees with
+    the evaluator gold on every point of three separate spaces --- the frozen 512,
+    the protected 128, and 1,280 method pairs the D1 generator never builds ---
+    because it is the evaluator's own classification read back through the same
+    payload. That is an identity, so the failure branch it is supposed to grade
+    cannot be reached, and the honest report is that the check could not be taken
+    rather than that it failed. The same module's ``ViewCollapse.outcome`` is
+    ``UNCLASSIFIED`` and so is not counted here.
     """
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
-    assert sum(classified.values()) == 195, classified
+    assert sum(classified.values()) == 196, classified
     assert committed["with_reason"] < committed["blocker_sites"]
     assert committed["with_reason"] >= sum(classified.values()), (
         "more sites are classified than carry a reason, so something is classifying on nothing"

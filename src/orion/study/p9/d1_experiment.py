@@ -97,6 +97,15 @@ def _transcript_features(instance: D1Instance) -> dict[str, object]:
     assert isinstance(left, list) and isinstance(right, list)
     # Raw reminted tokens may enter this bag; they are disjoint across splits by
     # construction and therefore serve as a direct memorisation/shortcut control.
+    # Measured since (``orion.study.p9.transfer_margins.d1_view_collapse_report``):
+    # the disjointness is per *instance*, not per split. ``_surface_tokens`` seeds
+    # every symbol on the instance that emitted it, so no token occurs twice
+    # anywhere in the corpus, 1,152 of the 1,155 fitted keys occur in exactly one
+    # training row, and refitting the vocabulary on the protected split's own
+    # domain restores none of them. What survives the vectoriser on the protected
+    # split is the three arity counts below, which take (2, 2, True) on all 128
+    # cases -- so this arm presents one design-matrix row and its protected
+    # accuracy is the prior of whichever label the solver emitted.
     features: dict[str, object] = {
         "left_action_count": len(left),
         "right_action_count": len(right),
