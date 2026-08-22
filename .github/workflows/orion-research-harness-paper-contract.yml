@@ -4,11 +4,15 @@ on:
   pull_request:
     paths:
       - 'packages/orion-research-harness/src/orion_research_harness/paper_*.py'
-      - 'packages/orion-research-harness/src/orion_research_harness/epistemic_navigation.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/epistemic_*.py'
       - 'packages/orion-research-harness/src/orion_research_harness/research_saturation.py'
-      - 'packages/orion-research-harness/tests/test_paper_contract_runtime.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/ocme_runtime.py'
+      - 'packages/orion-research-harness/tests/test_paper_*.py'
+      - 'packages/orion-research-harness/tests/test_epistemic_*.py'
+      - 'packages/orion-research-harness/tests/test_ocme_runtime.py'
       - 'packages/orion-research-harness/pyproject.toml'
       - 'development/orion-research-harness/PAPER_CONTRACT_*'
+      - 'development/orion-research-harness/PAPER_PROGRAMME_*'
       - '.github/workflows/orion-research-harness-paper-contract.yml'
   workflow_dispatch:
 
@@ -19,7 +23,7 @@ concurrency:
 jobs:
   paper-contract-hostile:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -33,8 +37,15 @@ jobs:
           python -m pip install -e '.[dev]'
           python -m pip install -e 'packages/orion-research-harness[dev]'
       - name: Run frozen paper-contract hostile tests
-        run: python -m pytest -q packages/orion-research-harness/tests/test_paper_contract_runtime.py
-      - name: Execute semantic paper-contract conformance gate
+        run: |
+          python -m pytest -q \
+            packages/orion-research-harness/tests/test_paper_contract_runtime.py \
+            packages/orion-research-harness/tests/test_paper_runtime_cli.py \
+            packages/orion-research-harness/tests/test_epistemic_mechanics_p6.py \
+            packages/orion-research-harness/tests/test_epistemic_authority_p8.py \
+            packages/orion-research-harness/tests/test_ocme_runtime.py \
+            packages/orion-research-harness/tests/test_paper_programme_runtime.py
+      - name: Execute P0 semantic paper-contract conformance gate
         run: |
           orion-harness-paper paper-contract-conformance | tee /tmp/orion-paper-contract.json
           python - <<'PY'
@@ -52,12 +63,36 @@ jobs:
           assert report['grants_promotion_authority'] is False
           assert report['grants_global_task_stop_authority'] is False
           PY
+      - name: Execute full P1-P15 semantic programme conformance gate
+        run: |
+          orion-harness-paper paper-programme-conformance | tee /tmp/orion-paper-programme.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path('/tmp/orion-paper-programme.json').read_text())
+          assert report['schema'] == 'ORION.HarnessPaperProgrammeConformance.v1'
+          assert report['terminal'] == 'ORION_HARNESS_P1_P15_OPERATIONAL'
+          assert report['paper_programme_operational'] is True
+          assert report['failed_paper_ids'] == []
+          assert len(report['papers']) == 15
+          assert [row['paper_id'] for row in report['papers']] == [f'P{i}' for i in range(1, 16)]
+          assert all(row['operational'] for row in report['papers'])
+          assert all(row['positive_probe'] for row in report['papers'])
+          assert all(row['fail_closed_probe'] for row in report['papers'])
+          assert report['grants_scientific_authority'] is False
+          assert report['grants_novelty_authority'] is False
+          assert report['grants_promotion_authority'] is False
+          assert report['grants_global_task_stop_authority'] is False
+          PY
       - name: Run full shared-harness regression suite
         run: python -m pytest -q packages/orion-research-harness/tests
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: orion-paper-contract-${{ github.event.pull_request.head.sha || github.sha }}
-          path: /tmp/orion-paper-contract.json
+          path: |
+            /tmp/orion-paper-contract.json
+            /tmp/orion-paper-programme.json
           if-no-files-found: warn
           retention-days: 14
