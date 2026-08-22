@@ -31,7 +31,10 @@ from .paper_runtime_io import (
     research_rounds_from_mapping,
 )
 from .paper_structure import run_paper_structure
+from .paper_structure_consensus import run_paper_structure_consensus
+from .research_director import ResearchDirectiveKind, direct_research_from_mapping
 from .research_saturation import assess_evidence_derived_saturation
+from .research_v3_conformance import research_v3_conformance
 from .workspace import ResearchWorkspace
 
 
@@ -56,6 +59,18 @@ def _json_input(sub, name: str):
     return command
 
 
+def _structure_input(sub, name: str):
+    structure = sub.add_parser(name)
+    structure.add_argument("workspace")
+    structure.add_argument("source_path")
+    structure.add_argument("method_id")
+    structure.add_argument("--source-id")
+    structure.add_argument("--source-version", default="local-source-v1")
+    structure.add_argument("--chunk-size", type=int, default=12000)
+    structure.add_argument("--chunk-overlap", type=int, default=800)
+    return structure
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="orion-harness-paper",
@@ -65,16 +80,12 @@ def build_parser() -> argparse.ArgumentParser:
 
     sub.add_parser("paper-contract-conformance")
     sub.add_parser("paper-programme-conformance")
+    sub.add_parser("research-v3-conformance")
 
-    structure = sub.add_parser("paper-structure")
-    structure.add_argument("workspace")
-    structure.add_argument("source_path")
-    structure.add_argument("method_id")
-    structure.add_argument("--source-id")
-    structure.add_argument("--source-version", default="local-source-v1")
-    structure.add_argument("--chunk-size", type=int, default=12000)
-    structure.add_argument("--chunk-overlap", type=int, default=800)
+    _structure_input(sub, "paper-structure")
+    _structure_input(sub, "paper-structure-consensus")
 
+    _json_input(sub, "research-direct")
     _json_input(sub, "mechanic-apply")
     _json_input(sub, "dependency-repair")
     _json_input(sub, "authority-check")
@@ -113,6 +124,29 @@ def _non_authorizing(schema: str, **payload: object) -> dict[str, object]:
     }
 
 
+def _run_structure_command(args, *, consensus: bool) -> int:
+    workspace = ResearchWorkspace.load(args.workspace)
+    runner = run_paper_structure_consensus if consensus else run_paper_structure
+    outcome = runner(
+        workspace,
+        source_path=args.source_path,
+        method_id=args.method_id,
+        source_id=args.source_id or f"local:{args.source_path}",
+        source_version=args.source_version,
+        chunk_size=args.chunk_size,
+        chunk_overlap=args.chunk_overlap,
+    )
+    _print(outcome)
+    status = str(outcome["status"])
+    if status == "PENDING_CAPABILITY":
+        return 2
+    if status == "HOST_CAPABILITY_FAILED":
+        return 3
+    if status.startswith("CANNOT_CHECK"):
+        return 4
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "paper-contract-conformance":
@@ -123,26 +157,18 @@ def main(argv: list[str] | None = None) -> int:
         report = paper_programme_conformance()
         _print(report)
         return 0 if report["paper_programme_operational"] else 4
+    if args.command == "research-v3-conformance":
+        report = research_v3_conformance()
+        _print(report)
+        return 0 if report["operational"] else 4
     if args.command == "paper-structure":
-        workspace = ResearchWorkspace.load(args.workspace)
-        outcome = run_paper_structure(
-            workspace,
-            source_path=args.source_path,
-            method_id=args.method_id,
-            source_id=args.source_id or f"local:{args.source_path}",
-            source_version=args.source_version,
-            chunk_size=args.chunk_size,
-            chunk_overlap=args.chunk_overlap,
-        )
-        _print(outcome)
-        status = str(outcome["status"])
-        if status == "PENDING_CAPABILITY":
-            return 2
-        if status == "HOST_CAPABILITY_FAILED":
-            return 3
-        if status.startswith("CANNOT_CHECK"):
-            return 4
-        return 0
+        return _run_structure_command(args, consensus=False)
+    if args.command == "paper-structure-consensus":
+        return _run_structure_command(args, consensus=True)
+    if args.command == "research-direct":
+        directive = direct_research_from_mapping(_load_json(args.json, args.file))
+        _print(directive.as_dict())
+        return 4 if directive.kind is ResearchDirectiveKind.CANNOT_CHECK else 0
     if args.command == "mechanic-apply":
         raw = _load_json(args.json, args.file)
         if not isinstance(raw, dict):
