@@ -96,12 +96,37 @@ jobs:
         run: |
           orion-harness init /tmp/orion-q-r6 --project-root . --allow-process-tools
           orion-harness campaign-start /tmp/orion-q-r6 orion-q:max-r6-live
-      - name: Drive live campaign through current P10 boundary
+      - name: Drive live campaign through final frozen R6 verdict
         run: |
           orion-harness campaign-run /tmp/orion-q-r6 orion-q:max-r6-live --max-cycles 4 | tee /tmp/orion-q-r6-run.json
-          grep 'P10_FRAME_RESULT_READY__R6_STILL_CLOSED' /tmp/orion-q-r6-run.json
           orion-harness campaign-state /tmp/orion-q-r6 orion-q:max-r6-live | tee /tmp/orion-q-r6-state.json
-          grep 'P10_FRAME_GENERATION_TERMINAL' /tmp/orion-q-r6-state.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          run = json.loads(Path('/tmp/orion-q-r6-run.json').read_text())
+          state = json.loads(Path('/tmp/orion-q-r6-state.json').read_text())
+          if run.get('status') != 'TERMINAL':
+              raise SystemExit(f"campaign did not reach terminal: {run.get('status')!r}")
+          cycles = run.get('cycles')
+          if not isinstance(cycles, list) or len(cycles) != 4:
+              raise SystemExit(f"expected four campaign cycles, got {cycles!r}")
+          if cycles[-1].get('terminal') != 'R6_PROSPECTIVE_VERDICT_RECORDED__NOT_SELF_AUTHORIZING':
+              raise SystemExit(f"unexpected final cycle terminal: {cycles[-1].get('terminal')!r}")
+          if state.get('phase_id') != 'R6_VERDICT':
+              raise SystemExit(f"unexpected campaign phase: {state.get('phase_id')!r}")
+          observations = dict(state.get('observations') or [])
+          expected = {
+              'P10_FRAME_GENERATION_TERMINAL': 'MAX_R6_P10_FRAME_CANDIDATE_GENERATED',
+              'R6_EARNED': 'NO',
+              'R6_PROSPECTIVE_AUTHORITY': 'MAX_R6_NOT_EARNED__PROTECTED_SUBJECT_NOT_OPENED',
+              'R6_PROTECTED_SUBJECT_ACCESSED': 'NO',
+          }
+          for key, want in expected.items():
+              got = observations.get(key)
+              if got != want:
+                  raise SystemExit(f"{key} drifted: {got!r} != {want!r}")
+          PY
       - name: Fail closed if protected R6 discriminator was released
         run: |
           python - <<'PY'
@@ -109,7 +134,7 @@ jobs:
           from pathlib import Path
 
           state = json.loads(Path('/tmp/orion-q-r6-state.json').read_text())
-          if state.get('phase_id') != 'P10_RESULT':
+          if state.get('phase_id') != 'R6_VERDICT':
               raise SystemExit(f"unexpected campaign phase: {state.get('phase_id')!r}")
           if state.get('authority_ceiling') != 'BELOW_R6_UNTIL_PROTECTED_PROMOTION':
               raise SystemExit('campaign authority ceiling changed')
@@ -120,7 +145,7 @@ jobs:
           if ref.get('ref_id') != 'FRESH:R6:STRETCHED_N2_DUCC2':
               raise SystemExit(f"unexpected protected reference: {ref.get('ref_id')!r}")
           if ref.get('released') is not False:
-              raise SystemExit('protected stretched-N2 discriminator was released before promotion freeze')
+              raise SystemExit('protected stretched-N2 discriminator was released despite negative pre-access gate')
           if ref.get('blob') != '6ab53f2a83c1f8ab5cc3bf4309525fb1ec7421dd':
               raise SystemExit('protected stretched-N2 blob identity drifted')
           PY
@@ -141,7 +166,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-      - name: Refuse any pre-outcome implementation or protocol drift
+      - name: Refuse any frozen implementation or protocol drift
         run: |
           python - <<'PY'
           import hashlib
@@ -165,20 +190,20 @@ jobs:
               raw = Path(name).read_bytes()
               got = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
               if got != want:
-                  raise SystemExit(f'frozen blob drift before protected access: {name}: {got} != {want}')
+                  raise SystemExit(f'frozen blob drift: {name}: {got} != {want}')
           PY
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - name: Install frozen numerical dependency
         run: python -m pip install numpy
-      - name: Run protected primary and structurally independent replay
+      - name: Independently replay the frozen final R6 negative
         run: |
           cd research/extensions/orion-q
           python max_r6_exact_tare3_prospective_replay.py | tee /tmp/max-r6-exact-tare3-prospective.txt
           grep '^ORIONQ_MAX_R6_EXACT_TARE3_PROSPECTIVE_PRIMARY=' /tmp/max-r6-exact-tare3-prospective.txt
           grep '^ORIONQ_MAX_R6_EXACT_TARE3_PROSPECTIVE_REPLAY=' /tmp/max-r6-exact-tare3-prospective.txt
-      - name: Enforce frozen R6 promotion conjunction
+      - name: Enforce frozen negative and protected non-access
         run: |
           python - <<'PY'
           import json
@@ -196,32 +221,34 @@ jobs:
 
           primary = json.loads(primary_lines[0][len(primary_prefix):])
           replay = json.loads(replay_lines[0][len(replay_prefix):])
-          if primary.get('pre_access_ready') is not True:
-              if primary.get('protected_stretched_n2_accessed') is not False:
-                  raise SystemExit('pre-access gate failed but protected subject was nevertheless accessed')
-              raise SystemExit(f"R6 blocked before protected access: {primary.get('pre_access_gates')}")
-          if primary.get('protected_stretched_n2_accessed') is not True:
-              raise SystemExit('pre-access gate passed but protected subject access receipt is missing')
-          if replay.get('protected_stretched_n2_accessed') is not True:
-              raise SystemExit('replay lost protected-subject access provenance')
 
-          final_gates = replay.get('final_gates')
-          if not isinstance(final_gates, dict) or not final_gates:
-              raise SystemExit('missing final R6 gate map')
-          conjunction = all(value is True for value in final_gates.values())
-          if (replay.get('r6_earned') is True) != conjunction:
-              raise SystemExit('r6_earned does not equal the final frozen gate conjunction')
-          if replay.get('r6_earned') is not True:
-              failed = [key for key, value in final_gates.items() if value is not True]
-              raise SystemExit('R6 not earned under frozen prospective/replay gates: ' + ','.join(failed))
-          if replay.get('authority') != 'MAX_R6_EARNED__EXACT_TARE3_FIXED_BLOCK_PROSPECTIVE_REPLAYED':
-              raise SystemExit('R6 gate passed without the bounded frozen authority token')
+          if primary.get('pre_access_ready') is not False:
+              raise SystemExit(f"expected frozen negative before protected access: {primary.get('pre_access_gates')}")
+          if primary.get('protected_stretched_n2_accessed') is not False:
+              raise SystemExit('primary accessed protected stretched-N2 despite failed pre-access gate')
+          if primary.get('r6_earned') is not False:
+              raise SystemExit('primary self-promoted R6 on a frozen negative')
+          if primary.get('authority') != 'R6_PROSPECTIVE_NOT_OPENED__PREACCESS_GATE_FAILED':
+              raise SystemExit(f"unexpected primary negative authority: {primary.get('authority')!r}")
+
+          if replay.get('primary_pre_access_ready') is not False:
+              raise SystemExit('replay lost the primary pre-access negative')
+          if replay.get('protected_stretched_n2_accessed') is not False:
+              raise SystemExit('replay claims protected stretched-N2 access on the frozen negative')
+          if replay.get('replay_rows') != []:
+              raise SystemExit('replay produced protected-subject rows despite non-access')
+          if replay.get('r6_earned') is not False:
+              raise SystemExit('replay promoted R6 despite frozen negative')
+          if replay.get('authority') != 'MAX_R6_NOT_EARNED__PROTECTED_SUBJECT_NOT_OPENED':
+              raise SystemExit(f"unexpected replay negative authority: {replay.get('authority')!r}")
+          if replay.get('final_gates') != {'primary_prospective_supported': False}:
+              raise SystemExit(f"unexpected fail-closed replay gates: {replay.get('final_gates')!r}")
           PY
-      - name: Upload immutable R6 prospective/replay receipt
+      - name: Upload immutable final R6 negative replay receipt
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: orion-q-max-r6-exact-tare3-prospective-replay
+          name: orion-q-max-r6-final-negative-replay
           path: /tmp/max-r6-exact-tare3-prospective.txt
-          if-no-files-found: warn
+          if-no-files-found: error
           retention-days: 30
