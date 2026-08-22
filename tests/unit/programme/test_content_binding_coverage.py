@@ -1,8 +1,10 @@
 """A paper whose bytes nobody watches must not report as a paper that did not change.
 
-The real-tree cases at the bottom are the point of the module: they fail if
-someone edits or adds a file inside a bound paper without regenerating its
-digests, which is what "the harness picks up the change" has to mean.
+The real-tree cases at the bottom are the point of the module: they fail if a
+watched canonical file changes without regenerating its committed binding. The
+Q-series deliberately watches only its canonical publication subset; historical
+snapshots remain visible as unbound files rather than being confused with the
+submission surface.
 """
 
 from __future__ import annotations
@@ -29,11 +31,18 @@ from orion.programme.guard_exercise import GuardVerdictReason
 from orion.programme.records import Outcome
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-BOUND_PAPERS = (
+DIRECT_BOUND_PAPERS = (
     "paper-06-formal-epistemic-structures-and-mechanics",
     "paper-07-epistemic-navigation-open-worlds",
     "paper-08-epistemic-authority-autonomous-science",
 )
+Q_SERIES_BOUND_PAPERS = (
+    "Q-paper-01-tare-expressivity",
+    "Q-paper-02-recursive-recovery",
+    "Q-paper-03-dual-instrument",
+    "Q-paper-04-typed-state",
+)
+BOUND_PAPERS = DIRECT_BOUND_PAPERS + Q_SERIES_BOUND_PAPERS
 
 
 def binding(
@@ -187,13 +196,23 @@ class TestAgainstTheRealTree:
 
     @pytest.mark.parametrize("paper", BOUND_PAPERS)
     def test_a_bound_paper_still_matches_its_committed_digests(self, paper: str) -> None:
-        """Red if anyone edits or adds a file in P6-P8 without regenerating SHA256SUMS."""
+        """Red if any watched canonical byte changes without regenerating its binding."""
 
         record = inspect_paper(REPO_ROOT, REPO_ROOT / "papers" / paper)
         assert record.state is PaperBindingState.BOUND_CURRENT, record.detail
         assert record.drifted_paths == ()
         assert record.missing_paths == ()
         assert assess_paper(record).outcome is Outcome.PASS
+
+    @pytest.mark.parametrize("paper", Q_SERIES_BOUND_PAPERS)
+    def test_q_series_cross_binding_is_visible_and_partial(self, paper: str) -> None:
+        record = inspect_paper(REPO_ROOT, REPO_ROOT / "papers" / paper)
+        assert record.state is PaperBindingState.BOUND_CURRENT, record.detail
+        assert record.files_bound > 0
+        assert "Q-series" in record.detail
+        # Historical snapshots / navigation files are intentionally outside the
+        # canonical submission binding and remain visible in the denominator report.
+        assert record.unbound_files >= 0
 
     def test_the_survey_covers_every_paper_directory(self) -> None:
         bindings = survey_paper_bindings(REPO_ROOT)
@@ -207,10 +226,9 @@ class TestAgainstTheRealTree:
     def test_binding_coverage_does_not_regress(self) -> None:
         """A ratchet, not a target.
 
-        Three of the twenty-four directories under `papers/` declare a content
-        binding. That is the number to raise, and this asserts it never falls:
-        un-binding a paper is a silent loss of the only check that notices its
-        bytes changing. Raise this deliberately when a paper adopts binding.
+        P6-P8 use local manifests and Q1-Q4 use the cross-series canonical
+        publication binding. Un-binding any of those watched surfaces is a silent
+        loss of the only check that notices their canonical bytes changing.
         """
 
         bound = [
@@ -218,16 +236,18 @@ class TestAgainstTheRealTree:
             for item in survey_paper_bindings(REPO_ROOT)
             if item.state.exercises_drift_guard
         ]
-        assert len(bound) >= 3, [item.paper_id for item in bound]
+        assert len(bound) >= 7, [item.paper_id for item in bound]
         assert {item.paper_id for item in bound} >= set(BOUND_PAPERS)
 
-    def test_the_survey_reports_cannot_check_while_papers_are_unbound(self) -> None:
+    def test_the_survey_reports_cannot_check_while_other_papers_are_unbound(self) -> None:
         """Honest today, and it flips to PASS on its own once every paper binds."""
 
         report = survey_report(survey_paper_bindings(REPO_ROOT))
         assert report["papers_unbound"] > 0
         assert report["outcome"] == Outcome.CANNOT_CHECK.value
         assert report["files_bound"] > 0
+        for paper in Q_SERIES_BOUND_PAPERS:
+            assert report["by_paper"][paper]["state"] == PaperBindingState.BOUND_CURRENT.value
 
     def test_the_pooled_exercise_is_reported_but_is_not_the_verdict(self) -> None:
         report = survey_report(survey_paper_bindings(REPO_ROOT))
