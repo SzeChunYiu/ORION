@@ -1,11 +1,11 @@
 {
-  "blocker_sites": 584,
+  "blocker_sites": 585,
   "classification": {
     "INSUFFICIENT_EVIDENCE": 14,
     "MISSING_ACCESS": 6,
     "MISSING_CUSTODY": 43,
     "MISSING_DECLARATION": 93,
-    "MISSING_IDENTITY": 31,
+    "MISSING_IDENTITY": 32,
     "UNAVAILABLE_PROVIDER": 12,
     "UNCLASSIFIED": 385
   },
@@ -6802,7 +6802,7 @@
       "file": "study/p3/partial_observation_probe.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 1420,
+      "lineno": 1673,
       "missing_obligation": null,
       "reasons": [
         "overall_outcome"
@@ -6816,7 +6816,7 @@
       "file": "study/p3/partial_observation_probe.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 1526,
+      "lineno": 1785,
       "missing_obligation": "derivation must be present at this guard",
       "reasons": [
         "G2_CHANNEL_OPENED",
@@ -6833,7 +6833,7 @@
       "file": "study/p3/partial_observation_probe.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 1530,
+      "lineno": 1789,
       "missing_obligation": "derivation must be present at this guard",
       "reasons": [
         "G3_FAILURE_ON_REAL_CASES",
@@ -6850,7 +6850,7 @@
       "file": "study/p3/partial_observation_probe.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 1552,
+      "lineno": 1811,
       "missing_obligation": "rate must be present at this guard",
       "reasons": [
         "G3_FAILURE_ON_REAL_CASES",
@@ -6868,7 +6868,7 @@
       "file": "study/p3/partial_observation_probe.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 1576,
+      "lineno": 1835,
       "missing_obligation": "rate must be present at this guard",
       "reasons": [
         "outcome",
@@ -6883,7 +6883,7 @@
       "file": "study/p3/partial_observation_probe.py",
       "has_reason": false,
       "kind": "EXPRESSION",
-      "lineno": 1577,
+      "lineno": 1836,
       "missing_obligation": "rate must be present at this guard",
       "reasons": [],
       "role": "EMITS",
@@ -6895,7 +6895,7 @@
       "file": "study/p3/partial_observation_probe.py",
       "has_reason": false,
       "kind": "ASSIGN",
-      "lineno": 1604,
+      "lineno": 1863,
       "missing_obligation": "intact_failures must be present at this guard",
       "reasons": [],
       "role": "EMITS",
@@ -6907,7 +6907,7 @@
       "file": "study/p3/partial_observation_probe.py",
       "has_reason": false,
       "kind": "ASSIGN",
-      "lineno": 1608,
+      "lineno": 1867,
       "missing_obligation": "probe_over_resolutions must be present at this guard",
       "reasons": [],
       "role": "EMITS",
@@ -6919,7 +6919,7 @@
       "file": "study/p3/partial_observation_probe.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 1658,
+      "lineno": 1917,
       "missing_obligation": null,
       "reasons": [
         "G6_HARM_A1",
@@ -6948,7 +6948,7 @@
       "file": "study/p3/partial_observation_probe.py",
       "has_reason": false,
       "kind": "ASSIGN",
-      "lineno": 1723,
+      "lineno": 1993,
       "missing_obligation": "independent must be present at this guard",
       "reasons": [],
       "role": "EMITS",
@@ -6960,7 +6960,7 @@
       "file": "study/p3/partial_observation_probe.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 1763,
+      "lineno": 2037,
       "missing_obligation": "rate must be present at this guard",
       "reasons": [
         "outcome"
@@ -6974,7 +6974,7 @@
       "file": "study/p3/partial_observation_probe.py",
       "has_reason": false,
       "kind": "EXPRESSION",
-      "lineno": 1764,
+      "lineno": 2038,
       "missing_obligation": "rate must be present at this guard",
       "reasons": [],
       "role": "EMITS",
@@ -6986,7 +6986,7 @@
       "file": "study/p3/partial_observation_probe.py",
       "has_reason": false,
       "kind": "RETURN",
-      "lineno": 1812,
+      "lineno": 2090,
       "missing_obligation": "outcomes must be present at this guard",
       "reasons": [],
       "role": "EMITS",
@@ -6998,7 +6998,7 @@
       "file": "study/p3/partial_observation_probe.py",
       "has_reason": false,
       "kind": "BRANCH",
-      "lineno": 1815,
+      "lineno": 2093,
       "missing_obligation": null,
       "reasons": [],
       "role": "OBSERVES",
@@ -7010,7 +7010,7 @@
       "file": "study/p3/partial_observation_probe.py",
       "has_reason": false,
       "kind": "RETURN",
-      "lineno": 1816,
+      "lineno": 2094,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -7614,7 +7614,7 @@
       "file": "study/p5/freeze.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 785,
+      "lineno": 1518,
       "missing_obligation": null,
       "reasons": [
         "schema_version",
@@ -8159,7 +8159,7 @@
       "file": "study/p5/hidden_cause_custody.py",
       "has_reason": false,
       "kind": "BRANCH",
-      "lineno": 556,
+      "lineno": 782,
       "missing_obligation": null,
       "reasons": [],
       "role": "OBSERVES",
@@ -8171,7 +8171,7 @@
       "file": "study/p5/hidden_cause_custody.py",
       "has_reason": false,
       "kind": "ASSIGN",
-      "lineno": 557,
+      "lineno": 783,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -8720,9 +8720,23 @@
       "file": "study/p9/transfer_margins.py",
       "has_reason": false,
       "kind": "RETURN",
-      "lineno": 355,
+      "lineno": 518,
       "missing_obligation": null,
       "reasons": [],
+      "role": "EMITS",
+      "unmet_precondition": null
+    },
+    {
+      "category": "MISSING_IDENTITY",
+      "context": "ArmReproduction.outcome",
+      "file": "study/p9/transfer_margins.py",
+      "has_reason": true,
+      "kind": "RETURN",
+      "lineno": 835,
+      "missing_obligation": null,
+      "reasons": [
+        "environment_identity_is_not_the_recorded_one"
+      ],
       "role": "EMITS",
       "unmet_precondition": null
     },
@@ -8732,7 +8746,7 @@
       "file": "study/p9/transfer_margins.py",
       "has_reason": false,
       "kind": "RETURN",
-      "lineno": 659,
+      "lineno": 1062,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -9321,9 +9335,9 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "a58887580cbd031ca479f23fe74da70560bf7a15",
-  "total_sites": 639,
+  "subject_commit": "6051d4dc4f8dd53ed50d54144fed839dd1e4855a",
+  "total_sites": 640,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_derived_obligation": 111,
-  "with_reason": 278
+  "with_reason": 279
 }
