@@ -34,7 +34,12 @@ def incidence(entries,npairs):
   x=c
   while x:
    l=x&-x;i=l.bit_length()-1;rows.append(i);cols.append(j);x-=l
- return csr_array(coo_array((np.ones(len(rows)),(np.array(rows,dtype=int),np.array(cols,dtype=int))),shape=(npairs,len(entries)))
+ return csr_array(
+  coo_array(
+   (np.ones(len(rows)),(np.array(rows,dtype=int),np.array(cols,dtype=int))),
+   shape=(npairs,len(entries)),
+  )
+ )
 def solve(entries,npairs):
  A=incidence(entries,npairs);n=len(entries);constraints=[LinearConstraint(A,np.ones(npairs),np.full(npairs,np.inf)),LinearConstraint(np.ones((1,n)),np.array([-np.inf]),np.array([4.0]))]
  return milp(c=np.zeros(n),integrality=np.ones(n,dtype=int),bounds=Bounds(np.zeros(n),np.ones(n)),constraints=constraints,options={"time_limit":100.0,"mip_rel_gap":0.0,"presolve":True})
