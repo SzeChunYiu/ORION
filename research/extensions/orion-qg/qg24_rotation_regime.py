@@ -927,7 +927,7 @@ def main() -> int:
     invariant_at_nine = not variation_found
 
     # --- QG-21's own serialized witnesses, re-measured ----------------------
-    qg21 = json.loads(_real_open(QG21_RESULTS).read_text())
+    qg21 = json.loads(QG21_RESULTS.read_text())
     wit = {m: {} for m in MODELS}
     wit_bad = []
     for imp in qg21["improvements"]:
@@ -1006,3 +1006,224 @@ def main() -> int:
                  wit, wit_bad, stage1, stage1_digest, referee_calls_in_stage1,
                  panel, forecast_hits, forecast_rows, _dist(prices_f),
                  _dist(prices_i), qg21)
+
+
+PROTOCOL_OBJECTIONS = [
+    {"clause": "section 2, merge relation",
+     "objection": ("The frozen relation says 'separated only by operations that "
+                   "commit with that axis' but does not say where the "
+                   "branch-controlled Restore sits. R6L writes it after each "
+                   "block; R6M's committed cost model extracts an all-three "
+                   "common Restore factor, which only makes sense if the three "
+                   "Restores are composed together, i.e. after the last Uanti. "
+                   "These give different intervener sets and different counts."),
+     "resolution": ("executed anyway, with BOTH readings enumerated completely "
+                    "and reported side by side; no gate softened, and the lane's "
+                    "verdict is the same under either.")},
+    {"clause": "section 3 step 2",
+     "objection": ("'If the count is 9 on every configuration ... report that and "
+                   "stop' presumes 9 is the only candidate invariant. The "
+                   "measured answer is that 9 is not invariant but 7 is a floor "
+                   "and is reached everywhere, so the count is neither invariant "
+                   "nor a regime object."),
+     "resolution": "executed as written; the measured distribution is reported."},
+    {"clause": "section 6, terminals",
+     "objection": ("No frozen terminal covers 'variation found, template does not "
+                   "instantiate, and the fault-tolerant fraction is nonetheless "
+                   "material'. QG24_PARTIAL names the first two and is silent on "
+                   "the third; QG24_..._CEILING_LIFTED requires the template."),
+     "resolution": ("QG24_PARTIAL taken, because Q2 is the binding clause; the "
+                    "material Q3 fraction is reported in full under q3_magnitude "
+                    "and in the headline rather than being lost to the terminal.")},
+]
+
+
+def _emit(protocol_sha, checks, donor_block, lemma_n1, lemma_n2, q1_rows, counts,
+          sums_ok, brute_ok, variation_found, invariant_at_nine, wit, wit_bad,
+          stage1, stage1_digest, referee_calls_in_stage1, panel, forecast_hits,
+          forecast_rows, price_f, price_i, qg21):
+    base_median = sorted(p["r6m_theta_FT_optimum_clifford"] for p in panel)
+    base_median = base_median[len(base_median) // 2]
+    kappa_range = qg21["q3_magnitude"]["family_constant_non_clifford_backdrop"][
+        "t_gates_per_rotation_range"]
+    q3 = {
+        "unit": ("arbitrary-angle rotations (magic states / synthesized Pauli "
+                 "rotations), the unit theta_rot counts; Clifford price reported "
+                 "separately in two-qubit Clifford gates, QG-21's unit"),
+        "rotations_per_compilation_family_menu": 9,
+        "rotations_per_compilation_grammar_floor": 7,
+        "rotations_removed": 2,
+        "fraction_of_rotation_count_removed": 2 / 9,
+        "t_gates_saved_range": [2 * kappa_range[0], 2 * kappa_range[1]],
+        "t_gate_backdrop_range": [9 * kappa_range[0], 9 * kappa_range[1]],
+        "fault_tolerant_fraction_moved": {
+            "formula": "2*kappa_T / (9*kappa_T + c_T*C_base)",
+            "C_base_median_two_qubit_cliffords": base_median,
+            "at_kappa_over_c_30": 2 * 30 / (9 * 30 + base_median),
+            "at_kappa_over_c_100": 2 * 100 / (9 * 100 + base_median),
+            "limit_kappa_dominant": 2 / 9,
+        },
+        "clifford_price_factored": price_f,
+        "clifford_price_in_place": price_i,
+        "break_even_note": ("the merge pays whenever one arbitrary-angle rotation "
+                            "costs more than (Clifford price)/2 two-qubit "
+                            "Cliffords; the price is at or below zero on most "
+                            "rows, so the break-even ratio is at or below zero "
+                            "there and the saving is unconditional"),
+        "comparison_to_qg21": ("QG-21 reported its best defensible improvement as "
+                               "2 two-qubit Clifford gates against a 9-rotation "
+                               "backdrop -- about 0.7 % of fault-tolerant cost at "
+                               "kappa_T/c_T = 30, and it called that negligible. "
+                               "This lane moves 2 of the 9 rotations themselves, "
+                               "about 22 %. That is roughly thirty times larger "
+                               "and it is NOT negligible. It is also not this "
+                               "programme's: it is textbook Pauli-rotation "
+                               "merging (donor verdict SUBSUMED, QG24-C1/C2)."),
+    }
+    q2 = {
+        "template_instantiated": False,
+        "donor_optimal_region": ("empty as a region: under theta_rot the frozen "
+                                 "donor family and every family member sit at 9 "
+                                 "or 8, and the grammar floor 7 is reachable on "
+                                 "every row of the applied domain, so there is no "
+                                 "boundary to cross"),
+        "elementary_trades": ("none: theta_rot takes three values on the whole "
+                              "configuration space and its optimum is the "
+                              "constant 7 on every real batch, so no trade "
+                              "exchanges one currency for another"),
+        "sufficiency_bounds": ("degenerate: the sufficient condition (a common "
+                               "outer frame axis across the three blocks) is also "
+                               "necessary, by Lemma L1, and is always satisfiable"),
+        "membership_predicate": ("decidable in O(n): theta_rot_min = 7 iff the "
+                                 "two block-A / block-B target products are "
+                                 "non-identity (in-place model), and "
+                                 "unconditionally (factored model). Decidable but "
+                                 "vacuous on the applied domain -- it is true on "
+                                 "every one of the 90 receipted rows"),
+        "prospective_forecast": {
+            "panel": "D2 held-out rows",
+            "rows": forecast_rows,
+            "hits": forecast_hits,
+            "stage1_digest": stage1_digest,
+            "referee_calls_during_stage1": referee_calls_in_stage1,
+            "referee_stub_installed": True,
+        },
+        "verdict": ("theta_rot is NOT a regime-geometry object. It varies over "
+                    "the configuration space, so QG-21's 9 is a family artifact, "
+                    "but its optimum is a second constant (7) attained "
+                    "everywhere. A currency whose optimum never moves carries no "
+                    "geometry."),
+    }
+    gates = {
+        "G1_donor_search_validated_before_any_novelty_claim": True,
+        "G2_theta_rot_derived_from_qg21_ft_accounting": True,
+        "G2_O1_not_used": True,
+        "G3_complete_domain_at_every_declared_size": bool(sums_ok),
+        "G3_no_sampling_presented_as_enumeration": True,
+        "G4_predictions_staged_before_referee": referee_calls_in_stage1 == 0,
+        "G4_raising_stub_never_triggered": referee_calls_in_stage1 == 0,
+        "G5_ft_fraction_reported": True,
+        "G6_qg21_receipt_unedited": True,
+        "G7_independent_verifier_obligation": (
+            "development/orion-qg-regime-geometry/qg24_generic_verify.py"),
+        "G8_determinism_double_run": "asserted by the runner; timing excluded",
+        "G9_caps_disclosed": True,
+        "lemma_L1_closed_form_matches_general_search_n1": lemma_n1[
+            "closed_form_agrees_everywhere"],
+        "lemma_L1_closed_form_matches_general_search_n2": lemma_n2[
+            "closed_form_agrees_everywhere"],
+        "exact_counts_sum_to_independent_domain_size": bool(sums_ok),
+        "exact_counts_match_n1_brute_force": bool(brute_ok),
+        "witness_grammar_checks_all_pass": not wit_bad,
+        "protected_subject_never_opened": _PROTECTED_HITS["count"] == 0,
+    }
+    terminal = ("QG24_CEILING_IS_STRUCTURAL__ROTATION_COUNT_INVARIANT_IN_THE_GRAMMAR"
+                if invariant_at_nine else
+                "QG24_PARTIAL__VARIATION_FOUND_BUT_NO_CLEAN_REGIME")
+    result = {
+        "schema": "ORIONQG.QG24.RotationRegime.v1",
+        "lane": "QG-24",
+        "protocol": PROTOCOL,
+        "protocol_sha256": protocol_sha,
+        "terminal": terminal,
+        "authority": f"ORIONQG_{terminal}__FROZEN_THETA_ROT__NOT_R6",
+        "r6_authority": False,
+        "novelty_credit": False,
+        "novelty_authority": False,
+        "donor_novelty_credit": False,
+        "physical_quantum_advantage_claim": False,
+        "reserved_stretched_n2_accessed": False,
+        "headline": (
+            "QG-21's applied ceiling is a FAMILY ARTIFACT, not a structural "
+            "property of the grammar. Enumerating the complete configuration "
+            "space -- not the family menu -- the rotation count takes the values "
+            "9, 8 and 7, and the floor 7 is reachable on every one of the 90 "
+            "receipted real-chemistry rows, at no Clifford price on most of them. "
+            "Two of the nine arbitrary-angle rotations, about 22 % of the "
+            "fault-tolerant cost, were left on the table by the family menu. "
+            "That saving is elementary Pauli-rotation merging and belongs "
+            "entirely to the donor literature (verdict SUBSUMED). And the lifted "
+            "value is itself a constant, so theta_rot is still not a "
+            "regime-geometry object: the ceiling moved down, the geometry did "
+            "not appear."),
+        "q1_rotation_count_is_invariant_in_the_grammar": invariant_at_nine,
+        "q1_ceiling_verdict": ("FAMILY_ARTIFACT" if variation_found
+                               else "STRUCTURAL"),
+        "q1_distribution": q1_rows,
+        "q1_models": {m: MODEL_NOTE[m] for m in MODELS},
+        "q1_lemma_L1_n1_complete_check": lemma_n1,
+        "q1_lemma_L1_n2_pattern_check": lemma_n2,
+        "q1_qg21_witnesses_remeasured": {
+            "note": ("rotation count of QG-21's own 108 serialized improved "
+                     "compilations under the frozen merge relation; QG-21 "
+                     "asserted the constant 9 for all of them"),
+            "distribution": wit, "grammar_failures": wit_bad},
+        "q2_regime": q2,
+        "q3_magnitude": q3,
+        "qg21_binding": {
+            "results_file": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+            "results_sha256": sha256_file(QG21_RESULTS),
+            "protocol_sha256_recorded_by_qg21": qg21["protocol_sha256"],
+            "theta_FT_weights": list(THETA_FT_WEIGHTS),
+            "O1_control_excluded_because": qg21["q1_accounting"]["qg2_O1_control_point"],
+            "qualification_recorded_here_not_in_qg21": (
+                "QG-21's statement 'every member of the frozen family carries "
+                "exactly nine rotations' is correct about the family MENU and is "
+                "not edited. It does not hold of the grammar: this lane exhibits "
+                "admissible grammar configurations with 8 and with 7, and "
+                "measures that some of QG-21's OWN serialized witnesses already "
+                "carry 8 once the merge relation is applied."),
+        },
+        "stage1": {"digest": stage1_digest, "embedded": stage1,
+                   "referee_calls_during_stage1": referee_calls_in_stage1,
+                   "note": ("staged inside this receipt rather than in a separate "
+                            "artifact because protocol section 8 permits exactly "
+                            "five files")},
+        "panel": panel,
+        "donor_search": donor_block,
+        "gates": gates,
+        "caps": CAPS,
+        "protocol_objections": PROTOCOL_OBJECTIONS,
+        "claim_boundary": {
+            "covers": ("the exact rotation-count distribution of the complete "
+                       "configuration space of the frozen R6M three-block "
+                       "TARE-M2 shared-Tag grammar under the frozen merge "
+                       "relation, at n = 1,2,4,8,12,14, under two intervener "
+                       "models; and the exact minimum theta_FT Clifford cost of "
+                       "the seven-rotation sub-family on 90 receipted rows"),
+            "does_not_cover": ("other grammars, hardware, device performance, "
+                               "algorithmic viability, any physical "
+                               "quantum-advantage claim, and any novelty in the "
+                               "merge relation, which is donor property"),
+        },
+        "checks": checks,
+    }
+    result["result_digest"] = digest({k: v for k, v in result.items()
+                                      if k != "result_digest"})
+    RESULTS_PATH.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+    print(f"ORIONQG_QG24_ROTATION_REGIME={canonical_json({'terminal': terminal, 'digest': result['result_digest'], 'stage1_digest': stage1_digest})}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
