@@ -1,6 +1,6 @@
 {
   "schema": "ORIONQ.TargetPackageManifests.v2",
-  "date": "2026-08-21",
+  "date": "2026-08-22",
   "authority": "PACKAGE_ROUTING_ONLY__NO_SUBMISSION_OR_SCIENTIFIC_PROMOTION",
   "shared": {
     "publication_integrity_workflow": ".github/workflows/q-qg-publication.yml",
@@ -29,6 +29,17 @@
       "artifact": "q2-aij-preflight-package",
       "required_figure_stems": ["Q2_declared_denominator_v2"],
       "technical_terminal": "PENDING_CURRENT_HEAD_BUILD_AND_VISUAL_AUDIT",
+      "submission_terminal": "BLOCKED_AUTHOR_INPUT"
+    },
+    "Q3_TMLR": {
+      "scientific_master": "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md",
+      "wrapper_workflow": ".github/workflows/q3-tmlr-package.yml",
+      "artifact": "q3-tmlr-review-package",
+      "official_style_commit": "7bf90efe3a0debbba703c05c43f3ff7e4d4a2992",
+      "required_figure_stems": [],
+      "primary_result_display": "three-unit prospective disposition table; no aggregate reliability statistic",
+      "technical_terminal": "PENDING_CURRENT_HEAD_BUILD_ANONYMITY_AND_VISUAL_AUDIT",
+      "scientific_terminal": "Q3_PROSPECTIVE_CASE_SERIES_COMPLETE__N3_VALID__AGREEMENT_NOT_VALIDATION_COUNTEREXAMPLE_OBSERVED__NO_RELIABILITY_GENERALIZATION",
       "submission_terminal": "BLOCKED_AUTHOR_INPUT"
     },
     "Q4_TMLR": {
@@ -71,16 +82,5 @@
       "technical_terminal": "PENDING_CURRENT_HEAD_BUILD_AND_VISUAL_AUDIT",
       "submission_terminal": "BLOCKED_AUTHOR_INPUT"
     }
-  },
-  "Q3": {
-    "technical_terminal": "NO_TARGET_PACKAGE_BY_DESIGN",
-    "scientific_terminal": "SCIENTIFIC_SERIES_INCOMPLETE__CANNOT_CHECK_PEER_REVIEW_READY",
-    "required_before_packaging": [
-      "additional prospectively frozen frontier instances executed",
-      "deferred outcomes scored without contamination",
-      "independent replay",
-      "D2/D3 defect disposition",
-      "fresh submission-date novelty search"
-    ]
   }
 }
