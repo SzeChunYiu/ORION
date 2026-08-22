@@ -14,6 +14,7 @@ the scripts that produced them.
 
 from __future__ import annotations
 
+import ast
 import contextlib
 import io
 import json
@@ -25,6 +26,7 @@ from orion.programme.terminal_responsiveness import (
     require_earned,
     require_responsive,
 )
+from orion.study.p8 import authority_conservativity as conservativity
 from orion.study.p8 import authority_terminals as p8
 from orion.study.p8.terminal_audit import audit_p8_authority_receipts, main, report_as_json
 from orion.transfer.v2 import p8_method_authority as authority
@@ -219,17 +221,36 @@ def test_the_shipped_x4_checker_still_reproduces_its_published_digest():
     assert p8.x4_module().scientific_terminal.__code__.co_argcount == 7
 
 
-def test_the_two_x4_violation_counters_are_zero_for_any_rule():
-    """``ideal`` is the same call as ``terminal``; ``projected_native`` is an alias."""
+def test_the_two_x4_violation_counters_are_measurements_now():
+    """Before 2026-08-22 this asserted the two dead guards, which is what it found.
+
+    ``ideal = scientific_terminal(native, flags, ...)`` was the same call as
+    ``terminal``, and ``projected_native = native`` was followed by
+    ``if projected_native != native:``, so both published zeros were properties of
+    the source. Both are gone: ``orion.study.p8.authority_conservativity.identity_guards`` reports none
+    left, and the zeros survive because they are now measured over donor judgments
+    rather than because they cannot move. What proves they can move is
+    ``tests/unit/study/p8/test_p8_authority_conservativity.py``, which runs this
+    same file under a theory that discharges without donor authority.
+    """
 
     published = json.loads(X4_RESULT.read_text())
     assert published["donor_conservativity_violations"] == 0
     assert published["ideal_product_mismatches"] == 0
+    assert published["donor_conservativity_status"] == "CHECKED"
+    assert published["ideal_product_status"] == "CHECKED"
 
-    source = p8.X4_CHECKER.read_text()
-    assert "ideal = scientific_terminal(native, flags, narrowing, blocker" in source
-    assert "projected_native = native" in source
-    assert "if projected_native != native:" in source
+    # Read off the names the parsed tree actually binds and loads, not off the
+    # text: the repaired file quotes both dead guards where a reader can see what
+    # was wrong, and a substring check would find the quotation.
+    tree = ast.parse(p8.X4_CHECKER.read_text())
+    names = {node.id for node in ast.walk(tree) if isinstance(node, ast.Name)}
+    functions = {node.name for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)}
+
+    assert "projected_native" not in names
+    assert "discharge_image_in_donor_language" in functions
+    assert {"project_to_donor", "native_verdict", "ideal_product"} <= functions
+    assert conservativity.identity_guards(p8.X4_CHECKER) == ()
 
 
 class TestThePrincipledGold:

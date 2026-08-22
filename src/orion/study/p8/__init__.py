@@ -16,6 +16,14 @@ named ``declared_claim_ceiling_from_input``, which says where it came from
 without pretending the run established it --- so the ceiling measurement below
 still reports ``FAIL``, and the audit still blocks.
 
+:mod:`authority_conservativity` registers all three claim-expansion checkers and
+the donor-conservativity count they publish. Every one of them stated T1 as
+``projected_native = native`` followed by ``if projected_native != native``, and
+their ideal-product tie as one ``scientific_terminal`` call written twice, so both
+published zeros were properties of the source rather than measurements;
+:func:`identity_guards` finds both shapes and :func:`donor_conservativity_capacity`
+runs each repaired checker under a theory that discharges without donor authority.
+
 :mod:`authority_terminals` registers the shipped bench, its frozen panel and the
 39,936-state X4 checker; :mod:`terminal_audit` runs them and blocks when a
 verdict, a bound or an enumerated axis turns out not to be a function of the run.
@@ -28,6 +36,11 @@ The failure they close is recorded under
 
 from __future__ import annotations
 
+from .authority_conservativity import (
+    conservativity_report,
+    donor_conservativity_capacity,
+    identity_guards,
+)
 from .authority_terminals import (
     BENCH_RATES,
     OVERREACHING_CEILING,
@@ -53,6 +66,9 @@ __all__ = [
     "bench_declared_ceiling",
     "bench_emitter",
     "bench_responsiveness",
+    "conservativity_report",
+    "donor_conservativity_capacity",
+    "identity_guards",
     "panel_gold_divergence",
     "shipped_panel",
     "shipped_summary",
