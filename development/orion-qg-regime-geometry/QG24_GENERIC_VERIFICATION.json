@@ -188,6 +188,15 @@
     "verdict": "REJECT"
    }
   ],
+  "each_case_rejected_by_the_check_it_names": true,
+  "expected_check_per_case": {
+   "T1_ceiling_flipped_to_structural": "ceiling_verdict_consistent_with_distribution",
+   "T2_n1_distribution_shifted": "n1_distribution_recomputed_from_primitives",
+   "T3_panel_cost_understated": "panel_witnesses_reverified_from_primitives",
+   "T4_subsuming_passage_removed": "donor_search_gate_reimplemented",
+   "T5_forecast_tally_altered": "forecast_tally_recomputes",
+   "T6_g4_staging_violated": "G4_referee_never_called_in_stage1"
+  },
   "method": "each tampered copy is an edit to the receipt with its result_digest RECOMPUTED, so the copy is internally self-consistent and no hash mismatch is available to the verifier; every rejection below comes from re-derivation from primitives",
   "tamper_files_kept_outside_the_repository": true
  },

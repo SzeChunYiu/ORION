@@ -146,6 +146,21 @@ TAMPERS = [
 
 
 
+
+#: The check each tamper must be caught BY, not merely that it is caught.
+#: T6 is why this exists: its first reconstruction mutated a field the verifier
+#: does not read, was ACCEPTed, and the suite reported the result without
+#: anything objecting. A tamper rejected by the wrong check leaves the check it
+#: was meant to cover untested while looking exactly like coverage.
+EXPECTED_CHECK = {
+    "T1_ceiling_flipped_to_structural": "ceiling_verdict_consistent_with_distribution",
+    "T2_n1_distribution_shifted": "n1_distribution_recomputed_from_primitives",
+    "T3_panel_cost_understated": "panel_witnesses_reverified_from_primitives",
+    "T4_subsuming_passage_removed": "donor_search_gate_reimplemented",
+    "T5_forecast_tally_altered": "forecast_tally_recomputes",
+    "T6_g4_staging_violated": "G4_referee_never_called_in_stage1",
+}
+
 def _enforce(art: dict) -> None:
     """Refuse to write an artifact whose own gates did not hold.
 
@@ -169,6 +184,16 @@ def _enforce(art: dict) -> None:
     if not fd["all_tampered_copies_rejected"]:
         accepted = [c["case"] for c in fd["cases"] if c["verdict"] != "REJECT"]
         broken.append(f"G7: tampered copies not rejected: {accepted}")
+    for case in fd["cases"]:
+        want = EXPECTED_CHECK.get(case["case"])
+        if want is None:
+            broken.append(f"G7: {case['case']} declares no expected check")
+        elif case["verdict"] == "REJECT" and want not in case["failed_checks"]:
+            broken.append(
+                f"G7: {case['case']} was rejected by {case['failed_checks']} but not "
+                f"by {want}, the check it exists to exercise -- that check is "
+                "therefore still untested"
+            )
     if not fd["all_tampered_copies_internally_self_consistent"]:
         broken.append("G7: some tampered copy was not resealed, so a hash mismatch "
                       "was available and its rejection proves nothing")
@@ -227,6 +252,8 @@ def main() -> int:
         "all_tampered_copies_internally_self_consistent": all(
             c["result_digest_recomputed_so_copy_is_internally_self_consistent"] for c in cases),
         "all_tampered_copies_rejected": all(c["verdict"] == "REJECT" for c in cases),
+        "each_case_rejected_by_the_check_it_names": True,
+        "expected_check_per_case": EXPECTED_CHECK,
         "cases": cases,
     }
     out["schema"] = "ORIONQG.QG24.GenericVerification.v1"

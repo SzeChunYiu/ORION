@@ -217,9 +217,18 @@ def main(argv) -> int:
     }
     cb_bad = check_criterion_binding(res.get("criterion_binding"), frozen_texts)
     record("criterion_binding_gate_reimplemented", not cb_bad, {"bad": cb_bad})
+    # Do not index into a block the previous check may have just reported as
+    # missing or empty: a tampered receipt must come back REJECT, never a
+    # traceback, or the assembler cannot record a falsifiability case for that
+    # shape at all. Reported by Cursor Bugbot on PR #892.
+    cb = res.get("criterion_binding")
+    expected_cb_verdict = (
+        "PASS" if res["terminal"] == "QG26_SYNDROME_IS_NERODE_MINIMAL" else "FAIL"
+    )
     record("criterion_binding_verdict_matches_the_terminal",
-           res["criterion_binding"][0]["reported_verdict"]
-           == ("PASS" if res["terminal"] == "QG26_SYNDROME_IS_NERODE_MINIMAL" else "FAIL"))
+           isinstance(cb, list) and bool(cb) and isinstance(cb[0], dict)
+           and cb[0].get("reported_verdict") == expected_cb_verdict,
+           {"expected": expected_cb_verdict})
 
     record("no_speed_claim_g3",
            "nothing here shows any algorithm is faster" in res["g3_scope_statement"])

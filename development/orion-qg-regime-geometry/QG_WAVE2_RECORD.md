@@ -1266,7 +1266,18 @@ is not exercised here it is not a gate, and it was not. The verifier now reimple
 the churn rules independently (the same pattern QG-24 uses for the donor gate, so the
 `independent_of` claim still holds), checks the bound frozen digest against the
 criterion text in the frozen protocol rather than against the receipt's own word, and
-carries three tamper cases for it — T9, T10, T11 — all REJECT. The verification
+carries five tamper cases for it — T9 through T13 — all REJECT, and the suite is now
+**thirteen** cases against **15** checks.
+
+One further correction, from the same review round. The first T9 changed the applied
+digest *and* flipped the verdict to FAIL — and a negative under a changed criterion is
+deliberately not gated, so it was caught by the terminal-consistency check and not by
+the churn gate it was named after. **The hazard the gate exists for had no tamper at
+all.** That is the third time on this branch a tamper rejected for the wrong reason
+(QG-24's T6 twice over), so the fix is structural rather than another patch: every
+tamper now declares the check that must catch it, and both assemblers refuse to write
+if any case is rejected by a different one. Demonstrated by reverting T9 to its old
+shape, which is now refused with the reason named. The verification
 artifact was regenerated rather than relabelled, so every digest binds a file that
 exists.
 

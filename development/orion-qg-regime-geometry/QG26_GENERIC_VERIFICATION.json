@@ -25,7 +25,9 @@
    "ok": true
   },
   "criterion_binding_verdict_matches_the_terminal": {
-   "detail": null,
+   "detail": {
+    "expected": "PASS"
+   },
    "ok": true
   },
   "enumeration_complete": {
@@ -80,8 +82,8 @@
  },
  "determinism": {
   "double_run": true,
-  "run1_sha256": "bd1eaf5b43b2fb9f8ffa6a42138bfeac74b1b542bf60d0d506d1f2eca90d50db",
-  "run2_sha256": "bd1eaf5b43b2fb9f8ffa6a42138bfeac74b1b542bf60d0d506d1f2eca90d50db",
+  "run1_sha256": "72c3d434310f803eb507a78b4036f5fe8a12bdb64d3a60d8a0bdad8f9dfd2ad6",
+  "run2_sha256": "72c3d434310f803eb507a78b4036f5fe8a12bdb64d3a60d8a0bdad8f9dfd2ad6",
   "stdout_identical": true
  },
  "failed_checks": [],
@@ -165,12 +167,12 @@
     "verdict": "REJECT"
    },
    {
-    "case": "T9_criterion_binding_block_incoherent",
+    "case": "T9_pass_under_a_changed_criterion_with_no_deviation",
     "failed_checks": [
-     "criterion_binding_verdict_matches_the_terminal"
+     "criterion_binding_gate_reimplemented"
     ],
     "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
-    "tamper": "the criterion_binding record claims a changed criterion and flips its verdict, with no deviation, counterfactual or exhibited rejection",
+    "tamper": "the applied criterion digest diverges from the frozen one while the record keeps its PASS and offers no deviation, counterfactual or exhibited rejection -- the exact hazard criterion_binding exists for",
     "verdict": "REJECT"
    },
    {
@@ -190,9 +192,44 @@
     "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
     "tamper": "the bound frozen digest is not the digest of the criterion text in the frozen protocol",
     "verdict": "REJECT"
+   },
+   {
+    "case": "T12_criterion_verdict_contradicts_the_terminal",
+    "failed_checks": [
+     "criterion_binding_verdict_matches_the_terminal"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the criterion record reports FAIL while the terminal says the criterion was met",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T13_criterion_binding_block_emptied",
+    "failed_checks": [
+     "criterion_binding_gate_reimplemented",
+     "criterion_binding_verdict_matches_the_terminal"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the criterion_binding block is emptied, which must REJECT rather than raise",
+    "verdict": "REJECT"
    }
   ],
   "each_case_names_the_field_it_mutates": true,
+  "each_case_rejected_by_the_check_it_names": true,
+  "expected_check_per_case": {
+   "T10_applied_criterion_digest_removed": "criterion_binding_gate_reimplemented",
+   "T11_frozen_criterion_digest_does_not_match_the_protocol": "criterion_binding_gate_reimplemented",
+   "T12_criterion_verdict_contradicts_the_terminal": "criterion_binding_verdict_matches_the_terminal",
+   "T13_criterion_binding_block_emptied": "criterion_binding_gate_reimplemented",
+   "T1_terminal_flipped_to_loose": "terminal_follows_from_the_recomputed_numbers",
+   "T2_rank_understated_coherently": "gf2_rank_recomputed",
+   "T3_alphabet_letter_removed": "alphabet_reenumerated_from_the_committed_dp",
+   "T4_mechanical_block_count_altered": "moore_refinement_reproduced",
+   "T5_looseness_factor_altered": "looseness_factor_consistent",
+   "T6_g3_scope_statement_replaced_by_a_speed_claim": "no_speed_claim_g3",
+   "T7_novelty_authority_granted": "authority_ceiling_not_r6",
+   "T8_enumeration_truncated_but_declared_complete": "enumeration_complete",
+   "T9_pass_under_a_changed_criterion_with_no_deviation": "criterion_binding_gate_reimplemented"
+  },
   "method": "each tampered copy has its result_digest RECOMPUTED, so no hash mismatch is available; every rejection comes from re-derivation against the committed DP module",
   "tamper_files_kept_outside_the_repository": true
  },
@@ -208,5 +245,5 @@
  "terminal_under_review": "QG26_SYNDROME_IS_NERODE_MINIMAL",
  "verdict": "ACCEPT",
  "verifier": "qg26_generic_verify",
- "verifier_sha256": "ccf43246908c1e2a9732a5e45fa7673fb05dab35518f4950e91557d5648a96c4"
+ "verifier_sha256": "f259ecad63716f0f893ecec11bfd7810348054f10b9f35785990cc74867d80ea"
 }
