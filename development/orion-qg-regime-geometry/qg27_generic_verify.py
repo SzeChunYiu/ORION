@@ -163,8 +163,6 @@ def main(argv) -> int:
            {"recomputed": stabiliser})
     record("every_state_separated_recomputed",
            separated == red["every_state_separated_from_every_other"])
-    record("separation_is_not_certified_by_reachability_alone",
-           "vacuous pass" in red.get("why_this_is_the_right_test", ""))
 
     record("costs_are_state_independent",
            len(r6i._local_table(tuple(res["frozen_key"]))[0]) == r6i.STATES

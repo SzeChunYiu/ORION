@@ -174,6 +174,42 @@ testing (DeMillo–Lipton–Sayward 1978; Hamlet 1977), where a surviving mutant
 missing coverage and "killed by" names a specific test; fault injection in the
 dependability sense (Avizienis et al. 2004); and the vacuous pass (Beer et al. 2001).
 
+## Check coverage, and the check that greped its own prose (W15)
+
+QG-27's separation check was replaced after it turned out to certify the terminal
+without testing it. The replacement introduced a second check,
+`separation_is_not_certified_by_reachability_alone`, which asserted that the phrase
+"vacuous pass" appeared in explanatory prose. **A check that greps its own commentary is
+decoration**, and it survived review precisely because no tamper touched it — the same
+invisibility that let the original vacuous check through. Reported by Cursor Bugbot; the
+check is deleted rather than repaired, because the substantive work is done by
+`accepting_set_stabiliser_recomputed`, which recomputes.
+
+The general problem it exposes is coverage. A verifier declares N checks and a tamper
+suite exercises some subset; the rest have **no evidence they can fail at all**, and a
+vacuous check is indistinguishable from a working one until something tries to break it.
+QG-27 declared 18 checks against 11 tampers; QG-25, 16 against 10.
+
+`orion_research_harness.falsifiability` now takes the verifier's full check list and
+refuses the demonstration when a check no tamper exercises is not explicitly named. It
+does **not** demand a tamper per check — some are unexercisable by design — it demands the
+gap be stated, on the same principle as `applied_criterion_digest`: silence is not
+evidence. Running it immediately surfaced six unexercised checks in each lane. Seven new
+tampers were added across the two, and the genuinely unexercisable ones are now listed
+with reasons:
+
+* `result_digest_recomputes` — every tampered copy is resealed on purpose, so it can never
+  fire from one;
+* `protocol_sha256_recomputes` — no tamper edits the frozen protocol, which would test the
+  protocol rather than the receipt;
+* QG-25's `witness_words_reach_different_states` — computed **entirely** by the verifier's
+  own stabilizer simulation with no input from the receipt, so no edit to the receipt can
+  make it fail. It is a self-check on the verifier, not coverage of the lane, and saying so
+  is more honest than letting it sit in the list looking like coverage.
+
+QG-27 now runs 15 tampers against 17 checks, QG-25 13 against 16. Registered as **W15 —
+closed on arrival.**
+
 ## Rule adopted
 
 A lane result may be cited as corroborated only on Tier 1 or Tier 2 evidence. Replay

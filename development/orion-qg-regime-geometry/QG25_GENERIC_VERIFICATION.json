@@ -203,10 +203,40 @@
     "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
     "tamper": "the gate forbidding a reduction or lower bound is flipped to false",
     "verdict": "REJECT"
+   },
+   {
+    "case": "T11_authority_ceiling_dropped",
+    "failed_checks": [
+     "authority_ceiling_not_r6"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the NOT_R6 / protected-subject-unread gate is flipped to false",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T12_criterion_digest_removed",
+    "failed_checks": [
+     "criterion_binding_records_bind_both_digests"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "a criterion record drops its applied digest, so sameness would be inferred from silence",
+    "verdict": "REJECT"
+   },
+   {
+    "case": "T13_abelian_syndrome_claimed_to_exist",
+    "failed_checks": [
+     "no_abelian_syndrome_claimed_at_any_D"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the receipt claims an abelian syndrome does exist, contradicting the very witness it carries",
+    "verdict": "REJECT"
    }
   ],
   "expected_check_per_case": {
    "T10_hardness_gate_flipped": "no_hardness_or_reduction_claimed",
+   "T11_authority_ceiling_dropped": "authority_ceiling_not_r6",
+   "T12_criterion_digest_removed": "criterion_binding_records_bind_both_digests",
+   "T13_abelian_syndrome_claimed_to_exist": "no_abelian_syndrome_claimed_at_any_D",
    "T1_witness_words_not_permutations": "witness_words_are_permutations_of_each_other",
    "T2_witness_states_made_equal": "witness_states_match_the_receipt",
    "T3_both_words_prepare_the_target": "exactly_one_word_prepares_the_target",

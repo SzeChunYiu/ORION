@@ -156,3 +156,48 @@ def test_determinism_must_state_a_double_run_happened():
 
 def test_a_held_determinism_record_passes():
     validate_determinism({"double_run": True, "stdout_identical": True})
+
+
+# --- coverage: a check no tamper exercises is a stated gap, not a silent one ---
+
+
+def test_a_check_no_tamper_exercises_must_be_named():
+    """The decorative-check case: it survives precisely because nothing touches it."""
+    with pytest.raises(ValueError, match="no tamper exercises"):
+        validate_falsifiability_demonstration(
+            _demo(_case("T1_headline_flipped", "terminal_consistent"),
+                  _case("T2_distribution_shifted", "distribution_recomputed")),
+            EXPECTED,
+            all_checks=["terminal_consistent", "distribution_recomputed",
+                        "a_check_nothing_tests"],
+        )
+
+
+def test_naming_the_gap_is_enough_because_some_checks_are_unexercisable_by_design():
+    validate_falsifiability_demonstration(
+        _demo(_case("T1_headline_flipped", "terminal_consistent"),
+              _case("T2_distribution_shifted", "distribution_recomputed")),
+        EXPECTED,
+        all_checks=["terminal_consistent", "distribution_recomputed",
+                    "result_digest_recomputes"],
+        acknowledged_unexercised=["result_digest_recomputes"],
+    )
+
+
+def test_a_stale_acknowledgement_understates_coverage_and_is_refused():
+    with pytest.raises(ValueError, match="out of date"):
+        validate_falsifiability_demonstration(
+            _demo(_case("T1_headline_flipped", "terminal_consistent"),
+                  _case("T2_distribution_shifted", "distribution_recomputed")),
+            EXPECTED,
+            all_checks=["terminal_consistent", "distribution_recomputed"],
+            acknowledged_unexercised=["terminal_consistent"],
+        )
+
+
+def test_coverage_is_not_checked_unless_all_checks_is_supplied():
+    validate_falsifiability_demonstration(
+        _demo(_case("T1_headline_flipped", "terminal_consistent"),
+              _case("T2_distribution_shifted", "distribution_recomputed")),
+        EXPECTED,
+    )

@@ -81,6 +81,8 @@ def validate_falsifiability_demonstration(
     expected_check: Mapping[str, str],
     *,
     require_resealed: bool = True,
+    all_checks: Sequence[str] | None = None,
+    acknowledged_unexercised: Sequence[str] = (),
 ) -> None:
     """Fail closed on a demonstration that does not demonstrate what it claims.
 
@@ -92,6 +94,14 @@ def validate_falsifiability_demonstration(
     A tampered copy whose digest was left stale is rejected on the hash alone, so
     its rejection says nothing about whether the science re-derives -- which is
     the whole point of the exercise.
+
+    ``all_checks`` is the verifier's full check list. When given, every check no
+    tamper exercises must appear in ``acknowledged_unexercised``. This was added
+    after a check that merely grepped explanatory prose for the phrase "vacuous
+    pass" survived in a verifier precisely because no tamper touched it -- a
+    decorative check, invisible among working ones. Naming the gap is the point;
+    demanding a tamper for every check would be wrong, since some are
+    unexercisable by a resealed copy by design.
     """
     if not isinstance(demonstration, Mapping):
         raise TypeError("falsifiability demonstration must be an object")
@@ -155,6 +165,35 @@ def validate_falsifiability_demonstration(
             f"expected_check names cases that are not in the demonstration: "
             f"{unused}"
         )
+
+    # Coverage. A verifier declares N checks; a tamper suite exercises some subset.
+    # The rest have no evidence they can fail at all -- they may be vacuous, and a
+    # vacuous check is indistinguishable from a working one until something tries
+    # to break it. This does not demand a tamper for every check (some, like a
+    # digest recomputation, are unexercisable by a resealed copy on purpose). It
+    # demands that the gap be NAMED, on the same principle as everything else
+    # here: silence is not evidence.
+    if all_checks is not None:
+        exercised = {
+            name
+            for case in cases
+            if isinstance(case, Mapping)
+            for name in (case.get("failed_checks") or [])
+        }
+        never = sorted(set(all_checks) - exercised - set(acknowledged_unexercised))
+        if never:
+            problems.append(
+                f"no tamper exercises {never}; those checks have no evidence they "
+                "can fail, so a vacuous one is indistinguishable from a working "
+                "one. Add a tamper, or list them in acknowledged_unexercised with "
+                "the gap stated"
+            )
+        stale = sorted(set(acknowledged_unexercised) & exercised)
+        if stale:
+            problems.append(
+                f"{stale} are listed as unexercised but a tamper does exercise "
+                "them; the acknowledgement is out of date and understates coverage"
+            )
 
     if problems:
         raise ValueError(

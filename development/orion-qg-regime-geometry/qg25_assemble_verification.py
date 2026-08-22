@@ -112,6 +112,21 @@ def t10(r):
     return r
 
 
+def t11(r):
+    r["gates"]["G9_not_r6_protected_subject_unread_caps_disclosed"] = False
+    return r
+
+
+def t12(r):
+    r["criterion_binding"]["records"][0].pop("applied_criterion_digest", None)
+    return r
+
+
+def t13(r):
+    r["q1_abelian_syndrome_at_any_D"]["1"]["abelian_syndrome_exists_at_any_D"] = True
+    return r
+
+
 TAMPERS = [
     ("T1_witness_words_not_permutations",
      "the two witness words are edited so they are no longer permutations of each "
@@ -136,6 +151,14 @@ TAMPERS = [
      "into agreement", t9),
     ("T10_hardness_gate_flipped",
      "the gate forbidding a reduction or lower bound is flipped to false", t10),
+    ("T11_authority_ceiling_dropped",
+     "the NOT_R6 / protected-subject-unread gate is flipped to false", t11),
+    ("T12_criterion_digest_removed",
+     "a criterion record drops its applied digest, so sameness would be inferred "
+     "from silence", t12),
+    ("T13_abelian_syndrome_claimed_to_exist",
+     "the receipt claims an abelian syndrome does exist, contradicting the very "
+     "witness it carries", t13),
 ]
 
 EXPECTED_CHECK = {
@@ -149,7 +172,23 @@ EXPECTED_CHECK = {
     "T8_criterion_digest_broken": "criterion_digests_match_the_frozen_protocol_text",
     "T9_qg22_finding_softened": "qg22_conclusion_stands_but_its_reason_does_not",
     "T10_hardness_gate_flipped": "no_hardness_or_reduction_claimed",
+    "T11_authority_ceiling_dropped": "authority_ceiling_not_r6",
+    "T12_criterion_digest_removed": "criterion_binding_records_bind_both_digests",
+    "T13_abelian_syndrome_claimed_to_exist": "no_abelian_syndrome_claimed_at_any_D",
 }
+
+#: Checks no receipt tamper can exercise, each with its reason.
+UNEXERCISED = [
+    # resealed by construction, so a tampered copy never trips it
+    "result_digest_recomputes",
+    # no tamper edits the frozen protocol
+    "protocol_sha256_recomputes",
+    # this one is computed ENTIRELY by this verifier's own stabilizer simulation and
+    # takes no input from the receipt, so no edit to the receipt can make it fail.
+    # It is a self-check on the verifier, not a check on the lane, and saying so is
+    # more honest than leaving it to look like receipt coverage.
+    "witness_words_reach_different_states",
+]
 
 
 def _enforce(art: dict) -> None:
@@ -157,7 +196,10 @@ def _enforce(art: dict) -> None:
     if art["verdict"] != "ACCEPT" or art["failed_checks"]:
         broken.append(f"clean receipt did not ACCEPT: {art['failed_checks']}")
     try:
-        validate_falsifiability_demonstration(art["falsifiability_demonstration"], EXPECTED_CHECK)
+        validate_falsifiability_demonstration(
+            art["falsifiability_demonstration"], EXPECTED_CHECK,
+            all_checks=list(art["checks"].keys()),
+            acknowledged_unexercised=UNEXERCISED)
     except ValueError as exc:
         broken.append(f"G7: {exc}")
     try:

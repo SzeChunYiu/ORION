@@ -96,6 +96,27 @@ def t9(r):
     return r
 
 
+def t12(r):
+    r["accepting_states"] = [387, 451, 579, 707, 835, 900]
+    return r
+
+
+def t13(r):
+    r["costs_are_state_independent"]["table_length"] = 512
+    return r
+
+
+def t14(r):
+    red = r["cost_mergeability_reduces_to_feasibility"]
+    red["every_state_separated_from_every_other"] = False
+    return r
+
+
+def t15(r):
+    r["g3_timing_note"] = "the measured runtime shows the problem is easy"
+    return r
+
+
 def t11(r):
     """Claim a trivial stabiliser when it is not, i.e. claim separation vacuously."""
     red = r["cost_mergeability_reduces_to_feasibility"]
@@ -133,6 +154,15 @@ TAMPERS = [
     ("T11_stabiliser_misreported",
      "the accepting set's translation stabiliser is misreported, which is the "
      "quantity separation actually depends on", t11),
+    ("T12_accepting_states_altered", "one accepting state is altered", t12),
+    ("T13_cost_table_shape_misreported",
+     "the cost table is claimed to be half its length, which would mean it had a "
+     "state axis and the whole argument would fail", t13),
+    ("T14_separation_flag_flipped",
+     "the separation flag is flipped while the stabiliser stays trivial, so the "
+     "flag contradicts the quantity it is derived from", t14),
+    ("T15_g3_timing_note_turned_into_an_argument",
+     "the gate-G3 note is replaced with a complexity inference from runtime", t15),
 ]
 
 EXPECTED_CHECK = {
@@ -147,7 +177,19 @@ EXPECTED_CHECK = {
     "T9_letter_count_altered": "cost_table_rebuilt_from_the_committed_dp",
     "T10_scope_limit_widened_to_all_keys": "scope_limit_declares_the_single_key",
     "T11_stabiliser_misreported": "accepting_set_stabiliser_recomputed",
+    "T12_accepting_states_altered": "accepting_states_recomputed",
+    "T13_cost_table_shape_misreported": "costs_are_state_independent",
+    "T14_separation_flag_flipped": "every_state_separated_recomputed",
+    "T15_g3_timing_note_turned_into_an_argument": "timing_appears_in_no_argument_g3",
 }
+
+#: Checks no tamper can exercise, with the reason stated rather than left implicit.
+UNEXERCISED = [
+    # every tampered copy is resealed on purpose, so this can never fire from one
+    "result_digest_recomputes",
+    # no tamper edits the frozen protocol; doing so would test the protocol, not the receipt
+    "protocol_sha256_recomputes",
+]
 
 
 def _enforce(art: dict) -> None:
@@ -155,7 +197,10 @@ def _enforce(art: dict) -> None:
     if art["verdict"] != "ACCEPT" or art["failed_checks"]:
         broken.append(f"clean receipt did not ACCEPT: {art['failed_checks']}")
     try:
-        validate_falsifiability_demonstration(art["falsifiability_demonstration"], EXPECTED_CHECK)
+        validate_falsifiability_demonstration(
+            art["falsifiability_demonstration"], EXPECTED_CHECK,
+            all_checks=list(art["checks"].keys()),
+            acknowledged_unexercised=UNEXERCISED)
     except ValueError as exc:
         broken.append(f"G7: {exc}")
     try:
