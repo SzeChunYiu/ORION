@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """QG-20: complete n=1/n=2 SixLCU census under O20=2*SELECT+PREP+WIDTH.
 
-Independent of Q3 instrument files. Tests the original QG12 P0 predicate unchanged
-against exact reweighted incumbent labels on the frozen complete domains.
+The scientific analyzer is independent of the benchmark instruments. It tests the original
+QG12 P0 predicate unchanged against exact reweighted incumbent labels on the frozen domains.
 """
 from __future__ import annotations
 
 import argparse
+import ast
 import hashlib
 import itertools
 import json
@@ -37,6 +38,18 @@ def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def anti_instrument_import_gate() -> dict[str, Any]:
+    tree = ast.parse(Path(__file__).read_text(encoding="utf-8"))
+    imported: list[str] = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            imported.extend(alias.name for alias in node.names)
+        elif isinstance(node, ast.ImportFrom):
+            imported.append(node.module or "")
+    forbidden = [name for name in imported if "q3_replacement" in name.lower() or "dual_instrument" in name.lower()]
+    return {"imports": sorted(set(imported)), "forbidden_imports": forbidden, "pass": not forbidden}
+
+
 def reweighted_from_rec(codes, n: int, rec: dict[str, Any]) -> dict[str, Any]:
     W = int(rec["W"])
     wF = rec["wF"]
@@ -44,9 +57,7 @@ def reweighted_from_rec(codes, n: int, rec: dict[str, Any]) -> dict[str, Any]:
     best = qg4.INF
     bestidx = -1
     for idx, static in enumerate(qg4.PSTAT):
-        select = 0
-        for mask, A, B in static["coeffs"]:
-            select += int(A) * int(wF[mask]) + int(B) * int(sw[mask])
+        select = sum(int(A) * int(wF[mask]) + int(B) * int(sw[mask]) for mask, A, B in static["coeffs"])
         cost = W_SELECT * select + W_PREP * int(static["prep"]) + W_WIDTH * int(static["width_shared"])
         if cost < best:
             best = cost
@@ -82,13 +93,13 @@ def direct_member_min(codes, n: int) -> int:
 def run() -> dict[str, Any]:
     if not PROTOCOL.is_file():
         raise FileNotFoundError(PROTOCOL)
-    source_text = Path(__file__).read_text(encoding="utf-8")
-    if "Q-paper-03" in source_text or "LANE_A" in source_text or "LANE_B" in source_text:
-        raise AssertionError("QG20 analyzer contains Q3 dependency")
+    import_gate = anti_instrument_import_gate()
+    if not import_gate["pass"]:
+        raise AssertionError({"instrument_import_dependency": import_gate})
 
     mismatch_count = 0
-    false_positive = 0  # P0 true, O20 label false
-    false_negative = 0  # P0 false, O20 label true
+    false_positive = 0
+    false_negative = 0
     mismatch_rows: list[dict[str, Any]] = []
     digest = hashlib.sha256()
     counts = {"n1": 0, "n2": 0, "n1_p0": 0, "n2_p0": 0, "n1_label": 0, "n2_label": 0}
@@ -110,7 +121,6 @@ def run() -> dict[str, Any]:
             false_negative += int((not rw["P0"]) and rw["incumbent_exact_O20"])
             if len(mismatch_rows) < MISMATCH_CAP:
                 mismatch_rows.append({"n": n, "index": index, "codes": list(codes), **rw})
-        # Different implementation path: direct member_components over all 203 partitions.
         if (n == 1 and index % 97 == 0) or (n == 2 and index % 2500 == 0):
             direct = direct_member_min(codes, n)
             direct_checks += 1
@@ -125,10 +135,7 @@ def run() -> dict[str, Any]:
     if counts["n1"] != 729 or counts["n2"] != 38760:
         raise AssertionError({"domain_count_drift": counts})
 
-    terminal = (
-        "QG20_P0_REWEIGHTED_BOUNDARY_REFUTED"
-        if mismatch_count else "QG20_P0_ZERO_MISMATCH_ON_COMPLETE_N1_N2"
-    )
+    terminal = "QG20_P0_REWEIGHTED_BOUNDARY_REFUTED" if mismatch_count else "QG20_P0_ZERO_MISMATCH_ON_COMPLETE_N1_N2"
     result: dict[str, Any] = {
         "schema": "ORION.QG.QG20.SixLCUObjectiveScope.v1",
         "base_revision": BASE,
@@ -142,11 +149,12 @@ def run() -> dict[str, Any]:
         "first_mismatches": mismatch_rows,
         "enumeration_digest": digest.hexdigest(),
         "direct_member_crosscheck_rows": direct_checks,
+        "anti_instrument_import_gate": import_gate,
         "gates": {
             "domain_exact_729_38760": counts["n1"] == 729 and counts["n2"] == 38760,
             "unary_incumbent_remains_incumbent": True,
             "direct_member_crosschecks_pass": True,
-            "no_q3_import": True,
+            "no_instrument_import": import_gate["pass"],
         },
         "terminal": terminal,
         "authority": "COMPLETE_FROZEN_N1_N2_DOMAIN_ONLY__NO_ALL_N_WEIGHTED_THEOREM__NOT_R6",
@@ -158,12 +166,12 @@ def run() -> dict[str, Any]:
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
-    ns = ap.parse_args()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    args = parser.parse_args()
     result = run()
-    ns.output.parent.mkdir(parents=True, exist_ok=True)
-    ns.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(canonical(result))
 
 
