@@ -308,6 +308,44 @@ authority `ORIONQG_QG7D_PARTIAL__P1_RESIDUE_OPEN__NOT_R6`).
   is exactly the FAILED_DECOMPOSITION move the reopen adjudication independently derived
   for this negative.
 
+## QG-17b — THE TIE LOCUS: A NEGATIVE CONVERTED, AND TWO BOUNDARY FACES THE CERTIFICATE MISSES
+
+`QG17B_TIE_LOCUS_RESULTS.json` (protocol frozen pre-outcome, sha256 `27ede632…54f889`;
+double-run byte-identical; 17/17 gates; independent verifier `ACCEPT_EXACT_PHASE_BOUNDARY`
+with `failed: []`, re-run by the orchestrator). Terminal
+`QG17B_EXACT_PHASE_BOUNDARY_LOCATED`. The annotation
+`QG17B_QG16_FACET_LOCALLY_SHARP_BY_TIE_LOCUS` was **not** earned — see Q3.
+
+**The conversion worked.** The reopen adjudication read QG-17's exact-zero tie on 4,896
+of 211,248 candidates at `O_nc_out` as the signature of sitting *on* the phase boundary
+rather than of narrowly missing a witness, and derived the move: solve for the tie locus.
+Executed:
+
+- **Q1** — the 4,896 ties reproduce verbatim with **zero degenerate (d = 0)** ties and
+  collapse to exactly **two** hyperplanes: `t_c + t_nc = t_tag + 2·t_r` (2,456 ties) and
+  `t_c + t_nc = 3·t_r` (2,440), each realized by a single raw `d`. `O_nc_out =
+  (3/2, 3/2, 1, 1)` lies **exactly on both**, verified over the integers for all 4,896.
+- **Q2** — both hyperplanes sign-flip, completely: on the minus side **every** tying
+  candidate becomes a strict support-2 winner (4,896 crossing witnesses at an exact
+  rational offset of 1/128); on the plus side, zero. Since `C_DP ≤ C2 < C_cap1`, these are
+  the **first machine-checked points in the programme where support 1 provably fails**.
+  Representative: candidate 1309 at θ = (191,191,129,130)/128 gives `C2 = 511/64` against
+  `C_cap1 = 259/32`, gap 7/64.
+- **Q3 — the more interesting branch, and the reason the sharpness annotation was
+  refused.** Neither tie-hyperplane is proportional to any QG-16 facet normal; both are
+  classified `NEW_TRUE_BOUNDARY_FACE_NOT_IN_QG16_CERTIFICATE`. **The true boundary has two
+  faces QG-16's certificate does not describe.** The near-misses are instructive:
+  `[1,1,0,-3]` against facet `[1,1,0,-5]`, and `[1,1,-1,-2]` against facet `[1,1,-2,-2]`
+  — same direction in the frame coordinates, differing in the Restore/Tag trade. So
+  QG-16 facet local sharpness remains **undemonstrated**, and the certificate is now known
+  to be incomplete in a located, quantified way rather than merely unproven.
+
+Anti-overclaim intact and verified: `global_phase_boundary_sharpness: OPEN`,
+`global_phase_boundary_complete: false`, `qg16_certificate_refuted: false`,
+`support2_required_anywhere_else_claimed: false`. The lane also passes a **tamper test** —
+injecting a false gap and a phantom witness index flips the verifier to REJECT on three
+independent checks.
+
 ## QG-7e — THE TARE ALL-N CLASSIFICATION THEOREM IS COMPLETE
 
 `QG7E_TWELVE_STATES_RESULTS.json` (protocol frozen pre-outcome, sha256 `dee3ff16…fb62`,
