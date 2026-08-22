@@ -613,6 +613,145 @@ syndrome, factorizing configuration space, local-sum objective — with four nam
 modes and one in-programme instance (StabPrep) on the far side of it. That criterion, not
 the separation, is the transferable object.
 
+## QG-19 — THE HOSTILE NOVELTY LANE: THE HEADLINE CRITERION IS A 1978 CODING-THEORY THEOREM
+
+`QG19_HOSTILE_NOVELTY_RESULTS.json`, `QG19_QUERY_LOG.md`, `QG_EXTERNAL_DONOR_REGISTER_V2.md`
+(protocol frozen pre-search, commit `aaf0987a`; 52 of 90 queries spent; all three query
+families run for all six claims; 8/8 gates). Terminal
+`QG19_SUBSUMPTION_FOUND__NOVELTY_REDUCED` — **the success branch**, since this lane was
+scored on how much novelty it removes.
+
+| claim | verdict | covering source |
+| --- | --- | --- |
+| **C-A** QG-22's Q3 structural criterion | **SUBSUMED** | Wolf, *Efficient Maximum Likelihood Decoding of Linear Block Codes Using a Trellis*, IEEE Trans. IT 24(1):76–80, **1978** |
+| **C-B** intrinsic support number κ | INSTANCE_OF_KNOWN_GENERAL | Aliev, De Loera, Eisenbrand, Oertel, Weismantel, *The Support of Integer Optimal Solutions*, SIAM J. Optim. 28(3), 2018 |
+| **C-C** five-component regime-geometry template | NEAREST_MISS | egg / equality saturation (Willsey et al. 2021; Tate et al. 2011) |
+| **C-D** κ ≠ syndrome rank under rewrite | INSTANCE_OF_KNOWN_GENERAL | Vanderbeck & Wolsey, reformulation/decomposition of integer programs |
+| **C-E** negative-history typology | INSTANCE_OF_KNOWN_GENERAL | Maheshwari et al., negative and null results in eScience, 2017 |
+| **C-F** digest custody ≠ correctness | **SUBSUMED** | Meyman, *Governance Laundering: A Taxonomy of Failure Modes in AI Compliance Architectures*, SSRN 6293818, **Feb 2026** |
+
+**C-A, stated without softening.** The criterion QG-22 produced — factorizing configuration
+space, feasibility predicate a homomorphism into a fixed finite abelian group, objective a
+sum of per-position local terms, therefore exact optimum linear in n by min-plus DP — is
+the **syndrome trellis**. Wolf 1978: *"soft decision maximum likelihood decoding of any
+(n,k) linear block code over GF(q) can be accomplished using the Viterbi algorithm applied
+to a trellis with no more than q^{n−k} states."* The DP state **is** the partial syndrome;
+the local terms **are** the per-symbol soft-decision metrics; our
+`O(C_ext·2^{2D}·n + n·A^L)` is that bound with `2^D = q^{n−k}` held fixed, i.e. the
+constant-redundancy specialization where Wolf's state count stops growing. Wolf states it
+for an **arbitrary** linear code, not one hand-built family.
+
+It is available three further times at greater generality, all predating us: the
+generalized distributive law over a commutative semiring (Aji & McEliece 2000); bucket
+elimination at `O(n·exp(w*))` (Dechter 1999) and the bounded-treewidth metatheorems; and
+Gomory's group relaxation, solved as a shortest path over a finite abelian group
+(1965/68). **The programme's headline transferable object has a parent, and the parent is
+older than the programme by forty-eight years.**
+
+**C-F is subsumed including the part the code was written to enforce.** The
+artifact-is-not-evidence failure is a named, taxonomized family — Meyman's *governance
+laundering*, with a **`custody gaps`** subcategory and the phrase **`replay-insufficient
+records`** — published **six months before** our 2026-08-21 finding. The typed-grade
+mechanism that refuses to let weak evidence be presented as strong is the operating design
+of ACM artifact badging, and *"Reproducible research can still be wrong"* is a 2015 PNAS
+title (Leek & Peng). The same phenomenon has a second name in the AI-research-pipeline
+setting: **replication laundering** (arXiv 2606.04220).
+
+**Gate G4 — did the lane merely report its priors?** No, and the receipt argues it against
+itself. C-A's HIGH-risk annotation was borne out, but *the killing source came from a donor
+field the frozen attack vector never named*: the protocol named algebraic DP, treewidth and
+FPT, and the kill came from trellis decoding. C-F was expected to fall to SLSA/in-toto or
+proof-carrying code and was instead subsumed by an AI-governance taxonomy nobody
+predicted. C-C, for which the protocol named superoptimization and equality saturation,
+came back **weaker** than expected. The lane over-predicted the relevance of its own named
+donor fields and under-predicted C-F.
+
+**Gate G5 — three contradicting sources kept, not discarded.** The NP-hardness results for
+circuit optimization (2310.05958, 2510.16420), which contradict any reading of C-A as a
+statement about compilation in general; and **Bravyi, Shaydulin, Hu & Maslov,
+arXiv:2105.02291**, which is simultaneously a hostile datum against the programme's
+donor-exact picture *and* a prior instance of C-A's own method inside our own domain —
+its symbolic peephole procedure works by *"optimally recompiling the projected subcircuit
+via dynamic programming."*
+
+### Orchestrator re-verification, and the one number that did not survive it
+
+Because C-A's subsumption removes the campaign's headline object, I re-ran the decisive
+retrievals independently rather than taking the lane's word:
+
+- **Wolf 1978 — CONFIRMED.** An independent search returns the bound sentence verbatim,
+  plus a second corroborating statement of the state count as `q^{min(K,N−K)}`.
+- **Aliev et al. 2018 — CONFIRMED.** SIAM J. Optim. 28:2152–2157, support bound
+  `2m·log(2√m‖A‖_∞)`, objective-independent, with the nearly matching asymptotic lower
+  bound the lane cited. (arXiv 1712.08923, DOI 10.1137/17M1162792.)
+- **Meyman 2026 — CONFIRMED, including the phrase.** SSRN 6293818, 23 Feb 2026, seven
+  failure-mode families with `custody gaps` among them; `replay-insufficient records`
+  confirmed on a second targeted search.
+- **Bravyi et al. 2105.02291 — PARTIALLY CONFIRMED, and the discrepancy is recorded.**
+  The paper, its authors and the dynamic-programming peephole method are confirmed, and
+  the direction of the hostile datum holds: the independent source states the
+  Aaronson–Gottesman algorithm produces **up to 8× more CZ gates** than their procedure.
+  The lane's specific figure — *64.7% average two-qubit gate reduction* — **was not
+  reproduced by independent search** and is therefore carried as **unconfirmed at the
+  number**, confirmed in direction. It is not cited as a quantitative datum anywhere.
+
+**The retrieval limitation, stated because it bounds every verdict above.** The egress
+proxy refused direct document retrieval on all 11 attempts (arXiv, Wikipedia, ACM, Springer,
+Semantic Scholar and others; the proxy's own status endpoint records the 403 CONNECT
+denials). **Every passage in this lane is search-tool text, not a document read**, and each
+source carries `document_level_verification: false`. My re-verification above has the same
+limitation — it is a second independent retrieval, not a reading of the primary sources.
+The lane logged this as a protocol objection and executed anyway: §5's terminals have no
+branch for *search works, fetch doesn't*, and G2 as written cannot be cleanly satisfied in
+that state. A successor protocol must define a `PARTIAL_NETWORK` terminal or state
+explicitly that search-snippet text satisfies G2.
+
+### Required corrections, and the one this record makes immediately
+
+The receipt issues seven required actions. They are obligations on how every future
+statement of these claims must be phrased, and they are binding on the closure packet and
+the paper series:
+
+1. **C-A** must be presented as the trellis/syndrome instance of maximum-likelihood
+   decoding, citing Wolf 1978 as the covering theorem and Aji–McEliece, Dechter and the
+   Gomory group relaxation as the general frameworks. The word *criterion* must not imply
+   the criterion was identified here.
+2. **C-B** — κ must be described as the exact value, for two specific families, of the
+   studied quantity "smallest support size of an optimal solution", not as a new kind of
+   two-sided family invariant.
+3. **C-C** — cite equality saturation wherever a complete trade set plus a local cost model
+   plus an optimality certificate is described, and the dominance-rule literature wherever
+   a donor-optimal region with a sufficiency bound is described.
+4. **C-D** — present the rank/κ mismatch as formulation-dependent bound strength; drop any
+   framing in which the programme discovered the phenomenon.
+5. **C-E** — cite Maheshwari et al. 2017 wherever the negative typology is introduced.
+6. **C-F** — cite Meyman 2026, replication laundering, Leek & Peng 2015, the SLSA scope
+   statements and ACM artifact badging wherever the corroboration-strength type is
+   motivated. **`corroboration.py`'s docstring narrated the finding as discovered on
+   2026-08-21; that has been corrected in this branch to name the prior art.** The lane
+   correctly refused to touch the file itself, being outside its declared write set.
+7. Register **V2 supersedes V1** as the citation source; V1 retained unmodified.
+
+### What survives, honestly
+
+Not much of the novelty, and that was the point of running the lane. What survives is
+**exact values on named families under a frozen cost model, machine-checked**: κ_R6I = 1,
+κ_TARE = 2, the all-n TARE classification `C_DP == min(C_D+, f_B′, f_B″)`, the exact tie
+locus and its two hyperplanes, the StabPrep feature-determination floor. Those are
+measurements, not frameworks, and no source found here computes them. The frameworks
+around them are borrowed, and the register now says from whom.
+
+Two campaign-level lessons the programme has to keep:
+
+- **Every novelty freeze authored without literature access was wrong in the same
+  direction.** Six claims went in; none came out with its novelty intact. The correct
+  default is that a clean structural statement about DP over a bounded state has a parent
+  in coding theory, constraint satisfaction or integer programming, and the burden is on
+  us to find it *before* the freeze, not after.
+- **The lane that removes your best result is worth more than the lane that produces it.**
+  C-A took one lane to derive and one lane to demolish, and the demolition is the item
+  that makes the rest of the programme citable rather than embarrassing.
+
 ## Registered successor (requires its own pre-outcome freeze)
 
 - ~~QG-7e~~ **EXECUTED — theorem complete, see above.** A composition/fixpoint argument over the residue, where

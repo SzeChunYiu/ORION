@@ -23,6 +23,33 @@ from primitives instead of re-reading the receipt.
 So corroboration strength is a typed property, and a custody artifact must state
 which kind it carries. This module refuses to let an artifact claim scientific
 corroboration on provenance evidence alone.
+
+Prior art, and why this docstring names it
+------------------------------------------
+
+The paragraphs above were originally written as though the failure had been
+discovered here. It had not. The hostile-novelty lane QG-19 found the claim
+subsumed, and the naming is corrected rather than quietly dropped:
+
+* Meyman, *Governance Laundering: A Taxonomy of Failure Modes in AI Compliance
+  Architectures* (SSRN 6293818, February 2026) names exactly this failure --
+  governance artifacts "treated as governance evidence even though they cannot
+  support independent verification" -- as a taxonomized family, with a
+  ``custody gaps`` subcategory and the phrase ``replay-insufficient records``.
+  It predates the 2026-08-21 incident by six months.
+* The same phenomenon in the research-pipeline setting is *replication
+  laundering* (arXiv 2606.04220).
+* Leek & Peng, "Reproducible research can still be wrong" (PNAS, 2015), states
+  the underlying point in its title.
+* The mechanism this module implements -- a typed evidence grade that refuses to
+  let weak evidence be presented as strong -- is the operating design of ACM
+  artifact badging, and the scope statements of SLSA and in-toto make the same
+  integrity-is-not-correctness distinction for build provenance.
+
+What is local to this repository is the incident and the enforcement point: a
+specific receipt that passed digest custody while being scientifically wrong, and
+a fail-closed check on the artifacts this harness emits. The distinction itself is
+borrowed, and citing it is cheaper than rediscovering it.
 """
 
 from __future__ import annotations
