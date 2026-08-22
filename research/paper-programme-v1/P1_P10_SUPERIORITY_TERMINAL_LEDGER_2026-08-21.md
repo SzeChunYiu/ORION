@@ -110,16 +110,16 @@ result and is distinct from both a pass and a build failure.
 | P5 | #653 | `CANNOT_CHECK` | `BOUNDED_PROTECTED` | 0/5 |
 | P6 | #654 | `CANNOT_CHECK` | `MECHANIZED_THEOREM` | 2/5 |
 | P7 | #655 | `CANNOT_CHECK` | `MECHANIZED_THEOREM` | 2/5 |
-| P8 | #656 | `CANNOT_CHECK` | `MECHANIZED_THEOREM` | 1/5 |
+| P8 | #656 | `CANNOT_CHECK` | `MECHANIZED_THEOREM` | 2/5 |
 | P9 | #662 | `CANNOT_CHECK` | `BOUNDED_PROTECTED` | 1/6 |
 | P10 | #663 | `CANNOT_CHECK` | `BOUNDED_PROTECTED` | 1/5 |
 
-**7 of 51 gates pass.** Two are scope gates — `P9-U-T6` and `P10-U-T5` — and
+**8 of 51 gates pass.** Two are scope gates — `P9-U-T6` and `P10-U-T5` — and
 they pass because those two papers do keep their advertised claims inside what
-they earned. Five are formal-generalization gates discharged by mechanized
-theorems: `P6-U-T1`, `P6-U-T2`, `P7-U-T1`, `P7-U-T2` and `P8-U-T1`. Nothing
-empirical is discharged anywhere, and the fourteen-check battery is clean: no
-substitution is currently being made in the ledger.
+they earned. Six are formal-generalization gates discharged by mechanized
+theorems: `P6-U-T1`, `P6-U-T2`, `P7-U-T1`, `P7-U-T2`, `P8-U-T1` and `P8-U-T2`.
+Nothing empirical is discharged anywhere, and the fourteen-check battery is
+clean: no substitution is currently being made in the ledger.
 
 The full battery is clean *and* the report still blocks. That combination is the
 object working as intended: "nobody is cheating" and "nothing is established" are
@@ -139,29 +139,37 @@ own frozen taxonomy in
 unblock it and how near that is. `HC-SUP-UNCLASSIFIED-BLOCKER` fails on a blocked
 gate with no recorded cause, so the ledger cannot quietly go back to one word.
 
-Forty-four of the fifty-one registered terminals are blocked, and all forty-four
-are classified. Seven are discharged: `P9-U-T6` and `P10-U-T5` on scope
-discipline, and `P6-U-T1`, `P6-U-T2`, `P7-U-T1`, `P7-U-T2` and `P8-U-T1` on
-mechanized theorems, which is what a `FORMAL_GENERALIZATION` terminal admits.
-Four of those five had been blocked on blocker text asking for evaluator custody;
-custody is a precondition of an empirical campaign, and requiring it of a proof
-blocks every provable gate on a category error. `P7-U-T2` was not: it was blocked
-a second time *after* its derivation existed, because instrumenting the finite
-result it derived showed the shipped composition loop evaluating its rule at two
-of eight argument triples with the donor never entering the function. It moved
-only once the five donor families were interpreted as transformations with their
-own hand-off contracts, so the intermediate-contract test is computed from the
-pair rather than typed by the caller. The queue, nearest first:
+Forty-three of the fifty-one registered terminals are blocked, and all forty-three
+are classified. Eight are discharged: `P9-U-T6` and `P10-U-T5` on scope
+discipline, and `P6-U-T1`, `P6-U-T2`, `P7-U-T1`, `P7-U-T2`, `P8-U-T1` and
+`P8-U-T2` on mechanized theorems, which is what a `FORMAL_GENERALIZATION`
+terminal admits. Four of those six had been blocked on blocker text asking for
+evaluator custody; custody is a precondition of an empirical campaign, and
+requiring it of a proof blocks every provable gate on a category error. Two were
+not. `P7-U-T2` was blocked a second time *after* its derivation existed, because
+instrumenting the finite result it derived showed the shipped composition loop
+evaluating its rule at two of eight argument triples with the donor never
+entering the function. It moved only once the five donor families were
+interpreted as transformations with their own hand-off contracts, so the
+intermediate-contract test is computed from the pair rather than typed by the
+caller. `P8-U-T2` was blocked on a second object: its 3,072-state model was
+already an instance of the calculus, but the 169 heterogeneous chain
+compositions were not, and deriving them needed the chain theorem instantiated
+at the donor level. It moved when that instantiation was built — and the same
+instrumentation found the shipped chain loop ignoring both of its donor
+variables, so the 169 is one composition counted thirteen times thirteen, and
+reading the thirteen families as type-distinct returns 13. The queue, nearest
+first:
 
 | Actionability | Terminals | Meaning |
 | --- | --- | --- |
 | `BLOCKED_ON_UPSTREAM` | 3 | another lane's in-flight work, nameable by PR |
 | `BLOCKED_ON_CAMPAIGN` | 22 | arena and comparator exist; no protected run scored |
 | `BLOCKED_ON_NEW_ARENA` | 14 | the evaluation object itself does not exist yet |
-| `BLOCKED_ON_PROOF` | 5 | needs a mechanized theorem from primitive semantics |
+| `BLOCKED_ON_PROOF` | 4 | needs a mechanized theorem from primitive semantics |
 
 By responsibility class: `MEASUREMENT_OR_EVALUATOR` 19, `SEARCH_OR_EVIDENCE` 18,
-`OBJECTIVE_OR_MODEL_CLASS` 3, `IMPLEMENTATION_OR_ENVIRONMENT` 3,
+`OBJECTIVE_OR_MODEL_CLASS` 2, `IMPLEMENTATION_OR_ENVIRONMENT` 3,
 `REPRESENTATION_OR_INTERFACE` 1.
 
 These counts are pinned against the generated report by
@@ -239,6 +247,11 @@ promotion `HC-SUP-POST-HOC-FREEZE` exists to refuse.
   composition rule at two of eight argument triples — and the record of what its
   published counts do and do not carry is in
   `papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_DONOR_STACK_AS_TRANSFORMATION_FAMILY_2026-08-22.json`.
+  P8's second gate needed a second object: its 3,072-state model was already an
+  instance, but its 169 heterogeneous chain compositions were not, and the same
+  kind of instrumentation found the shipped chain loop ignoring both of its
+  donor variables. What that leaves the number carrying is in
+  `papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_CHAIN_COMPOSITION_INTERPRETATION_2026-08-22.json`.
 - **P9 #662** — the direct open-weight scaling run and its second family. The
   scope gate already passes.
 - **P10 #663** — native-state extraction and verified solve benefit. The scope

@@ -1,7 +1,7 @@
 {
   "battery": {
     "blocked": false,
-    "content_digest": "6e09bc58ef0d79c3ca69a02876b6b0ba94048c418e2155bef6cb4e33d247bc90",
+    "content_digest": "7d416595b5bfcdfcc0c3db4c34cab62bff6fbde04016f080d158d7d778a8f333",
     "expected_check_ids": [
       "HC-SUP-TERMINAL-COVERAGE",
       "HC-SUP-MANUSCRIPT-SUBSTITUTION",
@@ -91,7 +91,7 @@
         "check_id": "HC-SUP-UNCLASSIFIED-BLOCKER",
         "findings": [],
         "outcome": "PASS",
-        "reason": "all 44 blocked terminal(s) carry a responsibility class and an unblock action"
+        "reason": "all 43 blocked terminal(s) carry a responsibility class and an unblock action"
       },
       {
         "check_id": "HC-SUP-PREDECESSOR-REUSE",
@@ -108,7 +108,7 @@
     ],
     "schema_version": "orion.programme.hostile-check-report.v1"
   },
-  "content_digest": "516ebcdb5a866d76f141ca61ba0743946fdc2776226043737b37bdf92045730d",
+  "content_digest": "bbd9c5c192f1f160814e4c8f01ae0eb514de6b8649d7b53641deaaa51e7587ef",
   "frozen_at": "2026-08-21",
   "grants_issue_closure": false,
   "ledger_id": "P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1",
@@ -901,8 +901,8 @@
           "findings": [],
           "gate_id": "P8-U-T2",
           "kind": "FORMAL_GENERALIZATION",
-          "outcome": "CANNOT_CHECK",
-          "reason": "no evidence is recorded against this terminal"
+          "outcome": "PASS",
+          "reason": "mechanized theorem recorded: papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_CHAIN_COMPOSITION_INTERPRETATION_2026-08-22.json, papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_DONOR_INTERPRETATION_2026-08-22.json"
         },
         {
           "findings": [],
@@ -930,19 +930,14 @@
       "paper_id": "P8",
       "predecessor_artifacts": [
         {
-          "artifact_ref": "research/claim_expansion/p8/P8_X4_SCIENCE_TERMINAL_V1.md",
-          "grade": "MECHANISM_NON_VACUITY",
-          "terminal": "P8_CROSS_DOMAIN_SCIENTIFIC_AUTHORITY_COMPOSITION_SUPPORTED__13_DONOR_FORMAL_ENVELOPE__IDEAL_PRODUCT_EQUIVALENT"
-        },
-        {
           "artifact_ref": "papers/paper-08-epistemic-authority-autonomous-science/evidence/audit/P8_AUTHORITY_RECEIPT_AUDIT_2026-08-21.json",
           "grade": "CANNOT_CHECK",
           "terminal": "P8_AUTHORITY_RECEIPT_AUDIT__FAIL"
         },
         {
-          "artifact_ref": "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_DONOR_INTERPRETATION_2026-08-22.json",
-          "grade": "MECHANIZED_THEOREM",
-          "terminal": "X4_MODEL_DERIVED_FROM_THE_PROVED_PRIMITIVES"
+          "artifact_ref": "research/claim_expansion/p8/P8_X4_SCIENCE_TERMINAL_V1.md",
+          "grade": "MECHANISM_NON_VACUITY",
+          "terminal": "P8_CROSS_DOMAIN_SCIENTIFIC_AUTHORITY_COMPOSITION_SUPPORTED__13_DONOR_FORMAL_ENVELOPE__IDEAL_PRODUCT_EQUIVALENT"
         }
       ],
       "strongest_grade": "MECHANIZED_THEOREM",
@@ -968,16 +963,6 @@
           "responsibility": "MEASUREMENT_OR_EVALUATOR",
           "statement": "Empirical utility versus over-blocking cannot be measured without those workflows.",
           "unblock": "Measure invalid discharge, unnecessary blocking, revocation accuracy and workflow cost on one object."
-        },
-        {
-          "actionability": "BLOCKED_ON_PROOF",
-          "gate_id": "P8-U-T2",
-          "refs": [
-            "#656"
-          ],
-          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "The finite result now follows from the calculus rather than standing beside it. Every one of the 3,072 distinct X4 states is reproduced by the proved authorisation rule under an interpretation that assigns each of X4's seven arguments to the conjunct it means, with all four terminals exercised (P8_DONOR_INTERPRETATION_2026-08-22). What remains is not the derivation but its custody: the interpretation, the calculus and the model were written in the same lane, so nothing here is independent of the author. The instance count is 3,072, not 39,936 -- the donor axis is verdict-inert, so the thirteen families replicate rather than extend the state space.",
-          "unblock": "Have someone outside this lane check the interpretation, which is P8-U-T5's ask and is the only thing still standing between the derivation and this terminal. The 169 heterogeneous chain compositions are a separate object from the 3,072-state model and are not derived here; deriving them needs the chain theorem instantiated at the donor level, which the calculus proves in general and this interpretation does not yet map."
         },
         {
           "actionability": "BLOCKED_ON_PROOF",
@@ -1760,18 +1745,6 @@
     },
     {
       "actionability": "BLOCKED_ON_PROOF",
-      "gate_id": "P8-U-T2",
-      "issue": 656,
-      "paper_id": "P8",
-      "refs": [
-        "#656"
-      ],
-      "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-      "statement": "The finite result now follows from the calculus rather than standing beside it. Every one of the 3,072 distinct X4 states is reproduced by the proved authorisation rule under an interpretation that assigns each of X4's seven arguments to the conjunct it means, with all four terminals exercised (P8_DONOR_INTERPRETATION_2026-08-22). What remains is not the derivation but its custody: the interpretation, the calculus and the model were written in the same lane, so nothing here is independent of the author. The instance count is 3,072, not 39,936 -- the donor axis is verdict-inert, so the thirteen families replicate rather than extend the state space.",
-      "unblock": "Have someone outside this lane check the interpretation, which is P8-U-T5's ask and is the only thing still standing between the derivation and this terminal. The 169 heterogeneous chain compositions are a separate object from the 3,072-state model and are not derived here; deriving them needs the chain theorem instantiated at the donor level, which the calculus proves in general and this interpretation does not yet map."
-    },
-    {
-      "actionability": "BLOCKED_ON_PROOF",
       "gate_id": "P8-U-T5",
       "issue": 656,
       "paper_id": "P8",
@@ -1786,13 +1759,13 @@
   "work_queue_by_actionability": {
     "BLOCKED_ON_CAMPAIGN": 22,
     "BLOCKED_ON_NEW_ARENA": 14,
-    "BLOCKED_ON_PROOF": 5,
+    "BLOCKED_ON_PROOF": 4,
     "BLOCKED_ON_UPSTREAM": 3
   },
   "work_queue_by_responsibility": {
     "IMPLEMENTATION_OR_ENVIRONMENT": 3,
     "MEASUREMENT_OR_EVALUATOR": 19,
-    "OBJECTIVE_OR_MODEL_CLASS": 3,
+    "OBJECTIVE_OR_MODEL_CLASS": 2,
     "REPRESENTATION_OR_INTERFACE": 1,
     "SEARCH_OR_EVIDENCE": 18
   }

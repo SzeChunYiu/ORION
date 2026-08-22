@@ -553,16 +553,6 @@
     {
       "blockers": [
         {
-          "actionability": "BLOCKED_ON_PROOF",
-          "gate_id": "P8-U-T2",
-          "refs": [
-            "#656"
-          ],
-          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "The finite result now follows from the calculus rather than standing beside it. Every one of the 3,072 distinct X4 states is reproduced by the proved authorisation rule under an interpretation that assigns each of X4's seven arguments to the conjunct it means, with all four terminals exercised (P8_DONOR_INTERPRETATION_2026-08-22). What remains is not the derivation but its custody: the interpretation, the calculus and the model were written in the same lane, so nothing here is independent of the author. The instance count is 3,072, not 39,936 -- the donor axis is verdict-inert, so the thirteen families replicate rather than extend the state space.",
-          "unblock": "Have someone outside this lane check the interpretation, which is P8-U-T5's ask and is the only thing still standing between the derivation and this terminal. The 169 heterogeneous chain compositions are a separate object from the 3,072-state model and are not derived here; deriving them needs the chain theorem instantiated at the donor level, which the calculus proves in general and this interpretation does not yet map."
-        },
-        {
           "actionability": "BLOCKED_ON_NEW_ARENA",
           "gate_id": "P8-U-T3",
           "refs": [
@@ -601,17 +591,20 @@
           ],
           "gate_id": "P8-U-T1",
           "grade": "MECHANIZED_THEOREM",
-          "notes": "Ten composition and revocation theorems for P8's formal core, discharged by Z3 over uninterpreted domain, object and issuer sorts, so they are not statements about the thirteen donor families P8 enumerates. Two limits travel with the mechanization and are in the artifact: reachability is axiomatised as a reflexive-transitive closure carrying a well-founded rank, because transitive closure is not first-order definable, and the chain theorem's induction schema is the single hand step. The rank is not a formality -- an earlier axiomatisation without it admitted circular reachability, in which a sink domain reached its own source, and a differential against the committed implementation is what caught it. This terminal asks whether the general theorem is proved and mechanized, and it is; whether P8's exhaustive finite result is an instance of it is P8-U-T2, which the 3,072-state donor interpretation answers for the state model but not for the 169 heterogeneous chain compositions, and independent reproduction is P8-U-T5."
+          "notes": "Ten composition and revocation theorems for P8's formal core, discharged by Z3 over uninterpreted domain, object and issuer sorts, so they are not statements about the thirteen donor families P8 enumerates. Two limits travel with the mechanization and are in the artifact: reachability is axiomatised as a reflexive-transitive closure carrying a well-founded rank, because transitive closure is not first-order definable, and the chain theorem's induction schema is the single hand step. The rank is not a formality -- an earlier axiomatisation without it admitted circular reachability, in which a sink domain reached its own source, and a differential against the committed implementation is what caught it. This terminal asks whether the general theorem is proved and mechanized, and it is; whether P8's exhaustive finite result is an instance of it is P8-U-T2, now discharged for both objects -- the 3,072-state model and the 169 chain compositions -- and independent reproduction is P8-U-T5."
+        },
+        {
+          "artifact_refs": [
+            "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_CHAIN_COMPOSITION_INTERPRETATION_2026-08-22.json",
+            "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_DONOR_INTERPRETATION_2026-08-22.json"
+          ],
+          "gate_id": "P8-U-T2",
+          "grade": "MECHANIZED_THEOREM",
+          "notes": "P8's exhaustive finite result now follows from the calculus discharged at P8-U-T1 rather than standing beside it, on both of the objects X4 publishes. The 3,072-state model was already an instance: each of the seven arguments the terminal takes is assigned to the calculus conjunct it means -- type-coordinate agreement or a registered coercion is Reach, narrowing is scope containment, the blocker is at once an obligation and a defeater -- and the calculus rule under that assignment reproduces X4 exactly on all 3,072 distinct states with all four terminals reached. What was missing, and is what this terminal was still blocked on, is the 169 heterogeneous chain compositions, a separate object needing the chain theorem instantiated at the donor level. It now is. A donor family is an element of an uninterpreted sort whose domain is its scientific type profile; a protected coercion is a registered conversion; narrowing is scope containment. Under eight frame conditions stated as axioms, seven theorems are discharged by Z3 over uninterpreted domain, object, issuer and donor sorts -- an X4 chain hop is the calculus's delegation, a hop confines the action to the root, a widening hop is never authorised whatever else holds, an unbridged type gap is not a reach, the shipped chain step is the reflexive one, the donor family enters only through its type, and the three-state blocker law -- and donor-level chain confinement is expanded and discharged at every length to six. Each frame condition is shown load-bearing by exhibiting a countermodel to a theorem it carries, measured as refutation rather than as the solver ceasing to prove, because an UNKNOWN is not a loss. Both 169s are then recomputed by composing donor judgments through the interpretation and handing each composed state to the committed scientific_terminal, and the composition is exact against the chain theorem on all 36,864 representative pairs, which stand in for the 9,437,184 state pairs by two facts checked over the full space rather than assumed. Four negatives travel with it and are in the artifact. The 169 is one composition counted 169 times: the shipped chain loop is a doubly nested loop over the thirteen families whose body mentions neither variable, and all 169 ordered pairs compose to one distinct state. Nothing heterogeneous is exercised: the shipped chain state agrees on all five type coordinates, which puts both donors in one domain, so the hop is a reach by reflexivity and no conversion is consulted -- read the thirteen families as type-distinct with no bridge registered and the same committed rule returns 13, not 169. Neither published count tests the interpretation: all eight wrong composition operators reproduce 169 successes and six of the eight reproduce the widening count too; it is the soundness identity that separates them, and that identity in turn tests the composition rather than the rule and is satisfied vacuously by a constant rule, which is why corpus coverage is measured beside it. And the ladder bound is a measured solver limit: it was 8 until a length-eight query came back UNKNOWN under load, and lengths 7 to 12 are intermittent, so the bound sits at six and the general result rests on the induction schema, which remains the single hand step. Independent formal and systems reproduction is P8-U-T5 and is not claimed here."
         }
       ],
       "paper_id": "P8",
       "predecessor_artifacts": [
-        {
-          "artifact_ref": "research/claim_expansion/p8/P8_X4_SCIENCE_TERMINAL_V1.md",
-          "grade": "MECHANISM_NON_VACUITY",
-          "note": "169/169 valid compositions with 169 matched unbridged-widening failures across a 13-donor envelope. #656 asks for arbitrary graphs and a mechanized theorem.",
-          "terminal": "P8_CROSS_DOMAIN_SCIENTIFIC_AUTHORITY_COMPOSITION_SUPPORTED__13_DONOR_FORMAL_ENVELOPE__IDEAL_PRODUCT_EQUIVALENT"
-        },
         {
           "artifact_ref": "papers/paper-08-epistemic-authority-autonomous-science/evidence/audit/P8_AUTHORITY_RECEIPT_AUDIT_2026-08-21.json",
           "grade": "CANNOT_CHECK",
@@ -619,10 +612,10 @@
           "terminal": "P8_AUTHORITY_RECEIPT_AUDIT__FAIL"
         },
         {
-          "artifact_ref": "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_DONOR_INTERPRETATION_2026-08-22.json",
-          "grade": "MECHANIZED_THEOREM",
-          "note": "The interpretation step P8-U-T1's unblock named. Each of the seven arguments X4's terminal takes is assigned to the calculus conjunct it means -- type-coordinate agreement or a registered coercion is the calculus's Reach, narrowing is scope containment, the blocker is simultaneously an obligation and a defeater -- and the calculus rule under that assignment reproduces X4 exactly on all 3,072 distinct states, with all four terminals reached (BLOCK 1181, CANNOT_CHECK 256, DISCHARGE 99, NO_DONOR_AUTHORITY 1536). A derivation rather than a transcription: three independent changes to X4's semantics each break soundness.",
-          "terminal": "X4_MODEL_DERIVED_FROM_THE_PROVED_PRIMITIVES"
+          "artifact_ref": "research/claim_expansion/p8/P8_X4_SCIENCE_TERMINAL_V1.md",
+          "grade": "MECHANISM_NON_VACUITY",
+          "note": "169/169 valid compositions with 169 matched unbridged-widening failures across a 13-donor envelope. #656 asks for arbitrary graphs and a mechanized theorem. The mechanization now exists and is offered at P8-U-T2; this remains a predecessor because the enumeration itself discharges nothing -- and because instrumenting it showed its chain loop ignoring both donor variables, so its 169 is one composition counted thirteen times thirteen.",
+          "terminal": "P8_CROSS_DOMAIN_SCIENTIFIC_AUTHORITY_COMPOSITION_SUPPORTED__13_DONOR_FORMAL_ENVELOPE__IDEAL_PRODUCT_EQUIVALENT"
         }
       ]
     },
