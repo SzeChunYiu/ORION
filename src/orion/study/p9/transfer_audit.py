@@ -29,6 +29,19 @@ find. That the branch would still reject six declared-wrong comparators is
 reported beside it, because "the check is vacuous" and "the check was pointed at
 its own reference" are different repairs.
 
+Reporting the identity does not answer the branch's question, so the audit then
+asks it. ``orion.study.p9.transfer_margins.protocol_declared_comparator`` decides
+the same pairs from D1's *declared* surface --- the comparison coordinates and
+labels of ``D1_PROTOCOL_V1.json``, the per-coordinate comparison semantics of
+``D1_PROTOCOL_V1_1.json``, the ``P9.D1Typed.v1`` payload --- without calling the
+evaluator's rule, and it disagrees with the shipped comparator on 384 of the
+1,280 pairs the D1 generator never builds. Because it *can* disagree, its
+agreement with gold on all 512 frozen and all 128 protected cases is a
+measurement: the branch is reachable for a conforming comparator and does not
+fire. The 384 are printed with the shape that causes them, because they are a
+finding about D1's evaluator --- it grades a coordinate carrying no value as a
+decided obstruction --- and not a defect in the second implementation.
+
 Exits ``3`` when anything blocks, so it fails a pipeline rather than printing a
 table nobody reads::
 
@@ -58,18 +71,22 @@ def audit_p9_transfer_margins() -> dict[str, Any]:
     collapse = p9.d1_view_collapse_report()
     reproduction = p9.d1_reproduction_report(result)
     oracle = p9.d1_oracle_identity()
+    independence = p9.d1_independent_oracle()
 
-    # Three verdicts that must stay separable, because they have three different
+    # Four verdicts that must stay separable, because they have four different
     # repairs: a margin taken against an arm that never answered, a view whose
-    # protected design matrix has one row, and a terminal branch whose trigger
-    # recomputes the gold it grades.
+    # protected design matrix has one row, a terminal branch whose trigger
+    # recomputes the gold it grades, and the claim that branch would have made if
+    # a comparator able to deny it had been the one grading.
     oracle_outcome = oracle.outcome
+    independence_outcome = independence.outcome
     outcome = worst_outcome(tuple(item.assessment for item in margins))
     others = (
         *(item.outcome for item in margins),
         *(item.outcome for item in collapse.values()),
         *(item.outcome for item in reproduction.values()),
         oracle_outcome,
+        independence_outcome,
     )
     for other in others:
         if other is Outcome.FAIL:
@@ -88,6 +105,8 @@ def audit_p9_transfer_margins() -> dict[str, Any]:
         "view_collapse": collapse,
         "oracle": oracle,
         "oracle_outcome": oracle_outcome,
+        "independence": independence,
+        "independence_outcome": independence_outcome,
         "outcome": outcome,
     }
 
@@ -109,6 +128,8 @@ def report_as_json(report: dict[str, Any]) -> dict[str, Any]:
         },
         "oracle": report["oracle"].as_json(),
         "oracle_outcome": report["oracle_outcome"].value,
+        "independence": report["independence"].as_json(),
+        "independence_outcome": report["independence_outcome"].value,
         "outcome": report["outcome"].value,
     }
 
@@ -196,6 +217,55 @@ def _render(report: dict[str, Any]) -> str:
             f"    {oracle.branch} reachable for the artifact as run: "
             f"{oracle.branch_reachable}",
             f"    outcome: {report['oracle_outcome'].value} ({oracle.verdict.value})",
+        ]
+    )
+    independence = report["independence"]
+    witness = independence.witness
+    lines.extend(
+        [
+            "",
+            f"  {independence.comparator_id} vs D1 evaluator gold",
+            f"    frozen D1 space: {independence.frozen_space.points} points, "
+            f"{independence.frozen_space.points_changed} divergent",
+            f"    protected split: {independence.protected_space.points} points, "
+            f"{independence.protected_space.points_changed} divergent",
+            f"    pairs the D1 generator never builds: "
+            f"{independence.widened_space.points} points, "
+            f"{independence.widened_space.points_changed} divergent",
+            "    disagrees with the comparator the artifact ran on "
+            f"{independence.against_shipped_comparator.points_changed} of "
+            f"{independence.against_shipped_comparator.points} of those points, so it "
+            "is a second implementation and not a second expression",
+        ]
+    )
+    for pair, count in independence.divergent_label_pairs:
+        lines.append(
+            f"      evaluator {pair[0]} where the declaration reads {pair[1]}: "
+            f"{count} point(s)"
+        )
+    if witness:
+        lines.append(
+            f"      witness {witness['instance_id']}: perturbed "
+            f"{witness['perturbed_coordinates']}, evaluator "
+            f"{witness['evaluator_gold']}, declaration {witness['protocol_declared']}"
+        )
+        for entry in witness["coordinates_carrying_no_value"]:
+            lines.append(
+                f"        {entry['side']}.{entry['coordinate']} carries no value and is "
+                f"not marked unknown (marked_unknown={entry['marked_unknown']})"
+            )
+    capacity = independence.capacity
+    lines.extend(
+        [
+            f"    {independence.branch} would still reject {len(capacity.refuted)}/"
+            f"{len(capacity.refuted) + len(capacity.survivors)} declared wrong "
+            f"comparators when graded against it ({capacity.outcome.value})",
+            f"    {independence.branch} reachable for a conforming comparator: "
+            f"{independence.branch_reachable}; fires on the shipped protected split: "
+            f"{independence.branch_fires}",
+            f"    outcome: {report['independence_outcome'].value} "
+            f"({independence.verdict.value})",
+            f"    {independence.divergence_shape}",
             "",
             f"  audit outcome: {report['outcome'].value}",
         ]

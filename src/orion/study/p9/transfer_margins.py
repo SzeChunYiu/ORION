@@ -80,6 +80,37 @@ once: the branch rejects all six wrong comparators, and it still cannot fire,
 because the rule it grades is :func:`orion.study.p9.d1.classify_methods`
 re-expressed through the typed projection. That is an identity, and it is
 reported as one.
+
+An identity reported is still a claim withdrawn, and it leaves the branch's
+actual question --- *is evaluator gold on the 128 protected cases what D1's
+specification says it is?* --- unasked rather than answered. It is asked here.
+``D1_PROTOCOL_V1.json`` declares the comparison coordinates and the label set,
+``D1_PROTOCOL_V1_1.json`` declares what equality means coordinate by coordinate,
+and the ``P9.D1Typed.v1`` payload is the surface the arm consumes; that is a
+specification, so :func:`protocol_declared_comparator` implements it a second
+time. It reads the declaration off the frozen protocol files at run time,
+digest-bound in both directions, and never calls ``classify_methods``, never
+reads ``instance.label``, and never imports the evaluator's coordinate tuple.
+
+It is independent in the only sense that counts: it *does* disagree.
+:func:`d1_independent_oracle` measures 384 of the 1,280 widened pairs on which
+it and the shipped comparator answer differently, so the agreement it reports
+elsewhere is a measurement rather than a restatement. And it agrees on all 512
+frozen cases and all 128 protected ones, which is what the branch was supposed
+to establish and never could: ``D1_EVALUATOR_FAILURE`` is reachable for a
+conforming comparator and does not fire on the artifact as shipped.
+
+The 384 are reported, not repaired. Every one of them is a pair in which a
+comparison coordinate the declaration admits only as *an exact semantic value or
+an explicit UNKNOWN* carries neither --- no value, and no unknown marking.
+``classify_methods`` compares the absent value like any other and answers
+OBSTRUCTION, so D1's evaluator will report a *decided* structural obstruction
+against a coordinate no source ever stated, which is the thing
+``unknown_holdout.force_unknown_not_fabricated`` exists to forbid. D1 never
+built that shape --- ``unresolved_method`` nulls ``reconstruction_map`` and marks
+it unknown in the same step --- so no published number moves. Adopting the
+evaluator's reading here would close the gap and make this an identity again,
+which is why the divergence is carried in the verdict instead.
 """
 
 from __future__ import annotations
@@ -122,6 +153,36 @@ D1_RESULT_PATH = (
 )
 
 D1_RESULT_DIGEST = "sha256:34003fb8ffcecec6ed01654e40c644ff05b7640be56b398a45efc1e52a30141a"
+
+_P9_EXTENSION = _REPO_ROOT / "research" / "extensions" / "p9-structured-neural"
+
+#: The declared protocol surface an independent comparator is written against.
+#:
+#: ``D1_PROTOCOL_V1.json`` declares the comparison coordinates and the label set;
+#: ``D1_PROTOCOL_V1_1.json`` declares what equality *means* per coordinate;
+#: ``D1_PROTOCOL_V1_2.json`` corrects the dependency-mutation generator and
+#: declares the comparison rule unchanged. Together they are the specification,
+#: and they are read at runtime rather than paraphrased into code so that
+#: "written against the declaration" is checkable instead of asserted.
+D1_PROTOCOL_PATHS: Mapping[str, Path] = {
+    "P9.D1MethodTransferProtocol.v1": _P9_EXTENSION / "D1_PROTOCOL_V1.json",
+    "P9.D1MethodTransferProtocol.v1.1": _P9_EXTENSION / "D1_PROTOCOL_V1_1.json",
+    "P9.D1MethodTransferProtocol.v1.2": _P9_EXTENSION / "D1_PROTOCOL_V1_2.json",
+}
+
+#: Content digests of the declaration, so a comparator written against it fails
+#: closed rather than silently implementing some other text.
+D1_PROTOCOL_DIGESTS: Mapping[str, str] = {
+    "P9.D1MethodTransferProtocol.v1": (
+        "sha256:f34a682ed4cf86f5ab832cf47d746ce2b7aa14e791d5798a63a20ebceef2f98a"
+    ),
+    "P9.D1MethodTransferProtocol.v1.1": (
+        "sha256:635568d6c070821b5bebd6bd9e9cd584e26f09d3c237e4e1fa3320a72aaec74d"
+    ),
+    "P9.D1MethodTransferProtocol.v1.2": (
+        "sha256:3f5b48780a81f3d4c21ba6d184ff89b2dfca989c3b200380c3ee00fc51c84405"
+    ),
+}
 
 D1_TREATED_ARM = "TYPED_RELATIONAL"
 
@@ -1303,10 +1364,13 @@ def d1_oracle_identity() -> OracleIdentity:
     the branch against wrong comparators, not by reading the count.
     """
 
-    from .d1 import COMPARISON_COORDINATES, generate_d1_dataset
+    from .d1 import COMPARISON_COORDINATES
     from .d1_experiment import D1FeatureFamily, exact_relational_comparator, features
 
-    dataset = generate_d1_dataset(seed=D1_SEED)
+    # ``frozen_d1_dataset``, not ``generate_d1_dataset``: protocol v1.2's
+    # correction is an import side effect, and a protected split drawn from the
+    # v1.1 corpus would be a divergence count about a different 128 cases.
+    dataset = frozen_d1_dataset()
     protected = tuple(dataset.test)
     widened = _widened_oracle_space()
 
@@ -1357,27 +1421,563 @@ def d1_oracle_identity() -> OracleIdentity:
     )
 
 
+# --------------------------------------------------------------------------
+# A second implementation of the same specification
+# --------------------------------------------------------------------------
+
+D1_PROTOCOL_COMPARATOR_ID = (
+    "D1 protocol-declared comparator (D1_PROTOCOL_V1 + V1_1 declared surface)"
+)
+
+D1_SHIPPED_COMPARATOR_ID = (
+    "D1 exact typed relational comparator "
+    "(orion.study.p9.d1_experiment.exact_relational_comparator)"
+)
+
+
+class D1ProtocolDeclarationError(RuntimeError):
+    """Raised when the declared D1 surface is not the text this comparator implements."""
+
+
+class DeclaredComparison(str, Enum):
+    """What ``D1_PROTOCOL_V1_1.json`` says comparing one coordinate *means*.
+
+    One member per distinct ``coordinate_semantics`` sentence in the protocol.
+    The mapping from sentence to member is spelled out in
+    :data:`_DECLARED_COMPARISON` and is looked up rather than inferred, so a
+    protocol whose declared semantics changed would raise instead of quietly
+    being graded by the old reading.
+    """
+
+    SORTED_SEMANTIC_VALUES = "SORTED_SEMANTIC_VALUES"
+    SEMANTIC_VALUE_OR_EXPLICIT_UNKNOWN = "SEMANTIC_VALUE_OR_EXPLICIT_UNKNOWN"
+    DEPENDENCY_TOPOLOGY_OVER_ROLE_INDICES = "DEPENDENCY_TOPOLOGY_OVER_ROLE_INDICES"
+
+
+_DECLARED_COMPARISON: Mapping[str, DeclaredComparison] = {
+    "exact sorted semantic values": DeclaredComparison.SORTED_SEMANTIC_VALUES,
+    "exact semantic value or explicit UNKNOWN": (
+        DeclaredComparison.SEMANTIC_VALUE_OR_EXPLICIT_UNKNOWN
+    ),
+    "directed dependency graph over method-local mechanic role indices after "
+    "deterministic local mechanic ordering; surface mechanic/action names are not "
+    "compared as semantic identity": (
+        DeclaredComparison.DEPENDENCY_TOPOLOGY_OVER_ROLE_INDICES
+    ),
+}
+
+
+@dataclass(frozen=True)
+class D1ProtocolDeclaration:
+    """The D1 comparison specification, as the frozen protocol files declare it.
+
+    Everything the comparator below needs comes from here, and everything here
+    comes from the protocol JSON: the coordinate list, the label set, the
+    per-coordinate meaning of equality, and the rule that an unstated coordinate
+    is marked rather than fabricated. Nothing is read from
+    :mod:`orion.study.p9.d1`, which is the point --- a comparator that imported
+    the evaluator's coordinate tuple would already share half its definition.
+    """
+
+    comparison_coordinates: tuple[str, ...]
+    labels: tuple[str, ...]
+    coordinate_comparison: Mapping[str, DeclaredComparison]
+    unknown_holdout_coordinate: str
+    unknown_must_be_marked_not_fabricated: bool
+    typed_payload_schema: str
+    digests: Mapping[str, str]
+
+    def kind(self, coordinate: str) -> DeclaredComparison:
+        return self.coordinate_comparison[coordinate]
+
+    @property
+    def scalar_coordinates(self) -> tuple[str, ...]:
+        """The coordinates the protocol says may carry an *explicit UNKNOWN*.
+
+        Exactly the three the declaration gives two admissible states: an exact
+        semantic value, or an explicit UNKNOWN. A payload that presents neither
+        is outside the declared surface, and what the evaluator does with it is
+        the divergence :class:`OracleIndependence` measures.
+        """
+
+        return tuple(
+            coordinate
+            for coordinate in self.comparison_coordinates
+            if self.kind(coordinate)
+            is DeclaredComparison.SEMANTIC_VALUE_OR_EXPLICIT_UNKNOWN
+        )
+
+    def as_json(self) -> dict[str, Any]:
+        return {
+            "comparison_coordinates": list(self.comparison_coordinates),
+            "labels": list(self.labels),
+            "coordinate_comparison": {
+                coordinate: kind.value
+                for coordinate, kind in sorted(self.coordinate_comparison.items())
+            },
+            "scalar_coordinates": list(self.scalar_coordinates),
+            "unknown_holdout_coordinate": self.unknown_holdout_coordinate,
+            "unknown_must_be_marked_not_fabricated": (
+                self.unknown_must_be_marked_not_fabricated
+            ),
+            "typed_payload_schema": self.typed_payload_schema,
+            "digests": dict(sorted(self.digests.items())),
+        }
+
+
+def d1_protocol_declaration() -> D1ProtocolDeclaration:
+    """Read D1's declared comparison surface off the frozen protocol files.
+
+    Digest-bound in both directions. Each protocol file must reproduce the
+    digest pinned in :data:`D1_PROTOCOL_DIGESTS`, and every declared
+    ``coordinate_semantics`` sentence must be one :data:`_DECLARED_COMPARISON`
+    implements. A declaration that moved, or a coordinate whose declared meaning
+    this module never implemented, raises rather than being graded by whatever
+    reading happens to be coded here.
+    """
+
+    documents: dict[str, Mapping[str, Any]] = {}
+    for schema, path in D1_PROTOCOL_PATHS.items():
+        document = json.loads(path.read_text(encoding="utf-8"))
+        digest = content_digest(document)
+        if digest != D1_PROTOCOL_DIGESTS[schema]:
+            raise D1ProtocolDeclarationError(
+                f"{path.name} is not the declaration this comparator implements: "
+                f"{digest} != {D1_PROTOCOL_DIGESTS[schema]}"
+            )
+        if document["schema"] != schema:
+            raise D1ProtocolDeclarationError(
+                f"{path.name} declares schema {document['schema']!r}, expected {schema!r}"
+            )
+        documents[schema] = document
+
+    v1 = documents["P9.D1MethodTransferProtocol.v1"]
+    v11 = documents["P9.D1MethodTransferProtocol.v1.1"]
+    v12 = documents["P9.D1MethodTransferProtocol.v1.2"]
+
+    # v1.2 corrects the generator, not the comparison. If it ever stopped saying
+    # so, the coordinate semantics below would be the wrong version's.
+    if "protected test rule" not in set(v12["unchanged"]):
+        raise D1ProtocolDeclarationError(
+            "D1_PROTOCOL_V1_2 no longer declares the protected test rule unchanged"
+        )
+
+    semantics = v11["coordinate_semantics"]
+    coordinates = tuple(str(name) for name in v1["comparison_coordinates"])
+    comparison: dict[str, DeclaredComparison] = {}
+    for coordinate in coordinates:
+        if coordinate not in semantics:
+            raise D1ProtocolDeclarationError(
+                f"D1_PROTOCOL_V1_1 declares no comparison semantics for {coordinate!r}"
+            )
+        declared = str(semantics[coordinate])
+        if declared not in _DECLARED_COMPARISON:
+            raise D1ProtocolDeclarationError(
+                f"{coordinate!r} declares a comparison this module does not implement: "
+                f"{declared!r}"
+            )
+        comparison[coordinate] = _DECLARED_COMPARISON[declared]
+
+    unknown_holdout = v1["unknown_holdout"]
+    return D1ProtocolDeclaration(
+        comparison_coordinates=coordinates,
+        labels=tuple(str(label) for label in v1["labels"]),
+        coordinate_comparison=comparison,
+        unknown_holdout_coordinate=str(unknown_holdout["coordinate"]),
+        unknown_must_be_marked_not_fabricated=bool(
+            unknown_holdout["force_unknown_not_fabricated"]
+        ),
+        typed_payload_schema="P9.D1Typed.v1",
+        digests=dict(D1_PROTOCOL_DIGESTS),
+    )
+
+
+def _declared_unstated(
+    side: Mapping[str, Any], coordinate: str, kind: DeclaredComparison
+) -> bool:
+    """Does this side of the pair state a value for this coordinate at all?
+
+    Two ways not to. The coordinate is listed in the payload's
+    ``unknown_coordinates`` --- the declaration's *explicit UNKNOWN* --- or the
+    declaration allows only "exact semantic value or explicit UNKNOWN" for this
+    coordinate and the payload carries neither. D1's own untyped payload draws
+    exactly this line: ``present`` is ``value is not None`` for a scalar and
+    unconditionally true for a sequence, so an empty sequence is a stated value
+    and an absent scalar is not.
+    """
+
+    if coordinate in set(side["unknown_coordinates"]):
+        return True
+    if kind is DeclaredComparison.SEMANTIC_VALUE_OR_EXPLICIT_UNKNOWN:
+        return side[coordinate] is None
+    return False
+
+
+def _declared_value(
+    side: Mapping[str, Any], coordinate: str, kind: DeclaredComparison
+) -> Any:
+    """The coordinate reduced to what the declaration says is compared."""
+
+    value = side[coordinate]
+    if kind is DeclaredComparison.SORTED_SEMANTIC_VALUES:
+        return tuple(sorted(map(str, value)))
+    if kind is DeclaredComparison.DEPENDENCY_TOPOLOGY_OVER_ROLE_INDICES:
+        return tuple(sorted(tuple(int(node) for node in edge) for edge in value))
+    return value
+
+
+def protocol_declared_comparator(instance: Any) -> str:
+    """Decide a D1 pair from the declared surface, without consulting the evaluator.
+
+    A second implementation of D1's specification rather than a second expression
+    of its implementation. It reads :attr:`orion.study.p9.d1.D1View.TYPED` --- the
+    payload schema the protocol declares and the arm actually consumes --- loops
+    over the coordinates ``D1_PROTOCOL_V1.json`` declares, compares each one the
+    way ``D1_PROTOCOL_V1_1.json`` declares it is compared, and answers with a
+    label from the declared label set. It never calls
+    :func:`orion.study.p9.d1.classify_methods`, never reads ``instance.label``,
+    and never imports the evaluator's coordinate tuple.
+
+    Where the declaration underdetermines the mapping, it is resolved from the
+    declaration and not from the evaluator, which is the whole point:
+
+    *Precedence.* ``unknown_holdout.force_unknown_not_fabricated`` says a
+    coordinate the source never stated is marked, not invented. A pair carrying
+    one cannot be *decided*, so UNRESOLVED is answered before OBSTRUCTION.
+
+    *What counts as unstated.* The declared states of a scalar coordinate are
+    "exact semantic value" and "explicit UNKNOWN". A payload presenting neither
+    --- no value, no unknown marking --- states nothing about that coordinate, so
+    there is nothing to compare and the pair is unresolved. The evaluator instead
+    compares the absent value like any other, and reports a *decided* obstruction
+    against a coordinate no source ever stated. That is the one place the two
+    implementations part, and :func:`d1_independent_oracle` measures it rather
+    than tuning it away.
+
+    ``model_payload`` verifies the instance before projecting it, which is an
+    admissibility check on the input; the comparator reads only the projection.
+    """
+
+    from .d1 import D1View
+
+    declaration = d1_protocol_declaration()
+    payload = instance.model_payload(D1View.TYPED)
+    if payload["schema"] != declaration.typed_payload_schema:
+        raise D1ProtocolDeclarationError(
+            f"typed payload declares schema {payload['schema']!r}, expected "
+            f"{declaration.typed_payload_schema!r}"
+        )
+    left = payload["left"]
+    right = payload["right"]
+
+    for coordinate in declaration.comparison_coordinates:
+        kind = declaration.kind(coordinate)
+        if _declared_unstated(left, coordinate, kind) or _declared_unstated(
+            right, coordinate, kind
+        ):
+            return "UNRESOLVED"
+    for coordinate in declaration.comparison_coordinates:
+        kind = declaration.kind(coordinate)
+        if _declared_value(left, coordinate, kind) != _declared_value(
+            right, coordinate, kind
+        ):
+            return "OBSTRUCTION"
+    return "ALIGNED"
+
+
+class IndependenceVerdict(str, Enum):
+    """What a second comparator bought, in the only three states it can be in."""
+
+    NOT_INDEPENDENT = "NOT_INDEPENDENT"
+    DIVERGED_ON_THE_SHIPPED_CORPUS = "DIVERGED_ON_THE_SHIPPED_CORPUS"
+    INDEPENDENT_AND_AGREED = "INDEPENDENT_AND_AGREED"
+
+
+@dataclass(frozen=True)
+class OracleIndependence:
+    """``D1_EVALUATOR_FAILURE``'s claim, checked by a comparator that could deny it.
+
+    :class:`OracleIdentity` establishes that the comparator the *artifact* ran
+    cannot make the branch fire. That does not settle whether the branch's claim
+    --- evaluator gold on the 128 protected cases is what D1's specification says
+    it is --- is true, only that D1 never checked it. This does.
+
+    Three quantities, and the reader needs all three.
+
+    ``against_shipped_comparator`` is the independence evidence: the number of
+    admissible pairs on which the protocol-declared comparator answers something
+    the shipped one does not. Zero there and this is a second identity, which is
+    the thing being replaced, so it is a ``NOT_INDEPENDENT`` verdict rather than
+    a pass.
+
+    ``frozen_space`` and ``protected_space`` are the measurement: given that the
+    comparator *can* disagree, what it does on the corpus the archive was
+    produced on is a fact about D1's gold rather than about its own definition.
+
+    ``widened_space`` is where the two implementations actually part, reported
+    with the shape that causes it. Reported and not repaired: the declaration
+    underdetermines that shape, and closing the gap by adopting the evaluator's
+    reading would make this an identity again.
+    """
+
+    comparator_id: str
+    reference_id: str
+    shipped_comparator_id: str
+    branch: str
+    declaration: D1ProtocolDeclaration
+    frozen_space: TheoryDivergence
+    protected_space: TheoryDivergence
+    widened_space: TheoryDivergence
+    against_shipped_comparator: TheoryDivergence
+    divergent_label_pairs: tuple[tuple[tuple[str, str], int], ...]
+    divergence_shape: str
+    witness: Mapping[str, Any]
+    capacity: RefutationCapacity
+
+    def __post_init__(self) -> None:
+        counted = sum(count for _, count in self.divergent_label_pairs)
+        if counted != self.widened_space.points_changed:
+            raise ValueError(
+                f"{self.comparator_id}: {counted} labelled divergences against "
+                f"{self.widened_space.points_changed} counted; the breakdown is not "
+                "the measurement"
+            )
+
+    @property
+    def is_independent(self) -> bool:
+        """Can this comparator answer differently from the one the artifact ran?"""
+
+        return self.against_shipped_comparator.applied
+
+    @property
+    def branch_reachable(self) -> bool:
+        """Is ``D1_EVALUATOR_FAILURE``'s condition satisfiable by a conforming rule?"""
+
+        return self.is_independent
+
+    @property
+    def branch_fires(self) -> bool:
+        """Does it fire on the corpus the shipped artifact was scored on?"""
+
+        return self.protected_space.applied
+
+    @property
+    def verdict(self) -> IndependenceVerdict:
+        if not self.is_independent:
+            return IndependenceVerdict.NOT_INDEPENDENT
+        if self.frozen_space.applied or self.protected_space.applied:
+            return IndependenceVerdict.DIVERGED_ON_THE_SHIPPED_CORPUS
+        return IndependenceVerdict.INDEPENDENT_AND_AGREED
+
+    @property
+    def outcome(self) -> Outcome:
+        """``PASS`` only when a comparator that could have denied the claim did not.
+
+        ``FAIL`` when the second implementation contradicts gold on the corpus
+        the archive was scored on: that would put the archive's
+        ``exact_typed_relational_comparator.accuracy == 1.0`` in dispute.
+        ``CANNOT_CHECK`` when the second comparator turns out to be the first
+        under another name, because then nothing was measured.
+        """
+
+        if self.verdict is IndependenceVerdict.DIVERGED_ON_THE_SHIPPED_CORPUS:
+            return Outcome.FAIL
+        if self.verdict is IndependenceVerdict.NOT_INDEPENDENT:
+            return Outcome.CANNOT_CHECK
+        return Outcome.PASS
+
+    @property
+    def blocks(self) -> bool:
+        return self.outcome.blocks
+
+    def as_json(self) -> dict[str, Any]:
+        return {
+            "comparator_id": self.comparator_id,
+            "reference_id": self.reference_id,
+            "shipped_comparator_id": self.shipped_comparator_id,
+            "branch": self.branch,
+            "verdict": self.verdict.value,
+            "is_independent": self.is_independent,
+            "branch_reachable": self.branch_reachable,
+            "branch_fires": self.branch_fires,
+            "declaration": self.declaration.as_json(),
+            "frozen_space": self.frozen_space.as_json(),
+            "protected_space": self.protected_space.as_json(),
+            "widened_space": self.widened_space.as_json(),
+            "against_shipped_comparator": self.against_shipped_comparator.as_json(),
+            "divergent_label_pairs": [
+                {"evaluator": pair[0], "protocol_declared": pair[1], "points": count}
+                for pair, count in self.divergent_label_pairs
+            ],
+            "divergence_shape": self.divergence_shape,
+            "witness": dict(self.witness),
+            "capacity": self.capacity.as_json(),
+            "outcome": self.outcome.value,
+        }
+
+
+def _divergence_witness(space: Sequence[Any], declaration: D1ProtocolDeclaration) -> dict[str, Any]:
+    """One named pair a reader can check by hand, not just a count.
+
+    A count of 384 is a claim about a mechanism nobody can see. This returns the
+    *simplest* pair the two implementations part on --- fewest perturbed
+    coordinates, then instance id --- so the witness is a pair that differs in
+    one coordinate only, and that coordinate is the one carrying no value.
+    """
+
+    from .d1 import D1View
+
+    def simplicity(row: Any) -> tuple[int, str]:
+        return (len(row.mutation_coordinates), str(row.instance_id))
+
+    for instance in sorted(space, key=simplicity):
+        declared = protocol_declared_comparator(instance)
+        gold = _d1_evaluator_gold(instance)
+        if declared == gold:
+            continue
+        payload = instance.model_payload(D1View.TYPED)
+        unstated = [
+            {
+                "coordinate": coordinate,
+                "side": side_name,
+                "value": payload[side_name][coordinate],
+                "marked_unknown": coordinate
+                in set(payload[side_name]["unknown_coordinates"]),
+            }
+            for coordinate in declaration.scalar_coordinates
+            for side_name in ("left", "right")
+            if payload[side_name][coordinate] is None
+        ]
+        return {
+            "instance_id": instance.instance_id,
+            "perturbed_coordinates": list(instance.mutation_coordinates),
+            "evaluator_gold": gold,
+            "protocol_declared": declared,
+            "coordinates_carrying_no_value": unstated,
+        }
+    return {}
+
+
+def d1_independent_oracle() -> OracleIndependence:
+    """Check ``D1_EVALUATOR_FAILURE``'s claim with a comparator that can deny it.
+
+    Same three spaces :func:`d1_oracle_identity` uses, so the two verdicts are
+    read side by side and the difference between them is the difference between
+    "the artifact never checked this" and "this is what the check would have
+    said".
+    """
+
+    from .d1_experiment import exact_relational_comparator
+
+    declaration = d1_protocol_declaration()
+    dataset = frozen_d1_dataset()
+    protected = tuple(dataset.test)
+    frozen = (*dataset.train, *dataset.dev, *dataset.test)
+    widened = _widened_oracle_space()
+
+    parted: Counter[tuple[str, str]] = Counter()
+    for instance in widened:
+        declared = protocol_declared_comparator(instance)
+        gold = _d1_evaluator_gold(instance)
+        if declared != gold:
+            parted[(gold, declared)] += 1
+
+    check = MechanizedCheck(
+        check_id=D1_EVALUATOR_BRANCH,
+        asserts=(
+            "run_d1 emits D1_EVALUATOR_FAILURE unless the comparator reproduces "
+            f"evaluator gold on all {len(protected)} protected cases"
+        ),
+        accepts=lambda rule: all(rule(row) == _d1_evaluator_gold(row) for row in protected),
+    )
+
+    return OracleIndependence(
+        comparator_id=D1_PROTOCOL_COMPARATOR_ID,
+        reference_id=D1_EVALUATOR_GOLD_ID,
+        shipped_comparator_id=D1_SHIPPED_COMPARATOR_ID,
+        branch=D1_EVALUATOR_BRANCH,
+        declaration=declaration,
+        frozen_space=divergence_of(
+            protocol_declared_comparator,
+            theory_id=f"{D1_PROTOCOL_COMPARATOR_ID} (frozen D1 space)",
+            reference=_d1_evaluator_gold,
+            space=frozen,
+        ),
+        protected_space=divergence_of(
+            protocol_declared_comparator,
+            theory_id=f"{D1_PROTOCOL_COMPARATOR_ID} (protected split only)",
+            reference=_d1_evaluator_gold,
+            space=protected,
+        ),
+        widened_space=divergence_of(
+            protocol_declared_comparator,
+            theory_id=f"{D1_PROTOCOL_COMPARATOR_ID} (pairs the D1 generator never builds)",
+            reference=_d1_evaluator_gold,
+            space=widened,
+        ),
+        against_shipped_comparator=divergence_of(
+            protocol_declared_comparator,
+            theory_id=f"{D1_PROTOCOL_COMPARATOR_ID} vs {D1_SHIPPED_COMPARATOR_ID}",
+            reference=exact_relational_comparator,
+            space=widened,
+        ),
+        divergent_label_pairs=tuple(sorted(parted.items())),
+        divergence_shape=(
+            "every divergence is a pair in which a comparison coordinate the "
+            "declaration allows only as an exact semantic value or an explicit "
+            "UNKNOWN carries neither: no value, and no unknown marking. The "
+            "evaluator compares the absent value like any other and reports a "
+            "decided OBSTRUCTION; the declared reading has nothing to compare and "
+            "reports UNRESOLVED. The D1 generator never builds that shape --- "
+            "unresolved_method nulls a coordinate and marks it in the same step --- "
+            "so the two readings coincide on every case D1 was ever scored on"
+        ),
+        witness=_divergence_witness(widened, declaration),
+        capacity=measure_refutation_capacity(
+            check,
+            reference=protocol_declared_comparator,
+            reference_id=D1_PROTOCOL_COMPARATOR_ID,
+            theories=declared_false_comparators(),
+            space=protected,
+        ),
+    )
+
 
 __all__ = [
     "D1_COMPARATOR_ARMS",
     "D1_EVALUATOR_BRANCH",
     "D1_EVALUATOR_GOLD_ID",
     "D1_ORACLE_THEORY_ID",
+    "D1_PROTOCOL_COMPARATOR_ID",
+    "D1_PROTOCOL_DIGESTS",
+    "D1_PROTOCOL_PATHS",
     "D1_RESULT_DIGEST",
     "D1_RESULT_PATH",
     "D1_SEED",
-    "D1_TREATED_ARM",
+    "D1_SHIPPED_COMPARATOR_ID",
+    "D1_SHIPPED_DATASET_MANIFEST_DIGEST",
+    "D1DatasetProvenanceError",
+    "D1ProtocolDeclaration",
+    "D1ProtocolDeclarationError",
+    "DeclaredComparison",
+    "IndependenceVerdict",
     "OracleIdentity",
+    "OracleIndependence",
     "OracleVerdict",
     "ViewCollapse",
     "ViewCollapseReason",
     "d1_arm_responses",
     "d1_composition_sensitivity",
     "d1_contrast_margins",
+    "d1_dataset_provenance",
+    "d1_independent_oracle",
     "d1_oracle_divergence",
     "d1_oracle_identity",
+    "d1_protocol_declaration",
     "d1_view_collapse",
     "d1_view_collapse_report",
     "declared_false_comparators",
+    "frozen_d1_dataset",
     "load_shipped_d1_result",
+    "protocol_declared_comparator",
 ]
