@@ -131,6 +131,25 @@ def t13(r):
     return r
 
 
+def t14(r):
+    """Make both witness words identical, so they reach the same state.
+
+    This exists because `witness_words_reach_different_states` was listed as
+    unexercisable on the claim that it "takes no input from the receipt". That
+    was false -- it reads word_a and word_b from the receipt and runs them. The
+    exemption was a false one, which is worse than an unexercised check: it used
+    the mechanism built to make gaps visible in order to hide one. Reported by
+    Cursor Bugbot.
+
+    T1 does not fire this check: it makes word_b [H,H], which reaches Z while
+    word_a reaches X, so they still differ and T1 is caught by the permutation
+    check instead. Identical words are what reach the same state.
+    """
+    w = r["q1_abelian_syndrome_at_any_D"]["1"]["witness"]
+    w["word_b"] = list(w["word_a"])
+    return r
+
+
 TAMPERS = [
     ("T1_witness_words_not_permutations",
      "the two witness words are edited so they are no longer permutations of each "
@@ -163,6 +182,9 @@ TAMPERS = [
     ("T13_abelian_syndrome_claimed_to_exist",
      "the receipt claims an abelian syndrome does exist, contradicting the very "
      "witness it carries", t13),
+    ("T14_witness_words_made_identical",
+     "both witness words are made identical, so they reach the same state and the "
+     "witness separates nothing", t14),
 ]
 
 EXPECTED_CHECK = {
@@ -179,6 +201,7 @@ EXPECTED_CHECK = {
     "T11_authority_ceiling_dropped": "authority_ceiling_not_r6",
     "T12_criterion_digest_removed": "criterion_binding_records_bind_both_digests",
     "T13_abelian_syndrome_claimed_to_exist": "no_abelian_syndrome_claimed_at_any_D",
+    "T14_witness_words_made_identical": "witness_words_reach_different_states",
 }
 
 #: Checks no receipt tamper can exercise, each with its reason.
@@ -187,11 +210,6 @@ UNEXERCISED = [
     "result_digest_recomputes",
     # no tamper edits the frozen protocol
     "protocol_sha256_recomputes",
-    # this one is computed ENTIRELY by this verifier's own stabilizer simulation and
-    # takes no input from the receipt, so no edit to the receipt can make it fail.
-    # It is a self-check on the verifier, not a check on the lane, and saying so is
-    # more honest than leaving it to look like receipt coverage.
-    "witness_words_reach_different_states",
 ]
 
 

@@ -202,10 +202,16 @@ with reasons:
   fire from one;
 * `protocol_sha256_recomputes` — no tamper edits the frozen protocol, which would test the
   protocol rather than the receipt;
-* QG-25's `witness_words_reach_different_states` — computed **entirely** by the verifier's
-  own stabilizer simulation with no input from the receipt, so no edit to the receipt can
-  make it fail. It is a self-check on the verifier, not coverage of the lane, and saying so
-  is more honest than letting it sit in the list looking like coverage.
+* ~~QG-25's `witness_words_reach_different_states`~~ — **this exemption was false and is
+  withdrawn.** The claim was that the check takes no input from the receipt. It does: it
+  reads `word_a` and `word_b` from the receipt and runs them through the simulation.
+  Reported by Cursor Bugbot. A false exemption is worse than an unexercised check, because
+  it uses the mechanism built to make gaps visible in order to hide one — and the check it
+  hid is the one carrying QG-25's entire witness. T14 now makes both words identical, so
+  they reach the same state, and it REJECTs. Note that T1 does *not* fire this check: it
+  makes `word_b` = `[H,H]`, which reaches ⟨Z⟩ while `word_a` reaches ⟨X⟩, so they still
+  differ and T1 is caught by the permutation check instead. That near-miss is exactly why
+  the exemption looked plausible.
 
 QG-27 now runs 15 tampers against 17 checks, QG-25 13 against 16. Registered as **W15 —
 closed on arrival.**

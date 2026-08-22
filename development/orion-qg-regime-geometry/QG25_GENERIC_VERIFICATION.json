@@ -240,6 +240,16 @@
     "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
     "tamper": "the receipt claims an abelian syndrome does exist, contradicting the very witness it carries",
     "verdict": "REJECT"
+   },
+   {
+    "case": "T14_witness_words_made_identical",
+    "failed_checks": [
+     "witness_words_reach_different_states",
+     "witness_states_match_the_receipt"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "both witness words are made identical, so they reach the same state and the witness separates nothing",
+    "verdict": "REJECT"
    }
   ],
   "expected_check_per_case": {
@@ -247,6 +257,7 @@
    "T11_authority_ceiling_dropped": "authority_ceiling_not_r6",
    "T12_criterion_digest_removed": "criterion_binding_records_bind_both_digests",
    "T13_abelian_syndrome_claimed_to_exist": "no_abelian_syndrome_claimed_at_any_D",
+   "T14_witness_words_made_identical": "witness_words_reach_different_states",
    "T1_witness_words_not_permutations": "witness_words_are_permutations_of_each_other",
    "T2_witness_states_made_equal": "witness_states_match_the_receipt",
    "T3_both_words_prepare_the_target": "exactly_one_word_prepares_the_target",
