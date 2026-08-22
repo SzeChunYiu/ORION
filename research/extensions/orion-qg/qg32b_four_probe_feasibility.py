@@ -9,7 +9,9 @@ import numpy as np
 
 ROOT=Path(__file__).resolve().parents[3]
 DEV=ROOT/"development/orion-qg-regime-geometry"
+QGDIR=ROOT/"research/extensions/orion-qg"
 sys.path.insert(0,str(DEV))
+sys.path.insert(0,str(QGDIR))
 import qg32_min_separating_probes as q32  # noqa:E402
 
 PROTO=DEV/"QG32B_FOUR_PROBE_FEASIBILITY_PROTOCOL_V1.md"
@@ -67,13 +69,13 @@ def exact_search(z,entries,max_slots=4):
    if n>maxcov:maxcov=n
   if maxcov==0 or (rem.bit_count()+maxcov-1)//maxcov>slots:
    stats["bound_prunes"]+=1;false_memo.add(key);return None
-  pivot=None;choices=None
+  choices=None
   for j in pair_order:
    if (rem>>j)&1:
     cc=[i for i in pair_cands[j] if covers[i]&rem]
     if not cc:
      stats["dead_pair_prunes"]+=1;false_memo.add(key);return None
-    pivot=j;choices=cc;break
+    choices=cc;break
   choices.sort(key=lambda i:(-(covers[i]&rem).bit_count(),reps[i]))
   for i in choices:
    nr=rem&~covers[i]
