@@ -47,6 +47,7 @@ jobs:
         run: |
           python -m py_compile \
             research/extensions/orion-qg/qg7d_j7_pa_confirm.py \
+            development/orion-qg-regime-geometry/qg7d_j7_analyzer_exec.py \
             development/orion-qg-regime-geometry/qg7d_j7_pa_generic_verify.py \
             development/orion-qg-regime-geometry/qg7d_j7_pa_native_verify.py \
             development/orion-qg-regime-geometry/run_qg7d_j7_pa_dual_harness.py
@@ -59,7 +60,7 @@ jobs:
       - name: Deterministic analyzer replay
         run: |
           set -euo pipefail
-          python research/extensions/orion-qg/qg7d_j7_pa_confirm.py \
+          python development/orion-qg-regime-geometry/qg7d_j7_analyzer_exec.py \
             --output artifacts/orion-qg-qg7d-j7-pa-confirm-replay.json \
             > artifacts/orion-qg-qg7d-j7-pa-replay.log
           cmp \
