@@ -1,0 +1,37 @@
+name: q3-completion
+
+on:
+  pull_request:
+    paths:
+      - 'papers/Q-paper-03-dual-instrument/**'
+      - 'research/extensions/orion-qg/QG19_OUTSIDE_CONE_SHARPNESS_RESULTS.json'
+      - 'research/extensions/orion-qg/QG20_SIXLCU_OBJECTIVE_SCOPE_RESULTS.json'
+      - '.github/workflows/q3-completion.yml'
+  push:
+    branches:
+      - 'codex/q-qg-nature-skills-publication-closure-20260821'
+    paths:
+      - 'papers/Q-paper-03-dual-instrument/**'
+      - 'research/extensions/orion-qg/QG19_OUTSIDE_CONE_SHARPNESS_RESULTS.json'
+      - 'research/extensions/orion-qg/QG20_SIXLCU_OBJECTIVE_SCOPE_RESULTS.json'
+      - '.github/workflows/q3-completion.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  q3-completion:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Replay V0 publication-level benchmark claim
+        run: python papers/Q-paper-03-dual-instrument/replay_q3_v0.py
+      - name: Validate replacement result bindings
+        run: python papers/Q-paper-03-dual-instrument/check_q3_result_bindings.py
+      - name: Validate Q3 series completion
+        run: python papers/Q-paper-03-dual-instrument/check_q3_completion.py
