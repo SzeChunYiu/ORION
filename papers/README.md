@@ -53,6 +53,8 @@ Nearest work is part of the scientific object, not a citation appendix. Each fla
 
 Passing repository tests or obtaining a `CANDIDATE_DELTA` cannot authorize an external novelty or empirical-superiority claim. The flagship programme separates **local falsifier gates** from **external promotion gates**. A paper is not publication-ready while its external gate is `CANNOT_CHECK`.
 
+The full framework/paper/Q-series rules are in `SYNC_CONTRACT.md`.
+
 ## Current flagship status
 
 1. **Paper I — Recursive Epistemic Reconstruction.** Scoped manuscript: explicit `K/W/M` state, typed responsibility-targeted reframing, dependency-directed reopening, the canonical mechanic-cell representation, recursive mechanic self-audit, and hidden formulation/search-universe falsification.
@@ -81,30 +83,35 @@ Canonical synchronization files:
 - `research/paper-programme-v1/RSE_P1_P10_HANDOFF_2026-08-20.md` — P1–P10 ownership map;
 - `research/extensions/meta-orion-recursive-scientific-evolution/FORMAL_VERIFICATION_CLOSURE_V1.md` — executable theorem/definition disposition after final CI binding.
 
-## ORION-Q publication wave — refactored 2026-08-22
+## ORION-Q publication wave — final internal spec 2026-08-22
 
 The closed ORION-Q programme has a separate four-paper publication wave. These packages are **not** part of the numbered P1–P15 identity system above.
 
-| Q paper | Role | Canonical current artifact | Research status |
-|---|---|---|---|
-| `Q-paper-01-tare-expressivity/` | quantum-compilation mathematics | `MANUSCRIPT_SUBMISSION_DRAFT.md` | internally ready for external proof/novelty audit; headline sharp theorem `kappa_R6M = 2` |
-| `Q-paper-02-recursive-recovery/` | negative-result recovery methodology | `MANUSCRIPT_V2.md` | complete Q case study; top-tier generality requires the frozen cross-domain protocol |
-| `Q-paper-03-dual-instrument/` | scientific decision instruments / deferred scoring | `MANUSCRIPT_V2.md` | V0 is one measurement; current main repairs historical D2/D3; multi-frontier study preregistered |
-| `Q-paper-04-typed-state/` | typed/scoped epistemic state under partial knowledge | `MANUSCRIPT_V2.md` | six exact-synthetic mechanism studies; real-domain matched-information study preregistered |
+The machine-readable publication contract is `Q_SERIES_FINAL_SPEC_V1.json`; the human readiness record is `Q_SERIES_FINAL_READINESS_2026-08-22.md`. Canonical publication bytes are protected by `Q_SERIES_CONTENT_BINDING_V1.json`, and the framework/harness checks are defined in `src/orion/programme/q_series_sync.py` and `packages/orion-research-harness/src/orion_research_harness/publication_contract.py`.
 
-The publication/research architecture is summarized in `Q_SERIES_TOP_TIER_REFACTOR_2026-08-22.md`.
+| Q paper | Role | Canonical manuscript | Current bounded internal status |
+|---|---|---|---|
+| `Q-paper-01-tare-expressivity/` | quantum-compilation mathematics | `MANUSCRIPT_SUBMISSION_DRAFT.md` | sharp `kappa_R6M=2` theorem package complete; journal formatting/upload work remains |
+| `Q-paper-02-recursive-recovery/` | negative-result recovery methodology | `MANUSCRIPT_V2.md` | complete single-programme case study; cross-domain protocol is optional successor research |
+| `Q-paper-03-dual-instrument/` | scientific decision instruments / deferred scoring | `MANUSCRIPT_V2.md` | complete systems/benchmark-definition paper with one V0 measurement; calibration study deferred |
+| `Q-paper-04-typed-state/` | typed/scoped epistemic state under partial knowledge | `MANUSCRIPT_V2.md` | complete exact-synthetic mechanism/benchmark paper; real-domain study deferred |
+
+Each Q directory now carries a `REPRODUCE.md` and `SUBMISSION_PACKAGE.md` in addition to its canonical manuscript/ledger materials.
+
+The owner elected to skip a separate external quantum-expert pre-review for Q1. The final spec records `SKIPPED_BY_OWNER`; this is not encoded as a scientific PASS and does not create external novelty/quantum authority.
 
 ### Q1 theorem status
 
-The publication-facing Q1 result is stronger than the historical V1 manuscript. For the frozen R6M shared-Tag TARE-M2 grammar/support-count objective:
+For the frozen R6M shared-Tag TARE-M2 grammar/support-count objective:
 
 - an analytic all-`n` exchange proof gives support <=2 sufficiency;
 - the complete support-one family has an exact `n=2` counterexample (`5 < 6`);
 - therefore the intrinsic uniform frame-support number is exactly `kappa_R6M = 2`;
 - the proof's only weight-two parity obstruction is realized by the exact frame-for-Tag coupling witness;
-- the original large finite enumerations remain independent verification, not the logical basis of the publication proof.
+- the original large finite enumerations remain independent verification, not the logical basis of the publication proof;
+- a final exact-statement literature refresh records `NOT_LOCATED_IN_BOUNDED_SEARCH__NOT_NOVELTY_CERTIFICATE` rather than claiming absolute novelty.
 
-Canonical proof/novelty artifacts: `Q-paper-01-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md`, `CLAIM_LEDGER_V2.md`, `NOVELTY_RESEARCH_2026-08-22.md`, and `FIGURES_PLAN_V2.md`.
+Canonical proof/novelty artifacts include `HUMAN_PROOF_R6S_2026-08-22.md`, `CLAIM_LEDGER_V2.md`, `NOVELTY_RESEARCH_2026-08-22.md`, `NOVELTY_REFRESH_FINAL_2026-08-22.md`, and `FIGURES_PLAN_V2.md`.
 
 ### Q/QG claim boundary
 
