@@ -8,6 +8,7 @@ from orion_research_harness.ocme_runtime import (
     ObstructionCertificate,
     ObstructionKind,
     OutsideClosureVerification,
+    REQUIRED_LOWER_LEVEL_ROUTE_KINDS,
     TransferEvidence,
     assess_ocme_episode,
 )
@@ -42,15 +43,7 @@ def _base(**changes) -> OCMEEpisode:
         verifier_available=True,
         access_model_frozen=True,
         resource_model_frozen=True,
-        lower_level_results=(
-            _lower("SEARCH_MORE"),
-            _lower("REPRESENTATION_REPAIR"),
-            _lower("IMPLEMENTATION_REPAIR"),
-            _lower("LIBRARY_RETRIEVAL"),
-            _lower("PROOF_REPAIR"),
-            _lower("PROGRAM_SYNTHESIS"),
-            _lower("EVOLUTIONARY_SEARCH"),
-        ),
+        lower_level_results=tuple(_lower(route) for route in REQUIRED_LOWER_LEVEL_ROUTE_KINDS),
         obstruction=_valid_obstruction(),
         candidate_edit=None,
         outside_closure=None,
@@ -82,7 +75,8 @@ def test_timeout_or_failed_trace_alone_is_not_an_obstruction_certificate():
 
 def test_lower_level_success_closes_method_language_escalation():
     results = list(_base().lower_level_results)
-    results[1] = _lower("REPRESENTATION_REPAIR", succeeded=True)
+    index = REQUIRED_LOWER_LEVEL_ROUTE_KINDS.index("REPRESENTATION_REPAIR")
+    results[index] = _lower("REPRESENTATION_REPAIR", succeeded=True)
     decision = assess_ocme_episode(_base(lower_level_results=tuple(results)))
     assert decision.terminal is OCMETerminal.OCME_LOWER_LEVEL_CAUSE
     assert decision.jump_open is False
