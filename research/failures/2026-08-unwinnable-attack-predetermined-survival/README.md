@@ -441,3 +441,21 @@ reach — and this one an **adversary no admissible run could lose to**.
   `(17,4,5)` reaches 128 at all 12.
 - Reopen if `run_p11g_deterministic_tree_decoder_v1.py` changes: the pinned
   `a2b0c33c…79a7cc` payload digest will red first.
+
+---
+
+## Successor executed 2026-08-22
+
+This record's residual says "P11 is not repaired… `papers/paper-11-state-as-computation/` is untouched", and correct-response 11 says "Do not repair P11." Both still hold and are the right instruction: **P11G's frozen protocol is untouched, its terminal is permanently unwinnable, and the audit still exits 3 on it.** What has changed is that the question was re-asked under a protocol that could answer it.
+
+The diagnosis sharpened first. All four of P11G's gates are `THRESHOLD_UNCONDITIONAL`, not `THRESHOLD_UNATTAINABLE` — every admissible world *satisfies* them, which is the opposite failure to P14A's and needs the opposite reading. Two of the four supports are now exact rather than sampled: `no_answer_laundering` is `[0, 0]` because for odd `r ≥ 3` the majority-sign of `r` distinct parity characters equals no single character as a function on `{−1,1}^d`, so the count's only reachable value is 0 against `x ≤ 0`; and the statistic lattice is `1/12288`, on which neither `0.95·12288` nor `0.20·12288` is an integer, so no reachable value can land on a bar.
+
+`P11H` re-asks it, carrying P11G's `0.95` and `0.20` bars **unedited** — the P14A→P14C move. Three pre-freeze measurements chose the lever rather than guessing it: capacity is not it (a 43× ensemble moves `0.5376 → 0.5356`), bank width is not it (sweeping complete banks `91 → 2380` at `r=7` never crosses `0.95`), and the width of the compiled state is (`1.0000 → 0.9736 → 0.8674 → 0.7810` across `r = 3, 5, 7, 9`). A bank-width ladder would have reproduced this record's defect in a new file.
+
+The step whose absence caused the defect runs first and is published before the seed: `ThresholdPanel` **PASS**, nothing unattainable, two discriminating hypothesis gates, `distinct_terminals = 2` over 15 admissible draws, **3 of 15 clearing every gate**. That last figure is the power of the design, stated in advance. Rungs were admitted only if verdict-stable across three preflight seeds, and that rule cut both ways — it rejected rungs on the attack's gate *and* on the defence's.
+
+**The attack won.** `P11H_POOLED_UNIVERSAL_ATTACK_PREVAILED`: `pooled_universal_threshold_ge_256` reached `1.0000` against `≤ 0.95`, `delta64` was `0.050586` against `≥ 0.20`. The sharp part is the decomposition: at the drawn regimes the decoder-family half of the gap is exactly `+0.0000`, a state share of **100%** against 86.7% and 55.4% in P11G's cells — the decomposition goes P11's way *harder* and the defence still loses. Across the ladder the pool reaches `0.95` by `n=128` at every `r=3` rung and no `r=7` rung, while the bank moves `91 → 969` columns inside each half without changing a verdict. The advantage is governed by the width of the compiled state, not the size of the universal representation.
+
+The earned-survival branch did not occur: 3 of 15 draws would have produced it and the seed drew one of the other 12. Both outcomes retire this record's finding, because what it names is a terminal that could not move — and this one could.
+
+Unresolved and named rather than smoothed: the `r=5` boundary was excluded before execution for verdict instability across three preflight seeds, in both directions, and needs more queries or a seed-averaged statistic. And no closed-form accuracy ceiling exists for ExtraTrees on `r`-sparse parity majorities, so gates 2–4's supports remain measured registers rather than derived intervals like P14A's `0.042326`.
