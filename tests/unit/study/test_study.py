@@ -1,6 +1,8 @@
 """Tests for ORION Paper 3 evaluation infrastructure."""
 from __future__ import annotations
 
+import math
+
 from orion.study.ablations import ALL_ABLATIONS, ABLATION_IDS
 from orion.study.baselines import ALL_BASELINES, BASELINE_IDS
 from orion.study.metrics import (
@@ -122,9 +124,12 @@ class TestFalseMergeRate:
         assert result["false_merge_n"] == 0.0
 
     def test_empty(self):
+        """An unmeasured harm rate must not read as the best attainable one."""
+
         result = false_merge_rate([], [])
-        assert result["false_merge_rate"] == 0.0
+        assert math.isnan(result["false_merge_rate"])
         assert result["false_merge_n"] == 0.0
+        assert not (result["false_merge_rate"] <= 0.05)
 
 
 class TestValidIntegrationRate:
@@ -297,10 +302,17 @@ class TestComputeAllMetrics:
         assert "valid_integration_rate" in result
 
     def test_empty_inputs(self):
+        """Every rate over an empty corpus is unmeasured, not zero and not perfect.
+
+        The harm rate and the utility rate used to come back 0.0 together, which
+        reads as "no harm and no utility" rather than "nothing was run". Both are
+        nan now, so a caller comparing either against a threshold fails closed.
+        """
+
         result = compute_all_metrics([], [])
         assert isinstance(result, dict)
-        assert result["false_merge_rate"] == 0.0
-        assert result["valid_integration_rate"] == 0.0
+        assert math.isnan(result["false_merge_rate"])
+        assert math.isnan(result["valid_integration_rate"])
 
     def test_all_metric_functions_registered(self):
         assert len(ALL_METRIC_FUNCTIONS) >= 12

@@ -1,5 +1,22 @@
 # ORION-P4 Claim Ledger — protected V2
 
+> **Record of the pre-rewrite manuscript, 2026-08-22.** The manuscript was
+> subsequently rewritten so that its claims are about the mechanism rather than
+> about a named system, so that internal status tokens do not appear in its
+> prose, and so that repository paths sit in Data Availability instead of the
+> narrative. The claim wording below is the wording of the manuscript as it stood
+> when this ledger was cut. **No number, evidence path, artifact, authority or
+> status in this table changed in that rewrite**, and none has been edited here:
+> a ledger is a record of what was allowed and on what evidence, so it is
+> annotated rather than restated. Two rows read differently in the rewritten
+> prose without their evidence moving: row 3's subject is now "the governed
+> pipeline" rather than the implementation name, and row 6's `CANNOT_CHECK`
+> selection is now written as leaving a claim "undetermined". Row 6 is still
+> **NOT SUPPORTED**, and the rewritten Results and Limitations sections state
+> more explicitly than the original why — the eligible family is saturated by
+> construction, so the comparison had no resolving power and its null is an
+> inability to discriminate rather than evidence that no difference exists.
+
 | # | Manuscript claim | Evidence | Status |
 |---|---|---|---|
 | 1 | Citation correctness, support, attribution, influence, and scientific authority are distinct coordinates. | Related-work audit; authority gate implementation. | Bounded conceptual/implementation claim |

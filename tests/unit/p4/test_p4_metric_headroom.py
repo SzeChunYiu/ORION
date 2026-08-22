@@ -22,10 +22,23 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from orion.publication.manuscript_source import assemble
+
 ROOT = Path(__file__).resolve().parents[3]
 P4 = ROOT / "papers" / "paper-04-verified-scientific-discovery"
 METRICS = P4 / "evidence" / "protected_v2" / "PUBLICATION_METRICS_V2.json"
 MANUSCRIPT = P4 / "manuscript" / "main.tex"
+
+
+def _manuscript_text() -> str:
+    """The document LaTeX builds, not just its entry file.
+
+    ``main.tex`` is a preamble and eleven ``\\input`` lines since the split, so
+    reading it alone would find neither the phrases these tests require nor the
+    ones they forbid, and would pass on both counts without checking anything.
+    """
+
+    return assemble(MANUSCRIPT)
 
 SATURATED = ("clean_coverage", "correct_cannot_check_rate")
 DISCRIMINATING = "false_promotion_rate"
@@ -89,7 +102,7 @@ def test_the_ablations_agree_about_where_the_headroom_is() -> None:
 def test_the_manuscript_states_the_limitation_it_now_relies_on() -> None:
     """Guard the text, so the finding cannot be quietly dropped in an edit."""
 
-    text = MANUSCRIPT.read_text(encoding="utf-8")
+    text = _manuscript_text()
     assert "saturates" in text, "the saturation limitation is gone from the manuscript"
     assert "resolving power" in text, (
         "the H3 passage no longer explains that the comparison could not have detected a "

@@ -1,0 +1,63 @@
+\section{What the enumeration could not have found}
+
+The bounded model of V4 reported seven quantities. Three of them could not have
+come out any other way, and one of the three had never been evaluated at all.
+Stating this is not a concession extracted after the fact; it is the result of
+pointing the mutation discipline that validates the new theorems at the old
+checks.
+
+\textbf{The change-propagation check asserted set-algebra tautologies.} It computed a
+downstream set and then asserted two things about it: that the retained set does
+not intersect the downstream set, and that the retained set equals the certified
+set minus the downstream set. The first intersects a set with something already
+removed from it. The second compares a variable to the expression it was just
+assigned. Both hold for \emph{any} value of the downstream set. The propagation
+function was called and its output was never compared against anything.
+Confirmed by mutation: replacing it with ``always the empty set'' left the check
+passing, and so did ``always every node'', both reporting the same case count as
+the real implementation. The reported 130,320 cases over 543 acyclic graphs were
+therefore 130,320 cases none of which could fail.
+
+\textbf{The check itself has since been repaired}, on 2026-08-22, and the sentence
+above is a description of what it was. Its assertions now compare the retained
+set against a specification built from an independently computed transitive
+closure, so both mutants die where both previously survived, and eight declared
+wrong propagation operators are rejected where all eight were accepted. The case
+count is unchanged at 130,320 over 543 graphs; what changed is that those cases
+can now fail.
+
+That is now repaired rather than merely reported. The propagation
+specification is written independently of the implementation, and the shipped
+implementation is compared against it exhaustively: \textbf{61,440 of 61,440} directed
+graphs on four nodes and changed subsets agree, \textbf{51,712} of them with a
+non-empty reopening. The implementation is correct. Before this, that had not
+been established.
+
+\textbf{Donor conservativity could not be violated.} The counter assigns a projected
+verdict from the donor-native verdict on one line and compares the two on the
+next. The condition is \texttt{x != x}. No theory of lifting, however wrong, moves that
+count off zero. It is withdrawn as evidence; donor conservativity is instead
+carried by the fixpoint-conservativity theorem, which is proved.
+
+\textbf{Ideal-product equivalence compares an expression to itself.} The ideal
+product is defined as the same predicate the lifting rule is defined as, so the
+mismatch count is zero by construction. The equivalence claim is real and worth
+making --- an information-equivalent product carrying the same coordinates and the
+same lift predicate does agree extensionally --- but it is a definitional identity
+and the enumeration adds nothing to it. It is withdrawn as an empirical
+quantity.
+
+\textbf{The ``independent'' reproduction is a paraphrase.} The second implementation
+replaces a universal quantifier with an early-return loop. It diverges from the
+reference on 0 of 320 points because it cannot diverge on any. A second
+implementation that cannot disagree confirms a transcription, not a theorem.
+The claim of independent reproduction is withdrawn; genuine independent review
+remains outstanding and is named in the limits below.
+
+\textbf{And one wrong theory walks through every check that remains.} Each assertion
+in the bounded checker evaluates the lift rule with the donor certificate valid.
+The 32 points of the space where it is invalid are enumerated into the published
+digest and never asserted about. A rule that lifts on the scientific coordinates
+alone, ignoring the donor entirely, passes the whole battery. Conservativity is
+carried by the 1,536-state derivation reported below, where dropping it
+disagrees on 72 states --- not by the bounded checker.

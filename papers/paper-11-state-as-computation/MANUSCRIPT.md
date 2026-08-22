@@ -6,7 +6,7 @@
 
 ## Abstract
 
-Reasoning systems are commonly compared as if the state presented to the downstream learner were a fixed observation. We study a different resource boundary: **constructing task-relevant state is itself computation**, and this computation can substitute for structural search performed downstream. For a query family `F`, any fixed representation supporting exact linear readout of every query requires dimension at least `rank(F)`. For all size-`s` parity queries on `d` Boolean variables this becomes `binom(d,s)` accessible coordinates, whereas a query-conditioned construction needs only the coordinates selected by the current query. Frozen controlled studies produce universal/compiled representation ratios of 91×–1820× and dense-decoder sample-threshold reductions from 4× to more than 32×. A no-answer-laundering construction exposes 5–7 latent components rather than the final label and retains large gains. We then attack the mechanism. A preregistered sparse universal decoder **falsifies** the stronger claim that compilation retains at least a 4× threshold advantage in both hostile cells, recovering part of the search burden and leaving 2× and 4× residual gaps. A fresh deterministically seeded replication reproduces those 2×/4× gaps with +0.291/+0.331 accuracy advantages at `n=64`. An initial nonlinear successor is retained as non-authoritative after review found a protocol mismatch. A separately frozen deterministic single-thread ExtraTrees successor puts replay in the terminal decision path and again fails to reach 0.95 accuracy through `n=1024` in either universal-state cell, while compiled state reaches the target by `n=64`; low-sample gaps are +0.462 and +0.394. Finally, exact workload laws quantify the option debt created when specialized state is retained without raw recoverability. The result is not that compilation universally dominates inference. It is that **state construction determines where structural-search computation is paid**, and this placement can be measured jointly through accessible rank, downstream burden, construction cost, and future optionality.
+Reasoning systems are commonly compared as if the state presented to the downstream learner were a fixed observation. We study a different resource boundary: **constructing task-relevant state is itself computation**, and this computation can substitute for structural search performed downstream. For a query family `F`, any fixed representation supporting exact linear readout of every query requires dimension at least `rank(F)`. For all size-`s` parity queries on `d` Boolean variables this becomes `binom(d,s)` accessible coordinates, whereas a query-conditioned construction needs only the coordinates selected by the current query. Frozen controlled studies produce universal/compiled representation ratios of 91×–1820× and dense-decoder sample-threshold reductions from 4× to more than 32×. A no-answer-laundering construction exposes 5–7 latent components rather than the final label and retains large gains. We then attack the mechanism. A preregistered sparse universal decoder **falsifies** the stronger claim that compilation retains at least a 4× threshold advantage in both hostile cells, recovering part of the search burden and leaving 2× and 4× residual gaps. A fresh deterministically seeded replication reproduces those 2×/4× gaps with +0.291/+0.331 accuracy advantages at `n=64`. An initial nonlinear successor is retained as non-authoritative after review found a protocol mismatch. A separately frozen deterministic single-thread ExtraTrees successor puts replay in the terminal decision path and again fails to reach 0.95 accuracy through `n=1024` in either universal-state cell, while compiled state reaches the target by `n=64`; low-sample gaps are +0.462 and +0.394. That successor's terminal is a function of which registered universal arm sits in its gate — the sparse arm reaches the target at `n=128` in the first cell on the successor's own data — so it is evidence about the decoder it names and not about universal-state decoding, and holding the decoder fixed attributes 86.7% and 55.4% of those two gaps to the change of state rather than the change of decoder family. A further successor pools all three registered universal arms inside its own gate, carries the earlier thresholds over unedited, and draws its protected regimes from a frozen ladder of state widths after publishing that its gates were reachable in both directions; it returns a **negative** where the compiled state is narrow, locating the advantage in the width of the compiled state rather than in the size of the universal representation. Finally, exact workload laws quantify the option debt created when specialized state is retained without raw recoverability. The result is not that compilation universally dominates inference. It is that **state construction determines where structural-search computation is paid**, and this placement can be measured jointly through accessible rank, downstream burden, construction cost, and future optionality.
 
 ## 1. Introduction
 
@@ -22,7 +22,7 @@ The paper makes four contributions.
 
 1. **Accessible-rank theory.** For a fixed linear-access class, query-family rank gives an exact lower bound on the dimension required to support every query. This separates information presence from accessibility under a declared decoder family.
 2. **Controlled compilation gaps.** Frozen parity-query studies show large accessible-dimension and sample-threshold differences, including a construction that prevents the compiler from outputting the final answer.
-3. **Hostile decoder substitution.** A sparse universal decoder recovers part of the compilation advantage and falsifies an intentionally stronger gate. A fresh deterministic replication retains a smaller 2×/4× residual. A separately frozen, replay-gated deterministic tree ensemble retains a larger low-sample residual. These attacks identify decoder inductive bias as a substitute for upstream compilation rather than an inconvenient alternative explanation.
+3. **Hostile decoder substitution.** A sparse universal decoder recovers part of the compilation advantage and falsifies an intentionally stronger gate. A fresh deterministic replication retains a smaller 2×/4× residual. A separately frozen, replay-gated deterministic tree ensemble retains a larger low-sample residual against the arm it names. These attacks identify decoder inductive bias as a substitute for upstream compilation rather than an inconvenient alternative explanation — and each one's verdict is scoped to its own arm, which §5.4.1 measures rather than assumes.
 4. **Future-optionality law.** Exact workload equations show when specialization creates future-query debt and when caching, raw recovery, or universal materialization becomes preferable.
 
 The strongest conclusion is mechanistic rather than universal: **representation construction and downstream access are two loci at which structural-search work can be paid**.
@@ -147,7 +147,7 @@ P11E does not relabel P11D. It establishes that the smaller residual exposed by 
 
 ### 5.3 P11C and P11F — non-authoritative nonlinear history
 
-The original P11C ExtraTrees attack was too large for the available execution window and emitted no authoritative terminal; it remains `CANNOT_CHECK`.
+The original P11C ExtraTrees attack exceeded the available execution window on its first attempt and emitted no terminal. `P11C_REPRODUCIBILITY_AMENDMENT_V1_1.md` replaced only the parity-bank evaluation with an elementwise-identical vectorization, and `P11C_EXECUTION_RECEIPT_V1.md` records the frozen protocol subsequently executed to completion, twice, in fresh processes, at terminal `P11C_STRONGER_DECODER_GAP_SUPPORTED` with canonical SHA-256 `f65c1c5bb9cb96194fbcb20c9dbfd3a949127f9789e95cf6585d891bf939c454`. Its gate 3 — the only gate in the programme read through the pooled *best hostile universal threshold* rather than through one arm — passes at exactly the boundary, 256 against a compiled 64 in both cells, and that receipt reports the sweep showing the boundary value comes up in 11 of 20 draws of the same construction. P11C therefore settles nothing about the ≥4× claim P11D retired, and it is not used as claim authority; what it does establish is that its combination rule was applied, to its own frozen data, inside its own protocol.
 
 P11F then froze a tractable 96-tree successor and produced a positive numerical separation, but hostile PR review found a protocol-conformance defect: the runner set `n_jobs=-1` although the written protocol specified the registered configuration with otherwise sklearn defaults. Parallel execution did not change the two observed bytes in that run, but exact protocol conformance is a prerequisite for claim authority. P11F is therefore retained as diagnostic history and is **not** used as the primary nonlinear result.
 
@@ -166,6 +166,56 @@ The terminal is `P11G_DETERMINISTIC_TREE_DECODER_GAP_SUPPORTED`. Both fresh-subp
 
 This is still not a nonlinear lower bound. It is a hostile finite-system result showing that one deterministic nonlinear universal-state decoder continues to pay substantial discovery cost under the registered resource envelope.
 
+#### 5.4.1 The terminal is a function of which registered arm sits in the gate
+
+P11G registers one universal-state arm. The programme registered three — `UNIVERSAL_L2`, `UNIVERSAL_L1` and `UNIVERSAL_EXTRA_TREES`, frozen together in P11C — and P11G's receipt publishes curves for one of them. Replaying P11G's own frozen data stream with only the decoder swapped, and reading P11G's own four scientific gates on each arm:
+
+| universal arm | 0.95 threshold per cell, censored at 256 | terminal P11G's own gates print |
+|---|---|---|
+| `UNIVERSAL_L2` | ≥256, ≥256 | `..._GAP_SUPPORTED` |
+| `UNIVERSAL_L1` | **128**, ≥256 | `..._GAP_NOT_MET` |
+| `UNIVERSAL_EXTRA_TREES` (reported) | ≥256, ≥256 | `..._GAP_SUPPORTED` |
+
+Two of the three comparable pairs change the verdict, so the `decoder_arm` axis is not inert. The flip is entirely gate 3: `UNIVERSAL_L1` reaches the target at `n=128` in cell (17,4,5), and 128 is not ≥256. Its `n=64` gaps, +0.3252 and +0.3258, clear P11G's ≥0.20 gate comfortably.
+
+None of this is a new measurement. It is the same sparse threshold P11D reports as a permanent negative and P11E replicates on a fresh seed, and P11C's receipt sweeps it across twenty seeds of the same construction, where cell (17,4,5) reads 128 in nine and 256 in eleven. What is new is the conjunction: the arm whose 128 the paper reports as its own negative would, placed in P11G's gate, print `P11G_DETERMINISTIC_TREE_DECODER_GAP_NOT_MET` on P11G's own bytes. `NOT_REACHED` through `n=1024` is therefore not a stronger reading than the L1 arm's 128 — an arm that reaches nothing anywhere gives the same gate reading in every world.
+
+P11G's terminal is retained exactly as frozen and is evidence about the decoder its own claim-authority sentence names. It is not evidence about universal-state decoding, and the claim ledger's row is scoped accordingly. `P11G_ARM_PLACEMENT_ADJUDICATION_V1.md` carries the adjudication, including the finding — read off the two freezes — that P11C's pooled combination rule governs P11C and does not bind P11G: it feeds a ≥4× ratio gate rather than an absolute ≥256 one, on a ladder of five queries per cell to `n=2048` on 8,192 test points rather than three to `n=1024` on 4,096, over a pool whose tree arm is 256 estimators rather than 96, for a claim about a family of attacks rather than about one decoder.
+
+#### 5.4.2 How much of the published gap is the change of state, and how much the change of decoder
+
+P11G moves the representation and the learner at once: L2 logistic regression on `r` compiled columns against a 96-tree ExtraTrees ensemble on the complete bank. Holding the decoder at ExtraTrees and moving only the representation separates them.
+
+| cell | published gap at `n=64` | decoder-family half | state half | state share |
+|---|---:|---:|---:|---:|
+| (17,4,5) | +0.4624 | +0.0614 | +0.4010 | 86.7% |
+| (19,3,7) | +0.3942 | +0.1757 | +0.2185 | 55.4% |
+
+This is reported in both directions because it cuts both ways. It **narrows the terminal**: +0.4624 and +0.3942 are not wholly the compilation advantage, and 13.3% and 44.6% of them are the change of decoder family. It **supports the placement claim**: with the decoder held fixed, the state half is the majority in both cells and 86.7% in the first, so query-conditioned construction is doing most of the work in the published comparison — and being measured at a fixed decoder, that half is unaffected by which universal arm is placed in the gate.
+
+### 5.5 P11H — the pooled successor, and where the advantage stops
+
+§5.4.1 shows P11G's terminal names one arm. The deeper defect, found by `orion.study.p11.attack_audit`, is that all four of P11G's scientific gates hold in **every world its own freeze admits**, so `all(gates.values())` was `True` before its seed was drawn and its survival was arithmetic rather than measured. P11H re-asks the question under a protocol whose attack can win. Nothing of P11G is edited: its protocol, seed, gates, receipt, terminal and its payload digest `a2b0c33c…79a7cc` are all retained.
+
+P11H registers all three universal-state arms and freezes the best-of-arms combination rule **inside its own positive gate**, carries P11G's `0.95` and `0.20` thresholds over **unedited**, and draws two protected regimes by its fresh seed from a frozen 2×3 ladder: state widths `r ∈ {3, 7}` crossed with complete parity banks of 91, 364 and 969 columns. Before execution, `assess_threshold_panel` reported both hypothesis gates `BOTH_OUTCOMES_REACHABLE` — supports `[0.8808, 1.0000]` against the `0.95` bar and `[0.0000, 0.2482]` against the `0.20` bar — and `measure_terminal_reach` reported **two** reachable terminals over the 15 admissible draws, of which 3 clear every gate. That preflight is a committed artifact and it predates the run.
+
+The seed drew `(14,2,3)` and `(19,3,3)`. Every instrument precondition held, the two-subprocess replay was byte-identical, and **both hypothesis gates failed**: `P11H_POOLED_UNIVERSAL_ATTACK_PREVAILED`.
+
+| rung | universal bank | pooled 0.95 threshold | pooled best `< 256` | `delta64` |
+|---|---:|---:|---:|---:|
+| (14,2,3) | 91 | **128** | 1.0000 | +0.1482 |
+| (14,3,3) | 364 | **128** | 1.0000 | +0.0992 |
+| (19,3,3) | 969 | **128** | 1.0000 | +0.0506 |
+| (14,2,7) | 91 | `>=256` | 0.9129 | +0.2350 |
+| (14,3,7) | 364 | `>=256` | 0.8920 | +0.3172 |
+| (19,3,7) | 969 | `>=256` | 0.8876 | +0.3175 |
+
+The pooled attack reaches the target by `n=128` at every `r=3` rung and at no `r=7` rung, while the complete universal bank moves from 91 to 969 columns *inside each half* without changing a verdict. **The compilation advantage is governed by the width of the compiled state, not by the size of the universal representation** — which is the paper's own headline ratio, and it is not the operative variable.
+
+Like §5.4.2 this cuts both ways, and more sharply. It **bounds the claim**: at `r=3` the advantage is false under P11G's own unedited bars, against a pool containing the paper's own best known attack, so no unconditional form of the survival claim is available. It **strengthens the attribution**: at the drawn regimes the decoder-family half of the `n=64` gap is exactly `+0.0000` — `COMPILED_EXTRA_TREES` and `COMPILED_L2` both reach 1.0000 at `n=64` — so 100% of the gap is the change of state, against 86.7% and 55.4% in P11G's cells. Attribution and magnitude are different questions: what gap exists at `r=3` is wholly a state effect, and it is only `+0.0506`.
+
+Three of the fifteen admissible draws would have printed the positive terminal and the seed did not draw one. The `r=7` rungs carry no terminal and no claim authority; reading them as a positive would be choosing a rung after seeing it, which is what the draw exists to prevent. The `r=5` boundary was excluded before execution for verdict instability across three preflight seeds — in both directions — and remains open.
+
 ## 6. What the decoder attacks identify
 
 The decoder sequence reveals a pattern that a dense-only comparison could not establish.
@@ -173,8 +223,9 @@ The decoder sequence reveals a pattern that a dense-only comparison could not es
 - Dense universal access pays the largest discovery cost.
 - Sparse universal access recovers part of that cost and falsifies an intentionally stronger residual claim.
 - Fresh deterministic sparse replication retains a smaller 2×/4× threshold separation.
-- A deterministic nonlinear tree ensemble does not close the high-dimensional low-sample gap under its frozen envelope.
-- Protocol mismatches are not treated as scientific victories: P11F is demoted and P11G is independently frozen.
+- A deterministic nonlinear tree ensemble does not close the high-dimensional low-sample gap under its frozen envelope. This is a statement about that arm: on P11G's own data the sparse arm reaches the target at `n=128` in the first cell, which P11G's own gate would read as `NOT_MET` (§5.4.1), and the pattern is arm-by-arm rather than a claim about universal-state decoding as such.
+- Pooling every registered universal arm and laddering the width of the compiled state locates where the substitution completes: P11H's pooled attack wins outright at `r=3` and loses at `r=7`, on a protocol whose gates were shown reachable in both directions before its seed was drawn (§5.5).
+- Protocol mismatches are not treated as scientific victories: P11F is demoted and P11G is independently frozen, and a survived attack is not read as evidence until it is shown it could have lost.
 
 This supports the interpretation that **compilation and decoder inductive bias are alternative locations for structural search**. If the downstream mechanism already identifies relevant coordinates cheaply, upstream compilation should matter less. If it does not, state construction can externalize that work.
 
@@ -229,7 +280,7 @@ The evidence history is intentionally append-only in scientific meaning:
 1. P11/P11B establish dense and no-answer-laundering controlled gaps.
 2. P11D fails its stronger sparse-decoder gate.
 3. P11E independently reproduces the surviving sparse residual with deterministic estimator seeds.
-4. P11C remains `CANNOT_CHECK` after non-termination.
+4. P11C, after an amendment that vectorized only its parity-bank evaluation, executes to completion twice at `P11C_STRONGER_DECODER_GAP_SUPPORTED`; its pooled ≥4× gate passes at exactly the boundary and the boundary comes up in 11 of 20 draws of the same construction, so it settles nothing and carries no claim authority.
 5. P11F produces diagnostic nonlinear evidence but loses authority after a protocol-conformance review finding.
 6. P11G is frozen independently and makes two-fresh-subprocess replay a hard terminal gate.
 
@@ -246,7 +297,7 @@ P11's residual is not any of those primitives in isolation. It is the experiment
 1. The exact theorem is restricted to a declared linear-access class; it is not an unrestricted representation or time lower bound.
 2. Parity families are deliberately controlled and expose exact rank. They are not evidence that the same numerical separations hold in language-model state.
 3. P11D proves that stronger decoder bias can materially reduce the compilation advantage. Any general theory must predict this substitution rather than ignore it.
-4. P11G tests one finite nonlinear ensemble under a frozen resource envelope; other nonlinear decoders may behave differently.
+4. P11G tests one finite nonlinear ensemble under a frozen resource envelope; other nonlinear decoders may behave differently. This is a limitation of the terminal and not only of its generality: two of the three universal arms the programme registered give P11G's gates one verdict and the third gives the other, on P11G's own data (§5.4.1). A claim about universal-state decoding needs a protocol that freezes the pool and gates through it; P11H is that protocol, and it returned a **negative** at `r=3` under P11G's own unedited thresholds (§5.5), so no pooled form of the claim is available and the arm-scoped one is additionally bounded by the width of the compiled state.
 5. The current compiler is oracle/query-structured rather than a learned non-oracle compiler.
 6. Controlled operation counts do not substitute for end-to-end compiler/model latency, memory traffic, training cost or energy in real systems.
 7. Future-query option laws assume the declared workload model. Drift, semantic invalidation and correlated responsibilities require separate modelling.

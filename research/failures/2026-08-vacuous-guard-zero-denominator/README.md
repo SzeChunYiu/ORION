@@ -133,6 +133,73 @@ artifact reported the outcome without reporting whether the mechanism ran.
    which is #650's "require route-level and task-level closure receipts" stated
    as a precondition rather than as a report field.
 
+## Recurrences, 2026-08-21
+
+Three more instances of this shape, found the same day, in three different
+places. They are recorded together because what they have in common is more
+useful than any one of them: **the denominator was never reported, so nobody
+could see it was empty.** In each case the check had run for a long time, looked
+clean, and had never once had an opportunity to fire.
+
+### 1. A guard that had never had a case at all
+
+`P3.OVERRESOLVED_UNRESOLVED_CASE` reported `0/0` on all three P3 atlases. Not a
+bug in the guard: the corpus has no instance of the failure it guards against.
+Across 9 coordinates and 88 cases, every coordinate is observed on both sides of
+a pair or absent on both, so a partially observed pair — the only situation in
+which over-resolution is possible — does not occur anywhere in P3's evidence.
+
+Given a denominator by silencing, on one side only, the coordinate that carries
+the decision, the current system over-resolves **12 of 12**, with 8/8 and 28/28
+held out. Forty-eight of forty-eight. The paper's `FALSE_SCIENTIFIC_MERGE` pass,
+scored on the same decisions, holds only under full observation.
+
+The corpus-design lesson is worth carrying forward on its own: an evaluation set
+built by observing every coordinate on both sides cannot exercise any guard about
+partial observation, and will report those guards as passing forever.
+
+### 2. Eleven rates that returned the best possible score for "unmeasured"
+
+Every rate in `src/orion/study/metrics.py` divided by the number of non-abstained
+cases and returned `0.0` when that count was zero. For a *harm* rate, zero is the
+best attainable value, so a metric that measured nothing reported that nothing
+went wrong, and any threshold check on it passed.
+
+The test suite had pinned this as intended behaviour, and one pair of tests shows
+it exactly: `test_agreement_skips_unresolved` asserted `0.0` for "nothing was
+comparable" and `test_agreement_zero_when_disagree` asserted `0.0` for "they
+disagreed on everything". Two opposite states, one number, a test for each.
+
+Empty denominators now yield `nan` rather than `0.0`. Deliberately not `None`:
+a caller writing `not rate` sees `not None` as `True` and reports clean, which is
+worse than the original bug. Every comparison against `nan` is `False`, so the
+metric fails closed wherever it is read.
+
+### 3. A differential check that agreed about the constant `False`
+
+While mechanizing P8's authority calculus, a differential check compared the
+proved formula against the committed executable model on randomly drawn worlds.
+It agreed on 60 of 60 trials — and authorised on **zero** of them. Drawing each
+field independently satisfies all seven conjuncts almost never, so the two
+implementations were being compared only where both refuse.
+
+This is the same failure wearing a third costume, and it is the most instructive
+of the three because the check was *written* to catch a discrepancy and would
+have reported "no discrepancy" indefinitely. The fix is not more trials; it is
+reporting whether the corpus exercised more than one outcome.
+`DifferentialReport.exercised_both_verdicts` is now carried beside the agreement
+count in `orion.programme.mechanized`, and the run that followed found a real
+defect in the axiomatisation within 120 trials.
+
+### What the three have in common
+
+None of them was found by looking at the guard. Each was found by asking a
+different question — "what would have to be true for this to have fired?" — and
+discovering the answer was "nothing in this corpus". A guard cannot report its
+own vacuity, because from the inside a vacuous guard and a satisfied one produce
+identical output. Only the denominator distinguishes them, and only if someone
+carries it.
+
 ## General lesson candidate
 
 **A guard's zero is evidence only when its denominator is reported with it.**

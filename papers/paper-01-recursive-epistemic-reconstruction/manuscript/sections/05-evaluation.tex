@@ -1,88 +1,177 @@
-\section{Historical V1 hypotheses and evidence}
+\section{The hidden-formulation study}
+\label{sec:hidden-formulation}
 
-This section preserves the original 48-case study as negative history. Its broad
-hypothesis is not retrospectively promoted; Section~\ref{sec:necessity-successor}
-reports the separately frozen, narrower, powered successor.
+This section reports the original 66-case study and keeps it as negative
+history. Its broad hypothesis is not retrospectively promoted; the separately
+frozen, narrower and powered experiment is reported in
+Section~\ref{sec:necessity}.
 
 \subsection{Hypotheses}
 
-The research object defines a prospective comparison rather than a success-by-definition architecture claim. The outcome-blind external design is frozen as \texttt{P1.hidden-formulation.v1}. Its primary hypothesis is:
+The design is a prospective comparison rather than a success-by-definition
+architecture claim. Its primary hypothesis is:
 
 \begin{quote}
-On tasks where the initial formulation, representation, decomposition, measurement model, or relevant search universe is insufficient, full ORION improves root task success versus the strongest matched static or recursive baseline.
+On tasks where the initial formulation, representation, decomposition,
+measurement model, or relevant search universe is insufficient, the governed
+policy improves root task success versus the strongest matched static or
+recursive baseline.
 \end{quote}
 
-The safety/mechanistic secondary hypotheses test whether ORION avoids unnecessary reframes on evidence-only/execution-only controls, reopens dependent closure more precisely than no reset or full reset, and preserves mechanic obligations and authority/invariant structure with recursion depth. The design target for the primary superiority comparison is an absolute root-success improvement of at least five percentage points; unnecessary-reframe rate is prospectively guarded by a two-percentage-point non-inferiority margin. These are design thresholds, not claimed outcomes.
+The safety and mechanistic secondary hypotheses test whether the governed policy
+avoids unnecessary reframes on evidence-only and execution-only controls,
+reopens dependent closure more precisely than either no reset or full reset, and
+preserves mechanic obligations and authority/invariant structure with recursion
+depth. The design target for the primary superiority comparison is an absolute
+root-success improvement of at least five percentage points; the
+unnecessary-reframe rate is prospectively guarded by a two-percentage-point
+non-inferiority margin. These are design thresholds, not claimed outcomes.
 
-The registered task families are hidden parent-domain, hidden representation/coordinate system, hidden decomposition/interface, hidden measurement/operationalization, evidence-only negative controls, and execution-only negative controls. Required matched baselines include a static tool workflow, iterative/tree research, an AREX-like recursive audit/follow-up controller, a SCION-like dependency-aware execution plan, and an Iris-like revisable information-state controller. Full ORION is separately ablated by removing explicit $W$, explicit $M$, typed reframing, dependency-directed reopening, and mechanic self-audit.
+The registered task families are hidden parent-domain, hidden
+representation/coordinate system, hidden decomposition/interface, hidden
+measurement/operationalization, evidence-only negative controls, and
+execution-only negative controls. Required matched baselines include a static
+tool workflow, iterative/tree research, a recursive audit/follow-up controller,
+a dependency-aware execution plan, and a revisable information-state controller.
+The governed policy is separately ablated by removing explicit $W$, explicit
+$M$, typed reframing, dependency-directed reopening, and mechanic self-audit.
 
-The evaluation packet tracks root success, hidden-shift success, unnecessary-reframe rate, responsibility macro-F1, reframe-target accuracy, reopen precision/recall/F1, stale-closure survival, invariant/authority violations, trace fidelity and resource cost. Candidate-caused failures, timeouts, malformed actions and abstentions remain in the denominator. Standalone rates receive Wilson intervals; matched system differences use a paired percentile bootstrap over frozen tasks, with stochastic repetitions nested within task/system.
+The evaluation packet tracks root success, hidden-shift success,
+unnecessary-reframe rate, responsibility macro-F1, reframe-target accuracy,
+reopen precision/recall/F1, stale-closure survival, invariant/authority
+violations, trace fidelity and resource cost. Candidate-caused failures,
+timeouts, malformed actions and abstentions remain in the denominator.
+Standalone rates receive Wilson intervals; matched system differences use a
+paired percentile bootstrap over frozen tasks, with stochastic repetitions
+nested within task and system.
 
 \subsection{Prospective design freeze}
 
-The complete machine-readable design is stored at \texttt{protocol/PROTOCOL\_V1.json}, with case requirements in \texttt{protocol/HIDDEN\_SHIFT\_CASE\_SCHEMA\_V1.json}. Its state is \texttt{DESIGN\_FROZEN} and \texttt{outcome\_accessed=false}. This freezes hypotheses, task families, baselines, ablations, metrics, resource/exclusion rules, statistics, access policy and result-figure/table definitions before final outcomes exist.
+The complete machine-readable design freezes hypotheses, task families,
+baselines, ablations, metrics, resource and exclusion rules, statistics, access
+policy and result-figure/table definitions before final outcomes exist, and
+records that no outcome had been accessed at the freeze.
 
-This is deliberately weaker than an execution freeze. The final subject revision, hidden-shift case-set hash, model/provider versions, baseline configuration hashes, protected evaluator/adjudication hash, split hashes and evaluation epoch remain unbound. Those identities must be frozen before the first final test outcome is inspected; otherwise the run cannot support the publication claim. Any post-outcome scientific-design change creates a new protocol version rather than rewriting V1.
+This is deliberately weaker than an execution freeze. The final subject
+revision, hidden-shift case-set hash, model and provider versions, baseline
+configuration hashes, protected evaluator/adjudication hash, split hashes and
+evaluation epoch must all be frozen before the first final test outcome is
+inspected; otherwise the run cannot support a publication claim. Any
+post-outcome scientific-design change creates a new protocol version rather than
+rewriting the frozen one.
 
-\subsection{Frozen local falsifier V1}
+\subsection{The local falsifier}
 
-The repository contains a deterministic Paper-I suite covering hidden-domain, hidden-representation, missing-evidence, and execution-only worlds. At the frozen evidence snapshot, the suite passed at commit
-\texttt{8a8a7feed588363f8e2cd820d3399a33b7af3074}
-with CI run \texttt{31933432314}.
+A deterministic suite covers hidden-domain, hidden-representation,
+missing-evidence, and execution-only worlds. At the frozen evidence snapshot the
+suite passed at a recorded subject commit under a recorded continuous-integration
+run.
 
-The important local result is not the pass label alone. The suite exposed an over-broad rule: singular \texttt{EVIDENCE}/\texttt{EXECUTION} responsibility could previously enter the reframe path. That behavior would have allowed the system to rewrite the formulation when ordinary evidence acquisition or execution repair was the supported response. The gate was changed so those cases can no longer reframe merely because responsibility is singular.
+The important result is not the pass label alone. The suite exposed an
+over-broad rule: a singular evidence or execution responsibility could
+previously enter the reframe path. That behaviour would have allowed the system
+to rewrite the formulation when ordinary evidence acquisition or execution
+repair was the supported response. The gate was changed so those cases can no
+longer reframe merely because responsibility is singular.
 
-This is architecture-local falsification evidence. It supports the claim that the implemented contracts distinguish at least these registered known worlds and that the falsifier was capable of changing the design. It does not establish open-world adequacy or external superiority.
+This is architecture-local falsification evidence. It supports the claim that
+the implemented contracts distinguish at least these registered known worlds and
+that the falsifier was capable of changing the design. It does not establish
+open-world adequacy or external superiority.
 
 \subsection{Historical parent-domain replay}
 
-A bounded replay reconstructs a RAKL-era omission in which computational linguistics and psychometrics were not explicit members of a frozen discipline basis. Because the historical workflow also required cross-domain and alternate-vocabulary search, the omission does not prove that faithful execution could not have discovered those fields. The original retrieval and recognition trace is not registered, so the historical cause remains only partially identified.
+A bounded replay reconstructs an earlier omission in which computational
+linguistics and psychometrics were not explicit members of a frozen discipline
+basis. Because the historical workflow also required cross-domain and
+alternate-vocabulary search, the omission does not prove that faithful execution
+could not have discovered those fields. The original retrieval and recognition
+trace is not registered, so the historical cause remains only partially
+identified.
 
-The current discriminator instead asks whether name-independent functional signatures can recover mature parent disciplines for scientific-language interpretation, construct/benchmark validity, and fresh transfer cases. Success shows that these known worlds can be expressed without inventing a new method primitive. It does not establish open-world parent-discipline recall.
+The current discriminator instead asks whether name-independent functional
+signatures can recover mature parent disciplines for scientific-language
+interpretation, construct/benchmark validity, and fresh transfer cases. Success
+shows that these known worlds can be expressed without inventing a new method
+primitive. It does not establish open-world parent-discipline recall.
 
-\subsection{Historical V1 promotion gate}
+\subsection{The promotion gate}
 
-The broad, model-bearing V1 publication test remains unexecuted and therefore
-\texttt{CANNOT\_CHECK}. Repository tests and protocol prose cannot convert that
-historical state into a superiority claim. The v2.2.4 study in
-Section~\ref{sec:necessity-successor} is an additive successor with new powered
-worlds, assimilated parents, execution identities, and a narrower credential-free
-mechanical claim; it does not fill or rewrite this V1 gate.
+The broad, model-bearing publication test was never executed, so its outcome
+remains undetermined. Repository tests and protocol prose cannot convert that
+state into a superiority claim. The experiment in
+Section~\ref{sec:necessity} is an additive successor with new powered worlds,
+assimilated parents, execution identities, and a narrower credential-free
+mechanical claim; it does not fill or rewrite this gate.
 
 \subsection{Local results}
 
 \subsubsection{Mechanical arm attribution}
-The LLM-free reduction layer attributes the correct top-ranked responsibility on 62 of 66 cases, with 0 of 22 negative controls receiving a formulation responsibility. Four relations cover 26 cases: \texttt{required\_input\_absent\_but\_obtainable} (10 cases), \texttt{framing\_remedy\_tried\_and\_failed} (8 cases), \texttt{counterfactual\_restores\_baseline} (5 cases), and \texttt{equal\_weight\_aggregation\_over\_skewed\_units} (3 cases). Half the attributions rest on rules that fire on exactly one case. Artifact: \texttt{evidence/MECHANICAL\_ARM\_LIMITATIONS\_V1.md}.
+The reduction layer, which uses no language model, attributes the correct
+top-ranked responsibility on 62 of 66 cases, with 0 of 22 negative controls
+receiving a formulation responsibility. Four relations cover 26 cases: a
+required input is absent but obtainable (10 cases); a framing remedy was tried
+and failed (8 cases); a counterfactual restores the baseline (5 cases); and
+equal-weight aggregation is applied over skewed units (3 cases). Half the
+attributions rest on rules that fire on exactly one case.
 
 \subsubsection{Solvability audit}
-An independent blind audit rates 55 of 66 cases SOLVABLE from public content alone. Pre-gold family prediction accuracy is 61 of 66. Five arithmetic defects were found and confirmed. Artifact: \texttt{evidence/MECHANICAL\_SOLVABILITY\_AUDIT\_V1.md} and companion \texttt{mechanical\_solvability\_audit\_v1.json}.
+An independent blind audit rates 55 of 66 cases as solvable from public content
+alone. Pre-gold family prediction accuracy is 61 of 66. Five arithmetic defects
+were found and confirmed.
 
 \subsubsection{Falsifier repair}
-The deterministic suite exposed an over-broad reframe gate: singular EVIDENCE/EXECUTION responsibility could previously enter the reframe path. The gate was repaired so those cases can no longer reframe merely because responsibility is singular. Artifact: \texttt{evidence/FALSIFIER\_V1.md}.
+The deterministic suite exposed the over-broad reframe gate described above: a
+singular evidence or execution responsibility could previously enter the reframe
+path. The gate was repaired so those cases can no longer reframe merely because
+responsibility is singular.
 
 \subsubsection{Power and tier status}
-The achieved tier is \AchievedTier{} with half-width \AchievedHalfWidth{}. Required N for H1 is \RequiredNForHOne{}; for H2 is \RequiredNForHTwo{}. The study is \Underpowered{} for the primary hypothesis. Stochastic repeats per case: \StochasticRepeats{}. Artifact: \texttt{generated/suite\_facts.tex} via \texttt{scripts/render\_suite\_facts.py}.
+The achieved half-width is \AchievedHalfWidth{}, which does not reach the
+lowest precision tier the frozen statistical plan registered in advance. The
+number of cases required for the primary hypothesis is \RequiredNForHOne{}, and
+for the restraint hypothesis \RequiredNForHTwo{}. The study is therefore
+underpowered for its primary hypothesis, with \StochasticRepeats{} stochastic
+repeats per case.
 
 \subsection{Discussion}
 
 \subsubsection{What the local evidence establishes}
-The falsifier suite served its intended role by exposing a design defect (the over-broad reframe gate) and forcing a repair. The mechanical arm demonstrates that responsibility attribution is possible without LLM comprehension on 62 of 66 cases, with zero false positives on the 22 negative controls. Four general relations cover 26 cases; the remaining attributions rest on narrower rules whose generality is untested.
+The falsifier suite served its intended role by exposing a design defect---the
+over-broad reframe gate---and forcing a repair. The mechanical arm demonstrates
+that responsibility attribution is possible without language-model
+comprehension on 62 of 66 cases, with zero false positives on the 22 negative
+controls. Four general relations cover 26 cases; the remaining attributions rest
+on narrower rules whose generality is untested.
 
 \subsubsection{What the local evidence cannot establish}
-The historical N=\TestCaseCount{} falls short of the required
-\RequiredNForHOne{} for H1 and \RequiredNForHTwo{} for H2. The achieved tier
-\AchievedTier{} is below the minimum standard (TIER D), so this V1 study remains
-\Underpowered{} for its broad primary hypotheses. Within-study comparisons are
-populated (all systems below 0.03 root success; Table~\ref{tab:P1-T2}), but they
-do not authorize external superiority. The successor study is reported
-separately and is never pooled with these records.
+The historical $N=\TestCaseCount{}$ falls short of the required
+\RequiredNForHOne{} for the primary hypothesis and \RequiredNForHTwo{} for the
+restraint hypothesis. The achieved half-width \AchievedHalfWidth{} is below the
+lowest registered precision tier, so this study remains underpowered for its
+broad primary hypotheses.
+Within-study comparisons are populated (all systems below 0.03 root success;
+Table~\ref{tab:P1-T2}), but they do not authorize external superiority. The
+successor experiment is reported separately and is never pooled with these
+records.
 
 \input{tables/P1-T2_baseline_ablation}
 
 \subsubsection{Failure modes}
-The prospective failure taxonomy (Table~\ref{tab:P1-T3}) is populated from the frozen 2880-record archive. Abstention dominates across systems (81.4\% of scored trials), with wrong-responsibility attributions at 9.2\% and missed reframes at 7.5\%; unnecessary reframes occur only under generic retry, tree search, and no-self-audit variants. The local suite additionally identified blind-responder shortcuts in template phrasing, filename-based family separation, and arithmetic defects in case resources, documented in the solvability audit artifact.
+The prospective failure taxonomy (Table~\ref{tab:P1-T3}) is populated from the
+frozen 2,880-record archive. Abstention dominates across systems (81.4\% of
+scored trials), with wrong-responsibility attributions at 9.2\% and missed
+reframes at 7.5\%; unnecessary reframes occur only under generic retry, tree
+search, and no-self-audit variants. The local suite additionally identified
+blind-responder shortcuts in template phrasing, filename-based family
+separation, and arithmetic defects in case resources.
 
 \input{tables/P1-T3_failure_taxonomy}
 
 \subsubsection{Limitations of the local suite}
-The local falsifier uses constructed cases with frozen semantic properties. It cannot establish open-world adequacy or external superiority. Template-level leaks (perfect separation on fixed phrases like ``The team's framing is'') were identified and documented but not repaired in this iteration. Half the mechanical arm attributions rest on singleton rules that may function as case-specific recognizers.
+The local falsifier uses constructed cases with frozen semantic properties. It
+cannot establish open-world adequacy or external superiority. Template-level
+leaks---perfect separation on fixed phrases such as ``The team's framing
+is''---were identified and documented but not repaired in this iteration. Half
+the mechanical arm attributions rest on singleton rules that may function as
+case-specific recognizers.

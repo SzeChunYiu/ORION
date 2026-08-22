@@ -1,0 +1,169 @@
+{
+  "campaigns": {
+    "P2_WIDE_OPENAIRE_MATCHED_RESULT_V1.json": {
+      "absent_runtime_totals": [
+        "wide_dual_backend_balanced: total_tokens, total_duration_sec, avg_tool_call_count, avg_turn_count all exactly zero",
+        "wide_dual_backend_direct_first: total_tokens, total_duration_sec, avg_tool_call_count, avg_turn_count all exactly zero",
+        "wide_dual_backend_governed: total_tokens, total_duration_sec, avg_tool_call_count, avg_turn_count all exactly zero"
+      ],
+      "arms": 3,
+      "distinct_candidate_digests": 1,
+      "distinct_evaluator_digests": 1,
+      "floor": {
+        "arm_scores": {
+          "wide_dual_backend_balanced": 0.003924,
+          "wide_dual_backend_direct_first": 0.003924,
+          "wide_dual_backend_governed": 0.003924
+        },
+        "at_floor": true,
+        "best_arm_avg_iou": 0.003924,
+        "checked": true,
+        "required_avg_iou_delta": 0.03
+      },
+      "non_monotone_at_k": [
+        "wide_dual_backend_balanced: max_iou_at_2=0.0 < previous 0.003924",
+        "wide_dual_backend_direct_first: max_iou_at_2=0.0 < previous 0.003924",
+        "wide_dual_backend_governed: max_iou_at_2=0.0 < previous 0.003924"
+      ],
+      "paired": {
+        "bootstrap_resamples": 10000,
+        "bootstrap_seed": 20260818,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "losses": 0,
+        "mean": 0.0,
+        "median": 0.0,
+        "n": 399,
+        "percentile_method": "linear_interpolation",
+        "ties": 399,
+        "wins": 0
+      },
+      "reporting_findings": [
+        "the sampled max_iou_at_k family decreases in k, which a maximum over the top k cannot do: wide_dual_backend_balanced: max_iou_at_2=0.0 < previous 0.003924; wide_dual_backend_direct_first: max_iou_at_2=0.0 < previous 0.003924; wide_dual_backend_governed: max_iou_at_2=0.0 < previous 0.003924",
+        "the result artifact publishes the unseeded sampled family that score_wide_comparison.py excludes by rule: avg_max_iou_at_1, avg_max_iou_at_16, avg_max_iou_at_2, avg_max_iou_at_4, avg_max_iou_at_8",
+        "runtime totals are uniformly zero, which is an untransported measurement rather than a measured zero: wide_dual_backend_balanced: total_tokens, total_duration_sec, avg_tool_call_count, avg_turn_count all exactly zero; wide_dual_backend_direct_first: total_tokens, total_duration_sec, avg_tool_call_count, avg_turn_count all exactly zero; wide_dual_backend_governed: total_tokens, total_duration_sec, avg_tool_call_count, avg_turn_count all exactly zero"
+      ],
+      "resolution": "ZERO_RESOLUTION",
+      "resolution_findings": [
+        "every arm is at the measurement floor: the best arm's average IoU is 0.003924, below the 0.03 delta the frozen rule requires before superiority is supported, so deleting a competing arm outright would not reach the threshold and no sample size can",
+        "3 arms share one candidate digest, so the compared inputs are byte-identical; this is one system scored against itself and no comparison exists to be measured",
+        "the paired interval is zero-width because all 399 pairs tied (0 wins, 0 losses); a zero-width interval over identical differences is produced at any sample size and is not equivalence evidence"
+      ],
+      "sampled_family_published": [
+        "avg_max_iou_at_1",
+        "avg_max_iou_at_16",
+        "avg_max_iou_at_2",
+        "avg_max_iou_at_4",
+        "avg_max_iou_at_8"
+      ]
+    },
+    "P2_WIDE_OPENAIRE_MATCHED_RESULT_V3.json": {
+      "absent_runtime_totals": [
+        "wide_dual_backend_balanced: total_tokens, total_duration_sec, avg_tool_call_count, avg_turn_count all exactly zero",
+        "wide_dual_backend_direct_first: total_tokens, total_duration_sec, avg_tool_call_count, avg_turn_count all exactly zero",
+        "wide_dual_backend_governed: total_tokens, total_duration_sec, avg_tool_call_count, avg_turn_count all exactly zero"
+      ],
+      "arms": 3,
+      "distinct_candidate_digests": 3,
+      "distinct_evaluator_digests": 1,
+      "floor": {
+        "arm_scores": {
+          "wide_dual_backend_balanced": 0.004374,
+          "wide_dual_backend_direct_first": 0.004374,
+          "wide_dual_backend_governed": 0.004374
+        },
+        "at_floor": true,
+        "best_arm_avg_iou": 0.004374,
+        "checked": true,
+        "required_avg_iou_delta": 0.03
+      },
+      "non_monotone_at_k": [
+        "wide_dual_backend_balanced: max_iou_at_2=0.0 < previous 0.004374",
+        "wide_dual_backend_direct_first: max_iou_at_2=0.0 < previous 0.004374",
+        "wide_dual_backend_governed: max_iou_at_2=0.0 < previous 0.004374"
+      ],
+      "paired": {
+        "bootstrap_resamples": 10000,
+        "bootstrap_seed": 20260821,
+        "ci95_high": 0.0,
+        "ci95_low": 0.0,
+        "losses": 0,
+        "mean": 0.0,
+        "median": 0.0,
+        "n": 399,
+        "percentile_method": "linear_interpolation",
+        "ties": 399,
+        "wins": 0
+      },
+      "reporting_findings": [
+        "the sampled max_iou_at_k family decreases in k, which a maximum over the top k cannot do: wide_dual_backend_balanced: max_iou_at_2=0.0 < previous 0.004374; wide_dual_backend_direct_first: max_iou_at_2=0.0 < previous 0.004374; wide_dual_backend_governed: max_iou_at_2=0.0 < previous 0.004374",
+        "the result artifact publishes the unseeded sampled family that score_wide_comparison.py excludes by rule: avg_max_iou_at_1, avg_max_iou_at_16, avg_max_iou_at_2, avg_max_iou_at_4, avg_max_iou_at_8",
+        "runtime totals are uniformly zero, which is an untransported measurement rather than a measured zero: wide_dual_backend_balanced: total_tokens, total_duration_sec, avg_tool_call_count, avg_turn_count all exactly zero; wide_dual_backend_direct_first: total_tokens, total_duration_sec, avg_tool_call_count, avg_turn_count all exactly zero; wide_dual_backend_governed: total_tokens, total_duration_sec, avg_tool_call_count, avg_turn_count all exactly zero"
+      ],
+      "resolution": "ZERO_RESOLUTION",
+      "resolution_findings": [
+        "every arm is at the measurement floor: the best arm's average IoU is 0.004374, below the 0.03 delta the frozen rule requires before superiority is supported, so deleting a competing arm outright would not reach the threshold and no sample size can",
+        "3 arms carry 3 distinct candidate digests and 1 evaluator-output digest; every paired difference is zero by construction and no paired statistic over them can distinguish the arms",
+        "the paired interval is zero-width because all 399 pairs tied (0 wins, 0 losses); a zero-width interval over identical differences is produced at any sample size and is not equivalence evidence"
+      ],
+      "sampled_family_published": [
+        "avg_max_iou_at_1",
+        "avg_max_iou_at_16",
+        "avg_max_iou_at_2",
+        "avg_max_iou_at_4",
+        "avg_max_iou_at_8"
+      ]
+    }
+  },
+  "control": {
+    "absent_runtime_totals": [],
+    "arms": 2,
+    "distinct_candidate_digests": 2,
+    "distinct_evaluator_digests": 2,
+    "floor": {
+      "arm_scores": {
+        "arm_a": 0.31,
+        "arm_b": 0.27
+      },
+      "at_floor": false,
+      "best_arm_avg_iou": 0.31,
+      "checked": true,
+      "required_avg_iou_delta": 0.03
+    },
+    "non_monotone_at_k": [],
+    "paired": {
+      "ci95_high": 0.061,
+      "ci95_low": 0.006,
+      "losses": 77,
+      "n": 399,
+      "ties": 214,
+      "wins": 108
+    },
+    "reporting_findings": [
+      "the result artifact publishes the unseeded sampled family that score_wide_comparison.py excludes by rule: avg_max_iou_at_1, avg_max_iou_at_2, avg_max_iou_at_4"
+    ],
+    "resolution": "HAS_RESOLUTION",
+    "resolution_findings": [],
+    "sampled_family_published": [
+      "avg_max_iou_at_1",
+      "avg_max_iou_at_2",
+      "avg_max_iou_at_4"
+    ]
+  },
+  "control_passes": true,
+  "date": "2026-08-22",
+  "every_published_campaign_has_zero_resolution": true,
+  "not_licensed": [
+    "any claim that the compared systems are or are not equivalent; this measures the instrument, not the systems",
+    "any claim that either campaign's terminal was wrong; both correctly read CANNOT_CHECK, V3 because provider validity reached 0.716 against a frozen 0.90 -- what is established here is that the paired interval beside those terminals could not have said anything else",
+    "any claim that a repaired campaign would find a difference; resolution is a precondition for measuring one, not evidence of one",
+    "any diagnosis of *why* the arms are at the floor; that the retrieval scores near zero is measured here, the reason it does is not"
+  ],
+  "record": "P2_COMPARISON_RESOLUTION",
+  "schema_version": "orion.p2.comparison-resolution.v1",
+  "what_this_establishes": "Both completed P2 Wide campaigns ran at the measurement floor. Their frozen rule requires an average-IoU delta of 0.03 before superiority is supported, and every arm in both scores about 0.004 -- so the whole measured performance of the best arm is smaller than the difference the campaign exists to detect, and deleting a competing arm outright would not reach the threshold. Everything else follows from that. Both published a paired equivalence interval that no possible outcome could have widened. V1 gave its three arms one candidate digest, so it scored a single system against itself and reported 399 ties; V3 gave its three arms distinct candidates but one evaluator-output digest, so every paired difference was zero by construction. In both, ci95 is [0.0, 0.0] over 399 questions, which reads as the strongest equivalence evidence a bootstrap can give and is instead the signature of an instrument with no resolution. Both also publish the unseeded max_iou_at_k family that the paper's own scorer excludes by rule, and in both that family decreases in k -- which a maximum over the top k cannot do -- and both report every runtime total as exactly zero. The guard is shown to be capable of passing: a control campaign with distinct arms, a mixed paired split, a monotone sampled family and non-zero runtime totals is reported as having resolution.",
+  "zero_resolution_campaigns": [
+    "P2_WIDE_OPENAIRE_MATCHED_RESULT_V1.json",
+    "P2_WIDE_OPENAIRE_MATCHED_RESULT_V3.json"
+  ]
+}

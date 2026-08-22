@@ -39,6 +39,11 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+
+# The exclusion rule lives in orion.programme.content_binding_coverage; this
+# checker and that module must agree on what a bound file is, and when the rule
+# was written out in both places they drifted as soon as LaTeX trees appeared.
+from orion.programme.content_binding_coverage import is_build_artifact as _is_build_artifact
 from typing import Any
 
 SCHEMA_VERSION = "orion.candidate-content-binding.v1"
@@ -101,7 +106,12 @@ FALSIFIERS = {
 #: collects from. Naming a file in reproduction instructions without binding it means
 #: the file can change while the binding still verifies -- the reader runs something
 #: other than what was bound, and nothing says so. The checker caught exactly that.
+#: P6 is the same case, and it arrived the same way. Its `REPRODUCE` prose names
+#: `test_p6_formal_refutation_capacity.py`, the suite that pins the refutation
+#: capacity its two repaired checkers gained; the checker refused the manifest
+#: until the file it tells a reader to run was bound.
 CANDIDATE_SUBJECT: dict[str, tuple[Path, ...]] = {
+    "P6": (Path("tests/unit/candidates/test_p6_formal_refutation_capacity.py"),),
     "P8": (Path("tests/unit/candidates/test_p8_formal_core_primitives.py"),),
 }
 
@@ -290,27 +300,6 @@ def parse_package_declaration(repo_root: Path) -> dict[str, dict[str, str]]:
         roles[section][resolved.as_posix()] = entry.group("role").strip()
     return roles
 
-
-#: Directories and suffixes that are build output, not subject.
-#:
-#: `rglob("*")` was binding `__pycache__/*.pyc`, which cannot work: the filenames
-#: carry the interpreter and plugin versions that produced them
-#: (`..cpython-312-pytest-8.4.2.pyc`), so the bound set differed between a laptop
-#: and CI and the binding failed on machine identity rather than on content. It
-#: also made the binding depend on whether anything had imported the package yet.
-#:
-#: Bytecode is derived from the `.py` files that *are* bound, so excluding it
-#: loses no coverage: change the source and the binding still fails.
-_EXCLUDED_DIR_NAMES = frozenset({"__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache"})
-_EXCLUDED_SUFFIXES = frozenset({".pyc", ".pyo", ".pyd"})
-
-
-def _is_build_artifact(path: Path) -> bool:
-    """True for generated files that no content binding should ever include."""
-
-    if path.suffix in _EXCLUDED_SUFFIXES:
-        return True
-    return any(part in _EXCLUDED_DIR_NAMES for part in path.parts)
 
 
 def bound_paths(repo_root: Path, candidate_id: str) -> list[str]:

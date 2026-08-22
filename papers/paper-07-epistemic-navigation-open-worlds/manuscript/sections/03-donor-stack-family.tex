@@ -1,0 +1,45 @@
+\section{19. The donor stack as a transformation family}
+
+V3's composition support is a \texttt{5 x 5} loop over donor families in which, in the
+committed checker, neither donor appears on the right-hand side of anything and
+both legs are the same loop-invariant expression. Instrumented, that loop
+evaluates \texttt{compose} at \textbf{2 of its 8 possible argument triples}. Under the
+interpretation each family becomes a transformation with its own hand-off
+contracts, and the third argument is computed from the pair rather than typed.
+
+Three frame conditions are stated as axioms rather than folded into an encoding:
+
+\begin{enumerate}
+  \item \textbf{Hand-offs are never contract identities} --- no family's target contract is
+    any family's source contract, its own included.
+  \item \textbf{Distinct families have distinct endpoints.}
+  \item \textbf{The stack is inhabited.}
+\end{enumerate}
+
+\subsection{Theorem V4.4 --- the composition rows, generalised}
+
+A bridged hand-off between two carrying donors composes; an unbridged one
+refuses; a donor composed with itself still needs a bridge registered from its
+own target contract back to its own source contract; and a chain of three donors
+carries exactly when all three legs carry and both interior hand-offs are
+bridged. For a stack of any size.
+
+\subsection{Theorem V4.5 --- the rows the enumeration does not contain}
+
+If either leg fails to carry, the composite does not carry, whatever the other
+leg is and whatever the registry says. These are the six argument triples the
+published loop never evaluates.
+
+\subsection{Theorem V4.6 --- the donor axis indexes something}
+
+Distinct ordered donor pairs present distinct hand-offs, and two pairs whose
+hand-offs the registry decides differently have composites that carry
+differently. On an inhabited carrying stack, both the successes and the refusals
+have witnesses rather than holding vacuously.
+
+Two conditions that looked like frame conditions --- that no identity is a donor,
+and that a composite's hand-off is separated too --- were written as axioms first,
+reported inert, and are now discharged as theorems from the remaining three.
+Their inertness is re-measured rather than remembered: both are added back to the
+axiom set on every run and the theorems that becomes newly provable are reported,
+and the answer has to stay none.

@@ -1,0 +1,29 @@
+\markdownRendererDocumentBegin
+\markdownRendererSectionBegin
+\markdownRendererHeadingOne{Formal problem and why joint allocation can be strictly valuable}\markdownRendererInterblockSeparator
+{}For item \markdownRendererCodeSpan{i}, let:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBeginTight
+\markdownRendererUlItem \markdownRendererCodeSpan{R\markdownRendererUnderscore{}i} be current/raw state;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{c\markdownRendererUnderscore{}i} be resource spent constructing/restructuring state;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{r\markdownRendererUnderscore{}i} be downstream reasoning/search resource;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{B\markdownRendererUnderscore{}i} be the total envelope;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{z\markdownRendererUnderscore{}i} be information available before the protected outcome;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{Y\markdownRendererUnderscore{}i(c\markdownRendererUnderscore{}i,r\markdownRendererUnderscore{}i)} be verified success or quality.\markdownRendererUlItemEnd 
+\markdownRendererUlEndTight \markdownRendererInterblockSeparator
+{}The policy chooses \markdownRendererCodeSpan{(c\markdownRendererUnderscore{}i,r\markdownRendererUnderscore{}i)} using \markdownRendererCodeSpan{z\markdownRendererUnderscore{}i}, subject to the common accounting contract. In the controlled benchmark the budget is scalar and exact: \markdownRendererCodeSpan{c\markdownRendererUnderscore{}i+r\markdownRendererUnderscore{}i<=B}. In a real system the resource is a vector and comparison is Pareto-based unless a cost scalarization is frozen before protected outcomes.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Policy classes}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBeginTight
+\markdownRendererUlItem \markdownRendererCodeSpan{FIXED\markdownRendererUnderscore{}STATE\markdownRendererUnderscore{}FIXED\markdownRendererUnderscore{}COMPUTE}: fixed allocation across items.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{ADAPTIVE\markdownRendererUnderscore{}STATE\markdownRendererUnderscore{}ONLY}: may change state budget but not reasoning budget.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{ADAPTIVE\markdownRendererUnderscore{}REASON\markdownRendererUnderscore{}ONLY}: may change reasoning budget but not state budget.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{JOINT\markdownRendererUnderscore{}STATE\markdownRendererUnderscore{}REASONING}: may choose both under the same total envelope.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{ORACLE\markdownRendererUnderscore{}JOINT}: hindsight ceiling used only diagnostically.\markdownRendererUlItemEnd 
+\markdownRendererUlEndTight \markdownRendererInterblockSeparator
+{}Define\markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{joint\markdownRendererUnderscore{}gain(B) = Q\markdownRendererUnderscore{}joint(B) - max(Q\markdownRendererUnderscore{}state\markdownRendererUnderscore{}only(B), Q\markdownRendererUnderscore{}reason\markdownRendererUnderscore{}only(B))}.\markdownRendererInterblockSeparator
+{}A positive P12 result requires \markdownRendererCodeSpan{joint\markdownRendererUnderscore{}gain>0} under the frozen comparison, not merely superiority to a fixed policy.\markdownRendererInterblockSeparator
+{}Consider a one-unit world containing two prospectively distinguishable regimes. In the access-limited regime success requires spending the unit on state construction; in the reasoning-limited regime success requires spending it on reasoning. A state-only adaptive policy cannot solve the latter and a reasoning-only adaptive policy cannot solve the former. A joint policy that sees the regime signal can spend the same unit at the valuable locus.\markdownRendererInterblockSeparator
+{}This existence argument is elementary and is not the empirical contribution. Its purpose is to identify the condition P12 must test: \markdownRendererStrongEmphasis{heterogeneity in the location of marginal computation value}.
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererDocumentEnd

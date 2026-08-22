@@ -1,0 +1,67 @@
+\section{The bounded model as an instance}
+
+Two derivations connect the general theorems to what V4 published.
+
+\textbf{The lift rule.} Three primitives are stated without reference to the rule:
+a donor certificate establishes only what its own embedding declares; each
+scientific coordinate is a separate obligation rather than a contribution to a
+score; and lifting is conservative, adding no authority the donor did not have.
+The lift rule computed from them reproduces the shipped rule on all \textbf{1,536}
+states of the embedding cube, with both verdicts present (24 admissible, 1,512
+not). It is a derivation and not a restatement: making a scientific coordinate
+compensatory disagrees on 96 states, waiving an embedding's donor requirement on
+9, and dropping conservativity on 72.
+
+\textbf{The revalidation counts.} A certificate over $n$ coordinates is the star
+graph on $n+1$ nodes; damage is a changed set on the coordinate nodes; repair
+removes coordinates from it. Six theorems are discharged under that reading at
+arbitrary $n$, listed in the abstract above. The two published counts ---
+\textbf{155} full restorations and \textbf{1,055} proper-subset failures --- are then
+recomputed by running the shipped propagation implementation over the
+interpreted graph, so they are output of an implementation independently
+verified against the theorems rather than a separate enumeration agreeing with
+them. Independently, the shipped revalidation assertion block accepts the
+derived rule and rejects three weakenings of the non-compensatory primitive.
+
+Two properties of that pair are stated because they are not obvious from the
+numbers.
+
+\emph{The 155 discriminates between almost nothing.} A full repair leaves nothing
+changed, which satisfies any monotone admissibility rule and reopens nothing in
+any dependency graph. Every wrong graph tried returns 155, and so does every
+weakened primitive tried. It is the number of (donor, non-empty damage) pairs.
+The 1,055 is the count that moves: to 655, 255 and 0 under the three primitive
+weakenings.
+
+\emph{And neither count identifies the interpretation.} This is the sharper
+limitation, and it was found by looking for it. Seven dependency graphs were
+tried against the star. Three collapse the failure count to zero --- edges
+reversed, no edges, coordinates chained without reaching the certificate. One
+moves it to 975 --- a single coordinate stops supporting the certificate. But
+three reproduce \textbf{1,055 exactly}: a chain running through the coordinates \emph{into}
+the certificate, the star with extra coordinate-to-coordinate edges, and the
+complete graph. The pair of counts tests whether every coordinate reaches the
+certificate, and nothing beyond that; every graph in that reachability class
+returns the same two numbers.
+
+What separates the star from those three is the proof, not the arithmetic. Each
+of them reopens coordinates as collateral damage --- 245, 100 and 375 instances
+respectively --- and collateral reopening is precisely what
+\emph{undamaged coordinates are never collateral damage} forbids, and precisely what
+is lost when the frame condition forbidding coordinate-to-coordinate support is
+dropped. The shipped implementation is confirmed to reopen nothing but the
+certificate under the star. So the theorems pin the graph and the counts confirm
+its reachability class; a paper that reported the counts alone as evidence for
+the structure would be reporting something the counts cannot see.
+
+\emph{The donor axis is a multiplier, not a dimension.} The donor family enters
+neither the dependency graph nor the changed set. The five families replicate
+the same 31 restorations and 211 failures rather than extending them: 155 and
+1,055 are 31 and 211 counted five times. That is the shape of the original loop,
+reproduced here rather than corrected, and it means the published pair carries
+the information of the smaller pair.
+
+\emph{The revalidation block cannot see conservativity.} Every state it asserts about
+is built with the donor verdict pinned valid, so the derived rule with its donor
+conjunct deleted is accepted unchanged. Its acceptance of the derivation is
+evidence for the non-compensatory primitive only.

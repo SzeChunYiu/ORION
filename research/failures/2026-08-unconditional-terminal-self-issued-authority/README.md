@@ -4,6 +4,12 @@
 terminals (#656) is blocked while the paper's authority artifacts report clean
 runs, perfect contract accuracy and a terminal that reads `CLEAR`.
 
+**Terminal repaired:** 2026-08-21, see *Repair* below. Everything from here to
+that section describes the receipt as observed, before the repair; the quoted
+JSON and source are the pre-repair artifact. The `claim_ceiling` half, the
+transcribed gold and the X4 donor axis are **not** repaired, and the audit still
+blocks on all three.
+
 ## Failure
 
 P8 is the authority paper. Its subject is exactly the move where a system grants
@@ -287,15 +293,45 @@ on the paper itself.
 9. Name the axes that only multiply, and divide the published counts through by
    them before quoting any of them. `donor` is inert over 239,616 sibling pairs,
    so #656's "169/169" is one composition fact and one widening fact.
-10. Compute the terminal. The repair is one line — derive it from the four rates
-    and refuse to emit `CLEAR` below 1.0 — but it is not made here: it changes
-    the emitted receipt, and that receipt is pinned by a committed
-    `result_digest`, asserted by `tests/test_p8_anti_laundering_bench.py` and
-    quoted verbatim in `METHOD_AUTHORITY_MANUSCRIPT_BRIDGE_V1.md` and
-    `research/development/p8-method-authority-v1/PACKET.md`. Changing it means
-    regenerating a frozen artifact and its two citing documents together, which
-    belongs to whoever owns them. The diagnosis and the instrument are done here,
-    and the audit blocks until the terminal is derived.
+10. Compute the terminal. Done — see *Repair*. It changes the emitted receipt,
+    which is pinned by a committed `result_digest`, asserted by
+    `tests/test_p8_anti_laundering_bench.py` and cited by
+    `METHOD_AUTHORITY_MANUSCRIPT_BRIDGE_V1.md` and
+    `research/development/p8-method-authority-v1/PACKET.md`, so the artifact and
+    those documents were regenerated together.
+
+## Repair
+
+2026-08-21. `run_anti_laundering_bench.py` now scores each of its four rates as
+an `orion.programme.guard_exercise.GuardExercise` — a denominator stated in a
+sentence, and the cases that failed against it — and the terminal is
+`worst_outcome` over the four assessments:
+
+| input to the shipped emitter | contract | block rate | clean | revocation | `terminal` |
+| --- | --- | --- | --- | --- | --- |
+| as shipped | 1.0000 | 1.0000 | 1.0000 | 1.0000 | `…_CLEAR` |
+| every expectation in the frozen panel inverted | 0.0000 | 0.0000 | 0.0000 | 0.0000 | `…_VIOLATED` |
+| panel untouched, authority table launders everything | 0.5333 | 0.0000 | 1.0000 | 1.0000 | `…_VIOLATED` |
+| panel untouched, no defeater propagates | 0.7333 | 1.0000 | 1.0000 | 0.0000 | `…_VIOLATED` |
+| a panel with no `BLOCKED` coercion case in it | 1.0000 | `null` | 1.0000 | 1.0000 | `…_CANNOT_CHECK` |
+
+The terminal is three-valued. An empty slice emits its rate as `null` and its
+assessment as `CANNOT_CHECK/NEVER_EXERCISED`, never as 1.0 — and the terminal
+reads the assessments, never the rates, because `not None` is `True` and a
+two-valued reader would have scored an absent measurement as clean.
+
+The published verdict does not change: on the shipped panel all four rates
+really are 1.0, all four guards are exercised, and `CLEAR` is now earned rather
+than asserted. What changed is the receipt: `result_digest` moved from
+`sha256:45f359f5…` to `sha256:3103fcd0…`, `terminal_basis` was added (per rate:
+guard id, opportunity definition, opportunities, violations, rate, outcome,
+reason), and `claim_ceiling` was renamed to `declared_claim_ceiling_from_input`
+with a `declared_claim_ceiling_note` saying it is the input's sentence. That
+ceiling is still the input's — `measure_declared_bound` still returns `FAIL` for
+it, and `python -m orion.study.p8.terminal_audit` still exits 3 on the ceiling,
+the transcribed gold and the inert donor axis. Only the responsiveness leg moved,
+from `FAIL` (three live withholding cases, three ignored) to `PASS` (three live,
+none ignored, two distinct terminals over the register).
 
 ## General lesson candidate
 
@@ -324,8 +360,11 @@ false — and this one a **verdict with no predicate behind it at all**.
 
 ## Residuals and reopen coordinates
 
-- The terminal repair itself is not made here (see Correct response 10). The
-  audit blocks on it, which is the honest state.
+- The terminal repair is made (see *Repair*); the responsiveness leg of the audit
+  now passes and the other three legs still block, which is the honest state.
+- The ceiling is renamed, not derived. `declared_claim_ceiling_from_input` says
+  where the sentence came from, which is all a rename can do; a bound the run
+  establishes would be different work.
 - `P8_P9_P10_ANTI_LAUNDERING_SUMMARY_V1.json` is *not* wrong as shipped: with
   the shipped tables the four rates really are 1.0. What is denied is that the
   terminal reports it.
@@ -337,3 +376,7 @@ false — and this one a **verdict with no predicate behind it at all**.
   here; both should be, by the same instrument.
 - Reopen if `LEGAL`, `DEFEATER_COORDS`, the frozen panel, or the bench's `run()`
   changes: the pinned `result_digest` and `canonical_rows_sha256` will red first.
+- The bench's `--check` compares bytes, and the committed receipt is
+  `json.dumps(indent=2, sort_keys=True)` with its `rows` re-compacted by hand, so
+  `--check` reds on formatting alone. Pre-existing, shared with the P6 and P7
+  sibling benches, and untouched by this repair.

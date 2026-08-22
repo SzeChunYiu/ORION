@@ -23,6 +23,11 @@ plots = ["matplotlib>=3.10"]
 # competence.py, which imports it. Without this the guard degrades to a skip, and a
 # guard that never runs is not a guard.
 candidates = ["numpy>=2", "scikit-learn>=1.5"]
+# P8's authority calculus is discharged by an SMT solver rather than asserted on
+# an authored enumeration. Without z3 the proofs do not run, and a suite that
+# silently skips them reports "no theorem failed" for "no theorem was checked" --
+# so the tests importorskip and say why, and this extra is how CI gets them.
+proofs = ["z3-solver>=4.13"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

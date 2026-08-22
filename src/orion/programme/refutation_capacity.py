@@ -7,9 +7,9 @@ checker enumerated a space and asserted something true of its own definitions.
 The case count cannot tell them apart, so a check whose condition is
 unsatisfiable reads exactly like a check that survived pressure.
 
-P6 is the live example, measured both ways. ``research/claim_expansion/p6/
+P6 is the worked example, measured both ways. ``research/claim_expansion/p6/
 check_p6_x_finite_models.py`` is the authority the superiority ledger names for
-P6-U-T1, and it emits ``"terminal": "PASS"`` from
+P6-U-T1, and it emitted ``"terminal": "PASS"`` from
 
 .. code-block:: python
 
@@ -23,12 +23,15 @@ P6-U-T1, and it emits ``"terminal": "PASS"`` from
 
 Two definitions, one expression, written twice. Over the checker's complete
 Boolean state space --- 512 states per embedding, 1,536 in all --- the condition
-is satisfied 0 times because it is unsatisfiable: with the two sides being one
+was satisfied 0 times because it was unsatisfiable: with the two sides being one
 rule, no theory of scientific admissibility makes them differ.
-``t4_violations == 0`` is not a theorem about donor products; it is ``x != x``
-counted 1,536 times. ``t1_violations`` is the same shape, and ``t2`` and ``t5``
-append their 96s unconditionally, so four of the five quantities that terminal
-reads cannot be non-zero for any wrong theory.
+``t4_violations == 0`` was not a theorem about donor products; it was ``x != x``
+counted 1,536 times. ``t1_violations`` was the same shape, and ``t2`` and ``t5``
+appended their 96s unconditionally, so four of the five quantities that terminal
+read could not be non-zero for any wrong theory. (P6's checkers were repaired on
+2026-08-22 --- see :mod:`orion.study.p6` --- by giving the model the primitives
+those claims needed. The worked example is kept in the past tense because it is
+what this module exists to catch, not because it is still there.)
 
 The failure class is recorded under
 ``research/failures/2026-08-unfalsifiable-check-zero-refutation-capacity/``.
@@ -43,10 +46,12 @@ check, or does one walk through the whole artifact? Both return
 :data:`~orion.programme.records.Outcome.CANNOT_CHECK` when there was nothing to
 reject, which by ``Outcome.blocks`` stops a promotion exactly as ``FAIL`` does.
 
-The two levels are not redundant. P6's certificate-lifting checker has three
-blocks with real refutation capacity and two with none, and separately has one
-wrong theory --- "scientific standing is preserved with no valid donor
-certificate underneath it" --- that survives all five.
+The two levels are not redundant, and P6 needed both. Its certificate-lifting
+checker had three blocks with real refutation capacity and two with none, which
+is the per-check failure; separately it had one wrong theory --- "scientific
+standing is preserved with no valid donor certificate underneath it" --- that
+survived all five, which is the panel failure and which no per-check verdict
+could see.
 
 Two constraints on the register carry most of the weight.
 
