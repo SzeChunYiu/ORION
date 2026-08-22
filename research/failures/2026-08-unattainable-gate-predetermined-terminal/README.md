@@ -324,10 +324,57 @@ false, `SUPPLIED_PREMISE_UNBUILT_DECISION` a decision nobody made,
 `UNCONDITIONAL_TERMINAL_SELF_ISSUED_AUTHORITY` a verdict with no predicate — and
 this one a **threshold no admissible run could reach**.
 
+## Discharged since
+
+Two of the residuals below were closed on 2026-08-22 in the paper lane, by the
+instrument this record specifies rather than by prose.
+
+**The papers/ statement is written** (Correct response 10). P14A's terminal,
+seed, thresholds and receipt are retained verbatim and nothing is relabelled
+positive; what the manuscript, the chapter, the README, the readiness report and
+the claim ledger now say is that its evidential disposition is `CANNOT_CHECK` —
+a measurement the frozen protocol could not take, not evidence against the
+governance contract. `papers/paper-14-orion-rse/P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json`
+carries the margins, the supremum, the terminal reach and the responsiveness
+measurement beside each other, produced by `verify_p14_gate_attainability_v1.py`
+over instruments that reproduce the committed digest first.
+
+**P14C is audited** (residual 5). `orion.study.p14.specification_conformance`
+loads the shipped P14C runner and frozen table, reproduces
+`74032348…f01a63`, and asks the reach question over the coordinate P14C actually
+leaves free — which of the seven registered implementations sits in the graded
+slot. Exactly one clears all eight gates and six fail at least one, so its
+conjunction prints two terminals where P14A's printed one. Its
+`accuracy_advantage_ge_0_10` fails for the donor, interaction and
+negative-history ablations, and its `strongest_baseline_false_promotion_ge_0_10`
+holds by construction — a difficulty *precondition*, which
+`gate_attainability.GateRole` now distinguishes from a hypothesis, because a
+certificate that always holds is a benchmark built to be measurable while a claim
+that always holds has decided itself. One residual is reported rather than
+absorbed: `full_discovery_recall_one` is satisfied by all seven subjects, since
+an ablation removes a check and a policy reading fewer facts promotes more rather
+than fewer, so no registered implementation abstains.
+
+**And the question P14A could not measure is answered at P14A's own bars.** P14C
+fixes the composition P14A sampled: four cases per semantic stratum makes the
+`RETAIN_NEGATIVE` share exactly `4/28 = 0.142857`, against P14A's ceiling of
+`0.042326` for the same quantity. Registered verbatim on that benchmark, `0.05`
+lands inside `[0.142857, 0.142857]` and `0.08` strictly inside `[0.0, 0.142857]`,
+and both are met at `0.142857`. No threshold was moved; the instrument was.
+
+The pre-run half of Correct response 1 is now buildable without a run:
+`gate_attainability.assess_threshold_support` takes a frozen threshold and the
+protocol's own bound on the statistic it reads and returns the same three
+reasons, and `require_supported_thresholds` refuses a battery with an
+unattainable bar or with no discriminating hypothesis left in it. Pointed at
+P14A it returns `-0.007674` and `-0.037674` from the declared support alone —
+the check that would have cost a sentence at freeze time.
+
 ## Residuals and reopen coordinates
 
-- P14A is not repaired (see Correct response 10). The audit blocks, which is the
-  honest state, and `papers/paper-14-orion-rse/` is untouched by this work.
+- P14A's *result* is still not repaired, and must not be. The audit blocks, which
+  is the honest state; the paper lane changed the reading and the successor took
+  the measurement, and neither touched the protected artifact.
 - The shipped receipt is not *wrong*: `MULTI_REVIEW` really does false-promote
   `0.018375` of cases and the full contract really does not. What is denied is
   that comparing that number to `0.05` and `0.08` measured anything.
@@ -341,9 +388,11 @@ this one a **threshold no admissible run could reach**.
 - The same nesting holds in P14B and P14C: both compare arms that are
   coarsenings of one adjudication rule, so their gaps are prevalences of the
   classes the coarsening drops. P14B is already labelled non-authoritative for
-  the circularity; P14C separates the specification and is not audited here, and
-  it should be — by this instrument, before its numbers are read as a superiority
-  result.
+  the circularity. P14C is now audited by this instrument (see **Discharged
+  since**), and the nesting is why its separation is exactly the
+  `RETAIN_NEGATIVE` stratum's share of the table; what the audit adds is that the
+  share is *fixed by the freeze* rather than sampled, so the thresholds read
+  against it are inside reach instead of above it.
 - `each_ablation_worse` is the only P14A gate with a live predicate on both
   sides, and its pass probability is `1 − 3e-32`. It is reported as
   `THRESHOLD_UNCONDITIONAL` over the registered worlds, which is accurate but is

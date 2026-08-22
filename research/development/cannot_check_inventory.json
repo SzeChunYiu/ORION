@@ -4287,11 +4287,11 @@
     },
     {
       "category": "UNCLASSIFIED",
-      "context": "GateReach.outcome",
+      "context": "_reach_outcome",
       "file": "programme/gate_attainability.py",
       "has_reason": false,
       "kind": "RETURN",
-      "lineno": 312,
+      "lineno": 287,
       "missing_obligation": null,
       "reasons": [],
       "role": "EMITS",
@@ -4303,7 +4303,7 @@
       "file": "programme/gate_attainability.py",
       "has_reason": false,
       "kind": "RETURN",
-      "lineno": 445,
+      "lineno": 769,
       "missing_obligation": "self.world_ids must be present at this guard",
       "reasons": [],
       "role": "EMITS",
@@ -4548,7 +4548,7 @@
       "file": "programme/panel_resolution.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 493,
+      "lineno": 516,
       "missing_obligation": null,
       "reasons": [
         "decided_on",
@@ -7263,7 +7263,7 @@
       "file": "study/p3_public_reference_build.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 354,
+      "lineno": 456,
       "missing_obligation": null,
       "reasons": [
         "schema_version",
@@ -7288,7 +7288,7 @@
       "file": "study/p3_public_reference_build_v11.py",
       "has_reason": true,
       "kind": "RETURN",
-      "lineno": 306,
+      "lineno": 342,
       "missing_obligation": null,
       "reasons": [
         "schema_version",
@@ -9225,7 +9225,7 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "58b50228d1a8a54345e44a57d71157692ade236b",
+  "subject_commit": "9409854e865d03d545872144a649b99eaf9a2fda",
   "total_sites": 632,
   "unclassified_note": "UNCLASSIFIED means the site carried no extractable reason, not that it was examined and found to be none of the listed categories. Driving this count down is the work; reclassifying it to OTHER is not.",
   "with_derived_obligation": 108,
