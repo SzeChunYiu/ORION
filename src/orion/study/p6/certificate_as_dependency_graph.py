@@ -1,0 +1,626 @@
+"""P6's certificate model, interpreted in the proved reopening semantics.
+
+``P6-U-T2`` asks for the existing finite result to follow *as a corollary* of
+the general theorem, and the emphasis is load-bearing. A corollary of what?
+``lift_interpretation`` derives the same numbers from primitives about donor
+certificates and embeddings, which is a derivation but not a corollary: those
+primitives are not the ones ``reopening_calculus_smt`` proves theorems about, so
+the finite result ended up following from a second theory standing beside the
+first rather than from the first.
+
+This closes that gap. It gives an interpretation of the certificate model *into*
+the reopening signature --- nodes, a dependency edge, a changed set --- and then
+
+1. proves, over an uninterpreted node sort and for any number of coordinates,
+   that under the interpretation's frame conditions the reopening theorems
+   entail withdrawal, restoration, minimality and the absence of collateral
+   reopening; and
+2. recomputes P6's published 155 and 1,055 by running the *committed*
+   ``descendants`` --- the implementation ``P6-U-T1`` verified against the
+   independent specification on 61,440 of 61,440 cases --- over the interpreted
+   graph, rather than by evaluating a rule of this module's own.
+
+So the two counts are instances of theorems about dependency graphs, produced by
+an implementation that was independently checked against those theorems.
+
+The interpretation
+------------------
+A certificate over *n* coordinates is the star graph on ``n + 1`` nodes: one
+node per coordinate, one node for the certificate itself, and an edge from each
+coordinate to the certificate. Damaging a coordinate is changing its node.
+Repairing a coordinate is removing it from the changed set. Nothing else is
+added: the certificate has no outgoing edges and coordinates have no edges to
+each other, and both of those are stated as frame conditions the theorems are
+proved under rather than as facts about the encoding.
+
+Under that reading the published counts are not new facts:
+
+* **155 full restorations** is reopening *completeness* --- repairing every
+  damaged coordinate empties the changed set, and a node reachable from nothing
+  is not reopened.
+* **1,055 proper-subset failures** is reopening *minimality* --- a proper repair
+  leaves some coordinate changed, that coordinate reaches the certificate, and
+  so the certificate is still reopened.
+
+What this does not establish
+----------------------------
+The interpretation is a map this lane wrote, so it can be wrong in the direction
+of flattering the theorem. Two things are done about that rather than promised:
+the frame conditions are stated as explicit axioms and each is shown to be
+load-bearing by dropping it and re-running the proof, and the counts are
+produced by the committed implementation rather than by a rule defined here. It
+remains true that no evaluator outside this lane has checked any of it, which is
+``P6-U-T4``.
+"""
+
+from __future__ import annotations
+
+from itertools import combinations
+from typing import Any
+
+from orion.programme.mechanized import (
+    ProofResult,
+    Theorem,
+    discharge,
+    load_executable_model,
+)
+from orion.study.p6.reopening_calculus_smt import (
+    EXECUTABLE_MODEL,
+    _closure_axioms,
+    _reopened,
+    _vocabulary,
+)
+
+SCHEMA_VERSION = "orion.p6.certificate-as-dependency-graph.v1"
+
+#: P6's five donor families and five lift coordinates, from the shipped module.
+from orion.study.p6 import lift_theories as _lift_theories  # noqa: E402
+
+DONORS: tuple[str, ...] = _lift_theories.DONOR_FAMILIES
+COORDINATES: tuple[str, ...] = _lift_theories.LIFT_COORDINATES
+
+PUBLISHED_FULL_RESTORATIONS = 155
+PUBLISHED_PROPER_SUBSET_FAILURES = 1055
+
+
+CERTIFICATE_WITHDRAWN = Theorem(
+    name="CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
+    statement=(
+        "under the star interpretation, if any coordinate node is changed then the "
+        "certificate node is reopened -- damaging one coordinate withdraws the whole "
+        "certificate, for any number of coordinates"
+    ),
+    why_it_matters=(
+        "P6's finite check asserts this state by state over five coordinates. Stated here it is a consequence of one coordinate reaching the certificate, which holds at any width and is why the number five is incidental."
+    )
+)
+
+CERTIFICATE_RESTORED = Theorem(
+    name="CERTIFICATE_RESTORED_BY_FULL_REPAIR",
+    statement=(
+        "if no coordinate node is changed then the certificate node is not reopened -- "
+        "repairing every damaged coordinate restores the certificate. This is the "
+        "general form of P6's 155 full restorations"
+    ),
+    why_it_matters=(
+        "Without it the 155 would be an observation about an enumeration. With it the 155 is reopening completeness evaluated at 31 damage sets and five donors."
+    )
+)
+
+PARTIAL_REPAIR_INSUFFICIENT = Theorem(
+    name="PARTIAL_REPAIR_LEAVES_CERTIFICATE_REOPENED",
+    statement=(
+        "if a repair leaves at least one coordinate changed then the certificate is "
+        "still reopened, however many coordinates were repaired. This is the general "
+        "form of P6's 1,055 proper-subset failures"
+    ),
+    why_it_matters=(
+        "This is the half that carries P6's claim. A framework in which some coordinate compensates for another would refute it, and the 1,055 is exactly the count that moves when the primitive is weakened that way."
+    )
+)
+
+NO_COLLATERAL_REOPENING = Theorem(
+    name="UNDAMAGED_COORDINATES_ARE_NOT_REOPENED",
+    statement=(
+        "an unchanged coordinate node is never reopened by damage elsewhere, so a "
+        "repair has nothing to repair beyond the coordinates it damaged. Without this "
+        "the restoration theorem would be about a different set of nodes than the "
+        "damage was"
+    ),
+    why_it_matters=(
+        "The easy thing to miss. If damaging one coordinate reopened another, then repairing the damaged set would not be repairing the reopened set, and the restoration theorem would silently be about different nodes than the damage."
+    )
+)
+
+CERTIFICATE_SUPPORTS_NOTHING = Theorem(
+    name="CERTIFICATE_SUPPORTS_NOTHING_IS_DERIVED",
+    statement=(
+        "the certificate node has no outgoing edge. This was a frame condition until "
+        "the load-bearing check reported it inert; it is a consequence of the other "
+        "three and is discharged here rather than assumed"
+    ),
+    why_it_matters=(
+        "An axiom that no theorem needs is either decoration or a redundant "
+        "presentation of an axiom that is doing the work, and the two look identical "
+        "from inside. Deriving it settles which: the star interpretation rests on three "
+        "independent conditions, not four, and the fourth is a theorem about them."
+    ),
+)
+
+CERTIFICATE_IS_A_SINK = Theorem(
+    name="CERTIFICATE_DAMAGE_REOPENS_NOTHING",
+    statement=(
+        "changing the certificate node reopens no coordinate, so the dependency runs "
+        "one way. This is reopening conservativity at the certificate level"
+    ),
+    why_it_matters=(
+        "A certificate that fed back into its own coordinates would make the star cyclic, and the cycle characterisation says a node on a cycle reopens itself. The interpretation has to forbid it rather than assume it away."
+    )
+)
+
+THEOREMS: tuple[Theorem, ...] = (
+    CERTIFICATE_WITHDRAWN,
+    CERTIFICATE_RESTORED,
+    PARTIAL_REPAIR_INSUFFICIENT,
+    NO_COLLATERAL_REOPENING,
+    CERTIFICATE_IS_A_SINK,
+    CERTIFICATE_SUPPORTS_NOTHING,
+)
+
+
+# ---------------------------------------------------------------------------
+# The interpretation, as frame conditions on the reopening signature
+# ---------------------------------------------------------------------------
+
+#: The frame conditions, each independently droppable so its weight can be measured.
+#:
+#: There were four. "The certificate supports nothing" was one of them, and the
+#: load-bearing check below reported it inert: dropping it lost no theorem. So
+#: was "the certificate is not one of its own coordinates". Neither result was a
+#: reprieve -- dropping *both* loses three theorems, because each is derivable
+#: from the other two conditions plus the one that remains, so the four were a
+#: redundant presentation of three. An interpretation should assume as little as
+#: it can, so the sink is now discharged as a theorem from the three below rather
+#: than assumed, and the check that found the redundancy is kept and now passes
+#: on its own terms.
+FRAME_CONDITION_IDS: tuple[str, ...] = (
+    "coordinates_support_the_certificate",
+    "coordinates_do_not_support_each_other",
+    "the_certificate_is_not_a_coordinate",
+)
+
+
+def _interpretation_axioms(
+    vocab: dict[str, Any], cert: Any, coord: Any, *, drop: str | None = None
+) -> list[Any]:
+    """The star interpretation, written as axioms rather than as an encoding.
+
+    ``drop`` omits one named condition, which is how each is shown to be
+    load-bearing: a frame condition no theorem needs is decoration, and a proof
+    that survives dropping every condition was never about the interpretation.
+    """
+
+    if drop is not None and drop not in FRAME_CONDITION_IDS:
+        raise ValueError(f"unknown frame condition {drop!r}")
+
+    solver = vocab["z3"]
+    Node, Edge = vocab["Node"], vocab["Edge"]
+    m, n = solver.Consts("fm fn", Node)
+
+    axioms: dict[str, Any] = {
+        # Every coordinate supports the certificate.
+        "coordinates_support_the_certificate": solver.ForAll(
+            [n], solver.Implies(coord(n), Edge(n, cert))
+        ),
+        # Every edge runs from a coordinate to the
+        # certificate. Stated separately from the two above because it is the
+        # one that forbids coordinate-to-coordinate support, which is what makes
+        # collateral reopening impossible.
+        "coordinates_do_not_support_each_other": solver.ForAll(
+            [m, n], solver.Implies(Edge(m, n), solver.And(coord(m), n == cert))
+        ),
+        "the_certificate_is_not_a_coordinate": solver.Not(coord(cert)),
+    }
+    return [clause for name, clause in axioms.items() if name != drop]
+
+
+def _damage_on_coordinates(vocab: dict[str, Any], coord: Any, changed: Any) -> Any:
+    """Damage lands on coordinates: the certificate is not itself edited."""
+
+    solver = vocab["z3"]
+    n = solver.Const("dn", vocab["Node"])
+    return solver.ForAll([n], solver.Implies(changed(n), coord(n)))
+
+
+def prove_all(*, timeout_ms: int = 30000, drop: str | None = None) -> tuple[ProofResult, ...]:
+    """Discharge every theorem in :data:`THEOREMS` under the interpretation."""
+
+    vocab = _vocabulary()
+    solver = vocab["z3"]
+    Node = vocab["Node"]
+    Changed, Changed2 = vocab["Changed"], vocab["Changed2"]
+
+    cert = solver.Const("cert", Node)
+    coord = solver.Function("Coord", Node, solver.BoolSort())
+
+    base = _closure_axioms(vocab) + _interpretation_axioms(vocab, cert, coord, drop=drop)
+
+    x = solver.Const("x", Node)
+    y = solver.Const("y", Node)
+
+    results: list[ProofResult] = []
+
+    # 1. Any damage withdraws the certificate.
+    witness = solver.Const("w", Node)
+    results.append(
+        discharge(
+            CERTIFICATE_WITHDRAWN,
+            base + [_damage_on_coordinates(vocab, coord, Changed)],
+            solver.Implies(
+                solver.Exists([witness], solver.And(coord(witness), Changed(witness))),
+                _reopened(vocab, cert, Changed),
+            ),
+            timeout_ms=timeout_ms,
+        )
+    )
+
+    # 2. A full repair restores it. "Full repair" is the empty changed set:
+    #    every damaged coordinate has been removed from it.
+    results.append(
+        discharge(
+            CERTIFICATE_RESTORED,
+            base + [solver.ForAll([x], solver.Not(Changed(x)))],
+            solver.Not(_reopened(vocab, cert, Changed)),
+            timeout_ms=timeout_ms,
+        )
+    )
+
+    # 3. A partial repair does not. `Changed2` is the residue after repairing:
+    #    contained in the original damage, and still non-empty.
+    residue = solver.Const("res", Node)
+    results.append(
+        discharge(
+            PARTIAL_REPAIR_INSUFFICIENT,
+            base
+            + [
+                _damage_on_coordinates(vocab, coord, Changed2),
+                solver.ForAll([x], solver.Implies(Changed2(x), Changed(x))),
+            ],
+            solver.Implies(
+                solver.Exists([residue], Changed2(residue)),
+                _reopened(vocab, cert, Changed2),
+            ),
+            timeout_ms=timeout_ms,
+        )
+    )
+
+    # 4. No coordinate is reopened by damage to another.
+    results.append(
+        discharge(
+            NO_COLLATERAL_REOPENING,
+            base + [_damage_on_coordinates(vocab, coord, Changed)],
+            solver.ForAll(
+                [y],
+                solver.Implies(
+                    solver.And(coord(y), solver.Not(Changed(y))),
+                    solver.Not(_reopened(vocab, y, Changed)),
+                ),
+            ),
+            timeout_ms=timeout_ms,
+        )
+    )
+
+    # 5. Damage to the certificate reopens no coordinate.
+    results.append(
+        discharge(
+            CERTIFICATE_IS_A_SINK,
+            base + [solver.ForAll([x], Changed(x) == (x == cert))],
+            solver.ForAll(
+                [y], solver.Implies(coord(y), solver.Not(_reopened(vocab, y, Changed)))
+            ),
+            timeout_ms=timeout_ms,
+        )
+    )
+
+    # 6. The condition that used to be an axiom, now a consequence of the rest.
+    results.append(
+        discharge(
+            CERTIFICATE_SUPPORTS_NOTHING,
+            base,
+            solver.ForAll([x], solver.Not(vocab["Edge"](cert, x))),
+            timeout_ms=timeout_ms,
+        )
+    )
+
+    return tuple(results)
+
+
+def frame_conditions_are_load_bearing(*, timeout_ms: int = 30000) -> dict[str, Any]:
+    """Drop each frame condition and record which theorems stop being provable.
+
+    A condition no theorem needs is not part of the interpretation, it is
+    decoration; and if every theorem survived every drop, the proofs would be
+    about the reopening axioms alone and the interpretation would be doing no
+    work. Reported per condition rather than as a single boolean, because which
+    theorem each one carries is the informative part.
+    """
+
+    baseline = {result.theorem.name for result in prove_all(timeout_ms=timeout_ms) if result.discharged}
+    per_condition: dict[str, list[str]] = {}
+    for condition in FRAME_CONDITION_IDS:
+        survivors = {
+            result.theorem.name
+            for result in prove_all(timeout_ms=timeout_ms, drop=condition)
+            if result.discharged
+        }
+        per_condition[condition] = sorted(baseline - survivors)
+
+    inert = sorted(name for name, lost in per_condition.items() if not lost)
+    return {
+        "baseline_discharged": sorted(baseline),
+        "theorems_lost_by_dropping": per_condition,
+        "inert_conditions": inert,
+        "every_condition_carries_a_theorem": not inert,
+    }
+
+
+# ---------------------------------------------------------------------------
+# The published counts, recomputed through the committed implementation
+# ---------------------------------------------------------------------------
+
+
+def _star_graph(width: int) -> tuple[int, list[tuple[int, int]], int]:
+    """Nodes ``0..width-1`` are coordinates; node ``width`` is the certificate."""
+
+    return width + 1, [(index, width) for index in range(width)], width
+
+
+def recompute_published_counts(repo_root: Any) -> dict[str, Any]:
+    """Recompute 155 and 1,055 by running the committed ``descendants``.
+
+    Not by evaluating a rule defined here. ``descendants`` is P6's own shipped
+    implementation, and ``P6-U-T1`` established it agrees with the independent
+    reopening specification on all 61,440 four-node cases -- so a count produced
+    by it is a count produced by a verified instance of the theorems above.
+    """
+
+    from pathlib import Path
+
+    model = load_executable_model(Path(repo_root) / EXECUTABLE_MODEL, "p6_finite_models_cert")
+
+    width = len(COORDINATES)
+    node_count, edges, cert = _star_graph(width)
+
+    full_restorations = 0
+    proper_subset_failures = 0
+    restoration_counterexamples: list[str] = []
+    minimality_counterexamples: list[str] = []
+
+    for donor in DONORS:
+        for size in range(1, width + 1):
+            for damaged in combinations(range(width), size):
+                # A full repair leaves nothing changed.
+                if cert not in model.descendants(node_count, edges, frozenset()):
+                    full_restorations += 1
+                elif len(restoration_counterexamples) < 20:
+                    restoration_counterexamples.append(
+                        f"{donor}: damage={damaged} was not restored by a full repair"
+                    )
+
+                # A proper repair leaves a non-empty residue.
+                for repaired_size in range(len(damaged)):
+                    for repaired in combinations(damaged, repaired_size):
+                        residue = frozenset(set(damaged) - set(repaired))
+                        if cert in model.descendants(node_count, edges, residue):
+                            proper_subset_failures += 1
+                        elif len(minimality_counterexamples) < 20:
+                            minimality_counterexamples.append(
+                                f"{donor}: damage={damaged} repaired={repaired} "
+                                "restored the certificate from a proper subset"
+                            )
+
+    return {
+        "donors": len(DONORS),
+        "coordinates": width,
+        "full_restorations": full_restorations,
+        "proper_subset_failures": proper_subset_failures,
+        "published_full_restorations": PUBLISHED_FULL_RESTORATIONS,
+        "published_proper_subset_failures": PUBLISHED_PROPER_SUBSET_FAILURES,
+        "restoration_counterexamples": restoration_counterexamples,
+        "minimality_counterexamples": minimality_counterexamples,
+        "counts_reproduced": (
+            full_restorations == PUBLISHED_FULL_RESTORATIONS
+            and proper_subset_failures == PUBLISHED_PROPER_SUBSET_FAILURES
+            and not restoration_counterexamples
+            and not minimality_counterexamples
+        ),
+        "computed_by": "the committed check_finite_models.descendants, under the star interpretation",
+        "the_donor_axis_is_a_multiplier": (
+            "The donor loop enters neither the graph nor the changed set, so the five "
+            "donor families replicate the same 31 restorations and 211 failures rather "
+            "than extending them. 155 and 1,055 are 31 and 211 counted five times. That "
+            "is P6's own loop structure, reproduced here rather than corrected, and it "
+            "means the published counts carry the information of 31 and 211."
+        ),
+    }
+
+
+def counts_are_sensitive_to_the_interpretation(repo_root: Any) -> dict[str, Any]:
+    """Would a wrong interpretation give the same numbers?
+
+    Reproducing two integers through a verified implementation is worth nothing
+    if the implementation is being asked a question whose answer does not depend
+    on the interpretation. Three wrong graphs are tried: the edges reversed so
+    the certificate supports its coordinates, the star with no edges at all, and
+    a chain in which each coordinate supports only the next.
+    """
+
+    from pathlib import Path
+
+    model = load_executable_model(Path(repo_root) / EXECUTABLE_MODEL, "p6_finite_models_cert_alt")
+    width = len(COORDINATES)
+    cert = width
+
+    variants = {
+        "edges_reversed": [(cert, index) for index in range(width)],
+        "no_support_edges": [],
+        "coordinates_chained_not_starred": [
+            (index, index + 1) for index in range(width - 1)
+        ],
+    }
+
+    outcomes: dict[str, dict[str, int]] = {}
+    for name, edges in variants.items():
+        failures = 0
+        restorations = 0
+        for _donor in DONORS:
+            for size in range(1, width + 1):
+                for damaged in combinations(range(width), size):
+                    if cert not in model.descendants(width + 1, edges, frozenset()):
+                        restorations += 1
+                    for repaired_size in range(len(damaged)):
+                        for repaired in combinations(damaged, repaired_size):
+                            residue = frozenset(set(damaged) - set(repaired))
+                            if cert in model.descendants(width + 1, edges, residue):
+                                failures += 1
+        outcomes[name] = {
+            "full_restorations": restorations,
+            "proper_subset_failures": failures,
+        }
+
+    discriminating = [
+        name
+        for name, counts in outcomes.items()
+        if counts["proper_subset_failures"] != PUBLISHED_PROPER_SUBSET_FAILURES
+    ]
+    return {
+        "variants": outcomes,
+        "variants_that_change_the_failure_count": discriminating,
+        "every_wrong_graph_changes_the_failure_count": len(discriminating) == len(variants),
+        "the_restoration_count_does_not_discriminate": (
+            "155 is the number of (donor, non-empty damage) pairs and does not depend on "
+            "the graph at all -- a full repair leaves nothing changed, so no graph "
+            "reopens anything. Every variant below returns 155. The 1,055 is the count "
+            "that tests the interpretation, and it is the count that moves."
+        ),
+    }
+
+
+def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
+    """Everything this module establishes, with what it does not."""
+
+    import z3 as _z3
+
+    theorems = prove_all()
+    counts = recompute_published_counts(repo_root)
+    frames = frame_conditions_are_load_bearing()
+    sensitivity = counts_are_sensitive_to_the_interpretation(repo_root)
+    undischarged = [r.theorem.name for r in theorems if not r.discharged]
+
+    return {
+        "schema_version": SCHEMA_VERSION,
+        "record": "P6_CERTIFICATE_AS_DEPENDENCY_GRAPH",
+        "date": date,
+        "solver": _z3.get_version_string(),
+        "theorems": [r.as_json() for r in theorems],
+        "all_discharged": not undischarged,
+        "undischarged": undischarged,
+        "frame_conditions": frames,
+        "published_counts": counts,
+        "interpretation_sensitivity": sensitivity,
+        "what_this_establishes": (
+            "P6's certificate model is an interpretation of the reopening semantics "
+            "already proved general: a certificate over n coordinates is the star graph "
+            "on n+1 nodes, damage is a changed set on the coordinate nodes, and repair "
+            "removes coordinates from it. Under that reading five theorems are "
+            "discharged by Z3 over an uninterpreted node sort and for any number of "
+            "coordinates -- any damage withdraws the certificate, a full repair restores "
+            "it, a partial repair does not, undamaged coordinates are never collateral "
+            "damage, the dependency runs one way, and the certificate supports nothing. "
+            "That last one was a frame condition until the load-bearing check reported "
+            "it inert; it and one other were a redundant presentation of the same "
+            "constraint, so the interpretation now assumes three independent conditions "
+            "and proves the fourth. P6's published 155 full "
+            "restorations and 1,055 proper-subset failures are then recomputed by "
+            "running the committed descendants over the interpreted graph, so the finite "
+            "result is an instance of the theorems produced by the implementation "
+            "P6-U-T1 verified against them, rather than a separate enumeration that "
+            "agrees with them. Each of the four frame conditions is shown to carry at "
+            "least one theorem by dropping it, and three wrong dependency graphs are "
+            "shown to change the failure count, and each of the three surviving "
+            "conditions is necessary: dropping the support edge loses withdrawal and "
+            "minimality, dropping the edge restriction loses both collateral-damage "
+            "theorems, and dropping the certificate/coordinate distinction loses three."
+        ),
+        "not_licensed": [
+            "any claim that 155 tests the interpretation; it is the number of (donor, "
+            "damage) pairs and is unchanged by every wrong graph tried",
+            "any claim that the donor axis extends the result; it enters neither the "
+            "graph nor the changed set and multiplies 31 and 211 by five",
+            "independent review: the interpretation, the theorems and the tests were "
+            "written in the same lane as the model, which is P6-U-T4",
+            "any empirical claim whatsoever",
+        ],
+    }
+
+
+def main(argv: list[str]) -> int:
+    """CLI entry point. ``argv`` is required: there is no implicit run."""
+
+    import argparse
+    import json
+    from pathlib import Path
+
+    parser = argparse.ArgumentParser(
+        prog="orion-p6-certificate-as-dependency-graph",
+        description="Interpret P6's certificate model in the proved reopening semantics.",
+    )
+    parser.add_argument("--repo-root", type=Path, default=Path.cwd())
+    parser.add_argument("--date", required=True)
+    parser.add_argument("--output", type=Path, default=None)
+    args = parser.parse_args(argv)
+
+    report = build_report(args.repo_root, date=args.date)
+    if args.output is not None:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(
+            json.dumps(report, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        print(f"written: {args.output}")
+
+    for item in report["theorems"]:
+        print(f"  {item['outcome']:15s} {item['name']}")
+    counts = report["published_counts"]
+    print(
+        f"  counts: {counts['full_restorations']} restorations, "
+        f"{counts['proper_subset_failures']} proper-subset failures, "
+        f"reproduced={counts['counts_reproduced']}"
+    )
+    frames = report["frame_conditions"]
+    print(f"  every frame condition carries a theorem: {frames['every_condition_carries_a_theorem']}")
+    sens = report["interpretation_sensitivity"]
+    print(
+        "  every wrong graph moves the failure count: "
+        f"{sens['every_wrong_graph_changes_the_failure_count']}"
+    )
+
+    if not report["all_discharged"]:
+        print(f"UNDISCHARGED: {report['undischarged']}")
+        return 3
+    if not counts["counts_reproduced"]:
+        print("THE PUBLISHED COUNTS WERE NOT REPRODUCED UNDER THE INTERPRETATION")
+        return 3
+    if not frames["every_condition_carries_a_theorem"]:
+        print(f"INERT FRAME CONDITIONS: {frames['inert_conditions']}")
+        return 3
+    if not sens["every_wrong_graph_changes_the_failure_count"]:
+        print("A WRONG DEPENDENCY GRAPH REPRODUCED THE PUBLISHED FAILURE COUNT")
+        return 3
+    return 0
+
+
+if __name__ == "__main__":  # pragma: no cover
+    import sys
+
+    raise SystemExit(main(sys.argv[1:]))

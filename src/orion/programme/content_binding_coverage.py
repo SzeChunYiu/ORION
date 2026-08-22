@@ -431,6 +431,11 @@ def survey_paper_bindings(repo_root: Path) -> tuple[PaperBinding, ...]:
     point, a paper that never adopts it cannot drop off the report.
     """
 
+    # Resolved, not taken as given. Every path this module compares against the
+    # root is resolved, so a relative ``--repo-root .`` made `relative_to` raise
+    # on the first drifted file -- a crash reachable only when something had
+    # actually drifted, which is the worst possible time for the survey to die.
+    repo_root = Path(repo_root).resolve()
     papers = repo_root / PAPERS_DIRNAME
     if not papers.is_dir():
         raise FileNotFoundError(f"no {PAPERS_DIRNAME}/ directory under {repo_root}")

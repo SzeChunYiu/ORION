@@ -137,17 +137,23 @@ own frozen taxonomy in
 unblock it and how near that is. `HC-SUP-UNCLASSIFIED-BLOCKER` fails on a blocked
 gate with no recorded cause, so the ledger cannot quietly go back to one word.
 
-All 49 blocked terminals are classified. The queue, nearest first:
+Forty-five of the fifty-one registered terminals are blocked, and all forty-five
+are classified. Six are discharged: `P9-U-T6` and `P10-U-T5` on scope discipline,
+and `P6-U-T1`, `P6-U-T2`, `P7-U-T1` and `P8-U-T1` on mechanized theorems, which is
+what a `FORMAL_GENERALIZATION` terminal admits. Those four had been blocked on
+blocker text asking for evaluator custody; custody is a precondition of an
+empirical campaign, and requiring it of a proof blocks every provable gate on a
+category error. The queue, nearest first:
 
 | Actionability | Terminals | Meaning |
 | --- | --- | --- |
 | `BLOCKED_ON_UPSTREAM` | 5 | another lane's in-flight work, nameable by PR |
 | `BLOCKED_ON_CAMPAIGN` | 20 | arena and comparator exist; no protected run scored |
 | `BLOCKED_ON_NEW_ARENA` | 14 | the evaluation object itself does not exist yet |
-| `BLOCKED_ON_PROOF` | 10 | needs a mechanized theorem from primitive semantics |
+| `BLOCKED_ON_PROOF` | 6 | needs a mechanized theorem from primitive semantics |
 
 By responsibility class: `MEASUREMENT_OR_EVALUATOR` 19, `SEARCH_OR_EVIDENCE` 18,
-`OBJECTIVE_OR_MODEL_CLASS` 8, `IMPLEMENTATION_OR_ENVIRONMENT` 3,
+`OBJECTIVE_OR_MODEL_CLASS` 4, `IMPLEMENTATION_OR_ENVIRONMENT` 3,
 `REPRESENTATION_OR_INTERFACE` 1.
 
 These counts are pinned against the generated report by

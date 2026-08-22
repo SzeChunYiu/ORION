@@ -9,13 +9,31 @@
   "examples_truncated": false,
   "inadmissible_states": 1512,
   "not_licensed": [
-    "any claim about P6 155 restorations or 1,055 strict-subset failures; those are produced by the separate revalidation model and are not derived here",
     "independent review: the primitives, the derivation and its tests were written in the same lane as the model",
+    "any claim that the 155 full restorations are strong evidence for the primitive; they survive every perturbation tried",
     "any empirical claim whatsoever"
   ],
   "record": "P6_LIFT_INTERPRETATION",
+  "revalidation": {
+    "coordinates": 5,
+    "derived": true,
+    "donors": 5,
+    "failures_match_published": true,
+    "full_matches_published": true,
+    "full_restorations": 155,
+    "full_restorations_are_a_weak_witness": "A full repair sets every coordinate true, which satisfies any monotone admissibility rule. So 155 follows from almost any theory of lifting and discriminates between very few: perturbing the primitive to make one coordinate compensatory, to accept a majority, or to accept everything leaves it at 155 in all three cases. The 1,055 is the count that carries the claim -- the same three perturbations move it to 655, 255 and 0.",
+    "minimality_counterexamples": [],
+    "proper_subset_failures": 1055,
+    "published_full_restorations": 155,
+    "published_proper_subset_failures": 1055,
+    "reading": "The 155 full restorations are soundness instances and the 1,055 proper-subset failures are necessity witnesses of minimality. Both follow from the non-compensatory primitive alone: restoring every damaged coordinate restores the conjunction, and any proper subset leaves at least one obligation unmet. Only the second is discriminating; see full_restorations_are_a_weak_witness.",
+    "shipped_block_accepts_the_derived_rule": true,
+    "shipped_block_blindspot": "The shipped revalidation block builds every asserted state with native_valid pinned true, so it has no falsifier for conservativity: the derived rule with its donor conjunct deleted is accepted unchanged. Its acceptance of the derivation is therefore evidence for the non-compensatory primitive only. Conservativity is carried by the 1,536-state lift derivation above, where dropping it disagrees on 72 states, and by the separation calculus -- not by this block.",
+    "shipped_block_sees_conservativity": false,
+    "soundness_counterexamples": []
+  },
   "schema_version": "orion.p6.lift-interpretation.v1",
   "sound": true,
   "states": 1536,
-  "what_this_establishes": "P6 scientific_admissible follows from three stated primitives -- a donor certificate establishes only what its embedding declares, each scientific coordinate is a separate obligation rather than a contribution, and lifting is conservative -- rather than being restated as a conjunction. The derived rule reproduces the shipped one on all 1,536 states, with both verdicts present (24 admissible, 1,512 not). It is a derivation and not a restatement: making a scientific coordinate compensatory disagrees on 96 states, waiving an embedding donor requirement on 9, and dropping conservativity on 72."
+  "what_this_establishes": "P6 scientific_admissible follows from three stated primitives -- a donor certificate establishes only what its embedding declares, each scientific coordinate is a separate obligation rather than a contribution, and lifting is conservative -- rather than being restated as a conjunction. The derived rule reproduces the shipped one on all 1,536 states, with both verdicts present (24 admissible, 1,512 not). It is a derivation and not a restatement: making a scientific coordinate compensatory disagrees on 96 states, waiving an embedding donor requirement on 9, and dropping conservativity on 72. The same non-compensatory primitive, applied to the revalidation model's own coordinate vector, reproduces both counts P6 publishes for revalidation: 155 full restorations and 1,055 proper-subset failures. Of those two, only the 1,055 discriminates -- see revalidation.full_restorations_are_a_weak_witness."
 }

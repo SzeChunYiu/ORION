@@ -395,27 +395,6 @@
     {
       "blockers": [
         {
-          "actionability": "BLOCKED_ON_PROOF",
-          "gate_id": "P6-U-T1",
-          "refs": [
-            "#654",
-            "research/claim_expansion/p6/P6_X_FINITE_MODEL_RESULT_V1.json"
-          ],
-          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "Both halves of the primitive semantics are now defined independently of the theorems and machine-checked. Local mechanics, frames and separation were lifted first (P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21); reopening follows (P6_REOPENING_CALCULUS_MECHANIZED_2026-08-21) with soundness, completeness, minimality, conservativity, monotonicity and the cycle characterisation over graphs of any size. Both committed implementations are shown to be instances: the local mechanic obeys its declared frame on all 5,280 exhaustive perturbations, and descendants matches an independently written specification on 61,440 of 61,440 cases. What is still unlifted is the 320-state certificate model itself -- the 155 full-revalidation successes and 1,055 strict-subset failures are produced by a different artifact, and no proof yet connects it to these primitives. Found on the way: check_reopening asserts tautologies and passes with descendants replaced by a constant, so the reopening half of the finite core had never actually been checked.",
-          "unblock": "Interpret the 320-state certificate model in the proved primitives -- each certificate's support as a dependency edge set and each revalidation action as a mechanic with a declared frame -- and prove that interpretation sound. The 155 restorations then become soundness instances and the 1,055 strict-subset failures become necessity witnesses of the minimality theorem, which is the derivation P6-U-T2 asks for, rather than a second table standing beside a first. P6-U-T4's independent review remains separate and is not reachable from inside this lane."
-        },
-        {
-          "actionability": "BLOCKED_ON_PROOF",
-          "gate_id": "P6-U-T2",
-          "refs": [
-            "#654"
-          ],
-          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "The certificate lift now follows from stated primitives rather than standing beside them: scientific_admissible is derived on all 1,536 states of the embedding cube, both verdicts present, and three independent changes to the shipped rule each break the derivation (P6_LIFT_INTERPRETATION_2026-08-22). What is still not derived is the revalidation model behind the 155 full restorations and 1,055 strict-subset failures, which is a separate object from the lift, and the custody question the derivation shares with P6-U-T4: the primitives, the derivation and its tests were written in the same lane as the model.",
-          "unblock": "Derive the revalidation model the same way. Its rule is minimal-restoration rather than admissibility, so it needs the reopening theorems already proved -- soundness, completeness and minimality of the reopened set -- instantiated at the certificate level, with the 155 restorations as soundness instances and the 1,055 strict-subset failures as necessity witnesses of minimality. Then have someone outside this lane check both interpretations, which is P6-U-T4 and is not reachable from inside it."
-        },
-        {
           "actionability": "BLOCKED_ON_NEW_ARENA",
           "gate_id": "P6-U-T3",
           "refs": [
@@ -447,7 +426,26 @@
         }
       ],
       "declared_claim_scope": "BOUNDED_EXACT",
-      "evidence": [],
+      "evidence": [
+        {
+          "artifact_refs": [
+            "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21.json",
+            "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_REOPENING_CALCULUS_MECHANIZED_2026-08-21.json"
+          ],
+          "gate_id": "P6-U-T1",
+          "grade": "MECHANIZED_THEOREM",
+          "notes": "Eleven theorems discharged by Z3 over uninterpreted sorts, so neither is a finite instance. Separation: separated commutation, the converse that separation is necessary, write locality, frame determinacy and fixpoint conservativity, with the state transformer left an uninterpreted function under a frame condition -- commutation is therefore a property of separation and not of the modular arithmetic P6's finite check instantiated. Reopening: soundness, completeness, minimality, conservativity, monotonicity and the cycle characterisation over dependency graphs of any size, cyclic or not, over an uninterpreted node sort. Both specifications are written independently of P6's implementations, and both implementations are then shown to be instances rather than assumed to be: apply_local_mechanic obeys its declared frame on all 5,280 exhaustive perturbations, and descendants agrees with the independent specification on 61,440 of 61,440 directed graphs over four nodes and changed subsets, 51,712 of them with a non-empty reopening. Two limits travel with the mechanization and are stated in the artifacts: reachability is axiomatised as a reflexive-transitive closure carrying a well-founded rank, because transitive closure is not first-order definable, and an earlier axiomatisation without the rank admitted circular reachability -- a differential against the committed implementation caught it. Independent review of these proofs is P6-U-T4 and is not claimed here."
+        },
+        {
+          "artifact_refs": [
+            "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_CERTIFICATE_AS_DEPENDENCY_GRAPH_2026-08-22.json",
+            "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_LIFT_INTERPRETATION_2026-08-22.json"
+          ],
+          "gate_id": "P6-U-T2",
+          "grade": "MECHANIZED_THEOREM",
+          "notes": "The finite result now follows from the theorem discharged at P6-U-T1 rather than from a second theory standing beside it. P6's certificate model is interpreted into the reopening signature -- a certificate over n coordinates is the star graph on n+1 nodes, damage is a changed set on the coordinate nodes, repair removes coordinates from it -- and six theorems are discharged by Z3 over an uninterpreted node sort at any width: any damage withdraws the certificate, a full repair restores it, a partial repair does not, undamaged coordinates are never collateral damage, the dependency runs one way, and the certificate supports nothing. The published 155 full restorations and 1,055 proper-subset failures are then recomputed by running the committed descendants over the interpreted graph -- the same implementation P6-U-T1 verified against the independent specification on 61,440 of 61,440 cases -- so the counts are output of a verified instance of the theorems rather than a separate enumeration that happens to agree. The interpretation is shown to be carrying the proof: each of its three frame conditions loses at least one theorem when dropped, and three wrong dependency graphs each move the failure count. A fourth frame condition was dropped because the same check reported it inert; it and one other were a redundant presentation of the same constraint, and it is now discharged as a theorem instead of assumed. Separately, the 1,536-state lift rule is derived from three primitives about certificates and embeddings, reproducing scientific_admissible everywhere with both verdicts present, and P6's own revalidation assertion block accepts the derived rule while rejecting three weakenings of it. Two limits are on the record rather than implied: 155 is not discriminating -- every wrong graph and every weakened primitive returns it, because a full repair leaves nothing changed -- and the five donor families enter neither the graph nor the changed set, so 155 and 1,055 are 31 and 211 counted five times. Independent review is P6-U-T4 and is not claimed here."
+        }
+      ],
       "paper_id": "P6",
       "predecessor_artifacts": [
         {
@@ -461,40 +459,11 @@
           "grade": "MECHANISM_NON_VACUITY",
           "note": "Finite enumeration (155 full restorations, 1,055 strict-subset failures). #654 asks for this to become a corollary of a proved primitive semantics; the checker is exhaustive enumeration, not a proof assistant.",
           "terminal": ""
-        },
-        {
-          "artifact_ref": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21.json",
-          "grade": "MECHANIZED_THEOREM",
-          "note": "Five theorems about P6's local-mechanic semantics, discharged by Z3 over uninterpreted coordinate and value sorts with the transformer left as an uninterpreted function under a frame condition: separated commutation, the converse that separation is necessary, write locality, frame determinacy and fixpoint conservativity. Because the transformer is arbitrary, commutation is a property of separation rather than of the modular arithmetic the finite check instantiated. P6's committed apply_local_mechanic is shown to obey its declared frame on all 5,280 exhaustive perturbations, so the bounded enumeration is an instance. A predecessor and not evidence for P6-U-T1: the reopening and restoration theorems behind the 155/1,055 result are not lifted, and soundness and minimality are proved for the mechanic semantics rather than for the evidence and change semantics the terminal names in full.",
-          "terminal": "SEPARATION_THEOREMS_DISCHARGED__REOPENING_NOT_LIFTED"
-        },
-        {
-          "artifact_ref": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_REOPENING_CALCULUS_MECHANIZED_2026-08-21.json",
-          "grade": "MECHANIZED_THEOREM",
-          "note": "Six theorems on change propagation over dependency graphs of any size, cyclic or not: reopening soundness, completeness, minimality, conservativity, monotonicity and the cycle characterisation. Discharged over an uninterpreted node sort with reachability axiomatised as a well-founded reflexive-transitive closure. The specification is written independently of P6's implementation, and the committed descendants is then compared against it exhaustively over every directed graph on four nodes and every changed subset: 61,440 of 61,440 agree, 51,712 of them with a non-empty reopening. The implementation is correct. That had not previously been established, because check_reopening asserts set-algebra tautologies and passes with descendants replaced by a constant.",
-          "terminal": "REOPENING_THEOREMS_DISCHARGED__COMMITTED_IMPLEMENTATION_VERIFIED"
-        },
-        {
-          "artifact_ref": "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_LIFT_INTERPRETATION_2026-08-22.json",
-          "grade": "MECHANIZED_THEOREM",
-          "note": "scientific_admissible derived from three primitives stated independently of it -- a donor certificate establishes only what its embedding declares, each scientific coordinate is a separate obligation rather than a contribution, and lifting is conservative. Reproduces the shipped rule on all 1,536 states with both verdicts present (24 admissible). A derivation and not a restatement: making a coordinate compensatory disagrees on 96 states, waiving an embedding's donor requirement on 9, dropping conservativity on 72.",
-          "terminal": "CERTIFICATE_LIFT_DERIVED_FROM_STATED_PRIMITIVES"
         }
       ]
     },
     {
       "blockers": [
-        {
-          "actionability": "BLOCKED_ON_PROOF",
-          "gate_id": "P7-U-T1",
-          "refs": [
-            "#655",
-            "research/claim_expansion/p7/P7_X2_CLOSURE_CARRYING_RESULT_V1.json"
-          ],
-          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "A general compositional calculus now exists and is machine-checked over uninterpreted sorts, so identity, associativity and intermediate-contract composition hold for any number of transformations, contracts, coordinates and obligations and for every donor-native predicate (P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21). The side conditions are named rather than assumed: identity needs the contract test to be reflexive, the strict equational laws need extensionality, and obligation-totality composition needs containment of demanded obligations rather than a registered match. Two things remain. The five donor families are not shown to be interpretations of these primitives -- Native is uninterpreted -- which is the same open step P8 carries. And the lift subtracts rather than adds: P7's composition rule is provably incomplete against its own obligation semantics, refusing composites whose contracts demand exactly the same obligations when no bridge is registered.",
-          "unblock": "Define primitive transformation and obligation semantics, then prove or explicitly characterize identity, associativity and intermediate-contract composition."
-        },
         {
           "actionability": "BLOCKED_ON_PROOF",
           "gate_id": "P7-U-T2",
@@ -537,7 +506,16 @@
         }
       ],
       "declared_claim_scope": "BOUNDED_EXACT",
-      "evidence": [],
+      "evidence": [
+        {
+          "artifact_refs": [
+            "papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json"
+          ],
+          "gate_id": "P7-U-T1",
+          "grade": "MECHANIZED_THEOREM",
+          "notes": "A general compositional calculus, discharged by Z3 over uninterpreted sorts, so identity, associativity and intermediate-contract composition hold for any number of transformations, contracts, coordinates and obligations and for every donor-native predicate rather than for the five families P7 enumerates. The side conditions are stated rather than assumed away: identity needs the contract test to be reflexive, the strict equational laws need extensionality, and obligation-totality composition needs containment of demanded obligations rather than a registered bridge. One result of the mechanization is negative and is kept: P7's composition rule is provably incomplete against its own obligation semantics, refusing composites whose contracts demand exactly the same obligations when no bridge is registered. This terminal asks whether the general calculus exists, and it does; whether P7's finite results are instances of it is P7-U-T2 and is separately blocked, and independent reproduction is P7-U-T5."
+        }
+      ],
       "paper_id": "P7",
       "predecessor_artifacts": [
         {
@@ -545,28 +523,11 @@
           "grade": "MECHANISM_NON_VACUITY",
           "note": "Closure-carrying transforms over a bounded donor stack; 25 successful compositions against 25 matched missing-bridge cases.",
           "terminal": "P7_CLOSURE_CARRYING_NAVIGATION_SUPPORTED__BOUNDED_FORMAL_DONOR_STACK__IDEAL_PRODUCT_EQUIVALENT"
-        },
-        {
-          "artifact_ref": "papers/paper-07-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json",
-          "grade": "MECHANIZED_THEOREM",
-          "note": "Eighteen theorems over uninterpreted sorts for transformations, contracts, closure coordinates and obligations, plus a chain ladder to depth 8: identity, associativity and intermediate-contract composition, each with its side condition named and its countermodel exhibited. Unlike the P6 and P8 lifts, this one proves about exactly the model its terminal cites -- P7_X2_CLOSURE_CARRYING_RESULT_V1 -- and instantiates all 50 committed composition rows and all 320 lift rows, recomputing all seven published counts. It is still a predecessor, and it carries a subtraction: the composition rule is sound but incomplete against P7's own obligation semantics. Match is sufficient and not necessary; the exact condition is containment of demanded obligations, and the witness has both contracts demanding exactly the same obligations and being refused anyway because no bridge is registered. The rule characterises registered composability, not composability.",
-          "terminal": "COMPOSITION_CALCULUS_DISCHARGED__RULE_PROVED_INCOMPLETE"
         }
       ]
     },
     {
       "blockers": [
-        {
-          "actionability": "BLOCKED_ON_PROOF",
-          "gate_id": "P8-U-T1",
-          "refs": [
-            "#656",
-            "research/claim_expansion/p8/P8_X4_AUTHORITY_LIFTING_RESULT_V1.json"
-          ],
-          "responsibility": "OBJECTIVE_OR_MODEL_CLASS",
-          "statement": "A general composition and revocation theorem now exists for P8's formal core and is machine-checked over uninterpreted sorts, so it is not a finite instance (P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21). P8's own receipt audit, which stood at FAIL with three findings, now passes on all four legs: the claim ceiling is derived from the terminal instead of echoed from the panel; the declared gold's transcription is still reported as departing at 0 of 15 and is now joined by a principled gold adjudicated from the paper's stated authority principle, independent of both the tables and the panel's expectations, whose capacity to disagree is demonstrated by perturbation and which agrees on all 15; and the inert donor axis is reclassified as the donor-conservativity result it is, with the paper corrected to report 3,072 distinct states replayed thirteen times rather than 39,936 states of coverage. What still blocks this terminal is that no proof connects the formal core to the 13-donor composition model whose 169/169 chains it names.",
-          "unblock": "One step, and it is the same one P6 and P7 carry: interpret the donor model in the proved primitives -- each donor's discharge semantics as a conversion relation and an obligation set over the same signature -- and prove that interpretation sound. P8-U-T2 then follows from the same map, over 3,072 distinct states rather than 39,936. Two limitations travel with the mechanization: reachability is axiomatised as a reflexive-transitive closure with a well-founded rank, because transitive closure is not first-order definable, and the chain theorem's induction schema is the single hand step. One limitation travels with the audit: the principled gold and the checks over it were written in the same lane as the mechanism, so its independence is from the tables and the panel, not from the authoring lane -- which is what P8-U-T5 asks for and this does not supply."
-        },
         {
           "actionability": "BLOCKED_ON_PROOF",
           "gate_id": "P8-U-T2",
@@ -609,7 +570,16 @@
         }
       ],
       "declared_claim_scope": "BOUNDED_EXACT",
-      "evidence": [],
+      "evidence": [
+        {
+          "artifact_refs": [
+            "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21.json"
+          ],
+          "gate_id": "P8-U-T1",
+          "grade": "MECHANIZED_THEOREM",
+          "notes": "Ten composition and revocation theorems for P8's formal core, discharged by Z3 over uninterpreted domain, object and issuer sorts, so they are not statements about the thirteen donor families P8 enumerates. Two limits travel with the mechanization and are in the artifact: reachability is axiomatised as a reflexive-transitive closure carrying a well-founded rank, because transitive closure is not first-order definable, and the chain theorem's induction schema is the single hand step. The rank is not a formality -- an earlier axiomatisation without it admitted circular reachability, in which a sink domain reached its own source, and a differential against the committed implementation is what caught it. This terminal asks whether the general theorem is proved and mechanized, and it is; whether P8's exhaustive finite result is an instance of it is P8-U-T2, which the 3,072-state donor interpretation answers for the state model but not for the 169 heterogeneous chain compositions, and independent reproduction is P8-U-T5."
+        }
+      ],
       "paper_id": "P8",
       "predecessor_artifacts": [
         {
@@ -617,12 +587,6 @@
           "grade": "MECHANISM_NON_VACUITY",
           "note": "169/169 valid compositions with 169 matched unbridged-widening failures across a 13-donor envelope. #656 asks for arbitrary graphs and a mechanized theorem.",
           "terminal": "P8_CROSS_DOMAIN_SCIENTIFIC_AUTHORITY_COMPOSITION_SUPPORTED__13_DONOR_FORMAL_ENVELOPE__IDEAL_PRODUCT_EQUIVALENT"
-        },
-        {
-          "artifact_ref": "papers/paper-08-epistemic-authority-autonomous-science/formal/mechanized/P8_AUTHORITY_CALCULUS_MECHANIZED_2026-08-21.json",
-          "grade": "MECHANIZED_THEOREM",
-          "note": "Ten theorems about P8's formal-core authorisation rule, discharged by Z3 over uninterpreted sorts so they hold for any number of domains, objects and issuers: scope non-amplification, domain confinement, the general form of the thirty-six-pair non-laundering enumeration, non-compensatory refusal, defeater monotonicity, epoch isolation, the one-step delegation lemma, and the cycle characterisation. The formula proved about is differential-checked against the committed check_authority_calculus.authorize on 400 worlds, 51 of them authorising. It is a predecessor and not evidence for P8-U-T1: the theorems are about the formal core, and the 169-chain / 39,936-state result T1 and T2 name is produced by the separate 13-donor composition model, which this does not reach.",
-          "terminal": "GENERAL_THEOREMS_DISCHARGED_FOR_THE_FORMAL_CORE_ONLY"
         },
         {
           "artifact_ref": "papers/paper-08-epistemic-authority-autonomous-science/evidence/audit/P8_AUTHORITY_RECEIPT_AUDIT_2026-08-21.json",

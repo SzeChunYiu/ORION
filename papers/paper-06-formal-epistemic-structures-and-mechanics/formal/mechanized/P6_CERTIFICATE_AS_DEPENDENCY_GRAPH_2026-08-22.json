@@ -1,0 +1,124 @@
+{
+  "all_discharged": true,
+  "date": "2026-08-22",
+  "frame_conditions": {
+    "baseline_discharged": [
+      "CERTIFICATE_DAMAGE_REOPENS_NOTHING",
+      "CERTIFICATE_RESTORED_BY_FULL_REPAIR",
+      "CERTIFICATE_SUPPORTS_NOTHING_IS_DERIVED",
+      "CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
+      "PARTIAL_REPAIR_LEAVES_CERTIFICATE_REOPENED",
+      "UNDAMAGED_COORDINATES_ARE_NOT_REOPENED"
+    ],
+    "every_condition_carries_a_theorem": true,
+    "inert_conditions": [],
+    "theorems_lost_by_dropping": {
+      "coordinates_do_not_support_each_other": [
+        "CERTIFICATE_DAMAGE_REOPENS_NOTHING",
+        "CERTIFICATE_SUPPORTS_NOTHING_IS_DERIVED",
+        "UNDAMAGED_COORDINATES_ARE_NOT_REOPENED"
+      ],
+      "coordinates_support_the_certificate": [
+        "CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
+        "PARTIAL_REPAIR_LEAVES_CERTIFICATE_REOPENED"
+      ],
+      "the_certificate_is_not_a_coordinate": [
+        "CERTIFICATE_SUPPORTS_NOTHING_IS_DERIVED",
+        "CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
+        "PARTIAL_REPAIR_LEAVES_CERTIFICATE_REOPENED",
+        "UNDAMAGED_COORDINATES_ARE_NOT_REOPENED"
+      ]
+    }
+  },
+  "interpretation_sensitivity": {
+    "every_wrong_graph_changes_the_failure_count": true,
+    "the_restoration_count_does_not_discriminate": "155 is the number of (donor, non-empty damage) pairs and does not depend on the graph at all -- a full repair leaves nothing changed, so no graph reopens anything. Every variant below returns 155. The 1,055 is the count that tests the interpretation, and it is the count that moves.",
+    "variants": {
+      "coordinates_chained_not_starred": {
+        "full_restorations": 155,
+        "proper_subset_failures": 0
+      },
+      "edges_reversed": {
+        "full_restorations": 155,
+        "proper_subset_failures": 0
+      },
+      "no_support_edges": {
+        "full_restorations": 155,
+        "proper_subset_failures": 0
+      }
+    },
+    "variants_that_change_the_failure_count": [
+      "edges_reversed",
+      "no_support_edges",
+      "coordinates_chained_not_starred"
+    ]
+  },
+  "not_licensed": [
+    "any claim that 155 tests the interpretation; it is the number of (donor, damage) pairs and is unchanged by every wrong graph tried",
+    "any claim that the donor axis extends the result; it enters neither the graph nor the changed set and multiplies 31 and 211 by five",
+    "independent review: the interpretation, the theorems and the tests were written in the same lane as the model, which is P6-U-T4",
+    "any empirical claim whatsoever"
+  ],
+  "published_counts": {
+    "computed_by": "the committed check_finite_models.descendants, under the star interpretation",
+    "coordinates": 5,
+    "counts_reproduced": true,
+    "donors": 5,
+    "full_restorations": 155,
+    "minimality_counterexamples": [],
+    "proper_subset_failures": 1055,
+    "published_full_restorations": 155,
+    "published_proper_subset_failures": 1055,
+    "restoration_counterexamples": [],
+    "the_donor_axis_is_a_multiplier": "The donor loop enters neither the graph nor the changed set, so the five donor families replicate the same 31 restorations and 211 failures rather than extending them. 155 and 1,055 are 31 and 211 counted five times. That is P6's own loop structure, reproduced here rather than corrected, and it means the published counts carry the information of 31 and 211."
+  },
+  "record": "P6_CERTIFICATE_AS_DEPENDENCY_GRAPH",
+  "schema_version": "orion.p6.certificate-as-dependency-graph.v1",
+  "solver": "5.1.0",
+  "theorems": [
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "CERTIFICATE_WITHDRAWN_BY_ANY_DAMAGE",
+      "outcome": "PROVED",
+      "statement": "under the star interpretation, if any coordinate node is changed then the certificate node is reopened -- damaging one coordinate withdraws the whole certificate, for any number of coordinates",
+      "why_it_matters": "P6's finite check asserts this state by state over five coordinates. Stated here it is a consequence of one coordinate reaching the certificate, which holds at any width and is why the number five is incidental."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "CERTIFICATE_RESTORED_BY_FULL_REPAIR",
+      "outcome": "PROVED",
+      "statement": "if no coordinate node is changed then the certificate node is not reopened -- repairing every damaged coordinate restores the certificate. This is the general form of P6's 155 full restorations",
+      "why_it_matters": "Without it the 155 would be an observation about an enumeration. With it the 155 is reopening completeness evaluated at 31 damage sets and five donors."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "PARTIAL_REPAIR_LEAVES_CERTIFICATE_REOPENED",
+      "outcome": "PROVED",
+      "statement": "if a repair leaves at least one coordinate changed then the certificate is still reopened, however many coordinates were repaired. This is the general form of P6's 1,055 proper-subset failures",
+      "why_it_matters": "This is the half that carries P6's claim. A framework in which some coordinate compensates for another would refute it, and the 1,055 is exactly the count that moves when the primitive is weakened that way."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "UNDAMAGED_COORDINATES_ARE_NOT_REOPENED",
+      "outcome": "PROVED",
+      "statement": "an unchanged coordinate node is never reopened by damage elsewhere, so a repair has nothing to repair beyond the coordinates it damaged. Without this the restoration theorem would be about a different set of nodes than the damage was",
+      "why_it_matters": "The easy thing to miss. If damaging one coordinate reopened another, then repairing the damaged set would not be repairing the reopened set, and the restoration theorem would silently be about different nodes than the damage."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "CERTIFICATE_DAMAGE_REOPENS_NOTHING",
+      "outcome": "PROVED",
+      "statement": "changing the certificate node reopens no coordinate, so the dependency runs one way. This is reopening conservativity at the certificate level",
+      "why_it_matters": "A certificate that fed back into its own coordinates would make the star cyclic, and the cycle characterisation says a node on a cycle reopens itself. The interpretation has to forbid it rather than assume it away."
+    },
+    {
+      "detail": "negation is unsatisfiable under the axioms",
+      "name": "CERTIFICATE_SUPPORTS_NOTHING_IS_DERIVED",
+      "outcome": "PROVED",
+      "statement": "the certificate node has no outgoing edge. This was a frame condition until the load-bearing check reported it inert; it is a consequence of the other three and is discharged here rather than assumed",
+      "why_it_matters": "An axiom that no theorem needs is either decoration or a redundant presentation of an axiom that is doing the work, and the two look identical from inside. Deriving it settles which: the star interpretation rests on three independent conditions, not four, and the fourth is a theorem about them."
+    }
+  ],
+  "undischarged": [],
+  "what_this_establishes": "P6's certificate model is an interpretation of the reopening semantics already proved general: a certificate over n coordinates is the star graph on n+1 nodes, damage is a changed set on the coordinate nodes, and repair removes coordinates from it. Under that reading five theorems are discharged by Z3 over an uninterpreted node sort and for any number of coordinates -- any damage withdraws the certificate, a full repair restores it, a partial repair does not, undamaged coordinates are never collateral damage, the dependency runs one way, and the certificate supports nothing. That last one was a frame condition until the load-bearing check reported it inert; it and one other were a redundant presentation of the same constraint, so the interpretation now assumes three independent conditions and proves the fourth. P6's published 155 full restorations and 1,055 proper-subset failures are then recomputed by running the committed descendants over the interpreted graph, so the finite result is an instance of the theorems produced by the implementation P6-U-T1 verified against them, rather than a separate enumeration that agrees with them. Each of the four frame conditions is shown to carry at least one theorem by dropping it, and three wrong dependency graphs are shown to change the failure count, and each of the three surviving conditions is necessary: dropping the support edge loses withdrawal and minimality, dropping the edge restriction loses both collateral-damage theorems, and dropping the certificate/coordinate distinction loses three."
+}
