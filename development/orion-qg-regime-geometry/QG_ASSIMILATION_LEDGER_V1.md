@@ -65,18 +65,95 @@ min–max fixed point. Under this reading the parents become the **zero-cost
 layer** of the ladder: Lehmann/Derksen–Kemper describe the quotient node,
 Pacini's lattice is the ladder's poset with the weights erased.
 
-## Status and the falsifying test
+## Status: TESTED NEGATIVE — the correspondence is a COSTUME
 
-This is a `MechanicCandidate`, **not** a theorem. It must be tiered honestly
-(mechanism / lens / costume) and it is not yet earned. The two instances share a
-recursion *shape*; that is suggestive and no more.
+The candidate was tested by measured transfer and **failed**. Recorded as a
+tested negative, not carried forward as a MechanicCandidate.
 
-**Designed falsifier.** The claim is only a mechanism if the cost annotation is
-*forced* by the lattice structure rather than fitted after the fact. Concretely:
-exhibit two descriptors that induce the **same** partition (same lattice node)
-but have **different** resolution costs. If that is impossible, cost is a
-function of the node and the ladder is well-defined on the lattice. If it is
-easy, cost is extra data and the "envelope" is a costume — in which case the
-correct move is to say so and keep the lattice unweighted.
+### The transfer produces nothing
 
-That test is cheap on the QG instance and must be run before any claim.
+**Freeze–Schmid Prop. 3.1(2) -> probe depth: no nonvacuous reading exists.** The
+load-bearing step in FS is `|B| = |U^-1 B| + |U|` — the measure decomposes
+additively across the peel and **the cost of the peel is its size `|U|`, a
+variable quantity**. `M` must be "the cost of one peel". In QG **every probe
+costs exactly 1**, whatever its arity or how much it splits. So `M = 1` gives
+`D(S) <= D(S_v) + 1`, which is literally the definition; any `M >= 1` is weaker.
+Every reading is vacuous — FS's `+M` has nothing to bind to, because QG has no
+variable per-step cost.
+
+**The arity bound -> zero-sum: the counterpart quantity does not exist.**
+`ceil(log_a |S|)` is a counting bound needing a branching parameter. FS has none;
+its lower bounds are constructions (`D_k(G) >= k*exp(G)`, and
+`D_k(G) >= D(G^-) - 1 + k*exp(G)` by appending `k` copies of a maximal-order
+element). Forcing the transfer predicts `D_k` logarithmic in `k`; **the paper
+proves the opposite** — `D_k(G) = D_0(G) + k*exp(G)` for large `k`.
+
+### Where it breaks — four places
+
+1. **FS's `max` is not over branches.** In `max{D_k + l, s_{<=l}(G) - 1}` the
+   second argument contains **no recursive call**; it is an absolute cap from the
+   definition of `s_{<=l}`. The shape is `T(k+1) <= max{T(k)+c, C}` — a monotone
+   recurrence with a ceiling. In QG every argument of the max is a recursive call
+   and every branch must be resolved. Both spelled "max"; one quantifies proof
+   cases, the other adversarial replies.
+2. **FS's `min` is decoupled from the successor, so there is no fixed point.**
+   Prop. 3.1(3) holds *for each* `l`, so one minimises afterwards — but `l` does
+   not change `D_k`. FS runs one-directionally along a **total** order and
+   therefore **unrolls to a closed form**, which is exactly how the paper obtains
+   `D_k = D_0 + k*exp(G)`. QG runs over a **partial** order with branching,
+   cannot be unrolled, and needs fixed-point iteration over 4,441 states.
+3. **The two `D`s are not the same type.** `D_k : N -> N` versus
+   `D : 2^X -> N`. Nothing in FS plays the role of the state `S`.
+4. **Decisive — the growth laws disagree.** FS is **linear** in the ladder index
+   (slope `exp(G)`); QG is **logarithmic** in state size (`3 = ceil(log_4 48)` at
+   the top). That is the signature of no-branching versus branching. A shared
+   composition law would produce the same growth law.
+
+The "chosen versus forced" asymmetry is real and is part of (2): `M` in Prop.
+3.1(2) is a min over which `U` *exist* inside an extremal `B` — extremal
+bookkeeping determined by `G` and `k`, optimised by nobody.
+
+### What kills the delta organ specifically
+
+The proposed object was "a refinement lattice whose nodes carry a resolution
+**cost**". The cost annotation is the entire delta. But:
+
+- in QG **every probe costs 1** — the lattice is depth-annotated, not
+  cost-weighted; there is no nontrivial per-node weight anywhere in the instance;
+- in FS the per-rung cost `M = |U|` **is** genuinely variable — but FS has no
+  lattice, only `N`.
+
+**The lane with variable costs has no lattice; the lane with a lattice has no
+variable costs. Neither instance exhibits the object being proposed.** The two
+recursions agree only where the cost annotation is trivial, which is fatal for a
+proposal whose whole content is that annotation. Pacini's lattice nodes are
+indeed unweighted — but QG-34 does not supply the missing weights either. It
+supplies one global depth, `D_* = 3`.
+
+### Named revival path (the negative is not terminal, but it is not open either)
+
+The two lanes disagree precisely on whether per-rung cost is variable. So the
+honest next question is narrow and answerable: **does the QG setting admit a
+variable-cost probe model at all** — probes with genuinely different acquisition
+costs? If it does not, there is no cost-annotated ladder to build from this pair,
+and the correct move is to leave Pacini's lattice unweighted and say so.
+
+### What is untouched
+
+QG-34 (`D_* = 3`, minimality certified at depth 2, independent re-derivation
+agreeing per class) and C1 (the spectrum is the maximal symmetry quotient) never
+depended on this analogy and stand on their own. QG-35 likewise.
+
+### A near-miss worth recording
+
+The adversarial reviewer first flagged the committed
+`arity_lower_bound_tight_on: 80` as arithmetically impossible, on the assumption
+that probes are Pauli-valued so arity `<= 4`. **That assumption was wrong and the
+flag was withdrawn by the reviewer.** `K` is an integer cost difference
+(`config_cost - baseline`) taking **11** values (`-3..7`), with per-class max
+arity up to **6**. Recomputing with true arities gives lower-bound histogram
+`{0:7, 1:30, 2:51, 3:4}` against depth `{0:7, 1:30, 2:39, 3:16}`, forcing exactly
+`51 - 39 = 12` classes past the bound: **not tight on 12, tight on 80 of 92** —
+the committed figure, now **independently reproduced from `main` by a third
+implementation**. Recorded because the near-miss is the useful part: a reviewer
+nearly shipped a false positive by not checking what the quantity ranges over.
