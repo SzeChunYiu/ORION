@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Independent generic ORION verifier for QG-32 minimum separating probes."""
+"""Independent generic ORION verifier for QG-32 minimum fixed probe cardinality."""
 from __future__ import annotations
-import argparse, hashlib, itertools, json, math
-from collections import Counter, defaultdict
+import argparse,hashlib,itertools,json
+from collections import Counter,defaultdict
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -10,7 +10,6 @@ import numpy as np
 
 ROOT=Path(__file__).resolve().parents[2];SRC=ROOT/"artifacts/orion-qg-qg32-min-probes.json";QG31=ROOT/"research/extensions/orion-qg/QG31_QUERY_INDEXED_ABSTRACTION_RESULTS.json";OUT=ROOT/"artifacts/orion-qg-qg32-generic-verification.json";TOKEN="ORIONQG_QG32_GENERIC="
 BITS=((0,0),(1,0),(1,1),(0,1));CODE={b:i for i,b in enumerate(BITS)}
-
 def canon(v:Any)->str:return json.dumps(v,sort_keys=True,separators=(",",":"),allow_nan=False)
 def valid(r):
  u={k:v for k,v in r.items() if k!="result_digest"};return r.get("result_digest")==hashlib.sha256(canon(u).encode()).hexdigest()
@@ -51,75 +50,72 @@ def make_groups(vals):
  return [d[k] for k in sorted(d,key=lambda x:canon(x))]
 def pairs_from_groups(groups):return [(a,b) for g in groups for a,b in itertools.combinations(g,2)]
 def h(groups):return {str(k):int(v) for k,v in sorted(Counter(len(g) for g in groups).items())}
-
 def construct():
  aa=autos();ps=list(itertools.product((0,1),repeat=3));aux=aux48();obs={}
  for t in itertools.product(range(4),repeat=6):
   o=orbit(t,aa);r=min(o);obs.setdefault(r,set()).update(o)
- reps=sorted(obs);bulk=[tuple(baseline(r,p) for p in ps[:4]) for r in reps];mat=np.array([response(r,ps,aux) for r in reps],dtype=np.int16);spec=[tuple(sorted(int(x) for x in row)) for row in mat];joint=make_groups([(bulk[i],spec[i]) for i in range(len(reps))]);pairs=pairs_from_groups(joint)
- covers=[0]*mat.shape[1];cand=[]
+ reps=sorted(obs);bulk=[tuple(baseline(r,p) for p in ps[:4]) for r in reps];mat=np.array([response(r,ps,aux) for r in reps],dtype=np.int16);spec=[tuple(sorted(int(x) for x in row)) for row in mat];joint=make_groups([(bulk[i],spec[i]) for i in range(len(reps))]);pairs=pairs_from_groups(joint);covers=[0]*mat.shape[1]
  for j,(a,b) in enumerate(pairs):
-  ds=tuple(int(p) for p in np.flatnonzero(mat[a]!=mat[b]));cand.append(ds);bit=1<<j
-  for p in ds:covers[p]|=bit
- return {"ps":ps,"aux":aux,"reps":reps,"bulk":bulk,"mat":mat,"spec":spec,"joint":joint,"pairs":pairs,"covers":covers,"cand":cand}
-
-def verifier(z,src):
- m=int(src["minimum_probe_cardinality"]);selected=tuple(int(x) for x in src["selected_probe_indices"]);M=len(z["pairs"]);U=(1<<M)-1;covers=z["covers"];cand=z["cand"]
- # A static rare-pair order improves the exact branch search without importing production incidence.
- pair_order=sorted(range(M),key=lambda j:(len(cand[j]),j))
- @lru_cache(maxsize=None)
- def search(rem:int,slots:int,minp:int):
-  if rem==0:return ()
-  if slots<=0:return None
-  rc=rem.bit_count();bestcov=0
-  for p in range(minp,len(covers)):
-   c=(covers[p]&rem).bit_count()
-   if c>bestcov:bestcov=c
-  if bestcov==0 or (rc+bestcov-1)//bestcov>slots:return None
-  j=None;choices=None
-  for jj in pair_order:
-   if (rem>>jj)&1:
-    cc=[p for p in cand[jj] if p>=minp]
-    if not cc:return None
-    j=jj;choices=cc;break
-  choices.sort(key=lambda p:(-(covers[p]&rem).bit_count(),p))
-  for p in choices:
-   nr=rem & ~covers[p]
-   sol=search(nr,slots-1,minp)
-   if sol is not None:return (p,)+sol
-  return None
- # Selected set separation.
+  ds=np.flatnonzero(mat[a]!=mat[b]);assert len(ds)>0;bit=1<<j
+  for p in ds:covers[int(p)]|=bit
+ return {"ps":ps,"aux":aux,"reps":reps,"bulk":bulk,"mat":mat,"spec":spec,"joint":joint,"pairs":pairs,"covers":covers}
+def nondominated_unique(covers):
+ uniq=sorted(set(int(c) for c in covers if c),key=lambda x:(-x.bit_count(),x))
+ keep=[]
+ for c in uniq:
+  if any((c|d)==d for d in keep):continue
+  keep.append(c)
+ return tuple(keep)
+def verify_minimum(z,src):
+ m=int(src["minimum_probe_cardinality"]);selected=tuple(int(x) for x in src["selected_probe_indices"]);M=len(z["pairs"]);U=(1<<M)-1;physical=z["covers"]
  rem=U
- for p in selected:rem &= ~covers[p]
- selected_separates=rem==0
- # Preferred independent packing certificate.
- rep_to_i={tuple(r):i for i,r in enumerate(z["reps"])};pack=src.get("lower_bound_packing",{}).get("pairs",[]);pack_sets=[];pack_valid=True
- for row in pack:
-  a=rep_to_i.get(tuple(row["representative_1"]));b=rep_to_i.get(tuple(row["representative_2"]));
-  if a is None or b is None:pack_valid=False;break
-  ds=frozenset(int(p) for p in np.flatnonzero(z["mat"][a]!=z["mat"][b]));pack_valid &= len(ds)==row.get("distinguishing_probe_count") and hashlib.sha256(canon(tuple(sorted(ds))).encode()).hexdigest()==row.get("distinguishing_probes_sha256");pack_sets.append(ds)
- if pack_valid:
-  for i in range(len(pack_sets)):
-   for j in range(i+1,len(pack_sets)):
-    if pack_sets[i]&pack_sets[j]:pack_valid=False
- packing_closes=pack_valid and len(pack_sets)==m
- # If the simple packing does not close, independently prove no size-(m-1) hitting set.
- no_smaller=True if packing_closes else (search(U,m-1,0) is None)
- # Lexicographic minimum check: no solution with same earlier prefix and smaller next probe.
- lex_ok=selected_separates and len(selected)==m;prefix_rem=U;prev=-1
- if lex_ok:
-  for i,p in enumerate(selected):
-   for q in range(prev+1,p):
-    rq=prefix_rem & ~covers[q]
-    if search(rq,m-i-1,q+1) is not None:lex_ok=False;break
-   if not lex_ok:break
-   prefix_rem &= ~covers[p];prev=p
-  lex_ok &= prefix_rem==0
- return {"selected_separates":selected_separates,"packing_valid":pack_valid,"packing_closes":packing_closes,"no_smaller":no_smaller,"lexicographically_minimum":lex_ok,"branch_cache":search.cache_info()._asdict()}
-
+ for p in selected:rem &= ~physical[p]
+ selected_separates=rem==0 and len(selected)==m
+ covers=nondominated_unique(physical)
+ pair_candidates=[]
+ for j in range(M):
+  bit=1<<j;pair_candidates.append(tuple(i for i,c in enumerate(covers) if c&bit))
+ @lru_cache(maxsize=None)
+ def search(rem:int,slots:int,start:int)->bool:
+  if rem==0:return True
+  if slots<=0:return False
+  bestcov=0
+  for i in range(start,len(covers)):
+   n=(covers[i]&rem).bit_count()
+   if n>bestcov:bestcov=n
+  if bestcov==0 or (rem.bit_count()+bestcov-1)//bestcov>slots:return False
+  # Choose a remaining pair with the fewest still-available probe classes.
+  best_choices=None
+  x=rem
+  while x:
+   lsb=x&-x;j=lsb.bit_length()-1;x-=lsb
+   choices=tuple(i for i in pair_candidates[j] if i>=start and (covers[i]&rem))
+   if not choices:return False
+   if best_choices is None or len(choices)<len(best_choices):
+    best_choices=choices
+    if len(choices)==1:break
+  ordered=sorted(best_choices,key=lambda i:(-(covers[i]&rem).bit_count(),i))
+  for i in ordered:
+   nr=rem & ~covers[i]
+   if nr!=rem and search(nr,slots-1,i+1):return True
+  return False
+ no_smaller=not search(U,m-1,0)
+ pack=src.get("lower_bound_packing",{});packing_attempted=bool(pack.get("attempted"));packing_closes=False;packing_valid=True
+ if packing_attempted:
+  rep_to_i={tuple(r):i for i,r in enumerate(z["reps"])};sets=[]
+  for row in pack.get("pairs",[]):
+   a=rep_to_i.get(tuple(row["representative_1"]));b=rep_to_i.get(tuple(row["representative_2"]));
+   if a is None or b is None:packing_valid=False;break
+   ds=frozenset(int(p) for p in np.flatnonzero(z["mat"][a]!=z["mat"][b]));packing_valid &= len(ds)==row.get("distinguishing_probe_count") and hashlib.sha256(canon(tuple(sorted(ds))).encode()).hexdigest()==row.get("distinguishing_probes_sha256");sets.append(ds)
+  if packing_valid:
+   for i in range(len(sets)):
+    for j in range(i+1,len(sets)):
+     if sets[i]&sets[j]:packing_valid=False
+  packing_closes=packing_valid and len(sets)==m
+ return {"selected_separates":selected_separates,"physical_probe_count":len(physical),"unique_nondominated_cover_classes":len(covers),"packing_attempted":packing_attempted,"packing_valid":packing_valid,"packing_closes":packing_closes,"no_smaller":no_smaller,"branch_cache":search.cache_info()._asdict()}
 def main():
- ap=argparse.ArgumentParser();ap.add_argument("--input",type=Path,default=SRC);ap.add_argument("--output",type=Path,default=OUT);ns=ap.parse_args();src=json.loads(ns.input.read_text());z=construct();q31=json.loads(QG31.read_text());v=verifier(z,src)
+ ap=argparse.ArgumentParser();ap.add_argument("--input",type=Path,default=SRC);ap.add_argument("--output",type=Path,default=OUT);ns=ap.parse_args();src=json.loads(ns.input.read_text());z=construct();q31=json.loads(QG31.read_text());v=verify_minimum(z,src)
  parent=q31.get("both_accept") is True and q31.get("QUERY_INDEXED_ABSTRACTION_REQUIRED") is True and q31.get("class_counts")=={"bulk":45,"defect_spectrum":54,"indexed_local_response":715}
- checks={"source_digest":valid(src),"parent":parent,"orbits":len(z["reps"])==715,"probes":z["mat"].shape[1]==384,"joint_count":len(z["joint"])==src.get("joint_partition",{}).get("class_count"),"joint_hist":h(z["joint"])==src.get("joint_partition",{}).get("class_size_histogram"),"unresolved_pairs":len(z["pairs"])==src.get("joint_partition",{}).get("unresolved_pair_count"),"selected":v["selected_separates"],"minimum":v["no_smaller"],"lex":v["lexicographically_minimum"],"authority_false":all(src.get(k) is False for k in ("MINIMUM_FULL_FINITE_OPTIMUM_PROBES","HARDWARE_MEASUREMENT_MINIMUM","QG28_GLOBAL_STATE_MINIMALITY","ADAPTIVE_TREE_OPTIMALITY","novelty_authority","physical_quantum_advantage_claim"))}
- ok=all(checks.values());out={"schema":"ORIONQG.QG32.GenericVerification.v1","decision":"ACCEPT_MINIMUM_FIXED_PROBE_BASIS" if ok else "REJECT","all_checks":bool(ok),"checks":checks,"independent":{"joint_class_count":len(z["joint"]),"joint_class_size_histogram":h(z["joint"]),"unresolved_pair_count":len(z["pairs"]),"minimum_probe_cardinality":src.get("minimum_probe_cardinality"),"selected_probe_indices":src.get("selected_probe_indices"),"proof":v},"source_result_digest":src.get("result_digest"),"MINIMUM_FULL_FINITE_OPTIMUM_PROBES":False,"HARDWARE_MEASUREMENT_MINIMUM":False,"QG28_GLOBAL_STATE_MINIMALITY":False,"ADAPTIVE_TREE_OPTIMALITY":False,"novelty_authority":False,"physical_quantum_advantage_claim":False};ns.output.parent.mkdir(parents=True,exist_ok=True);ns.output.write_text(json.dumps(out,indent=2,sort_keys=True)+"\n");print(TOKEN+canon({"decision":out["decision"],"all_checks":ok,"joint_classes":len(z["joint"]),"pairs":len(z["pairs"]),"m":src.get("minimum_probe_cardinality"),"packing_closes":v["packing_closes"],"no_smaller":v["no_smaller"],"lex":v["lexicographically_minimum"],"branch_cache":v["branch_cache"]}));return 0
+ checks={"source_digest":valid(src),"parent":parent,"orbits":len(z["reps"])==715,"probes":z["mat"].shape[1]==384,"joint_count":len(z["joint"])==src.get("joint_partition",{}).get("class_count"),"joint_hist":h(z["joint"])==src.get("joint_partition",{}).get("class_size_histogram"),"unresolved_pairs":len(z["pairs"])==src.get("joint_partition",{}).get("unresolved_pair_count"),"selected":v["selected_separates"],"minimum":v["no_smaller"],"authority_false":all(src.get(k) is False for k in ("MINIMUM_FULL_FINITE_OPTIMUM_PROBES","HARDWARE_MEASUREMENT_MINIMUM","QG28_GLOBAL_STATE_MINIMALITY","ADAPTIVE_TREE_OPTIMALITY","novelty_authority","physical_quantum_advantage_claim"))}
+ ok=all(checks.values());out={"schema":"ORIONQG.QG32.GenericVerification.v1","decision":"ACCEPT_MINIMUM_FIXED_PROBE_BASIS" if ok else "REJECT","all_checks":bool(ok),"checks":checks,"independent":{"joint_class_count":len(z["joint"]),"joint_class_size_histogram":h(z["joint"]),"unresolved_pair_count":len(z["pairs"]),"minimum_probe_cardinality":src.get("minimum_probe_cardinality"),"selected_probe_indices":src.get("selected_probe_indices"),"proof":v},"source_result_digest":src.get("result_digest"),"MINIMUM_FULL_FINITE_OPTIMUM_PROBES":False,"HARDWARE_MEASUREMENT_MINIMUM":False,"QG28_GLOBAL_STATE_MINIMALITY":False,"ADAPTIVE_TREE_OPTIMALITY":False,"novelty_authority":False,"physical_quantum_advantage_claim":False};ns.output.parent.mkdir(parents=True,exist_ok=True);ns.output.write_text(json.dumps(out,indent=2,sort_keys=True)+"\n");print(TOKEN+canon({"decision":out["decision"],"all_checks":ok,"joint_classes":len(z["joint"]),"pairs":len(z["pairs"]),"m":src.get("minimum_probe_cardinality"),"cover_classes":v["unique_nondominated_cover_classes"],"packing_closes":v["packing_closes"],"no_smaller":v["no_smaller"],"branch_cache":v["branch_cache"]}));return 0
 if __name__=="__main__":raise SystemExit(main())
