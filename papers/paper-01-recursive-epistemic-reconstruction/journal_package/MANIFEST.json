@@ -1,12 +1,25 @@
 {
   "schema_version": "orion.journal-package.v1",
   "paper_id": "P1",
-  "package_status": "SCAFFOLDING",
+  "package_status": "SUBMISSION_READY",
   "declared_paper_terminal": "PEER_REVIEW_READY",
   "claim_boundary": "CREDENTIAL_FREE_MECHANICAL_MUTATION_NECESSITY_ONLY__NO_MODEL_GENERAL_OR_OPEN_ENDED_SUPERIORITY",
-  "audit_subject_revision": "714a7e771961c8ace08bb38d7dab6e2ba45b8ff7",
+  "audit_subject_revision": "ca7df1055a43f97eaf8d142a62011c4c261af368",
   "audit_date": "2026-08-21",
   "issue": 393,
+  "render_binding": {
+    "render_subject_revision": "060ed7e6528a592cd3bef3db149b93e94652b2ec",
+    "rebind_base_revision": "ca7df1055a43f97eaf8d142a62011c4c261af368",
+    "exact_render_run": 32510318915,
+    "exact_render_artifact": 9456829355,
+    "exact_render_artifact_digest": "sha256:f4d213ab9d84bb4e5bf60099e63e765221d0f25f45449933436276526f69bd51",
+    "pdf_sha256": "06a60f0f6ec69bc142952b4fc9dc1030fcd0f80de41f941958debe375e6ea99e",
+    "repository_input_closure_sha256": "3bb45ad8961a53d555a7e6592c359e9b0cf080fe00cf7a5e8c2fbff2915cebf2",
+    "repository_input_count": 31,
+    "render_toolchain_sha256": "4139104188327db25c3b85dad72fad0bf4d036ac675f1fe2a38c31946dff2b32",
+    "source_date_epoch": 1787318056,
+    "bridge_rule": "The V3 render subject is not relabelled. Package rebinding to this base is valid only because the full tracked TeX input closure is byte-identical; package/audit-only files are outside that closure. Any changed closure or PDF hash reopens visual/package authority."
+  },
   "required_files": [
     {"path": "manuscript/main.tex", "role": "manuscript-source"},
     {"path": "manuscript/bibliography.bib", "role": "bibliography"},
@@ -22,74 +35,23 @@
     {"path": "../../research/revival/p1/confirmatory/v2.2/primary/INDEPENDENT_VERIFICATION.json", "role": "primary-independent-verification"},
     {"path": "../../research/revival/p1/confirmatory/v2.2/replication/REPLICATION_RESULT.json", "role": "disjoint-replication-result"},
     {"path": "../../research/revival/p1/confirmatory/v2.2/replication/INDEPENDENT_VERIFICATION.json", "role": "replication-independent-verification"},
-    {"path": "../../research/revival/p1/confirmatory/v2.2/PRIMARY_REPLICATION_CONCORDANCE.json", "role": "cross-run-concordance"}
+    {"path": "../../research/revival/p1/confirmatory/v2.2/PRIMARY_REPLICATION_CONCORDANCE.json", "role": "cross-run-concordance"},
+    {"path": "evidence/FINAL_SATURATION_AUDIT.md", "role": "durable-render-visual-and-package-audit"},
+    {"path": "journal_package/RENDER_INPUT_CLOSURE.json", "role": "exact-render-repository-input-closure"},
+    {"path": "journal_package/manuscript.pdf", "role": "compiled-and-visually-reviewed-manuscript"}
   ],
-  "missing_artifacts": [
-    {
-      "path": "journal_package/manuscript.pdf",
-      "role": "compiled-and-visually-reviewed-manuscript",
-      "status": "CANNOT_CHECK",
-      "reason": "Unready after the successor writeback: the pre-writeback PDF was deliberately removed, and the exact-head manuscript has not yet completed independent page-by-page visual inspection and package rebinding."
-    }
-  ],
+  "missing_artifacts": [],
   "submission_operations": [
-    {
-      "path": "journal_package/DOI.txt",
-      "role": "permanent-archive-doi",
-      "status": "SUBMISSION_OPERATION",
-      "reason": "A DOI can be minted only when the selected archive receives the final accepted deposit."
-    },
-    {
-      "path": "journal_package/cover_letter.md",
-      "role": "venue-specific-cover-letter",
-      "status": "SUBMISSION_OPERATION",
-      "reason": "No target venue was selected; the scientific package does not invent venue metadata."
-    }
+    {"path": "journal_package/DOI.txt", "role": "permanent-archive-doi", "status": "SUBMISSION_OPERATION", "reason": "A DOI can be minted only when the selected archive receives the final accepted deposit."},
+    {"path": "journal_package/cover_letter.md", "role": "venue-specific-cover-letter", "status": "SUBMISSION_OPERATION", "reason": "No target venue was selected; the scientific package does not invent venue metadata."}
   ],
   "claims": [
-    {
-      "id": "P1.H1",
-      "text": "The historical 48-case hidden-formulation study supports broad external superiority.",
-      "artifacts": ["results/P1-T2_baseline_ablation_results.json"],
-      "status": "NOT_SUPPORTED"
-    },
-    {
-      "id": "P1.NECESSITY.V2.2.4",
-      "text": "On the frozen credential-free mechanical worlds, the protected mutation-necessity composition improves recovery over every assimilated strong parent while satisfying every registered safety, non-regression, control, and cost gate.",
-      "artifacts": [
-        "../../research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RESULT.json",
-        "../../research/revival/p1/confirmatory/v2.2/replication/REPLICATION_RESULT.json",
-        "../../research/revival/p1/confirmatory/v2.2/PRIMARY_REPLICATION_CONCORDANCE.json"
-      ],
-      "status": "SUPPORTED"
-    },
-    {
-      "id": "P1.KWM",
-      "text": "ORION explicitly separates object knowledge K, search-universe W, and governed method state M.",
-      "artifacts": ["manuscript/main.tex", "evidence/CLAIM_LEDGER.md"],
-      "status": "BOUNDED"
-    },
-    {
-      "id": "P1.FALSIFIER",
-      "text": "A frozen local falsifier exposed and repaired an over-broad reframe gate.",
-      "artifacts": ["evidence/FALSIFIER_V1.md"],
-      "status": "SUPPORTED"
-    },
-    {
-      "id": "P1.MODEL_GENERAL_BOUNDARY",
-      "text": "The mechanical successor is explicitly bounded away from model-general or open-ended scientific superiority.",
-      "artifacts": [
-        "evidence/PEER_REVIEW_READY_BOUNDED_V2.md",
-        "manuscript/main.tex"
-      ],
-      "status": "BOUNDED"
-    },
-    {
-      "id": "P1.PDF",
-      "text": "The post-writeback manuscript PDF and independent page-by-page visual audit have not yet been rebound to the exact current source bytes.",
-      "artifacts": [],
-      "status": "OPEN"
-    }
+    {"id": "P1.H1", "text": "The historical 48-case hidden-formulation study supports broad external superiority.", "artifacts": ["results/P1-T2_baseline_ablation_results.json"], "status": "NOT_SUPPORTED"},
+    {"id": "P1.NECESSITY.V2.2.4", "text": "On the frozen credential-free mechanical worlds, the protected mutation-necessity composition improves recovery over every assimilated strong parent while satisfying every registered safety, non-regression, control, and cost gate.", "artifacts": ["../../research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RESULT.json", "../../research/revival/p1/confirmatory/v2.2/replication/REPLICATION_RESULT.json", "../../research/revival/p1/confirmatory/v2.2/PRIMARY_REPLICATION_CONCORDANCE.json"], "status": "SUPPORTED"},
+    {"id": "P1.KWM", "text": "ORION explicitly separates object knowledge K, search-universe W, and governed method state M.", "artifacts": ["manuscript/main.tex", "evidence/CLAIM_LEDGER.md"], "status": "BOUNDED"},
+    {"id": "P1.FALSIFIER", "text": "A frozen local falsifier exposed and repaired an over-broad reframe gate.", "artifacts": ["evidence/FALSIFIER_V1.md"], "status": "SUPPORTED"},
+    {"id": "P1.MODEL_GENERAL_BOUNDARY", "text": "The mechanical successor is explicitly bounded away from model-general or open-ended scientific superiority.", "artifacts": ["evidence/PEER_REVIEW_READY_BOUNDED_V2.md", "manuscript/main.tex"], "status": "BOUNDED"},
+    {"id": "P1.PDF", "text": "The independently inspected 33-page reproducible PDF is rebound to the exact rendered bytes and complete tracked TeX input closure; package release remains subject to final repository/package CI and the successor exact-main render check.", "artifacts": ["journal_package/manuscript.pdf", "journal_package/RENDER_INPUT_CLOSURE.json", "journal_package/CLAIM_PDF_AUDIT.md", "evidence/FINAL_SATURATION_AUDIT.md"], "status": "BOUNDED"}
   ],
   "scientific_result_verification": {
     "owner_issue": 283,
