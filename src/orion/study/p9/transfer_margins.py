@@ -14,18 +14,47 @@ presents is an upper bound on how many different answers any estimator in the
 grid can give --- computable from the frozen dataset alone, before a single fit.
 
 That upper bound is one for ``TRANSCRIPT_BAG``, and the survival count alone
-does not say why, so it is reported with the control that decides. ``512 of 515
-protected keys are missing`` is consistent with two different worlds: the
-vocabulary was fitted on the wrong corpus, or the key space is minted per
-instance and no corpus could have contained it. :func:`d1_view_collapse_report`
-refits the vocabulary on a same-size corpus the same generator draws from the
-protected split's *own* domain and reports how many keys come back --- zero for
-``TRANSCRIPT_BAG``, because ``_surface_tokens`` seeds every action symbol on the
-instance that emitted it, so 1,152 of the 1,155 fitted keys occur in exactly one
-training row; nineteen for ``TYPED_SERIALIZED_BAG``, whose value alphabet really
-is domain-scoped. The three keys that do survive are arity counts and take
-``(2, 2, True)`` on all 128 protected cases, so the denominator is one for a
-second and independent reason as well.
+does not say why, so it is reported with the controls that decide. ``512 of 515
+protected keys are missing`` is consistent with three different worlds, and each
+has a different repair --- or none.
+
+*The vocabulary was fitted on the wrong corpus.* :func:`d1_view_collapse_report`
+refits it on a same-size corpus the same generator draws from the protected
+split's *own* domain and counts what comes back: zero for ``TRANSCRIPT_BAG``,
+nineteen for ``TYPED_SERIALIZED_BAG``, whose value alphabet really is
+domain-scoped.
+
+*The key space is minted per instance.* It is: ``_surface_tokens`` seeds every
+action symbol on the instance that emitted it, so 1,152 of the 1,155 fitted keys
+occur in exactly one training row. That was reported as the cause, and it is not
+the cause. ``D1_PROTOCOL_V1.json`` declares ``surface_remint`` without saying at
+what *scope* a reminted name is reused, so the corpus is rebuilt under the other
+reading --- one alphabet per split, keyed by the mechanic --- and measured. Every
+per-instance key disappears (1,152 of 1,155 becomes 0 of 11) and the protected
+denominator does not move. See :attr:`ViewCollapse.repaired_by_remint_scope`.
+
+*The remint does not carry across the holdout.* This one is the protocol, not the
+implementation: reminting surface names across splits is what the view is for,
+and it is why no minting scope gives this arm a second row. The reason reported
+is therefore ``SURFACE_REMINTED_ACROSS_SPLITS``, which says a reader should stop
+looking for a better minting scheme.
+
+The three keys that do survive are arity counts and take ``(2, 2, True)`` on all
+128 protected cases, so the denominator is one for a fourth and independent
+reason as well.
+
+Everything above is measured on a *regenerated* dataset, which raises the
+question of which dataset. Protocol v1.2's dependency-mutation correction is
+installed by importing :mod:`orion.study.p9.d1_data_runtime`, which rebinds
+``d1._mutated_value`` at module scope --- so ``generate_d1_dataset`` returns the
+v1.1 corpus or the v1.2 corpus according to what else the process happened to
+import. Run on its own, this audit regenerated the **v1.1** dataset
+(``sha256:ff4a3d38...``) and reported on it, while the result under audit was
+produced on the v1.2 dataset (``sha256:27752984...``). The numbers agree on both,
+which is why nothing caught it. :func:`frozen_d1_dataset` now imports the adapter
+explicitly and refuses to return a dataset whose digest is not the shipped one,
+and :func:`d1_dataset_provenance` reports what was measured rather than leaving a
+silent pass to be trusted.
 
 :func:`d1_oracle_identity` asks the other question a zero cannot answer on its
 own. ``0 divergent`` between the exact typed relational comparator and evaluator
@@ -229,6 +258,91 @@ D1_SEED = "p9-d1-method-transfer-v1"
 #: cases handed back to the vectoriser under another name.
 _IN_DOMAIN_CONTROL_SUFFIX = "in-domain-vocabulary-control"
 
+#: The dataset digest the shipped D1 result names.
+#:
+#: ``D1_EXECUTION_RESULT_V1_2.json`` carries this as ``dataset_manifest_digest``.
+#: Every number this module reports is about a *regenerated* dataset, so the
+#: regenerated one has to be that one or the report describes some other corpus.
+D1_SHIPPED_DATASET_MANIFEST_DIGEST = (
+    "sha256:2775298457b7bdee815b207733507cd27d55719df314ef6352bb601bd709c19c"
+)
+
+
+class D1DatasetProvenanceError(RuntimeError):
+    """Raised when the regenerated D1 dataset is not the one the result was run on."""
+
+
+def _v12_generator_installed() -> bool:
+    """Is protocol v1.2's dependency-mutation correction the one in force?
+
+    It is applied by *importing* :mod:`orion.study.p9.d1_data_runtime`, which
+    rebinds ``d1._mutated_value`` and ``d1.mutate_method`` at module scope. So
+    whether ``generate_d1_dataset`` returns the v1.1 corpus or the v1.2 corpus
+    depends on whether something, anywhere in the process, has imported that
+    module first --- and until this check existed nothing looked. Running
+    ``python -m orion.study.p9.transfer_audit`` on its own regenerated the
+    **v1.1** dataset (``sha256:ff4a3d38...``) and reported view-collapse and
+    oracle-divergence numbers about it, while the result under audit was
+    produced on the v1.2 dataset (``sha256:27752984...``). The numbers agree on
+    both corpora, which is why this went unnoticed; agreeing by luck is not the
+    same as measuring the right thing.
+    """
+
+    from . import d1 as _d1
+
+    return getattr(_d1._mutated_value, "__name__", "") == "_mutated_value_v12"
+
+
+def frozen_d1_dataset() -> Any:
+    """Regenerate the dataset the shipped D1 result was produced on, or refuse.
+
+    Imports the v1.2 adapter explicitly rather than relying on some other
+    module's import having installed it, then checks the digest. A caller that
+    gets a dataset back has the frozen one; a caller that does not gets an
+    exception rather than a plausible number about the wrong corpus.
+    """
+
+    from . import d1_data_runtime as _v12_adapter  # noqa: F401  installs v1.2
+    from .d1 import generate_d1_dataset
+
+    dataset = generate_d1_dataset(seed=D1_SEED)
+    if dataset.manifest_digest != D1_SHIPPED_DATASET_MANIFEST_DIGEST:
+        raise D1DatasetProvenanceError(
+            "regenerated D1 dataset is not the one the shipped result names: "
+            f"regenerated {dataset.manifest_digest}, shipped "
+            f"{D1_SHIPPED_DATASET_MANIFEST_DIGEST}; every margin, collapse count and "
+            "divergence below would be about a different corpus"
+        )
+    return dataset
+
+
+def d1_dataset_provenance() -> dict[str, Any]:
+    """What corpus this module measured, and what it would have measured alone.
+
+    Reported rather than only guarded: a check that silently passes leaves a
+    reader unable to tell that the guard was ever needed. ``unadapted_digest``
+    is what ``generate_d1_dataset`` returns with no adapter installed, and it is
+    reported precisely because it is *not* the shipped digest.
+    """
+
+    from .d1 import _mutated_value as _current  # noqa: F401  presence, not value
+
+    installed = _v12_generator_installed()
+    dataset = frozen_d1_dataset()
+    return {
+        "shipped_dataset_manifest_digest": D1_SHIPPED_DATASET_MANIFEST_DIGEST,
+        "measured_dataset_manifest_digest": dataset.manifest_digest,
+        "v12_generator_installed_before_this_call": installed,
+        "v12_generator_installed_now": _v12_generator_installed(),
+        "generator_correction_is_an_import_side_effect": True,
+        "note": (
+            "protocol v1.2's dependency-mutation correction is installed by importing "
+            "orion.study.p9.d1_data_runtime, so which corpus generate_d1_dataset returns "
+            "depends on import order. frozen_d1_dataset imports the adapter explicitly "
+            "and fails closed on the digest."
+        ),
+    }
+
 
 class ViewCollapseReason(str, Enum):
     """Why a view can or cannot tell the protected cases apart.
@@ -247,6 +361,13 @@ class ViewCollapseReason(str, Enum):
     PER_INSTANCE_KEY_SPACE = "PER_INSTANCE_KEY_SPACE"
     #: The keys that do survive take one value on every protected case.
     SURVIVING_KEYS_CONSTANT = "SURVIVING_KEYS_CONSTANT"
+    #: Keys are missing because the protocol remints surface names and the remint
+    #: does not carry across the holdout. Minting them per split instead of per
+    #: instance removes every per-instance key and the denominator does not move,
+    #: so no reminting scope makes this view a comparator on a whole-domain
+    #: holdout. Strictly more informative than ``PER_INSTANCE_KEY_SPACE``, and
+    #: reported instead of it when the repair control has been run and failed.
+    SURFACE_REMINTED_ACROSS_SPLITS = "SURFACE_REMINTED_ACROSS_SPLITS"
 
     @property
     def blocks(self) -> bool:
@@ -283,6 +404,11 @@ class ViewCollapse:
     test_keys_in_in_domain_vocabulary: int
     distinct_protected_rows_in_domain: int
     constant_surviving_keys: int
+    remint_scope_train_vocabulary: int
+    remint_scope_train_keys_in_one_train_row: int
+    remint_scope_test_keys: int
+    remint_scope_test_keys_in_train_vocabulary: int
+    remint_scope_distinct_protected_rows: int
 
     @property
     def missing_keys(self) -> int:
@@ -339,10 +465,34 @@ class ViewCollapse:
         )
 
     @property
+    def repaired_by_remint_scope(self) -> bool:
+        """Does minting one alphabet per split instead of per instance help?
+
+        ``D1_PROTOCOL_V1.json`` declares ``surface_remint`` but never says at what
+        scope a reminted name is reused, so "minted per instance" is an
+        implementation reading rather than a protocol requirement. This rebuilds
+        the corpus under the other reading --- same action, same opaque name
+        throughout a split, a different one in every other split --- and asks
+        whether the denominator moves.
+
+        For ``TRANSCRIPT_BAG`` it does not. The repair removes every per-instance
+        key (1,152 of 1,155 hapax keys become 0 of 11) and the protected
+        denominator stays at one, because the remint is still disjoint *across*
+        splits and that is what the protocol asks for. So the per-instance minting
+        is a real defect and not the operative cause, and reporting it as the
+        cause invites the reader to think a better minting scheme would give this
+        arm a measurement. Nothing would.
+        """
+
+        return self.remint_scope_distinct_protected_rows > 1
+
+    @property
     def reason(self) -> ViewCollapseReason:
         if self.distinct_protected_rows > 1:
             return ViewCollapseReason.VIEW_RESPONDED
         if self.missing_keys and not self.restored_by_in_domain_refit:
+            if not self.repaired_by_remint_scope:
+                return ViewCollapseReason.SURFACE_REMINTED_ACROSS_SPLITS
             return ViewCollapseReason.PER_INSTANCE_KEY_SPACE
         if self.restored_by_in_domain_refit:
             return ViewCollapseReason.HOLDOUT_SCOPED_KEY_SPACE
@@ -381,13 +531,26 @@ class ViewCollapse:
                 + (
                     ", so the absence is the whole-domain holdout"
                     if self.restored_by_in_domain_refit
-                    else ", so the absence is per-instance key minting and not the "
-                    "whole-domain holdout"
+                    else ", so no corpus drawn from the protected domain would have "
+                    "contained them either"
                 )
             )
             parts.append(
                 f"{self.train_keys_in_one_train_row} of {self.train_vocabulary} fitted "
                 f"keys occur in exactly one training row"
+            )
+            parts.append(
+                "reminting the surface alphabet once per split instead of once per "
+                f"instance takes that to {self.remint_scope_train_keys_in_one_train_row} "
+                f"of {self.remint_scope_train_vocabulary} and still presents "
+                f"{self.remint_scope_distinct_protected_rows} distinct protected row(s)"
+                + (
+                    ", so the minting scope was the constraint"
+                    if self.repaired_by_remint_scope
+                    else ", so the per-instance minting is real and is not what holds "
+                    "the denominator down: the protocol remints across splits, and no "
+                    "minting scope survives that"
+                )
             )
         parts.append(
             f"the {self.test_keys_in_train_vocabulary} key(s) that do survive take one "
@@ -473,6 +636,23 @@ def _in_domain_vocabulary_control(dataset: Any) -> tuple[Any, ...]:
     )
 
 
+def _remint_scope_control() -> Any:
+    """The frozen corpus rebuilt with one surface alphabet per split.
+
+    Not a new experiment: the same cases, the same labels, the same instance ids,
+    with the one implementation choice the protocol left open taken the other
+    way. It answers the question ``PER_INSTANCE_KEY_SPACE`` cannot answer on its
+    own --- whether a better minting scheme would give the view a denominator.
+    """
+
+    from .d1 import SurfaceRemintScope, generate_d1_dataset
+
+    frozen_d1_dataset()  # installs the v1.2 correction and checks the digest
+    return generate_d1_dataset(
+        seed=D1_SEED, surface_remint_scope=SurfaceRemintScope.PER_SPLIT
+    )
+
+
 def d1_view_collapse_report() -> dict[str, ViewCollapse]:
     """How many protected cases each view can still tell apart, and why that number.
 
@@ -485,16 +665,20 @@ def d1_view_collapse_report() -> dict[str, ViewCollapse]:
 
     # Local: importing d1_experiment at module scope would drag scikit-learn into
     # every caller of the archive readers above, which need none of it.
-    from .d1 import generate_d1_dataset
     from .d1_experiment import D1FeatureFamily, features
 
-    dataset = generate_d1_dataset(seed=D1_SEED)
+    dataset = frozen_d1_dataset()
     control = _in_domain_vocabulary_control(dataset)
+    repaired = _remint_scope_control()
     report: dict[str, ViewCollapse] = {}
     for family in D1FeatureFamily:
         train = [features(row, family) for row in dataset.train]
         test = [features(row, family) for row in dataset.test]
         in_domain = [features(row, family) for row in control]
+        repaired_train = [features(row, family) for row in repaired.train]
+        repaired_test = [features(row, family) for row in repaired.test]
+        repaired_vocabulary = _vocabulary(repaired_train)
+        repaired_test_keys = _vocabulary(repaired_test)
         vocabulary = _vocabulary(train)
         in_domain_vocabulary = _vocabulary(in_domain)
         test_keys = _vocabulary(test)
@@ -512,6 +696,15 @@ def d1_view_collapse_report() -> dict[str, ViewCollapse]:
             test_keys_in_in_domain_vocabulary=len(test_keys & in_domain_vocabulary),
             distinct_protected_rows_in_domain=_distinct_rows(test, in_domain_vocabulary),
             constant_surviving_keys=_constant_keys(test, test_keys & vocabulary),
+            remint_scope_train_vocabulary=len(repaired_vocabulary),
+            remint_scope_train_keys_in_one_train_row=_keys_in_one_row(repaired_train),
+            remint_scope_test_keys=len(repaired_test_keys),
+            remint_scope_test_keys_in_train_vocabulary=len(
+                repaired_test_keys & repaired_vocabulary
+            ),
+            remint_scope_distinct_protected_rows=_distinct_rows(
+                repaired_test, repaired_vocabulary
+            ),
         )
     return report
 
@@ -546,10 +739,9 @@ def d1_oracle_divergence() -> TheoryDivergence:
     answers it; it is measured here rather than re-implemented.
     """
 
-    from .d1 import generate_d1_dataset
     from .d1_experiment import exact_relational_comparator
 
-    dataset = generate_d1_dataset(seed=D1_SEED)
+    dataset = frozen_d1_dataset()
     return divergence_of(
         exact_relational_comparator,
         theory_id=D1_ORACLE_THEORY_ID,

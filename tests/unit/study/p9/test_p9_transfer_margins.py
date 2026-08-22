@@ -154,13 +154,18 @@ def test_no_model_in_the_frozen_grid_can_give_the_transcript_arm_a_second_answer
 # --------------------------------------------------------------------------
 
 
-def test_the_transcript_denominator_is_per_instance_minting_not_the_holdout(collapse):
-    """The finding, with the control that separates it from a fixable one.
+def test_the_transcript_denominator_is_the_remint_not_the_holdout(collapse):
+    """The finding, with the controls that separate it from two fixable ones.
 
-    ``512 of 515 keys are missing`` is the same sentence in two worlds. Refitting
-    the vocabulary on a same-size corpus the same generator draws from the
-    protected split's own domain restores every key the holdout hid, and none of
-    the keys that are minted per instance. Zero restored is the whole finding.
+    ``512 of 515 keys are missing`` is the same sentence in three worlds.
+    Refitting the vocabulary on a same-size corpus the same generator draws from
+    the protected split's own domain restores every key the holdout hid, and none
+    of these. That was read as "the keys are minted per instance", which is true
+    and is not the cause: rebuilding the corpus with one alphabet per split
+    removes every per-instance key and leaves the denominator at one, because the
+    remint is disjoint across splits and that is what the protocol asks for.
+    ``test_repairing_the_minting_scope_does_not_give_the_view_a_second_row``
+    holds that half.
     """
 
     transcript = collapse["TRANSCRIPT_BAG"]
@@ -173,7 +178,7 @@ def test_the_transcript_denominator_is_per_instance_minting_not_the_holdout(coll
     assert transcript.restored_by_in_domain_refit == 0
     assert transcript.distinct_protected_rows_in_domain == 1
     assert transcript.recoverable_by_refitting is False
-    assert transcript.reason is p9.ViewCollapseReason.PER_INSTANCE_KEY_SPACE
+    assert transcript.reason is p9.ViewCollapseReason.SURFACE_REMINTED_ACROSS_SPLITS
     assert transcript.outcome is Outcome.CANNOT_CHECK
     # Why no corpus could have carried them: every fitted key but the three
     # arity counts occurs in exactly one training row.
@@ -389,3 +394,117 @@ def test_the_audit_entry_point_exits_three_and_serialises():
         "COMPARATOR_RESPONDED",
     }
     assert report_as_json(audit_p9_transfer_margins()) == payload
+
+
+# --- The audit measures a regenerated dataset; these say which one.
+
+
+def _fresh_generator_digest() -> str:
+    """What ``generate_d1_dataset`` returns in a process that imported nothing else.
+
+    Run in a subprocess: protocol v1.2's correction is installed by an import and
+    an import cannot be undone within a process, so any in-process check of the
+    un-adapted generator is answering a question about test collection order.
+    """
+
+    import subprocess
+    import sys
+
+    script = (
+        "from orion.study.p9.d1 import generate_d1_dataset;"
+        "print(generate_d1_dataset(seed='p9-d1-method-transfer-v1').manifest_digest)"
+    )
+    out = subprocess.run(
+        [sys.executable, "-c", script], capture_output=True, text=True, check=True
+    )
+    return out.stdout.strip()
+
+
+def test_the_bare_generator_does_not_produce_the_shipped_dataset() -> None:
+    """The defect this guard exists for, stated as a fact rather than a worry.
+
+    ``d1_data_runtime`` installs protocol v1.2's dependency-mutation correction by
+    rebinding ``d1._mutated_value`` when it is imported. Without that import the
+    generator builds the v1.1 corpus, and until ``frozen_d1_dataset`` existed the
+    audit took whichever one the process happened to have.
+    """
+
+    assert _fresh_generator_digest() != p9.D1_SHIPPED_DATASET_MANIFEST_DIGEST
+
+
+def test_frozen_d1_dataset_installs_the_adapter_and_checks_the_digest() -> None:
+    dataset = p9.frozen_d1_dataset()
+
+    assert dataset.manifest_digest == p9.D1_SHIPPED_DATASET_MANIFEST_DIGEST
+    assert p9._v12_generator_installed() is True
+
+
+def test_the_provenance_guard_refuses_a_dataset_that_is_not_the_shipped_one() -> None:
+    """A guard that cannot fail is not a guard. Move the expectation, see it fire."""
+
+    original = p9.D1_SHIPPED_DATASET_MANIFEST_DIGEST
+    p9.D1_SHIPPED_DATASET_MANIFEST_DIGEST = "sha256:" + "0" * 64
+    try:
+        with pytest.raises(p9.D1DatasetProvenanceError, match="different corpus"):
+            p9.frozen_d1_dataset()
+    finally:
+        p9.D1_SHIPPED_DATASET_MANIFEST_DIGEST = original
+
+
+def test_the_audit_reports_which_dataset_it_measured() -> None:
+    provenance = p9.d1_dataset_provenance()
+
+    assert (
+        provenance["measured_dataset_manifest_digest"]
+        == provenance["shipped_dataset_manifest_digest"]
+    )
+    assert provenance["generator_correction_is_an_import_side_effect"] is True
+
+
+# --- Per-instance minting is real, and is not what holds the denominator down.
+
+
+def test_the_remint_scope_control_removes_every_per_instance_key() -> None:
+    collapse = p9.d1_view_collapse_report()["TRANSCRIPT_BAG"]
+
+    assert collapse.train_keys_in_one_train_row == 1152
+    assert collapse.train_vocabulary == 1155
+    assert collapse.remint_scope_train_keys_in_one_train_row == 0
+
+
+def test_repairing_the_minting_scope_does_not_give_the_view_a_second_row() -> None:
+    """The measurement that makes ``PER_INSTANCE_KEY_SPACE`` the wrong answer."""
+
+    collapse = p9.d1_view_collapse_report()["TRANSCRIPT_BAG"]
+
+    assert collapse.distinct_protected_rows == 1
+    assert collapse.remint_scope_distinct_protected_rows == 1
+    assert collapse.repaired_by_remint_scope is False
+    assert collapse.reason is p9.ViewCollapseReason.SURFACE_REMINTED_ACROSS_SPLITS
+
+
+def test_the_remint_control_leaves_the_responding_views_alone() -> None:
+    """A control that changed the other three arms would be a different experiment."""
+
+    report = p9.d1_view_collapse_report()
+    for view in ("TYPED_RELATIONAL", "UNTYPED_PAIR", "TYPED_SERIALIZED_BAG"):
+        collapse = report[view]
+        assert collapse.remint_scope_distinct_protected_rows == (
+            collapse.distinct_protected_rows
+        ), view
+        assert collapse.reason is p9.ViewCollapseReason.VIEW_RESPONDED, view
+
+
+def test_the_remint_scope_control_changes_only_the_surface() -> None:
+    from orion.study.p9.d1 import SurfaceRemintScope, generate_d1_dataset
+
+    frozen = p9.frozen_d1_dataset()
+    repaired = generate_d1_dataset(
+        seed=p9.D1_SEED, surface_remint_scope=SurfaceRemintScope.PER_SPLIT
+    )
+
+    assert [row.instance_id for row in repaired.test] == [
+        row.instance_id for row in frozen.test
+    ]
+    assert [row.label for row in repaired.test] == [row.label for row in frozen.test]
+    assert repaired.test[0].surface_left != frozen.test[0].surface_left

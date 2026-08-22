@@ -50,6 +50,9 @@ def audit_p9_transfer_margins() -> dict[str, Any]:
     """Measure every published D1 margin, and roll the verdicts up without compensation."""
 
     result = p9.load_shipped_d1_result()
+    # First, because every number below is about a regenerated corpus and this is
+    # the only thing that says it is the corpus the result was produced on.
+    provenance = p9.d1_dataset_provenance()
     margins = p9.d1_contrast_margins(result)
     sensitivity = p9.d1_composition_sensitivity(result)
     collapse = p9.d1_view_collapse_report()
@@ -76,6 +79,7 @@ def audit_p9_transfer_margins() -> dict[str, Any]:
     return {
         "result_digest": result["result_digest"],
         "terminal": result["terminal"],
+        "dataset_provenance": provenance,
         "margins": margins,
         "sensitivity": sensitivity,
         "view_collapse": collapse,
@@ -106,6 +110,13 @@ def _render(report: dict[str, Any]) -> str:
     lines = [
         "P9 D1 transfer margins",
         f"  archive {report['result_digest']} -> {report['terminal']}",
+        f"  dataset {report['dataset_provenance']['measured_dataset_manifest_digest']}"
+        f" (shipped digest reproduced:"
+        f" {report['dataset_provenance']['measured_dataset_manifest_digest'] == report['dataset_provenance']['shipped_dataset_manifest_digest']})",
+        "  protocol v1.2's generator correction is installed by an import, so this"
+        " module installs it explicitly and fails closed on the digest;",
+        "  it was not installed when this audit was entered:"
+        f" {not report['dataset_provenance']['v12_generator_installed_before_this_call']}",
         "",
     ]
     for margin in report["margins"]:
