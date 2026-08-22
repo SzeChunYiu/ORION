@@ -308,6 +308,50 @@ authority `ORIONQG_QG7D_PARTIAL__P1_RESIDUE_OPEN__NOT_R6`).
   is exactly the FAILED_DECOMPOSITION move the reopen adjudication independently derived
   for this negative.
 
+## QG-15c — THE VOCABULARY: FLOOR 43 → 1, AND THE COLLISION DIAGNOSED
+
+`QG15C_VOCABULARY_RESULTS.json` (protocol frozen pre-outcome, sha256 `75481fb4…89feb`;
+double-run byte-identical, `result_digest` `45f0797d…0adae7`; 10/10 gates; independent
+verifier **ACCEPT**, 27/27 checks, re-run by the orchestrator). Terminal
+`QG15C_FLOOR_PERSISTS__COLLISIONS_CHARACTERIZED` — an honest negative, and a near-miss:
+the irreducible floor drops **43 → 1** and mixed cells **12 → 1**.
+
+- **Q1 diagnosed the collision precisely.** Rebuilt QG-15b's 12 mixed cells from
+  primitives and matched them verbatim. In **all 12**, the minimal distinguishing pair
+  differs in the **ordered per-step cost profile of the donor schedule**, while agreeing
+  on `C_D` and every aggregate counter. V1 was a *bag of donor events plus a total*, but
+  donor suboptimality is a **per-step** property: a step paying a Y-correction *and* a
+  sign-correction on one pivot costs 4 where the referee pays 2. V1 cannot see whether
+  two events landed on one step or two. Sharper still — in cells 0, 2, 8 the cost
+  *multisets agree and only the order differs* (`[6,0,4]` vs `[0,6,4]`), so
+  order-insensitive summaries are insufficient too.
+- **Q2**: the frozen V2 vocabulary (V1's 13 features verbatim + 20 schedule/path-aware
+  ones) cuts the domain from 243 cells / 12 mixed / floor 43 to **1043 cells / 1 mixed /
+  floor 1**. Admissibility is enforced *structurally*, not asserted: the referee entry
+  points are replaced by a raising stub for the whole feature-computation phase (gate G4,
+  never triggered) — so no feature can be secretly circular.
+- **Q3 — the surviving collision, and a refusal.** One n=3 pair survives (both `C_D=11`,
+  gap 2). It has **identical donor step-cost profiles `[7,4,0]`**, so the entire
+  schedule-shape block is blind to it, unlike all 12 V1 collisions; same tensor-factor
+  profile, same weight enumerator, same `C_E3`, not permutation-related. The frozen
+  battery *did* find a discriminant V2 lacks — the **negative-sign census** (3 vs 1) —
+  and the lane **deliberately did not add it**, because adding a feature after seeing
+  which one separates the surviving pair is exactly the post-hoc tuning the freeze
+  discipline exists to prevent. No impossibility is claimed; the obligation a real
+  impossibility theorem would carry is stated instead.
+- **Held-out n=4 (untouched, stage digest stamped first)**: the cell-lookup rule is
+  refuted 32/120 — *instructively*, since **120/120 V2 vectors are unseen at n=4**, so a
+  cell table trained at n≤3 transfers not at all (`C_D`, `LB`, `C_E3` leave the n≤3
+  grid). The lattice predicate is refuted 3/120 — **the best held-out number in the
+  series** against QG-15's baselines of 31 / 12 / 23 / 20, and still not exact.
+
+**Reading**: feature-determination for the StabPrep boundary is *nearly* restored by
+making the donor's schedule shape visible, which confirms Q1's diagnosis was right about
+the mechanism. The residue is a single pair that the schedule-shape lens cannot see at
+all — so the open question is no longer "is the vocabulary too coarse" but "what class
+of features could separate a pair with identical schedule geometry", which is the precise
+form an impossibility result would have to address.
+
 ## QG-17b — THE TIE LOCUS: A NEGATIVE CONVERTED, AND TWO BOUNDARY FACES THE CERTIFICATE MISSES
 
 `QG17B_TIE_LOCUS_RESULTS.json` (protocol frozen pre-outcome, sha256 `27ede632…54f889`;
