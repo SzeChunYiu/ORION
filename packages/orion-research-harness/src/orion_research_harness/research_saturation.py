@@ -64,25 +64,31 @@ class ResearchRoundEvidence:
 def _route_family(round_: ResearchRoundEvidence) -> str:
     if not round_.route_contracts:
         return f"UNIDENTIFIED:{round_.round_id}"
-    return "+".join(sorted({item.route_family for item in round_.route_contracts}))
+    if len(round_.route_contracts) == 1:
+        return round_.route_contracts[0].route_family
+    # Multi-route rounds may produce useful novelty but they do not constitute
+    # one independent route-family confirmation. Keep a descriptive identity
+    # only; `_round_independent` below deliberately withholds flatness credit.
+    return "MIXED:" + "+".join(sorted(item.route_id for item in round_.route_contracts))
 
 
-def _round_independent(
-    round_: ResearchRoundEvidence,
-    prior_routes: Sequence[RouteContract],
-) -> bool:
-    """Derive, never accept, the independence bit consumed by canonical saturation."""
+def _round_independent(round_: ResearchRoundEvidence, prior_routes: Sequence[RouteContract]) -> bool:
+    """Derive, never accept, the independence bit consumed by canonical saturation.
 
-    if not round_.route_contracts:
+    Independent-flat credit is intentionally one-route-per-round. If a round mixes
+    a dependent route with an independent route, treating the bundle as a new route
+    family would manufacture an extra independent confirmation. Multi-route rounds
+    still contribute novelty and residual evidence but receive no independence bit.
+    """
+
+    if len(round_.route_contracts) != 1:
         return False
-    if any(not route.structurally_identified for route in round_.route_contracts):
+    route = round_.route_contracts[0]
+    if not route.structurally_identified:
         return False
     if not prior_routes:
         return True
-    return any(
-        all(structurally_independent(route, previous) for previous in prior_routes)
-        for route in round_.route_contracts
-    )
+    return all(structurally_independent(route, previous) for previous in prior_routes)
 
 
 def derive_development_novelty_rounds(
@@ -90,9 +96,7 @@ def derive_development_novelty_rounds(
     *,
     required_axes: tuple[DevelopmentSaturationAxis, ...] = tuple(DevelopmentSaturationAxis),
 ) -> tuple[DevelopmentNoveltyRound, ...]:
-    seen: dict[DevelopmentSaturationAxis, set[str]] = {
-        axis: set() for axis in DevelopmentSaturationAxis
-    }
+    seen: dict[DevelopmentSaturationAxis, set[str]] = {axis: set() for axis in DevelopmentSaturationAxis}
     prior_routes: list[RouteContract] = []
     derived: list[DevelopmentNoveltyRound] = []
     required = set(required_axes)
@@ -112,12 +116,11 @@ def derive_development_novelty_rounds(
             if axis not in residual_axes:
                 residual_axes.append(axis)
             residual_signature.append(f"unobserved-axis:{axis.value}")
-        independent = _round_independent(round_, prior_routes)
         derived.append(
             DevelopmentNoveltyRound(
                 round_id=round_.round_id,
                 route_family=_route_family(round_),
-                independent_route=independent,
+                independent_route=_round_independent(round_, prior_routes),
                 retained_novelty=tuple(retained),
                 residual_axes=tuple(residual_axes),
                 residual_signature=tuple(dict.fromkeys(residual_signature)),
