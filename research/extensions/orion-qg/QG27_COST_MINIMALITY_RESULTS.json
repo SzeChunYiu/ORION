@@ -16,11 +16,17 @@
  "chemistry_sources_read": false,
  "committed_state_count": 1024,
  "cost_mergeability_reduces_to_feasibility": {
+  "accepting_set_translation_stabiliser": [
+   0
+  ],
   "conclusion": "cost is state-independent, so residual cost functions differ only through admissibility; the letters span the full state group, so every pair of states is separated by a word; therefore no two states may be merged and 1024 is minimal for cost as well as for feasibility",
   "every_state_separated_from_every_other": true,
+  "example_unseparated_pairs": [],
   "letters_span_rank": 10,
   "reachable_subgroup_order": 1024,
-  "states_not_separated": []
+  "span_is_the_full_group": true,
+  "stabiliser_is_trivial": true,
+  "why_this_is_the_right_test": "an earlier check asked only whether every state could reach one accepting state, which the full span already guarantees. That is a vacuous pass: it certifies the terminal without testing the claim. Separation needs the stabiliser to be trivial, and that is what is computed here"
  },
  "costs_are_state_independent": {
   "checked": "the committed table is a single length-STATES array of per-delta costs; there is no state axis for a cost to depend on",
@@ -33,7 +39,7 @@
    "applied_criterion_digest": "f3c3338e4eb057fa8fb4ea0593d1fdf60513ab0a8bf76a4e2c35c6b5840c4e42",
    "criterion": "protocol section 6, QG27_COST_DP_IS_ALREADY_MINIMAL",
    "deviation": {
-    "description": "protocol section 4's cost-equivalence relation normalises each state by its own first-horizon value; the applied relation requires equal absolute cost-to-go at every horizon",
+    "description": "protocol section 4 decides cost-equivalence by horizon profiles. The applied criterion abandons horizon profiles entirely and decides mergeability structurally: letter costs are state-independent, so residual cost functions differ only through admissibility, and separation reduces to the accepting set having a trivial translation stabiliser. The absolute-cost scan is reported but decides nothing -- an earlier draft of this record described it as the applied rule, which was wrong because the PASS is produced by the structural check",
     "rationale": "the frozen relation is refuted by counterexample, not by preference: it places two states with different optimal costs in one class, and merging them changes the computed optimum. Cost-to-go is flat in the horizon here because extra steps never help with non-negative costs, so every finite state normalises to all-zeros and the frozen relation retains no information at all. The applied criterion abandons horizon profiles entirely: cost is state-independent in this DP, so mergeability reduces to the feasibility language QG-26 already settled"
    },
    "exhibited_refutation_of_the_frozen_criterion": {
@@ -117,7 +123,7 @@
  "physical_quantum_advantage_claim": false,
  "protected_subject_read": false,
  "protocol_sha256": "8d1b682ee9615314b3e32bccba48f9de570501c3be56bd63d62bc8acf2ec421e",
- "result_digest": "2bd405b14e1f7a2ed79fe44154078580f210541eafdc96b1c4bd68cf43e9ebb1",
+ "result_digest": "5de6ec3e60bf89cfb62e49eb25d7dec640cecec7feaa14656c859fcdc1d6eee7",
  "runs": {
   "absolute_cost_relation": {
    "class_count": 29,

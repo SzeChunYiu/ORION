@@ -151,10 +151,20 @@ def main(argv) -> int:
     record("letters_span_rank_recomputed", rank == red["letters_span_rank"], {"recomputed": rank})
     record("subgroup_order_is_2_to_the_rank",
            len(span) == red["reachable_subgroup_order"] == 2 ** rank)
-    target = min(accepting)
-    separated = all((s ^ target) in span for s in range(r6i.STATES))
+    # Recompute separation the way the CLAIM requires: the accepting set's
+    # translation stabiliser must be trivial. Checking that every state reaches
+    # one accepting state is implied by a full span and tests nothing.
+    stabiliser = sorted(
+        d for d in range(r6i.STATES) if {a ^ d for a in accepting} == accepting)
+    separated = (len(span) == r6i.STATES) and stabiliser == [0]
+    record("accepting_set_stabiliser_recomputed",
+           stabiliser == red["accepting_set_translation_stabiliser"]
+           and red["stabiliser_is_trivial"] == (stabiliser == [0]),
+           {"recomputed": stabiliser})
     record("every_state_separated_recomputed",
            separated == red["every_state_separated_from_every_other"])
+    record("separation_is_not_certified_by_reachability_alone",
+           "vacuous pass" in red.get("why_this_is_the_right_test", ""))
 
     record("costs_are_state_independent",
            len(r6i._local_table(tuple(res["frozen_key"]))[0]) == r6i.STATES
@@ -175,12 +185,16 @@ def main(argv) -> int:
     deficient = [c if (d & 0b1111111000) == 0 and c < INF else INF
                  for d, c in enumerate(cost)]
     drank, dspan = span_rank(deficient)
+    # Separation under the rank-deficient construction, recomputed the same way
+    # the claim requires -- span full AND stabiliser trivial -- not by reachability.
+    deficient_separated = (len(dspan) == r6i.STATES) and stabiliser == [0]
     record("exhibited_rejection_really_rejects",
            drank == ex["letters_span_rank"]
            and len(dspan) == ex["reachable_subgroup_order"]
-           and not all((s ^ target) in dspan for s in range(r6i.STATES))
+           and deficient_separated is False
            and ex["every_state_separated"] is False,
-           {"recomputed_rank": drank, "recomputed_order": len(dspan)})
+           {"recomputed_rank": drank, "recomputed_order": len(dspan),
+            "recomputed_separated": deficient_separated})
 
     bad = check_criterion_binding(res.get("criterion_binding"),
                                   {"protocol section 6, QG27_COST_DP_IS_ALREADY_MINIMAL":

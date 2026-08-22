@@ -197,13 +197,41 @@ def cost_mergeability_reduces_to_feasibility(cost: list[int], accepting: set[int
     span = {0}
     for b in basis:
         span |= {e ^ b for e in span}
-    target = min(accepting)
-    unseparated = [s for s in range(r6i.STATES) if (s ^ target) not in span]
+
+    # States s, s' are Nerode-equivalent exactly when no word value v separates
+    # them: (s^v in A) == (s'^v in A) for every reachable v. With the letters
+    # spanning the full group, v ranges over everything, so that condition is
+    # A ^ (s^s') == A -- i.e. s^s' lies in the TRANSLATION STABILISER of the
+    # accepting set. Pairwise separation therefore holds iff that stabiliser is
+    # trivial.
+    #
+    # An earlier version of this function checked instead that every state could
+    # reach min(accepting). That is implied by the span being full and is
+    # therefore VACUOUS: it would have reported "separated" even with a
+    # non-trivial stabiliser, certifying the terminal without testing its claim.
+    # Reported by Cursor Bugbot on PR #892; the terminal was right and the check
+    # was not.
+    stabiliser = sorted(
+        d for d in range(r6i.STATES) if {a ^ d for a in accepting} == accepting
+    )
+    unseparated_pairs = [] if stabiliser == [0] else [
+        [s, s ^ stabiliser[1]] for s in range(4)
+    ]
     return {
         "letters_span_rank": len(basis),
         "reachable_subgroup_order": len(span),
-        "every_state_separated_from_every_other": not unseparated,
-        "states_not_separated": unseparated[:8],
+        "span_is_the_full_group": len(span) == r6i.STATES,
+        "accepting_set_translation_stabiliser": stabiliser,
+        "stabiliser_is_trivial": stabiliser == [0],
+        "every_state_separated_from_every_other": len(span) == r6i.STATES and stabiliser == [0],
+        "example_unseparated_pairs": unseparated_pairs[:4],
+        "why_this_is_the_right_test": (
+            "an earlier check asked only whether every state could reach one "
+            "accepting state, which the full span already guarantees. That is a "
+            "vacuous pass: it certifies the terminal without testing the claim. "
+            "Separation needs the stabiliser to be trivial, and that is what is "
+            "computed here"
+        ),
         "conclusion": (
             "cost is state-independent, so residual cost functions differ only "
             "through admissibility; the letters span the full state group, so every "
@@ -216,8 +244,18 @@ def cost_mergeability_reduces_to_feasibility(cost: list[int], accepting: set[int
 def main() -> int:
     started = time.time()
     cost, reachable_letters = cost_vector()
+    # Every name the receipt is built from is bound here, so the BLOCKED branch
+    # writes a receipt instead of raising NameError. A protocol terminal that
+    # crashes rather than reporting is not a terminal. Reported by Cursor Bugbot.
+    frozen_terminal = None
+    state_independent: dict[str, Any] = {"not_computed": "frozen key degenerate"}
+    reduction: dict[str, Any] = {"not_computed": "frozen key degenerate"}
+    refutation: dict[str, Any] = {"not_computed": "frozen key degenerate"}
+    exhibited_rejection: dict[str, Any] = {"not_computed": "frozen key degenerate"}
+
     if reachable_letters == 0 or len({c for c in cost if c < INF}) <= 1:
         terminal = "QG27_BLOCKED__FROZEN_KEY_DEGENERATE"
+        frozen_terminal = terminal
         degenerate = True
     else:
         terminal = None
@@ -318,9 +356,15 @@ def main() -> int:
         "reported_verdict": reported,
         "deviation": {
             "description": (
-                "protocol section 4's cost-equivalence relation normalises each "
-                "state by its own first-horizon value; the applied relation "
-                "requires equal absolute cost-to-go at every horizon"
+                "protocol section 4 decides cost-equivalence by horizon profiles. "
+                "The applied criterion abandons horizon profiles entirely and "
+                "decides mergeability structurally: letter costs are "
+                "state-independent, so residual cost functions differ only through "
+                "admissibility, and separation reduces to the accepting set having "
+                "a trivial translation stabiliser. The absolute-cost scan is "
+                "reported but decides nothing -- an earlier draft of this record "
+                "described it as the applied rule, which was wrong because the "
+                "PASS is produced by the structural check"
             ),
             "rationale": (
                 "the frozen relation is refuted by counterexample, not by "
@@ -344,7 +388,9 @@ def main() -> int:
         "exhibited_rejection": exhibited_rejection,
         "exhibited_refutation_of_the_frozen_criterion": refutation,
     }
-    validate_criterion_binding(criterion_record)
+    # G5: the frozen TEXT is passed, so the bound digest is checked against the
+    # protocol rather than taken on this record's word.
+    validate_criterion_binding(criterion_record, FROZEN_CRITERION)
 
     donor_record = {
         "claim": "the cost-merge relation of the committed R6I min-plus DP",

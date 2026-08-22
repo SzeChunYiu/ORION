@@ -1,7 +1,15 @@
 {
- "analyzer_sha256": "b67e4c3e454d34ebad0b3240a6d01b2b15abaea387f322f19a2374b6462b2bba",
- "check_count": 16,
+ "analyzer_sha256": "1561ed2a8cdbb53010c15f74e172e36374ecd4d94083817673d65c3e86b11e94",
+ "check_count": 18,
  "checks": {
+  "accepting_set_stabiliser_recomputed": {
+   "detail": {
+    "recomputed": [
+     0
+    ]
+   },
+   "ok": true
+  },
   "accepting_states_recomputed": {
    "detail": null,
    "ok": true
@@ -33,7 +41,8 @@
   "exhibited_rejection_really_rejects": {
    "detail": {
     "recomputed_order": 8,
-    "recomputed_rank": 3
+    "recomputed_rank": 3,
+    "recomputed_separated": false
    },
    "ok": true
   },
@@ -66,6 +75,10 @@
    "detail": null,
    "ok": true
   },
+  "separation_is_not_certified_by_reachability_alone": {
+   "detail": null,
+   "ok": true
+  },
   "subgroup_order_is_2_to_the_rank": {
    "detail": null,
    "ok": true
@@ -83,8 +96,8 @@
  },
  "determinism": {
   "double_run": true,
-  "run1_sha256": "20810a7f6753909fcb8340ac780c1595285ac929adcf7bbbddd752aafca9f8a0",
-  "run2_sha256": "20810a7f6753909fcb8340ac780c1595285ac929adcf7bbbddd752aafca9f8a0",
+  "run1_sha256": "67e96952a846826467c3850ed18faf4a225f66334a0fa85756c0cb87e83a9f1f",
+  "run2_sha256": "67e96952a846826467c3850ed18faf4a225f66334a0fa85756c0cb87e83a9f1f",
   "stdout_identical": true
  },
  "failed_checks": [],
@@ -182,11 +195,21 @@
     "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
     "tamper": "the scope limit is rewritten to claim the full key-varying DP",
     "verdict": "REJECT"
+   },
+   {
+    "case": "T11_stabiliser_misreported",
+    "failed_checks": [
+     "accepting_set_stabiliser_recomputed"
+    ],
+    "result_digest_recomputed_so_copy_is_internally_self_consistent": true,
+    "tamper": "the accepting set's translation stabiliser is misreported, which is the quantity separation actually depends on",
+    "verdict": "REJECT"
    }
   ],
   "each_case_names_the_field_it_mutates": true,
   "expected_check_per_case": {
    "T10_scope_limit_widened_to_all_keys": "scope_limit_declares_the_single_key",
+   "T11_stabiliser_misreported": "accepting_set_stabiliser_recomputed",
    "T1_terminal_flipped": "terminal_follows_from_the_recomputed_numbers",
    "T2_span_rank_understated_coherently": "letters_span_rank_recomputed",
    "T3_refutation_names_an_equal_cost_pair": "frozen_criterion_refutation_holds",
@@ -206,11 +229,11 @@
   "orion_research_harness"
  ],
  "results_file": "/home/user/ORION/research/extensions/orion-qg/QG27_COST_MINIMALITY_RESULTS.json",
- "results_sha256": "8818e0a8c22fc6399fb9564582a4099a924981bdf93668b7266b095f17dc47cd",
+ "results_sha256": "03a6ed38f542674ff783ea63e7ba5a58248eec2a4a4f2ec15fe72771b1365365",
  "schema": "ORIONQG.QG27.GenericVerification.v1",
  "scope_note": "establishes cost-minimality for the time-invariant automaton obtained by freezing ONE cost-table key. Says nothing about the key-varying DP the programme runs, and nothing about any algorithm's speed.",
  "terminal_under_review": "QG27_COST_DP_IS_ALREADY_MINIMAL",
  "verdict": "ACCEPT",
  "verifier": "qg27_generic_verify",
- "verifier_sha256": "79ea0f6778a86383e201c0af3a02860238d3986b3cb9aa343bcb8e3a31e46c08"
+ "verifier_sha256": "70e575d1bfea125d38c084350fe68f8f09d0ae23c41d3a051a2aa9f96151d83f"
 }

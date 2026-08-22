@@ -96,6 +96,14 @@ def t9(r):
     return r
 
 
+def t11(r):
+    """Claim a trivial stabiliser when it is not, i.e. claim separation vacuously."""
+    red = r["cost_mergeability_reduces_to_feasibility"]
+    red["accepting_set_translation_stabiliser"] = [0, 64]
+    red["stabiliser_is_trivial"] = False
+    return r
+
+
 def t10(r):
     r["scope_limit"] = "this result holds for the full key-varying DP"
     r["frozen_key_is_the_only_key_used"] = False
@@ -122,6 +130,9 @@ TAMPERS = [
     ("T9_letter_count_altered", "the count of finite-cost letters is altered", t9),
     ("T10_scope_limit_widened_to_all_keys",
      "the scope limit is rewritten to claim the full key-varying DP", t10),
+    ("T11_stabiliser_misreported",
+     "the accepting set's translation stabiliser is misreported, which is the "
+     "quantity separation actually depends on", t11),
 ]
 
 EXPECTED_CHECK = {
@@ -135,6 +146,7 @@ EXPECTED_CHECK = {
     "T8_novelty_authority_granted": "authority_ceiling_not_r6",
     "T9_letter_count_altered": "cost_table_rebuilt_from_the_committed_dp",
     "T10_scope_limit_widened_to_all_keys": "scope_limit_declares_the_single_key",
+    "T11_stabiliser_misreported": "accepting_set_stabiliser_recomputed",
 }
 
 
