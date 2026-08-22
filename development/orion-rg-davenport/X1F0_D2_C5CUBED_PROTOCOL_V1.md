@@ -240,10 +240,11 @@ compares the Lemma B bound against the true constant and against the classical
 | `C_3^2` | 2 | 11 | 11 | 13 | 3 | yes |
 | `C_5^2` | 1 | 14 | 14 | 18 | 5 | yes |
 | `C_5^3` | 1 | 20 | 20 | 26 | 7 | yes |
-| `C_5^3` | 2 | open | 26 | 33 | 6 | — |
+| `C_5^3` | 2 | 25 | 26 | 33 | 6 | **no** |
 
-**Tight in 9 of the 10 decided steps; strictly better than the classical bound
-in all 10.**
+**Tight in 9 of the 11 decided steps; strictly better than the classical bound
+in all 11.** (`C_5^3, k = 2` was open when this table was first built; it is
+closed at 25 by `X1F_D3_C5CUBED_PROTOCOL_V1.md`, and it is the second gap.)
 
 Instrument validation before any of this was read: the same code reproduces the
 known rank-2 values `D_k(C_n^2) = (k+1)n - 1` on every computed entry
@@ -252,7 +253,8 @@ reproduced a known family would not have been used.
 
 ### The one gap is a lead, not noise
 
-`C_2^4, k = 1` is the single failure: `D_2(C_2^4) = 8` while Lemma B gives 9.
+There are two failures, `C_2^4, k = 1` (`D_2 = 8`, bound 9) and `C_5^3, k = 2`
+(`D_3 = 25`, bound 26); both lose by exactly one. Taking the first:
 The `eta_T` profile there is `2:16, 3:9, 4:6, 5:5, 6:5, 7:5` against `D = 5`, so
 every `T` is either short of `eta_T` or over `D + T`; no single `T` balances.
 That is the mechanism of the gap: Lemma B commits to **one** threshold `T`,

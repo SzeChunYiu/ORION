@@ -1,0 +1,226 @@
+{
+  "authority": {
+    "machine_checked": true,
+    "mathematical_proposal": true,
+    "mathematical_result_credit": false,
+    "novelty_claim": false,
+    "proof_authority": false,
+    "root_state_896": "OPEN"
+  },
+  "checker_validation": {
+    "all_controls_passed": true,
+    "controls": [
+      {
+        "expected": "both false",
+        "input": "Freeze--Schmid 19-term k=2 witness",
+        "three_disjoint": false,
+        "two_disjoint": false
+      },
+      {
+        "expected": "two true, three false -- the negative control: the checker must NOT cry wolf",
+        "input": "the length-24 lower-bound witness",
+        "three_disjoint": false,
+        "two_disjoint": true
+      },
+      {
+        "expected": "true",
+        "input": "that witness plus one more element (length 25)",
+        "three_disjoint": true
+      },
+      {
+        "expected": "true",
+        "input": "e1^5 e2^5 e3^5 (1,1,1)^10",
+        "three_disjoint": true
+      }
+    ],
+    "harness": "research/orion-rg/x1f_kdisjoint_control_harness.c",
+    "why": "a rejector that never says NO would also report zero survivors; the length-24 negative control is what rules that out"
+  },
+  "claim_ceiling": "EXACT_MACHINE_CHECKED_CONSTANT_NO_NOVELTY_CLAIM",
+  "group": "C_5^3",
+  "issue": "SzeChunYiu/ORION#915",
+  "lower_bound": {
+    "note": "found by extending the Freeze--Schmid 19-term k=2 witness by five elements; not taken on trust from the issue",
+    "route": "explicit length-24 sequence with no three disjoint zero-sums",
+    "value": 25,
+    "verified_by": [
+      "independent Python k-disjoint DP",
+      "the C R3 control harness"
+    ],
+    "witness": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "witness_has_three_disjoint": false,
+    "witness_has_two_disjoint": true,
+    "witness_length": 24,
+    "witness_min_zero_sum": 5
+  },
+  "parents": [
+    "SzeChunYiu/ORION#916",
+    "SzeChunYiu/ORION#912",
+    "SzeChunYiu/ORION#901",
+    "SzeChunYiu/ORION#896"
+  ],
+  "schema": "ORION.RG.X1F.CommittedResult.v1",
+  "source_result_digest": "704d6ff541603a36b4436d10827cf7deef646a6b23ec16eb2bb4be03ea57c5aa",
+  "terminal": "X1F_EXACT_D3_ESTABLISHED",
+  "theorem": {
+    "exact_value": 25,
+    "prior_interval_after_eta_ladder": [
+      25,
+      26
+    ],
+    "prior_interval_on_issue_915": [
+      25,
+      33
+    ],
+    "statement": "D_3(C_5^3) = 25"
+  },
+  "upper_bound": {
+    "pass1": {
+      "constraints": [
+        "A is a zero-sum: sum of the six added elements is 0",
+        "A is a multiset: enumerated in nondecreasing order",
+        "min zero-sum of M >= 6 (Lemma A)"
+      ],
+      "instrument": "research/orion-rg/x1f_d3_pass1_extension_filter.c",
+      "length25_candidates": 230983,
+      "witnesses_scanned": 98622
+    },
+    "pass2": {
+      "C_rebuild_failures": 0,
+      "candidates_tested": 230983,
+      "distinct_C_groups": 45970,
+      "instrument": "research/orion-rg/x1f_d3_pass2_exact_three_disjoint.c",
+      "length25_with_no_three_disjoint": 0
+    },
+    "structure_theorem": [
+      "Lemma A with k=2 and D_2=20: every zero-sum of a length-25 three-disjoint-free M has length >= 6",
+      "f_6(C_5^3)=23 < 25: M has a zero-sum of length <= 6",
+      "hence M has a zero-sum A with |A| = 6 exactly",
+      "C = M minus A has 19 elements and no two disjoint zero-sums (else A plus those two make three)",
+      "C has rank 3 (a rank-<=2 length-19 sequence already has two disjoint zero-sums since D(C_5^2)=9 and 19-9=10>=9)",
+      "so C is GL(3,5)-equivalent to one of the completely enumerated normalized length-19 witnesses"
+    ],
+    "value": 25
+  }
+}
