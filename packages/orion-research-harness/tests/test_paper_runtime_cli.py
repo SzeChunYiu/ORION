@@ -34,6 +34,11 @@ def test_navigation_plan_cli_fail_closes_open_task(capsys):
     result = json.loads(capsys.readouterr().out)
     assert result["decision"]["action"] == "CANNOT_CHECK"
     assert result["decision"]["grants_global_task_stop_authority"] is False
+    resolution = result["resolution_obligation"]
+    assert resolution["schema"] == "ORION.ResearchResolutionObligation.v1"
+    assert resolution["outcome_kind"] == "UNRESOLVED"
+    assert resolution["reason_codes"] == [result["decision"]["reason"]]
+    assert "TASK_STOP" not in resolution["next_actions"]
     assert result["grants_scientific_authority"] is False
 
 
