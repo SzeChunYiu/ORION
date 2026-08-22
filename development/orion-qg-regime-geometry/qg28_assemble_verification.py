@@ -232,6 +232,19 @@ def t_licensing_counts_inflated(r):
     lic["instances_agreeing"] = int(lic["instances_agreeing"]) + 3
 
 
+def t_licensing_soft_reverted_to_prose(r):
+    """The field's previous shape. A non-empty string is truthy, so an `or {}`
+    guard never fires and `.get` raises -- the verifier aborted instead of
+    REJECTing, which is a fail-closed gate failing open. The existing
+    `T18e` tamper set the field to "", which IS falsy, so the suite passed
+    while the crash path stayed untested. Reported by Cursor Bugbot on 37903dfd.
+    """
+    r["deviation_from_protocol_section_3_3"]["what_licenses_the_claim_anyway"] = (
+        "dp_driven_search above runs the section-3.3 algorithm literally on a "
+        "declared sample and gets the same C_D++"
+    )
+
+
 def t_wall_clock_status(r):
     r["q3_cell_model"]["wall_clock_status"] = ""
 
@@ -295,6 +308,8 @@ TAMPERS: dict[str, tuple[Callable[[dict], None], str]] = {
         t_dp_n2_row_fabricated, "dp_driven_n2_rows_recomputed"),
     "T18h_licensing_counts_inflated": (
         t_licensing_counts_inflated, "licensing_record_matches_the_dp_rows"),
+    "T18i_licensing_soft_reverted_to_prose": (
+        t_licensing_soft_reverted_to_prose, "section_3_3_deviation_disclosed"),
     "T19_wall_clock_caveat_removed": (
         t_wall_clock_status, "gate_g3_wall_clock_carries_no_argument"),
     "T20_instance_total_inflated": (

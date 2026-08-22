@@ -388,8 +388,9 @@ def verify(path: pathlib.Path) -> dict[str, Any]:
         bool(str(dev.get(k, "")).strip())
         for k in ("section_says", "what_the_bulk_domains_actually_run", "why",
                   "found_by")
-    ) and bool(str((dev.get("what_licenses_the_claim_anyway") or {}).get(
-        "text", "")).strip())
+    ) and isinstance(dev.get("what_licenses_the_claim_anyway"), Mapping) and bool(
+        str(dev["what_licenses_the_claim_anyway"].get("text", "")).strip()
+    )
 
     # 7. the hostile panels, recomputed row by row rather than read.
     panels = next(
