@@ -54,3 +54,25 @@ P11G compares L2 logistic regression on `r` compiled columns against a 96-tree e
 It cuts both ways and is reported both ways. It narrows the terminal: 13.3% and 44.6% of the published gaps are the change of decoder family, not of state. It supports the placement claim: with the decoder held fixed the state half is the majority in both cells, and being measured at a fixed decoder it is unaffected by which universal arm sits in the gate.
 
 The sequence supports the interpretation that **compilation and decoder inductive bias are alternative locations for structural search**. Stronger downstream structure discovery should shrink the upstream advantage; the sparse negative is therefore part of the mechanism evidence, not an inconvenient result to erase. Each verdict in it is scoped to the arm that produced it.
+## P11H pooled successor — the survival was not predetermined, and it did not hold
+
+The arm-scoping above is the smaller finding. The larger one, from `orion.study.p11.attack_audit`, is that all four of P11G's scientific gates hold in **every world its own freeze admits**, so its survival was fixed before its seed was drawn. P11H re-asks the question under a protocol whose attack can win, editing nothing of P11G.
+
+P11H registers all three universal arms and freezes the best-of-arms rule inside its own positive gate; carries P11G's `0.95` and `0.20` thresholds over unedited; and draws two protected regimes by its fresh seed from a frozen 2×3 ladder of state widths `r ∈ {3, 7}` crossed with complete parity banks of 91, 364 and 969 columns. Before execution, the recorded preflight reports both hypothesis gates `BOTH_OUTCOMES_REACHABLE` — supports `[0.8808, 1.0000]` against `0.95` and `[0.0000, 0.2482]` against `0.20` — and two reachable terminals over 15 admissible draws, 3 of which clear every gate.
+
+The seed drew `(14,2,3)` and `(19,3,3)`. Every precondition held, replay was byte-identical, and both hypothesis gates failed: `P11H_POOLED_UNIVERSAL_ATTACK_PREVAILED`.
+
+| rung | universal bank | pooled 0.95 threshold | `delta64` |
+|---|---:|---:|---:|
+| (14,2,3) | 91 | **128** | +0.1482 |
+| (14,3,3) | 364 | **128** | +0.0992 |
+| (19,3,3) | 969 | **128** | +0.0506 |
+| (14,2,7) | 91 | ≥256 | +0.2350 |
+| (14,3,7) | 364 | ≥256 | +0.3172 |
+| (19,3,7) | 969 | ≥256 | +0.3175 |
+
+The pool reaches the target by `n=128` at every `r=3` rung and at no `r=7` rung, while the complete bank moves 91 → 969 columns inside each half without changing a verdict. The advantage is governed by the width of the compiled state, not by the size of the universal representation.
+
+And the decomposition sharpens in the opposite direction: at the drawn regimes the decoder-family half of the `n=64` gap is exactly `+0.0000`, so **100%** of it is the change of state — against 86.7% and 55.4% above — and the gap is still only `+0.0506`. Attribution and magnitude are different questions.
+
+Three of the fifteen admissible draws would have printed the positive terminal and the seed did not draw one, so the `r=7` rungs carry no terminal and no claim authority. The `r=5` boundary was excluded before execution for verdict instability across three preflight seeds, in both directions, and remains open.

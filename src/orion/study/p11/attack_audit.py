@@ -32,6 +32,7 @@ from typing import Any, Sequence
 
 from orion.programme.records import Outcome
 from orion.study.p11 import decoder_attack_reach as p11
+from orion.study.p11 import successor_reach as p11h
 
 
 def audit_p11g_attack_terminal() -> dict[str, Any]:
@@ -57,6 +58,15 @@ def audit_p11g_attack_terminal() -> dict[str, Any]:
     gaps = p11.arm_disclosure_gaps()
     disclosure_outcome = Outcome.FAIL if gaps else Outcome.PASS
 
+    # The successor's disposition is reported and does not roll up either, for
+    # the same reason and more strongly. P11G's four gates hold in every world
+    # P11G admits and that is permanent; a successor cannot make it smaller, it
+    # can only ask the question again under a protocol whose attack has a
+    # reachable win. Letting P11H's PASS lower this exit code would be exactly
+    # the compensation `worst_outcome` exists to refuse, and would relabel a
+    # retained negative as repaired.
+    successor = p11h.successor_disposition()
+
     # Responsiveness is reported and does not roll up: it is the half that
     # clears the arm, and letting a PASS there offset an unreachable defeat
     # would be the compensation `worst_outcome` exists to refuse.
@@ -81,6 +91,7 @@ def audit_p11g_attack_terminal() -> dict[str, Any]:
         "arm_disclosure_gaps": gaps,
         "disclosure_outcome": disclosure_outcome,
         "decoder_family_share": p11.decoder_family_share(),
+        "successor": successor,
         "outcome": outcome,
     }
 
@@ -100,6 +111,7 @@ def report_as_json(report: dict[str, Any]) -> dict[str, Any]:
         "arm_disclosure_gaps": list(report["arm_disclosure_gaps"]),
         "disclosure_outcome": report["disclosure_outcome"].value,
         "decoder_family_share": [dict(row) for row in report["decoder_family_share"]],
+        "successor": dict(report["successor"]),
         "outcome": report["outcome"].value,
     }
 
@@ -193,6 +205,28 @@ def _render(report: dict[str, Any]) -> str:
             f"{row['decoder_family_gap_at_64']:.4f} + state {row['representation_gap_at_64']:.4f}"
             + (f"  ({share:.1%} decoder / {1 - share:.1%} state)" if share is not None else "")
         )
+    successor = report["successor"]
+    lines += [
+        "",
+        f"  successor protocol {successor['protocol']} (reported; does not roll up)",
+        f"    pre-run threshold panel: {successor['panel_outcome']}"
+        f"   discriminating hypothesis gates: "
+        f"{', '.join(successor['discriminating_hypothesis_gates']) or 'none'}",
+        f"    reachable terminals over {successor['worlds_registered']} admissible draws: "
+        f"{successor['distinct_terminals']}"
+        f"   ({successor['worlds_clearing_every_gate']} clear every gate)",
+        f"    executed terminal: {successor['terminal'] or 'not executed'}"
+        + (
+            f"   at {successor['protected_cells']}"
+            if successor["protected_cells"]
+            else ""
+        ),
+        f"    retires UNWINNABLE_ATTACK_PREDETERMINED_SURVIVAL: "
+        f"{successor['retires_unwinnable_attack_finding']}",
+        "",
+        "  P11G's own attainability verdict is retained and still blocks; the successor",
+        "  re-asks the question, it does not repair the frozen protocol.",
+    ]
     lines += ["", f"  outcome: {report['outcome'].value}"]
     return "\n".join(lines)
 
