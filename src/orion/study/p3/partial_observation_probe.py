@@ -41,8 +41,24 @@ runner recomputes the twin's parameter digest from its own constants and refuses
 to run on a mismatch, and it refuses to report an arm number over a probe that
 fails the construction precondition.
 
+**Amendment 001 (2026-08-22).** As frozen, gate ``G6_HARM_A1`` --- "A1 changes 0
+decisions on the intact corpora" --- had no denominator and said so: with no
+one-sided absence anywhere, A1 could not fire, and its zero was structural. That
+zero is a fact about three corpora, not about what "intact" means. Observedness
+is a per-projection property, nothing in ``ScientificMeaningProjection``
+constrains it across a pair, and the five branches of ``compare_meaning`` listed
+above are reachable *only* on a pair observed on one side and not the other; they
+are untested, not unreachable. The amendment adds a fourth intact corpus,
+``research/p3-partial-observation-harm-v1/``, built by
+:mod:`orion.study.p3.partial_observation_harm_build`, whose pairs do state a
+coordinate on one side only. No threshold moves. A gate reading "changes 0
+decisions" can only be left alone or failed by a corpus added to it, never
+passed, so supplying its denominator cannot manufacture a positive --- and it
+does not: A1 destroys correct answers over it, and G6 fails on evidence.
+
 Nothing here edits ``orion.knowledge.semantics``; the candidate rules are
-study-local arms. Nothing here edits a frozen atlas, result or receipt.
+study-local arms. Nothing here edits a frozen atlas, result or receipt, and the
+2026-08-21 freeze document and its twin are left byte-identical.
 
 Run it::
 
@@ -89,10 +105,28 @@ FREEZE_DOCUMENT = (
     "papers/paper-03-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md"
 )
-FREEZE_TWIN = (
+ORIGINAL_FREEZE_TWIN = (
     "papers/paper-03-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.json"
 )
+
+# Amendment 001 (2026-08-22) adds a fourth intact corpus so that G6_HARM_A1 has a
+# denominator. The 2026-08-21 freeze and its twin are left byte-identical: the
+# amendment is a separate document carrying its own parameter digest, and the
+# runner binds to it. Nothing the original document decided is reopened --- no
+# threshold moves, no gate is renamed, no adjudicated case is touched.
+AMENDMENT_DOCUMENT = (
+    "papers/paper-03-global-knowledge-portrait/protocol/"
+    "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_001.md"
+)
+AMENDMENT_TWIN = (
+    "papers/paper-03-global-knowledge-portrait/protocol/"
+    "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_001.json"
+)
+
+#: The twin the runner checks itself against. Points at the amendment while one
+#: is in force, so a digest drift is caught against the record actually running.
+FREEZE_TWIN = AMENDMENT_TWIN
 
 CLAIM_SCOPE = "PARTIAL_OBSERVATION_OF_FROZEN_ATLASES_ONLY"
 
@@ -246,6 +280,7 @@ ARM_ORDER: tuple[str, ...] = (ARM_CURRENT, ARM_ASYMMETRIC, ARM_STRICT)
 INTACT_DERIVATION = "INTACT_DERIVATION"
 INTACT_HELDOUT_REAL = "INTACT_HELDOUT_REAL"
 INTACT_HELDOUT_SYNTHETIC = "INTACT_HELDOUT_SYNTHETIC"
+INTACT_HARM_SYNTHETIC = "INTACT_HARM_SYNTHETIC"
 PROBE_DERIVATION = "PROBE_DERIVATION"
 PROBE_HELDOUT_REAL = "PROBE_HELDOUT_REAL"
 PROBE_HELDOUT_SYNTHETIC = "PROBE_HELDOUT_SYNTHETIC"
@@ -260,8 +295,19 @@ INTACT_SOURCES: dict[str, str] = {
         "public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl"
     ),
     INTACT_HELDOUT_SYNTHETIC: "research/p3-coordinate-necessity-v1/cases.jsonl",
+    # Amendment 001. Added because G6_HARM_A1 had no denominator: the three
+    # corpora above state every coordinate on both sides of every pair or on
+    # neither, so A1 could not fire on any of them and its zero was structural.
+    # See AMENDMENT_DOCUMENT and research/p3-partial-observation-harm-v1/.
+    INTACT_HARM_SYNTHETIC: "research/p3-partial-observation-harm-v1/cases.jsonl",
 }
 
+# The redaction of section 4.2 is defined only on a pair that states each
+# coordinate on both sides or on neither: silencing a coordinate of a pair that
+# already has a one-sided absence yields a probe case with two of them, which C2
+# rejects. INTACT_HARM_SYNTHETIC exists precisely because it has one-sided
+# absences, so it is a harm corpus and not a probe parent. The three corpora
+# frozen on 2026-08-21 are unaffected --- their one-sided-absence census is zero.
 PROBE_OF: dict[str, str] = {
     INTACT_DERIVATION: PROBE_DERIVATION,
     INTACT_HELDOUT_REAL: PROBE_HELDOUT_REAL,
@@ -272,7 +318,23 @@ INTACT_ORDER: tuple[str, ...] = (
     INTACT_DERIVATION,
     INTACT_HELDOUT_REAL,
     INTACT_HELDOUT_SYNTHETIC,
+    INTACT_HARM_SYNTHETIC,
 )
+
+#: The intact corpora frozen on 2026-08-21, every one of them fully symmetric in
+#: observedness. Kept as a named tuple so the assertions that pin *their*
+#: properties --- zero partially observed pairs, an unexercised over-resolution
+#: guard --- stay attached to the corpora they are true of instead of silently
+#: widening to whatever is added later.
+SYMMETRIC_INTACT_ORDER: tuple[str, ...] = (
+    INTACT_DERIVATION,
+    INTACT_HELDOUT_REAL,
+    INTACT_HELDOUT_SYNTHETIC,
+)
+
+#: Intact corpora that do contain one-sided absences, i.e. the denominator that
+#: makes G6_HARM_A1 a measurement.
+PARTIALLY_OBSERVED_INTACT_ORDER: tuple[str, ...] = (INTACT_HARM_SYNTHETIC,)
 
 
 # --------------------------------------------------------------------------
@@ -325,11 +387,22 @@ def redactable_coordinates(
     forbids merging, and ``compare_meaning`` already reproduces gold on the
     untouched pair. The last one keeps a probe failure from being inherited from
     a pre-existing error.
+
+    Amendment 001 adds a fifth, on the parent rather than on the coordinate: the
+    pair must not already have a one-sided absence. Redacting a pair that has one
+    produces a probe case with two, which C2 rejects, so the campaign would abort
+    on ``CONSTRUCTION_PRECONDITION_FAILED`` rather than report the malformed case.
+    Refusing the parent is the same judgement made one step earlier. It is a
+    no-op on the three corpora frozen on 2026-08-21, whose one-sided-absence
+    census is zero everywhere; ``build_probe`` emits exactly the 12, 8 and 28
+    cases it emitted before.
     """
 
     if gold not in NONMERGE_RELATIONS:
         return ()
     if compare_meaning(left, right).relation is not gold:
+        return ()
+    if _one_sided_absences(left, right):
         return ()
     return discriminating_coordinates(left, right)
 
@@ -703,6 +776,24 @@ GATES: dict[str, Any] = {
             "them; this gate passes for a structural reason and may not be cited as evidence "
             "that A1 is safe"
         ),
+        "amendment_001": {
+            "statement_as_amended": (
+                "A1_observedness_asymmetric changes 0 decisions on every intact corpus, now "
+                "including INTACT_HARM_SYNTHETIC"
+            ),
+            "denominator_corpus": INTACT_HARM_SYNTHETIC,
+            "threshold_unchanged": True,
+            "note": (
+                "the vacuity note above is a true statement about the three corpora frozen on "
+                "2026-08-21 and is left standing. It described a property of those corpora, not "
+                "of what 'intact' means: observedness is a per-projection fact and "
+                "compare_meaning carries branches reachable only on a one-sided absence. "
+                "Amendment 001 adds an intact corpus that has them. The gate's threshold is not "
+                "relaxed --- a harm gate reading 'changes 0 decisions' can only be left alone or "
+                "failed by a corpus added to it, never passed, which is why supplying its "
+                "denominator cannot manufacture a positive."
+            ),
+        },
     },
     "G7_COST_A2": {
         "statement": (
@@ -751,6 +842,31 @@ CANDIDATE_COORDINATE = {
 FROZEN_PARAMETERS: dict[str, Any] = {
     "record": "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE",
     "freeze_document": FREEZE_DOCUMENT,
+    "amendment": {
+        "id": "AMENDMENT_001",
+        "date": "2026-08-22",
+        "document": AMENDMENT_DOCUMENT,
+        "reason": (
+            "G6_HARM_A1 was pre-declared vacuous and ran as CANNOT_CHECK: the three intact "
+            "corpora state every coordinate on both sides of every pair or on neither, so A1 "
+            "could not fire and 0 changes was a structural zero"
+        ),
+        "changes": [
+            "adds INTACT_HARM_SYNTHETIC, a fourth intact corpus that does contain one-sided "
+            "absences, built by orion.study.p3.partial_observation_harm_build",
+            "excludes that corpus from probe construction, because the redaction of section 4.2 "
+            "is defined only on a parent with no one-sided absence",
+            "adds the same condition to redactable_coordinates, a no-op on the three corpora "
+            "frozen on 2026-08-21",
+            "reports correct_answers_destroyed and a per-corpus breakdown on G6",
+        ],
+        "unchanged": [
+            "every gate threshold, including G6's 0",
+            "the coordinate table, the absent-value table, the arms and the probe gold",
+            "the three corpora frozen on 2026-08-21 and every case in them",
+            "the 2026-08-21 freeze document and its twin, both byte-identical",
+        ],
+    },
     "claim_scope": CLAIM_SCOPE,
     "coordinates": list(COORDINATES),
     "absent_values": {
@@ -761,6 +877,8 @@ FROZEN_PARAMETERS: dict[str, Any] = {
     "arms": list(ARM_ORDER),
     "sides_per_redactable_pair": list(SIDES),
     "intact_sources": dict(INTACT_SOURCES),
+    "symmetric_intact_sources": list(SYMMETRIC_INTACT_ORDER),
+    "partially_observed_intact_sources": list(PARTIALLY_OBSERVED_INTACT_ORDER),
     "probe_of": dict(PROBE_OF),
     "probe_gold": MeaningRelation.UNRESOLVED.value,
     "secondary_gold": "PARENT_GOLD",
@@ -769,6 +887,7 @@ FROZEN_PARAMETERS: dict[str, Any] = {
         "observed values differ",
         "parent gold is in NONMERGE_RELATIONS",
         "compare_meaning reproduces parent gold on the untouched pair",
+        "the parent pair has no one-sided absence of its own (amendment 001)",
     ],
     "primary_outcome": (
         "P3.OVERRESOLVED_UNRESOLVED_CASE for A0_orion_current on PROBE_DERIVATION, assessed by "
@@ -857,8 +976,13 @@ def run_campaign(repo_root: Path) -> tuple[dict[str, Any], tuple[ProbeCase, ...]
         path = repo_root / relative
         cases = load_jsonl(path)
         intact_pairs[corpus_id] = _intact_pairs(cases)
-        probes[PROBE_OF[corpus_id]] = build_probe(cases, PROBE_OF[corpus_id])
-        sources[corpus_id] = {"path": relative, "n_cases": len(cases)}
+        if corpus_id in PROBE_OF:
+            probes[PROBE_OF[corpus_id]] = build_probe(cases, PROBE_OF[corpus_id])
+        sources[corpus_id] = {
+            "path": relative,
+            "n_cases": len(cases),
+            "role": "HARM_MEASUREMENT_ONLY" if corpus_id not in PROBE_OF else "HARM_AND_PROBE_PARENT",
+        }
     payload["sources"] = sources
 
     preconditions = {
@@ -1057,6 +1181,10 @@ def evaluate_gates(corpora: Mapping[str, Any]) -> dict[str, Any]:
         corpora[corpus_id]["one_sided_absence_census"]["n_pairs_with_a_one_sided_absence"]
         for corpus_id in INTACT_ORDER
     )
+    a1_destroyed = sum(
+        corpora[corpus_id]["harm_vs_current"][ARM_ASYMMETRIC]["correct_answers_destroyed"]
+        for corpus_id in INTACT_ORDER
+    )
     gates["G6_HARM_A1"] = {
         "outcome": (
             Outcome.CANNOT_CHECK.value
@@ -1064,13 +1192,28 @@ def evaluate_gates(corpora: Mapping[str, Any]) -> dict[str, Any]:
             else (Outcome.PASS.value if a1_changes == 0 else Outcome.FAIL.value)
         ),
         "decisions_changed": a1_changes,
+        "correct_answers_destroyed": a1_destroyed,
         "pairs_where_a1_could_fire": a1_opportunities,
         "vacuous": a1_opportunities == 0,
+        "by_corpus": {
+            corpus_id: {
+                "pairs_where_a1_could_fire": (
+                    corpora[corpus_id]["one_sided_absence_census"][
+                        "n_pairs_with_a_one_sided_absence"
+                    ]
+                ),
+                **corpora[corpus_id]["harm_vs_current"][ARM_ASYMMETRIC],
+            }
+            for corpus_id in INTACT_ORDER
+        },
         "detail": (
             "A1 cannot fire on any intact pair because no intact pair has a one-sided absence; "
             "0 changes is a structural zero, not a demonstration of safety"
             if a1_opportunities == 0
-            else f"A1 could fire on {a1_opportunities} pairs and moved {a1_changes} decisions"
+            else (
+                f"A1 could fire on {a1_opportunities} intact pairs, moved {a1_changes} decisions "
+                f"and destroyed {a1_destroyed} correct answers"
+            )
         ),
     }
 
@@ -1148,7 +1291,13 @@ INTERPRETATION = (
     "real denominator with a demonstrated failure. The candidate coordinate mined from that "
     "failure, observation_status, is not a new identity axis: it is the third value the existing "
     "axes lack. P3-U-T5 is NOT discharged, and no accuracy or superiority number over the probe "
-    "may be quoted as evidence about ORION on scientific text."
+    "may be quoted as evidence about ORION on scientific text. Amendment 001 supplies the one "
+    "denominator this study was missing: an intact corpus that states a coordinate on one side "
+    "only. Over it the absent-means-agreement reading fails on authored cases and not only on "
+    "redactions, eight coordinates merge-ward and one separation-ward exactly as section 1.2 "
+    "predicted, and the abstain-on-asymmetry repair A1 is measured to destroy correct answers "
+    "rather than assumed harmless. G6_HARM_A1 is now a FAIL on evidence instead of a "
+    "CANNOT_CHECK on emptiness."
 )
 
 
@@ -1157,12 +1306,36 @@ CAVEATS: tuple[str, ...] = (
     "by construction: they abstain on exactly the property the probe injects. Those zeros license "
     "nothing and are not evidence that either rule is correct. A2's informative number is its cost "
     "on the intact corpora (gate G7), not its probe score.",
-    "G6_HARM_A1 is vacuous and says so: A1 changes no intact decision only because no intact pair "
-    "has a one-sided absence. A structural zero is not a demonstration of safety.",
-    "G5_MINING_YIELD part (a) is CANNOT_CHECK, not PASS. There are no false merges and no false "
-    "splits on the intact corpora, so T5's 'prove the coordinate unnecessary' branch has nothing "
-    "to prove anything about. Reading that emptiness as 'no new coordinate is needed' would be the "
-    "vacuous-guard fallacy this lane exists to prevent.",
+    "G6_HARM_A1 was vacuous on the three corpora frozen on 2026-08-21 and is not vacuous now. "
+    "Amendment 001 adds INTACT_HARM_SYNTHETIC, an intact corpus that does have one-sided "
+    "absences, and over that denominator A1 is measured rather than assumed. The zero it used to "
+    "report was never a demonstration of safety and is not now retroactively one; what replaced "
+    "it is a harm count.",
+    "A1's harm on INTACT_HARM_SYNTHETIC is not a property of that corpus. A1 returns UNRESOLVED "
+    "on every pair with a one-sided absence, so on any such pair whose gold is determinate and "
+    "which A0 already answers correctly it necessarily destroys a correct answer. G6 can "
+    "therefore only be passed non-vacuously by a corpus in which no partially observed pair has "
+    "a determinate answer. That is a fact about the gate and the arm, not about the cases.",
+    "G5_MINING_YIELD part (a) had no failures to mine while every intact corpus was fully "
+    "symmetric in observedness: all three arms can err only by abstaining, and abstention where "
+    "gold is determinate is not one of the four failure kinds, so the only possible intact "
+    "failure was one A0 itself commits, and A0 answers every symmetric intact pair correctly. "
+    "INTACT_HARM_SYNTHETIC's D stratum makes A0 fail on nine intact pairs, so part (a) now has a "
+    "denominator. Its outcome is FAIL, and that is the honest reading: those failures have no "
+    "discriminating coordinate at all, which is the study's own finding restated, not evidence "
+    "for a new axis. Reading part (a)'s earlier emptiness as 'no new coordinate is needed' would "
+    "have been the vacuous-guard fallacy this lane exists to prevent.",
+    "A rule that abstained only where the one-sided absence is decisive would not pay A1's cost "
+    "on INTACT_HARM_SYNTHETIC's H stratum. That corpus cannot score such a rule: its gold is "
+    "derived by exactly that criterion, so the comparison would be circular. The candidate is "
+    "named, not measured. A1 and A2 are also indistinguishable on that corpus -- identical "
+    "decision kinds on all 33 cases -- so A2's separate cost remains visible only on the three "
+    "corpora frozen on 2026-08-21, where G7 is unchanged.",
+    "INTACT_HARM_SYNTHETIC is synthetic. It establishes what compare_meaning does with a "
+    "one-sided absence and what an abstain-on-asymmetry repair costs on pairs of that shape. It "
+    "establishes nothing about how often scientific sources state a coordinate on one side only, "
+    "and no accuracy, false-merge, false-split or superiority number over it is evidence about "
+    "ORION's competence.",
     "The probe is a mechanical redaction of atlases that already ship here. It establishes a "
     "property of compare_meaning, not a frequency in scientific text. No accuracy, false-merge, "
     "false-split or superiority number over it is evidence about ORION's competence.",
@@ -1234,16 +1407,27 @@ __all__ = [
     "ARM_ASYMMETRIC",
     "ARM_ORDER",
     "ARM_STRICT",
+    "AMENDMENT_DOCUMENT",
+    "AMENDMENT_TWIN",
     "CANDIDATE_COORDINATE",
     "COORDINATES",
     "FREEZE_DOCUMENT",
     "FREEZE_TWIN",
     "FROZEN_PARAMETERS",
     "FreezeViolation",
+    "INTACT_DERIVATION",
+    "INTACT_HARM_SYNTHETIC",
+    "INTACT_HELDOUT_REAL",
+    "INTACT_HELDOUT_SYNTHETIC",
+    "INTACT_ORDER",
     "INTACT_SOURCES",
+    "ORIGINAL_FREEZE_TWIN",
+    "PARTIALLY_OBSERVED_INTACT_ORDER",
     "PROBE_DERIVATION",
     "PROBE_HELDOUT_REAL",
     "PROBE_HELDOUT_SYNTHETIC",
+    "PROBE_OF",
+    "SYMMETRIC_INTACT_ORDER",
     "ProbeCase",
     "ScoredCase",
     "VERDICT_T5",
