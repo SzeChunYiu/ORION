@@ -107,6 +107,7 @@ from typing import Any
 
 from orion.programme.mechanized import (
     DifferentialReport,
+    ProofOutcome,
     ProofResult,
     Theorem,
     discharge,
@@ -463,8 +464,38 @@ def _base_axioms(sig: Any, *, timeout_ms: int) -> list[Any]:
     return [*axioms, composition_lemma(sig)] if hinge.discharged else axioms
 
 
+#: Sizes tried in order when hunting for a countermodel. Escalation is not a
+#: convenience: dropping ``distinct_donors_have_distinct_endpoints`` yields no
+#: countermodel at all in worlds of three or four elements and a clean one at
+#: five, so a single small bound would have reported a load-bearing condition as
+#: inert. A theorem about telling two donor pairs apart needs enough elements to
+#: build two of them. Used in one direction only -- a model of the axioms plus a
+#: negated claim is a countermodel however small its universe, while failing to
+#: find one proves nothing -- so a bound is never added to a proof query.
+REFUTATION_WORLD_SIZES: tuple[int, ...] = (3, 4, 5, 6)
+BOUNDED_SORTS: tuple[str, ...] = ("Trans", "Contract", "Coord", "Obl")
+
+
+def _cardinality_axioms(sig: Any, size: int) -> list[Any]:
+    """Confine each sort to at most ``size`` elements."""
+
+    solver = require_z3()
+    axioms = []
+    for index, name in enumerate(BOUNDED_SORTS):
+        sort = getattr(sig, name)
+        members = [solver.Const(f"world_{name}_{n}", sort) for n in range(size)]
+        x = solver.Const(f"bounded_{name}_{index}", sort)
+        axioms.append(solver.ForAll([x], solver.Or(*[x == member for member in members])))
+    return axioms
+
+
 def _prove_all_timed(
-    *, timeout_ms: int = 30000, drop: str | None = None, add_candidates: bool = False
+    *,
+    timeout_ms: int = 30000,
+    drop: str | None = None,
+    add_candidates: bool = False,
+    bound: int | None = None,
+    only: frozenset[str] | None = None,
 ) -> tuple[tuple[ProofResult, ...], dict[str, float]]:
     """Discharge every theorem, returning wall-clock seconds beside each result.
 
@@ -486,6 +517,9 @@ def _prove_all_timed(
     ]
     if add_candidates:
         axioms.extend(_candidate_condition_axioms(sig, donor))
+    if bound is not None:
+        # Refutation only. See REFUTATION_WORLD_SIZES.
+        axioms.extend(_cardinality_axioms(sig, bound))
 
     t, u, v, w = solver.Consts("q_t q_u q_v q_w", sig.Trans)
     contract = solver.Const("q_contract", sig.Contract)
@@ -637,6 +671,13 @@ def _prove_all_timed(
     results: list[ProofResult] = []
     seconds: dict[str, float] = {}
     for theorem, claim in claims:
+        # `only` exists for the bounded refutation sweep. Re-asking a theorem
+        # that is already refuted, or one the sweep is not looking for, costs a
+        # full timeout each: twelve theorems at four world sizes for three
+        # conditions is 144 queries, most of which have no model to find and
+        # burn the whole budget.
+        if only is not None and theorem.name not in only:
+            continue
         started = time.monotonic()
         result = discharge(theorem, axioms, claim, timeout_ms=timeout_ms)
         seconds[theorem.name] = round(time.monotonic() - started, 4)
@@ -651,9 +692,20 @@ def prove_all(*, timeout_ms: int = 30000, drop: str | None = None) -> tuple[Proo
 
 
 def frame_conditions_are_load_bearing(
-    *, timeout_ms: int = 30000, drop_timeout_ms: int = 3000
+    *,
+    timeout_ms: int = 30000,
+    drop_timeout_ms: int = 3000,
+    refutation_timeout_ms: int = 40000,
 ) -> dict[str, Any]:
-    """Drop each frame condition and record which theorems stop being provable.
+    """Drop each frame condition and record which theorems are *refuted*.
+
+    Not "stop being provable", which is what this measured first and what the
+    paragraph below then argued was good enough. The argument is a headroom
+    factor and it is still reported, but it is not a refutation: a claim can be
+    true and hard, and over this signature a false claim usually cannot be
+    refuted by a model at all, so the solver runs to the timeout either way.
+    Bounding the sorts makes the search finite and turns eight of the ten
+    reported losses into genuine countermodels.
 
     ``drop_timeout_ms`` is shorter than the baseline budget because the drop runs
     are dominated by claims that have become *false*, and over this uninterpreted
@@ -686,29 +738,96 @@ def frame_conditions_are_load_bearing(
         default=0.0,
     )
 
-    per_condition: dict[str, list[str]] = {}
+    slowest_bounded = 0.0
+    refuted: dict[str, list[str]] = {}
+    found_at: dict[str, dict[str, int]] = {}
+    unbounded_unknown: dict[str, list[str]] = {}
     outcomes: dict[str, dict[str, str]] = {}
     for condition in FRAME_CONDITION_IDS:
-        results, seconds = _prove_all_timed(timeout_ms=drop_timeout_ms, drop=condition)
-        survivors = {r.theorem.name for r in results if r.discharged}
+        open_results, open_seconds = _prove_all_timed(
+            timeout_ms=drop_timeout_ms, drop=condition
+        )
         slowest = max(
             slowest,
-            max((seconds[r.theorem.name] for r in results if r.discharged), default=0.0),
+            max(
+                (open_seconds[r.theorem.name] for r in open_results if r.discharged),
+                default=0.0,
+            ),
         )
-        per_condition[condition] = sorted(baseline - survivors)
-        outcomes[condition] = {r.theorem.name: r.outcome.value for r in results}
+        outcomes[condition] = {r.theorem.name: r.outcome.value for r in open_results}
+        unbounded_unknown[condition] = sorted(
+            r.theorem.name
+            for r in open_results
+            if r.theorem.name in baseline and r.outcome is ProofOutcome.UNKNOWN
+        )
+        hits: dict[str, int] = {
+            r.theorem.name: 0
+            for r in open_results
+            if r.theorem.name in baseline and r.outcome is ProofOutcome.COUNTEREXAMPLE
+        }
+        outstanding = frozenset(baseline - set(hits))
+        for size in REFUTATION_WORLD_SIZES:
+            if not outstanding:
+                break
+            # A refutation is not a proof and must not share its budget. The
+            # size-5 countermodel for `distinct_donors_have_distinct_endpoints`
+            # is found in seconds on an idle machine and missed under load at
+            # the 3s drop budget, which reported a load-bearing condition as
+            # inert -- the failure this whole function exists to avoid.
+            results, seconds = _prove_all_timed(
+                timeout_ms=refutation_timeout_ms,
+                drop=condition,
+                bound=size,
+                only=outstanding,
+            )
+            # Deliberately not folded into `slowest`. That number backs a claim
+            # about the *drop* budget -- that an unknown there is not a rushed
+            # proof -- and the bounded refutation runs are a different question
+            # asked under a different budget. Mixing them would quietly turn the
+            # headroom into a ratio between two unrelated things.
+            slowest_bounded = max(
+                slowest_bounded,
+                max((seconds[r.theorem.name] for r in results if r.discharged), default=0.0),
+            )
+            for result in results:
+                if (
+                    result.theorem.name in baseline
+                    and result.outcome is ProofOutcome.COUNTEREXAMPLE
+                    and result.theorem.name not in hits
+                ):
+                    hits[result.theorem.name] = size
+            outstanding = frozenset(baseline - set(hits))
+        refuted[condition] = sorted(hits)
+        found_at[condition] = dict(sorted(hits.items()))
 
-    inert = sorted(name for name, lost in per_condition.items() if not lost)
+    inert = sorted(name for name, lost in refuted.items() if not lost)
     return {
         "baseline_discharged": sorted(baseline),
         "rejected_candidate_conditions": list(CANDIDATE_CONDITION_IDS),
         "theorems_gained_by_adding_the_candidates": gained,
         "the_rejected_candidates_are_inert": not gained,
-        "theorems_lost_by_dropping": per_condition,
+        "theorems_refuted_by_dropping": refuted,
+        "world_size_the_refutation_needed": found_at,
+        "left_unknown_by_the_unbounded_search": unbounded_unknown,
+        "world_sizes_tried": list(REFUTATION_WORLD_SIZES),
         "outcome_when_dropped": outcomes,
+        "criterion": (
+            "a condition is load-bearing only when dropping it yields an actual "
+            "countermodel, searched for in bounded worlds of increasing size. A theorem "
+            "that merely stops being provable is not counted: over this signature a "
+            "false claim usually cannot be refuted by a model, so the solver runs to the "
+            "timeout whether the claim is false or merely hard. Under the loose "
+            "criterion this reported ten losses, of which two were countermodels and "
+            "eight were unknown, and one condition's entire weight was a single unknown. "
+            "Sizes escalate because that condition's countermodel appears only at five "
+            "elements, and stopping at four would have called it inert -- the same "
+            "mistake in the other direction."
+        ),
         "inert_conditions": inert,
         "every_condition_carries_a_theorem": not inert,
         "drop_timeout_ms": drop_timeout_ms,
+        "refutation_timeout_ms": refutation_timeout_ms,
+        "slowest_bounded_refutation_seconds": round(slowest_bounded, 4),
         "slowest_discharged_seconds": round(slowest, 4),
         "headroom_factor": round(drop_timeout_ms / 1000 / slowest, 1) if slowest else None,
         "headroom_note": (

@@ -44,11 +44,28 @@
       "UNBRIDGED_DONOR_HANDOFF_REFUSES",
       "UNBRIDGED_REFUSAL_IS_NOT_VACUOUS"
     ],
+    "criterion": "a condition is load-bearing only when dropping it yields an actual countermodel, searched for in bounded worlds of increasing size. A theorem that merely stops being provable is not counted: over this signature a false claim usually cannot be refuted by a model, so the solver runs to the timeout whether the claim is false or merely hard. Under the loose criterion this reported ten losses, of which two were countermodels and eight were unknown, and one condition's entire weight was a single unknown. Sizes escalate because that condition's countermodel appears only at five elements, and stopping at four would have called it inert -- the same mistake in the other direction.",
     "drop_timeout_ms": 3000,
     "every_condition_carries_a_theorem": true,
-    "headroom_factor": 1.8,
-    "headroom_note": "Every theorem that is discharged anywhere in these runs is discharged in 1.6555s against a drop budget of 3.0s, a factor of 2. A loss recorded here is a claim the solver could not close in that much more time than the proofs need, not a claim it was rushed on.",
+    "headroom_factor": 250.0,
+    "headroom_note": "Every theorem that is discharged anywhere in these runs is discharged in 0.0120s against a drop budget of 3.0s, a factor of 250. A loss recorded here is a claim the solver could not close in that much more time than the proofs need, not a claim it was rushed on.",
     "inert_conditions": [],
+    "left_unknown_by_the_unbounded_search": {
+      "distinct_donors_have_distinct_endpoints": [
+        "THE_HANDOFF_IDENTIFIES_THE_DONOR_PAIR"
+      ],
+      "handoffs_are_never_contract_identities": [
+        "A_THREE_DONOR_CHAIN_NEEDS_EVERY_BRIDGE",
+        "COMPOSITE_HANDOFFS_INHERIT_SEPARATION_IS_DERIVED",
+        "DISTINCT_HANDOFFS_CAN_DIFFER_IN_VERDICT",
+        "NO_IDENTITY_IS_A_DONOR_IS_DERIVED",
+        "SELF_COMPOSITION_STILL_NEEDS_A_BRIDGE",
+        "UNBRIDGED_DONOR_HANDOFF_REFUSES"
+      ],
+      "the_donor_stack_is_inhabited": [
+        "BRIDGED_SUCCESS_IS_NOT_VACUOUS"
+      ]
+    },
     "outcome_when_dropped": {
       "distinct_donors_have_distinct_endpoints": {
         "A_LEFT_LEG_THAT_DOES_NOT_CARRY_REFUSES": "PROVED",
@@ -76,14 +93,14 @@
         "SELF_COMPOSITION_STILL_NEEDS_A_BRIDGE": "UNKNOWN",
         "THE_HANDOFF_IDENTIFIES_THE_DONOR_PAIR": "PROVED",
         "UNBRIDGED_DONOR_HANDOFF_REFUSES": "UNKNOWN",
-        "UNBRIDGED_REFUSAL_IS_NOT_VACUOUS": "UNKNOWN"
+        "UNBRIDGED_REFUSAL_IS_NOT_VACUOUS": "COUNTEREXAMPLE"
       },
       "the_donor_stack_is_inhabited": {
         "A_LEFT_LEG_THAT_DOES_NOT_CARRY_REFUSES": "PROVED",
         "A_RIGHT_LEG_THAT_DOES_NOT_CARRY_REFUSES": "PROVED",
         "A_THREE_DONOR_CHAIN_NEEDS_EVERY_BRIDGE": "PROVED",
         "BRIDGED_DONOR_HANDOFF_COMPOSES": "PROVED",
-        "BRIDGED_SUCCESS_IS_NOT_VACUOUS": "COUNTEREXAMPLE",
+        "BRIDGED_SUCCESS_IS_NOT_VACUOUS": "UNKNOWN",
         "COMPOSITE_HANDOFFS_INHERIT_SEPARATION_IS_DERIVED": "PROVED",
         "DISTINCT_HANDOFFS_CAN_DIFFER_IN_VERDICT": "PROVED",
         "NO_IDENTITY_IS_A_DONOR_IS_DERIVED": "PROVED",
@@ -93,14 +110,16 @@
         "UNBRIDGED_REFUSAL_IS_NOT_VACUOUS": "COUNTEREXAMPLE"
       }
     },
+    "refutation_timeout_ms": 40000,
     "rejected_candidate_conditions": [
       "no_identity_is_a_donor",
       "composite_handoffs_are_separated_too"
     ],
-    "slowest_discharged_seconds": 1.6555,
+    "slowest_bounded_refutation_seconds": 0.6058,
+    "slowest_discharged_seconds": 0.012,
     "the_rejected_candidates_are_inert": true,
     "theorems_gained_by_adding_the_candidates": [],
-    "theorems_lost_by_dropping": {
+    "theorems_refuted_by_dropping": {
       "distinct_donors_have_distinct_endpoints": [
         "THE_HANDOFF_IDENTIFIES_THE_DONOR_PAIR"
       ],
@@ -117,7 +136,31 @@
         "BRIDGED_SUCCESS_IS_NOT_VACUOUS",
         "UNBRIDGED_REFUSAL_IS_NOT_VACUOUS"
       ]
-    }
+    },
+    "world_size_the_refutation_needed": {
+      "distinct_donors_have_distinct_endpoints": {
+        "THE_HANDOFF_IDENTIFIES_THE_DONOR_PAIR": 5
+      },
+      "handoffs_are_never_contract_identities": {
+        "A_THREE_DONOR_CHAIN_NEEDS_EVERY_BRIDGE": 3,
+        "COMPOSITE_HANDOFFS_INHERIT_SEPARATION_IS_DERIVED": 3,
+        "DISTINCT_HANDOFFS_CAN_DIFFER_IN_VERDICT": 4,
+        "NO_IDENTITY_IS_A_DONOR_IS_DERIVED": 3,
+        "SELF_COMPOSITION_STILL_NEEDS_A_BRIDGE": 3,
+        "UNBRIDGED_DONOR_HANDOFF_REFUSES": 3,
+        "UNBRIDGED_REFUSAL_IS_NOT_VACUOUS": 0
+      },
+      "the_donor_stack_is_inhabited": {
+        "BRIDGED_SUCCESS_IS_NOT_VACUOUS": 3,
+        "UNBRIDGED_REFUSAL_IS_NOT_VACUOUS": 0
+      }
+    },
+    "world_sizes_tried": [
+      3,
+      4,
+      5,
+      6
+    ]
   },
   "interpretation_sensitivity": {
     "counts_alone_identify_the_interpretation": false,

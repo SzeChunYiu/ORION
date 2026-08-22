@@ -114,7 +114,7 @@ class TestTheFrameConditionsCarryTheProof:
         # Pinned rather than merely counted: a condition that starts carrying a
         # different theorem has changed meaning, and a non-empty set of losses
         # would hide that.
-        assert set(load_bearing["theorems_lost_by_dropping"][condition]) == expected_lost
+        assert set(load_bearing["theorems_refuted_by_dropping"][condition]) == expected_lost
 
     def test_the_second_condition_is_the_one_the_counts_cannot_see(
         self, load_bearing: dict, sensitivity: dict
@@ -122,18 +122,73 @@ class TestTheFrameConditionsCarryTheProof:
         # The two facts have to line up or the module is telling two stories.
         # The counts miss `distinct_donors_have_distinct_endpoints`, and the
         # theorem that condition carries is what catches the readings they miss.
-        assert load_bearing["theorems_lost_by_dropping"][
+        assert load_bearing["theorems_refuted_by_dropping"][
             "distinct_donors_have_distinct_endpoints"
         ] == ["THE_HANDOFF_IDENTIFIES_THE_DONOR_PAIR"]
         assert sensitivity["counts_alone_identify_the_interpretation"] is False
 
+    def test_every_loss_is_a_countermodel_not_a_timeout(self, load_bearing: dict) -> None:
+        # The correction. This measurement first counted any theorem that stopped
+        # being discharged, which reported ten losses of which eight were UNKNOWN
+        # -- and one condition's entire weight was a single UNKNOWN. Every entry
+        # must now be backed by an actual countermodel.
+        assert "actual countermodel" in load_bearing["criterion"]
+        for condition, refuted in load_bearing["theorems_refuted_by_dropping"].items():
+            sizes = load_bearing["world_size_the_refutation_needed"][condition]
+            assert set(sizes) == set(refuted), condition
+
+    def test_the_unbounded_search_alone_would_have_been_wrong(
+        self, load_bearing: dict
+    ) -> None:
+        # Eight of the ten come back UNKNOWN without a bounded world, and one
+        # condition would have shown no refutation at all.
+        unknowns = load_bearing["left_unknown_by_the_unbounded_search"]
+        assert sum(len(v) for v in unknowns.values()) >= 6
+        assert unknowns["distinct_donors_have_distinct_endpoints"] == [
+            "THE_HANDOFF_IDENTIFIES_THE_DONOR_PAIR"
+        ]
+
+    def test_a_single_small_world_would_also_have_been_wrong(
+        self, load_bearing: dict
+    ) -> None:
+        # The mistake in the other direction, and the reason the sizes escalate.
+        # The second condition's countermodel does not exist below five elements,
+        # so a search capped at four would have called a load-bearing condition
+        # inert.
+        needed = load_bearing["world_size_the_refutation_needed"][
+            "distinct_donors_have_distinct_endpoints"
+        ]
+        # Not pinned to exactly five: which size first yields a model varies a
+        # little with the solver's search. What is stable, and what matters, is
+        # that nothing is found below five -- so a search capped at four would
+        # have called a load-bearing condition inert.
+        assert needed["THE_HANDOFF_IDENTIFIES_THE_DONOR_PAIR"] >= 5
+        assert max(load_bearing["world_sizes_tried"]) >= 5
+
+    def test_a_bounded_world_is_only_used_to_refute(self) -> None:
+        # Soundness rests on direction. If a bound ever reached a proof query
+        # the theorems would only hold in small universes.
+        import inspect
+
+        source = inspect.getsource(ds.prove_all)
+        assert "bound" not in source
+        assert "REFUTATION_WORLD_SIZES" not in source
+
     def test_the_drop_budget_has_measured_headroom(self, load_bearing: dict) -> None:
-        # A loss recorded under a rushed solver is not a loss. The slowest proof
-        # that succeeds anywhere in these runs must be far inside the budget the
-        # drop runs are given, or the load-bearing result means nothing.
+        # No longer what load-bearing is measured by -- that is now a bounded
+        # countermodel -- but still worth keeping: it says an unknown in the
+        # unbounded drop runs is not a rushed proof.
         assert load_bearing["slowest_discharged_seconds"] * 1000 < (
             load_bearing["drop_timeout_ms"] / 50
         )
+
+    def test_the_bounded_runs_are_timed_separately(self, load_bearing: dict) -> None:
+        # The headroom number backs a claim about the drop budget. The bounded
+        # refutation runs answer a different question under a different budget,
+        # and folding them together would turn the ratio into one between two
+        # unrelated things -- which is exactly what broke this test once.
+        assert "slowest_bounded_refutation_seconds" in load_bearing
+        assert load_bearing["refutation_timeout_ms"] > load_bearing["drop_timeout_ms"]
 
     def test_an_unknown_condition_is_refused(self) -> None:
         with pytest.raises(ValueError, match="unknown frame condition"):
