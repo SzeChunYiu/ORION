@@ -79,9 +79,19 @@ Local Pauli phases are tracked in the exact referee, while the frozen structural
 
 ### 2.2 Cost
 
-For one block, each support unit beyond the first costs multiplier 4 on the noncentral branch and multiplier 2 on the central branch. The shared Tag costs `2 w(S)`.
+Let `w(P)` denote Pauli support. For each block, the noncentral frame branch has multiplier 4 and the central branch multiplier 2. After subtracting the constant weight-one baseline exactly as in the frozen R6M referee, the frame contribution is equivalent to
 
-For each branch `k`, the three Restore strings are charged coordinate-wise by
+\[
+\sum_{j,k}m_{jk}(w(R_{jk})-1),\qquad m_{jk}\in\{2,4\}.
+\]
+
+The shared Tag contributes
+
+\[
+2w(S).
+\]
+
+For each branch `k`, the three Restore strings use the donor-owned all-three common-factor rule. At a qubit, for local letters `(a,b,c)`, define
 
 \[
 F_3(a,b,c)=
@@ -91,152 +101,142 @@ w(a)+w(b)+w(c),&\text{otherwise},
 \end{cases}
 \]
 
-where local `w` is 0 on identity and 1 otherwise.
+where local `w(I)=0` and `w(X)=w(Y)=w(Z)=1`.
 
-The objective is therefore
+The exact objective is the sum of these terms. `C_DP` denotes the unrestricted exact R6M optimum and `C_D++` the optimum with every frame Pauli restricted to support at most two and the Tag minimized exactly.
 
-\[
-C=\sum_j Uanti_j +2w(S)+\sum_{k\in\{0,1\}}F_3(T_{Ak},T_{Bk},T_{Ck}),
-\]
+### 2.3 What is unrestricted
 
-with the last term understood as a sum over qubit coordinates.
-
-The unrestricted optimum `C_DP` is computed by the frozen exact R6M dynamic program. `D++` denotes the restriction in which every one of the six frame Paulis has global support at most two.
+Before our theorem, nothing in this frozen grammar prevents a frame Pauli from having support proportional to `n`. Thus the support-two result is not a restatement of the grammar: it is a normal-form theorem about its optima.
 
 ---
 
-## 3. Sharp support theorem
+## 3. Main theorem: support two is a sharp normal form
 
-### 3.1 A two-bit local class
+### Theorem 1 (support-two normal form)
 
-Choose any feasible configuration and a frame Pauli `R` of support `w>=3`. Let `R'` be its anticommuting partner in the same block and `S` the shared Tag.
+For every qubit count `n`, every admitted six-target instance, every matching, every target permutation and every central-branch choice in the frozen R6M grammar, there exists an optimal feasible configuration in which every frame Pauli has support at most two. Equivalently,
 
-For every `q` in the support of `R`, define
+\[
+C_{DP}=C_{D^{++}}.
+\]
+
+### 3.1 Parity classes
+
+Take any feasible configuration with a frame Pauli `R` of support `w>=3`. Let `R'` be its anticommuting partner in the same two-element frame and `S` the shared Tag.
+
+For each qubit `q` in `supp(R)`, define
 
 \[
 \alpha_q=\langle R_q,R'_q\rangle,\qquad
 \beta_q=\langle S_q,R_q\rangle,
 \]
 
-and class
+and the class
 
 \[
 c_q=(\alpha_q,\beta_q)\in\mathbb F_2^2.
 \]
 
-Global frame anticommutation gives
+Because `R` and `R'` anticommute,
 
 \[
 \sum_q\alpha_q=1\pmod2.
 \]
 
-### 3.2 Zero-sum subset lemma
+We seek a nonempty proper subset `Q` of support coordinates whose class sum is `(0,0)`. Zeroing `R` on exactly `Q` then preserves both the frame anticommutation parity (`alpha`) and the Tag-syndrome parity (`beta`).
 
-**Lemma 1.** If `w>=3` and the class multiset has odd total `alpha`, it contains a nonempty proper subset of size at most two whose class sum is `(0,0)`.
+### Lemma 1 (small zero-sum subset)
 
-**Proof.** If class `(0,0)` occurs, choose that singleton. Otherwise the possible classes are `(0,1),(1,0),(1,1)`. If any repeats, two equal classes sum to zero and form a proper pair because `w>=3`. If no class repeats, there can be at most three entries; `w>=3` forces exactly the three nonzero classes, whose alpha-sum is `0+1+1=0`, contradicting odd total alpha. `square`
+Any multiset of `w>=3` elements of `F_2^2` whose total first coordinate is odd contains a nonempty proper zero-sum subset of size at most two.
 
-Let `Q` be the subset supplied by Lemma 1. Replace `R_q` by identity on every `q in Q`.
+**Proof.**
 
-The total change in frame-partner symplectic parity is `sum_Q alpha=0`, so anticommutation is preserved. The change in the shared-Tag syndrome is `sum_Q beta=0`, so the **same Tag remains feasible**. Because `Q` is proper and has at most two elements, the modified `R` remains nonidentity.
+If `(0,0)` occurs, that singleton works. Otherwise, if any class repeats, the equal pair sums to zero because every element of `F_2^2` is self-inverse.
 
-### 3.3 Restore-cost lemma
+Suppose neither occurs. Then all active classes are distinct and nonzero. Since there are only three nonzero classes, `w>=3` forces the multiset at `w=3` to contain exactly `(0,1),(1,0),(1,1)`. Their first coordinates sum to `0` modulo two, contradicting the required odd total. For `w>3`, repetition is unavoidable. ∎
 
-The remaining issue is cost.
+Thus choose `Q` of size one or two and zero `R` on `Q`. The modified `R` remains nonzero because `|Q|<=2<w`.
 
-Write
+### 3.2 Restore penalty
 
-\[
-F_3(a,b,c)=W(a,b,c)-2\mathbf 1[a=b=c\ne I],
-\]
+We now show the move cannot cost more in Restore support than it saves in frame support.
 
-where `W` is the number of nonidentity letters in the triple.
-
-Consider zeroing one nonidentity frame letter `f` in one block at one qubit. If the target letter is `p`, that block's Restore letter changes from
+For any local triple `(a,b,c)` define
 
 \[
-t_{old}=pf
+W(a,b,c)=w(a)+w(b)+w(c).
 \]
 
-to
+Then exactly
 
 \[
-t_{new}=p.
+F_3(a,b,c)=W(a,b,c)-2\,\mathbf 1[a=b=c\ne I].
 \]
 
-**Lemma 2.** For arbitrary fixed Restore letters in the other two blocks,
+Zeroing one frame letter changes only one Restore letter at the qubit.
+
+### Lemma 2 (local Restore bound)
+
+Changing one frame letter to identity can increase the affected local `F3` cost by at most two.
+
+**Proof.**
+
+Only one Restore letter changes.
+
+- If the old triple does not receive the all-equal discount, then `F3=W`. One local letter changes, so `W` can increase by at most one. The new discount can only reduce the new value. Hence `Delta F3<=1`.
+- If the old triple is all equal and nonidentity, the old value is `1`. If the new triple remains all equal, the cost cannot increase. If the discount is destroyed, the two untouched Restore letters are the same nonidentity letter, so their ordinary support already contributes `2`; the changed letter contributes at most `1`. Thus the new value is at most `3`, and `Delta F3<=2`.
+
+Therefore `Delta F3<=2` in all cases. ∎
+
+Removing one support coordinate from a frame Pauli refunds multiplier `m in {2,4}`. Hence, qubit by qubit,
 
 \[
-F_3(t_{new},u,v)-F_3(t_{old},u,v)\le2.
+\Delta C\le 2-m\le0.
 \]
 
-**Proof.** Only one Restore letter changes, so the ordinary support count `W` can increase by at most one. If the old triple does not receive the all-equal discount, the result follows immediately (and any new discount only decreases cost).
+The selected subset has zero beta sum, so no Tag repair is needed and the Tag cost does not change.
 
-Suppose instead that the old triple consists of three equal nonidentity letters, so losing the special factorization can add two units. Because `f` is nonidentity and `pf` is nonidentity, `p=f` is impossible. If `p=I`, the changed slot becomes identity and `W` decreases by one. If `p` is a nonidentity letter different from `f`, old and new slot letters are both nonidentity, so `W` does not increase. Thus destroying the old two-unit discount is accompanied by `Delta W<=0`, and the total increase is at most two. `square`
+### 3.3 Descent
 
-Every removed frame-support coordinate refunds at least two units: multiplier 2 on the central branch or 4 on the noncentral branch. Hence Lemma 2 implies that the exchange on each `q in Q` never increases total cost.
+Apply the exchange to any support-3-or-larger frame Pauli. Cost never increases and total frame support strictly decreases. Repeating terminates with every frame support at most two.
 
-### 3.4 Global normal form
+Starting from an optimum gives a support-two optimum, proving Theorem 1. ∎
 
-**Theorem 3 (support-two sufficiency).** Every feasible configuration can be transformed without increasing cost until every frame Pauli has support at most two. Consequently
+### 3.4 Machine corroboration
 
-\[
-C_{DP}=C_{D^{++}}
-\]
+The original R6S campaign reached the same theorem by independently checking the local inequality over its complete frozen tabulation and machine-corroborating the class lemma:
 
-for every qubit count and admitted instance.
+- 18,432 local cost cases, zero violations;
+- 43,688 odd-alpha class tuples through support eight;
+- zero failures for support 3–8;
+- exactly four support-two failing class patterns;
+- 70/70 fresh `n=3,4` DP-vs-support-two equality cases;
+- 210 seeded exchange descents, with predicted and observed cost changes equal at every step.
 
-**Proof.** Whenever a frame has support at least three, apply Lemmas 1 and 2. Feasibility is preserved, cost does not increase, and total frame support strictly decreases. Repeating must terminate. Starting from an unrestricted optimum therefore yields a support-two optimum of the same cost. Since `D++` is itself a subset of the unrestricted family, the two optima are equal. `square`
-
-The original R6S implementation independently exhausts the local cost table (18,432 cases, zero violations), checks 43,688 odd-alpha class tuples, performs 210 support-reduction descents, and verifies fresh `n=3,4` DP-versus-D++ panels. These computations are retained as regression/corroboration rather than as necessary logical steps of the proof.
-
-### 3.5 Support one is impossible uniformly
-
-Define `D+` as the complete all-support-one frame family. Its frozen enumeration sweeps:
-
-- all `n^3` block-anchor triples;
-- all six ordered distinct nonidentity local frame pairs per block;
-- both common label orientations;
-- all eight target-permutation combinations;
-- the unique minimum compatible shared Tag.
-
-The R6O protocol proves that using a nonminimum Tag cannot improve a member because Tag support is additive and independent of the Restore term.
-
-An exact structured two-qubit instance (`instance_index=16`) satisfies
-
-\[
-C_{DP}=5<C_{D^+}=6.
-\]
-
-The unrestricted witness places a support-two frame Pauli on the cheaper central branch, allowing a lower-cost global Tag/Restore arrangement. Therefore no all-support-one frame configuration is optimal on this instance.
-
-### 3.6 Intrinsic support number
-
-Combining Theorem 3 with the exact support-one refutation gives:
-
-**Corollary 4.**
-
-\[
-\boxed{\kappa_{\mathrm{R6M}}=2.}
-\]
-
-The threshold is attained already at two qubits.
+These computations now serve as independent certification/stress evidence. The mathematical proof above does not rely on extrapolating a finite panel to arbitrary `n`.
 
 ---
 
-## 4. Why two is the coupling boundary
+## 4. Sharpness: support one is not sufficient
 
-The sharp support theorem was preceded by two exact closure refutations that expose the relevant global trades.
+Theorem 1 establishes `kappa<=2`. To determine the exact intrinsic number we must rule out a universal support-one normal form.
 
-### 4.1 Local support dominance
+### 4.1 Complete support-one family
 
-R6N exhaustively tested local support-dominance inequalities over 688,041,472 configurations with zero violations. The result rules out a local reason for spread support to pay: each added frame-support unit costs at least as much as the maximum local Restore/factor saving.
+R6O defines `D+` by sweeping every support-one frame configuration permitted by the full grammar:
 
-The R6N protocol nevertheless declared one unresolved coupling before seeing the result: changing frame anchors changes the minimum shared Tag satisfying all blocks.
+- arbitrary anchor qubit for each block;
+- all six ordered distinct nonidentity local frame pairs per block;
+- all target permutations;
+- both common label orientations;
+- the unique minimum-weight Tag satisfying the six label constraints.
 
-### 4.2 Tag-for-anchor trade
+For support-one frames, every compatible Tag can be replaced by that minimum Tag without affecting Restore terms and without increasing cost. Therefore `D+` is the complete support-one frame family for this objective.
 
-The declared gap produces an exact counterexample. In the `n2_b` instance, weight-one frames on split block anchors together with a weight-two `Y tensor Y` shared Tag give
+### 4.2 Tag-anchor trade
+
+R6N first shows that the narrower common-anchor donor is not complete:
 
 \[
 8=C_{DP}<9=C_{R6L}.
@@ -370,7 +370,7 @@ Frameworks including PCOAST, PHOENIX and Symphony use Pauli-frame or binary-symp
 
 Pauli-cluster diagonalization, Pauli-network methods, low-ancilla block encodings and recent sparse T-count lower/upper bounds form additional adjacent literatures. Our theorem is not a general block-encoding complexity bound.
 
-A bounded hostile search dated 2026-08-22 did not locate a prior result equivalent to the **sharp uniform support theorem `kappa_R6M=2` for the declared shared-Tag TARE grammar**, but this is not external novelty certification. The exact theorem statement must be searched again before submission.
+Two bounded hostile searches dated 2026-08-22—including a final refresh after the sharp `kappa_R6M=2` statement was fixed—did not locate a prior result equivalent to the **sharp uniform support theorem for the declared shared-Tag TARE grammar**. This is a literature-search result, not external novelty certification, and the paper therefore avoids “first ever” or universal novelty language.
 
 ---
 
@@ -417,14 +417,17 @@ We do not claim:
 
 - Main all-`n` receipt: `research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json`
 - Analytic publication proof: `papers/Q-paper-01-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md`
+- Standalone proof sanity result: `papers/Q-paper-01-tare-expressivity/INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json`
 - Exact support-one counterexample: `research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json`
 - Finite support-two closure: `MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_RESULTS.json`
 - Finite classifier: `MAX_R6Q_REGIME_PREDICATE_RESULTS.json`
 - Prospective subject: `MAX_R6R_PROSPECTIVE_FRESH_SUBJECT_RESULTS.json`
-- Fresh bounded novelty map: `NOVELTY_RESEARCH_2026-08-22.md`
+- Bounded novelty map: `NOVELTY_RESEARCH_2026-08-22.md`
+- Final exact-statement novelty refresh: `NOVELTY_REFRESH_FINAL_2026-08-22.md`
+- Reproduction commands: `REPRODUCE.md`
 - Claim ledger: `CLAIM_LEDGER_V2.md`
 
-Before submission, the remaining non-negotiable gates are independent human proof review, clean public reproduction of headline artifacts, and a fresh external novelty search against the exact sharp theorem.
+The owner elected to skip a separate external quantum-expert pre-review. That decision is recorded in `papers/Q_SERIES_FINAL_SPEC_V1.json` and is **not** treated as a scientific PASS. The internal reproduction and bounded novelty-refresh gates above are complete; journal peer review remains the external scientific scrutiny if the paper is submitted.
 
 ---
 
