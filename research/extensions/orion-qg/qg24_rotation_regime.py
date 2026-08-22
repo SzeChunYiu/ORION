@@ -34,9 +34,29 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-for _p in (REPO / "packages/orion-research-harness/src", REPO / "src"):
-    if str(_p) not in sys.path:
-        sys.path.insert(0, str(_p))
+_HARNESS_SRC = REPO / "packages/orion-research-harness/src"
+
+
+def _import_donor_search():
+    """Import the committed, unmodified ``orion_research_harness.donor_search``.
+
+    The package __init__ pulls in the whole ORION engine, whose optional native
+    dependency (``cryptography``/``cffi``) is absent from this session's
+    interpreter and aborts the import. A namespace shim is registered for the
+    package so that the REAL committed module file is imported under its real
+    dotted name and its real ``validate_donor_search`` is the one that runs.
+    Nothing in the module is patched, and it still fails closed.
+    """
+    import importlib
+    import types
+    name = "orion_research_harness"
+    if name not in sys.modules:
+        pkg = types.ModuleType(name)
+        pkg.__path__ = [str(_HARNESS_SRC / name)]
+        sys.modules[name] = pkg
+    if str(_HARNESS_SRC) not in sys.path:
+        sys.path.insert(0, str(_HARNESS_SRC))
+    return importlib.import_module(name + ".donor_search")
 PROTOCOL = "development/orion-qg-regime-geometry/QG24_ROTATION_REGIME_PROTOCOL_V1.md"
 QG21_RESULTS = REPO / "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json"
 RESULTS_PATH = HERE / "QG24_ROTATION_REGIME_RESULTS.json"
@@ -862,8 +882,10 @@ CAPS = {
 
 def main() -> int:
     t0 = time.time()
-    from orion_research_harness.donor_search import (  # noqa: E402
-        QUERY_FAMILIES, describe, validate_donor_search)
+    ds = _import_donor_search()
+    QUERY_FAMILIES = ds.QUERY_FAMILIES
+    describe = ds.describe
+    validate_donor_search = ds.validate_donor_search
 
     checks: dict[str, Any] = {}
     protocol_path = REPO / PROTOCOL
