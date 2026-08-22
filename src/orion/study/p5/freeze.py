@@ -15,8 +15,9 @@ from __future__ import annotations
 import hashlib
 import json
 import secrets
+from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
-from typing import Any, Mapping
+from typing import Any, Mapping, Sequence
 
 SCHEMA_VERSION = "orion.p5.protected-hidden-cause-suite.v1"
 CANDIDATE_SCHEMA_VERSION = "orion.p5.candidate-hidden-cause-packet.v1"
@@ -288,6 +289,216 @@ def _surface_sets_conflict(allowed: list[str], protected: list[str], *, prefix: 
     return False
 
 
+#: The custody rule names the fields a freeze may publish and the fields it must
+#: withhold. It does not name the *order* the cases are emitted in, and neither
+#: did the nine conditions below until this one was added --- so a suite could
+#: satisfy every stated rule and still hand a candidate the answer key, because
+#: the answer was a function of a number printed on every case.
+#:
+#: PROTECTED_SUITE_V1 was exactly that suite. Its twenty-four cases are eight
+#: root-cause families in eight consecutive blocks of three, so
+#: `family = order[(ordinal - 1) // 3]` reproduces all twenty-four labels from
+#: the case ids alone. Its opening nonces were separately broken, and the freeze
+#: now refuses them; had they been sound, this validator would still have passed
+#: a suite whose commitments no candidate needed to open.
+#:
+#: "Not recoverable from the ordinal" is not decidable in general -- every
+#: assignment is *some* function of the ordinal. So the condition is shaped the
+#: way the rest of this programme shapes its guards: declare the adversary, then
+#: check that this suite defeats it. `ORDINAL_FAMILY_ORDERINGS` x block sizes x
+#: strides is a stated, enumerable family of deciding rules; a suite reproduced
+#: exactly by any one of them is rejected and named. A suite that survives is not
+#: thereby proved independent of the ordinal --- it is proved to defeat these
+#: rules, which is what the check claims and all it claims.
+_ORDINAL_MIN_BLOCK = 2
+
+
+@dataclass(frozen=True)
+class OrdinalRule:
+    """One declared way of predicting a case's family from its ordinal.
+
+    ``openings`` are the 0-based positions the rule had to be *told* before it
+    could predict anything --- the price the adversary pays to instantiate the
+    ordering. They are excluded from scoring. Without that exclusion the family
+    is vacuous: on a suite with one case per family, the rule that reads families
+    off their own first appearances "recovers" every case while predicting none
+    of them, and the guard would reject every suite it was shown.
+    """
+
+    name: str
+    predicted: tuple[str, ...]
+    openings: frozenset[int]
+
+    def scored_positions(self, length: int) -> tuple[int, ...]:
+        return tuple(index for index in range(length) if index not in self.openings)
+
+    def agreement(self, assignment: Sequence[str]) -> tuple[int, int]:
+        """Return (cases predicted correctly, cases predicted at all)."""
+
+        scored = self.scored_positions(len(assignment))
+        correct = sum(1 for index in scored if self.predicted[index] == assignment[index])
+        return correct, len(scored)
+
+    def recovers(self, assignment: Sequence[str]) -> bool:
+        correct, scored = self.agreement(assignment)
+        return scored > 0 and correct == scored
+
+
+def _family_orderings(assignment: Sequence[str]) -> dict[str, tuple[tuple[str, ...], frozenset[int]]]:
+    """The orderings an adversary can put the families in, and what each costs.
+
+    Alphabetical order is free: the eight labels are a public enum, so every case
+    is a prediction. First-appearance order is not free --- the adversary opens a
+    case to learn each family's slot --- so those openings are charged against it
+    and only the cases after them count as predictions.
+    """
+
+    first_seen: list[str] = []
+    openings: list[int] = []
+    for index, family in enumerate(assignment):
+        if family not in first_seen:
+            first_seen.append(family)
+            openings.append(index)
+    paid = frozenset(openings)
+    free: frozenset[int] = frozenset()
+    forwards = tuple(first_seen)
+    alphabetical = tuple(sorted(first_seen))
+    return {
+        "first-appearance": (forwards, paid),
+        "first-appearance-reversed": (tuple(reversed(forwards)), paid),
+        "alphabetical": (alphabetical, free),
+        "alphabetical-reversed": (tuple(reversed(alphabetical)), free),
+    }
+
+
+def _gcd(left: int, right: int) -> int:
+    while right:
+        left, right = right, left % right
+    return left
+
+
+def ordinal_reading_rules(assignment: Sequence[str]) -> tuple[OrdinalRule, ...]:
+    """Return every declared ordinal-reading rule, instantiated for ``assignment``.
+
+    Each rule maps a 1-based ordinal to a family using nothing but the ordinal,
+    the suite length, the eight public labels and the openings charged to it.
+    Rules are named so a rejection can quote the rule that read the suite rather
+    than saying only that something did.
+    """
+
+    length = len(assignment)
+    if length == 0:
+        return ()
+    rules: list[OrdinalRule] = []
+    for ordering_name, (order, openings) in _family_orderings(assignment).items():
+        count = len(order)
+        if count == 0:
+            continue
+        for block in range(_ORDINAL_MIN_BLOCK, length // 2 + 1):
+            if length % block:
+                continue
+            rules.append(
+                OrdinalRule(
+                    name=f"{ordering_name}/blocks-of-{block}",
+                    predicted=tuple(order[(index // block) % count] for index in range(length)),
+                    openings=openings,
+                )
+            )
+        for stride in range(1, count):
+            if _gcd(stride, count) != 1:
+                continue
+            rules.append(
+                OrdinalRule(
+                    name=f"{ordering_name}/stride-{stride}",
+                    predicted=tuple(order[(index * stride) % count] for index in range(length)),
+                    openings=openings,
+                )
+            )
+    return tuple(rules)
+
+
+def repeated_family_in_block(assignment: Sequence[str], *, block_size: int) -> int | None:
+    """Return the 1-based ordinal opening the first block that repeats a family."""
+
+    if block_size < _ORDINAL_MIN_BLOCK:
+        return None
+    for start in range(0, len(assignment), block_size):
+        window = assignment[start : start + block_size]
+        if len(set(window)) != len(window):
+            return start + 1
+    return None
+
+
+def _even_family_block(assignment: Sequence[str]) -> int | None:
+    """The block size implied by an evenly covered suite, or ``None``."""
+
+    counts: dict[str, int] = {}
+    for family in assignment:
+        counts[family] = counts.get(family, 0) + 1
+    sizes = set(counts.values())
+    if len(sizes) != 1:
+        return None
+    per_family = sizes.pop()
+    return per_family if per_family >= _ORDINAL_MIN_BLOCK else None
+
+
+def ordinal_independence_report(assignment: Sequence[str]) -> dict[str, Any]:
+    """Measure how far ``assignment`` is from being readable off the ordinal."""
+
+    rules = ordinal_reading_rules(assignment)
+    recovering = sorted(rule.name for rule in rules if rule.recovers(assignment))
+    block_size = _even_family_block(assignment)
+    repeated_at = (
+        None if block_size is None else repeated_family_in_block(assignment, block_size=block_size)
+    )
+    worst_name = ""
+    worst_correct = 0
+    worst_scored = 0
+    for rule in rules:
+        correct, scored = rule.agreement(assignment)
+        if scored and (correct, -scored) > (worst_correct, -worst_scored):
+            worst_name, worst_correct, worst_scored = rule.name, correct, scored
+    return {
+        "cases": len(assignment),
+        "families": len(set(assignment)),
+        "rules_declared": len(rules),
+        "rules_recovering_every_predicted_case": recovering,
+        "strongest_rule": worst_name,
+        "strongest_rule_correct": worst_correct,
+        "strongest_rule_predicted": worst_scored,
+        "even_block_size": block_size,
+        "first_block_repeating_a_family": repeated_at,
+        "independent": not recovering and repeated_at is None,
+    }
+
+
+def require_ordinal_independence(assignment: Sequence[str], *, surface: str) -> None:
+    """Fail closed when the family assignment is readable off the case ordinal."""
+
+    report = ordinal_independence_report(assignment)
+    recovering = report["rules_recovering_every_predicted_case"]
+    if recovering:
+        raise ValueError(
+            f"the {surface} case order hands over every family it was not shown: "
+            f"rule {recovering[0]!r} predicts the remaining "
+            f"{report['strongest_rule_predicted']} of {report['cases']} cases from the "
+            "ordinal alone and gets every one right, so those commitments protect nothing"
+        )
+    repeated_at = report["first_block_repeating_a_family"]
+    if repeated_at is not None:
+        # A realised correlation is a realised leak whatever drew it: an adversary
+        # handed one opening inside this block has the rest of it above chance.
+        # The cost of the rule is that it rejects most honest uniform draws --
+        # eight families of three land two in a block about five times in six --
+        # and the remedy is to redraw the assignment, not to argue that this one
+        # was innocent.
+        raise ValueError(
+            f"the {surface} case order repeats a root cause inside the block of "
+            f"{report['even_block_size']} opening at ordinal {repeated_at}; one opening "
+            "in that block predicts the others above chance. Redraw the assignment"
+        )
+
+
 def _protected_case_index(suite: Mapping[str, Any]) -> dict[str, Mapping[str, Any]]:
     raw_cases = suite.get("cases")
     if not isinstance(raw_cases, list) or not raw_cases:
@@ -327,6 +538,9 @@ def validate_protected_suite(raw_suite: Mapping[str, Any]) -> None:
     allowed_surfaces: list[str] = []
     protected_surfaces: list[str] = []
 
+    emitted_assignment: list[str] = []
+    family_by_case_id: dict[str, str] = {}
+
     for ordinal, (case_id, case) in enumerate(cases.items(), start=1):
         prefix = f"case {case_id}"
         _require_nonempty_string(case.get("visible_symptom"), f"{prefix}.visible_symptom")
@@ -336,6 +550,8 @@ def validate_protected_suite(raw_suite: Mapping[str, Any]) -> None:
         if root not in ROOT_CAUSES:
             raise ValueError(f"{prefix}.protected_root_cause is not a registered root cause")
         observed_causes.add(root)
+        emitted_assignment.append(root)
+        family_by_case_id[case_id] = root
 
         nonce = _require_nonce(
             case.get("root_cause_nonce"),
@@ -448,6 +664,16 @@ def validate_protected_suite(raw_suite: Mapping[str, Any]) -> None:
         missing = sorted(ROOT_CAUSES - observed_causes)
         extra = sorted(observed_causes - ROOT_CAUSES)
         raise ValueError(f"suite must cover all eight root-cause families; missing={missing}, extra={extra}")
+
+    # The ordinal a candidate can read is the position in the *published* packet,
+    # which freeze_protected_suite emits in sorted case_id order; the ordinal an
+    # author works in is the position in the `cases` array. A suite has to be
+    # independent of both, and when the two permutations agree the second check
+    # is free.
+    require_ordinal_independence(emitted_assignment, surface="emitted")
+    published_assignment = [family_by_case_id[case_id] for case_id in sorted(family_by_case_id)]
+    if published_assignment != emitted_assignment:
+        require_ordinal_independence(published_assignment, surface="published")
 
     orphan_fresh = set(fresh_payloads) - referenced_fresh
     if orphan_fresh:

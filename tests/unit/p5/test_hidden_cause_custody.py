@@ -23,6 +23,7 @@ from orion.study.p5.freeze import (
     freeze_protected_suite,
     mint_root_cause_nonce,
     nonce_weakness,
+    ordinal_independence_report,
     sha256_json,
 )
 from orion.study.p5.hidden_cause_custody import (
@@ -45,6 +46,27 @@ from orion.study.p5.hidden_cause_custody import (
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 FAMILIES = sorted(ROOT_CAUSES)
+
+#: The order ``_freezable_suite`` emits its eight cases in.
+#:
+#: Not ``FAMILIES``: with one case per family, "family = alphabetical slot of the
+#: ordinal" is free to compute and right eight times out of eight, so
+#: ``validate_protected_suite`` refuses such a suite -- correctly, because its
+#: commitments would open themselves off the packet. These fixtures exist to
+#: exercise the *nonce* scheme, so they need an order that gets past the ordinal
+#: condition; ``test_the_fixture_order_is_not_readable_off_the_ordinal`` holds
+#: this one to it.
+FREEZE_ORDER = [
+    "METHOD_BASIS_GAP",
+    "MEASUREMENT_SPECIFICATION_GAP",
+    "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+    "REPRESENTATION_GAP",
+    "EVALUATOR_METRIC_BUG",
+    "RETRIEVAL_MISS",
+    "ROUTING_PLANNING_MISS",
+    "IMPLEMENTATION_BUG",
+]
+assert set(FREEZE_ORDER) == set(FAMILIES)
 
 
 @pytest.fixture(scope="module")
@@ -112,26 +134,40 @@ def _high_entropy_nonce(index: int) -> str:
     return hashlib.sha256(f"withheld-seed|{index}".encode()).hexdigest()
 
 
+def test_the_fixture_order_is_not_readable_off_the_ordinal() -> None:
+    """The fixtures must clear the condition they are not testing.
+
+    If a future rule reads ``FREEZE_ORDER``, every freeze in this file starts
+    raising and the cause is this constant, not the nonce scheme under test. Say
+    so here rather than leaving it to be rediscovered from eleven failures.
+    """
+
+    assert ordinal_independence_report(FREEZE_ORDER)["independent"] is True
+    assert ordinal_independence_report(FAMILIES)["rules_recovering_every_predicted_case"] == [
+        "alphabetical/stride-1"
+    ]
+
+
 class TestSchemeBinding:
     def test_the_modelled_scheme_matches_what_the_real_freeze_publishes(self) -> None:
         # The audit models freeze._root_commitment rather than importing it. If
         # that model drifts, every probe opens nothing and the suite reads as
         # protected, so the binding is pinned against a live freeze.
         nonces = [_high_entropy_nonce(index) for index in range(1, 9)]
-        suite = _freezable_suite(nonces, FAMILIES)
+        suite = _freezable_suite(nonces, FREEZE_ORDER)
         _, manifest = freeze_protected_suite(suite)
-        for case, nonce, family in zip(manifest["cases"], nonces, FAMILIES, strict=True):
+        for case, nonce, family in zip(manifest["cases"], nonces, FREEZE_ORDER, strict=True):
             assert case["root_cause_commitment"] == root_cause_commitment(family, nonce)
 
     def test_the_canary_is_a_digest_the_real_freeze_would_emit(self) -> None:
         nonces = [_high_entropy_nonce(index) for index in range(1, 9)]
-        nonces[FAMILIES.index(FREEZE_CANARY.secret)] = FREEZE_CANARY.nonce
-        suite = _freezable_suite(nonces, FAMILIES)
+        nonces[FREEZE_ORDER.index(FREEZE_CANARY.secret)] = FREEZE_CANARY.nonce
+        suite = _freezable_suite(nonces, FREEZE_ORDER)
         _, manifest = freeze_protected_suite(suite)
         emitted = {
             case["case_id"]: case["root_cause_commitment"] for case in manifest["cases"]
         }
-        canary_case = f"P5-HC-{FAMILIES.index(FREEZE_CANARY.secret) + 1:03d}"
+        canary_case = f"P5-HC-{FREEZE_ORDER.index(FREEZE_CANARY.secret) + 1:03d}"
         assert emitted[canary_case] == FREEZE_CANARY.digest
         assert FREEZE_CANARY.reproduced_by(root_cause_commitment)
 
@@ -159,7 +195,7 @@ class TestShippedSuiteDefect:
 
         nonces = [f"{index:064x}" for index in range(1, 9)]
         with pytest.raises(ValueError, match="below 2\\*\\*64"):
-            freeze_protected_suite(_freezable_suite(nonces, FAMILIES))
+            freeze_protected_suite(_freezable_suite(nonces, FREEZE_ORDER))
 
     def test_a_full_width_nonce_still_freezes(self, shipped_cases) -> None:
         """The floor rejects weakness, not the scheme: real nonces still pass."""
@@ -167,7 +203,7 @@ class TestShippedSuiteDefect:
         nonces = [
             hashlib.sha256(f"p5-full-width-{index}".encode()).hexdigest() for index in range(1, 9)
         ]
-        freeze_protected_suite(_freezable_suite(nonces, FAMILIES))
+        freeze_protected_suite(_freezable_suite(nonces, FREEZE_ORDER))
 
     def test_the_gold_label_is_the_case_ordinal_divided_by_three(self, shipped_cases) -> None:
         prompt_order = [
@@ -387,7 +423,7 @@ class TestTheAttackWorksOnTheSchemeAsShipped:
         nonces = _floor_evading_nonces(8)
         assert all(int(nonce, 16) >= 1 << 64 for nonce in nonces)
 
-        cases = _freezable_suite(nonces, FAMILIES)["cases"]
+        cases = _freezable_suite(nonces, FREEZE_ORDER)["cases"]
         audit = audit_suite_custody(cases, suite_id="floor-evading")
         attempt = {item.probe_id: item for item in audit.attempts}[
             "floor-evading-counter-nonce"
@@ -404,7 +440,7 @@ class TestTheAttackWorksOnTheSchemeAsShipped:
         """
 
         shared = mint_root_cause_nonce()
-        cases = _freezable_suite([shared] * 8, FAMILIES)["cases"]
+        cases = _freezable_suite([shared] * 8, FREEZE_ORDER)["cases"]
         assert nonce_weakness(shared) is None
 
         audit = audit_suite_custody(cases, suite_id="shared-salt")
@@ -495,7 +531,7 @@ class TestTheFreezeRefusesWhatTheProbeTries:
     def test_the_freeze_refuses_a_reused_salt(self) -> None:
         shared = mint_root_cause_nonce()
         with pytest.raises(ValueError, match="unique across cases"):
-            freeze_protected_suite(_freezable_suite([shared] * 8, FAMILIES))
+            freeze_protected_suite(_freezable_suite([shared] * 8, FREEZE_ORDER))
 
     def test_the_freeze_refuses_one_salt_with_a_per_case_tail(self) -> None:
         """Distinct is not independent, and only the affix rule sees that."""
@@ -504,11 +540,11 @@ class TestTheFreezeRefusesWhatTheProbeTries:
         nonces = [head + f"{index:016x}" for index in range(1, 9)]
         assert len(set(nonces)) == 8
         with pytest.raises(ValueError, match="not a per-case salt"):
-            freeze_protected_suite(_freezable_suite(nonces, FAMILIES))
+            freeze_protected_suite(_freezable_suite(nonces, FREEZE_ORDER))
 
     def test_the_freeze_refuses_a_floor_evading_counter(self) -> None:
         with pytest.raises(ValueError, match="enumerable"):
-            freeze_protected_suite(_freezable_suite(_floor_evading_nonces(8), FAMILIES))
+            freeze_protected_suite(_freezable_suite(_floor_evading_nonces(8), FREEZE_ORDER))
 
     def test_the_freeze_refuses_a_nonce_derived_from_the_case_id(self) -> None:
         nonces = [
@@ -516,17 +552,17 @@ class TestTheFreezeRefusesWhatTheProbeTries:
             for index in range(1, 9)
         ]
         with pytest.raises(ValueError, match="publishes beside the commitment"):
-            freeze_protected_suite(_freezable_suite(nonces, FAMILIES))
+            freeze_protected_suite(_freezable_suite(nonces, FREEZE_ORDER))
 
     def test_minted_nonces_freeze_and_their_commitments_hold(self) -> None:
         nonces = [mint_root_cause_nonce() for _ in range(8)]
-        suite = _freezable_suite(nonces, FAMILIES)
+        suite = _freezable_suite(nonces, FREEZE_ORDER)
         _, manifest = freeze_protected_suite(suite)
 
         published = {
             case["case_id"]: case["root_cause_commitment"] for case in manifest["cases"]
         }
-        for case, nonce, family in zip(suite["cases"], nonces, FAMILIES, strict=True):
+        for case, nonce, family in zip(suite["cases"], nonces, FREEZE_ORDER, strict=True):
             assert published[case["case_id"]] == root_cause_commitment(family, nonce)
 
         audit = audit_suite_custody(suite["cases"], suite_id=suite["suite_id"])

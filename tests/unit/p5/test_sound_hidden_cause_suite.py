@@ -17,7 +17,12 @@ import pytest
 
 from orion.programme.commitment_custody import CustodyReason
 from orion.programme.records import Outcome
-from orion.study.p5.freeze import ROOT_CAUSES, mint_root_cause_nonce, validate_protected_suite
+from orion.study.p5.freeze import (
+    ROOT_CAUSES,
+    mint_root_cause_nonce,
+    ordinal_independence_report,
+    validate_protected_suite,
+)
 from orion.study.p5.hidden_cause_custody import (
     DISCLOSURE_BUDGET_DIGESTS,
     SHIPPED_SUITE_PATH,
@@ -29,6 +34,8 @@ from orion.study.p5.hidden_cause_custody import (
 from orion.study.p5.hidden_cause_custody import main as custody_main
 from orion.study.p5.sound_hidden_cause_suite import (
     CASE_ID_PREFIX,
+    CUSTODY_RULE_GAPS,
+    CUSTODY_RULE_GAPS_CLOSED,
     OPENING_MATERIAL_CASE_FIELDS,
     PUBLISHED_CASE_FIELDS,
     SEALED_CASE_FIELDS,
@@ -404,6 +411,40 @@ class TestTheGeneratorItself:
         blocked = tuple(family for family in FAMILIES for _ in range(3))
         assert block_repeats_a_family(blocked, block_size=3)
         assert not block_repeats_a_family(tuple(FAMILIES * 3), block_size=3)
+
+    def test_the_generator_accepts_exactly_what_the_validator_accepts(self) -> None:
+        """The rejection loop tests the validator's predicate, not a cousin of it.
+
+        Before this, the generator enforced ordinal independence by construction
+        and the validator enforced nothing, so "sound" meant "produced by this
+        function". Now both read ``ordinal_independence_report``, and a suite the
+        generator emits is one ``validate_protected_suite`` accepts by the same
+        rule rather than by coincidence.
+        """
+
+        assignment, rejected = assign_families("e" * 64, families=FAMILIES)
+
+        assert rejected > 0, "the constraint must have refused at least one draw"
+        assert ordinal_independence_report(assignment)["independent"] is True
+
+    def test_the_shipped_order_is_a_draw_the_generator_would_refuse(self) -> None:
+        blocked = tuple(family for family in FAMILIES for _ in range(3))
+        report = ordinal_independence_report(blocked)
+
+        assert report["independent"] is False
+        # FAMILIES is the sorted enum, so the block order is readable both ways:
+        # free from the public labels, and from eight paid openings.
+        assert report["rules_recovering_every_predicted_case"] == [
+            "alphabetical/blocks-of-3",
+            "first-appearance/blocks-of-3",
+        ]
+
+    def test_the_closed_gap_is_kept_as_a_record_not_deleted(self) -> None:
+        assert len(CUSTODY_RULE_GAPS_CLOSED) == 1
+        (closed,) = CUSTODY_RULE_GAPS_CLOSED
+        assert "emission order" in closed
+        assert "CLOSED:" in closed
+        assert all("emission order" not in gap for gap in CUSTODY_RULE_GAPS)
 
     def test_the_assignment_is_reproducible_from_its_seed(self) -> None:
         seed = "c" * 63 + "d"

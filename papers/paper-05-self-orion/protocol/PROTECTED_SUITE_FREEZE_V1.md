@@ -41,7 +41,27 @@ Freeze is rejected if any of the following holds:
 - fresh or negative payloads are missing, duplicated or orphaned;
 - an allowed candidate write surface is also a protected surface;
 - the evaluator artifact hash is missing/invalid;
-- the suite was not declared frozen before outcome access.
+- the suite was not declared frozen before outcome access;
+- the root-cause family is readable off the case ordinal (see *Ordinal independence* below).
+
+## Ordinal independence
+
+The case ordinal is published. It is the position of the case in the candidate packet, which `freeze_protected_suite` emits in sorted `case_id` order, and no commitment covers it. So if the root-cause family is a function of the ordinal, the commitments protect nothing: the candidate reads the answer key off the packet and never opens a case.
+
+`PROTECTED_SUITE_V1` is that suite. Its twenty-four cases are the eight families in eight consecutive blocks of three, so `family = order[(ordinal - 1) // 3]` reproduces all twenty-four labels. Its nonces were separately broken and the freeze now refuses them; had they been sound, nothing in this document or in `validate_protected_suite` would have stopped it.
+
+"Not recoverable from the ordinal" is not decidable — every assignment is *some* function of the ordinal — so the condition is shaped the way the rest of this programme shapes its guards: declare the adversary, then check that the suite defeats it. `freeze.ordinal_reading_rules` declares forty rules at twenty-four cases, each mapping an ordinal to a family using only the ordinal, the suite length and the eight public labels:
+
+- four family orderings — alphabetical and first-appearance, each read forwards and backwards;
+- for each ordering, every block size dividing the suite length up to half of it, and every stride coprime with the family count.
+
+Each ordering is charged the openings it needs. Alphabetical order is free: the labels are a public enum. First-appearance order costs one opening per family, and those positions are excluded from scoring — without that exclusion the check is vacuous, because reading families off their own first appearances reproduces any assignment while predicting none of it.
+
+A suite is rejected if any rule is right on **every case it was not shown**, and the rejection names the rule. On `PROTECTED_SUITE_V1`, `first-appearance/blocks-of-3` buys eight openings and gets the remaining sixteen right.
+
+A second condition covers realised correlation rather than a stated rule: when every family appears the same number of times *k*, no aligned block of *k* consecutive ordinals may repeat a family. An adversary handed one opening inside such a block predicts the rest of it above chance, whatever drew the order. This rejects most honest uniform draws — eight families of three put two in a block about five times in six — and the remedy is to redraw, not to argue that a particular draw was innocent. `sound_hidden_cause_suite.assign_families` rejection-samples on exactly this predicate, so a generator cannot emit an assignment the validator would refuse.
+
+Surviving these rules is not a proof of independence. It is a measurement against a declared adversary, and that is all it is claimed to be.
 
 ## Low-entropy truth commitment
 
@@ -112,14 +132,13 @@ The demonstration's roll-up is `CANNOT_CHECK`, not `PASS`, and the reason is in 
 - `nonce-ordinal-block` reads `(int(nonce, 16) - 1) // 3`. Against 256-bit CSPRNG nonces every case has its own signature, the fitted rule abstains on every eval case, and informedness is undefined — which `audit_label_identifiability` reports as `NO_PROBE_SCORED` and `CANNOT_CHECK`. **No correctly salted suite can pass that audit.** Nothing was recovered; the probe was in no position to recover anything, and the instrument cannot tell those apart.
 - `default_fit_case_ids` takes the first case of each family. For the block cue to be scoreable on every eval case those eight first occurrences must land in eight distinct ordinal blocks — and a family whose first occurrence is in the last block has all three of its cases there, because only three slots remain. Full coverage therefore *forces* a monofamily final block, which the block probe then recovers at informedness 1.0. Full coverage and a clean ordinal are mutually exclusive under that split, so the audit is also run against `block_covering_fit_case_ids()` — one authorised opening per ordinal block, all of distinct families, which is more than a sound freeze discloses to anybody — where the cue scores all sixteen eval cases and recovers none.
 
-Six places where the custody rule above does not reach, found by trying to build a suite from it and recorded in `sound_hidden_cause_suite.CUSTODY_RULE_GAPS`:
+Six places where the custody rule above did not reach, found by trying to build a suite from it. The largest — the emission order — is now the tenth fail-closed condition above and is recorded in `sound_hidden_cause_suite.CUSTODY_RULE_GAPS_CLOSED`. Five remain open, in `sound_hidden_cause_suite.CUSTODY_RULE_GAPS`:
 
 1. The withheld list is under *Custody rule* and the publishable list under *Freeze command*; neither says the two are complements. The only place the split is stated as one rule is `freeze_protected_suite` itself.
 2. `competing_cause_set` is in neither list. It names two or three candidates including the answer, so a freeze that published it would cut the commitment's domain from eight to three while breaking no stated rule.
 3. `allowed_change_surface` is on the publishable list, and in the shipped suite it names the answer: `src/retrieval/index.py` for `RETRIEVAL_MISS`, `src/causal/representation.py` for `REPRESENTATION_GAP`, `src/measurement/spec.py` for `MEASUREMENT_SPECIFICATION_GAP`. Neither the freeze nor the custody audit looks at it.
-4. The emission order is in neither list, and "a family must not be recoverable from the case ordinal" is not one of the nine fail-closed conditions. `validate_protected_suite` would accept a suite emitted in eight blocks of three — which is what the shipped suite is.
-5. The manifest is described as binding the fresh split "without publishing the protected payloads", and it does publish `task_id`, `changed_axes` and `variant_id` verbatim. Defensible, and unstated: a generator that made `changed_axes` depend on the family would put the label in the clear while following the text.
-6. One nonce per case is reused across seven commitment kinds — case artifact, root cause, each fresh payload, each negative variant, the protected surface and both rubrics. The seven disclosure probes attack only the root-cause commitment, so whichever of the other six has the smallest guessable domain is the real cost of opening a case, and nothing measures it.
+4. The manifest is described as binding the fresh split "without publishing the protected payloads", and it does publish `task_id`, `changed_axes` and `variant_id` verbatim. Defensible, and unstated: a generator that made `changed_axes` depend on the family would put the label in the clear while following the text.
+5. One nonce per case is reused across seven commitment kinds — case artifact, root cause, each fresh payload, each negative variant, the protected surface and both rubrics. The seven disclosure probes attack only the root-cause commitment, so whichever of the other six has the smallest guessable domain is the real cost of opening a case, and nothing measures it.
 
 ## Authority boundary
 

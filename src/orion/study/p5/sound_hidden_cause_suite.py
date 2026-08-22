@@ -48,11 +48,13 @@ disagreement is a diff rather than an argument.
 
 The document does separate the two halves, and it is unambiguous about the fields
 it names: "do not commit that input" covers the protected suite entire. Six places
-where it runs out are recorded in :data:`CUSTODY_RULE_GAPS`. The largest is that
-neither list mentions the *order* the cases are emitted in, and no fail-closed
-condition mentions it either --- which is the defect that actually sank the shipped
-suite, and the one a reader of the *Custody rule* section alone would not know to
-avoid.
+where it runs out were recorded in :data:`CUSTODY_RULE_GAPS`. The largest was that
+neither list mentioned the *order* the cases are emitted in, and no fail-closed
+condition mentioned it either --- the defect that actually sank the shipped suite,
+and the one a reader of the *Custody rule* section alone would not have known to
+avoid. That one is now a fail-closed condition in
+:func:`orion.study.p5.freeze.require_ordinal_independence` and has moved to
+:data:`CUSTODY_RULE_GAPS_CLOSED`; five remain open.
 
 What is sound here, and what is not
 -----------------------------------
@@ -119,6 +121,8 @@ from orion.study.p5.freeze import (
     SCHEMA_VERSION,
     freeze_protected_suite,
     mint_root_cause_nonce,
+    ordinal_independence_report,
+    repeated_family_in_block,
     sha256_json,
     validate_protected_suite,
 )
@@ -195,6 +199,22 @@ PUBLISHED_CASE_FIELDS = frozenset(
     }
 )
 
+#: Gaps found here and since closed in the validator. Kept as a record: the entry
+#: says what a compliant freeze could have done before the condition existed, so a
+#: reader can check that the repair covers the hole rather than taking it on trust.
+CUSTODY_RULE_GAPS_CLOSED: tuple[str, ...] = (
+    "The emission order was in neither list, and 'a family must not be recoverable "
+    "from the case ordinal' was not one of the nine fail-closed conditions -- so "
+    "validate_protected_suite accepted a suite emitted in eight blocks of three, "
+    "which is what the shipped suite is. CLOSED: freeze.require_ordinal_independence "
+    "is now a tenth condition, checked on the emitted order and on the sorted-case_id "
+    "order a freeze publishes. It declares forty ordinal-reading rules -- four family "
+    "orderings by block sizes and strides -- charges each ordering the openings it "
+    "needs, and rejects a suite any rule predicts correctly on every case it was not "
+    "shown. On PROTECTED_SUITE_V1, first-appearance/blocks-of-3 buys eight openings "
+    "and gets the other sixteen right; the suite is rejected and the rule is named.",
+)
+
 #: Where the document's own statement of the split runs out. Each entry is a
 #: sentence a reader can check against ``PROTECTED_SUITE_FREEZE_V1.md`` and
 #: against ``freeze_protected_suite``; none is repaired here.
@@ -212,10 +232,6 @@ CUSTODY_RULE_GAPS: tuple[str, ...] = (
     "src/causal/representation.py for REPRESENTATION_GAP, src/measurement/spec.py for "
     "MEASUREMENT_SPECIFICATION_GAP. The rule permits publishing a field that in "
     "practice states the label, and neither the freeze nor the custody audit looks.",
-    "The emission order is in neither list, and 'a family must not be recoverable from "
-    "the case ordinal' is not one of the nine fail-closed conditions. It appears only "
-    "in the later section on the shipped suite, as a requirement for the next one, so "
-    "validate_protected_suite would accept a suite emitted in eight blocks of three.",
     "The manifest is described as binding the fresh split and the negative variants "
     "'without publishing the protected payloads', and it does publish task_id, "
     "changed_axes and variant_id verbatim beside each commitment. That is a defensible "
@@ -309,13 +325,15 @@ def _shuffled(stream: Iterator[int], items: Sequence[str]) -> list[str]:
 
 
 def block_repeats_a_family(assignment: Sequence[str], *, block_size: int) -> bool:
-    """True when any block of ``block_size`` consecutive ordinals repeats a family."""
+    """True when any block of ``block_size`` consecutive ordinals repeats a family.
 
-    for start in range(0, len(assignment), block_size):
-        block = assignment[start : start + block_size]
-        if len(set(block)) != len(block):
-            return True
-    return False
+    Delegates to :func:`orion.study.p5.freeze.repeated_family_in_block`, which is
+    where ``validate_protected_suite`` reads it from. Two implementations of one
+    condition drift, and the drift is silent in exactly the direction that lets a
+    generator emit what the validator would reject.
+    """
+
+    return repeated_family_in_block(assignment, block_size=block_size) is not None
 
 
 def assign_families(
@@ -327,6 +345,11 @@ def assign_families(
     """Shuffle the family multiset under ``seed`` until no ordinal block repeats one.
 
     Returns the assignment and the number of draws rejected on the way.
+
+    The accept condition is ``freeze.ordinal_independence_report(...)["independent"]``
+    --- the same predicate ``validate_protected_suite`` fails closed on --- so the
+    generator cannot emit an assignment the validator would refuse, and tightening
+    the validator tightens the generator in the same commit.
 
     The shuffle is what decouples the label from the ordinal; the constraint is
     what makes that decoupling hold *on this suite* rather than on average. A
@@ -343,11 +366,11 @@ def assign_families(
     multiset = [family for family in families for _ in range(per_family)]
     for draw in range(_MAX_ASSIGNMENT_DRAWS):
         assignment = _shuffled(_key_stream(seed, draw), multiset)
-        if not block_repeats_a_family(assignment, block_size=per_family):
+        if ordinal_independence_report(assignment)["independent"]:
             return tuple(assignment), draw
     raise RuntimeError(
-        f"no assignment over {len(families)} families avoided a repeated family inside a "
-        f"block of {per_family} in {_MAX_ASSIGNMENT_DRAWS} draws; the shuffle is broken"
+        f"no assignment over {len(families)} families cleared the ordinal-independence "
+        f"conditions in {_MAX_ASSIGNMENT_DRAWS} draws; the shuffle is broken"
     )
 
 
@@ -798,6 +821,7 @@ def audit_sound_suite(
         ),
         "n_cases": len(cases),
         "custody_rule_gaps": list(CUSTODY_RULE_GAPS),
+        "custody_rule_gaps_closed": list(CUSTODY_RULE_GAPS_CLOSED),
         "assignment": {
             "seed_commitment": assignment_seed_commitment(suite.assignment_seed),
             "seed_published": False,
@@ -805,6 +829,7 @@ def audit_sound_suite(
             "no_ordinal_block_repeats_a_family": not block_repeats_a_family(
                 suite.families, block_size=CASES_PER_FAMILY
             ),
+            "ordinal_independence": ordinal_independence_report(suite.families),
         },
         "published_surface": {
             "candidate_packet_hash": sha256_json(suite.candidate_packet),
@@ -984,6 +1009,7 @@ __all__ = [
     "CASE_ID_PREFIX",
     "CONTRAST_SCHEMA_VERSION",
     "CUSTODY_RULE_GAPS",
+    "CUSTODY_RULE_GAPS_CLOSED",
     "DEMONSTRATION_SCHEMA_VERSION",
     "PUBLISHED_CASE_FIELDS",
     "OPENING_MATERIAL_CASE_FIELDS",
