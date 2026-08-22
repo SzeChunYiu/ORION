@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Fail-closed checks for the ORION-Q / ORION-QG publication-synthesis branch.
 
-This checker grants no scientific or submission authority. It protects publication-owned
-changes from mutating frozen science and enforces final-manuscript / evidence-cut bindings.
-On pull_request events GitHub checks out a synthetic merge commit, so branch-owned changes
-are measured against the PR head ref rather than the merge ref.
+This checker grants no scientific or submission authority. It protects pre-existing frozen
+science from publication-owned mutation and enforces final-manuscript / evidence-cut bindings.
+Q3 is the one prospectively authorized science extension in this branch; only its exact,
+newly-created QG19/QG20 protocol/analyzer/result paths are allowed through the science guard.
 """
 
 from __future__ import annotations
@@ -17,7 +17,8 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 ORIGINAL_CUT = "ca7df1055a43f97eaf8d142a62011c4c261af368"
 QG1_REFRESH_CUT = "c5ba39fef4f25c46de5fb69bf07f50530f4693ca"
-Q3_BLOCKED_TERMINAL = "SCIENTIFIC_SERIES_INCOMPLETE__CANNOT_CHECK_PEER_REVIEW_READY"
+Q3_RESULT_CUT = "ca561ada07301ee7e45fc10e195dce8f077ea50c"
+Q3_COMPLETE_TERMINAL = "Q3_PROSPECTIVE_CASE_SERIES_COMPLETE__N3_VALID__AGREEMENT_NOT_VALIDATION_COUNTEREXAMPLE_OBSERVED__NO_RELIABILITY_GENERALIZATION"
 
 REQUIRED = [
     "papers/Q_QG_NATURE_SKILLS_PUBLICATION_CLOSURE_V1.md",
@@ -46,9 +47,21 @@ REQUIRED = [
     "papers/Q-paper-02-recursive-recovery/Q2_TRANSITION_GRAPH_V2.json",
     "papers/Q-paper-02-recursive-recovery/Q2_ELIGIBLE_RECEIPT_INVENTORY_V1.json",
     "papers/Q-paper-02-recursive-recovery/check_transition_graph.py",
-    # Q3 intentionally blocked
+    # Q3 final V3 + prospective custody/completion
+    "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md",
+    "papers/Q-paper-03-dual-instrument/CLAIM_LEDGER_V2.md",
     "papers/Q-paper-03-dual-instrument/PUBLICATION_FOUNDATION_V2.md",
     "papers/Q-paper-03-dual-instrument/Q3_ADDITIONAL_PROSPECTIVE_INSTANCES_PROTOCOL_V1.md",
+    "papers/Q-paper-03-dual-instrument/Q3_REPLACEMENT_PROSPECTIVE_PROTOCOL_V2.md",
+    "papers/Q-paper-03-dual-instrument/Q3_CONTAMINATION_DISPOSITION_2026-08-22.md",
+    "papers/Q-paper-03-dual-instrument/Q3_D2_D3_DISPOSITION_V2.md",
+    "papers/Q-paper-03-dual-instrument/Q3_NOVELTY_REFRESH_2026-08-22.md",
+    "papers/Q-paper-03-dual-instrument/Q3_COMPLETION_RECEIPT_V3.md",
+    "papers/Q-paper-03-dual-instrument/check_q3_completion.py",
+    "papers/Q-paper-03-dual-instrument/check_q3_result_bindings.py",
+    "papers/Q-paper-03-dual-instrument/replay_q3_v0.py",
+    "research/extensions/orion-qg/QG19_OUTSIDE_CONE_SHARPNESS_RESULTS.json",
+    "research/extensions/orion-qg/QG20_SIXLCU_OBJECTIVE_SCOPE_RESULTS.json",
     # Q4 final V3
     "papers/Q-paper-04-typed-state/MANUSCRIPT_V3.md",
     "papers/Q-paper-04-typed-state/PUBLICATION_FOUNDATION_V2.md",
@@ -79,6 +92,7 @@ REQUIRED = [
 FINAL_MANUSCRIPTS = [
     ("Q1", "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md", ORIGINAL_CUT),
     ("Q2", "papers/Q-paper-02-recursive-recovery/MANUSCRIPT_V3.md", ORIGINAL_CUT),
+    ("Q3", "papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md", Q3_RESULT_CUT),
     ("Q4", "papers/Q-paper-04-typed-state/MANUSCRIPT_V3.md", ORIGINAL_CUT),
     ("QG1", "papers/QG-paper-01-compilation-regime-geometry/MANUSCRIPT_V3.md", QG1_REFRESH_CUT),
     ("QG2", "papers/QG-paper-02-certified-static-forecasting/MANUSCRIPT_V3.md", ORIGINAL_CUT),
@@ -92,6 +106,16 @@ SCIENCE_PREFIXES = (
     "development/orion-q-nlane-closure/",
 )
 
+# These are the only newly-created scientific paths authorized by Q3's prospective protocol.
+Q3_AUTHORIZED_NEW_SCIENCE = {
+    "development/orion-qg-regime-geometry/QG19_OUTSIDE_CONE_SHARPNESS_PROTOCOL_V1.md",
+    "development/orion-qg-regime-geometry/QG20_SIXLCU_OBJECTIVE_SCOPE_PROTOCOL_V1.md",
+    "research/extensions/orion-qg/qg19_outside_cone_sharpness.py",
+    "research/extensions/orion-qg/qg20_sixlcu_objective_scope.py",
+    "research/extensions/orion-qg/QG19_OUTSIDE_CONE_SHARPNESS_RESULTS.json",
+    "research/extensions/orion-qg/QG20_SIXLCU_OBJECTIVE_SCOPE_RESULTS.json",
+}
+
 
 def text(path: str) -> str:
     return (ROOT / path).read_text(encoding="utf-8")
@@ -101,21 +125,23 @@ def publication_head() -> str:
     head_ref = os.environ.get("GITHUB_HEAD_REF", "").strip()
     if head_ref:
         candidate = f"origin/{head_ref}"
-        subprocess.run(
-            ["git", "rev-parse", "--verify", candidate], cwd=ROOT, check=True,
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
-        )
+        subprocess.run(["git", "rev-parse", "--verify", candidate], cwd=ROOT, check=True,
+                       stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         return candidate
     return "HEAD"
 
 
 def changed_from_original_cut() -> tuple[str, list[str]]:
     target = publication_head()
-    proc = subprocess.run(
-        ["git", "diff", "--name-only", f"{ORIGINAL_CUT}..{target}"],
-        cwd=ROOT, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
-    )
+    proc = subprocess.run(["git", "diff", "--name-only", f"{ORIGINAL_CUT}..{target}"],
+                          cwd=ROOT, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     return target, [x.strip() for x in proc.stdout.splitlines() if x.strip()]
+
+
+def path_exists_at(ref: str, rel: str) -> bool:
+    proc = subprocess.run(["git", "cat-file", "-e", f"{ref}:{rel}"], cwd=ROOT,
+                          stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    return proc.returncode == 0
 
 
 def main() -> int:
@@ -135,9 +161,20 @@ def main() -> int:
     except Exception as exc:  # pragma: no cover
         errors.append(f"CANNOT_CHECK_GIT_DIFF:{exc}")
         target, changed = "UNRESOLVED", []
+
+    authorized_q3_seen: set[str] = set()
     for rel in changed:
-        if rel.startswith(SCIENCE_PREFIXES):
-            errors.append(f"SCIENCE_MUTATED_BY_PUBLICATION_BRANCH:{rel}")
+        if not rel.startswith(SCIENCE_PREFIXES):
+            continue
+        if rel in Q3_AUTHORIZED_NEW_SCIENCE:
+            authorized_q3_seen.add(rel)
+            # Q3 science must be genuinely new relative to the original publication cut.
+            if path_exists_at(ORIGINAL_CUT, rel):
+                errors.append(f"Q3_AUTHORIZED_PATH_WAS_NOT_NEW:{rel}")
+            continue
+        errors.append(f"PREEXISTING_OR_UNAUTHORIZED_SCIENCE_MUTATED_BY_PUBLICATION_BRANCH:{rel}")
+    if authorized_q3_seen != Q3_AUTHORIZED_NEW_SCIENCE:
+        errors.append(f"Q3_AUTHORIZED_SCIENCE_SET_INCOMPLETE:{sorted(Q3_AUTHORIZED_NEW_SCIENCE-authorized_q3_seen)}")
 
     for paper_id, rel, cut in FINAL_MANUSCRIPTS:
         body = text(rel)
@@ -150,10 +187,8 @@ def main() -> int:
 
     # Q1: synchronized science + full donor subtraction.
     q1_ledger = text("papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V2.md")
-    for token in (
-        "PROVEN-ALL-N", "PROSPECTIVE-BOUNDED", "REFUTED",
-        "MAX_R6S_ALL_N_COMPOSITION", "MAX_R6R_PROSPECTIVE_FRESH_SUBJECT",
-    ):
+    for token in ("PROVEN-ALL-N", "PROSPECTIVE-BOUNDED", "REFUTED",
+                  "MAX_R6S_ALL_N_COMPOSITION", "MAX_R6R_PROSPECTIVE_FRESH_SUBJECT"):
         if token not in q1_ledger:
             errors.append(f"Q1_MISSING_SYNCHRONIZED_TOKEN:{token}")
     q1 = text("papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3.md").lower()
@@ -168,6 +203,21 @@ def main() -> int:
             errors.append(f"Q2_V3_GRAPH_OR_DONOR_MISSING:{token}")
     if "declared publication graph" not in q2 and "declared bounded graph" not in q2 and "publication graph" not in q2:
         errors.append("Q2_V3_GRAPH_SCOPE_WORDING_MISSING")
+
+    # Q3: completion, negative result and anti-reliability framing must be visible.
+    readiness = text("papers/Q_QG_PUBLICATION_READINESS_V3.md")
+    q3 = text("papers/Q-paper-03-dual-instrument/MANUSCRIPT_V3.md").lower()
+    q3_ledger = text("papers/Q-paper-03-dual-instrument/CLAIM_LEDGER_V2.md")
+    if Q3_COMPLETE_TERMINAL not in readiness or Q3_COMPLETE_TERMINAL not in q3_ledger:
+        errors.append("Q3_COMPLETE_TERMINAL_NOT_BOUND")
+    for token in ("39,489", "zero p0/label mismatches", "agreement did not imply", "contaminated", "three valid units"):
+        if token not in q3:
+            errors.append(f"Q3_V3_DECISIVE_RESULT_OR_BOUNDARY_MISSING:{token}")
+    for forbidden in ("100% agreement", "two-thirds diagnostic accuracy", "100% move accuracy"):
+        # Those phrases may occur only in an explicit prohibition context; require the manuscript's
+        # anti-summary sentence if present rather than banning the literal text.
+        if forbidden in q3 and "we do **not** summarize this as" not in q3:
+            errors.append(f"Q3_ILLEGAL_AGGREGATE_REPORTING:{forbidden}")
 
     # Q4: stale memory/context governance/P13 are distinct from bounded Q4 result.
     q4 = text("papers/Q-paper-04-typed-state/MANUSCRIPT_V3.md").lower()
@@ -189,17 +239,7 @@ def main() -> int:
     if "true optimum is 10" not in qg2 or "return 11" not in qg2:
         errors.append("QG2_V3_DECISIVE_COUNTEREXAMPLE_NOT_VISIBLE")
 
-    # Q3 remains intentionally blocked.
-    readiness = text("papers/Q_QG_PUBLICATION_READINESS_V3.md")
-    q3p = text("papers/Q-paper-03-dual-instrument/Q3_ADDITIONAL_PROSPECTIVE_INSTANCES_PROTOCOL_V1.md")
-    if Q3_BLOCKED_TERMINAL not in readiness:
-        errors.append("Q3_FAIL_CLOSED_TERMINAL_NOT_VISIBLE")
-    if "QG-7d" not in q3p or "QG-15c" not in q3p:
-        errors.append("Q3_PROSPECTIVE_INSTANCE_FREEZE_INCOMPLETE")
-
-    # No root reuse licence existed at the original cut. Enforce this on the actual
-    # submission-facing manuscripts (and, later, target packages), not audit documents
-    # whose job is to quote/prohibit the phrase.
+    # No root reuse licence existed at the original cut. Enforce on actual final manuscripts.
     for _paper_id, rel, _cut in FINAL_MANUSCRIPTS:
         body = text(rel).lower()
         for forbidden in ("orion is open-source", "orion is open source", "open-source orion"):
@@ -215,11 +255,13 @@ def main() -> int:
     print("Q_QG_PUBLICATION_CHECK=PASS")
     print(f"ORIGINAL_CUT={ORIGINAL_CUT}")
     print(f"QG1_REFRESH_CUT={QG1_REFRESH_CUT}")
+    print(f"Q3_RESULT_CUT={Q3_RESULT_CUT}")
     print(f"PUBLICATION_HEAD={target}")
     print(f"PUBLICATION_BRANCH_CHANGED_FILES={len(changed)}")
-    print("FINAL_MANUSCRIPTS=Q1V3,Q2V3,Q4V3,QG1V3,QG2V3")
-    print("SCIENTIFIC_RECEIPT_MUTATIONS_BY_PUBLICATION_BRANCH=0")
-    print(f"Q3_PUBLICATION_AUTHORITY={Q3_BLOCKED_TERMINAL}")
+    print("FINAL_MANUSCRIPTS=Q1V3,Q2V3,Q3V3,Q4V3,QG1V3,QG2V3")
+    print("PREEXISTING_SCIENTIFIC_RECEIPT_MUTATIONS_BY_PUBLICATION_BRANCH=0")
+    print(f"Q3_AUTHORIZED_NEW_SCIENCE_FILES={len(authorized_q3_seen)}")
+    print(f"Q3_PUBLICATION_AUTHORITY={Q3_COMPLETE_TERMINAL}")
     print("SUBMISSION_AUTHORITY=NOT_GRANTED_BY_THIS_CHECK")
     return 0
 
