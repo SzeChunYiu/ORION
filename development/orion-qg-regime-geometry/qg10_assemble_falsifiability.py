@@ -56,6 +56,24 @@ def live_row(rows):
     return next(i for i, r in enumerate(rows) if r.get("C_DP") is not None)
 
 
+def row_with_a_foreign_target(rows):
+    """A live row where some other block holds a target block 0 does not.
+
+    Row 0 turns out to be fully degenerate -- all three target pairs are
+    [[1,0],[1,0]] -- so there is no foreign target to place and T4 cannot bite
+    there at all. Choosing a row where the check CAN fail is part of building the
+    case; picking row 0 by default is what made the first T4 a silent no-op.
+    """
+    for i, r in enumerate(rows):
+        if r.get("C_DP") is None:
+            continue
+        tp = r["target_pairs"]
+        block0 = {tuple(tp[0][0]), tuple(tp[0][1])}
+        if any(tuple(x) not in block0 for pair in tp[1:] for x in pair):
+            return i
+    raise SystemExit("no live row has a foreign target; T4 cannot be built")
+
+
 def withheld_row(rows):
     return next(i for i, r in enumerate(rows)
                 if r.get("referee") == "WITHHELD_CERTIFICATION_ONLY")
@@ -80,9 +98,29 @@ def t3(r):
 
 
 def t4(r):
-    rows = r["rows_for_generic_verifier"]; i = live_row(rows)
+    """Replace a witness target with a Pauli that is genuinely not in its block.
+
+    The first version copied t6[1] over t6[0]. On the row it happened to pick,
+    those two entries were EQUAL, so the edit was a no-op and the copy was
+    ACCEPTed -- a tamper that did not tamper, named after a check it never
+    reached. Found by running the demonstration, not by reading it. The target is
+    now chosen to differ from both members of the block it is placed in, and the
+    function refuses to build a case it cannot make bite.
+    """
+    rows = r["rows_for_generic_verifier"]; i = row_with_a_foreign_target(rows)
     w = rows[i]["witness"]
-    w["t6"] = [list(w["t6"][1])] + [list(x) for x in w["t6"][1:]]
+    tp = rows[i]["target_pairs"]
+    block0 = {tuple(tp[0][0]), tuple(tp[0][1])}
+    foreign = next((tuple(x) for pair in tp[1:] for x in pair if tuple(x) not in block0), None)
+    if foreign is None:
+        raise SystemExit(
+            "T4 cannot be built on this row: every target in the other blocks "
+            "already belongs to block 0, so no foreign target exists to place. "
+            "Refusing to emit a case that would pass for the wrong reason."
+        )
+    t6 = [list(x) for x in w["t6"]]
+    t6[0] = list(foreign)
+    w["t6"] = t6
     return r
 
 
@@ -201,6 +239,15 @@ def main() -> int:
         "gate": "CLEARS" if problems is None else "REFUSED",
         "gate_reason": problems,
     }
+    if problems is not None or clean_decision != "ACCEPT":
+        # The sibling assemblers refuse to write when their own gates do not hold,
+        # and this one recorded its refusal into the artifact and wrote it anyway.
+        # An artifact that documents its own failure is still an artifact someone
+        # can cite from the cases list without reading the gate field.
+        raise SystemExit(
+            "refusing to write the falsifiability artifact -- clean="
+            f"{clean_decision}; gate={out['gate']}: {problems}"
+        )
     ARTIFACT.write_text(json.dumps(out, indent=1, sort_keys=True) + "\n")
     print(json.dumps({
         "clean": clean_decision,
