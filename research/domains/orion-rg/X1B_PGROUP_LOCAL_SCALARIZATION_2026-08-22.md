@@ -54,6 +54,24 @@ for every nonzero value x missing from `Sigma(T_i)`.
 
 Rescale lambda_i so that `rho_i=1`.
 
+### Normalization note
+
+Geroldinger--Yang's proof constructs a canonical homomorphism `lambda_i^can` through
+
+`(1-X^y) Pi(T_i) = lambda_i^can(y) Omega`.
+
+For a missing value `x`, their proof gives `lambda_i^can(x)=-1`, while substituting the deleted element gives `lambda_i^can(h_i)=1` because `Pi(H)=Omega`.
+
+The present packet instead uses the rescaled functional
+
+`lambda_i = - lambda_i^can`,
+
+so that **missing values map to +1**. Consequently
+
+`lambda_i(-h_i)=1` and `lambda_i(h_i)=-1`.
+
+This is only a normalization choice. All common-RHS finite tests may rescale the common nonzero value to `1` without changing consistency.
+
 ## Legal replacement correction
 
 Call `C` a legal replacement of block `B_i` relative to the fixed other eleven blocks when:
@@ -70,7 +88,7 @@ Hence
 
 (The case c=0 is even more immediate: C itself is a zero-sum upstairs.)
 
-Therefore the p-group theorem gives
+Therefore the normalized p-group functional gives
 
 `lambda_i(-c)=1`.
 
