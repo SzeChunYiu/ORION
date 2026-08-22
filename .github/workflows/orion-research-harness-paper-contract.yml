@@ -1,0 +1,63 @@
+name: orion-research-harness-paper-contract
+
+on:
+  pull_request:
+    paths:
+      - 'packages/orion-research-harness/src/orion_research_harness/paper_*.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/epistemic_navigation.py'
+      - 'packages/orion-research-harness/src/orion_research_harness/research_saturation.py'
+      - 'packages/orion-research-harness/tests/test_paper_contract_runtime.py'
+      - 'packages/orion-research-harness/pyproject.toml'
+      - 'development/orion-research-harness/PAPER_CONTRACT_*'
+      - '.github/workflows/orion-research-harness-paper-contract.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-research-harness-paper-contract-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  paper-contract-hostile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install canonical ORION and shared harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Run frozen paper-contract hostile tests
+        run: python -m pytest -q packages/orion-research-harness/tests/test_paper_contract_runtime.py
+      - name: Execute semantic paper-contract conformance gate
+        run: |
+          orion-harness-paper paper-contract-conformance | tee /tmp/orion-paper-contract.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path('/tmp/orion-paper-contract.json').read_text())
+          assert report['schema'] == 'ORION.HarnessPaperContractConformance.v1'
+          assert report['terminal'] == 'ORION_HARNESS_PAPER_CONTRACT_P0_OPERATIONAL'
+          assert report['paper_contract_operational'] is True
+          assert report['failed_probes'] == []
+          assert report['probes'] and all(report['probes'].values())
+          assert report['grants_scientific_authority'] is False
+          assert report['grants_novelty_authority'] is False
+          assert report['grants_promotion_authority'] is False
+          assert report['grants_global_task_stop_authority'] is False
+          PY
+      - name: Run full shared-harness regression suite
+        run: python -m pytest -q packages/orion-research-harness/tests
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orion-paper-contract-${{ github.event.pull_request.head.sha || github.sha }}
+          path: /tmp/orion-paper-contract.json
+          if-no-files-found: warn
+          retention-days: 14
