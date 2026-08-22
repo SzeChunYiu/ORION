@@ -59,6 +59,16 @@ DIVISOR_FLOOR = 1.0         # fitted range forms below 1 carry no resolvable spr
 THRESHOLD_LADDER = (0.0, 0.05, 0.10, 0.25, 0.50, 1.00, 2.00, 4.00, 8.00, None)  # None=inf
 H1_COVERAGE_MATERIAL_DELTA = 12      # 10% of the 120-instance panel
 H1_ACCURACY_SEPARATION_RATIO = 0.5   # covered error rate must be <= half the uncovered
+# H1's coverage clause must be read on the support a predictor actually consumes: a
+# cell-lookup rule keys on the WHOLE vector, so its support is exact-cell membership; a
+# thresholded predicate tests one feature at a time, so its support is the interval box.
+# Pairing a predictor with a support measure it cannot act on makes H1's first clause
+# ("n=4 vectors fall back inside the support") vacuous.  See criterion_disclosure.
+CONSUMED_SUPPORT_MEASURE = {
+    "normalized_cell_lookup": "exact_cell",
+    "normalized_lattice_headline": "box_support",
+    "normalized_lattice_inherited_cell": "box_support",
+}
 H0_INSUPPORT_MAJORITY = 60           # >half the panel already in support refutes H0
 N5_REFEREE_PROBE_SETTLED = 40_000    # fixed WORK, not fixed time (keeps G9 determinism)
 N5_FEATURE_PROBE_STATES = 20
@@ -798,8 +808,13 @@ def main() -> int:
                 ratio = (cv["error_rate"] / uv["error_rate"]
                          if uv["error_rate"] > 0 else None)
                 acc_ok = ratio is not None and ratio <= H1_ACCURACY_SEPARATION_RATIO
+            consumed = CONSUMED_SUPPORT_MEASURE[name] == measure
+            flags = predictors[name]
+            constant = len(set(flags)) == 1
             h1_pairs.append({
                 "predictor": name, "support_measure": measure,
+                "predictor_consumes_this_support_measure": consumed,
+                "predictor_is_constant_on_the_panel": constant,
                 "coverage_delta": delta,
                 "coverage_material": cov_ok,
                 "covered_error_rate": cv["error_rate"],
@@ -807,8 +822,19 @@ def main() -> int:
                 "error_rate_ratio": rd(ratio) if ratio is not None else None,
                 "accuracy_separates": acc_ok,
                 "H1_satisfied": bool(cov_ok and acc_ok),
+                "H1_satisfied_on_consumed_measure": bool(cov_ok and acc_ok and consumed),
             })
-    h1_verdict = "BORNE_OUT" if any(p["H1_satisfied"] for p in h1_pairs) else "REFUTED"
+    h1_all_pairs = "BORNE_OUT" if any(p["H1_satisfied"] for p in h1_pairs) else "REFUTED"
+    h1_verdict = ("BORNE_OUT"
+                  if any(p["H1_satisfied_on_consumed_measure"] for p in h1_pairs)
+                  else "REFUTED")
+    h1_passing_pairs = [
+        {"predictor": p["predictor"], "support_measure": p["support_measure"],
+         "error_rate_ratio": p["error_rate_ratio"],
+         "predictor_is_constant_on_the_panel": p["predictor_is_constant_on_the_panel"],
+         "predictor_consumes_this_support_measure":
+             p["predictor_consumes_this_support_measure"]}
+        for p in h1_pairs if p["H1_satisfied"]]
 
     # ---------------- prospective n=5 component (conditional, capped) ----------
     n5_ref = n5_referee_probe(N5_REFEREE_PROBE_SETTLED)
@@ -833,17 +859,25 @@ def main() -> int:
         "blocking_obstacle": "V2_FEATURE_MAP_COST_ON_THE_COMPLETE_N5_DOMAIN",
         "reason": (
             "The prospective component needs BOTH a complete n=5 referee AND the V2 "
-            "feature map on the complete n=5 domain. A Dial bucket queue (costs lie in "
-            "{1,3}) does make the referee side plausible -- the probe settles "
-            f"{n5_ref['settled']} of {n5_states} states with no sign of a wall -- but the "
-            "V2 feature map, which runs the frozen GE donor, the schedule trace, the "
-            "tensor-factor restriction and the E3 ladder per state, is measured at tens "
-            "of milliseconds per n=5 state, projecting to tens of HOURS on 2,423,520 "
-            "states against a 45-minute cap. A sampled n=5 panel is forbidden by G5 and "
-            "was not formed: the probes compute no n=5 labels and observe no n=5 "
-            "outcome. The component is therefore NOT_ATTEMPTED with the measured "
-            "obstacle recorded (see n5_measured_obstacle, outside result_digest because "
-            "wall-clock rates are timing)."),
+            "feature map on the complete n=5 domain, because the abstaining forecaster "
+            "is scored on feature vectors, not on states. The REFEREE side is not the "
+            "obstacle: a Dial bucket queue is admissible here (costs lie in {1,3}) and "
+            f"the probe settles {n5_ref['settled']} of {n5_states} states at a rate that "
+            "linearly extrapolates to well INSIDE the 45-minute cap -- see "
+            "n5_measured_obstacle for the measured rate and projection, which is an "
+            "optimistic lower bound because it is taken from an early, cache-friendly "
+            "phase and ignores the growth of the distance map. The FEATURE MAP is the "
+            "obstacle. Each n=5 vector requires the frozen GE donor, the full schedule "
+            "trace, the tensor-factor restriction with a donor call per factor, and the "
+            "E3 schedule ladder; it is measured at tens of milliseconds per state and "
+            "projects to TENS OF HOURS over 2,423,520 states, one to two orders of "
+            "magnitude past the cap. The vocabulary is frozen (G2), so there is no "
+            "admissible cheaper feature map. A sampled n=5 panel is forbidden by G5 and "
+            "was not formed: both probes compute no n=5 labels and observe no n=5 "
+            "outcome, so nothing about n=5 has been seen that could bias a later panel. "
+            "The component is therefore NOT_ATTEMPTED with the measured obstacle "
+            "recorded (in n5_measured_obstacle, which sits outside result_digest because "
+            "wall-clock rates are timing -- gate G9)."),
         "sampled_panel_formed": False,
         "n5_outcome_observed": False,
     }
@@ -932,11 +966,55 @@ def main() -> int:
                     f"{H0_INSUPPORT_MAJORITY} of {PANEL_SIZE} panel vectors are already "
                     "in un-normalized box support"),
                 "H1_borne_out_if": (
-                    "for at least one (refit predictor, support measure) pair the "
-                    f"coverage gain is at least {H1_COVERAGE_MATERIAL_DELTA} of "
-                    f"{PANEL_SIZE} AND the covered error rate is at most "
-                    f"{H1_ACCURACY_SEPARATION_RATIO} times the uncovered error rate"),
+                    "for at least one refit predictor, evaluated on THE SUPPORT MEASURE "
+                    "THAT PREDICTOR ACTUALLY CONSUMES, the coverage gain is at least "
+                    f"{H1_COVERAGE_MATERIAL_DELTA} of {PANEL_SIZE} AND the covered error "
+                    f"rate is at most {H1_ACCURACY_SEPARATION_RATIO} times the uncovered "
+                    "error rate. Every (predictor, measure) pair is reported regardless; "
+                    "see criterion_disclosure for the weaker all-pairs reading and why "
+                    "it is not used."),
+                "consumed_support_measure": CONSUMED_SUPPORT_MEASURE,
             },
+        },
+
+        "criterion_disclosure": {
+            "what_happened": (
+                "The first coded operationalization of H1 accepted ANY (refit predictor, "
+                "support measure) pair. Under that reading H1 reads BORNE_OUT, on "
+                "exactly one of six pairs. It is disclosed here rather than dropped."),
+            "H1_under_all_pairs_reading": h1_all_pairs,
+            "H1_under_consumed_measure_reading": h1_verdict,
+            "pairs_passing_the_all_pairs_reading": h1_passing_pairs,
+            "why_the_all_pairs_reading_is_rejected": (
+                "The single passing pair is the normalized cell-lookup rule scored "
+                "against BOX support, a support measure that rule cannot act on. That "
+                "rule keys on the whole 33-vector, and its own coverage -- exact-cell "
+                "membership -- is 0 of 120 BEFORE and 0 of 120 AFTER normalization, so "
+                "H1's first clause ('n=4 vectors fall back inside the support') is false "
+                "for it by its own measure. The rule predicts NEGATIVE on all 120 panel "
+                "instances, so its 'error rate' on any subset is just that subset's "
+                "positive rate, and its total error is 32/120 -- byte-identical to the "
+                "un-normalized baseline. Its apparent 'accuracy separation' (ratio "
+                "0.472 against a 0.500 threshold, a margin of 0.028) is a statement "
+                "about where the panel's positives sit, not an improvement in any "
+                "forecast. Protocol section 4 is explicit that 'a normalization that "
+                "raises coverage without separating accuracy has explained nothing', and "
+                "the Q3 curve shows the error rate flat across coverage for every "
+                "predictor. Admitting this pair would let a constant predictor certify a "
+                "competence region."),
+            "symmetry_check": (
+                "The correction is not directed at the outcome. It also REMOVES a purely "
+                "technical failure route: under the all-pairs reading the lattice "
+                "predicate was failed partly on the exact-cell measure it does not use "
+                "(coverage delta 0). On its own consumed measure (box support) its "
+                "coverage gain IS material (+27 of 120) and it still fails, on accuracy "
+                "separation, at ratio 0.690 against the 0.500 threshold. The corrected "
+                "criterion is structurally MORE favourable to H1 for the only predictor "
+                "with real accuracy, and H1 still fails."),
+            "no_further_normalization_searched": (
+                "Exactly one normalization was derived and used: the one protocol "
+                "section 4 specifies. No alternative normalization, feature subset, "
+                "quantization or threshold was tried in search of a better number."),
         },
 
         "q1_extensive_intensive_census": {
@@ -946,6 +1024,19 @@ def main() -> int:
                 "observed maximum is fitted in both coordinates as well and reported "
                 "alongside, so no classification rests on a slope alone"),
             "class_counts": class_counts,
+            "subclass_tie_break_note": (
+                "EXTENSIVE_LINEAR vs EXTENSIVE_OTHER is decided by r2 in the linear "
+                "coordinate against r2 in the log-log coordinate, ties going to LINEAR. "
+                "Eleven features have range 0 at n=1, so their log-log coordinate is "
+                "defined on {2,3} only and its r2 is mechanically 1.0. The tie-break "
+                "still separates them correctly and NOT by that artifact: on three "
+                "points r2_linear equals 1.0 if and only if the observed range is "
+                "EXACTLY linear in n (vanishing second difference), so for those "
+                "features the rule reduces to the exact test 'is R(3)-R(2) = R(2)-R(1)'. "
+                "Features that pass it are EXTENSIVE_LINEAR; features like nCZ, whose "
+                "range is (0,1,3), genuinely do not grow linearly and are "
+                "EXTENSIVE_OTHER with the measured form reported on its stated "
+                "restricted domain."),
             "class_definitions": {
                 "INTENSIVE": "range does not grow with n (bounded ratio across n)",
                 "EXTENSIVE_LINEAR": "range grows ~linearly in n",
@@ -1069,7 +1160,9 @@ def main() -> int:
                 "genuine model failure."),
             "H1": h1_verdict,
             "H1_statement": (
-                "BORNE OUT on at least one (predictor, support measure) pair."
+                "BORNE OUT: a refit predictor's coverage rose materially on the support "
+                "measure it consumes and its in-support error rate separated from its "
+                "out-of-support error rate by the frozen factor."
                 if h1_verdict == "BORNE_OUT" else
                 "REFUTED. Normalization does raise BOX coverage, but it does not restore "
                 "the coverage the cell-lookup rule actually consumes (exact-cell "
@@ -1077,7 +1170,18 @@ def main() -> int:
                 "the in-support error rate separate from the out-of-support error rate "
                 "by the frozen factor. The refit lattice predicate is in fact far WORSE "
                 "on normalized features than the un-normalized incumbent. No "
-                "normalization was searched for beyond the one the protocol specifies."),
+                "normalization was searched for beyond the one the protocol specifies. "
+                "ONE MEASURABLE EFFECT IS RECORDED RATHER THAN BURIED: membership of the "
+                "NORMALIZED support box is weakly associated with the label -- the panel "
+                "positives are enriched OUTSIDE it -- and that association is absent, "
+                "indeed slightly reversed, for the un-normalized box (see the "
+                "fisher_one_sided_p_covered_fewer_errors field on every predictor). So "
+                "phi_n does put a real, if modest, signal into support membership. It "
+                "does not become forecast accuracy: for the only accurate predictor "
+                "(the un-normalized lattice predicate at 3/120) the errors sit the OTHER "
+                "way round, its in-support error rate being HIGHER than its "
+                "out-of-support error rate, and no threshold on the frozen ladder lowers "
+                "any predictor's error rate by abstaining."),
             "N4_conversion": (
                 "N4 is converted to a DIAGNOSED negative. The n=4 cell-lookup refutation "
                 "(32/120) is fully explained: 120/120 of the panel's V2 vectors are "
