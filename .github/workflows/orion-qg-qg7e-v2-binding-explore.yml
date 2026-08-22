@@ -1,0 +1,71 @@
+name: orion-qg-qg7e-v2-binding-explore
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-qg-regime-geometry/qg7e_v2_binding_explore.py'
+      - '.github/workflows/orion-qg-qg7e-v2-binding-explore.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: orion-qg-qg7e-v2-explore-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qg7e-v2-binding-explore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ORION
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+      - name: Run corrected residual-binding diagnostic
+        run: |
+          set -o pipefail
+          mkdir -p artifacts
+          python development/orion-qg-regime-geometry/qg7e_v2_binding_explore.py \
+            --output artifacts/orion-qg-qg7e-v2-binding-explore.json \
+            | tee artifacts/orion-qg-qg7e-v2-binding-explore.log
+      - name: Summarize diagnostic without authority promotion
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('artifacts/orion-qg-qg7e-v2-binding-explore.json').read_text())
+          print(json.dumps({
+            'terminal_under_old_v1_gates': r['terminal'],
+            'visible': r['visible']['failures'],
+            'product': r['product_domain'],
+            'screen_residual': r['relocation']['residual_count'],
+            'screen_hist': r['relocation']['residual_delta_histogram'],
+            'dplus_hist': r['dplus']['delta_histogram'],
+            'dplus_residual': r['dplus']['residual_count'],
+            'bprime_hist': r['bprime']['delta_histogram'],
+            'bprime_final': r['bprime']['final_residual'],
+            'reference_failures': r['bprime']['reference_failures'],
+            'all_gates_under_old_v1': r['all_gates'],
+          },sort_keys=True))
+          # This is exploratory. Do not assert the old V1 terminal/counts.
+          assert r['visible']['failures']==32556
+          assert r['product_domain']==133349376
+          assert r['bprime']['reference_failures']==[]
+          assert r['novelty_authority'] is False
+          assert r['PP_SINGLE_PINNER_ALL_N'] is False
+          PY
+      - name: Upload exploratory diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-qg-qg7e-v2-binding-explore-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            artifacts/orion-qg-qg7e-v2-binding-explore.json
+            artifacts/orion-qg-qg7e-v2-binding-explore.log
+          if-no-files-found: warn
