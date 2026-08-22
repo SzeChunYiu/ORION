@@ -27,7 +27,7 @@ def main():
  aq=q34_blob_ok and a.get('terminal')=='QG34_EXACT_MINIMAX_ADAPTIVE_PROBE_DEPTH_MACHINE_CHECKED' and a.get('both_accept') is True and a.get('EXACT_ADAPTIVE_MINIMAX_AUTHORITY') is True and isinstance(D,list) and len(D)==92 and a.get('worst_case_depth')==max(D)
  raw_digest_ok=valid_result_digest(f)
  fq=raw_digest_ok and f.get('terminal')=='QG35_EXACT_SUMMARY_CONDITIONED_FIXED_PROBE_COMPLEXITY_MACHINE_CHECKED' and f.get('EXACT_SUMMARY_CONDITIONED_FIXED_AUTHORITY') is True and isinstance(F,list) and len(F)==92 and f.get('worst_case_class_conditioned_fixed_minimum')==max(F)
- fdual=fd.get('terminal')=='QG35_EXACT_SUMMARY_CONDITIONED_FIXED_PROBE_COMPLEXITY_MACHINE_CHECKED' and fd.get('both_accept') is True and fd.get('EXACT_SUMMARY_CONDITIONED_FIXED_AUTHORITY') is True and fd.get('F_star')==f.get('worst_case_class_conditioned_fixed_minimum')
+ fdual=fd.get('terminal')=='QG35_EXACT_SUMMARY_CONDITIONED_FIXED_PROBE_COMPLEXITY_MACHINE_CHECKED' and fd.get('both_accept') is True and fd.get('EXACT_SUMMARY_CONDITIONED_FIXED_AUTHORITY') is True and fd.get('F_star')==f.get('worst_case_class_conditioned_fixed_minimum') and fd.get('class_minima')==F
  same_parent=aq and fq and isinstance(a.get('parent_qg32_sha256'),str) and a.get('parent_qg32_sha256')==f.get('parent_qg32_sha256')
  universe=f.get('universe',{});universe_ok=universe.get('orbits')==715 and universe.get('probes')==384 and universe.get('joint_classes')==92
  range_ok=aq and fq and all(isinstance(x,int) and 0<=x<=5 for x in D+F)
