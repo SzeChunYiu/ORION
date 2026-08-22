@@ -42,14 +42,24 @@ per-review metrics before emitting exact retrieval and screening false-negative
 counts.  These artifacts make the bounded MetaSyn retrieval/screening result
 reproducible without reclassifying it as full ORION.
 
-The failed OpenAIRE/Crossref Wide campaign is preserved rather than left behind
-an expiring Actions URL.  The exact result and run receipt are stored under
-\idt{evidence/external_results/}; checksummed mirrors of the shared public
-candidate capture, failed first evaluator handoff, and successful evaluator-only
-repair are under \idt{evidence/ci_mirror/}.  The mirror manifest records both
-archive-level and per-file SHA-256 digests.  Evaluator gold never entered the
-candidate capture.  The campaign remains \idt{CANNOT_CHECK} because 400 of
-1,200 planned provider calls failed, not because the evidence was discarded.
+All three OpenAIRE/Crossref Wide campaigns are preserved rather than left behind
+an expiring Actions URL.  Their exact results and run receipts are stored under
+\idt{evidence/external_results/}, one prospective freeze per campaign under
+\idt{protocol/}; checksummed mirrors of the shared public candidate capture,
+the failed first evaluator handoff, and the successful evaluator-only repair are
+under \idt{evidence/ci_mirror/}.  The mirror manifest records both
+archive-level and per-file SHA-256 digests.  Evaluator gold never entered any
+candidate capture.  The first campaign remains \idt{CANNOT_CHECK} because 400 of
+1,200 planned provider calls failed; the second because its transport probe
+returned an empty result array below its frozen minimum, so acquisition never
+began; the third because provider validity reached $0.716$ against a frozen
+$0.90$.  None is \idt{CANNOT_CHECK} because evidence was discarded.
+
+The resolution audit that establishes the measurement-floor finding is under
+\idt{evidence/audit/}.  It reads the published campaign results and reports
+whether each could have produced a different verdict; it is reproducible from
+the repository and carries, in the same artifact, a control campaign with
+resolution so that a check firing on every input can be told from a finding.
 
 The live-provider capture implementation and campaign manifest retain request
 URL/parameters, query derivation, timestamp, raw body, hash and typed transport

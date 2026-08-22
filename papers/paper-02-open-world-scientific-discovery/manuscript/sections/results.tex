@@ -293,18 +293,61 @@ OpenAIRE/Crossref matched campaign then issued exactly 1,200 logical provider
 requests over one shared capture.  The 400 Crossref discovery calls and 400
 direct OpenAIRE calls succeeded, but every predeclared OpenAIRE DOI-crosswalk
 call returned HTTP 400.  The observed provider-success fraction was therefore
-0.666667, below the frozen 0.90 validity gate.  Without a valid cross-backend
-route, the balanced baseline, direct-first diagnostic and governed projection
-were byte-identical; their paired IoU differences were zero on all 399 distinct
-questions.  The frozen analyzer correctly emitted
-\texttt{P2\_WIDE\_EXTERNAL\_CANNOT\_CHECK}, not a valid negative result.  The
-terminal, workflow receipt and expiring Actions archives are retained as
-\texttt{P2\_WIDE\_OPENAIRE\_MATCHED\_RESULT\_V1.json},
-\texttt{P2\_WIDE\_OPENAIRE\_MATCHED\_RUN\_RECEIPT\_V1.json}, and checksummed
-mirrors under \texttt{evidence/ci\_mirror/}.  A new campaign would require a new
-prospective freeze after independently validating the documented structured
-crosswalk request syntax; this failed capture cannot be reinterpreted after the
-fact.
+0.666667, below the frozen 0.90 validity gate.  The balanced baseline,
+direct-first diagnostic and governed projection were byte-identical, and their
+paired IoU differences were zero on all 399 distinct questions.  The frozen
+analyzer correctly emitted \texttt{P2\_WIDE\_EXTERNAL\_CANNOT\_CHECK}, not a
+valid negative result.
+
+Two further prospectively frozen campaigns followed, and together they correct
+the natural reading of that first one.  A second campaign changed only the
+crosswalk encoding, from a single quoted OR expression to repeated persistent
+identifier parameters; its gold-blind transport probe returned HTTP 200 with an
+empty result array, below its prospectively frozen minimum of one, so
+acquisition never began and no score was produced.  A third campaign changed the
+encoding again, to the documented identifier-filter OR list, and this time the
+transport probe validated: its receipt and raw response hashes were bound into
+the capture manifest and independently revalidated at score time.  All 400 rows
+were acquired and scored.  Provider validity reached 0.715833, again below the
+frozen 0.90, so the analyzer again emitted a \texttt{CANNOT\_CHECK} terminal
+rather than a negative result.
+
+The correction is this.  The three systems were byte-identical in the first
+campaign, and their evaluator outputs were byte-identical again in the third,
+where the cross-backend route \emph{was} valid and the three candidate files
+were genuinely distinct.  So the identity is not explained by the failed
+crosswalk.  It is explained by the measurement floor.  The frozen decision rule
+requires an average-IoU difference of $0.03$ before superiority is supported,
+and the best-scoring arm in both completed campaigns achieved an average IoU of
+$0.003924$ and $0.004374$ respectively --- roughly a seventh of the difference
+the campaign exists to detect.  Deleting a competing arm outright would not
+reach the threshold.  Three systems that all retrieve almost nothing tie on
+nearly every question, so their aggregate scores coincide and their scored
+outputs are identical files.
+
+That matters for how the accompanying interval should be read.  Both campaigns
+report a paired bootstrap 95\% interval of $[0.0, 0.0]$ over 399 matched
+questions, with 399 ties and no wins or losses, from 10{,}000 resamples.  Taken
+at face value that is the strongest equivalence evidence a bootstrap can
+produce.  It is not evidence of equivalence at all: resampling 399 identical
+differences returns a zero-width interval at any sample size, and the interval
+would appear exactly this conclusive with four questions rather than four
+hundred.  We therefore report no equivalence or non-inferiority conclusion from
+either campaign.  Three reporting defects are recorded with them: both artifacts
+publish the unseeded sampled \texttt{max\_iou\_at\_k} family that this paper's
+own scorer excludes by rule, that family decreases in $k$ --- which a maximum
+over the top $k$ cannot do --- and every runtime total is reported as exactly
+zero, which is untransported measurement rather than measured cost.
+
+The terminals, workflow receipts and expiring Actions archives are retained
+under \texttt{evidence/external\_results/}, with checksummed mirrors under
+\texttt{evidence/ci\_mirror/} and the resolution audit under
+\texttt{evidence/audit/}.  A further campaign would require a new prospective
+freeze; none of these captures may be reinterpreted after the fact.  The
+prerequisite is no longer a transport encoding.  It is finding out why retrieval
+scores near zero on a benchmark whose gold is reachable, because a fourth
+transport version scored at the same floor would spend the same effort to learn
+the same nothing.
 
 Therefore the externally supported full-ORION discovery-benefit claim remains
 \texttt{CANNOT\_CHECK}.  The controlled-index result supports the narrower
