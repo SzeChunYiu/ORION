@@ -650,7 +650,9 @@ INF = 10 ** 9
 
 
 def constrained_clifford_min(target_pairs, n: int, in_place: bool):
-    """Exact minimum theta_FT Clifford cost over all SEVEN-rotation members.
+    """Exact minimum theta_FT Clifford cost over all SEVEN-rotation members,
+    with a serialized witness so an independent verifier can re-derive the
+    upper bound from primitives.
 
     The seven-rotation sub-family is exactly a_A = a_B = a_C (Lemma L1 with both
     seam merges firing), so the frames collapse to one shared outer axis a and
@@ -664,8 +666,10 @@ def constrained_clifford_min(target_pairs, n: int, in_place: bool):
     a, bA, bB, bC, sv = _digits(space, 5)
     pairs = [(tuple(p[0]), tuple(p[1])) for p in target_pairs]
     best = INF
+    best_meta = None
     nbits = 13 if in_place else 9
     states = 1 << nbits
+    ar = np.arange(states, dtype=np.int64)[:, None]
     for centrals in itertools.product((0, 1), repeat=3):
         bs = (bA, bB, bC)
         R0 = [a if centrals[j] == 1 else bs[j] for j in range(3)]
@@ -676,7 +680,8 @@ def constrained_clifford_min(target_pairs, n: int, in_place: bool):
                      pairs[2] if perm_c == 0 else (pairs[2][1], pairs[2][0])]
             dp = np.full(states, INF, dtype=np.int64)
             dp[0] = 0
-            feasible = True
+            dps = [dp.copy()]
+            tables = []
             for q in range(n):
                 pl = [[pcodes(order[j][k], n)[q] for k in range(2)] for j in range(3)]
                 t0 = [LM[pl[j][0], R0[j]] for j in range(3)]
@@ -697,30 +702,60 @@ def constrained_clifford_min(target_pairs, n: int, in_place: bool):
                          | (sA0.astype(np.int64) << 7)
                          | (sA1.astype(np.int64) << 8))
                 if in_place:
-                    axis = a
                     delta = (delta
-                             | (SY[t0[0], axis].astype(np.int64) << 9)
-                             | (SY[t1[0], axis].astype(np.int64) << 10)
-                             | (SY[t0[1], axis].astype(np.int64) << 11)
-                             | (SY[t1[1], axis].astype(np.int64) << 12))
+                             | (SY[t0[0], a].astype(np.int64) << 9)
+                             | (SY[t1[0], a].astype(np.int64) << 10)
+                             | (SY[t0[1], a].astype(np.int64) << 11)
+                             | (SY[t1[1], a].astype(np.int64) << 12))
                 order_idx = np.argsort(cost, kind="stable")
                 d_sorted = delta[order_idx]
                 uniq, first = np.unique(d_sorted, return_index=True)
                 lc = cost[order_idx][first]
-                idx = np.bitwise_xor(np.arange(states, dtype=np.int64)[:, None],
-                                     uniq[None, :])
-                cand = dp[idx] + lc[None, :]
+                opt = order_idx[first]
+                tables.append((uniq, lc, opt))
+                cand = dp[np.bitwise_xor(ar, uniq[None, :])] + lc[None, :]
                 dp = cand.min(axis=1)
-                if not np.any(dp < INF):
-                    feasible = False
-                    break
-            if not feasible:
-                continue
+                dps.append(dp.copy())
             for st in ACCEPTING9:
-                v = int(dp[st]) if not in_place else int(dp[st])
+                v = int(dp[st])
                 if v < INF and v - 18 < best:
                     best = v - 18
-    return None if best >= INF else int(best)
+                    best_meta = (centrals, perm_b, perm_c, st, tables, dps)
+    if best >= INF:
+        return None, None
+    centrals, perm_b, perm_c, st, tables, dps = best_meta
+    state = st
+    letters = []
+    for q in range(n - 1, -1, -1):
+        uniq, lc, opt = tables[q]
+        prev = dps[q]
+        target = int(dps[q + 1][state])
+        pick = None
+        for i in range(uniq.shape[0]):
+            j = state ^ int(uniq[i])
+            if int(prev[j]) < INF and int(prev[j]) + int(lc[i]) == target:
+                pick = i
+                break
+        if pick is None:
+            raise AssertionError("QG-24 backtrack failed to reproduce the optimum")
+        letters.append(int(opt[pick]))
+        state ^= int(uniq[pick])
+    if state != 0:
+        raise AssertionError("QG-24 backtrack did not return to the zero state")
+    letters.reverse()
+    masks = [[0, 0] for _ in range(5)]
+    for q, idx in enumerate(letters):
+        for t in range(5):
+            code = (idx >> (2 * (4 - t))) & 3
+            bx, bz = CODE_BITS[code]
+            masks[t][0] |= bx << q
+            masks[t][1] |= bz << q
+    witness = {
+        "a": masks[0], "b": [masks[1], masks[2], masks[3]], "S": masks[4],
+        "centrals": list(centrals), "perm_b": int(perm_b), "perm_c": int(perm_c),
+        "model": "R6L_RESTORE_IN_PLACE" if in_place else "R6M_RESTORE_FACTORED",
+    }
+    return int(best), witness
 
 
 def witness_rotation_count(witness, target_pairs, n: int):
@@ -990,8 +1025,8 @@ def main() -> int:
     for r in rows:
         n = int(r["n_qubits"])
         pred = merge_predicate_seven(r["target_pairs"], n)
-        c_fac = constrained_clifford_min(r["target_pairs"], n, False)
-        c_inp = constrained_clifford_min(r["target_pairs"], n, True)
+        c_fac, w_fac = constrained_clifford_min(r["target_pairs"], n, False)
+        c_inp, w_inp = constrained_clifford_min(r["target_pairs"], n, True)
         base = int(r["referee"]["theta_FT"]["C_DP"])
         panel.append({
             "subject": r["subject"], "domain": r["domain"], "n_qubits": n,
@@ -1000,6 +1035,8 @@ def main() -> int:
             "r6m_theta_FT_optimum_clifford": base,
             "seven_rotation_min_clifford_factored": c_fac,
             "seven_rotation_min_clifford_in_place": c_inp,
+            "witness_factored": w_fac,
+            "witness_in_place": w_inp,
             "clifford_price_factored": None if c_fac is None else c_fac - base,
             "clifford_price_in_place": None if c_inp is None else c_inp - base,
             "min_rotations_factored": 7 if c_fac is not None else None,
