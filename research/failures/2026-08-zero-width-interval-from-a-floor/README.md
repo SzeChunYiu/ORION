@@ -150,11 +150,30 @@ The later identifiable V3 panel repairs one of the two. There
 `correct_cannot_check_rate` varies (1.0, 0.5, and 0.0 across the panel), so H3
 becomes a real separation. `clean_coverage` is still 1.0 for every system.
 
-P4's ledger already carried the sentence "the old H3 slice saturated because it
-was non-identifying — labels were recoverable from trivial cues". The lesson was
-learned on one axis and the cheaper check was never run: saturation is visible
-directly in any published panel, needs nothing but the per-system rates, and
-would have refused H2 in both constructions.
+### What P4 already knew
+
+This one is not a discovery, and saying so is the point of recording it here.
+P4's manuscript states the same finding in prose, with the same counts:
+
+> Clean coverage is 1.0 for all eleven panel systems and for all eight
+> ablations, and the correct-`CANNOT_CHECK` rate is 1.0 for all eleven systems
+> and is not instrumented in the ablations at all. Only false authority
+> promotion varies […] H2's non-inferiority pass and H3's null are statements
+> about a battery in which neither quantity was ever observed to move. […] H2
+> and H3 should be read as design limits rather than as comparative findings.
+
+So the paper is honest and the numbers were never hidden. Two things were still
+wrong. The limitation lived in a limitations paragraph rather than in anything
+that could refuse a score, and P4's ledger — the object that decides whether a
+terminal has been earned — did not carry it at all; its blocker for the
+identifiability gate discussed only H3's label recoverability. A caveat a
+careful reader must find is not a gate, and a finding the ledger does not know
+about cannot block anything.
+
+The generalisable half is that the check is cheap and general. It needs nothing
+but the per-system rates, it would have refused H2 in both of P4's
+constructions, and it will fire on a panel whose authors have *not* noticed —
+which is the case it exists for.
 
 ### The distinction that had to be got right
 
