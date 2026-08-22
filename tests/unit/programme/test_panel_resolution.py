@@ -107,7 +107,7 @@ class TestTheCommittedPanels:
             assert panel["readable"] is True, panel["artifact"]
 
     def test_clean_coverage_is_saturated_in_both_p4_panels(self, report: dict) -> None:
-        for panel in report["panels"]:
+        for panel in [p for p in report["panels"] if p["paper_id"] == "P4"]:
             metric = panel["metrics"]["clean_coverage"]
             assert metric["resolution"] == MetricResolution.SATURATED.value
             assert metric["at_extreme"] == 1.0
@@ -115,7 +115,7 @@ class TestTheCommittedPanels:
     def test_false_promotion_discriminates_in_both_p4_panels(self, report: dict) -> None:
         # The contrast that makes the finding a finding rather than a complaint
         # about the whole panel.
-        for panel in report["panels"]:
+        for panel in [p for p in report["panels"] if p["paper_id"] == "P4"]:
             metric = panel["metrics"]["false_promotion_rate"]
             assert metric["resolution"] == MetricResolution.DISCRIMINATES.value
             assert metric["distinct_values"] >= 5
@@ -226,3 +226,42 @@ class TestAblationPanels:
     def test_untestable_coordinates_are_surfaced_at_the_top_level(self, report: dict) -> None:
         assert len(report["untestable_coordinates"]) == 4
         assert all(item.startswith("P3: ") for item in report["untestable_coordinates"])
+
+
+class TestTheSweepDoesNotFireOnEverything:
+    """P1's panel is registered because it is expected to come out clean.
+
+    Without a real panel that passes, the P3 and P4 findings would be a sweep
+    reporting its own suspicion. P1 also carries a zero-width pairwise interval
+    -- ORION and the active-VOI parent both at 1.0 protected success on the
+    2,402 negative controls -- and it is not a defect, because other arms on
+    that same metric range down to 0.0.
+    """
+
+    @pytest.fixture(scope="module")
+    def p1(self) -> dict:
+        report = build_report(REPO_ROOT, date="2026-08-22")
+        return next(p for p in report["panels"] if p["paper_id"] == "P1")
+
+    def test_p1s_panel_is_on_the_branch(self, p1: dict) -> None:
+        assert p1["readable"] is True
+        assert p1["systems"] == 14
+
+    def test_every_p1_hypothesis_metric_discriminates(self, p1: dict) -> None:
+        for name, hypothesis in p1["hypotheses"].items():
+            assert hypothesis["metric_resolution"] == MetricResolution.DISCRIMINATES.value, name
+            assert hypothesis["verdict_could_have_differed"] is True, name
+
+    def test_p1s_negative_control_can_be_failed(self, p1: dict) -> None:
+        # The claim under test is "ORION makes zero unnecessary reframes on the
+        # controls". That is only a result if some arm makes some, and several do.
+        metric = p1["metrics"]["negative_control_unnecessary_high_level_reframe_rate"]
+        assert metric["resolution"] == MetricResolution.DISCRIMINATES.value
+        assert min(metric["values"].values()) == 0.0
+        assert max(metric["values"].values()) == 1.0
+
+    def test_p1_contributes_nothing_to_the_settled_list(self) -> None:
+        report = build_report(REPO_ROOT, date="2026-08-22")
+        assert not any(
+            item.startswith("P1 ") for item in report["hypotheses_settled_before_any_system_ran"]
+        )

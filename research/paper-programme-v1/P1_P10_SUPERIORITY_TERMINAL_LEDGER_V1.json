@@ -107,6 +107,12 @@
           "grade": "MECHANISM_NON_VACUITY",
           "note": "The R6 primary re-run with role-free episode identifiers. All fifteen repaired checks pass, including the leakage audit that failed on 96 of 96 episode-arms before, with the audit's forbidden-token set unchanged and still built from the real episode ids. Every scored statistic is bit-identical to the identified run, so the result does not depend on the leak -- though on a provider that cannot read, that is close to true by construction, and the finding's real value is a clean boundary for a later semantic-host run rather than a claim about this one. A predecessor and not evidence for P1-U-T1: that terminal needs prospective protected evidence under external evaluator custody, and this evaluator is self-authored.",
           "terminal": "P1_R6_NATIVE_PRIMARY_PASS_PENDING_2019_REPLICATION__FROZEN_DETERMINISTIC_HOST_ONLY"
+        },
+        {
+          "artifact_ref": "papers/paper-04-verified-scientific-discovery/evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json",
+          "grade": "MECHANISM_NON_VACUITY",
+          "note": "P1's confirmatory panel checked by the same saturation sweep that found two of P4's three hypotheses resting on metrics no system varies on, and it comes out clean: all three of its registered metrics discriminate across fourteen arms. Protected root-task success ranges from 0.0 to 1.0 and the unnecessary-reframe rate on the 2,402 negative controls also ranges from 0.0 to 1.0, several ablations reaching 0.985 and above. So P1's zero-width pairwise interval -- its own arm and the active-VOI parent both at 1.0 protected success on the controls -- is two arms tying on a metric that moves, not a metric that cannot move. Recorded because a sweep that visits only the panels it already suspects reports the suspicion: this is the case that had to come out clean for the P3 and P4 findings to mean anything. Discharges nothing and refutes nothing.",
+          "terminal": "P1_CONFIRMATORY_PANEL_DISCRIMINATES_ON_EVERY_REGISTERED_METRIC"
         }
       ]
     },

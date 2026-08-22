@@ -219,6 +219,20 @@ PUBLISHED_PANELS: tuple[dict[str, Any], ...] = (
             "H3": "correct_cannot_check_rate",
         },
     },
+    # Registered because it is expected to come out clean. A sweep that only
+    # visits the panels it already suspects reports the suspicion; the P3 and P4
+    # findings are worth something because this one is checked by the same code
+    # and does not fire.
+    {
+        "artifact": "research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RESULT.json",
+        "paper_id": "P1",
+        "systems_key": "arm_summary",
+        "hypothesis_metrics": {
+            "H1": "hidden_shift_protected_root_task_success_rate",
+            "H2": "negative_control_unnecessary_high_level_reframe_rate",
+            "H3": "protected_root_task_success_rate",
+        },
+    },
 )
 
 
@@ -331,7 +345,7 @@ def inspect_published_panel(repo_root: Any, panel: dict[str, Any]) -> dict[str, 
         }
 
     payload = json.loads(target.read_text(encoding="utf-8"))
-    systems = payload.get("systems") or {}
+    systems = payload.get(panel.get("systems_key", "systems")) or {}
     reports = inspect_panel(systems)
 
     hypotheses: dict[str, Any] = {}
@@ -417,7 +431,14 @@ def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
             "P3's states that removing referent, construct, measurement or temporal "
             "context has zero measured effect and preserves those zeros as coverage "
             "limitations. What this adds is that both limits become executable and "
-            "ledger-visible rather than remaining paragraphs a reader has to find."
+            "ledger-visible rather than remaining paragraphs a reader has to find. P1's "
+            "confirmatory panel is registered alongside them and comes out clean on all "
+            "three of its metrics: protected success ranges from 0.0 to 1.0 across "
+            "fourteen arms and the unnecessary-reframe rate on the negative controls "
+            "ranges from 0.0 to 1.0, so its zero-width pairwise interval is two arms "
+            "tying on a metric that moves rather than a metric that cannot. That case is "
+            "carried deliberately -- a sweep visiting only the panels it already suspects "
+            "reports the suspicion."
         ),
         "not_licensed": [
             "any claim that a saturated metric is the wrong metric; a benchmark on which "
@@ -469,9 +490,11 @@ def main(argv: list[str]) -> int:
         print(f"  {panel['artifact'].rsplit('/', 1)[-1]} ({panel['paper_id']})")
         for name, hypothesis in sorted(panel.get("hypotheses", {}).items()):
             flag = " " if hypothesis["verdict_could_have_differed"] else "!"
+            declared = hypothesis["declared_status"]
+            said = f"declared {declared} on" if declared else "on"
             print(
-                f"    {flag} {name}: declared {hypothesis['declared_status']} on "
-                f"{hypothesis['decided_on']} -> {hypothesis['metric_resolution']}"
+                f"    {flag} {name}: {said} {hypothesis['decided_on']} -> "
+                f"{hypothesis['metric_resolution']}"
             )
     print(f"  control is clean (guard is not vacuous): {report['control_is_clean']}")
 
