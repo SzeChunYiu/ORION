@@ -223,6 +223,11 @@
     "status": "CANNOT_CHECK_RESOURCE_BOUND",
     "step": "k=3 -> k=4"
   },
+  "prior_art_audit": {
+    "bound_is_published": "Freeze-Schmid 2010 Prop 3.2(3), stronger form (eta_l - 1)",
+    "document": "development/orion-rg-davenport/X1_PRIOR_ART_AUDIT_V1.md",
+    "elementary_2_group_rows": "replication of known values, instrument validation only"
+  },
   "rank_le_2_control_recomputed": {
     "agreement": true,
     "f_5_C5sq": 12,
@@ -232,6 +237,7 @@
     "recomputed_with": "research/orion-rg/x1f0_general_dk_and_fT.c"
   },
   "schema": "ORION.RG.X1F0.LemmaBGenerality.v1",
+  "source_result_digest": "53ee304715664402ddb86d8b8b0225fde6b8a7782418c2caee1fe35dffbe268a",
   "summary": {
     "decided_steps": 10,
     "gaps": [
@@ -244,6 +250,24 @@
     ],
     "improves_classical": 10,
     "tight": 9
+  },
+  "validation_against_published_values": {
+    "C_2^2": [
+      3,
+      5,
+      7
+    ],
+    "C_2^3": [
+      4,
+      7,
+      9
+    ],
+    "C_2^4_D2": 8,
+    "C_3^3_D1_published_7": 7,
+    "C_3^3_D2_published_11": 11,
+    "no_known_value_contradicted": true,
+    "rank2_formula_D_k(C_m+C_n)=m+kn-1": "reproduced on every computed entry",
+    "why_C_3^3_matters": "elementary p-group, p odd, rank 3 -- the same structural case as C_5^3, and the regime where D_k = D_0 + k*exp is known to fail"
   },
   "validation_control": {
     "known_rank2_formula": "D_k(C_n^2) = (k+1)n - 1",

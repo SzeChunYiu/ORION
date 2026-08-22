@@ -45,8 +45,25 @@ the **same structural case** as our new results — elementary `p`-group, rank 3
 `p` odd — where the linear form is known to fail.
 
 - `D_1(C_3^3) = 7` — **reproduced** by `x1f0_general_dk_and_fT.c`.
-- `D_2(C_3^3) = 11` — check in progress; if the instrument disagrees, the
-  `C_5^3` results must be treated as unverified until it is resolved.
+- `D_2(C_3^3) = 11` — **reproduced.**
+
+Both match. This is the strongest available evidence that the instrument is
+correct on the structural case our new constants inhabit: elementary `p`-group,
+`p` odd, rank 3, in the regime where `D_k = D_0 + k*exp` is known to fail. It is
+not a proof that `D_2(C_5^3) = 20` and `D_3(C_5^3) = 25` are right, but it is
+the check most likely to have caught them being wrong, and it passed.
+
+Full validation ledger for `x1f0_general_dk_and_fT.c` against published values:
+
+| group | published | reproduced |
+|-------|-----------|-----------|
+| `C_m + C_n`, `m \| n` (rank 2) | `D_k = m + kn - 1` | yes, every computed entry |
+| `C_2^2` | 3, 5, 7 | yes |
+| `C_2^3` | 4, 7, 9 | yes |
+| `C_2^4` | `D_2 = 8` | yes |
+| `C_3^3` | `D_1 = 7`, `D_2 = 11` | **yes** |
+
+No known value is contradicted.
 
 ## The question this reframes
 
