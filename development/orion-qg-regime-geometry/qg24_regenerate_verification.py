@@ -145,6 +145,42 @@ TAMPERS = [
 ]
 
 
+
+def _enforce(art: dict) -> None:
+    """Refuse to write an artifact whose own gates did not hold.
+
+    G7 requires the verifier be DEMONSTRATED capable of failing and G8 requires
+    determinism. Both were computed and recorded here and neither was enforced:
+    the artifact was written and the script exited 0 whenever the clean receipt
+    was ACCEPT, so a demonstration in which some tamper was accepted could have
+    landed as a successful verification receipt.
+
+    That is not hypothetical. The first QG-24 regeneration in this session
+    produced all_tampered_copies_rejected false -- T6 was ACCEPTed because the
+    tamper mutated a field the verifier does not read -- and it wrote its
+    artifact and exited 0. It was caught by a human reading the printed summary,
+    which is exactly the kind of custody this programme keeps finding insufficient.
+    Reported by Cursor Bugbot on PR #892.
+    """
+    fd = art["falsifiability_demonstration"]
+    broken = []
+    if art["verdict"] != "ACCEPT" or art["failed_checks"]:
+        broken.append(f"clean receipt did not ACCEPT: {art['failed_checks']}")
+    if not fd["all_tampered_copies_rejected"]:
+        accepted = [c["case"] for c in fd["cases"] if c["verdict"] != "REJECT"]
+        broken.append(f"G7: tampered copies not rejected: {accepted}")
+    if not fd["all_tampered_copies_internally_self_consistent"]:
+        broken.append("G7: some tampered copy was not resealed, so a hash mismatch "
+                      "was available and its rejection proves nothing")
+    if not art["determinism"]["stdout_identical"]:
+        broken.append("G8: double run was not byte-identical")
+    if broken:
+        raise SystemExit(
+            "refusing to write the verification artifact -- its own gates did not "
+            "hold: " + "; ".join(broken)
+        )
+
+
 def main() -> int:
     receipt = json.loads(RECEIPT.read_text())
 
@@ -201,6 +237,7 @@ def main() -> int:
         "than carried forward. The lane receipt is untouched (gate G6): its "
         "results_sha256 is unchanged."
     )
+    _enforce(out)
     ARTIFACT.write_text(json.dumps(out, indent=1, sort_keys=True) + "\n")
     print(json.dumps({
         "verdict": out["verdict"],
