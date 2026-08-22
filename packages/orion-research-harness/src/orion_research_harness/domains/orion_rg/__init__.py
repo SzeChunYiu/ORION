@@ -1,0 +1,3 @@
+from .x1a_davenport_3_5 import X1A_DAVENPORT_3_5_CAMPAIGN_MANIFEST
+
+__all__ = ["X1A_DAVENPORT_3_5_CAMPAIGN_MANIFEST"]
