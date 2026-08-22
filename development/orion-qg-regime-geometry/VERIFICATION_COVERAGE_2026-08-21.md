@@ -89,6 +89,34 @@ naive configuration referee's exponential. Registered as **W9 — realize QG-6's
 support-capped corollary in the committed family search**. The bound is already proved;
 this is engineering.
 
+## A residual from QG-25's donor search (W12)
+
+QG-25's donor-field query established that "the minimum dimension of a feasibility-deciding
+quotient" is the index of the right-congruence written in base two — Myhill–Nerode. Read
+back onto QG-6, that makes the committed nine-bit TARE syndrome a claim about the Nerode
+index of the TARE feasibility language, and **it has never been checked for minimality.**
+If any two of the reachable syndrome values are Nerode-equivalent — indistinguishable by
+every continuation — then nine bits is not tight and the true dimension is smaller. The
+check is decidable on the domains QG-6 already enumerates: partition the reachable syndrome
+values by their continuation behaviour and compare the block count against 2⁹. Registered
+as **W12 — check QG-6's nine-bit TARE syndrome for Nerode minimality.** No result of this
+programme is retracted by the question being open; what is open is whether a committed
+number is tight or merely sufficient.
+
+## A residual on criterion churn, now closed in code (W13)
+
+Two lanes changed an acceptance criterion after seeing an outcome — QG-23's H1 reading,
+QG-24's verifier passage rule — and both were caught only because an adjudicator re-ran the
+changed rule by hand against a fabricated input. `orion_research_harness.criterion_binding`
+(committed `2efae8e2`) makes that a precondition: a PASS under a changed criterion must
+disclose the deviation, record what the frozen criterion would have returned, and, when the
+frozen criterion would have failed, bind a checkable demonstration that the changed rule
+still rejects. The retrospective (`CRITERION_CHURN_RETROSPECTIVE.json`) runs the gate
+against both historical cases from evidence rather than description and finds it confirms
+rather than catches: silent on QG-23, which changed toward the harsher reading, and cleared
+by QG-24, whose demonstration already existed. **W13 is registered as closed on arrival**,
+with the honest note that its value is prospective — it protects lanes not yet run.
+
 ## Rule adopted
 
 A lane result may be cited as corroborated only on Tier 1 or Tier 2 evidence. Replay

@@ -1148,6 +1148,107 @@ before it could be claimed. The one thing left standing is arithmetic about this
 its merge relation admits exactly two seams, and that is a fact about R6M, not a
 contribution to compilation.
 
+## QG-25 (donor search bound; Q1 in flight) — THE PROGRAMME'S CENTRAL QUANTITY HAS BEEN NAMED SINCE 1958, AND THE FIELD PUTS THIS FAMILY IN NP
+
+Protocol `QG25_NO_SYNDROME_FAMILY_PROTOCOL_V1.md`, frozen at `48058887` before any
+outcome-determining run. Donor search committed at `5958ae08`. **Q1 — running QG-6's
+syndrome-inference machinery unmodified on StabPrep — is still executing, and nothing
+below depends on its outcome.** The two findings here are properties of the literature,
+not of a run, which is why they can be bound while the lane is open.
+
+### The finding that reaches back through the whole programme
+
+QG-25's own claim was going to be: *the minimum dimension of a feasibility-deciding
+state abstraction for StabPrep is ⌈log₂|S_n|⌉, and it grows quadratically.* The
+donor-field translation query returned the parent immediately:
+
+> "The number of states in a minimal machine equals the index of the right language
+> equivalence relation, which represents the minimum cardinality for any DFA accepting
+> the language."
+
+That is Myhill–Nerode, 1958. **This programme's "minimum dimension of a conserved
+syndrome" is the index of the right-congruence, written in base two.** QG-6 through
+QG-22 built a private vocabulary — *conserved syndrome*, *collapse agent*, *regime
+geometry* — for a quantity automata theory named sixty-eight years ago.
+
+The cost of that vocabulary is measurable in the search itself, and it is the reason
+all three query families are mandatory. Family 1, this programme's own words, returned
+neural-collapse geometry in contrastive learning, a delayed Lotka–Volterra model, and
+patents on collapsible wound dressings. It found nothing because the words are ours.
+Family 2, the translation into the donor field, found the parent on its first query.
+That is exactly QG-19's mechanism reproducing itself one wave later: six novelty claims
+died in QG-19 because they were frozen without literature access, and the seventh would
+have died the same way had the gate not been made a precondition in code.
+
+Verdict on the claim: `INSTANCE_OF_KNOWN_GENERAL`. Novelty is at most the arithmetic
+for this particular family.
+
+### The second finding cuts against QG-22 directly
+
+QG-22 closed by locating hardness in families *without* a conserved syndrome, naming
+StabPrep as its in-programme instance, and labelling the claim CONJECTURE with the
+basis stated honestly: "StabPrep's 2^Θ(n²) state space … no reduction, no lower bound."
+The inverted/survey family returned:
+
+> "The Clifford synthesis problem is contained in the first level of the polynomial
+> hierarchy (NP), while the classical synthesis problem for logical circuits is known
+> to be complete for the second level of the polynomial hierarchy (Σ₂ᴾ)."
+
+So whatever QG-22's conjecture can mean, **it cannot mean hardness above NP for this
+family**, and the field records no hardness result for it at all — only exponential
+*algorithms*, and a published exhaustive database (Bravyi–Latone–Maslov 2022, 100 days
+of brute force, 2.1 TB, all six-qubit Cliffords) an order of magnitude larger than
+anything this programme enumerates.
+
+That is QG-22's own gate G3 turned back on QG-22. G3 forbids inferring hardness from
+wall-clock because every exponential this programme observed was a property of an
+algorithm we wrote. The same discipline applied to the literature says: an exponential
+algorithm in the donor field is not a hard problem either.
+
+### The obstruction is not the one QG-22 named
+
+The second donor query returned the structural reading:
+
+> "A DFA is called a permutation DFA if its transition monoid is a permutation group on
+> the states, and in this case the transition monoid is called the transition group
+> rather than the transition monoid."
+
+> "For a permutation DFA, the following are equivalent: the automaton is accessible,
+> the automaton is strongly connected, and the transition group is transitive."
+
+StabPrep's referee graph is a permutation DFA whose transition group is the n-qubit
+Clifford group acting on stabilizer states — transitive, and non-abelian for n ≥ 1.
+An abelian image of a non-abelian transition monoid cannot separate the states. So if
+StabPrep turns out to have no conserved syndrome, **the reason is non-commutativity of
+the transition monoid, not the size of the state space** — and QG-22's inference,
+"2^Θ(n²) states, therefore no fixed-dimension syndrome", was never valid on its own
+terms. Size is not absence. Whether the conclusion survives its bad argument is exactly
+what Q1 is measuring.
+
+Verdict: `INSTANCE_OF_KNOWN_GENERAL`. Novelty removed; what survives is the exhibited
+witness for this specific alphabet, if Q1 produces one.
+
+### Retrieval limitation, stated not glossed
+
+Every direct document fetch was refused by the session's egress proxy (`arxiv.org`,
+`www.scottaaronson.com`, `EGRESS_BLOCKED`). Every passage above is search-snippet text
+and every record carries `document_level_verification: false`. The two load-bearing
+passages — the permutation-DFA equivalence and the NP-containment sentence — were
+re-run independently by the adjudicator and both reproduce; the Myhill–Nerode framing
+is textbook and needs no snippet. The Bravyi–Latone–Maslov figures reach us through
+LIPiCS SAT 2025 and are cited at that remove.
+
+`novelty_credit: false`, `novelty_authority: false`. The `NO_PRIOR_ART_FOUND` verdict
+on record C4 is a statement about this programme's private vocabulary, **not a grant.**
+
+### What this obliges
+
+W12 (new residual): QG-6's nine-bit TARE syndrome has never been checked for
+minimality in the Nerode sense. If the syndrome is the right-congruence index in base
+two, then two syndrome values that are Nerode-equivalent mean the nine bits are not
+tight and the true dimension is smaller. That check is decidable on the committed
+domains and has not been run.
+
 ## Registered successor (requires its own pre-outcome freeze)
 
 - ~~QG-7e~~ **EXECUTED — theorem complete, see above.** A composition/fixpoint argument over the residue, where

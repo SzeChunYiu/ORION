@@ -109,6 +109,14 @@ the lane was scored on how much novelty it removes.
 * κ is an instance of the studied quantity "smallest support size of an optimal solution"
   (Aliev et al., SIAM J. Optim. 2018); the regime-geometry template is a nearest miss to
   equality saturation; the rank/κ mismatch is formulation-dependent bound strength.
+* **And one wave later it happened again, to the programme's central quantity.** QG-25's
+  donor search (`5958ae08`) finds that "the minimum dimension of a conserved syndrome" is
+  the index of the right-congruence in base two — **Myhill–Nerode, 1958**. This programme's
+  private vocabulary retrieves nothing: the own-vocabulary query family returned
+  neural-collapse geometry and patents on collapsible wound dressings. The donor-field
+  translation found the parent on its first query. Six claims in QG-19 and a seventh in
+  QG-25 is not six mistakes plus one; it is one mechanism with seven instances, which is
+  why `orion_research_harness.donor_search` is now a precondition rather than advice.
 
 **Seven required corrections are binding on the paper series and on anything published from
 this programme**, recorded in the QG-19 receipt's `required_actions`. One is already
@@ -149,6 +157,18 @@ Not where the programme looked for them.
   optimization and optimality verification are all polynomial, and the optimum is affine in
   n. "No closed form" does not imply "no polynomial algorithm" — the O1 escape hatch is
   closed (Q2-B).
+  **QG-22's one remaining CONJECTURE has now been searched, and it does not survive as
+  stated.** QG-22 located hardness in families *without* a conserved syndrome, named
+  StabPrep, and rested the claim on that family's 2^Θ(n²) state space. The donor field
+  reports Clifford synthesis as **contained in NP** (with classical logic synthesis
+  Σ₂ᴾ-complete), and records no hardness result for the family at all — only exponential
+  algorithms and a published exhaustive database. So the conjecture cannot mean hardness
+  above NP here. Worse for the argument than for the conclusion: the obstruction the
+  literature identifies is the **non-commutativity of the transition monoid**, not the size
+  of the state space, so QG-22's inference "2^Θ(n²) states, therefore no fixed-dimension
+  syndrome" was invalid on its own terms — size is not absence. Whether the conclusion
+  survives its bad argument is what QG-25's Q1 is measuring; that lane is open, and this
+  packet does not close it.
 * **Predicate ceiling (QG-15b/15c).** StabPrep's boundary is not feature-determined in its
   own natural vocabulary; schedule-awareness gets the floor to 1 and one pair survives with
   identical step-cost profiles. The lane refused to add the discriminant it found post-hoc.
