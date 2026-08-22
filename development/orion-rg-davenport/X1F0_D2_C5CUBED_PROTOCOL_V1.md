@@ -219,3 +219,47 @@ single type. One further extremal example produced by the search:
 ```
 e1 e2 e3 (0,1,1) (0,1,2) (1,0,4)^4 (2,0,4)^3 (4,1,0)^4 (4,1,1)^3
 ```
+
+## Generality of Lemma B (global-recovery check)
+
+Lemma B is stated for every finite abelian group, so it must be tested outside
+`C_5^3`. `research/orion-rg/x1f0_general_dk_and_fT.c` computes exact `D_k(G)`
+and `f_T(G)` for small `G` by complete enumeration; every `(G, k)` step below
+compares the Lemma B bound against the true constant and against the classical
+`D_{k+1} <= D_k + D`.
+
+| group | `k` | true `D_{k+1}` | Lemma B | classical | best `T` | tight |
+|-------|-----|----------------|---------|-----------|----------|-------|
+| `C_2^2` | 1 | 5 | 5 | 6 | 2 | yes |
+| `C_2^2` | 2 | 7 | 7 | 8 | 2 | yes |
+| `C_2^3` | 1 | 7 | 7 | 8 | 3 | yes |
+| `C_2^3` | 2 | 9 | 9 | 11 | 2 | yes |
+| `C_2^4` | 1 | 8 | **9** | 10 | 3 | **no** |
+| `C_2^4` | 2 | 11 | 11 | 13 | 3 | yes |
+| `C_3^2` | 1 | 8 | 8 | 10 | 3 | yes |
+| `C_3^2` | 2 | 11 | 11 | 13 | 3 | yes |
+| `C_5^2` | 1 | 14 | 14 | 18 | 5 | yes |
+| `C_5^3` | 1 | 20 | 20 | 26 | 7 | yes |
+| `C_5^3` | 2 | open | 26 | 33 | 6 | — |
+
+**Tight in 9 of the 10 decided steps; strictly better than the classical bound
+in all 10.**
+
+Instrument validation before any of this was read: the same code reproduces the
+known rank-2 values `D_k(C_n^2) = (k+1)n - 1` on every computed entry
+(`C_2^2: 3,5,7`; `C_3^2: 5,8,11`; `C_5^2: 9,14`). A checker that had not
+reproduced a known family would not have been used.
+
+### The one gap is a lead, not noise
+
+`C_2^4, k = 1` is the single failure: `D_2(C_2^4) = 8` while Lemma B gives 9.
+The `eta_T` profile there is `2:16, 3:9, 4:6, 5:5, 6:5, 7:5` against `D = 5`, so
+every `T` is either short of `eta_T` or over `D + T`; no single `T` balances.
+That is the mechanism of the gap: Lemma B commits to **one** threshold `T`,
+and `C_2^4` is a group where the obstruction spectrum falls between two
+thresholds. A version that mixes several `T` in one argument is the obvious
+next mechanic, and it is exactly the case where the present lemma is known to
+lose. Recorded as an open refinement target rather than smoothed over.
+
+Note that `k = 2` on the same group is tight (11 = 11), so the failure is
+specific to the first step, not to the group.
