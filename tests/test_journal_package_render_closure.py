@@ -33,6 +33,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 CLOSURES = sorted(ROOT.glob("papers/*/journal_package/RENDER_INPUT_CLOSURE.json"))
+STATES = sorted(ROOT.glob("papers/*/journal_package/RENDER_CLOSURE_STATE.json"))
 STATE_NAME = "RENDER_CLOSURE_STATE.json"
 
 
@@ -95,3 +96,49 @@ def test_the_drift_detector_reports_both_verdicts() -> None:
     assert _drifted({"files": [{"path": "no/such/file", "sha256": "0" * 64}]}) == [
         "no/such/file"
     ]
+
+
+@pytest.mark.parametrize("state_path", STATES, ids=lambda p: p.parent.parent.name)
+def test_every_declared_state_is_the_one_the_generator_derives(state_path: Path) -> None:
+    """The declaration follows the bytes, or it is a claim nobody checked.
+
+    These files were hand-written once, which is the failure they exist to
+    prevent one level up: a freshness claim a human has to remember to update
+    goes stale exactly the way the render closure did.
+    """
+
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "write_render_closure_state", ROOT / "scripts" / "write_render_closure_state.py"
+    )
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    derived = {
+        package / "RENDER_CLOSURE_STATE.json": state
+        for package, state in module.derived_states()
+    }
+    assert state_path in derived, f"{state_path} is committed but nothing derives it"
+    committed = json.loads(state_path.read_text(encoding="utf-8"))
+    assert committed == derived[state_path], (
+        "committed render-closure state disagrees with the tree; regenerate with "
+        "python scripts/write_render_closure_state.py"
+    )
+
+
+def test_a_package_that_ships_a_pdf_can_report_on_it() -> None:
+    """A package with no pinned inputs must still be able to say it is stale.
+
+    P3 ships a manuscript.pdf and pins no input closure, so before this the only
+    place its staleness appeared was a CI step -- the repository could not answer
+    "is this package current?" from anything in the tree. Its evidence is the
+    artifact itself, compared against the manuscript the paper builds today.
+    """
+
+    kinds = {
+        json.loads(path.read_text(encoding="utf-8"))["evidence"] for path in STATES
+    }
+    assert "RENDERED_PDF" in kinds, kinds
+    assert "PINNED_INPUTS" in kinds, kinds
