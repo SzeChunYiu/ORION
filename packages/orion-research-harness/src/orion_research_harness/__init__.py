@@ -38,13 +38,15 @@ from .mechanics_bridge import (
     saturation_surface,
 )
 from .protocol import CapabilityRequest, CapabilityResult
-from .recursive_runner import RecursiveRunLimits, run_problem_recursive
+from .recursive_runner import RecursiveRunLimits
 from .recursive_budget_hardening import install_recursive_budget_hardening
 from .recursive_cost_hardening import install_recursive_cost_hardening
 from .recursive_experience_binding import (
     WorkspaceRecursiveLLMResearchReasoner,
     install_workspace_recursive_reasoner,
 )
+from .recursive_director_integration import install_research_director_integration
+from .recursive_runner import run_problem_recursive
 from .runner import run_problem
 from .workspace import ResearchWorkspace
 
@@ -75,6 +77,7 @@ __all__ = [
     "install_governance_hardening",
     "install_recursive_budget_hardening",
     "install_recursive_cost_hardening",
+    "install_research_director_integration",
     "install_workspace_recursive_reasoner",
     "mechanic_catalog",
     "mechanic_detail",
