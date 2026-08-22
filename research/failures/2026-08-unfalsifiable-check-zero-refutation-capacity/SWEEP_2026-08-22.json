@@ -5,9 +5,12 @@
  "not_swept": [],
  "papers": [
   {
+   "constant_but_not_counted": [
+    "tests/unit/study/p1/test_systems.py:1171 in test_every_system_is_deterministic_given_a_seed(): first == second is always True -- both sides resolve to 'run(...) called twice on one argument list' [ASSERTS]"
+   ],
    "files_scanned": 86,
    "findings": [],
-   "note": "86 files scanned, none containing a self-resolving comparison",
+   "note": "86 files scanned, no counted self-resolving comparison; 1 constant but not counted",
    "paper_id": 1,
    "roots": [
     "papers/paper-01-recursive-epistemic-reconstruction",
@@ -21,9 +24,16 @@
    "state": "SWEPT_CLEAN"
   },
   {
+   "constant_but_not_counted": [
+    "tests/unit/p2/test_p2_arb_custody.py:366 in test_select_subsample_is_deterministic_under_a_seed(): select_subsample(...) == select_subsample(...) is always True -- both sides resolve to 'select_subsample(...) called twice on one receiver and one argument list' [ASSERTS]",
+    "tests/unit/p2/test_p2_autoresearchbench_wide_keyless.py:62 in test_query_derivation_is_public_question_only_and_deterministic(): first == second is always True -- both sides resolve to 'derive_query(...) called twice on one argument list' [ASSERTS]",
+    "tests/unit/p2/test_p2_open_world_acquisition.py:317 in test_paired_bootstrap_is_seeded_and_reproducible(): first == second is always True -- both sides resolve to 'paired_bootstrap(...) called twice on one argument list' [ASSERTS]",
+    "tests/unit/p2/test_p2_openaire_matched.py:210 in test_paired_bootstrap_is_deterministic_and_counts_wins_ties_losses(): first == second is always True -- both sides resolve to 'paired_bootstrap(...) called twice on one argument list' [ASSERTS]",
+    "tests/unit/p2/test_p2_suite_facts_macros.py:169 in test_render_is_deterministic_for_a_given_fact_set(): render(...) == render(...) is always True -- both sides resolve to 'render(...) called twice on one receiver and one argument list' [ASSERTS]"
+   ],
    "files_scanned": 124,
    "findings": [],
-   "note": "124 files scanned, none containing a self-resolving comparison",
+   "note": "124 files scanned, no counted self-resolving comparison; 5 constant but not counted",
    "paper_id": 2,
    "roots": [
     "papers/paper-02-open-world-scientific-discovery",
@@ -34,9 +44,12 @@
    "state": "SWEPT_CLEAN"
   },
   {
+   "constant_but_not_counted": [
+    "tests/unit/study/p3/test_partial_observation_harm_build.py:125 in test_the_build_is_deterministic(): cases_bytes(...) == cases_bytes(...) is always True -- both sides resolve to 'cases_bytes(...) called twice on one receiver and one argument list' [ASSERTS]"
+   ],
    "files_scanned": 27,
    "findings": [],
-   "note": "27 files scanned, none containing a self-resolving comparison",
+   "note": "27 files scanned, no counted self-resolving comparison; 1 constant but not counted",
    "paper_id": 3,
    "roots": [
     "papers/paper-03-global-knowledge-portrait",
@@ -47,9 +60,10 @@
    "state": "SWEPT_CLEAN"
   },
   {
+   "constant_but_not_counted": [],
    "files_scanned": 34,
    "findings": [],
-   "note": "34 files scanned, none containing a self-resolving comparison",
+   "note": "34 files scanned, no counted self-resolving comparison",
    "paper_id": 4,
    "roots": [
     "papers/paper-04-verified-scientific-discovery",
@@ -61,9 +75,10 @@
    "state": "SWEPT_CLEAN"
   },
   {
+   "constant_but_not_counted": [],
    "files_scanned": 27,
    "findings": [],
-   "note": "27 files scanned, none containing a self-resolving comparison",
+   "note": "27 files scanned, no counted self-resolving comparison",
    "paper_id": 5,
    "roots": [
     "papers/paper-05-self-orion",
@@ -74,9 +89,12 @@
    "state": "SWEPT_CLEAN"
   },
   {
+   "constant_but_not_counted": [
+    "tests/unit/study/p6/test_lift_theories.py:297 in test_the_instrument_still_fails_a_check_that_accepts_everything(): rule(...) != rule(...) is always False -- both sides resolve to 'rule(...) called twice on one receiver and one argument list' [ASSERTS]"
+   ],
    "files_scanned": 31,
    "findings": [],
-   "note": "31 files scanned, none containing a self-resolving comparison",
+   "note": "31 files scanned, no counted self-resolving comparison; 1 constant but not counted",
    "paper_id": 6,
    "roots": [
     "papers/paper-06-formal-epistemic-structures-and-mechanics",
@@ -89,9 +107,10 @@
    "state": "SWEPT_CLEAN"
   },
   {
+   "constant_but_not_counted": [],
    "files_scanned": 19,
    "findings": [],
-   "note": "19 files scanned, none containing a self-resolving comparison",
+   "note": "19 files scanned, no counted self-resolving comparison",
    "paper_id": 7,
    "roots": [
     "papers/paper-07-epistemic-navigation-open-worlds",
@@ -103,9 +122,10 @@
    "state": "SWEPT_CLEAN"
   },
   {
+   "constant_but_not_counted": [],
    "files_scanned": 24,
    "findings": [],
-   "note": "24 files scanned, none containing a self-resolving comparison",
+   "note": "24 files scanned, no counted self-resolving comparison",
    "paper_id": 8,
    "roots": [
     "papers/paper-08-epistemic-authority-autonomous-science",
@@ -117,9 +137,10 @@
    "state": "SWEPT_CLEAN"
   },
   {
+   "constant_but_not_counted": [],
    "files_scanned": 37,
    "findings": [],
-   "note": "37 files scanned, none containing a self-resolving comparison",
+   "note": "37 files scanned, no counted self-resolving comparison",
    "paper_id": 9,
    "roots": [
     "papers/paper-09-structured-epistemic-learning",
@@ -131,9 +152,10 @@
    "state": "SWEPT_CLEAN"
   },
   {
+   "constant_but_not_counted": [],
    "files_scanned": 5,
    "findings": [],
-   "note": "5 files scanned, none containing a self-resolving comparison",
+   "note": "5 files scanned, no counted self-resolving comparison",
    "paper_id": 10,
    "roots": [
     "papers/paper-10-structured-problem-solving",
@@ -145,9 +167,10 @@
    "state": "SWEPT_CLEAN"
   },
   {
+   "constant_but_not_counted": [],
    "files_scanned": 16,
    "findings": [],
-   "note": "16 files scanned, none containing a self-resolving comparison",
+   "note": "16 files scanned, no counted self-resolving comparison",
    "paper_id": 11,
    "roots": [
     "papers/paper-11-state-as-computation",
@@ -157,9 +180,10 @@
    "state": "SWEPT_CLEAN"
   },
   {
+   "constant_but_not_counted": [],
    "files_scanned": 6,
    "findings": [],
-   "note": "6 files scanned, none containing a self-resolving comparison",
+   "note": "6 files scanned, no counted self-resolving comparison",
    "paper_id": 12,
    "roots": [
     "papers/paper-12-adaptive-state-reasoning",
@@ -169,9 +193,10 @@
    "state": "SWEPT_CLEAN"
   },
   {
+   "constant_but_not_counted": [],
    "files_scanned": 2,
    "findings": [],
-   "note": "2 files scanned, none containing a self-resolving comparison",
+   "note": "2 files scanned, no counted self-resolving comparison",
    "paper_id": 13,
    "roots": [
     "papers/paper-13-responsibility-carrying-state"
@@ -179,9 +204,10 @@
    "state": "SWEPT_CLEAN"
   },
   {
+   "constant_but_not_counted": [],
    "files_scanned": 13,
    "findings": [],
-   "note": "13 files scanned, none containing a self-resolving comparison",
+   "note": "13 files scanned, no counted self-resolving comparison",
    "paper_id": 14,
    "roots": [
     "papers/paper-14-orion-rse",
@@ -191,9 +217,10 @@
    "state": "SWEPT_CLEAN"
   },
   {
+   "constant_but_not_counted": [],
    "files_scanned": 60,
    "findings": [],
-   "note": "60 files scanned, none containing a self-resolving comparison",
+   "note": "60 files scanned, no counted self-resolving comparison",
    "paper_id": 15,
    "roots": [
     "papers/paper-15-orion-research-harness",

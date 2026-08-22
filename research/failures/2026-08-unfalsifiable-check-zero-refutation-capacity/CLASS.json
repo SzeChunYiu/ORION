@@ -105,5 +105,12 @@
    "found": false
   }
  ],
- "note": "P6, P7 and P8 are recorded as FOUND on the historical fact that the guard was there. The current sweep finds none anywhere, because all three were repaired; a repaired paper does not stop having had the defect."
+ "note": "P6, P7 and P8 are recorded as FOUND on the historical fact that the guard was there. The current sweep finds none anywhere, because all three were repaired; a repaired paper does not stop having had the defect. The sweep verdict is scoped to counted comparisons; see constant_but_not_counted.",
+ "shapes": {
+  "aliased_name": "a = b then a != b (P7, P8)",
+  "identical_call": "x = f(args); y = f(args); x != y (P8, ideal_product_mismatches)",
+  "twin_bodies": "two functions with identical bodies compared (P6, the shape that named the class)"
+ },
+ "scope_correction": "The first version of this declaration was written from a detector that caught only the aliased-name shape, and it recorded 15/15 clean while the identical-call shape was live in P8. Corrected 2026-08-22: the detector now decides all three shapes, and the sweep was re-run.",
+ "constant_but_not_counted": "7 constant comparisons across P1, P2, P3 and P6 are reported and are not defects: five determinism tests, one deliberate tautology fixture. A defect is a constant comparison whose branch feeds a published count."
 }

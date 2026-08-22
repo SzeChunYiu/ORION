@@ -78,7 +78,9 @@ def sweep() -> dict[str, object]:
     for n in PAPER_IDS:
         roots = paper_roots(n)
         files = scanned_files(roots)
-        findings = scan_paths(roots)
+        all_findings = scan_paths(roots)
+        findings = [f for f in all_findings if f.is_defect]
+        reviewed = [f for f in all_findings if not f.is_defect]
         if files < MIN_FILES_FOR_A_CLEAN_VERDICT:
             state = "NOT_SWEPT"
             note = "no python file was scanned, so a clean verdict would have no denominator"
@@ -87,13 +89,17 @@ def sweep() -> dict[str, object]:
             note = f"{len(findings)} self-resolving comparison(s)"
         else:
             state = "SWEPT_CLEAN"
-            note = f"{files} files scanned, none containing a self-resolving comparison"
+            note = (
+                f"{files} files scanned, no counted self-resolving comparison"
+                + (f"; {len(reviewed)} constant but not counted" if reviewed else "")
+            )
         papers.append(
             {
                 "paper_id": n,
                 "roots": [str(r) for r in roots],
                 "files_scanned": files,
                 "findings": [f.summary for f in findings],
+                "constant_but_not_counted": [f.summary for f in reviewed],
                 "state": state,
                 "note": note,
             }
@@ -127,6 +133,8 @@ def main() -> int:
             print(f"P{p['paper_id']:<6d} {p['files_scanned']:6d}  {p['state']:12s} {p['note']}")
             for finding in p["findings"]:
                 print(f"          {finding}")
+            for finding in p["constant_but_not_counted"]:
+                print(f"          (not a defect) {finding}")
         print(
             f"\nswept clean: {len(report['swept_clean'])}/15   "
             f"found in: {len(report['found_in'])}   "

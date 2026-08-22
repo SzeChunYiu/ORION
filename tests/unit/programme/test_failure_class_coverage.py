@@ -23,7 +23,7 @@ from orion.programme.failure_class_coverage import (
     pair_state,
 )
 from orion.programme.records import Outcome
-from orion.programme.self_comparison_scan import scan_source
+from orion.programme.self_comparison_scan import Context, scan_source
 
 FAILURES = Path(__file__).resolve().parents[3] / "research" / "failures"
 
@@ -148,6 +148,146 @@ def check(value):
     findings = scan_source(src, path="ops.py")
     assert len(findings) == 1
     assert findings[0].constant_value is constant
+
+
+# ---------------------------------------------------------------------------
+# The two shapes the first version of the scan walked past
+# ---------------------------------------------------------------------------
+
+#: P8 published `ideal_product_mismatches: 0` from this. The operands are not
+#: aliases of a name, so an alias-only scan reports the file clean.
+IDENTICAL_CALLS = '''
+def scientific_terminal(a, b): return a and b
+def main():
+    mismatches = 0
+    for a in (False, True):
+        for b in (False, True):
+            terminal = scientific_terminal(a, b)
+            ideal = scientific_terminal(a, b)
+            if terminal != ideal:
+                mismatches += 1
+    return mismatches
+'''
+
+#: The shape that named the class: one rule written twice under two names.
+TWIN_BODIES = '''
+def donor_valid(state, embedding): return True
+def scientific_admissible(state, embedding): return donor_valid(state, embedding)
+def ideal_product(state, embedding): return donor_valid(state, embedding)
+def main():
+    violations = 0
+    for s in ():
+        if scientific_admissible(s, 1) != ideal_product(s, 1):
+            violations += 1
+    return violations
+'''
+
+
+def test_two_identical_calls_compared_are_a_defect():
+    findings = [f for f in scan_source(IDENTICAL_CALLS, path="p8.py") if f.is_defect]
+    assert len(findings) == 1
+    assert findings[0].context is Context.COUNTS
+    assert "called twice" in findings[0].root
+
+
+def test_one_rule_written_twice_under_two_names_is_a_defect():
+    findings = [f for f in scan_source(TWIN_BODIES, path="p6.py") if f.is_defect]
+    assert len(findings) == 1
+    assert "identical bodies" in findings[0].root
+
+
+def test_two_genuinely_different_rules_are_not_flagged():
+    src = '''
+def a(x): return x + 1
+def b(x): return x * 2
+def main():
+    n = 0
+    if a(3) != b(3):
+        n += 1
+    return n
+'''
+    assert scan_source(src, path="different.py") == []
+
+
+def test_calls_on_different_receivers_are_not_a_self_comparison():
+    """`left.f(m) != right.f(m)` shares a method name and an argument list.
+
+    A version of this scan that compared only the attribute name reported seven
+    such lines in P9 as constant, and every one is a real test.
+    """
+
+    src = '''
+def verify(left, right, mode):
+    if left.fingerprint(mode) != right.fingerprint(mode):
+        raise ValueError("must collide")
+'''
+    assert scan_source(src, path="receivers.py") == []
+
+
+def test_an_intervening_call_can_change_the_second_result():
+    """P6's hidden-read counterexample writes between two identical reads."""
+
+    src = '''
+def check_hidden_read_counterexample():
+    before_n = hidden_read_m(1)
+    hidden_write_n()
+    after_n = hidden_read_m(1)
+    assert before_n != after_n
+    return 1
+'''
+    assert scan_source(src, path="hidden_read.py") == []
+
+
+def test_a_determinism_test_is_not_a_defect():
+    """`f(x) == f(x)` is trivially true only if f is pure -- which is the claim.
+
+    Five of these are live in the repo. Reporting them as defects would make the
+    sweep's clean verdicts worthless in the other direction.
+    """
+
+    src = '''
+def test_every_system_is_deterministic_given_a_seed():
+    first = run(seed=1)
+    second = run(seed=1)
+    assert first == second
+'''
+    findings = scan_source(src, path="determinism.py")
+    assert len(findings) == 1
+    assert findings[0].context is Context.ASSERTS
+    assert findings[0].is_defect is False
+
+
+def test_a_deliberate_tautology_fixture_is_not_a_defect():
+    """P6 builds one on purpose, to prove its instrument can still emit FAIL."""
+
+    src = '''
+def test_the_instrument_still_fails_a_check_that_accepts_everything():
+    tautology = MechanizedCheck(
+        accepts=lambda rule: not any(rule(p) != rule(p) for p in space()),
+    )
+    assert capacity(tautology).outcome is CANNOT_CHECK
+'''
+    findings = scan_source(src, path="fixture.py")
+    assert [f for f in findings if f.is_defect] == []
+    # Labelled ASSERTS rather than merely UNCLASSIFIED: the comparison sits inside
+    # a comprehension in a lambda, so no enclosing Assert or If reaches it, and
+    # only the enclosing test function's name says what it is.
+    assert [f.context for f in findings] == [Context.ASSERTS]
+
+
+def test_adjacent_calls_with_different_arguments_are_not_a_self_comparison():
+    """Adjacency alone is not enough -- the two calls must be written identically."""
+
+    src = '''
+def main():
+    n = 0
+    left = fingerprint(a)
+    right = fingerprint(b)
+    if left != right:
+        n += 1
+    return n
+'''
+    assert scan_source(src, path="different_args.py") == []
 
 
 # ---------------------------------------------------------------------------
