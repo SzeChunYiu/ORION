@@ -1,17 +1,49 @@
 \section{Data and code availability}
 \label{sec:availability}
 
-The ORION repository contains the controlled index, host-owned evaluation
-harness, the frozen offline systems and ablations, the descriptive analysis
-code, and the publication-layer regeneration commands.  The exact subject
-revision and Git blob identities used for the result-bearing offline campaign
-are recorded in \idt{protocol/OFFLINE_RUN_MANIFEST_V1.json}.  The frozen
-complete-gold world is distributed under \idt{evidence/offline_gold/}; it
-is fully synthetic, regenerable from the recorded seed, and verified on every
-clean CI run against its committed content hashes and suite fingerprint.
+The implementation repository contains the controlled index, host-owned
+evaluation harness, the frozen offline systems and ablations, the descriptive
+analysis code, and the publication-layer regeneration commands.  Every artifact
+named in the narrative is listed here with its path, so that no repository
+location has to be carried in the prose.
+
+\subsection*{Frozen design and measurement rules}
+
+The design freeze is \idt{protocol/PROTOCOL_V1.json}; the measurement and
+statistical rules are \idt{protocol/MEASUREMENT_PLAN_V1.md} and
+\idt{protocol/STATISTICAL_PLAN_V1.json}; external-artifact access states are
+\idt{protocol/EXTERNAL_ACCESS_AUDIT_V1.json}; and the prospective execution
+binding for the result-bearing offline campaign, including the exact subject
+revision and Git blob identities, is
+\idt{protocol/OFFLINE_RUN_MANIFEST_V1.json}.  The registry binding each system
+under test to its frozen identifier---\idt{bm25_keyword},
+\idt{dense_retrieval}, \idt{sparse_dense_hybrid}, \idt{one_pass_rag},
+\idt{agentic_single_route}, \idt{protocol_driven_systematic_review} and the
+explicitly exploratory \idt{adaptive_multiroute_exploratory}---is
+\idt{protocol/P2_V2_SYSTEM_REGISTRY.json}.  The mapping from every
+result-bearing sentence in this manuscript to the archived artifact key that
+supports it is \idt{protocol/CLAIM_LEDGER_V1.json}, with a human-readable view
+at \idt{evidence/CLAIM_LEDGER_V1.md}.
+
+The definitions in Section~\ref{sec:formalism} are implemented in
+\idt{src/orion/knowledge/}: work identity and read state in \idt{identity.py}
+and \idt{ledger.py}, route independence and coverage in \idt{routes.py}, and
+route control in \idt{route_control.py}.
+
+\subsection*{Offline complete-gold companion}
+
+The frozen complete-gold world is distributed under
+\idt{evidence/offline_gold/}; it is fully synthetic, regenerable from the
+recorded seed, and verified on every clean CI run against its committed content
+hashes and suite fingerprint.
 
 The compact publication result is
-\idt{evidence/offline_results/RESULTS_SUMMARY_V1.json}.  The command
+\idt{evidence/offline_results/RESULTS_SUMMARY_V1.json}, and the mechanism
+projection behind Figures~\ref{fig:p2-4}--\ref{fig:p2-5} is
+\idt{evidence/offline_results/OFFLINE_MECHANISMS_V1.json}.  The full per-system
+failure taxonomy is \idt{evidence/offline_results/TABLE_P2-3_failure_taxonomy.md}
+and the gold-defined route-stop replay is
+\idt{evidence/offline_results/TABLE_P2-S1_route_stop_oracle.md}.  The command
 \texttt{python3 papers/paper-02-open-world-scientific-discovery/scripts/
 run\_offline\_companion.py --check} reconstructs all \OfflineRunRecordCount{} runs and refuses drift.
 With \texttt{--write-raw DIR} it also emits the complete normalized JSONL result
@@ -19,17 +51,23 @@ set and all rich run artifacts.  The committed summary records SHA-256 digests
 of both complete sets, so a reproduction can be checked without requiring
 hundreds of generated files in the repository.
 
+\subsection*{External benchmark artifacts}
+
 External benchmark artifacts are not redistributed.  Their licences, access
 states and pinned revisions are recorded per artifact in
 \idt{protocol/EXTERNAL_ACCESS_AUDIT_V1.json}, with source checks retained
-under \texttt{evidence/access/} and summarized in Table P2-1.  AutoResearchBench
+under \texttt{evidence/access/} and summarized in
+\idt{protocol/TABLE_P2-1_freeze_manifest.md}.  AutoResearchBench
 is pinned to upstream commit
 \texttt{a46c9bfb8968786f73f0a6a5b365b5384cd0f96d}; the released 1,000-record
 bundle is split by its explicit task-type field into 600 Deep and 400 Wide
 records before candidate custody.  The Wide scorer is deterministic and
 credential-free.  Deep official scoring uses the released title-identity judge
 and still requires an OpenAI-compatible endpoint; the repository workflow now
-records this authority precondition without exposing credential values.
+records this authority precondition without exposing credential values.  The
+credential-free search-time self-exposure diagnostic over the frozen Wide
+candidate run is
+\idt{evidence/external_results/AUTORESEARCHBENCH_SEARCH_CONTAMINATION_V1.json}.
 
 The completed MetaSyn probe is archived as
 \idt{evidence/external_results/METASYN_ID_ONLY_PROBE_V1.json}.  It binds
@@ -40,7 +78,7 @@ integer error ledger is separately archived as
 pinned gold only after candidate output is frozen and verifies the official
 per-review metrics before emitting exact retrieval and screening false-negative
 counts.  These artifacts make the bounded MetaSyn retrieval/screening result
-reproducible without reclassifying it as full ORION.
+reproducible without reclassifying it as a result for the full system.
 
 All three OpenAIRE/Crossref Wide campaigns are preserved rather than left behind
 an expiring Actions URL.  Their exact results and run receipts are stored under
@@ -49,11 +87,16 @@ an expiring Actions URL.  Their exact results and run receipts are stored under
 the failed first evaluator handoff, and the successful evaluator-only repair are
 under \idt{evidence/ci_mirror/}.  The mirror manifest records both
 archive-level and per-file SHA-256 digests.  Evaluator gold never entered any
-candidate capture.  The first campaign remains \idt{CANNOT_CHECK} because 400 of
+candidate capture.  The first campaign is undetermined because 400 of
 1,200 planned provider calls failed; the second because its transport probe
 returned an empty result array below its frozen minimum, so acquisition never
 began; the third because provider validity reached $0.716$ against a frozen
-$0.90$.  None is \idt{CANNOT_CHECK} because evidence was discarded.
+$0.90$.  None is undetermined because evidence was discarded.
+
+The prospective freeze for the successor acquisition mechanic is
+\idt{protocol/P2_LEXICAL_ECHO_SUCCESSOR_FREEZE_2026-08-21.json}, written before
+any corpus was generated; the mechanic itself is registered there under the
+identifier \idt{D4_DISCRIMINATIVE_TERM_GATING}.
 
 The resolution audit that establishes the measurement-floor finding is under
 \idt{evidence/audit/}.  It reads the published campaign results and reports
@@ -66,12 +109,13 @@ URL/parameters, query derivation, timestamp, raw body, hash and typed transport
 status.  The frozen live protocol requires arXiv plus two OpenAlex-backed route
 families.  A non-leaking Actions preflight is archived as
 \idt{evidence/access/LIVE_PROVIDER_PREFLIGHT_2026-08-16.json}; it confirms
-that arXiv is credential-free but that no funded \idt{OPENALEX_API_KEY} is
+that arXiv is credential-free but that no funded OpenAlex API key is
 available in the same-repository execution context.  Therefore the three-route
-live campaign cannot enter \idt{EXECUTION_FROZEN} here, and no raw live
+live campaign cannot be frozen for execution here, and no raw live
 campaign or live monetary-cost ledger is fabricated.  Operator re-scope
 2026-08-17 removed the empirical-cost requirement: the sanctioned cost axis
-is the host-recorded search-query count (Figure~\ref{fig:p2-2}, Table P2-2),
+is the host-recorded search-query count
+(Figure~\ref{fig:p2-2}, \idt{protocol/TABLE_P2-2_baseline_ablation_cost.md}),
 not a live OpenAlex or arXiv API bill.
 
 \section{Reproducibility}
@@ -84,7 +128,7 @@ support.
 controlled-index companion regenerates from committed data and subject code.  A
 clean GitHub Actions job independently rebuilds the \OfflineRunRecordCount{}-run publication
 projection and compares it to the committed summary.  The frozen plan awards
-the result its committed \idt{TIER_B_committed} authority together with a
+the result its committed precision tier together with a
 mandatory underpowered label on the primary offline comparison; reproduction
 does not elevate that authority.
 
@@ -107,9 +151,9 @@ available.
 live layer is designed to archive mutable provider evidence rather than
 re-derive it, but the frozen route set requires funded OpenAlex access that is
 absent in the verified execution context.  Until that authority is supplied and
-the campaign is actually run, the paper keeps raw live-provider outcomes,
-empirical live monetary cost/wall-clock and the matched external discovery
-claim at \idt{CANNOT_CHECK}.  Query-count metrics from the offline companion
+the campaign is actually run, raw live-provider outcomes,
+empirical live monetary cost and wall-clock, and the matched external discovery
+claim all stay undetermined.  Query-count metrics from the offline companion
 are the completed cost evidence in this revision.
 
 \section{Ethics}
@@ -119,7 +163,7 @@ This work does not collect new human-subject records or personally identifiable
 information.  The frozen complete-gold companion is fully synthetic and
 regenerable from a recorded seed.  External probes use publicly released
 benchmark questions and evaluator interfaces; third-party corpora are not
-redistributed where Table P2-1 records a licence block or partial
+redistributed where the access-audit table records a licence block or partial
 redistribution.  Dual-use risk is that of any scientific-literature retrieval
 system: the paper evaluates discovery governance and does not present a
 deployment, surveillance, or human-facing study.

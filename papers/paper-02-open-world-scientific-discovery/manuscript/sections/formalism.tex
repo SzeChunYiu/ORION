@@ -2,13 +2,12 @@
 \label{sec:formalism}
 
 This section fixes the objects the evaluation measures. Every definition below is
-implemented in the subject system rather than assumed: work identity and read
-state in \texttt{orion.knowledge.identity} and \texttt{orion.knowledge.ledger},
-route independence and coverage in \texttt{orion.knowledge.routes}, and route
-control in \texttt{orion.knowledge.route\_control}. Where a definition is
-deliberately conservative we state the failure it is conservative against,
-because the direction of the bias is what makes the refusal a safety property
-rather than a preference.
+implemented in the system under test rather than assumed: work identity and read
+state, route independence and coverage, and route control each correspond to a
+module of the implementation, named in Section~\ref{sec:availability}. Where a
+definition is deliberately conservative we state the failure it is conservative
+against, because the direction of the bias is what makes the refusal a safety
+property rather than a preference.
 
 \subsection{Work identity and content identity}
 
@@ -127,10 +126,10 @@ route); a route reopens exactly when an observed trigger intersects that set.
 
 \begin{proposition}[Fail-closed stopping]
 \label{prop:failclosed}
-No route decision certifies task saturation. In the implementation the route
-decision exposes $\mathrm{certifies\_task\_saturation} \equiv \mathrm{false}$
-for every action including \textsc{stop}, so route-local exhaustion cannot be
-lifted to task-level completeness by any composition of route outcomes.
+No route decision certifies task saturation. In the implementation every route
+decision, \textsc{stop} included, carries an explicit declaration that it does
+not certify task saturation, so route-local exhaustion cannot be lifted to
+task-level completeness by any composition of route outcomes.
 \end{proposition}
 
 Task closure is therefore a separate judgement over the route ensemble. It
