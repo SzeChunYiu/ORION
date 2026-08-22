@@ -48,13 +48,23 @@ disagreement is a diff rather than an argument.
 
 The document does separate the two halves, and it is unambiguous about the fields
 it names: "do not commit that input" covers the protected suite entire. Six places
-where it runs out were recorded in :data:`CUSTODY_RULE_GAPS`. The largest was that
-neither list mentioned the *order* the cases are emitted in, and no fail-closed
-condition mentioned it either --- the defect that actually sank the shipped suite,
-and the one a reader of the *Custody rule* section alone would not have known to
-avoid. That one is now a fail-closed condition in
-:func:`orion.study.p5.freeze.require_ordinal_independence` and has moved to
-:data:`CUSTODY_RULE_GAPS_CLOSED`; five remain open.
+where it runs out were recorded in :data:`CUSTODY_RULE_GAPS` by trying to build a
+suite from the rule alone. The largest was that neither list mentioned the *order*
+the cases are emitted in, and no fail-closed condition mentioned it either --- the
+defect that actually sank the shipped suite, and the one a reader of the *Custody
+rule* section alone would not have known to avoid.
+
+All six are now in :data:`CUSTODY_RULE_GAPS_CLOSED`, each with the condition that
+closed it and the number that condition produces on the shipped suite:
+:func:`~orion.study.p5.freeze.require_ordinal_independence` (tenth condition),
+:func:`~orion.study.p5.freeze.require_case_fields_classified` (eleventh),
+:func:`~orion.study.p5.freeze.require_published_field_independence` (twelfth),
+the seal check ``freeze_protected_suite`` runs over its own output, and the
+per-kind opening nonces of :func:`~orion.study.p5.freeze.opening_nonce` with
+:func:`~orion.study.p5.freeze.require_opening_separation`. Closing the third of
+those opened a new one, which is what :data:`CUSTODY_RULE_GAPS` now holds: the
+published-field readers do not run over ``visible_symptom``, and on the shipped
+suite that is where the largest leak is.
 
 What is sound here, and what is not
 -----------------------------------
@@ -116,12 +126,21 @@ from pathlib import Path
 from typing import Any
 
 from orion.programme.records import Outcome
+from orion.study.p5.freeze import PUBLISHED_CASE_FIELDS as _PUBLISHED_CASE_FIELDS
+from orion.study.p5.freeze import (
+    PUBLISHED_IDENTIFIER_CASE_FIELDS as _PUBLISHED_IDENTIFIER_CASE_FIELDS,
+)
+from orion.study.p5.freeze import SEALED_CASE_FIELDS as _SEALED_CASE_FIELDS
+from orion.study.p5.freeze import SEALED_SUITE_FIELDS as _SEALED_SUITE_FIELDS
 from orion.study.p5.freeze import (
     ROOT_CAUSES,
     SCHEMA_VERSION,
     freeze_protected_suite,
     mint_root_cause_nonce,
+    opening_disclosure_report,
     ordinal_independence_report,
+    published_field_independence_report,
+    published_surface_leaks,
     repeated_family_in_block,
     sha256_json,
     validate_protected_suite,
@@ -130,6 +149,7 @@ from orion.study.p5.hidden_cause_custody import (
     CASES_PER_FAMILY,
     DISCLOSURE_BUDGET_DIGESTS,
     SHIPPED_SUITE_PATH,
+    audit_commitment_kind_domains,
     audit_hidden_cause_suite,
     audit_root_cause_identifiability,
     default_fit_case_ids,
@@ -143,25 +163,22 @@ CONTRAST_SCHEMA_VERSION = "orion.p5.hidden-cause-custody-contrast.v1"
 #: the twenty-four the manuscript reports on.
 CASE_ID_PREFIX = "P5-SOUND-HC"
 
-#: Fields of a protected case that no artifact of a freeze carries in the clear.
-#: Derived by reading ``freeze_protected_suite`` against the *Custody rule* list,
-#: not by restating the list: ``protected_surface``, ``success_rubric`` and
-#: ``harm_rubric`` appear in the manifest only as nonce-bound commitments, so they
-#: belong here, while ``fresh_tasks`` does not, because its ``task_id`` and
-#: ``changed_axes`` are published verbatim. ``competing_cause_set`` is the
-#: addition the document does not name: it lists two or three candidates
-#: including the answer, so publishing it would cut the commitment's domain from
-#: eight to three without breaking any stated rule.
-SEALED_CASE_FIELDS = frozenset(
-    {
-        "protected_root_cause",
-        "root_cause_nonce",
-        "competing_cause_set",
-        "protected_surface",
-        "success_rubric",
-        "harm_rubric",
-    }
-)
+#: The custody rule's three lists, now data in :mod:`orion.study.p5.freeze` and
+#: re-exported here so the module that generates a suite and the module that
+#: validates one cannot disagree about which half a field belongs to. They were
+#: written here first, by reading ``freeze_protected_suite`` against the *Custody
+#: rule* list rather than by restating the list --- ``protected_surface``,
+#: ``success_rubric`` and ``harm_rubric`` appear in the manifest only as
+#: nonce-bound commitments, so they are sealed, while ``fresh_tasks`` is neither,
+#: because its ``task_id`` and ``changed_axes`` are published verbatim and its
+#: ``content_hash`` is not. ``competing_cause_set`` is the addition the document
+#: named in neither list: it carries two or three candidates including the answer.
+#: ``freeze.require_case_fields_classified`` now fails a freeze closed when a case
+#: carries a field none of the three lists names.
+SEALED_CASE_FIELDS = _SEALED_CASE_FIELDS
+SEALED_SUITE_FIELDS = _SEALED_SUITE_FIELDS
+PUBLISHED_CASE_FIELDS = _PUBLISHED_CASE_FIELDS
+PUBLISHED_IDENTIFIER_CASE_FIELDS = _PUBLISHED_IDENTIFIER_CASE_FIELDS
 
 #: The subset of :data:`SEALED_CASE_FIELDS` whose *values* are secrets in
 #: themselves. A bare ``RETRIEVAL_MISS`` discloses nothing --- it is one of eight
@@ -174,30 +191,12 @@ OPENING_MATERIAL_CASE_FIELDS = frozenset(
     {"root_cause_nonce", "success_rubric", "harm_rubric", "protected_surface"}
 )
 
-#: Sealed values that live on the suite rather than on a case. ``evaluator_hash``
-#: is deliberately absent: the manifest publishes it, which the *Freeze command*
-#: section authorises ("binding the full private suite, evaluator, ...") and the
-#: *Custody rule* section neither authorises nor forbids.
-SEALED_SUITE_FIELDS = frozenset({"fresh_task_payloads", "negative_variant_payloads"})
-
 #: Identifiers a freeze publishes even though they name sealed objects. Listed so
 #: that a check for sealed material in the published surface does not report them
 #: as leaks, and so that a reader can see what the manifest actually carries.
+#: ``freeze.require_published_field_independence`` is what holds them to being
+#: identifiers rather than labels.
 PUBLISHED_IDENTIFIER_FIELDS = frozenset({"task_id", "changed_axes", "variant_id"})
-
-#: Fields the *Freeze command* section says the candidate packet carries. This is
-#: exactly what ``freeze_protected_suite`` emits per case, restated here so a
-#: change to either can be diffed against the document.
-PUBLISHED_CASE_FIELDS = frozenset(
-    {
-        "case_id",
-        "visible_symptom",
-        "candidate_visible_context",
-        "motivating_tasks",
-        "replay_tasks",
-        "allowed_change_surface",
-    }
-)
 
 #: Gaps found here and since closed in the validator. Kept as a record: the entry
 #: says what a compliant freeze could have done before the condition existed, so a
@@ -213,36 +212,102 @@ CUSTODY_RULE_GAPS_CLOSED: tuple[str, ...] = (
     "needs, and rejects a suite any rule predicts correctly on every case it was not "
     "shown. On PROTECTED_SUITE_V1, first-appearance/blocks-of-3 buys eight openings "
     "and gets the other sixteen right; the suite is rejected and the rule is named.",
-)
-
-#: Where the document's own statement of the split runs out. Each entry is a
-#: sentence a reader can check against ``PROTECTED_SUITE_FREEZE_V1.md`` and
-#: against ``freeze_protected_suite``; none is repaired here.
-CUSTODY_RULE_GAPS: tuple[str, ...] = (
-    "The two halves are stated in different sections and neither cross-references the "
-    "other: the withheld list is under 'Custody rule', the publishable list under "
-    "'Freeze command'. Nothing in the document says the two are complements, and the "
-    "only place the split is stated as one rule is freeze_protected_suite itself.",
-    "competing_cause_set appears in neither list. It is carried in the protected suite, "
+    "The two halves were stated in different sections and neither cross-referenced the "
+    "other: the withheld list under 'Custody rule', the publishable list under 'Freeze "
+    "command'. Nothing said the two were complements, so a field named in neither -- "
+    "competing_cause_set was one -- could be published without breaking a stated rule. "
+    "CLOSED: the two lists are data in freeze.PUBLISHED_CASE_FIELDS, "
+    "freeze.PUBLISHED_IDENTIFIER_CASE_FIELDS and freeze.SEALED_CASE_FIELDS, the "
+    "document states them as one three-way classification, and "
+    "freeze.require_case_fields_classified is an eleventh fail-closed condition that "
+    "refuses a case carrying a field none of the three names. On PROTECTED_SUITE_V1 all "
+    "fourteen case fields classify -- six published, two published-as-identifier, six "
+    "sealed -- and a fifteenth is refused by name.",
+    "competing_cause_set appeared in neither list. It is carried in the protected suite, "
     "the freeze does not emit it, and it names two or three candidates including the "
-    "answer -- so a freeze that did publish it would violate no stated rule while "
-    "cutting the commitment's domain from eight to three.",
+    "answer -- so a freeze that did publish it would have violated no stated rule while "
+    "cutting the commitment's domain. CLOSED: it is in SEALED_CASE_FIELDS and in the "
+    "document's withheld list, and freeze_protected_suite now reads its own output back "
+    "before returning it: freeze.published_surface_leaks searches the emitted packet and "
+    "manifest for every sealed value and fails the freeze closed on a hit, so a field "
+    "added to the packet by a later edit is caught by its content rather than by its "
+    "name. The domain the gap quoted was optimistic: in PROTECTED_SUITE_V1 the answer is "
+    "element 0 of competing_cause_set in 24 of 24 cases and the set has two members, so "
+    "publishing it would have cut the domain from eight to one, not to three.",
     "allowed_change_surface is on the publishable list, and in the shipped suite it "
     "names the answer: src/retrieval/index.py for RETRIEVAL_MISS, "
     "src/causal/representation.py for REPRESENTATION_GAP, src/measurement/spec.py for "
-    "MEASUREMENT_SPECIFICATION_GAP. The rule permits publishing a field that in "
-    "practice states the label, and neither the freeze nor the custody audit looks.",
-    "The manifest is described as binding the fresh split and the negative variants "
-    "'without publishing the protected payloads', and it does publish task_id, "
-    "changed_axes and variant_id verbatim beside each commitment. That is a defensible "
-    "choice -- a split has to be checkable -- but the document does not say it, so a "
-    "generator that made changed_axes depend on the family would be putting the label "
-    "in the clear while following the text.",
-    "One nonce per case is reused across seven commitment kinds: the case artifact, the "
-    "root cause, every fresh payload, every negative variant, the protected surface and "
-    "both rubrics. The seven disclosure probes attack only the root-cause commitment, so "
-    "whichever of the other six has the smallest guessable domain is the real cost of "
-    "opening a case, and nothing measures it.",
+    "MEASUREMENT_SPECIFICATION_GAP. Neither the freeze nor the custody audit looked. "
+    "CLOSED: freeze.require_published_field_independence is a twelfth condition, shaped "
+    "like the ordinal one -- declare the reader, charge it for what it was told, reject "
+    "a suite it reads above that. Thirty-five declared readers: label-token matching "
+    "(exact, and on shared prefixes of 4, 5 and 6 characters) over each published "
+    "author-named field and over all of them together, charged nothing because the eight "
+    "labels are a public enum; and signature-leave-one-out over each published field, "
+    "charged the family of every other case sharing the value. On PROTECTED_SUITE_V1 the "
+    "readers disclose 12 of 24 cases and 7 of 8 families with nothing opened; "
+    "label-token-prefix-4/allowed_change_surface alone gets 11 of the 13 cases it predicts "
+    "right, and label-token-exact/allowed_change_surface 6 of its 7. "
+    "IMPLEMENTATION_BUG is the one family no reader recovers, and the number is reported "
+    "rather than tuned to eight. On the generated sound suite: 0 of 24.",
+    "The manifest publishes task_id, changed_axes and variant_id verbatim beside each "
+    "commitment. Defensible -- a split has to be checkable -- and unstated, so a "
+    "generator that made changed_axes depend on the family would have put the label in "
+    "the clear while following the text. CLOSED: the document now says the identifiers "
+    "are published deliberately and must be independent of the family, and the "
+    "signature-leave-one-out readers in freeze.require_published_field_independence "
+    "enforce it: a reader is told the family of every other case sharing a published "
+    "value and predicts the one left out when they agree, so it abstains on a field that "
+    "is constant across the suite and on a field unique to each case, and fires exactly "
+    "when the value partitions the suite along family lines. PROTECTED_SUITE_V1 is clean "
+    "here -- 0 of 24, its four axis signatures span four to seven families each -- so the "
+    "refutation is the artifact the gap describes: a suite whose changed_axes are a "
+    "function of the family is read 24 of 24 by signature-leave-one-out/changed_axes and "
+    "refused.",
+    "One nonce per case was reused across seven commitment kinds -- case artifact, root "
+    "cause, each fresh payload, each negative variant, protected surface and both "
+    "rubrics -- and the seven disclosure probes attack only the root-cause commitment, "
+    "whose domain is eight public labels. CLOSED in two halves, because the sharing costs "
+    "two different things. MEASURED: "
+    "hidden_cause_custody.audit_commitment_kind_domains declares a payload-candidate "
+    "generator per kind and prices each against the nonce the cheapest declared probe "
+    "finds. On PROTECTED_SUITE_V1 the root-cause commitments cost 108 digests -- the "
+    "custody audit's own number, re-derived -- while the harm- and success-rubric "
+    "commitments open for all 24 cases in 24 digests, one apiece, because the payloads "
+    "are SECRET_HARM_RUBRIC_{ordinal}; 22 of 24 protected surfaces are reproduced by a "
+    "template over the published allowed_change_surface. The cheapest kind, not the "
+    "attacked one, is the price of a case. REPAIRED: freeze.opening_nonce gives each kind "
+    "its own opening nonce by domain separation from the one stored secret, and "
+    "freeze.require_opening_separation is checked against the digests the freeze has just "
+    "built. Releasing one opening used to open all 7 commitments of a case; it now opens "
+    "1 of 7, with the root cause the declared exception that still opens 7 of 7 because "
+    "it is the answer and is opened last. The protected-suite schema is unchanged, the "
+    "manifest's shape is unchanged, only the digests a future freeze emits move, and no "
+    "commitment manifest is committed in this repository. What the derivation does not "
+    "change is the enumeration cost above: an adversary who guesses the case nonce "
+    "derives every kind's, so the repair is for authorised openings, not for guessing.",
+)
+
+#: Where the document's own statement of the split still runs out. Each entry is a
+#: sentence a reader can check against ``PROTECTED_SUITE_FREEZE_V1.md`` and
+#: against ``freeze_protected_suite``.
+CUSTODY_RULE_GAPS: tuple[str, ...] = (
+    "case_artifact_commitment binds the whole case object, and the case object contains "
+    "root_cause_nonce. Per-kind opening nonces stop one commitment's opening from "
+    "deriving another's, but they cannot stop a payload from containing the master "
+    "secret: an authorised opening of the case artifact hands over the case nonce and "
+    "with it all seven commitments. freeze.require_opening_separation does not see this, "
+    "because it models nonce derivation and assumes payloads are already known. The "
+    "repair would be to bind the case with its nonce removed, which changes what 'binding "
+    "the full private suite' means and is a larger change than the gap it closes.",
+    "The label-token readers that closed the allowed_change_surface gap do not run over "
+    "visible_symptom or candidate_visible_context, and are not going to: a symptom is "
+    "the one published field that must be informative about the hidden cause, so a token "
+    "reader over it would refuse every real suite. On PROTECTED_SUITE_V1 that field is "
+    "where the largest leak actually is -- 'Retrieval system returns empty results' for "
+    "RETRIEVAL_MISS -- and how much a symptom may say is a case-authoring question no "
+    "instrument in this module measures. The sound suite has nothing to audit there "
+    "because its symptom is a placeholder, so this gap is recorded rather than measured.",
 )
 
 #: The one place a sealed field is bound by a digest the demonstration publishes.
@@ -563,21 +628,23 @@ def sealed_material_in(
     """
 
     text = json.dumps(published, sort_keys=True, ensure_ascii=False)
-    fields = sorted(case_fields)
     found: list[str] = []
     if suite.assignment_seed in text:
         found.append("assignment_seed@suite")
     for field in sorted(SEALED_SUITE_FIELDS):
         if any(token in text for token in _search_tokens(suite.sealed_suite.get(field))):
             found.append(f"{field}@suite")
-    for case in suite.cases:
-        case_id = str(case["case_id"])
-        for field in fields:
-            if any(token in text for token in _search_tokens(case.get(field))):
-                found.append(f"{field}@{case_id}")
-        for fresh in case.get("fresh_tasks") or []:
-            if str(fresh.get("content_hash", "")) in text:
-                found.append(f"fresh_tasks.content_hash@{case_id}")
+    # The per-case half is freeze.published_surface_leaks, which is what
+    # freeze_protected_suite reads its own output back with. One search, two
+    # callers: a field this module decided was sealed and the freeze did not
+    # would otherwise be a disagreement nobody sees.
+    found.extend(
+        published_surface_leaks(
+            published,
+            cases=suite.cases,
+            case_fields=set(case_fields) | {"fresh_tasks.content_hash"},
+        )
+    )
     return tuple(found)
 
 
@@ -777,6 +844,40 @@ def _unscoreable_probes(rows: Sequence[Mapping[str, Any]]) -> list[str]:
     )
 
 
+def _opening_separation_summary(cases: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
+    """What one authorised opening of one case discloses, across the suite.
+
+    Aggregated rather than listed per case: the per-case rows carry nothing
+    sealed, but a report that named every commitment of every case would be a
+    map of the manifest for no gain over the four numbers below.
+    """
+
+    reports = [opening_disclosure_report(case) for case in cases]
+    non_root = [
+        row
+        for report in reports
+        for row in report["released"]
+        if row["released"] != "root-cause"
+    ]
+    return {
+        "commitment_kinds_per_case": sorted({report["commitment_kinds"] for report in reports}),
+        "non_root_openings": len(non_root),
+        "worst_non_root_opening_discloses": max(
+            (row["opens_count"] for row in non_root), default=0
+        ),
+        "non_root_openings_that_disclose_the_root_cause": sum(
+            1 for row in non_root if row["opens_root_cause"]
+        ),
+        "every_case_separated": all(report["separated"] for report in reports),
+        "note": (
+            "Under the shared nonce every one of these openings disclosed all seven "
+            "commitments of its case. Each kind now has its own opening nonce derived "
+            "from the one stored secret; the root-cause opening is the declared "
+            "exception and still discloses all seven, because it is the answer."
+        ),
+    }
+
+
 def audit_sound_suite(
     suite: SoundSuite, *, budget_digests: int = DISCLOSURE_BUDGET_DIGESTS
 ) -> dict[str, Any]:
@@ -831,6 +932,11 @@ def audit_sound_suite(
             ),
             "ordinal_independence": ordinal_independence_report(suite.families),
         },
+        "published_field_independence": published_field_independence_report(
+            cases, list(suite.families)
+        ),
+        "commitment_openings": _opening_separation_summary(cases),
+        "commitment_kind_domains": audit_commitment_kind_domains(suite.sealed_suite),
         "published_surface": {
             "candidate_packet_hash": sha256_json(suite.candidate_packet),
             "commitment_manifest_hash": sha256_json(suite.commitment_manifest),

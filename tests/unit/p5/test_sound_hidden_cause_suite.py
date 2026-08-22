@@ -439,11 +439,18 @@ class TestTheGeneratorItself:
             "first-appearance/blocks-of-3",
         ]
 
-    def test_the_closed_gap_is_kept_as_a_record_not_deleted(self) -> None:
-        assert len(CUSTODY_RULE_GAPS_CLOSED) == 1
-        (closed,) = CUSTODY_RULE_GAPS_CLOSED
-        assert "emission order" in closed
-        assert "CLOSED:" in closed
+    def test_the_closed_gaps_are_kept_as_a_record_not_deleted(self) -> None:
+        """Each entry keeps what the hole was, so the repair can be checked against it.
+
+        The gaps a condition closes are held with their numbers in
+        ``tests/unit/p5/test_custody_rule_gaps.py``; what this asserts is that the
+        record of the hole survives the repair rather than being deleted with it.
+        """
+
+        assert len(CUSTODY_RULE_GAPS_CLOSED) == 6
+        ordinal = next(entry for entry in CUSTODY_RULE_GAPS_CLOSED if "emission order" in entry)
+        assert "CLOSED:" in ordinal
+        assert all("CLOSED" not in gap for gap in CUSTODY_RULE_GAPS)
         assert all("emission order" not in gap for gap in CUSTODY_RULE_GAPS)
 
     def test_the_assignment_is_reproducible_from_its_seed(self) -> None:

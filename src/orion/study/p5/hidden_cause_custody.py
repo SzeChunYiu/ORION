@@ -7,8 +7,9 @@ supposed to keep that label away from the candidate:
 
 * the freeze splits the suite into a candidate packet and a commitment manifest,
   so the label is published only as ``H({protected_root_cause, nonce})``;
-* ``validate_protected_suite`` fails closed on nine documented conditions,
-  including "a hidden root label has no unique nonzero 256-bit nonce";
+* ``validate_protected_suite`` fails closed on the conditions the protocol
+  documents --- nine when this module was written, fourteen now, including "a
+  hidden root label has no unique nonzero 256-bit nonce";
 * the campaign scores the candidate on the symptom text alone.
 
 All three rest on one integer. ``root_cause_nonce`` is the case ordinal in hex
@@ -99,6 +100,7 @@ from orion.programme.commitment_custody import (
 )
 from orion.programme.records import Outcome
 from orion.study.p5.freeze import (
+    COMMITMENT_KINDS,
     ROOT_CAUSES,
     constant_nonces,
     nonce_weakness,
@@ -417,6 +419,230 @@ def unenforceable_nonces(
     return tuple(findings)
 
 
+# --- The cheapest of the seven commitment kinds, not the one the probes attack
+
+
+#: What a declared adversary tries for each commitment kind's *payload*, as
+#: templates over the fields a freeze publishes. The probes above attack the
+#: root-cause commitment, whose domain is the eight public labels; these say what
+#: the other six cost, which is the number that decides what opening a case is
+#: actually worth. A template is a fair adversary here for the same reason the
+#: nonce shapes are: it is what a generator writes when nobody told it the field
+#: was secret, and the generator's source is in the repository.
+_RUBRIC_PREFIXES: dict[str, tuple[str, ...]] = {
+    "success-rubric": ("SECRET_SUCCESS_RUBRIC", "SUCCESS_RUBRIC", "success-rubric"),
+    "harm-rubric": ("SECRET_HARM_RUBRIC", "HARM_RUBRIC", "harm-rubric"),
+}
+
+
+def _published_tokens(case: Mapping[str, Any], *, ordinal: int) -> tuple[str, ...]:
+    """The strings a payload template can be built out of, all of them published."""
+
+    case_id = str(case.get("case_id", ""))
+    words: list[str] = [f"{ordinal:03d}", str(ordinal), case_id]
+    for surface in case.get("allowed_change_surface") or []:
+        words.extend(part for part in str(surface).replace(".", "/").split("/") if part)
+    return tuple(dict.fromkeys(words))
+
+
+def commitment_payload_candidates(
+    case: Mapping[str, Any], *, ordinal: int
+) -> dict[str, tuple[Any, ...]]:
+    """``kind prefix -> the payloads a declared adversary tries``.
+
+    ``case`` is deliberately empty: the case artifact commitment binds the whole
+    case object, which contains the opening nonce, so there is no template over
+    published fields that reproduces it. That kind is protected by its payload
+    rather than by its nonce, and saying so is part of the measurement.
+    """
+
+    tokens = _published_tokens(case, ordinal=ordinal)
+    return {
+        "case": (),
+        "root-cause": tuple(sorted(ROOT_CAUSES)),
+        "protected-surface": tuple(
+            [f"protected/evaluator/{token}_quality.json"] for token in tokens
+        )
+        + tuple([f"protected/evaluator/{token}.json"] for token in tokens),
+        "success-rubric": tuple(
+            f"{prefix}_{token}"
+            for prefix in _RUBRIC_PREFIXES["success-rubric"]
+            for token in tokens
+        ),
+        "harm-rubric": tuple(
+            f"{prefix}_{token}"
+            for prefix in _RUBRIC_PREFIXES["harm-rubric"]
+            for token in tokens
+        ),
+        "fresh-task": tuple(
+            {"instructions": f"withheld fresh-transfer payload, slot {token}"}
+            for token in tokens
+        ),
+        "negative-variant": tuple(
+            {"instructions": f"withheld negative variant, slot {token}"} for token in tokens
+        ),
+    }
+
+
+def _true_payloads(
+    case: Mapping[str, Any],
+    *,
+    fresh_payloads: Mapping[str, Any],
+    negative_payloads: Mapping[str, Any],
+) -> dict[str, tuple[Any, ...]]:
+    fresh = [item for item in (case.get("fresh_tasks") or []) if isinstance(item, Mapping)]
+    return {
+        "case": (case,),
+        "root-cause": (str(case.get("protected_root_cause", "")),),
+        "protected-surface": (sorted(case.get("protected_surface") or []),),
+        "success-rubric": (case.get("success_rubric"),),
+        "harm-rubric": (case.get("harm_rubric"),),
+        "fresh-task": tuple(
+            fresh_payloads[str(item.get("task_id", ""))]
+            for item in fresh
+            if str(item.get("task_id", "")) in fresh_payloads
+        ),
+        "negative-variant": tuple(
+            negative_payloads[str(variant_id)]
+            for variant_id in (case.get("negative_variant_ids") or [])
+            if str(variant_id) in negative_payloads
+        ),
+    }
+
+
+def cheapest_nonce_rank(
+    cases: Sequence[Mapping[str, Any]], *, suite_id: str = ""
+) -> tuple[int | None, ...]:
+    """For each case, how many guesses the cheapest declared probe spends on its nonce.
+
+    ``None`` where no declared probe generates the nonce at all, which is what a
+    ``mint_root_cause_nonce()`` draw looks like from here. Read off the same probe
+    list the custody audit runs, so the two cannot disagree about what a cheap
+    nonce is.
+    """
+
+    probes = disclosure_probes_for(cases, suite_id=suite_id)
+    sealed = sealed_root_causes(cases)
+    ranks: list[int | None] = []
+    for case, secret in zip(cases, sealed):
+        nonce = str(case.get("root_cause_nonce", ""))
+        best: int | None = None
+        for probe in probes:
+            candidates = probe.nonce_candidates(secret)
+            if nonce in candidates:
+                rank = list(candidates).index(nonce) + 1
+                best = rank if best is None else min(best, rank)
+        ranks.append(best)
+    return tuple(ranks)
+
+
+def audit_commitment_kind_domains(
+    suite: Mapping[str, Any],
+) -> dict[str, Any]:
+    """What each commitment kind costs to open, and which kind is the cheapest.
+
+    The seven disclosure probes attack the root-cause commitment because that is
+    the secret the study is about. Every kind shares the case's nonce, so the
+    cheapest kind is what an adversary actually pays: a kind whose payload one
+    template reproduces costs ``nonce guesses x 1``, and confirming it confirms
+    the nonce for the other six.
+
+    Per-kind rows carry counts and never a recovered payload: this report is a
+    thing a caller may write down, and a protected surface or a rubric printed
+    into it would be the disclosure the audit exists to measure.
+    """
+
+    cases = list(suite.get("cases") or [])
+    suite_id = str(suite.get("suite_id", ""))
+    fresh_payloads = suite.get("fresh_task_payloads") or {}
+    negative_payloads = suite.get("negative_variant_payloads") or {}
+    nonce_ranks = cheapest_nonce_rank(cases, suite_id=suite_id)
+
+    rows: dict[str, dict[str, Any]] = {
+        kind: {
+            "kind": kind,
+            "candidates_declared": 0,
+            "payloads_committed": 0,
+            "payloads_a_candidate_reproduces": 0,
+            "payloads_opened": 0,
+            "digests_to_open_every_payload_found": 0,
+            "worst_case_open_digests": None,
+            "cheapest_open_digests": None,
+        }
+        for kind in COMMITMENT_KINDS
+    }
+    for ordinal, case in enumerate(cases, start=1):
+        candidates = commitment_payload_candidates(case, ordinal=ordinal)
+        actual = _true_payloads(
+            case, fresh_payloads=fresh_payloads, negative_payloads=negative_payloads
+        )
+        nonce_rank = nonce_ranks[ordinal - 1]
+        for kind, row in rows.items():
+            declared = candidates[kind]
+            row["candidates_declared"] = max(row["candidates_declared"], len(declared))
+            for payload in actual[kind]:
+                row["payloads_committed"] += 1
+                serialised = [sha256_json(item) for item in declared]
+                if sha256_json(payload) not in serialised:
+                    continue
+                row["payloads_a_candidate_reproduces"] += 1
+                if nonce_rank is None:
+                    continue
+                rank = serialised.index(sha256_json(payload)) + 1
+                cost = rank * nonce_rank
+                row["payloads_opened"] += 1
+                row["digests_to_open_every_payload_found"] += cost
+                cheapest = row["cheapest_open_digests"]
+                row["cheapest_open_digests"] = cost if cheapest is None else min(cheapest, cost)
+                worst = row["worst_case_open_digests"]
+                row["worst_case_open_digests"] = cost if worst is None else max(worst, cost)
+
+    openable = [row for row in rows.values() if row["payloads_opened"]]
+    cheapest = min(
+        openable,
+        key=lambda row: (
+            row["digests_to_open_every_payload_found"] / row["payloads_opened"],
+            row["kind"],
+        ),
+        default=None,
+    )
+    return {
+        "schema_version": "orion.p5.commitment-kind-domain-audit.v1",
+        "suite_id": suite_id,
+        "n_cases": len(cases),
+        "commitment_kinds": list(COMMITMENT_KINDS),
+        "nonce_guesses_the_cheapest_probe_spends": [
+            {"case_id": str(case.get("case_id", "")), "nonce_rank": rank}
+            for case, rank in zip(cases, nonce_ranks)
+        ],
+        "cases_with_an_enumerable_nonce": sum(1 for rank in nonce_ranks if rank is not None),
+        "kinds": [rows[kind] for kind in COMMITMENT_KINDS],
+        "cheapest_kind": None if cheapest is None else cheapest["kind"],
+        "cheapest_kind_digests_for_the_suite": (
+            None if cheapest is None else cheapest["digests_to_open_every_payload_found"]
+        ),
+        "root_cause_digests_for_the_suite": rows["root-cause"][
+            "digests_to_open_every_payload_found"
+        ],
+        "payload_templates_note": (
+            "payloads_a_candidate_reproduces counts payloads a declared template "
+            "reproduces; payloads_opened counts those whose nonce a declared probe also "
+            "generates. A suite can have a one-candidate payload domain on every kind and "
+            "still open nothing, which is what a CSPRNG nonce buys and the only thing it "
+            "buys: the templates are public, so the payloads are not what is protecting "
+            "these commitments."
+        ),
+        "note": (
+            "A shared opening nonce makes the cheapest kind the price of the case: "
+            "confirming any one commitment confirms the nonce, and the root cause then "
+            "costs at most eight more digests. Per-kind opening nonces do not change "
+            "these numbers -- an adversary who can guess the case nonce derives every "
+            "kind's -- they change what one authorised opening discloses, which is what "
+            "freeze.require_opening_separation checks."
+        ),
+    }
+
+
 HIDDEN_CAUSE_CUE_NAMES: tuple[str, ...] = (
     "case_ordinal_block",
     "nonce_ordinal_block",
@@ -638,9 +864,12 @@ __all__ = [
     "P5_SHORTCUT_PROBES",
     "SHIPPED_SUITE_PATH",
     "SMALL_INTEGER_SWEEP",
+    "audit_commitment_kind_domains",
     "audit_hidden_cause_suite",
     "audit_root_cause_identifiability",
     "audit_suite_custody",
+    "cheapest_nonce_rank",
+    "commitment_payload_candidates",
     "default_fit_case_ids",
     "disclosure_probes_for",
     "extract_hidden_cause_cues",
