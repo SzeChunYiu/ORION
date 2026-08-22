@@ -1,0 +1,45 @@
+{
+ "cases": [
+  {
+   "applied_criterion_digest": "42a0e669b690d4fc6d15e267a27930f8baf266f0e6bbc6e2a233d3390c28aec7",
+   "applied_criterion_text": "flat = \" \".join( line.lstrip(\"> \").strip() for line in log_text.splitlines()) flat = \" \".join(flat.split()) if passage not in flat:",
+   "applied_revision": "1057dbe7",
+   "criterion": "a donor record's verbatim_passage must occur in the committed query log",
+   "deviation": {
+    "description": "the comparison was loosened from pure whitespace normalization to additionally stripping markdown blockquote markers from each log line before flattening",
+    "rationale": "the committed query log quotes its search results inside blockquotes, so passages present in the log did not match under the frozen rule; the loosening removes a formatting artifact of the log, not a substantive requirement on the passage"
+   },
+   "exhibited_rejection_ref": "QG24_GENERIC_VERIFICATION.json#falsifiability_demonstration.cases[T4_subsuming_passage_removed] -- the loosened rule still REJECTs a donor record whose passage is stripped",
+   "frozen_criterion_digest": "cdf76e781303169f8cd6c23ad9ac92a125194760bfd02c708c772b9dc293effe",
+   "frozen_criterion_text": "flat = \" \".join(log_text.split()) if passage not in flat:",
+   "frozen_revision": "ce66acbd",
+   "frozen_rule_locates_each_passage": {
+    "0": false,
+    "1": false,
+    "2": false
+   },
+   "gate": "CLEARS",
+   "gate_reason": null,
+   "lane": "QG-24",
+   "reported_verdict": "PASS",
+   "verdict_under_frozen_criterion": "FAIL"
+  },
+  {
+   "applied_criterion_digest": "5cae749f559e1fb93bcf72983c3ad603fc0e9f2f6b4b674d95bf0d6d054a590f",
+   "criterion": "H1: normalized n=4 coverage separates accuracy",
+   "frozen_criterion_digest": "8af0cf75f27d6aa6a46b97d2399db5549078471d547bc46408c142bb864ee1f8",
+   "gate": "CLEARS",
+   "gate_reason": null,
+   "lane": "QG-23",
+   "note": "the lane's own criterion_disclosure records H1 as BORNE_OUT under the frozen reading and REFUTED under the adopted one: the criterion was changed in the direction of the harsher result",
+   "reported_verdict": "FAIL"
+  }
+ ],
+ "finding": "The gate is silent on QG-23, correctly: that lane changed its criterion toward the harsher reading and reported a refutation, which is the opposite of the failure mode. It engages on QG-24, whose loosened rule carried a PASS the frozen rule would not have given -- and QG-24 clears it, because the lane had already exhibited that the loosened rule still rejects a stripped passage. So on this programme's own history the gate confirms rather than catches. What it changes is that the demonstration becomes a precondition instead of something an adjudicator happened to check by hand.",
+ "gate_is_not_vacuous": {
+  "case": "QG-24 with exhibited_rejection_ref removed",
+  "gate": "REFUSED",
+  "gate_reason": "the frozen criterion would not have passed, so the changed criterion must bind exhibited_rejection_ref: a checkable demonstration that it still rejects something it should. A rule relaxed until the result clears it, with no exhibited rejection, is not evidence that the result is right -- it is evidence that the rule stopped discriminating. QG-24's changed verifier passed exactly this test by hand, on a fabricated passage; this makes the test a precondition instead of an adjudicator's good habit."
+ },
+ "schema": "ORIONQG.CriterionChurnRetrospective.v1"
+}
