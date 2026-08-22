@@ -1,11 +1,11 @@
 """Content-addressed drift checking for the canonical ORION-Q paper set.
 
-The older global paper survey predates the Q namespace.  This checker binds the
+The older global paper survey predates the Q namespace. This checker binds the
 canonical files selected by ``Q_SERIES_FINAL_SPEC_V1.json`` without pretending
 that historical drafts are part of the submission package.
 
 Git blob identities are used because they are already the repository's immutable
-content identities.  The checker recomputes them from working-tree bytes rather
+content identities. The checker recomputes them from working-tree bytes rather
 than asking Git, so a local uncommitted edit is detected as drift too.
 """
 
@@ -45,10 +45,12 @@ class QSeriesContentBindingReport:
 
 def git_blob_sha1(data: bytes) -> str:
     header = f"blob {len(data)}\0".encode("ascii")
-    return hashlib.sha1(header + data).hexdigest()  # noqa: S324 - Git object identity, not security
+    return hashlib.sha1(header + data).hexdigest()  # noqa: S324 - Git identity, not security
 
 
-def _load_binding(repo_root: Path) -> dict[str, Any]:
+def load_q_series_content_binding(repo_root: Path) -> dict[str, Any]:
+    """Load and validate the committed cross-paper Q-series binding manifest."""
+
     path = repo_root / BINDING_PATH
     raw = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(raw, dict):
@@ -60,27 +62,54 @@ def _load_binding(repo_root: Path) -> dict[str, Any]:
     files = raw.get("files")
     if not isinstance(files, list) or not files:
         raise ValueError("Q-series content binding requires at least one file")
+    for index, row in enumerate(files):
+        if not isinstance(row, dict):
+            raise TypeError(f"Q-series binding row {index} must be an object")
+        path_value = row.get("path")
+        expected = row.get("git_blob_sha1")
+        if not isinstance(path_value, str) or not path_value.strip():
+            raise ValueError(f"Q-series binding row {index} path must be non-empty")
+        if not isinstance(expected, str) or len(expected) != 40:
+            raise ValueError(f"{path_value}: invalid Git blob SHA-1")
     return raw
 
 
+def q_series_bound_rows_for_directory(
+    repo_root: Path, directory: Path
+) -> tuple[dict[str, Any], ...]:
+    """Rows from the cross-paper binding that belong to one paper directory.
+
+    Returns an empty tuple when the Q-series binding is absent or when the
+    directory is not one of its watched surfaces. Parsing errors deliberately
+    propagate so a malformed declared binding cannot silently degrade to UNBOUND.
+    """
+
+    path = repo_root / BINDING_PATH
+    if not path.is_file():
+        return ()
+    raw = load_q_series_content_binding(repo_root)
+    relative = directory.relative_to(repo_root).as_posix().rstrip("/") + "/"
+    rows = tuple(
+        row for row in raw["files"] if str(row.get("path", "")).startswith(relative)
+    )
+    seen = [str(row["path"]) for row in rows]
+    if len(seen) != len(set(seen)):
+        raise ValueError(f"duplicate Q-series bound path under {relative}")
+    return rows
+
+
 def inspect_q_series_content_binding(repo_root: Path) -> QSeriesContentBindingReport:
-    raw = _load_binding(repo_root)
+    raw = load_q_series_content_binding(repo_root)
     drifted: list[str] = []
     missing: list[str] = []
     seen: set[str] = set()
 
     for row in raw["files"]:
-        if not isinstance(row, dict):
-            raise TypeError("Q-series binding file row must be an object")
-        path_value = row.get("path")
-        expected = row.get("git_blob_sha1")
-        if not isinstance(path_value, str) or not path_value.strip():
-            raise ValueError("Q-series binding path must be non-empty")
+        path_value = str(row["path"])
+        expected = str(row["git_blob_sha1"])
         if path_value in seen:
             raise ValueError(f"duplicate Q-series bound path: {path_value}")
         seen.add(path_value)
-        if not isinstance(expected, str) or len(expected) != 40:
-            raise ValueError(f"{path_value}: invalid Git blob SHA-1")
 
         path = repo_root / path_value
         if not path.is_file():
@@ -113,5 +142,7 @@ __all__ = [
     "QSeriesContentBindingReport",
     "git_blob_sha1",
     "inspect_q_series_content_binding",
+    "load_q_series_content_binding",
+    "q_series_bound_rows_for_directory",
     "require_q_series_content_binding",
 ]
