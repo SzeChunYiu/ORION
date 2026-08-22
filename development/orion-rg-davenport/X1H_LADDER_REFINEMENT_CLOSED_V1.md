@@ -94,3 +94,23 @@ Those constants are established elsewhere in this repo by different instruments
 `mathematical_proposal: true`, `proof_authority: false` beyond N1/N2 and the
 machine-checked evaluation, `novelty_claim: false`. No credit taken over
 Freeze–Schmid, whose bound this analyses and fails to improve.
+
+## Independent confirmation of the headline
+
+The `0 of 26` scoreboard was re-checked in the main session with a separate
+brute-force implementation, computing `f_T^{!=0}(C_2^4)` from scratch by
+enumerating multisets and testing every subset:
+
+```
+T=1  f_T^!=0=12   eta_T^!=0=13   max(eta_T^!=0, D+T) = 13
+T=2  f_T^!=0=12   eta_T^!=0=13   max(eta_T^!=0, D+T) = 13
+T=3  f_T^!=0= 7   eta_T^!=0= 8   max(eta_T^!=0, D+T) =  8   <-- optimum
+T=4  f_T^!=0= 4   eta_T^!=0= 5   max(eta_T^!=0, D+T) =  9
+T=5  f_T^!=0= 4   eta_T^!=0= 5   max(eta_T^!=0, D+T) = 10
+```
+
+**Lemma S gives 8. Freeze–Schmid Prop. 3.1(3) gives 8. The truth is 8.**
+
+So on the one instance where this programme previously believed it had found a
+gap, the new lemma is **tight and not better** — which is the whole finding, and
+it now rests on two independent implementations rather than one.
