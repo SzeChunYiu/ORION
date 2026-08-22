@@ -588,10 +588,32 @@ def main(argv: Iterable[str] | None = None) -> int:
     parser.add_argument("--suite", type=Path, default=Path(SHIPPED_SUITE_PATH))
     parser.add_argument("--output", type=Path)
     parser.add_argument("--budget-digests", type=int, default=DISCLOSURE_BUDGET_DIGESTS)
+    parser.add_argument(
+        "--contrast-sound-suite",
+        action="store_true",
+        help=(
+            "also generate a custody-sound suite and attack it with the same probes, so "
+            "the repair is a comparison a reader can run rather than a claim. The exit "
+            "status stays the audited suite's: a demonstration that a sound suite is "
+            "buildable does not make a broken one less broken"
+        ),
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
 
     suite = json.loads(args.suite.read_text(encoding="utf-8"))
     report = audit_hidden_cause_suite(suite, budget_digests=args.budget_digests)
+    if args.contrast_sound_suite:
+        # Imported here, not at module scope: the generator is built on this
+        # module's probes and importing it at the top would be a cycle.
+        from orion.study.p5.sound_hidden_cause_suite import (
+            audit_sound_suite,
+            generate_sound_suite,
+        )
+
+        report = dict(report)
+        report["sound_suite_demonstration"] = audit_sound_suite(
+            generate_sound_suite(), budget_digests=args.budget_digests
+        )
     text = json.dumps(report, indent=2, sort_keys=True) + "\n"
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
