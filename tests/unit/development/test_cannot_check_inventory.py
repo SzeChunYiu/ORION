@@ -267,11 +267,23 @@ def test_the_precision_fix_lost_no_classification() -> None:
     every case and its harm is 0 by arithmetic rather than by safety. A zero from
     a denominator of nothing and a zero from a tautology are both absent
     measurements, and the gate says so instead of reporting the arm as harmless.
+
+    P9's reproduction check takes it 199 to 200 with one more
+    ``MISSING_IDENTITY``, in ``ArmReproduction.outcome``. Re-running the frozen
+    D1 protocol reproduces three of the four archived arms exactly and disagrees
+    with the fourth --- ``TYPED_SERIALIZED_BAG``, same dataset digest and same
+    selected configuration, 0.75 against the archived 0.5. That disagreement is
+    not licensed to convict the archive, because the environment
+    ``RESULT_EXECUTION_ENVIRONMENT_V1`` records is not the one measuring: Python
+    3.12.13, numpy 2.5.2 and scipy 1.18.0 against 3.11.15, 2.4.6 and 1.17.1. Two
+    things changed and only one was measured, so the identity of the environment
+    is the blocker and the site names it. Under the recorded environment the same
+    divergence would be ``FAIL``, and that branch is reachable and tested.
     """
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
-    assert sum(classified.values()) == 199, classified
+    assert sum(classified.values()) == 200, classified
     assert committed["with_reason"] < committed["blocker_sites"]
     assert committed["with_reason"] >= sum(classified.values()), (
         "more sites are classified than carry a reason, so something is classifying on nothing"

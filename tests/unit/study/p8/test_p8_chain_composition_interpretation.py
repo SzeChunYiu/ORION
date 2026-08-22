@@ -88,9 +88,39 @@ def sensitivity() -> dict:
     return cci.counts_are_sensitive_to_the_interpretation(REPO_ROOT)
 
 
+def _assert_all_discharged(results: tuple, *, what: str) -> None:
+    """Fail on a refutation and on a timeout, but never confuse the two.
+
+    ``discharged`` is ``PROVED``, so a solver that ran out of wall clock and a
+    solver that found a countermodel both read as "not discharged" --- and the
+    assertion that fired said only that a theorem was undischarged. One of those
+    is P8's interpretation being false; the other is a measurement that was not
+    taken. The module already keeps them apart on the refutation path ("an
+    UNKNOWN is recorded and counts as nothing"); this keeps them apart here.
+
+    Both still fail. Nothing is weakened --- the failure just says which world it
+    is in, instead of leaving the next reader to guess.
+    """
+
+    refuted = [r.theorem.name for r in results if r.outcome is cci.ProofOutcome.COUNTEREXAMPLE]
+    undecided = [r.theorem.name for r in results if r.outcome is cci.ProofOutcome.UNKNOWN]
+
+    assert refuted == [], (
+        f"{what}: Z3 found a countermodel for {refuted}. This is a refutation of P8's "
+        "chain-composition interpretation, not a flake, and it does not go away by "
+        "re-running."
+    )
+    assert undecided == [], (
+        f"{what}: Z3 returned UNKNOWN for {undecided} within "
+        f"{cci.PROOF_TIMEOUT_MS}ms. That is the prover giving up, not a theorem lost --- "
+        "these proofs take well under a second unloaded, so a timeout here means the "
+        "machine was contended. Re-run before reading it as anything else."
+    )
+
+
 class TestTheInterpretationIsProved:
     def test_every_theorem_is_discharged(self, proofs: tuple) -> None:
-        assert [r.theorem.name for r in proofs if not r.discharged] == []
+        _assert_all_discharged(proofs, what="the theorem list")
 
     def test_no_theorem_is_recorded_unknown(self, proofs: tuple) -> None:
         # UNKNOWN is not PROVED. Collapsing the two turns a timeout into a result.
@@ -103,7 +133,7 @@ class TestTheInterpretationIsProved:
         self, ladder: tuple
     ) -> None:
         assert len(ladder) == cci.CHAIN_LADDER_BOUND
-        assert [r.theorem.name for r in ladder if not r.discharged] == []
+        _assert_all_discharged(ladder, what="the chain ladder")
 
     def test_the_ladder_reaches_past_pairs(self, ladder: tuple) -> None:
         # P8's claim is about ordered pairs, which is length two. If the ladder
@@ -217,7 +247,7 @@ class TestTheFrameConditionsCarryTheProof:
         # theorem and the load-bearing result would be an artefact of the search
         # aid rather than a fact about the conditions.
         bounded = cci.prove_all(witness_world=True)
-        assert [r.theorem.name for r in bounded if not r.discharged] == []
+        _assert_all_discharged(bounded, what="the bounded expansion")
 
 
 class TestThePublishedCountsAreAnInstance:
