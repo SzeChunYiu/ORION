@@ -20,6 +20,7 @@ class ProblemQuestionKind(str, Enum):
     FAILURE_DIAGNOSIS = "FAILURE_DIAGNOSIS"
     FAILURE_TRANSFER = "FAILURE_TRANSFER"
     VERIFICATION = "VERIFICATION"
+    DONOR_ENVELOPE = "DONOR_ENVELOPE"
     SATURATION_CHALLENGE = "SATURATION_CHALLENGE"
 
 
@@ -32,6 +33,8 @@ class MechanicalProblemContext:
     completed_route_kind_ids: tuple[str, ...] = ()
     recent_flat_rounds: int = 0
     verified_target: bool = False
+    nearest_work_donor_ids: tuple[str, ...] = ()
+    enveloped_donor_ids: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -158,6 +161,23 @@ def generate_problem_questions(
             "What independent or protected artifact would verify that the current candidate answer satisfies the registered target without relying on the same generator that proposed it?",
             None,
             "bind a verification/evaluator obligation before final authority",
+        ))
+
+    uncovered_donors = tuple(
+        sorted(set(context.nearest_work_donor_ids) - set(context.enveloped_donor_ids))
+    )
+    if uncovered_donors:
+        questions.append(MechanicalProblemQuestion(
+            f"{prefix}:donor-envelope",
+            ProblemQuestionKind.DONOR_ENVELOPE,
+            "Nearest work is reusable structure, not a claim perimeter. For the "
+            f"uncovered donors {uncovered_donors}, extract their state, transitions, "
+            "invariants, assumptions and failure regimes; reproduce them; construct "
+            "a conservative embedding; then seek a boundary/equivalence theorem or "
+            "strict-separation witness against the strongest information-matched "
+            "ideal donor product.",
+            SearchRouteKind.LITERATURE_BRIDGE,
+            "absorb and reconstruct each donor before testing a generalized envelope; preserve donor priority and negative history",
         ))
 
     if context.recent_flat_rounds < 2:
