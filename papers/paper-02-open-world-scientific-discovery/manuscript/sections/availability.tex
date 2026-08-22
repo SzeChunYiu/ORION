@@ -15,12 +15,15 @@ statistical rules are \idt{protocol/MEASUREMENT_PLAN_V1.md} and
 \idt{protocol/EXTERNAL_ACCESS_AUDIT_V1.json}; and the prospective execution
 binding for the result-bearing offline campaign, including the exact subject
 revision and Git blob identities, is
-\idt{protocol/OFFLINE_RUN_MANIFEST_V1.json}.  The registry binding each system
-under test to its frozen identifier---\idt{bm25_keyword},
+\idt{protocol/OFFLINE_RUN_MANIFEST_V1.json}, which also binds the frozen
+identifier of every system under test.  The identifiers are
+\idt{orion_full} for the governed system; \idt{bm25_keyword},
 \idt{dense_retrieval}, \idt{sparse_dense_hybrid}, \idt{one_pass_rag},
-\idt{agentic_single_route}, \idt{protocol_driven_systematic_review} and the
-explicitly exploratory \idt{adaptive_multiroute_exploratory}---is
-\idt{protocol/P2_V2_SYSTEM_REGISTRY.json}.  The mapping from every
+\idt{agentic_single_route} and \idt{protocol_driven_systematic_review} for the
+six confirmatory comparators; and \idt{adaptive_multiroute_exploratory} for the
+explicitly exploratory one.  Each is a key of the systems map in
+\idt{evidence/offline_results/RESULTS_SUMMARY_V1.json}, alongside the six
+ablation identifiers.  The mapping from every
 result-bearing sentence in this manuscript to the archived artifact key that
 supports it is \idt{protocol/CLAIM_LEDGER_V1.json}, with a human-readable view
 at \idt{evidence/CLAIM_LEDGER_V1.md}.
