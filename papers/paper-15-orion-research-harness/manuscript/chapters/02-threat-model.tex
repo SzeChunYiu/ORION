@@ -1,0 +1,55 @@
+\section{Threat model and trust roots}
+
+\subsection{Objects and principals}
+
+Let a campaign contain requests $q\in Q$, execution attempts $x\in X$, receipts
+$r\in R$, evidence objects $e\in E$ and adjudications $a\in A$. An executor
+principal is an authenticated subject allowed to perform an attempt. A provider is
+the service or runtime that performs a model-mediated operation, and a checkpoint
+is the immutable model identity when such an operation is used. A verifier checks
+receipt structure and cryptographic or content bindings. An adjudicator applies a
+frozen scientific protocol to admissible evidence. These roles may be implemented
+by one organization, but their logical separation must remain explicit.
+
+The protected objects are not only final files. They include the protocol, prompts,
+normalization rules, scorer, code revision, tool versions, input and evidence
+manifests, environment image, random seeds, session state and every request/result
+binding. Supply-chain systems similarly distinguish an artifact from a signed
+statement about the steps and principals that produced it
+\citep{torresarias2019intoto,slsa2026provenance}. Our threat model applies this
+distinction to research execution while declining to infer scientific validity from
+software integrity.
+
+\subsection{Adversary capabilities}
+
+The adversary may:
+
+\begin{enumerate}[label=\textbf{T\arabic*.}]
+  \item replace an executor or model while copying a declared identity;
+  \item replay a valid result under a different request, epoch or evidence set;
+  \item let one nominal lane read the other lane's prompt, state or output;
+  \item submit the same model or service twice under different lane names;
+  \item write a success marker before all output bytes are durable;
+  \item provide a non-empty but unauthenticated certificate identifier;
+  \item convert a host, network, quota or tool failure into a scientific datum;
+  \item omit inconvenient failures or downgrade them to missing rows;
+  \item change normalization, scoring or stopping after observing an outcome;
+  \item exploit a shared helper, gold function or evidence cache to manufacture agreement.
+\end{enumerate}
+
+The adversary need not break a hash. Correct hashes can bind the wrong semantics,
+and signed statements can be authentic statements from an untrusted or
+inappropriately scoped issuer. Identity-oriented signing and transparency logs
+illustrate the additional trust structure required beyond a digest
+\citep{sigstore2026signing}.
+
+\subsection{Out-of-scope threats}
+
+The contract does not decide whether a scientific source is correct, whether a
+model response is well reasoned, whether an evaluator's ontology is complete, or
+whether a statistical estimand answers the substantive question. It also does not
+protect a fully compromised trust root or guarantee confidentiality. These are
+separate evidence-quality, scientific-design and security questions. A deployment
+may attach additional controls, but must not advertise them as properties of the
+base receipt contract.
+
