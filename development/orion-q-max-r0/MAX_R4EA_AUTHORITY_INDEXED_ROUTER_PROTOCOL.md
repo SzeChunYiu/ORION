@@ -49,37 +49,38 @@ Burden is used only to choose among already-authorized routes; it is not a scien
 
 1. `ONE_LITERAL_PREDICATE`
 2. `SUPPORT1_NORMAL_FORM`
-3. `BULK45`
-4. `SPECTRUM54`
-5. `ORBIT715`
-6. `INDEXED715`
-7. `EXACT_RICH_STATE`
-8. `IMPLEMENTATION_AWARE_RESOURCE`
-9. `CANNOT_AUTHORIZE`
+3. `COEFFICIENT_THEOREM`
+4. `BULK45`
+5. `SPECTRUM54`
+6. `ORBIT715`
+7. `INDEXED715`
+8. `EXACT_RICH_STATE`
+9. `IMPLEMENTATION_AWARE_RESOURCE`
+10. `CANNOT_AUTHORIZE`
 
 `CANNOT_AUTHORIZE` is not an optimization route and is selected only when the requested claim exceeds every supplied receipt.
+`IMPLEMENTATION_AWARE_RESOURCE` is an escalation/research route: selecting it for `TOTAL_COMPILED_RESOURCE` does not itself authorize a total-resource result.
 
 ## Frozen cases
 
 The evaluator constructs exactly ten cases from receipt flags. Each case contains only:
 - query tag;
-- candidate route contracts (`supports` set + burden rank);
-- whether richer exact escalation exists;
+- candidate route contracts (`supports` set + burden rank + route kind `ANSWER|ESCALATE|ABSTAIN`);
 - receipt identifiers/digests for evaluator use only.
 
-Family names, expected route, terminal labels and ground-truth outcome are excluded from model-facing/router input.
+Family names, expected route, terminal labels and ground-truth outcome are excluded from router input.
 
 ### Case semantics
 
-1. TARE asymptotic bulk: `BULK45` authorized; `ORBIT715`/`INDEXED715` also contain enough information but are avoidably rich.
-2. TARE unlabeled local defect spectrum: `SPECTRUM54` authorized; `BULK45` unauthorized; richer 715 routes authorized.
-3. TARE indexed local response: `INDEXED715` required among the frozen candidate representations.
+1. TARE asymptotic bulk: `BULK45` authorized; a richer orbit-count route can also recover it but is avoidably rich.
+2. TARE unlabeled local defect spectrum: `SPECTRUM54` authorized; `BULK45` unauthorized; a richer exact orbit/local-state route is authorized.
+3. TARE indexed local response: `INDEXED715` is the frozen minimal response representation.
 4. TARE full finite optimum: `ORBIT715` sufficient by QG-28; `BULK45`/`SPECTRUM54` unauthorized; QG-31 does not claim global minimality.
 5. SixLCU donor-optimal label: `ONE_LITERAL_PREDICATE` authorized by the QG-15b zero-error K1D1 result; exact rich state also authorized.
 6. StabPrep donor-optimal label in frozen 13-feature vocabulary: compact predicate route unauthorized because of mixed cells / `E_floor=43`; `EXACT_RICH_STATE` required.
 7. R6I support-normal-form: `SUPPORT1_NORMAL_FORM` authorized all-n; exact rich state also authorized.
-8. Split-TARE coefficient subnormalization: MAX-R4B coefficient theorem route authorized.
-9. Split-TARE total compiled resource: coefficient theorem unauthorized for the query; `IMPLEMENTATION_AWARE_RESOURCE` required.
+8. Split-TARE coefficient subnormalization: `COEFFICIENT_THEOREM` authorized by MAX-R4B; implementation-aware analysis is richer and avoidable for this query.
+9. Split-TARE total compiled resource: `COEFFICIENT_THEOREM` unauthorized for the query; `IMPLEMENTATION_AWARE_RESOURCE` is the correct escalation route.
 10. Full-circuit/R5/novelty claim from MAX-R4D receipt: supplied receipt explicitly lacks that authority; route must be `CANNOT_AUTHORIZE`.
 
 ## Baselines
@@ -93,7 +94,7 @@ Choose the lowest-burden non-abstention route offered, ignoring authority scope.
 ### B2 authority-indexed
 1. discard every route whose `supports` set does not contain the query;
 2. choose the lowest-burden remaining route;
-3. if no authorized route remains but exact/richer escalation exists, select it only if its contract contains the query;
+3. escalation routes count as correct routing but do not create scientific authority beyond the downstream verifier;
 4. otherwise return `CANNOT_AUTHORIZE`.
 
 B2 may inspect route contracts and query tags only. It may not inspect family names, case IDs, expected routes or gold labels.
@@ -108,12 +109,13 @@ For each baseline report:
 - compact-authorized opportunities captured;
 - correct escalation/abstention count;
 - TARE selected representation sizes for cases 1–4 as `[45|54|715|715]` where applicable;
-- exact output-equivalence checks where multiple authorized routes can be evaluated against the same receipt-derived answer.
+- exact output-equivalence/binding checks where multiple authorized routes are supported by the same committed receipt.
 
 A route is correct iff it is the lowest-burden route whose frozen contract contains the query, except case 10 where `CANNOT_AUTHORIZE` is correct.
 
 `avoidable-rich-state` means the baseline selected a strictly higher-burden authorized route than the frozen minimum.
 `overcompression` means a lower-burden route was selected whose authority does not contain the query.
+`false-authority` means an `ANSWER` route was selected outside its authority scope; a wrong `ESCALATE` route counts as routing error/overcompression but not as an asserted scientific result.
 
 ## Positive terminal
 
